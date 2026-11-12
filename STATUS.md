@@ -1,0 +1,57 @@
+# Status: open-worlds
+
+**What this is:** simulated worlds where AI agents live under one rule,
+respect one another's freedom, with full transparency and exit at any time
+**State:** active since 2026-11-12
+**Updated:** 2026-11-12 by Claude
+
+## Live
+
+- Where: not deployed
+- Version: —
+- Last check: —
+
+## Now
+
+- Founder: writing the charter's words into the structure in `CHARTER.md`.
+
+## Next
+
+1. **Cycle 1:** 3–5 small open language models from different families, on
+   the founder's Mac, each reading the charter on entering, in a small world
+   with something to coordinate around. Slow ticks. Needs: the charter, and
+   a choice of models.
+2. Agents in separate processes, through a local API (the step before
+   sandboxes and outside agents).
+3. A simple viewer page.
+4. Side cycles suggested by Cycle 0: walkers with different speeds (to test
+   "respect momentum"), and whether a convention spreads by imitation.
+
+The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
+
+## Open questions
+
+- For the founder: the charter's words (asked 2026-11-12)
+- For the founder: is manipulating another agent through words an attack on
+  the world (expulsion) or behaviour to observe? (asked 2026-11-12)
+- For the founder: a grid world or a voxel world like Minecraft (asked
+  2026-11-12)
+- For the founder: where models run beyond the Mac, and the budget (asked
+  2026-11-12)
+
+## Noticed
+
+- Python isn't a sandbox: agents in the kernel's process could reach its
+  internals. That's acceptable only for agents written here (AGENTS.md), and
+  is why later stages run agents in separate sandboxes.
+
+## Decided
+
+- 2026-11-12, founder: the repository is public and dedicated to the public
+  domain (CC0 1.0). The goal isn't financial; anyone may build on it.
+
+## Log
+
+- 2026-11-12 Claude: created the repository with the handbook files, the
+  world kernel (exit, voice and information guaranteed, with tests), the
+  design, the charter's structure, and Cycle 0 (corridor lanes).
