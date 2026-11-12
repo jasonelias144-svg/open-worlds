@@ -18,8 +18,9 @@ The search prunes by symmetry, as nauty and bliss do, so even very
 symmetric molecules need only a few dozen leaves. It also has a cap
 (MAX_SEARCH_LEAVES) as a safety net: a graph that still needs more leaves
 raises ValueError instead of getting an identity, and so does comparing or
-hashing it. No valid molecule tried so far comes near it, but a graph made
-of several separate copies of one rigid part can.
+hashing it. No molecule tried so far comes near it. Separate parts are
+identified one at a time, so repeated parts (which used to multiply the
+search) no longer can.
 
 Limitation of this layer: resonance forms are different graphs, so they can
 get different identities. Formamide drawn neutral (H2N-CH=O) and drawn
@@ -218,7 +219,47 @@ def _charge_text(charge: int) -> str:
 
 # --- canonical form --------------------------------------------------------
 
+def _parts(m: Molecule) -> List[Molecule]:
+    """The connected parts of a molecule's graph, each as a molecule."""
+    n = len(m.atoms)
+    near: List[List[int]] = [[] for _ in range(n)]
+    for b in m.bonds:
+        near[b.a].append(b.b)
+        near[b.b].append(b.a)
+    seen = [False] * n
+    groups = []
+    for start in range(n):
+        if seen[start]:
+            continue
+        seen[start] = True
+        group, todo = [], [start]
+        while todo:
+            i = todo.pop()
+            group.append(i)
+            for j in near[i]:
+                if not seen[j]:
+                    seen[j] = True
+                    todo.append(j)
+        groups.append(sorted(group))
+    if len(groups) == 1:
+        return [m]
+    parts = []
+    for group in groups:
+        index = {old: new for new, old in enumerate(group)}
+        parts.append(Molecule([m.atoms[i] for i in group],
+                              [Bond(index[b.a], index[b.b], b.order)
+                               for b in m.bonds if b.a in index]))
+    return parts
+
+
 def _canonical_form(m: Molecule, prune: bool = True) -> str:
+    # Separate parts are identified one at a time: the identity of the whole
+    # is the sorted list of its parts' identities. This is exact (two graphs
+    # are the same exactly when their parts are the same, as a multiset),
+    # and it keeps repeated parts from multiplying the search.
+    parts = _parts(m)
+    if len(parts) > 1:
+        return ";".join(sorted(_canonical_form(part, prune) for part in parts))
     n = len(m.atoms)
     around: List[List[Tuple[int, int]]] = [[] for _ in range(n)]
     for b in m.bonds:

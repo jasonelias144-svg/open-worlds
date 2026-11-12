@@ -166,10 +166,13 @@ searching about 140,000 random graphs.
   Phosphorus and sulfur come when the chemistry needs them.
 - **The search's cap.** A safety net: a graph that needs more than 10,000
   leaves raises an error instead of getting an identity, and so does
-  comparing or hashing it. With symmetry pruning, no valid molecule tried so
-  far needs more than about 50. But a graph made of several separate copies
-  of one rigid part still grows exponentially and can reach it; identifying
-  each connected part separately will remove that case.
+  comparing or hashing it. With symmetry pruning, no graph tried so far
+  needs more than about 50 for any one connected part. Separate parts are
+  identified one at a time and their identities sorted, so repeated parts,
+  which used to multiply the search (seven copies of a rigid C10H10 reached
+  the cap), no longer can. Connected graphs built specially to defeat
+  refinement can still need exponentially many leaves; none is known among
+  real molecules.
 - **No radicals.** Every atom must have exactly its valence, so open-shell
   species can't be represented: nitric oxide (NO), the hydroxyl radical, the
   methyl radical, or oxygen as the diradical it really is. O2 can be drawn as

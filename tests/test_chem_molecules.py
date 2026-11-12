@@ -369,6 +369,29 @@ class TestSymmetryPruning(unittest.TestCase):
         m = graph(16, edges)
         self.assertEqual(_canonical_form(m), _canonical_form(m, prune=False))
 
+    def test_separate_parts_are_identified_one_at_a_time(self):
+        # Seven separate copies of a rigid cubic C10H10 used to reach the
+        # search's cap after about 11 s (independent review of #5). With
+        # parts identified separately, each copy is searched once.
+        part = random_cubic_hydrocarbon(10, 3)
+        def copies(k, extra=()):
+            atoms, bonds = [], []
+            for p in [part] * k + list(extra):
+                offset = len(atoms)
+                atoms += p.atoms
+                bonds += [Bond(b.a + offset, b.b + offset, b.order) for b in p.bonds]
+            return Molecule(atoms, bonds)
+        rng = random.Random(12)
+        with mock.patch.object(molecule_module, "MAX_SEARCH_LEAVES", 100):
+            seven = copies(7)
+            self.assertEqual(shuffled(seven, rng), seven)
+            self.assertEqual(len(seven.identity().split(";")), 7)
+        # Same parts in another order: same identity; different parts: not.
+        other = random_cubic_hydrocarbon(10, 4)
+        self.assertEqual(copies(2, [other]), shuffled(copies(2, [other]), rng))
+        self.assertNotEqual(copies(2, [other]), copies(1, [other, other]))
+        self.assertNotEqual(copies(3), copies(2))
+
     def test_rook_and_shrikhande_differ(self):
         # Strongly regular with the same parameters: refinement can't tell
         # them apart at all.
