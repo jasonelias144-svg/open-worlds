@@ -300,7 +300,10 @@ in-process readers share the log's entries rather than getting copies.
 errors; it does not make it safe to run untrusted code in the same
 process, which could exit the program or loop forever. Outside agents run
 in their own processes and reach worlds through the protocol
-(DESIGN.md).
+(DESIGN.md). Two more for course step 12: non-finite numbers (NaN,
+infinity) count as plain here but aren't valid JSON, and a payload built
+from many shared references can take long to check; over the network a
+payload is plain JSON of its real size, which removes both.
 Until worlds have keys, a world can't take down its own listing, and a
 listing whose lister has left stays up; and two registries may list each
 other, which matters once listings are followed over the network
