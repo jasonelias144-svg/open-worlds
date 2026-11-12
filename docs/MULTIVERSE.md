@@ -112,9 +112,10 @@ What this design adds, from the founder's principles:
    worlds. (The sketch's protocol had no way to leave.)
 2. **An individual is a key.** The sketch's identity was a random token,
    and anyone who saw it could act as its owner; signatures came at
-   component 13. Here the individual's identity becomes its public key, and
-   the passport's stamps are signed by the worlds that gave them. The
-   signature step comes second, right after the core works.
+   component 13. Here the individual's identity is its public key, and
+   everything it sends is signed (done in course step 2; see "Keys and
+   signatures" below). The passport's stamps will be signed by the worlds
+   that gave them (course step 3).
 3. **No registry is the authority.** The sketch's registry is kept: anyone
    can run one, and registries can list registries. A world may also list
    doors, the addresses and keys of worlds it links to, as websites link to
@@ -210,6 +211,63 @@ flow acceleration."
 - Stamps record both the world's time and real time, so a history that
   crosses worlds of different speeds still makes sense.
 
+## Keys and signatures (course step 2)
+
+- **An individual is a key.** Its identity is its Ed25519 public key
+  (64 hexadecimal characters), and its private key never leaves it
+  (`multiverse/identity.py`, `Individual`). Anyone can make a key; no
+  authority issues them.
+- **Everything it sends is signed:** every petition, act and leave,
+  over a document that names the protocol, the kind of request, the
+  world it is for, and a number (`seq`) that grows with every request to
+  that world (`multiverse/protocol.py`). So a request can't be forged,
+  can't be taken to another world, and can't be replayed: a captured
+  petition can't bring someone back, and a captured leave can't push
+  someone out.
+- **Worlds check before anything else.** An unsigned, forged or replayed
+  request is refused with a reason before the world's law is consulted.
+- **The log names a key only for what that key signed.** Anyone can
+  write any token into a request, so a refusal of a request whose
+  signature never verified is logged without naming anyone. Otherwise
+  anyone could fill a world's public record with refusals in someone
+  else's name.
+- **A good signature proves who sent a request, not that its values are
+  sound.** The signer owns the key and can sign anything, so every check
+  on what a request contains still runs, and is tested with signed
+  requests.
+- **Leaving still can't be refused by any law.** The one leave a world
+  refuses is a leave that isn't the leaver's own. The individual's own
+  leave always succeeds.
+- **The conformance test checks all this** (WCP/0.2): an unsigned
+  petition isn't admitted; an act or a leave signed by another key is
+  refused; a replayed leave is refused. One limit: the test doesn't know
+  any world's acts, so its forged act is one the law would refuse
+  anyway. A world that ignored signatures on acts but refused unknown
+  acts would pass. Each world's own tests must send it a forged act its
+  law would otherwise accept, as the poetry world's do.
+- **Ed25519 is written here** from its standard, RFC 8032, in the
+  standard library (`multiverse/ed25519.py`). It passes the standard's
+  own five test values, parsed from the RFC's text, and CI cross-checks
+  it against the `cryptography` package on fifty random keys and
+  messages: same keys, same signatures, each accepting the other's.
+
+What it doesn't do yet, said plainly:
+
+- **It isn't hardened against timing attacks.** Python's big numbers
+  take time that depends on their values. Acceptable while nothing of
+  value depends on these keys; a vetted library replaces it before
+  anything does.
+- **Keys live only in memory.** There is no saving, backup or recovery
+  yet. An individual that loses its key can't prove it is itself any
+  more. Keeping keys safely comes before anything an individual would
+  want to come back for (belongings and homes).
+- **Worlds don't sign their answers yet.** Admissions and the passport's
+  stamps are signed in course step 3.
+- **The registry's listing act attaches the world unsigned** (it is an
+  object in the same process); the signature covers the world's id, and
+  the registry lists only a world whose checked manifest has that id.
+  Over the network the act carries an address (course step 12).
+
 ## The course
 
 The steps ahead are in [COURSE.md](COURSE.md): twelve steps, rolling.
@@ -290,8 +348,7 @@ The other fixes:
 - **What wasn't brought in:** the poetry engine's own Polyphony runner,
   since the poetry world checks turns and convergence.
 
-Known limits carried over, to be fixed in later steps: tokens can be
-copied until identities become keys (course step 2); a registry's
+Known limits carried over, to be fixed in later steps: a registry's
 listing act carries the world itself, so it works only within one
 process (course step 12);
 `log_since` can skip an entry written in the same microsecond, and
@@ -316,8 +373,8 @@ Dickinson's "Hope is the thing with feathers" (1891), and the apprentices'
 portfolios are stanzas of her other poems.
 
 The signing components couldn't be tested here, because this
-environment's crypto library is broken; course step 2 writes the signatures
-without it. One test sample, described as "real outputs" of a model, was
+environment's crypto library is broken; course step 2 wrote the
+signatures without it. One test sample, described as "real outputs" of a model, was
 invented: DeepSeek could not have run the model. It won't be used.
 
 ## For the founder

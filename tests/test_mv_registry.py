@@ -10,28 +10,40 @@ from unittest import mock
 
 from multiverse.chemistry_world import ChemistryWorld
 from multiverse.conformance import run_conformance
-from multiverse.identity import create_identity
+from multiverse.identity import Individual
 from multiverse.poetry_world import PoetryWorld, PoetryWorldLaw
 from multiverse.protocol import (Ack, Act, Admission, Departure, Manifest,
-                                 Petition, Refusal)
+                                 Refusal)
 from multiverse.registry import (MultiverseLaw, MultiverseRegistry,
                                  manifest_from_dict, manifest_to_dict,
                                  registry_from_log)
 
 
-def _petition(name, token):
-    return Petition(petitioner_token=token, petitioner_name=name,
-                    passport_admissions=(), message=f"{name} petitions.")
+def _in(world, person, *args, **kwargs):
+    """`person`'s signed petition to `world`."""
+    return person.petition(world.manifest().entity_id, *args, **kwargs)
 
 
-def _admit(actor, entity):
-    return Act(actor_token=actor, type="multiverse.admit",
-               payload={"entity": entity})
+def _out(world, person):
+    """`person`'s signed leave from `world`."""
+    return person.leave(world.manifest().entity_id)
 
 
-def _remove(actor, entity_id):
-    return Act(actor_token=actor, type="multiverse.remove",
-               payload={"entity_id": entity_id})
+def _admit(mv, person, entity, entity_id=None):
+    """A signed listing act: the payload names the entity's id; the entity
+    itself is attached. The id is read without calling manifest(), so
+    tests that count manifest() calls see only the registry's."""
+    if entity_id is None:
+        manifest = getattr(entity, "_manifest", None)
+        entity_id = manifest.entity_id if manifest else "world:unknown"
+    act = person.act(mv.manifest().entity_id, "multiverse.admit",
+                     {"entity_id": entity_id})
+    return dataclasses.replace(act, attachment=entity)
+
+
+def _remove(mv, person, entity_id):
+    return person.act(mv.manifest().entity_id, "multiverse.remove",
+                      {"entity_id": entity_id})
 
 
 class KeyBomb(str):
@@ -54,10 +66,10 @@ class RegistryCase(unittest.TestCase):
     def registry(self, entity_id="multiverse:main", name="Alice", **law):
         mv = MultiverseRegistry(entity_id, "Main Multiverse",
                                 law=MultiverseLaw(**law) if law else None)
-        person = create_identity(name)
-        self.assertIsInstance(mv.petition(_petition(name, person.token)),
+        person = Individual(name)
+        self.assertIsInstance(mv.petition(person.petition(entity_id)),
                               Admission)
-        return mv, person.token
+        return mv, person
 
 
 class TestRegistry(RegistryCase):
@@ -78,7 +90,7 @@ class TestRegistry(RegistryCase):
 
     def test_lists_conforming_entity(self):
         mv, alice = self.registry()
-        r = mv.act(_admit(alice, PoetryWorld("world:poetry",
+        r = mv.act(_admit(mv, alice, PoetryWorld("world:poetry",
                                              "The Poetry World")))
         self.assertIsInstance(r, Ack)
         self.assertEqual(mv.entity_ids(), ["world:poetry"])
@@ -88,7 +100,7 @@ class TestRegistry(RegistryCase):
 
     def test_refuses_non_conforming_entity(self):
         mv, alice = self.registry()
-        r = mv.act(_admit(alice, BrokenWorld()))
+        r = mv.act(_admit(mv, alice, BrokenWorld()))
         self.assertIsInstance(r, Refusal)
         self.assertIn("fails conformance", r.reason)
         self.assertEqual(mv.entity_ids(), [])
@@ -102,7 +114,7 @@ class TestRegistry(RegistryCase):
             def manifest(self): raise RuntimeError("down")
 
         mv, alice = self.registry()
-        r = mv.act(_admit(alice, Raises()))
+        r = mv.act(_admit(mv, alice, Raises()))
         self.assertIsInstance(r, Refusal)
         self.assertIn("fails conformance", r.reason)
 
@@ -118,7 +130,7 @@ class TestRegistry(RegistryCase):
                 return super().manifest()
 
         mv, alice = self.registry()
-        r = mv.act(_admit(alice, Fickle("world:fickle", "Fickle")))
+        r = mv.act(_admit(mv, alice, Fickle("world:fickle", "Fickle")))
         self.assertIsInstance(r, Ack)
         self.assertEqual(mv.entity_ids(), ["world:fickle"])
 
@@ -134,7 +146,7 @@ class TestRegistry(RegistryCase):
                 return m
 
         mv, alice = self.registry()
-        self.assertIsInstance(mv.act(_admit(alice, Shifty("world:shifty",
+        self.assertIsInstance(mv.act(_admit(mv, alice, Shifty("world:shifty",
                                                           "Shifty"))), Ack)
         self.assertEqual(mv.entity_ids(), ["world:shifty"])
 
@@ -148,13 +160,13 @@ class TestRegistry(RegistryCase):
                 return Departure(entity_id=Odd(), timestamp="t")
 
         mv, alice = self.registry()
-        r = mv.act(_admit(alice, OddDeparture("world:odd", "Odd")))
+        r = mv.act(_admit(mv, alice, OddDeparture("world:odd", "Odd")))
         self.assertIsInstance(r, Refusal)
         self.assertIn("fails conformance", r.reason)
         # And the last guard, if checking itself ever raised:
         with mock.patch("multiverse.registry.check",
                         side_effect=RuntimeError("boom")):
-            r = mv.act(_admit(alice, PoetryWorld("world:p", "P")))
+            r = mv.act(_admit(mv, alice, PoetryWorld("world:p", "P")))
         self.assertIsInstance(r, Refusal)
         self.assertIn("could not be checked", r.reason)
         self.assertEqual(mv.entity_ids(), [])
@@ -197,7 +209,7 @@ class TestRegistry(RegistryCase):
         for w in worlds:
             with self.subTest(world=w.manifest().name
                               if not isinstance(w, LoudManifest) else "Loud"):
-                r = mv.act(_admit(alice, w))
+                r = mv.act(_admit(mv, alice, w))
                 self.assertIsInstance(r, Refusal)
                 self.assertIn("fails conformance", r.reason)
         self.assertEqual(mv.entity_ids(), [])
@@ -207,14 +219,15 @@ class TestRegistry(RegistryCase):
             pass
 
         mv, alice = self.registry()
-        mv.act(_admit(alice, PoetryWorld("world:poetry", "Poetry")))
-        for act in (Act(alice, "multiverse.admit", {KeyBomb("entity"): 1}),
-                    Act(alice, "multiverse.admit",
-                        {"entity": PoetryWorld("world:x", "X"),
-                         "note": object()}),
-                    Act(alice, "multiverse.remove",
+        mv.act(_admit(mv, alice, PoetryWorld("world:poetry", "Poetry")))
+        token = alice.token
+        for act in (Act(token, "multiverse.admit", {KeyBomb("entity_id"): 1}),
+                    Act(token, "multiverse.admit",
+                        {"entity_id": "world:x", "note": object()},
+                        attachment=PoetryWorld("world:x", "X")),
+                    Act(token, "multiverse.remove",
                         {KeyBomb("entity_id"): "x"}),
-                    Act(alice, "multiverse.remove",
+                    Act(token, "multiverse.remove",
                         {"entity_id": Text("world:poetry")})):
             with self.subTest(act=act.type):
                 r = mv.act(act)
@@ -227,33 +240,53 @@ class TestRegistry(RegistryCase):
             def act(self, a): return "ok"
 
         mv, alice = self.registry()
-        mv.act(_admit(alice, Rude("world:rude", "Rude")))
+        mv.act(_admit(mv, alice, Rude("world:rude", "Rude")))
         refused, = [e for e in mv.log_since(None)
                     if e.kind == "entity_admit_refused"]
         self.assertEqual(refused.data["manifest"]["entity_id"], "world:rude")
 
+    def test_lists_only_what_was_signed_for(self):
+        mv, alice = self.registry()
+        r = mv.act(_admit(mv, alice, PoetryWorld("world:real", "Real"),
+                          entity_id="world:other"))
+        self.assertIsInstance(r, Refusal)
+        self.assertIn("signed for", r.reason)
+        self.assertEqual(mv.entity_ids(), [])
+
+    def test_the_signed_id_must_be_text(self):
+        mv, alice = self.registry()
+        world = PoetryWorld("world:real", "Real")
+        for entity_id in (5, "", ["world:real"], None):
+            with self.subTest(entity_id=entity_id):
+                act = alice.act(mv.manifest().entity_id, "multiverse.admit",
+                                {"entity_id": entity_id})
+                r = mv.act(dataclasses.replace(act, attachment=world))
+                self.assertIsInstance(r, Refusal)
+                self.assertIn("No entity_id", r.reason)
+        self.assertEqual(mv.entity_ids(), [])
+
     def test_does_not_list_itself(self):
         mv, alice = self.registry()
-        r = mv.act(_admit(alice, mv))
+        r = mv.act(_admit(mv, alice, mv))
         self.assertIsInstance(r, Refusal)
         self.assertIn("itself", r.reason)
         # Refused before testing itself: no conformance visit in its log.
         self.assertEqual([e.kind for e in mv.log_since(None)],
                          ["admission", "act_refused"])
         twin = MultiverseRegistry("multiverse:main", "Same id")
-        self.assertIn("itself", mv.act(_admit(alice, twin)).reason)
+        self.assertIn("itself", mv.act(_admit(mv, alice, twin)).reason)
         self.assertEqual(mv.entity_ids(), [])
 
     def test_only_the_lister_takes_a_listing_down(self):
         mv, alice = self.registry()
-        mv.act(_admit(alice, PoetryWorld("world:poetry", "Poetry")))
-        bob = create_identity("Bob")
-        mv.petition(_petition("Bob", bob.token))
-        r = mv.act(_remove(bob.token, "world:poetry"))
+        mv.act(_admit(mv, alice, PoetryWorld("world:poetry", "Poetry")))
+        bob = Individual("Bob")
+        mv.petition(_in(mv, bob))
+        r = mv.act(_remove(mv, bob, "world:poetry"))
         self.assertIsInstance(r, Refusal)
         self.assertIn("Only whoever listed", r.reason)
         self.assertEqual(mv.entity_ids(), ["world:poetry"])
-        self.assertIsInstance(mv.act(_remove(alice, "world:poetry")), Ack)
+        self.assertIsInstance(mv.act(_remove(mv, alice, "world:poetry")), Ack)
 
     def test_refuses_missing_entity(self):
         mv, alice = self.registry()
@@ -263,42 +296,44 @@ class TestRegistry(RegistryCase):
     def test_refuses_duplicate(self):
         mv, alice = self.registry()
         poetry = PoetryWorld("world:poetry", "The Poetry World")
-        self.assertIsInstance(mv.act(_admit(alice, poetry)), Ack)
-        r = mv.act(_admit(alice, poetry))
+        self.assertIsInstance(mv.act(_admit(mv, alice, poetry)), Ack)
+        r = mv.act(_admit(mv, alice, poetry))
         self.assertIsInstance(r, Refusal)
         self.assertIn("already listed", r.reason)
 
     def test_remove(self):
         mv, alice = self.registry()
-        mv.act(_admit(alice, PoetryWorld("world:poetry", "Poetry")))
-        self.assertIsInstance(mv.act(_remove(alice, "world:poetry")), Ack)
+        mv.act(_admit(mv, alice, PoetryWorld("world:poetry", "Poetry")))
+        self.assertIsInstance(mv.act(_remove(mv, alice, "world:poetry")), Ack)
         self.assertEqual(mv.entity_ids(), [])
 
     def test_refuses_remove_missing(self):
         mv, alice = self.registry()
-        r = mv.act(_remove(alice, "world:nonexistent"))
+        r = mv.act(_remove(mv, alice, "world:nonexistent"))
         self.assertIsInstance(r, Refusal)
         self.assertIn("not in registry", r.reason)
 
     def test_refuses_strangers_and_unknown_acts(self):
         mv, alice = self.registry()
-        stranger = create_identity("Mallory").token
+        stranger = Individual("Mallory")
         self.assertIn("not admitted",
-                      mv.act(_admit(stranger, PoetryWorld("w:p", "P"))).reason)
-        r = mv.act(Act(actor_token=alice, type="multiverse.rank", payload={}))
+                      mv.act(_admit(mv, stranger,
+                                    PoetryWorld("w:p", "P"))).reason)
+        r = mv.act(alice.act(mv.manifest().entity_id, "multiverse.rank", {}))
         self.assertIn("Unknown act type", r.reason)
 
     def test_never_converges(self):
         mv, alice = self.registry()
         for i in range(10):
-            mv.act(_admit(alice, PoetryWorld(f"world:{i}", f"World {i}")))
+            mv.act(_admit(mv, alice, PoetryWorld(f"world:{i}", f"World {i}")))
         self.assertEqual(len(mv.entity_ids()), 10)
         self.assertFalse(mv.is_converged())
 
     def test_lists_two_different_laws(self):
         mv, alice = self.registry()
-        mv.act(_admit(alice, PoetryWorld("world:poetry", "Poetry")))
-        mv.act(_admit(alice, ChemistryWorld("world:chemistry", "Chemistry")))
+        mv.act(_admit(mv, alice, PoetryWorld("world:poetry", "Poetry")))
+        mv.act(_admit(mv, alice,
+                      ChemistryWorld("world:chemistry", "Chemistry")))
         self.assertEqual({m.entity_id for m in mv.list_sub_entities()},
                          {"world:poetry", "world:chemistry"})
 
@@ -307,23 +342,24 @@ class TestRegistry(RegistryCase):
         mv, alice = self.registry()
         poetry = PoetryWorld("world:poetry", "Poetry",
                              law=PoetryWorldLaw(max_admitted=2))
-        self.assertIsInstance(mv.act(_admit(alice, poetry)), Ack)
+        self.assertIsInstance(mv.act(_admit(mv, alice, poetry)), Ack)
         for name in ("Bea", "Cal"):
-            person = create_identity(name)
+            person = Individual(name)
             self.assertIsInstance(
-                poetry.petition(_petition(name, person.token)), Admission)
+                poetry.petition(person.petition("world:poetry")), Admission)
 
     def test_leave_the_registry(self):
         mv, alice = self.registry(max_admitted=1)
-        self.assertFalse(mv.leave(alice).already_left)
-        bob = create_identity("Bob")
-        self.assertIsInstance(mv.petition(_petition("Bob", bob.token)),
+        self.assertFalse(
+            mv.leave(_out(mv, alice)).already_left)
+        bob = Individual("Bob")
+        self.assertIsInstance(mv.petition(_in(mv, bob)),
                               Admission)
 
     def test_full_registry_says_multiverse(self):
         mv, _ = self.registry(max_admitted=1)
-        bob = create_identity("Bob")
-        r = mv.petition(_petition("Bob", bob.token))
+        bob = Individual("Bob")
+        r = mv.petition(_in(mv, bob))
         self.assertEqual(r.reason, "The multiverse is full")
 
 
@@ -331,10 +367,11 @@ class TestFractal(RegistryCase):
 
     def test_multiverse_in_multiverse(self):
         inner, alice = self.registry("multiverse:inner")
-        inner.act(_admit(alice, PoetryWorld("world:poetry", "Poetry")))
-        inner.act(_admit(alice, ChemistryWorld("world:chemistry", "Chem")))
+        inner.act(_admit(inner, alice, PoetryWorld("world:poetry", "Poetry")))
+        inner.act(_admit(inner, alice,
+                         ChemistryWorld("world:chemistry", "Chem")))
         outer, bob = self.registry("multiverse:outer", "Bob")
-        self.assertIsInstance(outer.act(_admit(bob, inner)), Ack)
+        self.assertIsInstance(outer.act(_admit(outer, bob, inner)), Ack)
         listed, = outer.list_sub_entities()
         self.assertEqual(listed.entity_id, "multiverse:inner")
         self.assertTrue(listed.has_sub_registry())
@@ -342,16 +379,16 @@ class TestFractal(RegistryCase):
 
     def test_registry_from_log(self):
         mv, alice = self.registry()
-        mv.act(_admit(alice, PoetryWorld("world:poetry", "Poetry")))
-        mv.act(_admit(alice, ChemistryWorld("world:chemistry", "Chem")))
-        mv.act(_remove(alice, "world:chemistry"))
+        mv.act(_admit(mv, alice, PoetryWorld("world:poetry", "Poetry")))
+        mv.act(_admit(mv, alice, ChemistryWorld("world:chemistry", "Chem")))
+        mv.act(_remove(mv, alice, "world:chemistry"))
         rebuilt = registry_from_log(mv.log_since(None))
         self.assertEqual(list(rebuilt), mv.entity_ids())
         self.assertEqual(list(rebuilt.values()), mv.list_sub_entities())
 
     def test_log_shows_conformance_reports(self):
         mv, alice = self.registry()
-        mv.act(_admit(alice, PoetryWorld("world:poetry", "Poetry")))
+        mv.act(_admit(mv, alice, PoetryWorld("world:poetry", "Poetry")))
         listed = [e for e in mv.log_since(None) if e.kind == "entity_admitted"]
         self.assertEqual(len(listed), 1)
         self.assertTrue(listed[0].data["conformance"]["passed"])

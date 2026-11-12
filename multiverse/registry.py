@@ -8,8 +8,9 @@ which is how multiverses join each other. Anyone can run one, and none is
 the authority (docs/MULTIVERSE.md).
 
 Acts:
-  multiverse.admit    {"entity": <a conforming entity>}: runs the
-                      conformance test, and lists the entity if it passes
+  multiverse.admit    {"entity_id": str}, with the entity attached to the
+                      act: runs the conformance test, and lists the
+                      entity if it passes and its id is the one signed
   multiverse.remove   {"entity_id": str}: takes down a listing; only
                       whoever listed it may
 
@@ -26,8 +27,10 @@ Changed from the sketch:
     does not list itself.
 
 Known limit, until course step 12 (docs/COURSE.md): `multiverse.admit`
-carries the entity itself, so it only works within one process. Over the
-network it carries an address.
+carries the entity itself, attached to the act, so it only works within
+one process. Over the network it carries an address. The signature
+covers the entity's id; the registry lists only an entity whose checked
+manifest has that id.
 """
 from __future__ import annotations
 
@@ -36,8 +39,7 @@ from typing import Dict, List, Optional
 
 from .conformance import check
 from .entity import Entity, now
-from .protocol import (Ack, Act, ActResponse, LogEntry, Manifest, Refusal,
-                       is_plain)
+from .protocol import Ack, Act, ActResponse, LogEntry, Manifest, Refusal
 
 
 def manifest_to_dict(m: Manifest) -> Dict:
@@ -100,15 +102,6 @@ class MultiverseRegistry(Entity):
         self._conformance_reports: Dict[str, Dict] = {}
         self._proposed_by: Dict[str, str] = {}
 
-    def _plain_payload(self, act: Act) -> bool:
-        # multiverse.admit carries the entity itself (in-process only, until
-        # course step 12); every key, and every other value, is plain.
-        if act.type == "multiverse.admit":
-            return (all(type(k) is str for k in act.payload)
-                    and all(is_plain(v) for k, v in act.payload.items()
-                            if k != "entity"))
-        return super()._plain_payload(act)
-
     def act(self, act: Act) -> ActResponse:
         timestamp = now()
         refusal = self._actor_problem(timestamp, act)
@@ -150,10 +143,14 @@ class MultiverseRegistry(Entity):
     # -- internals ------------------------------------------------------
 
     def _handle_admit(self, timestamp: str, act: Act) -> ActResponse:
-        entity = act.payload.get("entity")
+        entity = act.attachment
+        entity_id = act.payload.get("entity_id")
         if entity is None:
             return self._refuse(timestamp, act.actor_token,
-                                "No entity in payload", "act")
+                                "No entity attached", "act")
+        if type(entity_id) is not str or not entity_id:
+            return self._refuse(timestamp, act.actor_token,
+                                "No entity_id in payload", "act")
         if entity is self:
             return self._refuse(timestamp, act.actor_token,
                                 "A registry does not list itself", "act")
@@ -183,6 +180,13 @@ class MultiverseRegistry(Entity):
         if m.entity_id == self._manifest.entity_id:
             return self._refuse(timestamp, act.actor_token,
                                 "A registry does not list itself", "act")
+        if m.entity_id != entity_id:
+            # The signature covers the id, not the attached object, so
+            # what is listed must be what was signed for.
+            return self._refuse(timestamp, act.actor_token,
+                                f"The attached entity is {m.entity_id}, "
+                                f"not the {entity_id} that was signed for",
+                                "act")
         if m.entity_id in self._registry:
             return self._refuse(timestamp, act.actor_token,
                                 f"Entity {m.entity_id} already listed", "act")

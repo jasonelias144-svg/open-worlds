@@ -16,19 +16,23 @@ contract. The design behind it is [MULTIVERSE.md](MULTIVERSE.md).
 
 ## Done
 
-1. **The multiverse's core, working** (2026-11-12, #12 and the write-up
-   that added this page). The sketch's components 1 to 7, with leaving
-   added: identity, passport, protocol, conformance test, poetry world,
-   chemistry world, registry, and the first collaboration.
+1. **The multiverse's core, working** (2026-11-12, #12 and #13, the
+   write-up that added this page). The sketch's components 1 to 7, with
+   leaving added: identity, passport, protocol, conformance test, poetry
+   world, chemistry world, registry, and the first collaboration.
+2. **Keys and signatures** (2026-11-12, #14). An individual's identity is
+   its public key; every petition, act and leave is signed for one world
+   with a growing number, so it can't be forged, moved or replayed.
+   Ed25519 written here from RFC 8032, passing its test values, and
+   cross-checked in CI against the `cryptography` package. Protocol
+   WCP/0.2. A world's log names a key only for what that key signed.
+   Learned: keys live only in memory for now, so keeping keys safely
+   joins the next-in-line list, before belongings and homes; and a good
+   signature proves only who sent a request, so every check on its
+   values is tested again with signed requests.
 
 ## Ahead
 
-2. **Keys and signatures.** Each individual's identity becomes its public
-   key; petitions, acts and leaves are signed, and worlds refuse what is
-   unsigned or wrongly signed. Ed25519 written here from its standard
-   (RFC 8032), standard library only, passing the standard's own test
-   values, and cross-checked in CI against the `cryptography` package.
-   Not hardened against timing attacks, which is said plainly.
 3. **Signed passports.** Worlds have keys too, and sign stamps for
    arriving, leaving and what was made (by its fingerprint). Any world
    can check a passport without asking anyone. A forged or altered stamp
@@ -72,12 +76,16 @@ contract. The design behind it is [MULTIVERSE.md](MULTIVERSE.md).
 13. **Governance.** A proposal to change a world's law is tried on a copy
     of the world first, and adopted only by unanimous consent of those
     present (principle 4).
+14. **A common-meter poetry world.** A poetry world whose law asks each
+    turn to add a quatrain in common meter, the meter of Dickinson and of
+    hymns, which others find easy to extend. Counting syllables and
+    spotting rhymes in English is approximate; the law says so, and
+    treats the meter as a guide.
 
 ## Next in line
 
-Added one at a time, as steps are done: a common-meter poetry world
-(each turn adds a quatrain in the meter of Dickinson and of hymns, which
-others find easy to extend); a single-cell world; an adapter
+Added one at a time, as steps are done: keeping keys safely (saving,
+backup, recovery); a single-cell world; an adapter
 for a world others built (anima-world); doors between worlds; belongings
 and homes under each world's law; visiting two worlds at once; the main
 community world.

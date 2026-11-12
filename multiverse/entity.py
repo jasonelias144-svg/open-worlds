@@ -8,7 +8,12 @@ Changed from the sketch:
   - A petition with an unusable token or passport is refused. In the
     sketch it raised an exception inside the world.
   - Leaving (protocol.py). A leave ends membership, frees the place, and
-    is recorded in the log. It can't be refused.
+    is recorded in the log. The law can't refuse it.
+  - Course step 2: every petition, act and leave must be signed by the
+    individual it names, for this world, with a growing `seq`. Anything
+    else is refused before the law is consulted, and its refusal is
+    logged without naming any key: the log names a key only for what
+    that key signed.
 """
 from __future__ import annotations
 
@@ -19,8 +24,10 @@ from .identity import Identity, token_problem
 from .passport import Admission as PassportAdmission
 from .passport import Passport
 from .protocol import (PROTOCOL_VERSION, Act, ActResponse, Admission,
-                       Departure, LogEntry, Manifest, Petition,
-                       PetitionResponse, Refusal, is_plain)
+                       Departure, Leave, LeaveResponse, LogEntry, Manifest,
+                       Petition, PetitionResponse, Refusal, act_document,
+                       is_plain, leave_document, petition_document,
+                       request_problem)
 
 
 def now() -> str:
@@ -65,6 +72,7 @@ class Entity:
         self._log: List[LogEntry] = []
         self._admitted: Dict[str, Admission] = {}
         self._passports: Dict[str, Passport] = {}
+        self._last_seq: Dict[str, int] = {}
 
     # -- the protocol ---------------------------------------------------
 
@@ -81,17 +89,32 @@ class Entity:
         if problem:
             return self._refuse(timestamp, None,
                                 f"Cannot admit: {problem}", "petition")
+        # Until the signature has verified, the log names nobody: the
+        # token is only a claim (see _refuse).
         if (type(petition.message) is not str
                 or (petition.target is not None
                     and type(petition.target) is not str)):
-            return self._refuse(timestamp, token,
+            return self._refuse(timestamp, None,
                                 "Cannot admit: the message and target "
                                 "must be plain text", "petition")
         if (type(petition.petitioner_name) is not str
                 or not petition.petitioner_name):
-            return self._refuse(timestamp, token,
+            return self._refuse(timestamp, None,
                                 "Cannot admit: the name is empty",
                                 "petition")
+        earlier = _read_passport(petition.passport_admissions)
+        if earlier is None:
+            return self._refuse(timestamp, None,
+                                "Cannot read the passport: it must be "
+                                "pairs of plain text (world id, ISO 8601 "
+                                "time)", "petition")
+        problem = request_problem(
+            token, petition.seq, petition.signature,
+            petition_document(self._manifest.entity_id, petition),
+            self._last_seq)
+        if problem:
+            return self._refuse(timestamp, None,
+                                f"Cannot admit: {problem}", "petition")
         if not self._law.admits_any_identity:
             return self._refuse(timestamp, token,
                                 f"This {self.noun} does not admit "
@@ -103,12 +126,6 @@ class Entity:
         if token in self._admitted:
             return self._refuse(timestamp, token, "Already admitted",
                                 "petition")
-        earlier = _read_passport(petition.passport_admissions)
-        if earlier is None:
-            return self._refuse(timestamp, token,
-                                "Cannot read the passport: it must be "
-                                "pairs of plain text (world id, ISO 8601 "
-                                "time)", "petition")
 
         admission = Admission(entity_id=self._manifest.entity_id,
                               timestamp=timestamp)
@@ -126,10 +143,24 @@ class Entity:
     def act(self, act: Act) -> ActResponse:
         raise NotImplementedError
 
-    def leave(self, token: str) -> Departure:
-        """Always succeeds. Leaving when not present changes nothing."""
+    def leave(self, leave: Leave) -> LeaveResponse:
+        """The law can't refuse a leave. The one leave refused is one that
+        isn't the leaver's own: not signed by the key it names, for this
+        world, or a replay. Leaving when not present changes nothing."""
         timestamp = now()
-        if type(token) is not str or token not in self._admitted:
+        if type(leave) is not Leave or token_problem(leave.token):
+            return self._refuse(timestamp, None,
+                                "Not a leave: it must name a key and be "
+                                "signed by it", "leave")
+        token = leave.token
+        problem = request_problem(
+            token, leave.seq, leave.signature,
+            leave_document(self._manifest.entity_id, leave), self._last_seq)
+        if problem:
+            return self._refuse(timestamp, None,
+                                f"Not this individual's leave: {problem}",
+                                "leave")
+        if token not in self._admitted:
             return Departure(entity_id=self._manifest.entity_id,
                              timestamp=timestamp, already_left=True)
         del self._admitted[token]
@@ -179,6 +210,10 @@ class Entity:
 
     def _refuse(self, timestamp: str, actor: Optional[str], reason: str,
                 kind: str) -> Refusal:
+        """Log a refusal and return it. `actor` is the key that signed the
+        request, or None if no signature has verified yet: anyone can
+        write any token into a request, and the log is a public record,
+        so it names a key only for what that key has signed."""
         self._log.append(LogEntry(
             timestamp=timestamp, kind=f"{kind}_refused", actor_token=actor,
             data={"reason": reason}))
@@ -190,22 +225,22 @@ class Entity:
         how it compares or hashes."""
         if type(act) is not Act:
             return self._refuse(timestamp, None, "Not an act", "act")
+        # The checks before the signature are the cheap ones; until it
+        # has verified, the log names nobody (see _refuse).
         if (type(act.actor_token) is not str
                 or act.actor_token not in self._admitted):
-            actor = act.actor_token if type(act.actor_token) is str else None
-            return self._refuse(timestamp, actor,
+            return self._refuse(timestamp, None,
                                 "Actor is not admitted", "act")
         if type(act.type) is not str:
-            return self._refuse(timestamp, act.actor_token,
+            return self._refuse(timestamp, None,
                                 "The act type must be plain text", "act")
-        if type(act.payload) is not dict or not self._plain_payload(act):
-            return self._refuse(timestamp, act.actor_token,
+        if type(act.payload) is not dict or not is_plain(act.payload):
+            return self._refuse(timestamp, None,
                                 "The payload must be a mapping of plain "
                                 "values", "act")
+        problem = request_problem(
+            act.actor_token, act.seq, act.signature,
+            act_document(self._manifest.entity_id, act), self._last_seq)
+        if problem:
+            return self._refuse(timestamp, None, problem, "act")
         return None
-
-    def _plain_payload(self, act: Act) -> bool:
-        """Whether the payload holds only plain values. An entity whose
-        law carries something else (the registry's listing act carries a
-        world) says so here."""
-        return is_plain(act.payload)
