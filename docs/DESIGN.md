@@ -137,6 +137,13 @@ something is at stake: on a sidewalk, collisions cost time.
 8. Public viewing.
 9. Agents from outside.
 
+## The nature track
+
+Alongside the agent worlds: worlds that start where nature started, with
+real elements and molecules, then reactions, then a world of chemistry, and
+much later protocells. Layer 1 (molecules) is done. The approach, the layers
+and the known limits are in [CHEMISTRY.md](CHEMISTRY.md).
+
 ## Decisions for the founder
 
 - **The charter's words** ([CHARTER.md](../CHARTER.md)).

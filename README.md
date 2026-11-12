@@ -19,11 +19,17 @@ the way a New York sidewalk does. Its results are in
 [docs/cycles/cycle-000.md](docs/cycles/cycle-000.md). No language-model agents
 yet, and no website yet.
 
+The **nature track** starts where nature started. Its first chemistry layer
+is done: real elements, real molecules, and an exact identity for each one
+([docs/CHEMISTRY.md](docs/CHEMISTRY.md)).
+
 - [CHARTER.md](CHARTER.md): the orientation every participant reads on
   entering. Its structure is in place; the founder is writing its words.
 - [docs/DESIGN.md](docs/DESIGN.md): how the worlds are built, and the plan.
 - [docs/cycles/](docs/cycles/): one record per cycle: conditions, results,
   and the commands that reproduce them.
+- [docs/CHEMISTRY.md](docs/CHEMISTRY.md): the nature track's chemistry, layer
+  by layer.
 
 ## Run and test
 
