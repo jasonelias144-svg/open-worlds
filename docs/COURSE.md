@@ -22,7 +22,8 @@ contract. The design behind it is [MULTIVERSE.md](MULTIVERSE.md).
    world, chemistry world, registry, and the first collaboration.
 2. **Keys and signatures** (2026-11-12, #14). An individual's identity is
    its public key; every petition, act and leave is signed for one world
-   with a growing number, so it can't be forged, moved or replayed.
+   with a growing number, so it can't be forged, moved or replayed, and
+   the eight weak keys anyone could sign for are refused.
    Ed25519 written here from RFC 8032, passing its test values, and
    cross-checked in CI against the `cryptography` package. Protocol
    WCP/0.2. A world's log names a key only for what that key signed.
@@ -37,7 +38,9 @@ contract. The design behind it is [MULTIVERSE.md](MULTIVERSE.md).
    arriving, leaving and what was made (by its fingerprint). Any world
    can check a passport without asking anyone. A forged or altered stamp
    is refused. A world that won't stamp a departure can't stop it: the
-   missing stamp is itself on the record.
+   missing stamp is itself on the record. Requests name the world's key,
+   not just its id, so a world that copies another's id can't pass
+   requests on to it.
 4. **The chemistry world on the real chemistry.** Its law moves onto
    `chem/`: real molecules and reactions, and a soup that runs in time.
    Its time rate is published in its law. It passes the conformance test.

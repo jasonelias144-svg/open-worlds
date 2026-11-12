@@ -2,11 +2,13 @@
 between them.
 
 Built from the founder's sketch with DeepSeek (docs/MULTIVERSE.md), one
-step at a time. Step 1 is the sketch's core, working:
+step at a time (docs/COURSE.md). Step 1 is the sketch's core, working;
+step 2 makes each individual a key that signs what it sends:
 
-  identity.py         who an individual is (component 1)
+  identity.py         who an individual is: a key (components 1 and 13)
+  ed25519.py          the signatures, from RFC 8032
   passport.py         where it has been (component 2)
-  protocol.py         WCP/0.1, what every entity speaks (component 3)
+  protocol.py         WCP/0.2, what every entity speaks (component 3)
   conformance.py      the test anyone can run against an entity
   entity.py           entering, leaving and the log, shared by all
   poetry_world.py     poets taking turns under a law (component 4)

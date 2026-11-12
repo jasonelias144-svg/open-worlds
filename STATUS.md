@@ -15,7 +15,9 @@ respect one another's freedom, with full transparency and exit at any time
 
 - Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Step 1, the
   multiverse's core, is done. Step 2, keys and signatures, is in review;
-  next is step 3, signed passports.
+  next is replacing the hand-written Ed25519 with a vetted library (the
+  founder has lifted the standard-library rule), then step 3, signed
+  passports.
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next

@@ -30,6 +30,19 @@ from .protocol import (PROTOCOL_VERSION, Act, ActResponse, Admission,
                        request_problem)
 
 
+# What every entity built on this module states in its law about the
+# requests it accepts: they are what petition, act and leave enforce.
+SIGNED_REQUESTS_LAW = (
+    f"- Protocol {PROTOCOL_VERSION}: every petition, act and leave must be "
+    "signed by the key it names, for this world, with a number larger "
+    "than the last one this world saw from that key. Anything else is "
+    "refused.")
+UNSIGNED_ANSWERS_LIMIT = (
+    "- Answers aren't signed yet, and world ids aren't checked to be "
+    "unique: until worlds have keys (course step 3), a request is bound "
+    "to a world's id, not to the world.")
+
+
 def now() -> str:
     return datetime.now(timezone.utc).isoformat()
 

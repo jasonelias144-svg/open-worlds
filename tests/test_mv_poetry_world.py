@@ -262,6 +262,11 @@ class TestLeaving(PoetryWorldCase):
                     carol.token, "Carol", (), message, target)))
                 self.assertIsInstance(r, Refusal)
                 self.assertIn("plain text", r.reason)
+        # A bool is not a seq, even where it would count as 1.
+        r = w.petition(_signed(w, carol, Petition(carol.token, "Carol", (),
+                                                  "hi"), seq=True))
+        self.assertIsInstance(r, Refusal)
+        self.assertIn("seq must be", r.reason)
         for act_type in (KeyBomb("poem.turn"), 5, None):
             with self.subTest(act_type=act_type):
                 r = w.act(_signed(w, alice, Act(alice.token, act_type, {
@@ -279,6 +284,26 @@ class TestLeaving(PoetryWorldCase):
                 self.assertIn("seq", r.reason)
         self.assertEqual(w.members(), ["Alice"])
         self.assertEqual(w.turns(), [])
+
+    def test_a_weak_key_cant_be_signed_for(self):
+        # For the eight small-order points as keys, anyone can make a
+        # signature that verifies (R = rB, S = r). They are refused as
+        # tokens, so nobody can enter, act or leave as one.
+        from multiverse import ed25519
+        w = self.world()
+        r = 12345
+        r_encoded = ed25519._encode(ed25519._multiply(r, ed25519.BASE))
+        forged = (r_encoded + r.to_bytes(32, "little")).hex()
+        for token in ("01" + "00" * 31, "ec" + "ff" * 30 + "7f"):
+            with self.subTest(token=token[:8]):
+                petition = replace(_raw_petition("Nobody", token), seq=1,
+                                   signature=forged)
+                answer = w.petition(petition)
+                self.assertIsInstance(answer, Refusal)
+                self.assertIn("token", answer.reason)
+                self.assertIsInstance(w.leave(Leave(token, 2, forged)),
+                                      Refusal)
+        self.assertEqual(w.members(), [])
 
     def test_every_field_is_signed(self):
         # Change any one field after signing, and the request is refused.

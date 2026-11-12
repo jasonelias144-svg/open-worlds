@@ -73,6 +73,8 @@ class TestIdentity(unittest.TestCase):
                     {"token": "x" * 64, "name": "Alice"},  # not hex
                     {"token": good.upper(), "name": "Alice"},
                     {"token": "ff" * 32, "name": "Alice"},  # not on the curve
+                    {"token": "01" + "00" * 31, "name": "Alice"},  # weak
+                    {"token": "ec" + "ff" * 30 + "7f", "name": "Alice"},
                     {"token": good, "name": ""},
                     {"token": 12345678901234567, "name": "Alice"}]:
             with self.subTest(bad=bad), self.assertRaises(ValueError):
@@ -168,6 +170,13 @@ class TestIndividual(unittest.TestCase):
                     request.signature))
         self.assertLess(p.seq, a.seq)
         self.assertLess(a.seq, l.seq)
+        # Each signed document names the protocol, its kind and its world.
+        for document, request, kind in ((petition_document, p, "petition"),
+                                        (act_document, a, "act"),
+                                        (leave_document, l, "leave")):
+            d = document("world:a", request)
+            self.assertEqual((d["wcp"], d["kind"], d["world"], d["seq"]),
+                             ("WCP/0.2", kind, "world:a", request.seq))
 
 
 class TestPassport(unittest.TestCase):

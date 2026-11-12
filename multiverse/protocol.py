@@ -16,8 +16,10 @@ WCP/0.2 (course step 2): an individual is a key (identity.py). Every
 petition, act and leave is signed by the individual it names, over a
 document that names the world it is sent to and a number, `seq`, that
 grows with every request to that world. So a request can't be forged,
-can't be sent to another world, and can't be replayed. A world checks
-the signature before anything else.
+can't be sent to a world with another id, and can't be replayed. A world
+checks the signature before anything else. Until worlds have keys
+(course step 3), world ids aren't checked to be unique, and a world
+keeps the numbers it has seen only in memory (docs/MULTIVERSE.md).
 
 Changed from the sketch: `leave` is new. The sketch had no way to go,
 and principle 3 of open-worlds is exit at any time. A world's law can

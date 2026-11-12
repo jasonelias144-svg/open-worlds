@@ -149,6 +149,21 @@ class TestManifest(unittest.TestCase):
             a.type = "other"
 
 
+class TestPublishedLaws(unittest.TestCase):
+
+    def test_each_law_states_the_protocol_it_enforces(self):
+        from multiverse.chemistry_world import ChemistryWorldLaw
+        from multiverse.poetry_world import PoetryWorldLaw
+        from multiverse.registry import MultiverseLaw
+        for law in (PoetryWorldLaw(), ChemistryWorldLaw(), MultiverseLaw()):
+            text = law.describe()
+            with self.subTest(law=type(law).__name__):
+                self.assertIn(f"Protocol {PROTOCOL_VERSION}", text)
+                self.assertIn("signed by the key it names", text)
+                self.assertNotIn("not signed yet", text)
+                self.assertNotIn("WCP/0.1", text)
+
+
 class TestNullWorld(unittest.TestCase):
 
     def setUp(self):

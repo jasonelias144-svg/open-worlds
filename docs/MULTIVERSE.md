@@ -221,9 +221,15 @@ flow acceleration."
   over a document that names the protocol, the kind of request, the
   world it is for, and a number (`seq`) that grows with every request to
   that world (`multiverse/protocol.py`). So a request can't be forged,
-  can't be taken to another world, and can't be replayed: a captured
-  petition can't bring someone back, and a captured leave can't push
-  someone out.
+  can't be taken to a world with another id, and can't be replayed: a
+  captured petition can't bring someone back, and a captured leave
+  can't push someone out. (Two limits on this are listed below: world
+  ids, and worlds that restart.)
+- **Weak keys are refused.** Eight points on the curve have small
+  order, and for them anyone can make a signature that verifies, with
+  no secret at all. A token that is one of them is refused, and
+  `verify` never accepts a signature for one. (Found by the independent
+  review of #14.)
 - **Worlds check before anything else.** An unsigned, forged or replayed
   request is refused with a reason before the world's law is consulted.
 - **The log names a key only for what that key signed.** Anyone can
@@ -250,6 +256,8 @@ flow acceleration."
   own five test values, parsed from the RFC's text, and CI cross-checks
   it against the `cryptography` package on fifty random keys and
   messages: same keys, same signatures, each accepting the other's.
+  The founder has since lifted the standard-library rule, so a vetted
+  library replaces this module next (STATUS.md).
 
 What it doesn't do yet, said plainly:
 
@@ -263,6 +271,19 @@ What it doesn't do yet, said plainly:
   want to come back for (belongings and homes).
 - **Worlds don't sign their answers yet.** Admissions and the passport's
   stamps are signed in course step 3.
+- **A request is bound to a world's id, not to the world.** Each world
+  chooses its own id, and nothing checks that ids are unique. A world
+  that copied another's id could pass a visitor's signed request on to
+  the real one. When worlds have keys (course step 3), a request names
+  the world's key instead.
+- **Worlds keep the last `seq` from each key only in memory.** A world
+  that restarts forgets them, so an old petition or leave could be
+  replayed to it once. Today a restart also loses the log and who is
+  present, so the harm is small; it goes when worlds keep their state
+  (with belongings and homes).
+- **A signer can lock itself out of a world** by signing a huge `seq`:
+  every later request from that key is then out of order there. Only
+  that key is affected.
 - **The registry's listing act attaches the world unsigned** (it is an
   object in the same process); the signature covers the world's id, and
   the registry lists only a world whose checked manifest has that id.

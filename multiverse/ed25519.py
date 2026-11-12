@@ -104,6 +104,31 @@ def _decode(data: bytes) -> Optional[Point]:
     return (x, y, 1, x * y % P)
 
 
+def _small_order(point: Point) -> bool:
+    """Whether the point is one of the eight whose order divides 8: eight
+    times it is the neutral point. For such a public key A, [k]A is the
+    neutral point whenever k is a multiple of A's order (always, for the
+    neutral point itself), and then R = rB, S = r is a signature that
+    verifies, made without any secret. Since k comes from a hash, a
+    forger only has to try a few values of r."""
+    return _same(_multiply(8, point), NEUTRAL)
+
+
+def public_key_problem(public: bytes) -> str:
+    """Why 32 bytes aren't a usable public key, or "" if they are: they
+    must encode a point on the curve that isn't one of the eight
+    small-order points."""
+    if type(public) is not bytes or len(public) != 32:
+        return "a public key is 32 bytes"
+    point = _decode(public)
+    if point is None:
+        return "it is not a point on the curve"
+    if _small_order(point):
+        return ("it is one of the eight small-order points, for which "
+                "anyone can make a signature that verifies")
+    return ""
+
+
 _BASE_Y = 4 * _inverse(5) % P
 BASE: Point = (_x_from_y(_BASE_Y, 0), _BASE_Y, 1,
                _x_from_y(_BASE_Y, 0) * _BASE_Y % P)
@@ -147,14 +172,16 @@ def sign(secret: bytes, message: bytes) -> bytes:
 def verify(public: bytes, message: bytes, signature: bytes) -> bool:
     """True only if `signature` is a valid signature of `message` by the
     holder of `public` (section 5.1.7). Anything malformed is False,
-    never an error."""
+    never an error. Stricter than the RFC requires in one way: a
+    small-order public key never verifies, since anyone can sign for it
+    (`public_key_problem`)."""
     if (type(public) is not bytes or type(message) is not bytes
             or type(signature) is not bytes
             or len(public) != 32 or len(signature) != 64):
         return False
     a = _decode(public)
     r = _decode(signature[:32])
-    if a is None or r is None:
+    if a is None or r is None or _small_order(a):
         return False
     s = int.from_bytes(signature[32:], "little")
     if s >= L:                    # reject a non-canonical s

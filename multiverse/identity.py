@@ -32,14 +32,16 @@ HEX = set("0123456789abcdef")
 def token_problem(token: object) -> str:
     """Why a token is unusable, or "" if it is fine. A token is an Ed25519
     public key: 64 lowercase hexadecimal characters that encode a point
-    on the curve."""
+    on the curve, and not one of the eight weak points anyone can sign
+    for (ed25519.public_key_problem)."""
     if type(token) is not str or not token:
         return "token must be non-empty plain text"
     if len(token) != TOKEN_CHARS or not set(token) <= HEX:
         return (f"token must be a public key: {TOKEN_CHARS} lowercase "
                 "hexadecimal characters")
-    if ed25519._decode(bytes.fromhex(token)) is None:
-        return "token is not a valid public key"
+    problem = ed25519.public_key_problem(bytes.fromhex(token))
+    if problem:
+        return f"token is not a usable public key: {problem}"
     return ""
 
 
@@ -109,7 +111,9 @@ class Individual:
     can't push someone out. The numbers come from the clock (in
     microseconds), so they keep growing even after a restart, as long
     as the clock hasn't gone back. If it has, the worlds refuse the new
-    requests as out of order until the clock catches up."""
+    requests as out of order until the clock catches up. (A request
+    signed by hand with a huge `seq` locks its own key out of that
+    world the same way.)"""
 
     def __init__(self, name: str, secret: Optional[bytes] = None):
         self._secret = secrets.token_bytes(32) if secret is None else secret

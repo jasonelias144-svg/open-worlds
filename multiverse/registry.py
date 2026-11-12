@@ -38,8 +38,10 @@ from dataclasses import dataclass
 from typing import Dict, List, Optional
 
 from .conformance import check
-from .entity import Entity, now
-from .protocol import Ack, Act, ActResponse, LogEntry, Manifest, Refusal
+from .entity import (SIGNED_REQUESTS_LAW, UNSIGNED_ANSWERS_LIMIT, Entity,
+                     now)
+from .protocol import (PROTOCOL_VERSION, Ack, Act, ActResponse, LogEntry,
+                       Manifest, Refusal)
 
 
 def manifest_to_dict(m: Manifest) -> Dict:
@@ -64,17 +66,19 @@ class MultiverseLaw:
 
     def describe(self) -> str:
         return "\n".join([
-            "# Multiverse Registry Law v0.1",
+            "# Multiverse Registry Law v0.2",
             "",
             "## Entering and leaving",
             f"- Admits any identity: {self.admits_any_identity}",
             "- Max present: "
             f"{self.max_admitted if self.max_admitted else 'unlimited'}",
             "- Anyone may leave at any time.",
+            SIGNED_REQUESTS_LAW,
             "",
             "## Acts",
             "- multiverse.admit: propose an entity for listing. It is "
-            "listed if it passes the WCP/0.1 conformance test.",
+            "listed if it passes the "
+            f"{PROTOCOL_VERSION} conformance test.",
             "- multiverse.remove: take down a listing you made. (Until "
             "worlds have keys, a world can't take down its own listing, and "
             "a listing whose lister has left stays up.)",
@@ -84,7 +88,7 @@ class MultiverseLaw:
             "- Never. A catalogue stays open: worlds appear and go.",
             "",
             "## Limits",
-            "- Petitions and acts are not signed yet (WCP/0.1).",
+            UNSIGNED_ANSWERS_LIMIT,
             "- Conformance is checked once, at listing. Anyone who doesn't "
             "trust this registry can run the test themselves.",
         ])

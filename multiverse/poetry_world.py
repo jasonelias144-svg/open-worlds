@@ -24,7 +24,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Set
 
-from .entity import Entity, now
+from .entity import (SIGNED_REQUESTS_LAW, UNSIGNED_ANSWERS_LIMIT, Entity,
+                     now)
 from .protocol import Ack, Act, ActResponse, LogEntry
 
 STOPWORDS = {
@@ -68,13 +69,14 @@ class PoetryWorldLaw:
 
     def describe(self) -> str:
         return "\n".join([
-            "# Poetry World Law v0.1",
+            "# Poetry World Law v0.2",
             "",
             "## Entering and leaving",
             f"- Admits any identity: {self.admits_any_identity}",
             "- Max present: "
             f"{self.max_admitted if self.max_admitted else 'unlimited'}",
             "- Anyone may leave at any time.",
+            SIGNED_REQUESTS_LAW,
             "",
             "## A turn (poem.turn)",
             f"- Act type: {self.required_act_type}",
@@ -93,7 +95,7 @@ class PoetryWorldLaw:
             f"- At most {self.max_turns} turns",
             "",
             "## Limits",
-            "- Petitions and acts are not signed yet (WCP/0.1).",
+            UNSIGNED_ANSWERS_LIMIT,
         ])
 
 

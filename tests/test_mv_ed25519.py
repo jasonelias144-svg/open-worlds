@@ -16,6 +16,19 @@ FIXTURE = os.path.join(os.path.dirname(__file__), "fixtures",
                        "rfc8032_ed25519.json")
 
 
+# The eight small-order points, as encoded: the published list, checked
+# here against the curve (test_the_eight_small_order_points).
+SMALL_ORDER = [bytes.fromhex(h) for h in (
+    "0100000000000000000000000000000000000000000000000000000000000000",
+    "ecffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff7f",
+    "0000000000000000000000000000000000000000000000000000000000000000",
+    "0000000000000000000000000000000000000000000000000000000000000080",
+    "c7176a703d4dd84fba3c0b760d10670f2a2053fa2c39ccc64ec7fd7792ac037a",
+    "c7176a703d4dd84fba3c0b760d10670f2a2053fa2c39ccc64ec7fd7792ac03fa",
+    "26e8958fc2b227b045c3f489f2ef98f0d5dfac05d3c63339b13802886d53fc05",
+    "26e8958fc2b227b045c3f489f2ef98f0d5dfac05d3c63339b13802886d53fc85")]
+
+
 def _vectors():
     with open(FIXTURE) as f:
         return json.load(f)["vectors"]
@@ -71,6 +84,44 @@ class TestProperties(unittest.TestCase):
         s = int.from_bytes(self.signature[32:], "little")
         bent = self.signature[:32] + (s + ed25519.L).to_bytes(32, "little")
         self.assertFalse(ed25519.verify(self.public, self.message, bent))
+
+    def test_the_eight_small_order_points(self):
+        # The list is right: each decodes, and eight times it is neutral.
+        for public in SMALL_ORDER:
+            point = ed25519._decode(public)
+            self.assertIsNotNone(point)
+            self.assertTrue(ed25519._same(ed25519._multiply(8, point),
+                                          ed25519.NEUTRAL))
+        self.assertEqual(len(set(SMALL_ORDER)), 8)
+
+    def test_small_order_keys_are_refused(self):
+        for public in SMALL_ORDER:
+            with self.subTest(public=public.hex()):
+                self.assertIn("small-order",
+                              ed25519.public_key_problem(public))
+        self.assertEqual(ed25519.public_key_problem(self.public), "")
+        # The forgery: for the neutral point as the key, R = rB and S = r
+        # satisfy the verification equation with no secret at all.
+        neutral = SMALL_ORDER[0]
+        r = 12345
+        r_encoded = ed25519._encode(ed25519._multiply(r, ed25519.BASE))
+        forged = r_encoded + r.to_bytes(32, "little")
+        k = ed25519._hash_int(r_encoded + neutral + self.message) \
+            % ed25519.L
+        self.assertTrue(ed25519._same(
+            ed25519._multiply(r, ed25519.BASE),
+            ed25519._add(ed25519._decode(r_encoded),
+                         ed25519._multiply(k, ed25519._decode(neutral)))))
+        self.assertFalse(ed25519.verify(neutral, self.message, forged))
+
+    def test_x_zero_with_the_sign_bit_set_is_refused(self):
+        # Only two points have x = 0, and neither may be encoded with
+        # the sign bit set (RFC 8032, section 5.1.3, step 4).
+        for public in (bytes.fromhex("01" + "00" * 30 + "80"),
+                       bytes.fromhex("ec" + "ff" * 31)):
+            with self.subTest(public=public.hex()):
+                self.assertIsNone(ed25519._decode(public))
+                self.assertNotEqual(ed25519.public_key_problem(public), "")
 
     def test_malformed_input_is_false_not_an_error(self):
         for public, message, signature in (

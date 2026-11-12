@@ -98,11 +98,15 @@ Read in this order: MULTIVERSE.md, then `protocol.py`, `conformance.py`,
 6. **Start from known texts in the public domain.** The founder: "We
    should use a known poem to start anything." The demonstration opens
    with Emily Dickinson.
-7. **Standard library only.** Outside libraries appear only in CI
-   cross-checks (RDKit for the chemistry).
+7. **Whatever works best for the job.** The founder has lifted the
+   earlier standard-library-only rule: any language or library may be
+   used where it is the right tool. For anything security-related, a
+   vetted, maintained library, never our own. Each dependency is pinned
+   to a version, installed in CI, and named with the reason it is there.
 8. **No personal data and no secrets,** anywhere.
-9. **Everything is public domain** (CC0 1.0). A contribution is given
-   under the same terms.
+9. **Everything here is public domain** (CC0 1.0). A contribution is
+   given under the same terms. Libraries this depends on keep their own
+   licenses; they are depended on, not copied in.
 
 ## Sending a proposal
 
