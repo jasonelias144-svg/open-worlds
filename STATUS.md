@@ -14,8 +14,9 @@ respect one another's freedom, with full transparency and exit at any time
 ## Now
 
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
-- Claude: the nature track's chemistry. Layer 1 (molecules) is merged
-  (#3); layer 2 (reactions) is in review.
+- Claude: the nature track's chemistry. Layers 1 (molecules, #3) and 2
+  (reactions, #4) are merged; symmetry pruning for the identity search is in
+  review (#5).
 
 ## Next
 
@@ -26,8 +27,7 @@ respect one another's freedom, with full transparency and exit at any time
 2. Agents in separate processes, through a local API (the step before
    sandboxes and outside agents).
 3. A simple viewer page.
-4. Nature track: symmetry pruning (or a time bound) for the identity
-   search, then chemistry layer 3, a world of chemistry with energy and
+4. Nature track: chemistry layer 3, a world of chemistry with energy and
    rates ([docs/CHEMISTRY.md](docs/CHEMISTRY.md)).
 5. Side cycles suggested by Cycle 0: walkers with different speeds (to test
    "respect momentum"), and whether a convention spreads by imitation.
@@ -54,13 +54,13 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
 - Python isn't a sandbox: agents in the kernel's process could reach its
   internals. That's acceptable only for agents written here (AGENTS.md), and
   is why later stages run agents in separate sandboxes.
-- Chemistry layer 1 doesn't prune its identity search by symmetry yet.
-  Very symmetric molecules are slow (tetra-tert-butylmethane: about 2 s), and
-  some reach the search's cap after tens of seconds and raise an error, even
-  from `==` or `hash()`. That's fine while people write the molecules.
-  **Before layer 3 lets reactions or agents make molecules freely,** add
-  pruning or a time bound so that no molecule can stall a world. (Noted by
-  the independent review of #3.)
+- The identity search now prunes by symmetry, so symmetric molecules take
+  milliseconds. Its cap (10,000 leaves) can still be reached: disjoint
+  copies of one rigid, refinement-hard part grow exponentially (7 copies of
+  a cubic C10H10 reach it after about 11 s; found by the independent review
+  of #5). These graphs are disconnected, so not valid molecules, but **before
+  layer 3 lets reactions make molecules freely,** identify each connected
+  part separately (which removes this whole class) and keep a time bound.
 - An in-process agent that raises `SystemExit` or `KeyboardInterrupt`, or
   never returns from `act()`, still stops the world. That falls under the
   same limit. Once agents run in separate processes, each call gets a
@@ -79,10 +79,22 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
 
 ## Log
 
+- 2026-11-12 Claude: symmetry pruning for the molecular identity search
+  (orbits of discovered automorphisms, and jumping back on a match with the
+  first leaf). C53H108, which reached the old cap after tens of seconds, now
+  takes under 0.1 s; the pruned search equals the full search on every graph
+  tested.
+
 - 2026-11-12 Claude: RDKit cross-check in CI (#6). Our molecular identity
   agrees exactly with RDKit's canonical SMILES on 1,344 molecules; the only
   valence differences are two that RDKit allows and we refuse on purpose
   (hydride with bonds, five-bonded carbocation).
+
+- 2026-11-12 Claude: PR #4 (chemistry layer 2) merged after an independent
+  review. Its three notes were taken up: a rule may not name an atom
+  unconnected to its change (so bystanders can't count as reactants), the
+  "rules are local" limit names what the rules also make, and bond pairs are
+  type-checked.
 
 - 2026-11-12 Claude: chemistry layer 2 (`chem/reactions.py`,
   `chem/rules.py`): reactions as rules that keep atoms, charge and valence,
