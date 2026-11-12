@@ -24,10 +24,10 @@ produced. If glycine appears, it is glycine.
 2. **Reactions** (done): rules that rewrite part of a molecule, keeping
    every atom, every charge and every valence. Examples are proton transfer,
    condensation to an amide (the peptide bond), and hydrolysis.
-3. **A world of chemistry:** molecules in a space, moving and meeting, with
-   energy coming in from outside. The gardener (DESIGN.md, principle 8)
-   enters here as a declared law that tends the conditions, never the
-   molecules.
+3. **A world of chemistry** (planned below): molecules in a space, moving and
+   meeting, with energy coming in from outside. The gardener (DESIGN.md,
+   principle 8) enters here as a declared law that tends the conditions,
+   never the molecules.
 4. **Thresholds:** the points where something new appears. Do molecules
    gather into structures? Do sets form that make more of themselves
    (autocatalytic sets)?
@@ -224,6 +224,76 @@ time, and each makes them fail:
   be given more context when a world needs it.
 - **Outcomes multiply.** With more rules and bigger molecules the number of
   outcomes grows fast. A world will sample reactions, not list them all.
+
+## Layer 3: a world of chemistry (plan)
+
+Layers 1 and 2 say what molecules exist and what each can become. Layer 3
+adds what a world needs: space, time, amounts and energy. This is the plan;
+the code comes in steps, each with its own review.
+
+**Space: a grid of small, well-mixed cells.** Each cell holds counts of each
+kind of molecule (by identity), and molecules hop between neighbouring cells
+(diffusion). This is the compartment method of stochastic reaction-diffusion,
+used by tools such as MesoRD, STEPS and URDME (Smoldyn and ReaDDy track
+individual particles instead). Individual particles, as in Squirm3 or ALIEN,
+are more vivid but far slower: chemistry
+needs thousands of molecules before amounts mean anything, and the world is
+plain Python. Structure that later layers need, such as a membrane, can be a
+property of cells or of the walls between them.
+
+**Time: exact stochastic simulation (Gillespie's method).** Every possible
+event, a reaction in a cell or a hop between cells, has a rate. The next
+event and its time are drawn at random from those rates, so rare events stay
+rare but do happen. With a seed, every run reproduces exactly, and every
+event goes into the public, hash-chained log the agent worlds use.
+
+**Rates and energy.** Each rule gets a forward and a reverse rate. Their
+ratio is the equilibrium constant, which says which way a reaction leans.
+Where a real measured value exists, it is used and its source is cited:
+water's self-ionization, the hydration of formaldehyde and of CO2, and the
+balance between glycine and its zwitterion are all well measured. Where none
+exists, it is estimated (from average bond energies, with a penalty for
+strained small rings) and marked as an estimate. This is what will let the
+world prefer what real chemistry prefers: amides that hydrolyse in water,
+and almost no three-membered rings.
+
+**Growth of the network.** When a new kind of molecule appears, the world
+finds its reactions with the molecules around it, using layer 2's rules. So
+the reaction network grows as the chemistry happens, and isn't listed in
+advance.
+
+**The gardener** (DESIGN.md, principle 8): a declared law of the world, in
+place from the start, that tends conditions and never molecules. Every
+action it takes is logged, and some worlds run without it. The founder's
+picture maps onto chemistry directly:
+
+- **the water:** how wet the world is. Wet–dry cycles are a leading idea for
+  how the first peptides formed, because drying drives condensation (amide
+  formation releases water) and wetting brings molecules together again;
+- **the sun:** energy from outside, as light or heat. Light needs
+  photochemistry rules, which don't exist yet;
+- **fresh soil:** a steady inflow of simple molecules thought to be on the
+  early Earth (water, ammonia, hydrogen cyanide, formaldehyde, carbon
+  dioxide), and an outflow so that nothing piles up for ever.
+
+**What to watch:** which molecules appear, how much of each, and where;
+whether amounts settle, swing or run away; and, for layer 4, whether any set
+of molecules makes more of itself.
+
+**Steps:**
+
+1. The engine: cells, counts, diffusion, the stochastic clock, conservation
+   of atoms and charge at every event, and the log. It is tested against
+   cases with known answers: a reversible reaction settles at its
+   equilibrium constant, and diffusion spreads as it should.
+2. Rates for the six rules of layer 2, with their sources.
+3. The gardener's levers.
+4. The first chemistry cycle: what forms from water, ammonia, hydrogen
+   cyanide, formaldehyde and carbon dioxide, with and without the gardener.
+
+**For the founder:** which of the gardener's levers to start with. The
+recommendation is the water (wet–dry cycles) and the soil (inflow of simple
+molecules), leaving the sun for later because it needs new rules.
 
 ## Where this came from
 
