@@ -197,7 +197,10 @@ The other fixes:
   passport, a payload that isn't a mapping, a turn whose parts aren't
   text, or a reaction count of "2" or -1 made a world raise an error, or
   accept nonsense; "false" counted as holding a turn open. Each is now
-  refused with a reason.
+  refused with a reason. One rule closes the whole class: only plain
+  built-in values cross the protocol (text, numbers, true/false, lists,
+  mappings), never subclasses of them, which could redefine how they
+  compare or hash. Over the network, JSON enforces this by itself.
 - **One copy of the entering code instead of three.** The poetry world,
   the chemistry world and the registry each had the same petition code;
   it lives once in `multiverse/entity.py`, which also does leaving.
@@ -214,6 +217,11 @@ copied until identities become keys (step 2); a registry's listing act
 carries the world itself, so it works only within one process (step 3);
 `log_since` can skip an entry written in the same microsecond, and
 in-process readers share the log's entries rather than getting copies.
+"A world never raises on what a visitor sends" holds for ordinary
+errors; it does not make it safe to run untrusted code in the same
+process, which could exit the program or loop forever. Outside agents run
+in their own processes and reach worlds through the protocol
+(DESIGN.md).
 Until worlds have keys, a world can't take down its own listing, and a
 listing whose lister has left stays up; and two registries may list each
 other, which matters once listings are followed over the network

@@ -321,12 +321,61 @@ class TestLeavingConformance(unittest.TestCase):
 
         for world, expected in ((OddDeparture(), "answered unreadably"),
                                 (OddAnswer(), "already_left=Odd()"),
-                                (OddManifest("w:o", "O"), "unreadable")):
+                                # Manifest itself refuses a text subclass
+                                (OddManifest("w:o", "O"), "plain text")):
             with self.subTest(world=type(world).__name__):
                 result = run_conformance(world)
                 self.assertFalse(result["passed"])
                 self.assertTrue(any(expected in f for f in result["failures"]),
                                 result["failures"])
+
+    def test_unprintable_errors_are_reported(self):
+        class BadExc(Exception):
+            def __str__(self): raise ValueError("no message")
+
+        class Raises(IndependentWorld):
+            def act(self, a): raise BadExc()
+
+        failures = run_conformance(Raises())["failures"]
+        self.assertEqual(failures, [
+            "act() raised BadExc (whose message could not be read)"])
+
+    def test_a_manifest_must_be_plain(self):
+        class Bomb(str):
+            def __eq__(self, other): raise ValueError("no equality")
+            __hash__ = str.__hash__
+
+        class Smuggled(NullWorld):
+            # Built around Manifest's own checks.
+            def manifest(self):
+                m = object.__new__(Manifest)
+                for field in ("entity_id", "name", "protocol_version",
+                              "law_url", "act_endpoint", "log_endpoint"):
+                    object.__setattr__(m, field,
+                                       Bomb(getattr(super().manifest(),
+                                                    field)))
+                object.__setattr__(m, "sub_registry_endpoint", None)
+                return m
+
+        class Subclassed(NullWorld):
+            def manifest(self):
+                class Loud(Manifest):
+                    def __bool__(self): raise ValueError("no truth")
+                return Loud(**dataclasses.asdict(super().manifest()))
+
+        from multiverse.conformance import check
+        for world, failure in (
+                (Smuggled("w:s", "S"), "the manifest's fields are not "
+                                       "plain text"),
+                (Subclassed("w:l", "L"), "manifest() did not return a "
+                                         "Manifest")):
+            with self.subTest(world=type(world).__name__):
+                result, m = check(world)
+                self.assertEqual(result["failures"], [failure])
+                self.assertIsNone(m)
+        with self.assertRaises(ValueError):
+            Manifest(**{**dataclasses.asdict(NullWorld("w", "W").manifest()),
+                        "entity_id": Bomb("w:b")})
 
     def test_conformance_leaves_what_it_entered(self):
         w = IndependentWorld()

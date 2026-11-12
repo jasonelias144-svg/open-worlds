@@ -127,11 +127,11 @@ class PoetryWorld(Entity):
         fields = {k: payload.get(k, "") for k in
                   ("acknowledgment", "proposal", "invitation")}
         for key, value in fields.items():
-            if not isinstance(value, str):
+            if type(value) is not str:
                 return self._refuse(timestamp, actor,
                                     f"The {key} must be text", "act")
         stance = payload.get("stance_used")
-        if stance is not None and not isinstance(stance, str):
+        if stance is not None and type(stance) is not str:
             return self._refuse(timestamp, actor,
                                 "The stance must be text", "act")
         ack, proposal, invitation = (fields["acknowledgment"],

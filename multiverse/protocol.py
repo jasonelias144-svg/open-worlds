@@ -20,6 +20,12 @@ was present is recorded in the log, kind "departure", with their token.
 
 `type` and `payload` of an act are opaque to the protocol: each world's
 law decides what they mean.
+
+Plain values only: what crosses the protocol (tokens, names, act types,
+payloads, manifest fields) must be plain built-in values (str, int, bool,
+list, dict, None), not subclasses of them, which could redefine how they
+compare or hash. Worlds refuse anything else. This is the same rule JSON
+over the network enforces by itself (course step 12).
 """
 from __future__ import annotations
 
@@ -45,8 +51,11 @@ class Manifest:
         for name in ("entity_id", "name", "protocol_version",
                      "law_url", "act_endpoint", "log_endpoint"):
             value = getattr(self, name)
-            if not isinstance(value, str) or not value:
-                raise ValueError(f"{name} must be non-empty")
+            if type(value) is not str or not value:
+                raise ValueError(f"{name} must be non-empty plain text")
+        if (self.sub_registry_endpoint is not None
+                and type(self.sub_registry_endpoint) is not str):
+            raise ValueError("sub_registry_endpoint must be plain text")
 
     def has_sub_registry(self) -> bool:
         return self.sub_registry_endpoint is not None

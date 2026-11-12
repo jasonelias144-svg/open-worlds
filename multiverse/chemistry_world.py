@@ -55,7 +55,7 @@ def parse_formula(formula: str) -> Molecule:
     """'H2O' gives H:2, O:1. A charge suffix: 'NH4+' is +1, 'SO4-2' is
     -2, 'OH-' is -1. Unknown elements and unreadable text raise
     ValueError."""
-    if not isinstance(formula, str) or not formula:
+    if type(formula) is not str or not formula:
         raise ValueError("a formula must be non-empty text")
     original = formula
     charge = 0
@@ -88,7 +88,7 @@ def _side(molecules: List[Dict]) -> Tuple[Dict[str, int], int]:
     atoms: Dict[str, int] = {}
     charge = 0
     for mol in molecules:
-        if not isinstance(mol, dict):
+        if type(mol) is not dict:
             raise ValueError("each molecule must be {formula, count}")
         count = mol["count"]
         if type(count) is not int or count < 1:
@@ -184,12 +184,12 @@ class ChemistryWorld(Entity):
                                 f"Unknown act type: {act.type}", "act")
         substrates = act.payload.get("substrates")
         products = act.payload.get("products")
-        if (not isinstance(substrates, list) or not isinstance(products, list)
+        if (type(substrates) is not list or type(products) is not list
                 or not substrates or not products):
             return self._refuse(timestamp, actor,
                                 "Substrates and products required", "act")
         catalyst = act.payload.get("catalyst")
-        if catalyst is not None and not isinstance(catalyst, str):
+        if catalyst is not None and type(catalyst) is not str:
             return self._refuse(timestamp, actor,
                                 "The catalyst must be text", "act")
         balances, reason = reaction_balances(substrates, products)

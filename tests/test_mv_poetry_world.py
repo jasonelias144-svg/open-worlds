@@ -138,6 +138,45 @@ class TestLeaving(PoetryWorldCase):
                               Ack)
         self.assertFalse(w.leave(alice.token).already_left)
 
+    def test_only_plain_values_cross(self):
+        # Text and mappings that redefine comparing or hashing are refused
+        # at the boundary (protocol.py), so they can't make a world raise.
+        class HashBomb(str):
+            def __hash__(self): raise ValueError("no hash")
+
+        class EqBomb(str):
+            def __eq__(self, other): raise ValueError("no equality")
+            def __ne__(self, other): raise ValueError("no inequality")
+            __hash__ = str.__hash__
+
+        class GetBomb(dict):
+            def get(self, *a): raise ValueError("no get")
+
+        w = self.world()
+        alice, = self.enter(w, "Alice")
+        bomb = HashBomb("x" * 32)
+        self.assertIsInstance(w.petition(_petition("Bob", bomb)), Refusal)
+        self.assertIsInstance(
+            w.act(_turn(bomb, "(seed)", SEED, "?")), Refusal)
+        self.assertTrue(w.leave(bomb).already_left)
+        for act in (Act(alice.token, EqBomb("poem.turn"), {}),
+                    Act(alice.token, "poem.turn",
+                        GetBomb(acknowledgment="(seed)")),
+                    None, "poem.turn"):
+            with self.subTest(act=type(act).__name__):
+                self.assertIsInstance(w.act(act), Refusal)
+        for petition in (None, "Bob"):
+            self.assertIsInstance(w.petition(petition), Refusal)
+        for passport in ((("world:A",),), (["world:A", 7],),
+                         ((EqBomb("world:A"), "2024-01-01T00:00:00+00:00"),),
+                         "world:A", None):
+            with self.subTest(passport=passport):
+                carol = create_identity("Carol")
+                self.assertIsInstance(
+                    w.petition(_petition("Carol", carol.token, passport)),
+                    Refusal)
+        self.assertEqual(w.members(), ["Alice"])
+
     def test_leave_with_odd_tokens(self):
         w = self.world()
         for token in (None, 7, "", ["list"]):

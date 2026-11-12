@@ -20,8 +20,8 @@ MIN_TOKEN_CHARS = 16
 
 def token_problem(token: object) -> str:
     """Why a token is unusable, or "" if it is fine."""
-    if not isinstance(token, str) or not token:
-        return "token must be a non-empty string"
+    if type(token) is not str or not token:
+        return "token must be non-empty plain text"
     if len(token) < MIN_TOKEN_CHARS:
         return f"token must be at least {MIN_TOKEN_CHARS} characters"
     return ""
@@ -38,7 +38,7 @@ class Identity:
         problem = token_problem(self.token)
         if problem:
             raise ValueError(problem)
-        if not isinstance(self.name, str) or not self.name:
+        if type(self.name) is not str or not self.name:
             raise ValueError("name must be a non-empty string")
 
 

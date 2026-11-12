@@ -148,21 +148,24 @@ class MultiverseRegistry(Entity):
             return self._refuse(timestamp, act.actor_token,
                                 "A registry does not list itself", "act")
         # The manifest the test checked is the one listed: an entity can't
-        # pass with one manifest and be listed with another.
+        # pass with one manifest and be listed with another. check() only
+        # returns a plain Manifest with plain-text fields, so comparing and
+        # hashing its fields below can't be redefined by the entity.
         try:
             result, m = check(entity)
-        except Exception as e:
+        except Exception:
             # check() reports what it finds rather than raising; this is
-            # the last guard, so that nothing a visitor proposes can make
-            # the registry raise.
+            # a last guard. (Exceptions outside Exception, like SystemExit,
+            # are not contained: code run in-process is trusted, and
+            # outside agents run in their own processes; DESIGN.md.)
             return self._refuse(timestamp, act.actor_token,
-                                "Entity could not be checked: "
-                                f"{type(e).__name__}", "act")
+                                "Entity could not be checked", "act")
         if not result["passed"]:
             self._log.append(LogEntry(
                 timestamp=timestamp, kind="entity_admit_refused",
                 actor_token=act.actor_token,
-                data={"manifest": manifest_to_dict(m) if m else None,
+                data={"manifest": (manifest_to_dict(m) if m is not None
+                                   else None),
                       "conformance": result}))
             # Recorded above, with the full report.
             return Refusal(reason=f"Entity fails conformance: "
@@ -186,7 +189,7 @@ class MultiverseRegistry(Entity):
 
     def _handle_remove(self, timestamp: str, act: Act) -> ActResponse:
         entity_id = act.payload.get("entity_id")
-        if not entity_id or not isinstance(entity_id, str):
+        if type(entity_id) is not str or not entity_id:
             return self._refuse(timestamp, act.actor_token,
                                 "No entity_id in payload", "act")
         if entity_id not in self._registry:

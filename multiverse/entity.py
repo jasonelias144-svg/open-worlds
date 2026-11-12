@@ -27,6 +27,23 @@ def now() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
+def _read_passport(pairs) -> Optional[tuple]:
+    """A petition's passport as admissions, or None if it isn't a plain
+    list or tuple of plain (world id, timestamp) text pairs."""
+    if type(pairs) not in (tuple, list):
+        return None
+    earlier = []
+    for pair in pairs:
+        if type(pair) not in (tuple, list) or len(pair) != 2:
+            return None
+        try:   # Admission itself requires plain, valid text
+            earlier.append(PassportAdmission(world_id=pair[0],
+                                             timestamp=pair[1]))
+        except ValueError:
+            return None
+    return tuple(earlier)
+
+
 class Entity:
     """A conforming entity whose law has `admits_any_identity` and
     `max_admitted`. Subclasses implement act()."""
@@ -56,12 +73,15 @@ class Entity:
 
     def petition(self, petition: Petition) -> PetitionResponse:
         timestamp = now()
+        if type(petition) is not Petition:
+            return self._refuse(timestamp, None,
+                                "Cannot admit: not a petition", "petition")
         token = petition.petitioner_token
         problem = token_problem(token)
         if problem:
             return self._refuse(timestamp, None,
                                 f"Cannot admit: {problem}", "petition")
-        if (not isinstance(petition.petitioner_name, str)
+        if (type(petition.petitioner_name) is not str
                 or not petition.petitioner_name):
             return self._refuse(timestamp, token,
                                 "Cannot admit: the name is empty",
@@ -77,13 +97,12 @@ class Entity:
         if token in self._admitted:
             return self._refuse(timestamp, token, "Already admitted",
                                 "petition")
-        try:
-            earlier = tuple(PassportAdmission(world_id=w, timestamp=t)
-                            for w, t in petition.passport_admissions)
-        except (TypeError, ValueError) as e:
+        earlier = _read_passport(petition.passport_admissions)
+        if earlier is None:
             return self._refuse(timestamp, token,
-                                f"Cannot read the passport: {e}",
-                                "petition")
+                                "Cannot read the passport: it must be "
+                                "pairs of plain text (world id, ISO 8601 "
+                                "time)", "petition")
 
         admission = Admission(entity_id=self._manifest.entity_id,
                               timestamp=timestamp)
@@ -104,7 +123,7 @@ class Entity:
     def leave(self, token: str) -> Departure:
         """Always succeeds. Leaving when not present changes nothing."""
         timestamp = now()
-        if not isinstance(token, str) or token not in self._admitted:
+        if type(token) is not str or token not in self._admitted:
             return Departure(entity_id=self._manifest.entity_id,
                              timestamp=timestamp, already_left=True)
         del self._admitted[token]
@@ -130,7 +149,7 @@ class Entity:
             change detectable."""
         if timestamp is None:
             return list(self._log)
-        if not isinstance(timestamp, str):
+        if type(timestamp) is not str:
             return []
         return [e for e in self._log if e.timestamp > timestamp]
 
@@ -160,12 +179,20 @@ class Entity:
         return Refusal(reason=reason)
 
     def _actor_problem(self, timestamp: str, act: Act) -> Optional[Refusal]:
-        """The checks every act passes first."""
-        if (not isinstance(act.actor_token, str)
+        """The checks every act passes first. Only plain values cross the
+        protocol (protocol.py), so nothing a visitor sends can redefine
+        how it compares or hashes."""
+        if type(act) is not Act:
+            return self._refuse(timestamp, None, "Not an act", "act")
+        if (type(act.actor_token) is not str
                 or act.actor_token not in self._admitted):
-            return self._refuse(timestamp, act.actor_token,
+            actor = act.actor_token if type(act.actor_token) is str else None
+            return self._refuse(timestamp, actor,
                                 "Actor is not admitted", "act")
-        if not isinstance(act.payload, dict):
+        if type(act.type) is not str:
             return self._refuse(timestamp, act.actor_token,
-                                "The payload must be a mapping", "act")
+                                "The act type must be plain text", "act")
+        if type(act.payload) is not dict:
+            return self._refuse(timestamp, act.actor_token,
+                                "The payload must be a plain mapping", "act")
         return None

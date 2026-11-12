@@ -28,9 +28,9 @@ class Admission:
     timestamp: str
 
     def __post_init__(self):
-        if not isinstance(self.world_id, str) or not self.world_id:
+        if type(self.world_id) is not str or not self.world_id:
             raise ValueError("world_id must be a non-empty string")
-        if not isinstance(self.timestamp, str) or not self.timestamp:
+        if type(self.timestamp) is not str or not self.timestamp:
             raise ValueError("timestamp must be a non-empty string")
         try:
             datetime.fromisoformat(self.timestamp)

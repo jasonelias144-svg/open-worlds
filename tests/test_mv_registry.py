@@ -152,6 +152,49 @@ class TestRegistry(RegistryCase):
         self.assertIn("could not be checked", r.reason)
         self.assertEqual(mv.entity_ids(), [])
 
+    def test_hostile_manifests_are_refused(self):
+        class EqBomb(str):
+            def __eq__(self, other): raise ValueError("no equality")
+            __hash__ = str.__hash__
+
+        class HashBomb(str):
+            def __hash__(self): raise ValueError("no hash")
+
+        class Swapped(PoetryWorld):
+            bomb = None
+
+            def manifest(self):
+                m = super().manifest()
+                fake = object.__new__(Manifest)
+                for f in dataclasses.fields(Manifest):
+                    object.__setattr__(fake, f.name, getattr(m, f.name))
+                object.__setattr__(fake, "entity_id",
+                                   self.bomb(m.entity_id))
+                return fake
+
+        class LoudManifest(PoetryWorld):
+            def act(self, a): return "ok"   # fails conformance
+
+            def manifest(self):
+                class Loud(Manifest):
+                    def __bool__(self): raise ValueError("no truth")
+                return Loud(**dataclasses.asdict(super().manifest()))
+
+        mv, alice = self.registry()
+        worlds = []
+        for bomb in (EqBomb, HashBomb):
+            w = Swapped(f"world:{bomb.__name__}", bomb.__name__)
+            w.bomb = bomb
+            worlds.append(w)
+        worlds.append(LoudManifest("world:loud", "Loud"))
+        for w in worlds:
+            with self.subTest(world=w.manifest().name
+                              if not isinstance(w, LoudManifest) else "Loud"):
+                r = mv.act(_admit(alice, w))
+                self.assertIsInstance(r, Refusal)
+                self.assertIn("fails conformance", r.reason)
+        self.assertEqual(mv.entity_ids(), [])
+
     def test_refusal_records_the_manifest_it_checked(self):
         class Rude(PoetryWorld):
             def act(self, a): return "ok"

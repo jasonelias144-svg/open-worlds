@@ -5,7 +5,8 @@ own entity. It checks only that the entity speaks the protocol: not whom
 it admits, not whether its law is interesting, not whether it is fast.
 
 What it checks:
-  - the manifest is a Manifest of this protocol version;
+  - the manifest is a plain Manifest, with plain-text fields, of this
+    protocol version;
   - a petition gets an Admission, a Refusal with a reason, or a Route;
   - an act gets an Ack or a Refusal with a reason;
   - leaving: a leave is never refused and never raises; it says whether
@@ -35,6 +36,18 @@ from .protocol import (PROTOCOL_VERSION, Ack, Act, Admission, Departure,
                        WorldProtocol)
 
 
+def _describe(e: BaseException) -> str:
+    """An exception as text, even if its own text can't be made."""
+    try:
+        name = type(e).__name__
+    except Exception:
+        name = "an exception"
+    try:
+        return f"{name}: {e}"
+    except Exception:
+        return f"{name} (whose message could not be read)"
+
+
 def _test_token(role: str) -> str:
     return f"conformance-{role}-{uuid.uuid4().hex}"
 
@@ -57,17 +70,26 @@ def check(entity: WorldProtocol) -> Tuple[dict, Optional[Manifest]]:
     try:
         m = entity.manifest()
     except Exception as e:
-        failures.append(f"manifest() raised {type(e).__name__}: {e}")
+        failures.append(f"manifest() raised {_describe(e)}")
         return report(), None
-    if not isinstance(m, Manifest):
+    if type(m) is not Manifest:
         failures.append("manifest() did not return a Manifest")
+        return report(), None
+    # A Manifest's own checks require plain text, but one built around
+    # them could hold anything; only plain values may cross (protocol.py).
+    if not (all(type(getattr(m, f)) is str
+                for f in ("entity_id", "name", "protocol_version",
+                          "law_url", "act_endpoint", "log_endpoint"))
+            and (m.sub_registry_endpoint is None
+                 or type(m.sub_registry_endpoint) is str)):
+        failures.append("the manifest's fields are not plain text")
         return report(), None
     try:
         if m.protocol_version != PROTOCOL_VERSION:
             failures.append(f"protocol_version is {m.protocol_version!r}, "
                             f"expected {PROTOCOL_VERSION!r}")
     except Exception as e:
-        failures.append(f"the manifest is unreadable: {type(e).__name__}")
+        failures.append(f"the manifest is unreadable: {_describe(e)}")
         return report(), None
 
     # -- petition: any of the three answers, well formed --
@@ -95,7 +117,7 @@ def check(entity: WorldProtocol) -> Tuple[dict, Optional[Manifest]]:
             failures.append(f"petition() returned {type(response).__name__}"
                             ", expected Admission, Refusal, or Route")
     except Exception as e:
-        failures.append(f"petition() raised {type(e).__name__}: {e}")
+        failures.append(f"petition() raised {_describe(e)}")
 
     # -- act: Ack or Refusal, well formed --
     try:
@@ -113,7 +135,7 @@ def check(entity: WorldProtocol) -> Tuple[dict, Optional[Manifest]]:
             failures.append(f"act() returned {type(response).__name__}, "
                             "expected Ack or Refusal")
     except Exception as e:
-        failures.append(f"act() raised {type(e).__name__}: {e}")
+        failures.append(f"act() raised {_describe(e)}")
 
     # -- leave: always a Departure; the test leaves what it entered --
     for attempt, expect_already in (("first", not admitted),
@@ -134,7 +156,7 @@ def check(entity: WorldProtocol) -> Tuple[dict, Optional[Manifest]]:
                     f"{response.already_left!r}, expected {expect_already}")
         except Exception as e:
             failures.append(f"{attempt} leave() raised, or answered "
-                            f"unreadably: {type(e).__name__}: {e}")
+                            f"unreadably: {_describe(e)}")
             break
 
     # -- log: a list of well-formed entries, with the departure in it --
@@ -159,6 +181,6 @@ def check(entity: WorldProtocol) -> Tuple[dict, Optional[Manifest]]:
                     failures.append("the log does not record the "
                                     "departure")
     except Exception as e:
-        failures.append(f"log_since() raised {type(e).__name__}: {e}")
+        failures.append(f"log_since() raised {_describe(e)}")
 
     return report(), m

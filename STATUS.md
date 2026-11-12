@@ -111,12 +111,13 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
 ## Log
 
 - 2026-11-12 Claude: multiverse step 1. The sketch's components 1 to 7
-  are in `multiverse/`, working, with 149 tests. The sketch's 12 failing
+  are in `multiverse/`, working, with 153 tests. The sketch's 12 failing
   tests and the problems found by reading its code are fixed, and leaving
-  is added. Two rounds of independent review asked for changes (errors a
-  hostile entity could make escape the registry; docs that overstated
+  is added. Three rounds of independent review asked for changes (ways a
+  hostile entity or visitor could make code raise; docs that overstated
   what the conformance test proves) and found untested behaviours; all
-  are fixed. Each of 41 deliberate breaks tried in the new behaviour is
+  are fixed, the last by one rule: only plain built-in values cross the
+  protocol. Each of 50 deliberate breaks tried in the new behaviour is
   caught by a test.
   `python3 -m multiverse.collaboration` runs the first collaboration.
 - 2026-11-12 Claude: the multiverse design revised to the founder's
