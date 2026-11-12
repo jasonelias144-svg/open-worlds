@@ -34,6 +34,13 @@ def _remove(actor, entity_id):
                payload={"entity_id": entity_id})
 
 
+class KeyBomb(str):
+    """A key that hashes like the text it claims to be, so a dict lookup
+    for that text calls its __eq__, which raises."""
+    def __hash__(self): return str.__hash__(str(self))
+    def __eq__(self, other): raise ValueError("no equality")
+
+
 class BrokenWorld:
     def manifest(self): return None
     def petition(self, p): return "yes"
@@ -194,6 +201,26 @@ class TestRegistry(RegistryCase):
                 self.assertIsInstance(r, Refusal)
                 self.assertIn("fails conformance", r.reason)
         self.assertEqual(mv.entity_ids(), [])
+
+    def test_plain_keys_and_values(self):
+        class Text(str):
+            pass
+
+        mv, alice = self.registry()
+        mv.act(_admit(alice, PoetryWorld("world:poetry", "Poetry")))
+        for act in (Act(alice, "multiverse.admit", {KeyBomb("entity"): 1}),
+                    Act(alice, "multiverse.admit",
+                        {"entity": PoetryWorld("world:x", "X"),
+                         "note": object()}),
+                    Act(alice, "multiverse.remove",
+                        {KeyBomb("entity_id"): "x"}),
+                    Act(alice, "multiverse.remove",
+                        {"entity_id": Text("world:poetry")})):
+            with self.subTest(act=act.type):
+                r = mv.act(act)
+                self.assertIsInstance(r, Refusal)
+                self.assertIn("plain", r.reason)
+        self.assertEqual(mv.entity_ids(), ["world:poetry"])
 
     def test_refusal_records_the_manifest_it_checked(self):
         class Rude(PoetryWorld):

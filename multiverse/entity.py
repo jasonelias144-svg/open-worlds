@@ -20,7 +20,7 @@ from .passport import Admission as PassportAdmission
 from .passport import Passport
 from .protocol import (PROTOCOL_VERSION, Act, ActResponse, Admission,
                        Departure, LogEntry, Manifest, Petition,
-                       PetitionResponse, Refusal)
+                       PetitionResponse, Refusal, is_plain)
 
 
 def now() -> str:
@@ -81,6 +81,12 @@ class Entity:
         if problem:
             return self._refuse(timestamp, None,
                                 f"Cannot admit: {problem}", "petition")
+        if (type(petition.message) is not str
+                or (petition.target is not None
+                    and type(petition.target) is not str)):
+            return self._refuse(timestamp, token,
+                                "Cannot admit: the message and target "
+                                "must be plain text", "petition")
         if (type(petition.petitioner_name) is not str
                 or not petition.petitioner_name):
             return self._refuse(timestamp, token,
@@ -192,7 +198,14 @@ class Entity:
         if type(act.type) is not str:
             return self._refuse(timestamp, act.actor_token,
                                 "The act type must be plain text", "act")
-        if type(act.payload) is not dict:
+        if type(act.payload) is not dict or not self._plain_payload(act):
             return self._refuse(timestamp, act.actor_token,
-                                "The payload must be a plain mapping", "act")
+                                "The payload must be a mapping of plain "
+                                "values", "act")
         return None
+
+    def _plain_payload(self, act: Act) -> bool:
+        """Whether the payload holds only plain values. An entity whose
+        law carries something else (the registry's listing act carries a
+        world) says so here."""
+        return is_plain(act.payload)

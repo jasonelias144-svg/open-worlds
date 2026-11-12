@@ -17,6 +17,13 @@ from multiverse.poetry_world import PoetryWorld
 from multiverse.protocol import Ack, Act, Admission, Petition, Refusal
 
 
+class KeyBomb(str):
+    """A key that hashes like the text it claims to be, so a dict lookup
+    for that text calls its __eq__, which raises."""
+    def __hash__(self): return str.__hash__(str(self))
+    def __eq__(self, other): raise ValueError("no equality")
+
+
 def _petition(name, token):
     return Petition(petitioner_token=token, petitioner_name=name,
                     passport_admissions=(), message=f"{name} petitions.")
@@ -154,6 +161,32 @@ class TestChemistryWorld(ChemistryCase):
                 r = w.act(_reaction(alice.token, subs, prods))
                 self.assertIsInstance(r, Refusal)
                 self.assertIn("required", r.reason)
+
+    def test_plain_values_all_the_way_down(self):
+        class Odd:
+            pass
+
+        w = self.world()
+        alice = self.enter(w)
+        for payload in ({KeyBomb("substrates"): []},
+                        {"substrates": [_m("H2", 2),
+                                        _m("O2") | {"note": Odd()}],
+                         "products": [_m("H2O", 2)]}):
+            with self.subTest(payload=list(payload)):
+                r = w.act(Act(alice.token, "chemistry.react", payload))
+                self.assertIsInstance(r, Refusal)
+                self.assertIn("plain", r.reason)
+        self.assertEqual(w.reactions(), [])
+
+    def test_only_formula_and_count_are_kept(self):
+        w = self.world()
+        alice = self.enter(w)
+        r = w.act(_reaction(alice.token,
+                            [_m("H2", 2), _m("O2") | {"note": "x"}],
+                            [_m("H2O", 2)]))
+        self.assertIsInstance(r, Ack)
+        self.assertEqual(w.reactions()[0]["substrates"],
+                         [_m("H2", 2), _m("O2")])
 
     def test_catalyst(self):
         w = self.world()

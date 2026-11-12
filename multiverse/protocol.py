@@ -22,9 +22,10 @@ was present is recorded in the log, kind "departure", with their token.
 law decides what they mean.
 
 Plain values only: what crosses the protocol (tokens, names, act types,
-payloads, manifest fields) must be plain built-in values (str, int, bool,
-list, dict, None), not subclasses of them, which could redefine how they
-compare or hash. Worlds refuse anything else. This is the same rule JSON
+payloads all the way down, manifest fields) must be plain built-in values
+(str, int, float, bool, list, dict with text keys, None), not subclasses
+of them, which could redefine how they compare or hash (`is_plain`).
+Worlds refuse anything else. This is the same rule JSON
 over the network enforces by itself (course step 12).
 """
 from __future__ import annotations
@@ -33,6 +34,27 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Protocol, Tuple, Union
 
 PROTOCOL_VERSION = "WCP/0.1"
+
+MAX_PLAIN_DEPTH = 32
+
+
+def is_plain(value, depth: int = 0) -> bool:
+    """True if `value` is plain data all the way down: None, or exactly a
+    str, int, float or bool, or a list of plain values, or a dict whose
+    keys are exactly str and whose values are plain. Subclasses are not
+    plain: they could redefine how they compare or hash. Nesting deeper
+    than MAX_PLAIN_DEPTH (or a list that contains itself) is not plain."""
+    if depth > MAX_PLAIN_DEPTH:
+        return False
+    kind = type(value)
+    if value is None or kind in (str, int, float, bool):
+        return True
+    if kind is list:
+        return all(is_plain(v, depth + 1) for v in value)
+    if kind is dict:
+        return all(type(k) is str and is_plain(v, depth + 1)
+                   for k, v in value.items())
+    return False
 
 
 @dataclass(frozen=True)

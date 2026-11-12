@@ -36,7 +36,8 @@ from typing import Dict, List, Optional
 
 from .conformance import check
 from .entity import Entity, now
-from .protocol import Ack, Act, ActResponse, LogEntry, Manifest, Refusal
+from .protocol import (Ack, Act, ActResponse, LogEntry, Manifest, Refusal,
+                       is_plain)
 
 
 def manifest_to_dict(m: Manifest) -> Dict:
@@ -98,6 +99,15 @@ class MultiverseRegistry(Entity):
         self._registry: Dict[str, Manifest] = {}
         self._conformance_reports: Dict[str, Dict] = {}
         self._proposed_by: Dict[str, str] = {}
+
+    def _plain_payload(self, act: Act) -> bool:
+        # multiverse.admit carries the entity itself (in-process only, until
+        # course step 12); every key, and every other value, is plain.
+        if act.type == "multiverse.admit":
+            return (all(type(k) is str for k in act.payload)
+                    and all(is_plain(v) for k, v in act.payload.items()
+                            if k != "entity"))
+        return super()._plain_payload(act)
 
     def act(self, act: Act) -> ActResponse:
         timestamp = now()

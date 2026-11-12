@@ -5,7 +5,8 @@ import unittest
 
 from multiverse.conformance import run_conformance
 from multiverse.protocol import (Ack, Act, Admission, Departure, LogEntry,
-                                 Manifest, NullWorld, Petition, Refusal)
+                                 Manifest, NullWorld, Petition, Refusal,
+                                 is_plain)
 
 ALICE = "alice-token-000000001"
 
@@ -59,6 +60,29 @@ class IndependentWorld:
     def log_since(self, ts=None):
         return [LogEntry(timestamp="independent:0", kind=kind,
                          actor_token=actor) for kind, actor in self._events]
+
+
+class TestPlain(unittest.TestCase):
+
+    def test_plain_values(self):
+        for value in (None, "x", 3, 2.5, True, [], {}, [1, ["a", {"b": None}]],
+                      {"a": [1, 2, {"c": "d"}]}):
+            with self.subTest(value=value):
+                self.assertTrue(is_plain(value))
+
+    def test_not_plain(self):
+        class Text(str): pass
+        class Mapping(dict): pass
+        loop = []
+        loop.append(loop)
+        deep = []
+        for _ in range(40):
+            deep = [deep]
+        for value in (Text("x"), Mapping(), {Text("k"): 1}, {1: "x"},
+                      {"k": Text("v")}, [Text("x")], ("a", "b"), {"a"},
+                      object(), b"x", loop, deep):
+            with self.subTest(value=type(value).__name__):
+                self.assertFalse(is_plain(value))
 
 
 class TestManifest(unittest.TestCase):

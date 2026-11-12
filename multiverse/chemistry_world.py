@@ -14,7 +14,8 @@ Changed from the sketch:
   - Calcium is in the element table (the sketch's own test used it).
   - Counts must be whole numbers of at least one, and formulas text. In
     the sketch a count of "2" or -1 was not refused, nor "H0O".
-  - A catalyst, if named, must be text.
+  - A catalyst, if named, must be text. Only each molecule's formula and
+    count are recorded; anything else sent with them is not kept.
   - "Equilibrium" in the sketch means only that the last few reactions
     introduced no new molecule; this page says so.
 """
@@ -201,8 +202,10 @@ class ChemistryWorld(Entity):
             "reaction_index": len(self._reactions),
             "actor_token": actor,
             "actor_name": self._passports[actor].identity.name,
-            "substrates": [dict(m) for m in substrates],
-            "products": [dict(m) for m in products],
+            "substrates": [{"formula": m["formula"], "count": m["count"]}
+                           for m in substrates],
+            "products": [{"formula": m["formula"], "count": m["count"]}
+                         for m in products],
             "catalyst": catalyst,
             "timestamp": timestamp,
         }

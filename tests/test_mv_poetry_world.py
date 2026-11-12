@@ -14,6 +14,13 @@ from multiverse.poetry_world import PoetryWorld, PoetryWorldLaw, turns_from_log
 from multiverse.protocol import (Ack, Act, Admission, Departure, Petition,
                                  Refusal)
 
+class KeyBomb(str):
+    """A key that hashes like the text it claims to be, so a dict lookup
+    for that text calls its __eq__, which raises."""
+    def __hash__(self): return str.__hash__(str(self))
+    def __eq__(self, other): raise ValueError("no equality")
+
+
 SEED = "The river keeps its shape\nby never keeping its water."
 
 
@@ -176,6 +183,36 @@ class TestLeaving(PoetryWorldCase):
                     w.petition(_petition("Carol", carol.token, passport)),
                     Refusal)
         self.assertEqual(w.members(), ["Alice"])
+
+    def test_plain_values_all_the_way_down(self):
+        w = self.world()
+        alice, = self.enter(w, "Alice")
+        for payload in ({KeyBomb("proposal"): "x"},
+                        {"acknowledgment": "(seed)", "proposal": SEED,
+                         "invitation": "?", "holds_open": True,
+                         "extra": [KeyBomb("x")]}):
+            with self.subTest(payload=list(payload)):
+                r = w.act(Act(alice.token, "poem.turn", payload))
+                self.assertIsInstance(r, Refusal)
+                self.assertIn("plain", r.reason)
+        self.assertEqual(w.turns(), [])
+
+    def test_petition_fields_and_passport_must_be_plain(self):
+        class Odd:
+            pass
+
+        class Pairs(list):
+            def __iter__(self): raise ValueError("no iteration")
+
+        w = self.world()
+        carol = create_identity("Carol")
+        for petition in (
+                Petition(carol.token, "Carol", (), Odd()),
+                Petition(carol.token, "Carol", (), "hi", target=Odd()),
+                Petition(carol.token, "Carol", Pairs(), "hi")):
+            with self.subTest(petition=petition):
+                self.assertIsInstance(w.petition(petition), Refusal)
+        self.assertEqual(w.members(), [])
 
     def test_leave_with_odd_tokens(self):
         w = self.world()
