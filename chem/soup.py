@@ -4,10 +4,16 @@ Layer 3, step 1: the engine (docs/CHEMISTRY.md). Each cell holds counts of
 each kind of molecule. Two kinds of event change them:
 
 - **a reaction in a cell**, at the rate mass action gives: the reaction's
-  rate constant times the number of ways to pick its reactants from the
-  cell, divided by the cell's volume once for each reactant beyond the first;
+  rate constant times the number of ordered ways to pick its reactants from
+  the cell, divided by the cell's volume once for each reactant beyond the
+  first. Ordered picks means n(n-1) for two of one kind and n(n-1)(n-2) for
+  three; the common textbook convention counts unordered pairs, n(n-1)/2, so
+  a textbook rate constant for two of one kind is halved here (divided by 6
+  for three of one kind);
 - **a hop**: one molecule moves to a neighbouring cell (diffusion), at its
-  species' hop rate per neighbour.
+  species' hop rate per neighbour. On a wrapped grid two cells wide (or
+  high), the other cell is a neighbour on both sides, so it is listed twice
+  and gets twice the hop rate, as on any periodic lattice.
 
 The next event and the time until it are drawn exactly, by Gillespie's
 direct method, from a seeded random generator, so a world with the same
@@ -35,6 +41,7 @@ from .molecule import Molecule
 from .reactions import balance
 
 GENESIS = "0" * 64          # the same start as the agent worlds' log
+MIN_VOLUME, MAX_VOLUME = 1e-6, 1e6
 
 Cell = Tuple[int, int]
 
@@ -65,6 +72,8 @@ class Soup:
             raise ValueError("seed must be a whole number; wrap and log, True or False")
         self.width, self.height, self.wrap = width, height, wrap
         self.volume = _positive_number(volume, "volume", allow_zero=False)
+        if not MIN_VOLUME <= self.volume <= MAX_VOLUME:
+            raise ValueError(f"volume must be between {MIN_VOLUME} and {MAX_VOLUME}")
         self.time = 0.0
         self.events = 0
         self.log: Optional[List[dict]] = [] if log else None
@@ -121,6 +130,11 @@ class Soup:
                 raise ValueError(f"not a valid molecule: {m!r}")
         if not balance(reactants, products):
             raise ValueError("a reaction must keep every atom and the total charge")
+        net = Counter(m.identity() for m in products)
+        net.subtract(m.identity() for m in reactants)
+        if not any(net.values()):
+            raise ValueError("a reaction must change something")
+        # Only now, with every check passed, are new molecules registered.
         ids = [self.add_species(m) if m.identity() not in self._index
                else self._index[m.identity()] for m in reactants + products]
         need = Counter(ids[:len(reactants)])
@@ -130,8 +144,6 @@ class Soup:
         for i in ids[len(reactants):]:
             change[i] += 1
         change = {i: d for i, d in change.items() if d}
-        if not change:
-            raise ValueError("a reaction must change something")
         k = len(self._reactions)
         self._reactions.append(Reaction(reactants, products, rate))
         self._channels.append((sorted(need.items()), change, rate, len(reactants)))
@@ -188,37 +200,35 @@ class Soup:
         if total <= 0.0:
             return False
         self.time += self._rng.expovariate(total)
-        target = self._rng.random() * total
-        c = self._pick(self._propensity, target)
-        within = target - sum(self._propensity[:c])
+        c, within = self._pick(self._propensity, self._rng.random() * total)
+        # Only events that can happen are candidates, so rounding at a
+        # boundary can never choose one whose reactants are absent.
+        events = self._possible_events(c)
+        chosen = events[-1]
+        for event in events:
+            if within < event[0]:
+                chosen = event
+                break
+            within -= event[0]
+        _, kind, which = chosen
         counts = self._counts[c]
-        for k, (need, change, rate, order) in enumerate(self._channels):
-            a = self._reaction_propensity(counts, need, rate, order)
-            if within < a:
-                for i, d in change.items():
-                    counts[i] += d
-                self._refresh(c)
-                self.events += 1
-                self._record("react", {"cell": self._xy(c), "reaction": k})
-                return True
-            within -= a
-        neighbours = self._neighbours[c]
-        for i, n in enumerate(counts):
-            a = self._hop[i] * n * len(neighbours)
-            if within < a:
-                to = neighbours[self._rng.randrange(len(neighbours))]
-                counts[i] -= 1
-                self._counts[to][i] += 1
-                self._refresh(c)
-                self._refresh(to)
-                self.events += 1
-                self._record("hop", {"from": self._xy(c), "to": self._xy(to),
-                                     "species": i})
-                return True
-            within -= a
-        # Only floating-point rounding can bring us here: take the last
-        # possible event in this cell rather than none.
-        return self._last_resort(c)
+        if kind == "react":
+            for i, d in self._channels[which][1].items():
+                counts[i] += d
+            self._refresh(c)
+            self.events += 1
+            self._record("react", {"cell": self._xy(c), "reaction": which})
+        else:
+            neighbours = self._neighbours[c]
+            to = neighbours[self._rng.randrange(len(neighbours))]
+            counts[which] -= 1
+            self._counts[to][which] += 1
+            self._refresh(c)
+            self._refresh(to)
+            self.events += 1
+            self._record("hop", {"from": self._xy(c), "to": self._xy(to),
+                                 "species": which})
+        return True
 
     def run(self, until: Optional[float] = None,
             max_events: Optional[int] = None) -> int:
@@ -246,7 +256,9 @@ class Soup:
                 return 0.0
             for j in range(m):
                 a *= n - j
-        return a / self.volume ** (order - 1)
+        for _ in range(order - 1):
+            a /= self.volume
+        return a
 
     def _refresh(self, c: int) -> None:
         counts = self._counts[c]
@@ -259,27 +271,33 @@ class Soup:
         for c in range(len(self._counts)):
             self._refresh(c)
 
-    def _last_resort(self, c: int) -> bool:
+    def _possible_events(self, c: int) -> List[Tuple[float, str, int]]:
+        """Every event that can happen in cell c, with its propensity. A cell
+        is only picked when its cached propensity, a sum of these, is above
+        zero, so the list is never empty."""
         counts = self._counts[c]
-        for k in reversed(range(len(self._channels))):
-            need, change, rate, order = self._channels[k]
-            if self._reaction_propensity(counts, need, rate, order) > 0:
-                for i, d in change.items():
-                    counts[i] += d
-                self._refresh(c)
-                self.events += 1
-                self._record("react", {"cell": self._xy(c), "reaction": k})
-                return True
-        self._refresh(c)
-        return False
+        events = []
+        for k, (need, _, rate, order) in enumerate(self._channels):
+            a = self._reaction_propensity(counts, need, rate, order)
+            if a > 0.0:
+                events.append((a, "react", k))
+        degree = len(self._neighbours[c])
+        for i, n in enumerate(counts):
+            a = self._hop[i] * n * degree
+            if a > 0.0:
+                events.append((a, "hop", i))
+        return events
 
     @staticmethod
-    def _pick(weights: List[float], target: float) -> int:
+    def _pick(weights: List[float], target: float) -> Tuple[int, float]:
+        """The index the target falls in, and how far into it. If rounding
+        carries the target past the end, the last positive weight."""
         for i, w in enumerate(weights):
             if target < w:
-                return i
+                return i, target
             target -= w
-        return max(i for i, w in enumerate(weights) if w > 0)
+        last = max(i for i, w in enumerate(weights) if w > 0)
+        return last, weights[last]
 
     def _find_neighbours(self, c: int) -> List[int]:
         x, y = c % self.width, c // self.width

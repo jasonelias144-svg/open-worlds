@@ -303,6 +303,20 @@ of molecules makes more of itself.
    applied, and time that doesn't advance. The n² bug was caught only after
    the six-glycine test was added: with hundreds of molecules the difference
    is too small to see.
+
+   The independent review found that floating-point rounding at the boundary
+   between two cells could choose a reaction whose reactants were absent,
+   driving a count below zero, or make `step()` report rest while events
+   remained. It was rare (about one event in 10¹⁵), but the invariant
+   matters. The fix: only possible events are ever candidates, and the
+   remainder that picks the cell is reused rather than recomputed. A test
+   now tries every value of the random draw within 40 steps of every
+   boundary in three worlds where the first version broke.
+
+   **Rate convention.** Mass action here counts ordered picks: n(n−1) for
+   two of one kind, n(n−1)(n−2) for three. Textbooks usually count
+   unordered pairs, n(n−1)/2, so step 2 halves a textbook constant for two
+   of one kind (and divides it by 6 for three).
 2. Rates for the six rules of layer 2, with their sources.
 3. The gardener's levers.
 4. The first chemistry cycle: what forms from water, ammonia, hydrogen

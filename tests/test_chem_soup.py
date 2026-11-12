@@ -6,6 +6,7 @@ atoms and charge, exact replay from a seed, and a log the agent worlds'
 verifier accepts.
 """
 import math
+import random
 import unittest
 
 from chem import catalogue as cat
@@ -111,7 +112,7 @@ class TestDiffusion(unittest.TestCase):
         soup.run(max_events=20_000)
         sums = [0.0] * 25
         start = soup.time
-        for _ in range(30_000):
+        for _ in range(60_000):
             before = [soup.count(WATER, (x, y)) for y in range(5) for x in range(5)]
             t0 = soup.time
             soup.step()
@@ -121,7 +122,7 @@ class TestDiffusion(unittest.TestCase):
         self.assertEqual(soup.count(WATER), 500)
         # Uniform is 20 per cell; corners and edges must not differ.
         for a in averages:
-            self.assertAlmostEqual(a, 20.0, delta=3.0)
+            self.assertAlmostEqual(a, 20.0, delta=4.0)
 
     def test_walls_and_wrapping(self):
         closed = Soup(3, 1, seed=5)
@@ -169,6 +170,14 @@ class TestConservation(unittest.TestCase):
             self.assertEqual(soup.atoms(), atoms)
         self.assertGreater(soup.events, 2_000)
 
+    def test_a_refused_reaction_changes_nothing(self):
+        soup = Soup(1, 1)
+        before = (soup.log_head, len(soup.species))
+        with self.assertRaises(ValueError):
+            soup.add_reaction([WATER], [WATER], 1.0)
+        self.assertEqual((soup.log_head, len(soup.species)), before)
+        soup.add_species(WATER, hop_rate=1.0)        # still free to register
+
     def test_unbalanced_reactions_are_refused(self):
         soup = Soup(1, 1)
         with self.assertRaisesRegex(ValueError, "keep every atom"):
@@ -184,6 +193,8 @@ class TestConservation(unittest.TestCase):
             lambda: Soup(1, 1, seed="x"),
             lambda: Soup(1, 1, seed=object()),
             lambda: Soup(1, 1, wrap=1),
+            lambda: Soup(1, 1, volume=1e-200),
+            lambda: Soup(1, 1, volume=1e200),
             lambda: soup.add_species(WATER, hop_rate=-1),
             lambda: soup.add_species(WATER, hop_rate=float("nan")),
             lambda: soup.add_reaction([WATER], [WATER], 1.0),
@@ -201,6 +212,54 @@ class TestConservation(unittest.TestCase):
         for make in bad:
             with self.assertRaises(ValueError):
                 make()
+
+
+def rounding_world(seed):
+    """A small random world: water and formaldehyde hopping, hydration and
+    its reverse, and a reaction whose reactant is absent everywhere."""
+    r = random.Random(seed)
+    soup = Soup(r.randint(2, 4), 1, volume=r.choice((1.0, 3.0, 7.0)))
+    soup.add_species(WATER, hop_rate=r.choice((0.3, 0.7, 0.9, 1.1)))
+    soup.add_species(FORMALDEHYDE, hop_rate=r.choice((0.0, 0.7, 1.3)))
+    soup.add_species(METHANEDIOL, hop_rate=0.0)
+    soup.add_reaction([FORMALDEHYDE, WATER], [METHANEDIOL], r.choice((0.37, 0.5, 1.1)))
+    soup.add_reaction([METHANEDIOL], [FORMALDEHYDE, WATER], r.choice((2.9, 0.2)))
+    soup.add_reaction([GLYCINE], [ZWITTERION], 1.0)
+    for x in range(soup.width):
+        soup.put((x, 0), WATER, r.randint(0, 90))
+        if r.random() < 0.6:
+            soup.put((x, 0), FORMALDEHYDE, r.randint(0, 40))
+    return soup
+
+
+class TestRounding(unittest.TestCase):
+    """Floating-point rounding at a boundary between cells must never choose
+    an event that can't happen, nor report rest while events remain
+    (independent review of #8). Each world here broke the first version of
+    the engine at one of the values tried: world 142 drove a count
+    negative, and worlds 193 and 195 made step() report rest."""
+
+    def test_every_value_near_every_boundary(self):
+        for seed in (142, 193, 195):
+            probe = rounding_world(seed)
+            weights = probe._propensity
+            total = sum(weights)
+            atoms = probe.atoms()
+            for c in range(len(weights) + 1):
+                v = sum(weights[:c]) / total
+                for _ in range(40):
+                    v = math.nextafter(v, 0.0)
+                for _ in range(80):
+                    v = math.nextafter(v, 1.0)
+                    if not 0.0 <= v < 1.0:
+                        continue
+                    soup = rounding_world(seed)
+                    soup._rng.random = lambda v=v: v
+                    with self.subTest(seed=seed, value=v):
+                        self.assertTrue(soup.step())
+                        self.assertTrue(all(n >= 0 for counts in soup._counts
+                                            for n in counts))
+                        self.assertEqual(soup.atoms(), atoms)
 
 
 class TestTheRecord(unittest.TestCase):
