@@ -31,6 +31,8 @@ and reactions that keep every atom and charge
   and the commands that reproduce them.
 - [docs/CHEMISTRY.md](docs/CHEMISTRY.md): the nature track's chemistry, layer
   by layer.
+- [docs/MULTIVERSE.md](docs/MULTIVERSE.md): the multiverse: many worlds,
+  and individuals who move between them.
 
 ## Run and test
 

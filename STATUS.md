@@ -13,6 +13,8 @@ respect one another's freedom, with full transparency and exit at any time
 
 ## Now
 
+- Claude: the multiverse design (docs/MULTIVERSE.md), then its first brick:
+  keys and signatures.
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 - Claude: the nature track's chemistry. Layers 1 (molecules, #3) and 2
   (reactions, #4), symmetry pruning (#5), the RDKit cross-check (#6), the
@@ -56,6 +58,11 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
   2026-11-12)
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12)
+- For the founder: is the default for entering a world "anyone who will act
+  under its published law"? Recommended: yes. (asked 2026-11-12)
+- For the founder: may a world refuse someone because of their history
+  elsewhere? Recommended: only through conditions in its published law.
+  (asked 2026-11-12)
 - For the founder: which of the gardener's levers the first chemistry world
   starts with: the water (wet–dry cycles), the sun (energy from outside), or
   fresh soil (inflow of simple molecules). Recommended: water and soil
@@ -80,6 +87,8 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
 
 ## Decided
 
+- 2026-11-12, founder: "The multiverse is the same as open-worlds." Its
+  design is in docs/MULTIVERSE.md.
 - 2026-11-12: the RDKit cross-check runs in CI. Claude recommended it in
   answer to its own question to the founder, and the founder replied "Sounds
   good" and asked Claude to continue. If that wasn't meant as a decision,
@@ -90,6 +99,11 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
   domain (CC0 1.0). The goal isn't financial; anyone may build on it.
 
 ## Log
+
+- 2026-11-12 Claude: the multiverse design (docs/MULTIVERSE.md), from the
+  founder's comments and the DeepSeek sketch (record 012-04-00), whose code
+  was extracted and run: 108 of 131 runnable tests passed as written, 119
+  after one fix.
 
 - 2026-11-12 Claude: PR #8 (the chemistry engine) merged after an
   independent review that requested changes and a follow-up that approved.
