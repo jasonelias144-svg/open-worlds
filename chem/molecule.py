@@ -14,6 +14,10 @@ it into its atom's label: element, charge and hydrogen count. Any other
 hydrogen (in H2, a lone proton, or a malformed molecule) stays a vertex of
 its own, so the identity is exact for every graph, valid or not.
 
+The search has a cap (MAX_SEARCH_LEAVES). A molecule so symmetric that the
+search reaches it raises ValueError instead of getting an identity, and so
+does comparing or hashing it. Reaching the cap can take tens of seconds.
+
 Limitation of this layer: resonance forms are different graphs, so they can
 get different identities. Formamide drawn neutral (H2N-CH=O) and drawn
 charge-separated (H2N+=CH-O-) is one molecule with two identities here. (The
@@ -150,7 +154,8 @@ class Molecule:
 
     def identity(self) -> str:
         """A string that is equal for two molecules exactly when they are the
-        same molecule (same atoms, charges and bonds, in any order)."""
+        same molecule (same atoms, charges and bonds, in any order). Raises
+        ValueError if the search reaches its cap (see the module docstring)."""
         if self._identity is None:
             object.__setattr__(self, "_identity", _canonical_form(self))
         return self._identity

@@ -3,6 +3,7 @@
 The expected values are chemistry facts (valences, Hill formulas, standard
 atomic weights), not outputs copied from the code.
 """
+import itertools
 import random
 import unittest
 from collections import Counter
@@ -75,6 +76,59 @@ def bicyclopentyl() -> Molecule:
     ring(b, ["a0", "a1", "a2", "a3", "a4"], [1, 2, 2, 2, 2])
     ring(b, ["b0", "b1", "b2", "b3", "b4"], [1, 2, 2, 2, 2])
     return b.bond("a0", "b0").build()
+
+
+def random_cubic_hydrocarbon(n: int, seed: int) -> Molecule:
+    """CnHn on a random connected cubic graph: each carbon bonded to three
+    carbons and one hydrogen. Every carbon looks the same to colour
+    refinement, so the search has to do all the work, and the graph usually
+    has few or no symmetries, so a search that skips branches or keeps the
+    wrong leaf gives answers that depend on the order of the atoms."""
+    rng = random.Random(seed)
+    while True:
+        stubs = [v for v in range(n) for _ in range(3)]
+        rng.shuffle(stubs)
+        edges = {tuple(sorted(stubs[k:k + 2])) for k in range(0, len(stubs), 2)}
+        if len(edges) * 2 != len(stubs) or any(a == b for a, b in edges):
+            continue
+        seen, todo = {0}, [0]
+        while todo:
+            v = todo.pop()
+            for a, b in edges:
+                for x, y in ((a, b), (b, a)):
+                    if x == v and y not in seen:
+                        seen.add(y)
+                        todo.append(y)
+        if len(seen) == n:
+            break
+    atoms = [Atom("C")] * n + [Atom("H")] * n
+    bonds = [Bond(a, b) for a, b in sorted(edges)]
+    bonds += [Bond(v, n + v) for v in range(n)]
+    return Molecule(atoms, bonds)
+
+
+def brute_force_form(m: Molecule):
+    """The smallest description of the graph over every ordering of its
+    atoms: slow, but exact by definition."""
+    best = None
+    for order in itertools.permutations(range(len(m.atoms))):
+        pos = {v: k for k, v in enumerate(order)}
+        form = (tuple((m.atoms[v].symbol, m.atoms[v].charge) for v in order),
+                tuple(sorted((min(pos[b.a], pos[b.b]), max(pos[b.a], pos[b.b]), b.order)
+                             for b in m.bonds)))
+        if best is None or form < best:
+            best = form
+    return best
+
+
+def random_small_graph(rng: random.Random) -> Molecule:
+    """Any graph on 1-6 atoms of H, C and O, with any charge and bond order,
+    valid or not, connected or not."""
+    n = rng.randint(1, 6)
+    atoms = [Atom(rng.choice("HHCO"), rng.choice((-1, 0, 0, 0, 1))) for _ in range(n)]
+    bonds = [Bond(i, j, rng.choice((1, 1, 1, 2, 3)))
+             for i in range(n) for j in range(i + 1, n) if rng.random() < 0.45]
+    return Molecule(atoms, bonds)
 
 
 class TestValence(unittest.TestCase):
@@ -241,6 +295,44 @@ class TestIdentity(unittest.TestCase):
         methylene_like = Molecule([Atom("C"), Atom("H"), Atom("H")],
                                   [Bond(0, 1), Bond(0, 2)])
         self.assertNotEqual(odd, methylene_like)
+        # A charged hydrogen, or one with a double bond, is not ordinary.
+        c_h = Molecule([Atom("C"), Atom("H")], [Bond(0, 1)])
+        self.assertNotEqual(Molecule([Atom("C"), Atom("H", 1)], [Bond(0, 1)]), c_h)
+        self.assertNotEqual(Molecule([Atom("C"), Atom("H")], [Bond(0, 1, 2)]), c_h)
+        # Folded hydrogens still count: water is not a bare oxygen.
+        self.assertNotEqual(cat.water(), Molecule([Atom("O")], []))
+
+    def test_search_must_explore_and_keep_the_least_leaf(self):
+        rng = random.Random(1112)
+        for n, seed in [(10, 1), (10, 2), (12, 3), (12, 4), (12, 5), (14, 6)]:
+            m = random_cubic_hydrocarbon(n, seed)
+            with self.subTest(n=n, seed=seed):
+                self.assertEqual(m.problems(), [])
+                # Refinement leaves every carbon in one colour.
+                histogram, _ = colour_refinement_histograms(m, m)
+                self.assertEqual(len(histogram), 2)
+                identities = {shuffled(m, rng).identity() for _ in range(10)}
+                self.assertEqual(identities, {m.identity()})
+
+    def test_agrees_with_brute_force(self):
+        # Exact means: same identity exactly when the brute-force form over
+        # all atom orderings is the same. Checked on random graphs, valid or
+        # not, each also listed again in a shuffled order.
+        rng = random.Random(42)
+        graphs = []
+        for _ in range(250):
+            g = random_small_graph(rng)
+            graphs += [g, shuffled(g, rng)]
+        by_identity, by_brute = {}, {}
+        for g in graphs:
+            identity, brute = g.identity(), brute_force_form(g)
+            by_identity.setdefault(identity, set()).add(brute)
+            by_brute.setdefault(brute, set()).add(identity)
+        self.assertTrue(all(len(v) == 1 for v in by_identity.values()))
+        self.assertTrue(all(len(v) == 1 for v in by_brute.values()))
+        # The sample has repeats beyond the shuffled copies, so it tests
+        # "equal when isomorphic" across independently drawn graphs too.
+        self.assertLess(len(by_brute), len(graphs) // 2)
 
     def test_bond_order_matters(self):
         single = Molecule([Atom("C"), Atom("C")], [Bond(0, 1, 1)])

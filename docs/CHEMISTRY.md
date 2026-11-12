@@ -79,21 +79,40 @@ carbon monoxide      C-H0.O+H0|0-1:3
 - that the identity doesn't change when the atoms are listed in a random
   order (20 random orders for each catalogue molecule).
 
-They also check a known hard case. Decalin and bicyclopentyl (both C10H18)
-look identical to colour refinement alone, so a hash built on refinement
-would call them one molecule. The test first shows that refinement really
-can't separate them, then shows that the identity does.
+They also check hard cases:
 
-The tests were themselves checked by planting four bugs, one at a time:
+- **Decalin and bicyclopentyl** (both C10H18) look identical to colour
+  refinement alone, so a hash built on refinement would call them one
+  molecule. The test first shows that refinement really can't separate
+  them, then shows that the identity does.
+- **Random cubic hydrocarbons** (C10H10 to C14H14, each carbon bonded to
+  three others). Refinement puts every carbon in one colour, so the search
+  does all the work. These catch a search that skips branches or keeps the
+  wrong answer: the catalogue alone can't, because its molecules are easy
+  enough that any single path through the search gives the right answer.
+- **Brute force.** On 250 random graphs of up to six atoms, valid or not,
+  each also listed again in a shuffled order, the identity is checked
+  against the slowest exact method there is: trying every ordering of the
+  atoms.
+
+The tests were themselves checked by planting bugs, one at a time:
 
 - leaving out the search;
-- folding every hydrogen;
+- searching only one branch (no backtracking);
+- keeping the last answer instead of the least;
+- folding every hydrogen, a charged one, a double-bonded one, or one bonded
+  to another hydrogen;
+- dropping the hydrogen count;
 - ignoring charge;
 - ignoring bond order.
 
-Each one makes the tests fail. The bond-order bug at first went uncaught: for
-valid molecules the hydrogen counts usually imply the bond orders. A test with
-the two Kekulé structures of o-xylene was added to catch it.
+Each one makes the tests fail. Two of them first went uncaught:
+
+- **Ignoring bond order.** For valid molecules the hydrogen counts usually
+  imply the bond orders, so a test with the two Kekulé structures of
+  o-xylene was added.
+- **The search bugs (no backtracking, wrong answer kept).** These were found
+  by the independent review, which led to the cubic and brute-force tests.
 
 ## Known limits of layer 1
 
@@ -107,8 +126,17 @@ the two Kekulé structures of o-xylene was added to catch it.
   Phosphorus and sulfur come when the chemistry needs them.
 - **Symmetry costs time.** The search doesn't yet prune by symmetry, as
   nauty and bliss do. Most molecules take milliseconds, but a very symmetric
-  one takes longer: tetra-tert-butylmethane (C17H36) took 2.2 seconds. A cap
-  stops the search with an error rather than letting it run for too long.
+  one takes longer: tetra-tert-butylmethane (C17H36) takes about 2 seconds.
+  A cap stops the search with an error, but reaching it can take tens of
+  seconds (about 30 for C53H108), and comparing or hashing such a molecule
+  raises the error too. That's acceptable while people write the molecules.
+  Before reactions or agents make molecules freely (layer 3), the search
+  needs symmetry pruning or a time bound, so that no molecule can stall a
+  world.
+- **No radicals.** Every atom must have exactly its valence, so open-shell
+  species can't be represented: nitric oxide (NO), the hydroxyl radical, the
+  methyl radical, or oxygen as the diradical it really is. O2 can be drawn as
+  O=O.
 - **No energy, no geometry.** These belong to the layers that need them.
 
 ## Where this came from

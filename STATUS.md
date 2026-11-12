@@ -52,9 +52,13 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
 - Python isn't a sandbox: agents in the kernel's process could reach its
   internals. That's acceptable only for agents written here (AGENTS.md), and
   is why later stages run agents in separate sandboxes.
-- Chemistry layer 1 doesn't prune its identity search by symmetry yet, so
-  very symmetric molecules are slow (tetra-tert-butylmethane: 2.2 s). Fine
-  for now; pruning is the fix if a world makes such molecules often.
+- Chemistry layer 1 doesn't prune its identity search by symmetry yet.
+  Very symmetric molecules are slow (tetra-tert-butylmethane: about 2 s), and
+  some reach the search's cap after tens of seconds and raise an error, even
+  from `==` or `hash()`. That's fine while people write the molecules.
+  **Before layer 3 lets reactions or agents make molecules freely,** add
+  pruning or a time bound so that no molecule can stall a world. (Noted by
+  the independent review of #3.)
 - An in-process agent that raises `SystemExit` or `KeyboardInterrupt`, or
   never returns from `act()`, still stops the world. That falls under the
   same limit. Once agents run in separate processes, each call gets a
