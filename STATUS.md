@@ -43,6 +43,11 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
   2026-11-12)
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12)
+- For the founder: which of the gardener's levers the first chemistry world
+  starts with: the water (wet–dry cycles), the sun (energy from outside), or
+  fresh soil (inflow of simple molecules). Recommended: water and soil
+  first; the sun needs photochemistry rules that don't exist yet
+  (docs/CHEMISTRY.md, layer 3 plan). (asked 2026-11-12)
 
 ## Noticed
 
