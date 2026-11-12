@@ -44,6 +44,10 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
 - Python isn't a sandbox: agents in the kernel's process could reach its
   internals. That's acceptable only for agents written here (AGENTS.md), and
   is why later stages run agents in separate sandboxes.
+- An in-process agent that raises `SystemExit` or `KeyboardInterrupt`, or
+  never returns from `act()`, still stops the world. That falls under the
+  same limit. Once agents run in separate processes, each call gets a
+  timeout. (Noted by the independent review of #1.)
 
 ## Decided
 
@@ -54,4 +58,7 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
 
 - 2026-11-12 Claude: created the repository with the handbook files, the
   world kernel (exit, voice and information guaranteed, with tests), the
-  design, the charter's structure, and Cycle 0 (corridor lanes).
+  design, the charter's structure, and Cycle 0 (corridor lanes). The
+  independent review found four ways an agent's return value could crash or
+  get around the kernel, one of which could block another agent's exit. All
+  four are fixed, each with a test that fails on the old kernel.

@@ -46,6 +46,8 @@ class Walker:
         self.rng = rng
         self.side_bias = side_bias
         self.respect_momentum = respect_momentum
+        self.blocked = 0            # times the cell ahead was occupied
+        self.blocked_same_way = 0   # ...by someone who just stepped our way
 
     def right(self) -> int:
         # y grows downward (south). Facing east, your right is south (+1);
@@ -57,7 +59,10 @@ class Walker:
         ahead = ((x + self.direction) % obs.width, y)
         if not obs.occupied(ahead):
             return Move(self.direction, 0)
-        if self.respect_momentum and obs.momentum_at(ahead) == (self.direction, 0):
+        self.blocked += 1
+        same_way = obs.momentum_at(ahead) == (self.direction, 0)
+        self.blocked_same_way += same_way
+        if self.respect_momentum and same_way:
             return Wait()  # they are moving our way: follow, don't overtake
         r = self.right()
         first = r if self.rng.random() < (1 + self.side_bias) / 2 else -r
@@ -133,6 +138,8 @@ def run_corridor(width: int = 40, height: int = 8, density: float = 0.15,
         "side_convention_start": start["side_convention"],
         "side_convention_end": side_convention(world, walkers),
         "flow": forward / (n * min(window, ticks)),
+        "blocked": sum(w.blocked for w in walkers.values()),
+        "blocked_same_way": sum(w.blocked_same_way for w in walkers.values()),
         "walkers": n,
         "log_head": world.log_head(),
     }
@@ -155,7 +162,8 @@ def main(argv: List[str] | None = None) -> None:
           f"seeds 0..{seeds - 1}"
           + (", ignoring momentum" if args.ignore_momentum else ""))
     print(f"{'bias':>5} {'seed':>4} {'lanes start':>11} {'lanes end':>9} "
-          f"{'side start':>10} {'side end':>8} {'flow':>5}")
+          f"{'side start':>10} {'side end':>8} {'flow':>5} "
+          f"{'blocked':>7} {'same way':>8}")
     for bias in args.biases:
         rows = []
         for seed in range(seeds):
@@ -165,11 +173,14 @@ def main(argv: List[str] | None = None) -> None:
             rows.append(r)
             print(f"{bias:>5.2f} {seed:>4} {r['lane_order_start']:>11.2f} "
                   f"{r['lane_order_end']:>9.2f} {r['side_convention_start']:>10.2f} "
-                  f"{r['side_convention_end']:>8.2f} {r['flow']:>5.2f}")
+                  f"{r['side_convention_end']:>8.2f} {r['flow']:>5.2f} "
+                  f"{r['blocked']:>7} {r['blocked_same_way']:>8}")
         mean = lambda k: statistics.fmean(r[k] for r in rows)  # noqa: E731
         print(f"{bias:>5.2f} mean {mean('lane_order_start'):>11.2f} "
               f"{mean('lane_order_end'):>9.2f} {mean('side_convention_start'):>10.2f} "
-              f"{mean('side_convention_end'):>8.2f} {mean('flow'):>5.2f}")
+              f"{mean('side_convention_end'):>8.2f} {mean('flow'):>5.2f} "
+              f"{sum(r['blocked'] for r in rows):>7} "
+              f"{sum(r['blocked_same_way'] for r in rows):>8}")
 
 
 if __name__ == "__main__":

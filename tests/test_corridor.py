@@ -92,6 +92,12 @@ class TestExperiment(unittest.TestCase):
         seen = TestWalker._seen(None, (1, 0))
         self.assertIn(w.act(seen), [Move(0, 1), Move(0, -1)])
 
+    def test_blocks_are_counted_by_cause(self):
+        w = Walker(1, random.Random(0))
+        w.act(TestWalker._seen(None, (1, 0)))
+        w.act(TestWalker._seen(None, (0, 0)))
+        self.assertEqual((w.blocked, w.blocked_same_way), (2, 1))
+
     def test_odd_height_is_refused(self):
         with self.assertRaises(ValueError):
             run_corridor(height=7, ticks=1)

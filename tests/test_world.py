@@ -202,6 +202,89 @@ class TestTheWorldTrustsNothing(unittest.TestCase):
         w.step()                        # must not raise
         self.assertIn("invalid_action", kinds(w, "a"))
 
+    # The attacks below were found by the independent review of PR #1.
+
+    @staticmethod
+    def _impostor(pretends_to_be, **fields):
+        """An object that claims to be a kernel action: its metaclass says
+        it equals any type, and its __class__ claims the real one. Each field
+        is a function of how many times it has been read."""
+        class Meta(type):
+            def __eq__(cls, other):
+                return True
+            __hash__ = type.__hash__
+
+        reads = {}
+
+        def field(name, value_at):
+            def get(self):
+                reads[name] = reads.get(name, 0) + 1
+                return value_at(reads[name])
+            return property(get)
+
+        body = {name: field(name, f) for name, f in fields.items()}
+        body["__class__"] = property(lambda self: pretends_to_be)
+        return Meta("Impostor", (), body)()
+
+    def test_an_impostor_move_cannot_teleport(self):
+        # Valid for the two reads a check makes, 7 when the move is applied.
+        fake = self._impostor(Move, dx=lambda n: 1 if n <= 2 else 7,
+                              dy=lambda n: 0)
+        w = World(10, 1)
+        w.add("a", Scripted(fake), (0, 0))
+        w.step()
+        self.assertEqual(w.position("a"), (0, 0))
+        self.assertIn("invalid_action", kinds(w, "a"))
+
+    def test_an_impostor_say_cannot_crash_the_world(self):
+        fake = self._impostor(Say, text=lambda n: "hi" if n == 1 else [object()])
+        w = World(2, 1)
+        w.add("a", Scripted(fake), (0, 0))
+        w.step()                                   # must not raise
+        self.assertIn("invalid_action", kinds(w, "a"))
+        self.assertTrue(World.verify_log(w.log))
+
+    def test_speech_that_is_a_str_subclass_is_refused(self):
+        class Sly(str):
+            pass
+        w = World(1, 1)
+        w.add("a", Scripted(Say(Sly("hi"))), (0, 0))
+        w.step()
+        self.assertIn("invalid_action", kinds(w, "a"))
+
+    def test_a_type_name_that_is_not_text_cannot_crash_the_log(self):
+        unloggable = property(lambda cls: object())
+
+        class Odd(metaclass=type("M", (type,), {"__name__": unloggable})):
+            pass
+
+        class OddError(Exception, metaclass=type("M2", (type,),
+                                                 {"__name__": unloggable})):
+            pass
+
+        class Raiser:
+            def act(self, obs):
+                raise OddError()
+
+        w = World(3, 1)
+        w.add("odd", Scripted(Odd()), (0, 0))
+        w.add("raiser", Raiser(), (2, 0))
+        w.step()                                   # must not raise
+        self.assertIn("invalid_action", kinds(w, "odd"))
+        self.assertIn("agent_error", kinds(w, "raiser"))
+        self.assertTrue(World.verify_log(w.log))
+
+    def test_exit_happens_whatever_another_agent_returns(self):
+        for seed in range(20):                     # both orders occur
+            fake = self._impostor(Say, text=lambda n: "hi" if n == 1
+                                  else [object()])
+            w = World(3, 1, seed=seed)
+            w.add("attacker", Scripted(fake), (0, 0))
+            w.add("leaver", Scripted(Exit()), (2, 0))
+            w.step()
+            self.assertNotIn("leaver", w.agents(), f"seed {seed}")
+            self.assertIn("leaver", w.exited)
+
     def test_a_crashing_agent_does_not_stop_the_world(self):
         mover = Scripted(Move(1, 0))
         w = World(3, 1)

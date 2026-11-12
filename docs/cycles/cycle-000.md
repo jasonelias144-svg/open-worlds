@@ -4,6 +4,10 @@ Run 2026-11-12 by Claude. Every number below comes from
 [cycle-000-output.txt](cycle-000-output.txt), which also holds the commands.
 The runs are deterministic: the same command and seeds reproduce them exactly.
 
+A first version of this record cited a count from a quick check whose
+command and seed weren't saved. The independent review of PR #1 caught it,
+and the count now comes from the saved runs.
+
 ## Question
 
 The founder's illustration: on a New York sidewalk nobody posts a rule, yet
@@ -69,9 +73,12 @@ Means over 10 seeds:
 
 Walkers "respect momentum": they wait behind someone already moving their
 way instead of sidestepping. Re-running every condition with that rule
-switched off (`--ignore-momentum`) gave identical results, so I checked. In
-one run (density 0.15, 300 ticks), walkers were blocked 4,073 times, and not
-once by someone moving their way.
+switched off (`--ignore-momentum`) gave identical results, so the experiment
+now counts why a walker is blocked (the last two columns of the output).
+Across all 240 saved runs, walkers found the cell ahead occupied 4,436,874
+times, and **not once** was it someone who had just stepped their way. At
+density 0.15 with no side preference alone, the 10 runs hold 121,865 blocked
+moments, every one of them by someone standing still or coming the other way.
 
 The reason is how time works in this world. Every walker decides from the
 same snapshot. A walker can only step into a cell that was empty at the start

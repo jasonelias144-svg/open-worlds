@@ -170,7 +170,13 @@ class World:
             if agent_id not in self._agents:
                 continue
             action = self._ask(agent_id, observations[agent_id])
-            self._resolve(agent_id, action, spoken)
+            try:
+                self._resolve(agent_id, action, spoken)
+            except Exception:
+                # Defence in depth: nothing an agent returns may stop the
+                # tick, or other agents' actions (an Exit above all) would
+                # be lost with it.
+                self._record("invalid_action", agent_id, {"got": "unreadable"})
         self._heard = tuple(spoken)
         self.tick += 1
 
@@ -205,42 +211,46 @@ class World:
         try:
             return self._agents[agent_id].act(obs)
         except Exception as e:  # an agent's failure is its own, not the world's
-            self._record("agent_error", agent_id, {"error": type(e).__name__})
+            self._record("agent_error", agent_id,
+                         {"error": _type_name(type(e))})
             return Wait()
 
     def _resolve(self, agent_id: str, action: object,
                  spoken: List[Tuple[str, str]]) -> None:
-        # Exact types only: a subclass could carry code of its own.
-        if type(action) not in ACTIONS:
-            self._record("invalid_action", agent_id,
-                         {"got": type(action).__name__})
+        # The type is compared by identity: a subclass, or a class whose
+        # metaclass overrides equality, could carry code of its own. Once the
+        # type is exactly a kernel action, its fields are plain stored values;
+        # each is read once and checked before use.
+        t = type(action)
+        if not any(t is a for a in ACTIONS):
+            self._record("invalid_action", agent_id, {"got": _type_name(t)})
             return
-        if isinstance(action, Exit):
+        if t is Exit:
             self._remove(agent_id, "chose to leave")
-        elif isinstance(action, Say):
-            if type(action.text) is not str:
+        elif t is Say:
+            text = action.text
+            if type(text) is not str:
                 self._record("invalid_action", agent_id, {"got": "Say"})
                 return
-            text = action.text[:MAX_SAY_CHARS]
+            text = text[:MAX_SAY_CHARS]
             spoken.append((agent_id, text))
             self._record("said", agent_id, {"text": text})
-        elif isinstance(action, Move):
-            self._move(agent_id, action)
+        elif t is Move:
+            self._move(agent_id, action.dx, action.dy)
 
-    def _move(self, agent_id: str, m: Move) -> None:
-        if not (type(m.dx) is int and type(m.dy) is int
-                and abs(m.dx) + abs(m.dy) == 1):
-            self._record("invalid_action", agent_id,
-                         {"got": "Move", "dx": repr(m.dx), "dy": repr(m.dy)})
+    def _move(self, agent_id: str, dx: object, dy: object) -> None:
+        if not (type(dx) is int and type(dy) is int
+                and abs(dx) + abs(dy) == 1):
+            self._record("invalid_action", agent_id, {"got": "Move"})
             return
         x, y = self._pos[agent_id]
-        target = self._normalize((x + m.dx, y + m.dy))
+        target = self._normalize((x + dx, y + dy))
         if target is None or target in self._cells:
-            self._record("blocked", agent_id, {"dx": m.dx, "dy": m.dy})
+            self._record("blocked", agent_id, {"dx": dx, "dy": dy})
             return
         del self._cells[(x, y)]
         self._place(agent_id, target)
-        self._last_step[agent_id] = (m.dx, m.dy)
+        self._last_step[agent_id] = (dx, dy)
         self._record("moved", agent_id, {"to": list(target)})
 
     def _observe(self, agent_id: str,
@@ -289,6 +299,16 @@ class World:
         body = {"tick": self.tick, "kind": kind, "agent": agent_id,
                 "data": data, "prev": prev}
         self.log.append({**body, "hash": _digest(body)})
+
+
+def _type_name(t: type) -> str:
+    """A type's real name, read past any metaclass that redefines __name__.
+    It goes into the public log, so it must be plain, short text."""
+    try:
+        name = type.__dict__["__name__"].__get__(t, type)
+    except Exception:
+        return "?"
+    return name[:64] if type(name) is str else "?"
 
 
 def _digest(body: dict) -> str:
