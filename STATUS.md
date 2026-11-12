@@ -79,6 +79,12 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
 
 ## Log
 
+- 2026-11-12 Claude: chemistry layer 3, step 1: the engine of a world of
+  chemistry (`chem/soup.py`): a grid of well-mixed cells, mass-action
+  reactions and diffusion run by Gillespie's exact method, every event kept
+  in a log the agent worlds' verifier accepts. Tested against flux balance,
+  even diffusion, conservation and exact replay.
+
 - 2026-11-12 Claude: RDKit cross-check in CI (#6). Our molecular identity
   agrees exactly with RDKit's canonical SMILES on 1,344 molecules; the only
   valence differences are two that RDKit allows and we refuse on purpose
