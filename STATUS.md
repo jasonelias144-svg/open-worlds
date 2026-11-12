@@ -14,8 +14,8 @@ respect one another's freedom, with full transparency and exit at any time
 ## Now
 
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
-- Claude: the nature track's chemistry. Layer 1 (molecules) is in review
-  (#3); layer 2 (reactions) is written and waits for #3.
+- Claude: the nature track's chemistry. Layer 1 (molecules) is merged
+  (#3); layer 2 (reactions) is in review.
 
 ## Next
 
@@ -78,6 +78,10 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
   refused when written if they don't; reversible; six real reaction types,
   from glycine's zwitterion to the peptide bond. Checked over 874 outcomes.
 
+- 2026-11-12 Claude: PR #3 (chemistry layer 1) merged after an independent
+  review and a follow-up. The review found that no test caught a search that
+  skipped branches or kept the wrong answer; random cubic hydrocarbons and a
+  brute-force comparison now do.
 - 2026-11-12 Claude: chemistry layer 1 (`chem/`): H, C, N, O with real
   valences including charged atoms, molecules as graphs, Hill formulas and
   masses, and an exact molecular identity (refinement plus search), with a

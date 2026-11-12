@@ -128,7 +128,7 @@ Each one makes the tests fail. Two of them first went uncaught:
   nauty and bliss do. Most molecules take milliseconds, but a very symmetric
   one takes longer: tetra-tert-butylmethane (C17H36) takes about 2 seconds.
   A cap stops the search with an error, but reaching it can take tens of
-  seconds (about 30 for C53H108), and comparing or hashing such a molecule
+  seconds (for example C53H108), and comparing or hashing such a molecule
   raises the error too. That's acceptable while people write the molecules.
   Before reactions or agents make molecules freely (layer 3), the search
   needs symmetry pruning or a time bound, so that no molecule can stall a
