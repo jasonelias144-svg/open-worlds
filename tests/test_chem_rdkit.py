@@ -10,7 +10,8 @@ What is compared:
 - atoms, total charge and mass of every catalogue molecule;
 - which atoms are acceptable: for every element and charge here, with every
   arrangement of up to five bonds, our validity against RDKit's (sanitized
-  without error, and no unpaired electrons);
+  without error, and no unpaired electrons). The two known differences are
+  listed in KNOWN_DIFFERENCES; any other difference fails;
 - molecular identity: on the catalogue, every reaction product of layer 2,
   and shuffled copies of each, two molecules must share our identity
   exactly when they share RDKit's canonical SMILES.
@@ -36,6 +37,20 @@ except ImportError:
     Chem = None
 
 REQUIRED = os.environ.get("OPEN_WORLDS_REQUIRE_RDKIT") == "1"
+
+# Where RDKit (2024.3.5) accepts an atom that this chemistry doesn't, and why
+# we keep our rule. Keyed by (element, charge, total bond order).
+KNOWN_DIFFERENCES = {
+    # A hydride ion is H- with two electrons and no bonds. RDKit lets H-
+    # carry one or two bonds; we don't.
+    ("H", -1, 1): "hydride with a bond",
+    ("H", -1, 2): "hydride with two bonds",
+    # RDKit also accepts C+ with five bonds: carbonium ions such as CH5+,
+    # which exist in superacids and the gas phase. Their bonding (three-centre,
+    # two-electron) can't be drawn as ordinary bonds, so this chemistry has
+    # only the ordinary three-bonded carbocation, which RDKit accepts too.
+    ("C", 1, 5): "five-bonded carbocation (carbonium ion)",
+}
 
 
 def to_rdkit(m: Molecule):
@@ -69,7 +84,7 @@ def sanitized(m: Molecule):
 
 
 def arrangements():
-    """A central atom of each element and charge, with up to five bonds:
+    """A central atom (atom 0) of each element and charge, with up to five
     single bonds to hydrogens, plus at most one double bond to a CH2 or one
     triple bond to an N, whose partners are valid themselves."""
     for symbol in "HCNO":
@@ -122,15 +137,17 @@ class TestAgainstRDKit(unittest.TestCase):
                 self.assertAlmostEqual(Descriptors.MolWt(mol), m.mass, places=2)
 
     def test_which_atoms_are_acceptable(self):
-        disagreements = []
+        differences = set()
         count = 0
-        for key, m in arrangements():
+        for (symbol, charge, _, _), m in arrangements():
             count += 1
             ours, theirs = m.is_valid(), sanitized(m) is not None
             if ours != theirs:
-                disagreements.append((key, ours, theirs))
+                # Every difference so far is RDKit accepting what we refuse.
+                self.assertFalse(ours, (symbol, charge, m.bond_sum(0)))
+                differences.add((symbol, charge, m.bond_sum(0)))
         self.assertEqual(count, 4 * 3 * 3 * 6)
-        self.assertEqual(disagreements, [])
+        self.assertEqual(differences, set(KNOWN_DIFFERENCES))
 
     def test_identity_matches_canonical_smiles(self):
         by_identity, by_smiles = {}, {}

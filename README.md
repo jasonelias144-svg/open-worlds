@@ -42,6 +42,10 @@ python3 -m experiments.corridor                # Cycle 0 (about 20 s)
 python3 -m experiments.corridor --quick        # smoke test
 ```
 
+The chemistry is also checked against RDKit, which isn't standard library,
+in a separate CI job (`tests/test_chem_rdkit.py`; it skips when RDKit isn't
+installed).
+
 ## Licence
 
 [CC0 1.0](LICENSE): dedicated to the public domain. Anyone may use, change
