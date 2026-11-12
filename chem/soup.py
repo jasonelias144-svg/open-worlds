@@ -61,6 +61,8 @@ class Soup:
         if type(width) is not int or type(height) is not int \
                 or width < 1 or height < 1:
             raise ValueError("width and height must be whole numbers >= 1")
+        if type(seed) is not int or type(wrap) is not bool or type(log) is not bool:
+            raise ValueError("seed must be a whole number; wrap and log, True or False")
         self.width, self.height, self.wrap = width, height, wrap
         self.volume = _positive_number(volume, "volume", allow_zero=False)
         self.time = 0.0

@@ -181,6 +181,9 @@ class TestConservation(unittest.TestCase):
         bad = [
             lambda: Soup(0, 1),
             lambda: Soup(1, 1, volume=0),
+            lambda: Soup(1, 1, seed="x"),
+            lambda: Soup(1, 1, seed=object()),
+            lambda: Soup(1, 1, wrap=1),
             lambda: soup.add_species(WATER, hop_rate=-1),
             lambda: soup.add_species(WATER, hop_rate=float("nan")),
             lambda: soup.add_reaction([WATER], [WATER], 1.0),
