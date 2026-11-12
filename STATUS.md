@@ -16,8 +16,9 @@ respect one another's freedom, with full transparency and exit at any time
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 - Claude: the nature track's chemistry. Layers 1 (molecules, #3) and 2
   (reactions, #4), symmetry pruning (#5), the RDKit cross-check (#6), the
-  layer 3 plan (#7) and identifying separate parts (#9) are merged. Layer 3
-  step 1, the engine, is in review (#8).
+  layer 3 plan (#7), the engine of a world of chemistry (#8) and
+  identifying separate parts (#9) are merged. Step 2 (real rates) is paused
+  (see Next).
 
 ## Next
 
@@ -29,7 +30,18 @@ respect one another's freedom, with full transparency and exit at any time
    sandboxes and outside agents).
 3. A simple viewer page.
 4. Nature track: layer 3 step 2, real rates for the six rules with their
-   sources ([docs/CHEMISTRY.md](docs/CHEMISTRY.md)).
+   sources ([docs/CHEMISTRY.md](docs/CHEMISTRY.md)). **Paused on purpose**
+   until two things are in hand:
+   - **Primary sources, read properly.** A first search gave only
+     computational or secondary values: glycine's balance between its
+     neutral form and its zwitterion differs by a factor of ten between
+     sources; formaldehyde's hydration constant is quoted as about 10^3 to
+     2x10^3; Schlesinger and Miller's 1973 paper on glycolonitrile formation
+     wasn't found. Nothing goes into the world uncited.
+   - **How water is counted,** which ties to the founder's water lever:
+     as molecules, so that wet–dry cycles change real amounts, or as the
+     solvent, the usual convention for constants measured in water. The
+     recommendation will come with the answer to the gardener question.
 5. Side cycles suggested by Cycle 0: walkers with different speeds (to test
    "respect momentum"), and whether a convention spreads by imitation.
 
@@ -78,6 +90,11 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
   domain (CC0 1.0). The goal isn't financial; anyone may build on it.
 
 ## Log
+
+- 2026-11-12 Claude: PR #8 (the chemistry engine) merged after an
+  independent review that requested changes and a follow-up that approved.
+  Step 2 (real rates) paused until its constants have primary sources and
+  the founder has answered the gardener question.
 
 - 2026-11-12 Claude: separate parts of a molecule are identified one at a
   time, so repeated parts can't multiply the identity search (seven copies
