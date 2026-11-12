@@ -72,7 +72,9 @@ class MultiverseLaw:
             "## Acts",
             "- multiverse.admit: propose an entity for listing. It is "
             "listed if it passes the WCP/0.1 conformance test.",
-            "- multiverse.remove: take down a listing you made.",
+            "- multiverse.remove: take down a listing you made. (Until "
+            "worlds have keys, a world can't take down its own listing, and "
+            "a listing whose lister has left stays up.)",
             "- A registry does not list itself.",
             "",
             "## Convergence",
@@ -147,7 +149,15 @@ class MultiverseRegistry(Entity):
                                 "A registry does not list itself", "act")
         # The manifest the test checked is the one listed: an entity can't
         # pass with one manifest and be listed with another.
-        result, m = check(entity)
+        try:
+            result, m = check(entity)
+        except Exception as e:
+            # check() reports what it finds rather than raising; this is
+            # the last guard, so that nothing a visitor proposes can make
+            # the registry raise.
+            return self._refuse(timestamp, act.actor_token,
+                                "Entity could not be checked: "
+                                f"{type(e).__name__}", "act")
         if not result["passed"]:
             self._log.append(LogEntry(
                 timestamp=timestamp, kind="entity_admit_refused",

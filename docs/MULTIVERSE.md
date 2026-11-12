@@ -214,6 +214,10 @@ copied until identities become keys (step 2); a registry's listing act
 carries the world itself, so it works only within one process (step 3);
 `log_since` can skip an entry written in the same microsecond, and
 in-process readers share the log's entries rather than getting copies.
+Until worlds have keys, a world can't take down its own listing, and a
+listing whose lister has left stays up; and two registries may list each
+other, which matters once listings are followed over the network
+(step 3).
 
 The sketch's demonstration opened with a poem of the founder's. It is
 replaced by new lines written for this repository until the founder

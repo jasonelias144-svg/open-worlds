@@ -279,6 +279,55 @@ class TestLeavingConformance(unittest.TestCase):
         self.assertTrue(run_conformance(w)["passed"])
         self.assertEqual(len(w._present), 1)
 
+    def test_departure_must_be_the_tests_own(self):
+        # Someone else's departure in the log doesn't count.
+        class Borrowed(IndependentWorld):
+            def __init__(self):
+                super().__init__()
+                self._events.append(("departure", "someone-else-0000000"))
+
+            def leave(self, token):
+                was_present = token in self._present
+                self._present.discard(token)
+                return Departure("independent:1", "t",
+                                 already_left=not was_present)
+
+        failures = run_conformance(Borrowed())["failures"]
+        self.assertEqual(failures, ["the log does not record the departure"])
+
+    def test_hostile_answers_are_reported_not_raised(self):
+        class Odd:
+            def __bool__(self): raise ValueError("no truth value")
+            def __eq__(self, other): raise ValueError("no equality")
+            __hash__ = object.__hash__
+            def __repr__(self): return "Odd()"
+
+        class OddDeparture(IndependentWorld):
+            def leave(self, token):
+                return Departure(entity_id=Odd(), timestamp="t")
+
+        class OddAnswer(IndependentWorld):
+            def leave(self, token):
+                super().leave(token)
+                return Departure("independent:1", "t", already_left=Odd())
+
+        class OddVersion(str):
+            def __ne__(self, other): raise ValueError("no comparison")
+
+        class OddManifest(NullWorld):
+            def manifest(self):
+                return dataclasses.replace(
+                    super().manifest(), protocol_version=OddVersion("x"))
+
+        for world, expected in ((OddDeparture(), "answered unreadably"),
+                                (OddAnswer(), "already_left=Odd()"),
+                                (OddManifest("w:o", "O"), "unreadable")):
+            with self.subTest(world=type(world).__name__):
+                result = run_conformance(world)
+                self.assertFalse(result["passed"])
+                self.assertTrue(any(expected in f for f in result["failures"]),
+                                result["failures"])
+
     def test_conformance_leaves_what_it_entered(self):
         w = IndependentWorld()
         run_conformance(w)

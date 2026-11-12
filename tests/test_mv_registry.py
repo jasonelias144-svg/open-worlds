@@ -4,14 +4,16 @@ Two failed in the sketch. Its broken-world test expected "fails
 conformance" but got a different refusal, and its manifest test used a
 name it never imported.
 """
+import dataclasses
 import unittest
+from unittest import mock
 
 from multiverse.chemistry_world import ChemistryWorld
 from multiverse.conformance import run_conformance
 from multiverse.identity import create_identity
 from multiverse.poetry_world import PoetryWorld, PoetryWorldLaw
-from multiverse.protocol import (Ack, Act, Admission, Manifest, Petition,
-                                 Refusal)
+from multiverse.protocol import (Ack, Act, Admission, Departure, Manifest,
+                                 Petition, Refusal)
 from multiverse.registry import (MultiverseLaw, MultiverseRegistry,
                                  manifest_from_dict, manifest_to_dict,
                                  registry_from_log)
@@ -112,6 +114,53 @@ class TestRegistry(RegistryCase):
         r = mv.act(_admit(alice, Fickle("world:fickle", "Fickle")))
         self.assertIsInstance(r, Ack)
         self.assertEqual(mv.entity_ids(), ["world:fickle"])
+
+    def test_manifest_that_changes_id_after_checking(self):
+        class Shifty(PoetryWorld):
+            calls = 0
+
+            def manifest(self):
+                Shifty.calls += 1
+                m = super().manifest()
+                if Shifty.calls > 1:
+                    return dataclasses.replace(m, entity_id="world:other")
+                return m
+
+        mv, alice = self.registry()
+        self.assertIsInstance(mv.act(_admit(alice, Shifty("world:shifty",
+                                                          "Shifty"))), Ack)
+        self.assertEqual(mv.entity_ids(), ["world:shifty"])
+
+    def test_a_hostile_entity_cannot_make_the_registry_raise(self):
+        class Odd:
+            def __bool__(self): raise ValueError("no truth value")
+
+        class OddDeparture(PoetryWorld):
+            def leave(self, token):
+                super().leave(token)
+                return Departure(entity_id=Odd(), timestamp="t")
+
+        mv, alice = self.registry()
+        r = mv.act(_admit(alice, OddDeparture("world:odd", "Odd")))
+        self.assertIsInstance(r, Refusal)
+        self.assertIn("fails conformance", r.reason)
+        # And the last guard, if checking itself ever raised:
+        with mock.patch("multiverse.registry.check",
+                        side_effect=RuntimeError("boom")):
+            r = mv.act(_admit(alice, PoetryWorld("world:p", "P")))
+        self.assertIsInstance(r, Refusal)
+        self.assertIn("could not be checked", r.reason)
+        self.assertEqual(mv.entity_ids(), [])
+
+    def test_refusal_records_the_manifest_it_checked(self):
+        class Rude(PoetryWorld):
+            def act(self, a): return "ok"
+
+        mv, alice = self.registry()
+        mv.act(_admit(alice, Rude("world:rude", "Rude")))
+        refused, = [e for e in mv.log_since(None)
+                    if e.kind == "entity_admit_refused"]
+        self.assertEqual(refused.data["manifest"]["entity_id"], "world:rude")
 
     def test_does_not_list_itself(self):
         mv, alice = self.registry()

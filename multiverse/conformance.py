@@ -62,9 +62,13 @@ def check(entity: WorldProtocol) -> Tuple[dict, Optional[Manifest]]:
     if not isinstance(m, Manifest):
         failures.append("manifest() did not return a Manifest")
         return report(), None
-    if m.protocol_version != PROTOCOL_VERSION:
-        failures.append(f"protocol_version is {m.protocol_version!r}, "
-                        f"expected {PROTOCOL_VERSION!r}")
+    try:
+        if m.protocol_version != PROTOCOL_VERSION:
+            failures.append(f"protocol_version is {m.protocol_version!r}, "
+                            f"expected {PROTOCOL_VERSION!r}")
+    except Exception as e:
+        failures.append(f"the manifest is unreadable: {type(e).__name__}")
+        return report(), None
 
     # -- petition: any of the three answers, well formed --
     petitioner = _test_token("petitioner")
@@ -116,21 +120,22 @@ def check(entity: WorldProtocol) -> Tuple[dict, Optional[Manifest]]:
                                     ("second", True)):
         try:
             response = entity.leave(petitioner)
+            if not isinstance(response, Departure):
+                failures.append(f"{attempt} leave() returned "
+                                f"{type(response).__name__}, "
+                                "expected Departure")
+                break
+            if not response.entity_id or not response.timestamp:
+                failures.append(f"{attempt} Departure is missing its "
+                                "entity_id or timestamp")
+            if response.already_left is not expect_already:
+                failures.append(
+                    f"{attempt} leave() said already_left="
+                    f"{response.already_left!r}, expected {expect_already}")
         except Exception as e:
-            failures.append(f"{attempt} leave() raised "
-                            f"{type(e).__name__}: {e}")
+            failures.append(f"{attempt} leave() raised, or answered "
+                            f"unreadably: {type(e).__name__}: {e}")
             break
-        if not isinstance(response, Departure):
-            failures.append(f"{attempt} leave() returned "
-                            f"{type(response).__name__}, expected Departure")
-            break
-        if not response.entity_id or not response.timestamp:
-            failures.append(f"{attempt} Departure is missing its "
-                            "entity_id or timestamp")
-        if response.already_left != expect_already:
-            failures.append(
-                f"{attempt} leave() said already_left="
-                f"{response.already_left}, expected {expect_already}")
 
     # -- log: a list of well-formed entries, with the departure in it --
     try:
