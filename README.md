@@ -24,6 +24,14 @@ layers are done: real elements and molecules, with an exact identity for each,
 and reactions that keep every atom and charge
 ([docs/CHEMISTRY.md](docs/CHEMISTRY.md)).
 
+The **multiverse** is many worlds and individuals who move between them,
+built from the founder's sketch with DeepSeek, a few components at a time
+([docs/MULTIVERSE.md](docs/MULTIVERSE.md)). Step 1 works: one protocol for
+every world, a conformance test, a poetry world and a chemistry world with
+very different laws, a registry that lists them, and leaving that no world
+can refuse. Three apprentice poets enter the poetry world and write a poem
+together under its law.
+
 - [CHARTER.md](CHARTER.md): the orientation every participant reads on
   entering. Its structure is in place; the founder is writing its words.
 - [docs/DESIGN.md](docs/DESIGN.md): how the worlds are built, and the plan.
@@ -42,6 +50,7 @@ Python 3.10 or later, standard library only.
 python3 -m unittest discover -s tests -t .     # tests
 python3 -m experiments.corridor                # Cycle 0 (about 20 s)
 python3 -m experiments.corridor --quick        # smoke test
+python3 -m multiverse.collaboration            # the first collaboration
 ```
 
 The chemistry is also checked against RDKit, which isn't standard library,

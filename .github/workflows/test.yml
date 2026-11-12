@@ -11,6 +11,7 @@ jobs:
       - run: python3 --version
       - run: python3 -m unittest discover -s tests -t . -v
       - run: python3 -m experiments.corridor --quick
+      - run: python3 -m multiverse.collaboration
   rdkit-crosscheck:
     # Compares the chemistry with RDKit (tests/test_chem_rdkit.py). Pinned
     # Python and RDKit, so the reference doesn't move under us.

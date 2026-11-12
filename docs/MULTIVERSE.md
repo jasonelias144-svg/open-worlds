@@ -129,11 +129,12 @@ What this design adds, from the founder's principles:
 
 ## The steps
 
-1. **The core, working:** the sketch's components 1 to 7. Identity, the
-   passport, the protocol and its conformance test, the poetry world, the
-   chemistry world, the registry, and the first collaboration: three
-   apprentice poets enter the poetry world and write together under its
-   law. With leaving added.
+1. **The core, working** (done; `multiverse/`): the sketch's components
+   1 to 7. Identity, the passport, the protocol and its conformance test,
+   the poetry world, the chemistry world, the registry, and the first
+   collaboration: three apprentice poets enter the poetry world and write
+   together under its law. With leaving added. Run it with
+   `python3 -m multiverse.collaboration`.
 2. **Keys and signatures:** components 13 to 15. The identity becomes a
    key, and worlds sign the stamps they give. Ed25519, the standard
    signature scheme, is written here from its standard (RFC 8032), keeping
@@ -163,18 +164,49 @@ required, so every world failed it. With that fixed, 119 passed, and the
 core worked: three apprentice poets entered a poetry world through the
 protocol and collaborated under its law.
 
-Step 1 fixes the other 12 failures and the problems found by reading the
-code; its pull request lists each one. Two matter beyond their own tests:
+Step 1 brought components 1 to 7 into `multiverse/`, with their tests,
+and fixed the other 12 failures and the problems found by reading the
+code. Each module's docstring says what changed from the sketch and why.
+Two problems mattered beyond their own tests:
 
-- **The conformance test changes the world it checks.** It enters every
-  world it tests, and stays. Run on a world with room for two, it took one
-  of the places, so of the next two arrivals only one got in (checked by
-  running it). With leaving added, the test will leave afterwards, and check that
-  leaving works.
-- **Five checks in the tests can never fail.** They have the form "try
+- **The conformance test changed the world it checked.** It entered
+  every world it tested, and stayed. Run on a world with room for two, it
+  took one of the places, so of the next two arrivals only one got in. Now
+  the test leaves afterwards, and checks that leaving works.
+- **Five checks in the tests could never fail.** They had the form "try
   the forbidden thing; if it works, fail; on any error, pass", so the
-  failure is itself caught as an error, and the check passes. Step 1
-  rewrites them.
+  failure was itself caught as an error, and the check passed. They now
+  use `assertRaises`.
+
+The other fixes:
+
+- **The sketch's tests disagreed with its code, and with each other.**
+  A passport required world ids of at least 8 characters, so the poetry
+  world crashed when admitting someone to a world called "world:A". The
+  rule is gone. The chemistry test used calcium, which the element table
+  lacked; it is added. A registry test used a name it never imported.
+- **A poet who answered the question it was asked was refused.** The
+  poetry world's law counted only words of the prior turn's proposal as a
+  reference; now words of its invitation count too.
+- **Worlds trusted what visitors sent.** A short token, an unreadable
+  passport, a payload that isn't a mapping, a turn whose parts aren't
+  text, or a reaction count of "2" or -1 made a world raise an error, or
+  accept nonsense. Each is now refused with a reason.
+- **One copy of the entering code instead of three.** The poetry world,
+  the chemistry world and the registry each had the same petition code;
+  it lives once in `multiverse/entity.py`, which also does leaving.
+- **What wasn't brought in:** the poetry engine's own Polyphony runner,
+  since the poetry world checks turns and convergence.
+
+Known limits carried over, to be fixed in later steps: tokens can be
+copied until identities become keys (step 2); a registry's listing act
+carries the world itself, so it works only within one process (step 3);
+`log_since` can skip an entry written in the same microsecond, and
+in-process readers share the log's entries rather than getting copies.
+
+The sketch's demonstration opened with a poem of the founder's. It is
+replaced by new lines written for this repository until the founder
+decides whether the poem may be public, since the repository is CC0.
 
 The signing components couldn't be tested here, because this
 environment's crypto library is broken; step 2 writes the signatures
