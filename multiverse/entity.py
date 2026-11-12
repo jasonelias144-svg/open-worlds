@@ -150,7 +150,7 @@ class Entity:
             an entry written in the same microsecond.
           - The entries are the world's own, not copies: within one
             process, a reader that changes an entry's data changes the
-            record. Over the network (step 3) readers get copies, and a
+            record. Over the network (course step 12) readers get copies, and a
             hash-chained log, like the world kernel's, would make any
             change detectable."""
         if timestamp is None:

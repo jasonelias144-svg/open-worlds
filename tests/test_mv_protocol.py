@@ -84,6 +84,25 @@ class TestPlain(unittest.TestCase):
             with self.subTest(value=type(value).__name__):
                 self.assertFalse(is_plain(value))
 
+    def test_a_list_subclass_deep_inside_is_refused_not_iterated(self):
+        class Iterless(list):
+            def __iter__(self): raise ValueError("no iteration")
+
+        self.assertFalse(is_plain({"a": [{"b": Iterless()}]}))
+
+    def test_nesting_up_to_the_limit_is_plain(self):
+        from multiverse.protocol import MAX_PLAIN_DEPTH
+
+        def nested(depth):
+            value = "leaf"
+            for _ in range(depth):
+                value = [value]
+            return value
+
+        self.assertTrue(is_plain(nested(MAX_PLAIN_DEPTH)))
+        self.assertFalse(is_plain(nested(MAX_PLAIN_DEPTH + 1)))
+        self.assertEqual(MAX_PLAIN_DEPTH, 32)
+
 
 class TestManifest(unittest.TestCase):
 

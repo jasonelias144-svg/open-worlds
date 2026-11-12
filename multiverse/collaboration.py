@@ -9,10 +9,12 @@ report is built from the logs alone.
 Run it:  python3 -m multiverse.collaboration
 
 Changed from the sketch:
-  - The seed poem and the apprentices' portfolios are new, written for
-    this repository. The sketch opened with a poem of the founder's,
-    which stays out until the founder decides it may be public (the
-    repository is CC0).
+  - The demonstration starts from a known poem, as the founder asked
+    ("We should use a known poem to start anything"): Emily Dickinson's
+    "Hope is the thing with feathers" (1891), with stanzas of her other
+    poems as the apprentices' portfolios. The sketch opened with a poem
+    of the founder's, which he preferred not to make the starting
+    example.
   - Everyone leaves at the end, so the log shows departures, and each
     apprentice's passport shows where it has been.
   - An apprentice whose turn fails to generate is counted in the report
@@ -98,35 +100,68 @@ def log_entry_to_turn(entry: LogEntry) -> SimpleNamespace:
 
 # -- the demonstration's poems ------------------------------------------
 
-SEED_PROPOSAL = ("The river keeps its shape\n"
-                 "by never keeping its water.\n"
-                 "The stone stays where it is,\n"
-                 "and the river bends around it.")
-SEED_INVITATION = "What does the stone give the river, by not moving?"
+# The seed: Emily Dickinson, "Hope is the thing with feathers", Poems,
+# Second Series (1891). The portfolio: stanzas of other Dickinson poems
+# from the 1890 and 1891 editions. Public domain; text from Project
+# Gutenberg eBook #12242. Typography only is changed: spaces before
+# apostrophes closed up ("I 've" to "I've"), "--" set as a dash.
+SEED_POET = "Seed Poet"
+SEED_ACKNOWLEDGMENT = "(seed) Emily Dickinson, 1891"
+SEED_PROPOSAL = ("Hope is the thing with feathers\n"
+                 "That perches in the soul,\n"
+                 "And sings the tune without the words,\n"
+                 "And never stops at all,\n"
+                 "\n"
+                 "And sweetest in the gale is heard;\n"
+                 "And sore must be the storm\n"
+                 "That could abash the little bird\n"
+                 "That kept so many warm.\n"
+                 "\n"
+                 "I've heard it in the chillest land,\n"
+                 "And on the strangest sea;\n"
+                 "Yet, never, in extremity,\n"
+                 "It asked a crumb of me.")
+SEED_INVITATION = "What does the bird sing, when the tune has no words?"
 
 _PORTFOLIO = [
-    ("The stone does not hold the river back.\n"
-     "It gives the river a voice.", "psychoanalytic", "image/cycle-1"),
-    ("What the water carries is not what the water is.",
-     "deconstructive", "tradition/cycle-1"),
-    ("The river is not around the stone —\n"
-     "it is the stone, worn into water.", "psychoanalytic",
-     "response/cycle-1"),
-    ("Moss on the stone.\nThe river cold.\nThe heron waits.",
-     "ecocritical", "voice/cycle-1"),
-    ("Stay, said the river.\nBe the thing that stays.\n"
-     "Be the thing I bend for.", "feminist", "theory/cycle-2"),
-    ("The river's voice is the stone's mouth.\nThe stone opens to speak.",
-     "psychoanalytic", "theory/cycle-2"),
-    ("The stone wears down,\nand the sand goes on\n"
-     "not knowing it was stone.", "ecocritical", "voice/cycle-2"),
-    ("The bend is a home the river makes\n"
-     "without knowing it is the stone's.", "feminist", "voice/cycle-3"),
-    ("It bends, and the bending is the river,\n"
-     "and the river is the bend.", "deconstructive", "response/cycle-3"),
-    ("The shape is not the river's.\n"
-     "It is what the river makes of the stone.", "formalist",
-     "form/cycle-3"),
+    # "A bird came down the walk" (1891), stanza 1
+    ("A bird came down the walk:\nHe did not know I saw;\n"
+     "He bit an angle-worm in halves\nAnd ate the fellow, raw.",
+     "ecocritical", "image/cycle-1"),
+    # the same poem, stanza 4
+    ("Like one in danger; cautious,\nI offered him a crumb,\n"
+     "And he unrolled his feathers\nAnd rowed him softer home",
+     "psychoanalytic", "response/cycle-1"),
+    # "I never saw a moor" (1890), stanza 1
+    ("I never saw a moor,\nI never saw the sea;\n"
+     "Yet know I how the heather looks,\nAnd what a wave must be.",
+     "formalist", "form/cycle-1"),
+    # "The soul selects her own society" (1890), stanza 1
+    ("The soul selects her own society,\nThen shuts the door;\n"
+     "On her divine majority\nObtrude no more.",
+     "feminist", "voice/cycle-1"),
+    # "Success is counted sweetest" (1890), stanza 1
+    ("Success is counted sweetest\nBy those who ne'er succeed.\n"
+     "To comprehend a nectar\nRequires sorest need.",
+     "marxist", "tradition/cycle-1"),
+    # "Wild nights! Wild nights!" (1891), stanza 3
+    ("Rowing in Eden!\nAh! the sea!\nMight I but moor\nTo-night in thee!",
+     "psychoanalytic", "voice/cycle-2"),
+    # the same poem, stanza 2
+    ("Futile the winds\nTo a heart in port, —\nDone with the compass,\n"
+     "Done with the chart.", "structuralist", "line/cycle-2"),
+    # "I'm nobody! Who are you?" (1891), stanza 1
+    ("I'm nobody! Who are you?\nAre you nobody, too?\n"
+     "Then there's a pair of us — don't tell!\nThey'd banish us, you know.",
+     "deconstructive", "voice/cycle-3"),
+    # "The soul selects her own society", stanza 2
+    ("Unmoved, she notes the chariot's pausing\nAt her low gate;\n"
+     "Unmoved, an emperor is kneeling\nUpon her mat.",
+     "feminist", "image/cycle-3"),
+    # "A bird came down the walk", stanza 3
+    ("He glanced with rapid eyes\nThat hurried all abroad, —\n"
+     "They looked like frightened beads, I thought;\n"
+     "He stirred his velvet head", "ecocritical", "image/cycle-3"),
 ]
 
 
@@ -171,8 +206,8 @@ class CollaborationReport:
         lines += ["", f"Apprentices ({len(self.apprentices)}):"]
         for a in self.apprentices:
             lines.append(f"  {a['name']:14s} {a['portfolio_size']} portfolio "
-                         f"poems, {a['stance_count']} stances, "
-                         f"{a['turns_generated']} turns written, "
+                         f"poems, {a['stance_count']} stances; turns: "
+                         f"{a['turns_generated']} written, "
                          f"{a['turns_failed']} failed; passport: "
                          f"{', '.join(a['passport']) or '(empty)'}")
         kinds: Dict[str, int] = {}
@@ -234,11 +269,11 @@ class FirstCollaboration:
         if self.world is None:
             raise RuntimeError("call setup() first")
         start = datetime.now(timezone.utc).isoformat()
-        seed_poet = make_client("Seed Poet")
+        seed_poet = make_client(SEED_POET)
         if not isinstance(petition_world(seed_poet, self.world), Admission):
             raise RuntimeError("the seed poet was not admitted")
         opened = act_on_world(seed_poet, self.world, "poem.turn", {
-            "acknowledgment": "(seed)", "proposal": SEED_PROPOSAL,
+            "acknowledgment": SEED_ACKNOWLEDGMENT, "proposal": SEED_PROPOSAL,
             "invitation": SEED_INVITATION, "holds_open": True,
             "stance_used": None})
         if not isinstance(opened, Ack):

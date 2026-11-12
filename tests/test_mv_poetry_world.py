@@ -1,7 +1,7 @@
 """The poetry world: the sketch's tests for component 4, ported.
 
-The sketch's test lines quoted a poem of the founder's; these use new
-lines (see multiverse/collaboration.py). Its end-to-end test failed
+The verse here is Emily Dickinson's (public domain, as in
+multiverse/collaboration.py). Its end-to-end test failed
 because the third poet answered the second poet's question, which only
 counted once an acknowledgment could answer the invitation (the law
 change in multiverse/poetry_world.py).
@@ -21,7 +21,7 @@ class KeyBomb(str):
     def __eq__(self, other): raise ValueError("no equality")
 
 
-SEED = "The river keeps its shape\nby never keeping its water."
+SEED = "Hope is the thing with feathers\nThat perches in the soul,"
 
 
 def _petition(name, token, passport_admissions=()):
@@ -250,16 +250,16 @@ class TestTurns(PoetryWorldCase):
         alice, = self.enter(w, "Alice")
         self.assertIsInstance(
             w.act(_turn(alice.token, "(seed)", SEED,
-                        "What does the stone give the river?")), Ack)
+                        "What does the bird sing?")), Ack)
         self.assertEqual(len(w.turns()), 1)
 
     def test_subsequent_turn(self):
         w = self.world()
         alice, bob = self.enter(w, "Alice", "Bob")
-        w.act(_turn(alice.token, "(seed)", SEED, "What of the stone?"))
-        r = w.act(_turn(bob.token, "You said 'river' and 'shape'.",
-                        "The stone is not in the river: it is the river.",
-                        "What is the stone's voice?",
+        w.act(_turn(alice.token, "(seed)", SEED, "What of the bird?"))
+        r = w.act(_turn(bob.token, "You said 'hope' and 'feathers'.",
+                        "A bird came down the walk:\nHe did not know I saw;",
+                        "What does the bird know?",
                         stance="psychoanalytic"))
         self.assertIsInstance(r, Ack)
         self.assertEqual(len(w.turns()), 2)
@@ -300,9 +300,10 @@ class TestTurns(PoetryWorldCase):
     def test_answering_the_invitation_counts_as_reference(self):
         w = self.world()
         alice, bob = self.enter(w, "Alice", "Bob")
-        w.act(_turn(alice.token, "(seed)", SEED, "What is the stone's voice?"))
-        r = w.act(_turn(bob.token, "You asked about a voice.",
-                        "It hums under the current.", "And then?"))
+        w.act(_turn(alice.token, "(seed)", SEED, "What is the bird's song?"))
+        r = w.act(_turn(bob.token, "You asked about a song.",
+                        "And sings the tune without the words,",
+                        "And then?"))
         self.assertIsInstance(r, Ack)
 
     def test_refusal_not_admitted(self):
@@ -331,7 +332,7 @@ class TestTurns(PoetryWorldCase):
         w = self.world(max_turns=1)
         alice, = self.enter(w, "Alice")
         w.act(_turn(alice.token, "(seed)", SEED, "What next?"))
-        r = w.act(_turn(alice.token, "the river", "more", "What else?"))
+        r = w.act(_turn(alice.token, "the soul", "more", "What else?"))
         self.assertIsInstance(r, Refusal)
         self.assertIn("turn limit", r.reason)
 
@@ -358,13 +359,13 @@ class TestConvergence(PoetryWorldCase):
         w = self.world(convergence_window=3, convergence_similarity=0.6)
         alice, bob = self.enter(w, "Alice", "Bob")
         w.act(_turn(alice.token, "(seed)", SEED, "Question one?"))
-        lines = ["the stone and the river and the sea",
-                 "the stone and the river and the sky",
-                 "the stone and the river and the sea"]
+        lines = ["I never saw a moor, I never saw the sea",
+                 "I never saw the sea, I never saw a moor",
+                 "I never saw a moor, I never saw the sea"]
         for i, line in enumerate(lines):
             who = (bob, alice)[i % 2]
             self.assertIsInstance(w.act(_turn(
-                who.token, "the river, the stone", line, f"Question {i}?")),
+                who.token, "the soul, the sea", line, f"Question {i}?")),
                 Ack)
         self.assertTrue(w.is_converged())
         self.assertIn("echo", w.convergence_reason())
@@ -414,9 +415,9 @@ class TestLog(PoetryWorldCase):
     def test_reconstruct_turns_from_log(self):
         w = self.world()
         alice, bob = self.enter(w, "Alice", "Bob")
-        w.act(_turn(alice.token, "(seed)", SEED, "What of the stone?"))
-        w.act(_turn(bob.token, "You said 'river' and 'water'.",
-                    "The water is not the river's.", "What is the stone?"))
+        w.act(_turn(alice.token, "(seed)", SEED, "What of the bird?"))
+        w.act(_turn(bob.token, "You said 'soul' and 'feathers'.",
+                    "The soul selects her own society,", "What is the door?"))
         turns = turns_from_log(w.log_since(None))
         self.assertEqual([t["actor_name"] for t in turns], ["Alice", "Bob"])
         self.assertEqual(turns, w.turns())
@@ -453,13 +454,15 @@ class TestTwoWorlds(PoetryWorldCase):
         w = self.world(convergence_window=3, convergence_similarity=0.5)
         alice, bob, charlie = self.enter(w, "Alice", "Bob", "Charlie")
         dialogue = [
-            (alice, "(seed)", SEED, "What does the stone give the river?"),
-            (bob, "You said 'river' and 'shape' and 'water'.",
-             "The stone is not in the river: it is the river.",
-             "What is the stone's voice?"),
-            (charlie, "You said 'voice' and 'sound' and 'thread'.",
-             "The voice is a thread of sound under the current.",
-             "What is the thread that speaks?"),
+            (alice, "(seed)", SEED, "What does the bird sing?"),
+            (bob, "You said 'hope' and 'feathers' and 'soul'.",
+             "The soul selects her own society,\nThen shuts the door;",
+             "What is the soul's song?"),
+            # Answers Bob's question, not his lines: allowed since the law
+            # change (an acknowledgment may reference the invitation).
+            (charlie, "You said 'song' and 'tune' and 'words'.",
+             "And sings the tune without the words,\nAnd never stops at all,",
+             "What is the tune without words?"),
         ]
         for who, ack, proposal, invitation in dialogue:
             self.assertIsInstance(

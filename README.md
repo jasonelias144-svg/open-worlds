@@ -30,7 +30,8 @@ built from the founder's sketch with DeepSeek, a few components at a time
 every world, a conformance test, a poetry world and a chemistry world with
 very different laws, a registry that lists them, and leaving that no world
 can refuse. Three apprentice poets enter the poetry world and write a poem
-together under its law.
+together under its law. What comes next is the course: twelve steps
+ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
 
 - [CHARTER.md](CHARTER.md): the orientation every participant reads on
   entering. Its structure is in place; the founder is writing its words.
@@ -41,6 +42,9 @@ together under its law.
   by layer.
 - [docs/MULTIVERSE.md](docs/MULTIVERSE.md): the multiverse: many worlds,
   and individuals who move between them.
+- [docs/COURSE.md](docs/COURSE.md): the next twelve steps, rolling.
+- [docs/COLLABORATING.md](docs/COLLABORATING.md): how to build on this,
+  and the house rules.
 
 ## Run and test
 

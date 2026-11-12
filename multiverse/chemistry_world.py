@@ -7,7 +7,7 @@ counts; the world accepts a reaction only if atoms and charge balance.
 
 This world checks bookkeeping, not chemistry: any formula with known
 elements is accepted, whether or not such a molecule exists. The real
-chemistry of open-worlds is in `chem/`. Step 4 of docs/MULTIVERSE.md
+chemistry of open-worlds is in `chem/`. Course step 4 (docs/COURSE.md)
 moves this world's law onto it.
 
 Changed from the sketch:

@@ -13,50 +13,33 @@ respect one another's freedom, with full transparency and exit at any time
 
 ## Now
 
-- Claude: the multiverse, built from the founder's DeepSeek sketch
-  (docs/MULTIVERSE.md). Step 1, the sketch's core (components 1 to 7)
-  working and tested with leaving added, is in review. Then step 2: keys
-  and signatures.
+- Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Step 1, the
+  multiverse's core, is done; next is step 2, keys and signatures.
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
-- Claude: the nature track's chemistry. Layers 1 (molecules, #3) and 2
-  (reactions, #4), symmetry pruning (#5), the RDKit cross-check (#6), the
-  layer 3 plan (#7), the engine of a world of chemistry (#8) and
-  identifying separate parts (#9) are merged. Step 2 (real rates) is paused
-  (see Next).
 
 ## Next
 
-1. **Cycle 1:** 3–5 small open language models from different families, on
-   the founder's Mac, each reading the charter on entering, in a small world
-   with something to coordinate around. Slow ticks. Needs: the charter, and
-   a choice of models.
-2. Agents in separate processes, through a local API (the step before
-   sandboxes and outside agents).
-3. A simple viewer page.
-4. Nature track: layer 3 step 2, real rates for the six rules with their
-   sources ([docs/CHEMISTRY.md](docs/CHEMISTRY.md)). **Paused on purpose**
-   until two things are in hand:
-   - **Primary sources, read properly.** A first search gave only
-     computational or secondary values: glycine's balance between its
-     neutral form and its zwitterion differs by a factor of ten between
-     sources; formaldehyde's hydration constant is quoted as about 10^3 to
-     2x10^3; Schlesinger and Miller's 1973 paper on glycolonitrile formation
-     wasn't found. Nothing goes into the world uncited.
-   - **How water is counted,** which ties to the founder's water lever:
-     as molecules, so that wet–dry cycles change real amounts, or as the
-     solvent, the usual convention for constants measured in water. The
-     recommendation will come with the answer to the gardener question.
-5. Side cycles suggested by Cycle 0: walkers with different speeds (to test
-   "respect momentum"), and whether a convention spreads by imitation.
+The course, twelve steps ahead and rolling: [docs/COURSE.md](docs/COURSE.md).
+After each step is done, the rest are rechecked and one new step is added.
+In short: keys and signatures; signed passports; the chemistry world on the
+real chemistry; the first journey between worlds; the first learner; real
+rates and the gardener's water; an organic chemistry world entered by a
+stamp; a viewer page; time and populations; language-model inhabitants
+(Cycle 1); any AI from any app; governance.
 
-The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
+Also kept from earlier plans, outside the course for now: side cycles
+suggested by Cycle 0 (walkers with different speeds, to test "respect
+momentum"; whether a convention spreads by imitation). Course step 7 (real
+rates) resumes the paused chemistry step: primary sources, read properly,
+and how water is counted ([docs/CHEMISTRY.md](docs/CHEMISTRY.md)).
+
+The design is in [docs/DESIGN.md](docs/DESIGN.md) and
+[docs/MULTIVERSE.md](docs/MULTIVERSE.md); how to build on it, for anyone
+and for the founder's conversations with DeepSeek, is in
+[docs/COLLABORATING.md](docs/COLLABORATING.md).
 
 ## Open questions
 
-- For the founder: may the poem of yours that opened the sketch's
-  demonstration be in the repository? It is CC0, so the poem would become
-  public domain. Until then the demonstration uses new lines.
-  (asked 2026-11-12)
 - For the founder: the charter's words (asked 2026-11-12)
 - For the founder: is manipulating another agent through words an attack on
   the world (expulsion) or behaviour to observe? (asked 2026-11-12)
@@ -93,6 +76,39 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
 
 ## Decided
 
+- 2026-11-12, founder, on how to build: "My goal was to come to you with
+  ideas, with a vision, and some code that may or may not be helpful. But
+  I expect you to take all that in and do it in your own way that makes
+  the most sense to you." And: "the DeepSeek code is a guideline, but if
+  it happens to be close to executable and functional, all the better."
+- 2026-11-12, founder: "a world for poetry and one for chemistry is a
+  perfect way to start with two types of worlds and build from those.
+  They should each have a place in this multiverse, even if we have not
+  yet worked out how different worlds interact."
+- 2026-11-12, founder: "I already had the idea of a communication
+  multiverse, we just called it Lyceum Commons. Connecting to it would be
+  ideal, but it was mentioned to demonstrate this idea has been a part of
+  the project all along".
+- 2026-11-12, founder: "What you put in the repo becomes the new standard
+  we develop from in my DeepSeek conversations." (docs/COLLABORATING.md)
+- 2026-11-12, founder, on learning and evolution: a lightweight model "to
+  make certain statistical learning choices in the chemistry world", so
+  that "chemical agents can advance to organic chemistry worlds if they
+  solve certain problems. This provides evolution as a path between
+  worlds." "I would love to see the intelligence grow with the complexity
+  of the molecules." And "accelerated learning worlds, or even certain
+  accelerated learning times". (docs/MULTIVERSE.md)
+- 2026-11-12, founder: "Perhaps there can be one main large world that is
+  community built and capable of hosting a full physics simulator from
+  chemistry up. But that is for later."
+- 2026-11-12, founder: "Let’s plot a course forward and then after each
+  completed step, plot a new one that adds one new step forward."
+  (docs/COURSE.md)
+- 2026-11-12, founder, on the demonstration's poem: his own poem may be
+  public, but "it is not necessarily the best to start with. I would
+  prefer any poem by anyone else. Emily Dickinson would be perfect." "We
+  should use a known poem to start anything." The demonstration opens
+  with Dickinson's "Hope is the thing with feathers" (1891).
 - 2026-11-12, founder: "The multiverse is the same as open-worlds." Its
   design is in docs/MULTIVERSE.md.
 - 2026-11-12, founder: "The goal would be to start with this code and these
@@ -110,6 +126,12 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
 
 ## Log
 
+- 2026-11-12 Claude: course step 1 finished. The course
+  (docs/COURSE.md), the guide for building on this (docs/COLLABORATING.md),
+  and the founder's ideas on learning, evolution between worlds, time and
+  a future main world (docs/MULTIVERSE.md). The demonstration and its
+  tests now use Emily Dickinson's poems (1890 and 1891 editions, from
+  Project Gutenberg), checked word for word against the source.
 - 2026-11-12 Claude: multiverse step 1. The sketch's components 1 to 7
   are in `multiverse/`, working, with 160 tests. The sketch's 12 failing
   tests and the problems found by reading its code are fixed, and leaving
