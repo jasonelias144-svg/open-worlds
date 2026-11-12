@@ -163,7 +163,9 @@ it is written, not when it is used:
 Every rule can be run backwards, and the reverse obeys the same laws.
 
 **Applying a rule** to some molecules finds every place the rule's atoms fit.
-Every molecule given must take part. So `apply(a, b)` is a reaction between
+Every molecule given must take part: a rule may not name an atom that isn't
+connected to anything it changes, so a bystander can't count as a reactant.
+So `apply(a, b)` is a reaction between
 a and b, and `apply(a)` is a reaction within a. The result is each distinct
 outcome, as a set of product molecules.
 
@@ -209,10 +211,17 @@ time, and each makes them fail:
   three-membered ring (an α-lactam) that real chemistry hardly makes,
   because the ring is strained. A test records this. Energies and rates
   come with layer 3.
-- **Rules are local.** A rule sees only the atoms it names. The proton
-  transfer to "an amine" also protonates an amide's nitrogen, which is far
-  less basic in reality. Rules can be given more context when a world
-  needs it.
+- **Rules are local.** A rule sees only the atoms it names, so it applies
+  wherever those atoms fit, not only to the group its name suggests:
+  - the proton transfer "to an amine" takes any neutral nitrogen. It
+    protonates an amide's nitrogen, which is far less basic in reality, and
+    HCN, giving the nitrilium ion HCNH+;
+  - hydration of a carbonyl takes any O–H, not only water's. With methanol it
+    makes a hemiacetal, and on a carboxylic acid an orthoacid;
+  - the proton transfer from O–H to oxygen also protonates carbonyl oxygens.
+
+  All of these are valid molecules, and some are real but minor. Rules can
+  be given more context when a world needs it.
 - **Outcomes multiply.** With more rules and bigger molecules the number of
   outcomes grows fast. A world will sample reactions, not list them all.
 

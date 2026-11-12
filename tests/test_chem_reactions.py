@@ -188,11 +188,29 @@ class TestRulesMustObeyTheLaws(unittest.TestCase):
                  after={}),
             dict(atoms={"c": "C", "o": "O"}, before={("c", "o"): 1},
                  after={("c", "o"): 1}),
+            dict(atoms={"c": "C", "o": "O"}, before={"co": 1}, after={}),
         ]
         for spec in bad:
             with self.subTest(spec):
                 with self.assertRaises(ValueError):
                     Rule("bad", **spec)
+
+    def test_every_named_atom_must_connect_to_a_change(self):
+        # A named atom that nothing touches would let a bystander molecule
+        # count as a reactant (independent review of #4, note 1).
+        with self.assertRaisesRegex(ValueError, "atom w is not connected"):
+            Rule("with a bystander", atoms={"o1": "O", "h": "H", "o2": "O", "w": "C"},
+                 before={("o1", "h"): 1}, after={("o2", "h"): 1},
+                 charges_after={"o1": -1, "o2": +1})
+        # ... and so would an unchanged group of named atoms on its own.
+        with self.assertRaisesRegex(ValueError, "atom c is not connected"):
+            Rule("with an idle group",
+                 atoms={"o1": "O", "h": "H", "o2": "O", "c": "C", "x": "O"},
+                 before={("o1", "h"): 1, ("c", "x"): 2},
+                 after={("o2", "h"): 1, ("c", "x"): 2},
+                 charges_after={"o1": -1, "o2": +1})
+        # Unchanged atoms bonded into the change are fine: they are context.
+        self.assertTrue(ACID_TO_AMINE.apply(cat.glycine()))
 
     def test_reverse_of_reverse_behaves_the_same(self):
         twice = AMIDE_FORMATION.reverse().reverse()

@@ -76,6 +76,8 @@ class Rule:
     def _bonds(self, bonds: Mapping[Pair, int]) -> Dict[Pair, int]:
         out: Dict[Pair, int] = {}
         for pair, order in bonds.items():
+            if type(pair) is not tuple or len(pair) != 2:
+                raise ValueError(f"{self.name}: a bond is a pair of atom names: {pair!r}")
             a, b = pair
             if a not in self.symbols or b not in self.symbols or a == b:
                 raise ValueError(f"{self.name}: bad bond {pair}")
@@ -104,6 +106,27 @@ class Rule:
                     f"bonds but its valence changes by {v1 - v0}")
         if self.before == self.after and self.charges_before == self.charges_after:
             raise ValueError(f"{self.name}: the rule changes nothing")
+        # Every connected group of named atoms must contain a change, so
+        # every molecule the rule touches is changed: a named atom can't make
+        # a bystander count as a reactant.
+        changed = {label for label in self.symbols
+                   if self.charges_before[label] != self.charges_after[label]}
+        for pair in set(self.before) | set(self.after):
+            if self.before.get(pair) != self.after.get(pair):
+                changed.update(pair)
+        group = {label: label for label in self.symbols}
+
+        def find(x: str) -> str:
+            while group[x] != x:
+                x = group[x]
+            return x
+        for a, b in set(self.before) | set(self.after):
+            group[find(a)] = find(b)
+        roots_with_change = {find(label) for label in changed}
+        for label in sorted(self.symbols):
+            if find(label) not in roots_with_change:
+                raise ValueError(f"{self.name}: atom {label} is not connected "
+                                 f"to anything the rule changes")
 
     def reverse(self, name: Optional[str] = None) -> "Rule":
         """The same rule run backwards."""
@@ -119,8 +142,8 @@ class Rule:
         """Every distinct outcome of this rule on these reactants, together.
 
         The rule's atoms may fall in any of the reactants, but every reactant
-        must take part, so `apply(a, b)` is a reaction between a and b, and
-        `apply(a)` is a reaction within a. Each outcome is a tuple of product
+        must take part (the rule changes something in each), so `apply(a, b)`
+        is a reaction between a and b, and `apply(a)` is a reaction within a. Each outcome is a tuple of product
         molecules, sorted by identity. Outcomes are sorted too, so the result
         doesn't depend on how the reactants' atoms happen to be listed."""
         if not reactants:
