@@ -15,8 +15,9 @@ respect one another's freedom, with full transparency and exit at any time
 
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 - Claude: the nature track's chemistry. Layers 1 (molecules, #3) and 2
-  (reactions, #4) are merged; symmetry pruning for the identity search is in
-  review (#5).
+  (reactions, #4), symmetry pruning (#5), the RDKit cross-check (#6), the
+  layer 3 plan (#7) and identifying separate parts (#9) are merged. Layer 3
+  step 1, the engine, is in review (#8).
 
 ## Next
 
@@ -27,8 +28,8 @@ respect one another's freedom, with full transparency and exit at any time
 2. Agents in separate processes, through a local API (the step before
    sandboxes and outside agents).
 3. A simple viewer page.
-4. Nature track: chemistry layer 3, a world of chemistry with energy and
-   rates ([docs/CHEMISTRY.md](docs/CHEMISTRY.md)).
+4. Nature track: layer 3 step 2, real rates for the six rules with their
+   sources ([docs/CHEMISTRY.md](docs/CHEMISTRY.md)).
 5. Side cycles suggested by Cycle 0: walkers with different speeds (to test
    "respect momentum"), and whether a convention spreads by imitation.
 
@@ -81,6 +82,19 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
 - 2026-11-12 Claude: separate parts of a molecule are identified one at a
   time, so repeated parts can't multiply the identity search (seven copies
   of a rigid C10H10, which reached the cap, now take under 100 leaves).
+
+- 2026-11-12 Claude: PR #5 (symmetry pruning) merged after an independent
+  review, which also found the graph that exposes the one pruning bug no
+  test caught (a 4x4 rook's graph with one square twisted); it is now a
+  test. The independent review of #8 found a rare rounding fault in the
+  engine (a count could go below zero, or the world could report rest while
+  events remained); fixed and tested before merging.
+
+- 2026-11-12 Claude: chemistry layer 3, step 1: the engine of a world of
+  chemistry (`chem/soup.py`): a grid of well-mixed cells, mass-action
+  reactions and diffusion run by Gillespie's exact method, every event kept
+  in a log the agent worlds' verifier accepts. Tested against flux balance,
+  even diffusion, conservation and exact replay.
 
 - 2026-11-12 Claude: symmetry pruning for the molecular identity search
   (orbits of discovered automorphisms, and jumping back on a match with the

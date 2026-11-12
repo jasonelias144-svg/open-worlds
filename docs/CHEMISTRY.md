@@ -322,10 +322,41 @@ of molecules makes more of itself.
 
 **Steps:**
 
-1. The engine: cells, counts, diffusion, the stochastic clock, conservation
-   of atoms and charge at every event, and the log. It is tested against
-   cases with known answers: a reversible reaction settles at its
-   equilibrium constant, and diffusion spreads as it should.
+1. **The engine** (done: [chem/soup.py](../chem/soup.py)): cells, counts,
+   diffusion, the stochastic clock, conservation of atoms and charge at
+   every event, and the log. Rates are given by whoever builds the world,
+   for now. The tests ([tests/test_chem_soup.py](../tests/test_chem_soup.py))
+   check it against answers known in advance:
+   - at equilibrium, forward and reverse fluxes balance on average, for a
+     reaction of one molecule (glycine and its zwitterion), of two different
+     molecules (formaldehyde and water), and of two of one kind (two
+     glycines, with only six, so that pairs must be counted as n(n-1));
+   - diffusion spreads molecules evenly, corners and edges included;
+   - every event keeps every atom and the total charge;
+   - the same seed replays exactly, and the log passes the agent worlds'
+     own verifier, which catches tampering.
+
+   Planting ten bugs in the engine, one at a time, showed each is caught.
+   They were: pairs counted as n², the volume ignored, hops not scaled by
+   neighbours, a hop that copies instead of moves, a hop to any cell, no
+   balance check, no seed, a log that doesn't chain, the wrong reaction
+   applied, and time that doesn't advance. The n² bug was caught only after
+   the six-glycine test was added: with hundreds of molecules the difference
+   is too small to see.
+
+   The independent review found that floating-point rounding at the boundary
+   between two cells could choose a reaction whose reactants were absent,
+   driving a count below zero, or make `step()` report rest while events
+   remained. It was rare (about one event in 10¹⁵), but the invariant
+   matters. The fix: only possible events are ever candidates, and the
+   remainder that picks the cell is reused rather than recomputed. A test
+   now tries every value of the random draw within 40 steps of every
+   boundary in three worlds where the first version broke.
+
+   **Rate convention.** Mass action here counts ordered picks: n(n−1) for
+   two of one kind, n(n−1)(n−2) for three. Textbooks usually count
+   unordered pairs, n(n−1)/2, so step 2 halves a textbook constant for two
+   of one kind (and divides it by 6 for three).
 2. Rates for the six rules of layer 2, with their sources.
 3. The gardener's levers.
 4. The first chemistry cycle: what forms from water, ammonia, hydrogen
