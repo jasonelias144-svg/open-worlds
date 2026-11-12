@@ -137,10 +137,10 @@ What this design adds, from the founder's principles:
 
 ## Two worlds to start
 
-"A world for poetry and one for chemistry is a perfect way to start with
-two types of worlds and build from those. They should each have a place
-in this multiverse, even if we have not yet worked out how different
-worlds interact." (founder)
+The founder: "a world for poetry and one for chemistry is a perfect way
+to start with two types of worlds and build from those. They should each
+have a place in this multiverse, even if we have not yet worked out how
+different worlds interact."
 
 Both are in the same registry and speak the same protocol under very
 different laws. Worlds don't need to talk to each other directly: they
