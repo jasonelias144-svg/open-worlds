@@ -10,13 +10,20 @@ the authority (docs/MULTIVERSE.md).
 Acts:
   multiverse.admit    {"entity": <a conforming entity>}: runs the
                       conformance test, and lists the entity if it passes
-  multiverse.remove   {"entity_id": str}: takes a listing down
+  multiverse.remove   {"entity_id": str}: takes down a listing; only
+                      whoever listed it may
 
 Changed from the sketch:
   - An entity whose manifest is broken is refused as failing
     conformance, with the test's own report.
   - The conformance test leaves the world it checks (conformance.py), so
     listing a world no longer takes one of its places.
+  - The manifest listed is the one the conformance test checked. The
+    sketch asked the entity again, so an entity could pass with one
+    answer and then raise, or give another.
+  - Only whoever listed an entity may take the listing down (the sketch
+    recorded who listed it but let anyone remove it), and a registry
+    does not list itself.
 
 Known limit, until step 3: `multiverse.admit` carries the entity itself,
 so it only works within one process. Over the network it carries an
@@ -27,7 +34,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Dict, List, Optional
 
-from .conformance import run_conformance
+from .conformance import check
 from .entity import Entity, now
 from .protocol import Ack, Act, ActResponse, LogEntry, Manifest, Refusal
 
@@ -65,7 +72,8 @@ class MultiverseLaw:
             "## Acts",
             "- multiverse.admit: propose an entity for listing. It is "
             "listed if it passes the WCP/0.1 conformance test.",
-            "- multiverse.remove: take a listing down.",
+            "- multiverse.remove: take down a listing you made.",
+            "- A registry does not list itself.",
             "",
             "## Convergence",
             "- Never. A catalogue stays open: worlds appear and go.",
@@ -134,22 +142,24 @@ class MultiverseRegistry(Entity):
         if entity is None:
             return self._refuse(timestamp, act.actor_token,
                                 "No entity in payload", "act")
-        result = run_conformance(entity)
+        if entity is self:
+            return self._refuse(timestamp, act.actor_token,
+                                "A registry does not list itself", "act")
+        # The manifest the test checked is the one listed: an entity can't
+        # pass with one manifest and be listed with another.
+        result, m = check(entity)
         if not result["passed"]:
-            try:
-                m = entity.manifest()
-                listing = (manifest_to_dict(m) if isinstance(m, Manifest)
-                           else None)
-            except Exception:
-                listing = None
             self._log.append(LogEntry(
                 timestamp=timestamp, kind="entity_admit_refused",
                 actor_token=act.actor_token,
-                data={"manifest": listing, "conformance": result}))
+                data={"manifest": manifest_to_dict(m) if m else None,
+                      "conformance": result}))
             # Recorded above, with the full report.
             return Refusal(reason=f"Entity fails conformance: "
                                   f"{result['failures']}")
-        m = entity.manifest()
+        if m.entity_id == self._manifest.entity_id:
+            return self._refuse(timestamp, act.actor_token,
+                                "A registry does not list itself", "act")
         if m.entity_id in self._registry:
             return self._refuse(timestamp, act.actor_token,
                                 f"Entity {m.entity_id} already listed", "act")
@@ -172,6 +182,10 @@ class MultiverseRegistry(Entity):
         if entity_id not in self._registry:
             return self._refuse(timestamp, act.actor_token,
                                 f"Entity {entity_id} not in registry", "act")
+        if self._proposed_by.get(entity_id) != act.actor_token:
+            return self._refuse(timestamp, act.actor_token,
+                                "Only whoever listed an entity may take "
+                                "the listing down", "act")
         del self._registry[entity_id]
         self._conformance_reports.pop(entity_id, None)
         self._proposed_by.pop(entity_id, None)

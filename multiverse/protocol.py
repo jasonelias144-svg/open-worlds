@@ -15,7 +15,8 @@ Five operations:
 Changed from the sketch: `leave` is new. The sketch had no way to go,
 and principle 3 of open-worlds is exit at any time. A world's law can
 refuse a petition or an act, but never a leave. Leaving when not present
-answers already_left, and changes nothing.
+answers already_left, and changes nothing. The departure of someone who
+was present is recorded in the log, kind "departure", with their token.
 
 `type` and `payload` of an act are opaque to the protocol: each world's
 law decides what they mean.

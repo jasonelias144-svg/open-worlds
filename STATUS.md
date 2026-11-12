@@ -111,11 +111,13 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
 ## Log
 
 - 2026-11-12 Claude: multiverse step 1. The sketch's components 1 to 7
-  are in `multiverse/`, working, with 136 tests. The sketch's 12 failing
+  are in `multiverse/`, working, with 144 tests. The sketch's 12 failing
   tests and the problems found by reading its code are fixed, and leaving
-  is added. Every deliberate break tried in the new behaviour (24) is
-  caught by a test. `python3 -m multiverse.collaboration` runs the first
-  collaboration.
+  is added. The independent review asked for two changes (an error that
+  could escape the registry; docs that overstated what the conformance
+  test proves) and found three untested behaviours; all are fixed. Each
+  of 36 deliberate breaks tried in the new behaviour is caught by a test.
+  `python3 -m multiverse.collaboration` runs the first collaboration.
 - 2026-11-12 Claude: the multiverse design revised to the founder's
   direction: build from the sketch's code, in steps; Lyceum Commons noted as
   the same idea with rooms. Checked by running it: the sketch's conformance

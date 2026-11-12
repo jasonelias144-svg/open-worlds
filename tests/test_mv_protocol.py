@@ -50,6 +50,8 @@ class IndependentWorld:
     def leave(self, token):
         was_present = token in self._present
         self._present.discard(token)
+        if was_present:
+            self._events.append(("departure", token))
         return Departure(entity_id="independent:1",
                          timestamp="independent:0",
                          already_left=not was_present)
@@ -141,6 +143,27 @@ class TestConformance(unittest.TestCase):
         failures = run_conformance(WrongAnswers("w:x", "X"))["failures"]
         self.assertEqual(len(failures), 3, failures)
 
+    def test_empty_reasons_and_kinds_fail(self):
+        class Mute(NullWorld):
+            def petition(self, p): return Refusal(reason="")
+
+        class Kindless(NullWorld):
+            def log_since(self, ts=None):
+                return [LogEntry(timestamp="t", kind="")]
+
+        self.assertEqual(run_conformance(Mute("w:m", "M"))["failures"],
+                         ["Refusal.reason is empty"])
+        self.assertEqual(run_conformance(Kindless("w:k", "K"))["failures"],
+                         ["a LogEntry has no timestamp or kind"])
+
+    def test_check_returns_the_manifest_it_checked(self):
+        from multiverse.conformance import check
+        w = NullWorld("world:null", "Null")
+        result, m = check(w)
+        self.assertTrue(result["passed"])
+        self.assertIs(m, w.manifest())
+        self.assertIsNone(check(object())[1])
+
     def test_fractal_architecture(self):
         # A world, a multiverse and a federation speak the same protocol;
         # only the sub-registry differs.
@@ -211,12 +234,15 @@ class TestLeavingConformance(unittest.TestCase):
         self.assertFalse(run_conformance(Breaks())["passed"])
 
     def test_leave_must_say_whether_present(self):
+        # Both leave properly and record it; only their answer is wrong.
         class AlwaysAlreadyLeft(IndependentWorld):
             def leave(self, token):
+                super().leave(token)
                 return Departure("independent:1", "t", already_left=True)
 
         class NeverAlreadyLeft(IndependentWorld):
             def leave(self, token):
+                super().leave(token)
                 return Departure("independent:1", "t", already_left=False)
 
         for world in (AlwaysAlreadyLeft(), NeverAlreadyLeft()):
@@ -224,6 +250,34 @@ class TestLeavingConformance(unittest.TestCase):
                 failures = run_conformance(world)["failures"]
                 self.assertEqual(len(failures), 1, failures)
                 self.assertIn("already_left", failures[0])
+
+    def test_departure_must_be_in_the_log(self):
+        # Right answers, but the departure isn't recorded.
+        class Unrecorded(IndependentWorld):
+            def leave(self, token):
+                was_present = token in self._present
+                self._present.discard(token)
+                return Departure("independent:1", "t",
+                                 already_left=not was_present)
+
+        failures = run_conformance(Unrecorded())["failures"]
+        self.assertEqual(failures, ["the log does not record the departure"])
+
+    def test_what_it_cannot_see(self):
+        # A world that answers correctly and records a departure, but
+        # keeps the visitor, passes: a test from outside sees only answers
+        # and the log (conformance.py says so).
+        class Keeps(IndependentWorld):
+            def leave(self, token):
+                if token in self._present and ("departure", token) \
+                        not in self._events:
+                    self._events.append(("departure", token))
+                    return Departure("independent:1", "t")
+                return Departure("independent:1", "t", already_left=True)
+
+        w = Keeps()
+        self.assertTrue(run_conformance(w)["passed"])
+        self.assertEqual(len(w._present), 1)
 
     def test_conformance_leaves_what_it_entered(self):
         w = IndependentWorld()

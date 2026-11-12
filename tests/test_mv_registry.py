@@ -97,6 +97,45 @@ class TestRegistry(RegistryCase):
         self.assertIsInstance(r, Refusal)
         self.assertIn("fails conformance", r.reason)
 
+    def test_manifest_that_changes_after_checking(self):
+        # The sketch asked again after the test and could raise here.
+        class Fickle(PoetryWorld):
+            calls = 0
+
+            def manifest(self):
+                Fickle.calls += 1
+                if Fickle.calls > 1:
+                    raise RuntimeError("gone")
+                return super().manifest()
+
+        mv, alice = self.registry()
+        r = mv.act(_admit(alice, Fickle("world:fickle", "Fickle")))
+        self.assertIsInstance(r, Ack)
+        self.assertEqual(mv.entity_ids(), ["world:fickle"])
+
+    def test_does_not_list_itself(self):
+        mv, alice = self.registry()
+        r = mv.act(_admit(alice, mv))
+        self.assertIsInstance(r, Refusal)
+        self.assertIn("itself", r.reason)
+        # Refused before testing itself: no conformance visit in its log.
+        self.assertEqual([e.kind for e in mv.log_since(None)],
+                         ["admission", "act_refused"])
+        twin = MultiverseRegistry("multiverse:main", "Same id")
+        self.assertIn("itself", mv.act(_admit(alice, twin)).reason)
+        self.assertEqual(mv.entity_ids(), [])
+
+    def test_only_the_lister_takes_a_listing_down(self):
+        mv, alice = self.registry()
+        mv.act(_admit(alice, PoetryWorld("world:poetry", "Poetry")))
+        bob = create_identity("Bob")
+        mv.petition(_petition("Bob", bob.token))
+        r = mv.act(_remove(bob.token, "world:poetry"))
+        self.assertIsInstance(r, Refusal)
+        self.assertIn("Only whoever listed", r.reason)
+        self.assertEqual(mv.entity_ids(), ["world:poetry"])
+        self.assertIsInstance(mv.act(_remove(alice, "world:poetry")), Ack)
+
     def test_refuses_missing_entity(self):
         mv, alice = self.registry()
         r = mv.act(Act(actor_token=alice, type="multiverse.admit", payload={}))

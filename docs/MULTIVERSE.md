@@ -172,7 +172,12 @@ Two problems mattered beyond their own tests:
 - **The conformance test changed the world it checked.** It entered
   every world it tested, and stayed. Run on a world with room for two, it
   took one of the places, so of the next two arrivals only one got in. Now
-  the test leaves afterwards, and checks that leaving works.
+  the test leaves afterwards and takes no place. Its visit is still in
+  the world's log (an admission, a refused act, a departure), as a public
+  log should show. It checks the answers a world gives to leaving and that
+  the departure is in the log; like any test from outside, it can't see
+  whether a world secretly keeps someone, and the log is where anyone
+  can catch that.
 - **Five checks in the tests could never fail.** They had the form "try
   the forbidden thing; if it works, fail; on any error, pass", so the
   failure was itself caught as an error, and the check passed. They now
@@ -191,10 +196,16 @@ The other fixes:
 - **Worlds trusted what visitors sent.** A short token, an unreadable
   passport, a payload that isn't a mapping, a turn whose parts aren't
   text, or a reaction count of "2" or -1 made a world raise an error, or
-  accept nonsense. Each is now refused with a reason.
+  accept nonsense; "false" counted as holding a turn open. Each is now
+  refused with a reason.
 - **One copy of the entering code instead of three.** The poetry world,
   the chemistry world and the registry each had the same petition code;
   it lives once in `multiverse/entity.py`, which also does leaving.
+- **The registry asked twice.** It listed whatever a second call to an
+  entity's manifest returned, after the test had checked the first; an
+  entity could pass and then raise, or give another manifest. Now the
+  checked manifest is the one listed. Only whoever listed an entity may
+  take the listing down, and a registry doesn't list itself.
 - **What wasn't brought in:** the poetry engine's own Polyphony runner,
   since the poetry world checks turns and convergence.
 

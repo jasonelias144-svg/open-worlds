@@ -67,7 +67,8 @@ class TestFormulas(unittest.TestCase):
                 self.assertEqual(m.charge, charge)
 
     def test_parse_rejects(self):
-        for formula in ("Xx2O", "2H2O", "", "+", "h2o", None):
+        for formula in ("Xx2O", "2H2O", "", "+", "h2o", None, "H0O",
+                        "C00"):
             with self.subTest(formula=formula), self.assertRaises(ValueError):
                 parse_formula(formula)
 
@@ -153,6 +154,16 @@ class TestChemistryWorld(ChemistryCase):
                 r = w.act(_reaction(alice.token, subs, prods))
                 self.assertIsInstance(r, Refusal)
                 self.assertIn("required", r.reason)
+
+    def test_catalyst(self):
+        w = self.world()
+        alice = self.enter(w)
+        r = w.act(_reaction(alice.token, *WATER, catalyst={"Pt": 1}))
+        self.assertIsInstance(r, Refusal)
+        self.assertIn("catalyst", r.reason)
+        self.assertIsInstance(
+            w.act(_reaction(alice.token, *WATER, catalyst="Pt")), Ack)
+        self.assertEqual(w.reactions()[0]["catalyst"], "Pt")
 
     def test_refuses_poetry_act(self):
         w = self.world()

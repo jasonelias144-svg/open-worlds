@@ -15,7 +15,8 @@ Changed from the sketch:
   - An acknowledgment may answer the prior turn's invitation as well as
     its proposal. In the sketch only words of the proposal counted, so a
     poet who answered the question it was asked was refused.
-  - Turn fields of the wrong type are refused instead of raising.
+  - Turn fields of the wrong type are refused instead of raising, and
+    holds_open must be true or false (the sketch read "false" as true).
   - The log keeps its own copy of each turn.
 """
 from __future__ import annotations
@@ -136,7 +137,10 @@ class PoetryWorld(Entity):
         ack, proposal, invitation = (fields["acknowledgment"],
                                      fields["proposal"],
                                      fields["invitation"])
-        holds_open = bool(payload.get("holds_open", False))
+        holds_open = payload.get("holds_open", False)
+        if type(holds_open) is not bool:
+            return self._refuse(timestamp, actor,
+                                "holds_open must be true or false", "act")
 
         if self._law.requires_acknowledgment and not ack:
             return self._refuse(timestamp, actor,

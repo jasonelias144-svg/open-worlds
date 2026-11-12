@@ -13,7 +13,8 @@ moves this world's law onto it.
 Changed from the sketch:
   - Calcium is in the element table (the sketch's own test used it).
   - Counts must be whole numbers of at least one, and formulas text. In
-    the sketch a count of "2" or -1 was not refused.
+    the sketch a count of "2" or -1 was not refused, nor "H0O".
+  - A catalyst, if named, must be text.
   - "Equilibrium" in the sketch means only that the last few reactions
     introduced no new molecule; this page says so.
 """
@@ -73,8 +74,10 @@ def parse_formula(formula: str) -> Molecule:
         element = m.group(1)
         if element not in ELEMENTS:
             raise ValueError(f"Unknown element: {element}")
-        atoms[element] = atoms.get(element, 0) + (
-            int(m.group(2)) if m.group(2) else 1)
+        count = int(m.group(2)) if m.group(2) else 1
+        if count < 1:
+            raise ValueError(f"A count of zero in formula: {original}")
+        atoms[element] = atoms.get(element, 0) + count
         pos += m.end()
     if not atoms:
         raise ValueError(f"No atoms in formula: {original}")
@@ -185,6 +188,10 @@ class ChemistryWorld(Entity):
                 or not substrates or not products):
             return self._refuse(timestamp, actor,
                                 "Substrates and products required", "act")
+        catalyst = act.payload.get("catalyst")
+        if catalyst is not None and not isinstance(catalyst, str):
+            return self._refuse(timestamp, actor,
+                                "The catalyst must be text", "act")
         balances, reason = reaction_balances(substrates, products)
         if not balances:
             return self._refuse(timestamp, actor,
@@ -196,7 +203,7 @@ class ChemistryWorld(Entity):
             "actor_name": self._passports[actor].identity.name,
             "substrates": [dict(m) for m in substrates],
             "products": [dict(m) for m in products],
-            "catalyst": act.payload.get("catalyst"),
+            "catalyst": catalyst,
             "timestamp": timestamp,
         }
         self._reactions.append(reaction)

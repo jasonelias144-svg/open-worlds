@@ -119,6 +119,8 @@ class TestLeaving(PoetryWorldCase):
         self.assertIsInstance(d, Departure)
         self.assertFalse(d.already_left)
         self.assertEqual(w.members(), [])
+        self.assertIsNone(w.passport_of(alice.token))
+        self.assertFalse(w.is_admitted(alice.token))
         self.enter(w, "Bob")
 
     def test_leaving_twice(self):
@@ -194,6 +196,8 @@ class TestTurns(PoetryWorldCase):
             (dict(proposal=""), "proposal"),
             (dict(proposal=["not", "text"]), "text"),
             (dict(stance=3), "stance"),
+            (dict(holds_open="false"), "holds_open"),
+            (dict(holds_open=1), "holds_open"),
         ]
         for change, reason in cases:
             with self.subTest(change=change):
@@ -318,6 +322,9 @@ class TestLog(PoetryWorldCase):
         self.enter(w, "Alice")
         first = w.log_since(None)[0].timestamp
         self.assertEqual(w.log_since(first), [])
+        self.assertEqual(len(w.log_since("")), 1)
+        for odd in (5, ["x"], b"t"):
+            self.assertEqual(w.log_since(odd), [])
 
     def test_log_keeps_its_own_copy(self):
         w = self.world()

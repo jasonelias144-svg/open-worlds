@@ -116,7 +116,8 @@ class Entity:
                          timestamp=timestamp)
 
     def log_since(self, timestamp: Optional[str] = None) -> List[LogEntry]:
-        """Entries after `timestamp`, or all of them.
+        """Entries after `timestamp`, or all of them. A timestamp that
+        isn't text matches nothing.
 
         Known limits, both from the sketch:
           - Entries sharing a timestamp with the one given are skipped,
@@ -129,6 +130,8 @@ class Entity:
             change detectable."""
         if timestamp is None:
             return list(self._log)
+        if not isinstance(timestamp, str):
+            return []
         return [e for e in self._log if e.timestamp > timestamp]
 
     # -- conveniences (not part of the protocol) ------------------------
