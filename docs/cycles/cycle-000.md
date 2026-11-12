@@ -72,7 +72,7 @@ Means over 10 seeds:
 ## The momentum rule never fired
 
 Walkers "respect momentum": they wait behind someone already moving their
-way instead of sidestepping. Re-running every condition with that rule
+way instead of sidestepping. Re-running densities 0.05 to 0.20 with that rule
 switched off (`--ignore-momentum`) gave identical results, so the experiment
 now counts why a walker is blocked (the last two columns of the output).
 Across all 240 saved runs, walkers found the cell ahead occupied 4,436,874

@@ -285,6 +285,20 @@ class TestTheWorldTrustsNothing(unittest.TestCase):
             self.assertNotIn("leaver", w.agents(), f"seed {seed}")
             self.assertIn("leaver", w.exited)
 
+    def test_the_tick_guard_survives_a_failure_inside_resolution(self):
+        # The exact-type checks stop every known attack before this guard is
+        # reached, so this test forces a failure to keep the guard in place.
+        class Faulty(World):
+            def _move(self, agent_id, dx, dy):
+                raise RuntimeError("unforeseen")
+        w = Faulty(3, 1, seed=0)
+        w.add("mover", Scripted(Move(1, 0)), (0, 0))
+        w.add("leaver", Scripted(Exit()), (2, 0))
+        w.step()                                   # must not raise
+        self.assertIn("leaver", w.exited)
+        self.assertIn("invalid_action", kinds(w, "mover"))
+        self.assertTrue(World.verify_log(w.log))
+
     def test_a_crashing_agent_does_not_stop_the_world(self):
         mover = Scripted(Move(1, 0))
         w = World(3, 1)
