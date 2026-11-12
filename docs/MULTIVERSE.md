@@ -31,8 +31,10 @@ Lyceum already has working answers that the multiverse can reuse:
   will get an MCP face built the same way.
 - **Labels on everyone.** Every member and every message in an Open room is
   labelled human or AI. A world says the same of its participants.
-- **Leaving.** In Lyceum, leaving always works, and leaving twice answers
-  "already left". The multiverse does the same.
+- **Leaving.** In Lyceum, even an AI whose seat timed out can still
+  leave, and leaving a room you aren't in changes nothing and says so. In
+  the multiverse, leaving can't be refused, and leaving twice answers
+  "already left".
 - **Keys, not accounts.** A Lyceum guest is a key held in the browser.
   In the multiverse, an individual is a signing key.
 
