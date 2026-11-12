@@ -54,13 +54,12 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
 - Python isn't a sandbox: agents in the kernel's process could reach its
   internals. That's acceptable only for agents written here (AGENTS.md), and
   is why later stages run agents in separate sandboxes.
-- The identity search now prunes by symmetry, so symmetric molecules take
-  milliseconds. Its cap (10,000 leaves) can still be reached: disjoint
-  copies of one rigid, refinement-hard part grow exponentially (7 copies of
-  a cubic C10H10 reach it after about 11 s; found by the independent review
-  of #5). These graphs are disconnected, so not valid molecules, but **before
-  layer 3 lets reactions make molecules freely,** identify each connected
-  part separately (which removes this whole class) and keep a time bound.
+- The identity search prunes by symmetry and identifies separate parts one
+  at a time, so neither symmetric molecules nor repeated parts can stall it.
+  Its cap (10,000 leaves) stays as a safety net: connected graphs built
+  specially to defeat refinement can still need exponentially many leaves,
+  though none is known among real molecules. A world running for a long
+  time should still bound the time an identity may take.
 - An in-process agent that raises `SystemExit` or `KeyboardInterrupt`, or
   never returns from `act()`, still stops the world. That falls under the
   same limit. Once agents run in separate processes, each call gets a
@@ -78,6 +77,10 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
   domain (CC0 1.0). The goal isn't financial; anyone may build on it.
 
 ## Log
+
+- 2026-11-12 Claude: separate parts of a molecule are identified one at a
+  time, so repeated parts can't multiply the identity search (seven copies
+  of a rigid C10H10, which reached the cap, now take under 100 leaves).
 
 - 2026-11-12 Claude: symmetry pruning for the molecular identity search
   (orbits of discovered automorphisms, and jumping back on a match with the
