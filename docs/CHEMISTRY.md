@@ -114,6 +114,46 @@ Each one makes the tests fail. Two of them first went uncaught:
 - **The search bugs (no backtracking, wrong answer kept).** These were found
   by the independent review, which led to the cubic and brute-force tests.
 
+**Symmetry.** The search prunes by symmetry, in the simplest form of what
+nauty and bliss do. Two leaves with the same form reveal an automorphism of
+the molecule. The search uses those automorphisms to skip branches whose
+answers it already knows: branches that an automorphism fixing the choices
+made so far maps onto an explored branch, and the rest of a branch once one
+of its leaves matches the first leaf. Without pruning, the search tried
+every branch, which made symmetric molecules slow:
+
+| Molecule | Before | With pruning |
+|---|---|---|
+| tetra-tert-butylmethane, C17H36 | 31,104 leaves, about 2 s | under 20 leaves, milliseconds |
+| C53H108 (one more level of branching) | over 200,000 leaves: hit the cap after tens of seconds | under 50 leaves, under 0.1 s |
+| 9 separate waters (one invalid graph) | about 12 s | milliseconds |
+
+Pruning must never change an identity, so the tests compare the pruned
+search with the full one, string for string. They do this on:
+
+- 300 random small graphs;
+- every catalogue molecule;
+- graphs refinement can't split at all (the Petersen graph, the cube, the
+  4×4 rook's graph and the Shrikhande graph);
+- random cubic hydrocarbons;
+- copies of random graphs joined at a hub;
+- two different rigid cubic hydrocarbons beside identical ammonias.
+
+Planted bugs in the pruning are each caught:
+
+- jumping back one level too far, or to the root: caught by the last family
+  (rigid parts beside symmetric ones);
+- never pruning, or taking the identity map as an automorphism: caught by a
+  test that symmetric molecules need few leaves;
+- taking orbits from every automorphism found, not only those fixing the
+  choices made so far: caught by the 4×4 rook's graph with one 2×2 square
+  twisted.
+
+The last of these survived every family Claude tried: random graphs,
+randomly symmetrized graphs, Cayley graphs of small groups, and unions of
+these. The independent review of #5 found the twisted rook's graph by
+searching about 140,000 random graphs.
+
 ## Known limits of layer 1
 
 - **Resonance.** Resonance forms are different graphs, so they can get
@@ -124,15 +164,12 @@ Each one makes the tests fail. Two of them first went uncaught:
   the same identity. Life uses one hand, so a later layer will need this.
 - **Elements and charges.** Only H, C, N and O, with charges −1, 0 and +1.
   Phosphorus and sulfur come when the chemistry needs them.
-- **Symmetry costs time.** The search doesn't yet prune by symmetry, as
-  nauty and bliss do. Most molecules take milliseconds, but a very symmetric
-  one takes longer: tetra-tert-butylmethane (C17H36) takes about 2 seconds.
-  A cap stops the search with an error, but reaching it can take tens of
-  seconds (for example C53H108), and comparing or hashing such a molecule
-  raises the error too. That's acceptable while people write the molecules.
-  Before reactions or agents make molecules freely (layer 3), the search
-  needs symmetry pruning or a time bound, so that no molecule can stall a
-  world.
+- **The search's cap.** A safety net: a graph that needs more than 10,000
+  leaves raises an error instead of getting an identity, and so does
+  comparing or hashing it. With symmetry pruning, no valid molecule tried so
+  far needs more than about 50. But a graph made of several separate copies
+  of one rigid part still grows exponentially and can reach it; identifying
+  each connected part separately will remove that case.
 - **No radicals.** Every atom must have exactly its valence, so open-shell
   species can't be represented: nitric oxide (NO), the hydroxyl radical, the
   methyl radical, or oxygen as the diradical it really is. O2 can be drawn as
