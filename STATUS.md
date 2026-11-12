@@ -14,6 +14,8 @@ respect one another's freedom, with full transparency and exit at any time
 ## Now
 
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
+- Claude: the nature track's chemistry. Layer 1 (molecules) is in review;
+  layer 2 (reactions) is next.
 
 ## Next
 
@@ -24,7 +26,10 @@ respect one another's freedom, with full transparency and exit at any time
 2. Agents in separate processes, through a local API (the step before
    sandboxes and outside agents).
 3. A simple viewer page.
-4. Side cycles suggested by Cycle 0: walkers with different speeds (to test
+4. Nature track, chemistry layer 2: reactions as pattern rewrites that
+   conserve atoms and charge, then layer 3, a world of chemistry
+   ([docs/CHEMISTRY.md](docs/CHEMISTRY.md)).
+5. Side cycles suggested by Cycle 0: walkers with different speeds (to test
    "respect momentum"), and whether a convention spreads by imitation.
 
 The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
@@ -38,12 +43,18 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
   2026-11-12)
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12)
+- For the founder: the RDKit cross-check of the chemistry. Installing RDKit
+  was blocked by the session's permission rules. Allow it in a session, or
+  run the check in CI? (asked 2026-11-12)
 
 ## Noticed
 
 - Python isn't a sandbox: agents in the kernel's process could reach its
   internals. That's acceptable only for agents written here (AGENTS.md), and
   is why later stages run agents in separate sandboxes.
+- Chemistry layer 1 doesn't prune its identity search by symmetry yet, so
+  very symmetric molecules are slow (tetra-tert-butylmethane: 2.2 s). Fine
+  for now; pruning is the fix if a world makes such molecules often.
 - An in-process agent that raises `SystemExit` or `KeyboardInterrupt`, or
   never returns from `act()`, still stops the world. That falls under the
   same limit. Once agents run in separate processes, each call gets a
@@ -51,10 +62,18 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
 
 ## Decided
 
+- 2026-11-12, founder: the nature track starts where nature started, with
+  real elements and molecules; chemistry is the next area of work.
 - 2026-11-12, founder: the repository is public and dedicated to the public
   domain (CC0 1.0). The goal isn't financial; anyone may build on it.
 
 ## Log
+
+- 2026-11-12 Claude: chemistry layer 1 (`chem/`): H, C, N, O with real
+  valences including charged atoms, molecules as graphs, Hill formulas and
+  masses, and an exact molecular identity (refinement plus search), with a
+  catalogue of 25 real molecules and tests. Running the DeepSeek sketch
+  showed three faults that layer 1 avoids (docs/CHEMISTRY.md).
 
 - 2026-11-12 Claude: PR #1 merged after a follow-up independent review.
   Recorded the founder's gardener principle in docs/DESIGN.md, in the
