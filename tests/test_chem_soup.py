@@ -195,6 +195,8 @@ class TestConservation(unittest.TestCase):
             lambda: Soup(1, 1, wrap=1),
             lambda: Soup(1, 1, volume=1e-200),
             lambda: Soup(1, 1, volume=1e200),
+            lambda: soup.add_reaction([GLYCINE], [ZWITTERION], 1e308),
+            lambda: soup.add_species(GLYCINE, hop_rate=1e308),
             lambda: soup.add_species(WATER, hop_rate=-1),
             lambda: soup.add_species(WATER, hop_rate=float("nan")),
             lambda: soup.add_reaction([WATER], [WATER], 1.0),
@@ -237,10 +239,12 @@ class TestRounding(unittest.TestCase):
     an event that can't happen, nor report rest while events remain
     (independent review of #8). Each world here broke the first version of
     the engine at one of the values tried: world 142 drove a count
-    negative, and worlds 193 and 195 made step() report rest."""
+    negative, and worlds 193 and 195 made step() report rest. World 436
+    breaks it if only possible events are no longer the sole candidates
+    (found by the follow-up review of #8)."""
 
     def test_every_value_near_every_boundary(self):
-        for seed in (142, 193, 195):
+        for seed in (142, 193, 195, 436):
             probe = rounding_world(seed)
             weights = probe._propensity
             total = sum(weights)

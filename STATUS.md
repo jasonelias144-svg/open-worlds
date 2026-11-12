@@ -85,7 +85,8 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
   review, which also found the graph that exposes the one pruning bug no
   test caught (a 4x4 rook's graph with one square twisted); it is now a
   test. The independent review of #8 found a rare rounding fault in the
-  engine (a count could go below zero); fixed and tested before merging.
+  engine (a count could go below zero, or the world could report rest while
+  events remained); fixed and tested before merging.
 
 - 2026-11-12 Claude: chemistry layer 3, step 1: the engine of a world of
   chemistry (`chem/soup.py`): a grid of well-mixed cells, mass-action

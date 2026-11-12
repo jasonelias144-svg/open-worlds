@@ -42,6 +42,9 @@ from .reactions import balance
 
 GENESIS = "0" * 64          # the same start as the agent worlds' log
 MIN_VOLUME, MAX_VOLUME = 1e-6, 1e6
+# Far above any real rate constant, and low enough that a propensity can't
+# overflow to infinity (which would stop the clock).
+MAX_RATE = 1e15
 
 Cell = Tuple[int, int]
 
@@ -99,6 +102,8 @@ class Soup:
         if type(molecule) is not Molecule or molecule.problems():
             raise ValueError(f"not a valid molecule: {molecule!r}")
         rate = _positive_number(hop_rate, "hop rate")
+        if rate > MAX_RATE:
+            raise ValueError(f"hop rate must be at most {MAX_RATE}")
         key = molecule.identity()
         if key in self._index:
             i = self._index[key]
@@ -125,6 +130,8 @@ class Soup:
         if not reactants or not products:
             raise ValueError("a reaction needs reactants and products")
         rate = _positive_number(rate, "rate")
+        if rate > MAX_RATE:
+            raise ValueError(f"rate must be at most {MAX_RATE}")
         for m in reactants + products:
             if type(m) is not Molecule or m.problems():
                 raise ValueError(f"not a valid molecule: {m!r}")
