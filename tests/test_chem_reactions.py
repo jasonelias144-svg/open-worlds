@@ -188,7 +188,10 @@ class TestRulesMustObeyTheLaws(unittest.TestCase):
                  after={}),
             dict(atoms={"c": "C", "o": "O"}, before={("c", "o"): 1},
                  after={("c", "o"): 1}),
-            dict(atoms={"c": "C", "o": "O"}, before={"co": 1}, after={}),
+            # Bonds given as two-letter strings: otherwise a valid rule
+            # (water's self-ionization), so only the pair check refuses it.
+            dict(atoms={"o": "O", "h": "H", "p": "O"}, before={"oh": 1},
+                 after={"ph": 1}, charges_after={"o": -1, "p": +1}),
         ]
         for spec in bad:
             with self.subTest(spec):
