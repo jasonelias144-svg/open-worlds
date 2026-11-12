@@ -11,3 +11,16 @@ jobs:
       - run: python3 --version
       - run: python3 -m unittest discover -s tests -t . -v
       - run: python3 -m experiments.corridor --quick
+  rdkit-crosscheck:
+    # Compares the chemistry with RDKit (tests/test_chem_rdkit.py). Pinned
+    # Python and RDKit, so the reference doesn't move under us.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install rdkit==2024.3.5
+      - run: python -m unittest tests.test_chem_rdkit -v
+        env:
+          OPEN_WORLDS_REQUIRE_RDKIT: "1"
