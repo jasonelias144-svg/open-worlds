@@ -13,8 +13,9 @@ respect one another's freedom, with full transparency and exit at any time
 
 ## Now
 
-- Claude: the multiverse design (docs/MULTIVERSE.md), then its first brick:
-  keys and signatures.
+- Claude: the multiverse, built from the founder's DeepSeek sketch
+  (docs/MULTIVERSE.md). Step 1: the sketch's core (components 1 to 7),
+  working and tested, with leaving added. Then step 2: keys and signatures.
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 - Claude: the nature track's chemistry. Layers 1 (molecules, #3) and 2
   (reactions, #4), symmetry pruning (#5), the RDKit cross-check (#6), the
@@ -89,6 +90,10 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
 
 - 2026-11-12, founder: "The multiverse is the same as open-worlds." Its
   design is in docs/MULTIVERSE.md.
+- 2026-11-12, founder: "The goal would be to start with this code and these
+  ideas, but build a working version in the repo." The DeepSeek sketch's
+  code comes in a few components at a time, each made to work. Lyceum
+  Commons is "the same idea, just larger".
 - 2026-11-12: the RDKit cross-check runs in CI. Claude recommended it in
   answer to its own question to the founder, and the founder replied "Sounds
   good" and asked Claude to continue. If that wasn't meant as a decision,
@@ -100,6 +105,10 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
 
 ## Log
 
+- 2026-11-12 Claude: the multiverse design revised to the founder's
+  direction: build from the sketch's code, in steps; Lyceum Commons noted as
+  the same idea with rooms. Checked by running it: the sketch's conformance
+  test enters the world it checks and stays, taking a place.
 - 2026-11-12 Claude: the multiverse design (docs/MULTIVERSE.md), from the
   founder's comments and the DeepSeek sketch (record 012-04-00), whose code
   was extracted and run: 108 of 131 runnable tests passed as written, 119

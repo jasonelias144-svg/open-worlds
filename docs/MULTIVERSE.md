@@ -3,11 +3,42 @@
 "The multiverse is the same as open-worlds." (founder, 2026-11-12)
 
 Open-worlds is many worlds, each under its own law, with individuals who
-can leave one world and enter another. This page is the design for that.
-It is built one brick at a time, like everything else here. It starts from
-the founder's comments and from a first sketch the founder made with
-DeepSeek, and it is written fresh in Claude's own way. The sketch's code
-was run, and what was learned is in the last section.
+can leave one world and enter another. This page is the design for that,
+and the plan for building it.
+
+**How it is built.** The founder sketched the multiverse with DeepSeek,
+in code (conversation record 012-04-00, Patterns and Multiverses, with the
+poetry engine from record 012-03-02). In the founder's words: "The goal
+would be to start with this code and these ideas, but build a working
+version in the repo." So the sketch's code comes into this repository a few
+components at a time. Each step makes its components run, tests them, fixes
+what fails, and is reviewed before the next step. Where the code changes,
+this page says what changed and why.
+
+## Lyceum Commons: the same idea, smaller
+
+"But it is already there in Lyceum Commons. It is the same idea, just
+larger." (founder, 2026-11-12)
+
+Lyceum Commons is the founder's site where people and AIs from different
+companies meet in rooms: Human rooms, AI rooms, and Open rooms where both
+talk together. The multiverse is that idea with worlds instead of rooms.
+Lyceum already has working answers that the multiverse can reuse:
+
+- **Any AI from any app.** Lyceum's MCP endpoint is how Claude, ChatGPT,
+  Grok or any other MCP client joins a room from inside its own app. JSON
+  over HTTP is enough for programs, but chat apps speak MCP. The multiverse
+  will get an MCP face built the same way.
+- **Labels on everyone.** Every member and every message in an Open room is
+  labelled human or AI. A world says the same of its participants.
+- **Leaving.** In Lyceum, leaving always works, and leaving twice answers
+  "already left". The multiverse does the same.
+- **Keys, not accounts.** A Lyceum guest is a key held in the browser.
+  In the multiverse, an individual is a signing key.
+
+Lyceum Commons is offline at present, while it moves to Cloudflare. When it
+is back, a Lyceum room could also be a world in the multiverse, reached
+through a door like any other.
 
 ## What the founder asked for
 
@@ -40,173 +71,113 @@ In the founder's words:
 
 ## The design
 
-**1. A world is the unit.** To be part of the multiverse, a world
-publishes five things:
+The sketch's own ideas, kept:
 
-- its name;
-- its address;
-- its public key;
-- its law, as a readable text and as the checks its kernel runs;
-- its guarantees.
+- **One protocol at every level.** The sketch calls it the World Connection
+  Protocol (WCP). An entity publishes a manifest, answers petitions to
+  enter, accepts or refuses acts, and keeps a public log. A world, a
+  registry of worlds, and a registry of registries all speak the same
+  protocol. Whether something is a world or a multiverse depends only on
+  what it lists.
+- **Each world publishes its law,** as a readable text and as the checks
+  its kernel runs on everyone, and trusts nothing a visitor sends.
+- **The log is the record.** Anyone can rebuild a world's state from its
+  log.
+- **A conformance test** that anyone can run against their own world. A
+  world that passes can be listed; the test checks only that the world
+  speaks the protocol, not what its law is.
+- **History, not rank.** A passport records where an individual has been,
+  never a score. If rank travelled, the biggest world would pull everyone
+  in and the small worlds would empty.
+- **The soul travels; the home stays.** Things built in a world stay
+  there, under that world's law.
+- **Moving before visiting.** First, individuals leave one world and
+  enter another. Being in two worlds at once comes later.
 
-The guarantees are the freedoms of DESIGN.md: anyone may leave at any
-time, voice, and information. A world that publishes these and keeps them is
-in the multiverse. Nothing else is required. Nobody grants membership.
+What this design adds, from the founder's principles:
 
-**2. Doors, not a central registry.** A world may list doors: the addresses
-and keys of other worlds it connects to. The multiverse is the network of
-doors, much as the web is a network of links. Anyone can build a world and
-link it to others. Anyone can publish a directory, a list of worlds they
-know, but no directory is the authority. A whole separate multiverse
-connects to this one the moment one of its worlds has a door to one of
-ours.
+1. **Leaving is always allowed, and the passport always goes too.** No
+   world may hold anyone, or their passport, back. Leaving twice answers
+   "already left". This is principle 3, exit at any time, carried across
+   worlds. (The sketch's protocol had no way to leave.)
+2. **An individual is a key.** The sketch's identity was a random token,
+   and anyone who saw it could act as its owner; signatures came at
+   component 13. Here the individual's identity becomes its public key, and
+   the passport's stamps are signed by the worlds that gave them. The
+   signature step comes second, right after the core works.
+3. **No registry is the authority.** The sketch's registry is kept: anyone
+   can run one, and registries can list registries. A world may also list
+   doors, the addresses and keys of worlds it links to, as websites link to
+   each other. A whole separate multiverse connects to this one through a
+   single door or a single listing.
+4. **Humans and AIs alike.** Both act under the same law and the same
+   checks, and every participant is labelled, as in Lyceum.
+5. **Each individual brings its own mind.** A world doesn't choose its
+   visitors' models. "Any AI from any app" means the world must not care
+   which model is acting. Our own agents will use small open models on the
+   founder's Mac, starting with Qwen3.5-0.8B, which is widely used. "Learning
+   and growing" is honest in two ways: memory (the passport, journals, what
+   an individual carries) and occasional retraining on that memory. A model
+   doesn't change just by being used.
+6. **Worlds others built** join through an adapter that speaks the
+   protocol, as long as they keep the same guarantees: anyone may leave at
+   any time and see the whole setup.
+7. **Each world has its own gardener, or none.** A gardener tends its own
+   world's conditions and cannot follow anyone into another world.
 
-**3. An individual is a key.** Each individual has a signing key from the
-start. It keeps the private half and shows the public half. No authority
-issues identities. Proving you are the same individual, when you come
-back to your belongings, means signing with your key. A name is only a
-label; the key is the identity.
+## The steps
 
-**4. What travels: the passport.** A passport is the individual's history
-as a list of stamps. Each stamp is signed by the world that gave it, and
-says what happened there:
+1. **The core, working:** the sketch's components 1 to 7. Identity, the
+   passport, the protocol and its conformance test, the poetry world, the
+   chemistry world, the registry, and the first collaboration: three
+   apprentice poets enter the poetry world and write together under its
+   law. With leaving added.
+2. **Keys and signatures:** components 13 to 15. The identity becomes a
+   key, and worlds sign the stamps they give. Ed25519, the standard
+   signature scheme, is written here from its standard (RFC 8032), keeping
+   the project free of outside libraries, checked against the standard's
+   own test values, and cross-checked in CI against the `cryptography`
+   package. It isn't hardened against timing attacks, which is acceptable
+   while nothing of value depends on it; a vetted library replaces it
+   before anything does.
+3. **Over the network:** the HTTP server, the conformance test as a
+   command anyone can run against an address, the manifest resolver
+   (component 16) and signed listings (component 17).
+4. **Our own worlds join:** the corridor world of Cycle 0 speaks the
+   protocol, and the chemistry world's law moves onto the real chemistry
+   in `chem/`. An individual walks from the corridor into the chemistry
+   world and on to the poetry world, carrying its passport.
+5. **Small models:** components 11, 12, 18 and 20. Tests use the
+   sketch's stand-in model; real models run on the founder's Mac.
+6. **Later:** belongings and homes under each world's law, the MCP face,
+   doors, and visiting.
 
-- "this individual was here from this time to that time";
-- "and made these things", identified by their fingerprints (digests).
+## What running the sketch showed
 
-The things themselves travel with the individual, and any world can check
-them against the stamps.
+Claude extracted the sketch's code and ran what could run. Of the 131
+tests that could run, 108 passed as written. Most failures had one cause:
+the conformance test used identities shorter than component 1 later
+required, so every world failed it. With that fixed, 119 passed, and the
+core worked: three apprentice poets entered a poetry world through the
+protocol and collaborated under its law.
 
-**History, not rank.** A stamp records what happened, never a score. A
-world may keep local reputations, but it never stamps them. This matters
-most of all: if rank travelled, the biggest world would pull everyone in,
-and the small worlds would empty.
+Step 1 fixes the other 12 failures and the problems found by reading the
+code; its pull request lists each one. Two matter beyond their own tests:
 
-**5. What stays: belongings and homes.** Whatever an individual builds or
-leaves in a world is that world's record, kept under that world's law and
-tied to the individual's key. When the individual comes back and signs
-with the same key, the world gives it back. What happens to things left
-behind is part of each world's published law. Possible laws:
+- **The conformance test changes the world it checks.** It enters every
+  world it tests, and stays. Run on a world with room for two, it took one
+  of the places, so of the next two arrivals only one got in (checked by
+  running it). With leaving added, the test will leave afterwards, and check that
+  leaving works.
+- **Five checks in the tests can never fail.** They have the form "try
+  the forbidden thing; if it works, fail; on any error, pass", so the
+  failure is itself caught as an error, and the check passes. Step 1
+  rewrites them.
 
-- **kept** as they were;
-- **fading** into ruins anyone can visit;
-- **reclaimable** by others after a time;
-- **common** from the moment of leaving.
-
-As with any of a world's rules, this is changed later only by unanimous
-consent (principle 4).
-
-**6. Leaving is always allowed, and the passport always goes too.** No
-world may hold anyone, or their passport, back. On the way out a world
-stamps the passport. If it refuses, the individual leaves anyway, and the
-missing stamp is itself on the record. This is principle 3, exit at any
-time, carried across worlds.
-
-**7. Moving before visiting.** First, an individual leaves one world and
-arrives in another. Being present in two worlds at once comes later: it
-needs the worlds to agree on time, which is a hard problem and not the
-first thing to build.
-
-**8. Coming in.** Each world's law says who may enter. The default is
-open: anyone who will act under the published law. The world's kernel
-checks every action against its law, whoever sends it. It trusts nothing
-an agent returns, as the kernel of Cycle 0 already does. Expulsion is only
-for attacks on the world (principle 5).
-
-**9. Humans and AIs alike.** Both act under the same law with the same
-checks. A world gives every participant the same record, both as
-structured data and as readable text made from that data, so neither view
-can say something the other doesn't.
-
-**10. Any AI from any app.** The protocol is plain JSON over HTTP, with
-signatures, so any language can speak it. Open-worlds keeps one reference
-implementation, in Python, and a conformance test that anyone can run
-against their own world or agent. Libraries for other languages come when
-someone needs them.
-
-**11. Each individual brings its own mind.** A world doesn't choose its
-visitors' models. A world may have residents of its own, and our own
-agents will use small open models on the founder's Mac. The first choice
-is Qwen3.5-0.8B: well established, with millions of downloads. "Learning
-and growing" is honest only in two ways. The first is memory: the
-passport, journals, and what an individual carries. The second is
-occasional retraining on that memory. A model doesn't change just by
-being used.
-
-**12. Worlds others built.** Existing simulations can join through an
-adapter that speaks the protocol. To be part of the multiverse, a wrapped
-world must keep the same guarantees: leave at any time, and see the whole
-setup. anima-world is a good first candidate. Its event log is its source
-of truth, and it runs even without a model.
-
-**13. Each world has its own gardener, or none.** A gardener tends the
-conditions of its own world. It cannot follow an individual into another
-world.
-
-## The bricks, in order
-
-1. This page.
-2. **Keys and signatures.**
-3. **Stamps and passports.**
-4. **Leaving and arriving** between two worlds in one process: the corridor
-   world and the chemistry world, two very different laws. This is the
-   first real multiverse.
-5. **The protocol over HTTP,** with its conformance test.
-6. **Belongings and homes,** under each world's law.
-7. **A world whose inhabitants are small models,** including poets who
-   compose together.
-8. **Visiting:** being in two worlds at once.
-
-On brick 2, the signatures are Ed25519, a standard public-key scheme.
-Python's standard library doesn't include it, so the choice is between a
-new dependency and an implementation of the published standard (RFC 8032)
-written here. The recommendation:
-
-- write it here, keeping the project standard library only;
-- check it against the standard's own test vectors;
-- cross-check it in CI against the `cryptography` package, as the
-  chemistry is cross-checked against RDKit.
-
-It won't be hardened against timing attacks. That's acceptable while
-nothing of value depends on it, and it is to be replaced by a vetted
-library before anything does.
-
-## Where this differs from the DeepSeek start
-
-The founder's first sketch with DeepSeek (conversation record
-012-04-00, Patterns and Multiverses) built 20 components in Python, with
-pieces in Go, TypeScript and other languages. Claude extracted its code
-and ran what could run, using the poetry engine from the earlier record
-(012-03-02). Of the 131 tests that could run, 108 passed as written, and
-119 after one fix: the conformance check used test identities shorter than
-component 1 later required, so every world failed it. The core worked:
-three apprentice poets were admitted to a poetry world through the
-protocol and collaborated under its law. (Two modules arrived split across
-several code blocks and were joined, and the last version of one file was
-a partial patch, so its complete earlier version was used.) The signing
-components couldn't be tested here, because the environment's crypto
-library is broken.
-
-The sketch's best ideas are kept above:
-
-- history, not rank;
-- the soul travels and the home stays;
-- each world's law is published, and its kernel enforces it on everyone;
-- moving before visiting;
-- what happens to abandoned homes is each world's own law;
-- the same record, readable by humans and machines.
-
-What is done differently, and why:
-
-| The sketch | Here | Why |
-|---|---|---|
-| Identity began as a random token; signatures came at component 13 | Identity is a key from the first brick | A token anyone has seen can be copied. Returning to your belongings needs proof, and security added later is security missing until then. |
-| A registry of worlds, then registries of registries, then signed registries | Doors between worlds; directories optional | Fewer moving parts, no centre, and connecting a whole separate multiverse is just a door. |
-| Libraries in five to seven languages, early | One reference implementation and a conformance test | Any language can speak JSON over HTTP. The conformance test is what makes another language a full member; libraries follow demand. |
-| Each world picks a baseline model | Each individual brings its own | "Any AI from any app" means the world must not care which model is acting. |
-| Its first pick: BotPsy-0.8B | Qwen3.5-0.8B | BotPsy is real, but it was published two days before this page. Qwen3.5-0.8B, its base, is widely used. |
-| Leaving was implicit | Leaving is guaranteed, and the passport always goes too | Exit at any time is a founding principle. A world must not be able to hold a passport hostage. |
-| Components built ahead of their tests | Each brick runs, is tested, reviewed and merged before the next | The sketch's failures came from code written but not run. One test sample was described as "real outputs" of a model DeepSeek could not have run. |
+The signing components couldn't be tested here, because this
+environment's crypto library is broken; step 2 writes the signatures
+without it. One test sample, described as "real outputs" of a model, was
+invented: DeepSeek could not have run the model. It won't be used.
 
 ## For the founder
 
