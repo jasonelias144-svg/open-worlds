@@ -56,6 +56,11 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
 
 ## Log
 
+- 2026-11-12 Claude: PR #1 merged after a follow-up independent review.
+  Recorded the founder's gardener principle in docs/DESIGN.md, in the
+  founder's words; took up the review's two notes (a test that keeps the
+  tick guard in place; narrower wording in the Cycle 0 record).
+
 - 2026-11-12 Claude: created the repository with the handbook files, the
   world kernel (exit, voice and information guaranteed, with tests), the
   design, the charter's structure, and Cycle 0 (corridor lanes). The

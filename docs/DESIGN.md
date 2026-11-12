@@ -21,6 +21,27 @@ come first; the engineering follows from them.
    compare.
 7. **Everything is public.** The repository is open and dedicated to the
    public domain (CC0). The goal isn't financial; anyone may build on it.
+8. **The gardener.** In the founder's words: "It should be like a gardener
+   that provides the water, puts the plant in the sun, keeps the soil fresh,
+   but leaves the growing to the plant. And just as the plant grows, the
+   gardener learns."
+
+## The gardener, in practice
+
+A world may carry a continuation protocol, so that it doesn't simply
+collapse, for instance when an element runs short. Following principle 8:
+
+- **It tends conditions, never inhabitants:** supplies, light, terrain; never
+  an inhabitant's own recipe or choices.
+- **It is a law of the world, declared from the start** in the charter, like
+  seasons or a thermostat. It is not a hand from outside, so it doesn't
+  bypass the rule that world rules change only by consent.
+- **Every adjustment is logged,** so anyone can tell what happened unaided
+  from what happened with help.
+- **Less is better.** The protocol's measure is how rarely it has to act. A
+  world that needs it less over time is learning to sustain itself.
+- **Some worlds run without it,** under the same starting conditions, because
+  collapse is information too.
 
 ## The core idea: one authority, agents outside it
 
