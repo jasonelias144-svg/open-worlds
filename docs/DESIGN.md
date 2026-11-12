@@ -133,9 +133,10 @@ something is at stake: on a sidewalk, collisions cost time.
 4. A simple viewer page.
 5. Self-modifying agents in sandboxes.
 6. Governance: proposals, tests on a copy, unanimous consent.
-7. Several worlds, and moving between them.
+7. Several worlds, and moving between them: the multiverse, designed in
+   [MULTIVERSE.md](MULTIVERSE.md).
 8. Public viewing.
-9. Agents from outside.
+9. Agents from outside, through the multiverse's protocol.
 
 ## The nature track
 
