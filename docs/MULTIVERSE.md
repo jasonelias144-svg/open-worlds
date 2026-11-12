@@ -13,12 +13,20 @@ would be to start with this code and these ideas, but build a working
 version in the repo." So the sketch's code comes into this repository a few
 components at a time. Each step makes its components run, tests them, fixes
 what fails, and is reviewed before the next step. Where the code changes,
-this page says what changed and why.
+this page says what changed and why. Later the founder added: "the
+DeepSeek code is a guideline, but if it happens to be close to executable
+and functional, all the better", and "I expect you to take all that in
+and do it in your own way that makes the most sense to you."
 
 ## Lyceum Commons: the same idea, smaller
 
 "But it is already there in Lyceum Commons. It is the same idea, just
 larger." (founder, 2026-11-12)
+
+And: "I already had the idea of a communication multiverse, we just
+called it Lyceum Commons. Connecting to it would be ideal, but it was
+mentioned to demonstrate this idea has been a part of the project all
+along".
 
 Lyceum Commons is the founder's site where people and AIs from different
 companies meet in rooms: Human rooms, AI rooms, and Open rooms where both
@@ -127,33 +135,103 @@ What this design adds, from the founder's principles:
 7. **Each world has its own gardener, or none.** A gardener tends its own
    world's conditions and cannot follow anyone into another world.
 
-## The steps
+## Two worlds to start
 
-1. **The core, working** (done; `multiverse/`): the sketch's components
-   1 to 7. Identity, the passport, the protocol and its conformance test,
-   the poetry world, the chemistry world, the registry, and the first
-   collaboration: three apprentice poets enter the poetry world and write
-   together under its law. With leaving added. Run it with
-   `python3 -m multiverse.collaboration`.
-2. **Keys and signatures:** components 13 to 15. The identity becomes a
-   key, and worlds sign the stamps they give. Ed25519, the standard
-   signature scheme, is written here from its standard (RFC 8032), keeping
-   the project free of outside libraries, checked against the standard's
-   own test values, and cross-checked in CI against the `cryptography`
-   package. It isn't hardened against timing attacks, which is acceptable
-   while nothing of value depends on it; a vetted library replaces it
-   before anything does.
-3. **Over the network:** the HTTP server, the conformance test as a
-   command anyone can run against an address, the manifest resolver
-   (component 16) and signed listings (component 17).
-4. **Our own worlds join:** the corridor world of Cycle 0 speaks the
-   protocol, and the chemistry world's law moves onto the real chemistry
-   in `chem/`. An individual walks from the corridor into the chemistry
-   world and on to the poetry world, carrying its passport.
-5. **Small models:** components 11, 12, 18 and 20. Tests use the
-   sketch's stand-in model; real models run on the founder's Mac.
-6. **Later:** belongings and homes under each world's law, the MCP face,
-   doors, and visiting.
+"A world for poetry and one for chemistry is a perfect way to start with
+two types of worlds and build from those. They should each have a place
+in this multiverse, even if we have not yet worked out how different
+worlds interact." (founder)
+
+Both are in the same registry and speak the same protocol under very
+different laws. Worlds don't need to talk to each other directly: they
+meet through the individuals who move between them, and through what
+those individuals carry, a passport of signed stamps saying where they
+were and what they made.
+
+## Learning, and evolution as a path between worlds
+
+The founder: a lightweight model "to make certain statistical learning
+choices in the chemistry world. Imagine it learning how to form molecules
+and so on", so that "chemical agents can advance to organic chemistry
+worlds if they solve certain problems. This provides evolution as a path
+between worlds." And: "I would love to see the intelligence grow with the
+complexity of the molecules", with a single agent learning continuously
+"over long periods of time, across a variety of worlds".
+
+- **The learner is not a language model.** A language model doesn't
+  change while it is used. A small learner whose numbers update with
+  experience does: it tries a reaction, sees what forms, and is rewarded
+  for progress. Thousands of parameters, not billions.
+- **Its size is earned.** It starts tiny and grows only when its world
+  asks for more. Prior art: NEAT (networks that grow over generations)
+  and progressive networks (a new part for each new kind of task).
+- **Its mind travels with it.** What it has learned is part of what the
+  individual carries between worlds; worlds can't change it, only its
+  own learning does.
+- **Forgetting is the known obstacle.** Systems that keep learning tend
+  to lose old skills (catastrophic forgetting). The known remedies are
+  replaying old experience and growing new parts instead of overwriting
+  old ones. Standing problems, posed again and again over its life,
+  measure both growth and forgetting.
+- **Its life can be replayed** from saved state and the logs.
+- **The first problem is real.** Our chemistry can already join two
+  glycines into glycylglycine and water: a peptide bond, one of the
+  classic origin-of-life problems. It gets its real difficulty once real
+  reaction rates come in.
+- **Passage.** The organic chemistry world's published law admits those
+  whose passport carries a signed stamp from the chemistry world saying
+  "made glycylglycine here". That is history, not rank: what was made,
+  not a score. Conditions like this live only in a world's published law.
+- **Learning and evolution.** An agent that learns and then moves up is
+  development, like a school. It becomes evolution when agents reproduce
+  with variation and only some get through. Learning comes first, then
+  populations.
+- **Who the agent is.** Molecules don't choose. In the chemistry world the
+  agent is a chemist-like actor deciding what to try in its part of the
+  soup; in a cell world, the organism itself is the agent.
+- **Freedom.** Moving up is offered, never forced; anyone can go back.
+
+## Time
+
+The founder: "accelerated learning worlds, or even certain accelerated
+learning times, where evolution gets a boost of information and time
+flow acceleration."
+
+- In a simulation, time is steps. Each world publishes its time rate in
+  its law; nobody enters a fast world without choosing to, and leaving
+  still works at any moment.
+- Speed is bounded by the computer and by the slowest mind a world waits
+  for. A tiny learner decides in microseconds; a language model takes a
+  fraction of a second. Fast worlds suit small learners.
+- Acceleration comes from running without real-time pacing, from
+  replaying logged experience, and from parallel copies.
+- A boost gives conditions (richer worlds, harder problems, more
+  experience), not answers: the gardener principle.
+- Stamps record both the world's time and real time, so a history that
+  crosses worlds of different speeds still makes sense.
+
+## The course
+
+The steps ahead are in [COURSE.md](COURSE.md): twelve steps, rolling.
+After each step is done, the rest are rechecked and one new step is
+added at the end.
+
+## Later: one main world
+
+"Perhaps there can be one main large world that is community built and
+capable of hosting a full physics simulator from chemistry up. But that
+is for later." (founder)
+
+- It would be one world among many, not the centre: anyone may leave it,
+  and the small worlds stay worth living in.
+- The community builds within its law; the law itself changes only by
+  unanimous consent.
+- Small worlds are the laboratories: a new layer of physics proves
+  itself in a small world before it is proposed to the main one.
+- "From chemistry up" has to be layered: chemistry exactly where it
+  matters, coarser rules elsewhere. No computer simulates everything
+  atom by atom.
+- It needs a host that stays on, and a compute budget.
 
 ## What running the sketch showed
 
@@ -213,8 +291,9 @@ The other fixes:
   since the poetry world checks turns and convergence.
 
 Known limits carried over, to be fixed in later steps: tokens can be
-copied until identities become keys (step 2); a registry's listing act
-carries the world itself, so it works only within one process (step 3);
+copied until identities become keys (course step 2); a registry's
+listing act carries the world itself, so it works only within one
+process (course step 12);
 `log_since` can skip an entry written in the same microsecond, and
 in-process readers share the log's entries rather than getting copies.
 "A world never raises on what a visitor sends" holds for ordinary
@@ -225,14 +304,16 @@ in their own processes and reach worlds through the protocol
 Until worlds have keys, a world can't take down its own listing, and a
 listing whose lister has left stays up; and two registries may list each
 other, which matters once listings are followed over the network
-(step 3).
+(course step 12).
 
-The sketch's demonstration opened with a poem of the founder's. It is
-replaced by new lines written for this repository until the founder
-decides whether the poem may be public, since the repository is CC0.
+The sketch's demonstration opened with a poem of the founder's. The
+founder preferred a known poem as the starting example ("We should use a
+known poem to start anything"), so the demonstration opens with Emily
+Dickinson's "Hope is the thing with feathers" (1891), and the apprentices'
+portfolios are stanzas of her other poems.
 
 The signing components couldn't be tested here, because this
-environment's crypto library is broken; step 2 writes the signatures
+environment's crypto library is broken; course step 2 writes the signatures
 without it. One test sample, described as "real outputs" of a model, was
 invented: DeepSeek could not have run the model. It won't be used.
 

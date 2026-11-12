@@ -8,8 +8,9 @@ Changed from the sketch: a world id no longer needs 8 characters. The
 protocol never required that of a world's id, so a world with a shorter
 id crashed while admitting someone.
 
-Known limit, until step 2: admissions are not signed, so a passport's
-holder could forge one. Step 2 has each world sign the stamps it gives.
+Known limit, until course step 3 (docs/COURSE.md): admissions are not
+signed, so a passport's holder could forge one. Step 3 has each world
+sign the stamps it gives.
 """
 from __future__ import annotations
 

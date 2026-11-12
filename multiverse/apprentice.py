@@ -8,8 +8,8 @@ the stance with a template, and asks the next poet a question.
 
 The honest scope, as the sketch said: this is template reworking, not
 writing. It is a stand-in that lets the poetry world run end to end, as
-the corridor walkers of Cycle 0 are stand-ins for agents. Step 5 of
-docs/MULTIVERSE.md brings small language models.
+the corridor walkers of Cycle 0 are stand-ins for agents. Course step 11
+(docs/COURSE.md) brings small language models.
 
 Changed from the sketch:
   - Only what the multiverse uses is here. The engine's own Polyphony

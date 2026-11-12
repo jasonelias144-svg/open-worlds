@@ -140,8 +140,8 @@ class TestPassport(unittest.TestCase):
         self.assertEqual(Admission("w", T1).world_id, "w")
 
     def test_honest_limitation_unsigned_admissions(self):
-        # Admissions are not signed yet (step 2). A forged admission looks
-        # exactly like a real one.
+        # Admissions are not signed yet (course step 3). A forged
+        # admission looks exactly like a real one.
         real = _passport("Alice").with_admission(make_admission("world:A", T1))
         forged = _passport("Bob").with_admission(make_admission("world:A", T1))
         self.assertEqual(real.admissions, forged.admissions)

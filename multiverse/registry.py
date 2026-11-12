@@ -25,9 +25,9 @@ Changed from the sketch:
     recorded who listed it but let anyone remove it), and a registry
     does not list itself.
 
-Known limit, until step 3: `multiverse.admit` carries the entity itself,
-so it only works within one process. Over the network it carries an
-address.
+Known limit, until course step 12 (docs/COURSE.md): `multiverse.admit`
+carries the entity itself, so it only works within one process. Over the
+network it carries an address.
 """
 from __future__ import annotations
 

@@ -35,12 +35,13 @@ class TestApprentice(unittest.TestCase):
 
     def test_key_terms(self):
         a = _apprentice([])
-        terms = a.key_terms(_prior("The stone, the stone, and the river."))
-        self.assertEqual(terms, ["stone", "river"])
+        terms = a.key_terms(
+            _prior("I never saw a moor,\nI never saw the sea;"))
+        self.assertEqual(terms, ["never", "saw", "moor", "sea"])
 
     def test_turn_has_every_part_and_holds_open(self):
         a = _apprentice(demo_portfolio("Apprentice-A"))
-        turn = a.generate_turn(_prior("The river bends around the stone."), 0)
+        turn = a.generate_turn(_prior("A bird came down the walk:"), 0)
         self.assertIsInstance(turn, Turn)
         self.assertTrue(turn.acknowledgment and turn.proposal
                         and turn.invitation)
@@ -51,18 +52,19 @@ class TestApprentice(unittest.TestCase):
         a = _apprentice(demo_portfolio("Apprentice-A"),
                         stances=(S.FORMALIST, S.MARXIST))
         for _ in range(20):
-            turn = a.generate_turn(_prior("the river", S.FORMALIST), 0)
+            turn = a.generate_turn(_prior("the sea", S.FORMALIST), 0)
             self.assertEqual(turn.stance_used, S.MARXIST)
 
     def test_acknowledgment_names_the_prior_words(self):
         a = _apprentice(demo_portfolio("Apprentice-A"))
-        turn = a.generate_turn(_prior("The heron waits by the water."), 0)
-        for word in ("heron", "waits", "water"):
+        turn = a.generate_turn(_prior("The soul selects her own society,"),
+                               0)
+        for word in ("soul", "selects", "own"):
             self.assertIn(word, turn.acknowledgment)
 
     def test_every_line_is_traced(self):
         a = _apprentice(demo_portfolio("Apprentice-A"))
-        turn = a.generate_turn(_prior("The stone and the river."), 0)
+        turn = a.generate_turn(_prior("I never saw the sea;"), 0)
         for line in turn.proposal.split("\n"):
             if line.strip():
                 entry = a.provenance.trace(line)
@@ -72,19 +74,23 @@ class TestApprentice(unittest.TestCase):
 
     def test_no_matching_poem(self):
         a = _apprentice(demo_portfolio("Apprentice-A"))
-        turn = a.generate_turn(_prior("Lanterns over snowfields."), 0)
+        turn = a.generate_turn(_prior("Because I could not stop for Death,"),
+                               0)
         self.assertEqual(turn.proposal, "(no seeds available for this stance)")
 
     def test_each_stance_reworks(self):
-        poem = PortfolioPoem("The river runs.\nThe stone stays.\nAnd?",
+        poem = PortfolioPoem("I'm nobody! Who are you?\n"
+                             "Are you nobody, too?\n"
+                             "Then there's a pair of us — don't tell!",
                              "x", "t")
         expected = {
-            S.FORMALIST: "The river runs.\nThe stone stays.",
-            S.STRUCTURALIST: "not-The\nnot-The",
-            S.DECONSTRUCTIVE: "The river runs.\nand also\nThe stone stays."
-                              "\nand neither is the poem.",
-            S.MARXIST: "the labor behind this:\nThe river runs.\n"
-                       "The stone stays.\nAnd?",
+            S.FORMALIST: "Then there's a pair of us — don't tell!",
+            S.STRUCTURALIST: "not-I'm\nnot-Are",
+            S.DECONSTRUCTIVE: "I'm nobody! Who are you?\nand also\n"
+                              "Are you nobody, too?\nand neither is the poem.",
+            S.MARXIST: "the labor behind this:\nI'm nobody! Who are you?\n"
+                       "Are you nobody, too?\n"
+                       "Then there's a pair of us — don't tell!",
         }
         a = _apprentice([poem])
         for stance, text in expected.items():
@@ -92,8 +98,10 @@ class TestApprentice(unittest.TestCase):
                 self.assertEqual(a._rework([poem], stance), text)
 
     def test_holds_open_is_a_formal_check(self):
-        self.assertFalse(Apprentice.holds_open("In conclusion, the river."))
-        self.assertTrue(Apprentice.holds_open("The river, again."))
+        self.assertFalse(Apprentice.holds_open(
+            "In conclusion, hope is the thing with feathers."))
+        self.assertTrue(Apprentice.holds_open(
+            "Hope is the thing with feathers"))
 
     def test_curriculum(self):
         runner = CurriculumRunner("Apprentice-A", seed=1)
@@ -107,7 +115,7 @@ class TestApprentice(unittest.TestCase):
         def run(seed):
             a = CurriculumRunner("A", seed=seed).build_apprentice()
             a.voice.portfolio = demo_portfolio("Apprentice-A")
-            return [a.generate_turn(_prior("the stone and the river"), i)
+            return [a.generate_turn(_prior("That perches in the soul,"), i)
                     .proposal for i in range(5)]
         self.assertEqual(run(3), run(3))
 
@@ -139,8 +147,8 @@ class TestClient(unittest.TestCase):
 
     def test_turn_adapter_roundtrip(self):
         turn = Turn(participant=None, round=0, line_count=1,
-                    acknowledgment="you said 'river'",
-                    proposal="the river's stone", invitation="what next?",
+                    acknowledgment="you said 'bird'",
+                    proposal="the little bird", invitation="what next?",
                     holds_open=True, stance_used=S.PSYCHOANALYTIC)
         back = log_entry_to_turn(LogEntry(
             timestamp="t", kind="turn", actor_token="x",
@@ -182,7 +190,7 @@ class TestFirstCollaboration(unittest.TestCase):
         fc, report = self.run_once()
         kinds = [e["kind"] for e in report.world_log]
         self.assertTrue(report.converged)
-        self.assertEqual(kinds.count("turn"), 5)
+        self.assertEqual(kinds.count("turn"), 4)
         # The conformance visit, the seed poet and three apprentices came
         # and went; nobody is left.
         self.assertEqual(kinds.count("admission"), 5)
@@ -219,7 +227,8 @@ class TestFirstCollaboration(unittest.TestCase):
         out = io.StringIO()
         with contextlib.redirect_stdout(out):
             self.assertEqual(main([]), 0)
-        self.assertIn("--- Seed Poet ---", out.getvalue())
+        self.assertIn("--- Seed Poet ---\nHope is the thing with feathers",
+                      out.getvalue())
         self.assertIn("departure: 5", out.getvalue())
 
 

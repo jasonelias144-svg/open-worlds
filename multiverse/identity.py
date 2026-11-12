@@ -6,7 +6,7 @@ self-issued and opaque; the name is only a label and may change. Two
 identities are the same exactly when their tokens match. No registry,
 no authority, no trust root.
 
-Known limit, until step 2 (docs/MULTIVERSE.md): anyone who has seen a
+Known limit, until course step 2 (docs/COURSE.md): anyone who has seen a
 token can act as its owner. Step 2 makes the token a public key, and
 acting needs the matching private key.
 """
