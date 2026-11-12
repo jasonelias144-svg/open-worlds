@@ -19,8 +19,9 @@ the way a New York sidewalk does. Its results are in
 [docs/cycles/cycle-000.md](docs/cycles/cycle-000.md). No language-model agents
 yet, and no website yet.
 
-The **nature track** starts where nature started. Its first chemistry layer
-is done: real elements, real molecules, and an exact identity for each one
+The **nature track** starts where nature started. Its first two chemistry
+layers are done: real elements and molecules, with an exact identity for each,
+and reactions that keep every atom and charge
 ([docs/CHEMISTRY.md](docs/CHEMISTRY.md)).
 
 - [CHARTER.md](CHARTER.md): the orientation every participant reads on

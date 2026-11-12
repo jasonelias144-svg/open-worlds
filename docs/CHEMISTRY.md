@@ -19,11 +19,11 @@ produced. If glycine appears, it is glycine.
 
 ## Layers
 
-1. **Molecules** (done, this document): elements, valence, molecules, and an
-   exact identity for each molecule.
-2. **Reactions:** rules that rewrite part of a molecule (a pattern and a
-   change), conserving atoms and charge. Examples are protonation,
-   condensation to an amide, and hydrolysis.
+1. **Molecules** (done): elements, valence, molecules, and an exact
+   identity for each molecule.
+2. **Reactions** (done): rules that rewrite part of a molecule, keeping
+   every atom, every charge and every valence. Examples are proton transfer,
+   condensation to an amide (the peptide bond), and hydrolysis.
 3. **A world of chemistry:** molecules in a space, moving and meeting, with
    energy coming in from outside. The gardener (DESIGN.md, principle 8)
    enters here as a declared law that tends the conditions, never the
@@ -128,7 +128,7 @@ Each one makes the tests fail. Two of them first went uncaught:
   nauty and bliss do. Most molecules take milliseconds, but a very symmetric
   one takes longer: tetra-tert-butylmethane (C17H36) takes about 2 seconds.
   A cap stops the search with an error, but reaching it can take tens of
-  seconds (about 30 for C53H108), and comparing or hashing such a molecule
+  seconds (for example C53H108), and comparing or hashing such a molecule
   raises the error too. That's acceptable while people write the molecules.
   Before reactions or agents make molecules freely (layer 3), the search
   needs symmetry pruning or a time bound, so that no molecule can stall a
@@ -138,6 +138,92 @@ Each one makes the tests fail. Two of them first went uncaught:
   methyl radical, or oxygen as the diradical it really is. O2 can be drawn as
   O=O.
 - **No energy, no geometry.** These belong to the layers that need them.
+
+## Layer 2: reactions
+
+The code is in [chem/reactions.py](../chem/reactions.py) and
+[chem/rules.py](../chem/rules.py), and the tests are in
+[tests/test_chem_reactions.py](../tests/test_chem_reactions.py).
+
+**A rule** names a few atoms and says how the bonds among them, and their
+charges, change. Nothing else is touched. This is the graph-rewriting view
+of chemistry. Amide formation, for example, names the acid's carbon, its two
+oxygens and the OH hydrogen, and the amine's nitrogen and one of its
+hydrogens. It moves two bonds, and water leaves.
+
+**Three laws** hold for every rule. A rule that breaks one is refused when
+it is written, not when it is used:
+
+- **Atoms are kept.** A rule moves bonds and charges, never atoms.
+- **Charge is kept.** The charges after add up to the charges before.
+- **Valence is kept.** For each atom a rule names, the change in its bonds
+  equals the change in valence that its change of charge requires. So a rule
+  applied to valid molecules always gives valid molecules.
+
+Every rule can be run backwards, and the reverse obeys the same laws.
+
+**Applying a rule** to some molecules finds every place the rule's atoms fit.
+Every molecule given must take part: a rule may not name an atom that isn't
+connected to anything it changes, so a bystander can't count as a reactant.
+So `apply(a, b)` is a reaction between
+a and b, and `apply(a)` is a reaction within a. The result is each distinct
+outcome, as a set of product molecules.
+
+**The rules so far** are real reaction types:
+
+| Rule | A real example |
+|---|---|
+| Proton transfer, acid to amine | glycine → its zwitterion (within one molecule) |
+| Proton transfer, O–H to oxygen | H2O + H2O → H3O+ + OH− |
+| Amide formation (condensation) | glycine + glycine → glycylglycine + H2O |
+| Amide hydrolysis | glycylglycine + H2O → 2 glycine |
+| Hydration of a carbonyl | CH2O + H2O → methanediol; CO2 + H2O → carbonic acid |
+| Cyanohydrin formation | CH2O + HCN → glycolonitrile |
+
+Glycine and alanine give two dipeptides, Gly-Ala and Ala-Gly: same formula,
+different molecules, as in real chemistry.
+
+**What the tests check:**
+
+- each real reaction above gives exactly the real products;
+- every rule, on every catalogue molecule alone and on every ordered pair:
+  874 outcomes. Each keeps atoms, charge and mass, each product is valid,
+  and running the reverse rule on the products gives the reactants back;
+- rules that break a law are refused;
+- the outcome doesn't depend on the order of the atoms or the reactants.
+
+The tests were checked by planting eight bugs in the reaction code, one at a
+time, and each makes them fail:
+
+- matching atoms of the wrong charge;
+- matching bonds of the wrong order;
+- forming a bond that already exists;
+- letting a bystander molecule count as a reactant;
+- dropping the charge law;
+- dropping the valence law;
+- reversing a rule without reversing its charges;
+- reporting the same outcome twice.
+
+## Known limits of layer 2
+
+- **No energy, so no preferences.** Everything a rule allows can happen,
+  and nothing says how often. Glycine condensing with itself gives a
+  three-membered ring (an α-lactam) that real chemistry hardly makes,
+  because the ring is strained. A test records this. Energies and rates
+  come with layer 3.
+- **Rules are local.** A rule sees only the atoms it names, so it applies
+  wherever those atoms fit, not only to the group its name suggests:
+  - the proton transfer "to an amine" takes any neutral nitrogen. It
+    protonates an amide's nitrogen, which is far less basic in reality, and
+    HCN, giving the nitrilium ion HCNH+;
+  - hydration of a carbonyl takes any O–H, not only water's. With methanol it
+    makes a hemiacetal, and on a carboxylic acid an orthoacid;
+  - the proton transfer from O–H to oxygen also protonates carbonyl oxygens.
+
+  All of these are valid molecules, and some are real but minor. Rules can
+  be given more context when a world needs it.
+- **Outcomes multiply.** With more rules and bigger molecules the number of
+  outcomes grows fast. A world will sample reactions, not list them all.
 
 ## Where this came from
 
@@ -173,6 +259,8 @@ the shape of the whole climb, and its mistakes became tests here.
 - **Squirm3:** an artificial chemistry of atoms on a grid that bond by
   simple rules, in which self-replicating molecules arise.
 - **SimSoup:** an artificial chemistry built for studying autocatalytic sets.
+- **MØD:** a chemistry package built on graph transformation, the model
+  layer 2 follows: rules as rewrites of part of a molecular graph.
 - **ReaDDy and Smoldyn:** particle-based simulators of reactions and
   diffusion, which are useful for layer 3.
 - **ALIEN:** a large particle-based artificial-life world.
