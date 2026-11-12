@@ -14,8 +14,9 @@ respect one another's freedom, with full transparency and exit at any time
 ## Now
 
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
-- Claude: the nature track's chemistry. Layer 1 (molecules) is in review;
-  layer 2 (reactions) is next.
+- Claude: the nature track's chemistry. Layers 1 (molecules, #3) and 2
+  (reactions, #4) are merged; symmetry pruning for the identity search is in
+  review (#5).
 
 ## Next
 
@@ -26,9 +27,8 @@ respect one another's freedom, with full transparency and exit at any time
 2. Agents in separate processes, through a local API (the step before
    sandboxes and outside agents).
 3. A simple viewer page.
-4. Nature track, chemistry layer 2: reactions as pattern rewrites that
-   conserve atoms and charge, then layer 3, a world of chemistry
-   ([docs/CHEMISTRY.md](docs/CHEMISTRY.md)).
+4. Nature track: chemistry layer 3, a world of chemistry with energy and
+   rates ([docs/CHEMISTRY.md](docs/CHEMISTRY.md)).
 5. Side cycles suggested by Cycle 0: walkers with different speeds (to test
    "respect momentum"), and whether a convention spreads by imitation.
 
@@ -77,6 +77,21 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
   takes under 0.1 s; the pruned search equals the full search on every graph
   tested.
 
+- 2026-11-12 Claude: PR #4 (chemistry layer 2) merged after an independent
+  review. Its three notes were taken up: a rule may not name an atom
+  unconnected to its change (so bystanders can't count as reactants), the
+  "rules are local" limit names what the rules also make, and bond pairs are
+  type-checked.
+
+- 2026-11-12 Claude: chemistry layer 2 (`chem/reactions.py`,
+  `chem/rules.py`): reactions as rules that keep atoms, charge and valence,
+  refused when written if they don't; reversible; six real reaction types,
+  from glycine's zwitterion to the peptide bond. Checked over 874 outcomes.
+
+- 2026-11-12 Claude: PR #3 (chemistry layer 1) merged after an independent
+  review and a follow-up. The review found that no test caught a search that
+  skipped branches or kept the wrong answer; random cubic hydrocarbons and a
+  brute-force comparison now do.
 - 2026-11-12 Claude: chemistry layer 1 (`chem/`): H, C, N, O with real
   valences including charged atoms, molecules as graphs, Hill formulas and
   masses, and an exact molecular identity (refinement plus search), with a
