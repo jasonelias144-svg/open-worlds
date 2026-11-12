@@ -139,12 +139,20 @@ search with the full one, string for string. They do this on:
 - copies of random graphs joined at a hub;
 - two different rigid cubic hydrocarbons beside identical ammonias.
 
-The last family catches pruning that jumps back too far: four planted bugs
-in the pruning were caught. One planted bug was not: taking orbits from
-every automorphism found, rather than only those fixing the choices made so
-far. That is wrong in principle, but no graph tried exposes it: random
-graphs, randomly symmetrized graphs, Cayley graphs of small groups, and
-unions of these. Finding one would make a good test.
+Planted bugs in the pruning are each caught:
+
+- jumping back one level too far, or to the root: caught by the last family
+  (rigid parts beside symmetric ones);
+- never pruning, or taking the identity map as an automorphism: caught by a
+  test that symmetric molecules need few leaves;
+- taking orbits from every automorphism found, not only those fixing the
+  choices made so far: caught by the 4×4 rook's graph with one 2×2 square
+  twisted.
+
+The last of these survived every family Claude tried: random graphs,
+randomly symmetrized graphs, Cayley graphs of small groups, and unions of
+these. The independent review of #5 found the twisted rook's graph by
+searching about 140,000 random graphs.
 
 ## Known limits of layer 1
 
@@ -158,8 +166,10 @@ unions of these. Finding one would make a good test.
   Phosphorus and sulfur come when the chemistry needs them.
 - **The search's cap.** A safety net: a graph that needs more than 10,000
   leaves raises an error instead of getting an identity, and so does
-  comparing or hashing it. With symmetry pruning, no molecule tried so far
-  needs more than about 50.
+  comparing or hashing it. With symmetry pruning, no valid molecule tried so
+  far needs more than about 50. But a graph made of several separate copies
+  of one rigid part still grows exponentially and can reach it; identifying
+  each connected part separately will remove that case.
 - **No radicals.** Every atom must have exactly its valence, so open-shell
   species can't be represented: nitric oxide (NO), the hydroxyl radical, the
   methyl radical, or oxygen as the diradical it really is. O2 can be drawn as

@@ -50,10 +50,12 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
   internals. That's acceptable only for agents written here (AGENTS.md), and
   is why later stages run agents in separate sandboxes.
 - The identity search now prunes by symmetry, so symmetric molecules take
-  milliseconds; its cap (10,000 leaves) is a safety net no molecule tried
-  comes near. One planted pruning bug (orbits from automorphisms that don't
-  fix the choices made so far) survives every test family tried; a graph
-  that exposes it would make a good test.
+  milliseconds. Its cap (10,000 leaves) can still be reached: disjoint
+  copies of one rigid, refinement-hard part grow exponentially (7 copies of
+  a cubic C10H10 reach it after about 11 s; found by the independent review
+  of #5). These graphs are disconnected, so not valid molecules, but **before
+  layer 3 lets reactions make molecules freely,** identify each connected
+  part separately (which removes this whole class) and keep a time bound.
 - An in-process agent that raises `SystemExit` or `KeyboardInterrupt`, or
   never returns from `act()`, still stops the world. That falls under the
   same limit. Once agents run in separate processes, each call gets a

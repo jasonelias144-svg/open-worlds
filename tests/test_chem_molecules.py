@@ -360,6 +360,15 @@ class TestSymmetryPruning(unittest.TestCase):
                 with self.subTest(n=n, seed=seed, k=k):
                     self.assertEqual(_canonical_form(version, prune=True), full)
 
+    def test_orbits_only_from_automorphisms_fixing_the_choices_so_far(self):
+        # The 4x4 rook's graph with one 2x2 square twisted. Taking orbits
+        # from every automorphism found, not only those fixing the choices
+        # made so far, gives a wrong identity here. (Found by the
+        # independent review of #5.)
+        edges = sorted(set(ROOK_4X4) - {(0, 4), (1, 5)} | {(0, 5), (1, 4)})
+        m = graph(16, edges)
+        self.assertEqual(_canonical_form(m), _canonical_form(m, prune=False))
+
     def test_rook_and_shrikhande_differ(self):
         # Strongly regular with the same parameters: refinement can't tell
         # them apart at all.

@@ -18,7 +18,8 @@ The search prunes by symmetry, as nauty and bliss do, so even very
 symmetric molecules need only a few dozen leaves. It also has a cap
 (MAX_SEARCH_LEAVES) as a safety net: a graph that still needs more leaves
 raises ValueError instead of getting an identity, and so does comparing or
-hashing it. No molecule tried so far comes near it.
+hashing it. No valid molecule tried so far comes near it, but a graph made
+of several separate copies of one rigid part can.
 
 Limitation of this layer: resonance forms are different graphs, so they can
 get different identities. Formamide drawn neutral (H2N-CH=O) and drawn
