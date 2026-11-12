@@ -237,10 +237,14 @@ making valence depend on formal charge.
 The code here is written fresh rather than copied. Running the sketch showed
 why:
 
-- **Its valence rule gives a carbocation five bonds.** The rule was "8 minus
-  the electrons", which is right for N, O and the carbanion. The real number
-  for a carbocation is three: carbon with a positive charge has only six
-  electrons around it, not eight.
+- **Its valence rule requires a carbocation to have five bonds.** The rule
+  was "8 minus the electrons", which is right for N, O and the carbanion.
+  But it makes the methyl cation and every ordinary carbocation invalid:
+  these have three bonds, with only six electrons around the carbon.
+  Five-bonded carbonium ions such as CH5+ do exist, in superacids and the
+  gas phase, and RDKit accepts them as well as the three-bonded kind. Their
+  bonding can't be drawn as ordinary bonds, so this chemistry leaves them
+  out.
 - **Its identity changes with the order of the atoms.** Its colour-refinement
   signature numbers the colours in order of first appearance. Over 50 random
   orderings of ethanol it produced 17 different signatures, so a library
@@ -265,9 +269,19 @@ the shape of the whole climb, and its mistakes became tests here.
   diffusion, which are useful for layer 3.
 - **ALIEN:** a large particle-based artificial-life world.
 
-**The RDKit cross-check is planned and hasn't been run.** It would build each
-catalogue molecule in RDKit and compare the formula, the charge, valence
-acceptance and identity (via canonical SMILES). Installing RDKit in the
-session that wrote this layer was blocked by that session's permission
-rules. The cross-check can run in CI instead, or in a session that allows
-it.
+**The RDKit cross-check runs in CI** ([tests/test_chem_rdkit.py](../tests/test_chem_rdkit.py)),
+in its own job with a pinned Python and RDKit; the main suite stays standard
+library only. Its first run, on 2026-11-12:
+
+- **Identity:** on 1,344 molecules (the catalogue, every layer 2 reaction
+  product, four cubic hydrocarbons, and a shuffled copy of each), our
+  identity and RDKit's canonical SMILES agreed exactly: 134 distinct
+  molecules either way.
+- **Catalogue:** atoms, total charge and mass agree for all 25 molecules.
+- **Which atoms are acceptable:** of 216 arrangements, two kinds differ, and
+  in both RDKit accepts what we refuse:
+  - a hydride ion (H−) with one or two bonds, where a real hydride has none;
+  - a carbocation with five bonds (a carbonium ion such as CH5+), which this
+    chemistry leaves out, as above.
+
+  The test expects exactly these differences, so any new one fails CI.

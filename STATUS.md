@@ -43,9 +43,6 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
   2026-11-12)
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12)
-- For the founder: the RDKit cross-check of the chemistry. Installing RDKit
-  was blocked by the session's permission rules. Allow it in a session, or
-  run the check in CI? (asked 2026-11-12)
 
 ## Noticed
 
@@ -66,12 +63,21 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
 
 ## Decided
 
+- 2026-11-12: the RDKit cross-check runs in CI. Claude recommended it in
+  answer to its own question to the founder, and the founder replied "Sounds
+  good" and asked Claude to continue. If that wasn't meant as a decision,
+  the job is easy to remove.
 - 2026-11-12, founder: the nature track starts where nature started, with
   real elements and molecules; chemistry is the next area of work.
 - 2026-11-12, founder: the repository is public and dedicated to the public
   domain (CC0 1.0). The goal isn't financial; anyone may build on it.
 
 ## Log
+
+- 2026-11-12 Claude: RDKit cross-check in CI (#6). Our molecular identity
+  agrees exactly with RDKit's canonical SMILES on 1,344 molecules; the only
+  valence differences are two that RDKit allows and we refuse on purpose
+  (hydride with bonds, five-bonded carbocation).
 
 - 2026-11-12 Claude: chemistry layer 2 (`chem/reactions.py`,
   `chem/rules.py`): reactions as rules that keep atoms, charge and valence,
