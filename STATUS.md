@@ -52,13 +52,11 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
 - Python isn't a sandbox: agents in the kernel's process could reach its
   internals. That's acceptable only for agents written here (AGENTS.md), and
   is why later stages run agents in separate sandboxes.
-- Chemistry layer 1 doesn't prune its identity search by symmetry yet.
-  Very symmetric molecules are slow (tetra-tert-butylmethane: about 2 s), and
-  some reach the search's cap after tens of seconds and raise an error, even
-  from `==` or `hash()`. That's fine while people write the molecules.
-  **Before layer 3 lets reactions or agents make molecules freely,** add
-  pruning or a time bound so that no molecule can stall a world. (Noted by
-  the independent review of #3.)
+- The identity search now prunes by symmetry, so symmetric molecules take
+  milliseconds; its cap (10,000 leaves) is a safety net no molecule tried
+  comes near. One planted pruning bug (orbits from automorphisms that don't
+  fix the choices made so far) survives every test family tried; a graph
+  that exposes it would make a good test.
 - An in-process agent that raises `SystemExit` or `KeyboardInterrupt`, or
   never returns from `act()`, still stops the world. That falls under the
   same limit. Once agents run in separate processes, each call gets a
@@ -72,6 +70,12 @@ The full plan is in [docs/DESIGN.md](docs/DESIGN.md).
   domain (CC0 1.0). The goal isn't financial; anyone may build on it.
 
 ## Log
+
+- 2026-11-12 Claude: symmetry pruning for the molecular identity search
+  (orbits of discovered automorphisms, and jumping back on a match with the
+  first leaf). C53H108, which reached the old cap after tens of seconds, now
+  takes under 0.1 s; the pruned search equals the full search on every graph
+  tested.
 
 - 2026-11-12 Claude: chemistry layer 1 (`chem/`): H, C, N, O with real
   valences including charged atoms, molecules as graphs, Hill formulas and

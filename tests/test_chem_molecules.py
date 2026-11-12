@@ -7,9 +7,12 @@ import itertools
 import random
 import unittest
 from collections import Counter
+from unittest import mock
 
 from chem import Atom, Bond, Builder, Molecule, valence
 from chem import catalogue as cat
+from chem import molecule as molecule_module
+from chem.molecule import _canonical_form
 from chem.catalogue import CATALOGUE
 
 
@@ -131,6 +134,68 @@ def random_small_graph(rng: random.Random) -> Molecule:
     return Molecule(atoms, bonds)
 
 
+def graph(n, edges, hydrogens=False) -> Molecule:
+    """All-carbon graph; with hydrogens=True each carbon also gets one H."""
+    atoms = [Atom("C")] * n + ([Atom("H")] * n if hydrogens else [])
+    bonds = [Bond(a, b) for a, b in edges]
+    if hydrogens:
+        bonds += [Bond(v, n + v) for v in range(n)]
+    return Molecule(atoms, bonds)
+
+
+PETERSEN = ([(i, (i + 1) % 5) for i in range(5)] + [(i, i + 5) for i in range(5)]
+            + [(5 + i, 5 + (i + 2) % 5) for i in range(5)])
+ROOK_4X4 = [(a, b) for a in range(16) for b in range(a + 1, 16)
+            if (a // 4 == b // 4) != (a % 4 == b % 4)]
+SHRIKHANDE = sorted({tuple(sorted((x, ((x // 4 + di) % 4) * 4 + (x % 4 + dj) % 4)))
+                     for x in range(16) for di, dj in ((0, 1), (1, 0), (1, 1))})
+CUBE = [(a, a ^ bit) for a in range(8) for bit in (1, 2, 4) if a < a ^ bit]
+
+
+def waters(k: int) -> Molecule:
+    """k separate water molecules in one graph (invalid, but allowed)."""
+    atoms, bonds = [], []
+    for _ in range(k):
+        o = len(atoms)
+        atoms += [Atom("O"), Atom("H"), Atom("H")]
+        bonds += [Bond(o, o + 1), Bond(o, o + 2)]
+    return Molecule(atoms, bonds)
+
+
+def branched_alkane(levels: int) -> Molecule:
+    """A central carbon with four identical branches, each carbon branching
+    into three: levels=2 is tetra-tert-butylmethane (C17H36), levels=3 is
+    C53H108."""
+    b = Builder().atom("r", "C")
+    count = [0]
+
+    def grow(parent, depth):
+        name = f"x{count[0]}"
+        count[0] += 1
+        b.atom(name, "C").bond(parent, name)
+        if depth == 0:
+            b.hydrogens(name, 3)
+        else:
+            for _ in range(3):
+                grow(name, depth - 1)
+    for _ in range(4):
+        grow("r", levels - 1)
+    return b.build()
+
+
+def copies_on_a_hub(part: Molecule, k: int, rng: random.Random) -> Molecule:
+    """k copies of a graph, each joined by one bond to a shared hub atom:
+    symmetric by construction."""
+    atoms, bonds = [Atom("N")], []
+    anchor = rng.randrange(len(part.atoms))
+    for _ in range(k):
+        offset = len(atoms)
+        atoms += part.atoms
+        bonds += [Bond(b.a + offset, b.b + offset, b.order) for b in part.bonds]
+        bonds.append(Bond(0, offset + anchor))
+    return Molecule(atoms, bonds)
+
+
 class TestValence(unittest.TestCase):
     def test_neutral_valences(self):
         self.assertEqual([valence(s) for s in "HCNO"], [1, 4, 3, 2])
@@ -230,6 +295,87 @@ class TestValidity(unittest.TestCase):
         m = cat.water()
         with self.assertRaises(AttributeError):
             m.atoms = ()
+
+
+class TestSymmetryPruning(unittest.TestCase):
+    """The pruned search must give exactly the same identity string as the
+    full search, which tries every branch. Pruning may only skip branches
+    whose answers are already known."""
+
+    def assert_same(self, m: Molecule, full_cap: int = 20_000) -> bool:
+        with mock.patch.object(molecule_module, "MAX_SEARCH_LEAVES", full_cap):
+            try:
+                full = _canonical_form(m, prune=False)
+            except ValueError:
+                return False      # too slow to check the long way
+        self.assertEqual(_canonical_form(m, prune=True), full)
+        return True
+
+    def test_random_small_graphs(self):
+        rng = random.Random(99)
+        for _ in range(300):
+            self.assertTrue(self.assert_same(random_small_graph(rng)))
+
+    def test_graphs_refinement_cannot_split(self):
+        for edges, n, h in [(PETERSEN, 10, True), (CUBE, 8, True),
+                            (ROOK_4X4, 16, False), (SHRIKHANDE, 16, False)]:
+            self.assertTrue(self.assert_same(graph(n, edges, h)))
+        for n, seed in [(10, 1), (10, 2), (12, 3), (12, 4), (12, 5), (14, 6)]:
+            self.assertTrue(self.assert_same(random_cubic_hydrocarbon(n, seed)))
+        for k in (2, 3, 4, 5, 6):
+            self.assertTrue(self.assert_same(waters(k)))
+        self.assertTrue(self.assert_same(branched_alkane(2), full_cap=40_000))
+        for make in CATALOGUE.values():
+            self.assertTrue(self.assert_same(make()))
+
+    def test_symmetric_by_construction(self):
+        rng = random.Random(2026)
+        checked = 0
+        for _ in range(120):
+            part = random_small_graph(rng)
+            if len(part.atoms) > 4:
+                continue
+            checked += self.assert_same(copies_on_a_hub(part, rng.choice((2, 3)), rng))
+        self.assertGreater(checked, 40)
+
+    def test_rigid_parts_beside_symmetric_ones(self):
+        # Two different rigid cubic hydrocarbons (refinement can't tell
+        # their carbons apart) beside identical ammonias. The search must
+        # go two rigid levels deep before reaching the symmetric choice, so
+        # jumping back too far after a symmetric match skips leaves that
+        # matter. Each case here caught such a planted bug.
+        for n, seed, k in [(10, 3, 2), (10, 8, 3), (12, 1, 2), (12, 3, 2)]:
+            parts = [random_cubic_hydrocarbon(n, seed),
+                     random_cubic_hydrocarbon(n, seed + 50)] + [cat.ammonia()] * k
+            atoms, bonds = [], []
+            for part in parts:
+                offset = len(atoms)
+                atoms += part.atoms
+                bonds += [Bond(b.a + offset, b.b + offset, b.order) for b in part.bonds]
+            m = Molecule(atoms, bonds)
+            with mock.patch.object(molecule_module, "MAX_SEARCH_LEAVES", 10 ** 6):
+                full = _canonical_form(m, prune=False)
+            rng = random.Random(seed * 10 + k)
+            for version in [m] + [shuffled(m, rng) for _ in range(4)]:
+                with self.subTest(n=n, seed=seed, k=k):
+                    self.assertEqual(_canonical_form(version, prune=True), full)
+
+    def test_rook_and_shrikhande_differ(self):
+        # Strongly regular with the same parameters: refinement can't tell
+        # them apart at all.
+        self.assertNotEqual(graph(16, ROOK_4X4), graph(16, SHRIKHANDE))
+
+    def test_symmetric_molecules_need_few_leaves(self):
+        # Without pruning, 9 waters needed hundreds of thousands of leaves
+        # and C53H108 reached the old cap of 200,000 after tens of seconds.
+        rng = random.Random(4)
+        hard = [waters(9), waters(20), branched_alkane(2), branched_alkane(3),
+                graph(16, ROOK_4X4), graph(10, PETERSEN, True)]
+        with mock.patch.object(molecule_module, "MAX_SEARCH_LEAVES", 100):
+            for m in hard:
+                self.assertEqual({shuffled(m, rng).identity() for _ in range(3)},
+                                 {m.identity()})
+        self.assertEqual(branched_alkane(3).formula(), "C53H108")
 
 
 class TestIdentity(unittest.TestCase):

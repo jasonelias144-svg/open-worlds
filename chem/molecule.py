@@ -14,9 +14,11 @@ it into its atom's label: element, charge and hydrogen count. Any other
 hydrogen (in H2, a lone proton, or a malformed molecule) stays a vertex of
 its own, so the identity is exact for every graph, valid or not.
 
-The search has a cap (MAX_SEARCH_LEAVES). A molecule so symmetric that the
-search reaches it raises ValueError instead of getting an identity, and so
-does comparing or hashing it. Reaching the cap can take tens of seconds.
+The search prunes by symmetry, as nauty and bliss do, so even very
+symmetric molecules need only a few dozen leaves. It also has a cap
+(MAX_SEARCH_LEAVES) as a safety net: a graph that still needs more leaves
+raises ValueError instead of getting an identity, and so does comparing or
+hashing it. No molecule tried so far comes near it.
 
 Limitation of this layer: resonance forms are different graphs, so they can
 get different identities. Formamide drawn neutral (H2N-CH=O) and drawn
@@ -32,7 +34,7 @@ from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
 from .elements import ELEMENTS, valence
 
-MAX_SEARCH_LEAVES = 200_000
+MAX_SEARCH_LEAVES = 10_000
 
 
 @dataclass(frozen=True)
@@ -215,7 +217,7 @@ def _charge_text(charge: int) -> str:
 
 # --- canonical form --------------------------------------------------------
 
-def _canonical_form(m: Molecule) -> str:
+def _canonical_form(m: Molecule, prune: bool = True) -> str:
     n = len(m.atoms)
     around: List[List[Tuple[int, int]]] = [[] for _ in range(n)]
     for b in m.bonds:
@@ -271,27 +273,96 @@ def _canonical_form(m: Molecule) -> str:
                              for (i, j), o in edges.items()))
         return atoms, bonds
 
-    best: List[Optional[Tuple]] = [None]
+    # The search explores a tree: each node individualizes one vertex of the
+    # first tied colour cell and refines; each leaf is a full ordering. The
+    # identity is the least leaf. Two prunings skip only subtrees whose
+    # leaves are already known, using automorphisms the search discovers
+    # (two leaves with the same form differ by an automorphism):
+    #
+    # - Orbits: at a node with individualized prefix P, a child w can be
+    #   skipped if an automorphism fixing P pointwise maps an explored
+    #   child to w: its subtree is that child's subtree, relabelled.
+    # - Jump back: when a leaf has the same form as the first leaf, the
+    #   automorphism between them fixes the prefix they share and maps the
+    #   first leaf's branch at the point they diverge onto this leaf's
+    #   branch, which was explored first, so the rest of this branch is
+    #   known. The search returns to the node where they diverge.
+    #
+    # These are the prunings nauty and bliss use, in their simplest form.
+    n_kept = len(kept)
+    best: List[Optional[Tuple]] = [None, None]     # form, order
+    first: List[Optional[Tuple]] = [None, None, None]  # form, order, prefix
+    generators: List[List[int]] = []
     leaves = [0]
 
-    def search(colours: List[int]) -> None:
+    def ordering(colours: List[int]) -> List[int]:
+        return sorted(range(n_kept), key=colours.__getitem__)
+
+    def automorphism(order_a: List[int], order_b: List[int]) -> List[int]:
+        g = [0] * n_kept
+        for a, b in zip(order_a, order_b):
+            g[a] = b
+        return g
+
+    def orbit_finder(prefix: List[int]):
+        parent = list(range(n_kept))
+
+        def find(x: int) -> int:
+            while parent[x] != x:
+                parent[x] = parent[parent[x]]
+                x = parent[x]
+            return x
+        for g in generators:
+            if all(g[p] == p for p in prefix):
+                for x in range(n_kept):
+                    rx, ry = find(x), find(g[x])
+                    if rx != ry:
+                        parent[rx] = ry
+        return find
+
+    def search(colours: List[int], prefix: List[int]) -> Optional[int]:
+        """Returns None, or the depth the search should return to."""
         counts = Counter(colours)
         tied = [c for c in sorted(counts) if counts[c] > 1]
         if not tied:
             leaves[0] += 1
             if leaves[0] > MAX_SEARCH_LEAVES:
                 raise ValueError("molecule too symmetric for an exact identity")
-            form = serialize(colours)
-            if best[0] is None or form < best[0]:
-                best[0] = form
-            return
+            form, order = serialize(colours), ordering(colours)
+            if first[0] is None:
+                first[:] = [form, order, list(prefix)]
+                best[:] = [form, order]
+                return None
+            if prune and form == first[0]:
+                generators.append(automorphism(first[1], order))
+                shared = 0
+                limit = min(len(prefix), len(first[2])) - 1
+                while shared < limit and prefix[shared] == first[2][shared]:
+                    shared += 1
+                return shared
+            if prune and form == best[0]:
+                generators.append(automorphism(best[1], order))
+                return None
+            if form < best[0]:
+                best[:] = [form, order]
+            return None
         cell = tied[0]
+        depth = len(prefix)
+        explored: List[int] = []
         for v in [i for i, c in enumerate(colours) if c == cell]:
+            if prune and explored and generators:
+                find = orbit_finder(prefix)
+                if any(find(v) == find(u) for u in explored):
+                    continue
+            explored.append(v)
             split = rank([(c, 0 if i == v else 1) if c == cell else (c, 0)
                           for i, c in enumerate(colours)])
-            search(refine(split))
+            back = search(refine(split), prefix + [v])
+            if back is not None and back < depth:
+                return back
+        return None
 
-    search(refine(rank(labels)))
+    search(refine(rank(labels)), [])
     atoms, bonds = best[0]
     atom_text = ".".join(f"{s}{_charge_text(q)}H{h}" for s, q, h in atoms)
     bond_text = ",".join(f"{i}-{j}:{o}" for i, j, o in bonds)
