@@ -59,7 +59,9 @@ three rules every format keeps: keys are ASCII; integers stay within
 and no floats (a quantity with a fraction is written as an integer in a
 stated unit, or as a string). Records already signed, and logs, keep
 their own form, which is versioned and checked by its own vectors;
-nothing old is rewritten.
+nothing old is rewritten. The chemistry world's records of what was made
+move to these rules when step 2 writes their schema, with its time as an
+integer in a stated unit; what it signed before stays as it was.
 
 ## Signatures on records
 
@@ -149,7 +151,7 @@ key can open it.
   performed a paid audit of this crate"; Cloudflare reviewed version 0.8
   ([repository](https://github.com/rozbb/rust-hpke)).
 
-The design pages name HPKE's Auth mode for the sealed world-key: the box
+The design pages named HPKE's Auth mode for the sealed world-key: the box
 is sealed with a key made from the Ur-world's key and the earner's, as the
 founder proposed ("generated from the individuals public key and the
 world public key"). Python's `cryptography` can't do that. Base mode can:
@@ -172,14 +174,21 @@ What base mode changes:
   sealing, as MINDS.md already says; `cryptography` doesn't convert one to
   the other, and separate keys are the better practice.
 
-**Proposed, for the founder to decide** (it departs from the founder's
-stated design): base mode, with DHKEM(X25519, HKDF-SHA256) and
+**Decided by the technical lead** (2026-11-13), the founder having
+deferred on technical matters ([STATUS.md](../../STATUS.md), "Decided by
+the technical lead"): base mode, with DHKEM(X25519, HKDF-SHA256) and
 ChaCha20Poly1305, available in both languages without a new dependency in
-Python; what is sealed is always signed first, and names its recipient.
-The alternative keeps Auth mode, and so the founder's "key that only the
-two of them can make", at the cost of sealing in Rust only, or a new
-Python library. Noise (revision 34, 2018) stays named only for a private
-line, if the founder chooses one ([Noise](https://noiseprotocol.org/noise.html)).
+Python; what is sealed is always signed first, and names its recipient,
+who checks it. It departs from the founder's design, and the founder was
+told so the same day. The alternatives, not taken: Auth mode, which keeps
+the design page's "key that only the two of them can make", at the cost
+of sealing in Rust only, a new Python library, or Auth mode built by hand
+from `cryptography`'s X25519 and HKDF (not recommended: cryptography put
+together by hand is where mistakes hide). Revisit if a sealed world-key
+is ever honoured for anyone it doesn't name, or if the box itself, still
+closed, must show who sealed it. Noise (revision 34, 2018) stays named
+only for a private line, if the founder chooses one
+([Noise](https://noiseprotocol.org/noise.html)).
 
 ## Commitments
 
@@ -246,8 +255,7 @@ attestation, world-key credential, grant, commitment, and signed log head.
 
 - Whether every record fits these choices: step 2 finds out as each
   schema is written.
-- `serde_jcs` against the reference library: step 2's test vectors will
-  check it.
+- `serde_jcs` against `rfc8785`: step 2's test vectors will check it.
 - did:key's test vectors, and VC Data Model 2.0 beyond its definitions and
   securing mechanisms.
 - HPKE interoperability between `cryptography` and `hpke`: step 2's vectors

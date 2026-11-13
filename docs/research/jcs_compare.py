@@ -31,8 +31,8 @@ import json
 import random
 import sys
 
-sys.path.insert(0, sys.argv[1])
-sys.path.insert(0, ".")
+sys.path.insert(0, ".")  # the repository's root, for multiverse/
+sys.path.insert(0, sys.argv[1])  # first, so its libraries are the ones used
 import rfc8785  # noqa: E402  (found on the path given)
 from multiverse.identity import canonical as identity_form  # noqa: E402
 

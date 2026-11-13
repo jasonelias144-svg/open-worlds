@@ -416,12 +416,20 @@ alone.
 
 It is given in a sealed box, using the founder's idea. When the world's
 code confirms that the path is done, and not before, the Ur-world signs
-the world-key and seals it for its earner. The seal is a key that only the
-two of them can make: the Ur-world from its private key and the earner's
-public key, the earner from their private key and the Ur-world's public
-key (Diffie–Hellman; the standard way to do it is HPKE's Auth mode, RFC
-9180, which adds a fresh one-time key). The box is placed at the end of
+the world-key, naming its earner, and seals it for them. The seal is made
+from a fresh one-time key and the earner's public key, so that only the
+earner, with their private key, can open it (Diffie–Hellman, in HPKE's
+base mode, RFC 9180). Who sealed it is shown by the Ur-world's signature
+inside, and whoever opens it checks that it names them, so a world-key
+sealed again for someone else is refused. The box is placed at the end of
 the path, and the "key" piece of the hunt teaches how it works.
+
+The founder's idea made the seal from the two keys themselves, "generated
+from the individuals public key and the world public key" (HPKE's Auth
+mode). The technical lead chose base mode instead, on 2026-11-13: the
+Python library this project already uses can't seal in Auth mode, and the
+signature inside says who sealed the box, which is what Auth mode would
+add ([research/FORMATS.md](research/FORMATS.md), "Sealing").
 
 Two honest limits. The Ur-world knows what is in the box, since it wrote
 and signed it, and anyone with the private repository can open it, since
