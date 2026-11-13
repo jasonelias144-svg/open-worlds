@@ -98,6 +98,17 @@ From the Arbitration Committee: judgment as the last step, for what the
 community and the rules couldn't settle, and binding only within its
 written remit.
 
+- **The IETF decides by rough consensus.** RFC 7282 (2014) opens with
+  "the aphorism from Dave Clark's 1992 plenary presentation": "We
+  reject: kings, presidents and voting. We believe in: rough consensus
+  and running code." And: "Rough consensus is achieved when all issues
+  are addressed, but not necessarily accommodated"
+  ([RFC 7282](https://www.rfc-editor.org/rfc/rfc7282.html)).
+
+Taken, for the round table ([ADMIN.md](../ADMIN.md)): no head and no
+vote, but consensus, with every objection's reasons in the log. While the
+table is small, the consensus is full, not rough.
+
 ## Learning apart from discipline
 
 - **NASA's Aviation Safety Reporting System** "collects voluntarily
@@ -106,9 +117,17 @@ written remit.
   protections from civil penalty and certificate suspension"
   ([ASRS](https://asrs.arc.nasa.gov/overview/summary.html)).
 
+- **Its protection has limits.** The FAA's Advisory Circular 00-46F, on
+  the same site: "although a finding of violation may be made, neither a
+  civil penalty nor certificate suspension will be imposed if: The
+  violation was inadvertent and not deliberate", among other conditions
+  ([ASRS](https://asrs.arc.nasa.gov/overview/immunity.html)).
+
 Taken: ADMIN's training and evaluation of Keepers give feedback, never
 sanctions; sanctions stay with misuse of the office, by a separate process
-([ADMIN.md](../ADMIN.md), "Training for keeping worlds").
+([ADMIN.md](../ADMIN.md), "Training for keeping worlds"). Like the FAA's
+waiver, a Keeper's report of its own mistake protects it from sanction,
+not the facts from the record, and not deliberate misuse.
 
 ## Containers, and sandboxes for code no one trusts
 

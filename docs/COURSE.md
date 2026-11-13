@@ -8,7 +8,10 @@ So the course always looks twelve steps ahead. When a step is done:
 1. it moves to "Done", with its date and pull request;
 2. the steps left are rechecked, and reordered or replaced if the work
    taught us something (with the reason written here);
-3. one new step is added at the end.
+3. one new step is added at the end;
+4. a look back: each decision the technical lead recorded in STATUS is
+   checked against its "revisit if", and what held, what didn't and what
+   changes is written in STATUS's log.
 
 Each step is one tested, independently reviewed piece of work. The
 founder can reorder or swap steps at any time: this is a plan, not a
@@ -189,13 +192,16 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
     *Borrowing:* Tunic, The Witness and Outer Wilds for teaching without
     words; Minecraft's advancements for unlocks; AI directors and
     intelligent tutors, with TextWorld and knowledge tracing to learn
-    from, for the Keeper.
-12. **Founding worlds, and doors.** First, before any second world
-    exists, ADMIN's judgment and the multiverse log. Then child worlds,
-    each with a new key of its own, a signed birth record, and a Keeper
-    chosen by its founders; doors between them, travel with passports,
-    founding together, and the world protocol in Rust. The open line
-    reaches a Keeper from another world, and a founded world's
+    from, for the Keeper. The Ur-world's Keeper is its own office, never
+    ADMIN's; and since ADMIN then has an office to watch, ADMIN's
+    judgment and the multiverse log come with it, built for many worlds
+    (moved here from step 12 on 2026-11-13, for that reason;
+    [ADMIN.md](ADMIN.md)).
+12. **Founding worlds, and doors.** What only a second world needs:
+    child worlds, each with a new key of its own, a signed birth record,
+    and a Keeper chosen by its founders; doors between them, travel with
+    passports, founding together, and the world protocol in Rust. The
+    open line reaches a Keeper from another world, and a founded world's
     Keeper has a line to its parent's. *Borrowing:* our own protocol and
     passports, the open standards of step 2, and Matrix and Signal for the
     line.
@@ -208,8 +214,9 @@ Added one at a time, as steps are done:
 - the admin-key: a course for Keepers, plotted by ADMIN as Keepers plot
   paths, and a training program for keeping worlds, in practice worlds
   ([ADMIN.md](ADMIN.md)), after steps 11 and 12;
-- a council of Keepers who hold admin-keys, deciding multiversal matters
-  with ADMIN, beside an assembly of individuals (proposed, ADMIN.md);
+- the round table: ADMIN's seat, and one for each Keeper who earns the
+  admin-key, deciding by consensus what all worlds share
+  ([ADMIN.md](ADMIN.md)); it decides from its second seat;
 - a window onto the worlds: a web viewer first, in Bevy, in the browser;
 - generator 2: land decided when first seen;
 - a storyteller for each world: paced events and visitors;
