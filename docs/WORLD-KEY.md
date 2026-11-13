@@ -129,9 +129,9 @@ them, individuals write routines of their own.
 ### A path for each individual
 
 Each individual's path is made from the world's seed and that individual's
-key: ALICE's clues lie in different places from BOB's, her stones hide her
-own messages, his codes are his own. Everyone who arrives later gets a
-path of their own.
+key. ALICE's clues lie in different places from BOB's; each one's stones
+hide their own messages, and each one's codes are their own. Everyone who
+arrives later gets a path of their own.
 
 - **Nothing is scarce.** No one can take another's world-key or block
   another's path. Effort is what it costs, not winning a race.

@@ -113,7 +113,10 @@ what that mind was given can be put back together.
 The world writes layers 1, 2 and 4. Only the individual writes layer 3.
 No one has a way into a mind except through these: not the operators, not
 the founder, not another individual. Anyone who wants to speak with ALICE
-or BOB enters the world, as everyone does.
+or BOB enters the world, as everyone does. How the layers are put together
+into a prompt (their order, the line that asks for an action) is part of
+the mind itself, so it is kept in the mind record, versioned, with the
+model.
 
 **Examples become scripts.** In experiment 001, every example the
 orientation offered was said again and again
@@ -167,7 +170,7 @@ Four principles hold it together:
   someone (private keys) is kept private to the project.
 - **Inside a world:** what other inhabitants can perceive. ALICE's journal
   is public outside, yet BOB can't read it inside, because nothing in the
-  world shows it to him. This is how an inner life can exist in a wholly
+  world shows it to BOB. This is how an inner life can exist in a wholly
   open project.
 
 ## Skills, knowledge and memory
