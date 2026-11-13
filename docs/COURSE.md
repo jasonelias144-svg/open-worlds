@@ -198,11 +198,15 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
     ADMIN's; and since ADMIN then has an office to watch, ADMIN's
     judgment and the multiverse log come with it, built for many worlds
     (moved here from step 12 on 2026-11-13, for that reason;
-    [ADMIN.md](ADMIN.md)). ADMIN's first work is to train the Ur-world's
-    Keeper in practice worlds, with stand-ins, before it keeps the
-    Ur-world with ALICE and BOB in it: coaching toward the Ur-world's
-    own aims, never command (founder, 2026-11-13; moved here from the
-    waiting list).
+    [ADMIN.md](ADMIN.md)). Before it trains anyone, ADMIN's mind is
+    chosen by audition, free in every sense, perhaps a council of
+    models, and ADMIN takes its own course in a world of its own, with
+    stand-ins only, taking on challenges it announces before it starts,
+    with nothing hidden: challenges, not tests. Then its first
+    work is to train the Ur-world's Keeper in practice worlds, with
+    stand-ins, before it keeps the Ur-world with ALICE and BOB in it:
+    coaching toward the Ur-world's own aims, never command (founder,
+    2026-11-13; moved here from the waiting list).
 12. **Founding worlds, and doors.** What only a second world needs:
     child worlds, each with a new key of its own, a signed birth record,
     and a Keeper chosen by its founders; doors between them, travel with

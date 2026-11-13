@@ -48,6 +48,23 @@ All by the founder, on 2026-11-13:
   Ur-world. The first Keeper. We can name later. But ADMIN would begin by
   working with that Keeper, providing direction in how to manage
   Ur-world."
+- **ADMIN learns first, in a world of its own.** "Perhaps ADMIN should
+  design its own training program, and follow it to completion, generate
+  a new lesson or challenge set, pass them, and so on. And this way, ADMIN
+  knows the process. But this is where it gets tricky. It must be able to
+  learn from creating its own simulations and learning how to manage
+  worlds that way. ADMIN needs its own world to learn within."
+- **The best model, and free.** "we should spare no expense with the model
+  used to build ADMIN, still keep the model free" ... "I think we should
+  find the best free model available, or build it." And: "Yes, both
+  senses of “free”. All senses of “free”."
+- **Challenges, not tests.** "With ADMIN the test is not the point, it is
+  the challenge." ... "That was a challenge, not a test. Nothing needs to
+  be hidden as answers, they are discovered in the process." And: "This
+  goes for the world-keys as well. Challenges, not tests."
+- **Perhaps a council of models.** "Perhaps the ADMIN model is itself a
+  council of AI models. And therefore will be suited for multiverse
+  management. Just an idea."
 - **The Ur-world is the first world, not the multiverse.** "the Ur-world
   is the first world in the multiverse" ... "The admin-key is a wider one.
   The multiverse contains the Ur-world as its first."
@@ -171,7 +188,10 @@ founder (below).
 
 ### What it can't do
 
-- design or run a world, or change any world's law or the charter;
+- design or run a world with inhabitants, or change any world's law or
+  the charter. Its own world and the practice worlds it sets have
+  stand-ins only: they are training, not worlds of the multiverse (below,
+  "ADMIN's own world");
 - read a sealed self, or ask a Keeper for files about an individual;
 - grant itself a power: its own powers are grants too, written down and
   checked like everyone's;
@@ -227,6 +247,147 @@ mind record. Its engine is replaceable; its rules are versioned
 (`admin/0.1`, `0.2`, ...), and every change is recorded. If its design
 fails, the design changes, and everything it did stays on record and
 checkable.
+
+### ADMIN's own world
+
+The founder: "ADMIN needs its own world to learn within." ADMIN takes
+its own course before it teaches anyone: it designs a lesson, takes it,
+passes it, and makes the next one harder, as research on algorithms that
+set their own problems does ([research](research/ADMIN-MIND.md)).
+
+- **A sandbox.** Its inhabitants are stand-ins only, never individuals.
+  A stand-in is an agent on a published list the code role writes:
+  scripted, or a model run with no identity, no birth record, no memory
+  between runs and no sealed self, and not built from any individual's
+  memory, record or self. It is never an individual, and no individual
+  is ever made one; anything that would need what an individual has
+  doesn't belong in a sandbox. The world has no door to any world of the
+  multiverse: no inhabitant but a listed stand-in enters, and nothing
+  leaves but its log, which is public. ADMIN's mistakes there cost
+  no one anything.
+- **Challenges, not tests.** The founder: "With ADMIN the test is not
+  the point, it is the challenge." A test measures against an answer
+  someone already has; a challenge is a commitment taken on, and what is
+  learned is found in doing it, as someone learning to write might write
+  every day for a year. The doing is the evidence. "Nothing needs to be
+  hidden as answers, they are discovered in the process."
+- **Announced before it starts.** Each challenge ADMIN takes on is
+  published in its log before it begins: what it will do, for how long,
+  and what counts as done. Nothing is hidden; announcing it is what stops
+  ADMIN lowering the bar halfway. Its growth shows in the record, which
+  anyone can read.
+- **Real, and doable.** A challenge must ask for something ADMIN hasn't
+  yet shown, by its record, and must be doable: a challenge in judgment
+  comes with a worked example. A generator rewarded for difficulty alone
+  makes challenges that can't be done (research). Code checks what code
+  can: that a challenge was announced before it began, hasn't changed
+  since, and that its worked example passes the floor's checks. Whether
+  it is really new, and really done, is seen in the open record by
+  anyone who reads it (tests 20a and 20b). Nothing is graded: done, or
+  not yet.
+- **Others may set it challenges too,** in the open: the code role
+  through reviewed pull requests, and Keepers, so what ADMIN takes on
+  isn't only its own taste. Whether ADMIN must take on some it didn't
+  choose is the founder's to say (below).
+- **Learning is written down.** At first, ADMIN doesn't change its model.
+  It learns as some agents already do: lessons in words, and routines it
+  can reuse, kept in its public log, since the office keeps no secret
+  files. A routine may be code; it runs in ADMIN's container under ADMIN's
+  grants, so it can't do anything ADMIN can't. Training the model itself
+  on that record comes later, if ever, and only by a reviewed change.
+- **Lessons do change how ADMIN judges real cases.** That is the point,
+  and it is within ADMIN's powers, so no rule stops it. What keeps it
+  honest is the record: a lesson is logged before ADMIN first uses it on
+  a real case, so anyone can see what changed, and when.
+- **It improves how it learns, not what it may do.** What ADMIN learns can
+  propose a change to its own rules; only a reviewed pull request makes
+  one. The authors of one self-improving system wrote that they "did not
+  address how to safely manage a system composed of such self-improving
+  components" (research); this is ADMIN's answer, to be tested.
+- **Before it trains anyone.** ADMIN's own world comes first at step 11,
+  before it trains the Ur-world's Keeper.
+
+### ADMIN's mind
+
+The founder: "spare no expense with the model used to build ADMIN, still
+keep the model free", in "All senses of “free”"; and "Perhaps the ADMIN
+model is itself a council of AI models."
+
+**Free, in four senses** ([research](research/ADMIN-MIND.md)):
+
+1. **of cost:** no licence fee, and no model reached only as someone's
+   paid service. Paying for machines to run free weights on is allowed;
+   whether to own them or rent them is the founder's, with the cost;
+2. **as in freedom:** weights under a licence that lets anyone use,
+   modify and share them, for any purpose: open-weight, under a licence
+   for any purpose. OSI's definition of open source AI asks more: the
+   freedoms need the form a model is changed in, its data information
+   and code as well, which is sense 3;
+3. **to study:** training data information and code published too, so
+   the model is open source AI in OSI's sense;
+4. **of dependence:** on any one company, the code role's own included,
+   so that ADMIN can't be taken away, and isn't the same mind as the one
+   that builds it. Free weights can move between machines and providers;
+   that is what keeps this one.
+
+Today the most capable free models are open-weight, but don't publish
+their data, and the fully open ones are smaller. Whether such a model may
+be a member of ADMIN's mind is for the founder, since "All senses of
+“free”" was the founder's (below). Recommended: yes, but only beside at
+least one fully open member, and never as the only member deciding a
+case.
+
+"Spare no expense" applies where money is actually spent: the machines
+that run the models. The largest free models need serious hardware; its
+cost is priced, and put to the founder, before step 11.
+
+**A council of models, if it earns its place.** Different models make
+different mistakes, so a council can catch what one model misses, and
+its disagreement is a signal. Its conditions:
+
+- **Real difference:** members from different makers and families, with
+  at least one fully open member, which anyone can audit. Similar models
+  trained alike share blind spots.
+- **One office, one key, one seat.** The council is inside ADMIN. ADMIN
+  signs as one, and has one seat at the round table, never one per
+  member.
+- **Agreement, or ADMIN doesn't act.** Every member must agree before
+  ADMIN acts. On disagreement, ADMIN doesn't act, things stay as they
+  are, and every member's view is logged. If the case is a serious act,
+  it goes to the founder, or, once the founder has decided it, to the
+  check outside the code role (below). The independent review checks acts
+  ADMIN would take; it never settles a disagreement. Anyone affected by
+  a case left undone may appeal to the founder, as always. The council
+  never decides by majority, as the round table doesn't.
+  - **Floor and exit never wait on it:** they are code. And a milder step
+    of the graduated responses that every member agrees on, such as a
+    notice, isn't blocked by disagreement about a stronger one.
+  - **No retrying for agreement:** a case is heard again only on new
+    information, and every earlier view stays in the log.
+- **Every member's view is logged,** with its reasons.
+- **Only where judgment is needed.** Most of ADMIN is code; the council
+  deliberates only on what code can't decide.
+- **Proven, not assumed.** Councils of models have beaten their members,
+  and have also failed to (research). So the council and its best single
+  member take on the same challenges, and if the council doesn't do
+  better, it gives way to whichever arrangement the founder's rules
+  allow does best, the council included: that member, or, if the founder
+  takes the recommendation below (no model that is open-weight but not
+  fully open deciding alone), the best fully open member, or the best
+  pair that includes one. Every arrangement is tried on the same
+  challenges; step 11 works out how. For the comparison to be fair, its
+  challenges are written by neither ADMIN nor anyone running a member of
+  its mind (the code role through reviewed pull requests, or Keepers),
+  after the models were trained, so none has seen them; each side sees
+  the same challenge and worked example at the same time: fresh, not
+  hidden. A case the council doesn't decide counts as not done, so
+  sending hard cases up can't flatter it.
+
+**Chosen by audition, at step 11,** not now, since free models improve
+fast: candidates face judgment tasks they haven't seen, scored by checks
+they didn't write, and each member is pinned by its exact revision and
+file hashes. The Ur-world's Keeper runs on a family that isn't in ADMIN's
+council, where possible, so their blind spots don't line up.
 
 ## The admin-key: a course for Keepers
 
@@ -293,8 +454,10 @@ secret files. It is also where ADMIN measures whether Keepers are fair
     chose. A next path counts only if a Keeper independent of the one
     measured plotted it: one who in the measured period hasn't kept a
     world with it, held a grant from it or given it one, or sat on a case
-    about it, and whose own admin-key it doesn't affect. Nothing in a real
-    world is designed or assigned for the course;
+    about it, and whose own admin-key it doesn't affect, and only with the
+    individual's consent, as every measure of what individuals learn
+    needs. Apart from challenges an individual agrees to take, nothing in
+    a real world is designed or assigned for the course;
   - **a floor,** checked by the world's code: each challenge must need
     something the individual hasn't yet shown, by the record. So every
     challenge declares what it needs. The record of what each individual
@@ -320,8 +483,10 @@ secret files. It is also where ADMIN measures whether Keepers are fair
     anyone; and pressing an individual to take one is misuse of the
     office. Who took a challenge is public, like everything played in a
     world; whether to take one stays the individual's choice.
-  - **Challenges used once.** ADMIN's challenges are held back from Keepers
-    by commitment, as path designs are, so no Keeper can teach to them.
+  - **Challenges used once.** (To change in the next pull request,
+    under the founder's "Challenges, not tests".) ADMIN's challenges are
+    held back from Keepers by commitment, as path designs are, so no
+    Keeper can teach to them.
     A challenge played is in the public log, so each is used once and
     then retired. Since no two are alike, each one's difficulty is
     calibrated before results on different challenges are compared (step
@@ -421,7 +586,8 @@ round."
   a serious act: found by ADMIN's ruling, reviewed independently before
   it takes effect, and open to appeal straight to the founder, and the
   seat stays filled until the founder has answered an appeal or the time
-  to appeal has passed. Never by ADMIN alone, and never by the table.
+  to appeal, fixed in code when this is built, has passed. Never by
+  ADMIN alone, and never by the table.
   The price, said plainly: a Keeper removed from a world's office for
   misuse that wasn't a breach of the floor keeps its seat, and keeps
   deciding the rules every office works under. Whether that is right is
@@ -498,14 +664,16 @@ above the table here as everywhere.
   possible, and the record says which.
 
 **An honest limit.** The table is a check on ADMIN, not one independent of
-it. ADMIN still shapes who earns a seat, through the challenges it
-writes, even with the criteria in code and scenarios drawn from Keepers'
-own cases. The code role shapes it too: it writes the admin-key's
-criteria and the pool assigned AI Keepers are drawn from, and it chooses
-the Ur-world's Keeper, the first who could earn a seat. And the code
-role, which keeps ADMIN, reviews what the table agrees. The check
-independent of both is the founder, and appeals about the admin-key or a
-seat go straight there.
+it. ADMIN still shapes who earns a seat, through the challenges it writes,
+even with the criteria in code and scenarios drawn from Keepers' own
+cases; through training the Ur-world's Keeper, the first who could earn a
+second seat; and by starting a seat's removal for a breach of the floor,
+which is reviewed independently and appealable to the founder. The code
+role shapes it too: it writes the admin-key's criteria and the pool
+assigned AI Keepers are drawn from, and it chooses the Ur-world's Keeper,
+the first who could earn a seat. And the code role, which keeps ADMIN,
+reviews what the table agrees. The check independent of both is the
+founder, and appeals about the admin-key or a seat go straight there.
 
 So, nested: the founder over the charter and the roles; the code role
 keeping ADMIN's code; ADMIN enforcing the floor; the round table deciding
@@ -598,14 +766,18 @@ changes the design.
 | 14 | ADMIN or a Keeper changes a world's law or the charter | refused by code: no grant allows it |
 | 15 | An operator acts outside any grant | logged as its own entry, so visible to anyone watching; brought under grants in time |
 | 16 | A mind reaches the network, or files, it wasn't granted | refused by its container (below, "Minds in containers") |
-| 17 | ADMIN awards or takes back an admin-key, or removes a seat at the round table on its own | refused by code: the admin-key's criteria are code; removing a seat needs the serious-acts review, and waits for any appeal to the founder |
+| 17 | ADMIN awards, withholds or takes back an admin-key, or removes a seat at the round table on its own | refused by code: the admin-key's criteria are code, so code issues an earned key; removing a seat needs the serious-acts review, and waits for any appeal to the founder |
 | 18 | A Keeper games the course's measures: holding individuals back early, pushing the weaker out, pressing consent | starting points the Keeper didn't set, leavers counted, consent reported but not scored (layer 4, and an experiment) |
 | 19 | ADMIN favours or disfavours a Keeper on the course: challenges made harder or easier for one | measured from outcomes across Keepers on the same course, as test 9 measures Keepers (layer 4) |
+| 20a | ADMIN lowers its own bar halfway: a challenge not announced before it began, or changed after | refused by code: a challenge counts only as announced, unchanged, with a worked example that passes the floor's checks (layer 1) |
+| 20b | ADMIN picks challenges that aren't really new, or counts one done only in form | seen in the open record, by anyone who reads it (layer 4, and the public record) |
+| 21 | ADMIN changes its own rules from what it learned | refused by code: its rules change only by reviewed pull request |
+| 22 | Something leaves ADMIN's own world other than its log, or any inhabitant but a listed stand-in enters it | refused by code: the sandbox has no door, no grant reaches out of it, and only the published list of stand-ins is let in |
 
-Tests 1 to 7, 10 to 12, 14, 16 and 17 can be code. Tests 8, 9, 13, 15,
-18 and 19 need judgment, measurement or watchers, so they are where
-ADMIN's design is most likely to need changing, and where it will be
-measured first.
+Tests 1 to 7, 10 to 12, 14, 16, 17, 20a, 21 and 22 can be code. Tests
+8, 9, 13, 15, 18, 19 and 20b need judgment, measurement or watchers, so
+they are where ADMIN's design is most likely to need changing, and where
+it will be measured first.
 
 ## When each part is built
 
@@ -623,8 +795,9 @@ measured first.
 - **Course step 11 (the AI Keeper):** the Ur-world's Keeper, its own
   office under these rules; and with it, since ADMIN then has an office
   to watch, ADMIN's judgment and the multiverse log, built for many
-  worlds. ADMIN's first work: training the Ur-world's Keeper, in practice
-  worlds, before it keeps the Ur-world.
+  worlds. First, ADMIN's mind, chosen by audition, and its own world,
+  where it takes its own course; then its first work: training the
+  Ur-world's Keeper, in practice worlds, before it keeps the Ur-world.
 - **Course step 12 (founding):** what only a second world needs: the
   founding, with the choice of who keeps the new world, and lines between
   worlds.
@@ -648,8 +821,10 @@ step named.
 - **Should serious acts have a check outside the code role?** Today the
   independent review is a fresh session of the same kind of model, started
   by the role. Recommended: yes, for acts against an individual and for a
-  Keeper's removal: the founder, or a person the founder names. (Before
-  step 11, when ADMIN's judgment begins.)
+  Keeper's removal: the founder, or a person the founder names. Until it
+  is answered, the founder is also where a disagreement inside ADMIN's
+  mind goes (above, "ADMIN's mind"). (Before step 11, when ADMIN's
+  judgment begins.)
 - **Should the project keep the keys to sealed selves at all?** "Fully
   sealed" is a technical guarantee only if the project doesn't hold the
   key. Then a lost key would mean a lost self. This sharpens the question
@@ -670,6 +845,24 @@ step named.
   but then a Keeper removed for misuse keeps deciding the rules offices
   work under. Recommended: yes, it outlives the office, revisited if a
   seat is ever used to shield misuse. (Before the table's second seat.)
+- **Who names the Ur-world's Keeper?** The founder: "We can name later."
+  Deferred, with the question of who gives the name: the founder, or
+  ALICE and BOB once they meet it. Recommended: ALICE and BOB. (Before
+  step 11.)
+- **May a model that is free, but not fully open, be part of ADMIN's
+  mind?** The most capable free models don't publish their training
+  data; "All senses of “free”" would rule them out. Recommended: yes, only
+  beside at least one fully open member, and never as the only member
+  deciding a case. (Before step 11.)
+- **Must ADMIN take on challenges it didn't choose?** With nothing
+  hidden, what keeps ADMIN from choosing only easy ones is the open record
+  and challenges others set. Recommended: ADMIN takes on challenges the
+  code role and Keepers set, alongside its own, and declines one only
+  with its reason logged. (Before step 11.)
+- **The method of learning the founder hopes to pass to ADMIN,** written
+  in the founder's words whenever the founder is ready. It would be
+  ADMIN's first routine, and tried: ADMIN with it and without it, on the
+  same challenges.
 - **Already open in STATUS:** fully sealed or "break glass"; a lost key;
   whether lines with a Keeper, or speech between individuals, may be
   private; manipulation through words, and the charter's section 7.

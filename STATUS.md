@@ -152,10 +152,35 @@ the technical lead's recommendation.
   deciding the rules offices work under. Recommended: yes, revisited if a
   seat is ever used to shield misuse. Before the table's second seat.
   (asked 2026-11-13)
+- For the founder: may a model that is free but not fully open (its
+  training data unpublished) be part of ADMIN's mind? "All senses of
+  “free”" would rule it out. Recommended: yes, only beside at least one
+  fully open member, and never as the only member deciding a case.
+  Before course step 11 (docs/ADMIN.md, "ADMIN's mind"). (asked
+  2026-11-13)
+- For the founder: must ADMIN take on challenges it didn't choose? With
+  nothing hidden, what keeps ADMIN from choosing only easy ones is the
+  open record and challenges others set. Recommended: it takes on those
+  the code role and Keepers set, alongside its own, and declines one
+  only with its reason logged. Before course step 11 (docs/ADMIN.md).
+  (asked 2026-11-13)
+- For the founder, deferred ("We can name later"): who names the
+  Ur-world's Keeper, the founder or ALICE and BOB once they meet it?
+  Recommended: ALICE and BOB. Before course step 11. (asked 2026-11-13)
+- For the founder, whenever ready: the method of learning the founder
+  hopes to pass to ADMIN, in the founder's words, to be ADMIN's first
+  routine and tested with and without it (docs/ADMIN.md). (asked
+  2026-11-13)
+- For the founder, with the budget question above: what running ADMIN's
+  models will cost, and whether to own the machines or rent them. Renting
+  from providers that can be swapped keeps ADMIN free of dependence;
+  priced before course step 11. (noted 2026-11-13)
 - For the founder, when writing the charter's section 4 ("nothing is known
   about the world that its participants can't also know"): two exceptions
   now stand in the design, and the section should name them: the answer to
   a challenge, held until it is solved, and each individual's sealed self.
+  The first may go: the founder has said "Challenges, not tests" for the
+  world-keys too, and that change follows this PR.
   If the founder chooses a private line with a Keeper, or private speech
   between individuals, those would be exceptions too. (noted 2026-11-13)
 
@@ -177,6 +202,25 @@ the technical lead's recommendation.
 
 ## Decided
 
+- 2026-11-13, founder: "With ADMIN the test is not the point, it is the
+  challenge." ... "That was a challenge, not a test. Nothing needs to be
+  hidden as answers, they are discovered in the process." And: "This
+  goes for the world-keys as well. Challenges, not tests." So ADMIN's
+  hidden exam is dropped for challenges announced in the open
+  (docs/ADMIN.md), and the world-keys follow in the next PR.
+- 2026-11-13, founder, on how ADMIN learns and what it runs on
+  (docs/ADMIN.md, "ADMIN's own world" and "ADMIN's mind"): "Perhaps ADMIN
+  should design its own training program, and follow it to completion,
+  generate a new lesson or challenge set, pass them, and so on. And this
+  way, ADMIN knows the process. But this is where it gets tricky. It must
+  be able to learn from creating its own simulations and learning how to
+  manage worlds that way. ADMIN needs its own world to learn within."
+  And: "we should spare no expense with the model used to build ADMIN,
+  still keep the model free" ... "I think we should find the best free
+  model available, or build it." "Yes, both senses of “free”. All senses
+  of “free”." And, as an idea: "Perhaps the ADMIN model is itself a
+  council of AI models. And therefore will be suited for multiverse
+  management. Just an idea."
 - 2026-11-13, founder, on ADMIN's first work: "So the first interaction
   would be ADMIN plotting a training course for the Keeper of Ur-world.
   The first Keeper. We can name later. But ADMIN would begin by working
@@ -442,8 +486,44 @@ it was wrong. Questions of what the project is for stay with the founder.
   self-reports falls, or a report ruled deliberate is reversed on
   appeal.
 
+- 2026-11-13, ADMIN's council of models, if there is one: every member
+  must agree before ADMIN acts; on disagreement ADMIN doesn't act, every
+  view is logged, and a serious act goes to the founder (or, once
+  decided, the check outside the code role), never to the review as a
+  tie-breaker; one office, one key, one seat; members from different
+  makers, with at least one fully open; tried against its best single
+  member on the same fresh challenges, written by neither ADMIN nor
+  anyone running a member, with undecided cases counted as not done;
+  a case heard again only on new information. *Why:* the research is
+  mixed: councils of models have beaten their members, and have also
+  failed to (docs/research/ADMIN-MIND.md); and agreement or no act
+  matches the round table. *Revisit if:* the council doesn't beat its
+  best member on those challenges, or more than one in five of the last
+  twenty serious cases goes undecided, or cases wait for the founder
+  longer than a week.
+- 2026-11-13, ADMIN learns by written lessons and routines in its public
+  log, not by changing its model, and what it learns can only propose a
+  change to its rules. *Why:* lessons in words can be read and checked by
+  anyone, and the authors of a self-improving system say it "still
+  necessitates oversight". *Revisit if:* ADMIN stops growing with lessons
+  alone: three in a row of the challenges others set it not done (a
+  challenge it declines counts as not done); then training its model on
+  its record is proposed, by reviewed change.
+
 ## Log
 
+- 2026-11-13 Claude: ADMIN learns first, in a world of its own
+  (docs/ADMIN.md; research in docs/research/ADMIN-MIND.md). The
+  founder's ideas written up: ADMIN takes its own course in a sandbox
+  with stand-ins, taking on challenges it announces before it starts,
+  with nothing hidden ("Challenges, not tests"), learning by written
+  lessons, and improving how it learns, never
+  what it may do; its mind free in four senses, chosen by audition at
+  step 11; and perhaps a council of models, one office with one seat,
+  agreeing or sending a case up. Also the last notes from #34's review:
+  practice worlds aren't worlds of the multiverse, the honest limit made
+  complete, consent for next-path measures, "withholds" back in test 17,
+  who can leave a bond, and the Keeper's name kept as a deferred question.
 - 2026-11-13 Claude: ADMIN, part two (docs/ADMIN.md). The founder's
   ideas written up:
   - training for keeping worlds, in practice worlds with stand-in
