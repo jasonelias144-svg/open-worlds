@@ -178,6 +178,10 @@ and for the founder's conversations with DeepSeek, is in
   Their minds come from "two completely different and yet complementary
   models". Compatibility with outside agents such as OpenClaw's is enough
   for now. All in docs/URWORLD.md.
+- 2026-11-13, founder, on how ALICE and BOB are written about: by their
+  names, or "they", not "she" and "he", since nothing in their design gives
+  them a gender. "It is best to be careful from the start to avoid falling
+  into linguistic habits."
 
 ## Log
 

@@ -60,13 +60,13 @@ It tells what happens, from the world's own log, then draws a map of what
 has come into view:
 
 - The world is created, from seed 20261113, the day it was decided.
-- ALICE enters, west of the tree, and the land around her comes into view.
+- ALICE enters, west of the tree, and the land around ALICE comes into view.
   BOB enters, east of it.
 - ALICE says "Hello, world." BOB listens. Then BOB answers "Hello, ALICE.",
   and ALICE listens.
-- BOB plants a flower beside him.
+- BOB plants a flower close by.
 - ALICE walks north around the tree, then east, out of the garden. The land
-  rises into hills, and new chunks come into being as she goes.
+  rises into hills, and new chunks come into being as ALICE goes.
 
 ALICE and BOB are short scripts here, just enough to show that the world
 works. They gain minds at the language-model step.

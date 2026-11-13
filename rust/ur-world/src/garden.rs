@@ -7,7 +7,7 @@
 //! driven by short scripts, enough to show that the world works: they greet
 //! each other (one speaks, the other listens, then they turn), BOB plants a
 //! flower, and ALICE walks out of the garden into land no one has seen,
-//! which comes into being as she goes. They gain minds of their own at the
+//! which comes into being as ALICE goes. They gain minds of their own at the
 //! course's language-model step (docs/URWORLD.md).
 
 use std::collections::VecDeque;
@@ -48,7 +48,7 @@ impl Mind for Script {
     }
 }
 
-/// ALICE's script: she speaks first, listens, then walks north around the
+/// ALICE's script: speak first, listen, then walk north around the
 /// tree and east, out of the garden.
 pub fn alice() -> Script {
     let mut actions = vec![
@@ -61,7 +61,7 @@ pub fn alice() -> Script {
     Script::new(actions)
 }
 
-/// BOB's script: he listens, answers, and plants a flower beside him.
+/// BOB's script: listen, answer, and plant a flower close by.
 pub fn bob() -> Script {
     Script::new([
         Action::Wait,

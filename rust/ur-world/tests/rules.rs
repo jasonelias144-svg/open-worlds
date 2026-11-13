@@ -209,7 +209,7 @@ fn everyone_hears_speech_on_the_next_tick_only() {
     assert_eq!(heard[0], []);
     assert_eq!(heard[1], [("ALICE".to_owned(), "Hello, world.".to_owned())]);
     assert_eq!(heard[2], [("ALICE".to_owned(), "x".repeat(280))]);
-    // BOB sees ALICE two cells west, and the grass under his feet.
+    // BOB sees ALICE two cells west, and the grass underfoot.
     let first = &seen.borrow()[0];
     assert_eq!(first.others, [("ALICE".to_owned(), A)]);
     assert_eq!(first.at(0, -1, 0), Some(Material::Grass));
@@ -261,7 +261,7 @@ fn leaving_always_succeeds_and_a_name_is_used_once() {
     w.run(3);
     assert_eq!(kinds(&w, "ALICE"), ["entered", "planted", "exited"]);
     assert_eq!(w.position("ALICE"), None);
-    // What she planted stays.
+    // What ALICE planted stays.
     assert_eq!(w.material(B), Material::Flower);
     assert_eq!(
         w.add("ALICE", script(vec![]), A),
@@ -421,7 +421,7 @@ fn a_deep_drop_goes_on_at_the_next_tick() {
     let mut w = World::new(SEED);
     let top = Cell::new(4, 1, 4);
     w.add("ALICE", script(vec![]), top).unwrap();
-    // Hollow out a shaft a hundred cells deep beneath her, bottom first.
+    // Hollow out a shaft a hundred cells deep beneath ALICE, bottom first.
     for depth in (0..100).rev() {
         w.shape(Cell::new(4, -depth, 4), Material::Air);
     }

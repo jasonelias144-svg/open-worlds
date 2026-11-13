@@ -146,6 +146,6 @@ fn alice_walked_out_of_the_garden_and_climbed_the_hills() {
     }
     let end = world.position("ALICE").unwrap();
     assert_eq!((end.x, end.z), (19, -2));
-    assert!(end.y > 1, "she has climbed: {end:?}");
+    assert!(end.y > 1, "ALICE has climbed: {end:?}");
     assert_eq!(world.position("BOB"), Some(BOB_AT));
 }
