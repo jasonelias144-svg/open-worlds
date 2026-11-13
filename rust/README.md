@@ -13,7 +13,7 @@ The standards for every Rust file are in
 | Crate | What it does |
 |---|---|
 | [`world-log`](world-log) | Checks a world's public record exactly as the Python kernel writes it. |
-| [`ur-world`](ur-world) | The Ur-world: a 3D world that begins in a garden with ALICE and BOB, and comes into being as it is explored ([docs/URWORLD.md](../docs/URWORLD.md)). |
+| [`ur-world`](ur-world) | The Ur-world: a 3D world that begins in a garden with ALICE and BOB, and is made from its seed as it is explored ([docs/URWORLD.md](../docs/URWORLD.md)). |
 
 The workspace's settings, which every crate shares, are in
 [`Cargo.toml`](Cargo.toml): the dependencies with the reason for each,

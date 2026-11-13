@@ -17,8 +17,8 @@
 //! action, in the forms the orientation shows. What a mind sends is
 //! untrusted, so it is read strictly. A reply that can't be read is
 //! recorded as unreadable, and nothing happens. No reply within the time
-//! limit is recorded as unanswered, and nothing happens. A reply to an
-//! earlier tick, arriving late, is set aside. Nothing a mind sends, and
+//! limit is recorded as unanswered, and nothing happens. A reply to any
+//! other tick (a late one, say) is set aside. Nothing a mind sends, and
 //! nothing it fails to read, can break the world or hold it up.
 //!
 //! A mind writes only replies to its standard output: any other line
@@ -60,7 +60,7 @@ pub fn law() -> Value {
             "Grass, soil, rock, wood and leaves are solid: they bear weight and block the way. Air, water and flowers don't.",
             "A place is written (x, y, z): x grows to the east, z to the south, and y upward.",
             format!("You begin in a garden. Its tree stands at (0, 1, 0), and its spring is at {}. Around it are hills and lakes that no one has seen yet.", place(SPRING)),
-            "Land comes into being when someone first comes near it.",
+            "Land is made from the world's seed. It is recorded when someone first comes near it, and no one has seen it before then.",
         ],
         "ticks": "The world moves in ticks. At each tick, everyone is told what they see and hear, and each answers with one action. Everyone acts in the same tick, one after another.",
         "directions": ["north", "south", "east", "west"],
@@ -68,7 +68,7 @@ pub fn law() -> Value {
             { "form": "wait", "does": "Nothing happens." },
             { "form": "step DIRECTION", "does": "You move one cell that way. You can climb a block one cell high if there is room above it and above you. If you step off an edge, you fall.", "refused": "You can't step into a solid cell, or into a cell where someone stands." },
             { "form": "say TEXT", "does": format!("You speak. Everyone in the world hears it at the next tick. At most {MAX_SAY} characters are heard.") },
-            { "form": "plant DIRECTION", "does": "You plant a flower in the cell that way.", "refused": "The cell must be open air, on grass or soil." },
+            { "form": "plant DIRECTION", "does": "You plant a flower in the cell that way.", "refused": "The cell must be open air, on grass or soil, with no one in it." },
             { "form": "exit", "does": "You leave the world. This always works, and your name can't be used here again." },
         ],
         "reply": "Answer with one line: one action, in one of the forms above, such as \"say Hello.\" or \"step north\". The first line that isn't blank is read, and the rest is ignored. Anything else isn't an action: it is recorded as unreadable, and nothing happens.",
@@ -329,11 +329,14 @@ fn direction(word: &str) -> Option<Dir> {
     Dir::ALL.into_iter().find(|d| d.name() == word)
 }
 
-/// Speech without one pair of quotes around all of it, if it has them.
+/// Speech without one pair of quotes around all of it, if it has them:
+/// quotes at both ends, with none of that kind between.
 fn unquote(text: &str) -> &str {
     for (open, close) in [('"', '"'), ('\'', '\''), ('\u{201c}', '\u{201d}')] {
         if let Some(inner) = text.strip_prefix(open).and_then(|t| t.strip_suffix(close))
             && !inner.trim().is_empty()
+            && !inner.contains(open)
+            && !inner.contains(close)
         {
             return inner;
         }
@@ -527,7 +530,7 @@ impl Mind for ProcessMind {
             let left = deadline.saturating_duration_since(Instant::now());
             match self.replies.recv_timeout(left) {
                 Ok(Line::Reply { tick, reply }) if tick == seen.tick => return read_reply(&reply),
-                // A late reply to an earlier tick: set aside.
+                // A reply to any other tick (a late one, say): set aside.
                 Ok(Line::Reply { .. }) => {}
                 Ok(Line::Unreadable(raw)) => return Action::Unreadable(raw),
                 // No reply in time, or the mind has gone.
@@ -565,6 +568,11 @@ mod tests {
             Action::Say("Hello, BOB.".into())
         );
         assert_eq!(read_reply("say \"\""), Action::Say("\"\"".into()));
+        // Quotes that don't pair around all of it are kept.
+        assert_eq!(
+            read_reply("say \"a\" and \"b\""),
+            Action::Say("\"a\" and \"b\"".into())
+        );
         assert_eq!(
             read_reply("\n\nsay one\nstep north"),
             Action::Say("one".into())

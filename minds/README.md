@@ -21,6 +21,11 @@ cargo run -p ur-world --example door -- \
     --mind TRIAL-2=python3 -I ../minds/wanderer.py
 ```
 
+The world stops a mind's program when the mind leaves, or when the world
+ends. It stops that program only, not programs it started, so a wrapper
+script should `exec` the mind rather than run it as a child.
+
 A mind run from code someone else wrote should be read first, and run
 where it can do no harm: the world keeps it from breaking the world, but
-not from touching the machine it runs on.
+not from touching the machine it runs on. A separate process is not a
+sandbox.

@@ -4,7 +4,8 @@
 //! Space is a grid of cells with whole-number coordinates. `y` is up (as in
 //! glTF, Unity and Bevy), `x` is east and `z` is south, so the axes are
 //! right-handed. Cells are grouped into chunks of 16 x 16 x 16: a chunk is
-//! the piece of the world that comes into being when someone first sees it.
+//! the piece of the world that is made, and recorded, when someone first
+//! comes near it.
 
 /// The edge of a chunk, in cells.
 pub const CHUNK: i64 = 16;

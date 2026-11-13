@@ -7,7 +7,7 @@
 //! driven by short scripts, enough to show that the world works: they greet
 //! each other (one speaks, the other listens, then they turn), BOB plants a
 //! flower, and ALICE walks out of the garden into land no one has seen,
-//! which comes into being as ALICE goes. They gain minds of their own at the
+//! which comes into view as ALICE goes. They gain minds of their own at the
 //! course's language-model step (docs/URWORLD.md).
 
 use std::collections::VecDeque;

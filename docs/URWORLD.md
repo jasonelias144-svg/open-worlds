@@ -96,7 +96,7 @@ has come into view:
   and ALICE listens.
 - BOB plants a flower close by.
 - ALICE walks north around the tree, then east, out of the garden. The land
-  rises into hills, and new chunks come into being as ALICE goes.
+  rises into hills, and new chunks come into view as ALICE goes.
 
 ALICE and BOB are short scripts here, just enough to show that the world
 works. Minds that choose for themselves come in through the doorway
@@ -218,9 +218,10 @@ world:
 
 - a reply that doesn't come within the time limit is recorded as
   unanswered;
-- a late reply to an earlier tick is set aside;
+- a reply to any other tick (a late one, say) is set aside;
 - a line over 64 KiB is recorded by its beginning;
-- a mind that stops is not waited for;
+- a mind whose program has stopped is not waited for. It stays in the
+  world, its ticks unanswered, because a crash isn't a choice to leave;
 - a mind that doesn't read what it is sent can't hold up the world: what
   doesn't fit in its queue is dropped, and its ticks go unanswered;
 - a mind's program is stopped when it leaves, or when the world ends.
