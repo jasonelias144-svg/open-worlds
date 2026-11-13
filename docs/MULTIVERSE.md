@@ -358,6 +358,44 @@ What it doesn't do yet, said plainly:
   log are not signed yet, so a copy of a log can't yet be checked
   against its world.
 
+## The chemistry world on real chemistry (course step 4)
+
+- **A soup of real molecules.** The chemistry world holds a soup
+  (`chem.soup.Soup`, one well-mixed cell for now) that starts with the
+  soil its law publishes: water, glycine and formaldehyde. Molecules are
+  real graphs with an exact identity (`chem/molecule.py`), not formulas.
+- **An act is a real reaction.** `chemistry.react` names one of the
+  reaction rules of `chem/rules.py` and the molecules it acts on, by
+  catalogue name or identity. If the rule applies and every reactant is
+  in the soup, the reaction happens there, at once. Atoms come from the
+  soup: nobody brings matter in or takes it out, and every reaction keeps
+  every atom and the total charge. The made stamp names the reaction.
+- **The soup runs in time.** Each accepted act lets exactly the
+  published number of seconds of world time pass, in which the soup's
+  own reactions happen by exact stochastic simulation from a published
+  seed (`Soup.advance`). World time is simulated, not the clock's. The
+  same acts replay the same history.
+- **What anyone can check.** The soup keeps its own hash-chained log,
+  which the kernel's verifier accepts, and each accepted act's entry in
+  the world's log records the soup's time and log head after it.
+  `census()` lists every molecule by identity, with its formula and count.
+
+What it doesn't do yet, said plainly:
+
+- **An act does what no catalyst can.** It makes a reaction happen,
+  however uphill; a real catalyst speeds a reaction both ways and can't
+  move an equilibrium. Until energy and rates come in, the chemistry
+  world's acts aren't limited by energy (course steps 7 and 8).
+- **The rates are placeholders,** chosen so that both directions happen
+  often enough to watch, and the law says so. Real rates, with sources,
+  are course step 8.
+- **The soup's own reactions are a fixed list.** A molecule an act makes
+  has no reactions of its own until the world finds them as new molecules
+  appear (course step 8): a dipeptide doesn't hydrolyse by itself yet.
+- **One cell, no places.** Everyone acts on the same well-mixed soup.
+- **The rules are local.** They apply wherever their atoms match, even
+  where real chemistry would be too slow to matter (CHEMISTRY.md).
+
 ## The course
 
 The steps ahead are in [COURSE.md](COURSE.md): twelve steps, rolling.

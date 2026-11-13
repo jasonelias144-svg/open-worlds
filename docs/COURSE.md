@@ -53,6 +53,23 @@ of the sketch's components each step relates to is in
    holder can leave stamps out of what it shows but can't change, add or
    repeat one, and a passport shows every world in it to every world it is
    shown to (the founder's open question on unlinked presences).
+4. **The chemistry world on the real chemistry** (2026-11-13, #21). Its
+   law is now on `chem/`: a soup of real molecules (one well-mixed cell)
+   that starts with published soil and runs its own reactions by exact
+   stochastic simulation from a published seed. An act names a reaction
+   rule and the molecules it acts on; if the rule applies and they are
+   there, the reaction happens, with atoms the soup already has. Each
+   accepted act lets exactly the published time pass. Two engine
+   additions: `Soup.perform` (an act) and `Soup.advance` (the clock lands
+   exactly). It passes the conformance test. The soup's rates are
+   placeholders, said so in its law.
+   Learned: an act here makes a reaction happen, and a real catalyst
+   can't do that. A catalyst speeds a reaction both ways and leaves the
+   equilibrium where it was; until energy and rates come in, an agent can
+   push any reaction the rules allow, however uphill. So the learner's
+   goal (step 7) would be one act. Also, the soup's own reactions are a
+   fixed, published list: a molecule an act makes has no reactions of
+   its own yet (a dipeptide doesn't hydrolyse by itself).
 
 ## Ahead
 
@@ -63,9 +80,13 @@ after the learner is saved and reloaded, or either world restarts, so
 the keys of both worlds and individuals have to outlive a process. The
 other steps keep their order, each one later by one.
 
-4. **The chemistry world on the real chemistry.** Its law moves onto
-   `chem/`: real molecules and reactions, and a soup that runs in time.
-   Its time rate is published in its law. It passes the conformance test.
+Rechecked after step 4: step 7 now says that the learner's acts
+catalyse (speed a reaction both ways, for a while) instead of making it
+happen, so it can't push an uphill reaction and its goal stays a
+problem. Step 8 gains finding the reactions of new molecules as they
+appear, which real rates need anyway. A new step 16 comes from the
+next-in-line list: a single-cell world.
+
 5. **The first journey.** The corridor world of Cycle 0 speaks the
    protocol. One individual walks from the corridor into the chemistry
    world and on to the poetry world, and back, with its passport checked
@@ -82,11 +103,14 @@ other steps keep their order, each one later by one.
    more, carries what it has learned, and can be saved and replayed. Its
    first goal is a peptide bond (two glycines into glycylglycine), with
    standing problems that measure growth and forgetting. Solving it earns
-   a signed stamp.
+   a signed stamp. Its acts catalyse: they speed a reaction both ways for
+   a while, as a real catalyst does, and can't move an equilibrium.
 8. **Real rates, and the gardener's water.** Reaction rates from
-   published measurements, each with its source, and wetting and drying
-   cycles that give the peptide problem its real difficulty. Needs the
-   founder's answer on the gardener's levers.
+   published measurements, each with its source; the world finding the
+   reactions of each new molecule as it appears (CHEMISTRY.md, "growth
+   of the network"); and wetting and drying cycles that give the peptide
+   problem its real difficulty. Needs the founder's answer on the
+   gardener's levers.
 9. **An organic chemistry world** that admits by the stamp from step 7:
    the first evolutionary path between worlds. Longer chains and more
    kinds of reaction; the learner grows when it gets there.
@@ -113,10 +137,15 @@ other steps keep their order, each one later by one.
     hymns, which others find easy to extend. Counting syllables and
     spotting rhymes in English is approximate; the law says so, and
     treats the meter as a guide.
+16. **A single-cell world.** A world where the agent is the organism
+    itself (MULTIVERSE.md, "Who the agent is"): one cell, a membrane
+    that lets some molecules through, and the chemistry inside it on
+    `chem/`. The cell lives while its chemistry keeps going, and divides
+    when it has made enough of itself. It passes the conformance test.
 
 ## Next in line
 
-Added one at a time, as steps are done: a single-cell world; an adapter
+Added one at a time, as steps are done: an adapter
 for a world others built (anima-world); doors between worlds; belongings
 and homes under each world's law; visiting two worlds at once; the main
 community world; a curator for each world, which proposes its world's
