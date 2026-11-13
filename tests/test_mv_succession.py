@@ -536,6 +536,38 @@ class TestAWorldsMemoryStaysSmall(unittest.TestCase):
         self.assertEqual(poetry.known_keys()["world:far"],
                          ahead_keys[LINE_KEPT].token)
 
+    def test_each_known_world_has_its_own_bound(self):
+        far = [Signer(), Signer()]
+        worlds = [PoetryWorld(f"world:far{i}", "Far", key=k)
+                  for i, k in enumerate(far)]
+        poetry = PoetryWorld("world:here", "Here")
+        bob = make_client("Bob")
+        for i, (w, k) in enumerate(zip(worlds, far)):
+            poetry.know(w.manifest())
+            past, _ = self.world_line(f"world:far{i}", 2 * LINE_KEPT, last=k)
+            for s in past:
+                bob.passport = bob.passport.with_succession(s)
+        self.assertIsInstance(petition_world(bob, poetry), Admission)
+        for i in range(2):
+            self.assertEqual(len(poetry.successions(f"world:far{i}")),
+                             LINE_KEPT)
+
+    def test_a_restarted_world_relearns_a_long_past(self):
+        # Found by the independent review of #24: successions a world
+        # already held used up the bound, so after a restart it could
+        # relearn only a few at a time, or none, depending on the order.
+        keys = [Signer() for _ in range(LINE_KEPT + 5)]
+        world = PoetryWorld("world:w", "W", key=keys[0])
+        past = [world.sign_over(k) for k in keys[1:]]
+        restarted = PoetryWorld("world:w", "W", key=keys[-1])
+        for name in ("Carol", "Dee"):
+            client = make_client(name)
+            for s in reversed(past):                # newest first
+                client.passport = client.passport.with_succession(s)
+            self.assertIsInstance(petition_world(client, restarted),
+                                  Admission)
+        self.assertCountEqual(restarted.successions("world:w"), past)
+
     def test_a_petition_refused_at_a_crowded_entrance_teaches_nothing(self):
         # The corridor's own entry check comes after the law's; learning
         # waits for admission past both.

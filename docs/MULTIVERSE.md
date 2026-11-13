@@ -566,8 +566,10 @@ What it doesn't do yet, said plainly:
   part of this step. (The independent review of #24 found this missing
   from the limits.)
 - **What a world has learned about successions is kept in memory.** A
-  restarted world learns them again from the passports it is shown, or
-  from `know_succession`. From a passport it keeps only what concerns
+  restarted world learns them again from the passports it is shown (up
+  to 8 links of each line it doesn't hold yet per admission, so a long
+  past takes a few), or from `know_succession`. From a passport it keeps
+  only what concerns
   it, and only once it has admitted the petitioner, past its law and its
   own entry checks. It keeps at most `LINE_KEPT` (8) links of each line
   per admission: the newest of the petitioner's own line of keys, and,

@@ -452,6 +452,8 @@ class Entity:
             fits = [s for s in linked if self._links(s)]
             for s in fits:
                 linked.remove(s)
+                if shown and self._lineage.successor(s.of, s.old) == s.new:
+                    continue                # held already: costs nothing
                 if shown:
                     known = (self._key.token if s.of == own
                              else self._known.get(s.of))
