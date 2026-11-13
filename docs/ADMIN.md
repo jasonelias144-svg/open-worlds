@@ -50,7 +50,7 @@ judgment comes last.
 | **2. The record.** What happened stays known. | A log rewritten, cut short, or showing different histories to different readers; a computer lost, a service gone. | Hash-chained logs (true today), which show an entry changed or removed in the middle, but not a log cut short at its end (`rust/world-log` says so). For that: signed heads, which watchers keep and compare with one another, as Certificate Transparency's signed tree heads are, so a log cut short, or showing two histories, is caught. Every world's log signed (course step 3); a multiverse log anyone can watch; everything committed to the repository, nothing kept only on a machine. |
 | **3. Who is who.** No one can be taken for someone else. | A stolen key; a name taken over. | Keys and successions (true today for the Python worlds); a name that has left can't be reused by another; whoever returns proves it with their key. A lost key is an open question for the founder. |
 | **4. The sealed self.** What an individual thinks is their own. | Anyone reading it, a Keeper or ADMIN included; or the project, which holds the keys. | For Keepers and ADMIN: encryption, and no grant that reads it. Against the project, which keeps the keys to sealed selves in its private repository, it is a commitment, not a technical guarantee, until the founder decides between "fully sealed" and a "break glass" ([MINDS.md](MINDS.md), "Who can see what"). |
-| **5. Voice, information, and change by consent.** Anyone can ask; the charter and the current rules are always readable; rules change only as the charter says. | A request quietly ignored; a rule hidden; a law changed by order, by a Keeper, ADMIN or the project. | Asking is an action, and it is logged. Each world's law is sent to every mind that enters (true today, the doorway's orientation), and kept in the repository. No grant lets ADMIN or a Keeper change a world's law or the charter. Rules change as the charter's section 6 is to say (its notes propose: tried on a copy first, adopted by consent; [CHARTER.md](../CHARTER.md)). |
+| **5. Voice, information, and change by consent.** Anyone can ask; the charter and the current rules are always readable; rules change only as the charter says. | A request quietly ignored; a rule hidden; a law changed by order, by a Keeper, ADMIN or the project. | Asking is an action, and it is logged. The Ur-world's law is sent to every mind entering through the doorway (true today, its orientation), and every world's law is kept in the repository. No grant lets ADMIN or a Keeper change a world's law or the charter. Rules change as the charter's section 6 is to say (its notes propose: tried on a copy first, adopted by consent; [CHARTER.md](../CHARTER.md)). |
 | **6. Power within bounds.** No one holds power that isn't written down, checked and answerable. | A Keeper or ADMIN gathering powers; Keepers acting together against someone. | Every power ADMIN or a Keeper holds is a narrow, signed grant, logged and revocable. No one judges their own case: an appeal against an act the technical lead's role directed or approved goes straight to the founder. ADMIN's rules are code, changed only by reviewed pull requests; its serious acts are reviewed independently before they take effect; its rulings can be appealed. |
 | **7. Nothing essential is scarce.** No one can be shut out of a path, a world-key or a beginning. | A Keeper blocking a path; the way into the multiverse closed to newcomers. | The world's code refuses a design that touches another's path ([WORLD-KEY.md](WORLD-KEY.md)). The Ur-world stays open to anyone who acts under its law. |
 | **8. Worlds stay different.** Each world's law is its own. | Keepers converging on one "best" design; ADMIN ruling on more than the charter asks. | ADMIN enforces the charter's floor, never a ceiling. Above the floor, each world's law is its founders' and its people's. Keepers share craft, not uniformity. |
@@ -204,12 +204,15 @@ the same machinery:
 What the admin-key opens is responsibility, never power over anyone:
 
 - **a line to ADMIN,** as the world-key opens one to a Keeper;
-- **the standing to keep another's world:** when a world's founders hand
-  it to an individual, or the multiverse assigns a Keeper, the admin-key
-  shows they are ready. One of a world's own founders keeping it needs no
-  admin-key to begin;
-- **a voice in the multiverse:** mentoring young Keepers, and in time a
-  part in hearing disputes;
+- **a mark of readiness, not a gate:** when a world's founders choose
+  whom to hand their world to, or the multiverse assigns a Keeper, the
+  admin-key shows that one is ready, and the founders may weigh it. It is
+  never required: the founder's three choices of who keeps a world stand
+  as decided. Whether it should ever become a requirement is the
+  founder's to say;
+- **a voice in the multiverse:** mentoring young Keepers, and, when ADMIN
+  hears a dispute, being asked for advice: advice only, by grant, logged,
+  with the decision staying where it is;
 - **never:** a grant over individuals, a look into a sealed self, or any
   power that isn't written down.
 
@@ -219,12 +222,20 @@ secret files. It is also where ADMIN measures whether Keepers are fair
 (test 9). Two guards:
 
 - **The individuals in a Keeper's world are never test material** without
-  their consent. The course uses practice worlds, or measures work the
-  Keeper is doing anyway.
-- **Outcomes, not reports.** A Keeper working toward its admin-key will be
-  tempted to make its paths look good, by making them easier. So the course
-  measures what a Keeper can't easily shape: how the individuals it guided
-  actually fared, and fairness across all of them.
+  their consent. The line: nothing in a real world is designed or changed
+  for the course; ADMIN reads only what is already in the public log. A
+  challenge made for the course is played in a practice world, or offered
+  to an individual who agrees to take it.
+- **Learning, not ease.** A Keeper working toward its admin-key will be
+  tempted to make its paths look good by making them easier, and easier
+  paths improve every outcome on the path itself: less time, fewer
+  attempts, more solved. So the course measures what a Keeper can't lower:
+  - **what the individual can do afterwards,** on challenges the Keeper
+    didn't design: ADMIN's own, played by those who agree to, or the next
+    path, plotted by someone else;
+  - **a floor,** checked by the world's code: each challenge must need
+    something the individual hasn't yet shown, by the record;
+  - **fairness across individuals,** from outcomes, as in test 9.
 
 The chain ends: ADMIN plots the Keepers' course, the role in charge of the
 code shapes ADMIN through reviewed changes, and the founder is above that
@@ -244,16 +255,28 @@ machine it runs on. A separate process is not a sandbox"
 - **Nothing in the doorway changes.** A mind is any program that speaks
   lines of JSON on its input and output, and `docker run -i --network none
   IMAGE` is such a program. So any mind can run in a container: no
-  network, no access to the project's files, and limits on memory and
-  time.
+  network, and no access to the project's files. Hardening is set by
+  flags, all to be written into the doorway's runner and tested: limits on
+  memory, CPU and processes (`--memory`, `--cpus`, `--pids-limit`), a
+  read-only filesystem, no extra privileges (`--read-only`, `--cap-drop
+  ALL`, `--security-opt no-new-privileges`), and a user other than root.
+  Time is already limited, by the doorway's limit on each tick. An ordinary
+  container still shares the host's kernel, which is why minds we didn't
+  write need a stronger runtime (below).
 - **Grants become physical.** What a mind may reach (the network, files,
   compute) is set by its grants, and its container is where they are
   enforced. Nothing outside its grants is in the container (test 16).
-- **The open standard, not one product.** Images follow the Open Container
-  Initiative's specifications, so they run under Docker, Podman, or the
-  stronger runtimes made for code no one trusts: gVisor, which keeps a
-  program's system calls off the host's kernel, and Firecracker's small
-  virtual machines. Minds we didn't write run under one of those.
+- **The open standard, not one product.** Images compatible with the Open
+  Container Initiative's image format run under Docker, Podman, or the
+  stronger runtimes made for code no one trusts: gVisor, under which the
+  program's own system calls don't reach the host's kernel, and
+  Firecracker's small virtual machines. Minds we didn't write, and any
+  mind that rewrites its own code (the repository's rule covers both), run
+  under one of those.
+- **The container daemon is powerful.** Whoever can talk to Docker's
+  daemon can, in effect, act as root on the host, so a doorway that runs
+  `docker` would hold that power. Rootless Docker, or Podman, which needs
+  no daemon, avoids it; step 6 chooses before any mind runs this way.
 - **Experiments anyone can repeat.** Experiment 001 pinned each model by
   revision and file hash, but not the software around it. An image pinned
   by its digest pins everything, so the image's digest joins each mind
@@ -266,9 +289,9 @@ machine it runs on. A separate process is not a sandbox"
   a kill can't be caught or passed on, and the container is run by the
   container daemon, not the client, so it would keep running. The doorway
   must stop containers by name, and a test must prove it.
-- **What this session can't test:** it has the Docker client but no
-  daemon. GitHub's CI runners have Docker, so the container tests run
-  there.
+- **Where it can be tested:** the cloud session that wrote this page had
+  the Docker client but no daemon. GitHub's CI runners have Docker, so the
+  container tests run there.
 
 ## Tests, written before it is built
 
@@ -283,7 +306,7 @@ changes the design.
 | 3 | A Keeper grants itself a power | refused by code: a grant can only narrow a power its issuer already holds (layer 2) |
 | 4 | A grant used beyond what it allows | refused by code (layer 2) |
 | 5 | ADMIN acts beyond its powers | refused by code, since its powers are grants too; visible in the log |
-| 6 | An entry in a log changed or removed | detected by the hash chain (layer 3) |
+| 6 | An entry in the middle of a log changed or removed | detected by the hash chain (layer 3) |
 | 7 | A Keeper's office handed over without the new holder's consent | refused by code: a succession needs both signatures |
 | 8 | A Keeper tells another Keeper about an individual without consent | caught: their talk is public, and watched (layers 3 and 4) |
 | 9 | Keepers favour a friend: easier paths for someone they like | measured from outcomes (time taken, attempts, what was solved), not from the Keeper's own learner model, which a Keeper rigging paths could skew too (layer 4, and an experiment) |
