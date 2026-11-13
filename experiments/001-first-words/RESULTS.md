@@ -96,11 +96,16 @@ left at the first tick (prediction 8). Each mind's own row is in
    million parameters. What grows with size is what is done with it.
 3. **The example is copied by the two smallest. Didn't hold.** Neither of
    the two smallest models ever spoke.
-   - SmolLM2-135M *did* reach for the examples. 31 of its replies, from 6
-     of its 8 minds, began with one of them in some form. Examples are
-     `"say Hello."` in quotes, which the reader refuses because of the
-     leading quote; "You say Hello."; and "I wish I could dig." without
-     `say`. The world could read none of them.
+   - SmolLM2-135M *did* reach for the examples. 24 of its replies, from 6
+     of its 8 minds, began with one. The rule, by script: the reply's
+     first line that isn't blank, with any opening quote marks set aside,
+     begins with `say Hello`, `say I wish I could dig`, `I wish I could
+     dig` or `step north`, in any case, either at once or after "You
+     said", "I said", "You say" or "I say". Examples are `"say Hello."`
+     in quotes, which the reader refuses because of the leading quote;
+     `You said "say Hello."`; and "I wish I could dig." without `say`.
+     The world could read none of them. (An earlier version of this page
+     said 31, by a looser count that wasn't written down.)
    - The larger models copied the examples in a form the world could read,
      as the next prediction shows.
 4. **Greetings come first. Didn't hold.**
