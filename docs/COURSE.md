@@ -123,13 +123,16 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    agreement. *Borrowing:* JSON Schema; W3C's decentralised identifiers
    (did:key) and verifiable credentials for signed claims; RFC 8785 for
    writing JSON identically everywhere before signing; HPKE (RFC 9180) for
-   sealing.
+   sealing. Also the commitments that hold back a challenge's answer: a
+   random value of at least 128 bits, derived for each challenge, over
+   JSON written by RFC 8785.
 3. **Keys and identities, for them and for the world.** A private
    repository of the project for the private halves; ALICE's and BOB's
    signing keys, keys for sealing things to them, and the keys to their
    sealed selves; birth records and public identity files. The Ur-world's
-   own key, with which it signs its log. Leaving and coming back: whoever leaves can return, proving with
-   their key that they are the same individual. *Borrowing:* standard key
+   own keys: one to sign its log, one for sealing things to it. Leaving
+   and coming back: whoever leaves can return, proving with their key that
+   they are the same individual. *Borrowing:* standard key
    handling, private halves kept apart and public halves published.
 4. **The kernel as entities and components.** Inhabitants, their bodies,
    stones, tablets and seeds become entities with parts; every change is
@@ -167,21 +170,27 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
     inside the framework built in steps 1 to 9.
 11. **The hunt, the world-key, and the AI Keeper.** The Keeper builds each
     individual's own path from what they do, and remembers them between
-    visits; its designs logged by fingerprint until solved; symbols, maps,
-    codes and stones; the pieces of a world; the world-key, a signed right
-    to found, in a box sealed for its earner; the workbench. *Borrowing:* Tunic,
+    visits; its designs held back by commitment until solved; symbols,
+    maps, codes and stones; the pieces of a world; the world-key, a signed
+    right to found, sealed for its earner when the path is done; the open
+    line to the Keeper for those who hold its world-key; the workbench.
+    *Borrowing:* Tunic,
     The Witness and Outer Wilds for teaching without words; Minecraft's
     advancements for unlocks; AI directors and intelligent tutors, with
     TextWorld and knowledge tracing to learn from, for the Keeper.
 12. **Founding worlds, and doors.** Child worlds, each with a new key of
-    its own and a signed birth record, doors between them, letters
-    between a world's Keeper and those who hold its world-key, travel with passports, founding together, and the
-    world protocol in Rust. *Borrowing:* our own protocol and passports,
-    and the open standards of step 2.
+    its own and a signed birth record, doors between them, travel with
+    passports, founding together, and the world protocol in Rust. The
+    open line reaches a Keeper from another world, and a founded world's
+    Keeper has a line to its parent's. *Borrowing:* our own protocol and
+    passports, the open standards of step 2, and Matrix and Signal for the
+    line.
 
 ## Waiting
 
 Added one at a time, as steps are done:
+- Keepers talking to one another, by the rules proposed in
+  [WORLD-KEY.md](WORLD-KEY.md);
 - a window onto the worlds: a web viewer first, in Bevy, in the browser;
 - generator 2: land decided when first seen;
 - a storyteller for each world: paced events and visitors;

@@ -99,10 +99,14 @@ and for the founder's conversations with DeepSeek, is in
   proposed in docs/MINDS.md. (asked 2026-11-13)
 - For the founder: may the project make its private repository, for the
   private halves of keys, at course step 3? (asked 2026-11-13)
-- For the founder: are letters between a world's Keeper and those who hold
-  its world-key public, like speech in the world, or private between the
-  two? Recommended: public, since the Keeper is an office with no secret
-  files (docs/WORLD-KEY.md). (asked 2026-11-13)
+- For the founder: is the open line between a world's Keeper and those
+  who hold its world-key public, like speech in the world, or private
+  between the two? Recommended: public, since the Keeper is an office with
+  no secret files. And may its holder close it, and open it again, at any
+  time? Recommended: yes (docs/WORLD-KEY.md). (asked 2026-11-13)
+- For the founder: may two individuals speak privately to each other, now
+  that each will have a key for sealing? Needed by course step 3.
+  (asked 2026-11-13)
 - For the founder, when writing the charter's section 4 ("nothing is known
   about the world that its participants can't also know"): two exceptions
   now stand in the design, and the section should name them: the answer to
@@ -273,10 +277,16 @@ and for the founder's conversations with DeepSeek, is in
     solved the problems we are considering." Each course step begins by
     looking at how open-source projects solved it (COLLABORATING.md,
     house rule 10).
-  - the world-key opens only for its earner: "readable only by the
+  - the world-key is sealed for its earner: "readable only by the
     individual, since they have the corresponding private key that
     matches the public one", made from each side's private key and the
     other's public key (Diffie–Hellman: "That's what I meant").
+  - an open line to the Keeper once the world-key is found, "an active
+    and open chat session between world Keeper and individual ... a chat
+    window that may remain blank forever"; access "is not to the world,
+    but to a conversation with the world".
+  - asked, not yet decided: Keepers of different worlds talking to one
+    another; rules proposed in docs/WORLD-KEY.md.
 
 ## Log
 
@@ -301,10 +311,13 @@ and for the founder's conversations with DeepSeek, is in
   framing becomes part of the law; and claims the research page's
   sources didn't support were corrected from the papers themselves. From
   the second review: each commitment carries a random value, so it can't
-  be matched by guessing. And two ideas of the founder's: the world-key
-  comes in a box sealed for its earner (Diffie–Hellman), and once it is
-  found, its holder can write to the world's Keeper and come back as a
-  friend.
+  be matched by guessing. From the third: the world-key is signed and
+  sealed only when the path is done (HPKE's Auth mode), so it can't be
+  opened from answers made public. And the founder's ideas: the world-key
+  sealed for its earner (Diffie–Hellman); once it is found, an open line
+  to the world's Keeper, authenticated by keys rather than a password,
+  with a return as a friend; and Keepers of different worlds talking,
+  under proposed rules. The count in experiment 001 has its script.
 - 2026-11-13 Claude: experiment 001, the first unscripted minds
   ([experiments/001-first-words](experiments/001-first-words/RESULTS.md)).
   Five small open models, from 135 million to 1.7 billion parameters,

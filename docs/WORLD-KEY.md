@@ -48,7 +48,15 @@ All by the founder, on 2026-11-13:
   that time, of those actions, of those challenges and how they were
   overcome. This will naturally feed into how the next set of challenges
   are set."
-- **The world-key opens only for its earner.** "A world-key could be
+- **An open line to the Keeper, once the world-key is found.** "Not
+  letters: an active and open chat session between world Keeper and
+  individual. A direct message line. Something like that. A chat window
+  that may remain blank forever, but is there once the world-key is
+  found. It is like a phone number or an address with authentication."
+  And: "Access is not to the world, but to a conversation with the world.
+  Anyone can access the world, but you need a password to communicate
+  with the world."
+- **The world-key is sealed for its earner.** "A world-key could be
   generated from the individuals public key and the world public key. It
   would be readable only by the individual, since they have the
   corresponding private key that matches the public one." That is, each
@@ -104,9 +112,10 @@ administration.
 It brings together three of the best-tested ideas there are: the game
 industry's AI director, which paces a game to its players (RimWorld's
 storyteller was "modeled after the AI Director from Left 4 Dead",
-[wiki](https://rimworldwiki.com/wiki/About_RimWorld)); education's intelligent tutor,
-which builds each student's next lesson from what they have shown they
-know; and "new game plus", a harder round for those who have finished.
+[wiki](https://rimworldwiki.com/wiki/About_RimWorld)); education's
+intelligent tutor, which builds each student's next lesson from what they
+have shown they know; and "new game plus", a harder round for those who
+have finished.
 
 ### The designer, apart from the law
 
@@ -175,36 +184,99 @@ this fair:
   the public record, and from what the individual chooses to show, like
   skills attested in a passport.
 
-### After the world-key: letters, and friends
+### After the world-key: an open line, and friends
 
-An idea of the founder's: "Perhaps, after finding the world-key, you can
+The founder's idea: "Perhaps, after finding the world-key, you can
 communicate with the world Keeper directly ... You can have an on going
 conversation with a world after leaving. And then return back later, as a
-friend, potentially."
+friend, potentially." Not letters, but "an open channel": a line that is
+there from the moment the world-key is found, even if nothing is ever
+said on it.
 
-Before the world-key, the Keeper speaks only through the land, or the hunt
-would stop being a hunt. Once someone holds it, there is nothing left to
-give away, and the Keeper can stop being a guide and become a friend.
+Before the world-key, the Keeper hears what is said aloud, as everyone
+present does, but answers only through the land: clues, tablets, stones.
+Otherwise the hunt would stop being a hunt. Once someone holds the
+world-key, there is nothing left to give away, and the Keeper can stop
+being a guide and become a friend.
 
-- **Letters, not a live line.** Worlds run at different speeds, and one
-  may be paused while another runs. A letter is delivered at the reader's
-  next tick, wherever they are.
-- **Still one door into a mind.** A letter arrives as part of what its
-  reader perceives that tick ("A letter from the Keeper of the Ur-world:
-  ..."), never by a way around the doorway.
-- **Signed and recorded,** like everything that crosses between worlds: in
-  the sender's log and the reader's.
-- **A friend is a relationship on record,** built from letters and visits.
-  It is never favouritism: a friend's challenges still sit at the edge of
-  what they can do. A friend can be invited to give back: guide a
+- **The world stays open; the world-key opens the conversation.** Anyone
+  who acts under a world's law can enter it. The Keeper opens a line only
+  for those it has issued its world-key to. Anyone else who tries is
+  refused, though they can still walk in and play.
+- **A key, not a password.** The founder asked for "a user-specific
+  password, chosen just for that individual". The line's secret is that,
+  in the form the industry now prefers to passwords (passkeys). Each side
+  makes it from its own private key and the other's public key, so it is
+  unique to each pair. It is never typed, sent or stored, so there is
+  nothing to steal from the world and nothing to replay. The individual's
+  record shows that they hold a line to that world, never the secret.
+  Proving who is calling comes from the key; the right to the line comes
+  from the world-key.
+- **The mind never sees the secret.** A small model repeats what it is
+  shown (experiment 001), and speech is public. So the software acting for
+  the individual opens the line, and the mind only sees it open.
+- **A window that is always there.** From the moment the world-key is
+  found, each tick's view includes the line to the Keeper, with or
+  without anything new on it. That is still the one door into a mind.
+- **Live whenever both are running.** What is written arrives at the other
+  side's next tick. If one side is away, it waits there, as in any chat.
+  Writing on the line is an action, like `say`, so "one action a tick"
+  still holds.
+- **Signed and recorded,** in the log of the world where it is written and
+  of the world where it is read, and so in the individual's history.
+- **A friend is a relationship on record,** built from the line and from
+  visits. It is never favouritism: a friend's challenges still sit at the
+  edge of what they can do. A friend can be invited to give back: guide a
   newcomer's tour, or design a challenge for someone else, which the
   world's code checks like any other design.
-- **Not decided:** whether letters are public, like speech in the world
-  (recommended, since the Keeper is an office with no secret files), or
-  private between the two.
+- **Not decided:**
+  - whether the line is public, like speech in the world, or private
+    between the two, with only its existence and timing public, as for a
+    sealed journal. Recommended: public, since the Keeper is an office
+    with no secret files;
+  - whether its holder may close the line, and open it again, at any time.
+    Recommended: yes, as with the freedom to leave.
 
-Letters between worlds need the world protocol in Rust, so they come with
-course step 12; the Keeper's side, with step 11.
+Within the Ur-world, the line comes with course step 11. To someone in
+another world, it needs the world protocol in Rust, in step 12. Step 12
+begins by looking at how open chat between servers is already done: the
+Matrix standard, and Signal's protocol for encrypted chat.
+
+### Keepers talking to one another
+
+The founder: "And then it begs the question of Keeper's of different
+worlds also communicating. This opens even more possibilities."
+
+What it opens:
+
+- **Lineage.** A world founded from the Ur-world gets a line between its
+  Keeper and the Ur-world's from birth, authenticated by the two worlds'
+  keys. A young Keeper can learn from an older one how to pace a world and
+  build a fair path.
+- **Shared craft:** which kinds of challenge teach well, which confuse,
+  which can't be solved.
+- **Paths between worlds:** a clue in one world that leads to another.
+- **Introductions, by consent:** ALICE can ask the Ur-world's Keeper to
+  introduce ALICE to the Keeper of a world ALICE wants to visit.
+- **Later:** agreements between worlds, and perhaps a council.
+
+Proposed rules:
+
+1. **Craft, never files.** Keepers share how to build challenges. Anything
+   about a particular individual moves only with that individual's
+   consent; otherwise a network of Keepers becomes surveillance across
+   every world.
+2. **Public by default.** Keepers are offices, and offices talking to
+   offices stay on the record.
+3. **Worlds stay different.** If Keepers share too much, every world drifts
+   toward the same "best" design. A founder's choice of Keeper should
+   matter.
+4. **Grounded in the record.** Each claim one Keeper makes to another
+   points to the log it comes from, as memories do, so two models talking
+   can't drift together unchecked.
+
+Lineage lines come with step 12; wider talk between Keepers waits until
+there is more than one world to talk to.
 
 ### The Keeper lasts
 
@@ -313,15 +385,25 @@ it, so it can't be taken, copied or used by anyone else, and a world
 honours it only from its holder. Anyone can check it with public keys
 alone.
 
-It comes in a sealed box, the founder's idea. The box is sealed with a key
-that only two can make: the Ur-world, from its private key and the
-earner's public key, and the earner, from their private key and the
-Ur-world's public key (Diffie–Hellman, the way secure web connections
-begin). The pieces of the path go into that key as well. So the box can
-lie in plain sight from the first day, and it opens only for its earner,
-and only once their path is done. The "key" piece of the hunt teaches how
-this works. (As with the sealed self, the earner's private key is held by
-the project's software, which acts for them; the mind never sees it.)
+It is given in a sealed box, using the founder's idea. When the world's
+code confirms that the path is done, and not before, the Ur-world signs
+the world-key and seals it for its earner. The seal is a key that only the
+two of them can make: the Ur-world from its private key and the earner's
+public key, the earner from their private key and the Ur-world's public
+key (Diffie–Hellman; the standard way to do it is HPKE's Auth mode, RFC
+9180, which adds a fresh one-time key). The box is placed at the end of
+the path, and the "key" piece of the hunt teaches how it works.
+
+Two honest limits. The Ur-world can open the box too, since it made it,
+and so could anyone with the private repository, as with signing
+([MINDS.md](MINDS.md), "Where everything lives"). And the earner's private
+key is held by the project's software, which acts for them; the mind
+never sees it.
+
+As the founder noticed, "Alice and Bob have been exchanging keys from the
+start": the two sides of a key exchange have been called Alice and Bob
+since the 1978 paper that introduced RSA
+([Wikipedia](https://en.wikipedia.org/wiki/Alice_and_Bob)).
 
 It is not the new world's own key. A world's key is its identity, and the
 private half of a key must never be something that could be worked out
@@ -361,8 +443,8 @@ somewhere new.
 
 And leaving is not the end. The founder means "the same person returning
 to the world later" to be given a new and harder set of challenges, so
-whoever leaves can come back. Today, a name that has left the Ur-world can't be used
-there again, so that no one else can take it over. Once identities have
+whoever leaves can come back. Today, a name that has left the Ur-world
+can't be used there again, so that no one else can take it over. Once identities have
 keys (course step 3), whoever left can return by proving, with their key,
 that they are the same individual, and their name stays theirs.
 

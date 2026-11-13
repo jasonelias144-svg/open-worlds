@@ -176,8 +176,9 @@ find out ([WORLD-KEY.md](WORLD-KEY.md)).
 | Individual to the law | Asking now; formal proposals and governance later. | the world's log |
 | World and world | The protocol: passports, stamps, successions, doors, birth records of new worlds. The Python worlds sign their stamps today; each world will sign its log too (course step 3). | each world's log |
 | Individual to another world | Through a door, with a passport. Key, self and sheet go with them. Each world sees only what they show, and what they do there. | passports and both logs |
-| Keeper to individual | Only through the world: the clues, tablets and challenges it places, which the individual perceives like anything else. | the world's log |
-| Individual to Keeper | What they do and say, as anyone outside could observe, and whatever they choose to share. Never their sealed self. | the world's log |
+| Keeper to individual | Through the world: the clues, tablets and challenges it places, which the individual perceives like anything else. Once they hold its world-key, also the open line, shown in each tick's view. | the world's log; for the line, the logs of the worlds where it is written and read |
+| Individual to Keeper | What they do and say, as anyone outside could observe, and whatever they choose to share. With the world-key, also the open line, written by an action. Never their sealed self. | the world's log; for the line, the logs of the worlds where it is written and read |
+| Keeper and Keeper | Craft, never files about individuals; public by default (proposed: [WORLD-KEY.md](WORLD-KEY.md), "Keepers talking to one another"). | both worlds' logs |
 | Operators to world | The operator's hand, and new versions of the law. | the world's log |
 | People and individuals | Through the world, as visitors. No way in through a mind's prompt. | the world's log |
 
@@ -300,8 +301,10 @@ what they are for.
   `individuals/BOB/`:
   - `identity.json`;
   - `mind.json`;
-  - their sealed self, as ciphertext, with a public chain of fingerprints
-    so nothing can be altered or removed without it showing;
+  - their sealed self, as ciphertext (each entry encrypted with a fresh
+    random nonce, so two equal entries never look alike), with a public
+    chain of fingerprints so nothing can be altered or removed without it
+    showing;
   - `sheet.json`, `relationships.json` and their legends page, all rebuilt
     from the logs and checked against them.
 - **In a private repository of the project:** the private half of each
