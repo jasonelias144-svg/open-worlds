@@ -297,16 +297,24 @@ at every level:
   wouldn't make it safer: in cryptography, Kerckhoffs's principle (1883)
   holds that a system "must not require secrecy and can be stolen by the
   enemy without causing trouble" (research).
-- **Its decisions can be rerun.** Its models are free and pinned, and the
-  inputs, prompts and random seeds of every decision that affects others
-  are logged, so anyone can rerun it and compare. Inference isn't always
-  exactly repeatable, even on one machine, since batching and scheduling
-  change the arithmetic; the record shows how close a rerun comes.
-  Rerunning matters more than reading: a model's written reasoning isn't
-  always why it decided; studies found such explanations "can be
-  plausible yet misleading" (research). A rerun can also change one input
-  and see whether the decision changes, which tests the stated reasons
-  in a way reading can't.
+- **Decided once, asked again.** The founder: "Rerunning something
+  should be technically impossible. If decisions are arrived at
+  autonomously, each run should differ, or it is not set up correctly."
+  So each decision draws fresh randomness, which isn't logged: it is made
+  once, stands as made, and can't be replayed. But its models are free
+  and pinned, and its inputs and prompts are logged, so anyone can put
+  the same public inputs to fresh runs, each different, and see:
+  - whether they reach the same decision. A clear case is decided the
+    same way by most runs, by different paths; if they split, it was a
+    hard case, and the record says so, as when the council disagrees;
+  - what changes when one input changes, which tests whether the stated
+    reasons carried the decision.
+
+  Asking again matters more than reading: a model's written reasoning
+  isn't always why it decided; studies found such explanations "can be
+  plausible yet misleading" (research). The honest cost: without replay,
+  that the recorded output came from that run rests on the logging proxy
+  and the signer below, which are open code, not on a proof.
 - **The key signs only what is on record.** ADMIN's private key is held
   by a signer outside ADMIN's mind, which never sees the key. The signer
   signs only entries already in the public log, and signs a decision that
@@ -320,7 +328,8 @@ at every level:
   and its existence and fingerprints are public. Decisions that affect
   others are worked out from public inputs only, and every lesson that
   changes how ADMIN decides is public before its first use. So the core
-  is ADMIN's own reflection, and rerunning a decision never needs it.
+  is ADMIN's own reflection: asking a decision again never needs it, and
+  with fresh, unlogged randomness, no run can regenerate it.
 - **Accountability is the price of office.** The founder: "If they
   considered accountability a bad thing, they probably shouldn't be in
   charge of a world." Anyone who would rather not give reasons shouldn't

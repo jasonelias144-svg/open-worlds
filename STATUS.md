@@ -234,7 +234,11 @@ the technical lead's recommendation.
   goes on record with its reasons and stands on them; ADMIN opens all its
   activity to inspection; and everyone, ADMIN included, keeps a private
   core of their own thoughts, which never decides a case (docs/ADMIN.md,
-  "ADMIN in the open"). And the world-keys follow "Challenges, not tests":
+  "ADMIN in the open"). And: "Rerunning something should be technically
+  impossible. If decisions are arrived at autonomously, each run should
+  differ, or it is not set up correctly." So each decision draws fresh,
+  unlogged randomness and can't be replayed; it can be asked again with
+  fresh runs. And the world-keys follow "Challenges, not tests":
   paths are open from the start, and nothing is held back
   (docs/WORLD-KEY.md).
 - 2026-11-13, founder: "With ADMIN the test is not the point, it is the
@@ -564,9 +568,10 @@ it was wrong. Questions of what the project is for stay with the founder.
   - ADMIN in the open: every decision a Keeper or ADMIN makes that
     affects others goes on record with its reasons, like a court's
     opinion, and stands on them; ADMIN opens all its activity to
-    inspection, and its decisions can be rerun, a stronger check than
-    reading its reasoning; and everyone keeps a private core of their own
-    thoughts, which never decides a case.
+    inspection; each decision is made once, with fresh randomness, and
+    can't be replayed, but anyone can ask it again with fresh runs, a
+    stronger check than reading its reasoning; and everyone keeps a
+    private core of their own thoughts, which never decides a case.
   - Challenges, not tests, for the world-keys and the admin-key course:
     paths open from the start, the commitment machinery and the worlds'
     path secrets gone, and the course taken in practice worlds, with no

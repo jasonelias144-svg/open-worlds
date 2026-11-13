@@ -152,9 +152,12 @@ founder ([ADMIN.md](../ADMIN.md)).
   ([supremecourt.gov](https://www.supremecourt.gov/about/procedures.aspx)).
 
 Taken: everything ADMIN does and decides is open to inspection, and every
-decision that affects others carries its reasons and can be rerun, since
-its models are free and pinned and its inputs and seeds are logged;
-reading its reasoning helps, but rerunning is the stronger check. ADMIN
+decision that affects others carries its reasons. Each decision is made
+once, with fresh randomness, and can't be replayed, as the founder asked;
+but its models are free and pinned and its inputs are logged, so anyone
+can ask it again with fresh runs and see whether they reach the same
+decision. Reading its reasoning helps; asking again is the stronger
+check. ADMIN
 keeps a private core of its own thoughts, as everyone does, which never
 decides a case.
 
