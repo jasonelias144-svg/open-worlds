@@ -116,6 +116,35 @@ class TestKeyFiles(Folder):
         self.assertIn(bytes.fromhex(alice.token), public)  # public, as is
         self.assertNotIn(alice._secret, encrypted)
 
+    def test_a_changed_key_file_is_refused(self):
+        # AES-CTR has no check of its own: a flipped bit of the encrypted
+        # secret would load, silently, as another key. The public key in
+        # the file's clear header catches it.
+        alice = Individual("Alice")
+        keys.save_key(alice, self.path("alice.key"), PASS)
+        with open(self.path("alice.key"), "rb") as f:
+            data = f.read()
+        raw = base64.b64decode(b"".join(data.strip().splitlines()[1:-1]))
+        *_, public, encrypted = openssh_header(data)
+        # Decrypted, the secret starts 63 bytes in: two check numbers (8),
+        # the key type (4 + 11), the public key (4 + 32), a length (4).
+        places = {"secret": raw.index(encrypted) + 63,
+                  "public key in the clear": raw.index(public) + 19 + 5}
+        for what, at in places.items():
+            with self.subTest(what=what):
+                changed = bytearray(raw)
+                changed[at] ^= 1
+                body = base64.b64encode(bytes(changed))
+                with open(self.path("changed.key"), "wb") as f:
+                    f.write(b"-----BEGIN OPENSSH PRIVATE KEY-----\n"
+                            + b"\n".join(body[i:i + 70]
+                                         for i in range(0, len(body), 70))
+                            + b"\n-----END OPENSSH PRIVATE KEY-----\n")
+                with self.assertRaisesRegex(ValueError, "changed"):
+                    keys.load_signer(self.path("changed.key"), PASS)
+        self.assertEqual(keys.load_signer(self.path("alice.key"),
+                                          PASS).token, alice.token)
+
     def test_wrong_or_missing_passphrases(self):
         keys.save_key(Individual("Alice"), self.path("alice.key"), PASS)
         with self.assertRaisesRegex(ValueError, "passphrase is wrong"):
@@ -133,8 +162,9 @@ class TestKeyFiles(Folder):
         alice, bob = Individual("Alice"), Individual("Bob")
         keys.save_key(alice, self.path("key"), PASS)
         os.symlink(self.path("key"), self.path("link"))
+        os.symlink(self.path("nowhere"), self.path("dangling"))
         os.mkdir(self.path("folder"))
-        for target in ("key", "link", "folder"):
+        for target in ("key", "link", "dangling", "folder"):
             with self.subTest(target=target):
                 with self.assertRaises(FileExistsError):
                     keys.save_key(bob, self.path(target), PASS)
@@ -144,7 +174,7 @@ class TestKeyFiles(Folder):
         self.assertEqual(keys.load_signer(self.path("key"), PASS).token,
                          bob.token)
         self.assertEqual(sorted(os.listdir(self.dir)),
-                         ["folder", "key", "link"])
+                         ["dangling", "folder", "key", "link"])
 
     def test_without_hard_links_saving_fails_and_says_why(self):
         def no_links(src, dst):

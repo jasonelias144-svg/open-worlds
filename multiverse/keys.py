@@ -15,9 +15,14 @@ world, and its old stamps no longer link to it. So:
   the whole derivation: the file holds no cheaper check. (PKCS12 was
   tried first, but its integrity check takes the same passphrase through
   only 2,048 rounds of PBKDF2, which a guesser can use instead of the
-  key's; the independent review of #23 found it.) Text passphrases are
-  normalised to Unicode NFC first, so the same words typed on different
-  systems open the same file.
+  key's; the independent review of #23 found it.) Half a second is the
+  owner's cost, on one core: someone with many cores tries many
+  passphrases at once, so the passphrase's own strength matters most.
+  Text passphrases are normalised to Unicode NFC first, so the same words
+  typed on different systems open the same file.
+- **A changed file is refused.** AES-CTR has no check of its own, so a
+  flipped bit of the encrypted secret would load as another key; the key
+  loaded is checked against the public key the file holds in the clear.
 - **The file is written readable by its owner only,** whole or not at
   all, and never over an existing file unless asked: losing a key file
   loses the key.
@@ -37,9 +42,12 @@ key is lost, come next in this step (docs/COURSE.md).
 """
 from __future__ import annotations
 
+import base64
+import binascii
 import errno
 import json
 import os
+import struct
 import tempfile
 import unicodedata
 from typing import Dict, Union
@@ -122,6 +130,40 @@ def save_key(signer: Signer, path: str, passphrase: Passphrase, *,
     _write_new(path, data, overwrite)
 
 
+def _public_key_in_the_clear(data: bytes) -> bytes:
+    """The Ed25519 public key an OpenSSH private-key file holds outside
+    its encrypted part (PROTOCOL.key in OpenSSH's sources): after the
+    magic, the cipher, KDF and KDF-options strings, and the key count,
+    a string holding the key type and the 32-byte key."""
+    lines = data.strip().splitlines()
+    try:
+        raw = base64.b64decode(b"".join(lines[1:-1]), validate=True)
+    except (binascii.Error, ValueError):
+        raise ValueError("this key file has been changed") from None
+    magic = b"openssh-key-v1\0"
+    at = len(magic)
+
+    def string(blob: bytes, at: int):
+        if at + 4 > len(blob):
+            raise ValueError("this key file has been changed")
+        n, = struct.unpack(">I", blob[at:at + 4])
+        if at + 4 + n > len(blob):
+            raise ValueError("this key file has been changed")
+        return blob[at + 4:at + 4 + n], at + 4 + n
+
+    if not raw.startswith(magic):
+        raise ValueError("this key file has been changed")
+    for _ in range(3):                  # cipher, KDF, KDF options
+        _, at = string(raw, at)
+    at += 4                             # the number of keys
+    blob, _ = string(raw, at)
+    kind, at = string(blob, 0)
+    public, at = string(blob, at)
+    if kind != b"ssh-ed25519" or len(public) != 32 or at != len(blob):
+        raise ValueError("this key file has been changed")
+    return public
+
+
 def _load_secret(path: str, passphrase: Passphrase) -> bytes:
     """The key in a file save_key wrote. A file someone else made could
     ask for any number of rounds and so take long to open: open only
@@ -133,9 +175,17 @@ def _load_secret(path: str, passphrase: Passphrase) -> bytes:
         key = serialization.load_ssh_private_key(data, passphrase)
     except (ValueError, TypeError, UnsupportedAlgorithm):
         raise ValueError("the passphrase is wrong, or this isn't an "
-                         "encrypted key file") from None
+                         "encrypted key file, or it has been changed"
+                         ) from None
     if not isinstance(key, Ed25519PrivateKey):
         raise ValueError("the file doesn't hold an Ed25519 key")
+    # The encryption (AES-CTR) has no check of its own: a changed bit of
+    # the secret decrypts to another secret. The public key in the clear
+    # must be the one the secret makes.
+    if (key.public_key().public_bytes_raw()
+            != _public_key_in_the_clear(data)):
+        raise ValueError("this key file has been changed: its secret "
+                         "doesn't match its public key")
     return key.private_bytes_raw()
 
 

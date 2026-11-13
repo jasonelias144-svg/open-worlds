@@ -457,10 +457,18 @@ What it doesn't do yet, said plainly:
   reads, written by the `cryptography` package: the passphrase goes
   through bcrypt-pbkdf with 64 rounds (about half a second per try), and
   the key is encrypted with AES-256-CTR. A wrong passphrase is found out
-  only after the whole derivation; the file has no cheaper check. Text
-  passphrases are normalised to Unicode NFC first. The file is readable
-  by its owner only, is written whole or not at all, and never replaces
-  an existing file unless asked: losing a key file loses the key.
+  only after the whole derivation; the file has no cheaper check. Half a
+  second is the owner's cost on one core: someone with many cores tries
+  many passphrases at once, so the passphrase's own strength matters
+  most. Text passphrases are normalised to Unicode NFC first. The file
+  is readable by its owner only, is written whole or not at all, and
+  never replaces an existing file unless asked: losing a key file loses
+  the key.
+- **A changed key file is refused.** AES-CTR has no check of its own: a
+  flipped bit of the encrypted secret would decrypt to another secret,
+  and load, silently, as another key. The key loaded is checked against
+  the public key the file holds in the clear. (The independent re-review
+  of #23 found this.)
 - **Why not PKCS12.** The first version saved PKCS12 with 600,000 rounds
   of PBKDF2 for the key, but PKCS12's integrity check takes the same
   passphrase through only 2,048 rounds, and anyone with the file can
