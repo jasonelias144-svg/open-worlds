@@ -524,7 +524,10 @@ What it doesn't do yet, said plainly:
   (`verify_passport`), without asking any world.
 - **The old key is retired.** A world learns of a succession from a
   passport it is shown, or directly (`Entity.know_succession`). From
-  then on it refuses the old key's petitions and acts. Leaving is never
+  then on it refuses the old key's petitions and acts. From a passport it
+  remembers only the newest 8 links of an individual's line, so the older
+  keys of a long line come in as strangers (harmless: anyone can have
+  many keys). Leaving is never
   refused, so the old key can still leave a world it is in. Someone
   present under the old key can't enter again under the new one, while
   the new key's passport shows the succession or the world already
@@ -565,19 +568,24 @@ What it doesn't do yet, said plainly:
 - **What a world has learned about successions is kept in memory.** A
   restarted world learns them again from the passports it is shown, or
   from `know_succession`. From a passport it keeps only what concerns
-  it, and only once it has admitted the petitioner: the newest links of
-  the petitioner's own line of keys (at most `LINE_KEPT`, 8), and
-  successions on the line of a world it knows. So a world's memory still
-  grows with the keys it admits, by at most 8 successions each, as it
-  grows by the last request number it keeps for each key that petitions
-  it (as before this step). Throwaway keys can't make a single petition,
-  or a refused one, fill it. What it keeps isn't checked again, and a
-  petition's check reads it in place rather than copying it, so a
-  petition costs the same however much the world knows (the independent
-  reviews of #24 measured the cost growing, first with every junk-laden
-  petition, then with a copy on each). Of its own successions, a world
-  takes from outside only its past (those that lead to its key now), so
-  a thief of its key can't stop it from signing over.
+  it, and only once it has admitted the petitioner, past its law and its
+  own entry checks. It keeps at most `LINE_KEPT` (8) links of each line
+  per admission: the newest of the petitioner's own line of keys, and,
+  for each world it knows, the nearest on each side of the key it knows
+  that world by (only a holder of that world's keys can make those). So
+  a world's memory still grows with the petitions it admits, by a bounded
+  number of successions each, as it grows by the last request number it
+  keeps for each key that petitions it (as before this step). Throwaway
+  keys can't make a single petition, or a refused one, fill it. What it
+  keeps isn't checked again, and a petition's check reads it in place
+  rather than copying it, so a petition costs the same however much
+  others have put there; only a petitioner's own long line, built up
+  over many admissions, is walked whole on that petitioner's petitions
+  (the independent reviews of #24 measured the cost growing, first with
+  every junk-laden petition, then with a copy on each, and found the
+  unbounded world line). Of its own successions, a world takes from
+  outside only its past (those that lead to its key now), so a thief of
+  its key can't stop it from signing over.
 - **A door names the key its world had** when the corridor's law was
   written. A corridor that knows the world's succession still finds the
   door, but its published law shows the old key until the law changes

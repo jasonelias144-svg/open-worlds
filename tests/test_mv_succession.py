@@ -22,9 +22,9 @@ from unittest import mock
 from multiverse.collaboration import (act_on_world, leave_world, make_client,
                                       petition_world)
 from multiverse.conformance import run_conformance
-from multiverse.entity import LINE_KEPT
 from multiverse.corridor_world import (CorridorWorld, CorridorWorldLaw,
                                        Door)
+from multiverse.entity import LINE_KEPT
 from multiverse.identity import Identity, Individual, Signer
 from multiverse.passport import (Passport, from_dict, make_stamp, to_dict,
                                  verify_passport)
@@ -503,6 +503,57 @@ class TestAWorldsMemoryStaysSmall(unittest.TestCase):
         self.assertIsInstance(petition_world(alice, full), Refusal)
         self.assertEqual(full.successions(), [])
         self.assertEqual(full.known_keys()["world:other"], before)
+
+    def world_line(self, of, steps, last=None, first=None):
+        """Successions of world `of` through `steps` new keys: from
+        `first` (or a fresh key) onwards, the last one onto `last` if given.
+        Returns them and the keys, in order."""
+        keys = [first or Signer()]
+        lines = []
+        for i in range(steps):
+            new = last if (last is not None and i == steps - 1) else Signer()
+            lines.append(sign_over(keys[-1], new, of=of))
+            keys.append(new)
+        return lines, keys
+
+    def test_a_known_worlds_long_line_is_kept_to_the_nearest_links(self):
+        # Found by the independent review of #24: a known world's line
+        # was kept at any length. Whoever holds that world's keys can make
+        # one, so each side is kept to LINE_KEPT links per admission.
+        k = Signer()
+        other = PoetryWorld("world:far", "Far", key=k)
+        poetry = PoetryWorld("world:here", "Here")
+        poetry.know(other.manifest())
+        past, past_keys = self.world_line("world:far", 3 * LINE_KEPT, last=k)
+        ahead, ahead_keys = self.world_line("world:far", 3 * LINE_KEPT,
+                                            first=k)
+        bob = make_client("Bob")
+        for s in reversed(past + ahead):
+            bob.passport = bob.passport.with_succession(s)
+        self.assertIsInstance(petition_world(bob, poetry), Admission)
+        kept = poetry.successions("world:far")
+        self.assertCountEqual(kept, past[-LINE_KEPT:] + ahead[:LINE_KEPT])
+        self.assertEqual(poetry.known_keys()["world:far"],
+                         ahead_keys[LINE_KEPT].token)
+
+    def test_a_petition_refused_at_a_crowded_entrance_teaches_nothing(self):
+        # The corridor's own entry check comes after the law's; learning
+        # waits for admission past both.
+        corridor = CorridorWorld("world:corridor", "Corridor",
+                                 CorridorWorldLaw(height=1))
+        corridor.know(self.other.manifest())
+        before = corridor.known_keys()["world:other"]
+        self.assertIsInstance(petition_world(make_client("Dee"), corridor),
+                              Admission)
+        alice = make_client("Alice")
+        alice.sign_over()
+        alice.passport = alice.passport.with_succession(
+            self.other.sign_over(Signer()))
+        r = petition_world(alice, corridor)
+        self.assertIsInstance(r, Refusal)
+        self.assertIn("crowded", r.reason)
+        self.assertEqual(corridor.successions(), [])
+        self.assertEqual(corridor.known_keys()["world:other"], before)
 
     def test_a_known_worlds_past_shown_in_a_passport_is_kept(self):
         # A world known by its new key: a passport showing how its old

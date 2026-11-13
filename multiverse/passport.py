@@ -345,7 +345,8 @@ def verify_passport(passport: Passport,
     `successions` are the ones the checker already knows: a list of them,
     or a `Lineage`, whose successions were checked when it took them and
     aren't checked again (a world's, from `Entity`). The passport's own
-    are checked and added to a copy of them. A key
+    are checked and added to an overlay of them, which reads them in
+    place (nothing is copied, and they don't change). A key
     signed over twice is a problem, and so is a holder whose own key has
     been signed over: the passport goes with the new key.
 

@@ -29,7 +29,7 @@ Changed from the sketch:
 from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 from .identity import Identity, Signer, token_problem
 from .passport import (Passport, PassportCheck, Stamp, make_stamp,
@@ -42,12 +42,14 @@ from .protocol import (PROTOCOL_VERSION, Act, ActResponse, Admission,
 from .succession import Lineage, Succession, sign_over
 
 
-# What every entity built on this module states in its law about the
-# requests it accepts: they are what petition, act and leave enforce.
-# How many links of an admitted petitioner's own line of keys a world
-# keeps: the newest, those that retire the keys most recently used.
+# How many links of a line of keys a world keeps from one admitted
+# petition: of the petitioner's own line, the newest (those that retire
+# the keys most recently used); of a known world's line, the nearest on
+# each side of the key this world knows it by.
 LINE_KEPT = 8
 
+# What every entity built on this module states in its law about the
+# requests it accepts: they are what petition, act and leave enforce.
 SIGNED_REQUESTS_LAW = (
     f"- Protocol {PROTOCOL_VERSION}: every petition, act and leave must be "
     "signed by the key it names, for this world's id and key, with a "
@@ -426,9 +428,11 @@ class Entity:
         but the world signs its key over (`sign_over`), or a thief of its
         key could stop it from ever signing over. `shown` means they came
         in a passport: then, of another world's, only those on the line
-        of the key this world knows it by (before it or after it), so
-        that nobody can fill a world's memory with junk. "" if all were
-        taken, else the first problem (the others are still taken)."""
+        of the key this world knows it by (before it or after it), and of
+        any world's line at most LINE_KEPT links on each side of that key,
+        nearest first, so that nobody can fill a world's memory with junk.
+        "" if all were taken, else the first problem (the others are still
+        taken)."""
         own = self._manifest.entity_id
         first = ""
         linked = []
@@ -440,14 +444,24 @@ class Entity:
             problem = self._lineage.add(s)
             if problem and not first:
                 first = problem
-        # In whatever order shown: take what links, then look again.
+        # In whatever order shown: take what links, then look again. Each
+        # round reaches one link further from the key known, so the
+        # nearest come first.
+        taken: Dict[Tuple[str, bool], int] = {}
         while linked:
             fits = [s for s in linked if self._links(s)]
             for s in fits:
+                linked.remove(s)
+                if shown:
+                    known = (self._key.token if s.of == own
+                             else self._known.get(s.of))
+                    side = (s.of, s.old == known)     # (world, next step?)
+                    if taken.get(side, 0) >= LINE_KEPT:
+                        continue
+                    taken[side] = taken.get(side, 0) + 1
                 problem = self._lineage.add(s)
                 if problem and not first:
                     first = problem
-                linked.remove(s)
             self._follow()
             if not fits:
                 first = first or ("it isn't on the line of a key this "
