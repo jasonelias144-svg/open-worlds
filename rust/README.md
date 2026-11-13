@@ -32,6 +32,9 @@ cargo clippy --all-targets --locked -- -D warnings
 cargo test --locked
 cargo run --locked -p world-log -- ../vectors/world-log.json
 cargo run --locked -p ur-world --example garden
+cargo run --locked -p ur-world --example door -- \
+    --mind TRIAL-1=python3 -I ../minds/wanderer.py \
+    --mind TRIAL-2=python3 -I ../minds/wanderer.py
 ```
 
 CI runs the same commands (`.github/workflows/test.yml`, job `rust`).
@@ -49,9 +52,14 @@ checks the Ur-world's log the same way:
 The `garden` example is Hello World for building worlds: it runs the
 garden, tells what happened, and draws a map of what has come into view.
 
+The `door` example runs the garden with minds that are programs of their
+own, in any language, through the doorway (`ur-world/src/door.rs`). Here
+the two minds are a short Python program with no model behind it.
+
 ## What comes next
 
 The Ur-world's next steps are in [docs/URWORLD.md](../docs/URWORLD.md):
-keys and the protocol in Rust, the gate to other worlds, districts, growth,
-minds for ALICE and BOB, and a window onto it all, through Unity or Unreal
-among others.
+experiments with unscripted minds, the garden's abilities, keys and the
+protocol in Rust, founding worlds, land of unknown construction, the gate
+to other worlds, districts, growth, minds for ALICE and BOB, and a window
+onto it all, through Unity or Unreal among others.

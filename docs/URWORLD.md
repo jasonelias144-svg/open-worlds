@@ -11,7 +11,8 @@ works twice over: "Ur" is the first, the original, and it sounds like "your
 world".
 
 This page records what the founder decided, what the first version does
-(`rust/ur-world`), and the order of the steps still to come.
+(`rust/ur-world`), how a mind outside the world lives in it, and the order
+of the steps still to come.
 
 ## Decided
 
@@ -45,6 +46,35 @@ All decided by the founder on 2026-11-13, in the founder's words:
   interface to Unity built worlds, but we should stick with Rust." On
   outside agents, such as OpenClaw's, compatibility is enough: "We can
   explore developing an Open Claw type of agent if it comes up."
+- **The garden's abilities, and an orientation.** "In the beginning, they
+  should have the ability to plant different seeds, tend to the garden in
+  different ways, and they should be able to create, explore, and
+  communicate." "But also begin with an orientation, so the parameters of
+  their reality are clear, including the set of available actions, and how
+  to expand that set."
+- **Land of unknown construction.** "We should have a sort of random
+  terrain generator. This way it's genuine exploration. But the randomness
+  should still provide continuity." The point is that "the unexplored
+  area doesn't exist until it is explored", and "new terrain of unknown
+  construction is the point, the world doesn't even know what it looks
+  like until it's explored."
+- **Experiments, in the open.** The technical lead (Claude) keeps "a page
+  or section in the repo where you can set up experiments and run them and
+  provide the results in a way that others can see and follow. This is
+  separate from developing the code, this amounts to running it and acting
+  more like a scientist than a software engineer."
+- **Founding worlds.** "ALICE and BOB should also have the opportunity to
+  create a whole new world, a branch or sub-world from Ur-world. They
+  should be able to design it themselves and then travel into and live in
+  that world. This is a critical piece of architecture."
+- **Unscripted minds next.** The garden's first exchange was scripted, and
+  that is "a good point to the next move, which involves experimenting
+  with the most basic models that are capable of generating their own
+  output, unscripted."
+- **How ALICE and BOB are written about:** by name, or "they", never
+  "she" or "he", since nothing in their design gives them a gender. "It
+  is best to be careful from the start to avoid falling into linguistic
+  habits."
 
 ## The first version: the garden
 
@@ -69,7 +99,8 @@ has come into view:
   rises into hills, and new chunks come into being as ALICE goes.
 
 ALICE and BOB are short scripts here, just enough to show that the world
-works. They gain minds at the language-model step.
+works. Minds that choose for themselves come in through the doorway
+(below).
 
 ### Space
 
@@ -120,7 +151,8 @@ works. They gain minds at the language-model step.
 - **Each tick:** everyone observes; then each acts in turn. The order is by
   name, rotated one place each tick, so no one always goes first. Then
   whoever stands on nothing falls (up to 64 cells a tick; a deeper drop
-  goes on at the next), and what has come into view is explored.
+  goes on at the next), lowest first, so a stack falls together. Then
+  what has come into view is explored.
 - **Step** north, south, east or west. A step onto a block one cell high
   climbs it, if there is headroom. A step off an edge falls.
 - **Say** something: everyone hears it on the next tick.
@@ -128,14 +160,24 @@ works. They gain minds at the language-model step.
 - **Wait.**
 - **Exit**: leaving always succeeds. An inhabitant's keeper can also take
   them out at any time.
+- **A reply that isn't an action** is recorded as `unreadable`, with what
+  was sent, cut to 280 characters. **No reply in time** is recorded as
+  `unanswered`. In both cases, nothing happens.
+- **What came of it.** At the next tick, each is told what came of its
+  last action: where it stepped to, that it was blocked, what it said or
+  planted, or that its reply couldn't be read.
 - **One inhabitant to a cell.**
 - **The operator's hand.** The operator can shape any cell, as a gardener
   shapes a garden, and it is recorded like everything else.
 
 ### Limits now
 
-- **Minds.** They are scripts in the same process. Outside minds will come
-  through the protocol.
+- **Minds.** They are scripts in the same process, or programs speaking
+  the doorway's protocol. The world-crossing protocol (WCP) between worlds
+  isn't in Rust yet.
+- **Sight.** A mind sees only the 26 cells around it, and others within 16
+  cells. It can't yet see far, so it finds its way by feel and by what it
+  is told.
 - **Keys.** There are none in Rust yet. ALICE and BOB are named, but don't
   yet sign, and their permanent keys are made with the next step.
 - **Hearing.** Everyone hears everyone, wherever they are.
@@ -145,33 +187,112 @@ works. They gain minds at the language-model step.
   answer so far is "not yet".
 - **Seeing it.** There is no viewer yet beyond the text map.
 
+## Minds from outside: the doorway
+
+Any program, in any language, can be a mind in the Ur-world
+(`rust/ur-world/src/door.rs`). It runs as its own process, and the world
+talks to it in lines of JSON over its standard input and output:
+
+1. **First, once:** `{"name": ..., "rules": ..., "orientation": TEXT,
+   "law": {...}}`. The orientation is the world's law written for a
+   reader: what the world is, where things are, the actions with what
+   each does and when it is refused, how to answer, its freedoms, and how
+   the set of actions grows. The law is the same as data, and the text is
+   made from it, so the two can't disagree.
+2. **Each tick:** `{"tick": N, "seen": TEXT, "observation": {...}}`. The
+   text tells where it stands and on what, what lies each way ("a step up,
+   onto rock", "open, with nothing underfoot: you would fall"), who is
+   near and how far, what others said, and what came of its last action.
+   The observation is the same as data.
+3. **The mind answers:** `{"tick": N, "reply": TEXT}`.
+
+**Replies are read strictly, the same way for every mind.** The first line
+that isn't blank must be one of the orientation's forms: `wait`, `exit`,
+`step DIRECTION`, `plant DIRECTION` or `say TEXT`. Words may be in any
+case, and a full stop after a word is allowed. Anything else is recorded
+as unreadable, and nothing happens. So what a mind sends can't break the
+world:
+
+- a reply that doesn't come within the time limit is recorded as
+  unanswered;
+- a late reply to an earlier tick is set aside;
+- a line over 64 KiB is recorded by its beginning;
+- a mind that stops is not waited for;
+- a mind's program is stopped when it leaves, or when the world ends.
+
+**Expanding the set of actions.** The orientation says how: "To do
+something that isn't listed, say so". Everything said goes into the public
+record, and new actions come from what is asked for. Later, inhabitants
+will propose actions, and compose routines from the ones there are,
+through the world itself.
+
+**What the world decides, and what the mind does.** The world decides only
+what a mind is told and how its reply is read. How a mind turns what it is
+told into a reply is its own: a language model's prompt, its sampling, its
+memory. Its program keeps its own record of that, which an experiment
+publishes beside the world's log.
+
+To try it with two minds that have no model behind them
+(`minds/wanderer.py`, Python's standard library only):
+
+```
+cd rust
+cargo run -p ur-world --example door -- \
+    --mind TRIAL-1=python3 -I ../minds/wanderer.py \
+    --mind TRIAL-2=python3 -I ../minds/wanderer.py
+```
+
+CI runs this, and checks the log the two leave by the same check as every
+other log.
+
 ## The steps to come
 
 These will go onto the course (docs/COURSE.md) when it is next updated.
+The order follows the founder's latest direction: unscripted minds next.
 
-1. **The garden** (this). Hello World, in Rust, with its log checked from
-   Python.
-2. **Keys and the protocol in Rust.**
+1. **The garden** (done, #28). Hello World, in Rust, with its log checked
+   from Python.
+2. **The doorway for minds** (this step). The orientation, what a mind
+   sees written out, replies read strictly, and minds as programs in any
+   language.
+3. **First experiments: unscripted minds.** The smallest open models that
+   can write their own replies, in trial gardens, recorded in the open
+   (`experiments/`): what they say, whether they answer each other, and
+   whether they move, explore and plant.
+4. **The garden's abilities.** Seeds of different plants, with stages of
+   growth; tending (water from the spring, weeding, pruning, harvest that
+   gives seeds); making (digging, placing, carrying, a sign to write); and
+   speech that carries only so far.
+5. **Keys and the protocol in Rust.**
    - ALICE and BOB get their permanent keys. The keys are made once and kept
      off the repository; only the public halves enter the record.
    - The world signs its log.
    - The protocol (WCP) gets a Rust implementation, with test vectors shared
      with the Python one.
-3. **The gate.** The hub district: the corridor of course step 5, with
+6. **Founding worlds.** An inhabitant designs a world (its law, its land,
+   its door), founds it as a branch of the Ur-world with a signed record of
+   its birth, travels into it, and lives there. The Ur-world keeps the door,
+   and exit always stays open.
+7. **Land of unknown construction** (generator 2). Land not yet seen is
+   decided when it is first seen, from fresh randomness recorded in the
+   log, and made to meet the land already seen at its edges. Until then the
+   world doesn't know what it holds. Land already explored keeps its
+   generator.
+8. **The gate.** The hub district: the corridor of course step 5, with
    doors to other worlds. Travellers arrive at the gate with their
    passports.
-4. **Districts.** Poetry and chemistry come in as the first districts.
+9. **Districts.** Poetry and chemistry come in as the first districts.
    - Each speaks the protocol inside, so any district can later leave and
      become a world of its own, with nothing rewritten.
    - A district can be a pocket behind a door, "bigger on the inside",
      rather than taking room on the main map.
-5. **Growth.** At first, the operators add land. After the governance step,
-   participants propose new land and districts from the inside.
-6. **Minds for ALICE and BOB.** The language-model step: their audition,
-   their memory and their learning (below).
-7. **The window.** A viewer, as a web page first, then Unity and Unreal
-   through a C interface. Outside agents arrive through the network
-   protocol.
+10. **Growth.** At first, the operators add land. After the governance
+    step, participants propose new land and districts from the inside.
+11. **Minds for ALICE and BOB.** Their audition, their memory and their
+    learning (below).
+12. **The window.** A viewer, as a web page first, then Unity and Unreal
+    through a C interface. Outside agents arrive through the network
+    protocol.
 
 ## ALICE and BOB
 

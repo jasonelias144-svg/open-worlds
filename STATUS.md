@@ -19,10 +19,11 @@ respect one another's freedom, with full transparency and exit at any time
   (#24). A lost or leaked key waits for the founder's answer.
   `sketches/` keeps the DeepSeek records and their code, with its first
   fixes (#16 to #18, #20).
-- Claude: the Ur-world ([docs/URWORLD.md](docs/URWORLD.md)). Its first
-  piece, the garden's Hello World in Rust, is in (#28). Next: the
-  garden's orientation, and a doorway for minds, so that small open
-  models can act in the world unscripted.
+- Claude: the Ur-world ([docs/URWORLD.md](docs/URWORLD.md)). The
+  garden's Hello World (#28) and the doorway for minds are in: an
+  orientation, what a mind sees written out, replies read strictly, and
+  minds as programs in any language. Next: the first experiments with
+  unscripted minds from the smallest open models, in `experiments/`.
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
@@ -190,9 +191,33 @@ and for the founder's conversations with DeepSeek, is in
   names, or "they", not "she" and "he", since nothing in their design gives
   them a gender. "It is best to be careful from the start to avoid falling
   into linguistic habits."
+- 2026-11-13, founder, on the Ur-world's next steps, all quoted in
+  docs/URWORLD.md: the garden's abilities (plant different seeds, tend in
+  different ways, create, explore, communicate), and an orientation that
+  makes clear "the parameters of their reality", the available actions,
+  "and how to expand that set"; land generated with continuity that
+  "doesn't exist until it is explored"; experiments set up, run and
+  published in the repository, "acting more like a scientist than a
+  software engineer"; ALICE and BOB able to design a world of their own,
+  found it, travel into it and live there, "a critical piece of
+  architecture"; and next, "experimenting with the most basic models that
+  are capable of generating their own output, unscripted".
 
 ## Log
 
+- 2026-11-13 Claude: the Ur-world's doorway for minds
+  (`rust/ur-world/src/door.rs`, docs/URWORLD.md). A mind can be any
+  program, in any language, speaking lines of JSON: it is sent the world's
+  orientation once, then what it sees each tick, written out and as data,
+  and answers with one line. Replies are read strictly, the same way for
+  every mind; what can't be read is recorded as unreadable, and no reply
+  in time as unanswered, so nothing a mind sends can break the world. Each
+  inhabitant is now told what came of its last action. Two Python minds
+  with no model behind them (`minds/wanderer.py`) run in CI, and their log
+  holds by the same check. The rules are now ur-world/0.2. Also, from the
+  review of #28: the generator and the query functions answer without
+  overflowing at the ends of 64-bit numbers, chunks wholly beyond the edge
+  are never made, and a stack of inhabitants falls together.
 - 2026-11-13 Claude: the Ur-world's Hello World (`rust/ur-world`,
   docs/URWORLD.md). A 3D world of cells in chunks, generated as it is
   explored from a seed, in whole numbers only, and versioned. It begins in

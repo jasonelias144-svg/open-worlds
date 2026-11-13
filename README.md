@@ -53,6 +53,8 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
 - [rust/](rust/README.md): the worlds in Rust: the Ur-world, and the public
   record, checked across languages through shared test vectors
   ([vectors/](vectors/README.md)).
+- [minds/](minds/README.md): programs that can be minds in the Ur-world,
+  in any language, through its doorway.
 - [sketches/](sketches/README.md): the creative side, kept apart: the
   founder's conversations with DeepSeek, verbatim, and DeepSeek's code from
   them as written, with its test results. A record of ideas, not

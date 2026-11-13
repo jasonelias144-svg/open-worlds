@@ -110,7 +110,10 @@ fn every_explored_chunk_is_what_the_generator_makes() {
         assert!(seen.insert(c), "{c:?} explored twice");
         assert_eq!(e["data"]["generator"], GENERATOR);
         // Each was explored before anything in it changed.
-        assert_eq!(e["data"]["hash"], generate::generate(SEED, c).hash());
+        assert_eq!(
+            e["data"]["hash"],
+            generate::generate(SEED, c).unwrap().hash()
+        );
     }
     assert_eq!(&seen, world.explored());
     // The land beyond what they saw holds no data at all.
@@ -124,10 +127,10 @@ fn the_world_stores_only_what_changed() {
     assert_eq!(changed, [(Cell::new(4, 1, 0), Material::Flower)]);
     // The chunk as it is now differs from the generated one by that cell.
     let home = ChunkCoord::new(0, 0, 0);
-    let mut expected = generate::generate(SEED, home);
-    assert_ne!(world.chunk(home), expected);
+    let mut expected = generate::generate(SEED, home).unwrap();
+    assert_ne!(world.chunk(home), Some(expected.clone()));
     expected.set(Cell::new(4, 1, 0), Material::Flower);
-    assert_eq!(world.chunk(home), expected);
+    assert_eq!(world.chunk(home), Some(expected));
 }
 
 #[test]

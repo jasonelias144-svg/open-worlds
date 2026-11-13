@@ -75,3 +75,11 @@ jobs:
       - run: cargo run --locked -q -p world-log -- ../vectors/world-log.json
       - run: cargo run --locked -q -p world-log -- ../vectors/ur-garden-log.json
       - run: cargo run --locked -q -p ur-world --example garden
+      # Two minds in another language, through the doorway; their log must
+      # hold by the same check.
+      - run: >-
+          cargo run --locked -q -p ur-world --example door --
+          --ticks 12 --limit 30 --log "$RUNNER_TEMP/door-log.json"
+          --mind TRIAL-1=python3 -I ../minds/wanderer.py
+          --mind TRIAL-2=python3 -I ../minds/wanderer.py
+      - run: cargo run --locked -q -p world-log -- "$RUNNER_TEMP/door-log.json"
