@@ -12,7 +12,9 @@ So the course always looks twelve steps ahead. When a step is done:
 
 Each step is one tested, independently reviewed piece of work. The
 founder can reorder or swap steps at any time: this is a plan, not a
-contract. The design behind it is [MULTIVERSE.md](MULTIVERSE.md).
+contract. The design behind it is [MULTIVERSE.md](MULTIVERSE.md). Which
+of the sketch's components each step relates to is in
+[sketches/INDEX.md](../sketches/INDEX.md).
 
 ## Done
 

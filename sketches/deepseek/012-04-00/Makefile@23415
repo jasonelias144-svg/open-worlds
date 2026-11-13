@@ -1,0 +1,3 @@
+.PHONY: revoke-demo
+revoke-demo:
+	$(PYTHON) -c "from multiverse_c26 import demo; demo(artifact_dir='artifacts')"

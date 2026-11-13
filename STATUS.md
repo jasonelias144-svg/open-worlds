@@ -14,9 +14,10 @@ respect one another's freedom, with full transparency and exit at any time
 ## Now
 
 - Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Steps 1 and 2
-  are done. In review: signatures from the `cryptography` package instead
-  of the hand-written Ed25519 (the founder has lifted the standard-library
-  rule). Next: step 3, signed passports.
+  are done, and signatures now come from the `cryptography` package (#15).
+  In review: `sketches/`, the DeepSeek records and their code kept as
+  written, apart from open-worlds' own code. Next: step 3, signed
+  passports.
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
@@ -59,6 +60,14 @@ and for the founder's conversations with DeepSeek, is in
   fresh soil (inflow of simple molecules). Recommended: water and soil
   first; the sun needs photochemistry rules that don't exist yet
   (docs/CHEMISTRY.md, layer 3 plan). (asked 2026-11-12)
+- For the founder: may a person keep their presences in different worlds
+  unlinked, so that a world sees only the key used there? Recommended:
+  unlinked by default; the person chooses what to show. (asked 2026-11-13)
+- For the founder: does a fork need the child's acceptance? Recommended:
+  yes. (asked 2026-11-13)
+- For the founder: a course step for persons after step 3, and the
+  architectures (octopus, relay, swarm, council) as small examples on the
+  unchanged core? Recommended: yes. (asked 2026-11-13)
 
 ## Noticed
 
@@ -106,10 +115,10 @@ and for the founder's conversations with DeepSeek, is in
 - 2026-11-12, founder: "Let’s plot a course forward and then after each
   completed step, plot a new one that adds one new step forward."
   (docs/COURSE.md)
-- 2026-11-12, founder, on the demonstration's poem: his own poem may be
-  public, but "it is not necessarily the best to start with. I would
-  prefer any poem by anyone else. Emily Dickinson would be perfect." "We
-  should use a known poem to start anything." The demonstration opens
+- 2026-11-12, founder, on the demonstration's poem: the founder's own poem
+  may be public, but "it is not necessarily the best to start with. I
+  would prefer any poem by anyone else. Emily Dickinson would be perfect."
+  "We should use a known poem to start anything." The demonstration opens
   with Dickinson's "Hope is the thing with feathers" (1891).
 - 2026-11-12, founder: "The multiverse is the same as open-worlds." Its
   design is in docs/MULTIVERSE.md.
@@ -127,6 +136,20 @@ and for the founder's conversations with DeepSeek, is in
   domain (CC0 1.0). The goal isn't financial; anyone may build on it.
 
 ## Log
+
+- 2026-11-13 Claude: `sketches/`, the creative side kept apart, as the
+  founder asked: both DeepSeek records verbatim; all the code files of
+  record 012-04-00 (components 1 to 43, 135 files) written out exactly as
+  the record has it, by a tool CI reruns; and every DeepSeek test's result
+  (414 pass, 144 fail, 1 passes on some runs only, 8 test files don't
+  load), held true by CI. A test keeps the records' links into this
+  repository working. The independent review found a test whose result
+  varies from run to run, and a block left out by a name one line off;
+  both fixed, and the check now reports such names.
+  `sketches/INDEX.md` says where each component meets the course.
+  COLLABORATING.md now says the sketch is a starting point, not an end
+  point, and gives four design lessons from components 21 to 43. AGENTS.md
+  records the founder's rule on personal data: first name only.
 
 - 2026-11-13 Claude: course step 2 merged (#14) after an independent
   review found two blocking problems (weak keys anyone could sign for;

@@ -1,0 +1,15 @@
+.PHONY: verify-bundle
+verify-bundle:
+	@if [ -z "$$BUNDLE" ]; then \
+		echo "Usage: make verify-bundle BUNDLE=<path>"; \
+		exit 1; \
+	fi
+	@echo "Verifying $$BUNDLE..."
+	@$(PYTHON) -c "import sys; \
+		from multiverse_c32 import load_bundle, verify_loaded_bundle; \
+		r = load_bundle('$$BUNDLE'); \
+		if not r.valid: \
+			print('load failed:', r.reason); sys.exit(1); \
+		v = verify_loaded_bundle(r.bundle); \
+		print(v.format()); \
+		sys.exit(0 if v.valid else 1)"

@@ -1,0 +1,166 @@
+# Which of DeepSeek's tests fail, as the code stands here. Written by us,
+# not by DeepSeek (see README.md), with tools/known_failures.py, from
+# runs under several hash seeds. conftest.py reads it:
+#   - a test file listed alone does not load, and is not collected;
+#   - a test listed by name is an expected failure, and strict: if it
+#     starts passing, the run fails until it is taken off this list;
+#   - a test whose error starts with "sometimes:" failed in some runs
+#     and passed in others, so either result is accepted.
+# So the list is always true. The text after "  # " is the error.
+
+# Test files that do not load
+multiverse_c4_test.py  # ImportError: cannot import name 'turns_from_log' from 'multiverse_c4' (multiverse_c4.py)
+multiverse_c7_test.py  # ImportError: cannot import name 'turns_from_log' from 'multiverse_c4' (multiverse_c4.py)
+multiverse_c11_test.py  # ModuleNotFoundError: No module named 'poetry_engine_c21'
+multiverse_c12_test.py  # ImportError: cannot import name 'turns_from_log' from 'multiverse_c4' (multiverse_c4.py)
+multiverse_c17_test.py  # ImportError: cannot import name 'InMemoryKeyResolver' from 'multiverse_c16' (multiverse_c16.py)
+multiverse_c18_test.py  # ImportError: cannot import name 'turns_from_log' from 'multiverse_c4' (multiverse_c4.py)
+multiverse_c20_test.py  # ImportError: cannot import name 'turns_from_log' from 'multiverse_c4' (multiverse_c4.py)
+multiverse_c40_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c40' (multiverse_c40.py)
+
+# Tests that fail
+multiverse_c2_test.py::test_admission_immutability  # ValueError: world_id must be at least 8 characters
+multiverse_c2_test.py::test_honest_limitation  # ValueError: world_id must be at least 8 characters
+multiverse_c2_test.py::test_identity_is_preserved_across_admissions  # ValueError: world_id must be at least 8 characters
+multiverse_c2_test.py::test_multiple_admissions_preserve_order  # ValueError: world_id must be at least 8 characters
+multiverse_c2_test.py::test_rename_via_with_identity  # ValueError: world_id must be at least 8 characters
+multiverse_c2_test.py::test_serialization_roundtrip  # ValueError: world_id must be at least 8 characters
+multiverse_c5_test.py::test_conformance  # assert False
+multiverse_c5_test.py::test_parse_charges  # ValueError: Unknown element: Ca
+multiverse_c5_test.py::test_two_worlds_same_protocol_different_laws  # assert (False)
+multiverse_c6_test.py::test_conforms_to_wcp  # assert False
+multiverse_c6_test.py::test_end_to_end  # IndexError: list index out of range
+multiverse_c6_test.py::test_fractal_multiverse_in_multiverse  # + where False = isinstance(Refusal(reason="Entity multiverse:inner fails conformance: ['petition() raised ValueError: token must be at least 16 charac
+multiverse_c6_test.py::test_lists_conforming_entity  # + where False = isinstance(Refusal(reason="Entity world:poetry fails conformance: ['petition() raised ValueError: token must be at least 16 characters
+multiverse_c6_test.py::test_log_shows_conformance_reports  # + where 0 = len([])
+multiverse_c6_test.py::test_manifest_serialization  # NameError: name 'Manifest' is not defined
+multiverse_c6_test.py::test_multiverse_lists_two_different_laws  # + where 0 = len([])
+multiverse_c6_test.py::test_refuses_duplicate  # + where False = isinstance(Refusal(reason="Entity world:poetry fails conformance: ['petition() raised ValueError: token must be at least 16 characters
+multiverse_c6_test.py::test_refuses_non_conforming_entity  # + where "Proposed entity's manifest is not a Manifest" = Refusal(reason="Proposed entity's manifest is not a Manifest").reason
+multiverse_c6_test.py::test_remove  # AssertionError: assert False
+multiverse_c15_test.py::test_convert_v1_to_v2  # ValueError: world_id must be at least 8 characters
+multiverse_c15_test.py::test_convert_v2_to_v1  # ValueError: world_id must be at least 8 characters
+multiverse_c16_test.py::test_caching_avoids_refetch  # assert 3 == 1
+multiverse_c16_test.py::test_chain_uses_primary_when_it_works  # AssertionError: assert '<hex>...<hex>' == '<hex>...<hex>'
+multiverse_c16_test.py::test_end_to_end_passport_verifies_via_manifest  # AssertionError: assert False is True
+multiverse_c16_test.py::test_end_to_end_two_worlds_verified_offline  # AssertionError: assert False is True
+multiverse_c16_test.py::test_register_with_new_url_invalidates_cache  # AssertionError: assert None == '<hex>'
+multiverse_c16_test.py::test_resolver_fetches_public_key  # AssertionError: assert None == '<hex>'
+multiverse_c21_test.py::test_demo_runs_end_to_end  # urllib.error.HTTPError: HTTP Error 400: Bad Request
+multiverse_c21_test.py::test_happy_path_three_worlds  # urllib.error.HTTPError: HTTP Error 400: Bad Request
+multiverse_c21_test.py::test_in_process_listing_reports_url_stage  # ValueError: token must be at least 16 characters (collision resistance)
+multiverse_c21_test.py::test_invalid_admission_reports_signature_stage  # urllib.error.HTTPError: HTTP Error 400: Bad Request
+multiverse_c21_test.py::test_removed_world_still_verifies  # urllib.error.HTTPError: HTTP Error 400: Bad Request
+multiverse_c21_test.py::test_wrong_registry_key_rejects_all  # urllib.error.HTTPError: HTTP Error 400: Bad Request
+multiverse_c22_test.py::test_act_after_leave_is_refused  # ValueError: world_id must be at least 8 characters
+multiverse_c22_test.py::test_dickinson_leaves_three_worlds  # ValueError: world_id must be at least 8 characters
+multiverse_c22_test.py::test_http_shim_leave_roundtrip  # urllib.error.HTTPError: HTTP Error 400: Bad Request
+multiverse_c22_test.py::test_leave_after_admission  # ValueError: world_id must be at least 8 characters
+multiverse_c22_test.py::test_leave_is_idempotent  # ValueError: world_id must be at least 8 characters
+multiverse_c22_test.py::test_leave_is_logged  # ValueError: world_id must be at least 8 characters
+multiverse_c22_test.py::test_provenance_departed_but_signature_invalid  # NameError: name 'PassportEntry' is not defined
+multiverse_c22_test.py::test_provenance_departed_with_valid_signature  # NameError: name 'PassportEntry' is not defined
+multiverse_c22_test.py::test_provenance_resident_without_departure  # NameError: name 'PassportEntry' is not defined
+multiverse_c22_test.py::test_reenter_after_leave  # ValueError: world_id must be at least 8 characters
+multiverse_c22_test.py::test_signed_leave_verifies  # ValueError: world_id must be at least 8 characters
+multiverse_c22_test.py::test_signed_leave_wrong_key_fails  # ValueError: world_id must be at least 8 characters
+multiverse_c23_test.py::test_current_residency_departed  # ValueError: departure is for 'alice', passport is for '<hex>'
+multiverse_c23_test.py::test_current_residency_multi_visit_last_closed  # ValueError: departure is for 'alice', passport is for '<hex>'
+multiverse_c23_test.py::test_current_residency_multi_visit_last_open  # ValueError: departure is for 'alice', passport is for '<hex>'
+multiverse_c27_test.py::test_combined_to_dict_json  # sometimes: failed in 2 of 8 runs (hash seeds 0 to 7): AssertionError: assert ['Alice', 'Ca...'Bob', 'Dave'] == ['Alice', 'Bo...arol', 'Dave']
+multiverse_c27_test.py::test_demo  # TypeError: revoke expects a ChainLink, got DAGLink
+multiverse_c27_test.py::test_revoke_one_branch_noncascade  # TypeError: revoke expects a ChainLink, got DAGLink
+multiverse_c27_test.py::test_unknown_previous_rejected  # AssertionError: assert 'unknown' in 'root report_hash does not match report'
+multiverse_c28_test.py::test_composes_with_passport  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c28_test.py::test_http_end_to_end  # + where False = ManifestFetchResult(accepted=False, public_key=None, reason="malformed signed manifest: 'public_key'", rotation=False, first_use=False
+multiverse_c29_test.py::test_client_gets_key_from_registry_log  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c29_test.py::test_client_publishes_manifest_with_backward_signature  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c29_test.py::test_client_rejects_wrong_registry_key  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c29_test.py::test_demo  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c29_test.py::test_passport_verifies_via_listing_no_world_fetch  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c29_test.py::test_registry_admits_signed_manifest_world  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c29_test.py::test_registry_refuses_forged_manifest  # urllib.error.HTTPError: HTTP Error 400: Bad Request
+multiverse_c29_test.py::test_registry_refuses_unsigned_world  # urllib.error.HTTPError: HTTP Error 400: Bad Request
+multiverse_c29_test.py::test_signed_listing_json_roundtrip  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c29_test.py::test_verifiers_never_raise  # AttributeError: 'NoneType' object has no attribute 'signed_manifest'
+multiverse_c32_test.py::test_bundle_construction  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c32_test.py::test_bundle_from_dict_rejects_missing_field  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c32_test.py::test_bundle_from_dict_rejects_wrong_kind  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c32_test.py::test_bundle_to_dict_from_dict_roundtrip  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c32_test.py::test_fresh_process_verification  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c32_test.py::test_listing_world_key_matches_manifest  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c32_test.py::test_save_and_load_roundtrip  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c32_test.py::test_tampered_listing_rejected  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c32_test.py::test_tampered_passport_rejected  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c32_test.py::test_tampered_registry_manifest_rejected  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c32_test.py::test_tampered_verdict_rejected  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c32_test.py::test_tampered_world_key_rejected  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c32_test.py::test_tampered_world_manifest_rejected  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c32_test.py::test_verify_contacts_no_urls  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c32_test.py::test_verify_never_raises_on_bad_input  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c32_test.py::test_verify_valid_bundle  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c32_test.py::test_verify_without_expected_verifier_key  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c32_test.py::test_world_manifest_entity_id_matches  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c32_test.py::test_wrong_expected_verifier_key_rejected  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c34_test.py::test_cycle_detection  # AssertionError: assert 'cycle' in 'one or more external references failed'
+multiverse_c36_test.py::test_demo  # AttributeError: 'SignedWorld' object has no attribute 'manifest'
+multiverse_c36_test.py::test_verifiers_never_raise  # AttributeError: 'NoneType' object has no attribute 'bindings'
+multiverse_c36_test.py::test_verify_person_passport_happy  # AssertionError: assert False
+multiverse_c36_test.py::test_verify_person_passport_orphan_passport  # ValueError: token must be at least 16 characters (collision resistance)
+multiverse_c37_test.py::test_act_happy  # TypeError: Petition.__init__() got an unexpected keyword argument 'extra'
+multiverse_c37_test.py::test_act_rejects_actor_not_in_co_signers  # TypeError: Petition.__init__() got an unexpected keyword argument 'extra'
+multiverse_c37_test.py::test_act_rejects_forged_co_signature  # TypeError: Petition.__init__() got an unexpected keyword argument 'extra'
+multiverse_c37_test.py::test_act_rejects_key_mismatch  # TypeError: Petition.__init__() got an unexpected keyword argument 'extra'
+multiverse_c37_test.py::test_act_rejects_unadmitted_co_signer  # TypeError: Petition.__init__() got an unexpected keyword argument 'extra'
+multiverse_c37_test.py::test_act_requires_coordination_type  # TypeError: Petition.__init__() got an unexpected keyword argument 'extra'
+multiverse_c37_test.py::test_attestation_json_roundtrip  # TypeError: Petition.__init__() got an unexpected keyword argument 'extra'
+multiverse_c37_test.py::test_create_attestation_happy  # TypeError: Petition.__init__() got an unexpected keyword argument 'extra'
+multiverse_c37_test.py::test_demo  # TypeError: Petition.__init__() got an unexpected keyword argument 'extra'
+multiverse_c37_test.py::test_leave_cannot_be_refused_when_admitted  # TypeError: Petition.__init__() got an unexpected keyword argument 'extra'
+multiverse_c37_test.py::test_personworld_conforms_to_wcp  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
+multiverse_c37_test.py::test_petition_accepts_extra_field  # TypeError: Petition.__init__() got an unexpected keyword argument 'extra'
+multiverse_c37_test.py::test_petition_requires_public_key  # AttributeError: 'Petition' object has no attribute 'extra'
+multiverse_c37_test.py::test_petition_with_public_key  # TypeError: Petition.__init__() got an unexpected keyword argument 'extra'
+multiverse_c37_test.py::test_verify_attestation_forged_signature  # TypeError: Petition.__init__() got an unexpected keyword argument 'extra'
+multiverse_c37_test.py::test_verify_attestation_happy  # TypeError: Petition.__init__() got an unexpected keyword argument 'extra'
+multiverse_c37_test.py::test_verify_attestation_tampered_claim  # TypeError: Petition.__init__() got an unexpected keyword argument 'extra'
+multiverse_c39_test.py::test_demo  # assert False
+multiverse_c39_test.py::test_lineage_walk_fork_then_merge  # AssertionError: assert False
+multiverse_c39_test.py::test_lineage_walk_missing_manifest  # AssertionError: assert not True
+multiverse_c41_test.py::test_demo  # ImportError: cannot import name 'turns_from_log' from 'multiverse_c4' (multiverse_c4.py)
+multiverse_c41_test.py::test_two_epochs_verify_independently  # + where False = all(<generator object test_two_epochs_verify_independently.<locals>.<genexpr> at 0x...>)
+multiverse_c42_test.py::test_octopus_and_relay_same_substrate  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
+multiverse_c42_test.py::test_signalworld_passes_wcp_conformance  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
+multiverse_c43_test.py::test_any_finder_works  # AssertionError: failed with finder=ant-0
+multiverse_c43_test.py::test_converges_from_one_find  # + where converged = <multiverse_c43.SwarmNetwork object at 0x...>.converged
+multiverse_c43_test.py::test_demo  # assert False is True
+multiverse_c43_test.py::test_demo_with_different_finder  # assert False is True
+multiverse_c43_test.py::test_own_trace_keeps_unit_stable  # + where converged = <multiverse_c43.SwarmNetwork object at 0x...>.converged
+multiverse_c43_test.py::test_removing_non_finder_still_converges  # AssertionError: failed after removing ant-1
+multiverse_c43_test.py::test_three_architectures_same_substrate  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
+multiverse_c43_test.py::test_unit_is_wcp_world  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
+federation_test.py::test_demo_report_has_three_models  # AssertionError: assert 1 == 0
+federation_test.py::test_demo_runs_and_saves_artifacts  # AssertionError: demo failed:
+federation_test.py::test_demo_unsigned_runs  # AssertionError: demo failed:
+federation_test.py::test_live_mode_works_when_crypto_available  # AssertionError: live failed:
+wcp_conformance_test.py::test_broken_entity_fails  # TypeError: ConformanceRunner.__init__() got an unexpected keyword argument 'label'
+wcp_conformance_test.py::test_cli_exit_codes  # assert 2 == 0
+wcp_conformance_test.py::test_cli_report_format  # assert 2 == 0
+wcp_conformance_test.py::test_full_http_run  # TypeError: ConformanceRunner.__init__() got an unexpected keyword argument 'label'
+wcp_conformance_test.py::test_full_in_process_run  # TypeError: ConformanceRunner.__init__() got an unexpected keyword argument 'label'
+wcp_conformance_test.py::test_http_and_in_process_agree  # TypeError: ConformanceRunner.__init__() got an unexpected keyword argument 'label'
+wcp_conformance_v02_test.py::test_cli_expect_v02_on_v01_fails  # assert 2 == 1
+wcp_conformance_v02_test.py::test_cli_signed_entity_passes  # assert 2 == 0
+wcp_conformance_v02_test.py::test_cli_v01_entity_passes  # assert 2 == 0
+wcp_conformance_v02_test.py::test_expect_v02_accepts_signed  # TypeError: ConformanceRunnerV02.__init__() got an unexpected keyword argument 'label'
+wcp_conformance_v02_test.py::test_expect_v02_rejects_v01  # TypeError: ConformanceRunnerV02.__init__() got an unexpected keyword argument 'label'
+wcp_conformance_v02_test.py::test_http_signed_world  # TypeError: ConformanceRunnerV02.__init__() got an unexpected keyword argument 'label'
+wcp_conformance_v02_test.py::test_http_v01_and_v02_agree_in_process  # TypeError: ConformanceRunnerV02.__init__() got an unexpected keyword argument 'label'
+wcp_conformance_v02_test.py::test_report_format_v01  # TypeError: ConformanceRunnerV02.__init__() got an unexpected keyword argument 'label'
+wcp_conformance_v02_test.py::test_report_format_v02  # TypeError: ConformanceRunnerV02.__init__() got an unexpected keyword argument 'label'
+wcp_conformance_v02_test.py::test_v01_multiverse_passes  # TypeError: ConformanceRunnerV02.__init__() got an unexpected keyword argument 'label'
+wcp_conformance_v02_test.py::test_v01_poetry_world_passes  # TypeError: ConformanceRunnerV02.__init__() got an unexpected keyword argument 'label'
+wcp_conformance_v02_test.py::test_v02_signed_permissive_world_acks_are_verified  # TypeError: ConformanceRunnerV02.__init__() got an unexpected keyword argument 'label'
+wcp_conformance_v02_test.py::test_v02_signed_poetry_world_passes  # TypeError: ConformanceRunnerV02.__init__() got an unexpected keyword argument 'label'
+wcp_conformance_v02_test.py::test_v02_signed_world_with_broken_signature_fails  # TypeError: ConformanceRunnerV02.__init__() got an unexpected keyword argument 'label'
+wcp_conformance_v02_test.py::test_v02_world_missing_public_key_fails  # TypeError: ConformanceRunnerV02.__init__() got an unexpected keyword argument 'label'

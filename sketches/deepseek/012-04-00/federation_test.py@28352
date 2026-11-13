@@ -1,0 +1,69 @@
+def test_live_mode_saves_signed_verdict():
+    """make live saves a signed_federation_verdict.json that
+    verifies against the saved verifier_public_key.txt."""
+    try:
+        import cryptography  # noqa
+    except ImportError:
+        pytest.skip("cryptography not installed")
+    print("=== live mode: signed federation verdict ===")
+    with tempfile.TemporaryDirectory() as tmpdir:
+        result = _run(["--mode", "live", "--artifact-dir", tmpdir])
+        assert result.returncode == 0, \
+            f"live failed:\n{result.stdout}\n{result.stderr}"
+        run_dir = next(Path(tmpdir).iterdir())
+
+        signed_path = run_dir / "signed_federation_verdict.json"
+        key_path = run_dir / "verifier_public_key.txt"
+        assert signed_path.exists(), "missing signed_federation_verdict.json"
+        assert key_path.exists(), "missing verifier_public_key.txt"
+
+        from multiverse_c31 import (
+            SignedFederationVerdict,
+            verify_signed_federation_verdict,
+        )
+        import json as _json
+        signed = SignedFederationVerdict.from_dict(
+            _json.loads(signed_path.read_text()))
+        key = key_path.read_text().strip()
+
+        # The signature verifies against the saved key
+        assert verify_signed_federation_verdict(signed, key)
+
+        # The signed verdict matches the unsigned one
+        unsigned = _json.loads(
+            (run_dir / "federation_verdict.json").read_text())
+        assert signed.verdict.to_dict() == unsigned
+
+        # The verdict claims all_pass
+        assert signed.verdict.all_pass is True
+
+        print(f"  signed verdict verifies: True")
+        print(f"  signer: {signed.signer_name}")
+        print(f"  all_pass: {signed.verdict.all_pass}")
+
+
+def test_live_mode_signed_verdict_tamper_breaks_signature():
+    """Tampering with the saved signed verdict breaks verification."""
+    try:
+        import cryptography  # noqa
+    except ImportError:
+        pytest.skip("cryptography not installed")
+    with tempfile.TemporaryDirectory() as tmpdir:
+        result = _run(["--mode", "live", "--artifact-dir", tmpdir])
+        assert result.returncode == 0
+        run_dir = next(Path(tmpdir).iterdir())
+        import json as _json
+        from multiverse_c31 import (
+            SignedFederationVerdict,
+            verify_signed_federation_verdict,
+        )
+        signed = SignedFederationVerdict.from_dict(
+            _json.loads(
+                (run_dir / "signed_federation_verdict.json").read_text()))
+        key = (run_dir / "verifier_public_key.txt").read_text().strip()
+
+        # Tamper: flip passport_verified_without_world to False
+        tampered_dict = signed.to_dict()
+        tampered_dict["verdict"]["passport_verified_without_world"] = False
+        tampered = SignedFederationVerdict.from_dict(tampered_dict)
+        assert not verify_signed_federation_verdict(tampered, key)

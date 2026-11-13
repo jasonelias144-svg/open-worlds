@@ -1,0 +1,261 @@
+# In federation.py — replace the existing run_live with this:
+
+def run_live(artifact_dir: Path) -> int:
+    """Fully signed federation, end to end.
+
+    The chain the client walks:
+      registry key (pinned) → signed_listing (registry sig)
+        → signed_manifest (world sig) → world public_key
+        → passport entry (world sig)
+
+    The world is STOPPED before passport verification. If any
+    artifact verifies, it verified against the registry's assertion
+    alone — not against a live world.
+    """
+    import time as _time
+    from multiverse_c1 import create_identity, Identity
+    from multiverse_c3 import Petition
+    from multiverse_c4 import PoetryWorld
+    from multiverse_c13 import (
+        HAS_CRYPTO, KeyPair, SignedWorld, SignedAdmission,
+    )
+    from multiverse_c15 import PassportEntry, PassportV2
+    from multiverse_c28 import SignedManifestWorld
+    from multiverse_c29 import (
+        SignedListingRegistry, SignedListingClient,
+        ListingKeyResolver,
+    )
+    from wcp_http_shim import WorldProtocolServer
+
+    if not HAS_CRYPTO:
+        print("ERROR: live mode requires cryptography")
+        return 1
+
+    # ------------------------------------------------------------------
+    # Step 1: Start a signed world with a signed manifest
+    # ------------------------------------------------------------------
+    print("=" * 70)
+    print("FEDERATION LIVE — fully signed, world offline at verification")
+    print("=" * 70)
+    print()
+    print("[1/7] Starting signed Poetry World (WCP/0.2 + signed manifest)")
+
+    world_kp = KeyPair.generate()
+    base = PoetryWorld("world:poetry", "The Poetry World")
+    signed_responses = SignedWorld(base, world_kp)
+    world = SignedManifestWorld(signed_responses, world_kp)
+
+    world_server = WorldProtocolServer(world, port=0)
+    world_server.serve_in_thread()
+    _time.sleep(0.2)
+    world_port = world_server._httpd.server_address[1]
+    world_url = f"http://127.0.0.1:{world_port}"
+    print(f"      world at:         {world_url}")
+    print(f"      world public key: {world_kp.public_key_hex()[:16]}...")
+    (artifact_dir / "signed_manifest.json").write_text(
+        json.dumps(world.manifest_dict(), indent=2))
+    print(f"      → {artifact_dir}/signed_manifest.json")
+
+    # ------------------------------------------------------------------
+    # Step 2: Conformance check (visible as a distinct fact)
+    # ------------------------------------------------------------------
+    print()
+    print("[2/7] WCP/0.2 conformance (over HTTP, against the live world)")
+    try:
+        from wcp_conformance_v02 import ConformanceRunnerV02
+        from wcp_conformance import HTTPEndpoint
+        conf_report = ConformanceRunnerV02(
+            HTTPEndpoint(world_url), label=world_url,
+            expect_version="0.2").run()
+        (artifact_dir / "conformance.txt").write_text(
+            conf_report.format())
+        print(f"      PASS ({conf_report.passed_count}/"
+              f"{conf_report.total_count} checks)")
+        if not conf_report.passed:
+            for c in conf_report.failures():
+                print(f"      FAIL: {c.name}: {c.detail}")
+            world_server.stop()
+            return 1
+    except ImportError as e:
+        print(f"      SKIPPED — conformance CLI unavailable: {e}")
+    print(f"      → {artifact_dir}/conformance.txt")
+
+    # ------------------------------------------------------------------
+    # Step 3: Start the signed registry
+    # ------------------------------------------------------------------
+    print()
+    print("[3/7] Starting signed registry (SignedListingRegistry)")
+    registry_kp = KeyPair.generate()
+    registry = SignedListingRegistry(
+        "multiverse:main", "The Main Multiverse", registry_kp)
+    reg_server = WorldProtocolServer(registry, port=0)
+    reg_server.serve_in_thread()
+    _time.sleep(0.2)
+    reg_port = reg_server._httpd.server_address[1]
+    reg_url = f"http://127.0.0.1:{reg_port}"
+    print(f"      registry at:         {reg_url}")
+    print(f"      registry public key: "
+          f"{registry_kp.public_key_hex()[:16]}...")
+
+    try:
+        # --------------------------------------------------------------
+        # Step 4: Registry fetches + verifies the world's signed manifest
+        # --------------------------------------------------------------
+        print()
+        print("[4/7] Admitting world (registry fetches signed manifest,")
+        print("      verifies the world's self-signature, signs a listing)")
+        admit_resp = _post_live(f"{reg_url}/petition", {
+            "petitioner_token": "admin",
+            "petitioner_name": "Admin",
+            "passport_admissions": [],
+            "message": "setup",
+        })
+        admit_resp = _post_live(f"{reg_url}/act", {
+            "actor_token": "admin",
+            "type": "multiverse.admit",
+            "payload": {"entity_url": world_url},
+        })
+        if admit_resp.get("kind") != "ack":
+            print(f"      REFUSED: {admit_resp.get('reason')}")
+            return 1
+        print(f"      admitted (registry signed listing)")
+        listings = registry.signed_listings()
+        assert len(listings) == 1
+        (artifact_dir / "signed_listing.json").write_text(
+            json.dumps(listings[0].signed_manifest, indent=2))
+        print(f"      → {artifact_dir}/signed_listing.json")
+
+        # --------------------------------------------------------------
+        # Step 5: Client petitions, builds passport
+        # --------------------------------------------------------------
+        print()
+        print("[5/7] Client petitions world, captures signed admission")
+        alice = create_identity("Alice")
+        adm = world.petition(Petition(
+            petitioner_token=alice.token,
+            petitioner_name=alice.name,
+            passport_admissions=(),
+            message="I bring a poem.",
+        ))
+        assert isinstance(adm, SignedAdmission), \
+            f"expected SignedAdmission, got {type(adm).__name__}"
+        passport = PassportV2(
+            identity=Identity(token=alice.token, name=alice.name),
+            entries=(PassportEntry(
+                entity_id=adm.entity_id,
+                timestamp=adm.timestamp,
+                subject_token=adm.subject_token,
+                signature=adm.signature,
+            ),),
+        )
+        print(f"      passport: 1 entry, signed by world's key")
+        print(f"      entry:    {adm.entity_id} at {adm.timestamp}")
+
+        # --------------------------------------------------------------
+        # Step 6: STOP THE WORLD
+        # --------------------------------------------------------------
+        print()
+        print("[6/7] Stopping the world. It cannot be contacted again.")
+        world_server.stop()
+        world_server = None
+        _time.sleep(0.2)
+        # Prove the world is offline
+        try:
+            import urllib.request as _ur
+            _ur.urlopen(f"{world_url}/manifest", timeout=2)
+            print("      ERROR: world still reachable — demo is "
+                  "not honest")
+            return 1
+        except Exception:
+            print(f"      ✓ world unreachable at {world_url}")
+
+        # --------------------------------------------------------------
+        # Step 7: Client verifies passport via registry listing only
+        # --------------------------------------------------------------
+        print()
+        print("[7/7] Client fetches registry log, verifies signed listing,")
+        print("      verifies passport WITHOUT contacting the world")
+        client = SignedListingClient(
+            reg_url, registry_kp.public_key_hex())
+        verified_listings = client.list_verified()
+        rejected = client.rejected()
+        print(f"      verified listings: {len(verified_listings)}")
+        print(f"      rejected listings: {len(rejected)}")
+        if len(verified_listings) != 1:
+            print(f"      ERROR: expected 1 verified listing, "
+                  f"got {len(verified_listings)}")
+            return 1
+        world_pk_from_listing = client.get_public_key("world:poetry")
+        if world_pk_from_listing != world_kp.public_key_hex():
+            print(f"      ERROR: listing key does not match world key")
+            return 1
+        print(f"      world's key from listing: "
+              f"{world_pk_from_listing[:16]}... (matches)")
+
+        resolver = ListingKeyResolver(client)
+        passport_report = passport.verify(resolver)
+        (artifact_dir / "passport_verification.txt").write_text(
+            passport_report.format())
+        print()
+        for line in passport_report.format().split("\n"):
+            print(f"      {line}")
+        print(f"      → {artifact_dir}/passport_verification.txt")
+
+        if not passport_report.all_verified():
+            print()
+            print("      ERROR: passport did not verify")
+            return 1
+
+        # --------------------------------------------------------------
+        # Verdict
+        # --------------------------------------------------------------
+        verdict = {
+            "conformance_passed": True,
+            "world_admitted": True,
+            "world_offline_at_verification": True,
+            "listing_count": len(verified_listings),
+            "passport_verified_without_world":
+                passport_report.all_verified(),
+            "world_public_key": world_pk_from_listing,
+        }
+        (artifact_dir / "federation_verdict.json").write_text(
+            json.dumps(verdict, indent=2))
+        print()
+        print(f"      → {artifact_dir}/federation_verdict.json")
+
+        print()
+        print("=" * 70)
+        print("LIVE FEDERATION: SUCCESS")
+        print("=" * 70)
+        print()
+        print("  Chain verified:")
+        print("    registry key (pinned) → signed_listing (registry sig)")
+        print("    → signed_manifest (world sig) → world public_key")
+        print("    → passport entry (world sig)")
+        print()
+        print("  The world was stopped before verification.")
+        print("  The passport verifies against the registry's assertion")
+        print("  alone. No live world contact, no TOFU, no re-query.")
+        print()
+        print("  Anchor (public domain, Emily Dickinson):")
+        print("    'To make a prairie it takes a clover and one bee,'")
+        print("    'One clover, and a bee,'")
+        print("    'And revery.'")
+        print("=" * 70)
+        return 0
+    finally:
+        if world_server is not None:
+            world_server.stop()
+        reg_server.stop()
+
+
+def _post_live(url: str, body: dict) -> dict:
+    """POST a JSON body, return the parsed JSON response."""
+    import urllib.request as _ur
+    req = _ur.Request(
+        url, data=json.dumps(body).encode(),
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+    with _ur.urlopen(req, timeout=15) as r:
+        return json.loads(r.read().decode())

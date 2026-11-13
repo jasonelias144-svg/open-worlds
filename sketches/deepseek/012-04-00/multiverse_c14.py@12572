@@ -1,0 +1,6 @@
+# In multiverse_c14.py — add at the bottom:
+
+def _signed_permissive_factory():
+    """CLI-friendly factory: a signed PermissiveWorld."""
+    from multiverse_c13 import SignedWorld
+    return SignedWorld(PermissiveWorld())

@@ -1,0 +1,43 @@
+{
+  "record": "records/012-04-00-DPSK-Patterns_Multiverses.txt",
+  "languages": [
+    "python",
+    "typescript",
+    "go",
+    "makefile",
+    "bash",
+    "json"
+  ],
+  "names": {
+    "250": "multiverse_c1.py",
+    "557": "multiverse_c2.py",
+    "1035": "multiverse_c3.py",
+    "1881": "multiverse_c4.py",
+    "2286": "multiverse_c4.py",
+    "2955": "multiverse_c5.py",
+    "3874": "multiverse_c6.py",
+    "4681": "multiverse_c7.py",
+    "5912": "wcp_conformance_checks.py",
+    "6165": "wcp_conformance.py",
+    "6455": "wcp_http_shim.py",
+    "7196": "ts/tsconfig.json",
+    "7216": "multiverse_c6.py",
+    "7275": "cross_language_test.sh",
+    "7779": "cross_language_test.sh",
+    "8762": "cross_language_test.sh",
+    "10842": "multiverse_c13.py",
+    "16196": "wcp_http_shim.py",
+    "17394": "Makefile",
+    "28352": "federation_test.py",
+    "29748": "",
+    "38026": "multiverse_c40_test.py"
+  },
+  "ours": [
+    "README.md",
+    "conftest.py",
+    "known-failures.txt",
+    "pytest.ini",
+    "sketch_status_test.py"
+  ],
+  "changed": {}
+}

@@ -1,0 +1,3 @@
+.PHONY: cross-dag-demo
+cross-dag-demo:
+	$(PYTHON) -c "from multiverse_c34 import demo; demo(artifact_dir='artifacts')"

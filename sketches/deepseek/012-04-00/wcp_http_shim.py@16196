@@ -1,0 +1,167 @@
+"""
+wcp_http_shim.py — Expose any Python WorldProtocol as a WCP/0.1
+or WCP/0.2 HTTP server. Backward-compatible with the C8 version.
+"""
+
+import json
+import threading
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from typing import Any, Optional
+from urllib.parse import parse_qs, urlparse
+
+from multiverse_c3 import (
+    Act, Petition, Admission, Refusal, Route, Ack,
+)
+from multiverse_c13 import HAS_CRYPTO
+if HAS_CRYPTO:
+    from multiverse_c13 import SignedAdmission, SignedAck
+else:
+    SignedAdmission = SignedAck = ()
+
+
+def _manifest_dict(m) -> dict:
+    """Works for Manifest objects, dicts, or objects with .manifest_dict()."""
+    if isinstance(m, dict):
+        return m
+    if hasattr(m, "manifest_dict"):
+        return m.manifest_dict()
+    return {
+        "entity_id": m.entity_id, "name": m.name,
+        "protocol_version": m.protocol_version,
+        "law_url": m.law_url, "act_endpoint": m.act_endpoint,
+        "log_endpoint": m.log_endpoint,
+        "sub_registry_endpoint": m.sub_registry_endpoint,
+    }
+
+
+def _response_dict(r) -> dict:
+    # Signed types first (more specific)
+    if HAS_CRYPTO and isinstance(r, (SignedAdmission, SignedAck)):
+        kind = "admission" if isinstance(r, SignedAdmission) else "ack"
+        return {
+            "kind": kind,
+            "entity_id": r.entity_id,
+            "timestamp": r.timestamp,
+            "subject_token": r.subject_token,
+            "signature": r.signature,
+        }
+    if isinstance(r, Admission):
+        return {"kind": "admission",
+                "entity_id": r.entity_id, "timestamp": r.timestamp}
+    if isinstance(r, Refusal):
+        return {"kind": "refusal", "reason": r.reason}
+    if isinstance(r, Route):
+        return {"kind": "route",
+                "target_manifest": _manifest_dict(r.target_manifest),
+                "reason": r.reason}
+    if isinstance(r, Ack):
+        return {"kind": "ack",
+                "entity_id": r.entity_id, "timestamp": r.timestamp}
+    raise TypeError(type(r).__name__)
+
+
+def _log_entry_dict(e) -> dict:
+    return {"timestamp": e.timestamp, "kind": e.kind,
+            "actor_token": e.actor_token, "data": e.data}
+
+
+class WorldProtocolServer:
+    def __init__(self, entity: Any, host: str = "127.0.0.1",
+                 port: int = 8080):
+        self.entity = entity
+        self.host = host
+        self.port = port
+        self._httpd: Optional[HTTPServer] = None
+        self._thread: Optional[threading.Thread] = None
+
+    def _get_manifest(self) -> dict:
+        if hasattr(self.entity, "manifest_dict"):
+            return self.entity.manifest_dict()
+        return _manifest_dict(self.entity.manifest())
+
+    def _make_handler(self):
+        entity = self.entity
+        get_manifest = self._get_manifest
+
+        class Handler(BaseHTTPRequestHandler):
+            def _send(self, status, payload):
+                body = json.dumps(payload).encode()
+                self.send_response(status)
+                self.send_header("Content-Type", "application/json")
+                self.send_header("Content-Length", str(len(body)))
+                self.end_headers()
+                self.wfile.write(body)
+
+            def log_message(self, *a):
+                pass
+
+            def do_GET(self):
+                try:
+                    url = urlparse(self.path)
+                    if url.path == "/manifest":
+                        self._send(200, get_manifest())
+                    elif url.path == "/log":
+                        qs = parse_qs(url.query)
+                        since = qs.get("since", [None])[0]
+                        self._send(200, {"entries": [
+                            _log_entry_dict(e)
+                            for e in entity.log_since(since)
+                        ]})
+                    else:
+                        self._send(404, {"error": "not found"})
+                except Exception as e:
+                    self._send(500, {"error": str(e)})
+
+            def do_POST(self):
+                try:
+                    length = int(self.headers.get("Content-Length", 0))
+                    body = json.loads(self.rfile.read(length))
+                    if self.path == "/petition":
+                        p = Petition(
+                            petitioner_token=body["petitioner_token"],
+                            petitioner_name=body["petitioner_name"],
+                            passport_admissions=tuple(
+                                tuple(x) for x in body.get(
+                                    "passport_admissions", [])),
+                            message=body["message"],
+                            target=body.get("target"),
+                        )
+                        self._send(200, _response_dict(entity.petition(p)))
+                    elif self.path == "/act":
+                        a = Act(
+                            actor_token=body["actor_token"],
+                            type=body["type"],
+                            payload=body["payload"],
+                        )
+                        self._send(200, _response_dict(entity.act(a)))
+                    else:
+                        self._send(404, {"error": "not found"})
+                except (KeyError, ValueError) as e:
+                    self._send(400, {"error": str(e)})
+                except Exception as e:
+                    self._send(500, {"error": str(e)})
+
+        return Handler
+
+    def serve_forever(self):
+        self._httpd = HTTPServer(
+            (self.host, self.port), self._make_handler())
+        self._httpd.serve_forever()
+
+    def serve_in_thread(self):
+        self._httpd = HTTPServer(
+            (self.host, self.port), self._make_handler())
+        self._thread = threading.Thread(
+            target=self._httpd.serve_forever, daemon=True)
+        self._thread.start()
+        return self
+
+    def stop(self):
+        if self._httpd is not None:
+            self._httpd.shutdown()
+            self._httpd.server_close()
+            self._httpd = None
+
+    @property
+    def url(self) -> str:
+        return f"http://{self.host}:{self.port}"

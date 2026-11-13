@@ -1,0 +1,8 @@
+# For the sketches only (sketches/README.md), never for open-worlds itself:
+# the CI job "sketches" installs these to run DeepSeek's tests.
+
+# DeepSeek's tests are written for pytest.
+pytest==9.2.0
+# DeepSeek's components 13 onward sign with it (the same pin as the
+# repository's own requirements.txt).
+cryptography==50.0.2

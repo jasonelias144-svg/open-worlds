@@ -1,0 +1,89 @@
+# federation_test.py — replace the existing test_live_mode_works_when_crypto_available
+# with the following, and add the extra tests below.
+
+def test_live_mode_is_fully_signed(tmp_path):
+    """make live runs end-to-end and demonstrates the full trust
+    chain with the world offline at verification."""
+    try:
+        import cryptography  # noqa
+    except ImportError:
+        pytest.skip("cryptography not installed")
+
+    print("=== live mode: fully signed, world offline at verification ===")
+    result = _run(["--mode", "live", "--artifact-dir", str(tmp_path)])
+    assert result.returncode == 0, \
+        f"live failed:\n{result.stdout}\n{result.stderr}"
+
+    run_dir = next(tmp_path.iterdir())
+
+    # Artifact 1: signed manifest
+    manifest_path = run_dir / "signed_manifest.json"
+    assert manifest_path.exists(), "missing signed_manifest.json"
+    manifest = json.loads(manifest_path.read_text())
+    assert manifest["protocol_version"] == "WCP/0.2"
+    assert "public_key" in manifest
+    assert "signed_by" in manifest
+    assert "signature" in manifest
+
+    # Artifact 2: signed listing
+    listing_path = run_dir / "signed_listing.json"
+    assert listing_path.exists(), "missing signed_listing.json"
+    listing_manifest = json.loads(listing_path.read_text())
+    assert listing_manifest["entity_id"] == manifest["entity_id"]
+
+    # Artifact 3: passport verification
+    passport_path = run_dir / "passport_verification.txt"
+    assert passport_path.exists()
+    passport_text = passport_path.read_text()
+    assert "verified" in passport_text.lower()
+
+    # Artifact 4: verdict
+    verdict_path = run_dir / "federation_verdict.json"
+    assert verdict_path.exists()
+    verdict = json.loads(verdict_path.read_text())
+    assert verdict["conformance_passed"] is True
+    assert verdict["world_admitted"] is True
+    assert verdict["world_offline_at_verification"] is True
+    assert verdict["passport_verified_without_world"] is True
+    assert verdict["listing_count"] == 1
+    assert verdict["world_public_key"] == manifest["public_key"]
+
+    print(f"  manifest:   {manifest_path.name}")
+    print(f"  listing:    {listing_path.name}")
+    print(f"  passport:   {passport_path.name}")
+    print(f"  verdict:    {verdict_path.name}")
+    print(f"  world offline at verification: True")
+    print(f"  passport verified without world: True")
+
+
+def test_live_output_shows_world_stopped():
+    """The live output names the 'world stopped' step explicitly,
+    so the demonstration is legible on first read."""
+    try:
+        import cryptography  # noqa
+    except ImportError:
+        pytest.skip("cryptography not installed")
+    with tempfile.TemporaryDirectory() as tmpdir:
+        result = _run(["--mode", "live", "--artifact-dir", tmpdir])
+        assert result.returncode == 0
+        out = result.stdout
+        # The output names the key steps
+        assert "signed manifest" in out.lower() or \
+               "signed_manifest" in out.lower()
+        assert "stopping the world" in out.lower()
+        assert "world unreachable" in out.lower()
+        assert "live federation: success" in out.lower()
+
+
+def test_demo_mode_still_works():
+    """make demo still runs the mock multi-model path — C30 didn't
+    break it."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        result = _run(["--mode", "demo", "--artifact-dir", tmpdir])
+        assert result.returncode == 0, \
+            f"demo failed:\n{result.stdout}\n{result.stderr}"
+        run_dir = next(Path(tmpdir).iterdir())
+        assert (run_dir / "collaboration.json").exists()
+        data = json.loads(
+            (run_dir / "collaboration.json").read_text())
+        assert data["aggregates"]["turns_attempted"] >= 2

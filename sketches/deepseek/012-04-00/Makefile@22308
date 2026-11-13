@@ -1,0 +1,3 @@
+.PHONY: chain-demo
+chain-demo:
+	$(PYTHON) -c "from multiverse_c25 import demo; demo(artifact_dir='artifacts')"

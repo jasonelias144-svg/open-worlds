@@ -1,0 +1,11 @@
+def turns_from_log(log: List[LogEntry]) -> List[Dict]:
+    """Reconstruct the collaboration history from a World's log.
+
+    Any client can call this with the World's log to get the state
+    of the collaboration without needing the World's internal cache.
+    This is *the* interface clients use to know what to do next.
+    """
+    return [
+        entry.data for entry in log
+        if entry.kind == "turn"
+    ]

@@ -1,0 +1,26 @@
+# In wcp_http_shim.py — add to Handler.do_POST:
+
+# Before the /petition and /act branches, add:
+elif self.path == "/leave":
+    from multiverse_c22 import LeavePetition, Leave, SignedLeave
+    lp = LeavePetition(
+        leaver_token=body["leaver_token"],
+        message=body.get("message", ""),
+    )
+    result = entity.leave(lp)
+    if isinstance(result, SignedLeave):
+        self._send(200, {
+            "kind": "leave",
+            "entity_id": result.entity_id,
+            "timestamp": result.timestamp,
+            "subject_token": result.subject_token,
+            "signature": result.signature,
+        })
+    elif isinstance(result, Leave):
+        self._send(200, {
+            "kind": "leave",
+            "entity_id": result.entity_id,
+            "timestamp": result.timestamp,
+        })
+    else:
+        self._send(200, _response_dict(result))

@@ -1,0 +1,74 @@
+# In federation.py, add to imports:
+from multiverse_c20 import (
+    preflight_check, run_hf_collaboration, run_recorded_fixture,
+)
+
+
+# Add two new mode functions:
+
+def run_fixture(artifact_dir: Path, signed: bool = True) -> int:
+    """Run the collaboration with recorded real HF outputs.
+
+    Proves the pipeline handles real HF formats, no HF install
+    required.
+    """
+    print("=" * 70)
+    print("FEDERATION FIXTURE (recorded HF outputs, no model load)")
+    print("=" * 70)
+    if signed and not HAS_CRYPTO:
+        print("⚠ cryptography not installed — falling back to unsigned")
+        signed = False
+    t0 = time.time()
+    report = run_recorded_fixture(seed=42, max_iterations=20,
+                                   signed=signed)
+    elapsed = time.time() - t0
+    print()
+    print(report.report())
+    (artifact_dir / "collaboration.json").write_text(
+        json.dumps(report.to_dict(), indent=2))
+    (artifact_dir / "collaboration.txt").write_text(report.report())
+    print(f"\n→ {artifact_dir}/collaboration.json")
+    print(f"→ {artifact_dir}/collaboration.txt")
+    print(f"\nWall-clock: {elapsed*1000:.0f} ms")
+    return 0
+
+
+def run_hf(artifact_dir: Path) -> int:
+    """Run with real Hugging Face models.
+
+    Requires transformers + torch. Pre-flight reports what will load
+    before the run begins.
+    """
+    print("=" * 70)
+    print("FEDERATION HF (real models, local inference)")
+    print("=" * 70)
+    try:
+        report = run_hf_collaboration(
+            seed=42, max_iterations=10, signed=True, preflight=True,
+        )
+    except RuntimeError as e:
+        print(f"\nERROR: {e}")
+        return 1
+    print(report.report())
+    (artifact_dir / "collaboration.json").write_text(
+        json.dumps(report.to_dict(), indent=2))
+    (artifact_dir / "collaboration.txt").write_text(report.report())
+    print(f"\n→ {artifact_dir}/collaboration.json")
+    print(f"→ {artifact_dir}/collaboration.txt")
+    return 0
+
+
+# In main(), change the mode choices:
+parser.add_argument(
+    "--mode", choices=["demo", "live", "fixture", "hf"],
+    default="demo")
+
+
+# And dispatch:
+if args.mode == "demo":
+    return run_demo(artifact_dir, signed=not args.no_signed)
+if args.mode == "fixture":
+    return run_fixture(artifact_dir, signed=not args.no_signed)
+if args.mode == "hf":
+    return run_hf(artifact_dir)
+return run_live(artifact_dir)

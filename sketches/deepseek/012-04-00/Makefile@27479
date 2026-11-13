@@ -1,0 +1,2 @@
+.PHONY: signed
+signed: live   ## Alias: fully-signed federation demo
