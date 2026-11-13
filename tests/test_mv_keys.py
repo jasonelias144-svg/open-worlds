@@ -157,19 +157,44 @@ class TestKeyFiles(Folder):
         _, _, salt, rounds, _, _ = openssh_header(data)
         at = raw.index(salt) + len(salt)
         self.assertEqual(struct.unpack(">I", raw[at:at + 4]), (rounds,))
-        for asked in (keys.MAX_ROUNDS + 1,):
-            with self.subTest(rounds=asked):
-                raw[at:at + 4] = struct.pack(">I", asked)
-                body = base64.b64encode(bytes(raw))
+        raw[at:at + 4] = struct.pack(">I", keys.MAX_ROUNDS + 1)
+        body = base64.b64encode(bytes(raw))
+        lines = [body[i:i + 70] for i in range(0, len(body), 70)]
+        begin = b"-----BEGIN OPENSSH PRIVATE KEY-----"
+        end = b"-----END OPENSSH PRIVATE KEY-----"
+        # The library finds the block anywhere and skips stray characters,
+        # so each of these layouts would reach the derivation if the cap
+        # read the file differently (found by the independent review).
+        layouts = {
+            "plain": b"\n".join([begin, *lines, end]) + b"\n",
+            "junk after": b"\n".join([begin, *lines, end, b"junk"]) + b"\n",
+            "junk before": b"\n".join([b"junk", begin, *lines, end]),
+            "space inside": b"\n".join([begin, lines[0][:9] + b" "
+                                        + lines[0][9:], *lines[1:], end]),
+            "CR line ends": b"\r".join([begin, *lines, end]) + b"\r",
+        }
+        for layout, data in layouts.items():
+            with self.subTest(layout=layout):
                 with open(self.path("huge.key"), "wb") as f:
-                    f.write(b"-----BEGIN OPENSSH PRIVATE KEY-----\n"
-                            + b"\n".join(body[i:i + 70]
-                                         for i in range(0, len(body), 70))
-                            + b"\n-----END OPENSSH PRIVATE KEY-----\n")
+                    f.write(data)
                 start = time.monotonic()
                 with self.assertRaisesRegex(ValueError, "rounds"):
                     keys.load_signer(self.path("huge.key"), PASS)
                 self.assertLess(time.monotonic() - start, 1.0)
+
+    def test_text_around_a_key_files_block_doesnt_change_the_key(self):
+        alice = Individual("Alice")
+        keys.save_key(alice, self.path("a.key"), PASS)
+        with open(self.path("a.key"), "rb") as f:
+            data = f.read()
+        for name, changed in (("before", b"a note\n" + data),
+                              ("after", data + b"a note\n")):
+            with self.subTest(name=name):
+                with open(self.path("noted.key"), "wb") as f:
+                    f.write(changed)
+                self.assertEqual(
+                    keys.load_signer(self.path("noted.key"), PASS).token,
+                    alice.token)
 
     def test_another_key_file_with_the_same_passphrase_loads_as_itself(self):
         # The limit the docs state: the check is that a file's secret

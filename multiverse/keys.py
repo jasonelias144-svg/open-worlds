@@ -47,11 +47,11 @@ key is lost, come next in this step (docs/COURSE.md).
 """
 from __future__ import annotations
 
-import base64
 import binascii
 import errno
 import json
 import os
+import re
 import struct
 import tempfile
 import unicodedata
@@ -139,15 +139,26 @@ def save_key(signer: Signer, path: str, passphrase: Passphrase, *,
     _write_new(path, data, overwrite)
 
 
+_PEM_BLOCK = re.compile(b"-----BEGIN OPENSSH PRIVATE KEY-----(.*?)"
+                        b"-----END OPENSSH PRIVATE KEY-----", re.DOTALL)
+
+
 def _clear_header(data: bytes):
     """The bcrypt rounds (None for another KDF) and the Ed25519 public
     key an OpenSSH private-key file holds outside its encrypted part
     (PROTOCOL.key in OpenSSH's sources): after the magic, the cipher,
     KDF and KDF-options strings (for bcrypt, a salt and the rounds), and
-    the key count, a string holding the key type and the 32-byte key."""
-    lines = data.strip().splitlines()
+    the key count, a string holding the key type and the 32-byte key.
+
+    It reads exactly the bytes the library reads: the first block between
+    the BEGIN and END lines, anywhere in the file, decoded as leniently
+    (cryptography's serialization/ssh.py, _PEM_RC and a2b_base64), so
+    that the rounds checked here are the rounds the library would use."""
+    found = _PEM_BLOCK.search(data)
+    if found is None:
+        raise ValueError("this key file has been changed")
     try:
-        raw = base64.b64decode(b"".join(lines[1:-1]), validate=True)
+        raw = binascii.a2b_base64(found.group(1))
     except (binascii.Error, ValueError):
         raise ValueError("this key file has been changed") from None
     magic = b"openssh-key-v1\0"
@@ -188,10 +199,9 @@ def _load_secret(path: str, passphrase: Passphrase) -> bytes:
     passphrase = _passphrase(passphrase)
     with open(path, "rb") as f:
         data = f.read()
-    try:
-        rounds, _ = _clear_header(data)
-    except ValueError:
-        rounds = None       # the library says what's wrong, below
+    # The header is read first, and a file whose header can't be read
+    # never reaches the library: the rounds it asks for are always seen.
+    rounds, public = _clear_header(data)
     if rounds is not None and rounds > MAX_ROUNDS:
         raise ValueError(f"this key file asks for {rounds} rounds, more "
                          f"than {MAX_ROUNDS}: it has been changed, or "
@@ -207,7 +217,7 @@ def _load_secret(path: str, passphrase: Passphrase) -> bytes:
     # The encryption (AES-CTR) has no check of its own: a changed bit of
     # the secret decrypts to another secret. The public key in the clear
     # must be the one the secret makes.
-    if key.public_key().public_bytes_raw() != _clear_header(data)[1]:
+    if key.public_key().public_bytes_raw() != public:
         raise ValueError("this key file has been changed: its secret "
                          "doesn't match its public key")
     return key.private_bytes_raw()
