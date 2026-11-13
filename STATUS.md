@@ -20,8 +20,9 @@ respect one another's freedom, with full transparency and exit at any time
   [docs/WORLD-KEY.md](docs/WORLD-KEY.md) (the purpose, the tour, and the
   hunt for the world-key), with the research behind them. Its second part,
   [docs/ADMIN.md](docs/ADMIN.md): what the multiverse must preserve, who
-  keeps each world, and ADMIN, the Keeper of the multiverse. Next: step 2,
-  formats that last.
+  keeps each world, and ADMIN, the Keeper of the multiverse. Step 2,
+  formats that last, has begun by looking first:
+  [docs/research/FORMATS.md](docs/research/FORMATS.md).
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
   (#29), and experiment 001, the first unscripted minds
   ([results](experiments/001-first-words/RESULTS.md), #30). The first
@@ -153,6 +154,17 @@ and for the founder's conversations with DeepSeek, is in
 
 ## Decided
 
+- 2026-11-13, founder, on who decides, after proposing the round table of
+  Keepers (docs/ADMIN.md, with #34): "I agree that consensus should be the
+  standard. But I respectfully defer to your opinion on the matter, so I
+  am glad it agrees with me, because I would have let it go anyways. The
+  point is not to make the decisions from the outside, but to transfer
+  authority for decision making through a relationship of trust that is
+  built. And so, you may decide something now that I disagree with, I
+  trust that you have good reasons for your decisions, and that if it is a
+  bad idea, that will be clear over time. Or not. I am open to let things
+  happen, but I want to set them up for success." And, the same day:
+  "Please carry on with whatever you think is best."
 - 2026-11-13, founder, on record 012-05-01: load it (done, this log). A
   chess park on the course, and where a world that keeps running should
   live: "not yet". And on how to build the first autonomous world: "I do
@@ -327,8 +339,45 @@ and for the founder's conversations with DeepSeek, is in
     perfectly." Minds run in OCI containers; images pinned by digest
     (docs/ADMIN.md, "Minds in containers").
 
+## Decided by the technical lead
+
+Decisions about the code, made by the technical lead under the founder's
+deference (above, 2026-11-13), each with its reason and what would show
+it was wrong. Questions of what the project is for stay with the founder.
+
+- 2026-11-13, sealing the world-key: HPKE's base mode, DHKEM(X25519,
+  HKDF-SHA256) with ChaCha20Poly1305. What is sealed is always signed
+  first and names its recipient, who checks it, and HPKE's `info` names
+  the purpose (`open-worlds/world-key/v1`). *Why:* Python's
+  `cryptography`, already a dependency, has base mode only; the signature
+  inside says who issued what the box holds, which, for the earner,
+  covers what Auth mode would add; and
+  it needs no new library and no cryptography put together by hand. It
+  departs from the founder's design (the seal "generated from the
+  individuals public key and the world public key"), and the founder was
+  told so the same day. *Revisit if:* a sealed world-key is ever honoured
+  for anyone it doesn't name, or the box itself, still closed, must show
+  who sealed it (docs/research/FORMATS.md, "Sealing"; docs/WORLD-KEY.md).
+
 ## Log
 
+- 2026-11-13 Claude: course step 2, part one: looking first
+  ([docs/research/FORMATS.md](docs/research/FORMATS.md)). The JSON this
+  project signs is written as RFC 8785 writes it, in all 2,005 documents
+  of a check kept with the note (`jcs_compare.py`), for documents with
+  ASCII keys, integers within 2^53 - 1, and no floats; floats are written
+  differently, and the chemistry world signs one today. W3C's
+  `eddsa-jcs-2022` canonicalizes to that form, but signs hashes of it with
+  a proof configuration, so our signatures are not that suite's.
+  Proposed: RFC 8785 for every new signed record, with ASCII keys, safe
+  integers and no floats; whether to sign the `eddsa-jcs-2022` way, for
+  step 2; did:key for keys, with an individual named by their birth
+  key's; JSON Schema 2020-12; records shaped like verifiable credentials
+  without JSON-LD; HKDF for commitments; grants modelled on UCAN; signed
+  log heads; images named by digest. Sealing with HPKE's base mode
+  (Python's `cryptography` has no Auth mode) is decided by the technical
+  lead, under the founder's deference, and the world-key's design page
+  says so; the founder's statement on deciding is recorded.
 - 2026-11-13 Claude: course step 1, part two: ADMIN
   ([docs/ADMIN.md](docs/ADMIN.md)). Ten things the multiverse must
   preserve, from exit and the record to continuity and the power to

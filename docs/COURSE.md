@@ -120,7 +120,9 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    *Borrowing:* the game industry's split of controller, body and saved
    data; characters built from components; for ADMIN, admission control,
    capabilities, Certificate Transparency and Ostrom's principles.
-2. **Formats that last.** A precise, versioned definition of each record:
+2. **Formats that last.** What to adopt was looked at first
+   ([research/FORMATS.md](research/FORMATS.md)). A precise, versioned
+   definition of each record:
    identity, birth record, mind record, journal entry, routine, sheet,
    avatar, and skill attestation. Test vectors keep Rust and Python in
    agreement. *Borrowing:* JSON Schema; W3C's decentralised identifiers
