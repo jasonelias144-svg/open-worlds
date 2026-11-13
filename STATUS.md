@@ -14,10 +14,10 @@ respect one another's freedom, with full transparency and exit at any time
 ## Now
 
 - Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Steps 1 to 3
-  are done (#19, signed passports). `sketches/` keeps the DeepSeek
-  records and their code (#16, #17, #18); the first fixes to that code
-  are in review (#20). Next: step 4, the chemistry world on the real
-  chemistry.
+  are done; step 4, the chemistry world on the real chemistry, is in
+  review (#21). `sketches/` keeps the DeepSeek records and their code,
+  with its first fixes (#16 to #18, #20). Next: step 5, the first
+  journey.
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
@@ -136,6 +136,16 @@ and for the founder's conversations with DeepSeek, is in
   domain (CC0 1.0). The goal isn't financial; anyone may build on it.
 
 ## Log
+
+- 2026-11-13 Claude: course step 4. The chemistry world now holds a soup
+  of real molecules (`chem/`), which starts with published soil and runs
+  its own reactions in world time; an act is a real reaction, by one of
+  the rules, among molecules that are there. Each accepted act lets the
+  published time pass, exactly; the world replays exactly from its seed.
+  Its rates are placeholders, said so in its law. The course, rechecked:
+  an act makes a reaction happen, which no real catalyst can, so the
+  learner's acts (step 7) will catalyse instead; step 8 gains finding the
+  reactions of new molecules; step 16, a single-cell world, is added.
 
 - 2026-11-13 Claude: the first fixes to DeepSeek's code in `sketches/`.
   Fix 1 attaches the demos of components 40 and 44 to 63 to their

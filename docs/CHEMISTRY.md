@@ -357,6 +357,14 @@ of molecules makes more of itself.
    two of one kind, n(n−1)(n−2) for three. Textbooks usually count
    unordered pairs, n(n−1)/2, so step 2 halves a textbook constant for two
    of one kind (and divides it by 6 for three).
+   **Behind the protocol** (course step 4, #21): the multiverse's
+   chemistry world now holds a soup (docs/MULTIVERSE.md). Two engine
+   additions came with it, each tested. `perform` makes one given
+   reaction happen now, in one cell, if its reactants are there: an
+   agent's act, logged as "perform". `advance` runs the world's own events
+   up to a given time and sets the clock exactly to it, dropping the
+   event that would come later, which is exact because waiting times are
+   memoryless; so a world can publish how much time each act lets pass.
 2. Rates for the six rules of layer 2, with their sources.
 3. The gardener's levers.
 4. The first chemistry cycle: what forms from water, ammonia, hydrogen

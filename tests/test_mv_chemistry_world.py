@@ -181,6 +181,19 @@ class TestReactions(ChemistryCase):
                 self.assertIn(reason, r.reason)
                 self.assertEqual(self.state(w), before)
 
+    def test_true_and_false_are_not_outcomes(self):
+        # Booleans are whole numbers to Python, but not to this world.
+        w = self.still()
+        alice = self.enter(w)
+        for outcome in (False, True):
+            with self.subTest(outcome=outcome):
+                r = w.act(_react(w, alice, dict(TWO_GLYCINES,
+                                                outcome=outcome)))
+                self.assertIsInstance(r, Refusal)
+                self.assertEqual(r.reason,
+                                 "outcome must be a whole number from 0")
+        self.assertEqual(w.reactions(), [])
+
     def test_plain_values_all_the_way_down(self):
         class Odd:
             pass
@@ -234,6 +247,11 @@ class TestTime(ChemistryCase):
         # formaldehyde and its hydrate, have been changing into each other.
         self.assertGreater(w.soup.events, 10)
         self.assertGreater(_count(w, "glycine_zwitterion"), 0)
+        # Each published reaction runs both ways: the soup's four
+        # channels (two reactions, each with its reverse) all happened.
+        used = {e["data"]["reaction"] for e in w.soup.log
+                if e["kind"] == "react"}
+        self.assertEqual(used, {0, 1, 2, 3})
         self.assertTrue(World.verify_log(w.soup.log))
         entry = [e for e in w.log_since(None) if e.kind == "reaction"][-1]
         self.assertEqual((entry.data["soup_time"], entry.data["soup_head"]),
