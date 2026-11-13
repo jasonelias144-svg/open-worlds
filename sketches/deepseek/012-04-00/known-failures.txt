@@ -9,12 +9,7 @@
 # So the list is always true. The text after "  # " is the error.
 
 # Test files that do not load
-multiverse_c7_test.py  # ModuleNotFoundError: No module named 'poetry_engine_c21'
-multiverse_c11_test.py  # ModuleNotFoundError: No module named 'poetry_engine_c21'
-multiverse_c12_test.py  # ModuleNotFoundError: No module named 'poetry_engine_c21'
 multiverse_c17_test.py  # ImportError: cannot import name 'InMemoryKeyResolver' from 'multiverse_c16' (multiverse_c16.py)
-multiverse_c18_test.py  # ModuleNotFoundError: No module named 'poetry_engine_c21'
-multiverse_c20_test.py  # ModuleNotFoundError: No module named 'poetry_engine_c21'
 
 # Tests that fail
 multiverse_c2_test.py::test_admission_immutability  # ValueError: world_id must be at least 8 characters
@@ -39,6 +34,7 @@ multiverse_c6_test.py::test_multiverse_lists_two_different_laws  # + where 0 = l
 multiverse_c6_test.py::test_refuses_duplicate  # + where False = isinstance(Refusal(reason="Entity world:poetry fails conformance: ['petition() raised ValueError: token must be at least 16 characters
 multiverse_c6_test.py::test_refuses_non_conforming_entity  # + where "Proposed entity's manifest is not a Manifest" = Refusal(reason="Proposed entity's manifest is not a Manifest").reason
 multiverse_c6_test.py::test_remove  # AssertionError: assert False
+multiverse_c7_test.py::test_setup_admits_world_to_multiverse  # AssertionError: assert 'world:poetry' in []
 multiverse_c15_test.py::test_convert_v1_to_v2  # ValueError: world_id must be at least 8 characters
 multiverse_c15_test.py::test_convert_v2_to_v1  # ValueError: world_id must be at least 8 characters
 multiverse_c16_test.py::test_caching_avoids_refetch  # assert 3 == 1
@@ -47,6 +43,7 @@ multiverse_c16_test.py::test_end_to_end_passport_verifies_via_manifest  # Assert
 multiverse_c16_test.py::test_end_to_end_two_worlds_verified_offline  # AssertionError: assert False is True
 multiverse_c16_test.py::test_register_with_new_url_invalidates_cache  # AssertionError: assert None == '<hex>'
 multiverse_c16_test.py::test_resolver_fetches_public_key  # AssertionError: assert None == '<hex>'
+multiverse_c20_test.py::test_recorded_fixture_full_collaboration  # AssertionError: assert 0 >= 1
 multiverse_c21_test.py::test_demo_runs_end_to_end  # urllib.error.HTTPError: HTTP Error 400: Bad Request
 multiverse_c21_test.py::test_happy_path_three_worlds  # urllib.error.HTTPError: HTTP Error 400: Bad Request
 multiverse_c21_test.py::test_in_process_listing_reports_url_stage  # ValueError: token must be at least 16 characters (collision resistance)
@@ -68,7 +65,7 @@ multiverse_c22_test.py::test_signed_leave_wrong_key_fails  # ValueError: world_i
 multiverse_c23_test.py::test_current_residency_departed  # ValueError: departure is for 'alice', passport is for '<hex>'
 multiverse_c23_test.py::test_current_residency_multi_visit_last_closed  # ValueError: departure is for 'alice', passport is for '<hex>'
 multiverse_c23_test.py::test_current_residency_multi_visit_last_open  # ValueError: departure is for 'alice', passport is for '<hex>'
-multiverse_c27_test.py::test_combined_to_dict_json  # sometimes: failed in 4 of 8 runs (hash seeds 0 to 7): AssertionError: assert ['Alice', 'Ca...'Bob', 'Dave'] == ['Alice', 'Bo...arol', 'Dave']
+multiverse_c27_test.py::test_combined_to_dict_json  # sometimes: failed in 5 of 8 runs (hash seeds 0 to 7): AssertionError: assert ['Alice', 'Ca...'Bob', 'Dave'] == ['Alice', 'Bo...arol', 'Dave']
 multiverse_c27_test.py::test_demo  # TypeError: revoke expects a ChainLink, got DAGLink
 multiverse_c27_test.py::test_revoke_one_branch_noncascade  # TypeError: revoke expects a ChainLink, got DAGLink
 multiverse_c27_test.py::test_unknown_previous_rejected  # AssertionError: assert 'unknown' in 'root report_hash does not match report'
@@ -128,7 +125,7 @@ multiverse_c37_test.py::test_verify_attestation_tampered_claim  # TypeError: Pet
 multiverse_c39_test.py::test_demo  # assert False
 multiverse_c39_test.py::test_lineage_walk_fork_then_merge  # AssertionError: assert False
 multiverse_c39_test.py::test_lineage_walk_missing_manifest  # AssertionError: assert not True
-multiverse_c41_test.py::test_demo  # ModuleNotFoundError: No module named 'poetry_engine_c21'
+multiverse_c41_test.py::test_demo  # + where False = all(<generator object test_demo.<locals>.<genexpr> at 0x...>)
 multiverse_c41_test.py::test_two_epochs_verify_independently  # + where False = all(<generator object test_two_epochs_verify_independently.<locals>.<genexpr> at 0x...>)
 multiverse_c42_test.py::test_octopus_and_relay_same_substrate  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
 multiverse_c42_test.py::test_signalworld_passes_wcp_conformance  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)

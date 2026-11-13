@@ -1,0 +1,3 @@
+.PHONY: rooms-endpoint-demo
+rooms-endpoint-demo:
+	$(PYTHON) -c "from multiverse_c76 import demo; demo(artifact_dir='artifacts')"

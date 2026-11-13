@@ -1,0 +1,3 @@
+.PHONY: living-tree-demo
+living-tree-demo:
+	$(PYTHON) -c "from multiverse_c79 import demo; demo(artifact_dir='artifacts')"

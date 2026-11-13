@@ -1,0 +1,9 @@
+# In multiverse_c75.py
+@dataclass
+class RouteFollowResult:
+    ok: bool
+    verified: bool
+    world_id: str
+    reason: str
+    admission_raw: Optional[Dict] = None
+    base_url: Optional[str] = None   # NEW: where the client ended up

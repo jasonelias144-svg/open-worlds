@@ -1,0 +1,3 @@
+.PHONY: deploy-demo
+deploy-demo:
+	$(PYTHON) -c "from multiverse_c66 import demo; demo(artifact_dir='artifacts')"

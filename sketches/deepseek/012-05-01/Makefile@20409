@@ -1,0 +1,11 @@
+.PHONY: curriculum
+curriculum:
+	$(PYTHON) -m multiverse_c80
+
+curriculum-check:
+	@$(PYTHON) -c "\
+from pathlib import Path; \
+from multiverse_c80 import check_staleness; \
+v = check_staleness(Path('docs/CURRICULUM.md')); \
+print(v.format()); \
+exit(0 if not v.stale else 1)"

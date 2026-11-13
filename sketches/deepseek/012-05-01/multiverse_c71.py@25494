@@ -1,0 +1,20 @@
+    DemoSpec(
+        "growing_world", "C81", "multiverse_c81", "demo",
+        "growing_world/growing_world_demo.json",
+        "growth",
+        "A growing canvas: participants claim plots"),
+    DemoSpec(
+        "observing_curator", "C82", "multiverse_c82", "demo",
+        "observing_curator/observing_curator_demo.json",
+        "growth",
+        "Curator watches growth, proposes rule changes"),
+    DemoSpec(
+        "governance", "C83", "multiverse_c83", "demo",
+        "governance/governance_demo.json",
+        "growth",
+        "Votes decide; a signed LawAmendment is applied"),
+    DemoSpec(
+        "world_cycle", "C84", "multiverse_c84", "demo",
+        "world_cycle/world_cycle_demo.json",
+        "growth",
+        "Fifteen cycles: grow, refuse, propose, vote, amend"),

@@ -13,10 +13,11 @@ respect one another's freedom, with full transparency and exit at any time
 
 ## Now
 
-- Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Steps 1 to 4
-  are done; step 5, the first journey, is in review (#22). `sketches/`
-  keeps the DeepSeek records and their code, with its first fixes (#16
-  to #18, #20). Next: step 6, keeping keys safely.
+- Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Steps 1 to 5
+  are done. Step 6, keeping keys safely: part one (keys saved encrypted,
+  a world's seen numbers) is in review (#23); next, signing over to a
+  new key. `sketches/` keeps the DeepSeek records and their code, with
+  its first fixes (#16 to #18, #20).
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
@@ -64,6 +65,13 @@ and for the founder's conversations with DeepSeek, is in
   unlinked by default; the person chooses what to show. (asked 2026-11-13)
 - For the founder: does a fork need the child's acceptance? Recommended:
   yes. (asked 2026-11-13)
+- For the founder: when a key is lost and no successor was signed over,
+  what happens? Options: lost is lost (a new key is a new individual);
+  guardians named in advance, some number of whom can sign over to a new
+  key; or the project recovers keys. Recommended: guardians named in
+  advance, with "lost is lost" for anyone who named none; the project
+  recovering keys would make it an authority over who is who. (asked
+  2026-11-13, for course step 6)
 - For the founder: should ALICE's and BOB's memories be public, as their
   actions are, or private, like a person's mind? Recommended: public, at
   least at first. (asked 2026-11-13)
@@ -89,6 +97,18 @@ and for the founder's conversations with DeepSeek, is in
 
 ## Decided
 
+- 2026-11-13, founder, on record 012-05-01: load it (done, this log). A
+  chess park on the course, and where a world that keeps running should
+  live: "not yet". And on how to build the first autonomous world: "I do
+  not think we should use Python to build our first autonomous world. We
+  should be looking towards how video games are made ... Let's use
+  industry standard tools, but all open source." The technical lead's
+  proposal, put to the founder the same day: a C++ simulation core with
+  an entity-component system (Flecs), built with CMake, tested with
+  GoogleTest, Godot later as the window onto it, and Python kept as the
+  reference the C++ is tested against. First step: the world kernel in
+  C++, writing the same hash-chained log as the Python one. The founder
+  chose Rust instead, the same day (see the entry on the language).
 - 2026-11-12, founder, on how to build: "My goal was to come to you with
   ideas, with a vision, and some code that may or may not be helpful. But
   I expect you to take all that in and do it in your own way that makes
@@ -181,6 +201,31 @@ and for the founder's conversations with DeepSeek, is in
   lone surrogate, which Python's log accepts but JSON readers in other
   languages refuse, so the log couldn't be checked there. The kernel now
   refuses such speech.
+- 2026-11-13 Claude: record 012-03-02's code written out (the poetry
+  engine, 45 files; the founder pointed to `poetry_engine_c21.py` at
+  line 21860). The two later records import it, so every test file of
+  012-05-01 now loads, and 5 more of 012-04-00. DeepSeek's tests: 141
+  pass in 012-03-02, 944 in 012-04-00 (was 877), 241 in 012-05-01 (was
+  204) ([sketches/INDEX.md](sketches/INDEX.md)).
+- 2026-11-13 Claude: record 012-05-01 brought in (DeepSeek's components 64
+  to 87), as 012-04-00 was: the record verbatim, its 79 code files written
+  out, its tests run with an honest list of what fails
+  ([sketches/INDEX.md](sketches/INDEX.md)). Two small fixes: the demos
+  attached, and one wrong import in component 83, which lets the growth
+  and governance components load. With them, 204 of DeepSeek's tests
+  pass; the chess park's need `python-chess` (GPL) and skip.
+- 2026-11-13 Claude: course step 6, part one. Keys can be saved encrypted
+  (`multiverse/keys.py`: OpenSSH's format, bcrypt-pbkdf with 64 rounds,
+  AES-256-CTR; readable by the owner only; never written over an
+  existing file unless asked; a file changed without the passphrase
+  never loads as another key), for individuals
+  and for worlds, which can be built again with their saved key and keep
+  their identity. PKCS12 was tried first; its integrity check let a
+  guesser test passphrases through only 2,048 rounds (found by the
+  independent review). A world
+  can save the request numbers it has seen, signed, and take them back
+  after a restart, so the requests it had seen by the last save can't be
+  replayed to it. Lost-key recovery waits for the founder's answer.
 
 - 2026-11-13 Claude: course step 5, the first journey. Cycle 0's corridor
   speaks the protocol, on the world kernel, with doors that name the

@@ -1,0 +1,50 @@
+{
+ "record": "records/012-05-01-DPSK-Patterns_Multiverses.txt",
+ "folder": "deepseek/012-05-01",
+ "languages": [
+  "python",
+  "json",
+  "makefile",
+  "bash"
+ ],
+ "names": {
+  "5856": "multiverse_c68.py",
+  "7322": "multiverse_c69.py",
+  "8808": "multiverse_c70.py",
+  "11638": "multiverse_c72.py",
+  "12591": "multiverse_c73.py",
+  "13043": "multiverse_c73.py",
+  "13425": "multiverse_c74.py",
+  "13754": "multiverse_c74.py",
+  "14192": "multiverse_c75.py",
+  "15239": "wcp_http_shim.py@15239",
+  "15989": "multiverse_c75.py",
+  "16303": "multiverse_c77.py",
+  "18746": "multiverse_c79_test.py",
+  "19135": "multiverse_c71.py",
+  "19155": "multiverse_c71.py",
+  "19197": "multiverse_c71.py",
+  "20637": "multiverse_c81.py",
+  "25473": "multiverse_c71.py",
+  "25494": "multiverse_c71.py",
+  "26855": "multiverse_c83.py",
+  "26902": "multiverse_c87.py"
+ },
+ "ours": [
+  "README.md",
+  "conftest.py",
+  "pytest.ini",
+  "known-failures.txt",
+  "sketch_status_test.py"
+ ],
+ "changed": {
+  "multiverse_c68.py": "Fix 3: its demo, which the record gives as a separate block after the module (multiverse_c68.py@5856, from line 5856), appended to it unchanged, as the tests import demo from here.",
+  "multiverse_c69.py": "Fix 3: its demo, which the record gives as a separate block after the module (multiverse_c69.py@7322, from line 7322), appended to it unchanged, as the tests import demo from here.",
+  "multiverse_c70.py": "Fix 3: its demo, which the record gives as a separate block after the module (multiverse_c70.py@8808, from line 8808), appended to it unchanged, as the tests import demo from here.",
+  "multiverse_c72.py": "Fix 3: its demo, which the record gives as a separate block after the module (multiverse_c72.py@11638, from line 11638), appended to it unchanged, as the tests import demo from here.",
+  "multiverse_c73.py": "Fix 3: its demo, which the record gives as a separate block after the module (multiverse_c73.py@13043, from line 13043), appended to it unchanged, as the tests import demo from here.",
+  "multiverse_c74.py": "Fix 3: its demo, which the record gives as a separate block after the module (multiverse_c74.py@13754, from line 13754), appended to it unchanged, as the tests import demo from here.",
+  "multiverse_c77.py": "Fix 3: its demo, which the record gives as a separate block after the module (multiverse_c77.py@16303, from line 16303), appended to it unchanged, as the tests import demo from here.",
+  "multiverse_c83.py": "Fix 4: it imports Identity from multiverse_c13, but Identity is defined in multiverse_c1 (record 012-04-00); the import now names multiverse_c1. Without it, components 83, 84, 86 and 87 don't load."
+ }
+}
