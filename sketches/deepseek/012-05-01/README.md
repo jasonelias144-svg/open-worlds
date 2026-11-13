@@ -7,9 +7,10 @@ listed at the end was written by DeepSeek in conversation record 012-05-01
 DeepSeek's suggestion. It is a sketch, not open-worlds' code, and
 open-worlds never imports it ([../../README.md](../../README.md)).
 
-- **It builds on record 012-04-00.** Components 64 to 87 import components
-  1 to 63, whose code is in `../012-04-00`. `conftest.py` puts that folder
-  on the import path, so it must sit beside this one.
+- **It builds on records 012-04-00 and 012-03-02.** Components 64 to 87
+  import components 1 to 63, whose code is in `../012-04-00`, and some
+  import the poetry engine in `../012-03-02`. `conftest.py` puts both
+  folders on the import path, so they must sit beside this one.
 - **Which component is which**, where each is in the record, and how its
   tests fare: [../../INDEX.md](../../INDEX.md).
 - **Files named `name@LINE`** are additions DeepSeek wrote to an earlier
@@ -34,9 +35,11 @@ A green run of the whole folder means exactly the tests in
 
 Read before running: the tests start small web servers on this machine
 (127.0.0.1), write into temporary folders, and component 71's tests run
-other components' demos in Python subprocesses. Component 87 (the world
-daemon) can start a detached process when asked to; its tests, which
-don't load here, would. Nothing reaches outside the machine.
+other components' demos in Python subprocesses. Component 87's demo (and
+so its `test_demo`) starts two world daemons as detached processes and
+stops them at its end; here both fail at start, on a bug listed in
+`known-failures.txt`, so nothing is left running. Nothing reaches
+outside the machine.
 
 Ours, not DeepSeek's: this `README.md`, `conftest.py`, `pytest.ini`,
 `known-failures.txt` and `sketch_status_test.py`.

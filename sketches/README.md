@@ -27,8 +27,9 @@ of earlier ideas.
 | `records/` | The conversation records, verbatim: the founder's messages and DeepSeek's replies |
 | `deepseek/012-04-00/` | The code files from record 012-04-00, written out one by one (INDEX.md lists the few code examples in the prose that are left in the record) |
 | `deepseek/012-05-01/` | The code files from record 012-05-01, which continues 012-04-00 and imports its code from the folder beside it |
+| `deepseek/012-03-02/` | The code files from record 012-03-02: the poetry engine (and a model of Aristotle's practical reasoning), which the two later records import |
 | `tools/extract.py` | Writes the code out of a record, and checks it against the record |
-| `tools/names-012-04-00.json`, `tools/names-012-05-01.json` | For each record: which code blocks to take, the names of blocks that don't state one, and the files changed since |
+| `tools/names-012-03-02.json`, `tools/names-012-04-00.json`, `tools/names-012-05-01.json` | For each record: which code blocks to take, the names of blocks that don't state one, and the files changed since |
 | `tools/known_failures.py` | Rewrites a folder's `known-failures.txt` from a fresh run |
 | `requirements.txt` | What the sketches' tests need (pytest, cryptography); open-worlds itself never installs it |
 | `INDEX.md` | Each component: where it is in the record, its files, how its tests fare, and where it meets the course |
@@ -72,7 +73,8 @@ apart from what the test results in each `known-failures.txt` show.
 
 ```
 python3 -m pip install -r sketches/requirements.txt
-cd sketches/deepseek/012-04-00 && PYTHONHASHSEED=0 python3 -m pytest -q
+cd sketches/deepseek/012-03-02 && PYTHONHASHSEED=0 python3 -m pytest -q
+cd ../012-04-00 && PYTHONHASHSEED=0 python3 -m pytest -q
 cd ../012-05-01 && PYTHONHASHSEED=0 python3 -m pytest -q
 ```
 

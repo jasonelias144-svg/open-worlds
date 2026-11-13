@@ -1,0 +1,84 @@
+class ReflectivePoet:
+    """The agent. Brief in, simulated-and-expanded book out."""
+
+    def __init__(self, brief: Brief,
+                 starting_library: Dict[str, List[Fragment]],
+                 seed: int = 0,
+                 n_trajectories: int = 5,
+                 cycles_per_trajectory: int = 3,
+                 composition_budget: int = 4):
+        self.brief = brief
+        self.starting_library = starting_library
+        self.seed = seed
+        self.simulation_loop = SimulationLoop(
+            poetry_agent=PoetryAgent(
+                brief=brief,
+                fragments=self._flatten(starting_library),
+                seed=seed,
+            ),
+            reflection_engine=ReflectionEngine(),
+            reworking_engine=ReworkingEngine(voice_registry=VOICE_REGISTRY),
+        )
+        self.n_trajectories = n_trajectories
+        self.cycles_per_trajectory = cycles_per_trajectory
+        self.composition_budget = composition_budget
+
+    def compose(self) -> "ReflectiveBook":
+        """Run simulation, consolidate, publish the final book."""
+        trajectories = self.simulation_loop.simulate(
+            brief=self.brief,
+            starting_library=self.starting_library,
+            n_trajectories=self.n_trajectories,
+            cycles_per_trajectory=self.cycles_per_trajectory,
+            composition_budget=self.composition_budget,
+        )
+        winner = trajectories[0]
+        # Compose the final book from the winning trajectory's library
+        final_agent = PoetryAgent(
+            brief=self.brief,
+            fragments=self._flatten(winner.expanded_library),
+            seed=self.seed,
+        )
+        final_book = final_agent.compose(
+            n_editions=6, cycles_per_edition=3, converge=True)
+        return ReflectiveBook(
+            book=final_book,
+            winning_trajectory=winner,
+            all_trajectories=trajectories,
+            n_fragments_original=sum(
+                len(v) for v in self.starting_library.values()),
+            n_fragments_final=sum(
+                len(v) for v in winner.expanded_library.values()),
+        )
+
+
+@dataclass
+class ReflectiveBook:
+    """The final artifact: a book, plus the trajectory that produced it."""
+    book: CompletedBook
+    winning_trajectory: Trajectory
+    all_trajectories: List[Trajectory]
+    n_fragments_original: int
+    n_fragments_final: int
+
+    def report(self) -> str:
+        lines = [
+            self.book.metadata().report(),
+            "",
+            f"Simulation summary:",
+            f"  Trajectories run: {len(self.all_trajectories)}",
+            f"  Library size: {self.n_fragments_original} → "
+            f"{self.n_fragments_final} fragments",
+            f"  Winning trajectory score: "
+            f"{self.winning_trajectory.frontier_score:.3f}",
+            f"  Reflections acted on: "
+            f"{len(self.winning_trajectory.reworkings)}",
+            "",
+            "Trajectory comparison:",
+        ]
+        for i, t in enumerate(self.all_trajectories):
+            lines.append(
+                f"  #{i + 1}: brief={t.brief_score:.3f}, "
+                f"growth=+{t.library_growth}, "
+                f"frontier={t.frontier_score:.3f}")
+        return "\n".join(lines)
