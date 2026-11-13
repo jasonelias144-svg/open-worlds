@@ -1,0 +1,42 @@
+# In GovernedGrowingWorld.__init__, add a parameter:
+def __init__(
+    self, entity_id, name, curator_kp,
+    voting_policy=None, seed_extent=(0, 0, 4, 4),
+    initial_log=None,
+):
+    # ... existing init ...
+    if initial_log is not None:
+        self._log = list(initial_log)
+        # Skip seed; the log already has whatever it needs.
+    else:
+        # ... seed as before ...
+
+
+# Add method to GovernedGrowingWorld:
+def replay_from_log(self):
+    """Reconstruct internal state from the current log.
+
+    Called after loading a persisted log so the daemon can
+    resume cycles without re-signing events.
+    """
+    self._law = GrowingWorldLaw.initial()
+    self._plot_counter = 0
+    self._votes = {}
+    self._applied = {}
+    for e in self._log:
+        if e.kind == "growth_event":
+            ev = GrowthEvent.from_dict(e.data)
+            if ev.plot_id.startswith("plot:"):
+                try:
+                    n = int(ev.plot_id[len("plot:"):])
+                    self._plot_counter = max(
+                        self._plot_counter, n)
+                except ValueError:
+                    pass
+        elif e.kind == "rule_vote":
+            v = RuleVote.from_dict(e.data)
+            self._votes.setdefault(v.proposal_id, []).append(v)
+        elif e.kind == "law_amendment":
+            a = LawAmendment.from_dict(e.data)
+            self._applied[a.proposal_id] = a
+            self._law = a.new_law_object()

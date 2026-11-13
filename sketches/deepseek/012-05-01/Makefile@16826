@@ -1,0 +1,3 @@
+.PHONY: route-url-demo
+route-url-demo:
+	$(PYTHON) -c "from multiverse_c77 import demo; demo(artifact_dir='artifacts')"

@@ -1,0 +1,103 @@
+# --- Specs for the new groups ---
+
+def test_thirty_three_demos():
+    print("=== 33 demos ===")
+    assert len(DEMOS) == 33
+
+
+def test_eleven_groups():
+    print("=== 11 groups ===")
+    assert len(GROUP_ORDER) == 11
+    seen = {s.group for s in DEMOS}
+    assert seen == set(GROUP_ORDER)
+
+
+def test_inter_federation_group():
+    print("=== inter_federation group: C72 only ===")
+    group = [s for s in DEMOS
+             if s.group == "inter_federation"]
+    assert len(group) == 1
+    assert group[0].component == "C72"
+
+
+def test_worlds_group():
+    print("=== worlds group: 6 demos ===")
+    group = [s for s in DEMOS if s.group == "worlds"]
+    assert len(group) == 6
+    names = {s.name for s in group}
+    assert names == {
+        "chess_park", "room_world", "traversable_world",
+        "rooms_endpoint", "route_urls", "living_tree"}
+
+
+def test_no_c78_demo():
+    """C78 is a spec, not a demo."""
+    print("=== C78 has no demo ===")
+    assert not any(
+        s.component == "C78" for s in DEMOS)
+
+
+def test_new_specs_have_subpath_audits():
+    """All new demos write into their own subdirs."""
+    print("=== New specs use subpath audit files ===")
+    new_groups = {"inter_federation", "worlds"}
+    for spec in DEMOS:
+        if spec.group in new_groups:
+            assert "/" in spec.audit_relative_path, spec.name
+
+
+# --- Skip logic ---
+
+def test_run_one_python_chess_skip(tmp_path, monkeypatch):
+    print("=== run_one: python-chess missing → skipped ===")
+    spec = next(
+        s for s in DEMOS if s.name == "chess_park")
+    _mock_subprocess(
+        monkeypatch, returncode=1,
+        stderr=("RuntimeError: demo requires `python-chess` "
+                "(pip install chess)\n"))
+    result = run_one(spec, tmp_path)
+    assert not result.passed
+    assert result.skipped
+    assert "python-chess" in result.reason.lower()
+
+
+def test_run_one_cryptography_still_skips(tmp_path, monkeypatch):
+    """Regression: the cryptography skip still works."""
+    print("=== run_one: cryptography still skips ===")
+    spec = next(
+        s for s in DEMOS if s.name == "octopus")
+    _mock_subprocess(
+        monkeypatch, returncode=1,
+        stderr="RuntimeError: demo requires `cryptography`\n")
+    result = run_one(spec, tmp_path)
+    assert result.skipped
+    assert "cryptography" in result.reason.lower()
+
+
+# --- Report format includes new groups ---
+
+def test_report_format_new_groups(tmp_path, monkeypatch):
+    print("=== Report includes new groups ===")
+    for spec in DEMOS:
+        _prepopulate_audit(tmp_path, spec)
+    _mock_subprocess(monkeypatch, returncode=0)
+    results = run_all(tmp_path, quiet=True)
+    report = ArcReport.from_results(results, tmp_path)
+    text = report.format()
+    assert "Inter Federation" in text
+    assert "Worlds" in text
+    assert "33 demos across 11 layers" in text
+    assert "33/33" in text
+
+
+def test_report_by_group_new_counts(tmp_path, monkeypatch):
+    print("=== by_group: new counts ===")
+    for spec in DEMOS:
+        _prepopulate_audit(tmp_path, spec)
+    _mock_subprocess(monkeypatch, returncode=0)
+    results = run_all(tmp_path, quiet=True)
+    report = ArcReport.from_results(results, tmp_path)
+    bg = report.by_group()
+    assert len(bg["inter_federation"]) == 1
+    assert len(bg["worlds"]) == 6

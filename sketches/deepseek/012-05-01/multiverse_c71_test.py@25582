@@ -1,0 +1,61 @@
+def test_thirty_seven_demos():
+    print("=== 37 demos ===")
+    assert len(DEMOS) == 37
+
+
+def test_twelve_groups():
+    print("=== 12 groups ===")
+    assert len(GROUP_ORDER) == 12
+    seen = {s.group for s in DEMOS}
+    assert seen == set(GROUP_ORDER)
+
+
+def test_growth_group():
+    print("=== growth group: 4 demos ===")
+    group = [s for s in DEMOS if s.group == "growth"]
+    assert len(group) == 4
+    names = {s.name for s in group}
+    assert names == {
+        "growing_world", "observing_curator",
+        "governance", "world_cycle"}
+
+
+def test_growth_group_components():
+    print("=== growth group components ===")
+    group = [s for s in DEMOS if s.group == "growth"]
+    components = {s.component for s in group}
+    assert components == {"C81", "C82", "C83", "C84"}
+
+
+def test_growth_demos_use_subpath_audits():
+    print("=== growth demos use subpath audits ===")
+    for spec in DEMOS:
+        if spec.group == "growth":
+            assert "/" in spec.audit_relative_path, spec.name
+
+
+def test_report_includes_growth(tmp_path, monkeypatch):
+    print("=== Report includes Growth group ===")
+    for spec in DEMOS:
+        _prepopulate_audit(tmp_path, spec)
+    _mock_subprocess(monkeypatch, returncode=0)
+    results = run_all(tmp_path, quiet=True)
+    report = ArcReport.from_results(results, tmp_path)
+    text = report.format()
+    assert "Growth" in text
+    assert "37 demos across 12 layers" in text
+    assert "37/37" in text
+
+
+def test_run_one_growth_missing_cryptography(tmp_path, monkeypatch):
+    """Growth demos skip on missing cryptography, not
+    python-chess."""
+    print("=== run_one: growth demo skips on cryptography ===")
+    spec = next(
+        s for s in DEMOS if s.name == "growing_world")
+    _mock_subprocess(
+        monkeypatch, returncode=1,
+        stderr="RuntimeError: demo requires `cryptography`\n")
+    result = run_one(spec, tmp_path)
+    assert result.skipped
+    assert "cryptography" in result.reason.lower()
