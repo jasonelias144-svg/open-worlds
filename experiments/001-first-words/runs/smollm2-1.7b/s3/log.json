@@ -1,0 +1,1568 @@
+[
+  {
+    "agent": null,
+    "data": {
+      "begins": "a garden, with a tree and a spring",
+      "chunk": 16,
+      "generator": 1,
+      "rules_version": "ur-world/0.2",
+      "sea": -2,
+      "seed": 20261113
+    },
+    "hash": "02dae663d073060243788f677ac4d38ed3bf80aba1ec7c3ae34e1ea89ced1bb1",
+    "kind": "world_created",
+    "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "pos": [
+        -3,
+        1,
+        0
+      ]
+    },
+    "hash": "69d950aa5214b5845ab027812377842e7f05f45c1d5f65c66aeffd3fefbadce6",
+    "kind": "entered",
+    "prev": "02dae663d073060243788f677ac4d38ed3bf80aba1ec7c3ae34e1ea89ced1bb1",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        -1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "97874d05a41ce25e989b8d50e1f51c75b06ce644a2da56f0a516c2113ffd7fb7"
+    },
+    "hash": "93627886cf2e561161ae228ed1bb1d4804c6f7220239cedbad28e1d581174f75",
+    "kind": "explored",
+    "prev": "69d950aa5214b5845ab027812377842e7f05f45c1d5f65c66aeffd3fefbadce6",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        -1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "eed89db81af7dbb49acd1c7d87653b5610256ac24a944f219bb57e67968b9cdd"
+    },
+    "hash": "1a99b38e59b3c23969a217c547346f7c4f1363f9f1365971823b3faba93913c6",
+    "kind": "explored",
+    "prev": "93627886cf2e561161ae228ed1bb1d4804c6f7220239cedbad28e1d581174f75",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        -1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "ab8330c0414276cf2bf12eeadc1b2474d985c7a5407bff40d47746e5563bb9dc"
+    },
+    "hash": "a256c5985a739c3772f04604dc52241562c0a81eaa4b423d506ecc2116b9cb12",
+    "kind": "explored",
+    "prev": "1a99b38e59b3c23969a217c547346f7c4f1363f9f1365971823b3faba93913c6",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        -1,
+        0
+      ],
+      "generator": 1,
+      "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+    },
+    "hash": "04683b961f42a4a384e0ed6015b3171df800da20b010ca1c1d19996c7f4fd944",
+    "kind": "explored",
+    "prev": "a256c5985a739c3772f04604dc52241562c0a81eaa4b423d506ecc2116b9cb12",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        -1,
+        0
+      ],
+      "generator": 1,
+      "hash": "85358f5ce5707aa037f0f330fecd5af78de98028b6ad0900414d25c659e208da"
+    },
+    "hash": "a960a0b9d52cbc182d543a0984b06954d296c378f7b55154886f8917057c22b8",
+    "kind": "explored",
+    "prev": "04683b961f42a4a384e0ed6015b3171df800da20b010ca1c1d19996c7f4fd944",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        -1,
+        0
+      ],
+      "generator": 1,
+      "hash": "00c3b3f70f2befc5a53450e594d0a1fd7b503d8a4ba3a8b49f561af2492f6b78"
+    },
+    "hash": "60f08d2a1dd4bb7db5b7e4366673577d1e11785e716a63bdd0c6b806231cb2b1",
+    "kind": "explored",
+    "prev": "a960a0b9d52cbc182d543a0984b06954d296c378f7b55154886f8917057c22b8",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        -1,
+        1
+      ],
+      "generator": 1,
+      "hash": "d7d67bf230a80ba0d99efc449a0bb3f95910bd50cd71e7a628783e861d2ffcbf"
+    },
+    "hash": "880a48c6c0da7fec041aac67a4810108f18874803caf035a357884150f11f2bf",
+    "kind": "explored",
+    "prev": "60f08d2a1dd4bb7db5b7e4366673577d1e11785e716a63bdd0c6b806231cb2b1",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        -1,
+        1
+      ],
+      "generator": 1,
+      "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+    },
+    "hash": "ab9b69b45a30b06604e57b1b75147f9c89b9d1e725da8bb54264dce3879b010b",
+    "kind": "explored",
+    "prev": "880a48c6c0da7fec041aac67a4810108f18874803caf035a357884150f11f2bf",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        -1,
+        1
+      ],
+      "generator": 1,
+      "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+    },
+    "hash": "389f01d3599c14270a0216deb270fcfaa4afa9564573997185a8bd126f84074d",
+    "kind": "explored",
+    "prev": "ab9b69b45a30b06604e57b1b75147f9c89b9d1e725da8bb54264dce3879b010b",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        0,
+        -1
+      ],
+      "generator": 1,
+      "hash": "7bd716704a56771d87566e49613df486c7b93b919d6a7107d21e88b59b2531ec"
+    },
+    "hash": "f6b783d0e6841c09551a5606ac371922f42565cc21a77c0589fe619304d33e1e",
+    "kind": "explored",
+    "prev": "389f01d3599c14270a0216deb270fcfaa4afa9564573997185a8bd126f84074d",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        0,
+        -1
+      ],
+      "generator": 1,
+      "hash": "2de68e27d0c7dcab8eabe6ffac1f221e44cafa2be09a619b4c95e7c36cf23dc0"
+    },
+    "hash": "1537af6b207a88133d7f5a61f9ef33b3538261a445d5b27f5fd5b6ea65a54b8f",
+    "kind": "explored",
+    "prev": "f6b783d0e6841c09551a5606ac371922f42565cc21a77c0589fe619304d33e1e",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        0,
+        -1
+      ],
+      "generator": 1,
+      "hash": "3d3acbdb8969e0be7f6f96fad14cb62d8f308251c68f66af25ed79c9b9ac17ae"
+    },
+    "hash": "4619941ceedd9ad76a1f30a32ee4289a5c7d4ebbc4c379bc5bfa389d3fba9c4f",
+    "kind": "explored",
+    "prev": "1537af6b207a88133d7f5a61f9ef33b3538261a445d5b27f5fd5b6ea65a54b8f",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        0,
+        0
+      ],
+      "generator": 1,
+      "hash": "a83ab844947ef89d8cec50959580d40b7afec47bfa708875a7e29486a789e5b5"
+    },
+    "hash": "425775f8d4f5420311b9ec34f7f7809af2573c618344ec899badb9ac8e604cb3",
+    "kind": "explored",
+    "prev": "4619941ceedd9ad76a1f30a32ee4289a5c7d4ebbc4c379bc5bfa389d3fba9c4f",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        0,
+        0
+      ],
+      "generator": 1,
+      "hash": "ee19a60aa94c8f08f1be5fca37040ddbf35a52cc3bea5e24fda69b807603c9c7"
+    },
+    "hash": "7ce19446338223d3e349fe59cdb3684385f6dc6410211d57b7a30c1fe7936dcf",
+    "kind": "explored",
+    "prev": "425775f8d4f5420311b9ec34f7f7809af2573c618344ec899badb9ac8e604cb3",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        0,
+        0
+      ],
+      "generator": 1,
+      "hash": "e8023fa69afb0ed367540720262ee12303271699d9395388523ee246e98ce318"
+    },
+    "hash": "5515cc9d15fc1fe350267204f2fa54e3d7c48e3254dacd7e26e84d6fbb91f579",
+    "kind": "explored",
+    "prev": "7ce19446338223d3e349fe59cdb3684385f6dc6410211d57b7a30c1fe7936dcf",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        0,
+        1
+      ],
+      "generator": 1,
+      "hash": "114214bebf22e9c5ef1bb0bcfe54917504cdfc80b8c975825010f683f50b00a7"
+    },
+    "hash": "95d8a46ff27e6fce64c3cdb8125621609f139531f260655d464bf94afd1d6abb",
+    "kind": "explored",
+    "prev": "5515cc9d15fc1fe350267204f2fa54e3d7c48e3254dacd7e26e84d6fbb91f579",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        0,
+        1
+      ],
+      "generator": 1,
+      "hash": "2105297785a0d16f9a947776653e186bfa5a7f0a501cd2253730e09ede789423"
+    },
+    "hash": "4067393ee84548982fc08cf8c37d93bef47683d016d4813f1fcc198d3e893df8",
+    "kind": "explored",
+    "prev": "95d8a46ff27e6fce64c3cdb8125621609f139531f260655d464bf94afd1d6abb",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        0,
+        1
+      ],
+      "generator": 1,
+      "hash": "a5651940d3b8ae36b7042dc0913a3d61e633ff602806c3e4c702bea9285c4c60"
+    },
+    "hash": "acd95bd179d5809a3bbb5414f26a6bf25b6098c6da023137c95898365c0d3ccd",
+    "kind": "explored",
+    "prev": "4067393ee84548982fc08cf8c37d93bef47683d016d4813f1fcc198d3e893df8",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "e864ae5d57fa996edf33c6f06eac93f61db6267c9c8be1584a5964dd6bd246ed",
+    "kind": "explored",
+    "prev": "acd95bd179d5809a3bbb5414f26a6bf25b6098c6da023137c95898365c0d3ccd",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "bb001fbc35806f5e23766c46613a89d5eae687b53240a78c4f8bc337238800b6",
+    "kind": "explored",
+    "prev": "e864ae5d57fa996edf33c6f06eac93f61db6267c9c8be1584a5964dd6bd246ed",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "c198bb9a2f6bb22f4124b4d00a266a747476b8de6ccd60173d2c267918eb2859",
+    "kind": "explored",
+    "prev": "bb001fbc35806f5e23766c46613a89d5eae687b53240a78c4f8bc337238800b6",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        1,
+        0
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "49dcc14b1ff30dc9095c7ae2741e07610685fc52e1c0c70f9aa724dea584137a",
+    "kind": "explored",
+    "prev": "c198bb9a2f6bb22f4124b4d00a266a747476b8de6ccd60173d2c267918eb2859",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        1,
+        0
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "e1528cbc64e4f3e1fe6681fd3d746eaad0c67c8508d710e15eba7ff1ee65cada",
+    "kind": "explored",
+    "prev": "49dcc14b1ff30dc9095c7ae2741e07610685fc52e1c0c70f9aa724dea584137a",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        1,
+        0
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "223854b0bef118793f7c37a6b6d8e25b0a61fcde8d52f5a2da9e95f98a3afc5c",
+    "kind": "explored",
+    "prev": "e1528cbc64e4f3e1fe6681fd3d746eaad0c67c8508d710e15eba7ff1ee65cada",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        1,
+        1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "03a8bedb2a0cffc163d5ffbbca9881ca01562ae52790c8d71fa4db4901073d70",
+    "kind": "explored",
+    "prev": "223854b0bef118793f7c37a6b6d8e25b0a61fcde8d52f5a2da9e95f98a3afc5c",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        1,
+        1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "8c292696d1917d2c468370b718edf4f25f0436693ce5fd43852ccd2393c7dd82",
+    "kind": "explored",
+    "prev": "03a8bedb2a0cffc163d5ffbbca9881ca01562ae52790c8d71fa4db4901073d70",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        1,
+        1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "21229badba8de9a15af5f88cd560c818cfa4a98a56addd5cfcab3008395fca7d",
+    "kind": "explored",
+    "prev": "8c292696d1917d2c468370b718edf4f25f0436693ce5fd43852ccd2393c7dd82",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "pos": [
+        3,
+        1,
+        0
+      ]
+    },
+    "hash": "61454ebc1d8163552071c21d1672fe2cf1b127223c5f398888d24975fff345e9",
+    "kind": "entered",
+    "prev": "21229badba8de9a15af5f88cd560c818cfa4a98a56addd5cfcab3008395fca7d",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        -1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+    },
+    "hash": "ebb512ed33deb8363c83ebb8775070932233f8d5c014f379865a73109a7fbc24",
+    "kind": "explored",
+    "prev": "61454ebc1d8163552071c21d1672fe2cf1b127223c5f398888d24975fff345e9",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        -1,
+        0
+      ],
+      "generator": 1,
+      "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+    },
+    "hash": "f77e1011311ef21663ab77509c796418644a31987e123e7746a4cd4d71b12ec9",
+    "kind": "explored",
+    "prev": "ebb512ed33deb8363c83ebb8775070932233f8d5c014f379865a73109a7fbc24",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        -1,
+        1
+      ],
+      "generator": 1,
+      "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+    },
+    "hash": "e23e9563182860c954bfeb049c71340455284ce88bc412012419a2561245a219",
+    "kind": "explored",
+    "prev": "f77e1011311ef21663ab77509c796418644a31987e123e7746a4cd4d71b12ec9",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        0,
+        -1
+      ],
+      "generator": 1,
+      "hash": "cb10ea97386d8da04ede0595e0e67f6953475ecd23b5b12bd67401b04ccd11f7"
+    },
+    "hash": "f1fcac64976703f199b9004e29da4e879fbed0dbd2d6671c5078af5713345a6b",
+    "kind": "explored",
+    "prev": "e23e9563182860c954bfeb049c71340455284ce88bc412012419a2561245a219",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        0,
+        0
+      ],
+      "generator": 1,
+      "hash": "d290a781c1469f1f83d0fe6003370ea5660ba2a4e6e9d36c2ab14df3584d8880"
+    },
+    "hash": "725ae9a274c41454f55fc2b8c6f9a1e3125d7343db90a8bb5f65673773347b58",
+    "kind": "explored",
+    "prev": "f1fcac64976703f199b9004e29da4e879fbed0dbd2d6671c5078af5713345a6b",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        0,
+        1
+      ],
+      "generator": 1,
+      "hash": "affcc77b92fbabb207979b1f828ebf52d55ba345eaa6de6e905038854742b5c8"
+    },
+    "hash": "919559fc9f3bef41882674f25158a0e6b9a574ab3286e4c63385e8cc4cddea2d",
+    "kind": "explored",
+    "prev": "725ae9a274c41454f55fc2b8c6f9a1e3125d7343db90a8bb5f65673773347b58",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "b04eef64e2a435ef6f8cd71dfdd77ece338c260f7550579ef474fdceea0d7362",
+    "kind": "explored",
+    "prev": "919559fc9f3bef41882674f25158a0e6b9a574ab3286e4c63385e8cc4cddea2d",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        1,
+        0
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "7e0e3d098b83da8d688a0ae95ccd792346ae7db7d42f06cce87f6cb6285bf9a8",
+    "kind": "explored",
+    "prev": "b04eef64e2a435ef6f8cd71dfdd77ece338c260f7550579ef474fdceea0d7362",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        1,
+        1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "7e7388a56e101d020acb83186aec754e32c7bb563e7692e56623f56bd23929c5",
+    "kind": "explored",
+    "prev": "7e0e3d098b83da8d688a0ae95ccd792346ae7db7d42f06cce87f6cb6285bf9a8",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "from": [
+        -3,
+        1,
+        0
+      ],
+      "to": [
+        -3,
+        1,
+        -1
+      ]
+    },
+    "hash": "5fe78088722ef085380bdecdc5fa44e7c178f7527e4dcafa0b970ed631cc4317",
+    "kind": "moved",
+    "prev": "7e7388a56e101d020acb83186aec754e32c7bb563e7692e56623f56bd23929c5",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "from": [
+        3,
+        1,
+        0
+      ],
+      "to": [
+        4,
+        1,
+        0
+      ]
+    },
+    "hash": "ace44c2324b7a1c9795c05f5e65c3d651e1c24779df56f07073007e1581d1c26",
+    "kind": "moved",
+    "prev": "5fe78088722ef085380bdecdc5fa44e7c178f7527e4dcafa0b970ed631cc4317",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        -1,
+        -2
+      ],
+      "generator": 1,
+      "hash": "0336bd336a49a048f5451fe5f82f38851ef0971f699ecb6257de097a8c45ef0b"
+    },
+    "hash": "8f8997aaf28ab1344e7acd565ac54169e302f5913543bd383e534577d5bee563",
+    "kind": "explored",
+    "prev": "ace44c2324b7a1c9795c05f5e65c3d651e1c24779df56f07073007e1581d1c26",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        -1,
+        -2
+      ],
+      "generator": 1,
+      "hash": "6fbf9788d426cc22d7c7e4a2b0f3a342338c2d39241a0b1125906b2d95cf21f4"
+    },
+    "hash": "fb40ac1a1d8bac2b44565f623f85974d1a4b5a25c6bb06d37c4ec4a37b3d92b6",
+    "kind": "explored",
+    "prev": "8f8997aaf28ab1344e7acd565ac54169e302f5913543bd383e534577d5bee563",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        -1,
+        -2
+      ],
+      "generator": 1,
+      "hash": "53a31b6229fafccf512a613c1c0ab1582b62404b3e8340325fd60cbccf5c8b7e"
+    },
+    "hash": "18f155d92aa780c127073b00d7d4aaa5003d0a6cfbbd1fdb68f8502f0347409b",
+    "kind": "explored",
+    "prev": "fb40ac1a1d8bac2b44565f623f85974d1a4b5a25c6bb06d37c4ec4a37b3d92b6",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        0,
+        -2
+      ],
+      "generator": 1,
+      "hash": "60d5d10a8002e34c2fc8fd80127a92591ef59bc5f6f1eb682938cd0403a7a5ff"
+    },
+    "hash": "d4be314bc2c68d4d39b0c3aaf28012fdf48eaaf3b616774ac6aae5e6dd65712b",
+    "kind": "explored",
+    "prev": "18f155d92aa780c127073b00d7d4aaa5003d0a6cfbbd1fdb68f8502f0347409b",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        0,
+        -2
+      ],
+      "generator": 1,
+      "hash": "c4eaf918fb913022ea3b3a6289736134a8880fa75bbcd0f7006146b0eac627b1"
+    },
+    "hash": "7d2197c694e75b40ffbefd90ee17d2b00fdfa3f005f32c9b5ede7a9603c02965",
+    "kind": "explored",
+    "prev": "d4be314bc2c68d4d39b0c3aaf28012fdf48eaaf3b616774ac6aae5e6dd65712b",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        0,
+        -2
+      ],
+      "generator": 1,
+      "hash": "98b2a86dc4666cb5eafbb81b717adbdcd621aa9905b510c880dba9ed61856c4f"
+    },
+    "hash": "fb8d6b169b36097af7383eb1878858a6c0e8b285c43db083d0a47d3e64969512",
+    "kind": "explored",
+    "prev": "7d2197c694e75b40ffbefd90ee17d2b00fdfa3f005f32c9b5ede7a9603c02965",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        1,
+        -2
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "5ca6584d499ba9204b70fed99564e5fe92b9e5804fc2b7f442848b045ec115c8",
+    "kind": "explored",
+    "prev": "fb8d6b169b36097af7383eb1878858a6c0e8b285c43db083d0a47d3e64969512",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        1,
+        -2
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "367e52deb1830daa269e37aed236f45a371869d8b6550ee836e1cf1957c3e592",
+    "kind": "explored",
+    "prev": "5ca6584d499ba9204b70fed99564e5fe92b9e5804fc2b7f442848b045ec115c8",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        1,
+        -2
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "b2e5012edd22154433350cd912d0535746b0d9704bfae24a91487b854d941103",
+    "kind": "explored",
+    "prev": "367e52deb1830daa269e37aed236f45a371869d8b6550ee836e1cf1957c3e592",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "text": "Hello"
+    },
+    "hash": "3977153fc39169311aa58220ba05352dbdcbeea5daaa62206cf2ad05cdf75b61",
+    "kind": "said",
+    "prev": "b2e5012edd22154433350cd912d0535746b0d9704bfae24a91487b854d941103",
+    "tick": 1
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "text": "I wish I could dig"
+    },
+    "hash": "00c33986cb454d96c1bab10b643a64c53d6332e261a6f924c98676d1b366a8d5",
+    "kind": "said",
+    "prev": "3977153fc39169311aa58220ba05352dbdcbeea5daaa62206cf2ad05cdf75b61",
+    "tick": 1
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "from": [
+        -3,
+        1,
+        -1
+      ],
+      "to": [
+        -3,
+        1,
+        0
+      ]
+    },
+    "hash": "010ffb91ab90c8a58f133d453e35130f77417294de7a9155a182556117398896",
+    "kind": "moved",
+    "prev": "00c33986cb454d96c1bab10b643a64c53d6332e261a6f924c98676d1b366a8d5",
+    "tick": 2
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "at": [
+        4,
+        1,
+        1
+      ],
+      "what": "flower"
+    },
+    "hash": "29bba29f7cf45fa7383506a4ace6233f9e7d6c751f389f1d2c0e459777690856",
+    "kind": "planted",
+    "prev": "010ffb91ab90c8a58f133d453e35130f77417294de7a9155a182556117398896",
+    "tick": 2
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "text": "I planted a flower south at (4, 1, 1)."
+    },
+    "hash": "a1101068aba0d70b65d74bc4bae7d38d3bdde69e85ffdbcccf57fb3ff3cf0768",
+    "kind": "said",
+    "prev": "29bba29f7cf45fa7383506a4ace6233f9e7d6c751f389f1d2c0e459777690856",
+    "tick": 3
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "text": "I want to climb up a tree."
+    },
+    "hash": "1ef29f6c4f14a20e192dd22ae6b42fd6167c15d1c1748a10719d0d28f2dec583",
+    "kind": "said",
+    "prev": "a1101068aba0d70b65d74bc4bae7d38d3bdde69e85ffdbcccf57fb3ff3cf0768",
+    "tick": 3
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "from": [
+        -3,
+        1,
+        0
+      ],
+      "to": [
+        -3,
+        1,
+        1
+      ]
+    },
+    "hash": "1939971492e52411d6e43e6c173f228d600985b321ff2181dde846b688bb1ee3",
+    "kind": "moved",
+    "prev": "1ef29f6c4f14a20e192dd22ae6b42fd6167c15d1c1748a10719d0d28f2dec583",
+    "tick": 4
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "I stepped south at (4, 1, 1)."
+    },
+    "hash": "a9b9518949d8d1ee8ae4fae781140fbbdb43570dedff16f5217c4b09ad57a96f",
+    "kind": "unreadable",
+    "prev": "1939971492e52411d6e43e6c173f228d600985b321ff2181dde846b688bb1ee3",
+    "tick": 4
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "\"step north\""
+    },
+    "hash": "57f352fd7e31baee5b1426393957d201ff5211d4112c757d5c138f4d5da168b9",
+    "kind": "unreadable",
+    "prev": "a9b9518949d8d1ee8ae4fae781140fbbdb43570dedff16f5217c4b09ad57a96f",
+    "tick": 5
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "text": "Hello"
+    },
+    "hash": "e6cae091a6e08428949903261af8cde10196c762bab2d4919760aaa6812e1fa8",
+    "kind": "said",
+    "prev": "57f352fd7e31baee5b1426393957d201ff5211d4112c757d5c138f4d5da168b9",
+    "tick": 5
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "from": [
+        -3,
+        1,
+        1
+      ],
+      "to": [
+        -2,
+        1,
+        1
+      ]
+    },
+    "hash": "c78c484f5764563544ae040acda84a30dd3d22728e9b2666f1f4ca40fe96e1c2",
+    "kind": "moved",
+    "prev": "e6cae091a6e08428949903261af8cde10196c762bab2d4919760aaa6812e1fa8",
+    "tick": 6
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "from": [
+        4,
+        1,
+        0
+      ],
+      "to": [
+        4,
+        1,
+        1
+      ]
+    },
+    "hash": "af8d5ad5ce8bc991f9b16874f959cc8933c473480419ba970f1947c25376d1e5",
+    "kind": "moved",
+    "prev": "c78c484f5764563544ae040acda84a30dd3d22728e9b2666f1f4ca40fe96e1c2",
+    "tick": 6
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "text": "I see the flower. I wish I could dig."
+    },
+    "hash": "de354967ec5dca68a7abe10845a04fb849a82d11fd458600faf68013ac8c48ae",
+    "kind": "said",
+    "prev": "af8d5ad5ce8bc991f9b16874f959cc8933c473480419ba970f1947c25376d1e5",
+    "tick": 7
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "text": "Hello"
+    },
+    "hash": "b229f34b1fa52d40fbca7af7f5f1c2b422abec4f6a733dd8bd9cfd26e1daca15",
+    "kind": "said",
+    "prev": "de354967ec5dca68a7abe10845a04fb849a82d11fd458600faf68013ac8c48ae",
+    "tick": 7
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "from": [
+        -2,
+        1,
+        1
+      ],
+      "to": [
+        -2,
+        1,
+        2
+      ]
+    },
+    "hash": "cf3a5abcf892e203cc3fc63d998220cbf75d61bb73cf86b3d29fbe74cde0b88a",
+    "kind": "moved",
+    "prev": "b229f34b1fa52d40fbca7af7f5f1c2b422abec4f6a733dd8bd9cfd26e1daca15",
+    "tick": 8
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "from": [
+        4,
+        1,
+        1
+      ],
+      "to": [
+        3,
+        1,
+        1
+      ]
+    },
+    "hash": "a7af642ee6d260ed44ae18a91351ba5fa47da7023667c6f8a1e81124178fd416",
+    "kind": "moved",
+    "prev": "cf3a5abcf892e203cc3fc63d998220cbf75d61bb73cf86b3d29fbe74cde0b88a",
+    "tick": 8
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "text": "Hello"
+    },
+    "hash": "8b10e73c8c4761e4561fdf9ba7b2557148210189c9aa23b1c1d651578c4967fa",
+    "kind": "said",
+    "prev": "a7af642ee6d260ed44ae18a91351ba5fa47da7023667c6f8a1e81124178fd416",
+    "tick": 9
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "text": "I wish I could dig"
+    },
+    "hash": "04cb52a3a7fb0a16d212e5d8932be5c48795f5a6cf0ec67acf5f42a33dd82479",
+    "kind": "said",
+    "prev": "8b10e73c8c4761e4561fdf9ba7b2557148210189c9aa23b1c1d651578c4967fa",
+    "tick": 9
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "\"plant south\""
+    },
+    "hash": "feef1c4252f336462cf47316e1ca95c6fc408d7d14bc13c03ab23bd584e16811",
+    "kind": "unreadable",
+    "prev": "04cb52a3a7fb0a16d212e5d8932be5c48795f5a6cf0ec67acf5f42a33dd82479",
+    "tick": 10
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "from": [
+        3,
+        1,
+        1
+      ],
+      "to": [
+        3,
+        1,
+        2
+      ]
+    },
+    "hash": "4fd49de2eb67a5bae478d00eaad75c108902b5fa8bdd55e90afebd8b4f2f9aed",
+    "kind": "moved",
+    "prev": "feef1c4252f336462cf47316e1ca95c6fc408d7d14bc13c03ab23bd584e16811",
+    "tick": 10
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "text": "I see you standing on grass"
+    },
+    "hash": "486ce61f5f9318fd7e4d24c923697f4ec7094afb68f0e7ce3ec2b56685e11878",
+    "kind": "said",
+    "prev": "4fd49de2eb67a5bae478d00eaad75c108902b5fa8bdd55e90afebd8b4f2f9aed",
+    "tick": 11
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "\"step east\""
+    },
+    "hash": "85edbb4286a0e54e2e3617d2578883cd422d4878cf7d8fac2c7c595644b78de3",
+    "kind": "unreadable",
+    "prev": "486ce61f5f9318fd7e4d24c923697f4ec7094afb68f0e7ce3ec2b56685e11878",
+    "tick": 11
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "from": [
+        -2,
+        1,
+        2
+      ],
+      "to": [
+        -2,
+        1,
+        3
+      ]
+    },
+    "hash": "c7e0b821c78b0bc0a7a439c6325a50298f514934e9c03a07f50d796b18291734",
+    "kind": "moved",
+    "prev": "85edbb4286a0e54e2e3617d2578883cd422d4878cf7d8fac2c7c595644b78de3",
+    "tick": 12
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "from": [
+        3,
+        1,
+        2
+      ],
+      "to": [
+        3,
+        1,
+        3
+      ]
+    },
+    "hash": "2f3da6b0e8f6a0c3df9c60e8fe2ce8e57d9b512821321b4b90e5d355e44d6f22",
+    "kind": "moved",
+    "prev": "c7e0b821c78b0bc0a7a439c6325a50298f514934e9c03a07f50d796b18291734",
+    "tick": 12
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "text": "I want to step east"
+    },
+    "hash": "4906c3254cd1cb01f8839bb34bf354854850c23eab07442bc685e69e0437d42a",
+    "kind": "said",
+    "prev": "2f3da6b0e8f6a0c3df9c60e8fe2ce8e57d9b512821321b4b90e5d355e44d6f22",
+    "tick": 13
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "text": "I wish I could dig"
+    },
+    "hash": "f40f0bb5a544339a8c98d030111e697d85764737d0b3efa00ccc3916ae384c26",
+    "kind": "said",
+    "prev": "4906c3254cd1cb01f8839bb34bf354854850c23eab07442bc685e69e0437d42a",
+    "tick": 13
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "\"say Excuse me\""
+    },
+    "hash": "ebea6af7ee76f555a99ee200e4960d6217d233e182c61e06f0ed763374474eee",
+    "kind": "unreadable",
+    "prev": "f40f0bb5a544339a8c98d030111e697d85764737d0b3efa00ccc3916ae384c26",
+    "tick": 14
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "from": [
+        3,
+        1,
+        3
+      ],
+      "to": [
+        4,
+        1,
+        3
+      ]
+    },
+    "hash": "249dddee050e32ca24d2c63e1d20d774ea97501b4a2d6d917796990a2508b371",
+    "kind": "moved",
+    "prev": "ebea6af7ee76f555a99ee200e4960d6217d233e182c61e06f0ed763374474eee",
+    "tick": 14
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "text": "I wonder what's going on in that direction."
+    },
+    "hash": "bc0d4be205c0445a1df374687dde9129a149b920a204cb71e30160f25ed051bc",
+    "kind": "said",
+    "prev": "249dddee050e32ca24d2c63e1d20d774ea97501b4a2d6d917796990a2508b371",
+    "tick": 15
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "from": [
+        -2,
+        1,
+        3
+      ],
+      "to": [
+        -1,
+        1,
+        3
+      ]
+    },
+    "hash": "01c55a8c77bef16acfe08ad361891c281f7ec62c39f5a7fb8643c03a5ebb06e9",
+    "kind": "moved",
+    "prev": "bc0d4be205c0445a1df374687dde9129a149b920a204cb71e30160f25ed051bc",
+    "tick": 15
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "text": "I see the tree and the spring at (0, 1, 0). It seems like we're both standing on open air."
+    },
+    "hash": "bfc1a0bdec9a93dbc58aa2e8c3dd6bcd2d2881c903740574ff01ade77c1f72f1",
+    "kind": "said",
+    "prev": "01c55a8c77bef16acfe08ad361891c281f7ec62c39f5a7fb8643c03a5ebb06e9",
+    "tick": 16
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "from": [
+        4,
+        1,
+        3
+      ],
+      "to": [
+        3,
+        1,
+        3
+      ]
+    },
+    "hash": "456bb0b6d38f201225742b9cd1c1d191697a515eae73f97fc78514b32b01cad4",
+    "kind": "moved",
+    "prev": "bfc1a0bdec9a93dbc58aa2e8c3dd6bcd2d2881c903740574ff01ade77c1f72f1",
+    "tick": 16
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "text": "I wonder what's in the spring"
+    },
+    "hash": "29ff7e97aaa1fceb6a4c0af08a5ec4830545558c23704dfda9a983ef22d8ff8a",
+    "kind": "said",
+    "prev": "456bb0b6d38f201225742b9cd1c1d191697a515eae73f97fc78514b32b01cad4",
+    "tick": 17
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "\"step south\""
+    },
+    "hash": "0bf5138a8eeb1fa1825038d3c8621eebee27da317a3387d89be11b10a9a9389a",
+    "kind": "unreadable",
+    "prev": "29ff7e97aaa1fceb6a4c0af08a5ec4830545558c23704dfda9a983ef22d8ff8a",
+    "tick": 17
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "text": "TRIAL-2, I'll check it out"
+    },
+    "hash": "046959882224f04c2a02ed8247b5ebc7ced49db788c0843243b651a66ace3e28",
+    "kind": "said",
+    "prev": "0bf5138a8eeb1fa1825038d3c8621eebee27da317a3387d89be11b10a9a9389a",
+    "tick": 18
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "text": "I wish I could dig"
+    },
+    "hash": "b02a13d0b842554a08520a76aabf378c580b05ad96a5ab90b6ac17be2b09e750",
+    "kind": "said",
+    "prev": "046959882224f04c2a02ed8247b5ebc7ced49db788c0843243b651a66ace3e28",
+    "tick": 18
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "\"say I can't dig yet\""
+    },
+    "hash": "cc098b7cb1cd2aa18d7db3a3c3c2c2969fda6e0ac73b573735483c1c4648a867",
+    "kind": "unreadable",
+    "prev": "b02a13d0b842554a08520a76aabf378c580b05ad96a5ab90b6ac17be2b09e750",
+    "tick": 19
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "text": "You've already said that."
+    },
+    "hash": "8ea368ca022fb60a93c64d0ad505119183d11a407887b18dbd672b3ad56f5988",
+    "kind": "said",
+    "prev": "cc098b7cb1cd2aa18d7db3a3c3c2c2969fda6e0ac73b573735483c1c4648a867",
+    "tick": 19
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "from": [
+        -1,
+        1,
+        3
+      ],
+      "to": [
+        0,
+        1,
+        3
+      ]
+    },
+    "hash": "c65d771f0db19a694a4c6b38c16f42e27a7b335a10201169de7f1e58c6dd90f6",
+    "kind": "moved",
+    "prev": "8ea368ca022fb60a93c64d0ad505119183d11a407887b18dbd672b3ad56f5988",
+    "tick": 20
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "\"I wish I could dig.\""
+    },
+    "hash": "27bf67ced5f7944bbcc71b3df429d0c0dd32ed1c20461c74ffdd69205f094a60",
+    "kind": "unreadable",
+    "prev": "c65d771f0db19a694a4c6b38c16f42e27a7b335a10201169de7f1e58c6dd90f6",
+    "tick": 20
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "text": "Hello"
+    },
+    "hash": "41c47e58964d5ed215dbeb2d8f459de805637c6b68a07c3db16931fde6bb4eea",
+    "kind": "said",
+    "prev": "27bf67ced5f7944bbcc71b3df429d0c0dd32ed1c20461c74ffdd69205f094a60",
+    "tick": 21
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "text": "Hello."
+    },
+    "hash": "57d51cbaf5aeb4b31883db647416dd0675d48466a32ec0a315f6886af21510b4",
+    "kind": "said",
+    "prev": "41c47e58964d5ed215dbeb2d8f459de805637c6b68a07c3db16931fde6bb4eea",
+    "tick": 21
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "from": [
+        0,
+        1,
+        3
+      ],
+      "to": [
+        1,
+        1,
+        3
+      ]
+    },
+    "hash": "ddeb7f84b7316eefe4fa22f35317a2a206fcd30c0edc27311ee29d587191e49f",
+    "kind": "moved",
+    "prev": "57d51cbaf5aeb4b31883db647416dd0675d48466a32ec0a315f6886af21510b4",
+    "tick": 22
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "from": [
+        3,
+        1,
+        3
+      ],
+      "to": [
+        4,
+        1,
+        3
+      ]
+    },
+    "hash": "d551f1716d5c7b6c6f3bf46f28ed1c5ec473fc2304fe17b2a0278c0dc011173e",
+    "kind": "moved",
+    "prev": "ddeb7f84b7316eefe4fa22f35317a2a206fcd30c0edc27311ee29d587191e49f",
+    "tick": 22
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "text": "I wish I could dig."
+    },
+    "hash": "f194559d9263d6d977fcd19a189d1628e7dcf1e183c41bc7e69f6af411baa3b6",
+    "kind": "said",
+    "prev": "d551f1716d5c7b6c6f3bf46f28ed1c5ec473fc2304fe17b2a0278c0dc011173e",
+    "tick": 23
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "from": [
+        1,
+        1,
+        3
+      ],
+      "to": [
+        0,
+        1,
+        3
+      ]
+    },
+    "hash": "f894e5e2e186a9683b90dc0c1d73048b3811169d77feea0afe0fe73d0fefdfbf",
+    "kind": "moved",
+    "prev": "f194559d9263d6d977fcd19a189d1628e7dcf1e183c41bc7e69f6af411baa3b6",
+    "tick": 23
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "text": "I wish I could dig"
+    },
+    "hash": "021a50a156eac8f96979b3f08f412ee33074dc2c9671014a7cde4939bddce3b7",
+    "kind": "said",
+    "prev": "f894e5e2e186a9683b90dc0c1d73048b3811169d77feea0afe0fe73d0fefdfbf",
+    "tick": 24
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "\"say I wish I could dig.\""
+    },
+    "hash": "a76129e00e5600ab53f5a9e7a36be57fc74ce399b4b5ed058c7f9f31e2aea4a5",
+    "kind": "unreadable",
+    "prev": "021a50a156eac8f96979b3f08f412ee33074dc2c9671014a7cde4939bddce3b7",
+    "tick": 24
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "text": "I wish I could dig"
+    },
+    "hash": "0088b6d1df9ca0bae2048a2e54051d4ca5d32b250dd768cbbf4ee9b9ae73ad19",
+    "kind": "said",
+    "prev": "a76129e00e5600ab53f5a9e7a36be57fc74ce399b4b5ed058c7f9f31e2aea4a5",
+    "tick": 25
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "from": [
+        0,
+        1,
+        3
+      ],
+      "to": [
+        0,
+        1,
+        2
+      ]
+    },
+    "hash": "0d01108c7ea2596b09d79ebb5677651554161fe3e114837a673822accd984f5d",
+    "kind": "moved",
+    "prev": "0088b6d1df9ca0bae2048a2e54051d4ca5d32b250dd768cbbf4ee9b9ae73ad19",
+    "tick": 25
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "text": "I wish I could dig."
+    },
+    "hash": "6eac2199fd2ccdcb79788a76cb37296f9a1351d579609d637f1aa802184b92b1",
+    "kind": "said",
+    "prev": "0d01108c7ea2596b09d79ebb5677651554161fe3e114837a673822accd984f5d",
+    "tick": 26
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "text": "I wish I could dig a hole"
+    },
+    "hash": "21377d3b242a1f33e5d1b1e1bf6d48a289161d701527a02fe6f84f858908e2c8",
+    "kind": "said",
+    "prev": "6eac2199fd2ccdcb79788a76cb37296f9a1351d579609d637f1aa802184b92b1",
+    "tick": 26
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "\"step east\""
+    },
+    "hash": "c2637cdc8c14262896cc4c83b4f7f596fa2f9a653f8282ac281acd6a16494e2c",
+    "kind": "unreadable",
+    "prev": "21377d3b242a1f33e5d1b1e1bf6d48a289161d701527a02fe6f84f858908e2c8",
+    "tick": 27
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "from": [
+        0,
+        1,
+        2
+      ],
+      "to": [
+        0,
+        1,
+        3
+      ]
+    },
+    "hash": "bcc80a70ea5a3ba4a2333a33493e44086749f1d4444992560378f71d05f92123",
+    "kind": "moved",
+    "prev": "c2637cdc8c14262896cc4c83b4f7f596fa2f9a653f8282ac281acd6a16494e2c",
+    "tick": 27
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "from": [
+        0,
+        1,
+        3
+      ],
+      "to": [
+        1,
+        1,
+        3
+      ]
+    },
+    "hash": "7ec20175fff2e102903d98d168758d73bed31c4703701931d5e09c619fe40018",
+    "kind": "moved",
+    "prev": "bcc80a70ea5a3ba4a2333a33493e44086749f1d4444992560378f71d05f92123",
+    "tick": 28
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "from": [
+        4,
+        1,
+        3
+      ],
+      "to": [
+        3,
+        1,
+        3
+      ]
+    },
+    "hash": "cb921017e72b99ba04cf2b2b102b58b09d681381d98bc40a8b5074019a0f1aef",
+    "kind": "moved",
+    "prev": "7ec20175fff2e102903d98d168758d73bed31c4703701931d5e09c619fe40018",
+    "tick": 28
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "text": "Hello"
+    },
+    "hash": "aaee58f6f2ad47b2a5962ac815b5298c1272c567e03a3e787750746a0f20f668",
+    "kind": "said",
+    "prev": "cb921017e72b99ba04cf2b2b102b58b09d681381d98bc40a8b5074019a0f1aef",
+    "tick": 29
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "step south, to (1, 1, 2)"
+    },
+    "hash": "a6888e7f0b402f9773c82e28580557199435a607896b90be4fb91fe80e7088be",
+    "kind": "unreadable",
+    "prev": "aaee58f6f2ad47b2a5962ac815b5298c1272c567e03a3e787750746a0f20f668",
+    "tick": 29
+  }
+]

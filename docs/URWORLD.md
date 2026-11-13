@@ -360,8 +360,20 @@ The founder's work on opposites gives exact tools for this.
 Their first exchange in the garden is the simplest pairing of complements:
 one speaks while the other listens, then they turn.
 
-### Still open
+### Decided since
 
-- **Memory.** Whether ALICE's and BOB's memories should be public, as their
-  actions are (recommended, at least at first), or private, like a person's
-  mind.
+- **Their minds: Qwen and OLMo.** The founder: "I completely agree with
+  [Qwen] and OLMo, those would be my two choices as well." The audition
+  now chooses the sizes, not the families.
+- **What they do is public; what they think is their own.** Everything
+  observable is public. Their journals are sealed, readable only by them:
+  "Everyone should be entitled to a private space for thoughts and
+  reasoning and anything else that is completely encrypted." Their private
+  keys are kept in a private repository of the project, "public to our
+  project", and nothing lives on a personal computer: "Let's keep
+  everything online."
+- **Lessons from [experiment 001](../experiments/001-first-words/RESULTS.md):**
+  - examples in the orientation become scripts, so theirs shows the form
+    of a reply without words worth repeating;
+  - minds without memory repeat themselves, so memory is in their first
+    version.

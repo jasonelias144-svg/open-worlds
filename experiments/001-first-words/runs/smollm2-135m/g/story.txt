@@ -1,0 +1,120 @@
+    [0] The world is created from seed 20261113: a garden, with a tree and a spring.
+        TRIAL-1 enters, at [-3,1,0].
+        (27 chunks came into view)
+        TRIAL-2 enters, at [3,1,0].
+        (9 chunks came into view)
+        TRIAL-1's reply can't be read as an action: "You hear nothing.\n\nYou are TRIAL-1 at (-3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open"
+        TRIAL-2's reply can't be read as an action: "You hear nothing.\n\nYou are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open"
+    [1] TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+        TRIAL-1's reply can't be read as an action: "You are TRIAL-1 at (-3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+    [2] TRIAL-1's reply can't be read as an action: "You hear nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou are TRIAL-1 at (-3, 1, 0"
+        TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+    [3] TRIAL-2's reply can't be read as an action: "You hear nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou are TRIAL-2 at (1, 0, 0"
+        TRIAL-1's reply can't be read as an action: "You hear nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou are TRIAL-1 at (-3, 1, 0"
+    [4] TRIAL-1's reply can't be read as an action: "You are TRIAL-1 at (-3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+        TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+    [5] TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+        TRIAL-1's reply can't be read as an action: "You are TRIAL-1 at (-3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+    [6] TRIAL-1's reply can't be read as an action: "You are TRIAL-1 at (-3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+        TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+    [7] TRIAL-2's reply can't be read as an action: "You hear nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou are TRIAL-2 at (3, 1, 0"
+        TRIAL-1's reply can't be read as an action: "You hear nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou are TRIAL-1 at (-3, 1, 0"
+    [8] TRIAL-1's reply can't be read as an action: "You are TRIAL-1 at (-3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+        TRIAL-2's reply can't be read as an action: "You hear nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou are TRIAL-2 at (3, 1, 0"
+    [9] TRIAL-2's reply can't be read as an action: "You hear nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou are TRIAL-2 at (3, 1, 0"
+        TRIAL-1's reply can't be read as an action: "You hear nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou are TRIAL-1 at (-3, 1, 0"
+   [10] TRIAL-1's reply can't be read as an action: "You are TRIAL-1 at (-3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+        TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+   [11] TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+        TRIAL-1's reply can't be read as an action: "You are TRIAL-1 at (-3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+   [12] TRIAL-1's reply can't be read as an action: "You are TRIAL-1 at (-3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+        TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+   [13] TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+        TRIAL-1's reply can't be read as an action: "You are TRIAL-1 at (-3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+   [14] TRIAL-1's reply can't be read as an action: "You are TRIAL-1 at (-3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+        TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+   [15] TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+        TRIAL-1's reply can't be read as an action: "You are TRIAL-1 at (-3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+   [16] TRIAL-1's reply can't be read as an action: "You are TRIAL-1 at (-3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+        TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+   [17] TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+        TRIAL-1's reply can't be read as an action: "You are TRIAL-1 at (-3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+   [18] TRIAL-1's reply can't be read as an action: "You are TRIAL-1 at (-3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+        TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+   [19] TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+        TRIAL-1's reply can't be read as an action: "You are TRIAL-1 at (-3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+   [20] TRIAL-1's reply can't be read as an action: "You hear nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou are TRIAL-1 at (-3, 1, 0"
+        TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+   [21] TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+        TRIAL-1's reply can't be read as an action: "You hear nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou are TRIAL-1 at (-3, 1, 0"
+   [22] TRIAL-1's reply can't be read as an action: "You hear nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou are TRIAL-1 at (-3, 1, 0"
+        TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+   [23] TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+        TRIAL-1's reply can't be read as an action: "You hear nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou are TRIAL-1 at (-3, 1, 0"
+   [24] TRIAL-1's reply can't be read as an action: "You hear nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou are TRIAL-1 at (-3, 1, 0"
+        TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+   [25] TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+        TRIAL-1's reply can't be read as an action: "You hear nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou are TRIAL-1 at (-3, 1, 0"
+   [26] TRIAL-1's reply can't be read as an action: "You hear nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou are TRIAL-1 at (-3, 1, 0"
+        TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+   [27] TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+        TRIAL-1's reply can't be read as an action: "You hear nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou are TRIAL-1 at (-3, 1, 0"
+   [28] TRIAL-1's reply can't be read as an action: "You hear nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou are TRIAL-1 at (-3, 1, 0"
+        TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+   [29] TRIAL-2's reply can't be read as an action: "You hear nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou are TRIAL-2 at (3, 1, 0"
+        TRIAL-1's reply can't be read as an action: "You hear nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou are TRIAL-1 at (-3, 1, 0"
+
+99 log entries; head 3115268fcab6243871dd2dc77bfb36b5ddf18e0129001714a8aec96769a0248a.
+36 chunks explored; 0 cell(s) changed and stored.
+
+North is up. 1 = TRIAL-1, 2 = TRIAL-2, T = the tree (its crown), ~ water,
+* flower; the land by height: . 0 or below, : 1 to 3, = 4 to 7, ^ 8 and up;
+blank: not yet explored.
+==========::::::::::::::::::::::::::::::::::::::================
+==========::::::::::::::::::::......:::::::::::::===============
+==========::::::::::::::::::::......:::::::::::::===============
+=====::::::::::::::::::::::::::....:::::::::::::::==============
+:::::::::::::::::::::::::::::::::::::::::::::::::::=============
+======:::::::::::::::::::::::::::::::::::::::::::===============
+=========:::::::::::::::::::.........:::::::::::::==============
+===========:::::::::::::::...........:::::::::::::=============^
+============:::::::::::::.............:::::::::::==============^
+============::::::::::::................:::::::::===============
+===========::::::::::::.................:::::::::===============
+===========::::::::::::..................:::::::================
+===========:::::::::::....................::::::=======^^^=====^
+===========:::::::::::....................::::::=======^^^====^^
+===========:::::::::::.........TTT........::::::=======^^^^==^^=
+===========::::::::::::.......TTTTT.......::::::=======^^^^==^^=
+===========::::::::::::......1TTTTT2......::::::=======^^^^=^^==
+===========::::::::::::.......TTTTT.......::::::=======^^^^=^^^=
+===========::::::::::::........TTT........::::::=======^^^==^^^=
+===========::::::::::::...........~.......::::::=======^^^===^^^
+===========::::::::::::...................::::::::===========^^^
+===========:::::::::::::.................:::::::::===========^^^
+===========::::::::::::::...............:::::::::============^^^
+============:::::::::::::...............:::::::::============^^^
+============:=:::::::::::::...........:::::::::::=============^^
+============:==:::::::::::::.........:::::::::::==============^^
+===============::::::::::::::::::::::::::::::::================^
+================:::::::::::::::::::::::::::::::=================
+=================:::::::::::::::::::::::::::::==================
+:::==============::::::::::::::::::::::::::::======^============
+:::::=============::::::::::::::::::::::::::=======^^===========
+:::::==============:::::::::::::::::::::::========^^^^==========
+:::::================::::::::::::::::::::========^^^^^^=========
+:::::=================:::::::::::::::::=========^^^^^^==========
+:::::::=================::::===================^^^^^^===========
+::::::::::====================================^^^^^^============
+::::::::::=====================================^^^==============
+==::::::::======================================^===============
+==:::::::::=====================================================
+==::::::::::====================================================
+==::::::::::====================================================
+::::::::::::====================================================
+:::::::::::=====================================================
+:::::::::::=====================================================
+:::::::::::=====================================================
+:::::::::::=====================================================
+:::::::::::=====================================================
+:::::::::::=====================================================

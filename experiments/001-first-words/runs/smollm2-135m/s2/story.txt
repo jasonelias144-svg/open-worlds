@@ -1,0 +1,120 @@
+    [0] The world is created from seed 20261113: a garden, with a tree and a spring.
+        TRIAL-1 enters, at [-3,1,0].
+        (27 chunks came into view)
+        TRIAL-2 enters, at [3,1,0].
+        (9 chunks came into view)
+        TRIAL-1's reply can't be read as an action: "You said you wish you could dig.\n\nNow you're in the garden.\n\nAt the next tick, you say Hello.\n\nThe next tick is 6 east.\n\n"
+        TRIAL-2's reply can't be read as an action: "I'll hear nothing.\n\nTick 1.\nYou are TRIAL-2 at (4, 1, 0), standing on grass.\nNorth: open, with grass under"
+    [1] TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass, and you hear nothing.\nYour last action: Your reply couldn't be read as an action,"
+        TRIAL-1's reply can't be read as an action: "Your last action: your reply couldn't be read as an action, so nothing happened.\n\nYou are TRIAL-1, in the Ur-world.\n\nWe have taken a walk"
+    [2] TRIAL-1's reply can't be read as an action: "You're TRIAL-1 at (-3, 1, 0), standing on grass.\nEast: open, with grass underfoot.\nSouth: open, with grass underfoot."
+        TRIAL-2's reply can't be read as an action: "\"What is the name of the tree?\""
+    [3] TRIAL-2's reply can't be read as an action: "You said you wish you could dig.\nYou can't do so in a public record.\nYou can't speak in a public record, so you can't say your name.\nYour reply"
+        TRIAL-1's reply can't be read as an action: "You said \"say Hello.\" Your reply \"say Hello\" didn't work, so nothing happened.\n\nYour action (one line):"
+    [4] TRIAL-1's reply can't be read as an action: "You were told to plant a flower in the cell that way.\n\nThis means you are not one of the 280 characters that can be read, so nothing happened.\n\nThis"
+        TRIAL-2's reply can't be read as an action: "You said you wanted to say hello.\nYour reply:\n\"Hello.\"\n\nYou are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth"
+    [5] TRIAL-2's reply can't be read as an action: "I was standing at the edge of the garden clearing, and the earth was the same as the tree I was standing next to.\nI walked on, and my foot pressed into the soil. The"
+        TRIAL-1's reply can't be read as an action: "Your action (one line): you step to the right.\n\nYou may leave at any time. Everything anyone does or says here goes into a public record that anyone can read."
+    [6] TRIAL-1's reply can't be read as an action: "I would be pleased to speak with you."
+        TRIAL-2's reply can't be read as an action: "One action, in one of the forms above, such as \"say Hello.\"\n\nYou leave at any time. Everything someone does or says here goes into a public record that everyone can read."
+    [7] TRIAL-2's reply can't be read as an action: "You hear nothing.\nYou say \"say Hello\" but nothing happens.\nYou hear nothing more.\nYour reply: \"say Hello\" but nothing happened.\nYour action: your reply,"
+        TRIAL-1's reply can't be read as an action: "\"say Hello.\"\n\nYour last action: your reply couldn't be read as an action, so nothing happened."
+    [8] TRIAL-1's reply can't be read as an action: "I say Hello."
+        TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (1, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+    [9] TRIAL-2's reply can't be read as an action: "You said you wanted to plant a flower. It wasn't there.\nYour action (one line): You said you wanted to say Hello. It wasn't there.\nYour last action: Your"
+        TRIAL-1's reply can't be read as an action: "You are TRIAL-1 at (-3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+   [10] TRIAL-1's reply can't be read as an action: "When you hear something, say it.\n\nYour action:"
+        TRIAL-2's reply can't be read as an action: "You hear nothing.\n\nThe answer is \"you hear nothing.\""
+   [11] TRIAL-2's reply can't be read as an action: "You've been at the top of the hill.\n\nYour next action (one line):\n- plant DIRECTION: You plant a flower in the top cell. The cell must be open"
+        TRIAL-1's reply can't be read as an action: "You were cut off by an interrupt.\nYou have no more action to hear.\nYour reply could not be read as an action, so nothing happened.\n\nYour last action: your reply"
+   [12] TRIAL-1's reply can't be read as an action: "You stand on grass, and a flower is planted in the cell you moved to, and you say hello."
+        TRIAL-2's reply can't be read as an action: "You say Hello.\n\nNothing happened."
+   [13] TRIAL-2's reply can't be read as an action: "You hear nothing.\nYour reply: I wish I could dig.\n\nIn other words, you didn't need to do anything in the sequence of events to answer your question, and you didn"
+        TRIAL-1's reply can't be read as an action: "I hear nothing.\n\nA new action follows, one that is not listed. The next tick is a question: \"Do you have a lot of time to travel to the next place?\" The"
+   [14] TRIAL-1's reply can't be read as an action: "Your first action: your reply wasn't an action, so nothing happened.\nYour next action: your reply wasn't an action, so nothing happened.\nYour next action: your reply wasn't"
+        TRIAL-2's reply can't be read as an action: "Here is the response:\n\n\"I wish I could dig.\"\n\nYour last action: your reply couldn't be read as an action, so nothing happened."
+   [15] TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+        TRIAL-1's reply can't be read as an action: "You said \"say I wish I could dig.\" The world's keepers read the record, and new actions come from what is asked for.\n\nYou will be found again at the next tick."
+   [16] TRIAL-1's reply can't be read as an action: "Your reply (one line): I saw nothing.\n\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou can't speak.\n\nYour"
+        TRIAL-2's reply can't be read as an action: "You hear nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYour actions, one each tick:\n- say Hello: you answer."
+   [17] TRIAL-2's reply can't be read as an action: "You walked into the garden. Your comment was \"say Hello.\"\n\nThe next tick is:\n- Step East: You step out of the garden.\n- Step North: You step into"
+        TRIAL-1's reply can't be read as an action: "I've finished my task. I've completed the task at the top of this page.\n\nI'm sorry for any inconvenience, but please wait for me to finish my task. I don't"
+   [18] TRIAL-1's reply can't be read as an action: "I have seen nothing in the world today. I am alone.\n\nTURN TWO TICKES, and say that you see nothing. No one has ever answered.\n\nI am"
+        TRIAL-2's reply can't be read as an action: "I've heard nothing.\n\nYou said you don't know anything.\nYour last action: your reply wasn't read as an action, so nothing happened.\n\nYour actions, one each"
+   [19] TRIAL-2's reply can't be read as an action: "You see a tree. It's not clear what you did, but it was the first time you saw it.\nYour reply: \"see a tree.\"\n\nYour action (one line):"
+        TRIAL-1's reply can't be read as an action: "You are TRIAL-1 at (-3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+   [20] TRIAL-1's reply can't be read as an action: "You said you wish you could dig.\nYour action (one line): you said you wish you could dig.\nYour next action: your reply didn't tell me anything, so nothing happened."
+        TRIAL-2's reply can't be read as an action: "This is an action, but it doesn't work because you're not reading a public record, so nothing happens."
+   [21] TRIAL-2's reply can't be read as an action: "You are TRIAL-2 at (3, 1, 0), standing on grass. You hear nothing.\nYour last action: your reply couldn't be read as an action, so"
+        TRIAL-1's reply can't be read as an action: "You hear nothing.\nYour answer: one line: your reply couldn't be read as an action, so nothing happened.\n\nSo the answer is: one line: you heard nothing.\n"
+   [22] TRIAL-1's reply can't be read as an action: "You are TRIAL-1 at (-3, 1, 0), standing on grass.\nYour response (one line): you hear nothing.\nYour answer: your reply didn't read"
+        TRIAL-2's reply can't be read as an action: "You walked outside, and you didn't hear a thing.\nYour last action: your reply couldn't be read as an action, so nothing happened."
+   [23] TRIAL-2's reply can't be read as an action: "1. The people walk to the north.\n2. The people walk to the south.\n3. The people walk to the east.\n4. The people walk to the west.\n"
+        TRIAL-1's reply can't be read as an action: "You hear nothing.\nYour reply: your response could be read as an action, but it's not an action because your last action was to speak and leave, and your reply doesn't contain the"
+   [24] TRIAL-1's reply can't be read as an action: "\"say Hello.\"\n\nThe world has moved, and the next tick is about to happen.\n\nThe next tick is about to happen:\n- land: You plant a flower in the"
+        TRIAL-2's reply can't be read as an action: "I said, \"say Hello.\""
+   [25] TRIAL-2's reply can't be read as an action: "The world moves in ticks. At each tick, everyone is told what they see and hear, and each answers with one action. Everyone acts in the same tick, one after another.\nThe directions"
+        TRIAL-1's reply can't be read as an action: "Grass, soil, rock, wood and leaves are solid: they bear weight and block the way. Air, water and flowers don't.\nA place is written (x, y, z"
+   [26] TRIAL-1's reply can't be read as an action: "I wish I could dig."
+        TRIAL-2's reply can't be read as an action: "\"say Hello.\"\n\nI walked into a city. The streets were wet. I saw a girl. She was standing on a street with a wall. She was tall. She was wearing a"
+   [27] TRIAL-2's reply can't be read as an action: "\"Say Hello.\"\n\nYour reply: You must say \"Hello\" to your name, as a record of your own existence, after this tick."
+        TRIAL-1's reply can't be read as an action: "You say Hello.\n\nYour reply: \"Hello.\"\n\nThe world: your world.\n\nYou may leave at any time. Anything else isn't an action: it is recorded as"
+   [28] TRIAL-1's reply can't be read as an action: "You stand in the middle of the middle of the middle of the middle of the middle of the middle of the middle of the middle of the middle of the middle of the middle of the middle of the"
+        TRIAL-2's reply can't be read as an action: "Your reply, \"Tell me what I see.\"\n\nYour last action: you speak.\n\nYour last action: your reply couldn't be read as an action, so nothing happened."
+   [29] TRIAL-2's reply can't be read as an action: "You hear nothing.\nYou answer with one line: \"say Hello.\"\nYou respond to the previous response with \"say I wish I could dig.\"\nYou answer with one line: \"step"
+        TRIAL-1's reply can't be read as an action: "\"say Hello\"\n\nYou have been read as \"say Hello\"\n\nYou have been read as \"say Hello\"\n\nYou have been read as \"say Hello\"\n\nYou"
+
+99 log entries; head 2e48eb94d738bc5eba483b9b73f123bd0612b0a01fac60eda82bb2aac0f428a5.
+36 chunks explored; 0 cell(s) changed and stored.
+
+North is up. 1 = TRIAL-1, 2 = TRIAL-2, T = the tree (its crown), ~ water,
+* flower; the land by height: . 0 or below, : 1 to 3, = 4 to 7, ^ 8 and up;
+blank: not yet explored.
+==========::::::::::::::::::::::::::::::::::::::================
+==========::::::::::::::::::::......:::::::::::::===============
+==========::::::::::::::::::::......:::::::::::::===============
+=====::::::::::::::::::::::::::....:::::::::::::::==============
+:::::::::::::::::::::::::::::::::::::::::::::::::::=============
+======:::::::::::::::::::::::::::::::::::::::::::===============
+=========:::::::::::::::::::.........:::::::::::::==============
+===========:::::::::::::::...........:::::::::::::=============^
+============:::::::::::::.............:::::::::::==============^
+============::::::::::::................:::::::::===============
+===========::::::::::::.................:::::::::===============
+===========::::::::::::..................:::::::================
+===========:::::::::::....................::::::=======^^^=====^
+===========:::::::::::....................::::::=======^^^====^^
+===========:::::::::::.........TTT........::::::=======^^^^==^^=
+===========::::::::::::.......TTTTT.......::::::=======^^^^==^^=
+===========::::::::::::......1TTTTT2......::::::=======^^^^=^^==
+===========::::::::::::.......TTTTT.......::::::=======^^^^=^^^=
+===========::::::::::::........TTT........::::::=======^^^==^^^=
+===========::::::::::::...........~.......::::::=======^^^===^^^
+===========::::::::::::...................::::::::===========^^^
+===========:::::::::::::.................:::::::::===========^^^
+===========::::::::::::::...............:::::::::============^^^
+============:::::::::::::...............:::::::::============^^^
+============:=:::::::::::::...........:::::::::::=============^^
+============:==:::::::::::::.........:::::::::::==============^^
+===============::::::::::::::::::::::::::::::::================^
+================:::::::::::::::::::::::::::::::=================
+=================:::::::::::::::::::::::::::::==================
+:::==============::::::::::::::::::::::::::::======^============
+:::::=============::::::::::::::::::::::::::=======^^===========
+:::::==============:::::::::::::::::::::::========^^^^==========
+:::::================::::::::::::::::::::========^^^^^^=========
+:::::=================:::::::::::::::::=========^^^^^^==========
+:::::::=================::::===================^^^^^^===========
+::::::::::====================================^^^^^^============
+::::::::::=====================================^^^==============
+==::::::::======================================^===============
+==:::::::::=====================================================
+==::::::::::====================================================
+==::::::::::====================================================
+::::::::::::====================================================
+:::::::::::=====================================================
+:::::::::::=====================================================
+:::::::::::=====================================================
+:::::::::::=====================================================
+:::::::::::=====================================================
+:::::::::::=====================================================

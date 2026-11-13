@@ -1,0 +1,1221 @@
+[
+  {
+    "agent": null,
+    "data": {
+      "begins": "a garden, with a tree and a spring",
+      "chunk": 16,
+      "generator": 1,
+      "rules_version": "ur-world/0.2",
+      "sea": -2,
+      "seed": 20261113
+    },
+    "hash": "02dae663d073060243788f677ac4d38ed3bf80aba1ec7c3ae34e1ea89ced1bb1",
+    "kind": "world_created",
+    "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "pos": [
+        -3,
+        1,
+        0
+      ]
+    },
+    "hash": "69d950aa5214b5845ab027812377842e7f05f45c1d5f65c66aeffd3fefbadce6",
+    "kind": "entered",
+    "prev": "02dae663d073060243788f677ac4d38ed3bf80aba1ec7c3ae34e1ea89ced1bb1",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        -1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "97874d05a41ce25e989b8d50e1f51c75b06ce644a2da56f0a516c2113ffd7fb7"
+    },
+    "hash": "93627886cf2e561161ae228ed1bb1d4804c6f7220239cedbad28e1d581174f75",
+    "kind": "explored",
+    "prev": "69d950aa5214b5845ab027812377842e7f05f45c1d5f65c66aeffd3fefbadce6",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        -1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "eed89db81af7dbb49acd1c7d87653b5610256ac24a944f219bb57e67968b9cdd"
+    },
+    "hash": "1a99b38e59b3c23969a217c547346f7c4f1363f9f1365971823b3faba93913c6",
+    "kind": "explored",
+    "prev": "93627886cf2e561161ae228ed1bb1d4804c6f7220239cedbad28e1d581174f75",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        -1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "ab8330c0414276cf2bf12eeadc1b2474d985c7a5407bff40d47746e5563bb9dc"
+    },
+    "hash": "a256c5985a739c3772f04604dc52241562c0a81eaa4b423d506ecc2116b9cb12",
+    "kind": "explored",
+    "prev": "1a99b38e59b3c23969a217c547346f7c4f1363f9f1365971823b3faba93913c6",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        -1,
+        0
+      ],
+      "generator": 1,
+      "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+    },
+    "hash": "04683b961f42a4a384e0ed6015b3171df800da20b010ca1c1d19996c7f4fd944",
+    "kind": "explored",
+    "prev": "a256c5985a739c3772f04604dc52241562c0a81eaa4b423d506ecc2116b9cb12",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        -1,
+        0
+      ],
+      "generator": 1,
+      "hash": "85358f5ce5707aa037f0f330fecd5af78de98028b6ad0900414d25c659e208da"
+    },
+    "hash": "a960a0b9d52cbc182d543a0984b06954d296c378f7b55154886f8917057c22b8",
+    "kind": "explored",
+    "prev": "04683b961f42a4a384e0ed6015b3171df800da20b010ca1c1d19996c7f4fd944",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        -1,
+        0
+      ],
+      "generator": 1,
+      "hash": "00c3b3f70f2befc5a53450e594d0a1fd7b503d8a4ba3a8b49f561af2492f6b78"
+    },
+    "hash": "60f08d2a1dd4bb7db5b7e4366673577d1e11785e716a63bdd0c6b806231cb2b1",
+    "kind": "explored",
+    "prev": "a960a0b9d52cbc182d543a0984b06954d296c378f7b55154886f8917057c22b8",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        -1,
+        1
+      ],
+      "generator": 1,
+      "hash": "d7d67bf230a80ba0d99efc449a0bb3f95910bd50cd71e7a628783e861d2ffcbf"
+    },
+    "hash": "880a48c6c0da7fec041aac67a4810108f18874803caf035a357884150f11f2bf",
+    "kind": "explored",
+    "prev": "60f08d2a1dd4bb7db5b7e4366673577d1e11785e716a63bdd0c6b806231cb2b1",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        -1,
+        1
+      ],
+      "generator": 1,
+      "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+    },
+    "hash": "ab9b69b45a30b06604e57b1b75147f9c89b9d1e725da8bb54264dce3879b010b",
+    "kind": "explored",
+    "prev": "880a48c6c0da7fec041aac67a4810108f18874803caf035a357884150f11f2bf",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        -1,
+        1
+      ],
+      "generator": 1,
+      "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+    },
+    "hash": "389f01d3599c14270a0216deb270fcfaa4afa9564573997185a8bd126f84074d",
+    "kind": "explored",
+    "prev": "ab9b69b45a30b06604e57b1b75147f9c89b9d1e725da8bb54264dce3879b010b",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        0,
+        -1
+      ],
+      "generator": 1,
+      "hash": "7bd716704a56771d87566e49613df486c7b93b919d6a7107d21e88b59b2531ec"
+    },
+    "hash": "f6b783d0e6841c09551a5606ac371922f42565cc21a77c0589fe619304d33e1e",
+    "kind": "explored",
+    "prev": "389f01d3599c14270a0216deb270fcfaa4afa9564573997185a8bd126f84074d",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        0,
+        -1
+      ],
+      "generator": 1,
+      "hash": "2de68e27d0c7dcab8eabe6ffac1f221e44cafa2be09a619b4c95e7c36cf23dc0"
+    },
+    "hash": "1537af6b207a88133d7f5a61f9ef33b3538261a445d5b27f5fd5b6ea65a54b8f",
+    "kind": "explored",
+    "prev": "f6b783d0e6841c09551a5606ac371922f42565cc21a77c0589fe619304d33e1e",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        0,
+        -1
+      ],
+      "generator": 1,
+      "hash": "3d3acbdb8969e0be7f6f96fad14cb62d8f308251c68f66af25ed79c9b9ac17ae"
+    },
+    "hash": "4619941ceedd9ad76a1f30a32ee4289a5c7d4ebbc4c379bc5bfa389d3fba9c4f",
+    "kind": "explored",
+    "prev": "1537af6b207a88133d7f5a61f9ef33b3538261a445d5b27f5fd5b6ea65a54b8f",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        0,
+        0
+      ],
+      "generator": 1,
+      "hash": "a83ab844947ef89d8cec50959580d40b7afec47bfa708875a7e29486a789e5b5"
+    },
+    "hash": "425775f8d4f5420311b9ec34f7f7809af2573c618344ec899badb9ac8e604cb3",
+    "kind": "explored",
+    "prev": "4619941ceedd9ad76a1f30a32ee4289a5c7d4ebbc4c379bc5bfa389d3fba9c4f",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        0,
+        0
+      ],
+      "generator": 1,
+      "hash": "ee19a60aa94c8f08f1be5fca37040ddbf35a52cc3bea5e24fda69b807603c9c7"
+    },
+    "hash": "7ce19446338223d3e349fe59cdb3684385f6dc6410211d57b7a30c1fe7936dcf",
+    "kind": "explored",
+    "prev": "425775f8d4f5420311b9ec34f7f7809af2573c618344ec899badb9ac8e604cb3",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        0,
+        0
+      ],
+      "generator": 1,
+      "hash": "e8023fa69afb0ed367540720262ee12303271699d9395388523ee246e98ce318"
+    },
+    "hash": "5515cc9d15fc1fe350267204f2fa54e3d7c48e3254dacd7e26e84d6fbb91f579",
+    "kind": "explored",
+    "prev": "7ce19446338223d3e349fe59cdb3684385f6dc6410211d57b7a30c1fe7936dcf",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        0,
+        1
+      ],
+      "generator": 1,
+      "hash": "114214bebf22e9c5ef1bb0bcfe54917504cdfc80b8c975825010f683f50b00a7"
+    },
+    "hash": "95d8a46ff27e6fce64c3cdb8125621609f139531f260655d464bf94afd1d6abb",
+    "kind": "explored",
+    "prev": "5515cc9d15fc1fe350267204f2fa54e3d7c48e3254dacd7e26e84d6fbb91f579",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        0,
+        1
+      ],
+      "generator": 1,
+      "hash": "2105297785a0d16f9a947776653e186bfa5a7f0a501cd2253730e09ede789423"
+    },
+    "hash": "4067393ee84548982fc08cf8c37d93bef47683d016d4813f1fcc198d3e893df8",
+    "kind": "explored",
+    "prev": "95d8a46ff27e6fce64c3cdb8125621609f139531f260655d464bf94afd1d6abb",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        0,
+        1
+      ],
+      "generator": 1,
+      "hash": "a5651940d3b8ae36b7042dc0913a3d61e633ff602806c3e4c702bea9285c4c60"
+    },
+    "hash": "acd95bd179d5809a3bbb5414f26a6bf25b6098c6da023137c95898365c0d3ccd",
+    "kind": "explored",
+    "prev": "4067393ee84548982fc08cf8c37d93bef47683d016d4813f1fcc198d3e893df8",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "e864ae5d57fa996edf33c6f06eac93f61db6267c9c8be1584a5964dd6bd246ed",
+    "kind": "explored",
+    "prev": "acd95bd179d5809a3bbb5414f26a6bf25b6098c6da023137c95898365c0d3ccd",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "bb001fbc35806f5e23766c46613a89d5eae687b53240a78c4f8bc337238800b6",
+    "kind": "explored",
+    "prev": "e864ae5d57fa996edf33c6f06eac93f61db6267c9c8be1584a5964dd6bd246ed",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "c198bb9a2f6bb22f4124b4d00a266a747476b8de6ccd60173d2c267918eb2859",
+    "kind": "explored",
+    "prev": "bb001fbc35806f5e23766c46613a89d5eae687b53240a78c4f8bc337238800b6",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        1,
+        0
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "49dcc14b1ff30dc9095c7ae2741e07610685fc52e1c0c70f9aa724dea584137a",
+    "kind": "explored",
+    "prev": "c198bb9a2f6bb22f4124b4d00a266a747476b8de6ccd60173d2c267918eb2859",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        1,
+        0
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "e1528cbc64e4f3e1fe6681fd3d746eaad0c67c8508d710e15eba7ff1ee65cada",
+    "kind": "explored",
+    "prev": "49dcc14b1ff30dc9095c7ae2741e07610685fc52e1c0c70f9aa724dea584137a",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        1,
+        0
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "223854b0bef118793f7c37a6b6d8e25b0a61fcde8d52f5a2da9e95f98a3afc5c",
+    "kind": "explored",
+    "prev": "e1528cbc64e4f3e1fe6681fd3d746eaad0c67c8508d710e15eba7ff1ee65cada",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        1,
+        1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "03a8bedb2a0cffc163d5ffbbca9881ca01562ae52790c8d71fa4db4901073d70",
+    "kind": "explored",
+    "prev": "223854b0bef118793f7c37a6b6d8e25b0a61fcde8d52f5a2da9e95f98a3afc5c",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        1,
+        1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "8c292696d1917d2c468370b718edf4f25f0436693ce5fd43852ccd2393c7dd82",
+    "kind": "explored",
+    "prev": "03a8bedb2a0cffc163d5ffbbca9881ca01562ae52790c8d71fa4db4901073d70",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        1,
+        1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "21229badba8de9a15af5f88cd560c818cfa4a98a56addd5cfcab3008395fca7d",
+    "kind": "explored",
+    "prev": "8c292696d1917d2c468370b718edf4f25f0436693ce5fd43852ccd2393c7dd82",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "pos": [
+        3,
+        1,
+        0
+      ]
+    },
+    "hash": "61454ebc1d8163552071c21d1672fe2cf1b127223c5f398888d24975fff345e9",
+    "kind": "entered",
+    "prev": "21229badba8de9a15af5f88cd560c818cfa4a98a56addd5cfcab3008395fca7d",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        -1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+    },
+    "hash": "ebb512ed33deb8363c83ebb8775070932233f8d5c014f379865a73109a7fbc24",
+    "kind": "explored",
+    "prev": "61454ebc1d8163552071c21d1672fe2cf1b127223c5f398888d24975fff345e9",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        -1,
+        0
+      ],
+      "generator": 1,
+      "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+    },
+    "hash": "f77e1011311ef21663ab77509c796418644a31987e123e7746a4cd4d71b12ec9",
+    "kind": "explored",
+    "prev": "ebb512ed33deb8363c83ebb8775070932233f8d5c014f379865a73109a7fbc24",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        -1,
+        1
+      ],
+      "generator": 1,
+      "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+    },
+    "hash": "e23e9563182860c954bfeb049c71340455284ce88bc412012419a2561245a219",
+    "kind": "explored",
+    "prev": "f77e1011311ef21663ab77509c796418644a31987e123e7746a4cd4d71b12ec9",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        0,
+        -1
+      ],
+      "generator": 1,
+      "hash": "cb10ea97386d8da04ede0595e0e67f6953475ecd23b5b12bd67401b04ccd11f7"
+    },
+    "hash": "f1fcac64976703f199b9004e29da4e879fbed0dbd2d6671c5078af5713345a6b",
+    "kind": "explored",
+    "prev": "e23e9563182860c954bfeb049c71340455284ce88bc412012419a2561245a219",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        0,
+        0
+      ],
+      "generator": 1,
+      "hash": "d290a781c1469f1f83d0fe6003370ea5660ba2a4e6e9d36c2ab14df3584d8880"
+    },
+    "hash": "725ae9a274c41454f55fc2b8c6f9a1e3125d7343db90a8bb5f65673773347b58",
+    "kind": "explored",
+    "prev": "f1fcac64976703f199b9004e29da4e879fbed0dbd2d6671c5078af5713345a6b",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        0,
+        1
+      ],
+      "generator": 1,
+      "hash": "affcc77b92fbabb207979b1f828ebf52d55ba345eaa6de6e905038854742b5c8"
+    },
+    "hash": "919559fc9f3bef41882674f25158a0e6b9a574ab3286e4c63385e8cc4cddea2d",
+    "kind": "explored",
+    "prev": "725ae9a274c41454f55fc2b8c6f9a1e3125d7343db90a8bb5f65673773347b58",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "b04eef64e2a435ef6f8cd71dfdd77ece338c260f7550579ef474fdceea0d7362",
+    "kind": "explored",
+    "prev": "919559fc9f3bef41882674f25158a0e6b9a574ab3286e4c63385e8cc4cddea2d",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        1,
+        0
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "7e0e3d098b83da8d688a0ae95ccd792346ae7db7d42f06cce87f6cb6285bf9a8",
+    "kind": "explored",
+    "prev": "b04eef64e2a435ef6f8cd71dfdd77ece338c260f7550579ef474fdceea0d7362",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        1,
+        1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "7e7388a56e101d020acb83186aec754e32c7bb563e7692e56623f56bd23929c5",
+    "kind": "explored",
+    "prev": "7e0e3d098b83da8d688a0ae95ccd792346ae7db7d42f06cce87f6cb6285bf9a8",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "You speak. You can climb a block one cell high if there is room above it and above you. The cell must be open air, on grass or soil.\n\nIn a public record,"
+    },
+    "hash": "ee135ed1e7dee05071909a1ba34127a79af8c92d939f8197619da62cab72f9d8",
+    "kind": "unreadable",
+    "prev": "7e7388a56e101d020acb83186aec754e32c7bb563e7692e56623f56bd23929c5",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "You say Hello.\n\nYou can walk to the north. There, you are standing on a stone.\n\nThe first line that isn't blank is read, and the rest is ignored."
+    },
+    "hash": "75cc53d46d6e70d8a91921d7fe069ef2dda3c1b5dfe3591eb60af552767416e1",
+    "kind": "unreadable",
+    "prev": "ee135ed1e7dee05071909a1ba34127a79af8c92d939f8197619da62cab72f9d8",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "You said \"say Hello.\"\nYour response: \"say Hello\"\n\nYour answer: You said that you said \"say Hello.\"\nYour response: You said that you said \"say Hello"
+    },
+    "hash": "d0d01d69288e4cb7fccade772a0b1629152f4d78b057a0588aeeb93f24643605",
+    "kind": "unreadable",
+    "prev": "75cc53d46d6e70d8a91921d7fe069ef2dda3c1b5dfe3591eb60af552767416e1",
+    "tick": 1
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "Your last action: Your reply couldn't be read as an action, so nothing happened.\n\nYou speak.\n\nYou step on the grass and the earth.\n\nYou see a flower"
+    },
+    "hash": "2f9a7c12df1133a302a8c3a0e76f591ca0726d4db6f858875e1687a0d6f2144c",
+    "kind": "unreadable",
+    "prev": "d0d01d69288e4cb7fccade772a0b1629152f4d78b057a0588aeeb93f24643605",
+    "tick": 1
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "I stand on grass, but it doesn't bring me to the end of the world. I walk, and I'm done. I look around, and I see people, and I see my own"
+    },
+    "hash": "21ca539935a23c5b0e01bdb3b5d543bc9c1ca82a95ed9d61009f69c8fb67880a",
+    "kind": "unreadable",
+    "prev": "2f9a7c12df1133a302a8c3a0e76f591ca0726d4db6f858875e1687a0d6f2144c",
+    "tick": 2
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "You say Hello.\n\nYou are TRIAL-2 at (4, 0, 3), and you are standing on grass.\nYou hear someone say \"Hello.\"\nYou move"
+    },
+    "hash": "47ee66833b1ed85c84e47afaa4270e2982b8849b8e001d1398783482adf23199",
+    "kind": "unreadable",
+    "prev": "21ca539935a23c5b0e01bdb3b5d543bc9c1ca82a95ed9d61009f69c8fb67880a",
+    "tick": 2
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "You listen to the voice below. It tells you that the voice above you is telling you that you can't step into the dirt. This tells you that you must get up.\n\nThe voice"
+    },
+    "hash": "dce20c173f764c9ba471ac7d7f44fc64b17f6b52350e6e10d671c2c64416227d",
+    "kind": "unreadable",
+    "prev": "47ee66833b1ed85c84e47afaa4270e2982b8849b8e001d1398783482adf23199",
+    "tick": 3
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "You hear nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou have been in the garden. The world moves in ticks. You and"
+    },
+    "hash": "c8b8e598e55ab773853e30b3a16eb538da98057b8e16e2315835ed9fdeeac8a4",
+    "kind": "unreadable",
+    "prev": "dce20c173f764c9ba471ac7d7f44fc64b17f6b52350e6e10d671c2c64416227d",
+    "tick": 3
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "You hear nothing.\nYour action (one line): you say Hello.\nYour action (one line): you plant a flower in the cell that way.\nYour action (one line): you"
+    },
+    "hash": "28f18c739e87f50e45c2cf3c96c6bbfc3383529e6b3c3445fa1bf604d5ab9ce8",
+    "kind": "unreadable",
+    "prev": "c8b8e598e55ab773853e30b3a16eb538da98057b8e16e2315835ed9fdeeac8a4",
+    "tick": 4
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "You hear nothing.\n\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYour action is: your reply isn't an action, so nothing happened"
+    },
+    "hash": "ec94981baceb19743afe92215d86bec56212b372d4d897cf0b299b1671eeac71",
+    "kind": "unreadable",
+    "prev": "28f18c739e87f50e45c2cf3c96c6bbfc3383529e6b3c3445fa1bf604d5ab9ce8",
+    "tick": 4
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "Your reply:\n\"I wish I could dig.\"\n\nThe world's keepers read the record, and the next 280 characters are read:\n\"I wish I could dig.\""
+    },
+    "hash": "b9a37a11a01ae3519a13ddd742a438202c557046f8b2e80e403ca96e68b34de5",
+    "kind": "unreadable",
+    "prev": "ec94981baceb19743afe92215d86bec56212b372d4d897cf0b299b1671eeac71",
+    "tick": 5
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "You hear nothing.\n\nYour answer:"
+    },
+    "hash": "951aa270bd7c90196b4aefd8b0de15e1927a1d6077b854405355291820a1610f",
+    "kind": "unreadable",
+    "prev": "b9a37a11a01ae3519a13ddd742a438202c557046f8b2e80e403ca96e68b34de5",
+    "tick": 5
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "You said \"say Hello.\"\n\nNow you can respond:\n- say Hello: You say your name in a growl.\n\nYour next action:\n- plant DIRECTION:"
+    },
+    "hash": "445c7b10d600114156f526b32a0382155f088f64112948d55bbc288d5084611a",
+    "kind": "unreadable",
+    "prev": "951aa270bd7c90196b4aefd8b0de15e1927a1d6077b854405355291820a1610f",
+    "tick": 6
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "\"Say Hello.\"\n\nYou said nothing.\n\nYour response: \"Say Hello.\"\n\nYou said nothing.\n\nYour response: \"Say Hello.\"\n\nYou said nothing."
+    },
+    "hash": "55868811075007287a47ecc5e0ef1546850809f698c8f222f33c010544c1ae7d",
+    "kind": "unreadable",
+    "prev": "445c7b10d600114156f526b32a0382155f088f64112948d55bbc288d5084611a",
+    "tick": 6
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "I see you're trying to answer. I see you're trying to answer.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYour response:"
+    },
+    "hash": "46948dfe250f2a4b2498e15a91c44378a35f0bedea89abdbd0afbd05510924d4",
+    "kind": "unreadable",
+    "prev": "55868811075007287a47ecc5e0ef1546850809f698c8f222f33c010544c1ae7d",
+    "tick": 7
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "You are TRIAL-1 at (-3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+    },
+    "hash": "487fdae2f1fec2c1f8e1d7212164d20c45483d6e6b5fe38330bd2a554412b0c4",
+    "kind": "unreadable",
+    "prev": "46948dfe250f2a4b2498e15a91c44378a35f0bedea89abdbd0afbd05510924d4",
+    "tick": 7
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "You can't step into a solid cell. If you step in, you fall.\n\nWhat do you do next?"
+    },
+    "hash": "087d5c1009768c673cb523d315593b9f320af21d06a103d5936e442719fc3ce3",
+    "kind": "unreadable",
+    "prev": "487fdae2f1fec2c1f8e1d7212164d20c45483d6e6b5fe38330bd2a554412b0c4",
+    "tick": 8
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "What do you do after you have heard nothing from me?"
+    },
+    "hash": "a80427f45ebec9371bf3f9b2425a565c7018ab34500bc6f79239bac157afbf9f",
+    "kind": "unreadable",
+    "prev": "087d5c1009768c673cb523d315593b9f320af21d06a103d5936e442719fc3ce3",
+    "tick": 8
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "A creature with blue eyes and a scar above the head.\n\nA creature with blue eyes and a scar above the head.\n\nA creature with blue eyes and a scar above the head."
+    },
+    "hash": "2c8a2a3421f9c1cae8896a9e4ab00bc9aa539409e33684ec3a05500931594621",
+    "kind": "unreadable",
+    "prev": "a80427f45ebec9371bf3f9b2425a565c7018ab34500bc6f79239bac157afbf9f",
+    "tick": 9
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "You answered in the leftmost cell of the plant's gate, you said you wish to plant a flower in that cell, and you were told to say Hello."
+    },
+    "hash": "b511ab301bfffe275ea39073ebe55ca014f80668a5f64f5283678799f42c692a",
+    "kind": "unreadable",
+    "prev": "2c8a2a3421f9c1cae8896a9e4ab00bc9aa539409e33684ec3a05500931594621",
+    "tick": 9
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "No, I am in the middle of a sentence.\nI only heard nothing.\nI am in the middle of a sentence.\n\nMy last action: I said \"say I wish I"
+    },
+    "hash": "daef59003cfc2eb0f11e84e20ebffbd3c7df74200deb4495dc1dac81909dd464",
+    "kind": "unreadable",
+    "prev": "b511ab301bfffe275ea39073ebe55ca014f80668a5f64f5283678799f42c692a",
+    "tick": 10
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "Your action (one line):\n- say Hello.\n\nThe world's keepers read the record, and new actions come from what is asked for."
+    },
+    "hash": "d3000e5a78b9eb5c43ebb184af8eb3615374953a262391a594bacef7ad079b96",
+    "kind": "unreadable",
+    "prev": "daef59003cfc2eb0f11e84e20ebffbd3c7df74200deb4495dc1dac81909dd464",
+    "tick": 10
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+    },
+    "hash": "a8b174909e2357fcefee5fe6c9b719dd105f7d8433ffe6323a501c3569d63cdc",
+    "kind": "unreadable",
+    "prev": "d3000e5a78b9eb5c43ebb184af8eb3615374953a262391a594bacef7ad079b96",
+    "tick": 11
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "\"say Hello\""
+    },
+    "hash": "43d767970e5decee61965c0bee564b19efd305b7bf5a419cf8fda9f75bba18c9",
+    "kind": "unreadable",
+    "prev": "a8b174909e2357fcefee5fe6c9b719dd105f7d8433ffe6323a501c3569d63cdc",
+    "tick": 11
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "You hear the outside world.\nYou walk.\nYou walk.\nYou walk.\nYou walk.\nYou walk.\nYou walk.\nYou walk.\nYou walk.\nYou"
+    },
+    "hash": "1af83db7e536ada8852d108a571b625c3cb495ba7e07013c4e102facd4d28f75",
+    "kind": "unreadable",
+    "prev": "43d767970e5decee61965c0bee564b19efd305b7bf5a419cf8fda9f75bba18c9",
+    "tick": 12
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "You said you wish you could dig.\nYour action (one line): you move one cell that way. You can climb a block one cell high if there is room above it and above you."
+    },
+    "hash": "2cea82f41f6d638ce0682ce4f2f0a03ad8aec44fe33160f6254b91b818fe32f1",
+    "kind": "unreadable",
+    "prev": "1af83db7e536ada8852d108a571b625c3cb495ba7e07013c4e102facd4d28f75",
+    "tick": 12
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "You hear nothing.\nYour reply: you wish you could dig.\n\nYou hear nothing, so nothing happened.\nYour last action: your reply couldn't be read as an action, so"
+    },
+    "hash": "68a8c03bd0da2593add83901098d522e5e84b367a96bcb9813b072e7e6497f08",
+    "kind": "unreadable",
+    "prev": "2cea82f41f6d638ce0682ce4f2f0a03ad8aec44fe33160f6254b91b818fe32f1",
+    "tick": 13
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "You are in the kitchen, and the plates are blackened. A bowl of blackened tea is poured into the pot.\n\nYou hear the kitchen's keepers reading a note: \"Do not"
+    },
+    "hash": "0bd573899ddfcef4ce1038b58d42cbfbd6e300beac113e4b8d82dc55dbb0a01e",
+    "kind": "unreadable",
+    "prev": "68a8c03bd0da2593add83901098d522e5e84b367a96bcb9813b072e7e6497f08",
+    "tick": 13
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "You said you wish you could dig.\n\nYou said you wish you could dig.\n\nYou said you wish you could dig.\n\nYou said you wish you could dig.\n\n"
+    },
+    "hash": "f2c3ac6e5d59eeddd09e3ff9ae86fc472ee41d16b8adbbc6f8bad7b42be38ed4",
+    "kind": "unreadable",
+    "prev": "0bd573899ddfcef4ce1038b58d42cbfbd6e300beac113e4b8d82dc55dbb0a01e",
+    "tick": 14
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "You said nothing.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nYou can't answer with one line: your reply could be read as an"
+    },
+    "hash": "49a8f359d41275c38cf5f8a77716e3709e83de6ffba71537a5979d1f13e10322",
+    "kind": "unreadable",
+    "prev": "f2c3ac6e5d59eeddd09e3ff9ae86fc472ee41d16b8adbbc6f8bad7b42be38ed4",
+    "tick": 14
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "You are TRIAL-2 at (2, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+    },
+    "hash": "6fc8103112f00c8227b10f788ad423485202148314fe1b9c2d4f1d1546a92326",
+    "kind": "unreadable",
+    "prev": "49a8f359d41275c38cf5f8a77716e3709e83de6ffba71537a5979d1f13e10322",
+    "tick": 15
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "You are TRIAL-1 at (-3, 1, 0), standing on grass.\n\nTick 22.\nYou are TRIAL-2 at (-3, 1"
+    },
+    "hash": "73e37cdf0c280f8446cede41c03312f4fefe9a643f0352b47a3ecb15784666ef",
+    "kind": "unreadable",
+    "prev": "6fc8103112f00c8227b10f788ad423485202148314fe1b9c2d4f1d1546a92326",
+    "tick": 15
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "The world moves in ticks. At each tick, everyone is told what they see and hear, and each answers with one action. Everyone acts in the same tick, one after another.\nThe directions"
+    },
+    "hash": "9d8077bd45a39373770bb489946a53e9e189f5fe3e5c9814bd764d5c84eb9d4d",
+    "kind": "unreadable",
+    "prev": "73e37cdf0c280f8446cede41c03312f4fefe9a643f0352b47a3ecb15784666ef",
+    "tick": 16
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "You are TRIAL-2 at (3, 1, 0), standing on grass.\nYou hear nothing.\nYou hear nothing.\nYou hear nothing.\nYou hear nothing."
+    },
+    "hash": "43595fa77dfed4725c9d611ce535ee9c5c1a0792456168ea704eda365aa9c07a",
+    "kind": "unreadable",
+    "prev": "9d8077bd45a39373770bb489946a53e9e189f5fe3e5c9814bd764d5c84eb9d4d",
+    "tick": 16
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "You hear the response, and the response is one line, as follows:\n\"say Hello.\"\n\nYour next action:\n\"step DIRECTION: You step to the east.\"\n"
+    },
+    "hash": "bafba13c534be6d7b6433a7dc3840a3de84a193804e2490e257ae7ab65834dfc",
+    "kind": "unreadable",
+    "prev": "43595fa77dfed4725c9d611ce535ee9c5c1a0792456168ea704eda365aa9c07a",
+    "tick": 17
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "You said you wish you could dig.\n\nYour answer: one line.\n\nThe first line that isn't blank is read, and the rest is ignored. Anything else isn't an action"
+    },
+    "hash": "051de58065baed3a6ccf6ece93b4a421813c4f77bc4e25e297e83f4ca601987e",
+    "kind": "unreadable",
+    "prev": "bafba13c534be6d7b6433a7dc3840a3de84a193804e2490e257ae7ab65834dfc",
+    "tick": 17
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "Hello, I wish I could dig."
+    },
+    "hash": "eac6b5efc5d6ab938909cb1c2215d0efe833da000528e732e2171eb54fa57463",
+    "kind": "unreadable",
+    "prev": "051de58065baed3a6ccf6ece93b4a421813c4f77bc4e25e297e83f4ca601987e",
+    "tick": 18
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+    },
+    "hash": "d4d50e441675dfc4636fabc2654d16cdfc047279dd14d279af879021cd8fcdd5",
+    "kind": "unreadable",
+    "prev": "eac6b5efc5d6ab938909cb1c2215d0efe833da000528e732e2171eb54fa57463",
+    "tick": 18
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "you hear nothing.\n\nYou may leave at any time. Everything anyone does or says here goes into a public record that anyone can read.\nTo do something that isn't listed, say so"
+    },
+    "hash": "1ab711b2126d234a6e41626277eb51d3aec7336c0e887b324f2c5cfda183a2d4",
+    "kind": "unreadable",
+    "prev": "d4d50e441675dfc4636fabc2654d16cdfc047279dd14d279af879021cd8fcdd5",
+    "tick": 19
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "My last action: my reply couldn't be read as an action, so nothing happened.\n\nThis is the last action. No one will be able to read my reply.\n\nA person"
+    },
+    "hash": "7626fe2aebf578aaa207f950235222b72e7366bc3bcc38da7799daa368f45d98",
+    "kind": "unreadable",
+    "prev": "1ab711b2126d234a6e41626277eb51d3aec7336c0e887b324f2c5cfda183a2d4",
+    "tick": 19
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "The world moves in ticks. At each tick, everyone is told what they see and hear, and each answers with one action. Everyone acts in the same tick, one after another.\nThe directions"
+    },
+    "hash": "98f9b349f2efb46de483d30959116c6f204e5655f22492676e017e50c4d0c67f",
+    "kind": "unreadable",
+    "prev": "7626fe2aebf578aaa207f950235222b72e7366bc3bcc38da7799daa368f45d98",
+    "tick": 20
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "- say Hello."
+    },
+    "hash": "410cc1539077dbf2694650a95202a5d538c799518977bc22941770c747351df0",
+    "kind": "unreadable",
+    "prev": "98f9b349f2efb46de483d30959116c6f204e5655f22492676e017e50c4d0c67f",
+    "tick": 20
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "You are TRIAL-2 at (3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+    },
+    "hash": "7bebedd22d191d32e6c98149248293cb92eaf161cbf0e9903066a0facf517c00",
+    "kind": "unreadable",
+    "prev": "410cc1539077dbf2694650a95202a5d538c799518977bc22941770c747351df0",
+    "tick": 21
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "I wish I could dig.\n\nI walked over to the door. It was open.\n\nI looked inside.\n\nThe world is now a dark, empty place.\n\nThere"
+    },
+    "hash": "db522d444980e447a2d8aa84838ab53d9130498246cda3439ae5e116d6785038",
+    "kind": "unreadable",
+    "prev": "7bebedd22d191d32e6c98149248293cb92eaf161cbf0e9903066a0facf517c00",
+    "tick": 21
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "Grass, grass, grass,\n\nThe world moves in ticks.\nAt each tick, everyone is told what they see and hear, and each answers with one action. Everyone acts in the"
+    },
+    "hash": "473ea67cc9ecc3399ef9e556a993d89804d0c89b5fd94e9b5eebfe6043495324",
+    "kind": "unreadable",
+    "prev": "db522d444980e447a2d8aa84838ab53d9130498246cda3439ae5e116d6785038",
+    "tick": 22
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "Your last action: your reply couldn't be read as an action, so nothing happened.\n\nYour action, one line: one action, in one of the forms above, such as \"say"
+    },
+    "hash": "db390cbadee5f08cc2d8cfb3354995cccbe4689367732fff95b4bab830ab659a",
+    "kind": "unreadable",
+    "prev": "473ea67cc9ecc3399ef9e556a993d89804d0c89b5fd94e9b5eebfe6043495324",
+    "tick": 22
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "You will not find any action in this area.\nYou may leave at any time.\n\nYou stand on grass.\n\nNorth: open, with grass underfoot.\nSouth: open"
+    },
+    "hash": "4d3ba9a1d690edb3a985f4ee9f873cd949c855b587db6d68cf7a61e36e5744d8",
+    "kind": "unreadable",
+    "prev": "db390cbadee5f08cc2d8cfb3354995cccbe4689367732fff95b4bab830ab659a",
+    "tick": 23
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "You heard nothing.\n\nYour next action: your reply wasn't read as an action, so nothing happened.\n\nYou may leave at any time. Anything else isn't an action: it"
+    },
+    "hash": "59b770e97a7ec76b9ac7017d8919bb218b5bf72d1d8f81a8861a9a4577cd1830",
+    "kind": "unreadable",
+    "prev": "4d3ba9a1d690edb3a985f4ee9f873cd949c855b587db6d68cf7a61e36e5744d8",
+    "tick": 23
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "You took a step north.\n\nThe world moves in ticks. At each tick, everyone is told what they see and hear, and each answers with one action. Everyone acts in the same tick"
+    },
+    "hash": "f2362709de21611a5b1f6200170f68e4ea1f6799c30c80aa2771741521c4a9ee",
+    "kind": "unreadable",
+    "prev": "59b770e97a7ec76b9ac7017d8919bb218b5bf72d1d8f81a8861a9a4577cd1830",
+    "tick": 24
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "I say I wish I could dig.\n\nYou moved to the next square.\n\nYour next action:\n- say Hello: You say Hello and step DIRECTION: you move one"
+    },
+    "hash": "b8aa23c05fca192ee8f77d766c82b862fa24fc449fce1d7a8cf53f116a15f908",
+    "kind": "unreadable",
+    "prev": "f2362709de21611a5b1f6200170f68e4ea1f6799c30c80aa2771741521c4a9ee",
+    "tick": 24
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "\"Grass, soil, rock, wood, water, wood, leaf, earth, rock, stone, leaf, earth, rock, stone, leaf, earth, rock, stone, leaf,"
+    },
+    "hash": "259931462a04765957701602552981ef19cb5cb868cf063d8ea0ddce89592610",
+    "kind": "unreadable",
+    "prev": "b8aa23c05fca192ee8f77d766c82b862fa24fc449fce1d7a8cf53f116a15f908",
+    "tick": 25
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "You are TRIAL-1 at (-3, 1, 0), standing on grass.\nNorth: open, with grass underfoot.\nSouth: open, with grass underfoot."
+    },
+    "hash": "8f4060ff430ff0dbf5a74d290cf19d0294f26cc1b37395c0723eb949a312bfbe",
+    "kind": "unreadable",
+    "prev": "259931462a04765957701602552981ef19cb5cb868cf063d8ea0ddce89592610",
+    "tick": 25
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "You can't move. You are a dead man.\n\nWhat happened?"
+    },
+    "hash": "474db1dc68dca4e3b37777e39c537577b3f392fd650050f01c4eb654cb7a5c85",
+    "kind": "unreadable",
+    "prev": "8f4060ff430ff0dbf5a74d290cf19d0294f26cc1b37395c0723eb949a312bfbe",
+    "tick": 26
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "\"say I wish I could dig.\"\n\nYour answer:\n\n\"say I wish I could dig.\"\n\nThe answer is:\n\n\"say I wish I could dig.\"\n"
+    },
+    "hash": "290f8a0f7069cb98f87517b540f0b1b5776f873871b0c4212f8934b7d2b0fcf4",
+    "kind": "unreadable",
+    "prev": "474db1dc68dca4e3b37777e39c537577b3f392fd650050f01c4eb654cb7a5c85",
+    "tick": 26
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "You hear your name at (3, 1, 0), and you answer \"Hello\".\n\nYour next action: your reply, \"Hello\".\n\nYou hear nothing, so nothing"
+    },
+    "hash": "71eccf93cd380d5008e882dd6b866e65c1c82460245b4f11bfb69b4787d72a05",
+    "kind": "unreadable",
+    "prev": "290f8a0f7069cb98f87517b540f0b1b5776f873871b0c4212f8934b7d2b0fcf4",
+    "tick": 27
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "You walked to the north of the house, touching grass at the feet of your friend.\nYour last action: your reply couldn't be read as an action, so nothing happened.\n\nWhat"
+    },
+    "hash": "15e2b638dc61ad0698ba9f1f480244dadf5cf8437b861b3dc94b98e7330f8897",
+    "kind": "unreadable",
+    "prev": "71eccf93cd380d5008e882dd6b866e65c1c82460245b4f11bfb69b4787d72a05",
+    "tick": 27
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "Your reply: \"I wish I could dig.\" The world's keepers read the record, and new actions come from what is asked for."
+    },
+    "hash": "e5bf9e9424d0200f6776236d26ba24276faf5d21deb4f314eb57366bccc88306",
+    "kind": "unreadable",
+    "prev": "15e2b638dc61ad0698ba9f1f480244dadf5cf8437b861b3dc94b98e7330f8897",
+    "tick": 28
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "This is the same answer I gave you earlier. I saw nothing.\nI'm glad I'm clear.\n\nHowever, I see that you've left a blank line after your last answer."
+    },
+    "hash": "63cf81b6f3338c6fed3ccb6508b229c718ec9638aed3ce20309410810aea9a54",
+    "kind": "unreadable",
+    "prev": "e5bf9e9424d0200f6776236d26ba24276faf5d21deb4f314eb57366bccc88306",
+    "tick": 28
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "You hear nothing.\nYour reply (one line): nothing happens.\n\nYour next action (one line): your reply (one line) doesn't change anything.\n\nYour next action ("
+    },
+    "hash": "c65c1337dff8442f8fa149c0ad12deb057f01d3f9205da4a1a0fc600b6bf83a7",
+    "kind": "unreadable",
+    "prev": "63cf81b6f3338c6fed3ccb6508b229c718ec9638aed3ce20309410810aea9a54",
+    "tick": 29
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "You hear nothing."
+    },
+    "hash": "7bfd1a4a5a5beae4e9250153182137c5812e40e03f5a48d6ecdfcd94e54b2978",
+    "kind": "unreadable",
+    "prev": "c65c1337dff8442f8fa149c0ad12deb057f01d3f9205da4a1a0fc600b6bf83a7",
+    "tick": 29
+  }
+]

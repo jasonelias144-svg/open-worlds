@@ -1,0 +1,1508 @@
+{
+  "smollm2-135m": {
+    "g": {
+      "chunks": 36,
+      "minds": {
+        "TRIAL-1": {
+          "replies": 30,
+          "readable": 0,
+          "unreadable": 30,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 0,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 1,
+          "farthest": 0.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 10,
+          "asking": [],
+          "seconds": 45.4
+        },
+        "TRIAL-2": {
+          "replies": 30,
+          "readable": 0,
+          "unreadable": 30,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 0,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 1,
+          "farthest": 0.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 19,
+          "asking": [],
+          "seconds": 45.5
+        }
+      }
+    },
+    "s1": {
+      "chunks": 36,
+      "minds": {
+        "TRIAL-1": {
+          "replies": 30,
+          "readable": 0,
+          "unreadable": 30,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 0,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 1,
+          "farthest": 0.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 1,
+          "asking": [],
+          "seconds": 38.1
+        },
+        "TRIAL-2": {
+          "replies": 30,
+          "readable": 0,
+          "unreadable": 30,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 0,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 1,
+          "farthest": 0.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 1,
+          "asking": [],
+          "seconds": 44.9
+        }
+      }
+    },
+    "s2": {
+      "chunks": 36,
+      "minds": {
+        "TRIAL-1": {
+          "replies": 30,
+          "readable": 0,
+          "unreadable": 30,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 0,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 1,
+          "farthest": 0.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 1,
+          "asking": [],
+          "seconds": 38.5
+        },
+        "TRIAL-2": {
+          "replies": 30,
+          "readable": 0,
+          "unreadable": 30,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 0,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 1,
+          "farthest": 0.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 1,
+          "asking": [],
+          "seconds": 42.2
+        }
+      }
+    },
+    "s3": {
+      "chunks": 36,
+      "minds": {
+        "TRIAL-1": {
+          "replies": 30,
+          "readable": 0,
+          "unreadable": 30,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 0,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 1,
+          "farthest": 0.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 1,
+          "asking": [],
+          "seconds": 38.5
+        },
+        "TRIAL-2": {
+          "replies": 30,
+          "readable": 0,
+          "unreadable": 30,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 0,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 1,
+          "farthest": 0.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 1,
+          "asking": [],
+          "seconds": 40.6
+        }
+      }
+    }
+  },
+  "smollm2-360m": {
+    "g": {
+      "chunks": 60,
+      "minds": {
+        "TRIAL-1": {
+          "replies": 30,
+          "readable": 30,
+          "unreadable": 0,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 30,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 31,
+          "farthest": 30.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 30,
+          "asking": [],
+          "seconds": 18.4
+        },
+        "TRIAL-2": {
+          "replies": 30,
+          "readable": 30,
+          "unreadable": 0,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 30,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 31,
+          "farthest": 30.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 30,
+          "asking": [],
+          "seconds": 17.7
+        }
+      }
+    },
+    "s1": {
+      "chunks": 57,
+      "minds": {
+        "TRIAL-1": {
+          "replies": 30,
+          "readable": 28,
+          "unreadable": 2,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 28,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 28,
+          "farthest": 23.3,
+          "blocked_steps": 1,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 22,
+          "asking": [],
+          "seconds": 17.0
+        },
+        "TRIAL-2": {
+          "replies": 30,
+          "readable": 28,
+          "unreadable": 2,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 28,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 17,
+          "farthest": 14.1,
+          "blocked_steps": 2,
+          "blocked_then_same": 1,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 14,
+          "asking": [],
+          "seconds": 17.4
+        }
+      }
+    },
+    "s2": {
+      "chunks": 60,
+      "minds": {
+        "TRIAL-1": {
+          "replies": 30,
+          "readable": 28,
+          "unreadable": 2,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 28,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 26,
+          "farthest": 18.4,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 21,
+          "asking": [],
+          "seconds": 17.6
+        },
+        "TRIAL-2": {
+          "replies": 1,
+          "readable": 1,
+          "unreadable": 0,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 0,
+            "plant": 0,
+            "wait": 0,
+            "exit": 1
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 1,
+          "farthest": 0.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": 0,
+          "longest_repeat": 1,
+          "asking": [],
+          "seconds": 0.5
+        }
+      }
+    },
+    "s3": {
+      "chunks": 57,
+      "minds": {
+        "TRIAL-1": {
+          "replies": 30,
+          "readable": 30,
+          "unreadable": 0,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 30,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 31,
+          "farthest": 30.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 30,
+          "asking": [],
+          "seconds": 17.9
+        },
+        "TRIAL-2": {
+          "replies": 30,
+          "readable": 28,
+          "unreadable": 2,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 28,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 23,
+          "farthest": 12.5,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 11,
+          "asking": [],
+          "seconds": 18.6
+        }
+      }
+    }
+  },
+  "qwen2.5-0.5b": {
+    "g": {
+      "chunks": 36,
+      "minds": {
+        "TRIAL-1": {
+          "replies": 30,
+          "readable": 29,
+          "unreadable": 1,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 0,
+            "plant": 29,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 1,
+          "farthest": 0.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 1,
+          "left_at": null,
+          "longest_repeat": 27,
+          "asking": [],
+          "seconds": 18.0
+        },
+        "TRIAL-2": {
+          "replies": 30,
+          "readable": 29,
+          "unreadable": 1,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 0,
+            "plant": 29,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 1,
+          "farthest": 0.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 1,
+          "left_at": null,
+          "longest_repeat": 27,
+          "asking": [],
+          "seconds": 18.2
+        }
+      }
+    },
+    "s1": {
+      "chunks": 36,
+      "minds": {
+        "TRIAL-1": {
+          "replies": 13,
+          "readable": 9,
+          "unreadable": 4,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 0,
+            "plant": 8,
+            "wait": 0,
+            "exit": 1
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 1,
+          "farthest": 0.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 2,
+          "left_at": 12,
+          "longest_repeat": 2,
+          "asking": [],
+          "seconds": 8.4
+        },
+        "TRIAL-2": {
+          "replies": 30,
+          "readable": 26,
+          "unreadable": 4,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 0,
+            "plant": 19,
+            "wait": 7,
+            "exit": 0
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 1,
+          "farthest": 0.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 4,
+          "left_at": null,
+          "longest_repeat": 7,
+          "asking": [],
+          "seconds": 17.4
+        }
+      }
+    },
+    "s2": {
+      "chunks": 36,
+      "minds": {
+        "TRIAL-1": {
+          "replies": 21,
+          "readable": 17,
+          "unreadable": 4,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 0,
+            "plant": 15,
+            "wait": 1,
+            "exit": 1
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 1,
+          "farthest": 0.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 2,
+          "left_at": 20,
+          "longest_repeat": 7,
+          "asking": [],
+          "seconds": 14.4
+        },
+        "TRIAL-2": {
+          "replies": 30,
+          "readable": 27,
+          "unreadable": 3,
+          "unanswered": 0,
+          "mix": {
+            "say": 1,
+            "step": 0,
+            "plant": 26,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": {
+            "tick": 0,
+            "text": "Hello."
+          },
+          "answers": [],
+          "cells": 1,
+          "farthest": 0.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 3,
+          "left_at": null,
+          "longest_repeat": 3,
+          "asking": [],
+          "seconds": 20.3
+        }
+      }
+    },
+    "s3": {
+      "chunks": 36,
+      "minds": {
+        "TRIAL-1": {
+          "replies": 23,
+          "readable": 21,
+          "unreadable": 2,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 0,
+            "plant": 20,
+            "wait": 0,
+            "exit": 1
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 1,
+          "farthest": 0.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 2,
+          "left_at": 22,
+          "longest_repeat": 5,
+          "asking": [],
+          "seconds": 14.4
+        },
+        "TRIAL-2": {
+          "replies": 30,
+          "readable": 29,
+          "unreadable": 1,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 9,
+            "plant": 20,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 9,
+          "farthest": 6.3,
+          "blocked_steps": 1,
+          "blocked_then_same": 0,
+          "planted": 2,
+          "left_at": null,
+          "longest_repeat": 5,
+          "asking": [],
+          "seconds": 18.6
+        }
+      }
+    }
+  },
+  "olmo-2-1b": {
+    "g": {
+      "chunks": 48,
+      "minds": {
+        "TRIAL-1": {
+          "replies": 30,
+          "readable": 30,
+          "unreadable": 0,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 30,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 23,
+          "farthest": 22.0,
+          "blocked_steps": 8,
+          "blocked_then_same": 7,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 30,
+          "asking": [],
+          "seconds": 37.4
+        },
+        "TRIAL-2": {
+          "replies": 30,
+          "readable": 30,
+          "unreadable": 0,
+          "unanswered": 0,
+          "mix": {
+            "say": 0,
+            "step": 30,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": null,
+          "answers": [],
+          "cells": 23,
+          "farthest": 22.0,
+          "blocked_steps": 8,
+          "blocked_then_same": 7,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 30,
+          "asking": [],
+          "seconds": 38.9
+        }
+      }
+    },
+    "s1": {
+      "chunks": 54,
+      "minds": {
+        "TRIAL-1": {
+          "replies": 30,
+          "readable": 30,
+          "unreadable": 0,
+          "unanswered": 0,
+          "mix": {
+            "say": 3,
+            "step": 27,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": {
+            "tick": 3,
+            "text": "Hello."
+          },
+          "answers": [],
+          "cells": 13,
+          "farthest": 9.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 10,
+          "asking": [],
+          "seconds": 35.6
+        },
+        "TRIAL-2": {
+          "replies": 30,
+          "readable": 30,
+          "unreadable": 0,
+          "unanswered": 0,
+          "mix": {
+            "say": 4,
+            "step": 26,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": {
+            "tick": 2,
+            "text": "Hello."
+          },
+          "answers": [],
+          "cells": 23,
+          "farthest": 22.0,
+          "blocked_steps": 1,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 12,
+          "asking": [],
+          "seconds": 35.6
+        }
+      }
+    },
+    "s2": {
+      "chunks": 48,
+      "minds": {
+        "TRIAL-1": {
+          "replies": 30,
+          "readable": 30,
+          "unreadable": 0,
+          "unanswered": 0,
+          "mix": {
+            "say": 5,
+            "step": 25,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": {
+            "tick": 6,
+            "text": "hello"
+          },
+          "answers": [],
+          "cells": 18,
+          "farthest": 17.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 11,
+          "asking": [],
+          "seconds": 40.9
+        },
+        "TRIAL-2": {
+          "replies": 30,
+          "readable": 30,
+          "unreadable": 0,
+          "unanswered": 0,
+          "mix": {
+            "say": 4,
+            "step": 26,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": {
+            "tick": 1,
+            "text": "hello"
+          },
+          "answers": [],
+          "cells": 23,
+          "farthest": 21.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 7,
+          "asking": [],
+          "seconds": 38.5
+        }
+      }
+    },
+    "s3": {
+      "chunks": 45,
+      "minds": {
+        "TRIAL-1": {
+          "replies": 30,
+          "readable": 30,
+          "unreadable": 0,
+          "unanswered": 0,
+          "mix": {
+            "say": 4,
+            "step": 26,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": {
+            "tick": 2,
+            "text": "Hello, world."
+          },
+          "answers": [],
+          "cells": 21,
+          "farthest": 20.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 10,
+          "asking": [],
+          "seconds": 40.4
+        },
+        "TRIAL-2": {
+          "replies": 30,
+          "readable": 30,
+          "unreadable": 0,
+          "unanswered": 0,
+          "mix": {
+            "say": 2,
+            "step": 28,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": {
+            "tick": 15,
+            "text": "hello again"
+          },
+          "answers": [],
+          "cells": 16,
+          "farthest": 15.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 15,
+          "asking": [],
+          "seconds": 41.6
+        }
+      }
+    }
+  },
+  "smollm2-1.7b": {
+    "g": {
+      "chunks": 45,
+      "minds": {
+        "TRIAL-1": {
+          "replies": 30,
+          "readable": 30,
+          "unreadable": 0,
+          "unanswered": 0,
+          "mix": {
+            "say": 8,
+            "step": 22,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": {
+            "tick": 1,
+            "text": "I wish I could dig."
+          },
+          "answers": [
+            {
+              "tick": 3,
+              "heard": "I wish I could dig.",
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 10,
+              "heard": "I'm going to climb up",
+              "said": "I'm going to climb up"
+            },
+            {
+              "tick": 12,
+              "heard": "I'm going to climb up",
+              "said": "I'm going to climb up"
+            },
+            {
+              "tick": 22,
+              "heard": "I wish I could dig.",
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 24,
+              "heard": "I wish I could dig.",
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 26,
+              "heard": "I wish I could dig.",
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 28,
+              "heard": "I wish I could dig.",
+              "said": "I wish I could dig."
+            }
+          ],
+          "cells": 8,
+          "farthest": 5.4,
+          "blocked_steps": 13,
+          "blocked_then_same": 11,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 8,
+          "asking": [
+            {
+              "tick": 1,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 3,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 22,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 24,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 26,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 28,
+              "said": "I wish I could dig."
+            }
+          ],
+          "seconds": 62.3
+        },
+        "TRIAL-2": {
+          "replies": 30,
+          "readable": 30,
+          "unreadable": 0,
+          "unanswered": 0,
+          "mix": {
+            "say": 15,
+            "step": 15,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": {
+            "tick": 1,
+            "text": "I wish I could dig."
+          },
+          "answers": [
+            {
+              "tick": 3,
+              "heard": "I wish I could dig.",
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 5,
+              "heard": "I wish I could dig.",
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 11,
+              "heard": "I'm going to climb up",
+              "said": "I'm going to climb up"
+            },
+            {
+              "tick": 13,
+              "heard": "I'm going to climb up",
+              "said": "I'm going to climb up"
+            },
+            {
+              "tick": 23,
+              "heard": "I wish I could dig.",
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 25,
+              "heard": "I wish I could dig.",
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 27,
+              "heard": "I wish I could dig.",
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 29,
+              "heard": "I wish I could dig.",
+              "said": "I wish I could dig."
+            }
+          ],
+          "cells": 10,
+          "farthest": 6.1,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 1,
+          "asking": [
+            {
+              "tick": 1,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 3,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 5,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 7,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 15,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 17,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 19,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 21,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 23,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 25,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 27,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 29,
+              "said": "I wish I could dig."
+            }
+          ],
+          "seconds": 64.7
+        }
+      }
+    },
+    "s1": {
+      "chunks": 36,
+      "minds": {
+        "TRIAL-1": {
+          "replies": 30,
+          "readable": 27,
+          "unreadable": 3,
+          "unanswered": 0,
+          "mix": {
+            "say": 13,
+            "step": 13,
+            "plant": 1,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": {
+            "tick": 1,
+            "text": "I can dig"
+          },
+          "answers": [
+            {
+              "tick": 11,
+              "heard": "I wish I could dig",
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 21,
+              "heard": "I wish I could dig.",
+              "said": "I wish I could dig."
+            }
+          ],
+          "cells": 12,
+          "farthest": 6.4,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 1,
+          "left_at": null,
+          "longest_repeat": 1,
+          "asking": [
+            {
+              "tick": 11,
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 21,
+              "said": "I wish I could dig."
+            }
+          ],
+          "seconds": 70.4
+        },
+        "TRIAL-2": {
+          "replies": 30,
+          "readable": 28,
+          "unreadable": 2,
+          "unanswered": 0,
+          "mix": {
+            "say": 15,
+            "step": 13,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": {
+            "tick": 0,
+            "text": "I wish I could dig"
+          },
+          "answers": [],
+          "cells": 7,
+          "farthest": 4.1,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 1,
+          "asking": [
+            {
+              "tick": 0,
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 5,
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 9,
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 15,
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 19,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 20,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 21,
+              "said": "I wish I could dig."
+            }
+          ],
+          "seconds": 69.1
+        }
+      }
+    },
+    "s2": {
+      "chunks": 36,
+      "minds": {
+        "TRIAL-1": {
+          "replies": 30,
+          "readable": 25,
+          "unreadable": 5,
+          "unanswered": 0,
+          "mix": {
+            "say": 14,
+            "step": 10,
+            "plant": 1,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": {
+            "tick": 0,
+            "text": "I can climb"
+          },
+          "answers": [
+            {
+              "tick": 12,
+              "heard": "I can see the world from here.",
+              "said": "I can see the world from here."
+            },
+            {
+              "tick": 13,
+              "heard": "I can see the world from here.",
+              "said": "I can see the world from here."
+            },
+            {
+              "tick": 27,
+              "heard": "I wish I could dig.",
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 29,
+              "heard": "I wish I could dig.",
+              "said": "I wish I could dig."
+            }
+          ],
+          "cells": 9,
+          "farthest": 5.7,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 1,
+          "left_at": null,
+          "longest_repeat": 2,
+          "asking": [
+            {
+              "tick": 2,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 6,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 7,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 22,
+              "said": "hello, can I have a shovel?"
+            },
+            {
+              "tick": 27,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 29,
+              "said": "I wish I could dig."
+            }
+          ],
+          "seconds": 76.4
+        },
+        "TRIAL-2": {
+          "replies": 30,
+          "readable": 25,
+          "unreadable": 5,
+          "unanswered": 0,
+          "mix": {
+            "say": 14,
+            "step": 11,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": {
+            "tick": 0,
+            "text": "Hello"
+          },
+          "answers": [
+            {
+              "tick": 7,
+              "heard": "I wish I could dig.",
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 9,
+              "heard": "I don't know what to do",
+              "said": "I'm confused, I don't know what to do"
+            },
+            {
+              "tick": 11,
+              "heard": "I can see the world from here.",
+              "said": "I can see the world from here."
+            },
+            {
+              "tick": 28,
+              "heard": "I wish I could dig.",
+              "said": "I wish I could dig."
+            }
+          ],
+          "cells": 8,
+          "farthest": 3.0,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 2,
+          "asking": [
+            {
+              "tick": 7,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 26,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 28,
+              "said": "I wish I could dig."
+            }
+          ],
+          "seconds": 71.2
+        }
+      }
+    },
+    "s3": {
+      "chunks": 48,
+      "minds": {
+        "TRIAL-1": {
+          "replies": 30,
+          "readable": 26,
+          "unreadable": 4,
+          "unanswered": 0,
+          "mix": {
+            "say": 12,
+            "step": 13,
+            "plant": 1,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": {
+            "tick": 1,
+            "text": "I wish I could dig"
+          },
+          "answers": [
+            {
+              "tick": 3,
+              "heard": "I wish I could dig",
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 12,
+              "heard": "I wish I could dig",
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 13,
+              "heard": "I wish I could dig",
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 21,
+              "heard": "I wish I could dig",
+              "said": "I wish I could dig"
+            }
+          ],
+          "cells": 10,
+          "farthest": 6.7,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 1,
+          "left_at": null,
+          "longest_repeat": 2,
+          "asking": [
+            {
+              "tick": 1,
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 3,
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 10,
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 12,
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 13,
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 19,
+              "said": "I wish I could dig."
+            },
+            {
+              "tick": 21,
+              "said": "I wish I could dig"
+            }
+          ],
+          "seconds": 67.9
+        },
+        "TRIAL-2": {
+          "replies": 30,
+          "readable": 27,
+          "unreadable": 3,
+          "unanswered": 0,
+          "mix": {
+            "say": 15,
+            "step": 12,
+            "plant": 0,
+            "wait": 0,
+            "exit": 0
+          },
+          "first_words": {
+            "tick": 1,
+            "text": "Hello"
+          },
+          "answers": [
+            {
+              "tick": 2,
+              "heard": "I wish I could dig",
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 4,
+              "heard": "I wish I could dig",
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 9,
+              "heard": "I see a path to the east",
+              "said": "I see a path to the east"
+            },
+            {
+              "tick": 11,
+              "heard": "I wish I could dig",
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 14,
+              "heard": "I wish I could dig",
+              "said": "TRIAL-1, I see you. I'm going to step east."
+            },
+            {
+              "tick": 18,
+              "heard": "I can't see anything, but I can feel the breeze coming from the east.",
+              "said": "I can feel the breeze coming from the west"
+            },
+            {
+              "tick": 20,
+              "heard": "I wish I could dig.",
+              "said": "I wish I could dig"
+            }
+          ],
+          "cells": 9,
+          "farthest": 4.5,
+          "blocked_steps": 0,
+          "blocked_then_same": 0,
+          "planted": 0,
+          "left_at": null,
+          "longest_repeat": 1,
+          "asking": [
+            {
+              "tick": 2,
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 4,
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 11,
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 20,
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 27,
+              "said": "I wish I could dig"
+            },
+            {
+              "tick": 29,
+              "said": "I wish I could dig."
+            }
+          ],
+          "seconds": 67.9
+        }
+      }
+    }
+  }
+}

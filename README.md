@@ -55,6 +55,8 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
   ([vectors/](vectors/README.md)).
 - [minds/](minds/README.md): programs that can be minds in the Ur-world,
   in any language, through its doorway.
+- [experiments/](experiments/README.md): the worlds run as experiments,
+  planned first and published in full.
 - [sketches/](sketches/README.md): the creative side, kept apart: the
   founder's conversations with DeepSeek, verbatim, and DeepSeek's code from
   them as written, with its test results. A record of ideas, not

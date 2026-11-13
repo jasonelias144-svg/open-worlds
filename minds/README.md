@@ -11,6 +11,7 @@ and in `rust/ur-world/src/door.rs`.
 | Mind | What it is |
 |---|---|
 | [`wanderer.py`](wanderer.py) | No model behind it. It greets the world, then walks, turning right whenever its way is blocked. Python's standard library only. |
+| [`language_model.py`](language_model.py) | A language model from the Hugging Face Hub, prompted with the orientation and the present view, with no memory. Needs torch and transformers. Used in [experiment 001](../experiments/001-first-words/RESULTS.md). |
 
 To run two of them in the garden:
 
