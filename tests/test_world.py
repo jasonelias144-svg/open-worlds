@@ -342,6 +342,14 @@ class TestThePublicRecord(unittest.TestCase):
         log[5] = {**log[5], "agent": "someone else"}
         self.assertFalse(World.verify_log(log))
 
+    def test_a_log_is_a_list(self):
+        # As the Rust check has it (found by the independent review of #27):
+        # an empty dict or string isn't an empty log.
+        self.assertTrue(World.verify_log([]))
+        for not_a_log in ({}, "", None, 5):
+            with self.subTest(log=not_a_log):
+                self.assertFalse(World.verify_log(not_a_log))
+
     def test_a_malformed_entry_fails_verification_instead_of_crashing(self):
         log = self._world(1).log
         log[2] = {"kind": "moved"}

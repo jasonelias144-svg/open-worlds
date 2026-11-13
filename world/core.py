@@ -195,6 +195,8 @@ class World:
     @staticmethod
     def verify_log(log: List[dict]) -> bool:
         """True if every entry's hash matches its contents and the chain."""
+        if not isinstance(log, list):
+            return False
         prev = GENESIS
         for entry in log:
             if not isinstance(entry, dict) or "hash" not in entry:

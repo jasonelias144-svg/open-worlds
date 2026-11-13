@@ -47,9 +47,11 @@ it:
 - every other character outside printable ASCII (space to `~`) as
   `\uXXXX` in lowercase hex, and a character beyond U+FFFF as its UTF-16
   surrogate pair (U+1F642 is `\ud83d\ude42`);
-- integers in plain decimal; the log holds no other numbers.
+- integers in plain decimal. The kernel writes no other numbers; its seed
+  is whatever its operator gives it.
 
 `prev` is the hash of the entry before, or sixty-four zeros for the first.
-The text in a log is always valid Unicode: the kernel refuses speech
-holding a lone surrogate, which JSON readers in other languages can't
-read.
+Text that agents supply is always valid Unicode: the kernel refuses
+speech holding a lone surrogate, which JSON readers in other languages
+can't read. Text its operator supplies (the rules version, agent ids, the
+reason given when taking someone out) isn't checked.
