@@ -24,11 +24,11 @@ respect one another's freedom, with full transparency and exit at any time
 
 The course, twelve steps ahead and rolling: [docs/COURSE.md](docs/COURSE.md).
 After each step is done, the rest are rechecked and one new step is added.
-In short: the chemistry world on the real chemistry; the first journey
-between worlds; keeping keys safely; the first learner; real rates and the
-gardener's water; an organic chemistry world entered by a stamp; a viewer
-page; time and populations; language-model inhabitants (Cycle 1); any AI
-from any app; governance; a common-meter poetry world.
+In short: the first journey between worlds; keeping keys safely; the
+first learner; real rates and the gardener's water; an organic chemistry
+world entered by a stamp; a viewer page; time and populations;
+language-model inhabitants (Cycle 1); any AI from any app; governance; a
+common-meter poetry world; a single-cell world.
 
 Also kept from earlier plans, outside the course for now: side cycles
 suggested by Cycle 0 (walkers with different speeds, to test "respect
