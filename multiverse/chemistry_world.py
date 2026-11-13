@@ -45,6 +45,7 @@ from chem.soup import Soup
 
 from .entity import (SIGNED_REQUESTS_LAW, STAMPS_LAW, UNSIGNED_ANSWERS_LIMIT,
                      Entity, now)
+from .identity import Signer
 from .protocol import Ack, Act, ActResponse, LogEntry
 
 ACT_TYPE = "chemistry.react"
@@ -152,9 +153,10 @@ class ChemistryWorld(Entity):
     scheme = "chemistry"
 
     def __init__(self, entity_id: str, name: str,
-                 law: Optional[ChemistryWorldLaw] = None):
+                 law: Optional[ChemistryWorldLaw] = None, *,
+                 key: Optional[Signer] = None):
         law = law or ChemistryWorldLaw()
-        super().__init__(entity_id, name, law)
+        super().__init__(entity_id, name, law, key=key)
         self._soup = Soup(1, 1, volume=law.volume, seed=law.seed)
         # Catalogue name -> identity, so an act may name any catalogue
         # molecule the soup has, whether it began there or was made.

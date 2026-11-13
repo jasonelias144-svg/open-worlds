@@ -26,6 +26,7 @@ from typing import Dict, List, Optional, Set
 
 from .entity import (SIGNED_REQUESTS_LAW, STAMPS_LAW, UNSIGNED_ANSWERS_LIMIT,
                      Entity, now)
+from .identity import Signer
 from .protocol import Ack, Act, ActResponse, LogEntry
 
 STOPWORDS = {
@@ -104,8 +105,9 @@ class PoetryWorld(Entity):
     scheme = "poetry"
 
     def __init__(self, entity_id: str, name: str,
-                 law: Optional[PoetryWorldLaw] = None):
-        super().__init__(entity_id, name, law or PoetryWorldLaw())
+                 law: Optional[PoetryWorldLaw] = None, *,
+                 key: Optional[Signer] = None):
+        super().__init__(entity_id, name, law or PoetryWorldLaw(), key=key)
         self._turns: List[Dict] = []
         self._converged = False
         self._convergence_reason: Optional[str] = None
