@@ -349,7 +349,8 @@ What it doesn't do yet, said plainly:
   the world's own, checked against no clock. A world that lies signs its
   lies; the signature shows who told them.
 - **A holder can leave stamps out** of the passport it shows, but can't
-  change one or add one. A world sees what the holder shows it.
+  change one, add one, or count one twice. A world sees what the holder
+  shows it.
 - **A passport shows every world in it** to each world it is shown to.
   Whether a person may keep presences in different worlds unlinked is
   the founder's open question (STATUS.md).

@@ -224,11 +224,75 @@ class TestVerifyPassport(unittest.TestCase):
         self.assertEqual(check.visits[0].made, 0)
 
     def test_one_departure_per_arrival(self):
-        _visit(self.poetry, self.alice)
-        arrival, departure = self.alice.passport.stamps
-        twice = Passport(self.alice.identity, (arrival, departure, departure))
+        key = Signer()
+        a = self.alice.individual.token
+        arrival = make_stamp(key, "arrival", "world:a", a, T)
+        first, second = (
+            make_stamp(key, "departure", "world:a", a, t,
+                       arrival=arrival.fingerprint())
+            for t in (T, "2026-11-14T00:00:00+00:00"))
+        twice = Passport(self.alice.identity, (arrival, first, second))
         self.assertIn("already has a departure",
                       verify_passport(twice).problems[0])
+
+    def test_a_stamp_or_leave_counts_once(self):
+        # A holder can't add a stamp, nor show one twice to look busier.
+        _visit(self.poetry, self.alice, turns=1)
+        arrival, made, departure = self.alice.passport.stamps
+        for stamps, repeated in (
+                ((arrival, made, made, departure), "stamp 3"),
+                ((arrival, arrival, made, departure), "stamp 2")):
+            with self.subTest(repeated=repeated):
+                check = verify_passport(Passport(self.alice.identity,
+                                                 stamps))
+                self.assertEqual(len(check.problems), 1, check.problems)
+                self.assertIn(f"{repeated} (", check.problems[0])
+                self.assertIn("repeats stamp", check.problems[0])
+                self.assertEqual([v.made for v in check.visits], [1])
+                world = PoetryWorld("world:next", "Next")
+                r = world.petition(self.alice.individual.petition(
+                    world.manifest(),
+                    Passport(self.alice.identity, stamps).entries()))
+                self.assertIsInstance(r, Refusal)
+                self.assertIn("repeats stamp", r.reason)
+        grudging = TestUnstampedDepartures.Grudging("world:g", "G")
+        bob = make_client("Bob")
+        petition_world(bob, grudging)
+        leave_world(bob, grudging)
+        note, = bob.passport.leaves
+        check = verify_passport(Passport(bob.identity, bob.passport.stamps,
+                                         (note, note)))
+        self.assertEqual(len(check.problems), 1)
+        self.assertIn("repeats leave 1", check.problems[0])
+
+    def test_verify_never_raises(self):
+        # Stamps and leaves read from entries are plain text, but one
+        # built by hand may not be, and a lone surrogate is text that
+        # can't be written as UTF-8.
+        _visit(TestUnstampedDepartures.Grudging("world:g", "G"),
+               self.alice)
+        arrival, = self.alice.passport.stamps
+        note, = self.alice.passport.leaves
+        me = self.alice.identity
+        for p in (Passport(me, (dataclasses.replace(
+                      arrival, timestamp="\ud800"),)),
+                  Passport(me, (dataclasses.replace(
+                      arrival, world_id=["world:g"]),)),
+                  Passport(me, ("not a stamp",)),
+                  Passport(me, (arrival,), (dataclasses.replace(
+                      note, closes="\ud800"),)),
+                  Passport(me, (arrival,), (dataclasses.replace(
+                      note, seq="1"),)),
+                  Passport(me, (arrival,), (None,))):
+            with self.subTest(p=p):
+                check = verify_passport(p)
+                self.assertEqual(len(check.problems), 1, check.problems)
+                self.assertIn("written as exact bytes", check.problems[0])
+        for odd in ("passport", None, Passport(me, [arrival]),
+                    Passport("not an identity")):
+            with self.subTest(odd=odd):
+                self.assertEqual(verify_passport(odd).problems,
+                                 ("not a passport",))
 
     def test_odd_stamps_are_reported_not_raised(self):
         odd = Stamp("visa", "world:x", "not a key", "nobody", "t",

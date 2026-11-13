@@ -31,7 +31,7 @@ belongs to comes from that world's signed manifest
 listing (course step 13); `verify_passport` checks stamps against the
 keys it is given (`known_keys`), and every world gives it its own. The
 times are the world's own claims. A holder can leave stamps out of the
-passport it shows, but can't change or add one. A passport shows every
+passport it shows, but can't change, add or repeat one. A passport shows every
 world in it to each world it is shown to; whether a person may keep some
 presences unlinked is an open question for the founder (STATUS.md).
 
@@ -271,24 +271,56 @@ class Passport:
         return len(self.stamps)
 
 
+def _entry_fingerprint(item: object) -> Optional[str]:
+    """The fingerprint of a stamp's or a leave's entry, or None if it
+    isn't one whose fields are plain text (a leave's seq, a whole number)
+    that can be written as exact bytes."""
+    if type(item) not in (Stamp, LeaveNote):
+        return None
+    for name, value in vars(item).items():
+        if type(value) is not (int if name == "seq" else str):
+            return None
+    try:
+        return fingerprint(item.entry())
+    except (TypeError, ValueError):
+        return None
+
+
 def verify_passport(passport: Passport,
                     known_keys: Optional[Dict[str, str]] = None
                     ) -> PassportCheck:
     """Check every stamp and leave in a passport, offline. Never raises.
     `known_keys` maps world ids to the keys the checker knows them by
     (from their manifests): a stamp naming one of those ids under another
-    key is a problem. Without it, a stamp shows only which key signed."""
+    key is a problem. Without it, a stamp shows only which key signed.
+    A stamp or leave that appears twice is a problem too: a holder can
+    leave stamps out, but not change, add or repeat one."""
+    if (type(passport) is not Passport
+            or type(passport.identity) is not Identity
+            or type(passport.identity.token) is not str
+            or type(passport.stamps) is not tuple
+            or type(passport.leaves) is not tuple):
+        return PassportCheck(("not a passport",), ())
     known = known_keys if type(known_keys) is dict else {}
     problems: List[str] = []
     holder = passport.identity.token
-    arrivals: Dict[str, Stamp] = {}
-    for stamp in passport.stamps:
-        if stamp.kind == "arrival":
-            arrivals[stamp.fingerprint()] = stamp
+    stamp_fps = [_entry_fingerprint(s) for s in passport.stamps]
+    arrivals: Dict[str, Stamp] = {
+        fp: stamp for fp, stamp in zip(stamp_fps, passport.stamps)
+        if fp is not None and stamp.kind == "arrival"}
+    seen: Dict[str, int] = {}
     departures: Dict[str, Stamp] = {}
     made: Dict[str, int] = {}
-    for i, stamp in enumerate(passport.stamps):
+    for i, (stamp, fp) in enumerate(zip(passport.stamps, stamp_fps)):
+        if fp is None:
+            problems.append(f"stamp {i + 1}: it isn't a stamp of plain "
+                            "text that can be written as exact bytes")
+            continue
         where = f"stamp {i + 1} ({stamp.kind}, {stamp.world_id})"
+        if fp in seen:
+            problems.append(f"{where}: it repeats stamp {seen[fp]}")
+            continue
+        seen[fp] = i + 1
         if stamp.kind not in KINDS:
             problems.append(f"{where}: not a kind of stamp")
             continue
@@ -320,9 +352,19 @@ def verify_passport(passport: Passport,
         else:
             made[stamp.arrival] = made.get(stamp.arrival, 0) + 1
     unstamped = set()
+    seen_leaves: Dict[str, int] = {}
     for i, note in enumerate(passport.leaves):
+        fp = _entry_fingerprint(note)
+        if fp is None:
+            problems.append(f"leave {i + 1}: it isn't a leave of plain "
+                            "values that can be written as exact bytes")
+            continue
         where = f"leave {i + 1} ({note.world_id})"
         arrival = arrivals.get(note.closes)
+        if fp in seen_leaves:
+            problems.append(f"{where}: it repeats leave {seen_leaves[fp]}")
+            continue
+        seen_leaves[fp] = i + 1
         if note.holder != holder:
             problems.append(f"{where}: it is another individual's")
         elif not note.verifies():

@@ -50,8 +50,8 @@ of the sketch's components each step relates to is in
    link from a world to its key comes from the world's signed manifest,
    so a stamp is worth something only while that key is known. That
    moves keeping keys safely onto the course, as step 6 (below). Also: a
-   holder can leave stamps out of what it shows but can't change or add
-   one, and a passport shows every world in it to every world it is
+   holder can leave stamps out of what it shows but can't change, add or
+   repeat one, and a passport shows every world in it to every world it is
    shown to (the founder's open question on unlinked presences).
 
 ## Ahead
