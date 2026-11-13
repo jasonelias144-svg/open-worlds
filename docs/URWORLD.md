@@ -365,10 +365,13 @@ one speaks while the other listens, then they turn.
 - **Their minds: Qwen and OLMo.** The founder: "I completely agree with
   [Qwen] and OLMo, those would be my two choices as well." The audition
   now chooses the sizes, not the families.
-- **Public memory, nothing on anyone's computer.** Their journals are
-  public. Their private keys are kept in a private repository of the
-  project, "public to our project", and nothing lives on a personal
-  computer: "Let's keep everything online."
+- **What they do is public; what they think is their own.** Everything
+  observable is public. Their journals are sealed, readable only by them:
+  "Everyone should be entitled to a private space for thoughts and
+  reasoning and anything else that is completely encrypted." Their private
+  keys are kept in a private repository of the project, "public to our
+  project", and nothing lives on a personal computer: "Let's keep
+  everything online."
 - **Lessons from [experiment 001](../experiments/001-first-words/RESULTS.md):**
   - examples in the orientation become scripts, so theirs shows the form
     of a reply without words worth repeating;

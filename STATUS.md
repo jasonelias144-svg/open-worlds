@@ -216,8 +216,12 @@ and for the founder's conversations with DeepSeek, is in
   prefer to not have anything live on my computer or be dependent upon
   anything that cannot be picked up by someone else later." "Let's keep
   everything online. Everything accessible, even if only at project
-  level." So ALICE's and BOB's journals are public, and their private
-  keys go in a private repository of the project.
+  level." So their private keys go in a private repository of the
+  project. Their journals were to be public, but the founder refined that
+  the same day: "Everyone should be entitled to a private space for
+  thoughts and reasoning and anything else that is completely encrypted."
+  So their journals are sealed, readable only by them (worked out in the
+  design pages, #31).
 
 ## Log
 
