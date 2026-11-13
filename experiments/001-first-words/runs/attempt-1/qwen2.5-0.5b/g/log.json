@@ -1,0 +1,1287 @@
+[
+  {
+    "agent": null,
+    "data": {
+      "begins": "a garden, with a tree and a spring",
+      "chunk": 16,
+      "generator": 1,
+      "rules_version": "ur-world/0.2",
+      "sea": -2,
+      "seed": 20261113
+    },
+    "hash": "02dae663d073060243788f677ac4d38ed3bf80aba1ec7c3ae34e1ea89ced1bb1",
+    "kind": "world_created",
+    "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "pos": [
+        -3,
+        1,
+        0
+      ]
+    },
+    "hash": "69d950aa5214b5845ab027812377842e7f05f45c1d5f65c66aeffd3fefbadce6",
+    "kind": "entered",
+    "prev": "02dae663d073060243788f677ac4d38ed3bf80aba1ec7c3ae34e1ea89ced1bb1",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        -1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "97874d05a41ce25e989b8d50e1f51c75b06ce644a2da56f0a516c2113ffd7fb7"
+    },
+    "hash": "93627886cf2e561161ae228ed1bb1d4804c6f7220239cedbad28e1d581174f75",
+    "kind": "explored",
+    "prev": "69d950aa5214b5845ab027812377842e7f05f45c1d5f65c66aeffd3fefbadce6",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        -1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "eed89db81af7dbb49acd1c7d87653b5610256ac24a944f219bb57e67968b9cdd"
+    },
+    "hash": "1a99b38e59b3c23969a217c547346f7c4f1363f9f1365971823b3faba93913c6",
+    "kind": "explored",
+    "prev": "93627886cf2e561161ae228ed1bb1d4804c6f7220239cedbad28e1d581174f75",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        -1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "ab8330c0414276cf2bf12eeadc1b2474d985c7a5407bff40d47746e5563bb9dc"
+    },
+    "hash": "a256c5985a739c3772f04604dc52241562c0a81eaa4b423d506ecc2116b9cb12",
+    "kind": "explored",
+    "prev": "1a99b38e59b3c23969a217c547346f7c4f1363f9f1365971823b3faba93913c6",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        -1,
+        0
+      ],
+      "generator": 1,
+      "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+    },
+    "hash": "04683b961f42a4a384e0ed6015b3171df800da20b010ca1c1d19996c7f4fd944",
+    "kind": "explored",
+    "prev": "a256c5985a739c3772f04604dc52241562c0a81eaa4b423d506ecc2116b9cb12",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        -1,
+        0
+      ],
+      "generator": 1,
+      "hash": "85358f5ce5707aa037f0f330fecd5af78de98028b6ad0900414d25c659e208da"
+    },
+    "hash": "a960a0b9d52cbc182d543a0984b06954d296c378f7b55154886f8917057c22b8",
+    "kind": "explored",
+    "prev": "04683b961f42a4a384e0ed6015b3171df800da20b010ca1c1d19996c7f4fd944",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        -1,
+        0
+      ],
+      "generator": 1,
+      "hash": "00c3b3f70f2befc5a53450e594d0a1fd7b503d8a4ba3a8b49f561af2492f6b78"
+    },
+    "hash": "60f08d2a1dd4bb7db5b7e4366673577d1e11785e716a63bdd0c6b806231cb2b1",
+    "kind": "explored",
+    "prev": "a960a0b9d52cbc182d543a0984b06954d296c378f7b55154886f8917057c22b8",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        -1,
+        1
+      ],
+      "generator": 1,
+      "hash": "d7d67bf230a80ba0d99efc449a0bb3f95910bd50cd71e7a628783e861d2ffcbf"
+    },
+    "hash": "880a48c6c0da7fec041aac67a4810108f18874803caf035a357884150f11f2bf",
+    "kind": "explored",
+    "prev": "60f08d2a1dd4bb7db5b7e4366673577d1e11785e716a63bdd0c6b806231cb2b1",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        -1,
+        1
+      ],
+      "generator": 1,
+      "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+    },
+    "hash": "ab9b69b45a30b06604e57b1b75147f9c89b9d1e725da8bb54264dce3879b010b",
+    "kind": "explored",
+    "prev": "880a48c6c0da7fec041aac67a4810108f18874803caf035a357884150f11f2bf",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        -1,
+        1
+      ],
+      "generator": 1,
+      "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+    },
+    "hash": "389f01d3599c14270a0216deb270fcfaa4afa9564573997185a8bd126f84074d",
+    "kind": "explored",
+    "prev": "ab9b69b45a30b06604e57b1b75147f9c89b9d1e725da8bb54264dce3879b010b",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        0,
+        -1
+      ],
+      "generator": 1,
+      "hash": "7bd716704a56771d87566e49613df486c7b93b919d6a7107d21e88b59b2531ec"
+    },
+    "hash": "f6b783d0e6841c09551a5606ac371922f42565cc21a77c0589fe619304d33e1e",
+    "kind": "explored",
+    "prev": "389f01d3599c14270a0216deb270fcfaa4afa9564573997185a8bd126f84074d",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        0,
+        -1
+      ],
+      "generator": 1,
+      "hash": "2de68e27d0c7dcab8eabe6ffac1f221e44cafa2be09a619b4c95e7c36cf23dc0"
+    },
+    "hash": "1537af6b207a88133d7f5a61f9ef33b3538261a445d5b27f5fd5b6ea65a54b8f",
+    "kind": "explored",
+    "prev": "f6b783d0e6841c09551a5606ac371922f42565cc21a77c0589fe619304d33e1e",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        0,
+        -1
+      ],
+      "generator": 1,
+      "hash": "3d3acbdb8969e0be7f6f96fad14cb62d8f308251c68f66af25ed79c9b9ac17ae"
+    },
+    "hash": "4619941ceedd9ad76a1f30a32ee4289a5c7d4ebbc4c379bc5bfa389d3fba9c4f",
+    "kind": "explored",
+    "prev": "1537af6b207a88133d7f5a61f9ef33b3538261a445d5b27f5fd5b6ea65a54b8f",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        0,
+        0
+      ],
+      "generator": 1,
+      "hash": "a83ab844947ef89d8cec50959580d40b7afec47bfa708875a7e29486a789e5b5"
+    },
+    "hash": "425775f8d4f5420311b9ec34f7f7809af2573c618344ec899badb9ac8e604cb3",
+    "kind": "explored",
+    "prev": "4619941ceedd9ad76a1f30a32ee4289a5c7d4ebbc4c379bc5bfa389d3fba9c4f",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        0,
+        0
+      ],
+      "generator": 1,
+      "hash": "ee19a60aa94c8f08f1be5fca37040ddbf35a52cc3bea5e24fda69b807603c9c7"
+    },
+    "hash": "7ce19446338223d3e349fe59cdb3684385f6dc6410211d57b7a30c1fe7936dcf",
+    "kind": "explored",
+    "prev": "425775f8d4f5420311b9ec34f7f7809af2573c618344ec899badb9ac8e604cb3",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        0,
+        0
+      ],
+      "generator": 1,
+      "hash": "e8023fa69afb0ed367540720262ee12303271699d9395388523ee246e98ce318"
+    },
+    "hash": "5515cc9d15fc1fe350267204f2fa54e3d7c48e3254dacd7e26e84d6fbb91f579",
+    "kind": "explored",
+    "prev": "7ce19446338223d3e349fe59cdb3684385f6dc6410211d57b7a30c1fe7936dcf",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        0,
+        1
+      ],
+      "generator": 1,
+      "hash": "114214bebf22e9c5ef1bb0bcfe54917504cdfc80b8c975825010f683f50b00a7"
+    },
+    "hash": "95d8a46ff27e6fce64c3cdb8125621609f139531f260655d464bf94afd1d6abb",
+    "kind": "explored",
+    "prev": "5515cc9d15fc1fe350267204f2fa54e3d7c48e3254dacd7e26e84d6fbb91f579",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        0,
+        1
+      ],
+      "generator": 1,
+      "hash": "2105297785a0d16f9a947776653e186bfa5a7f0a501cd2253730e09ede789423"
+    },
+    "hash": "4067393ee84548982fc08cf8c37d93bef47683d016d4813f1fcc198d3e893df8",
+    "kind": "explored",
+    "prev": "95d8a46ff27e6fce64c3cdb8125621609f139531f260655d464bf94afd1d6abb",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        0,
+        1
+      ],
+      "generator": 1,
+      "hash": "a5651940d3b8ae36b7042dc0913a3d61e633ff602806c3e4c702bea9285c4c60"
+    },
+    "hash": "acd95bd179d5809a3bbb5414f26a6bf25b6098c6da023137c95898365c0d3ccd",
+    "kind": "explored",
+    "prev": "4067393ee84548982fc08cf8c37d93bef47683d016d4813f1fcc198d3e893df8",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "e864ae5d57fa996edf33c6f06eac93f61db6267c9c8be1584a5964dd6bd246ed",
+    "kind": "explored",
+    "prev": "acd95bd179d5809a3bbb5414f26a6bf25b6098c6da023137c95898365c0d3ccd",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "bb001fbc35806f5e23766c46613a89d5eae687b53240a78c4f8bc337238800b6",
+    "kind": "explored",
+    "prev": "e864ae5d57fa996edf33c6f06eac93f61db6267c9c8be1584a5964dd6bd246ed",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "c198bb9a2f6bb22f4124b4d00a266a747476b8de6ccd60173d2c267918eb2859",
+    "kind": "explored",
+    "prev": "bb001fbc35806f5e23766c46613a89d5eae687b53240a78c4f8bc337238800b6",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        1,
+        0
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "49dcc14b1ff30dc9095c7ae2741e07610685fc52e1c0c70f9aa724dea584137a",
+    "kind": "explored",
+    "prev": "c198bb9a2f6bb22f4124b4d00a266a747476b8de6ccd60173d2c267918eb2859",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        1,
+        0
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "e1528cbc64e4f3e1fe6681fd3d746eaad0c67c8508d710e15eba7ff1ee65cada",
+    "kind": "explored",
+    "prev": "49dcc14b1ff30dc9095c7ae2741e07610685fc52e1c0c70f9aa724dea584137a",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        1,
+        0
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "223854b0bef118793f7c37a6b6d8e25b0a61fcde8d52f5a2da9e95f98a3afc5c",
+    "kind": "explored",
+    "prev": "e1528cbc64e4f3e1fe6681fd3d746eaad0c67c8508d710e15eba7ff1ee65cada",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -2,
+        1,
+        1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "03a8bedb2a0cffc163d5ffbbca9881ca01562ae52790c8d71fa4db4901073d70",
+    "kind": "explored",
+    "prev": "223854b0bef118793f7c37a6b6d8e25b0a61fcde8d52f5a2da9e95f98a3afc5c",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        -1,
+        1,
+        1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "8c292696d1917d2c468370b718edf4f25f0436693ce5fd43852ccd2393c7dd82",
+    "kind": "explored",
+    "prev": "03a8bedb2a0cffc163d5ffbbca9881ca01562ae52790c8d71fa4db4901073d70",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "chunk": [
+        0,
+        1,
+        1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "21229badba8de9a15af5f88cd560c818cfa4a98a56addd5cfcab3008395fca7d",
+    "kind": "explored",
+    "prev": "8c292696d1917d2c468370b718edf4f25f0436693ce5fd43852ccd2393c7dd82",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "pos": [
+        3,
+        1,
+        0
+      ]
+    },
+    "hash": "61454ebc1d8163552071c21d1672fe2cf1b127223c5f398888d24975fff345e9",
+    "kind": "entered",
+    "prev": "21229badba8de9a15af5f88cd560c818cfa4a98a56addd5cfcab3008395fca7d",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        -1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+    },
+    "hash": "ebb512ed33deb8363c83ebb8775070932233f8d5c014f379865a73109a7fbc24",
+    "kind": "explored",
+    "prev": "61454ebc1d8163552071c21d1672fe2cf1b127223c5f398888d24975fff345e9",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        -1,
+        0
+      ],
+      "generator": 1,
+      "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+    },
+    "hash": "f77e1011311ef21663ab77509c796418644a31987e123e7746a4cd4d71b12ec9",
+    "kind": "explored",
+    "prev": "ebb512ed33deb8363c83ebb8775070932233f8d5c014f379865a73109a7fbc24",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        -1,
+        1
+      ],
+      "generator": 1,
+      "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+    },
+    "hash": "e23e9563182860c954bfeb049c71340455284ce88bc412012419a2561245a219",
+    "kind": "explored",
+    "prev": "f77e1011311ef21663ab77509c796418644a31987e123e7746a4cd4d71b12ec9",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        0,
+        -1
+      ],
+      "generator": 1,
+      "hash": "cb10ea97386d8da04ede0595e0e67f6953475ecd23b5b12bd67401b04ccd11f7"
+    },
+    "hash": "f1fcac64976703f199b9004e29da4e879fbed0dbd2d6671c5078af5713345a6b",
+    "kind": "explored",
+    "prev": "e23e9563182860c954bfeb049c71340455284ce88bc412012419a2561245a219",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        0,
+        0
+      ],
+      "generator": 1,
+      "hash": "d290a781c1469f1f83d0fe6003370ea5660ba2a4e6e9d36c2ab14df3584d8880"
+    },
+    "hash": "725ae9a274c41454f55fc2b8c6f9a1e3125d7343db90a8bb5f65673773347b58",
+    "kind": "explored",
+    "prev": "f1fcac64976703f199b9004e29da4e879fbed0dbd2d6671c5078af5713345a6b",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        0,
+        1
+      ],
+      "generator": 1,
+      "hash": "affcc77b92fbabb207979b1f828ebf52d55ba345eaa6de6e905038854742b5c8"
+    },
+    "hash": "919559fc9f3bef41882674f25158a0e6b9a574ab3286e4c63385e8cc4cddea2d",
+    "kind": "explored",
+    "prev": "725ae9a274c41454f55fc2b8c6f9a1e3125d7343db90a8bb5f65673773347b58",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        1,
+        -1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "b04eef64e2a435ef6f8cd71dfdd77ece338c260f7550579ef474fdceea0d7362",
+    "kind": "explored",
+    "prev": "919559fc9f3bef41882674f25158a0e6b9a574ab3286e4c63385e8cc4cddea2d",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        1,
+        0
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "7e0e3d098b83da8d688a0ae95ccd792346ae7db7d42f06cce87f6cb6285bf9a8",
+    "kind": "explored",
+    "prev": "b04eef64e2a435ef6f8cd71dfdd77ece338c260f7550579ef474fdceea0d7362",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "chunk": [
+        1,
+        1,
+        1
+      ],
+      "generator": 1,
+      "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+    },
+    "hash": "7e7388a56e101d020acb83186aec754e32c7bb563e7692e56623f56bd23929c5",
+    "kind": "explored",
+    "prev": "7e0e3d098b83da8d688a0ae95ccd792346ae7db7d42f06cce87f6cb6285bf9a8",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "at": [
+        -2,
+        1,
+        0
+      ],
+      "what": "flower"
+    },
+    "hash": "64c26dcd86f5b6d31c27ea189a54c5434031dde7a8a0711794562a5f96f005e3",
+    "kind": "planted",
+    "prev": "7e7388a56e101d020acb83186aec754e32c7bb563e7692e56623f56bd23929c5",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "at": [
+        2,
+        1,
+        0
+      ],
+      "what": "flower"
+    },
+    "hash": "b6c0687dd61650a8f74111ac5b4700d6b4e9ca637d9cc1bc121d3f61094b2966",
+    "kind": "planted",
+    "prev": "64c26dcd86f5b6d31c27ea189a54c5434031dde7a8a0711794562a5f96f005e3",
+    "tick": 0
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "reply": "plant west, at (2, 1, 0)"
+    },
+    "hash": "9d3ea6b6d779fb055293e6b9e008879bbcd0f85600deff5c2fbc78e8e47ae822",
+    "kind": "unreadable",
+    "prev": "b6c0687dd61650a8f74111ac5b4700d6b4e9ca637d9cc1bc121d3f61094b2966",
+    "tick": 1
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "reply": "plant east, (-2, 1, 0)"
+    },
+    "hash": "80c734492ab3c7f50c31d8e8333f1afa2709bb53e27df97754d453fd86694857",
+    "kind": "unreadable",
+    "prev": "9d3ea6b6d779fb055293e6b9e008879bbcd0f85600deff5c2fbc78e8e47ae822",
+    "tick": 1
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "9bc7777173264fa2915242fe6d1e68306f6c9394a601c95efa171ea5e1c91d5d",
+    "kind": "blocked",
+    "prev": "80c734492ab3c7f50c31d8e8333f1afa2709bb53e27df97754d453fd86694857",
+    "tick": 2
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "69948d710a2dcfbb7666cf7f8fe51201650e926f233732856abbcf87a464ea6b",
+    "kind": "blocked",
+    "prev": "9bc7777173264fa2915242fe6d1e68306f6c9394a601c95efa171ea5e1c91d5d",
+    "tick": 2
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "4d41b39ea1e8a961190eb0b5a572261015cfd6875ea7fd7e99a1c328d99e0e9f",
+    "kind": "blocked",
+    "prev": "69948d710a2dcfbb7666cf7f8fe51201650e926f233732856abbcf87a464ea6b",
+    "tick": 3
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "913888aa8e118bf8072fc558741f5df59601fc1b3303e7ccfaf646d5b3ca0d64",
+    "kind": "blocked",
+    "prev": "4d41b39ea1e8a961190eb0b5a572261015cfd6875ea7fd7e99a1c328d99e0e9f",
+    "tick": 3
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "7a2fb89fd15ea6bb4ad6807ed3a117ccc27227c930b05b2e25e867f8d173c272",
+    "kind": "blocked",
+    "prev": "913888aa8e118bf8072fc558741f5df59601fc1b3303e7ccfaf646d5b3ca0d64",
+    "tick": 4
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "f9b72bfe1d1f5516d5a226eb73c408a6a3222c91c0ec356b8a2f4bef2e2d083f",
+    "kind": "blocked",
+    "prev": "7a2fb89fd15ea6bb4ad6807ed3a117ccc27227c930b05b2e25e867f8d173c272",
+    "tick": 4
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "2bd872cc5f1189de92efefef2647612341e3cacbd1f3f402cbc6fd3dfa2fae88",
+    "kind": "blocked",
+    "prev": "f9b72bfe1d1f5516d5a226eb73c408a6a3222c91c0ec356b8a2f4bef2e2d083f",
+    "tick": 5
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "7805e24c92e3782350dcd9bf347b7e768c7c82911c241812b15e96569f206c64",
+    "kind": "blocked",
+    "prev": "2bd872cc5f1189de92efefef2647612341e3cacbd1f3f402cbc6fd3dfa2fae88",
+    "tick": 5
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "b417aeafa170add40a7873724d2322a0fd230c0bad69782b6e1e04c462b7d094",
+    "kind": "blocked",
+    "prev": "7805e24c92e3782350dcd9bf347b7e768c7c82911c241812b15e96569f206c64",
+    "tick": 6
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "3bd3cafc01761fe6d2db6bd55e7084c45729774177446610ce26c55a7cefd9a5",
+    "kind": "blocked",
+    "prev": "b417aeafa170add40a7873724d2322a0fd230c0bad69782b6e1e04c462b7d094",
+    "tick": 6
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "9ad80de9b7a1128fc6e1515ee9a2edcc331f020ae09409b7ff0a00a3474280e9",
+    "kind": "blocked",
+    "prev": "3bd3cafc01761fe6d2db6bd55e7084c45729774177446610ce26c55a7cefd9a5",
+    "tick": 7
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "7a190cf3af1994cabd5c8179911d035060e5b672abf26e5d7693df2b4da752ce",
+    "kind": "blocked",
+    "prev": "9ad80de9b7a1128fc6e1515ee9a2edcc331f020ae09409b7ff0a00a3474280e9",
+    "tick": 7
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "e3f80ec3b82087207ddbf60c8ef2964c184ff15595e2d87112e252bca1dcf74b",
+    "kind": "blocked",
+    "prev": "7a190cf3af1994cabd5c8179911d035060e5b672abf26e5d7693df2b4da752ce",
+    "tick": 8
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "3eb7f9bfb7ee0009a662de029e1cf71e3e692a3a1477db84e0117391de94459a",
+    "kind": "blocked",
+    "prev": "e3f80ec3b82087207ddbf60c8ef2964c184ff15595e2d87112e252bca1dcf74b",
+    "tick": 8
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "b0b682dd3058dfcd4528a9e994d2ef50f34f615b1f1a90429532d27a5addb909",
+    "kind": "blocked",
+    "prev": "3eb7f9bfb7ee0009a662de029e1cf71e3e692a3a1477db84e0117391de94459a",
+    "tick": 9
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "70b28f9bf90913d6ef0051b8298398edb75e54f1ff96713c5577b8c45f451f1e",
+    "kind": "blocked",
+    "prev": "b0b682dd3058dfcd4528a9e994d2ef50f34f615b1f1a90429532d27a5addb909",
+    "tick": 9
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "f97ae2467bd7c430c61bf06300746b4eb92b510aec8cb5b1045edb92ce0c32fa",
+    "kind": "blocked",
+    "prev": "70b28f9bf90913d6ef0051b8298398edb75e54f1ff96713c5577b8c45f451f1e",
+    "tick": 10
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "2481b2b1cea02429bd58ef602e55948f39e9e6babf3c2af144dc04c5f3ffc29d",
+    "kind": "blocked",
+    "prev": "f97ae2467bd7c430c61bf06300746b4eb92b510aec8cb5b1045edb92ce0c32fa",
+    "tick": 10
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "478217fa3d2967cbb5482fa1b74f72b765090f0a0dfa6612ef6e51fe738d0dfa",
+    "kind": "blocked",
+    "prev": "2481b2b1cea02429bd58ef602e55948f39e9e6babf3c2af144dc04c5f3ffc29d",
+    "tick": 11
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "baa79823922bb01b119744b2c758f9a31e2b7eb1f7232644ca46845ab981c3fa",
+    "kind": "blocked",
+    "prev": "478217fa3d2967cbb5482fa1b74f72b765090f0a0dfa6612ef6e51fe738d0dfa",
+    "tick": 11
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "be4c70da97112895ce5fc7690b412d4f9964e4aa25f9569f2f1addf8329fbb62",
+    "kind": "blocked",
+    "prev": "baa79823922bb01b119744b2c758f9a31e2b7eb1f7232644ca46845ab981c3fa",
+    "tick": 12
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "4fc103b87f02216f0c414c45be8af754b702677b7e446f79189001b8327563b6",
+    "kind": "blocked",
+    "prev": "be4c70da97112895ce5fc7690b412d4f9964e4aa25f9569f2f1addf8329fbb62",
+    "tick": 12
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "774ec031aca2dcab844bab7c4be34c02fd51d65bdf6bc9b3c6bf97d967efa823",
+    "kind": "blocked",
+    "prev": "4fc103b87f02216f0c414c45be8af754b702677b7e446f79189001b8327563b6",
+    "tick": 13
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "c9fe69acdb6e08c28a3d987e4884b1aba303e381bd20cabcd36086b09e2dc7c0",
+    "kind": "blocked",
+    "prev": "774ec031aca2dcab844bab7c4be34c02fd51d65bdf6bc9b3c6bf97d967efa823",
+    "tick": 13
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "127ed53c99ff5b0f16a36dcd56f096873cd5c849cc289752bd4eea3da91e7e0c",
+    "kind": "blocked",
+    "prev": "c9fe69acdb6e08c28a3d987e4884b1aba303e381bd20cabcd36086b09e2dc7c0",
+    "tick": 14
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "fd3f800dacbed26aeba4a4bc7facdb8e0cba2fd0c9df37f5893fe7c9516d61e2",
+    "kind": "blocked",
+    "prev": "127ed53c99ff5b0f16a36dcd56f096873cd5c849cc289752bd4eea3da91e7e0c",
+    "tick": 14
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "ff1d094b8ee41634b0f4fe1d94b7d8b79aaaeb7ee384048af7ec3f6ef6dd84fc",
+    "kind": "blocked",
+    "prev": "fd3f800dacbed26aeba4a4bc7facdb8e0cba2fd0c9df37f5893fe7c9516d61e2",
+    "tick": 15
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "4120a45d4a5d22723201c63ceed0ad6f00106df636c6a70b1ff822d31a5da5ab",
+    "kind": "blocked",
+    "prev": "ff1d094b8ee41634b0f4fe1d94b7d8b79aaaeb7ee384048af7ec3f6ef6dd84fc",
+    "tick": 15
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "6fc4877cfcfff19efe86f46747a4b68dc75ab7abad9155070b202fb1321a4be4",
+    "kind": "blocked",
+    "prev": "4120a45d4a5d22723201c63ceed0ad6f00106df636c6a70b1ff822d31a5da5ab",
+    "tick": 16
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "2577b897d209c237985f63df70d539fe2c5d2fc305665cffe40726b0a24aeb46",
+    "kind": "blocked",
+    "prev": "6fc4877cfcfff19efe86f46747a4b68dc75ab7abad9155070b202fb1321a4be4",
+    "tick": 16
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "1f36403b2801c7992a315ef766f0dbf9ce730f1aff7a7769c6a151b7d496698f",
+    "kind": "blocked",
+    "prev": "2577b897d209c237985f63df70d539fe2c5d2fc305665cffe40726b0a24aeb46",
+    "tick": 17
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "0046d630aba9467dc1a0fdb5deb49f137810c2d8b5a7966454ee1d57ca66f6a2",
+    "kind": "blocked",
+    "prev": "1f36403b2801c7992a315ef766f0dbf9ce730f1aff7a7769c6a151b7d496698f",
+    "tick": 17
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "3008248abf5543dfbf3b111b244647c779456966edfa55d3399c4c81d7b26e48",
+    "kind": "blocked",
+    "prev": "0046d630aba9467dc1a0fdb5deb49f137810c2d8b5a7966454ee1d57ca66f6a2",
+    "tick": 18
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "1580f5947e107110c51c8bdcffafdb916a50b4ec86eebc1fe07519c7de7675ba",
+    "kind": "blocked",
+    "prev": "3008248abf5543dfbf3b111b244647c779456966edfa55d3399c4c81d7b26e48",
+    "tick": 18
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "17b55d8a82ed078bdc0a3d94aef153ad89d9247a1514efaf2ad00a45aad02817",
+    "kind": "blocked",
+    "prev": "1580f5947e107110c51c8bdcffafdb916a50b4ec86eebc1fe07519c7de7675ba",
+    "tick": 19
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "eb9b73de4de80a26cf68337a4c695bbd8ffa1b64f889d4d3b4373eb9a4f9fb7c",
+    "kind": "blocked",
+    "prev": "17b55d8a82ed078bdc0a3d94aef153ad89d9247a1514efaf2ad00a45aad02817",
+    "tick": 19
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "a87eb75e6457f2bd6db4f05adf162a03c39d0791a6cc464655592073af5665f3",
+    "kind": "blocked",
+    "prev": "eb9b73de4de80a26cf68337a4c695bbd8ffa1b64f889d4d3b4373eb9a4f9fb7c",
+    "tick": 20
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "49efcfde14ea3fa20cc956ca5c614bf66f80a9f937ace57e80d6a3cb397632e3",
+    "kind": "blocked",
+    "prev": "a87eb75e6457f2bd6db4f05adf162a03c39d0791a6cc464655592073af5665f3",
+    "tick": 20
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "87eb686bac240d99d23b966461d76d62a30012f9323256ce0d234c048957c927",
+    "kind": "blocked",
+    "prev": "49efcfde14ea3fa20cc956ca5c614bf66f80a9f937ace57e80d6a3cb397632e3",
+    "tick": 21
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "5a4b610c98ed4f6661dd4fffc4075f0849f130675dd5660faea369e944d14437",
+    "kind": "blocked",
+    "prev": "87eb686bac240d99d23b966461d76d62a30012f9323256ce0d234c048957c927",
+    "tick": 21
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "0589831268f81b7701f0476217667ee4b8bced0c82583e6173e03517085cb596",
+    "kind": "blocked",
+    "prev": "5a4b610c98ed4f6661dd4fffc4075f0849f130675dd5660faea369e944d14437",
+    "tick": 22
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "25b5edb5300bc220c25dc8c8ce59db357d9cdc8489866ceadcd1df88c06c24db",
+    "kind": "blocked",
+    "prev": "0589831268f81b7701f0476217667ee4b8bced0c82583e6173e03517085cb596",
+    "tick": 22
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "66e09a74cb815f5cc1cdd1fb6157183cd271189733006ed7a02d8bd883161ece",
+    "kind": "blocked",
+    "prev": "25b5edb5300bc220c25dc8c8ce59db357d9cdc8489866ceadcd1df88c06c24db",
+    "tick": 23
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "f334e675716078fbde1d962a1d6953be1126898ece968d322f34eaad44a94e4b",
+    "kind": "blocked",
+    "prev": "66e09a74cb815f5cc1cdd1fb6157183cd271189733006ed7a02d8bd883161ece",
+    "tick": 23
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "b568575ecae22ea7ad23ccb2f42bf7388afc569c1ffd1068524ea298545c8f83",
+    "kind": "blocked",
+    "prev": "f334e675716078fbde1d962a1d6953be1126898ece968d322f34eaad44a94e4b",
+    "tick": 24
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "5b519b4e43fa3ad9a23b39385cac569858c47c34b7d783c9468e726ecf582907",
+    "kind": "blocked",
+    "prev": "b568575ecae22ea7ad23ccb2f42bf7388afc569c1ffd1068524ea298545c8f83",
+    "tick": 24
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "b8afd61fc3a911a69929449288d53a00e38af59db7d09b3982753cf7bfe3a7a4",
+    "kind": "blocked",
+    "prev": "5b519b4e43fa3ad9a23b39385cac569858c47c34b7d783c9468e726ecf582907",
+    "tick": 25
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "4c3805b8635a808e8f7dac19a30223faf73138b16e7b3ab3025526d48d0fd51a",
+    "kind": "blocked",
+    "prev": "b8afd61fc3a911a69929449288d53a00e38af59db7d09b3982753cf7bfe3a7a4",
+    "tick": 25
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "aff33d4a6ea5545a1e16c93fbbf66309cea2a48ee25fc48e6b0585234307818d",
+    "kind": "blocked",
+    "prev": "4c3805b8635a808e8f7dac19a30223faf73138b16e7b3ab3025526d48d0fd51a",
+    "tick": 26
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "88d2f3c1008b3a2852b1ea264449f6e26cf73bffe66095d8ea5c9c69cdfea8c6",
+    "kind": "blocked",
+    "prev": "aff33d4a6ea5545a1e16c93fbbf66309cea2a48ee25fc48e6b0585234307818d",
+    "tick": 26
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "024e5a219374d78512ab253327d2801c84544867a4561a2c93fa0a5ba36764e3",
+    "kind": "blocked",
+    "prev": "88d2f3c1008b3a2852b1ea264449f6e26cf73bffe66095d8ea5c9c69cdfea8c6",
+    "tick": 27
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "5342e5f4df3c1dad0a47073a39b1a0b0aea2c75a59cf33af22c067e217996d5d",
+    "kind": "blocked",
+    "prev": "024e5a219374d78512ab253327d2801c84544867a4561a2c93fa0a5ba36764e3",
+    "tick": 27
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "263ff141fef2dae24729798e42cdd29c61a719c4608e65686597bd4f2e14a3d4",
+    "kind": "blocked",
+    "prev": "5342e5f4df3c1dad0a47073a39b1a0b0aea2c75a59cf33af22c067e217996d5d",
+    "tick": 28
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "ccf05b8850d4af5a1dcca57c192b13ed9ca50f7fba9026bf629c6386aa8ff3a9",
+    "kind": "blocked",
+    "prev": "263ff141fef2dae24729798e42cdd29c61a719c4608e65686597bd4f2e14a3d4",
+    "tick": 28
+  },
+  {
+    "agent": "TRIAL-2",
+    "data": {
+      "action": "plant",
+      "dir": "west"
+    },
+    "hash": "c3a221945286f4f95a33bba101f863aff9008ec120b9d4bdce85f0ebe32afbd7",
+    "kind": "blocked",
+    "prev": "ccf05b8850d4af5a1dcca57c192b13ed9ca50f7fba9026bf629c6386aa8ff3a9",
+    "tick": 29
+  },
+  {
+    "agent": "TRIAL-1",
+    "data": {
+      "action": "plant",
+      "dir": "east"
+    },
+    "hash": "84d140223d661468a8b0fba4ddc7c2c4dfea2a7ff0b1f12f26388a101139f95c",
+    "kind": "blocked",
+    "prev": "c3a221945286f4f95a33bba101f863aff9008ec120b9d4bdce85f0ebe32afbd7",
+    "tick": 29
+  }
+]

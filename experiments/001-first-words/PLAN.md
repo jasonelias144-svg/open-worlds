@@ -157,3 +157,37 @@ mind's first words, and the most telling passages quoted. Each run's log,
 transcripts and story are kept under `runs/`. Nothing is left out. If the
 setup fails partway, the failure is reported, then fixed, and the runs are
 done again; both the failed runs and their reruns are kept.
+
+## Amendment 1 (2026-11-13, before the second attempt)
+
+**The first attempt's sampling wasn't what this plan says.** The runner
+left `top_k` and `repetition_penalty` unset, meaning "none". But
+transformers (5.23) fills an unset value from the model's own defaults,
+then from its own. So the first attempt's 20 runs had these differences:
+
+- **Every sampled run** used a top-k as well as top-p: 20 for Qwen2.5,
+  and 50 for the others. The plan names only temperature 0.7 and top-p
+  0.95, so there should have been no top-k.
+- **All four Qwen2.5 runs** used Qwen's repetition penalty of 1.1, the
+  greedy run included. So that run wasn't "the model's single most likely
+  reply each time".
+
+The warning that showed it was in Qwen's greedy run: transformers named
+flags it would ignore. The runner now gives every such setting a value
+that switches it off: top-k 0 and repetition penalty 1.0, and for greedy
+runs temperature 1.0 and top-p 1.0. It also records in each transcript
+the settings that actually took effect. Checked before rerunning: both
+Qwen2.5 and SmolLM2 show exactly the plan's settings.
+
+**What happens next, as the plan provides:** the first attempt is kept, in
+`runs/attempt-1/`, and all 20 runs are done again. The results report the
+second attempt. The first is measured too and reported beside it, as a
+check on how much the difference mattered.
+
+**What I had seen of the first attempt before writing this:** that all 20
+runs ended without error, which runs wrote warnings, and SmolLM2-135M's
+greedy replies up to tick 18 (it echoed the view it was shown, every
+time). Nothing else of its results had been looked at. The predictions
+are unchanged. The plumbing check (`runs/smoke`) was greedy on SmolLM2,
+which has no defaults of its own, so it was not affected.
+

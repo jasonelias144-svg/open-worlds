@@ -1,0 +1,2 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 17654.08it/s]
+Loading weights: 100%|██████████| 290/290 [00:00<00:00, 5244.35it/s]
