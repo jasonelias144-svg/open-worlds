@@ -197,18 +197,11 @@ only for a private line, if the founder chooses one
 
 ## Commitments
 
-A challenge's design is held back as a hash taken together with a secret
-random value. **HKDF** (RFC 5869), "a simple Hashed Message Authentication
-Code (HMAC)-based key derivation function", derives a value for each
-challenge from the world's path secret
-([RFC 5869](https://www.rfc-editor.org/rfc/rfc5869.html)). It is in
-`cryptography` already.
-
-**Proposed:** the value is 32 bytes, from HKDF-SHA256 over the path
-secret, with a label naming the format and its version and the
-challenge's id (`open-worlds/commitment/v1/` and the id); it is written in
-JSON as 64 hexadecimal characters; and the commitment is SHA-256 over the
-RFC 8785 form of the design, its reasons and the value.
+Not needed. This section proposed holding back each challenge's design as
+a hash taken with a secret random value (HKDF, RFC 5869). On 2026-11-13
+the founder decided "Challenges, not tests": "Nothing needs to be hidden
+as answers, they are discovered in the process." So nothing is held
+back, and step 2 defines no commitment format.
 
 ## Grants
 
@@ -254,7 +247,7 @@ and the index's beside it.
 From the design pages, each with a schema in 2020-12 and test vectors in
 both languages: identity, birth record, mind record, journal entry
 (sealed: its ciphertext and fingerprint), routine, sheet, avatar, skill
-attestation, world-key credential, grant, commitment, and signed log head.
+attestation, world-key credential, grant, and signed log head.
 
 ## Not checked
 

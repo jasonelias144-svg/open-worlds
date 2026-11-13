@@ -123,6 +123,29 @@ code OSI asks for. Whether such a
 model may sit beside fully open ones in ADMIN's mind is put to the
 founder ([ADMIN.md](../ADMIN.md)).
 
+## In the open
+
+- **Kerckhoffs's principle.** Auguste Kerckhoffs, "La cryptographie
+  militaire", *Journal des sciences militaires*, January and February
+  1883. Its second principle, in Fabien Petitcolas's English rendering:
+  "The system must not require secrecy and can be stolen by the enemy
+  without causing trouble"; that is, "security must lie in the choice of
+  key" ([Petitcolas](https://www.petitcolas.net/kerckhoffs/index.html)).
+- **Written reasoning isn't always the reason.** Turpin and others
+  (2023): "CoT explanations can systematically misrepresent the true
+  reason for a model's prediction", and "can be plausible yet misleading,
+  which risks increasing our trust in LLMs without guaranteeing their
+  safety" ([arXiv 2305.04388](https://arxiv.org/abs/2305.04388)). Chen
+  and others (2025): monitoring a model's written reasoning "is a
+  promising way of noticing undesired behaviors during training and
+  evaluations, but that it is not sufficient to rule them out"
+  ([arXiv 2505.05410](https://arxiv.org/abs/2505.05410)).
+
+Taken: everything ADMIN reads, considers, remembers and writes is
+public, and only its key is secret. Its judgments can be rerun, since its
+models are free and pinned and its inputs and seeds are logged; reading
+its reasoning helps, but rerunning is the stronger check.
+
 ## Not checked
 
 - Whether any of these methods works for keeping worlds: ADMIN's own

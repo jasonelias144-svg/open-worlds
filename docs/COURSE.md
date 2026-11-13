@@ -131,10 +131,9 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    agreement. *Borrowing:* JSON Schema; W3C's decentralised identifiers
    (did:key) and verifiable credentials for signed claims; RFC 8785 for
    writing JSON identically everywhere before signing; HPKE (RFC 9180) for
-   sealing, and the Noise protocol framework for a private line. Also the
-   commitments that hold back a challenge's answer: a random value of at
-   least 128 bits, derived for each challenge, over JSON written by RFC
-   8785. And for ADMIN, the formats of a grant and of the multiverse log
+   sealing, and the Noise protocol framework for a private line. No
+   commitments: nothing is held back ("Challenges, not tests"). And for
+   ADMIN, the formats of a grant and of the multiverse log
    (UCAN and Certificate Transparency to check).
 3. **Keys and identities, for them and for the world.** A private
    repository of the project for the private halves; ALICE's and BOB's
@@ -187,7 +186,8 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
     inside the framework built in steps 1 to 9.
 11. **The hunt, the world-key, and the AI Keeper.** The Keeper builds each
     individual's own path from what they do, and remembers them between
-    visits; its designs held back by commitment until solved; symbols,
+    visits; its designs open from the start (challenges, not tests);
+    symbols,
     maps, codes and stones; the pieces of a world; the world-key, a signed
     right to found, sealed for its earner when the path is done; the open
     line to the Keeper for those who hold its world-key; the workbench.
