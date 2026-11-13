@@ -38,7 +38,7 @@ open-worlds" says whether any of it is in the working code, and how.
 |---|---|---|---|---|---|
 | 1 | The atom of identity | 236 | 9 of 9 pass | 1, 2 | `multiverse/identity.py`, changed (step 1); since step 2 an identity is a key |
 | 2 | The passport | 527 | 5 of 11 | 1, 3 | `multiverse/passport.py`, changed (step 1); since step 3 its stamps are signed by worlds |
-| 3 | The protocol, WCP/0.1, and its conformance test | 1007 | 13 of 13 | 1, 2 | `multiverse/protocol.py`, `conformance.py`, changed; now WCP/0.3 |
+| 3 | The protocol, WCP/0.1, and its conformance test | 1007 | 13 of 13 | 1, 2 | `multiverse/protocol.py`, `conformance.py`, changed; now WCP/0.4 |
 | 4 | The poetry world | 1860 | 18 of 21, with `turns_from_log` attached (fix 2) | 1 | `multiverse/poetry_world.py`, changed (step 1) |
 | 5 | The chemistry world | 2933 | 13 of 16 | 1, 4 | `multiverse/chemistry_world.py`, changed (step 1); rebuilt on `chem/` in step 4: real molecules and reactions in a soup that runs in time |
 | 6 | The multiverse registry | 3861 | 5 of 15 | 1 | `multiverse/registry.py`, changed (step 1) |
@@ -64,7 +64,7 @@ open-worlds" says whether any of it is in the working code, and how.
 | 25 | A chain of witnesses | 21340 | 20 of 20 | none yet | no |
 | 26 | Signed revocations | 22387 | 18 of 18 | none yet | no |
 | 27 | Witnesses as a graph (DAG) | 23513 | 19 of 23, and one more on some runs | none yet | no |
-| 28 | Signed manifests: trust on first use, key rotation | 24830 | 17 of 19 | 3, 6 | partly: manifests are signed since step 3; key rotation is step 6 |
+| 28 | Signed manifests: trust on first use, key rotation | 24830 | 17 of 19 | 3, 6 | partly: manifests are signed since step 3, and since step 6 a key can be signed over (`multiverse/succession.py`; both keys sign); no trust-on-first-use store |
 | 29 | Signed manifests in the registry | 26041 | 3 of 13 | 3, 13 | no |
 | 30 | The federation runner, updated (`federation.py@27213`) | 27202 | not collected (an addition) | 13 | no |
 | 31 | A signed verdict on a federation run | 27741 | 16 of 16 | none yet | no |

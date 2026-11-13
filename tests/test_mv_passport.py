@@ -82,10 +82,10 @@ class TestStamps(unittest.TestCase):
         # Signed under one version, it still verifies when the code
         # speaks another; changing the version it names breaks it.
         s = self.stamp()
-        self.assertEqual(s.wcp, "WCP/0.3")
+        self.assertEqual(s.wcp, "WCP/0.4")
         with mock.patch("multiverse.passport.PROTOCOL_VERSION", "WCP/9.9"):
             self.assertTrue(Stamp.from_entry(s.entry()).verifies())
-        self.assertFalse(dataclasses.replace(s, wcp="WCP/0.4").verifies())
+        self.assertFalse(dataclasses.replace(s, wcp="WCP/0.3").verifies())
         for entry in (dict(s.entry(), wcp=3), {k: v for k, v in
                                                 s.entry().items()
                                                 if k != "wcp"}):
@@ -408,10 +408,10 @@ class TestUnstampedDepartures(unittest.TestCase):
         note, = alice.passport.leaves
         self.assertEqual(LeaveNote.from_entry(note.entry()), note)
         self.assertTrue(note.verifies())
-        self.assertEqual(note.wcp, "WCP/0.3")
+        self.assertEqual(note.wcp, "WCP/0.4")
         with mock.patch("multiverse.protocol.PROTOCOL_VERSION", "WCP/9.9"):
             self.assertTrue(note.verifies())
-        self.assertFalse(dataclasses.replace(note, wcp="WCP/0.4").verifies())
+        self.assertFalse(dataclasses.replace(note, wcp="WCP/0.3").verifies())
 
 
 class TestWorldsCheckPassports(unittest.TestCase):

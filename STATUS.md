@@ -15,9 +15,10 @@ respect one another's freedom, with full transparency and exit at any time
 
 - Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Steps 1 to 5
   are done. Step 6, keeping keys safely: part one (keys saved encrypted,
-  a world's seen numbers) is in review (#23); next, signing over to a
-  new key. `sketches/` keeps the DeepSeek records and their code, with
-  its first fixes (#16 to #18, #20).
+  a world's seen numbers) is in review (#23), and so is part two,
+  signing a key over to a new one (#24). A lost key waits for the
+  founder's answer. `sketches/` keeps the DeepSeek records and their
+  code, with its first fixes (#16 to #18, #20).
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
@@ -144,6 +145,16 @@ and for the founder's conversations with DeepSeek, is in
 
 ## Log
 
+- 2026-11-13 Claude: course step 6, part two. A key can be signed over to
+  a new one by a succession both keys sign (`multiverse/succession.py`),
+  for individuals and for worlds. A passport carries its holder's
+  successions, so the stamps given to an earlier key still count, and
+  those of worlds that signed over during a stay. A world that knows a
+  succession refuses the old key's petitions and acts (never its leave),
+  and keeps the first succession of a key it sees. A world signs its own
+  key over with `sign_over`. A world's timestamps now only grow, so two
+  visits in one clock tick no longer give identical stamps. The protocol
+  is WCP/0.4.
 - 2026-11-13 Claude: course step 6, part one. Keys can be saved encrypted
   (`multiverse/keys.py`: OpenSSH's format, bcrypt-pbkdf with 64 rounds,
   AES-256-CTR; readable by the owner only; never written over an

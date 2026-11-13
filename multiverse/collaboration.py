@@ -34,6 +34,7 @@ from .apprentice import (Apprentice, CurriculumRunner, PortfolioPoem,
                          TheoreticalStance)
 from .identity import Identity, Individual, create_individual
 from .passport import LeaveNote, Passport, Stamp, verify_passport
+from .succession import Lineage, Succession, sign_over
 from .protocol import (Ack, ActResponse, Admission, Departure, LeaveResponse,
                        LogEntry, PetitionResponse, Refusal)
 from .poetry_world import PoetryWorld, PoetryWorldLaw, turns_from_log
@@ -68,6 +69,29 @@ class ClientIdentity:
         if stamp.holder == self.individual.token and stamp.verifies():
             self.passport = self.passport.with_stamp(stamp)
 
+    def sign_over(self) -> Succession:
+        """Replace this individual's key with a new one, which the old key
+        signs over to (succession.py). The passport goes on with the new
+        key, and the stamps given to the old one still count. Leave every
+        world first: this client keeps only the new key, and a world that
+        knows the succession refuses the old key's acts."""
+        if self.is_admitted_to:
+            raise ValueError("leave every world before signing over")
+        new = create_individual(self.identity.name)
+        succession = sign_over(self.individual, new)
+        self.passport = self.passport.signed_over(succession)
+        self.individual = new
+        return succession
+
+    def carry(self, succession: Succession) -> None:
+        """Add a world's succession to the passport, if it is usable, new
+        to it, and doesn't contradict one it carries."""
+        if (type(succession) is Succession and succession.of
+                and succession not in self.passport.successions
+                and Lineage(self.passport.successions).add(succession)
+                == ""):
+            self.passport = self.passport.with_succession(succession)
+
 
 def make_client(name: str) -> ClientIdentity:
     return ClientIdentity(individual=create_individual(name))
@@ -100,8 +124,13 @@ def act_on_world(client: ClientIdentity, world, act_type: str,
 def leave_world(client: ClientIdentity, world) -> LeaveResponse:
     """Leave, naming the arrival this closes; the signed leave goes into
     the passport, and so does the departure stamp, if the world gives
-    one."""
+    one. If the world signed its key over during the stay, its
+    successions go in too, so the stay still verifies."""
     m = world.manifest()
+    for succession in getattr(world, "successions", lambda _: ())(
+            m.entity_id):
+        if getattr(succession, "of", None) == m.entity_id:
+            client.carry(succession)
     arrival = client.passport.open_arrival(m.world_key)
     leave = client.individual.leave(
         m, closes=arrival.fingerprint() if arrival else "")

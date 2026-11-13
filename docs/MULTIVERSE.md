@@ -345,7 +345,8 @@ What it doesn't do yet, said plainly:
 - **A stamp is worth something only while its key is known.** A world
   that restarts with a new key is a new world, and refuses stamps in
   its name under the old one. Since course step 6 a world's key can be
-  saved and taken back, so its stamps keep counting after a restart.
+  saved and taken back, so its stamps keep counting after a restart, and
+  signed over to a new key, which its stamps then follow.
 - **A stamp says what its world claims, nothing more.** The times are
   the world's own, checked against no clock. A world that lies signs its
   lies; the signature shows who told them.
@@ -491,9 +492,9 @@ What it doesn't do yet, said plainly:
 
 - **The passphrase is the only way in.** Nobody, open-worlds included,
   can recover a forgotten one.
-- **Replacing a key, and losing one,** are the rest of this step: a key
-  signed over to a new one while it still works, and, when a key is lost
-  with no successor, what the founder decides.
+- **Losing a key** is the rest of this step: when a key is lost with no
+  successor, what the founder decides. (Replacing one is part two,
+  below.)
 - **Saving is the operator's job.** Nothing saves a world's seen numbers
   by itself. A world restarted without them, or from an older copy
   (still validly signed: a signature stops changes, not old copies),
@@ -502,6 +503,64 @@ What it doesn't do yet, said plainly:
   matters.
 - **Open only your own key files.** A file made by someone else could
   ask for a huge number of rounds, and take very long to open.
+
+## Signing a key over (course step 6, part two)
+
+- **A key is signed over to a new one by a succession**
+  (`multiverse/succession.py`): "this key goes on as that one", signed
+  by both keys. The old key hands over, and only its holder can do that.
+  The new key accepts, so nobody can hang their history on someone
+  else's key. A succession names whose key it is: a world's id, or ""
+  for an individual. A key is signed over once, and a new key continues
+  only one key: a line, never a fork or a merge.
+- **An individual takes its history along.** Its passport carries the
+  succession (`Passport.signed_over`). The stamps given to the old key
+  count for the new one wherever the passport is checked
+  (`verify_passport`), without asking any world.
+- **The old key is retired.** A world learns of a succession from a
+  passport it is shown, or directly (`Entity.know_succession`). From
+  then on it refuses the old key's petitions and acts. Leaving is never
+  refused, so the old key can still leave a world it is in. Someone
+  present under the old key can't enter again under the new one until
+  they leave.
+- **A world signs its own key over** (`Entity.sign_over`). From then on
+  the new key signs its manifest, its stamps and its seen-numbers file,
+  and requests must name the new key. Those present stay. The stamps
+  they are given from then on link to their arrivals through the
+  succession, which goes into their passports when they leave
+  (`collaboration.leave_world`). Other worlds follow the world to its
+  new key with `know_succession`, and then refuse its old manifest.
+- **A world's timestamps only grow**, so two stamps it gives are never
+  the same, even on a coarse clock. Before this, two visits within one
+  tick of the clock gave two identical stamps, and no world would admit
+  a passport carrying both.
+- **The protocol is WCP/0.4.** Passports carry successions, and worlds
+  refuse retired keys. Stamps and leaves signed under WCP/0.3 still
+  verify, because each names the version it was signed under.
+
+What it doesn't do yet, said plainly:
+
+- **A world that hasn't seen a succession still takes the old key.**
+  Over the network, a world will publish its successions with its
+  manifest (course step 13); until then they are passed by hand.
+- **A stolen old key can sign over again,** to a key of the thief's.
+  That makes two successions of one key. A passport carrying both is
+  refused, and a world keeps the first one it saw; it can't tell which
+  is the owner's. So sign over while the old key is still safe, and
+  show the succession to the worlds you use.
+- **What a world has learned about successions is kept in memory.** A
+  restarted world learns them again from the passports it is shown, or
+  from `know_succession`. Of its own successions, a world takes from
+  outside only its past (those that lead to its key now), so a thief of
+  its key can't stop it from signing over.
+- **A door names the key its world had** when the corridor's law was
+  written. A corridor that knows the world's succession still finds the
+  door, but its published law shows the old key until the law changes
+  (governance, course step 14).
+- **A registry's listing keeps the key it listed.** Whoever listed a
+  world that has signed over takes the listing down and lists it again.
+- **A lost key, with no succession,** is the last part of this step:
+  the founder's question in STATUS.md.
 
 ## The course
 

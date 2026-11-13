@@ -20,20 +20,26 @@ Changed from the sketch:
     inside it (`_made`). A petition's passport is checked offline before
     anything else is decided, and one with a forged or altered stamp is
     refused (passport.py).
+  - Course step 6: a key can be signed over to a new one (succession.py).
+    A world learns successions from the passports it is shown and from
+    `know_succession`, and refuses requests a retired key signs, except a
+    leave. A world signs its own key over with `sign_over`. Its
+    timestamps only grow, so two stamps it gives are never the same.
 """
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional
 
 from .identity import Identity, Signer, token_problem
-from .passport import (Passport, Stamp, make_stamp, thing_fingerprint,
-                       verify_passport)
+from .passport import (Passport, PassportCheck, Stamp, make_stamp,
+                       thing_fingerprint, verify_passport)
 from .protocol import (PROTOCOL_VERSION, Act, ActResponse, Admission,
                        Departure, Leave, LeaveResponse, LogEntry, Manifest,
                        Petition, PetitionResponse, Refusal, act_document,
                        is_plain, leave_document, manifest_problem,
                        petition_document, request_problem, signed_manifest)
+from .succession import Lineage, Succession, sign_over
 
 
 # What every entity built on this module states in its law about the
@@ -90,6 +96,7 @@ class Entity:
             act_endpoint=f"{base}/act",
             log_endpoint=f"{base}/log",
             sub_registry_endpoint=f"{base}/worlds" if sub_registry else None)
+        self._last_time: Optional[datetime] = None
         self._log: List[LogEntry] = []
         self._admitted: Dict[str, Admission] = {}
         self._arrivals: Dict[str, Stamp] = {}
@@ -98,6 +105,9 @@ class Entity:
         # World id -> key, for the worlds this one knows (know()). Its own
         # is always among them.
         self._known: Dict[str, str] = {entity_id: self._key.token}
+        # The successions this world knows: its own, and others' it has
+        # been shown (succession.py).
+        self._lineage = Lineage()
 
     # -- the protocol ---------------------------------------------------
 
@@ -105,7 +115,7 @@ class Entity:
         return self._manifest
 
     def petition(self, petition: Petition) -> PetitionResponse:
-        timestamp = now()
+        timestamp = self._now()
         if type(petition) is not Petition:
             return self._refuse(timestamp, None,
                                 "Cannot admit: not a petition", "petition")
@@ -143,12 +153,24 @@ class Entity:
         if problem:
             return self._refuse(timestamp, None,
                                 f"Cannot admit: {problem}", "petition")
-        check = verify_passport(earlier, dict(self._known))
+        if self._lineage.retired("", token):
+            return self._refuse(timestamp, token,
+                                "Cannot admit: this key has been signed "
+                                "over to another key; petition with that "
+                                "one", "petition")
+        check = self._verify(earlier)
         if not check.ok:
             return self._refuse(timestamp, token,
-                                "Cannot admit: the passport has a stamp "
-                                f"or leave that doesn't verify: "
+                                "Cannot admit: the passport has an entry "
+                                f"that doesn't verify: "
                                 f"{check.problems[0]}", "petition")
+        self._learn(earlier.successions)
+        present = [k for k in check.earlier_keys if k in self._admitted]
+        if present:
+            return self._refuse(timestamp, token,
+                                "Cannot admit: already here under an "
+                                "earlier key; leave with that key first",
+                                "petition")
         if not self._law.admits_any_identity:
             return self._refuse(timestamp, token,
                                 f"This {self.noun} does not admit "
@@ -189,7 +211,7 @@ class Entity:
         not present changes nothing. A departure is stamped; the stamp
         names the arrival it closes. (Whatever `closes` the leave names,
         the stamp names this world's own record of the arrival.)"""
-        timestamp = now()
+        timestamp = self._now()
         if (type(leave) is not Leave or token_problem(leave.token)
                 or type(leave.closes) is not str):
             return self._refuse(timestamp, None,
@@ -263,24 +285,78 @@ class Entity:
     def know(self, manifest: Manifest) -> None:
         """Learn another world's key from its signed manifest, so that a
         stamp in that world's name under any other key is refused here
-        (passport.verify_passport). ValueError if the manifest doesn't
-        verify, or names this world's id, or an id already known by
-        another key."""
+        (passport.verify_passport), unless a succession of that world
+        links the two. ValueError if the manifest doesn't verify, or
+        names this world's id, or a key this world knows was signed over,
+        or an id already known by another key. (A world known by a key
+        that signs over is followed to the new key by
+        `know_succession`.)"""
         problem = manifest_problem(manifest)
         if problem:
             raise ValueError(f"not a usable manifest: {problem}")
         if manifest.entity_id == self._manifest.entity_id:
             raise ValueError("a world knows its own key already; this "
                              "manifest names its id")
+        if self._lineage.retired(manifest.entity_id, manifest.world_key):
+            raise ValueError(f"{manifest.entity_id}'s key in this manifest "
+                             "has been signed over to another key; ask "
+                             "for its latest manifest")
         known = self._known.get(manifest.entity_id)
         if known is not None and known != manifest.world_key:
             raise ValueError(f"{manifest.entity_id} is already known by "
                              "another key")
         self._known[manifest.entity_id] = manifest.world_key
 
+    def know_succession(self, succession: Succession) -> None:
+        """Learn that a key was signed over (succession.py): a world's,
+        so that it is known by its new key and its stamps under either
+        still count; or an individual's, so that requests its old key
+        signs are refused here, except a leave. Of this world's own keys,
+        only its past is taken (a succession that leads to its key now,
+        as a restarted world may need): only `sign_over` signs its key
+        over. ValueError if the succession isn't usable, would sign this
+        world's key over, or signs over a key already signed over to
+        another."""
+        problem = self._learn((succession,))
+        if problem:
+            raise ValueError(f"can't take this succession: {problem}")
+
     def known_keys(self) -> Dict[str, str]:
         """The worlds this one knows, by id, with their keys."""
         return dict(self._known)
+
+    def successions(self, of: Optional[str] = None) -> List[Succession]:
+        """The successions this world knows: all, or those of one world
+        (its own, `successions(world.manifest().entity_id)`, are what a
+        visitor carries in a passport so that stamps given under its
+        earlier keys still count; `Passport.with_succession`)."""
+        return self._lineage.successions(of)
+
+    def sign_over(self, new_key: Signer) -> Succession:
+        """Sign this world's key over to `new_key`, which then signs its
+        manifest, its stamps, and the seen-numbers file (keys.py).
+        Requests must name the new key from now on: one signed for the
+        old key is refused. Those present stay; the stamps they are given
+        from now on link to their arrivals through the succession, which
+        is added to the passports this world holds for them."""
+        own = self._manifest.entity_id
+        s = sign_over(self._key, new_key, of=own, timestamp=self._now())
+        problem = self._lineage.add(s)
+        if problem:
+            raise ValueError(f"can't sign over: {problem}")
+        self._key = new_key
+        m = self._manifest
+        self._manifest = signed_manifest(
+            new_key, entity_id=m.entity_id, name=m.name,
+            protocol_version=m.protocol_version, law_url=m.law_url,
+            act_endpoint=m.act_endpoint, log_endpoint=m.log_endpoint,
+            sub_registry_endpoint=m.sub_registry_endpoint)
+        self._known[own] = new_key.token
+        for token, passport in self._passports.items():
+            self._passports[token] = passport.with_succession(s)
+        self._log.append(LogEntry(timestamp=s.timestamp, kind="signed_over",
+                                  data={"succession": s.entry()}))
+        return s
 
     def seen_numbers(self) -> Dict[str, int]:
         """The highest request number this world has seen from each key
@@ -302,6 +378,22 @@ class Entity:
 
     # -- for subclasses -------------------------------------------------
 
+    def _now(self) -> str:
+        """The time now, as this world records it: always later than the
+        last time it gave, even on a coarse clock, so no two stamps it
+        signs are the same."""
+        t = datetime.now(timezone.utc)
+        if self._last_time is not None and t <= self._last_time:
+            t = self._last_time + timedelta(microseconds=1)
+        self._last_time = t
+        return t.isoformat()
+
+    def _verify(self, passport: Passport) -> PassportCheck:
+        """Check a passport against the keys and successions this world
+        knows."""
+        return verify_passport(passport, dict(self._known),
+                               tuple(self._lineage.successions()))
+
     def _entry_problem(self, token: str, passport: Passport) -> str:
         """Why this world can't take someone in now, beyond its law's
         published conditions (for example, a crowded entrance), or "".
@@ -316,6 +408,41 @@ class Entity:
         be refused."""
 
     # -- internals ------------------------------------------------------
+
+    def _learn(self, successions) -> str:
+        """Take successions this world was shown, and follow any world it
+        knows to its new key. Of its own, only those that lead to its key
+        now: nobody but the world signs its key over (`sign_over`), or a
+        thief of its key could stop it from ever signing over. "" if all
+        were taken, else the first problem (the others are still
+        taken)."""
+        own = self._manifest.entity_id
+        first = ""
+        mine = []
+        for s in successions:
+            if type(s) is Succession and s.of == own:
+                mine.append(s)
+                continue
+            problem = self._lineage.add(s)
+            if problem and not first:
+                first = problem
+        # Its own past, newest link first, in whatever order shown.
+        while mine:
+            fits = [s for s in mine if self._lineage.leads_to(
+                own, s.new, self._key.token)]
+            for s in fits:
+                problem = self._lineage.add(s)
+                if problem and not first:
+                    first = problem
+                mine.remove(s)
+            if not fits:
+                first = first or ("it would sign this world's own key "
+                                  "over; only the world does that")
+                break
+        for world_id, key in self._known.items():
+            if world_id != own:
+                self._known[world_id] = self._lineage.latest(world_id, key)
+        return first
 
     def _departure_stamp(self, token: str, timestamp: str,
                          arrival: Stamp) -> Optional[Stamp]:
@@ -372,4 +499,9 @@ class Entity:
                          self._manifest.world_key, act), self._last_seq)
         if problem:
             return self._refuse(timestamp, None, problem, "act")
+        if self._lineage.retired("", act.actor_token):
+            return self._refuse(timestamp, act.actor_token,
+                                "This key has been signed over to another "
+                                "key; it can still leave, but not act",
+                                "act")
         return None
