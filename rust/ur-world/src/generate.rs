@@ -94,7 +94,8 @@ pub fn ground(seed: u64, x: i64, z: i64) -> i64 {
         + noise(seed, 2, 32, 8, x, z)
         + noise(seed, 3, 8, 2, x, z);
     let reach = GARDEN_RADIUS + BLEND;
-    if x.abs() >= reach || z.abs() >= reach {
+    // Compared without `abs`, which overflows at i64::MIN.
+    if x.unsigned_abs() >= reach.unsigned_abs() || z.unsigned_abs() >= reach.unsigned_abs() {
         return hills;
     }
     let d = (x * x + z * z).isqrt();
@@ -136,7 +137,7 @@ pub const fn garden_piece(c: Cell) -> Option<Material> {
     if c.x == SPRING.x && c.y == SPRING.y && c.z == SPRING.z {
         return Some(Material::Water);
     }
-    let (ax, az) = (c.x.abs(), c.z.abs());
+    let (ax, az) = (c.x.unsigned_abs(), c.z.unsigned_abs());
     if ax == 0 && az == 0 && c.y >= 1 && c.y <= 4 {
         return Some(Material::Wood);
     }
@@ -205,8 +206,12 @@ fn index(coord: ChunkCoord, c: Cell) -> Option<usize> {
     usize::try_from(i).ok()
 }
 
-/// The chunk at `coord` as the generator makes it.
-pub fn generate(seed: u64, coord: ChunkCoord) -> Chunk {
+/// The chunk at `coord` as the generator makes it, if any of it is inside
+/// the world; chunks wholly beyond the edge are never made.
+pub fn generate(seed: u64, coord: ChunkCoord) -> Option<Chunk> {
+    if !coord.reachable() {
+        return None;
+    }
     let o = coord.origin();
     let mut cells = vec![Material::Air; CHUNK_CELLS];
     for lz in 0..CHUNK {
@@ -223,7 +228,7 @@ pub fn generate(seed: u64, coord: ChunkCoord) -> Chunk {
             }
         }
     }
-    Chunk { coord, cells }
+    Some(Chunk { coord, cells })
 }
 
 /// The seeds the shared vectors cover: the garden's, and the two extremes.
@@ -268,9 +273,10 @@ pub fn vectors() -> serde_json::Value {
                 .collect();
             let chunks: Vec<serde_json::Value> = VECTOR_CHUNKS
                 .iter()
-                .map(
-                    |&c| serde_json::json!({ "chunk": c.json(), "hash": generate(seed, c).hash() }),
-                )
+                .map(|&c| {
+                    let hash = generate(seed, c).map(|chunk| chunk.hash());
+                    serde_json::json!({ "chunk": c.json(), "hash": hash })
+                })
                 .collect();
             serde_json::json!({ "seed": seed, "ground": ground, "chunks": chunks })
         })
@@ -354,7 +360,7 @@ mod tests {
     #[test]
     fn a_chunk_is_its_cells() {
         let coord = ChunkCoord::new(-1, 0, 2);
-        let chunk = generate(42, coord);
+        let chunk = generate(42, coord).unwrap();
         for c in [
             coord.origin(),
             coord.origin().offset(15, 15, 15),
@@ -364,7 +370,27 @@ mod tests {
         }
         assert_eq!(chunk.get(Cell::new(0, 0, 0)), None);
         assert_eq!(chunk.bytes().len(), CHUNK_CELLS);
-        assert_eq!(generate(42, coord), chunk);
-        assert_ne!(generate(43, coord).hash(), chunk.hash());
+        assert_eq!(generate(42, coord), Some(chunk.clone()));
+        assert_ne!(generate(43, coord).unwrap().hash(), chunk.hash());
+    }
+
+    #[test]
+    fn it_answers_at_the_ends_of_64_bit_numbers() {
+        // The rules give an answer everywhere, without overflowing, though
+        // no one can go beyond the edge.
+        for v in [i64::MIN, i64::MIN + 1, i64::MAX] {
+            for (x, z) in [(v, 0), (0, v), (v, v)] {
+                let height = ground(7, x, z);
+                assert!((-12..=14).contains(&height), "{x},{z}: {height}");
+                assert_eq!(garden_piece(Cell::new(x, 1, z)), None);
+                let _ = material(7, Cell::new(x, v, z));
+            }
+            assert_eq!(generate(7, ChunkCoord::new(v, 0, 0)), None);
+            assert_eq!(generate(7, ChunkCoord::new(0, v, 0)), None);
+            assert_eq!(generate(7, ChunkCoord::new(0, 0, v)), None);
+        }
+        let edge = crate::space::LIMIT / CHUNK;
+        assert!(generate(7, ChunkCoord::new(edge, -edge, edge)).is_some());
+        assert_eq!(generate(7, ChunkCoord::new(edge + 1, 0, 0)), None);
     }
 }

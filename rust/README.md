@@ -13,7 +13,7 @@ The standards for every Rust file are in
 | Crate | What it does |
 |---|---|
 | [`world-log`](world-log) | Checks a world's public record exactly as the Python kernel writes it. |
-| [`ur-world`](ur-world) | The Ur-world: a 3D world that begins in a garden with ALICE and BOB, and comes into being as it is explored ([docs/URWORLD.md](../docs/URWORLD.md)). |
+| [`ur-world`](ur-world) | The Ur-world: a 3D world that begins in a garden with ALICE and BOB, and is made from its seed as it is explored ([docs/URWORLD.md](../docs/URWORLD.md)). |
 
 The workspace's settings, which every crate shares, are in
 [`Cargo.toml`](Cargo.toml): the dependencies with the reason for each,
@@ -32,6 +32,9 @@ cargo clippy --all-targets --locked -- -D warnings
 cargo test --locked
 cargo run --locked -p world-log -- ../vectors/world-log.json
 cargo run --locked -p ur-world --example garden
+cargo run --locked -p ur-world --example door -- \
+    --mind TRIAL-1=python3 -I ../minds/wanderer.py \
+    --mind TRIAL-2=python3 -I ../minds/wanderer.py
 ```
 
 CI runs the same commands (`.github/workflows/test.yml`, job `rust`).
@@ -49,9 +52,14 @@ checks the Ur-world's log the same way:
 The `garden` example is Hello World for building worlds: it runs the
 garden, tells what happened, and draws a map of what has come into view.
 
+The `door` example runs the garden with minds that are programs of their
+own, in any language, through the doorway (`ur-world/src/door.rs`). Here
+the two minds are a short Python program with no model behind it.
+
 ## What comes next
 
 The Ur-world's next steps are in [docs/URWORLD.md](../docs/URWORLD.md):
-keys and the protocol in Rust, the gate to other worlds, districts, growth,
-minds for ALICE and BOB, and a window onto it all, through Unity or Unreal
-among others.
+experiments with unscripted minds, the garden's abilities, keys and the
+protocol in Rust, founding worlds, land of unknown construction, the gate
+to other worlds, districts, growth, minds for ALICE and BOB, and a window
+onto it all, through Unity or Unreal among others.

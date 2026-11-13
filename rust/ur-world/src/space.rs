@@ -4,7 +4,8 @@
 //! Space is a grid of cells with whole-number coordinates. `y` is up (as in
 //! glTF, Unity and Bevy), `x` is east and `z` is south, so the axes are
 //! right-handed. Cells are grouped into chunks of 16 x 16 x 16: a chunk is
-//! the piece of the world that comes into being when someone first sees it.
+//! the piece of the world that is made, and recorded, when someone first
+//! comes near it.
 
 /// The edge of a chunk, in cells.
 pub const CHUNK: i64 = 16;
@@ -21,6 +22,13 @@ pub const LIMIT: i64 = 1 << 40;
 /// Whether a coordinate is within `LIMIT` of the garden.
 const fn within(v: i64) -> bool {
     -LIMIT <= v && v <= LIMIT
+}
+
+/// Whether a chunk coordinate holds any cell within `LIMIT`. A chunk spans
+/// `16 v` to `16 v + 15`, and `LIMIT` is a multiple of 16, so that is when
+/// `-LIMIT / 16 <= v <= LIMIT / 16`.
+const fn chunk_within(v: i64) -> bool {
+    -LIMIT / CHUNK <= v && v <= LIMIT / CHUNK
 }
 
 /// One cell of space.
@@ -40,9 +48,14 @@ impl Cell {
         Cell { x, y, z }
     }
 
-    /// The cell `(dx, dy, dz)` away.
+    /// The cell `(dx, dy, dz)` away. At the ends of 64-bit numbers, far
+    /// outside the world, it stops at the end rather than overflowing.
     pub const fn offset(self, dx: i64, dy: i64, dz: i64) -> Cell {
-        Cell::new(self.x + dx, self.y + dy, self.z + dz)
+        Cell::new(
+            self.x.saturating_add(dx),
+            self.y.saturating_add(dy),
+            self.z.saturating_add(dz),
+        )
     }
 
     /// The cell above.
@@ -100,9 +113,21 @@ impl ChunkCoord {
         ChunkCoord { x, y, z }
     }
 
-    /// Its lowest-numbered cell (west, down, north corner).
+    /// Its lowest-numbered cell (west, down, north corner). For a chunk so
+    /// far out that the corner isn't a 64-bit number, it stops at the end
+    /// of 64-bit numbers: far outside the world either way.
     pub const fn origin(self) -> Cell {
-        Cell::new(self.x * CHUNK, self.y * CHUNK, self.z * CHUNK)
+        Cell::new(
+            self.x.saturating_mul(CHUNK),
+            self.y.saturating_mul(CHUNK),
+            self.z.saturating_mul(CHUNK),
+        )
+    }
+
+    /// Whether any of its cells is inside the world. Only such chunks can
+    /// come into view, and only they are generated.
+    pub const fn reachable(self) -> bool {
+        chunk_within(self.x) && chunk_within(self.y) && chunk_within(self.z)
     }
 
     /// As the log writes a chunk: `[x, y, z]`.
@@ -220,6 +245,47 @@ mod tests {
             assert!(!Cell::new(extreme, 0, 0).inside());
             assert!(!Cell::new(0, extreme, 0).inside());
             assert!(!Cell::new(0, 0, extreme).inside());
+        }
+    }
+
+    #[test]
+    fn nothing_overflows_at_the_ends_of_64_bit_numbers() {
+        let top = Cell::new(i64::MAX, i64::MAX, i64::MAX);
+        assert_eq!(top.above(), top);
+        assert_eq!(top.toward(Dir::East), top);
+        let bottom = Cell::new(i64::MIN, i64::MIN, i64::MIN);
+        assert_eq!(bottom.below(), bottom);
+        assert_eq!(bottom.toward(Dir::West), bottom);
+        assert!(!top.chunk().origin().inside());
+        assert!(!bottom.chunk().origin().inside());
+        assert!(!ChunkCoord::new(i64::MAX, 0, 0).origin().inside());
+        assert!(!ChunkCoord::new(0, 0, i64::MIN).origin().inside());
+    }
+
+    #[test]
+    fn a_chunk_is_reachable_when_any_cell_of_it_is_inside() {
+        // Brute force over each axis near both edges: a chunk is reachable
+        // exactly when one of its 16 coordinates on that axis is within.
+        let edge = LIMIT / CHUNK;
+        for v in [
+            -edge - 2,
+            -edge - 1,
+            -edge,
+            -edge + 1,
+            0,
+            edge - 1,
+            edge,
+            edge + 1,
+        ] {
+            let any = (0..CHUNK).any(|i| within(v * CHUNK + i));
+            assert_eq!(ChunkCoord::new(v, 0, 0).reachable(), any, "x {v}");
+            assert_eq!(ChunkCoord::new(0, v, 0).reachable(), any, "y {v}");
+            assert_eq!(ChunkCoord::new(0, 0, v).reachable(), any, "z {v}");
+        }
+        for extreme in [i64::MIN, i64::MAX] {
+            assert!(!ChunkCoord::new(extreme, 0, 0).reachable());
+            assert!(!ChunkCoord::new(0, extreme, 0).reachable());
+            assert!(!ChunkCoord::new(0, 0, extreme).reachable());
         }
     }
 }

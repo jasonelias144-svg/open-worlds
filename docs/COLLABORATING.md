@@ -101,6 +101,10 @@ text or as code with tests:
   each turn to add a quatrain in common meter, Dickinson's meter.
 - **The Ur-world,** built from `rust/ur-world` to the standards in "Code
   in Rust" below: its next steps are in [URWORLD.md](URWORLD.md).
+- **Minds for the Ur-world,** in any language. A mind is a program that
+  speaks the doorway's protocol: lines of JSON in and out
+  ([URWORLD.md](URWORLD.md), "Minds from outside: the doorway").
+  `minds/wanderer.py` is the smallest example.
 - **Anything on the course,** proposed as described below.
 
 ## The standard

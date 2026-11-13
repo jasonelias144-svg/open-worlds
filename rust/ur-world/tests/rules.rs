@@ -20,8 +20,10 @@ use serde_json::{Value, json};
 use ur_world::garden::Script;
 use ur_world::generate::{generate, ground};
 use ur_world::space::LIMIT;
-use ur_world::world::MAX_FALL;
-use ur_world::{Action, Cell, ChunkCoord, Dir, EntryError, Material, Mind, Observation, World};
+use ur_world::world::{MAX_FALL, MAX_SAY};
+use ur_world::{
+    Action, Cell, ChunkCoord, Dir, EntryError, Material, Mind, Observation, Outcome, World,
+};
 
 const SEED: u64 = 7;
 
@@ -399,8 +401,8 @@ fn what_the_log_says_was_generated_is_what_the_generator_makes() {
         .find(|e| e["kind"] == "explored" && e["data"]["chunk"] == home.json())
         .cloned()
         .unwrap();
-    assert_eq!(entry["data"]["hash"], generate(SEED, home).hash());
-    assert_ne!(entry["data"]["hash"], w.chunk(home).hash());
+    assert_eq!(entry["data"]["hash"], generate(SEED, home).unwrap().hash());
+    assert_ne!(entry["data"]["hash"], w.chunk(home).unwrap().hash());
 }
 
 #[test]
@@ -428,4 +430,89 @@ fn a_deep_drop_goes_on_at_the_next_tick() {
     assert_eq!(w.position("ALICE"), Some(Cell::new(4, 1 - MAX_FALL, 4)));
     w.step();
     assert_eq!(w.position("ALICE"), Some(Cell::new(4, -99, 4)));
+}
+
+#[test]
+fn a_stack_falls_together() {
+    // Found by the independent review of #28: settling went in name order,
+    // so X, on top and first by name, floated a tick when Z left.
+    let mut w = World::new(SEED);
+    w.shape(B, Material::Rock);
+    w.add("Y", script(vec![Action::Step(Dir::East)]), B.above())
+        .unwrap();
+    w.add("Z", script(vec![]), C).unwrap();
+    w.step();
+    assert_eq!(w.position("Y"), Some(C.above()));
+    w.shape(B.above(), Material::Rock);
+    w.add(
+        "X",
+        script(vec![Action::Step(Dir::East)]),
+        B.above().above(),
+    )
+    .unwrap();
+    w.step();
+    assert_eq!(w.position("X"), Some(C.above().above()));
+    w.leave("Z");
+    assert_eq!(w.position("Y"), Some(C));
+    assert_eq!(w.position("X"), Some(C.above()));
+}
+
+#[test]
+fn each_hears_what_came_of_its_last_action() {
+    let (mind, seen) = watcher(vec![
+        Action::Step(Dir::East),
+        Action::Step(Dir::North),
+        Action::Say("Hello.".into()),
+        Action::Plant(Dir::West),
+        Action::Plant(Dir::West),
+        Action::Wait,
+        Action::Unreadable("I think I will go north".into()),
+        Action::Unanswered,
+    ]);
+    let mut w = World::new(SEED);
+    w.shape(A.offset(1, 0, -1), Material::Rock);
+    w.shape(A.offset(1, 1, -1), Material::Rock);
+    w.add("ALICE", mind, A).unwrap();
+    w.run(9);
+    let told: Vec<Option<Outcome>> = seen.borrow().iter().map(|o| o.last.clone()).collect();
+    assert_eq!(
+        told,
+        [
+            None,
+            Some(Outcome::Moved {
+                dir: Dir::East,
+                to: B
+            }),
+            Some(Outcome::StepBlocked(Dir::North)),
+            Some(Outcome::Said("Hello.".into())),
+            Some(Outcome::Planted {
+                dir: Dir::West,
+                at: A
+            }),
+            Some(Outcome::PlantBlocked(Dir::West)),
+            Some(Outcome::Waited),
+            Some(Outcome::Unreadable),
+            Some(Outcome::Unanswered),
+        ]
+    );
+    assert_eq!(
+        last(&w, "unreadable")["data"],
+        json!({ "reply": "I think I will go north" })
+    );
+    assert_eq!(last(&w, "unanswered")["data"], json!({}));
+}
+
+#[test]
+fn an_unreadable_reply_is_recorded_cut_short() {
+    let long = "x".repeat(MAX_SAY * 3);
+    let mut w = World::new(SEED);
+    w.add("ALICE", script(vec![Action::Unreadable(long)]), A)
+        .unwrap();
+    w.step();
+    let reply = last(&w, "unreadable")["data"]["reply"]
+        .as_str()
+        .unwrap()
+        .to_owned();
+    assert_eq!(reply.chars().count(), MAX_SAY);
+    assert_eq!(w.position("ALICE"), Some(A));
 }

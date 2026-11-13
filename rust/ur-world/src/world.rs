@@ -18,10 +18,10 @@ use std::collections::{BTreeMap, BTreeSet};
 use serde_json::{Map, Value, json};
 
 use crate::generate::{self, Chunk, GENERATOR, SEA};
-use crate::space::{CHUNK, Cell, ChunkCoord, Dir, LIMIT, Material};
+use crate::space::{CHUNK, Cell, ChunkCoord, Dir, Material};
 
 /// The rules' name and version, as the log records it.
-pub const RULES: &str = "ur-world/0.1";
+pub const RULES: &str = "ur-world/0.2";
 
 /// The most a single `Say` carries, in characters; longer speech is cut.
 pub const MAX_SAY: usize = 280;
@@ -54,6 +54,43 @@ pub enum Action {
     Plant(Dir),
     /// Leave the world. Always succeeds.
     Exit,
+    /// A reply that couldn't be read as an action (see `door::read_reply`).
+    /// It is recorded, cut to `MAX_SAY` characters, and nothing happens.
+    Unreadable(String),
+    /// No reply came in time. It is recorded, and nothing happens.
+    Unanswered,
+}
+
+/// What came of an inhabitant's last action, as it is told at the next
+/// tick.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum Outcome {
+    /// It waited.
+    Waited,
+    /// It stepped, and stands at `to` (after any climb or fall).
+    Moved {
+        /// The way it stepped.
+        dir: Dir,
+        /// Where it came to rest.
+        to: Cell,
+    },
+    /// Its step was blocked.
+    StepBlocked(Dir),
+    /// It spoke (the text as heard, cut to `MAX_SAY` characters).
+    Said(String),
+    /// It planted a flower at `at`.
+    Planted {
+        /// The way it reached.
+        dir: Dir,
+        /// The flower's cell.
+        at: Cell,
+    },
+    /// There was nowhere to plant that way.
+    PlantBlocked(Dir),
+    /// Its reply couldn't be read as an action.
+    Unreadable,
+    /// No reply came in time.
+    Unanswered,
 }
 
 /// What an inhabitant sees at the start of a tick.
@@ -72,6 +109,8 @@ pub struct Observation {
     pub around: Vec<Material>,
     /// Others within `SIGHT`, and where they stand.
     pub others: Vec<(String, Cell)>,
+    /// What came of its last action; `None` on its first tick.
+    pub last: Option<Outcome>,
 }
 
 impl Observation {
@@ -109,23 +148,10 @@ pub enum EntryError {
     Occupied,
 }
 
-/// Whether any cell of the chunk is inside the world.
-const fn reachable(c: ChunkCoord) -> bool {
-    let (low, high) = (
-        c.origin(),
-        c.origin().offset(CHUNK - 1, CHUNK - 1, CHUNK - 1),
-    );
-    low.x <= LIMIT
-        && high.x >= -LIMIT
-        && low.y <= LIMIT
-        && high.y >= -LIMIT
-        && low.z <= LIMIT
-        && high.z >= -LIMIT
-}
-
 struct Inhabitant {
     position: Cell,
     mind: Box<dyn Mind>,
+    last: Option<Outcome>,
 }
 
 /// The Ur-world.
@@ -181,7 +207,8 @@ impl World {
         self.tick
     }
 
-    /// What the cell holds now.
+    /// What the cell holds now. Beyond the edge the generator's rules still
+    /// give an answer, though no one can go there.
     pub fn material(&self, c: Cell) -> Material {
         match self.changes.get(&c) {
             Some(m) => *m,
@@ -189,15 +216,16 @@ impl World {
         }
     }
 
-    /// A chunk as it is now: generated, with any changes made since.
-    pub fn chunk(&self, coord: ChunkCoord) -> Chunk {
-        let mut chunk = generate::generate(self.seed, coord);
+    /// A chunk as it is now: generated, with any changes made since. A
+    /// chunk wholly beyond the edge has none.
+    pub fn chunk(&self, coord: ChunkCoord) -> Option<Chunk> {
+        let mut chunk = generate::generate(self.seed, coord)?;
         for (c, m) in &self.changes {
             if c.chunk() == coord {
                 chunk.set(*c, *m);
             }
         }
-        chunk
+        Some(chunk)
     }
 
     /// The chunks explored so far.
@@ -277,8 +305,14 @@ impl World {
         }
         self.names_used.insert(name.to_owned());
         self.occupied.insert(at, name.to_owned());
-        self.inhabitants
-            .insert(name.to_owned(), Inhabitant { position: at, mind });
+        self.inhabitants.insert(
+            name.to_owned(),
+            Inhabitant {
+                position: at,
+                mind,
+                last: None,
+            },
+        );
         self.record("entered", Some(name), json!({ "pos": at.json() }));
         self.explore();
         Ok(())
@@ -352,7 +386,8 @@ impl World {
     }
 
     fn observe(&self, name: &str, heard: &[(String, String)]) -> Option<Observation> {
-        let position = self.position(name)?;
+        let me = self.inhabitants.get(name)?;
+        let position = me.position;
         let mut around = Vec::with_capacity(27);
         for dy in -1..=1 {
             for dz in -1..=1 {
@@ -379,20 +414,37 @@ impl World {
             heard: heard.to_vec(),
             around,
             others,
+            last: me.last.clone(),
         })
     }
 
     fn resolve(&mut self, name: &str, action: Action, spoken: &mut Vec<(String, String)>) {
-        match action {
-            Action::Wait => {}
+        let outcome = match action {
+            Action::Wait => Outcome::Waited,
             Action::Step(dir) => self.walk(name, dir),
             Action::Say(text) => {
                 let text: String = text.chars().take(MAX_SAY).collect();
                 spoken.push((name.to_owned(), text.clone()));
                 self.record("said", Some(name), json!({ "text": text }));
+                Outcome::Said(text)
             }
             Action::Plant(dir) => self.plant(name, dir),
-            Action::Exit => self.remove(name, "chose to leave"),
+            Action::Exit => {
+                self.remove(name, "chose to leave");
+                return;
+            }
+            Action::Unreadable(reply) => {
+                let reply: String = reply.chars().take(MAX_SAY).collect();
+                self.record("unreadable", Some(name), json!({ "reply": reply }));
+                Outcome::Unreadable
+            }
+            Action::Unanswered => {
+                self.record("unanswered", Some(name), json!({}));
+                Outcome::Unanswered
+            }
+        };
+        if let Some(i) = self.inhabitants.get_mut(name) {
+            i.last = Some(outcome);
         }
     }
 
@@ -400,9 +452,9 @@ impl World {
         c.inside() && !self.material(c).solid() && !self.occupied.contains_key(&c)
     }
 
-    fn walk(&mut self, name: &str, dir: Dir) {
+    fn walk(&mut self, name: &str, dir: Dir) -> Outcome {
         let Some(from) = self.position(name) else {
-            return;
+            return Outcome::StepBlocked(dir);
         };
         let ahead = from.toward(dir);
         let to = if self.free(ahead) {
@@ -417,11 +469,14 @@ impl World {
             None
         };
         match to {
-            None => self.record(
-                "blocked",
-                Some(name),
-                json!({ "action": "step", "dir": dir.name() }),
-            ),
+            None => {
+                self.record(
+                    "blocked",
+                    Some(name),
+                    json!({ "action": "step", "dir": dir.name() }),
+                );
+                Outcome::StepBlocked(dir)
+            }
             Some(to) => {
                 let to = self.landing(to);
                 self.place(name, from, to);
@@ -430,6 +485,7 @@ impl World {
                     Some(name),
                     json!({ "from": from.json(), "to": to.json() }),
                 );
+                Outcome::Moved { dir, to }
             }
         }
     }
@@ -453,10 +509,17 @@ impl World {
         }
     }
 
-    /// Whoever stands on nothing falls, in name order.
+    /// Whoever stands on nothing falls. The lowest go first (by height,
+    /// then by name), so a stack falls together: whoever stood on someone
+    /// lands where that one came to rest.
     fn settle(&mut self) {
-        let names: Vec<String> = self.inhabitants.keys().cloned().collect();
-        for name in names {
+        let mut order: Vec<(i64, String)> = self
+            .inhabitants
+            .iter()
+            .map(|(name, i)| (i.position.y, name.clone()))
+            .collect();
+        order.sort();
+        for (_, name) in order {
             let Some(from) = self.position(&name) else {
                 continue;
             };
@@ -472,9 +535,9 @@ impl World {
         }
     }
 
-    fn plant(&mut self, name: &str, dir: Dir) {
+    fn plant(&mut self, name: &str, dir: Dir) -> Outcome {
         let Some(from) = self.position(name) else {
-            return;
+            return Outcome::PlantBlocked(dir);
         };
         let at = from.toward(dir);
         let fertile = matches!(self.material(at.below()), Material::Grass | Material::Soil);
@@ -485,12 +548,14 @@ impl World {
                 Some(name),
                 json!({ "at": at.json(), "what": "flower" }),
             );
+            Outcome::Planted { dir, at }
         } else {
             self.record(
                 "blocked",
                 Some(name),
                 json!({ "action": "plant", "dir": dir.name() }),
             );
+            Outcome::PlantBlocked(dir)
         }
     }
 
@@ -518,11 +583,13 @@ impl World {
                 for dz in -VIEW..=VIEW {
                     for dx in -VIEW..=VIEW {
                         let c = ChunkCoord::new(home.x + dx, home.y + dy, home.z + dz);
-                        if !reachable(c) {
+                        if self.explored.contains(&c) {
                             continue;
                         }
-                        if self.explored.insert(c) {
-                            let hash = generate::generate(self.seed, c).hash();
+                        // Only chunks with a cell inside the world are made.
+                        if let Some(chunk) = generate::generate(self.seed, c) {
+                            self.explored.insert(c);
+                            let hash = chunk.hash();
                             self.record(
                                 "explored",
                                 Some(&name),
