@@ -3,8 +3,8 @@ and the identity as a key (course step 2).
 
 Ported from the DeepSeek sketch. Five checks there could never fail:
 they caught their own failure as an error. They use assertRaises here.
-One check required world ids of at least 8 characters while six others
-used "world:A"; the rule is gone (multiverse/passport.py).
+Since course step 3 a passport holds signed stamps; those are tested in
+test_mv_passport.py.
 """
 import dataclasses
 import unittest
@@ -13,14 +13,9 @@ from unittest import mock
 from multiverse.identity import (Identity, Individual, canonical,
                                  create_individual, from_dict, rename,
                                  same_identity, signature_valid, to_dict)
-from multiverse.passport import Admission, Passport, make_admission
+from multiverse.passport import Passport
 from multiverse.passport import from_dict as passport_from_dict
 from multiverse.passport import to_dict as passport_to_dict
-
-T1 = "2024-01-01T00:00:00+00:00"
-T2 = "2024-02-01T00:00:00+00:00"
-T3 = "2024-03-01T00:00:00+00:00"
-
 
 def create_identity(name: str) -> Identity:
     return create_individual(name).identity
@@ -154,60 +149,52 @@ class TestIndividual(unittest.TestCase):
             self.assertEqual(self.alice.next_seq("world:a"), 5_000_003)
 
     def test_requests_are_signed_for_their_world(self):
-        from multiverse.protocol import (act_document, leave_document,
+        from multiverse.protocol import (PROTOCOL_VERSION, NullWorld,
+                                         act_document, leave_document,
                                          petition_document)
-        p = self.alice.petition("world:a", message="hi")
-        a = self.alice.act("world:a", "poem.turn", {"x": 1})
-        l = self.alice.leave("world:a")
+        world = NullWorld("world:a", "A").manifest()
+        other_key = NullWorld("world:a", "Copy of A").manifest().world_key
+        p = self.alice.petition(world, message="hi")
+        a = self.alice.act(world, "poem.turn", {"x": 1})
+        l = self.alice.leave(world)
         for document, request in ((petition_document, p),
                                   (act_document, a), (leave_document, l)):
             with self.subTest(request=type(request).__name__):
                 self.assertTrue(signature_valid(
-                    self.alice.token, document("world:a", request),
+                    self.alice.token,
+                    document("world:a", world.world_key, request),
+                    request.signature))
+                # Not for another id, nor for a world that copied the id.
+                self.assertFalse(signature_valid(
+                    self.alice.token,
+                    document("world:b", world.world_key, request),
                     request.signature))
                 self.assertFalse(signature_valid(
-                    self.alice.token, document("world:b", request),
+                    self.alice.token, document("world:a", other_key, request),
                     request.signature))
         self.assertLess(p.seq, a.seq)
         self.assertLess(a.seq, l.seq)
-        # Each signed document names the protocol, its kind and its world.
+        # Each signed document names the protocol, its kind, and its world
+        # by id and key.
         for document, request, kind in ((petition_document, p, "petition"),
                                         (act_document, a, "act"),
                                         (leave_document, l, "leave")):
-            d = document("world:a", request)
-            self.assertEqual((d["wcp"], d["kind"], d["world"], d["seq"]),
-                             ("WCP/0.2", kind, "world:a", request.seq))
+            d = document("world:a", world.world_key, request)
+            self.assertEqual(
+                (d["wcp"], d["kind"], d["world"], d["world_key"], d["seq"]),
+                (PROTOCOL_VERSION, kind, "world:a", world.world_key,
+                 request.seq))
 
 
 class TestPassport(unittest.TestCase):
+    """What a passport is as a value. Its stamps, and checking them, are
+    tested in test_mv_passport.py."""
 
     def test_empty_passport(self):
         p = _passport()
         self.assertEqual(len(p), 0)
-        self.assertIsNone(p.last_admission())
         self.assertEqual(p.worlds_visited(), [])
-
-    def test_single_admission(self):
-        p = _passport()
-        a = make_admission("world:poetry-2024", "2024-03-15T12:00:00+00:00")
-        p2 = p.with_admission(a)
-        self.assertEqual(len(p), 0)  # p is unchanged
-        self.assertEqual(len(p2), 1)
-        self.assertEqual(p2.last_admission(), a)
-
-    def test_multiple_admissions_preserve_order(self):
-        p = _passport()
-        for world, t in (("world:A", T1), ("world:B", T2), ("world:A", T3)):
-            p = p.with_admission(make_admission(world, t))
-        self.assertEqual(p.worlds_visited(),
-                         ["world:A", "world:B", "world:A"])
-
-    def test_admission_immutability(self):
-        a = make_admission("world:A", T1)
-        with self.assertRaises(dataclasses.FrozenInstanceError):
-            a.world_id = "world:B"
-        with self.assertRaises(dataclasses.FrozenInstanceError):
-            a.timestamp = T2
+        self.assertEqual(p.entries(), ())
 
     def test_passport_immutability(self):
         p = _passport()
@@ -215,7 +202,7 @@ class TestPassport(unittest.TestCase):
             p.identity = create_identity("Bob")
 
     def test_rename_via_with_identity(self):
-        p = _passport("Alice").with_admission(make_admission("world:A", T1))
+        p = _passport("Alice")
         p2 = p.with_identity(rename(p.identity, "Alicia"))
         self.assertEqual(p2.identity.name, "Alicia")
         self.assertTrue(same_identity(p.identity, p2.identity))
@@ -226,42 +213,11 @@ class TestPassport(unittest.TestCase):
             _passport("Alice").with_identity(create_identity("Bob"))
 
     def test_serialization_roundtrip(self):
-        p = (_passport().with_admission(make_admission("world:A", T1))
-             .with_admission(make_admission("world:B", T2)))
+        p = _passport()
         p2 = passport_from_dict(passport_to_dict(p))
         self.assertTrue(same_identity(p.identity, p2.identity))
         self.assertEqual(p.identity.name, p2.identity.name)
-        self.assertEqual(p.admissions, p2.admissions)
-
-    def test_admission_validation(self):
-        for bad in [{"world_id": "", "timestamp": T1},
-                    {"world_id": "world:A", "timestamp": ""},
-                    {"world_id": "world:A", "timestamp": "not-a-date"},
-                    {"world_id": None, "timestamp": T1}]:
-            with self.subTest(bad=bad), self.assertRaises(ValueError):
-                Admission(**bad)
-
-    def test_short_world_ids_are_allowed(self):
-        # The protocol puts no length rule on a world's id, so neither
-        # does the passport (the sketch's world "world:A" crashed here).
-        self.assertEqual(Admission("w", T1).world_id, "w")
-
-    def test_honest_limitation_unsigned_admissions(self):
-        # Admissions are not signed yet (course step 3). A forged
-        # admission looks exactly like a real one.
-        real = _passport("Alice").with_admission(make_admission("world:A", T1))
-        forged = _passport("Bob").with_admission(make_admission("world:A", T1))
-        self.assertEqual(real.admissions, forged.admissions)
-
-    def test_identity_is_preserved_across_admissions(self):
-        p = _passport("Alice")
-        token = p.identity.token
-        for i in range(10):
-            p = p.with_admission(make_admission(
-                f"world:{i}", f"2024-01-{i + 1:02d}T00:00:00+00:00"))
-        self.assertEqual(p.identity.token, token)
-        self.assertEqual(p.identity.name, "Alice")
-        self.assertEqual(len(p), 10)
+        self.assertEqual(p2.entries(), ())
 
 
 if __name__ == "__main__":

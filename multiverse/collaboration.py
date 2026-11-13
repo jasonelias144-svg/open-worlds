@@ -13,10 +13,11 @@ Changed from the sketch:
     ("We should use a known poem to start anything"): Emily Dickinson's
     "Hope is the thing with feathers" (1891), with stanzas of her other
     poems as the apprentices' portfolios. The sketch opened with a poem
-    of the founder's, which he preferred not to make the starting
-    example.
+    of the founder's, which the founder preferred not to make the
+    starting example.
   - Everyone leaves at the end, so the log shows departures, and each
-    apprentice's passport shows where it has been.
+    apprentice's passport shows where it has been: since course step 3,
+    as stamps the worlds signed, checked offline at the end.
   - An apprentice whose turn fails to generate is counted in the report
     instead of being skipped silently.
 """
@@ -27,11 +28,12 @@ import sys
 from dataclasses import dataclass, field, replace
 from datetime import datetime, timezone
 from types import SimpleNamespace
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional
 
 from .apprentice import (Apprentice, CurriculumRunner, PortfolioPoem,
                          TheoreticalStance)
 from .identity import Identity, Individual, create_individual
+from .passport import LeaveNote, Passport, Stamp, verify_passport
 from .protocol import (Ack, ActResponse, Admission, Departure, LeaveResponse,
                        LogEntry, PetitionResponse, Refusal)
 from .poetry_world import PoetryWorld, PoetryWorldLaw, turns_from_log
@@ -42,14 +44,29 @@ from .registry import MultiverseRegistry
 
 @dataclass
 class ClientIdentity:
-    """An individual (with its key) and the passport it carries."""
+    """An individual (with its key) and the passport it carries: the
+    stamps worlds have signed for it, and its own signed leaves."""
     individual: Individual
-    passport_admissions: List[Tuple[str, str]] = field(default_factory=list)
+    passport: Passport = None
     is_admitted_to: Dict[str, Admission] = field(default_factory=dict)
+
+    def __post_init__(self):
+        if self.passport is None:
+            self.passport = Passport(self.individual.identity)
 
     @property
     def identity(self) -> Identity:
         return self.individual.identity
+
+    def keep(self, entry: Optional[Dict]) -> None:
+        """Add a stamp a world gave to the passport, if it is a stamp for
+        this individual that verifies."""
+        try:
+            stamp = Stamp.from_entry(entry)
+        except ValueError:
+            return
+        if stamp.holder == self.individual.token and stamp.verifies():
+            self.passport = self.passport.with_stamp(stamp)
 
 
 def make_client(name: str) -> ClientIdentity:
@@ -57,32 +74,44 @@ def make_client(name: str) -> ClientIdentity:
 
 
 def petition_world(client: ClientIdentity, world) -> PetitionResponse:
-    """Petition, signed, and on admission add the stamp to the passport."""
-    entity_id = world.manifest().entity_id
+    """Petition, signed and carrying the passport; on admission, keep the
+    arrival stamp."""
+    m = world.manifest()
     response = world.petition(client.individual.petition(
-        entity_id, tuple(client.passport_admissions),
-        message=f"{client.identity.name} petitions "
-                f"{world.manifest().name}."))
+        m, client.passport.entries(),
+        message=f"{client.identity.name} petitions {m.name}."))
     if isinstance(response, Admission):
-        client.is_admitted_to[entity_id] = response
-        client.passport_admissions.append((entity_id, response.timestamp))
+        client.is_admitted_to[m.entity_id] = response
+        client.keep(response.stamp)
     return response
 
 
 def act_on_world(client: ClientIdentity, world, act_type: str,
                  payload: Dict, attachment: object = None) -> ActResponse:
-    act = client.individual.act(world.manifest().entity_id, act_type,
-                                payload)
+    act = client.individual.act(world.manifest(), act_type, payload)
     if attachment is not None:
         act = replace(act, attachment=attachment)
-    return world.act(act)
+    response = world.act(act)
+    if isinstance(response, Ack):
+        client.keep(response.stamp)
+    return response
 
 
 def leave_world(client: ClientIdentity, world) -> LeaveResponse:
-    entity_id = world.manifest().entity_id
-    response = world.leave(client.individual.leave(entity_id))
+    """Leave, naming the arrival this closes; the signed leave goes into
+    the passport, and so does the departure stamp, if the world gives
+    one."""
+    m = world.manifest()
+    arrival = client.passport.open_arrival(m.world_key)
+    leave = client.individual.leave(
+        m, closes=arrival.fingerprint() if arrival else "")
+    response = world.leave(leave)
     if isinstance(response, Departure):
-        client.is_admitted_to.pop(entity_id, None)
+        client.is_admitted_to.pop(m.entity_id, None)
+        if arrival is not None and not response.already_left:
+            client.passport = client.passport.with_leave(
+                LeaveNote.of(m.entity_id, m.world_key, leave))
+            client.keep(response.stamp)
     return response
 
 
@@ -218,7 +247,10 @@ class CollaborationReport:
                          f"poems, {a['stance_count']} stances; turns: "
                          f"{a['turns_generated']} written, "
                          f"{a['turns_failed']} failed; passport: "
-                         f"{', '.join(a['passport']) or '(empty)'}")
+                         f"{', '.join(a['passport']) or '(empty)'}, "
+                         f"{a['stamps']} stamps, "
+                         + ("all verify" if a["passport_verifies"]
+                            else "NOT VERIFIED"))
         kinds: Dict[str, int] = {}
         for e in self.world_log:
             kinds[e["kind"]] = kinds.get(e["kind"], 0) + 1
@@ -264,7 +296,8 @@ class FirstCollaboration:
         admin = make_client("multiverse-admin")
         petition_world(admin, self.multiverse)
         listed = act_on_world(admin, self.multiverse, "multiverse.admit",
-                              {"entity_id": self.world.manifest().entity_id},
+                              {"entity_id": self.world.manifest().entity_id,
+                               "world_key": self.world.world_key},
                               attachment=self.world)
         if not isinstance(listed, Ack):
             raise RuntimeError(f"the poetry world was not listed: {listed}")
@@ -331,7 +364,9 @@ class FirstCollaboration:
             "stance_count": len(a.voice.stances),
             "turns_generated": a.turns_generated,
             "turns_failed": self.turns_failed.get(a.name, 0),
-            "passport": [w for w, _ in c.passport_admissions],
+            "passport": c.passport.worlds_visited(),
+            "passport_verifies": verify_passport(c.passport).ok,
+            "stamps": len(c.passport),
         } for a, c in zip(self.apprentices, self.apprentice_clients)]
         turns = turns_from_log(world_log)
         text: List[str] = []

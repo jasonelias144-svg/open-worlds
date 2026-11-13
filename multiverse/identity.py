@@ -6,7 +6,9 @@ token is its Ed25519 public key, written as 64 hexadecimal characters,
 and the name is only a label that may change. The private key stays with
 the individual (an `Individual`), and signs what it sends: a petition,
 an act, a leave. A world checks the signature against the token, so
-nobody who has merely seen a token can act as its owner.
+nobody who has merely seen a token can act as its owner. Since course
+step 3, worlds are keys too (each a `Signer`), and sign the stamps they
+give.
 
 No registry, no authority, no trust root: anyone can make a key.
 
@@ -101,7 +103,24 @@ def signature_valid(token: str, document: Dict, signature: object) -> bool:
                           bytes.fromhex(signature))
 
 
-class Individual:
+class Signer:
+    """A key pair: the public half (`token`) says who it is, and the
+    private half, which never leaves this object, signs. Individuals and
+    worlds are both signers (course step 3)."""
+
+    def __init__(self, secret: Optional[bytes] = None):
+        self._secret = secrets.token_bytes(32) if secret is None else secret
+        self._token = ed25519.public_key(self._secret).hex()
+
+    @property
+    def token(self) -> str:
+        return self._token
+
+    def sign(self, document: Dict) -> str:
+        return ed25519.sign(self._secret, canonical(document)).hex()
+
+
+class Individual(Signer):
     """An individual with its private key. The key never leaves this
     object: what goes out is the identity (public) and signatures.
 
@@ -113,61 +132,63 @@ class Individual:
     as the clock hasn't gone back. If it has, the worlds refuse the new
     requests as out of order until the clock catches up. (A request
     signed by hand with a huge `seq` locks its own key out of that
-    world the same way.)"""
+    world the same way.)
+
+    Requests are addressed to a world by its manifest: its id and its
+    key (course step 3), so a request signed for one world can't be
+    taken to another, even one that copies its id. The numbers are kept
+    per world key."""
 
     def __init__(self, name: str, secret: Optional[bytes] = None):
-        self._secret = secrets.token_bytes(32) if secret is None else secret
-        self.identity = Identity(
-            token=ed25519.public_key(self._secret).hex(), name=name)
+        super().__init__(secret)
+        self.identity = Identity(token=self._token, name=name)
         self._last_seq: Dict[str, int] = {}
 
     def __repr__(self) -> str:
         return f"Individual({self.identity.name!r}, {self.token[:12]}…)"
 
     @property
-    def token(self) -> str:
-        return self.identity.token
-
-    @property
     def name(self) -> str:
         return self.identity.name
 
-    def sign(self, document: Dict) -> str:
-        return ed25519.sign(self._secret, canonical(document)).hex()
-
-    def next_seq(self, world_id: str) -> int:
-        seq = max(self._last_seq.get(world_id, 0) + 1,
+    def next_seq(self, world_key: str) -> int:
+        seq = max(self._last_seq.get(world_key, 0) + 1,
                   time.time_ns() // 1000)
-        self._last_seq[world_id] = seq
+        self._last_seq[world_key] = seq
         return seq
 
     # The three signed requests. Building them here keeps the signed
-    # documents and the messages in one place (protocol.py).
+    # documents and the messages in one place (protocol.py). `world` is
+    # the world's Manifest.
 
-    def petition(self, world_id: str,
-                 passport_admissions: Tuple[Tuple[str, str], ...] = (),
+    def petition(self, world, passport: Tuple[Dict, ...] = (),
                  message: str = "", target: Optional[str] = None):
+        """A signed petition. `passport` is the petitioner's passport as
+        plain entries (passport.Passport.entries())."""
         from .protocol import Petition, petition_document
-        seq = self.next_seq(world_id)
-        unsigned = Petition(self.token, self.name,
-                            tuple(tuple(p) for p in passport_admissions),
+        seq = self.next_seq(world.world_key)
+        unsigned = Petition(self.token, self.name, tuple(passport),
                             message, target, seq)
         return replace(unsigned, signature=self.sign(
-            petition_document(world_id, unsigned)))
+            petition_document(world.entity_id, world.world_key, unsigned)))
 
-    def act(self, world_id: str, act_type: str, payload: Dict):
+    def act(self, world, act_type: str, payload: Dict):
         from .protocol import Act, act_document
-        seq = self.next_seq(world_id)
+        seq = self.next_seq(world.world_key)
         unsigned = Act(self.token, act_type, payload, seq)
         return replace(unsigned, signature=self.sign(
-            act_document(world_id, unsigned)))
+            act_document(world.entity_id, world.world_key, unsigned)))
 
-    def leave(self, world_id: str):
+    def leave(self, world, closes: str = ""):
+        """A signed leave. `closes` is the fingerprint of the arrival
+        stamp it ends (passport.py), if the individual has one: with it,
+        the signed leave is the individual's own record of leaving,
+        whether or not the world stamps the departure."""
         from .protocol import Leave, leave_document
-        seq = self.next_seq(world_id)
-        unsigned = Leave(self.token, seq)
+        seq = self.next_seq(world.world_key)
+        unsigned = Leave(self.token, seq, closes=closes)
         return replace(unsigned, signature=self.sign(
-            leave_document(world_id, unsigned)))
+            leave_document(world.entity_id, world.world_key, unsigned)))
 
 
 def create_individual(name: str) -> Individual:

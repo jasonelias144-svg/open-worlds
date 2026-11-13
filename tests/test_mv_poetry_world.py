@@ -12,9 +12,10 @@ from dataclasses import replace
 from multiverse.conformance import run_conformance
 from multiverse.identity import Individual
 from multiverse.poetry_world import PoetryWorld, PoetryWorldLaw, turns_from_log
-from multiverse.protocol import (Ack, Act, Admission, Departure, Leave,
-                                 Petition, Refusal, act_document,
-                                 leave_document, petition_document)
+from multiverse.protocol import (PROTOCOL_VERSION, Ack, Act, Admission,
+                                 Departure, Leave, Petition, Refusal,
+                                 act_document, leave_document,
+                                 manifest_problem, petition_document)
 
 class KeyBomb(str):
     """A key that hashes like the text it claims to be, so a dict lookup
@@ -26,11 +27,11 @@ class KeyBomb(str):
 SEED = "Hope is the thing with feathers\nThat perches in the soul,"
 
 
-def _raw_petition(name, token, passport_admissions=()):
+def _raw_petition(name, token, passport=()):
     """An unsigned petition, for what a world must refuse before it even
     checks a signature."""
     return Petition(petitioner_token=token, petitioner_name=name,
-                    passport_admissions=passport_admissions,
+                    passport=passport,
                     message=f"{name} petitions to enter.")
 
 
@@ -41,28 +42,28 @@ def _signed(world, person, request, seq=FRESH):
     """`request`, whatever its fields, given a fresh seq (or `seq`) and
     signed by `person` as it stands: for what a world must refuse even
     when the signature is good."""
-    wid = world.manifest().entity_id
-    request = replace(request, seq=person.next_seq(wid) if seq is FRESH
-                      else seq)
+    m = world.manifest()
+    request = replace(request, seq=person.next_seq(m.world_key)
+                      if seq is FRESH else seq)
     document = {Petition: petition_document, Act: act_document}.get(
-        type(request), leave_document)(wid, request)
+        type(request), leave_document)(m.entity_id, m.world_key, request)
     return replace(request, signature=person.sign(document))
 
 
 def _in(world, person, *args, **kwargs):
     """`person`'s signed petition to `world`."""
-    return person.petition(world.manifest().entity_id, *args, **kwargs)
+    return person.petition(world.manifest(), *args, **kwargs)
 
 
 def _out(world, person):
     """`person`'s signed leave from `world`."""
-    return person.leave(world.manifest().entity_id)
+    return person.leave(world.manifest())
 
 
 def _turn(world, person, ack, proposal, invitation, holds_open=True,
           stance="formalist"):
     """A turn signed by `person`, for `world`."""
-    return person.act(world.manifest().entity_id, "poem.turn", {
+    return person.act(world.manifest(), "poem.turn", {
         "acknowledgment": ack, "proposal": proposal,
         "invitation": invitation, "holds_open": holds_open,
         "stance_used": stance})
@@ -92,8 +93,12 @@ class TestEntering(PoetryWorldCase):
 
     def test_manifest(self):
         m = self.world().manifest()
-        self.assertEqual(m.protocol_version, "WCP/0.2")
+        self.assertEqual(m.protocol_version, PROTOCOL_VERSION)
         self.assertFalse(m.has_sub_registry())
+        # The world is a key: its manifest names it and is signed by it.
+        self.assertEqual(manifest_problem(m), "")
+        # Each world makes its own key.
+        self.assertNotEqual(m.world_key, self.world().manifest().world_key)
 
     def test_petition_admits(self):
         w = self.world()
@@ -109,11 +114,14 @@ class TestEntering(PoetryWorldCase):
         self.assertIsInstance(r, Refusal)
         self.assertIn("Already", r.reason)
 
-    def test_petition_preserves_passport_admissions(self):
+    def test_petition_keeps_the_passport(self):
+        # Alice has been to world:A and carries its stamp; this world
+        # checks it and keeps it, with its own arrival stamp after it.
+        elsewhere = PoetryWorld("world:A", "A")
         w = self.world()
         alice = Individual("Alice")
-        r = w.petition(_in(w, alice,
-                           (("world:A", "2024-01-01T00:00:00+00:00"),)))
+        stamp = elsewhere.petition(_in(elsewhere, alice)).stamp
+        r = w.petition(_in(w, alice, (stamp,)))
         self.assertIsInstance(r, Admission)
         self.assertEqual(w.passport_of(alice.token).worlds_visited(),
                          ["world:A", "world:poetry"])
@@ -310,21 +318,23 @@ class TestLeaving(PoetryWorldCase):
         w = self.world()
         alice, = self.enter(w, "Alice")
         carol = Individual("Carol")
-        wid = w.manifest().entity_id
-        stamp = (("world:A", "2024-01-01T00:00:00+00:00"),)
-        petition = carol.petition(wid, message="hi")
+        m = w.manifest()
+        elsewhere = PoetryWorld("world:A", "A")
+        stamp = (elsewhere.petition(_in(elsewhere, carol)).stamp,)
+        petition = carol.petition(m, message="hi")
         turn = _turn(w, alice, "(seed)", SEED, "What next?")
-        leave = alice.leave(wid)
+        leave = alice.leave(m)
         for changed in (
                 replace(petition, petitioner_name="Mallory"),
-                replace(petition, passport_admissions=stamp),
+                replace(petition, passport=stamp),
                 replace(petition, message="bye"),
                 replace(petition, target="world:B"),
                 replace(petition, seq=petition.seq + 1),
                 replace(turn, type="poem.other"),
                 replace(turn, payload=dict(turn.payload, proposal="mine")),
                 replace(turn, seq=turn.seq + 1),
-                replace(leave, seq=leave.seq + 1)):
+                replace(leave, seq=leave.seq + 1),
+                replace(leave, closes="ab" * 32)):
             with self.subTest(changed=changed):
                 send = {Petition: w.petition, Act: w.act}.get(
                     type(changed), w.leave)
@@ -338,10 +348,11 @@ class TestLeaving(PoetryWorldCase):
         w = self.world()
         alice, = self.enter(w, "Alice")
         mallory = Individual("Mallory")
-        wid = w.manifest().entity_id
+        m = w.manifest()
+        wid = m.entity_id
         turn = _turn(w, alice, "(seed)", SEED, "What next?")
         for forged in (replace(turn, signature=mallory.sign(
-                           act_document(wid, turn))),
+                           act_document(wid, m.world_key, turn))),
                        replace(turn, signature="")):
             with self.subTest(signature=forged.signature[:8]):
                 r = w.act(forged)
@@ -385,10 +396,11 @@ class TestLeaving(PoetryWorldCase):
         w = self.world()
         alice, = self.enter(w, "Alice")
         mallory = Individual("Mallory")
-        wid = w.manifest().entity_id
-        own = alice.leave(wid)
+        m = w.manifest()
+        wid = m.entity_id
+        own = alice.leave(m)
         forged = Leave(alice.token, own.seq,
-                       mallory.sign(leave_document(wid, own)))
+                       mallory.sign(leave_document(wid, m.world_key, own)))
         r = w.leave(forged)
         self.assertIsInstance(r, Refusal)
         self.assertIn("signature", r.reason)
@@ -396,15 +408,15 @@ class TestLeaving(PoetryWorldCase):
         self.assertIsInstance(w.leave(unsigned), Refusal)
         self.assertEqual(w.members(), ["Alice"])
         # Her own leave still works.
-        self.assertFalse(w.leave(alice.leave(wid)).already_left)
+        self.assertFalse(w.leave(alice.leave(m)).already_left)
 
     def test_a_leave_cant_be_replayed(self):
         w = self.world()
         alice, = self.enter(w, "Alice")
-        wid = w.manifest().entity_id
-        leave = alice.leave(wid)
+        m = w.manifest()
+        leave = alice.leave(m)
         self.assertFalse(w.leave(leave).already_left)
-        self.assertIsInstance(w.petition(alice.petition(wid)), Admission)
+        self.assertIsInstance(w.petition(alice.petition(m)), Admission)
         r = w.leave(leave)            # the old leave, sent again
         self.assertIsInstance(r, Refusal)
         self.assertIn("Out of order", r.reason)
@@ -413,9 +425,9 @@ class TestLeaving(PoetryWorldCase):
     def test_a_petition_cant_be_replayed(self):
         w = self.world()
         alice, = self.enter(w, "Alice")
-        wid = w.manifest().entity_id
-        petition = alice.petition(wid)
-        w.leave(alice.leave(wid))
+        m = w.manifest()
+        petition = alice.petition(m)
+        w.leave(alice.leave(m))
         self.assertIsInstance(w.petition(petition), Refusal)
         self.assertEqual(w.members(), [])
 
@@ -423,25 +435,45 @@ class TestLeaving(PoetryWorldCase):
         here = self.world()
         there = PoetryWorld("world:elsewhere", "Elsewhere")
         alice = Individual("Alice")
-        r = here.petition(alice.petition(there.manifest().entity_id))
+        r = here.petition(alice.petition(there.manifest()))
         self.assertIsInstance(r, Refusal)
         self.assertIn("signature", r.reason)
+
+    def test_a_world_that_copies_an_id_cant_pass_its_requests_on(self):
+        # A copy has this world's id but its own key: requests signed for
+        # the real one, and passed on by the copy, are refused (step 3).
+        real = self.world()
+        copy = PoetryWorld("world:poetry", "The Poetry World")
+        self.assertEqual(real.manifest().entity_id,
+                         copy.manifest().entity_id)
+        alice, = self.enter(real, "Alice")
+        bob = Individual("Bob")
+        for request, send in (
+                (_in(real, bob), copy.petition),
+                (_turn(real, alice, "(seed)", SEED, "What next?"), copy.act),
+                (_out(real, alice), copy.leave)):
+            with self.subTest(request=type(request).__name__):
+                answer = send(request)
+                self.assertIsInstance(answer, Refusal)
+        self.assertEqual(copy.members(), [])
+        self.assertEqual(real.members(), ["Alice"])
 
     def test_the_log_names_a_key_only_for_what_it_signed(self):
         w = self.world()
         alice, = self.enter(w, "Alice")
         mallory = Individual("Mallory")
-        wid = w.manifest().entity_id
+        m = w.manifest()
+        wid = m.entity_id
         before = len(w.log_since(None))
         # In Alice's name, none of them signed by her: a petition, a turn
         # and a leave.
         w.petition(_raw_petition("Alice", alice.token))
         turn = _turn(w, alice, "(seed)", SEED, "What next?")
         w.act(Act(turn.actor_token, turn.type, turn.payload, turn.seq,
-                  mallory.sign(act_document(wid, turn))))
-        own = alice.leave(wid)
+                  mallory.sign(act_document(wid, m.world_key, turn))))
+        own = alice.leave(m)
         w.leave(Leave(alice.token, own.seq,
-                      mallory.sign(leave_document(wid, own))))
+                      mallory.sign(leave_document(wid, m.world_key, own))))
         # Mallory's own turn, refused before its signature is checked.
         w.act(_turn(w, mallory, "(seed)", SEED, "What next?"))
         refused = w.log_since(None)[before:]
@@ -553,7 +585,7 @@ class TestTurns(PoetryWorldCase):
     def test_refusal_wrong_type(self):
         w = self.world()
         alice, = self.enter(w, "Alice")
-        r = w.act(alice.act(w.manifest().entity_id, "poem.not_a_turn", {}))
+        r = w.act(alice.act(w.manifest(), "poem.not_a_turn", {}))
         self.assertIsInstance(r, Refusal)
         self.assertIn("Unknown act type", r.reason)
 

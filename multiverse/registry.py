@@ -8,9 +8,10 @@ which is how multiverses join each other. Anyone can run one, and none is
 the authority (docs/MULTIVERSE.md).
 
 Acts:
-  multiverse.admit    {"entity_id": str}, with the entity attached to the
-                      act: runs the conformance test, and lists the
-                      entity if it passes and its id is the one signed
+  multiverse.admit    {"entity_id": str, "world_key": str}, with the
+                      entity attached to the act: runs the conformance
+                      test, and lists the entity if it passes and its id
+                      and key are the ones signed
   multiverse.remove   {"entity_id": str}: takes down a listing; only
                       whoever listed it may
 
@@ -26,11 +27,11 @@ Changed from the sketch:
     recorded who listed it but let anyone remove it), and a registry
     does not list itself.
 
-Known limit, until course step 12 (docs/COURSE.md): `multiverse.admit`
+Known limit, until course step 13 (docs/COURSE.md): `multiverse.admit`
 carries the entity itself, attached to the act, so it only works within
 one process. Over the network it carries an address. The signature
-covers the entity's id; the registry lists only an entity whose checked
-manifest has that id.
+covers the entity's id and key (course step 3); the registry lists only
+an entity whose checked, signed manifest has both.
 """
 from __future__ import annotations
 
@@ -38,8 +39,8 @@ from dataclasses import dataclass
 from typing import Dict, List, Optional
 
 from .conformance import check
-from .entity import (SIGNED_REQUESTS_LAW, UNSIGNED_ANSWERS_LIMIT, Entity,
-                     now)
+from .entity import (SIGNED_REQUESTS_LAW, STAMPS_LAW, UNSIGNED_ANSWERS_LIMIT,
+                     Entity, now)
 from .protocol import (PROTOCOL_VERSION, Ack, Act, ActResponse, LogEntry,
                        Manifest, Refusal)
 
@@ -48,15 +49,20 @@ def manifest_to_dict(m: Manifest) -> Dict:
     return {"entity_id": m.entity_id, "name": m.name,
             "protocol_version": m.protocol_version, "law_url": m.law_url,
             "act_endpoint": m.act_endpoint, "log_endpoint": m.log_endpoint,
-            "sub_registry_endpoint": m.sub_registry_endpoint}
+            "sub_registry_endpoint": m.sub_registry_endpoint,
+            "world_key": m.world_key, "signature": m.signature}
 
 
 def manifest_from_dict(d: Dict) -> Manifest:
+    """A listed manifest, as the log records it. Its signature can be
+    checked with protocol.manifest_problem, without asking the world."""
     return Manifest(entity_id=d["entity_id"], name=d["name"],
                     protocol_version=d["protocol_version"],
                     law_url=d["law_url"], act_endpoint=d["act_endpoint"],
                     log_endpoint=d["log_endpoint"],
-                    sub_registry_endpoint=d.get("sub_registry_endpoint"))
+                    sub_registry_endpoint=d.get("sub_registry_endpoint"),
+                    world_key=d.get("world_key", ""),
+                    signature=d.get("signature", ""))
 
 
 @dataclass(frozen=True)
@@ -66,7 +72,7 @@ class MultiverseLaw:
 
     def describe(self) -> str:
         return "\n".join([
-            "# Multiverse Registry Law v0.2",
+            "# Multiverse Registry Law v0.3",
             "",
             "## Entering and leaving",
             f"- Admits any identity: {self.admits_any_identity}",
@@ -74,14 +80,16 @@ class MultiverseLaw:
             f"{self.max_admitted if self.max_admitted else 'unlimited'}",
             "- Anyone may leave at any time.",
             SIGNED_REQUESTS_LAW,
+            STAMPS_LAW,
             "",
             "## Acts",
-            "- multiverse.admit: propose an entity for listing. It is "
-            "listed if it passes the "
-            f"{PROTOCOL_VERSION} conformance test.",
-            "- multiverse.remove: take down a listing you made. (Until "
-            "worlds have keys, a world can't take down its own listing, and "
-            "a listing whose lister has left stays up.)",
+            "- multiverse.admit: propose an entity for listing, by its id "
+            "and key. It is listed if it passes the "
+            f"{PROTOCOL_VERSION} conformance test and its signed manifest "
+            "has that id and key.",
+            "- multiverse.remove: take down a listing you made. (Worlds "
+            "don't send requests yet, so a world can't take down its own "
+            "listing, and a listing whose lister has left stays up.)",
             "- A registry does not list itself.",
             "",
             "## Convergence",
@@ -149,12 +157,16 @@ class MultiverseRegistry(Entity):
     def _handle_admit(self, timestamp: str, act: Act) -> ActResponse:
         entity = act.attachment
         entity_id = act.payload.get("entity_id")
+        world_key = act.payload.get("world_key")
         if entity is None:
             return self._refuse(timestamp, act.actor_token,
                                 "No entity attached", "act")
         if type(entity_id) is not str or not entity_id:
             return self._refuse(timestamp, act.actor_token,
                                 "No entity_id in payload", "act")
+        if type(world_key) is not str or not world_key:
+            return self._refuse(timestamp, act.actor_token,
+                                "No world_key in payload", "act")
         if entity is self:
             return self._refuse(timestamp, act.actor_token,
                                 "A registry does not list itself", "act")
@@ -184,13 +196,14 @@ class MultiverseRegistry(Entity):
         if m.entity_id == self._manifest.entity_id:
             return self._refuse(timestamp, act.actor_token,
                                 "A registry does not list itself", "act")
-        if m.entity_id != entity_id:
-            # The signature covers the id, not the attached object, so
-            # what is listed must be what was signed for.
+        if m.entity_id != entity_id or m.world_key != world_key:
+            # The signature covers the id and key, not the attached
+            # object, so what is listed must be what was signed for.
             return self._refuse(timestamp, act.actor_token,
-                                f"The attached entity is {m.entity_id}, "
-                                f"not the {entity_id} that was signed for",
-                                "act")
+                                f"The attached entity is {m.entity_id} "
+                                f"with key {m.world_key[:12]}…, not the "
+                                f"{entity_id} with key {world_key[:12]}… "
+                                "that was signed for", "act")
         if m.entity_id in self._registry:
             return self._refuse(timestamp, act.actor_token,
                                 f"Entity {m.entity_id} already listed", "act")
