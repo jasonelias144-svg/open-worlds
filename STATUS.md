@@ -13,10 +13,11 @@ respect one another's freedom, with full transparency and exit at any time
 
 ## Now
 
-- Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Steps 1 to 4
-  are done; step 5, the first journey, is in review (#22). `sketches/`
-  keeps the DeepSeek records and their code, with its first fixes (#16
-  to #18, #20). Next: step 6, keeping keys safely.
+- Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Steps 1 to 5
+  are done. Step 6, keeping keys safely: part one (keys saved encrypted,
+  a world's seen numbers) is in review (#23); next, signing over to a
+  new key. `sketches/` keeps the DeepSeek records and their code, with
+  its first fixes (#16 to #18, #20).
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
@@ -64,6 +65,13 @@ and for the founder's conversations with DeepSeek, is in
   unlinked by default; the person chooses what to show. (asked 2026-11-13)
 - For the founder: does a fork need the child's acceptance? Recommended:
   yes. (asked 2026-11-13)
+- For the founder: when a key is lost and no successor was signed over,
+  what happens? Options: lost is lost (a new key is a new individual);
+  guardians named in advance, some number of whom can sign over to a new
+  key; or the project recovers keys. Recommended: guardians named in
+  advance, with "lost is lost" for anyone who named none; the project
+  recovering keys would make it an authority over who is who. (asked
+  2026-11-13, for course step 6)
 - For the founder: a course step for persons after step 3, and the
   architectures (octopus, relay, swarm, council) as small examples on the
   unchanged core? Recommended: yes. (asked 2026-11-13)
@@ -135,6 +143,19 @@ and for the founder's conversations with DeepSeek, is in
   domain (CC0 1.0). The goal isn't financial; anyone may build on it.
 
 ## Log
+
+- 2026-11-13 Claude: course step 6, part one. Keys can be saved encrypted
+  (`multiverse/keys.py`: OpenSSH's format, bcrypt-pbkdf with 64 rounds,
+  AES-256-CTR; readable by the owner only; never written over an
+  existing file unless asked; a file changed without the passphrase
+  never loads as another key), for individuals
+  and for worlds, which can be built again with their saved key and keep
+  their identity. PKCS12 was tried first; its integrity check let a
+  guesser test passphrases through only 2,048 rounds (found by the
+  independent review). A world
+  can save the request numbers it has seen, signed, and take them back
+  after a restart, so the requests it had seen by the last save can't be
+  replayed to it. Lost-key recovery waits for the founder's answer.
 
 - 2026-11-13 Claude: course step 5, the first journey. Cycle 0's corridor
   speaks the protocol, on the world kernel, with doors that name the

@@ -25,8 +25,9 @@ names the world's key as well as its id, so a world that copies another
 world's id can't pass that world's requests on to it. A world signs a
 stamp for each arrival and departure, and for what was made inside it
 (passport.py); an individual's passport is the stamps it has been given,
-and anyone can check it offline, without asking any world. A world still
-keeps the numbers it has seen only in memory (docs/MULTIVERSE.md).
+and anyone can check it offline, without asking any world. A world keeps
+the numbers it has seen in memory, and across a restart only if they are
+saved and restored (keys.py, course step 6).
 
 Changed from the sketch: `leave` is new. The sketch had no way to go,
 and principle 3 of open-worlds is exit at any time. A world's law can
