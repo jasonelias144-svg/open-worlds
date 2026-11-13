@@ -16,9 +16,8 @@ respect one another's freedom, with full transparency and exit at any time
 - Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Steps 1 and 2
   are done, and signatures now come from the `cryptography` package (#15).
   `sketches/` keeps the DeepSeek records and their code as written (#16).
-  In review: record 012-04-00, now complete (components 44 to 63). Next:
-  step 3, signed passports, with the first batch of fixes to the
-  sketches' code alongside.
+  Record 012-04-00 is in, complete (#17). Next: step 3, signed passports,
+  with the first batch of fixes to the sketches' code alongside.
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
@@ -138,12 +137,18 @@ and for the founder's conversations with DeepSeek, is in
 
 ## Log
 
+- 2026-11-13 Claude: COLLABORATING.md asks two things of each new
+  conversation: start from that page, and give every file whole, named
+  on its first line. The founder: "Let's keep working this way for now
+  until we reach any reason to change." `extract.py check-all` now also
+  fails on a code folder no names file claims (from #17's review).
+
 - 2026-11-13 Claude: record 012-04-00 is complete (the founder's DeepSeek
   conversation ran out of room; the next one starts a new record). The
   copy in `sketches/records/` replaced, after checking the old one is an
   exact prefix of it; components 44 to 63 written out (210 files in all);
   every test rerun under eight hash seeds (433 pass, 145 fail, 1
-  sometimes, 25 test files don't load, 17 of them only because their
+  sometimes, 25 test files don't load, 18 of them only because their
   demos are separate blocks). CI now checks every record folder, so a new
   record needs only its names file. The course's next-in-line list gains
   curators, contracts between worlds and a shared log of commitments.
