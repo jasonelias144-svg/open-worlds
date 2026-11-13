@@ -2,7 +2,7 @@
 //! The Ur-world: the first world of the multiverse, and its hub.
 //!
 //! A 3D world of cells, with ground and sky, that begins in a garden with
-//! two individuals, ALICE and BOB, and comes into being as it is explored.
+//! two individuals, ALICE and BOB, and is made from its seed as it is explored.
 //! The design, and the founder's decisions behind it, are in
 //! `docs/URWORLD.md`.
 //!
