@@ -70,6 +70,16 @@ of the sketch's components each step relates to is in
    goal (step 7) would be one act. Also, the soup's own reactions are a
    fixed, published list: a molecule an act makes has no reactions of
    its own yet (a dipeptide doesn't hydrolyse by itself).
+5. **The first journey** (2026-11-13, #22). The corridor of Cycle 0
+   speaks the protocol, on the world kernel, and its law publishes doors,
+   each naming the world beyond by id and key. Worlds learn each other's
+   keys from signed manifests (`Entity.know`), so every door checks the
+   passport against the right keys. Alice walks from the corridor into
+   the chemistry world, on to the poetry world, and back; her passport
+   ends with ten stamps that all verify (`python3 -m multiverse.journey`).
+   Learned: going through a door is a leave, then a petition, so for a
+   moment the individual is in no world, and a refusal on the far side
+   leaves it outside both; and a corridor ticks only when someone acts.
 
 ## Ahead
 
@@ -87,10 +97,10 @@ problem. Step 8 gains finding the reactions of new molecules as they
 appear, which real rates need anyway. A new step 16 comes from the
 next-in-line list: a single-cell world.
 
-5. **The first journey.** The corridor world of Cycle 0 speaks the
-   protocol. One individual walks from the corridor into the chemistry
-   world and on to the poetry world, and back, with its passport checked
-   at every door.
+Rechecked after step 5: no change of order. Being in two worlds at once
+(next in line) would close the gap at a door, and stays in line. A new
+step 17 comes from the next-in-line list: a world others built.
+
 6. **Keeping keys safely.** Individuals and worlds keep their keys
    across restarts: saved encrypted, backed up, and, when a key must be
    replaced, signed over to the new one by the old one while it still
@@ -142,11 +152,16 @@ next-in-line list: a single-cell world.
     that lets some molecules through, and the chemistry inside it on
     `chem/`. The cell lives while its chemistry keeps going, and divides
     when it has made enough of itself. It passes the conformance test.
+17. **A world others built.** An adapter lets a world built elsewhere,
+    first anima-world, speak the protocol, as long as it keeps the same
+    guarantees: anyone may leave at any time and see the whole setup
+    (MULTIVERSE.md, "What this design adds", 6). It passes the
+    conformance test.
 
 ## Next in line
 
-Added one at a time, as steps are done: an adapter
-for a world others built (anima-world); doors between worlds; belongings
+Added one at a time, as steps are done: doors in every world, and over
+the network (step 5 built them in the corridor); belongings
 and homes under each world's law; visiting two worlds at once; the main
 community world; a curator for each world, which proposes its world's
 development and doesn't decide it; contracts between worlds; a shared log

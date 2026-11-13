@@ -396,6 +396,51 @@ What it doesn't do yet, said plainly:
 - **The rules are local.** They apply wherever their atoms match, even
   where real chemistry would be too slow to matter (CHEMISTRY.md).
 
+## The first journey (course step 5)
+
+- **The corridor speaks the protocol.** Cycle 0's corridor runs on the
+  world kernel (`world/core.py`), and `multiverse/corridor_world.py` puts
+  it behind the protocol. An individual petitions, is placed at the
+  entrance (the west end), walks (`corridor.move`), speaks
+  (`corridor.say`), waits and leaves, as in any world. Each accepted act
+  runs one tick of the kernel. The kernel keeps its own hash-chained log,
+  and the world's log records its head at each act. The corridor passes
+  the conformance test.
+- **Doors.** The corridor's law publishes its doors: a cell, and the
+  world beyond it, by id and key. Going through is the individual's own
+  doing: its signed leave here, then its petition there, with its
+  passport. Someone coming back from a world beyond a door (by the latest
+  visit in their passport) arrives at that door.
+- **Worlds that know each other.** A world learns another's key from its
+  signed manifest (`Entity.know`), and checks every stamp in that world's
+  name against it. The corridor knows the worlds beyond its doors, and
+  they know it, so at every door the passport is checked against the
+  right keys: a stamp "from" the chemistry world under another key is
+  refused.
+- **The journey** (`python3 -m multiverse.journey`). Alice enters the
+  corridor and walks to the chemistry door. She goes through and joins
+  two glycines into a dipeptide. She goes on to the poetry world and adds
+  a line of Dickinson. Then she comes back to the corridor, arriving at
+  the poetry door, and walks back to the entrance. At the end her
+  passport holds ten stamps, all verifying: four visits, each with a
+  stamped departure, and one thing made in each of the chemistry and
+  poetry worlds.
+
+What it doesn't do yet, said plainly:
+
+- **Between two worlds, nowhere.** Going through a door is leave, then
+  petition. If the world beyond refuses, the individual is in neither,
+  and may petition either again. Being in two worlds at once is on the
+  next-in-line list.
+- **Who knows whom is set up by whoever builds the worlds,** in one
+  process. Over the network, worlds learn keys from manifests and
+  registries (course step 13).
+- **Ticks happen only when someone acts.** A corridor with one visitor
+  stands still between that visitor's acts.
+- **No walkers of the corridor's own.** Cycle 0's walkers ran in the
+  experiment; here the corridor holds only those who entered through
+  the protocol.
+
 ## The course
 
 The steps ahead are in [COURSE.md](COURSE.md): twelve steps, rolling.

@@ -264,7 +264,10 @@ class Soup:
             if total <= 0.0:
                 break
             wait = self._rng.expovariate(total)
-            if self.time + wait > until:
+            if self.time + wait > until or self.time + wait == self.time:
+                # (The second: a clock so large, about 1e16, that a wait
+                # rounds to nothing. Time could no longer pass, and the
+                # loop would never end.)
                 break
             self.time += wait
             self._happen(total)
@@ -313,9 +316,12 @@ class Soup:
         done = 0
         while (max_events is None or done < max_events) \
                 and (until is None or self.time < until):
+            before = self.time
             if not self.step():
                 break
             done += 1
+            if until is not None and self.time == before:
+                break           # the clock can't move at this size (advance)
         return done
 
     # -- internals --

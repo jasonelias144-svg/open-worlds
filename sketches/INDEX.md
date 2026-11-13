@@ -57,9 +57,9 @@ open-worlds" says whether any of it is in the working code, and how.
 | 18 | Several models together | 15152 | doesn't load | 12 | no |
 | 19 | The federation runner (`federation.py`, `Makefile`) | 15921 | `federation_test.py`: 0 of 4 | 12, 13 | no |
 | 20 | Real Hugging Face models | 16671 | doesn't load | 12 | no |
-| 21 | Cross-world provenance | 17584 | 5 of 11 | 3, 5 | no |
+| 21 | Cross-world provenance | 17584 | 5 of 11 | 3, 5 | partly: since step 5, a journey through several worlds leaves a passport of signed stamps, with what was made in each; no provenance reports |
 | 22 | Leaving, with signed departures | 18635 | 3 of 15 | 3 | leaving since step 1; signed departure stamps since step 3, and a leave the world doesn't stamp still ends the visit |
-| 23 | Provenance over several visits | 19519 | 18 of 21 | 3, 5 | no |
+| 23 | Provenance over several visits | 19519 | 18 of 21 | 3, 5 | partly, as 21 (step 5) |
 | 24 | Signed provenance reports | 20553 | 15 of 15 | 3 | no |
 | 25 | A chain of witnesses | 21340 | 20 of 20 | none yet | no |
 | 26 | Signed revocations | 22387 | 18 of 18 | none yet | no |

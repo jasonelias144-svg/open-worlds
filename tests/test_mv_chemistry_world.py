@@ -68,7 +68,8 @@ class TestTheLaw(ChemistryCase):
         doc = ChemistryWorldLaw().describe()
         for part in (ACT_TYPE, "may leave at any time", "placeholders",
                      "seconds of world time", "100 water", "20 glycine",
-                     "seed 0", AMIDE, "4.0 forward, 1.0 back"):
+                     "seed 0", AMIDE, "4.0 forward, 1.0 back",
+                     "ordered picks"):
             self.assertIn(part, doc)
 
     def test_its_numbers_are_checked(self):

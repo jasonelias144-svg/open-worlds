@@ -126,15 +126,15 @@ def main() -> None:
     for i, step in enumerate(result["steps"], 1):
         print(f"  {i:2d}. Alice {step}")
     check = result["check"]
+    verdict = "all verify" if check.ok else f"PROBLEMS: {check.problems}"
     print(f"\nHer passport: {len(result['passport'])} stamps, "
-          f"{len(result['passport'].leaves)} signed leaves, "
-          f"{'all verify' if check.ok else 'PROBLEMS: ' + str(check.problems)}")
+          f"{len(result['passport'].leaves)} signed leaves, {verdict}")
     for v in check.visits:
         print(f"  {v.world_id:18s} left: {v.left or 'still there':9s} "
               f"made: {v.made}")
-    corridor = result["worlds"][0]
-    print(f"\nThe corridor's kernel log: {len(corridor.kernel.log)} entries, "
-          f"{'verifies' if World.verify_log(corridor.kernel.log) else 'BROKEN'}")
+    log = result["worlds"][0].kernel.log
+    verdict = "verifies" if World.verify_log(log) else "BROKEN"
+    print(f"\nThe corridor's kernel log: {len(log)} entries, {verdict}")
 
 
 if __name__ == "__main__":

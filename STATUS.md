@@ -13,22 +13,21 @@ respect one another's freedom, with full transparency and exit at any time
 
 ## Now
 
-- Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Steps 1 to 3
-  are done; step 4, the chemistry world on the real chemistry, is in
-  review (#21). `sketches/` keeps the DeepSeek records and their code,
-  with its first fixes (#16 to #18, #20). Next: step 5, the first
-  journey.
+- Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Steps 1 to 4
+  are done; step 5, the first journey, is in review (#22). `sketches/`
+  keeps the DeepSeek records and their code, with its first fixes (#16
+  to #18, #20). Next: step 6, keeping keys safely.
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
 
 The course, twelve steps ahead and rolling: [docs/COURSE.md](docs/COURSE.md).
 After each step is done, the rest are rechecked and one new step is added.
-In short: the first journey between worlds; keeping keys safely; the
-first learner; real rates and the gardener's water; an organic chemistry
-world entered by a stamp; a viewer page; time and populations;
-language-model inhabitants (Cycle 1); any AI from any app; governance; a
-common-meter poetry world; a single-cell world.
+In short: keeping keys safely; the first learner; real rates and the
+gardener's water; an organic chemistry world entered by a stamp; a viewer
+page; time and populations; language-model inhabitants (Cycle 1); any AI
+from any app; governance; a common-meter poetry world; a single-cell
+world; a world others built.
 
 Also kept from earlier plans, outside the course for now: side cycles
 suggested by Cycle 0 (walkers with different speeds, to test "respect
@@ -136,6 +135,17 @@ and for the founder's conversations with DeepSeek, is in
   domain (CC0 1.0). The goal isn't financial; anyone may build on it.
 
 ## Log
+
+- 2026-11-13 Claude: course step 5, the first journey. Cycle 0's corridor
+  speaks the protocol, on the world kernel, with doors that name the
+  worlds beyond by id and key; worlds learn each other's keys from signed
+  manifests, so every door checks the passport against the right keys.
+  Alice walks from the corridor through the chemistry and poetry worlds
+  and back, ending with ten stamps that all verify. Also: the soup's
+  clock can't loop for ever when it is huge, the chemistry law states its
+  rate convention, and verify_passport's "never raises" says for which
+  passports (from #19 and #21's reviews). The course gains step 17, a
+  world others built.
 
 - 2026-11-13 Claude: course step 4. The chemistry world now holds a soup
   of real molecules (`chem/`), which starts with published soil and runs
