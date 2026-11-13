@@ -269,10 +269,10 @@ flow acceleration."
 
 What it doesn't do yet, said plainly:
 
-- **Keys live only in memory.** There is no saving, backup or recovery
-  yet. An individual that loses its key can't prove it is itself any
-  more. Keeping keys safely comes before anything an individual would
-  want to come back for (belongings and homes).
+- **Keys lived only in memory.** Since course step 6 they can be saved,
+  encrypted, and backed up (`multiverse/keys.py`). An individual that
+  loses its key, with no copy, still can't prove it is itself any more;
+  what happens then is being decided with the founder.
 - **Worlds didn't sign their answers.** Since course step 3 they sign
   the passport's stamps; other answers are still unsigned (below).
 - **A request was bound to a world's id, not to the world.** Each world
@@ -280,11 +280,12 @@ What it doesn't do yet, said plainly:
   that copied another's id could pass a visitor's signed request on to
   the real one. Since course step 3 a request names the world's key as
   well.
-- **Worlds keep the last `seq` from each key only in memory.** A world
-  that restarts forgets them, so an old petition or leave could be
-  replayed to it once. Today a restart also loses the log and who is
-  present, so the harm is small; it goes when worlds keep their state
-  (with belongings and homes).
+- **Worlds keep the last `seq` from each key in memory.** Since course
+  step 6 a world can save them, signed, and take them back after a
+  restart; one restarted without them could have an old petition or
+  leave replayed to it once. A restart still loses the log and who is
+  present; that goes when worlds keep their state (with belongings and
+  homes).
 - **A signer can lock itself out of a world** by signing a huge `seq`:
   every later request from that key is then out of order there. Only
   that key is affected.
@@ -341,10 +342,10 @@ What it doesn't do yet, said plainly:
   world's name. A stamp from a world the checker doesn't know shows only
   its key. Learning keys from running worlds and registries comes with
   the network (course step 13).
-- **A stamp is worth something only while its key is known,** and keys
-  still live only in memory. A world that restarts has a new key, and
-  its old stamps no longer link to it. So keeping keys safely is now
-  course step 6.
+- **A stamp is worth something only while its key is known.** A world
+  that restarts with a new key is a new world, and refuses stamps in
+  its name under the old one. Since course step 6 a world's key can be
+  saved and taken back, so its stamps keep counting after a restart.
 - **A stamp says what its world claims, nothing more.** The times are
   the world's own, checked against no clock. A world that lies signs its
   lies; the signature shows who told them.
@@ -447,6 +448,39 @@ What it doesn't do yet, said plainly:
   nothing in the protocol shows it to a visitor yet (`where()` gives
   one's own cell, in-process). The kernel's own guarantees of voice and
   information are unchanged.
+
+## Keeping keys safely (course step 6, part one)
+
+- **A key can be saved, encrypted with a passphrase**
+  (`multiverse/keys.py`: `save_key`, `load_individual`, `load_signer`).
+  The file is PKCS12, which `openssl` also reads, holding only the key:
+  PBKDF2-HMAC-SHA256 at 600,000 iterations (the current OWASP figure)
+  and AES-256-CBC, from the `cryptography` package. The more common
+  PKCS8 "best available" encryption uses only 2,048 iterations, too few
+  for a passphrase. The file is readable by its owner only, is written
+  whole or not at all, and never replaces an existing file unless asked:
+  losing a key file loses the key.
+- **A backup is another saved copy,** kept somewhere else.
+- **A world comes back as itself.** Built with its saved key
+  (`PoetryWorld(..., key=...)`, and the same for every world), a
+  restarted world keeps its identity, so the stamps it gave before still
+  count. A world restarted with a new key is a new world, and refuses
+  stamps in the old one's name.
+- **A world keeps the numbers it has seen** (`save_seen`, `load_seen`,
+  `Entity.restore_seen`), so after a restart an old request can't be
+  replayed to it. The file is signed by the world's key, so a changed
+  file, or another world's, is refused; restored numbers only ever grow.
+
+What it doesn't do yet, said plainly:
+
+- **The passphrase is the only way in.** Nobody, open-worlds included,
+  can recover a forgotten one.
+- **Replacing a key, and losing one,** are the rest of this step: a key
+  signed over to a new one while it still works, and, when a key is lost
+  with no successor, what the founder decides.
+- **Saving is the operator's job.** Nothing saves a world's seen numbers
+  by itself; a world restarted without them is as open to a replay as
+  before.
 
 ## The course
 

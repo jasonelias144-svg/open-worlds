@@ -207,7 +207,7 @@ class TestPublishedLaws(unittest.TestCase):
                               "departure", text)
                 # and its limits, as they stand
                 self.assertIn("Only stamps are signed", text)
-                self.assertIn("kept only in memory", text)
+                self.assertIn("unless they are saved and restored", text)
                 self.assertNotIn("world ids aren't checked", text)
 
 
