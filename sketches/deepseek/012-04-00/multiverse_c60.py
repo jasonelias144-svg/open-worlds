@@ -512,3 +512,248 @@ class RevocationPublisher:
     ) -> FederationAttestation:
         return revocation_announcement_to_attestation_signed(
             announcement, self._curator._world_kp)
+
+
+def demo(artifact_dir: Optional[str] = None) -> Dict:
+    """Full lifecycle: establish → announce → C learns → revoke
+    → announce revocation → C learns → citations refused.
+
+    Scenarios:
+      A. C learns of establishment (via C59 announcement); C can
+         cite the contract.
+      B. Bilateral revocation happens; C60 announcement created
+         and verified.
+      C. C learns of revocation; citations now refused.
+      D. Tampered revocation announcement rejected.
+      E. Non-party cannot sign.
+
+    Anchor: Dickinson, 'After great pain, a formal feeling comes –'
+    (the end of a formal relationship, signed and propagated).
+    """
+    import json
+    from pathlib import Path
+    from multiverse_c1 import create_identity
+    from multiverse_c3 import Act, Ack, Refusal, Petition
+    from multiverse_c4 import PoetryWorld
+    from multiverse_c5 import ChemistryWorld
+    from multiverse_c13 import KeyPair
+    from multiverse_c55 import WorldCurator
+    from multiverse_c57 import (
+        ContractTerms, ContractRegistry,
+        sign_offer, sign_acceptance,
+        sign_bilateral_revocation,
+        EstablishedContract,
+        verify_established_contract,
+    )
+    from multiverse_c58 import ContractAwarePoetryWorld
+    from multiverse_c59 import (
+        sign_announcement, verify_announcement,
+        announcement_to_registry,
+        AnnouncementPublisher,
+    )
+
+    if not HAS_CRYPTO:
+        raise RuntimeError("demo requires `cryptography`")
+
+    if artifact_dir is None:
+        artifact_dir = "artifacts"
+    path = Path(artifact_dir)
+    path.mkdir(parents=True, exist_ok=True)
+
+    # -- Establish contract (C57) -------------------------------
+    world_a = PoetryWorld("world:poetry", "Poetry")
+    world_b = ChemistryWorld("world:chemistry", "Chemistry")
+    kp_a = KeyPair.generate()
+    kp_b = KeyPair.generate()
+    terms = ContractTerms(content={
+        "kind": "mutual-recognition",
+        "poetry_recognizes": "chem-turns",
+        "chemistry_recognizes": "poetry-turns",
+    })
+    offer = sign_offer(
+        world_a.manifest().entity_id, kp_a,
+        world_b.manifest().entity_id, terms)
+    acceptance = sign_acceptance(
+        world_b.manifest().entity_id, kp_b, offer)
+    contract = EstablishedContract(
+        offer=offer, acceptance=acceptance,
+        established_at=_now())
+    contract_id = terms.terms_hash()
+
+    # -- A announces establishment (C59) -----------------------
+    publisher_a = AnnouncementPublisher(
+        WorldCurator(world_a, kp_a))
+    est_announcement = publisher_a.announce(contract)
+
+    # -- C is a contract-aware poetry world --------------------
+    reg_c = ContractRegistry()
+    world_c = ContractAwarePoetryWorld(
+        "world:poetry-C", "Poetry C", registry=reg_c)
+    resident_c = create_identity("Resident-C")
+    world_c.petition(Petition(
+        petitioner_token=resident_c.token,
+        petitioner_name=resident_c.name,
+        passport_admissions=(),
+        message="hi"))
+
+    def cite():
+        return world_c.act(Act(
+            actor_token=resident_c.token,
+            type="poem.turn",
+            payload={
+                "acknowledgment": "(seed)",
+                "proposal": "a line",
+                "invitation": "?",
+                "holds_open": True,
+                "cites_contract": contract_id,
+                "cites_world": "world:chemistry",
+            }))
+
+    # -- Scenario A: C learns establishment --------------------
+    est_verify_a = verify_announcement(est_announcement)
+    c_learns_establishment = est_verify_a.valid
+    if c_learns_establishment:
+        announcement_to_registry(est_announcement, reg_c)
+    c_can_cite_before = isinstance(cite(), Ack)
+
+    # -- Bilateral revocation happens --------------------------
+    revocation = sign_bilateral_revocation(
+        contract_id=contract_id,
+        world_a_id=world_a.manifest().entity_id,
+        world_a_kp=kp_a,
+        world_b_id=world_b.manifest().entity_id,
+        world_b_kp=kp_b,
+        reason="mutual agreement ended")
+
+    # -- A announces revocation (C60) --------------------------
+    publisher_rev = RevocationPublisher(
+        WorldCurator(world_a, kp_a))
+    rev_announcement = publisher_rev.announce_revocation(
+        revocation)
+    rev_verify = verify_revocation_announcement(rev_announcement)
+
+    # -- Non-party cannot sign ---------------------------------
+    stranger_kp = KeyPair.generate()
+    stranger_refused = False
+    try:
+        sign_revocation_announcement(
+            revocation, stranger_kp)
+    except ValueError:
+        stranger_refused = True
+
+    # -- C learns revocation -----------------------------------
+    c_learns_revocation = rev_verify.valid
+    if c_learns_revocation:
+        revocation_announcement_to_registry(
+            rev_announcement, reg_c)
+    # After revocation, citations are refused
+    cite_after = cite()
+    c_refuses_after = isinstance(cite_after, Refusal)
+
+    # -- Tampered revocation announcement ----------------------
+    tampered_content = dict(rev_announcement.to_dict())
+    tampered_rev = dict(tampered_content["revocation"])
+    tampered_rev["reason"] = "TAMPERED"
+    tampered_content["revocation"] = tampered_rev
+    tampered_ann = RevocationAnnouncement.from_dict(
+        tampered_content)
+    tampered_verify = verify_revocation_announcement(
+        tampered_ann)
+
+    # -- Wrap and dispatch (for completeness) ------------------
+    wrapped = publisher_rev.wrap_as_attestation(
+        rev_announcement)
+    wrap_verify = verify_revocation_announcement_attestation(
+        wrapped)
+
+    # -- Print -----------------------------------------------
+    print("=" * 70)
+    print("Revocation Propagation — announce, verify, refuse")
+    print("=" * 70)
+    print()
+    print(f"  Contract: {terms.content.get('kind')}")
+    print(f"  Contract ID: {contract_id[:16]}...")
+    print()
+    print("  Scenario A: C learns of establishment (C59)")
+    print(f"    Establishment announcement valid: "
+          f"{'✓' if est_verify_a.valid else '✗'}")
+    print(f"    C's registry populated: "
+          f"{reg_c.get(contract_id) is not None}")
+    print(f"    C can cite: "
+          f"{'✓' if c_can_cite_before else '✗'}")
+    print()
+    print("  Scenario B: bilateral revocation + C60 announcement")
+    print(f"    Revocation announcement valid: "
+          f"{'✓' if rev_verify.valid else '✗'}")
+    print(f"    Wrapped attestation valid: "
+          f"{'✓' if wrap_verify.valid else '✗'}")
+    print()
+    print("  Scenario C: C learns of revocation")
+    print(f"    C's registry updated: "
+          f"{reg_c.get(contract_id).is_revoked()}")
+    print(f"    C's citation refused: "
+          f"{'✓' if c_refuses_after else '✗'}")
+    if c_refuses_after:
+        print(f"      reason: {cite_after.reason}")
+    print()
+    print("  Scenario D: tampered revocation announcement")
+    print(f"    Verification: "
+          f"{'✓' if tampered_verify.valid else '✗'} "
+          f"({tampered_verify.reason})")
+    print()
+    print("  Scenario E: non-party cannot sign")
+    print(f"    Stranger refused at signing: "
+          f"{'✓' if stranger_refused else '✗'}")
+    print()
+    print("  What this demonstrates:")
+    print("    - Revocation announcements follow the same pattern")
+    print("      as establishment announcements (C59): sign, wrap,")
+    print("      propagate, populate registry.")
+    print("    - A C58-aware world that learns a revocation will")
+    print("      refuse subsequent citations of the revoked")
+    print("      contract.")
+    print("    - Tampering with the announcement is caught by the")
+    print("      embedded revocation's signature.")
+    print("    - The world kernel does not arbitrate ordering of")
+    print("      establishment vs revocation events. Both are")
+    print("      past-tense facts; readers reconstruct from")
+    print("      timestamps.")
+    print()
+    print("  Anchor (public domain, Emily Dickinson):")
+    print("    'After great pain, a formal feeling comes –'")
+    print("    'The Nerves sit ceremonious, like Tombs –'")
+
+    audit = {
+        "contract_id": contract_id,
+        "scenarios": {
+            "A_establishment": {
+                "announcement_valid": est_verify_a.valid,
+                "c_learned": c_learns_establishment,
+                "c_can_cite_before":
+                    c_can_cite_before,
+            },
+            "B_revocation": {
+                "announcement_valid": rev_verify.valid,
+                "wrapped_valid": wrap_verify.valid,
+            },
+            "C_c_learns_revocation": {
+                "c_learns": c_learns_revocation,
+                "c_refuses_after": c_refuses_after,
+                "refusal_reason": (
+                    cite_after.reason
+                    if isinstance(cite_after, Refusal)
+                    else None),
+            },
+            "D_tampered": {
+                "valid": tampered_verify.valid,
+                "reason": tampered_verify.reason,
+            },
+            "E_stranger": {
+                "refused": stranger_refused,
+            },
+        },
+    }
+    (path / "revocation_propagation_demo.json").write_text(
+        json.dumps(audit, indent=2))
+    print(f"\n  → {path}/revocation_propagation_demo.json")
+    return audit

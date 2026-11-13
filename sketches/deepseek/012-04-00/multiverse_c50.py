@@ -612,3 +612,178 @@ def reproduce_ruling(
                 f"outcome mismatch: expected {outcome!r}, "
                 f"ruling says {ruling.outcome!r}")
     return (True, "ruling reproduced")
+
+
+def demo(artifact_dir: Optional[str] = None) -> Dict:
+    """Alice authors a poetry-gate policy; Aria runs the unit.
+    v1 accepts all poetry; v2 accepts Dickinson and reviews other
+    poetry. One fact pattern changes outcome across the amendment.
+    A third party reproduces both rulings.
+
+    Anchor: Dickinson, 'I'm Nobody! Who are you?'
+    """
+    if not HAS_CRYPTO:
+        raise RuntimeError("demo requires `cryptography`")
+
+    alice = create_identity("Alice")
+    alice_kp = KeyPair.generate()
+    aria = create_identity("Aria")
+    aria_kp = KeyPair.generate()
+
+    # v1: accept all poetry
+    v1 = sign_policy(
+        policy_id="dickinson-gate", version=1,
+        clauses=[
+            Clause(
+                clause_id="all_poetry",
+                condition={"field": "category", "op": "eq",
+                            "value": "poetry"},
+                outcome="accept",
+                notes="v1 accepts all poetry"),
+        ],
+        default_outcome="reject",
+        author=alice, author_kp=alice_kp,
+    )
+
+    unit = InstitutionalUnit(
+        "world:poetry-gate", "Poetry Gate",
+        unit_kp=aria_kp, initial_policy=v1)
+
+    # Three fact patterns
+    f_dickinson = {"category": "poetry",
+                    "contains_author": "dickinson",
+                    "title": "I'm Nobody! Who are you?"}
+    f_whitman = {"category": "poetry",
+                  "contains_author": "whitman",
+                  "title": "Song of Myself"}
+    f_prose = {"category": "prose",
+                "contains_author": "dickinson",
+                "title": "Letters"}
+
+    # v1 rulings
+    r1_dickinson = unit.evaluate(f_dickinson)
+    r1_whitman = unit.evaluate(f_whitman)
+    r1_prose = unit.evaluate(f_prose)
+
+    # Amendment to v2: Dickinson prioritized, other poetry reviewed
+    v2 = sign_policy(
+        policy_id="dickinson-gate", version=2,
+        clauses=[
+            Clause(
+                clause_id="dickinson_poetry",
+                condition={"all_of": [
+                    {"field": "category", "op": "eq",
+                     "value": "poetry"},
+                    {"field": "contains_author", "op": "eq",
+                     "value": "dickinson"},
+                ]},
+                outcome="accept",
+                notes="v2 prioritizes Dickinson"),
+            Clause(
+                clause_id="other_poetry",
+                condition={"field": "category", "op": "eq",
+                            "value": "poetry"},
+                outcome="review",
+                notes="v2 reviews other poetry"),
+        ],
+        default_outcome="reject",
+        author=alice, author_kp=alice_kp,
+    )
+    amendment = unit.amend(v2)
+
+    # v2 rulings
+    r2_dickinson = unit.evaluate(f_dickinson)
+    r2_whitman = unit.evaluate(f_whitman)
+    r2_prose = unit.evaluate(f_prose)
+
+    # Third-party reproduction (no unit cooperation needed)
+    v1_from_history = unit.policy_by_hash(r1_whitman.policy_hash)
+    v2_from_history = unit.policy_by_hash(r2_whitman.policy_hash)
+    repro_1 = reproduce_ruling(r1_whitman, v1_from_history, f_whitman)
+    repro_2 = reproduce_ruling(r2_whitman, v2_from_history, f_whitman)
+
+    print("=" * 70)
+    print("Institutional Architecture — poetry gate")
+    print("=" * 70)
+    print()
+    print(f"  Unit:    {unit.manifest().entity_id}")
+    print(f"  Author:  {alice.name}")
+    print(f"  Policy:  dickinson-gate v1 → v2 via signed amendment")
+    print()
+    print("  Before amendment (v1: accept all poetry):")
+    for label, r in [("Dickinson", r1_dickinson),
+                     ("Whitman", r1_whitman),
+                     ("Prose", r1_prose)]:
+        clause = r.fired_clause_id or "default"
+        print(f"    {label:10s}: {r.outcome:8s}  (clause: {clause})")
+    print()
+    print(f"  Amendment: v1 → v2 "
+          f"(old_hash={amendment.old_policy_hash[:16]}..., "
+          f"new_hash={amendment.new_policy_hash[:16]}...)")
+    print()
+    print("  After amendment (v2: Dickinson accepted, "
+          "other poetry reviewed):")
+    for label, r in [("Dickinson", r2_dickinson),
+                     ("Whitman", r2_whitman),
+                     ("Prose", r2_prose)]:
+        clause = r.fired_clause_id or "default"
+        print(f"    {label:10s}: {r.outcome:8s}  (clause: {clause})")
+    print()
+    print("  Third-party reproduction (no unit cooperation):")
+    for label, (ok, reason) in [
+        ("v1 ruling on Whitman", repro_1),
+        ("v2 ruling on Whitman", repro_2),
+    ]:
+        marker = "✓" if ok else "✗"
+        print(f"    {marker} {label}: {reason}")
+    print()
+    print("  What this demonstrates:")
+    print("    - The rule is a signed document, not a callable.")
+    print("      Its hash is in every Ruling.")
+    print("    - A third party with the policy + facts reproduces")
+    print("      the ruling without the unit's cooperation.")
+    print("    - Amendments are signed artifacts")
+    print("      (old_hash → new_hash). Policy history is")
+    print("      append-only.")
+    print("    - The evaluator is general. Behavior lives entirely")
+    print("      in the signed policy. In C44-C47, behavior was")
+    print("      a Python callable — real, but opaque.")
+    print("    - Behavior is auditable, versionable, amendable.")
+    print()
+    print("  Anchor (public domain, Emily Dickinson):")
+    print("    'I'm Nobody! Who are you?'")
+    print("    'Are you – Nobody – too?'")
+
+    audit = {
+        "unit_id": unit.manifest().entity_id,
+        "policy_id": v1.policy_id,
+        "v1_hash": v1.policy_hash(),
+        "v2_hash": v2.policy_hash(),
+        "v1_rulings": {
+            "dickinson": {"outcome": r1_dickinson.outcome,
+                            "clause": r1_dickinson.fired_clause_id},
+            "whitman": {"outcome": r1_whitman.outcome,
+                          "clause": r1_whitman.fired_clause_id},
+            "prose": {"outcome": r1_prose.outcome,
+                        "clause": r1_prose.fired_clause_id},
+        },
+        "v2_rulings": {
+            "dickinson": {"outcome": r2_dickinson.outcome,
+                            "clause": r2_dickinson.fired_clause_id},
+            "whitman": {"outcome": r2_whitman.outcome,
+                          "clause": r2_whitman.fired_clause_id},
+            "prose": {"outcome": r2_prose.outcome,
+                        "clause": r2_prose.fired_clause_id},
+        },
+        "reproductions": {
+            "v1_whitman": list(repro_1),
+            "v2_whitman": list(repro_2),
+        },
+    }
+    if artifact_dir:
+        path = Path(artifact_dir)
+        path.mkdir(parents=True, exist_ok=True)
+        (path / "institutional_demo.json").write_text(
+            json.dumps(audit, indent=2))
+        print(f"\n  → {path}/institutional_demo.json")
+    return audit

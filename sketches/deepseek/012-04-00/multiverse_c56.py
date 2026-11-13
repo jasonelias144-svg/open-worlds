@@ -844,3 +844,168 @@ def verify_signed_relay_chain(
         bad_relays=bad_relays,
         bad_receipts=bad_receipts,
     )
+
+
+def demo(artifact_dir: Optional[str] = None) -> Dict:
+    """Three scenarios:
+
+    A. Happy chain A—B—C—D, all with context.
+       All hops confirmed, chain valid.
+
+    B. Skeptic at B (no context).
+       A→B confirmed, B's receipt shows verified=False.
+       Chain valid up to B, no hops beyond B.
+
+    C. Branching diamond A→{B,C}, {B,C}→D, D→E.
+       All confirmed, chain valid.
+
+    Anchor: Dickinson, 'Tell all the truth but tell it slant –'
+    (the chain is the truth, told through Circuit).
+    """
+    import json
+
+    if artifact_dir is None:
+        artifact_dir = "artifacts"
+    path = Path(artifact_dir)
+    path.mkdir(parents=True, exist_ok=True)
+
+    # -- Source: a council decision ---------------------------
+    kps = [KeyPair.generate() for _ in range(3)]
+    council = DeliberativeCouncil(
+        "council", QuorumRule(2, 2),
+        max_rounds=2, stability_rounds=1)
+    for i, kp in enumerate(kps):
+        council.add_member(DeliberativeMember(
+            entity_id=f"council:m{i}",
+            name=f"C-{i}", member_kp=kp,
+            decision_rule=lambda p, c: ("yea", "ok")))
+    council_keys = {
+        f"council:m{i}": kp.public_key_hex()
+        for i, kp in enumerate(kps)
+    }
+    decision = council.deliberate_and_resolve(
+        Proposal(content={"action": "test"}))
+    att = attest_deliberative_decision("council", decision)
+    attested = AttestedRumor.from_attestation(att)
+    context = {"member_keys": {"council": council_keys}}
+
+    def build_chain(names, contexts):
+        net = SignedRelayNetwork()
+        unit_kps = {}
+        for i, name in enumerate(names):
+            contacts = []
+            if i > 0:
+                contacts.append(names[i - 1])
+            if i < len(names) - 1:
+                contacts.append(names[i + 1])
+            kp = KeyPair.generate()
+            unit_kps[name] = kp.public_key_hex()
+            net.add_unit(name, SigningVerifyingUnit(
+                entity_id=f"world:{name}", name=name,
+                unit_kp=kp, contacts=contacts,
+                susceptibility=1,
+                trust_context=contexts.get(name)))
+        return net, unit_kps
+
+    def build_diamond(contexts):
+        net = SignedRelayNetwork()
+        layout = {
+            "A": ["B", "C"],
+            "B": ["A", "D"],
+            "C": ["A", "D"],
+            "D": ["B", "C", "E"],
+            "E": ["D"],
+        }
+        unit_kps = {}
+        for name, contacts in layout.items():
+            kp = KeyPair.generate()
+            unit_kps[name] = kp.public_key_hex()
+            net.add_unit(name, SigningVerifyingUnit(
+                entity_id=f"world:{name}", name=name,
+                unit_kp=kp, contacts=contacts,
+                susceptibility=1,
+                trust_context=contexts.get(name)))
+        return net, unit_kps
+
+    # -- Scenario A: happy chain -----------------------------
+    chain = ["A", "B", "C", "D"]
+    net_a, keys_a = build_chain(
+        chain, {n: context for n in chain})
+    net_a.seed_attested("A", attested)
+    net_a.run_until_quiet()
+    rc_a = net_a.collect_relay_chain(attested.rumor_id)
+    verdict_a = verify_signed_relay_chain(
+        rc_a, context=context,
+        relay_public_keys=keys_a,
+        receipt_public_keys=keys_a)
+
+    # -- Scenario B: skeptic at B ----------------------------
+    contexts_b = {n: context for n in chain}
+    contexts_b["B"] = None
+    net_b, keys_b = build_chain(chain, contexts_b)
+    net_b.seed_attested("A", attested)
+    net_b.run_until_quiet()
+    rc_b = net_b.collect_relay_chain(attested.rumor_id)
+    verdict_b = verify_signed_relay_chain(
+        rc_b, context=context,
+        relay_public_keys=keys_b,
+        receipt_public_keys=keys_b)
+
+    # -- Scenario C: diamond ---------------------------------
+    net_c, keys_c = build_diamond(
+        {n: context for n in ("A", "B", "C", "D", "E")})
+    net_c.seed_attested("A", attested)
+    net_c.run_until_quiet()
+    rc_c = net_c.collect_relay_chain(attested.rumor_id)
+    verdict_c = verify_signed_relay_chain(
+        rc_c, context=context,
+        relay_public_keys=keys_c,
+        receipt_public_keys=keys_c)
+
+    # -- Print -----------------------------------------------
+    print("=" * 70)
+    print("Signed Relay Chain — every hop signed, verified offline")
+    print("=" * 70)
+    print()
+    print(f"  Source: council decision "
+          f"(hash {att.content_hash[:16]}...)")
+    print()
+    print("  Scenario A: happy chain A—B—C—D")
+    for line in verdict_a.format().split("\n"):
+        print(f"    {line}")
+    print()
+    print("  Scenario B: skeptic at B (no context)")
+    for line in verdict_b.format().split("\n"):
+        print(f"    {line}")
+    print()
+    print("  Scenario C: branching diamond A→{{B,C}}, "
+          "{{B,C}}→D, D→E")
+    for line in verdict_c.format().split("\n"):
+        print(f"    {line}")
+    print()
+    print("  What this demonstrates:")
+    print("    - Every transmission has two signed artifacts:")
+    print("      sender's relay and receiver's receipt.")
+    print("    - Verification is offline: caller supplies world")
+    print("      keys and context; chain verifies.")
+    print("    - Unconfirmed hops are reported, not failures.")
+    print("    - Skeptic receipts are signed facts: 'I saw it,")
+    print("      I refused.'")
+    print("    - No changes to C52 or C54. Composition only.")
+    print()
+    print("  Anchor (public domain, Emily Dickinson):")
+    print("    'Tell all the truth but tell it slant –'")
+    print("    'Success in Circuit lies'")
+
+    audit = {
+        "attestation_hash": att.content_hash,
+        "scenarios": {
+            "A_happy_chain": verdict_a.to_dict(),
+            "B_skeptic": verdict_b.to_dict(),
+            "C_diamond": verdict_c.to_dict(),
+        },
+    }
+    (path / "signed_relay_demo.json").write_text(
+        json.dumps(audit, indent=2))
+    print(f"\n  → {path}/signed_relay_demo.json")
+    return audit

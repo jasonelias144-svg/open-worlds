@@ -9,31 +9,12 @@
 # So the list is always true. The text after "  # " is the error.
 
 # Test files that do not load
-multiverse_c4_test.py  # ImportError: cannot import name 'turns_from_log' from 'multiverse_c4' (multiverse_c4.py)
-multiverse_c7_test.py  # ImportError: cannot import name 'turns_from_log' from 'multiverse_c4' (multiverse_c4.py)
+multiverse_c7_test.py  # ModuleNotFoundError: No module named 'poetry_engine_c21'
 multiverse_c11_test.py  # ModuleNotFoundError: No module named 'poetry_engine_c21'
-multiverse_c12_test.py  # ImportError: cannot import name 'turns_from_log' from 'multiverse_c4' (multiverse_c4.py)
+multiverse_c12_test.py  # ModuleNotFoundError: No module named 'poetry_engine_c21'
 multiverse_c17_test.py  # ImportError: cannot import name 'InMemoryKeyResolver' from 'multiverse_c16' (multiverse_c16.py)
-multiverse_c18_test.py  # ImportError: cannot import name 'turns_from_log' from 'multiverse_c4' (multiverse_c4.py)
-multiverse_c20_test.py  # ImportError: cannot import name 'turns_from_log' from 'multiverse_c4' (multiverse_c4.py)
-multiverse_c40_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c40' (multiverse_c40.py)
-multiverse_c44_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c44' (multiverse_c44.py)
-multiverse_c45_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c45' (multiverse_c45.py)
-multiverse_c46_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c46' (multiverse_c46.py)
-multiverse_c47_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c47' (multiverse_c47.py)
-multiverse_c48_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c48' (multiverse_c48.py)
-multiverse_c49_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c49' (multiverse_c49.py)
-multiverse_c50_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c50' (multiverse_c50.py)
-multiverse_c52_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c52' (multiverse_c52.py)
-multiverse_c54_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c54' (multiverse_c54.py)
-multiverse_c55_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c55' (multiverse_c55.py)
-multiverse_c56_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c56' (multiverse_c56.py)
-multiverse_c57_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c57' (multiverse_c57.py)
-multiverse_c58_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c58' (multiverse_c58.py)
-multiverse_c59_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c59' (multiverse_c59.py)
-multiverse_c60_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c60' (multiverse_c60.py)
-multiverse_c62_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c62' (multiverse_c62.py)
-multiverse_c63_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c63' (multiverse_c63.py)
+multiverse_c18_test.py  # ModuleNotFoundError: No module named 'poetry_engine_c21'
+multiverse_c20_test.py  # ModuleNotFoundError: No module named 'poetry_engine_c21'
 
 # Tests that fail
 multiverse_c2_test.py::test_admission_immutability  # ValueError: world_id must be at least 8 characters
@@ -42,6 +23,9 @@ multiverse_c2_test.py::test_identity_is_preserved_across_admissions  # ValueErro
 multiverse_c2_test.py::test_multiple_admissions_preserve_order  # ValueError: world_id must be at least 8 characters
 multiverse_c2_test.py::test_rename_via_with_identity  # ValueError: world_id must be at least 8 characters
 multiverse_c2_test.py::test_serialization_roundtrip  # ValueError: world_id must be at least 8 characters
+multiverse_c4_test.py::test_conformance  # assert False
+multiverse_c4_test.py::test_end_to_end  # AssertionError: assert 2 == 3
+multiverse_c4_test.py::test_petition_preserves_passport_admissions  # ValueError: world_id must be at least 8 characters
 multiverse_c5_test.py::test_conformance  # assert False
 multiverse_c5_test.py::test_parse_charges  # ValueError: Unknown element: Ca
 multiverse_c5_test.py::test_two_worlds_same_protocol_different_laws  # assert (False)
@@ -84,7 +68,7 @@ multiverse_c22_test.py::test_signed_leave_wrong_key_fails  # ValueError: world_i
 multiverse_c23_test.py::test_current_residency_departed  # ValueError: departure is for 'alice', passport is for '<hex>'
 multiverse_c23_test.py::test_current_residency_multi_visit_last_closed  # ValueError: departure is for 'alice', passport is for '<hex>'
 multiverse_c23_test.py::test_current_residency_multi_visit_last_open  # ValueError: departure is for 'alice', passport is for '<hex>'
-multiverse_c27_test.py::test_combined_to_dict_json  # sometimes: failed in 3 of 8 runs (hash seeds 0 to 7): AssertionError: assert ['Alice', 'Ca...'Bob', 'Dave'] == ['Alice', 'Bo...arol', 'Dave']
+multiverse_c27_test.py::test_combined_to_dict_json  # sometimes: failed in 4 of 8 runs (hash seeds 0 to 7): AssertionError: assert ['Alice', 'Ca...'Bob', 'Dave'] == ['Alice', 'Bo...arol', 'Dave']
 multiverse_c27_test.py::test_demo  # TypeError: revoke expects a ChainLink, got DAGLink
 multiverse_c27_test.py::test_revoke_one_branch_noncascade  # TypeError: revoke expects a ChainLink, got DAGLink
 multiverse_c27_test.py::test_unknown_previous_rejected  # AssertionError: assert 'unknown' in 'root report_hash does not match report'
@@ -144,7 +128,7 @@ multiverse_c37_test.py::test_verify_attestation_tampered_claim  # TypeError: Pet
 multiverse_c39_test.py::test_demo  # assert False
 multiverse_c39_test.py::test_lineage_walk_fork_then_merge  # AssertionError: assert False
 multiverse_c39_test.py::test_lineage_walk_missing_manifest  # AssertionError: assert not True
-multiverse_c41_test.py::test_demo  # ImportError: cannot import name 'turns_from_log' from 'multiverse_c4' (multiverse_c4.py)
+multiverse_c41_test.py::test_demo  # ModuleNotFoundError: No module named 'poetry_engine_c21'
 multiverse_c41_test.py::test_two_epochs_verify_independently  # + where False = all(<generator object test_two_epochs_verify_independently.<locals>.<genexpr> at 0x...>)
 multiverse_c42_test.py::test_octopus_and_relay_same_substrate  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
 multiverse_c42_test.py::test_signalworld_passes_wcp_conformance  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
@@ -156,7 +140,133 @@ multiverse_c43_test.py::test_own_trace_keeps_unit_stable  # + where converged = 
 multiverse_c43_test.py::test_removing_non_finder_still_converges  # AssertionError: failed after removing ant-1
 multiverse_c43_test.py::test_three_architectures_same_substrate  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
 multiverse_c43_test.py::test_unit_is_wcp_world  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
-multiverse_c51_test.py::test_real_c41_demo  # AssertionError: octopus demo failed: exit 1: ImportError: cannot import name 'turns_from_log' from 'multiverse_c4' (multiverse_c4.py)
+multiverse_c44_test.py::test_all_four_architectures_same_substrate  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
+multiverse_c44_test.py::test_demo  # assert False is True
+multiverse_c44_test.py::test_member_is_wcp_world  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
+multiverse_c44_test.py::test_verify_decision_stricter_quorum_override  # AssertionError: assert not True
+multiverse_c46_test.py::test_demo  # AssertionError
+multiverse_c46_test.py::test_evidence_from_decision_works  # TypeError: expected Decision or DeliberativeDecision, got FederatedDeliberativeDecision
+multiverse_c46_test.py::test_evidence_hash_is_content_derived  # TypeError: expected Decision or DeliberativeDecision, got FederatedDeliberativeDecision
+multiverse_c46_test.py::test_federated_decision_json_roundtrip  # TypeError: expected Decision or DeliberativeDecision, got FederatedDeliberativeDecision
+multiverse_c46_test.py::test_verify_federated_bad_inner_decision  # TypeError: expected Decision or DeliberativeDecision, got FederatedDeliberativeDecision
+multiverse_c46_test.py::test_verify_federated_evidence_hash_mismatch  # TypeError: expected Decision or DeliberativeDecision, got FederatedDeliberativeDecision
+multiverse_c46_test.py::test_verify_federated_forged_reference  # TypeError: expected Decision or DeliberativeDecision, got FederatedDeliberativeDecision
+multiverse_c46_test.py::test_verify_federated_happy  # TypeError: expected Decision or DeliberativeDecision, got FederatedDeliberativeDecision
+multiverse_c46_test.py::test_verify_federated_missing_evidence_keys  # TypeError: expected Decision or DeliberativeDecision, got FederatedDeliberativeDecision
+multiverse_c47_test.py::test_act_never_raises  # IndexError: list index out of range
+multiverse_c47_test.py::test_all_five_architectures_same_substrate  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
+multiverse_c47_test.py::test_modulate_changes_target  # IndexError: list index out of range
+multiverse_c47_test.py::test_modulate_via_network  # IndexError: list index out of range
+multiverse_c47_test.py::test_modulation_does_not_change_others_targets  # IndexError: list index out of range
+multiverse_c47_test.py::test_network_never_raises_on_weird_input  # IndexError: list index out of range
+multiverse_c47_test.py::test_unit_is_wcp_world  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
+multiverse_c48_test.py::test_cross_kind_decision_json_roundtrip  # AssertionError: assert False
+multiverse_c48_test.py::test_demo  # AssertionError: assert 'rejected' == 'passed'
+multiverse_c49_test.py::test_bundle_format_survives_json_roundtrip_twice  # ...Full output truncated, use '-vv' to show
+multiverse_c49_test.py::test_demo  # assert False is True
+multiverse_c49_test.py::test_subprocess_verifies_honest_bundle  # AssertionError: stdout:
+multiverse_c50_test.py::test_act_amend_via_act  # IndexError: list index out of range
+multiverse_c50_test.py::test_act_evaluate_rejects_bad_payload  # IndexError: list index out of range
+multiverse_c50_test.py::test_act_evaluate_returns_ack  # IndexError: list index out of range
+multiverse_c50_test.py::test_act_never_raises  # IndexError: list index out of range
+multiverse_c50_test.py::test_act_unknown_type_refused  # IndexError: list index out of range
+multiverse_c50_test.py::test_all_six_architectures_same_substrate  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
+multiverse_c50_test.py::test_amend_rejects_bad_signature  # IndexError: list index out of range
+multiverse_c50_test.py::test_amend_rejects_different_author  # IndexError: list index out of range
+multiverse_c50_test.py::test_amend_rejects_different_policy_id  # IndexError: list index out of range
+multiverse_c50_test.py::test_amend_rejects_version_not_increasing  # IndexError: list index out of range
+multiverse_c50_test.py::test_amend_succeeds  # IndexError: list index out of range
+multiverse_c50_test.py::test_amendment_json_roundtrip  # IndexError: list index out of range
+multiverse_c50_test.py::test_demo  # IndexError: list index out of range
+multiverse_c50_test.py::test_different_facts_different_ruling  # IndexError: list index out of range
+multiverse_c50_test.py::test_evaluate_returns_signed_ruling  # IndexError: list index out of range
+multiverse_c50_test.py::test_matches_in_contains  # AssertionError: assert False
+multiverse_c50_test.py::test_policy_by_hash_finds_old_version  # IndexError: list index out of range
+multiverse_c50_test.py::test_policy_history_grows  # IndexError: list index out of range
+multiverse_c50_test.py::test_reproduce_ruling_facts_mismatch  # IndexError: list index out of range
+multiverse_c50_test.py::test_reproduce_ruling_happy  # IndexError: list index out of range
+multiverse_c50_test.py::test_reproduce_ruling_policy_mismatch  # IndexError: list index out of range
+multiverse_c50_test.py::test_reproduce_ruling_tampered_outcome  # IndexError: list index out of range
+multiverse_c50_test.py::test_ruling_json_roundtrip  # IndexError: list index out of range
+multiverse_c50_test.py::test_ruling_records_policy_version  # IndexError: list index out of range
+multiverse_c50_test.py::test_ruling_tampered_rejected  # IndexError: list index out of range
+multiverse_c50_test.py::test_ruling_wrong_key_rejected  # IndexError: list index out of range
+multiverse_c50_test.py::test_same_facts_same_ruling_content  # IndexError: list index out of range
+multiverse_c50_test.py::test_unit_construction  # IndexError: list index out of range
+multiverse_c50_test.py::test_unit_has_no_other_arch_attrs  # IndexError: list index out of range
+multiverse_c50_test.py::test_unit_has_policy_attrs  # IndexError: list index out of range
+multiverse_c50_test.py::test_unit_is_wcp_world  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
+multiverse_c51_test.py::test_real_c41_demo  # AssertionError: octopus demo failed: exit 1: ModuleNotFoundError: No module named 'poetry_engine_c21'
+multiverse_c52_test.py::test_act_infect_multiple_sources_deduplicated  # IndexError: list index out of range
+multiverse_c52_test.py::test_act_infect_records_exposure  # IndexError: list index out of range
+multiverse_c52_test.py::test_act_never_raises  # AttributeError: 'str' object has no attribute 'get'
+multiverse_c52_test.py::test_demo  # IndexError: list index out of range
+multiverse_c52_test.py::test_epoch_result_format  # IndexError: list index out of range
+multiverse_c52_test.py::test_network_broken_edge_stops_spread  # IndexError: list index out of range
+multiverse_c52_test.py::test_network_isolated_subnets  # IndexError: list index out of range
+multiverse_c52_test.py::test_network_run_epoch_delivers  # IndexError: list index out of range
+multiverse_c52_test.py::test_network_run_until_quiet_full_chain  # IndexError: list index out of range
+multiverse_c52_test.py::test_network_seed  # IndexError: list index out of range
+multiverse_c52_test.py::test_network_skeptic_blocks  # IndexError: list index out of range
+multiverse_c52_test.py::test_network_terminates  # IndexError: list index out of range
+multiverse_c52_test.py::test_seven_architectures_same_substrate  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
+multiverse_c52_test.py::test_tick_at_susceptibility_starts_spreading  # IndexError: list index out of range
+multiverse_c52_test.py::test_tick_below_susceptibility_no_spread  # IndexError: list index out of range
+multiverse_c52_test.py::test_tick_handles_multiple_rumors_independently  # IndexError: list index out of range
+multiverse_c52_test.py::test_tick_spreads_to_each_contact_once  # IndexError: list index out of range
+multiverse_c52_test.py::test_unit_is_wcp_world  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
+multiverse_c54_test.py::test_act_infect_tampered_attestation_refused  # IndexError: list index out of range
+multiverse_c54_test.py::test_act_infect_with_valid_attestation_accepted  # IndexError: list index out of range
+multiverse_c54_test.py::test_act_infect_with_wrong_context_refused  # IndexError: list index out of range
+multiverse_c54_test.py::test_act_infect_without_context_refused  # IndexError: list index out of range
+multiverse_c54_test.py::test_audit_trail_format  # IndexError: list index out of range
+multiverse_c54_test.py::test_audit_trail_json  # IndexError: list index out of range
+multiverse_c54_test.py::test_audit_trail_refused_has_reason  # IndexError: list index out of range
+multiverse_c54_test.py::test_demo  # NameError: name 'KeyPair' is not defined
+multiverse_c54_test.py::test_network_branching_survives_one_bad_branch  # IndexError: list index out of range
+multiverse_c54_test.py::test_network_full_chain_saturates  # IndexError: list index out of range
+multiverse_c54_test.py::test_network_skeptic_blocks  # IndexError: list index out of range
+multiverse_c54_test.py::test_network_tampered_at_seed_no_propagation  # IndexError: list index out of range
+multiverse_c54_test.py::test_seed_attested_accepts_good  # IndexError: list index out of range
+multiverse_c54_test.py::test_susceptibility_ignores_unverified  # IndexError: list index out of range
+multiverse_c54_test.py::test_susceptibility_reaches_with_two_verified  # IndexError: list index out of range
+multiverse_c55_test.py::test_curator_has_no_unit_attrs  # AssertionError: _model
+multiverse_c55_test.py::test_demo  # IndexError: list index out of range
+multiverse_c55_test.py::test_full_link_flow  # ValueError: hello_a must be a hello
+multiverse_c55_test.py::test_observation_counts_refusals  # IndexError: list index out of range
+multiverse_c55_test.py::test_observe_and_propose_generates_signed  # IndexError: list index out of range
+multiverse_c55_test.py::test_respond_hello_returns_link  # ValueError: hello_a must be a hello
+multiverse_c56_test.py::test_chain_json_roundtrip  # IndexError: list index out of range
+multiverse_c56_test.py::test_demo  # IndexError: list index out of range
+multiverse_c56_test.py::test_network_full_chain_produces_relays_and_receipts  # IndexError: list index out of range
+multiverse_c56_test.py::test_network_seed_attested_creates_receipt  # IndexError: list index out of range
+multiverse_c56_test.py::test_receipt_signed_on_act  # IndexError: list index out of range
+multiverse_c56_test.py::test_receipt_signed_with_refusal  # IndexError: list index out of range
+multiverse_c56_test.py::test_reconstruct_hops_matches_relay_receipt  # IndexError: list index out of range
+multiverse_c56_test.py::test_relay_signed_on_record_delivery  # IndexError: list index out of range
+multiverse_c56_test.py::test_verify_chain_attestation_invalid  # IndexError: list index out of range
+multiverse_c56_test.py::test_verify_chain_forged_receipt  # IndexError: list index out of range
+multiverse_c56_test.py::test_verify_chain_forged_relay  # IndexError: list index out of range
+multiverse_c56_test.py::test_verify_chain_happy  # IndexError: list index out of range
+multiverse_c56_test.py::test_verify_chain_no_seed  # IndexError: list index out of range
+multiverse_c56_test.py::test_verify_chain_skeptic  # IndexError: list index out of range
+multiverse_c57_test.py::test_demo  # ValueError: hello_a must be a hello
+multiverse_c58_test.py::test_conforms_to_wcp  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
+multiverse_c58_test.py::test_demo  # NameError: name 'EstablishedContract' is not defined
+multiverse_c59_test.py::test_demo  # IndexError: list index out of range
+multiverse_c59_test.py::test_learned_contract_can_be_cited  # ValueError: world_id must be at least 8 characters
+multiverse_c59_test.py::test_propagation_via_c56_relay  # IndexError: list index out of range
+multiverse_c60_test.py::test_c58_refuses_after_learned_revocation  # ValueError: world_id must be at least 8 characters
+multiverse_c60_test.py::test_demo  # assert False is True
+multiverse_c60_test.py::test_propagation_via_c56_relay  # IndexError: list index out of range
+multiverse_c62_test.py::test_log_append_rejects_bad_hash  # Failed: DID NOT RAISE any of (ValueError, TypeError)
+multiverse_c63_test.py::test_claimed_time_policy_honors_after_revocation  # ValueError: world_id must be at least 8 characters
+multiverse_c63_test.py::test_committed_time_policy_honors_case_a  # ValueError: world_id must be at least 8 characters
+multiverse_c63_test.py::test_committed_time_policy_refuses_case_b  # ValueError: world_id must be at least 8 characters
+multiverse_c63_test.py::test_current_status_policy_equivalent_to_c58  # ValueError: world_id must be at least 8 characters
+multiverse_c63_test.py::test_demo  # ValueError: world_id must be at least 8 characters
+multiverse_c63_test.py::test_resolver_never_raises  # AssertionError: assert not True
+multiverse_c63_test.py::test_world_involvement_check_preserved  # ValueError: world_id must be at least 8 characters
 federation_test.py::test_demo_report_has_three_models  # AssertionError: assert 1 == 0
 federation_test.py::test_demo_runs_and_saves_artifacts  # AssertionError: demo failed:
 federation_test.py::test_demo_unsigned_runs  # AssertionError: demo failed:

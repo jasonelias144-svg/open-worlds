@@ -711,3 +711,149 @@ class WorldCurator:
             rationale=proposal.get("rationale", ""),
             body=proposal.get("body", {}),
         )
+
+
+def demo(artifact_dir: Optional[str] = None) -> Dict:
+    """Two worlds, A and B. Their curators establish a link,
+    exchange hellos, status reports, and law proposals. A's
+    curator uses its mock model to generate a proposal based on
+    its own observation. B's curator logs it.
+
+    Anchor: Dickinson, 'The Brain – is wider than the Sky –'
+    (the curator is the world's representative to the outside;
+    the sky is the space between worlds).
+    """
+    import json
+    from pathlib import Path
+    from multiverse_c4 import PoetryWorld
+    from multiverse_c5 import ChemistryWorld
+
+    if not HAS_CRYPTO:
+        raise RuntimeError("demo requires `cryptography`")
+
+    if artifact_dir is None:
+        artifact_dir = "artifacts"
+    path = Path(artifact_dir)
+    path.mkdir(parents=True, exist_ok=True)
+
+    # Two worlds
+    world_a = PoetryWorld("world:poetry", "Poetry")
+    world_b = ChemistryWorld("world:chemistry", "Chemistry")
+    # Some activity in A so its stats are non-trivial
+    from multiverse_c3 import Act
+    world_a._log.append(type(world_a._log[0])(**{
+        "timestamp": _now(), "kind": "turn",
+        "actor_token": "x", "data": {}}))
+    for _ in range(3):
+        world_a._log.append(type(world_a._log[0])(**{
+            "timestamp": _now(), "kind": "act_refused",
+            "actor_token": "y", "data": {"reason": "test"}}))
+
+    kp_a = KeyPair.generate()
+    kp_b = KeyPair.generate()
+    curator_a = WorldCurator(
+        world_a, kp_a, model_backend=MockCuratorModel())
+    curator_b = WorldCurator(
+        world_b, kp_b, model_backend=MockCuratorModel())
+
+    # Step 1: A requests a link with B
+    link_req = curator_a.request_link(curator_b.world_id)
+
+    # Step 2: B receives and responds
+    ack, link_from_b = curator_b.receive(link_req)
+    assert isinstance(ack, Ack)
+    ack2, link_from_b2 = curator_b.respond_hello(link_req)
+    assert isinstance(ack2, Ack)
+
+    # Step 3: A receives B's hello, establishing the link on A's side
+    b_hello = curator_b.hello(curator_a.world_id)
+    ack3, link_from_a = curator_a.respond_hello(link_req)
+    # Actually: A received no hello yet; let's simulate the flow
+    # properly. A requested link; B received and produced a link
+    # (link_from_b2). A needs to receive B's hello to complete.
+    ack_a = curator_a.receive(curator_b.hello(curator_a.world_id))
+    assert isinstance(ack_a, Ack)
+    ack_a2, link_from_a2 = curator_a.respond_hello(link_req)
+
+    # Now both should have links
+    links_a = curator_a.links()
+    links_b = curator_b.links()
+    assert len(links_a) == 1
+    assert len(links_b) == 1
+    link_a = links_a[0]
+    link_b = links_b[0]
+
+    # Step 4: A sends a status report to B
+    status = curator_a.status_report()
+    ack_status = curator_b.receive(status)
+
+    # Step 5: A uses its model to observe and propose
+    proposal = curator_a.observe_and_propose()
+
+    # Step 6: B receives A's proposal
+    ack_proposal = None
+    if proposal is not None:
+        ack_proposal = curator_b.receive(proposal)
+
+    # Verification
+    link_ok = verify_world_link(
+        link_a, kp_a.public_key_hex(), kp_b.public_key_hex())
+    msg_ok = verify_curator_message(proposal) if proposal else True
+
+    print("=" * 70)
+    print("World Curator — two worlds' representatives")
+    print("=" * 70)
+    print()
+    print(f"  Curator A: {curator_a.world_id} ({curator_a.public_key[:16]}...)")
+    print(f"  Curator B: {curator_b.world_id} ({curator_b.public_key[:16]}...)")
+    print()
+    print(f"  Link established: {link_ok}")
+    print(f"    A → B hello hash: {link_a.hello_a.message_hash()[:16]}...")
+    print(f"    B → A hello hash: {link_a.hello_b.message_hash()[:16]}...")
+    print()
+    print(f"  A sent status_report: "
+          f"{isinstance(ack_status, Ack) and 'received' or 'refused'}")
+    if proposal is not None:
+        print(f"  A's model proposed: {proposal.payload.get('title')!r}")
+        print(f"    rationale: {proposal.payload.get('rationale')}")
+        print(f"    signature verifies: {msg_ok}")
+        print(f"    B received: "
+              f"{isinstance(ack_proposal, Ack) and 'yes' or 'no'}")
+    else:
+        print("  A's model: no proposal warranted")
+    print()
+    print(f"  A's log: {len(curator_a.log_entries())} entries")
+    print(f"  B's log: {len(curator_b.log_entries())} entries")
+    print()
+    print("  What this demonstrates:")
+    print("    - Each world has a curator — its voice to the outside.")
+    print("    - Curator messages are signed by the world's own key.")
+    print("    - A link is a pair of hellos, both signed, verified.")
+    print("    - The curator observes its world's state and, using")
+    print("      an optional model, proposes changes (never applies them).")
+    print("    - Every step is a signed artifact; no new primitive")
+    print("      beyond what C1, C3, C13, C28 already provide.")
+    print()
+    print("  Anchor (public domain, Emily Dickinson):")
+    print("    'The Brain – is wider than the Sky –'")
+    print("    'For – put them side by side –'")
+
+    audit = {
+        "curator_a": curator_a.identity.to_dict(),
+        "curator_b": curator_b.identity.to_dict(),
+        "link_established": link_ok,
+        "link_hash": link_a.link_hash(),
+        "status_report_ok": isinstance(ack_status, Ack),
+        "proposal_generated": proposal is not None,
+        "proposal_title":
+            proposal.payload.get("title") if proposal else None,
+        "proposal_verified": msg_ok,
+        "proposal_received": isinstance(ack_proposal, Ack)
+            if proposal else None,
+        "curator_a_log_count": len(curator_a.log_entries()),
+        "curator_b_log_count": len(curator_b.log_entries()),
+    }
+    (path / "curator_demo.json").write_text(
+        json.dumps(audit, indent=2))
+    print(f"\n  → {path}/curator_demo.json")
+    return audit
