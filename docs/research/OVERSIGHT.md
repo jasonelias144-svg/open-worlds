@@ -107,7 +107,8 @@ container idea, it fits a need perfectly".
   Docker, CoreOS and other leaders in the container industry", and keeps
   three specifications: for running containers, for images, and for
   distributing them ([overview](https://opencontainers.org/about/overview/)).
-  An image built by Docker is an OCI image, and other tools run it.
+  An image built by Docker is compatible with the OCI image format, and
+  other tools run it.
 - **Kubernetes** stopped running containers through Docker: "The
   Kubernetes v1.24 release actually removed the dockershim from
   Kubernetes" ([FAQ](https://kubernetes.io/blog/2022/02/17/dockershim-faq/)).
@@ -115,7 +116,8 @@ container idea, it fits a need perfectly".
   work.
 - **gVisor** gives "a strong layer of isolation between running
   applications and the host operating system": it answers a program's
-  system calls itself, rather than passing them to the host's kernel. Its
+  system calls itself, so they don't reach the host's kernel, and makes
+  only a reduced set of its own. Its
   runtime, `runsc`, "implements the Open Container Initiative (OCI)
   runtime specification", and "integrates with Docker and Kubernetes"
   ([documentation](https://gvisor.dev/docs/)).

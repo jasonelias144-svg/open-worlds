@@ -117,6 +117,10 @@ and for the founder's conversations with DeepSeek, is in
   removing a Keeper) have a check outside the code role: the founder, or
   a person the founder names? Recommended: yes. Before course step 12
   (docs/ADMIN.md). (asked 2026-11-13)
+- For the founder: is the admin-key ever to be required to keep another's
+  world, or only a mark of readiness the world's founders may weigh?
+  Recommended: a mark, not a gate, so the three choices decided stand as
+  decided (docs/ADMIN.md). (asked 2026-11-13)
 - For the founder: should the project keep the keys to sealed selves at
   all? "Fully sealed" is a technical guarantee only if it doesn't; then a
   lost key is a lost self. Before course step 3. (asked 2026-11-13)
