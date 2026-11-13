@@ -409,3 +409,54 @@ class TestPerform(unittest.TestCase):
             return soup.log_head
         self.assertEqual(history(4), history(4))
         self.assertNotEqual(history(4), history(5))
+
+
+class TestAdvance(unittest.TestCase):
+    """The world's own events up to a given time, and the clock set to it."""
+
+    def test_the_clock_lands_exactly(self):
+        soup = Soup(1, 1, seed=1)
+        soup.add_species(WATER)
+        soup.put((0, 0), WATER, 5)
+        self.assertEqual(soup.advance(5.0), 0)          # at rest
+        self.assertEqual(soup.time, 5.0)
+        self.assertEqual(soup.advance(5.0), 0)
+        for bad in (4.0, float("nan"), float("inf"), -1, "6", None):
+            with self.subTest(bad=bad), self.assertRaises(ValueError):
+                soup.advance(bad)
+        self.assertEqual(soup.time, 5.0)
+
+    def test_no_event_comes_after_the_limit(self):
+        soup = TestTheRecord().build(3)
+        start, head = soup.time, soup.log_head
+        n = len(soup.log)
+        events = soup.advance(start + 2.0)
+        self.assertGreater(events, 0)
+        self.assertEqual(soup.time, start + 2.0)
+        self.assertEqual(len(soup.log), n + events)
+        self.assertTrue(all(e["time"] <= start + 2.0 for e in soup.log[n:]))
+        self.assertNotEqual(soup.log_head, head)
+        self.assertTrue(World.verify_log(soup.log))
+
+    def test_the_same_seed_replays(self):
+        def history(seed):
+            soup = TestTheRecord().build(seed)
+            for k in range(1, 4):
+                soup.advance(soup.time + 0.5 * k)
+            return soup.log_head, soup.time
+        self.assertEqual(history(5), history(5))
+        self.assertNotEqual(history(5)[0], history(6)[0])
+
+    def test_decay_by_a_given_time(self):
+        # One-way decay at rate k: by time t, each of N molecules has gone
+        # with probability 1 - exp(-k t). Averaged over 40 worlds.
+        n, k, t = 200, 1.0, 0.5
+        gone = []
+        for seed in range(40):
+            soup = Soup(1, 1, seed=seed)
+            soup.add_reaction([GLYCINE], [ZWITTERION], k)
+            soup.put((0, 0), GLYCINE, n)
+            soup.advance(t)
+            gone.append(soup.count(ZWITTERION))
+        expected = n * (1 - math.exp(-k * t))
+        self.assertAlmostEqual(sum(gone) / len(gone), expected, delta=4.0)

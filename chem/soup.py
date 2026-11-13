@@ -246,6 +246,34 @@ class Soup:
         if total <= 0.0:
             return False
         self.time += self._rng.expovariate(total)
+        self._happen(total)
+        return True
+
+    def advance(self, until: float) -> int:
+        """Run the world's own events up to time `until`, and stop exactly
+        there: an event that would come later doesn't happen, and the clock
+        is set to `until`, even in a world at rest. (Waiting times are
+        memoryless, so stopping at a given time and drawing afresh later
+        is exact.) Returns the number of events."""
+        until = _positive_number(until, "until")
+        if until < self.time:
+            raise ValueError(f"until ({until}) is before now ({self.time})")
+        done = 0
+        while True:
+            total = sum(self._propensity)
+            if total <= 0.0:
+                break
+            wait = self._rng.expovariate(total)
+            if self.time + wait > until:
+                break
+            self.time += wait
+            self._happen(total)
+            done += 1
+        self.time = until
+        return done
+
+    def _happen(self, total: float) -> None:
+        """The next event: which one, by the propensities."""
         c, within = self._pick(self._propensity, self._rng.random() * total)
         # Only events that can happen are candidates, so rounding at a
         # boundary can never choose one whose reactants are absent.
@@ -274,7 +302,6 @@ class Soup:
             self.events += 1
             self._record("hop", {"from": self._xy(c), "to": self._xy(to),
                                  "species": which})
-        return True
 
     def run(self, until: Optional[float] = None,
             max_events: Optional[int] = None) -> int:
