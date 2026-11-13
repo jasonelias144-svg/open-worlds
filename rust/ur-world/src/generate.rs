@@ -66,7 +66,7 @@ pub const FINE: i64 = 1023;
 /// point, a direction's weight is `w = 3 f^2 S - 2 f^3` out of `D = S^3`.
 /// The two blends give `total` out of `D^2`, and the result is
 /// `(total * height + D^2 * FINE / 2) / (D^2 * FINE)`, rounded down.
-pub fn noise(seed: u64, layer: u64, spacing: i64, height: i64, x: i64, z: i64) -> i64 {
+pub(crate) fn noise(seed: u64, layer: u64, spacing: i64, height: i64, x: i64, z: i64) -> i64 {
     let (gx, fx) = (x.div_euclid(spacing), x.rem_euclid(spacing));
     let (gz, fz) = (z.div_euclid(spacing), z.rem_euclid(spacing));
     let fine = |a: i64, b: i64| i64::try_from(lattice(seed, layer, a, b) % 1024).unwrap_or(0);

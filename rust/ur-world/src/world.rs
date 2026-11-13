@@ -18,7 +18,7 @@ use std::collections::{BTreeMap, BTreeSet};
 use serde_json::{Map, Value, json};
 
 use crate::generate::{self, Chunk, GENERATOR, SEA};
-use crate::space::{CHUNK, Cell, ChunkCoord, Dir, Material};
+use crate::space::{CHUNK, Cell, ChunkCoord, Dir, LIMIT, Material};
 
 /// The rules' name and version, as the log records it.
 pub const RULES: &str = "ur-world/0.1";
@@ -29,7 +29,8 @@ pub const MAX_SAY: usize = 280;
 /// The longest a name may be, in characters.
 pub const MAX_NAME: usize = 64;
 
-/// How far anyone falls in one go, in cells.
+/// How far anyone falls in one tick, in cells: a deeper drop goes on at
+/// the next tick, as the world settles.
 pub const MAX_FALL: i64 = 64;
 
 /// How far an inhabitant sees others, in cells (on every axis).
@@ -106,6 +107,20 @@ pub enum EntryError {
     NoGround,
     /// Someone stands there.
     Occupied,
+}
+
+/// Whether any cell of the chunk is inside the world.
+const fn reachable(c: ChunkCoord) -> bool {
+    let (low, high) = (
+        c.origin(),
+        c.origin().offset(CHUNK - 1, CHUNK - 1, CHUNK - 1),
+    );
+    low.x <= LIMIT
+        && high.x >= -LIMIT
+        && low.y <= LIMIT
+        && high.y >= -LIMIT
+        && low.z <= LIMIT
+        && high.z >= -LIMIT
 }
 
 struct Inhabitant {
@@ -274,6 +289,7 @@ impl World {
     pub fn leave(&mut self, name: &str) {
         if self.inhabitants.contains_key(name) {
             self.remove(name, "requested");
+            self.settle();
         }
     }
 
@@ -485,9 +501,12 @@ impl World {
         }
     }
 
-    /// Every chunk within `VIEW` of an inhabitant's own comes into view.
-    /// The first time, the log records it, who saw it first, which
-    /// generator made it, and its hash.
+    /// Every chunk within `VIEW` of an inhabitant's own comes into view,
+    /// unless it lies wholly beyond the world's edge. The first time, the
+    /// log records it, who saw it first, which generator made it, and the
+    /// hash of what the generator made (changes the operator made there
+    /// before are in the log as their own entries), so anyone can
+    /// regenerate it and check.
     fn explore(&mut self) {
         let sightings: Vec<(String, ChunkCoord)> = self
             .inhabitants
@@ -499,8 +518,11 @@ impl World {
                 for dz in -VIEW..=VIEW {
                     for dx in -VIEW..=VIEW {
                         let c = ChunkCoord::new(home.x + dx, home.y + dy, home.z + dz);
+                        if !reachable(c) {
+                            continue;
+                        }
                         if self.explored.insert(c) {
-                            let hash = self.chunk(c).hash();
+                            let hash = generate::generate(self.seed, c).hash();
                             self.record(
                                 "explored",
                                 Some(&name),

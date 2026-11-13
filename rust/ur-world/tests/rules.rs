@@ -18,8 +18,9 @@ use std::rc::Rc;
 
 use serde_json::{Value, json};
 use ur_world::garden::Script;
-use ur_world::generate::ground;
+use ur_world::generate::{generate, ground};
 use ur_world::space::LIMIT;
+use ur_world::world::MAX_FALL;
 use ur_world::{Action, Cell, ChunkCoord, Dir, EntryError, Material, Mind, Observation, World};
 
 const SEED: u64 = 7;
@@ -363,7 +364,68 @@ fn the_world_has_an_edge() {
         edge,
     )
     .unwrap();
+    // Chunks wholly beyond the edge don't come into view.
+    assert_eq!(w.explored().len(), 18);
+    assert!(w.explored().iter().all(|c| c.origin().x <= LIMIT));
     w.run(2);
     assert_eq!(kinds(&w, "ALICE")[..2], ["entered", "blocked"]);
     assert_eq!(w.position("ALICE").map(|c| c.x), Some(LIMIT - 1));
+    // The farthest numbers there are can't be entered, and don't break
+    // the check.
+    for far in [i64::MIN, i64::MAX] {
+        assert_eq!(
+            w.add("far", script(vec![]), Cell::new(far, 1, 0)),
+            Err(EntryError::Outside)
+        );
+        assert_eq!(
+            w.add("far", script(vec![]), Cell::new(0, far, 0)),
+            Err(EntryError::Outside)
+        );
+    }
+}
+
+#[test]
+fn what_the_log_says_was_generated_is_what_the_generator_makes() {
+    // Found by the independent review of #28: a chunk the operator shaped
+    // before anyone saw it was logged with its changes in its hash.
+    let mut w = World::new(SEED);
+    let cell = Cell::new(5, 10, 5);
+    w.shape(cell, Material::Rock);
+    w.add("ALICE", script(vec![]), A).unwrap();
+    let home = cell.chunk();
+    let entry = w
+        .log()
+        .iter()
+        .find(|e| e["kind"] == "explored" && e["data"]["chunk"] == home.json())
+        .cloned()
+        .unwrap();
+    assert_eq!(entry["data"]["hash"], generate(SEED, home).hash());
+    assert_ne!(entry["data"]["hash"], w.chunk(home).hash());
+}
+
+#[test]
+fn whoever_stands_on_someone_taken_out_falls_at_once() {
+    let mut w = World::new(SEED);
+    w.shape(B, Material::Rock);
+    w.add("ALICE", script(vec![Action::Step(Dir::East)]), B.above())
+        .unwrap();
+    w.add("BOB", script(vec![]), C).unwrap();
+    w.step();
+    assert_eq!(w.position("ALICE"), Some(C.above()));
+    w.leave("BOB");
+    assert_eq!(w.position("ALICE"), Some(C));
+}
+
+#[test]
+fn a_deep_drop_goes_on_at_the_next_tick() {
+    let mut w = World::new(SEED);
+    let top = Cell::new(4, 1, 4);
+    w.add("ALICE", script(vec![]), top).unwrap();
+    // Hollow out a shaft a hundred cells deep beneath her, bottom first.
+    for depth in (0..100).rev() {
+        w.shape(Cell::new(4, -depth, 4), Material::Air);
+    }
+    assert_eq!(w.position("ALICE"), Some(Cell::new(4, 1 - MAX_FALL, 4)));
+    w.step();
+    assert_eq!(w.position("ALICE"), Some(Cell::new(4, -99, 4)));
 }

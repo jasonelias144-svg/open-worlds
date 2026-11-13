@@ -41,9 +41,9 @@ All decided by the founder on 2026-11-13, in the founder's words:
   key to generating diversity, but they should also have compatibility and
   have complementary skills and strengths and knowledge." The choice draws
   on the founder's work on opposites (see "ALICE and BOB" below).
-- **Rust, with an interface to Unity and Unreal.** Worlds built in those
-  engines connect through an interface; the foundation stays in Rust.
-  Compatibility with outside agents, such as OpenClaw's, is enough: "We can
+- **Rust, with an interface to Unity and Unreal.** "We should have an
+  interface to Unity built worlds, but we should stick with Rust." On
+  outside agents, such as OpenClaw's, compatibility is enough: "We can
   explore developing an Open Claw type of agent if it comes up."
 
 ## The first version: the garden
@@ -119,7 +119,8 @@ works. They gain minds at the language-model step.
 
 - **Each tick:** everyone observes; then each acts in turn. The order is by
   name, rotated one place each tick, so no one always goes first. Then
-  whoever stands on nothing falls, and what has come into view is explored.
+  whoever stands on nothing falls (up to 64 cells a tick; a deeper drop
+  goes on at the next), and what has come into view is explored.
 - **Step** north, south, east or west. A step onto a block one cell high
   climbs it, if there is headroom. A step off an edge falls.
 - **Say** something: everyone hears it on the next tick.

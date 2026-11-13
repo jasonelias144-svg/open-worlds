@@ -18,6 +18,11 @@ pub const CHUNK_CELLS: usize = 16 * 16 * 16;
 /// from the limits of 64-bit numbers.
 pub const LIMIT: i64 = 1 << 40;
 
+/// Whether a coordinate is within `LIMIT` of the garden.
+const fn within(v: i64) -> bool {
+    -LIMIT <= v && v <= LIMIT
+}
+
 /// One cell of space.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct Cell {
@@ -58,7 +63,8 @@ impl Cell {
 
     /// Whether the cell is inside the world (within `LIMIT` on every axis).
     pub const fn inside(self) -> bool {
-        self.x.abs() <= LIMIT && self.y.abs() <= LIMIT && self.z.abs() <= LIMIT
+        // Compared without `abs`, which overflows at i64::MIN.
+        within(self.x) && within(self.y) && within(self.z)
     }
 
     /// The chunk holding this cell.
@@ -210,5 +216,10 @@ mod tests {
         assert_eq!(c.toward(Dir::North), Cell::new(0, 0, -1));
         assert!(Cell::new(LIMIT, -LIMIT, 0).inside());
         assert!(!Cell::new(LIMIT + 1, 0, 0).inside());
+        for extreme in [i64::MIN, i64::MAX] {
+            assert!(!Cell::new(extreme, 0, 0).inside());
+            assert!(!Cell::new(0, extreme, 0).inside());
+            assert!(!Cell::new(0, 0, extreme).inside());
+        }
     }
 }
