@@ -209,23 +209,31 @@ being a guide and become a friend.
 - **A key, not a password.** The founder asked for "a user-specific
   password, chosen just for that individual". The line uses the holder's
   own key instead, the way passkeys replace passwords. To open it, the
-  world sends a fresh challenge (the line and the current tick), and the
-  holder's software signs it with the holder's signing key; the world
-  checks the signature, and that it issued its world-key to that
-  identity. Proving who is calling comes from the key; the right to the
-  line comes from the world-key. Nothing secret is typed, sent, or kept
-  in a table of passwords. The individual's record shows that they hold a
+  world sends a fresh challenge, a random value no one can predict, and
+  the holder's software signs its own statement ("open line L of world W
+  at tick T, with challenge N") with the holder's signing key, never
+  whatever bytes it is sent. The world checks the signature, and that it
+  issued its world-key to that identity. Proving who is calling comes from
+  the key; the right to the line comes from the world-key. Nothing secret
+  is typed, sent, or kept in a table of passwords. The individual's record shows that they hold a
   line to that world, never the key.
 - **Every message is signed and numbered,** by the writer's signing key,
-  so a copy replayed or put out of order shows, and anyone can check who
-  wrote what.
+  over the line's id and its number, so a copy replayed, put out of
+  order, or moved to another line shows. On a public line, anyone can
+  check who wrote what.
 - **If the line is private** (not decided, below), its messages are also
-  encrypted, with a fresh one-time key each time, so a key taken later
-  can't read what was said before. Step 2 checks the standard ways: HPKE
-  for each message, or a Noise handshake for each conversation.
+  encrypted. Step 2 checks the standard ways: HPKE for each message,
+  which works while one side is away, but can be read by anyone who later
+  gets the reader's key; or a Noise handshake for each conversation,
+  whose one-time keys, once erased, keep a key taken later from reading
+  what was said before, though it needs both sides present to begin.
+  Signal's protocol gets both, and step 12 looks at it. Step 2 also
+  decides whether a private line's signatures should let a reader prove
+  to others what was said, which Signal deliberately avoids.
 - **The honest limit, as everywhere here:** whoever holds the private
-  repository holds the holder's private key, and so could sign as them
-  ([MINDS.md](MINDS.md), "Where everything lives").
+  repository holds the holder's private key, and so could sign as them,
+  and, on a private line, read what is sent to them (with HPKE, also what
+  was sent before) ([MINDS.md](MINDS.md), "Where everything lives").
 - **The mind never sees the key.** A small model repeats what it is shown
   (experiment 001), and speech is public. So the software acting for the
   individual opens the line, and the mind only sees it open.
