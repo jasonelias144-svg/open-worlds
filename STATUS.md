@@ -64,6 +64,9 @@ and for the founder's conversations with DeepSeek, is in
   unlinked by default; the person chooses what to show. (asked 2026-11-13)
 - For the founder: does a fork need the child's acceptance? Recommended:
   yes. (asked 2026-11-13)
+- For the founder: should ALICE's and BOB's memories be public, as their
+  actions are, or private, like a person's mind? Recommended: public, at
+  least at first. (asked 2026-11-13)
 - For the founder: a course step for persons after step 3, and the
   architectures (octopus, relay, swarm, council) as small examples on the
   unchanged core? Recommended: yes. (asked 2026-11-13)
@@ -144,9 +147,30 @@ and for the founder's conversations with DeepSeek, is in
   DeepSeek to build from. Or at least a set of standards related to code
   in Rust." Both are in place: `rust/`, and docs/COLLABORATING.md, "Code
   in Rust".
+- 2026-11-13, founder, on the first world: one central world first, "the
+  first main world and one that connects with all other worlds, a
+  multiverse lobby or travel hub. But also a world to itself", with all
+  the functionality in one place; subworlds after. "3D definitely", with
+  ground and sky, and "space as needed": unexplored space "only becomes
+  data once that area is explored". Its name, the Ur-world. It begins "in
+  a garden. With two individuals": ALICE and BOB, in capitals, the first
+  occupants of the multiverse, persistent individuals who learn within it.
+  Their minds come from "two completely different and yet complementary
+  models". Compatibility with outside agents such as OpenClaw's is enough
+  for now. All in docs/URWORLD.md.
 
 ## Log
 
+- 2026-11-13 Claude: the Ur-world's Hello World (`rust/ur-world`,
+  docs/URWORLD.md). A 3D world of cells in chunks, generated as it is
+  explored from a seed, in whole numbers only, and versioned. It begins in
+  a garden with a tree and a spring. ALICE and BOB enter and greet each
+  other, one speaking while the other listens. BOB plants a flower, and
+  ALICE walks out into the hills as they come into being. The world stores
+  only what was explored and what was changed. Its log is written in the
+  Python kernel's format and holds by `World.verify_log`. A second,
+  independent implementation of the generator in Python, written from the
+  documented rules, agrees with Rust on every height and chunk.
 - 2026-11-13 Claude: a starting point in Rust, and the standards for Rust
   code ([docs/COLLABORATING.md](docs/COLLABORATING.md), "Code in Rust").
   `rust/` is a Cargo workspace whose first crate, `world-log`, checks a

@@ -1,0 +1,339 @@
+{
+  "chunk": 16,
+  "generator": 1,
+  "seeds": [
+    {
+      "chunks": [
+        {
+          "chunk": [
+            0,
+            0,
+            0
+          ],
+          "hash": "e8023fa69afb0ed367540720262ee12303271699d9395388523ee246e98ce318"
+        },
+        {
+          "chunk": [
+            -1,
+            0,
+            -1
+          ],
+          "hash": "2de68e27d0c7dcab8eabe6ffac1f221e44cafa2be09a619b4c95e7c36cf23dc0"
+        },
+        {
+          "chunk": [
+            0,
+            -1,
+            0
+          ],
+          "hash": "00c3b3f70f2befc5a53450e594d0a1fd7b503d8a4ba3a8b49f561af2492f6b78"
+        },
+        {
+          "chunk": [
+            0,
+            1,
+            0
+          ],
+          "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        },
+        {
+          "chunk": [
+            1,
+            0,
+            0
+          ],
+          "hash": "d290a781c1469f1f83d0fe6003370ea5660ba2a4e6e9d36c2ab14df3584d8880"
+        },
+        {
+          "chunk": [
+            -5,
+            -1,
+            3
+          ],
+          "hash": "06ff215ecf2d4425bafdc1da28fbd99d89c3a06ce1f537cf16a66b84a8737d9d"
+        },
+        {
+          "chunk": [
+            1000,
+            0,
+            -1000
+          ],
+          "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        },
+        {
+          "chunk": [
+            68719476736,
+            0,
+            0
+          ],
+          "hash": "3a9bd217b82ff1ed2858e1a48f05f4d43da9cc60bf1c165944d9671c5f6d48e7"
+        }
+      ],
+      "ground": [
+        {
+          "height": 0,
+          "x": 0,
+          "z": 0
+        },
+        {
+          "height": 0,
+          "x": 8,
+          "z": 0
+        },
+        {
+          "height": 2,
+          "x": 12,
+          "z": -5
+        },
+        {
+          "height": 4,
+          "x": 16,
+          "z": 0
+        },
+        {
+          "height": 3,
+          "x": -31,
+          "z": 47
+        },
+        {
+          "height": 8,
+          "x": 100,
+          "z": -100
+        },
+        {
+          "height": 9,
+          "x": -65536,
+          "z": 65536
+        },
+        {
+          "height": -3,
+          "x": 1099511627776,
+          "z": -1099511627776
+        }
+      ],
+      "seed": 20261113
+    },
+    {
+      "chunks": [
+        {
+          "chunk": [
+            0,
+            0,
+            0
+          ],
+          "hash": "eb52e4ae60197b5402820950ea68c528e9686c9a2536863eb32eea48f5c143d5"
+        },
+        {
+          "chunk": [
+            -1,
+            0,
+            -1
+          ],
+          "hash": "c9fcf3a53ba87b4ed0a5f23d1d90f9fb213618a841824aea38100a3e769c2d88"
+        },
+        {
+          "chunk": [
+            0,
+            -1,
+            0
+          ],
+          "hash": "1fa21ece74b549ebaf877ecbc56be4873812afef0a220b39a15c4704a6c4dcff"
+        },
+        {
+          "chunk": [
+            0,
+            1,
+            0
+          ],
+          "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        },
+        {
+          "chunk": [
+            1,
+            0,
+            0
+          ],
+          "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        },
+        {
+          "chunk": [
+            -5,
+            -1,
+            3
+          ],
+          "hash": "9512cd0df3aea49f4a600cd0d28edc68c906aa8dab472ca0ecddcb1e76e04825"
+        },
+        {
+          "chunk": [
+            1000,
+            0,
+            -1000
+          ],
+          "hash": "ee5d491ae75d90eff9e31199c18b346e487129e4c406380fa85467b476fea01a"
+        },
+        {
+          "chunk": [
+            68719476736,
+            0,
+            0
+          ],
+          "hash": "6846c431c8f32e4f090b747573bac6ed9d465a9ab393fa6dff4d096fe88a39d8"
+        }
+      ],
+      "ground": [
+        {
+          "height": 0,
+          "x": 0,
+          "z": 0
+        },
+        {
+          "height": 0,
+          "x": 8,
+          "z": 0
+        },
+        {
+          "height": -2,
+          "x": 12,
+          "z": -5
+        },
+        {
+          "height": -3,
+          "x": 16,
+          "z": 0
+        },
+        {
+          "height": -5,
+          "x": -31,
+          "z": 47
+        },
+        {
+          "height": 6,
+          "x": 100,
+          "z": -100
+        },
+        {
+          "height": -6,
+          "x": -65536,
+          "z": 65536
+        },
+        {
+          "height": 7,
+          "x": 1099511627776,
+          "z": -1099511627776
+        }
+      ],
+      "seed": 0
+    },
+    {
+      "chunks": [
+        {
+          "chunk": [
+            0,
+            0,
+            0
+          ],
+          "hash": "96f5942acee64328bdea8d9387d72e433317e0d71971ddf4b3eae8007e5d6f52"
+        },
+        {
+          "chunk": [
+            -1,
+            0,
+            -1
+          ],
+          "hash": "b71616cd5f37222d9022db14845ccc591f823dadb208174e252ed8e29f8ba6a9"
+        },
+        {
+          "chunk": [
+            0,
+            -1,
+            0
+          ],
+          "hash": "176a268871b30492c894923c4c2a175f52cf637652a5da0ba7446dfc82c710a8"
+        },
+        {
+          "chunk": [
+            0,
+            1,
+            0
+          ],
+          "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        },
+        {
+          "chunk": [
+            1,
+            0,
+            0
+          ],
+          "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+        },
+        {
+          "chunk": [
+            -5,
+            -1,
+            3
+          ],
+          "hash": "359d9239be132014658413c132c83d0fd12e7b626998c85b45476d6fcb6ca387"
+        },
+        {
+          "chunk": [
+            1000,
+            0,
+            -1000
+          ],
+          "hash": "a6835351d972e02853181cd782fd8483e0e2e32ce262483dbcf287662c4fbb03"
+        },
+        {
+          "chunk": [
+            68719476736,
+            0,
+            0
+          ],
+          "hash": "c52b5971e3ef3b7d7455e57918c1b943f01f628dac5c49212378697c676c43e2"
+        }
+      ],
+      "ground": [
+        {
+          "height": 0,
+          "x": 0,
+          "z": 0
+        },
+        {
+          "height": 0,
+          "x": 8,
+          "z": 0
+        },
+        {
+          "height": -2,
+          "x": 12,
+          "z": -5
+        },
+        {
+          "height": -4,
+          "x": 16,
+          "z": 0
+        },
+        {
+          "height": 2,
+          "x": -31,
+          "z": 47
+        },
+        {
+          "height": -2,
+          "x": 100,
+          "z": -100
+        },
+        {
+          "height": 6,
+          "x": -65536,
+          "z": 65536
+        },
+        {
+          "height": -8,
+          "x": 1099511627776,
+          "z": -1099511627776
+        }
+      ],
+      "seed": 18446744073709551615
+    }
+  ]
+}

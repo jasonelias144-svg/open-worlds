@@ -99,8 +99,8 @@ text or as code with tests:
   itself.
 - **Forms for the poetry world.** For example, a world whose law asks
   each turn to add a quatrain in common meter, Dickinson's meter.
-- **The world kernel in Rust,** built from `rust/` to the standards in
-  "Code in Rust" below.
+- **The Ur-world,** built from `rust/ur-world` to the standards in "Code
+  in Rust" below: its next steps are in [URWORLD.md](URWORLD.md).
 - **Anything on the course,** proposed as described below.
 
 ## The standard
@@ -177,13 +177,14 @@ foundation. The Python in `world/` and `multiverse/` stays as the
 reference: the Rust code is checked against it, hash for hash.
 
 **Start from `rust/`** ([rust/README.md](../rust/README.md)). It's a
-Cargo workspace with one crate so far, `world-log`, which checks a
-world's public record exactly as the Python kernel writes it. Its tests
-read shared test vectors ([vectors/](../vectors/README.md)) written by
-the Python kernel, so a change on either side that breaks the agreement
-fails a test. Build the next pieces beside it, the same way. The first is
-the world kernel itself: the rules of `world/core.py`, writing the same
-log for the same seed and the same actions.
+Cargo workspace. `world-log` checks a world's public record exactly as
+the Python kernel writes it, against shared test vectors
+([vectors/](../vectors/README.md)) the Python kernel writes, so a change on
+either side that breaks the agreement fails a test. `ur-world` is the
+Ur-world ([URWORLD.md](URWORLD.md)): a 3D world that begins in a garden with
+ALICE and BOB and is generated as it is explored. Its own vectors are
+checked from Python the same way. Build the next pieces beside them, the
+same way.
 
 To check a draft:
 
@@ -216,10 +217,12 @@ These hold for every Rust file that comes in, on top of the house rules:
    world owns; no order that can change between runs (`BTreeMap`, not
    `HashMap`, for anything written, hashed or signed); and no floating
    point in anything hashed or signed.
-6. **The same bytes as Python.** Anything hashed or signed is written
-   exactly as the Python reference writes it, and shared test vectors
-   prove it. A new kind of record brings its vectors, written by the
-   Python side (`world/vectors.py`), with tests on both sides.
+6. **The same bytes in every language.** Anything hashed or signed is
+   written exactly as the reference writes it, and shared test vectors
+   prove it. The reference is Python for what Python built first (the log,
+   the protocol) and Rust for the Ur-world. A new kind of record brings its
+   vectors, written by its reference (`world/vectors.py`, or the
+   `ur-world` garden example), with tests on both sides.
 7. **Few dependencies, all free.** Each is named once in
    `rust/Cargo.toml` with the reason it's there. `Cargo.lock` is
    committed and CI builds with `--locked`, so no version moves

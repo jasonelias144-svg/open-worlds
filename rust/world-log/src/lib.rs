@@ -118,7 +118,12 @@ pub fn python_json(value: &Value) -> Result<String, Error> {
 /// The SHA-256, in lowercase hex, of [`python_json`]'s text: the hash the
 /// kernel gives a log entry's body.
 pub fn digest(value: &Value) -> Result<String, Error> {
-    Ok(hex(&Sha256::digest(python_json(value)?.as_bytes())))
+    Ok(sha256_hex(python_json(value)?.as_bytes()))
+}
+
+/// The SHA-256 of `bytes`, in lowercase hex.
+pub fn sha256_hex(bytes: &[u8]) -> String {
+    hex(&Sha256::digest(bytes))
 }
 
 /// Checks a whole log, as the Python kernel's `World.verify_log` does: each
@@ -140,7 +145,7 @@ pub fn verify_log(log: &Value) -> Result<&str, LogError> {
         let mut body = String::new();
         write_object(fields, Some("hash"), &mut body, 0)
             .map_err(|error| LogError::Unwritable { index, error })?;
-        if hex(&Sha256::digest(body.as_bytes())) != hash {
+        if sha256_hex(body.as_bytes()) != hash {
             return Err(LogError::WrongHash { index });
         }
         prev = hash;

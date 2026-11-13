@@ -48,9 +48,11 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
 - [docs/COURSE.md](docs/COURSE.md): the next twelve steps, rolling.
 - [docs/COLLABORATING.md](docs/COLLABORATING.md): how to build on this,
   and the house rules.
-- [rust/](rust/README.md): the worlds in Rust, beginning with the world's
-  public record, checked against the Python reference through shared
-  test vectors ([vectors/](vectors/README.md)).
+- [docs/URWORLD.md](docs/URWORLD.md): the Ur-world, the first world of the
+  multiverse and its hub. It begins in a garden, with ALICE and BOB.
+- [rust/](rust/README.md): the worlds in Rust: the Ur-world, and the public
+  record, checked across languages through shared test vectors
+  ([vectors/](vectors/README.md)).
 - [sketches/](sketches/README.md): the creative side, kept apart: the
   founder's conversations with DeepSeek, verbatim, and DeepSeek's code from
   them as written, with its test results. A record of ideas, not

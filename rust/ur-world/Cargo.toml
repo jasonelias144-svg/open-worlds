@@ -1,0 +1,16 @@
+[package]
+name = "ur-world"
+version = "0.1.0"
+description = "The Ur-world: a 3D world that begins in a garden and is generated as it is explored"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+serde_json.workspace = true
+sha2.workspace = true
+world-log = { path = "../world-log" }
+
+[lints]
+workspace = true
