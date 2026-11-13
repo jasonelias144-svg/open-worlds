@@ -24,8 +24,10 @@ contract. The design behind it is [MULTIVERSE.md](MULTIVERSE.md).
    its public key; every petition, act and leave is signed for one world
    with a growing number, so it can't be forged, moved or replayed, and
    the eight weak keys anyone could sign for are refused.
-   Ed25519 written here from RFC 8032, passing its test values, and
-   cross-checked in CI against the `cryptography` package. Protocol
+   Ed25519 first written here from RFC 8032, then, once the founder
+   lifted the standard-library rule, taken from the `cryptography`
+   package (#15), keeping our check on weak keys, which the library
+   accepts. Protocol
    WCP/0.2. A world's log names a key only for what that key signed.
    Learned: keys live only in memory for now, so keeping keys safely
    joins the next-in-line list, before belongings and homes; and a good

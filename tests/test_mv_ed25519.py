@@ -1,14 +1,18 @@
 """Ed25519 (multiverse/ed25519.py) against the standard's own test values,
-and the properties a signature scheme must have.
+the properties a signature scheme must have, and the check on public keys
+this project adds to the `cryptography` package.
 
 The test values are RFC 8032 section 7.1, parsed from the RFC's text into
-tests/fixtures/rfc8032_ed25519.json. A cross-check against the
-`cryptography` package runs in CI (tests/test_mv_ed25519_crosscheck.py).
+tests/fixtures/rfc8032_ed25519.json. Signing and verifying are the
+library's; these tests check that the module uses it correctly.
 """
 import json
 import os
 import random
 import unittest
+
+from cryptography.hazmat.primitives.asymmetric.ed25519 import (
+    Ed25519PrivateKey, Ed25519PublicKey)
 
 from multiverse import ed25519
 
@@ -113,6 +117,43 @@ class TestProperties(unittest.TestCase):
             ed25519._add(ed25519._decode(r_encoded),
                          ed25519._multiply(k, ed25519._decode(neutral)))))
         self.assertFalse(ed25519.verify(neutral, self.message, forged))
+
+    def test_why_the_check_is_here(self):
+        # The library alone accepts a weak key, and a forgery for it. If a
+        # later version refuses it, this fails, and the check can be
+        # revisited.
+        neutral = SMALL_ORDER[0]
+        r = 12345
+        forged = (ed25519._encode(ed25519._multiply(r, ed25519.BASE))
+                  + r.to_bytes(32, "little"))
+        Ed25519PublicKey.from_public_bytes(neutral).verify(
+            forged, self.message)          # raises if refused; it isn't
+        self.assertFalse(ed25519.verify(neutral, self.message, forged))
+
+    def test_real_keys_pass_the_check(self):
+        for v in _vectors():
+            with self.subTest(vector=v["name"]):
+                self.assertEqual(ed25519.public_key_problem(
+                    bytes.fromhex(v["public"])), "")
+        for _ in range(20):
+            public = Ed25519PrivateKey.generate().public_key()
+            self.assertEqual(ed25519.public_key_problem(
+                public.public_bytes(*ed25519._RAW)), "")
+
+    def test_points_off_the_curve_are_refused(self):
+        p = ed25519.P
+        for y in (2, 7, 8, 11):
+            public = y.to_bytes(32, "little")
+            with self.subTest(y=y):
+                # Off the curve: x^2 = (y^2 - 1) / (d y^2 + 1) has no
+                # square root (Euler's criterion), so no x exists.
+                x2 = (y * y - 1) * pow(ed25519.D * y * y + 1, p - 2, p) % p
+                self.assertEqual(pow(x2, (p - 1) // 2, p), p - 1)
+                self.assertIsNone(ed25519._decode(public))
+                self.assertIn("not a point",
+                              ed25519.public_key_problem(public))
+                self.assertFalse(ed25519.verify(public, self.message,
+                                                self.signature))
 
     def test_x_zero_with_the_sign_bit_set_is_refused(self):
         # Only two points have x = 0, and neither may be encoded with

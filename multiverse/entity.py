@@ -40,7 +40,9 @@ SIGNED_REQUESTS_LAW = (
 UNSIGNED_ANSWERS_LIMIT = (
     "- Answers aren't signed yet, and world ids aren't checked to be "
     "unique: until worlds have keys (course step 3), a request is bound "
-    "to a world's id, not to the world.")
+    "to a world's id, not to the world. The numbers this world has seen "
+    "are kept only in memory, so after a restart an old request could "
+    "be accepted once.")
 
 
 def now() -> str:

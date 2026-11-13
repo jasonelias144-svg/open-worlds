@@ -17,5 +17,5 @@ step 2 makes each individual a key that signs what it sends:
   apprentice.py       rule-based apprentice poets (poetry engine)
   collaboration.py    all of it together (component 7)
 
-Standard library only.
+Depends on the `cryptography` package for signatures (requirements.txt).
 """

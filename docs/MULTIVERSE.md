@@ -251,20 +251,22 @@ flow acceleration."
   anyway. A world that ignored signatures on acts but refused unknown
   acts would pass. Each world's own tests must send it a forged act its
   law would otherwise accept, as the poetry world's do.
-- **Ed25519 is written here** from its standard, RFC 8032, in the
-  standard library (`multiverse/ed25519.py`). It passes the standard's
-  own five test values, parsed from the RFC's text, and CI cross-checks
-  it against the `cryptography` package on fifty random keys and
-  messages: same keys, same signatures, each accepting the other's.
-  The founder has since lifted the standard-library rule, so a vetted
-  library replaces this module next (STATUS.md).
+- **Ed25519 comes from a vetted library.** Signing and verifying are
+  done by the `cryptography` package (which uses OpenSSL), pinned in
+  `requirements.txt`. Step 2 first wrote Ed25519 here from RFC 8032,
+  when the project used the standard library only; the founder has
+  since lifted that rule, and the hand-written signing and verifying
+  are gone. The RFC's own five test values, parsed from its text, still
+  run against what we use.
+- **One check stays ours.** The library accepts the eight weak keys,
+  and signatures for them made without any secret (shown by a test, on
+  the pinned version). So `multiverse/ed25519.py` checks every public
+  key first: the standard encoding of a point on the curve, and not a
+  weak one. It works on public data only, so its timing reveals
+  nothing.
 
 What it doesn't do yet, said plainly:
 
-- **It isn't hardened against timing attacks.** Python's big numbers
-  take time that depends on their values. Acceptable while nothing of
-  value depends on these keys; a vetted library replaces it before
-  anything does.
 - **Keys live only in memory.** There is no saving, backup or recovery
   yet. An individual that loses its key can't prove it is itself any
   more. Keeping keys safely comes before anything an individual would

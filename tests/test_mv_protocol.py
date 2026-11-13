@@ -162,6 +162,9 @@ class TestPublishedLaws(unittest.TestCase):
                 self.assertIn("signed by the key it names", text)
                 self.assertNotIn("not signed yet", text)
                 self.assertNotIn("WCP/0.1", text)
+                # and its limits, as they stand
+                self.assertIn("world ids aren't checked to be unique", text)
+                self.assertIn("kept only in memory", text)
 
 
 class TestNullWorld(unittest.TestCase):
