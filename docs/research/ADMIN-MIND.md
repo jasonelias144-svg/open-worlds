@@ -36,9 +36,10 @@ licences are as Hugging Face gave them that day.
   ([version 3](https://arxiv.org/html/2505.03335v3)).
 
 Taken: ADMIN sets its own challenges, but each must be doable, not only
-hard, and must ask for something it hasn't yet shown, which code checks.
-Each is published before it starts, so nothing is hidden and the bar
-can't be lowered halfway: the founder's "Challenges, not tests". Its
+hard, and must ask for something it hasn't yet shown, which the open
+record shows; code checks that it was announced before it began and
+hasn't changed since. So nothing is hidden and the bar can't be lowered
+halfway: the founder's "Challenges, not tests". Its
 self-improvement stays under oversight: what it learns can propose a
 change to its rules, never make one.
 
@@ -81,9 +82,10 @@ change allows it.
 
 Taken: a council of models can beat its members, using open models
 alone, but doesn't reliably. So ADMIN's council has to prove itself
-against its best single member on the same challenges, written after
-the models were trained so that neither has seen them, or give way to
-it.
+against its best single member on the same challenges, written by
+neither ADMIN nor anyone running a member, after the models were trained
+so that none has seen them, or give way to whichever arrangement the
+founder's rules allow does best ([ADMIN.md](../ADMIN.md)).
 
 ## Free, in all senses
 

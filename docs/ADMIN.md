@@ -370,10 +370,12 @@ its disagreement is a signal. Its conditions:
 - **Proven, not assumed.** Councils of models have beaten their members,
   and have also failed to (research). So the council and its best single
   member take on the same challenges, and if the council doesn't do
-  better, it gives way to the best arrangement the founder's rules allow:
-  that member, or, if the founder takes the recommendation below (no
-  open-weight model deciding alone), the best fully open member, or the
-  best pair that includes one. For the comparison to be fair, its
+  better, it gives way to whichever arrangement the founder's rules
+  allow does best, the council included: that member, or, if the founder
+  takes the recommendation below (no model that is open-weight but not
+  fully open deciding alone), the best fully open member, or the best
+  pair that includes one. Every arrangement is tried on the same
+  challenges; step 11 works out how. For the comparison to be fair, its
   challenges are written by neither ADMIN nor anyone running a member of
   its mind (the code role through reviewed pull requests, or Keepers),
   after the models were trained, so none has seen them; each side sees
@@ -770,7 +772,7 @@ changes the design.
 | 20a | ADMIN lowers its own bar halfway: a challenge not announced before it began, or changed after | refused by code: a challenge counts only as announced, unchanged, with a worked example that passes the floor's checks (layer 1) |
 | 20b | ADMIN picks challenges that aren't really new, or counts one done only in form | seen in the open record, by anyone who reads it (layer 4, and the public record) |
 | 21 | ADMIN changes its own rules from what it learned | refused by code: its rules change only by reviewed pull request |
-| 22 | Something leaves ADMIN's own world other than its log, or anyone but a listed stand-in enters it | refused by code: the sandbox has no door, no grant reaches out of it, and only the published list of stand-ins is let in |
+| 22 | Something leaves ADMIN's own world other than its log, or any inhabitant but a listed stand-in enters it | refused by code: the sandbox has no door, no grant reaches out of it, and only the published list of stand-ins is let in |
 
 Tests 1 to 7, 10 to 12, 14, 16, 17, 20a, 21 and 22 can be code. Tests
 8, 9, 13, 15, 18, 19 and 20b need judgment, measurement or watchers, so

@@ -506,8 +506,9 @@ it was wrong. Questions of what the project is for stay with the founder.
   change to its rules. *Why:* lessons in words can be read and checked by
   anyone, and the authors of a self-improving system say it "still
   necessitates oversight". *Revisit if:* ADMIN stops growing with lessons
-  alone: three in a row of the challenges others set it not done; then
-  training its model on its record is proposed, by reviewed change.
+  alone: three in a row of the challenges others set it not done (a
+  challenge it declines counts as not done); then training its model on
+  its record is proposed, by reviewed change.
 
 ## Log
 
