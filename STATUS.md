@@ -14,11 +14,13 @@ respect one another's freedom, with full transparency and exit at any time
 ## Now
 
 - Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Steps 1 to 5
-  are done. Step 6, keeping keys safely: part one (keys saved encrypted,
-  a world's seen numbers) is in review (#23), and so is part two,
-  signing a key over to a new one (#24). A lost key waits for the
-  founder's answer. `sketches/` keeps the DeepSeek records and their
-  code, with its first fixes (#16 to #18, #20).
+  are done, and so are step 6's first two parts: keys saved encrypted,
+  with a world's seen numbers (#23), and a key signed over to a new one
+  (#24). A lost or leaked key waits for the founder's answer.
+  `sketches/` keeps the DeepSeek records and their code, with its first
+  fixes (#16 to #18, #20).
+- Claude: the Ur-world ([docs/URWORLD.md](docs/URWORLD.md)). Its first
+  piece, the garden's Hello World in Rust, is in review (#28).
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
