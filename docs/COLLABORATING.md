@@ -108,12 +108,14 @@ text or as code with tests:
 - **The code in `multiverse/`, at a named commit.** Whatever is merged
   into `main` is the current standard; a proposal names the commit it
   built on.
-- **The protocol, WCP/0.3** (`multiverse/protocol.py`): manifest,
+- **The protocol, WCP/0.4** (`multiverse/protocol.py`): manifest,
   petition, act, leave, log. An individual is a key, and every request
   is signed, for one world's id and key (`multiverse/identity.py`). A
   world is a key too: it signs its manifest, and the stamps in a
   passport, which anyone can check offline (`multiverse/passport.py`).
-  Leaving can't be refused by any law.
+  A key can be saved encrypted (`multiverse/keys.py`), and signed over
+  to a new one by both keys (`multiverse/succession.py`). Leaving can't
+  be refused by any law.
 - **The conformance test** (`multiverse/conformance.py`): a world that
   passes it speaks the protocol. It says exactly what it checks, and what
   no outside test can see.

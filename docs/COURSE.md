@@ -109,8 +109,10 @@ step 17 comes from the next-in-line list: a world others built.
    it after a restart. What happens when a key is lost with no
    signed-over successor is decided in this step, with the founder.
    Part one is done (#23): keys saved encrypted, and a world's seen
-   numbers kept across a restart (MULTIVERSE.md). Next: signing over to
-   a new key; then a lost key, once the founder has decided.
+   numbers kept across a restart (MULTIVERSE.md). Part two is done
+   (#24): a key signed over to a new one by both keys, for individuals
+   and for worlds (WCP/0.4). Next: a lost key, once the founder has
+   decided.
 7. **The first learner.** A tiny mind in the chemistry world, built to
    learn for life: it starts small, grows only when its world asks for
    more, carries what it has learned, and can be saved and replayed. Its

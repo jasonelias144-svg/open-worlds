@@ -34,9 +34,8 @@ from typing import Dict, List, Optional, Tuple
 from world.core import MAX_SAY_CHARS, Move, Say, Wait, World
 
 from .entity import (SIGNED_REQUESTS_LAW, STAMPS_LAW, UNSIGNED_ANSWERS_LIMIT,
-                     Entity, now)
+                     Entity)
 from .identity import Signer, token_problem
-from .passport import verify_passport
 from .protocol import Ack, Act, ActResponse, LogEntry
 
 MOVE, SAY, WAIT = "corridor.move", "corridor.say", "corridor.wait"
@@ -194,7 +193,7 @@ class CorridorWorld(Entity):
         """The door of the world the passport's latest visit was to, if
         this corridor has one and it is free; else the first free cell of
         the entrance; else None."""
-        visits = verify_passport(passport, dict(self._known)).visits
+        visits = self._verify(passport).visits
         if visits:
             door = self._doors.get(visits[-1].world_id)
             if door is not None and self._kernel.occupant(door.cell) is None:
@@ -207,7 +206,7 @@ class CorridorWorld(Entity):
     # -- acts -------------------------------------------------------------
 
     def act(self, act: Act) -> ActResponse:
-        timestamp = now()
+        timestamp = self._now()
         refusal = self._actor_problem(timestamp, act)
         if refusal:
             return refusal

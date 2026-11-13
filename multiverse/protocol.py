@@ -1,4 +1,4 @@
-"""The World Connection Protocol (WCP/0.3): what every entity speaks.
+"""The World Connection Protocol (WCP/0.4): what every entity speaks.
 
 From the DeepSeek sketch's component 3. This module is not a world. It
 says what a world must do to be part of the multiverse. A world, a
@@ -29,6 +29,13 @@ and anyone can check it offline, without asking any world. A world keeps
 the numbers it has seen in memory, and across a restart only if they are
 saved and restored (keys.py, course step 6).
 
+WCP/0.4 (course step 6): a key can be signed over to a new one, by a
+succession both keys sign (succession.py). A passport carries the
+successions that link its stamps to the keys they were given to: its
+holder's own, and those of worlds that signed over since they stamped
+it. A world refuses requests signed by a key it knows was signed over,
+except a leave.
+
 Changed from the sketch: `leave` is new. The sketch had no way to go,
 and principle 3 of open-worlds is exit at any time. A world's law can
 refuse a petition or an act, but never a leave. Leaving when not present
@@ -56,7 +63,7 @@ from typing import Dict, List, Optional, Protocol, Tuple, Union
 
 from .identity import Signer, signature_valid, token_problem
 
-PROTOCOL_VERSION = "WCP/0.3"
+PROTOCOL_VERSION = "WCP/0.4"
 
 MAX_PLAIN_DEPTH = 32
 

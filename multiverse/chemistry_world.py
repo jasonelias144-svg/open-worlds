@@ -44,7 +44,7 @@ from chem.rules import RULES
 from chem.soup import Soup
 
 from .entity import (SIGNED_REQUESTS_LAW, STAMPS_LAW, UNSIGNED_ANSWERS_LIMIT,
-                     Entity, now)
+                     Entity)
 from .identity import Signer
 from .protocol import Ack, Act, ActResponse, LogEntry
 
@@ -174,12 +174,12 @@ class ChemistryWorld(Entity):
             self._soup.add_species(m)
             self._soup.put(CELL, m, count)
         self._reactions: List[Dict] = []
-        self._log.append(LogEntry(timestamp=now(), kind="soil",
+        self._log.append(LogEntry(timestamp=self._now(), kind="soil",
                                   data={"census": self.census(),
                                         "soup_head": self._soup.log_head}))
 
     def act(self, act: Act) -> ActResponse:
-        timestamp = now()
+        timestamp = self._now()
         refusal = self._actor_problem(timestamp, act)
         if refusal:
             return refusal

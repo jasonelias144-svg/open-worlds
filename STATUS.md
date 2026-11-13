@@ -15,9 +15,10 @@ respect one another's freedom, with full transparency and exit at any time
 
 - Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Steps 1 to 5
   are done. Step 6, keeping keys safely: part one (keys saved encrypted,
-  a world's seen numbers) is in review (#23); next, signing over to a
-  new key. `sketches/` keeps the DeepSeek records and their code, with
-  its first fixes (#16 to #18, #20).
+  a world's seen numbers) is in review (#23), and so is part two,
+  signing a key over to a new one (#24). A lost key waits for the
+  founder's answer. `sketches/` keeps the DeepSeek records and their
+  code, with its first fixes (#16 to #18, #20).
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
@@ -70,8 +71,11 @@ and for the founder's conversations with DeepSeek, is in
   guardians named in advance, some number of whom can sign over to a new
   key; or the project recovers keys. Recommended: guardians named in
   advance, with "lost is lost" for anyone who named none; the project
-  recovering keys would make it an authority over who is who. (asked
-  2026-11-13, for course step 6)
+  recovering keys would make it an authority over who is who. A key
+  that has leaked is the same question: signing over doesn't revoke the
+  old key (course step 6, part two), so the same guardians could sign
+  that a key is no longer to be trusted. (asked 2026-11-13, for course
+  step 6)
 - For the founder: should ALICE's and BOB's memories be public, as their
   actions are, or private, like a person's mind? Recommended: public, at
   least at first. (asked 2026-11-13)
@@ -195,6 +199,16 @@ and for the founder's conversations with DeepSeek, is in
   Python kernel's format and holds by `World.verify_log`. A second,
   independent implementation of the generator in Python, written from the
   documented rules, agrees with Rust on every height and chunk.
+- 2026-11-13 Claude: course step 6, part two. A key can be signed over to
+  a new one by a succession both keys sign (`multiverse/succession.py`),
+  for individuals and for worlds. A passport carries its holder's
+  successions, so the stamps given to an earlier key still count, and
+  those of worlds that signed over during a stay. A world that knows a
+  succession refuses the old key's petitions and acts (never its leave),
+  and keeps the first succession of a key it sees. A world signs its own
+  key over with `sign_over`. A world's timestamps now only grow, so two
+  visits in one clock tick no longer give identical stamps. The protocol
+  is WCP/0.4.
 - 2026-11-13 Claude: a starting point in Rust, and the standards for Rust
   code ([docs/COLLABORATING.md](docs/COLLABORATING.md), "Code in Rust").
   `rust/` is a Cargo workspace whose first crate, `world-log`, checks a

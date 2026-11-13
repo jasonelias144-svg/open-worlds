@@ -49,6 +49,7 @@ from typing import Dict, List, Optional, Tuple
 from .identity import (Identity, Signer, canonical, same_identity,
                        signature_valid)
 from .protocol import PROTOCOL_VERSION, Leave, leave_document
+from .succession import Lineage, Succession, succession_problem
 
 KINDS = ("arrival", "departure", "made")
 
@@ -200,8 +201,11 @@ class Visit:
 
 @dataclass(frozen=True)
 class PassportCheck:
+    """What `verify_passport` found. `earlier_keys` are the keys the
+    holder signed over from, nearest first, as the successions show."""
     problems: Tuple[str, ...]
     visits: Tuple[Visit, ...]
+    earlier_keys: Tuple[str, ...] = ()
 
     @property
     def ok(self) -> bool:
@@ -210,55 +214,96 @@ class PassportCheck:
 
 @dataclass(frozen=True)
 class Passport:
-    """An identity, the stamps worlds signed for it, and its own signed
-    leaves. Appended to, never changed."""
+    """An identity, the stamps worlds signed for it, its own signed
+    leaves, and the successions (succession.py) that link its stamps to
+    the keys they were given to. Appended to, never changed."""
     identity: Identity
     stamps: Tuple[Stamp, ...] = ()
     leaves: Tuple[LeaveNote, ...] = ()
+    successions: Tuple[Succession, ...] = ()
 
     def with_stamp(self, stamp: Stamp) -> "Passport":
-        return Passport(self.identity, self.stamps + (stamp,), self.leaves)
+        return Passport(self.identity, self.stamps + (stamp,), self.leaves,
+                        self.successions)
 
     def with_leave(self, note: LeaveNote) -> "Passport":
-        return Passport(self.identity, self.stamps, self.leaves + (note,))
+        return Passport(self.identity, self.stamps, self.leaves + (note,),
+                        self.successions)
+
+    def with_succession(self, succession: Succession) -> "Passport":
+        """Carry a succession: a world's, so the stamps it gave under an
+        earlier key still count where it is known by a later one."""
+        return Passport(self.identity, self.stamps, self.leaves,
+                        self.successions + (succession,))
+
+    def signed_over(self, succession: Succession,
+                    name: Optional[str] = None) -> "Passport":
+        """The passport, carried on by the key its holder signed over to,
+        with the succession in it, so the stamps given to the earlier key
+        still count. ValueError unless the succession is usable and is
+        the holder's own (of "")."""
+        problem = succession_problem(succession)
+        if problem:
+            raise ValueError(f"not a usable succession: {problem}")
+        if succession.of != "" or succession.old != self.identity.token:
+            raise ValueError("the succession must sign this holder's key "
+                             "over, as an individual's")
+        identity = Identity(token=succession.new,
+                            name=self.identity.name if name is None
+                            else name)
+        return Passport(identity, self.stamps, self.leaves,
+                        self.successions + (succession,))
 
     def with_identity(self, identity: Identity) -> "Passport":
         """Rename the holder. The token must stay the same: a new token
-        is a different individual, with a passport of its own."""
+        is a different individual, with a passport of its own, unless the
+        old key signs over to it (`signed_over`)."""
         if not same_identity(self.identity, identity):
             raise ValueError("with_identity requires the same token; "
-                             "use a new passport for a new identity")
-        return Passport(identity, self.stamps, self.leaves)
+                             "use signed_over for a new key")
+        return Passport(identity, self.stamps, self.leaves,
+                        self.successions)
 
     def entries(self) -> Tuple[Dict, ...]:
         """The passport as plain entries, as a petition carries it."""
         return (tuple(s.entry() for s in self.stamps)
-                + tuple(n.entry() for n in self.leaves))
+                + tuple(n.entry() for n in self.leaves)
+                + tuple(s.entry() for s in self.successions))
 
     @classmethod
     def from_entries(cls, identity: Identity, entries: object) -> "Passport":
         """Read a passport's entries; ValueError if they aren't a list or
-        tuple of stamp and leave entries. Doesn't verify them."""
+        tuple of stamp, leave and succession entries. Doesn't verify
+        them."""
         if type(entries) not in (list, tuple):
             raise ValueError("a passport is a list of entries")
-        stamps, leaves = [], []
+        stamps, leaves, successions = [], [], []
         for entry in entries:
             kind = entry.get("entry") if type(entry) is dict else None
             if kind == "stamp":
                 stamps.append(Stamp.from_entry(entry))
             elif kind == "leave":
                 leaves.append(LeaveNote.from_entry(entry))
+            elif kind == "succession":
+                successions.append(Succession.from_entry(entry))
             else:
-                raise ValueError("an entry is a stamp or a leave")
-        return cls(identity, tuple(stamps), tuple(leaves))
+                raise ValueError("an entry is a stamp, a leave or a "
+                                 "succession")
+        return cls(identity, tuple(stamps), tuple(leaves),
+                   tuple(successions))
 
     def open_arrival(self, world_key: str) -> Optional[Stamp]:
-        """The latest arrival stamp from `world_key` that no departure
-        stamp or own leave has closed, if any."""
+        """The latest arrival stamp that no departure stamp or own leave
+        has closed, from `world_key` or from an earlier key of the same
+        world that the passport's successions show was signed over to
+        it, if any."""
         closed = ({s.arrival for s in self.stamps if s.kind == "departure"}
                   | {n.closes for n in self.leaves})
+        lineage = Lineage(self.successions)
         for stamp in reversed(self.stamps):
-            if (stamp.kind == "arrival" and stamp.world_key == world_key
+            if (stamp.kind == "arrival"
+                    and lineage.leads_to(stamp.world_id, stamp.world_key,
+                                         world_key)
                     and stamp.fingerprint() not in closed):
                 return stamp
         return None
@@ -272,10 +317,10 @@ class Passport:
 
 
 def _entry_fingerprint(item: object) -> Optional[str]:
-    """The fingerprint of a stamp's or a leave's entry, or None if it
-    isn't one whose fields are plain text (a leave's seq, a whole number)
-    that can be written as exact bytes."""
-    if type(item) not in (Stamp, LeaveNote):
+    """The fingerprint of a stamp's, a leave's or a succession's entry, or
+    None if it isn't one whose fields are plain text (a leave's seq, a
+    whole number) that can be written as exact bytes."""
+    if type(item) not in (Stamp, LeaveNote, Succession):
         return None
     for name, value in vars(item).items():
         if type(value) is not (int if name == "seq" else str):
@@ -287,28 +332,87 @@ def _entry_fingerprint(item: object) -> Optional[str]:
 
 
 def verify_passport(passport: Passport,
-                    known_keys: Optional[Dict[str, str]] = None
-                    ) -> PassportCheck:
-    """Check every stamp and leave in a passport, offline. Never raises,
-    for any passport its constructors or `from_entries` can build.
+                    known_keys: Optional[Dict[str, str]] = None,
+                    successions=()) -> PassportCheck:
+    """Check every stamp, leave and succession in a passport, offline.
+    Never raises, for any passport its constructors or `from_entries`
+    can build.
+
     `known_keys` maps world ids to the keys the checker knows them by
-    (from their manifests): a stamp naming one of those ids under another
-    key is a problem. Without it, a stamp shows only which key signed.
-    A stamp or leave that appears twice is a problem too: a holder can
-    leave stamps out, but not change, add or repeat one."""
+    (from their manifests): a stamp naming one of those ids under a key
+    that isn't that one, or linked to it by a succession of that world,
+    is a problem. Without it, a stamp shows only which key signed.
+    `successions` are the ones the checker already knows: a list of them,
+    or a `Lineage`, whose successions were checked when it took them and
+    aren't checked again (a world's, from `Entity`). The passport's own
+    are checked and added to an overlay of them, which reads them in
+    place (nothing is copied, and they don't change). A key
+    signed over twice is a problem, and so is a holder whose own key has
+    been signed over: the passport goes with the new key.
+
+    Stamps and leaves given to the holder's earlier keys count, when the
+    passport's successions link those keys to the holder. A stamp, leave
+    or succession that appears twice is a problem too: a holder can leave
+    entries out, but not change, add or repeat one."""
     if (type(passport) is not Passport
             or type(passport.identity) is not Identity
             or type(passport.identity.token) is not str
             or type(passport.stamps) is not tuple
-            or type(passport.leaves) is not tuple):
+            or type(passport.leaves) is not tuple
+            or type(passport.successions) is not tuple):
         return PassportCheck(("not a passport",), ())
-    known = known_keys if type(known_keys) is dict else {}
+    known = ({i: k for i, k in known_keys.items()
+              if type(i) is str and type(k) is str}
+             if type(known_keys) is dict else {})
     problems: List[str] = []
     holder = passport.identity.token
+
+    # The successions: the checker's own first, then the passport's.
+    if type(successions) is Lineage:
+        lineage = successions.overlay()
+    else:
+        lineage = Lineage(successions if type(successions) in (list, tuple)
+                          else ())
+    seen_successions: Dict[str, int] = {}
+    for i, s in enumerate(passport.successions):
+        fp = _entry_fingerprint(s)
+        if fp is None:
+            problems.append(f"succession {i + 1}: it isn't a succession of "
+                            "plain text that can be written as exact bytes")
+            continue
+        if fp in seen_successions:
+            problems.append(f"succession {i + 1}: it repeats succession "
+                            f"{seen_successions[fp]}")
+            continue
+        seen_successions[fp] = i + 1
+        problem = lineage.add(s)
+        if problem:
+            problems.append(f"succession {i + 1}: {problem}")
+    if lineage.retired("", holder):
+        problems.append("the holder's key has been signed over to another "
+                        "key; the passport goes on with that one")
+    earlier = lineage.earlier_keys("", holder)
+    holders = {holder, *earlier}
+
+    def known_by(world_id: str, key: str) -> bool:
+        k = known.get(world_id)
+        return (k is None or lineage.leads_to(world_id, key, k)
+                or lineage.leads_to(world_id, k, key))
+
+    def belongs(arrival: Optional[Stamp], world_id: str, world_key: str,
+                who: str) -> bool:
+        """Whether `arrival` is of the same world, for the same key, and
+        signed by `world_key` or a key signed over to it."""
+        return (arrival is not None and arrival.world_id == world_id
+                and arrival.holder == who
+                and lineage.leads_to(world_id, arrival.world_key,
+                                     world_key))
+
     stamp_fps = [_entry_fingerprint(s) for s in passport.stamps]
     arrivals: Dict[str, Stamp] = {
         fp: stamp for fp, stamp in zip(stamp_fps, passport.stamps)
         if fp is not None and stamp.kind == "arrival"}
+    good_arrivals = set()
     seen: Dict[str, int] = {}
     departures: Dict[str, Stamp] = {}
     made: Dict[str, int] = {}
@@ -325,22 +429,22 @@ def verify_passport(passport: Passport,
         if stamp.kind not in KINDS:
             problems.append(f"{where}: not a kind of stamp")
             continue
-        if stamp.holder != holder:
+        if stamp.holder not in holders:
             problems.append(f"{where}: it is for another individual")
             continue
         if not stamp.verifies():
             problems.append(f"{where}: its signature does not verify "
                             "against the world key it names")
             continue
-        if known.get(stamp.world_id, stamp.world_key) != stamp.world_key:
+        if not known_by(stamp.world_id, stamp.world_key):
             problems.append(f"{where}: it is signed by a key that isn't "
                             "the one that world is known by")
             continue
         if stamp.kind == "arrival":
+            good_arrivals.add(fp)
             continue
-        arrival = arrivals.get(stamp.arrival)
-        if (arrival is None or arrival.world_key != stamp.world_key
-                or arrival.world_id != stamp.world_id):
+        if not belongs(arrivals.get(stamp.arrival), stamp.world_id,
+                       stamp.world_key, stamp.holder):
             problems.append(f"{where}: it names no arrival of this world "
                             "in the passport")
             continue
@@ -361,32 +465,29 @@ def verify_passport(passport: Passport,
                             "values that can be written as exact bytes")
             continue
         where = f"leave {i + 1} ({note.world_id})"
-        arrival = arrivals.get(note.closes)
         if fp in seen_leaves:
             problems.append(f"{where}: it repeats leave {seen_leaves[fp]}")
             continue
         seen_leaves[fp] = i + 1
-        if note.holder != holder:
+        if note.holder not in holders:
             problems.append(f"{where}: it is another individual's")
         elif not note.verifies():
             problems.append(f"{where}: its signature does not verify")
-        elif (arrival is None or arrival.world_key != note.world_key
-              or arrival.world_id != note.world_id):
+        elif not belongs(arrivals.get(note.closes), note.world_id,
+                         note.world_key, note.holder):
             problems.append(f"{where}: it closes no arrival of this world "
                             "in the passport")
         else:
             unstamped.add(note.closes)
     visits = []
     for fp, arrival in arrivals.items():
-        if (not arrival.verifies() or arrival.holder != holder
-                or known.get(arrival.world_id, arrival.world_key)
-                != arrival.world_key):
+        if fp not in good_arrivals:
             continue
         left = ("stamped" if fp in departures
                 else "unstamped" if fp in unstamped else "")
         visits.append(Visit(arrival.world_id, arrival.world_key,
                             arrival.timestamp, left, made.get(fp, 0)))
-    return PassportCheck(tuple(problems), tuple(visits))
+    return PassportCheck(tuple(problems), tuple(visits), tuple(earlier))
 
 
 def to_dict(passport: Passport) -> dict:
