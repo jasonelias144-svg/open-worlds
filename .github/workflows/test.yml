@@ -57,3 +57,19 @@ jobs:
           # run; tests that vary for other reasons are marked "sometimes"
           # in known-failures.txt.
           PYTHONHASHSEED: "0"
+  rust:
+    # The Rust workspace (docs/COLLABORATING.md, "Code in Rust"): the pinned
+    # toolchain, formatting, lints as errors, and tests, which read the
+    # shared vectors that the Python job checks are the kernel's own.
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: rust
+    steps:
+      - uses: actions/checkout@v7
+      - run: rustup toolchain install 1.97.0 --profile minimal --component clippy,rustfmt
+      - run: cargo --version
+      - run: cargo fmt --check
+      - run: cargo clippy --all-targets --locked -- -D warnings
+      - run: cargo test --locked
+      - run: cargo run --locked -q -- ../vectors/world-log.json

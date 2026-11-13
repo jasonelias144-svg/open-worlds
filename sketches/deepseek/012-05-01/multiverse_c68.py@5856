@@ -1,0 +1,230 @@
+def demo(artifact_dir: Optional[str] = None) -> Dict:
+    """Two curator processes, one federation, full lifecycle.
+
+    1. Deploy federation (C66).
+    2. Start two curators (poetry, chemistry), empty peers.
+    3. Add peers now that URLs are known.
+    4. Tick both until linked.
+    5. Submit 3 refused acts to poetry to trigger the mock
+       model.
+    6. Tick poetry curator → proposal generated.
+    7. Third-party verifies: proposals persisted, links persisted,
+       curator identity persisted.
+    8. Graceful shutdown.
+    """
+    import json as _json
+    from multiverse_c1 import create_identity
+    from multiverse_c3 import Act, Refusal
+    from multiverse_c65 import FederationClient
+    from multiverse_c66 import (
+        DeployConfig, deploy_federation,
+        _patch_c65_manifest_verification,
+    )
+
+    if not HAS_CRYPTO:
+        raise RuntimeError("demo requires `cryptography`")
+    _patch_c65_manifest_verification()
+
+    if artifact_dir is None:
+        artifact_dir = "artifacts"
+    root_dir = Path(artifact_dir) / "curator_process"
+    root_dir.mkdir(parents=True, exist_ok=True)
+    fed_dir = root_dir / "federation"
+    poetry_dir = root_dir / "curator_poetry"
+    chem_dir = root_dir / "curator_chemistry"
+
+    if fed_dir.exists():
+        import shutil
+        shutil.rmtree(fed_dir)
+    for d in (poetry_dir, chem_dir):
+        if d.exists():
+            import shutil
+            shutil.rmtree(d)
+
+    fed = deploy_federation(DeployConfig(
+        state_dir=fed_dir,
+        federation_name="Curator Process Demo",
+    ))
+
+    poetry_proc = None
+    chem_proc = None
+    try:
+        # -- 1. Start two curators (empty peers) -------------
+        poetry_peers = PeerRegistry()
+        chem_peers = PeerRegistry()
+
+        poetry_proc = CuratorProcess(
+            world=fed.poetry.base,  # the _DelegatingSignedWorld
+            world_kp=fed.poetry_kp,
+            peers=poetry_peers,
+            state_dir=poetry_dir,
+            cycle_interval=0.5,
+            identity=create_identity("curator:poetry"),
+        )
+        chem_proc = CuratorProcess(
+            world=fed.chemistry.base,
+            world_kp=fed.chemistry_kp,
+            peers=chem_peers,
+            state_dir=chem_dir,
+            cycle_interval=0.5,
+            identity=create_identity("curator:chemistry"),
+        )
+        poetry_proc.start()
+        chem_proc.start()
+
+        # -- 2. Now that URLs are known, add peers --------
+        poetry_peers.add(
+            "world:chemistry",
+            chem_proc.url,
+            fed.chemistry_kp.public_key_hex())
+        chem_peers.add(
+            "world:poetry",
+            poetry_proc.url,
+            fed.poetry_kp.public_key_hex())
+
+        # -- 3. Tick both until linked --------------------
+        tick_trace = []
+        linked_at = None
+        for i in range(20):
+            p = poetry_proc.tick()
+            c = chem_proc.tick()
+            tick_trace.append({
+                "iteration": i,
+                "poetry_actions": p["actions"],
+                "chem_actions": c["actions"],
+            })
+            if (len(poetry_proc.links()) > 0
+                    and len(chem_proc.links()) > 0
+                    and linked_at is None):
+                linked_at = i
+            if linked_at is not None:
+                break
+
+        # -- 4. Trigger refusals in poetry ----------------
+        alice = FederationClient(root_dir / "alice")
+        alice.create_identity("Refuser")
+        alice.connect(
+            fed.anchors_url(), fed.root_kp.public_key_hex())
+        alice.enter_world("world:poetry")
+        refusals = []
+        for _ in range(3):
+            r = alice.submit_act(
+                "world:poetry", "poem.turn", {
+                    "acknowledgment": "",  # missing
+                    "proposal": "x",
+                    "invitation": "y",
+                    "holds_open": True,
+                })
+            refusals.append(r.ok)
+        assert all(not ok for ok in refusals)
+
+        # -- 5. Tick poetry curator: propose --------------
+        tick_after_refusals = poetry_proc.tick()
+        proposals = poetry_proc.store.read_proposals()
+
+        # -- 6. Check persisted state ---------------------
+        poetry_identity = poetry_proc.store.load_identity()
+        poetry_links = poetry_proc.store.load_links()
+        poetry_log = poetry_proc.store.read_log()
+
+        # -- 7. Graceful shutdown -------------------------
+        poetry_proc.stop()
+        chem_proc.stop()
+
+        # -- 8. Verify server is down ---------------------
+        import urllib.error
+        try:
+            urllib.request.urlopen(
+                f"{poetry_proc.url}/curator/manifest", timeout=1)
+            server_down = False
+        except Exception:
+            server_down = True
+
+        # -- Print ----------------------------------------
+        print("=" * 70)
+        print("Curator Process — two daemons, one federation")
+        print("=" * 70)
+        print()
+        print(f"  Poetry curator:    {poetry_proc.url}")
+        print(f"  Chemistry curator: {chem_proc.url}")
+        print()
+        print(f"  Ticks until linked: {linked_at + 1 if linked_at is not None else 'never'}")
+        print(f"  Poetry links:      {len(poetry_links)}")
+        print(f"  Chemistry links:   {len(chem_proc.links())}")
+        print()
+        print("  Tick trace:")
+        for entry in tick_trace[:3]:
+            print(f"    Tick {entry['iteration']}:")
+            for a in entry["poetry_actions"]:
+                print(f"      poetry:    {a}")
+            for a in entry["chem_actions"]:
+                print(f"      chemistry: {a}")
+        print()
+        print(f"  After 3 refusals in poetry:")
+        print(f"    Proposals generated: {len(proposals)}")
+        for p in proposals:
+            title = p["proposal"].get("payload", {}).get(
+                "title", "")
+            print(f"      · {title}")
+        print()
+        print(f"  Persisted state (poetry curator):")
+        print(f"    Identity:    {'✓' if poetry_identity else '✗'}")
+        print(f"    Links:       {len(poetry_links)}")
+        print(f"    Log entries: {len(poetry_log)}")
+        print(f"    Proposals:   {len(proposals)}")
+        print()
+        print(f"  Server shut down: {server_down}")
+        print()
+        print("  What this demonstrates:")
+        print("    - Curators run as daemons (C64 §5), each with its")
+        print("      own HTTP endpoint and scheduler thread.")
+        print("    - Inbound messages are verified against the peer")
+        print("      registry (not the message's declared key) — the")
+        print("      security fix C55's receive() alone doesn't give.")
+        print("    - The scheduler drives hello exchange, link")
+        print("      establishment, observation, and proposal")
+        print("      generation.")
+        print("    - All curator state (identity, links, log,")
+        print("      proposals) persists to disk across restarts.")
+        print("    - Graceful shutdown: server down, thread joined.")
+        print()
+        print("  Anchor (public domain, Emily Dickinson):")
+        print("    'The Soul selects her own Society –'")
+        print("    'Then – shuts the Door –'")
+
+        audit = {
+            "poetry_curator_url": poetry_proc.url,
+            "chemistry_curator_url": chem_proc.url,
+            "ticks_until_linked": (
+                linked_at + 1 if linked_at is not None else None),
+            "poetry_link_count": len(poetry_links),
+            "chemistry_link_count": len(chem_proc.links()),
+            "refusals_submitted": len(refusals),
+            "proposal_count": len(proposals),
+            "proposal_titles": [
+                p["proposal"].get("payload", {}).get(
+                    "title", "")
+                for p in proposals],
+            "persisted": {
+                "poetry_identity_loaded":
+                    poetry_identity is not None,
+                "poetry_log_entries": len(poetry_log),
+            },
+            "server_shut_down": server_down,
+        }
+        (root_dir / "curator_process_demo.json").write_text(
+            _json.dumps(audit, indent=2))
+        print(f"\n  → {root_dir}/curator_process_demo.json")
+        return audit
+    finally:
+        if poetry_proc is not None:
+            try:
+                poetry_proc.stop()
+            except Exception:
+                pass
+        if chem_proc is not None:
+            try:
+                chem_proc.stop()
+            except Exception:
+                pass
+        fed.stop()

@@ -98,6 +98,18 @@ and for the founder's conversations with DeepSeek, is in
 
 ## Decided
 
+- 2026-11-13, founder, on record 012-05-01: load it (done, this log). A
+  chess park on the course, and where a world that keeps running should
+  live: "not yet". And on how to build the first autonomous world: "I do
+  not think we should use Python to build our first autonomous world. We
+  should be looking towards how video games are made ... Let's use
+  industry standard tools, but all open source." The technical lead's
+  proposal, put to the founder the same day: a C++ simulation core with
+  an entity-component system (Flecs), built with CMake, tested with
+  GoogleTest, Godot later as the window onto it, and Python kept as the
+  reference the C++ is tested against. First step: the world kernel in
+  C++, writing the same hash-chained log as the Python one. The founder
+  chose Rust instead, the same day (see the entry on the language).
 - 2026-11-12, founder, on how to build: "My goal was to come to you with
   ideas, with a vision, and some code that may or may not be helpful. But
   I expect you to take all that in and do it in your own way that makes
@@ -145,6 +157,17 @@ and for the founder's conversations with DeepSeek, is in
   real elements and molecules; chemistry is the next area of work.
 - 2026-11-12, founder: the repository is public and dedicated to the public
   domain (CC0 1.0). The goal isn't financial; anyone may build on it.
+- 2026-11-13, founder, on the language for the worlds: Rust, which the
+  technical lead proposed in place of its C++ proposal of the same day.
+  "Rust sounds good. I agree, building on a foundation that someone else
+  owns is what we want to avoid." And: "We should have an interface to
+  Unity built worlds, but we should stick with Rust". Open source is
+  preferred, so that development stays free; closed source but free is
+  the only other option. Python stays as the reference the Rust is
+  checked against. Then: "I would suggest you supply a starting point for
+  DeepSeek to build from. Or at least a set of standards related to code
+  in Rust." Both are in place: `rust/`, and docs/COLLABORATING.md, "Code
+  in Rust".
 
 ## Log
 
@@ -158,6 +181,29 @@ and for the founder's conversations with DeepSeek, is in
   key over with `sign_over`. A world's timestamps now only grow, so two
   visits in one clock tick no longer give identical stamps. The protocol
   is WCP/0.4.
+- 2026-11-13 Claude: a starting point in Rust, and the standards for Rust
+  code ([docs/COLLABORATING.md](docs/COLLABORATING.md), "Code in Rust").
+  `rust/` is a Cargo workspace whose first crate, `world-log`, checks a
+  world's public record exactly as the Python kernel writes it. Shared
+  test vectors in `vectors/`, written by the kernel
+  (`python3 -m world.vectors`), keep the two in agreement, and CI checks
+  both sides. Writing it found one gap: an agent could say text holding a
+  lone surrogate, which Python's log accepts but JSON readers in other
+  languages refuse, so the log couldn't be checked there. The kernel now
+  refuses such speech.
+- 2026-11-13 Claude: record 012-03-02's code written out (the poetry
+  engine, 45 files; the founder pointed to `poetry_engine_c21.py` at
+  line 21860). The two later records import it, so every test file of
+  012-05-01 now loads, and 5 more of 012-04-00. DeepSeek's tests: 141
+  pass in 012-03-02, 944 in 012-04-00 (was 877), 241 in 012-05-01 (was
+  204) ([sketches/INDEX.md](sketches/INDEX.md)).
+- 2026-11-13 Claude: record 012-05-01 brought in (DeepSeek's components 64
+  to 87), as 012-04-00 was: the record verbatim, its 79 code files written
+  out, its tests run with an honest list of what fails
+  ([sketches/INDEX.md](sketches/INDEX.md)). Two small fixes: the demos
+  attached, and one wrong import in component 83, which lets the growth
+  and governance components load. With them, 204 of DeepSeek's tests
+  pass; the chess park's need `python-chess` (GPL) and skip.
 - 2026-11-13 Claude: course step 6, part one. Keys can be saved encrypted
   (`multiverse/keys.py`: OpenSSH's format, bcrypt-pbkdf with 64 rounds,
   AES-256-CTR; readable by the owner only; never written over an

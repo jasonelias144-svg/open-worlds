@@ -2,8 +2,9 @@
 
     python3 known_failures.py FOLDER [RUNS]
 
-Copies FOLDER to a temporary directory and runs every test there as
-written (SKETCH_RAW=1, so conftest.py marks nothing), RUNS times (default
+Copies FOLDER, with the folders beside it (a record's code may build on
+an earlier record's, as 012-05-01's does on 012-04-00's), to a temporary
+directory and runs every test there as written (SKETCH_RAW=1, so conftest.py marks nothing), RUNS times (default
 8), each with a different hash seed (PYTHONHASHSEED 0, 1, ...), since a
 test that depends on the order of a set, or of random keys, can pass in
 one run and fail in another. Then writes FOLDER/known-failures.txt: the
@@ -48,6 +49,7 @@ def _reason(element, tree: str) -> str:
             reason = line
             break
     reason = reason.replace(tree + os.sep, "")
+    reason = reason.replace(os.path.dirname(tree) + os.sep, "../")
     # Memory addresses and random keys change from run to run; leave them
     # out, so that rewriting the list changes only what really changed.
     reason = re.sub(r"0x[0-9a-f]+", "0x...", reason)
@@ -81,9 +83,10 @@ def _run(tree: str, junit: str, seed: int):
 def main(folder: str, runs: int = 8) -> int:
     folder = os.path.abspath(folder)
     with tempfile.TemporaryDirectory() as tmp:
-        tree = os.path.join(tmp, "tree")
-        shutil.copytree(folder, tree, ignore=shutil.ignore_patterns(
-            "__pycache__"))
+        # The folders beside it come too, at the same relative paths.
+        shutil.copytree(os.path.dirname(folder), os.path.join(tmp, "all"),
+                        ignore=shutil.ignore_patterns("__pycache__"))
+        tree = os.path.join(tmp, "all", os.path.basename(folder))
         results = [_run(tree, os.path.join(tmp, f"run{seed}.xml"), seed)
                    for seed in range(runs)]
     file_names = set().union(*(set(f) for f, _ in results))

@@ -1,0 +1,49 @@
+{
+ "record": "records/012-03-02-DPSK-Patterns_Texts_and_Inventions.txt",
+ "folder": "deepseek/012-03-02",
+ "languages": [
+  "python",
+  "json",
+  "makefile",
+  "bash"
+ ],
+ "names": {
+  "3181": "aristotle_cybernetics_c7.py",
+  "3698": "music_engine_c8.py",
+  "4523": "poetry_engine_c1.py",
+  "5393": "poetry_engine_c2.py",
+  "6195": "poetry_engine_c3.py",
+  "7287": "poetry_engine_c4.py",
+  "8351": "poetry_engine_c5.py",
+  "9282": "poetry_engine_c6.py",
+  "10185": "poetry_engine_c7.py",
+  "11311": "poetry_engine_c8.py",
+  "12212": "poetry_engine_c9.py",
+  "13174": "poetry_engine_c10.py",
+  "14161": "poetry_engine_c13.py",
+  "15002": "poetry_engine_c14.py",
+  "15894": "poetry_engine_c17.py",
+  "17038": "poetry_engine_c18.py",
+  "17126": "poetry_engine_c18.py",
+  "17499": "poetry_engine_c18.py",
+  "17680": "poetry_engine_c19.py",
+  "18116": "poetry_engine_c19_test.py",
+  "18263": "poetry_engine_c20.py",
+  "21859": "poetry_engine_c21.py",
+  "21982": "poetry_engine_c21.py",
+  "22431": "poetry_engine_c22.py",
+  "22558": "poetry_engine_c22.py"
+ },
+ "ours": [
+  "README.md",
+  "conftest.py",
+  "pytest.ini",
+  "known-failures.txt",
+  "sketch_status_test.py"
+ ],
+ "changed": {
+  "poetry_engine_c18.py": "Fix 5: the record gives this module in parts: the atoms (line 17038), the composites (poetry_engine_c18.py@17126) and the ReflectivePoet composite (poetry_engine_c18.py@17499). The later parts are appended to it unchanged, in order, so that it is the whole module; they stay as their own @LINE files too.",
+  "poetry_engine_c21.py": "Fix 5: the record gives this module in parts: the atoms (line 21859) and the composites (poetry_engine_c21.py@21982). The later parts are appended to it unchanged, in order, so that it is the whole module; they stay as their own @LINE files too.",
+  "poetry_engine_c22.py": "Fix 5: the record gives this module in parts: the atoms (line 22431) and the composites (poetry_engine_c22.py@22558). The later parts are appended to it unchanged, in order, so that it is the whole module; they stay as their own @LINE files too."
+ }
+}

@@ -1,0 +1,41 @@
+# Which of DeepSeek's tests fail, as the code stands here. Written by us,
+# not by DeepSeek (see README.md), with tools/known_failures.py, from
+# runs under several hash seeds. conftest.py reads it:
+#   - a test file listed alone does not load, and is not collected;
+#   - a test listed by name is an expected failure, and strict: if it
+#     starts passing, the run fails until it is taken off this list;
+#   - a test whose error starts with "sometimes:" failed in some runs
+#     and passed in others, so either result is accepted.
+# So the list is always true. The text after "  # " is the error.
+
+# Test files that do not load
+poetry_engine_c1_test.py  # SyntaxError: positional argument follows keyword argument
+poetry_engine_c2_test.py  # SyntaxError: positional argument follows keyword argument
+poetry_engine_c4_test.py  # SyntaxError: positional argument follows keyword argument
+music_engine_c8_test.py  # ModuleNotFoundError: No module named 'music_engine_c1'
+
+# Tests that fail
+poetry_engine_c3_test.py::test_build_line_from_c1  # SyntaxError: positional argument follows keyword argument
+poetry_engine_c3_test.py::test_functional_alignment  # AssertionError: assert 6 in [1]
+poetry_engine_c6_test.py::test_foregrounding_catches_the_file  # AssertionError: The source file's structural signature must be flagged as a loop
+poetry_engine_c6_test.py::test_unfinished_ending  # KeyError: <NativeKey.TOKEN: 'token'>
+poetry_engine_c8_test.py::test_line_similarity  # + where 0.2 = abs((0.2 - 0.0))
+poetry_engine_c9_test.py::test_all_poems_native  # NameError: name 'is_native' is not defined
+poetry_engine_c9_test.py::test_arc_concentric  # AssertionError: assert <ArcType.PALINDROME: 'palindrome'> == <ArcType.CONCENTRIC: 'concentric'>
+poetry_engine_c10_test.py::test_engine_runs  # AssertionError: Policy should be rewarded at least once
+poetry_engine_c13_test.py::test_redundant_poem_pruned  # AssertionError: assert 2 == 1
+poetry_engine_c17_test.py::test_metadata_report  # AssertionError: assert False is True
+poetry_engine_c19_test.py::test_long_run_has_rest_sessions  # NameError: name 'run_between_sessions_long_run' is not defined
+poetry_engine_c19_test.py::test_long_run_journal_is_date_stamped  # NameError: name 'run_between_sessions_long_run' is not defined
+poetry_engine_c19_test.py::test_long_run_produces_journal  # NameError: name 'run_between_sessions_long_run' is not defined
+poetry_engine_c19_test.py::test_long_run_settles  # NameError: name 'run_between_sessions_long_run' is not defined
+poetry_engine_c20_test.py::test_artifact_has_provenance  # AttributeError: 'ReflectivePoet' object has no attribute '_flatten'
+poetry_engine_c20_test.py::test_artifact_has_sessions  # AttributeError: 'ReflectivePoet' object has no attribute '_flatten'
+poetry_engine_c20_test.py::test_artifact_save_load  # AttributeError: 'ReflectivePoet' object has no attribute '_flatten'
+poetry_engine_c20_test.py::test_determinism  # AttributeError: 'ReflectivePoet' object has no attribute '_flatten'
+poetry_engine_c20_test.py::test_from_saved  # AttributeError: 'ReflectivePoet' object has no attribute '_flatten'
+poetry_engine_c20_test.py::test_full_agent_composes  # AttributeError: 'ReflectivePoet' object has no attribute '_flatten'
+poetry_engine_c20_test.py::test_full_demo  # AttributeError: 'ReflectivePoet' object has no attribute '_flatten'
+poetry_engine_c20_test.py::test_full_report  # AttributeError: 'ReflectivePoet' object has no attribute '_flatten'
+poetry_engine_c20_test.py::test_honest_about_limits  # AttributeError: 'ReflectivePoet' object has no attribute '_flatten'
+poetry_engine_c20_test.py::test_read_book  # AttributeError: 'ReflectivePoet' object has no attribute '_flatten'

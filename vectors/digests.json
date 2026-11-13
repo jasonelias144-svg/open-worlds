@@ -1,0 +1,175 @@
+[
+ {
+  "body": {},
+  "hash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "text": "{}"
+ },
+ {
+  "body": {
+   "B": 3,
+   "_": 4,
+   "a": 2,
+   "a b": 7,
+   "aa": 6,
+   "b": 1,
+   "\u00e9": 5
+  },
+  "hash": "07a2cf37288950beff56e0121dc76167a24aa400903de466b187fdff53b6e2b8",
+  "text": "{\"B\":3,\"_\":4,\"a\":2,\"a b\":7,\"aa\":6,\"b\":1,\"\\u00e9\":5}"
+ },
+ {
+  "body": {
+   "v": ""
+  },
+  "hash": "b69993cbe4796eb1cf04f32d2371ef7768b1bcce280683febc20081988a7a00c",
+  "text": "{\"v\":\"\"}"
+ },
+ {
+  "body": {
+   "v": "plain text"
+  },
+  "hash": "e6aabd46060ef69b4975cefa67abd79267ef98caa9807f5bfa0f883ea28ee947",
+  "text": "{\"v\":\"plain text\"}"
+ },
+ {
+  "body": {
+   "v": "quote \" backslash \\ slash /"
+  },
+  "hash": "17cbb76790cfe74423968045a1061b6dcd7219c7f0664ce1d4b9926ee5426504",
+  "text": "{\"v\":\"quote \\\" backslash \\\\ slash /\"}"
+ },
+ {
+  "body": {
+   "v": "\b\f\n\r\t"
+  },
+  "hash": "e23237110ce886c0df82df6bf12cbe9ea8c4199ec6b6c3d249a684fd8a876137",
+  "text": "{\"v\":\"\\b\\f\\n\\r\\t\"}"
+ },
+ {
+  "body": {
+   "v": "\u0000\u0001\u001f"
+  },
+  "hash": "8747b4c5fb09622943cd18f8324d4b13bf2b6382a9efbc61724eb793ec3323fa",
+  "text": "{\"v\":\"\\u0000\\u0001\\u001f\"}"
+ },
+ {
+  "body": {
+   "v": " ~\u007f"
+  },
+  "hash": "b73d5161bef4f61d44d5a21f8632350b7b82fe1e1c327c4b6035d4ad1024668e",
+  "text": "{\"v\":\" ~\\u007f\"}"
+ },
+ {
+  "body": {
+   "v": "\u00e9\u00ff\u0100"
+  },
+  "hash": "a998fb06020967bf345fd7438b24a81eeea08312978a7791f2f7c6276c280482",
+  "text": "{\"v\":\"\\u00e9\\u00ff\\u0100\"}"
+ },
+ {
+  "body": {
+   "v": "\u4e2d\u6587"
+  },
+  "hash": "669a8179ab18ee37d8f1fb1ebc297fed7e1fe6592d69db77624dac68c5c1a6fa",
+  "text": "{\"v\":\"\\u4e2d\\u6587\"}"
+ },
+ {
+  "body": {
+   "v": "\ud83d\ude42"
+  },
+  "hash": "c9ffed90c7f3752da9720ad33f2aa11d59c814ae68753e5d94e387137066ad99",
+  "text": "{\"v\":\"\\ud83d\\ude42\"}"
+ },
+ {
+  "body": {
+   "v": "\u2028\u2029\ufeff\uffff"
+  },
+  "hash": "7474f58e32eabddc2797cf0363a69f889f5d2687bdd234acae8c250d37a0f9d2",
+  "text": "{\"v\":\"\\u2028\\u2029\\ufeff\\uffff\"}"
+ },
+ {
+  "body": {
+   "v": "\ud800\udc00\udbff\udfff"
+  },
+  "hash": "54ebc0d14ddad0b26978b69830a938a26f75d41fbf2ebc85fe52a1eed803ef96",
+  "text": "{\"v\":\"\\ud800\\udc00\\udbff\\udfff\"}"
+ },
+ {
+  "body": {
+   "\ud83d\ude42": "key outside the basic plane"
+  },
+  "hash": "37667b2f93c226300079e65f2a73a2ab7aabfdc378236b8e612ad2f3cbf4d05d",
+  "text": "{\"\\ud83d\\ude42\":\"key outside the basic plane\"}"
+ },
+ {
+  "body": {
+   "v": [
+    0,
+    -1,
+    1,
+    9007199254740993,
+    9223372036854775807,
+    -9223372036854775808,
+    18446744073709551615
+   ]
+  },
+  "hash": "02a8a396c9a48b60c2543231e264c9c616b0d77a2a42fa75a2e8034f16b53987",
+  "text": "{\"v\":[0,-1,1,9007199254740993,9223372036854775807,-9223372036854775808,18446744073709551615]}"
+ },
+ {
+  "body": {
+   "v": [
+    true,
+    false,
+    null
+   ]
+  },
+  "hash": "75bb0e835766b6ebd9e6f6943b8201b11aee85a65cd96505fa2aa3f05e0c6268",
+  "text": "{\"v\":[true,false,null]}"
+ },
+ {
+  "body": {
+   "v": [
+    [],
+    {},
+    [
+     [
+      1,
+      [
+       2,
+       [
+        3
+       ]
+      ]
+     ]
+    ],
+    {
+     "z": {
+      "y": {
+       "x": []
+      }
+     }
+    }
+   ]
+  },
+  "hash": "904558e06c2addfe567435f038eb5f157a05254338773639c85b0a062b294330",
+  "text": "{\"v\":[[],{},[[1,[2,[3]]]],{\"z\":{\"y\":{\"x\":[]}}}]}"
+ },
+ {
+  "body": {
+   "agent": null,
+   "data": {
+    "height": 3,
+    "rules_version": "1",
+    "seed": 7,
+    "width": 5,
+    "wrap_x": false
+   },
+   "kind": "world_created",
+   "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+   "tick": 0
+  },
+  "hash": "65bfaa43b33e71b7093ab11e28209151f21bcf6b751ffce259f05e09709fae58",
+  "text": "{\"agent\":null,\"data\":{\"height\":3,\"rules_version\":\"1\",\"seed\":7,\"width\":5,\"wrap_x\":false},\"kind\":\"world_created\",\"prev\":\"0000000000000000000000000000000000000000000000000000000000000000\",\"tick\":0}"
+ }
+]

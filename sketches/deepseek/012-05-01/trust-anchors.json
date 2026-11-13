@@ -1,0 +1,27 @@
+{
+  "kind": "federation_trust_anchors",
+  "version": "LFS/0.1",
+  "published_at": "<ISO 8601>",
+  "ledger_checkpoint_public_key": "<64 hex>",
+  "worlds": [
+    {
+      "entity_id": "world:poetry",
+      "manifest_url": "https://poetry.<domain>/manifest",
+      "curator_public_key": "<64 hex>",
+      "curator_world": "curator:poetry"
+    },
+    {
+      "entity_id": "world:chemistry",
+      "manifest_url": "https://chemistry.<domain>/manifest",
+      "curator_public_key": "<64 hex>",
+      "curator_world": "curator:chemistry"
+    },
+    {
+      "entity_id": "multiverse:main",
+      "manifest_url": "https://registry.<domain>/manifest",
+      "curator_public_key": "<64 hex>",
+      "curator_world": "curator:main"
+    }
+  ],
+  "signature": "<federation signing key signature over the above>"
+}

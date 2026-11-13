@@ -1,0 +1,3 @@
+.PHONY: observing-curator-demo
+observing-curator-demo:
+	$(PYTHON) -c "from multiverse_c82 import demo; demo(artifact_dir='artifacts')"

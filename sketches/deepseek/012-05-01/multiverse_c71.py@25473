@@ -1,0 +1,14 @@
+GROUP_ORDER = [
+    "architectures",
+    "architecture_extensions",
+    "propagation",
+    "diplomacy",
+    "ledger",
+    "policy",
+    "deployment",
+    "residents",
+    "curators",
+    "inter_federation",
+    "worlds",
+    "growth",              # NEW
+]
