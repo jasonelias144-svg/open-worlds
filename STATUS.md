@@ -96,8 +96,8 @@ and for the founder's conversations with DeepSeek, is in
   an entity-component system (Flecs), built with CMake, tested with
   GoogleTest, Godot later as the window onto it, and Python kept as the
   reference the C++ is tested against. First step: the world kernel in
-  C++, writing the same hash-chained log as the Python one. Waiting for
-  the founder's go-ahead to put it on the course.
+  C++, writing the same hash-chained log as the Python one. The founder
+  chose Rust instead, the same day (see the entry on the language).
 - 2026-11-12, founder, on how to build: "My goal was to come to you with
   ideas, with a vision, and some code that may or may not be helpful. But
   I expect you to take all that in and do it in your own way that makes
@@ -153,13 +153,13 @@ and for the founder's conversations with DeepSeek, is in
   line 21860). The two later records import it, so every test file of
   012-05-01 now loads, and 5 more of 012-04-00. DeepSeek's tests: 141
   pass in 012-03-02, 944 in 012-04-00 (was 877), 241 in 012-05-01 (was
-  207) ([sketches/INDEX.md](sketches/INDEX.md)).
+  204) ([sketches/INDEX.md](sketches/INDEX.md)).
 - 2026-11-13 Claude: record 012-05-01 brought in (DeepSeek's components 64
   to 87), as 012-04-00 was: the record verbatim, its 79 code files written
   out, its tests run with an honest list of what fails
   ([sketches/INDEX.md](sketches/INDEX.md)). Two small fixes: the demos
   attached, and one wrong import in component 83, which lets the growth
-  and governance components load. With them, 207 of DeepSeek's tests
+  and governance components load. With them, 204 of DeepSeek's tests
   pass; the chess park's need `python-chess` (GPL) and skip.
 - 2026-11-13 Claude: course step 5, the first journey. Cycle 0's corridor
   speaks the protocol, on the world kernel, with doors that name the

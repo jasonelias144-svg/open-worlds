@@ -191,7 +191,7 @@ fail. 67 skip, because components 73 to 77 need `python-chess`, which
 isn't installed here (it is GPL-3.0-or-later; adding it to
 [requirements.txt](requirements.txt) would run them). Every test file
 loads. Before fix 5, components 67, 86 and 87 didn't load, for want of
-the poetry engine (207 passed and 66 failed).
+the poetry engine (204 of DeepSeek's tests passed and 66 failed).
 
 Before the fixes, as written: 130 pass, 30 fail, 32 skip, and 12 test
 files don't load. Seven failed only because DeepSeek gave the demo as a
@@ -201,7 +201,8 @@ import (fix 4).
 
 All 79 file blocks in the record are written out. Two code blocks stay
 in the record: previews of two pieces of component 77 (lines 16005 and
-16035), which its module, from line 16065, repeats in full.
+16035), which its module, from line 16065, repeats (the same code,
+with shorter docstrings).
 
 The founder's messages in this record turn the sketch towards game
 worlds: a chess park where anyone may play, invite or watch (line
@@ -228,10 +229,10 @@ where the component's code begins. Tests are run on Python 3.12 with fix
 |---|---|---|---|
 | `aristotle_cybernetics_c2` to `c7` | The virtuous agent as a control system: the telos hierarchy, a telos that learns, mutual and asymmetric correction | 996 to 3181 | no tests |
 | `music_engine_c8` | The Listener | 3698 | doesn't load: needs `music_engine_c1`, which no record here has |
-| `poetry_engine_c1` | Phonemes, syllables, stress | 4523 | doesn't load: a syntax error in the test file |
-| `poetry_engine_c2` | The cognitive frame | 5393 | doesn't load: a syntax error in the test file |
-| `poetry_engine_c3` | Meter and scansion, through both grammars | 6195 | 13 of 15 |
-| `poetry_engine_c4` | The score-performance gap | 7287 | doesn't load: a syntax error in the test file |
+| `poetry_engine_c1` | Phonemes, syllables, stress | 4523 | doesn't load: `poetry_engine_c1.py` has a syntax error (line 45) |
+| `poetry_engine_c2` | The cognitive frame | 5393 | doesn't load: imports `poetry_engine_c1`, which has a syntax error |
+| `poetry_engine_c3` | Meter and scansion, through both grammars | 6195 | 13 of 15 (one of the two imports `poetry_engine_c1`) |
+| `poetry_engine_c4` | The score-performance gap | 7287 | doesn't load: imports `poetry_engine_c1`, which has a syntax error |
 | `poetry_engine_c5` | The native voice | 8351 | 11 of 11 |
 | `poetry_engine_c6` | Architecture: cycle, refrain, the foregrounding monitor | 9282 | 12 of 14 |
 | `poetry_engine_c7` | The composition engine | 10185 | 18 of 18 |
