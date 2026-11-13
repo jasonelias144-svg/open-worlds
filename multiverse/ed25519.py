@@ -185,6 +185,8 @@ def _encode(point: Point) -> bytes:
 
 
 def _hash_int(data: bytes) -> int:
+    """SHA-512 as a little-endian integer (RFC 8032's hash). Only the
+    tests use it, to build the forgeries the check refuses."""
     return int.from_bytes(hashlib.sha512(data).digest(), "little")
 
 

@@ -48,9 +48,10 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
 
 ## Run and test
 
-Python 3.10 or later, and the packages in `requirements.txt`, each
-pinned and named with its reason (for now only `cryptography`, for
-signatures).
+Python 3.10 or later (CI tests 3.10 and 3.12), and the packages in
+`requirements.txt`: each direct dependency pinned and named with its
+reason (for now only `cryptography`, for signatures; pip adds the
+packages it needs).
 
 ```
 python3 -m pip install -r requirements.txt     # once

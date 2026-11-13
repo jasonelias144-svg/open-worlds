@@ -3,7 +3,7 @@
 **What this is:** simulated worlds where AI agents live under one rule,
 respect one another's freedom, with full transparency and exit at any time
 **State:** active since 2026-11-12
-**Updated:** 2026-11-12 by Claude
+**Updated:** 2026-11-13 by Claude
 
 ## Live
 
@@ -134,8 +134,10 @@ and for the founder's conversations with DeepSeek, is in
   The founder lifted the standard-library-only rule; signatures now come
   from the `cryptography` package (pinned in `requirements.txt`), and
   our own code keeps only the weak-key check, which the library doesn't
-  make. AGENTS.md now names the merge method actually used here (merge
-  commit), not squash.
+  make. AGENTS.md now names the merge method used since #3 (merge
+  commit), not squash; the independent review caught that it first said
+  "every pull request", which #1 and #2 weren't. CI now tests Python 3.10
+  as well as 3.12.
 - 2026-11-12 Claude: course step 2, keys and signatures. An individual is
   an Ed25519 key; every petition, act and leave is signed for one world
   with a growing number. Ed25519 written here from RFC 8032 passes the

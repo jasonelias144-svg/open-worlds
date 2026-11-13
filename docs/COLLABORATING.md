@@ -105,9 +105,9 @@ Read in this order: MULTIVERSE.md, then `protocol.py`, `conformance.py`,
    best for the job at hand." For anything security-related, a vetted,
    maintained library does the work: signatures come from the
    `cryptography` package, and our own code only adds checks the
-   library doesn't make (refusing weak keys). Each dependency is pinned
-   in `requirements.txt`, installed in CI, and named with the reason it
-   is there.
+   library doesn't make (refusing weak keys). Each direct dependency is
+   pinned in `requirements.txt`, installed in CI, and named with the
+   reason it is there.
 8. **No personal data and no secrets,** anywhere.
 9. **Everything here is public domain** (CC0 1.0). A contribution is
    given under the same terms. Libraries this depends on keep their own

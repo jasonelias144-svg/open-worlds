@@ -23,13 +23,13 @@ every pull request before it merges (P4). Intent questions go to the founder (P5
 - **What it is:** simulated worlds where AI agents live under one rule,
   respect one another's freedom, with full transparency and exit at any time
 - **Run:** `python3 -m experiments.corridor`
-- **Setup:** `python3 -m pip install -r requirements.txt` (each dependency
-  pinned, with its reason)
+- **Setup:** `python3 -m pip install -r requirements.txt` (each direct
+  dependency pinned, with its reason)
 - **Test:** `python3 -m unittest discover -s tests -t .` (must pass before a
   pull request is marked ready)
 - **Other checks:** CI also checks the chemistry against RDKit
   (`tests/test_chem_rdkit.py`)
-- **Merge method:** merge commit, as every pull request here has been
+- **Merge method:** merge commit, as every pull request since #3 has been
   merged. It keeps the commits that review records name (P4), which a
   squash would drop from `main`'s history.
 - **Release:** none yet. When worlds run publicly, this file will say where

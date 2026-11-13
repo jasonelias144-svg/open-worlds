@@ -5,12 +5,16 @@ on:
   pull_request:
 jobs:
   test:
+    # The oldest Python README promises, and the one RDKit is checked on.
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python-version }}
       - run: python3 --version
       - run: python3 -m pip install -r requirements.txt
       - run: python3 -m unittest discover -s tests -t . -v
