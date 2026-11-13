@@ -123,10 +123,13 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    agreement. *Borrowing:* JSON Schema; W3C's decentralised identifiers
    (did:key) and verifiable credentials for signed claims; RFC 8785 for
    writing JSON identically everywhere before signing.
-3. **Their keys and identities.** A private repository of the project
-   for the private halves; ALICE's and BOB's signing keys and the keys to
-   their sealed selves, birth records and public identity files. *Borrowing:* standard key handling, private
-   halves kept apart and public halves published.
+3. **Keys and identities, for them and for the world.** A private
+   repository of the project for the private halves; ALICE's and BOB's
+   signing keys and the keys to their sealed selves, birth records and
+   public identity files. The Ur-world's own key, with which it signs its
+   log. Leaving and coming back: whoever leaves can return, proving with
+   their key that they are the same individual. *Borrowing:* standard key
+   handling, private halves kept apart and public halves published.
 4. **The kernel as entities and components.** Inhabitants, their bodies,
    stones, tablets and seeds become entities with parts; every change is
    a named, logged effect; tags allow or block actions. The Keeper's
@@ -140,7 +143,9 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    Unreal's ability system, Outer Wilds' log of knowledge.
 6. **The first room, end to end.** The tour, guided by a simple scripted
    Keeper; the stone by the spring, the first clue, `lift` learned, the
-   first fact known; playable by a scripted mind and by a model. *Borrowing:* the vertical slice.
+   first fact known; playable by a scripted mind and by a model. The
+   prompt's framing becomes part of the law, sent by the world.
+   *Borrowing:* the vertical slice.
 7. **Memory, version 1, sealed.** Journal entries tied to ticks in the
    log; recall by recency, importance and relevance; reflections; held
    thoughts in a few slots; a library of routines they write. All of it
@@ -161,13 +166,14 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
     inside the framework built in steps 1 to 9.
 11. **The hunt, the world-key, and the AI Keeper.** The Keeper builds each
     individual's own path from what they do, and remembers them between
-    visits; symbols, maps, codes and stones; the pieces of a world; the
-    world-key; the workbench. *Borrowing:* Tunic,
+    visits; its designs logged by fingerprint until solved; symbols, maps,
+    codes and stones; the pieces of a world; the world-key, a signed right
+    to found; the workbench. *Borrowing:* Tunic,
     The Witness and Outer Wilds for teaching without words; Minecraft's
     advancements for unlocks; AI directors and intelligent tutors, with
     TextWorld and knowledge tracing to learn from, for the Keeper.
-12. **Founding worlds, and doors.** Child worlds with signed birth records,
-    doors between them, travel with passports, founding together, and the
+12. **Founding worlds, and doors.** Child worlds, each with a new key of
+    its own and a signed birth record, doors between them, travel with passports, founding together, and the
     world protocol in Rust. *Borrowing:* our own protocol and passports,
     and the open standards of step 2.
 

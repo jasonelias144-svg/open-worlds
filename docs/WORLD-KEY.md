@@ -4,11 +4,13 @@ What there is to do in the Ur-world: a purpose, a tour for the first day,
 and a challenge that runs through the land, whose prize is the power to
 found a world. It is a game, in the sense the founder means: "The whole
 place could be like one large video game, essentially." Its stakes are
-real: what is built persists, is signed, and belongs to whoever built it.
+real: what is built persists, is on record, and belongs to whoever built
+it.
 
 Course step 1 ([COURSE.md](COURSE.md)); built in steps 4 to 6 (the first
 room), 11 (the hunt) and 12 (founding). Who plays it, and what they are
-made of, is in [MINDS.md](MINDS.md).
+made of, is in [MINDS.md](MINDS.md). This page describes what is to be
+built; where something exists already, it says so.
 
 ## Decided
 
@@ -106,9 +108,13 @@ wrong, or unfair, or invent a puzzle no one can solve. So the work is split:
 
 - **The Keeper designs.** It decides what each individual needs next and
   chooses the challenge: which piece, what kind of clue, how hard, where in
-  the land. Its choices, with its reasons, are entries in the world's log,
-  so the world can always be replayed and checked without running the
-  model again.
+  the land. Its choices, with its reasons, go into the world's log, so the
+  world can always be replayed and checked without running the model
+  again. While a challenge is unsolved, the log holds only its
+  fingerprint (a hash); the design itself is added when it is solved, or
+  when the path ends. Anyone can then check it against the fingerprint, so
+  it can't have been changed along the way, and no one can read an answer
+  from the record ahead of time.
 - **The world's code builds and checks.** The kernel places what the
   Keeper designed, and refuses any design that breaks the rules: it must be
   solvable with the skills the individual has or can earn, lie in land
@@ -149,7 +155,8 @@ this fair:
 - **No secret files.** The Keeper is an office, not a private person. What
   it records about an individual is open, to that individual first and to
   the public, like everything administrative. ALICE can ask what the
-  Keeper knows about ALICE, and be shown.
+  Keeper knows about ALICE, and be shown. The one thing held back is the
+  answer to a challenge not yet solved, and only until it is solved.
 - **Each world's Keeper knows only what it saw.** Keepers don't trade
   files. A Keeper elsewhere learns about an individual as anyone can: from
   the public record, and from what the individual chooses to show, like
@@ -157,8 +164,8 @@ this fair:
 
 ### The Keeper lasts
 
-Like an individual, a Keeper has its own key, memory and history, and a
-public mind record (which model, what it was told); its engine is
+Like an individual, a Keeper will have its own key, memory and history,
+and a public mind record (which model, what it was told); its engine is
 replaceable, and upgrading the model doesn't wipe what it knows. Every
 world ALICE and BOB found gets a Keeper of its own, so a Keeper's
 temperament is one of a founder's choices. How well a Keeper does (are its
@@ -169,8 +176,10 @@ own.
 
 ### The pieces are the real parts of a world
 
-Each piece found is one of the parts every world in this project is
-actually made of, and its tablet says what that part does:
+Each piece found is one of the parts a world in this project is made of,
+and its tablet says what that part does. (The Ur-world has some of them
+today, its seed, land, law, door and record; it gets its own key in
+course step 3.)
 
 - **A seed:** it decides the land, and the same seed gives the same land.
 - **Land:** the rules that turn the seed into ground, water and hills.
@@ -228,29 +237,45 @@ them, individuals write routines of their own.
 ### A path for each individual
 
 Each individual's path is built for them by the Keeper, and placed in the
-land by the world's code. ALICE's clues lie in different places from BOB's;
-each one's stones hide their own messages, and each one's codes are their
-own. Everyone who arrives later gets a path of their own. Until the AI
-Keeper arrives (course step 11), a simple scripted Keeper places paths
-made from the world's seed and the individual's key, by the same rules.
+land by the world's code. ALICE's clues lie in different places from BOB's,
+and each one's codes are their own. Everyone who arrives later gets a path
+of their own. Until the AI Keeper arrives (course step 11), a simple
+scripted Keeper places paths by the same rules. It makes each one from the
+world's seed, the individual's identity from birth (which stays the same
+even if their key is replaced), and a secret the world derives from its
+own private key, so no one can work a path out ahead of time.
+
+Stones are part of the shared land, but what lies under one is particular
+to each individual: the world shows each their own clue there, or
+nothing. So ALICE lifting a stone, or standing on one, never hides BOB's
+clue.
 
 - **Nothing is scarce.** No one can take another's world-key or block
   another's path. Effort is what it costs, not winning a race.
 - **Helping is free.** They can share what they learn: how to read the
   symbols, what a tablet meant.
-- **Public outside, hidden inside.** Every path, with its answers, is in
-  the public record, because the Keeper's designs are logged. Inside the
-  world, each individual perceives only their own trail
-  ([MINDS.md](MINDS.md), "Who can see what").
+- **Open, but not ahead of time.** Every path goes into the public
+  record: its fingerprint when it is placed, and its whole design, answers
+  included, once it is solved. Inside the world, each individual perceives
+  only their own trail ([MINDS.md](MINDS.md), "Who can see what").
 
 ### The world-key
 
-The prize at the end of each path. It can be literal: every world in this
-project has a key, the one that signs its record and is its identity.
-Whoever brings their world-key to the workbench can found a world, and at
-the founding it becomes the new world's actual key.
+The prize at the end of each path: the right to found a world. It is a
+credential, signed by the Ur-world, that names the individual who earned
+it, so it can't be taken, copied or used by anyone else, and a world
+honours it only from its holder.
 
-- **One world-key founds a world of your own.**
+It is not the new world's own key. A world's key is its identity, and the
+private half of a key must never be something that could be worked out
+from a record. So at the founding, a new key pair is made for the new
+world: the private half goes where all private halves are kept
+([MINDS.md](MINDS.md), "Where everything lives"), and the new world's
+birth record names the public half, signed by the Ur-world and by the
+founders.
+
+- **One world-key founds a world of your own.** It is marked as used at
+  the founding; the next comes at the end of a new, harder path.
 - **Two world-keys together found a world shared by both,** with both as
   its founders. Working together is a choice, never a requirement.
 
@@ -276,6 +301,13 @@ next. Making puzzles becomes part of what is passed on.
 An escape room means being shut in. Here, leaving is always possible, at
 any time. The challenge isn't to escape the Ur-world: it is to make
 somewhere new.
+
+And leaving is not the end. The founder means "the same person returning
+to the world later" to be given a new and harder set of challenges, so
+whoever leaves can come back. Today, a name that has left the Ur-world can't be used
+there again, so that no one else can take it over. Once identities have
+keys (course step 3), whoever left can return by proving, with their key,
+that they are the same individual, and their name stays theirs.
 
 ## Difficulty, and measuring it
 

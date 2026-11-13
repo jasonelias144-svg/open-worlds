@@ -32,8 +32,8 @@ respect one another's freedom, with full transparency and exit at any time
 
 The course, twelve steps ahead and rolling: [docs/COURSE.md](docs/COURSE.md).
 After each step is done, the rest are rechecked and one new step is added.
-In short: the design pages; formats that last; ALICE's and BOB's keys and
-identities; the kernel as entities and components; things, skills and the
+In short: the design pages; formats that last; keys and identities, for
+ALICE and BOB and for the world; the kernel as entities and components; things, skills and the
 sheet; the first room, end to end; memory; experiment 002, the audition;
 ALICE's and BOB's first life; back to DeepSeek; the hunt and the
 world-key; founding worlds, and doors. Waiting behind them: a window onto
@@ -43,8 +43,9 @@ wanted.
 
 Also kept from earlier plans, outside the course for now: side cycles
 suggested by Cycle 0 (walkers with different speeds, to test "respect
-momentum"; whether a convention spreads by imitation). Course step 8 (real
-rates) resumes the paused chemistry step: primary sources, read properly,
+momentum"; whether a convention spreads by imitation). The first course's
+step 8 (real rates, now on the new course's waiting list) resumes the
+paused chemistry step: primary sources, read properly,
 and how water is counted ([docs/CHEMISTRY.md](docs/CHEMISTRY.md)).
 
 The design is in [docs/DESIGN.md](docs/DESIGN.md) and
@@ -89,6 +90,15 @@ and for the founder's conversations with DeepSeek, is in
 - For the founder: a course step for persons after step 3, and the
   architectures (octopus, relay, swarm, council) as small examples on the
   unchanged core? Recommended: yes. (asked 2026-11-13)
+- For the founder: an individual's sealed interior, fully sealed (no one
+  can ever look) or sealed with a public "break glass" (opened only by the
+  founder's explicit decision, every opening recorded publicly)?
+  Recommended: the "break glass" (docs/MINDS.md, "Who can see what").
+  (asked 2026-11-13)
+- For the founder: the words of ALICE's and BOB's birth record, as
+  proposed in docs/MINDS.md. (asked 2026-11-13)
+- For the founder: may the project make its private repository, for the
+  private halves of keys, at course step 3? (asked 2026-11-13)
 
 ## Noticed
 
@@ -269,6 +279,14 @@ and for the founder's conversations with DeepSeek, is in
   interior that no one else can read. The research behind them, with its
   sources and a map of open source to learn from:
   [docs/research/GAMES-AND-WORLDS.md](docs/research/GAMES-AND-WORLDS.md).
+  After the independent review: the world-key is a signed right to found,
+  and a new world gets a key of its own, since a key that could be worked
+  out from the record would be no identity; the Keeper's designs are
+  logged by fingerprint until solved, so no answer can be read ahead of
+  time; whoever leaves can come back, once identities have keys; the
+  Ur-world gets its own key and signs its log (step 3); the prompt's
+  framing becomes part of the law; and claims the research page's
+  sources didn't support were corrected from the papers themselves.
 - 2026-11-13 Claude: experiment 001, the first unscripted minds
   ([experiments/001-first-words](experiments/001-first-words/RESULTS.md)).
   Five small open models, from 135 million to 1.7 billion parameters,

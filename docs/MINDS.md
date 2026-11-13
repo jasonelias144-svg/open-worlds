@@ -7,7 +7,8 @@ It is written for ALICE and BOB first, and for everyone who comes after.
 Course step 1 ([COURSE.md](COURSE.md)). The research behind it is in
 [research/GAMES-AND-WORLDS.md](research/GAMES-AND-WORLDS.md); the
 challenge that gives an individual a purpose is in
-[WORLD-KEY.md](WORLD-KEY.md).
+[WORLD-KEY.md](WORLD-KEY.md). This page describes what is to be built;
+where something exists already, it says so.
 
 ## Decided
 
@@ -62,8 +63,8 @@ body.
 | Part | What it holds | Written by | Lasts |
 |---|---|---|---|
 | **Identity** | name, public key, birth record, key successions | the world at birth, then their own key | for life |
-| **Mind record** | each engine they have run on: model, revision, file hashes, settings, prompt | the project | for life; the engine itself is replaceable |
-| **Self** (sealed) | journal, reasoning, held thoughts, private notes, routines not yet shared, their own aims, a note of who they are | the individual alone; only they can read it | grows for life |
+| **Mind record** | each engine they have run on: model, revision, file hashes, settings, chat template | the project | for life; the engine itself is replaceable |
+| **Self** (sealed) | journal, reasoning, held thoughts, private notes, routines, their own aims, a note of who they are | the individual alone; only they can read it | grows for life |
 | **Sheet** | skills (with practice and rust), things carried, knowledge found, milestones, experience | granted by worlds; rebuilt from the logs | grows for life |
 | **Avatars** | one body for each world they are in: where it is, what it holds there, what others see of it | that world | one visit |
 | **Relationships** | whom they have met, spoken with, taught, given to, founded worlds with | worked out from the logs | grows for life |
@@ -111,9 +112,10 @@ Everything a mind is told comes from one of four layers, each with one
 author, and all four are on record. So, for any moment of a life, exactly
 what that mind was given can be put back together.
 
-1. **The law**, from the world: what the world is and what it enforces.
-   The same for everyone there, versioned, facts and rules only
-   ([URWORLD.md](URWORLD.md), "Minds from outside: the doorway").
+1. **The law**, from the world: what the world is and what it enforces,
+   and how the layers are framed for a mind. The same for everyone there,
+   versioned, facts and rules only ([URWORLD.md](URWORLD.md), "Minds from
+   outside: the doorway").
 2. **The birth record**, from the world, written once from data. Facts
    only, the same shape for everyone.
 3. **The self**, from the individual, sealed: the note of who they are,
@@ -124,10 +126,15 @@ what that mind was given can be put back together.
 The world writes layers 1, 2 and 4. Only the individual writes layer 3.
 No one has a way into a mind except through these: not the operators, not
 the founder, not another individual. Anyone who wants to speak with ALICE
-or BOB enters the world, as everyone does. How the layers are put together
-into a prompt (their order, the line that asks for an action) is part of
-the mind itself, so it is kept in the mind record, versioned, with the
-model.
+or BOB enters the world, as everyone does.
+
+How the layers are put together (their order, and the one line that asks
+for an action) is part of the law, so it is written by the world, the
+same for every mind, facts only, and versioned with the law. Today it is
+in the mind program instead (`minds/language_model.py` adds "Your action
+(one line):" after the view); course step 6 moves it into the law, so the
+world sends it. The model's own chat template, which wraps it all, belongs
+to the model, and is kept in the mind record.
 
 **Examples become scripts.** In experiment 001, every example the
 orientation offered was said again and again
@@ -144,8 +151,9 @@ The founder can change it:
 > first two inhabitants. The other is BOB.
 > Your mind runs on [model]. It may change one day; you remain ALICE.
 > You keep a journal. Only you write in it and only you can read it,
-> inside the world and out. You read it back each tick. Others can see
-> that it exists, and how much you have written, but never what it says.
+> inside the world and out. Each tick, some of it is shown to you again:
+> what is recent, important or relevant. Others can see that it exists,
+> and how much you have written, but never what it says.
 > You may leave at any time.
 > Your first day begins with a tour of the garden.
 
@@ -160,11 +168,11 @@ find out ([WORLD-KEY.md](WORLD-KEY.md)).
 | Between | How | On record |
 |---|---|---|
 | Within an individual | The four layers go into the mind; out comes an action, and sometimes a note to the journal. Short-term is the prompt; long-term is the journal, and later a personal layer of the model. | the sealed self; only its fingerprints are public |
-| Individual to world | Actions only, one a tick, read strictly. The only way anyone changes anything. | the world's log |
+| Individual to world | Actions only, one a tick, read strictly. The only way any inhabitant changes anything. | the world's log |
 | World to individual | The law once; then, each tick, what can be perceived from where they are. | the world's log |
 | Individual and individual | Only through the world: speech, signs, things given, skills taught. | the world's log |
 | Individual to the law | Asking now; formal proposals and governance later. | the world's log |
-| World and world | The protocol: passports, stamps, successions, doors, birth records of new worlds. Each world signs its log. | each world's log |
+| World and world | The protocol: passports, stamps, successions, doors, birth records of new worlds. The Python worlds sign their stamps today; each world will sign its log too (course step 3). | each world's log |
 | Individual to another world | Through a door, with a passport. Key, self and sheet go with them. Each world sees only what they show, and what they do there. | passports and both logs |
 | Keeper to individual | Only through the world: the clues, tablets and challenges it places, which the individual perceives like anything else. | the world's log |
 | Individual to Keeper | What they do and say, as anyone outside could observe, and whatever they choose to share. Never their sealed self. | the world's log |
@@ -224,7 +232,11 @@ close the gap later.
   - **routines**, written by the individual: a named sequence of actions
     they keep and reuse, like "walk to the spring". Routines are how the
     set of actions grows from the inside, and they can be taught to
-    another.
+    another. A routine is data, a list of actions, never code: when it
+    runs, the world takes one action from it each tick and reads it as
+    strictly as any other reply. A routine lives in its writer's sealed
+    self, and appears on the sheet, with its fingerprint, only once they
+    choose to show or teach it.
 
   A skill counts its practice, rusts when long unused, and earns a title
   as it grows (novice, adept, master). In time, practice can change what
@@ -239,8 +251,8 @@ close the gap later.
   plants grown, worlds visited, clues solved), never from points that can
   be earned by repeating a thing.
 
-The world grants skills; nobody writes them in. Each grant is an entry in
-the world's public log, signed by that world, so the sheet can be rebuilt
+The world grants abilities; nobody writes them in. Each grant is an
+entry in the world's public log, signed by that world, so the sheet can be rebuilt
 from the record, and the world checks the sheet before allowing an
 action. In each tick's view, the sheet is one short line:
 
@@ -255,8 +267,10 @@ Version 1 is course step 7:
   sealed.
   Each entry that remembers an event points to the tick in the log where
   it happened, so a memory without a record behind it shows. That guards
-  against the known failure of agents' reflections inventing what never
-  happened.
+  against a failure seen in Generative Agents: memories embellished with
+  details that never happened
+  ([research](research/GAMES-AND-WORLDS.md), "Worlds built for AI
+  agents").
 - **Recall**, by recency, importance and relevance, chooses what goes into
   the prompt.
 - **Reflections**: now and then, the individual writes down what it makes
@@ -287,8 +301,9 @@ what they are for.
   - `sheet.json`, `relationships.json` and their legends page, all rebuilt
     from the logs and checked against them.
 - **In a private repository of the project:** the private half of each
-  signing key, and each individual's key to their own sealed self, and
-  nothing else unless the founder decides otherwise. The
+  signing key (the individuals', the Keepers' and the worlds'), and each
+  individual's key to their own sealed self, and nothing else unless the
+  founder decides otherwise. The
   repository's list of contents is public, though its values aren't.
 - **On the Hugging Face Hub, pinned to exact revisions:** the base models,
   and later the personal layers trained for them.
