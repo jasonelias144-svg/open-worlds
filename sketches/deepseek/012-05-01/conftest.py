@@ -24,12 +24,14 @@ from pathlib import Path
 import pytest
 
 # The components of this record (C64 on) build on C1-C63, whose code lives
-# in the previous record's folder. We put that folder on the import path
-# so `import multiverse_c13` and the rest resolve, without copying code
-# that isn't from this record into this folder. (Ours, not DeepSeek's.)
-_DEPS = Path(__file__).resolve().parent.parent / "012-04-00"
-if _DEPS.is_dir() and str(_DEPS) not in sys.path:
-    sys.path.insert(0, str(_DEPS))
+# in the previous record's folder, and some import the poetry engine of
+# record 012-03-02. We put both folders on the import path so `import
+# multiverse_c13` and the rest resolve, without copying code that isn't
+# from this record into this folder. (Ours, not DeepSeek's.)
+for _name in ("012-03-02", "012-04-00"):
+    _DEPS = Path(__file__).resolve().parent.parent / _name
+    if _DEPS.is_dir() and str(_DEPS) not in sys.path:
+        sys.path.insert(0, str(_DEPS))
 
 _HERE = Path(__file__).parent
 SOMETIMES = "sometimes:"

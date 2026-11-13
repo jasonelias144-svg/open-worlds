@@ -156,6 +156,12 @@ and for the founder's conversations with DeepSeek, is in
 
 ## Log
 
+- 2026-11-13 Claude: record 012-03-02's code written out (the poetry
+  engine, 45 files; the founder pointed to `poetry_engine_c21.py` at
+  line 21860). The two later records import it, so every test file of
+  012-05-01 now loads, and 5 more of 012-04-00. DeepSeek's tests: 141
+  pass in 012-03-02, 944 in 012-04-00 (was 877), 241 in 012-05-01 (was
+  204) ([sketches/INDEX.md](sketches/INDEX.md)).
 - 2026-11-13 Claude: record 012-05-01 brought in (DeepSeek's components 64
   to 87), as 012-04-00 was: the record verbatim, its 79 code files written
   out, its tests run with an honest list of what fails

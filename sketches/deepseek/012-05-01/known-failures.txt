@@ -9,9 +9,6 @@
 # So the list is always true. The text after "  # " is the error.
 
 # Test files that do not load
-multiverse_c67_test.py  # ModuleNotFoundError: No module named 'poetry_engine_c21'
-multiverse_c86_test.py  # ModuleNotFoundError: No module named 'poetry_engine_c21'
-multiverse_c87_test.py  # ModuleNotFoundError: No module named 'poetry_engine_c21'
 
 # Tests that fail
 multiverse_c65_test.py::test_demo  # assert False is True
@@ -30,6 +27,17 @@ multiverse_c66_test.py::test_operator_commit_artifact  # urllib.error.HTTPError:
 multiverse_c66_test.py::test_operator_commit_unknown_world  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
 multiverse_c66_test.py::test_operator_new_checkpoint  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
 multiverse_c66_test.py::test_stop_shuts_down_servers  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c67_test.py::test_agent_enter_poetry  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c67_test.py::test_agent_handles_model_exception  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c67_test.py::test_agent_handles_parse_failure  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c67_test.py::test_agent_handles_refusal  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c67_test.py::test_agent_history_and_counts  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c67_test.py::test_agent_report_is_verifiable  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c67_test.py::test_agent_run_chemistry  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c67_test.py::test_agent_run_poetry_turns  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c67_test.py::test_demo  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c67_test.py::test_read_world_log_live  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c67_test.py::test_read_world_log_unknown_world  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
 multiverse_c68_test.py::test_client_deliver_happy  # AssertionError: cannot receive own message
 multiverse_c68_test.py::test_demo  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
 multiverse_c68_test.py::test_process_proposal_generated  # ValueError: world_id must be at least 8 characters
@@ -80,3 +88,10 @@ multiverse_c83_test.py::test_demo  # assert False is True
 multiverse_c84_test.py::test_demo  # NameError: name 'KeyPair' is not defined
 multiverse_c84_test.py::test_run_cycles_governance_loop  # AssertionError: assert 2 == 1
 multiverse_c84_test.py::test_run_cycles_no_proposal_without_refusals  # AssertionError: assert 2 == 0
+multiverse_c86_test.py::test_demo  # NameError: name 'KeyPair' is not defined
+multiverse_c87_test.py::test_daemon_history  # AttributeError: 'WorldDaemon' object has no attribute '_participants_path'
+multiverse_c87_test.py::test_daemon_persists_log  # AttributeError: 'WorldDaemon' object has no attribute '_participants_path'
+multiverse_c87_test.py::test_daemon_restarts_from_log  # AttributeError: 'WorldDaemon' object has no attribute '_participants_path'
+multiverse_c87_test.py::test_daemon_runs_cycles  # AttributeError: 'WorldDaemon' object has no attribute '_participants_path'
+multiverse_c87_test.py::test_daemon_status  # AttributeError: 'WorldDaemon' object has no attribute '_participants_path'
+multiverse_c87_test.py::test_demo  # RuntimeError: World A did not start

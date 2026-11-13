@@ -1,0 +1,198 @@
+class ReflectionEngine:
+    """Examines a work, produces Reflections.
+
+    Not a critic. A noticer. It reports patterns it sees; it does not
+    judge the work. The judgment (what to rework) happens later.
+    """
+
+    def reflect(self, collection: Collection, brief: Brief,
+                fragment_index: Dict[str, Fragment]) -> List[Reflection]:
+        reflections: List[Reflection] = []
+        reflections.extend(self._check_brief_deviation(collection, brief))
+        reflections.extend(self._check_recurrence(collection))
+        reflections.extend(self._check_gaps(collection))
+        reflections.extend(self._check_refrain_drift(collection, brief))
+        reflections.extend(self._check_register(collection))
+        reflections.extend(self._check_voice_imbalance(collection, brief))
+        return reflections
+
+    def _check_brief_deviation(self, collection, brief):
+        """Detect requirements in the brief that the work doesn't meet."""
+        analyzer = BriefAnalyzer()
+        score = analyzer.analyze(collection, brief)
+        out = []
+        if score.arc_match < 0.95:
+            actual = __import__("poetry_engine_c9").CollectionArcAnalyzer(
+                collection).classify().value
+            out.append(Reflection(
+                kind=ReflectionKind.BRIEF_DEVIATION,
+                observation=(f"Brief asked for {brief.arc_target.value} arc; "
+                              f"work is {actual}"),
+                evidence=[p.name for p in collection.poems],
+                suggested_direction=(f"Rework the closing poems so they "
+                                       f"return to the opening voice's "
+                                       f"register"),
+                confidence=0.9,
+            ))
+        # ... voice diversity, refrain, count checks similarly
+        return out
+
+    def _check_recurrence(self, collection):
+        """Detect overused phrases/schemas."""
+        # Count phrase frequencies across the whole work
+        # Report any phrase appearing > N times
+        ...
+
+    def _check_gaps(self, collection):
+        """Detect schemas the work never activates."""
+        # Compare against the FULL schema vocabulary
+        # Report schemas with 0 activations
+        ...
+
+    # _check_refrain_drift, _check_register, _check_voice_imbalance
+    # follow the same pattern: observe, describe, suggest direction
+
+
+class ReworkingEngine:
+    """Takes a reflection, produces reworked fragments.
+
+    The reworking engine is where expression happens. Given a
+    reflection, it produces new fragments that *respond to* what the
+    reflection noticed. It does not invent from nothing — it reworks.
+    """
+
+    def __init__(self, voice_registry: Dict[str, VoiceSpecification]):
+        self.voice_registry = voice_registry
+
+    def rework(self, reflection: Reflection,
+               current_work: Collection,
+               fragment_index: Dict[str, Fragment],
+               voices_to_try: List[str]) -> List[Reworking]:
+        """For each voice, try to produce a reworking that addresses
+        the reflection."""
+        reworkings: List[Reworking] = []
+        for voice_name in voices_to_try:
+            rw = self._rework_for_voice(
+                reflection, current_work, fragment_index, voice_name)
+            if rw is not None:
+                reworkings.append(rw)
+        return reworkings
+
+    def _rework_for_voice(self, reflection, work, index, voice_name):
+        """Produce one reworking in the given voice.
+
+        The reworkable strategies depend on the reflection kind:
+          - RECURRENCE → rework an overused line into a variant
+          - GAP → rework an existing line to activate the missing schema
+          - BRIEF_DEVIATION → rework a closing line to address the arc
+          - REGISTER → dilate or compress an existing line
+          - VOICE_IMBALANCE → rework a line from one voice into another
+        """
+        # The actual reworking machinery depends on the C7 transformers,
+        # extended with a few new ones (see below).
+        ...
+
+
+class SimulationLoop:
+    """Runs N trajectories in-process, returns the best.
+
+    Each trajectory:
+      1. Starts from a shared library.
+      2. Runs K cycles of (reflect → rework → compose → score).
+      3. Returns a Trajectory with reflections, reworkings, and a book.
+
+    The loop runs trajectories sequentially (or interleaved) and
+    consolidates the highest-scoring one. It is pure Python — no
+    external environment, no separate process.
+    """
+
+    def __init__(self, poetry_agent: PoetryAgent,
+                 reflection_engine: ReflectionEngine,
+                 reworking_engine: ReworkingEngine):
+        self.agent = poetry_agent
+        self.reflector = reflection_engine
+        self.reworker = reworking_engine
+
+    def simulate(self,
+                 brief: Brief,
+                 starting_library: Dict[str, List[Fragment]],
+                 n_trajectories: int = 5,
+                 cycles_per_trajectory: int = 3,
+                 composition_budget: int = 4) -> List[Trajectory]:
+        trajectories: List[Trajectory] = []
+        for t_idx in range(n_trajectories):
+            trajectory = self._run_one_trajectory(
+                brief=brief,
+                starting_library=starting_library,
+                seed=hash((t_idx, brief.name)) % (2**31),
+                n_cycles=cycles_per_trajectory,
+                composition_budget=composition_budget,
+            )
+            trajectories.append(trajectory)
+        trajectories.sort(key=lambda t: t.frontier_score, reverse=True)
+        return trajectories
+
+    def _run_one_trajectory(self, brief, starting_library, seed, n_cycles,
+                             composition_budget) -> Trajectory:
+        """One trajectory: K cycles of reflect → rework → compose."""
+        trajectory = Trajectory(seed=seed)
+        library = {k: list(v) for k, v in starting_library.items()}
+        baseline_size = sum(len(v) for v in library.values())
+
+        for cycle in range(n_cycles):
+            # 1. Compose a draft book from the current library
+            agent = PoetryAgent(
+                brief=brief,
+                fragments=self._flatten_library(library),
+                seed=seed + cycle,
+            )
+            draft = agent.compose(
+                n_editions=composition_budget,
+                cycles_per_edition=3,
+                converge=True,
+            )
+
+            # 2. Reflect on the draft
+            index = self._build_index(library)
+            reflections = self.reflector.reflect(
+                self._last_collection(draft), brief, index)
+            trajectory.reflections.extend(reflections)
+
+            # 3. Rework based on the reflections
+            for refl in reflections:
+                reworkings = self.reworker.rework(
+                    refl,
+                    self._last_collection(draft),
+                    index,
+                    voices_to_try=[v.name for v in brief.voices],
+                )
+                for rw in reworkings:
+                    self._add_to_library(library, rw)
+                    trajectory.reworkings.append(rw)
+
+            # 4. If no reworkings, we've converged on this trajectory
+            if not reflections:
+                break
+
+        # 5. Final composition from the expanded library
+        agent = PoetryAgent(
+            brief=brief,
+            fragments=self._flatten_library(library),
+            seed=seed + n_cycles,
+        )
+        final = agent.compose(
+            n_editions=composition_budget,
+            cycles_per_edition=3,
+            converge=True,
+        )
+        trajectory.composition = final
+        trajectory.expanded_library = library
+        trajectory.brief_score = (final.final_edition().brief_score
+                                   if final.editions else 0.0)
+        trajectory.library_growth = (
+            sum(len(v) for v in library.values()) - baseline_size)
+        # Frontier score: brief fulfillment + library growth, normalized
+        growth_norm = min(1.0, trajectory.library_growth / 50.0)
+        trajectory.frontier_score = (
+            0.75 * trajectory.brief_score + 0.25 * growth_norm)
+        return trajectory

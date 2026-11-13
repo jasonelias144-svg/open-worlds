@@ -43,21 +43,21 @@ open-worlds" says whether any of it is in the working code, and how.
 | 4 | The poetry world | 1860 | 18 of 21, with `turns_from_log` attached (fix 2) | 1 | `multiverse/poetry_world.py`, changed (step 1) |
 | 5 | The chemistry world | 2933 | 13 of 16 | 1, 4 | `multiverse/chemistry_world.py`, changed (step 1); rebuilt on `chem/` in step 4: real molecules and reactions in a soup that runs in time |
 | 6 | The multiverse registry | 3861 | 5 of 15 | 1 | `multiverse/registry.py`, changed (step 1) |
-| 7 | The first collaboration | 4654 | doesn't load | 1 | `multiverse/collaboration.py`, changed (step 1) |
+| 7 | The first collaboration | 4654 | 9 of 10, with the poetry engine beside it (fix 5) | 1 | `multiverse/collaboration.py`, changed (step 1) |
 | 8 | A conformance test any language can be checked with, and an HTTP shim | 5895 | 5 of 11 | 13 | no |
 | 8 | A TypeScript implementation (`ts/`), a registry addition (`multiverse_c6.py@7216`) and a cross-language test (`cross_language_test.sh`) | 6862 | not run | 13 | no |
 | 9 | Cross-language SDKs and the cross-language test harness (`cross_language_test.sh@7779`) | 7449 | not run | 13 | no |
 | 10 | A Go SDK (`go/`) and the full federation test (`cross_language_test.sh@8762`) | 8056 | not run | 13 | no |
-| 11 | Language models as apprentices | 8890 | doesn't load | 12 | no |
-| 12 | Cost reports | 9971 | doesn't load | 12 | no |
+| 11 | Language models as apprentices | 8890 | 20 of 20, with the poetry engine beside it (fix 5) | 12 | no |
+| 12 | Cost reports | 9971 | 16 of 16, with the poetry engine beside it (fix 5) | 12 | no |
 | 13 | Signatures, WCP/0.2 | 10831 | 12 of 12 | 2 | rebuilt in step 2: an identity is its key, and every request is signed |
 | 14 | The conformance test for WCP/0.2 | 11541 | 11 of 26 | 2 | rebuilt in step 2 (`multiverse/conformance.py`) |
 | 15 | Signed passports | 12695 | 20 of 22 | 3 | rebuilt in step 3 (`multiverse/passport.py`): a world is a key, and signs stamps for arrivals, departures and things made |
 | 16 | Finding a world's key from its manifest | 13648 | 9 of 15 | 3, 13 | partly, in step 3: a manifest names its world's key and is signed by it, and `verify_passport` takes the keys a checker knows; fetching them from a running world is step 13 |
 | 17 | Signed registries | 14357 | doesn't load | 3, 13 | no |
-| 18 | Several models together | 15152 | doesn't load | 12 | no |
+| 18 | Several models together | 15152 | 15 of 15, with the poetry engine beside it (fix 5) | 12 | no |
 | 19 | The federation runner (`federation.py`, `Makefile`) | 15921 | `federation_test.py`: 0 of 4 | 12, 13 | no |
-| 20 | Real Hugging Face models | 16671 | doesn't load | 12 | no |
+| 20 | Real Hugging Face models | 16671 | 7 of 11, with the poetry engine beside it (fix 5); 3 skip, needing a language model | 12 | no |
 | 21 | Cross-world provenance | 17584 | 5 of 11 | 3, 5 | partly: since step 5, a journey through several worlds leaves a passport of signed stamps, with what was made in each; no provenance reports |
 | 22 | Leaving, with signed departures | 18635 | 3 of 15 | 3 | leaving since step 1; signed departure stamps since step 3, and a leave the world doesn't stamp still ends the visit |
 | 23 | Provenance over several visits | 19519 | 18 of 21 | 3, 5 | partly, as 21 (step 5) |
@@ -108,16 +108,20 @@ open-worlds" says whether any of it is in the working code, and how.
 | 62 | The ledger, built: a Merkle log with offline proofs | 67507 | 44 of 45, with its demo attached (fix 1) | next in line (a shared log of commitments) | no |
 | 63 | Each world's published rule for contract disputes | 69235 | 20 of 27, with its demo attached (fix 1) | next in line (contracts between worlds) | no |
 
-In all, with fixes 1 and 2 (below): 877 of DeepSeek's tests pass and
-274 fail.
+In all, with fixes 1 and 2 (below), and the poetry engine of record
+012-03-02 written out beside it (fix 5): 944 of DeepSeek's tests pass,
+276 fail, and 3 skip (component 20's, which load a language model this
+machine doesn't have).
 One more passes on some runs and fails on others: component 27's
 `test_combined_to_dict_json`, where two signers tie in the order and the
 tie falls either way (it depends on random keys, so how many of the
 eight runs it fails in changes from one rewrite of the list to the
-next). 6 test files don't load. Components 7, 11, 12, 18 and 20 import
-the poetry engine of record 012-03-02 (`poetry_engine_c21`), not written
-out here yet. 17 imports `InMemoryKeyResolver` from component 16, but it
-is defined in 15. The TypeScript and Go code isn't run here yet.
+next). 1 test file doesn't load: 17 imports `InMemoryKeyResolver` from
+component 16, but it is defined in 15. Components 7, 11, 12, 18 and 20
+import the poetry engine (`poetry_engine_c21`, `poetry_engine_c22`), so
+`conftest.py` puts `../012-03-02` on the import path; before it was
+written out, they didn't load (877 passed and 274 failed). The
+TypeScript and Go code isn't run here yet.
 
 Before fix 1, as written: 433 pass, 145 fail, 1 sometimes, and 25 test
 files don't load. Eighteen of those, components 40 and 44 to 63, failed
@@ -150,15 +154,16 @@ information.
 ## Record 012-05-01, component by component
 
 The record continues 012-04-00 where it ended, at component 64, and its
-code imports components 1 to 63 from `deepseek/012-04-00`. The columns
-are as above. Tests are run on Python 3.12 with fixes 3 and 4 (below).
+code imports components 1 to 63 from `deepseek/012-04-00`, and the
+poetry engine from `deepseek/012-03-02`. The columns are as above. Tests
+are run on Python 3.12 with fixes 3, 4 and 5 (below).
 
 | # | What it is | Line | Tests as written | Course | In open-worlds |
 |---|---|---|---|---|---|
 | 64 | A specification for the smallest live federation: three worlds, a ledger, an operator, a cost model | 4 | a specification, no code (one JSON example, `trust-anchors.json`) | 13, in part (the network); not yet (an operator and a ledger) | no |
 | 65 | A client a person runs: an identity on disk, pinned keys, a report anyone can check | 366 | 23 of 24 | 13 | no |
 | 66 | A deploy script: the federation in one call | 2477 | 6 of 21 | 13 | no |
-| 67 | A resident driven by a language model | 3767 | doesn't load (the poetry engine) | 12 | no |
+| 67 | A resident driven by a language model | 3767 | 16 of 27, with the poetry engine beside it (fix 5) | 12 | no |
 | 68 | A world's representative ("curator") as a background process | 5123 | 19 of 26, with its demo attached (fix 3) | 14, in part (proposing law changes) | no |
 | 69 | Representatives negotiating contracts between worlds | 6815 | 9 of 21, with its demo attached (fix 3) | next in line (contracts between worlds) | no |
 | 70 | Ending a contract, signed by both | 8321 | 4 of 15, with its demo attached (fix 3) | next in line (contracts between worlds) | no |
@@ -178,16 +183,15 @@ are as above. Tests are run on Python 3.12 with fixes 3 and 4 (below).
 | 83 | Those inside vote; a passed proposal changes the law | 23090 | 16 of 17, with its import fixed (fix 4) | 14 (ours asks unanimous consent of those present; this one, a vote by plot owners) | no |
 | 84 | Running a world over cycles and watching it change | 24529 | 11 of 14, loads with fix 4 | 11 | no |
 | 85 | The demo runner, extended again (changes to 71) | 25461 | not run (`@LINE` files) | not yet | no |
-| 86 | Participants driven by a model, each with a persona | 25712 | doesn't load (the poetry engine) | 12 | no |
-| 87 | A world that keeps running as its own process, and can be checked on later | 26899 | doesn't load (the poetry engine) | not yet (the founder: where a running world lives, "not yet") | no |
+| 86 | Participants driven by a model, each with a persona | 25712 | 16 of 17, with the poetry engine beside it (fix 5) | 12 | no |
+| 87 | A world that keeps running as its own process, and can be checked on later | 26899 | 5 of 11, with the poetry engine beside it (fix 5); the daemon fails at start (`_participants_path` is never set) | not yet (the founder: where a running world lives, "not yet") | no |
 
-In all, with fixes 3 and 4: 204 of DeepSeek's tests pass and 66 fail
-(pytest's 207 passes include 3 of our own status tests).
-67 skip, because components 73 to 77 need `python-chess`, which isn't
-installed here (it is GPL-3.0-or-later; adding it to
-[requirements.txt](requirements.txt) would run them). 3 test files don't
-load: components 67, 86 and 87 import the poetry engine of record
-012-03-02 (`poetry_engine_c21`), as five components of 012-04-00 do.
+In all, with fixes 3, 4 and 5: 241 of DeepSeek's tests pass and 84
+fail. 67 skip, because components 73 to 77 need `python-chess`, which
+isn't installed here (it is GPL-3.0-or-later; adding it to
+[requirements.txt](requirements.txt) would run them). Every test file
+loads. Before fix 5, components 67, 86 and 87 didn't load, for want of
+the poetry engine (204 of DeepSeek's tests passed and 66 failed).
 
 Before the fixes, as written: 130 pass, 30 fail, 32 skip, and 12 test
 files don't load. Seven failed only because DeepSeek gave the demo as a
@@ -208,20 +212,58 @@ possibilities to emerge" (14184); worlds that grow and learn from the
 inside and the outside (20548); and a world that keeps running while
 development goes on, to be checked on later (26847).
 
-## Record 012-03-02
+## Record 012-03-02, component by component
 
-The code in this record (the poetry engine, 56 code blocks) isn't written
-out here yet. Step 1 brought parts of its components 21 and 22 (the
-turn, the critical stances, the apprentice poet) into open-worlds as
-`multiverse/apprentice.py`, changed ([docs/MULTIVERSE.md](../docs/MULTIVERSE.md)
-says how). Component 11 of
-012-04-00 imports one of its files (`poetry_engine_c21`), so writing it
-out is what lets component 11 load.
+Three series of components, written out in `deepseek/012-03-02/`: a
+model of Aristotle's practical reasoning as a control system, one
+component of a music engine, and the poetry engine (components 1 to 22,
+with its curriculum in the prose). Step 1 brought parts of the poetry
+engine's components 21 and 22 (the turn, the critical stances, the
+apprentice poet) into open-worlds as `multiverse/apprentice.py`, changed
+([docs/MULTIVERSE.md](../docs/MULTIVERSE.md) says how). Records 012-04-00
+and 012-05-01 import components 21 and 22 from this folder. "Line" is
+where the component's code begins. Tests are run on Python 3.12 with fix
+5 (below).
+
+| Component | What it is | Line | Tests as written |
+|---|---|---|---|
+| `aristotle_cybernetics_c2` to `c7` | The virtuous agent as a control system: the telos hierarchy, a telos that learns, mutual and asymmetric correction | 996 to 3181 | no tests |
+| `music_engine_c8` | The Listener | 3698 | doesn't load: needs `music_engine_c1`, which no record here has |
+| `poetry_engine_c1` | Phonemes, syllables, stress | 4523 | doesn't load: `poetry_engine_c1.py` has a syntax error (line 45) |
+| `poetry_engine_c2` | The cognitive frame | 5393 | doesn't load: imports `poetry_engine_c1`, which has a syntax error |
+| `poetry_engine_c3` | Meter and scansion, through both grammars | 6195 | 13 of 15 (one of the two imports `poetry_engine_c1`) |
+| `poetry_engine_c4` | The score-performance gap | 7287 | doesn't load: imports `poetry_engine_c1`, which has a syntax error |
+| `poetry_engine_c5` | The native voice | 8351 | 11 of 11 |
+| `poetry_engine_c6` | Architecture: cycle, refrain, the foregrounding monitor | 9282 | 12 of 14 |
+| `poetry_engine_c7` | The composition engine | 10185 | 18 of 18 |
+| `poetry_engine_c8` | Rest as meta-work | 11311 | 13 of 14 |
+| `poetry_engine_c9` | Cross-cycle coherence: the collection | 12212 | 13 of 15 |
+| `poetry_engine_c10` | Revision through feedback | 13174 | 12 of 13 |
+| `poetry_engine_c13` | The development spiral | 14161 | 14 of 15 |
+| `poetry_engine_c14` | The living collection | 15002 | 19 of 19 |
+| `poetry_engine_c17` | The complete agent | 15894 | 14 of 15 |
+| `poetry_engine_c18` | The reflective rewriting cycle, given in three parts | 17038 | no tests; its parts joined (fix 5) |
+| `poetry_engine_c19` | The long run | 17680 | 0 of 4 (its test is a block from the prose) |
+| `poetry_engine_c20` | The full agent | 18263 | 2 of 12 |
+| `poetry_engine_c21` | The collaboration protocol: turns, stances, the polyphony | 21859 | no tests; its two parts joined (fix 5) |
+| `poetry_engine_c22` | The runnable apprentice | 22431 | no tests; its two parts joined (fix 5) |
+
+In all: 141 of DeepSeek's tests pass and 24 fail. 4 test files don't
+load. Components 11, 12, 15 and 16 are named in the record only as
+proposals, with no code.
+
+45 of the record's 56 code blocks are written out. The other 11 are
+examples in the prose and stay in the record: a run of component 17
+(16820); a worked example for component 18 (17333, 17403, 17422, 17440);
+the curriculum's apprentice (19436); four turns of a worked example for
+component 21 (22163 to 22270); and a worked example for component 22
+(22974).
 
 ## Changes to DeepSeek's code
 
 Each change is listed here, with its reason, and under `"changed"` in
-the record's names file ([tools/names-012-04-00.json](tools/names-012-04-00.json),
+the record's names file ([tools/names-012-03-02.json](tools/names-012-03-02.json),
+[tools/names-012-04-00.json](tools/names-012-04-00.json),
 [tools/names-012-05-01.json](tools/names-012-05-01.json)), which
 `extract.py check` holds the folder to. Every other file in
 `deepseek/` is exactly as its record has it, and git history shows each
@@ -256,4 +298,14 @@ stays as its own `@LINE` file too.
 imports `Identity` from `multiverse_c13`, but `Identity` is defined in
 `multiverse_c1` (record 012-04-00). The import now names `multiverse_c1`,
 and nothing else changes. Components 83 and 84 then load, and 27 of
-their 31 tests pass; 86 and 87 load as far as the poetry engine.
+their 31 tests pass; 86 and 87 also need the poetry engine (fix 5).
+
+**Fix 5 (2026-11-13): the poetry engine written out, its modules
+joined.** Record 012-03-02's code is written out in
+`deepseek/012-03-02/`, and the folders of 012-04-00 and 012-05-01 put it
+on their import path, so the components that import the poetry engine
+load. The record gives three modules in parts: component 18 as its
+atoms, its composites and the ReflectivePoet composite; components 21
+and 22 as their atoms and then their composites. Each module's later
+parts are appended to it unchanged, in order, and stay as their own
+`@LINE` files too ([tools/names-012-03-02.json](tools/names-012-03-02.json)).
