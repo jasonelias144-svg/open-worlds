@@ -1,139 +1,96 @@
-"""The chemistry world of the sketch: reactions that must balance.
+"""The chemistry world: real molecules, real reactions, a soup in time.
 
-From the DeepSeek sketch's component 5. Its point is generality: a law
-completely unlike the poetry world's, behind the same protocol, passing
-the same conformance test. Agents propose reactions as formulas with
-counts; the world accepts a reaction only if atoms and charge balance.
+From the DeepSeek sketch's component 5, rebuilt on open-worlds' own
+chemistry (`chem/`) in course step 4. The sketch's world accepted any
+reaction whose formulas balanced, whether or not such molecules existed.
+This one holds a soup of real molecules (`chem.soup.Soup`, one well-mixed
+cell for now), and an act is a real reaction among molecules that are
+there:
 
-This world checks bookkeeping, not chemistry: any formula with known
-elements is accepted, whether or not such a molecule exists. The real
-chemistry of open-worlds is in `chem/`. Course step 4 (docs/COURSE.md)
-moves this world's law onto it.
+- **chemistry.react** names one of the reaction rules of `chem/rules.py`
+  (proton transfers, amide formation and hydrolysis, carbonyl hydration,
+  cyanohydrin formation, and their reverses) and the molecules it acts
+  on. The world applies the rule; if it applies, and every reactant is in
+  the soup, the reaction happens there, at once. An individual acts as a
+  catalyst would: it makes a reaction happen, with atoms the soup already
+  has. Nobody brings matter in or takes it out.
+
+Between acts the soup runs on its own: each accepted act lets it run for
+a published number of seconds of world time, in which its own reactions
+happen at their rates, by exact stochastic simulation from a published
+seed. So the world replays exactly. Its rates are placeholders, said so
+in its law: real rates, with their sources, are course step 8.
+
+Molecules are named by their catalogue name (`chem/catalogue.py`, such as
+"glycine") or by their identity, the exact canonical form a world uses
+for every molecule (`Molecule.identity()`); `census()` and the log give
+the identity of everything in the soup.
 
 Changed from the sketch:
-  - Calcium is in the element table (the sketch's own test used it).
-  - Counts must be whole numbers of at least one, and formulas text. In
-    the sketch a count of "2" or -1 was not refused, nor "H0O".
-  - A catalyst, if named, must be text. Only each molecule's formula and
-    count are recorded; anything else sent with them is not kept.
-  - "Equilibrium" in the sketch means only that the last few reactions
-    introduced no new molecule; this page says so.
+  - Real molecules and reactions instead of formulas that only balance.
+  - Nothing ends the world. The sketch called it "equilibrium" when the
+    last few reactions introduced no new molecule; real chemistry keeps
+    going, and the soup's own reactions settle into real equilibria.
 """
 from __future__ import annotations
 
-import re
+import math
 from dataclasses import dataclass
-from typing import Dict, List, Optional, Set, Tuple
+from typing import Dict, List, Optional, Tuple
+
+from chem import catalogue
+from chem.molecule import Molecule
+from chem.rules import RULES
+from chem.soup import Soup
 
 from .entity import (SIGNED_REQUESTS_LAW, STAMPS_LAW, UNSIGNED_ANSWERS_LIMIT,
                      Entity, now)
 from .protocol import Ack, Act, ActResponse, LogEntry
 
-ELEMENTS: Dict[str, Dict] = {
-    "H": {"name": "Hydrogen", "atomic_number": 1},
-    "C": {"name": "Carbon", "atomic_number": 6},
-    "N": {"name": "Nitrogen", "atomic_number": 7},
-    "O": {"name": "Oxygen", "atomic_number": 8},
-    "Na": {"name": "Sodium", "atomic_number": 11},
-    "P": {"name": "Phosphorus", "atomic_number": 15},
-    "S": {"name": "Sulfur", "atomic_number": 16},
-    "Cl": {"name": "Chlorine", "atomic_number": 17},
-    "Ca": {"name": "Calcium", "atomic_number": 20},
-}
+ACT_TYPE = "chemistry.react"
+CELL = (0, 0)
+MAX_REACTANTS = 3
+MAX_NAME = 10_000
 
+# The soil: what the world starts with, by catalogue name.
+SOIL: Tuple[Tuple[str, int], ...] = (
+    ("water", 100), ("glycine", 20), ("formaldehyde", 10))
 
-@dataclass(frozen=True)
-class Molecule:
-    formula: str
-    atoms: Dict[str, int]
-    charge: int = 0
-
-    def __post_init__(self):
-        if not self.formula:
-            raise ValueError("Molecule formula must be non-empty")
-
-
-def parse_formula(formula: str) -> Molecule:
-    """'H2O' gives H:2, O:1. A charge suffix: 'NH4+' is +1, 'SO4-2' is
-    -2, 'OH-' is -1. Unknown elements and unreadable text raise
-    ValueError."""
-    if type(formula) is not str or not formula:
-        raise ValueError("a formula must be non-empty text")
-    original = formula
-    charge = 0
-    m = re.search(r"([+-])(\d*)$", formula)
-    if m:
-        sign = 1 if m.group(1) == "+" else -1
-        charge = sign * (int(m.group(2)) if m.group(2) else 1)
-        formula = formula[:m.start()]
-    atoms: Dict[str, int] = {}
-    pos = 0
-    while pos < len(formula):
-        m = re.match(r"([A-Z][a-z]?)(\d*)", formula[pos:])
-        if not m:
-            raise ValueError(
-                f"Cannot parse formula at position {pos}: {original}")
-        element = m.group(1)
-        if element not in ELEMENTS:
-            raise ValueError(f"Unknown element: {element}")
-        count = int(m.group(2)) if m.group(2) else 1
-        if count < 1:
-            raise ValueError(f"A count of zero in formula: {original}")
-        atoms[element] = atoms.get(element, 0) + count
-        pos += m.end()
-    if not atoms:
-        raise ValueError(f"No atoms in formula: {original}")
-    return Molecule(formula=original, atoms=atoms, charge=charge)
-
-
-def _side(molecules: List[Dict]) -> Tuple[Dict[str, int], int]:
-    atoms: Dict[str, int] = {}
-    charge = 0
-    for mol in molecules:
-        if type(mol) is not dict:
-            raise ValueError("each molecule must be {formula, count}")
-        count = mol["count"]
-        if type(count) is not int or count < 1:
-            raise ValueError(f"count must be a whole number of at least "
-                             f"1: {count!r}")
-        parsed = parse_formula(mol["formula"])
-        for element, n in parsed.atoms.items():
-            atoms[element] = atoms.get(element, 0) + n * count
-        charge += parsed.charge * count
-    return atoms, charge
-
-
-def reaction_balances(substrates: List[Dict],
-                      products: List[Dict]) -> Tuple[bool, str]:
-    """Do atoms and charge balance? Each side is a list of
-    {"formula": str, "count": int}. Returns (balances, reason)."""
-    try:
-        left_atoms, left_charge = _side(substrates)
-        right_atoms, right_charge = _side(products)
-    except (KeyError, TypeError, ValueError) as e:
-        return False, f"Formula error: {e}"
-    if left_atoms != right_atoms:
-        diff = {e: left_atoms.get(e, 0) - right_atoms.get(e, 0)
-                for e in set(left_atoms) | set(right_atoms)
-                if left_atoms.get(e, 0) != right_atoms.get(e, 0)}
-        return False, f"Atom imbalance: {diff}"
-    if left_charge != right_charge:
-        return False, (f"Charge imbalance: {left_charge} on left, "
-                       f"{right_charge} on right")
-    return True, "balanced"
+# The world's own reactions: (rule, reactants by catalogue name, forward
+# rate, reverse rate). The reverse runs the same reaction backwards.
+# PLACEHOLDER rates, chosen so that both directions happen often enough to
+# watch; not measured (course step 8).
+OWN_REACTIONS: Tuple[Tuple[str, Tuple[str, ...], float, float], ...] = (
+    ("proton transfer, carboxylic acid to amine", ("glycine",), 4.0, 1.0),
+    ("hydration of a carbonyl", ("formaldehyde", "water"), 0.5, 0.2),
+)
 
 
 @dataclass(frozen=True)
 class ChemistryWorldLaw:
     admits_any_identity: bool = True
     max_admitted: Optional[int] = None
-    required_act_type: str = "chemistry.react"
-    convergence_window: int = 4
-    max_reactions: int = 500
+    seconds_per_act: float = 1.0
+    seed: int = 0
+    volume: float = 10.0
+    soil: Tuple[Tuple[str, int], ...] = SOIL
+    own_reactions: Tuple[Tuple[str, Tuple[str, ...], float, float],
+                         ...] = OWN_REACTIONS
+
+    def __post_init__(self):
+        t = self.seconds_per_act
+        if type(t) not in (int, float) or not math.isfinite(t) or t < 0:
+            raise ValueError("seconds_per_act must be a finite number >= 0")
+        for rule, names, forward, reverse in self.own_reactions:
+            if rule not in RULES:
+                raise ValueError(f"no rule {rule!r}")
+        for name, count in self.soil:
+            if name not in catalogue.CATALOGUE:
+                raise ValueError(f"{name!r} is not in the catalogue")
 
     def describe(self) -> str:
-        return "\n".join([
-            "# Chemistry World Law v0.3",
+        lines = [
+            "# Chemistry World Law v0.4",
             "",
             "## Entering and leaving",
             f"- Admits any identity: {self.admits_any_identity}",
@@ -143,21 +100,49 @@ class ChemistryWorldLaw:
             SIGNED_REQUESTS_LAW,
             STAMPS_LAW,
             "",
-            "## A reaction (chemistry.react)",
-            f"- Act type: {self.required_act_type}",
-            "- Substrates and products: lists of {formula, count}",
-            "- Accepted only if atoms and charge balance",
+            "## The soup",
+            "- One well-mixed cell of volume "
+            f"{self.volume}, run by exact stochastic simulation from "
+            f"seed {self.seed}, so it replays exactly.",
+            "- It starts with: " + ", ".join(
+                f"{n} {name}" for name, n in self.soil) + ".",
+            "- Nothing is brought in or taken out: every reaction keeps "
+            "every atom and the total charge.",
             "",
-            "## Settling",
-            f"- Settled when the last {self.convergence_window} reactions "
-            "introduced no molecule not seen before",
-            f"- At most {self.max_reactions} reactions",
+            "## Time",
+            f"- Each accepted act lets the soup run for "
+            f"{self.seconds_per_act} seconds of world time. World time is "
+            "simulated: it doesn't follow the clock.",
+            "",
+            "## The soup's own reactions (rates per second)",
+        ]
+        for rule, reactants, forward, reverse in self.own_reactions:
+            lines.append(f"- {rule}, on {' + '.join(reactants)}: "
+                         f"{forward} forward, {reverse} back")
+        lines += [
+            "- These rates are placeholders, not measurements. Real rates,",
+            "  with their sources, come later (course step 8).",
+            "",
+            f"## A reaction ({ACT_TYPE})",
+            "- Name a rule and the molecules it acts on (by catalogue "
+            "name or identity). If the rule applies and every molecule is "
+            "in the soup, the reaction happens there at once.",
+            "- If the rule can act on them in more than one way, choose "
+            "which with `outcome` (from 0; the outcomes are sorted).",
+            "- The rules: " + "; ".join(RULES) + ".",
             "",
             "## Limits",
             UNSIGNED_ANSWERS_LIMIT,
-            "- Formulas are checked for balance, not for whether such a "
-            "molecule exists.",
-        ])
+            "- The rules are local: they apply wherever their atoms match, "
+            "even where real chemistry would be too slow to matter.",
+        ]
+        return "\n".join(lines)
+
+
+def _molecule(name: str) -> Molecule:
+    if name not in catalogue.CATALOGUE:
+        raise ValueError(f"{name!r} is not in the catalogue")
+    return catalogue.CATALOGUE[name]()
 
 
 class ChemistryWorld(Entity):
@@ -165,11 +150,28 @@ class ChemistryWorld(Entity):
 
     def __init__(self, entity_id: str, name: str,
                  law: Optional[ChemistryWorldLaw] = None):
-        super().__init__(entity_id, name, law or ChemistryWorldLaw())
+        law = law or ChemistryWorldLaw()
+        super().__init__(entity_id, name, law)
+        self._soup = Soup(1, 1, volume=law.volume, seed=law.seed)
+        # Catalogue name -> identity, so an act may name any catalogue
+        # molecule the soup has, whether it began there or was made.
+        self._names: Dict[str, str] = {
+            n: f().identity() for n, f in catalogue.CATALOGUE.items()}
+        for rule, names, forward, reverse in law.own_reactions:
+            reactants = [_molecule(n) for n in names]
+            outcomes = RULES[rule].apply(*reactants)
+            if len(outcomes) != 1:
+                raise ValueError(f"{rule} on {names} must have one outcome")
+            self._soup.add_reaction(reactants, list(outcomes[0]), forward)
+            self._soup.add_reaction(list(outcomes[0]), reactants, reverse)
+        for soil_name, count in law.soil:
+            m = _molecule(soil_name)
+            self._soup.add_species(m)
+            self._soup.put(CELL, m, count)
         self._reactions: List[Dict] = []
-        self._molecules: Set[str] = set()
-        self._converged = False
-        self._convergence_reason: Optional[str] = None
+        self._log.append(LogEntry(timestamp=now(), kind="soil",
+                                  data={"census": self.census(),
+                                        "soup_head": self._soup.log_head}))
 
     def act(self, act: Act) -> ActResponse:
         timestamp = now()
@@ -177,93 +179,103 @@ class ChemistryWorld(Entity):
         if refusal:
             return refusal
         actor = act.actor_token
-        if self._converged:
-            return self._refuse(timestamp, actor,
-                                "The World has reached equilibrium", "act")
-        if len(self._reactions) >= self._law.max_reactions:
-            return self._refuse(timestamp, actor,
-                                "Reaction limit reached", "act")
-        if act.type != self._law.required_act_type:
+        if act.type != ACT_TYPE:
             return self._refuse(timestamp, actor,
                                 f"Unknown act type: {act.type}", "act")
-        substrates = act.payload.get("substrates")
-        products = act.payload.get("products")
-        if (type(substrates) is not list or type(products) is not list
-                or not substrates or not products):
+        rule = act.payload.get("rule")
+        if type(rule) is not str or rule not in RULES:
             return self._refuse(timestamp, actor,
-                                "Substrates and products required", "act")
-        catalyst = act.payload.get("catalyst")
-        if catalyst is not None and type(catalyst) is not str:
+                                "rule must name one of this world's rules",
+                                "act")
+        named = act.payload.get("reactants")
+        if (type(named) is not list or not 1 <= len(named) <= MAX_REACTANTS
+                or any(type(n) is not str or not n or len(n) > MAX_NAME
+                       for n in named)):
             return self._refuse(timestamp, actor,
-                                "The catalyst must be text", "act")
-        balances, reason = reaction_balances(substrates, products)
-        if not balances:
+                                f"reactants must be a list of 1 to "
+                                f"{MAX_REACTANTS} molecule names or "
+                                "identities", "act")
+        outcome = act.payload.get("outcome", 0)
+        if type(outcome) is not int or outcome < 0:
             return self._refuse(timestamp, actor,
-                                f"Reaction does not balance: {reason}", "act")
-
+                                "outcome must be a whole number from 0",
+                                "act")
+        species = {m.identity(): m for m in self._soup.species}
+        reactants = []
+        for n in named:
+            m = species.get(self._names.get(n, n))
+            if m is None:
+                return self._refuse(timestamp, actor,
+                                    f"No molecule {n[:60]!r} is in this "
+                                    "world", "act")
+            reactants.append(m)
+        outcomes = RULES[rule].apply(*reactants)
+        if not outcomes:
+            return self._refuse(timestamp, actor,
+                                f"The rule {rule!r} doesn't apply to these "
+                                "molecules", "act")
+        if outcome >= len(outcomes):
+            return self._refuse(timestamp, actor,
+                                f"outcome must be from 0 to "
+                                f"{len(outcomes) - 1}", "act")
+        products = list(outcomes[outcome])
+        if not self._soup.perform(CELL, reactants, products):
+            return self._refuse(timestamp, actor,
+                                "Not every reactant is in the soup now, as "
+                                "many as the reaction uses", "act")
         reaction = {
-            "reaction_index": len(self._reactions),
-            "actor_token": actor,
-            "actor_name": self._passports[actor].identity.name,
-            "substrates": [{"formula": m["formula"], "count": m["count"]}
-                           for m in substrates],
-            "products": [{"formula": m["formula"], "count": m["count"]}
-                         for m in products],
-            "catalyst": catalyst,
-            "timestamp": timestamp,
+            "rule": rule,
+            "reactants": [m.identity() for m in reactants],
+            "products": [m.identity() for m in products],
+            "formulas": [[m.formula() for m in reactants],
+                         [m.formula() for m in products]],
+            "world_time": self._soup.time,
         }
         self._reactions.append(reaction)
-        for mol in substrates + products:
-            self._molecules.add(mol["formula"])
-        self._log.append(LogEntry(timestamp=timestamp, kind="reaction",
-                                  actor_token=actor, data=dict(reaction)))
-        if self._check_equilibrium():
-            self._converged = True
-            self._log.append(LogEntry(
-                timestamp=timestamp, kind="convergence",
-                data={"reaction_count": len(self._reactions),
-                      "window": self._law.convergence_window,
-                      "reason": self._convergence_reason}))
+        self._soup.advance(self._soup.time + self._law.seconds_per_act)
+        self._log.append(LogEntry(
+            timestamp=timestamp, kind="reaction", actor_token=actor,
+            data=dict(reaction, soup_time=self._soup.time,
+                      soup_head=self._soup.log_head)))
         return Ack(entity_id=self._manifest.entity_id, timestamp=timestamp,
                    stamp=self._made(actor, timestamp, reaction))
 
     # -- conveniences ---------------------------------------------------
 
+    def census(self) -> Dict[str, Dict]:
+        """Every kind of molecule the soup has had, by identity: its
+        formula and how many there are now."""
+        return {m.identity(): {"formula": m.formula(),
+                               "count": self._soup.count(m)}
+                for m in self._soup.species}
+
+    def identity_of(self, name: str) -> str:
+        """The identity of a catalogue molecule, as acts may name it."""
+        return _molecule(name).identity()
+
+    @property
+    def world_time(self) -> float:
+        return self._soup.time
+
+    @property
+    def soup(self) -> Soup:
+        """The soup itself, for reading (its log, its atoms). Changing it
+        directly bypasses this world's law."""
+        return self._soup
+
     def reactions(self) -> List[Dict]:
         return [dict(r) for r in self._reactions]
 
-    def molecules(self) -> Set[str]:
-        return set(self._molecules)
-
-    def is_converged(self) -> bool:
-        return self._converged
-
     def describe(self) -> str:
+        present = sum(1 for v in self.census().values() if v["count"])
         return "\n".join([
             f"ChemistryWorld: {self._manifest.name}",
-            f"  entity_id: {self._manifest.entity_id}",
-            f"  present:   {len(self._admitted)}",
-            f"  reactions: {len(self._reactions)}",
-            f"  molecules: {len(self._molecules)}",
-            f"  converged: {self._converged}",
+            f"  entity_id:  {self._manifest.entity_id}",
+            f"  present:    {len(self._admitted)}",
+            f"  reactions:  {len(self._reactions)} by acts",
+            f"  molecules:  {present} kinds in the soup",
+            f"  world time: {self._soup.time:.3f} s",
         ])
-
-    def _check_equilibrium(self) -> bool:
-        window = self._law.convergence_window
-        if len(self._reactions) < window + 1:
-            return False
-        split = len(self._reactions) - window
-
-        def formulas(reactions):
-            return {m["formula"] for r in reactions
-                    for m in r["substrates"] + r["products"]}
-
-        if formulas(self._reactions[split:]) <= formulas(
-                self._reactions[:split]):
-            self._convergence_reason = (
-                f"the last {window} reactions introduced no new molecules")
-            return True
-        return False
 
 
 def reactions_from_log(log: List[LogEntry]) -> List[Dict]:
