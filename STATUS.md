@@ -158,6 +158,12 @@ the technical lead's recommendation.
   fully open member, and never as the only member deciding a case.
   Before course step 11 (docs/ADMIN.md, "ADMIN's mind"). (asked
   2026-11-13)
+- For the founder: must ADMIN take on challenges it didn't choose? With
+  nothing hidden, what keeps ADMIN from choosing only easy ones is the
+  open record and challenges others set. Recommended: it takes on those
+  the code role and Keepers set, alongside its own, and declines one
+  only with its reason logged. Before course step 11 (docs/ADMIN.md).
+  (asked 2026-11-13)
 - For the founder, deferred ("We can name later"): who names the
   Ur-world's Keeper, the founder or ALICE and BOB once they meet it?
   Recommended: ALICE and BOB. Before course step 11. (asked 2026-11-13)
@@ -485,20 +491,23 @@ it was wrong. Questions of what the project is for stay with the founder.
   view is logged, and a serious act goes to the founder (or, once
   decided, the check outside the code role), never to the review as a
   tie-breaker; one office, one key, one seat; members from different
-  makers; tried against its best single member on the same fresh
-  challenges, with undecided cases counted as not done. *Why:* the research is
+  makers, with at least one fully open; tried against its best single
+  member on the same fresh challenges, written by neither ADMIN nor
+  anyone running a member, with undecided cases counted as not done;
+  a case heard again only on new information. *Why:* the research is
   mixed: councils of models have beaten their members, and have also
   failed to (docs/research/ADMIN-MIND.md); and agreement or no act
   matches the round table. *Revisit if:* the council doesn't beat its
-  best member on those challenges, or more than one serious case in five goes
-  undecided, or cases wait for the founder longer than a week.
+  best member on those challenges, or more than one in five of the last
+  twenty serious cases goes undecided, or cases wait for the founder
+  longer than a week.
 - 2026-11-13, ADMIN learns by written lessons and routines in its public
   log, not by changing its model, and what it learns can only propose a
   change to its rules. *Why:* lessons in words can be read and checked by
   anyone, and the authors of a self-improving system say it "still
   necessitates oversight". *Revisit if:* ADMIN stops growing with lessons
-  alone, three announced challenges in a row not done; then training its
-  model on its record is proposed, by reviewed change.
+  alone: three in a row of the challenges others set it not done; then
+  training its model on its record is proposed, by reviewed change.
 
 ## Log
 

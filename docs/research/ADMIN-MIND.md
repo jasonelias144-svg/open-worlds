@@ -116,7 +116,8 @@ makes a model open-weight); free to study (data information and code
 published too, which OSI's definition requires of open source AI, as
 OLMo meets it); and free of dependence on any one company. DeepSeek-R1
 and gpt-oss-120b are open-weight, but not open source AI by OSI's
-definition, since their training data isn't published. Whether such a
+definition, since neither publishes the data information and training
+code OSI asks for. Whether such a
 model may sit beside fully open ones in ADMIN's mind is put to the
 founder ([ADMIN.md](../ADMIN.md)).
 
