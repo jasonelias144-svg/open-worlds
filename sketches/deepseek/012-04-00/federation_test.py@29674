@@ -1,0 +1,44 @@
+def test_live_saves_bundle_and_verifies_after_load():
+    """make live saves a bundle; the bundle loads and verifies in
+    a fresh process."""
+    try:
+        import cryptography  # noqa
+    except ImportError:
+        pytest.skip("cryptography not installed")
+
+    print("=== live: saves bundle, verifies in fresh process ===")
+    with tempfile.TemporaryDirectory() as tmpdir:
+        result = _run(["--mode", "live", "--artifact-dir", tmpdir])
+        assert result.returncode == 0, \
+            f"live failed:\n{result.stdout}\n{result.stderr}"
+
+        run_dir = next(Path(tmpdir).iterdir())
+        bundle_path = run_dir / "federation_bundle.json"
+        key_path = run_dir / "verifier_public_key.txt"
+        assert bundle_path.exists(), "missing federation_bundle.json"
+        assert key_path.exists(), "missing verifier_public_key.txt"
+
+        script = f"""
+import sys
+sys.path.insert(0, {str(Path(__file__).parent)!r})
+from multiverse_c32 import load_bundle, verify_loaded_bundle
+key = open({str(key_path)!r}).read().strip()
+r = load_bundle({str(bundle_path)!r})
+assert r.valid, r.reason
+v = verify_loaded_bundle(r.bundle, expected_verifier_key=key)
+if not v.valid:
+    print(v.format())
+    sys.exit(1)
+print("BUNDLE-FRESH-PROCESS-VERIFIED")
+"""
+        proc = subprocess.run(
+            [sys.executable, "-c", script],
+            capture_output=True, text=True, timeout=60,
+        )
+        assert proc.returncode == 0, (
+            f"fresh-process verification failed:\n"
+            f"stdout: {proc.stdout}\n"
+            f"stderr: {proc.stderr}")
+        assert "BUNDLE-FRESH-PROCESS-VERIFIED" in proc.stdout
+        print(f"  bundle: {bundle_path.name}")
+        print(f"  fresh-process verification: PASS")

@@ -1,0 +1,47 @@
+# In federation.py, at the end of run_live (step 7, after passport verification):
+
+        # ------------------------------------------------------------------
+        # Step 7b: Sign the verdict with the client's key
+        # ------------------------------------------------------------------
+        from multiverse_c31 import (
+            FederationVerdict, sign_federation_verdict,
+            verify_signed_federation_verdict,
+        )
+
+        verifier_kp = KeyPair.generate()
+        verifier = create_identity("Live Verifier")
+
+        structured = FederationVerdict(
+            conformance_passed=True,
+            world_admitted=True,
+            world_offline_at_verification=True,
+            listing_count=len(verified_listings),
+            passport_verified_without_world=
+                passport_report.all_verified(),
+            world_public_key=world_pk_from_listing,
+            registry_public_key=registry_kp.public_key_hex(),
+        )
+
+        # Unsigned (backward-compatible with C30)
+        (artifact_dir / "federation_verdict.json").write_text(
+            json.dumps(structured.to_dict(), indent=2))
+
+        # Signed
+        signed_verdict = sign_federation_verdict(
+            structured, verifier_kp, verifier)
+        (artifact_dir / "signed_federation_verdict.json").write_text(
+            json.dumps(signed_verdict.to_dict(), indent=2))
+        (artifact_dir / "verifier_public_key.txt").write_text(
+            verifier_kp.public_key_hex())
+
+        # Sanity: the signature verifies
+        if not verify_signed_federation_verdict(
+                signed_verdict, verifier_kp.public_key_hex()):
+            print("      ERROR: signed verdict does not verify")
+            return 1
+
+        print(f"      verdict signed by {verifier.name}")
+        print(f"      verifier key: "
+              f"{verifier_kp.public_key_hex()[:16]}...")
+        print(f"      → {artifact_dir}/signed_federation_verdict.json")
+        print(f"      → {artifact_dir}/verifier_public_key.txt")

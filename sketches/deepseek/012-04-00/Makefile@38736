@@ -1,0 +1,3 @@
+.PHONY: cross-world-demo
+cross-world-demo:
+	$(PYTHON) -c "from multiverse_c40_demo import demo; demo(artifact_dir='artifacts')"

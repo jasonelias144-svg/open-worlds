@@ -1,0 +1,3 @@
+.PHONY: swarm-demo
+swarm-demo:
+	$(PYTHON) -c "from multiverse_c43 import demo; demo(artifact_dir='artifacts')"

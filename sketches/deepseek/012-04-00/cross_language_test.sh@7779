@@ -1,0 +1,53 @@
+#!/bin/bash
+# cross_language_test.sh
+# Start worlds in each language, run the canonical conformance CLI
+# against each, and verify all pass.
+
+set -e
+cd "$(dirname "$0")"
+
+cleanup() { kill $(jobs -p) 2>/dev/null || true; }
+trap cleanup EXIT
+
+echo "=== [1/4] Start Python worlds ==="
+python -c "
+from multiverse_c4 import PoetryWorld
+from wcp_http_shim import WorldProtocolServer
+WorldProtocolServer(PoetryWorld('world:poetry', 'Poetry'),
+                    port=8001).serve_forever()
+" &
+python -c "
+from multiverse_c5 import ChemistryWorld
+from wcp_http_shim import WorldProtocolServer
+WorldProtocolServer(ChemistryWorld('world:chemistry', 'Chemistry'),
+                    port=8002).serve_forever()
+" &
+sleep 1
+
+echo "=== [2/4] Start TypeScript registry (port 9000) ==="
+(cd ts && PORT=9000 npx tsx src/index.ts) &
+sleep 2
+
+echo "=== [3/4] Start C# registry (port 9001) ==="
+(cd cs/Wcp.Host && dotnet run --urls "http://localhost:9001") &
+sleep 3
+
+echo "=== [4/4] Conformance test each implementation ==="
+for endpoint in \
+    "http://localhost:8001" \
+    "http://localhost:8002" \
+    "http://localhost:9000" \
+    "http://localhost:9001"; do
+    echo
+    echo "  Testing $endpoint:"
+    if python -m wcp_conformance --url "$endpoint" --quiet; then
+        echo "    PASS"
+    else
+        echo "    FAIL"
+        python -m wcp_conformance --url "$endpoint"
+    fi
+done
+
+echo
+echo "=== All conforming entities passed the same canonical test. ==="
+echo "=== The protocol is language-neutral. ==="

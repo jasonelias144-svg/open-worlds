@@ -9,35 +9,72 @@ The multiverse began as a sketch the founder wrote with DeepSeek
 (conversation records 012-04-00 and 012-03-02). This repository brought
 it in, made it run, and changed what needed changing; what was kept and
 what changed, and why, is in [MULTIVERSE.md](MULTIVERSE.md) and in each
-module's docstring. The founder will publish the raw conversation
-records later as part of the project's history, so anyone can trace
-each piece back to where it came from.
+module's docstring.
 
-## Where the DeepSeek conversation left off, and where it stands now
+## Two sides: the sketch and the standard
 
-The conversation (record 012-04-00) built twenty components and ended
-after component 20, real Hugging Face model integration, with DeepSeek
-proposing component 21: cross-world provenance, a passport carrying
-signed admissions from several worlds that a client verifies offline.
-Here is each component's place now.
+**The sketch is a rough draft.** Each step in the conversation assumes the
+last one ran as expected and asks what to build next, the way a creative
+team might convey a vision in code instead of boxes and arrows. Nobody
+expects it to run, and bugs are part of a draft. In the founder's words:
+"it is meant to be a starting point for you, not an end point." So an
+"Expected output" in the conversation is a prediction, which is fine; the
+house rules below apply when code comes into open-worlds itself.
 
-| Sketch | What it was | Here |
-|---|---|---|
-| 1–7 | Identity, passport, protocol, conformance test, poetry world, chemistry world, registry, first collaboration | **In `multiverse/`, working** (course step 1), with leaving added and the fixes listed in MULTIVERSE.md |
-| 8 | The conformance test, run against any address | Course step 12 (the network) |
-| 8, 9, 10 | TypeScript, cross-language and Go SDKs | Not carried over for now: one reference implementation and the conformance test come first; other languages when someone needs one |
-| 11, 12, 18, 20 | Language models as apprentices, cost reports, several models together, real Hugging Face models | Course step 11. Component 20's "recorded real outputs" were invented, since DeepSeek can't run models; real outputs will be recorded by running models |
-| 13, 14 | Signatures (WCP/0.2) and their conformance test | **Done** (course step 2): every petition, act and leave is signed by the individual's key; Ed25519 from the `cryptography` package, with weak keys refused |
-| 15 | Signed passports | Course step 3 |
-| 16, 17 | Manifest resolver, signed registries | Course steps 3 and 12 |
-| 19 | The federation runner (`make demo` and friends) | For now `python3 -m multiverse.collaboration`; the rest arrives with steps 11 and 12 |
-| 21 (proposed) | Cross-world provenance | Course steps 3 and 5: signed passports, then one individual travelling through three worlds |
+**The records and the sketch's code are kept, apart.** They live in
+[`sketches/`](../sketches/README.md): the conversation records verbatim,
+and DeepSeek's code written out exactly as the record has it, with every
+test's result. That is a record of DeepSeek's suggestions, kept so they
+can be read, run and debugged, without committing to using them.
+[`sketches/INDEX.md`](../sketches/INDEX.md) is the one place that says
+where the sketch and the course meet: each component, how its tests fare,
+which course step it relates to, and whether any of it is in open-worlds.
+
+**The standard is open-worlds' own code, not the sketches.** Build on
+`multiverse/` and the documents in `docs/`. The code in `sketches/` is
+earlier work, some of it on the old, unsigned protocol, kept for its
+ideas.
+
+## Where the conversation stands
+
+Record 012-04-00 now runs to component 43, and ends with the founder's
+question about a council: a small group that decides for the whole. Each
+component's place is in [`sketches/INDEX.md`](../sketches/INDEX.md). In
+short: components 1 to 7 are in `multiverse/`, working (course step 1);
+13 and 14, signatures and their conformance test, were rebuilt in step 2,
+where an identity is its key; 15, signed passports, is course step 3,
+next.
 
 Since the sketch, the founder has added ideas that now shape the
 course: learning agents in the chemistry world whose intelligence grows
 with the complexity of the molecules, evolution as a path between worlds,
 accelerated time, and one day a main community world
-([MULTIVERSE.md](MULTIVERSE.md)).
+([MULTIVERSE.md](MULTIVERSE.md)). Then, in components 36 to 43: identity
+across worlds (a person above their world-level identities, lineage,
+forks and merges), and architectures for many models across worlds (the
+octopus, the nervous system, the swarm, and next the council), with the
+founder's aim for the infrastructure: "we just need to create
+infrastructure that can handle what we cannot imagine yet."
+
+## What the last stretch taught
+
+Four lessons from components 21 to 43, for when these ideas are built
+here. They are about the design, not about bugs in the draft.
+
+1. **Anything that says something about someone needs that someone's
+   signature.** In the draft, a parent can name a child without the
+   child agreeing, and a third party can withdraw someone else's witness.
+   In open-worlds, nobody else can make you leave, and the same should
+   hold for claims about you.
+2. **A self spread across worlds needs each part linked to it, with both
+   signing.** The person signs "this identity is mine" and the identity
+   signs "I belong to this person". That link is what makes the arms of
+   the octopus one creature's arms.
+3. **A person's list of identities should be a chain, like a world's
+   log,** each version naming the one before, so that dropping an
+   identity shows.
+4. **What a part produced belongs in what it signs,** so the record shows
+   what it did, not only that it reported.
 
 ## What would help most now
 
@@ -82,6 +119,9 @@ Read in this order: MULTIVERSE.md, then `protocol.py`, `conformance.py`,
 `identity.py`, `entity.py`, `poetry_world.py`, `collaboration.py`.
 
 ## House rules
+
+These apply to code that comes into open-worlds, not to the draft (see
+"Two sides" above).
 
 1. **Nothing is described as run unless it was run.** Results, outputs
    and test counts come from actually running the code, and are shown as
@@ -137,3 +177,9 @@ page.
 
 - 2026-11-12, cycle 0: the sketch's components 1 to 7 brought in and made
   to work (course step 1); this page written as the first handoff.
+- 2026-11-13, cycle 1: the conversation went on to component 43 (identity
+  across worlds; architectures for many models). Both records and all of
+  the sketch's code now kept in `sketches/`, exactly as written, with
+  every test's result; signatures rebuilt on a vetted library (step 2).
+  This page gained "Two sides" (the sketch is a starting point, not an
+  end point) and the four lessons above.

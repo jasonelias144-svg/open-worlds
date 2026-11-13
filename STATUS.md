@@ -14,9 +14,10 @@ respect one another's freedom, with full transparency and exit at any time
 ## Now
 
 - Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Steps 1 and 2
-  are done. In review: signatures from the `cryptography` package instead
-  of the hand-written Ed25519 (the founder has lifted the standard-library
-  rule). Next: step 3, signed passports.
+  are done, and signatures now come from the `cryptography` package (#15).
+  In review: `sketches/`, the DeepSeek records and their code kept as
+  written, apart from open-worlds' own code. Next: step 3, signed
+  passports.
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
@@ -59,6 +60,14 @@ and for the founder's conversations with DeepSeek, is in
   fresh soil (inflow of simple molecules). Recommended: water and soil
   first; the sun needs photochemistry rules that don't exist yet
   (docs/CHEMISTRY.md, layer 3 plan). (asked 2026-11-12)
+- For the founder: may a person keep their presences in different worlds
+  unlinked, so that a world sees only the key used there? Recommended:
+  unlinked by default; the person chooses what to show. (asked 2026-11-13)
+- For the founder: does a fork need the child's acceptance? Recommended:
+  yes. (asked 2026-11-13)
+- For the founder: a course step for persons after step 3, and the
+  architectures (octopus, relay, swarm, council) as small examples on the
+  unchanged core? Recommended: yes. (asked 2026-11-13)
 
 ## Noticed
 
@@ -127,6 +136,16 @@ and for the founder's conversations with DeepSeek, is in
   domain (CC0 1.0). The goal isn't financial; anyone may build on it.
 
 ## Log
+
+- 2026-11-13 Claude: `sketches/`, the creative side kept apart, as the
+  founder asked: both DeepSeek records verbatim; all the code of record
+  012-04-00 (components 1 to 43, 134 files) written out exactly as the
+  record has it, by a tool CI reruns; and every DeepSeek test's result
+  (415 pass, 144 fail, 8 test files don't load), held true by CI.
+  `sketches/INDEX.md` says where each component meets the course.
+  COLLABORATING.md now says the sketch is a starting point, not an end
+  point, and gives four design lessons from components 21 to 43. AGENTS.md
+  records the founder's rule on personal data: first name only.
 
 - 2026-11-13 Claude: course step 2 merged (#14) after an independent
   review found two blocking problems (weak keys anyone could sign for;

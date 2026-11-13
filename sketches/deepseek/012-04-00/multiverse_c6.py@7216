@@ -1,0 +1,52 @@
+import urllib.request, json, subprocess
+
+def _handle_admit(self, timestamp, act):
+    # NEW: if entity_url is given, fetch and verify over HTTP
+    entity_url = act.payload.get("entity_url")
+    if entity_url:
+        return self._handle_admit_url(timestamp, act, entity_url)
+    # Existing in-process path unchanged
+    entity = act.payload.get("entity")
+    if entity is None:
+        return self._refuse(timestamp, act.actor_token,
+                             "No entity or entity_url in payload", "act")
+    # ... rest of existing code
+
+def _handle_admit_url(self, timestamp, act, entity_url):
+    try:
+        url = entity_url.rstrip("/") + "/manifest"
+        with urllib.request.urlopen(url, timeout=5) as r:
+            m_data = json.loads(r.read().decode())
+        m = manifest_from_dict(m_data)
+    except Exception as e:
+        return self._refuse(timestamp, act.actor_token,
+                             f"Could not fetch manifest: {e}", "act")
+    if m.entity_id in self._registry:
+        return self._refuse(timestamp, act.actor_token,
+                             f"Entity {m.entity_id} already listed", "act")
+    conformance = _http_conformance(entity_url)
+    if not conformance["passed"]:
+        return self._refuse(timestamp, act.actor_token,
+                             f"Entity {m.entity_id} fails conformance", "act")
+    self._registry[m.entity_id] = m
+    self._conformance_reports[m.entity_id] = conformance
+    self._log.append(LogEntry(
+        timestamp=timestamp, kind="entity_admitted",
+        actor_token=act.actor_token,
+        data={"entity_id": m.entity_id, "manifest": m_data,
+              "conformance": conformance, "source_url": entity_url},
+    ))
+    return Ack(entity_id=self._manifest.entity_id, timestamp=timestamp)
+
+
+def _http_conformance(entity_url):
+    try:
+        r = subprocess.run(
+            ["python", "-m", "wcp_conformance", "--url", entity_url, "--quiet"],
+            capture_output=True, text=True, timeout=30,
+        )
+        if r.returncode == 0:
+            return {"passed": True, "failures": []}
+        return {"passed": False, "failures": [r.stdout, r.stderr]}
+    except Exception as e:
+        return {"passed": False, "failures": [str(e)]}

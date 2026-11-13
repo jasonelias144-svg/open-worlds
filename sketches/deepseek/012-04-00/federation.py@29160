@@ -1,0 +1,40 @@
+# In federation.py, after the C31 signed verdict block (before finally):
+
+        # ------------------------------------------------------------------
+        # Step 7c: Save the federation bundle (persistence)
+        # ------------------------------------------------------------------
+        from multiverse_c32 import (
+            bundle_from_live, save_bundle_to_dir,
+            load_bundle, verify_loaded_bundle,
+        )
+        bundle = bundle_from_live(
+            world=world,
+            registry=registry,
+            world_log=world.log_since(None),
+            registry_log=registry.log_since(None),
+            passports=[passport],
+            signed_verdict=signed_verdict,
+            verifier_public_key=verifier_kp.public_key_hex(),
+        )
+        bundle_path = save_bundle_to_dir(bundle, str(artifact_dir))
+        print(f"      → {bundle_path}")
+
+        # Sanity: load back + verify in this process
+        load_result = load_bundle(str(bundle_path))
+        if not load_result.valid:
+            print(f"      ERROR: bundle load failed: "
+                  f"{load_result.reason}")
+            return 1
+        verify_result = verify_loaded_bundle(
+            load_result.bundle,
+            expected_verifier_key=
+                verifier_kp.public_key_hex())
+        (artifact_dir / "bundle_verification.txt").write_text(
+            verify_result.format())
+        if not verify_result.valid:
+            print(f"      ERROR: bundle verification failed")
+            for f in verify_result.failures:
+                print(f"        {f}")
+            return 1
+        print(f"      bundle verified (self-consistency)")
+        print(f"      → {artifact_dir}/bundle_verification.txt")

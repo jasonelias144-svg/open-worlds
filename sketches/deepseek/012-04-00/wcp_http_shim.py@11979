@@ -1,0 +1,38 @@
+# In wcp_http_shim.py — two updates:
+
+def _manifest_dict(m) -> dict:
+    # If it's already a dict (signed_manifest_dict output), return as-is
+    if isinstance(m, dict):
+        return m
+    return {
+        "entity_id": m.entity_id, "name": m.name,
+        "protocol_version": m.protocol_version,
+        "law_url": m.law_url, "act_endpoint": m.act_endpoint,
+        "log_endpoint": m.log_endpoint,
+        "sub_registry_endpoint": m.sub_registry_endpoint,
+    }
+
+
+def _response_dict(r) -> dict:
+    from multiverse_c13 import SignedAdmission, SignedAck
+    if isinstance(r, SignedAdmission):
+        return {"kind": "admission", "entity_id": r.entity_id,
+                "timestamp": r.timestamp,
+                "subject_token": r.subject_token,
+                "signature": r.signature}
+    if isinstance(r, SignedAck):
+        return {"kind": "ack", "entity_id": r.entity_id,
+                "timestamp": r.timestamp,
+                "subject_token": r.subject_token,
+                "signature": r.signature}
+    # ... existing WCP/0.1 handlers unchanged
+
+
+# In the handler, replace:
+#     self._send(200, _manifest_dict(entity.manifest()))
+# with:
+#     if hasattr(entity, "manifest_dict"):
+#         manifest_data = entity.manifest_dict()
+#     else:
+#         manifest_data = _manifest_dict(entity.manifest())
+#     self._send(200, manifest_data)

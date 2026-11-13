@@ -45,6 +45,11 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
 - [docs/COURSE.md](docs/COURSE.md): the next twelve steps, rolling.
 - [docs/COLLABORATING.md](docs/COLLABORATING.md): how to build on this,
   and the house rules.
+- [sketches/](sketches/README.md): the creative side, kept apart: the
+  founder's conversations with DeepSeek, verbatim, and DeepSeek's code from
+  them as written, with its test results. A record of ideas, not
+  open-worlds' code; [sketches/INDEX.md](sketches/INDEX.md) says where it
+  meets the course.
 
 ## Run and test
 

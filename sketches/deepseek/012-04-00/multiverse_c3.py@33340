@@ -1,0 +1,8 @@
+@dataclass(frozen=True)
+class Petition:
+    petitioner_token: str
+    petitioner_name: str
+    passport_admissions: Tuple[Tuple[str, str], ...]
+    message: str
+    target: Optional[str] = None
+    extra: Optional[Dict] = None  # NEW — entity-specific fields

@@ -1,0 +1,3 @@
+.PHONY: octopus-demo
+octopus-demo:
+	$(PYTHON) -c "from multiverse_c41 import demo; demo(artifact_dir='artifacts')"

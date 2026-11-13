@@ -1,0 +1,3 @@
+.PHONY: signed-listing-demo
+signed-listing-demo:
+	$(PYTHON) -c "from multiverse_c29 import demo; demo(artifact_dir='artifacts')"

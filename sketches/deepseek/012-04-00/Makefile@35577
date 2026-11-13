@@ -1,0 +1,3 @@
+.PHONY: person-manifest-demo
+person-manifest-demo:
+	$(PYTHON) -c "from multiverse_c38 import demo; demo(artifact_dir='artifacts')"

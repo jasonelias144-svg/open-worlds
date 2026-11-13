@@ -1,0 +1,3 @@
+.PHONY: signed-manifest-demo
+signed-manifest-demo:
+	$(PYTHON) -c "from multiverse_c28 import demo; demo(artifact_dir='artifacts')"

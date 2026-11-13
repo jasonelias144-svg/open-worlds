@@ -1,0 +1,71 @@
+#!/bin/bash
+# cross_language_test.sh — start worlds in each language, verify federation
+
+set -e
+cd "$(dirname "$0")"
+cleanup() { kill $(jobs -p) 2>/dev/null || true; }
+trap cleanup EXIT
+
+echo "=== [1/5] Python Poetry World on :8001 ==="
+python -c "
+from multiverse_c4 import PoetryWorld
+from wcp_http_shim import WorldProtocolServer
+WorldProtocolServer(PoetryWorld('world:poetry', 'Poetry'),
+                    port=8001).serve_forever()
+" &
+sleep 1
+
+echo "=== [2/5] Python Chemistry World on :8002 ==="
+python -c "
+from multiverse_c5 import ChemistryWorld
+from wcp_http_shim import WorldProtocolServer
+WorldProtocolServer(ChemistryWorld('world:chemistry', 'Chemistry'),
+                    port=8002).serve_forever()
+" &
+sleep 1
+
+echo "=== [3/5] Python Multiverse on :9001 ==="
+python -c "
+from multiverse_c6 import MultiverseRegistry
+from wcp_http_shim import WorldProtocolServer
+WorldProtocolServer(MultiverseRegistry('multiverse:python', 'Python MV'),
+                    port=9001).serve_forever()
+" &
+sleep 1
+
+echo "=== [4/5] Go Multiverse on :9002 ==="
+(cd go && go build -o /tmp/registry ./cmd/registry && PORT=9002 /tmp/registry) &
+sleep 1
+
+echo "=== [5/5] Conformance test each entity ==="
+for endpoint in \
+    "http://localhost:8001" \
+    "http://localhost:8002" \
+    "http://localhost:9001" \
+    "http://localhost:9002"; do
+    echo -n "  $endpoint: "
+    if python -m wcp_conformance --url "$endpoint" --quiet; then
+        echo "PASS"
+    else
+        echo "FAIL"
+        python -m wcp_conformance --url "$endpoint"
+    fi
+done
+
+echo
+echo "=== Cross-language federation ==="
+# Admit Python worlds into Go registry
+GADMIN="go-admin-$(head -c4 /dev/urandom | xxd -p)"
+curl -s -X POST http://localhost:9002/petition \
+  -H 'Content-Type: application/json' \
+  -d "{\"petitioner_token\":\"$GADMIN\",\"petitioner_name\":\"admin\",\"passport_admissions\":[],\"message\":\"setup\"}" > /dev/null
+curl -s -X POST http://localhost:9002/act \
+  -H 'Content-Type: application/json' \
+  -d "{\"actor_token\":\"$GADMIN\",\"type\":\"multiverse.admit\",\"payload\":{\"entity_url\":\"http://localhost:8001\"}}"
+echo
+curl -s -X POST http://localhost:9002/act \
+  -H 'Content-Type: application/json' \
+  -d "{\"actor_token\":\"$GADMIN\",\"type\":\"multiverse.admit\",\"payload\":{\"entity_url\":\"http://localhost:8002\"}}"
+echo
+echo "=== Go Registry lists Python worlds: ==="
+curl -s http://localhost:9002/sub_entities | python -m json.tool | head -20

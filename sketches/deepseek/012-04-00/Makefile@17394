@@ -1,0 +1,40 @@
+.PHONY: help install test demo demo-unsigned fixture hf live preflight clean
+
+help:
+	@echo "Federation targets:"
+	@echo "  make install    — pip install dependencies"
+	@echo "  make test       — run all tests"
+	@echo "  make preflight  — check what HF models are available"
+	@echo "  make demo       — in-process, signed, three models (fast)"
+	@echo "  make fixture    — recorded real HF outputs (no model load)"
+	@echo "  make hf         — real HF models (requires transformers + torch)"
+	@echo "  make live       — HTTP + conformance + passport verify"
+	@echo "  make clean      — remove artifacts and __pycache__"
+
+preflight:
+	$(PYTHON) -c "from multiverse_c20 import preflight_check; \
+		r = preflight_check(); print(r.format()); \
+		exit(0 if r.any_usable_model else 1)"
+
+demo:
+	$(PYTHON) federation.py --mode demo
+
+demo-unsigned:
+	$(PYTHON) federation.py --mode demo --no-signed
+
+fixture:
+	$(PYTHON) federation.py --mode fixture
+
+hf:
+	$(PYTHON) federation.py --mode hf
+
+live:
+	$(PYTHON) federation.py --mode live
+
+test:
+	$(PYTHON) -m pytest -v --tb=short \
+		multiverse_c*_test.py wcp_conformance*_test.py federation_test.py
+
+clean:
+	rm -rf $(ARTIFACTS) __pycache__ */__pycache__
+	@echo "Cleaned."

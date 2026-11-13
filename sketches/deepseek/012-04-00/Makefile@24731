@@ -1,0 +1,3 @@
+.PHONY: dag-demo
+dag-demo:
+	$(PYTHON) -c "from multiverse_c27 import demo; demo(artifact_dir='artifacts')"

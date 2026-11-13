@@ -1,0 +1,3 @@
+.PHONY: provenance
+provenance:
+	$(PYTHON) -m multiverse_c21

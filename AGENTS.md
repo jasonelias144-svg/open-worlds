@@ -28,7 +28,8 @@ every pull request before it merges (P4). Intent questions go to the founder (P5
 - **Test:** `python3 -m unittest discover -s tests -t .` (must pass before a
   pull request is marked ready)
 - **Other checks:** CI also checks the chemistry against RDKit
-  (`tests/test_chem_rdkit.py`)
+  (`tests/test_chem_rdkit.py`), and runs the sketches' own tests in a job
+  of their own (`sketches/README.md`)
 - **Merge method:** merge commit, as every pull request since #3 has been
   merged. It keeps the commits that review records name (P4), which a
   squash would drop from `main`'s history.
@@ -52,10 +53,18 @@ every pull request before it merges (P4). Intent questions go to the founder (P5
   output is never reported as a result.
 - **Outside agents run in sandboxes.** Agents we didn't write, and agents that
   rewrite their own code, never run in the kernel's process.
+- **The sketches stay apart.** `sketches/` keeps the founder's
+  conversation records and DeepSeek's code from them, as written
+  (`sketches/README.md`). Nothing outside `sketches/` imports from it. Its
+  code changes only in small fixes listed in `sketches/INDEX.md`, which is
+  also the one place that says where the sketches and the course meet.
 
 ## Always
 
 - Say who made each change: `Made-by: <name> (AI|human)` in commits, and the
   "Made by" field in pull requests (P3).
-- No secrets or personal data anywhere in the repository (P8).
+- No secrets or personal data anywhere in the repository (P8). The one
+  exception: the founder may be named by first name, as the founder
+  decided (2026-11-13). Anything more personal goes to the founder before
+  it goes in.
 - Report outcomes honestly: what you checked, and what you did not.

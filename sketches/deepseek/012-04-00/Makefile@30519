@@ -1,0 +1,3 @@
+.PHONY: leave-demo
+leave-demo:
+	$(PYTHON) -c "from multiverse_c33 import demo; demo(artifact_dir='artifacts')"

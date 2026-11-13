@@ -33,3 +33,23 @@ jobs:
       - run: python -m unittest tests.test_chem_rdkit -v
         env:
           OPEN_WORLDS_REQUIRE_RDKIT: "1"
+  sketches:
+    # DeepSeek's sketch code, kept as a record (sketches/README.md), in a
+    # job of its own: open-worlds never imports it, and its results are
+    # never mixed with open-worlds' own. Checks that the code matches the
+    # record (apart from changes INDEX.md lists), and that exactly the
+    # tests in known-failures.txt fail.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -r sketches/requirements.txt
+      - run: >-
+          python sketches/tools/extract.py check
+          sketches/records/012-04-00-DPSK-Patterns_Multiverses.txt
+          sketches/tools/names-012-04-00.json
+          sketches/deepseek/012-04-00
+      - run: python -m pytest -q
+        working-directory: sketches/deepseek/012-04-00

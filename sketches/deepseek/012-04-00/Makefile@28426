@@ -1,0 +1,10 @@
+.PHONY: signed-verdict-demo
+signed-verdict-demo:
+	$(PYTHON) -c "\
+from multiverse_c1 import create_identity; \
+from multiverse_c13 import KeyPair; \
+from multiverse_c31 import FederationVerdict, sign_federation_verdict; \
+kp = KeyPair.generate(); signer = create_identity('Demo Verifier'); \
+v = FederationVerdict(True, True, True, 1, True, 'aa'*32, 'bb'*32); \
+s = sign_federation_verdict(v, kp, signer); \
+print(s.to_dict())"
