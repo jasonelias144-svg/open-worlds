@@ -464,11 +464,16 @@ What it doesn't do yet, said plainly:
   is readable by its owner only, is written whole or not at all, and
   never replaces an existing file unless asked: losing a key file loses
   the key.
-- **A changed key file is refused.** AES-CTR has no check of its own: a
-  flipped bit of the encrypted secret would decrypt to another secret,
-  and load, silently, as another key. The key loaded is checked against
-  the public key the file holds in the clear. (The independent re-review
-  of #23 found this.)
+- **A key file changed without the passphrase never loads as another
+  key.** AES-CTR has no check of its own: a flipped bit of the encrypted
+  secret would decrypt to another secret, and load, silently, as another
+  key. The key loaded is checked against the public key the file holds
+  in the clear. (The independent re-review of #23 found this.) A whole
+  other key file made with the same passphrase does load, as that key:
+  use a different passphrase for each key, or check the loaded token
+  against the one you expect. A file asking for more than 1,024 rounds
+  (16 times what `save_key` writes) is refused at once, instead of
+  taking hours to fail.
 - **Why not PKCS12.** The first version saved PKCS12 with 600,000 rounds
   of PBKDF2 for the key, but PKCS12's integrity check takes the same
   passphrase through only 2,048 rounds, and anyone with the file can
