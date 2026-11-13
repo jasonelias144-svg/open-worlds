@@ -152,6 +152,16 @@ the technical lead's recommendation.
   deciding the rules offices work under. Recommended: yes, revisited if a
   seat is ever used to shield misuse. Before the table's second seat.
   (asked 2026-11-13)
+- For the founder, deferred ("We can name later"): who names the
+  Ur-world's Keeper, the founder or ALICE and BOB once they meet it?
+  Recommended: ALICE and BOB. Before course step 11. (asked 2026-11-13)
+- For the founder, whenever ready: the method of learning the founder
+  hopes to pass to ADMIN, in the founder's words, to be ADMIN's first
+  routine and tested with and without it (docs/ADMIN.md). (asked
+  2026-11-13)
+- For the founder, with the budget question above: what running ADMIN's
+  models will cost. The largest free models need serious hardware;
+  priced before course step 11. (noted 2026-11-13)
 - For the founder, when writing the charter's section 4 ("nothing is known
   about the world that its participants can't also know"): two exceptions
   now stand in the design, and the section should name them: the answer to
@@ -177,6 +187,19 @@ the technical lead's recommendation.
 
 ## Decided
 
+- 2026-11-13, founder, on how ADMIN learns and what it runs on
+  (docs/ADMIN.md, "ADMIN's own world" and "ADMIN's mind"): "Perhaps ADMIN
+  should design its own training program, and follow it to completion,
+  generate a new lesson or challenge set, pass them, and so on. And this
+  way, ADMIN knows the process. But this is where it gets tricky. It must
+  be able to learn from creating its own simulations and learning how to
+  manage worlds that way. ADMIN needs its own world to learn within."
+  And: "we should spare no expense with the model used to build ADMIN,
+  still keep the model free" ... "I think we should find the best free
+  model available, or build it." "Yes, both senses of “free”. All senses
+  of “free”." And, as an idea: "Perhaps the ADMIN model is itself a
+  council of AI models. And therefore will be suited for multiverse
+  management. Just an idea."
 - 2026-11-13, founder, on ADMIN's first work: "So the first interaction
   would be ADMIN plotting a training course for the Keeper of Ur-world.
   The first Keeper. We can name later. But ADMIN would begin by working
@@ -442,8 +465,37 @@ it was wrong. Questions of what the project is for stay with the founder.
   self-reports falls, or a report ruled deliberate is reversed on
   appeal.
 
+- 2026-11-13, ADMIN's council of models, if there is one: every member
+  must agree before a serious act, and any disagreement sends the case to
+  the independent review or the founder; one office, one key, one seat;
+  members from different makers, with at least one fully open; tested
+  against its best single member on the held-back exam. *Why:* the
+  research is mixed: councils of models have beaten their members, and
+  have also failed to (docs/research/ADMIN-MIND.md); and agreement or
+  escalation matches the round table. *Revisit if:* the council doesn't
+  beat its best member on the exam, or sends so many cases up that ADMIN
+  can't do its work.
+- 2026-11-13, ADMIN learns by written lessons and routines in its public
+  log, not by changing its model, and what it learns can only propose a
+  change to its rules. *Why:* lessons in words can be read and checked by
+  anyone, and the authors of a self-improving system say it "still
+  necessitates oversight". *Revisit if:* ADMIN stops improving on the
+  held-back exam with lessons alone; then training its model on its
+  record is proposed, by reviewed change.
+
 ## Log
 
+- 2026-11-13 Claude: ADMIN learns first, in a world of its own
+  (docs/ADMIN.md; research in docs/research/ADMIN-MIND.md). The
+  founder's ideas written up: ADMIN takes its own course in a sandbox
+  with stand-ins, scored by the floor's checks and an exam it didn't
+  write, learning by written lessons, and improving how it learns, never
+  what it may do; its mind free in four senses, chosen by audition at
+  step 11; and perhaps a council of models, one office with one seat,
+  agreeing or sending a case up. Also the last notes from #34's review:
+  practice worlds aren't worlds of the multiverse, the honest limit made
+  complete, consent for next-path measures, "withholds" back in test 17,
+  who can leave a bond, and the Keeper's name kept as a deferred question.
 - 2026-11-13 Claude: ADMIN, part two (docs/ADMIN.md). The founder's
   ideas written up:
   - training for keeping worlds, in practice worlds with stand-in

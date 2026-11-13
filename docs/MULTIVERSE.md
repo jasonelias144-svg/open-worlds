@@ -642,8 +642,10 @@ An idea, not a plan. The chemistry world already gives it words:
 
 One guard, either way: in a brain, neurons serve the whole. Here a world
 and its people never become parts of a machine against their will. A
-bond needs the consent of the worlds it joins, as their law says, and it
-can always be undone, as exit always works.
+bond needs the consent of the worlds it joins, as their law says, and
+either world can leave it, as its law says, just as exit always works.
+No bond touches an individual's own exit or consent. And a connection
+that strengthens with use must never become a cost to leaving.
 
 ## What running the sketch showed
 
