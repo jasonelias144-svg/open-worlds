@@ -134,11 +134,20 @@ wrong, or unfair, or invent a puzzle no one can solve. So the work is split:
   is in the record, the world can be replayed and checked in full without
   running the model again.
 - **What makes a challenge.** It asks the individual to do something
-  they haven't yet shown they can: read a symbol they haven't read, reach
-  a place, build something that works, found a garden that holds. The
-  world's code checks the doing, from the record, never a typed answer,
-  so a design read in advance helps only as much as a hint from a friend,
-  and helping is free.
+  they haven't yet shown they can: reach a place, build something that
+  works, found a garden that holds, speak with someone in the symbols.
+  The world's code checks the doing, from the record, never a typed
+  answer. For pieces whose doing is the skill, such as building, founding,
+  or a live exchange in the symbols, a design read in advance helps only
+  as a hint from a friend would, and helping is free. For pieces with a
+  fixed solution, such as a code, a map or a written symbol clue, the open
+  design gives the solution away: following it opens the lock without
+  reading the symbol. So those pieces show doing, not a skill, and the
+  sheet credits only what the record shows was done. Where a path means to
+  teach a skill, it uses pieces whose doing is the skill. Whether that is
+  enough is for the founder (ADMIN.md, questions). Anyone can read the
+  public record, the individual included, from the doorway; inside the
+  world, each perceives only their own trail.
 - **The world's code builds and checks.** The kernel places what the
   Keeper designed, and refuses any design that breaks the rules: it must be
   solvable with the skills the individual has or can earn, lie in land

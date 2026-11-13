@@ -129,8 +129,12 @@ founder ([ADMIN.md](../ADMIN.md)).
   militaire", *Journal des sciences militaires*, January and February
   1883. Its second principle, in Fabien Petitcolas's English rendering:
   "The system must not require secrecy and can be stolen by the enemy
-  without causing trouble"; that is, "security must lie in the choice of
-  key" ([Petitcolas](https://www.petitcolas.net/kerckhoffs/index.html)).
+  without causing trouble"; as Petitcolas sums the principles up,
+  "security must lie in the choice of key"
+  ([Petitcolas](https://www.petitcolas.net/kerckhoffs/index.html)). The
+  page adds that this "does not necessarily implies that the method
+  should be public": publishing everything ADMIN does rests on the
+  founder's accountability, not on Kerckhoffs.
 - **Written reasoning isn't always the reason.** Turpin and others
   (2023): "CoT explanations can systematically misrepresent the true
   reason for a model's prediction", and "can be plausible yet misleading,

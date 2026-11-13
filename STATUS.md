@@ -164,6 +164,16 @@ the technical lead's recommendation.
   the code role and Keepers set, alongside its own, and declines one
   only with its reason logged. Before course step 11 (docs/ADMIN.md).
   (asked 2026-11-13)
+- For the founder: with nothing hidden, a code, a map or a written
+  symbol clue can be done by following its public design. Is it enough
+  that such pieces show doing, not a skill, with the sheet crediting only
+  what was done, and paths that mean to teach a skill using pieces whose
+  doing is the skill? Recommended: yes. Before course step 11
+  (docs/WORLD-KEY.md, docs/ADMIN.md). (asked 2026-11-13)
+- For the founder: may someone who complains to ADMIN about a Keeper ask
+  for their name to be withheld from that Keeper until the ruling,
+  recorded as withheld and published with the ruling? Recommended: yes.
+  Before course step 11 (docs/ADMIN.md). (asked 2026-11-13)
 - For the founder, deferred ("We can name later"): who names the
   Ur-world's Keeper, the founder or ALICE and BOB once they meet it?
   Recommended: ALICE and BOB. Before course step 11. (asked 2026-11-13)
@@ -543,7 +553,8 @@ it was wrong. Questions of what the project is for stay with the founder.
   which took a page of rules to guard. Without the gate, the reason is
   gone, and no individual is test material. *Revisit if:* Keepers who
   earned the key keep real worlds less fairly than those who didn't, by
-  test 9.
+  test 9, or a holder of the admin-key breaches the floor in a real
+  world.
 
 ## Log
 

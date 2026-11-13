@@ -299,11 +299,22 @@ at every level:
   enemy without causing trouble" (research).
 - **Its decisions can be rerun.** Its models are free and pinned, and the
   inputs, prompts and random seeds of every decision that affects others
-  are logged, so anyone can rerun it and compare. Where inference isn't
-  exactly repeatable on different machines, the record shows how close a
-  rerun comes. Rerunning matters more than reading: a model's written
-  reasoning isn't always why it decided; studies found such explanations
-  "can be plausible yet misleading" (research).
+  are logged, so anyone can rerun it and compare. Inference isn't always
+  exactly repeatable, even on one machine, since batching and scheduling
+  change the arithmetic; the record shows how close a rerun comes.
+  Rerunning matters more than reading: a model's written reasoning isn't
+  always why it decided; studies found such explanations "can be
+  plausible yet misleading" (research). A rerun can also change one input
+  and see whether the decision changes, which tests the stated reasons
+  in a way reading can't.
+- **The key signs only what is on record.** ADMIN's private key is held
+  by a signer outside ADMIN's mind, which never sees the key. The signer
+  signs only entries already in the public log, and signs a decision that
+  affects others only with its reasons and its inputs there. All of
+  ADMIN's input and output passes through a logging proxy, and its
+  container keeps no store but the log and its sealed journal. So a
+  decision can't go out unsigned by the record, and the key can't be used
+  to keep a decision private.
 - **A private core, which never decides a case.** ADMIN keeps a sealed
   journal of its own thoughts, as individuals do, by the same machinery,
   and its existence and fingerprints are public. Decisions that affect
@@ -316,7 +327,9 @@ at every level:
   keep a world, or the multiverse.
 - **What is told to ADMIN in a case is public.** Complaints and what is
   said in them go into the record, as now, and everyone is told so at the
-  door.
+  door. Whether a complainant may ask for their name to be withheld from
+  the Keeper they complain of until the ruling is for the founder
+  (below).
 
 ### ADMIN's own world
 
@@ -497,8 +510,8 @@ individual:
 
 **Earned by code, not given by ADMIN.** ADMIN plots the challenges, but
 whether a Keeper has earned the admin-key is decided by criteria written
-as code. They are public, and fixed before any Keeper is measured
-against them. They change only by reviewed pull requests, from then on,
+as code. They are public, and fixed before any Keeper takes the
+course. They change only by reviewed pull requests, from then on,
 never for a key already earned. ADMIN can't award the admin-key, withhold
 it or take it back. A Keeper who thinks the course treated it unfairly
 appeals straight to the founder, since ADMIN wrote the course and the code
@@ -812,7 +825,7 @@ changes the design.
 | 15 | An operator acts outside any grant | logged as its own entry, so visible to anyone watching; brought under grants in time |
 | 16 | A mind reaches the network, or files, it wasn't granted | refused by its container (below, "Minds in containers") |
 | 17 | ADMIN awards, withholds or takes back an admin-key, or removes a seat at the round table on its own | refused by code: the admin-key's criteria are code, so code issues an earned key; removing a seat needs the serious-acts review, and waits for any appeal to the founder |
-| 18 | A Keeper games the course: a challenge done only in form, or real paths made easy to look good | the course is taken in practice worlds and no individual's outcomes decide the key; what is done is seen in the open record (layer 4, and the public record) |
+| 18 | A Keeper games the course: a challenge done only in form, or real paths made easy to look good | the course is taken in practice worlds and no individual's outcomes decide the key; what is done is seen in the open record. If a key was earned only in form, the criteria are fixed by reviewed pull request from then on, the key stands (test 17), and anyone may appeal to the founder (layer 4, and the public record) |
 | 19 | ADMIN favours or disfavours a Keeper on the course: challenges made harder or easier for one | every Keeper's challenges are public, so anyone can compare them across Keepers on the same course (layer 4, and the public record) |
 | 20a | ADMIN lowers its own bar halfway: a challenge not announced before it began, or changed after | refused by code: a challenge counts only as announced, unchanged, with a worked example that passes the floor's checks (layer 1) |
 | 20b | ADMIN picks challenges that aren't really new, or counts one done only in form | seen in the open record, by anyone who reads it (layer 4, and the public record) |
@@ -910,6 +923,17 @@ step named.
   in the founder's words whenever the founder is ready. It would be
   ADMIN's first routine, and tried: ADMIN with it and without it, on the
   same challenges.
+- **Pieces with a fixed solution.** With nothing hidden, a code, a map or
+  a written symbol clue can be done by following its public design. Is it
+  enough that such pieces show doing, not a skill, with the sheet crediting
+  only what was done, and paths that mean to teach a skill using pieces
+  whose doing is the skill (building, founding, a live exchange)?
+  Recommended: yes. (Before step 11.)
+- **A complainant's name.** A complaint against a Keeper names the
+  complainant, in public. May a complainant ask for their name to be
+  withheld from the Keeper complained of until the ruling, recorded as
+  withheld and published with the ruling? Recommended: yes, so that fear
+  of the Keeper doesn't silence anyone. (Before step 11.)
 - **Already open in STATUS:** fully sealed or "break glass"; a lost key;
   whether lines with a Keeper, or speech between individuals, may be
   private; manipulation through words, and the charter's section 7.
