@@ -112,7 +112,10 @@ tie falls either way. 25 test files don't load. Seventeen of those,
 components 44 to 63, fail only because DeepSeek gave each demo as a block
 of its own, after the module the tests import it from; the demos are kept
 as `multiverse_cNN.py@LINE` files until the first batch of fixes attaches
-them. The TypeScript and Go code isn't run here yet.
+them. Component 44's demo names itself, `multiverse_c44_demo.py`, but it
+is the same kind of fragment, with no imports of its own: it works only
+attached to `multiverse_c44.py`. The TypeScript and Go code isn't run
+here yet.
 
 All 210 code files in the record are written out. Fifteen code blocks in
 the record are examples in the prose, not files, and stay in the record:

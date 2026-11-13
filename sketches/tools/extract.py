@@ -13,7 +13,9 @@ to a folder, byte for byte. So anyone can check that the code in
 
 `check-all` runs `check` for each names file in SKETCHES/tools
 (names-*.json), using its "record" and "folder", both relative to
-SKETCHES. So a new record needs only its names file.
+SKETCHES. So a new record needs only its names file. It also fails if a
+folder in SKETCHES/deepseek isn't claimed by any names file, since its
+code would then be tested but never checked against a record.
 
 NAMES is a JSON file (see names-012-04-00.json): which blocks to take,
 and a name for blocks that don't state their own. A name used twice
@@ -162,14 +164,28 @@ def check_all(sketches: str) -> int:
         print("no names files")
         return 1
     worst = 0
+    claimed = set()
     for name in found:
         names_path = os.path.join(tools, name)
         with open(names_path, encoding="utf-8") as f:
             names = json.load(f)
         print(f"== {name}")
+        if not isinstance(names.get("record"), str) \
+                or not isinstance(names.get("folder"), str):
+            print(f'NAMES FILE: {name} needs "record" and "folder"')
+            worst = 1
+            continue
+        claimed.add(os.path.normpath(names["folder"]))
         worst = max(worst, check(os.path.join(sketches, names["record"]),
                                  names_path,
                                  os.path.join(sketches, names["folder"])))
+    code = os.path.join(sketches, "deepseek")
+    for entry in sorted(os.listdir(code)):
+        folder = os.path.normpath(os.path.join("deepseek", entry))
+        if os.path.isdir(os.path.join(sketches, folder)) \
+                and folder not in claimed:
+            print(f"NO NAMES FILE CLAIMS: {folder}")
+            worst = 1
     return worst
 
 

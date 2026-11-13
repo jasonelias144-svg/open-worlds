@@ -164,7 +164,14 @@ These apply to code that comes into open-worlds, not to the draft (see
 
 ## Sending a proposal
 
+- **Start each new conversation from this page.** Its link first, so the
+  draft builds on what is here now.
 - Name the commit you built on.
+- **Give every file whole, with its file name on the first line** (as a
+  comment or the start of its docstring), demonstrations and small
+  additions included. A block that says "add this after the module" can't
+  run until someone attaches it: in record 012-04-00, seventeen test files
+  couldn't load for that reason alone.
 - Send whole files or a diff, with their tests.
 - Say what you ran and what you didn't. If you couldn't run it, say so;
   that's fine.
@@ -192,3 +199,10 @@ page.
   every test's result; signatures rebuilt on a vetted library (step 2).
   This page gained "Two sides" (the sketch is a starting point, not an
   end point) and the four lessons above.
+- 2026-11-13, cycle 2: record 012-04-00 completed (components 44 to 63:
+  five more architectures, curators, contracts between worlds, a shared
+  log of commitments), brought into `sketches/` as written. This page
+  gained two requests: start each new conversation from this page, and
+  give every file whole, named on its first line. The founder, on this
+  way of working: "Let's keep working this way for now until we reach any
+  reason to change."
