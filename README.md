@@ -54,6 +54,8 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
   mind is told, and how information moves.
 - [docs/WORLD-KEY.md](docs/WORLD-KEY.md): what there is to do in the
   Ur-world: a purpose, a tour, and the hunt for the world-key.
+- [docs/ADMIN.md](docs/ADMIN.md): what the multiverse must preserve, who
+  keeps each world, and ADMIN, the Keeper of the multiverse.
 - [rust/](rust/README.md): the worlds in Rust: the Ur-world, and the public
   record, checked across languages through shared test vectors
   ([vectors/](vectors/README.md)).

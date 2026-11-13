@@ -114,9 +114,12 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
 1. **The design pages.** [MINDS.md](MINDS.md): the parts of an
    individual, the layers of what a mind is told, how information moves,
    and where everything lives. [WORLD-KEY.md](WORLD-KEY.md): the purpose,
-   the tour, and the hunt for the world-key. The research behind them.
+   the tour, and the hunt for the world-key. [ADMIN.md](ADMIN.md): what
+   the multiverse must preserve, who keeps each world, and ADMIN, the
+   Keeper of the multiverse. The research behind them.
    *Borrowing:* the game industry's split of controller, body and saved
-   data; characters built from components.
+   data; characters built from components; for ADMIN, admission control,
+   capabilities, Certificate Transparency and Ostrom's principles.
 2. **Formats that last.** A precise, versioned definition of each record:
    identity, birth record, mind record, journal entry, routine, sheet,
    avatar, and skill attestation. Test vectors keep Rust and Python in
@@ -126,20 +129,23 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    sealing, and the Noise protocol framework for a private line. Also the
    commitments that hold back a challenge's answer: a random value of at
    least 128 bits, derived for each challenge, over JSON written by RFC
-   8785.
+   8785. And for ADMIN, the formats of a grant and of the multiverse log
+   (UCAN and Certificate Transparency to check).
 3. **Keys and identities, for them and for the world.** A private
    repository of the project for the private halves; ALICE's and BOB's
    signing keys, keys for sealing things to them, and the keys to their
    sealed selves; birth records and public identity files. The Ur-world's
-   own keys: one to sign its log, one for sealing things to it. Leaving
-   and coming back: whoever leaves can return, proving with their key that
-   they are the same individual. *Borrowing:* standard key
-   handling, private halves kept apart and public halves published.
+   own keys: one to sign its log, one for sealing things to it; and
+   ADMIN's. Leaving and coming back: whoever leaves can return, proving
+   with their key that they are the same individual. *Borrowing:*
+   standard key handling, private halves kept apart and public halves
+   published.
 4. **The kernel as entities and components.** Inhabitants, their bodies,
    stones, tablets and seeds become entities with parts; every change is
    a named, logged effect; tags allow or block actions. The Keeper's
-   administrative actions, and the checks on what it designs, are fixed
-   here, so its interface is settled early. *Borrowing:* the
+   administrative actions, as grants, and the checks on what it designs,
+   are fixed here, so its interface is settled early; so are ADMIN's
+   checks as code. *Borrowing:* the
    entity-component pattern (Bevy's), and Unreal's effects and tags.
 5. **Things, skills and the sheet.** Carrying, reading, `lift` as the
    first skill granted by a find, practice and rust, a log of what is
@@ -149,8 +155,11 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
 6. **The first room, end to end.** The tour, guided by a simple scripted
    Keeper; the stone by the spring, the first clue, `lift` learned, the
    first fact known; playable by a scripted mind and by a model. The
-   prompt's framing becomes part of the law, sent by the world.
-   *Borrowing:* the vertical slice.
+   prompt's framing becomes part of the law, sent by the world. Minds run
+   in containers, with no network, and a test that a removed mind's
+   container stops ([ADMIN.md](ADMIN.md), "Minds in containers").
+   *Borrowing:* the vertical slice; OCI containers, with gVisor for minds
+   we didn't write.
 7. **Memory, version 1, sealed.** Journal entries tied to ticks in the
    log; recall by recency, importance and relevance; reflections; held
    thoughts in a few slots; a library of routines they write. All of it
@@ -160,13 +169,15 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    guarding against their known failures.
 8. **Experiment 002, the audition.** Candidate sizes of Qwen 3.5 and OLMo
    3 play the first room, with and without memory, planned first. It
-   chooses ALICE's and BOB's sizes, and tests whether memory helps.
+   chooses ALICE's and BOB's sizes, and tests whether memory helps. It
+   runs in images pinned by digest, so anyone can repeat it.
    *Borrowing:* pre-registration; evaluation suites.
 9. **ALICE's and BOB's first life.** Their minds, their birth, their
    first unscripted words; legends pages begin. *Borrowing:* Dwarf
    Fortress's Legends mode.
-10. **Back to DeepSeek.** The re-orientation page in
-    [COLLABORATING.md](COLLABORATING.md), pointing to the records;
+10. **Back to DeepSeek.** First, a development container, so anyone can
+    pick the project up and work in the same setup. The re-orientation
+    page in [COLLABORATING.md](COLLABORATING.md), pointing to the records;
     DeepSeek designs rooms, clues, symbols and the laws of new worlds,
     inside the framework built in steps 1 to 9.
 11. **The hunt, the world-key, and the AI Keeper.** The Keeper builds each
@@ -175,14 +186,16 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
     maps, codes and stones; the pieces of a world; the world-key, a signed
     right to found, sealed for its earner when the path is done; the open
     line to the Keeper for those who hold its world-key; the workbench.
-    *Borrowing:* Tunic,
-    The Witness and Outer Wilds for teaching without words; Minecraft's
-    advancements for unlocks; AI directors and intelligent tutors, with
-    TextWorld and knowledge tracing to learn from, for the Keeper.
-12. **Founding worlds, and doors.** Child worlds, each with a new key of
-    its own and a signed birth record, doors between them, travel with
-    passports, founding together, and the world protocol in Rust. The
-    open line reaches a Keeper from another world, and a founded world's
+    *Borrowing:* Tunic, The Witness and Outer Wilds for teaching without
+    words; Minecraft's advancements for unlocks; AI directors and
+    intelligent tutors, with TextWorld and knowledge tracing to learn
+    from, for the Keeper.
+12. **Founding worlds, and doors.** First, before any second world
+    exists, ADMIN's judgment and the multiverse log. Then child worlds,
+    each with a new key of its own, a signed birth record, and a Keeper
+    chosen by its founders; doors between them, travel with passports,
+    founding together, and the world protocol in Rust. The open line
+    reaches a Keeper from another world, and a founded world's
     Keeper has a line to its parent's. *Borrowing:* our own protocol and
     passports, the open standards of step 2, and Matrix and Signal for the
     line.
@@ -192,6 +205,8 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
 Added one at a time, as steps are done:
 - Keepers talking to one another, by the rules proposed in
   [WORLD-KEY.md](WORLD-KEY.md);
+- the admin-key: a course for Keepers, plotted by ADMIN as Keepers plot
+  paths ([ADMIN.md](ADMIN.md)), after steps 11 and 12;
 - a window onto the worlds: a web viewer first, in Bevy, in the browser;
 - generator 2: land decided when first seen;
 - a storyteller for each world: paced events and visitors;

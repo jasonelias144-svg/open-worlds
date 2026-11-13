@@ -18,7 +18,9 @@ respect one another's freedom, with full transparency and exit at any time
   is in: [docs/MINDS.md](docs/MINDS.md) (what an individual is made of,
   what a mind is told, how information moves, where everything lives) and
   [docs/WORLD-KEY.md](docs/WORLD-KEY.md) (the purpose, the tour, and the
-  hunt for the world-key), with the research behind them. Next: step 2,
+  hunt for the world-key), with the research behind them. Its second part,
+  [docs/ADMIN.md](docs/ADMIN.md): what the multiverse must preserve, who
+  keeps each world, and ADMIN, the Keeper of the multiverse. Next: step 2,
   formats that last.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
   (#29), and experiment 001, the first unscripted minds
@@ -106,6 +108,26 @@ and for the founder's conversations with DeepSeek, is in
 - For the founder: may two individuals speak privately to each other, now
   that each will have a key for sealing? Needed by course step 3.
   (asked 2026-11-13)
+- For the founder: can the project end a world, or the multiverse, and
+  what does it owe the inhabitants if it does? Recommended: a world may
+  end, but its record never does; sealed selves stay sealed; keys stay
+  their holders'. Needed before course step 12 (docs/ADMIN.md).
+  (asked 2026-11-13)
+- For the founder: should ADMIN's serious acts (against an individual, or
+  removing a Keeper) have a check outside the code role: the founder, or
+  a person the founder names? Recommended: yes. Before course step 12
+  (docs/ADMIN.md). (asked 2026-11-13)
+- For the founder: is the admin-key ever to be required to keep another's
+  world, or only a mark of readiness the world's founders may weigh?
+  Recommended: a mark, not a gate, so the three choices decided stand as
+  decided (docs/ADMIN.md). (asked 2026-11-13)
+- For the founder: should the project keep the keys to sealed selves at
+  all? "Fully sealed" is a technical guarantee only if it doesn't; then a
+  lost key is a lost self. Before course step 3. (asked 2026-11-13)
+- For the founder: who designates the roles if the founder can't? Every
+  other office has a succession. Recommended: the founder names a
+  successor, or a process, recorded where the roles are. (asked
+  2026-11-13)
 - For the founder, when writing the charter's section 4 ("nothing is known
   about the world that its participants can't also know"): two exceptions
   now stand in the design, and the section should name them: the answer to
@@ -287,9 +309,44 @@ and for the founder's conversations with DeepSeek, is in
     but to a conversation with the world".
   - asked, not yet decided: Keepers of different worlds talking to one
     another; rules proposed in docs/WORLD-KEY.md.
+  - who keeps a world is its founders' choice: "the creator of a world has
+    the opportunity to become the Keeper of that world, to allow the
+    multiverse to assign one, or choose an individual that wants to be a
+    Keeper and hand them the 'throne'."
+  - ADMIN, the Keeper of the multiverse, "a multiverse admin Keeper that
+    regulates such behavior", answering to the role in charge of the
+    code: "The one in charge of code is in charge of ADMIN." Its
+    architecture is the technical lead's to design, and to change when it
+    fails: "We need not set things in stone now, but they should be
+    strong enough to stand the test of time." Recorded in AGENTS.md and
+    docs/ADMIN.md.
+  - an admin-key for Keepers: "a course for Keepers to follow for an
+    admin-key, just to add another layer to the game. And ADMIN plots the
+    course in the same way each Keeper does."
+  - containers: "Let's keep with the container idea, it fits a need
+    perfectly." Minds run in OCI containers; images pinned by digest
+    (docs/ADMIN.md, "Minds in containers").
 
 ## Log
 
+- 2026-11-13 Claude: course step 1, part two: ADMIN
+  ([docs/ADMIN.md](docs/ADMIN.md)). Ten things the multiverse must
+  preserve, from exit and the record to continuity and the power to
+  correct mistakes, each with what could break it and what guards it.
+  The Keeper's office: who keeps a new world, how the office changes
+  hands, and its memory staying with the office. ADMIN, the Keeper of
+  the multiverse, answering to the technical lead's role by the
+  founder's designation: rules as code first, powers as narrow grants, a
+  multiverse log anyone can audit, and judgment last, reviewed and open
+  to appeal. Ten misbehaviours it must stop or catch, written before it
+  is built. The research behind it:
+  [docs/research/OVERSIGHT.md](docs/research/OVERSIGHT.md). After the
+  independent review: the sealed self against the project is a
+  commitment, not a guarantee, until the founder decides; signed heads
+  catch a log cut short; an appeal against the code role's own act goes
+  straight to the founder; the operator's hand and kernel changes stand
+  outside grants, guarded by the protected freedoms' tests. Also the
+  admin-key, a course for Keepers, and minds in containers.
 - 2026-11-13 Claude: course step 1, the design pages. The course is set
   anew ([docs/COURSE.md](docs/COURSE.md)), with the first course's record
   kept. [docs/MINDS.md](docs/MINDS.md): the eight parts of an individual,

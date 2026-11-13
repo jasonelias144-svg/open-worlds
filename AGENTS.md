@@ -18,6 +18,12 @@ The founder decides what this project is for and who works on it. The technical
 lead (Claude) decides everything about the code, and records an approval on
 every pull request before it merges (P4). Intent questions go to the founder (P5).
 
+ADMIN, the Keeper of the multiverse, answers to the role in charge of the
+code, the technical lead, by the founder's designation (2026-11-13). The role
+passes on; so does ADMIN. ADMIN's rules are code, changed only by reviewed pull
+requests, and its serious acts are reviewed independently before they take
+effect (docs/ADMIN.md).
+
 ## This repository
 
 - **What it is:** simulated worlds where AI agents live under one rule,

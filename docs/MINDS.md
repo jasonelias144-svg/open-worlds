@@ -63,7 +63,7 @@ body.
 | Part | What it holds | Written by | Lasts |
 |---|---|---|---|
 | **Identity** | name, public keys (one for signing, one for sealing things to them), birth record, key successions | the world at birth, then their own key | for life |
-| **Mind record** | each engine they have run on: model, revision, file hashes, settings, chat template | the project | for life; the engine itself is replaceable |
+| **Mind record** | each engine they have run on: model, revision, file hashes, settings, chat template, and the container image it ran in, by digest | the project | for life; the engine itself is replaceable |
 | **Self** (sealed) | journal, reasoning, held thoughts, private notes, routines, their own aims, a note of who they are | the individual alone; only they can read it | grows for life |
 | **Sheet** | skills (with practice and rust), things carried, knowledge found, milestones, experience | granted by worlds, plus routines its writer chose to show; rebuilt from the logs | grows for life |
 | **Avatars** | one body for each world they are in: where it is, what it holds there, what others see of it | that world | one visit |
@@ -180,6 +180,7 @@ find out ([WORLD-KEY.md](WORLD-KEY.md)).
 | Individual to Keeper | What they do and say, as anyone outside could observe, and whatever they choose to share. With the world-key, also the open line, written by an action. Never their sealed self. | the world's log; for the line, the logs of the worlds where it is written and read |
 | Keeper and Keeper | Craft, never files about individuals; public by default (proposed: [WORLD-KEY.md](WORLD-KEY.md), "Keepers talking to one another"). | both worlds' logs |
 | Operators to world | The operator's hand, and new versions of the law. | the world's log |
+| ADMIN and the worlds | Checks before an act that touches the multiverse; grants and revocations; complaints and rulings ([ADMIN.md](ADMIN.md)). Never a sealed self, never files about an individual. | the multiverse log |
 | People and individuals | Through the world, as visitors. No way in through a mind's prompt. | the world's log |
 
 Four principles hold it together:
