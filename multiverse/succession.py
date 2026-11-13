@@ -38,7 +38,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import datetime, timezone
-from typing import Dict, Iterable, List, Optional, Tuple
+from collections import ChainMap
+from typing import Dict, Iterable, List, MutableMapping, Optional, Tuple
 
 from .identity import Signer, signature_valid, token_problem
 from .protocol import PROTOCOL_VERSION
@@ -132,17 +133,20 @@ class Lineage:
     instead of taking it."""
 
     def __init__(self, successions: Iterable[Succession] = ()):
-        self._next: Dict[Tuple[str, str], Succession] = {}
-        self._before: Dict[Tuple[str, str], str] = {}
+        self._next: MutableMapping[Tuple[str, str], Succession] = {}
+        self._before: MutableMapping[Tuple[str, str], str] = {}
         for s in successions:
             self.add(s)
 
-    def copy(self) -> "Lineage":
-        """A copy to add to, without checking again the successions this
-        one already took (each was checked when it was taken)."""
+    def overlay(self) -> "Lineage":
+        """A lineage to add to that reads this one in place and keeps what
+        is added to itself: this one doesn't change, nothing is copied,
+        and nothing it already took is checked again (each was checked
+        when it was taken). So checking a passport against what a world
+        knows costs the same however much the world knows."""
         other = Lineage()
-        other._next = dict(self._next)
-        other._before = dict(self._before)
+        other._next = ChainMap({}, self._next)
+        other._before = ChainMap({}, self._before)
         return other
 
     def add(self, s: Succession) -> str:

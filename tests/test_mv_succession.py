@@ -22,12 +22,13 @@ from unittest import mock
 from multiverse.collaboration import (act_on_world, leave_world, make_client,
                                       petition_world)
 from multiverse.conformance import run_conformance
+from multiverse.entity import LINE_KEPT
 from multiverse.corridor_world import (CorridorWorld, CorridorWorldLaw,
                                        Door)
 from multiverse.identity import Identity, Individual, Signer
 from multiverse.passport import (Passport, from_dict, make_stamp, to_dict,
                                  verify_passport)
-from multiverse.poetry_world import PoetryWorld
+from multiverse.poetry_world import PoetryWorld, PoetryWorldLaw
 from multiverse.protocol import (Ack, Admission, Departure, Refusal,
                                  manifest_problem)
 from multiverse.succession import (Lineage, Succession, sign_over,
@@ -166,6 +167,22 @@ class TestLineage(unittest.TestCase):
         self.assertTrue(lineage.leads_to("", a, b))
         self.assertTrue(lineage.retired("", a) and lineage.retired("", b))
         self.assertEqual(lineage.earlier_keys("", a), [b])
+
+    def test_an_overlay_reads_in_place_and_keeps_its_own(self):
+        base = Lineage([self.ab])
+        over = base.overlay()
+        self.assertEqual(over.add(self.bc), "")
+        self.assertEqual(over.latest("", self.a.token), self.c.token)
+        self.assertIn("already signed over",
+                      over.add(sign_over(self.a, Signer())))
+        self.assertEqual(base.successions(), [self.ab])
+        self.assertIsNone(base.successor("", self.b.token))
+        # Nothing is copied: the overlay reads the base's own maps, so a
+        # check's cost doesn't grow with what the base holds.
+        self.assertIs(over._next.maps[-1], base._next)
+        self.assertIs(over._before.maps[-1], base._before)
+        base.add(sign_over(Signer(), Signer()))
+        self.assertEqual(len(over.successions()), 3)
 
     def test_unusable_ones_are_not_taken(self):
         lineage = Lineage([dataclasses.replace(self.ab, old_signature="")])
@@ -446,6 +463,63 @@ class TestAWorldsMemoryStaysSmall(unittest.TestCase):
                                       Admission)
                 self.assertEqual(poetry.known_keys()["world:other"],
                                  k3.token)
+
+    def long_line(self, n):
+        """An individual at the end of n keys, each signed over to the
+        next, and the passport that shows them."""
+        key = Individual("L")
+        passport = Passport(key.identity)
+        for _ in range(n):
+            new = Individual("L")
+            passport = passport.signed_over(sign_over(key, new))
+            key = new
+        return key, passport
+
+    def test_a_long_line_is_kept_only_to_its_newest_links(self):
+        # Found by the independent review of #24: a chain of throwaway
+        # keys was kept whole, so each petition could add any number.
+        for admitted in range(1, 4):
+            key, passport = self.long_line(3 * LINE_KEPT)
+            self.assertIsInstance(self.poetry.petition(
+                key.petition(self.m, passport.entries())), Admission)
+            kept = self.poetry.successions()
+            self.assertEqual(len(kept), admitted * LINE_KEPT)
+        self.assertLessEqual(set(passport.successions[-LINE_KEPT:]),
+                             set(kept))
+        self.assertTrue(self.poetry._lineage.retired(
+            "", passport.successions[-1].old))
+
+    def test_a_refused_petition_teaches_nothing(self):
+        full = PoetryWorld("world:full", "Full",
+                           law=PoetryWorldLaw(max_admitted=1))
+        full.know(self.other.manifest())
+        before = full.known_keys()["world:other"]
+        self.assertIsInstance(petition_world(make_client("Dee"), full),
+                              Admission)
+        alice = make_client("Alice")
+        alice.sign_over()
+        alice.passport = alice.passport.with_succession(
+            self.other.sign_over(Signer()))
+        self.assertIsInstance(petition_world(alice, full), Refusal)
+        self.assertEqual(full.successions(), [])
+        self.assertEqual(full.known_keys()["world:other"], before)
+
+    def test_a_known_worlds_past_shown_in_a_passport_is_kept(self):
+        # A world known by its new key: a passport showing how its old
+        # key led there teaches that, so stamps by the old key verify
+        # here later without it.
+        bob = make_client("Bob")
+        self.assertIsInstance(petition_world(bob, self.other), Admission)
+        leave_world(bob, self.other)
+        s = self.other.sign_over(Signer())
+        later = PoetryWorld("world:later", "Later")
+        later.know(self.other.manifest())
+        self.assertIsInstance(petition_world(bob, later), Refusal)
+        carol = make_client("Carol")
+        carol.passport = carol.passport.with_succession(s)
+        self.assertIsInstance(petition_world(carol, later), Admission)
+        self.assertIn(s, later.successions())
+        self.assertIsInstance(petition_world(bob, later), Admission)
 
     def test_a_petition_doesnt_check_known_successions_again(self):
         for _ in range(5):

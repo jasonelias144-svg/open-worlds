@@ -368,7 +368,7 @@ def verify_passport(passport: Passport,
 
     # The successions: the checker's own first, then the passport's.
     if type(successions) is Lineage:
-        lineage = successions.copy()
+        lineage = successions.overlay()
     else:
         lineage = Lineage(successions if type(successions) in (list, tuple)
                           else ())

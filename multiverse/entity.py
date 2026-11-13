@@ -44,6 +44,10 @@ from .succession import Lineage, Succession, sign_over
 
 # What every entity built on this module states in its law about the
 # requests it accepts: they are what petition, act and leave enforce.
+# How many links of an admitted petitioner's own line of keys a world
+# keeps: the newest, those that retire the keys most recently used.
+LINE_KEPT = 8
+
 SIGNED_REQUESTS_LAW = (
     f"- Protocol {PROTOCOL_VERSION}: every petition, act and leave must be "
     "signed by the key it names, for this world's id and key, with a "
@@ -164,13 +168,6 @@ class Entity:
                                 "Cannot admit: the passport has an entry "
                                 f"that doesn't verify: "
                                 f"{check.problems[0]}", "petition")
-        # Only what concerns this world: the petitioner's own line of
-        # keys, and successions on the line of a world it knows (its own
-        # past among them; `_learn` checks that). Anything else could be
-        # junk made to fill its memory.
-        self._learn((s for s in earlier.successions
-                     if type(s) is Succession
-                     and (s.of or s.old in check.earlier_keys)), shown=True)
         present = [k for k in check.earlier_keys if k in self._admitted]
         if present:
             return self._refuse(timestamp, token,
@@ -193,6 +190,15 @@ class Entity:
             return self._refuse(timestamp, token, f"Cannot admit: {problem}",
                                 "petition")
 
+        # Admitted. Only now, and only what concerns this world: the
+        # newest links of the petitioner's own line of keys (at most
+        # LINE_KEPT), and successions on the line of a world it knows
+        # (its own past among them; `_learn` checks that). Anything else
+        # could be junk made to fill its memory.
+        newest = set(check.earlier_keys[:LINE_KEPT])
+        self._learn((s for s in earlier.successions
+                     if type(s) is Succession
+                     and (s.of or s.old in newest)), shown=True)
         arrival = make_stamp(self._key, "arrival",
                              self._manifest.entity_id, token, timestamp)
         admission = Admission(entity_id=self._manifest.entity_id,

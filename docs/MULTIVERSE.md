@@ -565,15 +565,19 @@ What it doesn't do yet, said plainly:
 - **What a world has learned about successions is kept in memory.** A
   restarted world learns them again from the passports it is shown, or
   from `know_succession`. From a passport it keeps only what concerns
-  it: the petitioner's own line of keys, and successions on the line of
-  a world it knows. So successions made with throwaway keys can't fill
-  its memory, and those it keeps aren't checked again on each petition
-  (the independent review of #24 measured every junk-laden petition
-  making the next ones slower). Of its own successions, a world takes
-  from outside only its past (those that lead to its key now), so a
-  thief of its key can't stop it from signing over. A world does keep
-  something for each key that petitions it (the last number it saw),
-  as it did before this step.
+  it, and only once it has admitted the petitioner: the newest links of
+  the petitioner's own line of keys (at most `LINE_KEPT`, 8), and
+  successions on the line of a world it knows. So a world's memory still
+  grows with the keys it admits, by at most 8 successions each, as it
+  grows by the last request number it keeps for each key that petitions
+  it (as before this step). Throwaway keys can't make a single petition,
+  or a refused one, fill it. What it keeps isn't checked again, and a
+  petition's check reads it in place rather than copying it, so a
+  petition costs the same however much the world knows (the independent
+  reviews of #24 measured the cost growing, first with every junk-laden
+  petition, then with a copy on each). Of its own successions, a world
+  takes from outside only its past (those that lead to its key now), so
+  a thief of its key can't stop it from signing over.
 - **A door names the key its world had** when the corridor's law was
   written. A corridor that knows the world's succession still finds the
   door, but its published law shows the old key until the law changes
