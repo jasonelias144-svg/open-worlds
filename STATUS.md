@@ -118,6 +118,14 @@ and for the founder's conversations with DeepSeek, is in
   removing a Keeper) have a check outside the code role: the founder, or
   a person the founder names? Recommended: yes. Before course step 12
   (docs/ADMIN.md). (asked 2026-11-13)
+- For the founder: the sealed world-key. Python's `cryptography` can't
+  seal with a key made from the Ur-world's key and the earner's (HPKE's
+  Auth mode), as the founder proposed. Base mode seals with a one-time key
+  and the earner's, still "readable only by the individual", with the
+  Ur-world's signature inside saying who sealed it and naming the earner.
+  Recommended: base mode. The alternative keeps Auth mode, sealing in
+  Rust only or with a new Python library (docs/research/FORMATS.md).
+  (asked 2026-11-13)
 - For the founder: is the admin-key ever to be required to keep another's
   world, or only a mark of readiness the world's founders may weigh?
   Recommended: a mark, not a gate, so the three choices decided stand as
@@ -332,16 +340,19 @@ and for the founder's conversations with DeepSeek, is in
 
 - 2026-11-13 Claude: course step 2, part one: looking first
   ([docs/research/FORMATS.md](docs/research/FORMATS.md)). The JSON this
-  project already signs is written exactly as RFC 8785 writes it, in all
-  2,005 documents of a check kept with the note (`jcs_compare.py`), so
-  long as keys are ASCII and integers stay within 2^53 - 1; and our
-  Ed25519 signatures over it are what W3C's `eddsa-jcs-2022` signs.
-  Proposed: RFC 8785 for every new signed record; did:key for keys, with
-  an individual named by their birth key's; JSON Schema 2020-12; records
-  shaped like verifiable credentials without JSON-LD; HPKE's base mode
-  for sealing, with what is sealed signed first (Python's `cryptography`
-  has no Auth mode); HKDF for commitments; grants modelled on UCAN; signed
-  log heads; images named by digest.
+  project signs is written as RFC 8785 writes it, in all 2,005 documents
+  of a check kept with the note (`jcs_compare.py`), for documents with
+  ASCII keys, integers within 2^53 - 1, and no floats; floats are written
+  differently, and the chemistry world signs one today. W3C's
+  `eddsa-jcs-2022` canonicalizes to that form, but signs hashes of it with
+  a proof configuration, so our signatures are not that suite's.
+  Proposed: RFC 8785 for every new signed record, with ASCII keys, safe
+  integers and no floats; whether to sign the `eddsa-jcs-2022` way, for
+  step 2; did:key for keys, with an individual named by their birth
+  key's; JSON Schema 2020-12; records shaped like verifiable credentials
+  without JSON-LD; HKDF for commitments; grants modelled on UCAN; signed
+  log heads; images named by digest. Sealing with HPKE's base mode
+  (Python's `cryptography` has no Auth mode) is put to the founder.
 - 2026-11-13 Claude: course step 1, part two: ADMIN
   ([docs/ADMIN.md](docs/ADMIN.md)). Ten things the multiverse must
   preserve, from exit and the record to continuity and the power to

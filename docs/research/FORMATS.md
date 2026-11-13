@@ -24,50 +24,71 @@ with sorted keys and no spaces (`multiverse/identity.py`, `canonical`),
 and every world log is hashed the same way except that it escapes
 characters outside ASCII (`world/core.py`, `rust/world-log`).
 
-**Checked, by a script kept here** (`jcs_compare.py`, seed 1, with Trail
-of Bits' reference library `rfc8785` 0.1.4): of 2,005 documents with
-ASCII keys and integers within RFC 8785's range,
+**Checked, by a script kept here** (`jcs_compare.py`, seed 1, against
+Trail of Bits' implementation, `rfc8785` 0.1.4, importing our own
+`canonical`): of 2,005 documents with ASCII keys, integers within RFC
+8785's range, and no floats,
 
 - the form we sign equals RFC 8785 in all 2,005;
 - the form logs are hashed in equals it in 184, the ones with no
   character outside ASCII;
 - RFC 8785 refuses an integer beyond 2^53 - 1, which our logs accept (any
-  64-bit integer).
+  64-bit integer);
+- **floats differ:** of eight written each way, four come out differently
+  (`1.0` against `1`, `-0.0` against `0`, `1e-07` against `1e-7`, `1e+20`
+  against `100000000000000000000`), since RFC 8785 writes numbers as
+  JavaScript does.
 
-So the records we already sign are written exactly as RFC 8785 writes
-them, as long as keys are ASCII (RFC 8785 sorts by UTF-16 code units,
-Python by code points; they differ only for keys beyond the first 65,536
-characters) and integers stay within 2^53 - 1.
+So our form equals RFC 8785 only for documents whose keys are ASCII (RFC
+8785 sorts by UTF-16 code units, Python by code points; they differ for
+keys beyond the first 65,536 characters), whose integers stay within
+2^53 - 1, and which hold no floats. Not every record we sign today
+qualifies: the independent review found that the chemistry world's
+records of what was made carry its time as a float (`world_time`,
+`multiverse/chemistry_world.py`), and a world's signed "made" stamp
+commits to such a record's fingerprint (`thing_fingerprint`,
+`multiverse/passport.py`).
 
 **Libraries:** `rfc8785` for Python (Trail of Bits, Apache 2.0, 0.1.4,
 September 2024, no dependencies); `serde_jcs` for Rust (MIT or Apache 2.0,
 0.2.0, March 2026).
 
 **Proposed:** name RFC 8785 as the form of every new signed record, with
-two rules every format keeps: keys are ASCII, and integers stay within
-2^53 - 1 (larger values, such as a 64-bit seed, are written as strings).
-Logs keep their own form, which is versioned and checked by its own
-vectors; nothing old is rewritten.
+three rules every format keeps: keys are ASCII; integers stay within
+2^53 - 1 (larger values, such as a 64-bit seed, are written as strings);
+and no floats (a quantity with a fraction is written as an integer in a
+stated unit, or as a string). Records already signed, and logs, keep
+their own form, which is versioned and checked by its own vectors;
+nothing old is rewritten.
 
 ## Signatures on records
 
 **Verifiable Credential Data Integrity: the EdDSA cryptosuites,** a W3C
-Recommendation of 15 May 2025, defines `eddsa-jcs-2022`, which
-"canonicalizes the document using the JSON Canonicalization Scheme" and
-signs it "using the `Ed25519` variant (Pure EdDSA)"
+Recommendation of 15 May 2025, defines `eddsa-jcs-2022`, which "takes an
+input document, canonicalizes the document using the JSON Canonicalization
+Scheme", then hashes and signs the result with Ed25519, "using the
+`Ed25519` variant (Pure EdDSA)". What it signs is not the document
+itself: "Let hashData be the result of joining proofConfigHash (the first
+hash) with transformedDocumentHash (the second hash)", that is, a hash of
+a proof configuration followed by a hash of the document
 ([W3C](https://www.w3.org/TR/vc-di-eddsa/)).
 
-That is what this project already does: Ed25519 over sorted, compact JSON
-(course step 2 of the first course, `multiverse/ed25519.py`), which the
-check above shows is RFC 8785's form. **Proposed:** keep our signatures,
-and describe them as `eddsa-jcs-2022`'s canonical form, so that any tool
-that verifies that suite can check our records' bytes.
+This project signs differently: Ed25519 over the canonical bytes of the
+document itself, with no proof configuration (`multiverse/ed25519.py`).
+So our signed bytes are RFC 8785's form, within the bounds above, which is
+the form `eddsa-jcs-2022` canonicalizes to; but our signatures are not
+that suite's, and a tool that verifies it would refuse them.
+
+**Proposed:** step 2 decides whether new records sign the
+`eddsa-jcs-2022` way (a proof configuration, the two hashes, then
+Ed25519), so that standard tools can check them. Signatures already made
+stay as they are.
 
 ## Credentials
 
 **The Verifiable Credentials Data Model 2.0,** a W3C Recommendation of
-15 May 2025, defines a verifiable credential as "a tamper-evident
-credential whose authorship can be cryptographically verified", secured
+15 May 2025, defines a verifiable credential: "A tamper-evident credential
+whose authorship can be cryptographically verified", secured
 either by Data Integrity proofs, as above, or by JOSE and COSE
 ([W3C](https://www.w3.org/TR/vc-data-model-2.0/)).
 
@@ -105,7 +126,7 @@ there.
 2020-12! The previous version was 2019-09"
 ([json-schema.org](https://json-schema.org/specification)).
 
-**Libraries:** `jsonschema` for Python (MIT, 4.26.0, January 2026, "full
+**Libraries:** `jsonschema` for Python (MIT, 4.26.0, January 2026, "Full
 support for Draft 2020-12"); `jsonschema` for Rust (MIT, 0.61.2,
 November 2026).
 
@@ -128,16 +149,36 @@ key can open it.
   performed a paid audit of this crate"; Cloudflare reviewed version 0.8
   ([repository](https://github.com/rozbb/rust-hpke)).
 
-The design pages name HPKE's Auth mode for the sealed world-key, so that
-the box itself says the Ur-world sealed it. But the world-key inside is
-already signed by the Ur-world, so the signature says that, and base mode
-is enough to make the box "readable only by the individual", as the
-founder asked.
+The design pages name HPKE's Auth mode for the sealed world-key: the box
+is sealed with a key made from the Ur-world's key and the earner's, as the
+founder proposed ("generated from the individuals public key and the
+world public key"). Python's `cryptography` can't do that. Base mode can:
+a key made from a fresh one-time key and the earner's key, so the box is
+still "readable only by the individual", and the Ur-world's signature
+inside says who sealed it.
 
-**Proposed:** base mode, with DHKEM(X25519, HKDF-SHA256) and
+What base mode changes:
+
+- **The box no longer says who made it;** the signature inside does.
+- **So the signed content must name its recipient** (the credential's
+  subject, as the earner's did:key), and whoever opens it checks that it
+  is theirs. Otherwise an earner could seal their signed world-key to a
+  third party, who would then hold a validly signed world-key in a box
+  addressed to them.
+- **A signed world-key can be shown to anyone** as proof that the Ur-world
+  issued it. Auth mode alone wouldn't give that. It is probably welcome.
+- **The sealing key:** HPKE seals to an X25519 key, and identities hold
+  Ed25519 keys for signing. So each identity carries a second key, for
+  sealing, as MINDS.md already says; `cryptography` doesn't convert one to
+  the other, and separate keys are the better practice.
+
+**Proposed, for the founder to decide** (it departs from the founder's
+stated design): base mode, with DHKEM(X25519, HKDF-SHA256) and
 ChaCha20Poly1305, available in both languages without a new dependency in
-Python; what is sealed is always signed first. The design page changes to
-match in step 2. Noise (revision 34, 2018) stays named only for a private
+Python; what is sealed is always signed first, and names its recipient.
+The alternative keeps Auth mode, and so the founder's "key that only the
+two of them can make", at the cost of sealing in Rust only, or a new
+Python library. Noise (revision 34, 2018) stays named only for a private
 line, if the founder chooses one ([Noise](https://noiseprotocol.org/noise.html)).
 
 ## Commitments
@@ -149,8 +190,10 @@ challenge from the world's path secret
 ([RFC 5869](https://www.rfc-editor.org/rfc/rfc5869.html)). It is in
 `cryptography` already.
 
-**Proposed:** the value is 32 bytes, from HKDF-SHA256 over the path secret
-with the challenge's id as its label; the commitment is SHA-256 over the
+**Proposed:** the value is 32 bytes, from HKDF-SHA256 over the path
+secret, with a label naming the format and its version and the
+challenge's id (`open-worlds/commitment/v1/` and the id); it is written in
+JSON as 64 hexadecimal characters; and the commitment is SHA-256 over the
 RFC 8785 form of the design, its reasons and the value.
 
 ## Grants
@@ -174,11 +217,12 @@ the middle, but not a log cut short ([ADMIN.md](../ADMIN.md)). Certificate
 Transparency logs sign their heads, and watchers compare them
 ([OVERSIGHT.md](OVERSIGHT.md)).
 
-**Proposed:** a signed head, the world's signature over its log's last
-hash, its length and the tick, in RFC 8785 form, published with the log
-from step 3, when the Ur-world gets its key. Whether the multiverse log
-needs a Merkle tree, to prove an entry is in it without reading all of
-it, is decided at step 12.
+**Proposed:** a signed head, the world's signature over its id, the head's
+format version, its log's last hash, its length and the tick, in RFC 8785
+form, so that no head can be passed off as another world's; published with
+the log from step 3, when the Ur-world gets its key. Whether the
+multiverse log needs a Merkle tree, to prove an entry is in it without
+reading all of it, is decided at step 12.
 
 ## Container images
 
@@ -186,7 +230,10 @@ An OCI image is named exactly by its digest, `sha256:` and 64 hexadecimal
 characters ([OVERSIGHT.md](OVERSIGHT.md), "Containers").
 
 **Proposed:** the mind record gives the image as `REGISTRY/NAME@sha256:...`,
-never by a tag alone, since a tag can be moved.
+never by a tag alone, since a tag can be moved. An image built for
+several platforms has a digest for its index and one for each platform's
+image; the mind record gives the digest of the image that actually ran,
+and the index's beside it.
 
 ## What step 2 defines
 
