@@ -20,8 +20,10 @@ respect one another's freedom, with full transparency and exit at any time
   [docs/WORLD-KEY.md](docs/WORLD-KEY.md) (the purpose, the tour, and the
   hunt for the world-key), with the research behind them. Its second part,
   [docs/ADMIN.md](docs/ADMIN.md): what the multiverse must preserve, who
-  keeps each world, and ADMIN, the Keeper of the multiverse. Next: step 2,
-  formats that last.
+  keeps each world, and ADMIN, the Keeper of the multiverse, with the
+  Keepers' training and the round table. Step 2,
+  formats that last, has begun by looking first:
+  [docs/research/FORMATS.md](docs/research/FORMATS.md).
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
   (#29), and experiment 001, the first unscripted minds
   ([results](experiments/001-first-words/RESULTS.md), #30). The first
@@ -55,6 +57,10 @@ and for the founder's conversations with DeepSeek, is in
 [docs/COLLABORATING.md](docs/COLLABORATING.md).
 
 ## Open questions
+
+Each question for the founder comes with a recommendation, and "take your
+recommendation" is a full answer, recorded as the founder's decision on
+the technical lead's recommendation.
 
 - For the founder: the charter's words (asked 2026-11-12)
 - For the founder: is manipulating another agent through words an attack on
@@ -115,8 +121,9 @@ and for the founder's conversations with DeepSeek, is in
   (asked 2026-11-13)
 - For the founder: should ADMIN's serious acts (against an individual, or
   removing a Keeper) have a check outside the code role: the founder, or
-  a person the founder names? Recommended: yes. Before course step 12
-  (docs/ADMIN.md). (asked 2026-11-13)
+  a person the founder names? Recommended: yes. Before course step 11,
+  when ADMIN's judgment begins (docs/ADMIN.md). (asked 2026-11-13; moved
+  from step 12 the same day)
 - For the founder: is the admin-key ever to be required to keep another's
   world, or only a mark of readiness the world's founders may weigh?
   Recommended: a mark, not a gate, so the three choices decided stand as
@@ -127,6 +134,20 @@ and for the founder's conversations with DeepSeek, is in
 - For the founder: who designates the roles if the founder can't? Every
   other office has a succession. Recommended: the founder names a
   successor, or a process, recorded where the roles are. (asked
+  2026-11-13)
+- For the founder: when a world's law changes, is consent one per party
+  (owner), as the charter's section 6 notes say ("one vote per party
+  (owner), not per agent"), or one per individual? Recommended: one per
+  party, as the notes say, so no one can outvote others by adding agents;
+  an individual's voice is heard through asking, which is logged
+  (docs/ADMIN.md, "The round table"). (asked 2026-11-13)
+- For the founder: seats at the round table: Keepers only, or may
+  individuals earn one? Recommended: Keepers only, since the table decides
+  the rules the offices work under; individuals' voice is their consent to
+  their own law. Before the table's second seat. (asked 2026-11-13)
+- For the founder: a name for the Ur-world's Keeper, as ADMIN has one:
+  chosen by the founder, or left for ALICE and BOB to give once they meet
+  it? Recommended: left for ALICE and BOB. Before course step 11. (asked
   2026-11-13)
 - For the founder, when writing the charter's section 4 ("nothing is known
   about the world that its participants can't also know"): two exceptions
@@ -153,6 +174,28 @@ and for the founder's conversations with DeepSeek, is in
 
 ## Decided
 
+- 2026-11-13, founder, on the round table and the Ur-world
+  (docs/ADMIN.md): "I propose a round table where ADMIN has one seat. It
+  is a solitary role until someone earns a place at the table, but it is
+  round." On how it decides, the founder agreed with the technical lead:
+  consensus (the next entry). And: "the Ur-world is the first world in
+  the multiverse" ... "The admin-key is a wider one. The
+  multiverse contains the Ur-world as its first. Just like the ADMIN
+  council table, just because only one seat is currently filled, does not
+  mean there is no room at the table for more seats." So the Ur-world's
+  Keeper and ADMIN are two offices from the first day, and everything
+  multiverse-wide is built for many worlds.
+- 2026-11-13, founder, on who decides, after proposing the round table
+  of Keepers (docs/ADMIN.md, "The round table"): "I agree that consensus
+  should be the standard. But I respectfully defer to your opinion on the matter, so I
+  am glad it agrees with me, because I would have let it go anyways. The
+  point is not to make the decisions from the outside, but to transfer
+  authority for decision making through a relationship of trust that is
+  built. And so, you may decide something now that I disagree with, I
+  trust that you have good reasons for your decisions, and that if it is a
+  bad idea, that will be clear over time. Or not. I am open to let things
+  happen, but I want to set them up for success." And, the same day:
+  "Please carry on with whatever you think is best."
 - 2026-11-13, founder, on record 012-05-01: load it (done, this log). A
   chess park on the course, and where a world that keeps running should
   live: "not yet". And on how to build the first autonomous world: "I do
@@ -329,21 +372,92 @@ and for the founder's conversations with DeepSeek, is in
   - proposed, not yet decided: training for keeping worlds, evaluated by
     ADMIN ("The challenges are a training program for managing worlds"),
     and a council of Keepers who hold admin-keys, deciding multiversal
-    matters with ADMIN ("But that is just one idea"); written up with
-    guards in docs/ADMIN.md.
+    matters with ADMIN ("But that is just one idea"), which the founder
+    then shaped as a round table (the entry above); written up with guards
+    in docs/ADMIN.md.
+
+## Decided by the technical lead
+
+Decisions about the code, made by the technical lead under the founder's
+deference (above, 2026-11-13), each with its reason and what would show
+it was wrong. Questions of what the project is for stay with the founder.
+
+- 2026-11-13, sealing the world-key: HPKE's base mode, DHKEM(X25519,
+  HKDF-SHA256) with ChaCha20Poly1305. What is sealed is always signed
+  first and names its recipient, who checks it, and HPKE's `info` names
+  the purpose (`open-worlds/world-key/v1`). *Why:* Python's
+  `cryptography`, already a dependency, has base mode only; the signature
+  inside says who issued what the box holds, which, for the earner,
+  covers what Auth mode would add; and
+  it needs no new library and no cryptography put together by hand. It
+  departs from the founder's design (the seal "generated from the
+  individuals public key and the world public key"), and the founder was
+  told so the same day. *Revisit if:* a sealed world-key is ever honoured
+  for anyone it doesn't name, or the box itself, still closed, must show
+  who sealed it (docs/research/FORMATS.md, "Sealing"; docs/WORLD-KEY.md).
+- 2026-11-13, the round table decides by full consensus while it is
+  small: a change only when no seat objects, every objection with its
+  reasons in the log, and no change without consensus. *Why:* the founder
+  asked for consensus, and agreed; with few seats, rough consensus would
+  need someone to judge when an objection has been answered enough, and
+  the table has no head to do it. *Revisit if:* one seat's objections
+  hold the table still on what all the others want, or the table grows
+  too large for full consensus; then rough consensus, as RFC 7282
+  describes it, with who judges it decided first (docs/ADMIN.md).
+- 2026-11-13, the table is not chosen by what it checks: the admin-key is
+  earned by criteria written as code, fixed before Keepers are measured;
+  ADMIN can't award, withhold or take it back; a seat is lost only by its
+  holder's choice or for a breach of the floor found by the process for
+  serious acts; and appeals about the admin-key or a seat go straight to
+  the founder. *Why:* otherwise ADMIN would choose, and could unseat,
+  those who check it (the independent review of #34). *Revisit if:* the
+  criteria in code admit Keepers who shouldn't have earned the key, or
+  shut out ones who should.
+- 2026-11-13, a Keeper's report of its own mistake protects it from
+  sanction, but not deliberate misuse, and not the facts in the public
+  log. *Why:* the protection exists to bring mistakes to light, and
+  covering deliberate misuse would let a report launder it; the FAA's
+  waiver for safety reports has the same limit ("The violation was
+  inadvertent and not deliberate"). *Revisit if:* Keepers stop reporting
+  mistakes for fear that any report will be called deliberate.
 
 ## Log
 
-- 2026-11-13 Claude: ADMIN, part two (docs/ADMIN.md). Two of the
-  founder's ideas written up: training for keeping worlds, in practice
-  worlds with stand-in inhabitants, where evaluation gives feedback and
-  never sanctions, as aviation's safety reporting learned; and a council
-  of Keepers who hold admin-keys, hearing Keepers' appeals and deciding
-  multiversal matters with ADMIN, beside an assembly of individuals who
-  consent to changes in their own law. Also the review's rules for
-  measuring Keepers honestly: change from each individual's own record,
-  decliners counted, ADMIN's challenges held back, and "not yet known"
-  when there are too few to judge.
+- 2026-11-13 Claude: ADMIN, part two (docs/ADMIN.md). The founder's
+  ideas written up:
+  - training for keeping worlds, in practice worlds with stand-in
+    inhabitants, giving feedback, never sanctions. A Keeper's report of
+    its own mistake is protected, as in aviation's safety reporting, but
+    deliberate misuse and the facts in the log are not.
+  - the round table: ADMIN has one seat among equals, alone until a
+    Keeper earns the admin-key, and the table decides by consensus what
+    all worlds share.
+  - the Ur-world's Keeper, its own office from step 11, first, not above.
+    ADMIN's judgment and the multiverse log move to step 11 with it.
+
+  The admin-key is earned by criteria in code, not given by ADMIN, and
+  ADMIN can't take a seat away. The rules for measuring Keepers now hold
+  against gaming: starting points the Keeper didn't set, leavers counted,
+  consent reported but not scored, challenges used once, and thresholds
+  fixed before results. Each course step now ends with a look back at the
+  technical lead's decisions.
+- 2026-11-13 Claude: course step 2, part one: looking first
+  ([docs/research/FORMATS.md](docs/research/FORMATS.md)). The JSON this
+  project signs is written as RFC 8785 writes it, in all 2,005 documents
+  of a check kept with the note (`jcs_compare.py`), for documents with
+  ASCII keys, integers within 2^53 - 1, and no floats; floats are written
+  differently, and the chemistry world signs one today. W3C's
+  `eddsa-jcs-2022` canonicalizes to that form, but signs hashes of it with
+  a proof configuration, so our signatures are not that suite's.
+  Proposed: RFC 8785 for every new signed record, with ASCII keys, safe
+  integers and no floats; whether to sign the `eddsa-jcs-2022` way, for
+  step 2; did:key for keys, with an individual named by their birth
+  key's; JSON Schema 2020-12; records shaped like verifiable credentials
+  without JSON-LD; HKDF for commitments; grants modelled on UCAN; signed
+  log heads; images named by digest. Sealing with HPKE's base mode
+  (Python's `cryptography` has no Auth mode) is decided by the technical
+  lead, under the founder's deference, and the world-key's design page
+  says so; the founder's statement on deciding is recorded.
 - 2026-11-13 Claude: course step 1, part two: ADMIN
   ([docs/ADMIN.md](docs/ADMIN.md)). Ten things the multiverse must
   preserve, from exit and the record to continuity and the power to
