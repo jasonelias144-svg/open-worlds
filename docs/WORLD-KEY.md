@@ -215,8 +215,8 @@ being a guide and become a friend.
   whatever bytes it is sent. The world checks the signature, and that it
   issued its world-key to that identity. Proving who is calling comes from
   the key; the right to the line comes from the world-key. Nothing secret
-  is typed, sent, or kept in a table of passwords. The individual's record shows that they hold a
-  line to that world, never the key.
+  is typed, sent, or kept in a table of passwords. The individual's
+  record shows that they hold a line to that world, never the key.
 - **Every message is signed and numbered,** by the writer's signing key,
   over the line's id and its number, so a copy replayed, put out of
   order, or moved to another line shows. On a public line, anyone can
