@@ -20,7 +20,9 @@ respect one another's freedom, with full transparency and exit at any time
   `sketches/` keeps the DeepSeek records and their code, with its first
   fixes (#16 to #18, #20).
 - Claude: the Ur-world ([docs/URWORLD.md](docs/URWORLD.md)). Its first
-  piece, the garden's Hello World in Rust, is in review (#28).
+  piece, the garden's Hello World in Rust, is in (#28). Next: the
+  garden's orientation, and a doorway for minds, so that small open
+  models can act in the world unscripted.
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
