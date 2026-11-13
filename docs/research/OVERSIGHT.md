@@ -57,9 +57,14 @@ is the model for our own.
   ([RFC 9162](https://www.rfc-editor.org/rfc/rfc9162.html)).
 
 Taken: ADMIN's third layer, the multiverse log: append-only, and watched
-by anyone. Our world logs are already hash-chained; a Merkle tree would
-let anyone prove that an entry is in the log, or that the log was only
-added to, without reading all of it. Step 2 decides.
+by anyone. A hash chain shows an entry changed or removed in the middle,
+but not a log cut short at its end (our own `rust/world-log` says so). A
+log that signs its head, as Certificate Transparency's logs sign their
+tree heads, lets watchers keep what they have seen and compare it with one
+another, which catches a log cut short, or one showing different histories
+to different watchers. Our world logs are already hash-chained; a Merkle
+tree would let anyone prove that an entry is in the log, or that the log
+was only added to, without reading all of it. Step 2 decides.
 
 ## Governing what is shared
 
@@ -92,6 +97,41 @@ Taken, mapped onto the multiverse:
 From the Arbitration Committee: judgment as the last step, for what the
 community and the rules couldn't settle, and binding only within its
 written remit.
+
+## Containers, and sandboxes for code no one trusts
+
+The founder asked for compatibility with Docker, and to "keep with the
+container idea, it fits a need perfectly".
+
+- **The Open Container Initiative** "was launched on June 22nd 2015 by
+  Docker, CoreOS and other leaders in the container industry", and keeps
+  three specifications: for running containers, for images, and for
+  distributing them ([overview](https://opencontainers.org/about/overview/)).
+  An image built by Docker is an OCI image, and other tools run it.
+- **Kubernetes** stopped running containers through Docker: "The
+  Kubernetes v1.24 release actually removed the dockershim from
+  Kubernetes" ([FAQ](https://kubernetes.io/blog/2022/02/17/dockershim-faq/)).
+  It runs the same images through other runtimes, which is the standard at
+  work.
+- **gVisor** gives "a strong layer of isolation between running
+  applications and the host operating system": it answers a program's
+  system calls itself, rather than passing them to the host's kernel. Its
+  runtime, `runsc`, "implements the Open Container Initiative (OCI)
+  runtime specification", and "integrates with Docker and Kubernetes"
+  ([documentation](https://gvisor.dev/docs/)).
+- **Firecracker** is open-source virtualization for small, fast virtual
+  machines. Its page says AWS Lambda runs on it, and lists E2B and Kata
+  Containers among the projects that use it
+  ([site](https://firecracker-microvm.github.io/)).
+- **Development containers** follow "an open specification for enriching
+  containers with development specific content and settings"
+  ([containers.dev](https://containers.dev/)).
+
+Taken: minds run in OCI containers, under gVisor or a small virtual
+machine when we didn't write them; images pinned by digest for anything
+that must be repeatable; a development container for the repository; and
+a container as the place where a mind's grants are enforced
+([ADMIN.md](../ADMIN.md), "Minds in containers").
 
 ## What we take, and what we leave
 

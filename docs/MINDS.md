@@ -63,7 +63,7 @@ body.
 | Part | What it holds | Written by | Lasts |
 |---|---|---|---|
 | **Identity** | name, public keys (one for signing, one for sealing things to them), birth record, key successions | the world at birth, then their own key | for life |
-| **Mind record** | each engine they have run on: model, revision, file hashes, settings, chat template | the project | for life; the engine itself is replaceable |
+| **Mind record** | each engine they have run on: model, revision, file hashes, settings, chat template, and the container image it ran in, by digest | the project | for life; the engine itself is replaceable |
 | **Self** (sealed) | journal, reasoning, held thoughts, private notes, routines, their own aims, a note of who they are | the individual alone; only they can read it | grows for life |
 | **Sheet** | skills (with practice and rust), things carried, knowledge found, milestones, experience | granted by worlds, plus routines its writer chose to show; rebuilt from the logs | grows for life |
 | **Avatars** | one body for each world they are in: where it is, what it holds there, what others see of it | that world | one visit |

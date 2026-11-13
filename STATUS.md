@@ -113,6 +113,13 @@ and for the founder's conversations with DeepSeek, is in
   end, but its record never does; sealed selves stay sealed; keys stay
   their holders'. Needed before course step 12 (docs/ADMIN.md).
   (asked 2026-11-13)
+- For the founder: should ADMIN's serious acts (against an individual, or
+  removing a Keeper) have a check outside the code role: the founder, or
+  a person the founder names? Recommended: yes. Before course step 12
+  (docs/ADMIN.md). (asked 2026-11-13)
+- For the founder: should the project keep the keys to sealed selves at
+  all? "Fully sealed" is a technical guarantee only if it doesn't; then a
+  lost key is a lost self. Before course step 3. (asked 2026-11-13)
 - For the founder: who designates the roles if the founder can't? Every
   other office has a succession. Recommended: the founder names a
   successor, or a process, recorded where the roles are. (asked
@@ -309,6 +316,12 @@ and for the founder's conversations with DeepSeek, is in
     fails: "We need not set things in stone now, but they should be
     strong enough to stand the test of time." Recorded in AGENTS.md and
     docs/ADMIN.md.
+  - an admin-key for Keepers: "a course for Keepers to follow for an
+    admin-key, just to add another layer to the game. And ADMIN plots the
+    course in the same way each Keeper does."
+  - containers: "Let's keep with the container idea, it fits a need
+    perfectly." Minds run in OCI containers; images pinned by digest
+    (docs/ADMIN.md, "Minds in containers").
 
 ## Log
 
@@ -323,7 +336,13 @@ and for the founder's conversations with DeepSeek, is in
   multiverse log anyone can audit, and judgment last, reviewed and open
   to appeal. Ten misbehaviours it must stop or catch, written before it
   is built. The research behind it:
-  [docs/research/OVERSIGHT.md](docs/research/OVERSIGHT.md).
+  [docs/research/OVERSIGHT.md](docs/research/OVERSIGHT.md). After the
+  independent review: the sealed self against the project is a
+  commitment, not a guarantee, until the founder decides; signed heads
+  catch a log cut short; an appeal against the code role's own act goes
+  straight to the founder; the operator's hand and kernel changes stand
+  outside grants, guarded by the protected freedoms' tests. Also the
+  admin-key, a course for Keepers, and minds in containers.
 - 2026-11-13 Claude: course step 1, the design pages. The course is set
   anew ([docs/COURSE.md](docs/COURSE.md)), with the first course's record
   kept. [docs/MINDS.md](docs/MINDS.md): the eight parts of an individual,
