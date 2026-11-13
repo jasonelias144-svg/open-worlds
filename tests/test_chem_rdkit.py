@@ -1,8 +1,8 @@
 """Cross-check of the chemistry against RDKit, the standard open-source
 chemistry toolkit.
 
-The main suite uses the standard library only, so these tests are skipped
-when RDKit isn't installed. CI runs them in a separate job that installs a
+The main suite doesn't need RDKit, so these tests are skipped when RDKit
+isn't installed. CI runs them in a separate job that installs a
 pinned RDKit; there OPEN_WORLDS_REQUIRE_RDKIT=1 turns a missing RDKit into a
 failure, so the check can't silently stop running.
 

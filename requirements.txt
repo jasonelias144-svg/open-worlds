@@ -1,0 +1,8 @@
+# What open-worlds depends on directly, each pinned, each with the reason it
+# is here (house rule 7, docs/COLLABORATING.md). pip adds the packages these
+# need (for cryptography: cffi and pycparser). Install with:
+#   python3 -m pip install -r requirements.txt
+
+# Ed25519 signing and verifying for every individual's key
+# (multiverse/ed25519.py). A vetted library, so no signature code of our own.
+cryptography==50.0.2

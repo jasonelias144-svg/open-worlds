@@ -48,18 +48,21 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
 
 ## Run and test
 
-Python 3.10 or later, standard library only.
+Python 3.10 or later (CI tests 3.10 and 3.12), and the packages in
+`requirements.txt`: each direct dependency pinned and named with its
+reason (for now only `cryptography`, for signatures; pip adds the
+packages it needs).
 
 ```
+python3 -m pip install -r requirements.txt     # once
 python3 -m unittest discover -s tests -t .     # tests
 python3 -m experiments.corridor                # Cycle 0 (about 20 s)
 python3 -m experiments.corridor --quick        # smoke test
 python3 -m multiverse.collaboration            # the first collaboration
 ```
 
-The chemistry is also checked against RDKit, which isn't standard library,
-in a separate CI job (`tests/test_chem_rdkit.py`; it skips when RDKit isn't
-installed).
+The chemistry is also checked against RDKit in a separate CI job
+(`tests/test_chem_rdkit.py`; it skips when RDKit isn't installed).
 
 ## Licence
 

@@ -3,7 +3,7 @@
 **What this is:** simulated worlds where AI agents live under one rule,
 respect one another's freedom, with full transparency and exit at any time
 **State:** active since 2026-11-12
-**Updated:** 2026-11-12 by Claude
+**Updated:** 2026-11-13 by Claude
 
 ## Live
 
@@ -13,11 +13,10 @@ respect one another's freedom, with full transparency and exit at any time
 
 ## Now
 
-- Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Step 1, the
-  multiverse's core, is done. Step 2, keys and signatures, is in review;
-  next is replacing the hand-written Ed25519 with a vetted library (the
-  founder has lifted the standard-library rule), then step 3, signed
-  passports.
+- Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Steps 1 and 2
+  are done. In review: signatures from the `cryptography` package instead
+  of the hand-written Ed25519 (the founder has lifted the standard-library
+  rule). Next: step 3, signed passports.
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
@@ -129,6 +128,16 @@ and for the founder's conversations with DeepSeek, is in
 
 ## Log
 
+- 2026-11-13 Claude: course step 2 merged (#14) after an independent
+  review found two blocking problems (weak keys anyone could sign for;
+  laws still saying requests were unsigned), both fixed and re-reviewed.
+  The founder lifted the standard-library-only rule; signatures now come
+  from the `cryptography` package (pinned in `requirements.txt`), and
+  our own code keeps only the weak-key check, which the library doesn't
+  make. AGENTS.md now names the merge method used since #3 (merge
+  commit), not squash; the independent review caught that it first said
+  "every pull request", which #1 and #2 weren't. CI now tests Python 3.10
+  as well as 3.12.
 - 2026-11-12 Claude: course step 2, keys and signatures. An individual is
   an Ed25519 key; every petition, act and leave is signed for one world
   with a growing number. Ed25519 written here from RFC 8032 passes the

@@ -27,7 +27,7 @@ Here is each component's place now.
 | 8 | The conformance test, run against any address | Course step 12 (the network) |
 | 8, 9, 10 | TypeScript, cross-language and Go SDKs | Not carried over for now: one reference implementation and the conformance test come first; other languages when someone needs one |
 | 11, 12, 18, 20 | Language models as apprentices, cost reports, several models together, real Hugging Face models | Course step 11. Component 20's "recorded real outputs" were invented, since DeepSeek can't run models; real outputs will be recorded by running models |
-| 13, 14 | Signatures (WCP/0.2) and their conformance test | **Done** (course step 2): every petition, act and leave is signed by the individual's key, with Ed25519 written here from its standard |
+| 13, 14 | Signatures (WCP/0.2) and their conformance test | **Done** (course step 2): every petition, act and leave is signed by the individual's key; Ed25519 from the `cryptography` package, with weak keys refused |
 | 15 | Signed passports | Course step 3 |
 | 16, 17 | Manifest resolver, signed registries | Course steps 3 and 12 |
 | 19 | The federation runner (`make demo` and friends) | For now `python3 -m multiverse.collaboration`; the rest arrives with steps 11 and 12 |
@@ -73,6 +73,7 @@ text or as code with tests:
 To see it work:
 
 ```
+python3 -m pip install -r requirements.txt
 python3 -m unittest discover -s tests -t .
 python3 -m multiverse.collaboration
 ```
@@ -98,11 +99,15 @@ Read in this order: MULTIVERSE.md, then `protocol.py`, `conformance.py`,
 6. **Start from known texts in the public domain.** The founder: "We
    should use a known poem to start anything." The demonstration opens
    with Emily Dickinson.
-7. **Whatever works best for the job.** The founder has lifted the
-   earlier standard-library-only rule: any language or library may be
-   used where it is the right tool. For anything security-related, a
-   vetted, maintained library, never our own. Each dependency is pinned
-   to a version, installed in CI, and named with the reason it is there.
+7. **Whatever works best for the job.** The founder: "any restriction
+   to Python and its standard library has been officially lifted from
+   the conversation record. The goal is to use whatever languages work
+   best for the job at hand." For anything security-related, a vetted,
+   maintained library does the work: signatures come from the
+   `cryptography` package, and our own code only adds checks the
+   library doesn't make (refusing weak keys). Each direct dependency is
+   pinned in `requirements.txt`, installed in CI, and named with the
+   reason it is there.
 8. **No personal data and no secrets,** anywhere.
 9. **Everything here is public domain** (CC0 1.0). A contribution is
    given under the same terms. Libraries this depends on keep their own

@@ -411,8 +411,8 @@ the shape of the whole climb, and its mistakes became tests here.
 - **ALIEN:** a large particle-based artificial-life world.
 
 **The RDKit cross-check runs in CI** ([tests/test_chem_rdkit.py](../tests/test_chem_rdkit.py)),
-in its own job with a pinned Python and RDKit; the main suite stays standard
-library only. Its first run, on 2026-11-12:
+in its own job with a pinned Python and RDKit; the main suite doesn't need
+RDKit. Its first run, on 2026-11-12:
 
 - **Identity:** on 1,344 molecules (the catalogue, every layer 2 reaction
   product, four cubic hydrocarbons, and a shuffled copy of each), our

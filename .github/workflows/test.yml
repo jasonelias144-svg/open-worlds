@@ -5,10 +5,18 @@ on:
   pull_request:
 jobs:
   test:
+    # The oldest Python README promises, and the one RDKit is checked on.
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
       - run: python3 --version
+      - run: python3 -m pip install -r requirements.txt
       - run: python3 -m unittest discover -s tests -t . -v
       - run: python3 -m experiments.corridor --quick
       - run: python3 -m multiverse.collaboration
@@ -25,17 +33,3 @@ jobs:
       - run: python -m unittest tests.test_chem_rdkit -v
         env:
           OPEN_WORLDS_REQUIRE_RDKIT: "1"
-  ed25519-crosscheck:
-    # Compares the Ed25519 written here (multiverse/ed25519.py) with the
-    # cryptography package (tests/test_mv_ed25519_crosscheck.py). Pinned
-    # Python and package, so the reference doesn't move under us.
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - run: python -m pip install cryptography==43.0.3
-      - run: python -m unittest tests.test_mv_ed25519_crosscheck -v
-        env:
-          OPEN_WORLDS_REQUIRE_CRYPTOGRAPHY: "1"
