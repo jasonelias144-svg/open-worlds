@@ -257,9 +257,9 @@ close the gap later.
   be earned by repeating a thing.
 
 The world grants abilities; nobody writes them in. Each grant is an
-entry in the world's public log, signed by that world, so the sheet can be rebuilt
-from the record, and the world checks the sheet before allowing an
-action. In each tick's view, the sheet is one short line:
+entry in the world's public log, signed by that world, so the sheet can
+be rebuilt from the record, and the world checks the sheet before
+allowing an action. In each tick's view, the sheet is one short line:
 
 > Your skills: step, say, plant, lift (practised 3 times). You carry: a map
 > fragment, one seed.
@@ -335,7 +335,8 @@ identifiers (did:key, which turns an Ed25519 key like ALICE's into a
 standard identifier) and verifiable credentials (signed claims, such as a
 world attesting a skill, or a world-key); RFC 8785 for writing JSON the
 same way everywhere before it is signed; and HPKE (RFC 9180) for sealing
-something so only its reader can open it. Step 2 checks each fit before adopting it.
+something so only its reader can open it. Step 2 checks each fit before
+adopting it.
 
 ## Not decided yet
 
