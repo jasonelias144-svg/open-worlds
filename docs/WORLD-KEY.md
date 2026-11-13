@@ -183,7 +183,10 @@ this fair:
   it records about an individual is open, to that individual first and to
   the public, like everything administrative. ALICE can ask what the
   Keeper knows about ALICE, and be shown. Nothing is held back, the
-  designs of challenges included.
+  designs of challenges included. A Keeper may keep a private core of its
+  own thoughts, as everyone may; but every decision that affects someone
+  goes into the record with its reasons, and stands on them
+  ([ADMIN.md](ADMIN.md), "ADMIN in the open").
 - **Each world's Keeper knows only what it saw.** Keepers don't trade
   files. A Keeper elsewhere learns about an individual as anyone can: from
   the public record, and from what the individual chooses to show, like

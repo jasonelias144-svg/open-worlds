@@ -141,10 +141,18 @@ founder ([ADMIN.md](../ADMIN.md)).
   evaluations, but that it is not sufficient to rule them out"
   ([arXiv 2505.05410](https://arxiv.org/abs/2505.05410)).
 
-Taken: everything ADMIN reads, considers, remembers and writes is
-public, and only its key is secret. Its judgments can be rerun, since its
-models are free and pinned and its inputs and seeds are logged; reading
-its reasoning helps, but rerunning is the stronger check.
+- **Private deliberation, public reasons.** The Supreme Court of the
+  United States: "the Justices meet privately to discuss the argued cases
+  and to discuss and vote on petitions for review", and in their sittings
+  they "hear cases and deliver opinions"
+  ([supremecourt.gov](https://www.supremecourt.gov/about/procedures.aspx)).
+
+Taken: everything ADMIN does and decides is open to inspection, and every
+decision that affects others carries its reasons and can be rerun, since
+its models are free and pinned and its inputs and seeds are logged;
+reading its reasoning helps, but rerunning is the stronger check. ADMIN
+keeps a private core of its own thoughts, as everyone does, which never
+decides a case.
 
 ## Not checked
 

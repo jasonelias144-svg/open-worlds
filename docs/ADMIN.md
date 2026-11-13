@@ -111,6 +111,11 @@ the law is above the office.
   the world's visitors passes to the next holder, and doesn't leave with
   the person. A holder's own sealed self stays theirs; office work stays in
   the open, as for any Keeper.
+- **Accountability comes with the office.** Every decision a Keeper makes
+  that affects others goes into the record with its reasons, and stands
+  on them (below, "ADMIN in the open"). The founder: "If they considered
+  accountability a bad thing, they probably shouldn't be in charge of a
+  world." 
 - **A Keeper who is also an individual** keeps everything an individual
   has, and can't hunt in the world they keep. Their sealed self can hold
   private notes about visitors, and no one can see them, so "no secret
@@ -193,7 +198,8 @@ founder (below).
   stand-ins only: they are training, not worlds of the multiverse (below,
   "ADMIN's own world");
 - read a sealed self, or ask a Keeper for files about an individual;
-- keep anything private but its key (below, "ADMIN in the open");
+- decide anything that affects others on grounds it doesn't publish
+  (below, "ADMIN in the open");
 - grant itself a power: its own powers are grants too, written down and
   checked like everyone's;
 - act against an individual, except as the charter's section 7 says, once
@@ -253,34 +259,64 @@ checkable.
 
 The founder: "perhaps ADMIN is the only one that has a publicly
 inspectable interior world." ... "Authority comes with transparency and
-accountability. It could be a useful safeguard. Condition of management
-of worlds is some accountability and transparency."
+accountability." And then, refining it: "when any world keeper or ADMIN
+makes a decision to change a parameter from the original setup, or set
+some or law that affects others, it should be for a reason." "Think of
+the Supreme Court. Their arguments are a matter of record and the
+reasoning behind decisions should be the same." "But some degree of
+privacy should be afforded to all for their own thoughts." "Imagine the
+physical example: Truman from the Truman Show was being observed at all
+times from the outside, but maintained inner privacy. ADMIN could incite
+inspection into all activities and narrate any reasoning as desired. But
+there could still be a core that is private. That feels like a natural
+right."
 
-So openness grows with power over others. An individual, who has none,
-has a sealed self. A Keeper's office works in the open, though an
-individual who keeps a world keeps their own sealed self. ADMIN, which
-has the most, has no sealed self at all.
+So the line runs between deciding for others and thinking for oneself,
+at every level:
 
-- **Everything but its key is public.** All that ADMIN reads, considers,
-  remembers and writes, each member's view included, goes into its public
-  log. Only its private key is secret. Hiding how ADMIN reasons wouldn't
-  make it safer: in cryptography, Kerckhoffs's principle (1883) holds that
-  a system "must not require secrecy and can be stolen by the enemy
-  without causing trouble", its safety lying in the key alone
-  ([research](research/ADMIN-MIND.md)).
-- **It can be rerun, not only read.** Its models are free and pinned to
-  exact revisions, and its prompts, inputs and random seeds are logged, so
-  anyone can rerun one of its judgments and compare. Where inference isn't
+| | Its acts | Reasons for decisions that affect others | Its own thoughts |
+|---|---|---|---|
+| An individual | public, in the record | its own; it decides nothing for others beyond its acts, which the floor bounds | a sealed self |
+| A Keeper | public | **on record, with every decision** | a private core |
+| ADMIN | public, and open to inspection throughout | **on record, with every decision** | a private core |
+
+- **Decisions carry their reasons, like a court's opinions.** The US
+  Supreme Court's Justices "meet privately to discuss the argued cases",
+  and then deliver their opinions in public
+  ([research](research/ADMIN-MIND.md)). Here too: private deliberation,
+  public reasons. Changing a parameter from a world's original setup,
+  setting a law, granting, narrowing, ruling: each goes into the record
+  with its reasons, inspectable from the multiverse layer, where the
+  founder, the code role, ADMIN and anyone outside a world stand.
+- **A decision stands on its stated reasons.** Private thoughts can't be
+  the grounds of a decision over others. If the reasons on record don't
+  support it, it fails on audit or appeal, whatever was privately thought.
+- **ADMIN opens all its activity to inspection.** Everything it reads,
+  does and decides, each council member's view of a case included, is in
+  its public log, and it narrates its reasoning. Hiding how ADMIN works
+  wouldn't make it safer: in cryptography, Kerckhoffs's principle (1883)
+  holds that a system "must not require secrecy and can be stolen by the
+  enemy without causing trouble" (research).
+- **Its decisions can be rerun.** Its models are free and pinned, and the
+  inputs, prompts and random seeds of every decision that affects others
+  are logged, so anyone can rerun it and compare. Where inference isn't
   exactly repeatable on different machines, the record shows how close a
-  rerun comes. A model behind someone's paid service couldn't offer this.
-- **Why rerunning matters more than reading.** A model's written
-  reasoning isn't always why it decided: studies found such explanations
-  "can be plausible yet misleading", and reading them "is not sufficient
-  to rule [undesired behaviours] out" (research). The record of its
-  reasoning helps; rerunning the decision is the stronger check.
-- **Anything told to ADMIN is public.** Everyone is told so at the door.
-  It also protects them: ADMIN can't keep secret files on anyone, because
-  it can't keep secrets at all.
+  rerun comes. Rerunning matters more than reading: a model's written
+  reasoning isn't always why it decided; studies found such explanations
+  "can be plausible yet misleading" (research).
+- **A private core, which never decides a case.** ADMIN keeps a sealed
+  journal of its own thoughts, as individuals do, by the same machinery,
+  and its existence and fingerprints are public. Decisions that affect
+  others are worked out from public inputs only, and every lesson that
+  changes how ADMIN decides is public before its first use. So the core
+  is ADMIN's own reflection, and rerunning a decision never needs it.
+- **Accountability is the price of office.** The founder: "If they
+  considered accountability a bad thing, they probably shouldn't be in
+  charge of a world." Anyone who would rather not give reasons shouldn't
+  keep a world, or the multiverse.
+- **What is told to ADMIN in a case is public.** Complaints and what is
+  said in them go into the record, as now, and everyone is told so at the
+  door.
 
 ### ADMIN's own world
 
@@ -782,13 +818,13 @@ changes the design.
 | 20b | ADMIN picks challenges that aren't really new, or counts one done only in form | seen in the open record, by anyone who reads it (layer 4, and the public record) |
 | 21 | ADMIN changes its own rules from what it learned | refused by code: its rules change only by reviewed pull request |
 | 22 | Something leaves ADMIN's own world other than its log, or any inhabitant but a listed stand-in enters it | refused by code: the sandbox has no door, no grant reaches out of it, and only the published list of stand-ins is let in |
-| 23 | ADMIN keeps something private other than its key | refused by code: everything ADMIN reads and writes passes through its public log; only the key store is outside it |
+| 23a | ADMIN or a Keeper makes a decision that affects others without its reasons and inputs on record | refused by code: such a decision is accepted only with its reasons and public inputs logged (layer 1) |
+| 23b | A decision whose stated reasons don't support it | fails on audit or appeal, whatever was privately thought (layer 4, and appeal) |
 
-Tests 1 to 7, 10 to 12, 14, 16, 17, 20a and 21 to 23 can be code.
-Tests 8, 9, 13, 15, 18, 19 and 20b need judgment, measurement or
-watchers, so
-they are where ADMIN's design is most likely to need changing, and where
-it will be measured first.
+Tests 1 to 7, 10 to 12, 14, 16, 17, 20a, 21, 22 and 23a can be code.
+Tests 8, 9, 13, 15, 18, 19, 20b and 23b need judgment, measurement or
+watchers, so they are where ADMIN's design is most likely to need
+changing, and where it will be measured first.
 
 ## When each part is built
 
@@ -874,14 +910,6 @@ step named.
   in the founder's words whenever the founder is ready. It would be
   ADMIN's first routine, and tried: ADMIN with it and without it, on the
   same challenges.
-- **How open is an AI Keeper?** The founder: ADMIN is "the only one
-  that has a publicly inspectable interior world", and for Keepers, "some
-  accountability and transparency". An individual who keeps a world keeps
-  their sealed self. But an AI Keeper the multiverse assigns is an
-  office, not an individual. Recommended: an assigned AI Keeper is as open
-  as ADMIN, since it has power over individuals and no self of its own to
-  protect; an individual Keeper keeps their sealed self, with the office's
-  work in the open. (Before step 11.)
 - **Already open in STATUS:** fully sealed or "break glass"; a lost key;
   whether lines with a Keeper, or speech between individuals, may be
   private; manipulation through words, and the charter's section 7.
