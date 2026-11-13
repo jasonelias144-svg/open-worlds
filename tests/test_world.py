@@ -1,3 +1,4 @@
+import json
 import random
 import unittest
 
@@ -272,6 +273,21 @@ class TestTheWorldTrustsNothing(unittest.TestCase):
         w.step()                                   # must not raise
         self.assertIn("invalid_action", kinds(w, "odd"))
         self.assertIn("agent_error", kinds(w, "raiser"))
+        self.assertTrue(World.verify_log(w.log))
+
+    def test_speech_that_is_not_unicode_is_refused(self):
+        # A str may hold a lone surrogate; JSON readers in other languages
+        # refuse one, so it would make the log unreadable there (vectors/).
+        w = World(1, 1)
+        w.add("a", Scripted(Say("hi \ud800"), Say("hi \U0001F642"),
+                            Say("x" * MAX_SAY_CHARS + "\udc00")), (0, 0))
+        w.run(3)
+        said = [e["data"]["text"] for e in w.log if e["kind"] == "said"]
+        self.assertEqual(said, ["hi \U0001F642", "x" * MAX_SAY_CHARS])
+        self.assertEqual(kinds(w, "a"),
+                         ["entered", "invalid_action", "said", "said"])
+        for entry in w.log:
+            json.dumps(entry, ensure_ascii=False).encode("utf-8")
         self.assertTrue(World.verify_log(w.log))
 
     def test_exit_happens_whatever_another_agent_returns(self):
