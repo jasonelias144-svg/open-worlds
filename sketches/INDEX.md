@@ -14,6 +14,7 @@ message; the rest is DeepSeek's reply.
 | Record | What it covers | Lines | SHA-256 |
 |---|---|---|---|
 | [012-04-00, Patterns and Multiverses](records/012-04-00-DPSK-Patterns_Multiverses.txt) | The multiverse sketch, components 1 to 63, complete. It ends with DeepSeek proposing component 64, a specification for a first live federation | 70,958 | `6a348012fe321fc758f37f8a7625cc124872f4806beef6096ad475081d409387` |
+| [012-05-01, Patterns and Multiverses, continued](records/012-05-01-DPSK-Patterns_Multiverses.txt) | The multiverse sketch, components 64 to 87: a live federation and its tools, then the founder's turn to game worlds (a chess park, worlds inside worlds, worlds that grow and govern themselves, a world that keeps running) | 28,540 | `758c3e3e26eafb77d934251595b0696ba1e75d83f346f69cf3978e02c52bdee5` |
 | [012-03-02, Patterns, Texts and Inventions](records/012-03-02-DPSK-Patterns_Texts_and_Inventions.txt) | The poetry engine and its curriculum, which the multiverse sketch builds on | 23,426 | `978eac920205ec2b487efc33f927dfd62da95b12ad78f1760fef9277b74908de` |
 
 ## Links from the records
@@ -146,6 +147,65 @@ hosted and not in the protocol, keeps "anyone can join" true in the code.
 No tier may gate the freedoms the charter protects: leaving, voice and
 information.
 
+## Record 012-05-01, component by component
+
+The record continues 012-04-00 where it ended, at component 64, and its
+code imports components 1 to 63 from `deepseek/012-04-00`. The columns
+are as above. Tests are run on Python 3.12 with fixes 3 and 4 (below).
+
+| # | What it is | Line | Tests as written | Course | In open-worlds |
+|---|---|---|---|---|---|
+| 64 | A specification for the smallest live federation: three worlds, a ledger, an operator, a cost model | 4 | a specification, no code (one JSON example, `trust-anchors.json`) | 13, in part (the network); not yet (an operator and a ledger) | no |
+| 65 | A client a person runs: an identity on disk, pinned keys, a report anyone can check | 366 | 23 of 24 | 13 | no |
+| 66 | A deploy script: the federation in one call | 2477 | 6 of 21 | 13 | no |
+| 67 | A resident driven by a language model | 3767 | doesn't load (the poetry engine) | 12 | no |
+| 68 | A world's representative ("curator") as a background process | 5123 | 19 of 26, with its demo attached (fix 3) | 14, in part (proposing law changes) | no |
+| 69 | Representatives negotiating contracts between worlds | 6815 | 9 of 21, with its demo attached (fix 3) | next in line (contracts between worlds) | no |
+| 70 | Ending a contract, signed by both | 8321 | 4 of 15, with its demo attached (fix 3) | next in line (contracts between worlds) | no |
+| 71 | One command that runs every demo | 9706 | 26 of 33 | not yet | no |
+| 72 | Federations recognising each other | 10980 | 15 of 17, with its demo attached (fix 3) | not yet | no |
+| 73 | The chess park: play, invite, watch, sit down (the founder's Washington Square) | 12588 | 10 skip: needs `python-chess`; demo attached (fix 3) | not yet (the founder: "not yet") | no |
+| 74 | Worlds inside worlds: a world that is a directory of rooms | 13422 | 13 skip: needs `python-chess`; demo attached (fix 3) | 5, in spirit (doors); "one main world" (MULTIVERSE.md, later) | no |
+| 75 | Walking and seeing a tree of worlds | 14189 | 16 skip: needs `python-chess` | 13 | no |
+| 76 | A world's list of rooms over the network | 15232 | 16 skip: needs `python-chess` | 13 | no |
+| 77 | Routes that carry addresses, so a visitor can walk the tree from its root | 15980 | 12 skip: needs `python-chess`; demo attached (fix 3) | 13 | no |
+| 78 | A specification for a tree of worlds that changes over time, every change signed | 16947 | a specification, no code | not yet | no |
+| 79 | That specification, built | 17307 | 12 of 18 | not yet | no |
+| 80 | The demo runner, extended (changes to 71, kept as their own files) | 19123 | not run (`@LINE` files) | not yet | no |
+| 80 | A teaching document generated from the code, current by construction | 19502 | 21 of 21 | not yet (the founder: leave the docs as they are for now) | no |
+| 81 | A world that grows: participants claim plots next to what exists | 20634 | 21 of 22 | not yet (the founder's "Minecraft for artists"; grid or voxel is open) | no |
+| 82 | A representative that watches the world grow and proposes rules | 21990 | 21 of 21 | 14, in part | no |
+| 83 | Those inside vote; a passed proposal changes the law | 23090 | 16 of 17, with its import fixed (fix 4) | 14 (ours asks unanimous consent of those present; this one, a vote by plot owners) | no |
+| 84 | Running a world over cycles and watching it change | 24529 | 11 of 14, loads with fix 4 | 11 | no |
+| 85 | The demo runner, extended again (changes to 71) | 25461 | not run (`@LINE` files) | not yet | no |
+| 86 | Participants driven by a model, each with a persona | 25712 | doesn't load (the poetry engine) | 12 | no |
+| 87 | A world that keeps running as its own process, and can be checked on later | 26899 | doesn't load (the poetry engine) | not yet (the founder: where a running world lives, "not yet") | no |
+
+In all, with fixes 3 and 4: 207 of DeepSeek's tests pass and 66 fail.
+67 skip, because components 73 to 77 need `python-chess`, which isn't
+installed here (it is GPL-3.0-or-later; adding it to
+[requirements.txt](requirements.txt) would run them). 3 test files don't
+load: components 67, 86 and 87 import the poetry engine of record
+012-03-02 (`poetry_engine_c21`), as five components of 012-04-00 do.
+
+Before the fixes, as written: 130 pass, 30 fail, 32 skip, and 12 test
+files don't load. Seven failed only because DeepSeek gave the demo as a
+block of its own after the module, as in 012-04-00 (fix 3 attaches
+them); four more, components 83, 84, 86 and 87, stopped at one wrong
+import (fix 4).
+
+All 79 file blocks in the record are written out. Two code blocks stay
+in the record: previews of two pieces of component 77 (lines 16005 and
+16035), which its module, from line 16065, repeats in full.
+
+The founder's messages in this record turn the sketch towards game
+worlds: a chess park where anyone may play, invite or watch (line
+12581); worlds inside worlds, like rooms in a mall (13409); worlds that
+cluster on their own, the aim being "to create conditions for
+possibilities to emerge" (14184); worlds that grow and learn from the
+inside and the outside (20548); and a world that keeps running while
+development goes on, to be checked on later (26847).
+
 ## Record 012-03-02
 
 The code in this record (the poetry engine, 56 code blocks) isn't written
@@ -159,10 +219,11 @@ out is what lets component 11 load.
 ## Changes to DeepSeek's code
 
 Each change is listed here, with its reason, and under `"changed"` in
-[tools/names-012-04-00.json](tools/names-012-04-00.json), which
+the record's names file ([tools/names-012-04-00.json](tools/names-012-04-00.json),
+[tools/names-012-05-01.json](tools/names-012-05-01.json)), which
 `extract.py check` holds the folder to. Every other file in
-`deepseek/012-04-00/` is exactly as the record has it, and git history
-shows each change exactly.
+`deepseek/` is exactly as its record has it, and git history shows each
+change exactly.
 
 **Fix 1 (2026-11-13): the demos, attached.** In components 40 and 44 to
 63, the record gives the module, then under the heading "Demo" a block
@@ -183,3 +244,14 @@ component 4's module with "The Reconstruction Helper", an 11-line
 function the tests of components 4, 7, 12, 18 and 20 import from
 `multiverse_c4`. It is appended to `multiverse_c4.py` unchanged, and stays
 as its own file, `multiverse_c4.py@2286`, too.
+
+**Fix 3 (2026-11-13): the demos of record 012-05-01, attached.** As fix
+1, for components 68, 69, 70, 72, 73, 74 and 77: each demo block is
+appended to its module unchanged (`multiverse_c68.py` and the rest), and
+stays as its own `@LINE` file too.
+
+**Fix 4 (2026-11-13): component 83's import.** `multiverse_c83.py`
+imports `Identity` from `multiverse_c13`, but `Identity` is defined in
+`multiverse_c1` (record 012-04-00). The import now names `multiverse_c1`,
+and nothing else changes. Components 83 and 84 then load, and 27 of
+their 31 tests pass; 86 and 87 load as far as the poetry engine.

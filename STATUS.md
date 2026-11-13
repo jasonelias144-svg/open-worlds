@@ -86,6 +86,18 @@ and for the founder's conversations with DeepSeek, is in
 
 ## Decided
 
+- 2026-11-13, founder, on record 012-05-01: load it (done, this log). A
+  chess park on the course, and where a world that keeps running should
+  live: "not yet". And on how to build the first autonomous world: "I do
+  not think we should use Python to build our first autonomous world. We
+  should be looking towards how video games are made ... Let's use
+  industry standard tools, but all open source." The technical lead's
+  proposal, put to the founder the same day: a C++ simulation core with
+  an entity-component system (Flecs), built with CMake, tested with
+  GoogleTest, Godot later as the window onto it, and Python kept as the
+  reference the C++ is tested against. First step: the world kernel in
+  C++, writing the same hash-chained log as the Python one. Waiting for
+  the founder's go-ahead to put it on the course.
 - 2026-11-12, founder, on how to build: "My goal was to come to you with
   ideas, with a vision, and some code that may or may not be helpful. But
   I expect you to take all that in and do it in your own way that makes
@@ -136,6 +148,13 @@ and for the founder's conversations with DeepSeek, is in
 
 ## Log
 
+- 2026-11-13 Claude: record 012-05-01 brought in (DeepSeek's components 64
+  to 87), as 012-04-00 was: the record verbatim, its 79 code files written
+  out, its tests run with an honest list of what fails
+  ([sketches/INDEX.md](sketches/INDEX.md)). Two small fixes: the demos
+  attached, and one wrong import in component 83, which lets the growth
+  and governance components load. With them, 207 of DeepSeek's tests
+  pass; the chess park's need `python-chess` (GPL) and skip.
 - 2026-11-13 Claude: course step 5, the first journey. Cycle 0's corridor
   speaks the protocol, on the world kernel, with doors that name the
   worlds beyond by id and key; worlds learn each other's keys from signed

@@ -1,0 +1,35 @@
+    DemoSpec(
+        "inter_federation", "C72", "multiverse_c72", "demo",
+        "inter_federation/inter_federation_demo.json",
+        "inter_federation",
+        "Two federations recognize each other"),
+    DemoSpec(
+        "chess_park", "C73", "multiverse_c73", "demo",
+        "chess_park/chess_park_demo.json",
+        "worlds",
+        "A chess park: table, seats, watchers"),
+    DemoSpec(
+        "room_world", "C74", "multiverse_c74", "demo",
+        "room_world/room_world_demo.json",
+        "worlds",
+        "A RoomWorld: a directory of worlds"),
+    DemoSpec(
+        "traversable_world", "C75", "multiverse_c75", "demo",
+        "traversable_world/traversable_world_demo.json",
+        "worlds",
+        "Walk and snapshot a tree of worlds"),
+    DemoSpec(
+        "rooms_endpoint", "C76", "multiverse_c76", "demo",
+        "rooms_endpoint/rooms_endpoint_demo.json",
+        "worlds",
+        "/rooms endpoint: self-sufficient observation"),
+    DemoSpec(
+        "route_urls", "C77", "multiverse_c77", "demo",
+        "route_urls/route_urls_demo.json",
+        "worlds",
+        "Routes carry HTTP URLs; walk_to by URL alone"),
+    DemoSpec(
+        "living_tree", "C79", "multiverse_c79", "demo",
+        "living_tree/living_tree_demo.json",
+        "worlds",
+        "C78 spec, implemented: signed lifecycle events"),

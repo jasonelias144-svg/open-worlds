@@ -1,0 +1,3 @@
+.PHONY: world-cycle-demo
+world-cycle-demo:
+	$(PYTHON) -c "from multiverse_c84 import demo; demo(artifact_dir='artifacts')"

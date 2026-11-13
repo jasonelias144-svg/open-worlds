@@ -1,0 +1,17 @@
+    if proc.returncode != 0:
+        stderr = (proc.stderr or "").strip()
+        last = stderr.split("\n")[-1] if stderr else ""
+        if "cryptography" in stderr.lower():
+            return RunResult(
+                spec, False, True,
+                "skipped: cryptography not installed",
+                duration)
+        if "python-chess" in stderr.lower():              # NEW
+            return RunResult(                             # NEW
+                spec, False, True,                        # NEW
+                "skipped: python-chess not installed",    # NEW
+                duration)                                 # NEW
+        return RunResult(
+            spec, False, False,
+            f"exit {proc.returncode}: {last}",
+            duration)

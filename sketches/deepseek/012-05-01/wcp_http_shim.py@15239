@@ -1,0 +1,8 @@
+# In wcp_http_shim.py, in the do_GET handler, after /log and before
+# the final else:
+
+elif url.path == "/rooms":
+    if hasattr(entity, "list_rooms"):
+        self._send(200, {"rooms": entity.list_rooms()})
+    else:
+        self._send(404, {"error": "not found"})

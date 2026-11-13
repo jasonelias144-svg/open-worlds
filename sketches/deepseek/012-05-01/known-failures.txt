@@ -1,0 +1,82 @@
+# Which of DeepSeek's tests fail, as the code stands here. Written by us,
+# not by DeepSeek (see README.md), with tools/known_failures.py, from
+# runs under several hash seeds. conftest.py reads it:
+#   - a test file listed alone does not load, and is not collected;
+#   - a test listed by name is an expected failure, and strict: if it
+#     starts passing, the run fails until it is taken off this list;
+#   - a test whose error starts with "sometimes:" failed in some runs
+#     and passed in others, so either result is accepted.
+# So the list is always true. The text after "  # " is the error.
+
+# Test files that do not load
+multiverse_c67_test.py  # ModuleNotFoundError: No module named 'poetry_engine_c21'
+multiverse_c86_test.py  # ModuleNotFoundError: No module named 'poetry_engine_c21'
+multiverse_c87_test.py  # ModuleNotFoundError: No module named 'poetry_engine_c21'
+
+# Tests that fail
+multiverse_c65_test.py::test_demo  # assert False is True
+multiverse_c66_test.py::test_client_refuses_bad_anchor  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c66_test.py::test_delegating_wrapper_delegates_manifest  # ValueError: token must be at least 16 characters (collision resistance)
+multiverse_c66_test.py::test_delegating_wrapper_still_signs  # ValueError: token must be at least 16 characters (collision resistance)
+multiverse_c66_test.py::test_demo  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c66_test.py::test_deploy_anchors_verify  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c66_test.py::test_deploy_checkpoint_verifies  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c66_test.py::test_deploy_creates_state  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c66_test.py::test_deploy_genesis_chain_valid  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c66_test.py::test_deploy_registry_lists_worlds  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c66_test.py::test_deploy_worlds_serve_manifests  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c66_test.py::test_full_client_end_to_end  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c66_test.py::test_operator_commit_artifact  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c66_test.py::test_operator_commit_unknown_world  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c66_test.py::test_operator_new_checkpoint  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c66_test.py::test_stop_shuts_down_servers  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c68_test.py::test_client_deliver_happy  # AssertionError: cannot receive own message
+multiverse_c68_test.py::test_demo  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c68_test.py::test_process_proposal_generated  # ValueError: world_id must be at least 8 characters
+multiverse_c68_test.py::test_process_tick_initiates_hello  # assert False
+multiverse_c68_test.py::test_server_accepts_valid_hello  # AssertionError: assert 'refusal' == 'ack'
+multiverse_c68_test.py::test_server_rejects_malformed  # urllib.error.HTTPError: HTTP Error 400: Bad Request
+multiverse_c68_test.py::test_store_links_roundtrip  # ValueError: hello_a does not target hello_b's sender
+multiverse_c69_test.py::test_contract_registry_persists  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c69_test.py::test_demo  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c69_test.py::test_handler_rejects_malformed_payload  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c69_test.py::test_handler_rejects_wrong_peer_key  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c69_test.py::test_handler_rejects_wrong_target  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c69_test.py::test_kind_filter_rejects_wrong_kind  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c69_test.py::test_process_reloads_registry_from_disk  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c69_test.py::test_propose_contract_auto_accept  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c69_test.py::test_propose_contract_reject_policy  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c69_test.py::test_propose_unknown_peer  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c69_test.py::test_propose_unknown_peer_does_not_raise  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c69_test.py::test_two_processes_link  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c70_test.py::test_a_initiated_revocation  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c70_test.py::test_b_initiated_revocation  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c70_test.py::test_demo  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c70_test.py::test_request_revocation_never_raises  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c70_test.py::test_revocation_canonical_payload_is_shared  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c70_test.py::test_revocation_pending_contract_refused  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c70_test.py::test_revocation_persists  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c70_test.py::test_revocation_reloads_in_fresh_process  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c70_test.py::test_revocation_unknown_contract  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c70_test.py::test_revocation_unknown_peer  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c70_test.py::test_revoke_already_revoked_contract  # urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+multiverse_c71_test.py::test_cli_quiet_mode  # assert 1 == 0
+multiverse_c71_test.py::test_cli_subset_returns_zero  # assert 1 == 0
+multiverse_c71_test.py::test_demo_real_subset  # assert 0 == 7
+multiverse_c71_test.py::test_demo_subset  # assert 0 == 5
+multiverse_c71_test.py::test_demo_writes_arc_survey  # AssertionError: assert 0 == 26
+multiverse_c71_test.py::test_real_c41_octopus  # AssertionError: exit 1: ModuleNotFoundError: No module named 'multiverse_c41'
+multiverse_c71_test.py::test_real_c55_curator  # AssertionError: exit 1: ModuleNotFoundError: No module named 'multiverse_c55'
+multiverse_c72_test.py::test_cross_federation_message_verify  # AssertionError: inner message signature INVALID
+multiverse_c72_test.py::test_xfed_handler_unknown_sender  # AssertionError: assert 'unknown peer' in 'no matching recognition'
+multiverse_c79_test.py::test_chain_fork_detected  # + where [] = ChainVerdict(valid=False, reason="room 'world:c' chain broken at <hex>...", forks=[]).forks
+multiverse_c79_test.py::test_chain_happy  # AssertionError: assert False
+multiverse_c79_test.py::test_demo  # http.client.RemoteDisconnected: Remote end closed connection without response
+multiverse_c79_test.py::test_live_events_delivered  # http.client.RemoteDisconnected: Remote end closed connection without response
+multiverse_c79_test.py::test_notification_verified  # http.client.RemoteDisconnected: Remote end closed connection without response
+multiverse_c79_test.py::test_subscribe_works  # http.client.RemoteDisconnected: Remote end closed connection without response
+multiverse_c81_test.py::test_chain_happy  # AssertionError: assert False
+multiverse_c83_test.py::test_demo  # assert False is True
+multiverse_c84_test.py::test_demo  # NameError: name 'KeyPair' is not defined
+multiverse_c84_test.py::test_run_cycles_governance_loop  # AssertionError: assert 2 == 1
+multiverse_c84_test.py::test_run_cycles_no_proposal_without_refusals  # AssertionError: assert 2 == 0

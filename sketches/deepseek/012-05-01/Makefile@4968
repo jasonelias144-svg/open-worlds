@@ -1,0 +1,3 @@
+.PHONY: llm-resident-demo
+llm-resident-demo:
+	$(PYTHON) -c "from multiverse_c67 import demo; demo(artifact_dir='artifacts')"

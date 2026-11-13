@@ -1,0 +1,3 @@
+.PHONY: inter-federation-demo
+inter-federation-demo:
+	$(PYTHON) -c "from multiverse_c72 import demo; demo(artifact_dir='artifacts')"
