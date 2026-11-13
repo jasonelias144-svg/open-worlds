@@ -18,9 +18,12 @@
 //!
 //! # Limits
 //!
-//! - Numbers must be integers that fit in 64 bits. The kernel writes no
-//!   others, but Python could: a float, or a larger integer, is refused
-//!   here ([`Error::Number`]) rather than risk writing a different text.
+//! - Numbers must be integers that fit in 64 bits. The agent kernel writes
+//!   no others, apart from the seed its operator gives it, which Python
+//!   doesn't check; the chemistry soup's log holds floats. A float, a larger
+//!   integer, or JSON's `-0` (which `serde_json` reads as a float, and
+//!   Python as 0) is refused here ([`Error::Number`]) rather than risk
+//!   writing a different text.
 //! - Nesting deeper than [`MAX_DEPTH`] is refused (Python allows more).
 //! - A log is only as trustworthy as its last hash. A log cut short still
 //!   holds together: compare its head with one you trust.
@@ -32,8 +35,8 @@ use std::fmt;
 /// The `prev` of a log's first entry: sixty-four zeros.
 pub const GENESIS: &str = "0000000000000000000000000000000000000000000000000000000000000000";
 
-/// The deepest nesting written. `serde_json` reads at most 127 levels, so
-/// anything it reads can be written.
+/// The deepest nesting written. `serde_json` reads fewer than 128 levels,
+/// so anything it reads can be written.
 pub const MAX_DEPTH: usize = 128;
 
 /// Why a value can't be written as Python writes it.
@@ -118,7 +121,12 @@ pub fn python_json(value: &Value) -> Result<String, Error> {
 /// The SHA-256, in lowercase hex, of [`python_json`]'s text: the hash the
 /// kernel gives a log entry's body.
 pub fn digest(value: &Value) -> Result<String, Error> {
-    Ok(hex(&Sha256::digest(python_json(value)?.as_bytes())))
+    Ok(sha256_hex(python_json(value)?.as_bytes()))
+}
+
+/// The SHA-256 of `bytes`, in lowercase hex.
+pub fn sha256_hex(bytes: &[u8]) -> String {
+    hex(&Sha256::digest(bytes))
 }
 
 /// Checks a whole log, as the Python kernel's `World.verify_log` does: each
@@ -140,7 +148,7 @@ pub fn verify_log(log: &Value) -> Result<&str, LogError> {
         let mut body = String::new();
         write_object(fields, Some("hash"), &mut body, 0)
             .map_err(|error| LogError::Unwritable { index, error })?;
-        if hex(&Sha256::digest(body.as_bytes())) != hash {
+        if sha256_hex(body.as_bytes()) != hash {
             return Err(LogError::WrongHash { index });
         }
         prev = hash;

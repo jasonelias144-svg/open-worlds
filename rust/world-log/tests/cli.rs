@@ -63,6 +63,22 @@ fn a_changed_log_does_not_hold() {
 }
 
 #[test]
+fn a_log_it_cannot_write_exactly_is_reported_as_unchecked() {
+    // A float, as in the chemistry soup's log: Python can check it, this
+    // crate can't, and it says so rather than calling the log broken.
+    let text = std::fs::read_to_string(LOG).unwrap();
+    let changed = text.replacen("\"pos\": [", "\"pos\": [0.5, ", 1);
+    assert_ne!(changed, text);
+    let file = Scratch::new("float.json", &changed);
+    let (code, out) = run(&file.0);
+    assert_eq!(code, Some(2), "{out}");
+    assert!(
+        out.starts_with("the log can't be checked here: entry "),
+        "{out}"
+    );
+}
+
+#[test]
 fn a_file_that_is_not_json_is_reported() {
     let file = Scratch::new("broken.json", "[{");
     assert_eq!(run(&file.0).0, Some(2));

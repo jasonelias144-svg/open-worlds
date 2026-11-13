@@ -14,11 +14,15 @@ respect one another's freedom, with full transparency and exit at any time
 ## Now
 
 - Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Steps 1 to 5
-  are done. Step 6, keeping keys safely: part one (keys saved encrypted,
-  a world's seen numbers) is in review (#23), and so is part two,
-  signing a key over to a new one (#24). A lost key waits for the
-  founder's answer. `sketches/` keeps the DeepSeek records and their
-  code, with its first fixes (#16 to #18, #20).
+  are done, and so are step 6's first two parts: keys saved encrypted,
+  with a world's seen numbers (#23), and a key signed over to a new one
+  (#24). A lost or leaked key waits for the founder's answer.
+  `sketches/` keeps the DeepSeek records and their code, with its first
+  fixes (#16 to #18, #20).
+- Claude: the Ur-world ([docs/URWORLD.md](docs/URWORLD.md)). Its first
+  piece, the garden's Hello World in Rust, is in (#28). Next: the
+  garden's orientation, and a doorway for minds, so that small open
+  models can act in the world unscripted.
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
@@ -76,6 +80,9 @@ and for the founder's conversations with DeepSeek, is in
   old key (course step 6, part two), so the same guardians could sign
   that a key is no longer to be trusted. (asked 2026-11-13, for course
   step 6)
+- For the founder: should ALICE's and BOB's memories be public, as their
+  actions are, or private, like a person's mind? Recommended: public, at
+  least at first. (asked 2026-11-13)
 - For the founder: a course step for persons after step 3, and the
   architectures (octopus, relay, swarm, council) as small examples on the
   unchanged core? Recommended: yes. (asked 2026-11-13)
@@ -168,9 +175,34 @@ and for the founder's conversations with DeepSeek, is in
   DeepSeek to build from. Or at least a set of standards related to code
   in Rust." Both are in place: `rust/`, and docs/COLLABORATING.md, "Code
   in Rust".
+- 2026-11-13, founder, on the first world: one central world first, "the
+  first main world and one that connects with all other worlds, a
+  multiverse lobby or travel hub. But also a world to itself", with all
+  the functionality in one place; subworlds after. "3D definitely", with
+  ground and sky, and "space as needed": unexplored space "only becomes
+  data once that area is explored". Its name, the Ur-world. It begins "in
+  a garden. With two individuals": ALICE and BOB, in capitals, the first
+  occupants of the multiverse, persistent individuals who learn within it.
+  Their minds come from "two completely different and yet complementary
+  models". Compatibility with outside agents such as OpenClaw's is enough
+  for now. All in docs/URWORLD.md.
+- 2026-11-13, founder, on how ALICE and BOB are written about: by their
+  names, or "they", not "she" and "he", since nothing in their design gives
+  them a gender. "It is best to be careful from the start to avoid falling
+  into linguistic habits."
 
 ## Log
 
+- 2026-11-13 Claude: the Ur-world's Hello World (`rust/ur-world`,
+  docs/URWORLD.md). A 3D world of cells in chunks, generated as it is
+  explored from a seed, in whole numbers only, and versioned. It begins in
+  a garden with a tree and a spring. ALICE and BOB enter and greet each
+  other, one speaking while the other listens. BOB plants a flower, and
+  ALICE walks out into the hills as they come into being. The world stores
+  only what was explored and what was changed. Its log is written in the
+  Python kernel's format and holds by `World.verify_log`. A second,
+  independent implementation of the generator in Python, written from the
+  documented rules, agrees with Rust on every height and chunk.
 - 2026-11-13 Claude: course step 6, part two. A key can be signed over to
   a new one by a succession both keys sign (`multiverse/succession.py`),
   for individuals and for worlds. A passport carries its holder's

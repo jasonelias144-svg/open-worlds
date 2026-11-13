@@ -12,7 +12,8 @@ The standards for every Rust file are in
 
 | Crate | What it does |
 |---|---|
-| [`world-log`](world-log) | Checks a world's public record exactly as the Python kernel writes it. It's the first piece of the world kernel. |
+| [`world-log`](world-log) | Checks a world's public record exactly as the Python kernel writes it. |
+| [`ur-world`](ur-world) | The Ur-world: a 3D world that begins in a garden with ALICE and BOB, and comes into being as it is explored ([docs/URWORLD.md](../docs/URWORLD.md)). |
 
 The workspace's settings, which every crate shares, are in
 [`Cargo.toml`](Cargo.toml): the dependencies with the reason for each,
@@ -29,23 +30,28 @@ cd rust
 cargo fmt --check
 cargo clippy --all-targets --locked -- -D warnings
 cargo test --locked
-cargo run --locked -- ../vectors/world-log.json
+cargo run --locked -p world-log -- ../vectors/world-log.json
+cargo run --locked -p ur-world --example garden
 ```
 
 CI runs the same commands (`.github/workflows/test.yml`, job `rust`).
 
-The last command checks a log the Python kernel wrote. It prints:
+`world-log` checks a log the Python kernel wrote. It prints:
 
 ```
 the log holds: 19 entries, head 32751b80c4058dd070b961b9e098ff344acef34e676b9c0f20f238b691d6465b
 ```
 
-Change a value in that file, and it says which entry no longer holds.
+Change a value in that file, and it says which entry no longer holds. It
+checks the Ur-world's log the same way:
+`cargo run -p world-log -- ../vectors/ur-garden-log.json`.
+
+The `garden` example is Hello World for building worlds: it runs the
+garden, tells what happened, and draws a map of what has come into view.
 
 ## What comes next
 
-The plan, to be put on the course ([docs/COURSE.md](../docs/COURSE.md)):
-the world kernel itself, in Rust: the same rules, writing the same log as
-`world/core.py` for the same seed and the same actions. After that, the
-protocol, and then the bridge that lets worlds built with Unity or Unreal
-speak it.
+The Ur-world's next steps are in [docs/URWORLD.md](../docs/URWORLD.md):
+keys and the protocol in Rust, the gate to other worlds, districts, growth,
+minds for ALICE and BOB, and a window onto it all, through Unity or Unreal
+among others.
