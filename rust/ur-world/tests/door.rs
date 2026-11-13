@@ -110,6 +110,17 @@ fn a_mind_that_never_answers_is_recorded_as_unanswered() {
 }
 
 #[test]
+fn a_mind_that_never_reads_doesnt_hold_up_the_world() {
+    // Each tick's message is about 600 bytes, so 400 ticks of them are
+    // several times what a pipe holds (64 KiB on Linux).
+    let start = Instant::now();
+    let entries = run("import time\ntime.sleep(60)", Duration::from_millis(5), 400);
+    assert_eq!(entries.len(), 400);
+    assert!(entries.iter().all(|(_, k, _)| k == "unanswered"));
+    assert!(start.elapsed() < Duration::from_secs(20));
+}
+
+#[test]
 fn a_mind_that_has_gone_is_not_waited_for() {
     let start = Instant::now();
     let entries = run("pass", Duration::from_secs(30), 3);

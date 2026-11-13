@@ -18,8 +18,12 @@
 //! untrusted, so it is read strictly. A reply that can't be read is
 //! recorded as unreadable, and nothing happens. No reply within the time
 //! limit is recorded as unanswered, and nothing happens. A reply to an
-//! earlier tick, arriving late, is set aside. Nothing a mind sends can
-//! break the world.
+//! earlier tick, arriving late, is set aside. Nothing a mind sends, and
+//! nothing it fails to read, can break the world or hold it up.
+//!
+//! A mind writes only replies to its standard output: any other line
+//! there is taken as an unreadable reply to the tick in hand. Its own
+//! messages go to its standard error.
 //!
 //! The world decides only what the mind is told and how its reply is read.
 //! How a mind turns what it is told into a reply (a language model's
@@ -28,7 +32,7 @@
 
 use std::io::{BufRead, BufReader, Read, Write};
 use std::process::{Child, ChildStdin, Command, Stdio};
-use std::sync::mpsc::{self, Receiver, Sender};
+use std::sync::mpsc::{self, Receiver, SyncSender, TrySendError};
 use std::time::{Duration, Instant};
 
 use serde_json::{Value, json};
@@ -40,6 +44,11 @@ use crate::world::{Action, MAX_SAY, Mind, Observation, Outcome, RULES, SIGHT};
 /// The longest line a mind may send, in bytes. A longer line is recorded
 /// as unreadable (its beginning only), and the rest of it is skipped.
 pub const MAX_LINE: usize = 65_536;
+
+/// How many lines may wait to be read, each way. A mind that writes faster
+/// than the world reads is made to wait; a mind that doesn't read what it
+/// is sent misses what doesn't fit, rather than holding up the world.
+pub const QUEUE: usize = 16;
 
 /// The world's law, as data: what a mind needs to know to live here.
 /// [`orientation`] writes the same for a reader.
@@ -389,7 +398,7 @@ fn parse(bytes: &[u8]) -> Line {
 
 /// Pass each line the mind writes to `to`, until it stops writing or no
 /// one is listening.
-fn read_lines(from: impl Read, to: &Sender<Line>) {
+fn read_lines(from: impl Read, to: &SyncSender<Line>) {
     let mut reader = BufReader::new(from);
     let cap = u64::try_from(MAX_LINE).unwrap_or(u64::MAX);
     let mut line = Vec::new();
@@ -421,12 +430,29 @@ fn read_lines(from: impl Read, to: &Sender<Line>) {
     }
 }
 
+/// Write each line given to `from` to the mind, until it can't be written
+/// (the mind has gone) or there are no more.
+fn write_lines(mut to: ChildStdin, from: &Receiver<String>) {
+    for line in from {
+        if to
+            .write_all(line.as_bytes())
+            .and_then(|()| to.flush())
+            .is_err()
+        {
+            return;
+        }
+    }
+}
+
 /// A mind that runs as its own program and speaks the doorway's protocol
 /// (see the module's documentation). The program is stopped when the mind
 /// is dropped: when its inhabitant leaves, or the world ends.
+///
+/// Two threads of its own carry its lines, one each way, so that neither a
+/// mind that doesn't read nor one that doesn't write can hold up the world.
 pub struct ProcessMind {
     child: Child,
-    stdin: Option<ChildStdin>,
+    outbox: Option<SyncSender<String>>,
     replies: Receiver<Line>,
     limit: Duration,
 }
@@ -445,17 +471,18 @@ impl ProcessMind {
             .stdin(Stdio::piped())
             .stdout(Stdio::piped())
             .spawn()?;
-        let stdin = child.stdin.take();
-        let Some(stdout) = child.stdout.take() else {
+        let (Some(stdin), Some(stdout)) = (child.stdin.take(), child.stdout.take()) else {
             let _ = child.kill();
             let _ = child.wait();
-            return Err(std::io::Error::other("the mind's output can't be read"));
+            return Err(std::io::Error::other("the mind's pipes can't be opened"));
         };
-        let (to, replies) = mpsc::channel();
+        let (to, replies) = mpsc::sync_channel(QUEUE);
         std::thread::spawn(move || read_lines(stdout, &to));
+        let (outbox, from) = mpsc::sync_channel::<String>(QUEUE);
+        std::thread::spawn(move || write_lines(stdin, &from));
         let mut mind = ProcessMind {
             child,
-            stdin,
+            outbox: Some(outbox),
             replies,
             limit,
         };
@@ -473,20 +500,17 @@ impl ProcessMind {
         self.child.id()
     }
 
-    /// Write one line to the mind. If it can't be written (the mind has
-    /// gone), stop writing; its replies will be missing.
+    /// Give one line to the writing thread, without waiting. If its queue
+    /// is full (the mind isn't reading), the line is dropped; if the mind
+    /// has gone, nothing more is sent.
     fn send(&mut self, message: &Value) {
-        let Some(stdin) = self.stdin.as_mut() else {
+        let Some(outbox) = self.outbox.as_ref() else {
             return;
         };
         let mut line = message.to_string();
         line.push('\n');
-        if stdin
-            .write_all(line.as_bytes())
-            .and_then(|()| stdin.flush())
-            .is_err()
-        {
-            self.stdin = None;
+        if let Err(TrySendError::Disconnected(_)) = outbox.try_send(line) {
+            self.outbox = None;
         }
     }
 }
@@ -515,7 +539,7 @@ impl Mind for ProcessMind {
 
 impl Drop for ProcessMind {
     fn drop(&mut self) {
-        self.stdin = None;
+        self.outbox = None;
         let _ = self.child.kill();
         let _ = self.child.wait();
     }
@@ -671,7 +695,7 @@ mod tests {
         let mut input = vec![b'x'; MAX_LINE * 3];
         input.extend_from_slice(b"\n{\"tick\": 4, \"reply\": \"wait\"}\n");
         input.extend_from_slice(&vec![b'y'; MAX_LINE + 1]);
-        let (to, from) = mpsc::channel();
+        let (to, from) = mpsc::sync_channel(QUEUE);
         read_lines(input.as_slice(), &to);
         drop(to);
         let lines: Vec<Line> = from.iter().collect();

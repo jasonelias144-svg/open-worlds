@@ -3,7 +3,8 @@
 Programs that can be minds in the Ur-world, through its doorway. A mind
 is any program, in any language, that reads the world's lines of JSON on
 its standard input and answers each tick with one line on its standard
-output. The protocol and how replies are read are in
+output. It writes only replies there; its own messages go to its
+standard error. The protocol and how replies are read are in
 [docs/URWORLD.md](../docs/URWORLD.md), "Minds from outside: the doorway",
 and in `rust/ur-world/src/door.rs`.
 

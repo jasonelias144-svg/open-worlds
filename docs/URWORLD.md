@@ -204,7 +204,10 @@ talks to it in lines of JSON over its standard input and output:
    onto rock", "open, with nothing underfoot: you would fall"), who is
    near and how far, what others said, and what came of its last action.
    The observation is the same as data.
-3. **The mind answers:** `{"tick": N, "reply": TEXT}`.
+3. **The mind answers:** `{"tick": N, "reply": TEXT}`. It writes only
+   replies to its standard output: any other line there is taken as an
+   unreadable reply to the tick in hand. Its own messages go to its
+   standard error.
 
 **Replies are read strictly, the same way for every mind.** The first line
 that isn't blank must be one of the orientation's forms: `wait`, `exit`,
@@ -218,6 +221,8 @@ world:
 - a late reply to an earlier tick is set aside;
 - a line over 64 KiB is recorded by its beginning;
 - a mind that stops is not waited for;
+- a mind that doesn't read what it is sent can't hold up the world: what
+  doesn't fit in its queue is dropped, and its ticks go unanswered;
 - a mind's program is stopped when it leaves, or when the world ends.
 
 **Expanding the set of actions.** The orientation says how: "To do
