@@ -9,6 +9,11 @@ to a folder, byte for byte. So anyone can check that the code in
     python3 extract.py list  RECORD                  every code block
     python3 extract.py write RECORD NAMES OUTDIR     write the named blocks
     python3 extract.py check RECORD NAMES TREE       compare TREE with them
+    python3 extract.py check-all SKETCHES            check every record
+
+`check-all` runs `check` for each names file in SKETCHES/tools
+(names-*.json), using its "record" and "folder", both relative to
+SKETCHES. So a new record needs only its names file.
 
 NAMES is a JSON file (see names-012-04-00.json): which blocks to take,
 and a name for blocks that don't state their own. A name used twice
@@ -149,6 +154,25 @@ def check(record: str, names_path: str, tree: str) -> int:
     return 1 if problems else 0
 
 
+def check_all(sketches: str) -> int:
+    tools = os.path.join(sketches, "tools")
+    found = sorted(n for n in os.listdir(tools)
+                   if n.startswith("names-") and n.endswith(".json"))
+    if not found:
+        print("no names files")
+        return 1
+    worst = 0
+    for name in found:
+        names_path = os.path.join(tools, name)
+        with open(names_path, encoding="utf-8") as f:
+            names = json.load(f)
+        print(f"== {name}")
+        worst = max(worst, check(os.path.join(sketches, names["record"]),
+                                 names_path,
+                                 os.path.join(sketches, names["folder"])))
+    return worst
+
+
 def main(argv: List[str]) -> int:
     if len(argv) == 2 and argv[0] == "list":
         for b in blocks(read_lines(argv[1])):
@@ -160,6 +184,8 @@ def main(argv: List[str]) -> int:
         return 0
     if len(argv) == 4 and argv[0] == "check":
         return check(*argv[1:])
+    if len(argv) == 2 and argv[0] == "check-all":
+        return check_all(argv[1])
     print(__doc__)
     return 2
 

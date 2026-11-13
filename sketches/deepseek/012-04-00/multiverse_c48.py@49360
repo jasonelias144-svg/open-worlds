@@ -1,0 +1,302 @@
+def demo(artifact_dir: Optional[str] = None) -> Dict:
+    """Five architectures, one federation, one meta-decision.
+
+    Produces:
+      - A C44 council Decision ("alpha")
+      - A C45 deliberation Decision ("beta")
+      - A C43 swarm convergence log, witnessed
+      - A C47 autonomic state trace, witnessed
+      - A CrossKindCouncil ("meta") whose members see all four,
+        reference them, and produce a meta-decision
+
+    Verification: meta decision valid iff local votes valid AND
+    each referenced attestation verifies per its own contract.
+
+    Anchor: Dickinson, 'The Brain – is wider than the Sky –'
+    (the closing of the five-architecture arc on that poem).
+    """
+    import json
+    from pathlib import Path
+    from multiverse_c1 import create_identity, Identity
+    from multiverse_c43 import SwarmUnit, SwarmNetwork
+    from multiverse_c47 import AutonomicUnit, AutonomicNetwork
+
+    if not HAS_CRYPTO:
+        raise RuntimeError("demo requires `cryptography`")
+
+    # -------------------------------------------------------------
+    # Source 1: a C44 council decision
+    # -------------------------------------------------------------
+    alpha_kps = [KeyPair.generate() for _ in range(3)]
+    alpha = DeliberativeCouncil(
+        "alpha", QuorumRule(2, 2), max_rounds=2,
+        stability_rounds=1)
+    for i, kp in enumerate(alpha_kps):
+        alpha.add_member(DeliberativeMember(
+            entity_id=f"alpha:m{i}", name=f"Alpha-{i}",
+            member_kp=kp,
+            decision_rule=lambda p, c: ("yea", "approve")))
+    alpha_keys = {
+        f"alpha:m{i}": kp.public_key_hex()
+        for i, kp in enumerate(alpha_kps)
+    }
+    alpha_decision = alpha.deliberate_and_resolve(
+        Proposal(content={"action": "adopt-relay"}))
+    a_decision_att = attest_decision(
+        "council-alpha", alpha_decision.final_decision)
+
+    # -------------------------------------------------------------
+    # Source 2: a C45 deliberative decision
+    # -------------------------------------------------------------
+    beta_kps = [KeyPair.generate() for _ in range(3)]
+    beta = DeliberativeCouncil(
+        "beta", QuorumRule(2, 2), max_rounds=2,
+        stability_rounds=1)
+    for i, kp in enumerate(beta_kps):
+        beta.add_member(DeliberativeMember(
+            entity_id=f"beta:m{i}", name=f"Beta-{i}",
+            member_kp=kp,
+            decision_rule=lambda p, c: ("yea", "yes")))
+    beta_keys = {
+        f"beta:m{i}": kp.public_key_hex()
+        for i, kp in enumerate(beta_kps)
+    }
+    beta_decision = beta.deliberate_and_resolve(
+        Proposal(content={"action": "adopt-octopus"}))
+    b_deliberative_att = attest_deliberative_decision(
+        "council-beta", beta_decision)
+
+    # -------------------------------------------------------------
+    # Source 3: a C43 swarm convergence log
+    # -------------------------------------------------------------
+    swarm_net = SwarmNetwork(food_target=(5, 5), max_epochs=20)
+    for i in range(3):
+        swarm_net.add_unit(f"ant-{i}", SwarmUnit(
+            entity_id=f"world:ant-{i}", name=f"ant-{i}",
+            env_stream=swarm_net.stream,
+            initial_position=(i, i),
+            seed=42 + i, sample_probability=1.0))
+    swarm_net.unit_by_name("ant-0").act(
+        __import__("multiverse_c3", fromlist=["Act"]).Act(
+            actor_token="ext", type="find_food",
+            payload={"location": [5, 5]}))
+    swarm_epochs = []
+    for _ in range(10):
+        r = swarm_net.run_epoch()
+        swarm_epochs.append({
+            "epoch": r.epoch,
+            "units_at_food": r.statistics["units_at_food"],
+            "converged": r.statistics["converged"],
+        })
+        if r.statistics["converged"]:
+            break
+    swarm_content = {"epochs": swarm_epochs,
+                      "final_converged": swarm_net.converged()}
+
+    witness_kp = KeyPair.generate()
+    witness_id = create_identity("swarm-recorder")
+    c_swarm_att = witness_artifact(
+        "swarm-1", "swarm_log", swarm_content,
+        witness_kp, witness_id)
+    witness_keys = {witness_id.token: witness_kp.public_key_hex()}
+
+    # -------------------------------------------------------------
+    # Source 4: a C47 autonomic state trace
+    # -------------------------------------------------------------
+    auto_net = AutonomicNetwork()
+    auto_net.set_coupling_heat(0.2)
+    for name in ("A", "B", "C"):
+        auto_net.add_unit(name, AutonomicUnit(
+            entity_id=f"world:{name.lower()}", name=name,
+            target=22.0, initial_state=20.0,
+            correction_strength=3.0, ambient_drift=0.5))
+    auto_trace = []
+    for _ in range(10):
+        r = auto_net.run_epoch()
+        auto_trace.append({
+            "epoch": r.epoch,
+            "states": dict(r.states),
+            "fires": dict(r.fires),
+        })
+    auto_content = {"trace": auto_trace,
+                     "within_tolerance":
+                        auto_net.all_within_tolerance(4.0)}
+    monitor_kp = KeyPair.generate()
+    monitor_id = create_identity("autonomic-monitor")
+    d_autonomic_att = witness_artifact(
+        "autonomic-1", "autonomic_trace", auto_content,
+        monitor_kp, monitor_id)
+    witness_keys[monitor_id.token] = monitor_kp.public_key_hex()
+
+    # -------------------------------------------------------------
+    # The meta-council: consumes all four
+    # -------------------------------------------------------------
+    meta_kps = [KeyPair.generate() for _ in range(3)]
+    def meta_rule(p, ctx):
+        attestations = ctx.get("cross_kind_attestations", {})
+        refs = []
+        for sid, summary in attestations.items():
+            refs.append(CrossKindReference(
+                source_id=sid,
+                source_kind=summary["source_kind"],
+                artifact_hash=summary["content_hash"]))
+        return ("yea",
+                f"considered {len(refs)} cross-kind attestations",
+                refs)
+    meta = CrossKindCouncil(
+        "meta", QuorumRule(2, 2), max_rounds=2,
+        stability_rounds=1)
+    for i, kp in enumerate(meta_kps):
+        meta.add_member(CrossKindDeliberativeMember(
+            entity_id=f"meta:m{i}", name=f"Meta-{i}",
+            member_kp=kp, decision_rule=meta_rule))
+    meta_keys = {
+        f"meta:m{i}": kp.public_key_hex()
+        for i, kp in enumerate(meta_kps)
+    }
+    meta_proposal = Proposal(content={
+        "action": "federate-all-four",
+        "note": "cross-architecture federation",
+    })
+    meta_decision = meta.deliberate_and_resolve_cross_kind(
+        meta_proposal,
+        attestations=[
+            a_decision_att,
+            b_deliberative_att,
+            c_swarm_att,
+            d_autonomic_att,
+        ])
+
+    # -------------------------------------------------------------
+    # Verify
+    # -------------------------------------------------------------
+    verification_context = {
+        "member_keys": {
+            "council-alpha": alpha_keys,
+            "council-beta": beta_keys,
+        },
+        "witness_public_keys": witness_keys,
+    }
+    meta_verdict = verify_cross_kind_federation(
+        meta_decision,
+        local_member_keys=meta_keys,
+        context=verification_context,
+    )
+
+    # -------------------------------------------------------------
+    # Negative: tampered swarm log
+    # -------------------------------------------------------------
+    tampered_swarm = FederationAttestation(
+        source_id=c_swarm_att.source_id,
+        source_kind=c_swarm_att.source_kind,
+        content={**c_swarm_att.content, "final_converged": False},
+        content_hash=c_swarm_att.content_hash,  # doesn't match new content
+        witness_token=c_swarm_att.witness_token,
+        witness_name=c_swarm_att.witness_name,
+        witness_public_key=c_swarm_att.witness_public_key,
+        witness_signature=c_swarm_att.witness_signature,
+        witness_timestamp=c_swarm_att.witness_timestamp,
+    )
+    tampered_decision = CrossKindFederatedDecision(
+        inner=meta_decision.inner,
+        attestations=(
+            a_decision_att,
+            b_deliberative_att,
+            tampered_swarm,
+            d_autonomic_att,
+        ),
+    )
+    tampered_verdict = verify_cross_kind_federation(
+        tampered_decision,
+        local_member_keys=meta_keys,
+        context=verification_context,
+    )
+
+    # -------------------------------------------------------------
+    # Print
+    # -------------------------------------------------------------
+    print("=" * 70)
+    print("Cross-Architecture Federation — five architectures,")
+    print("one meta-decision")
+    print("=" * 70)
+    print()
+    print("  Source attestations:")
+    for a in [a_decision_att, b_deliberative_att,
+              c_swarm_att, d_autonomic_att]:
+        mode = "witnessed" if a.is_witnessed else "direct"
+        print(f"    {a.source_id:20s} kind={a.source_kind:25s} "
+              f"({mode})")
+        print(f"    {'':20s} hash={a.content_hash[:16]}...")
+    print()
+    print("  Meta decision:")
+    print(f"    proposal: {meta_decision.inner.proposal}")
+    print(f"    outcome:  "
+          f"{meta_decision.inner.final_decision.outcome.upper()}")
+    print(f"    votes:    "
+          f"{meta_decision.inner.final_decision.yea_count} yea, "
+          f"{meta_decision.inner.final_decision.nay_count} nay")
+    print()
+    print("  Verification (happy path):")
+    for line in meta_verdict.format().split("\n"):
+        print(f"    {line}")
+    print()
+    print("  Verification (tampered swarm content, hash mismatch):")
+    for line in tampered_verdict.format().split("\n"):
+        print(f"    {line}")
+    print()
+    print("  What this demonstrates:")
+    print("    - Direct attestations verify via their own")
+    print("      architecture's verifier (C44, C45, C46, C40).")
+    print("    - Witnessed attestations verify via a witness")
+    print("      signature over the content hash (C41, C42, C43,")
+    print("      C47).")
+    print("    - A meta-council references both kinds by")
+    print("      (source_id, source_kind, artifact_hash).")
+    print("    - Tampering with any source is caught by the")
+    print("      corresponding verifier, not by the meta-council.")
+    print("    - Five architectures, one federation. The substrate")
+    print("      holds them simultaneously.")
+    print()
+    print("  Anchor (public domain, Emily Dickinson):")
+    print("    'The Brain – is wider than the Sky –'")
+    print("    'For – put them side by side –'")
+    print("    (the closing of the five-architecture arc)")
+
+    audit = {
+        "sources": [
+            {"source_id": a.source_id, "kind": a.source_kind,
+             "mode": "witnessed" if a.is_witnessed else "direct",
+             "hash": a.content_hash}
+            for a in [a_decision_att, b_deliberative_att,
+                      c_swarm_att, d_autonomic_att]
+        ],
+        "meta_outcome":
+            meta_decision.inner.final_decision.outcome,
+        "meta_reference_count":
+            sum(len(p.references) for p in
+                meta_decision.inner.positions
+                if isinstance(p, CrossKindPosition)),
+        "happy_verdict": {
+            "valid": meta_verdict.valid,
+            "local_valid": meta_verdict.local_valid,
+            "attestations_all_valid": all(
+                v.valid for v in meta_verdict.attestation_verdicts),
+            "reference_error_count":
+                len(meta_verdict.reference_errors),
+        },
+        "tampered_verdict": {
+            "valid": tampered_verdict.valid,
+            "attestation_verdicts": [
+                {"source_id": v.source_id, "valid": v.valid,
+                 "reason": v.reason}
+                for v in tampered_verdict.attestation_verdicts
+            ],
+        },
+    }
+    if artifact_dir:
+        path = Path(artifact_dir)
+        path.mkdir(parents=True, exist_ok=True)
+        (path / "cross_architecture_federation_demo.json").write_text(
+            json.dumps(audit, indent=2))
+        print(f"\n  → {path}/cross_architecture_federation_demo.json")
+    return audit

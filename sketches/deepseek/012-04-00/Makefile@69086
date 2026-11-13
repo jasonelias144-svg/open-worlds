@@ -1,0 +1,3 @@
+.PHONY: lcs-demo
+lcs-demo:
+	$(PYTHON) -c "from multiverse_c62 import demo; demo(artifact_dir='artifacts')"

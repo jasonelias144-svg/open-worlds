@@ -1,0 +1,3 @@
+.PHONY: deliberation-demo
+deliberation-demo:
+	$(PYTHON) -c "from multiverse_c45 import demo; demo(artifact_dir='artifacts')"

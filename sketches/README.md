@@ -91,8 +91,13 @@ those components' tests don't load as written.
 - Record 012-03-02 discusses poems by poets whose work is still under
   copyright. It names them and, as commentary in a lesson, quotes at most a
   line or two at a time (once, a three-line haiku in English translation).
-  Those quotations are not ours to dedicate. The Emily Dickinson lines in
-  the code are in the public domain.
+  Those quotations are not ours to dedicate.
+- The code quotes Emily Dickinson, a line or two at a time, at the end of
+  each demonstration. Most of the poems were first published in the 1890s
+  or in 1929, and are in the public domain in the United States. One, "Tell
+  all the truth but tell it slant –", was first published in 1945 and may
+  still be under copyright there. Its two quoted lines are not ours to
+  dedicate either.
 - The records name the founder by first name only, as the founder decided.
   Nothing more personal is to be added (AGENTS.md).
 

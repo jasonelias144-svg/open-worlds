@@ -1,5 +1,6 @@
 {
   "record": "records/012-04-00-DPSK-Patterns_Multiverses.txt",
+  "folder": "deepseek/012-04-00",
   "languages": [
     "python",
     "typescript",
@@ -30,7 +31,27 @@
     "17394": "Makefile",
     "28352": "federation_test.py",
     "29748": "",
-    "38026": "multiverse_c40_test.py"
+    "38026": "multiverse_c40_test.py",
+    "44678": "multiverse_c45.py",
+    "46248": "multiverse_c46.py",
+    "47534": "multiverse_c47.py",
+    "49360": "multiverse_c48.py",
+    "50831": "multiverse_c49.py",
+    "52562": "multiverse_c50.py",
+    "55094": "multiverse_c52.py",
+    "55925": "multiverse_c51.py",
+    "55958": "multiverse_c51.py",
+    "56021": "multiverse_c51.py",
+    "56713": "multiverse_c54.py",
+    "57673": "multiverse_c55.py",
+    "58391": "multiverse_c55.py",
+    "60037": "multiverse_c56.py",
+    "61966": "multiverse_c57.py",
+    "63350": "multiverse_c58.py",
+    "64854": "multiverse_c59.py",
+    "66288": "multiverse_c60.py",
+    "68217": "multiverse_c62.py",
+    "69882": "multiverse_c63.py"
   },
   "ours": [
     "README.md",

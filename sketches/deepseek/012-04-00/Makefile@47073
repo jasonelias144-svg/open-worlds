@@ -1,0 +1,3 @@
+.PHONY: federated-deliberation-demo
+federated-deliberation-demo:
+	$(PYTHON) -c "from multiverse_c46 import demo; demo(artifact_dir='artifacts')"

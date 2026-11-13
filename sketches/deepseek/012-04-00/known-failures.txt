@@ -17,6 +17,23 @@ multiverse_c17_test.py  # ImportError: cannot import name 'InMemoryKeyResolver' 
 multiverse_c18_test.py  # ImportError: cannot import name 'turns_from_log' from 'multiverse_c4' (multiverse_c4.py)
 multiverse_c20_test.py  # ImportError: cannot import name 'turns_from_log' from 'multiverse_c4' (multiverse_c4.py)
 multiverse_c40_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c40' (multiverse_c40.py)
+multiverse_c44_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c44' (multiverse_c44.py)
+multiverse_c45_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c45' (multiverse_c45.py)
+multiverse_c46_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c46' (multiverse_c46.py)
+multiverse_c47_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c47' (multiverse_c47.py)
+multiverse_c48_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c48' (multiverse_c48.py)
+multiverse_c49_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c49' (multiverse_c49.py)
+multiverse_c50_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c50' (multiverse_c50.py)
+multiverse_c52_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c52' (multiverse_c52.py)
+multiverse_c54_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c54' (multiverse_c54.py)
+multiverse_c55_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c55' (multiverse_c55.py)
+multiverse_c56_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c56' (multiverse_c56.py)
+multiverse_c57_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c57' (multiverse_c57.py)
+multiverse_c58_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c58' (multiverse_c58.py)
+multiverse_c59_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c59' (multiverse_c59.py)
+multiverse_c60_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c60' (multiverse_c60.py)
+multiverse_c62_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c62' (multiverse_c62.py)
+multiverse_c63_test.py  # ImportError: cannot import name 'demo' from 'multiverse_c63' (multiverse_c63.py)
 
 # Tests that fail
 multiverse_c2_test.py::test_admission_immutability  # ValueError: world_id must be at least 8 characters
@@ -67,7 +84,7 @@ multiverse_c22_test.py::test_signed_leave_wrong_key_fails  # ValueError: world_i
 multiverse_c23_test.py::test_current_residency_departed  # ValueError: departure is for 'alice', passport is for '<hex>'
 multiverse_c23_test.py::test_current_residency_multi_visit_last_closed  # ValueError: departure is for 'alice', passport is for '<hex>'
 multiverse_c23_test.py::test_current_residency_multi_visit_last_open  # ValueError: departure is for 'alice', passport is for '<hex>'
-multiverse_c27_test.py::test_combined_to_dict_json  # sometimes: failed in 2 of 8 runs (hash seeds 0 to 7): AssertionError: assert ['Alice', 'Ca...'Bob', 'Dave'] == ['Alice', 'Bo...arol', 'Dave']
+multiverse_c27_test.py::test_combined_to_dict_json  # sometimes: failed in 3 of 8 runs (hash seeds 0 to 7): AssertionError: assert ['Alice', 'Ca...'Bob', 'Dave'] == ['Alice', 'Bo...arol', 'Dave']
 multiverse_c27_test.py::test_demo  # TypeError: revoke expects a ChainLink, got DAGLink
 multiverse_c27_test.py::test_revoke_one_branch_noncascade  # TypeError: revoke expects a ChainLink, got DAGLink
 multiverse_c27_test.py::test_unknown_previous_rejected  # AssertionError: assert 'unknown' in 'root report_hash does not match report'
@@ -139,6 +156,7 @@ multiverse_c43_test.py::test_own_trace_keeps_unit_stable  # + where converged = 
 multiverse_c43_test.py::test_removing_non_finder_still_converges  # AssertionError: failed after removing ant-1
 multiverse_c43_test.py::test_three_architectures_same_substrate  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
 multiverse_c43_test.py::test_unit_is_wcp_world  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
+multiverse_c51_test.py::test_real_c41_demo  # AssertionError: octopus demo failed: exit 1: ImportError: cannot import name 'turns_from_log' from 'multiverse_c4' (multiverse_c4.py)
 federation_test.py::test_demo_report_has_three_models  # AssertionError: assert 1 == 0
 federation_test.py::test_demo_runs_and_saves_artifacts  # AssertionError: demo failed:
 federation_test.py::test_demo_unsigned_runs  # AssertionError: demo failed:

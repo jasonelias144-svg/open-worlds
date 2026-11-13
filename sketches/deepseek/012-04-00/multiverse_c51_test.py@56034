@@ -1,0 +1,83 @@
+# multiverse_c51_test.py — updates to existing tests, plus two new
+
+def test_seven_primary_architectures():
+    """C51's six + C52's seventh."""
+    print("=== Seven primary architectures ===")
+    assert len(ARCHITECTURES) == 7
+    names = [a.name for a in ARCHITECTURES]
+    assert names == [
+        "octopus", "relay", "swarm", "council",
+        "autonomic", "institutional", "epidemic"]
+
+
+def test_epidemic_spec_well_formed():
+    """C52 spec has correct axis values."""
+    print("=== C52 spec: correct axis values ===")
+    epi = next(a for a in ARCHITECTURES if a.name == "epidemic")
+    assert epi.component == "C52"
+    assert epi.module == "multiverse_c52"
+    assert epi.audit_filename == "epidemic_demo.json"
+    assert epi.direction == "edges"
+    assert epi.unit == "spreader"
+    assert epi.flow == "direct contact"
+    assert epi.convergence == "saturation"
+
+
+def test_architecture_axes_distinct():
+    """Every primary architecture has a distinct
+    (direction, unit, flow, convergence) tuple. Now seven."""
+    print("=== Primary architectures: seven distinct axis tuples ===")
+    tuples = [
+        (a.direction, a.unit, a.flow, a.convergence)
+        for a in ARCHITECTURES
+    ]
+    assert len(set(tuples)) == len(tuples)
+
+
+# Update summary structure test to expect 7
+def test_summary_structure(tmp_path, monkeypatch):
+    print("=== Summary: correct structure (7 primaries) ===")
+    runner = _build_mocked_runner(tmp_path, monkeypatch)
+    s = runner.summary()
+    assert s["kind"] == "architecture_survey"
+    assert len(s["primary_architectures"]) == 7
+    assert len(s["extensions"]) == 4
+    assert s["primary_passed"] == 7
+    assert s["primary_total"] == 7
+    assert s["all_primary_passed"] is True
+
+
+# Update print output test to expect 7/7 and C52
+def test_print_comparison_output(tmp_path, monkeypatch, capsys):
+    print("=== print_comparison: seven architectures ===")
+    runner = _build_mocked_runner(tmp_path, monkeypatch)
+    runner.print_comparison()
+    out = capsys.readouterr().out
+    assert "Architecture Survey" in out
+    assert "seven architectures" in out
+    for spec in ARCHITECTURES:
+        assert spec.name in out
+    assert "7/7" in out
+    assert "All passed:   True" in out
+
+
+# New: verify C52's demo would actually pass in isolation
+def test_real_c52_demo(tmp_path):
+    """Real subprocess: C52 (epidemic) — fast, no network."""
+    print("=== Real subprocess: C52 epidemic demo ===")
+    try:
+        import cryptography  # noqa
+    except ImportError:
+        pytest.skip("cryptography not installed")
+    runner = ArchitectureRunner(tmp_path, timeout=30)
+    spec = next(a for a in ARCHITECTURES if a.name == "epidemic")
+    result = runner._run_one(spec)
+    assert result.passed, f"epidemic demo failed: {result.reason}"
+    assert result.audit_data is not None
+    assert "scenarios" in result.audit_data
+    # Full-chain scenario should saturate
+    full = next(
+        s for s in result.audit_data["scenarios"]
+        if s["name"] == "A_full_chain")
+    assert full["saturated"] is True
+    assert (tmp_path / "epidemic" / "epidemic_demo.json").exists()

@@ -1,0 +1,3 @@
+.PHONY: persistence-demo
+persistence-demo:
+	$(PYTHON) -c "from multiverse_c49 import demo; demo(artifact_dir='artifacts')"

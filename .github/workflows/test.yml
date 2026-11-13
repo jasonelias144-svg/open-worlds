@@ -46,13 +46,12 @@ jobs:
         with:
           python-version: "3.12"
       - run: python -m pip install -r sketches/requirements.txt
-      - run: >-
-          python sketches/tools/extract.py check
-          sketches/records/012-04-00-DPSK-Patterns_Multiverses.txt
-          sketches/tools/names-012-04-00.json
-          sketches/deepseek/012-04-00
-      - run: python -m pytest -q
-        working-directory: sketches/deepseek/012-04-00
+      - run: python sketches/tools/extract.py check-all sketches
+      - run: |
+          for folder in sketches/deepseek/*/; do
+            echo "== $folder"
+            (cd "$folder" && python -m pytest -q) || exit 1
+          done
         env:
           # One fixed hash seed, so that set order is the same on every
           # run; tests that vary for other reasons are marked "sometimes"

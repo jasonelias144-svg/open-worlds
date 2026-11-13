@@ -13,7 +13,7 @@ message; the rest is DeepSeek's reply.
 
 | Record | What it covers | Lines | SHA-256 |
 |---|---|---|---|
-| [012-04-00, Patterns and Multiverses](records/012-04-00-DPSK-Patterns_Multiverses.txt) | The multiverse sketch, components 1 to 43, ending with the founder's question about a council | 42,244 | `977a50ead8f1ccfa4f8f8771ce3603b2c7c39e693b5c42bdccf586f6e5b4557b` |
+| [012-04-00, Patterns and Multiverses](records/012-04-00-DPSK-Patterns_Multiverses.txt) | The multiverse sketch, components 1 to 63, complete. It ends with DeepSeek proposing component 64, a specification for a first live federation | 70,958 | `6a348012fe321fc758f37f8a7625cc124872f4806beef6096ad475081d409387` |
 | [012-03-02, Patterns, Texts and Inventions](records/012-03-02-DPSK-Patterns_Texts_and_Inventions.txt) | The poetry engine and its curriculum, which the multiverse sketch builds on | 23,426 | `978eac920205ec2b487efc33f927dfd62da95b12ad78f1760fef9277b74908de` |
 
 ## Links from the records
@@ -80,15 +80,41 @@ open-worlds" says whether any of it is in the working code, and how.
 | — | Telling architectures apart: four questions (no code) | 40062 | | | |
 | 42 | The relay architecture (central and peripheral nervous system) | 40110 | 26 of 28 | not yet (architectures) | no |
 | 43 | The swarm architecture | 41207 | 25 of 33 | not yet (architectures) | no |
-| — | The founder's last message: a small group that decides for the whole (a council, a triumvirate), not yet answered | 42242 | | | |
+| — | The founder: a small group that decides for the whole (a council, a triumvirate) | 42242 | | | |
+| 44 | The triumvirate: a council whose signed votes are counted | 42245 | doesn't load | not yet (architectures) | no |
+| 45 | Deliberation: signed positions that change before the vote | 44028 | doesn't load | not yet (architectures) | no |
+| 46 | Councils that cite each other's decisions | 45533 | doesn't load | not yet (architectures) | no |
+| — | The founder: a free tier and a paid tier | 47194 | | | |
+| 47 | The autonomic architecture | 47235 | doesn't load | not yet (architectures) | no |
+| 48 | Federating different architectures | 48345 | doesn't load | none yet | no |
+| 49 | Saving and loading a federation | 50367 | doesn't load | none yet | no |
+| 50 | The institutional architecture: units run by a signed policy | 51932 | doesn't load | not yet (architectures) | no |
+| 51 | A runner that demonstrates every architecture | 53767 | 19 of 20 | none yet | no |
+| 52 | The epidemic architecture: units that pass a message along | 54755 | doesn't load | not yet (architectures) | no |
+| 53 | The runner, updated for seven architectures (additions `multiverse_c51.py@55925`, `@55958`, `@56021`, `multiverse_c51_test.py@56034`) | 55907 | not collected (additions) | none yet | no |
+| 54 | The message as a signed attestation | 56214 | doesn't load | none yet | no |
+| — | The founder: each world has an AI admin that oversees it and drives its development | 57659 | | | |
+| 55 | The world curator: a world's voice, which proposes and doesn't decide | 57670 | doesn't load | next in line (curators); 3 gives worlds their keys | no |
+| 56 | A signed relay chain: each hop signed by sender and receiver | 59175 | doesn't load | none yet | no |
+| 57 | Contracts between worlds | 61021 | doesn't load | next in line (contracts between worlds) | no |
+| 58 | Acts that cite a contract | 63085 | doesn't load | next in line (contracts between worlds) | no |
+| 59 | Announcing a contract to other worlds | 64266 | doesn't load | next in line (contracts between worlds) | no |
+| — | The founder: a public ledger, like a blockchain, across worlds | 65719 | | | |
+| 60 | Announcing a revocation | 65756 | doesn't load | next in line (contracts between worlds) | no |
+| 61 | The ledger as a store of commitments: a specification (no code) | 67239 | | next in line (a shared log of commitments) | no |
+| 62 | The ledger, built: a Merkle log with offline proofs | 67507 | doesn't load | next in line (a shared log of commitments) | no |
+| 63 | Each world's published rule for contract disputes | 69235 | doesn't load | next in line (contracts between worlds) | no |
 
-In all: as written, 414 of DeepSeek's tests pass and 144 fail. One more
+In all: as written, 433 of DeepSeek's tests pass and 145 fail. One more
 passes on some runs and fails on others: component 27's
 `test_combined_to_dict_json`, where two signers tie in the order and the
-tie falls either way. Eight test files don't load. The TypeScript and Go
-code isn't run here yet.
+tie falls either way. 25 test files don't load. Seventeen of those,
+components 44 to 63, fail only because DeepSeek gave each demo as a block
+of its own, after the module the tests import it from; the demos are kept
+as `multiverse_cNN.py@LINE` files until the first batch of fixes attaches
+them. The TypeScript and Go code isn't run here yet.
 
-All 135 code files in the record are written out. Fifteen code blocks in
+All 210 code files in the record are written out. Fifteen code blocks in
 the record are examples in the prose, not files, and stay in the record:
 eight JSON messages in the protocol's description (lines 5635 to 5776),
 four commands to run (16439, 16494, 17445, 29748) and three usage
@@ -97,7 +123,14 @@ examples (28455, 29754, 29766).
 "Not yet" in the Course column means the idea isn't on the course. The
 two proposals there (a step for persons after step 3; the architectures
 as small examples on the core) are the technical lead's, put to the
-founder on 2026-11-13, and not decided.
+founder on 2026-11-13, and not decided. "Next in line" means the course's
+list of steps to add as steps are done ([docs/COURSE.md](../docs/COURSE.md)).
+
+The founder's tier idea (line 47194) is about how open-worlds is run, not
+about the code: DeepSeek's reply, that tiers belong where the service is
+hosted and not in the protocol, keeps "anyone can join" true in the code.
+No tier may gate the freedoms the charter protects: leaving, voice and
+information.
 
 ## Record 012-03-02
 

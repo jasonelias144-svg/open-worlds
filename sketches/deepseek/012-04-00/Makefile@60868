@@ -1,0 +1,3 @@
+.PHONY: signed-relay-demo
+signed-relay-demo:
+	$(PYTHON) -c "from multiverse_c56 import demo; demo(artifact_dir='artifacts')"

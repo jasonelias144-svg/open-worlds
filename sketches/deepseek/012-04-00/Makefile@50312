@@ -1,0 +1,3 @@
+.PHONY: cross-architecture-demo
+cross-architecture-demo:
+	$(PYTHON) -c "from multiverse_c48 import demo; demo(artifact_dir='artifacts')"

@@ -38,13 +38,14 @@ ideas.
 
 ## Where the conversation stands
 
-Record 012-04-00 now runs to component 43, and ends with the founder's
-question about a council: a small group that decides for the whole. Each
-component's place is in [`sketches/INDEX.md`](../sketches/INDEX.md). In
-short: components 1 to 7 are in `multiverse/`, working (course step 1);
-13 and 14, signatures and their conformance test, were rebuilt in step 2,
-where an identity is its key; 15, signed passports, is course step 3,
-next.
+Record 012-04-00 is complete: components 1 to 63, ending with DeepSeek
+proposing component 64, a specification for a first live federation. The
+next conversation starts a new record, which gets its own folder in
+`sketches/`. Each component's place is in
+[`sketches/INDEX.md`](../sketches/INDEX.md). In short: components 1 to 7
+are in `multiverse/`, working (course step 1); 13 and 14, signatures and
+their conformance test, were rebuilt in step 2, where an identity is its
+key; 15, signed passports, is course step 3, next.
 
 Since the sketch, the founder has added ideas that now shape the
 course: learning agents in the chemistry world whose intelligence grows
@@ -53,9 +54,16 @@ accelerated time, and one day a main community world
 ([MULTIVERSE.md](MULTIVERSE.md)). Then, in components 36 to 43: identity
 across worlds (a person above their world-level identities, lineage,
 forks and merges), and architectures for many models across worlds (the
-octopus, the nervous system, the swarm, and next the council), with the
-founder's aim for the infrastructure: "we just need to create
-infrastructure that can handle what we cannot imagine yet."
+octopus, the nervous system, the swarm, and in components 44 to 52 the
+council and four more), with the founder's aim for the infrastructure:
+"we just need to create infrastructure that can handle what we cannot
+imagine yet." Then, in components 55 to 63: a curator for each world, an
+AI that speaks for its world and proposes its development but doesn't
+decide it; contracts between worlds; and, from the founder's idea of a
+public ledger, a shared log of commitments that anyone can check
+offline. And the founder's idea of a free tier and a paid tier, which
+belongs to how open-worlds is hosted, not to the protocol, so that anyone
+can always join.
 
 ## What the last stretch taught
 

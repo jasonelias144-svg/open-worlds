@@ -1,0 +1,6 @@
+# 3. Comparison header: "six architectures" → "seven architectures"
+
+    def print_comparison(self) -> None:
+        print("=" * 74)
+        print("Architecture Survey — seven architectures, one substrate")
+        print("=" * 74)
