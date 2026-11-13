@@ -20,8 +20,9 @@ respect one another's freedom, with full transparency and exit at any time
   [docs/WORLD-KEY.md](docs/WORLD-KEY.md) (the purpose, the tour, and the
   hunt for the world-key), with the research behind them. Its second part,
   [docs/ADMIN.md](docs/ADMIN.md): what the multiverse must preserve, who
-  keeps each world, and ADMIN, the Keeper of the multiverse. Next: step 2,
-  formats that last.
+  keeps each world, and ADMIN, the Keeper of the multiverse. Step 2,
+  formats that last, has begun by looking first:
+  [docs/research/FORMATS.md](docs/research/FORMATS.md).
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
   (#29), and experiment 001, the first unscripted minds
   ([results](experiments/001-first-words/RESULTS.md), #30). The first
@@ -325,6 +326,18 @@ and for the founder's conversations with DeepSeek, is in
 
 ## Log
 
+- 2026-11-13 Claude: course step 2, part one: looking first
+  ([docs/research/FORMATS.md](docs/research/FORMATS.md)). The JSON this
+  project already signs is written exactly as RFC 8785 writes it, in all
+  2,005 documents of a check kept with the note (`jcs_compare.py`), so
+  long as keys are ASCII and integers stay within 2^53 - 1; and our
+  Ed25519 signatures over it are what W3C's `eddsa-jcs-2022` signs.
+  Proposed: RFC 8785 for every new signed record; did:key for keys, with
+  an individual named by their birth key's; JSON Schema 2020-12; records
+  shaped like verifiable credentials without JSON-LD; HPKE's base mode
+  for sealing, with what is sealed signed first (Python's `cryptography`
+  has no Auth mode); HKDF for commitments; grants modelled on UCAN; signed
+  log heads; images named by digest.
 - 2026-11-13 Claude: course step 1, part two: ADMIN
   ([docs/ADMIN.md](docs/ADMIN.md)). Ten things the multiverse must
   preserve, from exit and the record to continuity and the power to
