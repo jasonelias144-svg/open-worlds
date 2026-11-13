@@ -13,31 +13,33 @@ respect one another's freedom, with full transparency and exit at any time
 
 ## Now
 
-- Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Steps 1 to 5
-  are done, and so are step 6's first two parts: keys saved encrypted,
-  with a world's seen numbers (#23), and a key signed over to a new one
-  (#24). A lost or leaked key waits for the founder's answer.
-  `sketches/` keeps the DeepSeek records and their code, with its first
-  fixes (#16 to #18, #20).
-- Claude: the Ur-world ([docs/URWORLD.md](docs/URWORLD.md)). The
-  garden's Hello World (#28) and the doorway for minds are in: an
-  orientation, what a mind sees written out, replies read strictly, and
-  minds as programs in any language. Experiment 001, the first
-  unscripted minds from the smallest open models, is done
-  ([results](experiments/001-first-words/RESULTS.md)). Next: ALICE's and
-  BOB's design (the parts that persist, the layers of what a mind is told,
-  and how information moves), then their records and memory.
+- Claude: the new course ([docs/COURSE.md](docs/COURSE.md)), set on
+  2026-11-13 for the Ur-world and ALICE and BOB. Step 1, the design pages,
+  is in: [docs/MINDS.md](docs/MINDS.md) (what an individual is made of,
+  what a mind is told, how information moves, where everything lives) and
+  [docs/WORLD-KEY.md](docs/WORLD-KEY.md) (the purpose, the tour, and the
+  hunt for the world-key), with the research behind them. Next: step 2,
+  formats that last.
+- Claude: the Ur-world so far: the garden (#28), the doorway for minds
+  (#29), and experiment 001, the first unscripted minds
+  ([results](experiments/001-first-words/RESULTS.md), #30). The first
+  course's steps 1 to 6 (keys, two parts) are done; what is still wanted
+  from it is on the new course's waiting list. `sketches/` keeps the
+  DeepSeek records and their code.
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
 
 The course, twelve steps ahead and rolling: [docs/COURSE.md](docs/COURSE.md).
 After each step is done, the rest are rechecked and one new step is added.
-In short: keeping keys safely; the first learner; real rates and the
-gardener's water; an organic chemistry world entered by a stamp; a viewer
-page; time and populations; language-model inhabitants (Cycle 1); any AI
-from any app; governance; a common-meter poetry world; a single-cell
-world; a world others built.
+In short: the design pages; formats that last; ALICE's and BOB's keys and
+identities; the kernel as entities and components; things, skills and the
+sheet; the first room, end to end; memory; experiment 002, the audition;
+ALICE's and BOB's first life; back to DeepSeek; the hunt and the
+world-key; founding worlds, and doors. Waiting behind them: a window onto
+the worlds, generator 2, storytellers, the gate and districts,
+governance, a lost or leaked key, and the first course's steps still
+wanted.
 
 Also kept from earlier plans, outside the course for now: side cycles
 suggested by Cycle 0 (walkers with different speeds, to test "respect
@@ -219,8 +221,36 @@ and for the founder's conversations with DeepSeek, is in
   level." So ALICE's and BOB's journals are public, and their private
   keys go in a private repository of the project.
 
+- 2026-11-13, founder, on ALICE and BOB and their world, all quoted in
+  docs/MINDS.md and docs/WORLD-KEY.md:
+  - no personal note from the founder at their birth: "I would rather
+    speak indirectly, through the world of worlds I am envisioning";
+  - a purpose, given by the world: "It needs a purpose. A goal. An
+    objective. A tour.";
+  - a challenge whose end is a new world, with clues, maps, codes and
+    symbols, and a world-key as the prize; "every individual will have
+    their own path to the world-key, not a first-find, first-keep deal";
+    "the whole place could be like one large video game, essentially";
+  - characters that grow, as in role-playing games, looking at "the sum
+    total of information associated with an individual and the
+    relationships between that information internally and externally";
+  - industry practice first: "The more we can follow industry standards
+    and take advantage of the lessons already learned over decades,
+    instead of learning them again unnecessarily."
+  - the new course: "Yes, this should be the new list, since much has
+    changed since then", returning to DeepSeek at its step 10.
+
 ## Log
 
+- 2026-11-13 Claude: course step 1, the design pages. The course is set
+  anew ([docs/COURSE.md](docs/COURSE.md)), with the first course's record
+  kept. [docs/MINDS.md](docs/MINDS.md): the eight parts of an individual,
+  the four layers of what a mind is told, how information moves, two
+  meanings of private, the sheet, memory, and where everything lives.
+  [docs/WORLD-KEY.md](docs/WORLD-KEY.md): the purpose, the tour, and the
+  hunt, whose pieces are the real parts of a world and whose prize, the
+  world-key, founds one. The research behind them, with its sources:
+  [docs/research/GAMES-AND-WORLDS.md](docs/research/GAMES-AND-WORLDS.md).
 - 2026-11-13 Claude: experiment 001, the first unscripted minds
   ([experiments/001-first-words](experiments/001-first-words/RESULTS.md)).
   Five small open models, from 135 million to 1.7 billion parameters,

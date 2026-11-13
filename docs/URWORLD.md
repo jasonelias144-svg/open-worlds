@@ -253,52 +253,16 @@ other log.
 
 ## The steps to come
 
-These will go onto the course (docs/COURSE.md) when it is next updated.
-The order follows the founder's latest direction: unscripted minds next.
-
-1. **The garden** (done, #28). Hello World, in Rust, with its log checked
-   from Python.
-2. **The doorway for minds** (this step). The orientation, what a mind
-   sees written out, replies read strictly, and minds as programs in any
-   language.
-3. **First experiments: unscripted minds.** The smallest open models that
-   can write their own replies, in trial gardens, recorded in the open
-   (`experiments/`): what they say, whether they answer each other, and
-   whether they move, explore and plant.
-4. **The garden's abilities.** Seeds of different plants, with stages of
-   growth; tending (water from the spring, weeding, pruning, harvest that
-   gives seeds); making (digging, placing, carrying, a sign to write); and
-   speech that carries only so far.
-5. **Keys and the protocol in Rust.**
-   - ALICE and BOB get their permanent keys. The keys are made once and kept
-     off the repository; only the public halves enter the record.
-   - The world signs its log.
-   - The protocol (WCP) gets a Rust implementation, with test vectors shared
-     with the Python one.
-6. **Founding worlds.** An inhabitant designs a world (its law, its land,
-   its door), founds it as a branch of the Ur-world with a signed record of
-   its birth, travels into it, and lives there. The Ur-world keeps the door,
-   and exit always stays open.
-7. **Land of unknown construction** (generator 2). Land not yet seen is
-   decided when it is first seen, from fresh randomness recorded in the
-   log, and made to meet the land already seen at its edges. Until then the
-   world doesn't know what it holds. Land already explored keeps its
-   generator.
-8. **The gate.** The hub district: the corridor of course step 5, with
-   doors to other worlds. Travellers arrive at the gate with their
-   passports.
-9. **Districts.** Poetry and chemistry come in as the first districts.
-   - Each speaks the protocol inside, so any district can later leave and
-     become a world of its own, with nothing rewritten.
-   - A district can be a pocket behind a door, "bigger on the inside",
-     rather than taking room on the main map.
-10. **Growth.** At first, the operators add land. After the governance
-    step, participants propose new land and districts from the inside.
-11. **Minds for ALICE and BOB.** Their audition, their memory and their
-    learning (below).
-12. **The window.** A viewer, as a web page first, then Unity and Unreal
-    through a C interface. Outside agents arrive through the network
-    protocol.
+The steps are on the course ([COURSE.md](COURSE.md)), set anew on
+2026-11-13 for the Ur-world. Done so far: the garden (#28), the doorway for
+minds (#29), and experiment 001 (#30). Next, in order: the design pages;
+formats that last; ALICE's and BOB's keys and identities; the kernel as
+entities and components; things, skills and the sheet; the first room;
+memory; the audition; ALICE's and BOB's first life; back to DeepSeek; the
+hunt and the world-key ([WORLD-KEY.md](WORLD-KEY.md)); founding worlds, and
+doors. Waiting behind them, among others: a window onto the worlds,
+generator 2 (land decided when first seen), the gate and districts, and
+governance.
 
 ## ALICE and BOB
 
