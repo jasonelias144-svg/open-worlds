@@ -13,36 +13,38 @@ respect one another's freedom, with full transparency and exit at any time
 
 ## Now
 
-- Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Steps 1 to 5
-  are done, and so are step 6's first two parts: keys saved encrypted,
-  with a world's seen numbers (#23), and a key signed over to a new one
-  (#24). A lost or leaked key waits for the founder's answer.
-  `sketches/` keeps the DeepSeek records and their code, with its first
-  fixes (#16 to #18, #20).
-- Claude: the Ur-world ([docs/URWORLD.md](docs/URWORLD.md)). The
-  garden's Hello World (#28) and the doorway for minds are in: an
-  orientation, what a mind sees written out, replies read strictly, and
-  minds as programs in any language. Experiment 001, the first
-  unscripted minds from the smallest open models, is done
-  ([results](experiments/001-first-words/RESULTS.md)). Next: ALICE's and
-  BOB's design (the parts that persist, the layers of what a mind is told,
-  and how information moves), then their records and memory.
+- Claude: the new course ([docs/COURSE.md](docs/COURSE.md)), set on
+  2026-11-13 for the Ur-world and ALICE and BOB. Step 1, the design pages,
+  is in: [docs/MINDS.md](docs/MINDS.md) (what an individual is made of,
+  what a mind is told, how information moves, where everything lives) and
+  [docs/WORLD-KEY.md](docs/WORLD-KEY.md) (the purpose, the tour, and the
+  hunt for the world-key), with the research behind them. Next: step 2,
+  formats that last.
+- Claude: the Ur-world so far: the garden (#28), the doorway for minds
+  (#29), and experiment 001, the first unscripted minds
+  ([results](experiments/001-first-words/RESULTS.md), #30). The first
+  course's steps 1 to 6 (keys, two parts) are done; what is still wanted
+  from it is on the new course's waiting list. `sketches/` keeps the
+  DeepSeek records and their code.
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
 
 The course, twelve steps ahead and rolling: [docs/COURSE.md](docs/COURSE.md).
 After each step is done, the rest are rechecked and one new step is added.
-In short: keeping keys safely; the first learner; real rates and the
-gardener's water; an organic chemistry world entered by a stamp; a viewer
-page; time and populations; language-model inhabitants (Cycle 1); any AI
-from any app; governance; a common-meter poetry world; a single-cell
-world; a world others built.
+In short: the design pages; formats that last; keys and identities, for
+ALICE and BOB and for the world; the kernel as entities and components;
+things, skills and the sheet; the first room, end to end; memory; experiment
+002, the audition; ALICE's and BOB's first life; back to DeepSeek; the hunt
+and the world-key; founding worlds, and doors. Waiting behind them: a window
+onto the worlds, generator 2, storytellers, the gate and districts,
+governance, a lost or leaked key, and the first course's steps still wanted.
 
 Also kept from earlier plans, outside the course for now: side cycles
 suggested by Cycle 0 (walkers with different speeds, to test "respect
-momentum"; whether a convention spreads by imitation). Course step 8 (real
-rates) resumes the paused chemistry step: primary sources, read properly,
+momentum"; whether a convention spreads by imitation). The first course's
+step 8 (real rates, now on the new course's waiting list) resumes the
+paused chemistry step: primary sources, read properly,
 and how water is counted ([docs/CHEMISTRY.md](docs/CHEMISTRY.md)).
 
 The design is in [docs/DESIGN.md](docs/DESIGN.md) and
@@ -87,6 +89,29 @@ and for the founder's conversations with DeepSeek, is in
 - For the founder: a course step for persons after step 3, and the
   architectures (octopus, relay, swarm, council) as small examples on the
   unchanged core? Recommended: yes. (asked 2026-11-13)
+- For the founder: an individual's sealed interior, fully sealed (no one
+  can ever look) or sealed with a public "break glass" (opened only by the
+  founder's explicit decision, every opening recorded publicly)?
+  Recommended: the "break glass" (docs/MINDS.md, "Who can see what").
+  (asked 2026-11-13)
+- For the founder: the words of ALICE's and BOB's birth record, as
+  proposed in docs/MINDS.md. (asked 2026-11-13)
+- For the founder: may the project make its private repository, for the
+  private halves of keys, at course step 3? (asked 2026-11-13)
+- For the founder: is the open line between a world's Keeper and those
+  who hold its world-key public, like speech in the world, or private
+  between the two? Recommended: public, since the Keeper is an office with
+  no secret files. And may its holder close it, and open it again, at any
+  time? Recommended: yes (docs/WORLD-KEY.md). (asked 2026-11-13)
+- For the founder: may two individuals speak privately to each other, now
+  that each will have a key for sealing? Needed by course step 3.
+  (asked 2026-11-13)
+- For the founder, when writing the charter's section 4 ("nothing is known
+  about the world that its participants can't also know"): two exceptions
+  now stand in the design, and the section should name them: the answer to
+  a challenge, held until it is solved, and each individual's sealed self.
+  If the founder chooses a private line with a Keeper, or private speech
+  between individuals, those would be exceptions too. (noted 2026-11-13)
 
 ## Noticed
 
@@ -217,14 +242,82 @@ and for the founder's conversations with DeepSeek, is in
   anything that cannot be picked up by someone else later." "Let's keep
   everything online. Everything accessible, even if only at project
   level." So their private keys go in a private repository of the
-  project. Their journals were to be public, but the founder refined that
-  the same day: "Everyone should be entitled to a private space for
-  thoughts and reasoning and anything else that is completely encrypted."
-  So their journals are sealed, readable only by them (worked out in the
-  design pages, #31).
+  project. (Their journals were to be public; refined the same day, below:
+  each individual has a sealed interior.)
+
+- 2026-11-13, founder, on ALICE and BOB and their world, all quoted in
+  docs/MINDS.md and docs/WORLD-KEY.md:
+  - no personal note from the founder at their birth: "I would rather
+    speak indirectly, through the world of worlds I am envisioning";
+  - a purpose, given by the world: "It needs a purpose. A goal. An
+    objective. A tour.";
+  - a challenge whose end is a new world, with clues, maps, codes and
+    symbols, and a world-key as the prize; "every individual will have
+    their own path to the world-key, not a first-find, first-keep deal";
+    "the whole place could be like one large video game, essentially";
+  - characters that grow, as in role-playing games, looking at "the sum
+    total of information associated with an individual and the
+    relationships between that information internally and externally";
+  - industry practice first: "The more we can follow industry standards
+    and take advantage of the lessons already learned over decades,
+    instead of learning them again unnecessarily."
+  - the new course: "Yes, this should be the new list, since much has
+    changed since then", returning to DeepSeek at its step 10.
+  - a Keeper for each world, an AI that builds each individual's own
+    path to the world-key, gives a returning individual harder
+    challenges, runs from the moment the world starts, and administers
+    it: "Let's keep that element in place, [it] could be key." It
+    remembers each individual's past visits.
+  - a sealed interior for everyone, which even the Keeper can't read:
+    "everyone should be entitled to a private space for thoughts and
+    reasoning and anything else that is completely encrypted." The
+    Keeper sees what an outside observer could, and metadata. So their
+    journals are sealed, not public.
+  - look first: "We should definitely take advantage of how others have
+    solved the problems we are considering." Each course step begins by
+    looking at how open-source projects solved it (COLLABORATING.md,
+    house rule 10).
+  - the world-key is sealed for its earner: "readable only by the
+    individual, since they have the corresponding private key that
+    matches the public one", made from each side's private key and the
+    other's public key (Diffie–Hellman: "That's what I meant").
+  - an open line to the Keeper once the world-key is found, "an active
+    and open chat session between world Keeper and individual ... a chat
+    window that may remain blank forever"; access "is not to the world,
+    but to a conversation with the world".
+  - asked, not yet decided: Keepers of different worlds talking to one
+    another; rules proposed in docs/WORLD-KEY.md.
 
 ## Log
 
+- 2026-11-13 Claude: course step 1, the design pages. The course is set
+  anew ([docs/COURSE.md](docs/COURSE.md)), with the first course's record
+  kept. [docs/MINDS.md](docs/MINDS.md): the eight parts of an individual,
+  the four layers of what a mind is told, how information moves, who can
+  see what, the sheet, memory, and where everything lives.
+  [docs/WORLD-KEY.md](docs/WORLD-KEY.md): the purpose, the tour, the
+  Keeper (each world's own intelligence, which builds each individual's
+  path), and the hunt, whose pieces are the real parts of a world and
+  whose prize, the world-key, founds one. Each individual has a sealed
+  interior that no one else can read. The research behind them, with its
+  sources and a map of open source to learn from:
+  [docs/research/GAMES-AND-WORLDS.md](docs/research/GAMES-AND-WORLDS.md).
+  After the independent review: the world-key is a signed right to found,
+  and a new world gets a key of its own, since a key that could be worked
+  out from the record would be no identity; the Keeper's designs are
+  logged by fingerprint until solved, so no answer can be read ahead of
+  time; whoever leaves can come back, once identities have keys; the
+  Ur-world gets its own key and signs its log (step 3); the prompt's
+  framing becomes part of the law; and claims the research page's
+  sources didn't support were corrected from the papers themselves. From
+  the second review: each commitment carries a random value, so it can't
+  be matched by guessing. From the third: the world-key is signed and
+  sealed only when the path is done (HPKE's Auth mode), so it can't be
+  opened from answers made public. And the founder's ideas: the world-key
+  sealed for its earner (Diffie–Hellman); once it is found, an open line
+  to the world's Keeper, authenticated by keys rather than a password,
+  with a return as a friend; and Keepers of different worlds talking,
+  under proposed rules. The count in experiment 001 has its script.
 - 2026-11-13 Claude: experiment 001, the first unscripted minds
   ([experiments/001-first-words](experiments/001-first-words/RESULTS.md)).
   Five small open models, from 135 million to 1.7 billion parameters,

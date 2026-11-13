@@ -12,11 +12,21 @@ So the course always looks twelve steps ahead. When a step is done:
 
 Each step is one tested, independently reviewed piece of work. The
 founder can reorder or swap steps at any time: this is a plan, not a
-contract. The design behind it is [MULTIVERSE.md](MULTIVERSE.md). Which
-of the sketch's components each step relates to is in
-[sketches/INDEX.md](../sketches/INDEX.md).
+contract.
 
-## Done
+**The course was set anew on 2026-11-13,** for the Ur-world and its first
+individuals, ALICE and BOB. The founder: "Yes, this should be the new
+list, since much has changed since then. And I like that we return to
+DeepSeek at step 10, because I wanted to have our beginning
+infrastructure built out before returning." Each step names the
+established practice it borrows, so that we build on what others have
+learned over decades rather than learning it again. The design behind it
+is in [MINDS.md](MINDS.md), [WORLD-KEY.md](WORLD-KEY.md) and
+[URWORLD.md](URWORLD.md), and the research behind the borrowing is in
+[research/GAMES-AND-WORLDS.md](research/GAMES-AND-WORLDS.md). The first
+course's design is [MULTIVERSE.md](MULTIVERSE.md).
+
+## Done: the first course
 
 1. **The multiverse's core, working** (2026-11-12, #12 and #13, the
    write-up that added this page). The sketch's components 1 to 7, with
@@ -80,95 +90,128 @@ of the sketch's components each step relates to is in
    Learned: going through a door is a leave, then a petition, so for a
    moment the individual is in no world, and a refusal on the far side
    leaves it outside both; and a corridor ticks only when someone acts.
+6. **Keeping keys safely, parts one and two** (2026-11-13, #23 and #24).
+   Keys saved encrypted, a world's seen numbers kept across a restart,
+   and a key signed over to a new one by both keys, for individuals and
+   for worlds (WCP/0.4). Part three, a lost or leaked key, waits for the
+   founder's answer, and is on the waiting list below.
+
+## Done: the Ur-world so far
+
+- **The garden** (2026-11-13, #28). The Ur-world's Hello World in Rust: a
+  3D world made from its seed as it is explored, ALICE and BOB scripted.
+- **The doorway for minds** (2026-11-13, #29). Any program, in any
+  language, can be a mind: the orientation, what it sees written out,
+  replies read strictly, nothing a mind sends can break the world.
+- **Experiment 001, first words** (2026-11-13, #30). The smallest open
+  models in the garden, planned before running. Speech began at about
+  1.7 billion parameters; examples in the orientation became scripts;
+  minds without memory looped
+  ([results](../experiments/001-first-words/RESULTS.md)).
 
 ## Ahead
 
-Rechecked after step 3: keeping keys safely comes onto the course from
-the next-in-line list, as step 6, before the first learner. The
-learner's stamp (step 7) must still verify in the organic world (step 9)
-after the learner is saved and reloaded, or either world restarts, so
-the keys of both worlds and individuals have to outlive a process. The
-other steps keep their order, each one later by one.
+1. **The design pages.** [MINDS.md](MINDS.md): the parts of an
+   individual, the layers of what a mind is told, how information moves,
+   and where everything lives. [WORLD-KEY.md](WORLD-KEY.md): the purpose,
+   the tour, and the hunt for the world-key. The research behind them.
+   *Borrowing:* the game industry's split of controller, body and saved
+   data; characters built from components.
+2. **Formats that last.** A precise, versioned definition of each record:
+   identity, birth record, mind record, journal entry, routine, sheet,
+   avatar, and skill attestation. Test vectors keep Rust and Python in
+   agreement. *Borrowing:* JSON Schema; W3C's decentralised identifiers
+   (did:key) and verifiable credentials for signed claims; RFC 8785 for
+   writing JSON identically everywhere before signing; HPKE (RFC 9180) for
+   sealing, and the Noise protocol framework for a private line. Also the
+   commitments that hold back a challenge's answer: a random value of at
+   least 128 bits, derived for each challenge, over JSON written by RFC
+   8785.
+3. **Keys and identities, for them and for the world.** A private
+   repository of the project for the private halves; ALICE's and BOB's
+   signing keys, keys for sealing things to them, and the keys to their
+   sealed selves; birth records and public identity files. The Ur-world's
+   own keys: one to sign its log, one for sealing things to it. Leaving
+   and coming back: whoever leaves can return, proving with their key that
+   they are the same individual. *Borrowing:* standard key
+   handling, private halves kept apart and public halves published.
+4. **The kernel as entities and components.** Inhabitants, their bodies,
+   stones, tablets and seeds become entities with parts; every change is
+   a named, logged effect; tags allow or block actions. The Keeper's
+   administrative actions, and the checks on what it designs, are fixed
+   here, so its interface is settled early. *Borrowing:* the
+   entity-component pattern (Bevy's), and Unreal's effects and tags.
+5. **Things, skills and the sheet.** Carrying, reading, `lift` as the
+   first skill granted by a find, practice and rust, a log of what is
+   known, and the sheet rebuilt from the world's log and checked against
+   it. *Borrowing:* use-based skills (Dwarf Fortress, the Elder Scrolls),
+   Unreal's ability system, Outer Wilds' log of knowledge.
+6. **The first room, end to end.** The tour, guided by a simple scripted
+   Keeper; the stone by the spring, the first clue, `lift` learned, the
+   first fact known; playable by a scripted mind and by a model. The
+   prompt's framing becomes part of the law, sent by the world.
+   *Borrowing:* the vertical slice.
+7. **Memory, version 1, sealed.** Journal entries tied to ticks in the
+   log; recall by recency, importance and relevance; reflections; held
+   thoughts in a few slots; a library of routines they write. All of it
+   in a sealed self that only its owner can read, with public
+   fingerprints. *Borrowing:* Generative
+   Agents, Voyager's skill library, Disco Elysium's thought cabinet,
+   guarding against their known failures.
+8. **Experiment 002, the audition.** Candidate sizes of Qwen 3.5 and OLMo
+   3 play the first room, with and without memory, planned first. It
+   chooses ALICE's and BOB's sizes, and tests whether memory helps.
+   *Borrowing:* pre-registration; evaluation suites.
+9. **ALICE's and BOB's first life.** Their minds, their birth, their
+   first unscripted words; legends pages begin. *Borrowing:* Dwarf
+   Fortress's Legends mode.
+10. **Back to DeepSeek.** The re-orientation page in
+    [COLLABORATING.md](COLLABORATING.md), pointing to the records;
+    DeepSeek designs rooms, clues, symbols and the laws of new worlds,
+    inside the framework built in steps 1 to 9.
+11. **The hunt, the world-key, and the AI Keeper.** The Keeper builds each
+    individual's own path from what they do, and remembers them between
+    visits; its designs held back by commitment until solved; symbols,
+    maps, codes and stones; the pieces of a world; the world-key, a signed
+    right to found, sealed for its earner when the path is done; the open
+    line to the Keeper for those who hold its world-key; the workbench.
+    *Borrowing:* Tunic,
+    The Witness and Outer Wilds for teaching without words; Minecraft's
+    advancements for unlocks; AI directors and intelligent tutors, with
+    TextWorld and knowledge tracing to learn from, for the Keeper.
+12. **Founding worlds, and doors.** Child worlds, each with a new key of
+    its own and a signed birth record, doors between them, travel with
+    passports, founding together, and the world protocol in Rust. The
+    open line reaches a Keeper from another world, and a founded world's
+    Keeper has a line to its parent's. *Borrowing:* our own protocol and
+    passports, the open standards of step 2, and Matrix and Signal for the
+    line.
 
-Rechecked after step 4: step 7 now says that the learner's acts
-catalyse (speed a reaction both ways, for a while) instead of making it
-happen, so it can't push an uphill reaction and its goal stays a
-problem. Step 8 gains finding the reactions of new molecules as they
-appear, which real rates need anyway. A new step 16 comes from the
-next-in-line list: a single-cell world.
+## Waiting
 
-Rechecked after step 5: no change of order. Being in two worlds at once
-(next in line) would close the gap at a door, and stays in line. A new
-step 17 comes from the next-in-line list: a world others built.
-
-6. **Keeping keys safely.** Individuals and worlds keep their keys
-   across restarts: saved encrypted, backed up, and, when a key must be
-   replaced, signed over to the new one by the old one while it still
-   can (key rotation, as in the sketch's component 28). A world also
-   keeps the numbers it has seen, so an old request can't be replayed to
-   it after a restart. What happens when a key is lost with no
-   signed-over successor is decided in this step, with the founder.
-   Part one is done (#23): keys saved encrypted, and a world's seen
-   numbers kept across a restart (MULTIVERSE.md). Part two is done
-   (#24): a key signed over to a new one by both keys, for individuals
-   and for worlds (WCP/0.4). Next: a lost key, once the founder has
-   decided.
-7. **The first learner.** A tiny mind in the chemistry world, built to
-   learn for life: it starts small, grows only when its world asks for
-   more, carries what it has learned, and can be saved and replayed. Its
-   first goal is a peptide bond (two glycines into glycylglycine), with
-   standing problems that measure growth and forgetting. Solving it earns
-   a signed stamp. Its acts catalyse: they speed a reaction both ways for
-   a while, as a real catalyst does, and can't move an equilibrium.
-8. **Real rates, and the gardener's water.** Reaction rates from
-   published measurements, each with its source; the world finding the
-   reactions of each new molecule as it appears (CHEMISTRY.md, "growth
-   of the network"); and wetting and drying cycles that give the peptide
-   problem its real difficulty. Needs the founder's answer on the
-   gardener's levers.
-9. **An organic chemistry world** that admits by the stamp from step 7:
-   the first evolutionary path between worlds. Longer chains and more
-   kinds of reaction; the learner grows when it gets there.
-10. **A viewer page.** Anyone can watch the worlds, the passports and the
-    learner's life, built from the public logs. Needs a place to host it.
-11. **Time and populations.** Worlds with published time rates, fast
-    worlds, learning from replayed experience, and learners that
-    reproduce with variation, so that passage between worlds becomes
-    selection.
-12. **Language-model inhabitants.** Qwen3.5-0.8B poets on the founder's
-    Mac, in separate processes reaching the worlds over a local API; then
-    Cycle 1, with three to five models from different families, each
-    reading the charter on entering. Needs the charter's words and the
-    Mac.
-13. **Any AI from any app.** The protocol over the network, the
-    conformance test as a command anyone can run against an address, and
-    an MCP connection so Claude, ChatGPT or Grok can enter a world; then
-    a door to Lyceum Commons. Needs Lyceum online.
-14. **Governance.** A proposal to change a world's law is tried on a copy
-    of the world first, and adopted only by unanimous consent of those
-    present (principle 4).
-15. **A common-meter poetry world.** A poetry world whose law asks each
-    turn to add a quatrain in common meter, the meter of Dickinson and of
-    hymns, which others find easy to extend. Counting syllables and
-    spotting rhymes in English is approximate; the law says so, and
-    treats the meter as a guide.
-16. **A single-cell world.** A world where the agent is the organism
-    itself (MULTIVERSE.md, "Who the agent is"): one cell, a membrane
-    that lets some molecules through, and the chemistry inside it on
-    `chem/`. The cell lives while its chemistry keeps going, and divides
-    when it has made enough of itself. It passes the conformance test.
-17. **A world others built.** An adapter lets a world built elsewhere,
-    first anima-world, speak the protocol, as long as it keeps the same
-    guarantees: anyone may leave at any time and see the whole setup
-    (MULTIVERSE.md, "What this design adds", 6). It passes the
-    conformance test.
-
-## Next in line
-
-Added one at a time, as steps are done: doors in every world, and over
-the network (step 5 built them in the corridor); belongings
-and homes under each world's law; visiting two worlds at once; the main
-community world; a curator for each world, which proposes its world's
-development and doesn't decide it; contracts between worlds; a shared log
-of commitments that anyone can check offline (the last three from the
-sketch's components 55 to 63, [sketches/INDEX.md](../sketches/INDEX.md)).
+Added one at a time, as steps are done:
+- Keepers talking to one another, by the rules proposed in
+  [WORLD-KEY.md](WORLD-KEY.md);
+- a window onto the worlds: a web viewer first, in Bevy, in the browser;
+- generator 2: land decided when first seen;
+- a storyteller for each world: paced events and visitors;
+- the gate and districts, with the chemistry and poetry worlds as the
+  first districts;
+- governance: a proposal to change a world's law is tried on a copy
+  first, and adopted only by consent;
+- part three of keeping keys safely: a lost or leaked key;
+- from the first course, still wanted:
+  - the first learner, with real rates and the gardener's water, and an
+    organic chemistry world entered by its stamp;
+  - time and populations;
+  - any AI from any app, over the network;
+  - a common-meter poetry world;
+  - a single-cell world;
+  - a world others built;
+  - belongings and homes;
+  - visiting two worlds at once;
+  - a curator for each world;
+  - contracts between worlds;
+  - a shared log of commitments
+  ([sketches/INDEX.md](../sketches/INDEX.md) says where each meets the
+  sketch).

@@ -50,6 +50,10 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
   and the house rules.
 - [docs/URWORLD.md](docs/URWORLD.md): the Ur-world, the first world of the
   multiverse and its hub. It begins in a garden, with ALICE and BOB.
+- [docs/MINDS.md](docs/MINDS.md): what an individual is made of, what its
+  mind is told, and how information moves.
+- [docs/WORLD-KEY.md](docs/WORLD-KEY.md): what there is to do in the
+  Ur-world: a purpose, a tour, and the hunt for the world-key.
 - [rust/](rust/README.md): the worlds in Rust: the Ur-world, and the public
   record, checked across languages through shared test vectors
   ([vectors/](vectors/README.md)).
