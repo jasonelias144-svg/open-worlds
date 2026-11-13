@@ -53,6 +53,17 @@ class TestTheLaw(Case):
                      chemistry.world_key, "west end"):
             self.assertIn(part, doc)
 
+    def test_ticks_are_described_as_they_happen(self):
+        self.assertIn("everyone else waits", CorridorWorldLaw().describe())
+
+    def test_a_door_cant_lead_to_the_corridor_itself(self):
+        # Otherwise the door's key would replace the corridor's own among
+        # the keys it knows, and its own genuine stamps would be refused.
+        law = CorridorWorldLaw(doors=(Door((5, 0), "world:corridor",
+                                           Signer().token),))
+        with self.assertRaises(ValueError):
+            CorridorWorld("world:corridor", "The Corridor", law)
+
     def test_its_doors_and_sizes_are_checked(self):
         key = Signer().token
         for law in ({"width": 0}, {"height": 1001}, {"width": "12"},
@@ -221,6 +232,8 @@ class TestDoors(Case):
                                        "act_endpoint", "log_endpoint")})
         with self.assertRaises(ValueError):
             self.poetry.know(impostor)      # same id, another key
+        with self.assertRaises(ValueError):
+            self.poetry.know(self.poetry.manifest())    # its own
         self.assertEqual(self.poetry.known_keys()["world:chemistry"],
                          self.chemistry.world_key)
         self.assertEqual(self.poetry.known_keys()["world:poetry"],

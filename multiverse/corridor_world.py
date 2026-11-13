@@ -9,12 +9,14 @@ any other world.
 
 - **Entering** puts the individual in the first free cell of the west
   end, the entrance. Someone coming back from a world this corridor has a
-  door to arrives at that door instead (by the latest visit in their
-  passport), if it is free.
+  door to arrives at that door instead, if it is free: by the latest
+  visit their passport shows (a holder chooses which stamps to show).
 - **Acts:** `corridor.move` {"dx", "dy"}: one step to a neighbouring cell;
-  `corridor.say` {"text"}: heard by everyone at the next tick;
+  `corridor.say` {"text"}: spoken to everyone present (the kernel puts
+  it in everyone's next observation; visitors can't read observations
+  through the protocol yet);
   `corridor.wait` {}. Each accepted act runs one tick of the kernel, in
-  which everyone else present does what they last asked (or waits). A
+  which the one who acted does what it asked and everyone else waits. A
   move into a wall or an occupied cell is recorded as blocked.
 - **Leaving** removes the individual from the grid, as the kernel's own
   exit does. It can't be refused.
@@ -95,19 +97,21 @@ class CorridorWorldLaw:
             STAMPS_LAW,
             "- Newcomers enter at the west end (x = 0), in its first free "
             "cell; if none is free, they are asked to try again. Someone "
-            "whose latest visit was to a world beyond one of the doors "
-            "arrives at that door, if it is free.",
+            "whose latest visit, as their passport shows it, was to a "
+            "world beyond one of the doors arrives at that door, if it is "
+            "free.",
             "",
             "## The corridor",
             f"- {self.width} cells east to west, {self.height} north to "
             "south, walled on every side. One individual per cell.",
             f"- Ticks: each accepted act runs one tick of the world kernel "
-            f"(seed {self.seed}), in which everyone present does what they "
-            "last asked, or waits.",
+            f"(seed {self.seed}), in which the one who acted does what it "
+            "asked and everyone else waits.",
             f"- {MOVE} {{dx, dy}}: one step to a neighbouring cell; "
             "blocked by walls and by others.",
-            f"- {SAY} {{text}}: up to {MAX_SAY_CHARS} characters, heard by "
-            "everyone at the next tick.",
+            f"- {SAY} {{text}}: up to {MAX_SAY_CHARS} characters, spoken "
+            "to everyone present, and recorded in the kernel's log. "
+            "Visitors can't yet read what others say through the protocol.",
             f"- {WAIT} {{}}: one tick, standing still.",
             "",
             "## Doors",
@@ -157,6 +161,8 @@ class CorridorWorld(Entity):
         self._place: Dict[str, Cell] = {}      # where the next entry goes
         self._doors = {d.world_id: d for d in law.doors}
         for d in law.doors:
+            if d.world_id == entity_id:
+                raise ValueError("a door can't lead to the corridor itself")
             self._known[d.world_id] = d.world_key
 
     # -- entering and leaving --------------------------------------------

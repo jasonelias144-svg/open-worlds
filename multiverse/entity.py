@@ -268,6 +268,9 @@ class Entity:
         problem = manifest_problem(manifest)
         if problem:
             raise ValueError(f"not a usable manifest: {problem}")
+        if manifest.entity_id == self._manifest.entity_id:
+            raise ValueError("a world knows its own key already; this "
+                             "manifest names its id")
         known = self._known.get(manifest.entity_id)
         if known is not None and known != manifest.world_key:
             raise ValueError(f"{manifest.entity_id} is already known by "

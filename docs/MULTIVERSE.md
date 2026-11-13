@@ -409,8 +409,9 @@ What it doesn't do yet, said plainly:
 - **Doors.** The corridor's law publishes its doors: a cell, and the
   world beyond it, by id and key. Going through is the individual's own
   doing: its signed leave here, then its petition there, with its
-  passport. Someone coming back from a world beyond a door (by the latest
-  visit in their passport) arrives at that door.
+  passport. Someone coming back from a world beyond a door arrives at
+  that door: by the latest visit their passport shows, and a holder
+  chooses which stamps to show.
 - **Worlds that know each other.** A world learns another's key from its
   signed manifest (`Entity.know`), and checks every stamp in that world's
   name against it. The corridor knows the worlds beyond its doors, and
@@ -430,8 +431,9 @@ What it doesn't do yet, said plainly:
 
 - **Between two worlds, nowhere.** Going through a door is leave, then
   petition. If the world beyond refuses, the individual is in neither,
-  and may petition either again. Being in two worlds at once is on the
-  next-in-line list.
+  and may petition either again. Nothing stops someone who hasn't left
+  one world from entering another: being in two worlds at once isn't
+  supported yet (it is next in line), but isn't prevented either.
 - **Who knows whom is set up by whoever builds the worlds,** in one
   process. Over the network, worlds learn keys from manifests and
   registries (course step 13).
@@ -440,6 +442,11 @@ What it doesn't do yet, said plainly:
 - **No walkers of the corridor's own.** Cycle 0's walkers ran in the
   experiment; here the corridor holds only those who entered through
   the protocol.
+- **Visitors can't see the corridor yet.** Where others stand and what
+  they say goes into the kernel's log, readable in the same process;
+  nothing in the protocol shows it to a visitor yet (`where()` gives
+  one's own cell, in-process). The kernel's own guarantees of voice and
+  information are unchanged.
 
 ## The course
 
