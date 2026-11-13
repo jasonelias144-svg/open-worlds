@@ -108,14 +108,15 @@ open-worlds" says whether any of it is in the working code, and how.
 In all: as written, 433 of DeepSeek's tests pass and 145 fail. One more
 passes on some runs and fails on others: component 27's
 `test_combined_to_dict_json`, where two signers tie in the order and the
-tie falls either way. 25 test files don't load. Seventeen of those,
-components 44 to 63, fail only because DeepSeek gave each demo as a block
-of its own, after the module the tests import it from; the demos are kept
-as `multiverse_cNN.py@LINE` files until the first batch of fixes attaches
-them. Component 44's demo names itself, `multiverse_c44_demo.py`, but it
-is the same kind of fragment, with no imports of its own: it works only
-attached to `multiverse_c44.py`. The TypeScript and Go code isn't run
-here yet.
+tie falls either way. 25 test files don't load. Eighteen of those,
+components 40 and 44 to 63, fail only because DeepSeek gave each demo as
+a block of its own, after the module the tests import it from; the demos
+are kept as `multiverse_cNN.py@LINE` files until the first batch of fixes
+attaches them. Two demos name themselves, `multiverse_c40_demo.py` and
+`multiverse_c44_demo.py`, but they are the same kind of fragment, with no
+imports of their own: each works only attached to its module. (With its
+demo attached, in a scratch copy, all 25 of component 40's tests pass.)
+The TypeScript and Go code isn't run here yet.
 
 All 210 code files in the record are written out. Fifteen code blocks in
 the record are examples in the prose, not files, and stay in the record:

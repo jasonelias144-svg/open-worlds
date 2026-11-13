@@ -170,7 +170,7 @@ These apply to code that comes into open-worlds, not to the draft (see
 - **Give every file whole, with its file name on the first line** (as a
   comment or the start of its docstring), demonstrations and small
   additions included. A block that says "add this after the module" can't
-  run until someone attaches it: in record 012-04-00, seventeen test files
+  run until someone attaches it: in record 012-04-00, eighteen test files
   couldn't load for that reason alone.
 - Send whole files or a diff, with their tests.
 - Say what you ran and what you didn't. If you couldn't run it, say so;

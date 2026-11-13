@@ -148,7 +148,7 @@ and for the founder's conversations with DeepSeek, is in
   copy in `sketches/records/` replaced, after checking the old one is an
   exact prefix of it; components 44 to 63 written out (210 files in all);
   every test rerun under eight hash seeds (433 pass, 145 fail, 1
-  sometimes, 25 test files don't load, 17 of them only because their
+  sometimes, 25 test files don't load, 18 of them only because their
   demos are separate blocks). CI now checks every record folder, so a new
   record needs only its names file. The course's next-in-line list gains
   curators, contracts between worlds and a shared log of commitments.
