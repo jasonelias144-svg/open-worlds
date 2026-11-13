@@ -242,9 +242,10 @@ flow acceleration."
   sound.** The signer owns the key and can sign anything, so every check
   on what a request contains still runs, and is tested with signed
   requests.
-- **Leaving still can't be refused by any law.** The one leave a world
-  refuses is a leave that isn't the leaver's own. The individual's own
-  leave always succeeds.
+- **Leaving still can't be refused by any law.** The only leaves a world
+  refuses are ones that aren't the leaver's own, or aren't leaves at all
+  (not plain values). The individual's own leave, well formed, always
+  succeeds.
 - **The conformance test checks all this** (WCP/0.2): an unsigned
   petition isn't admitted; an act or a leave signed by another key is
   refused; a replayed leave is refused. One limit: the test doesn't know

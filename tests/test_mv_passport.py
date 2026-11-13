@@ -332,6 +332,7 @@ class TestUnstampedDepartures(unittest.TestCase):
         petition_world(alice, world)
         r = world.leave(alice.individual.leave(world.manifest(), closes=5))
         self.assertIsInstance(r, Refusal)
+        self.assertIn("name what it closes as text", r.reason)
         self.assertTrue(world.is_admitted(alice.individual.token))
         self.assertFalse(leave_world(alice, world).already_left)
 

@@ -175,18 +175,19 @@ class Entity:
         raise NotImplementedError
 
     def leave(self, leave: Leave) -> LeaveResponse:
-        """The law can't refuse a leave. The one leave refused is one that
-        isn't the leaver's own: not signed by the key it names, for this
-        world, or a replay. Leaving when not present changes nothing. A
-        departure is stamped; the stamp names the arrival it closes.
-        (Whatever `closes` the leave names, the stamp names this world's
-        own record of the arrival.)"""
+        """The law can't refuse a leave. The only leaves refused are ones
+        that aren't the leaver's own (not signed by the key they name,
+        for this world, or a replay) or aren't plain leaves. Leaving when
+        not present changes nothing. A departure is stamped; the stamp
+        names the arrival it closes. (Whatever `closes` the leave names,
+        the stamp names this world's own record of the arrival.)"""
         timestamp = now()
         if (type(leave) is not Leave or token_problem(leave.token)
                 or type(leave.closes) is not str):
             return self._refuse(timestamp, None,
-                                "Not a leave: it must name a key and be "
-                                "signed by it", "leave")
+                                "Not a leave: it must name a key, be "
+                                "signed by it, and name what it closes "
+                                "as text", "leave")
         token = leave.token
         problem = request_problem(
             token, leave.seq, leave.signature,

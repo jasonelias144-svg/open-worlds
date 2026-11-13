@@ -33,8 +33,10 @@ and principle 3 of open-worlds is exit at any time. A world's law can
 refuse a petition or an act, but never a leave. Leaving when not present
 answers already_left, and changes nothing. The departure of someone who
 was present is recorded in the log, kind "departure", with their token.
-The one leave a world refuses is a leave that isn't the leaver's own: not
-signed by them, or a replay of an old one. Theirs always succeeds.
+The only leaves a world refuses are ones that aren't the leaver's own
+(not signed by them, or a replay of an old one) and ones that aren't
+leaves at all (not plain values, as below). The leaver's own, well
+formed, always succeeds.
 
 `type` and `payload` of an act are opaque to the protocol: each world's
 law decides what they mean.
