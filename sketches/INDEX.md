@@ -35,36 +35,36 @@ open-worlds" says whether any of it is in the working code, and how.
 | # | What it is | Line | Tests as written | Course | In open-worlds |
 |---|---|---|---|---|---|
 | 1 | The atom of identity | 236 | 9 of 9 pass | 1, 2 | `multiverse/identity.py`, changed (step 1); since step 2 an identity is a key |
-| 2 | The passport | 527 | 5 of 11 | 1, 3 | `multiverse/passport.py`, changed (step 1) |
-| 3 | The protocol, WCP/0.1, and its conformance test | 1007 | 13 of 13 | 1, 2 | `multiverse/protocol.py`, `conformance.py`, changed; now WCP/0.2 |
+| 2 | The passport | 527 | 5 of 11 | 1, 3 | `multiverse/passport.py`, changed (step 1); since step 3 its stamps are signed by worlds |
+| 3 | The protocol, WCP/0.1, and its conformance test | 1007 | 13 of 13 | 1, 2 | `multiverse/protocol.py`, `conformance.py`, changed; now WCP/0.3 |
 | 4 | The poetry world | 1860 | doesn't load | 1 | `multiverse/poetry_world.py`, changed (step 1) |
 | 5 | The chemistry world | 2933 | 13 of 16 | 1, 4 | `multiverse/chemistry_world.py`, changed (step 1) |
 | 6 | The multiverse registry | 3861 | 5 of 15 | 1 | `multiverse/registry.py`, changed (step 1) |
 | 7 | The first collaboration | 4654 | doesn't load | 1 | `multiverse/collaboration.py`, changed (step 1) |
-| 8 | A conformance test any language can be checked with, and an HTTP shim | 5895 | 5 of 11 | 12 | no |
-| 8 | A TypeScript implementation (`ts/`), a registry addition (`multiverse_c6.py@7216`) and a cross-language test (`cross_language_test.sh`) | 6862 | not run | 12 | no |
-| 9 | Cross-language SDKs and the cross-language test harness (`cross_language_test.sh@7779`) | 7449 | not run | 12 | no |
-| 10 | A Go SDK (`go/`) and the full federation test (`cross_language_test.sh@8762`) | 8056 | not run | 12 | no |
-| 11 | Language models as apprentices | 8890 | doesn't load | 11 | no |
-| 12 | Cost reports | 9971 | doesn't load | 11 | no |
+| 8 | A conformance test any language can be checked with, and an HTTP shim | 5895 | 5 of 11 | 13 | no |
+| 8 | A TypeScript implementation (`ts/`), a registry addition (`multiverse_c6.py@7216`) and a cross-language test (`cross_language_test.sh`) | 6862 | not run | 13 | no |
+| 9 | Cross-language SDKs and the cross-language test harness (`cross_language_test.sh@7779`) | 7449 | not run | 13 | no |
+| 10 | A Go SDK (`go/`) and the full federation test (`cross_language_test.sh@8762`) | 8056 | not run | 13 | no |
+| 11 | Language models as apprentices | 8890 | doesn't load | 12 | no |
+| 12 | Cost reports | 9971 | doesn't load | 12 | no |
 | 13 | Signatures, WCP/0.2 | 10831 | 12 of 12 | 2 | rebuilt in step 2: an identity is its key, and every request is signed |
 | 14 | The conformance test for WCP/0.2 | 11541 | 11 of 26 | 2 | rebuilt in step 2 (`multiverse/conformance.py`) |
-| 15 | Signed passports | 12695 | 20 of 22 | 3 | no; step 3 is next |
-| 16 | Finding a world's key from its manifest | 13648 | 9 of 15 | 3, 12 | no |
-| 17 | Signed registries | 14357 | doesn't load | 3, 12 | no |
-| 18 | Several models together | 15152 | doesn't load | 11 | no |
-| 19 | The federation runner (`federation.py`, `Makefile`) | 15921 | `federation_test.py`: 0 of 4 | 11, 12 | no |
-| 20 | Real Hugging Face models | 16671 | doesn't load | 11 | no |
+| 15 | Signed passports | 12695 | 20 of 22 | 3 | rebuilt in step 3 (`multiverse/passport.py`): a world is a key, and signs stamps for arrivals, departures and things made |
+| 16 | Finding a world's key from its manifest | 13648 | 9 of 15 | 3, 13 | partly, in step 3: a manifest names its world's key and is signed by it, and `verify_passport` takes the keys a checker knows; fetching them from a running world is step 13 |
+| 17 | Signed registries | 14357 | doesn't load | 3, 13 | no |
+| 18 | Several models together | 15152 | doesn't load | 12 | no |
+| 19 | The federation runner (`federation.py`, `Makefile`) | 15921 | `federation_test.py`: 0 of 4 | 12, 13 | no |
+| 20 | Real Hugging Face models | 16671 | doesn't load | 12 | no |
 | 21 | Cross-world provenance | 17584 | 5 of 11 | 3, 5 | no |
-| 22 | Leaving, with signed departures | 18635 | 3 of 15 | 3 | leaving has been in open-worlds since step 1; signed departures are step 3 |
+| 22 | Leaving, with signed departures | 18635 | 3 of 15 | 3 | leaving since step 1; signed departure stamps since step 3, and a leave the world doesn't stamp still ends the visit |
 | 23 | Provenance over several visits | 19519 | 18 of 21 | 3, 5 | no |
 | 24 | Signed provenance reports | 20553 | 15 of 15 | 3 | no |
 | 25 | A chain of witnesses | 21340 | 20 of 20 | none yet | no |
 | 26 | Signed revocations | 22387 | 18 of 18 | none yet | no |
 | 27 | Witnesses as a graph (DAG) | 23513 | 19 of 23, and one more on some runs | none yet | no |
-| 28 | Signed manifests: trust on first use, key rotation | 24830 | 17 of 19 | 3; keeping keys safely | no |
-| 29 | Signed manifests in the registry | 26041 | 3 of 13 | 3, 12 | no |
-| 30 | The federation runner, updated (`federation.py@27213`) | 27202 | not collected (an addition) | 12 | no |
+| 28 | Signed manifests: trust on first use, key rotation | 24830 | 17 of 19 | 3, 6 | partly: manifests are signed since step 3; key rotation is step 6 |
+| 29 | Signed manifests in the registry | 26041 | 3 of 13 | 3, 13 | no |
+| 30 | The federation runner, updated (`federation.py@27213`) | 27202 | not collected (an addition) | 13 | no |
 | 31 | A signed verdict on a federation run | 27741 | 16 of 16 | none yet | no |
 | 32 | Saving and loading a federation as one bundle | 28547 | 4 of 23 | none yet | no |
 | 33 | Leaving the chemistry world and the registry | 29885 | 16 of 16 | 1 | in open-worlds since step 1 |

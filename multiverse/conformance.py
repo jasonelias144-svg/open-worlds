@@ -1,4 +1,4 @@
-"""The conformance test: does an entity speak WCP/0.2?
+"""The conformance test: does an entity speak WCP/0.3?
 
 From the DeepSeek sketch's components 3 and 14. Anyone can run it
 against their own entity. It checks only that the entity speaks the
@@ -7,13 +7,17 @@ whether it is fast.
 
 What it checks:
   - the manifest is a plain Manifest, with plain-text fields, of this
-    protocol version;
-  - an unsigned petition is not admitted;
+    protocol version, naming a usable key and signed by it;
+  - an unsigned petition is not admitted, nor one signed for the same id
+    but another world's key;
   - a signed petition gets an Admission, a Refusal with a reason, or a
     Route;
   - a signed act gets an Ack or a Refusal with a reason;
   - an act or a leave in someone's name but signed by another key is
     refused;
+  - an admission carries the world's signed arrival stamp, and the
+    departure of someone admitted its signed departure stamp, naming the
+    arrival (passport.py);
   - leaving: the individual's own leave is never refused; it says whether
     the individual was present; a replay of it is refused; a second leave
     answers already_left; and a departure of someone present is in the
@@ -35,16 +39,20 @@ Changed from the sketch:
     recorded in the world's log: admissions, refusals, a departure. A
     public log should show it.
   - The leaving checks are new, and so are the checks on forged and
-    replayed requests (course step 2).
+    replayed requests (course step 2), and on the world's key and stamps
+    (course step 3).
 """
 from __future__ import annotations
 
+from dataclasses import replace
 from typing import List, Optional, Tuple
 
-from .identity import Individual
+from .identity import Individual, Signer
+from .passport import Stamp
 from .protocol import (PROTOCOL_VERSION, Ack, Act, Admission, Departure,
                        Leave, LogEntry, Manifest, Petition, Refusal, Route,
-                       WorldProtocol, act_document, leave_document)
+                       WorldProtocol, act_document, leave_document,
+                       manifest_problem)
 
 
 def _describe(e: BaseException) -> str:
@@ -86,7 +94,8 @@ def check(entity: WorldProtocol) -> Tuple[dict, Optional[Manifest]]:
     # them could hold anything; only plain values may cross (protocol.py).
     if not (all(type(getattr(m, f)) is str
                 for f in ("entity_id", "name", "protocol_version",
-                          "law_url", "act_endpoint", "log_endpoint"))
+                          "law_url", "act_endpoint", "log_endpoint",
+                          "world_key", "signature"))
             and (m.sub_registry_endpoint is None
                  or type(m.sub_registry_endpoint) is str)):
         failures.append("the manifest's fields are not plain text")
@@ -95,14 +104,35 @@ def check(entity: WorldProtocol) -> Tuple[dict, Optional[Manifest]]:
         if m.protocol_version != PROTOCOL_VERSION:
             failures.append(f"protocol_version is {m.protocol_version!r}, "
                             f"expected {PROTOCOL_VERSION!r}")
+        problem = manifest_problem(m)
     except Exception as e:
         failures.append(f"the manifest is unreadable: {_describe(e)}")
         return report(), None
+    if problem:
+        failures.append(f"the manifest: {problem}")
+        return report(), None
 
-    world_id = m.entity_id
+    world_id, world_key = m.entity_id, m.world_key
     petitioner = Individual("Conformance Test")
     stranger = Individual("Conformance Stranger")
     admitted = False
+    arrival: Optional[Stamp] = None
+
+    def own_stamp(entry, kind: str, what: str) -> Optional[Stamp]:
+        """The stamp in an answer, if it is this world's `kind` stamp for
+        the petitioner and verifies; else a failure, and None."""
+        try:
+            stamp = Stamp.from_entry(entry)
+        except ValueError:
+            failures.append(f"{what} carries no {kind} stamp")
+            return None
+        if (stamp.kind != kind or stamp.world_id != world_id
+                or stamp.world_key != world_key
+                or stamp.holder != petitioner.token or not stamp.verifies()):
+            failures.append(f"{what}: its stamp is not this world's signed "
+                            f"{kind} stamp for the petitioner")
+            return None
+        return stamp
 
     def well_formed(response, what: str, allowed) -> bool:
         """Record failures for a malformed answer; True if it is one of
@@ -144,22 +174,37 @@ def check(entity: WorldProtocol) -> Tuple[dict, Optional[Manifest]]:
     except Exception as e:
         failures.append(f"petition() raised {_describe(e)}")
 
+    # -- a petition signed for this id but another world's key: a world
+    #    that copied this one's id must not be able to pass it on --
+    if not admitted:
+        try:
+            elsewhere = replace(m, world_key=Signer().token)
+            response = entity.petition(petitioner.petition(
+                elsewhere, message="conformance test"))
+            if isinstance(response, Admission):
+                admitted = True
+                failures.append("a petition signed for another world's key "
+                                "was admitted")
+        except Exception as e:
+            failures.append(f"petition() raised {_describe(e)}")
+
     # -- a signed petition: any of the three answers, well formed --
     if not admitted:
         try:
             response = entity.petition(petitioner.petition(
-                world_id, message="conformance test"))
+                m, message="conformance test"))
             if (well_formed(response, "petition()",
                             (Admission, Refusal, Route))
                     and isinstance(response, Admission)):
                 admitted = True
+                arrival = own_stamp(response.stamp, "arrival",
+                                    "the Admission")
         except Exception as e:
             failures.append(f"petition() raised {_describe(e)}")
 
     # -- a signed act by a stranger: Ack or Refusal, well formed --
     try:
-        well_formed(entity.act(stranger.act(world_id, "conformance_test",
-                                            {})),
+        well_formed(entity.act(stranger.act(m, "conformance_test", {})),
                     "act()", (Ack, Refusal))
     except Exception as e:
         failures.append(f"act() raised {_describe(e)}")
@@ -167,14 +212,16 @@ def check(entity: WorldProtocol) -> Tuple[dict, Optional[Manifest]]:
     # -- forgeries are refused: an act and a leave in the petitioner's
     #    name, signed by the stranger --
     try:
-        act = petitioner.act(world_id, "conformance_test", {})
+        act = petitioner.act(m, "conformance_test", {})
         forged_act = Act(act.actor_token, act.type, act.payload, act.seq,
-                         stranger.sign(act_document(world_id, act)))
+                         stranger.sign(act_document(world_id, world_key,
+                                                    act)))
         if isinstance(entity.act(forged_act), Ack):
             failures.append("an act signed by another key was accepted")
-        leave = petitioner.leave(world_id)
+        leave = petitioner.leave(m)
         forged = Leave(leave.token, leave.seq,
-                       stranger.sign(leave_document(world_id, leave)))
+                       stranger.sign(leave_document(world_id, world_key,
+                                                    leave)))
         response = entity.leave(forged)
         if not isinstance(response, Refusal):
             failures.append("a leave signed by another key was not refused")
@@ -187,11 +234,12 @@ def check(entity: WorldProtocol) -> Tuple[dict, Optional[Manifest]]:
     #    whether it was present; a replay of it is refused; a second
     #    leave answers already_left --
     try:
-        first = petitioner.leave(world_id)
+        first = petitioner.leave(
+            m, closes=arrival.fingerprint() if arrival else "")
         for attempt, request, expect_already in (
                 ("first", first, not admitted),
                 ("replayed", first, None),
-                ("second", petitioner.leave(world_id), True)):
+                ("second", petitioner.leave(m), True)):
             response = entity.leave(request)
             if expect_already is None:
                 if not isinstance(response, Refusal):
@@ -209,6 +257,14 @@ def check(entity: WorldProtocol) -> Tuple[dict, Optional[Manifest]]:
                 failures.append(
                     f"{attempt} leave() said already_left="
                     f"{response.already_left!r}, expected {expect_already}")
+            if (attempt == "first" and arrival is not None
+                    and response.already_left is False):
+                departure = own_stamp(response.stamp, "departure",
+                                      "the Departure")
+                if (departure is not None
+                        and departure.arrival != arrival.fingerprint()):
+                    failures.append("the departure stamp does not name the "
+                                    "arrival it closes")
     except Exception as e:
         failures.append(f"leave() raised, or answered unreadably: "
                         f"{_describe(e)}")

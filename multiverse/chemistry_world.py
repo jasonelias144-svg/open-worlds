@@ -25,8 +25,8 @@ import re
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Set, Tuple
 
-from .entity import (SIGNED_REQUESTS_LAW, UNSIGNED_ANSWERS_LIMIT, Entity,
-                     now)
+from .entity import (SIGNED_REQUESTS_LAW, STAMPS_LAW, UNSIGNED_ANSWERS_LIMIT,
+                     Entity, now)
 from .protocol import Ack, Act, ActResponse, LogEntry
 
 ELEMENTS: Dict[str, Dict] = {
@@ -133,7 +133,7 @@ class ChemistryWorldLaw:
 
     def describe(self) -> str:
         return "\n".join([
-            "# Chemistry World Law v0.2",
+            "# Chemistry World Law v0.3",
             "",
             "## Entering and leaving",
             f"- Admits any identity: {self.admits_any_identity}",
@@ -141,6 +141,7 @@ class ChemistryWorldLaw:
             f"{self.max_admitted if self.max_admitted else 'unlimited'}",
             "- Anyone may leave at any time.",
             SIGNED_REQUESTS_LAW,
+            STAMPS_LAW,
             "",
             "## A reaction (chemistry.react)",
             f"- Act type: {self.required_act_type}",
@@ -223,7 +224,8 @@ class ChemistryWorld(Entity):
                 data={"reaction_count": len(self._reactions),
                       "window": self._law.convergence_window,
                       "reason": self._convergence_reason}))
-        return Ack(entity_id=self._manifest.entity_id, timestamp=timestamp)
+        return Ack(entity_id=self._manifest.entity_id, timestamp=timestamp,
+                   stamp=self._made(actor, timestamp, reaction))
 
     # -- conveniences ---------------------------------------------------
 

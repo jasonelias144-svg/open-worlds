@@ -114,8 +114,9 @@ What this design adds, from the founder's principles:
    and anyone who saw it could act as its owner; signatures came at
    component 13. Here the individual's identity is its public key, and
    everything it sends is signed (done in course step 2; see "Keys and
-   signatures" below). The passport's stamps will be signed by the worlds
-   that gave them (course step 3).
+   signatures" below). Worlds are keys too, and the passport's stamps are
+   signed by the worlds that gave them (course step 3; see "Signed
+   passports" below).
 3. **No registry is the authority.** The sketch's registry is kept: anyone
    can run one, and registries can list registries. A world may also list
    doors, the addresses and keys of worlds it links to, as websites link to
@@ -241,9 +242,10 @@ flow acceleration."
   sound.** The signer owns the key and can sign anything, so every check
   on what a request contains still runs, and is tested with signed
   requests.
-- **Leaving still can't be refused by any law.** The one leave a world
-  refuses is a leave that isn't the leaver's own. The individual's own
-  leave always succeeds.
+- **Leaving still can't be refused by any law.** The only leaves a world
+  refuses are ones that aren't the leaver's own, or aren't leaves at all
+  (not plain values). The individual's own leave, well formed, always
+  succeeds.
 - **The conformance test checks all this** (WCP/0.2): an unsigned
   petition isn't admitted; an act or a leave signed by another key is
   refused; a replayed leave is refused. One limit: the test doesn't know
@@ -271,13 +273,13 @@ What it doesn't do yet, said plainly:
   yet. An individual that loses its key can't prove it is itself any
   more. Keeping keys safely comes before anything an individual would
   want to come back for (belongings and homes).
-- **Worlds don't sign their answers yet.** Admissions and the passport's
-  stamps are signed in course step 3.
-- **A request is bound to a world's id, not to the world.** Each world
-  chooses its own id, and nothing checks that ids are unique. A world
+- **Worlds didn't sign their answers.** Since course step 3 they sign
+  the passport's stamps; other answers are still unsigned (below).
+- **A request was bound to a world's id, not to the world.** Each world
+  chooses its own id, and nothing checks that ids are unique, so a world
   that copied another's id could pass a visitor's signed request on to
-  the real one. When worlds have keys (course step 3), a request names
-  the world's key instead.
+  the real one. Since course step 3 a request names the world's key as
+  well.
 - **Worlds keep the last `seq` from each key only in memory.** A world
   that restarts forgets them, so an old petition or leave could be
   replayed to it once. Today a restart also loses the log and who is
@@ -289,7 +291,72 @@ What it doesn't do yet, said plainly:
 - **The registry's listing act attaches the world unsigned** (it is an
   object in the same process); the signature covers the world's id, and
   the registry lists only a world whose checked manifest has that id.
-  Over the network the act carries an address (course step 12).
+  Over the network the act carries an address (course step 13).
+
+## Signed passports (course step 3)
+
+- **A world is a key too.** Each world has its own Ed25519 key (the same
+  kind as an individual's, `identity.Signer`). Its manifest names the
+  key (`world_key`) and is signed by it, so anyone holding the manifest
+  can check it hasn't been changed (`protocol.manifest_problem`). The
+  registry lists a world only if the manifest it checked has the id and
+  the key the listing was signed for.
+- **Requests name the world's key.** Every petition, act and leave is
+  signed over a document naming the world's id and its key. A world that
+  copied another's id can't pass a visitor's request on to the real one:
+  the request was signed for the copy's key.
+- **Stamps.** A world signs a stamp at three moments: when it admits
+  someone (an arrival); when they leave (a departure, naming the arrival
+  it closes by that stamp's fingerprint); and when they make something
+  there (a made stamp, naming the arrival, and the thing by its
+  fingerprint: a turn of a poem, a reaction). The admission, the
+  departure and the act's acknowledgment carry the stamp
+  (`multiverse/passport.py`). A stamp names the protocol version it was
+  signed under, so it still verifies when the protocol changes; so does
+  the holder's own record of a leave.
+- **Anyone can check a passport, offline.** `verify_passport` checks that
+  each stamp is signed by the key it names, for the passport's holder,
+  and that each departure or made stamp belongs to an arrival of the
+  same world in the passport, with one departure for each arrival. It
+  asks no one. A world checks every petitioner's passport before
+  admitting, and refuses a passport with a stamp that doesn't verify;
+  the refusal names the petitioner, whose signed petition carried it.
+- **A world can't stop someone leaving by not stamping it.** A leave is
+  the individual's own signed request, and names the arrival it ends.
+  The individual keeps it in its passport, so a visit whose departure
+  the world never stamped still shows as ended, on the holder's word.
+  The conformance test names a world that withholds departure stamps.
+- **The conformance test checks this** (WCP/0.3): that the manifest is
+  signed by the key it names; that a petition signed for the same id
+  under another key isn't admitted; that an admission carries an arrival
+  stamp, and a departure a stamp that closes it.
+
+What it doesn't do yet, said plainly:
+
+- **A stamp proves which key signed it, not which world.** Anyone can
+  make a key and sign an arrival "from" any world id with it. A checker
+  that knows a world's key, from its manifest, sees that:
+  `verify_passport` takes the keys the checker knows, and every world
+  gives it its own, so nobody can show a world a made-up stamp in that
+  world's name. A stamp from a world the checker doesn't know shows only
+  its key. Learning keys from running worlds and registries comes with
+  the network (course step 13).
+- **A stamp is worth something only while its key is known,** and keys
+  still live only in memory. A world that restarts has a new key, and
+  its old stamps no longer link to it. So keeping keys safely is now
+  course step 6.
+- **A stamp says what its world claims, nothing more.** The times are
+  the world's own, checked against no clock. A world that lies signs its
+  lies; the signature shows who told them.
+- **A holder can leave stamps out** of the passport it shows, but can't
+  change one, add one, or count one twice. A world sees what the holder
+  shows it.
+- **A passport shows every world in it** to each world it is shown to.
+  Whether a person may keep presences in different worlds unlinked is
+  the founder's open question (STATUS.md).
+- **Only stamps are signed.** Refusals, acknowledgments, and the world's
+  log are not signed yet, so a copy of a log can't yet be checked
+  against its world.
 
 ## The course
 
@@ -373,21 +440,21 @@ The other fixes:
 
 Known limits carried over, to be fixed in later steps: a registry's
 listing act carries the world itself, so it works only within one
-process (course step 12);
+process (course step 13);
 `log_since` can skip an entry written in the same microsecond, and
 in-process readers share the log's entries rather than getting copies.
 "A world never raises on what a visitor sends" holds for ordinary
 errors; it does not make it safe to run untrusted code in the same
 process, which could exit the program or loop forever. Outside agents run
 in their own processes and reach worlds through the protocol
-(DESIGN.md). Two more for course step 12: non-finite numbers (NaN,
+(DESIGN.md). Two more for course step 13: non-finite numbers (NaN,
 infinity) count as plain here but aren't valid JSON, and a payload built
 from many shared references can take long to check; over the network a
 payload is plain JSON of its real size, which removes both.
 Until worlds have keys, a world can't take down its own listing, and a
 listing whose lister has left stays up; and two registries may list each
 other, which matters once listings are followed over the network
-(course step 12).
+(course step 13).
 
 The sketch's demonstration opened with a poem of the founder's. The
 founder preferred a known poem as the starting example ("We should use a

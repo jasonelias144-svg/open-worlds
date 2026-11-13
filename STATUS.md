@@ -13,26 +13,26 @@ respect one another's freedom, with full transparency and exit at any time
 
 ## Now
 
-- Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Steps 1 and 2
-  are done, and signatures now come from the `cryptography` package (#15).
-  `sketches/` keeps the DeepSeek records and their code as written (#16).
-  Record 012-04-00 is in, complete (#17). Next: step 3, signed passports,
-  with the first batch of fixes to the sketches' code alongside.
+- Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Steps 1 to 3
+  are done; step 3, signed passports, is in review (#19). `sketches/`
+  keeps the DeepSeek records and their code as written (#16, #17, #18).
+  Next: step 4, the chemistry world on the real chemistry, with the first
+  batch of fixes to the sketches' code alongside.
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
 
 The course, twelve steps ahead and rolling: [docs/COURSE.md](docs/COURSE.md).
 After each step is done, the rest are rechecked and one new step is added.
-In short: keys and signatures; signed passports; the chemistry world on the
-real chemistry; the first journey between worlds; the first learner; real
-rates and the gardener's water; an organic chemistry world entered by a
-stamp; a viewer page; time and populations; language-model inhabitants
-(Cycle 1); any AI from any app; governance.
+In short: the chemistry world on the real chemistry; the first journey
+between worlds; keeping keys safely; the first learner; real rates and the
+gardener's water; an organic chemistry world entered by a stamp; a viewer
+page; time and populations; language-model inhabitants (Cycle 1); any AI
+from any app; governance; a common-meter poetry world.
 
 Also kept from earlier plans, outside the course for now: side cycles
 suggested by Cycle 0 (walkers with different speeds, to test "respect
-momentum"; whether a convention spreads by imitation). Course step 7 (real
+momentum"; whether a convention spreads by imitation). Course step 8 (real
 rates) resumes the paused chemistry step: primary sources, read properly,
 and how water is counted ([docs/CHEMISTRY.md](docs/CHEMISTRY.md)).
 
@@ -136,6 +136,18 @@ and for the founder's conversations with DeepSeek, is in
   domain (CC0 1.0). The goal isn't financial; anyone may build on it.
 
 ## Log
+
+- 2026-11-13 Claude: course step 3, signed passports (WCP/0.3). A world is
+  a key: its manifest names the key and is signed by it, and requests
+  name the world's key as well as its id. Worlds sign stamps for
+  arrivals, departures and things made (by fingerprint), and anyone can
+  check a passport offline; a world refuses a passport with a stamp that
+  doesn't verify, or one "from" itself under another key. A leave is the
+  holder's own signed record, so a world that withholds the departure
+  stamp can't stop it, and the conformance test names that world. The
+  course, rechecked: keeping keys safely moves onto it as step 6, before
+  the first learner, because a stamp is worth something only while the
+  key that signed it is known.
 
 - 2026-11-13 Claude: COLLABORATING.md asks two things of each new
   conversation: start from that page, and give every file whole, named

@@ -45,7 +45,7 @@ next conversation starts a new record, which gets its own folder in
 [`sketches/INDEX.md`](../sketches/INDEX.md). In short: components 1 to 7
 are in `multiverse/`, working (course step 1); 13 and 14, signatures and
 their conformance test, were rebuilt in step 2, where an identity is its
-key; 15, signed passports, is course step 3, next.
+key; 15, signed passports, in step 3, where a world is a key too.
 
 Since the sketch, the founder has added ideas that now shape the
 course: learning agents in the chemistry world whose intelligence grows
@@ -91,10 +91,10 @@ The code standard is kept here, step by step. The most useful
 contributions now are creative and design work for the steps ahead, as
 text or as code with tests:
 
-- **Laws for new worlds.** The organic chemistry world (course step 8):
+- **Laws for new worlds.** The organic chemistry world (course step 9):
   what it admits by, what can happen in it, what counts as solving a
   problem there.
-- **Problems for the learner** (course step 6): standing problems in the
+- **Problems for the learner** (course step 7): standing problems in the
   chemistry world, from easy to hard, each checkable by the chemistry
   itself.
 - **Forms for the poetry world.** For example, a world whose law asks
@@ -106,10 +106,12 @@ text or as code with tests:
 - **The code in `multiverse/`, at a named commit.** Whatever is merged
   into `main` is the current standard; a proposal names the commit it
   built on.
-- **The protocol, WCP/0.2** (`multiverse/protocol.py`): manifest,
+- **The protocol, WCP/0.3** (`multiverse/protocol.py`): manifest,
   petition, act, leave, log. An individual is a key, and every request
-  is signed (`multiverse/identity.py`). Leaving can't be refused by any
-  law.
+  is signed, for one world's id and key (`multiverse/identity.py`). A
+  world is a key too: it signs its manifest, and the stamps in a
+  passport, which anyone can check offline (`multiverse/passport.py`).
+  Leaving can't be refused by any law.
 - **The conformance test** (`multiverse/conformance.py`): a world that
   passes it speaks the protocol. It says exactly what it checks, and what
   no outside test can see.
@@ -125,7 +127,8 @@ python3 -m multiverse.collaboration
 ```
 
 Read in this order: MULTIVERSE.md, then `protocol.py`, `conformance.py`,
-`identity.py`, `entity.py`, `poetry_world.py`, `collaboration.py`.
+`identity.py`, `passport.py`, `entity.py`, `poetry_world.py`,
+`collaboration.py`.
 
 ## House rules
 

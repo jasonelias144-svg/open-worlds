@@ -1,16 +1,19 @@
 """The protocol and its conformance test: the sketch's tests for
-component 3, ported, with tests for leaving, which this port adds, and
-for signed requests (course step 2)."""
+component 3, ported, with tests for leaving, which this port adds, for
+signed requests (course step 2), and for worlds' keys and stamps (course
+step 3)."""
 import dataclasses
 import unittest
 
 from multiverse.conformance import run_conformance
-from multiverse.identity import Individual
+from multiverse.identity import Individual, Signer
+from multiverse.passport import make_stamp
 from multiverse.protocol import (PROTOCOL_VERSION, Ack, Act, Admission,
                                  Departure, Leave, LogEntry, Manifest,
                                  NullWorld, Petition, Refusal, act_document,
-                                 is_plain, leave_document, petition_document,
-                                 request_problem)
+                                 is_plain, leave_document, manifest_problem,
+                                 petition_document, request_problem,
+                                 signed_manifest)
 
 ALICE = "alice-token-000000001"
 
@@ -23,24 +26,27 @@ def _manifest(entity_id="world:poetry", **extra):
                     log_endpoint="https://poetry.example/log", **extra)
 
 
-def _petition(name="Alice", token=ALICE, admissions=()):
+def _petition(name="Alice", token=ALICE, passport=()):
     return Petition(petitioner_token=token, petitioner_name=name,
-                    passport_admissions=admissions, message="Enter?")
+                    passport=passport, message="Enter?")
 
 
 class IndependentWorld:
     """Written from the protocol's published parts alone (its messages,
-    the signed documents and `request_problem`), sharing no world code
-    with the package: admits anyone who signs, accepts every signed act.
-    Subclasses change what leaving does by overriding `_go`."""
+    the signed documents, `request_problem`, signed manifests and the
+    stamp format), sharing no world code with the package: admits anyone
+    who signs, accepts every signed act. Subclasses change what leaving
+    does by overriding `_go`; `_stamp(token)` is the departure stamp."""
     ID = "independent:1"
 
     def __init__(self):
-        self._manifest = Manifest(
-            entity_id=self.ID, name="Independent World",
+        self._key = Signer()
+        self._manifest = signed_manifest(
+            self._key, entity_id=self.ID, name="Independent World",
             protocol_version=PROTOCOL_VERSION, law_url="independent:law",
             act_endpoint="independent:act", log_endpoint="independent:log")
         self._present = set()
+        self._arrivals = {}
         self._events = []
         self._last = {}
 
@@ -49,24 +55,37 @@ class IndependentWorld:
 
     def petition(self, p):
         if request_problem(p.petitioner_token, p.seq, p.signature,
-                           petition_document(self.ID, p), self._last):
+                           petition_document(self.ID, self._key.token, p),
+                           self._last):
             return Refusal(reason="Not signed by the petitioner")
         self._present.add(p.petitioner_token)
         self._events.append(("petition", p.petitioner_token))
-        return Admission(entity_id=self.ID, timestamp="independent:0")
+        arrival = make_stamp(self._key, "arrival", self.ID,
+                             p.petitioner_token, "independent:0")
+        self._arrivals[p.petitioner_token] = arrival
+        return Admission(entity_id=self.ID, timestamp="independent:0",
+                         stamp=arrival.entry())
 
     def act(self, a):
         if request_problem(a.actor_token, a.seq, a.signature,
-                           act_document(self.ID, a), self._last):
+                           act_document(self.ID, self._key.token, a),
+                           self._last):
             return Refusal(reason="Not signed by the actor")
         self._events.append(("act", a.actor_token))
         return Ack(entity_id=self.ID, timestamp="independent:0")
 
     def leave(self, request):
         if request_problem(request.token, request.seq, request.signature,
-                           leave_document(self.ID, request), self._last):
+                           leave_document(self.ID, self._key.token, request),
+                           self._last):
             return Refusal(reason="Not the leaver's own leave")
         return self._go(request.token)
+
+    def _stamp(self, token):
+        """The departure stamp for `token`'s arrival, as an entry."""
+        return make_stamp(self._key, "departure", self.ID, token,
+                          "independent:0",
+                          arrival=self._arrivals[token].fingerprint()).entry()
 
     def _go(self, token):
         was_present = token in self._present
@@ -74,7 +93,8 @@ class IndependentWorld:
         if was_present:
             self._events.append(("departure", token))
         return Departure(entity_id=self.ID, timestamp="independent:0",
-                         already_left=not was_present)
+                         already_left=not was_present,
+                         stamp=self._stamp(token) if was_present else None)
 
     def log_since(self, ts=None):
         return [LogEntry(timestamp="independent:0", kind=kind,
@@ -128,7 +148,27 @@ class TestManifest(unittest.TestCase):
     def test_manifest_construction(self):
         m = _manifest()
         self.assertFalse(m.has_sub_registry())
-        self.assertEqual(m.protocol_version, "WCP/0.2")
+        self.assertEqual(m.protocol_version, PROTOCOL_VERSION)
+
+    def test_a_manifest_is_signed_by_the_key_it_names(self):
+        key = Signer()
+        fields = dict(entity_id="world:poetry", name="The Poetry World",
+                      protocol_version=PROTOCOL_VERSION, law_url="u",
+                      act_endpoint="u", log_endpoint="u")
+        m = signed_manifest(key, **fields)
+        self.assertEqual(m.world_key, key.token)
+        self.assertEqual(manifest_problem(m), "")
+        # Change any field, or claim another key, and it no longer
+        # verifies; an unsigned manifest names no key at all.
+        for changed in (dataclasses.replace(m, name="Another World"),
+                        dataclasses.replace(m, entity_id="world:other"),
+                        dataclasses.replace(m, law_url="elsewhere"),
+                        dataclasses.replace(m, world_key=Signer().token),
+                        dataclasses.replace(m, signature="ab" * 64)):
+            with self.subTest(changed=changed):
+                self.assertIn("does not verify", manifest_problem(changed))
+        self.assertIn("not a usable key", manifest_problem(_manifest()))
+        self.assertEqual(manifest_problem("manifest"), "not a manifest")
 
     def test_manifest_with_sub_registry(self):
         m = _manifest("multiverse:main",
@@ -162,9 +202,13 @@ class TestPublishedLaws(unittest.TestCase):
                 self.assertIn("signed by the key it names", text)
                 self.assertNotIn("not signed yet", text)
                 self.assertNotIn("WCP/0.1", text)
+                self.assertIn("for this world's id and key", text)
+                self.assertIn("signs a stamp for each arrival and each "
+                              "departure", text)
                 # and its limits, as they stand
-                self.assertIn("world ids aren't checked to be unique", text)
+                self.assertIn("Only stamps are signed", text)
                 self.assertIn("kept only in memory", text)
+                self.assertNotIn("world ids aren't checked", text)
 
 
 class TestNullWorld(unittest.TestCase):
@@ -174,8 +218,9 @@ class TestNullWorld(unittest.TestCase):
 
     def test_manifest(self):
         m = self.w.manifest()
-        self.assertEqual(m.protocol_version, "WCP/0.2")
+        self.assertEqual(m.protocol_version, PROTOCOL_VERSION)
         self.assertFalse(m.has_sub_registry())
+        self.assertEqual(manifest_problem(m), "")
 
     def test_refuses_petition_and_act(self):
         r = self.w.petition(_petition())
@@ -203,7 +248,7 @@ class TestNullWorld(unittest.TestCase):
 
     def test_leave_when_never_present(self):
         alice = Individual("Alice")
-        d = self.w.leave(alice.leave("world:null"))
+        d = self.w.leave(alice.leave(self.w.manifest()))
         self.assertIsInstance(d, Departure)
         self.assertTrue(d.already_left)
 
@@ -268,8 +313,11 @@ class TestConformance(unittest.TestCase):
         class NullMultiverse(NullWorld):
             def __init__(self, entity_id, name, endpoint):
                 super().__init__(entity_id, name)
-                self._manifest = dataclasses.replace(
-                    self._manifest, sub_registry_endpoint=endpoint)
+                self._manifest = signed_manifest(
+                    self._key, **{**{f: getattr(self._manifest, f) for f in (
+                        "entity_id", "name", "protocol_version", "law_url",
+                        "act_endpoint", "log_endpoint")},
+                        "sub_registry_endpoint": endpoint})
 
         for entity in [NullWorld("world:poetry", "Poetry World"),
                        NullMultiverse("multiverse:main", "Main",
@@ -284,16 +332,23 @@ class TestConformance(unittest.TestCase):
         self.assertTrue(result["passed"], result["failures"])
 
     def test_different_laws_same_protocol(self):
+        def admit(world, p):
+            return Admission(entity_id=world.manifest().entity_id,
+                             timestamp="t", stamp=make_stamp(
+                                 world._key, "arrival",
+                                 world.manifest().entity_id,
+                                 p.petitioner_token, "t").entry())
+
         class LawAWorld(NullWorld):
             def petition(self, p):
                 if p.petitioner_name == "Alice":
-                    return Admission(entity_id="world:lawA", timestamp="t")
+                    return admit(self, p)
                 return Refusal(reason="Only Alice may enter.")
 
         class LawBWorld(NullWorld):
             def petition(self, p):
-                if p.passport_admissions:
-                    return Admission(entity_id="world:lawB", timestamp="t")
+                if p.passport:
+                    return admit(self, p)
                 return Refusal(reason="Must have an admission.")
 
         wa, wb = LawAWorld("world:lawA", "A"), LawBWorld("world:lawB", "B")
@@ -338,7 +393,9 @@ class TestSignedConformance(unittest.TestCase):
             def leave(self, request):
                 from multiverse.identity import signature_valid
                 if not signature_valid(request.token,
-                                       leave_document(self.ID, request),
+                                       leave_document(self.ID,
+                                                      self._key.token,
+                                                      request),
                                        request.signature):
                     return Refusal(reason="not signed")
                 return self._go(request.token)
@@ -385,7 +442,8 @@ class TestLeavingConformance(unittest.TestCase):
         class NeverAlreadyLeft(IndependentWorld):
             def _go(self, token):
                 super()._go(token)
-                return Departure("independent:1", "t", already_left=False)
+                return Departure("independent:1", "t", already_left=False,
+                                 stamp=self._stamp(token))
 
         for world in (AlwaysAlreadyLeft(), NeverAlreadyLeft()):
             with self.subTest(world=type(world).__name__):
@@ -400,7 +458,9 @@ class TestLeavingConformance(unittest.TestCase):
                 was_present = token in self._present
                 self._present.discard(token)
                 return Departure("independent:1", "t",
-                                 already_left=not was_present)
+                                 already_left=not was_present,
+                                 stamp=self._stamp(token) if was_present
+                                 else None)
 
         failures = run_conformance(Unrecorded())["failures"]
         self.assertEqual(failures, ["the log does not record the departure"])
@@ -414,7 +474,8 @@ class TestLeavingConformance(unittest.TestCase):
                 if token in self._present and ("departure", token) \
                         not in self._events:
                     self._events.append(("departure", token))
-                    return Departure("independent:1", "t")
+                    return Departure("independent:1", "t",
+                                     stamp=self._stamp(token))
                 return Departure("independent:1", "t", already_left=True)
 
         w = Keeps()
@@ -432,7 +493,9 @@ class TestLeavingConformance(unittest.TestCase):
                 was_present = token in self._present
                 self._present.discard(token)
                 return Departure("independent:1", "t",
-                                 already_left=not was_present)
+                                 already_left=not was_present,
+                                 stamp=self._stamp(token) if was_present
+                                 else None)
 
         failures = run_conformance(Borrowed())["failures"]
         self.assertEqual(failures, ["the log does not record the departure"])
@@ -450,8 +513,9 @@ class TestLeavingConformance(unittest.TestCase):
 
         class OddAnswer(IndependentWorld):
             def _go(self, token):
-                super()._go(token)
-                return Departure("independent:1", "t", already_left=Odd())
+                stamp = super()._go(token).stamp
+                return Departure("independent:1", "t", already_left=Odd(),
+                                 stamp=stamp)
 
         class OddVersion(str):
             def __ne__(self, other): raise ValueError("no comparison")

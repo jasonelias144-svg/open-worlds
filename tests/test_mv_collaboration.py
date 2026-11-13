@@ -16,6 +16,7 @@ from multiverse.collaboration import (CollaborationReport,
                                       demo_portfolio, leave_world,
                                       log_entry_to_turn, main, make_client,
                                       petition_world, turn_to_act_payload)
+from multiverse.passport import verify_passport
 from multiverse.poetry_world import PoetryWorld
 from multiverse.protocol import Ack, Admission, LogEntry, Refusal
 
@@ -126,16 +127,23 @@ class TestClient(unittest.TestCase):
         world = PoetryWorld("world:test", "Test World")
         client = make_client("Alice")
         self.assertIsInstance(petition_world(client, world), Admission)
-        self.assertEqual([w for w, _ in client.passport_admissions],
-                         ["world:test"])
+        self.assertEqual(client.passport.worlds_visited(), ["world:test"])
         ack = act_on_world(client, world, "poem.turn", {
             "acknowledgment": "(seed)", "proposal": "a line",
             "invitation": "what next?", "holds_open": True})
         self.assertIsInstance(ack, Ack)
         self.assertFalse(leave_world(client, world).already_left)
         self.assertEqual(client.is_admitted_to, {})
-        # The passport keeps the stamp after leaving.
-        self.assertEqual(len(client.passport_admissions), 1)
+        # The passport keeps the stamps (arrival, the turn made, departure)
+        # and the client's own signed leave, and they all verify offline.
+        self.assertEqual([s.kind for s in client.passport.stamps],
+                         ["arrival", "made", "departure"])
+        self.assertEqual(len(client.passport.leaves), 1)
+        check = verify_passport(client.passport)
+        self.assertTrue(check.ok, check.problems)
+        visit, = check.visits
+        self.assertEqual((visit.world_id, visit.left, visit.made),
+                         ("world:test", "stamped", 1))
 
     def test_unadmitted_client_cannot_act(self):
         world = PoetryWorld("world:test", "Test World")

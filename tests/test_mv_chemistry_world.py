@@ -26,21 +26,20 @@ class KeyBomb(str):
 
 def _in(world, person, *args, **kwargs):
     """`person`'s signed petition to `world`."""
-    return person.petition(world.manifest().entity_id, *args, **kwargs)
+    return person.petition(world.manifest(), *args, **kwargs)
 
 
 def _out(world, person):
     """`person`'s signed leave from `world`."""
-    return person.leave(world.manifest().entity_id)
+    return person.leave(world.manifest())
 
 
-def _reaction(person, substrates, products, catalyst=None,
-              world="world:chemistry"):
+def _reaction(world, person, substrates, products, catalyst=None):
     """A reaction signed by `person`, for `world`."""
     payload = {"substrates": substrates, "products": products}
     if catalyst is not None:
         payload["catalyst"] = catalyst
-    return person.act(world, "chemistry.react", payload)
+    return person.act(world.manifest(), "chemistry.react", payload)
 
 
 def _m(formula, count=1):
@@ -147,14 +146,14 @@ class TestChemistryWorld(ChemistryCase):
     def test_petition_and_act(self):
         w = self.world()
         alice = self.enter(w)
-        self.assertIsInstance(w.act(_reaction(alice, *WATER)), Ack)
+        self.assertIsInstance(w.act(_reaction(w, alice, *WATER)), Ack)
         self.assertEqual(len(w.reactions()), 1)
         self.assertEqual(w.molecules(), {"H2", "O2", "H2O"})
 
     def test_refuses_unbalanced(self):
         w = self.world()
         alice = self.enter(w)
-        bad = w.act(_reaction(alice, [_m("H2"), _m("O2")], [_m("H2O")]))
+        bad = w.act(_reaction(w, alice, [_m("H2"), _m("O2")], [_m("H2O")]))
         self.assertIsInstance(bad, Refusal)
         self.assertIn("balance", bad.reason.lower())
         self.assertEqual(w.reactions(), [])
@@ -165,7 +164,7 @@ class TestChemistryWorld(ChemistryCase):
         for subs, prods in (([], [_m("H2O")]), ([_m("H2O")], None),
                             ("H2O", [_m("H2O")])):
             with self.subTest(subs=subs, prods=prods):
-                r = w.act(_reaction(alice, subs, prods))
+                r = w.act(_reaction(w, alice, subs, prods))
                 self.assertIsInstance(r, Refusal)
                 self.assertIn("required", r.reason)
 
@@ -188,7 +187,7 @@ class TestChemistryWorld(ChemistryCase):
     def test_only_formula_and_count_are_kept(self):
         w = self.world()
         alice = self.enter(w)
-        r = w.act(_reaction(alice,
+        r = w.act(_reaction(w, alice,
                             [_m("H2", 2), _m("O2") | {"note": "x"}],
                             [_m("H2O", 2)]))
         self.assertIsInstance(r, Ack)
@@ -198,17 +197,17 @@ class TestChemistryWorld(ChemistryCase):
     def test_catalyst(self):
         w = self.world()
         alice = self.enter(w)
-        r = w.act(_reaction(alice, *WATER, catalyst={"Pt": 1}))
+        r = w.act(_reaction(w, alice, *WATER, catalyst={"Pt": 1}))
         self.assertIsInstance(r, Refusal)
         self.assertIn("catalyst", r.reason)
         self.assertIsInstance(
-            w.act(_reaction(alice, *WATER, catalyst="Pt")), Ack)
+            w.act(_reaction(w, alice, *WATER, catalyst="Pt")), Ack)
         self.assertEqual(w.reactions()[0]["catalyst"], "Pt")
 
     def test_refuses_poetry_act(self):
         w = self.world()
         alice = self.enter(w)
-        r = w.act(alice.act("world:chemistry", "poem.turn", {
+        r = w.act(alice.act(w.manifest(), "poem.turn", {
             "acknowledgment": "x", "proposal": "y", "invitation": "z",
             "holds_open": True}))
         self.assertIsInstance(r, Refusal)
@@ -217,7 +216,7 @@ class TestChemistryWorld(ChemistryCase):
     def test_refuses_strangers(self):
         w = self.world()
         stranger = Individual("Mallory")
-        r = w.act(_reaction(stranger, *WATER))
+        r = w.act(_reaction(w, stranger, *WATER))
         self.assertIsInstance(r, Refusal)
         self.assertIn("not admitted", r.reason)
 
@@ -226,9 +225,9 @@ class TestChemistryWorld(ChemistryCase):
         alice = self.enter(w)
         for i in range(5):
             self.assertFalse(w.is_converged())
-            w.act(_reaction(alice, *WATER))
+            w.act(_reaction(w, alice, *WATER))
         self.assertTrue(w.is_converged())
-        r = w.act(_reaction(alice, *WATER))
+        r = w.act(_reaction(w, alice, *WATER))
         self.assertIsInstance(r, Refusal)
         self.assertIn("equilibrium", r.reason)
 
@@ -239,15 +238,15 @@ class TestChemistryWorld(ChemistryCase):
                             ([_m("N2"), _m("H2", 3)], [_m("NH3", 2)]),
                             ([_m("Na", 2), _m("Cl2")], [_m("NaCl", 2)]),
                             ([_m("S"), _m("O2")], [_m("SO2")])]:
-            self.assertIsInstance(w.act(_reaction(alice, subs, prods)),
+            self.assertIsInstance(w.act(_reaction(w, alice, subs, prods)),
                                   Ack)
         self.assertFalse(w.is_converged())
 
     def test_reaction_limit(self):
         w = self.world(max_reactions=1)
         alice = self.enter(w)
-        w.act(_reaction(alice, *WATER))
-        r = w.act(_reaction(alice, *METHANE))
+        w.act(_reaction(w, alice, *WATER))
+        r = w.act(_reaction(w, alice, *METHANE))
         self.assertIsInstance(r, Refusal)
         self.assertIn("limit", r.reason)
 
@@ -265,7 +264,7 @@ class TestChemistryWorld(ChemistryCase):
         alice, bob = self.enter(w, "Alice"), self.enter(w, "Bob")
         for who, reaction in ((alice, METHANE), (bob, WATER),
                               (alice, NEUTRAL)):
-            self.assertIsInstance(w.act(_reaction(who, *reaction)), Ack)
+            self.assertIsInstance(w.act(_reaction(w, who, *reaction)), Ack)
         reactions = reactions_from_log(w.log_since(None))
         self.assertEqual([r["actor_name"] for r in reactions],
                          ["Alice", "Bob", "Alice"])
@@ -289,12 +288,13 @@ class TestTwoWorlds(unittest.TestCase):
         # Each act is signed for the world it is sent to, so each world's
         # law, not the signature check, decides.
         self.assertIsInstance(poetry.act(alice.act(
-            "world:poetry", "poem.turn", turn_fields)), Ack)
-        refused = poetry.act(_reaction(alice, *WATER, world="world:poetry"))
+            poetry.manifest(), "poem.turn", turn_fields)), Ack)
+        refused = poetry.act(_reaction(poetry, alice, *WATER))
         self.assertIsInstance(refused, Refusal)
         self.assertEqual(refused.reason, "Unknown act type: chemistry.react")
-        self.assertIsInstance(chemistry.act(_reaction(alice, *WATER)), Ack)
-        refused = chemistry.act(alice.act("world:chemistry", "poem.turn",
+        self.assertIsInstance(
+            chemistry.act(_reaction(chemistry, alice, *WATER)), Ack)
+        refused = chemistry.act(alice.act(chemistry.manifest(), "poem.turn",
                                           turn_fields))
         self.assertIsInstance(refused, Refusal)
         self.assertEqual(refused.reason, "Unknown act type: poem.turn")

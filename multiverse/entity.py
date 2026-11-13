@@ -14,56 +14,58 @@ Changed from the sketch:
     else is refused before the law is consulted, and its refusal is
     logged without naming any key: the log names a key only for what
     that key signed.
+  - Course step 3: every entity is a key (a Signer). Its manifest names
+    the key and is signed by it, requests must name it, and the entity
+    signs a stamp for each arrival and departure, and for what is made
+    inside it (`_made`). A petition's passport is checked offline before
+    anything else is decided, and one with a forged or altered stamp is
+    refused (passport.py).
 """
 from __future__ import annotations
 
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
-from .identity import Identity, token_problem
-from .passport import Admission as PassportAdmission
-from .passport import Passport
+from .identity import Identity, Signer, token_problem
+from .passport import (Passport, Stamp, make_stamp, thing_fingerprint,
+                       verify_passport)
 from .protocol import (PROTOCOL_VERSION, Act, ActResponse, Admission,
                        Departure, Leave, LeaveResponse, LogEntry, Manifest,
                        Petition, PetitionResponse, Refusal, act_document,
                        is_plain, leave_document, petition_document,
-                       request_problem)
+                       request_problem, signed_manifest)
 
 
 # What every entity built on this module states in its law about the
 # requests it accepts: they are what petition, act and leave enforce.
 SIGNED_REQUESTS_LAW = (
     f"- Protocol {PROTOCOL_VERSION}: every petition, act and leave must be "
-    "signed by the key it names, for this world, with a number larger "
-    "than the last one this world saw from that key. Anything else is "
-    "refused.")
+    "signed by the key it names, for this world's id and key, with a "
+    "number larger than the last one this world saw from that key. "
+    "Anything else is refused.")
+STAMPS_LAW = (
+    "- This world signs a stamp for each arrival and each departure, and "
+    "for what is made here. A petition whose passport has a stamp that "
+    "doesn't verify is refused.")
 UNSIGNED_ANSWERS_LIMIT = (
-    "- Answers aren't signed yet, and world ids aren't checked to be "
-    "unique: until worlds have keys (course step 3), a request is bound "
-    "to a world's id, not to the world. The numbers this world has seen "
-    "are kept only in memory, so after a restart an old request could "
-    "be accepted once.")
+    "- Only stamps are signed: other answers, and this world's log, are "
+    "not yet. The numbers this world has seen are kept only in memory, so "
+    "after a restart an old request could be accepted once.")
 
 
 def now() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-def _read_passport(pairs) -> Optional[tuple]:
-    """A petition's passport as admissions, or None if it isn't a plain
-    list or tuple of plain (world id, timestamp) text pairs."""
-    if type(pairs) not in (tuple, list):
+def _read_passport(identity: Identity, entries) -> Optional[Passport]:
+    """A petition's passport, or None if its entries aren't plain stamp
+    and leave entries (passport.py). Not yet verified."""
+    if type(entries) not in (tuple, list) or not is_plain(list(entries)):
         return None
-    earlier = []
-    for pair in pairs:
-        if type(pair) not in (tuple, list) or len(pair) != 2:
-            return None
-        try:   # Admission itself requires plain, valid text
-            earlier.append(PassportAdmission(world_id=pair[0],
-                                             timestamp=pair[1]))
-        except ValueError:
-            return None
-    return tuple(earlier)
+    try:
+        return Passport.from_entries(identity, entries)
+    except ValueError:
+        return None
 
 
 class Entity:
@@ -74,11 +76,14 @@ class Entity:
     scheme = "world"    # in the manifest's addresses
 
     def __init__(self, entity_id: str, name: str, law, *,
-                 sub_registry: bool = False):
+                 sub_registry: bool = False, key: Optional[Signer] = None):
+        """`key` is the entity's own key; a new one is made if none is
+        given. Like an individual's, it never leaves the entity."""
         self._law = law
+        self._key = Signer() if key is None else key
         base = f"{self.scheme}://{entity_id}"
-        self._manifest = Manifest(
-            entity_id=entity_id, name=name,
+        self._manifest = signed_manifest(
+            self._key, entity_id=entity_id, name=name,
             protocol_version=PROTOCOL_VERSION,
             law_url=f"{base}/law",
             act_endpoint=f"{base}/act",
@@ -86,6 +91,7 @@ class Entity:
             sub_registry_endpoint=f"{base}/worlds" if sub_registry else None)
         self._log: List[LogEntry] = []
         self._admitted: Dict[str, Admission] = {}
+        self._arrivals: Dict[str, Stamp] = {}
         self._passports: Dict[str, Passport] = {}
         self._last_seq: Dict[str, int] = {}
 
@@ -117,19 +123,29 @@ class Entity:
             return self._refuse(timestamp, None,
                                 "Cannot admit: the name is empty",
                                 "petition")
-        earlier = _read_passport(petition.passport_admissions)
+        earlier = _read_passport(
+            Identity(token=token, name=petition.petitioner_name),
+            petition.passport)
         if earlier is None:
             return self._refuse(timestamp, None,
-                                "Cannot read the passport: it must be "
-                                "pairs of plain text (world id, ISO 8601 "
-                                "time)", "petition")
+                                "Cannot read the passport: it must be a "
+                                "list of plain stamp and leave entries",
+                                "petition")
         problem = request_problem(
             token, petition.seq, petition.signature,
-            petition_document(self._manifest.entity_id, petition),
+            petition_document(self._manifest.entity_id,
+                              self._manifest.world_key, petition),
             self._last_seq)
         if problem:
             return self._refuse(timestamp, None,
                                 f"Cannot admit: {problem}", "petition")
+        check = verify_passport(
+            earlier, {self._manifest.entity_id: self._manifest.world_key})
+        if not check.ok:
+            return self._refuse(timestamp, token,
+                                "Cannot admit: the passport has a stamp "
+                                f"or leave that doesn't verify: "
+                                f"{check.problems[0]}", "petition")
         if not self._law.admits_any_identity:
             return self._refuse(timestamp, token,
                                 f"This {self.noun} does not admit "
@@ -142,35 +158,41 @@ class Entity:
             return self._refuse(timestamp, token, "Already admitted",
                                 "petition")
 
+        arrival = make_stamp(self._key, "arrival",
+                             self._manifest.entity_id, token, timestamp)
         admission = Admission(entity_id=self._manifest.entity_id,
-                              timestamp=timestamp)
+                              timestamp=timestamp, stamp=arrival.entry())
         self._admitted[token] = admission
-        self._passports[token] = Passport(
-            identity=Identity(token=token, name=petition.petitioner_name),
-            admissions=earlier,
-        ).with_admission(PassportAdmission(
-            world_id=self._manifest.entity_id, timestamp=timestamp))
+        self._arrivals[token] = arrival
+        self._passports[token] = earlier.with_stamp(arrival)
         self._log.append(LogEntry(
             timestamp=timestamp, kind="admission", actor_token=token,
-            data={"name": petition.petitioner_name}))
+            data={"name": petition.petitioner_name,
+                  "stamp": arrival.fingerprint()}))
         return admission
 
     def act(self, act: Act) -> ActResponse:
         raise NotImplementedError
 
     def leave(self, leave: Leave) -> LeaveResponse:
-        """The law can't refuse a leave. The one leave refused is one that
-        isn't the leaver's own: not signed by the key it names, for this
-        world, or a replay. Leaving when not present changes nothing."""
+        """The law can't refuse a leave. The only leaves refused are ones
+        that aren't the leaver's own (not signed by the key they name,
+        for this world, or a replay) or aren't plain leaves. Leaving when
+        not present changes nothing. A departure is stamped; the stamp
+        names the arrival it closes. (Whatever `closes` the leave names,
+        the stamp names this world's own record of the arrival.)"""
         timestamp = now()
-        if type(leave) is not Leave or token_problem(leave.token):
+        if (type(leave) is not Leave or token_problem(leave.token)
+                or type(leave.closes) is not str):
             return self._refuse(timestamp, None,
-                                "Not a leave: it must name a key and be "
-                                "signed by it", "leave")
+                                "Not a leave: it must name a key, be "
+                                "signed by it, and name what it closes "
+                                "as text", "leave")
         token = leave.token
         problem = request_problem(
             token, leave.seq, leave.signature,
-            leave_document(self._manifest.entity_id, leave), self._last_seq)
+            leave_document(self._manifest.entity_id,
+                           self._manifest.world_key, leave), self._last_seq)
         if problem:
             return self._refuse(timestamp, None,
                                 f"Not this individual's leave: {problem}",
@@ -180,11 +202,15 @@ class Entity:
                              timestamp=timestamp, already_left=True)
         del self._admitted[token]
         passport = self._passports.pop(token)
+        arrival = self._arrivals.pop(token)
+        stamp = self._departure_stamp(token, timestamp, arrival)
         self._log.append(LogEntry(
             timestamp=timestamp, kind="departure", actor_token=token,
-            data={"name": passport.identity.name}))
+            data={"name": passport.identity.name,
+                  "arrival": arrival.fingerprint()}))
         return Departure(entity_id=self._manifest.entity_id,
-                         timestamp=timestamp)
+                         timestamp=timestamp,
+                         stamp=None if stamp is None else stamp.entry())
 
     def log_since(self, timestamp: Optional[str] = None) -> List[LogEntry]:
         """Entries after `timestamp`, or all of them. A timestamp that
@@ -196,7 +222,7 @@ class Entity:
             an entry written in the same microsecond.
           - The entries are the world's own, not copies: within one
             process, a reader that changes an entry's data changes the
-            record. Over the network (course step 12) readers get copies, and a
+            record. Over the network (course step 13) readers get copies, and a
             hash-chained log, like the world kernel's, would make any
             change detectable."""
         if timestamp is None:
@@ -210,6 +236,10 @@ class Entity:
     def law(self):
         return self._law
 
+    @property
+    def world_key(self) -> str:
+        return self._manifest.world_key
+
     def is_admitted(self, token: str) -> bool:
         return token in self._admitted
 
@@ -222,6 +252,25 @@ class Entity:
         return self._passports.get(token)
 
     # -- internals ------------------------------------------------------
+
+    def _departure_stamp(self, token: str, timestamp: str,
+                         arrival: Stamp) -> Optional[Stamp]:
+        """The departure stamp. A world that withheld it couldn't stop the
+        leave (the tests have one that does); the leaver's own signed
+        leave shows the visit ended."""
+        return make_stamp(self._key, "departure", self._manifest.entity_id,
+                          token, timestamp, arrival=arrival.fingerprint())
+
+    def _made(self, token: str, timestamp: str, thing: Dict) -> Dict:
+        """A made stamp for `thing`, made by `token` while present, added
+        to the passport this world holds for it; returned as a plain
+        entry, for the Ack."""
+        stamp = make_stamp(self._key, "made", self._manifest.entity_id,
+                           token, timestamp,
+                           arrival=self._arrivals[token].fingerprint(),
+                           made=thing_fingerprint(thing))
+        self._passports[token] = self._passports[token].with_stamp(stamp)
+        return stamp.entry()
 
     def _refuse(self, timestamp: str, actor: Optional[str], reason: str,
                 kind: str) -> Refusal:
@@ -255,7 +304,8 @@ class Entity:
                                 "values", "act")
         problem = request_problem(
             act.actor_token, act.seq, act.signature,
-            act_document(self._manifest.entity_id, act), self._last_seq)
+            act_document(self._manifest.entity_id,
+                         self._manifest.world_key, act), self._last_seq)
         if problem:
             return self._refuse(timestamp, None, problem, "act")
         return None

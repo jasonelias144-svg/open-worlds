@@ -21,28 +21,31 @@ from multiverse.registry import (MultiverseLaw, MultiverseRegistry,
 
 def _in(world, person, *args, **kwargs):
     """`person`'s signed petition to `world`."""
-    return person.petition(world.manifest().entity_id, *args, **kwargs)
+    return person.petition(world.manifest(), *args, **kwargs)
 
 
 def _out(world, person):
     """`person`'s signed leave from `world`."""
-    return person.leave(world.manifest().entity_id)
+    return person.leave(world.manifest())
 
 
-def _admit(mv, person, entity, entity_id=None):
-    """A signed listing act: the payload names the entity's id; the entity
-    itself is attached. The id is read without calling manifest(), so
-    tests that count manifest() calls see only the registry's."""
+def _admit(mv, person, entity, entity_id=None, world_key=None):
+    """A signed listing act: the payload names the entity's id and key;
+    the entity itself is attached. They are read without calling
+    manifest(), so tests that count manifest() calls see only the
+    registry's."""
+    manifest = getattr(entity, "_manifest", None)
     if entity_id is None:
-        manifest = getattr(entity, "_manifest", None)
         entity_id = manifest.entity_id if manifest else "world:unknown"
-    act = person.act(mv.manifest().entity_id, "multiverse.admit",
-                     {"entity_id": entity_id})
+    if world_key is None:
+        world_key = manifest.world_key if manifest else "unknown"
+    act = person.act(mv.manifest(), "multiverse.admit",
+                     {"entity_id": entity_id, "world_key": world_key})
     return dataclasses.replace(act, attachment=entity)
 
 
 def _remove(mv, person, entity_id):
-    return person.act(mv.manifest().entity_id, "multiverse.remove",
+    return person.act(mv.manifest(), "multiverse.remove",
                       {"entity_id": entity_id})
 
 
@@ -67,7 +70,7 @@ class RegistryCase(unittest.TestCase):
         mv = MultiverseRegistry(entity_id, "Main Multiverse",
                                 law=MultiverseLaw(**law) if law else None)
         person = Individual(name)
-        self.assertIsInstance(mv.petition(person.petition(entity_id)),
+        self.assertIsInstance(mv.petition(person.petition(mv.manifest())),
                               Admission)
         return mv, person
 
@@ -246,11 +249,32 @@ class TestRegistry(RegistryCase):
         self.assertEqual(refused.data["manifest"]["entity_id"], "world:rude")
 
     def test_lists_only_what_was_signed_for(self):
+        # The signature covers the id and the key (course step 3): a world
+        # with the right id but another key isn't the one signed for.
         mv, alice = self.registry()
-        r = mv.act(_admit(mv, alice, PoetryWorld("world:real", "Real"),
-                          entity_id="world:other"))
-        self.assertIsInstance(r, Refusal)
-        self.assertIn("signed for", r.reason)
+        real = PoetryWorld("world:real", "Real")
+        copy = PoetryWorld("world:real", "Copy of Real")
+        for r in (mv.act(_admit(mv, alice, real, entity_id="world:other")),
+                  mv.act(_admit(mv, alice, copy,
+                                world_key=real.manifest().world_key))):
+            self.assertIsInstance(r, Refusal)
+            self.assertIn("signed for", r.reason)
+        self.assertEqual(mv.entity_ids(), [])
+        self.assertIsInstance(mv.act(_admit(mv, alice, real)), Ack)
+        listed, = mv.list_sub_entities()
+        self.assertEqual(listed.world_key, real.manifest().world_key)
+
+    def test_the_signed_key_must_be_text(self):
+        mv, alice = self.registry()
+        world = PoetryWorld("world:real", "Real")
+        for world_key in (5, "", None):
+            with self.subTest(world_key=world_key):
+                act = alice.act(mv.manifest(), "multiverse.admit",
+                                {"entity_id": "world:real",
+                                 "world_key": world_key})
+                r = mv.act(dataclasses.replace(act, attachment=world))
+                self.assertIsInstance(r, Refusal)
+                self.assertIn("No world_key", r.reason)
         self.assertEqual(mv.entity_ids(), [])
 
     def test_the_signed_id_must_be_text(self):
@@ -258,7 +282,7 @@ class TestRegistry(RegistryCase):
         world = PoetryWorld("world:real", "Real")
         for entity_id in (5, "", ["world:real"], None):
             with self.subTest(entity_id=entity_id):
-                act = alice.act(mv.manifest().entity_id, "multiverse.admit",
+                act = alice.act(mv.manifest(), "multiverse.admit",
                                 {"entity_id": entity_id})
                 r = mv.act(dataclasses.replace(act, attachment=world))
                 self.assertIsInstance(r, Refusal)
@@ -319,7 +343,7 @@ class TestRegistry(RegistryCase):
         self.assertIn("not admitted",
                       mv.act(_admit(mv, stranger,
                                     PoetryWorld("w:p", "P"))).reason)
-        r = mv.act(alice.act(mv.manifest().entity_id, "multiverse.rank", {}))
+        r = mv.act(alice.act(mv.manifest(), "multiverse.rank", {}))
         self.assertIn("Unknown act type", r.reason)
 
     def test_never_converges(self):
@@ -346,7 +370,8 @@ class TestRegistry(RegistryCase):
         for name in ("Bea", "Cal"):
             person = Individual(name)
             self.assertIsInstance(
-                poetry.petition(person.petition("world:poetry")), Admission)
+                poetry.petition(person.petition(poetry.manifest())),
+                Admission)
 
     def test_leave_the_registry(self):
         mv, alice = self.registry(max_admitted=1)
@@ -399,6 +424,17 @@ class TestFractal(RegistryCase):
                      act_endpoint="y", log_endpoint="z",
                      sub_registry_endpoint="w")
         self.assertEqual(manifest_from_dict(manifest_to_dict(m)), m)
+
+    def test_a_listed_manifest_can_be_checked_without_the_world(self):
+        # The log keeps the world's signed manifest, so anyone reading it
+        # can check the listing against the world's key.
+        from multiverse.protocol import manifest_problem
+        mv, alice = self.registry()
+        poetry = PoetryWorld("world:poetry", "Poetry")
+        mv.act(_admit(mv, alice, poetry))
+        listed, = registry_from_log(mv.log_since(None)).values()
+        self.assertEqual(listed, poetry.manifest())
+        self.assertEqual(manifest_problem(listed), "")
 
 
 if __name__ == "__main__":
