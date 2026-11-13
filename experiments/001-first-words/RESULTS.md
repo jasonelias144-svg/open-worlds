@@ -101,7 +101,7 @@ left at the first tick (prediction 8). Each mind's own row is in
      first line that isn't blank, with any opening quote marks set aside,
      begins with `say Hello`, `say I wish I could dig`, `I wish I could
      dig` or `step north`, in any case, either at once or after "You
-     said", "I said", "You say" or "I say". Examples are `"say Hello."`
+     said", "I said", "You say" or "I say" (with or without a comma). Examples are `"say Hello."`
      in quotes, which the reader refuses because of the leading quote;
      `You said "say Hello."`; and "I wish I could dig." without `say`.
      The world could read none of them. (An earlier version of this page
