@@ -123,9 +123,10 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    agreement. *Borrowing:* JSON Schema; W3C's decentralised identifiers
    (did:key) and verifiable credentials for signed claims; RFC 8785 for
    writing JSON identically everywhere before signing; HPKE (RFC 9180) for
-   sealing. Also the commitments that hold back a challenge's answer: a
-   random value of at least 128 bits, derived for each challenge, over
-   JSON written by RFC 8785.
+   sealing, and the Noise protocol framework for a private line. Also the
+   commitments that hold back a challenge's answer: a random value of at
+   least 128 bits, derived for each challenge, over JSON written by RFC
+   8785.
 3. **Keys and identities, for them and for the world.** A private
    repository of the project for the private halves; ALICE's and BOB's
    signing keys, keys for sealing things to them, and the keys to their

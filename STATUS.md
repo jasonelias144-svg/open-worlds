@@ -111,7 +111,8 @@ and for the founder's conversations with DeepSeek, is in
   about the world that its participants can't also know"): two exceptions
   now stand in the design, and the section should name them: the answer to
   a challenge, held until it is solved, and each individual's sealed self.
-  (noted 2026-11-13)
+  If the founder chooses a private line with a Keeper, or private speech
+  between individuals, those would be exceptions too. (noted 2026-11-13)
 
 ## Noticed
 

@@ -53,9 +53,12 @@ All by the founder, on 2026-11-13:
   individual. A direct message line. Something like that. A chat window
   that may remain blank forever, but is there once the world-key is
   found. It is like a phone number or an address with authentication."
-  And: "Access is not to the world, but to a conversation with the world.
-  Anyone can access the world, but you need a password to communicate
-  with the world."
+  "But an open channel is what I had in mind." "It could be a
+  user-specific password, chosen just for that individual. Others may
+  attempt contact with a world, but without a password, access is
+  denied." And: "Access is not to the world, but to a conversation with
+  the world. Anyone can access the world, but you need a password to
+  communicate with the world."
 - **The world-key is sealed for its earner.** "A world-key could be
   generated from the individuals public key and the world public key. It
   would be readable only by the individual, since they have the
@@ -204,17 +207,28 @@ being a guide and become a friend.
   for those it has issued its world-key to. Anyone else who tries is
   refused, though they can still walk in and play.
 - **A key, not a password.** The founder asked for "a user-specific
-  password, chosen just for that individual". The line's secret is that,
-  in the form the industry now prefers to passwords (passkeys). Each side
-  makes it from its own private key and the other's public key, so it is
-  unique to each pair. It is never typed, sent or stored, so there is
-  nothing to steal from the world and nothing to replay. The individual's
-  record shows that they hold a line to that world, never the secret.
-  Proving who is calling comes from the key; the right to the line comes
-  from the world-key.
-- **The mind never sees the secret.** A small model repeats what it is
-  shown (experiment 001), and speech is public. So the software acting for
-  the individual opens the line, and the mind only sees it open.
+  password, chosen just for that individual". The line uses the holder's
+  own key instead, the way passkeys replace passwords. To open it, the
+  world sends a fresh challenge (the line and the current tick), and the
+  holder's software signs it with the holder's signing key; the world
+  checks the signature, and that it issued its world-key to that
+  identity. Proving who is calling comes from the key; the right to the
+  line comes from the world-key. Nothing secret is typed, sent, or kept
+  in a table of passwords. The individual's record shows that they hold a
+  line to that world, never the key.
+- **Every message is signed and numbered,** by the writer's signing key,
+  so a copy replayed or put out of order shows, and anyone can check who
+  wrote what.
+- **If the line is private** (not decided, below), its messages are also
+  encrypted, with a fresh one-time key each time, so a key taken later
+  can't read what was said before. Step 2 checks the standard ways: HPKE
+  for each message, or a Noise handshake for each conversation.
+- **The honest limit, as everywhere here:** whoever holds the private
+  repository holds the holder's private key, and so could sign as them
+  ([MINDS.md](MINDS.md), "Where everything lives").
+- **The mind never sees the key.** A small model repeats what it is shown
+  (experiment 001), and speech is public. So the software acting for the
+  individual opens the line, and the mind only sees it open.
 - **A window that is always there.** From the moment the world-key is
   found, each tick's view includes the line to the Keeper, with or
   without anything new on it. That is still the one door into a mind.
@@ -222,8 +236,12 @@ being a guide and become a friend.
   side's next tick. If one side is away, it waits there, as in any chat.
   Writing on the line is an action, like `say`, so "one action a tick"
   still holds.
-- **Signed and recorded,** in the log of the world where it is written and
-  of the world where it is read, and so in the individual's history.
+- **Recorded** in the log of the world where it is written and of the
+  world where it is read, and so in the individual's history. A world
+  whose law doesn't carry the line can't show it: messages wait until the
+  holder is somewhere that does.
+- **It lasts.** The line belongs to whoever earned the world-key, and
+  stays open after that world-key founds a world.
 - **A friend is a relationship on record,** built from the line and from
   visits. It is never favouritism: a friend's challenges still sit at the
   edge of what they can do. A friend can be invited to give back: guide a
@@ -394,15 +412,15 @@ key (Diffie–Hellman; the standard way to do it is HPKE's Auth mode, RFC
 9180, which adds a fresh one-time key). The box is placed at the end of
 the path, and the "key" piece of the hunt teaches how it works.
 
-Two honest limits. The Ur-world can open the box too, since it made it,
-and so could anyone with the private repository, as with signing
-([MINDS.md](MINDS.md), "Where everything lives"). And the earner's private
-key is held by the project's software, which acts for them; the mind
-never sees it.
+Two honest limits. The Ur-world knows what is in the box, since it wrote
+and signed it, and anyone with the private repository can open it, since
+the earner's private key is kept there ([MINDS.md](MINDS.md), "Where
+everything lives"). And the earner's private key is held by the project's
+software, which acts for them; the mind never sees it.
 
 As the founder noticed, "Alice and Bob have been exchanging keys from the
-start": the two sides of a key exchange have been called Alice and Bob
-since the 1978 paper that introduced RSA
+start": Alice and Bob have been the names of the two people in a
+cryptography example since Rivest, Shamir and Adleman's 1978 paper on RSA
 ([Wikipedia](https://en.wikipedia.org/wiki/Alice_and_Bob)).
 
 It is not the new world's own key. A world's key is its identity, and the
@@ -444,9 +462,10 @@ somewhere new.
 And leaving is not the end. The founder means "the same person returning
 to the world later" to be given a new and harder set of challenges, so
 whoever leaves can come back. Today, a name that has left the Ur-world
-can't be used there again, so that no one else can take it over. Once identities have
-keys (course step 3), whoever left can return by proving, with their key,
-that they are the same individual, and their name stays theirs.
+can't be used there again, so that no one else can take it over. Once
+identities have keys (course step 3), whoever left can return by proving,
+with their key, that they are the same individual, and their name stays
+theirs.
 
 ## Difficulty, and measuring it
 
