@@ -36,12 +36,11 @@ The course, twelve steps ahead and rolling: [docs/COURSE.md](docs/COURSE.md).
 After each step is done, the rest are rechecked and one new step is added.
 In short: the design pages; formats that last; keys and identities, for
 ALICE and BOB and for the world; the kernel as entities and components;
-things, skills and the sheet; the first room, end to end; memory; experiment 002, the audition;
-ALICE's and BOB's first life; back to DeepSeek; the hunt and the
-world-key; founding worlds, and doors. Waiting behind them: a window onto
-the worlds, generator 2, storytellers, the gate and districts,
-governance, a lost or leaked key, and the first course's steps still
-wanted.
+things, skills and the sheet; the first room, end to end; memory; experiment
+002, the audition; ALICE's and BOB's first life; back to DeepSeek; the hunt
+and the world-key; founding worlds, and doors. Waiting behind them: a window
+onto the worlds, generator 2, storytellers, the gate and districts,
+governance, a lost or leaked key, and the first course's steps still wanted.
 
 Also kept from earlier plans, outside the course for now: side cycles
 suggested by Cycle 0 (walkers with different speeds, to test "respect
