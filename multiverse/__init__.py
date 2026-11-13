@@ -13,9 +13,11 @@ step 2 makes each individual a key that signs what it sends:
   entity.py           entering, leaving and the log, shared by all
   poetry_world.py     poets taking turns under a law (component 4)
   chemistry_world.py  real reactions in a soup, in time (component 5)
+  corridor_world.py   Cycle 0's corridor behind the protocol, with doors
   registry.py         a registry of worlds, itself an entity (component 6)
   apprentice.py       rule-based apprentice poets (poetry engine)
   collaboration.py    all of it together (component 7)
+  journey.py          the first journey: corridor, chemistry, poetry, back
 
 Depends on the `cryptography` package for signatures (requirements.txt).
 """

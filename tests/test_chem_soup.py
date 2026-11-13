@@ -460,3 +460,21 @@ class TestAdvance(unittest.TestCase):
             gone.append(soup.count(ZWITTERION))
         expected = n * (1 - math.exp(-k * t))
         self.assertAlmostEqual(sum(gone) / len(gone), expected, delta=4.0)
+
+
+class TestHugeClocks(unittest.TestCase):
+    def test_a_clock_too_large_to_move_stops_instead_of_looping(self):
+        # Near 1e16 seconds a wait rounds to nothing. Neither run() nor
+        # advance() may then loop for ever.
+        for how in ("advance", "run"):
+            with self.subTest(how=how):
+                soup = Soup(1, 1, seed=1)
+                soup.add_reaction([GLYCINE], [ZWITTERION], 4.0)
+                soup.add_reaction([ZWITTERION], [GLYCINE], 1.0)
+                soup.put((0, 0), GLYCINE, 20)
+                soup.time = 1e17
+                if how == "advance":
+                    soup.advance(1e17 + 1e3)
+                    self.assertEqual(soup.time, 1e17 + 1e3)
+                else:
+                    self.assertLessEqual(soup.run(until=1e17 + 1e3), 1)

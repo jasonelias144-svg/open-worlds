@@ -32,8 +32,8 @@ from .passport import (Passport, Stamp, make_stamp, thing_fingerprint,
 from .protocol import (PROTOCOL_VERSION, Act, ActResponse, Admission,
                        Departure, Leave, LeaveResponse, LogEntry, Manifest,
                        Petition, PetitionResponse, Refusal, act_document,
-                       is_plain, leave_document, petition_document,
-                       request_problem, signed_manifest)
+                       is_plain, leave_document, manifest_problem,
+                       petition_document, request_problem, signed_manifest)
 
 
 # What every entity built on this module states in its law about the
@@ -94,6 +94,9 @@ class Entity:
         self._arrivals: Dict[str, Stamp] = {}
         self._passports: Dict[str, Passport] = {}
         self._last_seq: Dict[str, int] = {}
+        # World id -> key, for the worlds this one knows (know()). Its own
+        # is always among them.
+        self._known: Dict[str, str] = {entity_id: self._key.token}
 
     # -- the protocol ---------------------------------------------------
 
@@ -139,8 +142,7 @@ class Entity:
         if problem:
             return self._refuse(timestamp, None,
                                 f"Cannot admit: {problem}", "petition")
-        check = verify_passport(
-            earlier, {self._manifest.entity_id: self._manifest.world_key})
+        check = verify_passport(earlier, dict(self._known))
         if not check.ok:
             return self._refuse(timestamp, token,
                                 "Cannot admit: the passport has a stamp "
@@ -157,6 +159,10 @@ class Entity:
         if token in self._admitted:
             return self._refuse(timestamp, token, "Already admitted",
                                 "petition")
+        problem = self._entry_problem(token, earlier)
+        if problem:
+            return self._refuse(timestamp, token, f"Cannot admit: {problem}",
+                                "petition")
 
         arrival = make_stamp(self._key, "arrival",
                              self._manifest.entity_id, token, timestamp)
@@ -169,6 +175,7 @@ class Entity:
             timestamp=timestamp, kind="admission", actor_token=token,
             data={"name": petition.petitioner_name,
                   "stamp": arrival.fingerprint()}))
+        self._entered(token, timestamp)
         return admission
 
     def act(self, act: Act) -> ActResponse:
@@ -203,6 +210,7 @@ class Entity:
         del self._admitted[token]
         passport = self._passports.pop(token)
         arrival = self._arrivals.pop(token)
+        self._left(token, timestamp)
         stamp = self._departure_stamp(token, timestamp, arrival)
         self._log.append(LogEntry(
             timestamp=timestamp, kind="departure", actor_token=token,
@@ -250,6 +258,43 @@ class Entity:
     def passport_of(self, token: str) -> Optional[Passport]:
         """The passport the world holds for someone present."""
         return self._passports.get(token)
+
+    def know(self, manifest: Manifest) -> None:
+        """Learn another world's key from its signed manifest, so that a
+        stamp in that world's name under any other key is refused here
+        (passport.verify_passport). ValueError if the manifest doesn't
+        verify, or names this world's id, or an id already known by
+        another key."""
+        problem = manifest_problem(manifest)
+        if problem:
+            raise ValueError(f"not a usable manifest: {problem}")
+        if manifest.entity_id == self._manifest.entity_id:
+            raise ValueError("a world knows its own key already; this "
+                             "manifest names its id")
+        known = self._known.get(manifest.entity_id)
+        if known is not None and known != manifest.world_key:
+            raise ValueError(f"{manifest.entity_id} is already known by "
+                             "another key")
+        self._known[manifest.entity_id] = manifest.world_key
+
+    def known_keys(self) -> Dict[str, str]:
+        """The worlds this one knows, by id, with their keys."""
+        return dict(self._known)
+
+    # -- for subclasses -------------------------------------------------
+
+    def _entry_problem(self, token: str, passport: Passport) -> str:
+        """Why this world can't take someone in now, beyond its law's
+        published conditions (for example, a crowded entrance), or "".
+        `passport` is the petitioner's, already verified."""
+        return ""
+
+    def _entered(self, token: str, timestamp: str) -> None:
+        """Called once someone has been admitted."""
+
+    def _left(self, token: str, timestamp: str) -> None:
+        """Called once someone has left. It must not fail: leaving can't
+        be refused."""
 
     # -- internals ------------------------------------------------------
 

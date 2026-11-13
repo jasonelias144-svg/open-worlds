@@ -124,6 +124,7 @@ To see it work:
 python3 -m pip install -r requirements.txt
 python3 -m unittest discover -s tests -t .
 python3 -m multiverse.collaboration
+python3 -m multiverse.journey
 ```
 
 Read in this order: MULTIVERSE.md, then `protocol.py`, `conformance.py`,

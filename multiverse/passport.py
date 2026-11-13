@@ -289,7 +289,8 @@ def _entry_fingerprint(item: object) -> Optional[str]:
 def verify_passport(passport: Passport,
                     known_keys: Optional[Dict[str, str]] = None
                     ) -> PassportCheck:
-    """Check every stamp and leave in a passport, offline. Never raises.
+    """Check every stamp and leave in a passport, offline. Never raises,
+    for any passport its constructors or `from_entries` can build.
     `known_keys` maps world ids to the keys the checker knows them by
     (from their manifests): a stamp naming one of those ids under another
     key is a problem. Without it, a stamp shows only which key signed.

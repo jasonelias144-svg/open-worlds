@@ -120,6 +120,9 @@ class ChemistryWorldLaw:
             lines.append(f"- {rule}, on {' + '.join(reactants)}: "
                          f"{forward} forward, {reverse} back")
         lines += [
+            "- Rates follow mass action, counting ordered picks of the "
+            "reactants, divided by the volume once for each reactant "
+            "beyond the first (docs/CHEMISTRY.md, rate convention).",
             "- These rates are placeholders, not measurements. Real rates,",
             "  with their sources, come later (course step 8).",
             "",

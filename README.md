@@ -67,6 +67,7 @@ python3 -m unittest discover -s tests -t .     # tests
 python3 -m experiments.corridor                # Cycle 0 (about 20 s)
 python3 -m experiments.corridor --quick        # smoke test
 python3 -m multiverse.collaboration            # the first collaboration
+python3 -m multiverse.journey                  # the first journey between worlds
 ```
 
 The chemistry is also checked against RDKit in a separate CI job
