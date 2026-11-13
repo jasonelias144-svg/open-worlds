@@ -138,10 +138,14 @@ and for the founder's conversations with DeepSeek, is in
 ## Log
 
 - 2026-11-13 Claude: `sketches/`, the creative side kept apart, as the
-  founder asked: both DeepSeek records verbatim; all the code of record
-  012-04-00 (components 1 to 43, 134 files) written out exactly as the
-  record has it, by a tool CI reruns; and every DeepSeek test's result
-  (415 pass, 144 fail, 8 test files don't load), held true by CI.
+  founder asked: both DeepSeek records verbatim; all the code files of
+  record 012-04-00 (components 1 to 43, 135 files) written out exactly as
+  the record has it, by a tool CI reruns; and every DeepSeek test's result
+  (414 pass, 144 fail, 1 passes on some runs only, 8 test files don't
+  load), held true by CI. A test keeps the records' links into this
+  repository working. The independent review found a test whose result
+  varies from run to run, and a block left out by a name one line off;
+  both fixed, and the check now reports such names.
   `sketches/INDEX.md` says where each component meets the course.
   COLLABORATING.md now says the sketch is a starting point, not an end
   point, and gives four design lessons from components 21 to 43. AGENTS.md

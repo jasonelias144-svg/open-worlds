@@ -16,6 +16,13 @@ message; the rest is DeepSeek's reply.
 | [012-04-00, Patterns and Multiverses](records/012-04-00-DPSK-Patterns_Multiverses.txt) | The multiverse sketch, components 1 to 43, ending with the founder's question about a council | 42,244 | `977a50ead8f1ccfa4f8f8771ce3603b2c7c39e693b5c42bdccf586f6e5b4557b` |
 | [012-03-02, Patterns, Texts and Inventions](records/012-03-02-DPSK-Patterns_Texts_and_Inventions.txt) | The poetry engine and its curriculum, which the multiverse sketch builds on | 23,426 | `978eac920205ec2b487efc33f927dfd62da95b12ad78f1760fef9277b74908de` |
 
+## Links from the records
+
+The records link to the founder's GitHub and to this repository's
+`docs/COLLABORATING.md`, on purpose: a record that travels on its own
+leads back here. `tests/test_record_links.py` fails if a file a record
+links to is moved or renamed, so the links keep working.
+
 ## Record 012-04-00, component by component
 
 "Line" is where the component begins in the record. "Tests as written"
@@ -35,9 +42,9 @@ open-worlds" says whether any of it is in the working code, and how.
 | 6 | The multiverse registry | 3861 | 5 of 15 | 1 | `multiverse/registry.py`, changed (step 1) |
 | 7 | The first collaboration | 4654 | doesn't load | 1 | `multiverse/collaboration.py`, changed (step 1) |
 | 8 | A conformance test any language can be checked with, and an HTTP shim | 5895 | 5 of 11 | 12 | no |
-| 8 | A TypeScript implementation (`ts/`) | 6862 | not run | 12 | no |
-| 9 | Cross-language SDKs, a cross-language test, a registry addition (`multiverse_c6.py@7216`) | 7449 | not run | 12 | no |
-| 10 | A Go SDK (`go/`) | 8056 | not run | 12 | no |
+| 8 | A TypeScript implementation (`ts/`), a registry addition (`multiverse_c6.py@7216`) and a cross-language test (`cross_language_test.sh`) | 6862 | not run | 12 | no |
+| 9 | Cross-language SDKs and the cross-language test harness (`cross_language_test.sh@7779`) | 7449 | not run | 12 | no |
+| 10 | A Go SDK (`go/`) and the full federation test (`cross_language_test.sh@8762`) | 8056 | not run | 12 | no |
 | 11 | Language models as apprentices | 8890 | doesn't load | 11 | no |
 | 12 | Cost reports | 9971 | doesn't load | 11 | no |
 | 13 | Signatures, WCP/0.2 | 10831 | 12 of 12 | 2 | rebuilt in step 2: an identity is its key, and every request is signed |
@@ -54,7 +61,7 @@ open-worlds" says whether any of it is in the working code, and how.
 | 24 | Signed provenance reports | 20553 | 15 of 15 | 3 | no |
 | 25 | A chain of witnesses | 21340 | 20 of 20 | none yet | no |
 | 26 | Signed revocations | 22387 | 18 of 18 | none yet | no |
-| 27 | Witnesses as a graph (DAG) | 23513 | 20 of 23 | none yet | no |
+| 27 | Witnesses as a graph (DAG) | 23513 | 19 of 23, and one more on some runs | none yet | no |
 | 28 | Signed manifests: trust on first use, key rotation | 24830 | 17 of 19 | 3; keeping keys safely | no |
 | 29 | Signed manifests in the registry | 26041 | 3 of 13 | 3, 12 | no |
 | 30 | The federation runner, updated (`federation.py@27213`) | 27202 | not collected (an addition) | 12 | no |
@@ -75,8 +82,17 @@ open-worlds" says whether any of it is in the working code, and how.
 | 43 | The swarm architecture | 41207 | 25 of 33 | not yet (architectures) | no |
 | — | The founder's last message: a small group that decides for the whole (a council, a triumvirate), not yet answered | 42242 | | | |
 
-In all: 415 of DeepSeek's tests pass as written and 144 fail. Eight test
-files don't load. The TypeScript and Go code isn't run here yet.
+In all: as written, 414 of DeepSeek's tests pass and 144 fail. One more
+passes on some runs and fails on others: component 27's
+`test_combined_to_dict_json`, where two signers tie in the order and the
+tie falls either way. Eight test files don't load. The TypeScript and Go
+code isn't run here yet.
+
+All 135 code files in the record are written out. Fifteen code blocks in
+the record are examples in the prose, not files, and stay in the record:
+eight JSON messages in the protocol's description (lines 5635 to 5776),
+four commands to run (16439, 16494, 17445, 29748) and three usage
+examples (28455, 29754, 29766).
 
 "Not yet" in the Course column means the idea isn't on the course. The
 two proposals there (a step for persons after step 3; the architectures

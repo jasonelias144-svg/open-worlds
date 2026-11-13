@@ -1,9 +1,11 @@
 # Which of DeepSeek's tests fail, as the code stands here. Written by us,
-# not by DeepSeek (see README.md), with tools/known_failures.py.
-# conftest.py reads it:
+# not by DeepSeek (see README.md), with tools/known_failures.py, from
+# runs under several hash seeds. conftest.py reads it:
 #   - a test file listed alone does not load, and is not collected;
 #   - a test listed by name is an expected failure, and strict: if it
-#     starts passing, the run fails until it is taken off this list.
+#     starts passing, the run fails until it is taken off this list;
+#   - a test whose error starts with "sometimes:" failed in some runs
+#     and passed in others, so either result is accepted.
 # So the list is always true. The text after "  # " is the error.
 
 # Test files that do not load
@@ -39,11 +41,11 @@ multiverse_c6_test.py::test_remove  # AssertionError: assert False
 multiverse_c15_test.py::test_convert_v1_to_v2  # ValueError: world_id must be at least 8 characters
 multiverse_c15_test.py::test_convert_v2_to_v1  # ValueError: world_id must be at least 8 characters
 multiverse_c16_test.py::test_caching_avoids_refetch  # assert 3 == 1
-multiverse_c16_test.py::test_chain_uses_primary_when_it_works  # AssertionError: assert 'deadbeefdead...dbeefdeadbeef' == '821552a2983d...21f9e30d38a56'
+multiverse_c16_test.py::test_chain_uses_primary_when_it_works  # AssertionError: assert '<hex>...<hex>' == '<hex>...<hex>'
 multiverse_c16_test.py::test_end_to_end_passport_verifies_via_manifest  # AssertionError: assert False is True
 multiverse_c16_test.py::test_end_to_end_two_worlds_verified_offline  # AssertionError: assert False is True
-multiverse_c16_test.py::test_register_with_new_url_invalidates_cache  # AssertionError: assert None == 'b72d9bae1dd775ba3e31abb4889ad45d162c5a01be6bfa30de5e1d7bf2236491'
-multiverse_c16_test.py::test_resolver_fetches_public_key  # AssertionError: assert None == 'a836224f71d86cee4b27eef19392f0e3b0b75a98ff8db8b07281733608d50aa4'
+multiverse_c16_test.py::test_register_with_new_url_invalidates_cache  # AssertionError: assert None == '<hex>'
+multiverse_c16_test.py::test_resolver_fetches_public_key  # AssertionError: assert None == '<hex>'
 multiverse_c21_test.py::test_demo_runs_end_to_end  # urllib.error.HTTPError: HTTP Error 400: Bad Request
 multiverse_c21_test.py::test_happy_path_three_worlds  # urllib.error.HTTPError: HTTP Error 400: Bad Request
 multiverse_c21_test.py::test_in_process_listing_reports_url_stage  # ValueError: token must be at least 16 characters (collision resistance)
@@ -62,9 +64,10 @@ multiverse_c22_test.py::test_provenance_resident_without_departure  # NameError:
 multiverse_c22_test.py::test_reenter_after_leave  # ValueError: world_id must be at least 8 characters
 multiverse_c22_test.py::test_signed_leave_verifies  # ValueError: world_id must be at least 8 characters
 multiverse_c22_test.py::test_signed_leave_wrong_key_fails  # ValueError: world_id must be at least 8 characters
-multiverse_c23_test.py::test_current_residency_departed  # ValueError: departure is for 'alice', passport is for '326bc9e3e5c346479d1446ce31dd54d3'
-multiverse_c23_test.py::test_current_residency_multi_visit_last_closed  # ValueError: departure is for 'alice', passport is for '673b6d98fe6447c2b87430039e4497e4'
-multiverse_c23_test.py::test_current_residency_multi_visit_last_open  # ValueError: departure is for 'alice', passport is for '1ffc5c59426d47ce8381d682531ad61c'
+multiverse_c23_test.py::test_current_residency_departed  # ValueError: departure is for 'alice', passport is for '<hex>'
+multiverse_c23_test.py::test_current_residency_multi_visit_last_closed  # ValueError: departure is for 'alice', passport is for '<hex>'
+multiverse_c23_test.py::test_current_residency_multi_visit_last_open  # ValueError: departure is for 'alice', passport is for '<hex>'
+multiverse_c27_test.py::test_combined_to_dict_json  # sometimes: failed in 2 of 8 runs (hash seeds 0 to 7): AssertionError: assert ['Alice', 'Ca...'Bob', 'Dave'] == ['Alice', 'Bo...arol', 'Dave']
 multiverse_c27_test.py::test_demo  # TypeError: revoke expects a ChainLink, got DAGLink
 multiverse_c27_test.py::test_revoke_one_branch_noncascade  # TypeError: revoke expects a ChainLink, got DAGLink
 multiverse_c27_test.py::test_unknown_previous_rejected  # AssertionError: assert 'unknown' in 'root report_hash does not match report'
@@ -125,14 +128,14 @@ multiverse_c39_test.py::test_demo  # assert False
 multiverse_c39_test.py::test_lineage_walk_fork_then_merge  # AssertionError: assert False
 multiverse_c39_test.py::test_lineage_walk_missing_manifest  # AssertionError: assert not True
 multiverse_c41_test.py::test_demo  # ImportError: cannot import name 'turns_from_log' from 'multiverse_c4' (multiverse_c4.py)
-multiverse_c41_test.py::test_two_epochs_verify_independently  # + where False = all(<generator object test_two_epochs_verify_independently.<locals>.<genexpr> at 0x7f5a46a4e500>)
+multiverse_c41_test.py::test_two_epochs_verify_independently  # + where False = all(<generator object test_two_epochs_verify_independently.<locals>.<genexpr> at 0x...>)
 multiverse_c42_test.py::test_octopus_and_relay_same_substrate  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
 multiverse_c42_test.py::test_signalworld_passes_wcp_conformance  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
 multiverse_c43_test.py::test_any_finder_works  # AssertionError: failed with finder=ant-0
-multiverse_c43_test.py::test_converges_from_one_find  # + where converged = <multiverse_c43.SwarmNetwork object at 0x7f5a44481280>.converged
+multiverse_c43_test.py::test_converges_from_one_find  # + where converged = <multiverse_c43.SwarmNetwork object at 0x...>.converged
 multiverse_c43_test.py::test_demo  # assert False is True
 multiverse_c43_test.py::test_demo_with_different_finder  # assert False is True
-multiverse_c43_test.py::test_own_trace_keeps_unit_stable  # + where converged = <multiverse_c43.SwarmNetwork object at 0x7f5a445305f0>.converged
+multiverse_c43_test.py::test_own_trace_keeps_unit_stable  # + where converged = <multiverse_c43.SwarmNetwork object at 0x...>.converged
 multiverse_c43_test.py::test_removing_non_finder_still_converges  # AssertionError: failed after removing ant-1
 multiverse_c43_test.py::test_three_architectures_same_substrate  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)
 multiverse_c43_test.py::test_unit_is_wcp_world  # ImportError: cannot import name 'run_conformance' from 'wcp_conformance' (wcp_conformance.py)

@@ -3,12 +3,19 @@
 Reads known-failures.txt, which says which of DeepSeek's tests fail as the
 code stands here:
   - a test file listed alone does not load, so it is not collected
-    (sketch_status_test.py checks that it still doesn't load);
+    (sketch_status_test.py checks that it still doesn't load, with the
+    same error);
   - a test listed by name is an expected failure, strictly: if it starts
-    passing, the run fails until it is taken off the list.
-So a green run means the list is exactly true. With SKETCH_RAW=1 set,
-nothing is listed: every test runs as written (tools/known_failures.py
-uses this to rewrite the list).
+    passing, the run fails until it is taken off the list;
+  - a test whose error starts with "sometimes:" fails on some runs and
+    passes on others (for example, it depends on the order of random keys
+    or of a set), so either result is accepted for it.
+A run of the whole folder (pytest with no arguments, as CI runs it) also
+fails if the list names a test that doesn't exist. So a green run of the
+whole folder means the list is exactly true.
+
+With SKETCH_RAW=1 set, nothing is listed: every test runs as written
+(tools/known_failures.py uses this to rewrite the list).
 """
 import os
 from pathlib import Path
@@ -16,6 +23,7 @@ from pathlib import Path
 import pytest
 
 _HERE = Path(__file__).parent
+SOMETIMES = "sometimes:"
 
 
 def _known():
@@ -42,7 +50,11 @@ def pytest_collection_modifyitems(config, items):
         reason = KNOWN_TESTS.get(item.nodeid)
         if reason is not None:
             seen.add(item.nodeid)
-            item.add_marker(pytest.mark.xfail(reason=reason, strict=True))
+            strict = not reason.startswith(SOMETIMES)
+            item.add_marker(pytest.mark.xfail(reason=reason, strict=strict))
+    # Only a run of the whole folder sees every test, so only then can a
+    # listed test be known not to exist. `pytest some_test.py`, `pytest .`
+    # or `pytest -k ...` skip this check.
     whole_run = not config.args or config.args == [str(_HERE)]
     stale = sorted(set(KNOWN_TESTS) - seen)
     if whole_run and not config.option.keyword and stale:

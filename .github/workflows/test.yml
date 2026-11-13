@@ -53,3 +53,8 @@ jobs:
           sketches/deepseek/012-04-00
       - run: python -m pytest -q
         working-directory: sketches/deepseek/012-04-00
+        env:
+          # One fixed hash seed, so that set order is the same on every
+          # run; tests that vary for other reasons are marked "sometimes"
+          # in known-failures.txt.
+          PYTHONHASHSEED: "0"

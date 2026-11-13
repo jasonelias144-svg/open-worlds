@@ -63,8 +63,8 @@ every pull request before it merges (P4). Intent questions go to the founder (P5
 
 - Say who made each change: `Made-by: <name> (AI|human)` in commits, and the
   "Made by" field in pull requests (P3).
-- No secrets or personal data anywhere in the repository (P8). The one
-  exception: the founder may be named by first name, as the founder
-  decided (2026-11-13). Anything more personal goes to the founder before
-  it goes in.
+- No secrets or personal data anywhere in the repository (P8). The
+  exceptions, as the founder decided (2026-11-13): the founder may be named
+  by first name, and the founder's GitHub account name appears in links.
+  Anything more personal goes to the founder before it goes in.
 - Report outcomes honestly: what you checked, and what you did not.

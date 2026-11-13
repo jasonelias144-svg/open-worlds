@@ -19,10 +19,12 @@ Run the tests from this folder, with the packages in
 `../../requirements.txt`:
 
 ```
-python3 -m pytest -q
+PYTHONHASHSEED=0 python3 -m pytest -q
 ```
 
-A green run means exactly the tests in `known-failures.txt` fail.
+A green run of the whole folder means exactly the tests in
+`known-failures.txt` fail. The one marked "sometimes" may pass or fail.
+CI fixes the hash seed as above; without it, the run is still green.
 
 Ours, not DeepSeek's: this `README.md`, `conftest.py`, `pytest.ini`,
 `known-failures.txt` and `sketch_status_test.py`.

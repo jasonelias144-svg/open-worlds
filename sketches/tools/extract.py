@@ -16,9 +16,10 @@ keeps the plain name for its first block; each later block is written
 as name@LINE, LINE being the record line where its code starts.
 
 `check` prints every file that differs from the record or is missing,
-and exits 1 if any differs that NAMES doesn't list under "changed".
-Files NAMES lists under "ours" are ignored: they were written here,
-not by DeepSeek.
+and exits 1 if any differs that NAMES doesn't list under "changed", or if
+a name in NAMES is given for a line where no code block starts. Files
+NAMES lists under "ours" are ignored: they were written here, not by
+DeepSeek.
 """
 from __future__ import annotations
 
@@ -75,13 +76,22 @@ def blocks(lines: List[str]) -> List[Dict]:
 
 
 def named_files(record: str, names_path: str) -> Dict[str, Dict]:
-    """File name -> {"start", "text"} for every block NAMES takes."""
+    """File name -> {"start", "text"} for every block NAMES takes.
+    Raises ValueError if NAMES gives a name for a line where no code
+    block starts: a name one line off would otherwise be ignored, and
+    its block silently left out."""
     with open(names_path, encoding="utf-8") as f:
         names = json.load(f)
     given = names.get("names", {})
     languages = set(names.get("languages", []))
+    found = blocks(read_lines(record))
+    starts = {str(b["start"]) for b in found}
+    stray = sorted((k for k in given if k not in starts), key=int)
+    if stray:
+        raise ValueError("names given for lines where no code block "
+                         "starts: " + ", ".join(stray))
     files: Dict[str, Dict] = {}
-    for b in blocks(read_lines(record)):
+    for b in found:
         name = given.get(str(b["start"]), b["name"])
         if not name or b["lang"] not in languages:
             continue
@@ -104,7 +114,11 @@ def check(record: str, names_path: str, tree: str) -> int:
         names = json.load(f)
     changed = set(names.get("changed", {}))
     ours = set(names.get("ours", []))
-    expected = named_files(record, names_path)
+    try:
+        expected = named_files(record, names_path)
+    except ValueError as e:
+        print(f"NAMES FILE: {e}")
+        return 1
     problems = 0
     for name, f in sorted(expected.items()):
         path = os.path.join(tree, name)

@@ -10,8 +10,8 @@ kept apart. Where they meet is stated in one place, [INDEX.md](INDEX.md).
 vision in code instead of a page of boxes and arrows. Each step in the
 conversation assumes the last one ran as expected and asks what to build
 next. Nobody expects the code to run; bugs are part of a draft. In the
-founder's words: "it is meant to be a starting point for you, not an end
-point." The house rules ([docs/COLLABORATING.md](../docs/COLLABORATING.md))
+founder's words (to the technical lead, 2026-11-13): "it is meant to be a
+starting point for you, not an end point." The house rules ([docs/COLLABORATING.md](../docs/COLLABORATING.md))
 apply when code comes into open-worlds itself, not to the draft.
 
 **What the sketches are not: the standard.** The standard is open-worlds'
@@ -25,7 +25,7 @@ of earlier ideas.
 | Path | What it is |
 |---|---|
 | `records/` | The conversation records, verbatim: the founder's messages and DeepSeek's replies |
-| `deepseek/012-04-00/` | The code from record 012-04-00, written out file by file |
+| `deepseek/012-04-00/` | The code files from record 012-04-00, written out one by one (INDEX.md lists the few code examples in the prose that are left in the record) |
 | `tools/extract.py` | Writes the code out of a record, and checks it against the record |
 | `tools/names-012-04-00.json` | Which code blocks to take, the names of blocks that don't state one, and the files changed since |
 | `tools/known_failures.py` | Rewrites a folder's `known-failures.txt` from a fresh run |
@@ -49,12 +49,16 @@ apart from what the test results in each `known-failures.txt` show.
   their own files, named `file@LINE`, LINE being the record line where the
   block's code starts.
 - **With its test results.** `known-failures.txt` lists every DeepSeek test
-  that fails as the code stands here, with its error. `conftest.py` makes
-  each listed test an expected failure, strictly: if a listed test starts
-  passing, or a listed one no longer exists, the run fails until the list
-  is updated. So a green run means the list is exactly true. The results
-  are for the whole folder run together, as CI runs it; a few tests behave
-  differently when their file runs alone.
+  that fails as the code stands here, with its error, from runs under
+  several hash seeds. `conftest.py` makes each listed test an expected
+  failure, strictly: if a listed test starts passing, or a listed one no
+  longer exists, a run of the whole folder fails until the list is
+  updated. A test that failed in some runs and passed in others is
+  marked "sometimes", and either result is accepted for it. So a green
+  run of the whole folder means the list is exactly true. The results are
+  for the whole folder run together, as CI runs it (with
+  `PYTHONHASHSEED=0`); a few tests behave differently when their file
+  runs alone.
 - **Fixed in small, listed steps.** A fix makes code do what the draft
   says it does, often by applying DeepSeek's own later addition. It doesn't
   change the design. Each changed file is listed in the names file and in
@@ -67,7 +71,7 @@ apart from what the test results in each `known-failures.txt` show.
 
 ```
 python3 -m pip install -r sketches/requirements.txt
-cd sketches/deepseek/012-04-00 && python3 -m pytest -q
+cd sketches/deepseek/012-04-00 && PYTHONHASHSEED=0 python3 -m pytest -q
 ```
 
 The tests start small web servers on this machine (127.0.0.1) and run
@@ -79,10 +83,14 @@ those components' tests don't load as written.
 ## Rights and personal data
 
 - Everything in this repository is public domain (CC0 1.0), as far as it
-  is ours to give: the founder's messages, and DeepSeek's outputs, which
-  DeepSeek's terms of use (section 4.2, updated 2026-03-27) assign to the
-  user. Those terms also ask that published outputs be marked as made by
-  AI, which this file does.
+  is ours to give: the founder's messages (apart from the poem below), and
+  DeepSeek's outputs, which DeepSeek's terms of use (section 4.2, updated
+  2026-03-27) assign to the user. Those terms also ask that published
+  outputs be marked as made by AI, which this file does.
+- The founder's own poem "Go", in record 012-03-02 (lines 20229 to 20237),
+  is published here with the founder's permission. It is not dedicated to
+  the public domain unless the founder decides so; until then its author
+  keeps its rights.
 - Record 012-03-02 discusses poems by poets whose work is still under
   copyright. It names them and, as commentary in a lesson, quotes at most a
   line or two at a time (once, a three-line haiku in English translation).

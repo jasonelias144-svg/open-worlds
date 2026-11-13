@@ -16,8 +16,9 @@ module's docstring.
 **The sketch is a rough draft.** Each step in the conversation assumes the
 last one ran as expected and asks what to build next, the way a creative
 team might convey a vision in code instead of boxes and arrows. Nobody
-expects it to run, and bugs are part of a draft. In the founder's words:
-"it is meant to be a starting point for you, not an end point." So an
+expects it to run, and bugs are part of a draft. In the founder's words
+(to the technical lead, 2026-11-13): "it is meant to be a starting point
+for you, not an end point." So an
 "Expected output" in the conversation is a prediction, which is fine; the
 house rules below apply when code comes into open-worlds itself.
 
