@@ -302,9 +302,12 @@ Like an individual, a Keeper will have its own key, memory and history,
 and a public mind record (which model, what it was told); its engine is
 replaceable, and upgrading the model doesn't wipe what it knows. Every
 world ALICE and BOB found gets a Keeper of its own, so a Keeper's
-temperament is one of a founder's choices. How well a Keeper does (are its
-paths solvable, fair, well matched?) is measured, in an experiment of its
-own.
+temperament is one of a founder's choices: and a founder can keep the
+world themselves, or hand the office to an individual who wants it
+([ADMIN.md](ADMIN.md), "The Keeper's office"). How well a Keeper does (are
+its paths solvable, fair, well matched?) is measured, in an experiment of
+its own. Keepers, in turn, are watched by ADMIN, the Keeper of the
+multiverse ([ADMIN.md](ADMIN.md)).
 
 ## The hunt
 
