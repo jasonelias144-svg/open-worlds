@@ -333,8 +333,7 @@ def _entry_fingerprint(item: object) -> Optional[str]:
 
 def verify_passport(passport: Passport,
                     known_keys: Optional[Dict[str, str]] = None,
-                    successions: Tuple[Succession, ...] = ()
-                    ) -> PassportCheck:
+                    successions=()) -> PassportCheck:
     """Check every stamp, leave and succession in a passport, offline.
     Never raises, for any passport its constructors or `from_entries`
     can build.
@@ -343,8 +342,10 @@ def verify_passport(passport: Passport,
     (from their manifests): a stamp naming one of those ids under a key
     that isn't that one, or linked to it by a succession of that world,
     is a problem. Without it, a stamp shows only which key signed.
-    `successions` are the ones the checker already knows (a world's, from
-    `Entity`); the passport's own are checked and added to them. A key
+    `successions` are the ones the checker already knows: a list of them,
+    or a `Lineage`, whose successions were checked when it took them and
+    aren't checked again (a world's, from `Entity`). The passport's own
+    are checked and added to a copy of them. A key
     signed over twice is a problem, and so is a holder whose own key has
     been signed over: the passport goes with the new key.
 
@@ -359,13 +360,18 @@ def verify_passport(passport: Passport,
             or type(passport.leaves) is not tuple
             or type(passport.successions) is not tuple):
         return PassportCheck(("not a passport",), ())
-    known = known_keys if type(known_keys) is dict else {}
+    known = ({i: k for i, k in known_keys.items()
+              if type(i) is str and type(k) is str}
+             if type(known_keys) is dict else {})
     problems: List[str] = []
     holder = passport.identity.token
 
     # The successions: the checker's own first, then the passport's.
-    lineage = Lineage(successions if type(successions) in (list, tuple)
-                      else ())
+    if type(successions) is Lineage:
+        lineage = successions.copy()
+    else:
+        lineage = Lineage(successions if type(successions) in (list, tuple)
+                          else ())
     seen_successions: Dict[str, int] = {}
     for i, s in enumerate(passport.successions):
         fp = _entry_fingerprint(s)

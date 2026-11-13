@@ -164,7 +164,13 @@ class Entity:
                                 "Cannot admit: the passport has an entry "
                                 f"that doesn't verify: "
                                 f"{check.problems[0]}", "petition")
-        self._learn(earlier.successions)
+        # Only what concerns this world: the petitioner's own line of
+        # keys, and successions on the line of a world it knows (its own
+        # past among them; `_learn` checks that). Anything else could be
+        # junk made to fill its memory.
+        self._learn((s for s in earlier.successions
+                     if type(s) is Succession
+                     and (s.of or s.old in check.earlier_keys)), shown=True)
         present = [k for k in check.earlier_keys if k in self._admitted]
         if present:
             return self._refuse(timestamp, token,
@@ -391,8 +397,7 @@ class Entity:
     def _verify(self, passport: Passport) -> PassportCheck:
         """Check a passport against the keys and successions this world
         knows."""
-        return verify_passport(passport, dict(self._known),
-                               tuple(self._lineage.successions()))
+        return verify_passport(passport, dict(self._known), self._lineage)
 
     def _entry_problem(self, token: str, passport: Passport) -> str:
         """Why this world can't take someone in now, beyond its law's
@@ -409,40 +414,59 @@ class Entity:
 
     # -- internals ------------------------------------------------------
 
-    def _learn(self, successions) -> str:
-        """Take successions this world was shown, and follow any world it
-        knows to its new key. Of its own, only those that lead to its key
-        now: nobody but the world signs its key over (`sign_over`), or a
-        thief of its key could stop it from ever signing over. "" if all
-        were taken, else the first problem (the others are still
-        taken)."""
+    def _learn(self, successions, shown: bool = False) -> str:
+        """Take successions, and follow any world this one knows to its
+        new key. Of its own, only those that lead to its key now: nobody
+        but the world signs its key over (`sign_over`), or a thief of its
+        key could stop it from ever signing over. `shown` means they came
+        in a passport: then, of another world's, only those on the line
+        of the key this world knows it by (before it or after it), so
+        that nobody can fill a world's memory with junk. "" if all were
+        taken, else the first problem (the others are still taken)."""
         own = self._manifest.entity_id
         first = ""
-        mine = []
+        linked = []
         for s in successions:
-            if type(s) is Succession and s.of == own:
-                mine.append(s)
+            if type(s) is Succession and (s.of == own
+                                          or (shown and s.of)):
+                linked.append(s)
                 continue
             problem = self._lineage.add(s)
             if problem and not first:
                 first = problem
-        # Its own past, newest link first, in whatever order shown.
-        while mine:
-            fits = [s for s in mine if self._lineage.leads_to(
-                own, s.new, self._key.token)]
+        # In whatever order shown: take what links, then look again.
+        while linked:
+            fits = [s for s in linked if self._links(s)]
             for s in fits:
                 problem = self._lineage.add(s)
                 if problem and not first:
                     first = problem
-                mine.remove(s)
+                linked.remove(s)
+            self._follow()
             if not fits:
-                first = first or ("it would sign this world's own key "
-                                  "over; only the world does that")
+                first = first or ("it isn't on the line of a key this "
+                                  "world knows, or it would sign this "
+                                  "world's own key over")
                 break
+        self._follow()
+        return first
+
+    def _links(self, s: Succession) -> bool:
+        """Whether `s` is on the line of the key this world knows that
+        world by: its past (it leads to that key), or, for another world,
+        its next step (it signs that key over)."""
+        if s.of == self._manifest.entity_id:
+            return self._lineage.leads_to(s.of, s.new, self._key.token)
+        known = self._known.get(s.of)
+        return known is not None and (
+            self._lineage.leads_to(s.of, s.new, known) or s.old == known)
+
+    def _follow(self) -> None:
+        """Follow every other world this one knows to its latest key."""
+        own = self._manifest.entity_id
         for world_id, key in self._known.items():
             if world_id != own:
                 self._known[world_id] = self._lineage.latest(world_id, key)
-        return first
 
     def _departure_stamp(self, token: str, timestamp: str,
                          arrival: Stamp) -> Optional[Stamp]:

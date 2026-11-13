@@ -526,8 +526,10 @@ What it doesn't do yet, said plainly:
   passport it is shown, or directly (`Entity.know_succession`). From
   then on it refuses the old key's petitions and acts. Leaving is never
   refused, so the old key can still leave a world it is in. Someone
-  present under the old key can't enter again under the new one until
-  they leave.
+  present under the old key can't enter again under the new one, while
+  the new key's passport shows the succession or the world already
+  knows it, until they leave. (Without either, the new key comes in as
+  a stranger, as any other key could.)
 - **A world signs its own key over** (`Entity.sign_over`). From then on
   the new key signs its manifest, its stamps and its seen-numbers file,
   and requests must name the new key. Those present stay. The stamps
@@ -553,11 +555,25 @@ What it doesn't do yet, said plainly:
   refused, and a world keeps the first one it saw; it can't tell which
   is the owner's. So sign over while the old key is still safe, and
   show the succession to the worlds you use.
+- **Signing over doesn't revoke the old key.** What it signs later, even
+  after the succession, still counts for its world or holder: a stamp's
+  time is only its signer's claim, so nothing tells a later signature
+  from an earlier one. Destroy the old key once it has signed over.
+  What to do when a key has leaked belongs with a lost key, in the last
+  part of this step. (The independent review of #24 found this missing
+  from the limits.)
 - **What a world has learned about successions is kept in memory.** A
   restarted world learns them again from the passports it is shown, or
-  from `know_succession`. Of its own successions, a world takes from
-  outside only its past (those that lead to its key now), so a thief of
-  its key can't stop it from signing over.
+  from `know_succession`. From a passport it keeps only what concerns
+  it: the petitioner's own line of keys, and successions on the line of
+  a world it knows. So successions made with throwaway keys can't fill
+  its memory, and those it keeps aren't checked again on each petition
+  (the independent review of #24 measured every junk-laden petition
+  making the next ones slower). Of its own successions, a world takes
+  from outside only its past (those that lead to its key now), so a
+  thief of its key can't stop it from signing over. A world does keep
+  something for each key that petitions it (the last number it saw),
+  as it did before this step.
 - **A door names the key its world had** when the corridor's law was
   written. A corridor that knows the world's succession still finds the
   door, but its published law shows the old key until the law changes

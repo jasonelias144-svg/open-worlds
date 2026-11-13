@@ -71,8 +71,11 @@ and for the founder's conversations with DeepSeek, is in
   guardians named in advance, some number of whom can sign over to a new
   key; or the project recovers keys. Recommended: guardians named in
   advance, with "lost is lost" for anyone who named none; the project
-  recovering keys would make it an authority over who is who. (asked
-  2026-11-13, for course step 6)
+  recovering keys would make it an authority over who is who. A key
+  that has leaked is the same question: signing over doesn't revoke the
+  old key (course step 6, part two), so the same guardians could sign
+  that a key is no longer to be trusted. (asked 2026-11-13, for course
+  step 6)
 - For the founder: a course step for persons after step 3, and the
   architectures (octopus, relay, swarm, council) as small examples on the
   unchanged core? Recommended: yes. (asked 2026-11-13)

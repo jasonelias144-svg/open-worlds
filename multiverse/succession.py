@@ -21,6 +21,13 @@ again, to a key of the thief's, there are two successions of one key, and
 a passport that carries both is refused; a world keeps the first it saw.
 So sign over while the old key is still safe.
 
+Signing over doesn't revoke the old key. What it signs later, even after
+the succession, still counts for its world or holder: a stamp's time is
+only its signer's claim, so nothing can tell a later signature from an
+earlier one. Destroy the old key once it has signed over. What to do when
+a key has leaked, or is lost, is the last part of this step (course step
+6, with the founder's answer).
+
 From the DeepSeek sketch's component 28, where a world's new manifest is
 signed by its old key. Changed from the sketch: the new key signs too;
 individuals sign over as worlds do; and a world doesn't have to be asked
@@ -129,6 +136,14 @@ class Lineage:
         self._before: Dict[Tuple[str, str], str] = {}
         for s in successions:
             self.add(s)
+
+    def copy(self) -> "Lineage":
+        """A copy to add to, without checking again the successions this
+        one already took (each was checked when it was taken)."""
+        other = Lineage()
+        other._next = dict(self._next)
+        other._before = dict(self._before)
+        return other
 
     def add(self, s: Succession) -> str:
         """Take `s`, or say why not: "" if taken (or already known). A

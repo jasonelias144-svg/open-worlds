@@ -256,6 +256,24 @@ class TestPassportsAcrossKeys(unittest.TestCase):
         self.assertIn("another individual", verify_passport(stolen)
                       .problems[0])
 
+    def test_a_victims_own_succession_adopts_nothing(self):
+        # Mallory carries Alice's real succession and Alice's stamps: the
+        # succession links Alice's keys, not Mallory's, so they are still
+        # Alice's (the case the review's surviving mutant missed).
+        s = self.alice.sign_over()
+        mallory = make_client("Mallory")
+        stolen = Passport(mallory.passport.identity,
+                          self.alice.passport.stamps,
+                          self.alice.passport.leaves, (s,))
+        check = verify_passport(stolen)
+        self.assertIn("another individual", check.problems[0])
+        self.assertEqual(check.visits, ())
+
+    def test_a_checkers_odd_known_keys_dont_raise(self):
+        check = verify_passport(self.alice.passport,
+                                {"world:poetry": [], 3: "x"})
+        self.assertTrue(check.ok, check.problems)
+
     def test_signed_over_checks_its_succession(self):
         p = self.alice.passport
         new = Signer()
@@ -372,6 +390,71 @@ class TestWorldsKnowRetiredKeys(unittest.TestCase):
             with self.subTest(bad=type(bad).__name__):
                 with self.assertRaises(ValueError):
                     self.world.know_succession(bad)
+
+
+class TestAWorldsMemoryStaysSmall(unittest.TestCase):
+    """From a passport, a world takes only the successions that concern
+    it, and doesn't check again the ones it already took (the independent
+    review of #24 measured each junk-laden petition making every later
+    one slower)."""
+
+    def setUp(self):
+        self.poetry = PoetryWorld("world:poetry", "Poetry")
+        self.other = PoetryWorld("world:other", "Other")
+        self.poetry.know(self.other.manifest())
+        self.m = self.poetry.manifest()
+
+    def junk(self, passport, of, n=20):
+        for _ in range(n):
+            passport = passport.with_succession(
+                sign_over(Signer(), Signer(), of=of))
+        return passport
+
+    def test_junk_in_passports_is_not_kept(self):
+        for of in ("world:junk", "world:other", ""):
+            with self.subTest(of=of):
+                p = Individual("J")
+                passport = self.junk(Passport(p.identity), of)
+                self.assertIsInstance(self.poetry.petition(
+                    p.petition(self.m, passport.entries())), Admission)
+                self.assertEqual(self.poetry.successions(), [])
+
+    def test_what_concerns_it_is_kept(self):
+        # The petitioner's own line, and the next key of a world it knows.
+        alice = make_client("Alice")
+        mine = alice.sign_over()
+        theirs = self.other.sign_over(Signer())
+        alice.passport = alice.passport.with_succession(theirs)
+        self.assertIsInstance(petition_world(alice, self.poetry), Admission)
+        self.assertCountEqual(self.poetry.successions(), [mine, theirs])
+        self.assertEqual(self.poetry.known_keys()["world:other"],
+                         theirs.new)
+
+    def test_two_steps_of_a_known_worlds_line_in_any_order(self):
+        before = self.other.manifest()
+        k2, k3 = Signer(), Signer()
+        first = self.other.sign_over(k2)
+        second = self.other.sign_over(k3)
+        for order in ((first, second), (second, first)):
+            with self.subTest(first=order[0] is first):
+                poetry = PoetryWorld("world:poetry", "Poetry")
+                poetry.know(before)
+                bob = make_client("Bob")
+                for x in order:
+                    bob.passport = bob.passport.with_succession(x)
+                self.assertIsInstance(petition_world(bob, poetry),
+                                      Admission)
+                self.assertEqual(poetry.known_keys()["world:other"],
+                                 k3.token)
+
+    def test_a_petition_doesnt_check_known_successions_again(self):
+        for _ in range(5):
+            self.poetry.know_succession(sign_over(Signer(), Signer()))
+        with mock.patch("multiverse.succession.succession_problem",
+                        wraps=succession_problem) as checked:
+            self.assertIsInstance(self.poetry.petition(
+                Individual("Q").petition(self.m)), Admission)
+        self.assertEqual(checked.call_count, 0)
 
 
 class TestWorldsSignOver(unittest.TestCase):
