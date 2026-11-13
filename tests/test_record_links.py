@@ -3,7 +3,8 @@ somewhere.
 
 The records in sketches/records travel on their own, and the founder
 leaves links in them on purpose: "That little link could open a whole
-window into the project for someone" who meets a record elsewhere. A link
+window into the project for someone" who meets a record elsewhere (the
+founder, to the technical lead, 2026-11-13). A link
 to a file on `main` works only while the file stays where it is. So if a
 file a record links to is moved or renamed, this test fails: leave a page
 at the old path that points to the new one.

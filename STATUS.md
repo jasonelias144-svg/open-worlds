@@ -115,10 +115,10 @@ and for the founder's conversations with DeepSeek, is in
 - 2026-11-12, founder: "Let’s plot a course forward and then after each
   completed step, plot a new one that adds one new step forward."
   (docs/COURSE.md)
-- 2026-11-12, founder, on the demonstration's poem: his own poem may be
-  public, but "it is not necessarily the best to start with. I would
-  prefer any poem by anyone else. Emily Dickinson would be perfect." "We
-  should use a known poem to start anything." The demonstration opens
+- 2026-11-12, founder, on the demonstration's poem: the founder's own poem
+  may be public, but "it is not necessarily the best to start with. I
+  would prefer any poem by anyone else. Emily Dickinson would be perfect."
+  "We should use a known poem to start anything." The demonstration opens
   with Dickinson's "Hope is the thing with feathers" (1891).
 - 2026-11-12, founder: "The multiverse is the same as open-worlds." Its
   design is in docs/MULTIVERSE.md.

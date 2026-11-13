@@ -83,14 +83,11 @@ those components' tests don't load as written.
 ## Rights and personal data
 
 - Everything in this repository is public domain (CC0 1.0), as far as it
-  is ours to give: the founder's messages (apart from the poem below), and
-  DeepSeek's outputs, which DeepSeek's terms of use (section 4.2, updated
-  2026-03-27) assign to the user. Those terms also ask that published
-  outputs be marked as made by AI, which this file does.
-- The founder's own poem "Go", in record 012-03-02 (lines 20229 to 20237),
-  is published here with the founder's permission. It is not dedicated to
-  the public domain unless the founder decides so; until then its author
-  keeps its rights.
+  is ours to give: the founder's messages, including the founder's own
+  writing in them (as the founder confirmed, 2026-11-13), and DeepSeek's
+  outputs, which DeepSeek's terms of use (section 4.2, updated 2026-03-27)
+  assign to the user. Those terms also ask that published outputs be
+  marked as made by AI, which this file does.
 - Record 012-03-02 discusses poems by poets whose work is still under
   copyright. It names them and, as commentary in a lesson, quotes at most a
   line or two at a time (once, a three-line haiku in English translation).
