@@ -35,7 +35,7 @@ from world.core import MAX_SAY_CHARS, Move, Say, Wait, World
 
 from .entity import (SIGNED_REQUESTS_LAW, STAMPS_LAW, UNSIGNED_ANSWERS_LIMIT,
                      Entity, now)
-from .identity import token_problem
+from .identity import Signer, token_problem
 from .passport import verify_passport
 from .protocol import Ack, Act, ActResponse, LogEntry
 
@@ -149,9 +149,10 @@ class CorridorWorld(Entity):
     noun = "Corridor"
 
     def __init__(self, entity_id: str, name: str,
-                 law: Optional[CorridorWorldLaw] = None):
+                 law: Optional[CorridorWorldLaw] = None, *,
+                 key: Optional[Signer] = None):
         law = law or CorridorWorldLaw()
-        super().__init__(entity_id, name, law)
+        super().__init__(entity_id, name, law, key=key)
         self._kernel = World(law.width, law.height, seed=law.seed,
                              orientation=law.describe(),
                              rules_version="corridor/0.1")

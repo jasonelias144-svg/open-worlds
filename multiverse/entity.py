@@ -49,8 +49,9 @@ STAMPS_LAW = (
     "doesn't verify is refused.")
 UNSIGNED_ANSWERS_LIMIT = (
     "- Only stamps are signed: other answers, and this world's log, are "
-    "not yet. The numbers this world has seen are kept only in memory, so "
-    "after a restart an old request could be accepted once.")
+    "not yet. The numbers this world has seen are kept in memory; unless "
+    "they are saved and restored across a restart (multiverse/keys.py), "
+    "an old request could then be accepted once.")
 
 
 def now() -> str:
@@ -280,6 +281,24 @@ class Entity:
     def known_keys(self) -> Dict[str, str]:
         """The worlds this one knows, by id, with their keys."""
         return dict(self._known)
+
+    def seen_numbers(self) -> Dict[str, int]:
+        """The highest request number this world has seen from each key
+        (protocol.request_problem), to keep across a restart (keys.py)."""
+        return dict(self._last_seq)
+
+    def restore_seen(self, seen: Dict[str, int]) -> None:
+        """Take back numbers saved before a restart, so an old request
+        can't be replayed. Each number only ever grows. ValueError if
+        any entry isn't a usable key with a whole number >= 1."""
+        if type(seen) is not dict:
+            raise ValueError("seen numbers are a mapping of key to number")
+        for token, seq in seen.items():
+            if token_problem(token) or type(seq) is not int or seq < 1:
+                raise ValueError("a seen number must be a whole number "
+                                 ">= 1 for a usable key")
+        for token, seq in seen.items():
+            self._last_seq[token] = max(self._last_seq.get(token, 0), seq)
 
     # -- for subclasses -------------------------------------------------
 

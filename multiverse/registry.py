@@ -41,6 +41,7 @@ from typing import Dict, List, Optional
 from .conformance import check
 from .entity import (SIGNED_REQUESTS_LAW, STAMPS_LAW, UNSIGNED_ANSWERS_LIMIT,
                      Entity, now)
+from .identity import Signer
 from .protocol import (PROTOCOL_VERSION, Ack, Act, ActResponse, LogEntry,
                        Manifest, Refusal)
 
@@ -107,9 +108,10 @@ class MultiverseRegistry(Entity):
     scheme = "multiverse"
 
     def __init__(self, entity_id: str, name: str,
-                 law: Optional[MultiverseLaw] = None):
+                 law: Optional[MultiverseLaw] = None, *,
+                 key: Optional[Signer] = None):
         super().__init__(entity_id, name, law or MultiverseLaw(),
-                         sub_registry=True)
+                         sub_registry=True, key=key)
         self._registry: Dict[str, Manifest] = {}
         self._conformance_reports: Dict[str, Dict] = {}
         self._proposed_by: Dict[str, str] = {}
