@@ -26,7 +26,9 @@ are large, and only the experiments use them.
 """
 
 import argparse
+import datetime
 import json
+import pathlib
 import sys
 import time
 
@@ -90,7 +92,10 @@ def main():
         transcript.flush()
 
     keep({
-        "model": args.model,
+        # The model's directory name only, not where it sits on this
+        # machine (in experiment 001, the Hub name with "/" written "__").
+        "model": pathlib.PurePath(args.model).name,
+        "started": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
         "greedy": args.greedy,
         "seed": args.seed,
         "temperature": None if args.greedy else args.temperature,

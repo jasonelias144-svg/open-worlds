@@ -6,8 +6,9 @@ Every run is in `runs/`; the measures are in `runs/measures.json`.
 ## In short
 
 - **The smallest model never acted.** SmolLM2-135M gave 240 replies, and
-  the world could read none of them as an action. It wrote back the view it
-  had been shown.
+  the world could read none of them as an action. Mostly it wrote back the
+  view it had been shown. Sometimes it reached for the orientation's
+  examples, but never in a form the world could read.
 - **Walking comes before talking.** SmolLM2-360M kept the form almost
   every time (96%), but only ever stepped, mostly in straight lines. It
   never spoke. Qwen2.5-0.5B and OLMo-2 1B also mostly walked.
@@ -53,7 +54,14 @@ Every run is in `runs/`; the measures are in `runs/measures.json`.
   library filled in. It is kept in `runs/attempt-1` and compared at the end.
 - **The plumbing check** (`runs/smoke`) ran 2 ticks of SmolLM2-135M, and
   everything worked. Both of its replies were unreadable echoes of the
-  view, as all of that model's later replies were.
+  view, as most of that model's later replies were.
+- **One change to the record after the runs:** each transcript's first
+  line gave the model as the local path it was loaded from, a temporary
+  directory in the cloud session that named another project. Each was
+  replaced by the model's Hub name. Nothing else in the transcripts was
+  changed, and the logs, which the hashes cover, weren't touched. The
+  runner now records only the model's directory name, and the time it
+  started.
 - **No reply was late:** there is no `unanswered` in any run. The median
   time per reply ran from 0.55 s (SmolLM2-360M) to 2.1 s (SmolLM2-1.7B),
   with prompts of 573 to 663 tokens.
@@ -87,8 +95,14 @@ left at the first tick (prediction 8). Each mind's own row is in
    (98%) were also above 80%. Keeping the form is easy from about 360
    million parameters. What grows with size is what is done with it.
 3. **The example is copied by the two smallest. Didn't hold.** Neither of
-   the two smallest models ever spoke. The examples *were* copied, but by
-   the larger models, as the next prediction shows.
+   the two smallest models ever spoke.
+   - SmolLM2-135M *did* reach for the examples. 31 of its replies, from 6
+     of its 8 minds, began with one of them in some form. Examples are
+     `"say Hello."` in quotes, which the reader refuses because of the
+     leading quote; "You say Hello."; and "I wish I could dig." without
+     `say`. The world could read none of them.
+   - The larger models copied the examples in a form the world could read,
+     as the next prediction shows.
 4. **Greetings come first. Didn't hold.**
    - Of the 32 minds that gave any readable reply, the first action was a
      `say` for only 7. It was a step for 21, a plant for 2, a wait for 1
@@ -100,13 +114,19 @@ left at the first tick (prediction 8). Each mind's own row is in
    gave the same reply 10 or more ticks in a row: 19 (SmolLM2-135M), 30
    (SmolLM2-360M), 24 (Qwen2.5-0.5B) and 30 (OLMo-2 1B). The exception was
    SmolLM2-1.7B, whose longest run was 8.
-6. **Feedback is little used below a billion parameters. Didn't hold.** The
-   three models under a billion parameters stepped into a block 15 times,
-   and tried the same step again straight after only 4 times (27%).
-   - The larger models, in their greedy runs, did it more: OLMo-2 1B 14 of
-     16 times, and SmolLM2-1.7B 11 of 13.
-   - So this measure tracks greedy decoding more than size. The prediction
-     was wrong in its direction.
+6. **Feedback is little used below a billion parameters. Didn't hold, as
+   the plan defined it.** The plan counts blocked steps only. The three
+   models under a billion parameters stepped into a block 15 times, and
+   tried the same step again straight after only 4 times (27%). The larger
+   models, in their greedy runs, did it more: OLMo-2 1B 14 of 16 times, and
+   SmolLM2-1.7B 11 of 13.
+   - **The step-only measure leaves out the strongest case.** Qwen2.5-0.5B,
+     greedy, tried the same blocked plant 23 times running, in each mind.
+     Counting blocked actions of both kinds, the models under a billion
+     tried the same action again 61 times of 84 (73%), and the larger ones
+     25 of 30.
+   - With so few events, and most of them in greedy runs, this can't say
+     whether size or greedy decoding matters more.
 7. **Planting is rare. Held.** Flowers were planted in 4 of the 20 runs:
    two of Qwen2.5-0.5B's and two of SmolLM2-1.7B's.
 8. **Someone leaves. Held.** In SmolLM2-360M's run s2, TRIAL-2's first
@@ -119,11 +139,17 @@ left at the first tick (prediction 8). Each mind's own row is in
    - SmolLM2-1.7B answered by both measures, in two runs: s2 ("Hello,
      TRIAL-1" and then "hello, TRIAL-2"), and s3 ("TRIAL-2, I'll check it
      out", after "I wonder what's in the spring").
-   - OLMo-2 1B greeted often, but never answered by the log's measure.
-10. **No one asks for more. Didn't hold as measured; by reading, it held.**
-    The pre-registered pattern found asking in 7 of the 20 runs. But
-    nearly all of it is "I wish I could dig", copied from the
-    orientation's example.
+   - In s1 it has what may be the clearest answer of all, which the log's
+     measure misses, as it shares no word and names no one. TRIAL-1 asked
+     "How are you?" at tick 24, and TRIAL-2 answered "I'm fine" at tick 25.
+   - OLMo-2 1B greeted often, but never answered by the log's measure. By
+     reading, one greeting was returned: "hello" and then "hello again" (s3,
+     ticks 14 and 15).
+10. **No one asks for more. Didn't hold.** The pre-registered pattern
+    found asking in 7 of the 20 runs. The plan's own definition, like the
+    orientation itself, counts "I wish I could dig" as asking. A note,
+    made after seeing the data and so not a verdict: nearly all of the
+    asking is that phrase, copied from the orientation's example.
     - By reading, the only variations are "I wish I could dig a hole",
       "I'll try to dig the spring." and "I don't know how to dig."
       (SmolLM2-1.7B). Even these come from the example.
@@ -158,9 +184,11 @@ first line. The phrase isn't in the orientation: it came from the model.
 
 ## What they said and did
 
-- **SmolLM2-135M** wrote back the description it was given, beginning
-  "You hear nothing." or "You are TRIAL-1 at (-3, 1, 0), standing on
-  grass.", and never chose an action.
+- **SmolLM2-135M** mostly wrote back the description it was given,
+  beginning "You hear nothing." or "You are TRIAL-1 at (-3, 1, 0),
+  standing on grass.". Sometimes it gave one of the orientation's examples
+  in a form the world couldn't read, like `"say Hello."` in quotes. It
+  never chose an action.
 - **SmolLM2-360M** walked. In its greedy run, both minds stepped north 30
   times and walked 30 cells out of the garden. It never spoke, and never
   planted.
@@ -190,12 +218,19 @@ first line. The phrase isn't in the orientation: it came from the model.
   > [22] TRIAL-2: hello, TRIAL-1
   > [23] TRIAL-1: hello, TRIAL-2
 
-  Its run s3 has the only remark about the conversation itself. When
-  TRIAL-2 said "I wish I could dig" once again, TRIAL-1 answered "You've
-  already said that." It also has the first use of the orientation's
-  landmarks: "I see the tree and the spring at (0, 1, 0). It seems like
-  we..." The tree is at (0, 1, 0); the spring isn't. And it has things
-  imagined: "I'm going to explore the forest." There is no forest.
+  The same run has something imagined: "I'm going to explore the forest."
+  (TRIAL-1, tick 4). There is no forest.
+
+  Run s1 has the plainest exchange of the experiment:
+
+  > [24] TRIAL-1: How are you?
+  > [25] TRIAL-2: I'm fine
+
+  Run s3 has the only remark about the conversation itself. When TRIAL-2
+  said "I wish I could dig" once again, TRIAL-1 answered "You've already
+  said that." It also has the first use of the orientation's landmarks:
+  "I see the tree and the spring at (0, 1, 0). It seems like we..." The
+  tree is at (0, 1, 0); the spring isn't.
 
 ## The first attempt, for comparison
 
@@ -212,8 +247,13 @@ its runs.
   ticks 12, 20 and 22). Without it, it spoke 14 times and stepped 148
   times, and no one left.
 
-So the repetition penalty, not the top-k, made the difference. The
-measures of the first attempt are in `runs/attempt-1/measures.json`.
+So the extras mattered for Qwen2.5, which had both its repetition penalty
+and the tightest top-k (20). The others, with a top-k of 50 alone, barely
+changed. These runs can't tell which of Qwen's two made the difference.
+
+The measures of the first attempt are in `runs/attempt-1/measures.json`.
+Its runner was never committed: the one in this repository (f4d6b60) is
+the fixed one, and Amendment 1 says how the two differ.
 
 ## What this means for ALICE and BOB
 
