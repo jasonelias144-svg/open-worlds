@@ -32,7 +32,7 @@ are [MINDS.md](../MINDS.md) and [WORLD-KEY.md](../WORLD-KEY.md).
   new powers or abilities; its world is built "to allow knowledge to
   become your upgrades", so what the player has learned is what opens it.
   Its ship log is a map of what the player knows, where what they have
-  only heard about shows as a question mark
+  only heard about can show as a question mark
   ([Game Developer](https://gamedeveloper.com/design/outer-wilds-critical-analysis),
   [learning-design analysis](https://rigdern.github.io/a/learning-about-learning/learning-design-insights-from-outer-wilds/)).
 - **The inner life as part of the game.** In *Disco Elysium*, an
@@ -97,7 +97,9 @@ are [MINDS.md](../MINDS.md) and [WORLD-KEY.md](../WORLD-KEY.md).
 
 - **A storyteller paces events.** *RimWorld*'s storyteller follows a rising
   and falling curve of tension, and comes in different temperaments
-  ([wiki](https://rimworldwiki.com/wiki/AI_Storytellers)).
+  ([wiki](https://rimworldwiki.com/wiki/AI_Storytellers)). It was "modeled
+  after the AI Director from *Left 4 Dead*"
+  ([wiki](https://rimworldwiki.com/wiki/About_RimWorld)).
 - **A game master turns actions into outcomes.** DeepMind's Concordia runs
   worlds for language-model agents with a "game master", borrowed from
   tabletop role-playing: it simulates the world, checks whether what an
@@ -151,20 +153,20 @@ domain (CC0), so:
   it, and the copy says so. Code under the GPL is read for ideas, never
   copied, since copying it would bind the whole project to its terms.
 
-The licences below are as reported by the sources found on 2026-11-13;
-each is confirmed from the project's own licence file before use.
+The independent review of 2026-11-13 read each project's own licence
+file, and each matches the table. Each is checked again before use.
 
 | Project | What it offers us | For | Licence |
 |---|---|---|---|
-| TextWorld (Microsoft) | an engine that generates text games with quests, from settings such as map size, quest length and complexity, and runs them for agents ([Microsoft Research](https://www.microsoft.com/en-us/research/project/textworld/), [listing](https://awesome.ecosyste.ms/projects/github.com%2FMicrosoft%2FTextWorld)) | the Keeper's paths; the hunt | MIT (one listing says "other") |
+| TextWorld (Microsoft) | an engine that generates text games with quests, from settings such as map size, quest length and complexity, and runs them for agents ([Microsoft Research](https://www.microsoft.com/en-us/research/project/textworld/), [listing](https://awesome.ecosyste.ms/projects/github.com%2FMicrosoft%2FTextWorld)) | the Keeper's paths; the hunt | MIT |
 | pyBKT | Bayesian knowledge tracing: estimating what a learner knows from what they do ([paper](https://arxiv.org/abs/2105.00385v2)) | the Keeper's learner model | MIT |
 | Concordia (DeepMind) | a game master for worlds of language-model agents ([repository](https://github.com/google-deepmind/concordia)) | the Keeper | Apache 2.0 |
 | Evennia | a framework for persistent text worlds, with a ladder of powers: players, helpers, builders, admins, developers ([licensing](https://www.evennia.com/docs/0.x/Licensing.html), [permissions](https://www.evennia.com/docs/0.x/Building-Permissions.html)) | what the Keeper and operators may do | BSD 3-clause |
 | Letta (formerly MemGPT) | persistent memory blocks that agents edit themselves ([overview](https://www.developersdigest.tech/agent-memory/letta)) | held thoughts; memory | Apache 2.0 |
 | AI Town | an open re-implementation of the Smallville simulation ([repository](https://github.com/a16z-infra/ai-town/)) | memory; a town of agents | MIT |
-| Voyager | a skill library of routines, and a curriculum ([paper](https://arxiv.org/pdf/2305.16291v2.pdf)) | routines; the Keeper's next challenge | MIT, to confirm |
-| Bevy | the entity-component system | the kernel (course step 4) | MIT or Apache 2.0, to confirm |
-| WaveFunctionCollapse | generating land that fits its neighbours, piece by piece ([mirror](https://sourceforge.net/projects/wavefunctioncollapse.mirror/), [history](https://records.sigmm.org/?p=12589)) | generator 2, land decided when first seen | code MIT; its sample images are not, to confirm |
+| Voyager | a skill library of routines, and a curriculum ([paper](https://arxiv.org/pdf/2305.16291v2.pdf)) | routines; the Keeper's next challenge | MIT |
+| Bevy | the entity-component system | the kernel (course step 4) | MIT or Apache 2.0, either |
+| WaveFunctionCollapse | generating land that fits its neighbours, piece by piece ([mirror](https://sourceforge.net/projects/wavefunctioncollapse.mirror/), [history](https://records.sigmm.org/?p=12589)) | generator 2, land decided when first seen | code MIT; its sample images are others' |
 
 ## What we take, and what we leave
 

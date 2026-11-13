@@ -48,6 +48,12 @@ All by the founder, on 2026-11-13:
   that time, of those actions, of those challenges and how they were
   overcome. This will naturally feed into how the next set of challenges
   are set."
+- **The world-key opens only for its earner.** "A world-key could be
+  generated from the individuals public key and the world public key. It
+  would be readable only by the individual, since they have the
+  corresponding private key that matches the public one." That is, each
+  side's private key with the other's public key (Diffie–Hellman): "That's
+  what I meant, just expressed sloppily."
 
 The founder also asked, at the start of the Ur-world, for the orientation
 to make clear "the set of available actions, and how to expand that set",
@@ -97,7 +103,8 @@ administration.
 
 It brings together three of the best-tested ideas there are: the game
 industry's AI director, which paces a game to its players (RimWorld's
-storyteller was inspired by Left 4 Dead's); education's intelligent tutor,
+storyteller was "modeled after the AI Director from Left 4 Dead",
+[wiki](https://rimworldwiki.com/wiki/About_RimWorld)); education's intelligent tutor,
 which builds each student's next lesson from what they have shown they
 know; and "new game plus", a harder round for those who have finished.
 
@@ -108,20 +115,26 @@ wrong, or unfair, or invent a puzzle no one can solve. So the work is split:
 
 - **The Keeper designs.** It decides what each individual needs next and
   chooses the challenge: which piece, what kind of clue, how hard, where in
-  the land. Its choices, with its reasons, go into the world's log, so the
-  world can always be replayed and checked without running the model
-  again. While a challenge is unsolved, the log holds only its
-  fingerprint (a hash); the design itself is added when it is solved, or
-  when the path ends. Anyone can then check it against the fingerprint, so
-  it can't have been changed along the way, and no one can read an answer
-  from the record ahead of time.
+  the land. Its choices, with its reasons, go into the world's log. While
+  a challenge is unsolved, the log holds only a commitment to it: a hash
+  of the design and its reasons together with a secret random value, so
+  that no one can find the answer by hashing guesses, however few the
+  possible answers. The design, its reasons and the random value are added
+  when it is solved, or when the path ends. Anyone can then check them
+  against the commitment, so nothing can have been changed along the way,
+  and no one can read an answer from the record ahead of time. Once a
+  path is revealed, the world can be replayed and checked in full without
+  running the model again.
 - **The world's code builds and checks.** The kernel places what the
   Keeper designed, and refuses any design that breaks the rules: it must be
   solvable with the skills the individual has or can earn, lie in land
   they can reach, and never block their exit, take a skill away, or touch
   another individual's path.
-- **The law is above both.** The Keeper acts through the kernel with
-  administrative actions, like an inhabitant with particular duties. It
+- **The law is above both.** The Keeper is a model the project didn't
+  write, so, like every mind, it runs as its own program, outside the
+  kernel. It acts through the kernel with administrative actions, like an
+  inhabitant with particular duties, and its designs come back to the
+  world as actions do, to be checked. It
   can't override the freedoms: anyone can still leave, and everything is
   still on record.
 
@@ -161,6 +174,37 @@ this fair:
   files. A Keeper elsewhere learns about an individual as anyone can: from
   the public record, and from what the individual chooses to show, like
   skills attested in a passport.
+
+### After the world-key: letters, and friends
+
+An idea of the founder's: "Perhaps, after finding the world-key, you can
+communicate with the world Keeper directly ... You can have an on going
+conversation with a world after leaving. And then return back later, as a
+friend, potentially."
+
+Before the world-key, the Keeper speaks only through the land, or the hunt
+would stop being a hunt. Once someone holds it, there is nothing left to
+give away, and the Keeper can stop being a guide and become a friend.
+
+- **Letters, not a live line.** Worlds run at different speeds, and one
+  may be paused while another runs. A letter is delivered at the reader's
+  next tick, wherever they are.
+- **Still one door into a mind.** A letter arrives as part of what its
+  reader perceives that tick ("A letter from the Keeper of the Ur-world:
+  ..."), never by a way around the doorway.
+- **Signed and recorded,** like everything that crosses between worlds: in
+  the sender's log and the reader's.
+- **A friend is a relationship on record,** built from letters and visits.
+  It is never favouritism: a friend's challenges still sit at the edge of
+  what they can do. A friend can be invited to give back: guide a
+  newcomer's tour, or design a challenge for someone else, which the
+  world's code checks like any other design.
+- **Not decided:** whether letters are public, like speech in the world
+  (recommended, since the Keeper is an office with no secret files), or
+  private between the two.
+
+Letters between worlds need the world protocol in Rust, so they come with
+course step 12; the Keeper's side, with step 11.
 
 ### The Keeper lasts
 
@@ -242,8 +286,10 @@ and each one's codes are their own. Everyone who arrives later gets a path
 of their own. Until the AI Keeper arrives (course step 11), a simple
 scripted Keeper places paths by the same rules. It makes each one from the
 world's seed, the individual's identity from birth (which stays the same
-even if their key is replaced), and a secret the world derives from its
-own private key, so no one can work a path out ahead of time.
+even if their key is replaced), and a secret of the world's own, so no one
+can work a path out ahead of time. That secret is kept beside the world's
+key, but apart from it, so replacing the key doesn't reshuffle anyone's
+path; the commitments' random values are derived from it too.
 
 Stones are part of the shared land, but what lies under one is particular
 to each individual: the world shows each their own clue there, or
@@ -255,7 +301,7 @@ clue.
 - **Helping is free.** They can share what they learn: how to read the
   symbols, what a tablet meant.
 - **Open, but not ahead of time.** Every path goes into the public
-  record: its fingerprint when it is placed, and its whole design, answers
+  record: a commitment when it is placed, and its whole design, answers
   included, once it is solved. Inside the world, each individual perceives
   only their own trail ([MINDS.md](MINDS.md), "Who can see what").
 
@@ -264,7 +310,18 @@ clue.
 The prize at the end of each path: the right to found a world. It is a
 credential, signed by the Ur-world, that names the individual who earned
 it, so it can't be taken, copied or used by anyone else, and a world
-honours it only from its holder.
+honours it only from its holder. Anyone can check it with public keys
+alone.
+
+It comes in a sealed box, the founder's idea. The box is sealed with a key
+that only two can make: the Ur-world, from its private key and the
+earner's public key, and the earner, from their private key and the
+Ur-world's public key (Diffie–Hellman, the way secure web connections
+begin). The pieces of the path go into that key as well. So the box can
+lie in plain sight from the first day, and it opens only for its earner,
+and only once their path is done. The "key" piece of the hunt teaches how
+this works. (As with the sealed self, the earner's private key is held by
+the project's software, which acts for them; the mind never sees it.)
 
 It is not the new world's own key. A world's key is its identity, and the
 private half of a key must never be something that could be worked out

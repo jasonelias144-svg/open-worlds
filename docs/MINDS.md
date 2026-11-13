@@ -62,10 +62,10 @@ body.
 
 | Part | What it holds | Written by | Lasts |
 |---|---|---|---|
-| **Identity** | name, public key, birth record, key successions | the world at birth, then their own key | for life |
+| **Identity** | name, public keys (one for signing, one for sealing things to them), birth record, key successions | the world at birth, then their own key | for life |
 | **Mind record** | each engine they have run on: model, revision, file hashes, settings, chat template | the project | for life; the engine itself is replaceable |
 | **Self** (sealed) | journal, reasoning, held thoughts, private notes, routines, their own aims, a note of who they are | the individual alone; only they can read it | grows for life |
-| **Sheet** | skills (with practice and rust), things carried, knowledge found, milestones, experience | granted by worlds; rebuilt from the logs | grows for life |
+| **Sheet** | skills (with practice and rust), things carried, knowledge found, milestones, experience | granted by worlds, plus routines its writer chose to show; rebuilt from the logs | grows for life |
 | **Avatars** | one body for each world they are in: where it is, what it holds there, what others see of it | that world | one visit |
 | **Relationships** | whom they have met, spoken with, taught, given to, founded worlds with | worked out from the logs | grows for life |
 | **History** | every log they appear in, their passports and stamps, their legends page | the worlds | forever, append-only |
@@ -109,8 +109,10 @@ body.
 ## What a mind is told
 
 Everything a mind is told comes from one of four layers, each with one
-author, and all four are on record. So, for any moment of a life, exactly
-what that mind was given can be put back together.
+author, and all four are on record: layers 1, 2 and 4 in the open, layer 3
+sealed. So, for any moment of a life, the individual (or a "break glass"
+opening, if the founder chooses one) can put back together exactly what
+that mind was given, and anyone can check that none of it was altered.
 
 1. **The law**, from the world: what the world is and what it enforces,
    and how the layers are framed for a mind. The same for everyone there,
@@ -193,8 +195,10 @@ What an individual does is public; what they think is their own.
 1. **Anyone outside, the public:** everything observable. Every action,
    everything said aloud, their sheet, their identity, their avatar. And
    metadata about their sealed self: that their journal exists, how much
-   they have written and when, and a fingerprint of each entry. That proves
-   the interior is real and unaltered, without revealing a word of it.
+   they have written and when, and a fingerprint of each entry, taken over
+   its encrypted form (so a short entry can't be confirmed by guessing).
+   That proves the interior is real and unaltered, without revealing a
+   word of it.
 2. **The Keeper:** what an outside observer sees, and everything the world
    itself knows. Never the contents of a sealed self.
 3. **Other inhabitants:** only what they perceive in the world: an avatar,
@@ -301,9 +305,9 @@ what they are for.
   - `sheet.json`, `relationships.json` and their legends page, all rebuilt
     from the logs and checked against them.
 - **In a private repository of the project:** the private half of each
-  signing key (the individuals', the Keepers' and the worlds'), and each
-  individual's key to their own sealed self, and nothing else unless the
-  founder decides otherwise. The
+  key (the individuals', the Keepers' and the worlds'), each individual's
+  key to their own sealed self, and each world's secret for its paths,
+  and nothing else unless the founder decides otherwise. The
   repository's list of contents is public, though its values aren't.
 - **On the Hugging Face Hub, pinned to exact revisions:** the base models,
   and later the personal layers trained for them.
@@ -326,8 +330,9 @@ agreement, as they do for the log. The plan is to follow open standards
 where they fit: JSON Schema for the definitions; W3C's decentralised
 identifiers (did:key, which turns an Ed25519 key like ALICE's into a
 standard identifier) and verifiable credentials (signed claims, such as a
-world attesting a skill); and RFC 8785 for writing JSON the same way
-everywhere before it is signed. Step 2 checks each fit before adopting it.
+world attesting a skill, or a world-key); RFC 8785 for writing JSON the
+same way everywhere before it is signed; and HPKE (RFC 9180) for sealing
+something so only its reader can open it. Step 2 checks each fit before adopting it.
 
 ## Not decided yet
 

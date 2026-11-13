@@ -99,6 +99,15 @@ and for the founder's conversations with DeepSeek, is in
   proposed in docs/MINDS.md. (asked 2026-11-13)
 - For the founder: may the project make its private repository, for the
   private halves of keys, at course step 3? (asked 2026-11-13)
+- For the founder: are letters between a world's Keeper and those who hold
+  its world-key public, like speech in the world, or private between the
+  two? Recommended: public, since the Keeper is an office with no secret
+  files (docs/WORLD-KEY.md). (asked 2026-11-13)
+- For the founder, when writing the charter's section 4 ("nothing is known
+  about the world that its participants can't also know"): two exceptions
+  now stand in the design, and the section should name them: the answer to
+  a challenge, held until it is solved, and each individual's sealed self.
+  (noted 2026-11-13)
 
 ## Noticed
 
@@ -264,14 +273,18 @@ and for the founder's conversations with DeepSeek, is in
     solved the problems we are considering." Each course step begins by
     looking at how open-source projects solved it (COLLABORATING.md,
     house rule 10).
+  - the world-key opens only for its earner: "readable only by the
+    individual, since they have the corresponding private key that
+    matches the public one", made from each side's private key and the
+    other's public key (Diffie–Hellman: "That's what I meant").
 
 ## Log
 
 - 2026-11-13 Claude: course step 1, the design pages. The course is set
   anew ([docs/COURSE.md](docs/COURSE.md)), with the first course's record
   kept. [docs/MINDS.md](docs/MINDS.md): the eight parts of an individual,
-  the four layers of what a mind is told, how information moves, two
-  meanings of private, the sheet, memory, and where everything lives.
+  the four layers of what a mind is told, how information moves, who can
+  see what, the sheet, memory, and where everything lives.
   [docs/WORLD-KEY.md](docs/WORLD-KEY.md): the purpose, the tour, the
   Keeper (each world's own intelligence, which builds each individual's
   path), and the hunt, whose pieces are the real parts of a world and
@@ -286,7 +299,12 @@ and for the founder's conversations with DeepSeek, is in
   time; whoever leaves can come back, once identities have keys; the
   Ur-world gets its own key and signs its log (step 3); the prompt's
   framing becomes part of the law; and claims the research page's
-  sources didn't support were corrected from the papers themselves.
+  sources didn't support were corrected from the papers themselves. From
+  the second review: each commitment carries a random value, so it can't
+  be matched by guessing. And two ideas of the founder's: the world-key
+  comes in a box sealed for its earner (Diffie–Hellman), and once it is
+  found, its holder can write to the world's Keeper and come back as a
+  friend.
 - 2026-11-13 Claude: experiment 001, the first unscripted minds
   ([experiments/001-first-words](experiments/001-first-words/RESULTS.md)).
   Five small open models, from 135 million to 1.7 billion parameters,
