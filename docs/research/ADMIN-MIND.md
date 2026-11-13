@@ -106,17 +106,21 @@ against its best single member on the held-back exam, or give way to it.
   These are examples, not the choice: newer versions will exist by step
   11, and the audition decides.
 
-Taken: free of cost (no licence fee, no paid service it depends on); free
-as in freedom (weights under a licence that gives the four freedoms, so
-not one that limits how it may be used); free to study (training data and
-code published, as OLMo's are); and free of dependence on any one
-company. The largest freely licensed models publish weights but not their
-data, and the fully open ones are smaller; a council can hold both kinds.
+Taken: free of cost (no licence fee, and no model reached only as a paid
+service; machines to run free weights on may be paid for); free as in
+freedom (weights anyone may use, modify and share for any purpose, which
+makes a model open-weight); free to study (data information and code
+published too, which OSI's definition requires of open source AI, as
+OLMo meets it); and free of dependence on any one company. DeepSeek-R1
+and gpt-oss-120b are open-weight, but not open source AI by OSI's
+definition, since their training data isn't published. Whether such a
+model may sit beside fully open ones in ADMIN's mind is put to the
+founder ([ADMIN.md](../ADMIN.md)).
 
 ## Not checked
 
 - Whether any of these methods works for keeping worlds: ADMIN's own
   world is where that is found out.
 - The cost of running the largest models: priced before step 11.
-- Licences beyond the four models named, and each model's own terms
+- Licences beyond the three models named, and each model's own terms
   beyond its licence field.

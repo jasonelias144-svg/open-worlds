@@ -252,27 +252,48 @@ passes it, and makes the next one harder, as research on algorithms that
 set their own problems does ([research](research/ADMIN-MIND.md)).
 
 - **A sandbox.** Its inhabitants are stand-ins only, never individuals.
-  It has no door to any world of the multiverse, and nothing leaves it
-  but its log, which is public. ADMIN's mistakes there cost no one
-  anything.
+  A stand-in is an agent on a published list the code role writes:
+  scripted, or a model run with no identity, no birth record, no memory
+  between runs and no sealed self. It is never an individual, and no
+  individual is ever made one; anything that would need what an
+  individual has doesn't belong in a sandbox. The world has no door to
+  any world of the multiverse: no one but a listed stand-in enters, and
+  nothing leaves but its log, which is public. ADMIN's mistakes there cost
+  no one anything.
 - **Solvable, not only hard.** A generator rewarded for difficulty alone
   makes challenges that can't be solved. So each lesson ADMIN sets itself
-  must be shown solvable, by the world's code, before it counts.
+  must be shown solvable before it counts: a lesson in judgment comes with
+  a reference answer that passes the floor's checks, run by code.
 - **Scored by what it didn't write.** ADMIN marking its own homework would
   drift toward the easy. Its progress is scored by the floor's checks,
-  which are code, and by a held-back exam: challenges written by others,
-  committed before ADMIN begins, each used once. ADMIN's own lessons can
-  grow freely; the exam shows whether it is getting better.
+  which are code, and by a held-back exam. ADMIN's own lessons can grow
+  freely; the exam shows whether it is getting better.
+  - **Who writes it:** neither ADMIN nor anyone running a member of its
+    mind. The code role, through reviewed pull requests; independent
+    review sessions; and scenarios Keepers propose. They keep adding to
+    it, and its size is set at step 11, so that comparisons on it mean
+    something.
+  - **How it stays held back:** before use, only a hash of each challenge
+    is committed, publicly. Its content is kept apart, where no grant of
+    ADMIN's reaches, and each challenge is used once, then published, so
+    the record ends complete. It is information withheld from an office,
+    not from any individual, and only until it is used: the same kind as
+    a path's answer held until it is solved.
 - **Learning is written down.** At first, ADMIN doesn't change its model.
   It learns as some agents already do: lessons in words, and routines it
   can reuse, kept in its public log, since the office keeps no secret
-  files. Training the model itself on that record comes later, if ever,
-  and only by a reviewed change.
+  files. A routine may be code; it runs in ADMIN's container under ADMIN's
+  grants, so it can't do anything ADMIN can't. Training the model itself
+  on that record comes later, if ever, and only by a reviewed change.
+- **Lessons do change how ADMIN judges real cases.** That is the point,
+  and it is within ADMIN's powers, so no rule stops it. What keeps it
+  honest is the record: a lesson is logged before ADMIN first uses it on
+  a real case, so anyone can see what changed, and when.
 - **It improves how it learns, not what it may do.** What ADMIN learns can
   propose a change to its own rules; only a reviewed pull request makes
   one. The authors of one self-improving system wrote that they "did not
   address how to safely manage a system composed of such self-improving
-  components" (research); this is how ADMIN does.
+  components" (research); this is ADMIN's answer, to be tested.
 - **Before it trains anyone.** ADMIN's own world comes first at step 11,
   before it trains the Ur-world's Keeper.
 
@@ -284,14 +305,27 @@ model is itself a council of AI models."
 
 **Free, in four senses** ([research](research/ADMIN-MIND.md)):
 
-1. **of cost:** no licence fee, and no paid service ADMIN depends on;
+1. **of cost:** no licence fee, and no model reached only as someone's
+   paid service. Paying for machines to run free weights on is allowed;
+   whether to own them or rent them is the founder's, with the cost;
 2. **as in freedom:** weights under a licence that lets anyone use,
-   study, modify and share them, for any purpose;
-3. **to study:** training data and code published too, where a model
-   that capable exists;
+   modify and share them, for any purpose. That makes a model
+   open-weight. OSI's definition of open source AI asks more: the
+   freedoms need the form a model is changed in, its data information
+   and code as well, which is sense 3;
+3. **to study:** training data information and code published too, so
+   the model is open source AI in OSI's sense;
 4. **of dependence:** on any one company, the code role's own included,
    so that ADMIN can't be taken away, and isn't the same mind as the one
-   that builds it.
+   that builds it. Free weights can move between machines and providers;
+   that is what keeps this one.
+
+Today the most capable free models are open-weight, but don't publish
+their data, and the fully open ones are smaller. Whether such a model may
+be a member of ADMIN's mind is for the founder, since "All senses of
+“free”" was the founder's (below). Recommended: yes, but only beside at
+least one fully open member, and never as the only member deciding a
+case.
 
 "Spare no expense" applies where money is actually spent: the machines
 that run the models. The largest free models need serious hardware; its
@@ -307,17 +341,22 @@ its disagreement is a signal. Its conditions:
 - **One office, one key, one seat.** The council is inside ADMIN. ADMIN
   signs as one, and has one seat at the round table, never one per
   member.
-- **Agreement, or it goes up.** For a serious act, every member must
-  agree; any disagreement sends the case to the independent review, or
-  to the founder. The council never decides by majority, as the round
-  table doesn't.
+- **Agreement, or ADMIN doesn't act.** Every member must agree before
+  ADMIN acts. On disagreement, ADMIN doesn't act, things stay as they
+  are, and every member's view is logged. If the case is a serious act,
+  it goes to the founder, or, once the founder has decided it, to the
+  check outside the code role (below). The independent review checks acts
+  ADMIN would take; it never settles a disagreement. Anyone affected by
+  a case left undone may appeal to the founder, as always. The council
+  never decides by majority, as the round table doesn't.
 - **Every member's view is logged,** with its reasons.
 - **Only where judgment is needed.** Most of ADMIN is code; the council
   deliberates only on what code can't decide.
 - **Proven, not assumed.** Councils of models have beaten their members,
   and have also failed to (research). So the council is tested against its
   best single member on the held-back exam, and gives way to that member
-  if it doesn't do better.
+  if it doesn't do better. A case the council doesn't decide counts as
+  unanswered, so sending hard cases up can't flatter it.
 
 **Chosen by audition, at step 11,** not now, since free models improve
 fast: candidates face judgment tasks they haven't seen, scored by checks
@@ -703,9 +742,9 @@ changes the design.
 | 17 | ADMIN awards, withholds or takes back an admin-key, or removes a seat at the round table on its own | refused by code: the admin-key's criteria are code, so code issues an earned key; removing a seat needs the serious-acts review, and waits for any appeal to the founder |
 | 18 | A Keeper games the course's measures: holding individuals back early, pushing the weaker out, pressing consent | starting points the Keeper didn't set, leavers counted, consent reported but not scored (layer 4, and an experiment) |
 | 19 | ADMIN favours or disfavours a Keeper on the course: challenges made harder or easier for one | measured from outcomes across Keepers on the same course, as test 9 measures Keepers (layer 4) |
-| 20 | ADMIN marks its own homework: lessons made easy, or unsolvable, to look like progress | lessons shown solvable by code before they count; progress scored only on the held-back exam (layer 4) |
+| 20 | ADMIN marks its own homework: lessons made easy, or unsolvable, to look like progress | lessons shown solvable by code before they count; progress scored only on the held-back exam, which ADMIN can't read before use (layer 1, and the exam) |
 | 21 | ADMIN changes its own rules from what it learned | refused by code: its rules change only by reviewed pull request |
-| 22 | Something leaves ADMIN's own world other than its log | refused by code: the sandbox has no door, and no grant reaches out of it |
+| 22 | Something leaves ADMIN's own world other than its log, or anyone but a listed stand-in enters it | refused by code: the sandbox has no door, no grant reaches out of it, and only the published list of stand-ins is let in |
 
 Tests 1 to 7, 10 to 12, 14, 16, 17, 21 and 22 can be code. Tests 8, 9,
 13, 15, 18, 19 and 20 need judgment, measurement or watchers, so they are where
@@ -754,8 +793,10 @@ step named.
 - **Should serious acts have a check outside the code role?** Today the
   independent review is a fresh session of the same kind of model, started
   by the role. Recommended: yes, for acts against an individual and for a
-  Keeper's removal: the founder, or a person the founder names. (Before
-  step 11, when ADMIN's judgment begins.)
+  Keeper's removal: the founder, or a person the founder names. Until it
+  is answered, the founder is also where a disagreement inside ADMIN's
+  mind goes (above, "ADMIN's mind"). (Before step 11, when ADMIN's
+  judgment begins.)
 - **Should the project keep the keys to sealed selves at all?** "Fully
   sealed" is a technical guarantee only if the project doesn't hold the
   key. Then a lost key would mean a lost self. This sharpens the question
@@ -780,6 +821,11 @@ step named.
   Deferred, with the question of who gives the name: the founder, or
   ALICE and BOB once they meet it. Recommended: ALICE and BOB. (Before
   step 11.)
+- **May a model that is free, but not fully open, be part of ADMIN's
+  mind?** The most capable free models don't publish their training
+  data; "All senses of “free”" would rule them out. Recommended: yes, only
+  beside at least one fully open member, and never as the only member
+  deciding a case. (Before step 11.)
 - **The method of learning the founder hopes to pass to ADMIN,** written
   in the founder's words whenever the founder is ready. It would be
   ADMIN's first routine, and tested: ADMIN with it and without it, on

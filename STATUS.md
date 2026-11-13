@@ -152,6 +152,12 @@ the technical lead's recommendation.
   deciding the rules offices work under. Recommended: yes, revisited if a
   seat is ever used to shield misuse. Before the table's second seat.
   (asked 2026-11-13)
+- For the founder: may a model that is free but not fully open (its
+  training data unpublished) be part of ADMIN's mind? "All senses of
+  “free”" would rule it out. Recommended: yes, only beside at least one
+  fully open member, and never as the only member deciding a case.
+  Before course step 11 (docs/ADMIN.md, "ADMIN's mind"). (asked
+  2026-11-13)
 - For the founder, deferred ("We can name later"): who names the
   Ur-world's Keeper, the founder or ALICE and BOB once they meet it?
   Recommended: ALICE and BOB. Before course step 11. (asked 2026-11-13)
@@ -160,12 +166,15 @@ the technical lead's recommendation.
   routine and tested with and without it (docs/ADMIN.md). (asked
   2026-11-13)
 - For the founder, with the budget question above: what running ADMIN's
-  models will cost. The largest free models need serious hardware;
+  models will cost, and whether to own the machines or rent them. Renting
+  from providers that can be swapped keeps ADMIN free of dependence;
   priced before course step 11. (noted 2026-11-13)
 - For the founder, when writing the charter's section 4 ("nothing is known
   about the world that its participants can't also know"): two exceptions
   now stand in the design, and the section should name them: the answer to
   a challenge, held until it is solved, and each individual's sealed self.
+  ADMIN's held-back exam is of the first kind: withheld from an office,
+  not an individual, and only until each challenge is used.
   If the founder chooses a private line with a Keeper, or private speech
   between individuals, those would be exceptions too. (noted 2026-11-13)
 
@@ -466,22 +475,25 @@ it was wrong. Questions of what the project is for stay with the founder.
   appeal.
 
 - 2026-11-13, ADMIN's council of models, if there is one: every member
-  must agree before a serious act, and any disagreement sends the case to
-  the independent review or the founder; one office, one key, one seat;
-  members from different makers, with at least one fully open; tested
-  against its best single member on the held-back exam. *Why:* the
-  research is mixed: councils of models have beaten their members, and
-  have also failed to (docs/research/ADMIN-MIND.md); and agreement or
-  escalation matches the round table. *Revisit if:* the council doesn't
-  beat its best member on the exam, or sends so many cases up that ADMIN
-  can't do its work.
+  must agree before ADMIN acts; on disagreement ADMIN doesn't act, every
+  view is logged, and a serious act goes to the founder (or, once
+  decided, the check outside the code role), never to the review as a
+  tie-breaker; one office, one key, one seat; members from different
+  makers; tested against its best single member on the held-back exam,
+  with undecided cases counted as unanswered. *Why:* the research is
+  mixed: councils of models have beaten their members, and have also
+  failed to (docs/research/ADMIN-MIND.md); and agreement or no act
+  matches the round table. *Revisit if:* the council doesn't beat its
+  best member on the exam, or more than one serious case in five goes
+  undecided, or cases wait for the founder longer than a week.
 - 2026-11-13, ADMIN learns by written lessons and routines in its public
   log, not by changing its model, and what it learns can only propose a
   change to its rules. *Why:* lessons in words can be read and checked by
   anyone, and the authors of a self-improving system say it "still
   necessitates oversight". *Revisit if:* ADMIN stops improving on the
-  held-back exam with lessons alone; then training its model on its
-  record is proposed, by reviewed change.
+  held-back exam with lessons alone, over three rounds of the exam in a
+  row; then training its model on its record is proposed, by reviewed
+  change.
 
 ## Log
 
