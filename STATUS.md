@@ -153,7 +153,7 @@ and for the founder's conversations with DeepSeek, is in
   out, its tests run with an honest list of what fails
   ([sketches/INDEX.md](sketches/INDEX.md)). Two small fixes: the demos
   attached, and one wrong import in component 83, which lets the growth
-  and governance components load. With them, 207 of DeepSeek's tests
+  and governance components load. With them, 204 of DeepSeek's tests
   pass; the chess park's need `python-chess` (GPL) and skip.
 - 2026-11-13 Claude: course step 5, the first journey. Cycle 0's corridor
   speaks the protocol, on the world kernel, with doors that name the

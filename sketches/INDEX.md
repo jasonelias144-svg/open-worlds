@@ -181,7 +181,8 @@ are as above. Tests are run on Python 3.12 with fixes 3 and 4 (below).
 | 86 | Participants driven by a model, each with a persona | 25712 | doesn't load (the poetry engine) | 12 | no |
 | 87 | A world that keeps running as its own process, and can be checked on later | 26899 | doesn't load (the poetry engine) | not yet (the founder: where a running world lives, "not yet") | no |
 
-In all, with fixes 3 and 4: 207 of DeepSeek's tests pass and 66 fail.
+In all, with fixes 3 and 4: 204 of DeepSeek's tests pass and 66 fail
+(pytest's 207 passes include 3 of our own status tests).
 67 skip, because components 73 to 77 need `python-chess`, which isn't
 installed here (it is GPL-3.0-or-later; adding it to
 [requirements.txt](requirements.txt) would run them). 3 test files don't
@@ -196,7 +197,8 @@ import (fix 4).
 
 All 79 file blocks in the record are written out. Two code blocks stay
 in the record: previews of two pieces of component 77 (lines 16005 and
-16035), which its module, from line 16065, repeats in full.
+16035), which its module, from line 16065, repeats (the same code,
+with shorter docstrings).
 
 The founder's messages in this record turn the sketch towards game
 worlds: a chess park where anyone may play, invite or watch (line
