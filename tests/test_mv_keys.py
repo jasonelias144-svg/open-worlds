@@ -145,6 +145,43 @@ class TestKeyFiles(Folder):
         self.assertEqual(keys.load_signer(self.path("alice.key"),
                                           PASS).token, alice.token)
 
+    def test_a_file_asking_for_huge_rounds_is_refused_at_once(self):
+        # One flipped bit of the rounds field could make a load run for
+        # hours before failing; it is refused before any derivation.
+        import time
+        keys.save_key(Individual("Alice"), self.path("a.key"), PASS)
+        with open(self.path("a.key"), "rb") as f:
+            data = f.read()
+        raw = bytearray(base64.b64decode(b"".join(
+            data.strip().splitlines()[1:-1])))
+        _, _, salt, rounds, _, _ = openssh_header(data)
+        at = raw.index(salt) + len(salt)
+        self.assertEqual(struct.unpack(">I", raw[at:at + 4]), (rounds,))
+        for asked in (keys.MAX_ROUNDS + 1,):
+            with self.subTest(rounds=asked):
+                raw[at:at + 4] = struct.pack(">I", asked)
+                body = base64.b64encode(bytes(raw))
+                with open(self.path("huge.key"), "wb") as f:
+                    f.write(b"-----BEGIN OPENSSH PRIVATE KEY-----\n"
+                            + b"\n".join(body[i:i + 70]
+                                         for i in range(0, len(body), 70))
+                            + b"\n-----END OPENSSH PRIVATE KEY-----\n")
+                start = time.monotonic()
+                with self.assertRaisesRegex(ValueError, "rounds"):
+                    keys.load_signer(self.path("huge.key"), PASS)
+                self.assertLess(time.monotonic() - start, 1.0)
+
+    def test_another_key_file_with_the_same_passphrase_loads_as_itself(self):
+        # The limit the docs state: the check is that a file's secret
+        # matches its own public key, so a whole other key file made with
+        # the same passphrase, put in this one's place, loads as that key.
+        a, b = Individual("A"), Individual("B")
+        keys.save_key(a, self.path("a.key"), PASS)
+        keys.save_key(b, self.path("b.key"), PASS)
+        os.replace(self.path("b.key"), self.path("a.key"))
+        self.assertEqual(keys.load_signer(self.path("a.key"), PASS).token,
+                         b.token)
+
     def test_wrong_or_missing_passphrases(self):
         keys.save_key(Individual("Alice"), self.path("alice.key"), PASS)
         with self.assertRaisesRegex(ValueError, "passphrase is wrong"):

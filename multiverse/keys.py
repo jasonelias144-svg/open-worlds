@@ -20,9 +20,14 @@ world, and its old stamps no longer link to it. So:
   passphrases at once, so the passphrase's own strength matters most.
   Text passphrases are normalised to Unicode NFC first, so the same words
   typed on different systems open the same file.
-- **A changed file is refused.** AES-CTR has no check of its own, so a
-  flipped bit of the encrypted secret would load as another key; the key
-  loaded is checked against the public key the file holds in the clear.
+- **A file changed without the passphrase never loads as another key.**
+  AES-CTR has no check of its own, so a flipped bit of the encrypted
+  secret would decrypt to another secret; the key loaded is checked
+  against the public key the file holds in the clear. A whole other key
+  file made with the same passphrase does load, as that key: use a
+  different passphrase for each key, or check the loaded token against
+  the one you expect. A file asking for more than MAX_ROUNDS rounds is
+  refused at once, before any derivation.
 - **The file is written readable by its owner only,** whole or not at
   all, and never over an existing file unless asked: losing a key file
   loses the key.
@@ -64,6 +69,10 @@ from .protocol import PROTOCOL_VERSION
 # grows with them: 64 took about 0.6 s here (ssh-keygen's default, 16,
 # about 0.15 s; the bcrypt package warns below 50).
 ROUNDS = 64
+# A file save_key wrote asks for ROUNDS; one asking for far more has been
+# changed (or wasn't written here) and could take hours to open, so it is
+# refused before the derivation starts.
+MAX_ROUNDS = 16 * ROUNDS
 Passphrase = Union[str, bytes]
 
 
@@ -130,11 +139,12 @@ def save_key(signer: Signer, path: str, passphrase: Passphrase, *,
     _write_new(path, data, overwrite)
 
 
-def _public_key_in_the_clear(data: bytes) -> bytes:
-    """The Ed25519 public key an OpenSSH private-key file holds outside
-    its encrypted part (PROTOCOL.key in OpenSSH's sources): after the
-    magic, the cipher, KDF and KDF-options strings, and the key count,
-    a string holding the key type and the 32-byte key."""
+def _clear_header(data: bytes):
+    """The bcrypt rounds (None for another KDF) and the Ed25519 public
+    key an OpenSSH private-key file holds outside its encrypted part
+    (PROTOCOL.key in OpenSSH's sources): after the magic, the cipher,
+    KDF and KDF-options strings (for bcrypt, a salt and the rounds), and
+    the key count, a string holding the key type and the 32-byte key."""
     lines = data.strip().splitlines()
     try:
         raw = base64.b64decode(b"".join(lines[1:-1]), validate=True)
@@ -153,15 +163,22 @@ def _public_key_in_the_clear(data: bytes) -> bytes:
 
     if not raw.startswith(magic):
         raise ValueError("this key file has been changed")
-    for _ in range(3):                  # cipher, KDF, KDF options
-        _, at = string(raw, at)
+    _, at = string(raw, at)             # cipher
+    kdf, at = string(raw, at)
+    options, at = string(raw, at)
+    rounds = None
+    if kdf == b"bcrypt":
+        _, after_salt = string(options, 0)
+        if after_salt + 4 != len(options):
+            raise ValueError("this key file has been changed")
+        rounds, = struct.unpack(">I", options[after_salt:])
     at += 4                             # the number of keys
     blob, _ = string(raw, at)
     kind, at = string(blob, 0)
     public, at = string(blob, at)
     if kind != b"ssh-ed25519" or len(public) != 32 or at != len(blob):
         raise ValueError("this key file has been changed")
-    return public
+    return rounds, public
 
 
 def _load_secret(path: str, passphrase: Passphrase) -> bytes:
@@ -171,6 +188,14 @@ def _load_secret(path: str, passphrase: Passphrase) -> bytes:
     passphrase = _passphrase(passphrase)
     with open(path, "rb") as f:
         data = f.read()
+    try:
+        rounds, _ = _clear_header(data)
+    except ValueError:
+        rounds = None       # the library says what's wrong, below
+    if rounds is not None and rounds > MAX_ROUNDS:
+        raise ValueError(f"this key file asks for {rounds} rounds, more "
+                         f"than {MAX_ROUNDS}: it has been changed, or "
+                         "wasn't written by save_key")
     try:
         key = serialization.load_ssh_private_key(data, passphrase)
     except (ValueError, TypeError, UnsupportedAlgorithm):
@@ -182,8 +207,7 @@ def _load_secret(path: str, passphrase: Passphrase) -> bytes:
     # The encryption (AES-CTR) has no check of its own: a changed bit of
     # the secret decrypts to another secret. The public key in the clear
     # must be the one the secret makes.
-    if (key.public_key().public_bytes_raw()
-            != _public_key_in_the_clear(data)):
+    if key.public_key().public_bytes_raw() != _clear_header(data)[1]:
         raise ValueError("this key file has been changed: its secret "
                          "doesn't match its public key")
     return key.private_bytes_raw()

@@ -158,7 +158,8 @@ and for the founder's conversations with DeepSeek, is in
 - 2026-11-13 Claude: course step 6, part one. Keys can be saved encrypted
   (`multiverse/keys.py`: OpenSSH's format, bcrypt-pbkdf with 64 rounds,
   AES-256-CTR; readable by the owner only; never written over an
-  existing file unless asked; a changed file refused), for individuals
+  existing file unless asked; a file changed without the passphrase
+  never loads as another key), for individuals
   and for worlds, which can be built again with their saved key and keep
   their identity. PKCS12 was tried first; its integrity check let a
   guesser test passphrases through only 2,048 rounds (found by the
