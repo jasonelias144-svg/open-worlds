@@ -125,6 +125,38 @@ are [MINDS.md](../MINDS.md) and [WORLD-KEY.md](../WORLD-KEY.md).
   memory or skill libraries sometimes did worse than agents without
   ([PATH-Bench](https://www.alphaxiv.org/abs/2608.01149)).
 
+## Open source to learn from
+
+The founder: "We should definitely take advantage of how others have
+solved the problems we are considering." So each course step begins by
+looking at how open-source projects already solved it, and what was
+looked at is written down here.
+
+**How we may use others' work.** This project is given to the public
+domain (CC0), so:
+
+- learning patterns from any code, with credit, is always fine;
+- depending on a library under a permissive licence (MIT, Apache, BSD) is
+  fine, and the library keeps its own licence;
+- code is copied only from permissive licences, with its notice kept beside
+  it, and the copy says so. Code under the GPL is read for ideas, never
+  copied, since copying it would bind the whole project to its terms.
+
+The licences below are as reported by the sources found on 2026-11-13;
+each is confirmed from the project's own licence file before use.
+
+| Project | What it offers us | For | Licence |
+|---|---|---|---|
+| TextWorld (Microsoft) | an engine that generates text games with quests, from settings such as map size, quest length and complexity, and runs them for agents ([Microsoft Research](https://www.microsoft.com/en-us/research/project/textworld/), [listing](https://awesome.ecosyste.ms/projects/github.com%2FMicrosoft%2FTextWorld)) | the Keeper's paths; the hunt | MIT (one listing says "other") |
+| pyBKT | Bayesian knowledge tracing: estimating what a learner knows from what they do ([paper](https://arxiv.org/abs/2105.00385v2)) | the Keeper's learner model | MIT |
+| Concordia (DeepMind) | a game master for worlds of language-model agents ([repository](https://WWW.GITHUB.COM/google-deepmind/concordia)) | the Keeper | Apache 2.0 |
+| Evennia | a framework for persistent text worlds, with a ladder of powers: players, helpers, builders, admins, developers ([licensing](https://www.evennia.com/docs/0.x/Licensing.html), [permissions](https://www.evennia.com/docs/0.x/Building-Permissions.html)) | what the Keeper and operators may do | BSD 3-clause |
+| Letta (formerly MemGPT) | persistent memory blocks that agents edit themselves ([overview](https://www.developersdigest.tech/agent-memory/letta)) | held thoughts; memory | Apache 2.0 |
+| AI Town | an open re-implementation of the Smallville simulation ([repository](https://github.com/a16z-infra/ai-town/)) | memory; a town of agents | MIT |
+| Voyager | a skill library of routines, and a curriculum ([paper](https://arxiv.org/pdf/2305.16291v2.pdf)) | routines; the Keeper's next challenge | MIT, to confirm |
+| Bevy | the entity-component system | the kernel (course step 4) | MIT or Apache 2.0, to confirm |
+| WaveFunctionCollapse | generating land that fits its neighbours, piece by piece ([mirror](https://sourceforge.net/projects/wavefunctioncollapse.mirror/), [history](https://records.sigmm.org/?p=12589)) | generator 2, land decided when first seen | code MIT; its sample images are not, to confirm |
+
 ## What we take, and what we leave
 
 Taken, and where it goes:
@@ -151,9 +183,11 @@ Left, or changed:
   minds. Traits are observed and recorded, never handed out.
 - **Removing others.** No mechanic lets anyone remove anyone else; leaving
   is only the leaver's choice.
-- **A model as game master.** In the Ur-world the kernel decides what
-  happens, in code that anyone can check. A model may one day narrate; it
-  never decides.
+- **A model as judge.** In the Ur-world the kernel decides what happens,
+  in code that anyone can check. Each world's Keeper, an AI, designs
+  challenges and paces events, but the kernel checks and places what it
+  designs, and the law stays above both ([WORLD-KEY.md](../WORLD-KEY.md),
+  "The Keeper").
 - **Copying content.** We borrow ideas and mechanics, not any game's
   content.
 - **Memory taken on trust.** Because memory can hurt, it is measured

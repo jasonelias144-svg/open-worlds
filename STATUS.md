@@ -218,8 +218,9 @@ and for the founder's conversations with DeepSeek, is in
   prefer to not have anything live on my computer or be dependent upon
   anything that cannot be picked up by someone else later." "Let's keep
   everything online. Everything accessible, even if only at project
-  level." So ALICE's and BOB's journals are public, and their private
-  keys go in a private repository of the project.
+  level." So their private keys go in a private repository of the
+  project. (Their journals were to be public; refined the same day, below:
+  each individual has a sealed interior.)
 
 - 2026-11-13, founder, on ALICE and BOB and their world, all quoted in
   docs/MINDS.md and docs/WORLD-KEY.md:
@@ -239,6 +240,20 @@ and for the founder's conversations with DeepSeek, is in
     instead of learning them again unnecessarily."
   - the new course: "Yes, this should be the new list, since much has
     changed since then", returning to DeepSeek at its step 10.
+  - a Keeper for each world, an AI that builds each individual's own
+    path to the world-key, gives a returning individual harder
+    challenges, runs from the moment the world starts, and administers
+    it: "Let's keep that element in place, [it] could be key." It
+    remembers each individual's past visits.
+  - a sealed interior for everyone, which even the Keeper can't read:
+    "everyone should be entitled to a private space for thoughts and
+    reasoning and anything else that is completely encrypted." The
+    Keeper sees what an outside observer could, and metadata. So their
+    journals are sealed, not public.
+  - look first: "We should definitely take advantage of how others have
+    solved the problems we are considering." Each course step begins by
+    looking at how open-source projects solved it (COLLABORATING.md,
+    house rule 10).
 
 ## Log
 
@@ -247,9 +262,12 @@ and for the founder's conversations with DeepSeek, is in
   kept. [docs/MINDS.md](docs/MINDS.md): the eight parts of an individual,
   the four layers of what a mind is told, how information moves, two
   meanings of private, the sheet, memory, and where everything lives.
-  [docs/WORLD-KEY.md](docs/WORLD-KEY.md): the purpose, the tour, and the
-  hunt, whose pieces are the real parts of a world and whose prize, the
-  world-key, founds one. The research behind them, with its sources:
+  [docs/WORLD-KEY.md](docs/WORLD-KEY.md): the purpose, the tour, the
+  Keeper (each world's own intelligence, which builds each individual's
+  path), and the hunt, whose pieces are the real parts of a world and
+  whose prize, the world-key, founds one. Each individual has a sealed
+  interior that no one else can read. The research behind them, with its
+  sources and a map of open source to learn from:
   [docs/research/GAMES-AND-WORLDS.md](docs/research/GAMES-AND-WORLDS.md).
 - 2026-11-13 Claude: experiment 001, the first unscripted minds
   ([experiments/001-first-words](experiments/001-first-words/RESULTS.md)).

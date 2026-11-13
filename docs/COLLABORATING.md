@@ -172,7 +172,16 @@ These apply to code that comes into open-worlds, not to the draft (see
 8. **No personal data and no secrets,** anywhere.
 9. **Everything here is public domain** (CC0 1.0). A contribution is
    given under the same terms. Libraries this depends on keep their own
-   licenses; they are depended on, not copied in.
+   licenses; they are depended on, not copied in. Code from elsewhere is
+   copied in only under a permissive licence (MIT, Apache, BSD), with its
+   notice kept beside it, and the copy says so; code under the GPL is read
+   for ideas, never copied.
+10. **Look first.** The founder: "We should definitely take advantage of
+    how others have solved the problems we are considering." Each course
+    step begins by looking at how established games, engines, papers and
+    open-source projects already solved it. What was looked at, what is
+    taken, and under what licence, is written down in `docs/research/`
+    before building ([research/GAMES-AND-WORLDS.md](research/GAMES-AND-WORLDS.md)).
 
 ## Code in Rust
 

@@ -124,24 +124,28 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    (did:key) and verifiable credentials for signed claims; RFC 8785 for
    writing JSON identically everywhere before signing.
 3. **Their keys and identities.** A private repository of the project
-   for the private halves; ALICE's and BOB's keys, birth records and
-   public identity files. *Borrowing:* standard key handling, private
+   for the private halves; ALICE's and BOB's signing keys and the keys to
+   their sealed selves, birth records and public identity files. *Borrowing:* standard key handling, private
    halves kept apart and public halves published.
 4. **The kernel as entities and components.** Inhabitants, their bodies,
    stones, tablets and seeds become entities with parts; every change is
-   a named, logged effect; tags allow or block actions. *Borrowing:* the
+   a named, logged effect; tags allow or block actions. The Keeper's
+   administrative actions, and the checks on what it designs, are fixed
+   here, so its interface is settled early. *Borrowing:* the
    entity-component pattern (Bevy's), and Unreal's effects and tags.
 5. **Things, skills and the sheet.** Carrying, reading, `lift` as the
    first skill granted by a find, practice and rust, a log of what is
    known, and the sheet rebuilt from the world's log and checked against
    it. *Borrowing:* use-based skills (Dwarf Fortress, the Elder Scrolls),
    Unreal's ability system, Outer Wilds' log of knowledge.
-6. **The first room, end to end.** The tour, the stone by the spring, the
-   first clue, `lift` learned, the first fact known; playable by a
-   scripted mind and by a model. *Borrowing:* the vertical slice.
-7. **Memory, version 1.** Journal entries tied to ticks in the log; recall
-   by recency, importance and relevance; reflections; held thoughts in a
-   few slots; a library of routines they write. *Borrowing:* Generative
+6. **The first room, end to end.** The tour, guided by a simple scripted
+   Keeper; the stone by the spring, the first clue, `lift` learned, the
+   first fact known; playable by a scripted mind and by a model. *Borrowing:* the vertical slice.
+7. **Memory, version 1, sealed.** Journal entries tied to ticks in the
+   log; recall by recency, importance and relevance; reflections; held
+   thoughts in a few slots; a library of routines they write. All of it
+   in a sealed self that only its owner can read, with public
+   fingerprints. *Borrowing:* Generative
    Agents, Voyager's skill library, Disco Elysium's thought cabinet,
    guarding against their known failures.
 8. **Experiment 002, the audition.** Candidate sizes of Qwen 3.5 and OLMo
@@ -155,11 +159,13 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
     [COLLABORATING.md](COLLABORATING.md), pointing to the records;
     DeepSeek designs rooms, clues, symbols and the laws of new worlds,
     inside the framework built in steps 1 to 9.
-11. **The hunt and the world-key.** Each individual's own path, made from
-    the world's seed and their key; symbols, maps, codes and stones; the
-    pieces of a world; the world-key; the workbench. *Borrowing:* Tunic,
+11. **The hunt, the world-key, and the AI Keeper.** The Keeper builds each
+    individual's own path from what they do, and remembers them between
+    visits; symbols, maps, codes and stones; the pieces of a world; the
+    world-key; the workbench. *Borrowing:* Tunic,
     The Witness and Outer Wilds for teaching without words; Minecraft's
-    advancements for unlocks.
+    advancements for unlocks; AI directors and intelligent tutors, with
+    TextWorld and knowledge tracing to learn from, for the Keeper.
 12. **Founding worlds, and doors.** Child worlds with signed birth records,
     doors between them, travel with passports, founding together, and the
     world protocol in Rust. *Borrowing:* our own protocol and passports,
