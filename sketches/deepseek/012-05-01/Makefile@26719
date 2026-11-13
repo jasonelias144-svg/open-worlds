@@ -1,0 +1,3 @@
+.PHONY: model-participants-demo
+model-participants-demo:
+	$(PYTHON) -c "from multiverse_c86 import demo; demo(artifact_dir='artifacts')"

@@ -18,9 +18,17 @@ With SKETCH_RAW=1 set, nothing is listed: every test runs as written
 (tools/known_failures.py uses this to rewrite the list).
 """
 import os
+import sys
 from pathlib import Path
 
 import pytest
+
+# Components 7, 11, 12, 18 and 20 import the poetry engine, whose code is
+# in record 012-03-02's folder; we put that folder on the import path
+# instead of copying it here. (Ours, not DeepSeek's.)
+_DEPS = Path(__file__).resolve().parent.parent / "012-03-02"
+if _DEPS.is_dir() and str(_DEPS) not in sys.path:
+    sys.path.insert(0, str(_DEPS))
 
 _HERE = Path(__file__).parent
 SOMETIMES = "sometimes:"

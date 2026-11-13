@@ -61,8 +61,8 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
 
 Python 3.10 or later (CI tests 3.10 and 3.12), and the packages in
 `requirements.txt`: each direct dependency pinned and named with its
-reason (for now only `cryptography`, for signatures; pip adds the
-packages it needs).
+reason (`cryptography`, for signatures and saved keys, and `bcrypt`,
+which it needs for the key files; pip adds the packages they need).
 
 ```
 python3 -m pip install -r requirements.txt     # once

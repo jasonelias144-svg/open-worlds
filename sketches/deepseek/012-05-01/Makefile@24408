@@ -1,0 +1,3 @@
+.PHONY: governance-demo
+governance-demo:
+	$(PYTHON) -c "from multiverse_c83 import demo; demo(artifact_dir='artifacts')"

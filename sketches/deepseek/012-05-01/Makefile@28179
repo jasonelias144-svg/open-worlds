@@ -1,0 +1,21 @@
+.PHONY: worldd-demo worldd-start worldd-list worldd-stop
+
+worldd-demo:
+	$(PYTHON) -m multiverse_c87 demo --artifact-dir artifacts
+
+worldd-start:
+	@if [ -z "$(CONFIG)" ]; then \
+		echo "Usage: make worldd-start CONFIG=<path>"; \
+		exit 1; \
+	fi
+	$(PYTHON) -m multiverse_c87 start --config $(CONFIG) --detach
+
+worldd-list:
+	$(PYTHON) -m multiverse_c87 list artifacts/world_daemons
+
+worldd-stop:
+	@if [ -z "$(STATE_DIR)" ]; then \
+		echo "Usage: make worldd-stop STATE_DIR=<path>"; \
+		exit 1; \
+	fi
+	$(PYTHON) -m multiverse_c87 stop $(STATE_DIR)

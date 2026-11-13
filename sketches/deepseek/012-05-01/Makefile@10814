@@ -1,0 +1,9 @@
+.PHONY: arc arc-quiet arc-arch
+arc:
+	$(PYTHON) -m multiverse_c71 $(if $(GROUPS),--groups $(GROUPS),)
+
+arc-quiet:
+	$(PYTHON) -m multiverse_c71 --quiet
+
+arc-arch:
+	$(PYTHON) -m multiverse_c71 --groups architectures

@@ -54,7 +54,9 @@ class TestTheLaw(Case):
             self.assertIn(part, doc)
 
     def test_ticks_are_described_as_they_happen(self):
-        self.assertIn("everyone else waits", CorridorWorldLaw().describe())
+        doc = CorridorWorldLaw().describe()
+        self.assertIn("the one who acted does what it asked and everyone "
+                      "else waits", " ".join(doc.split()))
 
     def test_a_door_cant_lead_to_the_corridor_itself(self):
         # Otherwise the door's key would replace the corridor's own among
