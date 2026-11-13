@@ -25,7 +25,7 @@ from dataclasses import dataclass
 from typing import Dict, List, Optional, Set
 
 from .entity import (SIGNED_REQUESTS_LAW, STAMPS_LAW, UNSIGNED_ANSWERS_LIMIT,
-                     Entity, now)
+                     Entity)
 from .identity import Signer
 from .protocol import Ack, Act, ActResponse, LogEntry
 
@@ -113,7 +113,7 @@ class PoetryWorld(Entity):
         self._convergence_reason: Optional[str] = None
 
     def act(self, act: Act) -> ActResponse:
-        timestamp = now()
+        timestamp = self._now()
         refusal = self._actor_problem(timestamp, act)
         if refusal:
             return refusal

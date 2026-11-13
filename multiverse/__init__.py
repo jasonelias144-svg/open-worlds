@@ -8,8 +8,9 @@ step 2 makes each individual a key that signs what it sends:
   identity.py         who an individual is: a key (components 1 and 13)
   ed25519.py          checks on public keys the library lacks
   passport.py         signed stamps: where it has been (2 and 15)
+  succession.py       a key signed over to a new one (28)
   keys.py             keys saved encrypted; a world's seen numbers
-  protocol.py         WCP/0.3, what every entity speaks (component 3)
+  protocol.py         WCP/0.4, what every entity speaks (component 3)
   conformance.py      the test anyone can run against an entity
   entity.py           entering, leaving and the log, shared by all
   poetry_world.py     poets taking turns under a law (component 4)

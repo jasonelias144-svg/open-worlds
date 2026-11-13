@@ -1,4 +1,4 @@
-"""The conformance test: does an entity speak WCP/0.3?
+"""The conformance test: does an entity speak WCP/0.4?
 
 From the DeepSeek sketch's components 3 and 14. Anyone can run it
 against their own entity. It checks only that the entity speaks the
