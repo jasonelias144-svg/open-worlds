@@ -481,3 +481,231 @@ def build_audit_trail(
             unit_name=name, exposures=exposures,
             spreading=spreading, told_contacts=told))
     return RumorAuditTrail(rumor_id=rumor_id, units=units)
+
+
+def demo(artifact_dir: Optional[str] = None) -> Dict:
+    """Four scenarios:
+
+    A. All-good chain A—B—C—D—E, all with council keys in context.
+       Council decision (C45) → attestation → rumor saturates.
+
+    B. Chain with a "skeptic" unit (no trust context). Flow
+       reaches the skeptic, is refused, stops. Downstream units
+       never hear.
+
+    C. Tampered attestation at seed. Unit refuses at seed;
+       zero propagation.
+
+    D. Branching diamond: A→{B,C}, {B,C}→D, D→E. B refuses (no
+       context); C accepts. D hears from C, verifies, spreads to
+       E. Saturation preserved because a verified path exists.
+
+    Anchor: Dickinson, 'Tell all the truth but tell it slant –'
+    (a poem about getting the truth through, even when
+    intermediaries are unreliable).
+    """
+    import json
+
+    if artifact_dir is None:
+        artifact_dir = "artifacts"
+    path = Path(artifact_dir)
+    path.mkdir(parents=True, exist_ok=True)
+
+    # -- Source artifact: a C45 council decision ----------------
+    kps = [KeyPair.generate() for _ in range(3)]
+    council = DeliberativeCouncil(
+        "poetry-council", QuorumRule(2, 2),
+        max_rounds=2, stability_rounds=1)
+    for i, kp in enumerate(kps):
+        council.add_member(DeliberativeMember(
+            entity_id=f"poetry-council:m{i}",
+            name=f"Councilor-{i}", member_kp=kp,
+            decision_rule=lambda p, c: ("yea", "approved")))
+    council_keys = {
+        f"poetry-council:m{i}": kp.public_key_hex()
+        for i, kp in enumerate(kps)
+    }
+    council_decision = council.deliberate_and_resolve(
+        Proposal(content={
+            "action": "adopt-relay",
+            "note": "tell all the truth but tell it slant",
+        }))
+    att = attest_deliberative_decision(
+        "poetry-council", council_decision)
+    attested = AttestedRumor.from_attestation(att)
+
+    context = {
+        "member_keys": {"poetry-council": council_keys},
+    }
+
+    def build_chain(names, contexts):
+        """contexts: dict of name → context (or None for skeptic)."""
+        net = AttestedEpidemicNetwork()
+        for i, name in enumerate(names):
+            contacts = []
+            if i > 0:
+                contacts.append(names[i - 1])
+            if i < len(names) - 1:
+                contacts.append(names[i + 1])
+            net.add_unit(name, VerifyingEpidemicUnit(
+                entity_id=f"world:{name}", name=name,
+                contacts=contacts, susceptibility=1,
+                trust_context=contexts.get(name)))
+        return net
+
+    # -- Scenario A: all-good chain ----------------------------
+    chain = ["A", "B", "C", "D", "E"]
+    net_a = build_chain(chain, {n: context for n in chain})
+    net_a.seed_attested("A", attested)
+    net_a.run_until_quiet()
+    trail_a = build_audit_trail(net_a, attested.rumor_id)
+    a_sat = trail_a.saturated()
+    a_verified = trail_a.verified()
+    a_refused = trail_a.refused()
+
+    # -- Scenario B: skeptic at C -----------------------------
+    contexts_b = {n: context for n in chain}
+    contexts_b["C"] = None  # C has no context
+    net_b = build_chain(chain, contexts_b)
+    net_b.seed_attested("A", attested)
+    net_b.run_until_quiet()
+    trail_b = build_audit_trail(net_b, attested.rumor_id)
+    b_sat = trail_b.saturated()
+    b_verified = trail_b.verified()
+    b_refused = trail_b.refused()
+
+    # -- Scenario C: tampered attestation at seed -------------
+    # Build a tampered attestation whose content_hash is unchanged
+    tampered_att = FederationAttestation(
+        source_id=att.source_id,
+        source_kind=att.source_kind,
+        content={**att.content,
+                 "inner": {**att.content["inner"],
+                           "proposal": {"action": "rejected"}}},
+        content_hash=att.content_hash,  # wrong
+    )
+    # AttestedRumor requires rumor_id == content_hash, so we
+    # can't just wrap it; we test via the raw act below
+    net_c = build_chain(chain, {n: context for n in chain})
+    # Inject the tampered attestation directly as an act
+    from multiverse_c3 import Act, Ack, Refusal
+    fake_attested_dict = {
+        "rumor_id": tampered_att.content_hash,
+        "attestation": tampered_att.to_dict(),
+    }
+    r = net_c._units["A"].act(Act(
+        actor_token="external", type="infect",
+        payload={
+            "rumor_id": tampered_att.content_hash,
+            "source": "external",
+            "attested": fake_attested_dict,
+        }))
+    # Even if the unit accepted the exposure, verification failed
+    # → it recorded the exposure but won't spread
+    net_c.run_until_quiet()
+    trail_c = build_audit_trail(net_c, tampered_att.content_hash)
+    c_sat = trail_c.saturated()
+    c_refused = trail_c.refused()
+
+    # -- Scenario D: branching diamond with one bad branch ----
+    # A → B, C; B, C → D; D → E
+    net_d = AttestedEpidemicNetwork()
+    diamond_layout = {
+        "A": ["B", "C"],
+        "B": ["A", "D"],
+        "C": ["A", "D"],
+        "D": ["B", "C", "E"],
+        "E": ["D"],
+    }
+    for name, contacts in diamond_layout.items():
+        # B has no context; everyone else does
+        ctx = None if name == "B" else context
+        net_d.add_unit(name, VerifyingEpidemicUnit(
+            entity_id=f"world:{name}", name=name,
+            contacts=contacts, susceptibility=1,
+            trust_context=ctx))
+    net_d.seed_attested("A", attested)
+    net_d.run_until_quiet()
+    trail_d = build_audit_trail(net_d, attested.rumor_id)
+    d_sat = trail_d.saturated()
+    d_verified = trail_d.verified()
+    d_refused = trail_d.refused()
+
+    # -- Print -----------------------------------------------
+    print("=" * 70)
+    print("Rumor as Attestation — council decision through epidemic")
+    print("=" * 70)
+    print()
+    print(f"  Source: poetry-council (C45 deliberation)")
+    print(f"  Attestation hash: {att.content_hash[:16]}...")
+    print(f"  Attestation kind: {att.source_kind}")
+    print()
+
+    def report(label, trail, sat, extra=""):
+        print(f"  {label}")
+        print(f"    saturated: {sat}")
+        print(f"    verified:  {trail.verified()}")
+        if trail.refused():
+            print(f"    refused:   "
+                  f"{[u for u, _ in trail.refused()]}")
+        if extra:
+            print(f"    note:      {extra}")
+        print()
+
+    report("Scenario A: all-good chain (A—B—C—D—E)",
+           trail_a, a_sat)
+    report("Scenario B: skeptic at C (no context)",
+           trail_b, b_sat,
+           extra="chain stops at C; D, E never hear")
+    report("Scenario C: tampered attestation at seed",
+           trail_c, c_sat,
+           extra="seed unit refuses; zero propagation")
+    report("Scenario D: branching with one bad branch (B has no context)",
+           trail_d, d_sat,
+           extra="C provides the only verified path to D")
+    print("  What this demonstrates:")
+    print("    - The rumor's content is a signed council decision.")
+    print("    - Each unit verifies at receipt; only verified")
+    print("      exposures count toward susceptibility.")
+    print("    - A skeptic (no context) refuses and does not relay.")
+    print("    - A tampered attestation is refused.")
+    print("    - A branching topology survives one bad branch, as")
+    print("      long as a verified path remains.")
+    print("    - Same C52 architecture. Content has provenance.")
+    print("    - Composition: no changes to C52's substrate.")
+    print()
+    print("  Anchor (public domain, Emily Dickinson):")
+    print("    'Tell all the truth but tell it slant –'")
+    print("    'Success in Circuit lies'")
+
+    audit = {
+        "source_council": "poetry-council",
+        "attestation_kind": att.source_kind,
+        "attestation_hash": att.content_hash,
+        "scenarios": {
+            "A_all_good": {
+                "saturated": a_sat,
+                "verified": a_verified,
+                "refused": a_refused,
+            },
+            "B_skeptic": {
+                "saturated": b_sat,
+                "verified": b_verified,
+                "refused": b_refused,
+            },
+            "C_tampered": {
+                "saturated": c_sat,
+                "refused": c_refused,
+            },
+            "D_branching": {
+                "saturated": d_sat,
+                "verified": d_verified,
+                "refused": d_refused,
+            },
+        },
+        "trail_a": trail_a.to_dict(),
+    }
+    (path / "rumor_attestation_demo.json").write_text(
+        json.dumps(audit, indent=2))
+    print(f"\n  → {path}/rumor_attestation_demo.json")
+    return audit

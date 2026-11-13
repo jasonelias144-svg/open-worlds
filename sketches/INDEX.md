@@ -28,7 +28,9 @@ links to is moved or renamed, so the links keep working.
 "Line" is where the component begins in the record. "Tests as written"
 counts DeepSeek's own tests for it, run together with all the others on
 Python 3.12 ([known-failures.txt](deepseek/012-04-00/known-failures.txt)
-has each failure's error). "Doesn't load" means the test file fails on
+has each failure's error). The tests are always as written; where a row
+names a fix, the code it tests has that fix (see "Changes to DeepSeek's
+code", below). "Doesn't load" means the test file fails on
 import, so none of its tests run. "Course" is the step it relates to. "In
 open-worlds" says whether any of it is in the working code, and how.
 
@@ -37,7 +39,7 @@ open-worlds" says whether any of it is in the working code, and how.
 | 1 | The atom of identity | 236 | 9 of 9 pass | 1, 2 | `multiverse/identity.py`, changed (step 1); since step 2 an identity is a key |
 | 2 | The passport | 527 | 5 of 11 | 1, 3 | `multiverse/passport.py`, changed (step 1); since step 3 its stamps are signed by worlds |
 | 3 | The protocol, WCP/0.1, and its conformance test | 1007 | 13 of 13 | 1, 2 | `multiverse/protocol.py`, `conformance.py`, changed; now WCP/0.3 |
-| 4 | The poetry world | 1860 | doesn't load | 1 | `multiverse/poetry_world.py`, changed (step 1) |
+| 4 | The poetry world | 1860 | 18 of 21, with `turns_from_log` attached (fix 2) | 1 | `multiverse/poetry_world.py`, changed (step 1) |
 | 5 | The chemistry world | 2933 | 13 of 16 | 1, 4 | `multiverse/chemistry_world.py`, changed (step 1) |
 | 6 | The multiverse registry | 3861 | 5 of 15 | 1 | `multiverse/registry.py`, changed (step 1) |
 | 7 | The first collaboration | 4654 | doesn't load | 1 | `multiverse/collaboration.py`, changed (step 1) |
@@ -75,48 +77,56 @@ open-worlds" says whether any of it is in the working code, and how.
 | 37 | A world where persons meet, with co-signed claims | 33328 | 7 of 24 | not yet (persons; the council) | no |
 | 38 | A person's signed list of identities | 34540 | 24 of 24 | not yet (persons) | no |
 | 39 | Forks and merges | 35681 | 23 of 26 | not yet (persons) | no |
-| 40 | One signature across worlds | 37243 | doesn't load | not yet (persons) | no |
+| 40 | One signature across worlds | 37243 | 25 of 25, with its demo attached (fix 1) | not yet (persons) | no |
 | 41 | The octopus architecture | 38861 | 20 of 22 | not yet (architectures, as examples) | no |
 | — | Telling architectures apart: four questions (no code) | 40062 | | | |
 | 42 | The relay architecture (central and peripheral nervous system) | 40110 | 26 of 28 | not yet (architectures) | no |
 | 43 | The swarm architecture | 41207 | 25 of 33 | not yet (architectures) | no |
 | — | The founder: a small group that decides for the whole (a council, a triumvirate) | 42242 | | | |
-| 44 | The triumvirate: a council whose signed votes are counted | 42245 | doesn't load | not yet (architectures) | no |
-| 45 | Deliberation: signed positions that change before the vote | 44028 | doesn't load | not yet (architectures) | no |
-| 46 | Councils that cite each other's decisions | 45533 | doesn't load | not yet (architectures) | no |
+| 44 | The triumvirate: a council whose signed votes are counted | 42245 | 34 of 38, with its demo attached (fix 1) | not yet (architectures) | no |
+| 45 | Deliberation: signed positions that change before the vote | 44028 | 24 of 24, with its demo attached (fix 1) | not yet (architectures) | no |
+| 46 | Councils that cite each other's decisions | 45533 | 13 of 22, with its demo attached (fix 1) | not yet (architectures) | no |
 | — | The founder: a free tier and a paid tier | 47194 | | | |
-| 47 | The autonomic architecture | 47235 | doesn't load | not yet (architectures) | no |
-| 48 | Federating different architectures | 48345 | doesn't load | none yet | no |
-| 49 | Saving and loading a federation | 50367 | doesn't load | none yet | no |
-| 50 | The institutional architecture: units run by a signed policy | 51932 | doesn't load | not yet (architectures) | no |
+| 47 | The autonomic architecture | 47235 | 22 of 29, with its demo attached (fix 1) | not yet (architectures) | no |
+| 48 | Federating different architectures | 48345 | 28 of 30, with its demo attached (fix 1) | none yet | no |
+| 49 | Saving and loading a federation | 50367 | 32 of 35, with its demo attached (fix 1) | none yet | no |
+| 50 | The institutional architecture: units run by a signed policy | 51932 | 22 of 53, with its demo attached (fix 1) | not yet (architectures) | no |
 | 51 | A runner that demonstrates every architecture | 53767 | 19 of 20 | none yet | no |
-| 52 | The epidemic architecture: units that pass a message along | 54755 | doesn't load | not yet (architectures) | no |
+| 52 | The epidemic architecture: units that pass a message along | 54755 | 11 of 29, with its demo attached (fix 1) | not yet (architectures) | no |
 | 53 | The runner, updated for seven architectures (additions `multiverse_c51.py@55925`, `@55958`, `@56021`, `multiverse_c51_test.py@56034`) | 55907 | not collected (additions) | none yet | no |
-| 54 | The message as a signed attestation | 56214 | doesn't load | none yet | no |
+| 54 | The message as a signed attestation | 56214 | 11 of 26, with its demo attached (fix 1) | none yet | no |
 | — | The founder: each world has an AI admin that oversees it and drives its development | 57659 | | | |
-| 55 | The world curator: a world's voice, which proposes and doesn't decide | 57670 | doesn't load | next in line (curators); 3 gives worlds their keys | no |
-| 56 | A signed relay chain: each hop signed by sender and receiver | 59175 | doesn't load | none yet | no |
-| 57 | Contracts between worlds | 61021 | doesn't load | next in line (contracts between worlds) | no |
-| 58 | Acts that cite a contract | 63085 | doesn't load | next in line (contracts between worlds) | no |
-| 59 | Announcing a contract to other worlds | 64266 | doesn't load | next in line (contracts between worlds) | no |
+| 55 | The world curator: a world's voice, which proposes and doesn't decide | 57670 | 26 of 32, with its demo attached (fix 1) | next in line (curators); 3 gives worlds their keys | no |
+| 56 | A signed relay chain: each hop signed by sender and receiver | 59175 | 12 of 26, with its demo attached (fix 1) | none yet | no |
+| 57 | Contracts between worlds | 61021 | 36 of 37, with its demo attached (fix 1) | next in line (contracts between worlds) | no |
+| 58 | Acts that cite a contract | 63085 | 22 of 24, with its demo attached (fix 1) | next in line (contracts between worlds) | no |
+| 59 | Announcing a contract to other worlds | 64266 | 22 of 25, with its demo attached (fix 1) | next in line (contracts between worlds) | no |
 | — | The founder: a public ledger, like a blockchain, across worlds | 65719 | | | |
-| 60 | Announcing a revocation | 65756 | doesn't load | next in line (contracts between worlds) | no |
+| 60 | Announcing a revocation | 65756 | 22 of 25, with its demo attached (fix 1) | next in line (contracts between worlds) | no |
 | 61 | The ledger as a store of commitments: a specification (no code) | 67239 | | next in line (a shared log of commitments) | no |
-| 62 | The ledger, built: a Merkle log with offline proofs | 67507 | doesn't load | next in line (a shared log of commitments) | no |
-| 63 | Each world's published rule for contract disputes | 69235 | doesn't load | next in line (contracts between worlds) | no |
+| 62 | The ledger, built: a Merkle log with offline proofs | 67507 | 44 of 45, with its demo attached (fix 1) | next in line (a shared log of commitments) | no |
+| 63 | Each world's published rule for contract disputes | 69235 | 20 of 27, with its demo attached (fix 1) | next in line (contracts between worlds) | no |
 
-In all: as written, 433 of DeepSeek's tests pass and 145 fail. One more
-passes on some runs and fails on others: component 27's
+In all, with fixes 1 and 2 (below): 877 of DeepSeek's tests pass and
+274 fail.
+One more passes on some runs and fails on others: component 27's
 `test_combined_to_dict_json`, where two signers tie in the order and the
-tie falls either way. 25 test files don't load. Eighteen of those,
-components 40 and 44 to 63, fail only because DeepSeek gave each demo as
-a block of its own, after the module the tests import it from; the demos
-are kept as `multiverse_cNN.py@LINE` files until the first batch of fixes
-attaches them. Two demos name themselves, `multiverse_c40_demo.py` and
-`multiverse_c44_demo.py`, but they are the same kind of fragment, with no
-imports of their own: each works only attached to its module. (With its
-demo attached, in a scratch copy, all 25 of component 40's tests pass.)
-The TypeScript and Go code isn't run here yet.
+tie falls either way (it depends on random keys, so how many of the
+eight runs it fails in changes from one rewrite of the list to the
+next). 6 test files don't load. Components 7, 11, 12, 18 and 20 import
+the poetry engine of record 012-03-02 (`poetry_engine_c21`), not written
+out here yet. 17 imports `InMemoryKeyResolver` from component 16, but it
+is defined in 15. The TypeScript and Go code isn't run here yet.
+
+Before fix 1, as written: 433 pass, 145 fail, 1 sometimes, and 25 test
+files don't load. Eighteen of those, components 40 and 44 to 63, failed
+only because DeepSeek gave each demo as a block of its own, after the
+module the tests import it from; five more, components 4, 7, 12, 18 and
+20, needed `turns_from_log`, which the record gives the same way, after
+component 4's module. Fix 1 attaches the demos: 552 more tests run, of
+which 426 pass. Fix 2 attaches `turns_from_log`: component 4's 21 tests
+run, of which 18 pass; the other four files then stop at the poetry
+engine instead.
 
 All 210 code files in the record are written out. Fifteen code blocks in
 the record are examples in the prose, not files, and stay in the record:
@@ -148,6 +158,28 @@ out is what lets component 11 load.
 
 ## Changes to DeepSeek's code
 
-None yet: every file in `deepseek/012-04-00/` is exactly as the record
-has it. Each change will be listed here, with its reason, and under
-`"changed"` in [tools/names-012-04-00.json](tools/names-012-04-00.json).
+Each change is listed here, with its reason, and under `"changed"` in
+[tools/names-012-04-00.json](tools/names-012-04-00.json), which
+`extract.py check` holds the folder to. Every other file in
+`deepseek/012-04-00/` is exactly as the record has it, and git history
+shows each change exactly.
+
+**Fix 1 (2026-11-13): the demos, attached.** In components 40 and 44 to
+63, the record gives the module, then under the heading "Demo" a block
+with its `demo` function, then the tests, which import `demo` from the
+module. Each demo block is appended to its module unchanged (18 files,
+`multiverse_c40.py`, `multiverse_c44.py` to `multiverse_c50.py`,
+`multiverse_c52.py`, `multiverse_c54.py` to `multiverse_c60.py`,
+`multiverse_c62.py`, `multiverse_c63.py`). The demo blocks themselves
+stay as their own files (`multiverse_c40_demo.py`,
+`multiverse_c44_demo.py`, and the `@LINE` files), since they are what
+the record has. Read before running: the demos write a JSON summary to
+the folder they are given (the tests give each a temporary one), and
+component 49's starts two Python processes that load and check the
+bundle it just saved. None reaches the network.
+
+**Fix 2 (2026-11-13): `turns_from_log`, attached.** The record follows
+component 4's module with "The Reconstruction Helper", an 11-line
+function the tests of components 4, 7, 12, 18 and 20 import from
+`multiverse_c4`. It is appended to `multiverse_c4.py` unchanged, and stays
+as its own file, `multiverse_c4.py@2286`, too.

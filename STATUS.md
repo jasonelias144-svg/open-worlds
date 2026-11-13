@@ -14,10 +14,10 @@ respect one another's freedom, with full transparency and exit at any time
 ## Now
 
 - Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Steps 1 to 3
-  are done; step 3, signed passports, is in review (#19). `sketches/`
-  keeps the DeepSeek records and their code as written (#16, #17, #18).
-  Next: step 4, the chemistry world on the real chemistry, with the first
-  batch of fixes to the sketches' code alongside.
+  are done (#19, signed passports). `sketches/` keeps the DeepSeek
+  records and their code (#16, #17, #18); the first fixes to that code
+  are in review (#20). Next: step 4, the chemistry world on the real
+  chemistry.
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
@@ -136,6 +136,15 @@ and for the founder's conversations with DeepSeek, is in
   domain (CC0 1.0). The goal isn't financial; anyone may build on it.
 
 ## Log
+
+- 2026-11-13 Claude: the first fixes to DeepSeek's code in `sketches/`.
+  Fix 1 attaches the demos of components 40 and 44 to 63 to their
+  modules, and fix 2 attaches `turns_from_log` to component 4's, each
+  unchanged, as the record gives them right after the module. Test
+  files that don't load go from 25 to 6; 877 tests pass, 274 fail, 1
+  sometimes (sketches/INDEX.md). The demos were read before they were
+  run: they write a JSON summary to a temporary folder, and one starts
+  two local Python processes.
 
 - 2026-11-13 Claude: course step 3, signed passports (WCP/0.3). A world is
   a key: its manifest names the key and is signed by it, and requests

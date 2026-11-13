@@ -60,5 +60,25 @@
     "pytest.ini",
     "sketch_status_test.py"
   ],
-  "changed": {}
+  "changed": {
+    "multiverse_c4.py": "Fix 2: turns_from_log, which the record gives as a separate block after the module (multiverse_c4.py@2286, 'The Reconstruction Helper'), appended to it unchanged, as components 4, 7, 12, 18 and 20 import it from here.",
+    "multiverse_c40.py": "Fix 1: its demo, which the record gives as a separate block after the module (multiverse_c40_demo.py, from the block it names itself), appended to it unchanged, as the tests import demo from here.",
+    "multiverse_c44.py": "Fix 1: its demo, which the record gives as a separate block after the module (multiverse_c44_demo.py, from the block it names itself), appended to it unchanged, as the tests import demo from here.",
+    "multiverse_c45.py": "Fix 1: its demo, which the record gives as a separate block after the module (multiverse_c45.py@44678, from line 44678), appended to it unchanged, as the tests import demo from here.",
+    "multiverse_c46.py": "Fix 1: its demo, which the record gives as a separate block after the module (multiverse_c46.py@46248, from line 46248), appended to it unchanged, as the tests import demo from here.",
+    "multiverse_c47.py": "Fix 1: its demo, which the record gives as a separate block after the module (multiverse_c47.py@47534, from line 47534), appended to it unchanged, as the tests import demo from here.",
+    "multiverse_c48.py": "Fix 1: its demo, which the record gives as a separate block after the module (multiverse_c48.py@49360, from line 49360), appended to it unchanged, as the tests import demo from here.",
+    "multiverse_c49.py": "Fix 1: its demo, which the record gives as a separate block after the module (multiverse_c49.py@50831, from line 50831), appended to it unchanged, as the tests import demo from here.",
+    "multiverse_c50.py": "Fix 1: its demo, which the record gives as a separate block after the module (multiverse_c50.py@52562, from line 52562), appended to it unchanged, as the tests import demo from here.",
+    "multiverse_c52.py": "Fix 1: its demo, which the record gives as a separate block after the module (multiverse_c52.py@55094, from line 55094), appended to it unchanged, as the tests import demo from here.",
+    "multiverse_c54.py": "Fix 1: its demo, which the record gives as a separate block after the module (multiverse_c54.py@56713, from line 56713), appended to it unchanged, as the tests import demo from here.",
+    "multiverse_c55.py": "Fix 1: its demo, which the record gives as a separate block after the module (multiverse_c55.py@58391, from line 58391), appended to it unchanged, as the tests import demo from here.",
+    "multiverse_c56.py": "Fix 1: its demo, which the record gives as a separate block after the module (multiverse_c56.py@60037, from line 60037), appended to it unchanged, as the tests import demo from here.",
+    "multiverse_c57.py": "Fix 1: its demo, which the record gives as a separate block after the module (multiverse_c57.py@61966, from line 61966), appended to it unchanged, as the tests import demo from here.",
+    "multiverse_c58.py": "Fix 1: its demo, which the record gives as a separate block after the module (multiverse_c58.py@63350, from line 63350), appended to it unchanged, as the tests import demo from here.",
+    "multiverse_c59.py": "Fix 1: its demo, which the record gives as a separate block after the module (multiverse_c59.py@64854, from line 64854), appended to it unchanged, as the tests import demo from here.",
+    "multiverse_c60.py": "Fix 1: its demo, which the record gives as a separate block after the module (multiverse_c60.py@66288, from line 66288), appended to it unchanged, as the tests import demo from here.",
+    "multiverse_c62.py": "Fix 1: its demo, which the record gives as a separate block after the module (multiverse_c62.py@68217, from line 68217), appended to it unchanged, as the tests import demo from here.",
+    "multiverse_c63.py": "Fix 1: its demo, which the record gives as a separate block after the module (multiverse_c63.py@69882, from line 69882), appended to it unchanged, as the tests import demo from here."
+  }
 }

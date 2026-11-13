@@ -446,3 +446,308 @@ def load_verification_context(path: str) -> Dict:
     if not isinstance(data, dict):
         return {}
     return data
+
+
+def demo(artifact_dir: Optional[str] = None) -> Dict:
+    """Build a C48 federation, save it, verify a subprocess can
+    load and verify it against caller-supplied trust anchors.
+
+    Bundle contents:
+      - A C44 council decision (direct)
+      - A C43 swarm log (witnessed)
+      - A C48 meta-decision referencing both
+
+    Subprocess:
+      - Loads bundle and context from disk
+      - Verifies via verify_bundle
+      - Prints BUNDLE-VERIFIED on success, exits non-zero on
+        any failure
+
+    Then a second subprocess verifies a tampered copy and
+    EXPECTS failure.
+
+    Anchor: Dickinson, 'The Brain – is wider than the Sky –'
+    (same line; the point is now that the record survives the
+    process that made it).
+    """
+    import json
+    import subprocess
+    import sys
+    from pathlib import Path
+    from multiverse_c1 import create_identity
+    from multiverse_c13 import KeyPair
+    from multiverse_c43 import SwarmUnit, SwarmNetwork
+    from multiverse_c44 import (
+        Proposal as P44, QuorumRule,
+    )
+    from multiverse_c45 import (
+        DeliberativeCouncil, DeliberativeMember,
+    )
+    from multiverse_c48 import (
+        attest_decision, witness_artifact,
+        CrossKindReference, CrossKindDeliberativeMember,
+        CrossKindCouncil,
+    )
+
+    if not HAS_CRYPTO:
+        raise RuntimeError("demo requires `cryptography`")
+
+    # -------------------------------------------------------------
+    # Build the source artifacts
+    # -------------------------------------------------------------
+    # C44 council decision
+    alpha_kps = [KeyPair.generate() for _ in range(3)]
+    alpha = DeliberativeCouncil(
+        "alpha", QuorumRule(2, 2), max_rounds=2,
+        stability_rounds=1)
+    for i, kp in enumerate(alpha_kps):
+        alpha.add_member(DeliberativeMember(
+            entity_id=f"alpha:m{i}", name=f"Alpha-{i}",
+            member_kp=kp,
+            decision_rule=lambda p, c: ("yea", "approve")))
+    alpha_keys = {
+        f"alpha:m{i}": kp.public_key_hex()
+        for i, kp in enumerate(alpha_kps)
+    }
+    alpha_dec = alpha.deliberate_and_resolve(
+        P44(content={"action": "adopt-relay"}))
+    a_att = attest_decision(
+        "council-alpha", alpha_dec.final_decision)
+
+    # C43 swarm log (witnessed)
+    swarm_net = SwarmNetwork(food_target=(3, 3), max_epochs=15)
+    for i in range(3):
+        swarm_net.add_unit(f"ant-{i}", SwarmUnit(
+            entity_id=f"world:ant-{i}", name=f"ant-{i}",
+            env_stream=swarm_net.stream,
+            initial_position=(i, i),
+            seed=42 + i, sample_probability=1.0))
+    # Trigger food discovery
+    from multiverse_c3 import Act
+    swarm_net.unit_by_name("ant-0").act(Act(
+        actor_token="ext", type="find_food",
+        payload={"location": [3, 3]}))
+    swarm_epochs = []
+    for _ in range(15):
+        r = swarm_net.run_epoch()
+        swarm_epochs.append({
+            "epoch": r.epoch,
+            "units_at_food": r.statistics["units_at_food"],
+            "converged": r.statistics["converged"],
+        })
+        if r.statistics["converged"]:
+            break
+    swarm_content = {
+        "epochs": swarm_epochs,
+        "final_converged": swarm_net.converged(),
+    }
+    witness_kp = KeyPair.generate()
+    witness_id = create_identity("swarm-recorder")
+    c_att = witness_artifact(
+        "swarm-1", "swarm_log", swarm_content,
+        witness_kp, witness_id)
+    witness_keys = {witness_id.token: witness_kp.public_key_hex()}
+
+    # C48 meta-decision
+    meta_kps = [KeyPair.generate() for _ in range(3)]
+    def meta_rule(p, ctx):
+        atts = ctx.get("cross_kind_attestations", {})
+        refs = [
+            CrossKindReference(
+                source_id=sid,
+                source_kind=s["source_kind"],
+                artifact_hash=s["content_hash"])
+            for sid, s in atts.items()
+        ]
+        return ("yea", f"saw {len(refs)}", refs)
+    meta = CrossKindCouncil(
+        "meta", QuorumRule(2, 2), max_rounds=2,
+        stability_rounds=1)
+    for i, kp in enumerate(meta_kps):
+        meta.add_member(CrossKindDeliberativeMember(
+            entity_id=f"meta:m{i}", name=f"Meta-{i}",
+            member_kp=kp, decision_rule=meta_rule))
+    meta_keys = {
+        f"meta:m{i}": kp.public_key_hex()
+        for i, kp in enumerate(meta_kps)
+    }
+    meta_proposal = P44(content={
+        "action": "federate",
+        "note": "council + swarm",
+    })
+    meta_decision = meta.deliberate_and_resolve_cross_kind(
+        meta_proposal, attestations=[a_att, c_att])
+
+    # -------------------------------------------------------------
+    # Bundle it up
+    # -------------------------------------------------------------
+    bundle = ArchitectureFederationBundle(
+        name="demo-federation",
+        attestations=(a_att, c_att),
+        meta_decision=meta_decision,
+        created_at=_now(),
+    )
+
+    # Context: the caller's trust anchors
+    context = {
+        "member_keys": {
+            "council-alpha": alpha_keys,
+            "meta": meta_keys,
+        },
+        "witness_public_keys": witness_keys,
+        "meta_member_keys": meta_keys,
+    }
+
+    # In-process verification (sanity)
+    in_proc_verdict = verify_bundle(bundle, context)
+
+    # -------------------------------------------------------------
+    # Write artifacts
+    # -------------------------------------------------------------
+    if artifact_dir is None:
+        artifact_dir = "artifacts"
+    path = Path(artifact_dir)
+    path.mkdir(parents=True, exist_ok=True)
+    bundle_path = path / "architecture_federation_bundle.json"
+    context_path = path / "federation_verification_context.json"
+    save_bundle(bundle, str(bundle_path))
+    save_verification_context(context, str(context_path))
+
+    # -------------------------------------------------------------
+    # Subprocess verification of the honest bundle
+    # -------------------------------------------------------------
+    honest_script = f"""
+import json
+import sys
+sys.path.insert(0, {str(Path(__file__).parent.resolve())!r})
+from multiverse_c49 import (
+    load_bundle, load_verification_context, verify_bundle,
+)
+b = load_bundle({str(bundle_path)!r})
+if not b.valid:
+    print("LOAD FAILED:", b.reason)
+    sys.exit(1)
+ctx = load_verification_context({str(context_path)!r})
+v = verify_bundle(b.bundle, ctx)
+print(v.format())
+if not v.valid:
+    sys.exit(1)
+print("BUNDLE-VERIFIED")
+"""
+    honest_proc = subprocess.run(
+        [sys.executable, "-c", honest_script],
+        capture_output=True, text=True, timeout=60)
+    honest_ok = (honest_proc.returncode == 0
+                 and "BUNDLE-VERIFIED" in honest_proc.stdout)
+
+    # -------------------------------------------------------------
+    # Tampered bundle: flip a byte in the meta decision's proposal
+    # -------------------------------------------------------------
+    tampered_bundle_path = path / "tampered_federation_bundle.json"
+    bundle_data = bundle.to_dict()
+    # Tamper: change the swarm log's final_converged flag without
+    # changing the content_hash (so the hash check catches it)
+    for att in bundle_data["attestations"]:
+        if att["source_kind"] == "swarm_log":
+            att["content"]["final_converged"] = (
+                not att["content"]["final_converged"])
+            break
+    tampered_bundle_path.write_text(
+        json.dumps(bundle_data, indent=2))
+
+    tampered_script = f"""
+import sys
+sys.path.insert(0, {str(Path(__file__).parent.resolve())!r})
+from multiverse_c49 import (
+    load_bundle, load_verification_context, verify_bundle,
+)
+b = load_bundle({str(tampered_bundle_path)!r})
+if not b.valid:
+    print("LOAD FAILED:", b.reason)
+    sys.exit(1)
+ctx = load_verification_context({str(context_path)!r})
+v = verify_bundle(b.bundle, ctx)
+if v.valid:
+    print("ERROR: tampered bundle verified")
+    sys.exit(1)
+print("TAMPER-DETECTED")
+"""
+    tampered_proc = subprocess.run(
+        [sys.executable, "-c", tampered_script],
+        capture_output=True, text=True, timeout=60)
+    tamper_detected = (
+        tampered_proc.returncode == 0
+        and "TAMPER-DETECTED" in tampered_proc.stdout)
+
+    # -------------------------------------------------------------
+    # Missing-context: verify with empty context
+    # -------------------------------------------------------------
+    empty_ctx_verdict = verify_bundle(bundle, {})
+
+    # -------------------------------------------------------------
+    # Print
+    # -------------------------------------------------------------
+    print("=" * 70)
+    print("Persistence of Federation — demo")
+    print("=" * 70)
+    print()
+    print("  Bundle:")
+    for line in bundle.format().split("\n"):
+        print(f"    {line}")
+    print()
+    print("  Saved to:")
+    print(f"    {bundle_path}")
+    print(f"    {context_path}")
+    print()
+    print("  In-process verification (same session):")
+    print(f"    valid: {in_proc_verdict.valid}")
+    print()
+    print("  Subprocess verification (fresh process, "
+          "loaded from disk):")
+    print(f"    returncode: {honest_proc.returncode}")
+    print(f"    BUNDLE-VERIFIED in output: "
+          f"{'BUNDLE-VERIFIED' in honest_proc.stdout}")
+    if honest_proc.stdout.strip():
+        for line in honest_proc.stdout.strip().split("\n")[-6:]:
+            print(f"      {line}")
+    print()
+    print("  Tampered bundle (byte flipped in swarm log):")
+    print(f"    returncode: {tampered_proc.returncode}")
+    print(f"    TAMPER-DETECTED in output: "
+          f"{'TAMPER-DETECTED' in tampered_proc.stdout}")
+    print()
+    print("  Empty-context verification (no trust anchors):")
+    print(f"    valid: {empty_ctx_verdict.valid}")
+    print(f"    reason: {empty_ctx_verdict.reason}")
+    print()
+    print("  What this demonstrates:")
+    print("    - The bundle is a file. A fresh process can load it.")
+    print("    - Trust anchors are the caller's policy, not the")
+    print("      bundle's claim. Empty context fails; correct")
+    print("      context verifies.")
+    print("    - Tampering with any attestation is caught by that")
+    print("      attestation's own verifier, not by the bundle")
+    print("      format.")
+    print("    - The verifier registry is code, not data. The")
+    print("      loading process re-imports it; a custom verifier")
+    print("      would need to be re-registered by the caller.")
+    print()
+    print("  Anchor (public domain, Emily Dickinson):")
+    print("    'The Brain – is wider than the Sky –'")
+    print("    'For – put them side by side –'")
+    print("    (the record survives the process that made it)")
+
+    audit = {
+        "bundle_path": str(bundle_path),
+        "context_path": str(context_path),
+        "tampered_path": str(tampered_bundle_path),
+        "in_process_valid": in_proc_verdict.valid,
+        "subprocess_verified": honest_ok,
+        "tamper_detected": tamper_detected,
+        "empty_context_valid": empty_ctx_verdict.valid,
+        "empty_context_reason": empty_ctx_verdict.reason,
+    }
+    (path / "persistence_demo.json").write_text(
+        json.dumps(audit, indent=2))
+    print(f"\n  → {path}/persistence_demo.json")
+    return audit
