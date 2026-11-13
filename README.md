@@ -48,6 +48,9 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
 - [docs/COURSE.md](docs/COURSE.md): the next twelve steps, rolling.
 - [docs/COLLABORATING.md](docs/COLLABORATING.md): how to build on this,
   and the house rules.
+- [rust/](rust/README.md): the worlds in Rust, beginning with the world's
+  public record, checked against the Python reference through shared
+  test vectors ([vectors/](vectors/README.md)).
 - [sketches/](sketches/README.md): the creative side, kept apart: the
   founder's conversations with DeepSeek, verbatim, and DeepSeek's code from
   them as written, with its test results. A record of ideas, not
@@ -72,6 +75,9 @@ python3 -m multiverse.journey                  # the first journey between world
 
 The chemistry is also checked against RDKit in a separate CI job
 (`tests/test_chem_rdkit.py`; it skips when RDKit isn't installed).
+
+The Rust workspace has its own commands ([rust/README.md](rust/README.md)),
+and CI runs them in a job of its own.
 
 ## Licence
 

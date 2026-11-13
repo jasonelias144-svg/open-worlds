@@ -1,0 +1,210 @@
+[
+ {
+  "agent": null,
+  "data": {
+   "height": 3,
+   "rules_version": "vectors-1",
+   "seed": 7,
+   "width": 5,
+   "wrap_x": false
+  },
+  "hash": "d7d772aba5b59730cb05a94467f10015b9b0dda54c8a0cd6babd1eb5977782ed",
+  "kind": "world_created",
+  "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+  "tick": 0
+ },
+ {
+  "agent": "ada",
+  "data": {
+   "pos": [
+    0,
+    0
+   ]
+  },
+  "hash": "108e528e0b7a329bf0e5e9910385bd5c36543bc9730decbe83f250f780ab826b",
+  "kind": "entered",
+  "prev": "d7d772aba5b59730cb05a94467f10015b9b0dda54c8a0cd6babd1eb5977782ed",
+  "tick": 0
+ },
+ {
+  "agent": "bo",
+  "data": {
+   "pos": [
+    2,
+    0
+   ]
+  },
+  "hash": "dc04deaf764c3af70205f002b0d0e7388f4e7430ef6fc29f3859b27c29856c5c",
+  "kind": "entered",
+  "prev": "108e528e0b7a329bf0e5e9910385bd5c36543bc9730decbe83f250f780ab826b",
+  "tick": 0
+ },
+ {
+  "agent": "cy",
+  "data": {
+   "pos": [
+    4,
+    2
+   ]
+  },
+  "hash": "76edaf86c5c87cb846baf87dd54fc7fe21e88f516da2269d940ead175d3279db",
+  "kind": "entered",
+  "prev": "dc04deaf764c3af70205f002b0d0e7388f4e7430ef6fc29f3859b27c29856c5c",
+  "tick": 0
+ },
+ {
+  "agent": "cy",
+  "data": {
+   "error": "ValueError"
+  },
+  "hash": "aae2ff47ac9cccc71784854b7f44c144509a8e3dd2f680b95fafa8c0a4ecfea8",
+  "kind": "agent_error",
+  "prev": "76edaf86c5c87cb846baf87dd54fc7fe21e88f516da2269d940ead175d3279db",
+  "tick": 0
+ },
+ {
+  "agent": "ada",
+  "data": {
+   "to": [
+    1,
+    0
+   ]
+  },
+  "hash": "dfc1a3948d586deae2f7977008247021092e4fe7ef9c98efab5f6b36dd60e32b",
+  "kind": "moved",
+  "prev": "aae2ff47ac9cccc71784854b7f44c144509a8e3dd2f680b95fafa8c0a4ecfea8",
+  "tick": 0
+ },
+ {
+  "agent": "bo",
+  "data": {
+   "text": "quote \" backslash \\ tab \t newline \n return \r"
+  },
+  "hash": "112270264f3c74509e0201e93b1fff205d0a6065065d148ce58cdfb99d282f44",
+  "kind": "said",
+  "prev": "dfc1a3948d586deae2f7977008247021092e4fe7ef9c98efab5f6b36dd60e32b",
+  "tick": 0
+ },
+ {
+  "agent": "cy",
+  "data": {
+   "error": "ValueError"
+  },
+  "hash": "4bd5aff80eeaf17438e0055b91852c3eb490326938fdbb59b02c226ef4e18ff0",
+  "kind": "agent_error",
+  "prev": "112270264f3c74509e0201e93b1fff205d0a6065065d148ce58cdfb99d282f44",
+  "tick": 1
+ },
+ {
+  "agent": "ada",
+  "data": {
+   "text": "hello, world"
+  },
+  "hash": "2910b25f5aa46c08217fb87b2303ac6c9c1f6cda02fe8048ac0871acd5599720",
+  "kind": "said",
+  "prev": "4bd5aff80eeaf17438e0055b91852c3eb490326938fdbb59b02c226ef4e18ff0",
+  "tick": 1
+ },
+ {
+  "agent": "bo",
+  "data": {
+   "text": "\u0000\u0001\b\f\u001f\u007f ~"
+  },
+  "hash": "47bc90ab51db85634be1b1dcd9bd191ac985e8af6880707b0b360c247241355e",
+  "kind": "said",
+  "prev": "2910b25f5aa46c08217fb87b2303ac6c9c1f6cda02fe8048ac0871acd5599720",
+  "tick": 1
+ },
+ {
+  "agent": "bo",
+  "data": {
+   "got": "str"
+  },
+  "hash": "7244efcc2c6e13b5de65e1b508005781ac61ff00d10bd2f1f6c43aede282f5c5",
+  "kind": "invalid_action",
+  "prev": "47bc90ab51db85634be1b1dcd9bd191ac985e8af6880707b0b360c247241355e",
+  "tick": 2
+ },
+ {
+  "agent": "cy",
+  "data": {
+   "error": "ValueError"
+  },
+  "hash": "b6935ee108d30c7c8118e2c6dcc192a6811057de481efb34c42ca28ef8f503d1",
+  "kind": "agent_error",
+  "prev": "7244efcc2c6e13b5de65e1b508005781ac61ff00d10bd2f1f6c43aede282f5c5",
+  "tick": 2
+ },
+ {
+  "agent": "ada",
+  "data": {
+   "dx": 0,
+   "dy": -1
+  },
+  "hash": "6eeb8e3528a26ea9d4913468d8703751a112a356e6da70ea48a25ed5d7527096",
+  "kind": "blocked",
+  "prev": "b6935ee108d30c7c8118e2c6dcc192a6811057de481efb34c42ca28ef8f503d1",
+  "tick": 2
+ },
+ {
+  "agent": "cy",
+  "data": {
+   "reason": "pulled out by its owner"
+  },
+  "hash": "8fe3792d2859e143219ac723a9e812638dee9168033a756e7326da3924255178",
+  "kind": "exited",
+  "prev": "6eeb8e3528a26ea9d4913468d8703751a112a356e6da70ea48a25ed5d7527096",
+  "tick": 3
+ },
+ {
+  "agent": "ada",
+  "data": {
+   "text": "caf\u00e9 \u4e2d\u6587 \ud83d\ude42 \u2028 \udbff\udfff"
+  },
+  "hash": "3fa602366350133e3a3516e26afd66706434729f410aa81a3f0abf9f5f71ca0f",
+  "kind": "said",
+  "prev": "8fe3792d2859e143219ac723a9e812638dee9168033a756e7326da3924255178",
+  "tick": 3
+ },
+ {
+  "agent": "bo",
+  "data": {
+   "got": "Move"
+  },
+  "hash": "ed87683f5d1915635e6265d38a9bc0f06038931ee57c1a5eaa28dae9ba8bda18",
+  "kind": "invalid_action",
+  "prev": "3fa602366350133e3a3516e26afd66706434729f410aa81a3f0abf9f5f71ca0f",
+  "tick": 3
+ },
+ {
+  "agent": "bo",
+  "data": {
+   "text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  },
+  "hash": "7af83595849ca2283ec163b010338d6aea40f629c1c8a6710e99270af6331b52",
+  "kind": "said",
+  "prev": "ed87683f5d1915635e6265d38a9bc0f06038931ee57c1a5eaa28dae9ba8bda18",
+  "tick": 4
+ },
+ {
+  "agent": "ada",
+  "data": {
+   "dx": 1,
+   "dy": 0
+  },
+  "hash": "5d1d2ab994896bb5166f45558650b40331dd2606a01483d01386708500dc0dd3",
+  "kind": "blocked",
+  "prev": "7af83595849ca2283ec163b010338d6aea40f629c1c8a6710e99270af6331b52",
+  "tick": 4
+ },
+ {
+  "agent": "ada",
+  "data": {
+   "reason": "chose to leave"
+  },
+  "hash": "32751b80c4058dd070b961b9e098ff344acef34e676b9c0f20f238b691d6465b",
+  "kind": "exited",
+  "prev": "5d1d2ab994896bb5166f45558650b40331dd2606a01483d01386708500dc0dd3",
+  "tick": 5
+ }
+]

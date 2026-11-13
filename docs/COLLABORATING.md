@@ -99,6 +99,8 @@ text or as code with tests:
   itself.
 - **Forms for the poetry world.** For example, a world whose law asks
   each turn to add a quatrain in common meter, Dickinson's meter.
+- **The world kernel in Rust,** built from `rust/` to the standards in
+  "Code in Rust" below.
 - **Anything on the course,** proposed as described below.
 
 ## The standard
@@ -165,6 +167,78 @@ These apply to code that comes into open-worlds, not to the draft (see
 9. **Everything here is public domain** (CC0 1.0). A contribution is
    given under the same terms. Libraries this depends on keep their own
    licenses; they are depended on, not copied in.
+
+## Code in Rust
+
+The worlds themselves are to be built in Rust. The founder: "we should
+stick with Rust", with "an interface to Unity built worlds", so that
+worlds made with Unity or Unreal can join, while no one owns the
+foundation. The Python in `world/` and `multiverse/` stays as the
+reference: the Rust code is checked against it, hash for hash.
+
+**Start from `rust/`** ([rust/README.md](../rust/README.md)). It's a
+Cargo workspace with one crate so far, `world-log`, which checks a
+world's public record exactly as the Python kernel writes it. Its tests
+read shared test vectors ([vectors/](../vectors/README.md)) written by
+the Python kernel, so a change on either side that breaks the agreement
+fails a test. Build the next pieces beside it, the same way. The first is
+the world kernel itself: the rules of `world/core.py`, writing the same
+log for the same seed and the same actions.
+
+To check a draft:
+
+```
+cd rust
+cargo fmt --check
+cargo clippy --all-targets --locked -- -D warnings
+cargo test --locked
+```
+
+These hold for every Rust file that comes in, on top of the house rules:
+
+1. **Stable Rust, pinned.** The toolchain is named in
+   `rust/rust-toolchain.toml` (1.97.0, edition 2024). No nightly
+   features.
+2. **Formatted, linted and tested.** The three commands above pass, and
+   CI runs them. The lints are set once, in `rust/Cargo.toml`, for every
+   crate; a crate doesn't loosen them.
+3. **No `unsafe`.** It is forbidden. The one exception planned is the
+   bridge to Unity and Unreal, which needs a C interface: it will be a
+   crate of its own, with each `unsafe` block explained and tested.
+4. **Never panic on what comes from outside** (house rule 3). Anything
+   read from a file, the network or a visitor is checked by code that
+   returns a `Result` with a reason. `unwrap`, `expect`, `panic!` and
+   indexing with `[]` are refused by the lints. Tests may use them, and
+   say so at their top.
+5. **The same in, the same out.** A world given the same seed and the
+   same actions writes the same log, on any machine. Inside a world: no
+   clock (time is the tick); no randomness but a seeded generator the
+   world owns; no order that can change between runs (`BTreeMap`, not
+   `HashMap`, for anything written, hashed or signed); and no floating
+   point in anything hashed or signed.
+6. **The same bytes as Python.** Anything hashed or signed is written
+   exactly as the Python reference writes it, and shared test vectors
+   prove it. A new kind of record brings its vectors, written by the
+   Python side (`world/vectors.py`), with tests on both sides.
+7. **Few dependencies, all free.** Each is named once in
+   `rust/Cargo.toml` with the reason it's there. `Cargo.lock` is
+   committed and CI builds with `--locked`, so no version moves
+   unnoticed. Licences must let anyone use the code freely: MIT,
+   Apache-2.0, BSD, zlib, Unlicense or CC0. Nothing under the GPL, and
+   nothing closed. Cryptography always comes from a vetted crate
+   (SHA-256 from `sha2`; for signatures, `ed25519-dalek` is the likely
+   choice), never written by hand.
+8. **Every public item documented** (`missing_docs` is on), and each
+   crate says what it doesn't do yet, under "Limits".
+9. **Public domain**, like everything here: each crate says
+   `license = "CC0-1.0"`.
+
+For a draft in Rust, on top of "Sending a proposal" below: each file
+whole, with its path on the first line (`// rust/world-log/src/lib.rs`);
+only the crates already in the workspace, unless the draft names a new
+one and says why; and whether it was compiled. A draft that wasn't
+compiled is welcome: Claude compiles it, and says what passed and what
+didn't.
 
 ## Sending a proposal
 

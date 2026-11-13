@@ -133,8 +133,30 @@ and for the founder's conversations with DeepSeek, is in
   real elements and molecules; chemistry is the next area of work.
 - 2026-11-12, founder: the repository is public and dedicated to the public
   domain (CC0 1.0). The goal isn't financial; anyone may build on it.
+- 2026-11-13, founder, on the language for the worlds: Rust, which the
+  technical lead proposed in place of its C++ proposal of the same day.
+  "Rust sounds good. I agree, building on a foundation that someone else
+  owns is what we want to avoid." And: "We should have an interface to
+  Unity built worlds, but we should stick with Rust". Open source is
+  preferred, so that development stays free; closed source but free is
+  the only other option. Python stays as the reference the Rust is
+  checked against. Then: "I would suggest you supply a starting point for
+  DeepSeek to build from. Or at least a set of standards related to code
+  in Rust." Both are in place: `rust/`, and docs/COLLABORATING.md, "Code
+  in Rust".
 
 ## Log
+
+- 2026-11-13 Claude: a starting point in Rust, and the standards for Rust
+  code ([docs/COLLABORATING.md](docs/COLLABORATING.md), "Code in Rust").
+  `rust/` is a Cargo workspace whose first crate, `world-log`, checks a
+  world's public record exactly as the Python kernel writes it. Shared
+  test vectors in `vectors/`, written by the kernel
+  (`python3 -m world.vectors`), keep the two in agreement, and CI checks
+  both sides. Writing it found one gap: an agent could say text holding a
+  lone surrogate, which Python's log accepts but JSON readers in other
+  languages refuse, so the log couldn't be checked there. The kernel now
+  refuses such speech.
 
 - 2026-11-13 Claude: course step 5, the first journey. Cycle 0's corridor
   speaks the protocol, on the world kernel, with doors that name the

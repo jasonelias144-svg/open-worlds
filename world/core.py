@@ -233,6 +233,9 @@ class World:
                 self._record("invalid_action", agent_id, {"got": "Say"})
                 return
             text = text[:MAX_SAY_CHARS]
+            if not _is_unicode(text):
+                self._record("invalid_action", agent_id, {"got": "Say"})
+                return
             spoken.append((agent_id, text))
             self._record("said", agent_id, {"text": text})
         elif t is Move:
@@ -309,6 +312,19 @@ def _type_name(t: type) -> str:
     except Exception:
         return "?"
     return name[:64] if type(name) is str else "?"
+
+
+def _is_unicode(text: str) -> bool:
+    """True if text is valid Unicode. A Python str may hold a lone surrogate,
+    which isn't Unicode text and which JSON readers in other languages
+    refuse; the log holds only valid text, so that any language can read
+    and check it (vectors/README.md). (Type names need no check: Python
+    refuses a class name that isn't valid Unicode.)"""
+    try:
+        text.encode("utf-8")
+    except UnicodeEncodeError:
+        return False
+    return True
 
 
 def _digest(body: dict) -> str:
