@@ -1,19 +1,23 @@
 """The protocol and its conformance test: the sketch's tests for
-component 3, ported, with tests for leaving, which this port adds."""
+component 3, ported, with tests for leaving, which this port adds, and
+for signed requests (course step 2)."""
 import dataclasses
 import unittest
 
 from multiverse.conformance import run_conformance
-from multiverse.protocol import (Ack, Act, Admission, Departure, LogEntry,
-                                 Manifest, NullWorld, Petition, Refusal,
-                                 is_plain)
+from multiverse.identity import Individual
+from multiverse.protocol import (PROTOCOL_VERSION, Ack, Act, Admission,
+                                 Departure, Leave, LogEntry, Manifest,
+                                 NullWorld, Petition, Refusal, act_document,
+                                 is_plain, leave_document, petition_document,
+                                 request_problem)
 
 ALICE = "alice-token-000000001"
 
 
 def _manifest(entity_id="world:poetry", **extra):
     return Manifest(entity_id=entity_id, name="The Poetry World",
-                    protocol_version="WCP/0.1",
+                    protocol_version=PROTOCOL_VERSION,
                     law_url="https://poetry.example/law",
                     act_endpoint="https://poetry.example/act",
                     log_endpoint="https://poetry.example/log", **extra)
@@ -25,36 +29,51 @@ def _petition(name="Alice", token=ALICE, admissions=()):
 
 
 class IndependentWorld:
-    """Written from the protocol alone, sharing no code with the package:
-    admits everyone and accepts every act."""
+    """Written from the protocol's published parts alone (its messages,
+    the signed documents and `request_problem`), sharing no world code
+    with the package: admits anyone who signs, accepts every signed act.
+    Subclasses change what leaving does by overriding `_go`."""
+    ID = "independent:1"
 
     def __init__(self):
         self._manifest = Manifest(
-            entity_id="independent:1", name="Independent World",
-            protocol_version="WCP/0.1", law_url="independent:law",
+            entity_id=self.ID, name="Independent World",
+            protocol_version=PROTOCOL_VERSION, law_url="independent:law",
             act_endpoint="independent:act", log_endpoint="independent:log")
         self._present = set()
         self._events = []
+        self._last = {}
 
     def manifest(self):
         return self._manifest
 
     def petition(self, p):
+        if request_problem(p.petitioner_token, p.seq, p.signature,
+                           petition_document(self.ID, p), self._last):
+            return Refusal(reason="Not signed by the petitioner")
         self._present.add(p.petitioner_token)
         self._events.append(("petition", p.petitioner_token))
-        return Admission(entity_id="independent:1", timestamp="independent:0")
+        return Admission(entity_id=self.ID, timestamp="independent:0")
 
     def act(self, a):
+        if request_problem(a.actor_token, a.seq, a.signature,
+                           act_document(self.ID, a), self._last):
+            return Refusal(reason="Not signed by the actor")
         self._events.append(("act", a.actor_token))
-        return Ack(entity_id="independent:1", timestamp="independent:0")
+        return Ack(entity_id=self.ID, timestamp="independent:0")
 
-    def leave(self, token):
+    def leave(self, request):
+        if request_problem(request.token, request.seq, request.signature,
+                           leave_document(self.ID, request), self._last):
+            return Refusal(reason="Not the leaver's own leave")
+        return self._go(request.token)
+
+    def _go(self, token):
         was_present = token in self._present
         self._present.discard(token)
         if was_present:
             self._events.append(("departure", token))
-        return Departure(entity_id="independent:1",
-                         timestamp="independent:0",
+        return Departure(entity_id=self.ID, timestamp="independent:0",
                          already_left=not was_present)
 
     def log_since(self, ts=None):
@@ -109,7 +128,7 @@ class TestManifest(unittest.TestCase):
     def test_manifest_construction(self):
         m = _manifest()
         self.assertFalse(m.has_sub_registry())
-        self.assertEqual(m.protocol_version, "WCP/0.1")
+        self.assertEqual(m.protocol_version, "WCP/0.2")
 
     def test_manifest_with_sub_registry(self):
         m = _manifest("multiverse:main",
@@ -130,6 +149,21 @@ class TestManifest(unittest.TestCase):
             a.type = "other"
 
 
+class TestPublishedLaws(unittest.TestCase):
+
+    def test_each_law_states_the_protocol_it_enforces(self):
+        from multiverse.chemistry_world import ChemistryWorldLaw
+        from multiverse.poetry_world import PoetryWorldLaw
+        from multiverse.registry import MultiverseLaw
+        for law in (PoetryWorldLaw(), ChemistryWorldLaw(), MultiverseLaw()):
+            text = law.describe()
+            with self.subTest(law=type(law).__name__):
+                self.assertIn(f"Protocol {PROTOCOL_VERSION}", text)
+                self.assertIn("signed by the key it names", text)
+                self.assertNotIn("not signed yet", text)
+                self.assertNotIn("WCP/0.1", text)
+
+
 class TestNullWorld(unittest.TestCase):
 
     def setUp(self):
@@ -137,7 +171,7 @@ class TestNullWorld(unittest.TestCase):
 
     def test_manifest(self):
         m = self.w.manifest()
-        self.assertEqual(m.protocol_version, "WCP/0.1")
+        self.assertEqual(m.protocol_version, "WCP/0.2")
         self.assertFalse(m.has_sub_registry())
 
     def test_refuses_petition_and_act(self):
@@ -151,12 +185,28 @@ class TestNullWorld(unittest.TestCase):
     def test_log(self):
         self.w.petition(_petition())
         self.w.act(Act(actor_token=ALICE, type="poem.turn", payload={}))
-        self.assertEqual(len(self.w.log_since(None)), 2)
+        log = self.w.log_since(None)
+        self.assertEqual([e.kind for e in log],
+                         ["petition_refused", "act_refused"])
+        # It verifies nothing, so its log names nobody.
+        self.assertEqual([e.actor_token for e in log], [None, None])
+
+    def test_odd_requests_are_refused_not_raised(self):
+        for request in (None, "petition", 7):
+            with self.subTest(request=request):
+                self.assertIsInstance(self.w.petition(request), Refusal)
+                self.assertIsInstance(self.w.act(request), Refusal)
+                self.assertIsInstance(self.w.leave(request), Refusal)
 
     def test_leave_when_never_present(self):
-        d = self.w.leave(ALICE)
+        alice = Individual("Alice")
+        d = self.w.leave(alice.leave("world:null"))
         self.assertIsInstance(d, Departure)
         self.assertTrue(d.already_left)
+
+    def test_refuses_a_leave_that_isnt_signed(self):
+        self.assertIsInstance(self.w.leave(Leave(Individual("A").token, 1)),
+                              Refusal)
 
     def test_passes_conformance(self):
         self.assertTrue(run_conformance(self.w)["passed"])
@@ -184,7 +234,8 @@ class TestConformance(unittest.TestCase):
             def log_since(self, ts=None): return None
 
         failures = run_conformance(WrongAnswers("w:x", "X"))["failures"]
-        self.assertEqual(len(failures), 3, failures)
+        # unsigned and signed petitions, the act, and the log
+        self.assertEqual(len(failures), 4, failures)
 
     def test_empty_reasons_and_kinds_fail(self):
         class Mute(NullWorld):
@@ -195,7 +246,8 @@ class TestConformance(unittest.TestCase):
                 return [LogEntry(timestamp="t", kind="")]
 
         self.assertEqual(run_conformance(Mute("w:m", "M"))["failures"],
-                         ["Refusal.reason is empty"])
+                         ["petition() unsigned: Refusal.reason is empty",
+                          "petition(): Refusal.reason is empty"])
         self.assertEqual(run_conformance(Kindless("w:k", "K"))["failures"],
                          ["a LogEntry has no timestamp or kind"])
 
@@ -248,6 +300,50 @@ class TestConformance(unittest.TestCase):
         self.assertIsInstance(wb.petition(_petition()), Refusal)
 
 
+class TestSignedConformance(unittest.TestCase):
+    """WCP/0.2: a world that doesn't check signatures, or accepts a
+    replay, does not conform."""
+
+    def test_admitting_unsigned_petitions_fails(self):
+        class Trusting(IndependentWorld):
+            def petition(self, p):
+                self._present.add(p.petitioner_token)
+                return Admission(entity_id=self.ID, timestamp="t")
+
+        failures = run_conformance(Trusting())["failures"]
+        self.assertIn("an unsigned petition was admitted", failures)
+
+    def test_accepting_forged_acts_fails(self):
+        class Gullible(IndependentWorld):
+            def act(self, a):
+                return Ack(entity_id=self.ID, timestamp="t")
+
+        self.assertEqual(run_conformance(Gullible())["failures"],
+                         ["an act signed by another key was accepted"])
+
+    def test_accepting_forged_leaves_fails(self):
+        class Pushover(IndependentWorld):
+            def leave(self, request):
+                return self._go(request.token)
+
+        failures = run_conformance(Pushover())["failures"]
+        self.assertIn("a leave signed by another key was not refused",
+                      failures)
+
+    def test_accepting_replayed_leaves_fails(self):
+        class Forgetful(IndependentWorld):
+            def leave(self, request):
+                from multiverse.identity import signature_valid
+                if not signature_valid(request.token,
+                                       leave_document(self.ID, request),
+                                       request.signature):
+                    return Refusal(reason="not signed")
+                return self._go(request.token)
+
+        self.assertEqual(run_conformance(Forgetful())["failures"],
+                         ["a replayed leave was not refused"])
+
+
 class TestLeavingConformance(unittest.TestCase):
     """Leaving can't be refused, says whether you were present, and the
     second time answers already_left."""
@@ -262,7 +358,7 @@ class TestLeavingConformance(unittest.TestCase):
 
     def test_leave_that_refuses_fails(self):
         class HoldsYou(IndependentWorld):
-            def leave(self, token):
+            def leave(self, request):
                 return Refusal(reason="You may not leave.")
 
         failures = run_conformance(HoldsYou())["failures"]
@@ -271,7 +367,7 @@ class TestLeavingConformance(unittest.TestCase):
 
     def test_leave_that_raises_fails(self):
         class Breaks(IndependentWorld):
-            def leave(self, token):
+            def leave(self, request):
                 raise RuntimeError("no exit")
 
         self.assertFalse(run_conformance(Breaks())["passed"])
@@ -279,13 +375,13 @@ class TestLeavingConformance(unittest.TestCase):
     def test_leave_must_say_whether_present(self):
         # Both leave properly and record it; only their answer is wrong.
         class AlwaysAlreadyLeft(IndependentWorld):
-            def leave(self, token):
-                super().leave(token)
+            def _go(self, token):
+                super()._go(token)
                 return Departure("independent:1", "t", already_left=True)
 
         class NeverAlreadyLeft(IndependentWorld):
-            def leave(self, token):
-                super().leave(token)
+            def _go(self, token):
+                super()._go(token)
                 return Departure("independent:1", "t", already_left=False)
 
         for world in (AlwaysAlreadyLeft(), NeverAlreadyLeft()):
@@ -297,7 +393,7 @@ class TestLeavingConformance(unittest.TestCase):
     def test_departure_must_be_in_the_log(self):
         # Right answers, but the departure isn't recorded.
         class Unrecorded(IndependentWorld):
-            def leave(self, token):
+            def _go(self, token):
                 was_present = token in self._present
                 self._present.discard(token)
                 return Departure("independent:1", "t",
@@ -311,7 +407,7 @@ class TestLeavingConformance(unittest.TestCase):
         # keeps the visitor, passes: a test from outside sees only answers
         # and the log (conformance.py says so).
         class Keeps(IndependentWorld):
-            def leave(self, token):
+            def _go(self, token):
                 if token in self._present and ("departure", token) \
                         not in self._events:
                     self._events.append(("departure", token))
@@ -329,7 +425,7 @@ class TestLeavingConformance(unittest.TestCase):
                 super().__init__()
                 self._events.append(("departure", "someone-else-0000000"))
 
-            def leave(self, token):
+            def _go(self, token):
                 was_present = token in self._present
                 self._present.discard(token)
                 return Departure("independent:1", "t",
@@ -346,12 +442,12 @@ class TestLeavingConformance(unittest.TestCase):
             def __repr__(self): return "Odd()"
 
         class OddDeparture(IndependentWorld):
-            def leave(self, token):
+            def _go(self, token):
                 return Departure(entity_id=Odd(), timestamp="t")
 
         class OddAnswer(IndependentWorld):
-            def leave(self, token):
-                super().leave(token)
+            def _go(self, token):
+                super()._go(token)
                 return Departure("independent:1", "t", already_left=Odd())
 
         class OddVersion(str):
@@ -381,7 +477,9 @@ class TestLeavingConformance(unittest.TestCase):
 
         failures = run_conformance(Raises())["failures"]
         self.assertEqual(failures, [
-            "act() raised BadExc (whose message could not be read)"])
+            "act() raised BadExc (whose message could not be read)",
+            "a forged request raised BadExc (whose message could not be "
+            "read)"])
 
     def test_a_manifest_must_be_plain(self):
         class Bomb(str):

@@ -14,7 +14,10 @@ respect one another's freedom, with full transparency and exit at any time
 ## Now
 
 - Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Step 1, the
-  multiverse's core, is done; next is step 2, keys and signatures.
+  multiverse's core, is done. Step 2, keys and signatures, is in review;
+  next is replacing the hand-written Ed25519 with a vetted library (the
+  founder has lifted the standard-library rule), then step 3, signed
+  passports.
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
@@ -126,6 +129,14 @@ and for the founder's conversations with DeepSeek, is in
 
 ## Log
 
+- 2026-11-12 Claude: course step 2, keys and signatures. An individual is
+  an Ed25519 key; every petition, act and leave is signed for one world
+  with a growing number. Ed25519 written here from RFC 8032 passes the
+  RFC's five test values (parsed from its text); a new CI job
+  cross-checks it against the `cryptography` package. Protocol WCP/0.2;
+  the conformance test now refuses worlds that accept unsigned, forged
+  or replayed requests, and a world's log names a key only for what that
+  key signed. Keys live only in memory for now (said in MULTIVERSE.md).
 - 2026-11-12 Claude: course step 1 finished. The course
   (docs/COURSE.md), the guide for building on this (docs/COLLABORATING.md),
   and the founder's ideas on learning, evolution between worlds, time and

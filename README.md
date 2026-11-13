@@ -29,7 +29,7 @@ built from the founder's sketch with DeepSeek, a few components at a time
 ([docs/MULTIVERSE.md](docs/MULTIVERSE.md)). Step 1 works: one protocol for
 every world, a conformance test, a poetry world and a chemistry world with
 very different laws, a registry that lists them, and leaving that no world
-can refuse. Three apprentice poets enter the poetry world and write a poem
+can refuse. Each individual is a key, and everything it sends is signed. Three apprentice poets enter the poetry world and write a poem
 together under its law. What comes next is the course: twelve steps
 ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
 

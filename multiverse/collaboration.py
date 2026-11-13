@@ -24,57 +24,66 @@ from __future__ import annotations
 
 import json
 import sys
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import datetime, timezone
 from types import SimpleNamespace
 from typing import Dict, List, Optional, Tuple
 
 from .apprentice import (Apprentice, CurriculumRunner, PortfolioPoem,
                          TheoreticalStance)
-from .identity import Identity, create_identity
-from .protocol import (Ack, Act, ActResponse, Admission, Departure,
-                       LogEntry, Petition, PetitionResponse, Refusal)
+from .identity import Identity, Individual, create_individual
+from .protocol import (Ack, ActResponse, Admission, Departure, LeaveResponse,
+                       LogEntry, PetitionResponse, Refusal)
 from .poetry_world import PoetryWorld, PoetryWorldLaw, turns_from_log
 from .registry import MultiverseRegistry
 
 
-# -- a client: speaks the protocol for one identity --------------------
+# -- a client: speaks the protocol for one individual -------------------
 
 @dataclass
 class ClientIdentity:
-    identity: Identity
+    """An individual (with its key) and the passport it carries."""
+    individual: Individual
     passport_admissions: List[Tuple[str, str]] = field(default_factory=list)
     is_admitted_to: Dict[str, Admission] = field(default_factory=dict)
 
+    @property
+    def identity(self) -> Identity:
+        return self.individual.identity
+
 
 def make_client(name: str) -> ClientIdentity:
-    return ClientIdentity(identity=create_identity(name))
+    return ClientIdentity(individual=create_individual(name))
 
 
 def petition_world(client: ClientIdentity, world) -> PetitionResponse:
-    """Petition, and on admission add the stamp to the client's passport."""
-    response = world.petition(Petition(
-        petitioner_token=client.identity.token,
-        petitioner_name=client.identity.name,
-        passport_admissions=tuple(client.passport_admissions),
-        message=f"{client.identity.name} petitions {world.manifest().name}."))
+    """Petition, signed, and on admission add the stamp to the passport."""
+    entity_id = world.manifest().entity_id
+    response = world.petition(client.individual.petition(
+        entity_id, tuple(client.passport_admissions),
+        message=f"{client.identity.name} petitions "
+                f"{world.manifest().name}."))
     if isinstance(response, Admission):
-        entity_id = world.manifest().entity_id
         client.is_admitted_to[entity_id] = response
         client.passport_admissions.append((entity_id, response.timestamp))
     return response
 
 
 def act_on_world(client: ClientIdentity, world, act_type: str,
-                 payload: Dict) -> ActResponse:
-    return world.act(Act(actor_token=client.identity.token,
-                         type=act_type, payload=payload))
+                 payload: Dict, attachment: object = None) -> ActResponse:
+    act = client.individual.act(world.manifest().entity_id, act_type,
+                                payload)
+    if attachment is not None:
+        act = replace(act, attachment=attachment)
+    return world.act(act)
 
 
-def leave_world(client: ClientIdentity, world) -> Departure:
-    departure = world.leave(client.identity.token)
-    client.is_admitted_to.pop(world.manifest().entity_id, None)
-    return departure
+def leave_world(client: ClientIdentity, world) -> LeaveResponse:
+    entity_id = world.manifest().entity_id
+    response = world.leave(client.individual.leave(entity_id))
+    if isinstance(response, Departure):
+        client.is_admitted_to.pop(entity_id, None)
+    return response
 
 
 # -- a turn as an act's payload, and back -------------------------------
@@ -255,7 +264,8 @@ class FirstCollaboration:
         admin = make_client("multiverse-admin")
         petition_world(admin, self.multiverse)
         listed = act_on_world(admin, self.multiverse, "multiverse.admit",
-                              {"entity": self.world})
+                              {"entity_id": self.world.manifest().entity_id},
+                              attachment=self.world)
         if not isinstance(listed, Ack):
             raise RuntimeError(f"the poetry world was not listed: {listed}")
         for i, suffix in enumerate("ABC"):
