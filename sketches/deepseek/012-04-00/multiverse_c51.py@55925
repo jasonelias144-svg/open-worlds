@@ -1,0 +1,30 @@
+# 1. Docstring: "six" → "seven"
+
+"""
+multiverse_c51.py — Component 53: The Architecture Demonstration Runner.
+
+Runs all SEVEN architecture demos plus the four extension demos in
+isolated subprocesses, then prints a comparative summary.
+
+The seven primary architectures:
+  C41 octopus       — central / executor / intent push / decided
+  C42 relay         — central / relay / stream pull / threshold
+  C43 swarm         — none / peer / stigmergy / statistical
+  C44-46 council    — N voters / voter / counted votes / quorum
+  C47 autonomic     — local / regulator / feedback / homeostasis
+  C50 institutional — signed doc / unit / policy eval / deterministic
+  C52 epidemic      — edges / spreader / direct contact / saturation
+
+The four extensions:
+  C45 deliberation, C46 council_federation,
+  C48 cross_arch_federation, C49 persistence.
+
+What the runner proves:
+  - Each demo is independently runnable, in a fresh process.
+  - Each produces its own audit artifact.
+  - All seven primary architectures demonstrate their
+    distinguishing shape on the same substrate.
+
+Anchor: Dickinson, 'The Brain – is wider than the Sky –'
+(seven architectures, one line, one substrate).
+"""

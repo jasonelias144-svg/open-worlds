@@ -1,0 +1,3 @@
+.PHONY: autonomic-demo
+autonomic-demo:
+	$(PYTHON) -c "from multiverse_c47 import demo; demo(artifact_dir='artifacts')"

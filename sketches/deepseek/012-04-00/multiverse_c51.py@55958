@@ -1,0 +1,60 @@
+# 2. Append C52 to ARCHITECTURES list
+
+ARCHITECTURES: List[ArchitectureSpec] = [
+    ArchitectureSpec(
+        name="octopus", component="C41",
+        module="multiverse_c41", demo_fn="demo",
+        audit_filename="octopus_demo.json",
+        direction="central", unit="executor",
+        flow="intent push", convergence="decided",
+        description="Brain + executor arms",
+    ),
+    ArchitectureSpec(
+        name="relay", component="C42",
+        module="multiverse_c42", demo_fn="demo",
+        audit_filename="relay_demo.json",
+        direction="central", unit="relay",
+        flow="stream pull", convergence="threshold",
+        description="Stream-mediated neurons",
+    ),
+    ArchitectureSpec(
+        name="swarm", component="C43",
+        module="multiverse_c43", demo_fn="demo",
+        audit_filename="swarm_demo.json",
+        direction="none", unit="peer",
+        flow="stigmergy", convergence="statistical",
+        description="Peer units, shared environment",
+    ),
+    ArchitectureSpec(
+        name="council", component="C44-46",
+        module="multiverse_c44", demo_fn="demo",
+        audit_filename="triumvirate_demo.json",
+        direction="N voters", unit="voter",
+        flow="counted votes", convergence="quorum",
+        description="Council (extends to deliberation, federation)",
+    ),
+    ArchitectureSpec(
+        name="autonomic", component="C47",
+        module="multiverse_c47", demo_fn="demo",
+        audit_filename="autonomic_demo.json",
+        direction="local", unit="regulator",
+        flow="feedback loop", convergence="homeostasis",
+        description="Self-regulating units",
+    ),
+    ArchitectureSpec(
+        name="institutional", component="C50",
+        module="multiverse_c50", demo_fn="demo",
+        audit_filename="institutional_demo.json",
+        direction="signed doc", unit="unit",
+        flow="policy eval", convergence="deterministic",
+        description="Policy-text-driven units",
+    ),
+    ArchitectureSpec(
+        name="epidemic", component="C52",
+        module="multiverse_c52", demo_fn="demo",
+        audit_filename="epidemic_demo.json",
+        direction="edges", unit="spreader",
+        flow="direct contact", convergence="saturation",
+        description="Edge-determined rumor propagation",
+    ),
+]

@@ -1,0 +1,3 @@
+.PHONY: contract-propagation-demo
+contract-propagation-demo:
+	$(PYTHON) -c "from multiverse_c59 import demo; demo(artifact_dir='artifacts')"

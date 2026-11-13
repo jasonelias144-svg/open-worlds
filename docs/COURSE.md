@@ -95,4 +95,7 @@ Added one at a time, as steps are done: keeping keys safely (saving,
 backup, recovery); a single-cell world; an adapter
 for a world others built (anima-world); doors between worlds; belongings
 and homes under each world's law; visiting two worlds at once; the main
-community world.
+community world; a curator for each world, which proposes its world's
+development and doesn't decide it; contracts between worlds; a shared log
+of commitments that anyone can check offline (the last three from the
+sketch's components 55 to 63, [sketches/INDEX.md](../sketches/INDEX.md)).

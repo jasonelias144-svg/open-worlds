@@ -1,0 +1,3 @@
+.PHONY: curator-demo
+curator-demo:
+	$(PYTHON) -c "from multiverse_c55 import demo; demo(artifact_dir='artifacts')"

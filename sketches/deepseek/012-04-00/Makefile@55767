@@ -1,0 +1,3 @@
+.PHONY: epidemic-demo
+epidemic-demo:
+	$(PYTHON) -c "from multiverse_c52 import demo; demo(artifact_dir='artifacts')"

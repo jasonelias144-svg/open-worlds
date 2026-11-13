@@ -1,0 +1,3 @@
+.PHONY: contract-aware-demo
+contract-aware-demo:
+	$(PYTHON) -c "from multiverse_c58 import demo; demo(artifact_dir='artifacts')"

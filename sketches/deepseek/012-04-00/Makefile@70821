@@ -1,0 +1,3 @@
+.PHONY: policy-disputes-demo
+policy-disputes-demo:
+	$(PYTHON) -c "from multiverse_c63 import demo; demo(artifact_dir='artifacts')"

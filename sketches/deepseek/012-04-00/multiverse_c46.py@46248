@@ -1,0 +1,221 @@
+def demo(artifact_dir: Optional[str] = None) -> Dict:
+    """Two councils. Alpha decides; Beta sees Alpha's decision as
+    evidence and references it.
+
+    Scenario A: Alpha passes; Beta passes with references.
+    Scenario B: Beta has a forged reference (not in evidence).
+    Scenario C: Beta's evidence has the wrong decision_hash.
+
+    Anchor: Dickinson, 'The Soul selects her own Society –'
+    (councils choose which other councils they consult).
+    """
+    import json
+    from pathlib import Path
+
+    if not HAS_CRYPTO:
+        raise RuntimeError("demo requires `cryptography`")
+
+    # ---- Council Alpha ----
+    alpha_kps = [KeyPair.generate() for _ in range(3)]
+    def alpha_rule(p, ctx):
+        # All vote yea
+        return ("yea", "approve", ())
+    alpha = FederatedDeliberativeCouncil(
+        "alpha", QuorumRule(2, 2), max_rounds=3,
+        stability_rounds=1)
+    for i, kp in enumerate(alpha_kps):
+        alpha.add_member(FederatedDeliberativeMember(
+            entity_id=f"alpha:m{i}", name=f"Alpha-{i}",
+            member_kp=kp, decision_rule=alpha_rule))
+    alpha_keys = {
+        f"alpha:m{i}": kp.public_key_hex()
+        for i, kp in enumerate(alpha_kps)
+    }
+
+    proposal_alpha = Proposal(content={
+        "action": "adopt-relay-for-coordination",
+        "cost": "low",
+    })
+    alpha_decision = alpha.deliberate_and_resolve_federated(
+        proposal_alpha, evidence=[])
+    # Alpha passed
+    assert alpha_decision.inner.final_decision.outcome == "passed"
+
+    # ---- Council Beta ----
+    beta_kps = [KeyPair.generate() for _ in range(3)]
+    def beta_rule(p, ctx):
+        evidence = ctx.get("federation_evidence", {})
+        for cid, summary in evidence.items():
+            ref = ((cid, summary["decision_hash"]),)
+            if summary["outcome"] == "passed":
+                return ("yea",
+                        f"following {cid}'s approval", ref)
+            else:
+                return ("nay",
+                        f"{cid} did not approve", ref)
+        return ("abstain", "no external evidence", ())
+    beta = FederatedDeliberativeCouncil(
+        "beta", QuorumRule(2, 2), max_rounds=3,
+        stability_rounds=1)
+    for i, kp in enumerate(beta_kps):
+        beta.add_member(FederatedDeliberativeMember(
+            entity_id=f"beta:m{i}", name=f"Beta-{i}",
+            member_kp=kp, decision_rule=beta_rule))
+    beta_keys = {
+        f"beta:m{i}": kp.public_key_hex()
+        for i, kp in enumerate(beta_kps)
+    }
+
+    evidence_alpha = FederationEvidence.from_decision(
+        "alpha", alpha_decision)
+
+    proposal_beta = Proposal(content={
+        "action": "deploy-to-production",
+        "requires_alpha_approval": True,
+    })
+    beta_decision = beta.deliberate_and_resolve_federated(
+        proposal_beta, evidence=[evidence_alpha])
+
+    # Verify happy path
+    verdict_a = verify_federated_deliberation(
+        beta_decision,
+        local_member_keys=beta_keys,
+        evidence_member_keys={"alpha": alpha_keys},
+    )
+
+    # ---- Scenario B: forged reference ----
+    # Tamper one Beta position to reference a fake decision hash
+    attacker = KeyPair.generate()
+    orig_pos = beta_decision.inner.positions[0]
+    fake_hash = "00" * 32
+    payload = canonical_bytes({
+        "kind": "federated_deliberation_position",
+        "member_token": orig_pos.member_token,
+        "member_name": orig_pos.member_name,
+        "member_public_key": orig_pos.member_public_key,
+        "proposal_hash": orig_pos.proposal_hash,
+        "round_num": orig_pos.round_num,
+        "stance": orig_pos.stance,
+        "rationale": orig_pos.rationale,
+        "timestamp": orig_pos.timestamp,
+        "references": [["alpha", fake_hash]],
+    })
+    forged = FederatedSignedPosition(
+        member_token=orig_pos.member_token,
+        member_name=orig_pos.member_name,
+        member_public_key=orig_pos.member_public_key,
+        proposal_hash=orig_pos.proposal_hash,
+        round_num=orig_pos.round_num,
+        stance=orig_pos.stance,
+        rationale=orig_pos.rationale,
+        timestamp=orig_pos.timestamp,
+        signature=attacker.sign(payload).hex(),
+        references=(("alpha", fake_hash),),
+    )
+    tampered_inner = DeliberativeDecision(
+        proposal=beta_decision.inner.proposal,
+        proposal_hash=beta_decision.inner.proposal_hash,
+        positions=(forged,) + beta_decision.inner.positions[1:],
+        rounds_run=beta_decision.inner.rounds_run,
+        converged_at_round=beta_decision.inner.converged_at_round,
+        final_decision=beta_decision.inner.final_decision,
+    )
+    tampered_decision = FederatedDeliberativeDecision(
+        inner=tampered_inner,
+        federation_evidence=beta_decision.federation_evidence,
+    )
+    verdict_b = verify_federated_deliberation(
+        tampered_decision, beta_keys, {"alpha": alpha_keys})
+
+    # ---- Scenario C: tampered evidence hash ----
+    # Replace the evidence's decision_hash claim
+    tampered_evidence = FederationEvidence(
+        council_id=evidence_alpha.council_id,
+        decision=evidence_alpha.decision,
+        decision_hash="ff" * 32,  # wrong
+        outcome=evidence_alpha.outcome,
+        yea_count=evidence_alpha.yea_count,
+        nay_count=evidence_alpha.nay_count,
+        abstain_count=evidence_alpha.abstain_count,
+        proposal_hash=evidence_alpha.proposal_hash,
+    )
+    tampered_decision_c = FederatedDeliberativeDecision(
+        inner=beta_decision.inner,
+        federation_evidence=(tampered_evidence,),
+    )
+    verdict_c = verify_federated_deliberation(
+        tampered_decision_c, beta_keys, {"alpha": alpha_keys})
+
+    # ---- Print ----
+    print("=" * 70)
+    print("Federated Deliberation — two councils")
+    print("=" * 70)
+    print()
+    print("  Scenario A: Alpha passes; Beta references Alpha")
+    print()
+    print("    Alpha decision:")
+    for line in alpha_decision.format().split("\n")[:6]:
+        print(f"      {line}")
+    print()
+    print("    Beta decision (with evidence):")
+    for line in beta_decision.format().split("\n"):
+        print(f"      {line}")
+    print()
+    print(f"    verified: {verdict_a.valid}")
+    print(f"    local_valid: {verdict_a.local_valid}")
+    print(f"    evidence_valid: {verdict_a.evidence_valid}")
+    print(f"    references_valid: {verdict_a.references_valid}")
+    print()
+    print("  Scenario B: Beta has a forged reference")
+    for line in verdict_b.format().split("\n"):
+        print(f"    {line}")
+    print()
+    print("  Scenario C: Beta's evidence has wrong decision_hash")
+    for line in verdict_c.format().split("\n"):
+        print(f"    {line}")
+    print()
+    print("  What this demonstrates:")
+    print("    - Positions can be signed *with references* to")
+    print("      external decisions. Backward compatible: C45's")
+    print("      verify_position still works on the parent's")
+    print("      canonical form.")
+    print("    - Verification recomputes the whole chain: local")
+    print("      decision → referenced evidence → evidence's")
+    print("      members' keys.")
+    print("    - Processes coordinate with processes; the substrate")
+    print("      handles coordination-of-processes, not just")
+    print("      processes in isolation.")
+    print()
+    print("  Anchor (public domain, Emily Dickinson):")
+    print("    'The Soul selects her own Society –'")
+    print("    'Then – shuts the Door –'")
+
+    audit = {
+        "scenario_a_happy": {
+            "alpha_outcome":
+                alpha_decision.inner.final_decision.outcome,
+            "beta_outcome":
+                beta_decision.inner.final_decision.outcome,
+            "verified": verdict_a.valid,
+            "local_valid": verdict_a.local_valid,
+            "evidence_valid": verdict_a.evidence_valid,
+            "references_valid": verdict_a.references_valid,
+        },
+        "scenario_b_forged_reference": {
+            "verified": verdict_b.valid,
+            "reference_error_count":
+                len(verdict_b.reference_errors),
+        },
+        "scenario_c_tampered_evidence": {
+            "verified": verdict_c.valid,
+            "evidence_error_count":
+                len(verdict_c.evidence_errors),
+        },
+    }
+    if artifact_dir:
+        path = Path(artifact_dir)
+        path.mkdir(parents=True, exist_ok=True)
+        (path / "federated_deliberation_demo.json").write_text(
+            json.dumps(audit, indent=2))
+        print(f"\n  → {path}/federated_deliberation_demo.json")
+    return audit

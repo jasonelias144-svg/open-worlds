@@ -1,0 +1,220 @@
+def demo(artifact_dir: Optional[str] = None) -> Dict:
+    """Appendix A of C61, as a working example.
+
+    Alice's world and Bob's world establish a contract (commit
+    at some index). Carol's world cites the contract (commit
+    at a later index). Alice and Bob revoke the contract (commit
+    at a still later index). The ledger gives the *order of
+    commits*, which is what a reader needs.
+
+    Two versions of the same three events:
+
+      Case A — commit order matches claimed order.
+      Case B — commit order differs from claimed order.
+
+    Case B is the point of the ledger: the two orders are
+    different facts, and the ledger makes the *commit order*
+    checkable without claiming the *claimed order* is wrong.
+
+    Anchor: Dickinson, 'Forever – is composed of Nows –'
+    (the ledger orders the Nows).
+    """
+    import json
+    from pathlib import Path
+    from multiverse_c1 import create_identity
+    from multiverse_c13 import KeyPair
+
+    if not HAS_CRYPTO:
+        raise RuntimeError("demo requires `cryptography`")
+
+    if artifact_dir is None:
+        artifact_dir = "artifacts"
+    path = Path(artifact_dir)
+    path.mkdir(parents=True, exist_ok=True)
+
+    # Fake but representative hashes for the three artifacts
+    # (in a real run, these would come from C57/C59/C60 artifacts)
+    establishment_hash = _hash_payload(b"establishment")
+    citation_hash = _hash_payload(b"citation")
+    revocation_hash = _hash_payload(b"revocation")
+
+    # -- Case A: commit order matches claimed order ------------
+    log_a = CommitmentLog()
+    alice_kp = KeyPair.generate()
+    bob_kp = KeyPair.generate()
+    carol_kp = KeyPair.generate()
+
+    # Commit 0: establishment
+    log_a.append(
+        establishment_hash,
+        "contract_announcement",
+        "world:poetry",
+        alice_kp,
+        timestamp_claimed="2024-03-01T12:00:00+00:00",
+    )
+    # Commit 1: citation
+    log_a.append(
+        citation_hash,
+        "citation_act",
+        "world:other",
+        carol_kp,
+        timestamp_claimed="2024-03-05T17:00:00+00:00",
+    )
+    # Commit 2: revocation
+    log_a.append(
+        revocation_hash,
+        "contract_revocation",
+        "world:poetry",
+        alice_kp,
+        timestamp_claimed="2024-03-05T18:00:00+00:00",
+    )
+
+    # Publish a checkpoint
+    federation_kp = KeyPair.generate()
+    publisher_a = CheckpointPublisher(log_a, federation_kp)
+    head_a = publisher_a.publish()
+
+    # Generate and verify inclusion proofs for all three
+    proofs_a = []
+    for i in range(3):
+        proof = log_a.inclusion_proof_for(i)
+        leaf = log_a.all_leaf_hashes()[i]
+        ok = verify_inclusion(
+            leaf, proof, i, log_a.size(), head_a.root_hash)
+        proofs_a.append({
+            "index": i,
+            "kind": log_a.entries()[i].artifact_kind,
+            "claimed": log_a.entries()[i].timestamp_claimed,
+            "proof_length": len(proof),
+            "verified": ok,
+        })
+
+    # -- Case B: same events, different commit order ----------
+    log_b = CommitmentLog()
+    # Commit 0: establishment
+    log_b.append(
+        establishment_hash,
+        "contract_announcement",
+        "world:poetry",
+        alice_kp,
+        timestamp_claimed="2024-03-01T12:00:00+00:00",
+    )
+    # Commit 1: revocation (claimed LATER but committed FIRST)
+    log_b.append(
+        revocation_hash,
+        "contract_revocation",
+        "world:poetry",
+        alice_kp,
+        timestamp_claimed="2024-03-05T18:00:00+00:00",
+    )
+    # Commit 2: citation (claimed EARLIER but committed LATER)
+    log_b.append(
+        citation_hash,
+        "citation_act",
+        "world:other",
+        carol_kp,
+        timestamp_claimed="2024-03-05T17:00:00+00:00",
+    )
+    publisher_b = CheckpointPublisher(log_b, federation_kp)
+    head_b = publisher_b.publish()
+    proofs_b = []
+    for i in range(3):
+        proof = log_b.inclusion_proof_for(i)
+        leaf = log_b.all_leaf_hashes()[i]
+        ok = verify_inclusion(
+            leaf, proof, i, log_b.size(), head_b.root_hash)
+        proofs_b.append({
+            "index": i,
+            "kind": log_b.entries()[i].artifact_kind,
+            "claimed": log_b.entries()[i].timestamp_claimed,
+            "proof_length": len(proof),
+            "verified": ok,
+        })
+
+    # Verify both chains and both heads
+    chain_a = verify_commitment_chain(log_a.entries())
+    chain_b = verify_commitment_chain(log_b.entries())
+    head_a_ok = verify_tree_head(
+        head_a, federation_kp.public_key_hex())
+    head_b_ok = verify_tree_head(
+        head_b, federation_kp.public_key_hex())
+
+    # First-seen queries
+    first_seen = {
+        "establishment": log_a.first_commit_index(
+            establishment_hash),
+        "citation": log_a.first_commit_index(citation_hash),
+        "revocation": log_a.first_commit_index(revocation_hash),
+    }
+    first_seen_b = {
+        "establishment": log_b.first_commit_index(
+            establishment_hash),
+        "citation": log_b.first_commit_index(citation_hash),
+        "revocation": log_b.first_commit_index(revocation_hash),
+    }
+
+    # -- Print -----------------------------------------------
+    print("=" * 70)
+    print("LCS Reference Implementation — order is what the ledger adds")
+    print("=" * 70)
+    print()
+    print(f"  Case A: commit order matches claimed order")
+    print(f"    chain valid:  {chain_a.valid}")
+    print(f"    head signed:  {head_a_ok}")
+    print(f"    entries:")
+    for p in proofs_a:
+        print(f"      [{p['index']}] {p['kind']:25s} "
+              f"claimed={p['claimed'][:19]} "
+              f"proof_ok={p['verified']}")
+    print(f"    first-seen: {first_seen}")
+    print()
+    print(f"  Case B: commit order differs from claimed order")
+    print(f"    chain valid:  {chain_b.valid}")
+    print(f"    head signed:  {head_b_ok}")
+    print(f"    entries:")
+    for p in proofs_b:
+        print(f"      [{p['index']}] {p['kind']:25s} "
+              f"claimed={p['claimed'][:19]} "
+              f"proof_ok={p['verified']}")
+    print(f"    first-seen: {first_seen_b}")
+    print()
+    print("  What this demonstrates:")
+    print("    - The ledger commits to *artifact hashes*, not artifacts.")
+    print("    - The ledger records the *order of commits*, not the")
+    print("      order of events. In Case B, the citation was claimed")
+    print("      before the revocation but committed after it.")
+    print("    - Inclusion proofs let a client prove a specific")
+    print("      commit is in a specific tree head without trusting")
+    print("      the log operator.")
+    print("    - The tree head is federation-signed; a client that")
+    print("      pins the federation key knows the head is authentic.")
+    print("    - The artifact itself (its meaning, its signature,")
+    print("      its truth) is NOT in the ledger's scope. That's")
+    print("      C13–C60's job.")
+    print()
+    print("  Anchor (public domain, Emily Dickinson):")
+    print("    'Forever – is composed of Nows –'")
+    print("    'Tis not a different time –'")
+
+    audit = {
+        "case_a": {
+            "chain_valid": chain_a.valid,
+            "head_signed": head_a_ok,
+            "tree_size": log_a.size(),
+            "root_hash": head_a.root_hash,
+            "proofs": proofs_a,
+            "first_seen": first_seen,
+        },
+        "case_b": {
+            "chain_valid": chain_b.valid,
+            "head_signed": head_b_ok,
+            "tree_size": log_b.size(),
+            "root_hash": head_b.root_hash,
+            "proofs": proofs_b,
+            "first_seen": first_seen_b,
+        },
+    }
+    (path / "lcs_demo.json").write_text(
+        json.dumps(audit, indent=2))
+    print(f"\n  → {path}/lcs_demo.json")
+    return audit

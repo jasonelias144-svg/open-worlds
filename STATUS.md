@@ -15,9 +15,10 @@ respect one another's freedom, with full transparency and exit at any time
 
 - Claude: the course ([docs/COURSE.md](docs/COURSE.md)). Steps 1 and 2
   are done, and signatures now come from the `cryptography` package (#15).
-  In review: `sketches/`, the DeepSeek records and their code kept as
-  written, apart from open-worlds' own code. Next: step 3, signed
-  passports.
+  `sketches/` keeps the DeepSeek records and their code as written (#16).
+  In review: record 012-04-00, now complete (components 44 to 63). Next:
+  step 3, signed passports, with the first batch of fixes to the
+  sketches' code alongside.
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
@@ -136,6 +137,16 @@ and for the founder's conversations with DeepSeek, is in
   domain (CC0 1.0). The goal isn't financial; anyone may build on it.
 
 ## Log
+
+- 2026-11-13 Claude: record 012-04-00 is complete (the founder's DeepSeek
+  conversation ran out of room; the next one starts a new record). The
+  copy in `sketches/records/` replaced, after checking the old one is an
+  exact prefix of it; components 44 to 63 written out (210 files in all);
+  every test rerun under eight hash seeds (433 pass, 145 fail, 1
+  sometimes, 25 test files don't load, 17 of them only because their
+  demos are separate blocks). CI now checks every record folder, so a new
+  record needs only its names file. The course's next-in-line list gains
+  curators, contracts between worlds and a shared log of commitments.
 
 - 2026-11-13 Claude: `sketches/`, the creative side kept apart, as the
   founder asked: both DeepSeek records verbatim; all the code files of

@@ -1,0 +1,3 @@
+.PHONY: revocation-propagation-demo
+revocation-propagation-demo:
+	$(PYTHON) -c "from multiverse_c60 import demo; demo(artifact_dir='artifacts')"

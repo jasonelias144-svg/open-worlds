@@ -1,0 +1,3 @@
+.PHONY: institutional-demo
+institutional-demo:
+	$(PYTHON) -c "from multiverse_c50 import demo; demo(artifact_dir='artifacts')"

@@ -1,0 +1,3 @@
+.PHONY: rumor-attestation-demo
+rumor-attestation-demo:
+	$(PYTHON) -c "from multiverse_c54 import demo; demo(artifact_dir='artifacts')"

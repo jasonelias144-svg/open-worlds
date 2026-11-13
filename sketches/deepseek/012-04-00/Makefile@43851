@@ -1,0 +1,3 @@
+.PHONY: triumvirate-demo
+triumvirate-demo:
+	$(PYTHON) -c "from multiverse_c44 import demo; demo(artifact_dir='artifacts')"

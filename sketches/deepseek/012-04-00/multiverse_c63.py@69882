@@ -1,0 +1,282 @@
+def demo(artifact_dir: Optional[str] = None) -> Dict:
+    """C61 Appendix A, resolved by two different policies.
+
+    Fact pattern (same artifacts in both cases):
+      establishment claimed at 2024-03-01T12:00:00+00:00
+      citation      claimed at 2024-03-05T17:00:00+00:00
+      revocation    claimed at 2024-03-05T18:00:00+00:00
+
+    Case A: ledger ordering matches claimed order
+      establishment @ commit 0
+      citation      @ commit 1
+      revocation    @ commit 2
+
+    Case B: ledger ordering differs
+      establishment @ commit 0
+      revocation    @ commit 1
+      citation      @ commit 2
+
+    Three policies × two cases = six verdicts.
+
+    Anchor: Dickinson, 'Much Madness is divinest Sense –'
+    (disagreement is policy, not fact).
+    """
+    import json
+    from pathlib import Path
+    from multiverse_c1 import create_identity
+    from multiverse_c3 import Act, Ack, Refusal, Petition
+    from multiverse_c4 import PoetryWorld
+    from multiverse_c5 import ChemistryWorld
+    from multiverse_c13 import KeyPair
+    from multiverse_c57 import (
+        ContractTerms, ContractRegistry,
+        sign_offer, sign_acceptance,
+        sign_bilateral_revocation,
+    )
+    from multiverse_c62 import (
+        CommitmentLog, CheckpointPublisher, artifact_hash,
+        _hash_payload as c62_hash,
+    )
+
+    if not HAS_CRYPTO:
+        raise RuntimeError("demo requires `cryptography`")
+
+    if artifact_dir is None:
+        artifact_dir = "artifacts"
+    path = Path(artifact_dir)
+    path.mkdir(parents=True, exist_ok=True)
+
+    # -- Shared artifacts (both cases) -------------------------
+    world_a = PoetryWorld("world:poetry", "Poetry")
+    world_b = ChemistryWorld("world:chemistry", "Chemistry")
+    kp_a = KeyPair.generate()
+    kp_b = KeyPair.generate()
+    terms = ContractTerms(content={
+        "kind": "mutual-recognition",
+        "poetry_recognizes": "chem-turns",
+    })
+    offer = sign_offer(
+        world_a.manifest().entity_id, kp_a,
+        world_b.manifest().entity_id, terms)
+    acceptance = sign_acceptance(
+        world_b.manifest().entity_id, kp_b, offer)
+    revocation = sign_bilateral_revocation(
+        contract_id=terms.terms_hash(),
+        world_a_id=world_a.manifest().entity_id,
+        world_a_kp=kp_a,
+        world_b_id=world_b.manifest().entity_id,
+        world_b_kp=kp_b,
+        reason="mutual agreement ended",
+        timestamp="2024-03-05T18:00:00+00:00")
+
+    # Build the C57 registry record
+    registry = ContractRegistry()
+    registry.register_offer(offer)
+    # Override acceptance's established_at by signing with a
+    # claimed time... wait, sign_acceptance doesn't take a
+    # timestamp currently. Let me construct the registry record
+    # so established_at is controllable.
+    from multiverse_c57 import ContractAcceptance
+    acceptance = ContractAcceptance(
+        acceptor_world_id=acceptance.acceptor_world_id,
+        acceptor_public_key=acceptance.acceptor_public_key,
+        offer_hash=acceptance.offer_hash,
+        terms_hash=acceptance.terms_hash,
+        timestamp="2024-03-01T12:00:00+00:00",
+        signature=acceptance.signature,
+    )
+    registry.register_acceptance(acceptance)
+    # register_acceptance sets established_at = _now(); override:
+    rec = registry.get(terms.terms_hash())
+    # Mutate the record's established_at (in the prototype, we
+    # can do this directly on the record; production would use
+    # a fixed API)
+    rec.established_at = "2024-03-01T12:00:00+00:00"
+    registry.register_revocation(revocation)
+    rec.revoked_at = "2024-03-05T18:00:00+00:00"
+
+    # Fake citation artifact hash for ledger lookup
+    citation_hash = c62_hash(b"citation-act")
+    citation_claimed_time = "2024-03-05T17:00:00+00:00"
+
+    # -- Build two ledger views --------------------------------
+    # Case A: claimed order matches commit order
+    ledger_a = {
+        offer.offer_hash(): 0,
+        citation_hash: 1,
+        c62_hash(revocation.canonical_payload()): 2,
+    }
+    # Case B: revocation committed before citation
+    ledger_b = {
+        offer.offer_hash(): 0,
+        c62_hash(revocation.canonical_payload()): 1,
+        citation_hash: 2,
+    }
+
+    # -- Three policies ----------------------------------------
+    author_world_id = "world:poetry-C"
+    author_kp = KeyPair.generate()
+    policy_current = make_current_status_policy(
+        "pol-current", author_world_id, author_kp)
+    policy_claimed = make_claimed_time_policy(
+        "pol-claimed", author_world_id, author_kp)
+    policy_committed = make_committed_time_policy(
+        "pol-committed", author_world_id, author_kp)
+
+    # -- Resolve: 3 policies × 2 cases = 6 verdicts ------------
+    def resolve(policy, ledger):
+        return resolve_citation_dispute(
+            policy=policy,
+            record=rec,
+            citation_claimed_time=citation_claimed_time,
+            citation_hash=citation_hash,
+            ledger=ledger)
+
+    verdicts = {}
+    for label, ledger in (("Case A", ledger_a),
+                           ("Case B", ledger_b)):
+        verdicts[label] = {
+            "current_status": resolve(policy_current, ledger),
+            "claimed_time": resolve(policy_claimed, ledger),
+            "committed_time": resolve(policy_committed, ledger),
+        }
+
+    # -- C58 integration: build a policy-aware world ----------
+    reg_c = ContractRegistry()
+    reg_c.register_offer(offer)
+    reg_c.register_acceptance(acceptance)
+    rec_c = reg_c.get(terms.terms_hash())
+    rec_c.established_at = "2024-03-01T12:00:00+00:00"
+    reg_c.register_revocation(revocation)
+    rec_c.revoked_at = "2024-03-05T18:00:00+00:00"
+
+    # World with committed_time policy under Case B ledger
+    world = PolicyAwareContractAwareWorld(
+        "world:c", "C",
+        registry=reg_c,
+        policy=policy_committed,
+        ledger_view=ledger_b)
+    resident = create_identity("Resident-C")
+    world.petition(Petition(
+        petitioner_token=resident.token,
+        petitioner_name=resident.name,
+        passport_admissions=(),
+        message="hi"))
+    cite_act = Act(
+        actor_token=resident.token,
+        type="poem.turn",
+        payload={
+            "acknowledgment": "(seed)",
+            "proposal": "a line",
+            "invitation": "?",
+            "holds_open": True,
+            "cites_contract": terms.terms_hash(),
+            "cites_world": "world:chemistry",
+            "claimed_time": citation_claimed_time,
+            "citation_hash": citation_hash,
+        })
+    world_result = world.act(cite_act)
+
+    # Same world, same policy, but with Case A ledger
+    world_a_ledger = PolicyAwareContractAwareWorld(
+        "world:c2", "C2",
+        registry=reg_c,
+        policy=policy_committed,
+        ledger_view=ledger_a)
+    resident2 = create_identity("Resident-C2")
+    world_a_ledger.petition(Petition(
+        petitioner_token=resident2.token,
+        petitioner_name=resident2.name,
+        passport_admissions=(),
+        message="hi"))
+    cite_act_a = Act(
+        actor_token=resident2.token,
+        type="poem.turn",
+        payload={
+            "acknowledgment": "(seed)",
+            "proposal": "a line",
+            "invitation": "?",
+            "holds_open": True,
+            "cites_contract": terms.terms_hash(),
+            "cites_world": "world:chemistry",
+            "claimed_time": citation_claimed_time,
+            "citation_hash": citation_hash,
+        })
+    world_a_result = world_a_ledger.act(cite_act_a)
+
+    # -- Print -----------------------------------------------
+    print("=" * 70)
+    print("Policy-Driven Contract Disputes — facts shared, rules differ")
+    print("=" * 70)
+    print()
+    print(f"  Fact pattern:")
+    print(f"    establishment claimed at 2024-03-01T12:00:00")
+    print(f"    citation claimed at      2024-03-05T17:00:00")
+    print(f"    revocation claimed at    2024-03-05T18:00:00")
+    print()
+    print(f"  Three policies × two ledger orderings = six verdicts:")
+    print()
+    for label in ("Case A", "Case B"):
+        print(f"  {label}:")
+        for pol_name, v in verdicts[label].items():
+            marker = "✓ honored" if v.honored else "✗ refused"
+            print(f"    {pol_name:16s}  {marker}  "
+                  f"({v.reason})")
+        print()
+    print("  What this demonstrates:")
+    print("    - The facts (artifacts, timestamps) are identical in")
+    print("      both cases. The only difference is ledger ordering.")
+    print("    - current_status always refuses because the contract")
+    print("      is currently revoked — regardless of when the")
+    print("      citation was made.")
+    print("    - claimed_time honors the citation in both cases")
+    print("      because the claimed timestamps place it inside")
+    print("      the active window. It trusts artifacts' claims.")
+    print("    - committed_time honors in Case A (matched order)")
+    print("      but refuses in Case B (revocation committed")
+    print("      before citation). It trusts the ledger's order.")
+    print()
+    print("  C58 integration:")
+    print(f"    World with committed_time policy, Case B ledger:")
+    print(f"      Result: {type(world_result).__name__}"
+          f"{' — ' + world_result.reason if isinstance(world_result, Refusal) else ''}")
+    print(f"    World with committed_time policy, Case A ledger:")
+    print(f"      Result: {type(world_a_result).__name__}")
+    print()
+    print("  Anchor (public domain, Emily Dickinson):")
+    print("    'Much Madness is divinest Sense –'")
+    print("    'To a discerning Eye –'")
+    print("    'Much Sense – the starkest Madness –'")
+
+    def v_to_dict(v):
+        return {
+            "honored": v.honored,
+            "rule_applied": v.rule_applied,
+            "reason": v.reason,
+        }
+
+    audit = {
+        "fact_pattern": {
+            "established_at": "2024-03-01T12:00:00+00:00",
+            "citation_claimed": citation_claimed_time,
+            "revoked_at": "2024-03-05T18:00:00+00:00",
+        },
+        "verdicts": {
+            label: {k: v_to_dict(v) for k, v in row.items()}
+            for label, row in verdicts.items()
+        },
+        "c58_integration": {
+            "committed_time_case_b":
+                type(world_result).__name__,
+            "committed_time_case_b_reason":
+                (world_result.reason
+                 if isinstance(world_result, Refusal)
+                 else None),
+            "committed_time_case_a":
+                type(world_a_result).__name__,
+        },
+    }
+    (path / "policy_disputes_demo.json").write_text(
+        json.dumps(audit, indent=2))
+    print(f"\n  → {path}/policy_disputes_demo.json")
+    return audit
