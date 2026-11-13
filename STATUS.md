@@ -96,8 +96,8 @@ and for the founder's conversations with DeepSeek, is in
   an entity-component system (Flecs), built with CMake, tested with
   GoogleTest, Godot later as the window onto it, and Python kept as the
   reference the C++ is tested against. First step: the world kernel in
-  C++, writing the same hash-chained log as the Python one. Waiting for
-  the founder's go-ahead to put it on the course.
+  C++, writing the same hash-chained log as the Python one. The founder
+  chose Rust instead, the same day (see the entry on the language).
 - 2026-11-12, founder, on how to build: "My goal was to come to you with
   ideas, with a vision, and some code that may or may not be helpful. But
   I expect you to take all that in and do it in your own way that makes
