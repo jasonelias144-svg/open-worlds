@@ -630,6 +630,12 @@ mod tests {
             ]
             .join("\n")
         );
+        // No room above its own head: the block north can't be climbed.
+        let mut low = seen();
+        low.around[(2 * 3 + 1) * 3 + 1] = Material::Leaves;
+        let text = describe(&low);
+        assert!(text.contains("North: blocked by rock."), "{text}");
+        assert!(text.contains("Above you: leaves."), "{text}");
         let mut crowded = seen();
         crowded.others = vec![
             ("CAROL".into(), Cell::new(0, 1, 1)),
