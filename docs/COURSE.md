@@ -206,7 +206,10 @@ Added one at a time, as steps are done:
 - Keepers talking to one another, by the rules proposed in
   [WORLD-KEY.md](WORLD-KEY.md);
 - the admin-key: a course for Keepers, plotted by ADMIN as Keepers plot
-  paths ([ADMIN.md](ADMIN.md)), after steps 11 and 12;
+  paths, and a training program for keeping worlds, in practice worlds
+  ([ADMIN.md](ADMIN.md)), after steps 11 and 12;
+- a council of Keepers who hold admin-keys, deciding multiversal matters
+  with ADMIN, beside an assembly of individuals (proposed, ADMIN.md);
 - a window onto the worlds: a web viewer first, in Bevy, in the browser;
 - generator 2: land decided when first seen;
 - a storyteller for each world: paced events and visitors;

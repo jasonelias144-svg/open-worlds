@@ -98,6 +98,18 @@ From the Arbitration Committee: judgment as the last step, for what the
 community and the rules couldn't settle, and binding only within its
 written remit.
 
+## Learning apart from discipline
+
+- **NASA's Aviation Safety Reporting System** "collects voluntarily
+  submitted aviation safety incident/situation reports from pilots,
+  controllers, and others", and those who report "may be eligible for
+  protections from civil penalty and certificate suspension"
+  ([ASRS](https://asrs.arc.nasa.gov/overview/summary.html)).
+
+Taken: ADMIN's training and evaluation of Keepers give feedback, never
+sanctions; sanctions stay with misuse of the office, by a separate process
+([ADMIN.md](../ADMIN.md), "Training for keeping worlds").
+
 ## Containers, and sandboxes for code no one trusts
 
 The founder asked for compatibility with Docker, and to "keep with the

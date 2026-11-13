@@ -326,9 +326,24 @@ and for the founder's conversations with DeepSeek, is in
   - containers: "Let's keep with the container idea, it fits a need
     perfectly." Minds run in OCI containers; images pinned by digest
     (docs/ADMIN.md, "Minds in containers").
+  - proposed, not yet decided: training for keeping worlds, evaluated by
+    ADMIN ("The challenges are a training program for managing worlds"),
+    and a council of Keepers who hold admin-keys, deciding multiversal
+    matters with ADMIN ("But that is just one idea"); written up with
+    guards in docs/ADMIN.md.
 
 ## Log
 
+- 2026-11-13 Claude: ADMIN, part two (docs/ADMIN.md). Two of the
+  founder's ideas written up: training for keeping worlds, in practice
+  worlds with stand-in inhabitants, where evaluation gives feedback and
+  never sanctions, as aviation's safety reporting learned; and a council
+  of Keepers who hold admin-keys, hearing Keepers' appeals and deciding
+  multiversal matters with ADMIN, beside an assembly of individuals who
+  consent to changes in their own law. Also the review's rules for
+  measuring Keepers honestly: change from each individual's own record,
+  decliners counted, ADMIN's challenges held back, and "not yet known"
+  when there are too few to judge.
 - 2026-11-13 Claude: course step 1, part two: ADMIN
   ([docs/ADMIN.md](docs/ADMIN.md)). Ten things the multiverse must
   preserve, from exit and the record to continuity and the power to

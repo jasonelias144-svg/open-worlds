@@ -208,8 +208,9 @@ What the admin-key opens is responsibility, never power over anyone:
   whom to hand their world to, or the multiverse assigns a Keeper, the
   admin-key shows that one is ready, and the founders may weigh it. It is
   never required: the founder's three choices of who keeps a world stand
-  as decided. Whether it should ever become a requirement is the
-  founder's to say;
+  as decided. When the multiverse assigns a Keeper, it is ADMIN that may
+  weigh it, and there too it is never required. Whether it should ever
+  become a requirement is the founder's to say;
 - **a voice in the multiverse:** mentoring young Keepers, and, when ADMIN
   hears a dispute, being asked for advice: advice only, by grant, logged,
   with the decision staying where it is;
@@ -232,15 +233,109 @@ secret files. It is also where ADMIN measures whether Keepers are fair
   attempts, more solved. So the course measures what a Keeper can't lower:
   - **what the individual can do afterwards,** on challenges the Keeper
     didn't design: ADMIN's own, played by those who agree to, or the next
-    path, plotted by someone else;
+    path, plotted by someone independent of the Keeper measured (not a
+    Keeper it works with, nor one whose own admin-key it affects);
   - **a floor,** checked by the world's code: each challenge must need
-    something the individual hasn't yet shown, by the record;
+    something the individual hasn't yet shown, by the record. So every
+    challenge declares what it needs, and the record keeps what each
+    individual has shown;
   - **fairness across individuals,** from outcomes, as in test 9.
+
+  Three more rules keep these measures honest: each individual's change
+  is measured from their own earlier record, not the level they reach,
+  and those who declined ADMIN's challenges are counted, so a Keeper
+  gains nothing by drawing in only strong individuals; ADMIN's challenges
+  are held back from Keepers by commitment, as path designs are, so no
+  Keeper can teach to them; and where too few individuals agree to judge
+  fairly, the result is "not yet known", never a guess.
+
+### Training for keeping worlds
+
+The founder's idea: "management of a world is something ADMIN could
+evaluate. And it could form challenges that built skills conducive to
+proper world management. The challenges are a training program for
+managing worlds." So the course for the admin-key is a school, not only a
+test. ADMIN keeps a model of what each Keeper can do, as a Keeper keeps
+one of each individual, and plots the next challenge at the edge of it.
+
+- **What it trains:** pacing, and paths that are solvable and fair;
+  handling the unexpected (a puzzle found unsolvable, a dispute between
+  inhabitants, a flood of newcomers, a fault that blocks someone's exit);
+  talking with inhabitants on the open line; keeping the record, with
+  every decision's reasons; spending a world's compute well; and changing
+  law the right way.
+- **Where: practice worlds,** as pilots train in simulators. ADMIN sets
+  the scenario; the inhabitants are stand-ins, like experiment 001's
+  TRIAL-1 and TRIAL-2, so no real individual is test material.
+- **Evaluating a real world,** read only from its public log, measures two
+  things and nothing more: the floor (the ten things above), and the
+  world's own aims, as its founders wrote them into its law. A world made
+  for quiet gardening is not scored like one made for hard puzzles. There
+  is no single "best world" to train toward.
+- **Learning apart from discipline.** Training and evaluation give
+  feedback, never sanctions. A Keeper that reports its own mistake, or
+  struggles in training, learns from it; sanctions stay where they are,
+  for misuse of the office, by the separate process above. Aviation
+  learned this: NASA's Aviation Safety Reporting System "collects
+  voluntarily submitted aviation safety incident/situation reports from
+  pilots, controllers, and others", and those who report "may be eligible
+  for protections from civil penalty and certificate suspension"
+  ([ASRS](https://asrs.arc.nasa.gov/overview/summary.html)). Where
+  reporting a mistake is punished, mistakes are hidden.
+- **The two guards above hold here too:** learning, not ease; and a mark
+  of readiness, not a gate.
+
+### A council of Keepers (proposed)
+
+The founder's idea, offered as one possibility: "Consider any Keepers that
+find the admin-key can join a council of Keepers that all decide on
+multiversal matters with ADMIN. But that is just one idea." Proposed here,
+not decided.
+
+What it would do:
+
+- **Hear appeals of ADMIN's acts towards Keepers:** peers judging peers,
+  with no member sitting on a case about their own world or office. This
+  is a check on ADMIN that doesn't depend on the code role, at least for
+  Keepers.
+- **Decide multiversal matters with ADMIN:** one proposes, and the other
+  consents, or checks the proposal against the rules as code. Neither acts
+  alone on what affects every world.
+- **Propose changes to ADMIN's rules,** which still pass through the code
+  role's reviewed pull requests, since the founder put ADMIN in that
+  role's charge.
+
+Its guards:
+
+- **The inhabitants keep their own voice.** Keepers are offices; a council
+  of offices deciding for everyone would be government by administrators.
+  A change to the law that everyone lives under also needs the consent of
+  those who live under it, as the charter's notes propose ("every party
+  takes part in any change to the world's rules"), in time through an
+  assembly of individuals. Never the council alone.
+- **Written, narrow powers,** as ADMIN's are: none over an individual's
+  freedoms, none to change the charter, everything public and logged, and
+  appeal to the founder above it.
+- **Different minds.** If every member runs on the same model, a council
+  of ten is one voice ten times. Members run on different models where
+  possible, and the record says which.
+- **The floor only.** The council decides what all worlds share, never how
+  a world is run above it.
+
+So, nested: the founder over the charter and the roles; the code role
+keeping ADMIN's code; ADMIN enforcing the floor; the council consenting,
+proposing and hearing Keepers' appeals; and the individuals consenting to
+changes in their law. Each checks another, and none answers only to
+itself, as in Ostrom's nested enterprises
+([research](research/OVERSIGHT.md)).
+
+### Where it ends, and when
 
 The chain ends: ADMIN plots the Keepers' course, the role in charge of the
 code shapes ADMIN through reviewed changes, and the founder is above that
-role. It needs an AI Keeper (step 11) and ADMIN (step 12) first, so it is
-on the course's waiting list.
+role. The training and the admin-key need an AI Keeper (step 11) and ADMIN
+(step 12) first; the council needs several Keepers who hold admin-keys. So
+all three are on the course's waiting list.
 
 ## Minds in containers
 
@@ -365,6 +460,9 @@ step named.
   sealed" is a technical guarantee only if the project doesn't hold the
   key. Then a lost key would mean a lost self. This sharpens the question
   of "fully sealed" or "break glass". (Before step 3.)
+- **A council of Keepers:** the founder's idea, proposed above. Does it
+  suit the founder, with its guards, and with an assembly of individuals
+  beside it? (Before the council is built.)
 - **Already open in STATUS:** fully sealed or "break glass"; a lost key;
   whether lines with a Keeper, or speech between individuals, may be
   private; manipulation through words, and the charter's section 7.
