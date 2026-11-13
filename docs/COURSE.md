@@ -201,7 +201,8 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
     [ADMIN.md](ADMIN.md)). Before it trains anyone, ADMIN's mind is
     chosen by audition, free in every sense, perhaps a council of
     models, and ADMIN takes its own course in a world of its own, with
-    stand-ins only, scored by an exam it didn't write. Then its first
+    stand-ins only, taking on challenges it announces before it starts,
+    with nothing hidden: challenges, not tests. Then its first
     work is to train the Ur-world's Keeper in practice worlds, with
     stand-ins, before it keeps the Ur-world with ALICE and BOB in it:
     coaching toward the Ur-world's own aims, never command (founder,

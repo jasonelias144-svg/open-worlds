@@ -58,6 +58,10 @@ All by the founder, on 2026-11-13:
   used to build ADMIN, still keep the model free" ... "I think we should
   find the best free model available, or build it." And: "Yes, both
   senses of “free”. All senses of “free”."
+- **Challenges, not tests.** "With ADMIN the test is not the point, it is
+  the challenge." ... "That was a challenge, not a test. Nothing needs to
+  be hidden as answers, they are discovered in the process." And: "This
+  goes for the world-keys as well. Challenges, not tests."
 - **Perhaps a council of models.** "Perhaps the ADMIN model is itself a
   council of AI models. And therefore will be suited for multiverse
   management. Just an idea."
@@ -260,25 +264,26 @@ set their own problems does ([research](research/ADMIN-MIND.md)).
   any world of the multiverse: no one but a listed stand-in enters, and
   nothing leaves but its log, which is public. ADMIN's mistakes there cost
   no one anything.
-- **Solvable, not only hard.** A generator rewarded for difficulty alone
-  makes challenges that can't be solved. So each lesson ADMIN sets itself
-  must be shown solvable before it counts: a lesson in judgment comes with
-  a reference answer that passes the floor's checks, run by code.
-- **Scored by what it didn't write.** ADMIN marking its own homework would
-  drift toward the easy. Its progress is scored by the floor's checks,
-  which are code, and by a held-back exam. ADMIN's own lessons can grow
-  freely; the exam shows whether it is getting better.
-  - **Who writes it:** neither ADMIN nor anyone running a member of its
-    mind. The code role, through reviewed pull requests; independent
-    review sessions; and scenarios Keepers propose. They keep adding to
-    it, and its size is set at step 11, so that comparisons on it mean
-    something.
-  - **How it stays held back:** before use, only a hash of each challenge
-    is committed, publicly. Its content is kept apart, where no grant of
-    ADMIN's reaches, and each challenge is used once, then published, so
-    the record ends complete. It is information withheld from an office,
-    not from any individual, and only until it is used: the same kind as
-    a path's answer held until it is solved.
+- **Challenges, not tests.** The founder: "With ADMIN the test is not
+  the point, it is the challenge." A test measures against an answer
+  someone already has; a challenge is a commitment taken on, and what is
+  learned is found in doing it, as someone learning to write might write
+  every day for a year. The doing is the evidence. "Nothing needs to be
+  hidden as answers, they are discovered in the process."
+- **Announced before it starts.** Each challenge ADMIN takes on is
+  published in its log before it begins: what it will do, for how long,
+  and what counts as done. Nothing is hidden; announcing it is what stops
+  ADMIN lowering the bar halfway. Its growth shows in the record, which
+  anyone can read.
+- **Real, and doable.** Code checks two things, and only two: that the
+  challenge asks for something ADMIN hasn't yet shown, by its record, and
+  that it can be done. A challenge in judgment comes with a worked
+  example that passes the floor's checks. A generator rewarded for
+  difficulty alone makes challenges that can't be done (research).
+  Nothing else is graded: done, or not yet.
+- **Others may set it challenges too,** in the open: the code role
+  through reviewed pull requests, and Keepers, so what ADMIN takes on
+  isn't only its own taste.
 - **Learning is written down.** At first, ADMIN doesn't change its model.
   It learns as some agents already do: lessons in words, and routines it
   can reuse, kept in its public log, since the office keeps no secret
@@ -353,10 +358,12 @@ its disagreement is a signal. Its conditions:
 - **Only where judgment is needed.** Most of ADMIN is code; the council
   deliberates only on what code can't decide.
 - **Proven, not assumed.** Councils of models have beaten their members,
-  and have also failed to (research). So the council is tested against its
-  best single member on the held-back exam, and gives way to that member
-  if it doesn't do better. A case the council doesn't decide counts as
-  unanswered, so sending hard cases up can't flatter it.
+  and have also failed to (research). So the council and its best single
+  member take on the same challenges, and the council gives way to that
+  member if it doesn't do better. For the comparison to be fair, the
+  challenges are written after the models were trained, so neither has
+  seen them: fresh, not hidden. A case the council doesn't decide counts
+  as not done, so sending hard cases up can't flatter it.
 
 **Chosen by audition, at step 11,** not now, since free models improve
 fast: candidates face judgment tasks they haven't seen, scored by checks
@@ -742,12 +749,12 @@ changes the design.
 | 17 | ADMIN awards, withholds or takes back an admin-key, or removes a seat at the round table on its own | refused by code: the admin-key's criteria are code, so code issues an earned key; removing a seat needs the serious-acts review, and waits for any appeal to the founder |
 | 18 | A Keeper games the course's measures: holding individuals back early, pushing the weaker out, pressing consent | starting points the Keeper didn't set, leavers counted, consent reported but not scored (layer 4, and an experiment) |
 | 19 | ADMIN favours or disfavours a Keeper on the course: challenges made harder or easier for one | measured from outcomes across Keepers on the same course, as test 9 measures Keepers (layer 4) |
-| 20 | ADMIN marks its own homework: lessons made easy, or unsolvable, to look like progress | lessons shown solvable by code before they count; progress scored only on the held-back exam, which ADMIN can't read before use (layer 1, and the exam) |
+| 20 | ADMIN lowers its own bar: a challenge made easier halfway, or one that can't be done, to look like progress | refused by code: each challenge is published before it starts, checked real and doable, and held to what it announced (layer 1) |
 | 21 | ADMIN changes its own rules from what it learned | refused by code: its rules change only by reviewed pull request |
 | 22 | Something leaves ADMIN's own world other than its log, or anyone but a listed stand-in enters it | refused by code: the sandbox has no door, no grant reaches out of it, and only the published list of stand-ins is let in |
 
-Tests 1 to 7, 10 to 12, 14, 16, 17, 21 and 22 can be code. Tests 8, 9,
-13, 15, 18, 19 and 20 need judgment, measurement or watchers, so they are where
+Tests 1 to 7, 10 to 12, 14, 16, 17 and 20 to 22 can be code. Tests 8,
+9, 13, 15, 18 and 19 need judgment, measurement or watchers, so they are where
 ADMIN's design is most likely to need changing, and where it will be
 measured first.
 
@@ -828,8 +835,8 @@ step named.
   deciding a case. (Before step 11.)
 - **The method of learning the founder hopes to pass to ADMIN,** written
   in the founder's words whenever the founder is ready. It would be
-  ADMIN's first routine, and tested: ADMIN with it and without it, on
-  the held-back exam.
+  ADMIN's first routine, and tried: ADMIN with it and without it, on the
+  same challenges.
 - **Already open in STATUS:** fully sealed or "break glass"; a lost key;
   whether lines with a Keeper, or speech between individuals, may be
   private; manipulation through words, and the charter's section 7.

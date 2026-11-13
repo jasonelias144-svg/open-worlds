@@ -35,11 +35,12 @@ licences are as Hugging Face gave them that day.
   oversight due to lingering safety concerns"
   ([version 3](https://arxiv.org/html/2505.03335v3)).
 
-Taken: ADMIN sets its own lessons, but each must be solvable, not only
-hard, and it is scored by something it didn't write: the floor's checks,
-which are code, and an exam held back from it. Its self-improvement stays
-under oversight: what it learns can propose a change to its rules, never
-make one.
+Taken: ADMIN sets its own challenges, but each must be doable, not only
+hard, and must ask for something it hasn't yet shown, which code checks.
+Each is published before it starts, so nothing is hidden and the bar
+can't be lowered halfway: the founder's "Challenges, not tests". Its
+self-improvement stays under oversight: what it learns can propose a
+change to its rules, never make one.
 
 ## Learning without changing the model
 
@@ -80,7 +81,9 @@ change allows it.
 
 Taken: a council of models can beat its members, using open models
 alone, but doesn't reliably. So ADMIN's council has to prove itself
-against its best single member on the held-back exam, or give way to it.
+against its best single member on the same challenges, written after
+the models were trained so that neither has seen them, or give way to
+it.
 
 ## Free, in all senses
 

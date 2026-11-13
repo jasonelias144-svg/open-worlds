@@ -173,8 +173,8 @@ the technical lead's recommendation.
   about the world that its participants can't also know"): two exceptions
   now stand in the design, and the section should name them: the answer to
   a challenge, held until it is solved, and each individual's sealed self.
-  ADMIN's held-back exam is of the first kind: withheld from an office,
-  not an individual, and only until each challenge is used.
+  The first may go: the founder has said "Challenges, not tests" for the
+  world-keys too, and that change follows this PR.
   If the founder chooses a private line with a Keeper, or private speech
   between individuals, those would be exceptions too. (noted 2026-11-13)
 
@@ -196,6 +196,12 @@ the technical lead's recommendation.
 
 ## Decided
 
+- 2026-11-13, founder: "With ADMIN the test is not the point, it is the
+  challenge." ... "That was a challenge, not a test. Nothing needs to be
+  hidden as answers, they are discovered in the process." And: "This
+  goes for the world-keys as well. Challenges, not tests." So ADMIN's
+  hidden exam is dropped for challenges announced in the open
+  (docs/ADMIN.md), and the world-keys follow in the next PR.
 - 2026-11-13, founder, on how ADMIN learns and what it runs on
   (docs/ADMIN.md, "ADMIN's own world" and "ADMIN's mind"): "Perhaps ADMIN
   should design its own training program, and follow it to completion,
@@ -479,29 +485,29 @@ it was wrong. Questions of what the project is for stay with the founder.
   view is logged, and a serious act goes to the founder (or, once
   decided, the check outside the code role), never to the review as a
   tie-breaker; one office, one key, one seat; members from different
-  makers; tested against its best single member on the held-back exam,
-  with undecided cases counted as unanswered. *Why:* the research is
+  makers; tried against its best single member on the same fresh
+  challenges, with undecided cases counted as not done. *Why:* the research is
   mixed: councils of models have beaten their members, and have also
   failed to (docs/research/ADMIN-MIND.md); and agreement or no act
   matches the round table. *Revisit if:* the council doesn't beat its
-  best member on the exam, or more than one serious case in five goes
+  best member on those challenges, or more than one serious case in five goes
   undecided, or cases wait for the founder longer than a week.
 - 2026-11-13, ADMIN learns by written lessons and routines in its public
   log, not by changing its model, and what it learns can only propose a
   change to its rules. *Why:* lessons in words can be read and checked by
   anyone, and the authors of a self-improving system say it "still
-  necessitates oversight". *Revisit if:* ADMIN stops improving on the
-  held-back exam with lessons alone, over three rounds of the exam in a
-  row; then training its model on its record is proposed, by reviewed
-  change.
+  necessitates oversight". *Revisit if:* ADMIN stops growing with lessons
+  alone, three announced challenges in a row not done; then training its
+  model on its record is proposed, by reviewed change.
 
 ## Log
 
 - 2026-11-13 Claude: ADMIN learns first, in a world of its own
   (docs/ADMIN.md; research in docs/research/ADMIN-MIND.md). The
   founder's ideas written up: ADMIN takes its own course in a sandbox
-  with stand-ins, scored by the floor's checks and an exam it didn't
-  write, learning by written lessons, and improving how it learns, never
+  with stand-ins, taking on challenges it announces before it starts,
+  with nothing hidden ("Challenges, not tests"), learning by written
+  lessons, and improving how it learns, never
   what it may do; its mind free in four senses, chosen by audition at
   step 11; and perhaps a council of models, one office with one seat,
   agreeing or sending a case up. Also the last notes from #34's review:
