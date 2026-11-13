@@ -145,13 +145,15 @@ and for the founder's conversations with DeepSeek, is in
 ## Log
 
 - 2026-11-13 Claude: course step 6, part one. Keys can be saved encrypted
-  (`multiverse/keys.py`: PKCS12, PBKDF2-HMAC-SHA256 at 600,000
-  iterations, AES-256-CBC; readable by the owner only; never written
-  over an existing file unless asked), for individuals and for worlds,
-  which can be built again with their saved key and keep their identity.
-  A world can save the request numbers it has seen, signed, and take
-  them back after a restart, so an old request can't be replayed to it.
-  Lost-key recovery waits for the founder's answer.
+  (`multiverse/keys.py`: OpenSSH's format, bcrypt-pbkdf with 64 rounds,
+  AES-256-CTR; readable by the owner only; never written over an
+  existing file unless asked), for individuals and for worlds, which can
+  be built again with their saved key and keep their identity. PKCS12
+  was tried first; its integrity check let a guesser test passphrases
+  through only 2,048 rounds (found by the independent review). A world
+  can save the request numbers it has seen, signed, and take them back
+  after a restart, so the requests it had seen by the last save can't be
+  replayed to it. Lost-key recovery waits for the founder's answer.
 
 - 2026-11-13 Claude: course step 5, the first journey. Cycle 0's corridor
   speaks the protocol, on the world kernel, with doors that name the

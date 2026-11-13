@@ -7,3 +7,8 @@
 # (multiverse/ed25519.py), and keys saved encrypted (multiverse/keys.py). A
 # vetted library, so no signature or encryption code of our own.
 cryptography==50.0.2
+
+# Saving keys encrypted (multiverse/keys.py): cryptography needs it to write
+# OpenSSH key files, whose passphrase goes through bcrypt-pbkdf. From the
+# same maintainers (pyca).
+bcrypt==5.0.0

@@ -453,13 +453,20 @@ What it doesn't do yet, said plainly:
 
 - **A key can be saved, encrypted with a passphrase**
   (`multiverse/keys.py`: `save_key`, `load_individual`, `load_signer`).
-  The file is PKCS12, which `openssl` also reads, holding only the key:
-  PBKDF2-HMAC-SHA256 at 600,000 iterations (the current OWASP figure)
-  and AES-256-CBC, from the `cryptography` package. The more common
-  PKCS8 "best available" encryption uses only 2,048 iterations, too few
-  for a passphrase. The file is readable by its owner only, is written
-  whole or not at all, and never replaces an existing file unless asked:
-  losing a key file loses the key.
+  The file is in OpenSSH's private-key format, which `ssh-keygen` also
+  reads, written by the `cryptography` package: the passphrase goes
+  through bcrypt-pbkdf with 64 rounds (about half a second per try), and
+  the key is encrypted with AES-256-CTR. A wrong passphrase is found out
+  only after the whole derivation; the file has no cheaper check. Text
+  passphrases are normalised to Unicode NFC first. The file is readable
+  by its owner only, is written whole or not at all, and never replaces
+  an existing file unless asked: losing a key file loses the key.
+- **Why not PKCS12.** The first version saved PKCS12 with 600,000 rounds
+  of PBKDF2 for the key, but PKCS12's integrity check takes the same
+  passphrase through only 2,048 rounds, and anyone with the file can
+  test guesses against that instead, some 300 times faster. The
+  independent review of #23 found it; the library can't raise that
+  count, so the format changed.
 - **A backup is another saved copy,** kept somewhere else.
 - **A world comes back as itself.** Built with its saved key
   (`PoetryWorld(..., key=...)`, and the same for every world), a
@@ -467,9 +474,10 @@ What it doesn't do yet, said plainly:
   count. A world restarted with a new key is a new world, and refuses
   stamps in the old one's name.
 - **A world keeps the numbers it has seen** (`save_seen`, `load_seen`,
-  `Entity.restore_seen`), so after a restart an old request can't be
-  replayed to it. The file is signed by the world's key, so a changed
-  file, or another world's, is refused; restored numbers only ever grow.
+  `Entity.restore_seen`), so after a restart the requests it had seen by
+  the last save can't be replayed to it. The file is signed by the
+  world's key, so a changed file, or another world's, is refused;
+  restored numbers only ever grow.
 
 What it doesn't do yet, said plainly:
 
@@ -479,8 +487,13 @@ What it doesn't do yet, said plainly:
   signed over to a new one while it still works, and, when a key is lost
   with no successor, what the founder decides.
 - **Saving is the operator's job.** Nothing saves a world's seen numbers
-  by itself; a world restarted without them is as open to a replay as
-  before.
+  by itself. A world restarted without them, or from an older copy
+  (still validly signed: a signature stops changes, not old copies),
+  accepts once any request it saw after that copy was saved. Keep the
+  file where only the operator can write, and save as often as that
+  matters.
+- **Open only your own key files.** A file made by someone else could
+  ask for a huge number of rounds, and take very long to open.
 
 ## The course
 

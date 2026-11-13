@@ -7,47 +7,61 @@ can prove to be it again. A world that restarts with a new key is a new
 world, and its old stamps no longer link to it. So:
 
 - **A key is saved to a file, encrypted with a passphrase** (`save_key`,
-  `load_signer`, `load_individual`). The file is PKCS12, the standard
-  container `openssl` also reads, holding only the key: PBES2 with
-  PBKDF2-HMAC-SHA256 at 600,000 iterations (the current OWASP figure)
-  and AES-256-CBC, from the `cryptography` package. PKCS8's "best
-  available" encryption uses only 2,048 iterations, which a passphrase
-  can't afford. The file is written readable by its owner only, and
-  never over an existing file unless asked: losing a key file loses the
-  key.
+  `load_signer`, `load_individual`). The file is in OpenSSH's private-key
+  format, which `ssh-keygen` also reads, written by the `cryptography`
+  package: the passphrase goes through bcrypt-pbkdf with 64 rounds
+  (about half a second per try on an ordinary computer), and the key is
+  encrypted with AES-256-CTR. A wrong passphrase is found out only after
+  the whole derivation: the file holds no cheaper check. (PKCS12 was
+  tried first, but its integrity check takes the same passphrase through
+  only 2,048 rounds of PBKDF2, which a guesser can use instead of the
+  key's; the independent review of #23 found it.) Text passphrases are
+  normalised to Unicode NFC first, so the same words typed on different
+  systems open the same file.
+- **The file is written readable by its owner only,** whole or not at
+  all, and never over an existing file unless asked: losing a key file
+  loses the key.
 - **A backup is another saved copy,** somewhere else. The passphrase is
   the only way in: nobody, open-worlds included, can recover it.
 - **A world keeps the numbers it has seen** (`save_seen`, `load_seen`),
-  so that after a restart an old request can't be replayed to it
-  (protocol.request_problem). The file is public data, signed by the
-  world's key, so a changed file is refused.
+  so that after a restart the requests it had seen by the last save
+  can't be replayed to it (protocol.request_problem). The file is public
+  data, signed by the world's key, so a changed file is refused. An
+  older copy is still validly signed, though: restored from it, a world
+  would accept, once, a request it saw after that copy was saved. Keep
+  the file where only the world's operator can write, and save it as
+  often as that matters.
 
 Replacing a key while the old one still works, and what happens when a
 key is lost, come next in this step (docs/COURSE.md).
 """
 from __future__ import annotations
 
+import errno
 import json
 import os
 import tempfile
+import unicodedata
 from typing import Dict, Union
 
+from cryptography.exceptions import UnsupportedAlgorithm
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric.ed25519 import (
     Ed25519PrivateKey)
-from cryptography.hazmat.primitives.serialization import pkcs12
 
 from .identity import Individual, Signer, signature_valid, token_problem
 from .protocol import PROTOCOL_VERSION
 
-ROUNDS = 600_000
-FRIENDLY_NAME = b"open-worlds key"
+# bcrypt-pbkdf rounds. Each round costs the same, so the time per try
+# grows with them: 64 took about 0.6 s here (ssh-keygen's default, 16,
+# about 0.15 s; the bcrypt package warns below 50).
+ROUNDS = 64
 Passphrase = Union[str, bytes]
 
 
 def _passphrase(passphrase: object) -> bytes:
     if type(passphrase) is str:
-        passphrase = passphrase.encode("utf-8")
+        passphrase = unicodedata.normalize("NFC", passphrase).encode("utf-8")
     if type(passphrase) is not bytes or not passphrase:
         raise ValueError("a passphrase must be non-empty text or bytes")
     return passphrase
@@ -69,7 +83,18 @@ def _write_new(path: str, data: bytes, overwrite: bool) -> None:
         if overwrite:
             os.replace(tmp, path)
         else:
-            os.link(tmp, path)          # fails if `path` exists
+            try:
+                os.link(tmp, path)      # fails if `path` exists
+            except FileExistsError:
+                raise
+            except OSError as e:
+                if e.errno in (errno.EPERM, errno.ENOTSUP, errno.EOPNOTSUPP,
+                               errno.EXDEV, errno.EMLINK):
+                    raise OSError(
+                        e.errno, "this filesystem can't make the hard link "
+                        "that saving without overwriting needs; save "
+                        "elsewhere, or pass overwrite=True") from None
+                raise
             os.unlink(tmp)
         tmp = None
         dir_fd = os.open(folder, os.O_RDONLY)
@@ -89,26 +114,26 @@ def save_key(signer: Signer, path: str, passphrase: Passphrase, *,
     """Save `signer`'s key to `path`, encrypted with `passphrase`."""
     if not isinstance(signer, Signer):
         raise ValueError("only a Signer's key can be saved")
-    encryption = (serialization.PrivateFormat.PKCS12.encryption_builder()
-                  .kdf_rounds(ROUNDS)
-                  .key_cert_algorithm(
-                      pkcs12.PBES.PBESv2SHA256AndAES256CBC)
-                  .build(_passphrase(passphrase)))
+    encryption = (serialization.PrivateFormat.OpenSSH.encryption_builder()
+                  .kdf_rounds(ROUNDS).build(_passphrase(passphrase)))
     key = Ed25519PrivateKey.from_private_bytes(signer._secret)
-    data = pkcs12.serialize_key_and_certificates(
-        FRIENDLY_NAME, key, None, None, encryption)
+    data = key.private_bytes(serialization.Encoding.PEM,
+                             serialization.PrivateFormat.OpenSSH, encryption)
     _write_new(path, data, overwrite)
 
 
 def _load_secret(path: str, passphrase: Passphrase) -> bytes:
+    """The key in a file save_key wrote. A file someone else made could
+    ask for any number of rounds and so take long to open: open only
+    your own."""
     passphrase = _passphrase(passphrase)
     with open(path, "rb") as f:
         data = f.read()
     try:
-        key, _, _ = pkcs12.load_key_and_certificates(data, passphrase)
-    except ValueError:
-        raise ValueError("the passphrase is wrong, or this isn't a key "
-                         "file") from None
+        key = serialization.load_ssh_private_key(data, passphrase)
+    except (ValueError, TypeError, UnsupportedAlgorithm):
+        raise ValueError("the passphrase is wrong, or this isn't an "
+                         "encrypted key file") from None
     if not isinstance(key, Ed25519PrivateKey):
         raise ValueError("the file doesn't hold an Ed25519 key")
     return key.private_bytes_raw()
