@@ -311,3 +311,101 @@ class TestTheRecord(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestPerform(unittest.TestCase):
+    """An agent's act: one given reaction, now, in one cell."""
+
+    def soup(self):
+        soup = Soup(2, 1, volume=10.0, seed=3)
+        soup.add_species(GLYCINE, hop_rate=1.0)
+        soup.add_species(WATER, hop_rate=1.0)
+        soup.put((0, 0), GLYCINE, 3)
+        soup.put((1, 0), WATER, 2)
+        return soup
+
+    def test_it_happens_now_and_keeps_every_atom(self):
+        soup = self.soup()
+        atoms, time, events = soup.atoms(), soup.time, soup.events
+        self.assertTrue(soup.perform((0, 0), [GLYCINE, GLYCINE],
+                                     [GLYCYLGLYCINE, WATER]))
+        self.assertEqual(soup.count(GLYCINE, (0, 0)), 1)
+        self.assertEqual(soup.count(GLYCYLGLYCINE, (0, 0)), 1)
+        self.assertEqual(soup.count(WATER, (0, 0)), 1)
+        self.assertEqual(soup.atoms(), atoms)
+        self.assertEqual((soup.time, soup.events), (time, events + 1))
+        last = soup.log[-1]
+        self.assertEqual(last["kind"], "perform")
+        self.assertEqual(last["data"]["cell"], [0, 0])
+        self.assertTrue(World.verify_log(soup.log))
+        # A new product is registered, still, as the world's species.
+        self.assertIn(GLYCYLGLYCINE, soup.species)
+
+    def test_it_needs_its_reactants_in_that_cell(self):
+        soup = self.soup()
+        for cell, reactants, products in (
+                # the water is in the other cell
+                ((0, 0), [WATER, WATER], [HYDRONIUM, HYDROXIDE]),
+                # only one glycine is in cell (1, 0): none, in fact
+                ((1, 0), [GLYCINE, GLYCINE], [GLYCYLGLYCINE, WATER]),
+                # formaldehyde isn't in this world at all
+                ((0, 0), [FORMALDEHYDE, WATER], [METHANEDIOL])):
+            with self.subTest(cell=cell, reactants=len(reactants)):
+                before = (soup.log_head, soup.events,
+                          [soup.count(m) for m in soup.species])
+                self.assertFalse(soup.perform(cell, reactants, products))
+                self.assertEqual(before, (soup.log_head, soup.events,
+                                          [soup.count(m) for m in soup.species]))
+        # Where the water is, it goes.
+        self.assertTrue(soup.perform((1, 0), [WATER, WATER],
+                                     [HYDRONIUM, HYDROXIDE]))
+        # As many of each as the reaction uses: three glycines make one
+        # dipeptide, and then one glycine is not enough.
+        self.assertTrue(soup.perform((0, 0), [GLYCINE, GLYCINE],
+                                     [GLYCYLGLYCINE, WATER]))
+        self.assertFalse(soup.perform((0, 0), [GLYCINE, GLYCINE],
+                                      [GLYCYLGLYCINE, WATER]))
+
+    def test_what_isnt_a_reaction_is_refused(self):
+        soup = self.soup()
+        for cell, reactants, products in (
+                ((0, 0), [GLYCINE], [WATER]),                    # unbalanced
+                ((0, 0), [GLYCINE], [GLYCINE]),                  # no change
+                ((0, 0), [], [GLYCINE]),
+                ((0, 0), (m for m in [GLYCINE]), [ZWITTERION]),  # not a list
+                ((0, 0), ["glycine"], [ZWITTERION]),
+                ((5, 0), [GLYCINE], [ZWITTERION]),               # no such cell
+                ([0, 0], [GLYCINE], [ZWITTERION])):
+            with self.subTest(reactants=reactants, cell=cell):
+                head = soup.log_head
+                with self.assertRaises(ValueError):
+                    soup.perform(cell, reactants, products)
+                self.assertEqual(soup.log_head, head)
+
+    def test_the_world_carries_on_from_what_was_done(self):
+        # The world's own reaction can't start until an act makes its
+        # reactant; then it can.
+        soup = Soup(1, 1, seed=2)
+        soup.add_reaction([ZWITTERION], [GLYCINE], 1.0)
+        soup.add_species(GLYCINE)
+        soup.put((0, 0), GLYCINE, 1)
+        self.assertFalse(soup.step())
+        self.assertTrue(soup.perform((0, 0), [GLYCINE], [ZWITTERION]))
+        self.assertTrue(soup.step())
+        self.assertEqual(soup.count(GLYCINE), 1)
+
+    def test_the_same_acts_replay_the_same_history(self):
+        def history(seed):
+            soup = Soup(2, 1, volume=10.0, seed=seed)
+            soup.add_species(GLYCINE, hop_rate=1.0)
+            soup.add_species(WATER, hop_rate=1.0)
+            soup.add_reaction([GLYCYLGLYCINE, WATER], [GLYCINE, GLYCINE], 0.1)
+            soup.put((0, 0), GLYCINE, 30)
+            soup.put((1, 0), WATER, 30)
+            for _ in range(5):
+                soup.run(max_events=50)
+                soup.perform((0, 0), [GLYCINE, GLYCINE],
+                             [GLYCYLGLYCINE, WATER])
+            return soup.log_head
+        self.assertEqual(history(4), history(4))
+        self.assertNotEqual(history(4), history(5))

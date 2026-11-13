@@ -63,6 +63,28 @@ def _positive_number(x: object, what: str, allow_zero: bool = True) -> float:
     return float(x)
 
 
+def _checked(reactants: Sequence[Molecule], products: Sequence[Molecule]
+             ) -> Tuple[Tuple[Molecule, ...], Tuple[Molecule, ...]]:
+    """Both sides as tuples, if they make a reaction: valid molecules on
+    each side, the same atoms and charge, and some change. ValueError if
+    not."""
+    if type(reactants) not in (list, tuple) or type(products) not in (list, tuple):
+        raise ValueError("reactants and products must each be a list or tuple")
+    reactants, products = tuple(reactants), tuple(products)
+    if not reactants or not products:
+        raise ValueError("a reaction needs reactants and products")
+    for m in reactants + products:
+        if type(m) is not Molecule or m.problems():
+            raise ValueError(f"not a valid molecule: {m!r}")
+    if not balance(reactants, products):
+        raise ValueError("a reaction must keep every atom and the total charge")
+    net = Counter(m.identity() for m in products)
+    net.subtract(m.identity() for m in reactants)
+    if not any(net.values()):
+        raise ValueError("a reaction must change something")
+    return reactants, products
+
+
 class Soup:
     """A grid of well-mixed cells. See the module docstring."""
 
@@ -126,21 +148,10 @@ class Soup:
         """Add a reaction, with its mass-action rate constant. Both sides must
         have the same atoms and charge. Unknown molecules are registered with
         a hop rate of 0. Returns the reaction's index."""
-        reactants, products = tuple(reactants), tuple(products)
-        if not reactants or not products:
-            raise ValueError("a reaction needs reactants and products")
+        reactants, products = _checked(reactants, products)
         rate = _positive_number(rate, "rate")
         if rate > MAX_RATE:
             raise ValueError(f"rate must be at most {MAX_RATE}")
-        for m in reactants + products:
-            if type(m) is not Molecule or m.problems():
-                raise ValueError(f"not a valid molecule: {m!r}")
-        if not balance(reactants, products):
-            raise ValueError("a reaction must keep every atom and the total charge")
-        net = Counter(m.identity() for m in products)
-        net.subtract(m.identity() for m in reactants)
-        if not any(net.values()):
-            raise ValueError("a reaction must change something")
         # Only now, with every check passed, are new molecules registered.
         ids = [self.add_species(m) if m.identity() not in self._index
                else self._index[m.identity()] for m in reactants + products]
@@ -169,6 +180,34 @@ class Soup:
         self._counts[c][i] += count
         self._refresh(c)
         self._record("put", {"cell": list(cell), "species": i, "count": count})
+
+    def perform(self, cell: Cell, reactants: Sequence[Molecule],
+                products: Sequence[Molecule]) -> bool:
+        """Make one given reaction happen now, in one cell: an agent's act,
+        not one of the world's own reactions. Both sides must have the same
+        atoms and charge (ValueError otherwise), and every reactant must be
+        in the cell, as many of each as the reaction uses. If one isn't,
+        returns False and changes nothing. New products are registered with
+        a hop rate of 0. Time doesn't advance: the act takes no time."""
+        c = self._cell(cell)
+        reactants, products = _checked(reactants, products)
+        need = Counter(m.identity() for m in reactants)
+        counts = self._counts[c]
+        for key, m in need.items():
+            if key not in self._index or counts[self._index[key]] < m:
+                return False
+        ids = [self.add_species(m) if m.identity() not in self._index
+               else self._index[m.identity()] for m in reactants + products]
+        for i in ids[:len(reactants)]:
+            counts[i] -= 1
+        for i in ids[len(reactants):]:
+            counts[i] += 1
+        self._refresh(c)
+        self.events += 1
+        self._record("perform", {"cell": self._xy(c),
+                                 "reactants": ids[:len(reactants)],
+                                 "products": ids[len(reactants):]})
+        return True
 
     # -- reading the world --
 
