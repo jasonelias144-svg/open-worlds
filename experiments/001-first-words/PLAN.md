@@ -29,7 +29,9 @@ Two stand-ins, **TRIAL-1** and **TRIAL-2**, not ALICE and BOB. ALICE's and
 BOB's first unscripted words are kept for the minds their audition
 chooses. This is the technical lead's recommendation to the founder, who
 hasn't answered yet. If the founder decides otherwise before the runs, the
-change goes into this plan as a dated amendment first.
+change goes into this plan as a dated amendment first. (The founder
+agreed, on 2026-11-13, during the second attempt: "Agree on TRIAL-1 and 2
+for now.")
 
 ## The models
 

@@ -34,4 +34,4 @@ kind, not word for word.
 
 | # | Question | State |
 |---|---|---|
-| [001](001-first-words/PLAN.md) | What do the smallest open language models do when they are put in the garden, unscripted? | Planned |
+| [001](001-first-words/PLAN.md) | What do the smallest open language models do when they are put in the garden, unscripted? | Done: [results](001-first-words/RESULTS.md) |

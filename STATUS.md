@@ -22,8 +22,11 @@ respect one another's freedom, with full transparency and exit at any time
 - Claude: the Ur-world ([docs/URWORLD.md](docs/URWORLD.md)). The
   garden's Hello World (#28) and the doorway for minds are in: an
   orientation, what a mind sees written out, replies read strictly, and
-  minds as programs in any language. Next: the first experiments with
-  unscripted minds from the smallest open models, in `experiments/`.
+  minds as programs in any language. Experiment 001, the first
+  unscripted minds from the smallest open models, is done
+  ([results](experiments/001-first-words/RESULTS.md)). Next: ALICE's and
+  BOB's design (the parts that persist, the layers of what a mind is told,
+  and how information moves), then their records and memory.
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
@@ -81,9 +84,6 @@ and for the founder's conversations with DeepSeek, is in
   old key (course step 6, part two), so the same guardians could sign
   that a key is no longer to be trusted. (asked 2026-11-13, for course
   step 6)
-- For the founder: should ALICE's and BOB's memories be public, as their
-  actions are, or private, like a person's mind? Recommended: public, at
-  least at first. (asked 2026-11-13)
 - For the founder: a course step for persons after step 3, and the
   architectures (octopus, relay, swarm, council) as small examples on the
   unchanged core? Recommended: yes. (asked 2026-11-13)
@@ -203,8 +203,37 @@ and for the founder's conversations with DeepSeek, is in
   architecture"; and next, "experimenting with the most basic models that
   are capable of generating their own output, unscripted".
 
+- 2026-11-13, founder, on the trials and on ALICE and BOB:
+  - "Agree on TRIAL-1 and 2 for now."
+  - ALICE's and BOB's minds will come from Qwen and OLMo: "I completely
+    agree with [Qwen] and OLMo, those would be my two choices as well."
+  - Begin their design before going back to DeepSeek: "We just need to
+    build out the simplest start, but with the parts that will persist
+    through the development process."
+- 2026-11-13, founder, on where things live: "I would like to keep
+  everything as public as possible." Whatever must be kept from the wider
+  world stays "public to our project", in GitHub but private. "I would
+  prefer to not have anything live on my computer or be dependent upon
+  anything that cannot be picked up by someone else later." "Let's keep
+  everything online. Everything accessible, even if only at project
+  level." So ALICE's and BOB's journals are public, and their private
+  keys go in a private repository of the project.
+
 ## Log
 
+- 2026-11-13 Claude: experiment 001, the first unscripted minds
+  ([experiments/001-first-words](experiments/001-first-words/RESULTS.md)).
+  Five small open models, from 135 million to 1.7 billion parameters,
+  went into the garden two of a kind, four runs each, with the plan and
+  predictions committed before any model ran.
+  - The smallest never acted. From 360 million parameters, nearly every
+    reply was a readable action, but mostly steps.
+  - Real exchanges between the two minds began at 1.7 billion ("What
+    else can you see from up there?").
+  - The orientation's two examples became scripts, said over and over.
+  - Six of the ten predictions held.
+  - A first attempt was found to sample with settings the library filled
+    in; it is kept, and the plan records the amendment.
 - 2026-11-13 Claude: the Ur-world's doorway for minds
   (`rust/ur-world/src/door.rs`, docs/URWORLD.md). A mind can be any
   program, in any language, speaking lines of JSON: it is sent the world's
