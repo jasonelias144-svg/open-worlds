@@ -347,9 +347,11 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 - 2026-11-13, sealing the world-key: HPKE's base mode, DHKEM(X25519,
   HKDF-SHA256) with ChaCha20Poly1305. What is sealed is always signed
-  first and names its recipient, who checks it. *Why:* Python's
+  first and names its recipient, who checks it, and HPKE's `info` names
+  the purpose (`open-worlds/world-key/v1`). *Why:* Python's
   `cryptography`, already a dependency, has base mode only; the signature
-  inside says who sealed the box, which is what Auth mode would add; and
+  inside says who issued what the box holds, which, for the earner,
+  covers what Auth mode would add; and
   it needs no new library and no cryptography put together by hand. It
   departs from the founder's design (the seal "generated from the
   individuals public key and the world public key"), and the founder was

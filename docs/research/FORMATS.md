@@ -157,11 +157,14 @@ founder proposed ("generated from the individuals public key and the
 world public key"). Python's `cryptography` can't do that. Base mode can:
 a key made from a fresh one-time key and the earner's key, so the box is
 still "readable only by the individual", and the Ur-world's signature
-inside says who sealed it.
+inside says who issued what it holds.
 
 What base mode changes:
 
-- **The box no longer says who made it;** the signature inside does.
+- **The box no longer says who made it;** the signature inside says who
+  issued what it holds. For the earner, that covers what Auth mode would
+  give, and it can be shown to others too. Anyone holding the signed
+  world-key could seal it again; the next point makes that harmless.
 - **So the signed content must name its recipient** (the credential's
   subject, as the earner's did:key), and whoever opens it checks that it
   is theirs. Otherwise an earner could seal their signed world-key to a
@@ -179,7 +182,9 @@ deferred on technical matters ([STATUS.md](../../STATUS.md), "Decided by
 the technical lead"): base mode, with DHKEM(X25519, HKDF-SHA256) and
 ChaCha20Poly1305, available in both languages without a new dependency in
 Python; what is sealed is always signed first, and names its recipient,
-who checks it. It departs from the founder's design, and the founder was
+who checks it; and HPKE's `info` carries a label naming the purpose and
+its version (`open-worlds/world-key/v1`), so a box made for one purpose
+can't be passed off as another. It departs from the founder's design, and the founder was
 told so the same day. The alternatives, not taken: Auth mode, which keeps
 the design page's "key that only the two of them can make", at the cost
 of sealing in Rust only, a new Python library, or Auth mode built by hand
