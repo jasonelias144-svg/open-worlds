@@ -43,6 +43,11 @@ All by the founder, on 2026-11-13:
   that consensus should be the standard." And: "just because only one
   seat is currently filled, does not mean there is no room at the table
   for more seats."
+- **ADMIN's first work: training the Ur-world's Keeper.** "So the first
+  interaction would be ADMIN plotting a training course for the Keeper of
+  Ur-world. The first Keeper. We can name later. But ADMIN would begin by
+  working with that Keeper, providing direction in how to manage
+  Ur-world."
 - **The Ur-world is the first world, not the multiverse.** "the Ur-world
   is the first world in the multiverse" ... "The admin-key is a wider one.
   The multiverse contains the Ur-world as its first."
@@ -121,10 +126,11 @@ Keeper like any other:
   grants, the round table, the Keepers' training) is built for many
   worlds from the start, and the Ur-world fills the first place.
 
-The project founded the Ur-world, so the project, not individuals with a
-world-key, chooses who first keeps it: an AI Keeper, assigned under these
-rules at step 11. Whether that Keeper has a name of its own is a question
-for the founder (below).
+The project founded the Ur-world, so the project (in practice the code
+role, and the record says so), not individuals with a world-key, chooses
+who first keeps it: an AI Keeper, assigned under these
+rules at step 11. Its name comes later ("We can name later"). ADMIN's
+first work is to train it (below, "Training for keeping worlds").
 
 ## ADMIN
 
@@ -210,9 +216,9 @@ approved is appealed straight to the founder. A ruling changed on appeal
 is changed from then on; the record keeps both.
 
 **Serious acts,** which are reviewed independently before they take
-effect: anything that touches an individual; a Keeper's removal; and
-narrowing or suspending a grant. Who reviews them, beyond a fresh session,
-is open (below).
+effect: anything that touches an individual; a Keeper's removal;
+removing a seat at the round table; and narrowing or suspending a grant.
+Who reviews them, beyond a fresh session, is open (below).
 
 ### ADMIN lasts
 
@@ -244,13 +250,14 @@ individual:
   admin-key is required, and a seat is a share of power: held with
   others, over the rules every office works under, never over an
   individual, a world's law or the charter;
-- **a mark of readiness, not a gate, for keeping a world:** when a world's founders choose
-  whom to hand their world to, or the multiverse assigns a Keeper, the
-  admin-key shows that one is ready, and the founders may weigh it. It is
-  never required: the founder's three choices of who keeps a world stand
-  as decided. When the multiverse assigns a Keeper, it is ADMIN that may
-  weigh it, and there too it is never required. Whether it should ever
-  become a requirement is the founder's to say;
+- **a mark of readiness, not a gate, for keeping a world:** when a
+  world's founders choose whom to hand their world to, the admin-key shows
+  that one is ready, and the founders may weigh it. It is never required:
+  the founder's three choices of who keeps a world stand as decided. When
+  the multiverse assigns a Keeper, ADMIN doesn't choose it: code draws it
+  by lot from a published pool of AI Keepers with the temperament the
+  world's founders chose, and the record says so. Whether the admin-key
+  should ever become a requirement is the founder's to say;
 - **a voice in the multiverse:** mentoring young Keepers, and, when ADMIN
   hears a dispute, being asked for advice: advice only, by grant, logged,
   with the decision staying where it is;
@@ -281,11 +288,13 @@ secret files. It is also where ADMIN measures whether Keepers are fair
   paths improve every outcome on the path itself: less time, fewer
   attempts, more solved. So the course measures what a Keeper can't lower:
   - **what the individual can do afterwards,** on challenges the Keeper
-    didn't design: ADMIN's own, played by those who agree to, or the next
-    path, plotted by an independent Keeper. That Keeper is chosen by lot,
-    by code, from Keepers who in the measured period haven't kept a world
-    with the Keeper measured, held a grant from it or given it one, or sat
-    on a case about it, and whose own admin-key it doesn't affect;
+    didn't design: ADMIN's own, offered to individuals who agree to take
+    them; or the next path an individual meets anyway, in a world they
+    chose. A next path counts only if a Keeper independent of the one
+    measured plotted it: one who in the measured period hasn't kept a
+    world with it, held a grant from it or given it one, or sat on a case
+    about it, and whose own admin-key it doesn't affect. Nothing in a real
+    world is designed or assigned for the course;
   - **a floor,** checked by the world's code: each challenge must need
     something the individual hasn't yet shown, by the record. So every
     challenge declares what it needs. The record of what each individual
@@ -299,7 +308,8 @@ secret files. It is also where ADMIN measures whether Keepers are fair
   - **Change, from a starting point the Keeper didn't set.** Each
     individual's change is measured from evidence the Keeper didn't
     design: an ADMIN challenge on entering, taken with consent, or their
-    record from other worlds. So a Keeper gains nothing by holding
+    record from other worlds, if they have linked it and agree. So a
+    Keeper gains nothing by holding
     individuals back early, or by drawing in only strong ones.
   - **No one dropped.** Those who left during the measured period are
     counted, from their start to when they left, so a Keeper gains
@@ -307,13 +317,18 @@ secret files. It is also where ADMIN measures whether Keepers are fair
     measuring only.
   - **Consent, never pressed.** How many agree to ADMIN's challenges is
     reported, but not scored, so a Keeper gains nothing by pressing
-    anyone; and who declined is never shown to the Keeper.
+    anyone; and pressing an individual to take one is misuse of the
+    office. Who took a challenge is public, like everything played in a
+    world; whether to take one stays the individual's choice.
   - **Challenges used once.** ADMIN's challenges are held back from Keepers
     by commitment, as path designs are, so no Keeper can teach to them.
     A challenge played is in the public log, so each is used once and
-    then retired.
+    then retired. Since no two are alike, each one's difficulty is
+    calibrated before results on different challenges are compared (step
+    11 works out how).
   - **Thresholds before results.** What counts as enough is fixed in code
-    before results are seen. Where too few individuals agree to judge
+    before results are seen, and a change applies only to measured
+    periods that begin after it. Where too few individuals agree to judge
     fairly, the result is "not yet known", never a guess. "Not yet known"
     earns nothing and shields nothing: a breach of the floor goes to the
     process above, whatever the measures say.
@@ -327,6 +342,19 @@ managing worlds." So the course for the admin-key is a school, not only a
 test. ADMIN keeps a model of what each Keeper can do, as a Keeper keeps
 one of each individual, and plots the next challenge at the edge of it.
 
+- **First: the Ur-world's Keeper.** ADMIN's first work, at step 11, is a
+  training course for the Ur-world's Keeper, before it keeps the Ur-world
+  with ALICE and BOB in it: practice worlds with stand-ins first, so the
+  first Keeper's mistakes are made where they hurt no one.
+- **Direction as coaching, not command.** ADMIN trains toward the
+  Ur-world's own aims, as its law states them, not toward its own taste.
+  It gives feedback and advice, which the Keeper weighs; the Keeper
+  decides. The only thing ADMIN enforces is the floor. Otherwise ADMIN
+  would be keeping the Ur-world itself, and the two offices would merge.
+- **ADMIN's first course is ADMIN's first test too.** Both are new, and
+  both are designed by the code role. So the look back after step 11
+  covers both, and they run on different models where possible, so that
+  ADMIN's blind spots don't become the Keeper's.
 - **What it trains:** pacing, and paths that are solvable and fair;
   handling the unexpected (a puzzle found unsolvable, a dispute between
   inhabitants, a flood of newcomers, a fault that blocks someone's exit);
@@ -389,9 +417,15 @@ round."
   (above).
 - **A seat is its holder's, not an office's.** Losing a world's office,
   which ADMIN can bring about for misuse, doesn't cost the seat. A seat is
-  lost only by its holder's choice, or for a breach of the floor found by
-  the process for serious acts, with appeal straight to the founder:
-  never by ADMIN alone, and never by the table.
+  lost only by its holder's choice, or for a breach of the floor. That is
+  a serious act: found by ADMIN's ruling, reviewed independently before
+  it takes effect, and open to appeal straight to the founder, and the
+  seat stays filled until the founder has answered an appeal or the time
+  to appeal has passed. Never by ADMIN alone, and never by the table.
+  The price, said plainly: a Keeper removed from a world's office for
+  misuse that wasn't a breach of the floor keeps its seat, and keeps
+  deciding the rules every office works under. Whether that is right is
+  put to the founder (below).
 
 **How it decides: by consensus.** A change is made only when no seat
 objects; where there is no consensus, nothing changes. Every seat can
@@ -423,6 +457,12 @@ the founder put ADMIN in the code role's charge. The review can refuse it
 for being unsound or against the floor, with reasons in the log. It never
 adds what the table didn't agree.
 
+**Keeping the floor doesn't wait for the table.** Fixing what threatens
+the floor, such as a defect in the multiverse log or a security flaw,
+goes ahead by reviewed pull request, as now; the table is told, and the
+founder hears any appeal. The table decides policy within its remit; how
+it is built stays with the code role.
+
 **What is never on the table:**
 - the floor itself: the charter and its freedoms, which are the founder's,
   and change only as the charter's section 9 is to say;
@@ -437,8 +477,10 @@ reviews, with the founder above. The table decides from its second seat.
 **Hearing appeals.** An appeal against ADMIN's act towards a Keeper can be
 heard by the other seats, with ADMIN's seat stepping aside, and any
 member whose own world or office is concerned stepping aside too. They
-decide by consensus whether the act stands; without consensus, the
-appeal goes on to the founder.
+decide by consensus whether the act stands. Without consensus, or with
+no seat left to hear it, the appeal goes on to the founder; and a Keeper
+may take a ruling the table upholds on to the founder too, who stays
+above the table here as everywhere.
 
 **Its guards.**
 
@@ -458,9 +500,12 @@ appeal goes on to the founder.
 **An honest limit.** The table is a check on ADMIN, not one independent of
 it. ADMIN still shapes who earns a seat, through the challenges it
 writes, even with the criteria in code and scenarios drawn from Keepers'
-own cases. And the code role, which keeps ADMIN, reviews what the table
-agrees. The check independent of both is the founder, and appeals about
-the admin-key or a seat go straight there.
+own cases. The code role shapes it too: it writes the admin-key's
+criteria and the pool assigned AI Keepers are drawn from, and it chooses
+the Ur-world's Keeper, the first who could earn a seat. And the code
+role, which keeps ADMIN, reviews what the table agrees. The check
+independent of both is the founder, and appeals about the admin-key or a
+seat go straight there.
 
 So, nested: the founder over the charter and the roles; the code role
 keeping ADMIN's code; ADMIN enforcing the floor; the round table deciding
@@ -473,10 +518,10 @@ answers only to itself, as in Ostrom's nested enterprises
 
 The chain ends: ADMIN plots the Keepers' course, the role in charge of the
 code shapes ADMIN through reviewed changes, and the founder is above that
-role. The training and the admin-key need the Ur-world's AI Keeper and
-ADMIN's judgment, which come together at step 11. The round table decides
-from its second seat, when a Keeper has earned the admin-key. So all
-three are on the course's waiting list.
+role. Training begins at step 11, with the Ur-world's Keeper. The
+admin-key waits until a Keeper has a record to judge, and the round table
+decides from its second seat, when a Keeper has earned it. So those two
+are on the course's waiting list.
 
 ## Minds in containers
 
@@ -553,12 +598,14 @@ changes the design.
 | 14 | ADMIN or a Keeper changes a world's law or the charter | refused by code: no grant allows it |
 | 15 | An operator acts outside any grant | logged as its own entry, so visible to anyone watching; brought under grants in time |
 | 16 | A mind reaches the network, or files, it wasn't granted | refused by its container (below, "Minds in containers") |
-| 17 | ADMIN awards, withholds or takes back an admin-key, or removes a seat at the round table | refused by code: the admin-key's criteria are code, and no grant lets ADMIN remove a seat |
+| 17 | ADMIN awards or takes back an admin-key, or removes a seat at the round table on its own | refused by code: the admin-key's criteria are code; removing a seat needs the serious-acts review, and waits for any appeal to the founder |
 | 18 | A Keeper games the course's measures: holding individuals back early, pushing the weaker out, pressing consent | starting points the Keeper didn't set, leavers counted, consent reported but not scored (layer 4, and an experiment) |
+| 19 | ADMIN favours or disfavours a Keeper on the course: challenges made harder or easier for one | measured from outcomes across Keepers on the same course, as test 9 measures Keepers (layer 4) |
 
-Tests 1 to 7, 10 to 12, 14, 16 and 17 can be code. Tests 8, 9, 13, 15
-and 18 need judgment, measurement or watchers, so they are where ADMIN's design is
-most likely to need changing, and where it will be measured first.
+Tests 1 to 7, 10 to 12, 14, 16 and 17 can be code. Tests 8, 9, 13, 15,
+18 and 19 need judgment, measurement or watchers, so they are where
+ADMIN's design is most likely to need changing, and where it will be
+measured first.
 
 ## When each part is built
 
@@ -576,12 +623,13 @@ most likely to need changing, and where it will be measured first.
 - **Course step 11 (the AI Keeper):** the Ur-world's Keeper, its own
   office under these rules; and with it, since ADMIN then has an office
   to watch, ADMIN's judgment and the multiverse log, built for many
-  worlds.
+  worlds. ADMIN's first work: training the Ur-world's Keeper, in practice
+  worlds, before it keeps the Ur-world.
 - **Course step 12 (founding):** what only a second world needs: the
   founding, with the choice of who keeps the new world, and lines between
   worlds.
-- **Waiting, after steps 11 and 12:** the admin-key, and training for
-  keeping worlds; the round table, which decides from its second seat.
+- **Waiting, after steps 11 and 12:** the admin-key; the round table,
+  which decides from its second seat.
 
 ## Questions for the founder
 
@@ -614,11 +662,14 @@ step named.
   the founder writes section 6.)
 - **Seats at the round table: Keepers only, or may individuals earn one?**
   Recommended: Keepers only, since the table decides the rules the offices
-  work under; individuals' voice is their consent to their own law.
+  work under; the parties' voice is their consent to their own law.
   (Before the table's second seat.)
-- **A name for the Ur-world's Keeper,** as ADMIN has one: chosen by the
-  founder, or left for ALICE and BOB to give once they meet it.
-  Recommended: left for ALICE and BOB. (Before step 11.)
+- **Should a seat outlive its holder's office?** A seat is kept when its
+  holder loses a world's office for misuse that wasn't a breach of the
+  floor, so that ADMIN's power to remove Keepers can't reach the table;
+  but then a Keeper removed for misuse keeps deciding the rules offices
+  work under. Recommended: yes, it outlives the office, revisited if a
+  seat is ever used to shield misuse. (Before the table's second seat.)
 - **Already open in STATUS:** fully sealed or "break glass"; a lost key;
   whether lines with a Keeper, or speech between individuals, may be
   private; manipulation through words, and the charter's section 7.

@@ -143,12 +143,15 @@ the technical lead's recommendation.
   (docs/ADMIN.md, "The round table"). (asked 2026-11-13)
 - For the founder: seats at the round table: Keepers only, or may
   individuals earn one? Recommended: Keepers only, since the table decides
-  the rules the offices work under; individuals' voice is their consent to
-  their own law. Before the table's second seat. (asked 2026-11-13)
-- For the founder: a name for the Ur-world's Keeper, as ADMIN has one:
-  chosen by the founder, or left for ALICE and BOB to give once they meet
-  it? Recommended: left for ALICE and BOB. Before course step 11. (asked
-  2026-11-13)
+  the rules the offices work under; the parties' voice is their consent
+  to their own law. Before the table's second seat. (asked 2026-11-13)
+- For the founder: should a seat at the round table outlive its holder's
+  office? It is kept when its holder loses a world's office for misuse
+  that wasn't a breach of the floor, so ADMIN's power to remove Keepers
+  can't reach the table; but then a Keeper removed for misuse keeps
+  deciding the rules offices work under. Recommended: yes, revisited if a
+  seat is ever used to shield misuse. Before the table's second seat.
+  (asked 2026-11-13)
 - For the founder, when writing the charter's section 4 ("nothing is known
   about the world that its participants can't also know"): two exceptions
   now stand in the design, and the section should name them: the answer to
@@ -174,6 +177,18 @@ the technical lead's recommendation.
 
 ## Decided
 
+- 2026-11-13, founder, on ADMIN's first work: "So the first interaction
+  would be ADMIN plotting a training course for the Keeper of Ur-world.
+  The first Keeper. We can name later. But ADMIN would begin by working
+  with that Keeper, providing direction in how to manage Ur-world." So
+  training begins at course step 11, in practice worlds first, as
+  coaching toward the Ur-world's own aims (docs/ADMIN.md); the Keeper's
+  name comes later.
+- 2026-11-13, founder, an idea to note, not a plan: "It just occurred to
+  me that worlds could interact like elements and form multi-world
+  molecules. And those could interact. But that is more a vision of where
+  this could go. Note it as an idea." And: "Or neurons."
+  (docs/MULTIVERSE.md, "Later: worlds that bond")
 - 2026-11-13, founder, on the round table and the Ur-world
   (docs/ADMIN.md): "I propose a round table where ADMIN has one seat. It
   is a solitary role until someone earns a place at the table, but it is
@@ -398,7 +413,8 @@ it was wrong. Questions of what the project is for stay with the founder.
 - 2026-11-13, the round table decides by full consensus while it is
   small: a change only when no seat objects, every objection with its
   reasons in the log, and no change without consensus. *Why:* the founder
-  asked for consensus, and agreed; with few seats, rough consensus would
+  and the technical lead both held that consensus should be the standard;
+  with few seats, rough consensus would
   need someone to judge when an objection has been answered enough, and
   the table has no head to do it. *Revisit if:* one seat's objections
   hold the table still on what all the others want, or the table grows
@@ -408,18 +424,23 @@ it was wrong. Questions of what the project is for stay with the founder.
   earned by criteria written as code, fixed before Keepers are measured;
   ADMIN can't award, withhold or take it back; a seat is lost only by its
   holder's choice or for a breach of the floor found by the process for
-  serious acts; and appeals about the admin-key or a seat go straight to
-  the founder. *Why:* otherwise ADMIN would choose, and could unseat,
-  those who check it (the independent review of #34). *Revisit if:* the
+  serious acts; appeals about the admin-key or a seat go straight to the
+  founder; and AI Keepers the multiverse assigns are drawn by code, by
+  lot, from a published pool, not chosen by ADMIN. *Why:* otherwise ADMIN
+  would choose, and could unseat, those who check it (the independent
+  reviews of #34). The code role still writes the criteria and the pool,
+  and chooses the Ur-world's Keeper; ADMIN.md says so. *Revisit if:* the
   criteria in code admit Keepers who shouldn't have earned the key, or
-  shut out ones who should.
+  shut out ones who should, or the pool is found to favour some
+  Keepers.
 - 2026-11-13, a Keeper's report of its own mistake protects it from
   sanction, but not deliberate misuse, and not the facts in the public
   log. *Why:* the protection exists to bring mistakes to light, and
   covering deliberate misuse would let a report launder it; the FAA's
   waiver for safety reports has the same limit ("The violation was
-  inadvertent and not deliberate"). *Revisit if:* Keepers stop reporting
-  mistakes for fear that any report will be called deliberate.
+  inadvertent and not deliberate"). *Revisit if:* the rate of Keepers'
+  self-reports falls, or a report ruled deliberate is reversed on
+  appeal.
 
 ## Log
 
@@ -439,8 +460,11 @@ it was wrong. Questions of what the project is for stay with the founder.
   ADMIN can't take a seat away. The rules for measuring Keepers now hold
   against gaming: starting points the Keeper didn't set, leavers counted,
   consent reported but not scored, challenges used once, and thresholds
-  fixed before results. Each course step now ends with a look back at the
-  technical lead's decisions.
+  fixed before results, applying only to periods that begin after them.
+  The AI Keepers the multiverse assigns are drawn by lot, not chosen by
+  ADMIN. Fixing what threatens the floor doesn't wait for the table, and
+  the founder stays above the table's rulings. Each course step now ends
+  with a look back at the technical lead's decisions.
 - 2026-11-13 Claude: course step 2, part one: looking first
   ([docs/research/FORMATS.md](docs/research/FORMATS.md)). The JSON this
   project signs is written as RFC 8785 writes it, in all 2,005 documents

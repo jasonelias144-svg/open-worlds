@@ -620,6 +620,31 @@ is for later." (founder)
   atom by atom.
 - It needs a host that stays on, and a compute budget.
 
+## Later: worlds that bond
+
+"It just occurred to me that worlds could interact like elements and form
+multi-world molecules. And those could interact. But that is more a
+vision of where this could go. Note it as an idea." And: "Or neurons."
+(founder, 2026-11-13)
+
+An idea, not a plan. The chemistry world already gives it words:
+
+- **Valence:** how many bonds a world accepts, set by its founders in its
+  law.
+- **A bond:** a signed agreement between two worlds, covering their doors
+  and what crosses between them. The pieces are being designed now:
+  lines between Keepers, passports, and grants that cross worlds
+  ([ADMIN.md](ADMIN.md), [WORLD-KEY.md](WORLD-KEY.md)).
+- **A molecule:** worlds bonded together; molecules that interact are
+  agreements between groups of worlds.
+- **Neurons:** worlds as nodes passing signals along their connections,
+  and connections that strengthen with use and fade without it.
+
+One guard, either way: in a brain, neurons serve the whole. Here a world
+and its people never become parts of a machine against their will. A
+bond needs the consent of the worlds it joins, as their law says, and it
+can always be undone, as exit always works.
+
 ## What running the sketch showed
 
 Claude extracted the sketch's code and ran what could run. Of the 131

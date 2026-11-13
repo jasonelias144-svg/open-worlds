@@ -198,7 +198,11 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
     ADMIN's; and since ADMIN then has an office to watch, ADMIN's
     judgment and the multiverse log come with it, built for many worlds
     (moved here from step 12 on 2026-11-13, for that reason;
-    [ADMIN.md](ADMIN.md)).
+    [ADMIN.md](ADMIN.md)). ADMIN's first work is to train the Ur-world's
+    Keeper in practice worlds, with stand-ins, before it keeps the
+    Ur-world with ALICE and BOB in it: coaching toward the Ur-world's
+    own aims, never command (founder, 2026-11-13; moved here from the
+    waiting list).
 12. **Founding worlds, and doors.** What only a second world needs:
     child worlds, each with a new key of its own, a signed birth record,
     and a Keeper chosen by its founders; doors between them, travel with
@@ -214,8 +218,8 @@ Added one at a time, as steps are done:
 - Keepers talking to one another, by the rules proposed in
   [WORLD-KEY.md](WORLD-KEY.md);
 - the admin-key: a course for Keepers, plotted by ADMIN as Keepers plot
-  paths, and a training program for keeping worlds, in practice worlds
-  ([ADMIN.md](ADMIN.md)), after steps 11 and 12;
+  paths ([ADMIN.md](ADMIN.md)), after steps 11 and 12, once a Keeper has
+  a record to judge (training itself begins at step 11);
 - the round table: ADMIN's seat, and one for each Keeper who earns the
   admin-key, deciding by consensus what all worlds share
   ([ADMIN.md](ADMIN.md)); it decides from its second seat;
