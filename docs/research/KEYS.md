@@ -256,8 +256,10 @@ root does.
   prints only public keys. `--private` must be the top of a full clone
   of another repository. It refuses a place inside this repository's
   working tree; a worktree of this repository; a clone whose remotes
-  name this repository, or are paths on this computer; a push target
-  that isn't one of its remotes (`remote.pushDefault`, or a branch's
+  name this repository, or are paths on this computer, or go through a
+  remote helper (`transport::address`); a remote kept the old way, in
+  `.git/remotes` or `.git/branches`; a push target that isn't one of its
+  remotes, read byte for byte (`remote.pushDefault`, or a branch's
   `remote` or `pushRemote`, from any of Git's config files, which `git
   remote -v` doesn't show); a history that shares this repository's
   first commit on any branch; a shallow clone, of either, since its
@@ -297,6 +299,13 @@ root does.
 - **Until ALICE and BOB hold their own keys,** whoever holds the private
   repository can sign as them. That is what "public to the project"
   means (MINDS.md).
+
+- **The tool's guard sees Git as it is set up when the tool runs,** not
+  at the push that follows: an environment variable, a `-c`, or a config
+  file edited in between could send a push elsewhere, and SSH host
+  aliases, `core.sshCommand` and remote helpers are beyond what it can
+  see. So the ceremony pushes the private halves by naming the private
+  repository's address in the push itself, not by a remote's name.
 
 *Revisit if:* anyone else holds a key: then the root kept off GitHub and
 offline, and thresholds.

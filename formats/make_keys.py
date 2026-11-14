@@ -13,8 +13,10 @@ randomness (through `cryptography`), and writes:
   top of a full clone of the private repository. The tool refuses any
   place inside this repository's working tree; a worktree of it; a clone
   whose history, on any branch, shares its first commit, or whose remotes
-  name it or are paths on this computer; one that can push anywhere but
-  its remotes; a shallow clone; and a `keys/`
+  name it, are paths on this computer or go through a remote helper; one
+  with remotes kept the old way, in `.git/remotes` or `.git/branches`;
+  one that can push anywhere but its remotes; a shallow clone; and a
+  `keys/`
   that is there already, so it never writes over a key. A clone of a
   fork of this repository, under another name and with its history cut,
   is beyond what it can tell.
@@ -83,14 +85,21 @@ def file_name(name: str) -> str:
     return slug.strip("-") + ".json"
 
 
-def _git(path: Path, *args: str) -> Optional[str]:
-    """What `git <args>` prints in `path`, or None if it fails."""
+def _git_bytes(path: Path, *args: str) -> Optional[bytes]:
+    """What `git <args>` prints in `path`, byte for byte, or None if it
+    fails."""
     try:
         out = subprocess.run(["git", *args], cwd=path, capture_output=True,
                              check=True)
     except (OSError, subprocess.CalledProcessError):
         return None
-    return out.stdout.decode().strip()
+    return out.stdout
+
+
+def _git(path: Path, *args: str) -> Optional[str]:
+    """What `git <args>` prints in `path`, trimmed, or None if it fails."""
+    out = _git_bytes(path, *args)
+    return None if out is None else out.decode("utf-8", "replace").strip()
 
 
 def _root_commits(path: Path) -> Set[str]:
@@ -101,6 +110,10 @@ def _root_commits(path: Path) -> Set[str]:
     refuses shallow clones."""
     return set((_git(path, "rev-list", "--max-parents=0", "--all")
                 or "").split())
+
+
+#: A URL Git hands to a remote helper: `<transport>::<address>`.
+TRANSPORT = re.compile(r"^[A-Za-z][A-Za-z0-9+.-]*::")
 
 
 def is_local_path(url: str) -> bool:
@@ -129,11 +142,32 @@ def repository_name(url: str) -> Optional[str]:
 
 def _remote_urls(path: Path) -> Set[str]:
     """Every URL the remotes of the checkout at `path` fetch from or push
-    to."""
-    return {fields[1] for fields in
-            (line.split() for line in
-             (_git(path, "remote", "-v") or "").splitlines())
-            if len(fields) >= 2}
+    to: as `git remote -v` shows them, after any rewriting, each line read
+    as a name, a tab, the URL and ` (fetch)` or ` (push)`; and as the
+    config files hold them, byte for byte."""
+    urls = set()
+    out = _git_bytes(path, "remote", "-v") or b""
+    for line in out.decode("utf-8", "surrogateescape").split("\n"):
+        _, tab, rest = line.partition("\t")
+        for kind in (" (fetch)", " (push)"):
+            if tab and rest.endswith(kind):
+                urls.add(rest[:-len(kind)])
+    return urls | _config_values(path, r"^remote\..*\.(url|pushurl)$")
+
+
+def _config_values(path: Path, pattern: str) -> Set[str]:
+    """Every value of the config keys matching `pattern`, from all of
+    Git's config files, byte for byte: Git keeps the spaces inside a
+    quoted value, so they are kept here too. A key with no value reads
+    as the empty string."""
+    out = _git_bytes(path, "config", "-z", "--get-regexp", pattern) or b""
+    values = set()
+    for record in out.split(b"\0"):
+        if record:
+            _, newline, value = record.partition(b"\n")
+            values.add(value.decode("utf-8", "surrogateescape")
+                       if newline else "")
+    return values
 
 
 def _push_targets(path: Path) -> Set[str]:
@@ -142,11 +176,30 @@ def _push_targets(path: Path) -> Set[str]:
     `branch.<b>.remote`, from any of Git's config files. Each is a
     remote's name, `.` (the checkout itself), or a URL or path that `git
     remote -v` doesn't show."""
-    out = _git(path, "config", "--get-regexp",
-               r"^(remote\.pushdefault|branch\..*\.(remote|pushremote))$")
-    return {fields[1].strip() for fields in
-            (line.split(None, 1) for line in (out or "").splitlines())
-            if len(fields) == 2}
+    return _config_values(
+        path, r"^(remote\.pushdefault|branch\..*\.(remote|pushremote))$")
+
+
+def _remote_list(path: Path) -> Set[str]:
+    """The names of the remotes configured in the checkout at `path`,
+    byte for byte."""
+    out = _git_bytes(path, "remote") or b""
+    return {name for name in out.decode("utf-8", "surrogateescape")
+            .split("\n") if name}
+
+
+def _old_style_remotes(path: Path) -> List[str]:
+    """Remotes kept the old way, as files in `.git/remotes` or
+    `.git/branches`, which Git still reads for a name that isn't a
+    configured remote, and which neither `git remote -v` nor `git config`
+    shows. The folders themselves are made by `git init`, empty."""
+    found = []
+    for kind in ("remotes", "branches"):
+        where = _git(path, "rev-parse", "--git-path", kind)
+        folder = (path / where) if where else None
+        if folder is not None and folder.is_dir():
+            found += [f"{kind}/{entry.name}" for entry in folder.iterdir()]
+    return sorted(found)
 
 
 def _remote_names(path: Path) -> Set[str]:
@@ -205,8 +258,19 @@ def check_private_place(private: Path,
             f"{private} has a remote that is a path on this computer, "
             "which can't be told from this repository: its remotes must "
             "be the private repository's address")
-    stray = (_push_targets(private)
-             - set((_git(private, "remote") or "").split()) - {"."})
+    if any(TRANSPORT.match(url) or re.search(r"[\s\x00-\x1f]", url)
+           for url in urls):
+        raise KeyMakingError(
+            f"{private} has a remote whose address goes through a remote "
+            "helper (`transport::address`) or holds spaces or control "
+            "characters: its remotes must be the private repository's "
+            "plain address")
+    old = _old_style_remotes(private)
+    if old:
+        raise KeyMakingError(
+            f"{private} has a remote kept the old way, in .git/{old[0]}, "
+            "which `git remote -v` doesn't show")
+    stray = _push_targets(private) - _remote_list(private) - {"."}
     if stray:
         raise KeyMakingError(
             f"{private} can push to {sorted(stray)[0]!r}, which isn't one "

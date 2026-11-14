@@ -443,6 +443,46 @@ class TestMakeKeys(unittest.TestCase):
             with self.subTest(key=key, value=value):
                 self.refused(place, "isn't one of its remotes")
 
+    def test_a_push_target_with_spaces_is_not_its_remote(self):
+        # Git keeps the spaces inside a quoted value, and reads " origin"
+        # as a path, not as the remote named origin.
+        for i, value in enumerate((" origin", "origin ", "origin\t",
+                                   "origin\nx")):
+            place = repository(self.place / f"spaced-{i}", PRIVATE_URL,
+                               commits=0)
+            git(place, "config", "remote.pushDefault", value)
+            with self.subTest(value=value):
+                self.refused(place, "isn't one of its remotes")
+
+    def test_it_refuses_a_remote_kept_the_old_way(self):
+        # Files in .git/remotes or .git/branches: Git still reads them for
+        # a name that isn't a configured remote; `git remote -v` doesn't
+        # show them.
+        for i, (kind, text) in enumerate((
+                ("branches", f"{self.public}\n"),
+                ("remotes", f"URL: {self.public}\n"))):
+            place = repository(self.place / f"old-style-{i}", PRIVATE_URL,
+                               commits=0)
+            folder = place / ".git" / kind
+            folder.mkdir(exist_ok=True)
+            (folder / "origin").write_text(text)
+            with self.subTest(kind=kind):
+                self.refused(place, "kept the old way")
+
+    def test_empty_old_style_folders_are_allowed(self):
+        for kind in ("branches", "remotes"):
+            (self.private / ".git" / kind).mkdir(exist_ok=True)
+        make_keys.check_private_place(self.private)
+
+    def test_it_refuses_a_remote_helper_or_an_address_with_spaces(self):
+        for i, url in enumerate(("ext::git-remote-ext %S",
+                                 "fd::17",
+                                 "https://example.invalid/project/the "
+                                 "private-keys.git")):
+            place = repository(self.place / f"helper-{i}", url, commits=0)
+            with self.subTest(url=url):
+                self.refused(place, "plain address")
+
     def test_a_push_target_set_in_gits_own_config_is_refused_too(self):
         self.global_config.write_text(
             f"[remote]\n\tpushDefault = {self.public}\n")
