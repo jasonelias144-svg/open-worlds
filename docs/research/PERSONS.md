@@ -227,7 +227,13 @@ link every presence too.
     The individual's first presence is in that world, under that name,
     with a key made like any presence's (decision 2), and its link
     (decision 4) is published with the birth record. `birth/v1` is
-    unchanged. Every later presence is unlinked until the person shows
+    unchanged. The order at birth: the world's birth record, naming the
+    identity's key and the birth name; then the first presence's
+    arrival under that name, which binds the name to the presence's key
+    (KEYS.md, decision 12); then that presence shows its link. The world
+    never binds the birth name to the birth record's identity key, or
+    the first presence would be refused ("that name is bound to another
+    key"). Every later presence is unlinked until the person shows
     it. For ALICE and BOB that is the Ur-world, at step 9, which adds the
     link to their birth there. The alternative, and its cost: the birth
     names the identity only, and the first presence is unlinked like the

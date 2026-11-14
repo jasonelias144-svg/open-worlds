@@ -274,7 +274,11 @@ another under the same name.
     built and tested with trial keys and shared vectors; their first
     arrival is their birth. The garden's scripted stand-ins, which enter
     as "ALICE" and "BOB" today, are renamed, so that in any log those
-    names are only ever the individuals the key list names.
+    names are only ever the individuals the key list names. *Refined by
+    course step 3a* ([PERSONS.md](PERSONS.md), decisions 1 and 10): the
+    key list's keys are their identity keys, which never enter a world;
+    their first arrival is their first presence's, with a key made from
+    a presence seed, which step 3a's parts two and three make.
 16. **Rust is the reference.** The arrival is written by the Rust
     Ur-world (COLLABORATING.md, Rust rule 6) and checked by Python
     through shared vectors; the world-log check verifies each arrival in

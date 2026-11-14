@@ -196,7 +196,7 @@ off any log, which waits for proofs that reveal less; what each
 architecture shows about a mind spread across worlds.
 
 **A possible implementation:** decided now (`holds/v1` and `held-by/v1`,
-PERSONS.md, decision 3). DeepSeek's architectures (components 36 to 52:
+PERSONS.md, decision 4). DeepSeek's architectures (components 36 to 52:
 the octopus, the relay, the swarm, the council) become small examples on
 the same core: a design for any of them, as prose, is welcome.
 
