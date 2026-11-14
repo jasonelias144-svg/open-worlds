@@ -309,9 +309,9 @@ what they are for.
   - `sheet.json`, `relationships.json` and their legends page, all rebuilt
     from the logs and checked against them.
 - **In a private repository of the project:** the private half of each
-  key (the individuals', the Keepers' and the worlds'), each individual's
-  key to their own sealed self, and each world's secret for its paths,
-  and nothing else unless the founder decides otherwise. The
+  key (the individuals', the Keepers' and the worlds'), and each
+  individual's key to their own sealed self, and nothing else unless the
+  founder decides otherwise. The
   repository's list of contents is public, though its values aren't.
 - **On the Hugging Face Hub, pinned to exact revisions:** the base models,
   and later the personal layers trained for them.

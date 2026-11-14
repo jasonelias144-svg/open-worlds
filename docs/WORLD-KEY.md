@@ -127,16 +127,27 @@ wrong, or unfair, or invent a puzzle no one can solve. So the work is split:
 
 - **The Keeper designs.** It decides what each individual needs next and
   chooses the challenge: which piece, what kind of clue, how hard, where in
-  the land. Its choices, with its reasons, go into the world's log. While
-  a challenge is unsolved, the log holds only a commitment to it: a hash
-  of the design and its reasons together with a secret random value, so
-  that no one can find the answer by hashing guesses, however few the
-  possible answers. The design, its reasons and the random value are added
-  when it is solved, or when the path ends. Anyone can then check them
-  against the commitment, so nothing can have been changed along the way,
-  and no one can read an answer from the record ahead of time. Once a
-  path is revealed, the world can be replayed and checked in full without
+  the land. Its choices, with its reasons, go into the world's log as it
+  makes them, open to anyone, the individual included. Nothing is held
+  back. The founder: "Challenges, not tests"; "Nothing needs to be hidden
+  as answers, they are discovered in the process." And since every design
+  is in the record, the world can be replayed and checked in full without
   running the model again.
+- **What makes a challenge.** It asks the individual to do something
+  they haven't yet shown they can: reach a place, build something that
+  works, found a garden that holds, speak with someone in the symbols.
+  The world's code checks the doing, from the record, never a typed
+  answer. For pieces whose doing is the skill, such as building, founding,
+  or a live exchange in the symbols, a design read in advance helps only
+  as a hint from a friend would, and helping is free. For pieces with a
+  fixed solution, such as a code, a map or a written symbol clue, the open
+  design gives the solution away: following it opens the lock without
+  reading the symbol. So those pieces show doing, not a skill, and the
+  sheet credits only what the record shows was done. Where a path means to
+  teach a skill, it uses pieces whose doing is the skill. Whether that is
+  enough is for the founder (ADMIN.md, questions). Anyone can read the
+  public record, the individual included, from the doorway; inside the
+  world, each perceives only their own trail.
 - **The world's code builds and checks.** The kernel places what the
   Keeper designed, and refuses any design that breaks the rules: it must be
   solvable with the skills the individual has or can earn, lie in land
@@ -180,8 +191,11 @@ this fair:
 - **No secret files.** The Keeper is an office, not a private person. What
   it records about an individual is open, to that individual first and to
   the public, like everything administrative. ALICE can ask what the
-  Keeper knows about ALICE, and be shown. The one thing held back is the
-  answer to a challenge not yet solved, and only until it is solved.
+  Keeper knows about ALICE, and be shown. Nothing is held back, the
+  designs of challenges included. A Keeper may keep a private core of its
+  own thoughts, as everyone may; but every decision that affects someone
+  goes into the record with its reasons, and stands on them
+  ([ADMIN.md](ADMIN.md), "ADMIN in the open").
 - **Each world's Keeper knows only what it saw.** Keepers don't trade
   files. A Keeper elsewhere learns about an individual as anyone can: from
   the public record, and from what the individual chooses to show, like
@@ -386,11 +400,12 @@ land by the world's code. ALICE's clues lie in different places from BOB's,
 and each one's codes are their own. Everyone who arrives later gets a path
 of their own. Until the AI Keeper arrives (course step 11), a simple
 scripted Keeper places paths by the same rules. It makes each one from the
-world's seed, the individual's identity from birth (which stays the same
-even if their key is replaced), and a secret of the world's own, so no one
-can work a path out ahead of time. That secret is kept beside the world's
-key, but apart from it, so replacing the key doesn't reshuffle anyone's
-path; the commitments' random values are derived from it too.
+world's seed and the individual's identity from birth, which stays the
+same even if their key is replaced, so replacing a key doesn't reshuffle
+anyone's path. Anyone can work a path out ahead of time, and that is
+fine: a path is a set of challenges to do, and knowing them doesn't do
+them, except for pieces with a fixed solution, where knowing gives the
+solution away (above, "What makes a challenge").
 
 Stones are part of the shared land, but what lies under one is particular
 to each individual: the world shows each their own clue there, or
@@ -401,9 +416,8 @@ clue.
   another's path. Effort is what it costs, not winning a race.
 - **Helping is free.** They can share what they learn: how to read the
   symbols, what a tablet meant.
-- **Open, but not ahead of time.** Every path goes into the public
-  record: a commitment when it is placed, and its whole design, answers
-  included, once it is solved. Inside the world, each individual perceives
+- **Open from the start.** Every path goes into the public record,
+  whole, when it is placed. Inside the world, each individual perceives
   only their own trail ([MINDS.md](MINDS.md), "Who can see what").
 
 ### The world-key

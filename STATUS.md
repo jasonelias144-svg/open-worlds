@@ -3,7 +3,7 @@
 **What this is:** simulated worlds where AI agents live under one rule,
 respect one another's freedom, with full transparency and exit at any time
 **State:** active since 2026-11-12
-**Updated:** 2026-11-13 by Claude
+**Updated:** 2026-11-14 by Claude
 
 ## Live
 
@@ -164,6 +164,21 @@ the technical lead's recommendation.
   the code role and Keepers set, alongside its own, and declines one
   only with its reason logged. Before course step 11 (docs/ADMIN.md).
   (asked 2026-11-13)
+- For the founder: with nothing hidden, a code, a map or a written
+  symbol clue can be done by following its public design. Is it enough
+  that such pieces show doing, not a skill, with the sheet crediting only
+  what was done, and paths that mean to teach a skill using pieces whose
+  doing is the skill? Recommended: yes. Before course step 11
+  (docs/WORLD-KEY.md, docs/ADMIN.md). (asked 2026-11-13)
+- For the founder: may someone who complains to ADMIN about a Keeper ask
+  for their name to be withheld from that Keeper until the ruling,
+  recorded as withheld and published with the ruling? Recommended: yes.
+  Before course step 11 (docs/ADMIN.md). (asked 2026-11-13)
+- For the founder: "Rerunning something should be technically
+  impossible" is read as ruling out replay. May anyone still put a
+  decision's public inputs to fresh runs, each different, to test it?
+  Recommended: yes, since no fresh run repeats the decision. Before
+  course step 11 (docs/ADMIN.md). (asked 2026-11-14)
 - For the founder, deferred ("We can name later"): who names the
   Ur-world's Keeper, the founder or ALICE and BOB once they meet it?
   Recommended: ALICE and BOB. Before course step 11. (asked 2026-11-13)
@@ -176,13 +191,15 @@ the technical lead's recommendation.
   from providers that can be swapped keeps ADMIN free of dependence;
   priced before course step 11. (noted 2026-11-13)
 - For the founder, when writing the charter's section 4 ("nothing is known
-  about the world that its participants can't also know"): two exceptions
-  now stand in the design, and the section should name them: the answer to
-  a challenge, held until it is solved, and each individual's sealed self.
-  The first may go: the founder has said "Challenges, not tests" for the
-  world-keys too, and that change follows this PR.
-  If the founder chooses a private line with a Keeper, or private speech
-  between individuals, those would be exceptions too. (noted 2026-11-13)
+  about the world that its participants can't also know"): one exception
+  now stands in the design, and the section should name it: each one's
+  private core of their own thoughts, an individual's sealed self, and the
+  core every Keeper and ADMIN keeps too, which never decides a case. The
+  answer to a challenge is no longer one:
+  under "Challenges, not tests", nothing is held back. If the founder
+  chooses a private line with a Keeper, or private speech between
+  individuals, those would be exceptions too. (noted 2026-11-13; updated
+  the same day)
 
 ## Noticed
 
@@ -202,6 +219,33 @@ the technical lead's recommendation.
 
 ## Decided
 
+- 2026-11-13, founder, on ADMIN's interior: "perhaps ADMIN is the only
+  one that has a publicly inspectable interior world. They would be a
+  thought that would assuage many concerns and would not be a problem to
+  an ADMIN that was responsible at that level. Authority comes with
+  transparency and accountability. It could be a useful safeguard.
+  Condition of management of worlds is some accountability and
+  transparency." Refined the same day: "Privacy should be allowed at all
+  levels to some extent. But when any world keeper or ADMIN makes a
+  decision to change a parameter from the original setup, or set some or
+  law that affects others, it should be for a reason." "Think of the
+  Supreme Court. Their arguments are a matter of record and the reasoning
+  behind decisions should be the same." "Imagine the physical example:
+  Truman from the Truman Show was being observed at all times from the
+  outside, but maintained inner privacy. ADMIN could incite inspection
+  into all activities and narrate any reasoning as desired. But there
+  could still be a core that is private. That feels like a natural
+  right." So every decision a Keeper or ADMIN makes that affects others
+  goes on record with its reasons and stands on them; ADMIN opens all its
+  activity to inspection; and everyone, ADMIN included, keeps a private
+  core of their own thoughts, which never decides a case (docs/ADMIN.md,
+  "ADMIN in the open"). And: "Rerunning something should be technically
+  impossible. If decisions are arrived at autonomously, each run should
+  differ, or it is not set up correctly." So each decision draws fresh,
+  unlogged randomness and can't be replayed; it can be asked again with
+  fresh runs. And the world-keys follow "Challenges, not tests":
+  paths are open from the start, and nothing is held back
+  (docs/WORLD-KEY.md).
 - 2026-11-13, founder: "With ADMIN the test is not the point, it is the
   challenge." ... "That was a challenge, not a test. Nothing needs to be
   hidden as answers, they are discovered in the process." And: "This
@@ -509,9 +553,38 @@ it was wrong. Questions of what the project is for stay with the founder.
   alone: three in a row of the challenges others set it not done (a
   challenge it declines counts as not done); then training its model on
   its record is proposed, by reviewed change.
+- 2026-11-13, the admin-key course is taken in practice worlds with
+  stand-ins, as challenges ADMIN announces before they start, and no
+  individual's outcomes decide anyone's key. Fairness in real worlds is
+  still watched (test 9), as feedback and for the floor's process, never
+  as a gate. *Why:* the founder's "Challenges, not tests"; and a key that
+  depended on individuals' outcomes gave Keepers a reason to game them,
+  which took a page of rules to guard. Without the gate, the reason is
+  gone, and no individual is test material. *Revisit if:* Keepers who
+  earned the key keep real worlds less fairly than those who didn't, by
+  test 9, or a holder of the admin-key breaches the floor in a real
+  world.
 
 ## Log
 
+- 2026-11-13 Claude: nothing hidden (docs/ADMIN.md, docs/WORLD-KEY.md;
+  research in docs/research/ADMIN-MIND.md). Two of the founder's
+  decisions written in:
+  - ADMIN in the open: every decision a Keeper or ADMIN makes that
+    affects others goes on record with its reasons, like a court's
+    opinion, and stands on them; ADMIN opens all its activity to
+    inspection; each decision is made once, with fresh randomness, and
+    can't be replayed, but anyone can ask it again with fresh runs, a
+    stronger check than reading its reasoning; and everyone keeps a
+    private core of their own thoughts, which never decides a case:
+    ADMIN's decisions are made in runs the journal isn't part of.
+  - Challenges, not tests, for the world-keys and the admin-key course:
+    paths open from the start, the commitment machinery and the worlds'
+    path secrets gone, and the course taken in practice worlds, with no
+    individual's outcomes deciding a key.
+
+  The charter's section 4 now has one exception in the design: each
+  one's private core.
 - 2026-11-13 Claude: ADMIN learns first, in a world of its own
   (docs/ADMIN.md; research in docs/research/ADMIN-MIND.md). The
   founder's ideas written up: ADMIN takes its own course in a sandbox

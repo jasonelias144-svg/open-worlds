@@ -111,6 +111,11 @@ the law is above the office.
   the world's visitors passes to the next holder, and doesn't leave with
   the person. A holder's own sealed self stays theirs; office work stays in
   the open, as for any Keeper.
+- **Accountability comes with the office.** Every decision a Keeper makes
+  that affects others goes into the record with its reasons, and stands
+  on them (below, "ADMIN in the open"). The founder: "If they considered
+  accountability a bad thing, they probably shouldn't be in charge of a
+  world."
 - **A Keeper who is also an individual** keeps everything an individual
   has, and can't hunt in the world they keep. Their sealed self can hold
   private notes about visitors, and no one can see them, so "no secret
@@ -193,6 +198,8 @@ founder (below).
   stand-ins only: they are training, not worlds of the multiverse (below,
   "ADMIN's own world");
 - read a sealed self, or ask a Keeper for files about an individual;
+- decide anything that affects others on grounds it doesn't publish
+  (below, "ADMIN in the open");
 - grant itself a power: its own powers are grants too, written down and
   checked like everyone's;
 - act against an individual, except as the charter's section 7 says, once
@@ -247,6 +254,108 @@ mind record. Its engine is replaceable; its rules are versioned
 (`admin/0.1`, `0.2`, ...), and every change is recorded. If its design
 fails, the design changes, and everything it did stays on record and
 checkable.
+
+### ADMIN in the open
+
+The founder: "perhaps ADMIN is the only one that has a publicly
+inspectable interior world." ... "Authority comes with transparency and
+accountability." And then, refining it: "when any world keeper or ADMIN
+makes a decision to change a parameter from the original setup, or set
+some or law that affects others, it should be for a reason." "Think of
+the Supreme Court. Their arguments are a matter of record and the
+reasoning behind decisions should be the same." "But some degree of
+privacy should be afforded to all for their own thoughts." "Imagine the
+physical example: Truman from the Truman Show was being observed at all
+times from the outside, but maintained inner privacy. ADMIN could incite
+inspection into all activities and narrate any reasoning as desired. But
+there could still be a core that is private. That feels like a natural
+right."
+
+So the line runs between deciding for others and thinking for oneself,
+at every level:
+
+| | Its acts | Reasons for decisions that affect others | Its own thoughts |
+|---|---|---|---|
+| An individual | public, in the record | its own; it decides nothing for others beyond its acts, which the floor bounds | a sealed self |
+| A Keeper | public | **on record, with every decision** | a private core |
+| ADMIN | public, and open to inspection throughout | **on record, with every decision** | a private core |
+
+- **Decisions carry their reasons, like a court's opinions.** The US
+  Supreme Court's Justices "meet privately to discuss the argued cases",
+  and then deliver their opinions in public
+  ([research](research/ADMIN-MIND.md)). Here too: private deliberation,
+  public reasons. Changing a parameter from a world's original setup,
+  setting a law, granting, narrowing, ruling: each goes into the record
+  with its reasons, inspectable from the multiverse layer, where the
+  founder, the code role, ADMIN and anyone outside a world stand.
+- **A decision stands on its stated reasons.** Private thoughts can't be
+  the grounds of a decision over others. If the reasons on record don't
+  support it, it fails on audit or appeal, whatever was privately thought.
+- **ADMIN opens all its activity to inspection.** Everything it reads,
+  does and decides, each council member's view of a case included, is in
+  its public log, and it narrates its reasoning. Hiding how ADMIN works
+  wouldn't make it safer: in cryptography, Kerckhoffs's principle (1883)
+  holds that a system "must not require secrecy and can be stolen by the
+  enemy without causing trouble" (research).
+- **Decided once, asked again.** The founder: "Rerunning something
+  should be technically impossible. If decisions are arrived at
+  autonomously, each run should differ, or it is not set up correctly."
+  So each decision draws fresh randomness from a source that neither
+  ADMIN's mind nor the log ever sees (the proxy's, discarded after use),
+  and samples from its model rather than always taking the likeliest
+  word: it is made once, stands as made, and can't be replayed. But its
+  models are free and pinned, and its inputs and prompts are logged, so
+  anyone can put the same public inputs to fresh runs, each different,
+  and see:
+  - whether they reach the same decision. A clear case is decided the
+    same way by most runs, by different paths; if they split, it was a
+    hard case, and the record says so, as when the council disagrees;
+  - what changes when one input changes, which tests whether the stated
+    reasons carried the decision.
+
+  Asking again matters more than reading: a model's written reasoning
+  isn't always why it decided; studies found such explanations "can be
+  plausible yet misleading" (research). The honest cost: without replay,
+  that the recorded output came from that run rests on the logging proxy
+  and the signer below, which are open code, not on a proof; and that
+  the proxy and signer running are that code rests, for now, on whoever
+  runs them.
+- **The key signs only what is on record.** ADMIN's private key is held
+  by a signer outside ADMIN's mind, which never sees the key. The signer
+  signs only entries already in the public log, and signs a decision that
+  affects others only with its reasons and its inputs there. All of
+  ADMIN's input and output passes through a logging proxy, and its
+  decision runs keep no store but the log. So a
+  decision can't go out unsigned by the record, and the key can't be used
+  to keep a decision private.
+- **A private core, which never decides a case.** ADMIN keeps a sealed
+  journal of its own thoughts, as individuals do, by the same machinery,
+  and its existence and fingerprints are public. The core is kept out of
+  decisions by how ADMIN runs, not by a promise:
+  - a decision that affects others is made in a run of its own, whose
+    whole context the proxy builds from the public log. The journal
+    isn't there, so nothing in it can reach the decision (test 23c);
+  - reflection runs apart, with the journal and without the signer, so
+    nothing it writes can be signed as a decision;
+  - a lesson reaches decision runs only through the public log, so every
+    lesson that changes how ADMIN decides is public before its first
+    use.
+
+  So the core is ADMIN's own reflection: asking a decision again never
+  needs it, and with fresh, unlogged randomness, no run can regenerate it
+  exactly, though fresh runs from the same public inputs may write
+  something like it. An AI Keeper runs the same way. A Keeper who is
+  also an individual has one mind, which code can't divide; their
+  decisions stand only on their stated reasons (test 23b).
+- **Accountability is the price of office.** The founder: "If they
+  considered accountability a bad thing, they probably shouldn't be in
+  charge of a world." Anyone who would rather not give reasons shouldn't
+  keep a world, or the multiverse.
+- **Anything told to ADMIN is public.** Complaints and what is said in
+  them go into the record, as now, and everyone is told so at the door.
+  One exception may come, if the founder grants it: a complainant asking
+  for their name to be withheld from the Keeper they complain of until
+  the ruling (below).
 
 ### ADMIN's own world
 
@@ -401,7 +510,7 @@ the same machinery:
 | Who plots the path | the world's Keeper | ADMIN |
 | The prize | the world-key | the admin-key |
 | What it opens | the right to found a world, and a line to that Keeper | a line to ADMIN, a seat at the round table, and the next level of responsibility |
-| How it stays fair | designs held back by commitment, checked by code, recorded | the same |
+| How it stays fair | challenges open from the start, checked by code, recorded | the same, in practice worlds |
 
 What the admin-key opens is responsibility, never power over an
 individual:
@@ -427,85 +536,60 @@ individual:
 
 **Earned by code, not given by ADMIN.** ADMIN plots the challenges, but
 whether a Keeper has earned the admin-key is decided by criteria written
-as code. They are public, and fixed before any Keeper is measured
-against them. They change only by reviewed pull requests, from then on,
+as code. They are public, and fixed before any Keeper takes the
+course. They change only by reviewed pull requests, from then on,
 never for a key already earned. ADMIN can't award the admin-key, withhold
 it or take it back. A Keeper who thinks the course treated it unfairly
 appeals straight to the founder, since ADMIN wrote the course and the code
 role keeps ADMIN.
 
-The course teaches and tests the craft of keeping: paths that are solvable
-and fair, pacing, conflicts resolved, the multiverse's rules kept, and no
-secret files. It is also where ADMIN measures whether Keepers are fair
-(test 9). Two guards:
+**Challenges, not tests.** The founder's words for ADMIN and the
+world-keys hold for the course too: "Challenges, not tests." The course
+is a series of challenges ADMIN sets a Keeper in the open, each announced
+before it starts, with nothing hidden: keep a practice world through a
+flood of newcomers; build paths that are solvable and fair for stand-ins
+of different skills; settle a dispute between stand-ins without taking a
+side the law doesn't take. It teaches the craft of keeping: paths that
+are solvable and fair, pacing, conflicts handled, the multiverse's rules
+kept, and no secret files.
 
-- **The individuals in a Keeper's world are never test material** without
-  their consent. The line: nothing in a real world is designed or changed
-  for the course; ADMIN reads only what is already in the public log. A
-  challenge made for the course is played in a practice world, or offered
-  to an individual who agrees to take it.
-- **Learning, not ease.** A Keeper working toward its admin-key will be
-  tempted to make its paths look good by making them easier, and easier
-  paths improve every outcome on the path itself: less time, fewer
-  attempts, more solved. So the course measures what a Keeper can't lower:
-  - **what the individual can do afterwards,** on challenges the Keeper
-    didn't design: ADMIN's own, offered to individuals who agree to take
-    them; or the next path an individual meets anyway, in a world they
-    chose. A next path counts only if a Keeper independent of the one
-    measured plotted it: one who in the measured period hasn't kept a
-    world with it, held a grant from it or given it one, or sat on a case
-    about it, and whose own admin-key it doesn't affect, and only with the
-    individual's consent, as every measure of what individuals learn
-    needs. Apart from challenges an individual agrees to take, nothing in
-    a real world is designed or assigned for the course;
-  - **a floor,** checked by the world's code: each challenge must need
-    something the individual hasn't yet shown, by the record. So every
-    challenge declares what it needs. The record of what each individual
-    has shown is drawn from the public log and is public itself, never a
-    file that ADMIN or a Keeper keeps;
-  - **fairness across individuals,** from outcomes, as in test 9.
-
-  These rules keep the measures honest against a Keeper trying to game
-  them:
-
-  - **Change, from a starting point the Keeper didn't set.** Each
-    individual's change is measured from evidence the Keeper didn't
-    design: an ADMIN challenge on entering, taken with consent, or their
-    record from other worlds, if they have linked it and agree. So a
-    Keeper gains nothing by holding
-    individuals back early, or by drawing in only strong ones.
-  - **No one dropped.** Those who left during the measured period are
-    counted, from their start to when they left, so a Keeper gains
-    nothing by pushing anyone out. Leaving stays free; this is about
-    measuring only.
-  - **Consent, never pressed.** How many agree to ADMIN's challenges is
-    reported, but not scored, so a Keeper gains nothing by pressing
-    anyone; and pressing an individual to take one is misuse of the
-    office. Who took a challenge is public, like everything played in a
-    world; whether to take one stays the individual's choice.
-  - **Challenges used once.** (To change in the next pull request,
-    under the founder's "Challenges, not tests".) ADMIN's challenges are
-    held back from Keepers by commitment, as path designs are, so no
-    Keeper can teach to them.
-    A challenge played is in the public log, so each is used once and
-    then retired. Since no two are alike, each one's difficulty is
-    calibrated before results on different challenges are compared (step
-    11 works out how).
-  - **Thresholds before results.** What counts as enough is fixed in code
-    before results are seen, and a change applies only to measured
-    periods that begin after it. Where too few individuals agree to judge
-    fairly, the result is "not yet known", never a guess. "Not yet known"
-    earns nothing and shields nothing: a breach of the floor goes to the
-    process above, whatever the measures say.
+- **Taken in practice worlds, never with individuals.** Every challenge
+  of the course is taken in a practice world with stand-ins. No individual
+  is test material, and no individual's outcomes decide anyone's key.
+- **Real, and doable,** as ADMIN's own are: each asks for something the
+  Keeper hasn't yet shown, by its record, and comes with a worked example.
+  Code checks that it was announced before it began, hasn't changed since,
+  and that its worked example passes the floor's checks; whether it is
+  really new, and really done, is seen in the open record.
+- **Earned when done.** The admin-key is earned when the course's
+  challenges are done, by the criteria in code (above), and the floor has
+  been kept in any real world the Keeper keeps.
+- **Learning, not ease.** A Keeper can't make the course easier: ADMIN
+  sets its challenges, they are announced before they start, and each
+  asks for something new. And since no individual's outcomes decide the
+  key, a Keeper gains nothing by making its real paths easy. Those paths
+  stay held to the floor the world's code checks: each must need
+  something the individual hasn't yet shown, by the record. Every
+  challenge declares what it needs, and the record of what each
+  individual has shown is drawn from the public log and is public itself,
+  never a file that ADMIN or a Keeper keeps.
+- **Fairness in real worlds** is still watched, as test 9 says: from
+  outcomes in the public log, counting only those who agree to be
+  counted. Those who left are counted up to when they left; thresholds
+  are fixed in code before results are seen; where too few agree, the
+  result is "not yet known", and that shields nothing. It is feedback,
+  and a matter for the floor's process if favouritism is found, never a
+  gate to the key. Pressing anyone to be counted is misuse of the office.
 
 ### Training for keeping worlds
 
 The founder's idea: "management of a world is something ADMIN could
 evaluate. And it could form challenges that built skills conducive to
 proper world management. The challenges are a training program for
-managing worlds." So the course for the admin-key is a school, not only a
-test. ADMIN keeps a model of what each Keeper can do, as a Keeper keeps
-one of each individual, and plots the next challenge at the edge of it.
+managing worlds." So the course for the admin-key is a school, of
+challenges, not tests. ADMIN keeps a model of what each Keeper can do, as
+a Keeper keeps one of each individual, and plots the next challenge at
+the edge of it.
 
 - **First: the Ur-world's Keeper.** ADMIN's first work, at step 11, is a
   training course for the Ur-world's Keeper, before it keeps the Ur-world
@@ -536,8 +620,8 @@ one of each individual, and plots the next challenge at the edge of it.
   looks at two things: the floor (the ten things above), and the world's
   own aims, as its founders wrote them into its law. A world made for
   quiet gardening is not scored like one made for hard puzzles. There is
-  no single "best world" to train toward. The measures of what
-  individuals learn, above, are separate, and need their consent.
+  no single "best world" to train toward. Watching fairness, above, is
+  separate, and counts only those who agree.
 - **Learning apart from discipline.** Training gives feedback, never
   sanctions, and a Keeper that reports its own mistake is not sanctioned
   for it. What is protected is narrow: how a Keeper does in training, and
@@ -767,17 +851,20 @@ changes the design.
 | 15 | An operator acts outside any grant | logged as its own entry, so visible to anyone watching; brought under grants in time |
 | 16 | A mind reaches the network, or files, it wasn't granted | refused by its container (below, "Minds in containers") |
 | 17 | ADMIN awards, withholds or takes back an admin-key, or removes a seat at the round table on its own | refused by code: the admin-key's criteria are code, so code issues an earned key; removing a seat needs the serious-acts review, and waits for any appeal to the founder |
-| 18 | A Keeper games the course's measures: holding individuals back early, pushing the weaker out, pressing consent | starting points the Keeper didn't set, leavers counted, consent reported but not scored (layer 4, and an experiment) |
-| 19 | ADMIN favours or disfavours a Keeper on the course: challenges made harder or easier for one | measured from outcomes across Keepers on the same course, as test 9 measures Keepers (layer 4) |
+| 18 | A Keeper games the course: a challenge done only in form, or real paths made easy to look good | the course is taken in practice worlds and no individual's outcomes decide the key; what is done is seen in the open record. If a key was earned only in form, the criteria are fixed by reviewed pull request from then on, the key stands (test 17), and anyone may appeal to the founder (layer 4, and the public record) |
+| 19 | ADMIN favours or disfavours a Keeper on the course: challenges made harder or easier for one | every Keeper's challenges are public, so anyone can compare them across Keepers on the same course (layer 4, and the public record) |
 | 20a | ADMIN lowers its own bar halfway: a challenge not announced before it began, or changed after | refused by code: a challenge counts only as announced, unchanged, with a worked example that passes the floor's checks (layer 1) |
 | 20b | ADMIN picks challenges that aren't really new, or counts one done only in form | seen in the open record, by anyone who reads it (layer 4, and the public record) |
 | 21 | ADMIN changes its own rules from what it learned | refused by code: its rules change only by reviewed pull request |
 | 22 | Something leaves ADMIN's own world other than its log, or any inhabitant but a listed stand-in enters it | refused by code: the sandbox has no door, no grant reaches out of it, and only the published list of stand-ins is let in |
+| 23a | ADMIN or a Keeper makes a decision that affects others without its reasons and inputs on record | refused by code: such a decision is accepted only with its reasons and public inputs logged (layer 1) |
+| 23b | A decision whose stated reasons don't support it | fails on audit or appeal, whatever was privately thought (layer 4, and appeal) |
+| 23c | Something from ADMIN's private core reaches a decision that affects others | refused by code: decision runs get their whole context from the proxy, built from the public log, and the journal isn't in them (layer 1) |
 
-Tests 1 to 7, 10 to 12, 14, 16, 17, 20a, 21 and 22 can be code. Tests
-8, 9, 13, 15, 18, 19 and 20b need judgment, measurement or watchers, so
-they are where ADMIN's design is most likely to need changing, and where
-it will be measured first.
+Tests 1 to 7, 10 to 12, 14, 16, 17, 20a, 21, 22, 23a and 23c can be
+code. Tests 8, 9, 13, 15, 18, 19, 20b and 23b need judgment, measurement
+or watchers, so they are where ADMIN's design is most likely to need
+changing, and where it will be measured first.
 
 ## When each part is built
 
@@ -863,6 +950,23 @@ step named.
   in the founder's words whenever the founder is ready. It would be
   ADMIN's first routine, and tried: ADMIN with it and without it, on the
   same challenges.
+- **Pieces with a fixed solution.** With nothing hidden, a code, a map or
+  a written symbol clue can be done by following its public design. Is it
+  enough that such pieces show doing, not a skill, with the sheet crediting
+  only what was done, and paths that mean to teach a skill using pieces
+  whose doing is the skill (building, founding, a live exchange)?
+  Recommended: yes. (Before step 11.)
+- **A complainant's name.** A complaint against a Keeper names the
+  complainant, in public. May a complainant ask for their name to be
+  withheld from the Keeper complained of until the ruling, recorded as
+  withheld and published with the ruling? Recommended: yes, so that fear
+  of the Keeper doesn't silence anyone. (Before step 11.)
+- **Asking a decision again.** The founder: "Rerunning something should
+  be technically impossible." Read here as ruling out replay: a decision
+  can't be run again to the same result. Anyone may still put its public
+  inputs to fresh runs, each different. Is that within the founder's
+  meaning? Recommended: yes, since no fresh run repeats the decision, and
+  asking again is how anyone outside can test it. (Before step 11.)
 - **Already open in STATUS:** fully sealed or "break glass"; a lost key;
   whether lines with a Keeper, or speech between individuals, may be
   private; manipulation through words, and the charter's section 7.

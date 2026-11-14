@@ -123,6 +123,44 @@ code OSI asks for. Whether such a
 model may sit beside fully open ones in ADMIN's mind is put to the
 founder ([ADMIN.md](../ADMIN.md)).
 
+## In the open
+
+- **Kerckhoffs's principle.** Auguste Kerckhoffs, "La cryptographie
+  militaire", *Journal des sciences militaires*, January and February
+  1883. Its second principle, in Fabien Petitcolas's English rendering:
+  "The system must not require secrecy and can be stolen by the enemy
+  without causing trouble"; as Petitcolas sums the principles up,
+  "security must lie in the choice of key"
+  ([Petitcolas](https://www.petitcolas.net/kerckhoffs/index.html)). The
+  page adds that this "does not necessarily implies that the method
+  should be public": publishing everything ADMIN does rests on the
+  founder's accountability, not on Kerckhoffs.
+- **Written reasoning isn't always the reason.** Turpin and others
+  (2023): "CoT explanations can systematically misrepresent the true
+  reason for a model's prediction", and "can be plausible yet misleading,
+  which risks increasing our trust in LLMs without guaranteeing their
+  safety" ([arXiv 2305.04388](https://arxiv.org/abs/2305.04388)). Chen
+  and others (2025): monitoring a model's written reasoning "is a
+  promising way of noticing undesired behaviors during training and
+  evaluations, but that it is not sufficient to rule them out"
+  ([arXiv 2505.05410](https://arxiv.org/abs/2505.05410)).
+
+- **Private deliberation, public reasons.** The Supreme Court of the
+  United States: "the Justices meet privately to discuss the argued cases
+  and to discuss and vote on petitions for review", and in their sittings
+  they "hear cases and deliver opinions"
+  ([supremecourt.gov](https://www.supremecourt.gov/about/procedures.aspx)).
+
+Taken: everything ADMIN does and decides is open to inspection, and every
+decision that affects others carries its reasons. Each decision is made
+once, with fresh randomness, and can't be replayed, as the founder asked;
+but its models are free and pinned and its inputs are logged, so anyone
+can ask it again with fresh runs and see whether they reach the same
+decision. Reading its reasoning helps; asking again is the stronger
+check. ADMIN
+keeps a private core of its own thoughts, as everyone does, which never
+decides a case.
+
 ## Not checked
 
 - Whether any of these methods works for keeping worlds: ADMIN's own
