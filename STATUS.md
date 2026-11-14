@@ -885,7 +885,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   signed by the old root too; the root signs nothing else; the private
   halves as plain files in the private repository; nothing private in
   this repository, kept so by the tool, a test, and GitHub's push
-  protection if the founder turns it on; ALICE's and BOB's identity,
+  protection once the founder turns it on; ALICE's and BOB's identity,
   birth and mind records at their birth (step 9). *Why:* TUF's roles
   and its two-signed root, and the DNSSEC root that signs only keys,
   are the established way to limit what one stolen key can do; a

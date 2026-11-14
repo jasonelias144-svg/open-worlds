@@ -110,7 +110,8 @@ root does.
      named test keys, each made from a seed that says "never for anything
      real";
    - GitHub's secret scanning with push protection, free for public
-     repositories, recommended to the founder for this repository.
+     repositories: a setting the founder turns on, since no tool in a
+     working session changes repository settings.
 6. **How the keys are made:** by a tool in this repository, from the
    operating system's randomness through `cryptography`, in a working
    session, written straight into a checkout of the private repository,
