@@ -179,5 +179,61 @@ class TestDials(unittest.TestCase):
              "seed", "volume", "soil", "own_reactions"})
 
 
+
+class TestKeyLists(unittest.TestCase):
+
+    def setUp(self):
+        self.by = {c["name"]: c["record"] for c in VECTORS["valid"]}
+
+    def test_each_version_follows_the_one_before_or_not_as_stated(self):
+        for case in VECTORS["keyListChains"]:
+            with self.subTest(case["name"]):
+                found = records.key_list_problems(
+                    case["keyList"], self.by[case["previous"]])
+                self.assertEqual(not found, case["holds"], found)
+
+    def test_each_history_holds_or_not_as_stated(self):
+        for case in VECTORS["keyListHistories"]:
+            with self.subTest(case["name"]):
+                found = records.key_list_chain_problems(
+                    [self.by[name] for name in case["versions"]])
+                self.assertEqual(not found, case["holds"], found)
+
+    def test_a_new_history_keeps_the_old_ones_individuals_and_worlds(self):
+        # After a lost root, a new version 1 is checked against the last
+        # version of the old history: its entries for ALICE, BOB and the
+        # Ur-world must be the same.
+        last = self.by["the key list after, signed by the new root"]
+        first = self.by["the first key list, signed by its root"]
+        self.assertEqual(records.published_entries_problems(first, last), [])
+        changed = next(c["keyList"] for c in VECTORS["keyListChains"]
+                       if c["name"] == "a version giving ALICE another key")
+        self.assertEqual(records.published_entries_problems(changed, last),
+                         ["$.keys: ALICE's entry changed or dropped"])
+
+    def test_a_history_with_a_version_that_doesnt_hold(self):
+        first = self.by["the first key list, signed by its root"]
+        found = records.key_list_chain_problems([first, {**first,
+                                                         "version": 2}])
+        self.assertEqual(len(found), 1)
+        self.assertTrue(found[0].startswith("[1] "), found)
+
+    def test_the_root_a_key_list_names(self):
+        first = self.by["the first key list, signed by its root"]
+        handover = self.by["a key list in which the root names a new root"]
+        self.assertEqual(records.key_list_root(first), first["issuer"])
+        self.assertNotEqual(records.key_list_root(handover),
+                            handover["issuer"])
+
+    def test_both_lists_must_hold_and_be_key_lists(self):
+        first = self.by["the first key list, signed by its root"]
+        handover = self.by["a key list in which the root names a new root"]
+        template = self.by["a template for chemistry worlds, with its dials"]
+        with self.assertRaises(records.RecordError):
+            records.key_list_problems({**handover, "version": 9}, first)
+        with self.assertRaises(records.RecordError):
+            records.key_list_problems(handover, template)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -89,10 +89,12 @@ root does.
 2. **A key list, signed by the root,** names each role's keys, as TUF's
    root metadata does: the one place that says which key is the
    project's for what. It is public, in this repository, and versioned:
-   each version names the one before by hash, and a version that changes
-   the root key is signed by the old root too, by a succession. One key
-   to a role and no thresholds while the project has one keyholder;
-   thresholds when others hold keys. It is a new kind of record,
+   each version names the one before by hash and is signed by the root
+   the one before names. So a new root is named by the old one, in a
+   version the old root signs, and signs the version after itself; the
+   two are published together, in one pull request (part two, below).
+   One key to a role and no thresholds while the project has one
+   keyholder; thresholds when others hold keys. It is a new kind of record,
    `open-worlds/key-list/v1`, in records-v1, with vectors in both
    languages.
 3. **The root key signs only key lists,** as the DNSSEC root's key signs
@@ -117,10 +119,12 @@ root does.
      isn't a known test key: the vectors' own, worked out again from
      their seeds, which say "never for anything real", and the W3C
      specification's example;
-   - GitHub's secret scanning with push protection, free for public
-     repositories: a setting the founder turns on, since no tool in a
-     working session changes repository settings. It doesn't know our
-     format, and its custom patterns, which could teach it, are only for
+   - GitHub's secret scanning ("Secret Protection" in the repository's
+     settings) and push protection, free for public repositories: both
+     on, the founder confirmed on 2026-11-14. They catch the token
+     formats GitHub knows, such as a provider's API key pasted by
+     mistake. They don't know our format, and the patterns that could
+     teach them, custom ones and generic private keys, are only for
      organization-owned repositories on GitHub Team or Enterprise
      ([GitHub](https://docs.github.com/en/code-security/secret-scanning/using-advanced-secret-scanning-and-push-protection-features/custom-patterns/defining-custom-patterns-for-secret-scanning)),
      so this repository's own test is what catches ours.
@@ -145,7 +149,9 @@ root does.
    root's private half, and how its every use is logged, asked by #38's
    review: the project, in its private repository; and every use of it
    is a version of the key list, each published in this repository's
-   history.
+   history. ADMIN's entry names its key and nothing more: ADMIN.md has
+   "No power of ADMIN's or a Keeper's exists outside a grant", and which
+   key issues ADMIN's grants is decided at step 11, when ADMIN begins.
 9. **For individuals and worlds, the key list only publishes.** For the
    project's own roles (root, code, mind records, templates, ADMIN) the
    key list is the authority: a leaked key is replaced by a new version.
@@ -168,11 +174,16 @@ root does.
     `expires` keeps whoever serves the list from freezing a reader on an
     old version, but here the list is read from this repository, and an
     expiry would bring the root out on a schedule. *Revisit if:* the
-    list is served from anywhere else. When a role's key is replaced,
-    what it signed before holds if it is in a log, or in this
-    repository's history, before the version that replaced it; a
-    record's own `created` is no evidence, since whoever holds a key can
-    write any time.
+    list is served from anywhere else. A reader taking a newer version
+    checks every version between it and the one it holds
+    (`key_list_chain_problems`, part two), so each link is verified, not
+    only the newest. When a role's key is replaced, what it signed
+    before holds if it is in a log, or in this repository's history,
+    before the version that replaced it; a record's own `created` is no
+    evidence, since whoever holds a key can write any time. That history
+    is evidence only while `main` is never rewritten, which no session
+    does: rewriting a repository's history is the founder's to decide
+    (AGENTS.md).
 
 ## The parts of step 3
 
@@ -188,6 +199,75 @@ root does.
    signs as its key, so whoever returns is known as the same individual,
    as the Python worlds already do.
 
+## As built, part two
+
+- **The key list** (`open-worlds/key-list/v1`, schemas/records-v1.schema.json):
+  `issuer`, `version` (from 1), `previous` (the version before, by hash;
+  absent from version 1 and required after), `time`, and `keys`: each a
+  `role` (root, code, mindRecords, templates, admin, world, individual),
+  a `name`, a `signing` did:key and, for a holder things are sealed to, a
+  `sealing` key. Beyond the schema, in Python (`formats/records.py`) and
+  Rust (`rust/formats`): exactly one root, with no sealing key, since
+  nothing is sealed to it; each name, and each key, named once; every
+  sealing key safe to seal to; and version 1 signed by its own root.
+- **A version against the one before:** `key_list_problems(new,
+  previous)` checks its hash, the next number, signed by the root the
+  one before names, no earlier in time, and every individual's and
+  world's entry kept as it was (point 9). Since no such entry can be
+  dropped, a check of each pair covers a whole history.
+- **A whole history:** `key_list_chain_problems(versions)` walks it from
+  version 1, each version against the one before, and refuses a history
+  that ends on a version naming a root that hasn't signed one. So a
+  change of root takes two versions: the old root signs one naming the
+  new root, and the new root signs the next, and the two are published
+  together, in one pull request. Every record keeps one proof by one
+  key, so, unlike TUF's root, signed by the old and new keys together, a
+  new root proves it holds its key only by signing the version after.
+  If it can't sign, the history is stuck at the handover: the old root
+  can't sign the version after, and a second version with the same
+  number is a fork (point 10). Publishing the two together is what keeps
+  that from happening.
+- **Shared vectors** (`vectors/formats/records-v1.json`): three key lists
+  that hold (the first; one in which the root names a new root; the one
+  after, signed by the new root), eleven refused, eleven pairs of a
+  version and the one before it (three that follow, among them a new key
+  for the code role; eight that don't, among them a new key for ALICE,
+  or for the Ur-world, BOB dropped, and a version earlier than the one
+  before), and six histories (two that hold).
+- **No private key here** (`tests/test_no_private_keys.py`): every
+  tracked file is read, whatever bytes it holds, and scanned for
+  Multikey secrets and PEM private-key blocks, also inside strings
+  (line breaks as `\n`) and Markdown quotes; each must be one of the
+  vectors' test keys, worked out again from its seed, or the W3C
+  specification's example. A key made on the spot and planted in
+  README.md, or among the vectors' keys, is caught. A failure names the
+  file, the kind of key and a hash of it, never the key. Not caught: a
+  key split across several strings joined in code.
+- **The tool** (`python3 -m formats.make_keys --private PATH --key-list
+  PATH`, `formats/make_keys.py`): makes a key for each role from the
+  operating system's randomness; writes each holder's private halves to
+  a new `keys/<holder>.json` in the private checkout, the folder
+  readable by its owner only and each file too; signs the first key list
+  with the new root; checks that the halves kept match the list; and
+  prints only public keys. `--private` must be the top of a full clone
+  of another repository. It refuses a place inside this repository's
+  working tree; a worktree of this repository; a clone whose remotes
+  name this repository, or are paths on this computer; a history that
+  shares this repository's first commit on any branch; a shallow clone,
+  of either, since its first commits are only where its history was
+  cut; a checkout with no remote; and a `keys` that is there already,
+  folder or link, so nothing is written over a key or through a link. A
+  clone of a fork of this repository, under another name and with its
+  history cut, is beyond what it can tell. Everything or nothing: the halves are written
+  into a new folder only its owner can open, and moved into place with
+  the key list once both are whole; a failure on the way leaves neither.
+  Tested on throwaway repositories, with each guard checked by removing
+  it. If the tool is killed midway, it can leave a `.keys-being-made-…`
+  folder in the private checkout and a `.<key list's name>.being-made`
+  file beside the key list; delete both before running it again. Names
+  are compared byte for byte, so `ALICE` and `Alice` are two names; see
+  STATUS, "Noticed".
+
 ## Honest limits
 
 - **The root isn't kept apart.** TUF keeps its root offline and the
@@ -201,7 +281,12 @@ root does.
 - **A lost root can't be recovered.** MINDS.md keeps the private halves
   nowhere else, so if the private repository is lost, the root goes with
   it, and the project starts a new key list at version 1, which a reader
-  accepts only on trust in this repository's owner.
+  accepts only on trust in this repository's owner. That new version 1
+  carries forward every individual's and world's entry from the last
+  version published, unchanged, and a reader holding the old list checks
+  that it does (`published_entries_problems`, the part of point 9's
+  check that holds across two histories), so a lost root never becomes a
+  way to give ALICE, BOB or the Ur-world other keys.
 - **Until ALICE and BOB hold their own keys,** whoever holds the private
   repository can sign as them. That is what "public to the project"
   means (MINDS.md).

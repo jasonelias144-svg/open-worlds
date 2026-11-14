@@ -557,6 +557,13 @@ template's law and rules are carried by its `code`: the law text is
 what that code writes from the parameters, and what each rule acts on
 is in that code too.
 
+## The key list
+
+From course step 3: the project's key list (`open-worlds/key-list/v1`),
+signed by the multiverse's root, names the key that holds each role;
+each version names the one before and is signed by its root. Why, and
+how it is checked, is in [KEYS.md](KEYS.md).
+
 ## What step 2 defines
 
 Done: signed records (`formats/`, `rust/formats`), the records for the
