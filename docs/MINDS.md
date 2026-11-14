@@ -202,7 +202,10 @@ Four principles hold it together:
 What an individual does is public; what they think is their own.
 
 1. **Anyone outside, the public:** everything observable. Every action,
-   everything said aloud, their sheet, their identity, their avatar. And
+   everything said aloud, their sheet, their identity, their avatar in
+   each world. Which avatars are one individual's is public only where
+   they show it, apart from the first, which their birth links
+   ([research/PERSONS.md](research/PERSONS.md), decisions 4 and 9). And
    metadata about their sealed self: that their journal exists, how much
    they have written and when, and a fingerprint of each entry, taken over
    its encrypted form (so a short entry can't be confirmed by guessing).

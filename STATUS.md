@@ -32,7 +32,8 @@ respect one another's freedom, with full transparency and exit at any time
   enters signs an arrival, a name stays the key's that first used it,
   and a world signs its log's heads. The course was rechecked after
   step 3 and gained step 8a, a lost or leaked key, before ALICE's and
-  BOB's birth. Next: step 3a, persons.
+  BOB's birth. Step 3a, persons, is under way: its plan, after looking
+  first, is in docs/research/PERSONS.md.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
   (#29), and experiment 001, the first unscripted minds
   ([results](experiments/001-first-words/RESULTS.md), #30). The first
@@ -975,7 +976,39 @@ it was wrong. Questions of what the project is for stay with the founder.
   in the Ur-world before step 9, so closing it then exposes nothing.
   *Revisit if:* an individual must enter the Ur-world before step 9.
 
+- 2026-11-14, persons (docs/research/PERSONS.md, decisions 1 to 12): a
+  person is an individual seen across worlds, with no new identity
+  kind, and their identity key never enters a world; a presence is a key
+  of its own in one world, made by HKDF from a presence seed of the
+  person's own, over the world's did:key and a counter; a link holds only
+  both ways, in `holds/v1` (the person signs) and `held-by/v1` (the
+  presence signs); showing a link puts both in the world's public log,
+  for good; the person's list of presences is a chain, sealed to them;
+  presences don't talk behind their worlds, lessons go through the
+  person; a world can't count persons, so nothing that counts heads
+  counts unlinked presences; several presences in one world are allowed;
+  the first presence is linked by birth; the architectures are examples
+  on the unchanged kernel; human accounts wait. *Why:* OpenID Connect's
+  pairwise identifiers and DID Core's pairwise DIDs give each place its
+  own identifier so no one can correlate them; DID Core and Mastodon
+  count a link only reciprocated; BIP-32 makes many keys from one secret
+  that no outsider can relate; a public chain of a person's presences
+  would link them all, which "unlinked by default" forbids. *Revisit
+  if:* a presence must be shown to one party without its world's log
+  knowing (then proofs that reveal less, such as BBS, once a
+  Recommendation), or a seed's loss or leak costs a person more than
+  separate keys would, or the architectures need the kernel changed.
+
 ## Log
+
+- 2026-11-14 Claude: course step 3a, persons, begun by looking first
+  (docs/research/PERSONS.md): the project's own decisions and DeepSeek's
+  sketches 36 to 40, then OpenID Connect's pairwise identifiers, DID
+  Core's pairwise DIDs and two-way `alsoKnownAs`, Mastodon's two-way
+  link check, BIP-32 and BBS. Twelve decisions (Decided by the technical
+  lead) and four parts: the plan; the formats; a person in the Ur-world;
+  the architectures. COURSE.md, TOPICS.md topic 4, MINDS.md ("Who can see
+  what") and COLLABORATING.md brought into line.
 
 - 2026-11-14 Claude: course step 3 done and moved to "Done" in
   docs/COURSE.md, with its pull requests (#52, #53, #56 to #59). The

@@ -173,25 +173,29 @@ unlinked by default ([VISION.md](VISION.md), "A person across worlds").
 
 **Decided:** "Information flows through the person, not between worlds
 behind their back"; a world sees only the presence there unless the
-person shows more; every entry into a world is logged.
+person shows more; every entry into a world is logged. From the plan
+([research/PERSONS.md](research/PERSONS.md)): a presence is a key of its
+own, made from the person's seed; a link holds only both ways, in two
+records, one signed by the person and one by the presence; showing a link
+puts it in a world's public log, for good; the person's list of presences
+is a chain, sealed to them; a world can't count persons, so nothing that
+counts heads counts unlinked presences.
 
 **Recommended, not decided,** from the sketch's lessons
 ([COLLABORATING.md](COLLABORATING.md), "What the last stretch taught"): a
 self spread across worlds needs each part linked to it, with both
 signing, and the person's list of identities should be a chain.
 
-**Open:** what the link record holds; how a person shows a link to one
-world and not another; how a lesson learned in one world becomes
-available in another without the worlds talking. Since step 3, every
-arrival names the key that signed it in a world's public log, so
-presences stay unlinked only if each has a key of its own
-([COURSE.md](COURSE.md), step 3a).
+**Open:** how a lesson learned in one world becomes available in
+another without the worlds talking (through the person's notes, in this
+step; through their memory, at step 7); a link shown to one party only,
+off any log, which waits for proofs that reveal less; what each
+architecture shows about a mind spread across worlds.
 
-**A possible implementation:** two signatures for each link, each in a
-record of its own, since every record here has one signer: the person
-signs "this presence is mine", and the presence signs "I belong to this
-person". DeepSeek's architectures (components 36 to 52: the octopus, the
-relay, the swarm, the council) become small examples on the same core.
+**A possible implementation:** decided now (`holds/v1` and `held-by/v1`,
+PERSONS.md, decision 3). DeepSeek's architectures (components 36 to 52:
+the octopus, the relay, the swarm, the council) become small examples on
+the same core: a design for any of them, as prose, is welcome.
 
 **Send back:** the records, field by field; one architecture as a worked
 example; what stays private.
