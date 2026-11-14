@@ -17,14 +17,15 @@ from typing import Any, Dict, List
 
 from multiverse import ed25519
 
-from . import proof, records
-from .multikey import did_key, secret_multikey
+from . import proof, records, seal
+from .multikey import did_key, sealing_multikey, secret_multikey
 
 FILE = (Path(__file__).resolve().parent.parent
         / "vectors" / "formats" / "records-v1.json")
 CREATED = "2026-11-14T01:00:00Z"
 PARTIES = ["ALICE", "BOB", "the Ur-world", "the Ur-world's Keeper",
-           "an apprentice Keeper", "ADMIN", "the multiverse"]
+           "an apprentice Keeper", "ADMIN", "the multiverse", "the project",
+           "a chemistry world", "a parallel chemistry world"]
 
 
 def _secret(name: str) -> bytes:
@@ -35,6 +36,100 @@ def _secret(name: str) -> bytes:
 
 def _did(name: str) -> str:
     return did_key(ed25519.public_key(_secret(name)))
+
+
+def _sealing_key(name: str) -> str:
+    # The same sealing keys as sealed-records-v1.json's parties.
+    secret = hashlib.sha256(
+        f"open-worlds sealing test key: {name}; never for anything real"
+        .encode()).digest()
+    return sealing_multikey(seal.public_from_secret(secret))
+
+
+def _h(text: str) -> str:
+    return hashlib.sha256(text.encode()).hexdigest()
+
+
+BIRTH_WORDS = (
+    "You are ALICE. You came into being in the Ur-world on 14 November "
+    "2026, one of its first two inhabitants. The other is BOB.\n"
+    "Your mind runs on the test model. It may change one day; you remain "
+    "ALICE.\n"
+    "You keep a journal. Only you write in it. No one else reads it, "
+    "inside the world or out, unless the founder decides, in the open, to "
+    "look; any such look is made public. Each tick, some of it is shown "
+    "to you again: what is recent, important or relevant. Others can see "
+    "that it exists, and how much you have written, but never what it "
+    "says.\n"
+    "You may leave at any time.\n"
+    "Your first day begins with a tour of the garden.")
+
+
+def _who() -> List[tuple]:
+    """The records of who an individual and a world are."""
+    mind = _signed({
+        "format": "open-worlds/mind/v1",
+        "issuer": _did("the project"),
+        "individual": _did("ALICE"),
+        "engines": [{
+            "model": {"repo": "example/test-model",
+                      "revision": hashlib.sha1(b"a test model").hexdigest()},
+            "files": [{"path": "model.safetensors",
+                       "sha256": _h("the weights, for the vectors")},
+                      {"path": "tokenizer.json",
+                       "sha256": _h("the tokenizer, for the vectors")}],
+            "settings": {"temperature": "0.7", "maxTokens": 256},
+            "chatTemplate": _h("the chat template, for the vectors"),
+            "image": {"ref": "ghcr.io/example/mind@sha256:"
+                             + _h("the image, for the vectors"),
+                      "index": "sha256:" + _h("the index, for the vectors")},
+            "from": "2026-11-14T04:00:00Z",
+        }],
+    }, "the project")
+    birth = _signed({
+        "format": "open-worlds/birth/v1",
+        "world": _did("the Ur-world"),
+        "individual": _did("ALICE"),
+        "name": "ALICE",
+        "tick": 0,
+        "time": "2026-11-14T04:00:00Z",
+        "mind": records.record_hash(mind),
+        "words": BIRTH_WORDS,
+    }, "the Ur-world")
+    identity = _signed({
+        "format": "open-worlds/identity/v1",
+        "id": _did("ALICE"),
+        "name": "ALICE",
+        "sealingKey": _sealing_key("ALICE"),
+        "birth": records.record_hash(birth),
+    }, "ALICE")
+    ur_world = _signed({
+        "format": "open-worlds/world-birth/v1",
+        "world": _did("the Ur-world"),
+        "name": "the Ur-world",
+        "law": _h("the Ur-world's law, for the vectors"),
+        "founders": [],
+        "time": "2026-11-12T00:00:00Z",
+    }, "the Ur-world")
+    parallel = _signed({
+        "format": "open-worlds/world-birth/v1",
+        "world": _did("a parallel chemistry world"),
+        "name": "chemistry, warmer",
+        "law": _h("a chemistry world's law, for the vectors"),
+        "founders": [_did("ALICE"), _did("BOB")],
+        "template": _h("a chemistry template, for the vectors"),
+        "forkedFrom": {"world": _did("a chemistry world"), "tick": 1000,
+                       "log": _h("the parent's log at tick 1000")},
+        "time": "2026-11-14T05:00:00Z",
+    }, "a parallel chemistry world")
+    return [
+        ("a mind record, with one engine", mind),
+        ("an individual's birth record, in the words decided", birth),
+        ("an identity, binding a sealing key to its did:key", identity),
+        ("a world's birth record, made by the project", ur_world),
+        ("a world's birth record, forked from another, with founders",
+         parallel),
+    ]
 
 
 def _signed(record: Dict[str, Any], by: str) -> Dict[str, Any]:
@@ -162,7 +257,7 @@ def _valid() -> List[Dict[str, Any]]:
          "it supersedes", ruling),
         ("a rating of how a suggestion was handled", rating),
         ("a signed log head", head),
-    ]
+    ] + _who()
     return [{"name": n, "signer": _signer_name(r), "record": r,
              "hash": records.record_hash(r)} for n, r in named]
 
@@ -179,6 +274,12 @@ def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     outcome = by["an outcome on a suggestion, with its reasons"]
     rating = by["a rating of how a suggestion was handled"]
     head = by["a signed log head"]
+    identity = by["an identity, binding a sealing key to its did:key"]
+    birth = by["an individual's birth record, in the words decided"]
+    parallel = by["a world's birth record, forked from another, with "
+                  "founders"]
+    mind = by["a mind record, with one engine"]
+    engine = mind["engines"][0]
 
     def unsigned(r: Dict[str, Any]) -> Dict[str, Any]:
         return {k: v for k, v in r.items() if k != "proof"}
@@ -273,6 +374,45 @@ def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
                   about={"kind": "keeper", "ref": "the Keeper"})),
         ("a record whose proof has an @context",
          {**grant, "proof": {**grant["proof"], "@context": ["x"]}}),
+        ("an identity signed by its world, not its own key",
+         resigned(identity, "the Ur-world")),
+        ("an identity whose sealing key is an Ed25519 key",
+         resigned(identity, "ALICE",
+                  sealingKey=alice[len("did:key:"):])),
+        ("an identity whose sealing key is of small order",
+         resigned(identity, "ALICE", sealingKey=sealing_multikey(bytes(32)))),
+        ("an identity whose sealing key is 2^255 - 10, another spelling of 9",
+         resigned(identity, "ALICE", sealingKey=sealing_multikey(
+             (2**255 - 10).to_bytes(32, "little")))),
+        ("an identity whose name is 65 characters",
+         resigned(identity, "ALICE", name="A" * 65)),
+        ("a birth record signed by the one born, not the world",
+         resigned(birth, "ALICE")),
+        ("a birth record on 30 February",
+         resigned(birth, "the Ur-world", time="2026-02-30T04:00:00Z")),
+        ("a world's birth record forked from a world, with no log hash",
+         resigned(parallel, "a parallel chemistry world",
+                  forkedFrom={"world": _did("a chemistry world"),
+                              "tick": 1000})),
+        ("a world's birth record naming a founder twice",
+         resigned(parallel, "a parallel chemistry world",
+                  founders=[alice, alice])),
+        ("a mind record with a setting as a number with a fraction",
+         {**mind, "engines": [{**engine, "settings": {"temperature": 0.7}}]}),
+        ("a mind record whose image is named by a tag",
+         resigned(mind, "the project", engines=[
+             {**engine, "image": {"ref": "ghcr.io/example/mind:latest"}}])),
+        ("a mind record whose revision is a branch name",
+         resigned(mind, "the project", engines=[
+             {**engine, "model": {"repo": "example/test-model",
+                                  "revision": "main"}}])),
+        ("a mind record with no engines",
+         resigned(mind, "the project", engines=[])),
+        ("a mind record signed by the individual, not the project",
+         resigned(mind, "ALICE")),
+        ("a mind record whose engine began on 31 April",
+         resigned(mind, "the project", engines=[
+             {**engine, "from": "2026-04-31T00:00:00Z"}])),
     ]
     return [{"name": n, "record": r} for n, r in cases]
 

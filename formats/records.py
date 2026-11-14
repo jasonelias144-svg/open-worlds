@@ -9,10 +9,11 @@ both read, schemas/records-v1.schema.json, and each is signed with
 
 1. it fits the schema for the kind its `format` names;
 2. its proof verifies;
-3. it was signed by the one who must sign that kind: a grant and a
-   world-key by their issuer, a decision by the office's key, a
-   suggestion, a rating and a journal entry by their author, a log head
-   by its world.
+3. it was signed by the one who must sign that kind: a grant, a
+   world-key and a mind record by their issuer, a decision by the
+   office's key, a suggestion, a rating and a journal entry by their
+   author, a log head and a birth record (an individual's or a world's)
+   by its world, and an identity by its own key.
 
 What the schema can't say is checked where the records meet the kernel,
 at course step 4: that a grant only narrows the grant it names; that a
@@ -38,9 +39,9 @@ from typing import Any, Dict, Iterator, List, Tuple
 import jsonschema
 from jsonschema.exceptions import ValidationError
 
-from . import proof
+from . import proof, seal
 from .canonical import canonical
-from .multikey import did_key
+from .multikey import KeyFormatError, did_key, sealing_from_multikey
 
 SCHEMA_FILE = (Path(__file__).resolve().parent.parent
                / "schemas" / "records-v1.schema.json")
@@ -55,6 +56,10 @@ KINDS: Dict[str, Tuple[str, Tuple[str, ...]]] = {
     "open-worlds/log-head/v1": ("logHead", ("world",)),
     "open-worlds/world-key/v1": ("worldKey", ("issuer",)),
     "open-worlds/journal-entry/v1": ("journalEntry", ("author",)),
+    "open-worlds/identity/v1": ("identity", ("id",)),
+    "open-worlds/birth/v1": ("birth", ("world",)),
+    "open-worlds/world-birth/v1": ("worldBirth", ("world",)),
+    "open-worlds/mind/v1": ("mind", ("issuer",)),
 }
 
 
@@ -103,22 +108,46 @@ def problems(record: Any) -> List[str]:
         if e.absolute_path else f"$: {e.message}" for e in errors)
 
 
+def _times(record: Dict[str, Any]) -> List[Tuple[str, Any]]:
+    """Each UTC time in `record`, with where it is."""
+    fmt = record.get("format")
+    if fmt == "open-worlds/grant/v1":
+        return [(f"$.{f}", record[f]) for f in ("validFrom", "validUntil")
+                if f in record]
+    if fmt in ("open-worlds/birth/v1", "open-worlds/world-birth/v1"):
+        return [("$.time", record["time"])]
+    if fmt == "open-worlds/mind/v1":
+        return [(f"$.engines.{i}.from", e["from"])
+                for i, e in enumerate(record["engines"])]
+    return []
+
+
 def _time_problems(record: Dict[str, Any]) -> List[str]:
-    """A grant's times must be real, and it must end after it starts;
-    the schema checks only their shape."""
-    if record.get("format") != "open-worlds/grant/v1":
-        return []
+    """Every time must be a real one, and a grant must end after it
+    starts; the schema checks only their shape."""
     found = []
-    for field in ("validFrom", "validUntil"):
-        if field in record:
-            try:
-                proof.check_time(record[field])
-            except proof.ProofError:
-                found.append(f"$.{field}: not a real UTC time")
-    if (not found and "validUntil" in record
+    for where, value in _times(record):
+        try:
+            proof.check_time(value)
+        except proof.ProofError:
+            found.append(f"{where}: not a real UTC time")
+    if (not found and record.get("format") == "open-worlds/grant/v1"
+            and "validUntil" in record
             and record["validUntil"] <= record["validFrom"]):
         found.append("$.validUntil: not after validFrom")
     return found
+
+
+def _key_problems(record: Dict[str, Any]) -> List[str]:
+    """An identity's sealing key must be one it is safe to seal to
+    (formats/seal.py); the schema checks only its shape."""
+    if record.get("format") != "open-worlds/identity/v1":
+        return []
+    try:
+        seal.check_public(sealing_from_multikey(record["sealingKey"]))
+    except (KeyFormatError, seal.SealError) as e:
+        return [f"$.sealingKey: {e}"]
+    return []
 
 
 def signer_field(record: Dict[str, Any]) -> Any:
@@ -133,7 +162,7 @@ def check(record: Any) -> Dict[str, Any]:
     """`record` without its proof, if it holds; otherwise RecordError."""
     found = problems(record)
     if not found:
-        found = _time_problems(record)
+        found = _time_problems(record) + _key_problems(record)
     if found:
         raise RecordError("; ".join(found))
     try:

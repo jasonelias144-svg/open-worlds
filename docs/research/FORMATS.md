@@ -418,17 +418,54 @@ one schema,
   it changes no record already made: the world-key and the journal entry
   were added so ("Sealed records").
 
+## Who an individual and a world are
+
+**Decided by the technical lead, 2026-11-14:** four more kinds join
+`schemas/records-v1.schema.json`, each signed as every record is:
+
+- **An identity** (`open-worlds/identity/v1`): `id`, the did:key, which
+  signs it; `name`; `sealingKey`, the key to seal things to them, as
+  Multikey (`z6LS...`); and `birth`, their birth record by hash. Signed
+  with their own key, it binds the sealing key to them, which "Sealed
+  records" left to this record. A sealing key not safe to seal to (at or
+  above 2^255 - 19, or of small order) is refused beyond the schema, as
+  `formats/seal.py` refuses it.
+- **An individual's birth record** (`open-worlds/birth/v1`), signed by the
+  world: `individual`, `name`, `tick` and `time`; `mind`, the mind record
+  they were born with, by hash; and `words`, the words they were told
+  ([MINDS.md](../MINDS.md), "The birth record"). Facts only, written once.
+- **A world's birth record** (`open-worlds/world-birth/v1`), signed by the
+  world: `name`, `law` by hash, `founders` (none for a world the project
+  made), `time`, and, for a world made from a template or forked from
+  another, `template` and `forkedFrom` (the parent world, the tick, and
+  the hash of the parent's log there), as decided on 2026-11-14
+  ([VISION.md](../VISION.md), "Learning from GitHub").
+- **A mind record** (`open-worlds/mind/v1`), signed by the project's key
+  that keeps mind records: the `individual`, and every engine they have
+  run on: the model at an exact 40-digit revision, its files by hash, its
+  settings, its chat template by hash, the container image by digest
+  ("Container images", above; never a tag alone), and when it began.
+  Settings are integers or strings: a quantity with a fraction, such as a
+  temperature, is a string, since the canonical form has no floats.
+
+Every time in these records must be a real one (a grant's always had to
+be). Shared vectors (`vectors/formats/records-v1.json`): 5 more records
+that hold, and 16 more that must be refused, among them an identity
+whose sealing key is of small order, a birth record on 30 February, and
+a mind record whose image is named by a tag.
+
 ## What step 2 defines
 
 Done so far: signed records (`formats/`, `rust/formats`), the records
-for the offices (above), sealing ("Sealing", "As built"), and the sealed
-records (world-key, journal entry). From the design pages, each with a
+for the offices (above), sealing ("Sealing", "As built"), the sealed
+records (world-key, journal entry), and who an individual and a world are
+(identity, birth records, mind record). From the design pages, each with a
 schema in 2020-12 and test vectors in both languages: identity, birth
 record, mind record, journal entry (sealed: its ciphertext and
 fingerprint), routine, sheet, avatar, skill attestation, world-key
 credential, grant, decision record, suggestion, rating, and signed log
-head. Still to come: identity, birth record, mind record, routine, sheet,
-avatar and skill attestation.
+head. Still to come: routine, sheet, avatar and skill attestation, and a
+world's template.
 
 ## Not checked
 
