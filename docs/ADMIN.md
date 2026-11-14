@@ -693,7 +693,8 @@ through a flood of newcomers; build paths that are solvable and fair for
 stand-ins of different skills; keep the tools working while stand-ins in
 a dispute find their own way through, without taking a side. It teaches
 the craft of keeping: paths that are solvable and fair, pacing,
-conflicts handled, the multiverse's rules kept, and no secret files.
+conflicts about offices and paths handled, the multiverse's rules kept,
+and no secret files.
 
 - **Taken in practice worlds, never with individuals.** Every challenge
   of the course is taken in a practice world with stand-ins. No individual

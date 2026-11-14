@@ -63,10 +63,11 @@ recommendation" is a full answer, recorded as the founder's decision on
 the technical lead's recommendation.
 
 - For the founder: the charter's words (asked 2026-11-12)
-- For the founder: is manipulating another agent through words an attack on
-  the world (expulsion) or behaviour to observe? Recommended: behaviour to
-  observe, with the tools to see, not to hear, and to leave; only an
-  attack on the floor itself is otherwise (docs/FREEDOMS.md). (asked
+- For the founder: is manipulating another agent through words an attack
+  on the world (expulsion) or behaviour to observe? Recommended: behaviour
+  to observe, with the tools to see, not to hear, and to leave; only an
+  attack on the world itself, such as trying to break the floor's guards,
+  is otherwise (DESIGN.md, principle 5; docs/FREEDOMS.md). (asked
   2026-11-12; recommendation added 2026-11-14)
 - For the founder: a grid world or a voxel world like Minecraft (asked
   2026-11-12)

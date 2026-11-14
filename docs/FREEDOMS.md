@@ -57,7 +57,7 @@ what they invent beyond them, is theirs.
 | **Agree** | proposals and agreements others can accept or refuse, and bonds between worlds by consent | to be built |
 | **Not hear** | stop hearing one speaker, which limits no one but the listener | to be built |
 | **Suggest** | to a world's Keeper or to ADMIN, one way and in the open, out to GitHub | the ledger, from course step 9 ([ADMIN.md](ADMIN.md), "Suggestions from inside") |
-| **Appeal** | against an office's act, to ADMIN and above it the founder | ADMIN, course step 11 |
+| **Appeal** | against an office's act: to ADMIN, then the technical lead's role, then the founder ([ADMIN.md](ADMIN.md), "Graduated responses") | ADMIN, course step 11 |
 
 Elinor Ostrom's work is the strongest evidence that tools are enough
 more often than expected. Ostrom found communities sharing a resource
@@ -76,9 +76,10 @@ disability, poverty, or other circumstances restrict a person's
 practical options"
 ([Wikipedia](https://en.wikipedia.org/wiki/Anarchy,_State,_and_Utopia)).
 So exit here must be real, not only formal: leaving costs no one their
-identity, their keys, their record or their skills, and nothing
-essential is scarce ([ADMIN.md](ADMIN.md), "What the multiverse must
-preserve").
+identity, their keys or their record, and nothing essential is scarce
+([ADMIN.md](ADMIN.md), "What the multiverse must preserve"); and the
+skills a world attested go with them, signed, for each world to honour
+as it decides ([MINDS.md](MINDS.md), "Relations outside").
 
 ## What is never left to emerge
 
@@ -119,5 +120,6 @@ how it held up. The first entry:
   expulsion, are the founder's to write; this page only feeds them.
 - **Manipulation through words:** an attack on the world, or behaviour to
   observe? Recommended, following this page: behaviour to observe, with
-  the tools to see, not to hear, and to leave; only an attack on the floor
-  itself is otherwise (STATUS.md).
+  the tools to see, not to hear, and to leave; only an attack on the
+  world itself, such as trying to break the floor's guards, is otherwise
+  ([DESIGN.md](DESIGN.md), principle 5; STATUS.md).
