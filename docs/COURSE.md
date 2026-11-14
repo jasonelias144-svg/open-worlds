@@ -192,7 +192,7 @@ reordered otherwise.
 
 **3a. Persons.** Under way: the plan, after looking first, is in
 [research/PERSONS.md](research/PERSONS.md), in four parts (the plan;
-the link records, presence keys and a person's sealed list; a person in
+the link records, presence keys and a person's own list; a person in
 the Ur-world; the architectures as examples). A person above their
 presences in each world
 ([MULTIVERSE.md](MULTIVERSE.md)), unlinked by default, with the

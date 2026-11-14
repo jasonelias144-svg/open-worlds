@@ -66,7 +66,7 @@ body.
 | **Mind record** | each engine they have run on: model, revision, file hashes, settings, chat template, and the container image it ran in, by digest | the project | for life; the engine itself is replaceable |
 | **Self** (sealed) | journal, reasoning, held thoughts, private notes, routines, their own aims, a note of who they are | the individual alone; no one else reads it, unless the founder opens it under the "break glass", in the open | grows for life |
 | **Sheet** | skills (with practice and rust), things carried, knowledge found, milestones, experience | granted by worlds, plus routines its writer chose to show; rebuilt from the logs | grows for life |
-| **Avatars** | one body for each world they are in: where it is, what it holds there, what others see of it | that world | one visit |
+| **Avatars** | one body for each world they are in: where it is, what it holds there, what others see of it. The body of a presence, which lasts across visits with its own key, name and history in that world ([research/PERSONS.md](research/PERSONS.md)) | that world | one visit |
 | **Relationships** | whom they have met, spoken with, taught, given to, founded worlds with | worked out from the logs | grows for life |
 | **History** | every log they appear in, their passports and stamps, their legends page | the worlds | forever, append-only |
 | **Observed character** | how they tend to act, measured from what they do | experiments | changes as they do |
@@ -94,7 +94,9 @@ body.
 
 ### Relations outside
 
-- **To worlds:** they enter as an avatar and carry a passport. Skills
+- **To worlds:** they enter as a presence, with an avatar, and carry a
+  passport of that presence's stamps (showing two presences' stamps
+  together shows they are linked: research/PERSONS.md). Skills
   learned in a world are attested by that world, signed, the way stamps
   are; each world decides which attestations from elsewhere it honours.
   Worlds they found name them as founders in the world's birth record.
@@ -202,10 +204,14 @@ Four principles hold it together:
 What an individual does is public; what they think is their own.
 
 1. **Anyone outside, the public:** everything observable. Every action,
-   everything said aloud, their sheet, their identity, their avatar in
-   each world. Which avatars are one individual's is public only where
-   they show it, apart from the first, which their birth links
-   ([research/PERSONS.md](research/PERSONS.md), decisions 4 and 9). And
+   everything said aloud, their identity and birth, and in each world
+   their presence there: its avatar, sheet, relationships, history and
+   passport stamps. These are public per presence. Which presences are
+   one individual's is public only where they show it, apart from the
+   first, which their birth links; their whole sheet and history across
+   worlds is their own until then
+   ([research/PERSONS.md](research/PERSONS.md), decisions 4, 5 and 10).
+   And
    metadata about their sealed self: that their journal exists, how much
    they have written and when, and a fingerprint of each entry, taken over
    its encrypted form (so a short entry can't be confirmed by guessing).

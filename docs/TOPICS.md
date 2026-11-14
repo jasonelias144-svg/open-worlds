@@ -175,11 +175,14 @@ unlinked by default ([VISION.md](VISION.md), "A person across worlds").
 behind their back"; a world sees only the presence there unless the
 person shows more; every entry into a world is logged. From the plan
 ([research/PERSONS.md](research/PERSONS.md)): a presence is a key of its
-own, made from the person's seed; a link holds only both ways, in two
-records, one signed by the person and one by the presence; showing a link
-puts it in a world's public log, for good; the person's list of presences
-is a chain, sealed to them; a world can't count persons, so nothing that
-counts heads counts unlinked presences.
+own, made from the person's seed, with a name of its own in its world; a
+link holds only both ways, in two records, one signed by the person and
+one by the presence, and only in the world it names; showing a link puts
+it in that world's public log, for good, and what is public about an
+individual is public per presence; the person's list of presences is a
+chain they keep, never shown; a world can't count persons, so a council
+counts distinct persons by births it trusts; birth links the first
+presence.
 
 **Recommended, not decided,** from the sketch's lessons
 ([COLLABORATING.md](COLLABORATING.md), "What the last stretch taught"): a
