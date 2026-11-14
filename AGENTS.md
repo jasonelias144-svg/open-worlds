@@ -11,6 +11,11 @@ loosen it.
 2. Work on a branch; never push to `main` (P3).
 3. End by pushing, updating `STATUS.md` on your branch, and opening or updating
    the pull request (P1).
+4. Keep `docs/COLLABORATING.md` current: a change to anything that page
+   describes updates it in the same pull request, and every review checks
+   it. The founder (2026-11-14): "please make sure the COLLABORATING.md is
+   up to date as we go. This way, if we run out of data for a few days, I
+   can still go and work with DeepSeek during that time."
 
 ## Who decides
 

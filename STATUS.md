@@ -133,6 +133,26 @@ kind.
 
 ## Decided
 
+- 2026-11-14, founder, on course step 3: "Let’s go ahead for step 3."
+  The go-ahead the technical lead asked for, since step 3 makes the real
+  keys and publishes their public halves, which can't be taken back.
+- 2026-11-14, founder, on the page DeepSeek starts from: "please make
+  sure the COLLABORATING.md is up to date as we go. This way, if we run
+  out of data for a few days, I can still go and work with DeepSeek
+  during that time. It is how I have been balancing my free and paid
+  time, which is now just between my time here and with DeepSeek. I know
+  we would prefer to wait until a later step, but we may be forced by
+  running into limits to switch over sooner. By keeping that page
+  current, I can switch over and introduce everything we have been
+  doing." Written into AGENTS.md ("Every session") as a standing rule:
+  a change to anything docs/COLLABORATING.md describes updates it in the
+  same pull request, and every review checks it.
+- 2026-11-14, founder, a new idea: "fractal worlds. Worlds where you can
+  navigate through fractals, generate them in different forms, watch them
+  grow or interact, and more." On COURSE.md's waiting list, recommended
+  after step 4a as the garden's second kind of room: primary worlds
+  whose rule is repeated, with its numbers as a template's dials.
+
 - 2026-11-14, founder, on the technical lead's admin rights: "You should
   have admin rights across every repository. I count on that very
   fact." The technical lead uses them for the code: merging, branches,
@@ -856,6 +876,15 @@ it was wrong. Questions of what the project is for stay with the founder.
   before those needs one of them sooner (step 3's identity files, say).
 
 ## Log
+
+- 2026-11-14 Claude: docs/COLLABORATING.md brought up to date for the
+  founder's DeepSeek conversations, which had last seen the project in
+  Python: a "Since you were last here" section (the new course, Rust,
+  the design pages, the founder's visions, the formats, how decisions
+  are made), record 012-05-01 and cycle 3, what would help most now by
+  the new course's numbers, the formats in the standard and a house
+  rule for what is signed. Kept current from now on (AGENTS.md). Fractal
+  worlds on the waiting list.
 
 - 2026-11-14 Claude: course steps 1 and 2 done and moved to "Done" in
   docs/COURSE.md, with their pull requests. The course rechecked: two

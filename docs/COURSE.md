@@ -285,6 +285,11 @@ controlled experiments, and replay from a seed.
 ## Waiting
 
 Added one at a time, as steps are done:
+- fractal worlds (the founder, 2026-11-14: "Worlds where you can
+  navigate through fractals, generate them in different forms, watch them
+  grow or interact, and more"): primary worlds whose rule is repeated,
+  with its numbers as a template's dials; recommended after step 4a, as
+  the garden's second kind of room;
 - from the founder's visions of 2026-11-14
   ([VISION.md](VISION.md)): question worlds, with the prediction written
   first, and the neural world as the first; riding along in a primary
