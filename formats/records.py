@@ -1,7 +1,9 @@
 """The records the offices keep (course step 2): a grant, a decision
-record, a suggestion, a rating, and a signed log head; and the records an
+record, a suggestion, a rating, and a signed log head; the records an
 individual is given or keeps sealed: a world-key and a journal entry
-(sealed with formats/sealed.py).
+(sealed with formats/sealed.py); the records of who an individual and a
+world are: identity, birth records and the mind record; and a world's
+template, with its dials.
 
 Each record's shape is in one JSON Schema (2020-12) that Python and Rust
 both read, schemas/records-v1.schema.json, and each is signed with
@@ -10,7 +12,7 @@ both read, schemas/records-v1.schema.json, and each is signed with
 1. it fits the schema for the kind its `format` names;
 2. its proof verifies;
 3. it was signed by the one who must sign that kind: a grant, a
-   world-key and a mind record by their issuer, a decision by the
+   world-key, a mind record and a template by their issuer, a decision by the
    office's key, a suggestion, a rating and a journal entry by their
    author, a log head and a birth record (an individual's or a world's)
    by its world, and an identity by its own key.
@@ -60,6 +62,7 @@ KINDS: Dict[str, Tuple[str, Tuple[str, ...]]] = {
     "open-worlds/birth/v1": ("birth", ("world",)),
     "open-worlds/world-birth/v1": ("worldBirth", ("world",)),
     "open-worlds/mind/v1": ("mind", ("issuer",)),
+    "open-worlds/template/v1": ("template", ("issuer",)),
 }
 
 
@@ -156,6 +159,23 @@ def _key_problems(record: Dict[str, Any]) -> List[str]:
     return []
 
 
+def _range_problems(record: Dict[str, Any]) -> List[str]:
+    """A template's dial must have room to turn, and its value must be
+    within its range; the schema checks only that min and max come
+    together."""
+    if record.get("format") != "open-worlds/template/v1":
+        return []
+    found = []
+    for name, p in sorted(record["parameters"].items()):
+        if "min" not in p:
+            continue
+        if p["min"] >= p["max"]:
+            found.append(f"$.parameters.{name}: min is not below max")
+        elif not p["min"] <= p["value"] <= p["max"]:
+            found.append(f"$.parameters.{name}: value is outside its range")
+    return found
+
+
 def signer_field(record: Dict[str, Any]) -> Any:
     """The value of the field that names who must sign `record`."""
     value: Any = record
@@ -168,7 +188,8 @@ def check(record: Any) -> Dict[str, Any]:
     """`record` without its proof, if it holds; otherwise RecordError."""
     found = problems(record)
     if not found:
-        found = _time_problems(record) + _key_problems(record)
+        found = (_time_problems(record) + _key_problems(record)
+                 + _range_problems(record))
     if found:
         raise RecordError("; ".join(found))
     try:
@@ -196,3 +217,32 @@ def sign(record: Dict[str, Any], secret: bytes,
 def record_hash(record: Dict[str, Any]) -> str:
     """SHA-256 of `record`'s RFC 8785 form, proof included."""
     return hashlib.sha256(canonical(record)).hexdigest()
+
+
+def dial_problems(world_birth: Dict[str, Any],
+                  template: Dict[str, Any]) -> List[str]:
+    """Where a world's birth record and the template it names disagree,
+    or [] if they agree: it must name that template by hash, and each
+    dial it set must be one of the template's dials, within its range,
+    and changed from the template's own value, so two worlds made the
+    same way have the same dials. Both records must hold."""
+    for record, kind in ((world_birth, "open-worlds/world-birth/v1"),
+                         (template, "open-worlds/template/v1")):
+        check(record)
+        if record["format"] != kind:
+            raise RecordError(f"$.format: not {kind}")
+    if world_birth.get("template") != record_hash(template):
+        return ["$.template: names another template"]
+    found = []
+    parameters = template["parameters"]
+    for name, value in sorted(world_birth.get("dials", {}).items()):
+        p = parameters.get(name)
+        if p is None:
+            found.append(f"$.dials.{name}: not a parameter of the template")
+        elif "min" not in p:
+            found.append(f"$.dials.{name}: fixed in the template, not a dial")
+        elif not p["min"] <= value <= p["max"]:
+            found.append(f"$.dials.{name}: outside the dial's range")
+        elif value == p["value"]:
+            found.append(f"$.dials.{name}: set to the template's own value")
+    return found

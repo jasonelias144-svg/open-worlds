@@ -5,7 +5,7 @@
 
 use formats::multikey::secret_from_multikey;
 use formats::proof::sign;
-use formats::records::{check, record_hash};
+use formats::records::{check, dial_problems, record_hash};
 use serde_json::Value;
 
 fn vectors() -> Result<Value, String> {
@@ -69,6 +69,37 @@ fn each_refused_record_is_refused() -> Result<(), String> {
         let name = case.get("name").and_then(Value::as_str).ok_or("no name")?;
         let record = case.get("record").ok_or("no record")?;
         assert!(check(record).is_err(), "not refused: {name}");
+    }
+    Ok(())
+}
+
+#[test]
+fn each_world_agrees_or_disagrees_with_its_template_as_stated() -> Result<(), String> {
+    let all = vectors()?;
+    let valid = all
+        .get("valid")
+        .and_then(Value::as_array)
+        .ok_or("no valid")?;
+    let cases = all
+        .get("dials")
+        .and_then(Value::as_array)
+        .ok_or("no dials")?;
+    assert!(!cases.is_empty());
+    for case in cases {
+        let name = case.get("name").and_then(Value::as_str).ok_or("no name")?;
+        let template_name = case.get("template").and_then(Value::as_str);
+        let template = valid
+            .iter()
+            .find(|v| v.get("name").and_then(Value::as_str) == template_name)
+            .and_then(|v| v.get("record"))
+            .ok_or("no template")?;
+        let world_birth = case.get("worldBirth").ok_or("no world birth")?;
+        let holds = case
+            .get("holds")
+            .and_then(Value::as_bool)
+            .ok_or("no holds")?;
+        let found = dial_problems(world_birth, template).map_err(|e| format!("{name}: {e}"))?;
+        assert_eq!(found.is_empty(), holds, "{name}: {found:?}");
     }
     Ok(())
 }

@@ -201,7 +201,7 @@ Where it maps:
 | a pull request, its review, and its merge | a proposed change to a world, with a branch as evidence; the world's consent; adoption from that moment on |
 | an account or organisation, with its owners | a superworld, with its Keeper |
 | a repository's roles, which narrow: admin, maintain, write, triage, read | grants that only narrow ([ADMIN.md](ADMIN.md)) |
-| tags and releases | named snapshots of a primary world, to branch from |
+| tags and releases | named snapshots of a primary world with no one in it, to branch from |
 | issues | the suggestion ledger |
 | checks that must pass before a merge | the checks a world's code makes before an act takes effect |
 
@@ -213,9 +213,9 @@ Where it doesn't, and that is where the floor is
   Keeper or by ADMIN.
 - **Time.** A repository waits until someone commits; a world runs on its
   own. So a fork names the tick it was taken at: a fork of a running
-  primary world may start from a snapshot of its whole state there; a
-  fork of a world with people takes its setup as it stood then, never
-  its people.
+  primary world with no one in it may start from a snapshot of its whole
+  state there; a fork of a world with people takes its setup as it stood
+  then, never its people.
 - **Merging.** Text merges; worlds' states don't. Rules merge, never states
   ("Branches that merge").
 - **People.** A repository has no inhabitants. People in a world can

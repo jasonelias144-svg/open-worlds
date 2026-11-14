@@ -808,7 +808,30 @@ it was wrong. Questions of what the project is for stay with the founder.
   carry successions in the record itself, or a world's founding (course
   step 12) needs more in its birth record.
 
+- 2026-11-14, a world's template: `open-worlds/template/v1`, signed by
+  the project's key, names the reviewed code that runs a world (a
+  repository at an exact commit) and every world-level parameter as an
+  integer in a stated UCUM unit; a parameter with a range is a dial a
+  world may set. A world's birth record names the template and exactly
+  the dials it changed, checked against the template in both languages
+  (docs/research/FORMATS.md, "A world's template"). *Why:* parallel
+  worlds must show what they share and where they differ
+  (PARALLEL-WORLDS.md); steering turns dials within ranges (VISION.md);
+  integers in stated units keep the project's no-floats rule. *Revisit
+  if:* a template needs a parameter that isn't a number (a list, a
+  text), or the kernel (course step 4) needs the template to carry its
+  law text.
+
 ## Log
+
+- 2026-11-14 Claude: course step 2, part six: a world's template, with
+  its parameters as integers in UCUM units and its dials with ranges, in
+  records-v1, in Python and Rust; `dial_problems` checks a world's birth
+  record against its template. The vectors' template is the chemistry
+  world's law at its defaults, tested to agree. Shared vectors: 17
+  records that hold, 65 refused, and 7 world-and-template pairs. Two
+  notes from #45's last check carried: VISION.md's snapshots and forks
+  of a running world now say "with no one in it".
 
 - 2026-11-14 Claude: course step 2, part five: who an individual and a
   world are. Identity, an individual's birth record, a world's birth

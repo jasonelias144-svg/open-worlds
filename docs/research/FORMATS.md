@@ -444,7 +444,7 @@ one schema,
   template declares that it set, as an integer in the unit the template
   states ([PARALLEL-WORLDS.md](../PARALLEL-WORLDS.md), "Parallel
   worlds"). Whether each is a dial of that template, and within its
-  range, is checked against the template, which is step 2's last format.
+  range, is checked against the template ("A world's template", below).
 - **A mind record** (`open-worlds/mind/v1`), signed by the project's key
   that keeps mind records: the `individual`, and every engine they have
   run on: the model at an exact 40-digit revision, its files by hash, its
@@ -461,18 +461,66 @@ whose sealing key is of small order, a birth record on 30 February, a
 mind record whose image is named by a tag, and one whose engines are out
 of order.
 
+## A world's template
+
+**Decided by the technical lead, 2026-11-14:** a world's template
+(`open-worlds/template/v1`) joins `schemas/records-v1.schema.json`,
+signed by the project's key that keeps templates
+([PARALLEL-WORLDS.md](../PARALLEL-WORLDS.md), "Parallel worlds";
+[VISION.md](../VISION.md), "Ride along, and steer"):
+
+- **`code`:** the reviewed code that runs a world made from it, a
+  repository at an exact commit. Users choose settings, never code.
+- **`parameters`:** every world-level parameter, each an integer `value`
+  in a stated `unit`, with `about`, a sentence saying what it is. Units
+  are UCUM codes (the Unified Code for Units of Measure, version 2.2,
+  2024, "a code system intended to include all units of measures being
+  contemporarily used in international science"): `1` for a plain
+  number, `ms`, `10*-3/s` for thousandths per second, `{molecule}` for a
+  count. UCUM codes are 7-bit ASCII without spaces, which the schema
+  checks; whether a code is well formed UCUM isn't checked. Its licence
+  lets software use the codes; the project uses them only as labels and
+  doesn't reproduce the specification.
+- **Dials:** a parameter with `min` and `max` is a dial, which a world
+  may set within that range. Beyond the schema, a dial must have room to
+  turn (`min` below `max`), and its value must be within its range.
+  Parameters without them are fixed.
+
+A world made from a template names it by hash, and in its birth
+record's `dials` exactly what it changed (above). `dial_problems`, in
+`formats/records.py` and `rust/formats`, checks the two against each
+other: that the world names that template; that each dial it set is
+one of the template's dials, within its range; and that it differs from
+the template's own value. So two worlds made the same way have the same
+birth-record dials, and what two worlds share and where they differ can
+be read from their records alone. Mirror worlds are worlds with the same
+template and the same dials, the seed among them.
+
+The vectors' template is the chemistry world's law
+(`multiverse/chemistry_world.py`, `ChemistryWorldLaw`) at its defaults,
+every field an integer in a stated unit, and a test checks that they
+still agree. Its dials are the seed, the world time each act lets run,
+and the water, glycine and formaldehyde in the soil; its rates are
+fixed, as placeholders until course step 8. Shared vectors: the template,
+9 templates that must be refused, and 7 pairs of a world's birth record
+and its template, 2 that agree and 5 that don't.
+
+Not yet: how the kernel builds a world from a template and its dials,
+and the law text it writes for it (course step 4).
+
 ## What step 2 defines
 
-Done so far: signed records (`formats/`, `rust/formats`), the records
-for the offices (above), sealing ("Sealing", "As built"), the sealed
-records (world-key, journal entry), and who an individual and a world are
-(identity, birth records, mind record). From the design pages, each with a
-schema in 2020-12 and test vectors in both languages: identity, birth
-record, mind record, journal entry (sealed: its ciphertext and
-fingerprint), routine, sheet, avatar, skill attestation, world-key
+Done so far: signed records (`formats/`, `rust/formats`), the records for
+the offices (above), sealing ("Sealing", "As built"), the sealed records
+(world-key, journal entry), who an individual and a world are (identity,
+birth records, mind record), and a world's template. From the design
+pages, each with a schema in 2020-12 and test vectors in both languages:
+identity, birth record, mind record, journal entry (sealed: its ciphertext
+and fingerprint), routine, sheet, avatar, skill attestation, world-key
 credential, grant, decision record, suggestion, rating, and signed log
-head. Still to come: routine, sheet, avatar and skill attestation, and a
-world's template.
+head. Still to come: routine, sheet, avatar and skill attestation, and the
+chemistry world's records of what was made, with its time as an integer
+("Writing JSON the same way everywhere", above).
 
 ## Not checked
 

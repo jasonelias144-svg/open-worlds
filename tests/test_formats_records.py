@@ -1,6 +1,7 @@
 """The records the offices keep (formats/records.py): one JSON Schema,
 schemas/records-v1.schema.json, read by Python and by Rust, and the
 shared vectors in vectors/formats/records-v1.json."""
+import dataclasses
 import json
 import re
 import unittest
@@ -104,6 +105,70 @@ class TestSigning(unittest.TestCase):
                                   "score": 9})
         self.assertIn("$.score: 9 is greater than the maximum of 5", found)
         self.assertIn("$: 'author' is a required property", found)
+
+
+
+class TestDials(unittest.TestCase):
+
+    def setUp(self):
+        self.by = {c["name"]: c["record"] for c in VECTORS["valid"]}
+
+    def test_each_world_agrees_or_disagrees_with_its_template_as_stated(self):
+        for case in VECTORS["dials"]:
+            with self.subTest(case["name"]):
+                found = records.dial_problems(
+                    case["worldBirth"], self.by[case["template"]])
+                self.assertEqual(not found, case["holds"], found)
+
+    def test_both_records_must_hold_and_be_of_their_kinds(self):
+        template = self.by["a template for chemistry worlds, with its dials"]
+        world = VECTORS["dials"][0]["worldBirth"]
+        broken = {**world, "name": "changed after signing"}
+        with self.assertRaises(records.RecordError):
+            records.dial_problems(broken, template)
+        with self.assertRaises(records.RecordError):
+            records.dial_problems(template, template)
+        with self.assertRaises(records.RecordError):
+            records.dial_problems(world, world)
+
+    def test_the_template_is_the_chemistry_worlds_law_at_its_defaults(self):
+        # The vectors' template stands for the chemistry world as it is:
+        # every field of its law, at its defaults, as integers in the
+        # stated units (milli- for seconds, volume and rates).
+        from multiverse.chemistry_world import ChemistryWorldLaw
+        law = ChemistryWorldLaw()
+        soil = dict(law.soil)
+        rates = {rule: (forward, reverse)
+                 for rule, _, forward, reverse in law.own_reactions}
+
+        def milli(x):
+            return round(x * 1000)
+
+        expected = {
+            "admitsAnyIdentity": int(law.admits_any_identity),
+            "maxAdmitted": law.max_admitted or 0,
+            "seed": law.seed,
+            "secondsPerAct": milli(law.seconds_per_act),
+            "volume": milli(law.volume),
+            "soilWater": soil["water"],
+            "soilGlycine": soil["glycine"],
+            "soilFormaldehyde": soil["formaldehyde"],
+            "protonTransferForward": milli(rates[
+                "proton transfer, carboxylic acid to amine"][0]),
+            "protonTransferReverse": milli(rates[
+                "proton transfer, carboxylic acid to amine"][1]),
+            "hydrationForward": milli(rates["hydration of a carbonyl"][0]),
+            "hydrationReverse": milli(rates["hydration of a carbonyl"][1]),
+        }
+        parameters = record_vectors.TEMPLATE["parameters"]
+        self.assertEqual({k: p["value"] for k, p in parameters.items()},
+                         expected)
+        self.assertEqual(len(law.soil), 3)
+        self.assertEqual(len(law.own_reactions), 2)
+        self.assertEqual(
+            {f.name for f in dataclasses.fields(law)},
+            {"admits_any_identity", "max_admitted", "seconds_per_act",
+             "seed", "volume", "soil", "own_reactions"})
 
 
 if __name__ == "__main__":

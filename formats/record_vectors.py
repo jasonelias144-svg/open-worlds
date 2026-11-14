@@ -65,6 +65,63 @@ BIRTH_WORDS = (
     "Your first day begins with a tour of the garden.")
 
 
+def _parameter(value: int, unit: str, about: str,
+               dial: Any = None) -> Dict[str, Any]:
+    p = {"value": value, "unit": unit, "about": about}
+    if dial:
+        p["min"], p["max"] = dial
+    return p
+
+
+#: A template for chemistry worlds, holding every parameter of the
+#: chemistry world's law (multiverse/chemistry_world.py,
+#: ChemistryWorldLaw) at its defaults, each as an integer in a stated
+#: unit; tests/test_formats_records.py checks they still agree.
+TEMPLATE: Dict[str, Any] = {
+    "format": "open-worlds/template/v1",
+    "issuer": _did("the project"),
+    "name": "chemistry, one well-mixed cell",
+    "code": {"repo": "example/open-worlds",
+             "revision": hashlib.sha1(b"the chemistry kernel").hexdigest()},
+    "parameters": {
+        "admitsAnyIdentity": _parameter(
+            1, "1", "1 if anyone may enter, 0 if only those its law names."),
+        "maxAdmitted": _parameter(
+            0, "{individual}", "How many may be present at once; 0 for no "
+            "limit."),
+        "seed": _parameter(
+            0, "1", "The seed of the soup's random draws: worlds with the "
+            "same template and dials replay exactly.",
+            (0, 9007199254740991)),
+        "secondsPerAct": _parameter(
+            1000, "ms", "World time each accepted act lets the soup run.",
+            (0, 3600000)),
+        "volume": _parameter(
+            10000, "10*-3", "The volume of the one well-mixed cell, in the "
+            "soup's own unit."),
+        "soilWater": _parameter(
+            100, "{molecule}", "Water in the soil at the start.",
+            (0, 100000)),
+        "soilGlycine": _parameter(
+            20, "{molecule}", "Glycine in the soil at the start.",
+            (0, 100000)),
+        "soilFormaldehyde": _parameter(
+            10, "{molecule}", "Formaldehyde in the soil at the start.",
+            (0, 100000)),
+        "protonTransferForward": _parameter(
+            4000, "10*-3/s", "Rate of proton transfer from glycine's acid "
+            "to its amine (a placeholder, course step 8)."),
+        "protonTransferReverse": _parameter(
+            1000, "10*-3/s", "Rate of the same, backwards (a placeholder)."),
+        "hydrationForward": _parameter(
+            500, "10*-3/s", "Rate of hydration of formaldehyde's carbonyl "
+            "(a placeholder)."),
+        "hydrationReverse": _parameter(
+            200, "10*-3/s", "Rate of the same, backwards (a placeholder)."),
+    },
+}
+
+
 def _who() -> List[tuple]:
     """The records of who an individual and a world are."""
     mind = _signed({
@@ -111,16 +168,17 @@ def _who() -> List[tuple]:
         "founders": [],
         "time": "2026-11-12T00:00:00Z",
     }, "the Ur-world")
+    template = _signed(TEMPLATE, "the project")
     parallel = _signed({
         "format": "open-worlds/world-birth/v1",
         "world": _did("a parallel chemistry world"),
-        "name": "chemistry, warmer",
+        "name": "chemistry, wetter",
         "law": _h("a chemistry world's law, for the vectors"),
         "founders": [_did("ALICE"), _did("BOB")],
-        "template": _h("a chemistry template, for the vectors"),
+        "template": records.record_hash(template),
         "forkedFrom": {"world": _did("a chemistry world"), "tick": 1000,
                        "log": _h("the parent's log at tick 1000")},
-        "dials": {"temperature": 310000},
+        "dials": {"seed": 7, "soilWater": 200},
         "time": "2026-11-14T05:00:00Z",
     }, "a parallel chemistry world")
     second = {**mind["engines"][0],
@@ -137,6 +195,7 @@ def _who() -> List[tuple]:
         ("an individual's birth record, in the words decided", birth),
         ("an identity, binding a sealing key to its did:key", identity),
         ("a world's birth record, made by the project", ur_world),
+        ("a template for chemistry worlds, with its dials", template),
         ("a world's birth record, forked from another, with founders",
          parallel),
     ]
@@ -291,6 +350,14 @@ def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     mind = by["a mind record, with one engine"]
     engine = mind["engines"][0]
     changed = by["a mind record, after a change of engine"]["engines"]
+    template = by["a template for chemistry worlds, with its dials"]
+
+    def parameters(name: str, **fields: Any) -> Dict[str, Any]:
+        """The template's parameters, with `name`'s fields changed (None
+        drops one)."""
+        p = {**template["parameters"][name], **fields}
+        p = {k: v for k, v in p.items() if v is not None}
+        return {**template["parameters"], name: p}
 
     def unsigned(r: Dict[str, Any]) -> Dict[str, Any]:
         return {k: v for k, v in r.items() if k != "proof"}
@@ -411,7 +478,7 @@ def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         ("a world's birth record setting dials, with no template",
          resigned(parallel, "a parallel chemistry world", template=None)),
         ("a world's birth record setting a dial to a fraction",
-         {**parallel, "dials": {"temperature": 310.15}}),
+         {**parallel, "dials": {"soilWater": 200.5}}),
         ("a world's birth record setting no dials, as an empty set",
          resigned(parallel, "a parallel chemistry world", dials={})),
         ("a mind record with a setting as a number with a fraction",
@@ -435,8 +502,66 @@ def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         ("a mind record whose second engine began with the first",
          resigned(mind, "the project", engines=[
              changed[0], {**changed[1], "from": changed[0]["from"]}])),
+        ("a template signed by a world, not the project",
+         resigned(template, "a chemistry world")),
+        ("a template whose dial's value is beyond its range",
+         resigned(template, "the project",
+                  parameters=parameters("soilWater", value=200000))),
+        ("a template whose dial has no room to turn",
+         resigned(template, "the project",
+                  parameters=parameters("soilWater", min=100, max=100))),
+        ("a template with a parameter given a least value but no most",
+         resigned(template, "the project",
+                  parameters=parameters("volume", min=1000))),
+        ("a template with a parameter as a number with a fraction",
+         {**template, "parameters": parameters("volume", value=10.5)}),
+        ("a template whose unit has a space in it",
+         resigned(template, "the project",
+                  parameters=parameters("secondsPerAct",
+                                        unit="milli second"))),
+        ("a template with no parameters",
+         resigned(template, "the project", parameters={})),
+        ("a template whose code is named by a branch",
+         resigned(template, "the project",
+                  code={"repo": "example/open-worlds",
+                        "revision": "main"})),
+        ("a template with a parameter's name in two parts",
+         resigned(template, "the project", parameters={
+             **template["parameters"],
+             "soil.water": template["parameters"]["soilWater"]})),
     ]
     return [{"name": n, "record": r} for n, r in cases]
+
+
+def _dials(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """World birth records, each of which holds, against the template:
+    whether the dials they set agree with it."""
+    by = {v["name"]: v["record"] for v in valid}
+    template = "a template for chemistry worlds, with its dials"
+    parallel = by["a world's birth record, forked from another, with "
+                  "founders"]
+
+    def dials(**set_: Any) -> Dict[str, Any]:
+        fields = {k: v for k, v in parallel.items() if k != "proof"}
+        return _signed({**fields, "dials": set_},
+                       "a parallel chemistry world")
+
+    other = _signed({k: v for k, v in parallel.items() if k != "proof"}
+                    | {"template": _h("another template")},
+                    "a parallel chemistry world")
+    cases = [
+        ("a forked world, setting the seed and the water", parallel, True),
+        ("one dial, at the top of its range", dials(soilWater=100000),
+         True),
+        ("a world naming another template", other, False),
+        ("a dial the template doesn't have", dials(temperature=310000),
+         False),
+        ("a parameter the template fixes", dials(volume=20000), False),
+        ("a dial beyond its range", dials(soilWater=100001), False),
+        ("a dial set to the template's own value", dials(seed=0), False),
+    ]
+    return [{"name": n, "template": template, "worldBirth": r, "holds": h}
+            for n, r, h in cases]
 
 
 def vectors() -> Dict[str, Any]:
@@ -447,6 +572,7 @@ def vectors() -> Dict[str, Any]:
         "created": CREATED,
         "valid": valid,
         "refused": _refused(valid),
+        "dials": _dials(valid),
     }
 
 
