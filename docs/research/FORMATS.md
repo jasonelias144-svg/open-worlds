@@ -226,8 +226,11 @@ only for a private line, if the founder chooses one
 - **A sealing key** is an X25519 key, refused unless it is below
   2^255 - 19 as a number (so it has one spelling; a key with the top bit
   set, which RFC 7748 ignores, is another spelling) and not of small
-  order. HPKE refuses a small-order key only when sealing (RFC 9180,
-  7.1.4); this refuses it wherever a key is checked.
+  order. HPKE requires the one opening a box to refuse an all-zero
+  shared secret (RFC 9180, 7.1.4: "recipients MUST check whether the
+  Diffie-Hellman shared secret is the all-zero value and abort if so"),
+  and both libraries refuse it when sealing too; this refuses such a key
+  wherever a key is checked.
 - **As Multikey,** a sealing key is written like the signing keys, with
   multicodec's prefixes for X25519: "x25519-pub, key, 0xec" and
   "x25519-priv, key, 0x1302" (multicodec's
@@ -368,11 +371,13 @@ head.
 - did:key's test vectors, and VC Data Model 2.0 beyond its definitions and
   securing mechanisms.
 - Sealing keys on the curve's twist aren't refused. No secret key has
-  one as its public key, so a box sealed to one is lost to its sender.
-  Rust's `curve25519-dalek` could tell such a key apart, but Python's
-  `cryptography` can't, and both languages must refuse the same keys.
-  Whether a twist key could let anyone else open a box has not been
-  looked into.
+  one as its public key, so a box sealed to one can't be opened by
+  anyone, not even whoever chose the key: `enc` lies on the curve, and
+  the twist's order is 4 times a prime of about 2^253 (checked with a
+  primality test), so the shared secret would take a discrete logarithm
+  in a group that large. The message is lost; nothing is given away.
+  Both languages could refuse such keys (one modular power in Python, by
+  Euler's criterion; `curve25519-dalek` in Rust) if that is ever wanted.
 - Python checks RFC 9180's example only by opening it, through
   `cryptography`'s private `_decrypt_with_aad`, since the example has
   associated data; the test is skipped if that function goes. Rust makes

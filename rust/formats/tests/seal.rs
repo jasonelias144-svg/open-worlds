@@ -170,7 +170,7 @@ fn labels_are_the_same() -> Result<(), String> {
 }
 
 #[test]
-fn every_box_made_by_python_opens() -> Result<(), String> {
+fn every_box_in_the_vectors_opens() -> Result<(), String> {
     let all = vectors()?;
     let mut opened = 0;
     for entry in list(&all, "opens")? {

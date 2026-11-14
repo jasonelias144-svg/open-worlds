@@ -27,6 +27,9 @@ import json
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
+from cryptography.exceptions import InvalidTag
+from cryptography.hazmat.primitives.asymmetric import x25519
+
 from multiverse import ed25519
 
 from . import seal
@@ -115,11 +118,22 @@ def _opens(entry: Optional[Dict[str, Any]], secret: bytes, label: str,
         return False
 
 
+OTHER_PURPOSE = b"open-worlds/journal/v1"
+
+
 def _raw_seal(message: bytes, public: bytes, info: bytes) -> bytes:
     """Seal under any `info`, for boxes made with a label not in use."""
-    from cryptography.hazmat.primitives.asymmetric import x25519
     key = x25519.X25519PublicKey.from_public_bytes(public)
     return seal.SUITE.encrypt(message, key, info=info)
+
+
+def _raw_open(box: bytes, secret: bytes, info: bytes) -> bytes:
+    """Open under any `info`: only to check the boxes made by _raw_seal."""
+    key = x25519.X25519PrivateKey.from_private_bytes(secret)
+    try:
+        return seal.SUITE.decrypt(box, key, info=info)
+    except (InvalidTag, ValueError):
+        raise seal.SealError("the box doesn't open") from None
 
 
 def _kept_or_new(old: Dict[str, Dict[str, Any]], name: str, make,
@@ -171,25 +185,39 @@ def vectors(old: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         refused.append({"name": name, "to": "the earner", "label": LABEL,
                         "box": box.hex(), "why": why})
 
-    def kept_refusal(name: str, make, why: str) -> None:
-        def still_refused(e: Dict[str, Any]) -> bool:
-            return not _opens(e, earner, LABEL, MESSAGES["a short message"])
-        box = _kept_or_new(old_refused, name, make, still_refused)
+    short = MESSAGES["a short message"]
+
+    def kept_refusal(name: str, make, opens_as_named, why: str) -> None:
+        # Kept only if it is still refused as the earner's world-key AND
+        # still opens as its name says, so junk can't pass for a box made
+        # for another purpose.
+        def still_good(e: Dict[str, Any]) -> bool:
+            if _opens(e, earner, LABEL, short):
+                return False
+            try:
+                return opens_as_named(bytes.fromhex(e["box"])) == short
+            except (ValueError, seal.SealError):
+                return False
+        box = _kept_or_new(old_refused, name, make, still_good)
+        if opens_as_named(bytes.fromhex(box)) != short:
+            raise SystemExit(f"{name}: doesn't open as its name says")
         refused.append({"name": name, "to": "the earner", "label": LABEL,
                         "box": box, "why": why})
 
-    short = MESSAGES["a short message"]
     kept_refusal(
         "sealed for another purpose",
-        lambda: _raw_seal(short, earner_public, b"open-worlds/journal/v1"),
+        lambda: _raw_seal(short, earner_public, OTHER_PURPOSE),
+        lambda box: _raw_open(box, earner, OTHER_PURPOSE),
         "sealed with the label open-worlds/journal/v1")
     kept_refusal(
         "sealed with no label",
         lambda: _raw_seal(short, earner_public, b""),
+        lambda box: _raw_open(box, earner, b""),
         "sealed with an empty info")
     kept_refusal(
         "sealed to someone else",
         lambda: seal.seal(short, _public("someone else"), LABEL),
+        lambda box: seal.open_box(box, _secret("someone else"), LABEL),
         "sealed to another key")
     refuse("a bit of enc changed", _flip(base, 0), "enc changed")
     refuse("enc's top bit set", _flip(base, 31, 0x80),

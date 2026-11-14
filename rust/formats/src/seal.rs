@@ -55,7 +55,7 @@ fn info(label: &str) -> Result<&[u8], String> {
 /// secret anyone can work out.
 pub fn check_public(public: &[u8; 32]) -> Result<(), String> {
     if public.iter().rev().cmp(P.iter().rev()) != Ordering::Less {
-        return Err("a sealing key is below 2^255 - 19".into());
+        return Err("a sealing key must be below 2^255 - 19".into());
     }
     if x25519_dalek::x25519(PROBE, *public) == [0u8; 32] {
         return Err("a sealing key of small order".into());
@@ -96,9 +96,12 @@ pub fn seal(message: &[u8], public: &[u8; 32], label: &str) -> Result<Vec<u8>, S
     Ok(join(&enc, ciphertext))
 }
 
-/// [`seal`], with randomness from `rng`, which must be a secure generator.
-/// Tests pass a fixed one, to reproduce RFC 9180's vectors and the shared
-/// ones.
+/// [`seal`], with randomness from `rng`. Only for tests, which pass a
+/// fixed generator to make RFC 9180's example and the shared boxes again.
+/// Anywhere else it is dangerous: a generator that repeats gives the same
+/// `enc`, so the same key and nonce for different messages, which breaks
+/// ChaCha20Poly1305. Use [`seal`].
+#[doc(hidden)]
 pub fn seal_with_rng(
     message: &[u8],
     public: &[u8; 32],

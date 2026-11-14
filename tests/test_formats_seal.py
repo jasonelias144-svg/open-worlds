@@ -135,6 +135,35 @@ class TestVectors(unittest.TestCase):
                 with self.assertRaises(KeyFormatError):
                     sealing_from_multikey(entry["multikey"])
 
+    def test_kept_refusals_are_what_their_names_say(self) -> None:
+        refused = {e["name"]: e for e in VECTORS["refused"]}
+        short = b"a world-key, signed by the Ur-world"
+        earner = _secret("the earner")
+        box = bytes.fromhex(refused["sealed for another purpose"]["box"])
+        self.assertEqual(seal_vectors._raw_open(
+            box, earner, seal_vectors.OTHER_PURPOSE), short)
+        box = bytes.fromhex(refused["sealed with no label"]["box"])
+        self.assertEqual(seal_vectors._raw_open(box, earner, b""), short)
+        box = bytes.fromhex(refused["sealed to someone else"]["box"])
+        self.assertEqual(
+            seal.open_box(box, _secret("someone else"), LABEL), short)
+
+    def test_junk_is_not_kept_as_a_refusal(self) -> None:
+        # A box that merely fails to open is not kept: it must still open
+        # as its name says, or a new one is made.
+        old = json.loads(json.dumps(VECTORS))
+        for entry in old["refused"]:
+            if entry["name"] == "sealed for another purpose":
+                entry["box"] = "00" * 80
+        new = seal_vectors.vectors(old)
+        box = next(e["box"] for e in new["refused"]
+                   if e["name"] == "sealed for another purpose")
+        self.assertNotEqual(box, "00" * 80)
+        self.assertEqual(
+            seal_vectors._raw_open(bytes.fromhex(box), _secret("the earner"),
+                                   seal_vectors.OTHER_PURPOSE),
+            b"a world-key, signed by the Ur-world")
+
     def test_small_order_keys_really_are(self) -> None:
         # The listed points give zero with any secret, not just the probe.
         from cryptography.hazmat.primitives.asymmetric import x25519

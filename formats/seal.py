@@ -61,13 +61,14 @@ def check_public(public: bytes) -> None:
     2^255 - 19. A larger number is another spelling of a smaller key, as
     is one with the top bit set, which RFC 7748 ignores; the one test
     refuses both. And it must not be of small order: sealing to such a key
-    would give a secret anyone can work out. HPKE refuses that too (RFC
-    9180, 7.1.4), but only when sealing; this refuses the key itself.
+    would give a secret anyone can work out. HPKE requires the one opening
+    a box to refuse that (RFC 9180, 7.1.4), and both libraries refuse it
+    when sealing too; this refuses the key itself.
     """
     if type(public) is not bytes or len(public) != 32:
-        raise SealError("a sealing key is 32 bytes")
+        raise SealError("a sealing key must be 32 bytes")
     if int.from_bytes(public, "little") >= _P:
-        raise SealError("a sealing key is below 2^255 - 19")
+        raise SealError("a sealing key must be below 2^255 - 19")
     try:
         _PROBE.exchange(x25519.X25519PublicKey.from_public_bytes(public))
     except ValueError:
@@ -82,7 +83,7 @@ def new_secret() -> bytes:
 def public_from_secret(secret: bytes) -> bytes:
     """The X25519 public key (32 bytes) of a secret key."""
     if type(secret) is not bytes or len(secret) != 32:
-        raise SealError("a secret key is 32 bytes")
+        raise SealError("a secret key must be 32 bytes")
     key = x25519.X25519PrivateKey.from_private_bytes(secret)
     return key.public_key().public_bytes_raw()
 
@@ -92,7 +93,7 @@ def seal(message: bytes, public: bytes, label: str) -> bytes:
     it, for the purpose `label` names. Each call gives a different box."""
     info = _label(label)
     if type(message) is not bytes:
-        raise SealError("a message is bytes")
+        raise SealError("a message must be bytes")
     check_public(public)
     key = x25519.X25519PublicKey.from_public_bytes(public)
     return SUITE.encrypt(message, key, info=info)
@@ -106,7 +107,7 @@ def open_box(box: bytes, secret: bytes, label: str) -> bytes:
     if type(box) is not bytes or len(box) < ENC_LENGTH + TAG_LENGTH:
         raise SealError("too short to be a box")
     if type(secret) is not bytes or len(secret) != 32:
-        raise SealError("a secret key is 32 bytes")
+        raise SealError("a secret key must be 32 bytes")
     key = x25519.X25519PrivateKey.from_private_bytes(secret)
     try:
         return SUITE.decrypt(box, key, info=info)
