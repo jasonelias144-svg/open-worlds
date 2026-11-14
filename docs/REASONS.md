@@ -31,7 +31,9 @@ An office's decisions that affect others:
   reasons; a vote on it needs none, since voting is an individual's own
   act;
 - **a grant,** and narrowing, suspending or revoking one;
-- **a ruling:** on a complaint, an appeal, an office or a seat.
+- **a ruling:** on an appeal, an office or a seat;
+- **an outcome on a suggestion** ([ADMIN.md](ADMIN.md), "Suggestions from
+  inside").
 
 Not an individual's own acts. They are public, in the record, but an
 individual decides nothing for others beyond their acts, which the floor
@@ -63,8 +65,8 @@ Proposed for step 2, with the other formats
 The office signs the record's RFC 8785 form, as for every record. The act
 and its record go into the log as one entry, so the act can't go in
 without its reasons. A grant, too, takes effect only from its entry in
-the log, with its record, and so does narrowing or revoking one: a grant
-handed over but not logged allows nothing.
+the log, with its record, and so does narrowing, suspending or revoking
+one: a grant handed over but not logged allows nothing.
 
 Software teams keep decisions in much the same way. Michael Nygard's
 architecture decision records (2011) have a context, the decision, a
@@ -98,7 +100,7 @@ check that they are good: that is for audit and appeal (test 23b).
 ## What Lean checks
 
 Lean is a language for writing proofs, and its kernel checks them
-mechanically. Lean's kernel is small: "Lean's kernel is small enough that
+mechanically. As one guide puts it, "Lean's kernel is small enough that
 developers can write their own implementation and independently check
 proofs" ([Type Checking in Lean
 4](https://ammkrn.github.io/type_checking_in_lean4/whats_a_kernel.html)).
