@@ -1,5 +1,6 @@
 //! The records the offices keep (course step 2): a grant, a decision
-//! record, a suggestion, a rating and a signed log head, as
+//! record, a suggestion, a rating and a signed log head, and an
+//! individual's world-key and journal entry, as
 //! `formats/records.py` checks them, from the same schema file. A record
 //! holds when it fits its kind's schema, its proof verifies, and it was
 //! signed by the one who must sign that kind.
@@ -16,12 +17,14 @@ pub const SCHEMA: &str = include_str!("../../../schemas/records-v1.schema.json")
 
 /// Each format, its schema's name in `$defs`, and the path of the field
 /// that names its signer.
-pub const KINDS: [(&str, &str, &[&str]); 5] = [
+pub const KINDS: [(&str, &str, &[&str]); 7] = [
     ("open-worlds/grant/v1", "grant", &["issuer"]),
     ("open-worlds/decision/v1", "decision", &["office", "key"]),
     ("open-worlds/suggestion/v1", "suggestion", &["author"]),
     ("open-worlds/rating/v1", "rating", &["author"]),
     ("open-worlds/log-head/v1", "logHead", &["world"]),
+    ("open-worlds/world-key/v1", "worldKey", &["issuer"]),
+    ("open-worlds/journal-entry/v1", "journalEntry", &["author"]),
 ];
 
 fn kind(record: &Value) -> Option<&'static (&'static str, &'static str, &'static [&'static str])> {
@@ -34,6 +37,11 @@ pub fn problems(record: &Value) -> Result<Vec<String>, String> {
     let Some((_, name, _)) = kind(record) else {
         return Ok(vec!["$: not a record of a kind in records-v1".into()]);
     };
+    def_problems(name, record)
+}
+
+/// Where `value` doesn't fit the schema's `$defs/<name>`, or an empty list.
+pub fn def_problems(name: &str, value: &Value) -> Result<Vec<String>, String> {
     let schema: Value = serde_json::from_str(SCHEMA).map_err(|e| e.to_string())?;
     let defs = schema.get("$defs").ok_or("the schema has no $defs")?;
     let one = json!({
@@ -43,7 +51,7 @@ pub fn problems(record: &Value) -> Result<Vec<String>, String> {
     });
     let validator = jsonschema::draft202012::new(&one).map_err(|e| e.to_string())?;
     Ok(validator
-        .iter_errors(record)
+        .iter_errors(value)
         .map(|e| format!("{}: {}", e.instance_path(), e))
         .collect())
 }

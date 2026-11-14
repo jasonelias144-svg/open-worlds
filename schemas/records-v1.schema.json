@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/jasonelias144-svg/open-worlds/schemas/records-v1.schema.json",
   "title": "open-worlds records, version 1",
-  "description": "The records the offices keep (course step 2): a grant, a decision record, a suggestion, a rating, and a signed log head. Each is signed with eddsa-jcs-2022 (formats/proof.py); formats/records.py and rust/formats check them, and docs/research/FORMATS.md says why each field is there.",
+  "description": "The records the offices keep (course step 2): a grant, a decision record, a suggestion, a rating, and a signed log head; and an individual's sealed records: a world-key and a journal entry, with the sealed box they travel in. Each record is signed with eddsa-jcs-2022 (formats/proof.py); formats/records.py, formats/sealed.py and rust/formats check them, and docs/research/FORMATS.md says why each field is there.",
   "$defs": {
     "didKey": {
       "description": "An Ed25519 public key as a did:key; an individual's, a world's or an office's.",
@@ -544,6 +544,130 @@
         "last",
         "tick",
         "proof"
+      ],
+      "additionalProperties": false
+    },
+    "worldKey": {
+      "description": "The world-key: the right to found a world, earned by walking a path to its end. Signed by the world that placed the path (the Ur-world), naming the one who earned it, who alone may use it; it is given sealed to them (docs/WORLD-KEY.md, \"The world-key\").",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/world-key/v1"
+        },
+        "issuer": {
+          "description": "The world that placed the path, and signs.",
+          "$ref": "#/$defs/didKey"
+        },
+        "holder": {
+          "description": "The one who earned it; the only one it is sealed to, and the only one a world honours it from.",
+          "$ref": "#/$defs/didKey"
+        },
+        "path": {
+          "description": "The path walked, by the hash of its record in the public log.",
+          "$ref": "#/$defs/hash"
+        },
+        "tick": {
+          "description": "The tick of the issuer's log at which its code confirmed the path done.",
+          "$ref": "#/$defs/tick"
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "issuer",
+        "holder",
+        "path",
+        "tick",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
+    "journalEntry": {
+      "description": "An entry in an individual's journal, in their own words. Signed by its author and sealed to them alone; only the sealed box's fingerprint is public (docs/MINDS.md, \"Memory\").",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/journal-entry/v1"
+        },
+        "author": {
+          "$ref": "#/$defs/didKey"
+        },
+        "world": {
+          "description": "The world it was written in.",
+          "$ref": "#/$defs/didKey"
+        },
+        "tick": {
+          "description": "The tick of that world's log when it was written.",
+          "$ref": "#/$defs/tick"
+        },
+        "text": {
+          "$ref": "#/$defs/text"
+        },
+        "remembers": {
+          "description": "The events it remembers, each by the world and the tick of that world's log where it happened, so a memory without a record behind it shows.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "properties": {
+              "world": {
+                "$ref": "#/$defs/didKey"
+              },
+              "tick": {
+                "$ref": "#/$defs/tick"
+              }
+            },
+            "required": [
+              "world",
+              "tick"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "author",
+        "world",
+        "tick",
+        "text",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
+    "sealed": {
+      "description": "A sealed box as it is placed in the open: the purpose it was sealed for, the one it is addressed to, and the box (formats/seal.py) in lowercase hex. Not signed: what is inside is, and names its recipient, who checks it. Its fingerprint is the hash of its RFC 8785 form.",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/sealed/v1"
+        },
+        "label": {
+          "enum": [
+            "open-worlds/journal/v1",
+            "open-worlds/world-key/v1"
+          ]
+        },
+        "to": {
+          "$ref": "#/$defs/didKey"
+        },
+        "box": {
+          "description": "enc || ct: at least 48 bytes, so at least 96 hex digits.",
+          "type": "string",
+          "pattern": "^(?:[0-9a-f]{2}){48,}$"
+        }
+      },
+      "required": [
+        "format",
+        "label",
+        "to",
+        "box"
       ],
       "additionalProperties": false
     }

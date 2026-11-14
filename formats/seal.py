@@ -21,8 +21,7 @@ Decided by the technical lead on 2026-11-13 (docs/research/FORMATS.md,
 
 What is sealed is always signed first, and names its recipient, who
 checks that it is theirs. That check needs the record's format, so it
-lives with each sealed record (the world-key credential, the journal
-entry), not here.
+lives with the sealed records (formats/sealed.py), not here.
 """
 from __future__ import annotations
 
@@ -36,7 +35,7 @@ TAG_LENGTH = 16    # ChaCha20Poly1305's tag (RFC 9180, 7.3, Nt)
 
 # Every label in use. A new purpose, or a new version of one, is added
 # here by a reviewed change, never made up where a box is sealed.
-LABELS = frozenset({"open-worlds/world-key/v1"})
+LABELS = frozenset({"open-worlds/journal/v1", "open-worlds/world-key/v1"})
 
 _P = 2**255 - 19
 # Any X25519 secret will do: every secret is a multiple of 8 once clamped,

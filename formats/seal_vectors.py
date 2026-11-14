@@ -118,6 +118,8 @@ def _opens(entry: Optional[Dict[str, Any]], secret: bytes, label: str,
         return False
 
 
+# A label in use for another purpose, so a box sealed under it must not
+# open as a world-key.
 OTHER_PURPOSE = b"open-worlds/journal/v1"
 
 
@@ -274,7 +276,7 @@ def vectors(old: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         "opens": opens,
         "refused": refused,
         "refusedLabels": [
-            "open-worlds/world-key/v2", "open-worlds/journal/v1", "",
+            "open-worlds/world-key/v2", "open-worlds/journal/v2", "",
             "open-worlds/world-key/v1 ", "Open-Worlds/world-key/v1",
             RFC9180_INFO_TEXT],
         "refusedKeys": keys,

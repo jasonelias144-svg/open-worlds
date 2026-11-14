@@ -217,8 +217,9 @@ only for a private line, if the founder chooses one
   ("The encapsulated key concatenated with ciphertext (enc || ct)").
   There is no associated data, which `cryptography`'s public functions
   don't take; whatever must be bound to a box goes inside it, signed.
-- **Labels** are a fixed list, now only `open-worlds/world-key/v1`; a new
-  purpose or version is added by a reviewed change. The one opening a box
+- **Labels** are a fixed list, now `open-worlds/world-key/v1` and
+  `open-worlds/journal/v1`; a new purpose or version is added by a
+  reviewed change. The one opening a box
   names the label it expects, and nothing is read from the box to choose
   it. A label not on the list is refused before anything is tried; a box
   sealed under another label doesn't open, since HPKE binds `info` into
@@ -241,9 +242,61 @@ only for a private line, if the founder chooses one
   own example for this suite (A.2.1), which Rust reproduces byte for byte
   and Python opens; boxes made by each language, which the other opens;
   and boxes, labels and keys that must be refused.
-- **What is sealed names its recipient,** who checks that it is theirs.
-  That needs the sealed record's format, so it comes with the world-key
-  credential and the journal entry, the next part of step 2.
+- **What is sealed names its recipient,** who checks that it is theirs:
+  "Sealed records", below.
+
+## Sealed records
+
+Step 2, part four (`formats/sealed.py`, `rust/formats`). Two kinds of
+record are sealed, each in `schemas/records-v1.schema.json`:
+
+- **A world-key** (`open-worlds/world-key/v1`): `issuer`, the world that
+  placed the path, which signs; `holder`, the one who earned it; `path`,
+  the path walked, by the hash of its record in the public log; `tick`,
+  when the issuer's code confirmed it done. Shaped after the Verifiable
+  Credentials data model ("Credentials", above): an issuer, a subject (the
+  holder, as a grant names it), a claim (the format itself: the right to
+  found a world), a proof. It has no end date, as WORLD-KEY.md gives
+  none. Sealed to its holder under `open-worlds/world-key/v1`.
+- **A journal entry** (`open-worlds/journal-entry/v1`): `author`, who
+  signs; `world` and `tick`, where and when it was written; `text`, in the
+  author's own words; and, if it remembers events, `remembers`, each by
+  its world and tick, so a memory without a record behind it shows
+  ([MINDS.md](../MINDS.md), "Memory"). Sealed to its author under
+  `open-worlds/journal/v1`.
+
+Each travels in an envelope (`open-worlds/sealed/v1`): the label, the one
+it is addressed to (`to`), and the box in lowercase hex. The envelope
+isn't signed; what is inside is. Its fingerprint is the hash of its RFC
+8785 form. A sealed self shows the world each envelope's fingerprint and
+size: that an entry exists, and how much was written
+([MINDS.md](../MINDS.md), "The birth record"). When it was placed comes
+from the log it is placed in, not from the envelope.
+
+**Sealing** checks the record first: it must hold, be a sealed kind, and
+go to the one it names; it is sealed in its RFC 8785 form.
+
+**Opening** checks everything again, in this order: the envelope's shape,
+its label against the opener's, its address against the opener; that the
+box opens; that what is inside is a record in its one RFC 8785 form and
+holds; that it is a kind sealed under that label; and that it names the
+opener. So a world-key sealed again to someone else opens for them but is
+refused: it names another. The label in the envelope is checked only to
+refuse early with a clearer reason; what holds a box to its purpose is
+HPKE, which opens it only under the label it was sealed with.
+
+**Not here:** which sealing key belongs to which did:key is the identity
+record's to say (course step 3), so the caller gives both. Whether the
+project can also open a sealed self (the founder's open question on a
+"break glass") would add a second envelope for the same record, not
+change the record.
+
+**Shared vectors** (`vectors/formats/sealed-records-v1.json`): 3 records
+that hold and 7 that don't; 3 envelopes that open, each with the hash of
+the record inside and its fingerprint; 13 that must be refused when
+opened, each saying what it was sealed to, under which label, and what is
+inside, so anyone can check it is what its name says; and 7 refused for
+their shape alone.
 
 ## Commitments
 
@@ -347,21 +400,30 @@ one schema,
   at course step 4: that a grant only narrows the grant it names; that a
   decision's inputs are in the log, its office holds the grant it names,
   that grant allows its kind of act, and the kind is on the rules' list
-  ([REASONS.md](../REASONS.md)); and that a rating's author wrote the
+  ([REASONS.md](../REASONS.md)); that a rating's author wrote the
   suggestion it names, and its outcome is a decision naming that
-  suggestion.
-- **Versioned:** a change makes `records-v2`; records made under v1 stay
-  readable under v1.
+  suggestion; and that a world-key's issuer is a world that places paths,
+  its path was placed in that world's log and walked to its end by its
+  holder, and it hasn't been used to found a world already
+  ([WORLD-KEY.md](../WORLD-KEY.md): "It is marked as used at the
+  founding"). Until then, anyone can sign a world-key naming themselves;
+  it opens, and holds as a record, but no world will honour it.
+- **Versioned:** a change to a kind's shape makes `records-v2`; records
+  made under v1 stay readable under v1. A new kind is added to v1, since
+  it changes no record already made: the world-key and the journal entry
+  were added so ("Sealed records").
 
 ## What step 2 defines
 
 Done so far: signed records (`formats/`, `rust/formats`), the records
-for the offices (above), and sealing ("Sealing", "As built"). From the design pages, each with a
+for the offices (above), sealing ("Sealing", "As built"), and the sealed
+records (world-key, journal entry). From the design pages, each with a
 schema in 2020-12 and test vectors in both languages: identity, birth
 record, mind record, journal entry (sealed: its ciphertext and
 fingerprint), routine, sheet, avatar, skill attestation, world-key
 credential, grant, decision record, suggestion, rating, and signed log
-head.
+head. Still to come: identity, birth record, mind record, routine, sheet,
+avatar and skill attestation.
 
 ## Not checked
 
