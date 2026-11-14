@@ -119,10 +119,12 @@ root does.
      isn't a known test key: the vectors' own, worked out again from
      their seeds, which say "never for anything real", and the W3C
      specification's example;
-   - GitHub's secret scanning with push protection, free for public
-     repositories: a setting the founder turns on, since no tool in a
-     working session changes repository settings. It doesn't know our
-     format, and its custom patterns, which could teach it, are only for
+   - GitHub's secret scanning ("Secret Protection" in the repository's
+     settings) and push protection, free for public repositories: both
+     on, the founder confirmed on 2026-11-14. They catch the token
+     formats GitHub knows, such as a provider's API key pasted by
+     mistake. They don't know our format, and the patterns that could
+     teach them, custom ones and generic private keys, are only for
      organization-owned repositories on GitHub Team or Enterprise
      ([GitHub](https://docs.github.com/en/code-security/secret-scanning/using-advanced-secret-scanning-and-push-protection-features/custom-patterns/defining-custom-patterns-for-secret-scanning)),
      so this repository's own test is what catches ours.

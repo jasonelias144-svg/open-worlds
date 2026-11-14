@@ -893,7 +893,8 @@ it was wrong. Questions of what the project is for stay with the founder.
   signs the version after, the two published together; the root signs
   nothing else; the private halves as plain files in the private
   repository; nothing private in this repository, kept so by the tool, a
-  test, and GitHub's push protection once the founder turns it on;
+  test, and GitHub's secret scanning and push protection (both on, the
+  founder confirmed on 2026-11-14);
   ALICE's and BOB's identity, birth and mind records at their birth (step
   9); grants start below the root, at a role's key; for individuals and
   worlds the key list only publishes the keys made for them, never
