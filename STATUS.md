@@ -123,6 +123,9 @@ kind.
   - a copy of a GitHub thread brought into the log names other people's
     accounts; keep the text and replace other accounts with a role or a
     hash, or take it to the founder (P8);
+  - which key issues ADMIN's grants: decided at step 11, when ADMIN
+    begins; its entry in the key list names its key and nothing more
+    (docs/research/KEYS.md, point 8);
   - say who holds the private half of the multiverse's root key, and
     how its every use is logged: answered at step 3
     (docs/research/KEYS.md, point 8): the project, in its private

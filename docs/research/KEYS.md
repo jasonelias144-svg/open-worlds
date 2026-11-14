@@ -147,7 +147,9 @@ root does.
    root's private half, and how its every use is logged, asked by #38's
    review: the project, in its private repository; and every use of it
    is a version of the key list, each published in this repository's
-   history.
+   history. ADMIN's entry names its key and nothing more: ADMIN.md has
+   "No power of ADMIN's or a Keeper's exists outside a grant", and which
+   key issues ADMIN's grants is decided at step 11, when ADMIN begins.
 9. **For individuals and worlds, the key list only publishes.** For the
    project's own roles (root, code, mind records, templates, ADMIN) the
    key list is the authority: a leaked key is replaced by a new version.
@@ -170,11 +172,16 @@ root does.
     `expires` keeps whoever serves the list from freezing a reader on an
     old version, but here the list is read from this repository, and an
     expiry would bring the root out on a schedule. *Revisit if:* the
-    list is served from anywhere else. When a role's key is replaced,
-    what it signed before holds if it is in a log, or in this
-    repository's history, before the version that replaced it; a
-    record's own `created` is no evidence, since whoever holds a key can
-    write any time.
+    list is served from anywhere else. A reader taking a newer version
+    checks every version between it and the one it holds
+    (`key_list_chain_problems`, part two), so each link is verified, not
+    only the newest. When a role's key is replaced, what it signed
+    before holds if it is in a log, or in this repository's history,
+    before the version that replaced it; a record's own `created` is no
+    evidence, since whoever holds a key can write any time. That history
+    is evidence only while `main` is never rewritten, which no session
+    does: rewriting a repository's history is the founder's to decide
+    (AGENTS.md).
 
 ## The parts of step 3
 
@@ -267,7 +274,11 @@ root does.
 - **A lost root can't be recovered.** MINDS.md keeps the private halves
   nowhere else, so if the private repository is lost, the root goes with
   it, and the project starts a new key list at version 1, which a reader
-  accepts only on trust in this repository's owner.
+  accepts only on trust in this repository's owner. That new version 1
+  carries forward every individual's and world's entry from the last
+  version published, unchanged, and a reader holding the old list checks
+  that it does (point 9), so a lost root never becomes a way to give
+  ALICE, BOB or the Ur-world other keys.
 - **Until ALICE and BOB hold their own keys,** whoever holds the private
   repository can sign as them. That is what "public to the project"
   means (MINDS.md).
