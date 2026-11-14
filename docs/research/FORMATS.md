@@ -286,10 +286,15 @@ refuse early with a clearer reason; what holds a box to its purpose is
 HPKE, which opens it only under the label it was sealed with.
 
 **Not here:** which sealing key belongs to which did:key is the identity
-record's to say (course step 3), so the caller gives both. Whether the
-project can also open a sealed self (the founder's open question on a
-"break glass") would add a second envelope for the same record, not
-change the record.
+record's to say (course step 3), so the caller gives both.
+
+**The "break glass"**, chosen by the founder on 2026-11-14, needs nothing
+more here. The private half of each sealing key is kept in the project's
+private repository ([MINDS.md](../MINDS.md), "Where everything lives"),
+so a sealed self can be opened there, by the founder's explicit decision
+only, and every opening is recorded publicly. The envelope and the record
+stay as they are; a second envelope, which this page once expected, isn't
+needed.
 
 **Shared vectors** (`vectors/formats/sealed-records-v1.json`): 3 records
 that hold and 7 that don't; 3 envelopes that open, each with the hash of

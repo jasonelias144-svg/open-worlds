@@ -765,7 +765,10 @@ it was wrong. Questions of what the project is for stay with the founder.
   worthless to them, as WORLD-KEY.md requires; adding kinds to v1 changes
   no record already made. *Revisit if:* the identity record (course step
   3) binds sealing keys to did:keys in a way the envelope should name, or
-  the founder chooses a "break glass" for sealed selves.
+  the founder chooses a "break glass" for sealed selves. (The founder
+  chose it the same day; revisited, nothing changes, since the private
+  repository already holds each sealing key: docs/research/FORMATS.md,
+  "Sealed records".)
 
 ## Log
 
