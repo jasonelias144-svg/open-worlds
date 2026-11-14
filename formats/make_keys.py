@@ -13,7 +13,8 @@ randomness (through `cryptography`), and writes:
   top of a full clone of the private repository. The tool refuses any
   place inside this repository's working tree; a worktree of it; a clone
   whose history, on any branch, shares its first commit, or whose remotes
-  name it or are paths on this computer; a shallow clone; and a `keys/`
+  name it or are paths on this computer; one that can push anywhere but
+  its remotes; a shallow clone; and a `keys/`
   that is there already, so it never writes over a key. A clone of a
   fork of this repository, under another name and with its history cut,
   is beyond what it can tell.
@@ -135,6 +136,19 @@ def _remote_urls(path: Path) -> Set[str]:
             if len(fields) >= 2}
 
 
+def _push_targets(path: Path) -> Set[str]:
+    """Where Git may push from the checkout at `path` besides its
+    remotes' own URLs: `remote.pushDefault`, `branch.<b>.pushRemote` and
+    `branch.<b>.remote`, from any of Git's config files. Each is a
+    remote's name, `.` (the checkout itself), or a URL or path that `git
+    remote -v` doesn't show."""
+    out = _git(path, "config", "--get-regexp",
+               r"^(remote\.pushdefault|branch\..*\.(remote|pushremote))$")
+    return {fields[1].strip() for fields in
+            (line.split(None, 1) for line in (out or "").splitlines())
+            if len(fields) == 2}
+
+
 def _remote_names(path: Path) -> Set[str]:
     """The repositories the remotes of the checkout at `path` name."""
     return {name for name in map(repository_name, _remote_urls(path))
@@ -191,6 +205,14 @@ def check_private_place(private: Path,
             f"{private} has a remote that is a path on this computer, "
             "which can't be told from this repository: its remotes must "
             "be the private repository's address")
+    stray = (_push_targets(private)
+             - set((_git(private, "remote") or "").split()) - {"."})
+    if stray:
+        raise KeyMakingError(
+            f"{private} can push to {sorted(stray)[0]!r}, which isn't one "
+            "of its remotes (remote.pushDefault, or a branch's remote or "
+            "pushRemote): Git would push where `git remote -v` doesn't "
+            "show")
     remotes = _remote_names(private)
     if remotes & _remote_names(repository):
         raise KeyMakingError(
@@ -258,8 +280,19 @@ def _write_new(path: Path, text: str, mode: int) -> None:
     flags = (os.O_WRONLY | os.O_CREAT | os.O_EXCL
              | getattr(os, "O_NOFOLLOW", 0))
     fd = os.open(path, flags, mode)
-    with os.fdopen(fd, "w", encoding="utf-8") as f:
-        f.write(text)
+    try:
+        f = os.fdopen(fd, "w", encoding="utf-8")
+    except BaseException:
+        os.close(fd)
+        os.unlink(path)
+        raise
+    try:
+        with f:
+            f.write(text)
+    except BaseException:
+        # Made here, so taken away here: a failed write leaves nothing.
+        os.unlink(path)
+        raise
 
 
 def stage_private_halves(made: Sequence[Dict[str, Any]],

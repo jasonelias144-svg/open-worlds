@@ -947,6 +947,12 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-14 Claude: course step 3, part two, the last notes before the
+  ceremony: the tool refuses a checkout that can push anywhere but its
+  remotes (`remote.pushDefault`, a branch's `remote` or `pushRemote`,
+  from any of Git's config files), and a write that fails leaves no
+  file; KEYS.md names the scan's misses and `published_entries_problems`.
+
 - 2026-11-14 Claude: course step 3, part two: the key list
   (`open-worlds/key-list/v1`) in records-v1, in Python and Rust, with
   a check of each version against the one before and of a whole history,
