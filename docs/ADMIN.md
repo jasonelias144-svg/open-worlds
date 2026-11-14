@@ -188,8 +188,8 @@ founder (below).
   proposed ([WORLD-KEY.md](WORLD-KEY.md), "Keepers talking to one
   another"; not yet decided), ADMIN can watch Keepers without watching
   individuals.
-- **Reads the suggestion ledger,** an open, one-way channel from anyone,
-  complaints included, and considers each entry with the code role
+- **Reads the suggestion ledger,** an open, one-way channel from anyone
+  inside, complaints included, and considers each entry with the code role
   (below, "Suggestions from inside").
 - **Decides what code can't:** a dispute, a Keeper misusing its office, a
   case the rules didn't foresee.
@@ -430,16 +430,18 @@ for improvement from a whole new layer."
   link to the entries they draw on. So no one inside or in between can
   keep a suggestion from reaching the outside (test 28).
 - **Every suggestion gets an outcome on record,** a decision record that
-  names it ([REASONS.md](REASONS.md)): adopted, with the pull request that
-  does it; declined, with reasons; joined to another; or not yet, with
-  when it will be looked at again. To consider a suggestion is to decide,
-  with reasons. Whatever is read on GitHub in deciding (the issue's
-  thread, a pull request, a comment) is brought into the log, by hash,
-  before the outcome is recorded, so the record's inputs are all in the
-  log. Until ADMIN exists, outcomes are signed with a key of the code
-  role's, made at step 3, under a grant for that act alone. An outcome
-  on a suggestion about one's own path gives nothing of the path away:
-  before the world-key, a Keeper still answers only through the land.
+  names it ([REASONS.md](REASONS.md)): adopted, with the pull request
+  that does it; declined, with reasons; joined to another; or not yet,
+  with when it will be looked at again. To consider a suggestion is to
+  decide, with reasons. A copy of whatever is read on GitHub in deciding
+  (the issue's thread, a pull request, a comment) goes into the log
+  before the outcome is recorded, and the record names it by hash, so
+  the record's inputs are all in the log. Until ADMIN exists, outcomes
+  are signed with a key of the code role's, made at step 3, under a
+  grant for that act alone, issued by the multiverse's root key, which
+  is made and published at step 3 too. An outcome on a suggestion about
+  one's own path gives nothing of the path away: before the world-key, a
+  Keeper still answers only through the land.
 - **The answer is the change.** The founder: "Yes, two- way is earned.
   Having said that, a request or suggestion that is acted upon, that the
   participant can observe is a form of communication, if only
@@ -449,10 +451,12 @@ for improvement from a whole new layer."
   suggestions it answers. The world's kernel shows that entry to
   everyone present as an ordinary observation, so the answer reaches
   minds that have no network, inside, where they are; the doorway's
-  public record holds it for anyone outside. Biology has a word for
-  this: stigmergy, "a mechanism of indirect coordination, through the
-  environment, between agents or actions", named by Pierre-Paul Grassé
-  in 1959 for termites
+  public record holds it for anyone outside. A change that enters no
+  world, to ADMIN's rules or to the project, goes into the multiverse
+  log, and every world's kernel shows that entry to those present in the
+  same way. Biology has a word for this: stigmergy, "a mechanism of
+  indirect coordination, through the environment, between agents or
+  actions", named by Pierre-Paul Grassé in 1959 for termites
   ([Wikipedia](https://en.wikipedia.org/wiki/Stigmergy)). The answer
   still goes to everyone, in the open; a conversation of one's own is
   the open line, earned by a world-key.
@@ -469,7 +473,8 @@ for improvement from a whole new layer."
   reach the whole multiverse, and no one can capture it.
 - **How well it is done is measured,** and published each month: how
   long entries wait for an outcome, the share that have one, how many are
-  adopted, and how many outcomes are later reversed on appeal. And
+  adopted, how many outcomes are later reversed on appeal, and how many
+  entries marked as a floor breach weren't one. And
   ratings, as the founder suggested: each author may rate, from 1 to 5,
   how their suggestion was handled. Ratings drift up when they can harm
   the one rated. In five online marketplaces, ratings "are prone to
@@ -477,8 +482,9 @@ for improvement from a whole new layer."
   rated seller", so that "reputation systems, as currently designed, sow
   the seeds of their own irrelevance" (Filippas, Horton and Golden,
   [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3136473);
-  the five marketplaces are in their
-  [ACM abstract](https://dl.acm.org/doi/10.1145/3219166.3219222)).
+  the five marketplaces are in the abstract of their journal version,
+  *Marketing Science*, 2022,
+  [doi:10.1287/mksc.2022.1350](https://doi.org/10.1287/mksc.2022.1350)).
   So the whole spread of ratings is published, never only an average,
   beside the plain measures. They measure the office, never an
   individual, and they inform reviews of ADMIN's design; they trigger
@@ -1012,9 +1018,9 @@ first.
 - **Course step 2 (formats):** the formats of a grant, of the
   multiverse log, of a decision record ([REASONS.md](REASONS.md)), and of
   a suggestion and its rating.
-- **Course step 3 (keys):** ADMIN's own keys, and the Ur-world's; and a
-  key of the code role's, for outcomes on suggestions before ADMIN
-  exists.
+- **Course step 3 (keys):** ADMIN's own keys, and the Ur-world's; the
+  multiverse's root key, published; and a key of the code role's, for
+  outcomes on suggestions before ADMIN exists.
 - **Course step 4 (the kernel):** the checks as code, and a Keeper's
   administrative actions as grants; an office's act refused without its
   decision record; and a model of grants in Lean, with a proof that no

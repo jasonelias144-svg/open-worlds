@@ -166,8 +166,9 @@ the technical lead's recommendation.
   (asked 2026-11-13)
 - For the founder: may the author of a suggestion about a Keeper ask for
   their name to be withheld until it has an outcome, recorded as withheld
-  and published with the outcome? Recommended: yes, so that fear of the
-  Keeper silences no one. Before course step 9, when the ledger opens
+  and published with the outcome? And the same for their rating of how
+  it was handled? Recommended: yes to both, so that fear of the Keeper
+  silences no one. Before course step 9, when the ledger opens
   (docs/ADMIN.md, "Suggestions from inside"). (asked 2026-11-13 of
   complaints; put again 2026-11-14 of suggestions)
 - For the founder: "Rerunning something should be technically

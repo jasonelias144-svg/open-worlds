@@ -144,7 +144,10 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    signing keys, keys for sealing things to them, and the keys to their
    sealed selves; birth records and public identity files. The Ur-world's
    own keys: one to sign its log, one for sealing things to it; and
-   ADMIN's. Leaving and coming back: whoever leaves can return, proving
+   ADMIN's. The multiverse's root key, published, and a key of the code
+   role's, for outcomes on suggestions before ADMIN exists
+   ([ADMIN.md](ADMIN.md), "Suggestions from inside"). Leaving and coming
+   back: whoever leaves can return, proving
    with their key that they are the same individual. *Borrowing:*
    standard key handling, private halves kept apart and public halves
    published.
