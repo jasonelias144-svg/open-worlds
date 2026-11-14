@@ -64,8 +64,9 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
   record, checked across languages through shared test vectors
   ([vectors/](vectors/README.md)).
 - [formats/](formats/__init__.py): records signed so that standard tools
-  can check them: RFC 8785, did:key, and `eddsa-jcs-2022` proofs, with
-  the same in Rust (`rust/formats`).
+  can check them: RFC 8785, did:key, and `eddsa-jcs-2022` proofs; and
+  sealed so that only one key opens them, with HPKE. The same in Rust
+  (`rust/formats`).
 - [schemas/](schemas/records-v1.schema.json): the shape of each record the
   offices keep (grant, decision, suggestion, rating, signed log head), in
   JSON Schema, read by Python and Rust alike.

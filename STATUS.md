@@ -687,9 +687,31 @@ it was wrong. Questions of what the project is for stay with the founder.
   most worth stopping early. *Revisit if:* the two languages' schema
   libraries disagree on a record the vectors don't cover, or step 4
   finds a check the schema should have made.
+- 2026-11-14, sealing as built: a box is `enc || ct` with no associated
+  data; HPKE's `info` is a label from a fixed list (now only
+  `open-worlds/world-key/v1`), named by the one opening the box; a
+  sealing key is refused unless below 2^255 - 19 and not of small order;
+  sealing keys are written as Multikey with multicodec's X25519 prefixes
+  (`z6LS...`); `hpke` 0.15.1 pinned exactly, with only the X25519,
+  ChaCha20Poly1305 and HKDF parts turned on (docs/research/FORMATS.md,
+  "As built"). *Why:* both libraries write and read a box this way, and
+  shared vectors prove it; a label the opener names, never one the box
+  names, is what stops a box made for one purpose being opened as
+  another. *Revisit if:* a sealed record needs associated data, or `hpke`
+  and `cryptography` disagree on a box the vectors don't cover.
 
 ## Log
 
+- 2026-11-14 Claude: course step 2, part three: sealing.
+  `formats/seal.py` and `rust/formats` seal a message to one X25519 key
+  with HPKE's base mode and a label naming its purpose, and open it only
+  under that label. Shared vectors (`vectors/formats/hpke-base-v1.json`):
+  RFC 9180's example for the suite, which Rust makes again byte for byte;
+  5 boxes, 3 made by Python and 2 by Rust, each opened by the other; and
+  18 boxes, 6 labels, 9 keys and 2 Multikeys that must be refused. `hpke`
+  0.15.1 and `x25519-dalek` 3.0.0 added to the Rust workspace; nothing
+  new in Python. FORMATS.md corrected: `cryptography` added HPKE in
+  47.0.0, not 48.0.0.
 - 2026-11-14 Claude: when freedoms meet (docs/FREEDOMS.md). The founder's
   words of 2026-11-13: when one freedom limits another (Mill, Coase), the
   tools every world gives (leave, go elsewhere, see, show, speak, agree,
