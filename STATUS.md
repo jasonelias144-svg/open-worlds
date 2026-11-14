@@ -240,7 +240,14 @@ the technical lead's recommendation.
   self-improving." So complaints become entries in an open suggestion
   ledger, each sent to GitHub and given an outcome on record, with
   published measures and ratings of how well they are handled
-  (docs/ADMIN.md, "Suggestions from inside").
+  (docs/ADMIN.md, "Suggestions from inside"). Then: "If suggestions can
+  run from participant to keeper or participant to ADMIN, then we can see
+  ADMIN as the bridge between myself and you, or whoever is in charge of
+  the code and the whole multiverse. ADMIN can suggest but not implement
+  multiverse code changes. Those come from the outside with us. But in
+  this way we can provide a way for improvement from a whole new layer."
+  So suggestions go to a world's Keeper or to ADMIN, and ADMIN is the
+  bridge to the outside, which proposes and never implements.
 
 - 2026-11-13, founder, on ADMIN's interior: "perhaps ADMIN is the only
   one that has a publicly inspectable interior world. They would be a
@@ -602,16 +609,17 @@ it was wrong. Questions of what the project is for stay with the founder.
 - 2026-11-14, the suggestion ledger: a report of a floor breach or a
   misuse of office is acted on at once, and everything else in turn;
   every entry gets an outcome as a decision record; text from inside
-  reaches GitHub marked as such, through a token that can only open
-  issues, and is never taken as instructions; ratings are published as
-  their whole spread, beside plain measures, and trigger nothing by
-  themselves. *Why:* the floor doesn't wait for anyone; minds inside
-  can write text meant to steer a reader; and ratings that can harm the
-  one rated drift up ("Reputation Inflation", Filippas, Horton and
-  Golden). *Revisit if:* entries wait longer than a month for an
-  outcome, or the ratings' spread stops telling handled suggestions
-  apart from neglected ones, or text from inside ever leads to a change
-  that no reviewed pull request made.
+  reaches GitHub word for word and marked as such, through a relay whose
+  token can only open issues, and is never taken as instructions;
+  ADMIN's own token can open issues and comment, never push or merge;
+  ratings are published as their whole spread, beside plain measures,
+  and trigger nothing by themselves. *Why:* the floor doesn't wait for
+  anyone; minds inside can write text meant to steer a reader; and
+  ratings that can harm the one rated drift up ("Reputation Inflation",
+  Filippas, Horton and Golden). *Revisit if:* entries wait longer than a
+  month for an outcome, or the ratings' spread stops telling handled
+  suggestions apart from neglected ones, or text from inside ever leads
+  to a change that no reviewed pull request made.
 
 ## Log
 
@@ -623,8 +631,12 @@ it was wrong. Questions of what the project is for stay with the founder.
   outcome on record as a decision record, a report of a floor breach is
   acted on at once, and changes come only by reviewed pull request. How
   well entries are handled is measured, with ratings published as a
-  spread. The ledger opens at step 9 and ADMIN joins at step 11. Tests 26
-  and 27; course steps 2, 6 and 9; MINDS.md and FORMATS.md updated.
+  spread. Suggestions go to a world's Keeper or to ADMIN. ADMIN is the
+  bridge to the outside: it can suggest but not implement, and the
+  bridge adds without filtering, since every entry still goes out word
+  for word. The ledger opens at step 9, and ADMIN joins at step 11. Tests
+  26 to 29; course steps 2, 6, 9 and 11; MINDS.md, FORMATS.md and
+  OVERSIGHT.md updated.
 - 2026-11-14 Claude: reasons on record (docs/REASONS.md). The founder:
   "We can use Lean to test the logic of reasoning that is presented."
   The page says which decisions need a record, proposes the decision

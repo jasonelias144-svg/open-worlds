@@ -216,7 +216,10 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
     work is to train the Ur-world's Keeper in practice worlds, with
     stand-ins, before it keeps the Ur-world with ALICE and BOB in it:
     coaching toward the Ur-world's own aims, never command (founder,
-    2026-11-13; moved here from the waiting list).
+    2026-11-13; moved here from the waiting list). ADMIN becomes the
+    bridge from the suggestion ledger to the outside: it can suggest
+    changes, never make them ([ADMIN.md](ADMIN.md), "Suggestions from
+    inside").
 12. **Founding worlds, and doors.** What only a second world needs:
     child worlds, each with a new key of its own, a signed birth record,
     and a Keeper chosen by its founders; doors between them, travel with

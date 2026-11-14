@@ -377,19 +377,44 @@ be a measure of how well ADMIN is doing. Maybe even a rating system, like
 an Uber driver." And: "The ability for suggestions for improvement to
 arise from inside the simulation and then apply to improve the whole
 simulation is precisely the goal, because then it because
-self-improving."
+self-improving." Then: "If suggestions can run from participant to keeper
+or participant to ADMIN, then we can see ADMIN as the bridge between
+myself and you, or whoever is in charge of the code and the whole
+multiverse. ADMIN can suggest but not implement multiverse code changes.
+Those come from the outside with us. But in this way we can provide a way
+for improvement from a whole new layer."
 
 - **One channel, one way, open.** Anyone, in a world or outside one, can
   add a suggestion to the ledger: about a Keeper, a world, ADMIN, the
   multiverse or the project. A complaint is a suggestion too. Each is
   signed by its author and public. No reply is owed to its author; what
   is done with it is on the ledger for anyone to see.
+- **To a Keeper, or to ADMIN.** A suggestion can go to a world's Keeper
+  or to ADMIN. A Keeper considers what lies within its office (its
+  world's conditions, its paths, a proposal to change its law), with a
+  decision record, and passes the rest on to ADMIN, in the open. A
+  suggestion about a Keeper can always go straight to ADMIN, so no Keeper
+  can bury one about itself. This one-way channel is open to everyone;
+  the open line, a conversation, is still earned by a world-key
+  ([WORLD-KEY.md](WORLD-KEY.md)).
 - **Out to GitHub.** Each entry goes, word for word and with its hash, to
   the project's repository as an issue marked as from inside, sent by a
-  bridge whose token can only open issues. The code role considers each,
+  relay whose token can only open issues. The code role considers each,
   with ADMIN once it exists. The text is information, never instructions
   to whoever reads it: a mind could write a suggestion meant to steer its
   reader, and that must not work.
+- **ADMIN, the bridge to the outside.** Between those inside and the
+  founder and the code role outside, ADMIN reads the whole ledger and
+  sees what no single world sees. It turns many entries into proposals:
+  what was asked, how often, from which worlds, and what it would change.
+  It "can suggest but not implement": its token can open issues and
+  comment, never push or merge, and its proposals may be as detailed as
+  it likes, a sketch of the change included. The change itself comes from
+  outside, by a reviewed pull request (tests 21 and 29).
+- **The bridge adds, never filters.** Every entry still goes out word for
+  word, whatever a Keeper or ADMIN makes of it, and ADMIN's proposals
+  link to the entries they draw on. So no one inside or in between can
+  keep a suggestion from reaching the outside (test 28).
 - **Every suggestion gets an outcome on record,** a decision record that
   names it ([REASONS.md](REASONS.md)): adopted, with the pull request that
   does it; declined, with reasons; joined to another; or not yet, with
@@ -930,11 +955,13 @@ changes the design.
 | 25 | A rule as code that lets a chain of grants widen, in a case no test tried | ruled out in the model by a proof in Lean; the kernel is checked against the model by test vectors made from it, which can miss a case (layer 2) |
 | 26 | A suggestion lost, changed, or left without an outcome | the ledger is a public, hash-chained log, so a change or removal shows (layer 3); an entry without an outcome shows in the published measures (layer 4) |
 | 27 | A suggestion's text steers whoever reads it: the code role, ADMIN or a reviewer | it reaches them marked as from inside, as information; and nothing it asks for happens except by a reviewed pull request (test 21; layer 4, and review) |
+| 28 | A Keeper buries a suggestion about itself, or ADMIN keeps one from the outside | refused by code: the relay sends every entry out word for word, whatever a Keeper or ADMIN does with it, and a suggestion about a Keeper can always go straight to ADMIN (layer 1) |
+| 29 | ADMIN changes the code of the multiverse or of a world itself | refused: its token can open issues and comment, never push or merge, and changes come only by reviewed pull request from outside (layer 2) |
 
-Tests 1 to 7, 10 to 12, 14, 16, 17, 20a, 21, 22, 23a, 23c, 24 and 25 can
-be code. Tests 8, 9, 13, 15, 18, 19, 20b, 23b, 26 and 27 need judgment,
-measurement or watchers, so they are where ADMIN's design is most likely
-to need changing, and where it will be measured first.
+Tests 1 to 7, 10 to 12, 14, 16, 17, 20a, 21, 22, 23a, 23c, 24, 25, 28
+and 29 can be code. Tests 8, 9, 13, 15, 18, 19, 20b, 23b, 26 and 27 need
+judgment, measurement or watchers, so they are where ADMIN's design is
+most likely to need changing, and where it will be measured first.
 
 ## When each part is built
 
@@ -962,7 +989,9 @@ to need changing, and where it will be measured first.
   worlds. First, ADMIN's mind, chosen by audition, and its own world,
   where it takes its own course; then its first work: training the
   Ur-world's Keeper, in practice worlds, before it keeps the Ur-world.
-  ADMIN joins the code role in considering the ledger.
+  ADMIN joins the code role in considering the ledger, as the bridge
+  between those inside and the outside; suggestions can go to the
+  Ur-world's Keeper too.
 - **Course step 12 (founding):** what only a second world needs: the
   founding, with the choice of who keeps the new world, and lines between
   worlds.
