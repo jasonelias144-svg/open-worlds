@@ -123,8 +123,11 @@ kind.
   - a copy of a GitHub thread brought into the log names other people's
     accounts; keep the text and replace other accounts with a role or a
     hash, or take it to the founder (P8);
-  - say who holds the private half of the multiverse's root key, the root
-    of every grant, and how its every use is logged;
+  - say who holds the private half of the multiverse's root key, and
+    how its every use is logged: answered at step 3
+    (docs/research/KEYS.md, point 8): the project, in its private
+    repository; the root signs only key lists, and every version is
+    published in this repository's history;
   - the ledger and outcomes use the multiverse log from step 9, which
     "When each part is built" brings at step 11: say that a first form
     exists from step 9, or that until step 11 those entries go into the
@@ -884,17 +887,27 @@ it was wrong. Questions of what the project is for stay with the founder.
   opening their sealed self under its own label); a key list naming them,
   signed by the root and published here, versioned, each version signed by
   the root of the one before, so a new root is named by the old one and
-  signs the version after; the root signs nothing else; the private halves
-  as plain files in the private repository; nothing private in this
-  repository, kept so by the tool, a test, and GitHub's push protection
-  once the founder turns it on; ALICE's and BOB's identity, birth and mind
-  records at their birth (step 9). *Why:* TUF's roles and its two-signed
-  root, and the DNSSEC root that signs only keys, are the established way
-  to limit what one stolen key can do; a passphrase for the private halves
-  would have to live where the software reads it, so it would add nothing.
-  *Revisit if:* anyone but the project holds a key (then thresholds), or a
-  private half is ever found outside the private repository (then that key
-  is replaced at once, by a new key list).
+  signs the version after, the two published together; the root signs
+  nothing else; the private halves as plain files in the private
+  repository; nothing private in this repository, kept so by the tool, a
+  test, and GitHub's push protection once the founder turns it on;
+  ALICE's and BOB's identity, birth and mind records at their birth (step
+  9); grants start below the root, at a role's key; for individuals and
+  worlds the key list only publishes the keys made for them, never
+  changing them later; a reader takes the latest version on `main`, and
+  no version expires. *Why:* TUF's roles, and the DNSSEC root that signs
+  only keys, give each key one narrow meaning, so a key exposed by a
+  session or a bug is replaced without the root changing (they don't
+  guard against losing the private repository: KEYS.md, "Honest
+  limits"); unlike TUF's root, signed by the old and new keys together,
+  a new root here proves it holds its key only by signing the version
+  after, so the two are published together; the project never recovers
+  an individual's key; a passphrase for the private halves would have to
+  live where the software reads it, so it would add nothing. *Revisit
+  if:* anyone but the project holds a key (then thresholds, and the root
+  offline), or a private half is ever found outside the private
+  repository (then that key is replaced at once: a project role's by a
+  new key list, an individual's or a world's by a succession).
 
 ## Log
 

@@ -298,7 +298,8 @@ refuse early with a clearer reason; what holds a box to its purpose is
 HPKE, which opens it only under the label it was sealed with.
 
 **Not here:** which sealing key belongs to which did:key is the identity
-record's to say (course step 3), so the caller gives both.
+record's to say (course step 9; until then the key list publishes the
+ones made at step 3), so the caller gives both.
 
 **The "break glass"**, chosen by the founder on 2026-11-14, needs nothing
 more here. The private half of each sealing key is kept in the project's

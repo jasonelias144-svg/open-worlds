@@ -17,8 +17,9 @@ for which, how they are made, and how the public halves are published.
 
 ## What was looked at
 
-**The Update Framework (TUF),** specification 1.0.37 (8 October 2026),
-the standard for signing what a project publishes so that a stolen key
+**The Update Framework (TUF),**
+[specification](https://theupdateframework.github.io/specification/latest/)
+1.0.37 (8 October 2026), the standard for signing what a project publishes so that a stolen key
 does limited harm:
 
 - Keys are held by **roles**, each signing one kind of thing. "The root
@@ -38,20 +39,23 @@ does limited harm:
   (§ 6.1), and each new version is exactly one more than the last
   (§ 5.3).
 
-**The DNSSEC root** (IANA, "Root KSK Ceremonies"): the key at the top of
+**The DNSSEC root** (IANA,
+["Root KSK Ceremonies"](https://www.iana.org/dnssec/ceremonies)): the key at the top of
 the internet's names is brought out only at ceremonies, "usually
 conducted four times a year", where "the KSK is used to sign a set of
 operational ZSKs that will be used for a three month period". The key at
 the top signs keys, and nothing else.
 
-**Keys in Git.** GitHub's guidance on preventing leaks: secret scanning
+**Keys in Git.** GitHub's guidance,
+["Best practices for preventing data leaks in your organization"](https://docs.github.com/en/code-security/getting-started/best-practices-for-preventing-data-leaks-in-your-organization):
+secret scanning
 finds secrets "accidentally committed over the full Git history of every
 branch", push protection "prevents contributors from pushing code with a
 detected secret", and "`git revert` is not a valid way to undo the
 addition of sensitive data as it leaves the original sensitive commit in
 Git history". A private key pushed to a public repository by mistake is
-lost for good: the only remedy is a new key. **SOPS** (Mozilla Public
-License 2.0) keeps secrets encrypted inside a repository, with keys from
+lost for good: the only remedy is a new key.
+**[SOPS](https://getsops.io/)** (Mozilla Public License 2.0) keeps secrets encrypted inside a repository, with keys from
 age, PGP or a cloud service; the key that decrypts them then lives
 somewhere else.
 
@@ -66,7 +70,8 @@ root does.
    key, where one is named, is X25519.
    - **The multiverse's root:** signs the key list (2), and nothing else.
    - **The code role:** outcomes on suggestions until ADMIN exists
-     ([ADMIN.md](../ADMIN.md), "Suggestions from inside").
+     ([ADMIN.md](../ADMIN.md), "Suggestions from inside"). Its entry in
+     the key list is its authority for that work (8).
    - **The project's key for mind records,** and **for templates**: the
      issuers those records name ([FORMATS.md](FORMATS.md)).
    - **ADMIN:** a signing key, held unused until ADMIN begins (course
@@ -102,18 +107,25 @@ root does.
    project's software can read it, which is the same place; SOPS would
    move the problem, not remove it. What guards them is access to the
    private repository, and so the GitHub login of the project's owner
-   (MINDS.md).
+   (MINDS.md). Each holder's file is JSON with the secrets as Multikey,
+   written by the tool (6), not the passphrase-encrypted OpenSSH files
+   that `multiverse/keys.py` writes for the Python worlds' own keys.
 5. **Nothing private reaches this repository,** guarded three ways:
    - the tool that makes keys refuses to write a private half anywhere
      inside this repository's working tree;
    - a test scans every tracked file for private key material (Multikey
-     secrets, `z3u2…` for Ed25519 and `z3we…` for X25519, and OpenSSH
-     private-key blocks), and fails on any that isn't one of the vectors'
-     named test keys, each made from a seed that says "never for anything
-     real";
+     secrets, `z3u2…` for Ed25519 and `z3we…` for X25519, and whole PEM
+     private-key blocks, not a header line alone), and fails on any that
+     isn't a known test key: the vectors' own, worked out again from
+     their seeds, which say "never for anything real", and the W3C
+     specification's example;
    - GitHub's secret scanning with push protection, free for public
      repositories: a setting the founder turns on, since no tool in a
-     working session changes repository settings.
+     working session changes repository settings. It doesn't know our
+     format, and its custom patterns, which could teach it, are only for
+     organization-owned repositories on GitHub Team or Enterprise
+     ([GitHub](https://docs.github.com/en/code-security/secret-scanning/using-advanced-secret-scanning-and-push-protection-features/custom-patterns/defining-custom-patterns-for-secret-scanning)),
+     so this repository's own test is what catches ours.
 6. **How the keys are made:** by a tool in this repository, from the
    operating system's randomness through `cryptography`, in a working
    session, written straight into a checkout of the private repository,
@@ -126,6 +138,43 @@ root does.
    names the mind they were born with, and their minds are chosen by the
    audition (step 8). Step 3 makes their keys and publishes them in the
    key list.
+8. **Grants start below the root.** The key list is the root's only
+   word: a role's entry in it is that role's authority, and a chain of
+   grants starts at a role's key and can only narrow what the role
+   holds. So the code role signs outcomes on suggestions as the role the
+   key list names for that work, with no grant from the root above it
+   (ADMIN.md, "Suggestions from inside", now says so). Who holds the
+   root's private half, and how its every use is logged, asked by #38's
+   review: the project, in its private repository; and every use of it
+   is a version of the key list, each published in this repository's
+   history.
+9. **For individuals and worlds, the key list only publishes.** For the
+   project's own roles (root, code, mind records, templates, ADMIN) the
+   key list is the authority: a leaked key is replaced by a new version.
+   For an individual (ALICE, BOB) or a world (the Ur-world) it publishes
+   the keys made for them, so anyone can check them, and nothing more.
+   Who they are follows their birth key and their own successions and
+   guardians ([FORMATS.md](FORMATS.md), "Identifiers"), never a later
+   key list: "The project never recovers keys, which would make it an
+   authority over who is who" (STATUS, decided). So an individual's or a
+   world's entry, once in a version, is in every later version
+   unchanged, and the check of a version against the one before refuses
+   any other (part two). From step 9 their identity records say which
+   sealing key is theirs; until then the key list is where it is
+   published, as a record of what was made, not a word on who they are.
+10. **How a reader takes the key list.** The latest version on this
+    repository's `main`. A reader keeps the highest version it has seen
+    and refuses a lower one; two different versions with the same
+    number, both signed by the root, are evidence that the root is
+    compromised, and the reader trusts neither. No expiry: TUF's
+    `expires` keeps whoever serves the list from freezing a reader on an
+    old version, but here the list is read from this repository, and an
+    expiry would bring the root out on a schedule. *Revisit if:* the
+    list is served from anywhere else. When a role's key is replaced,
+    what it signed before holds if it is in a log, or in this
+    repository's history, before the version that replaced it; a
+    record's own `created` is no evidence, since whoever holds a key can
+    write any time.
 
 ## The parts of step 3
 
@@ -178,16 +227,34 @@ root does.
   history sharing its first commit). Tested on throwaway directories,
   with each guard checked by removing it.
 
-A key list read from anywhere but this repository's history could be an
-old version, or one of two versions the root signed with the same
-number; TUF's snapshot and timestamp roles exist for that. Here the
-repository's history is the one sequence, and a reader takes the latest
-version from it.
+## Honest limits
+
+- **The root isn't kept apart.** TUF keeps its root offline and the
+  DNSSEC root comes out only at ceremonies; ours is a file in the same
+  private repository as every other key, used in an ordinary session.
+  Whoever gets that repository, or the owner's GitHub login, gets every
+  key, the root included. What separate roles buy is scope: each key has
+  one narrow meaning, and a key exposed by a session or a bug is
+  replaced without the root changing. They don't guard against losing
+  the private repository.
+- **A lost root can't be recovered.** MINDS.md keeps the private halves
+  nowhere else, so if the private repository is lost, the root goes with
+  it, and the project starts a new key list at version 1, which a reader
+  accepts only on trust in this repository's owner.
+- **Until ALICE and BOB hold their own keys,** whoever holds the private
+  repository can sign as them. That is what "public to the project"
+  means (MINDS.md).
+
+*Revisit if:* anyone else holds a key: then the root kept off GitHub and
+offline, and thresholds.
 
 ## Not checked
 
-- Whether GitHub's secret scanning recognises our Multikey secrets. It
-  knows many providers' token formats; ours is a format of our own, so
-  this repository's own test (5) is what catches them.
+- Whether GitHub's secret scanning recognises our Multikey secrets
+  without a custom pattern. It knows many providers' token formats; ours
+  is a format of our own, so this repository's own test (5) is what
+  catches them.
+- TUF § 5.3's wording: "exactly one more" above is a summary of it, not
+  a quote.
 - The DNSSEC ceremony's full procedure: IANA's page lists the
   ceremonies, not how one is run.

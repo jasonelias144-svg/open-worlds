@@ -28,7 +28,8 @@ opens it: the box opens, but the record names another (docs/WORLD-KEY.md,
 "The world-key").
 
 Which sealing key belongs to which did:key is the identity record's to
-say, at course step 3; here the caller gives both.
+say, from course step 9 (until then the key list publishes the ones made
+at step 3); here the caller gives both.
 """
 from __future__ import annotations
 
