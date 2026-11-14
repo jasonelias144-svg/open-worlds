@@ -143,8 +143,10 @@ things, which is the point."
   a copy of it at that moment, and steers the copy. The original runs on
   untouched, so the answer comes beside what would have happened anyway,
   and no one else's view shifts. Only worlds with no individuals in them
-  are copied so: a copy of a world with people would copy them, which is
-  a fork, and a fork needs the child's acceptance (STATUS.md).
+  are copied so: a copy of a world with people would copy them, and
+  copying a person is a fork of that individual, which needs the child's
+  acceptance (STATUS.md). A fork of a world, below, is another thing: it
+  copies a world's setup, never its people.
 - **Each template declares its dials** and their ranges (the sun's mass,
   the water, the temperature): steering turns a dial within the world's
   laws, never breaks them.
@@ -198,8 +200,8 @@ Where it maps:
 | a branch | a branch made by steering ("Ride along, and steer") |
 | a pull request, its review, and its merge | a proposed change to a world, with a branch as evidence; the world's consent; adoption from that moment on |
 | an account or organisation, with its owners | a superworld, with its Keeper |
-| roles that narrow: owner, maintain, write, read | grants that only narrow ([ADMIN.md](ADMIN.md)) |
-| tags and releases | named snapshots of a world, to branch from |
+| a repository's roles, which narrow: admin, maintain, write, triage, read | grants that only narrow ([ADMIN.md](ADMIN.md)) |
+| tags and releases | named snapshots of a primary world, to branch from |
 | issues | the suggestion ledger |
 | checks that must pass before a merge | the checks a world's code makes before an act takes effect |
 
@@ -210,8 +212,10 @@ Where it doesn't, and that is where the floor is
   repository. A world's record is never rewritten or ended, by its
   Keeper or by ADMIN.
 - **Time.** A repository waits until someone commits; a world runs on its
-  own. So a fork of a running world starts from a snapshot of its state
-  at a tick, not only from its history.
+  own. So a fork names the tick it was taken at: a fork of a running
+  primary world may start from a snapshot of its whole state there; a
+  fork of a world with people takes its setup as it stood then, never
+  its people.
 - **Merging.** Text merges; worlds' states don't. Rules merge, never states
   ("Branches that merge").
 - **People.** A repository has no inhabitants. People in a world can
@@ -225,9 +229,9 @@ Where it doesn't, and that is where the floor is
 And one likeness the founder named: "The fact that creating a GitHub
 account is free and everything we have done is free, shows we are
 probably aligned with respect to certain values." GitHub's free public
-tier is carried by its paid tiers, the same shape as the founder's money
-principle: free at the core, and a paid tier later that lets the whole
-thing run (STATUS.md).
+tier seems to be carried by its paid tiers (not checked, below), the
+same shape as the founder's money principle: free at the core, and a
+paid tier later that lets the whole thing run (STATUS.md).
 
 ## Not checked
 
@@ -237,3 +241,5 @@ thing run (STATUS.md).
 - GitHub's own documentation for each feature named above; the mapping
   describes the features as generally known, and is checked against
   their documentation before any is copied into code.
+- How GitHub's free tier is paid for: GitHub's business, not this
+  project's, and stated here only as it seems from outside.

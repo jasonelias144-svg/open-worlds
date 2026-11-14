@@ -174,8 +174,9 @@ An honest limit: today, "independently" means a fresh session that this
 same role starts and briefs, and it runs on the same kind of model. So
 the check that doesn't depend on the role is the founder: an appeal
 against an act the role directed or approved goes straight to the
-founder. Serious acts also have a check outside the code role: the
-founder, until the founder names a person (decided 2026-11-14, below).
+founder. Acts against an individual, and a Keeper's removal, also have a
+check outside the code role: the founder, until the founder names a
+person (decided 2026-11-14, "Questions for the founder", below).
 
 ### How it holds its powers
 
@@ -192,9 +193,11 @@ So ADMIN holds its powers as the technical lead holds admin:
 - **What is outward-facing or hard to undo goes up first.** For the
   technical lead, that is making a repository public or private,
   deleting one or rewriting its history, transferring one, or adding
-  outside people (AGENTS.md). For ADMIN, it is its serious acts, which go
-  to the check outside the code role before they take effect (above),
-  and anything that would end or rewrite a record, which no one may do.
+  outside people (AGENTS.md). For ADMIN, it is its serious acts, each
+  reviewed independently before it takes effect, and, for acts against
+  an individual and a Keeper's removal, the check outside the code role
+  as well (above); and anything that would end or rewrite a record, which
+  no one may do.
 - **Holding a power isn't a reason to use it.** Most of what ADMIN can do,
   it leaves undone: it acts on its own only at the floor (below, "A
   learning immune system"), and keeps the tools working everywhere else.
@@ -277,7 +280,9 @@ is changed from then on; the record keeps both.
 **Serious acts,** which are reviewed independently before they take
 effect: anything that touches an individual; a Keeper's removal;
 removing a seat at the round table; and narrowing or suspending a grant.
-Who reviews them, beyond a fresh session, is open (below).
+Acts against an individual, and a Keeper's removal, also go to the
+founder, or a person the founder names (decided 2026-11-14, "Questions
+for the founder", below).
 
 ### ADMIN lasts
 

@@ -140,7 +140,7 @@ kind.
   because it is how I would hope that ADMIN would behave as well. And
   that is the whole point." (docs/ADMIN.md, "How it holds its powers";
   AGENTS.md.) Checked the same night: the session holds admin on all ten
-  repositories attached to it, open-worlds-private among them, which
+  repositories attached to it, the new private one among them, which
   GitHub reports as private.
 
 - 2026-11-14, founder, on what it is for: "I went from idea to question to
