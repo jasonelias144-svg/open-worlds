@@ -261,8 +261,8 @@ and the index's beside it.
 From the design pages, each with a schema in 2020-12 and test vectors in
 both languages: identity, birth record, mind record, journal entry
 (sealed: its ciphertext and fingerprint), routine, sheet, avatar, skill
-attestation, world-key credential, grant, decision record, and signed
-log head.
+attestation, world-key credential, grant, decision record, suggestion,
+rating, and signed log head.
 
 ## Not checked
 

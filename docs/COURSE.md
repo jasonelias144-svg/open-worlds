@@ -136,7 +136,9 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    ADMIN, the formats of a grant and of the multiverse log
    (UCAN and Certificate Transparency to check), and of a decision
    record: an office's decision with its reasons
-   ([REASONS.md](REASONS.md)).
+   ([REASONS.md](REASONS.md)); and a suggestion, with its author's
+   rating of how it was handled ([ADMIN.md](ADMIN.md), "Suggestions from
+   inside").
 3. **Keys and identities, for them and for the world.** A private
    repository of the project for the private halves; ALICE's and BOB's
    signing keys, keys for sealing things to them, and the keys to their
@@ -167,8 +169,9 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    prompt's framing becomes part of the law, sent by the world. Minds run
    in containers, with no network, and a test that a removed mind's
    container stops ([ADMIN.md](ADMIN.md), "Minds in containers").
-   *Borrowing:* the vertical slice; OCI containers, with gVisor for minds
-   we didn't write.
+   Suggesting is an act from the first room: anyone can add to the open
+   ledger. *Borrowing:* the vertical slice; OCI containers, with gVisor for
+   minds we didn't write.
 7. **Memory, version 1, sealed.** Journal entries tied to ticks in the
    log; recall by recency, importance and relevance; reflections; held
    thoughts in a few slots; a library of routines they write. All of it
@@ -182,8 +185,10 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    runs in images pinned by digest, so anyone can repeat it.
    *Borrowing:* pre-registration; evaluation suites.
 9. **ALICE's and BOB's first life.** Their minds, their birth, their
-   first unscripted words; legends pages begin. *Borrowing:* Dwarf
-   Fortress's Legends mode.
+   first unscripted words; legends pages begin. The suggestion ledger
+   opens to them, with its bridge to GitHub, so what they suggest can
+   improve the worlds from the start. *Borrowing:* Dwarf Fortress's
+   Legends mode.
 10. **Back to DeepSeek.** First, a development container, so anyone can
     pick the project up and work in the same setup. The re-orientation
     page in [COLLABORATING.md](COLLABORATING.md), pointing to the records;

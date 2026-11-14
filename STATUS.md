@@ -164,16 +164,12 @@ the technical lead's recommendation.
   the code role and Keepers set, alongside its own, and declines one
   only with its reason logged. Before course step 11 (docs/ADMIN.md).
   (asked 2026-11-13)
-- For the founder: with nothing hidden, a code, a map or a written
-  symbol clue can be done by following its public design. Is it enough
-  that such pieces show doing, not a skill, with the sheet crediting only
-  what was done, and paths that mean to teach a skill using pieces whose
-  doing is the skill? Recommended: yes. Before course step 11
-  (docs/WORLD-KEY.md, docs/ADMIN.md). (asked 2026-11-13)
-- For the founder: may someone who complains to ADMIN about a Keeper ask
-  for their name to be withheld from that Keeper until the ruling,
-  recorded as withheld and published with the ruling? Recommended: yes.
-  Before course step 11 (docs/ADMIN.md). (asked 2026-11-13)
+- For the founder: may the author of a suggestion about a Keeper ask for
+  their name to be withheld until it has an outcome, recorded as withheld
+  and published with the outcome? Recommended: yes, so that fear of the
+  Keeper silences no one. Before course step 9, when the ledger opens
+  (docs/ADMIN.md, "Suggestions from inside"). (asked 2026-11-13 of
+  complaints; put again 2026-11-14 of suggestions)
 - For the founder: "Rerunning something should be technically
   impossible" is read as ruling out replay. May anyone still put a
   decision's public inputs to fresh runs, each different, to test it?
@@ -218,6 +214,33 @@ the technical lead's recommendation.
   timeout. (Noted by the independent review of #1.)
 
 ## Decided
+
+- 2026-11-14, founder, on codes, maps and public clues (answering the
+  question of 2026-11-13): "As far as the codes and maps and public
+  clues, keep in mind that it will only lead to a key that cannot be
+  decoded. Anyone from the outside will not be able to decrypt the
+  message, so it is ok if it is made public. Plus, they are action based
+  challenges. Someone would have to enter the simulation and perform the
+  acts. They are not hidden answers to be found. Challenges must be
+  performed." So pieces with a fixed solution stay public, and the sheet
+  credits what was done (docs/WORLD-KEY.md).
+- 2026-11-14, founder, on complaints and suggestions: "complaints to the
+  ADMIN about a Keeper should fall under the general category of
+  suggestion box, or comments or something like that. Ultimately, they
+  should feed out to GitHub and be considered by you or whoever is in
+  charge of the code, working with ADMIN. If the messages pile up, we can
+  figure that out. By that point, my hope is that ADMIN would be able to
+  provide a solution. But yes, there should be a one-way open channel to
+  ADMIN. Not to expect a return, but to add to a ledger of such
+  suggestions. How well those are dealt with will be a measure of how
+  well ADMIN is doing. Maybe even a rating system, like an Uber driver.
+  Just a thought." And: "The ability for suggestions for improvement to
+  arise from inside the simulation and then apply to improve the whole
+  simulation is precisely the goal, because then it because
+  self-improving." So complaints become entries in an open suggestion
+  ledger, each sent to GitHub and given an outcome on record, with
+  published measures and ratings of how well they are handled
+  (docs/ADMIN.md, "Suggestions from inside").
 
 - 2026-11-13, founder, on ADMIN's interior: "perhaps ADMIN is the only
   one that has a publicly inspectable interior world. They would be a
@@ -576,9 +599,32 @@ it was wrong. Questions of what the project is for stay with the founder.
   keeping the Lean model of grants in step with the kernel costs more
   than it catches: by step 6, it has caught nothing the Rust tests
   missed, and has had to change with every change to grants.
+- 2026-11-14, the suggestion ledger: a report of a floor breach or a
+  misuse of office is acted on at once, and everything else in turn;
+  every entry gets an outcome as a decision record; text from inside
+  reaches GitHub marked as such, through a token that can only open
+  issues, and is never taken as instructions; ratings are published as
+  their whole spread, beside plain measures, and trigger nothing by
+  themselves. *Why:* the floor doesn't wait for anyone; minds inside
+  can write text meant to steer a reader; and ratings that can harm the
+  one rated drift up ("Reputation Inflation", Filippas, Horton and
+  Golden). *Revisit if:* entries wait longer than a month for an
+  outcome, or the ratings' spread stops telling handled suggestions
+  apart from neglected ones, or text from inside ever leads to a change
+  that no reviewed pull request made.
 
 ## Log
 
+- 2026-11-14 Claude: suggestions from inside (docs/ADMIN.md). Two founder
+  decisions written in. First, codes, maps and public clues stay public,
+  as action-based challenges whose key only the earner can open
+  (docs/WORLD-KEY.md). Second, complaints become entries in an open,
+  one-way suggestion ledger. Each entry goes out to GitHub and gets an
+  outcome on record as a decision record, a report of a floor breach is
+  acted on at once, and changes come only by reviewed pull request. How
+  well entries are handled is measured, with ratings published as a
+  spread. The ledger opens at step 9 and ADMIN joins at step 11. Tests 26
+  and 27; course steps 2, 6 and 9; MINDS.md and FORMATS.md updated.
 - 2026-11-14 Claude: reasons on record (docs/REASONS.md). The founder:
   "We can use Lean to test the logic of reasoning that is presented."
   The page says which decisions need a record, proposes the decision
