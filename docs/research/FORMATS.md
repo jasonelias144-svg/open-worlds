@@ -394,7 +394,8 @@ one schema,
 
 - **Every party is a did:key:** an individual, a world, an office. A
   world is named by its key, as "Identifiers" proposes; following
-  successions from a birth key comes with step 3's keys.
+  successions from a birth key comes at course step 8a (step 3 binds a
+  name to its birth key alone: [KEYS.md](KEYS.md), decision 12).
 - **A record is named by its hash:** the SHA-256 of its RFC 8785 form,
   proof included, in lowercase hex. A grant names the grant it narrows
   this way; a decision names its grant and inputs this way.

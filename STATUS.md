@@ -969,7 +969,7 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 - 2026-11-14, before ALICE's and BOB's first arrival, successions join
   records-v1 and the Ur-world follows them (docs/research/KEYS.md,
-  decision 18; COURSE.md, step 9). *Why:* until then a name follows its
+  decision 18; COURSE.md, step 8a). *Why:* until then a name follows its
   birth key alone, so a leaked birth key would still enter under the
   name after a succession, and the new key couldn't; no individual exists
   in the Ur-world before step 9, so closing it then exposes nothing.
@@ -989,8 +989,10 @@ it was wrong. Questions of what the project is for stay with the founder.
   and 12 (a door's crossing is an arrival). TOPICS.md's "a lost or
   leaked key" moved into the course. The look back, at each decision's
   "revisit if":
-  - held, and tested by step 3: signed records the standard way (the key
-    list and the arrival are one signer each, with no proof chain); the
+  - held: signed records the standard way (step 3 tested the second half
+    of its "revisit if": the key list and the arrival are one signer
+    each, with no proof chain; whether a widely used verifier accepts
+    our proofs hasn't been tried); the
     records for the offices (Python and Rust agree on every key-list and
     arrival vector, and #59's independent review found no disagreement;
     the one gap it found, names with line breaks, was in the kernel's own
@@ -1004,14 +1006,23 @@ it was wrong. Questions of what the project is for stay with the founder.
     if" asks whether the identity must carry successions; step 3 kept
     them as records of their own (KEYS.md, decision 12), and 8a builds
     them;
+  - due at step 9: the sealed records, whose "revisit if" names the
+    identity record, which moved from step 3 to step 9;
   - not yet testable, since what they govern isn't built: sealing the
-    world-key, sealing as built and the sealed records (nothing new was
-    sealed at step 3), the round table's consensus, how the table is
+    world-key and sealing as built (nothing new was sealed at step 3),
+    the round table's consensus, how the table is
     chosen, a Keeper's self-report, ADMIN's council, ADMIN's learning by
     written lessons, the admin-key course, and the suggestion ledger;
     reasons on record is due at step 6;
-  - not yet due: the template (step 4), the chemistry world's records of
-    what was made, and decision 18, just made.
+  - not yet due: the template (step 4), and decision 18, just made;
+  - not triggered: the chemistry world's records of what was made (no
+    world needs finer than a microsecond, or to run for 285 years).
+
+  The choice of the new step, and its place, was put to the founder on
+  #60 with the recommendation (8a, before step 9; the alternatives,
+  fractal worlds or the Commons, after 4a); under AGENTS.md's standing
+  rule it stands on that recommendation unless the founder answers
+  otherwise.
 
 - 2026-11-14 Claude: course step 3, part four, built (KEYS.md, "As built,
   part four"): `open-worlds/arrival/v1` in records-v1, with vectors in

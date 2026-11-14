@@ -224,7 +224,7 @@ waiting list, where it was placed after step 3 (decided 2026-11-14).
 **4a. Parallel worlds, and a garden to walk among them.** A few parallel
 chemistry worlds from one template, each with its own key and log and
 the dials it changed in its birth record, and its log's heads signed by
-its key, as each trial run of the Ur-world's doorway is now; and a
+its key, as a trial run of the Ur-world's doorway can now; and a
 view-only garden whose rooms show their live state from their public
 logs, the first thing others can look at and understand
 ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md)). Moved here from the waiting
