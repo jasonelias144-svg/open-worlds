@@ -122,8 +122,17 @@ def _who() -> List[tuple]:
                        "log": _h("the parent's log at tick 1000")},
         "time": "2026-11-14T05:00:00Z",
     }, "a parallel chemistry world")
+    second = {**mind["engines"][0],
+              "model": {"repo": "example/test-model",
+                        "revision": hashlib.sha1(
+                            b"a test model, revised").hexdigest()},
+              "from": "2026-11-14T06:00:00Z"}
+    changed = _signed({**{k: v for k, v in mind.items() if k != "proof"},
+                       "engines": [*mind["engines"], second]},
+                      "the project")
     return [
         ("a mind record, with one engine", mind),
+        ("a mind record, after a change of engine", changed),
         ("an individual's birth record, in the words decided", birth),
         ("an identity, binding a sealing key to its did:key", identity),
         ("a world's birth record, made by the project", ur_world),
@@ -280,6 +289,7 @@ def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
                   "founders"]
     mind = by["a mind record, with one engine"]
     engine = mind["engines"][0]
+    changed = by["a mind record, after a change of engine"]["engines"]
 
     def unsigned(r: Dict[str, Any]) -> Dict[str, Any]:
         return {k: v for k, v in r.items() if k != "proof"}
@@ -413,6 +423,11 @@ def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         ("a mind record whose engine began on 31 April",
          resigned(mind, "the project", engines=[
              {**engine, "from": "2026-04-31T00:00:00Z"}])),
+        ("a mind record whose engines are out of order",
+         resigned(mind, "the project", engines=changed[::-1])),
+        ("a mind record whose second engine began with the first",
+         resigned(mind, "the project", engines=[
+             changed[0], {**changed[1], "from": changed[0]["from"]}])),
     ]
     return [{"name": n, "record": r} for n, r in cases]
 

@@ -444,15 +444,17 @@ one schema,
   that keeps mind records: the `individual`, and every engine they have
   run on: the model at an exact 40-digit revision, its files by hash, its
   settings, its chat template by hash, the container image by digest
-  ("Container images", above; never a tag alone), and when it began.
-  Settings are integers or strings: a quantity with a fraction, such as a
-  temperature, is a string, since the canonical form has no floats.
+  ("Container images", above; never a tag alone), and when it began,
+  listed in the order they began. Settings are integers or strings: a
+  quantity with a fraction, such as a temperature, is a string, since the
+  canonical form has no floats.
 
 Every time in these records must be a real one (a grant's always had to
-be). Shared vectors (`vectors/formats/records-v1.json`): 5 more records
-that hold, and 16 more that must be refused, among them an identity
-whose sealing key is of small order, a birth record on 30 February, and
-a mind record whose image is named by a tag.
+be). Shared vectors (`vectors/formats/records-v1.json`): 6 more records
+that hold, and 18 more that must be refused, among them an identity
+whose sealing key is of small order, a birth record on 30 February, a
+mind record whose image is named by a tag, and one whose engines are out
+of order.
 
 ## What step 2 defines
 

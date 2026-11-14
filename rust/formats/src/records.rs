@@ -88,24 +88,51 @@ fn times(record: &Value) -> Vec<(String, &Value)> {
     }
 }
 
-/// Every time must be a real one, and a grant must end after it starts;
-/// the schema checks only their shape.
+/// Every time must be a real one, a grant must end after it starts, and a
+/// mind record's engines are in the order they began; the schema checks
+/// only their shape.
 fn time_problems(record: &Value) -> Vec<String> {
     let mut found: Vec<String> = times(record)
         .into_iter()
         .filter(|(_, value)| check_time(Some(value)).is_err())
         .map(|(where_, _)| format!("{where_}: not a real UTC time"))
         .collect();
-    if record.get("format").and_then(Value::as_str) != Some("open-worlds/grant/v1") {
+    if !found.is_empty() {
         return found;
     }
-    let from = record.get("validFrom").and_then(Value::as_str);
-    let until = record.get("validUntil").and_then(Value::as_str);
-    if found.is_empty()
-        && let (Some(from), Some(until)) = (from, until)
-        && until <= from
-    {
-        found.push("$.validUntil: not after validFrom".into());
+    match record.get("format").and_then(Value::as_str) {
+        Some("open-worlds/grant/v1") => {
+            let from = record.get("validFrom").and_then(Value::as_str);
+            let until = record.get("validUntil").and_then(Value::as_str);
+            if let (Some(from), Some(until)) = (from, until)
+                && until <= from
+            {
+                found.push("$.validUntil: not after validFrom".into());
+            }
+        }
+        Some("open-worlds/mind/v1") => {
+            let began: Vec<Option<&str>> = record
+                .get("engines")
+                .and_then(Value::as_array)
+                .map(|engines| {
+                    engines
+                        .iter()
+                        .map(|e| e.get("from").and_then(Value::as_str))
+                        .collect()
+                })
+                .unwrap_or_default();
+            for (i, pair) in began.windows(2).enumerate() {
+                if let [Some(before), Some(after)] = pair
+                    && after <= before
+                {
+                    found.push(format!(
+                        "$.engines.{}.from: not after the engine before",
+                        i + 1
+                    ));
+                }
+            }
+        }
+        _ => {}
     }
     found
 }

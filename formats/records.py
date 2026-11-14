@@ -123,8 +123,9 @@ def _times(record: Dict[str, Any]) -> List[Tuple[str, Any]]:
 
 
 def _time_problems(record: Dict[str, Any]) -> List[str]:
-    """Every time must be a real one, and a grant must end after it
-    starts; the schema checks only their shape."""
+    """Every time must be a real one, a grant must end after it starts,
+    and a mind record's engines are in the order they began; the schema
+    checks only their shape."""
     found = []
     for where, value in _times(record):
         try:
@@ -135,6 +136,11 @@ def _time_problems(record: Dict[str, Any]) -> List[str]:
             and "validUntil" in record
             and record["validUntil"] <= record["validFrom"]):
         found.append("$.validUntil: not after validFrom")
+    if not found and record.get("format") == "open-worlds/mind/v1":
+        engines = record["engines"]
+        found = [f"$.engines.{i}.from: not after the engine before"
+                 for i in range(1, len(engines))
+                 if engines[i]["from"] <= engines[i - 1]["from"]]
     return found
 
 

@@ -387,6 +387,78 @@
    "hash": "20fe68e41a1cb6f6b98f77a2b611eafe424bdf77893ea314e05711de714028e0"
   },
   {
+   "name": "a mind record, after a change of engine",
+   "signer": "the project",
+   "record": {
+    "format": "open-worlds/mind/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "individual": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "engines": [
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "8c8cad0dab28f4462bcd28d6d284ddbedb6637be"
+      },
+      "files": [
+       {
+        "path": "model.safetensors",
+        "sha256": "90452f42fee1c1576d5e8eeeee93e14e257ffd3b3c3fc8d1f6fc0eb44edbf5f1"
+       },
+       {
+        "path": "tokenizer.json",
+        "sha256": "4596c7f4c876dd698f5a4a847fc6dc629a797a34c4f22459a6d6cfd461b28c35"
+       }
+      ],
+      "settings": {
+       "temperature": "0.7",
+       "maxTokens": 256
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind@sha256:c1100dc0221e850649be6e2f3ec21ad3bff65cc0809ca062395ae0ecc19be920",
+       "index": "sha256:b02e403c07415e3d0cbf90f7df9e0c59b6dedc578d89b4ed1b1db6296de2cab8"
+      },
+      "from": "2026-11-14T04:00:00Z"
+     },
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "0cadd968ba98c2a63fbbf06816dc43475e4e15b5"
+      },
+      "files": [
+       {
+        "path": "model.safetensors",
+        "sha256": "90452f42fee1c1576d5e8eeeee93e14e257ffd3b3c3fc8d1f6fc0eb44edbf5f1"
+       },
+       {
+        "path": "tokenizer.json",
+        "sha256": "4596c7f4c876dd698f5a4a847fc6dc629a797a34c4f22459a6d6cfd461b28c35"
+       }
+      ],
+      "settings": {
+       "temperature": "0.7",
+       "maxTokens": 256
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind@sha256:c1100dc0221e850649be6e2f3ec21ad3bff65cc0809ca062395ae0ecc19be920",
+       "index": "sha256:b02e403c07415e3d0cbf90f7df9e0c59b6dedc578d89b4ed1b1db6296de2cab8"
+      },
+      "from": "2026-11-14T06:00:00Z"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3tx2H9VzXcqeiL45TE6qgfAA9K5ZNvZTwXavqATWum4drkY1PJ8ZfXeWk8TBVCBvDhcUMXToZmhQMGsJnPjchhtp"
+    }
+   },
+   "hash": "6f5c943050f01783d2cc525d18c2adf15cfc489387b597984e60e34b408c7527"
+  },
+  {
    "name": "an individual's birth record, in the words decided",
    "signer": "the Ur-world",
    "record": {
@@ -1817,6 +1889,146 @@
      "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
      "proofPurpose": "assertionMethod",
      "proofValue": "z54nEq7Jh7gaHB8wVz3kcyeHu6yDp8tfNefaj36jvJTWrpauxXWnicT6vcgQ9n9u2fKjSMxBjT14B6qz81grh2Emn"
+    }
+   }
+  },
+  {
+   "name": "a mind record whose engines are out of order",
+   "record": {
+    "format": "open-worlds/mind/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "individual": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "engines": [
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "0cadd968ba98c2a63fbbf06816dc43475e4e15b5"
+      },
+      "files": [
+       {
+        "path": "model.safetensors",
+        "sha256": "90452f42fee1c1576d5e8eeeee93e14e257ffd3b3c3fc8d1f6fc0eb44edbf5f1"
+       },
+       {
+        "path": "tokenizer.json",
+        "sha256": "4596c7f4c876dd698f5a4a847fc6dc629a797a34c4f22459a6d6cfd461b28c35"
+       }
+      ],
+      "settings": {
+       "temperature": "0.7",
+       "maxTokens": 256
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind@sha256:c1100dc0221e850649be6e2f3ec21ad3bff65cc0809ca062395ae0ecc19be920",
+       "index": "sha256:b02e403c07415e3d0cbf90f7df9e0c59b6dedc578d89b4ed1b1db6296de2cab8"
+      },
+      "from": "2026-11-14T06:00:00Z"
+     },
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "8c8cad0dab28f4462bcd28d6d284ddbedb6637be"
+      },
+      "files": [
+       {
+        "path": "model.safetensors",
+        "sha256": "90452f42fee1c1576d5e8eeeee93e14e257ffd3b3c3fc8d1f6fc0eb44edbf5f1"
+       },
+       {
+        "path": "tokenizer.json",
+        "sha256": "4596c7f4c876dd698f5a4a847fc6dc629a797a34c4f22459a6d6cfd461b28c35"
+       }
+      ],
+      "settings": {
+       "temperature": "0.7",
+       "maxTokens": 256
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind@sha256:c1100dc0221e850649be6e2f3ec21ad3bff65cc0809ca062395ae0ecc19be920",
+       "index": "sha256:b02e403c07415e3d0cbf90f7df9e0c59b6dedc578d89b4ed1b1db6296de2cab8"
+      },
+      "from": "2026-11-14T04:00:00Z"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z29i6g2WNjisTXMZoe7UW6MuNE5ky2jCZ6DVXUMofAUJduD44JzY8RLrxaPttEDSukqWDBJrZhSJLq6Gon8SYdEpa"
+    }
+   }
+  },
+  {
+   "name": "a mind record whose second engine began with the first",
+   "record": {
+    "format": "open-worlds/mind/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "individual": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "engines": [
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "8c8cad0dab28f4462bcd28d6d284ddbedb6637be"
+      },
+      "files": [
+       {
+        "path": "model.safetensors",
+        "sha256": "90452f42fee1c1576d5e8eeeee93e14e257ffd3b3c3fc8d1f6fc0eb44edbf5f1"
+       },
+       {
+        "path": "tokenizer.json",
+        "sha256": "4596c7f4c876dd698f5a4a847fc6dc629a797a34c4f22459a6d6cfd461b28c35"
+       }
+      ],
+      "settings": {
+       "temperature": "0.7",
+       "maxTokens": 256
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind@sha256:c1100dc0221e850649be6e2f3ec21ad3bff65cc0809ca062395ae0ecc19be920",
+       "index": "sha256:b02e403c07415e3d0cbf90f7df9e0c59b6dedc578d89b4ed1b1db6296de2cab8"
+      },
+      "from": "2026-11-14T04:00:00Z"
+     },
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "0cadd968ba98c2a63fbbf06816dc43475e4e15b5"
+      },
+      "files": [
+       {
+        "path": "model.safetensors",
+        "sha256": "90452f42fee1c1576d5e8eeeee93e14e257ffd3b3c3fc8d1f6fc0eb44edbf5f1"
+       },
+       {
+        "path": "tokenizer.json",
+        "sha256": "4596c7f4c876dd698f5a4a847fc6dc629a797a34c4f22459a6d6cfd461b28c35"
+       }
+      ],
+      "settings": {
+       "temperature": "0.7",
+       "maxTokens": 256
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind@sha256:c1100dc0221e850649be6e2f3ec21ad3bff65cc0809ca062395ae0ecc19be920",
+       "index": "sha256:b02e403c07415e3d0cbf90f7df9e0c59b6dedc578d89b4ed1b1db6296de2cab8"
+      },
+      "from": "2026-11-14T04:00:00Z"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3zEGNECwkX3nRsdEWABhyV9SCjL2fK1CqXNPfLQNa8HSbvaZkvVykC21Uva5t6AFjLoc5iNkyPQxyNUcJmWEGLMD"
     }
    }
   }
