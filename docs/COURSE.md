@@ -136,13 +136,18 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    ADMIN, the formats of a grant and of the multiverse log
    (UCAN and Certificate Transparency to check), and of a decision
    record: an office's decision with its reasons
-   ([REASONS.md](REASONS.md)).
+   ([REASONS.md](REASONS.md)); and a suggestion, with its author's
+   rating of how it was handled ([ADMIN.md](ADMIN.md), "Suggestions from
+   inside").
 3. **Keys and identities, for them and for the world.** A private
    repository of the project for the private halves; ALICE's and BOB's
    signing keys, keys for sealing things to them, and the keys to their
    sealed selves; birth records and public identity files. The Ur-world's
    own keys: one to sign its log, one for sealing things to it; and
-   ADMIN's. Leaving and coming back: whoever leaves can return, proving
+   ADMIN's. The multiverse's root key, published, and a key of the code
+   role's, for outcomes on suggestions before ADMIN exists
+   ([ADMIN.md](ADMIN.md), "Suggestions from inside"). Leaving and coming
+   back: whoever leaves can return, proving
    with their key that they are the same individual. *Borrowing:*
    standard key handling, private halves kept apart and public halves
    published.
@@ -167,8 +172,9 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    prompt's framing becomes part of the law, sent by the world. Minds run
    in containers, with no network, and a test that a removed mind's
    container stops ([ADMIN.md](ADMIN.md), "Minds in containers").
-   *Borrowing:* the vertical slice; OCI containers, with gVisor for minds
-   we didn't write.
+   Suggesting is an act from the first room: anyone can add to the open
+   ledger. *Borrowing:* the vertical slice; OCI containers, with gVisor for
+   minds we didn't write.
 7. **Memory, version 1, sealed.** Journal entries tied to ticks in the
    log; recall by recency, importance and relevance; reflections; held
    thoughts in a few slots; a library of routines they write. All of it
@@ -182,8 +188,10 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    runs in images pinned by digest, so anyone can repeat it.
    *Borrowing:* pre-registration; evaluation suites.
 9. **ALICE's and BOB's first life.** Their minds, their birth, their
-   first unscripted words; legends pages begin. *Borrowing:* Dwarf
-   Fortress's Legends mode.
+   first unscripted words; legends pages begin. The suggestion ledger
+   opens to them, with its bridge to GitHub, so what they suggest can
+   improve the worlds from the start. *Borrowing:* Dwarf Fortress's
+   Legends mode.
 10. **Back to DeepSeek.** First, a development container, so anyone can
     pick the project up and work in the same setup. The re-orientation
     page in [COLLABORATING.md](COLLABORATING.md), pointing to the records;
@@ -211,7 +219,10 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
     work is to train the Ur-world's Keeper in practice worlds, with
     stand-ins, before it keeps the Ur-world with ALICE and BOB in it:
     coaching toward the Ur-world's own aims, never command (founder,
-    2026-11-13; moved here from the waiting list).
+    2026-11-13; moved here from the waiting list). ADMIN becomes the
+    bridge from the suggestion ledger to the outside: it can suggest
+    changes, never make them ([ADMIN.md](ADMIN.md), "Suggestions from
+    inside").
 12. **Founding worlds, and doors.** What only a second world needs:
     child worlds, each with a new key of its own, a signed birth record,
     and a Keeper chosen by its founders; doors between them, travel with

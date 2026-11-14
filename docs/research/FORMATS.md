@@ -215,9 +215,9 @@ README states no licence for the specification.
 issuer and a holder (as did:keys), what it allows, its limits in time and
 scope, the grant it narrows, and a signature, with the rule that a grant
 can only narrow what its issuer holds. A grant takes effect only from its
-entry in the log, with its decision record, and so does narrowing or
-revoking one ([REASONS.md](../REASONS.md)). Adopting UCAN itself is
-revisited at step 12, when grants cross worlds.
+entry in the log, with its decision record, and so does narrowing,
+suspending or revoking one ([REASONS.md](../REASONS.md)). Adopting UCAN
+itself is revisited at step 12, when grants cross worlds.
 
 ## Decision records
 
@@ -263,8 +263,8 @@ and the index's beside it.
 From the design pages, each with a schema in 2020-12 and test vectors in
 both languages: identity, birth record, mind record, journal entry
 (sealed: its ciphertext and fingerprint), routine, sheet, avatar, skill
-attestation, world-key credential, grant, decision record, and signed
-log head.
+attestation, world-key credential, grant, decision record, suggestion,
+rating, and signed log head.
 
 ## Not checked
 

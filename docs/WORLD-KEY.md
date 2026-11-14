@@ -144,10 +144,17 @@ wrong, or unfair, or invent a puzzle no one can solve. So the work is split:
   design gives the solution away: following it opens the lock without
   reading the symbol. So those pieces show doing, not a skill, and the
   sheet credits only what the record shows was done. Where a path means to
-  teach a skill, it uses pieces whose doing is the skill. Whether that is
-  enough is for the founder (ADMIN.md, questions). Anyone can read the
-  public record, the individual included, from the doorway; inside the
-  world, each perceives only their own trail.
+  teach a skill, it uses pieces whose doing is the skill. The founder,
+  2026-11-14, settled that this is fine: "it will only lead to a key that
+  cannot be decoded. Anyone from the outside will not be able to decrypt
+  the message, so it is ok if it is made public. Plus, they are action
+  based challenges. Someone would have to enter the simulation and
+  perform the acts. They are not hidden answers to be found. Challenges
+  must be performed." The world-key is signed for its earner by name and
+  sealed so only they can open it, and each path is built for one
+  individual, so a public design gives no one else anything they can use.
+  Anyone can read the public record, the individual included, from the
+  doorway; inside the world, each perceives only their own trail.
 - **The world's code builds and checks.** The kernel places what the
   Keeper designed, and refuses any design that breaks the rules: it must be
   solvable with the skills the individual has or can earn, lie in land
