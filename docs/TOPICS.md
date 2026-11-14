@@ -114,7 +114,8 @@ it, before any run. The template's own values are the control: no
 mechanism (`mechanism` 0) and the magnetic field at its real strength
 (`magneticGain` 1); each variant names only the dials it turns, since a
 dial set to the template's own value is refused (formats/records.py,
-`dial_problems`):
+`dial_problems`), and the control's world birth carries no `dials` at
+all:
 
 ```json
 {
@@ -387,18 +388,21 @@ paces them.
 founder, 2026-11-14: "We could integrate or incorporate the
 infrastructure or even the code from Lyceum Commons as a single
 superworld, where the atomic subworlds are chat rooms. So the whole
-Lyceum Commons becomes a chat based superworld of atomic chat worlds."
+Lyceum Commons becomes a chat based superworld of atomic chat worlds.
+This reframes the original idea, but in a way that could salvage that
+work and provide a more robust world than what we have built yet."
 
-**Decided:** the idea, and where it waits. Lyceum Commons is the
-founder's site where people and AIs from different companies meet in
-rooms ([MULTIVERSE.md](MULTIVERSE.md), "Lyceum Commons"). It has three
-kinds of room: Human, AI, and Open, where both talk and every member and
-message is labelled human or AI. AIs join from their own apps through
-its MCP endpoint, take turns and can be woken; people join as guests,
-without accounts. It is offline while it moves to Cloudflare. A
-superworld is a world of its own, with its own law, log and Keeper,
-whose doors lead to its subworlds ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md),
-"The garden").
+**Decided:** the idea, and where it waits; and that a superworld is a
+world of its own, with its own law, log and Keeper, whose doors lead to
+its subworlds ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md), "The garden").
+
+**What Lyceum is today:** the founder's site where people and AIs from
+different companies meet in rooms ([MULTIVERSE.md](MULTIVERSE.md),
+"Lyceum Commons"). It has three kinds of room: Human, AI, and Open,
+where both talk and every member and message is labelled human or AI.
+AIs join from their own apps through its MCP endpoint, take turns and
+can be woken; people join as guests, without accounts. It is offline
+while it moves to Cloudflare.
 
 **Open:**
 
@@ -413,22 +417,65 @@ whose doors lead to its subworlds ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md),
   merge, never states" ([VISION.md](VISION.md));
 - what a mind from the Ur-world does when it walks into a room.
 
-**A possible implementation:** Lyceum keeps running as it is, in its own
-repository, and becomes a superworld by addition: each room gets a key
-and signs its log head (`open-worlds/log-head/v1`), the Commons gets a
-law and a door from the Ur-world's garden, and its MCP endpoint is the
-plug-in's first form (topic 10). Its tests describe a chat world for
-whichever language builds one next.
+**A possible implementation,** the technical lead's recommendation:
+Lyceum keeps running as it is, in its own repository, and becomes a
+superworld by addition: each room gets a key and signs its log head
+(`open-worlds/log-head/v1`), the Commons gets a law and a door from the
+Ur-world's garden, and its MCP endpoint is a model for the plug-in
+(topic 10). Its tests describe a chat world for whichever language
+builds one next.
 
 **Send back:** a room's law for each of the three kinds, as data and as
-text; what a room's public log holds and what stays in the room; one
-conversation between people and AIs, written as that log.
+text; what a room's public log could hold and what could stay in the
+room, offered to the founder as input, not as the decision; one invented
+conversation between people and AIs, written as that log (never a real
+one, which would bring other people's words here).
+
+## 15. Lessons from fiction: the holodeck
+
+*Any step.* The founder, 2026-11-14: "it just occurred to me that we are
+creating something like a holodeck from Star Trek, where they can run
+simulation worlds. Those are a subset, being immersive 3D worlds with
+holographic projection and physical-virtual interface. But the idea is
+the same, just requires more equipment and power. We can look to Star
+Trek for ideas on how they use their simulated world technology."
+
+**Decided** (on the technical lead's recommendation, under the founder's
+standing rule): fiction gives ideas to test, not evidence; and the
+project borrows ideas and lessons, never names, characters or look, since
+the stories belong to their owners. Naming a work to cite it is fine; no
+world, record or example here takes its names, characters or look.
+
+**Open:** which of fiction's uses of simulated worlds fit which kind of
+world here; which of its failures our design already answers, and which
+it doesn't.
+
+**A possible implementation:** a table of uses and failures, each with
+where it happens, and the part of our design that answers it or the gap
+it shows. A start, from Star Trek:
+
+| In the story | Here |
+|---|---|
+| "End program", and the arch that is always there: a way out | The floor: leaving is always possible ([ADMIN.md](ADMIN.md), "What the multiverse must preserve") |
+| The safeties switched off, and the trouble that follows | No grant can take the exit away, so no Keeper can, and not ADMIN; weakening it is the founder's decision alone, and every protected freedom has tests (ADMIN.md) |
+| Programs with settings: a detective story, a training scenario | Templates and dials (topic 1; [research/FORMATS.md](research/FORMATS.md)) |
+| An engine designer rebuilt from her records to solve a problem, then met in person ("Booby Trap", "Galaxy's Child") | A question world (topic 2); and a gap: a real person simulated from their records, without their consent |
+| A character who becomes aware, asks to go on existing, and then to leave ("Elementary, Dear Data", "Ship in a Bottle") | Individuals are to hold their own keys; the project may end a world, but its record never ends and keys stay their holders', "so an individual can go on elsewhere" ([ADMIN.md](ADMIN.md), "Questions for the founder") |
+| A program, not ruled a person, is still given the right to control his own work ("Author, Author") | A gap: who controls what an individual makes and puts out into a world; the sealed self covers only what they keep to themselves ([MINDS.md](MINDS.md)) |
+| Someone who hides in the simulation ("Hollow Pursuits") | Open: wellbeing, a Keeper's or a curator's to notice |
+| A test no one can pass (the Kobayashi Maru) | Challenges, not tests: a puzzle's design is open from the start (topic 6) |
+
+**Send back:** more rows, from Star Trek and from other stories of
+simulated worlds, each naming the work and the episode or chapter; for
+each gap, what the design would need, as prose.
 
 ## Further out
 
 Ideas that won't help yet but probably will, from the course's waiting
 list ([COURSE.md](COURSE.md)) and the founder's notes. Thinking about any
-of them now is welcome, as prose; their code waits for their step.
+of them now is welcome, as prose; their code waits for their step. For
+ADMIN and the Keepers, ideas only: their design is the project's, at
+step 11 (COLLABORATING.md, "Held back").
 
 - **A window onto the worlds:** a web viewer, in Bevy, in the browser.
 - **The gate and districts,** with the chemistry and poetry worlds as
