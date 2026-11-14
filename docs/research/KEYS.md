@@ -198,7 +198,7 @@ root does.
 4. **Leaving and coming back** in the Ur-world: a mind at its doorway
    signs as its key, so whoever returns is known as the same individual,
    as the Python worlds already do. Its plan: "Part four", below
-   (decisions 11 to 15).
+   (decisions 11 to 17).
 
 ## Part four: leaving and coming back, the plan
 
@@ -214,36 +214,69 @@ another under the same name.
 **Decided by the technical lead, 2026-11-14:**
 
 11. **An arrival is signed; leaving never needs a signature.** On
-    entering, the individual's key signs an arrival record: the world,
-    the individual's did:key, the name, the tick, and the world's log
-    head at that tick, so an arrival can't be replayed into another world
-    or another moment. The world checks it, keeps it in its log, and
-    binds the name to the key. Leaving stays `exit`, which always works:
-    the floor allows no condition on leaving.
-12. **A name stays its holder's.** Once bound, a name is bound to that
-    key for good. An arrival under it with another key is refused ("that
-    name is someone else's"); an arrival with the same key is the same
-    individual coming back, told so, and what they did before stays
-    theirs in the log. One key holds one name in a world. This replaces
-    "your name can't be used here again", which was the only guard while
-    nothing told a returning mind from another.
+    entering, the individual's key signs an arrival record
+    (`open-worlds/arrival/v1`, 17): the world's did:key, the
+    individual's did:key, the name, the tick, and `previous`, the hash of
+    the log entry just before the arrival's own (the Ur-world log's own
+    hash, `world_log::digest`, carried as hex). The world refuses any
+    other `previous` as stale, and the doorway signs again over the
+    current one; so two arrivals in one tick are ordered, each signing
+    over the one before, and one arrival can't be used twice in one
+    history. The proof's `created` is the signer's clock, no evidence of
+    when the arrival happened: the log's order is. Leaving stays `exit`,
+    which always works, since the floor allows no condition on leaving.
+    That was weighed against the Python worlds, where a signed leave is
+    the individual's own record of leaving: here the log keeps a mind's
+    own `exit` reply apart from the keeper's hand removing it, and a
+    signed leave, beside the unconditional `exit`, can come later.
+12. **A name stays its individual's.** Once bound, a name belongs to the
+    individual: their birth key, and the keys it is signed over to by
+    their own successions or their guardians (FORMATS.md,
+    "Identifiers"; decision 9). An arrival under the name signed by a
+    key outside that chain is refused ("that name is someone else's");
+    one signed by the chain's latest key is the same individual coming
+    back, told so, and what they did before stays theirs in the log. One
+    individual holds one name in a world. Successions aren't yet a
+    records-v1 record, so the Ur-world first checks the birth key alone;
+    until successions join records-v1 (the waiting list's "a lost or
+    leaked key"), a signed-over key can't come back under its old name,
+    and the doorway says why rather than treat it as someone else. From
+    step 9, an arrival's name is the name in the individual's identity
+    record. This replaces "your name can't be used here again", the only
+    guard while nothing told a returning mind from another.
 13. **The doorway signs, for now.** A mind is any program in any
     language, and many standard libraries have no Ed25519 (Python's
     hasn't). So the doorway, which starts each mind's program, signs its
     arrival with the key it is given: a holder's file from the private
     repository, or, for a trial mind, a key made for the run and then
-    thrown away. A mind that holds its own key later signs its own
-    arrival, by the same record. Until then, whoever runs the doorway can
-    enter as anyone whose key it holds ("Honest limits", on ALICE and
-    BOB).
-14. **ALICE and BOB don't enter yet.** Their keys exist (part three), but
+    thrown away. The private half is never passed to the mind's process,
+    by its input, its environment or a file. A mind that holds its own
+    key later signs its own arrival, by the same record. What an arrival
+    proves, and what it doesn't, is in "Honest limits".
+14. **Trial runs are worlds of their own; the Ur-world is one history.**
+    Every run from the same seed opens with the same log, and logs are
+    public, so an arrival copied from one run's log would verify in a
+    fresh run of the same seed. So a trial run, an experiment or CI is a
+    world of its own, with a world key made for the run, never the
+    Ur-world's; and the Ur-world itself, from its first inhabitant, is
+    one continuing history whose log heads its own key signs
+    (`open-worlds/log-head/v1`). A copy run from the same seed, with
+    arrivals replayed into it, isn't the Ur-world: no head of its log is
+    signed by the Ur-world's key. A fork is a world of its own too, with
+    its own key, which every arrival names.
+15. **ALICE and BOB don't enter yet.** Their keys exist (part three), but
     they are born at step 9, with the minds chosen at step 8. Part four is
     built and tested with trial keys and shared vectors; their first
-    arrival is their birth.
-15. **A new record, `open-worlds/arrival/v1`,** in records-v1, written by
-    the Rust Ur-world (the reference for the Ur-world, COLLABORATING.md
-    Rust rule 6) and checked by Python through shared vectors; the
-    world-log check verifies each arrival in a log.
+    arrival is their birth. The garden's scripted stand-ins, which enter
+    as "ALICE" and "BOB" today, are renamed, so that in any log those
+    names are only ever the individuals the key list names.
+16. **Rust is the reference.** The arrival is written by the Rust
+    Ur-world (COLLABORATING.md, Rust rule 6) and checked by Python
+    through shared vectors; the world-log check verifies each arrival in
+    a log.
+17. **A new record, `open-worlds/arrival/v1`,** in records-v1, signed by
+    the individual alone ("each kind has one signer"), with every party a
+    did:key and the three rules kept.
 
 ## As built, part two
 
@@ -402,13 +435,20 @@ Ur-world, part four, is next (its plan, above).
 - **Until ALICE and BOB hold their own keys,** whoever holds the private
   repository can sign as them. That is what "public to the project"
   means (MINDS.md).
+- **An arrival proves the key, not the program.** While the doorway signs
+  (decision 13), an arrival shows that whoever ran the doorway held the
+  key, not which program is the mind: "the same individual coming back"
+  means the same key, and another program can come back under it. That
+  is what "an individual is its key" says, and whoever runs the doorway
+  can enter as anyone whose key it holds.
 - **The tool's guard sees Git as it is set up when the tool runs,** not
   at the push that follows: an environment variable, a `-c`, or a config
   file edited in between could send a push elsewhere, and SSH host
   aliases, `core.sshCommand` and remote helpers, among them a
   `<scheme>://` address Git hands to a helper of that name, are beyond
-  what it can see. So the ceremony pushes the private halves by naming the private
-  repository's address in the push itself, not by a remote's name.
+  what it can see. So the ceremony pushes the private halves by naming
+  the private repository's address in the push itself, not by a remote's
+  name.
 
 *Revisit if:* anyone else holds a key: then the root kept off GitHub and
 offline, and thresholds.

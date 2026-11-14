@@ -963,12 +963,15 @@ it was wrong. Questions of what the project is for stay with the founder.
 ## Log
 
 - 2026-11-14 Claude: course step 3, part four's plan
-  (docs/research/KEYS.md, decisions 11 to 15): an arrival signed by the
-  individual's key, against the world's log head; a name stays its
-  holder's, so whoever comes back with the same key is the same
-  individual, and another key under the name is refused; leaving never
-  needs a signature; the doorway signs for minds without their own
-  Ed25519; ALICE and BOB don't enter before their birth; a new record,
+  (docs/research/KEYS.md, decisions 11 to 17): an arrival signed by the
+  individual's key over the log entry just before it; a name stays its
+  individual's (birth key and successions), so whoever comes back by
+  that chain is the same individual, and any other key under the name
+  is refused; leaving never needs a signature; the doorway signs for
+  minds without their own Ed25519, and never hands them the key; trial
+  runs are worlds of their own, and the Ur-world one history whose log
+  heads its key signs; ALICE and BOB don't enter before their birth, and
+  the garden's scripted stand-ins are renamed; a new record,
   `open-worlds/arrival/v1`, written by the Rust Ur-world. And #57's last
   notes on KEYS.md and keys/README.md.
 

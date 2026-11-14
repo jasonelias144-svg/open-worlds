@@ -166,7 +166,7 @@ otherwise.
    three are done: the real keys were made on 2026-11-14, their public
    halves published in [`keys/key-list.json`](../keys/key-list.json);
    part four, leaving and coming back, is next, its plan in KEYS.md
-   (decisions 11 to 15). A private
+   (decisions 11 to 17). A private
    repository of the project for the private halves; ALICE's and BOB's
    signing keys, and keys for sealing things to them, which also open
    their sealed selves; their identity, birth and mind records wait for
