@@ -155,7 +155,9 @@ log already has.
 key can open it.
 
 - **Python:** `cryptography`, already a dependency (50.0.2), added HPKE
-  in 48.0.0, "implementing RFC 9180". It offers DHKEM(X25519) among
+  in 47.0.0, "implementing RFC 9180" (its
+  [changelog](https://github.com/pyca/cryptography/blob/main/CHANGELOG.rst);
+  this page said 48.0.0 until step 2's third part). It offers DHKEM(X25519) among
   others, but no choice of mode: in it, "the sender is anonymous", which
   is HPKE's base mode
   ([documentation](https://cryptography.io/en/latest/hazmat/primitives/hpke/)).
@@ -207,6 +209,38 @@ is ever honoured for anyone it doesn't name, or if the box itself, still
 closed, must show who sealed it. Noise (revision 34, 2018) stays named
 only for a private line, if the founder chooses one
 ([Noise](https://noiseprotocol.org/noise.html)).
+
+**As built** (step 2, part three: `formats/seal.py`, `rust/formats`):
+
+- **A box** is `enc || ct`: the one-time key, then the ciphertext, as RFC
+  9180's single-shot Seal gives them and `cryptography` writes them
+  ("The encapsulated key concatenated with ciphertext (enc || ct)").
+  There is no associated data, which `cryptography`'s public functions
+  don't take; whatever must be bound to a box goes inside it, signed.
+- **Labels** are a fixed list, now only `open-worlds/world-key/v1`; a new
+  purpose or version is added by a reviewed change. The one opening a box
+  names the label it expects, and nothing is read from the box to choose
+  it. A label not on the list is refused before anything is tried; a box
+  sealed under another label doesn't open, since HPKE binds `info` into
+  every key it derives.
+- **A sealing key** is an X25519 key, refused unless it is below
+  2^255 - 19 as a number (so it has one spelling; a key with the top bit
+  set, which RFC 7748 ignores, is another spelling) and not of small
+  order. HPKE refuses a small-order key only when sealing (RFC 9180,
+  7.1.4); this refuses it wherever a key is checked.
+- **As Multikey,** a sealing key is written like the signing keys, with
+  multicodec's prefixes for X25519: "x25519-pub, key, 0xec" and
+  "x25519-priv, key, 0x1302" (multicodec's
+  [table](https://github.com/multiformats/multicodec/blob/master/table.csv),
+  where Ed25519's are listed the same way, all as "draft"). A sealing key
+  starts `z6LS`.
+- **Shared vectors** (`vectors/formats/hpke-base-v1.json`): RFC 9180's
+  own example for this suite (A.2.1), which Rust reproduces byte for byte
+  and Python opens; boxes made by each language, which the other opens;
+  and boxes, labels and keys that must be refused.
+- **What is sealed names its recipient,** who checks that it is theirs.
+  That needs the sealed record's format, so it comes with the world-key
+  credential and the journal entry, the next part of step 2.
 
 ## Commitments
 
@@ -318,8 +352,8 @@ one schema,
 
 ## What step 2 defines
 
-Done so far: signed records (`formats/`, `rust/formats`), and the
-records for the offices (above). From the design pages, each with a
+Done so far: signed records (`formats/`, `rust/formats`), the records
+for the offices (above), and sealing ("Sealing", "As built"). From the design pages, each with a
 schema in 2020-12 and test vectors in both languages: identity, birth
 record, mind record, journal entry (sealed: its ciphertext and
 fingerprint), routine, sheet, avatar, skill attestation, world-key
@@ -333,5 +367,13 @@ head.
 - `serde_jcs` against `rfc8785`: step 2's test vectors will check it.
 - did:key's test vectors, and VC Data Model 2.0 beyond its definitions and
   securing mechanisms.
-- HPKE interoperability between `cryptography` and `hpke`: step 2's vectors
-  will check it before anything is sealed.
+- Sealing keys on the curve's twist aren't refused. No secret key has
+  one as its public key, so a box sealed to one is lost to its sender.
+  Rust's `curve25519-dalek` could tell such a key apart, but Python's
+  `cryptography` can't, and both languages must refuse the same keys.
+  Whether a twist key could let anyone else open a box has not been
+  looked into.
+- Python checks RFC 9180's example only by opening it, through
+  `cryptography`'s private `_decrypt_with_aad`, since the example has
+  associated data; the test is skipped if that function goes. Rust makes
+  the example again in full.

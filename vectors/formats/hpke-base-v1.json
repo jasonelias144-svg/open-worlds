@@ -1,0 +1,271 @@
+{
+ "about": "Sealing (formats/seal.py, rust/formats/src/seal.rs): HPKE base mode with DHKEM(X25519, HKDF-SHA256), HKDF-SHA256 and ChaCha20Poly1305, info a label in use, no associated data. A box is enc || ct, in hex. Written by python3 -m formats.seal_vectors; test keys only, never for anything real.",
+ "labels": [
+  "open-worlds/world-key/v1"
+ ],
+ "rfc9180": {
+  "source": "RFC 9180, Appendix A.2.1 and A.2.1.1 (sequence number 0)",
+  "mode": 0,
+  "kem_id": 32,
+  "kdf_id": 1,
+  "aead_id": 3,
+  "info": "4f6465206f6e2061204772656369616e2055726e",
+  "ikmE": "909a9b35d3dc4713a5e72a4da274b55d3d3821a37e5d099e74a647db583a904b",
+  "pkEm": "1afa08d3dec047a643885163f1180476fa7ddb54c6a8029ea33f95796bf2ac4a",
+  "skRm": "8057991eef8f1f1af18f4a9491d16a1ce333f695d4db8e38da75975c4478e0fb",
+  "pkRm": "4310ee97d88cc1f088a5576c77ab0cf5c3ac797f3d95139c6c84b5429c59662a",
+  "enc": "1afa08d3dec047a643885163f1180476fa7ddb54c6a8029ea33f95796bf2ac4a",
+  "pt": "4265617574792069732074727574682c20747275746820626561757479",
+  "aad": "436f756e742d30",
+  "ct": "1c5250d8034ec2b784ba2cfd69dbdb8af406cfe3ff938e131f0def8c8b60b4db21993c62ce81883d2dd1b51a28"
+ },
+ "recipients": {
+  "the earner": {
+   "secretKeyMultibase": "z3weYS4L5PkoAUBg2EkBzaK7kmy7highkdHg8BsvT5mwcTQ8",
+   "publicKeyMultibase": "z6LSkm2rb5VFCosYNmiEi2qxD5kHPeoi8HXAThxyYEP8sh1M"
+  },
+  "someone else": {
+   "secretKeyMultibase": "z3weY43YhiskLXK3cDaoZpfQG4RFvWecqCx2NN9YyrqcHPgT",
+   "publicKeyMultibase": "z6LSh4aHEpNyRDDqW8ttGmm1NGpBSUyPMkgH8Ujr4EdFvsqg"
+  }
+ },
+ "opens": [
+  {
+   "name": "made by Python: a short message",
+   "madeBy": "python",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "message": "6120776f726c642d6b65792c207369676e6564206279207468652055722d776f726c64",
+   "box": "b9e407b0a5218607a5070dcd9b00386e3252fec090c1e825d500a6edc3c1155138794876265ac1966753559f84e9ce6f0c7b25c91148a731e3722b159a331f7bc5f3d18a15ba48f1153bd1fe19daf6d9dd2526"
+  },
+  {
+   "name": "made by Python: an empty message",
+   "madeBy": "python",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "message": "",
+   "box": "4b1402ab1aa90e6053e2242032781ecf292067a020ca3fe37b16e6e358eba928d7761e8ec0bd53b866beda34f6371214"
+  },
+  {
+   "name": "made by Python: every byte value",
+   "madeBy": "python",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "message": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff",
+   "box": "60e319908189195dc05a4eecd3842c984b01fcfc76dbd9363ce22f2c3c9cff720908f206ccea20f15b39c2b81fe2c4bf5d14c4cb6a1bd39aca2d5f0f1d096241d1b3a013c583bae70bd37adebcfc4ee7c4d22d5b6c0ebb559738c897625be408ddfd8fc6e19f59b50d87712c6fde5388764c8b4bdfdc978335964464896c9e67b18422cd50fd1e0cb584da5ef17073554bb358a3a83b83795e3ab7fdb4e603c1b6fdc39b525caa664edbf534e49e2b79949b02acb8434fe9ced2f10405f9e9e6f248b0131777b50413aa8d3abcbcbf1fe160a4f75b69a87aafa5ee08cbfe094207b5f7c7333e159b7e68dfc0ff93d152eff8c510c46d996405b40e489e0ca32e4fbbd336744df70c30b6235ef44a6491d12825de8dde81b6b1b5d21e0b14df90d95f9e1fbd78832d3cf4eae7774b725d"
+  },
+  {
+   "name": "made by Rust: a short message",
+   "madeBy": "rust",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "message": "6120776f726c642d6b65792c207369676e6564206279207468652055722d776f726c64",
+   "ikmE": "03345bf53e25390f8a6fea3844e39df70d65b063496cb9f4df613d4855c5d8a6",
+   "box": "105a33273f53d5b0140ee84bc81b7dc9e0c0e185791bb1b6b9fc66c637f4ed0ef462791b14bae4c3732a93813758f5accf95a1665121e6169ca28d46d0446f198628b5d216329557cfc3305f5bf21f3c1c979f"
+  },
+  {
+   "name": "made by Rust: an empty message",
+   "madeBy": "rust",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "message": "",
+   "ikmE": "c828eaa1c00411b8dd43e1dca91fec0e0c710a24b7b4e96ce1610edecfdcf02d",
+   "box": "34dd79b7eb03f54d0cf58f7e048dd04938fb8e0090c87bf7e38150bd9ebb5b27bf28fed223e613c033e812529ecca4e2"
+  }
+ ],
+ "refused": [
+  {
+   "name": "sealed for another purpose",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "box": "be44c4dc044071c2f89afd63cb8e8c4108c2d904d20f07511b42b313cf27d667474339b8c52b499ea711c0742fd1e059d603fd706819b0353026eecba172ad727919cbc24625d9a76f7e962e5115fb0ac68fec",
+   "why": "sealed with the label open-worlds/journal/v1"
+  },
+  {
+   "name": "sealed with no label",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "box": "32ee0305adf046e872e1f9bdbe55975564fba8b2c6fdc4fa2d0bfb4b9cd7bf31d0a38b7e589e3788089eb0ca328cc112a63f3ae65a84c8e12583b4f3626089b4da89af0c4a252985b6f34d7567837d2c304aab",
+   "why": "sealed with an empty info"
+  },
+  {
+   "name": "sealed to someone else",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "box": "5e62f2ca21e2b666cd73ff6e898382543577f37e85120b1e0423d0f960122353966e8e4b2b00525b5e4d22801f846d238e9ca6dafeed905cae9b06c059740f9dc82464df05c0c726102b7085cf5f2b86686ef8",
+   "why": "sealed to another key"
+  },
+  {
+   "name": "a bit of enc changed",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "box": "b8e407b0a5218607a5070dcd9b00386e3252fec090c1e825d500a6edc3c1155138794876265ac1966753559f84e9ce6f0c7b25c91148a731e3722b159a331f7bc5f3d18a15ba48f1153bd1fe19daf6d9dd2526",
+   "why": "enc changed"
+  },
+  {
+   "name": "enc's top bit set",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "box": "b9e407b0a5218607a5070dcd9b00386e3252fec090c1e825d500a6edc3c115d138794876265ac1966753559f84e9ce6f0c7b25c91148a731e3722b159a331f7bc5f3d18a15ba48f1153bd1fe19daf6d9dd2526",
+   "why": "X25519 ignores the bit, but HPKE binds enc as written"
+  },
+  {
+   "name": "a bit of the ciphertext changed",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "box": "b9e407b0a5218607a5070dcd9b00386e3252fec090c1e825d500a6edc3c1155139794876265ac1966753559f84e9ce6f0c7b25c91148a731e3722b159a331f7bc5f3d18a15ba48f1153bd1fe19daf6d9dd2526",
+   "why": "the tag no longer matches"
+  },
+  {
+   "name": "a bit of the tag changed",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "box": "b9e407b0a5218607a5070dcd9b00386e3252fec090c1e825d500a6edc3c1155138794876265ac1966753559f84e9ce6f0c7b25c91148a731e3722b159a331f7bc5f3d18a15ba48f1153bd1fe19daf6d9dd2527",
+   "why": "the tag no longer matches"
+  },
+  {
+   "name": "the last byte cut off",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "box": "b9e407b0a5218607a5070dcd9b00386e3252fec090c1e825d500a6edc3c1155138794876265ac1966753559f84e9ce6f0c7b25c91148a731e3722b159a331f7bc5f3d18a15ba48f1153bd1fe19daf6d9dd25",
+   "why": "the tag no longer matches"
+  },
+  {
+   "name": "a byte added",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "box": "b9e407b0a5218607a5070dcd9b00386e3252fec090c1e825d500a6edc3c1155138794876265ac1966753559f84e9ce6f0c7b25c91148a731e3722b159a331f7bc5f3d18a15ba48f1153bd1fe19daf6d9dd252600",
+   "why": "the tag no longer matches"
+  },
+  {
+   "name": "enc alone",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "box": "b9e407b0a5218607a5070dcd9b00386e3252fec090c1e825d500a6edc3c11551",
+   "why": "too short to be a box"
+  },
+  {
+   "name": "one byte short of enc and a tag",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "box": "b9e407b0a5218607a5070dcd9b00386e3252fec090c1e825d500a6edc3c1155138794876265ac1966753559f84e9ce",
+   "why": "too short to be a box"
+  },
+  {
+   "name": "empty",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "box": "",
+   "why": "too short to be a box"
+  },
+  {
+   "name": "enc of small order: 0, of order 2",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "box": "000000000000000000000000000000000000000000000000000000000000000038794876265ac1966753559f84e9ce6f0c7b25c91148a731e3722b159a331f7bc5f3d18a15ba48f1153bd1fe19daf6d9dd2526",
+   "why": "the shared secret would be zero"
+  },
+  {
+   "name": "enc of small order: 1, of order 4",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "box": "010000000000000000000000000000000000000000000000000000000000000038794876265ac1966753559f84e9ce6f0c7b25c91148a731e3722b159a331f7bc5f3d18a15ba48f1153bd1fe19daf6d9dd2526",
+   "why": "the shared secret would be zero"
+  },
+  {
+   "name": "enc of small order: of order 8",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "box": "e0eb7a7c3b41b8ae1656e3faf19fc46ada098deb9c32b1fd866205165f49b80038794876265ac1966753559f84e9ce6f0c7b25c91148a731e3722b159a331f7bc5f3d18a15ba48f1153bd1fe19daf6d9dd2526",
+   "why": "the shared secret would be zero"
+  },
+  {
+   "name": "enc of small order: of order 8, the other",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "box": "5f9c95bca3508c24b1d0b1559c83ef5b04445cc4581c8e86d8224eddd09f115738794876265ac1966753559f84e9ce6f0c7b25c91148a731e3722b159a331f7bc5f3d18a15ba48f1153bd1fe19daf6d9dd2526",
+   "why": "the shared secret would be zero"
+  },
+  {
+   "name": "enc of small order: 2^255 - 20, of order 4 on the twist",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "box": "ecffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff7f38794876265ac1966753559f84e9ce6f0c7b25c91148a731e3722b159a331f7bc5f3d18a15ba48f1153bd1fe19daf6d9dd2526",
+   "why": "the shared secret would be zero"
+  },
+  {
+   "name": "enc is 2^255 - 19, another spelling of 0",
+   "to": "the earner",
+   "label": "open-worlds/world-key/v1",
+   "box": "edffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff7f38794876265ac1966753559f84e9ce6f0c7b25c91148a731e3722b159a331f7bc5f3d18a15ba48f1153bd1fe19daf6d9dd2526",
+   "why": "the shared secret would be zero"
+  }
+ ],
+ "refusedLabels": [
+  "open-worlds/world-key/v2",
+  "open-worlds/journal/v1",
+  "",
+  "open-worlds/world-key/v1 ",
+  "Open-Worlds/world-key/v1",
+  "Ode on a Grecian Urn"
+ ],
+ "refusedKeys": [
+  {
+   "name": "0, of order 2",
+   "key": "0000000000000000000000000000000000000000000000000000000000000000",
+   "why": "of small order"
+  },
+  {
+   "name": "1, of order 4",
+   "key": "0100000000000000000000000000000000000000000000000000000000000000",
+   "why": "of small order"
+  },
+  {
+   "name": "of order 8",
+   "key": "e0eb7a7c3b41b8ae1656e3faf19fc46ada098deb9c32b1fd866205165f49b800",
+   "why": "of small order"
+  },
+  {
+   "name": "of order 8, the other",
+   "key": "5f9c95bca3508c24b1d0b1559c83ef5b04445cc4581c8e86d8224eddd09f1157",
+   "why": "of small order"
+  },
+  {
+   "name": "2^255 - 20, of order 4 on the twist",
+   "key": "ecffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff7f",
+   "why": "of small order"
+  },
+  {
+   "name": "2^255 - 19, another spelling of 0",
+   "key": "edffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff7f",
+   "why": "not below 2^255 - 19"
+  },
+  {
+   "name": "2^255 - 18, another spelling of 1",
+   "key": "eeffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff7f",
+   "why": "not below 2^255 - 19"
+  },
+  {
+   "name": "2^255 - 10, another spelling of 9 (the base point)",
+   "key": "f6ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff7f",
+   "why": "not below 2^255 - 19, though not of small order"
+  },
+  {
+   "name": "the earner's key with its top bit set",
+   "key": "86f7b0ecc79959476cd631090020c9946ad216f8a5a5e856a99fcb6a762ac5f4",
+   "why": "the top bit is set"
+  }
+ ],
+ "refusedSealingMultikeys": [
+  {
+   "name": "an Ed25519 key, not a sealing key",
+   "multikey": "z6MkuGESRYmHy73i8vFt7EwAkUJa11tNiuPNwPvZ97dUz4jY",
+   "why": "its prefix is 0xed 0x01"
+  },
+  {
+   "name": "a secret sealing key given as public",
+   "multikey": "z3weYS4L5PkoAUBg2EkBzaK7kmy7highkdHg8BsvT5mwcTQ8",
+   "why": "its prefix is 0x82 0x26"
+  }
+ ]
+}

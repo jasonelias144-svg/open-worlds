@@ -12,6 +12,7 @@ language can check itself against it, hash for hash. The Rust crate in
 | `ur-chunks.json` | The Ur-world's generator, version 1: for three seeds, the ground height of some columns and the hash of some chunks. |
 | `formats/eddsa-jcs-2022.json` | Records signed with `eddsa-jcs-2022` (course step 2): the W3C specification's own example, step by step; records this project signs, with their RFC 8785 form; proofs that must be refused; and values that break this project's three rules. Written by `python3 -m formats.vectors`, read by `rust/formats`. |
 | `formats/records-v1.json` | The records the offices keep, against `schemas/records-v1.schema.json`: test parties (keys public to everyone, never for anything real), records of every kind that hold, each with its hash, and records that must be refused, each named for why. Written by `python3 -m formats.record_vectors`, read by `rust/formats`. |
+| `formats/hpke-base-v1.json` | Sealing with HPKE (course step 2): RFC 9180's own example for the suite in use; test recipients; boxes made by Python and by Rust, each opened by the other (Rust also makes its own again from a fixed `ikmE`); and boxes, labels and keys that must be refused. Written by `python3 -m formats.seal_vectors`, which keeps each box that still opens, read by `rust/formats`. |
 
 The W3C example in `formats/eddsa-jcs-2022.json` (its `w3c` object)
 includes material copied from "Data Integrity EdDSA Cryptosuites v1.0",

@@ -34,6 +34,14 @@ bs58 = "0.5.1"
 # anything over the network; 0.60.2, three weeks old, rather than a release
 # of the last few days.
 jsonschema = { version = "=0.60.2", default-features = false }
+# HPKE (RFC 9180) for sealing (formats), the same suite as Python's
+# cryptography: only base mode with X25519, HKDF-SHA256 and
+# ChaCha20Poly1305 is turned on. Its authors say it has had no paid audit;
+# Cloudflare reviewed version 0.8. Pinned exactly, as it is pre-1.0.
+hpke = { version = "=0.15.1", default-features = false, features = ["alloc", "getrandom", "x25519", "chacha"] }
+# X25519 (formats), to refuse a sealing key of small order before sealing
+# to it, as formats/seal.py does. hpke already brings this crate in.
+x25519-dalek = { version = "3.0.0", default-features = false }
 
 # The lints hold for every crate; a crate doesn't loosen them.
 [workspace.lints.rust]

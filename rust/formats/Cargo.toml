@@ -1,7 +1,7 @@
 [package]
 name = "formats"
 version = "0.1.0"
-description = "Records signed with eddsa-jcs-2022, checked against the same vectors as the Python code"
+description = "Records signed with eddsa-jcs-2022 and sealed with HPKE, checked against the same vectors as the Python code"
 edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
@@ -14,6 +14,8 @@ serde_jcs.workspace = true
 ed25519-dalek.workspace = true
 bs58.workspace = true
 jsonschema.workspace = true
+hpke.workspace = true
+x25519-dalek.workspace = true
 
 [lints]
 workspace = true

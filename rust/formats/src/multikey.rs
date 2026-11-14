@@ -1,10 +1,15 @@
-//! Ed25519 keys written as Multikey (`z` and base58-btc of a two-byte
-//! prefix and the key) and did:key, as `formats/multikey.py` writes them.
+//! Keys written as Multikey (`z` and base58-btc of a two-byte prefix and
+//! the key), and Ed25519 keys as did:key, as `formats/multikey.py` writes
+//! them.
 
 /// The prefix of an Ed25519 public key (multicodec 0xed).
 pub const ED25519_PUBLIC: [u8; 2] = [0xed, 0x01];
 /// The prefix of an Ed25519 secret key (multicodec 0x1300).
 pub const ED25519_SECRET: [u8; 2] = [0x80, 0x26];
+/// The prefix of an X25519 sealing key (multicodec 0xec).
+pub const X25519_PUBLIC: [u8; 2] = [0xec, 0x01];
+/// The prefix of an X25519 secret key (multicodec 0x1302).
+pub const X25519_SECRET: [u8; 2] = [0x82, 0x26];
 const DID_KEY: &str = "did:key:";
 
 fn encode(prefix: [u8; 2], key: &[u8; 32]) -> String {
@@ -22,9 +27,9 @@ fn decode(prefix: [u8; 2], text: &str) -> Result<[u8; 32], String> {
     let (head, key) = raw.split_at_checked(2).ok_or("too short for a key")?;
     let key: [u8; 32] = key
         .try_into()
-        .map_err(|_| "not an Ed25519 key of the expected kind")?;
+        .map_err(|_| "not a key of the expected kind")?;
     if head != prefix {
-        return Err("not an Ed25519 key of the expected kind".into());
+        return Err("not a key of the expected kind".into());
     }
     if encode(prefix, &key) != text {
         return Err("not the key's one written form".into());
@@ -45,6 +50,23 @@ pub fn public_from_multikey(text: &str) -> Result<[u8; 32], String> {
 /// The Ed25519 secret key a secret Multikey holds (test vectors only).
 pub fn secret_from_multikey(text: &str) -> Result<[u8; 32], String> {
     decode(ED25519_SECRET, text)
+}
+
+/// The Multikey of an X25519 sealing key (z6LS...). Whether the key is fit
+/// to seal to is [`crate::seal::check_public`]'s to say.
+pub fn sealing_multikey(public: &[u8; 32]) -> String {
+    encode(X25519_PUBLIC, public)
+}
+
+/// The X25519 sealing key a Multikey names.
+pub fn sealing_from_multikey(text: &str) -> Result<[u8; 32], String> {
+    decode(X25519_PUBLIC, text)
+}
+
+/// The X25519 secret key a secret sealing Multikey holds (test vectors
+/// only).
+pub fn sealing_secret_from_multikey(text: &str) -> Result<[u8; 32], String> {
+    decode(X25519_SECRET, text)
 }
 
 /// The did:key's one verification method: `did:key:K#K`.

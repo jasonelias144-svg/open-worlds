@@ -4,8 +4,9 @@
 #   python3 -m pip install -r requirements.txt
 
 # Ed25519 signing and verifying for every individual's key
-# (multiverse/ed25519.py), and keys saved encrypted (multiverse/keys.py). A
-# vetted library, so no signature or encryption code of our own.
+# (multiverse/ed25519.py), keys saved encrypted (multiverse/keys.py), and
+# sealing with HPKE (formats/seal.py). A vetted library, so no signature or
+# encryption code of our own.
 cryptography==50.0.2
 
 # Saving keys encrypted (multiverse/keys.py): cryptography needs it to write

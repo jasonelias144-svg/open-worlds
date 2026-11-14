@@ -1,7 +1,8 @@
-"""Ed25519 keys written as Multikey and did:key.
+"""Keys written as Multikey, and Ed25519 keys as did:key.
 
 A Multikey is a key with a two-byte prefix saying what it is (0xed 0x01
-for an Ed25519 public key, 0x80 0x26 for its secret), written in
+for an Ed25519 public key, 0x80 0x26 for its secret; 0xec 0x01 and
+0x82 0x26 for an X25519 sealing key and its secret), written in
 base58-btc with a leading `z`. A did:key is `did:key:` and the public
 Multikey; its one verification method is the did:key, `#`, and the
 Multikey again. These are the names W3C's `eddsa-jcs-2022` test vectors
@@ -18,6 +19,10 @@ _INDEX = {c: i for i, c in enumerate(ALPHABET)}
 
 ED25519_PUBLIC = b"\xed\x01"
 ED25519_SECRET = b"\x80\x26"
+# X25519, for sealing (formats/seal.py): multicodec x25519-pub (0xec) and
+# x25519-priv (0x1302), as unsigned varints.
+X25519_PUBLIC = b"\xec\x01"
+X25519_SECRET = b"\x82\x26"
 DID_KEY = "did:key:"
 
 
@@ -51,7 +56,7 @@ def base58btc_decode(text: str) -> bytes:
 
 def _encode(prefix: bytes, key: bytes) -> str:
     if type(key) is not bytes or len(key) != 32:
-        raise KeyFormatError("an Ed25519 key is 32 bytes")
+        raise KeyFormatError("a key is 32 bytes")
     return "z" + base58btc_encode(prefix + key)
 
 
@@ -60,7 +65,7 @@ def _decode(prefix: bytes, text: str) -> bytes:
         raise KeyFormatError("a Multikey starts with z (base58-btc)")
     raw = base58btc_decode(text[1:])
     if len(raw) != 34 or raw[:2] != prefix:
-        raise KeyFormatError("not an Ed25519 key of the expected kind")
+        raise KeyFormatError("not a key of the expected kind")
     # Only one text may name a key: refuse any other spelling of it.
     if _encode(prefix, raw[2:]) != text:
         raise KeyFormatError("not the key's one written form")
@@ -86,6 +91,29 @@ def secret_multikey(secret: bytes) -> str:
 def secret_from_multikey(text: str) -> bytes:
     """The 32-byte Ed25519 secret key a secret Multikey holds."""
     return _decode(ED25519_SECRET, text)
+
+
+def sealing_multikey(public: bytes) -> str:
+    """The Multikey of a 32-byte X25519 public key, for sealing (z6LS...).
+    Whether the key is fit to seal to is formats.seal.check_public's to
+    say."""
+    return _encode(X25519_PUBLIC, public)
+
+
+def sealing_from_multikey(text: str) -> bytes:
+    """The 32-byte X25519 public key a sealing Multikey names."""
+    return _decode(X25519_PUBLIC, text)
+
+
+def sealing_secret_multikey(secret: bytes) -> str:
+    """The Multikey of a 32-byte X25519 secret key. Only for test
+    vectors, like secret_multikey."""
+    return _encode(X25519_SECRET, secret)
+
+
+def sealing_secret_from_multikey(text: str) -> bytes:
+    """The 32-byte X25519 secret key a secret sealing Multikey holds."""
+    return _decode(X25519_SECRET, text)
 
 
 def did_key(public: bytes) -> str:
