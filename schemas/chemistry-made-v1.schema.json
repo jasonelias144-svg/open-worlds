@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jasonelias144-svg/open-worlds/schemas/chemistry-made-v1.schema.json",
+  "title": "A chemistry world's record of a reaction made by an act, version 1",
+  "description": "What a chemistry world's made stamp commits to (thing_fingerprint, multiverse/passport.py): the rule, the molecules it took and made by identity, their formulas, and the world time, in whole microseconds. It keeps the project's three rules: ASCII keys, integers within 2^53 - 1, no floats (docs/research/FORMATS.md). Records made under the chemistry world's law v0.4 and before carried world_time as a float; they stay as they were.",
+  "type": "object",
+  "properties": {
+    "format": {
+      "const": "open-worlds/chemistry-made/v1"
+    },
+    "rule": {
+      "description": "The rule applied, by its name in chem/rules.py.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "reactants": {
+      "$ref": "#/$defs/identities"
+    },
+    "products": {
+      "$ref": "#/$defs/identities"
+    },
+    "formulas": {
+      "description": "The reactants' formulas, then the products'.",
+      "type": "array",
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/formulas"
+        },
+        {
+          "$ref": "#/$defs/formulas"
+        }
+      ],
+      "items": false,
+      "minItems": 2
+    },
+    "world_time_us": {
+      "description": "The world time when it happened, in whole microseconds (UCUM: us). The world takes no act once its time passes this maximum, and an act's seconds are a whole number of microseconds (multiverse/chemistry_world.py).",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    }
+  },
+  "required": [
+    "format",
+    "rule",
+    "reactants",
+    "products",
+    "formulas",
+    "world_time_us"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "identities": {
+      "description": "Molecules by identity (chem/molecule.py, Molecule.identity()). The world refuses an act whose product's identity is longer than this maximum (MAX_NAME).",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^[!-~]+$",
+        "maxLength": 10000
+      }
+    },
+    "formulas": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9+-]+$",
+        "maxLength": 200
+      }
+    }
+  }
+}

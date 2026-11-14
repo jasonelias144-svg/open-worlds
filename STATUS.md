@@ -826,7 +826,28 @@ it was wrong. Questions of what the project is for stay with the founder.
   text), or the kernel (course step 4) needs the template to carry its
   law text.
 
+- 2026-11-14, the chemistry world's records of what was made keep the
+  rules for signed records: each names its format
+  (`open-worlds/chemistry-made/v1`,
+  `schemas/chemistry-made-v1.schema.json`) and gives its world time in
+  whole microseconds (`world_time_us`), from the chemistry world's law
+  v0.5, which keeps every record within the rules: an act's seconds are
+  whole microseconds, at most an hour, no act once world time passes what
+  a record can say (2^53 - 1 microseconds), and no product longer than a
+  record holds. *Why:* a made stamp commits to the record's fingerprint,
+  and FORMATS.md proposed that what is signed holds no floats. Records
+  made before keep their float. *Revisit if:* a world's time needs finer
+  than a microsecond, or a world must run beyond about 285 years of world
+  time.
+
 ## Log
+
+- 2026-11-14 Claude: course step 2, part seven: the chemistry world's
+  records of what was made name their format and give world time in
+  whole microseconds, with a schema; every kind of reaction's record is
+  checked against it, and against the rules for signed records. Law
+  v0.5. Of step 2's list, routine, sheet, avatar and skill attestation
+  remain.
 
 - 2026-11-14 Claude: course step 2, part six: a world's template, with
   its parameters as integers in UCUM units and its dials with ranges, in

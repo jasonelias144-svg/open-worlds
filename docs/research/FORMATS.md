@@ -47,7 +47,18 @@ qualifies: the independent review found that the chemistry world's
 records of what was made carry its time as a float (`world_time`,
 `multiverse/chemistry_world.py`), and a world's signed "made" stamp
 commits to such a record's fingerprint (`thing_fingerprint`,
-`multiverse/passport.py`).
+`multiverse/passport.py`). Since the chemistry world's law v0.5
+(2026-11-14), they don't: the record names its format
+(`open-worlds/chemistry-made/v1`, `schemas/chemistry-made-v1.schema.json`)
+and gives its world time in whole microseconds (`world_time_us`). The
+world keeps it within the rules: an act's seconds are a whole number of
+microseconds, at most an hour; once world time passes 2^53 - 1
+microseconds (about 285 years) the world takes no more acts; and it
+refuses a product whose identity is longer than the schema allows. A
+test checks the records of three kinds of reaction against the schema
+and these rules; the independent review checked 1,366 records, from nine
+of the ten rules. Records made before keep their float, as they were
+signed.
 
 **Libraries:** `rfc8785` for Python (Trail of Bits, Apache 2.0, 0.1.4,
 September 2024, no dependencies); `serde_jcs` for Rust (MIT or Apache 2.0,
@@ -546,14 +557,14 @@ is in that code too.
 Done so far: signed records (`formats/`, `rust/formats`), the records for
 the offices (above), sealing ("Sealing", "As built"), the sealed records
 (world-key, journal entry), who an individual and a world are (identity,
-birth records, mind record), and a world's template. From the design
-pages, each with a schema in 2020-12 and test vectors in both languages:
-identity, birth record, mind record, journal entry (sealed: its ciphertext
-and fingerprint), routine, sheet, avatar, skill attestation, world-key
-credential, grant, decision record, suggestion, rating, and signed log
-head. Still to come: routine, sheet, avatar and skill attestation, and the
-chemistry world's records of what was made, with its time as an integer
-("Writing JSON the same way everywhere", above).
+birth records, mind record), a world's template, and the chemistry world's
+records of what was made ("Writing JSON the same way everywhere"). From
+the design pages, each with a schema in 2020-12 and test vectors in both
+languages: identity, birth record, mind record, journal entry (sealed: its
+ciphertext and fingerprint), routine, sheet, avatar, skill attestation,
+world-key credential, grant, decision record, suggestion, rating, and
+signed log head. Still to come: routine, sheet, avatar and skill
+attestation.
 
 ## Not checked
 
