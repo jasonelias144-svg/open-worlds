@@ -190,7 +190,10 @@ waiting list, where it was placed after step 3 (decided 2026-11-14).
    joins records-v1 here, with the body it describes; so do the checks
    across records that the formats leave to the kernel (listed in
    `formats/records.py`), and a bound on the size of any record received.
-   A template's code builds a world from its dials. *Borrowing:* the
+   A template's code builds a world from its dials. World time is kept as
+   whole microseconds, not a float of seconds, so a record's time is an
+   exact sum however long a world runs (the chemistry world's clock
+   loses microsecond steps after about two years: #48). *Borrowing:* the
    entity-component pattern (Bevy's), and Unreal's effects and tags;
    Lean, and proof-carrying code.
 

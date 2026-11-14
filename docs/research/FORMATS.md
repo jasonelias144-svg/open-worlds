@@ -460,7 +460,10 @@ one schema,
   range, is checked against the template ("A world's template", below).
   A world's seed, which a founder chooses with its name and law
   ([WORLD-KEY.md](../WORLD-KEY.md), "The workbench, and founding"), is
-  one of its template's dials, so it needs no field of its own.
+  one of its template's dials, so it needs no field of its own, if
+  every world, a founded one included, is made from a template: the
+  kernel's code, with the founder's choices among its dials. Course
+  step 12, which builds founding, confirms that or adds the field.
 
   WORLD-KEY.md had the birth record of a founded world signed by the
   Ur-world and the founders. Decided instead (2026-11-14, on the
@@ -492,7 +495,7 @@ naming itself as issuer; it holds as a record, but nothing honours it.
 
 Every time in these records must be a real one (a grant's always had to
 be). Shared vectors (`vectors/formats/records-v1.json`): 6 more records
-that hold, and 23 more that must be refused, among them an identity
+that hold, and 22 more that must be refused, among them an identity
 whose sealing key is of small order, a birth record on 30 February, a
 mind record whose image is named by a tag, and one whose engines are out
 of order.
