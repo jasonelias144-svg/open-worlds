@@ -1,0 +1,11 @@
+class FederatedSession:
+    def __init__(
+        self, individual_kp, model, world, initial_point, memory,
+        rule=SIERPINSKI, rng_seed_override=None,
+        individual_id_override=None,   # NEW
+    ):
+        self.individual_kp = individual_kp
+        self.individual_id = (
+            individual_id_override
+            or _did_from_kp(individual_kp))
+        # ... rest unchanged

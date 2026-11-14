@@ -1,0 +1,32 @@
+# 1. Add `ancestry` field to the dataclass
+@dataclass
+class IndividualBundle:
+    manifest: Dict
+    memory: List[Dict]
+    weights: Dict
+    initial_weights: Optional[Dict] = None
+    observations: List[Dict] = field(default_factory=list)
+    ancestry: List[Dict] = field(default_factory=list)  # NEW
+
+# 2. save() writes ancestry.json when present
+def save(self, path) -> None:
+    path = Path(path)
+    path.mkdir(parents=True, exist_ok=True)
+    # ... existing writes ...
+    if self.ancestry:
+        (path / "ancestry.json").write_text(
+            json.dumps(self.ancestry, indent=2))
+
+# 3. load() reads ancestry.json (backward compat with old bundles)
+@classmethod
+def load(cls, path) -> "IndividualBundle":
+    path = Path(path)
+    # ... existing loads ...
+    anc_path = path / "ancestry.json"
+    ancestry = (json.loads(anc_path.read_text())
+                 if anc_path.exists() else [])
+    return cls(manifest=manifest, memory=memory,
+                weights=weights,
+                initial_weights=initial_weights,
+                observations=observations,
+                ancestry=ancestry)

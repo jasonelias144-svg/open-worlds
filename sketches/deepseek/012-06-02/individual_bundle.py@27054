@@ -1,0 +1,8 @@
+# In verify_bundle_basic, after the observations hash check:
+if "ancestry_hash" in manifest:
+    if not bundle.ancestry:
+        return (False, "ancestry_hash present but ancestry empty")
+    anc_canon = json.dumps(bundle.ancestry, sort_keys=True,
+                            separators=(",", ":")).encode()
+    if _hash(anc_canon) != manifest["ancestry_hash"]:
+        return (False, "ancestry hash mismatch")

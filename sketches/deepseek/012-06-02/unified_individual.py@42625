@@ -1,0 +1,54 @@
+def verify_unified_individual_with_adapters(
+    bundle: IndividualBundle,
+    world_logs: Dict[str, List[dict]],
+    adapters_by_tier: Optional[Dict[str, WorldAdapter]] = None,
+) -> Tuple[bool, str]:
+    from world_adapters import DEFAULT_ADAPTERS
+    if adapters_by_tier is None:
+        adapters_by_tier = DEFAULT_ADAPTERS
+
+    ok, reason = verify_unified_individual_basic(bundle)
+    if not ok:
+        return (False, reason)
+
+    model = build_model(bundle.manifest["model_config"])
+    if bundle.initial_weights is not None:
+        apply_weights(model, bundle.initial_weights)
+
+    individual_id = bundle.manifest["individual_id"]
+    rng = None
+    current_tier = None
+    current_world_id = None
+    step_count = 0
+
+    for i, rec in enumerate(bundle.memory):
+        if rec.get("type") == "world_entry":
+            current_tier = rec["tier"]
+            current_world_id = rec["world_id"]
+            h = _hash(individual_id + current_world_id).encode()
+            seed = int(h, 16) & ((1 << 32) - 1)
+            rng = _rng.Random(seed)
+            continue
+        if rec.get("type") != "agent_step":
+            continue
+        step_count += 1
+        adapter = adapters_by_tier.get(current_tier)
+        if adapter is None:
+            return (False,
+                     f"memory[{i}]: no adapter for tier "
+                     f"{current_tier!r}")
+        wlog = world_logs.get(current_world_id, [])
+        step_memory = bundle.memory[:i]
+        ok, reason = adapter.verify_step(
+            rec, step_memory, model, rng, None, wlog)
+        if not ok:
+            return (False, f"memory[{i}] ({current_tier}): {reason}")
+
+    final = serialize_weights(model)
+    if json.dumps(final, sort_keys=True) != \
+            json.dumps(bundle.weights, sort_keys=True):
+        return (False, "replayed final weights != bundle weights")
+    return (True,
+             f"unified individual (adapter) full verifies "
+             f"({step_count} steps, "
+             f"{len(set(rec['tier'] for rec in bundle.memory if rec.get('tier'))) if False else len(bundle.manifest['world_contexts'])} worlds)")

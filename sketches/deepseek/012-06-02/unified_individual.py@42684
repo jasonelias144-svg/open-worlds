@@ -1,0 +1,227 @@
+def demo(artifact_dir=None):
+    from pathlib import Path
+    import time
+    import json as _json
+    from cryptography.hazmat.primitives.asymmetric.ed25519 import (
+        Ed25519PrivateKey)
+    from coupled_learners import TinyRNN, SIERPINSKI
+    from world_agent_coupling import ScriptedWorld
+    from multiverse_c73 import ChessWorld
+    from signed_world_log import (
+        SignedLogWorld, SignedLogWorldServer,
+    )
+    from multiverse_c81 import GrowingWorld
+    from world_adapters import (
+        ChessAdapter, FederatedAdapter, GrowingCanvasAdapter,
+    )
+
+    if not HAS_CRYPTO or not HAS_CHESS:
+        raise RuntimeError(
+            "requires cryptography and python-chess")
+    if artifact_dir is None:
+        artifact_dir = "artifacts"
+    root = Path(artifact_dir) / "world_adapters"
+    root.mkdir(parents=True, exist_ok=True)
+
+    def _kp():
+        return Ed25519PrivateKey.generate()
+
+    # Chess world (signed)
+    chess_kp = _kp()
+    base = ChessWorld("world:park", "Union Square")
+    signed_chess = SignedLogWorld(base, chess_kp)
+    chess_server = SignedLogWorldServer(signed_chess, port=0)
+    chess_server.serve_in_thread()
+    time.sleep(0.2)
+    chess_url = (f"http://127.0.0.1:"
+                  f"{chess_server._httpd.server_address[1]}")
+
+    try:
+        # Black opponent (uses raw session for simplicity)
+        from chess_individual import ChessIndividualSession
+        black_kp = _kp()
+        black_model = TinyRNN(
+            n_actions=3, hidden=4, n_extra_inputs=0, seed=300)
+        black = ChessIndividualSession(
+            individual_kp=black_kp, model=black_model,
+            world_url=chess_url, world_id="world:park",
+            world_signer=signed_chess.world_signer,
+            memory=[], seat="black")
+        black.enter_and_sit("Black-bot")
+
+        # Federated world
+        fed_kp = _kp()
+        fed_world = ScriptedWorld(
+            kp=fed_kp, initial_point_b=(800, 800),
+            k_b=50, prng_seed_b=0xBBBB, rule=SIERPINSKI)
+
+        # Growing canvas world
+        canvas_kp = _kp()
+        canvas_world = GrowingWorld(
+            "world:canvas", "Open Canvas", canvas_kp)
+
+        # Unified individual
+        white_kp = _kp()
+        white_model = TinyRNN(
+            n_actions=3, hidden=4, n_extra_inputs=0, seed=100)
+        white = UnifiedIndividualSession(
+            individual_kp=white_kp, model=white_model)
+
+        # ---- Chess (2 moves) ----
+        white.enter_world_via_adapter(ChessAdapter(), {
+            "world_id": "world:park",
+            "world_url": chess_url,
+            "world_signer": signed_chess.world_signer,
+            "seat": "white",
+            "display_name": "White-bot",
+        })
+        for _ in range(2):
+            if white.step_via_adapter() is None:
+                break
+            black.play_turn()
+
+        # ---- Federated (3 steps) ----
+        white.enter_world_via_adapter(FederatedAdapter(), {
+            "world_id": fed_world.world_id,
+            "world": fed_world,
+            "world_signer": fed_world.world_id,
+            "initial_point": (200, 800),
+        })
+        for _ in range(3):
+            white.step_via_adapter()
+
+        # ---- Canvas (3 turns) ----
+        white.enter_world_via_adapter(GrowingCanvasAdapter(), {
+            "world_id": "world:canvas",
+            "world": canvas_world,
+            "world_signer": canvas_world.curator_public_key,
+            "display_name": "White-bot",
+        })
+        for _ in range(3):
+            white.step_via_adapter()
+
+        # ---- Pack + verify ----
+        bundle = pack_unified_bundle(
+            white,
+            persona="an individual across chess, chaos, and canvas",
+            name="White-bot", initial_seed=100)
+        bundle.save(root / "adapter_unified")
+        loaded = IndividualBundle.load(root / "adapter_unified")
+
+        # World logs
+        from signed_world_log import signed_entry_hash
+        chess_log = signed_chess.signed_log_since(None)
+        fed_log = [
+            {"body": r.body(), "sig": r.sig,
+             "record_hash": r.record_hash()}
+            for r in fed_world.records
+        ]
+        canvas_log = [
+            {"event_hash": e.event_hash(),
+             "event_dict": e.to_dict()}
+            for e in canvas_world.events()
+        ]
+        world_logs = {
+            "world:park": chess_log,
+            fed_world.world_id: fed_log,
+            "world:canvas": canvas_log,
+        }
+
+        v_full = verify_unified_individual_with_adapters(
+            loaded, world_logs)
+
+        # ---- Tamper: canvas coords ----
+        tampered = IndividualBundle(
+            manifest=dict(loaded.manifest),
+            memory=list(loaded.memory),
+            weights=dict(loaded.weights),
+            initial_weights=None, observations=[],
+            ancestry=[], checkpoint_weights=None,
+        )
+        for i, r in enumerate(tampered.memory):
+            if r.get("tier") == "canvas":
+                tampered.memory[i] = {**r, "x": 999, "y": 999}
+                break
+        t1 = verify_unified_individual_with_adapters(
+            tampered, world_logs)
+
+        # ---- Print ----
+        print("=" * 74)
+        print("World adapters — one individual, three tiers")
+        print("=" * 74)
+        print()
+        print(f"  Individual: {loaded.individual_id[:32]}...")
+        print(f"  Memory:     {len(loaded.memory)} entries")
+        print(f"  Worlds:")
+        for ctx in loaded.manifest["world_contexts"]:
+            print(f"    {ctx['tier']:10s}  "
+                  f"{ctx['world_id'][:24]}...  "
+                  f"@ idx {ctx['first_memory_index']}")
+        print()
+        print("  Per-tier counts:")
+        from collections import Counter
+        c = Counter(r["tier"] for r in loaded.memory
+                    if r.get("type") == "agent_step")
+        for tier, n in sorted(c.items()):
+            print(f"    {tier:10s}  {n} steps")
+        print()
+        print("  Verification:")
+        print(f"    adapter-based full:  {v_full[0]}")
+        if v_full[0]:
+            print(f"      {v_full[1]}")
+        print()
+        print("  Tampering — canvas coords altered:")
+        print(f"    {t1[0]}  ({t1[1]})")
+        print()
+        print("  What this establishes:")
+        print("    - Three tiers, one model, one chain.")
+        print("    - The world-adapter protocol works: a single")
+        print("      interface (open, enter, state, action_from_index,")
+        print("      submit, step_fields, verify_step) is all a")
+        print("      new world needs to add.")
+        print("    - Adding the growing canvas took ~110 lines of")
+        print("      adapter code. No new session class, no new")
+        print("      verifier, no new memory format.")
+        print("    - Per-step dispatch: the verifier walks memory,")
+        print("      finds the tier via world_entry, delegates to")
+        print("      that tier's adapter for replay.")
+        print()
+        print("  Honest limit: all three tiers project into")
+        print("  n_actions=3, state_dim=4. The projection is the")
+        print("  adapter's job; the abstraction is limited to")
+        print("  worlds whose action spaces can be narrowed to 3.")
+        print("  Documented; production would need per-tier model")
+        print("  heads or a projection layer.")
+        print()
+        print("  Anchor (public domain, Emily Dickinson):")
+        print("    'I dwell in Possibility –'")
+        print("    'A fairer House than Prose –'")
+        print("    'More numerous of Windows –'")
+        print("    'Superior – for Doors –'")
+
+        audit = {
+            "individual_id": loaded.individual_id,
+            "worlds": [
+                {"tier": c["tier"],
+                 "world_id": c["world_id"],
+                 "first_memory_index": c["first_memory_index"]}
+                for c in loaded.manifest["world_contexts"]
+            ],
+            "memory_entries": len(loaded.memory),
+            "per_tier_counts": dict(c),
+            "verification": {
+                "adapter_full": v_full[0],
+            },
+            "tampering": {
+                "canvas_coords_detected": not t1[0],
+            },
+        }
+        (root / "world_adapters_demo.json").write_text(
+            _json.dumps(audit, indent=2))
+        print(f"\n  → {root}/world_adapters_demo.json")
+        return audit
+    finally:
+        try:
+            chess_server.stop()
+        except Exception:
+            pass

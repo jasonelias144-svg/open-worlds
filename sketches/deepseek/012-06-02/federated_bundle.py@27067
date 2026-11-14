@@ -1,0 +1,22 @@
+def pack_federated_bundle(
+    individual_kp, model, sessions, memory, persona,
+    initial_seed, initial_weights=None, name="individual",
+    lineage_root=None, ancestry=None,   # NEW
+) -> IndividualBundle:
+    # ... existing setup ...
+    if lineage_root is None:
+        lineage_root = individual_id   # self-root by default
+    if ancestry is None:
+        ancestry = []
+    body["lineage_root"] = lineage_root
+    if ancestry:
+        anc_canon = json.dumps(ancestry, sort_keys=True,
+                                separators=(",", ":")).encode()
+        body["ancestry_hash"] = _hash(anc_canon)
+    # ... existing manifest, sig, return ...
+    return IndividualBundle(
+        manifest={**body, "sig": sig},
+        memory=memory, weights=weights,
+        initial_weights=initial_weights,
+        observations=[], ancestry=ancestry,
+    )

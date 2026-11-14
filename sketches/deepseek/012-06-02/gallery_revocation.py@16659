@@ -1,0 +1,36 @@
+def verify_revocable_governed_log(gallery, extend=None):
+    """extend: optional callback(rec, i, state) -> None | (ok, reason).
+    None = base handles this record. (True, "") = extender handled
+    it, skip base. (False, reason) = fail. state is a shared dict
+    the extender can read/write; base populates 'occupied' if
+    present but does not depend on it.
+    """
+    # ... existing seed check, initialization ...
+
+    state = {"occupied": {}, "valid_keepers": valid_keepers,
+             "revoked_keys": revoked_keys, "policy": policy}
+
+    for i, rec in enumerate(gallery.records()):
+        # ... existing world_id and prev checks ...
+
+        if isinstance(rec, KeeperRotationRecord):
+            # ... existing rotation handling ...
+        else:
+            if not _verify_sig(current_keeper, rec.body(), rec.sig):
+                return (False, f"record {i}: signature invalid")
+
+            if extend is not None:
+                result = extend(rec, i, state)
+                if result is not None:
+                    ok, reason = result
+                    if not ok:
+                        return (False, reason)
+                    prev = rec.record_hash()
+                    continue
+
+            # ... existing handlers (revocation, policy, etc.) ...
+            # After each handler, also update state["occupied"] etc.
+
+        prev = rec.record_hash()
+
+    return (True, "revocable governed log verifies")

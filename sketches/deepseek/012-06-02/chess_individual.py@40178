@@ -1,0 +1,93 @@
+def verify_chess_individual_full(
+    bundle: IndividualBundle,
+    signed_world_log: List[dict],
+) -> tuple:
+    from signed_world_log import verify_signed_entry
+    ok, reason = verify_chess_individual_basic(bundle)
+    if not ok:
+        return (False, reason)
+
+    expected_signer = bundle.manifest["world_contexts"][0][
+        "world_signer"]
+
+    # Reconstruct model + RNG (as before)
+    model = build_model(bundle.manifest["model_config"])
+    individual_id = bundle.manifest["individual_id"]
+    world_id = None
+    for rec in bundle.memory:
+        if rec.get("type") == "world_entry":
+            world_id = rec["world_id"]
+            break
+    if world_id is None:
+        return (False, "no world_entry in memory")
+    seed_int = int(_hash(individual_id + world_id).encode(),
+                   16) & ((1 << 32) - 1)
+    rng = _rng.Random(seed_int)
+
+    last_action_idx = 0
+    last_reward = 0.0
+    step_count = 0
+    for i, rec in enumerate(bundle.memory):
+        if rec.get("type") != "agent_step":
+            continue
+        step_count += 1
+
+        # Find + verify the SIGNED world entry
+        target_hash = rec["chess_world_signed_entry_hash"]
+        matched = None
+        for se in signed_world_log:
+            from signed_world_log import signed_entry_hash
+            if signed_entry_hash(se) == target_hash:
+                matched = se
+                break
+        if matched is None:
+            return (False,
+                     f"memory[{i}]: signed entry not found")
+        v_signed = verify_signed_entry(
+            matched, expected_signer)
+        if not v_signed[0]:
+            return (False,
+                     f"memory[{i}]: {v_signed[1]}")
+        if matched["body"]["data"].get("uci") != rec["uci"]:
+            return (False,
+                     f"memory[{i}]: world uci != memory uci")
+
+        # Replay model (as before)
+        fen_before = rec["fen_before"]
+        try:
+            board = chess.Board(fen_before)
+        except ValueError:
+            return (False, f"memory[{i}]: bad FEN")
+        legal = sorted(board.legal_moves, key=lambda m: m.uci())
+        if not legal:
+            return (False, f"memory[{i}]: no legal moves")
+        my_color = (chess.WHITE
+                     if fen_before.split(" ")[1] == "w"
+                     else chess.BLACK)
+        my_mat = _material_count(board, my_color)
+        their_mat = _material_count(board, not my_color)
+        x = min(my_mat, 30) / 30.0
+        y = min(their_mat, 30) / 30.0
+        state = (last_action_idx, last_reward, x, y)
+        expected_idx = model.act(state, rng)
+        if expected_idx != rec["action_idx"]:
+            return (False,
+                     f"memory[{i}]: action_idx mismatch")
+        expected_uci = legal[expected_idx % len(legal)].uci()
+        if expected_uci != rec["uci"]:
+            return (False,
+                     f"memory[{i}]: uci != replayed")
+
+        reward = rec["reward_micros"] / 1_000_000
+        model.learn(reward)
+        last_action_idx = rec["action_idx"]
+        last_reward = reward
+
+    final = serialize_weights(model)
+    if json.dumps(final, sort_keys=True) != \
+            json.dumps(bundle.weights, sort_keys=True):
+        return (False, "replayed weights != bundle weights")
+    return (True,
+             f"chess individual full verifies "
+             f"({step_count} moves, {len(signed_world_log)} "
+             f"world entries)")

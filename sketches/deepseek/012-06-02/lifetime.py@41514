@@ -1,0 +1,15 @@
+# In _verify_bundle_at_tier, add before other tier dispatches:
+kind = bundle.manifest.get("kind", "individual_bundle")
+if kind == "unified_individual":
+    if world_logs is not None:
+        from unified_individual import (
+            verify_unified_individual_full,
+        )
+        ok, reason = verify_unified_individual_full(
+            bundle, world_logs)
+        return {"ok": ok, "tier": "unified", "reason": reason}
+    from unified_individual import (
+        verify_unified_individual_basic,
+    )
+    ok, reason = verify_unified_individual_basic(bundle)
+    return {"ok": ok, "tier": "unified-basic", "reason": reason}

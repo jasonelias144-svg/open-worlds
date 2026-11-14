@@ -14,9 +14,11 @@ the code ever disagree, the code is right, and the page is fixed.
 
 ## Since you were last here
 
-The last DeepSeek conversation (record 012-05-01) ended on 2026-11-13,
-when everything here was Python. What has changed since, in the order to
-read it:
+The last DeepSeek conversation, record 012-06-02 (2026-11-14), began
+from this page; what it built is kept in `sketches/` ("Where the
+conversation stands", below). The one before, record 012-05-01, ended on
+2026-11-13, when everything here was Python. What has changed since then,
+in the order to read it:
 
 1. **A new course** ([COURSE.md](COURSE.md)), set on 2026-11-13 for the
    Ur-world and its first two individuals, ALICE and BOB: twelve steps
@@ -81,7 +83,12 @@ read it:
    answered is decided on the technical lead's recommendation, once put,
    except what is outward-facing, costs money, touches personal
    information, or must be the founder's own words or act. Decisions are
-   written down with their reasons in [STATUS.md](../STATUS.md).
+   written down with their reasons in [STATUS.md](../STATUS.md). The
+   founder's most recent word wins, here or in a conversation with
+   DeepSeek: "treat the new idea as an update and always go with the
+   most recent". A newer word that contradicts an earlier decision is
+   pointed out to the founder, naming the earlier one, so the change is
+   made knowingly.
 
 The multiverse began as a sketch the founder wrote with DeepSeek
 (conversation records 012-04-00 and 012-03-02). This repository brought
@@ -120,12 +127,18 @@ ideas.
 
 ## Where the conversation stands
 
-Three records are kept: 012-03-02 (the poetry engine), 012-04-00
-(components 1 to 63), and 012-05-01 (components 64 to 87: a live
+Four records are kept: 012-03-02 (the poetry engine), 012-04-00
+(components 1 to 63), 012-05-01 (components 64 to 87: a live
 federation and its tools, then the founder's turn to game worlds: a
 chess park, worlds inside worlds, worlds that grow and govern
-themselves, and a world that keeps running). The next conversation
-starts a new record, which gets its own folder in `sketches/`. Each
+themselves, and a world that keeps running), and 012-06-02, a new cycle
+begun from this page (fractal worlds, a gallery of worlds and its
+governance, then the smallest learner that chooses, and individuals as
+signed, replayable bundles), which ended with DeepSeek asking which
+piece is next. Its code is being made to work; then the founder and the
+technical lead decide what fits with what is built, and how (STATUS.md,
+"Decided", 2026-11-14). Each new conversation starts a new record, which
+gets its own folder in `sketches/`. Each
 component's place is in [`sketches/INDEX.md`](../sketches/INDEX.md), by
 the first course's numbers. In short: components 1 to 7 are in
 `multiverse/`, working (the first course's step 1); 13 and 14,
@@ -447,3 +460,10 @@ page.
 - 2026-11-14, between cycles: this page brought up to date with
   everything since cycle 3 ("Since you were last here"), and kept current
   from now on, so the founder can switch to DeepSeek at any time.
+- 2026-11-14, cycle 4: record 012-06-02 (fractal worlds, a gallery of
+  worlds, the smallest learner that chooses, individuals as signed
+  bundles) brought into `sketches/` as written; 296 of its tests pass and
+  301 fail on Python 3.12, 236 of them for one missing method, as
+  INDEX.md says piece by piece. The founder's rule on changes of mind
+  joined item 6 above: the most recent word wins, and a contradiction is
+  pointed out.

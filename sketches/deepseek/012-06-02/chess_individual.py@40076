@@ -1,0 +1,77 @@
+def _signed_log(self):
+    return _get_json(f"{self.world_url}/signed-log").get(
+        "entries", [])
+
+# In play_turn, replace the log-fetch + hash block:
+def play_turn(self):
+    if self._whose_turn() != self.seat:
+        return None
+    fen_before = self._latest_fen()
+    try:
+        board = chess.Board(fen_before)
+    except ValueError:
+        return None
+    legal = sorted(board.legal_moves, key=lambda m: m.uci())
+    if not legal:
+        return None
+    state = self._state_from_board(board)
+    action_idx = self.model.act(state, self._rng)
+    chosen = legal[action_idx % len(legal)]
+    is_capture = board.is_capture(chosen)
+    from_sq = chess.square_name(chosen.from_square)
+    to_sq = chess.square_name(chosen.to_square)
+    promotion = (chess.piece_symbol(chosen.promotion)
+                 if chosen.promotion else None)
+    try:
+        resp = self._act("chess.move", {
+            "from_sq": from_sq, "to_sq": to_sq,
+            "promotion": promotion,
+        })
+    except Exception:
+        return None
+    if resp.get("kind") != "ack":
+        return None
+
+    # Find the SIGNED entry for my move
+    from signed_world_log import signed_entry_hash
+    signed_entries = self._signed_log()
+    signed_entry = None
+    for e in reversed(signed_entries):
+        b = e["body"]
+        if (b["kind"] == "chess.move"
+                and b["actor_token"] == self.individual_id
+                and b["data"].get("uci") == chosen.uci()):
+            signed_entry = e
+            break
+    if signed_entry is None:
+        return None
+    entry_hash = signed_entry_hash(signed_entry)
+
+    # Reward + learn (as before)
+    board_push = board.copy()
+    board_push.push(chosen)
+    if is_capture:
+        reward = 1.0
+    elif board_push.is_check():
+        reward = 0.5
+    else:
+        reward = 0.1
+    self.model.learn(reward)
+
+    body = {
+        "type": "agent_step",
+        "agent_id": self.individual_id,
+        "world_id": self.world_id,
+        "action_idx": action_idx,
+        "uci": chosen.uci(),
+        "chess_world_signed_entry_hash": entry_hash,
+        "fen_before": fen_before,
+        "reward_micros": int(reward * 1_000_000),
+        "ts": _now(),
+    }
+    sig = self.individual_kp.sign(_canonical(body)).hex()
+    entry = {**body, "sig": sig}
+    self.memory.append(entry)
+    self.last_action_idx = action_idx
+    self.last_reward = reward
+    return entry

@@ -1,0 +1,4 @@
+# In IndividualBundle dataclass, add:
+    ancestry: List[Dict] = field(default_factory=list)
+    # (resumed_from is a manifest field, not a dataclass field,
+    #  so no other change needed here.)
