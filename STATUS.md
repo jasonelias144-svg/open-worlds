@@ -147,6 +147,15 @@ kind.
   doing." Written into AGENTS.md ("Every session") as a standing rule:
   a change to anything docs/COLLABORATING.md describes updates it in the
   same pull request, and every review checks it.
+- 2026-11-14, founder, on topics ahead: "please provide a range of
+  topics to explore and develop with possible implementations. If the
+  list is forward a few steps from where we are now, it can be waiting
+  for us when the project reaches that stage, sketching out the
+  landscape before the code gets there. And if the topics are diverse,
+  DeepSeek can have a choice of topics. For each choice you could
+  provide an example or just set the code standards." Written as
+  docs/TOPICS.md, linked from COLLABORATING.md, and kept current with it
+  (AGENTS.md).
 - 2026-11-14, founder, a new idea: "fractal worlds. Worlds where you can
   navigate through fractals, generate them in different forms, watch them
   grow or interact, and more." On COURSE.md's waiting list, after step
@@ -877,6 +886,15 @@ it was wrong. Questions of what the project is for stay with the founder.
   before those needs one of them sooner (step 3's identity files, say).
 
 ## Log
+
+- 2026-11-14 Claude: docs/TOPICS.md, a menu of thirteen topics a few
+  steps ahead of the code, for the founder's conversations with
+  DeepSeek: fractal worlds, question worlds and the neural world, the
+  garden, persons, laws for new worlds, the hunt, minds, skills and the
+  sheet, memory, the plug-in, steering by branching, governance, and
+  storytellers; each with where it fits, what is decided, what is open,
+  a possible implementation, and what to send back. Its template example
+  checked against the schema.
 
 - 2026-11-14 Claude: docs/COLLABORATING.md brought up to date for the
   founder's DeepSeek conversations, which had last seen the project in
