@@ -5,6 +5,72 @@ conversations with DeepSeek. This is the page to start from. The
 founder: "What you put in the repo becomes the new standard we develop
 from in my DeepSeek conversations."
 
+**Kept current.** The founder, 2026-11-14: "please make sure the
+COLLABORATING.md is up to date as we go. This way, if we run out of data
+for a few days, I can still go and work with DeepSeek during that time."
+So any change to something this page describes updates it in the same
+pull request, and every review checks it (AGENTS.md). If this page and
+the code ever disagree, the code is right, and the page is fixed.
+
+## Since you were last here
+
+The last DeepSeek conversation (record 012-05-01) ended on 2026-11-13,
+when everything here was Python. What has changed since, in the order to
+read it:
+
+1. **A new course** ([COURSE.md](COURSE.md)), set on 2026-11-13 for the
+   Ur-world and its first two individuals, ALICE and BOB: twelve steps
+   ahead, rechecked after each. Steps 1 (the design pages) and 2
+   (formats that last) are done; step 3, keys and identities, is next.
+   It returns to DeepSeek at step 10, or sooner if the founder chooses.
+2. **The worlds are built in Rust** (the founder: "we should stick with
+   Rust"). [`rust/`](../rust/README.md) holds the Ur-world, a 3D world
+   that begins in a garden with ALICE and BOB ([URWORLD.md](URWORLD.md)),
+   with a doorway any program can speak through as a mind; a checker for
+   a world's log; and the formats below. The reference is Python for
+   what Python built first (the log in `world/`, the protocol in
+   `multiverse/`, and the formats' vectors, which `formats/` writes and
+   Rust reads); for the Ur-world, Rust is the reference, and Python
+   checks its vectors.
+3. **Who an individual is,** in the design pages:
+   [MINDS.md](MINDS.md) (identity, mind record, a sealed self no one else
+   reads, unless the founder opens it under the "break glass", in the
+   open; the sheet, avatars, and where everything lives);
+   [WORLD-KEY.md](WORLD-KEY.md) (the tour, the hunt, and the world-key,
+   a signed right to found a world); [ADMIN.md](ADMIN.md) (ADMIN, the
+   Keeper of the multiverse: what it must preserve, how it learns, the
+   round table of Keepers, a learning immune system);
+   [REASONS.md](REASONS.md) (every office's decision on record, with its
+   reasons); [FREEDOMS.md](FREEDOMS.md) (tools for when freedoms meet).
+4. **The founder's visions of 2026-11-14,** in the founder's words
+   ([VISION.md](VISION.md), [PARALLEL-WORLDS.md](PARALLEL-WORLDS.md)):
+   question worlds, where an idea becomes a world that tests it; an app
+   whose chat can create and query a world; a hierarchy of worlds, from
+   primary worlds with rules and no AI up to ADMIN; one person across
+   many worlds; riding along in a world, and steering it by branching;
+   branches that merge rules, never states; parallel worlds from one
+   template, and a garden to walk among them; and fractal worlds
+   (COURSE.md, waiting list).
+5. **Formats that last** ([research/FORMATS.md](research/FORMATS.md)).
+   Every new signed record is a W3C Data Integrity proof
+   (`eddsa-jcs-2022`) over its RFC 8785 form, with keys named as did:key.
+   One JSON Schema, [`schemas/records-v1.schema.json`](../schemas/records-v1.schema.json),
+   defines them: grants, decision records, suggestions, ratings, signed
+   log heads, world-keys, journal entries, identities, birth records,
+   mind records, and a world's template with its dials. Sealing, so only
+   one key can open something, uses HPKE (RFC 9180). Python (`formats/`)
+   and Rust (`rust/formats`) agree through shared test vectors
+   ([vectors/](../vectors/README.md)). What is signed keeps three rules:
+   ASCII keys, integers within 2^53 - 1, and no floats (a quantity with
+   a fraction is an integer in a stated unit).
+6. **How decisions are made** ([AGENTS.md](../AGENTS.md)). The founder
+   decides what the project is for; Claude, the technical lead, decides
+   the code and reviews every change; a question the founder hasn't
+   answered is decided on the technical lead's recommendation, once put,
+   except what is outward-facing, costs money, touches personal
+   information, or must be the founder's own words or act. Decisions are
+   written down with their reasons in [STATUS.md](../STATUS.md).
+
 The multiverse began as a sketch the founder wrote with DeepSeek
 (conversation records 012-04-00 and 012-03-02). This repository brought
 it in, made it run, and changed what needed changing; what was kept and
@@ -30,24 +96,33 @@ can be read, run and debugged, without committing to using them.
 [`sketches/INDEX.md`](../sketches/INDEX.md) is the one place that says
 where the sketch and the course meet: each component, how its tests fare,
 which course step it relates to, and whether any of it is in open-worlds.
+Its "Course" column uses the first course's step numbers ("Done: the
+first course" in [COURSE.md](COURSE.md) is the key), not the course now
+running.
 
 **The standard is open-worlds' own code, not the sketches.** Build on
-`multiverse/` and the documents in `docs/`. The code in `sketches/` is
+the code merged into `main` (`multiverse/`, `formats/`, `rust/`) and the
+documents in `docs/`. The code in `sketches/` is
 earlier work, some of it on the old, unsigned protocol, kept for its
 ideas.
 
 ## Where the conversation stands
 
-Record 012-04-00 is complete: components 1 to 63, ending with DeepSeek
-proposing component 64, a specification for a first live federation. The
-next conversation starts a new record, which gets its own folder in
-`sketches/`. Each component's place is in
-[`sketches/INDEX.md`](../sketches/INDEX.md). In short: components 1 to 7
-are in `multiverse/`, working (course step 1); 13 and 14, signatures and
-their conformance test, were rebuilt in step 2, where an identity is its
-key; 15, signed passports, in step 3, where a world is a key too.
+Three records are kept: 012-03-02 (the poetry engine), 012-04-00
+(components 1 to 63), and 012-05-01 (components 64 to 87: a live
+federation and its tools, then the founder's turn to game worlds: a
+chess park, worlds inside worlds, worlds that grow and govern
+themselves, and a world that keeps running). The next conversation
+starts a new record, which gets its own folder in `sketches/`. Each
+component's place is in [`sketches/INDEX.md`](../sketches/INDEX.md), by
+the first course's numbers. In short: components 1 to 7 are in
+`multiverse/`, working (the first course's step 1); 13 and 14,
+signatures and their conformance test, were rebuilt in its step 2, where
+an identity is its key; 15, signed passports, in its step 3, where a
+world is a key too. (The first course is under "Done" in COURSE.md; the
+course now running numbers its steps afresh.)
 
-Since the sketch, the founder has added ideas that now shape the
+Since the sketch, the founder has added ideas that shaped the first
 course: learning agents in the chemistry world whose intelligence grows
 with the complexity of the molecules, evolution as a path between worlds,
 accelerated time, and one day a main community world
@@ -91,14 +166,26 @@ The code standard is kept here, step by step. The most useful
 contributions now are creative and design work for the steps ahead, as
 text or as code with tests:
 
-- **Laws for new worlds.** The organic chemistry world (course step 9):
-  what it admits by, what can happen in it, what counts as solving a
-  problem there.
-- **Problems for the learner** (course step 7): standing problems in the
-  chemistry world, from easy to hard, each checkable by the chemistry
-  itself.
-- **Forms for the poetry world.** For example, a world whose law asks
-  each turn to add a quatrain in common meter, Dickinson's meter.
+- **Templates for new worlds** ([research/FORMATS.md](research/FORMATS.md),
+  "A world's template"): every parameter of a world as an integer in a
+  stated unit, and which are dials a world may turn, with their ranges.
+  Fractal worlds are a natural first: a rule repeated (L-systems,
+  Julia sets, growth by aggregation), with its numbers as dials.
+- **Question worlds** ([VISION.md](VISION.md)): an idea, the question it
+  becomes, the prediction written first, and a world that can answer it,
+  saying what it can and can't show. The founder's first is the neural
+  world.
+- **Persons** (course step 3a): one person above their presences in many
+  worlds, unlinked by default. DeepSeek's own architectures (components
+  36 to 52: the octopus, the relay, the swarm, the council) are its small
+  examples.
+- **The garden** (course step 4a): parallel worlds from one template,
+  and what each glasshouse shows of its world from its public log.
+- **Laws for new worlds:** what a world admits by, what can happen in it,
+  what counts as solving a problem there. Forms for the poetry world,
+  such as a quatrain in common meter each turn, Dickinson's meter.
+- **The hunt** (course step 11, [WORLD-KEY.md](WORLD-KEY.md)): symbols,
+  maps, codes and stones; puzzles that teach without words.
 - **The Ur-world,** built from `rust/ur-world` to the standards in "Code
   in Rust" below: its next steps are in [URWORLD.md](URWORLD.md).
 - **Minds for the Ur-world,** in any language. A mind is a program that
@@ -107,9 +194,14 @@ text or as code with tests:
   `minds/wanderer.py` is the smallest example.
 - **Anything on the course,** proposed as described below.
 
+Held back, as the project's own to do: the real keys (step 3), and
+anything that publishes or can't be undone. ADMIN itself and the Keepers
+wait for step 11; their interface is fixed in step 4, by the project.
+
 ## The standard
 
-- **The code in `multiverse/`, at a named commit.** Whatever is merged
+- **The code merged into `main`** (`multiverse/`, `formats/`, `rust/`),
+  **at a named commit.** Whatever is merged
   into `main` is the current standard; a proposal names the commit it
   built on.
 - **The protocol, WCP/0.4** (`multiverse/protocol.py`): manifest,
@@ -123,8 +215,12 @@ text or as code with tests:
 - **The conformance test** (`multiverse/conformance.py`): a world that
   passes it speaks the protocol. It says exactly what it checks, and what
   no outside test can see.
-- **The design** ([MULTIVERSE.md](MULTIVERSE.md)) and **the course**
-  ([COURSE.md](COURSE.md)): where this is going, twelve steps ahead.
+- **Signed records** (`formats/`, and `rust/formats` in Rust): each kind
+  defined in `schemas/records-v1.schema.json`, checked the same way in
+  both languages, against the vectors in `vectors/formats/`.
+- **The design** ([MULTIVERSE.md](MULTIVERSE.md), and the pages under
+  "Since you were last here") and **the course** ([COURSE.md](COURSE.md)):
+  where this is going, twelve steps ahead.
 
 To see it work:
 
@@ -135,9 +231,10 @@ python3 -m multiverse.collaboration
 python3 -m multiverse.journey
 ```
 
-Read in this order: MULTIVERSE.md, then `protocol.py`, `conformance.py`,
-`identity.py`, `passport.py`, `entity.py`, `poetry_world.py`,
-`collaboration.py`.
+Read in this order: COURSE.md, MINDS.md and MULTIVERSE.md; then
+`protocol.py`, `conformance.py`, `identity.py`, `passport.py`,
+`entity.py`, `poetry_world.py`, `collaboration.py`; then
+`formats/records.py` and research/FORMATS.md.
 
 ## House rules
 
@@ -182,14 +279,22 @@ These apply to code that comes into open-worlds, not to the draft (see
     open-source projects already solved it. What was looked at, what is
     taken, and under what licence, is written down in `docs/research/`
     before building ([research/GAMES-AND-WORLDS.md](research/GAMES-AND-WORLDS.md)).
+11. **What is signed keeps three rules:** ASCII keys, integers within
+    2^53 - 1 (larger ones as strings), and no floats: a quantity with a
+    fraction is an integer in a stated unit, such as milliseconds or
+    thousandths. A new kind of record joins `schemas/records-v1.schema.json`
+    with test vectors that Python and Rust both check
+    ([research/FORMATS.md](research/FORMATS.md)).
 
 ## Code in Rust
 
 The worlds themselves are to be built in Rust. The founder: "we should
 stick with Rust", with "an interface to Unity built worlds", so that
 worlds made with Unity or Unreal can join, while no one owns the
-foundation. The Python in `world/` and `multiverse/` stays as the
-reference: the Rust code is checked against it, hash for hash.
+foundation. The Python stays as the reference for what Python built
+first (the log, the protocol, the formats' vectors), and the Rust code is
+checked against it, hash for hash; for the Ur-world, Rust is the
+reference (rule 6 below).
 
 **Start from `rust/`** ([rust/README.md](../rust/README.md)). It's a
 Cargo workspace. `world-log` checks a world's public record exactly as
@@ -198,8 +303,10 @@ the Python kernel writes it, against shared test vectors
 either side that breaks the agreement fails a test. `ur-world` is the
 Ur-world ([URWORLD.md](URWORLD.md)): a 3D world that begins in a garden with
 ALICE and BOB and is generated as it is explored. Its own vectors are
-checked from Python the same way. Build the next pieces beside them, the
-same way.
+checked from Python the same way. `formats` signs and checks the
+project's records, seals, and opens sealed records, as `formats/` does
+in Python, against the same vectors. Build the next pieces beside them,
+the same way.
 
 To check a draft:
 
@@ -244,8 +351,8 @@ These hold for every Rust file that comes in, on top of the house rules:
    unnoticed. Licences must let anyone use the code freely: MIT,
    Apache-2.0, BSD, zlib, Unlicense or CC0. Nothing under the GPL, and
    nothing closed. Cryptography always comes from a vetted crate
-   (SHA-256 from `sha2`; for signatures, `ed25519-dalek` is the likely
-   choice), never written by hand.
+   (SHA-256 from `sha2`, signatures from `ed25519-dalek`, sealing from
+   `hpke`), never written by hand.
 8. **Every public item documented** (`missing_docs` is on), and each
    crate says what it doesn't do yet, under "Limits".
 9. **Public domain**, like everything here: each crate says
@@ -262,6 +369,8 @@ didn't.
 
 - **Start each new conversation from this page.** Its link first, so the
   draft builds on what is here now.
+- Say which course step it is for, by the course's numbers
+  ([COURSE.md](COURSE.md)).
 - Name the commit you built on.
 - **Give every file whole, with its file name on the first line** (as a
   comment or the start of its docstring), demonstrations and small
@@ -302,3 +411,12 @@ page.
   give every file whole, named on its first line. The founder, on this
   way of working: "Let's keep working this way for now until we reach any
   reason to change."
+- 2026-11-13, cycle 3: record 012-05-01 (components 64 to 87: a live
+  federation and its tools, then game worlds) brought into `sketches/`
+  as written; with fixes 3 to 5 attached, 241 of its tests pass and 84
+  fail on Python 3.12, as INDEX.md says, component by component. From
+  it, the founder's turn to game worlds: the worlds are now built in
+  Rust.
+- 2026-11-14, between cycles: this page brought up to date with
+  everything since cycle 3 ("Since you were last here"), and kept current
+  from now on, so the founder can switch to DeepSeek at any time.

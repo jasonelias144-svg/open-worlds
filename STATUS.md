@@ -133,6 +133,27 @@ kind.
 
 ## Decided
 
+- 2026-11-14, founder, on course step 3: "Let’s go ahead for step 3."
+  The go-ahead the technical lead asked for, since step 3 makes the real
+  keys and publishes their public halves, which can't be taken back.
+- 2026-11-14, founder, on the page DeepSeek starts from: "please make
+  sure the COLLABORATING.md is up to date as we go. This way, if we run
+  out of data for a few days, I can still go and work with DeepSeek
+  during that time. It is how I have been balancing my free and paid
+  time, which is now just between my time here and with DeepSeek. I know
+  we would prefer to wait until a later step, but we may be forced by
+  running into limits to switch over sooner. By keeping that page
+  current, I can switch over and introduce everything we have been
+  doing." Written into AGENTS.md ("Every session") as a standing rule:
+  a change to anything docs/COLLABORATING.md describes updates it in the
+  same pull request, and every review checks it.
+- 2026-11-14, founder, a new idea: "fractal worlds. Worlds where you can
+  navigate through fractals, generate them in different forms, watch them
+  grow or interact, and more." On COURSE.md's waiting list, after step
+  4a as the garden's second kind of room: primary worlds whose rule is
+  repeated, with its numbers as a template's dials (placed on the
+  technical lead's recommendation, decided under the founder's standing
+  rule; the founder can change it).
 - 2026-11-14, founder, on the technical lead's admin rights: "You should
   have admin rights across every repository. I count on that very
   fact." The technical lead uses them for the code: merging, branches,
@@ -857,6 +878,15 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-14 Claude: docs/COLLABORATING.md brought up to date for the
+  founder's DeepSeek conversations, which had last seen the project in
+  Python: a "Since you were last here" section (the new course, Rust,
+  the design pages, the founder's visions, the formats, how decisions
+  are made), record 012-05-01 and cycle 3, what would help most now by
+  the new course's numbers, the formats in the standard and a house
+  rule for what is signed. Kept current from now on (AGENTS.md). Fractal
+  worlds on the waiting list.
+
 - 2026-11-14 Claude: course steps 1 and 2 done and moved to "Done" in
   docs/COURSE.md, with their pull requests. The course rechecked: two
   steps came in from the waiting list where they were placed, 3a
@@ -864,21 +894,22 @@ it was wrong. Questions of what the project is for stay with the founder.
   taught is written into steps 3, 4, 5, 7 and 12; four formats moved to
   the steps that build what they describe (Decided by the technical
   lead). The look back, at each decision's "revisit if":
-  - held, and tested tonight (corrected on #49's review): signed records
-    the standard way (a founding needing several signers was met with one
-    proof per record, not a proof set); the records for the offices (the
-    schema both languages read agreed on every verdict over 46,000 records
-    of the kinds part five added, which the independent review of #46
-    tested; the gaps found in the schema during step 2, #46's engine order
-    and file paths and #47's dials set to their template's own value, were
-    closed before merging; the one left, no bound on a record's size, goes
-    to step 4); sealing as built (no disagreement between Python and Rust
-    on 118,874 cases in #42's review, or on 19,149 envelopes in #43's; its
-    label list had grown to two, and the entry now says so); the sealed
-    records (the identity binds the sealing key to the did:key the
-    envelope names, so the envelope needs nothing more, while each did:key
-    has one sealing key: successions, at step 3, are the identity
-    decision's "revisit if");
+  - held, and tested tonight (corrected on the reviews of #49 and #50):
+    signed records the standard way (a founding needing several signers
+    was met with one proof per record, not a proof set); the records for
+    the offices (the schema both languages read agreed on every verdict
+    over 46,000 records of the kinds part five added, which the
+    independent review of #46 tested; the gaps found during step 2, #46's
+    engine order (its self-review) and its file paths (its independent
+    review), were closed before merging, and #47 refused a dial set to its
+    template's own value from the start; the one left, no bound on a
+    record's size, goes to step 4); sealing as built (no disagreement
+    between Python and Rust on 118,874 cases in #42's review; its label
+    list had grown to two, and the entry now says so); the sealed records
+    (no disagreement on 19,149 envelopes in #43's review; the identity
+    binds the sealing key to the did:key the envelope names, so the
+    envelope needs nothing more, while each did:key has one sealing key:
+    successions, at step 3, are the identity decision's "revisit if");
   - not yet testable, since what they govern isn't built: who an
     individual and a world are (revised in review before it merged: a
     world signs its own birth record, and its founding is confirmed by
