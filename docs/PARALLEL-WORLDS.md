@@ -81,6 +81,22 @@ university, whose rooms are worlds.
 - **Walking is circulation.** Visitors carry what they saw in one room to
   the next, so ideas move at the pace people move.
 
+## Steering, branching and merging
+
+From the founder's later visions the same evening, in
+[VISION.md](VISION.md):
+
+- **The garden's Keeper tends its worlds from outside,** so each world
+  stays light; scripted code first, an AI Keeper once ADMIN's training
+  begins ("A hierarchy of worlds").
+- **Ride along, and steer by branching:** a change to a running primary
+  world makes a copy at that moment and steers the copy, so the original
+  runs on as the comparison; worlds with people in them are never copied
+  so. Each template declares its dials and their
+  ranges, and every steer is recorded ("Ride along, and steer").
+- **Branches merge rules, never states,** by the world's consent, forward
+  only ("Branches that merge").
+
 ## When
 
 First, right after the kernel (course step 4): a few parallel chemistry

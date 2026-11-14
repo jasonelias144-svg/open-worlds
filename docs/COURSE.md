@@ -243,6 +243,11 @@ Added one at a time, as steps are done:
 - first, right after step 4 (the founder, 2026-11-14): parallel chemistry
   worlds from one template, and a view-only garden to walk among them,
   the first thing others can see ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md));
+- then, from the founder's visions of the same evening
+  ([VISION.md](VISION.md)): question worlds, with the prediction written
+  first, and the neural world as the first; riding along in a primary
+  world, and steering by branching; and the plug-in, so a chat with any
+  AI can create, run and query a world, on one's own computer first;
 - Keepers talking to one another, by the rules proposed in
   [WORLD-KEY.md](WORLD-KEY.md);
 - the admin-key: a course for Keepers, plotted by ADMIN as Keepers plot
@@ -265,7 +270,7 @@ Added one at a time, as steps are done:
   - the first learner, with real rates and the gardener's water, and an
     organic chemistry world entered by its stamp;
   - time and populations;
-  - any AI from any app, over the network;
+  - any AI from any app, over the network (now the plug-in, above);
   - a common-meter poetry world;
   - a single-cell world;
   - a world others built;
