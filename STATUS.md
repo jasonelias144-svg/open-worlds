@@ -151,6 +151,32 @@ kind.
   doing." Written into AGENTS.md ("Every session") as a standing rule:
   a change to anything docs/COLLABORATING.md describes updates it in the
   same pull request, and every review checks it.
+- 2026-11-14, founder, on topics ahead: "please provide a range of
+  topics to explore and develop with possible implementations. If the
+  list is forward a few steps from where we are now, it can be waiting
+  for us when the project reaches that stage, sketching out the
+  landscape before the code gets there. And if the topics are diverse,
+  DeepSeek can have a choice of topics. For each choice you could
+  provide an example or just set the code standards." Written as
+  docs/TOPICS.md, linked from COLLABORATING.md, and kept current with it
+  (AGENTS.md). And, on reading it: "'What would help most' is exactly
+  what I was talking about. You can also include a section for the
+  ideas that are not helpful now, but will probably be helpful in the
+  future. And as long as it is diverse and open ended, you can leave it
+  as is. I just wanted to make sure such a mechanism is in place, in
+  some shape or form." TOPICS.md gained "Further out".
+- 2026-11-14, founder, a new idea: "We could integrate or incorporate
+  the infrastructure or even the code from Lyceum Commons as a single
+  superworld, where the atomic subworlds are chat rooms. So the whole
+  Lyceum Commons becomes a chat based superworld of atomic chat worlds.
+  This reframes the original idea, but in a way that could salvage that
+  work and provide a more robust world than what we have built yet."
+  On COURSE.md's waiting list, after step 4a as the second superworld,
+  with Lyceum running as it is and its rooms made worlds by addition
+  (docs/TOPICS.md, topic 14; placed on the technical lead's
+  recommendation, decided under the founder's standing rule; the
+  founder can change it). What a room's public log holds is the
+  founder's to decide, as personal information.
 - 2026-11-14, founder, a new idea: "fractal worlds. Worlds where you can
   navigate through fractals, generate them in different forms, watch them
   grow or interact, and more." On COURSE.md's waiting list, after step
@@ -907,6 +933,16 @@ it was wrong. Questions of what the project is for stay with the founder.
   individual's or a world's by a succession).
 
 ## Log
+
+- 2026-11-14 Claude: docs/TOPICS.md, a menu of fourteen topics a few
+  steps ahead of the code, for the founder's conversations with
+  DeepSeek: fractal worlds, question worlds and the neural world, the
+  garden, persons, laws for new worlds, the hunt, minds, skills and the
+  sheet, memory, the plug-in, steering by branching, governance,
+  storytellers, and the Commons; each with where it fits, what is
+  decided, what is open, a possible implementation, and what to send
+  back; and "Further out", ideas that won't help yet but probably will.
+  Its template example checked against the schema.
 
 - 2026-11-14 Claude: course step 3, part one: looked first at TUF, the
   DNSSEC root's ceremonies, GitHub's guidance on secrets in Git, SOPS and
