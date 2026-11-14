@@ -22,10 +22,17 @@ at course step 4: that a grant only narrows the grant it names; that a
 decision's inputs are in the log, its office holds the grant it names,
 and that grant allows its kind of act; that a rating's author wrote the
 suggestion it names, and its outcome is a decision that names that
-suggestion; and that a world-key's issuer is a world that places paths,
+suggestion; that a world-key's issuer is a world that places paths,
 its path was placed in that world's log and walked to its end by its
 holder, and it hasn't already been used to found a world
-(docs/WORLD-KEY.md: "It is marked as used at the founding").
+(docs/WORLD-KEY.md: "It is marked as used at the founding"); that an
+identity's `birth` is a birth record of the same individual and name;
+that a birth record's `mind` is a mind record of the one born, and its
+`world` is a world; that a mind record's issuer is the project's key
+for mind records, and a template's the project's key for templates,
+both published at course step 3; and that a world's
+founding is confirmed by its founders and its parent world, in records
+of their own (course step 12).
 
 A record's hash, which other records name it by, is the SHA-256 of its
 RFC 8785 form, proof included, in lowercase hex.
@@ -127,8 +134,8 @@ def _times(record: Dict[str, Any]) -> List[Tuple[str, Any]]:
 
 def _time_problems(record: Dict[str, Any]) -> List[str]:
     """Every time must be a real one, a grant must end after it starts,
-    and a mind record's engines are in the order they began; the schema
-    checks only their shape."""
+    and a mind record's engines are in the order they began, each naming
+    a file once; the schema checks only their shape."""
     found = []
     for where, value in _times(record):
         try:
@@ -144,6 +151,10 @@ def _time_problems(record: Dict[str, Any]) -> List[str]:
         found = [f"$.engines.{i}.from: not after the engine before"
                  for i in range(1, len(engines))
                  if engines[i]["from"] <= engines[i - 1]["from"]]
+        for i, engine in enumerate(engines):
+            paths = [f["path"] for f in engine["files"]]
+            if len(set(paths)) != len(paths):
+                found.append(f"$.engines.{i}.files: a path named twice")
     return found
 
 
@@ -231,7 +242,9 @@ def dial_problems(world_birth: Dict[str, Any],
         check(record)
         if record["format"] != kind:
             raise RecordError(f"$.format: not {kind}")
-    if world_birth.get("template") != record_hash(template):
+    if "template" not in world_birth:
+        return ["$.template: names no template"]
+    if world_birth["template"] != record_hash(template):
         return ["$.template: names another template"]
     found = []
     parameters = template["parameters"]

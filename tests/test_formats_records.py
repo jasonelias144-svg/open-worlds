@@ -140,8 +140,16 @@ class TestDials(unittest.TestCase):
         soil = dict(law.soil)
         rates = {rule: (forward, reverse)
                  for rule, _, forward, reverse in law.own_reactions}
+        # What each rule acts on is in the code the template names, not
+        # in its parameters; pinned here so a change to it is seen.
+        self.assertEqual(
+            {rule: reactants for rule, reactants, _, _ in law.own_reactions},
+            {"proton transfer, carboxylic acid to amine": ("glycine",),
+             "hydration of a carbonyl": ("formaldehyde", "water")})
 
         def milli(x):
+            # Exact, so rounding can't hide a change in the law.
+            self.assertEqual(round(x * 1000) / 1000, x)
             return round(x * 1000)
 
         expected = {
