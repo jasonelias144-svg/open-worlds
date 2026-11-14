@@ -138,7 +138,7 @@ subworld's public log, shown as what is growing now"
 
 **Decided:** view-only at first; each room is a world made from one
 template, labelled with the dials it changed; viewing disturbs nothing,
-and a control world stays view-only.
+and control worlds are view-only by default.
 
 **Open:** what a room shows of a world in a few lines; how the garden
 lays out its rooms (by dial? by template?); what a visitor carries from
@@ -302,15 +302,18 @@ what is recalled; how reflections are triggered.
 *From the founder's visions ([VISION.md](VISION.md), "The app").* A chat
 creates a world from a template, runs it, and comes back with the data.
 
-**Decided:** it speaks MCP, the Model Context Protocol; users choose
-settings, never code; on one's own computer first, nothing hosted.
+**Decided:** it speaks MCP, the Model Context Protocol, with five
+things to do: "list templates, create a world, run it, query it, and a
+link to watch it"; users choose settings, never code; on one's own
+computer first, nothing hosted.
 
-**Open:** the tools it offers and what each returns; how long a run may
-take; what "the data" is (a census, a log, a chart).
+**Open:** what each tool takes and returns; how long a run may take;
+what "the data" is (a census, a log, a chart).
 
-**A possible implementation:** five tools: list the templates; create a
-world from one, with dials; run it for some ticks; ask it a question
-from its log; give a link to watch it.
+**A possible implementation:** a world named by its key; creating one
+takes a template's name and the dials to turn; running it takes a number
+of ticks, never a time, so a run is the same on any machine; a query
+takes a question about the log and answers from the log alone.
 
 **Send back:** each tool's name, inputs and outputs; one conversation,
 start to finish, using them.
