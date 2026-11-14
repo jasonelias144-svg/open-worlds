@@ -803,10 +803,14 @@ it was wrong. Questions of what the project is for stay with the founder.
   in the order they began; all in records-v1 (docs/research/FORMATS.md,
   "Who an individual and a world are"). *Why:* sealing to the right person
   needs the binding; the birth records are what MINDS.md and VISION.md
-  describe; a mind record with exact revisions and digests is what lets an
-  engine be rebuilt. *Revisit if:* step 3's keys need the identity to
-  carry successions in the record itself, or a world's founding (course
-  step 12) needs more in its birth record.
+  describe; a world signs its own birth record, binding its key to it, and
+  its founders and parent world confirm a founding in records of their own
+  at course step 12 (one key, one proof, as every record, rather than
+  WORLD-KEY.md's birth record signed by the Ur-world and the founders); a
+  mind record with exact revisions and digests is what lets an engine be
+  rebuilt. *Revisit if:* step 3's keys need the identity to carry
+  successions in the record itself, or a world's founding (course step 12)
+  needs more in its birth record.
 
 ## Log
 
@@ -815,7 +819,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   record (with its template's dials and what it was forked from) and the
   mind record join records-v1, in Python and Rust; an identity's sealing
   key is checked as sealing checks it, and every time in a record must be
-  real. Shared vectors: 16 records that hold and 56 refused in
+  real. Shared vectors: 16 records that hold and 58 refused in
   records-v1.json.
 
 - 2026-11-14 Claude: the founder's visions of the evening, in the

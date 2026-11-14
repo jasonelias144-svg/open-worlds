@@ -397,7 +397,8 @@ def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
              (2**255 - 10).to_bytes(32, "little")))),
         ("an identity whose name is 65 characters",
          resigned(identity, "ALICE", name="A" * 65)),
-        ("a birth record signed by the one born, not the world",
+        ("a birth record signed by the one born, though it names the "
+         "world",
          resigned(birth, "ALICE")),
         ("a birth record on 30 February",
          resigned(birth, "the Ur-world", time="2026-02-30T04:00:00Z")),
@@ -425,11 +426,21 @@ def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
                                   "revision": "main"}}])),
         ("a mind record with no engines",
          resigned(mind, "the project", engines=[])),
-        ("a mind record signed by the individual, not the project",
+        ("a mind record signed by the individual, though it names the "
+         "project",
          resigned(mind, "ALICE")),
         ("a mind record whose engine began on 31 April",
          resigned(mind, "the project", engines=[
              {**engine, "from": "2026-04-31T00:00:00Z"}])),
+        ("a mind record naming a file outside its model's repository",
+         resigned(mind, "the project", engines=[
+             {**engine, "files": [{"path": "../weights.bin",
+                                   "sha256": _h("elsewhere")}]}])),
+        ("a mind record naming one file twice, with two hashes",
+         resigned(mind, "the project", engines=[
+             {**engine, "files": [*engine["files"],
+                                  {**engine["files"][0],
+                                   "sha256": _h("another")}]}])),
         ("a mind record whose engines are out of order",
          resigned(mind, "the project", engines=changed[::-1])),
         ("a mind record whose second engine began with the first",

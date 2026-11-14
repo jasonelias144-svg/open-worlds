@@ -1564,7 +1564,7 @@
    }
   },
   {
-   "name": "a birth record signed by the one born, not the world",
+   "name": "a birth record signed by the one born, though it names the world",
    "record": {
     "format": "open-worlds/birth/v1",
     "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
@@ -1904,7 +1904,7 @@
    }
   },
   {
-   "name": "a mind record signed by the individual, not the project",
+   "name": "a mind record signed by the individual, though it names the project",
    "record": {
     "format": "open-worlds/mind/v1",
     "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
@@ -1988,6 +1988,94 @@
      "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
      "proofPurpose": "assertionMethod",
      "proofValue": "z54nEq7Jh7gaHB8wVz3kcyeHu6yDp8tfNefaj36jvJTWrpauxXWnicT6vcgQ9n9u2fKjSMxBjT14B6qz81grh2Emn"
+    }
+   }
+  },
+  {
+   "name": "a mind record naming a file outside its model's repository",
+   "record": {
+    "format": "open-worlds/mind/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "individual": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "engines": [
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "8c8cad0dab28f4462bcd28d6d284ddbedb6637be"
+      },
+      "files": [
+       {
+        "path": "../weights.bin",
+        "sha256": "7b1b763ee8f62eb88e4742a760f912d0b19bcd58b2b948999784bacc15a7f4d7"
+       }
+      ],
+      "settings": {
+       "temperature": "0.7",
+       "maxTokens": 256
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind@sha256:c1100dc0221e850649be6e2f3ec21ad3bff65cc0809ca062395ae0ecc19be920",
+       "index": "sha256:b02e403c07415e3d0cbf90f7df9e0c59b6dedc578d89b4ed1b1db6296de2cab8"
+      },
+      "from": "2026-11-14T04:00:00Z"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2AQ3GBTPsNkuXL4mNx3tfWzGMpwRomivjwqVkJJznAgLd1aeTq6FagYqb6xUtSSVN1xJyqZ5U3CctoGqUX1ZY4fZ"
+    }
+   }
+  },
+  {
+   "name": "a mind record naming one file twice, with two hashes",
+   "record": {
+    "format": "open-worlds/mind/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "individual": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "engines": [
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "8c8cad0dab28f4462bcd28d6d284ddbedb6637be"
+      },
+      "files": [
+       {
+        "path": "model.safetensors",
+        "sha256": "90452f42fee1c1576d5e8eeeee93e14e257ffd3b3c3fc8d1f6fc0eb44edbf5f1"
+       },
+       {
+        "path": "tokenizer.json",
+        "sha256": "4596c7f4c876dd698f5a4a847fc6dc629a797a34c4f22459a6d6cfd461b28c35"
+       },
+       {
+        "path": "model.safetensors",
+        "sha256": "ae448ac86c4e8e4dec645729708ef41873ae79c6dff84eff73360989487f08e5"
+       }
+      ],
+      "settings": {
+       "temperature": "0.7",
+       "maxTokens": 256
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind@sha256:c1100dc0221e850649be6e2f3ec21ad3bff65cc0809ca062395ae0ecc19be920",
+       "index": "sha256:b02e403c07415e3d0cbf90f7df9e0c59b6dedc578d89b4ed1b1db6296de2cab8"
+      },
+      "from": "2026-11-14T04:00:00Z"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3e5YQbC75kHboEgtJW4F6nhaAneZFKgVbXzGAWcXWVg8DwhXNPC7M7DgwmDbrQTBhGniBmJ9GobbFATa9hxWCoMU"
     }
    }
   },

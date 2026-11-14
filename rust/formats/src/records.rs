@@ -89,8 +89,8 @@ fn times(record: &Value) -> Vec<(String, &Value)> {
 }
 
 /// Every time must be a real one, a grant must end after it starts, and a
-/// mind record's engines are in the order they began; the schema checks
-/// only their shape.
+/// mind record's engines are in the order they began, each naming a file
+/// once; the schema checks only their shape.
 fn time_problems(record: &Value) -> Vec<String> {
     let mut found: Vec<String> = times(record)
         .into_iter()
@@ -129,6 +129,27 @@ fn time_problems(record: &Value) -> Vec<String> {
                         "$.engines.{}.from: not after the engine before",
                         i + 1
                     ));
+                }
+            }
+            let engines = record
+                .get("engines")
+                .and_then(Value::as_array)
+                .map(Vec::as_slice)
+                .unwrap_or_default();
+            for (i, engine) in engines.iter().enumerate() {
+                let paths: Vec<&str> = engine
+                    .get("files")
+                    .and_then(Value::as_array)
+                    .map(|files| {
+                        files
+                            .iter()
+                            .filter_map(|f| f.get("path").and_then(Value::as_str))
+                            .collect()
+                    })
+                    .unwrap_or_default();
+                let unique: std::collections::BTreeSet<&str> = paths.iter().copied().collect();
+                if unique.len() != paths.len() {
+                    found.push(format!("$.engines.{i}.files: a path named twice"));
                 }
             }
         }

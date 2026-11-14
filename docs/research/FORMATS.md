@@ -435,8 +435,10 @@ one schema,
   they were born with, by hash; and `words`, the words they were told
   ([MINDS.md](../MINDS.md), "The birth record"). Facts only, written once.
 - **A world's birth record** (`open-worlds/world-birth/v1`), signed by the
-  world: `name`, `law` by hash, `founders` (none for a world the project
-  made), `time`, and, for a world made from a template or forked from
+  world itself, which binds its key to its birth, as an identity binds a
+  sealing key: `name`, `law` by hash, `founders` (none for a world the
+  project made), `time`, and, for a world made from a template or forked
+  from
   another, `template` and `forkedFrom` (the parent world, the tick, and
   the hash of the parent's log there), as decided on 2026-11-14
   ([VISION.md](../VISION.md), "Learning from GitHub"). A world made from
@@ -444,19 +446,42 @@ one schema,
   template declares that it set, as an integer in the unit the template
   states ([PARALLEL-WORLDS.md](../PARALLEL-WORLDS.md), "Parallel
   worlds"). Whether each is a dial of that template, and within its
-  range, is checked against the template, which is step 2's last format.
+  range, is checked against the template, which is step 2's next format.
+  A world's seed, which a founder chooses with its name and law
+  ([WORLD-KEY.md](../WORLD-KEY.md), "The workbench, and founding"), is
+  one of its template's dials, so it needs no field of its own.
+
+  WORLD-KEY.md had the birth record of a founded world signed by the
+  Ur-world and the founders. Decided instead (2026-11-14, on the
+  independent review of #46): the world signs its own, and the Ur-world
+  and each founder confirm the founding in records of their own, each
+  naming the birth record, the Ur-world's also naming the world-keys
+  used, which marks them used; a new kind, at course step 12. Every
+  record here carries one proof by one key, and so do these; signing one
+  record by several keys (Data Integrity's proof sets) would change the
+  signing code in both languages for one kind, ten steps early. Until
+  then, `founders` is the world's own claim.
 - **A mind record** (`open-worlds/mind/v1`), signed by the project's key
   that keeps mind records: the `individual`, and every engine they have
-  run on: the model at an exact 40-digit revision, its files by hash, its
-  settings, its chat template by hash, the container image by digest
-  ("Container images", above; never a tag alone), and when it began,
-  listed in the order they began. Settings are integers or strings: a
-  quantity with a fraction, such as a temperature, is a string, since the
-  canonical form has no floats.
+  run on: the model at an exact 40-digit revision, its files by hash (each
+  path once, none leaving the model's repository), its settings, its chat
+  template by hash, the container image by digest ("Container images",
+  above; never a tag alone), and when it began, listed in the order they
+  began. Settings are integers or strings: a quantity with a fraction,
+  such as a temperature, is a string, since the canonical form has no
+  floats.
+
+What the schema can't say is checked where the records meet the kernel
+(course step 4), as for the offices' records: that an identity's `birth`
+is a birth record of the same individual and name; that a birth record's
+`mind` is a mind record of the one born, and its `world` is a world; and
+that a mind record's issuer is the project's key for mind records,
+published at course step 3. Until then, any key can sign a mind record
+naming itself as issuer; it holds as a record, but nothing honours it.
 
 Every time in these records must be a real one (a grant's always had to
 be). Shared vectors (`vectors/formats/records-v1.json`): 6 more records
-that hold, and 21 more that must be refused, among them an identity
+that hold, and 23 more that must be refused, among them an identity
 whose sealing key is of small order, a birth record on 30 February, a
 mind record whose image is named by a tag, and one whose engines are out
 of order.
