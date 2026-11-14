@@ -39,6 +39,18 @@
   "a parallel chemistry world": {
    "secretKeyMultibase": "z3u2i4LerbvjRJFSdjs7LDaAPoS8VGADa6sLCo5bdAD81S3D",
    "didKey": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc"
+  },
+  "the code role": {
+   "secretKeyMultibase": "z3u2XMnsvGo2DAAYuqEpo2CXJL2MNTozXdcDiRoVqKnmmnVK",
+   "didKey": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+  },
+  "the project's templates": {
+   "secretKeyMultibase": "z3u2fKJYFRuqQ9Kr8ZiqvJh9vSWjEU2K543n4hsryUEcfcFF",
+   "didKey": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+  },
+  "the multiverse, renewed": {
+   "secretKeyMultibase": "z3u2VciHyVy2QYmDeEpt4P1pvTsnhAsZrzD49o9fzNe2ufjr",
+   "didKey": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh"
   }
  },
  "created": "2026-11-14T01:00:00Z",
@@ -615,6 +627,200 @@
     }
    },
    "hash": "9da0936f79434602e79496a1fc53d06e44a3d2166b96ebc1a554d42df8b32c85"
+  },
+  {
+   "name": "the first key list, signed by its root",
+   "signer": "the multiverse",
+   "record": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+    "version": 1,
+    "time": "2026-11-14T06:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse",
+      "signing": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs#z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2bW7jhAmZWaWNZhuiWnU4Z1rAT5rFLMEYzDJiVfmRMBG8pLMQeniTedMD7LDn5EY2pUsYzEu1m8wdWnBk11r3heg"
+    }
+   },
+   "hash": "653a1ba9657b36a45f51335f0fa52f6c9ff20f41381cb28f79fb3ba773e386a7"
+  },
+  {
+   "name": "a key list in which the root names a new root",
+   "signer": "the multiverse",
+   "record": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+    "version": 2,
+    "time": "2026-11-14T07:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse, renewed",
+      "signing": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     }
+    ],
+    "previous": "653a1ba9657b36a45f51335f0fa52f6c9ff20f41381cb28f79fb3ba773e386a7",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs#z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z65wGD8WGDJ5AcTbYA9TLywAiAQu897bx4bSNrBggXq6r1KpMfQjpNUTys9rSVpTbW55dAaCPFakMAsr5xKtXyomT"
+    }
+   },
+   "hash": "75e7f42b6ae9c64961426aafbda75f62f27457eff9261a338fd59fa47b9b1be4"
+  },
+  {
+   "name": "the key list after, signed by the new root",
+   "signer": "the multiverse, renewed",
+   "record": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh",
+    "version": 3,
+    "time": "2026-11-14T08:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse, renewed",
+      "signing": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     }
+    ],
+    "previous": "75e7f42b6ae9c64961426aafbda75f62f27457eff9261a338fd59fa47b9b1be4",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh#z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z97kQnoukDCjcaAZga4LdUpAjbM9s7CkDwA3iNceP3rRptuF41Zi8jjy8aSHaXwDX5xbiaZ7FCb76wJj6pNhAPfL"
+    }
+   },
+   "hash": "3e6ac8c06b3d678bd1a97f18dae2d1ba2ded60b8f523f97e730c3ba22325a1e2"
   },
   {
    "name": "a world's birth record, forked from another, with founders",
@@ -2318,6 +2524,581 @@
    }
   },
   {
+   "name": "a key list naming two roots",
+   "record": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+    "version": 1,
+    "time": "2026-11-14T06:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse",
+      "signing": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     },
+     {
+      "role": "root",
+      "name": "an apprentice Keeper",
+      "signing": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs#z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4qsHVCrvC36Buef9CsASbhsFUVUJ64ptfddnALpEsZNmNrVePVzthRM8TZYY7nzopkpUerAqqNANyxgGjdFLW7fY"
+    }
+   }
+  },
+  {
+   "name": "a key list naming no root",
+   "record": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+    "version": 1,
+    "time": "2026-11-14T06:00:00Z",
+    "keys": [
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs#z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z26juPgzSaWq5rz9xHp7nB6JVUZgzELxyovbJapnSuuUHTvGf9nf4hR943jzeuGhBPu7CzZFoLXE41Vjz5EaQydSw"
+    }
+   }
+  },
+  {
+   "name": "a first key list signed by a key that isn't its root",
+   "record": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd",
+    "version": 1,
+    "time": "2026-11-14T06:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse",
+      "signing": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd#z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5TeFnpb8xy2AnSzKoWnx4MHGzrYpgp4tYFx3EAe3sFfs4otrtS3uF5YKv38CLp44SaaDZs38S8uKT5ZuCaoW11WZ"
+    }
+   }
+  },
+  {
+   "name": "a first key list naming a version before it",
+   "record": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+    "version": 1,
+    "time": "2026-11-14T06:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse",
+      "signing": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     }
+    ],
+    "previous": "6b4396f92dd9dc519a360bb01dc74f82f34fe37c462b1b555a5cba0571d5c5dc",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs#z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z24Ym2xTdLc3PSJXNNEETE9w4YFTdodfr9v2rU9F6nne9axkDWLXWj4DefSRs2oyxcrye8tM1iaS19mhCdbFQY2VA"
+    }
+   }
+  },
+  {
+   "name": "a later key list naming no version before it",
+   "record": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+    "version": 2,
+    "time": "2026-11-14T07:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse, renewed",
+      "signing": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs#z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4pu1To2foWXsyXwHPLqu71VEzQcdPzspxkn1yqqzzj7dFNd7WTUQcC3oykzbWyvWy3Xgo8men8t5fLutGvVZYpUo"
+    }
+   }
+  },
+  {
+   "name": "a key list giving one key two roles",
+   "record": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+    "version": 1,
+    "time": "2026-11-14T06:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse",
+      "signing": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     },
+     {
+      "role": "code",
+      "name": "a second code role",
+      "signing": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs#z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4fgnvmTmL1n5WRu9Yja1f7f3A88EfPNHoASvg3KHqBHcoKHLifZjQu8Xrv5jPPveyXX5PeXwpQP4AVBTPv43LYx2"
+    }
+   }
+  },
+  {
+   "name": "a key list naming one holder twice",
+   "record": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+    "version": 1,
+    "time": "2026-11-14T06:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse",
+      "signing": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "sealing": "z6LSdTpTVhzy4JWrzGcCKkjTMk2xzbbK6YGjHwpAeFwQbBLs"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs#z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4mMPqhbEtSEydcudvLK8SrjAENazFF44YK5B9TEN8iYjNsamMyJHa3Y8tEVaNscgAjVK86vayWhrtweZvThtCH4x"
+    }
+   }
+  },
+  {
+   "name": "a key list with a sealing key of small order",
+   "record": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+    "version": 1,
+    "time": "2026-11-14T06:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse",
+      "signing": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSbgBAXJos6Tik6PNmXeWxKbDUr9Y7hcB9syigVTeXiNmm"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs#z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zQt2dPsVyEGm4yh6CCcqF5KVt7CuDHnqnDK2DfZwj6YmA3eQrRdgiiysgKhy78k5R1T1xfTmiXCfsZSyKvz1xB1n"
+    }
+   }
+  },
+  {
+   "name": "a key list with a role no one defined",
+   "record": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+    "version": 1,
+    "time": "2026-11-14T06:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse",
+      "signing": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     },
+     {
+      "role": "king",
+      "name": "an apprentice Keeper",
+      "signing": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs#z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2D99UtN6qYnBsNBAugFXpKZGBx1woJCXeuqK1rhDR38wKAnjxQm99G7Rxq7c1uzSh7t4zR3LKGFyPyqr1wT432H5"
+    }
+   }
+  },
+  {
    "name": "a template signed by a world, not the project",
    "record": {
     "format": "open-worlds/template/v1",
@@ -3334,6 +4115,398 @@
      "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
      "proofPurpose": "assertionMethod",
      "proofValue": "z22S29G3zpJaRbvHEPeoPqZSBmVDkEhbJzX77cQW3vBwmoTWKjkdPwD1czRQZAwGXHPMHRJzf1DYoS9VmzHqMLsZ9"
+    }
+   },
+   "holds": false
+  }
+ ],
+ "keyListChains": [
+  {
+   "name": "the old root names a new root",
+   "previous": "the first key list, signed by its root",
+   "keyList": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+    "version": 2,
+    "time": "2026-11-14T07:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse, renewed",
+      "signing": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     }
+    ],
+    "previous": "653a1ba9657b36a45f51335f0fa52f6c9ff20f41381cb28f79fb3ba773e386a7",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs#z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z65wGD8WGDJ5AcTbYA9TLywAiAQu897bx4bSNrBggXq6r1KpMfQjpNUTys9rSVpTbW55dAaCPFakMAsr5xKtXyomT"
+    }
+   },
+   "holds": true
+  },
+  {
+   "name": "the new root signs the version after",
+   "previous": "a key list in which the root names a new root",
+   "keyList": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh",
+    "version": 3,
+    "time": "2026-11-14T08:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse, renewed",
+      "signing": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     }
+    ],
+    "previous": "75e7f42b6ae9c64961426aafbda75f62f27457eff9261a338fd59fa47b9b1be4",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh#z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z97kQnoukDCjcaAZga4LdUpAjbM9s7CkDwA3iNceP3rRptuF41Zi8jjy8aSHaXwDX5xbiaZ7FCb76wJj6pNhAPfL"
+    }
+   },
+   "holds": true
+  },
+  {
+   "name": "a version that skips one",
+   "previous": "the first key list, signed by its root",
+   "keyList": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh",
+    "version": 3,
+    "time": "2026-11-14T08:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse, renewed",
+      "signing": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     }
+    ],
+    "previous": "75e7f42b6ae9c64961426aafbda75f62f27457eff9261a338fd59fa47b9b1be4",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh#z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z97kQnoukDCjcaAZga4LdUpAjbM9s7CkDwA3iNceP3rRptuF41Zi8jjy8aSHaXwDX5xbiaZ7FCb76wJj6pNhAPfL"
+    }
+   },
+   "holds": false
+  },
+  {
+   "name": "a version signed by a key that isn't the root before it",
+   "previous": "the first key list, signed by its root",
+   "keyList": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd",
+    "version": 2,
+    "time": "2026-11-14T07:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse, renewed",
+      "signing": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     }
+    ],
+    "previous": "653a1ba9657b36a45f51335f0fa52f6c9ff20f41381cb28f79fb3ba773e386a7",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd#z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5V1iKQDnGeXbaJPoninH6uM8QqCTejSCNAKVQDvonJeBBTkgyCUG6j2jKB5aU99nerTV2Ef4HncABJgyNbZSxLF2"
+    }
+   },
+   "holds": false
+  },
+  {
+   "name": "after a new root is named, a version still signed by the old",
+   "previous": "a key list in which the root names a new root",
+   "keyList": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+    "version": 3,
+    "time": "2026-11-14T08:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse, renewed",
+      "signing": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     }
+    ],
+    "previous": "75e7f42b6ae9c64961426aafbda75f62f27457eff9261a338fd59fa47b9b1be4",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs#z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zpbChJr8zFTHzUuS53drmDXPjbr6WmEonpqGSejDNNYxLBWpvC2gXTB8TAxyzjptVCNv5WvAypGJDjCkg8A8vn5w"
+    }
+   },
+   "holds": false
+  },
+  {
+   "name": "a version naming another version before it",
+   "previous": "the first key list, signed by its root",
+   "keyList": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+    "version": 2,
+    "time": "2026-11-14T07:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse, renewed",
+      "signing": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     }
+    ],
+    "previous": "bdc29e70cdfaa5df77c2f2d63ddda21ffa90ca603803edb9d73c82edb622f7b5",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs#z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5q3bq6MUp3DCnhq83PG5Cw3o4DNTqkTSrqRgLhqaTg9sQHfVq41hN1HYsdm6PNj3HJn8Vfyit1aLYEAcS35NP3ed"
     }
    },
    "holds": false

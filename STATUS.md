@@ -881,21 +881,29 @@ it was wrong. Questions of what the project is for stay with the founder.
   records and for templates; ADMIN; the Ur-world's signing and sealing
   keys; ALICE's and BOB's signing and sealing keys, the sealing key also
   opening their sealed self under its own label); a key list naming them,
-  signed by the root and published here, versioned, a change of root
-  signed by the old root too; the root signs nothing else; the private
-  halves as plain files in the private repository; nothing private in
-  this repository, kept so by the tool, a test, and GitHub's push
-  protection once the founder turns it on; ALICE's and BOB's identity,
-  birth and mind records at their birth (step 9). *Why:* TUF's roles
-  and its two-signed root, and the DNSSEC root that signs only keys,
-  are the established way to limit what one stolen key can do; a
-  passphrase for the private halves would have to live where the
-  software reads it, so it would add nothing. *Revisit if:* anyone but
-  the project holds a key (then thresholds), or a private half is ever
-  found outside the private repository (then that key is replaced at
-  once, by a new key list).
+  signed by the root and published here, versioned, each version signed by
+  the root of the one before, so a new root is named by the old one and
+  signs the version after; the root signs nothing else; the private halves
+  as plain files in the private repository; nothing private in this
+  repository, kept so by the tool, a test, and GitHub's push protection
+  once the founder turns it on; ALICE's and BOB's identity, birth and mind
+  records at their birth (step 9). *Why:* TUF's roles and its two-signed
+  root, and the DNSSEC root that signs only keys, are the established way
+  to limit what one stolen key can do; a passphrase for the private halves
+  would have to live where the software reads it, so it would add nothing.
+  *Revisit if:* anyone but the project holds a key (then thresholds), or a
+  private half is ever found outside the private repository (then that key
+  is replaced at once, by a new key list).
 
 ## Log
+
+- 2026-11-14 Claude: course step 3, part two: the key list
+  (`open-worlds/key-list/v1`) in records-v1, in Python and Rust, with
+  vectors (3 that hold, 9 refused, 6 pairs of versions); a test that no
+  private key is in this repository but the vectors' test keys; and
+  the tool that makes the keys (`python3 -m formats.make_keys`), which
+  refuses this repository and any checkout of it, never writes over a
+  key and prints no secret.
 
 - 2026-11-14 Claude: course step 3, part one: looked first at TUF, the
   DNSSEC root's ceremonies, GitHub's guidance on secrets in Git, SOPS and

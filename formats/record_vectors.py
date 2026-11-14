@@ -25,7 +25,9 @@ FILE = (Path(__file__).resolve().parent.parent
 CREATED = "2026-11-14T01:00:00Z"
 PARTIES = ["ALICE", "BOB", "the Ur-world", "the Ur-world's Keeper",
            "an apprentice Keeper", "ADMIN", "the multiverse", "the project",
-           "a chemistry world", "a parallel chemistry world"]
+           "a chemistry world", "a parallel chemistry world",
+           "the code role", "the project's templates",
+           "the multiverse, renewed"]
 
 
 def _secret(name: str) -> bytes:
@@ -122,6 +124,54 @@ TEMPLATE: Dict[str, Any] = {
 }
 
 
+def _key_entry(role: str, name: str, sealing: bool = False
+               ) -> Dict[str, Any]:
+    entry = {"role": role, "name": name, "signing": _did(name)}
+    if sealing:
+        entry["sealing"] = _sealing_key(name)
+    return entry
+
+
+#: The roles of docs/research/KEYS.md, held by the vectors' test parties.
+KEY_ENTRIES = [
+    ("root", "the multiverse", False),
+    ("code", "the code role", False),
+    ("mindRecords", "the project", False),
+    ("templates", "the project's templates", False),
+    ("admin", "ADMIN", False),
+    ("world", "the Ur-world", True),
+    ("individual", "ALICE", True),
+    ("individual", "BOB", True),
+]
+
+
+def _key_list(version: int, by: str, root: str,
+              previous: Any = None) -> Dict[str, Any]:
+    keys = [_key_entry(role, root if role == "root" else name, sealing)
+            for role, name, sealing in KEY_ENTRIES]
+    record = {"format": "open-worlds/key-list/v1", "issuer": _did(by),
+              "version": version, "time": f"2026-11-14T0{5 + version}:00:00Z",
+              "keys": keys}
+    if previous is not None:
+        record["previous"] = records.record_hash(previous)
+    return _signed(record, by)
+
+
+def _key_lists() -> List[tuple]:
+    """The first key list; the next, in which the old root names a new
+    one; and the one after, signed by the new root."""
+    first = _key_list(1, "the multiverse", "the multiverse")
+    handover = _key_list(2, "the multiverse", "the multiverse, renewed",
+                         first)
+    after = _key_list(3, "the multiverse, renewed",
+                      "the multiverse, renewed", handover)
+    return [
+        ("the first key list, signed by its root", first),
+        ("a key list in which the root names a new root", handover),
+        ("the key list after, signed by the new root", after),
+    ]
+
+
 def _who() -> List[tuple]:
     """The records of who an individual and a world are."""
     mind = _signed({
@@ -196,6 +246,7 @@ def _who() -> List[tuple]:
         ("an identity, binding a sealing key to its did:key", identity),
         ("a world's birth record, made by the project", ur_world),
         ("a template for chemistry worlds, with its dials", template),
+        *_key_lists(),
         ("a world's birth record, forked from another, with founders",
          parallel),
     ]
@@ -334,6 +385,80 @@ def _valid() -> List[Dict[str, Any]]:
 def _signer_name(record: Dict[str, Any]) -> str:
     who = records.signer_field(record)
     return next(p for p in PARTIES if _did(p) == who)
+
+
+def _refused_key_lists(by: Dict[str, Any]) -> List[tuple]:
+    first = by["the first key list, signed by its root"]
+    later = by["a key list in which the root names a new root"]
+    keys = first["keys"]
+
+    def changed(r: Dict[str, Any], signer: str, **fields: Any):
+        fields = {k: v for k, v in {**r, **fields}.items()
+                  if k != "proof" and v is not None}
+        return proof.sign(fields, _secret(signer), CREATED)
+
+    alice = next(e for e in keys if e["name"] == "ALICE")
+    return [
+        ("a key list naming two roots", changed(
+            first, "the multiverse",
+            keys=[*keys, _key_entry("root", "an apprentice Keeper")])),
+        ("a key list naming no root", changed(
+            first, "the multiverse",
+            keys=[e for e in keys if e["role"] != "root"])),
+        ("a first key list signed by a key that isn't its root", changed(
+            first, "the code role", issuer=_did("the code role"))),
+        ("a first key list naming a version before it", changed(
+            first, "the multiverse", previous=_h("a version before"))),
+        ("a later key list naming no version before it", changed(
+            later, "the multiverse", previous=None)),
+        ("a key list giving one key two roles", changed(
+            first, "the multiverse", keys=[
+                *keys, {"role": "code", "name": "a second code role",
+                        "signing": _did("the multiverse")}])),
+        ("a key list naming one holder twice", changed(
+            first, "the multiverse", keys=[
+                *keys, {**alice, "signing": _did("an apprentice Keeper"),
+                        "sealing": _sealing_key("an apprentice Keeper")}])),
+        ("a key list with a sealing key of small order", changed(
+            first, "the multiverse", keys=[
+                *[e for e in keys if e["name"] != "ALICE"],
+                {**alice, "sealing": sealing_multikey(bytes(32))}])),
+        ("a key list with a role no one defined", changed(
+            first, "the multiverse", keys=[
+                *keys, _key_entry("king", "an apprentice Keeper")])),
+    ]
+
+
+def _key_list_chains(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Key lists, each holding on its own, against the version before:
+    whether each follows it."""
+    by = {v["name"]: v["record"] for v in valid}
+    first = "the first key list, signed by its root"
+    handover = "a key list in which the root names a new root"
+    after = "the key list after, signed by the new root"
+
+    def changed(name: str, signer: str, **fields: Any):
+        r = by[name]
+        fields = {k: v for k, v in {**r, **fields}.items() if k != "proof"}
+        return proof.sign(fields, _secret(signer), CREATED)
+
+    cases = [
+        ("the old root names a new root", first, by[handover], True),
+        ("the new root signs the version after", handover, by[after],
+         True),
+        ("a version that skips one", first, by[after], False),
+        ("a version signed by a key that isn't the root before it", first,
+         changed(handover, "the code role",
+                 issuer=_did("the code role")), False),
+        ("after a new root is named, a version still signed by the old",
+         handover, changed(after, "the multiverse",
+                           issuer=_did("the multiverse")), False),
+        ("a version naming another version before it", first,
+         changed(handover, "the multiverse",
+                 previous=_h("another version")), False),
+    ]
+    return [{"name": n, "previous": p, "keyList": r, "holds": h}
+            for n, p, r, h in cases]
 
 
 def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -513,6 +638,7 @@ def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         ("a mind record whose second engine began with the first",
          resigned(mind, "the project", engines=[
              changed[0], {**changed[1], "from": changed[0]["from"]}])),
+        *_refused_key_lists(by),
         ("a template signed by a world, not the project",
          resigned(template, "a chemistry world")),
         ("a template whose dial's value is beyond its range",
@@ -586,6 +712,7 @@ def vectors() -> Dict[str, Any]:
         "valid": valid,
         "refused": _refused(valid),
         "dials": _dials(valid),
+        "keyListChains": _key_list_chains(valid),
     }
 
 

@@ -1,11 +1,12 @@
 //! The records the offices keep (course step 2): a grant, a decision
 //! record, a suggestion, a rating and a signed log head; an individual's
 //! world-key and journal entry; identity, birth records and the mind
-//! record; and a world's template, as `formats/records.py` checks them,
-//! from the same schema file. A record holds when it fits its kind's
-//! schema, its proof verifies, and it was signed by the one who must sign
-//! that kind. `dial_problems` checks a world's birth record against the
-//! template it names.
+//! record; a world's template; and the project's key list, as
+//! `formats/records.py` checks them, from the same schema file. A record
+//! holds when it fits its kind's schema, its proof verifies, and it was
+//! signed by the one who must sign that kind. `dial_problems` checks a
+//! world's birth record against the template it names, and
+//! `key_list_problems` a key list against the version before it.
 
 use serde_json::{Value, json};
 use sha2::{Digest, Sha256};
@@ -19,7 +20,7 @@ pub const SCHEMA: &str = include_str!("../../../schemas/records-v1.schema.json")
 
 /// Each format, its schema's name in `$defs`, and the path of the field
 /// that names its signer.
-pub const KINDS: [(&str, &str, &[&str]); 12] = [
+pub const KINDS: [(&str, &str, &[&str]); 13] = [
     ("open-worlds/grant/v1", "grant", &["issuer"]),
     ("open-worlds/decision/v1", "decision", &["office", "key"]),
     ("open-worlds/suggestion/v1", "suggestion", &["author"]),
@@ -32,6 +33,7 @@ pub const KINDS: [(&str, &str, &[&str]); 12] = [
     ("open-worlds/world-birth/v1", "worldBirth", &["world"]),
     ("open-worlds/mind/v1", "mind", &["issuer"]),
     ("open-worlds/template/v1", "template", &["issuer"]),
+    ("open-worlds/key-list/v1", "keyList", &["issuer"]),
 ];
 
 fn kind(record: &Value) -> Option<&'static (&'static str, &'static str, &'static [&'static str])> {
@@ -162,19 +164,77 @@ fn time_problems(record: &Value) -> Vec<String> {
 
 /// An identity's sealing key must be one it is safe to seal to
 /// (`crate::seal::check_public`); the schema checks only its shape.
-fn key_problems(record: &Value) -> Vec<String> {
-    if record.get("format").and_then(Value::as_str) != Some("open-worlds/identity/v1") {
-        return Vec::new();
-    }
-    let Some(text) = record.get("sealingKey").and_then(Value::as_str) else {
-        return vec!["$.sealingKey: not a sealing key".into()];
+fn sealing_key_problem(place: &str, value: Option<&Value>) -> Vec<String> {
+    let Some(text) = value.and_then(Value::as_str) else {
+        return vec![format!("{place}: not a sealing key")];
     };
     match crate::multikey::sealing_from_multikey(text)
         .and_then(|key| crate::seal::check_public(&key))
     {
         Ok(()) => Vec::new(),
-        Err(e) => vec![format!("$.sealingKey: {e}")],
+        Err(e) => vec![format!("{place}: {e}")],
     }
+}
+
+/// A sealing key must be one it is safe to seal to, and a key list must
+/// name one root, each key once, and, in its first version, be signed by
+/// that root; the schema checks only shapes.
+fn key_problems(record: &Value) -> Vec<String> {
+    match record.get("format").and_then(Value::as_str) {
+        Some("open-worlds/identity/v1") => {
+            sealing_key_problem("$.sealingKey", record.get("sealingKey"))
+        }
+        Some("open-worlds/key-list/v1") => key_list_entry_problems(record),
+        _ => Vec::new(),
+    }
+}
+
+fn key_list_entry_problems(record: &Value) -> Vec<String> {
+    let entries: &[Value] = record
+        .get("keys")
+        .and_then(Value::as_array)
+        .map(Vec::as_slice)
+        .unwrap_or_default();
+    let mut found = Vec::new();
+    let roots: Vec<&Value> = entries
+        .iter()
+        .filter(|e| e.get("role").and_then(Value::as_str) == Some("root"))
+        .collect();
+    if let [root] = roots.as_slice() {
+        if int(record, "version") == Some(1)
+            && record.get("issuer").and_then(Value::as_str)
+                != root.get("signing").and_then(Value::as_str)
+        {
+            found.push("$.issuer: the first version must be signed by its own root".into());
+        }
+    } else {
+        found.push("$.keys: not exactly one root".into());
+    }
+    let mut seen = std::collections::BTreeSet::new();
+    for (i, e) in entries.iter().enumerate() {
+        let text = |k: &str| e.get(k).and_then(Value::as_str);
+        let named = [
+            Some(format!(
+                "role {} {}",
+                text("role").unwrap_or(""),
+                text("name").unwrap_or("")
+            )),
+            text("signing").map(|s| format!("key {s}")),
+            text("sealing").map(|s| format!("key {s}")),
+        ];
+        for what in named.into_iter().flatten() {
+            if !seen.insert(what) {
+                found.push(format!("$.keys.{i}: a role, name or key named twice"));
+            }
+        }
+        if e.get("sealing").is_some() {
+            found.extend(sealing_key_problem(
+                &format!("$.keys.{i}.sealing"),
+                e.get("sealing"),
+            ));
+        }
+    }
+    found
 }
 
 fn int(value: &Value, key: &str) -> Option<i64> {
@@ -235,6 +295,41 @@ pub fn check(record: &Value) -> Result<Value, String> {
 pub fn record_hash(record: &Value) -> Result<String, String> {
     let digest = Sha256::digest(canonical(record)?);
     Ok(digest.iter().map(|b| format!("{b:02x}")).collect())
+}
+
+/// The did:key of the root a key list names.
+pub fn key_list_root(key_list: &Value) -> Option<&str> {
+    key_list
+        .get("keys")?
+        .as_array()?
+        .iter()
+        .find(|e| e.get("role").and_then(Value::as_str) == Some("root"))?
+        .get("signing")?
+        .as_str()
+}
+
+/// Where a key list fails to follow the version before it, or an empty
+/// list: it must name that version by hash, be the next number, and be
+/// signed by that version's root. Both lists must hold.
+pub fn key_list_problems(new: &Value, previous: &Value) -> Result<Vec<String>, String> {
+    for record in [new, previous] {
+        check(record)?;
+        if record.get("format").and_then(Value::as_str) != Some("open-worlds/key-list/v1") {
+            return Err("$.format: not open-worlds/key-list/v1".into());
+        }
+    }
+    let mut found = Vec::new();
+    if new.get("previous").and_then(Value::as_str) != Some(record_hash(previous)?.as_str()) {
+        found.push("$.previous: names another version".into());
+    }
+    let next = int(previous, "version").and_then(|v| v.checked_add(1));
+    if int(new, "version") != next {
+        found.push("$.version: not the next version".into());
+    }
+    if new.get("issuer").and_then(Value::as_str) != key_list_root(previous) {
+        found.push("$.issuer: not the root of the version before".into());
+    }
+    Ok(found)
 }
 
 /// Where a world's birth record and the template it names disagree, or an

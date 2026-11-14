@@ -9,8 +9,10 @@ everywhere, and signed so that standard tools can check them.
 - `records`: the records the offices keep (grant, decision, suggestion,
   rating, signed log head), the sealed kinds (world-key, journal entry),
   who an individual and a world are (identity, birth records, mind
-  record), and a world's template with its dials, checked against
-  schemas/records-v1.schema.json.
+  record), a world's template with its dials, and the project's key
+  list, checked against schemas/records-v1.schema.json.
+- `make_keys`: the tool that makes the project's keys (course step 3),
+  keeping the private halves out of this repository.
 - `seal`: a message only one key can open, with HPKE (RFC 9180) and a
   label naming its purpose.
 - `sealed`: world-keys and journal entries, signed and sealed to the one

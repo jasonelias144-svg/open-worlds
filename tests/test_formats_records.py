@@ -179,5 +179,35 @@ class TestDials(unittest.TestCase):
              "seed", "volume", "soil", "own_reactions"})
 
 
+
+class TestKeyLists(unittest.TestCase):
+
+    def setUp(self):
+        self.by = {c["name"]: c["record"] for c in VECTORS["valid"]}
+
+    def test_each_version_follows_the_one_before_or_not_as_stated(self):
+        for case in VECTORS["keyListChains"]:
+            with self.subTest(case["name"]):
+                found = records.key_list_problems(
+                    case["keyList"], self.by[case["previous"]])
+                self.assertEqual(not found, case["holds"], found)
+
+    def test_the_root_a_key_list_names(self):
+        first = self.by["the first key list, signed by its root"]
+        handover = self.by["a key list in which the root names a new root"]
+        self.assertEqual(records.key_list_root(first), first["issuer"])
+        self.assertNotEqual(records.key_list_root(handover),
+                            handover["issuer"])
+
+    def test_both_lists_must_hold_and_be_key_lists(self):
+        first = self.by["the first key list, signed by its root"]
+        handover = self.by["a key list in which the root names a new root"]
+        template = self.by["a template for chemistry worlds, with its dials"]
+        with self.assertRaises(records.RecordError):
+            records.key_list_problems({**handover, "version": 9}, first)
+        with self.assertRaises(records.RecordError):
+            records.key_list_problems(handover, template)
+
+
 if __name__ == "__main__":
     unittest.main()

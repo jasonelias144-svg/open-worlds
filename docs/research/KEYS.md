@@ -84,8 +84,10 @@ root does.
 2. **A key list, signed by the root,** names each role's keys, as TUF's
    root metadata does: the one place that says which key is the
    project's for what. It is public, in this repository, and versioned:
-   each version names the one before by hash, and a version that changes
-   the root key is signed by the old root too, by a succession. One key
+   each version names the one before by hash and is signed by that
+   version's root, so a new root is named by the old one, in a version
+   the old root signs, and signs the version after itself (part two,
+   below). One key
    to a role and no thresholds while the project has one keyholder;
    thresholds when others hold keys. It is a new kind of record,
    `open-worlds/key-list/v1`, in records-v1, with vectors in both
@@ -138,6 +140,49 @@ root does.
 4. **Leaving and coming back** in the Ur-world: a mind at its doorway
    signs as its key, so whoever returns is known as the same individual,
    as the Python worlds already do.
+
+## As built, part two
+
+- **The key list** (`open-worlds/key-list/v1`, schemas/records-v1.schema.json):
+  `issuer`, `version` (from 1), `previous` (the version before, by hash;
+  absent from version 1 and required after), `time`, and `keys`: each a
+  `role` (root, code, mindRecords, templates, admin, world, individual),
+  a `name`, a `signing` did:key and, for a holder things are sealed to, a
+  `sealing` key. Beyond the schema, in Python (`formats/records.py`) and
+  Rust (`rust/formats`): exactly one root; each role and name, and each
+  key, named once; every sealing key safe to seal to; and version 1
+  signed by its own root. `key_list_problems(new, previous)` checks that
+  a version follows the one before: its hash, the next number, and
+  signed by the root that one names. So a change of root takes two
+  versions: the old root signs one naming the new root, and the new root
+  signs the next. Every record keeps one proof by one key; a new root's
+  own key is proven when it signs the version after.
+- **Shared vectors** (`vectors/formats/records-v1.json`): three key lists
+  that hold (the first; one in which the root names a new root; the one
+  after, signed by the new root), nine refused, and six pairs of a
+  version and the one before it, two that follow and four that don't.
+- **No private key here** (`tests/test_no_private_keys.py`): every
+  tracked file is scanned for Multikey secrets and PEM private-key
+  blocks, and each must be one of the vectors' test keys, worked out
+  again from its seed, or the W3C specification's example. A key made on
+  the spot and planted in README.md, or among the vectors' keys, is
+  caught.
+- **The tool** (`python3 -m formats.make_keys --private PATH --key-list
+  PATH`, `formats/make_keys.py`): makes a key for each role from the
+  operating system's randomness; writes each holder's private halves to
+  `keys/<holder>.json` in the private checkout, readable by its owner
+  only, never over a key that is there; signs the first key list with
+  the new root; checks that the halves kept match the list; and prints
+  only public keys. It refuses any place inside this repository's
+  working tree, and any checkout of this repository wherever it is (a
+  history sharing its first commit). Tested on throwaway directories,
+  with each guard checked by removing it.
+
+A key list read from anywhere but this repository's history could be an
+old version, or one of two versions the root signed with the same
+number; TUF's snapshot and timestamp roles exist for that. Here the
+repository's history is the one sequence, and a reader takes the latest
+version from it.
 
 ## Not checked
 
