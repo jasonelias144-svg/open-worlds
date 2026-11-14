@@ -32,7 +32,8 @@ read it:
    checked against.
 3. **Who an individual is,** in the design pages:
    [MINDS.md](MINDS.md) (identity, mind record, a sealed self no one else
-   reads, the sheet, avatars, and where everything lives);
+   reads, unless the founder opens it under the "break glass", in the
+   open; the sheet, avatars, and where everything lives);
    [WORLD-KEY.md](WORLD-KEY.md) (the tour, the hunt, and the world-key,
    a signed right to found a world); [ADMIN.md](ADMIN.md) (ADMIN, the
    Keeper of the multiverse: what it must preserve, how it learns, the

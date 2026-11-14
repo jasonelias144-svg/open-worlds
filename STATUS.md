@@ -893,21 +893,22 @@ it was wrong. Questions of what the project is for stay with the founder.
   taught is written into steps 3, 4, 5, 7 and 12; four formats moved to
   the steps that build what they describe (Decided by the technical
   lead). The look back, at each decision's "revisit if":
-  - held, and tested tonight (corrected on #49's review): signed records
-    the standard way (a founding needing several signers was met with one
-    proof per record, not a proof set); the records for the offices (the
-    schema both languages read agreed on every verdict over 46,000 records
-    of the kinds part five added, which the independent review of #46
-    tested; the gaps found in the schema during step 2, #46's engine order
-    and file paths and #47's dials set to their template's own value, were
-    closed before merging; the one left, no bound on a record's size, goes
-    to step 4); sealing as built (no disagreement between Python and Rust
-    on 118,874 cases in #42's review, or on 19,149 envelopes in #43's; its
-    label list had grown to two, and the entry now says so); the sealed
-    records (the identity binds the sealing key to the did:key the
-    envelope names, so the envelope needs nothing more, while each did:key
-    has one sealing key: successions, at step 3, are the identity
-    decision's "revisit if");
+  - held, and tested tonight (corrected on the reviews of #49 and #50):
+    signed records the standard way (a founding needing several signers
+    was met with one proof per record, not a proof set); the records for
+    the offices (the schema both languages read agreed on every verdict
+    over 46,000 records of the kinds part five added, which the
+    independent review of #46 tested; the gaps found during step 2, #46's
+    engine order (its self-review) and its file paths (its independent
+    review), were closed before merging, and #47 refused a dial set to its
+    template's own value from the start; the one left, no bound on a
+    record's size, goes to step 4); sealing as built (no disagreement
+    between Python and Rust on 118,874 cases in #42's review; its label
+    list had grown to two, and the entry now says so); the sealed records
+    (no disagreement on 19,149 envelopes in #43's review; the identity
+    binds the sealing key to the did:key the envelope names, so the
+    envelope needs nothing more, while each did:key has one sealing key:
+    successions, at step 3, are the identity decision's "revisit if");
   - not yet testable, since what they govern isn't built: who an
     individual and a world are (revised in review before it merged: a
     world signs its own birth record, and its founding is confirmed by
