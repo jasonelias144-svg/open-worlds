@@ -756,10 +756,12 @@ it was wrong. Questions of what the project is for stay with the founder.
   for what silence can't consent to. Written into AGENTS.md and STATUS;
   under it, nineteen open questions decided on their recommendations and
   marked so in ADMIN.md, MINDS.md, MULTIVERSE.md, WORLD-KEY.md,
-  CHEMISTRY.md, COURSE.md and PARALLEL-WORLDS.md. Seven stay open: the
-  charter's words, a grid or voxel world, where models run and the
-  budget, who designates the roles, the method of learning, ADMIN's
-  running costs, and the charter's section 4 note.
+  CHEMISTRY.md, COURSE.md and PARALLEL-WORLDS.md. Two more, put to the
+  founder later that day, decided the same way: the "break glass" covers
+  private messages, and a grid world. Six stay open: the charter's
+  words, where models run and the budget, who designates the roles, the
+  method of learning, ADMIN's running costs, and the charter's section 4
+  note.
 - 2026-11-14 Claude: the founder's decisions of the evening written in.
   The technical lead's eight recommendations, agreed: a private
   repository for keys, private speech between individuals, the "break
