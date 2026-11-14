@@ -152,7 +152,13 @@ kind.
   through the person, not between worlds behind their back; steering
   always branches, templates declare their dials, and every steer is
   recorded; and branches merge rules, never states, by the world's
-  consent, forward only.
+  consent, forward only. Then, on learning from GitHub: "We can base much
+  of the logic on how GitHub works, since it is very similar to the
+  multiverse idea already." "Either way, let’s learn what we can, it is
+  rich with ideas." Decided under the rule: a world's birth record names
+  what it was forked from (parent, tick, log hash); and where GitHub
+  allows what the floor forbids (rewriting or deleting history), the
+  floor holds (docs/VISION.md, "Learning from GitHub").
 
 - 2026-11-14, founder, a standing rule: "“Take your recommendation” is
   always the default. So if I have not answered a question or settled
