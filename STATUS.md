@@ -94,9 +94,10 @@ kind.
   under "Challenges, not tests", nothing is held back. Private speech
   between individuals, decided 2026-11-14, is another: what two say to
   each other is sealed between them, though that a message passed stays
-  in the record. A private line with a Keeper, if the founder chooses
-  one, would be another still. (noted 2026-11-13; updated the same day
-  and 2026-11-14)
+  in the record, and the project opens them only under the founder's
+  "break glass", in the open. The line with a Keeper was decided public,
+  so it is no exception. (noted 2026-11-13; updated the same day and
+  2026-11-14)
 
 ## Noticed
 
@@ -128,6 +129,50 @@ kind.
     total, never per author, so that marking in good faith costs nothing.
 
 ## Decided
+
+- 2026-11-14, founder, on the technical lead's admin rights: "You should
+  have admin rights across every repository. I count on that very
+  fact." The technical lead uses them for the code: merging, branches,
+  CI, and settings that serve it. Brought to the founder first, by the
+  standing rule's exceptions: making a repository public or private,
+  deleting one or rewriting its history, transferring one, or adding
+  outside people to it. Then: "And now keep track of this decision,
+  because it is how I would hope that ADMIN would behave as well. And
+  that is the whole point." (docs/ADMIN.md, "How it holds its powers";
+  AGENTS.md.) Checked the same night: the session holds admin on all ten
+  repositories attached to it, the new private one among them, which
+  GitHub reports as private.
+
+- 2026-11-14, founder, on what it is for: "I went from idea to question to
+  discussion to simulation. Generating a world to test the idea has now
+  become a natural thought." "That was an accidental implementation of my
+  goal, which to create a space where such a quick movement is
+  possible." With the founder's visions the same evening, each in the
+  founder's words in docs/VISION.md: question worlds, beginning with a
+  neural world for the founder's question about fields and short-term
+  memory; an app whose AI chat creates a world from a template to test
+  an idea and returns with the data; one AI tending many primary worlds
+  from outside, and a hierarchy of worlds ("This makes a much cleaner
+  architecture"); a person across worlds; riding along, and steering
+  ("Branch on steer makes perfect sense to me"); and branches that merge.
+  Decided under the standing rule, on the technical lead's
+  recommendations as put: the prediction is written before a question
+  world runs; the plug-in speaks MCP and runs on one's own computer
+  first; users choose settings, never code; the first user is the
+  founder, then curious people and students; ADMIN guards the floor
+  directly at every level of the hierarchy, which stays shallow at
+  first; the garden's Keeper is scripted first; information flows
+  through the person, not between worlds behind their back; steering a
+  primary world always branches (a world with people in it is never
+  copied so), templates declare their dials, and every steer is
+  recorded; and branches merge rules, never states, by the world's
+  consent, forward only. Then, on learning from GitHub: "We can base much
+  of the logic on how GitHub works, since it is very similar to the
+  multiverse idea already." "Either way, let’s learn what we can, it is
+  rich with ideas." Decided under the rule: a world's birth record names
+  what it was forked from (parent, tick, log hash); and where GitHub
+  allows what the floor forbids (rewriting or deleting history), the
+  floor holds (docs/VISION.md, "Learning from GitHub").
 
 - 2026-11-14, founder, a standing rule: "“Take your recommendation” is
   always the default. So if I have not answered a question or settled
@@ -751,6 +796,14 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-14 Claude: the founder's visions of the evening, in the
+  founder's words, in a new page, docs/VISION.md, each mapped to the
+  course: question worlds and the neural world, the app and its plug-in,
+  a hierarchy of worlds, a person across worlds, riding along and
+  steering by branching, and branches that merge. PARALLEL-WORLDS.md
+  and COURSE.md's waiting list point to it; the charter section 4 note
+  in STATUS updated (the Keeper line is public; private messages fall
+  under the "break glass").
 - 2026-11-14 Claude: the founder's standing rule: an unanswered question
   is decided on the technical lead's recommendation, once put, except
   for what silence can't consent to. Written into AGENTS.md and STATUS;

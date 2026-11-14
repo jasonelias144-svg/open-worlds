@@ -58,6 +58,10 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
   keeps each world, and ADMIN, the Keeper of the multiverse.
 - [docs/REASONS.md](docs/REASONS.md): how a decision that affects others
   goes on record with its reasons, and what code and Lean check of them.
+- [docs/VISION.md](docs/VISION.md): what it is for, in the founder's
+  words: question worlds, an app whose chat can make a world to test an
+  idea, a hierarchy of worlds, a person across worlds, riding along and
+  steering by branching, and branches that merge.
 - [docs/PARALLEL-WORLDS.md](docs/PARALLEL-WORLDS.md): parallel worlds
   from one template, isolated by default, and a garden to walk among
   them, looking in or stepping inside.
