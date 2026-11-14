@@ -182,7 +182,10 @@ signing, and the person's list of identities should be a chain.
 
 **Open:** what the link record holds; how a person shows a link to one
 world and not another; how a lesson learned in one world becomes
-available in another without the worlds talking.
+available in another without the worlds talking. Since step 3, every
+arrival names the key that signed it in a world's public log, so
+presences stay unlinked only if each has a key of its own
+([COURSE.md](COURSE.md), step 3a).
 
 **A possible implementation:** two signatures for each link, each in a
 record of its own, since every record here has one signer: the person
@@ -501,8 +504,6 @@ step 11 (COLLABORATING.md, "Held back").
 - **When freedoms meet:** not hearing a speaker, and agreements others
   can accept or refuse ([FREEDOMS.md](FREEDOMS.md)).
 - **Generator 2:** land decided when first seen.
-- **A lost or leaked key:** guardians named in advance, who can sign
-  over to a new key.
 
 ## Kept current
 

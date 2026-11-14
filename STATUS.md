@@ -21,18 +21,18 @@ respect one another's freedom, with full transparency and exit at any time
   hunt for the world-key), with the research behind them. Its second part,
   [docs/ADMIN.md](docs/ADMIN.md): what the multiverse must preserve, who
   keeps each world, and ADMIN, the Keeper of the multiverse, with the
-  Keepers' training and the round table. Steps 1 and 2, the design
-  pages and formats that last, are done (2026-11-14): every record
-  signed the standard way, one schema read by Python and Rust, sealing,
-  and who an individual and a world are
-  ([docs/research/FORMATS.md](docs/research/FORMATS.md)). Step 3, keys
-  and identities, is built (docs/research/KEYS.md): the real keys were
-  made on 2026-11-14, the private halves in the project's private
-  repository and the key list in keys/key-list.json; in the Ur-world,
-  whoever enters signs an arrival, a name stays the key's that first
-  used it, and a world signs its log's heads (part four, in review).
-  Next: close step 3 (the course rechecked, a step added), then step 3a,
-  persons.
+  Keepers' training and the round table. Steps 1 to 3 are done
+  (2026-11-14). Formats that last: every record signed the standard
+  way, one schema read by Python and Rust, sealing, and who an
+  individual and a world are
+  ([docs/research/FORMATS.md](docs/research/FORMATS.md)). Keys and
+  identities (docs/research/KEYS.md): the real keys were made on
+  2026-11-14, the private halves in the project's private repository
+  and the key list in keys/key-list.json; in the Ur-world, whoever
+  enters signs an arrival, a name stays the key's that first used it,
+  and a world signs its log's heads. The course was rechecked after
+  step 3 and gained step 8a, a lost or leaked key, before ALICE's and
+  BOB's birth. Next: step 3a, persons.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
   (#29), and experiment 001, the first unscripted minds
   ([results](experiments/001-first-words/RESULTS.md), #30). The first
@@ -45,13 +45,14 @@ respect one another's freedom, with full transparency and exit at any time
 
 The course, twelve steps ahead and rolling: [docs/COURSE.md](docs/COURSE.md).
 After each step is done, the rest are rechecked and one new step is added.
-In short: the design pages; formats that last; keys and identities, for
-ALICE and BOB and for the world; the kernel as entities and components;
-things, skills and the sheet; the first room, end to end; memory; experiment
-002, the audition; ALICE's and BOB's first life; back to DeepSeek; the hunt
-and the world-key; founding worlds, and doors. Waiting behind them: a window
-onto the worlds, generator 2, storytellers, the gate and districts,
-governance, a lost or leaked key, and the first course's steps still wanted.
+In short: persons; the kernel as entities and components; parallel worlds
+and the garden; things, skills and the sheet; the first room, end to end;
+memory; experiment 002, the audition; a lost or leaked key; ALICE's and
+BOB's first life; back to DeepSeek; the hunt and the world-key; founding
+worlds, and doors. Waiting behind them: fractal worlds, the Commons, the
+founder's visions, a window onto the worlds, generator 2, storytellers,
+the gate and districts, governance, and the first course's steps still
+wanted.
 
 Also kept from earlier plans, outside the course for now: side cycles
 suggested by Cycle 0 (walkers with different speeds, to test "respect
@@ -975,6 +976,42 @@ it was wrong. Questions of what the project is for stay with the founder.
   *Revisit if:* an individual must enter the Ur-world before step 9.
 
 ## Log
+
+- 2026-11-14 Claude: course step 3 done and moved to "Done" in
+  docs/COURSE.md, with its pull requests (#52, #53, #56 to #59). The
+  course rechecked: one step came in from the waiting list, step 8a
+  (keeping keys safely, part three: a lost or leaked key), placed before
+  step 9 rather than at the end, since decision 18 makes it a
+  precondition of ALICE's and BOB's first arrival; what the keys taught
+  is written into steps 3a (a presence of its own key, to stay
+  unlinked), 4 (a world continues from its log, names included), 4a
+  (parallel worlds sign their heads), 9 (its preconditions now step 8a)
+  and 12 (a door's crossing is an arrival). TOPICS.md's "a lost or
+  leaked key" moved into the course. The look back, at each decision's
+  "revisit if":
+  - held, and tested by step 3: signed records the standard way (the key
+    list and the arrival are one signer each, with no proof chain); the
+    records for the offices (Python and Rust agree on every key-list and
+    arrival vector, and #59's independent review found no disagreement;
+    the one gap it found, names with line breaks, was in the kernel's own
+    check, not the schema's, and was closed before merging);
+    the four formats moved to later steps (step 3 needed none of them);
+    the keys for step 3 (no key is held by anyone but the project, and
+    no private half has been found outside the private repository: the
+    scan finds none here, and #59's keys are trial keys, public by
+    design);
+  - due at step 8a: who an individual and a world are, whose "revisit
+    if" asks whether the identity must carry successions; step 3 kept
+    them as records of their own (KEYS.md, decision 12), and 8a builds
+    them;
+  - not yet testable, since what they govern isn't built: sealing the
+    world-key, sealing as built and the sealed records (nothing new was
+    sealed at step 3), the round table's consensus, how the table is
+    chosen, a Keeper's self-report, ADMIN's council, ADMIN's learning by
+    written lessons, the admin-key course, and the suggestion ledger;
+    reasons on record is due at step 6;
+  - not yet due: the template (step 4), the chemistry world's records of
+    what was made, and decision 18, just made.
 
 - 2026-11-14 Claude: course step 3, part four, built (KEYS.md, "As built,
   part four"): `open-worlds/arrival/v1` in records-v1, with vectors in
