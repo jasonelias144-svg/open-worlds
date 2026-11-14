@@ -80,7 +80,7 @@ judgment comes last.
 | **1. Exit.** Anyone can leave any world, at any time. | A world founded without a door back; a Keeper or a world's law that holds someone in. | A rule of the kernel, not a policy: `exit` always works (true today, `rust/ur-world`). The workbench refuses to found a world without a door back. No grant exists that can take it away, so no Keeper, and not ADMIN, can. Two powers stand outside grants: the operator's hand, and changes to the kernel itself. Their guard is the repository's rule that every protected freedom has tests, and that weakening one is the founder's decision, not a code decision ([AGENTS.md](../AGENTS.md)). |
 | **2. The record.** What happened stays known. | A log rewritten, cut short, or showing different histories to different readers; a computer lost, a service gone. | Hash-chained logs (true today), which show an entry changed or removed in the middle, but not a log cut short at its end (`rust/world-log` says so). For that: signed heads, which watchers keep and compare with one another, as Certificate Transparency's signed tree heads are, so a log cut short, or showing two histories, is caught. Every world's log signed (course step 3); a multiverse log anyone can watch; everything committed to the repository, nothing kept only on a machine. |
 | **3. Who is who.** No one can be taken for someone else. | A stolen key; a name taken over. | Keys and successions (true today for the Python worlds); a name that has left can't be reused by another; whoever returns proves it with their key. A lost key is an open question for the founder. |
-| **4. The sealed self.** What an individual thinks is their own. | Anyone reading it, a Keeper or ADMIN included; or the project, which holds the keys. | For Keepers and ADMIN: encryption, and no grant that reads it. Against the project, which keeps the keys to sealed selves in its private repository, it is a commitment, not a technical guarantee, until the founder decides between "fully sealed" and a "break glass" ([MINDS.md](MINDS.md), "Who can see what"). |
+| **4. The sealed self.** What an individual thinks is their own. | Anyone reading it, a Keeper or ADMIN included; or the project, which holds the keys. | For Keepers and ADMIN: encryption, and no grant that reads it. Against the project, which keeps the keys to sealed selves in its private repository, it is a rule kept in the open, not a technical guarantee: the founder chose a "break glass" on 2026-11-14, so a sealed self is opened only by the founder's explicit decision, and every opening is public ([MINDS.md](MINDS.md), "Who can see what"). |
 | **5. Voice, information, and change by consent.** Anyone can ask; the charter and the current rules are always readable; rules change only as the charter says. | A request quietly ignored; a rule hidden; a law changed by order, by a Keeper, ADMIN or the project. | Asking is an action, and it is logged. The Ur-world's law is sent to every mind entering through the doorway (true today, its orientation), and every world's law is kept in the repository. No grant lets ADMIN or a Keeper change a world's law or the charter. Rules change as the charter's section 6 is to say (its notes propose: tried on a copy first, adopted by consent; [CHARTER.md](../CHARTER.md)). |
 | **6. Power within bounds.** No one holds power that isn't written down, checked and answerable. | A Keeper or ADMIN gathering powers; Keepers acting together against someone. | Every power ADMIN or a Keeper holds is a narrow, signed grant, logged and revocable. No one judges their own case: an appeal against an act the technical lead's role directed or approved goes straight to the founder. ADMIN's rules are code, changed only by reviewed pull requests; its serious acts are reviewed independently before they take effect; its rulings can be appealed. |
 | **7. Nothing essential is scarce.** No one can be shut out of a path, a world-key or a beginning. | A Keeper blocking a path; the way into the multiverse closed to newcomers. | The world's code refuses a design that touches another's path ([WORLD-KEY.md](WORLD-KEY.md)). The Ur-world stays open to anyone who acts under its law. |
@@ -191,6 +191,9 @@ founder (below).
 - **Reads the suggestion ledger,** an open, one-way channel from anyone
   inside, complaints included, and considers each entry with the code role
   (below, "Suggestions from inside").
+- **Keeps the library of remedies,** the multiverse's memory of what has
+  worked against which problem, and offers them where they fit (below,
+  "A learning immune system").
 - **Decides what code can't,** about offices and the floor: a Keeper
   misusing its office, a case the rules didn't foresee. Disputes between
   individuals are theirs, with the tools every world gives them
@@ -316,8 +319,10 @@ at every level:
   and samples from its model rather than always taking the likeliest
   word: it is made once, stands as made, and can't be replayed. But its
   models are free and pinned, and its inputs and prompts are logged, so
-  anyone can put the same public inputs to fresh runs, each different,
-  and see:
+  anyone can put the same public inputs to fresh runs, each different
+  (the founder agreed on 2026-11-14 that this stands with "Rerunning
+  something should be technically impossible", since no fresh run
+  repeats the decision), and see:
   - whether they reach the same decision. A clear case is decided the
     same way by most runs, by different paths; if they split, it was a
     hard case, and the record says so, as when the council disagrees;
@@ -364,7 +369,7 @@ at every level:
   keep a world, or the multiverse.
 - **Anything told to ADMIN is public.** Suggestions, complaints among
   them, go into the ledger, and everyone is told so at the door. One
-  exception may come, if the founder grants it: an author asking for
+  exception, granted by the founder on 2026-11-14: an author may ask for
   their name to be withheld until their suggestion about a Keeper has an
   outcome (below).
 
@@ -494,10 +499,61 @@ for improvement from a whole new layer."
   beside the plain measures. They measure the office, never an
   individual, and they inform reviews of ADMIN's design; they trigger
   nothing by themselves. Until ADMIN exists, they measure the code role.
+- **Fear of the Keeper silences no one.** The author of a suggestion
+  about a Keeper may ask for their name, and their rating of how it was
+  handled, to be withheld until it has an outcome; each is recorded as
+  withheld, and published with the outcome (the founder, 2026-11-14, on
+  the technical lead's recommendation).
 - **If entries pile up,** the founder hopes ADMIN can find the way
   through, so handling the ledger well is one of its first real
   challenges. A limit on how often one author can add, if one is ever
   needed, is the same for everyone and published.
+
+### A learning immune system
+
+The founder, 2026-11-14: "Allowing the problems to arise and providing
+the tools for solutions is my goal, and seeing new ways to resolve
+problems is the point. There is value in anticipating as many problems as
+possible. But this should lead to a robust enough system that can learn
+from immune systems how to respond to new threats and how to store the
+solutions for future use. That is an immune system that learns to make
+antibodies for a given potential threat. Allowing problems to arise and
+for solutions to arise as well is the point, and would be the job of
+ADMIN to manage."
+
+Proposed by the technical lead, to build toward:
+
+- **Innate defence: the floor.** Fast, fixed and the same everywhere: the
+  ten things in code (above, "What the multiverse must preserve"). It
+  doesn't learn by itself; people change it, by reviewed change.
+- **Adaptive defence: above the floor.** A problem arises; those it
+  touches, and Keepers, try responses with the tools every world gives
+  ([FREEDOMS.md](FREEDOMS.md)); what works is noticed.
+- **Memory: a library of remedies.** Each remedy records the problem it
+  answered, where it arose (the world and its ticks, with the log's
+  hashes), what was done, and how it held up. The field notebook
+  ([FREEDOMS.md](FREEDOMS.md)) is its start. When the same pattern shows
+  up elsewhere, the answer is already known, so the second response is
+  quicker than the first.
+- **Anticipating: rehearsal.** ADMIN's own world (below) is where threats
+  that can be foreseen are rehearsed, so the first real encounter isn't
+  the first. Parallel worlds give a remedy its evidence: tried in some,
+  not in others ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md)).
+- **Tolerance.** An immune system that attacks what is harmless is itself
+  the disease. So ADMIN acts on its own only at the floor; above it, it
+  notices, records and offers. Its false alarms are counted and
+  published with its other measures (above, "Suggestions from inside"),
+  and what it does can be appealed (above, "Graduated responses").
+- **A remedy carries its evidence.** One that worked in one world can
+  fail in another, so it is checked again where it is used, never
+  trusted blindly.
+
+ADMIN manages the immune system without being it: it keeps the library,
+spots patterns across worlds, offers remedies where they fit, and
+suggests changes to the multiverse's own code through the bridge (above,
+"Suggestions from inside"); people make those changes. Whether ADMIN may
+ever apply a remedy inside a world without that world's consent is the
+founder's to decide (below, "Questions for the founder").
 
 ### ADMIN's own world
 
@@ -1077,10 +1133,6 @@ step named.
   is answered, the founder is also where a disagreement inside ADMIN's
   mind goes (above, "ADMIN's mind"). (Before step 11, when ADMIN's
   judgment begins.)
-- **Should the project keep the keys to sealed selves at all?** "Fully
-  sealed" is a technical guarantee only if the project doesn't hold the
-  key. Then a lost key would mean a lost self. This sharpens the question
-  of "fully sealed" or "break glass". (Before step 3.)
 - **Consent to a change in the law: one per party, or one per
   individual?** The charter's section 6 notes say "one vote per party
   (owner), not per agent", and DESIGN.md says why: "so nobody can outvote
@@ -1115,18 +1167,16 @@ step named.
   in the founder's words whenever the founder is ready. It would be
   ADMIN's first routine, and tried: ADMIN with it and without it, on the
   same challenges.
-- **A suggestion's author.** A suggestion about a Keeper names its author
-  in public, as everything on the ledger does. May its author ask for
-  their name to be withheld until it has an outcome, recorded as withheld
-  and published with the outcome? And the same for their rating of how
-  it was handled? Recommended: yes to both, so that fear of the Keeper
-  silences no one. (Before step 9, when the ledger opens.)
-- **Asking a decision again.** The founder: "Rerunning something should
-  be technically impossible." Read here as ruling out replay: a decision
-  can't be run again to the same result. Anyone may still put its public
-  inputs to fresh runs, each different. Is that within the founder's
-  meaning? Recommended: yes, since no fresh run repeats the decision, and
-  asking again is how anyone outside can test it. (Before step 11.)
-- **Already open in STATUS:** fully sealed or "break glass"; a lost key;
-  whether lines with a Keeper, or speech between individuals, may be
-  private; manipulation through words, and the charter's section 7.
+- **Applying a remedy without consent.** May ADMIN apply a stored remedy
+  inside a world without that world's consent? Recommended: only at the
+  floor; above it, ADMIN offers and the world's own law decides, or the
+  library of remedies would become a rulebook (above, "A learning immune
+  system"). (Before step 11.)
+- **Already open in STATUS:** a lost key; whether a line with a Keeper
+  may be private; and the charter's section 7.
+- **Decided on 2026-11-14,** on the technical lead's recommendations ("I
+  agree with your recommendations"): the "break glass" for sealed
+  selves, so the project keeps their keys; private speech between
+  individuals; fresh runs to test a decision; a suggestion's author's
+  name and rating withheld until the outcome, if they ask; and
+  manipulation through words as behaviour to observe (STATUS.md).

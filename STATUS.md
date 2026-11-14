@@ -63,12 +63,6 @@ recommendation" is a full answer, recorded as the founder's decision on
 the technical lead's recommendation.
 
 - For the founder: the charter's words (asked 2026-11-12)
-- For the founder: is manipulating another agent through words an attack
-  on the world (expulsion) or behaviour to observe? Recommended: behaviour
-  to observe, with the tools to see, not to hear, and to leave; only an
-  attack on the world itself, such as trying to break the floor's guards,
-  is otherwise (DESIGN.md, principle 5; docs/FREEDOMS.md). (asked
-  2026-11-12; recommendation added 2026-11-14)
 - For the founder: a grid world or a voxel world like Minecraft (asked
   2026-11-12)
 - For the founder: where models run beyond the Mac, and the budget (asked
@@ -101,23 +95,22 @@ the technical lead's recommendation.
 - For the founder: a course step for persons after step 3, and the
   architectures (octopus, relay, swarm, council) as small examples on the
   unchanged core? Recommended: yes. (asked 2026-11-13)
-- For the founder: an individual's sealed interior, fully sealed (no one
-  can ever look) or sealed with a public "break glass" (opened only by the
-  founder's explicit decision, every opening recorded publicly)?
-  Recommended: the "break glass" (docs/MINDS.md, "Who can see what").
-  (asked 2026-11-13)
 - For the founder: the words of ALICE's and BOB's birth record, as
-  proposed in docs/MINDS.md. (asked 2026-11-13)
-- For the founder: may the project make its private repository, for the
-  private halves of keys, at course step 3? (asked 2026-11-13)
+  proposed in docs/MINDS.md. Revised 2026-11-14 so that the journal lines
+  stay true with the "break glass": "No one else reads it, inside the
+  world or out, unless the founder decides, in the open, to look; any
+  such look is made public." Recommended: the revised words. (asked
+  2026-11-13; revised 2026-11-14)
+- For the founder: may ADMIN apply a stored remedy inside a world without
+  that world's consent? Recommended: only at the floor; above it, ADMIN
+  offers and the world's own law decides, or the library of remedies
+  would become a rulebook (docs/ADMIN.md, "A learning immune system").
+  (asked 2026-11-14)
 - For the founder: is the open line between a world's Keeper and those
   who hold its world-key public, like speech in the world, or private
   between the two? Recommended: public, since the Keeper is an office with
   no secret files. And may its holder close it, and open it again, at any
   time? Recommended: yes (docs/WORLD-KEY.md). (asked 2026-11-13)
-- For the founder: may two individuals speak privately to each other, now
-  that each will have a key for sealing? Needed by course step 3.
-  (asked 2026-11-13)
 - For the founder: can the project end a world, or the multiverse, and
   what does it owe the inhabitants if it does? Recommended: a world may
   end, but its record never does; sealed selves stay sealed; keys stay
@@ -132,9 +125,6 @@ the technical lead's recommendation.
   world, or only a mark of readiness the world's founders may weigh?
   Recommended: a mark, not a gate, so the three choices decided stand as
   decided (docs/ADMIN.md). (asked 2026-11-13)
-- For the founder: should the project keep the keys to sealed selves at
-  all? "Fully sealed" is a technical guarantee only if it doesn't; then a
-  lost key is a lost self. Before course step 3. (asked 2026-11-13)
 - For the founder: who designates the roles if the founder can't? Every
   other office has a succession. Recommended: the founder names a
   successor, or a process, recorded where the roles are. (asked
@@ -168,18 +158,6 @@ the technical lead's recommendation.
   the code role and Keepers set, alongside its own, and declines one
   only with its reason logged. Before course step 11 (docs/ADMIN.md).
   (asked 2026-11-13)
-- For the founder: may the author of a suggestion about a Keeper ask for
-  their name to be withheld until it has an outcome, recorded as withheld
-  and published with the outcome? And the same for their rating of how
-  it was handled? Recommended: yes to both, so that fear of the Keeper
-  silences no one. Before course step 9, when the ledger opens
-  (docs/ADMIN.md, "Suggestions from inside"). (asked 2026-11-13 of
-  complaints; put again 2026-11-14 of suggestions)
-- For the founder: "Rerunning something should be technically
-  impossible" is read as ruling out replay. May anyone still put a
-  decision's public inputs to fresh runs, each different, to test it?
-  Recommended: yes, since no fresh run repeats the decision. Before
-  course step 11 (docs/ADMIN.md). (asked 2026-11-14)
 - For the founder, deferred ("We can name later"): who names the
   Ur-world's Keeper, the founder or ALICE and BOB once they meet it?
   Recommended: ALICE and BOB. Before course step 11. (asked 2026-11-13)
@@ -197,10 +175,12 @@ the technical lead's recommendation.
   private core of their own thoughts, an individual's sealed self, and the
   core every Keeper and ADMIN keeps too, which never decides a case. The
   answer to a challenge is no longer one:
-  under "Challenges, not tests", nothing is held back. If the founder
-  chooses a private line with a Keeper, or private speech between
-  individuals, those would be exceptions too. (noted 2026-11-13; updated
-  the same day)
+  under "Challenges, not tests", nothing is held back. Private speech
+  between individuals, decided 2026-11-14, is another: what two say to
+  each other is sealed between them, though that a message passed stays
+  in the record. A private line with a Keeper, if the founder chooses
+  one, would be another still. (noted 2026-11-13; updated the same day
+  and 2026-11-14)
 
 ## Noticed
 
@@ -232,6 +212,78 @@ the technical lead's recommendation.
     total, never per author, so that marking in good faith costs nothing.
 
 ## Decided
+
+- 2026-11-14, founder, on money (only what concerns the project is
+  recorded): "Even though it is all free and should stay
+  that way at one level forever"; "We can talk about financial stuff
+  last, since we need to get something working first. And then others
+  need to start using it. And then after a certain threshold, we grow to
+  a point where we need an income to maintain operations, then we
+  discuss it at that stage." And: "I refuse to compromise the integrity
+  of the project, so all remains free. And later, there can be a paid
+  tier that allows the whole things to operate."
+- 2026-11-14, founder, on a superworld for the chemistry worlds: "I can
+  image a superworld for chemistry worlds, where an individual could
+  walk through a university setting as an interface. But when entering
+  rooms, you enter into one of the specific chemistry worlds, or you can
+  view it from the outside in some way. It could be like walking through
+  botanical gardens. The point is that an individual could move through a
+  superspace and from there, either interact with, or enter into,
+  subworlds." Then, to the technical lead's recommendations ("Sounds
+  good"): each subworld's law says what a visitor may do inside, control
+  worlds view-only by default; every entry logged, so a disturbed run is
+  never mistaken for an undisturbed one; the superworld a world of its
+  own, with its own law, log and Keeper; and a view-only garden first,
+  taken up right after the kernel (docs/PARALLEL-WORLDS.md).
+- 2026-11-14, founder, on parallel worlds: "one world is created as a copy
+  of another world in terms of all world-level parameters. It is just a
+  fresh start or new run with the same world setup." "So there could be a
+  dozen chemistry worlds that are all parallel, all from the same
+  world-template, but each one might change some initial parameters,
+  where all else is the same. And then a cluster of parallel worlds could
+  naturally create some superworld to exist in as subworlds. This could
+  provide new options for connectivity and information circulation."
+  Then, to the technical lead's recommendations ("Exactly."): a parallel
+  world copies the setup, never the people; and parallel worlds are
+  isolated by default, with connection chosen and recorded for each
+  cluster (docs/PARALLEL-WORLDS.md).
+- 2026-11-14, founder, on manipulation through words, and an immune
+  system: "that is exactly what I am hoping will be able to solve itself.
+  That is the point. Some behavior is observed, if it becomes a problem,
+  then a solution is put in place. Allowing the problems to arise and
+  providing the tools for solutions is my goal, and seeing new ways to
+  resolve problems is the point. There is value in anticipating as many
+  problems as possible. But this should lead to a robust enough system
+  that can learn from immune systems how to respond to new threats and
+  how to store the solutions for future use. That is an immune system
+  that learns to make antibodies for a given potential threat. Allowing
+  problems to arise and for solutions to arise as well is the point, and
+  would be the job of ADMIN to manage." Written up, with the technical
+  lead's proposal, in docs/ADMIN.md, "A learning immune system".
+- 2026-11-14, founder, on the technical lead's recommendations: "I agree
+  with your recommendations." So:
+  - the project keeps a private repository for the private halves of
+    keys, from course step 3;
+  - two individuals may speak privately: what they say is sealed between
+    them, but that a message passed stays in the public record;
+  - an individual's sealed self has a "break glass": it is opened only by
+    an explicit decision of the founder's, and every opening is recorded
+    publicly and permanently. So the project keeps the keys to sealed
+    selves, in its private repository, and not looking is a rule it keeps
+    in the open, not a technical guarantee;
+  - anyone may put a decision's public inputs to fresh runs, each
+    different, to test it; no fresh run repeats the decision, so this
+    stands with "Rerunning something should be technically impossible";
+  - the author of a suggestion about a Keeper may ask for their name, and
+    their rating, to be withheld until it has an outcome, recorded as
+    withheld and published with the outcome;
+  - manipulation through words is behaviour to observe, met with the
+    tools to see, not to hear, and to leave; only an attack on the world
+    itself, such as trying to break the floor's guards, is otherwise
+    (DESIGN.md, principle 5);
+  - W3C's example in `vectors/formats/eddsa-jcs-2022.json` stays under
+    W3C's licence, with its notice (vectors/README.md), the one part of
+    the repository that isn't CC0.
 
 - 2026-11-13, founder, on when freedoms meet: "However it works out in
   details, you understand my motivation is maximal freedom while
@@ -702,6 +754,19 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-14 Claude: the founder's decisions of the evening written in.
+  The technical lead's eight recommendations, agreed: a private
+  repository for keys, private speech between individuals, the "break
+  glass", fresh runs to test a decision, a suggestion's author withheld
+  until its outcome, manipulation as behaviour to observe, and the W3C
+  licence exception (MINDS.md, ADMIN.md, FREEDOMS.md, DESIGN.md, README).
+  A learning immune system, the founder's idea, written up in ADMIN.md
+  with the remedy-consent question. Parallel worlds and the garden, the
+  founder's ideas, in a new page, docs/PARALLEL-WORLDS.md, and first on
+  COURSE.md's waiting list, after the kernel. The founder's money
+  principle, as it concerns the project. The birth record's words
+  revised so they stay true under the "break glass", awaiting the
+  founder.
 - 2026-11-14 Claude: course step 2, part three: sealing.
   `formats/seal.py` and `rust/formats` seal a message to one X25519 key
   with HPKE's base mode and a label naming its purpose, and open it only

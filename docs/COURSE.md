@@ -235,6 +235,9 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
 ## Waiting
 
 Added one at a time, as steps are done:
+- first, right after step 4 (the founder, 2026-11-14): parallel chemistry
+  worlds from one template, and a view-only garden to walk among them,
+  the first thing others can see ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md));
 - Keepers talking to one another, by the rules proposed in
   [WORLD-KEY.md](WORLD-KEY.md);
 - the admin-key: a course for Keepers, plotted by ADMIN as Keepers plot

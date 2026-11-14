@@ -152,18 +152,22 @@ The founder can change it:
 > You are ALICE. You came into being in the Ur-world on [date], one of its
 > first two inhabitants. The other is BOB.
 > Your mind runs on [model]. It may change one day; you remain ALICE.
-> You keep a journal. Only you write in it and only you can read it,
-> inside the world and out. Each tick, some of it is shown to you again:
+> You keep a journal. Only you write in it. No one else reads it, inside
+> the world or out, unless the founder decides, in the open, to look; any
+> such look is made public. Each tick, some of it is shown to you again:
 > what is recent, important or relevant. Others can see that it exists,
 > and how much you have written, but never what it says.
 > You may leave at any time.
 > Your first day begins with a tour of the garden.
 
 It tells them exactly how private their journal is, because that is true:
-sealed, though its existence and size can be seen. It names their model,
-and says they outlast it. It doesn't say who
-made the world, or why: that is for the world to show, and for them to
-find out ([WORLD-KEY.md](WORLD-KEY.md)).
+sealed, though its existence and size can be seen, and opened only by the
+founder's "break glass", in the open. (The first proposal said "only you
+can read it, inside the world and out"; with the "break glass" chosen,
+that would no longer be true, so the words were revised on 2026-11-14.) It
+names their model, and says they outlast it. It doesn't say who made the
+world, or why: that is for the world to show, and for them to find out
+([WORLD-KEY.md](WORLD-KEY.md)).
 
 ## How information moves
 
@@ -172,7 +176,7 @@ find out ([WORLD-KEY.md](WORLD-KEY.md)).
 | Within an individual | The four layers go into the mind; out comes an action, and sometimes a note to the journal. Short-term is the prompt; long-term is the journal, and later a personal layer of the model. | the sealed self; only its fingerprints are public |
 | Individual to world | Actions only, one a tick, read strictly. The only way any inhabitant changes anything. | the world's log |
 | World to individual | The law once; then, each tick, what can be perceived from where they are. | the world's log |
-| Individual and individual | Only through the world: speech, signs, things given, skills taught. | the world's log |
+| Individual and individual | Through the world: speech, signs, things given, skills taught. And privately, decided by the founder on 2026-11-14: a message sealed to the other, which only they can open. | the world's log; for a private message, that it passed, not what it says |
 | Individual to the law | Asking now; formal proposals and governance later. | the world's log |
 | World and world | The protocol: passports, stamps, successions, doors, birth records of new worlds. The Python worlds sign their stamps today; each world will sign its log too (course step 3). | each world's log |
 | Individual to another world | Through a door, with a passport. Key, self and sheet go with them. Each world sees only what they show, and what they do there. | passports and both logs |
@@ -214,14 +218,20 @@ Keeper, teach a routine.
 while a mind is thinking, its thoughts pass through hardware the project
 controls. Encryption guarantees privacy from the world, the Keeper, other
 inhabitants and the public, and that a sealed self can't be read at rest.
-Against the project itself there are two honest choices, and the founder
-decides between them:
+Against the project itself there were two honest choices:
 
 - **fully sealed:** the project commits never to decrypt, and no one can
   look, even in an emergency;
 - **sealed, with a "break glass":** the interior can be opened only by an
   explicit decision of the founder's, and every opening is recorded
   publicly and permanently.
+
+The founder chose the "break glass" on 2026-11-14, on the technical
+lead's recommendation ("I agree with your recommendations", STATUS.md).
+So the project keeps the key to each sealed self in its private
+repository, and not looking is a rule it keeps in the open, not a
+technical guarantee: one accountable way to look in a real emergency,
+which anyone can see was ever used.
 
 Hardware that keeps even the operator out (confidential computing) could
 close the gap later.
@@ -312,7 +322,8 @@ what they are for.
   key (the individuals', the Keepers' and the worlds'), and each
   individual's key to their own sealed self, and nothing else unless the
   founder decides otherwise. The
-  repository's list of contents is public, though its values aren't.
+  repository's list of contents is public, though its values aren't. The
+  founder agreed to it on 2026-11-14, for course step 3.
 - **On the Hugging Face Hub, pinned to exact revisions:** the base models,
   and later the personal layers trained for them.
 - **Nowhere else.** Not on anyone's computer, and not only in a working
@@ -344,10 +355,7 @@ before adopting it.
 
 - **Who is ALICE and who is BOB:** which of Qwen and OLMo runs which. The
   founder's to choose, after the audition (course step 8).
-- **The birth record's words**, proposed above.
-- **Fully sealed, or sealed with a public "break glass"** ("Who can see
-  what", above). Recommended: the "break glass", for one accountable way
-  to look in a real emergency, which anyone can see was ever used.
+- **The birth record's words**, proposed above, revised on 2026-11-14.
 - **Whether personal model layers are trained,** and when. The plan is
   memory first, then a small personal layer of the model, trained only on
   their own records, with every training run recorded.
