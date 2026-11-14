@@ -217,7 +217,9 @@ flow acceleration."
 - **An individual is a key.** Its identity is its Ed25519 public key
   (64 hexadecimal characters), and its private key never leaves it
   (`multiverse/identity.py`, `Individual`). Anyone can make a key; no
-  authority issues them.
+  authority issues them. In the Python worlds an individual is one key;
+  a person's presences, each a key of its own, are course step 3a
+  ([research/PERSONS.md](research/PERSONS.md)).
 - **Everything it sends is signed:** every petition, act and leave,
   over a document that names the protocol, the kind of request, the
   world it is for, and a number (`seq`) that grows with every request to

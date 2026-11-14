@@ -1017,7 +1017,12 @@ it was wrong. Questions of what the project is for stay with the founder.
   in public, was put to the founder on #61 with the recommendation and
   its alternative (the first presence unlinked like the rest, at the cost
   of the birth name); under AGENTS.md's standing rule it stands on that
-  recommendation unless the founder answers otherwise.
+  recommendation unless the founder answers otherwise. The narrow
+  re-check approved it at 48b9003, with four findings, none blocking,
+  taken in: PERSONS.md now says that seeds and persons' lists have no
+  place in the private repository until the founder decides one, and
+  that a sealed self's entry times can link presences; TOPICS.md topic 4
+  and MULTIVERSE.md brought into line.
 
 - 2026-11-14 Claude: course step 3 done and moved to "Done" in
   docs/COURSE.md, with its pull requests (#52, #53, #56 to #59). The

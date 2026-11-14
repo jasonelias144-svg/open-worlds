@@ -184,10 +184,10 @@ chain they keep, never shown; a world can't count persons, so a council
 counts distinct persons by births it trusts; birth links the first
 presence.
 
-**Recommended, not decided,** from the sketch's lessons
-([COLLABORATING.md](COLLABORATING.md), "What the last stretch taught"): a
-self spread across worlds needs each part linked to it, with both
-signing, and the person's list of identities should be a chain.
+The sketch's two lessons ([COLLABORATING.md](COLLABORATING.md), "What
+the last stretch taught"), that a self spread across worlds needs each
+part linked to it, with both signing, and that the person's list of
+identities should be a chain, are taken by the plan: decisions 4 and 6.
 
 **Open:** how a lesson learned in one world becomes available in
 another without the worlds talking (through the person's notes, in this

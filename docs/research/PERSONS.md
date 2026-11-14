@@ -258,6 +258,14 @@ link every presence too.
     human accounts' work (VISION.md), not this step's. Here the persons
     are the project's individuals, whose seeds the project keeps, as it
     keeps their keys ("public to the project", MINDS.md).
+    - Neither the seeds nor the persons' lists have a place yet. A seed
+      isn't the private half of a key, and the private repository holds
+      those and the keys to the sealed selves, "and nothing else unless
+      the founder decides otherwise" (MINDS.md, "Where everything
+      lives"). So before any real seed or list is made, that goes to the
+      founder, with a recommendation, and MINDS.md names both. The
+      repository's list of contents is public, so the lists' file names
+      must not name presences. Parts two and three use trial seeds.
 
 ## The parts of step 3a
 
@@ -283,6 +291,14 @@ link every presence too.
   person who needs to stay unlinked must also differ in what they show.
   And whoever runs a person's client sees all their presences: for
   ALICE and BOB, the project.
+- **A sealed self's entry times can link.** MINDS.md makes public when
+  each entry of an individual's sealed self was written, and the sealed
+  self is publicly the person's. A journal entry written while an
+  unlinked presence acts can be matched with that presence's acts in its
+  world's log. Decision 6 keeps the list out of the sealed self for this
+  reason; the journal is still exposed. Coarser times (to the day, say)
+  would narrow it, and are open until the sealed self is built for
+  persons.
 - **A shown link is shown forever.** There is no unshowing a record in a
   public log.
 - **The seed is a single point.** Whoever gets a person's presence seed
