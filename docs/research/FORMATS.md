@@ -215,9 +215,9 @@ README states no licence for the specification.
 issuer and a holder (as did:keys), what it allows, its limits in time and
 scope, the grant it narrows, and a signature, with the rule that a grant
 can only narrow what its issuer holds. A grant takes effect only from its
-entry in the log, with its decision record, and so does narrowing or
-revoking one ([REASONS.md](../REASONS.md)). Adopting UCAN itself is
-revisited at step 12, when grants cross worlds.
+entry in the log, with its decision record, and so does narrowing,
+suspending or revoking one ([REASONS.md](../REASONS.md)). Adopting UCAN
+itself is revisited at step 12, when grants cross worlds.
 
 ## Decision records
 

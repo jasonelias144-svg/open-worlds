@@ -300,9 +300,8 @@ at every level:
   its public log, except its sealed journal (below), whose every use is
   logged with its fingerprints; and it narrates its reasoning. Hiding how
   ADMIN works wouldn't make it safer: in cryptography, Kerckhoffs's
-  principle (1883)
-  holds that a system "must not require secrecy and can be stolen by the
-  enemy without causing trouble" (research).
+  principle (1883) holds that a system "must not require secrecy and can
+  be stolen by the enemy without causing trouble" (research).
 - **Decided once, asked again.** The founder: "Rerunning something
   should be technically impossible. If decisions are arrived at
   autonomously, each run should differ, or it is not set up correctly."

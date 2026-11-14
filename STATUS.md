@@ -642,13 +642,12 @@ it was wrong. Questions of what the project is for stay with the founder.
   bridge adds without filtering, since every entry still goes out word
   for word. A change that answers suggestions names them, so the answer
   can be seen from inside. The ledger opens at step 9, and ADMIN joins at
-  step 11. Tests
-  26 to 29; course steps 2, 6, 9 and 11; MINDS.md, FORMATS.md and
-  OVERSIGHT.md updated.
+  step 11. Tests 26 to 29; course steps 2, 6, 9 and 11; MINDS.md,
+  FORMATS.md and OVERSIGHT.md updated.
 - 2026-11-14 Claude: reasons on record (docs/REASONS.md). The founder:
   "We can use Lean to test the logic of reasoning that is presented."
   The page says which decisions need a record, proposes the decision
-  record for step 2, and says what code checks (tests 23a and 24) and
+  record for step 2, and says what code checks (tests 4, 23a and 24) and
   what Lean checks: proofs about the rules first, grants at step 4 (test
   25), and proofs that come with decisions later, with what Lean can't
   check. Course steps 2 and 4, FORMATS.md and README updated.
