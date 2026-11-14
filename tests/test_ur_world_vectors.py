@@ -5,6 +5,10 @@ reference. Python checks what it can independently:
 
 - the garden's log (vectors/ur-garden-log.json) holds by the Python kernel's
   own check, World.verify_log, so both languages write and read one format;
+- every arrival in it (open-worlds/arrival/v1) holds by formats/records.py,
+  and names the log's world, its entry's tick, name and the entry before
+  it, with each name kept to one key; and the head the garden's world
+  signed (vectors/ur-garden-head.json) covers the whole log;
 - the generator: written again below from its documented rules
   (rust/ur-world/src/generate.rs), it gives the same ground heights and the
   same chunk hashes as vectors/ur-chunks.json, and the same chunk for every
@@ -16,9 +20,11 @@ Rewrite the vectors with:
 import hashlib
 import json
 import math
+import unicodedata
 import unittest
 from pathlib import Path
 
+from formats import records
 from world import World
 
 VECTORS = Path(__file__).resolve().parent.parent / "vectors"
@@ -123,11 +129,48 @@ class TestTheGardensLog(unittest.TestCase):
         self.assertEqual(first["kind"], "world_created")
         self.assertEqual(first["data"]["seed"], 20261113)
         entered = [e["agent"] for e in self.log if e["kind"] == "entered"]
-        self.assertEqual(entered, ["ALICE", "BOB"])
+        # The scripted stand-ins: ALICE and BOB enter only at their birth.
+        self.assertEqual(entered, ["WALKER", "GARDENER"])
         said = [(e["agent"], e["data"]["text"])
                 for e in self.log if e["kind"] == "said"]
-        self.assertEqual(said, [("ALICE", "Hello, world."),
-                                ("BOB", "Hello, ALICE.")])
+        self.assertEqual(said, [("WALKER", "Hello, world."),
+                                ("GARDENER", "Hello, WALKER.")])
+
+    def test_every_arrival_holds_and_keeps_each_name_to_one_key(self):
+        world = self.log[0]["data"]["world"]
+        bound = {}
+        entered = [e for e in self.log if e["kind"] == "entered"]
+        self.assertEqual(len(entered), 2)
+        for e in entered:
+            with self.subTest(name=e["agent"]):
+                arrival = e["data"]["arrival"]
+                records.check(arrival)
+                self.assertEqual(arrival["format"], "open-worlds/arrival/v1")
+                self.assertEqual(arrival["world"], world)
+                self.assertEqual(arrival["tick"], e["tick"])
+                self.assertEqual(arrival["previous"], e["prev"])
+                self.assertEqual(arrival["name"], e["agent"])
+                # A name the world allows: 1 to 64 characters, no control
+                # character (Unicode's Cc), as rust/ur-world's good_name.
+                self.assertTrue(1 <= len(arrival["name"]) <= 64)
+                self.assertFalse(any(unicodedata.category(c) == "Cc"
+                                     for c in arrival["name"]))
+                key = bound.setdefault(arrival["name"], arrival["individual"])
+                self.assertEqual(key, arrival["individual"])
+        self.assertEqual(len(set(bound.values())), len(bound))
+        # Changed after signing, an arrival no longer holds.
+        changed = dict(entered[0]["data"]["arrival"], name="GARDENER")
+        with self.assertRaises(records.RecordError):
+            records.check(changed)
+
+    def test_the_head_its_world_signed_covers_the_whole_log(self):
+        head = json.loads((VECTORS / "ur-garden-head.json").read_text())
+        records.check(head)
+        self.assertEqual(head["format"], "open-worlds/log-head/v1")
+        self.assertEqual(head["world"], self.log[0]["data"]["world"])
+        self.assertEqual(head["length"], len(self.log))
+        self.assertEqual(head["last"], self.log[-1]["hash"])
+        self.assertGreaterEqual(head["tick"], self.log[-1]["tick"])
 
     def test_every_explored_chunk_regenerates_here(self):
         seed = self.log[0]["data"]["seed"]

@@ -1,6 +1,11 @@
 // rust/ur-world/src/world.rs
 //! The world kernel: the only authority over the Ur-world's state.
 //!
+//! A world has a key of its own, and whoever enters signs an arrival with
+//! theirs ([`crate::arrival`]): a name, once used, is bound to the key
+//! that signed its first arrival, so whoever comes back with that key is
+//! known as the same individual, and no one else can enter under it.
+//!
 //! Inhabitants never touch the world directly. Each tick, every inhabitant
 //! receives an observation and returns an action; the kernel checks the
 //! action before it takes effect. The freedoms of the Python kernel hold
@@ -14,20 +19,31 @@
 //! so the same checks (`world-log`, `World.verify_log`) hold it.
 
 use std::collections::{BTreeMap, BTreeSet};
+use std::fmt;
 
+use formats::multikey::did_key;
 use serde_json::{Map, Value, json};
 
+use crate::arrival;
 use crate::generate::{self, Chunk, GENERATOR, SEA};
 use crate::space::{CHUNK, Cell, ChunkCoord, Dir, Material};
 
 /// The rules' name and version, as the log records it.
-pub const RULES: &str = "ur-world/0.2";
+pub const RULES: &str = "ur-world/0.3";
 
 /// The most a single `Say` carries, in characters; longer speech is cut.
 pub const MAX_SAY: usize = 280;
 
 /// The longest a name may be, in characters.
 pub const MAX_NAME: usize = 64;
+
+/// Whether the world allows `name`: 1 to `MAX_NAME` characters, with no
+/// control character (Unicode's Cc: line breaks and tabs among them,
+/// which records-v1's text allows). [`World::admit`] and
+/// [`crate::arrival::arrival_problems`] both read names by it.
+pub fn good_name(name: &str) -> bool {
+    !name.is_empty() && name.chars().count() <= MAX_NAME && !name.chars().any(char::is_control)
+}
 
 /// How far anyone falls in one tick, in cells: a deeper drop goes on at
 /// the next tick, as the world settles.
@@ -134,10 +150,23 @@ pub trait Mind {
 /// Why someone can't enter where they asked.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum EntryError {
+    /// The arrival doesn't hold, or isn't an arrival: why.
+    BadArrival(String),
+    /// The arrival names another world.
+    OtherWorld,
+    /// The arrival was signed over another tick, or another last entry of
+    /// the log, than the world's now: signed too early, or used before.
+    Stale,
     /// The name is empty, too long, or has a control character.
     BadName,
-    /// Someone has that name, or had it and left.
-    NameTaken,
+    /// The name is bound to another key: the one that signed its first
+    /// arrival. That may be someone else, or the same individual with a
+    /// key signed over from it, which isn't checked yet.
+    NameBound,
+    /// The one who signed has another name here: that one.
+    KnownAs(String),
+    /// The one who signed is here already.
+    AlreadyHere,
     /// The cell is outside the world.
     Outside,
     /// The cell is solid.
@@ -146,6 +175,45 @@ pub enum EntryError {
     NoGround,
     /// Someone stands there.
     Occupied,
+}
+
+impl fmt::Display for EntryError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            EntryError::BadArrival(why) => write!(f, "the arrival doesn't hold: {why}"),
+            EntryError::OtherWorld => write!(f, "the arrival names another world"),
+            EntryError::Stale => write!(
+                f,
+                "the arrival was signed over another moment of the log: sign it again over the world as it is now"
+            ),
+            EntryError::BadName => write!(
+                f,
+                "a name must be 1 to {MAX_NAME} characters, with no control characters"
+            ),
+            EntryError::NameBound => write!(
+                f,
+                "that name is bound to another key: not this name's birth key (successions aren't checked yet)"
+            ),
+            EntryError::KnownAs(name) => write!(f, "this key has another name here: {name}"),
+            EntryError::AlreadyHere => write!(f, "this key's holder is here already"),
+            EntryError::Outside => write!(f, "that cell is outside the world"),
+            EntryError::Solid => write!(f, "that cell is solid"),
+            EntryError::NoGround => write!(f, "there is nothing solid under that cell"),
+            EntryError::Occupied => write!(f, "someone stands in that cell"),
+        }
+    }
+}
+
+impl std::error::Error for EntryError {}
+
+/// Whether an arrival is someone's first under their name in this world,
+/// or their coming back.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Admission {
+    /// The first time: the name is bound to the key that signed.
+    First,
+    /// The same individual coming back: the name's own key signed.
+    Again,
 }
 
 struct Inhabitant {
@@ -157,35 +225,45 @@ struct Inhabitant {
 /// The Ur-world.
 pub struct World {
     seed: u64,
+    key: String,
     tick: u64,
     explored: BTreeSet<ChunkCoord>,
     changes: BTreeMap<Cell, Material>,
     inhabitants: BTreeMap<String, Inhabitant>,
     occupied: BTreeMap<Cell, String>,
     heard: Vec<(String, String)>,
-    names_used: BTreeSet<String>,
+    /// Each name, and the key it is bound to.
+    names: BTreeMap<String, String>,
+    /// Each key, and its name here.
+    known: BTreeMap<String, String>,
     log: Vec<Value>,
 }
 
 impl World {
-    /// A world from a seed. It begins as the garden, unexplored; it comes
+    /// A world from a seed, with `public` as its key: the Ed25519 public
+    /// key that every arrival names, and whose private half signs the
+    /// heads of its log. It begins as the garden, unexplored; it comes
     /// into view around whoever enters.
-    pub fn new(seed: u64) -> World {
+    pub fn new(seed: u64, public: &[u8; 32]) -> World {
         let mut world = World {
             seed,
+            key: did_key(public),
             tick: 0,
             explored: BTreeSet::new(),
             changes: BTreeMap::new(),
             inhabitants: BTreeMap::new(),
             occupied: BTreeMap::new(),
             heard: Vec::new(),
-            names_used: BTreeSet::new(),
+            names: BTreeMap::new(),
+            known: BTreeMap::new(),
             log: Vec::new(),
         };
+        let key = world.key.clone();
         world.record(
             "world_created",
             None,
             json!({
+                "world": key,
                 "seed": seed,
                 "generator": GENERATOR,
                 "rules_version": RULES,
@@ -202,9 +280,28 @@ impl World {
         self.seed
     }
 
+    /// The world's key, as a did:key.
+    pub fn key(&self) -> &str {
+        &self.key
+    }
+
     /// The tick: how many have passed.
     pub const fn tick(&self) -> u64 {
         self.tick
+    }
+
+    /// The hash of the log's last entry: what the next arrival signs over.
+    pub fn last_hash(&self) -> &str {
+        self.log
+            .last()
+            .and_then(|e| e.get("hash"))
+            .and_then(Value::as_str)
+            .unwrap_or(world_log::GENESIS)
+    }
+
+    /// The name bound to `individual`'s key (a did:key) here, if any.
+    pub fn name_of(&self, individual: &str) -> Option<&str> {
+        self.known.get(individual).map(String::as_str)
     }
 
     /// What the cell holds now. Beyond the edge the generator's rules still
@@ -281,16 +378,57 @@ impl World {
         None
     }
 
-    /// Bring someone in, standing at `at`: a free cell that isn't solid,
-    /// with solid ground under it.
-    pub fn add(&mut self, name: &str, mind: Box<dyn Mind>, at: Cell) -> Result<(), EntryError> {
-        if name.is_empty() || name.chars().count() > MAX_NAME || name.chars().any(char::is_control)
+    /// Whether the world would admit `arrival` now, and as whose first
+    /// arrival or return, without bringing anyone in. It must be an
+    /// arrival that holds, signed by the one who enters, naming this
+    /// world, its tick, and its log's last entry; its name must be one the
+    /// world allows, not bound to another key, and the one key that signed
+    /// must have no other name here, and not be here already.
+    pub fn admit(&self, arrival: &Value) -> Result<Admission, EntryError> {
+        let a = arrival::checked(arrival, arrival::FORMAT).map_err(EntryError::BadArrival)?;
+        let field = |key: &str| a.get(key).and_then(Value::as_str).unwrap_or("");
+        if field("world") != self.key {
+            return Err(EntryError::OtherWorld);
+        }
+        if a.get("tick").and_then(Value::as_u64) != Some(self.tick)
+            || field("previous") != self.last_hash()
         {
+            return Err(EntryError::Stale);
+        }
+        let (name, individual) = (field("name"), field("individual"));
+        if !good_name(name) {
             return Err(EntryError::BadName);
         }
-        if self.names_used.contains(name) {
-            return Err(EntryError::NameTaken);
+        if self.names.get(name).is_some_and(|key| key != individual) {
+            return Err(EntryError::NameBound);
         }
+        if let Some(known) = self.known.get(individual)
+            && known != name
+        {
+            return Err(EntryError::KnownAs(known.clone()));
+        }
+        if self.inhabitants.contains_key(name) {
+            return Err(EntryError::AlreadyHere);
+        }
+        Ok(if self.names.contains_key(name) {
+            Admission::Again
+        } else {
+            Admission::First
+        })
+    }
+
+    /// Bring in the one who signed `arrival` (see [`World::admit`]),
+    /// standing at `at`: a free cell that isn't solid, with solid ground
+    /// under it. The arrival goes into the log, whole, with its proof, so
+    /// anyone can check it. The first arrival under a name binds the name
+    /// to the key that signed it.
+    pub fn enter(
+        &mut self,
+        arrival: &Value,
+        mind: Box<dyn Mind>,
+        at: Cell,
+    ) -> Result<Admission, EntryError> {
+        let admission = self.admit(arrival)?;
         if !at.inside() || !at.below().inside() {
             return Err(EntryError::Outside);
         }
@@ -303,7 +441,17 @@ impl World {
         if self.occupied.contains_key(&at) {
             return Err(EntryError::Occupied);
         }
-        self.names_used.insert(name.to_owned());
+        let field = |key: &str| {
+            arrival
+                .get(key)
+                .and_then(Value::as_str)
+                .unwrap_or("")
+                .to_owned()
+        };
+        let (name, individual) = (field("name"), field("individual"));
+        self.names.insert(name.clone(), individual.clone());
+        self.known.insert(individual, name.clone());
+        let name = name.as_str();
         self.occupied.insert(at, name.to_owned());
         self.inhabitants.insert(
             name.to_owned(),
@@ -313,9 +461,13 @@ impl World {
                 last: None,
             },
         );
-        self.record("entered", Some(name), json!({ "pos": at.json() }));
+        self.record(
+            "entered",
+            Some(name),
+            json!({ "pos": at.json(), "arrival": arrival }),
+        );
         self.explore();
-        Ok(())
+        Ok(admission)
     }
 
     /// Take someone out from outside their turn (their keeper pulls them
@@ -603,13 +755,7 @@ impl World {
     }
 
     fn record(&mut self, kind: &str, agent: Option<&str>, data: Value) {
-        let prev = self
-            .log
-            .last()
-            .and_then(|e| e.get("hash"))
-            .and_then(Value::as_str)
-            .unwrap_or(world_log::GENESIS)
-            .to_owned();
+        let prev = self.last_hash().to_owned();
         let mut entry = Map::new();
         entry.insert("tick".into(), json!(self.tick));
         entry.insert("kind".into(), json!(kind));

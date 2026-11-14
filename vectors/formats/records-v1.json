@@ -51,6 +51,14 @@
   "the multiverse, renewed": {
    "secretKeyMultibase": "z3u2VciHyVy2QYmDeEpt4P1pvTsnhAsZrzD49o9fzNe2ufjr",
    "didKey": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh"
+  },
+  "a trial world": {
+   "secretKeyMultibase": "z3u2f1H989abo97eHCUNZDXmHrfPpVgmkddq7m7REu6j9qBv",
+   "didKey": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion"
+  },
+  "a trial mind": {
+   "secretKeyMultibase": "z3u2WsMYGCSHXsvg7WPGGNzMFUju2JfPTMN8sbF1gEL4q4KS",
+   "didKey": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA"
   }
  },
  "created": "2026-11-14T01:00:00Z",
@@ -351,6 +359,27 @@
     }
    },
    "hash": "6f4a279f3a667e08dc7063ed5116868a6952133d4755c2b7ffd9d18cc3e67ca3"
+  },
+  {
+   "name": "an arrival in a trial world",
+   "signer": "a trial mind",
+   "record": {
+    "format": "open-worlds/arrival/v1",
+    "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+    "individual": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "name": "TRIAL-1",
+    "tick": 0,
+    "previous": "30d9df9757964bffb927080a7c8fa6c0ae7dfbb0e9f2086d6c1e88a2d93cea2a",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA#z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5HE3u6ofr6L7o7qPxdiaAiEZt3ADJrYDSbrL5ZZFtRH5EwYqeDb6xsW7GMFkct7UftsBA1o13Zqd4dgQVKVscjaJ"
+    }
+   },
+   "hash": "6771a3eaf638b78fe68ab615d2b0c878f7b94cc0ed1deb1af45dfced06933f99"
   },
   {
    "name": "a mind record, with one engine",
@@ -1544,6 +1573,157 @@
      "verificationMethod": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD#z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD",
      "proofPurpose": "assertionMethod",
      "proofValue": "z2KbwSV5jFWoczQgChiF8kSGVvXphX1QxLoyFT4eYebtQvCsDN7Ed4Ru3FyhsL7Y61T6koZBaBJKbZsNjmFjtvfa3"
+    }
+   }
+  },
+  {
+   "name": "an arrival signed by the world, not the one who enters",
+   "record": {
+    "format": "open-worlds/arrival/v1",
+    "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+    "individual": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "name": "TRIAL-1",
+    "tick": 0,
+    "previous": "30d9df9757964bffb927080a7c8fa6c0ae7dfbb0e9f2086d6c1e88a2d93cea2a",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion#z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3M78bRbRLALTHQUDq1isMrzrQvYJTaJkpMQMDzXhr3pjjw1gFodq3TJkYncm2vyj4ueaNGCd17uxq46CBCG8SP7Z"
+    }
+   }
+  },
+  {
+   "name": "an arrival that names no entry before it",
+   "record": {
+    "format": "open-worlds/arrival/v1",
+    "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+    "individual": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "name": "TRIAL-1",
+    "tick": 0,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA#z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4NfK7HSgpGqKtfLLCNZA2fzruaQfVMRztC4qBb5yeXsXLWCce2zsHanGW8gDdm2Kj8CBbNnaWUexpishTrkLXXXA"
+    }
+   }
+  },
+  {
+   "name": "an arrival whose previous entry's hash is in capitals",
+   "record": {
+    "format": "open-worlds/arrival/v1",
+    "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+    "individual": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "name": "TRIAL-1",
+    "tick": 0,
+    "previous": "30D9DF9757964BFFB927080A7C8FA6C0AE7DFBB0E9F2086D6C1E88A2D93CEA2A",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA#z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5EkGtrh9r8mm6n3jh1ALdJfrPUfEAL9BAgpVFwYU1p6i4osdCr1fbot51GhTpLxcJKWr89uPXBKxEQjvMqHqgMEr"
+    }
+   }
+  },
+  {
+   "name": "an arrival whose name is 65 characters",
+   "record": {
+    "format": "open-worlds/arrival/v1",
+    "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+    "individual": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "name": "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT",
+    "tick": 0,
+    "previous": "30d9df9757964bffb927080a7c8fa6c0ae7dfbb0e9f2086d6c1e88a2d93cea2a",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA#z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zu4t8AqoXzBoh3Ydv5nhqF6nQWgzxPc4idoB6PTqpBDXSRRyawYSb88YbnrLdWAqqB86cUS4omar3pHU8TZeHNQE"
+    }
+   }
+  },
+  {
+   "name": "an arrival whose name is only spaces",
+   "record": {
+    "format": "open-worlds/arrival/v1",
+    "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+    "individual": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "name": "   ",
+    "tick": 0,
+    "previous": "30d9df9757964bffb927080a7c8fa6c0ae7dfbb0e9f2086d6c1e88a2d93cea2a",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA#z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zxZ84j4HKVfxX8zP48Y63fsLGwMi6TYGukJomzJfTUEng7pw3vj4L8SF4h5U8HEhXdkSFi6JeKaq7HYEPNHcA2cc"
+    }
+   }
+  },
+  {
+   "name": "an arrival whose world is a name, not a did:key",
+   "record": {
+    "format": "open-worlds/arrival/v1",
+    "world": "the Ur-world",
+    "individual": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "name": "TRIAL-1",
+    "tick": 0,
+    "previous": "30d9df9757964bffb927080a7c8fa6c0ae7dfbb0e9f2086d6c1e88a2d93cea2a",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA#z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5HTER5RFZiU3k2YrQpEknEE3dEki8r9kkWawzT5S2suCuRMyw4LBi69aKMujm64hCD9XYQYtwRzy7yTWved5J9yK"
+    }
+   }
+  },
+  {
+   "name": "an arrival whose name was changed after signing",
+   "record": {
+    "format": "open-worlds/arrival/v1",
+    "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+    "individual": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "name": "TRIAL-2",
+    "tick": 0,
+    "previous": "30d9df9757964bffb927080a7c8fa6c0ae7dfbb0e9f2086d6c1e88a2d93cea2a",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA#z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5HE3u6ofr6L7o7qPxdiaAiEZt3ADJrYDSbrL5ZZFtRH5EwYqeDb6xsW7GMFkct7UftsBA1o13Zqd4dgQVKVscjaJ"
+    }
+   }
+  },
+  {
+   "name": "an arrival whose tick is negative",
+   "record": {
+    "format": "open-worlds/arrival/v1",
+    "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+    "individual": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "name": "TRIAL-1",
+    "tick": -1,
+    "previous": "30d9df9757964bffb927080a7c8fa6c0ae7dfbb0e9f2086d6c1e88a2d93cea2a",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA#z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2djbfaa5RbmrnoMebDsXo8Zkv9Hm4ajbPfQeubhMLfE7vwrqwtctkRYaxDTRp15L3htt2F5jrEBzWJhNJ6ey268s"
     }
    }
   },

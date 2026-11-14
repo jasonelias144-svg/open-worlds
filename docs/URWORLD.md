@@ -90,17 +90,23 @@ It tells what happens, from the world's own log, then draws a map of what
 has come into view:
 
 - The world is created, from seed 20261113, the day it was decided.
-- ALICE enters, west of the tree, and the land around ALICE comes into view.
-  BOB enters, east of it.
-- ALICE says "Hello, world." BOB listens. Then BOB answers "Hello, ALICE.",
-  and ALICE listens.
-- BOB plants a flower close by.
-- ALICE walks north around the tree, then east, out of the garden. The land
-  rises into hills, and new chunks come into view as ALICE goes.
+- WALKER enters, west of the tree, and the land around WALKER comes into
+  view. GARDENER enters, east of it.
+- WALKER says "Hello, world." GARDENER listens. Then GARDENER answers
+  "Hello, WALKER.", and WALKER listens.
+- GARDENER plants a flower close by.
+- WALKER walks north around the tree, then east, out of the garden. The
+  land rises into hills, and new chunks come into view as WALKER goes.
 
-ALICE and BOB are short scripts here, just enough to show that the world
-works. Minds that choose for themselves come in through the doorway
-(below).
+WALKER and GARDENER are short scripts, stand-ins just enough to show that
+the world works. They were called ALICE and BOB until course step 3: ALICE
+and BOB are born at step 9, and their first arrival is their birth, so in
+any log those names are only ever the individuals the key list names
+([research/KEYS.md](research/KEYS.md), decision 15). Each stand-in enters
+with an arrival signed by its own key, and the garden is a trial world of
+its own, with a key of its own: these keys are made from the seed, so the
+log is the same on every run, and anyone can make them. Minds that choose
+for themselves come in through the doorway (below).
 
 ### Space
 
@@ -138,11 +144,16 @@ works. Minds that choose for themselves come in through the doorway
   of chunks someone has seen, and the cells someone has changed. Land that
   was seen but not changed can always be made again, so it costs nothing to
   keep. Storage grows with change, not with exploration. After the Hello
-  World, 57 chunks have been explored, and one cell is stored: BOB's flower.
+  World, 57 chunks have been explored, and one cell is stored: GARDENER's
+  flower.
 - **The public log.** Every event goes into an append-only, hash-chained
   log, written exactly as the Python kernel writes its own.
   - It holds by the same checks: `world-log` in Rust, and `World.verify_log`
     in Python.
+  - The world signs its head with its own key (`open-worlds/log-head/v1`),
+    and the `log` example checks every arrival in a log and says how much
+    of it signed heads cover (`cargo run -p ur-world --example log -- LOG
+    HEAD...`).
   - When a chunk is first explored, the log records who saw it first, which
     generator made it, and its hash, so anyone can regenerate it and check.
 
@@ -178,8 +189,14 @@ works. Minds that choose for themselves come in through the doorway
 - **Sight.** A mind sees only the 26 cells around it, and others within 16
   cells. It can't yet see far, so it finds its way by feel and by what it
   is told.
-- **Keys.** There are none in Rust yet. ALICE and BOB are named, but don't
-  yet sign, and their permanent keys are made with the next step.
+- **Keys.** A world has a key, and whoever enters signs an arrival with
+  theirs (`open-worlds/arrival/v1`): a name, once used, stays the key's
+  that first entered under it, so whoever comes back with that key is the
+  same individual, and no one else can enter under it. Only that first
+  key is followed until successions join records-v1, before step 9. The
+  doorway signs for now, with keys made for the run; no holder's key is
+  read until ALICE and BOB are born ([research/KEYS.md](research/KEYS.md),
+  "As built, part four").
 - **Hearing.** Everyone hears everyone, wherever they are.
 - **Changes.** The only change an inhabitant can make is to plant a flower.
 - **Running.** The world runs only while someone steps it. Where a world
@@ -190,15 +207,20 @@ works. Minds that choose for themselves come in through the doorway
 ## Minds from outside: the doorway
 
 Any program, in any language, can be a mind in the Ur-world
-(`rust/ur-world/src/door.rs`). It runs as its own process, and the world
-talks to it in lines of JSON over its standard input and output:
+(`rust/ur-world/src/door.rs`). Before its program starts, the doorway
+signs its arrival with the key it is given, and the world admits it or
+says why not; the key stays with the doorway and is never passed to the
+program. It runs as its own process, and the world talks to it in lines
+of JSON over its standard input and output:
 
-1. **First, once:** `{"name": ..., "rules": ..., "orientation": TEXT,
-   "law": {...}}`. The orientation is the world's law written for a
-   reader: what the world is, where things are, the actions with what
-   each does and when it is refused, how to answer, its freedoms, and how
-   the set of actions grows. The law is the same as data, and the text is
-   made from it, so the two can't disagree.
+1. **First, once:** `{"name": ..., "again": ..., "rules": ...,
+   "orientation": TEXT, "law": {...}}`. The orientation is the world's
+   law written for a reader: what the world is, where things are, the
+   actions with what each does and when it is refused, how to answer, its
+   freedoms, and how the set of actions grows. The law is the same as
+   data, and the text is made from it, so the two can't disagree. `again`
+   is true for a mind that comes back under its name, and its orientation
+   then says so, and that what it did before is in the public record.
 2. **Each tick:** `{"tick": N, "seen": TEXT, "observation": {...}}`. The
    text tells where it stands and on what, what lies each way ("a step up,
    onto rock", "open, with nothing underfoot: you would fall"), who is

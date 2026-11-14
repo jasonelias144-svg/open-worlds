@@ -75,6 +75,11 @@ fn hash_data(document: &Value, options: &Value) -> Result<Vec<u8>, String> {
     Ok(data)
 }
 
+/// The Ed25519 public key that goes with `secret`.
+pub fn public_key(secret: &[u8; 32]) -> [u8; 32] {
+    SigningKey::from_bytes(secret).verifying_key().to_bytes()
+}
+
 /// `document` with an `eddsa-jcs-2022` proof by the holder of `secret`,
 /// made at `created`. Section 3.3.1.
 pub fn sign(

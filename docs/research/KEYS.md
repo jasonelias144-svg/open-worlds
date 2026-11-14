@@ -198,7 +198,7 @@ root does.
 4. **Leaving and coming back** in the Ur-world: a mind at its doorway
    signs as its key, so whoever returns is known as the same individual,
    as the Python worlds already do. Its plan: "Part four", below
-   (decisions 11 to 17).
+   (decisions 11 to 17); built: "As built, part four".
 
 ## Part four: leaving and coming back, the plan
 
@@ -411,7 +411,89 @@ is reclaimed; nowhere else the session put them: the tool's staging
 folder was moved into that checkout, and the fresh clone was deleted,
 all on the session's machine. That much is the session's own account;
 no one outside it can check it. Leaving and coming back in the
-Ur-world, part four, is next (its plan, above).
+Ur-world, part four, followed ("As built, part four").
+
+## As built, part four: leaving and coming back
+
+Decisions 11 to 17, built in the Rust Ur-world (`rust/ur-world`) and
+checked from Python through the shared vectors:
+
+- **The arrival** (`open-worlds/arrival/v1`, in records-v1): `world`,
+  `individual`, `name`, `tick` and `previous`, signed by the individual
+  alone. Python (`formats/records.py`) and Rust (`rust/formats`) check
+  it from the same schema; `vectors/formats/records-v1.json` holds one
+  that holds and eight that must be refused, between a trial world and a
+  trial mind added to its parties.
+- **A world has a key.** `World::new(seed, public)` takes the world's
+  Ed25519 public key; its first log entry names it, and every arrival
+  must name it too. Its private half signs the log's heads
+  (`ur_world::arrival::head`, `open-worlds/log-head/v1`), and never
+  enters the world itself.
+- **Entering is by arrival.** `World::admit(arrival)` says whether the
+  world would admit it now, without changing anything, and
+  `World::enter(arrival, mind, at)` brings its signer in. They refuse an
+  arrival that doesn't hold, or isn't one; one for another world; one
+  over another tick or last entry than the world's now ("stale": so one
+  arrival is used once in a history, and two in a tick are ordered); a
+  name with a control character, which records-v1's text allows; a name
+  bound to another key; a key with another name here; and a key whose
+  holder is here already. The arrival goes into the `entered` entry
+  whole, with its proof. `World::add`, which took a name alone, is gone.
+- **A name stays its individual's** (decision 12, birth key first): the
+  first arrival under a name binds it to the key that signed, for good,
+  and that key to that name. The same key comes back as `Admission::Again`;
+  any other key is told "that name is bound to another key: not this
+  name's birth key (successions aren't checked yet)", the message note 2
+  of #58's review asked for, since the world can't tell someone else
+  from the same individual with a signed-over key.
+- **The doorway signs** (decision 13). `ur_world::arrival::sign` signs an
+  arrival over the world as it is now; the door example signs each
+  mind's with a fresh key from the operating system's randomness, admits
+  it, and only then starts the mind's program, which is told in its
+  first message whether it comes back (`"again"`) and, if so, that what
+  it did before is in the public record. No key is passed to a mind's
+  program, and no holder's key is read: until step 9 no holder enters
+  (decision 15).
+- **Trial runs are worlds of their own** (decision 14). Each door run
+  makes a fresh world key and writes, with `--head`, the head that key
+  signs. The garden's Hello World is a trial world too, with its world's
+  and stand-ins' keys made from its seed (`trial_secret`), public to
+  everyone, so its log, its signed head (`vectors/ur-garden-head.json`)
+  and the vectors stay byte for byte the same on every run (note 3).
+- **The stand-ins are renamed** (decision 15): the garden's scripts enter
+  as WALKER and GARDENER, the tests' minds as TRIAL-1 and TRIAL-2. The
+  law's `exit` now says "Your name stays yours: you can come back under
+  it later, and no one else can enter under it." The rules are
+  `ur-world/0.3`.
+- **The log's check** (decision 16): `arrival_problems(log)` checks every
+  arrival in an Ur-world log (that it holds, names the world, its entry's
+  tick, name and the entry before it, is under a name the world allows,
+  by the same rule as `World::admit` (`good_name`), keeps each name to
+  one key and each key to one name, and that no one enters while here),
+  so a log the kernel couldn't have written is caught; and
+  `head_coverage(log, heads)` says how much of the log the signed heads
+  cover, with a problem for each head that doesn't fit it: another
+  world's, longer than the log, a last hash or tick that disagrees. The
+  `log` example runs both after `world-log`'s check of the chain, and
+  prints the coverage; CI runs it on the garden's vectors and on the door
+  run's log and head. They are in `ur-world`, not `world-log`, which the
+  Python worlds' logs share and which knows no records.
+- **Python checks the vectors** (decision 16):
+  `tests/test_ur_world_vectors.py` checks each arrival in the garden's
+  log with `formats/records.py` against its entry, and the signed head
+  against the whole log.
+
+**Decided by the technical lead while building, 2026-11-14:**
+
+18. **Successions join records-v1 before ALICE's and BOB's first
+    arrival.** Until the Ur-world follows successions, a name follows its
+    birth key alone (decision 12), so a leaked birth key would still
+    enter under the name after its holder signed over to a new key, and
+    the new key couldn't. No individual exists in the Ur-world before
+    step 9, so nothing is exposed yet; successions, at least the part of
+    the waiting list's "a lost or leaked key" that signs a key over, and
+    the Ur-world following them, come before step 9's first arrival
+    (COURSE.md, step 9).
 
 ## Honest limits
 
@@ -441,6 +523,38 @@ Ur-world, part four, is next (its plan, above).
   means the same key, and another program can come back under it. That
   is what "an individual is its key" says, and whoever runs the doorway
   can enter as anyone whose key it holds.
+- **Only signed heads protect a reader.** An arrival in a log shows who
+  entered, but a log is the word of whoever runs the world until a head
+  its world signed covers it: entries after the latest signed head,
+  arrivals and acts alike, could be rewritten, and a copy run from the
+  same seed with arrivals replayed into it is caught only by a reader who
+  asks for the world's signed heads (decision 14). So the log check
+  reports how much the heads cover, and a reader should trust no more. A
+  door run signs one head, at its end; how often the Ur-world signs its
+  heads is decided before its first inhabitant, at step 9.
+- **Until the Ur-world follows successions,** a name follows its birth
+  key alone: a leaked birth key enters under the name, and a key signed
+  over from it can't (decision 18, which closes this before step 9).
+- **A world keeps its names in memory.** The bindings of names to keys
+  live in the running world; the log holds every arrival, so they can be
+  rebuilt from it (as `arrival_problems` does), but nothing yet continues
+  a world from its log: the Ur-world runs only while someone steps it
+  (URWORLD.md). When it keeps running, it must continue from its log,
+  names and all, or a returning individual's name would be free again.
+- **Names can look alike.** A name is compared character for character,
+  and the world refuses only control characters (Unicode's Cc): so a
+  line or paragraph separator (U+2028, U+2029), a zero-width or other
+  format character (U+200B), another case, or another Unicode form of
+  the same letters makes another name, which a reader may take for the
+  same. Before step 9, when names become ALICE's and BOB's, a rule for
+  names that can't be confused is settled, in both languages, with the
+  key list's (STATUS, "Noticed").
+- **Trial keys are public.** The garden's keys are made from its seed,
+  so anyone can sign as its world or its stand-ins: they show the
+  format, and protect nothing. "The same seed gives the same log" holds
+  for trial worlds whose keys come from the seed, with arrivals as given
+  inputs; the Ur-world's own history needs no such repetition, since it
+  is one history whose heads its own key signs.
 - **The tool's guard sees Git as it is set up when the tool runs,** not
   at the push that follows: an environment variable, a `-c`, or a config
   file edited in between could send a push elsewhere, and SSH host
@@ -454,6 +568,11 @@ Ur-world, part four, is next (its plan, above).
 offline, and thresholds.
 
 ## Not checked
+
+- Python checks the arrivals and the head in the garden's log, not the
+  kernel's rules for admitting them: those are the Rust tests'
+  (`rust/ur-world/tests/arrivals.rs`), since the Rust Ur-world is the
+  reference (decision 16).
 
 - Whether GitHub's secret scanning recognises our Multikey secrets
   without a custom pattern. It knows many providers' token formats; ours

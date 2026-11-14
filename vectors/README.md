@@ -8,7 +8,8 @@ language can check itself against it, hash for hash. The Rust crate in
 |---|---|
 | `world-log.json` | The whole log of a short seeded run of the world kernel (`world/core.py`), with every kind of entry it writes. |
 | `digests.json` | Bodies chosen to test the edges of writing JSON (key order, escapes, characters outside the basic plane, integers at the ends of 64 bits), each with the exact text the kernel hashes and its SHA-256. |
-| `ur-garden-log.json` | The Ur-world's Hello World: the whole log of the garden with ALICE and BOB, written by the Rust kernel (`rust/ur-world`). |
+| `ur-garden-log.json` | The Ur-world's Hello World: the whole log of the garden with its two scripted stand-ins, WALKER and GARDENER, each entering with a signed arrival (`open-worlds/arrival/v1`), written by the Rust kernel (`rust/ur-world`). The garden is a trial world of its own, and its keys are trial keys made from its seed, public to everyone. |
+| `ur-garden-head.json` | The head of that log, signed by the garden's trial world key (`open-worlds/log-head/v1`), covering all of it. |
 | `ur-chunks.json` | The Ur-world's generator, version 1: for three seeds, the ground height of some columns and the hash of some chunks. |
 | `formats/eddsa-jcs-2022.json` | Records signed with `eddsa-jcs-2022` (course step 2): the W3C specification's own example, step by step; records this project signs, with their RFC 8785 form; proofs that must be refused; and values that break this project's three rules. Written by `python3 -m formats.vectors`, read by `rust/formats`. |
 | `formats/records-v1.json` | The records the offices keep, who an individual and a world are (identity, birth records, mind record), a world's template, and the project's key list, against `schemas/records-v1.schema.json`: test parties (keys public to everyone, never for anything real), records of every kind that hold, each with its hash, records that must be refused, each named for why, worlds' birth records checked against their template's dials, and key lists checked against the version before. Written by `python3 -m formats.record_vectors`, read by `rust/formats`. |
@@ -33,7 +34,7 @@ and `tests/test_vectors.py` checks that they are still exactly what the
 kernel writes. If the kernel's output changes on purpose, rewrite the
 files, and every other language's tests then say whether it still agrees.
 
-For the Ur-world the Rust kernel is the reference, so the last two are
+For the Ur-world the Rust kernel is the reference, so its three files are
 written by Rust:
 
 ```
@@ -42,8 +43,9 @@ cd rust && cargo run -p ur-world --example garden -- --vectors ../vectors
 
 The Rust tests check that they are still what the kernel writes, and
 `tests/test_ur_world_vectors.py` checks them from Python. The garden's log
-holds by `World.verify_log`, and the generator, written again in Python from
-its documented rules, gives the same heights and chunks.
+holds by `World.verify_log`, its arrivals and head hold by
+`formats/records.py`, and the generator, written again in Python from its
+documented rules, gives the same heights and chunks.
 
 ## How the kernel writes a log entry
 

@@ -26,10 +26,13 @@ respect one another's freedom, with full transparency and exit at any time
   signed the standard way, one schema read by Python and Rust, sealing,
   and who an individual and a world are
   ([docs/research/FORMATS.md](docs/research/FORMATS.md)). Step 3, keys
-  and identities, is under way (docs/research/KEYS.md): the real keys
-  were made on 2026-11-14, the private halves in the project's private
-  repository and the key list in keys/key-list.json; part four, leaving
-  and coming back in the Ur-world, is next.
+  and identities, is built (docs/research/KEYS.md): the real keys were
+  made on 2026-11-14, the private halves in the project's private
+  repository and the key list in keys/key-list.json; in the Ur-world,
+  whoever enters signs an arrival, a name stays the key's that first
+  used it, and a world signs its log's heads (part four, in review).
+  Next: close step 3 (the course rechecked, a step added), then step 3a,
+  persons.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
   (#29), and experiment 001, the first unscripted minds
   ([results](experiments/001-first-words/RESULTS.md), #30). The first
@@ -111,7 +114,10 @@ kind.
   one name in two Unicode forms, would be two holders. The tool's own
   first list can't make that happen; when individuals are added after
   version 1, compare names case-folded and in NFC, in both languages.
-  (Noted by #53's narrow check.)
+  (Noted by #53's narrow check.) The Ur-world's names are the same: it
+  refuses only control characters, so U+2028, a zero-width character,
+  another case or another form makes another name. One rule for both,
+  before step 9 (COURSE.md; noted by #59's independent review).
 
 - Python isn't a sandbox: agents in the kernel's process could reach its
   internals. That's acceptable only for agents written here (AGENTS.md), and
@@ -960,7 +966,30 @@ it was wrong. Questions of what the project is for stay with the founder.
   repository (then that key is replaced at once: a project role's by a
   new key list, an individual's or a world's by a succession).
 
+- 2026-11-14, before ALICE's and BOB's first arrival, successions join
+  records-v1 and the Ur-world follows them (docs/research/KEYS.md,
+  decision 18; COURSE.md, step 9). *Why:* until then a name follows its
+  birth key alone, so a leaked birth key would still enter under the
+  name after a succession, and the new key couldn't; no individual exists
+  in the Ur-world before step 9, so closing it then exposes nothing.
+  *Revisit if:* an individual must enter the Ur-world before step 9.
+
 ## Log
+
+- 2026-11-14 Claude: course step 3, part four, built (KEYS.md, "As built,
+  part four"): `open-worlds/arrival/v1` in records-v1, with vectors in
+  both languages; every Ur-world has a key, named in its first entry and
+  by every arrival, which signs its log's heads; entering is by a signed
+  arrival over the log's last entry (`World::admit`, `World::enter`), and
+  a name stays the key's that first used it, so the same key comes back
+  as the same individual and any other is refused; the doorway signs
+  with keys made for the run, admits, then starts the mind, told whether
+  it comes back; the garden's stand-ins are WALKER and GARDENER, a trial
+  world with keys made from its seed; the `log` example checks a log's
+  arrivals and its signed heads' coverage, in CI for the garden and a
+  door run. Decision 18: successions join records-v1 before ALICE's and
+  BOB's first arrival (COURSE.md, step 9). #58's last notes (signed
+  heads, the interim, trial keys) are in "Honest limits".
 
 - 2026-11-14 Claude: course step 3, part four's plan
   (docs/research/KEYS.md, decisions 11 to 17): an arrival signed by the

@@ -366,7 +366,10 @@ format version, its log's last hash, its length and the tick, in RFC 8785
 form, so that no head can be passed off as another world's; published with
 the log from step 3, when the Ur-world gets its key. Whether the
 multiverse log needs a Merkle tree, to prove an entry is in it without
-reading all of it, is decided at step 12.
+reading all of it, is decided at step 12. *Built at step 3:* the
+Ur-world's kernel signs its head as `open-worlds/log-head/v1`, and checks
+how much of a log the heads given cover ([KEYS.md](KEYS.md), "As built,
+part four").
 
 ## Container images
 
@@ -563,6 +566,14 @@ From course step 3: the project's key list (`open-worlds/key-list/v1`),
 signed by the multiverse's root, names the key that holds each role;
 each version names the one before and is signed by its root. Why, and
 how it is checked, is in [KEYS.md](KEYS.md).
+
+## The arrival
+
+From course step 3: an individual enters a world by signing an arrival
+(`open-worlds/arrival/v1`): the world's did:key, their own, the name, the
+tick, and the hash of the world's log entry just before the arrival's
+own, signed by the individual alone. Why, and how the Ur-world holds
+names to keys with it, is in [KEYS.md](KEYS.md) (decisions 11 to 18).
 
 ## What step 2 defines
 
