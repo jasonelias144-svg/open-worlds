@@ -12,10 +12,13 @@
 //! - [`records`]: the records the offices keep, checked against
 //!   `schemas/records-v1.schema.json`;
 //! - [`seal`]: messages sealed to one key with HPKE (RFC 9180), checked
-//!   through `vectors/formats/hpke-base-v1.json`.
+//!   through `vectors/formats/hpke-base-v1.json`;
+//! - [`sealed`]: world-keys and journal entries, signed and sealed to the
+//!   one they name, checked through `vectors/formats/sealed-records-v1.json`.
 
 pub mod canonical;
 pub mod multikey;
 pub mod proof;
 pub mod records;
 pub mod seal;
+pub mod sealed;

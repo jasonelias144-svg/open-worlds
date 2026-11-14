@@ -1,5 +1,7 @@
 """The records the offices keep (course step 2): a grant, a decision
-record, a suggestion, a rating, and a signed log head.
+record, a suggestion, a rating, and a signed log head; and the records an
+individual is given or keeps sealed: a world-key and a journal entry
+(sealed with formats/sealed.py).
 
 Each record's shape is in one JSON Schema (2020-12) that Python and Rust
 both read, schemas/records-v1.schema.json, and each is signed with
@@ -7,16 +9,20 @@ both read, schemas/records-v1.schema.json, and each is signed with
 
 1. it fits the schema for the kind its `format` names;
 2. its proof verifies;
-3. it was signed by the one who must sign that kind: a grant by its
-   issuer, a decision by the office's key, a suggestion and a rating by
-   their author, a log head by its world.
+3. it was signed by the one who must sign that kind: a grant and a
+   world-key by their issuer, a decision by the office's key, a
+   suggestion, a rating and a journal entry by their author, a log head
+   by its world.
 
 What the schema can't say is checked where the records meet the kernel,
 at course step 4: that a grant only narrows the grant it names; that a
 decision's inputs are in the log, its office holds the grant it names,
 and that grant allows its kind of act; that a rating's author wrote the
 suggestion it names, and its outcome is a decision that names that
-suggestion.
+suggestion; and that a world-key's issuer is a world that places paths,
+its path was placed in that world's log and walked to its end by its
+holder, and it hasn't already been used to found a world
+(docs/WORLD-KEY.md: "It is marked as used at the founding").
 
 A record's hash, which other records name it by, is the SHA-256 of its
 RFC 8785 form, proof included, in lowercase hex.
@@ -47,6 +53,8 @@ KINDS: Dict[str, Tuple[str, Tuple[str, ...]]] = {
     "open-worlds/suggestion/v1": ("suggestion", ("author",)),
     "open-worlds/rating/v1": ("rating", ("author",)),
     "open-worlds/log-head/v1": ("logHead", ("world",)),
+    "open-worlds/world-key/v1": ("worldKey", ("issuer",)),
+    "open-worlds/journal-entry/v1": ("journalEntry", ("author",)),
 }
 
 
@@ -74,13 +82,14 @@ _Validator = jsonschema.validators.extend(
     jsonschema.Draft202012Validator, {"pattern": _ecma_pattern})
 
 
-def _validator(name: str) -> Any:
+def validator(name: str) -> Any:
+    """A validator for the schema's `$defs/<name>`."""
     return _Validator({"$schema": SCHEMA["$schema"],
                        "$defs": SCHEMA["$defs"],
                        "$ref": f"#/$defs/{name}"})
 
 
-_VALIDATORS = {fmt: _validator(name) for fmt, (name, _) in KINDS.items()}
+_VALIDATORS = {fmt: validator(name) for fmt, (name, _) in KINDS.items()}
 
 
 def problems(record: Any) -> List[str]:

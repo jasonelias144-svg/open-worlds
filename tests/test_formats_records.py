@@ -57,8 +57,14 @@ class TestTheVectors(unittest.TestCase):
                     record)
 
     def test_every_kind_has_a_valid_record(self):
+        # The offices' kinds here; the sealed kinds in
+        # sealed-records-v1.json, beside the boxes they travel in.
+        from formats import sealed_vectors
+        sealed_records = json.loads(
+            sealed_vectors.FILE.read_text(encoding="utf-8"))["records"]
         self.assertEqual(
-            {c["record"]["format"] for c in VECTORS["valid"]},
+            {c["record"]["format"] for c in VECTORS["valid"]}
+            | {c["record"]["format"] for c in sealed_records},
             set(records.KINDS))
 
     def test_each_refused_record_is_refused(self):

@@ -752,6 +752,21 @@ it was wrong. Questions of what the project is for stay with the founder.
   another. *Revisit if:* a sealed record needs associated data, or `hpke`
   and `cryptography` disagree on a box the vectors don't cover.
 
+- 2026-11-14, the sealed records: a world-key
+  (`open-worlds/world-key/v1`: issuer, holder, path, tick) and a journal
+  entry (`open-worlds/journal-entry/v1`: author, world, tick, text, and
+  what it remembers), added to records-v1 as new kinds; each sealed to the
+  one it names, in an unsigned envelope (`open-worlds/sealed/v1`) whose
+  hash is its public fingerprint; the opener checks, after the box opens,
+  that what is inside holds, is in its RFC 8785 form, is the kind its
+  label is for, and names them; `open-worlds/journal/v1` added to the
+  labels (docs/research/FORMATS.md, "Sealed records"). *Why:* the
+  recipient check is what makes a world-key sealed again for someone else
+  worthless to them, as WORLD-KEY.md requires; adding kinds to v1 changes
+  no record already made. *Revisit if:* the identity record (course step
+  3) binds sealing keys to did:keys in a way the envelope should name, or
+  the founder chooses a "break glass" for sealed selves.
+
 ## Log
 
 - 2026-11-14 Claude: the founder's decisions of the evening written in.
@@ -767,6 +782,13 @@ it was wrong. Questions of what the project is for stay with the founder.
   principle, as it concerns the project. The birth record's words
   revised so they stay true under the "break glass", awaiting the
   founder.
+- 2026-11-14 Claude: course step 2, part four: the sealed records.
+  World-keys and journal entries join records-v1; `formats/sealed.py`
+  and `rust/formats` seal one to the one it names and open it only for
+  them. Shared vectors (`vectors/formats/sealed-records-v1.json`): 3
+  records that hold and 7 that don't, 3 envelopes that open, 13 the
+  opener must refuse (a world-key sealed again to BOB among them), and 7
+  refused for their shape. The journal's label joins the sealing labels.
 - 2026-11-14 Claude: course step 2, part three: sealing.
   `formats/seal.py` and `rust/formats` seal a message to one X25519 key
   with HPKE's base mode and a label naming its purpose, and open it only
