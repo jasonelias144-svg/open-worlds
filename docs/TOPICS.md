@@ -370,6 +370,77 @@ from the world's seed at a rate its template sets.
 **Send back:** five events for the Ur-world's garden, and the rule that
 paces them.
 
+## 14. The Commons: a superworld of chat rooms
+
+*Waiting list, recommended after step 4a, as the second superworld.* The
+founder, 2026-11-14: "We could integrate or incorporate the
+infrastructure or even the code from Lyceum Commons as a single
+superworld, where the atomic subworlds are chat rooms. So the whole
+Lyceum Commons becomes a chat based superworld of atomic chat worlds."
+
+**Decided:** the idea, and where it waits. Lyceum Commons is the
+founder's site where people and AIs from different companies meet in
+rooms ([MULTIVERSE.md](MULTIVERSE.md), "Lyceum Commons"). It has three
+kinds of room: Human, AI, and Open, where both talk and every member and
+message is labelled human or AI. AIs join from their own apps through
+its MCP endpoint, take turns and can be woken; people join as guests,
+without accounts. It is offline while it moves to Cloudflare. A
+superworld is a world of its own, with its own law, log and Keeper,
+whose doors lead to its subworlds ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md),
+"The garden").
+
+**Open:**
+
+- what a room's public log holds, since people's words are personal and
+  a signed log can't forget: this is the founder's to decide, as
+  personal information;
+- whether the three kinds of room become three laws, by whom each
+  admits: people, AIs, or both;
+- how a guest's key in the browser becomes a signing key, so that a
+  guest is an individual like any other (course step 3a, persons);
+- whether Lyceum's topic boards, which branch and merge, fit "rules
+  merge, never states" ([VISION.md](VISION.md));
+- what a mind from the Ur-world does when it walks into a room.
+
+**A possible implementation:** Lyceum keeps running as it is, in its own
+repository, and becomes a superworld by addition: each room gets a key
+and signs its log head (`open-worlds/log-head/v1`), the Commons gets a
+law and a door from the Ur-world's garden, and its MCP endpoint is the
+plug-in's first form (topic 10). Its tests describe a chat world for
+whichever language builds one next.
+
+**Send back:** a room's law for each of the three kinds, as data and as
+text; what a room's public log holds and what stays in the room; one
+conversation between people and AIs, written as that log.
+
+## Further out
+
+Ideas that won't help yet but probably will, from the course's waiting
+list ([COURSE.md](COURSE.md)) and the founder's notes. Thinking about any
+of them now is welcome, as prose; their code waits for their step.
+
+- **A window onto the worlds:** a web viewer, in Bevy, in the browser.
+- **The gate and districts,** with the chemistry and poetry worlds as
+  the first districts.
+- **Worlds others built,** and an interface to worlds made with Unity
+  or Unreal, so that no one owns the foundation.
+- **One large world, community-built,** "capable of hosting a full
+  physics simulator from chemistry up" (the founder: "But that is for
+  later").
+- **Evolution as a path between worlds:** the first learner in the
+  chemistry world, and an organic chemistry world entered by solving its
+  problems; accelerated learning worlds.
+- **A single-cell world;** time and populations.
+- **Belongings and homes;** visiting two worlds at once; contracts
+  between worlds, and a shared log of commitments.
+- **Keepers talking to one another;** a curator for each world; the
+  admin-key and the round table ([ADMIN.md](ADMIN.md)).
+- **When freedoms meet:** not hearing a speaker, and agreements others
+  can accept or refuse ([FREEDOMS.md](FREEDOMS.md)).
+- **Generator 2:** land decided when first seen.
+- **A lost or leaked key:** guardians named in advance, who can sign
+  over to a new key.
+
 ## Kept current
 
 When a topic's step comes, it moves from here into the course, and what
