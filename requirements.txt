@@ -17,3 +17,9 @@ bcrypt==5.0.0
 # (formats/canonical.py). Trail of Bits, Apache 2.0, no dependencies; so the
 # form records are signed in is written by a library, not by hand.
 rfc8785==0.1.4
+
+# JSON Schema 2020-12, to check every record against
+# schemas/records-v1.schema.json (formats/records.py), the same file the
+# Rust code reads. MIT; it brings attrs, referencing, rpds-py and
+# jsonschema-specifications.
+jsonschema==4.26.0

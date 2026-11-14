@@ -29,6 +29,11 @@ ed25519-dalek = "3.0.0"
 # Base58-btc, for Multikey and proofValue (formats); Python writes its own,
 # so the two are checked against each other through the shared vectors.
 bs58 = "0.5.1"
+# JSON Schema 2020-12, to read schemas/records-v1.schema.json as the Python
+# code does (formats). Without its default features, so it never fetches
+# anything over the network; 0.60.2, three weeks old, rather than a release
+# of the last few days.
+jsonschema = { version = "=0.60.2", default-features = false }
 
 # The lints hold for every crate; a crate doesn't loosen them.
 [workspace.lints.rust]

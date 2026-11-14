@@ -6,6 +6,8 @@ everywhere, and signed so that standard tools can check them.
 - `multikey`: Ed25519 keys written as Multikey and did:key.
 - `proof`: Data Integrity proofs with the `eddsa-jcs-2022` cryptosuite,
   W3C Recommendation of 15 May 2025.
+- `records`: the records the offices keep (grant, decision, suggestion,
+  rating, signed log head), checked against schemas/records-v1.schema.json.
 
 docs/research/FORMATS.md says why each was chosen.
 """

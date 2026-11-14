@@ -8,8 +8,11 @@
 //!   integers within 2^53 - 1, no floats);
 //! - [`multikey`]: Ed25519 keys written as Multikey and did:key;
 //! - [`proof`]: Data Integrity proofs with the `eddsa-jcs-2022`
-//!   cryptosuite (W3C Recommendation, 15 May 2025).
+//!   cryptosuite (W3C Recommendation, 15 May 2025);
+//! - [`records`]: the records the offices keep, checked against
+//!   `schemas/records-v1.schema.json`.
 
 pub mod canonical;
 pub mod multikey;
 pub mod proof;
+pub mod records;
