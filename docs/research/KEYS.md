@@ -89,12 +89,12 @@ root does.
 2. **A key list, signed by the root,** names each role's keys, as TUF's
    root metadata does: the one place that says which key is the
    project's for what. It is public, in this repository, and versioned:
-   each version names the one before by hash and is signed by that
-   version's root, so a new root is named by the old one, in a version
-   the old root signs, and signs the version after itself (part two,
-   below). One key
-   to a role and no thresholds while the project has one keyholder;
-   thresholds when others hold keys. It is a new kind of record,
+   each version names the one before by hash and is signed by the root
+   the one before names. So a new root is named by the old one, in a
+   version the old root signs, and signs the version after itself; the
+   two are published together, in one pull request (part two, below).
+   One key to a role and no thresholds while the project has one
+   keyholder; thresholds when others hold keys. It is a new kind of record,
    `open-worlds/key-list/v1`, in records-v1, with vectors in both
    languages.
 3. **The root key signs only key lists,** as the DNSSEC root's key signs
@@ -198,34 +198,61 @@ root does.
   `role` (root, code, mindRecords, templates, admin, world, individual),
   a `name`, a `signing` did:key and, for a holder things are sealed to, a
   `sealing` key. Beyond the schema, in Python (`formats/records.py`) and
-  Rust (`rust/formats`): exactly one root; each role and name, and each
-  key, named once; every sealing key safe to seal to; and version 1
-  signed by its own root. `key_list_problems(new, previous)` checks that
-  a version follows the one before: its hash, the next number, and
-  signed by the root that one names. So a change of root takes two
-  versions: the old root signs one naming the new root, and the new root
-  signs the next. Every record keeps one proof by one key; a new root's
-  own key is proven when it signs the version after.
+  Rust (`rust/formats`): exactly one root, with no sealing key, since
+  nothing is sealed to it; each name, and each key, named once; every
+  sealing key safe to seal to; and version 1 signed by its own root.
+- **A version against the one before:** `key_list_problems(new,
+  previous)` checks its hash, the next number, signed by the root the
+  one before names, no earlier in time, and every individual's and
+  world's entry kept as it was (point 9). Since no such entry can be
+  dropped, a check of each pair covers a whole history.
+- **A whole history:** `key_list_chain_problems(versions)` walks it from
+  version 1, each version against the one before, and refuses a history
+  that ends on a version naming a root that hasn't signed one. So a
+  change of root takes two versions: the old root signs one naming the
+  new root, and the new root signs the next, and the two are published
+  together, in one pull request. Every record keeps one proof by one
+  key, so, unlike TUF's root, signed by the old and new keys together, a
+  new root proves it holds its key only by signing the version after.
+  If it can't sign, the history is stuck at the handover: the old root
+  can't sign the version after, and a second version with the same
+  number is a fork (point 10). Publishing the two together is what keeps
+  that from happening.
 - **Shared vectors** (`vectors/formats/records-v1.json`): three key lists
   that hold (the first; one in which the root names a new root; the one
-  after, signed by the new root), nine refused, and six pairs of a
-  version and the one before it, two that follow and four that don't.
+  after, signed by the new root), eleven refused, eleven pairs of a
+  version and the one before it (three that follow, among them a new key
+  for the code role; eight that don't, among them a new key for ALICE,
+  or for the Ur-world, BOB dropped, and a version earlier than the one
+  before), and six histories (two that hold).
 - **No private key here** (`tests/test_no_private_keys.py`): every
-  tracked file is scanned for Multikey secrets and PEM private-key
-  blocks, and each must be one of the vectors' test keys, worked out
-  again from its seed, or the W3C specification's example. A key made on
-  the spot and planted in README.md, or among the vectors' keys, is
-  caught.
+  tracked file is read, whatever bytes it holds, and scanned for
+  Multikey secrets and PEM private-key blocks, also inside strings
+  (line breaks as `\n`) and Markdown quotes; each must be one of the
+  vectors' test keys, worked out again from its seed, or the W3C
+  specification's example. A key made on the spot and planted in
+  README.md, or among the vectors' keys, is caught. A failure names the
+  file, the kind of key and a hash of it, never the key. Not caught: a
+  key split across several strings joined in code.
 - **The tool** (`python3 -m formats.make_keys --private PATH --key-list
   PATH`, `formats/make_keys.py`): makes a key for each role from the
   operating system's randomness; writes each holder's private halves to
-  `keys/<holder>.json` in the private checkout, readable by its owner
-  only, never over a key that is there; signs the first key list with
-  the new root; checks that the halves kept match the list; and prints
-  only public keys. It refuses any place inside this repository's
-  working tree, and any checkout of this repository wherever it is (a
-  history sharing its first commit). Tested on throwaway directories,
-  with each guard checked by removing it.
+  a new `keys/<holder>.json` in the private checkout, the folder
+  readable by its owner only and each file too; signs the first key list
+  with the new root; checks that the halves kept match the list; and
+  prints only public keys. `--private` must be the top of a full clone
+  of another repository. It refuses a place inside this repository's
+  working tree; a worktree of this repository; a clone whose remotes
+  name this repository; a history sharing this repository's first
+  commit; a shallow clone, of either, since its first commits are only
+  where its history was cut; a checkout with no remote; and a `keys`
+  that is there already, folder or link, so nothing is written over a
+  key or through a link. Everything or nothing: the halves are written
+  into a new folder only its owner can open, and moved into place with
+  the key list once both are whole; a failure on the way leaves neither.
+  Tested on throwaway repositories, with each guard checked by removing
+  it. If the tool is killed midway, a `.keys-being-made-…` folder can be
+  left in the private checkout; delete it.
 
 ## Honest limits
 

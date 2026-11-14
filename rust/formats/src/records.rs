@@ -213,18 +213,19 @@ fn key_list_entry_problems(record: &Value) -> Vec<String> {
     let mut seen = std::collections::BTreeSet::new();
     for (i, e) in entries.iter().enumerate() {
         let text = |k: &str| e.get(k).and_then(Value::as_str);
+        if text("role") == Some("root") && e.get("sealing").is_some() {
+            found.push(format!(
+                "$.keys.{i}: the root signs key lists only, so nothing is sealed to it"
+            ));
+        }
         let named = [
-            Some(format!(
-                "role {} {}",
-                text("role").unwrap_or(""),
-                text("name").unwrap_or("")
-            )),
+            Some(format!("name {}", text("name").unwrap_or(""))),
             text("signing").map(|s| format!("key {s}")),
             text("sealing").map(|s| format!("key {s}")),
         ];
         for what in named.into_iter().flatten() {
             if !seen.insert(what) {
-                found.push(format!("$.keys.{i}: a role, name or key named twice"));
+                found.push(format!("$.keys.{i}: a name or key named twice"));
             }
         }
         if e.get("sealing").is_some() {
@@ -308,15 +309,41 @@ pub fn key_list_root(key_list: &Value) -> Option<&str> {
         .as_str()
 }
 
+/// The roles whose entries a key list only publishes: who an individual or
+/// a world is follows its birth key and its own successions, never a later
+/// key list (docs/research/KEYS.md, point 9).
+pub const PUBLISHED_ONLY: [&str; 2] = ["individual", "world"];
+
+fn key_list(record: &Value) -> Result<(), String> {
+    check(record)?;
+    if record.get("format").and_then(Value::as_str) != Some("open-worlds/key-list/v1") {
+        return Err("$.format: not open-worlds/key-list/v1".into());
+    }
+    Ok(())
+}
+
+fn key_entries(key_list: &Value) -> &[Value] {
+    key_list
+        .get("keys")
+        .and_then(Value::as_array)
+        .map(Vec::as_slice)
+        .unwrap_or_default()
+}
+
+fn role_and_name(entry: &Value) -> (Option<&str>, Option<&str>) {
+    (
+        entry.get("role").and_then(Value::as_str),
+        entry.get("name").and_then(Value::as_str),
+    )
+}
+
 /// Where a key list fails to follow the version before it, or an empty
-/// list: it must name that version by hash, be the next number, and be
-/// signed by that version's root. Both lists must hold.
+/// list: it must name that version by hash, be the next number, be signed
+/// by that version's root, be no earlier, and keep every individual's and
+/// world's entry as it was. Both lists must hold.
 pub fn key_list_problems(new: &Value, previous: &Value) -> Result<Vec<String>, String> {
     for record in [new, previous] {
-        check(record)?;
-        if record.get("format").and_then(Value::as_str) != Some("open-worlds/key-list/v1") {
-            return Err("$.format: not open-worlds/key-list/v1".into());
-        }
+        key_list(record)?;
     }
     let mut found = Vec::new();
     if new.get("previous").and_then(Value::as_str) != Some(record_hash(previous)?.as_str()) {
@@ -329,7 +356,69 @@ pub fn key_list_problems(new: &Value, previous: &Value) -> Result<Vec<String>, S
     if new.get("issuer").and_then(Value::as_str) != key_list_root(previous) {
         found.push("$.issuer: not the root of the version before".into());
     }
+    let time = |r: &Value| {
+        r.get("time")
+            .and_then(Value::as_str)
+            .unwrap_or("")
+            .to_owned()
+    };
+    if time(new) < time(previous) {
+        found.push("$.time: earlier than the version before".into());
+    }
+    for e in key_entries(previous) {
+        let (role, name) = role_and_name(e);
+        if !role.is_some_and(|r| PUBLISHED_ONLY.contains(&r)) {
+            continue;
+        }
+        let kept = key_entries(new)
+            .iter()
+            .find(|n| role_and_name(n) == (role, name));
+        if kept != Some(e) {
+            found.push(format!(
+                "$.keys: {}'s entry changed or dropped",
+                name.unwrap_or("")
+            ));
+        }
+    }
     Ok(found)
+}
+
+/// Where a key list's history fails, or an empty list: from version 1,
+/// each version following the one before, and ending on a version whose
+/// root has signed it, since a version naming a new root is published
+/// together with the version that root signs (docs/research/KEYS.md).
+/// Each problem names the version's place in `versions`.
+pub fn key_list_chain_problems(versions: &[Value]) -> Vec<String> {
+    let Some(last) = versions.last() else {
+        return vec!["[]: no versions".into()];
+    };
+    let found: Vec<String> = versions
+        .iter()
+        .enumerate()
+        .filter_map(|(i, r)| key_list(r).err().map(|e| format!("[{i}] {e}")))
+        .collect();
+    if !found.is_empty() {
+        return found;
+    }
+    let mut found = Vec::new();
+    if versions.first().and_then(|v| int(v, "version")) != Some(1) {
+        found.push("[0] $.version: the history doesn't start at 1".into());
+    }
+    for (i, pair) in versions.windows(2).enumerate() {
+        let [previous, new] = pair else { continue };
+        let at = i + 1;
+        match key_list_problems(new, previous) {
+            Ok(problems) => found.extend(problems.into_iter().map(|p| format!("[{at}] {p}"))),
+            Err(e) => found.push(format!("[{at}] {e}")),
+        }
+    }
+    if key_list_root(last) != last.get("issuer").and_then(Value::as_str) {
+        found.push(format!(
+            "[{}] $.keys: names a new root that hasn't signed a version yet",
+            versions.len() - 1
+        ));
+    }
+    found
 }
 
 /// Where a world's birth record and the template it names disagree, or an

@@ -60,8 +60,7 @@ read it:
    log heads, world-keys, journal entries, identities, birth records,
    mind records, a world's template with its dials, and the project's
    key list (which key holds each role, signed by the root). Sealing, so
-   only
-   one key can open something, uses HPKE (RFC 9180). Python (`formats/`)
+   only one key can open something, uses HPKE (RFC 9180). Python (`formats/`)
    and Rust (`rust/formats`) agree through shared test vectors
    ([vectors/](../vectors/README.md)). What is signed keeps three rules:
    ASCII keys, integers within 2^53 - 1, and no floats (a quantity with
@@ -289,8 +288,9 @@ These apply to code that comes into open-worlds, not to the draft (see
     with test vectors that Python and Rust both check
     ([research/FORMATS.md](research/FORMATS.md)).
 12. **No private key, ever, in this repository.** Test keys are made from
-    seeds that say "never for anything real"; the project's real private
-    halves live only in its private repository, and
+    seeds that say "never for anything real", or are the W3C
+    specification's example; the project's real private halves live only
+    in its private repository, and
     `tests/test_no_private_keys.py` fails on anything else
     ([research/KEYS.md](research/KEYS.md)).
 

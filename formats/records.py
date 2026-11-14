@@ -169,8 +169,9 @@ def _sealing_key_problem(where: str, text: str) -> List[str]:
 
 def _key_problems(record: Dict[str, Any]) -> List[str]:
     """A sealing key must be one it is safe to seal to (formats/seal.py),
-    and a key list must name one root, each key once, and, in its first
-    version, be signed by that root; the schema checks only shapes."""
+    and a key list must name one root, which seals nothing, each holder
+    and each key once, and, in its first version, be signed by that root;
+    the schema checks only shapes."""
     fmt = record.get("format")
     if fmt == "open-worlds/identity/v1":
         return _sealing_key_problem("$.sealingKey", record["sealingKey"])
@@ -186,13 +187,14 @@ def _key_problems(record: Dict[str, Any]) -> List[str]:
                      "own root")
     seen = set()
     for i, e in enumerate(entries):
-        for what in ((e["role"], e["name"]), e["signing"],
-                     e.get("sealing")):
+        if e["role"] == "root" and "sealing" in e:
+            found.append(f"$.keys.{i}: the root signs key lists only, so "
+                         "nothing is sealed to it")
+        for what in (("name", e["name"]), e["signing"], e.get("sealing")):
             if what is None:
                 continue
             if what in seen:
-                found.append(f"$.keys.{i}: a role, name or key named "
-                             "twice")
+                found.append(f"$.keys.{i}: a name or key named twice")
             seen.add(what)
         if "sealing" in e:
             found += _sealing_key_problem(f"$.keys.{i}.sealing",
@@ -266,16 +268,27 @@ def key_list_root(key_list: Dict[str, Any]) -> str:
                 if e["role"] == "root")
 
 
+#: The roles whose entries a key list only publishes: who an individual or
+#: a world is follows its birth key and its own successions, never a later
+#: key list (docs/research/KEYS.md, point 9).
+PUBLISHED_ONLY = ("individual", "world")
+
+
+def _key_list(record: Dict[str, Any]) -> None:
+    check(record)
+    if record["format"] != "open-worlds/key-list/v1":
+        raise RecordError("$.format: not open-worlds/key-list/v1")
+
+
 def key_list_problems(new: Dict[str, Any],
                       previous: Dict[str, Any]) -> List[str]:
     """Where a key list fails to follow the version before it, or []: it
-    must name that version by hash, be the next number, and be signed by
-    that version's root. So a new root is named by the old one, and signs
-    the version after. Both lists must hold."""
+    must name that version by hash, be the next number, be signed by that
+    version's root, be no earlier, and keep every individual's and world's
+    entry as it was. So a new root is named by the old one, and signs the
+    version after. Both lists must hold."""
     for record in (new, previous):
-        check(record)
-        if record["format"] != "open-worlds/key-list/v1":
-            raise RecordError("$.format: not open-worlds/key-list/v1")
+        _key_list(record)
     found = []
     if new.get("previous") != record_hash(previous):
         found.append("$.previous: names another version")
@@ -283,6 +296,41 @@ def key_list_problems(new: Dict[str, Any],
         found.append("$.version: not the next version")
     if new["issuer"] != key_list_root(previous):
         found.append("$.issuer: not the root of the version before")
+    if new["time"] < previous["time"]:
+        found.append("$.time: earlier than the version before")
+    kept = {(e["role"], e["name"]): e for e in new["keys"]}
+    for e in previous["keys"]:
+        if e["role"] in PUBLISHED_ONLY and kept.get(
+                (e["role"], e["name"])) != e:
+            found.append(f"$.keys: {e['name']}'s entry changed or dropped")
+    return found
+
+
+def key_list_chain_problems(versions: List[Dict[str, Any]]) -> List[str]:
+    """Where a key list's history fails, or []: from version 1, each
+    version following the one before, and ending on a version whose root
+    has signed it, since a version naming a new root is published
+    together with the version that root signs (docs/research/KEYS.md).
+    Each problem names the version's place in `versions`."""
+    if not versions:
+        return ["[]: no versions"]
+    found = []
+    for i, record in enumerate(versions):
+        try:
+            _key_list(record)
+        except RecordError as e:
+            found.append(f"[{i}] {e}")
+    if found:
+        return found
+    if versions[0]["version"] != 1:
+        found.append("[0] $.version: the history doesn't start at 1")
+    for i in range(1, len(versions)):
+        found += [f"[{i}] {p}" for p in
+                  key_list_problems(versions[i], versions[i - 1])]
+    last = versions[-1]
+    if key_list_root(last) != last["issuer"]:
+        found.append(f"[{len(versions) - 1}] $.keys: names a new root that "
+                     "hasn't signed a version yet")
     return found
 
 

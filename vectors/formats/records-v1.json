@@ -3099,6 +3099,137 @@
    }
   },
   {
+   "name": "a key list naming one name under two roles",
+   "record": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+    "version": 1,
+    "time": "2026-11-14T06:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse",
+      "signing": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     },
+     {
+      "role": "world",
+      "name": "ALICE",
+      "signing": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "sealing": "z6LSdTpTVhzy4JWrzGcCKkjTMk2xzbbK6YGjHwpAeFwQbBLs"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs#z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5i4z4JvZg3rvAJzqMvvtAcJsTCc18ZZM4XjYfBuKrzKpRwVePQsXjtvfvWSFqM9FfokVdJMF3LHfyqXBZX1ZNC49"
+    }
+   }
+  },
+  {
+   "name": "a key list whose root has a sealing key",
+   "record": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+    "version": 1,
+    "time": "2026-11-14T06:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse",
+      "signing": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+      "sealing": "z6LSnhEpQLRuj2jcFWVCCSububYfFV7bbwj1UFwkq8y923G3"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs#z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z55ZP2ZFbWQYceqJZ8ubFPMmBsZhzTsyJYEyQCP2MdRvbWzRiLcKNigCkefcjXjhyRTqySAxLzsq4JstJEybGWc52"
+    }
+   }
+  },
+  {
    "name": "a template signed by a world, not the project",
    "record": {
     "format": "open-worlds/template/v1",
@@ -4509,6 +4640,372 @@
      "proofValue": "z5q3bq6MUp3DCnhq83PG5Cw3o4DNTqkTSrqRgLhqaTg9sQHfVq41hN1HYsdm6PNj3HJn8Vfyit1aLYEAcS35NP3ed"
     }
    },
+   "holds": false
+  },
+  {
+   "name": "a version giving the code role another key",
+   "previous": "the first key list, signed by its root",
+   "keyList": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+    "version": 2,
+    "time": "2026-11-14T07:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse, renewed",
+      "signing": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6Mkff8RXMTE6z8HVgrEUcuczxFixqkFrZveDVYKige1S6Gq"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     }
+    ],
+    "previous": "653a1ba9657b36a45f51335f0fa52f6c9ff20f41381cb28f79fb3ba773e386a7",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs#z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5FU1Yz3Lrm2t5FPjVVPrGFUBjYkd5yZLSnrRSv2vm4nJEACdti8BAVheDoByGFdr4LqvyeJ1GBavimnzLuorbwSZ"
+    }
+   },
+   "holds": true
+  },
+  {
+   "name": "a version giving ALICE another key",
+   "previous": "the first key list, signed by its root",
+   "keyList": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+    "version": 2,
+    "time": "2026-11-14T07:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse, renewed",
+      "signing": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkjKuAXcm9GDNPRaGDhEDvSgsjoKooXGAsAM1VagrMj6nD",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     }
+    ],
+    "previous": "653a1ba9657b36a45f51335f0fa52f6c9ff20f41381cb28f79fb3ba773e386a7",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs#z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z27i6FZNt5hkqmBfAC9ZsSQGWLUpcZ98j5qQnhFagbuBXXg2HCg7qQYrja43rnPuNk8B6PgyefcqtmhFHv5JHib8X"
+    }
+   },
+   "holds": false
+  },
+  {
+   "name": "a version giving the Ur-world another key",
+   "previous": "the first key list, signed by its root",
+   "keyList": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+    "version": 2,
+    "time": "2026-11-14T07:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse, renewed",
+      "signing": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6Mkj63LYcgMtepWqgB3zZVUz9HaWRzQxVbaQv8MKYSXLmdx",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     }
+    ],
+    "previous": "653a1ba9657b36a45f51335f0fa52f6c9ff20f41381cb28f79fb3ba773e386a7",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs#z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zV2LgzHwL9ixTYEh4r6vsJHDgD79poWJJjENrmNjivsE8eA8QQqVjYsZcfJaRsTycjvPNR7cKycVmkLjTbVS6uZe"
+    }
+   },
+   "holds": false
+  },
+  {
+   "name": "a version dropping BOB",
+   "previous": "the first key list, signed by its root",
+   "keyList": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+    "version": 2,
+    "time": "2026-11-14T07:00:00Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse, renewed",
+      "signing": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     }
+    ],
+    "previous": "653a1ba9657b36a45f51335f0fa52f6c9ff20f41381cb28f79fb3ba773e386a7",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs#z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4drqdBesVfPThCWuymmVs48wGYrkNYHAYX9whJaxQuDRcqsXToJd3KHwU8qgnEyKBpwE8duJxBd3zmH7EmZBcaSi"
+    }
+   },
+   "holds": false
+  },
+  {
+   "name": "a version earlier than the one before",
+   "previous": "the first key list, signed by its root",
+   "keyList": {
+    "format": "open-worlds/key-list/v1",
+    "issuer": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+    "version": 2,
+    "time": "2026-11-14T05:59:59Z",
+    "keys": [
+     {
+      "role": "root",
+      "name": "the multiverse, renewed",
+      "signing": "did:key:z6Mkwf8LDwV3ucgWb48xjZ1QVFhgd4AddDecJ1WSwNoMu2Sh"
+     },
+     {
+      "role": "code",
+      "name": "the code role",
+      "signing": "did:key:z6MkupWgAzYChveCdzqRGwM264guQ61pB48YpZ8yCmD2v3kd"
+     },
+     {
+      "role": "mindRecords",
+      "name": "the project",
+      "signing": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+     },
+     {
+      "role": "templates",
+      "name": "the project's templates",
+      "signing": "did:key:z6MksAxvNEaeCaYLFnLUpJtDukhcNFRhWzifHyNLHiAT9cN1"
+     },
+     {
+      "role": "admin",
+      "name": "ADMIN",
+      "signing": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+     },
+     {
+      "role": "world",
+      "name": "the Ur-world",
+      "signing": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "sealing": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+     },
+     {
+      "role": "individual",
+      "name": "ALICE",
+      "signing": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+      "sealing": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+     },
+     {
+      "role": "individual",
+      "name": "BOB",
+      "signing": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+      "sealing": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+     }
+    ],
+    "previous": "653a1ba9657b36a45f51335f0fa52f6c9ff20f41381cb28f79fb3ba773e386a7",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs#z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5HQMgi8qimPrWitbMPhUpxBDXrmxeE2cf4zXVtoA1CCcfcmXiZ66cZpPFdRVUWuzSPZz8oC7S9zWhb1ew3EEqF5s"
+    }
+   },
+   "holds": false
+  }
+ ],
+ "keyListHistories": [
+  {
+   "name": "the first version alone",
+   "versions": [
+    "the first key list, signed by its root"
+   ],
+   "holds": true
+  },
+  {
+   "name": "a handover, with the version its new root signed",
+   "versions": [
+    "the first key list, signed by its root",
+    "a key list in which the root names a new root",
+    "the key list after, signed by the new root"
+   ],
+   "holds": true
+  },
+  {
+   "name": "a history ending on a new root that hasn't signed",
+   "versions": [
+    "the first key list, signed by its root",
+    "a key list in which the root names a new root"
+   ],
+   "holds": false
+  },
+  {
+   "name": "a history that doesn't start at version 1",
+   "versions": [
+    "a key list in which the root names a new root",
+    "the key list after, signed by the new root"
+   ],
+   "holds": false
+  },
+  {
+   "name": "a history that skips a version",
+   "versions": [
+    "the first key list, signed by its root",
+    "the key list after, signed by the new root"
+   ],
+   "holds": false
+  },
+  {
+   "name": "no history at all",
+   "versions": [],
    "holds": false
   }
  ]

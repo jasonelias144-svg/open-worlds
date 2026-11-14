@@ -192,6 +192,20 @@ class TestKeyLists(unittest.TestCase):
                     case["keyList"], self.by[case["previous"]])
                 self.assertEqual(not found, case["holds"], found)
 
+    def test_each_history_holds_or_not_as_stated(self):
+        for case in VECTORS["keyListHistories"]:
+            with self.subTest(case["name"]):
+                found = records.key_list_chain_problems(
+                    [self.by[name] for name in case["versions"]])
+                self.assertEqual(not found, case["holds"], found)
+
+    def test_a_history_with_a_version_that_doesnt_hold(self):
+        first = self.by["the first key list, signed by its root"]
+        found = records.key_list_chain_problems([first, {**first,
+                                                         "version": 2}])
+        self.assertEqual(len(found), 1)
+        self.assertTrue(found[0].startswith("[1] "), found)
+
     def test_the_root_a_key_list_names(self):
         first = self.by["the first key list, signed by its root"]
         handover = self.by["a key list in which the root names a new root"]

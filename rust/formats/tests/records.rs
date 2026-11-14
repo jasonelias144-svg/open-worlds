@@ -5,7 +5,9 @@
 
 use formats::multikey::secret_from_multikey;
 use formats::proof::sign;
-use formats::records::{check, dial_problems, key_list_problems, record_hash};
+use formats::records::{
+    check, dial_problems, key_list_chain_problems, key_list_problems, record_hash,
+};
 use serde_json::Value;
 
 fn vectors() -> Result<Value, String> {
@@ -130,6 +132,43 @@ fn each_key_list_follows_the_one_before_or_not_as_stated() -> Result<(), String>
             .and_then(Value::as_bool)
             .ok_or("no holds")?;
         let found = key_list_problems(key_list, previous).map_err(|e| format!("{name}: {e}"))?;
+        assert_eq!(found.is_empty(), holds, "{name}: {found:?}");
+    }
+    Ok(())
+}
+
+#[test]
+fn each_history_of_the_key_list_holds_or_not_as_stated() -> Result<(), String> {
+    let all = vectors()?;
+    let valid = all
+        .get("valid")
+        .and_then(Value::as_array)
+        .ok_or("no valid")?;
+    let cases = all
+        .get("keyListHistories")
+        .and_then(Value::as_array)
+        .ok_or("no keyListHistories")?;
+    assert!(!cases.is_empty());
+    for case in cases {
+        let name = case.get("name").and_then(Value::as_str).ok_or("no name")?;
+        let mut versions = Vec::new();
+        for version in case
+            .get("versions")
+            .and_then(Value::as_array)
+            .ok_or("no versions")?
+        {
+            let record = valid
+                .iter()
+                .find(|v| v.get("name") == Some(version))
+                .and_then(|v| v.get("record"))
+                .ok_or("no such version")?;
+            versions.push(record.clone());
+        }
+        let holds = case
+            .get("holds")
+            .and_then(Value::as_bool)
+            .ok_or("no holds")?;
+        let found = key_list_chain_problems(&versions);
         assert_eq!(found.is_empty(), holds, "{name}: {found:?}");
     }
     Ok(())

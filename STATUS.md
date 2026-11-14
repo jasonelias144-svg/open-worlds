@@ -913,11 +913,14 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 - 2026-11-14 Claude: course step 3, part two: the key list
   (`open-worlds/key-list/v1`) in records-v1, in Python and Rust, with
-  vectors (3 that hold, 9 refused, 6 pairs of versions); a test that no
-  private key is in this repository but the vectors' test keys; and
-  the tool that makes the keys (`python3 -m formats.make_keys`), which
-  refuses this repository and any checkout of it, never writes over a
-  key and prints no secret.
+  a check of each version against the one before and of a whole history,
+  and vectors (3 that hold, 11 refused, 11 pairs of versions, 6
+  histories); an individual's or world's entry never changes; a test
+  that no private key is in this repository but the vectors' test keys;
+  and the tool that makes the keys (`python3 -m formats.make_keys`),
+  which takes only the top of a full clone of another repository, makes
+  everything or nothing, never writes over a key or through a link, and
+  prints no secret.
 
 - 2026-11-14 Claude: course step 3, part one: looked first at TUF, the
   DNSSEC root's ceremonies, GitHub's guidance on secrets in Git, SOPS and

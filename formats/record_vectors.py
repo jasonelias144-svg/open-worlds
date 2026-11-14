@@ -426,6 +426,14 @@ def _refused_key_lists(by: Dict[str, Any]) -> List[tuple]:
         ("a key list with a role no one defined", changed(
             first, "the multiverse", keys=[
                 *keys, _key_entry("king", "an apprentice Keeper")])),
+        ("a key list naming one name under two roles", changed(
+            first, "the multiverse", keys=[
+                *keys, {**_key_entry("world", "an apprentice Keeper", True),
+                        "name": "ALICE"}])),
+        ("a key list whose root has a sealing key", changed(
+            first, "the multiverse", keys=[
+                {**e, "sealing": _sealing_key("the multiverse")}
+                if e["role"] == "root" else e for e in keys])),
     ]
 
 
@@ -442,6 +450,10 @@ def _key_list_chains(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         fields = {k: v for k, v in {**r, **fields}.items() if k != "proof"}
         return proof.sign(fields, _secret(signer), CREATED)
 
+    def rekeyed(name: str, signing: str):
+        return [{**e, "signing": _did(signing)} if e["name"] == name else e
+                for e in by[handover]["keys"]]
+
     cases = [
         ("the old root names a new root", first, by[handover], True),
         ("the new root signs the version after", handover, by[after],
@@ -456,9 +468,47 @@ def _key_list_chains(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         ("a version naming another version before it", first,
          changed(handover, "the multiverse",
                  previous=_h("another version")), False),
+        ("a version giving the code role another key", first,
+         changed(handover, "the multiverse",
+                 keys=rekeyed("the code role", "the code role, renewed")),
+         True),
+        ("a version giving ALICE another key", first,
+         changed(handover, "the multiverse",
+                 keys=rekeyed("ALICE", "ALICE, by another hand")), False),
+        ("a version giving the Ur-world another key", first,
+         changed(handover, "the multiverse",
+                 keys=rekeyed("the Ur-world", "the Ur-world, by another "
+                                              "hand")), False),
+        ("a version dropping BOB", first,
+         changed(handover, "the multiverse",
+                 keys=[e for e in by[handover]["keys"]
+                       if e["name"] != "BOB"]), False),
+        ("a version earlier than the one before", first,
+         changed(handover, "the multiverse", time="2026-11-14T05:59:59Z"),
+         False),
     ]
     return [{"name": n, "previous": p, "keyList": r, "holds": h}
             for n, p, r, h in cases]
+
+
+def _key_list_histories() -> List[Dict[str, Any]]:
+    """Whole histories of the key list, by the names of the valid key
+    lists in them: whether each holds from version 1 to its end."""
+    first = "the first key list, signed by its root"
+    handover = "a key list in which the root names a new root"
+    after = "the key list after, signed by the new root"
+    cases = [
+        ("the first version alone", [first], True),
+        ("a handover, with the version its new root signed",
+         [first, handover, after], True),
+        ("a history ending on a new root that hasn't signed",
+         [first, handover], False),
+        ("a history that doesn't start at version 1", [handover, after],
+         False),
+        ("a history that skips a version", [first, after], False),
+        ("no history at all", [], False),
+    ]
+    return [{"name": n, "versions": v, "holds": h} for n, v, h in cases]
 
 
 def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -713,6 +763,7 @@ def vectors() -> Dict[str, Any]:
         "refused": _refused(valid),
         "dials": _dials(valid),
         "keyListChains": _key_list_chains(valid),
+        "keyListHistories": _key_list_histories(),
     }
 
 

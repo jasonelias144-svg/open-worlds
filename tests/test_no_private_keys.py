@@ -10,13 +10,18 @@ key material in the forms this project writes or reads:
 - a Multikey secret: `z3u2...` (Ed25519) or `z3we...` (X25519),
   formats/multikey.py;
 - a PEM private-key block with a body, such as OpenSSH's, which
-  multiverse/keys.py writes.
+  multiverse/keys.py writes, also where it is written inside a string
+  (its line breaks as `\\n`) or quoted in Markdown (`> `).
+
+Every file is read, whatever bytes it holds: what isn't UTF-8 is read
+around. Not found: a key split across several strings joined in code.
 
 The vectors hold test keys on purpose, each made from a seed that says
 "never for anything real", and the W3C specification's own example key.
 Those, and only those, are allowed: each is worked out here again from
 its seed, so a real key pasted in among them is still found.
 """
+import hashlib
 import re
 import subprocess
 import unittest
@@ -64,9 +69,35 @@ def published_test_keys():
     return allowed
 
 
+def _readings(text):
+    """`text` as written, with its escaped line breaks read as line
+    breaks, and without Markdown's quote marks."""
+    unescaped = text.replace("\\r\\n", "\n").replace("\\n", "\n")
+    unquoted = re.compile(r"(?m)^[ \t]*(?:>[ \t]?)+")
+    return (text, unescaped, unquoted.sub("", text), unquoted.sub("", unescaped))
+
+
 def private_key_material(text):
-    """Each Multikey secret and PEM private-key block in `text`."""
-    return MULTIKEY_SECRET.findall(text) + PEM_PRIVATE_BLOCK.findall(text)
+    """Each Multikey secret and PEM private-key block in `text`, once."""
+    found = []
+    for reading in _readings(text):
+        found += MULTIKEY_SECRET.findall(reading)
+        found += PEM_PRIVATE_BLOCK.findall(reading)
+    return list(dict.fromkeys(found))
+
+
+def described(hit):
+    """What was found, without any of it: its kind, and a hash to tell
+    one find from another."""
+    kind = ("an Ed25519 Multikey secret" if hit.startswith("z3u2") else
+            "an X25519 Multikey secret" if hit.startswith("z3we") else
+            "a PEM private-key block")
+    return f"{kind}, SHA-256 {hashlib.sha256(hit.encode()).hexdigest()[:16]}"
+
+
+def file_text(path):
+    """A file's text, whatever bytes it holds."""
+    return path.read_bytes().decode("utf-8", errors="replace")
 
 
 class TestNoPrivateKeys(unittest.TestCase):
@@ -76,13 +107,13 @@ class TestNoPrivateKeys(unittest.TestCase):
         found = {}
         for path in tracked_files():
             try:
-                text = path.read_text(encoding="utf-8")
-            except (UnicodeDecodeError, OSError):
+                text = file_text(path)
+            except OSError:
                 continue
             for hit in private_key_material(text):
                 if hit not in allowed:
                     found.setdefault(str(path.relative_to(ROOT)),
-                                     []).append(hit[:12] + "...")
+                                     []).append(described(hit))
         self.assertEqual(found, {}, "a private key is in the repository: "
                          "replace that key, then remove it from history")
 
@@ -112,6 +143,39 @@ class TestNoPrivateKeys(unittest.TestCase):
                 hits = private_key_material(text)
                 self.assertEqual(len(hits), 1)
                 self.assertNotIn(hits[0], allowed)
+
+    def test_the_scan_finds_a_key_written_inside_a_string_or_a_quote(self):
+        from cryptography.hazmat.primitives import serialization
+        from cryptography.hazmat.primitives.asymmetric import ed25519
+        pem = ed25519.Ed25519PrivateKey.generate().private_bytes(
+            serialization.Encoding.PEM, serialization.PrivateFormat.PKCS8,
+            serialization.NoEncryption()).decode()
+        escaped = pem.replace("\n", "\\n")
+        for text in (f'{{"key": "{escaped}"}}',
+                     f'KEY = b"{escaped}"\n',
+                     "".join(f"> {line}\n" for line in pem.splitlines()),
+                     f'> "{escaped}"'):
+            with self.subTest(text=text[:20]):
+                self.assertEqual(len(private_key_material(text)), 1)
+
+    def test_a_file_that_isnt_utf8_is_still_read(self):
+        from cryptography.hazmat.primitives import serialization
+        from cryptography.hazmat.primitives.asymmetric import ed25519
+        raw = ed25519.Ed25519PrivateKey.generate().private_bytes(
+            serialization.Encoding.Raw, serialization.PrivateFormat.Raw,
+            serialization.NoEncryption())
+        data = b"caf\xe9 " + secret_multikey(raw).encode() + b"\n\xff"
+        import tempfile
+        with tempfile.TemporaryDirectory() as place:
+            path = Path(place) / "notes.txt"
+            path.write_bytes(data)
+            self.assertEqual(private_key_material(file_text(path)),
+                             [secret_multikey(raw)])
+
+    def test_what_is_reported_holds_none_of_the_key(self):
+        hit = "z3u2" + "a" * 44
+        self.assertNotIn(hit[4:12], described(hit))
+        self.assertIn("Ed25519", described(hit))
 
     def test_the_headers_alone_are_not_keys(self):
         # multiverse/keys.py and its tests name the header, with no key.
