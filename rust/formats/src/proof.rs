@@ -113,7 +113,10 @@ pub fn sign(
 }
 
 /// The record without its proof, and the public key that signed it, if
-/// the proof holds. Section 3.3.2.
+/// the proof holds. Section 3.3.2. Use the record returned, never
+/// `secured` itself: the specification lets a record carry more
+/// `@context` entries than its proof, and those are dropped from what
+/// was verified.
 pub fn verify(secured: &Value) -> Result<(Value, [u8; 32]), String> {
     let doc = secured
         .as_object()

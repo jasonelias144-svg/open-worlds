@@ -32,7 +32,7 @@
       "maxLength": 64
     },
     "text": {
-      "description": "Text a person or a mind writes: not empty, not only spaces or line breaks of any kind, and no control characters but tab and line breaks.",
+      "description": "Text a person or a mind writes: not empty, not only spaces or line breaks of any kind, and no control characters (C0, DEL or C1) but tab and line breaks.",
       "type": "string",
       "minLength": 1,
       "allOf": [
@@ -40,7 +40,7 @@
           "pattern": "[^ \\t\\n\\r\\u000b\\u000c\\u0085\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff]"
         },
         {
-          "pattern": "^[^\\u0000-\\u0008\\u000e-\\u001f\\u007f]*$"
+          "pattern": "^[^\\u0000-\\u0008\\u000e-\\u001f\\u007f-\\u0084\\u0086-\\u009f]*$"
         }
       ]
     },
@@ -425,7 +425,52 @@
         "tick",
         "proof"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "description": "A suggestion to ADMIN about a Keeper or a world names which, by key.",
+          "if": {
+            "properties": {
+              "to": {
+                "properties": {
+                  "office": {
+                    "const": "admin"
+                  }
+                },
+                "required": [
+                  "office"
+                ]
+              },
+              "about": {
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "keeper",
+                      "world"
+                    ]
+                  }
+                },
+                "required": [
+                  "kind"
+                ]
+              }
+            },
+            "required": [
+              "to",
+              "about"
+            ]
+          },
+          "then": {
+            "properties": {
+              "about": {
+                "required": [
+                  "ref"
+                ]
+              }
+            }
+          }
+        }
+      ]
     },
     "rating": {
       "description": "A suggestion's author's rating, 1 to 5, of how it was handled. Signed by that author.",

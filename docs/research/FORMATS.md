@@ -300,8 +300,10 @@ one schema,
   is written as an explicit set of characters, since `\s` differs between
   the libraries. Shared vectors hold both cases.
 - **Text people and minds write** is not empty, not only spaces or line
-  breaks of any kind, and holds no control characters but tab and line
-  breaks.
+  breaks of any kind, and holds no control characters (C0, DEL or C1)
+  but tab and line breaks.
+- **A suggestion to ADMIN about a Keeper or a world** names which, by
+  key.
 - **A suggestion made outside any world,** by ADMIN or a Keeper in the
   multiverse, names no world; its tick is the multiverse log's.
 - **What a schema can't say** is checked where records meet the kernel,

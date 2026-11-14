@@ -1102,6 +1102,55 @@
    }
   },
   {
+   "name": "a suggestion whose text holds a C1 control character",
+   "record": {
+    "format": "open-worlds/suggestion/v1",
+    "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "to": {
+     "office": "keeper",
+     "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX"
+    },
+    "about": {
+     "kind": "world"
+    },
+    "text": "Hello",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "tick": 100,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2iDiTzKK8q25zVATvqu6KRhgkLQXmzeKxwQo2GzjZusVsjJ2grSj5xW74BxvYafQgZuRyQ48fyiKBSErgxTRe9Pg"
+    }
+   }
+  },
+  {
+   "name": "a suggestion to ADMIN about a Keeper that doesn't say which",
+   "record": {
+    "format": "open-worlds/suggestion/v1",
+    "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "to": {
+     "office": "admin"
+    },
+    "about": {
+     "kind": "keeper"
+    },
+    "text": "The spring runs low by evening. Could it be fed?",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "tick": 100,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2nsQ9pYcBpmCgg4iQa3mLJPsTVeCNQy88cCAaE3V2cHfvvw5MibayKcttGGqJXz4Zbf7Erd3Em6oJCiyVa1JCXMy"
+    }
+   }
+  },
+  {
    "name": "a decision that names the same record it makes twice",
    "record": {
     "format": "open-worlds/decision/v1",
