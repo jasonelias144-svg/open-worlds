@@ -566,9 +566,10 @@ it was wrong. Questions of what the project is for stay with the founder.
   world.
 - 2026-11-14, reasons on record: a decision record of our own
   (`open-worlds/decision/v1`). Code checks that reasons are given; Lean
-  checks only reasons stated formally; and Lean comes first for proofs
-  about the rules, starting with grants at step 4, with proofs that come
-  with decisions later (docs/REASONS.md). *Why:* the founder's "We can
+  checks only reasons stated formally, against statements the rules set,
+  never the office; and Lean comes first for proofs about the rules,
+  starting with grants at step 4, with proofs that come with decisions
+  later (docs/REASONS.md). *Why:* the founder's "We can
   use Lean to test the logic of reasoning that is presented". Code can
   check that reasons are given and a proof that formal reasons follow;
   nothing mechanical can check that reasons are good. Proofs about the
