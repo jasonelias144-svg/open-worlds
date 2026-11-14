@@ -46,8 +46,8 @@
   "40333": "test_signed_world_log.py",
   "41536": "test_unified_individual.py",
   "42553": "unified_individual.py",
-  "42625": "world_adapters.py",
-  "42684": "world_adapters.py",
+  "42625": "unified_individual.py",
+  "42684": "unified_individual.py",
   "42916": "test_world_adapters.py"
  },
  "ours": [

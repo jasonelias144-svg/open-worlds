@@ -156,15 +156,85 @@ kind.
 
 ## Decided
 
+- 2026-11-14, founder, on Python and Rust, after record 012-06-02: "On
+  Python vs Rust, I didn’t realize DeepSeek couldn’t access the Rust
+  files without a direct link. And after we figured it out, I let
+  DeepSeek choose, since the code is meant to sketch ideas and brainstorm
+  possibilities. It came down to whichever language DeepSeek felt most
+  comfortable with, which was Python. My thought is that you would easily
+  be able to translate the code into Rust and adapt to our existing code.
+  Instead of having DeepSeek concern with compatibility, I figured we
+  could take care of that downstream." So DeepSeek sketches in the
+  language it chooses, and the project carries what it adopts into Rust,
+  on its own formats. The technical lead's note, put the same day: the
+  fractal worlds carry over directly and can be checked against the
+  Python step by step (whole numbers, a seed); the learners use floats,
+  which differ between languages, and need whole-number versions or a
+  tolerance; the bundle and lineage pieces overlap records-v1 and the
+  persons plan, so their ideas are taken, not their code.
+- 2026-11-14, founder, a multiversal map: "if we do not have one yet, we
+  need to build and maintain a multiversal map and index. I imagine
+  walking into an amusement park, like Disneyland. I unfold the brochure
+  map and investigate the worlds to explore. In our case, you could tap
+  on the map for a given world and get information or a detailed map,
+  but also a live view of the world in some standard lobby location for
+  each world. It is where you land when entering a new world. This is a
+  general concept that we can implement in various ways in different
+  worlds, but we need a map to figure out where to go and get up to date
+  information on that world." There is none yet as one thing: its parts
+  are the Ur-world as "a multiverse lobby or travel hub" (URWORLD.md),
+  step 4a's garden, the first course's registry, and "a window onto the
+  worlds" (waiting list). The technical lead's recommendation, put the
+  same day (it stands unless the founder answers otherwise): each world's
+  card is built from what it publishes (its birth record, its signed log
+  heads, its dials, its lobby), so anyone can check a map and make
+  another; each world names its lobby, where an arrival lands, and its
+  live view comes from the world's public log; maps nest, a world's card
+  opening its own map; a web page first, the Ur-world's brochure later;
+  folded into course step 4a.
+- 2026-11-14, founder, fractal worlds: "I do want to move forward with
+  the fractal worlds, I am eager to see visuals of fractals grown over
+  time in expanding worlds. I am trying to drive that forward to where we
+  could have a web app that would allow me to monitor some ongoing
+  simulation run of fractal plants." This moves them forward from the
+  waiting list, where they stood after step 4a. The technical lead's
+  recommendation, put the same day: a fractal track alongside the
+  course, which doesn't touch ALICE and BOB; a fractal plant world in
+  Rust, with its own key and log, in a world that expands as it grows;
+  and a page that monitors it with no server at first, since the world
+  is deterministic and a page can compute where it is now from its seed
+  and its birth, with every change a signed record in its log. A server
+  that runs all the time costs money, so it is the founder's decision. A
+  first look, DeepSeek's four sketch worlds played back tick by tick, was
+  shared with the founder as a private page.
+- 2026-11-14, founder, on change, branching and choice: "As for the
+  branching and choices and changes, nothing set in stone yet, let’s
+  explore different ideas. I offered one way, and then another, it may
+  differ by world and that makes it easier. Nothing applies completely
+  across the board, we can always have worlds without change allowed.
+  Others that are sandboxed from other worlds. Maybe a world where
+  participant information is intentionally blocked, like amnesia, and
+  the goal is to remember things about yourself that you chose to
+  forget. That is one possible world. We shouldn’t fix anything in stone
+  too much now. We can put something in place, but give it a chance to
+  develop. That is the balancing act we have been performing." So how a
+  world may change (not at all, in place, by branching, sandboxed from
+  other worlds) is that world's own law, set by its template; what all
+  worlds share stays the floor and what lets worlds meet (signed
+  records, keys, arrivals, leaving at any time). The amnesia world, one
+  possible world: in the persons plan, a presence knows only what its
+  person passes it (research/PERSONS.md, decision 7), so a person can
+  choose to pass nothing, and leave clues to find; the world's public log
+  stays public.
 - 2026-11-14, founder, a standing rule on changes of mind: "Very
   important to note: I change my mind frequently, so if you read a
   comment of mine with DeepSeek, and it occurred after I said something
   else, treat the new idea as an update and always go with the most
   recent. Having said that, I might not realize my decision contradicts
   something earlier, so let me know." Written into AGENTS.md ("Who
-  decides") and COLLABORATING.md: the newest word wins, in the order the
-  founder's words reach the project (a record counts from when it is
-  shared, and in its own order within it), and a newer word that
+  decides") and COLLABORATING.md: the newest word wins, by when the
+  founder said it (within a record, in the record's own order; where the
+  order can't be told, the founder is asked), and a newer word that
   contradicts an earlier decision is pointed out to the founder, naming
   the earlier one, and recorded here.
 - 2026-11-14, founder, on record 012-06-02 (a conversation with DeepSeek,
@@ -221,13 +291,14 @@ kind.
   stands unless the founder answers otherwise):
   - Python with DeepSeek and "we should stick with Rust" agree: DeepSeek
     designs in Python sketches, and the worlds themselves are built in
-    Rust;
-  - a change of parameters makes a branch (1801), which replaces the
-    earlier picture of a world altered in place (663): from inside or
-    outside, a change of parameters branches, and a world's own growth is
-    not a change;
-  - fractal worlds built now with DeepSeek are sketches; on the course
-    they stay after step 4a unless the founder moves them;
+    Rust (the founder agreed the same evening, above);
+  - whether a change of parameters makes a branch (1801) or alters the
+    world in place (663) was first read as "every change branches"; the
+    founder's later word the same evening (above) replaced that reading:
+    it is each world's own law;
+  - fractal worlds built now with DeepSeek are sketches, and on the
+    course they stayed after step 4a; the founder moved them forward the
+    same evening (above);
   - the atomic model doesn't replace step 8's audition for ALICE and BOB
     (above, "Perfect").
 - 2026-11-14, founder, on course step 3: "Let’s go ahead for step 3."
@@ -1090,8 +1161,11 @@ it was wrong. Questions of what the project is for stay with the founder.
   where each of its 39 pieces is in the record and where it meets the
   course. The founder's rule on changes of mind written into AGENTS.md
   and COLLABORATING.md, and the founder's ideas in the record read
-  against earlier decisions (Decided). Next: making the code work (a
-  pull request of its own), then deciding with the founder what fits.
+  against earlier decisions (Decided), with the founder's answers of the
+  same evening: Python sketches carried into Rust downstream, a
+  multiversal map, fractal worlds moved forward, and how a world changes
+  left to each world. Next: making the code work (a pull request of its
+  own), then deciding with the founder what fits.
 
 - 2026-11-14 Claude: course step 3a, persons, begun by looking first
   (docs/research/PERSONS.md): the project's own decisions and DeepSeek's

@@ -268,8 +268,8 @@ DeepSeek's code". The pieces are numbered here, for this table only.
 | 35 | A whole lifetime, checked across bundles (with additions at 40276 and 41514) | 37602 | doesn't load: imports `_entry_hash` from `lifetime.py`, which defines it only inside its demo | 9 (legends pages), in part | no |
 | 36 | An individual that plays chess in 012-05-01's chess world (with additions at 40076, 40158 and 40178) | 38708 | doesn't load: needs `python-chess` | not yet (the founder, on the chess park: "not yet") | no |
 | 37 | A world's log, each entry signed by the world's key | 39909 | doesn't load: needs `python-chess` | 3 | built independently: the Ur-world signs its log's heads (`open-worlds/log-head/v1`) |
-| 38 | One individual across worlds of different kinds, with one key and one memory (with an addition at 42553) | 40662 | doesn't load: needs `python-chess` | 3a, which differs, as for 23 | no |
-| 39 | Adapters, so an individual can enter any kind of world (with additions at 42625 and 42684) | 41968 | doesn't load: needs `python-chess` | 12 (the world protocol) | no |
+| 38 | One individual across worlds of different kinds, with one key and one memory (with additions at 42553, 42625 and 42684) | 40662 | doesn't load: needs `python-chess` | 3a, which differs, as for 23 | no |
+| 39 | Adapters, so an individual can enter any kind of world | 41968 | doesn't load: needs `python-chess` | 12 (the world protocol) | no |
 
 In all, as written: 296 of DeepSeek's tests pass and 301 fail, and six
 test files don't load (74 tests: four need `python-chess`, which isn't

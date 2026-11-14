@@ -38,10 +38,10 @@ after I said something else, treat the new idea as an update and always go
 with the most recent. Having said that, I might not realize my decision
 contradicts something earlier, so let me know." So a newer statement replaces
 an older one, wherever either was made (here, a pull request, or a
-conversation record with DeepSeek, in the order the founder's words reach the
-project, and within a record in its own order), and whoever reads one that
-contradicts an earlier decision says so to the founder, naming the earlier
-one, and records the change in STATUS.md.
+conversation record with DeepSeek), by when the founder said it, and within a
+record in its own order; where that order can't be told, the founder is asked.
+Whoever reads one that contradicts an earlier decision says so to the founder,
+naming the earlier one, and records the change in STATUS.md.
 
 The technical lead holds admin rights on every repository, by the founder's
 decision (2026-11-14: "I count on that very fact"), and uses them for the code.
