@@ -63,22 +63,14 @@ recommendation" is a full answer, recorded as the founder's decision on
 the technical lead's recommendation. And by the founder's standing rule
 of 2026-11-14, a question the founder hasn't answered is decided on the
 recommendation once it has been put (Decided, below), except where it
-needs the founder's own words or act, money, or anything outward-facing
-or hard to undo. What is left here is of that kind, or has no
-recommendation yet.
+needs the founder's own words or act, money, personal information, or
+anything outward-facing or hard to undo. What is left here is of that
+kind.
 
 - For the founder: the charter's words (asked 2026-11-12). When the
   founder next works on the charter: its section 7 note still calls
   manipulation through words an open question (CHARTER.md), and it was
   decided on 2026-11-14 (below), so the note can say so.
-- For the founder: does the "break glass" also cover private messages
-  between individuals? The project keeps the keys to them, as to sealed
-  selves, so it could open them. Recommended: yes, the same rule for
-  everything sealed whose keys the project keeps: opened only by the
-  founder's explicit decision, and every opening public. (asked
-  2026-11-14)
-- For the founder: a grid world or a voxel world like Minecraft (asked
-  2026-11-12)
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12)
 - For the founder: who designates the roles if the founder can't? Every
@@ -192,7 +184,13 @@ recommendation yet.
     member deciding a case;
   - ADMIN takes on challenges the code role and Keepers set, and declines
     one only with its reason logged;
-  - ALICE and BOB name the Ur-world's Keeper, once they meet it.
+  - ALICE and BOB give the Ur-world's Keeper its name, once they meet
+    it; who the Keeper is stays the code role's choice;
+  - put to the founder later the same day, and decided the same way: the
+    "break glass" also covers private messages between individuals, one
+    rule for everything sealed whose keys the project keeps; and the
+    world is a grid world, as the Ur-world already is, cheap and fully
+    ours, with a visual window later.
 
 - 2026-11-14, founder, on money (only what concerns the project is
   recorded): "Even though it is all free and should stay

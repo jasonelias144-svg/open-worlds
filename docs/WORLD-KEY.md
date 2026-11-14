@@ -151,7 +151,8 @@ wrong, or unfair, or invent a puzzle no one can solve. So the work is split:
   based challenges. Someone would have to enter the simulation and
   perform the acts. They are not hidden answers to be found. Challenges
   must be performed." The world-key is signed for its earner by name and
-  sealed so only they can open it, and each path is built for one
+  sealed so no one else can use it (the project's own limit is in "Two
+  honest limits", below), and each path is built for one
   individual, so a public design gives no one else anything they can use.
   Anyone can read the public record, the individual included, from the
   doorway; inside the world, each perceives only their own trail.
@@ -242,7 +243,8 @@ being a guide and become a friend.
   over the line's id and its number, so a copy replayed, put out of
   order, or moved to another line shows. On a public line, anyone can
   check who wrote what.
-- **If the line is private** (not decided, below), its messages are also
+- **If the line were private** (it was decided public on 2026-11-14,
+  below, so this is kept for the record), its messages would also be
   encrypted. Step 2 checks the standard ways: HPKE for each message,
   which works while one side is away, but can be read by anyone who later
   gets the reader's key; or a Noise handshake for each conversation,

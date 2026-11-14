@@ -79,7 +79,7 @@ judgment comes last.
 |---|---|---|
 | **1. Exit.** Anyone can leave any world, at any time. | A world founded without a door back; a Keeper or a world's law that holds someone in. | A rule of the kernel, not a policy: `exit` always works (true today, `rust/ur-world`). The workbench refuses to found a world without a door back. No grant exists that can take it away, so no Keeper, and not ADMIN, can. Two powers stand outside grants: the operator's hand, and changes to the kernel itself. Their guard is the repository's rule that every protected freedom has tests, and that weakening one is the founder's decision, not a code decision ([AGENTS.md](../AGENTS.md)). |
 | **2. The record.** What happened stays known. | A log rewritten, cut short, or showing different histories to different readers; a computer lost, a service gone. | Hash-chained logs (true today), which show an entry changed or removed in the middle, but not a log cut short at its end (`rust/world-log` says so). For that: signed heads, which watchers keep and compare with one another, as Certificate Transparency's signed tree heads are, so a log cut short, or showing two histories, is caught. Every world's log signed (course step 3); a multiverse log anyone can watch; everything committed to the repository, nothing kept only on a machine. |
-| **3. Who is who.** No one can be taken for someone else. | A stolen key; a name taken over. | Keys and successions (true today for the Python worlds); a name that has left can't be reused by another; whoever returns proves it with their key. A lost key is an open question for the founder. |
+| **3. Who is who.** No one can be taken for someone else. | A stolen key; a name taken over. | Keys and successions (true today for the Python worlds); a name that has left can't be reused by another; whoever returns proves it with their key. A lost key with no successor: guardians named in advance can sign over to a new key, and "lost is lost" for anyone who named none (decided 2026-11-14, STATUS.md). |
 | **4. The sealed self.** What an individual thinks is their own. | Anyone reading it, a Keeper or ADMIN included; or the project, which holds the keys. | For Keepers and ADMIN: encryption, and no grant that reads it. Against the project, which keeps the keys to sealed selves in its private repository, it is a rule kept in the open, not a technical guarantee: the founder chose a "break glass" on 2026-11-14, so a sealed self is opened only by the founder's explicit decision, and every opening is public ([MINDS.md](MINDS.md), "Who can see what"). |
 | **5. Voice, information, and change by consent.** Anyone can ask; the charter and the current rules are always readable; rules change only as the charter says. | A request quietly ignored; a rule hidden; a law changed by order, by a Keeper, ADMIN or the project. | Asking is an action, and it is logged. The Ur-world's law is sent to every mind entering through the doorway (true today, its orientation), and every world's law is kept in the repository. No grant lets ADMIN or a Keeper change a world's law or the charter. Rules change as the charter's section 6 is to say (its notes propose: tried on a copy first, adopted by consent; [CHARTER.md](../CHARTER.md)). |
 | **6. Power within bounds.** No one holds power that isn't written down, checked and answerable. | A Keeper or ADMIN gathering powers; Keepers acting together against someone. | Every power ADMIN or a Keeper holds is a narrow, signed grant, logged and revocable. No one judges their own case: an appeal against an act the technical lead's role directed or approved goes straight to the founder. ADMIN's rules are code, changed only by reviewed pull requests; its serious acts are reviewed independently before they take effect; its rulings can be appealed. |
@@ -551,9 +551,11 @@ Proposed by the technical lead, to build toward:
 ADMIN manages the immune system without being it: it keeps the library,
 spots patterns across worlds, offers remedies where they fit, and
 suggests changes to the multiverse's own code through the bridge (above,
-"Suggestions from inside"); people make those changes. Whether ADMIN may
-ever apply a remedy inside a world without that world's consent is the
-founder's to decide (below, "Questions for the founder").
+"Suggestions from inside"); people make those changes. It applies a
+remedy inside a world without that world's consent only at the floor;
+above it, it offers, and the world's own law decides (decided on the
+technical lead's recommendation under the founder's standing rule, below,
+"Questions for the founder").
 
 ### ADMIN's own world
 
@@ -594,8 +596,9 @@ set their own problems does ([research](research/ADMIN-MIND.md)).
   not yet.
 - **Others may set it challenges too,** in the open: the code role
   through reviewed pull requests, and Keepers, so what ADMIN takes on
-  isn't only its own taste. Whether ADMIN must take on some it didn't
-  choose is the founder's to say (below).
+  isn't only its own taste. It takes on those the code role and Keepers
+  set, alongside its own, and declines one only with its reason logged
+  (decided 2026-11-14, below).
 - **Learning is written down.** At first, ADMIN doesn't change its model.
   It learns as some agents already do: lessons in words, and routines it
   can reuse, kept in its public log, since the office keeps no secret
@@ -724,8 +727,9 @@ individual:
   the founder's three choices of who keeps a world stand as decided. When
   the multiverse assigns a Keeper, ADMIN doesn't choose it: code draws it
   by lot from a published pool of AI Keepers with the temperament the
-  world's founders chose, and the record says so. Whether the admin-key
-  should ever become a requirement is the founder's to say;
+  world's founders chose, and the record says so. The admin-key is a
+  mark of readiness the world's founders may weigh, never a requirement
+  (decided 2026-11-14, below, "Questions for the founder");
 - **a voice in the multiverse:** mentoring young Keepers, and, when ADMIN
   hears a case about an office, being asked for advice: advice only, by
   grant, logged, with the decision staying where it is;
@@ -1137,8 +1141,10 @@ recommendations, each of which the founder can still change (STATUS.md):
   consent to their own law.
 - **A seat outlives its holder's office,** revisited if a seat is ever
   used to shield misuse.
-- **ALICE and BOB name the Ur-world's Keeper,** once they meet it (the
-  founder: "We can name later").
+- **ALICE and BOB give the Ur-world's Keeper its name,** once they meet
+  it (the founder: "We can name later"). Naming means only what it is
+  called: who the Keeper is stays the code role's choice (above, "The
+  Keeper's office"). The founder can still take part, or change this.
 - **A model that is free but not fully open may be part of ADMIN's
   mind,** only beside at least one fully open member, and never as the
   only member deciding a case.

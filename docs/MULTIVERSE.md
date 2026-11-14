@@ -500,8 +500,9 @@ What it doesn't do yet, said plainly:
 - **The passphrase is the only way in.** Nobody, open-worlds included,
   can recover a forgotten one.
 - **Losing a key** is the rest of this step: when a key is lost with no
-  successor, what the founder decides. (Replacing one is part two,
-  below.)
+  successor, guardians named in advance can sign over to a new key, and
+  for anyone who named none, lost is lost (decided 2026-11-14,
+  STATUS.md). (Replacing one is part two, below.)
 - **Saving is the operator's job.** Nothing saves a world's seen numbers
   by itself. A world restarted without them, or from an older copy
   (still validly signed: a signature stops changes, not old copies),
@@ -597,7 +598,7 @@ What it doesn't do yet, said plainly:
 - **A registry's listing keeps the key it listed.** Whoever listed a
   world that has signed over takes the listing down and lists it again.
 - **A lost key, with no succession,** is the last part of this step:
-  the founder's question in STATUS.md.
+  guardians named in advance, decided 2026-11-14 (STATUS.md).
 
 ## The course
 

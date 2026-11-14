@@ -162,5 +162,7 @@ and the known limits are in [CHEMISTRY.md](CHEMISTRY.md).
   Decided on 2026-11-14: behaviour to observe, with the tools to see, not
   to hear, and to leave ([FREEDOMS.md](FREEDOMS.md)).
 - **The world's kind:** a grid world (cheap, fully ours) or a voxel world
-  like Minecraft (rich, heavier).
+  like Minecraft (rich, heavier). Decided on 2026-11-14, on the technical
+  lead's recommendation under the founder's standing rule: a grid world,
+  as the Ur-world already is, with a visual window later (STATUS.md).
 - **Where models run beyond the Mac,** and the budget for it.

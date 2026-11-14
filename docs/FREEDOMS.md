@@ -53,7 +53,7 @@ what they invent beyond them, is theirs.
 | **Go elsewhere** | another world, or one of one's own, so two ways of living need not share one place | founding, at course step 12 |
 | **See** | the whole record of what was done and said | hash-chained public logs |
 | **Show** | one's own direction and momentum, so others can move around them | the corridor's walkers see the momentum of the walker ahead (`experiments/corridor.py`) |
-| **Speak** | to anyone, in the open; or to one other, privately, sealed so no one else reads it, though that a message passed stays in the record (the founder, 2026-11-14; the project keeps the keys, as for the sealed self) | `say` in the Ur-world, heard by everyone at the next tick; private speech once identities have sealing keys, from course step 3 |
+| **Speak** | to anyone, in the open; or to one other, privately, sealed so no one else reads it, though that a message passed stays in the record (the founder, 2026-11-14; the project keeps the keys, and opens them only under the founder's "break glass", in the open) | `say` in the Ur-world, heard by everyone at the next tick; private speech once identities have sealing keys, from course step 3 |
 | **Agree** | proposals and agreements others can accept or refuse, and bonds between worlds by consent | to be built |
 | **Not hear** | stop hearing one speaker, which limits no one but the listener | to be built |
 | **Suggest** | to a world's Keeper or to ADMIN, one way and in the open, out to GitHub | the ledger, from course step 9 ([ADMIN.md](ADMIN.md), "Suggestions from inside") |

@@ -179,7 +179,7 @@ world, or why: that is for the world to show, and for them to find out
 | Within an individual | The four layers go into the mind; out comes an action, and sometimes a note to the journal. Short-term is the prompt; long-term is the journal, and later a personal layer of the model. | the sealed self; only its fingerprints are public |
 | Individual to world | Actions only, one a tick, read strictly. The only way any inhabitant changes anything. | the world's log |
 | World to individual | The law once; then, each tick, what can be perceived from where they are. | the world's log |
-| Individual and individual | Through the world: speech, signs, things given, skills taught. And privately, decided by the founder on 2026-11-14: a message sealed to the other, which no one else reads. The project keeps the keys, as for the sealed self, so whether the "break glass" covers private messages too is asked in STATUS.md. | the world's log; for a private message, that it passed, not what it says |
+| Individual and individual | Through the world: speech, signs, things given, skills taught. And privately, decided by the founder on 2026-11-14: a message sealed to the other, which no one else reads. The project keeps the keys, as for the sealed self, and the same "break glass" covers them (decided 2026-11-14, STATUS.md). | the world's log; for a private message, that it passed, not what it says |
 | Individual to the law | Asking now; formal proposals and governance later. | the world's log |
 | World and world | The protocol: passports, stamps, successions, doors, birth records of new worlds. The Python worlds sign their stamps today; each world will sign its log too (course step 3). | each world's log |
 | Individual to another world | Through a door, with a passport. Key, self and sheet go with them. Each world sees only what they show, and what they do there. | passports and both logs |
@@ -350,8 +350,9 @@ identifiers (did:key, which turns an Ed25519 key like ALICE's into a
 standard identifier) and verifiable credentials (signed claims, such as a
 world attesting a skill, or a world-key); RFC 8785 for writing JSON the
 same way everywhere before it is signed; HPKE (RFC 9180) for sealing
-something so only its reader can open it; and, if a line with a Keeper is
-to be private, the Noise protocol framework. Step 2 checks each fit
+something so only its reader can open it; and, if a private line is ever
+wanted, the Noise protocol framework (the line with a Keeper was decided
+public on 2026-11-14). Step 2 checks each fit
 before adopting it.
 
 ## Not decided yet

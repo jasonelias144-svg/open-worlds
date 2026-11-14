@@ -179,8 +179,8 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
 7. **Memory, version 1, sealed.** Journal entries tied to ticks in the
    log; recall by recency, importance and relevance; reflections; held
    thoughts in a few slots; a library of routines they write. All of it
-   in a sealed self that only its owner can read, with public
-   fingerprints. *Borrowing:* Generative
+   in a sealed self that no one else reads, opened only under the
+   founder's "break glass", with public fingerprints. *Borrowing:* Generative
    Agents, Voyager's skill library, Disco Elysium's thought cabinet,
    guarding against their known failures.
 8. **Experiment 002, the audition.** Candidate sizes of Qwen 3.5 and OLMo
