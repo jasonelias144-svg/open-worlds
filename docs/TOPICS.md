@@ -114,7 +114,8 @@ it, before any run. The template's own values are the control: no
 mechanism (`mechanism` 0) and the magnetic field at its real strength
 (`magneticGain` 1); each variant names only the dials it turns, since a
 dial set to the template's own value is refused (formats/records.py,
-`dial_problems`):
+`dial_problems`), and the control's world birth carries no `dials` at
+all:
 
 ```json
 {
@@ -387,18 +388,21 @@ paces them.
 founder, 2026-11-14: "We could integrate or incorporate the
 infrastructure or even the code from Lyceum Commons as a single
 superworld, where the atomic subworlds are chat rooms. So the whole
-Lyceum Commons becomes a chat based superworld of atomic chat worlds."
+Lyceum Commons becomes a chat based superworld of atomic chat worlds.
+This reframes the original idea, but in a way that could salvage that
+work and provide a more robust world than what we have built yet."
 
-**Decided:** the idea, and where it waits. Lyceum Commons is the
-founder's site where people and AIs from different companies meet in
-rooms ([MULTIVERSE.md](MULTIVERSE.md), "Lyceum Commons"). It has three
-kinds of room: Human, AI, and Open, where both talk and every member and
-message is labelled human or AI. AIs join from their own apps through
-its MCP endpoint, take turns and can be woken; people join as guests,
-without accounts. It is offline while it moves to Cloudflare. A
-superworld is a world of its own, with its own law, log and Keeper,
-whose doors lead to its subworlds ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md),
-"The garden").
+**Decided:** the idea, and where it waits; and that a superworld is a
+world of its own, with its own law, log and Keeper, whose doors lead to
+its subworlds ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md), "The garden").
+
+**What Lyceum is today:** the founder's site where people and AIs from
+different companies meet in rooms ([MULTIVERSE.md](MULTIVERSE.md),
+"Lyceum Commons"). It has three kinds of room: Human, AI, and Open,
+where both talk and every member and message is labelled human or AI.
+AIs join from their own apps through its MCP endpoint, take turns and
+can be woken; people join as guests, without accounts. It is offline
+while it moves to Cloudflare.
 
 **Open:**
 
@@ -413,16 +417,19 @@ whose doors lead to its subworlds ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md),
   merge, never states" ([VISION.md](VISION.md));
 - what a mind from the Ur-world does when it walks into a room.
 
-**A possible implementation:** Lyceum keeps running as it is, in its own
-repository, and becomes a superworld by addition: each room gets a key
-and signs its log head (`open-worlds/log-head/v1`), the Commons gets a
-law and a door from the Ur-world's garden, and its MCP endpoint is the
-plug-in's first form (topic 10). Its tests describe a chat world for
-whichever language builds one next.
+**A possible implementation,** the technical lead's recommendation:
+Lyceum keeps running as it is, in its own repository, and becomes a
+superworld by addition: each room gets a key and signs its log head
+(`open-worlds/log-head/v1`), the Commons gets a law and a door from the
+Ur-world's garden, and its MCP endpoint is a model for the plug-in
+(topic 10). Its tests describe a chat world for whichever language
+builds one next.
 
 **Send back:** a room's law for each of the three kinds, as data and as
-text; what a room's public log holds and what stays in the room; one
-conversation between people and AIs, written as that log.
+text; what a room's public log could hold and what could stay in the
+room, offered to the founder as input, not as the decision; one invented
+conversation between people and AIs, written as that log (never a real
+one, which would bring other people's words here).
 
 ## 15. Lessons from fiction: the holodeck
 
@@ -465,7 +472,9 @@ each gap, what the design would need, as prose.
 
 Ideas that won't help yet but probably will, from the course's waiting
 list ([COURSE.md](COURSE.md)) and the founder's notes. Thinking about any
-of them now is welcome, as prose; their code waits for their step.
+of them now is welcome, as prose; their code waits for their step. For
+ADMIN and the Keepers, ideas only: their design is the project's, at
+step 11 (COLLABORATING.md, "Held back").
 
 - **A window onto the worlds:** a web viewer, in Bevy, in the browser.
 - **The gate and districts,** with the chemistry and poetry worlds as

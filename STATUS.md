@@ -171,11 +171,11 @@ kind.
   Lyceum Commons becomes a chat based superworld of atomic chat worlds.
   This reframes the original idea, but in a way that could salvage that
   work and provide a more robust world than what we have built yet."
-  On COURSE.md's waiting list, after step 4a as the second superworld,
-  with Lyceum running as it is and its rooms made worlds by addition
-  (docs/TOPICS.md, topic 14; placed on the technical lead's
-  recommendation, decided under the founder's standing rule; the
-  founder can change it). What a room's public log holds is the
+  On COURSE.md's waiting list, after step 4a as the second superworld
+  (placed on the technical lead's recommendation, decided under the
+  founder's standing rule; the founder can change it). How is a
+  recommendation, not a decision: Lyceum running as it is, its rooms
+  made worlds by addition (docs/TOPICS.md, topic 14). What a room's public log holds is the
   founder's to decide, as personal information.
 - 2026-11-14, founder: "it just occurred to me that we are creating
   something like a holodeck from Star Trek, where they can run
@@ -944,6 +944,14 @@ it was wrong. Questions of what the project is for stay with the founder.
   individual's or a world's by a succession).
 
 ## Log
+
+- 2026-11-14 Claude: docs/TOPICS.md, topic 15, "Lessons from fiction",
+  starting with the holodeck, at the founder's note: each use and
+  failure from the stories mapped to the part of the design that answers
+  it, or the gap it shows. And #54's last notes: the Commons' facts kept
+  apart from what is decided, its approach a recommendation, its
+  send-back invented and offered as input; ADMIN and the Keepers ideas
+  only in "Further out".
 
 - 2026-11-14 Claude: docs/TOPICS.md, a menu of fourteen topics a few
   steps ahead of the code, for the founder's conversations with
