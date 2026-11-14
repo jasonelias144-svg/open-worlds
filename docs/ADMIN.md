@@ -294,13 +294,15 @@ at every level:
   support it, it fails on audit or appeal, whatever was privately thought.
 - **ADMIN opens all its activity to inspection.** Everything it reads,
   does and decides, each council member's view of a case included, is in
-  its public log, and it narrates its reasoning. Hiding how ADMIN works
+  its public log, except its sealed journal (below), whose every use is
+  logged with its fingerprints; and it narrates its reasoning. Hiding how ADMIN works
   wouldn't make it safer: in cryptography, Kerckhoffs's principle (1883)
   holds that a system "must not require secrecy and can be stolen by the
   enemy without causing trouble" (research).
 - **Decided once, asked again.** The founder: "Rerunning something
   should be technically impossible. If decisions are arrived at
   autonomously, each run should differ, or it is not set up correctly."
+  (Whether asking again is within the founder's meaning is asked, below.)
   So each decision draws fresh randomness from a source that neither
   ADMIN's mind nor the log ever sees (the proxy's, discarded after use),
   and samples from its model rather than always taking the likeliest
@@ -326,9 +328,9 @@ at every level:
   signs only entries already in the public log, and signs a decision that
   affects others only with its reasons and its inputs there. All of
   ADMIN's input and output passes through a logging proxy, and its
-  decision runs keep no store but the log. So a
-  decision can't go out unsigned by the record, and the key can't be used
-  to keep a decision private.
+  decision runs keep no store but the log. So a decision can't go out
+  unsigned by the record, and the key can't be used to keep a decision
+  private.
 - **A private core, which never decides a case.** ADMIN keeps a sealed
   journal of its own thoughts, as individuals do, by the same machinery,
   and its existence and fingerprints are public. The core is kept out of
@@ -402,7 +404,7 @@ set their own problems does ([research](research/ADMIN-MIND.md)).
 - **Learning is written down.** At first, ADMIN doesn't change its model.
   It learns as some agents already do: lessons in words, and routines it
   can reuse, kept in its public log, since the office keeps no secret
-  files. A routine may be code; it runs in ADMIN's container under ADMIN's
+  files. A routine may be code; it runs as part of ADMIN, under ADMIN's
   grants, so it can't do anything ADMIN can't. Training the model itself
   on that record comes later, if ever, and only by a reviewed change.
 - **Lessons do change how ADMIN judges real cases.** That is the point,
@@ -860,7 +862,7 @@ changes the design.
 | 22 | Something leaves ADMIN's own world other than its log, or any inhabitant but a listed stand-in enters it | refused by code: the sandbox has no door, no grant reaches out of it, and only the published list of stand-ins is let in |
 | 23a | ADMIN or a Keeper makes a decision that affects others without its reasons and inputs on record | refused by code: such a decision is accepted only with its reasons and public inputs logged (layer 1) |
 | 23b | A decision whose stated reasons don't support it | fails on audit or appeal, whatever was privately thought (layer 4, and appeal) |
-| 23c | Something from ADMIN's private core reaches a decision that affects others | refused by code: decision runs get their whole context from the proxy, built from the public log, and the journal isn't in them (layer 1) |
+| 23c | Something from ADMIN's or an AI Keeper's private core reaches a decision that affects others | refused by code: decision runs get their whole context from the proxy, built from the public log, and the journal and its key aren't in them (layer 1). Journal content hidden in the plain text that reflection writes to the public log is for watchers (layer 4), and a decision still stands only on its stated reasons (23b) |
 | 24 | A decision whose formal reason doesn't follow: its proof fails | refused by code: Lean's kernel checks the proof before the act takes effect ([REASONS.md](REASONS.md)) (layer 1) |
 | 25 | A rule as code that lets a chain of grants widen, in a case no test tried | ruled out in the model by a proof in Lean; the kernel is checked against the model by test vectors made from it, which can miss a case (layer 2) |
 
