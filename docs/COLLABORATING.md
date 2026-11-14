@@ -22,7 +22,10 @@ read it:
    Ur-world and its first two individuals, ALICE and BOB: twelve steps
    ahead, rechecked after each. Steps 1 (the design pages) and 2
    (formats that last) are done; step 3, keys and identities, is under
-   way ([research/KEYS.md](research/KEYS.md)).
+   way ([research/KEYS.md](research/KEYS.md)): the project's real keys
+   were made on 2026-11-14, and their public halves are in
+   [`keys/key-list.json`](../keys/key-list.json); leaving and coming
+   back in the Ur-world is next.
    It returns to DeepSeek at step 10, or sooner if the founder chooses.
 2. **The worlds are built in Rust** (the founder: "we should stick with
    Rust"). [`rust/`](../rust/README.md) holds the Ur-world, a 3D world
@@ -200,8 +203,9 @@ In short:
   `minds/wanderer.py` is the smallest example.
 - **Anything on the course,** proposed as described below.
 
-Held back, as the project's own to do: the real keys (step 3), and
-anything that publishes or can't be undone. ADMIN itself and the Keepers
+Held back, as the project's own to do: the project's keys (their
+private halves live only in its private repository), and anything that
+publishes or can't be undone. ADMIN itself and the Keepers
 wait for step 11; their interface is fixed in step 4, by the project.
 
 ## The standard
