@@ -65,7 +65,8 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    moves keeping keys safely onto the course, as step 6 (below). Also: a
    holder can leave stamps out of what it shows but can't change, add or
    repeat one, and a passport shows every world in it to every world it is
-   shown to (the founder's open question on unlinked presences).
+   shown to (unlinked presences were decided later: STATUS.md,
+   2026-11-14).
 4. **The chemistry world on the real chemistry** (2026-11-13, #21). Its
    law is now on `chem/`: a soup of real molecules (one well-mixed cell)
    that starts with published soil and runs its own reactions by exact
@@ -178,8 +179,8 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
 7. **Memory, version 1, sealed.** Journal entries tied to ticks in the
    log; recall by recency, importance and relevance; reflections; held
    thoughts in a few slots; a library of routines they write. All of it
-   in a sealed self that only its owner can read, with public
-   fingerprints. *Borrowing:* Generative
+   in a sealed self that no one else reads, opened only under the
+   founder's "break glass", with public fingerprints. *Borrowing:* Generative
    Agents, Voyager's skill library, Disco Elysium's thought cabinet,
    guarding against their known failures.
 8. **Experiment 002, the audition.** Candidate sizes of Qwen 3.5 and OLMo
@@ -235,6 +236,13 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
 ## Waiting
 
 Added one at a time, as steps are done:
+- after step 3 (decided 2026-11-14, STATUS.md): persons, a person above
+  their world-level identities ([MULTIVERSE.md](MULTIVERSE.md)), with the
+  architectures (octopus, relay, swarm, council) as small examples on the
+  unchanged core;
+- first, right after step 4 (the founder, 2026-11-14): parallel chemistry
+  worlds from one template, and a view-only garden to walk among them,
+  the first thing others can see ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md));
 - Keepers talking to one another, by the rules proposed in
   [WORLD-KEY.md](WORLD-KEY.md);
 - the admin-key: a course for Keepers, plotted by ADMIN as Keepers plot

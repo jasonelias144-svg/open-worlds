@@ -159,6 +159,10 @@ and the known limits are in [CHEMISTRY.md](CHEMISTRY.md).
   among language-model agents, the main attack is one agent manipulating
   another with text crafted to hijack its instructions. Is that an attack on
   the world (expulsion), or behaviour to be observed (deception arising)?
+  Decided on 2026-11-14: behaviour to observe, with the tools to see, not
+  to hear, and to leave ([FREEDOMS.md](FREEDOMS.md)).
 - **The world's kind:** a grid world (cheap, fully ours) or a voxel world
-  like Minecraft (rich, heavier).
+  like Minecraft (rich, heavier). Decided on 2026-11-14, on the technical
+  lead's recommendation under the founder's standing rule: a grid world,
+  as the Ur-world already is, with a visual window later (STATUS.md).
 - **Where models run beyond the Mac,** and the budget for it.

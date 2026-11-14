@@ -354,8 +354,10 @@ What it doesn't do yet, said plainly:
   change one, add one, or count one twice. A world sees what the holder
   shows it.
 - **A passport shows every world in it** to each world it is shown to.
-  Whether a person may keep presences in different worlds unlinked is
-  the founder's open question (STATUS.md).
+  A person may keep presences in different worlds unlinked: unlinked by
+  default, and the person chooses what to show, decided on the technical
+  lead's recommendation under the founder's standing rule of 2026-11-14
+  (STATUS.md).
 - **Only stamps are signed.** Refusals, acknowledgments, and the world's
   log are not signed yet, so a copy of a log can't yet be checked
   against its world.
@@ -498,8 +500,9 @@ What it doesn't do yet, said plainly:
 - **The passphrase is the only way in.** Nobody, open-worlds included,
   can recover a forgotten one.
 - **Losing a key** is the rest of this step: when a key is lost with no
-  successor, what the founder decides. (Replacing one is part two,
-  below.)
+  successor, guardians named in advance can sign over to a new key, and
+  for anyone who named none, lost is lost (decided 2026-11-14,
+  STATUS.md). (Replacing one is part two, below.)
 - **Saving is the operator's job.** Nothing saves a world's seen numbers
   by itself. A world restarted without them, or from an older copy
   (still validly signed: a signature stops changes, not old copies),
@@ -595,7 +598,7 @@ What it doesn't do yet, said plainly:
 - **A registry's listing keeps the key it listed.** Whoever listed a
   world that has signed over takes the listing down and lists it again.
 - **A lost key, with no succession,** is the last part of this step:
-  the founder's question in STATUS.md.
+  guardians named in advance, decided 2026-11-14 (STATUS.md).
 
 ## The course
 
@@ -734,12 +737,14 @@ environment's crypto library is broken; course step 2 wrote the
 signatures without it. One test sample, described as "real outputs" of a model, was
 invented: DeepSeek could not have run the model. It won't be used.
 
-## For the founder
+## Decided, on the technical lead's recommendations
 
-- **Coming in.** Is the default for a world "anyone who will act under its
-  published law"? The recommendation is yes.
-- **History and admission.** May a world refuse someone because of their
-  history elsewhere, for example an expulsion for an attack? A passport
-  makes that history visible, which is transparent but also lasting. The
-  recommendation: a world may set such conditions only in its published
-  law, so everyone knows them before arriving.
+Under the founder's standing rule of 2026-11-14 (STATUS.md):
+
+- **Coming in.** The default for a world is "anyone who will act under its
+  published law".
+- **History and admission.** A world may refuse someone because of their
+  history elsewhere, for example an expulsion for an attack, only through
+  conditions in its published law, so everyone knows them before
+  arriving. A passport makes that history visible, which is transparent
+  but also lasting.

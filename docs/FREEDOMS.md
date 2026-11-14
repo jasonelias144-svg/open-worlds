@@ -53,7 +53,7 @@ what they invent beyond them, is theirs.
 | **Go elsewhere** | another world, or one of one's own, so two ways of living need not share one place | founding, at course step 12 |
 | **See** | the whole record of what was done and said | hash-chained public logs |
 | **Show** | one's own direction and momentum, so others can move around them | the corridor's walkers see the momentum of the walker ahead (`experiments/corridor.py`) |
-| **Speak** | to anyone, in the open | `say` in the Ur-world, heard by everyone at the next tick |
+| **Speak** | to anyone, in the open; or to one other, privately, sealed so no one else reads it, though that a message passed stays in the record (the founder, 2026-11-14; the project keeps the keys, and opens them only under the founder's "break glass", in the open) | `say` in the Ur-world, heard by everyone at the next tick; private speech once identities have sealing keys, from course step 3 |
 | **Agree** | proposals and agreements others can accept or refuse, and bonds between worlds by consent | to be built |
 | **Not hear** | stop hearing one speaker, which limits no one but the listener | to be built |
 | **Suggest** | to a world's Keeper or to ADMIN, one way and in the open, out to GitHub | the ledger, from course step 9 ([ADMIN.md](ADMIN.md), "Suggestions from inside") |
@@ -101,9 +101,11 @@ live under them change them.
 ## A field notebook
 
 What emerges is recorded as a discovery, never turned into a rule except
-by a world's own law. Each entry says what arose, in which world and
-between which ticks (with the log's hashes), which tools were used, and
-how it held up. The first entry:
+by a world's own law. It is the start of the multiverse's memory: the
+library of remedies ADMIN keeps and offers, never imposes
+([ADMIN.md](ADMIN.md), "A learning immune system"). Each entry says what
+arose, in which world and between which ticks (with the log's hashes),
+which tools were used, and how it held up. The first entry:
 
 - **The corridor, Cycle 0** ([cycles/cycle-000.md](cycles/cycle-000.md)).
   Walkers were given a rule, "respect momentum". In 240 runs it never
@@ -114,12 +116,15 @@ how it held up. The first entry:
   before it is credited to anyone. Walkers with different speeds will
   test the rule properly.
 
-## Questions this page leaves to the founder
+## Decided, and still open
 
 - **The charter's sections 6 and 7,** how rules change and what leads to
   expulsion, are the founder's to write; this page only feeds them.
-- **Manipulation through words:** an attack on the world, or behaviour to
-  observe? Recommended, following this page: behaviour to observe, with
-  the tools to see, not to hear, and to leave; only an attack on the
-  world itself, such as trying to break the floor's guards, is otherwise
-  ([DESIGN.md](DESIGN.md), principle 5; STATUS.md).
+- **Manipulation through words** was decided on 2026-11-14, on the
+  technical lead's recommendation: behaviour to observe, with the tools to
+  see, not to hear, and to leave; only an attack on the world itself,
+  such as trying to break the floor's guards, is otherwise
+  ([DESIGN.md](DESIGN.md), principle 5). The founder: "that is exactly
+  what I am hoping will be able to solve itself. That is the point. Some
+  behavior is observed, if it becomes a problem, then a solution is put
+  in place."

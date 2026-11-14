@@ -58,6 +58,9 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
   keeps each world, and ADMIN, the Keeper of the multiverse.
 - [docs/REASONS.md](docs/REASONS.md): how a decision that affects others
   goes on record with its reasons, and what code and Lean check of them.
+- [docs/PARALLEL-WORLDS.md](docs/PARALLEL-WORLDS.md): parallel worlds
+  from one template, isolated by default, and a garden to walk among
+  them, looking in or stepping inside.
 - [docs/FREEDOMS.md](docs/FREEDOMS.md): when one freedom limits another,
   the tools every world gives, and what is never left to emerge.
 - [rust/](rust/README.md): the worlds in Rust: the Ur-world, and the public
@@ -106,7 +109,10 @@ and CI runs them in a job of its own.
 
 [CC0 1.0](LICENSE): dedicated to the public domain. Anyone may use, change
 and build on any of this, for any purpose, without asking. That's the
-point: if someone takes the idea and builds it, so much the better.
+point: if someone takes the idea and builds it, so much the better. One
+part isn't ours to give: the W3C specification's example in
+`vectors/formats/eddsa-jcs-2022.json` stays under W3C's licence, with its
+notice ([vectors/README.md](vectors/README.md)).
 
 ## Working here
 

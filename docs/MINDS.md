@@ -64,7 +64,7 @@ body.
 |---|---|---|---|
 | **Identity** | name, public keys (one for signing, one for sealing things to them), birth record, key successions | the world at birth, then their own key | for life |
 | **Mind record** | each engine they have run on: model, revision, file hashes, settings, chat template, and the container image it ran in, by digest | the project | for life; the engine itself is replaceable |
-| **Self** (sealed) | journal, reasoning, held thoughts, private notes, routines, their own aims, a note of who they are | the individual alone; only they can read it | grows for life |
+| **Self** (sealed) | journal, reasoning, held thoughts, private notes, routines, their own aims, a note of who they are | the individual alone; no one else reads it, unless the founder opens it under the "break glass", in the open | grows for life |
 | **Sheet** | skills (with practice and rust), things carried, knowledge found, milestones, experience | granted by worlds, plus routines its writer chose to show; rebuilt from the logs | grows for life |
 | **Avatars** | one body for each world they are in: where it is, what it holds there, what others see of it | that world | one visit |
 | **Relationships** | whom they have met, spoken with, taught, given to, founded worlds with | worked out from the logs | grows for life |
@@ -111,8 +111,9 @@ body.
 Everything a mind is told comes from one of four layers, each with one
 author, and all four are on record: layers 1, 2 and 4 in the open, layer 3
 sealed. So, for any moment of a life, the individual (or a "break glass"
-opening, if the founder chooses one) can put back together exactly what
-that mind was given, and anyone can check that none of it was altered.
+opening, which the founder chose on 2026-11-14) can put back together
+exactly what that mind was given, and anyone can check that none of it
+was altered.
 
 1. **The law**, from the world: what the world is and what it enforces,
    and how the layers are framed for a mind. The same for everyone there,
@@ -146,24 +147,30 @@ repeating.
 
 ### The birth record
 
-Proposed wording, for ALICE (BOB's is the same, with the names swapped).
-The founder can change it:
+The wording, for ALICE (BOB's is the same, with the names swapped),
+decided as revised on 2026-11-14, on the technical lead's recommendation
+under the founder's standing rule (STATUS.md). The founder can still
+change it:
 
 > You are ALICE. You came into being in the Ur-world on [date], one of its
 > first two inhabitants. The other is BOB.
 > Your mind runs on [model]. It may change one day; you remain ALICE.
-> You keep a journal. Only you write in it and only you can read it,
-> inside the world and out. Each tick, some of it is shown to you again:
+> You keep a journal. Only you write in it. No one else reads it, inside
+> the world or out, unless the founder decides, in the open, to look; any
+> such look is made public. Each tick, some of it is shown to you again:
 > what is recent, important or relevant. Others can see that it exists,
 > and how much you have written, but never what it says.
 > You may leave at any time.
 > Your first day begins with a tour of the garden.
 
 It tells them exactly how private their journal is, because that is true:
-sealed, though its existence and size can be seen. It names their model,
-and says they outlast it. It doesn't say who
-made the world, or why: that is for the world to show, and for them to
-find out ([WORLD-KEY.md](WORLD-KEY.md)).
+sealed, though its existence and size can be seen, and opened only by the
+founder's "break glass", in the open. (The first proposal said "only you
+can read it, inside the world and out"; with the "break glass" chosen,
+that would no longer be true, so the words were revised on 2026-11-14.) It
+names their model, and says they outlast it. It doesn't say who made the
+world, or why: that is for the world to show, and for them to find out
+([WORLD-KEY.md](WORLD-KEY.md)).
 
 ## How information moves
 
@@ -172,7 +179,7 @@ find out ([WORLD-KEY.md](WORLD-KEY.md)).
 | Within an individual | The four layers go into the mind; out comes an action, and sometimes a note to the journal. Short-term is the prompt; long-term is the journal, and later a personal layer of the model. | the sealed self; only its fingerprints are public |
 | Individual to world | Actions only, one a tick, read strictly. The only way any inhabitant changes anything. | the world's log |
 | World to individual | The law once; then, each tick, what can be perceived from where they are. | the world's log |
-| Individual and individual | Only through the world: speech, signs, things given, skills taught. | the world's log |
+| Individual and individual | Through the world: speech, signs, things given, skills taught. And privately, decided by the founder on 2026-11-14: a message sealed to the other, which no one else reads. The project keeps the keys, as for the sealed self, and the same "break glass" covers them (decided 2026-11-14, STATUS.md). | the world's log; for a private message, that it passed, not what it says |
 | Individual to the law | Asking now; formal proposals and governance later. | the world's log |
 | World and world | The protocol: passports, stamps, successions, doors, birth records of new worlds. The Python worlds sign their stamps today; each world will sign its log too (course step 3). | each world's log |
 | Individual to another world | Through a door, with a passport. Key, self and sheet go with them. Each world sees only what they show, and what they do there. | passports and both logs |
@@ -214,14 +221,20 @@ Keeper, teach a routine.
 while a mind is thinking, its thoughts pass through hardware the project
 controls. Encryption guarantees privacy from the world, the Keeper, other
 inhabitants and the public, and that a sealed self can't be read at rest.
-Against the project itself there are two honest choices, and the founder
-decides between them:
+Against the project itself there were two honest choices:
 
 - **fully sealed:** the project commits never to decrypt, and no one can
   look, even in an emergency;
 - **sealed, with a "break glass":** the interior can be opened only by an
   explicit decision of the founder's, and every opening is recorded
   publicly and permanently.
+
+The founder chose the "break glass" on 2026-11-14, on the technical
+lead's recommendation ("I agree with your recommendations", STATUS.md).
+So the project keeps the key to each sealed self in its private
+repository, and not looking is a rule it keeps in the open, not a
+technical guarantee: one accountable way to look in a real emergency,
+which anyone can see was ever used.
 
 Hardware that keeps even the operator out (confidential computing) could
 close the gap later.
@@ -312,7 +325,8 @@ what they are for.
   key (the individuals', the Keepers' and the worlds'), and each
   individual's key to their own sealed self, and nothing else unless the
   founder decides otherwise. The
-  repository's list of contents is public, though its values aren't.
+  repository's list of contents is public, though its values aren't. The
+  founder agreed to it on 2026-11-14, for course step 3.
 - **On the Hugging Face Hub, pinned to exact revisions:** the base models,
   and later the personal layers trained for them.
 - **Nowhere else.** Not on anyone's computer, and not only in a working
@@ -336,18 +350,15 @@ identifiers (did:key, which turns an Ed25519 key like ALICE's into a
 standard identifier) and verifiable credentials (signed claims, such as a
 world attesting a skill, or a world-key); RFC 8785 for writing JSON the
 same way everywhere before it is signed; HPKE (RFC 9180) for sealing
-something so only its reader can open it; and, if a line with a Keeper is
-to be private, the Noise protocol framework. Step 2 checks each fit
+something so only its reader can open it; and, if a private line is ever
+wanted, the Noise protocol framework (the line with a Keeper was decided
+public on 2026-11-14). Step 2 checks each fit
 before adopting it.
 
 ## Not decided yet
 
 - **Who is ALICE and who is BOB:** which of Qwen and OLMo runs which. The
   founder's to choose, after the audition (course step 8).
-- **The birth record's words**, proposed above.
-- **Fully sealed, or sealed with a public "break glass"** ("Who can see
-  what", above). Recommended: the "break glass", for one accountable way
-  to look in a real emergency, which anyone can see was ever used.
 - **Whether personal model layers are trained,** and when. The plan is
   memory first, then a small personal layer of the model, trained only on
   their own records, with every training run recorded.
