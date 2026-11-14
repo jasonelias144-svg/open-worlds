@@ -134,7 +134,9 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    sealing, and the Noise protocol framework for a private line. No
    commitments: nothing is held back ("Challenges, not tests"). And for
    ADMIN, the formats of a grant and of the multiverse log
-   (UCAN and Certificate Transparency to check).
+   (UCAN and Certificate Transparency to check), and of a decision
+   record: an office's decision with its reasons
+   ([REASONS.md](REASONS.md)).
 3. **Keys and identities, for them and for the world.** A private
    repository of the project for the private halves; ALICE's and BOB's
    signing keys, keys for sealing things to them, and the keys to their
@@ -149,8 +151,11 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    a named, logged effect; tags allow or block actions. The Keeper's
    administrative actions, as grants, and the checks on what it designs,
    are fixed here, so its interface is settled early; so are ADMIN's
-   checks as code. *Borrowing:* the
-   entity-component pattern (Bevy's), and Unreal's effects and tags.
+   checks as code. An office's act is refused without its decision
+   record, and a model of grants in Lean proves that no chain of grants
+   widens, checked by CI ([REASONS.md](REASONS.md)). *Borrowing:* the
+   entity-component pattern (Bevy's), and Unreal's effects and tags;
+   Lean, and proof-carrying code.
 5. **Things, skills and the sheet.** Carrying, reading, `lift` as the
    first skill granted by a find, practice and rust, a log of what is
    known, and the sheet rebuilt from the world's log and checked against

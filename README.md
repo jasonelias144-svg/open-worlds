@@ -56,6 +56,8 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
   Ur-world: a purpose, a tour, and the hunt for the world-key.
 - [docs/ADMIN.md](docs/ADMIN.md): what the multiverse must preserve, who
   keeps each world, and ADMIN, the Keeper of the multiverse.
+- [docs/REASONS.md](docs/REASONS.md): how a decision that affects others
+  goes on record with its reasons, and what code and Lean check of them.
 - [rust/](rust/README.md): the worlds in Rust: the Ur-world, and the public
   record, checked across languages through shared test vectors
   ([vectors/](vectors/README.md)).

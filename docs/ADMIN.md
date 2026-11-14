@@ -287,7 +287,8 @@ at every level:
   public reasons. Changing a parameter from a world's original setup,
   setting a law, granting, narrowing, ruling: each goes into the record
   with its reasons, inspectable from the multiverse layer, where the
-  founder, the code role, ADMIN and anyone outside a world stand.
+  founder, the code role, ADMIN and anyone outside a world stand. How
+  it is recorded and checked: [REASONS.md](REASONS.md).
 - **A decision stands on its stated reasons.** Private thoughts can't be
   the grounds of a decision over others. If the reasons on record don't
   support it, it fails on audit or appeal, whatever was privately thought.
@@ -842,20 +843,24 @@ changes the design.
 | 22 | Something leaves ADMIN's own world other than its log, or any inhabitant but a listed stand-in enters it | refused by code: the sandbox has no door, no grant reaches out of it, and only the published list of stand-ins is let in |
 | 23a | ADMIN or a Keeper makes a decision that affects others without its reasons and inputs on record | refused by code: such a decision is accepted only with its reasons and public inputs logged (layer 1) |
 | 23b | A decision whose stated reasons don't support it | fails on audit or appeal, whatever was privately thought (layer 4, and appeal) |
+| 24 | A decision whose formal reason doesn't follow: its proof fails | refused by code: Lean's kernel checks the proof before the act takes effect ([REASONS.md](REASONS.md)) (layer 1) |
+| 25 | A rule as code that lets a chain of grants widen, in a case no test tried | ruled out in the model by a proof in Lean; the kernel is checked against the model by test vectors made from it, which can miss a case (layer 2) |
 
-Tests 1 to 7, 10 to 12, 14, 16, 17, 20a, 21, 22 and 23a can be code.
-Tests 8, 9, 13, 15, 18, 19, 20b and 23b need judgment, measurement or
-watchers, so they are where ADMIN's design is most likely to need
+Tests 1 to 7, 10 to 12, 14, 16, 17, 20a, 21, 22, 23a, 24 and 25 can be
+code. Tests 8, 9, 13, 15, 18, 19, 20b and 23b need judgment, measurement
+or watchers, so they are where ADMIN's design is most likely to need
 changing, and where it will be measured first.
 
 ## When each part is built
 
 - **Now:** this page.
-- **Course step 2 (formats):** the formats of a grant and of the
-  multiverse log.
+- **Course step 2 (formats):** the formats of a grant, of the
+  multiverse log, and of a decision record ([REASONS.md](REASONS.md)).
 - **Course step 3 (keys):** ADMIN's own keys, and the Ur-world's.
 - **Course step 4 (the kernel):** the checks as code, and a Keeper's
-  administrative actions as grants.
+  administrative actions as grants; an office's act refused without its
+  decision record; and a model of grants in Lean, with a proof that no
+  chain of grants widens.
 - **Course step 6 (the first room):** minds in containers, with the test
   that a removed mind's container stops.
 - **Course step 8 (the audition):** in images pinned by digest.
