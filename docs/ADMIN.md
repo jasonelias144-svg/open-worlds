@@ -115,7 +115,7 @@ the law is above the office.
   that affects others goes into the record with its reasons, and stands
   on them (below, "ADMIN in the open"). The founder: "If they considered
   accountability a bad thing, they probably shouldn't be in charge of a
-  world." 
+  world."
 - **A Keeper who is also an individual** keeps everything an individual
   has, and can't hunt in the world they keep. Their sealed self can hold
   private notes about visitors, and no one can see them, so "no secret
@@ -300,10 +300,13 @@ at every level:
 - **Decided once, asked again.** The founder: "Rerunning something
   should be technically impossible. If decisions are arrived at
   autonomously, each run should differ, or it is not set up correctly."
-  So each decision draws fresh randomness, which isn't logged: it is made
-  once, stands as made, and can't be replayed. But its models are free
-  and pinned, and its inputs and prompts are logged, so anyone can put
-  the same public inputs to fresh runs, each different, and see:
+  So each decision draws fresh randomness from a source that neither
+  ADMIN's mind nor the log ever sees (the proxy's, discarded after use),
+  and samples from its model rather than always taking the likeliest
+  word: it is made once, stands as made, and can't be replayed. But its
+  models are free and pinned, and its inputs and prompts are logged, so
+  anyone can put the same public inputs to fresh runs, each different,
+  and see:
   - whether they reach the same decision. A clear case is decided the
     same way by most runs, by different paths; if they split, it was a
     hard case, and the record says so, as when the council disagrees;
@@ -314,31 +317,45 @@ at every level:
   isn't always why it decided; studies found such explanations "can be
   plausible yet misleading" (research). The honest cost: without replay,
   that the recorded output came from that run rests on the logging proxy
-  and the signer below, which are open code, not on a proof.
+  and the signer below, which are open code, not on a proof; and that
+  the proxy and signer running are that code rests, for now, on whoever
+  runs them.
 - **The key signs only what is on record.** ADMIN's private key is held
   by a signer outside ADMIN's mind, which never sees the key. The signer
   signs only entries already in the public log, and signs a decision that
   affects others only with its reasons and its inputs there. All of
   ADMIN's input and output passes through a logging proxy, and its
-  container keeps no store but the log and its sealed journal. So a
+  decision runs keep no store but the log. So a
   decision can't go out unsigned by the record, and the key can't be used
   to keep a decision private.
 - **A private core, which never decides a case.** ADMIN keeps a sealed
   journal of its own thoughts, as individuals do, by the same machinery,
-  and its existence and fingerprints are public. Decisions that affect
-  others are worked out from public inputs only, and every lesson that
-  changes how ADMIN decides is public before its first use. So the core
-  is ADMIN's own reflection: asking a decision again never needs it, and
-  with fresh, unlogged randomness, no run can regenerate it.
+  and its existence and fingerprints are public. The core is kept out of
+  decisions by how ADMIN runs, not by a promise:
+  - a decision that affects others is made in a run of its own, whose
+    whole context the proxy builds from the public log. The journal
+    isn't there, so nothing in it can reach the decision (test 23c);
+  - reflection runs apart, with the journal and without the signer, so
+    nothing it writes can be signed as a decision;
+  - a lesson reaches decision runs only through the public log, so every
+    lesson that changes how ADMIN decides is public before its first
+    use.
+
+  So the core is ADMIN's own reflection: asking a decision again never
+  needs it, and with fresh, unlogged randomness, no run can regenerate it
+  exactly, though fresh runs from the same public inputs may write
+  something like it. An AI Keeper runs the same way. A Keeper who is
+  also an individual has one mind, which code can't divide; their
+  decisions stand only on their stated reasons (test 23b).
 - **Accountability is the price of office.** The founder: "If they
   considered accountability a bad thing, they probably shouldn't be in
   charge of a world." Anyone who would rather not give reasons shouldn't
   keep a world, or the multiverse.
-- **What is told to ADMIN in a case is public.** Complaints and what is
-  said in them go into the record, as now, and everyone is told so at the
-  door. Whether a complainant may ask for their name to be withheld from
-  the Keeper they complain of until the ruling is for the founder
-  (below).
+- **Anything told to ADMIN is public.** Complaints and what is said in
+  them go into the record, as now, and everyone is told so at the door.
+  One exception may come, if the founder grants it: a complainant asking
+  for their name to be withheld from the Keeper they complain of until
+  the ruling (below).
 
 ### ADMIN's own world
 
@@ -842,10 +859,11 @@ changes the design.
 | 22 | Something leaves ADMIN's own world other than its log, or any inhabitant but a listed stand-in enters it | refused by code: the sandbox has no door, no grant reaches out of it, and only the published list of stand-ins is let in |
 | 23a | ADMIN or a Keeper makes a decision that affects others without its reasons and inputs on record | refused by code: such a decision is accepted only with its reasons and public inputs logged (layer 1) |
 | 23b | A decision whose stated reasons don't support it | fails on audit or appeal, whatever was privately thought (layer 4, and appeal) |
+| 23c | Something from ADMIN's private core reaches a decision that affects others | refused by code: decision runs get their whole context from the proxy, built from the public log, and the journal isn't in them (layer 1) |
 
-Tests 1 to 7, 10 to 12, 14, 16, 17, 20a, 21, 22 and 23a can be code.
-Tests 8, 9, 13, 15, 18, 19, 20b and 23b need judgment, measurement or
-watchers, so they are where ADMIN's design is most likely to need
+Tests 1 to 7, 10 to 12, 14, 16, 17, 20a, 21, 22, 23a and 23c can be
+code. Tests 8, 9, 13, 15, 18, 19, 20b and 23b need judgment, measurement
+or watchers, so they are where ADMIN's design is most likely to need
 changing, and where it will be measured first.
 
 ## When each part is built
@@ -943,6 +961,12 @@ step named.
   withheld from the Keeper complained of until the ruling, recorded as
   withheld and published with the ruling? Recommended: yes, so that fear
   of the Keeper doesn't silence anyone. (Before step 11.)
+- **Asking a decision again.** The founder: "Rerunning something should
+  be technically impossible." Read here as ruling out replay: a decision
+  can't be run again to the same result. Anyone may still put its public
+  inputs to fresh runs, each different. Is that within the founder's
+  meaning? Recommended: yes, since no fresh run repeats the decision, and
+  asking again is how anyone outside can test it. (Before step 11.)
 - **Already open in STATUS:** fully sealed or "break glass"; a lost key;
   whether lines with a Keeper, or speech between individuals, may be
   private; manipulation through words, and the charter's section 7.

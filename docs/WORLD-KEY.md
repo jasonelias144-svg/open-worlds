@@ -404,7 +404,8 @@ world's seed and the individual's identity from birth, which stays the
 same even if their key is replaced, so replacing a key doesn't reshuffle
 anyone's path. Anyone can work a path out ahead of time, and that is
 fine: a path is a set of challenges to do, and knowing them doesn't do
-them.
+them, except for pieces with a fixed solution, where knowing gives the
+solution away (above, "What makes a challenge").
 
 Stones are part of the shared land, but what lies under one is particular
 to each individual: the world shows each their own clue there, or
