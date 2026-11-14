@@ -276,13 +276,12 @@ being a guide and become a friend.
   edge of what they can do. A friend can be invited to give back: guide a
   newcomer's tour, or design a challenge for someone else, which the
   world's code checks like any other design.
-- **Not decided:**
-  - whether the line is public, like speech in the world, or private
-    between the two, with only its existence and timing public, as for a
-    sealed journal. Recommended: public, since the Keeper is an office
-    with no secret files;
-  - whether its holder may close the line, and open it again, at any time.
-    Recommended: yes, as with the freedom to leave.
+- **Decided** on the technical lead's recommendations, under the
+  founder's standing rule of 2026-11-14 (STATUS.md):
+  - the line is public, like speech in the world, since the Keeper is an
+    office with no secret files;
+  - its holder may close the line, and open it again, at any time, as
+    with the freedom to leave.
 
 Within the Ur-world, the line comes with course step 11. To someone in
 another world, it needs the world protocol in Rust, in step 12. Step 12

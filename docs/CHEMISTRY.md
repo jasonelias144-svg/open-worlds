@@ -370,9 +370,10 @@ of molecules makes more of itself.
 4. The first chemistry cycle: what forms from water, ammonia, hydrogen
    cyanide, formaldehyde and carbon dioxide, with and without the gardener.
 
-**For the founder:** which of the gardener's levers to start with. The
-recommendation is the water (wet–dry cycles) and the soil (inflow of simple
-molecules), leaving the sun for later because it needs new rules.
+**Decided** (on the technical lead's recommendation, under the founder's
+standing rule of 2026-11-14, STATUS.md): the gardener's levers start with
+the water (wet–dry cycles) and the soil (inflow of simple molecules),
+leaving the sun for later because it needs new rules.
 
 ## Where this came from
 

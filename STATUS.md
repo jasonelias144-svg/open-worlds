@@ -60,107 +60,22 @@ and for the founder's conversations with DeepSeek, is in
 
 Each question for the founder comes with a recommendation, and "take your
 recommendation" is a full answer, recorded as the founder's decision on
-the technical lead's recommendation.
+the technical lead's recommendation. And by the founder's standing rule
+of 2026-11-14, a question the founder hasn't answered is decided on the
+recommendation once it has been put (Decided, below), except where it
+needs the founder's own words or act, money, or anything outward-facing
+or hard to undo. What is left here is of that kind, or has no
+recommendation yet.
 
 - For the founder: the charter's words (asked 2026-11-12)
 - For the founder: a grid world or a voxel world like Minecraft (asked
   2026-11-12)
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12)
-- For the founder: is the default for entering a world "anyone who will act
-  under its published law"? Recommended: yes. (asked 2026-11-12)
-- For the founder: may a world refuse someone because of their history
-  elsewhere? Recommended: only through conditions in its published law.
-  (asked 2026-11-12)
-- For the founder: which of the gardener's levers the first chemistry world
-  starts with: the water (wet–dry cycles), the sun (energy from outside), or
-  fresh soil (inflow of simple molecules). Recommended: water and soil
-  first; the sun needs photochemistry rules that don't exist yet
-  (docs/CHEMISTRY.md, layer 3 plan). (asked 2026-11-12)
-- For the founder: may a person keep their presences in different worlds
-  unlinked, so that a world sees only the key used there? Recommended:
-  unlinked by default; the person chooses what to show. (asked 2026-11-13)
-- For the founder: does a fork need the child's acceptance? Recommended:
-  yes. (asked 2026-11-13)
-- For the founder: when a key is lost and no successor was signed over,
-  what happens? Options: lost is lost (a new key is a new individual);
-  guardians named in advance, some number of whom can sign over to a new
-  key; or the project recovers keys. Recommended: guardians named in
-  advance, with "lost is lost" for anyone who named none; the project
-  recovering keys would make it an authority over who is who. A key
-  that has leaked is the same question: signing over doesn't revoke the
-  old key (course step 6, part two), so the same guardians could sign
-  that a key is no longer to be trusted. (asked 2026-11-13, for course
-  step 6)
-- For the founder: a course step for persons after step 3, and the
-  architectures (octopus, relay, swarm, council) as small examples on the
-  unchanged core? Recommended: yes. (asked 2026-11-13)
-- For the founder: the words of ALICE's and BOB's birth record, as
-  proposed in docs/MINDS.md. Revised 2026-11-14 so that the journal lines
-  stay true with the "break glass": "No one else reads it, inside the
-  world or out, unless the founder decides, in the open, to look; any
-  such look is made public." Recommended: the revised words. (asked
-  2026-11-13; revised 2026-11-14)
-- For the founder: may ADMIN apply a stored remedy inside a world without
-  that world's consent? Recommended: only at the floor; above it, ADMIN
-  offers and the world's own law decides, or the library of remedies
-  would become a rulebook (docs/ADMIN.md, "A learning immune system").
-  (asked 2026-11-14)
-- For the founder: is the open line between a world's Keeper and those
-  who hold its world-key public, like speech in the world, or private
-  between the two? Recommended: public, since the Keeper is an office with
-  no secret files. And may its holder close it, and open it again, at any
-  time? Recommended: yes (docs/WORLD-KEY.md). (asked 2026-11-13)
-- For the founder: can the project end a world, or the multiverse, and
-  what does it owe the inhabitants if it does? Recommended: a world may
-  end, but its record never does; sealed selves stay sealed; keys stay
-  their holders'. Needed before course step 12 (docs/ADMIN.md).
-  (asked 2026-11-13)
-- For the founder: should ADMIN's serious acts (against an individual, or
-  removing a Keeper) have a check outside the code role: the founder, or
-  a person the founder names? Recommended: yes. Before course step 11,
-  when ADMIN's judgment begins (docs/ADMIN.md). (asked 2026-11-13; moved
-  from step 12 the same day)
-- For the founder: is the admin-key ever to be required to keep another's
-  world, or only a mark of readiness the world's founders may weigh?
-  Recommended: a mark, not a gate, so the three choices decided stand as
-  decided (docs/ADMIN.md). (asked 2026-11-13)
 - For the founder: who designates the roles if the founder can't? Every
   other office has a succession. Recommended: the founder names a
   successor, or a process, recorded where the roles are. (asked
   2026-11-13)
-- For the founder: when a world's law changes, is consent one per party
-  (owner), as the charter's section 6 notes say ("one vote per party
-  (owner), not per agent"), or one per individual? Recommended: one per
-  party, as the notes say, so no one can outvote others by adding agents;
-  an individual's voice is heard through asking, which is logged
-  (docs/ADMIN.md, "The round table"). (asked 2026-11-13)
-- For the founder: seats at the round table: Keepers only, or may
-  individuals earn one? Recommended: Keepers only, since the table decides
-  the rules the offices work under; the parties' voice is their consent
-  to their own law. Before the table's second seat. (asked 2026-11-13)
-- For the founder: should a seat at the round table outlive its holder's
-  office? It is kept when its holder loses a world's office for misuse
-  that wasn't a breach of the floor, so ADMIN's power to remove Keepers
-  can't reach the table; but then a Keeper removed for misuse keeps
-  deciding the rules offices work under. Recommended: yes, revisited if a
-  seat is ever used to shield misuse. Before the table's second seat.
-  (asked 2026-11-13)
-- For the founder: may a model that is free but not fully open (its
-  training data unpublished) be part of ADMIN's mind? "All senses of
-  “free”" would rule it out. Recommended: yes, only beside at least one
-  fully open member, and never as the only member deciding a case.
-  Before course step 11 (docs/ADMIN.md, "ADMIN's mind"). (asked
-  2026-11-13)
-- For the founder: must ADMIN take on challenges it didn't choose? With
-  nothing hidden, what keeps ADMIN from choosing only easy ones is the
-  open record and challenges others set. Recommended: it takes on those
-  the code role and Keepers set, alongside its own, and declines one
-  only with its reason logged. Before course step 11 (docs/ADMIN.md).
-  (asked 2026-11-13)
-- For the founder, deferred ("We can name later"): who names the
-  Ur-world's Keeper, the founder or ALICE and BOB once they meet it?
-  Recommended: ALICE and BOB. Before course step 11. (asked 2026-11-13)
 - For the founder, whenever ready: the method of learning the founder
   hopes to pass to ADMIN, in the founder's words, to be ADMIN's first
   routine and tested with and without it (docs/ADMIN.md). (asked
@@ -212,6 +127,63 @@ the technical lead's recommendation.
     total, never per author, so that marking in good faith costs nothing.
 
 ## Decided
+
+- 2026-11-14, founder, a standing rule: "“Take your recommendation” is
+  always the default. So if I have not answered a question or settled
+  anything directly, follow your own recommendation." "Understand that I
+  trust your opinions and recommendations, and that’s why I decided I
+  wanted you to be in charge of the code decisions". "So, if you don’t
+  hear from me, follow your recommendations. That is my
+  meta-recommendation." The technical lead's reading, on which the rule
+  is applied: a recommendation becomes the decision once it has been put
+  to the founder in plain words, and is recorded as decided on the
+  recommendation, for the founder to change at any time. It doesn't
+  apply where silence can't stand for consent: anything outward-facing
+  or hard to undo (publishing or submitting outside the repositories,
+  spending, licences beyond those agreed), personal information, and
+  anything that must be in the founder's own words or act (the charter,
+  the method of learning, naming a successor). Those still wait for the
+  founder. Decided under it the same day, on the recommendations as put:
+  - the default for entering a world is "anyone who will act under its
+    published law"; a world may refuse someone for their history
+    elsewhere only through conditions in its published law
+    (docs/MULTIVERSE.md);
+  - the first chemistry world's gardener starts with the water (wet–dry
+    cycles) and fresh soil; the sun later (docs/CHEMISTRY.md);
+  - a person may keep their presences in different worlds unlinked: by
+    default, and the person chooses what to show;
+  - a fork needs the child's acceptance;
+  - a lost key with no successor: guardians named in advance, some number
+    of whom can sign over to a new key, and "lost is lost" for anyone who
+    named none; the same guardians can sign that a leaked key is no
+    longer to be trusted. The project never recovers keys, which would
+    make it an authority over who is who;
+  - a course step for persons after step 3, with the architectures
+    (octopus, relay, swarm, council) as small examples on the unchanged
+    core (docs/COURSE.md, waiting list);
+  - ALICE's and BOB's birth record, in the revised words
+    (docs/MINDS.md);
+  - ADMIN applies a stored remedy without a world's consent only at the
+    floor (docs/ADMIN.md);
+  - the open line between a world's Keeper and a world-key's holder is
+    public, and its holder may close it and open it again at any time
+    (docs/WORLD-KEY.md);
+  - the project may end a world, but its record never ends, sealed selves
+    stay sealed and keys stay their holders';
+  - ADMIN's serious acts (against an individual, or removing a Keeper)
+    have a check outside the code role: the founder, until the founder
+    names a person;
+  - the admin-key is a mark of readiness the world's founders may weigh,
+    never required to keep another's world;
+  - consent to a change in a world's law is one per party;
+  - seats at the round table are for Keepers only, and a seat outlives
+    its holder's office, revisited if one is ever used to shield misuse;
+  - a model that is free but not fully open may be part of ADMIN's mind,
+    only beside at least one fully open member, and never as the only
+    member deciding a case;
+  - ADMIN takes on challenges the code role and Keepers set, and declines
+    one only with its reason logged;
+  - ALICE and BOB name the Ur-world's Keeper, once they meet it.
 
 - 2026-11-14, founder, on money (only what concerns the project is
   recorded): "Even though it is all free and should stay
@@ -772,6 +744,15 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-14 Claude: the founder's standing rule: an unanswered question
+  is decided on the technical lead's recommendation, once put, except
+  for what silence can't consent to. Written into AGENTS.md and STATUS;
+  under it, nineteen open questions decided on their recommendations and
+  marked so in ADMIN.md, MINDS.md, MULTIVERSE.md, WORLD-KEY.md,
+  CHEMISTRY.md, COURSE.md and PARALLEL-WORLDS.md. Seven stay open: the
+  charter's words, a grid or voxel world, where models run and the
+  budget, who designates the roles, the method of learning, ADMIN's
+  running costs, and the charter's section 4 note.
 - 2026-11-14 Claude: the founder's decisions of the evening written in.
   The technical lead's eight recommendations, agreed: a private
   repository for keys, private speech between individuals, the "break

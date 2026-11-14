@@ -146,8 +146,10 @@ repeating.
 
 ### The birth record
 
-Proposed wording, for ALICE (BOB's is the same, with the names swapped).
-The founder can change it:
+The wording, for ALICE (BOB's is the same, with the names swapped),
+decided as revised on 2026-11-14, on the technical lead's recommendation
+under the founder's standing rule (STATUS.md). The founder can still
+change it:
 
 > You are ALICE. You came into being in the Ur-world on [date], one of its
 > first two inhabitants. The other is BOB.
@@ -355,7 +357,6 @@ before adopting it.
 
 - **Who is ALICE and who is BOB:** which of Qwen and OLMo runs which. The
   founder's to choose, after the audition (course step 8).
-- **The birth record's words**, proposed above, revised on 2026-11-14.
 - **Whether personal model layers are trained,** and when. The plan is
   memory first, then a small personal layer of the model, trained only on
   their own records, with every training run recorded.

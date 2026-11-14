@@ -18,6 +18,14 @@ The founder decides what this project is for and who works on it. The technical
 lead (Claude) decides everything about the code, and records an approval on
 every pull request before it merges (P4). Intent questions go to the founder (P5).
 
+The founder's standing rule (2026-11-14): "if I have not answered a question or
+settled anything directly, follow your own recommendation." So an intent
+question, once put to the founder with a recommendation, is decided on that
+recommendation unless the founder answers otherwise, and recorded so in
+STATUS.md, where the founder can change it at any time. Not for what silence
+can't consent to: anything outward-facing or hard to undo, spending, personal
+information, or what must be in the founder's own words or act. Those wait.
+
 ADMIN, the Keeper of the multiverse, answers to the role in charge of the
 code, the technical lead, by the founder's designation (2026-11-13). The role
 passes on; so does ADMIN. ADMIN's rules are code, changed only by reviewed pull

@@ -31,8 +31,9 @@ world of its own, with its own key and log, made from a named template.
   Its format is one more for course step 2's list.
 - **A parallel world copies the setup, never the people** (decided by the
   founder, on the technical lead's recommendation). Copying an individual
-  would be a fork, a question still open with the founder (STATUS.md:
-  does a fork need the child's acceptance? Recommended: yes).
+  would be a fork, which needs the child's acceptance (decided on the
+  technical lead's recommendation under the founder's standing rule of
+  2026-11-14, STATUS.md).
   Individuals enter a parallel world by choice, as any world.
 - **Isolated by default** (decided the same way). Parallel worlds are
   worth most as independent trials: with a dozen chemistry worlds that
