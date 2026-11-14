@@ -332,11 +332,12 @@ one speaks while the other listens, then they turn.
   now chooses the sizes, not the families.
 - **What they do is public; what they think is their own.** Everything
   observable is public. Each individual has a sealed interior (journal,
-  reasoning, held thoughts) that no one else can read, not even the
-  world's Keeper ([MINDS.md](MINDS.md), "Who can see what"). Their private
-  keys are kept in a private repository of the project, "public to our
-  project", and nothing lives on a personal computer: "Let's keep
-  everything online."
+  reasoning, held thoughts) that no one else reads, not even the world's
+  Keeper; only the founder can open it, under the "break glass", and
+  every opening is public ([MINDS.md](MINDS.md), "Who can see what").
+  Their private keys are kept in a private repository of the project,
+  "public to our project", and nothing lives on a personal computer:
+  "Let's keep everything online."
 - **Lessons from [experiment 001](../experiments/001-first-words/RESULTS.md):**
   - examples in the orientation become scripts, so theirs shows the form
     of a reply without words worth repeating;

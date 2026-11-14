@@ -64,7 +64,7 @@ body.
 |---|---|---|---|
 | **Identity** | name, public keys (one for signing, one for sealing things to them), birth record, key successions | the world at birth, then their own key | for life |
 | **Mind record** | each engine they have run on: model, revision, file hashes, settings, chat template, and the container image it ran in, by digest | the project | for life; the engine itself is replaceable |
-| **Self** (sealed) | journal, reasoning, held thoughts, private notes, routines, their own aims, a note of who they are | the individual alone; only they can read it | grows for life |
+| **Self** (sealed) | journal, reasoning, held thoughts, private notes, routines, their own aims, a note of who they are | the individual alone; no one else reads it, unless the founder opens it under the "break glass", in the open | grows for life |
 | **Sheet** | skills (with practice and rust), things carried, knowledge found, milestones, experience | granted by worlds, plus routines its writer chose to show; rebuilt from the logs | grows for life |
 | **Avatars** | one body for each world they are in: where it is, what it holds there, what others see of it | that world | one visit |
 | **Relationships** | whom they have met, spoken with, taught, given to, founded worlds with | worked out from the logs | grows for life |
@@ -111,8 +111,9 @@ body.
 Everything a mind is told comes from one of four layers, each with one
 author, and all four are on record: layers 1, 2 and 4 in the open, layer 3
 sealed. So, for any moment of a life, the individual (or a "break glass"
-opening, if the founder chooses one) can put back together exactly what
-that mind was given, and anyone can check that none of it was altered.
+opening, which the founder chose on 2026-11-14) can put back together
+exactly what that mind was given, and anyone can check that none of it
+was altered.
 
 1. **The law**, from the world: what the world is and what it enforces,
    and how the layers are framed for a mind. The same for everyone there,
@@ -178,7 +179,7 @@ world, or why: that is for the world to show, and for them to find out
 | Within an individual | The four layers go into the mind; out comes an action, and sometimes a note to the journal. Short-term is the prompt; long-term is the journal, and later a personal layer of the model. | the sealed self; only its fingerprints are public |
 | Individual to world | Actions only, one a tick, read strictly. The only way any inhabitant changes anything. | the world's log |
 | World to individual | The law once; then, each tick, what can be perceived from where they are. | the world's log |
-| Individual and individual | Through the world: speech, signs, things given, skills taught. And privately, decided by the founder on 2026-11-14: a message sealed to the other, which only they can open. | the world's log; for a private message, that it passed, not what it says |
+| Individual and individual | Through the world: speech, signs, things given, skills taught. And privately, decided by the founder on 2026-11-14: a message sealed to the other, which no one else reads. The project keeps the keys, as for the sealed self, so whether the "break glass" covers private messages too is asked in STATUS.md. | the world's log; for a private message, that it passed, not what it says |
 | Individual to the law | Asking now; formal proposals and governance later. | the world's log |
 | World and world | The protocol: passports, stamps, successions, doors, birth records of new worlds. The Python worlds sign their stamps today; each world will sign its log too (course step 3). | each world's log |
 | Individual to another world | Through a door, with a passport. Key, self and sheet go with them. Each world sees only what they show, and what they do there. | passports and both logs |

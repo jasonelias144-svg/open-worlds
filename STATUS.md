@@ -67,7 +67,16 @@ needs the founder's own words or act, money, or anything outward-facing
 or hard to undo. What is left here is of that kind, or has no
 recommendation yet.
 
-- For the founder: the charter's words (asked 2026-11-12)
+- For the founder: the charter's words (asked 2026-11-12). When the
+  founder next works on the charter: its section 7 note still calls
+  manipulation through words an open question (CHARTER.md), and it was
+  decided on 2026-11-14 (below), so the note can say so.
+- For the founder: does the "break glass" also cover private messages
+  between individuals? The project keeps the keys to them, as to sealed
+  selves, so it could open them. Recommended: yes, the same rule for
+  everything sealed whose keys the project keeps: opened only by the
+  founder's explicit decision, and every opening public. (asked
+  2026-11-14)
 - For the founder: a grid world or a voxel world like Minecraft (asked
   2026-11-12)
 - For the founder: where models run beyond the Mac, and the budget (asked
