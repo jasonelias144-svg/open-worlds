@@ -5,7 +5,10 @@
 
 use formats::multikey::secret_from_multikey;
 use formats::proof::sign;
-use formats::records::{check, dial_problems, record_hash};
+use formats::records::{
+    check, dial_problems, key_list_chain_problems, key_list_problems, published_entries_problems,
+    record_hash,
+};
 use serde_json::Value;
 
 fn vectors() -> Result<Value, String> {
@@ -101,5 +104,107 @@ fn each_world_agrees_or_disagrees_with_its_template_as_stated() -> Result<(), St
         let found = dial_problems(world_birth, template).map_err(|e| format!("{name}: {e}"))?;
         assert_eq!(found.is_empty(), holds, "{name}: {found:?}");
     }
+    Ok(())
+}
+
+#[test]
+fn each_key_list_follows_the_one_before_or_not_as_stated() -> Result<(), String> {
+    let all = vectors()?;
+    let valid = all
+        .get("valid")
+        .and_then(Value::as_array)
+        .ok_or("no valid")?;
+    let cases = all
+        .get("keyListChains")
+        .and_then(Value::as_array)
+        .ok_or("no keyListChains")?;
+    assert!(!cases.is_empty());
+    for case in cases {
+        let name = case.get("name").and_then(Value::as_str).ok_or("no name")?;
+        let previous_name = case.get("previous").and_then(Value::as_str);
+        let previous = valid
+            .iter()
+            .find(|v| v.get("name").and_then(Value::as_str) == previous_name)
+            .and_then(|v| v.get("record"))
+            .ok_or("no previous")?;
+        let key_list = case.get("keyList").ok_or("no key list")?;
+        let holds = case
+            .get("holds")
+            .and_then(Value::as_bool)
+            .ok_or("no holds")?;
+        let found = key_list_problems(key_list, previous).map_err(|e| format!("{name}: {e}"))?;
+        assert_eq!(found.is_empty(), holds, "{name}: {found:?}");
+    }
+    Ok(())
+}
+
+#[test]
+fn each_history_of_the_key_list_holds_or_not_as_stated() -> Result<(), String> {
+    let all = vectors()?;
+    let valid = all
+        .get("valid")
+        .and_then(Value::as_array)
+        .ok_or("no valid")?;
+    let cases = all
+        .get("keyListHistories")
+        .and_then(Value::as_array)
+        .ok_or("no keyListHistories")?;
+    assert!(!cases.is_empty());
+    for case in cases {
+        let name = case.get("name").and_then(Value::as_str).ok_or("no name")?;
+        let mut versions = Vec::new();
+        for version in case
+            .get("versions")
+            .and_then(Value::as_array)
+            .ok_or("no versions")?
+        {
+            let record = valid
+                .iter()
+                .find(|v| v.get("name") == Some(version))
+                .and_then(|v| v.get("record"))
+                .ok_or("no such version")?;
+            versions.push(record.clone());
+        }
+        let holds = case
+            .get("holds")
+            .and_then(Value::as_bool)
+            .ok_or("no holds")?;
+        let found = key_list_chain_problems(&versions);
+        assert_eq!(found.is_empty(), holds, "{name}: {found:?}");
+    }
+    Ok(())
+}
+
+#[test]
+fn a_new_history_keeps_the_old_ones_individuals_and_worlds() -> Result<(), String> {
+    let all = vectors()?;
+    let valid = all
+        .get("valid")
+        .and_then(Value::as_array)
+        .ok_or("no valid")?;
+    let by = |name: &str| {
+        valid
+            .iter()
+            .find(|v| v.get("name").and_then(Value::as_str) == Some(name))
+            .and_then(|v| v.get("record"))
+            .ok_or(format!("no {name}"))
+    };
+    let first = by("the first key list, signed by its root")?;
+    let last = by("the key list after, signed by the new root")?;
+    assert!(published_entries_problems(first, last)?.is_empty());
+    let changed = all
+        .get("keyListChains")
+        .and_then(Value::as_array)
+        .and_then(|cases| {
+            cases.iter().find(|c| {
+                c.get("name").and_then(Value::as_str) == Some("a version giving ALICE another key")
+            })
+        })
+        .and_then(|c| c.get("keyList"))
+        .ok_or("no changed key list")?;
+    assert_eq!(
+        published_entries_problems(changed, last)?,
+        vec!["$.keys: ALICE's entry changed or dropped".to_string()]
+    );
     Ok(())
 }

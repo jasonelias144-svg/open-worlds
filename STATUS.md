@@ -105,6 +105,12 @@ kind.
 
 ## Noticed
 
+- A key list compares names byte for byte, so `ALICE` beside `Alice`, or
+  one name in two Unicode forms, would be two holders. The tool's own
+  first list can't make that happen; when individuals are added after
+  version 1, compare names case-folded and in NFC, in both languages.
+  (Noted by #53's narrow check.)
+
 - Python isn't a sandbox: agents in the kernel's process could reach its
   internals. That's acceptable only for agents written here (AGENTS.md), and
   is why later stages run agents in separate sandboxes.
@@ -123,6 +129,9 @@ kind.
   - a copy of a GitHub thread brought into the log names other people's
     accounts; keep the text and replace other accounts with a role or a
     hash, or take it to the founder (P8);
+  - which key issues ADMIN's grants: decided at step 11, when ADMIN
+    begins; its entry in the key list names its key and nothing more
+    (docs/research/KEYS.md, point 8);
   - say who holds the private half of the multiverse's root key, and
     how its every use is logged: answered at step 3
     (docs/research/KEYS.md, point 8): the project, in its private
@@ -911,28 +920,43 @@ it was wrong. Questions of what the project is for stay with the founder.
   records and for templates; ADMIN; the Ur-world's signing and sealing
   keys; ALICE's and BOB's signing and sealing keys, the sealing key also
   opening their sealed self under its own label); a key list naming them,
-  signed by the root and published here, versioned, a change of root
-  signed by the old root too; the root signs nothing else; the private
-  halves as plain files in the private repository; nothing private in
-  this repository, kept so by the tool, a test, and GitHub's push
-  protection once the founder turns it on; ALICE's and BOB's identity,
-  birth and mind records at their birth (step 9); grants start below the
-  root, at a role's key; for individuals and worlds the key list only
-  publishes the keys made for them, never changing them later; a reader
-  takes the latest version on `main`, and no version expires. *Why:*
-  TUF's roles and its two-signed root, and the DNSSEC root that signs
+  signed by the root and published here, versioned, each version signed by
+  the root of the one before, so a new root is named by the old one and
+  signs the version after, the two published together; the root signs
+  nothing else; the private halves as plain files in the private
+  repository; nothing private in this repository, kept so by the tool, a
+  test, and GitHub's secret scanning and push protection (both on, the
+  founder confirmed on 2026-11-14);
+  ALICE's and BOB's identity, birth and mind records at their birth (step
+  9); grants start below the root, at a role's key; for individuals and
+  worlds the key list only publishes the keys made for them, never
+  changing them later; a reader takes the latest version on `main`, and
+  no version expires. *Why:* TUF's roles, and the DNSSEC root that signs
   only keys, give each key one narrow meaning, so a key exposed by a
   session or a bug is replaced without the root changing (they don't
   guard against losing the private repository: KEYS.md, "Honest
-  limits"); the project never recovers an individual's key; a
-  passphrase for the private halves would have to live where the
-  software reads it, so it would add nothing. *Revisit if:* anyone but
-  the project holds a key (then thresholds, and the root offline), or a
-  private half is ever found outside the private repository (then that
-  key is replaced at once: a project role's by a new key list, an
-  individual's or a world's by a succession).
+  limits"); unlike TUF's root, signed by the old and new keys together,
+  a new root here proves it holds its key only by signing the version
+  after, so the two are published together; the project never recovers
+  an individual's key; a passphrase for the private halves would have to
+  live where the software reads it, so it would add nothing. *Revisit
+  if:* anyone but the project holds a key (then thresholds, and the root
+  offline), or a private half is ever found outside the private
+  repository (then that key is replaced at once: a project role's by a
+  new key list, an individual's or a world's by a succession).
 
 ## Log
+
+- 2026-11-14 Claude: course step 3, part two: the key list
+  (`open-worlds/key-list/v1`) in records-v1, in Python and Rust, with
+  a check of each version against the one before and of a whole history,
+  and vectors (3 that hold, 11 refused, 11 pairs of versions, 6
+  histories); an individual's or world's entry never changes; a test
+  that no private key is in this repository but the vectors' test keys;
+  and the tool that makes the keys (`python3 -m formats.make_keys`),
+  which takes only the top of a full clone of another repository, makes
+  everything or nothing, never writes over a key or through a link, and
+  prints no secret.
 
 - 2026-11-14 Claude: docs/TOPICS.md, a menu of fourteen topics a few
   steps ahead of the code, for the founder's conversations with
