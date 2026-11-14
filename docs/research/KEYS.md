@@ -467,8 +467,10 @@ checked from Python through the shared vectors:
   `ur-world/0.3`.
 - **The log's check** (decision 16): `arrival_problems(log)` checks every
   arrival in an Ur-world log (that it holds, names the world, its entry's
-  tick, name and the entry before it, keeps each name to one key and
-  each key to one name, and that no one enters while here), and
+  tick, name and the entry before it, is under a name the world allows,
+  by the same rule as `World::admit` (`good_name`), keeps each name to
+  one key and each key to one name, and that no one enters while here),
+  so a log the kernel couldn't have written is caught; and
   `head_coverage(log, heads)` says how much of the log the signed heads
   cover, with a problem for each head that doesn't fit it: another
   world's, longer than the log, a last hash or tick that disagrees. The
@@ -539,6 +541,14 @@ checked from Python through the shared vectors:
   a world from its log: the Ur-world runs only while someone steps it
   (URWORLD.md). When it keeps running, it must continue from its log,
   names and all, or a returning individual's name would be free again.
+- **Names can look alike.** A name is compared character for character,
+  and the world refuses only control characters (Unicode's Cc): so a
+  line or paragraph separator (U+2028, U+2029), a zero-width or other
+  format character (U+200B), another case, or another Unicode form of
+  the same letters makes another name, which a reader may take for the
+  same. Before step 9, when names become ALICE's and BOB's, a rule for
+  names that can't be confused is settled, in both languages, with the
+  key list's (STATUS, "Noticed").
 - **Trial keys are public.** The garden's keys are made from its seed,
   so anyone can sign as its world or its stand-ins: they show the
   format, and protect nothing. "The same seed gives the same log" holds

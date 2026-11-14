@@ -38,7 +38,7 @@ use formats::records;
 use serde_json::{Value, json};
 use sha2::{Digest, Sha256};
 
-use crate::world::World;
+use crate::world::{World, good_name};
 
 /// The arrival's format, in records-v1.
 pub const FORMAT: &str = "open-worlds/arrival/v1";
@@ -124,9 +124,11 @@ pub fn log_world(log: &[Value]) -> Option<&str> {
 /// checks that the first entry names the world, and that each `entered`
 /// entry carries an arrival that holds, signed by the one who entered,
 /// naming this world, the entry's tick, the entry just before it, and
-/// the entry's name; that a name stays its individual's and an
-/// individual keeps one name; and that no one enters while here. Each
-/// problem names the entry's place in the log, counting from 0.
+/// the entry's name, a name the world allows ([`good_name`]); that a
+/// name stays its individual's and an individual keeps one name; and
+/// that no one enters while here: so a log the kernel couldn't have
+/// written is caught. Each problem names the entry's place in the log,
+/// counting from 0.
 pub fn arrival_problems(log: &[Value]) -> Vec<String> {
     let Some(world) = log_world(log) else {
         return vec!["[0]: not a world_created entry that names its world".into()];
@@ -170,6 +172,9 @@ pub fn arrival_problems(log: &[Value]) -> Vec<String> {
         if text(&a, "name") != who {
             wrong.push("names another name");
         }
+        if !good_name(text(&a, "name")) {
+            wrong.push("is under a name the world doesn't allow");
+        }
         if names.get(who).is_some_and(|bound| *bound != individual) {
             wrong.push("is under a name bound to another key");
         }
@@ -193,7 +198,12 @@ pub fn arrival_problems(log: &[Value]) -> Vec<String> {
 /// head that holds for it, with a problem for each head that doesn't. A
 /// head holds for a log when it is a log head that holds, signed by the
 /// world the log names, and its length, last hash and tick agree with the
-/// log: so a log cut short, or shown two ways, is caught.
+/// log: so a log cut short, or shown two ways, is caught. It compares a
+/// head with the `hash` each entry carries, and doesn't check that those
+/// hashes are the entries' own: the log's chain is `world_log::verify_log`'s
+/// to check, first, as the `log` example does. A head's tick says only
+/// that the world was at least that far along, since ticks can pass with
+/// nothing written.
 pub fn head_coverage(log: &[Value], heads: &[Value]) -> (usize, Vec<String>) {
     let mut covered = 0;
     let mut found = Vec::new();

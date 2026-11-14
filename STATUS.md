@@ -114,7 +114,10 @@ kind.
   one name in two Unicode forms, would be two holders. The tool's own
   first list can't make that happen; when individuals are added after
   version 1, compare names case-folded and in NFC, in both languages.
-  (Noted by #53's narrow check.)
+  (Noted by #53's narrow check.) The Ur-world's names are the same: it
+  refuses only control characters, so U+2028, a zero-width character,
+  another case or another form makes another name. One rule for both,
+  before step 9 (COURSE.md; noted by #59's independent review).
 
 - Python isn't a sandbox: agents in the kernel's process could reach its
   internals. That's acceptable only for agents written here (AGENTS.md), and

@@ -37,6 +37,14 @@ pub const MAX_SAY: usize = 280;
 /// The longest a name may be, in characters.
 pub const MAX_NAME: usize = 64;
 
+/// Whether the world allows `name`: 1 to `MAX_NAME` characters, with no
+/// control character (Unicode's Cc: line breaks and tabs among them,
+/// which records-v1's text allows). [`World::admit`] and
+/// [`crate::arrival::arrival_problems`] both read names by it.
+pub fn good_name(name: &str) -> bool {
+    !name.is_empty() && name.chars().count() <= MAX_NAME && !name.chars().any(char::is_control)
+}
+
 /// How far anyone falls in one tick, in cells: a deeper drop goes on at
 /// the next tick, as the world settles.
 pub const MAX_FALL: i64 = 64;
@@ -388,8 +396,7 @@ impl World {
             return Err(EntryError::Stale);
         }
         let (name, individual) = (field("name"), field("individual"));
-        if name.is_empty() || name.chars().count() > MAX_NAME || name.chars().any(char::is_control)
-        {
+        if !good_name(name) {
             return Err(EntryError::BadName);
         }
         if self.names.get(name).is_some_and(|key| key != individual) {

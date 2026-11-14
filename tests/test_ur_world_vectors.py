@@ -20,6 +20,7 @@ Rewrite the vectors with:
 import hashlib
 import json
 import math
+import unicodedata
 import unittest
 from pathlib import Path
 
@@ -149,6 +150,11 @@ class TestTheGardensLog(unittest.TestCase):
                 self.assertEqual(arrival["tick"], e["tick"])
                 self.assertEqual(arrival["previous"], e["prev"])
                 self.assertEqual(arrival["name"], e["agent"])
+                # A name the world allows: 1 to 64 characters, no control
+                # character (Unicode's Cc), as rust/ur-world's good_name.
+                self.assertTrue(1 <= len(arrival["name"]) <= 64)
+                self.assertFalse(any(unicodedata.category(c) == "Cc"
+                                     for c in arrival["name"]))
                 key = bound.setdefault(arrival["name"], arrival["individual"])
                 self.assertEqual(key, arrival["individual"])
         self.assertEqual(len(set(bound.values())), len(bound))

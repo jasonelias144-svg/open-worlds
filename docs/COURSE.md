@@ -250,7 +250,8 @@ controlled experiments, and replay from a seed.
    identity, birth and mind records (moved here from step 3), their
    first unscripted words; legends pages begin. Before their first
    arrival, successions join records-v1 and the Ur-world follows them,
-   and how often it signs its log's heads is decided
+   a rule for names that can't be confused is settled, and how often it
+   signs its log's heads is decided
    ([research/KEYS.md](research/KEYS.md), decision 18 and "Honest
    limits"). The suggestion ledger
    opens to them, with its bridge to GitHub, so what they suggest can

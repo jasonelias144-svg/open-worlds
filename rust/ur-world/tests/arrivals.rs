@@ -274,6 +274,24 @@ fn a_logs_arrivals_are_checked_whole() {
         arrival_problems(&misnamed),
         [format!("[{two}]: the arrival names another name")]
     );
+    // A name with a tab or a line break, which records-v1's text allows
+    // and the world doesn't: a log the kernel couldn't have written.
+    for name in ["TWO\tX", "TWO\nX"] {
+        let mut odd = log.clone();
+        let a = resigned(
+            &odd[two]["data"]["arrival"],
+            "two",
+            &json!({ "name": name }),
+        );
+        odd[two]["agent"] = json!(name);
+        odd[two]["data"]["arrival"] = a;
+        assert_eq!(
+            arrival_problems(&odd),
+            [format!(
+                "[{two}]: the arrival is under a name the world doesn't allow"
+            )]
+        );
+    }
     let mut headless = log.clone();
     headless.remove(0);
     assert_eq!(
