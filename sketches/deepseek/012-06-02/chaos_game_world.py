@@ -312,9 +312,11 @@ class ChaosChoice:
 
 
 def sign_choice(world_id: str, step: int, transform_idx: int,
-                 authority_kp) -> ChaosChoice:
+                 authority_kp, ts: Optional[str] = None) -> ChaosChoice:
+    # Fix (ours): `ts` may be given, so a composite world can sign its
+    # choices and its own step with one time (coupled_chaos_world.py).
     authority_id = _did_from_kp(authority_kp)
-    ts = _now()
+    ts = ts if ts is not None else _now()
     body = {
         "type": "chaos_choice",
         "world_id": world_id,
@@ -575,12 +577,15 @@ class ChaosGameWorld:
             return None
         transform = self._preset.transforms[choice.transform_idx]
         new_point = transform.apply(self._point)
+        # Fix (ours): the step keeps the time the choice was signed, so
+        # the verifier can rebuild the choice from the step record.
         return self._record_step(
             choice.transform_idx, new_point,
-            input_sig=choice.sig)
+            input_sig=choice.sig, ts=choice.ts)
 
     def _record_step(self, idx: int, new_point: Tuple[int, int],
-                      input_sig: Optional[str]) -> ChaosStepRecord:
+                      input_sig: Optional[str],
+                      ts: Optional[str] = None) -> ChaosStepRecord:
         new_step = self._step + 1
         body = {
             "type": "chaos_step",
@@ -591,7 +596,7 @@ class ChaosGameWorld:
             "transform_idx": idx,
             "point": list(new_point),
             "input_sig": input_sig,
-            "ts": _now(),
+            "ts": ts if ts is not None else _now(),
         }
         rec = ChaosStepRecord(
             world_id=self._world_id,
@@ -800,10 +805,12 @@ def verify_chaos_growth(world: ChaosGameWorld
                 return (False,
                          f"record {i}: external mode record "
                          f"has no input signature")
+            # Fix (ours): a choice is signed for the step it grows
+            # from, one before the step record's own.
             choice_body = {
                 "type": "chaos_choice",
                 "world_id": rec.world_id,
-                "step": rec.step,
+                "step": rec.step - 1,
                 "transform_idx": rec.transform_idx,
                 "authority_id": authority,
                 "ts": rec.ts,

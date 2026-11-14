@@ -201,6 +201,12 @@ class GrowthRecord:
     ts: str
     sig: str
 
+    @property
+    def prior(self):
+        # Fix (ours): the verifiers read every record's `prior`; this
+        # record names it `prev`. The signed body is unchanged.
+        return self.prev
+
     def body(self):
         return {
             "type": "growth",
@@ -419,7 +425,7 @@ class AtomicFractalWorld:
         return self._apply_param_change(
             param, new_value, source="internal",
             authority_id=self._world_id,
-            sig_authority=sig)
+            sig_authority=sig, ts=body["ts"])
 
     # -- External change ---------------------------------------
 
@@ -449,12 +455,15 @@ class AtomicFractalWorld:
         return self._apply_param_change(
             param, new_value, source="external",
             authority_id=authority_id,
-            sig_authority=sig_auth)
+            sig_authority=sig_auth, ts=body["ts"])
 
     # -- Shared apply ------------------------------------------
 
     def _apply_param_change(self, param, new_value, source,
-                            authority_id, sig_authority):
+                            authority_id, sig_authority, ts=None):
+        # Fix (ours): the record keeps the time the authority signed
+        # (`ts`), not a second reading of the clock, so its signature
+        # checks.
         body = {
             "type": "param",
             "world_id": self._world_id,
@@ -465,7 +474,7 @@ class AtomicFractalWorld:
             "source": source,
             "authority_id": authority_id,
             "prior": self._last_record_hash,
-            "ts": _now(),
+            "ts": ts if ts is not None else _now(),
         }
         sig_world = self._keypair.sign(_canonical(body)).hex()
         rec = ParamChange(
@@ -676,3 +685,156 @@ def render_svg(plant, size=400):
             f'fill="#f0a202"/>')
     lines.append("</svg>")
     return "\n".join(lines)
+
+
+# Fix (ours): the demo, which the record gives as its own block after
+# the module (fractal_world_v2.py@1390), appended unchanged.
+def demo(artifact_dir=None):
+    """Four plants growing side by side, with different
+    parameter histories.
+
+    A (baseline):  default params throughout. No changes.
+    B (external):  gardener prunes branch_length to 1 at
+                   step 2. Tighter tree.
+    C (internal):  plant self-reduces branch_length to 1
+                   at step 2. Same shape as B — the point.
+    D (mixed):     plant self-reduces at step 2 (internal),
+                   then gardener stalls water at step 3
+                   (external), resumes at step 5. Grows again
+                   after the pause, still tighter.
+    """
+    import json as _json
+    from pathlib import Path
+
+    if not HAS_CRYPTO:
+        raise RuntimeError("demo requires `cryptography`")
+
+    if artifact_dir is None:
+        artifact_dir = "artifacts"
+    path = Path(artifact_dir) / "fractal_world_v2"
+    path.mkdir(parents=True, exist_ok=True)
+
+    template = WorldTemplate(
+        template_id="fractal-plant-v1",
+        branch_length=3, max_depth=4,
+        water=10, light=10)
+    pot = (0, 0, 30, 30)
+    start = (15, 23, 0)
+
+    gardener_kp = Ed25519PrivateKey.generate()
+    gardener_pub = gardener_kp.public_key().public_bytes(
+        encoding=serialization.Encoding.Raw,
+        format=serialization.PublicFormat.Raw).hex()
+    gardener_id = f"did:key:{gardener_pub}"
+
+    def new_world():
+        return AtomicFractalWorld(
+            template=template, pot=pot,
+            initial_tip=start,
+            keypair=Ed25519PrivateKey.generate())
+
+    # A — baseline
+    a = new_world()
+    a.grow_until()
+
+    # B — external prune
+    b = new_world()
+    b.grow_n(2)
+    b.external_change(gardener_id, gardener_kp,
+                       "branch_length", 1)
+    b.grow_until()
+
+    # C — internal prune
+    c = new_world()
+    c.grow_n(2)
+    c.internal_change("branch_length", 1)
+    c.grow_until()
+
+    # D — internal prune, then external pause + resume
+    d = new_world()
+    d.grow_n(2)
+    d.internal_change("branch_length", 1)
+    d.grow_n(1)
+    d.external_change(gardener_id, gardener_kp, "water", 0)
+    d.grow_n(20)   # does nothing (stalled)
+    d.external_change(gardener_id, gardener_kp, "water", 10)
+    d.grow_until()
+
+    worlds = [
+        ("A (baseline)", a),
+        ("B (external)", b),
+        ("C (internal)", c),
+        ("D (mixed)",    d),
+    ]
+
+    # Verify all offline
+    for name, w in worlds:
+        ok_l, l_r = verify_log(w.seed(), w.records())
+        ok_g, g_r = verify_growth(
+            w.seed(), w.records(), template)
+        assert ok_l and ok_g, f"{name}: {l_r} / {g_r}"
+
+    print("=" * 74)
+    print("Fractal worlds — same seed, four parameter histories")
+    print("=" * 74)
+    print()
+    print(f"  Template: {template.template_id}")
+    print(f"  Pot:      {pot}")
+    print(f"  Gardener: {gardener_id[:32]}...")
+    print()
+    audit = {}
+    for name, w in worlds:
+        plant = reconstruct(w.seed(), w.records())
+        growths = sum(1 for r in w.records()
+                      if isinstance(r, GrowthRecord))
+        params = sum(1 for r in w.records()
+                     if isinstance(r, ParamChange))
+        print(f"  {name}")
+        print(f"    growth records: {growths}   "
+              f"param changes: {params}")
+        print(f"    params: {plant.params.to_dict()}")
+        print()
+        for line in render_ascii(plant).split("\n"):
+            print(f"    {line}")
+        print()
+        svg_path = (path /
+                    f"{name.split()[0].lower()}.svg")
+        svg_path.write_text(render_svg(plant))
+        audit[name] = {
+            "growth_records": growths,
+            "param_records": params,
+            "final_params": plant.params.to_dict(),
+            "segments": len(plant.segments),
+            "segments_hash": _hash(
+                [list(s) for s in plant.segments]),
+            "verify_log": verify_log(w.seed(),
+                                     w.records())[0],
+            "verify_growth": verify_growth(
+                w.seed(), w.records(), template)[0],
+        }
+
+    print("  B and C produce identical trees")
+    print(f"    B segments hash: {audit['B (external)']['segments_hash'][:16]}...")
+    print(f"    C segments hash: {audit['C (internal)']['segments_hash'][:16]}...")
+    print("  Uniformity demonstrated: same protocol, different authority.")
+    print()
+    print("  What this demonstrates:")
+    print("    - The same seed and template produce four different")
+    print("      plants because their parameter histories differ.")
+    print("    - B shows external influence: the gardener pruned,")
+    print("      the plant grew tighter from that point on.")
+    print("    - C shows internal influence: the plant decided")
+    print("      the same thing. Identical shape. Only the")
+    print("      signature differs.")
+    print("    - D shows both at once: the plant self-pruned,")
+    print("      then the gardener paused and resumed it.")
+    print("      Every record verifies.")
+    print()
+    print("  Anchor (public domain, Emily Dickinson):")
+    print("    'Forever – is composed of Nows –'")
+    print("    'Tis not a different time –'")
+
+    (path / "fractal_world_v2_demo.json").write_text(
+        _json.dumps(audit, indent=2))
+    print(f"\n  → {path}/fractal_world_v2_demo.json")
+    return audit
