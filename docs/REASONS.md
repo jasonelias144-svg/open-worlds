@@ -31,7 +31,9 @@ An office's decisions that affect others:
   reasons; a vote on it needs none, since voting is an individual's own
   act;
 - **a grant,** and narrowing, suspending or revoking one;
-- **a ruling:** on a complaint, an appeal, an office or a seat.
+- **a ruling:** on an appeal, an office or a seat;
+- **an outcome on a suggestion** ([ADMIN.md](ADMIN.md), "Suggestions from
+  inside").
 
 Not an individual's own acts. They are public, in the record, but an
 individual decides nothing for others beyond their acts, which the floor
