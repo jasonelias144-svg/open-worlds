@@ -252,16 +252,21 @@ root does.
   prints only public keys. `--private` must be the top of a full clone
   of another repository. It refuses a place inside this repository's
   working tree; a worktree of this repository; a clone whose remotes
-  name this repository; a history sharing this repository's first
-  commit; a shallow clone, of either, since its first commits are only
-  where its history was cut; a checkout with no remote; and a `keys`
-  that is there already, folder or link, so nothing is written over a
-  key or through a link. Everything or nothing: the halves are written
+  name this repository, or are paths on this computer; a history that
+  shares this repository's first commit on any branch; a shallow clone,
+  of either, since its first commits are only where its history was
+  cut; a checkout with no remote; and a `keys` that is there already,
+  folder or link, so nothing is written over a key or through a link. A
+  clone of a fork of this repository, under another name and with its
+  history cut, is beyond what it can tell. Everything or nothing: the halves are written
   into a new folder only its owner can open, and moved into place with
   the key list once both are whole; a failure on the way leaves neither.
   Tested on throwaway repositories, with each guard checked by removing
-  it. If the tool is killed midway, a `.keys-being-made-…` folder can be
-  left in the private checkout; delete it.
+  it. If the tool is killed midway, it can leave a `.keys-being-made-…`
+  folder in the private checkout and a `.<key list's name>.being-made`
+  file beside the key list; delete both before running it again. Names
+  are compared byte for byte, so `ALICE` and `Alice` are two names; see
+  STATUS, "Noticed".
 
 ## Honest limits
 

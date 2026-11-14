@@ -221,6 +221,22 @@ class TestMakeKeys(unittest.TestCase):
         self.assertIn("there now", err)
         self.assertEqual(self.left_behind(), [])
 
+    def test_a_staged_list_that_cant_be_removed_leaves_no_secret(self):
+        real_unlink = Path.unlink
+
+        def refuses_staged(path, *args, **kwargs):
+            if path.name.endswith(".being-made"):
+                raise PermissionError("not allowed")
+            return real_unlink(path, *args, **kwargs)
+
+        with mock.patch.object(Path, "unlink", autospec=True,
+                               side_effect=refuses_staged):
+            code, _, err = self.make()
+        self.assertEqual(code, 1)
+        self.assertIn("not allowed", err)
+        # Only the public list's staged copy is left, and it says so.
+        self.assertEqual(self.left_behind(), [".key-list.json.being-made"])
+
     def test_a_failure_writing_a_private_half_leaves_nothing(self):
         real = make_keys._write_new
         calls = []
@@ -344,6 +360,34 @@ class TestMakeKeys(unittest.TestCase):
             empty = repository(self.place / f"empty-{i}", url, commits=0)
             with self.subTest(url=url):
                 self.refused(empty, "whose remote is this repository")
+
+    def test_it_refuses_a_remote_that_is_a_path_on_this_computer(self):
+        # A push from there lands in a checkout of this repository, one
+        # push away from where it is published.
+        for i, url in enumerate((str(self.public), "../public",
+                                 f"file://{self.public}")):
+            empty = repository(self.place / f"by-path-{i}", url, commits=0)
+            with self.subTest(url=url):
+                self.refused(empty, "a path on this computer")
+
+    def test_it_refuses_a_clone_on_a_branch_with_no_commits_yet(self):
+        # Its HEAD has no history, but its other branches share this
+        # repository's first commit.
+        clone = self.place / "clone"
+        subprocess.run(["git", "clone", "-q", str(self.public), str(clone)],
+                       check=True, capture_output=True)
+        git(clone, "remote", "set-url", "origin", PRIVATE_URL)
+        git(clone, "checkout", "-q", "--orphan", "fresh")
+        self.refused(clone, "a checkout of this repository")
+
+    def test_local_paths(self):
+        for url, local in [("/home/someone/repo", True), ("../repo", True),
+                           ("repo", True), ("file:///home/someone/repo", True),
+                           ("FILE:///repo", True), ("https://host/o/r", False),
+                           ("git@host:o/r.git", False),
+                           ("ssh://git@host/o/r", False)]:
+            with self.subTest(url=url):
+                self.assertEqual(make_keys.is_local_path(url), local)
 
     def test_it_refuses_a_checkout_with_no_remote(self):
         self.refused(repository(self.place / "lone"), "no remote")

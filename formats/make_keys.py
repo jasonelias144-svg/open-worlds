@@ -10,10 +10,13 @@ randomness (through `cryptography`), and writes:
   by its owner only: `keys/<holder>.json`, with the role, the name, and
   the secrets as Multikey (`secretKeyMultibase`, and for a holder things
   are sealed to, `sealingSecretMultibase`). That directory must be the
-  top of a full clone of the private repository: the tool refuses any
-  place inside this repository's working tree, any worktree or clone of
-  this repository, a shallow clone, and a `keys/` that is there already,
-  so it never writes over a key.
+  top of a full clone of the private repository. The tool refuses any
+  place inside this repository's working tree; a worktree of it; a clone
+  whose history, on any branch, shares its first commit, or whose remotes
+  name it or are paths on this computer; a shallow clone; and a `keys/`
+  that is there already, so it never writes over a key. A clone of a
+  fork of this repository, under another name and with its history cut,
+  is beyond what it can tell.
 - **the first key list** to `--key-list`, signed by the new root: every
   role's public keys (formats/records.py, `open-worlds/key-list/v1`).
 
@@ -90,12 +93,25 @@ def _git(path: Path, *args: str) -> Optional[str]:
 
 
 def _root_commits(path: Path) -> Set[str]:
-    """The first commits of the history checked out at `path`, which name
-    the repository it is a checkout of; none outside Git, or before a
-    first commit. In a shallow clone these are only where its history
-    was cut, so the caller refuses shallow clones."""
-    return set((_git(path, "rev-list", "--max-parents=0", "HEAD")
+    """The first commits of every history the repository at `path`
+    holds, on any branch, remote branch or tag, which name the repository
+    it is a checkout of; none outside Git, or before a first commit. In a
+    shallow clone these are only where its history was cut, so the caller
+    refuses shallow clones."""
+    return set((_git(path, "rev-list", "--max-parents=0", "--all")
                 or "").split())
+
+
+def is_local_path(url: str) -> bool:
+    """Whether a remote's URL is a path on this computer, as Git reads
+    it: `file://`, or no scheme and no `host:` before the first slash."""
+    url = url.strip()
+    if url.lower().startswith("file://"):
+        return True
+    if "://" in url:
+        return False
+    colon, slash = url.find(":"), url.find("/")
+    return colon == -1 or (slash != -1 and slash < colon)
 
 
 def repository_name(url: str) -> Optional[str]:
@@ -110,14 +126,19 @@ def repository_name(url: str) -> Optional[str]:
     return "/".join(parts[-2:]).lower() if len(parts) >= 2 else None
 
 
+def _remote_urls(path: Path) -> Set[str]:
+    """Every URL the remotes of the checkout at `path` fetch from or push
+    to."""
+    return {fields[1] for fields in
+            (line.split() for line in
+             (_git(path, "remote", "-v") or "").splitlines())
+            if len(fields) >= 2}
+
+
 def _remote_names(path: Path) -> Set[str]:
     """The repositories the remotes of the checkout at `path` name."""
-    names = set()
-    for line in (_git(path, "remote", "-v") or "").splitlines():
-        fields = line.split()
-        if len(fields) >= 2 and repository_name(fields[1]):
-            names.add(repository_name(fields[1]))
-    return names
+    return {name for name in map(repository_name, _remote_urls(path))
+            if name}
 
 
 def _common_dir(path: Path) -> Optional[Path]:
@@ -160,11 +181,17 @@ def check_private_place(private: Path,
         raise KeyMakingError(
             "the private halves may not be written into a worktree of "
             "this repository")
-    remotes = _remote_names(private)
-    if not remotes:
+    urls = _remote_urls(private)
+    if not urls:
         raise KeyMakingError(
             f"{private} has no remote: it must be a clone of the private "
             "repository")
+    if any(is_local_path(url) for url in urls):
+        raise KeyMakingError(
+            f"{private} has a remote that is a path on this computer, "
+            "which can't be told from this repository: its remotes must "
+            "be the private repository's address")
+    remotes = _remote_names(private)
     if remotes & _remote_names(repository):
         raise KeyMakingError(
             "the private halves may not be written into a clone whose "
@@ -320,26 +347,26 @@ def _make_all(private: Path, key_list_path: Path) -> Dict[str, Any]:
     key_list = first_key_list(made, _now())
     staging = stage_private_halves(made, private)
     staged_list = key_list_path.with_name(f".{key_list_path.name}.being-made")
-    wrote_list = False
+    made_here: List[Path] = []
     try:
         _check_kept_in(key_list, staging)
         key_list_path.parent.mkdir(parents=True, exist_ok=True)
         _write_new(staged_list,
                    json.dumps(key_list, indent=1, ensure_ascii=False) + "\n",
                    0o644)
-        wrote_list = True
+        made_here.append(staged_list)
         os.link(staged_list, key_list_path)
-    except BaseException:
-        shutil.rmtree(staging, ignore_errors=True)
-        if wrote_list:
-            staged_list.unlink()
-        raise
-    staged_list.unlink()
-    try:
+        made_here.append(key_list_path)
+        staged_list.unlink()
+        made_here.remove(staged_list)
         keep(staging, private)
     except BaseException:
         shutil.rmtree(staging, ignore_errors=True)
-        key_list_path.unlink()
+        for path in made_here:
+            try:
+                path.unlink()
+            except OSError:
+                pass
         raise
     return key_list
 

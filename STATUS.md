@@ -105,6 +105,12 @@ kind.
 
 ## Noticed
 
+- A key list compares names byte for byte, so `ALICE` beside `Alice`, or
+  one name in two Unicode forms, would be two holders. The tool's own
+  first list can't make that happen; when individuals are added after
+  version 1, compare names case-folded and in NFC, in both languages.
+  (Noted by #53's narrow check.)
+
 - Python isn't a sandbox: agents in the kernel's process could reach its
   internals. That's acceptable only for agents written here (AGENTS.md), and
   is why later stages run agents in separate sandboxes.

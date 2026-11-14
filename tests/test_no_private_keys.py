@@ -14,7 +14,9 @@ key material in the forms this project writes or reads:
   (its line breaks as `\\n`) or quoted in Markdown (`> `).
 
 Every file is read, whatever bytes it holds: what isn't UTF-8 is read
-around. Not found: a key split across several strings joined in code.
+around. Not found, none of them a form this project writes: a key split
+across several strings joined in code; a PEM block escaped twice, or
+commented out line by line; a file in UTF-16; a raw seed in hex.
 
 The vectors hold test keys on purpose, each made from a seed that says
 "never for anything real", and the W3C specification's own example key.
