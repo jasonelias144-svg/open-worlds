@@ -75,6 +75,11 @@ def _canonical(obj) -> bytes:
 
 
 def _hash(obj) -> str:
+    # Fix (ours): the individual pieces, which import this, also hash
+    # bytes (weights, observations, Merkle levels), which JSON can't
+    # encode; bytes are hashed as they are. Everything else as before.
+    if isinstance(obj, (bytes, bytearray)):
+        return hashlib.sha256(bytes(obj)).hexdigest()
     return hashlib.sha256(_canonical(obj)).hexdigest()
 
 
