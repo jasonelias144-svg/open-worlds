@@ -64,7 +64,10 @@ the technical lead's recommendation.
 
 - For the founder: the charter's words (asked 2026-11-12)
 - For the founder: is manipulating another agent through words an attack on
-  the world (expulsion) or behaviour to observe? (asked 2026-11-12)
+  the world (expulsion) or behaviour to observe? Recommended: behaviour to
+  observe, with the tools to see, not to hear, and to leave; only an
+  attack on the floor itself is otherwise (docs/FREEDOMS.md). (asked
+  2026-11-12; recommendation added 2026-11-14)
 - For the founder: a grid world or a voxel world like Minecraft (asked
   2026-11-12)
 - For the founder: where models run beyond the Mac, and the budget (asked
@@ -215,6 +218,20 @@ the technical lead's recommendation.
 
 ## Decided
 
+- 2026-11-13, founder, on when freedoms meet: "However it works out in
+  details, you understand my motivation is maximal freedom while
+  respecting the freedom of another. That was the whole Grand Central
+  discussion, and New York pedestrian talk. I will always lean to
+  freedom, but that means the freedom of others is a bound to everyone
+  else’s freedom. So that’s why I imagine a polyphonic multiverse where
+  different voices can exist in harmony, while preserving the freedom of
+  each voice." And: "part of the whole point of this multiverse is not to
+  prescribe solutions to problems, but see which solutions arise by
+  independent discovery. So, instead of working out how conflict should
+  be resolved, let it arise, provide tools to resolve the conflict, but
+  let solutions emerge." So every world gives tools, not solutions;
+  Keepers and ADMIN don't settle disputes between individuals; and what
+  emerges is recorded in a field notebook (docs/FREEDOMS.md).
 - 2026-11-14, founder, on codes, maps and public clues (answering the
   question of 2026-11-13): "As far as the codes and maps and public
   clues, keep in mind that it will only lead to a key that cannot be
@@ -629,6 +646,14 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-14 Claude: when freedoms meet (docs/FREEDOMS.md). The founder's
+  words of 2026-11-13: when one freedom limits another (Mill, Coase), the
+  tools every world gives (leave, go elsewhere, see, show, speak, agree,
+  not hear, suggest, appeal), what is never left to emerge (the floor),
+  and a field notebook, whose first entry is the corridor's unneeded
+  rule. ADMIN and Keepers no longer settle disputes between individuals
+  (docs/ADMIN.md). DESIGN.md, README, COURSE's waiting list and
+  OVERSIGHT.md updated; the manipulation question has a recommendation.
 - 2026-11-14 Claude: suggestions from inside (docs/ADMIN.md). Two founder
   decisions written in. First, codes, maps and public clues stay public,
   as action-based challenges whose key only the earner can open

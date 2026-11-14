@@ -240,6 +240,8 @@ Added one at a time, as steps are done:
 - the round table: ADMIN's seat, and one for each Keeper who earns the
   admin-key, deciding by consensus what all worlds share
   ([ADMIN.md](ADMIN.md)); it decides from its second seat;
+- tools for when freedoms meet: not hearing a speaker, and agreements
+  others can accept or refuse ([FREEDOMS.md](FREEDOMS.md));
 - a window onto the worlds: a web viewer first, in Bevy, in the browser;
 - generator 2: land decided when first seen;
 - a storyteller for each world: paced events and visitors;

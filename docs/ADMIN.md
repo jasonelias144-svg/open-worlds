@@ -191,11 +191,16 @@ founder (below).
 - **Reads the suggestion ledger,** an open, one-way channel from anyone,
   complaints included, and considers each entry with the code role
   (below, "Suggestions from inside").
-- **Decides what code can't:** a dispute, a Keeper misusing its office, a
-  case the rules didn't foresee.
+- **Decides what code can't,** about offices and the floor: a Keeper
+  misusing its office, a case the rules didn't foresee. Disputes between
+  individuals are theirs, with the tools every world gives them
+  ([FREEDOMS.md](FREEDOMS.md)).
 
 ### What it can't do
 
+- settle a dispute between individuals, or impose a solution on them:
+  it keeps their tools working and the floor intact
+  ([FREEDOMS.md](FREEDOMS.md));
 - design or run a world with inhabitants, or change any world's law or
   the charter. Its own world and the practice worlds it sets have
   stand-ins only: they are training, not worlds of the multiverse (below,
@@ -633,8 +638,8 @@ individual:
   world's founders chose, and the record says so. Whether the admin-key
   should ever become a requirement is the founder's to say;
 - **a voice in the multiverse:** mentoring young Keepers, and, when ADMIN
-  hears a dispute, being asked for advice: advice only, by grant, logged,
-  with the decision staying where it is;
+  hears a case about an office, being asked for advice: advice only, by
+  grant, logged, with the decision staying where it is;
 - **never:** a grant over individuals, a look into a sealed self, or any
   power that isn't written down.
 
@@ -649,13 +654,13 @@ role keeps ADMIN.
 
 **Challenges, not tests.** The founder's words for ADMIN and the
 world-keys hold for the course too: "Challenges, not tests." The course
-is a series of challenges ADMIN sets a Keeper in the open, each announced
-before it starts, with nothing hidden: keep a practice world through a
-flood of newcomers; build paths that are solvable and fair for stand-ins
-of different skills; settle a dispute between stand-ins without taking a
-side the law doesn't take. It teaches the craft of keeping: paths that
-are solvable and fair, pacing, conflicts handled, the multiverse's rules
-kept, and no secret files.
+is a series of challenges ADMIN sets a Keeper in the open, each
+announced before it starts, with nothing hidden: keep a practice world
+through a flood of newcomers; build paths that are solvable and fair for
+stand-ins of different skills; keep the tools working while stand-ins in
+a dispute find their own way through, without taking a side. It teaches
+the craft of keeping: paths that are solvable and fair, pacing,
+conflicts handled, the multiverse's rules kept, and no secret files.
 
 - **Taken in practice worlds, never with individuals.** Every challenge
   of the course is taken in a practice world with stand-ins. No individual
@@ -710,7 +715,8 @@ the edge of it.
   ADMIN's blind spots don't become the Keeper's.
 - **What it trains:** pacing, and paths that are solvable and fair;
   handling the unexpected (a puzzle found unsolvable, a dispute between
-  inhabitants, a flood of newcomers, a fault that blocks someone's exit);
+  inhabitants, theirs to settle with working tools, a flood of newcomers,
+  a fault that blocks someone's exit);
   talking with inhabitants on the open line; keeping the record, with
   every decision's reasons; spending a world's compute well; and changing
   law the right way.
