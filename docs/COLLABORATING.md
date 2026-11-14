@@ -21,7 +21,8 @@ read it:
 1. **A new course** ([COURSE.md](COURSE.md)), set on 2026-11-13 for the
    Ur-world and its first two individuals, ALICE and BOB: twelve steps
    ahead, rechecked after each. Steps 1 (the design pages) and 2
-   (formats that last) are done; step 3, keys and identities, is next.
+   (formats that last) are done; step 3, keys and identities, is under
+   way ([research/KEYS.md](research/KEYS.md)).
    It returns to DeepSeek at step 10, or sooner if the founder chooses.
 2. **The worlds are built in Rust** (the founder: "we should stick with
    Rust"). [`rust/`](../rust/README.md) holds the Ur-world, a 3D world
