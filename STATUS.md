@@ -951,7 +951,8 @@ it was wrong. Questions of what the project is for stay with the founder.
   ceremony: the tool refuses a checkout that can push anywhere but its
   remotes (`remote.pushDefault`, a branch's `remote` or `pushRemote`,
   from any of Git's config files, read byte for byte), remotes kept the
-  old way in `.git/remotes` or `.git/branches`, and remote helpers; a
+  old way in `.git/remotes` or `.git/branches`, remotes with no address,
+  and remote helpers; a
   write that fails leaves no file; KEYS.md names the scan's misses,
   `published_entries_problems`, and what the guard can't see, so the
   ceremony pushes by the private repository's address.

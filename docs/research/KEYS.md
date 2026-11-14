@@ -257,25 +257,26 @@ root does.
   of another repository. It refuses a place inside this repository's
   working tree; a worktree of this repository; a clone whose remotes
   name this repository, or are paths on this computer, or go through a
-  remote helper (`transport::address`); a remote kept the old way, in
-  `.git/remotes` or `.git/branches`; a push target that isn't one of its
-  remotes, read byte for byte (`remote.pushDefault`, or a branch's
-  `remote` or `pushRemote`, from any of Git's config files, which `git
-  remote -v` doesn't show); a history that shares this repository's
-  first commit on any branch; a shallow clone, of either, since its
-  first commits are only where its history was cut; a checkout with no
-  remote; and a `keys` that is there already, folder or link, so nothing
-  is written over a key or through a link. A clone of a fork of this
-  repository, under another name and with its history cut, is beyond
-  what it can tell. Everything or nothing: the halves are written into a
-  new folder only its owner can open, and moved into place with the key
-  list once both are whole; a failure on the way leaves neither. Tested
-  on throwaway repositories, with each guard checked by removing it. If
-  the tool is killed midway, it can leave a `.keys-being-made-…` folder
-  in the private checkout and a `.<key list's name>.being-made` file
-  beside the key list; delete both before running it again. Names are
-  compared byte for byte, so `ALICE` and `Alice` are two names; see
-  STATUS, "Noticed".
+  remote helper (`transport::address`, or `remote.<name>.vcs`); a remote
+  with no address at all, whose name Git would take for a path; a remote
+  kept the old way, in `.git/remotes` or `.git/branches`; a push target
+  that isn't one of its remotes, read byte for byte
+  (`remote.pushDefault`, or a branch's `remote` or `pushRemote`, from
+  any of Git's config files, which `git remote -v` doesn't show); a
+  history that shares this repository's first commit on any branch; a
+  shallow clone, of either, since its first commits are only where its
+  history was cut; a checkout with no remote; and a `keys` that is there
+  already, folder or link, so nothing is written over a key or through a
+  link. A clone of a fork of this repository, under another name and
+  with its history cut, is beyond what it can tell. Everything or
+  nothing: the halves are written into a new folder only its owner can
+  open, and moved into place with the key list once both are whole; a
+  failure on the way leaves neither. Tested on throwaway repositories,
+  with each guard checked by removing it. If the tool is killed midway,
+  it can leave a `.keys-being-made-…` folder in the private checkout and
+  a `.<key list's name>.being-made` file beside the key list; delete
+  both before running it again. Names are compared byte for byte, so
+  `ALICE` and `Alice` are two names; see STATUS, "Noticed".
 
 ## Honest limits
 

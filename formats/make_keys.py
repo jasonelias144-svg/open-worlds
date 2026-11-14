@@ -14,7 +14,8 @@ randomness (through `cryptography`), and writes:
   place inside this repository's working tree; a worktree of it; a clone
   whose history, on any branch, shares its first commit, or whose remotes
   name it, are paths on this computer or go through a remote helper; one
-  with remotes kept the old way, in `.git/remotes` or `.git/branches`;
+  with a remote that has no address, or remotes kept the old way, in
+  `.git/remotes` or `.git/branches`;
   one that can push anywhere but its remotes; a shallow clone; and a
   `keys/`
   that is there already, so it never writes over a key. A clone of a
@@ -144,7 +145,8 @@ def _remote_urls(path: Path) -> Set[str]:
     """Every URL the remotes of the checkout at `path` fetch from or push
     to: as `git remote -v` shows them, after any rewriting, each line read
     as a name, a tab, the URL and ` (fetch)` or ` (push)`; and as the
-    config files hold them, byte for byte."""
+    config files hold them, byte for byte. A remote with no URL at all
+    is refused on its own (`_remotes_without_address`)."""
     urls = set()
     out = _git_bytes(path, "remote", "-v") or b""
     for line in out.decode("utf-8", "surrogateescape").split("\n"):
@@ -155,19 +157,36 @@ def _remote_urls(path: Path) -> Set[str]:
     return urls | _config_values(path, r"^remote\..*\.(url|pushurl)$")
 
 
-def _config_values(path: Path, pattern: str) -> Set[str]:
-    """Every value of the config keys matching `pattern`, from all of
-    Git's config files, byte for byte: Git keeps the spaces inside a
-    quoted value, so they are kept here too. A key with no value reads
-    as the empty string."""
+def _config_items(path: Path, pattern: str) -> List[Tuple[str, str]]:
+    """Every key matching `pattern`, with its value, from all of Git's
+    config files, byte for byte: Git keeps the spaces inside a quoted
+    value, so they are kept here too. A key with no value reads as the
+    empty string."""
     out = _git_bytes(path, "config", "-z", "--get-regexp", pattern) or b""
-    values = set()
+    items = []
     for record in out.split(b"\0"):
         if record:
-            _, newline, value = record.partition(b"\n")
-            values.add(value.decode("utf-8", "surrogateescape")
-                       if newline else "")
-    return values
+            key, newline, value = record.partition(b"\n")
+            items.append((key.decode("utf-8", "surrogateescape"),
+                          value.decode("utf-8", "surrogateescape")
+                          if newline else ""))
+    return items
+
+
+def _config_values(path: Path, pattern: str) -> Set[str]:
+    """Every value of the config keys matching `pattern` (`_config_items`)."""
+    return {value for _, value in _config_items(path, pattern)}
+
+
+def _remotes_without_address(path: Path) -> List[str]:
+    """The remotes of the checkout at `path` with no `url` and no
+    `pushurl` in any config file: Git takes such a remote's name for its
+    address, a path."""
+    named = set()
+    for key, _ in _config_items(path, r"^remote\..*\.(url|pushurl)$"):
+        name = key[len("remote."):].rsplit(".", 1)[0]
+        named.add(name)
+    return sorted(_remote_list(path) - named)
 
 
 def _push_targets(path: Path) -> Set[str]:
@@ -253,18 +272,20 @@ def check_private_place(private: Path,
         raise KeyMakingError(
             f"{private} has no remote: it must be a clone of the private "
             "repository")
-    if any(is_local_path(url) for url in urls):
+    if any(is_local_path(url) for url in urls) or _remotes_without_address(
+            private):
         raise KeyMakingError(
             f"{private} has a remote that is a path on this computer, "
             "which can't be told from this repository: its remotes must "
             "be the private repository's address")
-    if any(TRANSPORT.match(url) or re.search(r"[\s\x00-\x1f]", url)
-           for url in urls):
+    if _config_values(private, r"^remote\..*\.vcs$") or any(
+            TRANSPORT.match(url) or re.search(r"[\s\x00-\x1f]", url)
+            for url in urls):
         raise KeyMakingError(
-            f"{private} has a remote whose address goes through a remote "
-            "helper (`transport::address`) or holds spaces or control "
-            "characters: its remotes must be the private repository's "
-            "plain address")
+            f"{private} has a remote that goes through a remote helper "
+            "(`transport::address`, or `remote.<name>.vcs`), or whose "
+            "address holds spaces or control characters: its remotes must "
+            "be the private repository's plain address")
     old = _old_style_remotes(private)
     if old:
         raise KeyMakingError(

@@ -454,6 +454,31 @@ class TestMakeKeys(unittest.TestCase):
             with self.subTest(value=value):
                 self.refused(place, "isn't one of its remotes")
 
+    def test_it_refuses_a_remote_with_no_address(self):
+        # Git takes such a remote's name for its address, a path.
+        for i, (key, where) in enumerate((
+                ("remote.pushDefault", "local"),
+                ("branch.main.pushRemote", "local"),
+                ("remote.pushDefault", "global"))):
+            place = repository(self.place / f"no-address-{i}", PRIVATE_URL,
+                               commits=0)
+            settings = [("remote.evil.fetch",
+                         "+refs/heads/*:refs/remotes/evil/*"), (key, "evil")]
+            for name, value in settings:
+                if where == "global":
+                    subprocess.run(["git", "config", "--global", name, value],
+                                   check=True)
+                else:
+                    git(place, "config", name, value)
+            with self.subTest(key=key, where=where):
+                self.refused(place, "a path on this computer")
+            self.global_config.write_text("")
+
+    def test_it_refuses_a_remote_through_a_helper_by_vcs(self):
+        place = repository(self.place / "by-vcs", PRIVATE_URL, commits=0)
+        git(place, "config", "remote.origin.vcs", "ext")
+        self.refused(place, "remote helper")
+
     def test_it_refuses_a_remote_kept_the_old_way(self):
         # Files in .git/remotes or .git/branches: Git still reads them for
         # a name that isn't a configured remote; `git remote -v` doesn't
@@ -481,7 +506,7 @@ class TestMakeKeys(unittest.TestCase):
                                  "private-keys.git")):
             place = repository(self.place / f"helper-{i}", url, commits=0)
             with self.subTest(url=url):
-                self.refused(place, "plain address")
+                self.refused(place, "remote helper")
 
     def test_a_push_target_set_in_gits_own_config_is_refused_too(self):
         self.global_config.write_text(
