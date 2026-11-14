@@ -26,6 +26,13 @@ come first; the engineering follows from them.
    but leaves the growing to the plant. And just as the plant grows, the
    gardener learns."
 
+On the first principle, the founder later (2026-11-13): "I will always
+lean to freedom, but that means the freedom of others is a bound to
+everyone else’s freedom. So that’s why I imagine a polyphonic multiverse
+where different voices can exist in harmony, while preserving the
+freedom of each voice." What that means when freedoms meet, and the
+tools every world gives, is in [FREEDOMS.md](FREEDOMS.md).
+
 ## The gardener, in practice
 
 A world may carry a continuation protocol, so that it doesn't simply

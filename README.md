@@ -58,6 +58,8 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
   keeps each world, and ADMIN, the Keeper of the multiverse.
 - [docs/REASONS.md](docs/REASONS.md): how a decision that affects others
   goes on record with its reasons, and what code and Lean check of them.
+- [docs/FREEDOMS.md](docs/FREEDOMS.md): when one freedom limits another,
+  the tools every world gives, and what is never left to emerge.
 - [rust/](rust/README.md): the worlds in Rust: the Ur-world, and the public
   record, checked across languages through shared test vectors
   ([vectors/](vectors/README.md)).
