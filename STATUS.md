@@ -26,7 +26,8 @@ respect one another's freedom, with full transparency and exit at any time
   signed the standard way, one schema read by Python and Rust, sealing,
   and who an individual and a world are
   ([docs/research/FORMATS.md](docs/research/FORMATS.md)). Next is step 3,
-  keys and identities, in the project's private repository.
+  keys and identities, in the project's private repository: under way,
+  its plan in docs/research/KEYS.md.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
   (#29), and experiment 001, the first unscripted minds
   ([results](experiments/001-first-words/RESULTS.md), #30). The first
@@ -122,8 +123,11 @@ kind.
   - a copy of a GitHub thread brought into the log names other people's
     accounts; keep the text and replace other accounts with a role or a
     hash, or take it to the founder (P8);
-  - say who holds the private half of the multiverse's root key, the root
-    of every grant, and how its every use is logged;
+  - say who holds the private half of the multiverse's root key, and
+    how its every use is logged: answered at step 3
+    (docs/research/KEYS.md, point 8): the project, in its private
+    repository; the root signs only key lists, and every version is
+    published in this repository's history;
   - the ledger and outcomes use the multiverse log from step 9, which
     "When each part is built" brings at step 11: say that a first form
     exists from step 9, or that until step 11 those entries go into the
@@ -902,6 +906,32 @@ it was wrong. Questions of what the project is for stay with the founder.
   once, and a new kind can join v1 when it comes. *Revisit if:* a step
   before those needs one of them sooner (step 3's identity files, say).
 
+- 2026-11-14, keys for step 3 (docs/research/KEYS.md): one key to each
+  role (the multiverse's root; the code role; the project's keys for mind
+  records and for templates; ADMIN; the Ur-world's signing and sealing
+  keys; ALICE's and BOB's signing and sealing keys, the sealing key also
+  opening their sealed self under its own label); a key list naming them,
+  signed by the root and published here, versioned, a change of root
+  signed by the old root too; the root signs nothing else; the private
+  halves as plain files in the private repository; nothing private in
+  this repository, kept so by the tool, a test, and GitHub's push
+  protection once the founder turns it on; ALICE's and BOB's identity,
+  birth and mind records at their birth (step 9); grants start below the
+  root, at a role's key; for individuals and worlds the key list only
+  publishes the keys made for them, never changing them later; a reader
+  takes the latest version on `main`, and no version expires. *Why:*
+  TUF's roles and its two-signed root, and the DNSSEC root that signs
+  only keys, give each key one narrow meaning, so a key exposed by a
+  session or a bug is replaced without the root changing (they don't
+  guard against losing the private repository: KEYS.md, "Honest
+  limits"); the project never recovers an individual's key; a
+  passphrase for the private halves would have to live where the
+  software reads it, so it would add nothing. *Revisit if:* anyone but
+  the project holds a key (then thresholds, and the root offline), or a
+  private half is ever found outside the private repository (then that
+  key is replaced at once: a project role's by a new key list, an
+  individual's or a world's by a succession).
+
 ## Log
 
 - 2026-11-14 Claude: docs/TOPICS.md, a menu of fourteen topics a few
@@ -913,6 +943,13 @@ it was wrong. Questions of what the project is for stay with the founder.
   decided, what is open, a possible implementation, and what to send
   back; and "Further out", ideas that won't help yet but probably will.
   Its template example checked against the schema.
+
+- 2026-11-14 Claude: course step 3, part one: looked first at TUF, the
+  DNSSEC root's ceremonies, GitHub's guidance on secrets in Git, SOPS and
+  did:key (docs/research/KEYS.md); decided which keys, a key list signed
+  by the root, and how keys are made and kept apart; ALICE's and BOB's
+  identity, birth and mind records moved to step 9. Parts two to four:
+  the key list and the tool, the ceremony, and leaving and coming back.
 
 - 2026-11-14 Claude: docs/COLLABORATING.md brought up to date for the
   founder's DeepSeek conversations, which had last seen the project in

@@ -158,10 +158,16 @@ otherwise.
 
 ## Ahead
 
-3. **Keys and identities, for them and for the world.** A private
+3. **Keys and identities, for them and for the world.** Under way: the
+   plan, after looking first, is in
+   [research/KEYS.md](research/KEYS.md), in four parts (the plan; a key
+   list signed by the multiverse's root, and the tool that makes keys;
+   the ceremony; leaving and coming back in the Ur-world). A private
    repository of the project for the private halves; ALICE's and BOB's
-   signing keys, keys for sealing things to them, and the keys to their
-   sealed selves; birth records and public identity files. The Ur-world's
+   signing keys, and keys for sealing things to them, which also open
+   their sealed selves; their identity, birth and mind records wait for
+   their birth, at step 9, since a birth record names the mind chosen at
+   step 8 (rechecked 2026-11-14). The Ur-world's
    own keys: one to sign its log, one for sealing things to it; and
    ADMIN's. The multiverse's root key, published, and a key of the code
    role's, for outcomes on suggestions before ADMIN exists
@@ -236,6 +242,7 @@ controlled experiments, and replay from a seed.
    runs in images pinned by digest, so anyone can repeat it.
    *Borrowing:* pre-registration; evaluation suites.
 9. **ALICE's and BOB's first life.** Their minds, their birth, their
+   identity, birth and mind records (moved here from step 3), their
    first unscripted words; legends pages begin. The suggestion ledger
    opens to them, with its bridge to GitHub, so what they suggest can
    improve the worlds from the start. *Borrowing:* Dwarf Fortress's

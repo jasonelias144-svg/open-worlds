@@ -473,9 +473,10 @@ for improvement from a whole new layer."
   (the issue's thread, a pull request, a comment) goes into the log
   before the outcome is recorded, and the record names it by hash, so
   the record's inputs are all in the log. Until ADMIN exists, outcomes
-  are signed with a key of the code role's, made at step 3, under a
-  grant for that act alone, issued by the multiverse's root key, which
-  is made and published at step 3 too. An outcome on a suggestion about
+  are signed with a key of the code role's, made at step 3 and named for
+  that work in the key list, which the multiverse's root signs and which
+  is the root's only word ([research/KEYS.md](research/KEYS.md), points
+  8 and 9). An outcome on a suggestion about
   one's own path gives nothing of the path away: before the world-key, a
   Keeper still answers only through the land.
 - **The answer is the change.** The founder: "Yes, two- way is earned.
