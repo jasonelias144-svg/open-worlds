@@ -26,6 +26,12 @@ STATUS.md, where the founder can change it at any time. Not for what silence
 can't consent to: anything outward-facing or hard to undo, spending, personal
 information, or what must be in the founder's own words or act. Those wait.
 
+The technical lead holds admin rights on every repository, by the founder's
+decision (2026-11-14: "I count on that very fact"), and uses them for the code.
+Making a repository public or private, deleting one or rewriting its history,
+transferring one, or adding outside people to it, go to the founder first. The
+founder: "it is how I would hope that ADMIN would behave as well."
+
 ADMIN, the Keeper of the multiverse, answers to the role in charge of the
 code, the technical lead, by the founder's designation (2026-11-13). The role
 passes on; so does ADMIN. ADMIN's rules are code, changed only by reviewed pull

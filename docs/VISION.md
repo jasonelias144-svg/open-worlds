@@ -62,9 +62,11 @@ How (recommended, and decided under the rule):
   the network".
 - **Users choose settings, never code.** Templates are reviewed code, so
   worlds are safe to run for anyone.
-- **Results can be checked.** A world's record carries its template and
-  seed, and every change made to it, so anyone can run it again and get
-  the same answer.
+- **Results can be checked.** A primary world's record carries its
+  template and seed, and every change made to it, so anyone can run it
+  again and get the same answer. (A world with AI minds can't be rerun
+  exactly: they use fresh randomness, so it is tested by fresh runs
+  instead.)
 - **The path:** parallel chemistry worlds from templates; a way to create,
   run and query a world from code; the plug-in around it, run on one's
   own computer first, so nothing is hosted or published yet; the garden
@@ -121,7 +123,9 @@ others connected in one individual."
   their back** (recommended, decided under the rule): the person sees all
   their avatars, and their lessons go with them; a world sees only the
   avatar there, unless the person shows more, as "unlinked by default"
-  was decided.
+  was decided. Each avatar enters a world under that world's law, and
+  every entry is logged, so a world kept as a control stays one
+  ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md), "The garden").
 - **New:** human accounts that hold their own keys safely.
 
 ## Ride along, and steer
@@ -135,10 +139,12 @@ things, which is the point."
 - **Ride along:** a view tied to one thing in a primary world, a molecule
   or a forming star, seeing what it meets, changing nothing.
 - **Steer, by branching** (recommended, and the founder: "Branch on steer
-  makes perfect sense to me"): a change to a running world makes a copy
-  of it at that moment, and steers the copy. The original runs on
+  makes perfect sense to me"): a change to a running primary world makes
+  a copy of it at that moment, and steers the copy. The original runs on
   untouched, so the answer comes beside what would have happened anyway,
-  and no one else's view shifts.
+  and no one else's view shifts. Only worlds with no individuals in them
+  are copied so: a copy of a world with people would copy them, which is
+  a fork, and a fork needs the child's acceptance (STATUS.md).
 - **Each template declares its dials** and their ranges (the sun's mass,
   the water, the temperature): steering turns a dial within the world's
   laws, never breaks them.
@@ -160,7 +166,8 @@ as world changes."
   world, with the branch's record as its evidence.
 - **By the world's consent,** as COURSE.md's waiting list already has it:
   "a proposal to change a world's law is tried on a copy first, and
-  adopted only by consent".
+  adopted only by consent". How a law changes is the charter's section
+  6, the founder's to write; this follows it once it is written.
 - **Forward only:** applied from the moment of merge, recorded with a link
   to the branch it came from; the past is never rewritten, and undoing a
   merge is another change, not an erasure.

@@ -89,9 +89,10 @@ From the founder's later visions the same evening, in
 - **The garden's Keeper tends its worlds from outside,** so each world
   stays light; scripted code first, an AI Keeper once ADMIN's training
   begins ("A hierarchy of worlds").
-- **Ride along, and steer by branching:** a change to a running world
-  makes a copy at that moment and steers the copy, so the original runs
-  on as the comparison. Each template declares its dials and their
+- **Ride along, and steer by branching:** a change to a running primary
+  world makes a copy at that moment and steers the copy, so the original
+  runs on as the comparison; worlds with people in them are never copied
+  so. Each template declares its dials and their
   ranges, and every steer is recorded ("Ride along, and steer").
 - **Branches merge rules, never states,** by the world's consent, forward
   only ("Branches that merge").

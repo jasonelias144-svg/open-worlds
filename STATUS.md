@@ -130,6 +130,19 @@ kind.
 
 ## Decided
 
+- 2026-11-14, founder, on the technical lead's admin rights: "You should
+  have admin rights across every repository. I count on that very
+  fact." The technical lead uses them for the code: merging, branches,
+  CI, and settings that serve it. Brought to the founder first, by the
+  standing rule's exceptions: making a repository public or private,
+  deleting one or rewriting its history, transferring one, or adding
+  outside people to it. Then: "And now keep track of this decision,
+  because it is how I would hope that ADMIN would behave as well. And
+  that is the whole point." (docs/ADMIN.md, "How it holds its powers";
+  AGENTS.md.) Checked the same night: the session holds admin on all ten
+  repositories attached to it, open-worlds-private among them, which
+  GitHub reports as private.
+
 - 2026-11-14, founder, on what it is for: "I went from idea to question to
   discussion to simulation. Generating a world to test the idea has now
   become a natural thought." "That was an accidental implementation of my
@@ -149,8 +162,9 @@ kind.
   founder, then curious people and students; ADMIN guards the floor
   directly at every level of the hierarchy, which stays shallow at
   first; the garden's Keeper is scripted first; information flows
-  through the person, not between worlds behind their back; steering
-  always branches, templates declare their dials, and every steer is
+  through the person, not between worlds behind their back; steering a
+  primary world always branches (a world with people in it is never
+  copied so), templates declare their dials, and every steer is
   recorded; and branches merge rules, never states, by the world's
   consent, forward only. Then, on learning from GitHub: "We can base much
   of the logic on how GitHub works, since it is very similar to the
