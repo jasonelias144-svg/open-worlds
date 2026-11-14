@@ -34,6 +34,9 @@ names a fix, the code it tests has that fix (see "Changes to DeepSeek's
 code", below). "Doesn't load" means the test file fails on
 import, so none of its tests run. "Course" is the step it relates to. "In
 open-worlds" says whether any of it is in the working code, and how.
+The "Course" numbers are the first course's steps ("Done: the first
+course" in [docs/COURSE.md](../docs/COURSE.md)), not the course set on
+2026-11-13, which numbers its steps afresh.
 
 | # | What it is | Line | Tests as written | Course | In open-worlds |
 |---|---|---|---|---|---|

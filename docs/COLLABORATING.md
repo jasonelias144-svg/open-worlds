@@ -27,9 +27,11 @@ read it:
    Rust"). [`rust/`](../rust/README.md) holds the Ur-world, a 3D world
    that begins in a garden with ALICE and BOB ([URWORLD.md](URWORLD.md)),
    with a doorway any program can speak through as a mind; a checker for
-   a world's log; and the formats below. The Python in `multiverse/`,
-   `world/`, `chem/` and `formats/` stays as the reference that Rust is
-   checked against.
+   a world's log; and the formats below. The reference is Python for
+   what Python built first (the log in `world/`, the protocol in
+   `multiverse/`, and the formats' vectors, which `formats/` writes and
+   Rust reads); for the Ur-world, Rust is the reference, and Python
+   checks its vectors.
 3. **Who an individual is,** in the design pages:
    [MINDS.md](MINDS.md) (identity, mind record, a sealed self no one else
    reads, unless the founder opens it under the "break glass", in the
@@ -94,9 +96,13 @@ can be read, run and debugged, without committing to using them.
 [`sketches/INDEX.md`](../sketches/INDEX.md) is the one place that says
 where the sketch and the course meet: each component, how its tests fare,
 which course step it relates to, and whether any of it is in open-worlds.
+Its "Course" column uses the first course's step numbers ("Done: the
+first course" in [COURSE.md](COURSE.md) is the key), not the course now
+running.
 
 **The standard is open-worlds' own code, not the sketches.** Build on
-`multiverse/` and the documents in `docs/`. The code in `sketches/` is
+the code merged into `main` (`multiverse/`, `formats/`, `rust/`) and the
+documents in `docs/`. The code in `sketches/` is
 earlier work, some of it on the old, unsigned protocol, kept for its
 ideas.
 
@@ -104,18 +110,19 @@ ideas.
 
 Three records are kept: 012-03-02 (the poetry engine), 012-04-00
 (components 1 to 63), and 012-05-01 (components 64 to 87: a live
-federation and its tools, then the founder's turn to game worlds: a chess
-park, worlds inside worlds, worlds that grow and govern themselves, and a
-world that keeps running). The next conversation starts a new record,
-which gets its own folder in `sketches/`. Each component's place is in
-[`sketches/INDEX.md`](../sketches/INDEX.md). In short: components 1 to 7
-are in `multiverse/`, working (the first course's step 1); 13 and 14,
+federation and its tools, then the founder's turn to game worlds: a
+chess park, worlds inside worlds, worlds that grow and govern
+themselves, and a world that keeps running). The next conversation
+starts a new record, which gets its own folder in `sketches/`. Each
+component's place is in [`sketches/INDEX.md`](../sketches/INDEX.md), by
+the first course's numbers. In short: components 1 to 7 are in
+`multiverse/`, working (the first course's step 1); 13 and 14,
 signatures and their conformance test, were rebuilt in its step 2, where
 an identity is its key; 15, signed passports, in its step 3, where a
 world is a key too. (The first course is under "Done" in COURSE.md; the
 course now running numbers its steps afresh.)
 
-Since the sketch, the founder has added ideas that now shape the
+Since the sketch, the founder has added ideas that shaped the first
 course: learning agents in the chemistry world whose intelligence grows
 with the complexity of the molecules, evolution as a path between worlds,
 accelerated time, and one day a main community world
@@ -179,6 +186,10 @@ text or as code with tests:
   such as a quatrain in common meter each turn, Dickinson's meter.
 - **The hunt** (course step 11, [WORLD-KEY.md](WORLD-KEY.md)): symbols,
   maps, codes and stones; puzzles that teach without words.
+
+Held back, as the project's own to do: the real keys (step 3), and
+anything that publishes or can't be undone; ADMIN and the Keepers wait
+for step 11.
 - **The Ur-world,** built from `rust/ur-world` to the standards in "Code
   in Rust" below: its next steps are in [URWORLD.md](URWORLD.md).
 - **Minds for the Ur-world,** in any language. A mind is a program that
@@ -189,7 +200,8 @@ text or as code with tests:
 
 ## The standard
 
-- **The code in `multiverse/`, at a named commit.** Whatever is merged
+- **The code merged into `main`** (`multiverse/`, `formats/`, `rust/`),
+  **at a named commit.** Whatever is merged
   into `main` is the current standard; a proposal names the commit it
   built on.
 - **The protocol, WCP/0.4** (`multiverse/protocol.py`): manifest,
@@ -289,8 +301,10 @@ the Python kernel writes it, against shared test vectors
 either side that breaks the agreement fails a test. `ur-world` is the
 Ur-world ([URWORLD.md](URWORLD.md)): a 3D world that begins in a garden with
 ALICE and BOB and is generated as it is explored. Its own vectors are
-checked from Python the same way. Build the next pieces beside them, the
-same way.
+checked from Python the same way. `formats` signs and checks the
+project's records, seals, and opens sealed records, as `formats/` does
+in Python, against the same vectors. Build the next pieces beside them,
+the same way.
 
 To check a draft:
 
@@ -396,10 +410,11 @@ page.
   way of working: "Let's keep working this way for now until we reach any
   reason to change."
 - 2026-11-13, cycle 3: record 012-05-01 (components 64 to 87: a live
-  federation and its tools, then game worlds) brought into `sketches/` as
-  written; 241 of its tests pass on Python 3.12, and INDEX.md says how
-  each fares. From it, the founder's turn to game worlds: the worlds are
-  now built in Rust.
+  federation and its tools, then game worlds) brought into `sketches/`
+  as written; with fixes 3 to 5 attached, 241 of its tests pass and 84
+  fail on Python 3.12, as INDEX.md says, component by component. From
+  it, the founder's turn to game worlds: the worlds are now built in
+  Rust.
 - 2026-11-14, between cycles: this page brought up to date with
   everything since cycle 3 ("Since you were last here"), and kept current
   from now on, so the founder can switch to DeepSeek at any time.

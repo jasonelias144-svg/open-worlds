@@ -149,10 +149,11 @@ kind.
   same pull request, and every review checks it.
 - 2026-11-14, founder, a new idea: "fractal worlds. Worlds where you can
   navigate through fractals, generate them in different forms, watch them
-  grow or interact, and more." On COURSE.md's waiting list, recommended
-  after step 4a as the garden's second kind of room: primary worlds
-  whose rule is repeated, with its numbers as a template's dials.
-
+  grow or interact, and more." On COURSE.md's waiting list, after step
+  4a as the garden's second kind of room: primary worlds whose rule is
+  repeated, with its numbers as a template's dials (placed on the
+  technical lead's recommendation, decided under the founder's standing
+  rule; the founder can change it).
 - 2026-11-14, founder, on the technical lead's admin rights: "You should
   have admin rights across every repository. I count on that very
   fact." The technical lead uses them for the code: merging, branches,
