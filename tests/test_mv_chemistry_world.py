@@ -4,13 +4,18 @@ The sketch's world (component 5) accepted any reaction whose formulas
 balanced. This one holds a soup of real molecules (`chem/`), and an act
 is a real reaction, by one of the rules, among molecules that are there.
 """
+import json
 import unittest
+from pathlib import Path
+
+import jsonschema
 
 from chem import catalogue as cat
 from chem.rules import RULES
-from multiverse.chemistry_world import (ACT_TYPE, ChemistryWorld,
-                                        ChemistryWorldLaw,
-                                        reactions_from_log)
+from formats.canonical import canonical
+from multiverse.chemistry_world import (ACT_TYPE, MADE_FORMAT,
+                                        ChemistryWorld, ChemistryWorldLaw,
+                                        microseconds, reactions_from_log)
 from multiverse.conformance import run_conformance
 from multiverse.identity import Individual
 from multiverse.passport import Stamp, thing_fingerprint
@@ -18,6 +23,8 @@ from multiverse.poetry_world import PoetryWorld
 from multiverse.protocol import Ack, Act, Admission, Refusal
 from world.core import World
 
+SCHEMA = (Path(__file__).resolve().parent.parent / "schemas"
+          / "chemistry-made-v1.schema.json")
 AMIDE = "amide formation (condensation)"
 TWO_GLYCINES = {"rule": AMIDE, "reactants": ["glycine", "glycine"]}
 
@@ -295,6 +302,67 @@ class TestTheWorld(ChemistryCase):
              for r in reactions_from_log(w.log_since(None))],
             w.reactions())
         self.assertEqual(_count(w, "glycine"), 14)
+
+
+
+class TestTheRecordOfWhatWasMade(ChemistryCase):
+    """What a made stamp commits to keeps the project's rules for signed
+    records: ASCII keys, integers within 2^53 - 1, no floats
+    (schemas/chemistry-made-v1.schema.json, docs/research/FORMATS.md)."""
+
+    def test_every_reaction_fits_its_schema_and_the_rules(self):
+        validator = jsonschema.Draft202012Validator(json.loads(
+            SCHEMA.read_text(encoding="utf-8")))
+        w = self.still(seconds_per_act=2.5)
+        alice = self.enter(w)
+        for payload in (
+                TWO_GLYCINES,
+                {"rule": "proton transfer, carboxylic acid to amine",
+                 "reactants": ["glycine"]},
+                {"rule": "hydration of a carbonyl",
+                 "reactants": ["formaldehyde", "water"]}):
+            self.assertIsInstance(w.act(_react(w, alice, payload)), Ack)
+        made = w.reactions()
+        self.assertEqual(len(made), 3)
+        for record in made:
+            with self.subTest(rule=record["rule"]):
+                self.assertEqual(list(validator.iter_errors(record)), [])
+                canonical(record)  # raises on a float or a big integer
+                self.assertEqual(record["format"], MADE_FORMAT)
+        self.assertEqual([r["world_time_us"] for r in made],
+                         [0, 2_500_000, 5_000_000])
+
+    def test_the_stamp_commits_to_the_record(self):
+        w = self.still()
+        alice = self.enter(w)
+        ack = w.act(_react(w, alice, TWO_GLYCINES))
+        made, = w.reactions()
+        self.assertEqual(Stamp.from_entry(ack.stamp).made,
+                         thing_fingerprint(made))
+
+    def test_microseconds(self):
+        self.assertEqual(microseconds(0.0), 0)
+        self.assertEqual(microseconds(0.1 + 0.2), 300_000)
+        self.assertEqual(microseconds(2.5), 2_500_000)
+        self.assertEqual(microseconds(1e-7), 0)
+        self.assertEqual(microseconds(1.5e-6), 2)   # ties to even
+        self.assertEqual(microseconds(2.5e-6), 2)
+        self.assertIsInstance(microseconds(1.0), int)
+
+    def test_the_schema_refuses_a_float_time(self):
+        validator = jsonschema.Draft202012Validator(json.loads(
+            SCHEMA.read_text(encoding="utf-8")))
+        w = self.still()
+        alice = self.enter(w)
+        w.act(_react(w, alice, TWO_GLYCINES))
+        made, = w.reactions()
+        for bad in ({**made, "world_time_us": 0.5},
+                    {k: v for k, v in made.items()
+                     if k != "world_time_us"} | {"world_time": 0.0},
+                    {**made, "world_time_us": -1},
+                    {**made, "formulas": [made["formulas"][0]]}):
+            with self.subTest(bad=bad):
+                self.assertTrue(list(validator.iter_errors(bad)))
 
 
 class TestTwoWorlds(unittest.TestCase):

@@ -49,6 +49,10 @@ from .identity import Signer
 from .protocol import Ack, Act, ActResponse, LogEntry
 
 ACT_TYPE = "chemistry.react"
+#: What a reaction's record is (schemas/chemistry-made-v1.schema.json):
+#: its world time is a whole number of microseconds, so the record keeps
+#: the project's rules for signed records (docs/research/FORMATS.md).
+MADE_FORMAT = "open-worlds/chemistry-made/v1"
 CELL = (0, 0)
 MAX_REACTANTS = 3
 MAX_NAME = 10_000
@@ -91,7 +95,7 @@ class ChemistryWorldLaw:
 
     def describe(self) -> str:
         lines = [
-            "# Chemistry World Law v0.4",
+            "# Chemistry World Law v0.5",
             "",
             "## Entering and leaving",
             f"- Admits any identity: {self.admits_any_identity}",
@@ -114,6 +118,8 @@ class ChemistryWorldLaw:
             f"- Each accepted act lets the soup run for "
             f"{self.seconds_per_act} seconds of world time. World time is "
             "simulated: it doesn't follow the clock.",
+            "- A reaction's record gives its world time in whole "
+            "microseconds (`world_time_us`), rounded to the nearest.",
             "",
             "## The soup's own reactions (rates per second)",
         ]
@@ -141,6 +147,12 @@ class ChemistryWorldLaw:
             "even where real chemistry would be too slow to matter.",
         ]
         return "\n".join(lines)
+
+
+def microseconds(seconds: float) -> int:
+    """World time in whole microseconds, the unit a reaction's record
+    gives it in: the nearest, ties to even, as Python rounds."""
+    return round(seconds * 1_000_000)
 
 
 def _molecule(name: str) -> Molecule:
@@ -229,12 +241,13 @@ class ChemistryWorld(Entity):
                                 "Not every reactant is in the soup now, as "
                                 "many as the reaction uses", "act")
         reaction = {
+            "format": MADE_FORMAT,
             "rule": rule,
             "reactants": [m.identity() for m in reactants],
             "products": [m.identity() for m in products],
             "formulas": [[m.formula() for m in reactants],
                          [m.formula() for m in products]],
-            "world_time": self._soup.time,
+            "world_time_us": microseconds(self._soup.time),
         }
         self._reactions.append(reaction)
         self._soup.advance(self._soup.time + self._law.seconds_per_act)
