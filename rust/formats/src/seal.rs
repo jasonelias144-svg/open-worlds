@@ -22,7 +22,7 @@ use hpke::rand_core::CryptoRng;
 use hpke::{Deserializable, Kem, OpModeR, OpModeS, Serializable};
 
 /// Every label in use; a new one is added by a reviewed change.
-pub const LABELS: [&str; 1] = ["open-worlds/world-key/v1"];
+pub const LABELS: [&str; 2] = ["open-worlds/journal/v1", "open-worlds/world-key/v1"];
 /// The length of `enc`, an X25519 public key (RFC 9180, 7.1, Nenc).
 pub const ENC_LENGTH: usize = 32;
 /// The length of ChaCha20Poly1305's tag (RFC 9180, 7.3, Nt).

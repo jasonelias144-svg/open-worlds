@@ -1,6 +1,7 @@
 {
  "about": "Sealing (formats/seal.py, rust/formats/src/seal.rs): HPKE base mode with DHKEM(X25519, HKDF-SHA256), HKDF-SHA256 and ChaCha20Poly1305, info a label in use, no associated data. A box is enc || ct, in hex. Written by python3 -m formats.seal_vectors; test keys only, never for anything real.",
  "labels": [
+  "open-worlds/journal/v1",
   "open-worlds/world-key/v1"
  ],
  "rfc9180": {
@@ -203,7 +204,7 @@
  ],
  "refusedLabels": [
   "open-worlds/world-key/v2",
-  "open-worlds/journal/v1",
+  "open-worlds/journal/v2",
   "",
   "open-worlds/world-key/v1 ",
   "Open-Worlds/world-key/v1",
