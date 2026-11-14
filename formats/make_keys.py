@@ -12,15 +12,14 @@ randomness (through `cryptography`), and writes:
   are sealed to, `sealingSecretMultibase`). That directory must be the
   top of a full clone of the private repository. The tool refuses any
   place inside this repository's working tree; a worktree of it; a clone
-  whose history, on any branch, shares its first commit, or whose remotes
-  name it, are paths on this computer or go through a remote helper; one
-  with a remote that has no address, or remotes kept the old way, in
-  `.git/remotes` or `.git/branches`;
-  one that can push anywhere but its remotes; a shallow clone; and a
-  `keys/`
-  that is there already, so it never writes over a key. A clone of a
-  fork of this repository, under another name and with its history cut,
-  is beyond what it can tell.
+  whose history, on any branch, shares its first commit, or whose
+  remotes name it, are paths on this computer or name a remote helper
+  (`transport::`, or `remote.<name>.vcs`); one with a remote that has no
+  address, or remotes kept the old way, in `.git/remotes` or
+  `.git/branches`; one that can push anywhere but its remotes; a shallow
+  clone; and a `keys/` that is there already, so it never writes over a
+  key. A clone of a fork of this repository, under another name and with
+  its history cut, is beyond what it can tell.
 - **the first key list** to `--key-list`, signed by the new root: every
   role's public keys (formats/records.py, `open-worlds/key-list/v1`).
 
@@ -28,7 +27,8 @@ It makes everything or nothing: the private halves are written into a
 new folder only the owner can open, and moved into place with the key
 list when both are whole. It prints the public keys, never a secret.
 Committing and pushing the private halves is done in the private
-repository, at once; the key list comes here through a reviewed pull
+repository, at once, pushing by naming its address (KEYS.md, "Honest
+limits"); the key list comes here through a reviewed pull
 request.
 """
 from __future__ import annotations

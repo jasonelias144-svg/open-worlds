@@ -187,14 +187,14 @@ root does.
 
 ## The parts of step 3
 
-1. **This page,** and the plan in COURSE.md.
+1. **This page,** and the plan in COURSE.md (done, #52).
 2. **The key list** as a format, in Python and Rust with shared vectors;
    the test that no private key is in this repository; and the tool that
-   makes keys, tested on throwaway directories.
+   makes keys, tested on throwaway directories (done, #53 and #56).
 3. **The ceremony:** the real keys made, their private halves pushed to
    the private repository, the first key list signed by the root and
    published here. Written up as it happened, like the DNSSEC root's
-   ceremonies.
+   ceremonies (done 2026-11-14: "As built, part three").
 4. **Leaving and coming back** in the Ur-world: a mind at its doorway
    signs as its key, so whoever returns is known as the same individual,
    as the Python worlds already do.
@@ -256,27 +256,80 @@ root does.
   prints only public keys. `--private` must be the top of a full clone
   of another repository. It refuses a place inside this repository's
   working tree; a worktree of this repository; a clone whose remotes
-  name this repository, or are paths on this computer, or go through a
-  remote helper (`transport::address`, or `remote.<name>.vcs`); a remote
-  with no address at all, whose name Git would take for a path; a remote
-  kept the old way, in `.git/remotes` or `.git/branches`; a push target
-  that isn't one of its remotes, read byte for byte
-  (`remote.pushDefault`, or a branch's `remote` or `pushRemote`, from
-  any of Git's config files, which `git remote -v` doesn't show); a
-  history that shares this repository's first commit on any branch; a
-  shallow clone, of either, since its first commits are only where its
-  history was cut; a checkout with no remote; and a `keys` that is there
-  already, folder or link, so nothing is written over a key or through a
-  link. A clone of a fork of this repository, under another name and
-  with its history cut, is beyond what it can tell. Everything or
-  nothing: the halves are written into a new folder only its owner can
-  open, and moved into place with the key list once both are whole; a
-  failure on the way leaves neither. Tested on throwaway repositories,
-  with each guard checked by removing it. If the tool is killed midway,
-  it can leave a `.keys-being-made-…` folder in the private checkout and
-  a `.<key list's name>.being-made` file beside the key list; delete
-  both before running it again. Names are compared byte for byte, so
-  `ALICE` and `Alice` are two names; see STATUS, "Noticed".
+  name this repository, or are paths on this computer, or name a remote
+  helper (`transport::address`, or `remote.<name>.vcs`; a `<scheme>://`
+  address that Git hands to a helper of that name is beyond it, as
+  "Honest limits" says); a remote with no address at all, whose name Git
+  would take for a path; a remote kept the old way, in `.git/remotes` or
+  `.git/branches`; a push target that isn't one of its remotes, read
+  byte for byte (`remote.pushDefault`, or a branch's `remote` or
+  `pushRemote`, from any of Git's config files, which `git remote -v`
+  doesn't show); a history that shares this repository's first commit on
+  any branch; a shallow clone, of either, since its first commits are
+  only where its history was cut; a checkout with no remote; and a
+  `keys` that is there already, folder or link, so nothing is written
+  over a key or through a link. A clone of a fork of this repository,
+  under another name and with its history cut, is beyond what it can
+  tell. Everything or nothing: the halves are written into a new folder
+  only its owner can open, and moved into place with the key list once
+  both are whole; a failure on the way leaves neither. Tested on
+  throwaway repositories, with each guard checked by removing it. If the
+  tool is killed midway, it can leave a `.keys-being-made-…` folder in
+  the private checkout and a `.<key list's name>.being-made` file beside
+  the key list; delete both before running it again. Names are compared
+  byte for byte, so `ALICE` and `Alice` are two names; see STATUS,
+  "Noticed".
+
+## As built, part three: the ceremony
+
+Done on 2026-11-14 in a working session, as decision 6 and part two's
+tool set out, and written up as it happened. Times are UTC.
+
+1. **Before any key existed.** The tool and its guard were reviewed and
+   merged (#53, #56); `main` was at 8c9bd99, in a full clone, not a
+   shallow one. The private repository was empty. Its checkout, with
+   `origin` its https address and no other push target, passed the
+   guard, and this repository's own checkouts were refused. A README was
+   committed in the private repository and pushed by naming its address
+   (de7baf9), so the session had shown it could push there before
+   anything secret existed. Commits there are made as `Claude
+   <noreply@anthropic.com>`.
+2. **13:58:55 to 13:58:56.** `python3 -m formats.make_keys --private
+   <the private checkout> --key-list keys/key-list.json`, with the pinned
+   requirements. It printed the eight holders' public keys and the key
+   list's hash, and nothing else, and wrote the private halves to a new
+   `keys/` (the folder 0700, each file 0600).
+3. **About 13:59.** The eight files were committed in the private
+   repository (64da8b0) and pushed at once, by naming its address;
+   `git ls-remote` showed its `main` at that commit.
+4. **Checked.** A fresh clone of the private repository against the key
+   list: each half is the half of the key the list names (`check_kept`);
+   the clone was then deleted. The key list holds, is signed by its own
+   root, and is a whole history on its own (`key_list_chain_problems`).
+   With the key list tracked, the scan finds no private key in this
+   repository.
+5. **Published.** `keys/key-list.json`, version 1, exactly as the tool
+   wrote it, with the hash
+   `c7c6c306886259629e2fb959e5da5a34a58d6d9f4e51fe81a31d94811a14ffde`,
+   through a reviewed pull request.
+
+The keys, as the key list names them:
+
+| Role | Holder | Signing | Sealing |
+|---|---|---|---|
+| root | the multiverse | `did:key:z6Mkr34vpjP78viQ8jQhxNwRhSpsu25SaPwrfzRqUQDyRPEu` |  |
+| code | the code role | `did:key:z6Mkr5RoxzUhsW9EtW58EPRJQ752iRRv4F4qJ5k8pY5D339M` |  |
+| mindRecords | the project's mind records | `did:key:z6MkswTcvTvyz8qj7AeMF7mA8R3JawryHjQ9nyJkug8GxTX6` |  |
+| templates | the project's templates | `did:key:z6MkrxLp67tzdgxoYYzwMtVC5xLBfrEVP1sM9NoFxZVsMDYp` |  |
+| admin | ADMIN | `did:key:z6Mkpj4AfacAfR3Ry9FJxJj7uGR2FWX9LoqUBR2pSYwpnx1w` |  |
+| world | the Ur-world | `did:key:z6MkiRjNXJurYkSptgmt5j3QrBvx6ZNjMikTeYxbeAzU2CQW` | `z6LSoPuicg2XPpJvU3VyyGDfcnJzazUFBnVWEbtKctsQufto` |
+| individual | ALICE | `did:key:z6Mks3GuxKpEPdGksne7WtUiXfUHZqjNEeMEriDG1vodhLS2` | `z6LSkYNWmmSyjFWnbx9XyBajPCuuJZZDfn6Lcmq5rFrXodLK` |
+| individual | BOB | `did:key:z6Mkpu1CCysTAtX2eBDoWGMyoWmdCyf4qZYYqgh4BtqrMuPa` | `z6LSqAjgFXivcs8ST8gevr8WfXPw33Y9iou9Hz4FUWPvbxiq` |
+
+**Where the private halves were:** in the private repository, and in
+the session's own checkout of it, which goes when the session's machine
+is reclaimed; nowhere else. Leaving and coming back in the Ur-world,
+part four, is next.
 
 ## Honest limits
 
@@ -300,7 +353,6 @@ root does.
 - **Until ALICE and BOB hold their own keys,** whoever holds the private
   repository can sign as them. That is what "public to the project"
   means (MINDS.md).
-
 - **The tool's guard sees Git as it is set up when the tool runs,** not
   at the push that follows: an environment variable, a `-c`, or a config
   file edited in between could send a push elsewhere, and SSH host

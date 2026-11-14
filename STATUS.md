@@ -25,9 +25,11 @@ respect one another's freedom, with full transparency and exit at any time
   pages and formats that last, are done (2026-11-14): every record
   signed the standard way, one schema read by Python and Rust, sealing,
   and who an individual and a world are
-  ([docs/research/FORMATS.md](docs/research/FORMATS.md)). Next is step 3,
-  keys and identities, in the project's private repository: under way,
-  its plan in docs/research/KEYS.md.
+  ([docs/research/FORMATS.md](docs/research/FORMATS.md)). Step 3, keys
+  and identities, is under way (docs/research/KEYS.md): the real keys
+  were made on 2026-11-14, the private halves in the project's private
+  repository and the key list in keys/key-list.json; part four, leaving
+  and coming back in the Ur-world, is next.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
   (#29), and experiment 001, the first unscripted minds
   ([results](experiments/001-first-words/RESULTS.md), #30). The first
@@ -959,6 +961,14 @@ it was wrong. Questions of what the project is for stay with the founder.
   new key list, an individual's or a world's by a succession).
 
 ## Log
+
+- 2026-11-14 Claude: course step 3, part three, the ceremony: the
+  project's real keys made at 13:58 UTC by the reviewed tool, their
+  private halves pushed at once to the private repository by its address
+  (64da8b0), checked against the key list from a fresh clone, and the
+  key list, version 1, published in keys/key-list.json (hash
+  c7c6c306…ffde); written up in docs/research/KEYS.md, "As built, part
+  three".
 
 - 2026-11-14 Claude: course step 3, part two, the last notes before the
   ceremony: the tool refuses a checkout that can push anywhere but its
