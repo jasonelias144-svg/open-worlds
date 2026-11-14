@@ -156,6 +156,29 @@ kind.
 
 ## Decided
 
+- 2026-11-14, founder, later the same evening: "And on the ALICE and BOB
+  comment, we are working up to that and is why I am suggesting we
+  experiment with minimally sufficient models, and so lightweight and
+  capable of choice for the fractal worlds. We are working towards ALICE
+  and BOB who will be the first inhabitants to persist once is running.
+  That is later." The technical lead's reading, put the same evening:
+  the atomic learners are the first rungs of a ladder whose questions
+  lead to step 8's audition, which measures what is minimally
+  sufficient for ALICE and BOB; an atomic learner learns from rewards,
+  and ALICE and BOB will be language models that speak, so the learners
+  teach about choice and don't become them.
+- 2026-11-14, founder, the same evening: "Marvelous! It is a perfect
+  first web app for viewing world simulations. Let’s set aside some
+  space just to develop a web app that also includes the multiversal
+  map." And: "Actually, I can brainstorm the whole multiversal map with
+  DeepSeek later. But it will be good to have it on the radar." The
+  technical lead's recommendation, put the same evening (it stands unless
+  the founder answers otherwise): a `web/` folder in open-worlds, a
+  static site with no server that reads worlds' public logs, Rust
+  compiled to WebAssembly later; the map one of its pages from the
+  start, with the fractal worlds its first entries; private until the
+  founder decides to publish it; and the map a topic in TOPICS.md, with
+  questions DeepSeek can take up.
 - 2026-11-14, founder, on Python and Rust, after record 012-06-02: "On
   Python vs Rust, I didn’t realize DeepSeek couldn’t access the Rust
   files without a direct link. And after we figured it out, I let
@@ -218,14 +241,15 @@ kind.
   forget. That is one possible world. We shouldn’t fix anything in stone
   too much now. We can put something in place, but give it a chance to
   develop. That is the balancing act we have been performing." So how a
-  world may change (not at all, in place, by branching, sandboxed from
-  other worlds) is that world's own law, set by its template; what all
-  worlds share stays the floor and what lets worlds meet (signed
-  records, keys, arrivals, leaving at any time). The amnesia world, one
-  possible world: in the persons plan, a presence knows only what its
-  person passes it (research/PERSONS.md, decision 7), so a person can
-  choose to pass nothing, and leave clues to find; the world's public log
-  stays public.
+  world may change is left open, and may differ by world (not at all, in
+  place, by branching, sandboxed from other worlds). The technical
+  lead's reading, put the same day: a world's own law could say which,
+  from its template; what all worlds share stays the floor and what lets
+  worlds meet (signed records, keys, arrivals, leaving at any time). And
+  of the amnesia world, one possible world: in the persons plan, a
+  presence knows only what its person passes it (research/PERSONS.md,
+  decision 7), so a person could choose to pass nothing, and leave clues
+  to find; the world's public log stays public.
 - 2026-11-14, founder, a standing rule on changes of mind: "Very
   important to note: I change my mind frequently, so if you read a
   comment of mine with DeepSeek, and it occurred after I said something
@@ -295,7 +319,7 @@ kind.
   - whether a change of parameters makes a branch (1801) or alters the
     world in place (663) was first read as "every change branches"; the
     founder's later word the same evening (above) replaced that reading:
-    it is each world's own law;
+    left open, and may differ by world;
   - fractal worlds built now with DeepSeek are sketches, and on the
     course they stayed after step 4a; the founder moved them forward the
     same evening (above);
@@ -1149,6 +1173,21 @@ it was wrong. Questions of what the project is for stay with the founder.
   separate keys would, or the architectures need the kernel changed.
 
 ## Log
+
+- 2026-11-14 Claude: record 012-06-02's code made to work, a first
+  round: fixes 6 to 14 (sketches/INDEX.md), the tests unchanged. 478 of
+  DeepSeek's 597 tests that load now pass, from 296 as written: every
+  fractal world, the chaos game, the gallery and its governance and
+  revocation, and most of the individual bundle. DeepSeek's later
+  additions that are outlines were merged by hand, as its prose
+  describes. Each test's keys are now made from its name, so a run
+  repeats exactly; with fresh random keys, 19 of the individual pieces'
+  tests pass or fail by chance. Left for a second round, each with its
+  error in known-failures.txt: those replays, the coupled chaos games'
+  coupling (a question about
+  the model), the gallery's attention tests (their plant can't grow as
+  far as they expect), the remaining outlines, and a tail of separate
+  causes in the lineage pieces.
 
 - 2026-11-14 Claude: record 012-06-02, the founder's conversation with
   DeepSeek that began from docs/COLLABORATING.md, brought into

@@ -466,4 +466,7 @@ page.
   301 fail on Python 3.12, 236 of them for one missing method, as
   INDEX.md says piece by piece. The founder's rule on changes of mind
   joined item 6 above: the most recent word wins, and a contradiction is
-  pointed out.
+  pointed out. Then a first round of fixes (INDEX.md, fixes 6 to 14):
+  478 of its tests pass, every fractal world among them, and the founder
+  moved fractal worlds forward, with a web app to watch them grow and a
+  multiversal map, to brainstorm here.

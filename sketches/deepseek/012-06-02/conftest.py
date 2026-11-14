@@ -16,7 +16,15 @@ whole folder means the list is exactly true.
 
 With SKETCH_RAW=1 set, nothing is listed: every test runs as written
 (tools/known_failures.py uses this to rewrite the list).
+
+Each test's keys are made from its own name (_repeatable_keys, below), so
+a run gives the same results every time. With fresh random keys, some of
+the individual pieces' tests pass or fail by chance, since the replays
+they check depend on the keys (sketches/INDEX.md, "Not fixed"); set
+SKETCH_RANDOM_KEYS=1 to run them that way.
 """
+import hashlib
+import itertools
 import os
 import sys
 from pathlib import Path
@@ -73,3 +81,24 @@ def pytest_collection_modifyitems(config, items):
         raise pytest.UsageError(
             "known-failures.txt lists tests that don't exist: "
             + ", ".join(stale))
+
+
+@pytest.fixture(autouse=True)
+def _repeatable_keys(request, monkeypatch):
+    """Ours: Ed25519PrivateKey.generate() makes each test's keys from the
+    test's own name and a counter, not from the operating system's
+    randomness, so every run of a test uses the same keys. These keys
+    protect nothing and are never for anything real."""
+    if os.environ.get("SKETCH_RANDOM_KEYS"):
+        return
+    from cryptography.hazmat.primitives.asymmetric import ed25519
+    count = itertools.count()
+
+    def generate():
+        seed = hashlib.sha256(
+            f"open-worlds sketch test key, never for anything real: "
+            f"{request.node.nodeid}: {next(count)}".encode()).digest()
+        return ed25519.Ed25519PrivateKey.from_private_bytes(seed)
+
+    monkeypatch.setattr(ed25519.Ed25519PrivateKey, "generate",
+                        staticmethod(generate))

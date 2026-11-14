@@ -57,5 +57,17 @@
   "known-failures.txt",
   "sketch_status_test.py"
  ],
- "changed": {}
+ "changed": {
+  "fractal_world_v2.py": "Fix 6: its demo, which the record gives as a separate block after the module (fractal_world_v2.py@1390), appended unchanged, as the tests import demo from here. Fix 7: GrowthRecord gains a read-only `prior` (its `prev`), which the verifier reads of every record. Fix 8: a parameter change keeps the time its authority signed, not a second reading of the clock.",
+  "fractal_world_v3.py": "Fix 6: its demo (fractal_world_v3.py@2816), appended unchanged. Fix 7: GrowthRecord gains a read-only `prior` (its `prev`), which the verifier reads of every record.",
+  "chaos_game_world.py": "Fix 8: a step driven by a choice keeps the choice's time, and the verifier rebuilds the choice for the step it grew from (one before the record's own); sign_choice may be given the time.",
+  "coupled_chaos_world.py": "Fix 8: both choices and the step record are signed with one time, and the verifier rebuilds each choice for the step it grew from.",
+  "gallery_governance.py": "Fix 9: a record embeds the request it answers with the request's signature, which the full verifier checks; it embedded the body alone.",
+  "gallery_revocation.py": "Fix 10: requests made with a revoked world-key are refused, as the module's docstring says and its demo expects; and DeepSeek's hook for extenders (gallery_revocation.py@16659, an outline), merged by hand into verify_revocable_governed_log.",
+  "coupled_learners.py": "Fix 11: Transform gains to_dict, the same method as choice_fractal.py's Transform has; the individual pieces call it.",
+  "world_agent_coupling.py": "Fix 12: _hash hashes bytes as they are; the individual pieces, which import it, hash bytes too, which JSON can't encode.",
+  "individual_bundle.py": "Fix 13: DeepSeek's later additions (individual_bundle.py@23274, @27017, @27054, @32475, @34393, outlines), merged by hand: initial_weights, ancestry and checkpoint_weights, with saving, loading and checks.",
+  "federated_bundle.py": "Fix 13: DeepSeek's later additions (federated_bundle.py@27067, @34853), merged by hand: lineage_root and ancestry in pack_federated_bundle, and FederatedSession's individual_id_override. Fix 14: the empty observations' hash is taken over the bytes of [], as the verifier takes it.",
+  "resumable.py": "Fix 13: DeepSeek's later additions (resumable.py@34429, @34871), merged by hand: verification by tier, and individual_id_override."
+ }
 }
