@@ -277,8 +277,9 @@ root does.
   accepts only on trust in this repository's owner. That new version 1
   carries forward every individual's and world's entry from the last
   version published, unchanged, and a reader holding the old list checks
-  that it does (point 9), so a lost root never becomes a way to give
-  ALICE, BOB or the Ur-world other keys.
+  that it does (`published_entries_problems`, the part of point 9's
+  check that holds across two histories), so a lost root never becomes a
+  way to give ALICE, BOB or the Ur-world other keys.
 - **Until ALICE and BOB hold their own keys,** whoever holds the private
   repository can sign as them. That is what "public to the project"
   means (MINDS.md).

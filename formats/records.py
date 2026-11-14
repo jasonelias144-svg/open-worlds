@@ -298,12 +298,23 @@ def key_list_problems(new: Dict[str, Any],
         found.append("$.issuer: not the root of the version before")
     if new["time"] < previous["time"]:
         found.append("$.time: earlier than the version before")
+    return found + published_entries_problems(new, previous)
+
+
+def published_entries_problems(new: Dict[str, Any],
+                               older: Dict[str, Any]) -> List[str]:
+    """Where a key list fails to keep every individual's and world's entry
+    of an older one as it was, or []: the kind of each entry is the older
+    list's. Part of `key_list_problems`; on its own, it checks a new
+    history, begun after a lost root, against the last version of the
+    old one (docs/research/KEYS.md, "Honest limits")."""
+    for record in (new, older):
+        _key_list(record)
     kept = {(e["role"], e["name"]): e for e in new["keys"]}
-    for e in previous["keys"]:
-        if e["role"] in PUBLISHED_ONLY and kept.get(
-                (e["role"], e["name"])) != e:
-            found.append(f"$.keys: {e['name']}'s entry changed or dropped")
-    return found
+    return [f"$.keys: {e['name']}'s entry changed or dropped"
+            for e in older["keys"]
+            if e["role"] in PUBLISHED_ONLY
+            and kept.get((e["role"], e["name"])) != e]
 
 
 def key_list_chain_problems(versions: List[Dict[str, Any]]) -> List[str]:

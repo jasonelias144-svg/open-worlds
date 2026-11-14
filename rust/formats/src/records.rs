@@ -365,7 +365,21 @@ pub fn key_list_problems(new: &Value, previous: &Value) -> Result<Vec<String>, S
     if time(new) < time(previous) {
         found.push("$.time: earlier than the version before".into());
     }
-    for e in key_entries(previous) {
+    found.extend(published_entries_problems(new, previous)?);
+    Ok(found)
+}
+
+/// Where a key list fails to keep every individual's and world's entry of
+/// an older one as it was, or an empty list: the kind of each entry is the
+/// older list's. Part of `key_list_problems`; on its own, it checks a new
+/// history, begun after a lost root, against the last version of the old
+/// one (docs/research/KEYS.md, "Honest limits").
+pub fn published_entries_problems(new: &Value, older: &Value) -> Result<Vec<String>, String> {
+    for record in [new, older] {
+        key_list(record)?;
+    }
+    let mut found = Vec::new();
+    for e in key_entries(older) {
         let (role, name) = role_and_name(e);
         if !role.is_some_and(|r| PUBLISHED_ONLY.contains(&r)) {
             continue;
