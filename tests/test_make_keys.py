@@ -54,6 +54,15 @@ class TestMakeKeys(unittest.TestCase):
         self._dir = tempfile.TemporaryDirectory()
         self.addCleanup(self._dir.cleanup)
         self.place = Path(self._dir.name)
+        # Git's own config files, kept apart from this machine's, so that
+        # a push target set there can't change what these tests see.
+        self.global_config = self.place / "gitconfig"
+        self.global_config.write_text("")
+        env = mock.patch.dict(os.environ, {
+            "GIT_CONFIG_GLOBAL": str(self.global_config),
+            "GIT_CONFIG_NOSYSTEM": "1"})
+        env.start()
+        self.addCleanup(env.stop)
         self.public = repository(self.place / "public", PUBLIC_URL,
                                  commits=3)
         patch = mock.patch.object(make_keys, "REPOSITORY", self.public)
@@ -237,6 +246,47 @@ class TestMakeKeys(unittest.TestCase):
         # Only the public list's staged copy is left, and it says so.
         self.assertEqual(self.left_behind(), [".key-list.json.being-made"])
 
+    def failing_writes(self, fail_on):
+        """os.fdopen, made to fail writing on its `fail_on`th call."""
+        real_fdopen = os.fdopen
+        calls = []
+
+        class FailingFile:
+            def __init__(self, f):
+                self.f = f
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *exc):
+                self.f.close()
+                return False
+
+            def write(self, text):
+                raise OSError(28, "No space left on device")
+
+        def fdopen(fd, *args, **kwargs):
+            calls.append(fd)
+            f = real_fdopen(fd, *args, **kwargs)
+            return FailingFile(f) if len(calls) == fail_on else f
+
+        return mock.patch.object(make_keys.os, "fdopen", fdopen)
+
+    def test_a_write_that_fails_leaves_no_file(self):
+        path = self.place / "a-new-file"
+        with self.failing_writes(1):
+            with self.assertRaises(OSError):
+                make_keys._write_new(path, "text", 0o600)
+        self.assertFalse(path.exists())
+
+    def test_a_staged_list_that_cant_be_written_leaves_nothing(self):
+        # Eight private halves are written, then the staged key list.
+        with self.failing_writes(len(make_keys.PLAN) + 1):
+            code, _, err = self.make()
+        self.assertEqual(code, 1)
+        self.assertIn("No space left", err)
+        self.assertEqual(self.left_behind(), [])
+
     def test_a_failure_writing_a_private_half_leaves_nothing(self):
         real = make_keys._write_new
         calls = []
@@ -379,6 +429,101 @@ class TestMakeKeys(unittest.TestCase):
         git(clone, "remote", "set-url", "origin", PRIVATE_URL)
         git(clone, "checkout", "-q", "--orphan", "fresh")
         self.refused(clone, "a checkout of this repository")
+
+    def test_it_refuses_a_push_target_that_isnt_one_of_its_remotes(self):
+        # `git remote -v` doesn't show these, but `git push` goes there.
+        settings = [("remote.pushDefault", str(self.public)),
+                    ("remote.pushDefault", PUBLIC_URL),
+                    ("branch.main.pushRemote", str(self.public)),
+                    ("branch.main.remote", "../public")]
+        for i, (key, value) in enumerate(settings):
+            place = repository(self.place / f"pushes-{i}", PRIVATE_URL,
+                               commits=0)
+            git(place, "config", key, value)
+            with self.subTest(key=key, value=value):
+                self.refused(place, "isn't one of its remotes")
+
+    def test_a_push_target_with_spaces_is_not_its_remote(self):
+        # Git keeps the spaces inside a quoted value, and reads " origin"
+        # as a path, not as the remote named origin.
+        for i, value in enumerate((" origin", "origin ", "origin\t",
+                                   "origin\nx")):
+            place = repository(self.place / f"spaced-{i}", PRIVATE_URL,
+                               commits=0)
+            git(place, "config", "remote.pushDefault", value)
+            with self.subTest(value=value):
+                self.refused(place, "isn't one of its remotes")
+
+    def test_it_refuses_a_remote_with_no_address(self):
+        # Git takes such a remote's name for its address, a path.
+        for i, (key, where) in enumerate((
+                ("remote.pushDefault", "local"),
+                ("branch.main.pushRemote", "local"),
+                ("remote.pushDefault", "global"))):
+            place = repository(self.place / f"no-address-{i}", PRIVATE_URL,
+                               commits=0)
+            settings = [("remote.evil.fetch",
+                         "+refs/heads/*:refs/remotes/evil/*"), (key, "evil")]
+            for name, value in settings:
+                if where == "global":
+                    subprocess.run(["git", "config", "--global", name, value],
+                                   check=True)
+                else:
+                    git(place, "config", name, value)
+            with self.subTest(key=key, where=where):
+                self.refused(place, "a path on this computer")
+            self.global_config.write_text("")
+
+    def test_it_refuses_a_remote_through_a_helper_by_vcs(self):
+        place = repository(self.place / "by-vcs", PRIVATE_URL, commits=0)
+        git(place, "config", "remote.origin.vcs", "ext")
+        self.refused(place, "remote helper")
+
+    def test_it_refuses_a_remote_kept_the_old_way(self):
+        # Files in .git/remotes or .git/branches: Git still reads them for
+        # a name that isn't a configured remote; `git remote -v` doesn't
+        # show them.
+        for i, (kind, text) in enumerate((
+                ("branches", f"{self.public}\n"),
+                ("remotes", f"URL: {self.public}\n"))):
+            place = repository(self.place / f"old-style-{i}", PRIVATE_URL,
+                               commits=0)
+            folder = place / ".git" / kind
+            folder.mkdir(exist_ok=True)
+            (folder / "origin").write_text(text)
+            with self.subTest(kind=kind):
+                self.refused(place, "kept the old way")
+
+    def test_empty_old_style_folders_are_allowed(self):
+        for kind in ("branches", "remotes"):
+            (self.private / ".git" / kind).mkdir(exist_ok=True)
+        make_keys.check_private_place(self.private)
+
+    def test_it_refuses_a_remote_helper_or_an_address_with_spaces(self):
+        for i, url in enumerate(("ext::git-remote-ext %S",
+                                 "fd::17",
+                                 "https://example.invalid/project/the "
+                                 "private-keys.git")):
+            place = repository(self.place / f"helper-{i}", url, commits=0)
+            with self.subTest(url=url):
+                self.refused(place, "remote helper")
+
+    def test_a_push_target_set_in_gits_own_config_is_refused_too(self):
+        self.global_config.write_text(
+            f"[remote]\n\tpushDefault = {self.public}\n")
+        self.refused(self.private, "isn't one of its remotes")
+
+    def test_push_targets_that_are_its_remotes_are_allowed(self):
+        for i, (key, value) in enumerate([
+                ("remote.pushDefault", "origin"),
+                ("branch.main.remote", "origin"),
+                ("branch.main.remote", "."),
+                ("branch.main.pushRemote", "origin")]):
+            place = repository(self.place / f"allowed-{i}", PRIVATE_URL,
+                               commits=0)
+            git(place, "config", key, value)
+            with self.subTest(key=key, value=value):
+                make_keys.check_private_place(place)
 
     def test_local_paths(self):
         for url, local in [("/home/someone/repo", True), ("../repo", True),

@@ -214,7 +214,9 @@ root does.
   previous)` checks its hash, the next number, signed by the root the
   one before names, no earlier in time, and every individual's and
   world's entry kept as it was (point 9). Since no such entry can be
-  dropped, a check of each pair covers a whole history.
+  dropped, a check of each pair covers a whole history. That last part
+  is `published_entries_problems(new, older)` on its own, which also
+  checks a new history after a lost root ("Honest limits").
 - **A whole history:** `key_list_chain_problems(versions)` walks it from
   version 1, each version against the one before, and refuses a history
   that ends on a version naming a root that hasn't signed one. So a
@@ -241,8 +243,10 @@ root does.
   vectors' test keys, worked out again from its seed, or the W3C
   specification's example. A key made on the spot and planted in
   README.md, or among the vectors' keys, is caught. A failure names the
-  file, the kind of key and a hash of it, never the key. Not caught: a
-  key split across several strings joined in code.
+  file, the kind of key and a hash of it, never the key. Not caught,
+  none of them a form this project writes: a key split across several
+  strings joined in code; a PEM block escaped twice, or commented out
+  line by line; a file in UTF-16; a raw seed in hex.
 - **The tool** (`python3 -m formats.make_keys --private PATH --key-list
   PATH`, `formats/make_keys.py`): makes a key for each role from the
   operating system's randomness; writes each holder's private halves to
@@ -252,21 +256,27 @@ root does.
   prints only public keys. `--private` must be the top of a full clone
   of another repository. It refuses a place inside this repository's
   working tree; a worktree of this repository; a clone whose remotes
-  name this repository, or are paths on this computer; a history that
-  shares this repository's first commit on any branch; a shallow clone,
-  of either, since its first commits are only where its history was
-  cut; a checkout with no remote; and a `keys` that is there already,
-  folder or link, so nothing is written over a key or through a link. A
-  clone of a fork of this repository, under another name and with its
-  history cut, is beyond what it can tell. Everything or nothing: the halves are written
-  into a new folder only its owner can open, and moved into place with
-  the key list once both are whole; a failure on the way leaves neither.
-  Tested on throwaway repositories, with each guard checked by removing
-  it. If the tool is killed midway, it can leave a `.keys-being-made-…`
-  folder in the private checkout and a `.<key list's name>.being-made`
-  file beside the key list; delete both before running it again. Names
-  are compared byte for byte, so `ALICE` and `Alice` are two names; see
-  STATUS, "Noticed".
+  name this repository, or are paths on this computer, or go through a
+  remote helper (`transport::address`, or `remote.<name>.vcs`); a remote
+  with no address at all, whose name Git would take for a path; a remote
+  kept the old way, in `.git/remotes` or `.git/branches`; a push target
+  that isn't one of its remotes, read byte for byte
+  (`remote.pushDefault`, or a branch's `remote` or `pushRemote`, from
+  any of Git's config files, which `git remote -v` doesn't show); a
+  history that shares this repository's first commit on any branch; a
+  shallow clone, of either, since its first commits are only where its
+  history was cut; a checkout with no remote; and a `keys` that is there
+  already, folder or link, so nothing is written over a key or through a
+  link. A clone of a fork of this repository, under another name and
+  with its history cut, is beyond what it can tell. Everything or
+  nothing: the halves are written into a new folder only its owner can
+  open, and moved into place with the key list once both are whole; a
+  failure on the way leaves neither. Tested on throwaway repositories,
+  with each guard checked by removing it. If the tool is killed midway,
+  it can leave a `.keys-being-made-…` folder in the private checkout and
+  a `.<key list's name>.being-made` file beside the key list; delete
+  both before running it again. Names are compared byte for byte, so
+  `ALICE` and `Alice` are two names; see STATUS, "Noticed".
 
 ## Honest limits
 
@@ -290,6 +300,13 @@ root does.
 - **Until ALICE and BOB hold their own keys,** whoever holds the private
   repository can sign as them. That is what "public to the project"
   means (MINDS.md).
+
+- **The tool's guard sees Git as it is set up when the tool runs,** not
+  at the push that follows: an environment variable, a `-c`, or a config
+  file edited in between could send a push elsewhere, and SSH host
+  aliases, `core.sshCommand` and remote helpers are beyond what it can
+  see. So the ceremony pushes the private halves by naming the private
+  repository's address in the push itself, not by a remote's name.
 
 *Revisit if:* anyone else holds a key: then the root kept off GitHub and
 offline, and thresholds.
