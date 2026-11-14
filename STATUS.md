@@ -828,13 +828,17 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 - 2026-11-14, the chemistry world's records of what was made keep the
   rules for signed records: each names its format
-  (`open-worlds/chemistry-made/v1`, `schemas/chemistry-made-v1.schema.json`)
-  and gives its world time in whole microseconds (`world_time_us`),
-  rounded to the nearest, from the chemistry world's law v0.5. *Why:* a
-  made stamp commits to the record's fingerprint, and FORMATS.md
-  proposed that what is signed holds no floats. Records made before keep
-  their float. *Revisit if:* a world's time needs finer than a
-  microsecond, or more than 2^53 - 1 of them (about 285 years).
+  (`open-worlds/chemistry-made/v1`,
+  `schemas/chemistry-made-v1.schema.json`) and gives its world time in
+  whole microseconds (`world_time_us`), from the chemistry world's law
+  v0.5, which keeps every record within the rules: an act's seconds are
+  whole microseconds, at most an hour, no act once world time passes what
+  a record can say (2^53 - 1 microseconds), and no product longer than a
+  record holds. *Why:* a made stamp commits to the record's fingerprint,
+  and FORMATS.md proposed that what is signed holds no floats. Records
+  made before keep their float. *Revisit if:* a world's time needs finer
+  than a microsecond, or a world must run beyond about 285 years of world
+  time.
 
 ## Log
 

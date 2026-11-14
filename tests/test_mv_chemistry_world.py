@@ -7,6 +7,7 @@ is a real reaction, by one of the rules, among molecules that are there.
 import json
 import unittest
 from pathlib import Path
+from unittest import mock
 
 import jsonschema
 
@@ -14,8 +15,9 @@ from chem import catalogue as cat
 from chem.rules import RULES
 from formats.canonical import canonical
 from multiverse.chemistry_world import (ACT_TYPE, MADE_FORMAT,
-                                        ChemistryWorld, ChemistryWorldLaw,
-                                        microseconds, reactions_from_log)
+                                        MAX_WORLD_TIME_US, ChemistryWorld,
+                                        ChemistryWorldLaw, microseconds,
+                                        reactions_from_log)
 from multiverse.conformance import run_conformance
 from multiverse.identity import Individual
 from multiverse.passport import Stamp, thing_fingerprint
@@ -82,6 +84,8 @@ class TestTheLaw(ChemistryCase):
     def test_its_numbers_are_checked(self):
         for law in ({"seconds_per_act": float("nan")},
                     {"seconds_per_act": -1}, {"seconds_per_act": "1"},
+                    {"seconds_per_act": 1e-7}, {"seconds_per_act": 2.5e-6},
+                    {"seconds_per_act": 3600.5}, {"seconds_per_act": 1e10},
                     {"soil": (("unobtainium", 1),)},
                     {"own_reactions": (("alchemy", ("water",), 1.0, 1.0),)}):
             with self.subTest(law=law), self.assertRaises(ValueError):
@@ -304,7 +308,6 @@ class TestTheWorld(ChemistryCase):
         self.assertEqual(_count(w, "glycine"), 14)
 
 
-
 class TestTheRecordOfWhatWasMade(ChemistryCase):
     """What a made stamp commits to keeps the project's rules for signed
     records: ASCII keys, integers within 2^53 - 1, no floats
@@ -348,6 +351,37 @@ class TestTheRecordOfWhatWasMade(ChemistryCase):
         self.assertEqual(microseconds(1.5e-6), 2)   # ties to even
         self.assertEqual(microseconds(2.5e-6), 2)
         self.assertIsInstance(microseconds(1.0), int)
+
+    def test_an_acts_seconds_are_whole_microseconds_at_most_an_hour(self):
+        for seconds in (0, 1e-6, 0.1, 1.0004, 2.5, 3600):
+            with self.subTest(seconds=seconds):
+                ChemistryWorldLaw(seconds_per_act=seconds)
+
+    def test_no_act_once_world_time_passes_what_a_record_can_say(self):
+        w = self.still(seconds_per_act=3600)
+        alice = self.enter(w)
+        last = MAX_WORLD_TIME_US // 1_000_000   # seconds, just below
+        w.soup.time = float(last)
+        self.assertIsInstance(w.act(_react(w, alice, TWO_GLYCINES)), Ack)
+        made, = w.reactions()
+        self.assertEqual(made["world_time_us"], last * 1_000_000)
+        canonical(made)
+        glycine = _count(w, "glycine")
+        refused = w.act(_react(w, alice, TWO_GLYCINES))  # an hour later
+        self.assertIsInstance(refused, Refusal)
+        self.assertIn("2^53 - 1 microseconds", refused.reason)
+        self.assertEqual(_count(w, "glycine"), glycine)
+        self.assertEqual(len(w.reactions()), 1)
+
+    def test_no_product_longer_than_a_record_holds(self):
+        w = self.still()
+        alice = self.enter(w)
+        with mock.patch("multiverse.chemistry_world.MAX_NAME", 50):
+            refused = w.act(_react(w, alice, TWO_GLYCINES))
+        self.assertIsInstance(refused, Refusal)
+        self.assertIn("longer than a record holds", refused.reason)
+        self.assertEqual(_count(w, "glycine"), 20)
+        self.assertEqual(w.reactions(), [])
 
     def test_the_schema_refuses_a_float_time(self):
         validator = jsonschema.Draft202012Validator(json.loads(

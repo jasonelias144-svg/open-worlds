@@ -50,9 +50,15 @@ commits to such a record's fingerprint (`thing_fingerprint`,
 `multiverse/passport.py`). Since the chemistry world's law v0.5
 (2026-11-14), they don't: the record names its format
 (`open-worlds/chemistry-made/v1`, `schemas/chemistry-made-v1.schema.json`)
-and gives its world time in whole microseconds (`world_time_us`), and a
-test checks every kind of reaction's record against the schema and these
-rules. Records made before keep their float, as they were signed.
+and gives its world time in whole microseconds (`world_time_us`). The
+world keeps it within the rules: an act's seconds are a whole number of
+microseconds, at most an hour; once world time passes 2^53 - 1
+microseconds (about 285 years) the world takes no more acts; and it
+refuses a product whose identity is longer than the schema allows. A
+test checks the records of three kinds of reaction against the schema
+and these rules; the independent review checked 1,366 records, from nine
+of the ten rules. Records made before keep their float, as they were
+signed.
 
 **Libraries:** `rfc8785` for Python (Trail of Bits, Apache 2.0, 0.1.4,
 September 2024, no dependencies); `serde_jcs` for Rust (MIT or Apache 2.0,
