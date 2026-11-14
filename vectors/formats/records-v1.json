@@ -523,25 +523,120 @@
    "hash": "9e0d9a8ff8cbd506edc67b6b76046ddd480d65fbe42688cdafe4b9f54f03b1f6"
   },
   {
+   "name": "a template for chemistry worlds, with its dials",
+   "signer": "the project",
+   "record": {
+    "format": "open-worlds/template/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "name": "chemistry, one well-mixed cell",
+    "code": {
+     "repo": "example/open-worlds",
+     "revision": "f38d3fdfce0556b1a75270487ea5810b2cd8b35e"
+    },
+    "parameters": {
+     "admitsAnyIdentity": {
+      "value": 1,
+      "unit": "1",
+      "about": "1 if anyone may enter, 0 if only those its law names."
+     },
+     "maxAdmitted": {
+      "value": 0,
+      "unit": "{individual}",
+      "about": "How many may be present at once; 0 for no limit."
+     },
+     "seed": {
+      "value": 0,
+      "unit": "1",
+      "about": "The seed of the soup's random draws: worlds with the same template and dials replay exactly.",
+      "min": 0,
+      "max": 9007199254740991
+     },
+     "secondsPerAct": {
+      "value": 1000,
+      "unit": "ms",
+      "about": "World time each accepted act lets the soup run.",
+      "min": 0,
+      "max": 3600000
+     },
+     "volume": {
+      "value": 10000,
+      "unit": "10*-3",
+      "about": "The volume of the one well-mixed cell, in the soup's own unit."
+     },
+     "soilWater": {
+      "value": 100,
+      "unit": "{molecule}",
+      "about": "Water in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "soilGlycine": {
+      "value": 20,
+      "unit": "{molecule}",
+      "about": "Glycine in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "soilFormaldehyde": {
+      "value": 10,
+      "unit": "{molecule}",
+      "about": "Formaldehyde in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "protonTransferForward": {
+      "value": 4000,
+      "unit": "10*-3/s",
+      "about": "Rate of proton transfer from glycine's acid to its amine (a placeholder, course step 8)."
+     },
+     "protonTransferReverse": {
+      "value": 1000,
+      "unit": "10*-3/s",
+      "about": "Rate of the same, backwards (a placeholder)."
+     },
+     "hydrationForward": {
+      "value": 500,
+      "unit": "10*-3/s",
+      "about": "Rate of hydration of formaldehyde's carbonyl (a placeholder)."
+     },
+     "hydrationReverse": {
+      "value": 200,
+      "unit": "10*-3/s",
+      "about": "Rate of the same, backwards (a placeholder)."
+     }
+    },
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zYrsGiUNL3k76p1dBiBKDVgyZcc15naKviYEftita9Hc8paUenSUbbDAMJeJ4j58Ld3gYE7D3UytkVGRucPv2GqR"
+    }
+   },
+   "hash": "9da0936f79434602e79496a1fc53d06e44a3d2166b96ebc1a554d42df8b32c85"
+  },
+  {
    "name": "a world's birth record, forked from another, with founders",
    "signer": "a parallel chemistry world",
    "record": {
     "format": "open-worlds/world-birth/v1",
     "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
-    "name": "chemistry, warmer",
+    "name": "chemistry, wetter",
     "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
     "founders": [
      "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
      "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
     ],
-    "template": "b339b65c504c17302769d6a5f4e6fe6d9cc09657f470aa1f8d6708bb67a8da38",
+    "template": "9da0936f79434602e79496a1fc53d06e44a3d2166b96ebc1a554d42df8b32c85",
     "forkedFrom": {
      "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
      "tick": 1000,
      "log": "7cf45fc9cc78ee9aa9ca87e8ed918f5a50afd39a10a1a8aa8802248683acc663"
     },
     "dials": {
-     "temperature": 310000
+     "seed": 7,
+     "soilWater": 200
     },
     "time": "2026-11-14T05:00:00Z",
     "proof": {
@@ -550,10 +645,10 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z38FubG1xauxS1YtMhDpGLPSdkZAyUdQdn8D5uoQrhTnCbtUHHNa2aBCLg7AVMjnYGgXBiLRGmCDTXRS8oYUnV1hg"
+     "proofValue": "z2LKHsvqMaRpAsMgCYnyvNFhKkkPhdUxEoNdZrrVpuSFaYo3KExNkWRH8YQKWEUoBAzhexEP9gVPxYtzx95NMamru"
     }
    },
-   "hash": "24c071bd2b5b9d7507465f7bf50a9767cc9585ca233dacfa60eb72bdfb85b2f6"
+   "hash": "5562bc4542218247fa5f41d39f9e072895fc7c9252f2f62e4d1233df69f3a980"
   }
  ],
  "refused": [
@@ -1610,19 +1705,20 @@
    "record": {
     "format": "open-worlds/world-birth/v1",
     "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
-    "name": "chemistry, warmer",
+    "name": "chemistry, wetter",
     "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
     "founders": [
      "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
      "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
     ],
-    "template": "b339b65c504c17302769d6a5f4e6fe6d9cc09657f470aa1f8d6708bb67a8da38",
+    "template": "9da0936f79434602e79496a1fc53d06e44a3d2166b96ebc1a554d42df8b32c85",
     "forkedFrom": {
      "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
      "tick": 1000
     },
     "dials": {
-     "temperature": 310000
+     "seed": 7,
+     "soilWater": 200
     },
     "time": "2026-11-14T05:00:00Z",
     "proof": {
@@ -1631,7 +1727,7 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z3sRJH5y4RN7NqS9iEATiw4YPcWtaaFwUHcSRFA58DxT6Jhi3pperiTtCW2TQVxX3sfYxEhqsbvdZFEixyApkpi3a"
+     "proofValue": "z9WyLmhXh2DdaGszGRA6cr3iWph1cJaY6geVdVmsX2K3GR7m3K8GUYmZndvwpTyf4RGjd9M8JYugYVYqQfW14hSb"
     }
    }
   },
@@ -1640,20 +1736,21 @@
    "record": {
     "format": "open-worlds/world-birth/v1",
     "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
-    "name": "chemistry, warmer",
+    "name": "chemistry, wetter",
     "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
     "founders": [
      "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
      "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c"
     ],
-    "template": "b339b65c504c17302769d6a5f4e6fe6d9cc09657f470aa1f8d6708bb67a8da38",
+    "template": "9da0936f79434602e79496a1fc53d06e44a3d2166b96ebc1a554d42df8b32c85",
     "forkedFrom": {
      "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
      "tick": 1000,
      "log": "7cf45fc9cc78ee9aa9ca87e8ed918f5a50afd39a10a1a8aa8802248683acc663"
     },
     "dials": {
-     "temperature": 310000
+     "seed": 7,
+     "soilWater": 200
     },
     "time": "2026-11-14T05:00:00Z",
     "proof": {
@@ -1662,7 +1759,7 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z3VJASDaGzBBXpC67w7r1aKn8HhjLEfU1gEYpgj4rsc5BBeV3rRVU6WejKLr8QkBMxAjyQ48aB3q8QmMHLSKc6inM"
+     "proofValue": "z434sVC44MT2gSFJ5nvrM85uPCF6dXiWr3YJSZJJurGjvi9J1ByAaxDY2nEHd9Mfhut7haY3pbxjaeodm1agACbwW"
     }
    }
   },
@@ -1671,7 +1768,7 @@
    "record": {
     "format": "open-worlds/world-birth/v1",
     "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
-    "name": "chemistry, warmer",
+    "name": "chemistry, wetter",
     "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
     "founders": [
      "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
@@ -1683,7 +1780,8 @@
      "log": "7cf45fc9cc78ee9aa9ca87e8ed918f5a50afd39a10a1a8aa8802248683acc663"
     },
     "dials": {
-     "temperature": 310000
+     "seed": 7,
+     "soilWater": 200
     },
     "time": "2026-11-14T05:00:00Z",
     "proof": {
@@ -1692,7 +1790,7 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z4wriFCL9831PFrSQoR5hyLfLmyfCu7n6Phz1BxYdfUpa5D8N2sDhiYoA5TztThnVPUQij7jSeFCswUVaUepNmX38"
+     "proofValue": "z3PhvRctiqJWM9hux8mxmu6D7y7ZkwQJs2rHJbJgV1E7ANwT2cVSCPwjHTD4etwHLngtXmgsNrswgLkYFgcQQJHcW"
     }
    }
   },
@@ -1701,20 +1799,20 @@
    "record": {
     "format": "open-worlds/world-birth/v1",
     "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
-    "name": "chemistry, warmer",
+    "name": "chemistry, wetter",
     "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
     "founders": [
      "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
      "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
     ],
-    "template": "b339b65c504c17302769d6a5f4e6fe6d9cc09657f470aa1f8d6708bb67a8da38",
+    "template": "9da0936f79434602e79496a1fc53d06e44a3d2166b96ebc1a554d42df8b32c85",
     "forkedFrom": {
      "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
      "tick": 1000,
      "log": "7cf45fc9cc78ee9aa9ca87e8ed918f5a50afd39a10a1a8aa8802248683acc663"
     },
     "dials": {
-     "temperature": 310.15
+     "soilWater": 200.5
     },
     "time": "2026-11-14T05:00:00Z",
     "proof": {
@@ -1723,7 +1821,7 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z38FubG1xauxS1YtMhDpGLPSdkZAyUdQdn8D5uoQrhTnCbtUHHNa2aBCLg7AVMjnYGgXBiLRGmCDTXRS8oYUnV1hg"
+     "proofValue": "z2LKHsvqMaRpAsMgCYnyvNFhKkkPhdUxEoNdZrrVpuSFaYo3KExNkWRH8YQKWEUoBAzhexEP9gVPxYtzx95NMamru"
     }
    }
   },
@@ -1732,13 +1830,13 @@
    "record": {
     "format": "open-worlds/world-birth/v1",
     "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
-    "name": "chemistry, warmer",
+    "name": "chemistry, wetter",
     "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
     "founders": [
      "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
      "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
     ],
-    "template": "b339b65c504c17302769d6a5f4e6fe6d9cc09657f470aa1f8d6708bb67a8da38",
+    "template": "9da0936f79434602e79496a1fc53d06e44a3d2166b96ebc1a554d42df8b32c85",
     "forkedFrom": {
      "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
      "tick": 1000,
@@ -1752,7 +1850,7 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z676HaaegrXhe84ZK9gGxNbARHhe3Xbvxkf4ByHzvpqCKYmd5MXmXUjznqiy6Haq9mGSDekKSADpc5tRTR2ZYjByk"
+     "proofValue": "z2PoeQjSn3DkqZ5Cepng95j9nVu6L4zZagbvewi3SALr5iz5TiQxnNguEgCH64RUZTg49nfp411gS8kM1sqTPmwE1"
     }
    }
   },
@@ -2218,6 +2316,1027 @@
      "proofValue": "z3zEGNECwkX3nRsdEWABhyV9SCjL2fK1CqXNPfLQNa8HSbvaZkvVykC21Uva5t6AFjLoc5iNkyPQxyNUcJmWEGLMD"
     }
    }
+  },
+  {
+   "name": "a template signed by a world, not the project",
+   "record": {
+    "format": "open-worlds/template/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "name": "chemistry, one well-mixed cell",
+    "code": {
+     "repo": "example/open-worlds",
+     "revision": "f38d3fdfce0556b1a75270487ea5810b2cd8b35e"
+    },
+    "parameters": {
+     "admitsAnyIdentity": {
+      "value": 1,
+      "unit": "1",
+      "about": "1 if anyone may enter, 0 if only those its law names."
+     },
+     "maxAdmitted": {
+      "value": 0,
+      "unit": "{individual}",
+      "about": "How many may be present at once; 0 for no limit."
+     },
+     "seed": {
+      "value": 0,
+      "unit": "1",
+      "about": "The seed of the soup's random draws: worlds with the same template and dials replay exactly.",
+      "min": 0,
+      "max": 9007199254740991
+     },
+     "secondsPerAct": {
+      "value": 1000,
+      "unit": "ms",
+      "about": "World time each accepted act lets the soup run.",
+      "min": 0,
+      "max": 3600000
+     },
+     "volume": {
+      "value": 10000,
+      "unit": "10*-3",
+      "about": "The volume of the one well-mixed cell, in the soup's own unit."
+     },
+     "soilWater": {
+      "value": 100,
+      "unit": "{molecule}",
+      "about": "Water in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "soilGlycine": {
+      "value": 20,
+      "unit": "{molecule}",
+      "about": "Glycine in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "soilFormaldehyde": {
+      "value": 10,
+      "unit": "{molecule}",
+      "about": "Formaldehyde in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "protonTransferForward": {
+      "value": 4000,
+      "unit": "10*-3/s",
+      "about": "Rate of proton transfer from glycine's acid to its amine (a placeholder, course step 8)."
+     },
+     "protonTransferReverse": {
+      "value": 1000,
+      "unit": "10*-3/s",
+      "about": "Rate of the same, backwards (a placeholder)."
+     },
+     "hydrationForward": {
+      "value": 500,
+      "unit": "10*-3/s",
+      "about": "Rate of hydration of formaldehyde's carbonyl (a placeholder)."
+     },
+     "hydrationReverse": {
+      "value": 200,
+      "unit": "10*-3/s",
+      "about": "Rate of the same, backwards (a placeholder)."
+     }
+    },
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j#z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zuj1hyfPokvPnMP3aUezAmGLbwTSM5ynRP8YGPJYnk3KKgqMAFTgFY9cfGfHSV8c7r4uVN26cdscjQtxofSWTM6P"
+    }
+   }
+  },
+  {
+   "name": "a template whose dial's value is beyond its range",
+   "record": {
+    "format": "open-worlds/template/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "name": "chemistry, one well-mixed cell",
+    "code": {
+     "repo": "example/open-worlds",
+     "revision": "f38d3fdfce0556b1a75270487ea5810b2cd8b35e"
+    },
+    "parameters": {
+     "admitsAnyIdentity": {
+      "value": 1,
+      "unit": "1",
+      "about": "1 if anyone may enter, 0 if only those its law names."
+     },
+     "maxAdmitted": {
+      "value": 0,
+      "unit": "{individual}",
+      "about": "How many may be present at once; 0 for no limit."
+     },
+     "seed": {
+      "value": 0,
+      "unit": "1",
+      "about": "The seed of the soup's random draws: worlds with the same template and dials replay exactly.",
+      "min": 0,
+      "max": 9007199254740991
+     },
+     "secondsPerAct": {
+      "value": 1000,
+      "unit": "ms",
+      "about": "World time each accepted act lets the soup run.",
+      "min": 0,
+      "max": 3600000
+     },
+     "volume": {
+      "value": 10000,
+      "unit": "10*-3",
+      "about": "The volume of the one well-mixed cell, in the soup's own unit."
+     },
+     "soilWater": {
+      "value": 200000,
+      "unit": "{molecule}",
+      "about": "Water in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "soilGlycine": {
+      "value": 20,
+      "unit": "{molecule}",
+      "about": "Glycine in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "soilFormaldehyde": {
+      "value": 10,
+      "unit": "{molecule}",
+      "about": "Formaldehyde in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "protonTransferForward": {
+      "value": 4000,
+      "unit": "10*-3/s",
+      "about": "Rate of proton transfer from glycine's acid to its amine (a placeholder, course step 8)."
+     },
+     "protonTransferReverse": {
+      "value": 1000,
+      "unit": "10*-3/s",
+      "about": "Rate of the same, backwards (a placeholder)."
+     },
+     "hydrationForward": {
+      "value": 500,
+      "unit": "10*-3/s",
+      "about": "Rate of hydration of formaldehyde's carbonyl (a placeholder)."
+     },
+     "hydrationReverse": {
+      "value": 200,
+      "unit": "10*-3/s",
+      "about": "Rate of the same, backwards (a placeholder)."
+     }
+    },
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5AEkEMPEXx1nXAVBbtWRQRRYebnPq6Tqy5YyedqLZS1QadLdbvKNKJF62LJA4oV3ruQ5mt8SCXEHuYKkCQjNehN7"
+    }
+   }
+  },
+  {
+   "name": "a template whose dial has no room to turn",
+   "record": {
+    "format": "open-worlds/template/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "name": "chemistry, one well-mixed cell",
+    "code": {
+     "repo": "example/open-worlds",
+     "revision": "f38d3fdfce0556b1a75270487ea5810b2cd8b35e"
+    },
+    "parameters": {
+     "admitsAnyIdentity": {
+      "value": 1,
+      "unit": "1",
+      "about": "1 if anyone may enter, 0 if only those its law names."
+     },
+     "maxAdmitted": {
+      "value": 0,
+      "unit": "{individual}",
+      "about": "How many may be present at once; 0 for no limit."
+     },
+     "seed": {
+      "value": 0,
+      "unit": "1",
+      "about": "The seed of the soup's random draws: worlds with the same template and dials replay exactly.",
+      "min": 0,
+      "max": 9007199254740991
+     },
+     "secondsPerAct": {
+      "value": 1000,
+      "unit": "ms",
+      "about": "World time each accepted act lets the soup run.",
+      "min": 0,
+      "max": 3600000
+     },
+     "volume": {
+      "value": 10000,
+      "unit": "10*-3",
+      "about": "The volume of the one well-mixed cell, in the soup's own unit."
+     },
+     "soilWater": {
+      "value": 100,
+      "unit": "{molecule}",
+      "about": "Water in the soil at the start.",
+      "min": 100,
+      "max": 100
+     },
+     "soilGlycine": {
+      "value": 20,
+      "unit": "{molecule}",
+      "about": "Glycine in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "soilFormaldehyde": {
+      "value": 10,
+      "unit": "{molecule}",
+      "about": "Formaldehyde in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "protonTransferForward": {
+      "value": 4000,
+      "unit": "10*-3/s",
+      "about": "Rate of proton transfer from glycine's acid to its amine (a placeholder, course step 8)."
+     },
+     "protonTransferReverse": {
+      "value": 1000,
+      "unit": "10*-3/s",
+      "about": "Rate of the same, backwards (a placeholder)."
+     },
+     "hydrationForward": {
+      "value": 500,
+      "unit": "10*-3/s",
+      "about": "Rate of hydration of formaldehyde's carbonyl (a placeholder)."
+     },
+     "hydrationReverse": {
+      "value": 200,
+      "unit": "10*-3/s",
+      "about": "Rate of the same, backwards (a placeholder)."
+     }
+    },
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2QyDCff78cGsYWUgph4remEKY91dpKXY4c52Q6XwaWRtHjJEopfY72RGPqTjch5xNVxn4szRYUXUXRpBmifeHJSm"
+    }
+   }
+  },
+  {
+   "name": "a template with a parameter given a least value but no most",
+   "record": {
+    "format": "open-worlds/template/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "name": "chemistry, one well-mixed cell",
+    "code": {
+     "repo": "example/open-worlds",
+     "revision": "f38d3fdfce0556b1a75270487ea5810b2cd8b35e"
+    },
+    "parameters": {
+     "admitsAnyIdentity": {
+      "value": 1,
+      "unit": "1",
+      "about": "1 if anyone may enter, 0 if only those its law names."
+     },
+     "maxAdmitted": {
+      "value": 0,
+      "unit": "{individual}",
+      "about": "How many may be present at once; 0 for no limit."
+     },
+     "seed": {
+      "value": 0,
+      "unit": "1",
+      "about": "The seed of the soup's random draws: worlds with the same template and dials replay exactly.",
+      "min": 0,
+      "max": 9007199254740991
+     },
+     "secondsPerAct": {
+      "value": 1000,
+      "unit": "ms",
+      "about": "World time each accepted act lets the soup run.",
+      "min": 0,
+      "max": 3600000
+     },
+     "volume": {
+      "value": 10000,
+      "unit": "10*-3",
+      "about": "The volume of the one well-mixed cell, in the soup's own unit.",
+      "min": 1000
+     },
+     "soilWater": {
+      "value": 100,
+      "unit": "{molecule}",
+      "about": "Water in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "soilGlycine": {
+      "value": 20,
+      "unit": "{molecule}",
+      "about": "Glycine in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "soilFormaldehyde": {
+      "value": 10,
+      "unit": "{molecule}",
+      "about": "Formaldehyde in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "protonTransferForward": {
+      "value": 4000,
+      "unit": "10*-3/s",
+      "about": "Rate of proton transfer from glycine's acid to its amine (a placeholder, course step 8)."
+     },
+     "protonTransferReverse": {
+      "value": 1000,
+      "unit": "10*-3/s",
+      "about": "Rate of the same, backwards (a placeholder)."
+     },
+     "hydrationForward": {
+      "value": 500,
+      "unit": "10*-3/s",
+      "about": "Rate of hydration of formaldehyde's carbonyl (a placeholder)."
+     },
+     "hydrationReverse": {
+      "value": 200,
+      "unit": "10*-3/s",
+      "about": "Rate of the same, backwards (a placeholder)."
+     }
+    },
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zKEaaUMnYJDogbRkNTChhZzFnQehpiJ3KNxz6bJKYBx7ZjHrqyuN4hkEXZquCYeRv6PT5N8yPfRSNH8ZySwS3F1m"
+    }
+   }
+  },
+  {
+   "name": "a template with a parameter as a number with a fraction",
+   "record": {
+    "format": "open-worlds/template/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "name": "chemistry, one well-mixed cell",
+    "code": {
+     "repo": "example/open-worlds",
+     "revision": "f38d3fdfce0556b1a75270487ea5810b2cd8b35e"
+    },
+    "parameters": {
+     "admitsAnyIdentity": {
+      "value": 1,
+      "unit": "1",
+      "about": "1 if anyone may enter, 0 if only those its law names."
+     },
+     "maxAdmitted": {
+      "value": 0,
+      "unit": "{individual}",
+      "about": "How many may be present at once; 0 for no limit."
+     },
+     "seed": {
+      "value": 0,
+      "unit": "1",
+      "about": "The seed of the soup's random draws: worlds with the same template and dials replay exactly.",
+      "min": 0,
+      "max": 9007199254740991
+     },
+     "secondsPerAct": {
+      "value": 1000,
+      "unit": "ms",
+      "about": "World time each accepted act lets the soup run.",
+      "min": 0,
+      "max": 3600000
+     },
+     "volume": {
+      "value": 10.5,
+      "unit": "10*-3",
+      "about": "The volume of the one well-mixed cell, in the soup's own unit."
+     },
+     "soilWater": {
+      "value": 100,
+      "unit": "{molecule}",
+      "about": "Water in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "soilGlycine": {
+      "value": 20,
+      "unit": "{molecule}",
+      "about": "Glycine in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "soilFormaldehyde": {
+      "value": 10,
+      "unit": "{molecule}",
+      "about": "Formaldehyde in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "protonTransferForward": {
+      "value": 4000,
+      "unit": "10*-3/s",
+      "about": "Rate of proton transfer from glycine's acid to its amine (a placeholder, course step 8)."
+     },
+     "protonTransferReverse": {
+      "value": 1000,
+      "unit": "10*-3/s",
+      "about": "Rate of the same, backwards (a placeholder)."
+     },
+     "hydrationForward": {
+      "value": 500,
+      "unit": "10*-3/s",
+      "about": "Rate of hydration of formaldehyde's carbonyl (a placeholder)."
+     },
+     "hydrationReverse": {
+      "value": 200,
+      "unit": "10*-3/s",
+      "about": "Rate of the same, backwards (a placeholder)."
+     }
+    },
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zYrsGiUNL3k76p1dBiBKDVgyZcc15naKviYEftita9Hc8paUenSUbbDAMJeJ4j58Ld3gYE7D3UytkVGRucPv2GqR"
+    }
+   }
+  },
+  {
+   "name": "a template whose unit has a space in it",
+   "record": {
+    "format": "open-worlds/template/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "name": "chemistry, one well-mixed cell",
+    "code": {
+     "repo": "example/open-worlds",
+     "revision": "f38d3fdfce0556b1a75270487ea5810b2cd8b35e"
+    },
+    "parameters": {
+     "admitsAnyIdentity": {
+      "value": 1,
+      "unit": "1",
+      "about": "1 if anyone may enter, 0 if only those its law names."
+     },
+     "maxAdmitted": {
+      "value": 0,
+      "unit": "{individual}",
+      "about": "How many may be present at once; 0 for no limit."
+     },
+     "seed": {
+      "value": 0,
+      "unit": "1",
+      "about": "The seed of the soup's random draws: worlds with the same template and dials replay exactly.",
+      "min": 0,
+      "max": 9007199254740991
+     },
+     "secondsPerAct": {
+      "value": 1000,
+      "unit": "milli second",
+      "about": "World time each accepted act lets the soup run.",
+      "min": 0,
+      "max": 3600000
+     },
+     "volume": {
+      "value": 10000,
+      "unit": "10*-3",
+      "about": "The volume of the one well-mixed cell, in the soup's own unit."
+     },
+     "soilWater": {
+      "value": 100,
+      "unit": "{molecule}",
+      "about": "Water in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "soilGlycine": {
+      "value": 20,
+      "unit": "{molecule}",
+      "about": "Glycine in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "soilFormaldehyde": {
+      "value": 10,
+      "unit": "{molecule}",
+      "about": "Formaldehyde in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "protonTransferForward": {
+      "value": 4000,
+      "unit": "10*-3/s",
+      "about": "Rate of proton transfer from glycine's acid to its amine (a placeholder, course step 8)."
+     },
+     "protonTransferReverse": {
+      "value": 1000,
+      "unit": "10*-3/s",
+      "about": "Rate of the same, backwards (a placeholder)."
+     },
+     "hydrationForward": {
+      "value": 500,
+      "unit": "10*-3/s",
+      "about": "Rate of hydration of formaldehyde's carbonyl (a placeholder)."
+     },
+     "hydrationReverse": {
+      "value": 200,
+      "unit": "10*-3/s",
+      "about": "Rate of the same, backwards (a placeholder)."
+     }
+    },
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z29g3FXsqfVGR5U4zMG99B4KPPrxrT7nBxtuQFUaeR3zQSoo4MmCLdd9s47Huxx7fP58VR6pfKB9rXyGtN55FLhVt"
+    }
+   }
+  },
+  {
+   "name": "a template with no parameters",
+   "record": {
+    "format": "open-worlds/template/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "name": "chemistry, one well-mixed cell",
+    "code": {
+     "repo": "example/open-worlds",
+     "revision": "f38d3fdfce0556b1a75270487ea5810b2cd8b35e"
+    },
+    "parameters": {},
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2Wx6WyVTtuZBYKM3p3ytg7ohhWkjc3w161JKz5y1Sq2eJqzQXKfzfaiZ4RrtJZ12USg5LombXYUGw65vEPSbx9aW"
+    }
+   }
+  },
+  {
+   "name": "a template whose code is named by a branch",
+   "record": {
+    "format": "open-worlds/template/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "name": "chemistry, one well-mixed cell",
+    "code": {
+     "repo": "example/open-worlds",
+     "revision": "main"
+    },
+    "parameters": {
+     "admitsAnyIdentity": {
+      "value": 1,
+      "unit": "1",
+      "about": "1 if anyone may enter, 0 if only those its law names."
+     },
+     "maxAdmitted": {
+      "value": 0,
+      "unit": "{individual}",
+      "about": "How many may be present at once; 0 for no limit."
+     },
+     "seed": {
+      "value": 0,
+      "unit": "1",
+      "about": "The seed of the soup's random draws: worlds with the same template and dials replay exactly.",
+      "min": 0,
+      "max": 9007199254740991
+     },
+     "secondsPerAct": {
+      "value": 1000,
+      "unit": "ms",
+      "about": "World time each accepted act lets the soup run.",
+      "min": 0,
+      "max": 3600000
+     },
+     "volume": {
+      "value": 10000,
+      "unit": "10*-3",
+      "about": "The volume of the one well-mixed cell, in the soup's own unit."
+     },
+     "soilWater": {
+      "value": 100,
+      "unit": "{molecule}",
+      "about": "Water in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "soilGlycine": {
+      "value": 20,
+      "unit": "{molecule}",
+      "about": "Glycine in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "soilFormaldehyde": {
+      "value": 10,
+      "unit": "{molecule}",
+      "about": "Formaldehyde in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "protonTransferForward": {
+      "value": 4000,
+      "unit": "10*-3/s",
+      "about": "Rate of proton transfer from glycine's acid to its amine (a placeholder, course step 8)."
+     },
+     "protonTransferReverse": {
+      "value": 1000,
+      "unit": "10*-3/s",
+      "about": "Rate of the same, backwards (a placeholder)."
+     },
+     "hydrationForward": {
+      "value": 500,
+      "unit": "10*-3/s",
+      "about": "Rate of hydration of formaldehyde's carbonyl (a placeholder)."
+     },
+     "hydrationReverse": {
+      "value": 200,
+      "unit": "10*-3/s",
+      "about": "Rate of the same, backwards (a placeholder)."
+     }
+    },
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4ZMYZpgDrAAQ6nZJrVL3kLVTesq1W4TwpMhgY9kFBJpb1bmZUrYXqRXtZQFAiVrjXKLJjdNbT1cx4kXTx7fZ9vaQ"
+    }
+   }
+  },
+  {
+   "name": "a template with a parameter's name in two parts",
+   "record": {
+    "format": "open-worlds/template/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "name": "chemistry, one well-mixed cell",
+    "code": {
+     "repo": "example/open-worlds",
+     "revision": "f38d3fdfce0556b1a75270487ea5810b2cd8b35e"
+    },
+    "parameters": {
+     "admitsAnyIdentity": {
+      "value": 1,
+      "unit": "1",
+      "about": "1 if anyone may enter, 0 if only those its law names."
+     },
+     "maxAdmitted": {
+      "value": 0,
+      "unit": "{individual}",
+      "about": "How many may be present at once; 0 for no limit."
+     },
+     "seed": {
+      "value": 0,
+      "unit": "1",
+      "about": "The seed of the soup's random draws: worlds with the same template and dials replay exactly.",
+      "min": 0,
+      "max": 9007199254740991
+     },
+     "secondsPerAct": {
+      "value": 1000,
+      "unit": "ms",
+      "about": "World time each accepted act lets the soup run.",
+      "min": 0,
+      "max": 3600000
+     },
+     "volume": {
+      "value": 10000,
+      "unit": "10*-3",
+      "about": "The volume of the one well-mixed cell, in the soup's own unit."
+     },
+     "soilWater": {
+      "value": 100,
+      "unit": "{molecule}",
+      "about": "Water in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "soilGlycine": {
+      "value": 20,
+      "unit": "{molecule}",
+      "about": "Glycine in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "soilFormaldehyde": {
+      "value": 10,
+      "unit": "{molecule}",
+      "about": "Formaldehyde in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     },
+     "protonTransferForward": {
+      "value": 4000,
+      "unit": "10*-3/s",
+      "about": "Rate of proton transfer from glycine's acid to its amine (a placeholder, course step 8)."
+     },
+     "protonTransferReverse": {
+      "value": 1000,
+      "unit": "10*-3/s",
+      "about": "Rate of the same, backwards (a placeholder)."
+     },
+     "hydrationForward": {
+      "value": 500,
+      "unit": "10*-3/s",
+      "about": "Rate of hydration of formaldehyde's carbonyl (a placeholder)."
+     },
+     "hydrationReverse": {
+      "value": 200,
+      "unit": "10*-3/s",
+      "about": "Rate of the same, backwards (a placeholder)."
+     },
+     "soil.water": {
+      "value": 100,
+      "unit": "{molecule}",
+      "about": "Water in the soil at the start.",
+      "min": 0,
+      "max": 100000
+     }
+    },
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5Jz4kYNyB3q8EMK7pVGeJXUbG2m461SkSdBBZhuDEsQZGwZHizk4F4ZcwiUVwC4RRipT3hkZQTWbn5MoozppPhQp"
+    }
+   }
+  }
+ ],
+ "dials": [
+  {
+   "name": "a forked world, setting the seed and the water",
+   "template": "a template for chemistry worlds, with its dials",
+   "worldBirth": {
+    "format": "open-worlds/world-birth/v1",
+    "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+    "name": "chemistry, wetter",
+    "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
+    "founders": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "template": "9da0936f79434602e79496a1fc53d06e44a3d2166b96ebc1a554d42df8b32c85",
+    "forkedFrom": {
+     "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
+     "tick": 1000,
+     "log": "7cf45fc9cc78ee9aa9ca87e8ed918f5a50afd39a10a1a8aa8802248683acc663"
+    },
+    "dials": {
+     "seed": 7,
+     "soilWater": 200
+    },
+    "time": "2026-11-14T05:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2LKHsvqMaRpAsMgCYnyvNFhKkkPhdUxEoNdZrrVpuSFaYo3KExNkWRH8YQKWEUoBAzhexEP9gVPxYtzx95NMamru"
+    }
+   },
+   "holds": true
+  },
+  {
+   "name": "one dial, at the top of its range",
+   "template": "a template for chemistry worlds, with its dials",
+   "worldBirth": {
+    "format": "open-worlds/world-birth/v1",
+    "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+    "name": "chemistry, wetter",
+    "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
+    "founders": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "template": "9da0936f79434602e79496a1fc53d06e44a3d2166b96ebc1a554d42df8b32c85",
+    "forkedFrom": {
+     "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
+     "tick": 1000,
+     "log": "7cf45fc9cc78ee9aa9ca87e8ed918f5a50afd39a10a1a8aa8802248683acc663"
+    },
+    "dials": {
+     "soilWater": 100000
+    },
+    "time": "2026-11-14T05:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "znCtD7tASnpwUQLNnBcYyH16wwwyTfzbzbKHAzgjKgNUYabejPTBVHJGadWkNxY38Y1pW5HRCQSTEa8t92W1kbr7"
+    }
+   },
+   "holds": true
+  },
+  {
+   "name": "a world naming another template",
+   "template": "a template for chemistry worlds, with its dials",
+   "worldBirth": {
+    "format": "open-worlds/world-birth/v1",
+    "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+    "name": "chemistry, wetter",
+    "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
+    "founders": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "template": "69e265ecf99eeb4483c2357ba7307888e1eab3c4f51bd5f167e93f8cbe7b726b",
+    "forkedFrom": {
+     "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
+     "tick": 1000,
+     "log": "7cf45fc9cc78ee9aa9ca87e8ed918f5a50afd39a10a1a8aa8802248683acc663"
+    },
+    "dials": {
+     "seed": 7,
+     "soilWater": 200
+    },
+    "time": "2026-11-14T05:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2cWvzLvJK4iYfwKujqPbpsrWQJSFPWyJVe79qqVXWEnpLSJwFQPDif1wM3Kj91kCPDzXj6ndzJkMte5qk9dBeMph"
+    }
+   },
+   "holds": false
+  },
+  {
+   "name": "a world made from no template",
+   "template": "a template for chemistry worlds, with its dials",
+   "worldBirth": {
+    "format": "open-worlds/world-birth/v1",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "name": "the Ur-world",
+    "law": "5b1536c4f433fcd9d4df57c81165ba1862eef7cc7e8dcebb451786e988dbd3b8",
+    "founders": [],
+    "time": "2026-11-12T00:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX#z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z55hWj7oJSzNfUb3wMtdnnEJKv9DYhDjUDL1hzMtvfjtgEfJjFoRQ7enPpgdNf7YgWoSEdixRVkEcmDURpSeiHfff"
+    }
+   },
+   "holds": false
+  },
+  {
+   "name": "a dial the template doesn't have",
+   "template": "a template for chemistry worlds, with its dials",
+   "worldBirth": {
+    "format": "open-worlds/world-birth/v1",
+    "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+    "name": "chemistry, wetter",
+    "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
+    "founders": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "template": "9da0936f79434602e79496a1fc53d06e44a3d2166b96ebc1a554d42df8b32c85",
+    "forkedFrom": {
+     "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
+     "tick": 1000,
+     "log": "7cf45fc9cc78ee9aa9ca87e8ed918f5a50afd39a10a1a8aa8802248683acc663"
+    },
+    "dials": {
+     "temperature": 310000
+    },
+    "time": "2026-11-14T05:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3SDV2N5493u6zSEpcsxVEbQcf7ZovW2JisXmhBpkRw9RPBTVK68hceso6gUnuzbBaZo5i9o6yNkd3qm43fApzdXp"
+    }
+   },
+   "holds": false
+  },
+  {
+   "name": "a parameter the template fixes",
+   "template": "a template for chemistry worlds, with its dials",
+   "worldBirth": {
+    "format": "open-worlds/world-birth/v1",
+    "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+    "name": "chemistry, wetter",
+    "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
+    "founders": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "template": "9da0936f79434602e79496a1fc53d06e44a3d2166b96ebc1a554d42df8b32c85",
+    "forkedFrom": {
+     "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
+     "tick": 1000,
+     "log": "7cf45fc9cc78ee9aa9ca87e8ed918f5a50afd39a10a1a8aa8802248683acc663"
+    },
+    "dials": {
+     "volume": 20000
+    },
+    "time": "2026-11-14T05:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5UCHynRtRwhBRrHFmXsYLtn66WjpPsk9iinfp6UxRvdE6U55dbAZwbmMP5u4aoR8tKqt8mkzM1e97tA4nXESuPYN"
+    }
+   },
+   "holds": false
+  },
+  {
+   "name": "a dial beyond its range",
+   "template": "a template for chemistry worlds, with its dials",
+   "worldBirth": {
+    "format": "open-worlds/world-birth/v1",
+    "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+    "name": "chemistry, wetter",
+    "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
+    "founders": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "template": "9da0936f79434602e79496a1fc53d06e44a3d2166b96ebc1a554d42df8b32c85",
+    "forkedFrom": {
+     "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
+     "tick": 1000,
+     "log": "7cf45fc9cc78ee9aa9ca87e8ed918f5a50afd39a10a1a8aa8802248683acc663"
+    },
+    "dials": {
+     "soilWater": 100001
+    },
+    "time": "2026-11-14T05:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5ntXgrk7bib5AChRnaDy6MZzVzH13UCobd5f97NT4tYHW1tQVb4UQdaxhwWizSy7uz8fYbUUEwrNk3Yb4M8Mhj8q"
+    }
+   },
+   "holds": false
+  },
+  {
+   "name": "a dial set to the template's own value",
+   "template": "a template for chemistry worlds, with its dials",
+   "worldBirth": {
+    "format": "open-worlds/world-birth/v1",
+    "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+    "name": "chemistry, wetter",
+    "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
+    "founders": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "template": "9da0936f79434602e79496a1fc53d06e44a3d2166b96ebc1a554d42df8b32c85",
+    "forkedFrom": {
+     "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
+     "tick": 1000,
+     "log": "7cf45fc9cc78ee9aa9ca87e8ed918f5a50afd39a10a1a8aa8802248683acc663"
+    },
+    "dials": {
+     "seed": 0
+    },
+    "time": "2026-11-14T05:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z22S29G3zpJaRbvHEPeoPqZSBmVDkEhbJzX77cQW3vBwmoTWKjkdPwD1czRQZAwGXHPMHRJzf1DYoS9VmzHqMLsZ9"
+    }
+   },
+   "holds": false
   }
  ]
 }

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/jasonelias144-svg/open-worlds/schemas/records-v1.schema.json",
   "title": "open-worlds records, version 1",
-  "description": "The records the offices keep (course step 2): a grant, a decision record, a suggestion, a rating, and a signed log head; an individual's sealed records: a world-key and a journal entry, with the sealed box they travel in; and the records of who an individual and a world are: identity, birth record, mind record, and a world's birth record. Each record is signed with eddsa-jcs-2022 (formats/proof.py); formats/records.py, formats/sealed.py and rust/formats check them, and docs/research/FORMATS.md says why each field is there.",
+  "description": "The records the offices keep (course step 2): a grant, a decision record, a suggestion, a rating, and a signed log head; an individual's sealed records: a world-key and a journal entry, with the sealed box they travel in; and the records of who an individual and a world are: identity, birth record, mind record, and a world's birth record; and a world's template, with its dials. Each record is signed with eddsa-jcs-2022 (formats/proof.py); formats/records.py, formats/sealed.py and rust/formats check them, and docs/research/FORMATS.md says why each field is there.",
   "$defs": {
     "didKey": {
       "description": "An Ed25519 public key as a did:key; an individual's, a world's or an office's.",
@@ -987,6 +987,117 @@
         "issuer",
         "individual",
         "engines",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
+    "parameter": {
+      "description": "One world-level parameter of a template: its value, an integer in its unit, what it is, and, for a dial, the range a world may set it within.",
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "unit": {
+          "description": "Its unit, as a case-sensitive UCUM code (https://ucum.org): \"1\" for a plain number, \"ms\" for milliseconds, \"10*-3/s\" for thousandths per second, \"{molecule}\" for a count of molecules.",
+          "type": "string",
+          "pattern": "^[!-~]{1,64}$"
+        },
+        "about": {
+          "description": "What it is, in a sentence.",
+          "allOf": [
+            {
+              "$ref": "#/$defs/text"
+            }
+          ],
+          "maxLength": 256
+        },
+        "min": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991,
+          "description": "For a dial: the least a world may set it to."
+        },
+        "max": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991,
+          "description": "For a dial: the most a world may set it to."
+        }
+      },
+      "required": [
+        "value",
+        "unit",
+        "about"
+      ],
+      "dependentRequired": {
+        "min": [
+          "max"
+        ],
+        "max": [
+          "min"
+        ]
+      },
+      "additionalProperties": false
+    },
+    "template": {
+      "description": "A world's template: every world-level parameter, the code that runs it, and which parameters are dials, with their ranges; a world made from it names it by hash, and the dials it set (docs/PARALLEL-WORLDS.md, \"Parallel worlds\"; docs/VISION.md, \"Ride along, and steer\"). Signed by the project's key that keeps templates.",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/template/v1"
+        },
+        "issuer": {
+          "$ref": "#/$defs/didKey"
+        },
+        "name": {
+          "$ref": "#/$defs/name"
+        },
+        "code": {
+          "description": "The reviewed code that runs a world made from it: a repository at an exact commit.",
+          "type": "object",
+          "properties": {
+            "repo": {
+              "description": "The repository, as owner/name.",
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$",
+              "maxLength": 128
+            },
+            "revision": {
+              "description": "The exact commit: 40 hex digits.",
+              "type": "string",
+              "pattern": "^[0-9a-f]{40}$"
+            }
+          },
+          "required": [
+            "repo",
+            "revision"
+          ],
+          "additionalProperties": false
+        },
+        "parameters": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "pattern": "^[a-z][A-Za-z0-9]*$",
+            "maxLength": 64
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/parameter"
+          }
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "issuer",
+        "name",
+        "code",
+        "parameters",
         "proof"
       ],
       "additionalProperties": false

@@ -28,7 +28,10 @@ world of its own, with its own key and log, made from a named template.
   rules, its starting conditions, the version of its kernel. Each
   parallel world names its template, by hash, and exactly what it
   changed. So anyone can see what two worlds share and where they differ.
-  Its format is one more for course step 2's list.
+  Its format is in records-v1, with dials and their ranges
+  ([research/FORMATS.md](research/FORMATS.md), "A world's template");
+  for now its law and rules are carried by the code it names, at an
+  exact commit, and its starting conditions by its parameters.
 - **A parallel world copies the setup, never the people** (decided by the
   founder, on the technical lead's recommendation). Copying an individual
   would be a fork, which needs the child's acceptance (decided on the

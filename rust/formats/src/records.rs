@@ -1,10 +1,11 @@
 //! The records the offices keep (course step 2): a grant, a decision
 //! record, a suggestion, a rating and a signed log head; an individual's
-//! world-key and journal entry; and identity, birth records and the mind
-//! record, as
-//! `formats/records.py` checks them, from the same schema file. A record
-//! holds when it fits its kind's schema, its proof verifies, and it was
-//! signed by the one who must sign that kind.
+//! world-key and journal entry; identity, birth records and the mind
+//! record; and a world's template, as `formats/records.py` checks them,
+//! from the same schema file. A record holds when it fits its kind's
+//! schema, its proof verifies, and it was signed by the one who must sign
+//! that kind. `dial_problems` checks a world's birth record against the
+//! template it names.
 
 use serde_json::{Value, json};
 use sha2::{Digest, Sha256};
@@ -18,7 +19,7 @@ pub const SCHEMA: &str = include_str!("../../../schemas/records-v1.schema.json")
 
 /// Each format, its schema's name in `$defs`, and the path of the field
 /// that names its signer.
-pub const KINDS: [(&str, &str, &[&str]); 11] = [
+pub const KINDS: [(&str, &str, &[&str]); 12] = [
     ("open-worlds/grant/v1", "grant", &["issuer"]),
     ("open-worlds/decision/v1", "decision", &["office", "key"]),
     ("open-worlds/suggestion/v1", "suggestion", &["author"]),
@@ -30,6 +31,7 @@ pub const KINDS: [(&str, &str, &[&str]); 11] = [
     ("open-worlds/birth/v1", "birth", &["world"]),
     ("open-worlds/world-birth/v1", "worldBirth", &["world"]),
     ("open-worlds/mind/v1", "mind", &["issuer"]),
+    ("open-worlds/template/v1", "template", &["issuer"]),
 ];
 
 fn kind(record: &Value) -> Option<&'static (&'static str, &'static str, &'static [&'static str])> {
@@ -175,12 +177,44 @@ fn key_problems(record: &Value) -> Vec<String> {
     }
 }
 
+fn int(value: &Value, key: &str) -> Option<i64> {
+    value.get(key).and_then(Value::as_i64)
+}
+
+/// A template's dial must have room to turn, and its value must be within
+/// its range; the schema checks only that min and max come together.
+fn range_problems(record: &Value) -> Vec<String> {
+    if record.get("format").and_then(Value::as_str) != Some("open-worlds/template/v1") {
+        return Vec::new();
+    }
+    let Some(parameters) = record.get("parameters").and_then(Value::as_object) else {
+        return Vec::new();
+    };
+    let mut names: Vec<&String> = parameters.keys().collect();
+    names.sort();
+    let mut found = Vec::new();
+    for name in names {
+        let p = &parameters[name];
+        let (Some(min), Some(max), Some(value)) = (int(p, "min"), int(p, "max"), int(p, "value"))
+        else {
+            continue;
+        };
+        if min >= max {
+            found.push(format!("$.parameters.{name}: min is not below max"));
+        } else if !(min..=max).contains(&value) {
+            found.push(format!("$.parameters.{name}: value is outside its range"));
+        }
+    }
+    found
+}
+
 /// `record` without its proof, if it holds.
 pub fn check(record: &Value) -> Result<Value, String> {
     let mut found = problems(record)?;
     if found.is_empty() {
         found.extend(time_problems(record));
         found.extend(key_problems(record));
+        found.extend(range_problems(record));
     }
     if !found.is_empty() {
         return Err(found.join("; "));
@@ -201,4 +235,54 @@ pub fn check(record: &Value) -> Result<Value, String> {
 pub fn record_hash(record: &Value) -> Result<String, String> {
     let digest = Sha256::digest(canonical(record)?);
     Ok(digest.iter().map(|b| format!("{b:02x}")).collect())
+}
+
+/// Where a world's birth record and the template it names disagree, or an
+/// empty list: it must name that template by hash, and each dial it set
+/// must be one of the template's dials, within its range, and changed
+/// from the template's own value. Both records must hold.
+pub fn dial_problems(world_birth: &Value, template: &Value) -> Result<Vec<String>, String> {
+    for (record, kind) in [
+        (world_birth, "open-worlds/world-birth/v1"),
+        (template, "open-worlds/template/v1"),
+    ] {
+        check(record)?;
+        if record.get("format").and_then(Value::as_str) != Some(kind) {
+            return Err(format!("$.format: not {kind}"));
+        }
+    }
+    let Some(named) = world_birth.get("template").and_then(Value::as_str) else {
+        return Ok(vec!["$.template: names no template".into()]);
+    };
+    if named != record_hash(template)? {
+        return Ok(vec!["$.template: names another template".into()]);
+    }
+    let parameters = template
+        .get("parameters")
+        .and_then(Value::as_object)
+        .ok_or("no parameters")?;
+    let mut dials: Vec<(&String, &Value)> = world_birth
+        .get("dials")
+        .and_then(Value::as_object)
+        .map(|d| d.iter().collect())
+        .unwrap_or_default();
+    dials.sort_by(|a, b| a.0.cmp(b.0));
+    let mut found = Vec::new();
+    for (name, value) in dials {
+        let value = value.as_i64().ok_or("a dial that isn't an integer")?;
+        let Some(p) = parameters.get(name) else {
+            found.push(format!("$.dials.{name}: not a parameter of the template"));
+            continue;
+        };
+        let (Some(min), Some(max)) = (int(p, "min"), int(p, "max")) else {
+            found.push(format!("$.dials.{name}: fixed in the template, not a dial"));
+            continue;
+        };
+        if !(min..=max).contains(&value) {
+            found.push(format!("$.dials.{name}: outside the dial's range"));
+        } else if Some(value) == int(p, "value") {
+            found.push(format!("$.dials.{name}: set to the template's own value"));
+        }
+    }
+    Ok(found)
 }
