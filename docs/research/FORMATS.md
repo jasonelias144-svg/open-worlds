@@ -439,7 +439,12 @@ one schema,
   made), `time`, and, for a world made from a template or forked from
   another, `template` and `forkedFrom` (the parent world, the tick, and
   the hash of the parent's log there), as decided on 2026-11-14
-  ([VISION.md](../VISION.md), "Learning from GitHub").
+  ([VISION.md](../VISION.md), "Learning from GitHub"). A world made from
+  a template names, in `dials`, exactly what it changed: each dial the
+  template declares that it set, as an integer in the unit the template
+  states ([PARALLEL-WORLDS.md](../PARALLEL-WORLDS.md), "Parallel
+  worlds"). Whether each is a dial of that template, and within its
+  range, is checked against the template, which is step 2's last format.
 - **A mind record** (`open-worlds/mind/v1`), signed by the project's key
   that keeps mind records: the `individual`, and every engine they have
   run on: the model at an exact 40-digit revision, its files by hash, its
@@ -451,7 +456,7 @@ one schema,
 
 Every time in these records must be a real one (a grant's always had to
 be). Shared vectors (`vectors/formats/records-v1.json`): 6 more records
-that hold, and 18 more that must be refused, among them an identity
+that hold, and 21 more that must be refused, among them an identity
 whose sealing key is of small order, a birth record on 30 February, a
 mind record whose image is named by a tag, and one whose engines are out
 of order.

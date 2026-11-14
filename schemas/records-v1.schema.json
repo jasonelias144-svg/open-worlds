@@ -767,7 +767,7 @@
       "additionalProperties": false
     },
     "worldBirth": {
-      "description": "A world's birth record: its name, its law, who founded it, and, for a world made from a template or forked from another, where it came from (docs/VISION.md, \"Learning from GitHub\"). Signed by the world.",
+      "description": "A world's birth record: its name, its law, who founded it, and, for a world made from a template or forked from another, where it came from and which of the template's dials it set (docs/VISION.md, \"Learning from GitHub\"). Signed by the world.",
       "type": "object",
       "properties": {
         "format": {
@@ -816,6 +816,20 @@
           ],
           "additionalProperties": false
         },
+        "dials": {
+          "description": "The template's dials it set, and to what: each an integer, in the unit the template states. Only with a template.",
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "pattern": "^[a-z][A-Za-z0-9]*$",
+            "maxLength": 64
+          },
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          }
+        },
         "time": {
           "$ref": "#/$defs/time"
         },
@@ -832,6 +846,11 @@
         "time",
         "proof"
       ],
+      "dependentRequired": {
+        "dials": [
+          "template"
+        ]
+      },
       "additionalProperties": false
     },
     "engine": {

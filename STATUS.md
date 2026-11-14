@@ -751,18 +751,17 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 - 2026-11-14, who an individual and a world are: an identity
   (`open-worlds/identity/v1`), signed with its own key, binding a sealing
-  key to a did:key; an individual's birth record and a world's, signed
-  by the world, the world's naming its template and what it was forked
-  from; and a mind record, signed by the project's key, naming each
-  engine by exact revision, file hashes and image digest, in the order
-  they began; all in
-  records-v1 (docs/research/FORMATS.md, "Who an individual and a world
-  are"). *Why:* sealing to the right person needs the binding; the birth
-  records are what MINDS.md and VISION.md describe; a mind record with
-  exact revisions and digests is what lets an engine be rebuilt.
-  *Revisit if:* step 3's keys need the identity to carry successions in
-  the record itself, or a world's founding (course step 12) needs more
-  in its birth record.
+  key to a did:key; an individual's birth record and a world's, signed by
+  the world, the world's naming its template, the template's dials it set,
+  and what it was forked from; and a mind record, signed by the project's
+  key, naming each engine by exact revision, file hashes and image digest,
+  in the order they began; all in records-v1 (docs/research/FORMATS.md,
+  "Who an individual and a world are"). *Why:* sealing to the right person
+  needs the binding; the birth records are what MINDS.md and VISION.md
+  describe; a mind record with exact revisions and digests is what lets an
+  engine be rebuilt. *Revisit if:* step 3's keys need the identity to
+  carry successions in the record itself, or a world's founding (course
+  step 12) needs more in its birth record.
 
 ## Log
 
@@ -771,7 +770,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   record (with what it was forked from) and the mind record join
   records-v1, in Python and Rust; an identity's sealing key is checked as
   sealing checks it, and every time in a record must be real. Shared
-  vectors: 16 records that hold and 53 refused in records-v1.json.
+  vectors: 16 records that hold and 56 refused in records-v1.json.
 - 2026-11-14 Claude: the founder's standing rule: an unanswered question
   is decided on the technical lead's recommendation, once put, except
   for what silence can't consent to. Written into AGENTS.md and STATUS;

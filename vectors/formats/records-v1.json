@@ -540,6 +540,9 @@
      "tick": 1000,
      "log": "7cf45fc9cc78ee9aa9ca87e8ed918f5a50afd39a10a1a8aa8802248683acc663"
     },
+    "dials": {
+     "temperature": 310000
+    },
     "time": "2026-11-14T05:00:00Z",
     "proof": {
      "type": "DataIntegrityProof",
@@ -547,10 +550,10 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z5QtndKTdiW9PqfUsjJoefsdRSXafdkWGCnLuJBGskhuzPhW8NNyW12Sn4wADrs8Rt6UdSwZUU2pk8Nc9vUupc9bE"
+     "proofValue": "z38FubG1xauxS1YtMhDpGLPSdkZAyUdQdn8D5uoQrhTnCbtUHHNa2aBCLg7AVMjnYGgXBiLRGmCDTXRS8oYUnV1hg"
     }
    },
-   "hash": "76b390cb325aa0050d740114c3f98f1574053816448b108e2267600468de78a8"
+   "hash": "24c071bd2b5b9d7507465f7bf50a9767cc9585ca233dacfa60eb72bdfb85b2f6"
   }
  ],
  "refused": [
@@ -1618,6 +1621,9 @@
      "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
      "tick": 1000
     },
+    "dials": {
+     "temperature": 310000
+    },
     "time": "2026-11-14T05:00:00Z",
     "proof": {
      "type": "DataIntegrityProof",
@@ -1625,7 +1631,7 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z2rbN6oLvtQb6goGpXTXMguebR7RxgnFw7THk2fLQomm3baLpqHzpAeP3sZxZwTaKbeBirNLDi1p4yMeE5vXv2mLQ"
+     "proofValue": "z3sRJH5y4RN7NqS9iEATiw4YPcWtaaFwUHcSRFA58DxT6Jhi3pperiTtCW2TQVxX3sfYxEhqsbvdZFEixyApkpi3a"
     }
    }
   },
@@ -1646,6 +1652,9 @@
      "tick": 1000,
      "log": "7cf45fc9cc78ee9aa9ca87e8ed918f5a50afd39a10a1a8aa8802248683acc663"
     },
+    "dials": {
+     "temperature": 310000
+    },
     "time": "2026-11-14T05:00:00Z",
     "proof": {
      "type": "DataIntegrityProof",
@@ -1653,7 +1662,97 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z4VyUGgpoDSCqyn7Cz5edX2t3PjJL8wMm18p2NgrNVXm48RRrBo22jpmgQjForie9GBaCVkmSG9V72tihMdnU4Lzb"
+     "proofValue": "z3VJASDaGzBBXpC67w7r1aKn8HhjLEfU1gEYpgj4rsc5BBeV3rRVU6WejKLr8QkBMxAjyQ48aB3q8QmMHLSKc6inM"
+    }
+   }
+  },
+  {
+   "name": "a world's birth record setting dials, with no template",
+   "record": {
+    "format": "open-worlds/world-birth/v1",
+    "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+    "name": "chemistry, warmer",
+    "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
+    "founders": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "forkedFrom": {
+     "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
+     "tick": 1000,
+     "log": "7cf45fc9cc78ee9aa9ca87e8ed918f5a50afd39a10a1a8aa8802248683acc663"
+    },
+    "dials": {
+     "temperature": 310000
+    },
+    "time": "2026-11-14T05:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4wriFCL9831PFrSQoR5hyLfLmyfCu7n6Phz1BxYdfUpa5D8N2sDhiYoA5TztThnVPUQij7jSeFCswUVaUepNmX38"
+    }
+   }
+  },
+  {
+   "name": "a world's birth record setting a dial to a fraction",
+   "record": {
+    "format": "open-worlds/world-birth/v1",
+    "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+    "name": "chemistry, warmer",
+    "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
+    "founders": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "template": "b339b65c504c17302769d6a5f4e6fe6d9cc09657f470aa1f8d6708bb67a8da38",
+    "forkedFrom": {
+     "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
+     "tick": 1000,
+     "log": "7cf45fc9cc78ee9aa9ca87e8ed918f5a50afd39a10a1a8aa8802248683acc663"
+    },
+    "dials": {
+     "temperature": 310.15
+    },
+    "time": "2026-11-14T05:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z38FubG1xauxS1YtMhDpGLPSdkZAyUdQdn8D5uoQrhTnCbtUHHNa2aBCLg7AVMjnYGgXBiLRGmCDTXRS8oYUnV1hg"
+    }
+   }
+  },
+  {
+   "name": "a world's birth record setting no dials, as an empty set",
+   "record": {
+    "format": "open-worlds/world-birth/v1",
+    "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+    "name": "chemistry, warmer",
+    "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
+    "founders": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "template": "b339b65c504c17302769d6a5f4e6fe6d9cc09657f470aa1f8d6708bb67a8da38",
+    "forkedFrom": {
+     "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
+     "tick": 1000,
+     "log": "7cf45fc9cc78ee9aa9ca87e8ed918f5a50afd39a10a1a8aa8802248683acc663"
+    },
+    "dials": {},
+    "time": "2026-11-14T05:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z676HaaegrXhe84ZK9gGxNbARHhe3Xbvxkf4ByHzvpqCKYmd5MXmXUjznqiy6Haq9mGSDekKSADpc5tRTR2ZYjByk"
     }
    }
   },
