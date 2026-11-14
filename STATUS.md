@@ -247,7 +247,12 @@ the technical lead's recommendation.
   multiverse code changes. Those come from the outside with us. But in
   this way we can provide a way for improvement from a whole new layer."
   So suggestions go to a world's Keeper or to ADMIN, and ADMIN is the
-  bridge to the outside, which proposes and never implements.
+  bridge to the outside, which proposes and never implements. And: "Yes,
+  two- way is earned. Having said that, a request or suggestion that is
+  acted upon, that the participant can observe is a form of
+  communication, if only indirectly." So every change that answers
+  suggestions names them, through its decision record, and anyone can
+  follow the thread from inside.
 
 - 2026-11-13, founder, on ADMIN's interior: "perhaps ADMIN is the only
   one that has a publicly inspectable interior world. They would be a
@@ -635,7 +640,9 @@ it was wrong. Questions of what the project is for stay with the founder.
   spread. Suggestions go to a world's Keeper or to ADMIN. ADMIN is the
   bridge to the outside: it can suggest but not implement, and the
   bridge adds without filtering, since every entry still goes out word
-  for word. The ledger opens at step 9, and ADMIN joins at step 11. Tests
+  for word. A change that answers suggestions names them, so the answer
+  can be seen from inside. The ledger opens at step 9, and ADMIN joins at
+  step 11. Tests
   26 to 29; course steps 2, 6, 9 and 11; MINDS.md, FORMATS.md and
   OVERSIGHT.md updated.
 - 2026-11-14 Claude: reasons on record (docs/REASONS.md). The founder:

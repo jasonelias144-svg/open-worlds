@@ -421,6 +421,19 @@ for improvement from a whole new layer."
   does it; declined, with reasons; joined to another; or not yet, with
   when it will be looked at again. To consider a suggestion is to decide,
   with reasons.
+- **The answer is the change.** The founder: "Yes, two- way is earned.
+  Having said that, a request or suggestion that is acted upon, that the
+  participant can observe is a form of communication, if only
+  indirectly." So every change that answers suggestions says so: its pull
+  request, and the entry that brings it into a world, name the decision
+  record, which names the suggestions. Anyone, the author included, can
+  follow the thread from inside, through the public record, from what
+  they asked to what changed. Biology has a word for this: stigmergy, "a
+  mechanism of indirect coordination, through the environment, between
+  agents or actions", named by Pierre-Paul Grassé in 1959 for termites
+  ([Wikipedia](https://en.wikipedia.org/wiki/Stigmergy)). The answer still
+  goes to everyone, in the open; a conversation of one's own is the open
+  line, earned by a world-key.
 - **The floor doesn't wait.** An entry that reports a breach of the floor
   (above, "What the multiverse must preserve") or a misuse of an office
   starts that process at once (above, "Graduated responses"). Everything
