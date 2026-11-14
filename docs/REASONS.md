@@ -133,8 +133,9 @@ What Lean can't check:
   wrong;
 - **whether a decision is wise, fair or kind.** Most reasons are
   judgment, and stay in words;
-- **anything from a private core,** which can't be a premise
-  ([ADMIN.md](ADMIN.md), "ADMIN in the open").
+- **anything from a private core,** which can't be a premise, and is
+  kept out of decisions by how they run ([ADMIN.md](ADMIN.md), "ADMIN in
+  the open", test 23c).
 
 So a record with no `formal` part is normal. Lean checks the logic where
 there is logic to check; audit and appeal check the rest.

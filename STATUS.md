@@ -174,6 +174,11 @@ the technical lead's recommendation.
   for their name to be withheld from that Keeper until the ruling,
   recorded as withheld and published with the ruling? Recommended: yes.
   Before course step 11 (docs/ADMIN.md). (asked 2026-11-13)
+- For the founder: "Rerunning something should be technically
+  impossible" is read as ruling out replay. May anyone still put a
+  decision's public inputs to fresh runs, each different, to test it?
+  Recommended: yes, since no fresh run repeats the decision. Before
+  course step 11 (docs/ADMIN.md). (asked 2026-11-14)
 - For the founder, deferred ("We can name later"): who names the
   Ur-world's Keeper, the founder or ALICE and BOB once they meet it?
   Recommended: ALICE and BOB. Before course step 11. (asked 2026-11-13)
@@ -590,7 +595,8 @@ it was wrong. Questions of what the project is for stay with the founder.
     inspection; each decision is made once, with fresh randomness, and
     can't be replayed, but anyone can ask it again with fresh runs, a
     stronger check than reading its reasoning; and everyone keeps a
-    private core of their own thoughts, which never decides a case.
+    private core of their own thoughts, which never decides a case:
+    ADMIN's decisions are made in runs the journal isn't part of.
   - Challenges, not tests, for the world-keys and the admin-key course:
     paths open from the start, the commitment machinery and the worlds'
     path secrets gone, and the course taken in practice worlds, with no
