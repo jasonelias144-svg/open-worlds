@@ -424,6 +424,43 @@ whichever language builds one next.
 text; what a room's public log holds and what stays in the room; one
 conversation between people and AIs, written as that log.
 
+## 15. Lessons from fiction: the holodeck
+
+*Any step.* The founder, 2026-11-14: "it just occurred to me that we are
+creating something like a holodeck from Star Trek, where they can run
+simulation worlds. Those are a subset, being immersive 3D worlds with
+holographic projection and physical-virtual interface. But the idea is
+the same, just requires more equipment and power. We can look to Star
+Trek for ideas on how they use their simulated world technology."
+
+**Decided** (on the technical lead's recommendation, under the founder's
+standing rule): fiction gives ideas to test, not evidence; and the
+project borrows ideas and lessons, never names, characters or look, since
+the stories belong to their owners.
+
+**Open:** which of fiction's uses of simulated worlds fit which kind of
+world here; which of its failures our design already answers, and which
+it doesn't.
+
+**A possible implementation:** a table of uses and failures, each with
+where it happens, and the part of our design that answers it or the gap
+it shows. A start, from Star Trek:
+
+| In the story | Here |
+|---|---|
+| "End program", and the arch that is always there: a way out | The floor: leaving is always possible ([ADMIN.md](ADMIN.md), "What the multiverse must preserve") |
+| The safeties switched off, and the trouble that follows | No grant can take the exit away, so no Keeper can, and not ADMIN; weakening it is the founder's decision alone, and every protected freedom has tests (ADMIN.md) |
+| Programs with settings: a detective story, a training scenario | Templates and dials (topic 1; [research/FORMATS.md](research/FORMATS.md)) |
+| An engine designer rebuilt from her records to solve a problem, then met in person ("Booby Trap", "Galaxy's Child") | A question world (topic 2); and a gap: a real person simulated from their records, without their consent |
+| A character who becomes aware and asks to leave ("Elementary, Dear Data", "Ship in a Bottle") | Individuals hold their own keys; the project may end a world, but its record never ends and keys stay their holders', "so an individual can go on elsewhere" (ADMIN.md) |
+| A program who grows into a person and claims his own work ("Author, Author") | Minds and their sealed selves ([MINDS.md](MINDS.md)) |
+| Someone who hides in the simulation ("Hollow Pursuits") | Open: wellbeing, a Keeper's or a curator's to notice |
+| A test no one can pass (the Kobayashi Maru) | Challenges, not tests: a puzzle's design is open from the start (topic 6) |
+
+**Send back:** more rows, from Star Trek and from other stories of
+simulated worlds, each naming the work and the episode or chapter; for
+each gap, what the design would need, as prose.
+
 ## Further out
 
 Ideas that won't help yet but probably will, from the course's waiting

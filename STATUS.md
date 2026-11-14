@@ -177,6 +177,17 @@ kind.
   recommendation, decided under the founder's standing rule; the
   founder can change it). What a room's public log holds is the
   founder's to decide, as personal information.
+- 2026-11-14, founder: "it just occurred to me that we are creating
+  something like a holodeck from Star Trek, where they can run
+  simulation worlds. Those are a subset, being immersive 3D worlds with
+  holographic projection and physical-virtual interface. But the idea is
+  the same, just requires more equipment and power. We can look to Star
+  Trek for ideas on how they use their simulated world technology."
+  docs/TOPICS.md, topic 15, "Lessons from fiction": each use and failure
+  mapped to the part of the design that answers it, or the gap it shows.
+  Fiction gives ideas to test, not evidence, and the project borrows
+  ideas and lessons, never names, characters or look (decided on the
+  technical lead's recommendation, under the founder's standing rule).
 - 2026-11-14, founder, a new idea: "fractal worlds. Worlds where you can
   navigate through fractals, generate them in different forms, watch them
   grow or interact, and more." On COURSE.md's waiting list, after step

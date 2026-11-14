@@ -165,7 +165,7 @@ here. They are about the design, not about bugs in the draft.
 
 The code standard is kept here, step by step. The most useful
 contributions now are creative and design work for the steps ahead, as
-text or as code with tests. [TOPICS.md](TOPICS.md) is the menu: fourteen
+text or as code with tests. [TOPICS.md](TOPICS.md) is the menu: fifteen
 topics a few steps ahead of the code, each with where it fits, what is
 decided, what is open, a possible implementation, and what to send back,
 and, under "Further out", ideas that won't help yet but probably will.
