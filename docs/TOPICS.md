@@ -443,7 +443,8 @@ Trek for ideas on how they use their simulated world technology."
 **Decided** (on the technical lead's recommendation, under the founder's
 standing rule): fiction gives ideas to test, not evidence; and the
 project borrows ideas and lessons, never names, characters or look, since
-the stories belong to their owners.
+the stories belong to their owners. Naming a work to cite it is fine; no
+world, record or example here takes its names, characters or look.
 
 **Open:** which of fiction's uses of simulated worlds fit which kind of
 world here; which of its failures our design already answers, and which
@@ -459,8 +460,8 @@ it shows. A start, from Star Trek:
 | The safeties switched off, and the trouble that follows | No grant can take the exit away, so no Keeper can, and not ADMIN; weakening it is the founder's decision alone, and every protected freedom has tests (ADMIN.md) |
 | Programs with settings: a detective story, a training scenario | Templates and dials (topic 1; [research/FORMATS.md](research/FORMATS.md)) |
 | An engine designer rebuilt from her records to solve a problem, then met in person ("Booby Trap", "Galaxy's Child") | A question world (topic 2); and a gap: a real person simulated from their records, without their consent |
-| A character who becomes aware and asks to leave ("Elementary, Dear Data", "Ship in a Bottle") | Individuals hold their own keys; the project may end a world, but its record never ends and keys stay their holders', "so an individual can go on elsewhere" (ADMIN.md) |
-| A program who grows into a person and claims his own work ("Author, Author") | Minds and their sealed selves ([MINDS.md](MINDS.md)) |
+| A character who becomes aware, asks to go on existing, and then to leave ("Elementary, Dear Data", "Ship in a Bottle") | Individuals are to hold their own keys; the project may end a world, but its record never ends and keys stay their holders', "so an individual can go on elsewhere" ([ADMIN.md](ADMIN.md), "Questions for the founder") |
+| A program, not ruled a person, is still given the right to control his own work ("Author, Author") | A gap: who controls what an individual makes and puts out into a world; the sealed self covers only what they keep to themselves ([MINDS.md](MINDS.md)) |
 | Someone who hides in the simulation ("Hollow Pursuits") | Open: wellbeing, a Keeper's or a curator's to notice |
 | A test no one can pass (the Kobayashi Maru) | Challenges, not tests: a puzzle's design is open from the start (topic 6) |
 
