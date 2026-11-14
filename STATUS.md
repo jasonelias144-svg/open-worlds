@@ -962,6 +962,16 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-14 Claude: course step 3, part four's plan
+  (docs/research/KEYS.md, decisions 11 to 15): an arrival signed by the
+  individual's key, against the world's log head; a name stays its
+  holder's, so whoever comes back with the same key is the same
+  individual, and another key under the name is refused; leaving never
+  needs a signature; the doorway signs for minds without their own
+  Ed25519; ALICE and BOB don't enter before their birth; a new record,
+  `open-worlds/arrival/v1`, written by the Rust Ur-world. And #57's last
+  notes on KEYS.md and keys/README.md.
+
 - 2026-11-14 Claude: course step 3, part three, the ceremony: the
   project's real keys made at 13:58 UTC by the reviewed tool, their
   private halves pushed at once to the private repository by its address

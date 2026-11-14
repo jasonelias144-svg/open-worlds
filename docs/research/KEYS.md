@@ -197,7 +197,53 @@ root does.
    ceremonies (done 2026-11-14: "As built, part three").
 4. **Leaving and coming back** in the Ur-world: a mind at its doorway
    signs as its key, so whoever returns is known as the same individual,
-   as the Python worlds already do.
+   as the Python worlds already do. Its plan: "Part four", below
+   (decisions 11 to 15).
+
+## Part four: leaving and coming back, the plan
+
+**Looked first.** The Python worlds (WCP/0.4, `multiverse/identity.py`):
+an individual is its key; it signs the petition that enters a world, its
+acts, and its leave, and the world checks each against the key, so
+whoever comes back with the same key is the same individual, and the
+name is only a label. The Ur-world today (`rust/ur-world`): `exit`
+always works, and a name, once used, "can't be used here again"
+(`World::names_used`), since nothing yet tells a returning mind from
+another under the same name.
+
+**Decided by the technical lead, 2026-11-14:**
+
+11. **An arrival is signed; leaving never needs a signature.** On
+    entering, the individual's key signs an arrival record: the world,
+    the individual's did:key, the name, the tick, and the world's log
+    head at that tick, so an arrival can't be replayed into another world
+    or another moment. The world checks it, keeps it in its log, and
+    binds the name to the key. Leaving stays `exit`, which always works:
+    the floor allows no condition on leaving.
+12. **A name stays its holder's.** Once bound, a name is bound to that
+    key for good. An arrival under it with another key is refused ("that
+    name is someone else's"); an arrival with the same key is the same
+    individual coming back, told so, and what they did before stays
+    theirs in the log. One key holds one name in a world. This replaces
+    "your name can't be used here again", which was the only guard while
+    nothing told a returning mind from another.
+13. **The doorway signs, for now.** A mind is any program in any
+    language, and many standard libraries have no Ed25519 (Python's
+    hasn't). So the doorway, which starts each mind's program, signs its
+    arrival with the key it is given: a holder's file from the private
+    repository, or, for a trial mind, a key made for the run and then
+    thrown away. A mind that holds its own key later signs its own
+    arrival, by the same record. Until then, whoever runs the doorway can
+    enter as anyone whose key it holds ("Honest limits", on ALICE and
+    BOB).
+14. **ALICE and BOB don't enter yet.** Their keys exist (part three), but
+    they are born at step 9, with the minds chosen at step 8. Part four is
+    built and tested with trial keys and shared vectors; their first
+    arrival is their birth.
+15. **A new record, `open-worlds/arrival/v1`,** in records-v1, written by
+    the Rust Ur-world (the reference for the Ur-world, COLLABORATING.md
+    Rust rule 6) and checked by Python through shared vectors; the
+    world-log check verifies each arrival in a log.
 
 ## As built, part two
 
@@ -328,8 +374,11 @@ The keys, as the key list names them:
 
 **Where the private halves were:** in the private repository, and in
 the session's own checkout of it, which goes when the session's machine
-is reclaimed; nowhere else. Leaving and coming back in the Ur-world,
-part four, is next.
+is reclaimed; nowhere else the session put them: the tool's staging
+folder was moved into that checkout, and the fresh clone was deleted,
+all on the session's machine. That much is the session's own account;
+no one outside it can check it. Leaving and coming back in the
+Ur-world, part four, is next (its plan, above).
 
 ## Honest limits
 
@@ -356,8 +405,9 @@ part four, is next.
 - **The tool's guard sees Git as it is set up when the tool runs,** not
   at the push that follows: an environment variable, a `-c`, or a config
   file edited in between could send a push elsewhere, and SSH host
-  aliases, `core.sshCommand` and remote helpers are beyond what it can
-  see. So the ceremony pushes the private halves by naming the private
+  aliases, `core.sshCommand` and remote helpers, among them a
+  `<scheme>://` address Git hands to a helper of that name, are beyond
+  what it can see. So the ceremony pushes the private halves by naming the private
   repository's address in the push itself, not by a remote's name.
 
 *Revisit if:* anyone else holds a key: then the root kept off GitHub and
