@@ -597,9 +597,10 @@ it was wrong. Questions of what the project is for stay with the founder.
   with `eddsa-jcs-2022`: RFC 8785 with this project's three rules,
   did:key, and Data Integrity proofs. Both reproduce the W3C
   specification's example step by step, and agree through
-  `vectors/formats/eddsa-jcs-2022.json`, which also holds 22 proofs that
-  must be refused (8 of them for the time they give) and 7 values that
-  break the rules. `rfc8785` 0.1.4
+  `vectors/formats/eddsa-jcs-2022.json`, which also holds 25 proofs that
+  must be refused (9 of them for the time they give) and 7 values that
+  break the rules. `multiverse/ed25519.verify` now also refuses a
+  signature whose R is of small order, as Rust's `verify_strict` does. `rfc8785` 0.1.4
   pinned; `serde_jcs`, `ed25519-dalek` and `bs58` added to the Rust
   workspace. FORMATS.md records the decision.
 - 2026-11-14 Claude: reasons on record (docs/REASONS.md). The founder:

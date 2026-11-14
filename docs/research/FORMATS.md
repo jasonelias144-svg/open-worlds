@@ -93,7 +93,11 @@ specification's own example (Appendix B.3) step by step: the two RFC
 8785 forms, both hashes, the signature and the proof value. They read
 proofs more narrowly than the specification allows: one proof per
 record, did:key only, `created` to the second in UTC, and the three rules
-above. Signatures already made stay as they are (STATUS.md).
+above. Both refuse a signature whose R is a point of small order, which
+cofactorless verification alone would accept. Both read values already
+parsed from JSON; reading JSON text, where parsers differ on duplicate
+keys and on `-0`, is settled where records are first read from files or
+the network. Signatures already made stay as they are (STATUS.md).
 
 ## Credentials
 
