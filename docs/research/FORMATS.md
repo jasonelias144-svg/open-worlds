@@ -86,6 +86,15 @@ that suite's, and a tool that verifies it would refuse them.
 Ed25519), so that standard tools can check them. Signatures already made
 stay as they are.
 
+**Decided by the technical lead, 2026-11-14:** new records sign the
+`eddsa-jcs-2022` way, with did:key verification methods. It is built in
+Python (`formats/`) and Rust (`rust/formats`), and both reproduce the
+specification's own example (Appendix B.3) step by step: the two RFC
+8785 forms, both hashes, the signature and the proof value. They read
+proofs more narrowly than the specification allows: one proof per
+record, did:key only, `created` to the second in UTC, and the three rules
+above. Signatures already made stay as they are (STATUS.md).
+
 ## Credentials
 
 **The Verifiable Credentials Data Model 2.0,** a W3C Recommendation of
