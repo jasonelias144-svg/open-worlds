@@ -107,6 +107,14 @@ class Transform:
         return ((self.a * x + self.b * y + self.c) // self.denom,
                 (self.d * x + self.e * y + self.f) // self.denom)
 
+    # Fix (ours): the individual pieces call to_dict on this Transform;
+    # choice_fractal.py's Transform has it, this copy didn't. The same
+    # method as there.
+    def to_dict(self):
+        return {"name": self.name, "a": self.a, "b": self.b,
+                "c": self.c, "d": self.d, "e": self.e,
+                "f": self.f, "denom": self.denom}
+
 
 SIERPINSKI = (
     Transform("v0", 1, 0, 0,   0, 1, 0,   2),

@@ -328,6 +328,14 @@ def sign_change_policy(world_id, new_policy, requester_kp,
     )
 
 
+def _embedded(request):
+    """Fix (ours): a request as a record embeds it, with its signature,
+    which _verify_embedded_request checks; the body alone had none."""
+    d = dict(request.body())
+    d["sig"] = request.sig
+    return d
+
+
 def _verify_request(request, gallery_id):
     """Signature + world-key validity. Tier check is separate."""
     if not HAS_CRYPTO:
@@ -723,7 +731,7 @@ class GovernedGalleryWorld:
             "member_id": member.world_id(),
             "member_kind": member.kind,
             "seed_cert": cert,
-            "request": request.body(),
+            "request": _embedded(request),
             "request_hash": request.request_hash(),
             "prev": self._last_hash,
             "ts": _now(),
@@ -733,7 +741,7 @@ class GovernedGalleryWorld:
             member_id=member.world_id(),
             member_kind=member.kind,
             seed_cert=cert,
-            request=request.body(),
+            request=_embedded(request),
             request_hash=request.request_hash(),
             prev=self._last_hash, ts=body["ts"],
             sig=self._keypair.sign(_canonical(body)).hex(),
@@ -764,7 +772,7 @@ class GovernedGalleryWorld:
             "slot": int(request.slot),
             "member_id": member.world_id(),
             "reason": request.reason,
-            "request": request.body(),
+            "request": _embedded(request),
             "request_hash": request.request_hash(),
             "prev": self._last_hash,
             "ts": _now(),
@@ -773,7 +781,7 @@ class GovernedGalleryWorld:
             world_id=self._world_id, slot=request.slot,
             member_id=member.world_id(),
             reason=request.reason,
-            request=request.body(),
+            request=_embedded(request),
             request_hash=request.request_hash(),
             prev=self._last_hash, ts=body["ts"],
             sig=self._keypair.sign(_canonical(body)).hex(),
@@ -807,7 +815,7 @@ class GovernedGalleryWorld:
             "old_policy_hash": self._policy.policy_hash(),
             "new_policy": new_policy.to_dict(),
             "new_policy_hash": new_policy.policy_hash(),
-            "request": request.body(),
+            "request": _embedded(request),
             "request_hash": request.request_hash(),
             "prev": self._last_hash,
             "ts": _now(),
@@ -817,7 +825,7 @@ class GovernedGalleryWorld:
             old_policy_hash=self._policy.policy_hash(),
             new_policy=new_policy.to_dict(),
             new_policy_hash=new_policy.policy_hash(),
-            request=request.body(),
+            request=_embedded(request),
             request_hash=request.request_hash(),
             prev=self._last_hash, ts=body["ts"],
             sig=self._keypair.sign(_canonical(body)).hex(),
@@ -835,7 +843,7 @@ class GovernedGalleryWorld:
             "request_type": request_type,
             "requester_id": request.requester_id,
             "reason": reason,
-            "request": request.body(),
+            "request": _embedded(request),
             "prev": self._last_hash,
             "ts": _now(),
         }
@@ -845,7 +853,7 @@ class GovernedGalleryWorld:
             request_type=request_type,
             requester_id=request.requester_id,
             reason=reason,
-            request=request.body(),
+            request=_embedded(request),
             prev=self._last_hash, ts=body["ts"],
             sig=self._keypair.sign(_canonical(body)).hex(),
         )
