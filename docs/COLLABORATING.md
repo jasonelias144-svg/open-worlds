@@ -26,7 +26,9 @@ read it:
    keys were made on 2026-11-14, and their public halves are in
    [`keys/key-list.json`](../keys/key-list.json); in the Ur-world,
    whoever enters signs an arrival, a name stays the key's that first
-   used it, and a world signs its log's heads. Next, step 3a, persons.
+   used it, and a world signs its log's heads. Step 3a, persons, is
+   under way: its plan is in
+   [research/PERSONS.md](research/PERSONS.md).
    Rechecked after step 3, the course gained step 8a, a lost or leaked
    key, before ALICE's and BOB's birth.
    It returns to DeepSeek at step 10, or sooner if the founder chooses.
@@ -189,9 +191,10 @@ In short:
   becomes, the prediction written first, and a world that can answer it,
   saying what it can and can't show. The founder's first is the neural
   world.
-- **Persons** (course step 3a): one person above their presences in many
-  worlds, unlinked by default, which means a key of its own for each
-  presence, since every arrival names its key in a public log.
+- **Persons** (course step 3a, [research/PERSONS.md](research/PERSONS.md)):
+  one person above their presences in many worlds, unlinked by default,
+  which means a key of its own for each presence, since every arrival
+  names its key in a public log.
   DeepSeek's own architectures (components 36 to 52: the octopus, the
   relay, the swarm, the council) are its small examples.
 - **The garden** (course step 4a): parallel worlds from one template,

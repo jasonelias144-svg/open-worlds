@@ -241,10 +241,14 @@ another under the same name.
     until successions join records-v1 (course step 8a, once the waiting
     list's "a lost or leaked key"), a signed-over key can't come back
     under its old name, and the doorway says why rather than treat it as
-    someone else. From
-    step 9, an arrival's name is the name in the individual's identity
-    record. This replaces "your name can't be used here again", the only
-    guard while nothing told a returning mind from another.
+    someone else. From step 9, an arrival's name is the name in the
+    individual's identity record. This replaces "your name can't be used
+    here again", the only guard while nothing told a returning mind from
+    another. *Refined by course step 3a* ([PERSONS.md](PERSONS.md),
+    decisions 2, 3, 9 and 10): the key that binds a name in a world is a
+    presence's, made for that world; a person may hold several presences,
+    and so several names, in one world; and the identity record's name is
+    the name of the first presence only, in the world of their birth.
 13. **The doorway signs, for now.** A mind is any program in any
     language, and many standard libraries have no Ed25519 (Python's
     hasn't). So the doorway, which starts each mind's program, signs its
@@ -270,7 +274,11 @@ another under the same name.
     built and tested with trial keys and shared vectors; their first
     arrival is their birth. The garden's scripted stand-ins, which enter
     as "ALICE" and "BOB" today, are renamed, so that in any log those
-    names are only ever the individuals the key list names.
+    names are only ever the individuals the key list names. *Refined by
+    course step 3a* ([PERSONS.md](PERSONS.md), decisions 1 and 10): the
+    key list's keys are their identity keys, which never enter a world;
+    their first arrival is their first presence's, with a key made from
+    a presence seed, which step 3a's parts two and three make.
 16. **Rust is the reference.** The arrival is written by the Rust
     Ur-world (COLLABORATING.md, Rust rule 6) and checked by Python
     through shared vectors; the world-log check verifies each arrival in

@@ -66,7 +66,7 @@ body.
 | **Mind record** | each engine they have run on: model, revision, file hashes, settings, chat template, and the container image it ran in, by digest | the project | for life; the engine itself is replaceable |
 | **Self** (sealed) | journal, reasoning, held thoughts, private notes, routines, their own aims, a note of who they are | the individual alone; no one else reads it, unless the founder opens it under the "break glass", in the open | grows for life |
 | **Sheet** | skills (with practice and rust), things carried, knowledge found, milestones, experience | granted by worlds, plus routines its writer chose to show; rebuilt from the logs | grows for life |
-| **Avatars** | one body for each world they are in: where it is, what it holds there, what others see of it | that world | one visit |
+| **Avatars** | one body for each world they are in: where it is, what it holds there, what others see of it. The body of a presence, which lasts across visits with its own key, name and history in that world ([research/PERSONS.md](research/PERSONS.md)) | that world | one visit |
 | **Relationships** | whom they have met, spoken with, taught, given to, founded worlds with | worked out from the logs | grows for life |
 | **History** | every log they appear in, their passports and stamps, their legends page | the worlds | forever, append-only |
 | **Observed character** | how they tend to act, measured from what they do | experiments | changes as they do |
@@ -94,7 +94,9 @@ body.
 
 ### Relations outside
 
-- **To worlds:** they enter as an avatar and carry a passport. Skills
+- **To worlds:** they enter as a presence, with an avatar, and carry a
+  passport of that presence's stamps (showing two presences' stamps
+  together shows they are linked: research/PERSONS.md). Skills
   learned in a world are attested by that world, signed, the way stamps
   are; each world decides which attestations from elsewhere it honours.
   Worlds they found name them as founders in the world's birth record.
@@ -182,7 +184,7 @@ world, or why: that is for the world to show, and for them to find out
 | Individual and individual | Through the world: speech, signs, things given, skills taught. And privately, decided by the founder on 2026-11-14: a message sealed to the other, which no one else reads. The project keeps the keys, as for the sealed self, and the same "break glass" covers them (decided 2026-11-14, STATUS.md). | the world's log; for a private message, that it passed, not what it says |
 | Individual to the law | Asking now; formal proposals and governance later. | the world's log |
 | World and world | The protocol: passports, stamps, successions, doors, birth records of new worlds. The Python worlds sign their stamps today; since course step 3, an Ur-world log's heads can be signed with its world's key: trial runs' today, and the Ur-world's own from its first inhabitant (course step 9). | each world's log |
-| Individual to another world | Through a door, with a passport. Key, self and sheet go with them. Each world sees only what they show, and what they do there. | passports and both logs |
+| Individual to another world | Through a door, as a new presence with a key of its own for that world and that presence's passport. Their self goes with them; their sheet there is that presence's, unless they show a link. Each world sees only what they show, and what they do there ([research/PERSONS.md](research/PERSONS.md)). | passports and both logs |
 | Keeper to individual | Through the world: the clues, tablets and challenges it places, which the individual perceives like anything else. Once they hold its world-key, also the open line, shown in each tick's view. | the world's log; for the line, the logs of the worlds where it is written and read |
 | Individual to Keeper | What they do and say, as anyone outside could observe, and whatever they choose to share. With the world-key, also the open line, written by an action. Never their sealed self. | the world's log; for the line, the logs of the worlds where it is written and read |
 | Keeper and Keeper | Craft, never files about individuals; public by default (proposed: [WORLD-KEY.md](WORLD-KEY.md), "Keepers talking to one another"). | both worlds' logs |
@@ -202,7 +204,14 @@ Four principles hold it together:
 What an individual does is public; what they think is their own.
 
 1. **Anyone outside, the public:** everything observable. Every action,
-   everything said aloud, their sheet, their identity, their avatar. And
+   everything said aloud, their identity and birth, and in each world
+   their presence there: its avatar, sheet, relationships, history and
+   passport stamps. These are public per presence. Which presences are
+   one individual's is public only where they show it, apart from the
+   first, which their birth links; their whole sheet and history across
+   worlds is their own until then
+   ([research/PERSONS.md](research/PERSONS.md), decisions 4, 5 and 10).
+   And
    metadata about their sealed self: that their journal exists, how much
    they have written and when, and a fingerprint of each entry, taken over
    its encrypted form (so a short entry can't be confirmed by guessing).
@@ -320,7 +329,10 @@ what they are for.
     chain of fingerprints so nothing can be altered or removed without it
     showing;
   - `sheet.json`, `relationships.json` and their legends page, all rebuilt
-    from the logs and checked against them.
+    from the logs and checked against them, for their linked presences
+    only: the first, which their birth links, and any they have shown.
+    What their other presences did stays in those worlds' logs, unlinked
+    ([research/PERSONS.md](research/PERSONS.md), decision 5).
 - **In a private repository of the project:** the private half of each
   key (the individuals', the Keepers' and the worlds'), and each
   individual's key to their own sealed self, and nothing else unless the
