@@ -533,6 +533,12 @@ checked from Python through the shared vectors:
 - **Until the Ur-world follows successions,** a name follows its birth
   key alone: a leaked birth key enters under the name, and a key signed
   over from it can't (decision 18, which closes this before step 9).
+- **A world keeps its names in memory.** The bindings of names to keys
+  live in the running world; the log holds every arrival, so they can be
+  rebuilt from it (as `arrival_problems` does), but nothing yet continues
+  a world from its log: the Ur-world runs only while someone steps it
+  (URWORLD.md). When it keeps running, it must continue from its log,
+  names and all, or a returning individual's name would be free again.
 - **Trial keys are public.** The garden's keys are made from its seed,
   so anyone can sign as its world or its stand-ins: they show the
   format, and protect nothing. "The same seed gives the same log" holds
