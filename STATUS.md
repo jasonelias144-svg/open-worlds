@@ -1008,7 +1008,10 @@ it was wrong. Questions of what the project is for stay with the founder.
   link check, BIP-32 and BBS. Twelve decisions (Decided by the technical
   lead) and four parts: the plan; the formats; a person in the Ur-world;
   the architectures. COURSE.md, TOPICS.md topic 4, MINDS.md ("Who can see
-  what") and COLLABORATING.md brought into line.
+  what") and COLLABORATING.md brought into line. Decision 9, that birth
+  links an individual's first presence in public, was put to the founder
+  on #61 with the recommendation; under AGENTS.md's standing rule it
+  stands on that recommendation unless the founder answers otherwise.
 
 - 2026-11-14 Claude: course step 3 done and moved to "Done" in
   docs/COURSE.md, with its pull requests (#52, #53, #56 to #59). The
