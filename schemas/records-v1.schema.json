@@ -32,10 +32,17 @@
       "maxLength": 64
     },
     "text": {
-      "description": "Text a person or a mind writes: not empty, and not only spaces, tabs or line breaks.",
+      "description": "Text a person or a mind writes: not empty, not only spaces or line breaks of any kind, and no control characters but tab and line breaks.",
       "type": "string",
       "minLength": 1,
-      "pattern": "[^ \\t\\n\\r]"
+      "allOf": [
+        {
+          "pattern": "[^ \\t\\n\\r\\u000b\\u000c\\u0085\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff]"
+        },
+        {
+          "pattern": "^[^\\u0000-\\u0008\\u000e-\\u001f\\u007f]*$"
+        }
+      ]
     },
     "proof": {
       "description": "An eddsa-jcs-2022 Data Integrity proof, read as formats/proof.py reads it: one proof, did:key, no @context.",
@@ -163,7 +170,8 @@
               "type": "array",
               "items": {
                 "$ref": "#/$defs/hash"
-              }
+              },
+              "uniqueItems": true
             }
           },
           "required": [
@@ -370,7 +378,24 @@
           "required": [
             "kind"
           ],
-          "additionalProperties": false
+          "additionalProperties": false,
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "keeper",
+                  "world"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "ref": {
+                "$ref": "#/$defs/didKey"
+              }
+            }
+          }
         },
         "text": {
           "$ref": "#/$defs/text",
@@ -381,10 +406,11 @@
           "type": "boolean"
         },
         "world": {
-          "description": "The world it was made in.",
+          "description": "The world it was made in; absent when made outside any world, by ADMIN or a Keeper in the multiverse.",
           "$ref": "#/$defs/didKey"
         },
         "tick": {
+          "description": "A tick of the log it belongs to: its world's, or the multiverse's.",
           "$ref": "#/$defs/tick"
         },
         "proof": {
@@ -396,7 +422,6 @@
         "author",
         "to",
         "text",
-        "world",
         "tick",
         "proof"
       ],
@@ -457,6 +482,7 @@
           "maximum": 9007199254740991
         },
         "last": {
+          "description": "The hash of the log's last entry; for an empty log, sixty-four zeros, as a first entry's prev.",
           "$ref": "#/$defs/hash"
         },
         "tick": {

@@ -98,6 +98,9 @@ pub fn sign(
     );
     proof.insert("proofPurpose".into(), purpose.into());
     if let Some(context) = doc.get("@context") {
+        if !context.is_array() {
+            return Err("an @context is read only as a list".into());
+        }
         proof.insert("@context".into(), context.clone());
     }
     check_options(&proof)?;

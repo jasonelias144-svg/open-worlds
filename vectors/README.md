@@ -13,11 +13,12 @@ language can check itself against it, hash for hash. The Rust crate in
 | `formats/eddsa-jcs-2022.json` | Records signed with `eddsa-jcs-2022` (course step 2): the W3C specification's own example, step by step; records this project signs, with their RFC 8785 form; proofs that must be refused; and values that break this project's three rules. Written by `python3 -m formats.vectors`, read by `rust/formats`. |
 | `formats/records-v1.json` | The records the offices keep, against `schemas/records-v1.schema.json`: test parties (keys public to everyone, never for anything real), records of every kind that hold, each with its hash, and records that must be refused, each named for why. Written by `python3 -m formats.record_vectors`, read by `rust/formats`. |
 
-The W3C example in `formats/eddsa-jcs-2022.json` is copied from "Data
-Integrity EdDSA Cryptosuites v1.0" (W3C Recommendation, 15 May 2025,
-Appendix B.3), under the [W3C Software and Document
-License](https://www.w3.org/copyright/software-license-2023/); the rest of
-this repository is CC0.
+The W3C example in `formats/eddsa-jcs-2022.json` (its `w3c` object)
+includes material copied from "Data Integrity EdDSA Cryptosuites v1.0",
+W3C Recommendation, 15 May 2025, Appendix B.3,
+https://www.w3.org/TR/vc-di-eddsa/. Copyright © 2025 World Wide Web
+Consortium. https://www.w3.org/copyright/software-license-2023/. The rest
+of this repository is CC0.
 
 The first two are written by the Python kernel,
 [`world/vectors.py`](../world/vectors.py):

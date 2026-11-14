@@ -77,6 +77,15 @@ def _valid() -> List[Dict[str, Any]]:
         "world": _did("the Ur-world"),
         "tick": 100,
     }, "ALICE")
+    from_admin = _signed({
+        "format": "open-worlds/suggestion/v1",
+        "author": _did("ADMIN"),
+        "to": {"office": "admin"},
+        "about": {"kind": "project"},
+        "text": "Forty-one suggestions this month ask for slower nights;\n"
+                "a proposal, with them all, is attached as a sketch.",
+        "tick": 3,
+    }, "ADMIN")
     floor = _signed({
         "format": "open-worlds/suggestion/v1",
         "author": _did("BOB"),
@@ -146,6 +155,8 @@ def _valid() -> List[Dict[str, Any]]:
         ("a grant across the multiverse", admin_grant),
         ("a suggestion to a world's Keeper", suggestion),
         ("a suggestion to ADMIN, marked as a breach of the floor", floor),
+        ("a suggestion made outside any world, by ADMIN, with a line "
+         "break in its text", from_admin),
         ("an outcome on a suggestion, with its reasons", outcome),
         ("a ruling with a formal reason, council views, and the decision "
          "it supersedes", ruling),
@@ -241,6 +252,20 @@ def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
          resigned(head, "ADMIN")),
         ("a record with no proof",
          unsigned(grant)),
+        ("not an object but a list", []),
+        ("a format that is a list, not text",
+         {**unsigned(grant), "format": []}),
+        ("a suggestion whose text is only no-break and ideographic spaces",
+         resigned(suggestion, "ALICE", text="\u00a0\u3000\u2028")),
+        ("a suggestion whose text holds a NUL",
+         resigned(suggestion, "ALICE", text="Hello\u0000")),
+        ("a decision that names the same record it makes twice",
+         resigned(outcome, "the Ur-world's Keeper",
+                  act={"kind": "adjust-conditions",
+                       "records": [records.record_hash(grant)] * 2})),
+        ("a suggestion about a Keeper that names it other than by key",
+         resigned(suggestion, "ALICE",
+                  about={"kind": "keeper", "ref": "the Keeper"})),
         ("a record whose proof has an @context",
          {**grant, "proof": {**grant["proof"], "@context": ["x"]}}),
     ]

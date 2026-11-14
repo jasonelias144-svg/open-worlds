@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import datetime
 import hashlib
+import re
 from typing import Any, Dict, Tuple
 
 from multiverse import ed25519
@@ -41,20 +42,28 @@ class ProofError(ValueError):
     """A proof that can't be made, or doesn't hold."""
 
 
+_TIME = re.compile(
+    r"([0-9]{4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})Z")
+
+
 def check_time(created: Any) -> None:
     """ProofError unless `created` is a real UTC time, YYYY-MM-DDTHH:MM:SSZ."""
     _check_created(created)
 
 
 def _check_created(created: Any) -> None:
+    """The shape first, in ASCII digits only (`strptime` would also take
+    other scripts' digits), then the calendar: years 0001 to 9999, as the
+    Rust code reads them."""
     if type(created) is not str:
         raise ProofError("created must be text")
+    shape = _TIME.fullmatch(created)
     try:
-        when = datetime.datetime.strptime(created, "%Y-%m-%dT%H:%M:%SZ")
+        if not shape:
+            raise ValueError
+        datetime.datetime(*(int(part) for part in shape.groups()))
     except ValueError:
         raise ProofError("created is written YYYY-MM-DDTHH:MM:SSZ") from None
-    if when.strftime("%Y-%m-%dT%H:%M:%SZ") != created:
-        raise ProofError("created is written YYYY-MM-DDTHH:MM:SSZ")
 
 
 def _check_options(options: Dict[str, Any]) -> None:
@@ -76,12 +85,23 @@ def _hash_data(document: Dict[str, Any], options: Dict[str, Any]) -> bytes:
         raise ProofError(str(e)) from None
 
 
+def _same_values(a: Any, b: Any) -> bool:
+    """Whether two values are the same JSON: compared in RFC 8785 form,
+    since in Python True == 1 == 1.0."""
+    try:
+        return canonical(a) == canonical(b)
+    except FormatError:
+        return False
+
+
 def sign(document: Dict[str, Any], secret: bytes, created: str,
          purpose: str = "assertionMethod") -> Dict[str, Any]:
     """`document` with an `eddsa-jcs-2022` proof by the holder of the
     32-byte Ed25519 `secret`, made at `created`. Section 3.3.1."""
     if type(document) is not dict or "proof" in document:
         raise ProofError("sign a record (an object) with no proof yet")
+    if "@context" in document and type(document["@context"]) is not list:
+        raise ProofError("an @context is read only as a list")
     proof: Dict[str, Any] = {
         "type": TYPE,
         "cryptosuite": CRYPTOSUITE,
@@ -103,7 +123,9 @@ def verify(secured: Dict[str, Any]) -> Tuple[Dict[str, Any], bytes]:
 
     Who signed is part of the answer: a proof shows that the holder of
     that key signed, and the caller decides whether that key was the one
-    that should have."""
+    that should have. Use the record returned, never `secured` itself:
+    the specification lets a record carry more @context entries than its
+    proof, and those are dropped from what was verified."""
     if type(secured) is not dict or type(secured.get("proof")) is not dict:
         raise ProofError("a record with one proof (an object) is read")
     unsecured = {k: v for k, v in secured.items() if k != "proof"}
@@ -121,7 +143,7 @@ def verify(secured: Dict[str, Any]) -> Tuple[Dict[str, Any], bytes]:
         context = options["@context"]
         held = secured.get("@context")
         if (type(context) is not list or type(held) is not list
-                or held[:len(context)] != context):
+                or not _same_values(held[:len(context)], context)):
             raise ProofError("the record's @context doesn't start with "
                              "the proof's")
         unsecured["@context"] = context

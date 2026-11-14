@@ -110,6 +110,19 @@ fn each_refused_proof_is_refused() -> Result<(), String> {
 }
 
 #[test]
+fn an_at_context_that_isnt_a_list_is_not_signed() -> Result<(), String> {
+    let all = vectors()?;
+    let secret = secret_from_multikey(
+        all.pointer("/signed/0/secretKeyMultibase")
+            .and_then(Value::as_str)
+            .ok_or("no key")?,
+    )?;
+    let record = serde_json::json!({"@context": "https://example.org"});
+    assert!(sign(&record, &secret, "2026-11-14T00:00:00Z", "assertionMethod").is_err());
+    Ok(())
+}
+
+#[test]
 fn each_value_that_breaks_a_rule_is_refused() -> Result<(), String> {
     let all = vectors()?;
     let cases = all

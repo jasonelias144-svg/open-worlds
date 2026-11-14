@@ -85,6 +85,14 @@ class TestSigning(unittest.TestCase):
             records.sign({"format": "open-worlds/rating/v1", "score": 9},
                          alice, VECTORS["created"])
 
+    def test_anything_that_isnt_a_record_is_refused_never_a_crash(self):
+        for value in [None, "x", 1, [], {}, {"format": []}, {"format": {}},
+                      {"format": None}, {"format": "open-worlds/grant/v9"}]:
+            with self.subTest(value=value):
+                self.assertTrue(records.problems(value))
+                with self.assertRaises(records.RecordError):
+                    records.check(value)
+
     def test_problems_name_every_place(self):
         found = records.problems({"format": "open-worlds/rating/v1",
                                   "score": 9})

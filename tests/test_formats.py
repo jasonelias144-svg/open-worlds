@@ -163,6 +163,13 @@ class TestSigning(unittest.TestCase):
                 with self.assertRaises(proof.ProofError):
                     proof.sign({"a": 1}, TEST_SECRET, created)
 
+    def test_an_at_context_that_isnt_a_list_is_not_signed(self):
+        # verify reads @context only as a list, so sign refuses anything
+        # else rather than make a proof that can't be verified.
+        with self.assertRaises(proof.ProofError):
+            proof.sign({"@context": "https://example.org"}, TEST_SECRET,
+                       "2026-11-14T00:00:00Z")
+
     def test_a_record_that_breaks_the_rules_is_not_signed(self):
         with self.assertRaises(proof.ProofError):
             proof.sign({"a": 0.5}, TEST_SECRET, "2026-11-14T00:00:00Z")

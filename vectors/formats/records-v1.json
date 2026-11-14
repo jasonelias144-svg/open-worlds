@@ -160,6 +160,31 @@
    "hash": "96556d9b85caf7f876b363ae66348d6471360bff66c5e36f036e776923751fc0"
   },
   {
+   "name": "a suggestion made outside any world, by ADMIN, with a line break in its text",
+   "signer": "ADMIN",
+   "record": {
+    "format": "open-worlds/suggestion/v1",
+    "author": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD",
+    "to": {
+     "office": "admin"
+    },
+    "about": {
+     "kind": "project"
+    },
+    "text": "Forty-one suggestions this month ask for slower nights;\na proposal, with them all, is attached as a sketch.",
+    "tick": 3,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD#z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zcPhVpJXcVuPXb31qRKTbwdsNxKxUFkpA8gAzWXLypVeuBZBWBDWJ95SUN2iED5iU9ar2sGip97D6nZhsC5rM5TX"
+    }
+   },
+   "hash": "047e4683d830794d19c5eb3ea213e134b83d969fd577c45f4b95f9b5001b76d7"
+  },
+  {
    "name": "an outcome on a suggestion, with its reasons",
    "signer": "the Ur-world's Keeper",
    "record": {
@@ -1006,6 +1031,145 @@
     ],
     "within": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
     "validFrom": "2026-11-14T00:00:00Z"
+   }
+  },
+  {
+   "name": "not an object but a list",
+   "record": []
+  },
+  {
+   "name": "a format that is a list, not text",
+   "record": {
+    "format": [],
+    "issuer": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "holder": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "allows": [
+     "design-path",
+     "adjust-conditions"
+    ],
+    "within": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "validFrom": "2026-11-14T00:00:00Z"
+   }
+  },
+  {
+   "name": "a suggestion whose text is only no-break and ideographic spaces",
+   "record": {
+    "format": "open-worlds/suggestion/v1",
+    "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "to": {
+     "office": "keeper",
+     "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX"
+    },
+    "about": {
+     "kind": "world"
+    },
+    "text": " 　 ",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "tick": 100,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4FkJthuorzkAvSZkbwxTSzxRLXWNoUHXVpQQU8EmDWsKCsPVskRrjMwvxNUbA2uQMG2dSodBx4QZCC4pUqFESfb3"
+    }
+   }
+  },
+  {
+   "name": "a suggestion whose text holds a NUL",
+   "record": {
+    "format": "open-worlds/suggestion/v1",
+    "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "to": {
+     "office": "keeper",
+     "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX"
+    },
+    "about": {
+     "kind": "world"
+    },
+    "text": "Hello\u0000",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "tick": 100,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zZsZqWaQoXdaC3s1oLEjJ742M6BhVRoa9H23JHFNuLiqXNaX5vuhTKZFzWEJnBotbziQKFDNbWzNxVvmRG1MHpbu"
+    }
+   }
+  },
+  {
+   "name": "a decision that names the same record it makes twice",
+   "record": {
+    "format": "open-worlds/decision/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "84a63cf1007ec85fca32eec59a90ed3345325ead434152a0bbb2936d3a55ec62"
+    },
+    "act": {
+     "kind": "adjust-conditions",
+     "records": [
+      "84a63cf1007ec85fca32eec59a90ed3345325ead434152a0bbb2936d3a55ec62",
+      "84a63cf1007ec85fca32eec59a90ed3345325ead434152a0bbb2936d3a55ec62"
+     ]
+    },
+    "affects": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "reasons": "The spring ran low by evening on four days of six. Feeding it from the hill keeps water for everyone and changes no one's path.",
+    "grounds": [
+     {
+      "kind": "law",
+      "ref": "ur-world/law/v1#conditions"
+     },
+     {
+      "kind": "record",
+      "ref": "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
+     }
+    ],
+    "inputs": [
+     "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
+    ],
+    "appeal": "to ADMIN, and beyond it to the founder",
+    "tick": 120,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z52bnqCaz9pFW4uL52mBDjMG2uoCznbc2qjMTM7YC8iZcX7oaTDg7kMnK1CVm9JhiyMhiUqbGUKTM7VuymwiReenw"
+    }
+   }
+  },
+  {
+   "name": "a suggestion about a Keeper that names it other than by key",
+   "record": {
+    "format": "open-worlds/suggestion/v1",
+    "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "to": {
+     "office": "keeper",
+     "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX"
+    },
+    "about": {
+     "kind": "keeper",
+     "ref": "the Keeper"
+    },
+    "text": "The spring runs low by evening. Could it be fed?",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "tick": 100,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z35a4e8LM2pnAY391tvbXnJdRP6KN6uWDfmqydx3QqD644ve5H6W6rzNkwzq21d3xt2p9EECMtjnF8RM2mjnFJmCw"
+    }
    }
   },
   {

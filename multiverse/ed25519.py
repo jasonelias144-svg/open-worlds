@@ -10,13 +10,18 @@ because the project then used the standard library only; the founder
 has since lifted that rule, and the hand-written signing and verifying
 are gone.
 
-What stays here is a check on public data only: whether 32 bytes are a
-usable public key. `cryptography` accepts any 32 bytes as a public key,
-including the eight small-order points, and for those it accepts
-signatures anyone can make without a secret (R = rB, S = r; the tests
-show it). So `public_key_problem` refuses them, and `verify` refuses any
-key it refuses. The check is curve arithmetic on public keys, never on
-secrets, so its timing reveals nothing.
+What stays here are checks on public data only: whether 32 bytes are a
+usable public key, and whether a signature's R is a point of small order.
+`cryptography` accepts any 32 bytes as a public key, including the eight
+small-order points, and for those it accepts signatures anyone can make
+without a secret (R = rB, S = r; the tests show it). So
+`public_key_problem` refuses them, and `verify` refuses any key it
+refuses. And `cryptography` accepts a signature whose R is of small order,
+which a key's holder can make (R the neutral point, S = ka) and which the
+Rust code (`ed25519-dalek`'s `verify_strict`) refuses; so `verify` refuses
+it too, and the two agree on every signature. The checks are curve
+arithmetic on public data, never on secrets, so their timing reveals
+nothing.
 
 The curve is the twisted Edwards curve -x^2 + y^2 = 1 + d x^2 y^2 over the
 field of P = 2^255 - 19. Points are kept in extended coordinates
@@ -73,6 +78,9 @@ def verify(public: bytes, message: bytes, signature: bytes) -> bool:
             or type(signature) is not bytes or len(signature) != 64):
         return False
     if public_key_problem(public):
+        return False
+    r_point = _decode(signature[:32])
+    if r_point is None or _small_order(r_point):
         return False
     try:
         Ed25519PublicKey.from_public_bytes(public).verify(signature, message)
@@ -188,6 +196,26 @@ def _hash_int(data: bytes) -> int:
     """SHA-512 as a little-endian integer (RFC 8032's hash). Only the
     tests use it, to build the forgeries the check refuses."""
     return int.from_bytes(hashlib.sha512(data).digest(), "little")
+
+
+def _secret_scalar(secret: bytes) -> int:
+    """The scalar a of a 32-byte secret key (RFC 8032, section 5.1.5).
+    Only the tests and test vectors use it, to build a signature whose R
+    is of small order, which `verify` refuses."""
+    h = bytearray(hashlib.sha512(secret).digest()[:32])
+    h[0] &= 248
+    h[31] &= 127
+    h[31] |= 64
+    return int.from_bytes(h, "little")
+
+
+def _small_order_r_signature(secret: bytes, message: bytes) -> bytes:
+    """A signature by `secret`'s holder with R the neutral point and
+    S = ka: it satisfies the equation, and `verify` refuses it. Only the
+    tests and test vectors use it."""
+    r_encoded = _encode(NEUTRAL)
+    k = _hash_int(r_encoded + public_key(secret) + message) % L
+    return r_encoded + (k * _secret_scalar(secret) % L).to_bytes(32, "little")
 
 
 _BASE_Y = 4 * _inverse(5) % P

@@ -1,6 +1,6 @@
 {
  "w3c": {
-  "source": "W3C, Data Integrity EdDSA Cryptosuites v1.0, Recommendation of 15 May 2025, Appendix B.3, https://www.w3.org/TR/vc-di-eddsa/ ; W3C Software and Document License, https://www.w3.org/copyright/software-license-2023/",
+  "source": "Material copied from Data Integrity EdDSA Cryptosuites v1.0, W3C Recommendation of 15 May 2025, Appendix B.3, https://www.w3.org/TR/vc-di-eddsa/ . Copyright © 2025 World Wide Web Consortium. https://www.w3.org/copyright/software-license-2023/",
   "publicKeyMultibase": "z6MkrJVnaZkeFzdQyMZu1cgjg7k1pZZ6pvBQ7XJPt4swbTQ2",
   "secretKeyMultibase": "z3u2en7t5LR2WtQH5PfFqMqwVHBeXouLzo6haApm8XHqvjxq",
   "document": {
@@ -135,6 +135,29 @@
      "verificationMethod": "did:key:z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz#z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz",
      "proofPurpose": "assertionMethod",
      "proofValue": "z2hcgF3WgMhQXdZqAwdTcahn8oZiG5wn8mXMiAd5cZCAYQY5fPWt9pLsn9jLfUAkSS99GmQ9UBr7Tt9mWoixCYarV"
+    }
+   }
+  },
+  {
+   "name": "made in a year written with leading zeros",
+   "secretKeyMultibase": "z3u2VgqqC2p3SguFuBARoQG8yM9yBqQ7Sm1HfF9UJumn2TGD",
+   "publicKeyMultibase": "z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz",
+   "created": "0999-12-31T23:59:59Z",
+   "document": {
+    "format": "open-worlds/example/v1",
+    "text": "Long ago."
+   },
+   "canonicalDocument": "{\"format\":\"open-worlds/example/v1\",\"text\":\"Long ago.\"}",
+   "signed": {
+    "format": "open-worlds/example/v1",
+    "text": "Long ago.",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "0999-12-31T23:59:59Z",
+     "verificationMethod": "did:key:z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz#z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4gwGHd5kMcRYBjZ9eFEjnbMpjhiMgtyCQbgQLkezb47rAkQ3qZSJdKEaw8DryLBrPtnRnwn4czL9sTsv9kPMoV61"
     }
    }
   }
@@ -473,6 +496,58 @@
    }
   },
   {
+   "name": "a signature whose R is the neutral point, made by the key's holder (cofactorless verification alone accepts it)",
+   "secured": {
+    "format": "open-worlds/example/v1",
+    "text": "Café, 🙂, a line separator, a tab\tand a quote \"",
+    "most": 9007199254740991,
+    "least": -9007199254740991,
+    "list": [
+     true,
+     false,
+     null,
+     {
+      "b": 1,
+      "a": 2
+     },
+     []
+    ],
+    "empty": {},
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T00:00:00Z",
+     "verificationMethod": "did:key:z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz#z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2AFv15MNPuA84RmU66xw2uMzGipcVxNpzAffoacGVvjJryzH3FxzZY4TcRXCTjxk7ba56Lq9wdxom7sUaGLt3Vf"
+    }
+   }
+  },
+  {
+   "name": "the record's @context differs from the proof's only as true differs from 1",
+   "secured": {
+    "@context": [
+     {
+      "a": true
+     }
+    ],
+    "text": "one",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T00:00:00Z",
+     "verificationMethod": "did:key:z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz#z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz",
+     "proofPurpose": "assertionMethod",
+     "@context": [
+      {
+       "a": 1
+      }
+     ],
+     "proofValue": "z42YztBEPE3byEBBV2A73N41q9zKCiZDqEiY79y8k8D83e274pu2ASTcsERgvMXcrD78abCMA4ouY7ADw6yFmfYWd"
+    }
+   }
+  },
+  {
    "name": "a proof set instead of one proof",
    "secured": {
     "format": "open-worlds/example/v1",
@@ -751,6 +826,34 @@
      "verificationMethod": "did:key:z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz#z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz",
      "proofPurpose": "assertionMethod",
      "proofValue": "zV7XPAeXGv21yr7LDBsoVh8ADSivUyypHWyZQn6T7ATZUHnVdYqKQt97Ti9tCWj3Pn5LpZhdrwdds7oKewoh2hzP"
+    }
+   }
+  },
+  {
+   "name": "created ２０２６-11-14T00:00:00Z: digits are ASCII",
+   "secured": {
+    "format": "open-worlds/example/v1",
+    "text": "Café, 🙂, a line separator, a tab\tand a quote \"",
+    "most": 9007199254740991,
+    "least": -9007199254740991,
+    "list": [
+     true,
+     false,
+     null,
+     {
+      "b": 1,
+      "a": 2
+     },
+     []
+    ],
+    "empty": {},
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "２０２６-11-14T00:00:00Z",
+     "verificationMethod": "did:key:z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz#z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4ARGCahs4dT25r6nvYV1Mzd7c4ndPU3zEDYmFTG6mUaKT1ijzWKJZu94jL2kp3gWUFTZeFSyJrrNhopYerRjnjte"
     }
    }
   }

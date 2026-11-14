@@ -55,10 +55,10 @@ def _w3c() -> Dict[str, Any]:
     """The specification's example, every value as Appendix B.3 prints
     it; tests/test_formats.py checks that this code reproduces each."""
     return {
-        "source": ("W3C, Data Integrity EdDSA Cryptosuites v1.0, "
-                   "Recommendation of 15 May 2025, Appendix B.3, "
-                   "https://www.w3.org/TR/vc-di-eddsa/ ; W3C Software and "
-                   "Document License, "
+        "source": ("Material copied from Data Integrity EdDSA "
+                   "Cryptosuites v1.0, W3C Recommendation of 15 May 2025, "
+                   "Appendix B.3, https://www.w3.org/TR/vc-di-eddsa/ . "
+                   "Copyright \u00a9 2025 World Wide Web Consortium. "
                    "https://www.w3.org/copyright/software-license-2023/"),
         "publicKeyMultibase":
             "z6MkrJVnaZkeFzdQyMZu1cgjg7k1pZZ6pvBQ7XJPt4swbTQ2",
@@ -117,6 +117,10 @@ def _records() -> List[Dict[str, Any]]:
          "created": "2000-02-29T23:59:59Z",
          "document": {"format": "open-worlds/example/v1",
                       "text": "Hello, BOB."}},
+        {"name": "made in a year written with leading zeros",
+         "created": "0999-12-31T23:59:59Z",
+         "document": {"format": "open-worlds/example/v1",
+                      "text": "Long ago."}},
     ]
 
 
@@ -153,6 +157,12 @@ def _resign(secured: Dict[str, Any], **changes: Any) -> Dict[str, Any]:
 def _refused() -> List[Dict[str, Any]]:
     good = proof.sign(_records()[0]["document"], TEST_SECRET, CREATED)
     ctx = proof.sign(_records()[1]["document"], TEST_SECRET, CREATED)
+    one = proof.sign({"@context": [{"a": 1}], "text": "one"},
+                     TEST_SECRET, CREATED)
+    unsecured = {k: v for k, v in good.items() if k != "proof"}
+    options = {k: v for k, v in good["proof"].items() if k != "proofValue"}
+    small_r = ed25519._small_order_r_signature(
+        TEST_SECRET, proof._hash_data(unsecured, options))
     other = hashlib.sha256(b"open-worlds: another test key").digest()
     weak = bytes([1]) + bytes(31)   # the neutral point: a key of small order
 
@@ -196,6 +206,13 @@ def _refused() -> List[Dict[str, Any]]:
         {"name": "the record's @context doesn't start with the proof's",
          "secured": changed(ctx, **{"@context": ["https://example.org/b",
                                                  "https://example.org/a"]})},
+        {"name": "a signature whose R is the neutral point, made by the "
+                 "key's holder (cofactorless verification alone accepts it)",
+         "secured": proof_changed(
+             good, proofValue="z" + base58btc_encode(small_r))},
+        {"name": "the record's @context differs from the proof's only as "
+                 "true differs from 1",
+         "secured": changed(one, **{"@context": [{"a": True}]})},
         {"name": "a proof set instead of one proof",
          "secured": changed(good, proof=[good["proof"]])},
         {"name": "no proofPurpose",
@@ -213,6 +230,8 @@ def _refused() -> List[Dict[str, Any]]:
             ("0000-01-01T00:00:00Z", "no year 0"),
             ("2026-11-14T00:00:00z", "Z is upper case"),
             ("2026-11-14T00:00Z", "seconds are written"),
+            ("\uff12\uff10\uff12\uff16-11-14T00:00:00Z",
+             "digits are ASCII"),
         ]
     ]
 

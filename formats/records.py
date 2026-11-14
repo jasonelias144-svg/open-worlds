@@ -11,9 +11,12 @@ both read, schemas/records-v1.schema.json, and each is signed with
    issuer, a decision by the office's key, a suggestion and a rating by
    their author, a log head by its world.
 
-What the schema can't say (that a grant only narrows the grant it names,
-that a decision's inputs are in the log) is checked where the records
-meet the kernel, at course step 4.
+What the schema can't say is checked where the records meet the kernel,
+at course step 4: that a grant only narrows the grant it names; that a
+decision's inputs are in the log, its office holds the grant it names,
+and that grant allows its kind of act; that a rating's author wrote the
+suggestion it names, and its outcome is a decision that names that
+suggestion.
 
 A record's hash, which other records name it by, is the SHA-256 of its
 RFC 8785 form, proof included, in lowercase hex.
@@ -59,6 +62,8 @@ def _ecma_pattern(validator: Any, pattern: str, instance: Any,
     schema's patterns use nothing else on which the two differ."""
     if not validator.is_type(instance, "string"):
         return
+    # (A pattern ending in an escaped backslash and then $, \\\\$, would be
+    # misread here; no pattern in records-v1 ends so.)
     if pattern.endswith("$") and not pattern.endswith("\\$"):
         pattern = pattern[:-1] + "\\Z"
     if not re.search(pattern, instance):
@@ -80,7 +85,8 @@ _VALIDATORS = {fmt: _validator(name) for fmt, (name, _) in KINDS.items()}
 
 def problems(record: Any) -> List[str]:
     """Where `record` doesn't fit its kind's schema, or [] if it does."""
-    if type(record) is not dict or record.get("format") not in KINDS:
+    if (type(record) is not dict or type(record.get("format")) is not str
+            or record["format"] not in KINDS):
         return ["$: not a record of a kind in records-v1"]
     errors = _VALIDATORS[record["format"]].iter_errors(record)
     return sorted(
@@ -116,7 +122,9 @@ def signer_field(record: Dict[str, Any]) -> Any:
 
 def check(record: Any) -> Dict[str, Any]:
     """`record` without its proof, if it holds; otherwise RecordError."""
-    found = problems(record) + _time_problems(record)
+    found = problems(record)
+    if not found:
+        found = _time_problems(record)
     if found:
         raise RecordError("; ".join(found))
     try:
