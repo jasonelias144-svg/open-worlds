@@ -187,10 +187,6 @@ text or as code with tests:
   such as a quatrain in common meter each turn, Dickinson's meter.
 - **The hunt** (course step 11, [WORLD-KEY.md](WORLD-KEY.md)): symbols,
   maps, codes and stones; puzzles that teach without words.
-
-Held back, as the project's own to do: the real keys (step 3), and
-anything that publishes or can't be undone; ADMIN and the Keepers wait
-for step 11.
 - **The Ur-world,** built from `rust/ur-world` to the standards in "Code
   in Rust" below: its next steps are in [URWORLD.md](URWORLD.md).
 - **Minds for the Ur-world,** in any language. A mind is a program that
@@ -198,6 +194,10 @@ for step 11.
   ([URWORLD.md](URWORLD.md), "Minds from outside: the doorway").
   `minds/wanderer.py` is the smallest example.
 - **Anything on the course,** proposed as described below.
+
+Held back, as the project's own to do: the real keys (step 3), and
+anything that publishes or can't be undone. ADMIN itself and the Keepers
+wait for step 11; their interface is fixed in step 4, by the project.
 
 ## The standard
 
@@ -292,8 +292,10 @@ These apply to code that comes into open-worlds, not to the draft (see
 The worlds themselves are to be built in Rust. The founder: "we should
 stick with Rust", with "an interface to Unity built worlds", so that
 worlds made with Unity or Unreal can join, while no one owns the
-foundation. The Python in `world/` and `multiverse/` stays as the
-reference: the Rust code is checked against it, hash for hash.
+foundation. The Python stays as the reference for what Python built
+first (the log, the protocol, the formats' vectors), and the Rust code is
+checked against it, hash for hash; for the Ur-world, Rust is the
+reference (rule 6 below).
 
 **Start from `rust/`** ([rust/README.md](../rust/README.md)). It's a
 Cargo workspace. `world-log` checks a world's public record exactly as
