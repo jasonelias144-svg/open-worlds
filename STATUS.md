@@ -794,7 +794,33 @@ it was wrong. Questions of what the project is for stay with the founder.
   repository already holds each sealing key: docs/research/FORMATS.md,
   "Sealed records".)
 
+- 2026-11-14, who an individual and a world are: an identity
+  (`open-worlds/identity/v1`), signed with its own key, binding a sealing
+  key to a did:key; an individual's birth record and a world's, signed by
+  the world, the world's naming its template, the template's dials it set,
+  and what it was forked from; and a mind record, signed by the project's
+  key, naming each engine by exact revision, file hashes and image digest,
+  in the order they began; all in records-v1 (docs/research/FORMATS.md,
+  "Who an individual and a world are"). *Why:* sealing to the right person
+  needs the binding; the birth records are what MINDS.md and VISION.md
+  describe; a world signs its own birth record, binding its key to it, and
+  its founders and parent world confirm a founding in records of their own
+  at course step 12 (one key, one proof, as every record, rather than
+  WORLD-KEY.md's birth record signed by the Ur-world and the founders); a
+  mind record with exact revisions and digests is what lets an engine be
+  rebuilt. *Revisit if:* step 3's keys need the identity to carry
+  successions in the record itself, or a world's founding (course step 12)
+  needs more in its birth record.
+
 ## Log
+
+- 2026-11-14 Claude: course step 2, part five: who an individual and a
+  world are. Identity, an individual's birth record, a world's birth
+  record (with its template's dials and what it was forked from) and the
+  mind record join records-v1, in Python and Rust; an identity's sealing
+  key is checked as sealing checks it, and every time in a record must be
+  real. Shared vectors: 16 records that hold and 58 refused in
+  records-v1.json.
 
 - 2026-11-14 Claude: the founder's visions of the evening, in the
   founder's words, in a new page, docs/VISION.md, each mapped to the
@@ -804,6 +830,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   and COURSE.md's waiting list point to it; the charter section 4 note
   in STATUS updated (the Keeper line is public; private messages fall
   under the "break glass").
+
 - 2026-11-14 Claude: the founder's standing rule: an unanswered question
   is decided on the technical lead's recommendation, once put, except
   for what silence can't consent to. Written into AGENTS.md and STATUS;

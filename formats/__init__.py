@@ -7,8 +7,9 @@ everywhere, and signed so that standard tools can check them.
 - `proof`: Data Integrity proofs with the `eddsa-jcs-2022` cryptosuite,
   W3C Recommendation of 15 May 2025.
 - `records`: the records the offices keep (grant, decision, suggestion,
-  rating, signed log head), and the sealed kinds (world-key, journal
-  entry), checked against schemas/records-v1.schema.json.
+  rating, signed log head), the sealed kinds (world-key, journal entry),
+  and who an individual and a world are (identity, birth records, mind
+  record), checked against schemas/records-v1.schema.json.
 - `seal`: a message only one key can open, with HPKE (RFC 9180) and a
   label naming its purpose.
 - `sealed`: world-keys and journal entries, signed and sealed to the one

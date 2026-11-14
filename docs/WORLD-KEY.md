@@ -469,9 +469,12 @@ It is not the new world's own key. A world's key is its identity, and the
 private half of a key must never be something that could be worked out
 from a record. So at the founding, a new key pair is made for the new
 world: the private half goes where all private halves are kept
-([MINDS.md](MINDS.md), "Where everything lives"), and the new world's
-birth record names the public half, signed by the Ur-world and by the
-founders.
+([MINDS.md](MINDS.md), "Where everything lives"), and the new world signs
+its own birth record with it, which binds that key to the world. The
+Ur-world and each founder confirm the founding in records of their own,
+naming that birth record; the Ur-world's names the world-keys used
+(course step 12; [research/FORMATS.md](research/FORMATS.md), "Who an
+individual and a world are").
 
 - **One world-key founds a world of your own.** It is marked as used at
   the founding; the next comes at the end of a new, harder path.

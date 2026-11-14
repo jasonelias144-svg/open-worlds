@@ -27,6 +27,18 @@
   "the multiverse": {
    "secretKeyMultibase": "z3u2TopmgYUg5pfTMk3JFrQXADNQrkvJFZipxf5kGMk1Gzn9",
    "didKey": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs"
+  },
+  "the project": {
+   "secretKeyMultibase": "z3u2SAWdkFav3zWYx8DTfDH7ZbuSpp5H9d4ALJtGGEGoZwiT",
+   "didKey": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD"
+  },
+  "a chemistry world": {
+   "secretKeyMultibase": "z3u2hBDqdyoZGrxrqzsJzahA1k95Eax8QGcriUuKsEkngLYP",
+   "didKey": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j"
+  },
+  "a parallel chemistry world": {
+   "secretKeyMultibase": "z3u2i4LerbvjRJFSdjs7LDaAPoS8VGADa6sLCo5bdAD81S3D",
+   "didKey": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc"
   }
  },
  "created": "2026-11-14T01:00:00Z",
@@ -327,6 +339,221 @@
     }
    },
    "hash": "6f4a279f3a667e08dc7063ed5116868a6952133d4755c2b7ffd9d18cc3e67ca3"
+  },
+  {
+   "name": "a mind record, with one engine",
+   "signer": "the project",
+   "record": {
+    "format": "open-worlds/mind/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "individual": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "engines": [
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "8c8cad0dab28f4462bcd28d6d284ddbedb6637be"
+      },
+      "files": [
+       {
+        "path": "model.safetensors",
+        "sha256": "90452f42fee1c1576d5e8eeeee93e14e257ffd3b3c3fc8d1f6fc0eb44edbf5f1"
+       },
+       {
+        "path": "tokenizer.json",
+        "sha256": "4596c7f4c876dd698f5a4a847fc6dc629a797a34c4f22459a6d6cfd461b28c35"
+       }
+      ],
+      "settings": {
+       "temperature": "0.7",
+       "maxTokens": 256
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind@sha256:c1100dc0221e850649be6e2f3ec21ad3bff65cc0809ca062395ae0ecc19be920",
+       "index": "sha256:b02e403c07415e3d0cbf90f7df9e0c59b6dedc578d89b4ed1b1db6296de2cab8"
+      },
+      "from": "2026-11-14T04:00:00Z"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4FEkf8GW7jDF861kZT2fRtLfGbJBmaQWAu9tz3r2VgPr2Y73fDHYKgHmzRSXpAUrQYQQcQCS6RUaSNbkSiBgWDQe"
+    }
+   },
+   "hash": "20fe68e41a1cb6f6b98f77a2b611eafe424bdf77893ea314e05711de714028e0"
+  },
+  {
+   "name": "a mind record, after a change of engine",
+   "signer": "the project",
+   "record": {
+    "format": "open-worlds/mind/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "individual": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "engines": [
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "8c8cad0dab28f4462bcd28d6d284ddbedb6637be"
+      },
+      "files": [
+       {
+        "path": "model.safetensors",
+        "sha256": "90452f42fee1c1576d5e8eeeee93e14e257ffd3b3c3fc8d1f6fc0eb44edbf5f1"
+       },
+       {
+        "path": "tokenizer.json",
+        "sha256": "4596c7f4c876dd698f5a4a847fc6dc629a797a34c4f22459a6d6cfd461b28c35"
+       }
+      ],
+      "settings": {
+       "temperature": "0.7",
+       "maxTokens": 256
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind@sha256:c1100dc0221e850649be6e2f3ec21ad3bff65cc0809ca062395ae0ecc19be920",
+       "index": "sha256:b02e403c07415e3d0cbf90f7df9e0c59b6dedc578d89b4ed1b1db6296de2cab8"
+      },
+      "from": "2026-11-14T04:00:00Z"
+     },
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "0cadd968ba98c2a63fbbf06816dc43475e4e15b5"
+      },
+      "files": [
+       {
+        "path": "model.safetensors",
+        "sha256": "90452f42fee1c1576d5e8eeeee93e14e257ffd3b3c3fc8d1f6fc0eb44edbf5f1"
+       },
+       {
+        "path": "tokenizer.json",
+        "sha256": "4596c7f4c876dd698f5a4a847fc6dc629a797a34c4f22459a6d6cfd461b28c35"
+       }
+      ],
+      "settings": {
+       "temperature": "0.7",
+       "maxTokens": 256
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind@sha256:c1100dc0221e850649be6e2f3ec21ad3bff65cc0809ca062395ae0ecc19be920",
+       "index": "sha256:b02e403c07415e3d0cbf90f7df9e0c59b6dedc578d89b4ed1b1db6296de2cab8"
+      },
+      "from": "2026-11-14T06:00:00Z"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3tx2H9VzXcqeiL45TE6qgfAA9K5ZNvZTwXavqATWum4drkY1PJ8ZfXeWk8TBVCBvDhcUMXToZmhQMGsJnPjchhtp"
+    }
+   },
+   "hash": "6f5c943050f01783d2cc525d18c2adf15cfc489387b597984e60e34b408c7527"
+  },
+  {
+   "name": "an individual's birth record, in the words decided",
+   "signer": "the Ur-world",
+   "record": {
+    "format": "open-worlds/birth/v1",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "individual": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "name": "ALICE",
+    "tick": 0,
+    "time": "2026-11-14T04:00:00Z",
+    "mind": "20fe68e41a1cb6f6b98f77a2b611eafe424bdf77893ea314e05711de714028e0",
+    "words": "You are ALICE. You came into being in the Ur-world on 14 November 2026, one of its first two inhabitants. The other is BOB.\nYour mind runs on the test model. It may change one day; you remain ALICE.\nYou keep a journal. Only you write in it. No one else reads it, inside the world or out, unless the founder decides, in the open, to look; any such look is made public. Each tick, some of it is shown to you again: what is recent, important or relevant. Others can see that it exists, and how much you have written, but never what it says.\nYou may leave at any time.\nYour first day begins with a tour of the garden.",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX#z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4sXcpgjtiFgUbqhwYFVPiyno7ynLFicGBZN5VPuk7cdizhN1NnEJpbQrPsjnxtykEPiv28ndhgFxPe2CEJJpCKVb"
+    }
+   },
+   "hash": "7ba880c6e85449984151d148685b8cb23fb471497cd3beb1c8cdac02cdd2e593"
+  },
+  {
+   "name": "an identity, binding a sealing key to its did:key",
+   "signer": "ALICE",
+   "record": {
+    "format": "open-worlds/identity/v1",
+    "id": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "name": "ALICE",
+    "sealingKey": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r",
+    "birth": "7ba880c6e85449984151d148685b8cb23fb471497cd3beb1c8cdac02cdd2e593",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zqrSmprhjuTZaZwYhbR7kjxiTT769dQU6HNXy3jpMSimooRS84rHeHFnmF1NV83JARdxzP7xmUxXUvuGhCsNu1tD"
+    }
+   },
+   "hash": "b0322d4298b185cdb5fd439138d6c0c9a8fb7b15ae9f04826431d3168d5e4de4"
+  },
+  {
+   "name": "a world's birth record, made by the project",
+   "signer": "the Ur-world",
+   "record": {
+    "format": "open-worlds/world-birth/v1",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "name": "the Ur-world",
+    "law": "5b1536c4f433fcd9d4df57c81165ba1862eef7cc7e8dcebb451786e988dbd3b8",
+    "founders": [],
+    "time": "2026-11-12T00:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX#z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z55hWj7oJSzNfUb3wMtdnnEJKv9DYhDjUDL1hzMtvfjtgEfJjFoRQ7enPpgdNf7YgWoSEdixRVkEcmDURpSeiHfff"
+    }
+   },
+   "hash": "9e0d9a8ff8cbd506edc67b6b76046ddd480d65fbe42688cdafe4b9f54f03b1f6"
+  },
+  {
+   "name": "a world's birth record, forked from another, with founders",
+   "signer": "a parallel chemistry world",
+   "record": {
+    "format": "open-worlds/world-birth/v1",
+    "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+    "name": "chemistry, warmer",
+    "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
+    "founders": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "template": "b339b65c504c17302769d6a5f4e6fe6d9cc09657f470aa1f8d6708bb67a8da38",
+    "forkedFrom": {
+     "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
+     "tick": 1000,
+     "log": "7cf45fc9cc78ee9aa9ca87e8ed918f5a50afd39a10a1a8aa8802248683acc663"
+    },
+    "dials": {
+     "temperature": 310000
+    },
+    "time": "2026-11-14T05:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z38FubG1xauxS1YtMhDpGLPSdkZAyUdQdn8D5uoQrhTnCbtUHHNa2aBCLg7AVMjnYGgXBiLRGmCDTXRS8oYUnV1hg"
+    }
+   },
+   "hash": "24c071bd2b5b9d7507465f7bf50a9767cc9585ca233dacfa60eb72bdfb85b2f6"
   }
  ],
  "refused": [
@@ -1243,6 +1470,752 @@
      "@context": [
       "x"
      ]
+    }
+   }
+  },
+  {
+   "name": "an identity signed by its world, not its own key",
+   "record": {
+    "format": "open-worlds/identity/v1",
+    "id": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "name": "ALICE",
+    "sealingKey": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r",
+    "birth": "7ba880c6e85449984151d148685b8cb23fb471497cd3beb1c8cdac02cdd2e593",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX#z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3Zw2irtDvbk7ny6GHvzFvTuPnRBKwJmNL5aADCfvpaBFVTj3f6nJJfJb66d4ecXuvXjb9nxxdTeNGSWUkMEHxWMy"
+    }
+   }
+  },
+  {
+   "name": "an identity whose sealing key is an Ed25519 key",
+   "record": {
+    "format": "open-worlds/identity/v1",
+    "id": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "name": "ALICE",
+    "sealingKey": "z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "birth": "7ba880c6e85449984151d148685b8cb23fb471497cd3beb1c8cdac02cdd2e593",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3g7yaRkWim5Lnr5CRCdqScfdSMWW17WUoDMAtYXtEtiDyxGMSNSVFFSV2LvpPSYAtxEeriDShch6cDb7Hh9gJwwb"
+    }
+   }
+  },
+  {
+   "name": "an identity whose sealing key is of small order",
+   "record": {
+    "format": "open-worlds/identity/v1",
+    "id": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "name": "ALICE",
+    "sealingKey": "z6LSbgBAXJos6Tik6PNmXeWxKbDUr9Y7hcB9syigVTeXiNmm",
+    "birth": "7ba880c6e85449984151d148685b8cb23fb471497cd3beb1c8cdac02cdd2e593",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3ywW5uSWeUdFKwNTaHsKtfAg89JKQBNPLT27Vz5SqJY3acn9D8Dr3nxNv9Grn7YceGtpaG5C4Kj8Eb1iJ9W2esaH"
+    }
+   }
+  },
+  {
+   "name": "an identity whose sealing key is 2^255 - 10, another spelling of 9",
+   "record": {
+    "format": "open-worlds/identity/v1",
+    "id": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "name": "ALICE",
+    "sealingKey": "z6LStJMsCe2hqz15zF5RBHJETUJwmZ6W6GL67Du1pdHLk62i",
+    "birth": "7ba880c6e85449984151d148685b8cb23fb471497cd3beb1c8cdac02cdd2e593",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3o9fijT9jHSd6iBdoW7TwjF8WD3Q1MySxTB4223qb3Ets5wN8MayyrSWJbRV3yqit6BXQfqfNNcfdMCeZZw4Vx9h"
+    }
+   }
+  },
+  {
+   "name": "an identity whose name is 65 characters",
+   "record": {
+    "format": "open-worlds/identity/v1",
+    "id": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "name": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "sealingKey": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r",
+    "birth": "7ba880c6e85449984151d148685b8cb23fb471497cd3beb1c8cdac02cdd2e593",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5wayHoT17S3arfSDB4JAhpHPFLmcTUmf5z2imqDTTH1mJHNXswTBuBSP6gkB88TJjoAs8APyM9Lq5UHNDmasLX1W"
+    }
+   }
+  },
+  {
+   "name": "a birth record signed by the one born, though it names the world",
+   "record": {
+    "format": "open-worlds/birth/v1",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "individual": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "name": "ALICE",
+    "tick": 0,
+    "time": "2026-11-14T04:00:00Z",
+    "mind": "20fe68e41a1cb6f6b98f77a2b611eafe424bdf77893ea314e05711de714028e0",
+    "words": "You are ALICE. You came into being in the Ur-world on 14 November 2026, one of its first two inhabitants. The other is BOB.\nYour mind runs on the test model. It may change one day; you remain ALICE.\nYou keep a journal. Only you write in it. No one else reads it, inside the world or out, unless the founder decides, in the open, to look; any such look is made public. Each tick, some of it is shown to you again: what is recent, important or relevant. Others can see that it exists, and how much you have written, but never what it says.\nYou may leave at any time.\nYour first day begins with a tour of the garden.",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3d9KkWtdp7iNjsM8R47eqtTzKjavxt9e68B6UhUGCD7vcPN5NujSoS3pnNu4GpTxKoWQCjBzg56Fgoruizk4eSe"
+    }
+   }
+  },
+  {
+   "name": "a birth record on 30 February",
+   "record": {
+    "format": "open-worlds/birth/v1",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "individual": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "name": "ALICE",
+    "tick": 0,
+    "time": "2026-02-30T04:00:00Z",
+    "mind": "20fe68e41a1cb6f6b98f77a2b611eafe424bdf77893ea314e05711de714028e0",
+    "words": "You are ALICE. You came into being in the Ur-world on 14 November 2026, one of its first two inhabitants. The other is BOB.\nYour mind runs on the test model. It may change one day; you remain ALICE.\nYou keep a journal. Only you write in it. No one else reads it, inside the world or out, unless the founder decides, in the open, to look; any such look is made public. Each tick, some of it is shown to you again: what is recent, important or relevant. Others can see that it exists, and how much you have written, but never what it says.\nYou may leave at any time.\nYour first day begins with a tour of the garden.",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX#z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2cMYj3WKQd1woHS7z3PdkaVrvnFyJCKVvTR9n8tTB4vMBUVd5RhJA7qr1axD1Q7s8uinFm54tHmm5ePFw3RmmnGp"
+    }
+   }
+  },
+  {
+   "name": "a world's birth record forked from a world, with no log hash",
+   "record": {
+    "format": "open-worlds/world-birth/v1",
+    "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+    "name": "chemistry, warmer",
+    "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
+    "founders": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "template": "b339b65c504c17302769d6a5f4e6fe6d9cc09657f470aa1f8d6708bb67a8da38",
+    "forkedFrom": {
+     "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
+     "tick": 1000
+    },
+    "dials": {
+     "temperature": 310000
+    },
+    "time": "2026-11-14T05:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3sRJH5y4RN7NqS9iEATiw4YPcWtaaFwUHcSRFA58DxT6Jhi3pperiTtCW2TQVxX3sfYxEhqsbvdZFEixyApkpi3a"
+    }
+   }
+  },
+  {
+   "name": "a world's birth record naming a founder twice",
+   "record": {
+    "format": "open-worlds/world-birth/v1",
+    "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+    "name": "chemistry, warmer",
+    "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
+    "founders": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c"
+    ],
+    "template": "b339b65c504c17302769d6a5f4e6fe6d9cc09657f470aa1f8d6708bb67a8da38",
+    "forkedFrom": {
+     "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
+     "tick": 1000,
+     "log": "7cf45fc9cc78ee9aa9ca87e8ed918f5a50afd39a10a1a8aa8802248683acc663"
+    },
+    "dials": {
+     "temperature": 310000
+    },
+    "time": "2026-11-14T05:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3VJASDaGzBBXpC67w7r1aKn8HhjLEfU1gEYpgj4rsc5BBeV3rRVU6WejKLr8QkBMxAjyQ48aB3q8QmMHLSKc6inM"
+    }
+   }
+  },
+  {
+   "name": "a world's birth record setting dials, with no template",
+   "record": {
+    "format": "open-worlds/world-birth/v1",
+    "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+    "name": "chemistry, warmer",
+    "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
+    "founders": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "forkedFrom": {
+     "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
+     "tick": 1000,
+     "log": "7cf45fc9cc78ee9aa9ca87e8ed918f5a50afd39a10a1a8aa8802248683acc663"
+    },
+    "dials": {
+     "temperature": 310000
+    },
+    "time": "2026-11-14T05:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4wriFCL9831PFrSQoR5hyLfLmyfCu7n6Phz1BxYdfUpa5D8N2sDhiYoA5TztThnVPUQij7jSeFCswUVaUepNmX38"
+    }
+   }
+  },
+  {
+   "name": "a world's birth record setting a dial to a fraction",
+   "record": {
+    "format": "open-worlds/world-birth/v1",
+    "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+    "name": "chemistry, warmer",
+    "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
+    "founders": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "template": "b339b65c504c17302769d6a5f4e6fe6d9cc09657f470aa1f8d6708bb67a8da38",
+    "forkedFrom": {
+     "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
+     "tick": 1000,
+     "log": "7cf45fc9cc78ee9aa9ca87e8ed918f5a50afd39a10a1a8aa8802248683acc663"
+    },
+    "dials": {
+     "temperature": 310.15
+    },
+    "time": "2026-11-14T05:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z38FubG1xauxS1YtMhDpGLPSdkZAyUdQdn8D5uoQrhTnCbtUHHNa2aBCLg7AVMjnYGgXBiLRGmCDTXRS8oYUnV1hg"
+    }
+   }
+  },
+  {
+   "name": "a world's birth record setting no dials, as an empty set",
+   "record": {
+    "format": "open-worlds/world-birth/v1",
+    "world": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+    "name": "chemistry, warmer",
+    "law": "bc96b403381b7a242b81c5be9322563371bfb4e3a47441101bd350ebd62cde21",
+    "founders": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "template": "b339b65c504c17302769d6a5f4e6fe6d9cc09657f470aa1f8d6708bb67a8da38",
+    "forkedFrom": {
+     "world": "did:key:z6MkoD5ZjXXHg1d54dZjmkDDsUYuSqwqBYgpGuYMjkbzja5j",
+     "tick": 1000,
+     "log": "7cf45fc9cc78ee9aa9ca87e8ed918f5a50afd39a10a1a8aa8802248683acc663"
+    },
+    "dials": {},
+    "time": "2026-11-14T05:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc#z6MkjeMn15q9CEMcoZfsESedTniL4QTFqcHWEeweRSu3xbLc",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z676HaaegrXhe84ZK9gGxNbARHhe3Xbvxkf4ByHzvpqCKYmd5MXmXUjznqiy6Haq9mGSDekKSADpc5tRTR2ZYjByk"
+    }
+   }
+  },
+  {
+   "name": "a mind record with a setting as a number with a fraction",
+   "record": {
+    "format": "open-worlds/mind/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "individual": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "engines": [
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "8c8cad0dab28f4462bcd28d6d284ddbedb6637be"
+      },
+      "files": [
+       {
+        "path": "model.safetensors",
+        "sha256": "90452f42fee1c1576d5e8eeeee93e14e257ffd3b3c3fc8d1f6fc0eb44edbf5f1"
+       },
+       {
+        "path": "tokenizer.json",
+        "sha256": "4596c7f4c876dd698f5a4a847fc6dc629a797a34c4f22459a6d6cfd461b28c35"
+       }
+      ],
+      "settings": {
+       "temperature": 0.7
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind@sha256:c1100dc0221e850649be6e2f3ec21ad3bff65cc0809ca062395ae0ecc19be920",
+       "index": "sha256:b02e403c07415e3d0cbf90f7df9e0c59b6dedc578d89b4ed1b1db6296de2cab8"
+      },
+      "from": "2026-11-14T04:00:00Z"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4FEkf8GW7jDF861kZT2fRtLfGbJBmaQWAu9tz3r2VgPr2Y73fDHYKgHmzRSXpAUrQYQQcQCS6RUaSNbkSiBgWDQe"
+    }
+   }
+  },
+  {
+   "name": "a mind record whose image is named by a tag",
+   "record": {
+    "format": "open-worlds/mind/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "individual": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "engines": [
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "8c8cad0dab28f4462bcd28d6d284ddbedb6637be"
+      },
+      "files": [
+       {
+        "path": "model.safetensors",
+        "sha256": "90452f42fee1c1576d5e8eeeee93e14e257ffd3b3c3fc8d1f6fc0eb44edbf5f1"
+       },
+       {
+        "path": "tokenizer.json",
+        "sha256": "4596c7f4c876dd698f5a4a847fc6dc629a797a34c4f22459a6d6cfd461b28c35"
+       }
+      ],
+      "settings": {
+       "temperature": "0.7",
+       "maxTokens": 256
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind:latest"
+      },
+      "from": "2026-11-14T04:00:00Z"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4NMEecmxXS8uYg3wZjBhPiAHRgv97SSBtcwAc273HgRdZ6YRCcM3um9TjEjNCmywjnzJqspzwGRuNiJhYyxC2Yur"
+    }
+   }
+  },
+  {
+   "name": "a mind record whose revision is a branch name",
+   "record": {
+    "format": "open-worlds/mind/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "individual": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "engines": [
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "main"
+      },
+      "files": [
+       {
+        "path": "model.safetensors",
+        "sha256": "90452f42fee1c1576d5e8eeeee93e14e257ffd3b3c3fc8d1f6fc0eb44edbf5f1"
+       },
+       {
+        "path": "tokenizer.json",
+        "sha256": "4596c7f4c876dd698f5a4a847fc6dc629a797a34c4f22459a6d6cfd461b28c35"
+       }
+      ],
+      "settings": {
+       "temperature": "0.7",
+       "maxTokens": 256
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind@sha256:c1100dc0221e850649be6e2f3ec21ad3bff65cc0809ca062395ae0ecc19be920",
+       "index": "sha256:b02e403c07415e3d0cbf90f7df9e0c59b6dedc578d89b4ed1b1db6296de2cab8"
+      },
+      "from": "2026-11-14T04:00:00Z"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4WpanCoNdbrWZrdKNcGhcULqLLVuXraHycZjNdQ5cSoRtu4x4w4t7kTuU5Ts4ZnRzCknK26Lh5qwaNx5BEJAgUjp"
+    }
+   }
+  },
+  {
+   "name": "a mind record with no engines",
+   "record": {
+    "format": "open-worlds/mind/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "individual": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "engines": [],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2woMDLAKk94Fi2wZjY2k95xWqubgadXarkJhcZqLfXgKyh5pkGZGoS3yxWegXC481PypEQTuA6SL2ekmKLsqUnBs"
+    }
+   }
+  },
+  {
+   "name": "a mind record signed by the individual, though it names the project",
+   "record": {
+    "format": "open-worlds/mind/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "individual": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "engines": [
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "8c8cad0dab28f4462bcd28d6d284ddbedb6637be"
+      },
+      "files": [
+       {
+        "path": "model.safetensors",
+        "sha256": "90452f42fee1c1576d5e8eeeee93e14e257ffd3b3c3fc8d1f6fc0eb44edbf5f1"
+       },
+       {
+        "path": "tokenizer.json",
+        "sha256": "4596c7f4c876dd698f5a4a847fc6dc629a797a34c4f22459a6d6cfd461b28c35"
+       }
+      ],
+      "settings": {
+       "temperature": "0.7",
+       "maxTokens": 256
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind@sha256:c1100dc0221e850649be6e2f3ec21ad3bff65cc0809ca062395ae0ecc19be920",
+       "index": "sha256:b02e403c07415e3d0cbf90f7df9e0c59b6dedc578d89b4ed1b1db6296de2cab8"
+      },
+      "from": "2026-11-14T04:00:00Z"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z26VZtSwrxDR2YizgmY2SCr744dKSt5nbADBDRUzpxjJELeMCsjLEEHEZLZ1PThdLJbTG78SZEy6YsSAiRkmc4RpV"
+    }
+   }
+  },
+  {
+   "name": "a mind record whose engine began on 31 April",
+   "record": {
+    "format": "open-worlds/mind/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "individual": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "engines": [
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "8c8cad0dab28f4462bcd28d6d284ddbedb6637be"
+      },
+      "files": [
+       {
+        "path": "model.safetensors",
+        "sha256": "90452f42fee1c1576d5e8eeeee93e14e257ffd3b3c3fc8d1f6fc0eb44edbf5f1"
+       },
+       {
+        "path": "tokenizer.json",
+        "sha256": "4596c7f4c876dd698f5a4a847fc6dc629a797a34c4f22459a6d6cfd461b28c35"
+       }
+      ],
+      "settings": {
+       "temperature": "0.7",
+       "maxTokens": 256
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind@sha256:c1100dc0221e850649be6e2f3ec21ad3bff65cc0809ca062395ae0ecc19be920",
+       "index": "sha256:b02e403c07415e3d0cbf90f7df9e0c59b6dedc578d89b4ed1b1db6296de2cab8"
+      },
+      "from": "2026-04-31T00:00:00Z"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z54nEq7Jh7gaHB8wVz3kcyeHu6yDp8tfNefaj36jvJTWrpauxXWnicT6vcgQ9n9u2fKjSMxBjT14B6qz81grh2Emn"
+    }
+   }
+  },
+  {
+   "name": "a mind record naming a file outside its model's repository",
+   "record": {
+    "format": "open-worlds/mind/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "individual": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "engines": [
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "8c8cad0dab28f4462bcd28d6d284ddbedb6637be"
+      },
+      "files": [
+       {
+        "path": "../weights.bin",
+        "sha256": "7b1b763ee8f62eb88e4742a760f912d0b19bcd58b2b948999784bacc15a7f4d7"
+       }
+      ],
+      "settings": {
+       "temperature": "0.7",
+       "maxTokens": 256
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind@sha256:c1100dc0221e850649be6e2f3ec21ad3bff65cc0809ca062395ae0ecc19be920",
+       "index": "sha256:b02e403c07415e3d0cbf90f7df9e0c59b6dedc578d89b4ed1b1db6296de2cab8"
+      },
+      "from": "2026-11-14T04:00:00Z"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2AQ3GBTPsNkuXL4mNx3tfWzGMpwRomivjwqVkJJznAgLd1aeTq6FagYqb6xUtSSVN1xJyqZ5U3CctoGqUX1ZY4fZ"
+    }
+   }
+  },
+  {
+   "name": "a mind record naming one file twice, with two hashes",
+   "record": {
+    "format": "open-worlds/mind/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "individual": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "engines": [
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "8c8cad0dab28f4462bcd28d6d284ddbedb6637be"
+      },
+      "files": [
+       {
+        "path": "model.safetensors",
+        "sha256": "90452f42fee1c1576d5e8eeeee93e14e257ffd3b3c3fc8d1f6fc0eb44edbf5f1"
+       },
+       {
+        "path": "tokenizer.json",
+        "sha256": "4596c7f4c876dd698f5a4a847fc6dc629a797a34c4f22459a6d6cfd461b28c35"
+       },
+       {
+        "path": "model.safetensors",
+        "sha256": "ae448ac86c4e8e4dec645729708ef41873ae79c6dff84eff73360989487f08e5"
+       }
+      ],
+      "settings": {
+       "temperature": "0.7",
+       "maxTokens": 256
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind@sha256:c1100dc0221e850649be6e2f3ec21ad3bff65cc0809ca062395ae0ecc19be920",
+       "index": "sha256:b02e403c07415e3d0cbf90f7df9e0c59b6dedc578d89b4ed1b1db6296de2cab8"
+      },
+      "from": "2026-11-14T04:00:00Z"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3e5YQbC75kHboEgtJW4F6nhaAneZFKgVbXzGAWcXWVg8DwhXNPC7M7DgwmDbrQTBhGniBmJ9GobbFATa9hxWCoMU"
+    }
+   }
+  },
+  {
+   "name": "a mind record whose engines are out of order",
+   "record": {
+    "format": "open-worlds/mind/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "individual": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "engines": [
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "0cadd968ba98c2a63fbbf06816dc43475e4e15b5"
+      },
+      "files": [
+       {
+        "path": "model.safetensors",
+        "sha256": "90452f42fee1c1576d5e8eeeee93e14e257ffd3b3c3fc8d1f6fc0eb44edbf5f1"
+       },
+       {
+        "path": "tokenizer.json",
+        "sha256": "4596c7f4c876dd698f5a4a847fc6dc629a797a34c4f22459a6d6cfd461b28c35"
+       }
+      ],
+      "settings": {
+       "temperature": "0.7",
+       "maxTokens": 256
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind@sha256:c1100dc0221e850649be6e2f3ec21ad3bff65cc0809ca062395ae0ecc19be920",
+       "index": "sha256:b02e403c07415e3d0cbf90f7df9e0c59b6dedc578d89b4ed1b1db6296de2cab8"
+      },
+      "from": "2026-11-14T06:00:00Z"
+     },
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "8c8cad0dab28f4462bcd28d6d284ddbedb6637be"
+      },
+      "files": [
+       {
+        "path": "model.safetensors",
+        "sha256": "90452f42fee1c1576d5e8eeeee93e14e257ffd3b3c3fc8d1f6fc0eb44edbf5f1"
+       },
+       {
+        "path": "tokenizer.json",
+        "sha256": "4596c7f4c876dd698f5a4a847fc6dc629a797a34c4f22459a6d6cfd461b28c35"
+       }
+      ],
+      "settings": {
+       "temperature": "0.7",
+       "maxTokens": 256
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind@sha256:c1100dc0221e850649be6e2f3ec21ad3bff65cc0809ca062395ae0ecc19be920",
+       "index": "sha256:b02e403c07415e3d0cbf90f7df9e0c59b6dedc578d89b4ed1b1db6296de2cab8"
+      },
+      "from": "2026-11-14T04:00:00Z"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z29i6g2WNjisTXMZoe7UW6MuNE5ky2jCZ6DVXUMofAUJduD44JzY8RLrxaPttEDSukqWDBJrZhSJLq6Gon8SYdEpa"
+    }
+   }
+  },
+  {
+   "name": "a mind record whose second engine began with the first",
+   "record": {
+    "format": "open-worlds/mind/v1",
+    "issuer": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+    "individual": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "engines": [
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "8c8cad0dab28f4462bcd28d6d284ddbedb6637be"
+      },
+      "files": [
+       {
+        "path": "model.safetensors",
+        "sha256": "90452f42fee1c1576d5e8eeeee93e14e257ffd3b3c3fc8d1f6fc0eb44edbf5f1"
+       },
+       {
+        "path": "tokenizer.json",
+        "sha256": "4596c7f4c876dd698f5a4a847fc6dc629a797a34c4f22459a6d6cfd461b28c35"
+       }
+      ],
+      "settings": {
+       "temperature": "0.7",
+       "maxTokens": 256
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind@sha256:c1100dc0221e850649be6e2f3ec21ad3bff65cc0809ca062395ae0ecc19be920",
+       "index": "sha256:b02e403c07415e3d0cbf90f7df9e0c59b6dedc578d89b4ed1b1db6296de2cab8"
+      },
+      "from": "2026-11-14T04:00:00Z"
+     },
+     {
+      "model": {
+       "repo": "example/test-model",
+       "revision": "0cadd968ba98c2a63fbbf06816dc43475e4e15b5"
+      },
+      "files": [
+       {
+        "path": "model.safetensors",
+        "sha256": "90452f42fee1c1576d5e8eeeee93e14e257ffd3b3c3fc8d1f6fc0eb44edbf5f1"
+       },
+       {
+        "path": "tokenizer.json",
+        "sha256": "4596c7f4c876dd698f5a4a847fc6dc629a797a34c4f22459a6d6cfd461b28c35"
+       }
+      ],
+      "settings": {
+       "temperature": "0.7",
+       "maxTokens": 256
+      },
+      "chatTemplate": "a85780649c67bd50e59c600db919b52b973d15187dbc199b346cdc4bf03b43fb",
+      "image": {
+       "ref": "ghcr.io/example/mind@sha256:c1100dc0221e850649be6e2f3ec21ad3bff65cc0809ca062395ae0ecc19be920",
+       "index": "sha256:b02e403c07415e3d0cbf90f7df9e0c59b6dedc578d89b4ed1b1db6296de2cab8"
+      },
+      "from": "2026-11-14T04:00:00Z"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3zEGNECwkX3nRsdEWABhyV9SCjL2fK1CqXNPfLQNa8HSbvaZkvVykC21Uva5t6AFjLoc5iNkyPQxyNUcJmWEGLMD"
     }
    }
   }
