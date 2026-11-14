@@ -216,6 +216,19 @@ the technical lead's recommendation.
   never returns from `act()`, still stops the world. That falls under the
   same limit. Once agents run in separate processes, each call gets a
   timeout. (Noted by the independent review of #1.)
+- From #38's approving review, for when the ledger is built (before
+  step 9, and step 3 for keys):
+  - a copy of a GitHub thread brought into the log names other people's
+    accounts; keep the text and replace other accounts with a role or a
+    hash, or take it to the founder (P8);
+  - say who holds the private half of the multiverse's root key, the root
+    of every grant, and how its every use is logged;
+  - the ledger and outcomes use the multiverse log from step 9, which
+    "When each part is built" brings at step 11: say that a first form
+    exists from step 9, or that until step 11 those entries go into the
+    Ur-world's log;
+  - count entries marked as a floor breach that weren't one only in
+    total, never per author, so that marking in good faith costs nothing.
 
 ## Decided
 
