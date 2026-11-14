@@ -78,11 +78,17 @@ class FederatedSession:
         memory: List[Dict],
         rule=SIERPINSKI,
         rng_seed_override: Optional[int] = None,
+        individual_id_override: Optional[str] = None,
     ):
+        # Fix (ours): DeepSeek's addition for delegated resumption
+        # (federated_bundle.py@34853), merged by hand: a delegate's key
+        # may act under the individual's id.
         if not HAS_CRYPTO:
             raise RuntimeError("cryptography not installed")
         self.individual_kp = individual_kp
-        self.individual_id = _did_from_kp(individual_kp)
+        self.individual_id = (
+            individual_id_override
+            or _did_from_kp(individual_kp))
         self.model = model
         self.world = world
         self.rule = rule
@@ -184,7 +190,14 @@ def pack_federated_bundle(
     initial_seed: int,
     initial_weights: Optional[Dict] = None,
     name: str = "individual",
+    lineage_root: Optional[str] = None,
+    ancestry: Optional[List[Dict]] = None,
 ) -> IndividualBundle:
+    # Fix (ours): DeepSeek's addition for lineage
+    # (federated_bundle.py@27067), merged by hand: lineage_root and
+    # ancestry. And the empty observations' hash is taken over the
+    # bytes of "[]", as verify_bundle_basic takes it; it was taken over
+    # the JSON string "[]", so no federated bundle could verify.
     individual_id = _did_from_kp(individual_kp)
     world_contexts = [dict(s.world_context) for s in sessions]
     weights = serialize_weights(model)
@@ -196,7 +209,7 @@ def pack_federated_bundle(
         for rec in memory
     ]
     memory_root = _merkle_root(memory_hashes)
-    obs_hash = _hash("[]")
+    obs_hash = _hash(b"[]")
     body = {
         "kind": "individual_bundle",
         "version": "1.1",
@@ -220,13 +233,22 @@ def pack_federated_bundle(
                                 sort_keys=True,
                                 separators=(",", ":")).encode()
         body["initial_weights_hash"] = _hash(iw_canon)
+    if lineage_root is None:
+        lineage_root = individual_id   # self-root by default
+    if ancestry is None:
+        ancestry = []
+    body["lineage_root"] = lineage_root
+    if ancestry:
+        anc_canon = json.dumps(ancestry, sort_keys=True,
+                                separators=(",", ":")).encode()
+        body["ancestry_hash"] = _hash(anc_canon)
     sig = individual_kp.sign(_canonical(body)).hex()
     return IndividualBundle(
         manifest={**body, "sig": sig},
         memory=memory,
         weights=weights,
         initial_weights=initial_weights,
-        observations=[],
+        observations=[], ancestry=ancestry,
     )
 
 

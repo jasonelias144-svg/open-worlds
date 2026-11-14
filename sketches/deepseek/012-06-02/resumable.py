@@ -76,7 +76,12 @@ def resume_from_bundle(
     world_specs: List[WorldSpec],
     rule=SIERPINSKI,
     rng_seed_override: Optional[int] = None,
+    verify_tier: str = "auto",
+    individual_id_override: Optional[str] = None,
 ) -> Tuple[Optional[List[FederatedSession]], str]:
+    # Fix (ours): DeepSeek's two additions (resumable.py@34429 and
+    # @34871), merged by hand: verification by tier, and acting on
+    # someone's behalf after a delegation the caller has checked.
     """Continue a bundled individual into new worlds.
 
     Returns (sessions, "resumed") on success, (None, reason) on
@@ -91,7 +96,8 @@ def resume_from_bundle(
 
     # 1. Keypair must match bundle's DID
     kp_did = _did_from_kp(individual_kp)
-    if kp_did != bundle.individual_id:
+    if individual_id_override is None and \
+            kp_did != bundle.individual_id:
         return (None,
                  f"keypair DID {kp_did[:16]}... does not match "
                  f"bundle {bundle.individual_id[:16]}...")
@@ -100,7 +106,14 @@ def resume_from_bundle(
     v_basic = verify_bundle_basic(bundle)
     if not v_basic[0]:
         return (None, f"bundle basic: {v_basic[1]}")
-    v_full = verify_federated_full(bundle)
+    if verify_tier == "auto":
+        from compact_memory import verify_bundle_for_resume
+        v_full = verify_bundle_for_resume(bundle)
+    elif verify_tier == "compacted":
+        from compact_memory import verify_compacted_full
+        v_full = verify_compacted_full(bundle)
+    else:
+        v_full = verify_federated_full(bundle)
     if not v_full[0]:
         return (None, f"bundle full: {v_full[1]}")
 
@@ -133,6 +146,7 @@ def resume_from_bundle(
             memory=memory,
             rule=rule,
             rng_seed_override=rng_seed_override,
+            individual_id_override=individual_id_override,
         )
         for _ in range(n_steps):
             s.step()
