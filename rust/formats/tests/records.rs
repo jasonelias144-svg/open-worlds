@@ -1,0 +1,74 @@
+//! The shared record vectors (vectors/formats/records-v1.json), which the
+//! Python code writes and checks: every record that holds holds here too,
+//! with the same hash and the same signature, and every refused one is
+//! refused.
+
+use formats::multikey::secret_from_multikey;
+use formats::proof::sign;
+use formats::records::{check, record_hash};
+use serde_json::Value;
+
+fn vectors() -> Result<Value, String> {
+    let path = concat!(
+        env!("CARGO_MANIFEST_DIR"),
+        "/../../vectors/formats/records-v1.json"
+    );
+    let text = std::fs::read_to_string(path).map_err(|e| e.to_string())?;
+    serde_json::from_str(&text).map_err(|e| e.to_string())
+}
+
+#[test]
+fn each_valid_record_holds_with_its_hash_and_signature() -> Result<(), String> {
+    let all = vectors()?;
+    let created = all
+        .get("created")
+        .and_then(Value::as_str)
+        .ok_or("no created")?;
+    let cases = all
+        .get("valid")
+        .and_then(Value::as_array)
+        .ok_or("no valid")?;
+    assert!(!cases.is_empty());
+    for case in cases {
+        let name = case.get("name").and_then(Value::as_str).ok_or("no name")?;
+        let record = case.get("record").ok_or("no record")?;
+        let unsecured = check(record).map_err(|e| format!("{name}: {e}"))?;
+        assert_eq!(
+            Some(record_hash(record)?.as_str()),
+            case.get("hash").and_then(Value::as_str),
+            "{name}"
+        );
+        let signer = case
+            .get("signer")
+            .and_then(Value::as_str)
+            .ok_or("no signer")?;
+        let secret = all
+            .pointer(&format!("/parties/{signer}/secretKeyMultibase"))
+            .and_then(Value::as_str)
+            .ok_or("no party")?;
+        let again = sign(
+            &unsecured,
+            &secret_from_multikey(secret)?,
+            created,
+            "assertionMethod",
+        )?;
+        assert_eq!(&again, record, "{name}");
+    }
+    Ok(())
+}
+
+#[test]
+fn each_refused_record_is_refused() -> Result<(), String> {
+    let all = vectors()?;
+    let cases = all
+        .get("refused")
+        .and_then(Value::as_array)
+        .ok_or("no refused")?;
+    assert!(!cases.is_empty());
+    for case in cases {
+        let name = case.get("name").and_then(Value::as_str).ok_or("no name")?;
+        let record = case.get("record").ok_or("no record")?;
+        assert!(check(record).is_err(), "not refused: {name}");
+    }
+    Ok(())
+}

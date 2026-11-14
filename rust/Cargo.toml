@@ -3,7 +3,7 @@
 # reference through the shared test vectors in ../vectors.
 
 [workspace]
-members = ["world-log", "ur-world"]
+members = ["world-log", "ur-world", "formats"]
 resolver = "3"
 
 [workspace.package]
@@ -20,6 +20,20 @@ publish = false
 serde_json = "1.0.154"
 # SHA-256, from the RustCrypto project: hashes are never written by hand.
 sha2 = "0.11.1"
+# RFC 8785, the JSON Canonicalization Scheme, for records that are signed
+# (formats): written by the library, not by hand.
+serde_jcs = "0.2.0"
+# Ed25519 signing and verifying (formats), from the dalek project; its
+# verify_strict refuses weak keys, as multiverse/ed25519.py does.
+ed25519-dalek = "3.0.0"
+# Base58-btc, for Multikey and proofValue (formats); Python writes its own,
+# so the two are checked against each other through the shared vectors.
+bs58 = "0.5.1"
+# JSON Schema 2020-12, to read schemas/records-v1.schema.json as the Python
+# code does (formats). Without its default features, so it never fetches
+# anything over the network; 0.60.2, three weeks old, rather than a release
+# of the last few days.
+jsonschema = { version = "=0.60.2", default-features = false }
 
 # The lints hold for every crate; a crate doesn't loosen them.
 [workspace.lints.rust]

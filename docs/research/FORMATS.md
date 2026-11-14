@@ -86,6 +86,19 @@ that suite's, and a tool that verifies it would refuse them.
 Ed25519), so that standard tools can check them. Signatures already made
 stay as they are.
 
+**Decided by the technical lead, 2026-11-14:** new records sign the
+`eddsa-jcs-2022` way, with did:key verification methods. It is built in
+Python (`formats/`) and Rust (`rust/formats`), and both reproduce the
+specification's own example (Appendix B.3) step by step: the two RFC
+8785 forms, both hashes, the signature and the proof value. They read
+proofs more narrowly than the specification allows: one proof per
+record, did:key only, `created` to the second in UTC, and the three rules
+above. Both refuse a signature whose R is a point of small order, which
+cofactorless verification alone would accept. Both read values already
+parsed from JSON; reading JSON text, where parsers differ on duplicate
+keys and on `-0`, is settled where records are first read from files or
+the network. Signatures already made stay as they are (STATUS.md).
+
 ## Credentials
 
 **The Verifiable Credentials Data Model 2.0,** a W3C Recommendation of
@@ -258,13 +271,60 @@ several platforms has a digest for its index and one for each platform's
 image; the mind record gives the digest of the image that actually ran,
 and the index's beside it.
 
+## Records for the offices
+
+**Decided by the technical lead, 2026-11-14:** the grant, the decision
+record, the suggestion, the rating and the signed log head are defined in
+one schema,
+[`schemas/records-v1.schema.json`](../../schemas/records-v1.schema.json)
+(JSON Schema 2020-12), which Python (`jsonschema` 4.26.0) and Rust
+(`jsonschema` 0.60.2) both read, and each is signed with `eddsa-jcs-2022`
+(above). The choices in it:
+
+- **Every party is a did:key:** an individual, a world, an office. A
+  world is named by its key, as "Identifiers" proposes; following
+  successions from a birth key comes with step 3's keys.
+- **A record is named by its hash:** the SHA-256 of its RFC 8785 form,
+  proof included, in lowercase hex. A grant names the grant it narrows
+  this way; a decision names its grant and inputs this way.
+- **Each kind has one signer:** a grant its issuer, a decision the
+  office's key, a suggestion and a rating their author, a log head its
+  world. A record signed by anyone else doesn't hold, however good its
+  signature.
+- **Times and ticks:** a grant holds from and until a UTC time, since a
+  grant can reach across worlds whose ticks differ; a record that belongs
+  to a log carries that log's tick.
+- **Patterns in one dialect:** JSON Schema's patterns are ECMA-262's.
+  Python's `$` also matches before a final line break, so
+  `formats/records.py` reads a final `$` as `\Z`; and "not only spaces"
+  is written as an explicit set of characters, since `\s` differs between
+  the libraries. Shared vectors hold both cases.
+- **Text people and minds write** is not empty, not only spaces or line
+  breaks of any kind, and holds no control characters (C0, DEL or C1)
+  but tab and line breaks.
+- **A suggestion to ADMIN about a Keeper or a world** names which, by
+  key.
+- **A suggestion made outside any world,** by ADMIN or a Keeper in the
+  multiverse, names no world; its tick is the multiverse log's.
+- **What a schema can't say** is checked where records meet the kernel,
+  at course step 4: that a grant only narrows the grant it names; that a
+  decision's inputs are in the log, its office holds the grant it names,
+  that grant allows its kind of act, and the kind is on the rules' list
+  ([REASONS.md](../REASONS.md)); and that a rating's author wrote the
+  suggestion it names, and its outcome is a decision naming that
+  suggestion.
+- **Versioned:** a change makes `records-v2`; records made under v1 stay
+  readable under v1.
+
 ## What step 2 defines
 
-From the design pages, each with a schema in 2020-12 and test vectors in
-both languages: identity, birth record, mind record, journal entry
-(sealed: its ciphertext and fingerprint), routine, sheet, avatar, skill
-attestation, world-key credential, grant, decision record, suggestion,
-rating, and signed log head.
+Done so far: signed records (`formats/`, `rust/formats`), and the
+records for the offices (above). From the design pages, each with a
+schema in 2020-12 and test vectors in both languages: identity, birth
+record, mind record, journal entry (sealed: its ciphertext and
+fingerprint), routine, sheet, avatar, skill attestation, world-key
+credential, grant, decision record, suggestion, rating, and signed log
+head.
 
 ## Not checked
 

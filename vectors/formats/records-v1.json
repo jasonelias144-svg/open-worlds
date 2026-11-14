@@ -1,0 +1,1250 @@
+{
+ "parties": {
+  "ALICE": {
+   "secretKeyMultibase": "z3u2eEYsk1mcNNbrbBgRoeia8tBBByz1jup4N3jVga7JyMCB",
+   "didKey": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c"
+  },
+  "BOB": {
+   "secretKeyMultibase": "z3u2hahB5Ctsf9NvKdsYaikLAjey6VjHBeqGfchykSXsSv7U",
+   "didKey": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+  },
+  "the Ur-world": {
+   "secretKeyMultibase": "z3u2WpSybxroXWDSMxCSQtYfWKkoafimYij29QFcEksCMEWB",
+   "didKey": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX"
+  },
+  "the Ur-world's Keeper": {
+   "secretKeyMultibase": "z3u2SnHoc2mBUev7HbN3ruSEnzEWXYur6pbBby2VEkNGN3iM",
+   "didKey": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F"
+  },
+  "an apprentice Keeper": {
+   "secretKeyMultibase": "z3u2RH17c96LTQaRXsLYs12y7igLnELVtCBi7t95aYwrdB7M",
+   "didKey": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+  },
+  "ADMIN": {
+   "secretKeyMultibase": "z3u2gHakPPhrWHV4DUqPbqMtiuZkjfvbCz44UwwSMtm9vYvc",
+   "didKey": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD"
+  },
+  "the multiverse": {
+   "secretKeyMultibase": "z3u2TopmgYUg5pfTMk3JFrQXADNQrkvJFZipxf5kGMk1Gzn9",
+   "didKey": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs"
+  }
+ },
+ "created": "2026-11-14T01:00:00Z",
+ "valid": [
+  {
+   "name": "a Keeper's grant from its world",
+   "signer": "the Ur-world",
+   "record": {
+    "format": "open-worlds/grant/v1",
+    "issuer": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "holder": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "allows": [
+     "design-path",
+     "adjust-conditions"
+    ],
+    "within": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "validFrom": "2026-11-14T00:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX#z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3z2kHFcMUZfqrf1AQ3KAf4RLD3EnHLtUkjAszGfEHX4YwQA1Y7qxRY1GpgzU2XxQnHNpcvvivCBv21XzcNsMsVzZ"
+    }
+   },
+   "hash": "84a63cf1007ec85fca32eec59a90ed3345325ead434152a0bbb2936d3a55ec62"
+  },
+  {
+   "name": "a grant narrowed, with an end",
+   "signer": "the Ur-world's Keeper",
+   "record": {
+    "format": "open-worlds/grant/v1",
+    "issuer": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "holder": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+    "allows": [
+     "design-path"
+    ],
+    "within": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "validFrom": "2026-11-14T00:00:00Z",
+    "validUntil": "2026-12-14T00:00:00Z",
+    "narrows": "84a63cf1007ec85fca32eec59a90ed3345325ead434152a0bbb2936d3a55ec62",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5bHveD3TL7whGT8UyvoQo9njL2y4WQKvhHhhuWvrvNbTC6tBAAEznZ52kjx6UfiB6grBmfkvVMSqEc7qSBEXs9h8"
+    }
+   },
+   "hash": "2be7851f14207119f22f66d895c0a9ed2a5a245f4b7f3de294ca45a331b6506d"
+  },
+  {
+   "name": "a grant across the multiverse",
+   "signer": "the multiverse",
+   "record": {
+    "format": "open-worlds/grant/v1",
+    "issuer": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+    "holder": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD",
+    "allows": [
+     "record-outcome",
+     "rule-on-office"
+    ],
+    "within": "multiverse",
+    "validFrom": "2026-11-14T00:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs#z6MkmUpEn4HRRuG43GK8WzE9kVYo5zg4xv15tB2XWoNEBSXs",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5M5ViBUtNbF1urxrafjQ6Sy6XDZQZkZ2XXcGBMKEDSMPHTudw7kEnpmqvDzxG4Vn4WrCJWhCZm7pGT6zmXR5EAJh"
+    }
+   },
+   "hash": "924e2519a66d5a037460474296f902bc93548d8195df2ddb34bb8ea35a9a98ae"
+  },
+  {
+   "name": "a suggestion to a world's Keeper",
+   "signer": "ALICE",
+   "record": {
+    "format": "open-worlds/suggestion/v1",
+    "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "to": {
+     "office": "keeper",
+     "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX"
+    },
+    "about": {
+     "kind": "world"
+    },
+    "text": "The spring runs low by evening. Could it be fed?",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "tick": 100,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4p8VA6Vawm1SYhAphXnfEYTV2jotp4GT8jbM83gNPyrVPpW3CVRCdG4NY5covtWrTGkFhpoqURYLb6tFGFcji5M1"
+    }
+   },
+   "hash": "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
+  },
+  {
+   "name": "a suggestion to ADMIN, marked as a breach of the floor",
+   "signer": "BOB",
+   "record": {
+    "format": "open-worlds/suggestion/v1",
+    "author": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+    "to": {
+     "office": "admin"
+    },
+    "about": {
+     "kind": "keeper",
+     "ref": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F"
+    },
+    "text": "The way out of the garden didn't open for me at tick 140.",
+    "floor": true,
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "tick": 141,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG#z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zf4sBQHGi75UdGJjFJsvXLyhRd19KWFpa9ZY9hUGbQKKoAg5RB3gHVBo8B6RsPuNN2NmkUS8JzDFi4Y8xrt5ZT38"
+    }
+   },
+   "hash": "96556d9b85caf7f876b363ae66348d6471360bff66c5e36f036e776923751fc0"
+  },
+  {
+   "name": "a suggestion made outside any world, by ADMIN, with a line break in its text",
+   "signer": "ADMIN",
+   "record": {
+    "format": "open-worlds/suggestion/v1",
+    "author": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD",
+    "to": {
+     "office": "admin"
+    },
+    "about": {
+     "kind": "project"
+    },
+    "text": "Forty-one suggestions this month ask for slower nights;\na proposal, with them all, is attached as a sketch.",
+    "tick": 3,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD#z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zcPhVpJXcVuPXb31qRKTbwdsNxKxUFkpA8gAzWXLypVeuBZBWBDWJ95SUN2iED5iU9ar2sGip97D6nZhsC5rM5TX"
+    }
+   },
+   "hash": "047e4683d830794d19c5eb3ea213e134b83d969fd577c45f4b95f9b5001b76d7"
+  },
+  {
+   "name": "an outcome on a suggestion, with its reasons",
+   "signer": "the Ur-world's Keeper",
+   "record": {
+    "format": "open-worlds/decision/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "84a63cf1007ec85fca32eec59a90ed3345325ead434152a0bbb2936d3a55ec62"
+    },
+    "act": {
+     "kind": "adjust-conditions",
+     "records": []
+    },
+    "affects": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "reasons": "The spring ran low by evening on four days of six. Feeding it from the hill keeps water for everyone and changes no one's path.",
+    "grounds": [
+     {
+      "kind": "law",
+      "ref": "ur-world/law/v1#conditions"
+     },
+     {
+      "kind": "record",
+      "ref": "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
+     }
+    ],
+    "inputs": [
+     "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
+    ],
+    "appeal": "to ADMIN, and beyond it to the founder",
+    "tick": 120,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5eC5AnkxFL9gJy1djPsjsCMfF5dPNtiM2WFURaakDDHa9Pi2i6S9K3Tnih9Q5msrTHLU5rR9ftTkeVxEzE6QcaH4"
+    }
+   },
+   "hash": "af2dccbd1d6af9b83e900937717c6fa527f08e478c9ac355104d9c4666ce3517"
+  },
+  {
+   "name": "a ruling with a formal reason, council views, and the decision it supersedes",
+   "signer": "ADMIN",
+   "record": {
+    "format": "open-worlds/decision/v1",
+    "office": {
+     "key": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD",
+     "grant": "924e2519a66d5a037460474296f902bc93548d8195df2ddb34bb8ea35a9a98ae"
+    },
+    "act": {
+     "kind": "rule-on-office",
+     "records": []
+    },
+    "affects": [
+     "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F"
+    ],
+    "reasons": "The way out was blocked by a fault in a path's design, not by the Keeper's choice; the path is fixed and the fault recorded.",
+    "grounds": [
+     {
+      "kind": "charter",
+      "ref": "CHARTER.md#3"
+     },
+     {
+      "kind": "rule",
+      "ref": "admin/0.1#exit"
+     }
+    ],
+    "inputs": [
+     "96556d9b85caf7f876b363ae66348d6471360bff66c5e36f036e776923751fc0"
+    ],
+    "formal": {
+     "property": "exit-always-open",
+     "proof": "b12044ca8f2c20f5ad520894480c6f8502a5b02bce50061bc6ab5bd5aba46171",
+     "model": "grants/0.1"
+    },
+    "views": [
+     {
+      "member": "member 1",
+      "view": "A fault, not a choice."
+     },
+     {
+      "member": "member 2",
+      "view": "Agreed; fix the path."
+     }
+    ],
+    "supersedes": "af2dccbd1d6af9b83e900937717c6fa527f08e478c9ac355104d9c4666ce3517",
+    "appeal": "to the founder",
+    "tick": 150,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD#z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z44PdvPEajRycu8jckRXk7LNxDSeUmMrRWWxX7Lx3EU7m9MVDP9EjY1Lx6ipNuzoBDGNsUErdMjV5u5igDT6DuuQ3"
+    }
+   },
+   "hash": "494162ae6c330108ca0834b40c31f4a783477779edd7d68e0fbf5cf7293937ba"
+  },
+  {
+   "name": "a rating of how a suggestion was handled",
+   "signer": "ALICE",
+   "record": {
+    "format": "open-worlds/rating/v1",
+    "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "suggestion": "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a",
+    "outcome": "af2dccbd1d6af9b83e900937717c6fa527f08e478c9ac355104d9c4666ce3517",
+    "score": 4,
+    "text": "It was fed, and quickly.",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2s8PKFdtpbX4dm2tf9ibQ1Y6m8ofi7zigzqaHfAojDSrhbJZz9ezkYfauFjnZtLod3cUTdwiLUxzmxF1TBghxBat"
+    }
+   },
+   "hash": "6c12cbb2dba0ed1d2aa79fc640d7857267ef632f9477b449b08be0df56ee9118"
+  },
+  {
+   "name": "a signed log head",
+   "signer": "the Ur-world",
+   "record": {
+    "format": "open-worlds/log-head/v1",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "length": 151,
+    "last": "4d41bc0fcf7b64cc327ff5d34601af119d5318a9a1dbbc4c79070308486499cf",
+    "tick": 150,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX#z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4pcuhv3a7t9gjtrttd7sgq5icepbBZqyRK38hWramsHJfSzCY2PrKzFfWmWAMutE1qGpY7rabGG3ZMGc4n8CFVU2"
+    }
+   },
+   "hash": "6f4a279f3a667e08dc7063ed5116868a6952133d4755c2b7ffd9d18cc3e67ca3"
+  }
+ ],
+ "refused": [
+  {
+   "name": "a format no one defines",
+   "record": {
+    "format": "open-worlds/grant/v2",
+    "issuer": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "holder": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "allows": [
+     "design-path",
+     "adjust-conditions"
+    ],
+    "within": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "validFrom": "2026-11-14T00:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX#z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4pkJvtSEontm5gSvRgej3p3stbqZJLWscgTeVCvv7qJuGRyDGzqevZRmqJHkhTAE6QYwcAjVdCuSTmCeQFkc46kK"
+    }
+   }
+  },
+  {
+   "name": "a grant with no start",
+   "record": {
+    "format": "open-worlds/grant/v1",
+    "issuer": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "holder": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "allows": [
+     "design-path",
+     "adjust-conditions"
+    ],
+    "within": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX#z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3G4wY3nCrPk2ux4gHo6x67NCRGVW4kvpbEC3yvqJwWTNoiHdf69BcnEPsNxT1y7YU22nuz4z3DW1pANcoCQ7qY8N"
+    }
+   }
+  },
+  {
+   "name": "a grant that allows nothing",
+   "record": {
+    "format": "open-worlds/grant/v1",
+    "issuer": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "holder": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "allows": [],
+    "within": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "validFrom": "2026-11-14T00:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX#z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3XJVkKV4rBNoV2BAU842XTutxRjxHGz2xGMonC4SxgfJ7ZgS58gpRUDE12Mr3jbZrsVe2SxXEfR52MYJmdwUkphq"
+    }
+   }
+  },
+  {
+   "name": "a grant that names an act twice",
+   "record": {
+    "format": "open-worlds/grant/v1",
+    "issuer": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "holder": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "allows": [
+     "design-path",
+     "design-path"
+    ],
+    "within": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "validFrom": "2026-11-14T00:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX#z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z318fszJPj7tqjxujLuf1WYwQk5miBpS9tBnmMCYzEYG4fjiQq4Sn8bTuMxFjir3a7LLNrRxjs15exRi5SWWkxoQz"
+    }
+   }
+  },
+  {
+   "name": "a grant with a field no one defines",
+   "record": {
+    "format": "open-worlds/grant/v1",
+    "issuer": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "holder": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "allows": [
+     "design-path",
+     "adjust-conditions"
+    ],
+    "within": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "validFrom": "2026-11-14T00:00:00Z",
+    "extra": "x",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX#z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zdJ7Srnd46krEa2Vyw4wAnqHjyxzLMq2pzWkR4nxRcEadLUxFYQbRZWs3z3p1QZAwm4nqC5q92ryPsmcN35w4Aih"
+    }
+   }
+  },
+  {
+   "name": "a grant within a place that is neither a world nor the multiverse",
+   "record": {
+    "format": "open-worlds/grant/v1",
+    "issuer": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "holder": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "allows": [
+     "design-path",
+     "adjust-conditions"
+    ],
+    "within": "everywhere",
+    "validFrom": "2026-11-14T00:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX#z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3i7j62PqfVNPj9sookSX83561bQhREXssrzwWko5vin9PyndP65s2y9G6SK6a1WMZ6aAtGr8Fm1iBQQfMSjfWjHU"
+    }
+   }
+  },
+  {
+   "name": "a grant signed by its holder, not its issuer",
+   "record": {
+    "format": "open-worlds/grant/v1",
+    "issuer": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "holder": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "allows": [
+     "design-path",
+     "adjust-conditions"
+    ],
+    "within": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "validFrom": "2026-11-14T00:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2gyPiVBU14snivDC1mYfCiEWNemWMX9rCWNKcZRsvrruYEhQVg6RMgLE16CsaKRm39Z6ie74uBqNxB9zLRdJuuxM"
+    }
+   }
+  },
+  {
+   "name": "a grant that ends before it starts",
+   "record": {
+    "format": "open-worlds/grant/v1",
+    "issuer": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "holder": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "allows": [
+     "design-path",
+     "adjust-conditions"
+    ],
+    "within": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "validFrom": "2026-11-14T00:00:00Z",
+    "validUntil": "2026-11-13T00:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX#z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z9VHHG7A1fryu9zBDNuhGTgLYs3v14jJ1oT2LJHLGzWoeKoNrGMgCkfm7fq3pTxRF156gqfUzfuPeznU6BfJnS42"
+    }
+   }
+  },
+  {
+   "name": "a grant that ends as it starts",
+   "record": {
+    "format": "open-worlds/grant/v1",
+    "issuer": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "holder": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "allows": [
+     "design-path",
+     "adjust-conditions"
+    ],
+    "within": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "validFrom": "2026-11-14T00:00:00Z",
+    "validUntil": "2026-11-14T00:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX#z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4PU1YTtD1CkvPjsJN4JrF7pGTZWzMBTuLrdVutYTFAYJsutRdRQtQWZd9b1J6HcDQkN7vtrn7iqMhSafmvoc45g2"
+    }
+   }
+  },
+  {
+   "name": "a grant that starts on 29 February 2025",
+   "record": {
+    "format": "open-worlds/grant/v1",
+    "issuer": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "holder": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "allows": [
+     "design-path",
+     "adjust-conditions"
+    ],
+    "within": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "validFrom": "2025-02-29T00:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX#z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4MhExWAh1rd9hAurfdu3ni1wLVpFsky8fsAhNUqrLvbS7UQiY2D7HuM5VBC4cgsv5AKBGXwHgLbxFxC925RtTsUe"
+    }
+   }
+  },
+  {
+   "name": "a decision whose reasons are only spaces and line breaks",
+   "record": {
+    "format": "open-worlds/decision/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "84a63cf1007ec85fca32eec59a90ed3345325ead434152a0bbb2936d3a55ec62"
+    },
+    "act": {
+     "kind": "adjust-conditions",
+     "records": []
+    },
+    "affects": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "reasons": " \n\t ",
+    "grounds": [
+     {
+      "kind": "law",
+      "ref": "ur-world/law/v1#conditions"
+     },
+     {
+      "kind": "record",
+      "ref": "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
+     }
+    ],
+    "inputs": [
+     "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
+    ],
+    "appeal": "to ADMIN, and beyond it to the founder",
+    "tick": 120,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4xRFKFGfnPyzeBJTr1wS7koWxRCj26m8TUWKTkayWBuNtNaV2gpGZ4ZmGXxNvNNs231eBdhs8bvqPXA8sj5NXekJ"
+    }
+   }
+  },
+  {
+   "name": "a decision with no grounds",
+   "record": {
+    "format": "open-worlds/decision/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "84a63cf1007ec85fca32eec59a90ed3345325ead434152a0bbb2936d3a55ec62"
+    },
+    "act": {
+     "kind": "adjust-conditions",
+     "records": []
+    },
+    "affects": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "reasons": "The spring ran low by evening on four days of six. Feeding it from the hill keeps water for everyone and changes no one's path.",
+    "grounds": [],
+    "inputs": [
+     "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
+    ],
+    "appeal": "to ADMIN, and beyond it to the founder",
+    "tick": 120,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3dEuDJch6XdUnSxBFzaUgSpEqVJ9fcThy7gvtvWbD1CwVmdHL37oJA6z2Y167ciMgg9ipscHVbwGaqJvBahXCB4L"
+    }
+   }
+  },
+  {
+   "name": "a decision whose record ground isn't a hash",
+   "record": {
+    "format": "open-worlds/decision/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "84a63cf1007ec85fca32eec59a90ed3345325ead434152a0bbb2936d3a55ec62"
+    },
+    "act": {
+     "kind": "adjust-conditions",
+     "records": []
+    },
+    "affects": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "reasons": "The spring ran low by evening on four days of six. Feeding it from the hill keeps water for everyone and changes no one's path.",
+    "grounds": [
+     {
+      "kind": "record",
+      "ref": "CHARTER.md#3"
+     }
+    ],
+    "inputs": [
+     "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
+    ],
+    "appeal": "to ADMIN, and beyond it to the founder",
+    "tick": 120,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z59iGw5CWn61UgYnoJyCCsRAPgaqqQtkXvUx9XCRP9iQSEaGEE8P1PyneUhdVQb5mxesWNKcG99Kj3hLGzLN8YGUe"
+    }
+   }
+  },
+  {
+   "name": "a decision with no inputs field",
+   "record": {
+    "format": "open-worlds/decision/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "84a63cf1007ec85fca32eec59a90ed3345325ead434152a0bbb2936d3a55ec62"
+    },
+    "act": {
+     "kind": "adjust-conditions",
+     "records": []
+    },
+    "affects": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "reasons": "The spring ran low by evening on four days of six. Feeding it from the hill keeps water for everyone and changes no one's path.",
+    "grounds": [
+     {
+      "kind": "law",
+      "ref": "ur-world/law/v1#conditions"
+     },
+     {
+      "kind": "record",
+      "ref": "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
+     }
+    ],
+    "appeal": "to ADMIN, and beyond it to the founder",
+    "tick": 120,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5bPNirWpYyMejDtkrvyFyqDgsYtGtnxzby99bTVuK7mJTn7fTDxP1WuEwxYiffgFDwVwQYKXyzvTwPGT3HdWuCze"
+    }
+   }
+  },
+  {
+   "name": "a decision whose reasons were changed after signing",
+   "record": {
+    "format": "open-worlds/decision/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "84a63cf1007ec85fca32eec59a90ed3345325ead434152a0bbb2936d3a55ec62"
+    },
+    "act": {
+     "kind": "adjust-conditions",
+     "records": []
+    },
+    "affects": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "reasons": "The spring ran low by evening on four days of six. Feeding it from the hill keeps water for everyone and changes no one's path. Also.",
+    "grounds": [
+     {
+      "kind": "law",
+      "ref": "ur-world/law/v1#conditions"
+     },
+     {
+      "kind": "record",
+      "ref": "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
+     }
+    ],
+    "inputs": [
+     "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
+    ],
+    "appeal": "to ADMIN, and beyond it to the founder",
+    "tick": 120,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5eC5AnkxFL9gJy1djPsjsCMfF5dPNtiM2WFURaakDDHa9Pi2i6S9K3Tnih9Q5msrTHLU5rR9ftTkeVxEzE6QcaH4"
+    }
+   }
+  },
+  {
+   "name": "a decision signed by someone other than its office",
+   "record": {
+    "format": "open-worlds/decision/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "84a63cf1007ec85fca32eec59a90ed3345325ead434152a0bbb2936d3a55ec62"
+    },
+    "act": {
+     "kind": "adjust-conditions",
+     "records": []
+    },
+    "affects": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "reasons": "The spring ran low by evening on four days of six. Feeding it from the hill keeps water for everyone and changes no one's path.",
+    "grounds": [
+     {
+      "kind": "law",
+      "ref": "ur-world/law/v1#conditions"
+     },
+     {
+      "kind": "record",
+      "ref": "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
+     }
+    ],
+    "inputs": [
+     "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
+    ],
+    "appeal": "to ADMIN, and beyond it to the founder",
+    "tick": 120,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD#z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4SXGF5utTtoX5s9Ft7Lyj52hTW7VcqgjcuxV26ndJ9iRHXcbfHHYjHw1WuowYw7fQmc7Y6vv582TShEFStjF6Mcb"
+    }
+   }
+  },
+  {
+   "name": "a decision whose tick is beyond 2^53 - 1, written as text",
+   "record": {
+    "format": "open-worlds/decision/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "84a63cf1007ec85fca32eec59a90ed3345325ead434152a0bbb2936d3a55ec62"
+    },
+    "act": {
+     "kind": "adjust-conditions",
+     "records": []
+    },
+    "affects": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "reasons": "The spring ran low by evening on four days of six. Feeding it from the hill keeps water for everyone and changes no one's path.",
+    "grounds": [
+     {
+      "kind": "law",
+      "ref": "ur-world/law/v1#conditions"
+     },
+     {
+      "kind": "record",
+      "ref": "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
+     }
+    ],
+    "inputs": [
+     "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
+    ],
+    "appeal": "to ADMIN, and beyond it to the founder",
+    "tick": "9007199254740992",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3jtDaiLypQZCjri9nQnme1ZB7SKckMEaJkYLh372PMyPAqr3ZHi1MXmoCvhMiG6Zi5RnZapCH9JwVXNneZHWdSW8"
+    }
+   }
+  },
+  {
+   "name": "a suggestion to a Keeper that names no world",
+   "record": {
+    "format": "open-worlds/suggestion/v1",
+    "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "to": {
+     "office": "keeper"
+    },
+    "about": {
+     "kind": "world"
+    },
+    "text": "The spring runs low by evening. Could it be fed?",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "tick": 100,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z37uxVEViuX1WdqX3U4HTeGCzXPDv5g7QYyiCv1KLFFUNvzzz88zjtqLJF6BS9ZLk1ozENftbDcyDMk59HfZ53WXU"
+    }
+   }
+  },
+  {
+   "name": "a suggestion whose text is 10,001 characters",
+   "record": {
+    "format": "open-worlds/suggestion/v1",
+    "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "to": {
+     "office": "keeper",
+     "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX"
+    },
+    "about": {
+     "kind": "world"
+    },
+    "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "tick": 100,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5Z3Y1U8XGYqcKJAe9zykB3opvFPnecb7kxUkcxa11MZVUpFYHM6f6xYKwmPKMm4C9hYvPsiJCtepVNZduRVwPYdw"
+    }
+   }
+  },
+  {
+   "name": "a suggestion whose author's did:key ends in a line break",
+   "record": {
+    "format": "open-worlds/suggestion/v1",
+    "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c\n",
+    "to": {
+     "office": "keeper",
+     "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX"
+    },
+    "about": {
+     "kind": "world"
+    },
+    "text": "The spring runs low by evening. Could it be fed?",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "tick": 100,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zwFmnUeu85kkyp1mXDfuwBeYAQ5ndcYperHg6FN2TjHk5jWo4Xda8TLbqBDm9skoTvkTPenM7vGAuoq7mkLuseKM"
+    }
+   }
+  },
+  {
+   "name": "a suggestion signed by someone other than its author",
+   "record": {
+    "format": "open-worlds/suggestion/v1",
+    "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "to": {
+     "office": "keeper",
+     "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX"
+    },
+    "about": {
+     "kind": "world"
+    },
+    "text": "The spring runs low by evening. Could it be fed?",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "tick": 100,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG#z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2TscRQtJE5JjkKp6sxum7zmoWCUxPkR3Fc91rXhbQGewxgsUQtA7ywzXstXB3251fgtX9pg55EmSqSL3iY8Memvu"
+    }
+   }
+  },
+  {
+   "name": "a rating of 6",
+   "record": {
+    "format": "open-worlds/rating/v1",
+    "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "suggestion": "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a",
+    "outcome": "af2dccbd1d6af9b83e900937717c6fa527f08e478c9ac355104d9c4666ce3517",
+    "score": 6,
+    "text": "It was fed, and quickly.",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zmsLHhw2uKE8bkgAwCG4YjC9QoT1GjeBNC9NMvoTGLDLPunRsVsZwvgD9XuoY43iDjBHWpQ1yWFxWr6rSFiRaCQ5"
+    }
+   }
+  },
+  {
+   "name": "a rating of 0",
+   "record": {
+    "format": "open-worlds/rating/v1",
+    "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "suggestion": "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a",
+    "outcome": "af2dccbd1d6af9b83e900937717c6fa527f08e478c9ac355104d9c4666ce3517",
+    "score": 0,
+    "text": "It was fed, and quickly.",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3xKa81T9VfFJqU82numVpjvwhbD9YqNoP18At8YFV7UgdFZ9H2fshSYant1ye6uDp8YjKM1KWxBw2DGCEMWgDa7M"
+    }
+   }
+  },
+  {
+   "name": "a rating whose suggestion hash is in capitals",
+   "record": {
+    "format": "open-worlds/rating/v1",
+    "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "suggestion": "B3EB0BDE0D79BE22B3C31F53A4635E8BB9E25D44817FF2D017528BD1A1E8430A",
+    "outcome": "af2dccbd1d6af9b83e900937717c6fa527f08e478c9ac355104d9c4666ce3517",
+    "score": 4,
+    "text": "It was fed, and quickly.",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4mFPf9AvwjhXA7wq4A41BW9ddTDX42s26bCtsxvR6RLVwZxbwNnLbSkTJynzuL5NRUmuLK3GkxEBxGT7otVknoxg"
+    }
+   }
+  },
+  {
+   "name": "a log head with a negative length",
+   "record": {
+    "format": "open-worlds/log-head/v1",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "length": -1,
+    "last": "4d41bc0fcf7b64cc327ff5d34601af119d5318a9a1dbbc4c79070308486499cf",
+    "tick": 150,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX#z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4Msab3MDx6Lstwa6M4pDVQQrPybpxY3HdEaekWBB5ki7gJm6TqEVaWWLaUBrHFJwwbzkCEe99H3d3CgakPjRXfdH"
+    }
+   }
+  },
+  {
+   "name": "a log head signed by someone other than its world",
+   "record": {
+    "format": "open-worlds/log-head/v1",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "length": 151,
+    "last": "4d41bc0fcf7b64cc327ff5d34601af119d5318a9a1dbbc4c79070308486499cf",
+    "tick": 150,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD#z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2KbwSV5jFWoczQgChiF8kSGVvXphX1QxLoyFT4eYebtQvCsDN7Ed4Ru3FyhsL7Y61T6koZBaBJKbZsNjmFjtvfa3"
+    }
+   }
+  },
+  {
+   "name": "a record with no proof",
+   "record": {
+    "format": "open-worlds/grant/v1",
+    "issuer": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "holder": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "allows": [
+     "design-path",
+     "adjust-conditions"
+    ],
+    "within": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "validFrom": "2026-11-14T00:00:00Z"
+   }
+  },
+  {
+   "name": "not an object but a list",
+   "record": []
+  },
+  {
+   "name": "a format that is a list, not text",
+   "record": {
+    "format": [],
+    "issuer": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "holder": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "allows": [
+     "design-path",
+     "adjust-conditions"
+    ],
+    "within": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "validFrom": "2026-11-14T00:00:00Z"
+   }
+  },
+  {
+   "name": "a suggestion whose text is only no-break and ideographic spaces",
+   "record": {
+    "format": "open-worlds/suggestion/v1",
+    "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "to": {
+     "office": "keeper",
+     "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX"
+    },
+    "about": {
+     "kind": "world"
+    },
+    "text": " 　 ",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "tick": 100,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4FkJthuorzkAvSZkbwxTSzxRLXWNoUHXVpQQU8EmDWsKCsPVskRrjMwvxNUbA2uQMG2dSodBx4QZCC4pUqFESfb3"
+    }
+   }
+  },
+  {
+   "name": "a suggestion whose text holds a NUL",
+   "record": {
+    "format": "open-worlds/suggestion/v1",
+    "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "to": {
+     "office": "keeper",
+     "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX"
+    },
+    "about": {
+     "kind": "world"
+    },
+    "text": "Hello\u0000",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "tick": 100,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zZsZqWaQoXdaC3s1oLEjJ742M6BhVRoa9H23JHFNuLiqXNaX5vuhTKZFzWEJnBotbziQKFDNbWzNxVvmRG1MHpbu"
+    }
+   }
+  },
+  {
+   "name": "a suggestion whose text holds a C1 control character",
+   "record": {
+    "format": "open-worlds/suggestion/v1",
+    "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "to": {
+     "office": "keeper",
+     "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX"
+    },
+    "about": {
+     "kind": "world"
+    },
+    "text": "Hello",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "tick": 100,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2iDiTzKK8q25zVATvqu6KRhgkLQXmzeKxwQo2GzjZusVsjJ2grSj5xW74BxvYafQgZuRyQ48fyiKBSErgxTRe9Pg"
+    }
+   }
+  },
+  {
+   "name": "a suggestion to ADMIN about a Keeper that doesn't say which",
+   "record": {
+    "format": "open-worlds/suggestion/v1",
+    "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "to": {
+     "office": "admin"
+    },
+    "about": {
+     "kind": "keeper"
+    },
+    "text": "The spring runs low by evening. Could it be fed?",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "tick": 100,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2nsQ9pYcBpmCgg4iQa3mLJPsTVeCNQy88cCAaE3V2cHfvvw5MibayKcttGGqJXz4Zbf7Erd3Em6oJCiyVa1JCXMy"
+    }
+   }
+  },
+  {
+   "name": "a decision that names the same record it makes twice",
+   "record": {
+    "format": "open-worlds/decision/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "84a63cf1007ec85fca32eec59a90ed3345325ead434152a0bbb2936d3a55ec62"
+    },
+    "act": {
+     "kind": "adjust-conditions",
+     "records": [
+      "84a63cf1007ec85fca32eec59a90ed3345325ead434152a0bbb2936d3a55ec62",
+      "84a63cf1007ec85fca32eec59a90ed3345325ead434152a0bbb2936d3a55ec62"
+     ]
+    },
+    "affects": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "reasons": "The spring ran low by evening on four days of six. Feeding it from the hill keeps water for everyone and changes no one's path.",
+    "grounds": [
+     {
+      "kind": "law",
+      "ref": "ur-world/law/v1#conditions"
+     },
+     {
+      "kind": "record",
+      "ref": "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
+     }
+    ],
+    "inputs": [
+     "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
+    ],
+    "appeal": "to ADMIN, and beyond it to the founder",
+    "tick": 120,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z52bnqCaz9pFW4uL52mBDjMG2uoCznbc2qjMTM7YC8iZcX7oaTDg7kMnK1CVm9JhiyMhiUqbGUKTM7VuymwiReenw"
+    }
+   }
+  },
+  {
+   "name": "a suggestion about a Keeper that names it other than by key",
+   "record": {
+    "format": "open-worlds/suggestion/v1",
+    "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "to": {
+     "office": "keeper",
+     "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX"
+    },
+    "about": {
+     "kind": "keeper",
+     "ref": "the Keeper"
+    },
+    "text": "The spring runs low by evening. Could it be fed?",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "tick": 100,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z35a4e8LM2pnAY391tvbXnJdRP6KN6uWDfmqydx3QqD644ve5H6W6rzNkwzq21d3xt2p9EECMtjnF8RM2mjnFJmCw"
+    }
+   }
+  },
+  {
+   "name": "a record whose proof has an @context",
+   "record": {
+    "format": "open-worlds/grant/v1",
+    "issuer": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "holder": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "allows": [
+     "design-path",
+     "adjust-conditions"
+    ],
+    "within": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "validFrom": "2026-11-14T00:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX#z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3z2kHFcMUZfqrf1AQ3KAf4RLD3EnHLtUkjAszGfEHX4YwQA1Y7qxRY1GpgzU2XxQnHNpcvvivCBv21XzcNsMsVzZ",
+     "@context": [
+      "x"
+     ]
+    }
+   }
+  }
+ ]
+}
