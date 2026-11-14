@@ -21,9 +21,12 @@ respect one another's freedom, with full transparency and exit at any time
   hunt for the world-key), with the research behind them. Its second part,
   [docs/ADMIN.md](docs/ADMIN.md): what the multiverse must preserve, who
   keeps each world, and ADMIN, the Keeper of the multiverse, with the
-  Keepers' training and the round table. Step 2,
-  formats that last, has begun by looking first:
-  [docs/research/FORMATS.md](docs/research/FORMATS.md).
+  Keepers' training and the round table. Steps 1 and 2, the design
+  pages and formats that last, are done (2026-11-14): every record
+  signed the standard way, one schema read by Python and Rust, sealing,
+  and who an individual and a world are
+  ([docs/research/FORMATS.md](docs/research/FORMATS.md)). Next is step 3,
+  keys and identities, in the project's private repository.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
   (#29), and experiment 001, the first unscripted minds
   ([results](experiments/001-first-words/RESULTS.md), #30). The first
@@ -764,8 +767,9 @@ it was wrong. Questions of what the project is for stay with the founder.
   libraries disagree on a record the vectors don't cover, or step 4
   finds a check the schema should have made.
 - 2026-11-14, sealing as built: a box is `enc || ct` with no associated
-  data; HPKE's `info` is a label from a fixed list (now only
-  `open-worlds/world-key/v1`), named by the one opening the box; a
+  data; HPKE's `info` is a label from a fixed list (at first only
+  `open-worlds/world-key/v1`, and since part four
+  `open-worlds/journal/v1`), named by the one opening the box; a
   sealing key is refused unless below 2^255 - 19 and not of small order;
   sealing keys are written as Multikey with multicodec's X25519 prefixes
   (`z6LS...`); `hpke` 0.15.1 pinned exactly, with only the X25519,
@@ -840,7 +844,46 @@ it was wrong. Questions of what the project is for stay with the founder.
   than a microsecond, or a world must run beyond about 285 years of world
   time.
 
+- 2026-11-14, four of step 2's formats move to the steps that build what
+  they describe: the avatar to step 4 (with the bodies of the kernel),
+  the sheet and skill attestation to step 5 (with skills and the sheet),
+  the routine to step 7 (with the library of routines); each joins
+  records-v1 as a new kind, with vectors in both languages
+  (docs/COURSE.md). *Why:* each is made of things not yet built, an
+  avatar of the kernel's entities, a routine of its actions, a sheet of
+  its skills; a format written before them would likely need a v2 at
+  once, and a new kind can join v1 when it comes. *Revisit if:* a step
+  before those needs one of them sooner (step 3's identity files, say).
+
 ## Log
+
+- 2026-11-14 Claude: course steps 1 and 2 done and moved to "Done" in
+  docs/COURSE.md, with their pull requests. The course rechecked: two
+  steps came in from the waiting list where they were placed, 3a
+  (persons) and 4a (parallel worlds and the garden); what the formats
+  taught is written into steps 3, 4, 5, 7 and 12; four formats moved to
+  the steps that build what they describe (Decided by the technical
+  lead). The look back, at each decision's "revisit if":
+  - held, and tested tonight: signed records the standard way (a
+    founding needing several signers was met with one proof per record,
+    not a proof set); the records for the offices (the independent
+    reviews' random harnesses, over 46,000 records, found Python and
+    Rust agreeing on every verdict; the one gap found, no bound on a
+    record's size, goes to step 4); sealing as built (its label list
+    had grown to two; the entry now says so); the sealed records (the
+    identity binds the sealing key to the did:key the envelope names,
+    so the envelope needs nothing more);
+  - changed: who an individual and a world are, before it merged: a
+    world signs its own birth record, and its founding is confirmed by
+    records of its founders and parent world at step 12, not by their
+    signatures on the birth record, as WORLD-KEY.md had it;
+  - not yet testable, since what they govern isn't built: sealing the
+    world-key (nothing is sealed for anyone yet), the round table's
+    consensus, how the table is chosen, a Keeper's self-report, ADMIN's
+    council, ADMIN's learning by written lessons, the admin-key course,
+    and the suggestion ledger; reasons on record is due at step 6;
+  - just made, so not yet due: the template, and the chemistry world's
+    records of what was made.
 
 - 2026-11-14 Claude: course step 2, part seven: the chemistry world's
   records of what was made name their format and give world time in
