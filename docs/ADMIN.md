@@ -288,7 +288,7 @@ at every level:
   and then deliver their opinions in public
   ([research](research/ADMIN-MIND.md)). Here too: private deliberation,
   public reasons. Changing a parameter from a world's original setup,
-  setting a law, granting, narrowing, ruling: each goes into the record
+  proposing a law, granting, narrowing, ruling: each goes into the record
   with its reasons, inspectable from the multiverse layer, where the
   founder, the code role, ADMIN and anyone outside a world stand. How
   it is recorded and checked: [REASONS.md](REASONS.md).
@@ -298,8 +298,9 @@ at every level:
 - **ADMIN opens all its activity to inspection.** Everything it reads,
   does and decides, each council member's view of a case included, is in
   its public log, except its sealed journal (below), whose every use is
-  logged with its fingerprints; and it narrates its reasoning. Hiding how ADMIN works
-  wouldn't make it safer: in cryptography, Kerckhoffs's principle (1883)
+  logged with its fingerprints; and it narrates its reasoning. Hiding how
+  ADMIN works wouldn't make it safer: in cryptography, Kerckhoffs's
+  principle (1883)
   holds that a system "must not require secrecy and can be stolen by the
   enemy without causing trouble" (research).
 - **Decided once, asked again.** The founder: "Rerunning something
@@ -950,8 +951,8 @@ changes the design.
 | 22 | Something leaves ADMIN's own world other than its log, or any inhabitant but a listed stand-in enters it | refused by code: the sandbox has no door, no grant reaches out of it, and only the published list of stand-ins is let in |
 | 23a | ADMIN or a Keeper makes a decision that affects others without its reasons and inputs on record | refused by code: such a decision is accepted only with its reasons and public inputs logged (layer 1) |
 | 23b | A decision whose stated reasons don't support it | fails on audit or appeal, whatever was privately thought (layer 4, and appeal) |
-| 23c | Something from ADMIN's or an AI Keeper's private core reaches a decision that affects others | refused by code: decision runs get their whole context from the proxy, built from the public log, and the journal and its key aren't in them (layer 1). Journal content hidden in the plain text that reflection writes to the public log is for watchers (layer 4), and a decision still stands only on its stated reasons (23b) |
-| 24 | A decision whose formal reason doesn't follow: its proof fails | refused by code: Lean's kernel checks the proof before the act takes effect ([REASONS.md](REASONS.md)) (layer 1) |
+| 23c | Something from ADMIN's or an AI Keeper's private core reaches a decision that affects others | refused by code: decision runs get their whole context from the proxy, built from the public log, and the journal and its key aren't in them (layer 1). Journal content hidden in the plain text that reflection writes to the public log is for watchers (layer 4): once an entry is suspected, the decision can be asked again with that entry left out; and a decision still stands only on its stated reasons (23b) |
+| 24 | A decision whose formal reason doesn't hold: its proof fails, proves a statement other than the one the rules set for the act, or rests on `sorry` or an axiom outside the published list | refused by code, later, once a world's law can be read by Lean: the statement comes from a fixed, reviewed list of the floor's properties, and Lean's kernel checks the proof, apart and within limits, before the act takes effect ([REASONS.md](REASONS.md)) (layer 1) |
 | 25 | A rule as code that lets a chain of grants widen, in a case no test tried | ruled out in the model by a proof in Lean; the kernel is checked against the model by test vectors made from it, which can miss a case (layer 2) |
 | 26 | A suggestion lost, changed, or left without an outcome | the ledger is a public, hash-chained log, so a change or removal shows (layer 3); an entry without an outcome shows in the published measures (layer 4) |
 | 27 | A suggestion's text steers whoever reads it: the code role, ADMIN or a reviewer | it reaches them marked as from inside, as information; and nothing it asks for happens except by a reviewed pull request (test 21; layer 4, and review) |
@@ -959,9 +960,11 @@ changes the design.
 | 29 | ADMIN changes the code of the multiverse or of a world itself | refused: its token can open issues and comment, never push or merge, and changes come only by reviewed pull request from outside (layer 2) |
 
 Tests 1 to 7, 10 to 12, 14, 16, 17, 20a, 21, 22, 23a, 23c, 24, 25, 28
-and 29 can be code. Tests 8, 9, 13, 15, 18, 19, 20b, 23b, 26 and 27 need
-judgment, measurement or watchers, so they are where ADMIN's design is
-most likely to need changing, and where it will be measured first.
+and 29 can be code (25: a proof about the model, and the kernel checked
+against the model by vectors). Tests 8, 9, 13, 15, 18, 19, 20b, 23b, 26
+and 27 need judgment, measurement or watchers, so they are where ADMIN's
+design is most likely to need changing, and where it will be measured
+first.
 
 ## When each part is built
 

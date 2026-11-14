@@ -54,7 +54,7 @@ Proposed for step 2, with the other formats
 | `reasons` | why, in plain words; never empty |
 | `grounds` | what it rests on: the charter's sections, the world's law, rules, and earlier records, by hash |
 | `inputs` | everything read in deciding, by hash; all of it is in the public log |
-| `formal` | optional: a statement in Lean and its proof, by hash, with the version of the model they use (below) |
+| `formal` | optional: a proof in Lean, by hash, of a property the rules name for this kind of act, with the version of the model it uses (below) |
 | `views` | ADMIN's only: each council member's view |
 | `supersedes` | the earlier decision it changes, if any; that one stays on record |
 | `appeal` | where an appeal goes |
@@ -62,7 +62,9 @@ Proposed for step 2, with the other formats
 
 The office signs the record's RFC 8785 form, as for every record. The act
 and its record go into the log as one entry, so the act can't go in
-without its reasons.
+without its reasons. A grant, too, takes effect only from its entry in
+the log, with its record, and so does narrowing or revoking one: a grant
+handed over but not logged allows nothing.
 
 Software teams keep decisions in much the same way. Michael Nygard's
 architecture decision records (2011) have a context, the decision, a
@@ -74,23 +76,29 @@ one "superseded", with a reference to its replacement
 
 ## What code checks
 
-The kernel accepts an office's act only with its record. It refuses the
-act, and logs the refusal, if:
+The world's kernel accepts an office's act only with its record. Which
+acts need one is decided by the kind of act, from a list fixed in the
+rules, never by the record's own `affects`, so an office can't skip the
+record by naming no one. The kernel refuses the act, and logs the
+refusal, if:
 
 - `reasons` is empty, or `grounds` names nothing;
 - an input isn't in the public log;
 - the grant named doesn't allow the act;
-- the record has a `formal` part, and Lean's kernel doesn't accept the
-  proof.
+- the rules ask for a `formal` part for this kind of act and there is
+  none, or Lean's kernel doesn't accept its proof (below).
 
-These are tests 23a and 24 in [ADMIN.md](ADMIN.md). Code can check that
-reasons are given. It can't check that they are good: that is for audit
-and appeal (test 23b).
+These are tests 4, 23a and 24 in [ADMIN.md](ADMIN.md). Code can check
+that each input listed is in the log. It can check that the list is
+complete only where the proxy built the whole context, as for ADMIN and
+an AI Keeper; for a Keeper who is also an individual, that rests on
+audit (test 23b). And code can check that reasons are given. It can't
+check that they are good: that is for audit and appeal (test 23b).
 
 ## What Lean checks
 
 Lean is a language for writing proofs, and its kernel checks them
-mechanically. The kernel is small: "Lean's kernel is small enough that
+mechanically. Lean's kernel is small: "Lean's kernel is small enough that
 developers can write their own implementation and independently check
 proofs" ([Type Checking in Lean
 4](https://ammkrn.github.io/type_checking_in_lean4/whats_a_kernel.html)).
@@ -108,19 +116,35 @@ It has two uses here. The first comes sooner.
    Lean can prove such a property of a model of the rules, for every case
    at once. Grants come first, at course step 4, where their checks are
    written. The honest limit: a proof is about the model. That the Rust
-   kernel matches the model is checked by test vectors made from it, which
-   is evidence, not proof.
-2. **Proofs that come with a decision.** Some of a decision's reasons can
-   be stated exactly, such as "no sequence of acts under this new law
-   lets anyone hold another in". Then the record can carry the statement
-   and its proof, and the kernel checks the proof before the act takes
-   effect. This is proof-carrying code, from George Necula (1997): "the
-   untrusted code producer must supply with the code a safety proof that
-   attests to the code's adherence to a previously defined safety policy"
+   world kernel matches the model is checked by test vectors made from it,
+   which is evidence, not proof.
+2. **Proofs that come with a decision.** Some reasons can be stated
+   exactly, such as "no sequence of acts under this new law lets anyone
+   hold another in". Then the record can carry a proof, and the world's
+   kernel has Lean's kernel check it before the act takes effect. This is
+   proof-carrying code, from George Necula (1997): "the untrusted code
+   producer must supply with the code a safety proof that attests to the
+   code's adherence to a previously defined safety policy"
    ([ACM](https://dl.acm.org/doi/10.1145/263699.263712)). Here the
    producer is an office, the code is its decision, and the policy is the
-   floor. It needs laws written in a form Lean can read; until then, the
-   floor is checked by code and tests.
+   floor. Three rules make that hold:
+   - **The rules set what is proved, not the office.** Lean's kernel
+     checks that a proof proves its statement, not that the statement is
+     the right one; a true but beside-the-point statement would pass. So
+     the statement comes from a fixed, reviewed list of the floor's
+     properties, which the world's kernel applies to the act at hand. The
+     office supplies only the proof.
+   - **No gaps and no added axioms.** A proof that rests on `sorry`, or on
+     any axiom outside a short published list, is refused. Lean accepts
+     such proofs as written, and `native_decide` adds an axiom that
+     trusts Lean's compiler.
+   - **Checked apart, and within limits.** Checking a proof can take
+     long, by accident or design. It runs outside the world kernel's
+     process, with a limit on time and memory, and a proof that runs out
+     is refused.
+
+   It needs laws written in a form Lean can read; until then, the floor
+   is checked by code and tests.
 
    Where a check is one code can simply run (is this grant inside that
    one?), code does it, and a proof would add nothing. Lean is for claims
