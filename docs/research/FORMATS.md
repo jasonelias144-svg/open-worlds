@@ -2,9 +2,10 @@
 
 Research for course step 2 ([COURSE.md](../COURSE.md)), done on
 2026-11-13 under house rule 10, "look first"
-([COLLABORATING.md](../COLLABORATING.md)). Step 2 defines every record an
-individual, a world and ADMIN keep, so that they can be read and checked
-for as long as the project lasts, in Rust and in Python alike. Before
+([COLLABORATING.md](../COLLABORATING.md)). Step 2 set out to define every
+record an individual, a world and ADMIN keep, so that they can be read
+and checked for as long as the project lasts, in Rust and in Python
+alike; four moved to later steps ("What step 2 defines", below). Before
 inventing anything, this note asks of each standard named in the design
 pages: what is it, how settled is it, who implements it and under what
 licence, and does it fit? Sources were read on that day; library versions
@@ -557,19 +558,20 @@ is in that code too.
 
 ## What step 2 defines
 
-Done so far: signed records (`formats/`, `rust/formats`), the records for
-the offices (above), sealing ("Sealing", "As built"), the sealed records
+Done: signed records (`formats/`, `rust/formats`), the records for the
+offices (above), sealing ("Sealing", "As built"), the sealed records
 (world-key, journal entry), who an individual and a world are (identity,
 birth records, mind record), a world's template, and the chemistry world's
-records of what was made ("Writing JSON the same way everywhere"). From
-the design pages, each with a schema in 2020-12 and test vectors in both
-languages: identity, birth record, mind record, journal entry (sealed: its
-ciphertext and fingerprint), routine, sheet, avatar, skill attestation,
-world-key credential, grant, decision record, suggestion, rating, and
-signed log head. The other four moved, with what they describe (decided
-by the technical lead, 2026-11-14): the avatar to course step 4, the
-sheet and skill attestation to step 5, the routine to step 7. Each joins
-records-v1 as a new kind, by the same rules, with vectors in both
+records of what was made ("Writing JSON the same way everywhere"). Each
+record has a schema in 2020-12 and test vectors that Python and Rust both
+check, except the chemistry world's, which only Python makes and checks.
+The design pages named fourteen records for this step: identity, birth
+record, mind record, journal entry, routine, sheet, avatar, skill
+attestation, world-key credential, grant, decision record, suggestion,
+rating, and signed log head. Of these, four moved, with what they describe
+(decided by the technical lead, 2026-11-14): the avatar to course step 4,
+the sheet and skill attestation to step 5, the routine to step 7. Each
+joins records-v1 as a new kind, by the same rules, with vectors in both
 languages.
 
 ## Not checked
