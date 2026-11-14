@@ -214,8 +214,24 @@ README states no licence for the specification.
 **Proposed:** a small grant record of our own, modelled on UCAN's: an
 issuer and a holder (as did:keys), what it allows, its limits in time and
 scope, the grant it narrows, and a signature, with the rule that a grant
-can only narrow what its issuer holds. Adopting UCAN itself is revisited at
-step 12, when grants cross worlds.
+can only narrow what its issuer holds. A grant takes effect only from its
+entry in the log, with its decision record, and so does narrowing or
+revoking one ([REASONS.md](../REASONS.md)). Adopting UCAN itself is
+revisited at step 12, when grants cross worlds.
+
+## Decision records
+
+Of what we looked at, nothing standard covers a signed decision with its
+reasons and grounds. The closest is the architecture decision record
+that software teams keep: a context, the decision, a status, and the
+consequences
+([REASONS.md](../REASONS.md), with the source).
+
+**Proposed:** a record of our own, `open-worlds/decision/v1`, signed in
+RFC 8785 form like the rest: the office and the grant it acts under, the
+act, whom it affects, the reasons, the grounds, the inputs, an optional
+proof in Lean, the decision it supersedes, and where an appeal goes
+([REASONS.md](../REASONS.md)).
 
 ## A log with signed heads
 
@@ -247,7 +263,8 @@ and the index's beside it.
 From the design pages, each with a schema in 2020-12 and test vectors in
 both languages: identity, birth record, mind record, journal entry
 (sealed: its ciphertext and fingerprint), routine, sheet, avatar, skill
-attestation, world-key credential, grant, and signed log head.
+attestation, world-key credential, grant, decision record, and signed
+log head.
 
 ## Not checked
 

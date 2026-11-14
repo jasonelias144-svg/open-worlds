@@ -564,9 +564,29 @@ it was wrong. Questions of what the project is for stay with the founder.
   earned the key keep real worlds less fairly than those who didn't, by
   test 9, or a holder of the admin-key breaches the floor in a real
   world.
+- 2026-11-14, reasons on record: a decision record of our own
+  (`open-worlds/decision/v1`). Code checks that reasons are given; Lean
+  checks only reasons stated formally, against statements the rules set,
+  never the office; and Lean comes first for proofs about the rules,
+  starting with grants at step 4, with proofs that come with decisions
+  later (docs/REASONS.md). *Why:* the founder's "We can
+  use Lean to test the logic of reasoning that is presented". Code can
+  check that reasons are given and a proof that formal reasons follow;
+  nothing mechanical can check that reasons are good. Proofs about the
+  rules hold for every case before any decision needs one. *Revisit if:*
+  keeping the Lean model of grants in step with the kernel costs more
+  than it catches: by step 6, it has caught nothing the Rust tests
+  missed, and has had to change with every change to grants.
 
 ## Log
 
+- 2026-11-14 Claude: reasons on record (docs/REASONS.md). The founder:
+  "We can use Lean to test the logic of reasoning that is presented."
+  The page says which decisions need a record, proposes the decision
+  record for step 2, and says what code checks (tests 23a and 24) and
+  what Lean checks: proofs about the rules first, grants at step 4 (test
+  25), and proofs that come with decisions later, with what Lean can't
+  check. Course steps 2 and 4, FORMATS.md and README updated.
 - 2026-11-13 Claude: nothing hidden (docs/ADMIN.md, docs/WORLD-KEY.md;
   research in docs/research/ADMIN-MIND.md). Two of the founder's
   decisions written in:

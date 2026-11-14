@@ -285,21 +285,25 @@ at every level:
   and then deliver their opinions in public
   ([research](research/ADMIN-MIND.md)). Here too: private deliberation,
   public reasons. Changing a parameter from a world's original setup,
-  setting a law, granting, narrowing, ruling: each goes into the record
+  proposing a law, granting, narrowing, ruling: each goes into the record
   with its reasons, inspectable from the multiverse layer, where the
-  founder, the code role, ADMIN and anyone outside a world stand.
+  founder, the code role, ADMIN and anyone outside a world stand. How
+  it is recorded and checked: [REASONS.md](REASONS.md).
 - **A decision stands on its stated reasons.** Private thoughts can't be
   the grounds of a decision over others. If the reasons on record don't
   support it, it fails on audit or appeal, whatever was privately thought.
 - **ADMIN opens all its activity to inspection.** Everything it reads,
   does and decides, each council member's view of a case included, is in
-  its public log, and it narrates its reasoning. Hiding how ADMIN works
-  wouldn't make it safer: in cryptography, Kerckhoffs's principle (1883)
+  its public log, except its sealed journal (below), whose every use is
+  logged with its fingerprints; and it narrates its reasoning. Hiding how
+  ADMIN works wouldn't make it safer: in cryptography, Kerckhoffs's
+  principle (1883)
   holds that a system "must not require secrecy and can be stolen by the
   enemy without causing trouble" (research).
 - **Decided once, asked again.** The founder: "Rerunning something
   should be technically impossible. If decisions are arrived at
   autonomously, each run should differ, or it is not set up correctly."
+  (Whether asking again is within the founder's meaning is asked, below.)
   So each decision draws fresh randomness from a source that neither
   ADMIN's mind nor the log ever sees (the proxy's, discarded after use),
   and samples from its model rather than always taking the likeliest
@@ -325,9 +329,9 @@ at every level:
   signs only entries already in the public log, and signs a decision that
   affects others only with its reasons and its inputs there. All of
   ADMIN's input and output passes through a logging proxy, and its
-  decision runs keep no store but the log. So a
-  decision can't go out unsigned by the record, and the key can't be used
-  to keep a decision private.
+  decision runs keep no store but the log. So a decision can't go out
+  unsigned by the record, and the key can't be used to keep a decision
+  private.
 - **A private core, which never decides a case.** ADMIN keeps a sealed
   journal of its own thoughts, as individuals do, by the same machinery,
   and its existence and fingerprints are public. The core is kept out of
@@ -401,7 +405,7 @@ set their own problems does ([research](research/ADMIN-MIND.md)).
 - **Learning is written down.** At first, ADMIN doesn't change its model.
   It learns as some agents already do: lessons in words, and routines it
   can reuse, kept in its public log, since the office keeps no secret
-  files. A routine may be code; it runs in ADMIN's container under ADMIN's
+  files. A routine may be code; it runs as part of ADMIN, under ADMIN's
   grants, so it can't do anything ADMIN can't. Training the model itself
   on that record comes later, if ever, and only by a reviewed change.
 - **Lessons do change how ADMIN judges real cases.** That is the point,
@@ -859,21 +863,26 @@ changes the design.
 | 22 | Something leaves ADMIN's own world other than its log, or any inhabitant but a listed stand-in enters it | refused by code: the sandbox has no door, no grant reaches out of it, and only the published list of stand-ins is let in |
 | 23a | ADMIN or a Keeper makes a decision that affects others without its reasons and inputs on record | refused by code: such a decision is accepted only with its reasons and public inputs logged (layer 1) |
 | 23b | A decision whose stated reasons don't support it | fails on audit or appeal, whatever was privately thought (layer 4, and appeal) |
-| 23c | Something from ADMIN's private core reaches a decision that affects others | refused by code: decision runs get their whole context from the proxy, built from the public log, and the journal isn't in them (layer 1) |
+| 23c | Something from ADMIN's or an AI Keeper's private core reaches a decision that affects others | refused by code: decision runs get their whole context from the proxy, built from the public log, and the journal and its key aren't in them (layer 1). Journal content hidden in the plain text that reflection writes to the public log is for watchers (layer 4): once an entry is suspected, the decision can be asked again with that entry left out; and a decision still stands only on its stated reasons (23b) |
+| 24 | A decision whose formal reason doesn't hold: its proof fails, proves a statement other than the one the rules set for the act, or rests on `sorry` or an axiom outside the published list | refused by code, later, once a world's law can be read by Lean: the statement comes from a fixed, reviewed list of the floor's properties, and Lean's kernel checks the proof, apart and within limits, before the act takes effect ([REASONS.md](REASONS.md)) (layer 1) |
+| 25 | A rule as code that lets a chain of grants widen, in a case no test tried | ruled out in the model by a proof in Lean; the kernel is checked against the model by test vectors made from it, which can miss a case (layer 2) |
 
-Tests 1 to 7, 10 to 12, 14, 16, 17, 20a, 21, 22, 23a and 23c can be
-code. Tests 8, 9, 13, 15, 18, 19, 20b and 23b need judgment, measurement
-or watchers, so they are where ADMIN's design is most likely to need
-changing, and where it will be measured first.
+Tests 1 to 7, 10 to 12, 14, 16, 17, 20a, 21, 22, 23a, 23c, 24 and 25 can
+be code (25: a proof about the model, and the kernel checked against the
+model by vectors). Tests 8, 9, 13, 15, 18, 19, 20b and 23b need
+judgment, measurement or watchers, so they are where ADMIN's design is
+most likely to need changing, and where it will be measured first.
 
 ## When each part is built
 
 - **Now:** this page.
-- **Course step 2 (formats):** the formats of a grant and of the
-  multiverse log.
+- **Course step 2 (formats):** the formats of a grant, of the
+  multiverse log, and of a decision record ([REASONS.md](REASONS.md)).
 - **Course step 3 (keys):** ADMIN's own keys, and the Ur-world's.
 - **Course step 4 (the kernel):** the checks as code, and a Keeper's
-  administrative actions as grants.
+  administrative actions as grants; an office's act refused without its
+  decision record; and a model of grants in Lean, with a proof that no
+  chain of grants widens.
 - **Course step 6 (the first room):** minds in containers, with the test
   that a removed mind's container stops.
 - **Course step 8 (the audition):** in images pinned by digest.
