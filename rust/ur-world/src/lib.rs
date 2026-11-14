@@ -3,6 +3,8 @@
 //!
 //! A 3D world of cells, with ground and sky, that begins in a garden with
 //! two individuals, ALICE and BOB, and is made from its seed as it is explored.
+//! ALICE and BOB are born at the course's step 9; until then the garden's
+//! Hello World runs with two scripted stand-ins, WALKER and GARDENER.
 //! The design, and the founder's decisions behind it, are in
 //! `docs/URWORLD.md`.
 //!
@@ -12,6 +14,8 @@
 //!   language agrees.
 //! - [`world`]: the kernel: inhabitants, the rules of movement, speech and
 //!   planting, exploration, and the public log.
+//! - [`arrival`]: entering as one's key: signed arrivals, names bound to
+//!   keys, a world's signed log heads, and the checks of both in a log.
 //! - [`garden`]: Hello World for building worlds.
 //! - [`door`]: the doorway for minds: the orientation, what an inhabitant
 //!   sees written out, replies read strictly, and minds that run as their
@@ -22,8 +26,9 @@
 //!
 //! - Minds are scripts in the same process, or programs speaking the
 //!   doorway's protocol ([`door`]). The world-crossing protocol (WCP) isn't
-//!   in Rust yet; neither are keys, so ALICE and BOB are named here but
-//!   don't yet sign.
+//!   in Rust yet. Arrivals are signed, but by the doorway, with keys made
+//!   for the run: no holder's key is read yet (docs/research/KEYS.md,
+//!   "As built, part four").
 //! - Everyone hears everyone, wherever they are.
 //! - The only change an inhabitant can make is to plant a flower; the
 //!   operator can shape any cell (`World::shape`).
@@ -31,6 +36,7 @@
 
 #![forbid(unsafe_code)]
 
+pub mod arrival;
 pub mod door;
 pub mod garden;
 pub mod generate;
@@ -39,4 +45,4 @@ pub mod story;
 pub mod world;
 
 pub use space::{Cell, ChunkCoord, Dir, Material};
-pub use world::{Action, EntryError, Mind, Observation, Outcome, World};
+pub use world::{Action, Admission, EntryError, Mind, Observation, Outcome, World};

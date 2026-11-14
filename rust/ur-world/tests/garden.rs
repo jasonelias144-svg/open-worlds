@@ -1,7 +1,8 @@
 // rust/ur-world/tests/garden.rs
 //! The garden's Hello World, checked: its log holds by the same check as
-//! the Python kernel's, it is exactly what the shared vectors record, and
-//! every chunk it explored is what the generator makes.
+//! the Python kernel's, it is exactly what the shared vectors record, its
+//! arrivals hold and its signed head covers it, and every chunk it explored
+//! is what the generator makes.
 
 // Tests may unwrap, expect, panic and index: a failure here is a failed
 // test, not a world that crashed.
@@ -15,11 +16,13 @@
 use std::collections::BTreeSet;
 
 use serde_json::{Value, json};
-use ur_world::garden::{ALICE_AT, BOB_AT, SEED, TICKS, hello_world};
+use ur_world::arrival::{self, arrival_problems, head_coverage, trial_secret};
+use ur_world::garden::{CREATED, FIRST_AT, SECOND_AT, SEED, TICKS, hello_world, world_secret};
 use ur_world::generate::{self, GENERATOR};
 use ur_world::{Cell, ChunkCoord, Material};
 
 const LOG: &str = include_str!("../../../vectors/ur-garden-log.json");
+const HEAD: &str = include_str!("../../../vectors/ur-garden-head.json");
 const CHUNKS: &str = include_str!("../../../vectors/ur-chunks.json");
 
 fn of_kind<'a>(log: &'a [Value], kind: &str) -> Vec<&'a Value> {
@@ -53,6 +56,34 @@ fn the_garden_is_what_the_vectors_record() {
 }
 
 #[test]
+fn its_arrivals_hold_and_its_head_covers_it() {
+    let world = hello_world().unwrap();
+    let log = world.log();
+    assert_eq!(arrival_problems(log), Vec::<String>::new());
+    let head: Value = serde_json::from_str(HEAD).unwrap();
+    assert_eq!(
+        arrival::head(&world, &world_secret(), CREATED),
+        Ok(head.clone())
+    );
+    assert_eq!(head_coverage(log, &[head]), (log.len(), vec![]));
+    // The world is a trial world, named in its first entry, and each
+    // stand-in entered with its own trial key, signed over the entry
+    // before its own.
+    assert_eq!(log[0]["data"]["world"], world.key());
+    assert_eq!(world.key(), arrival::did(&world_secret()));
+    for (name, entry) in ["WALKER", "GARDENER"].iter().zip(of_kind(log, "entered")) {
+        let a = &entry["data"]["arrival"];
+        assert_eq!(a["individual"], arrival::did(&trial_secret(SEED, name)));
+        assert_eq!(a["name"], *name);
+        assert_eq!(a["previous"], entry["prev"]);
+        assert_eq!(
+            world.name_of(a["individual"].as_str().unwrap()),
+            Some(*name)
+        );
+    }
+}
+
+#[test]
 fn the_generator_is_what_the_vectors_record() {
     let recorded: Value = serde_json::from_str(CHUNKS).unwrap();
     assert_eq!(generate::vectors(), recorded);
@@ -77,8 +108,8 @@ fn the_story_begins_as_decided() {
     assert_eq!(
         entered,
         [
-            (&json!("ALICE"), &ALICE_AT.json()),
-            (&json!("BOB"), &BOB_AT.json())
+            (&json!("WALKER"), &FIRST_AT.json()),
+            (&json!("GARDENER"), &SECOND_AT.json())
         ]
     );
     // One speaks, the other listens; then they turn.
@@ -89,13 +120,13 @@ fn the_story_begins_as_decided() {
     assert_eq!(
         said,
         [
-            (&json!(0), &json!("ALICE"), &json!("Hello, world.")),
-            (&json!(1), &json!("BOB"), &json!("Hello, ALICE.")),
+            (&json!(0), &json!("WALKER"), &json!("Hello, world.")),
+            (&json!(1), &json!("GARDENER"), &json!("Hello, WALKER.")),
         ]
     );
     let planted = of_kind(log, "planted");
     assert_eq!(planted.len(), 1);
-    assert_eq!(planted[0]["agent"], "BOB");
+    assert_eq!(planted[0]["agent"], "GARDENER");
     assert_eq!(planted[0]["data"]["at"], json!([4, 1, 0]));
     assert_eq!(world.tick(), TICKS);
 }
@@ -134,11 +165,11 @@ fn the_world_stores_only_what_changed() {
 }
 
 #[test]
-fn alice_walked_out_of_the_garden_and_climbed_the_hills() {
+fn walker_walked_out_of_the_garden_and_climbed_the_hills() {
     let world = hello_world().unwrap();
     let moves: Vec<&Value> = of_kind(world.log(), "moved")
         .into_iter()
-        .filter(|e| e["agent"] == "ALICE")
+        .filter(|e| e["agent"] == "WALKER")
         .collect();
     assert_eq!(moves.len(), 24);
     for m in &moves {
@@ -147,8 +178,8 @@ fn alice_walked_out_of_the_garden_and_climbed_the_hills() {
         let dy = to[1].as_i64().unwrap() - from[1].as_i64().unwrap();
         assert!(dy.abs() <= 1, "{m}");
     }
-    let end = world.position("ALICE").unwrap();
+    let end = world.position("WALKER").unwrap();
     assert_eq!((end.x, end.z), (19, -2));
-    assert!(end.y > 1, "ALICE has climbed: {end:?}");
-    assert_eq!(world.position("BOB"), Some(BOB_AT));
+    assert!(end.y > 1, "WALKER has climbed: {end:?}");
+    assert_eq!(world.position("GARDENER"), Some(SECOND_AT));
 }

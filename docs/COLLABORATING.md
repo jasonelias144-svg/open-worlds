@@ -21,17 +21,20 @@ read it:
 1. **A new course** ([COURSE.md](COURSE.md)), set on 2026-11-13 for the
    Ur-world and its first two individuals, ALICE and BOB: twelve steps
    ahead, rechecked after each. Steps 1 (the design pages) and 2
-   (formats that last) are done; step 3, keys and identities, is under
-   way ([research/KEYS.md](research/KEYS.md)): the project's real keys
+   (formats that last) are done, and step 3, keys and identities, is
+   built ([research/KEYS.md](research/KEYS.md)): the project's real keys
    were made on 2026-11-14, and their public halves are in
-   [`keys/key-list.json`](../keys/key-list.json); leaving and coming
-   back in the Ur-world is next.
+   [`keys/key-list.json`](../keys/key-list.json); in the Ur-world,
+   whoever enters signs an arrival, a name stays the key's that first
+   used it, and a world signs its log's heads. Next, step 3a, persons.
    It returns to DeepSeek at step 10, or sooner if the founder chooses.
 2. **The worlds are built in Rust** (the founder: "we should stick with
    Rust"). [`rust/`](../rust/README.md) holds the Ur-world, a 3D world
-   that begins in a garden with ALICE and BOB ([URWORLD.md](URWORLD.md)),
-   with a doorway any program can speak through as a mind; a checker for
-   a world's log; and the formats below. The reference is Python for
+   that begins in a garden ([URWORLD.md](URWORLD.md)), where ALICE and
+   BOB will be born at step 9 (until then two scripted stand-ins,
+   WALKER and GARDENER, show it works), with a doorway any program can
+   speak through as a mind; a checker for a world's log; and the formats
+   below. The reference is Python for
    what Python built first (the log in `world/`, the protocol in
    `multiverse/`, and the formats' vectors, which `formats/` writes and
    Rust reads); for the Ur-world, Rust is the reference, and Python

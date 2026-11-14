@@ -16,10 +16,12 @@
 use std::process::{Command, Stdio};
 use std::time::{Duration, Instant};
 
+use formats::proof::public_key;
 use serde_json::Value;
+use ur_world::arrival::{self, trial_secret};
 use ur_world::door::ProcessMind;
 use ur_world::world::MAX_SAY;
-use ur_world::{Cell, World};
+use ur_world::{Admission, Cell, World};
 
 const SEED: u64 = 7;
 const A: Cell = Cell::new(4, 1, 5);
@@ -28,20 +30,22 @@ const A: Cell = Cell::new(4, 1, 5);
 fn python(code: &str, limit: Duration) -> Box<ProcessMind> {
     let mut command = Command::new("python3");
     command.args(["-I", "-c", code]).stderr(Stdio::null());
-    Box::new(ProcessMind::spawn(command, "ALICE", limit).expect("python3 runs"))
+    Box::new(ProcessMind::spawn(command, "TRIAL-1", Admission::First, limit).expect("python3 runs"))
 }
 
 /// Run one mind for `ticks` ticks; the log's entries for it, as
 /// `(tick, kind, data)`, leaving out what came into view.
 fn run(code: &str, limit: Duration, ticks: u64) -> Vec<(u64, String, Value)> {
-    let mut w = World::new(SEED);
-    w.add("ALICE", python(code, limit), A).unwrap();
+    let mut w = World::new(SEED, &public_key(&trial_secret(SEED, "a test world")));
+    let secret = trial_secret(SEED, "TRIAL-1");
+    let arrival = arrival::sign(&w, &secret, "TRIAL-1", "2026-11-14T00:00:00Z").unwrap();
+    w.enter(&arrival, python(code, limit), A).unwrap();
     w.run(ticks);
     let log = Value::Array(w.log().to_vec());
     assert!(world_log::verify_log(&log).is_ok());
     w.log()
         .iter()
-        .filter(|e| e["agent"] == "ALICE" && e["kind"] != "explored" && e["kind"] != "entered")
+        .filter(|e| e["agent"] == "TRIAL-1" && e["kind"] != "explored" && e["kind"] != "entered")
         .map(|e| {
             (
                 e["tick"].as_u64().unwrap(),
@@ -59,7 +63,8 @@ for line in sys.stdin:
     m = json.loads(line)
     if "orientation" in m:
         first = m["orientation"].splitlines()[0]
-        assert m["name"] == "ALICE" and m["law"]["rules"] == m["rules"]
+        assert m["name"] == "TRIAL-1" and m["law"]["rules"] == m["rules"]
+        assert m["again"] is False
         continue
     t = m["tick"]
     replies = {
@@ -79,7 +84,7 @@ fn a_mind_is_told_its_orientation_and_what_it_sees_and_its_replies_are_read() {
     assert_eq!(
         entries,
         [
-            (0, "said".into(), said("You are ALICE, in the Ur-world.")),
+            (0, "said".into(), said("You are TRIAL-1, in the Ur-world.")),
             (1, "said".into(), said("Tick 1.")),
             (
                 2,
@@ -92,6 +97,51 @@ fn a_mind_is_told_its_orientation_and_what_it_sees_and_its_replies_are_read() {
                 serde_json::json!({ "reply": "go somewhere" })
             ),
             (4, "said".into(), said(r#"{"kind": "unreadable"}"#)),
+        ]
+    );
+}
+
+/// A mind that says the first two lines of its orientation, and whether
+/// it was told it comes back, then leaves.
+const RETURNER: &str = r#"
+import json, sys
+for line in sys.stdin:
+    m = json.loads(line)
+    if "orientation" in m:
+        told = " ".join(m["orientation"].splitlines()[:2]) + " again=" + str(m["again"])
+        continue
+    print(json.dumps({"tick": m["tick"], "reply": "say " + told}), flush=True)
+    print(json.dumps({"tick": m["tick"] + 1, "reply": "exit"}), flush=True)
+"#;
+
+#[test]
+fn a_mind_that_comes_back_is_told_so() {
+    let mut w = World::new(SEED, &public_key(&trial_secret(SEED, "a test world")));
+    let secret = trial_secret(SEED, "TRIAL-1");
+    let limit = Duration::from_secs(20);
+    for expected in [Admission::First, Admission::Again] {
+        let arrival = arrival::sign(&w, &secret, "TRIAL-1", "2026-11-14T00:00:00Z").unwrap();
+        let admission = w.admit(&arrival).unwrap();
+        assert_eq!(admission, expected);
+        let mut command = Command::new("python3");
+        command.args(["-I", "-c", RETURNER]).stderr(Stdio::null());
+        let mind = ProcessMind::spawn(command, "TRIAL-1", admission, limit).unwrap();
+        assert_eq!(w.enter(&arrival, Box::new(mind), A), Ok(expected));
+        w.run(2);
+        assert_eq!(w.position("TRIAL-1"), None);
+    }
+    let said: Vec<&str> = w
+        .log()
+        .iter()
+        .filter(|e| e["kind"] == "said")
+        .map(|e| e["data"]["text"].as_str().unwrap())
+        .collect();
+    assert_eq!(
+        said,
+        [
+            "You are TRIAL-1, in the Ur-world.  again=False",
+            "You are TRIAL-1, back in the Ur-world. You have been here before, under this name: \
+             what you did then is in the public record. again=True",
         ]
     );
 }

@@ -252,11 +252,16 @@ the doorway"): lines of JSON in, one reply per tick out, read strictly.
 
 **Decided:** the protocol; the forms of a reply (`wait`, `exit`, `step
 DIRECTION`, `plant DIRECTION`, `say TEXT`); a reply that can't be read
-does nothing.
+does nothing. The doorway signs each mind's arrival with its key, which
+is never passed to the mind's program, and the first message says
+whether the mind comes back under its name (`"again"`)
+([research/KEYS.md](research/KEYS.md), "As built, part four").
 
 **Open:** minds without models that do something interesting (follow
-another, map the garden, keep a promise); what a small model needs to be
-told to act well; how a mind keeps notes between ticks.
+another, map the garden, keep a promise, come back and pick up where they
+left off, from the public log); what a small model needs to be told to
+act well; how a mind keeps notes between ticks; a mind that holds its own
+key and signs its own arrival.
 
 **A possible implementation:** start from `minds/wanderer.py`, the
 smallest mind, which uses only Python's standard library.

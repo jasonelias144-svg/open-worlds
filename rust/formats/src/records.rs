@@ -1,7 +1,8 @@
 //! The records the offices keep (course step 2): a grant, a decision
 //! record, a suggestion, a rating and a signed log head; an individual's
 //! world-key and journal entry; identity, birth records and the mind
-//! record; a world's template; and the project's key list, as
+//! record; a world's template; the project's key list; and an arrival,
+//! signed by the one who enters a world (course step 3), as
 //! `formats/records.py` checks them, from the same schema file. A record
 //! holds when it fits its kind's schema, its proof verifies, and it was
 //! signed by the one who must sign that kind. `dial_problems` checks a
@@ -20,12 +21,13 @@ pub const SCHEMA: &str = include_str!("../../../schemas/records-v1.schema.json")
 
 /// Each format, its schema's name in `$defs`, and the path of the field
 /// that names its signer.
-pub const KINDS: [(&str, &str, &[&str]); 13] = [
+pub const KINDS: [(&str, &str, &[&str]); 14] = [
     ("open-worlds/grant/v1", "grant", &["issuer"]),
     ("open-worlds/decision/v1", "decision", &["office", "key"]),
     ("open-worlds/suggestion/v1", "suggestion", &["author"]),
     ("open-worlds/rating/v1", "rating", &["author"]),
     ("open-worlds/log-head/v1", "logHead", &["world"]),
+    ("open-worlds/arrival/v1", "arrival", &["individual"]),
     ("open-worlds/world-key/v1", "worldKey", &["issuer"]),
     ("open-worlds/journal-entry/v1", "journalEntry", &["author"]),
     ("open-worlds/identity/v1", "identity", &["id"]),

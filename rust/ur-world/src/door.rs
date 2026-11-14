@@ -5,9 +5,11 @@
 //! A mind runs as its own program. The world talks to it in lines of JSON,
 //! one object a line, over the program's standard input and output:
 //!
-//! 1. First, once: `{"name": NAME, "rules": RULES, "orientation": TEXT,
-//!    "law": {...}}`. The orientation is the world's law written for a
-//!    reader ([`orientation`]); the law is the same as data ([`law`]).
+//! 1. First, once: `{"name": NAME, "again": BOOL, "rules": RULES,
+//!    "orientation": TEXT, "law": {...}}`. `again` is true when the mind
+//!    comes back under a name its key has entered under before. The
+//!    orientation is the world's law written for a reader
+//!    ([`orientation`]); the law is the same as data ([`law`]).
 //! 2. Then, each tick: `{"tick": N, "seen": TEXT, "observation": {...}}`.
 //!    `seen` is what the mind sees and hears, written out ([`describe`]);
 //!    `observation` is the same as data ([`observation`]).
@@ -25,6 +27,13 @@
 //! there is taken as an unreadable reply to the tick in hand. Its own
 //! messages go to its standard error.
 //!
+//! Before a mind's program starts, the doorway signs its arrival
+//! ([`crate::arrival::sign`]) with the key it is given, and the world
+//! admits it or says why not ([`World::admit`]). The key's private half
+//! stays with the doorway: it is never passed to the mind's program, by
+//! its input, its environment or a file. A mind that holds its own key
+//! will later sign its own arrival, by the same record.
+//!
 //! The world decides only what the mind is told and how its reply is read.
 //! How a mind turns what it is told into a reply (a language model's
 //! prompt, its sampling, its memory) is the mind's own, and its program
@@ -39,7 +48,9 @@ use serde_json::{Value, json};
 
 use crate::generate::SPRING;
 use crate::space::{Cell, Dir, LIMIT, Material};
-use crate::world::{Action, MAX_SAY, Mind, Observation, Outcome, RULES, SIGHT};
+#[cfg(doc)]
+use crate::world::World;
+use crate::world::{Action, Admission, MAX_SAY, Mind, Observation, Outcome, RULES, SIGHT};
 
 /// The longest line a mind may send, in bytes. A longer line is recorded
 /// as unreadable (its beginning only), and the rest of it is skipped.
@@ -69,7 +80,7 @@ pub fn law() -> Value {
             { "form": "step DIRECTION", "does": "You move one cell that way. You can climb a block one cell high if there is room above it and above you. If you step off an edge, you fall.", "refused": "You can't step into a solid cell, or into a cell where someone stands." },
             { "form": "say TEXT", "does": format!("You speak. Everyone in the world hears it at the next tick. At most {MAX_SAY} characters are heard.") },
             { "form": "plant DIRECTION", "does": "You plant a flower in the cell that way.", "refused": "The cell must be open air, on grass or soil, with no one in it." },
-            { "form": "exit", "does": "You leave the world. This always works, and your name can't be used here again." },
+            { "form": "exit", "does": "You leave the world. This always works. Your name stays yours: you can come back under it later, and no one else can enter under it." },
         ],
         "reply": "Answer with one line: one action, in one of the forms above, such as \"say Hello.\" or \"step north\". The first line that isn't blank is read, and the rest is ignored. Anything else isn't an action: it is recorded as unreadable, and nothing happens.",
         "freedoms": [
@@ -95,10 +106,19 @@ fn text<'a>(v: &'a Value, key: &str) -> &'a str {
 
 /// The world's law written for a reader, addressed to `name`: what the
 /// world is, what one can do in it, how to answer, and how the set of
-/// actions grows. It is made from [`law`], so the two can't disagree.
-pub fn orientation(name: &str) -> String {
+/// actions grows. It is made from [`law`], so the two can't disagree. One
+/// who comes back is told so.
+pub fn orientation(name: &str, admission: Admission) -> String {
     let law = law();
-    let mut out = vec![format!("You are {name}, in the Ur-world."), String::new()];
+    let mut out = match admission {
+        Admission::First => vec![format!("You are {name}, in the Ur-world.")],
+        Admission::Again => vec![
+            format!("You are {name}, back in the Ur-world."),
+            "You have been here before, under this name: what you did then is in the public record."
+                .to_owned(),
+        ],
+    };
+    out.push(String::new());
     out.extend(texts(&law, "world").into_iter().map(str::to_owned));
     out.push(String::new());
     out.push(text(&law, "ticks").to_owned());
@@ -461,13 +481,15 @@ pub struct ProcessMind {
 }
 
 impl ProcessMind {
-    /// Start `command` as the mind of `name`, and send it its orientation.
-    /// Each tick it has `limit` to reply. The command's standard input and
-    /// output are the world's; its standard error is left as the caller
-    /// set it.
+    /// Start `command` as the mind of `name`, and send it its orientation,
+    /// as one who comes for the first time or comes back (`admission`, as
+    /// the world admitted its arrival). Each tick it has `limit` to reply.
+    /// The command's standard input and output are the world's; its
+    /// standard error is left as the caller set it.
     pub fn spawn(
         mut command: Command,
         name: &str,
+        admission: Admission,
         limit: Duration,
     ) -> std::io::Result<ProcessMind> {
         let mut child = command
@@ -491,8 +513,9 @@ impl ProcessMind {
         };
         mind.send(&json!({
             "name": name,
+            "again": admission == Admission::Again,
             "rules": RULES,
-            "orientation": orientation(name),
+            "orientation": orientation(name, admission),
             "law": law(),
         }));
         Ok(mind)
@@ -564,8 +587,8 @@ mod tests {
         assert_eq!(read_reply("plant west"), Action::Plant(Dir::West));
         assert_eq!(read_reply("say Hello."), Action::Say("Hello.".into()));
         assert_eq!(
-            read_reply("say \"Hello, BOB.\""),
-            Action::Say("Hello, BOB.".into())
+            read_reply("say \"Hello, TRIAL-2.\""),
+            Action::Say("Hello, TRIAL-2.".into())
         );
         assert_eq!(read_reply("say \"\""), Action::Say("\"\"".into()));
         // Quotes that don't pair around all of it are kept.
@@ -597,8 +620,13 @@ mod tests {
 
     #[test]
     fn the_orientation_is_made_from_the_law() {
-        let text = orientation("TRIAL-1");
-        assert!(text.starts_with("You are TRIAL-1, in the Ur-world."));
+        let text = orientation("TRIAL-1", Admission::First);
+        assert!(text.starts_with("You are TRIAL-1, in the Ur-world.\n\n"));
+        let again = orientation("TRIAL-1", Admission::Again);
+        assert!(again.starts_with(
+            "You are TRIAL-1, back in the Ur-world.\nYou have been here before, under this name"
+        ));
+        assert!(again.ends_with(&text["You are TRIAL-1, in the Ur-world.".len()..]));
         for action in law()["actions"].as_array().unwrap() {
             let form = action["form"].as_str().unwrap();
             assert!(text.contains(&format!("- {form}: ")), "{form}");
@@ -629,14 +657,14 @@ mod tests {
         put(1, 0, 2, Material::Soil);
         Observation {
             tick: 9,
-            me: "ALICE".into(),
+            me: "TRIAL-1".into(),
             position: Cell::new(0, 1, 0),
             heard: vec![
-                ("ALICE".into(), "Hi.".into()),
-                ("BOB".into(), "Hello \"there\"\nnow".into()),
+                ("TRIAL-1".into(), "Hi.".into()),
+                ("TRIAL-2".into(), "Hello \"there\"\nnow".into()),
             ],
             around,
-            others: vec![("BOB".into(), Cell::new(3, 1, -2))],
+            others: vec![("TRIAL-2".into(), Cell::new(3, 1, -2))],
             last: Some(Outcome::Moved {
                 dir: Dir::North,
                 to: Cell::new(0, 1, 0),
@@ -650,14 +678,14 @@ mod tests {
             describe(&seen()),
             [
                 "Tick 9.",
-                "You are ALICE at (0, 1, 0), standing on grass.",
+                "You are TRIAL-1 at (0, 1, 0), standing on grass.",
                 "North: a step up, onto rock.",
                 "South: water, with soil underfoot.",
                 "East: blocked by rock.",
                 "West: open, with nothing underfoot: you would fall.",
                 "Above you: air.",
-                "Near you: BOB, 3 east, 2 north.",
-                "BOB said: \"Hello \\\"there\\\"\\nnow\"",
+                "Near you: TRIAL-2, 3 east, 2 north.",
+                "TRIAL-2 said: \"Hello \\\"there\\\"\\nnow\"",
                 "Your last action: you stepped north, to (0, 1, 0).",
             ]
             .join("\n")

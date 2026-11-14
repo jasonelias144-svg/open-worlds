@@ -27,7 +27,7 @@ PARTIES = ["ALICE", "BOB", "the Ur-world", "the Ur-world's Keeper",
            "an apprentice Keeper", "ADMIN", "the multiverse", "the project",
            "a chemistry world", "a parallel chemistry world",
            "the code role", "the project's templates",
-           "the multiverse, renewed"]
+           "the multiverse, renewed", "a trial world", "a trial mind"]
 
 
 def _secret(name: str) -> bytes:
@@ -364,6 +364,14 @@ def _valid() -> List[Dict[str, Any]]:
         "last": hashlib.sha256(b"the last entry, for the vectors").hexdigest(),
         "tick": 150,
     }, "the Ur-world")
+    arrival = _signed({
+        "format": "open-worlds/arrival/v1",
+        "world": _did("a trial world"),
+        "individual": _did("a trial mind"),
+        "name": "TRIAL-1",
+        "tick": 0,
+        "previous": _h("the entry just before the arrival's own"),
+    }, "a trial mind")
     named = [
         ("a Keeper's grant from its world", keeper_grant),
         ("a grant narrowed, with an end", narrowed),
@@ -377,6 +385,7 @@ def _valid() -> List[Dict[str, Any]]:
          "it supersedes", ruling),
         ("a rating of how a suggestion was handled", rating),
         ("a signed log head", head),
+        ("an arrival in a trial world", arrival),
     ] + _who()
     return [{"name": n, "signer": _signer_name(r), "record": r,
              "hash": records.record_hash(r)} for n, r in named]
@@ -518,6 +527,7 @@ def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     outcome = by["an outcome on a suggestion, with its reasons"]
     rating = by["a rating of how a suggestion was handled"]
     head = by["a signed log head"]
+    arrival = by["an arrival in a trial world"]
     identity = by["an identity, binding a sealing key to its did:key"]
     birth = by["an individual's birth record, in the words decided"]
     parallel = by["a world's birth record, forked from another, with "
@@ -604,6 +614,23 @@ def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
          resigned(head, "the Ur-world", length=-1)),
         ("a log head signed by someone other than its world",
          resigned(head, "ADMIN")),
+        ("an arrival signed by the world, not the one who enters",
+         resigned(arrival, "a trial world")),
+        ("an arrival that names no entry before it",
+         resigned(arrival, "a trial mind", previous=None)),
+        ("an arrival whose previous entry's hash is in capitals",
+         resigned(arrival, "a trial mind",
+                  previous=arrival["previous"].upper())),
+        ("an arrival whose name is 65 characters",
+         resigned(arrival, "a trial mind", name="T" * 65)),
+        ("an arrival whose name is only spaces",
+         resigned(arrival, "a trial mind", name="   ")),
+        ("an arrival whose world is a name, not a did:key",
+         resigned(arrival, "a trial mind", world="the Ur-world")),
+        ("an arrival whose name was changed after signing",
+         {**arrival, "name": "TRIAL-2"}),
+        ("an arrival whose tick is negative",
+         resigned(arrival, "a trial mind", tick=-1)),
         ("a record with no proof",
          unsigned(grant)),
         ("not an object but a list", []),

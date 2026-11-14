@@ -39,6 +39,9 @@ jsonschema = { version = "=0.60.2", default-features = false }
 # ChaCha20Poly1305 is turned on. Its authors say it has had no paid audit;
 # Cloudflare reviewed version 0.8. Pinned exactly, as it is pre-1.0.
 hpke = { version = "=0.15.1", default-features = false, features = ["alloc", "getrandom", "x25519", "chacha"] }
+# The operating system's randomness, for the keys the doorway makes for a
+# trial run (ur-world's door example); hpke already brings this version in.
+getrandom = "0.4.3"
 # X25519 (formats), to refuse a sealing key of small order before sealing
 # to it, as formats/seal.py does. hpke already brings this crate in.
 x25519-dalek = { version = "3.0.0", default-features = false }

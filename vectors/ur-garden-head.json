@@ -1,0 +1,15 @@
+{
+  "format": "open-worlds/log-head/v1",
+  "last": "7ffe5b8d75dd21e3b425ea4e77c1f8d7730a6d23bf764d48d6c874bd79d6c3eb",
+  "length": 87,
+  "proof": {
+    "created": "2026-11-13T00:00:00Z",
+    "cryptosuite": "eddsa-jcs-2022",
+    "proofPurpose": "assertionMethod",
+    "proofValue": "z5TZfWV4DQPYTXXwbrJRNs8JswrH3Azq8LTmZk7z3eDc5zZSqk4NJTqZZojK1JLK7haeyr2g2mEp4KW5FvMPWTeWe",
+    "type": "DataIntegrityProof",
+    "verificationMethod": "did:key:z6MkvwfhuWK3HSYdN2YuApAVRcDy5oHPXPWVyCKUumY68976#z6MkvwfhuWK3HSYdN2YuApAVRcDy5oHPXPWVyCKUumY68976"
+  },
+  "tick": 28,
+  "world": "did:key:z6MkvwfhuWK3HSYdN2YuApAVRcDy5oHPXPWVyCKUumY68976"
+}

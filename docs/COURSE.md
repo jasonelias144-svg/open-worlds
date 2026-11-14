@@ -158,15 +158,16 @@ otherwise.
 
 ## Ahead
 
-3. **Keys and identities, for them and for the world.** Under way: the
+3. **Keys and identities, for them and for the world.** Done: the
    plan, after looking first, is in
    [research/KEYS.md](research/KEYS.md), in four parts (the plan; a key
    list signed by the multiverse's root, and the tool that makes keys;
-   the ceremony; leaving and coming back in the Ur-world). Parts one to
-   three are done: the real keys were made on 2026-11-14, their public
-   halves published in [`keys/key-list.json`](../keys/key-list.json);
-   part four, leaving and coming back, is next, its plan in KEYS.md
-   (decisions 11 to 17). A private
+   the ceremony; leaving and coming back in the Ur-world). The real keys
+   were made on 2026-11-14, their public halves published in
+   [`keys/key-list.json`](../keys/key-list.json); in the Ur-world, whoever
+   enters signs an arrival, a name stays the key's that first used it,
+   and a world signs its log's heads (KEYS.md, "As built, part four").
+   A private
    repository of the project for the private halves; ALICE's and BOB's
    signing keys, and keys for sealing things to them, which also open
    their sealed selves; their identity, birth and mind records wait for
@@ -247,7 +248,11 @@ controlled experiments, and replay from a seed.
    *Borrowing:* pre-registration; evaluation suites.
 9. **ALICE's and BOB's first life.** Their minds, their birth, their
    identity, birth and mind records (moved here from step 3), their
-   first unscripted words; legends pages begin. The suggestion ledger
+   first unscripted words; legends pages begin. Before their first
+   arrival, successions join records-v1 and the Ur-world follows them,
+   and how often it signs its log's heads is decided
+   ([research/KEYS.md](research/KEYS.md), decision 18 and "Honest
+   limits"). The suggestion ledger
    opens to them, with its bridge to GitHub, so what they suggest can
    improve the worlds from the start. *Borrowing:* Dwarf Fortress's
    Legends mode.

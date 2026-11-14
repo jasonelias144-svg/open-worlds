@@ -21,6 +21,7 @@ pub fn tell(world: &World) -> String {
     let mut out = Vec::new();
     let mut explored = 0;
     let mut last_tick = None;
+    let mut been = std::collections::BTreeSet::new();
     let came_into_view = |out: &mut Vec<String>, explored: &mut usize| {
         if *explored > 0 {
             out.push(format!("        ({explored} chunks came into view)"));
@@ -44,7 +45,11 @@ pub fn tell(world: &World) -> String {
                 field("seed"),
                 field("begins")
             ),
-            "entered" => format!("{who} enters, at {}.", field("pos")),
+            "entered" if been.contains(&who) => format!("{who} comes back, at {}.", field("pos")),
+            "entered" => {
+                been.insert(who.clone());
+                format!("{who} enters, at {}.", field("pos"))
+            }
             "said" => format!("{who} says: {}", Value::String(field("text"))),
             "planted" => format!("{who} plants a {} at {}.", field("what"), field("at")),
             "moved" => format!("{who} moves to {}.", field("to")),

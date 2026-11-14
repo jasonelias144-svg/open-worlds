@@ -69,6 +69,11 @@ pub fn sealing_secret_from_multikey(text: &str) -> Result<[u8; 32], String> {
     decode(X25519_SECRET, text)
 }
 
+/// An Ed25519 public key as a did:key: `did:key:K`.
+pub fn did_key(public: &[u8; 32]) -> String {
+    format!("{DID_KEY}{}", public_multikey(public))
+}
+
 /// The did:key's one verification method: `did:key:K#K`.
 pub fn verification_method(public: &[u8; 32]) -> String {
     let key = public_multikey(public);

@@ -1,5 +1,6 @@
 """The records the offices keep (course step 2): a grant, a decision
-record, a suggestion, a rating, and a signed log head; the records an
+record, a suggestion, a rating, and a signed log head; an arrival,
+signed by the one who enters a world (course step 3); the records an
 individual is given or keeps sealed: a world-key and a journal entry
 (sealed with formats/sealed.py); the records of who an individual and a
 world are: identity, birth records and the mind record; a world's
@@ -15,7 +16,8 @@ both read, schemas/records-v1.schema.json, and each is signed with
    world-key, a mind record and a template by their issuer, a decision by the
    office's key, a suggestion, a rating and a journal entry by their
    author, a log head and a birth record (an individual's or a world's)
-   by its world, and an identity by its own key.
+   by its world, an identity by its own key, and an arrival by the
+   individual who enters.
 
 What the schema can't say is checked where the records meet the kernel,
 at course step 4: that a grant only narrows the grant it names; that a
@@ -63,6 +65,7 @@ KINDS: Dict[str, Tuple[str, Tuple[str, ...]]] = {
     "open-worlds/suggestion/v1": ("suggestion", ("author",)),
     "open-worlds/rating/v1": ("rating", ("author",)),
     "open-worlds/log-head/v1": ("logHead", ("world",)),
+    "open-worlds/arrival/v1": ("arrival", ("individual",)),
     "open-worlds/world-key/v1": ("worldKey", ("issuer",)),
     "open-worlds/journal-entry/v1": ("journalEntry", ("author",)),
     "open-worlds/identity/v1": ("identity", ("id",)),
