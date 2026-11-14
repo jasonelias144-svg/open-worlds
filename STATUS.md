@@ -169,8 +169,9 @@ the technical lead's recommendation.
   (asked 2026-11-13)
 - For the founder: may the author of a suggestion about a Keeper ask for
   their name to be withheld until it has an outcome, recorded as withheld
-  and published with the outcome? Recommended: yes, so that fear of the
-  Keeper silences no one. Before course step 9, when the ledger opens
+  and published with the outcome? And the same for their rating of how
+  it was handled? Recommended: yes to both, so that fear of the Keeper
+  silences no one. Before course step 9, when the ledger opens
   (docs/ADMIN.md, "Suggestions from inside"). (asked 2026-11-13 of
   complaints; put again 2026-11-14 of suggestions)
 - For the founder: "Rerunning something should be technically
@@ -629,20 +630,26 @@ it was wrong. Questions of what the project is for stay with the founder.
   keeping the Lean model of grants in step with the kernel costs more
   than it catches: by step 6, it has caught nothing the Rust tests
   missed, and has had to change with every change to grants.
-- 2026-11-14, the suggestion ledger: a report of a floor breach or a
-  misuse of office is acted on at once, and everything else in turn;
-  every entry gets an outcome as a decision record; text from inside
-  reaches GitHub word for word and marked as such, through a relay whose
-  token can only open issues, and is never taken as instructions;
-  ADMIN's own token can open issues and comment, never push or merge;
-  ratings are published as their whole spread, beside plain measures,
-  and trigger nothing by themselves. *Why:* the floor doesn't wait for
-  anyone; minds inside can write text meant to steer a reader; and
-  ratings that can harm the one rated drift up ("Reputation Inflation",
-  Filippas, Horton and Golden). *Revisit if:* entries wait longer than a
-  month for an outcome, or the ratings' spread stops telling handled
-  suggestions apart from neglected ones, or text from inside ever leads
-  to a change that no reviewed pull request made.
+- 2026-11-14, the suggestion ledger: a report of a floor breach is acted
+  on at once, a reported misuse of office is looked at first and decided
+  like any other suggestion, and everything else is considered in turn;
+  every entry gets an outcome as a decision record, with whatever was
+  read on GitHub brought into the log first; the ledger takes entries
+  from inside only; text from inside reaches GitHub word for word,
+  fenced and marked, through a relay outside every Keeper and ADMIN
+  whose code only opens issues, and is never taken as instructions;
+  ADMIN holds no GitHub token, and its proxy only opens issues and
+  posts comments; ratings are published as their whole spread, beside
+  plain measures, and trigger nothing by themselves. *Why:* the floor
+  doesn't wait for anyone, while folding complaints into suggestions
+  was the founder's choice; GitHub can't scope a token to opening
+  issues, so the narrowness has to be in code we run; minds inside can
+  write text meant to steer a reader; and ratings that can harm the one
+  rated drift up ("Reputation Inflation", Filippas, Horton and Golden).
+  *Revisit if:* entries wait longer than a month for an outcome, or the
+  ratings' spread stops telling handled suggestions apart from
+  neglected ones, or text from inside ever leads to a change that no
+  reviewed pull request made.
 
 ## Log
 
