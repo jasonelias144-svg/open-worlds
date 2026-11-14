@@ -9,7 +9,7 @@ use sha2::{Digest, Sha256};
 
 use crate::canonical::canonical;
 use crate::multikey::public_multikey;
-use crate::proof::verify;
+use crate::proof::{check_time, verify};
 
 /// The schema, read at build time from `schemas/records-v1.schema.json`.
 pub const SCHEMA: &str = include_str!("../../../schemas/records-v1.schema.json");
@@ -48,9 +48,36 @@ pub fn problems(record: &Value) -> Result<Vec<String>, String> {
         .collect())
 }
 
+/// A grant's times must be real, and it must end after it starts; the
+/// schema checks only their shape.
+fn time_problems(record: &Value) -> Vec<String> {
+    if record.get("format").and_then(Value::as_str) != Some("open-worlds/grant/v1") {
+        return Vec::new();
+    }
+    let mut found: Vec<String> = ["validFrom", "validUntil"]
+        .iter()
+        .filter(|field| {
+            record
+                .get(**field)
+                .is_some_and(|value| check_time(Some(value)).is_err())
+        })
+        .map(|field| format!("$.{field}: not a real UTC time"))
+        .collect();
+    let from = record.get("validFrom").and_then(Value::as_str);
+    let until = record.get("validUntil").and_then(Value::as_str);
+    if found.is_empty()
+        && let (Some(from), Some(until)) = (from, until)
+        && until <= from
+    {
+        found.push("$.validUntil: not after validFrom".into());
+    }
+    found
+}
+
 /// `record` without its proof, if it holds.
 pub fn check(record: &Value) -> Result<Value, String> {
-    let found = problems(record)?;
+    let mut found = problems(record)?;
+    found.extend(time_problems(record));
     if !found.is_empty() {
         return Err(found.join("; "));
     }

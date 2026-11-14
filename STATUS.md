@@ -609,7 +609,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   and `rust/formats` check a record against it, verify its proof, and
   check that the one who must sign it did. Shared vectors
   (`vectors/formats/records-v1.json`): 9 records of every kind that
-  hold, with their hashes, and 24 that must be refused. `jsonschema`
+  hold, with their hashes, and 28 that must be refused. `jsonschema`
   4.26.0 (Python) and 0.60.2 (Rust, without network features) added.
 - 2026-11-14 Claude: course step 2, part one: signed records the standard
   way. `formats/` (Python) and `rust/formats` sign and verify records

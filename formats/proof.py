@@ -41,6 +41,11 @@ class ProofError(ValueError):
     """A proof that can't be made, or doesn't hold."""
 
 
+def check_time(created: Any) -> None:
+    """ProofError unless `created` is a real UTC time, YYYY-MM-DDTHH:MM:SSZ."""
+    _check_created(created)
+
+
 def _check_created(created: Any) -> None:
     if type(created) is not str:
         raise ProofError("created must be text")

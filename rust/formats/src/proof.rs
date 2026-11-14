@@ -16,7 +16,8 @@ pub const TYPE: &str = "DataIntegrityProof";
 /// The cryptosuite.
 pub const CRYPTOSUITE: &str = "eddsa-jcs-2022";
 
-fn check_created(created: Option<&Value>) -> Result<(), String> {
+/// An error unless `created` is a real UTC time, `YYYY-MM-DDTHH:MM:SSZ`.
+pub fn check_time(created: Option<&Value>) -> Result<(), String> {
     let text = created
         .and_then(Value::as_str)
         .ok_or("created must be text")?;
@@ -59,7 +60,7 @@ fn check_options(options: &Map<String, Value>) -> Result<(), String> {
     {
         return Err(format!("not a {TYPE} with {CRYPTOSUITE}"));
     }
-    check_created(options.get("created"))?;
+    check_time(options.get("created"))?;
     if !options.get("proofPurpose").is_some_and(Value::is_string) {
         return Err("proofPurpose must be text".into());
     }

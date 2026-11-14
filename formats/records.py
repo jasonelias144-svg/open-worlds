@@ -88,6 +88,24 @@ def problems(record: Any) -> List[str]:
         if e.absolute_path else f"$: {e.message}" for e in errors)
 
 
+def _time_problems(record: Dict[str, Any]) -> List[str]:
+    """A grant's times must be real, and it must end after it starts;
+    the schema checks only their shape."""
+    if record.get("format") != "open-worlds/grant/v1":
+        return []
+    found = []
+    for field in ("validFrom", "validUntil"):
+        if field in record:
+            try:
+                proof.check_time(record[field])
+            except proof.ProofError:
+                found.append(f"$.{field}: not a real UTC time")
+    if (not found and "validUntil" in record
+            and record["validUntil"] <= record["validFrom"]):
+        found.append("$.validUntil: not after validFrom")
+    return found
+
+
 def signer_field(record: Dict[str, Any]) -> Any:
     """The value of the field that names who must sign `record`."""
     value: Any = record
@@ -98,7 +116,7 @@ def signer_field(record: Dict[str, Any]) -> Any:
 
 def check(record: Any) -> Dict[str, Any]:
     """`record` without its proof, if it holds; otherwise RecordError."""
-    found = problems(record)
+    found = problems(record) + _time_problems(record)
     if found:
         raise RecordError("; ".join(found))
     try:

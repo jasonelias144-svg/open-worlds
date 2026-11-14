@@ -457,6 +457,74 @@
    }
   },
   {
+   "name": "a grant that ends before it starts",
+   "record": {
+    "format": "open-worlds/grant/v1",
+    "issuer": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "holder": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "allows": [
+     "design-path",
+     "adjust-conditions"
+    ],
+    "within": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "validFrom": "2026-11-14T00:00:00Z",
+    "validUntil": "2026-11-13T00:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX#z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z9VHHG7A1fryu9zBDNuhGTgLYs3v14jJ1oT2LJHLGzWoeKoNrGMgCkfm7fq3pTxRF156gqfUzfuPeznU6BfJnS42"
+    }
+   }
+  },
+  {
+   "name": "a grant that ends as it starts",
+   "record": {
+    "format": "open-worlds/grant/v1",
+    "issuer": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "holder": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "allows": [
+     "design-path",
+     "adjust-conditions"
+    ],
+    "within": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "validFrom": "2026-11-14T00:00:00Z",
+    "validUntil": "2026-11-14T00:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX#z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4PU1YTtD1CkvPjsJN4JrF7pGTZWzMBTuLrdVutYTFAYJsutRdRQtQWZd9b1J6HcDQkN7vtrn7iqMhSafmvoc45g2"
+    }
+   }
+  },
+  {
+   "name": "a grant that starts on 29 February 2025",
+   "record": {
+    "format": "open-worlds/grant/v1",
+    "issuer": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "holder": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "allows": [
+     "design-path",
+     "adjust-conditions"
+    ],
+    "within": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "validFrom": "2025-02-29T00:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX#z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4MhExWAh1rd9hAurfdu3ni1wLVpFsky8fsAhNUqrLvbS7UQiY2D7HuM5VBC4cgsv5AKBGXwHgLbxFxC925RtTsUe"
+    }
+   }
+  },
+  {
    "name": "a decision whose reasons are only spaces and line breaks",
    "record": {
     "format": "open-worlds/decision/v1",
@@ -528,6 +596,44 @@
      "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
      "proofPurpose": "assertionMethod",
      "proofValue": "z3dEuDJch6XdUnSxBFzaUgSpEqVJ9fcThy7gvtvWbD1CwVmdHL37oJA6z2Y167ciMgg9ipscHVbwGaqJvBahXCB4L"
+    }
+   }
+  },
+  {
+   "name": "a decision whose record ground isn't a hash",
+   "record": {
+    "format": "open-worlds/decision/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "84a63cf1007ec85fca32eec59a90ed3345325ead434152a0bbb2936d3a55ec62"
+    },
+    "act": {
+     "kind": "adjust-conditions",
+     "records": []
+    },
+    "affects": [
+     "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+    ],
+    "reasons": "The spring ran low by evening on four days of six. Feeding it from the hill keeps water for everyone and changes no one's path.",
+    "grounds": [
+     {
+      "kind": "record",
+      "ref": "CHARTER.md#3"
+     }
+    ],
+    "inputs": [
+     "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
+    ],
+    "appeal": "to ADMIN, and beyond it to the founder",
+    "tick": 120,
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z59iGw5CWn61UgYnoJyCCsRAPgaqqQtkXvUx9XCRP9iQSEaGEE8P1PyneUhdVQb5mxesWNKcG99Kj3hLGzLN8YGUe"
     }
    }
   },

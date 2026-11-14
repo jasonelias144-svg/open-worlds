@@ -207,7 +207,22 @@
               "kind",
               "ref"
             ],
-            "additionalProperties": false
+            "additionalProperties": false,
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "record"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "ref": {
+                  "$ref": "#/$defs/hash"
+                }
+              }
+            },
+            "description": "What a decision rests on: a section of the charter, a world's law, a rule, or an earlier record, which is named by its hash."
           }
         },
         "inputs": {
