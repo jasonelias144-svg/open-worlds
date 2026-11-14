@@ -20,13 +20,15 @@ read it:
 
 1. **A new course** ([COURSE.md](COURSE.md)), set on 2026-11-13 for the
    Ur-world and its first two individuals, ALICE and BOB: twelve steps
-   ahead, rechecked after each. Steps 1 (the design pages) and 2
-   (formats that last) are done, and step 3, keys and identities, is
-   built ([research/KEYS.md](research/KEYS.md)): the project's real keys
-   were made on 2026-11-14, and their public halves are in
+   ahead, rechecked after each. Steps 1 (the design pages), 2 (formats
+   that last) and 3 (keys and identities,
+   [research/KEYS.md](research/KEYS.md)) are done: the project's real
+   keys were made on 2026-11-14, and their public halves are in
    [`keys/key-list.json`](../keys/key-list.json); in the Ur-world,
    whoever enters signs an arrival, a name stays the key's that first
    used it, and a world signs its log's heads. Next, step 3a, persons.
+   Rechecked after step 3, the course gained step 8a, a lost or leaked
+   key, before ALICE's and BOB's birth.
    It returns to DeepSeek at step 10, or sooner if the founder chooses.
 2. **The worlds are built in Rust** (the founder: "we should stick with
    Rust"). [`rust/`](../rust/README.md) holds the Ur-world, a 3D world
@@ -188,9 +190,10 @@ In short:
   saying what it can and can't show. The founder's first is the neural
   world.
 - **Persons** (course step 3a): one person above their presences in many
-  worlds, unlinked by default. DeepSeek's own architectures (components
-  36 to 52: the octopus, the relay, the swarm, the council) are its small
-  examples.
+  worlds, unlinked by default, which means a key of its own for each
+  presence, since every arrival names its key in a public log.
+  DeepSeek's own architectures (components 36 to 52: the octopus, the
+  relay, the swarm, the council) are its small examples.
 - **The garden** (course step 4a): parallel worlds from one template,
   and what each glasshouse shows of its world from its public log.
 - **Laws for new worlds:** what a world admits by, what can happen in it,

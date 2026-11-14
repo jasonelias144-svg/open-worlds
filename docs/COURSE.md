@@ -156,39 +156,48 @@ sheet and skill attestation (step 5); the routine (step 7); and the
 records that confirm a founding (step 12). Nothing was reordered
 otherwise.
 
-## Ahead
+3. **Keys and identities, for them and for the world** (2026-11-14;
+   #52, #53, #56 to #59). Looked at first
+   ([research/KEYS.md](research/KEYS.md)), then built in four parts:
+   - the plan: one key to each role, the private halves in a private
+     repository of the project, nothing private here;
+   - a key list (`open-worlds/key-list/v1`) signed by the multiverse's
+     root, versioned and checked across versions in Python and Rust, and
+     the tool that makes keys and keeps the private halves out of this
+     repository;
+   - the ceremony: the real keys made and the key list's first version
+     published in [`keys/key-list.json`](../keys/key-list.json);
+   - leaving and coming back in the Ur-world: whoever enters signs an
+     arrival (`open-worlds/arrival/v1`), a name stays the key's that
+     first used it, a world has a key of its own that signs its log's
+     heads, and a log's arrivals and signed heads are checked whole.
 
-3. **Keys and identities, for them and for the world.** Done: the
-   plan, after looking first, is in
-   [research/KEYS.md](research/KEYS.md), in four parts (the plan; a key
-   list signed by the multiverse's root, and the tool that makes keys;
-   the ceremony; leaving and coming back in the Ur-world). The real keys
-   were made on 2026-11-14, their public halves published in
-   [`keys/key-list.json`](../keys/key-list.json); in the Ur-world, whoever
-   enters signs an arrival, a name stays the key's that first used it,
-   and a world signs its log's heads (KEYS.md, "As built, part four").
-   A private
-   repository of the project for the private halves; ALICE's and BOB's
-   signing keys, and keys for sealing things to them, which also open
-   their sealed selves; their identity, birth and mind records wait for
-   their birth, at step 9, since a birth record names the mind chosen at
-   step 8 (rechecked 2026-11-14). The Ur-world's
-   own keys: one to sign its log, one for sealing things to it; and
-   ADMIN's. The multiverse's root key, published, and a key of the code
-   role's, for outcomes on suggestions before ADMIN exists
-   ([ADMIN.md](ADMIN.md), "Suggestions from inside"); the project's keys
-   for mind records and for templates, which those records name as their
-   issuer ([research/FORMATS.md](research/FORMATS.md)). Leaving and coming
-   back: whoever leaves can return, proving
-   with their key that they are the same individual. *Borrowing:*
-   standard key handling, private halves kept apart and public halves
-   published.
+   ALICE's and BOB's identity, birth and mind records moved to step 9;
+   their keys exist, and they enter only at their birth.
+
+**Rechecked on 2026-11-14,** when step 3 was done. One step came in from
+the waiting list: keeping keys safely, part three (a lost or leaked
+key), as step 8a, before step 9 rather than at the end, since ALICE's
+and BOB's first arrival needs it (KEYS.md, decision 18: until the
+Ur-world follows successions, a leaked birth key would still enter under
+the name). With it the course again looks twelve steps ahead. What the
+keys taught is written into the steps it reaches: a presence of its own
+key, if a person's presences are to stay unlinked (3a); a world that
+continues from its log, its names included (4); parallel worlds with
+keys of their own that sign their heads (4a); step 9's preconditions,
+now step 8a; and a door's crossing as an arrival (12). Nothing was
+reordered otherwise.
+
+## Ahead
 
 **3a. Persons.** A person above their presences in each world
 ([MULTIVERSE.md](MULTIVERSE.md)), unlinked by default, with the
 architectures (octopus, relay, swarm, council) as small examples on the
 unchanged core; a person across worlds, as the founder pictured it
-([VISION.md](VISION.md), "A person across worlds"). Moved here from the
+([VISION.md](VISION.md), "A person across worlds"). An arrival names the
+key that signed it in a public log, so presences stay unlinked only if
+each has a key of its own; linking them is then the person's own signed
+act (step 3, [research/KEYS.md](research/KEYS.md)). Moved here from the
 waiting list, where it was placed after step 3 (decided 2026-11-14).
 
 4. **The kernel as entities and components.** Inhabitants, their bodies,
@@ -205,15 +214,19 @@ waiting list, where it was placed after step 3 (decided 2026-11-14).
    A template's code builds a world from its dials. World time is kept as
    whole microseconds, not a float of seconds, so a record's time is an
    exact sum however long a world runs (the chemistry world's clock
-   loses microsecond steps after about two years: #48). *Borrowing:* the
+   loses microsecond steps after about two years: #48). A world continues
+   from its log: its state, and the names bound to keys, which now live
+   only in the running world, are rebuilt from the entries and arrivals
+   it wrote (research/KEYS.md, "Honest limits"). *Borrowing:* the
    entity-component pattern (Bevy's), and Unreal's effects and tags;
-   Lean, and proof-carrying code.
+   Lean, and proof-carrying code; event sourcing.
 
 **4a. Parallel worlds, and a garden to walk among them.** A few parallel
 chemistry worlds from one template, each with its own key and log and
-the dials it changed in its birth record; and a view-only garden whose
-rooms show their live state from their public logs, the first thing
-others can look at and understand
+the dials it changed in its birth record, and its log's heads signed by
+its key, as a trial run of the Ur-world's doorway can now; and a
+view-only garden whose rooms show their live state from their public
+logs, the first thing others can look at and understand
 ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md)). Moved here from the waiting
 list, where the founder placed it, right after step 4. *Borrowing:*
 controlled experiments, and replay from a seed.
@@ -246,14 +259,29 @@ controlled experiments, and replay from a seed.
    chooses ALICE's and BOB's sizes, and tests whether memory helps. It
    runs in images pinned by digest, so anyone can repeat it.
    *Borrowing:* pre-registration; evaluation suites.
+
+**8a. Keeping keys safely, part three: a lost or leaked key.** Before
+anyone is born, so that no one's name or history can be taken. A
+succession, a key signed over to a new one (true in the Python worlds
+since the first course), joins records-v1, in Python and Rust with
+shared vectors, and the Ur-world follows each individual's successions,
+so a name follows its individual's keys, not its birth key alone.
+Guardians named in advance can sign over a lost key, or sign that a
+leaked one is no longer to be trusted; "lost is lost" for anyone who
+named none, and the project never recovers keys (decided 2026-11-14,
+STATUS.md). One rule for names that can't be confused, for the Ur-world
+and the key list alike. How often the Ur-world signs its log's heads.
+Moved here from the waiting list, before step 9 rather than at the end
+(research/KEYS.md, decision 18). *Borrowing:* KERI's pre-rotation, which
+commits to the next key before it is needed; TUF's key rotation and
+thresholds; PRECIS (RFC 8264) and Unicode's confusable detection (UTS
+#39) for names.
+
 9. **ALICE's and BOB's first life.** Their minds, their birth, their
    identity, birth and mind records (moved here from step 3), their
-   first unscripted words; legends pages begin. Before their first
-   arrival, successions join records-v1 and the Ur-world follows them,
-   a rule for names that can't be confused is settled, and how often it
-   signs its log's heads is decided
-   ([research/KEYS.md](research/KEYS.md), decision 18 and "Honest
-   limits"). The suggestion ledger
+   first unscripted words; legends pages begin. Their first arrival comes
+   after step 8a, which follows their successions and settles their
+   names. The suggestion ledger
    opens to them, with its bridge to GitHub, so what they suggest can
    improve the worlds from the start. *Borrowing:* Dwarf Fortress's
    Legends mode.
@@ -293,7 +321,9 @@ controlled experiments, and replay from a seed.
     itself, and records by its founders and its parent world confirming
     the founding, the parent's naming the world-keys used; a Keeper
     chosen by its founders; doors between them, travel with
-    passports, founding together, and the world protocol in Rust. The
+    passports, founding together, and the world protocol in Rust. Coming
+    through a door is an arrival, the same signed record, naming the
+    world entered. The
     open line reaches a Keeper from another world, and a founded world's
     Keeper has a line to its parent's. *Borrowing:* our own protocol and
     passports, the open standards of step 2, and Matrix and Signal for the
@@ -333,7 +363,6 @@ Added one at a time, as steps are done:
   first districts;
 - governance: a proposal to change a world's law is tried on a copy
   first, and adopted only by consent;
-- part three of keeping keys safely: a lost or leaked key;
 - from the first course, still wanted:
   - the first learner, with real rates and the gardener's water, and an
     organic chemistry world entered by its stamp;

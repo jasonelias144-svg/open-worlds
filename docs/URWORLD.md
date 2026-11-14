@@ -193,7 +193,7 @@ for themselves come in through the doorway (below).
   theirs (`open-worlds/arrival/v1`): a name, once used, stays the key's
   that first entered under it, so whoever comes back with that key is the
   same individual, and no one else can enter under it. Only that first
-  key is followed until successions join records-v1, before step 9. The
+  key is followed until successions join records-v1, at step 8a. The
   doorway signs for now, with keys made for the run; no holder's key is
   read until ALICE and BOB are born ([research/KEYS.md](research/KEYS.md),
   "As built, part four").

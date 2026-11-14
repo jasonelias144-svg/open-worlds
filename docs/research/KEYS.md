@@ -238,9 +238,10 @@ another under the same name.
     back, told so, and what they did before stays theirs in the log. One
     individual holds one name in a world. Successions aren't yet a
     records-v1 record, so the Ur-world first checks the birth key alone;
-    until successions join records-v1 (the waiting list's "a lost or
-    leaked key"), a signed-over key can't come back under its old name,
-    and the doorway says why rather than treat it as someone else. From
+    until successions join records-v1 (course step 8a, once the waiting
+    list's "a lost or leaked key"), a signed-over key can't come back
+    under its old name, and the doorway says why rather than treat it as
+    someone else. From
     step 9, an arrival's name is the name in the individual's identity
     record. This replaces "your name can't be used here again", the only
     guard while nothing told a returning mind from another.
@@ -490,10 +491,10 @@ checked from Python through the shared vectors:
     birth key alone (decision 12), so a leaked birth key would still
     enter under the name after its holder signed over to a new key, and
     the new key couldn't. No individual exists in the Ur-world before
-    step 9, so nothing is exposed yet; successions, at least the part of
-    the waiting list's "a lost or leaked key" that signs a key over, and
-    the Ur-world following them, come before step 9's first arrival
-    (COURSE.md, step 9).
+    step 9, so nothing is exposed yet; successions, and the Ur-world
+    following them, come before step 9's first arrival, as course step
+    8a (a lost or leaked key), brought in from the waiting list when
+    step 3 closed (COURSE.md).
 
 ## Honest limits
 
