@@ -114,6 +114,29 @@
      "proofValue": "z4Zor1VWxgAqe7ed2UteCUECaQjqo74cUnoy6r9ev5nTr9a8FT7R7d2YZoV8kVe3SvLxutTsHRgxktEAxFog2d4zi"
     }
    }
+  },
+  {
+   "name": "made on a leap day, at the last second of it",
+   "secretKeyMultibase": "z3u2VgqqC2p3SguFuBARoQG8yM9yBqQ7Sm1HfF9UJumn2TGD",
+   "publicKeyMultibase": "z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz",
+   "created": "2000-02-29T23:59:59Z",
+   "document": {
+    "format": "open-worlds/example/v1",
+    "text": "Hello, BOB."
+   },
+   "canonicalDocument": "{\"format\":\"open-worlds/example/v1\",\"text\":\"Hello, BOB.\"}",
+   "signed": {
+    "format": "open-worlds/example/v1",
+    "text": "Hello, BOB.",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2000-02-29T23:59:59Z",
+     "verificationMethod": "did:key:z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz#z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2hcgF3WgMhQXdZqAwdTcahn8oZiG5wn8mXMiAd5cZCAYQY5fPWt9pLsn9jLfUAkSS99GmQ9UBr7Tt9mWoixCYarV"
+    }
+   }
   }
  ],
  "refused": [
@@ -504,6 +527,230 @@
      "verificationMethod": "did:key:z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz#z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz",
      "proofPurpose": null,
      "proofValue": "z4BopjYhiN4yvSrkyQQ83HdxKjJJCSFQir9AFM9zN4NxmWf2W2L6owj5cZDeoCD7tXJkmztfj4C6TqqJ3xMmdh7b1"
+    }
+   }
+  },
+  {
+   "name": "created 2025-02-29T00:00:00Z: no 29 February in 2025",
+   "secured": {
+    "format": "open-worlds/example/v1",
+    "text": "Café, 🙂, a line separator, a tab\tand a quote \"",
+    "most": 9007199254740991,
+    "least": -9007199254740991,
+    "list": [
+     true,
+     false,
+     null,
+     {
+      "b": 1,
+      "a": 2
+     },
+     []
+    ],
+    "empty": {},
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2025-02-29T00:00:00Z",
+     "verificationMethod": "did:key:z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz#z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3XP9QEiLAWFNHHXu39sbxPUEydtYSkAXT3dmRH1M18cL3wL6EJQWbvVjS5YiW8tttMxoKvEDHQp9L5gcAfs3XKsY"
+    }
+   }
+  },
+  {
+   "name": "created 2100-02-29T00:00:00Z: 2100 isn't a leap year",
+   "secured": {
+    "format": "open-worlds/example/v1",
+    "text": "Café, 🙂, a line separator, a tab\tand a quote \"",
+    "most": 9007199254740991,
+    "least": -9007199254740991,
+    "list": [
+     true,
+     false,
+     null,
+     {
+      "b": 1,
+      "a": 2
+     },
+     []
+    ],
+    "empty": {},
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2100-02-29T00:00:00Z",
+     "verificationMethod": "did:key:z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz#z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3A8K2CAEawKui17Eu75y1txgtgL2gG6TkqZR6grzL7Y8t3DQd2zQQQjnFSijsE4a2QsY2JzWizFxey8J1Qr75FMa"
+    }
+   }
+  },
+  {
+   "name": "created 2026-13-01T00:00:00Z: no thirteenth month",
+   "secured": {
+    "format": "open-worlds/example/v1",
+    "text": "Café, 🙂, a line separator, a tab\tand a quote \"",
+    "most": 9007199254740991,
+    "least": -9007199254740991,
+    "list": [
+     true,
+     false,
+     null,
+     {
+      "b": 1,
+      "a": 2
+     },
+     []
+    ],
+    "empty": {},
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-13-01T00:00:00Z",
+     "verificationMethod": "did:key:z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz#z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3bDKJympu2VrZvRbX2BktiG3MPYiMnToVMQBAekh6bMYXESdtbqrEvW6SCc49baLjwS9dZYowffZFjBraiWctzJe"
+    }
+   }
+  },
+  {
+   "name": "created 2026-11-14T24:00:00Z: no hour 24",
+   "secured": {
+    "format": "open-worlds/example/v1",
+    "text": "Café, 🙂, a line separator, a tab\tand a quote \"",
+    "most": 9007199254740991,
+    "least": -9007199254740991,
+    "list": [
+     true,
+     false,
+     null,
+     {
+      "b": 1,
+      "a": 2
+     },
+     []
+    ],
+    "empty": {},
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T24:00:00Z",
+     "verificationMethod": "did:key:z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz#z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3XBkEUzFjCimV92RPoNFTRJ6QhQFJYPS4rxyc3z45Cof8AkM9eg7PWUkrJtvgvU2xKWk2okrgDJ4XhTUeVRyi8WG"
+    }
+   }
+  },
+  {
+   "name": "created 2026-11-14T00:00:60Z: no leap seconds here",
+   "secured": {
+    "format": "open-worlds/example/v1",
+    "text": "Café, 🙂, a line separator, a tab\tand a quote \"",
+    "most": 9007199254740991,
+    "least": -9007199254740991,
+    "list": [
+     true,
+     false,
+     null,
+     {
+      "b": 1,
+      "a": 2
+     },
+     []
+    ],
+    "empty": {},
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T00:00:60Z",
+     "verificationMethod": "did:key:z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz#z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2EsGRMn9zCLwNY6JmcPxb1Xp5ksBp3GhxQxvyNXDmMGnx7e4NA2ycHeC6zrssghqzoP7y2LBJGFDDMj3LbEE6LH4"
+    }
+   }
+  },
+  {
+   "name": "created 0000-01-01T00:00:00Z: no year 0",
+   "secured": {
+    "format": "open-worlds/example/v1",
+    "text": "Café, 🙂, a line separator, a tab\tand a quote \"",
+    "most": 9007199254740991,
+    "least": -9007199254740991,
+    "list": [
+     true,
+     false,
+     null,
+     {
+      "b": 1,
+      "a": 2
+     },
+     []
+    ],
+    "empty": {},
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "0000-01-01T00:00:00Z",
+     "verificationMethod": "did:key:z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz#z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3CxrWNNn3V1LRjkjUMozc5DNdYxtx3Kb9JDvgmYn1jw2B2QvGkcmGYuM4mqgzYLKRyT34cQ8rjGrAWSVBUBkrG83"
+    }
+   }
+  },
+  {
+   "name": "created 2026-11-14T00:00:00z: Z is upper case",
+   "secured": {
+    "format": "open-worlds/example/v1",
+    "text": "Café, 🙂, a line separator, a tab\tand a quote \"",
+    "most": 9007199254740991,
+    "least": -9007199254740991,
+    "list": [
+     true,
+     false,
+     null,
+     {
+      "b": 1,
+      "a": 2
+     },
+     []
+    ],
+    "empty": {},
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T00:00:00z",
+     "verificationMethod": "did:key:z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz#z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5zi4eqbwjdUx8f4RjWRMbJQ2CQwAc14hA5DWyTzC9wzdafkzXgQECRyMsynysk4JBoa7P4sZ5ygrEqabAMgztcyB"
+    }
+   }
+  },
+  {
+   "name": "created 2026-11-14T00:00Z: seconds are written",
+   "secured": {
+    "format": "open-worlds/example/v1",
+    "text": "Café, 🙂, a line separator, a tab\tand a quote \"",
+    "most": 9007199254740991,
+    "least": -9007199254740991,
+    "list": [
+     true,
+     false,
+     null,
+     {
+      "b": 1,
+      "a": 2
+     },
+     []
+    ],
+    "empty": {},
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T00:00Z",
+     "verificationMethod": "did:key:z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz#z6Mki6pwqkAF5FjCH335bagUyg3tAmmrCumEfmxkQgCNpSsz",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zV7XPAeXGv21yr7LDBsoVh8ADSivUyypHWyZQn6T7ATZUHnVdYqKQt97Ti9tCWj3Pn5LpZhdrwdds7oKewoh2hzP"
     }
    }
   }

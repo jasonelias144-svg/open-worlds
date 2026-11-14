@@ -113,6 +113,10 @@ def _records() -> List[Dict[str, Any]]:
                                    "https://example.org/b"],
                       "format": "open-worlds/example/v1",
                       "text": "Hello, ALICE."}},
+        {"name": "made on a leap day, at the last second of it",
+         "created": "2000-02-29T23:59:59Z",
+         "document": {"format": "open-worlds/example/v1",
+                      "text": "Hello, BOB."}},
     ]
 
 
@@ -120,15 +124,16 @@ def _signed() -> List[Dict[str, Any]]:
     out = []
     for case in _records():
         doc = case["document"]
+        created = case.get("created", CREATED)
         out.append({
             "name": case["name"],
             "secretKeyMultibase": secret_multikey(TEST_SECRET),
             "publicKeyMultibase": public_multikey(
                 ed25519.public_key(TEST_SECRET)),
-            "created": CREATED,
+            "created": created,
             "document": doc,
             "canonicalDocument": canonical(doc).decode("utf-8"),
-            "signed": proof.sign(doc, TEST_SECRET, CREATED),
+            "signed": proof.sign(doc, TEST_SECRET, created),
         })
     return out
 
@@ -196,6 +201,19 @@ def _refused() -> List[Dict[str, Any]]:
         {"name": "no proofPurpose",
          "secured": proof_changed(
              _resign(good), proofPurpose=None)},
+    ] + [
+        {"name": f"created {created}: {why}",
+         "secured": _resign(good, created=created)}
+        for created, why in [
+            ("2025-02-29T00:00:00Z", "no 29 February in 2025"),
+            ("2100-02-29T00:00:00Z", "2100 isn't a leap year"),
+            ("2026-13-01T00:00:00Z", "no thirteenth month"),
+            ("2026-11-14T24:00:00Z", "no hour 24"),
+            ("2026-11-14T00:00:60Z", "no leap seconds here"),
+            ("0000-01-01T00:00:00Z", "no year 0"),
+            ("2026-11-14T00:00:00z", "Z is upper case"),
+            ("2026-11-14T00:00Z", "seconds are written"),
+        ]
     ]
 
 
