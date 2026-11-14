@@ -5,7 +5,8 @@ develop with possible implementations. If the list is forward a few
 steps from where we are now, it can be waiting for us when the project
 reaches that stage, sketching out the landscape before the code gets
 there. And if the topics are diverse, DeepSeek can have a choice of
-topics."
+topics. For each choice you could provide an example or just set the
+code standards."
 
 So each topic below is a few steps ahead of the code. Each says where it
 fits in the course ([COURSE.md](COURSE.md)), what is already decided, what
@@ -89,8 +90,8 @@ first (minds read text) and as a picture later.
 
 ## 2. Question worlds, and the neural world
 
-*From the founder's visions ([VISION.md](VISION.md), "Question worlds").*
-An idea becomes a question, and the question becomes a world that answers
+*Waiting list, from the founder's visions ([VISION.md](VISION.md),
+"Question worlds").* An idea becomes a question, and the question becomes a world that answers
 it.
 
 **Decided:** the prediction is written before the run; a world says what
@@ -109,7 +110,11 @@ can be checked (a number with a range, a direction, a yes or no); how
 many runs a question needs; how a result is told from luck.
 
 **A possible implementation:** a question record, signed by whoever asks
-it, before any run:
+it, before any run. The template's own values are the control: no
+mechanism (`mechanism` 0) and the magnetic field at its real strength
+(`magneticGain` 1); each variant names only the dials it turns, since a
+dial set to the template's own value is refused (formats/records.py,
+`dial_problems`):
 
 ```json
 {
@@ -119,8 +124,9 @@ it, before any run:
  "prediction": {"measure": "ticksPatternLasts", "unit": "{tick}",
                 "variant": "field", "atLeast": 50},
  "template": "<hash of the neural world's template>",
- "variants": {"traces": {"mechanism": 1}, "field": {"mechanism": 2},
-              "magnetic": {"mechanism": 3}},
+ "variants": {"control": {}, "traces": {"mechanism": 1},
+              "field": {"mechanism": 2}, "magnetic": {"mechanism": 3},
+              "magneticTurnedUp": {"mechanism": 3, "magneticGain": 1000}},
  "runs": 20,
  "time": "2026-11-20T12:00:00Z"
 }
@@ -166,10 +172,12 @@ unlinked by default ([VISION.md](VISION.md), "A person across worlds").
 
 **Decided:** "Information flows through the person, not between worlds
 behind their back"; a world sees only the presence there unless the
-person shows more; every entry into a world is logged. From the
-sketch's lessons ([COLLABORATING.md](COLLABORATING.md), "What the last
-stretch taught"): a self spread across worlds needs each part linked to
-it, with both signing, and the person's list of identities is a chain.
+person shows more; every entry into a world is logged.
+
+**Recommended, not decided,** from the sketch's lessons
+([COLLABORATING.md](COLLABORATING.md), "What the last stretch taught"): a
+self spread across worlds needs each part linked to it, with both
+signing, and the person's list of identities should be a chain.
 
 **Open:** what the link record holds; how a person shows a link to one
 world and not another; how a lesson learned in one world becomes
@@ -299,7 +307,8 @@ what is recalled; how reflections are triggered.
 
 ## 10. The plug-in: a world from a conversation
 
-*From the founder's visions ([VISION.md](VISION.md), "The app").* A chat
+*Waiting list, from the founder's visions ([VISION.md](VISION.md), "The
+app").* A chat
 creates a world from a template, runs it, and comes back with the data.
 
 **Decided:** it speaks MCP, the Model Context Protocol, with five
@@ -320,8 +329,8 @@ start to finish, using them.
 
 ## 11. Riding along, and steering by branching
 
-*From the founder's visions ([VISION.md](VISION.md), "Ride along, and
-steer").* A view tied to one thing in a primary world; a change makes a
+*Waiting list, from the founder's visions ([VISION.md](VISION.md), "Ride
+along, and steer").* A view tied to one thing in a primary world; a change makes a
 branch, and the original runs on.
 
 **Decided:** only primary worlds, with no one in them, are branched so;
@@ -353,7 +362,9 @@ vote per party, as the charter's notes say); how a change is undone.
 branch it was tried on, and what the branch showed; consent as signed
 records, one per party.
 
-**Send back:** the steps from proposal to adoption, with who signs what.
+**Send back:** the steps from proposal to adoption, with who signs what,
+offered to the founder as input for the charter's section 6, not as its
+text.
 
 ## 13. Storytellers
 
