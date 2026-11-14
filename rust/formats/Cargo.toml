@@ -13,6 +13,7 @@ sha2.workspace = true
 serde_jcs.workspace = true
 ed25519-dalek.workspace = true
 bs58.workspace = true
+jsonschema.workspace = true
 
 [lints]
 workspace = true

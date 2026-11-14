@@ -46,6 +46,11 @@ _TIME = re.compile(
     r"([0-9]{4})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2}):([0-9]{2})Z")
 
 
+def check_time(created: Any) -> None:
+    """ProofError unless `created` is a real UTC time, YYYY-MM-DDTHH:MM:SSZ."""
+    _check_created(created)
+
+
 def _check_created(created: Any) -> None:
     """The shape first, in ASCII digits only (`strptime` would also take
     other scripts' digits), then the calendar: years 0001 to 9999, as the

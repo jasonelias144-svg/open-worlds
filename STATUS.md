@@ -645,9 +645,28 @@ it was wrong. Questions of what the project is for stay with the founder.
   `created` to the second), so there is less to get wrong. *Revisit if:*
   a widely used verifier refuses our proofs, or a record needs something
   the narrow reading refuses, such as a proof chain.
+- 2026-11-14, the records for the offices: grant, decision record,
+  suggestion, rating and signed log head in one JSON Schema
+  (`schemas/records-v1.schema.json`), read by Python and Rust alike;
+  every party a did:key; a record named by the hash of its RFC 8785
+  form; one signer for each kind; grants bounded in UTC time, records
+  of a log by its tick (docs/research/FORMATS.md). *Why:* one schema
+  file two languages read can't drift apart, and shared vectors prove
+  they read it alike; a record signed by the wrong party is the forgery
+  most worth stopping early. *Revisit if:* the two languages' schema
+  libraries disagree on a record the vectors don't cover, or step 4
+  finds a check the schema should have made.
 
 ## Log
 
+- 2026-11-14 Claude: course step 2, part two: the records for the
+  offices. `schemas/records-v1.schema.json` defines the grant, decision
+  record, suggestion, rating and signed log head; `formats/records.py`
+  and `rust/formats` check a record against it, verify its proof, and
+  check that the one who must sign it did. Shared vectors
+  (`vectors/formats/records-v1.json`): 10 records of every kind that
+  hold, with their hashes, and 36 that must be refused. `jsonschema`
+  4.26.0 (Python) and 0.60.2 (Rust, without network features) added.
 - 2026-11-14 Claude: course step 2, part one: signed records the
   standard way. `formats/` (Python) and `rust/formats` sign and verify
   records with `eddsa-jcs-2022`: RFC 8785 with this project's three

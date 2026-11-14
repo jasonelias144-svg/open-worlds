@@ -64,6 +64,9 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
 - [formats/](formats/__init__.py): records signed so that standard tools
   can check them: RFC 8785, did:key, and `eddsa-jcs-2022` proofs, with
   the same in Rust (`rust/formats`).
+- [schemas/](schemas/records-v1.schema.json): the shape of each record the
+  offices keep (grant, decision, suggestion, rating, signed log head), in
+  JSON Schema, read by Python and Rust alike.
 - [minds/](minds/README.md): programs that can be minds in the Ur-world,
   in any language, through its doorway.
 - [experiments/](experiments/README.md): the worlds run as experiments,

@@ -1,0 +1,551 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jasonelias144-svg/open-worlds/schemas/records-v1.schema.json",
+  "title": "open-worlds records, version 1",
+  "description": "The records the offices keep (course step 2): a grant, a decision record, a suggestion, a rating, and a signed log head. Each is signed with eddsa-jcs-2022 (formats/proof.py); formats/records.py and rust/formats check them, and docs/research/FORMATS.md says why each field is there.",
+  "$defs": {
+    "didKey": {
+      "description": "An Ed25519 public key as a did:key; an individual's, a world's or an office's.",
+      "type": "string",
+      "pattern": "^did:key:z6Mk[1-9A-HJ-NP-Za-km-z]{44}$"
+    },
+    "hash": {
+      "description": "SHA-256, lowercase hex: of a record, the SHA-256 of its RFC 8785 form, proof included.",
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "tick": {
+      "description": "A tick of the log the record belongs to.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "time": {
+      "description": "A UTC time to the second.",
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+    },
+    "actKind": {
+      "description": "A kind of act, from the list the rules fix.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+      "maxLength": 64
+    },
+    "text": {
+      "description": "Text a person or a mind writes: not empty, not only spaces or line breaks of any kind, and no control characters (C0, DEL or C1) but tab and line breaks.",
+      "type": "string",
+      "minLength": 1,
+      "allOf": [
+        {
+          "pattern": "[^ \\t\\n\\r\\u000b\\u000c\\u0085\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff]"
+        },
+        {
+          "pattern": "^[^\\u0000-\\u0008\\u000e-\\u001f\\u007f-\\u0084\\u0086-\\u009f]*$"
+        }
+      ]
+    },
+    "proof": {
+      "description": "An eddsa-jcs-2022 Data Integrity proof, read as formats/proof.py reads it: one proof, did:key, no @context.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "DataIntegrityProof"
+        },
+        "cryptosuite": {
+          "const": "eddsa-jcs-2022"
+        },
+        "created": {
+          "$ref": "#/$defs/time"
+        },
+        "verificationMethod": {
+          "type": "string",
+          "pattern": "^did:key:z6Mk[1-9A-HJ-NP-Za-km-z]{44}#z6Mk[1-9A-HJ-NP-Za-km-z]{44}$"
+        },
+        "proofPurpose": {
+          "const": "assertionMethod"
+        },
+        "proofValue": {
+          "type": "string",
+          "pattern": "^z[1-9A-HJ-NP-Za-km-z]+$",
+          "maxLength": 100
+        }
+      },
+      "required": [
+        "type",
+        "cryptosuite",
+        "created",
+        "verificationMethod",
+        "proofPurpose",
+        "proofValue"
+      ],
+      "additionalProperties": false
+    },
+    "grant": {
+      "description": "A power, written down: who gives it, who holds it, what it allows, where, until when, and the grant it narrows. Signed by its issuer (docs/ADMIN.md, layer 2; docs/research/FORMATS.md, Grants).",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/grant/v1"
+        },
+        "issuer": {
+          "$ref": "#/$defs/didKey"
+        },
+        "holder": {
+          "$ref": "#/$defs/didKey"
+        },
+        "allows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/actKind"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "within": {
+          "description": "The world it holds in, or the whole multiverse.",
+          "oneOf": [
+            {
+              "$ref": "#/$defs/didKey"
+            },
+            {
+              "const": "multiverse"
+            }
+          ]
+        },
+        "validFrom": {
+          "$ref": "#/$defs/time"
+        },
+        "validUntil": {
+          "$ref": "#/$defs/time"
+        },
+        "narrows": {
+          "description": "The grant this one narrows; absent for a grant an office issues from its own powers.",
+          "$ref": "#/$defs/hash"
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "issuer",
+        "holder",
+        "allows",
+        "within",
+        "validFrom",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
+    "decision": {
+      "description": "An office's decision that affects others, with its reasons (docs/REASONS.md). Signed by the office.",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/decision/v1"
+        },
+        "office": {
+          "type": "object",
+          "properties": {
+            "key": {
+              "$ref": "#/$defs/didKey"
+            },
+            "grant": {
+              "$ref": "#/$defs/hash"
+            }
+          },
+          "required": [
+            "key",
+            "grant"
+          ],
+          "additionalProperties": false
+        },
+        "act": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "$ref": "#/$defs/actKind"
+            },
+            "records": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/hash"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "kind",
+            "records"
+          ],
+          "additionalProperties": false
+        },
+        "affects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/didKey"
+          },
+          "uniqueItems": true
+        },
+        "reasons": {
+          "$ref": "#/$defs/text",
+          "maxLength": 20000
+        },
+        "grounds": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "enum": [
+                  "charter",
+                  "law",
+                  "rule",
+                  "record"
+                ]
+              },
+              "ref": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              }
+            },
+            "required": [
+              "kind",
+              "ref"
+            ],
+            "additionalProperties": false,
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "record"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "ref": {
+                  "$ref": "#/$defs/hash"
+                }
+              }
+            },
+            "description": "What a decision rests on: a section of the charter, a world's law, a rule, or an earlier record, which is named by its hash."
+          }
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/hash"
+          },
+          "uniqueItems": true
+        },
+        "formal": {
+          "description": "A proof in Lean, by hash, of a property the rules name for this kind of act.",
+          "type": "object",
+          "properties": {
+            "property": {
+              "$ref": "#/$defs/actKind"
+            },
+            "proof": {
+              "$ref": "#/$defs/hash"
+            },
+            "model": {
+              "type": "string",
+              "pattern": "^[a-z0-9.-]+/[0-9]+\\.[0-9]+$"
+            }
+          },
+          "required": [
+            "property",
+            "proof",
+            "model"
+          ],
+          "additionalProperties": false
+        },
+        "views": {
+          "description": "ADMIN's only: each council member's view.",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "member": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "view": {
+                "$ref": "#/$defs/text"
+              }
+            },
+            "required": [
+              "member",
+              "view"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "supersedes": {
+          "$ref": "#/$defs/hash"
+        },
+        "appeal": {
+          "description": "Where an appeal goes.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "tick": {
+          "$ref": "#/$defs/tick"
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "office",
+        "act",
+        "affects",
+        "reasons",
+        "grounds",
+        "inputs",
+        "appeal",
+        "tick",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
+    "suggestion": {
+      "description": "A suggestion from inside, to a world's Keeper or to ADMIN: one way, in the open (docs/ADMIN.md, Suggestions from inside). Signed by its author.",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/suggestion/v1"
+        },
+        "author": {
+          "$ref": "#/$defs/didKey"
+        },
+        "to": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "office": {
+                  "const": "admin"
+                }
+              },
+              "required": [
+                "office"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "office": {
+                  "const": "keeper"
+                },
+                "world": {
+                  "$ref": "#/$defs/didKey"
+                }
+              },
+              "required": [
+                "office",
+                "world"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "about": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "enum": [
+                "keeper",
+                "world",
+                "admin",
+                "multiverse",
+                "project"
+              ]
+            },
+            "ref": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 512
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false,
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "keeper",
+                  "world"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "ref": {
+                "$ref": "#/$defs/didKey"
+              }
+            }
+          }
+        },
+        "text": {
+          "$ref": "#/$defs/text",
+          "maxLength": 10000
+        },
+        "floor": {
+          "description": "Marked by its author as reporting a breach of the floor, which doesn't wait.",
+          "type": "boolean"
+        },
+        "world": {
+          "description": "The world it was made in; absent when made outside any world, by ADMIN or a Keeper in the multiverse.",
+          "$ref": "#/$defs/didKey"
+        },
+        "tick": {
+          "description": "A tick of the log it belongs to: its world's, or the multiverse's.",
+          "$ref": "#/$defs/tick"
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "author",
+        "to",
+        "text",
+        "tick",
+        "proof"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "description": "A suggestion to ADMIN about a Keeper or a world names which, by key.",
+          "if": {
+            "properties": {
+              "to": {
+                "properties": {
+                  "office": {
+                    "const": "admin"
+                  }
+                },
+                "required": [
+                  "office"
+                ]
+              },
+              "about": {
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "keeper",
+                      "world"
+                    ]
+                  }
+                },
+                "required": [
+                  "kind"
+                ]
+              }
+            },
+            "required": [
+              "to",
+              "about"
+            ]
+          },
+          "then": {
+            "properties": {
+              "about": {
+                "required": [
+                  "ref"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "rating": {
+      "description": "A suggestion's author's rating, 1 to 5, of how it was handled. Signed by that author.",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/rating/v1"
+        },
+        "author": {
+          "$ref": "#/$defs/didKey"
+        },
+        "suggestion": {
+          "$ref": "#/$defs/hash"
+        },
+        "outcome": {
+          "$ref": "#/$defs/hash"
+        },
+        "score": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "text": {
+          "$ref": "#/$defs/text",
+          "maxLength": 2000
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "author",
+        "suggestion",
+        "outcome",
+        "score",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
+    "logHead": {
+      "description": "A signed head: a world's signature over its log's length and last hash at a tick, so a log cut short or shown two ways is caught (docs/research/FORMATS.md). Signed by the world.",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/log-head/v1"
+        },
+        "world": {
+          "$ref": "#/$defs/didKey"
+        },
+        "length": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "last": {
+          "description": "The hash of the log's last entry; for an empty log, sixty-four zeros, as a first entry's prev.",
+          "$ref": "#/$defs/hash"
+        },
+        "tick": {
+          "$ref": "#/$defs/tick"
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "world",
+        "length",
+        "last",
+        "tick",
+        "proof"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
