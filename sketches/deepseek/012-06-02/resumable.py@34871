@@ -1,0 +1,17 @@
+def resume_from_bundle(
+    bundle, individual_kp, world_specs, rule=SIERPINSKI,
+    rng_seed_override=None, verify_tier="auto",
+    individual_id_override=None,   # NEW
+):
+    # ...
+    kp_did = _did_from_kp(individual_kp)
+    if individual_id_override is None:
+        if kp_did != bundle.individual_id:
+            return (None, "keypair does not match bundle DID")
+    # else: caller has already verified a delegation
+    # ...
+    s = FederatedSession(
+        individual_kp=individual_kp,
+        # ...
+        individual_id_override=individual_id_override,
+    )

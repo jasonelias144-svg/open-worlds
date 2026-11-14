@@ -1,0 +1,15 @@
+def resume_from_bundle(
+    bundle, individual_kp, world_specs, rule=SIERPINSKI,
+    rng_seed_override=None, verify_tier="auto",
+):
+    # ... existing ...
+    # Replace the verify_federated_full check with a tier dispatch:
+    if verify_tier == "auto":
+        from compact_memory import verify_bundle_for_resume
+        v_full = verify_bundle_for_resume(bundle)
+    elif verify_tier == "compacted":
+        from compact_memory import verify_compacted_full
+        v_full = verify_compacted_full(bundle)
+    else:
+        v_full = verify_federated_full(bundle)
+    # ... rest unchanged ...

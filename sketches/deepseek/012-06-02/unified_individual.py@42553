@@ -1,0 +1,65 @@
+def enter_world_via_adapter(self, adapter, config):
+    """Enter a world via a WorldAdapter. Generic — works for any
+    tier the adapter implements."""
+    handle = adapter.open(config)
+    entry_fields = adapter.enter(
+        handle, self.individual_id, self.individual_kp, config)
+    world_id = config.get("world_id", "unknown")
+    signer = config.get("world_signer")
+    body = {
+        "type": "world_entry",
+        "agent_id": self.individual_id,
+        "world_id": world_id,
+        "tier": adapter.tier_name(),
+        "world_signer": signer,
+        "first_memory_index": len(self.memory),
+        **entry_fields,
+        "ts": _now(),
+    }
+    entry = self._append_entry(body)
+    self._current_adapter = adapter
+    self._current_handle = handle
+    self._current_world_id = world_id
+    self._reseed_rng(world_id)
+    return entry
+
+def step_via_adapter(self):
+    """Advance one step in the current adapter's world."""
+    adapter = self._current_adapter
+    handle = self._current_handle
+    state = adapter.state(self.memory, handle)
+    idx = self.model.act(state, self._rng)
+    action = adapter.action_from_index(idx, self.memory)
+
+    # For federated: compute from_point/to_point before submit
+    if adapter.tier_name() == "federated":
+        prev = None
+        for rec in reversed(self.memory):
+            if rec.get("type") == "world_entry" \
+                    and "initial_point" in rec:
+                prev = tuple(rec["initial_point"]); break
+            if rec.get("type") == "agent_step" \
+                    and rec.get("tier") == "federated":
+                prev = tuple(rec["to_point"]); break
+        if prev is None:
+            return None
+        action["_from_point"] = list(prev)
+        action["_to_point"] = list(
+            SIERPINSKI[idx % 3].apply(*prev))
+
+    world_ref, reward = adapter.submit(
+        handle, self.individual_id, self.individual_kp, action)
+    self.model.learn(reward)
+
+    fields = adapter.step_fields(action, world_ref)
+    body = {
+        "type": "agent_step",
+        "agent_id": self.individual_id,
+        "world_id": self._current_world_id,
+        "tier": adapter.tier_name(),
+        "action_idx": idx,
+        "reward_micros": int(reward * 1_000_000),
+        **fields,
+        "ts": _now(),
+    }
+    return self._append_entry(body)

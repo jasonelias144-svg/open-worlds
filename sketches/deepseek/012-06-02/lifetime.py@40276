@@ -1,0 +1,52 @@
+def _verify_bundle_at_tier(
+    bundle: IndividualBundle,
+    world_logs: Optional[Dict[str, List[dict]]] = None,
+) -> Dict:
+    kind = bundle.manifest.get("kind", "individual_bundle")
+
+    # Chess-tier dispatch
+    if kind == "chess_individual":
+        world_id = None
+        for ctx in bundle.manifest.get("world_contexts", []):
+            world_id = ctx.get("world_id")
+            break
+        if world_logs and world_id in world_logs:
+            from chess_individual import (
+                verify_chess_individual_full,
+            )
+            ok, reason = verify_chess_individual_full(
+                bundle, world_logs[world_id])
+            return {"ok": ok, "tier": "chess", "reason": reason}
+        else:
+            from chess_individual import (
+                verify_chess_individual_basic,
+            )
+            ok, reason = verify_chess_individual_basic(bundle)
+            return {"ok": ok, "tier": "chess-basic",
+                    "reason": reason}
+
+    # Existing dispatch (forked / delegated / compacted / federated)
+    if bundle.manifest.get("forked_from"):
+        ok, reason = verify_forked_full(bundle)
+        return {"ok": ok, "tier": "forked", "reason": reason}
+    if bundle.manifest.get("resumed_by"):
+        ok, reason = verify_delegated_full(bundle)
+        return {"ok": ok, "tier": "delegated", "reason": reason}
+    if bundle.manifest.get("compacted_at"):
+        ok, reason = verify_compacted_full(bundle)
+        return {"ok": ok, "tier": "compacted", "reason": reason}
+    ok, reason = verify_federated_full(bundle)
+    return {"ok": ok, "tier": "federated", "reason": reason}
+
+
+def verify_individual_lifetime(
+    bundles: Dict[str, IndividualBundle],
+    individual_id: str,
+    include_branches: bool = False,
+    world_logs: Optional[Dict[str, List[dict]]] = None,  # NEW
+) -> LifetimeReport:
+    # ... existing setup ...
+    # Pass world_logs through to _verify_bundle_at_tier
+    for did, b in own.items():
+        r = _verify_bundle_at_tier(b, world_logs=world_logs)
+        # ... rest unchanged ...

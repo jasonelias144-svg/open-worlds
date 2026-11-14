@@ -1,0 +1,13 @@
+body = {
+    "kind": "chess_individual",          # NEW: distinct kind
+    "version": "1.6",
+    # ... rest unchanged ...
+    "world_contexts": [{
+        "world_id": session.world_id,
+        "world_url_hash": _hash(session.world_url),
+        "world_signer": session.world_signer,   # NEW
+        "seat": session.seat,
+        "first_memory_index": 0,
+    }],
+    # ...
+}

@@ -32,6 +32,17 @@ STATUS.md, where the founder can change it at any time. Not for what silence
 can't consent to: anything outward-facing or hard to undo, spending, personal
 information, or what must be in the founder's own words or act. Those wait.
 
+The founder's most recent word wins (2026-11-14): "I change my mind
+frequently, so if you read a comment of mine with DeepSeek, and it occurred
+after I said something else, treat the new idea as an update and always go
+with the most recent. Having said that, I might not realize my decision
+contradicts something earlier, so let me know." So a newer statement replaces
+an older one, wherever either was made (here, a pull request, or a
+conversation record with DeepSeek, in the order the founder's words reach the
+project, and within a record in its own order), and whoever reads one that
+contradicts an earlier decision says so to the founder, naming the earlier
+one, and records the change in STATUS.md.
+
 The technical lead holds admin rights on every repository, by the founder's
 decision (2026-11-14: "I count on that very fact"), and uses them for the code.
 Making a repository public or private, deleting one or rewriting its history,

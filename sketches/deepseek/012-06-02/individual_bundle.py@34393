@@ -1,0 +1,31 @@
+# 1. IndividualBundle dataclass:
+@dataclass
+class IndividualBundle:
+    manifest: Dict
+    memory: List[Dict]
+    weights: Dict
+    initial_weights: Optional[Dict] = None
+    observations: List[Dict] = field(default_factory=list)
+    ancestry: List[Dict] = field(default_factory=list)
+    checkpoint_weights: Optional[Dict] = None  # NEW
+
+# 2. save() writes checkpoint_weights.json when present
+def save(self, path) -> None:
+    # ... existing ...
+    if self.checkpoint_weights is not None:
+        (path / "checkpoint_weights.json").write_text(
+            json.dumps(self.checkpoint_weights))
+
+# 3. load() reads it back
+@classmethod
+def load(cls, path) -> "IndividualBundle":
+    # ... existing ...
+    cw_path = path / "checkpoint_weights.json"
+    checkpoint_weights = (json.loads(cw_path.read_text())
+                           if cw_path.exists() else None)
+    return cls(manifest=manifest, memory=memory,
+                weights=weights,
+                initial_weights=initial_weights,
+                observations=observations,
+                ancestry=ancestry,
+                checkpoint_weights=checkpoint_weights)

@@ -1,0 +1,53 @@
+# 1. Add field (dataclass default makes it Optional)
+@dataclass
+class IndividualBundle:
+    manifest: Dict
+    memory: List[Dict]
+    weights: Dict
+    initial_weights: Optional[Dict] = None  # NEW
+    observations: List[Dict] = field(default_factory=list)
+
+# 2. save() writes initial_weights.json when present
+def save(self, path) -> None:
+    # ... existing writes ...
+    if self.initial_weights is not None:
+        (path / "initial_weights.json").write_text(
+            json.dumps(self.initial_weights))
+
+# 3. load() reads it if present (backward compat with old bundles)
+@classmethod
+def load(cls, path) -> "IndividualBundle":
+    # ... existing loads ...
+    iw_path = path / "initial_weights.json"
+    initial_weights = (json.loads(iw_path.read_text())
+                        if iw_path.exists() else None)
+    return cls(manifest=manifest, memory=memory,
+                weights=weights,
+                initial_weights=initial_weights,
+                observations=observations)
+
+# 4. pack_bundle() gains optional initial_weights param
+def pack_bundle(session, persona, parent_did=None,
+                initial_seed=0, initial_weights=None):
+    # ... existing manifest construction ...
+    if initial_weights is not None:
+        iw_canon = json.dumps(initial_weights, sort_keys=True,
+                               separators=(",", ":")).encode()
+        manifest_body["initial_weights_hash"] = _hash(iw_canon)
+    # ... sign, return with initial_weights=initial_weights ...
+
+# 5. verify_bundle_basic() checks initial_weights if present
+# (add after the weights_hash check)
+if bundle.initial_weights is not None:
+    iw_canon = json.dumps(bundle.initial_weights, sort_keys=True,
+                           separators=(",", ":")).encode()
+    if _hash(iw_canon) != manifest.get("initial_weights_hash"):
+        return (False, "initial_weights hash mismatch")
+
+# 6. verify_bundle_full() starts from initial_weights if present
+# (replace the first two lines of replay setup)
+if bundle.initial_weights is not None:
+    model = build_model(bundle.manifest["model_config"])
+    apply_weights(model, bundle.initial_weights)
+else:
+    model = bundle.initial_model()

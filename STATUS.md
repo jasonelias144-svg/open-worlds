@@ -155,6 +155,80 @@ kind.
 
 ## Decided
 
+- 2026-11-14, founder, a standing rule on changes of mind: "Very
+  important to note: I change my mind frequently, so if you read a
+  comment of mine with DeepSeek, and it occurred after I said something
+  else, treat the new idea as an update and always go with the most
+  recent. Having said that, I might not realize my decision contradicts
+  something earlier, so let me know." Written into AGENTS.md ("Who
+  decides") and COLLABORATING.md: the newest word wins, in the order the
+  founder's words reach the project (a record counts from when it is
+  shared, and in its own order within it), and a newer word that
+  contradicts an earlier decision is pointed out to the founder, naming
+  the earlier one, and recorded here.
+- 2026-11-14, founder, on record 012-06-02 (a conversation with DeepSeek,
+  shared that day): "Yes, bring all the Python code in to the section for
+  DeepSeek. Getting it functional and testing it would be next. And then
+  we can discuss what to fit and how to fit with what we have been
+  building." And, on the technical lead's reading of it, "Perfect": ALICE
+  and BOB keep course step 8's audition of language models, and the
+  record's atomic learners (the smallest model that chooses and learns)
+  are for fractal worlds and the persons step's examples.
+- 2026-11-14, founder, on GitHub's secret scanning and push protection:
+  "Ok, I just verified that the settings are the same for the Safety
+  Protection setting we talked about. All public repos have the same
+  settings." Our own test remains the guard for our key format, which
+  GitHub's patterns likely don't know (docs/research/KEYS.md, "Not
+  checked").
+- 2026-11-14, founder, ideas in record 012-06-02 (its line numbers), as
+  ideas for the steps ahead, not course changes:
+  - a hierarchy of worlds from the smallest: "small portable fractal
+    worlds like a potted plant, with nothing more than one fractal
+    growing", embedded in "a garden", itself "embedded in some botanical
+    garden in a larger world, and so on" (84);
+  - "parameters from inside the world, and parameters from outside the
+    world that can be changed to alter the conditions. This allows it to
+    grow like inertia: until acted upon by anything, it continues
+    according to its own pattern of growth" (663);
+  - "a world should be able to refuse an external change. The conditions
+    for those changes must be dependent on the world, not universal";
+    "worlds exchanging information is the goal"; "Changing the parameters
+    of a world is new to create a branch of that world, so the original
+    continues"; access "dependent on the status or access level of the
+    individual", where the world-key "could also provide control panel
+    access, or command terminal type access to the world, giving the
+    ability to adjust certain, not all, just some of the parameters and
+    create a branching world" (1801);
+  - each fractal world as "an instance of Conway’s Game of Life, or
+    something similar", "using the original game as inspiration, not
+    limitation" (4568), leaning "heavily towards a fractal-rule world"
+    (5682); then "chaos or non-linear dynamics meets fractal geometry",
+    where "Choice should enter into each world, somehow" (8231); and two
+    fractal worlds interacting through "the control or communication
+    parameter" (9759);
+  - "Let’s continue developing in Python, now with a better picture of
+    where the project is now" (11099), with DeepSeek, after looking at
+    the Rust code;
+  - "Let’s find the simplest model that can make choices and learn from
+    the choices" (18688); "Let’s take this to be the atomic model. We can
+    build in complexity afterwards to models for different tasks, but we
+    start with the simplest first and work our way up, methodically"
+    (19389).
+
+  Read against earlier decisions, as the founder's rule above asks (the
+  technical lead's reading, put to the founder on 2026-11-14; each
+  stands unless the founder answers otherwise):
+  - Python with DeepSeek and "we should stick with Rust" agree: DeepSeek
+    designs in Python sketches, and the worlds themselves are built in
+    Rust;
+  - a change of parameters makes a branch (1801), which replaces the
+    earlier picture of a world altered in place (663): from inside or
+    outside, a change of parameters branches, and a world's own growth is
+    not a change;
+  - fractal worlds built now with DeepSeek are sketches; on the course
+    they stay after step 4a unless the founder moves them;
+  - the atomic model doesn't replace step 8's audition for ALICE and BOB
+    (above, "Perfect").
 - 2026-11-14, founder, on course step 3: "Let’s go ahead for step 3."
   The go-ahead the technical lead asked for, since step 3 makes the real
   keys and publishes their public halves, which can't be taken back.
@@ -976,6 +1050,20 @@ it was wrong. Questions of what the project is for stay with the founder.
   *Revisit if:* an individual must enter the Ur-world before step 9.
 
 ## Log
+
+- 2026-11-14 Claude: record 012-06-02, the founder's conversation with
+  DeepSeek that began from docs/COLLABORATING.md, brought into
+  `sketches/` as written: the record verbatim, its 99 code blocks as
+  files in `sketches/deepseek/012-06-02/`, and every test run on Python
+  3.12 under eight hash seeds. 296 of DeepSeek's tests pass and 301 fail;
+  236 of the failures are one missing method (`to_dict` on
+  `coupled_learners.Transform`), and six test files don't load (four
+  need `python-chess`, GPL-3.0, not installed). sketches/INDEX.md says
+  where each of its 39 pieces is in the record and where it meets the
+  course. The founder's rule on changes of mind written into AGENTS.md
+  and COLLABORATING.md, and the founder's ideas in the record read
+  against earlier decisions (Decided). Next: making the code work (a
+  pull request of its own), then deciding with the founder what fits.
 
 - 2026-11-14 Claude: course step 3 done and moved to "Done" in
   docs/COURSE.md, with its pull requests (#52, #53, #56 to #59). The

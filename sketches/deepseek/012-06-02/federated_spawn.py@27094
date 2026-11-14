@@ -1,0 +1,25 @@
+def pack_federated_child(
+    child_kp, child_model, child_sessions, child_memory,
+    child_persona, child_initial_seed,
+    parent_bundle, spawn_record, inherited_weights,
+    name="child",
+) -> IndividualBundle:
+    # Determine the root the child belongs to
+    parent_root = (
+        parent_bundle.manifest.get("lineage_root")
+        or parent_bundle.individual_id)
+    parent_ancestry = list(getattr(parent_bundle, "ancestry", []))
+    # Child's ancestry = [my spawn record] + parent's ancestry
+    new_ancestry = [dict(spawn_record)] + parent_ancestry
+
+    bundle = pack_federated_bundle(
+        individual_kp=child_kp, model=child_model,
+        sessions=child_sessions, memory=child_memory,
+        persona=child_persona,
+        initial_seed=child_initial_seed,
+        initial_weights=inherited_weights, name=name,
+        lineage_root=parent_root, ancestry=new_ancestry,
+    )
+    # ... existing lineage fields injection (parent_did,
+    #     parent_spawn_hash, inherited_from) and re-sign ...
+    return bundle

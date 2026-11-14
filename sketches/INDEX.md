@@ -16,6 +16,7 @@ message; the rest is DeepSeek's reply.
 | [012-04-00, Patterns and Multiverses](records/012-04-00-DPSK-Patterns_Multiverses.txt) | The multiverse sketch, components 1 to 63, complete. It ends with DeepSeek proposing component 64, a specification for a first live federation | 70,958 | `6a348012fe321fc758f37f8a7625cc124872f4806beef6096ad475081d409387` |
 | [012-05-01, Patterns and Multiverses, continued](records/012-05-01-DPSK-Patterns_Multiverses.txt) | The multiverse sketch, components 64 to 87: a live federation and its tools, then the founder's turn to game worlds (a chess park, worlds inside worlds, worlds that grow and govern themselves, a world that keeps running) | 28,540 | `758c3e3e26eafb77d934251595b0696ba1e75d83f346f69cf3978e02c52bdee5` |
 | [012-03-02, Patterns, Texts and Inventions](records/012-03-02-DPSK-Patterns_Texts_and_Inventions.txt) | The poetry engine and its curriculum, which the multiverse sketch builds on | 23,426 | `978eac920205ec2b487efc33f927dfd62da95b12ad78f1760fef9277b74908de` |
+| [012-06-02, Patterns and Multiverses, a new cycle](records/012-06-02-DPSK-Patterns_Multiverses.txt) | After reading `docs/COLLABORATING.md`, proposals for steps ahead: fractal worlds, a hierarchy of worlds, branching, a gallery of worlds and its governance; then the smallest learner that chooses, and individuals as signed, replayable bundles across worlds. It ends with DeepSeek asking which piece is next | 43,170 | `15d51e1cd49162e7e85fc633a07be049a8608cb7f372c8371c2e96a95efa45db` |
 
 ## Links from the records
 
@@ -214,6 +215,82 @@ cluster on their own, the aim being "to create conditions for
 possibilities to emerge" (14184); worlds that grow and learn from the
 inside and the outside (20548); and a world that keeps running while
 development goes on, to be checked on later (26847).
+
+## Record 012-06-02, piece by piece
+
+The record begins a new cycle. The founder gave DeepSeek
+`docs/COLLABORATING.md`, and DeepSeek proposed steps ahead in Python,
+naming pieces rather than numbering components. A few pieces import
+code from `deepseek/012-05-01` and `deepseek/012-04-00`. The columns are
+as above, with one difference: "Course" means the course set on
+2026-11-13 ([docs/COURSE.md](../docs/COURSE.md)), its steps and its
+waiting list, not the first course. Tests are run on Python 3.12,
+exactly as written: no fixes yet. Making the code work is the next pull
+request, and its fixes will be listed below, under "Changes to
+DeepSeek's code". The pieces are numbered here, for this table only.
+
+| # | What it is | Line | Tests as written | Course | In open-worlds |
+|---|---|---|---|---|---|
+| 1 | The atomic fractal world: one plant that grows by its rule (a proposal) | 153 | 10 of 11 | waiting (fractal worlds) | no |
+| 2 | Parameters from inside the world and from outside it (`fractal_world_v2.py`, with additions at 1390) | 707 | 11 of 17 | waiting (fractal worlds); a template's dials are step 2's | no |
+| 3 | Branching instead of changing in place: a new parameter makes a new world, and the original continues | 1820 | 16 of 19 | waiting (fractal worlds; the founder's "steering by branching", VISION.md) | no |
+| 4 | A garden of plants: a composite world of atomic fractal worlds | 3438 | 21 of 24 | waiting (fractal worlds); 4a's garden, in spirit | no |
+| 5 | The Game of Life, and Life-like rules, as an atomic world | 4583 | 22 of 24 | waiting (fractal worlds) | no |
+| 6 | Elementary cellular automata (rule 90 and others) as an atomic fractal world | 5700 | 28 of 28 | waiting (fractal worlds) | no |
+| 7 | A grid-embedded fractal: an automaton's generations as one 2D pattern | 6962 | 28 of 28 | waiting (fractal worlds) | no |
+| 8 | Chaos games: a fractal drawn by choosing among maps, where choice enters | 8251 | 27 of 29 | waiting (fractal worlds) | no |
+| 9 | Two chaos games coupled by their recent histories | 9773 | 17 of 23 | waiting (fractal worlds: "watch them grow or interact") | no |
+| 10 | Two cellular automata growing in one space, meeting by a coupling parameter | 11123 | 12 of 12 | waiting (fractal worlds) | no |
+| 11 | A gallery: one composite world holding worlds of four kinds | 11851 | 13 of 15 | 4a, in part (a garden of rooms); the Commons, as a superworld | no |
+| 12 | The gallery's interior and exterior: world-keys, signed requests to change it, signed refusals | 12979 | 22 of 27 | 4 (grants) and 12 | partly: worlds are keys, and sign their stamps (the first course's step 3) and their log's heads (step 3); a world refusing a change, no |
+| 13 | Revoking a key, and rotating the keeper (with a change at 16659) | 14833 | 9 of 14 | 8a (a lost or leaked key) | no |
+| 14 | The gallery watches and schedules: an attention budget across its members | 15892 | doesn't load: imports `multiverse_utils_sig`, which no record defines | not yet | no |
+| 15 | Attention per member, by deficit round-robin | 16700 | 3 of 17 | not yet | no |
+| 16 | Bursts: attention raised for a bounded time, by a signed record | 17581 | 10 of 20 | not yet | no |
+| 17 | The smallest learner that chooses: a 4-unit recurrent network, or a lookup table, in a chaos game | 18698 | 9 of 10 | waiting (fractal worlds), and 3a's architectures (the founder, 2026-11-14) | no |
+| 18 | Two learners in one chaos game | 19408 | 8 of 11 | the same | no |
+| 19 | A learner beside a scripted world | 20187 | 4 of 18 | the same | no |
+| 20 | The individual as a bundle: four signed files that describe it whole, replayable (with additions at 23274, 27017, 27054, 32475 and 34393) | 21268 | 3 of 20 | 7 (memory), in part | no |
+| 21 | An individual that makes an individual | 22301 | 0 of 15 | not yet | no |
+| 22 | The child starts from the parent's weights | 23332 | 0 of 14 | not yet | no |
+| 23 | One individual across worlds: one key, its model and memory carried (with additions at 27067 and 34853) | 24250 | 0 of 15 | 3a, which differs: a presence in each world, each a key of its own | no |
+| 24 | An individual who lived in several worlds makes a child (with an addition at 27094) | 25192 | 0 of 13 | not yet | no |
+| 25 | Generations: grandparent, parent, child | 26203 | 1 of 12 | not yet | no |
+| 26 | Proof of descent from a root, from one bundle alone | 27124 | 0 of 17 | not yet | no |
+| 27 | A lineage tree, checked whole | 27939 | 0 of 14 | not yet | no |
+| 28 | Shorter proofs of ancestry | 28994 | 2 of 17 | not yet | no |
+| 29 | Shorter proofs of what was inherited | 30152 | 0 of 13 | not yet | no |
+| 30 | Two lineage trees recognising each other | 31239 | 11 of 24 | not yet | no |
+| 31 | Continuing a life from its bundle (with additions at 34429 and 34871) | 32484 | 0 of 17 | 7, in part | no |
+| 32 | Memory checkpoints: a signed summary in place of the entries before it | 33637 | 1 of 18 | 7, in part | no |
+| 33 | Continuing a life on someone's behalf, by a key they authorise | 34895 | 6 of 21 | not yet; compare step 3's doorway, which signs for the minds it runs (research/KEYS.md, "Honest limits") | no |
+| 34 | Forking an individual into a new lineage | 36279 | 2 of 20 | not yet | no |
+| 35 | A whole lifetime, checked across bundles (with additions at 40276 and 41514) | 37602 | doesn't load: imports `_entry_hash` from `lifetime.py`, which defines it only inside its demo | 9 (legends pages), in part | no |
+| 36 | An individual that plays chess in 012-05-01's chess world (with additions at 40076, 40158 and 40178) | 38708 | doesn't load: needs `python-chess` | not yet (the founder, on the chess park: "not yet") | no |
+| 37 | A world's log, each entry signed by the world's key | 39909 | doesn't load: needs `python-chess` | 3 | built independently: the Ur-world signs its log's heads (`open-worlds/log-head/v1`) |
+| 38 | One individual across worlds of different kinds, with one key and one memory (with an addition at 42553) | 40662 | doesn't load: needs `python-chess` | 3a, which differs, as for 23 | no |
+| 39 | Adapters, so an individual can enter any kind of world (with additions at 42625 and 42684) | 41968 | doesn't load: needs `python-chess` | 12 (the world protocol) | no |
+
+In all, as written: 296 of DeepSeek's tests pass and 301 fail, and six
+test files don't load (74 tests: four need `python-chess`, which isn't
+installed here, as for 012-05-01; two import names that can't be imported).
+One missing method is the error in 236 of the 301 failures: the
+`Transform` of `coupled_learners.py` has no `to_dict`, though the one in
+`choice_fractal.py` has. Every piece from 19 to 34 builds on it.
+
+All 99 code blocks in the record are written out, each as a file; 21 of
+them are later additions or demos, kept as `name@LINE`.
+
+The founder's messages in this record, with their line numbers, are in
+[STATUS.md](../STATUS.md) ("Decided", 2026-11-14), with where they meet
+earlier decisions, as the founder's rule on changes of mind asks.
+In short: a hierarchy of worlds from the smallest, a potted plant (84);
+parameters from inside and outside (663), then a change of parameters as
+a branch, which a world may refuse (1801); worlds of the Game of Life's
+kind (4568, 5682) and of chaos, where choice enters (8231); two worlds
+interacting (9759); continuing in Python after looking at the Rust code
+(11099); and the smallest model that chooses and learns, taken as the
+atomic model (18688, 19389).
 
 ## Record 012-03-02, component by component
 
