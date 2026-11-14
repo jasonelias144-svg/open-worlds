@@ -113,33 +113,50 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
   minds without memory looped
   ([results](../experiments/001-first-words/RESULTS.md)).
 
+## Done: the new course
+
+1. **The design pages** (2026-11-13 to 14; #31, #32, #34 to #38, #41,
+   #44, #45). [MINDS.md](MINDS.md): the parts of an individual, the
+   layers of what a mind is told, how information moves, where everything
+   lives. [WORLD-KEY.md](WORLD-KEY.md): the purpose, the tour, the hunt
+   for the world-key. [ADMIN.md](ADMIN.md): what the multiverse must
+   preserve, who keeps each world, and ADMIN, with its training, the
+   round table, a learning immune system and how it holds its powers;
+   [REASONS.md](REASONS.md), decisions on record; [FREEDOMS.md](FREEDOMS.md),
+   tools for when freedoms meet; [PARALLEL-WORLDS.md](PARALLEL-WORLDS.md)
+   and [VISION.md](VISION.md), the founder's visions of 2026-11-14. The
+   research behind them.
+2. **Formats that last** (2026-11-13 to 14; #33, #39, #40, #42, #43, #46
+   to #48). Looked at first ([research/FORMATS.md](research/FORMATS.md)),
+   then built in Python and Rust, which agree through shared vectors:
+   every record signed as a W3C Data Integrity proof (`eddsa-jcs-2022`)
+   over its RFC 8785 form, keys as did:key; one JSON Schema,
+   `schemas/records-v1.schema.json`, for the grant, decision record,
+   suggestion, rating and signed log head, the world-key and journal
+   entry, identity, birth records, mind record, and a world's template
+   with its dials; sealing with HPKE (RFC 9180) and sealed records in
+   envelopes; and the chemistry world's records of what was made, without
+   floats. Noise stays named only for a private line, if the founder
+   chooses one. Of the formats this step named, four moved to the steps
+   that build what they describe (decided 2026-11-14, STATUS.md): the
+   avatar to step 4, the sheet and skill attestation to step 5, the
+   routine to step 7.
+
+**Rechecked on 2026-11-14,** when steps 1 and 2 were done. Two steps
+came in from the waiting list, one for each step done, so the course
+still looks twelve steps ahead. They go where they were already placed,
+not at the end: persons after step 3, and parallel worlds right after
+step 4 (the founder's placing). They are numbered 3a and 4a, so that the
+step numbers other pages cite stay as they are. What the
+formats taught is written into the steps it reaches: the project's keys
+for mind records and templates (step 3); the avatar, the checks across
+records the formats left, and a bound on a record's size (step 4); the
+sheet and skill attestation (step 5); the routine (step 7); and the
+records that confirm a founding (step 12). Nothing was reordered
+otherwise.
+
 ## Ahead
 
-1. **The design pages.** [MINDS.md](MINDS.md): the parts of an
-   individual, the layers of what a mind is told, how information moves,
-   and where everything lives. [WORLD-KEY.md](WORLD-KEY.md): the purpose,
-   the tour, and the hunt for the world-key. [ADMIN.md](ADMIN.md): what
-   the multiverse must preserve, who keeps each world, and ADMIN, the
-   Keeper of the multiverse. The research behind them.
-   *Borrowing:* the game industry's split of controller, body and saved
-   data; characters built from components; for ADMIN, admission control,
-   capabilities, Certificate Transparency and Ostrom's principles.
-2. **Formats that last.** What to adopt was looked at first
-   ([research/FORMATS.md](research/FORMATS.md)). A precise, versioned
-   definition of each record:
-   identity, birth record, mind record, journal entry, routine, sheet,
-   avatar, and skill attestation. Test vectors keep Rust and Python in
-   agreement. *Borrowing:* JSON Schema; W3C's decentralised identifiers
-   (did:key) and verifiable credentials for signed claims; RFC 8785 for
-   writing JSON identically everywhere before signing; HPKE (RFC 9180) for
-   sealing, and the Noise protocol framework for a private line. No
-   commitments: nothing is held back ("Challenges, not tests"). And for
-   ADMIN, the formats of a grant and of the multiverse log
-   (UCAN and Certificate Transparency to check), and of a decision
-   record: an office's decision with its reasons
-   ([REASONS.md](REASONS.md)); and a suggestion, with its author's
-   rating of how it was handled ([ADMIN.md](ADMIN.md), "Suggestions from
-   inside").
 3. **Keys and identities, for them and for the world.** A private
    repository of the project for the private halves; ALICE's and BOB's
    signing keys, keys for sealing things to them, and the keys to their
@@ -147,11 +164,21 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    own keys: one to sign its log, one for sealing things to it; and
    ADMIN's. The multiverse's root key, published, and a key of the code
    role's, for outcomes on suggestions before ADMIN exists
-   ([ADMIN.md](ADMIN.md), "Suggestions from inside"). Leaving and coming
+   ([ADMIN.md](ADMIN.md), "Suggestions from inside"); the project's keys
+   for mind records and for templates, which those records name as their
+   issuer ([research/FORMATS.md](research/FORMATS.md)). Leaving and coming
    back: whoever leaves can return, proving
    with their key that they are the same individual. *Borrowing:*
    standard key handling, private halves kept apart and public halves
    published.
+
+**3a. Persons.** A person above their presences in each world
+([MULTIVERSE.md](MULTIVERSE.md)), unlinked by default, with the
+architectures (octopus, relay, swarm, council) as small examples on the
+unchanged core; a person across worlds, as the founder pictured it
+([VISION.md](VISION.md), "A person across worlds"). Moved here from the
+waiting list, where it was placed after step 3 (decided 2026-11-14).
+
 4. **The kernel as entities and components.** Inhabitants, their bodies,
    stones, tablets and seeds become entities with parts; every change is
    a named, logged effect; tags allow or block actions. The Keeper's
@@ -159,13 +186,28 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    are fixed here, so its interface is settled early; so are ADMIN's
    checks as code. An office's act is refused without its decision
    record, and a model of grants in Lean proves that no chain of grants
-   widens, checked by CI ([REASONS.md](REASONS.md)). *Borrowing:* the
+   widens, checked by CI ([REASONS.md](REASONS.md)). The avatar's format
+   joins records-v1 here, with the body it describes; so do the checks
+   across records that the formats leave to the kernel (listed in
+   `formats/records.py`), and a bound on the size of any record received.
+   A template's code builds a world from its dials. *Borrowing:* the
    entity-component pattern (Bevy's), and Unreal's effects and tags;
    Lean, and proof-carrying code.
+
+**4a. Parallel worlds, and a garden to walk among them.** A few parallel
+chemistry worlds from one template, each with its own key and log and
+the dials it changed in its birth record; and a view-only garden whose
+rooms show their live state from their public logs, the first thing
+others can look at and understand
+([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md)). Moved here from the waiting
+list, where the founder placed it, right after step 4. *Borrowing:*
+controlled experiments, and replay from a seed.
+
 5. **Things, skills and the sheet.** Carrying, reading, `lift` as the
    first skill granted by a find, practice and rust, a log of what is
    known, and the sheet rebuilt from the world's log and checked against
-   it. *Borrowing:* use-based skills (Dwarf Fortress, the Elder Scrolls),
+   it. The sheet's and a skill attestation's formats join records-v1
+   here. *Borrowing:* use-based skills (Dwarf Fortress, the Elder Scrolls),
    Unreal's ability system, Outer Wilds' log of knowledge.
 6. **The first room, end to end.** The tour, guided by a simple scripted
    Keeper; the stone by the spring, the first clue, `lift` learned, the
@@ -178,7 +220,8 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    minds we didn't write.
 7. **Memory, version 1, sealed.** Journal entries tied to ticks in the
    log; recall by recency, importance and relevance; reflections; held
-   thoughts in a few slots; a library of routines they write. All of it
+   thoughts in a few slots; a library of routines they write, whose
+   format joins records-v1 here. All of it
    in a sealed self that no one else reads, opened only under the
    founder's "break glass", with public fingerprints. *Borrowing:* Generative
    Agents, Voyager's skill library, Disco Elysium's thought cabinet,
@@ -225,8 +268,10 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
     changes, never make them ([ADMIN.md](ADMIN.md), "Suggestions from
     inside").
 12. **Founding worlds, and doors.** What only a second world needs:
-    child worlds, each with a new key of its own, a signed birth record,
-    and a Keeper chosen by its founders; doors between them, travel with
+    child worlds, each with a new key of its own, a birth record it signs
+    itself, and records by its founders and its parent world confirming
+    the founding, the parent's naming the world-keys used; a Keeper
+    chosen by its founders; doors between them, travel with
     passports, founding together, and the world protocol in Rust. The
     open line reaches a Keeper from another world, and a founded world's
     Keeper has a line to its parent's. *Borrowing:* our own protocol and
@@ -236,14 +281,7 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
 ## Waiting
 
 Added one at a time, as steps are done:
-- after step 3 (decided 2026-11-14, STATUS.md): persons, a person above
-  their world-level identities ([MULTIVERSE.md](MULTIVERSE.md)), with the
-  architectures (octopus, relay, swarm, council) as small examples on the
-  unchanged core;
-- first, right after step 4 (the founder, 2026-11-14): parallel chemistry
-  worlds from one template, and a view-only garden to walk among them,
-  the first thing others can see ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md));
-- then, from the founder's visions of the same evening
+- from the founder's visions of the same evening
   ([VISION.md](VISION.md)): question worlds, with the prediction written
   first, and the neural world as the first; riding along in a primary
   world, and steering by branching; and the plug-in, so a chat with any

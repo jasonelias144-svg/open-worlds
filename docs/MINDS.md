@@ -341,9 +341,10 @@ the project itself: the GitHub login of its owner.
 
 ## Formats
 
-Each record gets a precise, versioned definition in course step 2:
-identity, birth record, mind record, journal entry, routine, sheet,
-avatar and skill attestation. Test vectors keep Rust and Python in
+Each record gets a precise, versioned definition: identity, birth record,
+mind record and journal entry in course step 2; the avatar at step 4,
+the sheet and skill attestation at step 5, and the routine at step 7,
+each with what it describes. Test vectors keep Rust and Python in
 agreement, as they do for the log. The plan is to follow open standards
 where they fit: JSON Schema for the definitions; W3C's decentralised
 identifiers (did:key, which turns an Ed25519 key like ALICE's into a

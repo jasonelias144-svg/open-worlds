@@ -563,8 +563,11 @@ the design pages, each with a schema in 2020-12 and test vectors in both
 languages: identity, birth record, mind record, journal entry (sealed: its
 ciphertext and fingerprint), routine, sheet, avatar, skill attestation,
 world-key credential, grant, decision record, suggestion, rating, and
-signed log head. Still to come: routine, sheet, avatar and skill
-attestation.
+signed log head. The other four moved, with what they describe (decided
+by the technical lead, 2026-11-14): the avatar to course step 4, the
+sheet and skill attestation to step 5, the routine to step 7. Each joins
+records-v1 as a new kind, by the same rules, with vectors in both
+languages.
 
 ## Not checked
 
