@@ -5,7 +5,7 @@
 use formats::multikey::sealing_secret_from_multikey;
 use formats::records::{check, record_hash};
 use formats::seal::{LABELS, open_box, public_from_secret};
-use formats::sealed::{envelope_problems, fingerprint, open_record, seal_record};
+use formats::sealed::{SEALED, envelope_problems, fingerprint, open_record, seal_record};
 use serde_json::Value;
 
 fn vectors() -> Result<Value, String> {
@@ -62,6 +62,10 @@ fn the_envelope_schema_names_the_labels_in_use() -> Result<(), String> {
         .filter_map(Value::as_str)
         .collect();
     assert_eq!(labels, LABELS.to_vec());
+    // And every label in use is the label of a sealed kind.
+    let mut sealed: Vec<&str> = SEALED.iter().map(|(_, label, _)| *label).collect();
+    sealed.sort_unstable();
+    assert_eq!(sealed, LABELS.to_vec());
     Ok(())
 }
 

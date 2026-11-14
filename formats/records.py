@@ -19,7 +19,10 @@ at course step 4: that a grant only narrows the grant it names; that a
 decision's inputs are in the log, its office holds the grant it names,
 and that grant allows its kind of act; that a rating's author wrote the
 suggestion it names, and its outcome is a decision that names that
-suggestion.
+suggestion; and that a world-key's issuer is a world that places paths,
+its path was placed in that world's log and walked to its end by its
+holder, and it hasn't already been used to found a world
+(docs/WORLD-KEY.md: "It is marked as used at the founding").
 
 A record's hash, which other records name it by, is the SHA-256 of its
 RFC 8785 form, proof included, in lowercase hex.

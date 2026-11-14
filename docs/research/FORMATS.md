@@ -268,8 +268,10 @@ record are sealed, each in `schemas/records-v1.schema.json`:
 Each travels in an envelope (`open-worlds/sealed/v1`): the label, the one
 it is addressed to (`to`), and the box in lowercase hex. The envelope
 isn't signed; what is inside is. Its fingerprint is the hash of its RFC
-8785 form, and that is what a sealed self shows the world: that an entry
-exists, and when it was placed.
+8785 form. A sealed self shows the world each envelope's fingerprint and
+size: that an entry exists, and how much was written
+([MINDS.md](../MINDS.md), "The birth record"). When it was placed comes
+from the log it is placed in, not from the envelope.
 
 **Sealing** checks the record first: it must hold, be a sealed kind, and
 go to the one it names; it is sealed in its RFC 8785 form.
@@ -398,9 +400,14 @@ one schema,
   at course step 4: that a grant only narrows the grant it names; that a
   decision's inputs are in the log, its office holds the grant it names,
   that grant allows its kind of act, and the kind is on the rules' list
-  ([REASONS.md](../REASONS.md)); and that a rating's author wrote the
+  ([REASONS.md](../REASONS.md)); that a rating's author wrote the
   suggestion it names, and its outcome is a decision naming that
-  suggestion.
+  suggestion; and that a world-key's issuer is a world that places paths,
+  its path was placed in that world's log and walked to its end by its
+  holder, and it hasn't been used to found a world already
+  ([WORLD-KEY.md](../WORLD-KEY.md): "It is marked as used at the
+  founding"). Until then, anyone can sign a world-key naming themselves;
+  it opens, and holds as a record, but no world will honour it.
 - **Versioned:** a change to a kind's shape makes `records-v2`; records
   made under v1 stay readable under v1. A new kind is added to v1, since
   it changes no record already made: the world-key and the journal entry
