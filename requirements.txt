@@ -12,3 +12,8 @@ cryptography==50.0.2
 # OpenSSH key files, whose passphrase goes through bcrypt-pbkdf. From the
 # same maintainers (pyca).
 bcrypt==5.0.0
+
+# RFC 8785, the JSON Canonicalization Scheme, for every new signed record
+# (formats/canonical.py). Trail of Bits, Apache 2.0, no dependencies; so the
+# form records are signed in is written by a library, not by hand.
+rfc8785==0.1.4

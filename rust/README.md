@@ -14,6 +14,7 @@ The standards for every Rust file are in
 |---|---|
 | [`world-log`](world-log) | Checks a world's public record exactly as the Python kernel writes it. |
 | [`ur-world`](ur-world) | The Ur-world: a 3D world that begins in a garden with ALICE and BOB, and is made from its seed as it is explored ([docs/URWORLD.md](../docs/URWORLD.md)). |
+| [`formats`](formats) | Records signed with `eddsa-jcs-2022`, as the Python package `formats/` signs them, checked against the same vectors and the W3C specification's own example. |
 
 The workspace's settings, which every crate shares, are in
 [`Cargo.toml`](Cargo.toml): the dependencies with the reason for each,

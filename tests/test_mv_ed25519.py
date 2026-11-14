@@ -130,6 +130,23 @@ class TestProperties(unittest.TestCase):
             forged, self.message)          # raises if refused; it isn't
         self.assertFalse(ed25519.verify(neutral, self.message, forged))
 
+    def test_a_signature_with_r_of_small_order_is_refused(self):
+        # A key's holder can sign with R the neutral point and S = ka; the
+        # library accepts it, ed25519-dalek's verify_strict doesn't, and
+        # neither does verify, so Python and Rust agree.
+        secret = bytes(range(32))
+        signature = ed25519._small_order_r_signature(secret, self.message)
+        self.assertEqual(signature[:32], SMALL_ORDER[0])
+        Ed25519PublicKey.from_public_bytes(
+            ed25519.public_key(secret)).verify(signature, self.message)
+        self.assertFalse(ed25519.verify(ed25519.public_key(secret),
+                                        self.message, signature))
+        for r in SMALL_ORDER:
+            with self.subTest(r=r.hex()):
+                self.assertFalse(ed25519.verify(
+                    ed25519.public_key(secret), self.message,
+                    r + signature[32:]))
+
     def test_real_keys_pass_the_check(self):
         for v in _vectors():
             with self.subTest(vector=v["name"]):

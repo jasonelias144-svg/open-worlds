@@ -61,6 +61,9 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
 - [rust/](rust/README.md): the worlds in Rust: the Ur-world, and the public
   record, checked across languages through shared test vectors
   ([vectors/](vectors/README.md)).
+- [formats/](formats/__init__.py): records signed so that standard tools
+  can check them: RFC 8785, did:key, and `eddsa-jcs-2022` proofs, with
+  the same in Rust (`rust/formats`).
 - [minds/](minds/README.md): programs that can be minds in the Ur-world,
   in any language, through its doorway.
 - [experiments/](experiments/README.md): the worlds run as experiments,

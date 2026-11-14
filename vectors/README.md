@@ -10,6 +10,14 @@ language can check itself against it, hash for hash. The Rust crate in
 | `digests.json` | Bodies chosen to test the edges of writing JSON (key order, escapes, characters outside the basic plane, integers at the ends of 64 bits), each with the exact text the kernel hashes and its SHA-256. |
 | `ur-garden-log.json` | The Ur-world's Hello World: the whole log of the garden with ALICE and BOB, written by the Rust kernel (`rust/ur-world`). |
 | `ur-chunks.json` | The Ur-world's generator, version 1: for three seeds, the ground height of some columns and the hash of some chunks. |
+| `formats/eddsa-jcs-2022.json` | Records signed with `eddsa-jcs-2022` (course step 2): the W3C specification's own example, step by step; records this project signs, with their RFC 8785 form; proofs that must be refused; and values that break this project's three rules. Written by `python3 -m formats.vectors`, read by `rust/formats`. |
+
+The W3C example in `formats/eddsa-jcs-2022.json` (its `w3c` object)
+includes material copied from "Data Integrity EdDSA Cryptosuites v1.0",
+W3C Recommendation, 15 May 2025, Appendix B.3,
+https://www.w3.org/TR/vc-di-eddsa/. Copyright © 2025 World Wide Web
+Consortium. https://www.w3.org/copyright/software-license-2023/. The rest
+of this repository is CC0.
 
 The first two are written by the Python kernel,
 [`world/vectors.py`](../world/vectors.py):

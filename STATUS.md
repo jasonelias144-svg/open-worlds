@@ -633,9 +633,32 @@ it was wrong. Questions of what the project is for stay with the founder.
   ratings' spread stops telling handled suggestions apart from
   neglected ones, or text from inside ever leads to a change that no
   reviewed pull request made.
+- 2026-11-14, signed records the standard way: every new record is
+  signed as a Data Integrity proof with `eddsa-jcs-2022` (W3C
+  Recommendation, 15 May 2025), keys named by did:key, in Python
+  (`formats/`) and Rust (`rust/formats`). Both reproduce the
+  specification's own example step by step, and agree with each other
+  through shared vectors. *Why:* standard tools can then check anything
+  the multiverse signs, without our code, and the form is RFC 8785, which
+  our signed records already used within three rules. Proofs are read
+  more narrowly than the specification allows (one proof, did:key only,
+  `created` to the second), so there is less to get wrong. *Revisit if:*
+  a widely used verifier refuses our proofs, or a record needs something
+  the narrow reading refuses, such as a proof chain.
 
 ## Log
 
+- 2026-11-14 Claude: course step 2, part one: signed records the
+  standard way. `formats/` (Python) and `rust/formats` sign and verify
+  records with `eddsa-jcs-2022`: RFC 8785 with this project's three
+  rules, did:key, and Data Integrity proofs. Both reproduce the W3C
+  specification's example step by step, and agree through
+  `vectors/formats/eddsa-jcs-2022.json`, which also holds 25 proofs that
+  must be refused (9 of them for the time they give) and 7 values that
+  break the rules. `multiverse/ed25519.verify` now also refuses a
+  signature whose R is of small order, as Rust's `verify_strict` does.
+  `rfc8785` 0.1.4 pinned; `serde_jcs`, `ed25519-dalek` and `bs58` added
+  to the Rust workspace. FORMATS.md records the decision.
 - 2026-11-14 Claude: suggestions from inside (docs/ADMIN.md). Two founder
   decisions written in. First, codes, maps and public clues stay public,
   as action-based challenges whose key only the earner can open
