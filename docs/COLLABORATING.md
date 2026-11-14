@@ -350,9 +350,11 @@ These hold for every Rust file that comes in, on top of the house rules:
 6. **The same bytes in every language.** Anything hashed or signed is
    written exactly as the reference writes it, and shared test vectors
    prove it. The reference is Python for what Python built first (the log,
-   the protocol) and Rust for the Ur-world. A new kind of record brings its
-   vectors, written by its reference (`world/vectors.py`, or the
-   `ur-world` garden example), with tests on both sides.
+   the protocol, the formats' vectors) and Rust for the Ur-world. A new
+   kind of record brings its vectors, written by its reference
+   (`world/vectors.py`, `formats/vectors.py` and the other writers in
+   `formats/`, or the `ur-world` garden example), with tests on both
+   sides.
 7. **Few dependencies, all free.** Each is named once in
    `rust/Cargo.toml` with the reason it's there. `Cargo.lock` is
    committed and CI builds with `--locked`, so no version moves
