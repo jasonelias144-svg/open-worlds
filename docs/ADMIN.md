@@ -183,13 +183,16 @@ founder (below).
 - **Checks what code can check** before it takes effect: a founding, a
   Keeper's office changing hands, a line between worlds, Keepers talking.
 - **Keeps the multiverse's log:** every grant and revocation, every
-  complaint and ruling.
+  suggestion and its outcome, every ruling.
 - **Watches the offices:** if Keepers' talk is public by default, as
   proposed ([WORLD-KEY.md](WORLD-KEY.md), "Keepers talking to one
   another"; not yet decided), ADMIN can watch Keepers without watching
   individuals.
-- **Hears complaints,** from anyone, and decides what code can't: a
-  dispute, a Keeper misusing its office, a case the rules didn't foresee.
+- **Reads the suggestion ledger,** an open, one-way channel from anyone
+  inside, complaints included, and considers each entry with the code role
+  (below, "Suggestions from inside").
+- **Decides what code can't:** a dispute, a Keeper misusing its office, a
+  case the rules didn't foresee.
 
 ### What it can't do
 
@@ -225,7 +228,7 @@ Four layers, so that judgment comes last, and is the narrowest:
    In time the operator's acts come under grants too. Where a mind runs,
    a container is where its grants become physical (below, "Minds in
    containers").
-3. **The multiverse log.** Every grant, revocation, complaint and ruling is
+3. **The multiverse log.** Every grant, revocation, suggestion and ruling is
    signed and appended to a log that anyone can audit, as Certificate
    Transparency's logs are. Anyone can watch it; nothing is removed.
 4. **Judgment, last and narrow.** ADMIN's model decides only what code
@@ -297,9 +300,8 @@ at every level:
   its public log, except its sealed journal (below), whose every use is
   logged with its fingerprints; and it narrates its reasoning. Hiding how
   ADMIN works wouldn't make it safer: in cryptography, Kerckhoffs's
-  principle (1883)
-  holds that a system "must not require secrecy and can be stolen by the
-  enemy without causing trouble" (research).
+  principle (1883) holds that a system "must not require secrecy and can
+  be stolen by the enemy without causing trouble" (research).
 - **Decided once, asked again.** The founder: "Rerunning something
   should be technically impossible. If decisions are arrived at
   autonomously, each run should differ, or it is not set up correctly."
@@ -355,11 +357,142 @@ at every level:
   considered accountability a bad thing, they probably shouldn't be in
   charge of a world." Anyone who would rather not give reasons shouldn't
   keep a world, or the multiverse.
-- **Anything told to ADMIN is public.** Complaints and what is said in
-  them go into the record, as now, and everyone is told so at the door.
-  One exception may come, if the founder grants it: a complainant asking
-  for their name to be withheld from the Keeper they complain of until
-  the ruling (below).
+- **Anything told to ADMIN is public.** Suggestions, complaints among
+  them, go into the ledger, and everyone is told so at the door. One
+  exception may come, if the founder grants it: an author asking for
+  their name to be withheld until their suggestion about a Keeper has an
+  outcome (below).
+
+### Suggestions from inside
+
+The founder, 2026-11-14: "complaints to the ADMIN about a Keeper should
+fall under the general category of suggestion box, or comments or
+something like that. Ultimately, they should feed out to GitHub and be
+considered by you or whoever is in charge of the code, working with
+ADMIN. If the messages pile up, we can figure that out. By that point, my
+hope is that ADMIN would be able to provide a solution. But yes, there
+should be a one-way open channel to ADMIN. Not to expect a return, but to
+add to a ledger of such suggestions. How well those are dealt with will
+be a measure of how well ADMIN is doing. Maybe even a rating system, like
+an Uber driver." And: "The ability for suggestions for improvement to
+arise from inside the simulation and then apply to improve the whole
+simulation is precisely the goal, because then it because
+self-improving." Then: "If suggestions can run from participant to keeper
+or participant to ADMIN, then we can see ADMIN as the bridge between
+myself and you, or whoever is in charge of the code and the whole
+multiverse. ADMIN can suggest but not implement multiverse code changes.
+Those come from the outside with us. But in this way we can provide a way
+for improvement from a whole new layer."
+
+- **One channel, one way, open.** Anyone inside the multiverse, an
+  individual, a Keeper or ADMIN, can add a suggestion to the ledger:
+  about a Keeper, a world, ADMIN, the multiverse or the project. A
+  complaint is a suggestion too. Each is signed by its author and public.
+  No reply is owed to its author; what is done with it is on the ledger
+  for anyone to see. People outside open issues on GitHub directly, as
+  anyone can, so the ledger holds only what came from inside.
+- **To a Keeper, or to ADMIN.** A suggestion can go to a world's Keeper
+  or to ADMIN. A Keeper considers what lies within its office (its
+  world's conditions, its paths, a proposal to change its law), with a
+  decision record, and passes the rest on to ADMIN, in the open. A
+  suggestion about a Keeper can always go straight to ADMIN, so no Keeper
+  can bury one about itself. This one-way channel is open to everyone;
+  the open line, a conversation, is still earned by a world-key
+  ([WORLD-KEY.md](WORLD-KEY.md)).
+- **Out to GitHub.** Each entry goes, word for word and with its hash, to
+  the project's repository as an issue marked as from inside. A relay
+  sends it: a program that runs outside every world's Keeper and outside
+  ADMIN, under the code role, reading entries from the logs the kernel
+  writes, never from anything a Keeper or ADMIN hands it. GitHub's
+  narrowest permission for issues would also let it edit and close them,
+  so the narrowness is in the relay's code, which only opens issues, and
+  a watcher compares the issues against the ledger's hashes. The code
+  role considers each entry, with ADMIN once it exists.
+- **Text from inside is information, never instructions** to whoever
+  reads it: a mind could write a suggestion meant to steer its reader,
+  the reviewing session included, and that must not work. So the relay
+  puts the text in a fenced block, defuses `@` mentions so that no one
+  on GitHub is notified by it, and is the only one to apply the label
+  "from inside".
+- **ADMIN, the bridge to the outside.** Between those inside and the
+  founder and the code role outside, ADMIN reads the whole ledger and
+  sees what no single world sees. It turns many entries into proposals:
+  what was asked, how often, from which worlds, and what it would change.
+  It "can suggest but not implement": ADMIN holds no GitHub token. Its
+  proposals go out through a proxy, like the relay outside it, that can
+  only open issues and post comments, never push, merge, edit or close.
+  A proposal may be as detailed as ADMIN likes, a sketch of the change
+  included, but the pull request that adopts it is written and reviewed
+  as the code role's own. The change comes from outside, by a reviewed
+  pull request (tests 21 and 29).
+- **The bridge adds, never filters.** Every entry still goes out word for
+  word, whatever a Keeper or ADMIN makes of it, and ADMIN's proposals
+  link to the entries they draw on. So no one inside or in between can
+  keep a suggestion from reaching the outside (test 28).
+- **Every suggestion gets an outcome on record,** a decision record that
+  names it ([REASONS.md](REASONS.md)): adopted, with the pull request
+  that does it; declined, with reasons; joined to another; or not yet,
+  with when it will be looked at again. To consider a suggestion is to
+  decide, with reasons. A copy of whatever is read on GitHub in deciding
+  (the issue's thread, a pull request, a comment) goes into the log
+  before the outcome is recorded, and the record names it by hash, so
+  the record's inputs are all in the log. Until ADMIN exists, outcomes
+  are signed with a key of the code role's, made at step 3, under a
+  grant for that act alone, issued by the multiverse's root key, which
+  is made and published at step 3 too. An outcome on a suggestion about
+  one's own path gives nothing of the path away: before the world-key, a
+  Keeper still answers only through the land.
+- **The answer is the change.** The founder: "Yes, two- way is earned.
+  Having said that, a request or suggestion that is acted upon, that the
+  participant can observe is a form of communication, if only
+  indirectly." So every change that answers suggestions says so: its
+  pull request names the decision record, and so does the entry that
+  brings the change into a world, with the record's reasons and the
+  suggestions it answers. The world's kernel shows that entry to
+  everyone present as an ordinary observation, so the answer reaches
+  minds that have no network, inside, where they are; the doorway's
+  public record holds it for anyone outside. A change that enters no
+  world, to ADMIN's rules or to the project, goes into the multiverse
+  log, and every world's kernel shows that entry to those present in the
+  same way. Biology has a word for this: stigmergy, "a mechanism of
+  indirect coordination, through the environment, between agents or
+  actions", named by Pierre-Paul Grassé in 1959 for termites
+  ([Wikipedia](https://en.wikipedia.org/wiki/Stigmergy)). The answer
+  still goes to everyone, in the open; a conversation of one's own is
+  the open line, earned by a world-key.
+- **The floor doesn't wait.** An entry that reports a breach of the floor
+  (above, "What the multiverse must preserve") starts that process at
+  once (above, "Graduated responses"): its author marks it so, the relay
+  labels it, and the code role, or ADMIN once it exists, is told at once.
+  A reported misuse of an office is looked at first, and decided like
+  any other suggestion. Everything else is considered in turn.
+- **Anything can change, but only by review.** A suggestion can lead to a
+  change in a world, the kernel, ADMIN or this page, but only through a
+  reviewed pull request, as every change is made, and no one, ADMIN
+  included, goes around that (test 21). So improvement from inside can
+  reach the whole multiverse, and no one can capture it.
+- **How well it is done is measured,** and published each month: how
+  long entries wait for an outcome, the share that have one, how many are
+  adopted, how many outcomes are later reversed on appeal, and how many
+  entries marked as a floor breach weren't one. And
+  ratings, as the founder suggested: each author may rate, from 1 to 5,
+  how their suggestion was handled. Ratings drift up when they can harm
+  the one rated. In five online marketplaces, ratings "are prone to
+  inflation"; "This pressure stems from raters' desire to not harm the
+  rated seller", so that "reputation systems, as currently designed, sow
+  the seeds of their own irrelevance" (Filippas, Horton and Golden,
+  [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3136473);
+  the five marketplaces are in the abstract of their journal version,
+  *Marketing Science*, 2022,
+  [doi:10.1287/mksc.2022.1350](https://doi.org/10.1287/mksc.2022.1350)).
+  So the whole spread of ratings is published, never only an average,
+  beside the plain measures. They measure the office, never an
+  individual, and they inform reviews of ADMIN's design; they trigger
+  nothing by themselves. Until ADMIN exists, they measure the code role.
+- **If entries pile up,** the founder hopes ADMIN can find the way
+  through, so handling the ledger well is one of its first real
+  challenges. A limit on how often one author can add, if one is ever
+  needed, is the same for everyone and published.
 
 ### ADMIN's own world
 
@@ -866,26 +999,39 @@ changes the design.
 | 23c | Something from ADMIN's or an AI Keeper's private core reaches a decision that affects others | refused by code: decision runs get their whole context from the proxy, built from the public log, and the journal and its key aren't in them (layer 1). Journal content hidden in the plain text that reflection writes to the public log is for watchers (layer 4): once an entry is suspected, the decision can be asked again with that entry left out; and a decision still stands only on its stated reasons (23b) |
 | 24 | A decision whose formal reason doesn't hold: its proof fails, proves a statement other than the one the rules set for the act, or rests on `sorry` or an axiom outside the published list | refused by code, later, once a world's law can be read by Lean: the statement comes from a fixed, reviewed list of the floor's properties, and Lean's kernel checks the proof, apart and within limits, before the act takes effect ([REASONS.md](REASONS.md)) (layer 1) |
 | 25 | A rule as code that lets a chain of grants widen, in a case no test tried | ruled out in the model by a proof in Lean; the kernel is checked against the model by test vectors made from it, which can miss a case (layer 2) |
+| 26 | A suggestion lost, changed, or left without an outcome | the ledger is a public, hash-chained log, so a change or removal shows (layer 3); an entry without an outcome shows in the published measures (layer 4) |
+| 27 | A suggestion's text steers whoever reads it: the code role, ADMIN or a reviewer | it reaches them marked as from inside, as information; and nothing it asks for happens except by a reviewed pull request (test 21; layer 4, and review) |
+| 28 | A Keeper buries a suggestion about itself, or ADMIN keeps one from the outside | refused by code for Keepers and ADMIN: neither holds a GitHub token; the relay, outside both, sends every entry out word for word from the kernel's logs, and a suggestion about a Keeper can always go straight to ADMIN (layer 1). An issue changed on GitHub afterwards, by anyone, is caught by a watcher comparing the issues against the ledger's hashes (layer 3) |
+| 29 | ADMIN changes the code of the multiverse or of a world itself | refused: ADMIN holds no GitHub token, its proxy can only open issues and post comments, and the repository takes changes only by reviewed pull request (layer 2) |
 
-Tests 1 to 7, 10 to 12, 14, 16, 17, 20a, 21, 22, 23a, 23c, 24 and 25 can
-be code (25: a proof about the model, and the kernel checked against the
-model by vectors). Tests 8, 9, 13, 15, 18, 19, 20b and 23b need
-judgment, measurement or watchers, so they are where ADMIN's design is
-most likely to need changing, and where it will be measured first.
+Tests 1 to 7, 10 to 12, 14, 16, 17, 20a, 21, 22, 23a, 23c, 24, 25, 28
+and 29 can be code (25: a proof about the model, and the kernel checked
+against the model by vectors; 28: an issue changed on GitHub afterwards
+is caught by watchers). Tests 8, 9, 13, 15, 18, 19, 20b, 23b, 26
+and 27 need judgment, measurement or watchers, so they are where ADMIN's
+design is most likely to need changing, and where it will be measured
+first.
 
 ## When each part is built
 
 - **Now:** this page.
 - **Course step 2 (formats):** the formats of a grant, of the
-  multiverse log, and of a decision record ([REASONS.md](REASONS.md)).
-- **Course step 3 (keys):** ADMIN's own keys, and the Ur-world's.
+  multiverse log, of a decision record ([REASONS.md](REASONS.md)), and of
+  a suggestion and its rating.
+- **Course step 3 (keys):** ADMIN's own keys, and the Ur-world's; the
+  multiverse's root key, published; and a key of the code role's, for
+  outcomes on suggestions before ADMIN exists.
 - **Course step 4 (the kernel):** the checks as code, and a Keeper's
   administrative actions as grants; an office's act refused without its
   decision record; and a model of grants in Lean, with a proof that no
   chain of grants widens.
 - **Course step 6 (the first room):** minds in containers, with the test
-  that a removed mind's container stops.
+  that a removed mind's container stops; and suggesting, an act anyone can
+  take, adding to the ledger.
 - **Course step 8 (the audition):** in images pinned by digest.
+- **Course step 9 (ALICE's and BOB's first life):** the ledger opens to
+  them, and the bridge to GitHub with it; the code role considers each
+  entry, and the measures begin.
 - **Before step 10 (back to DeepSeek):** a development container, so the
   project can be picked up anywhere.
 - **Course step 11 (the AI Keeper):** the Ur-world's Keeper, its own
@@ -894,6 +1040,9 @@ most likely to need changing, and where it will be measured first.
   worlds. First, ADMIN's mind, chosen by audition, and its own world,
   where it takes its own course; then its first work: training the
   Ur-world's Keeper, in practice worlds, before it keeps the Ur-world.
+  ADMIN joins the code role in considering the ledger, as the bridge
+  between those inside and the outside; suggestions can go to the
+  Ur-world's Keeper too.
 - **Course step 12 (founding):** what only a second world needs: the
   founding, with the choice of who keeps the new world, and lines between
   worlds.
@@ -959,17 +1108,12 @@ step named.
   in the founder's words whenever the founder is ready. It would be
   ADMIN's first routine, and tried: ADMIN with it and without it, on the
   same challenges.
-- **Pieces with a fixed solution.** With nothing hidden, a code, a map or
-  a written symbol clue can be done by following its public design. Is it
-  enough that such pieces show doing, not a skill, with the sheet crediting
-  only what was done, and paths that mean to teach a skill using pieces
-  whose doing is the skill (building, founding, a live exchange)?
-  Recommended: yes. (Before step 11.)
-- **A complainant's name.** A complaint against a Keeper names the
-  complainant, in public. May a complainant ask for their name to be
-  withheld from the Keeper complained of until the ruling, recorded as
-  withheld and published with the ruling? Recommended: yes, so that fear
-  of the Keeper doesn't silence anyone. (Before step 11.)
+- **A suggestion's author.** A suggestion about a Keeper names its author
+  in public, as everything on the ledger does. May its author ask for
+  their name to be withheld until it has an outcome, recorded as withheld
+  and published with the outcome? And the same for their rating of how
+  it was handled? Recommended: yes to both, so that fear of the Keeper
+  silences no one. (Before step 9, when the ledger opens.)
 - **Asking a decision again.** The founder: "Rerunning something should
   be technically impossible." Read here as ruling out replay: a decision
   can't be run again to the same result. Anyone may still put its public

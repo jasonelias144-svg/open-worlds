@@ -90,7 +90,7 @@ Taken, mapped onto the multiverse:
 | Collective choice | rules change as the charter's section 6 is to say (its notes propose trial on a copy, and consent) |
 | Monitoring | public logs, watched by anyone; ADMIN watches the offices |
 | Graduated sanctions | notice, warning, a power narrowed, removal from office |
-| Conflict resolution | complaints heard by ADMIN, with appeal |
+| Conflict resolution | suggestions, complaints among them, considered by a world's Keeper or by ADMIN, with outcomes on record and appeal |
 | Right to organise | founders and inhabitants set their world's law; ADMIN doesn't |
 | Nested enterprises | a world's Keeper, within ADMIN, within the charter and the founder |
 
