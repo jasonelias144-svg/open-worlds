@@ -180,12 +180,25 @@ kind.
   Lyceum Commons becomes a chat based superworld of atomic chat worlds.
   This reframes the original idea, but in a way that could salvage that
   work and provide a more robust world than what we have built yet."
-  On COURSE.md's waiting list, after step 4a as the second superworld,
-  with Lyceum running as it is and its rooms made worlds by addition
-  (docs/TOPICS.md, topic 14; placed on the technical lead's
-  recommendation, decided under the founder's standing rule; the
-  founder can change it). What a room's public log holds is the
-  founder's to decide, as personal information.
+  On COURSE.md's waiting list, after step 4a as the second superworld
+  (placed on the technical lead's recommendation, decided under the
+  founder's standing rule; the founder can change it). How is a
+  recommendation, not a decision: Lyceum running as it is, its rooms
+  made worlds by addition (docs/TOPICS.md, topic 14). What a room's
+  public log holds is the founder's to decide, as personal information.
+- 2026-11-14, founder: "it just occurred to me that we are creating
+  something like a holodeck from Star Trek, where they can run
+  simulation worlds. Those are a subset, being immersive 3D worlds with
+  holographic projection and physical-virtual interface. But the idea is
+  the same, just requires more equipment and power. We can look to Star
+  Trek for ideas on how they use their simulated world technology."
+  docs/TOPICS.md, topic 15, "Lessons from fiction": each use and failure
+  mapped to the part of the design that answers it, or the gap it shows.
+  Fiction gives ideas to test, not evidence, and the project borrows
+  ideas and lessons, never names, characters or look: naming a work to
+  cite it is fine, but no world, record or example takes its names,
+  characters or look (decided on the technical lead's recommendation,
+  under the founder's standing rule).
 - 2026-11-14, founder, a new idea: "fractal worlds. Worlds where you can
   navigate through fractals, generate them in different forms, watch them
   grow or interact, and more." On COURSE.md's waiting list, after step
@@ -952,10 +965,17 @@ it was wrong. Questions of what the project is for stay with the founder.
   remotes (`remote.pushDefault`, a branch's `remote` or `pushRemote`,
   from any of Git's config files, read byte for byte), remotes kept the
   old way in `.git/remotes` or `.git/branches`, remotes with no address,
-  and remote helpers; a
-  write that fails leaves no file; KEYS.md names the scan's misses,
-  `published_entries_problems`, and what the guard can't see, so the
-  ceremony pushes by the private repository's address.
+  and remote helpers; a write that fails leaves no file; KEYS.md names
+  the scan's misses, `published_entries_problems`, and what the guard
+  can't see, so the ceremony pushes by the private repository's address.
+
+- 2026-11-14 Claude: docs/TOPICS.md, topic 15, "Lessons from fiction",
+  starting with the holodeck, at the founder's note: each use and
+  failure from the stories mapped to the part of the design that answers
+  it, or the gap it shows. And #54's last notes: the Commons' facts kept
+  apart from what is decided, its approach a recommendation, its
+  send-back invented and offered as input; ADMIN and the Keepers ideas
+  only in "Further out".
 
 - 2026-11-14 Claude: course step 3, part two: the key list
   (`open-worlds/key-list/v1`) in records-v1, in Python and Rust, with
