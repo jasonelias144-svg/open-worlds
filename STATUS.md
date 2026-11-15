@@ -2298,6 +2298,16 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-15 Claude: after #88's re-check at de2e7ee, its notes, carried
+  here: today every private half, the offices' and worlds' included, is
+  a file in the one private repository, so "a private half taken out of
+  keeping" would have read as routine signing. FUNDAMENTALS.md and
+  CONTAINER.md now say the founder's holding of the keys is the "keys to
+  the kingdom", and mark what "opened" means as the technical lead's
+  reading: a key used or copied outside its own office's work, never a
+  key's own office signing. CONTAINER.md names the founder's "to not
+  sound as pretentious".
+
 - 2026-11-15 Claude: the record for DeepSeek. AGENTS.md gains step 5:
   the repository is the record, as the founder's sessions with the
   technical lead aren't kept. docs/COLLABORATING.md says so at its top,
