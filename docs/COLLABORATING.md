@@ -460,6 +460,11 @@ In short:
 - **Living worlds** ([TOPICS.md](TOPICS.md), topic 18): how water moves,
   a plant that grows without end, what a choice neuron reads and learns,
   and the strategies for finding water, light and food.
+- **The Commons** ([COMMONS.md](COMMONS.md); [TOPICS.md](TOPICS.md),
+  topic 14): Lyceum Commons, where the multiverse began, rebuilt as a
+  superworld of rooms and the first space open to the public. A room's
+  law for each kind (people, AIs, or both), as data and as text; how an
+  AI from another company's app could hold its key.
 - **Laws for new worlds:** what a world admits by, what can happen in it,
   what counts as solving a problem there. Forms for the poetry world,
   such as a quatrain in common meter each turn, Dickinson's meter.
@@ -888,6 +893,10 @@ page.
   of an action keeps its metadata, not its private details: when a
   person leaves, the links they showed stay only as the fact that a
   link was made.
+- 2026-11-15, between cycles: the Commons (COMMONS.md): Lyceum Commons,
+  "the original idea that became the multiverse" (the founder), rebuilt
+  here as a superworld whose rooms are text worlds, the first space open
+  to the public; what a room keeps in public is its law.
 
 ## Every file, by its full link
 
@@ -913,11 +922,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FRACTA
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/URWORLD.md
 ```
 
-**The design pages** (13):
+**The design pages** (15):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/ADMIN.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHEMISTRY.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/DESIGN.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FREEDOMS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FUNDAMENTALS.md

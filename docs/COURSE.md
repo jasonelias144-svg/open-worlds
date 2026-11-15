@@ -407,10 +407,11 @@ Added one at a time, as steps are done:
   sealed to the person it is about ([FUNDAMENTALS.md](FUNDAMENTALS.md),
   "Public records, kept whole"): placed with the lifecycle, before
   anyone lives in a world;
-- the Commons (the founder, 2026-11-14): Lyceum Commons as "a single
-  superworld, where the atomic subworlds are chat rooms"; recommended
-  after step 4a, as the second superworld (docs/TOPICS.md, topic 14,
-  which also recommends how);
+- the Commons (the founder, 2026-11-14 and 2026-11-15): Lyceum Commons
+  rebuilt in the multiverse, a superworld whose rooms are text worlds,
+  "the space that will be "open to the public" when we go live"
+  ([COMMONS.md](COMMONS.md)); placed at the recheck that closes step 3a,
+  as the first public space, ahead of the Ur-world's opening;
 - from the founder's visions of 2026-11-14
   ([VISION.md](VISION.md)): question worlds, with the prediction written
   first, and the neural world as the first; riding along in a primary

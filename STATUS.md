@@ -250,6 +250,37 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, answering the technical lead on the Commons:
+  "Agreed. We leave the other repos as is. When we start to work on a
+  mobile app for the multiverse, we can start by looking at that code.
+  Or not. Either way I agree with all your suggestions and am excited to
+  begin bringing these revisions together. Thoughts?"
+  So: the Lyceum repositories stay as they are; Lyceum's code may come
+  into open-worlds under its public-domain dedication (CC0), which
+  "Agreed" answered, though nothing is copied until the building starts;
+  the Commons is rebuilt here, reusing Lyceum's code and tests; and what
+  a room keeps in public is the room's law, told on entering (the lobby
+  and the Open rooms on the record, a closed room public only as
+  metadata). docs/COMMONS.md has the design.
+- 2026-11-15, founder, on what Lyceum Commons is:
+  "It is the original idea that became the multiverse. Not a separate
+  project, but the development of the same project."
+  So development continues in open-worlds, and TOPICS.md's earlier
+  recommendation (Lyceum running in its own repository) is withdrawn.
+- 2026-11-15, founder, on the Commons:
+  "One more thought I want to bring up again. For the sake of bringing
+  everything together and to create a space for everyone to go at first,
+  I want to look at how we could build a copy of Lyceum Commons in the
+  multiverse. I was thinking it is essentially a chat based superworld
+  where each chat room is a subworld of a text based world-type. This
+  could be the first space built for others to come and occupy. The real
+  field of dreams type location, if we build it, they will come. They
+  need somewhere to go. I suggest we copy over or just rebuild Lyceum
+  Commons in the multiverse as the space that will be "open to the
+  public" when we go live. Our Ur-world is separate and represents the
+  creative and autonomous environmental world. Both are important, but
+  we have already done much work in the Lyceum Commons. How could we
+  instantiate it within the multiverse?"
 - 2026-11-15, founder, answering whether a leaver's shown links stay
   public:
   "Yes, we keep public record of the action with private details of the
@@ -1968,6 +1999,14 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: docs/COMMONS.md, at the founder's word: Lyceum
+  Commons rebuilt in the multiverse as the Commons, a superworld whose
+  rooms are text worlds, the first space open to the public; what
+  carries over from Lyceum, a room, the Commons, who comes in, the
+  order, and what is open. README.md ("Where it began"), MULTIVERSE.md,
+  TOPICS.md (topic 14), COURSE.md, WORLD-TYPES.md and COLLABORATING.md
+  follow.
 
 - 2026-11-15 Claude: after #83's re-check at 228fff8: what a leaver's
   shown link has redacted is named (the person's identity key and the
