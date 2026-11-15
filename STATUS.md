@@ -86,6 +86,11 @@ free, and never a money machine
 - Claude: the charter, kept from the founder's recorded words as they
   come (`CHARTER.md`; the founder, 2026-11-15, in Decided).
 
+- Claude: the licence in the founder's other public repositories: a
+  pull request in each that has the wrong licence or none, CC0 1.0 by
+  the founder's standing choice (Decided, 2026-11-15), each with its own
+  review.
+
 ## Next
 
 The course, twelve steps ahead and rolling: [docs/COURSE.md](docs/COURSE.md).
@@ -245,8 +250,9 @@ kind.
     project and becomes part of it. This replaces the technical lead's
     reading in the next entry, that those works may be named.
   - **The "break glass" covers the keys the technical lead named,** which
-    the founder confirms: the root of the key list, ADMIN's and the other
-    offices' keys, and the keys of the worlds the project runs.
+    the founder confirms (the technical lead's reading of "the sounds
+    good"): the root of the key list, ADMIN's and the other offices'
+    keys, and the keys of the worlds the project runs.
   - **It is the "keys to the kingdom", handed on like "nuclear codes
     passed from one president to another".** Passing it needs no
     emergency: it is a transfer of authority to the next holder. The
@@ -273,16 +279,19 @@ kind.
     1.0, the Unlicense, 0BSD and MIT-0. CC0 is the one that covers
     writing as well as code, and where a country doesn't let anyone give
     up their rights entirely, it falls back to a licence with no
-    conditions. It is also what this repository already uses. It is the
+    conditions. It is also what this repository already uses. One
+    caveat, said plainly: CC0 gives up copyright but leaves patent and
+    trademark rights where they were; nothing here is patented, so in
+    practice nothing is held back. It is the
     founder's standing choice: no project asks the founder again (the
     policy handbook, P9 and GOVERNANCE.md, say so); only a departure
     from it would go to the founder.
   - **The technical lead corrects the other repositories,** as the
-    founder hoped: a pull request in each public one with the wrong
-    licence or none (policy-handbook, Lyceum-Commons, Lyceum-Local,
-    lyceum-commons-mobile, the repository the founder named in the
-    entry below, Open-Experiment and SAIR-Lean-Kernel-Challenge),
-    each reviewed and merged under that repository's own rules.
+    founder hoped: a pull request in each of the founder's public
+    repositories with the wrong licence or none (seven of them), each
+    reviewed and merged under that repository's own rules. Each first
+    checks for material that isn't the founder's to give, which keeps
+    its own licence.
   - **The founder's earlier work may be named.** The technical lead's
     reading, which stands unless the founder answers otherwise: the
     question the founder means here was also whether those works may be
@@ -315,9 +324,10 @@ kind.
     longer binding. Where the multiverse is hosted is one decision, for
     all of it, made later; until then everything is built host-free, as
     before (the technical lead's reading of "as we were": worlds run and
-    are tested locally, and in a browser where they can). This replaces the parts of the technical lead's Commons
-    design that named Cloudflare (one Durable Object per room, and a
-    Cloudflare account for going live).
+    are tested locally, and in a browser where they can). This replaces
+    the parts of the technical lead's Commons design that named
+    Cloudflare (one Durable Object per room, and a Cloudflare account
+    for going live).
   - **Licences:** everything the founder makes public is free for anyone
     to use. Wherever the founder's public work has the wrong licence or
     none, it is corrected to the one this repository uses, CC0 1.0: no

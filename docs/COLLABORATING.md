@@ -912,7 +912,9 @@ page.
   under CC0. Later the same day, the founder: everything stays host-free,
   as before, and where the multiverse is hosted is one decision, made
   later (Cloudflare is "no longer binding"); and everything the founder
-  makes public is CC0, "designed to be used freely".
+  makes public is CC0, "designed to be used freely". It is a standing
+  choice: the founder is not asked again ("founder always wants this
+  license").
 
 ## Every file, by its full link
 
