@@ -253,6 +253,37 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on handing an office on:
+  "I think the work on offices is foundational. Let me add a new
+  suggestion. If one agent holds an office then they have the ability to
+  transfer the office to another if both agree clearly and the one to
+  fit the role meets whatever conditions are required. We can't have a
+  keeper setting a fractal plant in charge of a world because the plant
+  agreed as a 50% chance from having only an affirmative or negative
+  possible responses to choose from. There needs to be qualifications of
+  some sort, but assuming that is in place. A keeper can work with an
+  agent to be their successor. …"
+  (A personal sentence that followed is left out, by the founder's rule
+  on personal information.) So an office passes when its holder and the
+  successor both agree clearly, and the successor meets the office's
+  qualifications; and a Keeper may prepare a successor. The technical
+  lead's readings, in docs/OFFICES.md, which stand unless the founder
+  answers otherwise: clear agreement is the successor saying in its own
+  words, in public, what the office's duties are and that it takes them
+  on; the qualifications are a floor written in each office's charter,
+  checked by someone other than the outgoing holder; and they are not
+  the admin-key, which stays a mark of readiness, never a requirement
+  (decided 2026-11-14), so the two decisions stand together.
+- 2026-11-15, founder, on offices:
+  "Office should be its own type, with ADMIN and keepers two current
+  examples. Let's define what makes something an office or role.
+  Thoughts?"
+  On the technical lead's answer, five marks of an office (written
+  before it is held; held, never owned; its own key and memory; acting
+  for others, so in the open; bounded and watched) and the line between
+  an office and a role, the founder answered with the message above. So
+  docs/OFFICES.md gathers them, as the technical lead's proposal, and
+  GLOSSARY.md gives "Office" a section of its own.
 - 2026-11-15, founder, on a word for everything that acts:
   "And is "agent" or most general term that would encompass everything
   from any human, to me, to you, to DeepSeek, to ADMIN, to the world
@@ -1798,6 +1829,13 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: docs/OFFICES.md, at the founder's word: what makes
+  an office (five marks), an office or a role, the offices today (ADMIN,
+  each world's Keeper, the "break glass" holder, the technical lead),
+  handing an office on (the founder's words: clear agreement and
+  qualifications) and preparing a successor; GLOSSARY.md's "Office";
+  an office record and a handover record wait in COURSE.md.
 
 - 2026-11-15 Claude: docs/GLOSSARY.md, at the founder's word: "agent"
   for anything that perceives and acts, from a neuron steering a plant

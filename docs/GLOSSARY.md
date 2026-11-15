@@ -45,8 +45,8 @@ to a single neuron.
 
 ## The words beneath it
 
-Each of these is a kind of agent, or a role an agent holds, as the
-design pages already use them.
+Each of these is a kind of agent, or a role an agent plays, as the
+design pages already use them. Offices are a type of their own (below).
 
 - **Mind:** an agent that thinks, such as a language model or a human.
   An individual's mind is the model it runs on, chosen before it
@@ -63,12 +63,24 @@ design pages already use them.
   ([research/PERSONS.md](research/PERSONS.md)).
 - **Presence:** a person's being in one world, with a key, a name and a
   history of its own there ([research/PERSONS.md](research/PERSONS.md)).
-- **Offices:** ADMIN, the Keeper of the multiverse, and each world's
-  Keeper. An agent holds an office, and every decision the office makes
-  that affects others is on record with its reasons
-  ([ADMIN.md](ADMIN.md), [REASONS.md](REASONS.md)).
 - **Owner:** in the Python kernel, whoever runs an agent in a world and
   can withdraw it.
+
+## Office
+
+**A part written down before anyone holds it, with power over others
+or over something shared, which an agent holds and acts through.** An
+office is not an agent: it is held, never owned, and it outlasts every
+holder (the founder, 2026-11-15: "Office should be its own type, with
+ADMIN and keepers two current examples"). ADMIN and each world's Keeper
+are offices today; so are the holder of the "break glass" and the
+technical lead. What makes an office, how one is handed on, and how a
+holder prepares a successor are in [OFFICES.md](OFFICES.md).
+
+A **role** is any part an agent plays, such as a walker, a voter or a
+guardian someone names for a lost key. A role becomes an office when it
+holds power over others given by a law rather than by the people it
+affects.
 
 ## Where rights attach
 
