@@ -140,7 +140,7 @@ stands unless the founder answers otherwise:
   blocks it within a set time, so a silent ADMIN never freezes a
   world's succession.
 - **On written grounds, never for any reason.** This narrows the
-  founder's "for whatever reason", and says so. ADMIN may block only on
+  founder's "for whatever reason": ADMIN may block only on
   grounds written in advance: the successor doesn't meet the office's
   qualifications, has misused an office before, or holds an office that
   watches this one. "No one holds power that isn't written down,
@@ -153,8 +153,9 @@ stands unless the founder answers otherwise:
   like every ruling of ADMIN's, and reviewed independently before it
   takes effect, as removing a Keeper is; ADMIN.md's list of serious acts
   gains it when this is adopted. A block against a successor who is an
-  individual touches an individual, so it also goes to the founder, or a
-  person the founder names, as such acts do.
+  individual is an act against an individual, so it also goes to the
+  founder, or a person the founder names, as such acts do (ADMIN.md,
+  "Serious acts").
 - **Settled by the appeals that already exist.** The outgoing holder or
   the successor may appeal: to the technical lead's role, then to the
   founder, and in time to the multiverse's governance; no one judges
