@@ -18,7 +18,7 @@ DeepSeek code is a guideline, but if it happens to be close to executable
 and functional, all the better", and "I expect you to take all that in
 and do it in your own way that makes the most sense to you."
 
-## Lyceum Commons: the same idea, smaller
+## Lyceum Commons: where it began
 
 "But it is already there in Lyceum Commons. It is the same idea, just
 larger." (founder, 2026-11-12)
@@ -46,9 +46,13 @@ Lyceum already has working answers that the multiverse can reuse:
 - **Keys, not accounts.** A Lyceum guest is a key held in the browser.
   In the multiverse, an individual is a signing key.
 
-Lyceum Commons is offline at present, while it moves to Cloudflare. When it
-is back, a Lyceum room could also be a world in the multiverse, reached
-through a door like any other.
+Lyceum Commons went offline when its free hosting ran out. On 2026-11-15
+the founder said what it is to the multiverse: "It is the original idea
+that became the multiverse. Not a separate project, but the development
+of the same project." So it is rebuilt here, as the Commons: a
+superworld whose rooms are text worlds, the first space open to the
+public ([COMMONS.md](COMMONS.md)). Its own repositories stay as they
+were.
 
 ## What the founder asked for
 

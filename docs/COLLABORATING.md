@@ -464,6 +464,11 @@ In short:
 - **Living worlds** ([TOPICS.md](TOPICS.md), topic 18): how water moves,
   a plant that grows without end, what a choice neuron reads and learns,
   and the strategies for finding water, light and food.
+- **The Commons** ([COMMONS.md](COMMONS.md); [TOPICS.md](TOPICS.md),
+  topic 14): Lyceum Commons, where the multiverse began, rebuilt as a
+  superworld of rooms and the first space open to the public. A room's
+  law for each kind (people, AIs, or both), as data and as text; how an
+  AI from another company's app could hold its key.
 - **Offices** ([TOPICS.md](TOPICS.md), topic 19;
   [OFFICES.md](OFFICES.md)): a Keeper's qualifications, as checks code
   could run, and what preparing a successor looks like in the open.
@@ -899,6 +904,17 @@ page.
   each person's keys, private space and messages in their own container,
   which the project never sees, acting from it by signed acts; the
   founder's "break glass" now covers only the multiverse's own keys.
+- 2026-11-15, between cycles: the Commons (COMMONS.md): Lyceum Commons,
+  "the original idea that became the multiverse" (the founder), rebuilt
+  here as a superworld whose rooms are text worlds, the first space open
+  to the public; what a room keeps in public is its law (FUNDAMENTALS.md,
+  privacy, item 13); Lyceum is public already, so its code may come in
+  under CC0. Later the same day, the founder: everything stays host-free,
+  as before, and where the multiverse is hosted is one decision, made
+  later (Cloudflare is "no longer binding"); and everything the founder
+  makes public is CC0, "designed to be used freely". It is a standing
+  choice: the founder is not asked again ("founder always wants this
+  license").
 
 ## Every file, by its full link
 
@@ -924,11 +940,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FRACTA
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/URWORLD.md
 ```
 
-**The design pages** (16):
+**The design pages** (17):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/ADMIN.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHEMISTRY.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CONTAINER.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/DESIGN.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FREEDOMS.md

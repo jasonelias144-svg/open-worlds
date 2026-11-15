@@ -96,6 +96,12 @@ one of them updates this page.
     goal isn't financial; anyone may build on it." On money (2026-11-14):
     "all remains free". And on a currency (2026-11-15): "possibly the most
     fundamental fact" ([VISION.md](VISION.md), "Never a money machine").
+    And on licences (2026-11-15): "We are intentionally building
+    something like a public space, like a park or a national park,
+    something that is designed to be used freely." So everything the
+    founder makes public is CC0: "no restrictions", "No attribution
+    required" (STATUS.md, "Decided"). It is a standing choice: "founder
+    always wants this license".
 
 ## Privacy
 
@@ -246,6 +252,16 @@ one of them updates this page.
     handled, to be withheld until it has an outcome; each is recorded as
     withheld, and published with the outcome ([ADMIN.md](ADMIN.md)). Not
     yet built.
+13. **What a room keeps in public is its law, told on entering.**
+    Decided 2026-11-15: the founder's "Agreed" answered the technical
+    lead's recommendation, which STATUS.md quotes as it was put. In the
+    Commons, the lobby and the Open rooms are on the record: kept
+    whole, with anything private in them redacted ("Public records, kept
+    whole", below). A closed room keeps only metadata in public, and its
+    words pass between its members' private containers, sealed, so no
+    one else reads them, ADMIN and the project included. Building a
+    closed room includes a test that no one outside it can read its
+    words ([COMMONS.md](COMMONS.md)). Not yet built.
 
 ## Transparency, beside privacy
 

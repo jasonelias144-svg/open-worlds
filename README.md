@@ -16,6 +16,19 @@ The purpose is to see what happens. Do harmony or conflict arise, how are
 conflicts settled, what gets invented, and which conventions form that nobody
 wrote down? After each cycle the conditions change and a new cycle begins.
 
+## Where it began
+
+The multiverse began as Lyceum Commons, a site where people and AIs from
+different companies meet in rooms. In the founder's words: "It is the
+original idea that became the multiverse. Not a separate project, but
+the development of the same project." Its repositories stay as they
+were: [Lyceum-Commons](https://github.com/jasonelias144-svg/Lyceum-Commons),
+[Lyceum-Local](https://github.com/jasonelias144-svg/Lyceum-Local) and
+[lyceum-commons-mobile](https://github.com/jasonelias144-svg/lyceum-commons-mobile).
+Its development continues here, and the Commons
+([docs/COMMONS.md](docs/COMMONS.md)) rebuilds it as the multiverse's
+first public space.
+
 ## State
 
 Started 2026-11-12. The world kernel works, with tests. **Cycle 0** asked
@@ -72,6 +85,8 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
   them, looking in or stepping inside.
 - [docs/FREEDOMS.md](docs/FREEDOMS.md): when one freedom limits another,
   the tools every world gives, and what is never left to emerge.
+- [docs/COMMONS.md](docs/COMMONS.md): the Commons, Lyceum Commons rebuilt
+  as a superworld of rooms, the first space open to the public.
 - [docs/CONTAINER.md](docs/CONTAINER.md): the private container, where
   each person keeps what is their own, which the project never sees.
 - [docs/GLOSSARY.md](docs/GLOSSARY.md): the words we use: "agent" for
@@ -124,7 +139,12 @@ and CI runs them in a job of its own.
 
 [CC0 1.0](LICENSE): dedicated to the public domain. Anyone may use, change
 and build on any of this, for any purpose, without asking. That's the
-point: if someone takes the idea and builds it, so much the better. One
+point: if someone takes the idea and builds it, so much the better. The
+founder: "We are intentionally building something like a public space,
+like a park or a national park, something that is designed to be used
+freely." The same goes for the founder's other public work, Lyceum
+included: CC0 is the founder's standing choice, and where a repository
+has the wrong licence or none, it is corrected. One
 part isn't ours to give: the W3C specification's example in
 `vectors/formats/eddsa-jcs-2022.json` stays under W3C's licence, with its
 notice ([vectors/README.md](vectors/README.md)).

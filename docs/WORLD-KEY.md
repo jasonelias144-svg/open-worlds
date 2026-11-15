@@ -479,8 +479,8 @@ repository can open it, since the earner's private key is kept there
 private key is held by the project's software, which acts for them; the
 mind never sees it. Once the individual has a container (the technical
 lead's recommendation, which stands unless the founder answers
-otherwise), their key is made in it, and the second limit becomes the one every mind the project
-runs has: it runs on the project's machines.
+otherwise), their key is made in it, and the second limit becomes the
+one every mind the project runs has: it runs on the project's machines.
 
 As the founder noticed, "Alice and Bob have been exchanging keys from the
 start": Alice and Bob have been the names of the two people in a
