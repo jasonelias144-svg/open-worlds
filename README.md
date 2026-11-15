@@ -143,7 +143,8 @@ point: if someone takes the idea and builds it, so much the better. The
 founder: "We are intentionally building something like a public space,
 like a park or a national park, something that is designed to be used
 freely." The same goes for the founder's other public work, Lyceum
-included: where it has the wrong licence or none, it gets CC0. One
+included: CC0 is the founder's standing choice, and where a repository
+has the wrong licence or none, it is corrected. One
 part isn't ours to give: the W3C specification's example in
 `vectors/formats/eddsa-jcs-2022.json` stays under W3C's licence, with its
 notice ([vectors/README.md](vectors/README.md)).

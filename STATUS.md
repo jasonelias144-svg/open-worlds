@@ -122,14 +122,6 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
-- For the founder (put 2026-11-15, in chat): whether the founder's
-  earlier work, in the repository the founder named that day (Decided),
-  which shows where many of the multiverse's ideas were first worked
-  out, may be named in this repository. Its licence is answered: CC0,
-  like everything the founder makes public (Decided). The
-  recommendation: until the founder answers, refer to it generically
-  ("the founder's earlier work"); a lineage page and any further use
-  come in their own pull requests.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
@@ -240,6 +232,42 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on choosing the licence once:
+  "I tried to answer the living patten institute question last time. I
+  actually do not care to look up the difference between those licenses
+  you mentioned. That is the point. I do not care to even learn the
+  difference. I expressed my opinion. I hoped that would limit it to a
+  single choice. Please decide if there are more than one options
+  available that meet the conditions of what I already said.
+  Perfect. My hope is that you would be able to change the licenses for
+  the other repos that are not correctly licensed. If not, I'll do it.
+  Thoughts?
+  We should change the policy to: "founder always wants this license",
+  whichever is the right license that makes sense to you. I don't want to
+  decide each time when my decision will be the same."
+  So:
+  - **The licence is CC0 1.0, chosen once, for everything the founder
+    makes public.** The technical lead's choice, as asked. More than one
+    licence meets "no restrictions" and "No attribution required": CC0
+    1.0, the Unlicense, 0BSD and MIT-0. CC0 is the one that covers
+    writing as well as code, and where a country doesn't let anyone give
+    up their rights entirely, it falls back to a licence with no
+    conditions. It is also what this repository already uses. It is the
+    founder's standing choice: no project asks the founder again (the
+    policy handbook, P9 and GOVERNANCE.md, say so); only a departure
+    from it would go to the founder.
+  - **The technical lead corrects the other repositories,** as the
+    founder hoped: a pull request in each public one with the wrong
+    licence or none (policy-handbook, Lyceum-Commons, Lyceum-Local,
+    lyceum-commons-mobile, the repository the founder named in the
+    entry below, Open-Experiment and SAIR-Lean-Kernel-Challenge),
+    each reviewed and merged under that repository's own rules.
+  - **The founder's earlier work may be named.** The technical lead's
+    reading, which stands unless the founder answers otherwise: the
+    question the founder means here was also whether those works may be
+    named, and "If someone can literally access it now, I consider it
+    public" answers it. Personal details, such as any name or alias of
+    the founder's, stay out as before. The open question is closed.
 - 2026-11-15, founder, on hosting and on licences:
   "Also, note the Cloudfare decision was made because the free account
   ran out. Let's not base anything on it. I don't even know if such an
@@ -265,8 +293,8 @@ kind.
     was a legacy decision, made when a free account ran out, and is no
     longer binding. Where the multiverse is hosted is one decision, for
     all of it, made later; until then everything is built host-free, as
-    before: worlds run and are tested locally, and in a browser where
-    they can. This replaces the parts of the technical lead's Commons
+    before (the technical lead's reading of "as we were": worlds run and
+    are tested locally, and in a browser where they can). This replaces the parts of the technical lead's Commons
     design that named Cloudflare (one Durable Object per room, and a
     Cloudflare account for going live).
   - **Licences:** everything the founder makes public is free for anyone
@@ -2167,6 +2195,14 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: the founder asked for the licence to be chosen once.
+  CC0 1.0 is the standing choice; the other repositories are corrected
+  by the technical lead, by pull request in each. The open question on
+  the founder's earlier work is closed: it may be named. And #87's
+  re-check notes at 06008a7: "as we were" is marked as the technical
+  lead's reading; FUNDAMENTALS.md's item 13 says "the lobby", as agreed,
+  leaving how many lobbies to the design.
 
 - 2026-11-15 Claude: the founder on hosting and licences. COMMONS.md,
   TOPICS.md (topic 14) and MULTIVERSE.md no longer build on Cloudflare:
