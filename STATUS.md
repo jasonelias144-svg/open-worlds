@@ -118,6 +118,19 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder (asked 2026-11-15): the private space "encrypted from
+  outside view, even ADMIN". No Keeper and not ADMIN can open it, as
+  designed. But the "break glass" the founder chose on 2026-11-14 lets
+  the project open a sealed self, or a private message, by the
+  founder's explicit decision, recorded publicly. Keep it, or seal the
+  private space so no one at all can open it? Recommendation: keep it
+  for now, as one accountable way to look in a real emergency, since the
+  project runs the minds anyway and "no one at all" couldn't yet be
+  fully true; and seal it fully once the minds run on hardware that
+  keeps even the operator out. Keeping it changes nothing, and the
+  charter tells every participant; sealing it fully can't be undone for
+  what is already sealed, so that waits for the founder's explicit
+  word.
 - For the founder (asked 2026-11-15, after #81's independent review):
   once others run worlds, the multiverse as a whole can't be stopped by
   any one party, only part by part (docs/VISION.md, "The multiverse as a
@@ -234,6 +247,17 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on privacy and freedom:
+  "Also note my decision on all should have a right to a private space
+  that is encrypted from outside view, even ADMIN. And anything
+  related to freedom, which goes with privacy. Please make sure you
+  capture what about privacy and freedom and related topics because
+  they are absolutely fundamental towards how the whole multiverse
+  functions."
+  So docs/FUNDAMENTALS.md gathers every decision on freedom and privacy
+  in one place, with where each is designed and whether it is built;
+  privacy joins the charter's guarantees (section 3) and AGENTS.md's
+  protected freedoms. One question is put to the founder, below.
 - 2026-11-15, founder, no multiversal currency, ever: "You mentioned Ethereum and cryptocurrency, we do not need to create
   a multiversal currency, in fact, I think that's a terrible idea. But we
   could still have commerce worlds where economies could be simulated, or
@@ -1643,6 +1667,13 @@ it was wrong. Questions of what the project is for stay with the founder.
   logged the same way.
 
 ## Log
+
+- 2026-11-15 Claude: freedom and privacy, the fundamentals, in one place
+  (docs/FUNDAMENTALS.md), at the founder's word: seven decisions on
+  freedom and six on privacy, each with the founder's words, where it is
+  designed and whether it is built; privacy in the charter's section 3
+  and in AGENTS.md's protected freedoms; and the "break glass" question
+  put to the founder.
 
 - 2026-11-15 Claude: the founder's word against a multiversal currency,
   "possibly the most fundamental fact", recorded in the founder's words

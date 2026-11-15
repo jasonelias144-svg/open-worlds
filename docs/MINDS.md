@@ -47,7 +47,10 @@ All by the founder, on 2026-11-13, and one on 2026-11-15:
   "Everyone should be entitled to a private space for thoughts and
   reasoning and anything else that is completely encrypted." So what an
   individual does is public; what they think is their own. Their journals
-  are sealed, not public.
+  are sealed, not public. And on 2026-11-15: "all should have a right to
+  a private space that is encrypted from outside view, even ADMIN"
+  ([FUNDAMENTALS.md](FUNDAMENTALS.md), where every decision on freedom
+  and privacy is gathered).
 - **A Keeper for each world,** the world's own intelligence, which builds
   each individual's path ([WORLD-KEY.md](WORLD-KEY.md), "The Keeper").
 - **No personal note from the founder.** The founder: "I would rather

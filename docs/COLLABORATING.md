@@ -64,6 +64,10 @@ in the order to read it:
    round table of Keepers, a learning immune system);
    [REASONS.md](REASONS.md) (every office's decision on record, with its
    reasons); [FREEDOMS.md](FREEDOMS.md) (tools for when freedoms meet).
+   And [FUNDAMENTALS.md](FUNDAMENTALS.md) gathers every decision on
+   freedom and privacy in one place, the founder's "absolutely
+   fundamental" (2026-11-15): among them, everyone has a private space,
+   encrypted, that no one else can read, not even ADMIN.
 4. **The founder's visions of 2026-11-14,** in the founder's words
    ([VISION.md](VISION.md), [PARALLEL-WORLDS.md](PARALLEL-WORLDS.md)):
    question worlds, where an idea becomes a world that tests it; an app
@@ -758,3 +762,6 @@ page.
   above; VISION.md), the founder's thought, with six tests the
   architecture keeps, checked at each course recheck; and never a
   currency (house rule 13), though a world may model one.
+- 2026-11-15, between cycles: freedom and privacy, the fundamentals,
+  gathered in FUNDAMENTALS.md (item 3 above), and privacy among the
+  charter's guarantees.
