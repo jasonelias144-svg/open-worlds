@@ -236,15 +236,15 @@ kind.
   One point is put to the founder as a question (#72's independent
   review found it): how water worth controlling fits the founder's
   earlier word in docs/FREEDOMS.md, "Much source of problems fall away
-  when space is infinite and resources are endless." The newer
-  messages point to water that is worth shaping: "In fact, for a
-  species to control water flow is a huge evolutionary advantage,
-  obviously." The recommendation, which stands unless the founder
-  answers otherwise: the two fit, since water is endless across a
-  world, as rain falls on all land and new land holds springs of its
-  own, but finite in any one place at any one time. So no garden
-  depends on one source, and there is always water a little further
-  out; how people shape it where they are is the experiment
+  when space is infinite and resources are endless." The newer messages
+  point to water that is worth shaping: "In fact, for a species to
+  control water flow is a huge evolutionary advantage, obviously." The
+  recommendation, which stands unless the founder answers otherwise: the
+  two fit, since water will be endless across a world, as rain will fall
+  on all land and new land will hold springs of its own (today the
+  garden has one spring), but finite in any one place at any one time.
+  So no garden depends on one source, and there is always water a little
+  further out; how people shape it where they are is the experiment
   (docs/FRACTALS.md, "Water is where freedoms meet").
 - 2026-11-15, founder, later the same night: "Either way sounds good.
   Just go with what makes the most sense to you. For DeepSeek, yeah,

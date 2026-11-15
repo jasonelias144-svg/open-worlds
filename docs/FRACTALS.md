@@ -264,13 +264,12 @@ stands unless the founder answers otherwise.
    (`rust/ur-world/src/host.rs`), and both logs will record them.
 5. **People shape the land.** New actions for inhabitants: dig a cell,
    pile one, line a channel. The world checks each and logs it, and the
-   water follows. In the window, the viewer can dig with the mouse,
-   each change an entry in the log, signed by the viewer's own key, as
-   part 4 asks of every change from outside. In the 3D Ur-world, water
-   is an amount
-   per cell that flows to its neighbours, as in Dwarf Fortress, since
-   particles over open land would be heavy. The challenge the founder
-   described, finding water and irrigating a new garden
+   water follows. In the window, the viewer can dig with the mouse, each
+   change an entry in the log, signed by the viewer's own key, as part 4
+   asks of every change from outside. In the 3D Ur-world, water is an
+   amount per cell that flows to its neighbours, as in Dwarf Fortress,
+   since particles over open land would be heavy. The challenge the
+   founder described, finding water and irrigating a new garden
    ([WORLD-KEY.md](WORLD-KEY.md), "Challenges that build the world"),
    becomes a skill learned by doing.
 6. **Life spreads.** Plants make seeds that water, wind and people
@@ -300,15 +299,15 @@ stands unless the founder answers otherwise.
 - **Water is where freedoms meet.** The founder, in
   [FREEDOMS.md](FREEDOMS.md) ("When one freedom limits another"): "Much
   source of problems fall away when space is infinite and resources are
-  endless." The technical lead's reading of how water fits: it is
-  endless across a world, since rain falls on all land and new land
-  holds springs of its own, but finite in any one place at any one
-  time. So no garden depends on one source, and there is always water a
-  little further out; how people shape it where they are is the
-  experiment. A dam upstream changes what reaches a garden downstream,
-  and the log shows how water moved. This reading is put to the founder
-  as a question, and stands unless the founder answers otherwise
-  (STATUS.md, Decided, 2026-11-15).
+  endless." The technical lead's reading of how water fits: it will be
+  endless across a world, since rain will fall on all land and new land
+  will hold springs of its own (today the garden has one spring), but
+  finite in any one place at any one time. So no garden depends on one
+  source, and there is always water a little further out; how people
+  shape it where they are is the experiment. A dam upstream changes what
+  reaches a garden downstream, and the log shows how water moved. This
+  reading is put to the founder as a question, and stands unless the
+  founder answers otherwise (STATUS.md, Decided, 2026-11-15).
 - **Measured, not assumed.** The rules will need tuning; a single
   neuron learns simple habits, sometimes bad ones; one lineage may take
   over. How far life spread, how much water the land holds and how many
