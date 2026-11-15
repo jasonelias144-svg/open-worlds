@@ -195,6 +195,11 @@ one of them updates this page.
    named publicly and all will be a matter of record and all that. But
    let's build the village before picking the next chief." So the next
    holder is named in public, and until then the founder alone holds it.
+   And how it passes (2026-11-15): it is "more like nuclear codes passed
+   from one president to another. There need be no emergency, only a
+   transfer of authority to another. A handoff of "keys to the
+   kingdom"." So handing it on is a transfer of authority, made in the
+   open, and needs no emergency; opening it stays what it was.
    The technical lead's reading, which stands unless the founder answers
    otherwise: the public record of an opening holds the fact of it (who
    opened which key, when, and why), never what it opened; and the

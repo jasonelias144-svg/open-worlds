@@ -74,10 +74,11 @@ Two other parts look like offices, and are not under these marks:
   multiverse needs to function: the root of the key list, ADMIN's and
   the other offices' keys, and the keys of the worlds the project runs;
   never a person's container ([CONTAINER.md](CONTAINER.md)). It is the
-  founder's own, a last resort over the offices rather than one of them,
-  kept in the open, and it passes only by the founder's act
-  ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item 6), never by the
-  handover rule below.
+  founder's own: the "keys to the kingdom", held over the offices rather
+  than as one of them, and kept in the open. It passes only by the
+  founder's act, "like nuclear codes passed from one president to
+  another", which needs no emergency ([FUNDAMENTALS.md](FUNDAMENTALS.md),
+  privacy, item 6), never by the handover rule below.
 - **The technical lead.** It is a role of the project, not of the
   multiverse, with a succession: ADMIN.md, row 9, lists it among those
   that need one, and under AGENTS.md it passes only by the founder's act,
