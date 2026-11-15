@@ -163,9 +163,10 @@ technical lead's. Each part is one reviewed pull request.
    - **Two logs, one step.** The plant writes each step in its own log,
      and the garden's `tended` entry names that entry's hash: DeepSeek's
      idea from its microverse's `advance_cycle` (`sketches/INDEX.md`,
-     record 012-06-02, piece 47), in our own code. `hosting_problems` checks the two logs
-     against each other in Rust, and `tests/test_ur_world_vectors.py`
-     does again in Python, with each plant grown by the rule.
+     record 012-06-02, piece 47), in our own code. `hosting_problems`
+     checks the two logs against each other in Rust, and
+     `tests/test_ur_world_vectors.py` does again in Python, with each
+     plant grown by the rule.
    - **The vectors** are in `vectors/ur-garden-hosted.json`.
 
    **The map, built** on 2026-11-15: the World Map
@@ -214,6 +215,136 @@ How each world may change is its own: a template can say that no change
 is taken, or that a change makes a branch and the original continues, or
 that the world is sandboxed from others. The first plant world takes no
 change from outside; the choices come later, one world at a time.
+
+## Where it leads: living worlds
+
+The founder, on 2026-11-15, in six messages: the aim that parts 4 and 5
+work toward. Each is quoted whole, except the closing "Thoughts?" of the
+first five, the opening "Perfect." of the third and sixth, and the
+sixth's closing note.
+
+- "Also, with the plant viewer, it would be great to see a window for
+  fractals to grow non-linearly, with a basic choice neuron to choose and
+  learn, and indefinitely. So instead of a prescribed number of turns, I
+  can set it going and watch it develop and make choices over time. Just
+  something to work toward."
+- With a still from a video of a particle simulation: "Here is a
+  screenshot from YouTube that shows a video of a particle simulator.
+  What would we need to do to generate a similar type of simulation in a
+  world. Our would involve some choices, some changes, some feedback,
+  some learning, some growing, but visually. It would be great to output
+  a short video to show the whole extent of a simulation or a world over
+  time."
+- "And now if we combine a neuron or small neural network that grows
+  fractals, in an environment with a particle simulator would be
+  interesting. It could be how “water” flows in the garden."
+- "Yes, and participants can shape the terrain, and irrigate new gardens
+  by shaping the flow of water, just as we have always done."
+- "In fact, for a species to control water flow is a huge evolutionary
+  advantage, obviously. And so that one concepts could be how “life”
+  spreads across a world, where planting and irrigating and finding
+  water sources is a common to a garden world."
+- "We can look at the variety of ways organisms seek water and see what
+  strategies arise. Also light and food. All three elements could be
+  components of one world type that models living systems. Just a
+  thought, just may be something worth exploring more. For now, let’s
+  keep moving forward with what we have."
+
+The technical lead's reading, put to the founder the same night. It
+stands unless the founder answers otherwise.
+
+**The stages,** each a reviewed pull request, after the map page
+(part 3, second half):
+1. **An endless plant, in the browser** (part 4). No fixed depth: each
+   tick a plant gathers light, more at tips no other branch shades;
+   growing costs, and so does keeping branches alive; when it runs
+   short, shaded twigs die back. So it grows, crowds itself, sheds and
+   regrows, and stays a manageable size. Rust compiled to WebAssembly
+   runs it in the page, with play, pause and speed; the page keeps
+   recent ticks and checkpoints, so it can run for hours. A checkpoint
+   names the hash of the log so far; the page holds no world's key, so
+   it signs nothing as the world.
+2. **A choice neuron** (part 5). One per plant, at first. At each tip
+   it reads a few numbers (light there, crowding, height, water) and
+   chooses: grow left, grow right, split, or rest. Its reward is the
+   light that growth caught, less its cost, and it adjusts its weights.
+   The weights are whole numbers and its randomness comes from the
+   world's seed, so every run repeats exactly. The page shows the
+   weights as they change. Then a small network instead of one neuron,
+   in some plants, compared in the same garden with the same seed.
+3. **Water as particles,** in a 2D side view first: sky, ground, soil
+   and roots. Water comes from the spring and from rain, runs downhill,
+   pools, soaks in, and leaves only by evaporating or being drunk.
+   Nothing comes from nowhere, so the plants in one place share a real
+   supply; across the world, rain and springs keep it coming (below).
+4. **Plants that drink.** The water dial becomes the water that reaches
+   a plant's roots. Roots are fractals too, growing down toward water as
+   shoots grow up toward light, and the neuron chooses between them. The
+   garden will give water and light as it now gives time
+   (`rust/ur-world/src/host.rs`), and both logs will record them.
+5. **People shape the land.** New actions for inhabitants: dig a cell,
+   pile one, line a channel. The world checks each and logs it, and the
+   water follows. In the window, the viewer can dig with the mouse, each
+   change an entry in the log, signed by the viewer's own key, as part 4
+   asks of every change from outside. In the 3D Ur-world, water is an
+   amount per cell that flows to its neighbours, as in Dwarf Fortress,
+   since particles over open land would be heavy. The challenge the
+   founder described, finding water and irrigating a new garden
+   ([WORLD-KEY.md](WORLD-KEY.md), "Challenges that build the world"),
+   becomes a skill learned by doing.
+6. **Life spreads.** Plants make seeds that water, wind and people
+   carry; a seed sprouts only where there is water enough. Each seed
+   inherits its parent's dials and learned weights, with small changes
+   drawn from the world's seed, so the plants whose choices found water
+   spread: selection you can watch. A sprout can be a world of its own,
+   whose birth record names its parent and what changed: the
+   multiverse's founding of a child world, at the scale of a seed.
+7. **Living worlds, later.** Water, light and food as parts of one kind
+   of world that models living things, and the strategies that arise for
+   finding each: worth exploring more, as the founder said.
+
+**What holds throughout:**
+- **Repeatable and checkable.** Whole numbers, randomness only from the
+  seed, and checkpoints that name the log's hash: anyone can run a world
+  again and confirm what was shown.
+- **Videos from runs.** A run can be drawn after the fact, every few
+  ticks, and joined into a video with ffmpeg: an hour of a world in a
+  minute, with the seed and checkpoints alongside so anyone can check
+  it. The first was made on 2026-11-15, from the garden's three hosted
+  plants and their checked logs, and shared with the founder privately;
+  a video maker comes into the repository with the endless window, and
+  each video is recorded with the command and seed that made it.
+  Videos are large, so they stay out of the repository; where any is
+  published is the founder's call.
+- **Water is where freedoms meet.** The founder, in
+  [FREEDOMS.md](FREEDOMS.md) ("When one freedom limits another"): "Much
+  source of problems fall away when space is infinite and resources are
+  endless." The technical lead's reading of how water fits: it will be
+  endless across a world, since rain will fall on all land and new land
+  will hold springs of its own (today the garden has one spring), but
+  finite in any one place at any one time. So no garden depends on one
+  source, and there is always water a little further out; how people
+  shape it where they are is the experiment. A dam upstream changes what
+  reaches a garden downstream, and the log shows how water moved. This
+  reading is put to the founder as a question, and stands unless the
+  founder answers otherwise (STATUS.md, Decided, 2026-11-15).
+- **Measured, not assumed.** The rules will need tuning; a single
+  neuron learns simple habits, sometimes bad ones; one lineage may take
+  over. How far life spread, how much water the land holds and how many
+  lineages survive are measured, and reported whichever way they come
+  out.
+
+**To look at first,** before the stages that need them: organisms as
+ecosystem engineers (Jones, Lawton and Shachak, 1994) and niche
+construction (Odling-Smee, Laland and Feldman); the bands of vegetation
+that form on dry slopes as plants catch runoff (Klausmeier, 1999); and
+how people have shared water, in the acequias of Spain and New Mexico
+and the subak water temples of Bali.
+
+"For now, let’s keep moving forward with what we have": the map page
+comes first, as planned. How water behaves, the growth rule, what the
+neuron reads, and the strategies for finding water, light and food are
+open for DeepSeek to brainstorm ([TOPICS.md](TOPICS.md), topic 18).
 
 ## The multiversal map
 

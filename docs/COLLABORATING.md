@@ -134,9 +134,24 @@ in the order to read it:
    change at a time. The mirror is also where ALICE's and BOB's models
    are chosen, at course step 8; once they live, a change of model is
    their own choice. Since a DeepSeek model is one of the two compared,
-   the measures
-   for comparing them are written by the project, not here. Ideas about
-   what a Keeper does stay welcome, as prose.
+   the measures for comparing them are written by the project, not here.
+   Ideas about what a Keeper does stay welcome, as prose.
+10. **Living worlds** ([FRACTALS.md](FRACTALS.md), "Where it leads:
+    living worlds"; [TOPICS.md](TOPICS.md), topic 18): the founder's aim
+    of 2026-11-15 for the fractal track, open for brainstorming. The
+    founder: "So instead of a prescribed number of turns, I can set it
+    going and watch it develop and make choices over time." Then water,
+    as particles: "It could be how “water” flows in the garden." Then
+    people shaping the land and the water, and life spreading where
+    water lets it. And: "All three elements could be components of one
+    world type that models living systems." The three are water, light
+    and food. Water is endless across a world but finite in any one
+    place, so no garden depends on one source: the technical lead's
+    reading, put to the founder (FRACTALS.md, "Water is where freedoms
+    meet"). Every run repeats from its seed and can be turned into a
+    video; the first, of the garden's three hosted plants, was made the
+    same night. The map page comes first: "For now, let’s keep moving
+    forward with what we have."
 
 The multiverse began as a sketch the founder wrote with DeepSeek
 (conversation records 012-04-00 and 012-03-02). This repository brought
@@ -268,7 +283,7 @@ here. They are about the design, not about bugs in the draft.
 The code standard is kept here, step by step. The most useful
 contributions now are creative and design work for the steps ahead, as
 text or as code with tests. [TOPICS.md](TOPICS.md) is the menu:
-seventeen topics a few steps ahead of the code, each with where it
+eighteen topics a few steps ahead of the code, each with where it
 fits, what is decided, what is open, a possible implementation, and
 what to send back, and, under "Further out", ideas that won't help yet
 but probably will.
@@ -291,6 +306,9 @@ In short:
   relay, the swarm, the council) are its small examples.
 - **The garden** (course step 4a): parallel worlds from one template,
   and what each glasshouse shows of its world from its public log.
+- **Living worlds** ([TOPICS.md](TOPICS.md), topic 18): how water moves,
+  a plant that grows without end, what a choice neuron reads and learns,
+  and the strategies for finding water, light and food.
 - **Laws for new worlds:** what a world admits by, what can happen in it,
   what counts as solving a problem there. Forms for the poetry world,
   such as a quatrain in common meter each turn, Dickinson's meter.
@@ -646,3 +664,7 @@ page.
   Ur-world's garden hosts three plant worlds in glasshouses
   (`ur-world/src/host.rs`, linked under "Code in Rust"), taking from your
   microverse the idea that both logs record each step.
+- 2026-11-15, between cycles: living worlds (item 10 above; TOPICS.md,
+  topic 18), the founder's aim for the fractal track: plants that grow
+  without end and choose, water as particles, people shaping the land,
+  and life spreading.
