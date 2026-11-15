@@ -50,16 +50,21 @@ fn cell(v: &Value) -> Cell {
 }
 
 /// No world's log names another of `worlds`, or the presence `person`
-/// has in it (counter 0), and none names the person.
-fn kept_apart(worlds: &[World], person: &Person) {
+/// has in it (counter 0), by key or by name (`names`, in the same order),
+/// and none names the person.
+fn kept_apart(worlds: &[World], names: &[&str], person: &Person) {
     for (i, w) in worlds.iter().enumerate() {
         let log = Value::Array(w.log().to_vec()).to_string();
         assert!(!log.contains(person.key().as_str()), "world {i}");
+        let agents: BTreeSet<&str> = w.log().iter().filter_map(|e| e["agent"].as_str()).collect();
         for (j, other) in worlds.iter().enumerate() {
             if i != j {
                 assert!(!log.contains(other.key()), "{i} names {j}");
                 let presence = person.presence(other.key(), 0).unwrap();
                 assert!(!log.contains(presence.as_str()), "{i} names {j}'s");
+                // A presence's name is its own (decision 3): no other
+                // world has anyone under it.
+                assert!(!agents.contains(names[j]), "{i} has {}", names[j]);
             }
         }
     }
@@ -71,7 +76,8 @@ fn the_octopus_brain_gives_intents_and_its_arms_find_their_own_way() {
     for w in &o.worlds {
         holds(w);
     }
-    kept_apart(&o.worlds, &o.person);
+    let names: Vec<&str> = octopus::ARMS.iter().map(|(_, n, _)| *n).collect();
+    kept_apart(&o.worlds, &names, &o.person);
     // Three intents for each arm, each given only once all had done the
     // last: go, then plant, then rest.
     let issued = o.brain.issued();
@@ -117,8 +123,14 @@ fn the_octopus_brain_gives_intents_and_its_arms_find_their_own_way() {
     let plant_after = issued
         .iter()
         .find(|(_, _, i)| matches!(i, Intent::Plant(_)))
-        .map(|(t, _, _)| *t)
+        .and_then(|(t, _, _)| *t)
         .unwrap();
+    // The first intents were given before the run, and only they.
+    assert!(
+        issued
+            .iter()
+            .all(|(t, _, i)| t.is_none() == matches!(i, Intent::Go(_)))
+    );
     for arm in 0..octopus::ARMS.len() {
         let arrived = reports
             .iter()
@@ -146,7 +158,8 @@ fn the_relay_leader_acts_only_when_enough_senses_fire() {
     for w in &r.worlds {
         holds(w);
     }
-    kept_apart(&r.worlds, &r.person);
+    let names: Vec<&str> = relay::PRESENCES.iter().map(|(_, n)| *n).collect();
+    kept_apart(&r.worlds, &names, &r.person);
     let fired = r.board.fired();
     let first: Vec<u64> = fired
         .iter()
@@ -189,7 +202,11 @@ fn the_swarm_grows_one_patch_with_no_brain() {
         .filter(|(_, m)| **m == Material::Flower)
         .map(|(c, _)| *c)
         .collect();
-    assert!(flowers.len() >= 20, "{}", flowers.len());
+    // The run is the same every time: 52 flowers, as PERSONS.md says.
+    assert_eq!(flowers.len(), 52);
+    // The units' person is named nowhere: the units are its presences.
+    let log = Value::Array(s.world.log().to_vec()).to_string();
+    assert!(!log.contains(s.person.key().as_str()));
     // Replayed from the log: every flower a unit planted is beside one
     // that was there before, the one its planter stood on.
     let mut grown = BTreeSet::from([swarm::FIRST_FLOWER]);
@@ -217,8 +234,12 @@ fn the_swarm_grows_one_patch_with_no_brain() {
         }
     }
     assert_eq!(grown, flowers);
-    // More than one unit planted: no one of them is the swarm.
-    assert!(planters.len() >= 3, "{planters:?}");
+    // Four of the five planted, and BEE-4 never found the patch: no one
+    // of them is the swarm.
+    assert_eq!(
+        planters,
+        BTreeSet::from(["BEE-1", "BEE-2", "BEE-3", "BEE-5"].map(String::from))
+    );
     // One patch: every flower reached from the first, side by side.
     let mut reached = BTreeSet::from([swarm::FIRST_FLOWER]);
     let mut frontier = vec![swarm::FIRST_FLOWER];

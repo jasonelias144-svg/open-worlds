@@ -50,7 +50,9 @@ pub const TICKS: u64 = 12;
 pub const STRANGER_AT: Cell = Cell::new(3, 1, 1);
 
 /// The person's board of what fired: each sense, by its place in
-/// [`PRESENCES`], and the tick it fired on.
+/// [`PRESENCES`], and the tick it fired on. The leader reads it; a sense
+/// holds only a [`Wire`] to it, which writes its own firings and reads
+/// nothing.
 #[derive(Debug, Clone, Default)]
 pub struct Board(Rc<RefCell<Vec<(u64, usize)>>>);
 
@@ -65,8 +67,26 @@ impl Board {
         self.0.borrow().iter().filter(|(t, _)| *t == tick).count()
     }
 
-    fn fire(&self, tick: u64, sense: usize) {
-        self.0.borrow_mut().push((tick, sense));
+    /// The wire from the sense at `sense`'s place to the board.
+    pub fn wire(&self, sense: usize) -> Wire {
+        Wire {
+            sense,
+            board: Rc::clone(&self.0),
+        }
+    }
+}
+
+/// A sense's wire to the board: it writes this sense's firings, and
+/// nothing else.
+#[derive(Debug, Clone)]
+pub struct Wire {
+    sense: usize,
+    board: Rc<RefCell<Vec<(u64, usize)>>>,
+}
+
+impl Wire {
+    fn fire(&self, tick: u64) {
+        self.board.borrow_mut().push((tick, self.sense));
     }
 }
 
@@ -74,14 +94,13 @@ impl Board {
 /// otherwise only waits.
 #[derive(Debug, Clone)]
 pub struct Senses {
-    sense: usize,
-    board: Board,
+    wire: Wire,
 }
 
 impl Senses {
-    /// The sense at `sense`'s place in [`PRESENCES`], writing on `board`.
-    pub const fn new(sense: usize, board: Board) -> Senses {
-        Senses { sense, board }
+    /// A sense that fires through `wire`.
+    pub const fn new(wire: Wire) -> Senses {
+        Senses { wire }
     }
 }
 
@@ -91,7 +110,7 @@ impl Mind for Senses {
             (at.x - seen.position.x).abs() <= REACH && (at.z - seen.position.z).abs() <= REACH
         });
         if near {
-            self.board.fire(seen.tick, self.sense);
+            self.wire.fire(seen.tick);
         }
         Action::Wait
     }
@@ -145,7 +164,7 @@ pub fn run() -> Result<Relay, String> {
         let index = u64::try_from(i).map_err(|e| e.to_string())?;
         let mut world = trial_world(label, SEED + index);
         let mind: Box<dyn Mind> = if i < 2 {
-            Box::new(Senses::new(i, board.clone()))
+            Box::new(Senses::new(board.wire(i)))
         } else {
             Box::new(Leads::new(board.clone()))
         };

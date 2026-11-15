@@ -68,37 +68,57 @@ pub struct Report {
     pub reflex: bool,
 }
 
-#[derive(Debug, Default)]
+#[derive(Debug)]
 struct State {
     intents: Vec<Intent>,
     reports: Vec<Report>,
-    issued: Vec<(u64, usize, Intent)>,
+    issued: Vec<(Option<u64>, usize, Intent)>,
 }
 
-/// The brain: the person's client, which every arm reports to.
-#[derive(Debug, Clone, Default)]
+/// The brain: the person's client, which every arm reports to. Only the
+/// brain hears every arm; an arm holds a [`Line`] to it, which carries its
+/// own reports and its own intent, and nothing of the other arms'.
+#[derive(Debug, Clone)]
 pub struct Brain(Rc<RefCell<State>>);
 
 impl Brain {
+    /// A brain for `arms` arms, each resting until given an intent.
+    pub fn new(arms: usize) -> Brain {
+        Brain(Rc::new(RefCell::new(State {
+            intents: vec![Intent::Rest; arms],
+            reports: Vec::new(),
+            issued: Vec::new(),
+        })))
+    }
+
+    /// The line from the arm at `arm`'s place to the brain.
+    pub fn line(&self, arm: usize) -> Line {
+        Line {
+            arm,
+            brain: Rc::clone(&self.0),
+        }
+    }
+
     /// Every report, in the order the arms made them.
     pub fn reports(&self) -> Vec<Report> {
         self.0.borrow().reports.clone()
     }
 
-    /// Every intent the brain gave: the tick after which it gave it, the
-    /// arm, and the intent.
-    pub fn issued(&self) -> Vec<(u64, usize, Intent)> {
+    /// Every intent the brain gave: the tick after which it gave it
+    /// (`None` for the first, given before the run), the arm, and the
+    /// intent.
+    pub fn issued(&self) -> Vec<(Option<u64>, usize, Intent)> {
         self.0.borrow().issued.clone()
     }
 
-    fn give(&self, tick: u64, arm: usize, intent: Intent) {
+    /// Gives the arm at `arm`'s place `intent`, after `tick`; an arm the
+    /// brain wasn't made for is given nothing.
+    fn give(&self, tick: Option<u64>, arm: usize, intent: Intent) {
         let mut state = self.0.borrow_mut();
         if let Some(slot) = state.intents.get_mut(arm) {
             *slot = intent;
-        } else {
-            state.intents.push(intent);
+            state.issued.push((tick, arm, intent));
         }
-        state.issued.push((tick, arm, intent));
     }
 
     fn intent(&self, arm: usize) -> Intent {
@@ -108,10 +128,6 @@ impl Brain {
             .get(arm)
             .copied()
             .unwrap_or(Intent::Rest)
-    }
-
-    fn report(&self, report: Report) {
-        self.0.borrow_mut().reports.push(report);
     }
 
     /// The end of a tick: from the latest report of each arm, the next
@@ -144,8 +160,39 @@ impl Brain {
                 Intent::Go(_) => Intent::Plant(Dir::East),
                 Intent::Plant(_) | Intent::Rest => Intent::Rest,
             };
-            self.give(tick, arm, next);
+            self.give(Some(tick), arm, next);
         }
+    }
+}
+
+/// An arm's line to the brain: it reads the arm's own intent and carries
+/// the arm's own reports, and nothing else.
+#[derive(Debug, Clone)]
+pub struct Line {
+    arm: usize,
+    brain: Rc<RefCell<State>>,
+}
+
+impl Line {
+    /// The arm's intent now.
+    pub fn intent(&self) -> Intent {
+        self.brain
+            .borrow()
+            .intents
+            .get(self.arm)
+            .copied()
+            .unwrap_or(Intent::Rest)
+    }
+
+    /// Reports to the brain, as this arm.
+    fn report(&self, tick: u64, at: Cell, last: Option<Outcome>, reflex: bool) {
+        self.brain.borrow_mut().reports.push(Report {
+            arm: self.arm,
+            tick,
+            at,
+            last,
+            reflex,
+        });
     }
 }
 
@@ -153,32 +200,26 @@ impl Brain {
 /// and its report.
 #[derive(Debug, Clone)]
 pub struct Arm {
-    arm: usize,
-    brain: Brain,
+    line: Line,
 }
 
 impl Arm {
-    /// The arm at `arm`'s place in [`ARMS`], reporting to `brain`.
-    pub const fn new(arm: usize, brain: Brain) -> Arm {
-        Arm { arm, brain }
+    /// An arm that reads its intent and reports through `line`.
+    pub const fn new(line: Line) -> Arm {
+        Arm { line }
     }
 }
 
 impl Mind for Arm {
     fn act(&mut self, seen: &Observation) -> Action {
-        let intent = self.brain.intent(self.arm);
+        let intent = self.line.intent();
         let blocked = match seen.last {
             Some(Outcome::StepBlocked(dir)) => Some(dir),
             _ => None,
         };
         let reflex = blocked.is_some() && matches!(intent, Intent::Go(_));
-        self.brain.report(Report {
-            arm: self.arm,
-            tick: seen.tick,
-            at: seen.position,
-            last: seen.last.clone(),
-            reflex,
-        });
+        self.line
+            .report(seen.tick, seen.position, seen.last.clone(), reflex);
         match (intent, blocked) {
             // The reflex: blocked, it steps aside, at right angles.
             (Intent::Go(_), Some(Dir::East | Dir::West)) => Action::Step(Dir::South),
@@ -205,19 +246,19 @@ pub struct Octopus {
 
 /// The octopus's run ([`crate::architecture::octopus`]): the arms enter
 /// west of the tree, each in its own world, where [`ARMS`] says, and the
-/// brain sends each to [`SECOND_AT`], east of the tree; then the worlds take [`TICKS`] ticks in step, the
-/// brain deciding at the end of each.
+/// brain sends each to [`SECOND_AT`], east of the tree; then the worlds
+/// take [`TICKS`] ticks in step, the brain deciding at the end of each.
 pub fn run() -> Result<Octopus, String> {
     let person = Person::trial(SEED, "the octopus");
-    let brain = Brain::default();
+    let brain = Brain::new(ARMS.len());
     let mut worlds = Vec::new();
     for (i, (label, name, start)) in ARMS.iter().enumerate() {
         let index = u64::try_from(i).map_err(|e| e.to_string())?;
         let mut world = trial_world(label, SEED + index);
-        brain.give(0, i, Intent::Go(SECOND_AT));
+        brain.give(None, i, Intent::Go(SECOND_AT));
         let arrival = person.arrival(&world, 0, name, CREATED)?;
         world
-            .enter(&arrival, Box::new(Arm::new(i, brain.clone())), *start)
+            .enter(&arrival, Box::new(Arm::new(brain.line(i))), *start)
             .map_err(|e| format!("{name} can't enter {label}: {e}"))?;
         worlds.push(world);
     }

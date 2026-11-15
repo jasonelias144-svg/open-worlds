@@ -495,6 +495,9 @@ worlds.
   steps aside on its next tick without asking the brain.
 - **Every arm reports** each tick, what it stands on and what came of
   its last action: the efference copy.
+- **Only the brain hears them all.** An arm holds only a line to the
+  brain, which reads its own intent and carries its own reports, so no
+  arm can read another's.
 - **The run:** each arm's way east runs into the tree's trunk, and its
   reflex takes it round. The third arm starts further west, and the
   brain waits for it before telling all three to plant. Nine intents in
@@ -502,7 +505,8 @@ worlds.
 
 **The relay** (component 42): two senses and a leader, in three worlds.
 - **Each sense** only watches, and fires when anyone stands within two
-  cells; the person's client writes it on its board.
+  cells, through a wire to the person's board that writes its own
+  firings and reads nothing.
 - **The leader**, in a world no sense can see, reads how many fired on
   its tick, and acts only when both did. The octopus's brain pushes
   intents; the leader pulls what fired.

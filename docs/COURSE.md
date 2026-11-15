@@ -201,10 +201,9 @@ three trial worlds at once, carrying a note between them, and a link
 shown by the presence's own act, which the world checks and logs
 (`ur-world/0.5`). Of part four, the architectures, the octopus, the
 relay and the swarm are built as small runs on the unchanged core; the
-council, which needs a record for a signed vote, is next. A person
-above their
-presences in each world
-([MULTIVERSE.md](MULTIVERSE.md)), unlinked by default, with the
+council, which needs a record for a signed vote, is next. A person above
+their presences in each world ([MULTIVERSE.md](MULTIVERSE.md)),
+unlinked by default, with the
 architectures (octopus, relay, swarm, council) as small examples on the
 unchanged core; a person across worlds, as the founder pictured it
 ([VISION.md](VISION.md), "A person across worlds"). An arrival names the
