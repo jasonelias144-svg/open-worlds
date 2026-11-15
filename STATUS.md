@@ -245,6 +245,31 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on leaving and on data:
+  "Yes, all their records should be transferred to them and removed from
+  our records. We should not store any private keys for anyone that is
+  no longer in the multiverse. Their private data should be purged
+  from the records completely and demonstrably. That should be in the
+  charter. It is important and related to privacy."
+  And:
+  "Also, for the charter: data is not for sale. This cannot become a
+  data mining operation that then takes the data and sells it. That
+  should be forbidden at the start with a statement like this that
+  makes it clear that participant or member data is treated as a
+  matter of privacy and is not for sale. That too would defeat the
+  purpose. But data generated from the multiverse is available for the
+  public like an on-going public scientific experiment where all can
+  participate and access the data it generates. But all of that data
+  would already be scrubbed of anything personal and would consistent
+  with our overall philosophy on privacy and freedom."
+  So the charter says both (sections 3, 4 and 5), and AGENTS.md's rule
+  is now "Never a currency, never a money machine, never data for
+  sale". The technical lead's reading, in docs/FUNDAMENTALS.md, which
+  stands unless the founder answers otherwise: nothing personal enters
+  a public record in the first place; and a purge is shown by
+  crypto-shredding, every copy of a person's key destroyed, with a
+  signed, public purge record, which needs keys kept where they can
+  really be destroyed (settled with course step 8a).
 - 2026-11-15, founder, on worlds leaving the multiverse:
   "Yes, multiverse can only be stopped, part by part. And perhaps this
   could help, we could define branching protocols for a cluster of
@@ -1790,6 +1815,14 @@ it was wrong. Questions of what the project is for stay with the founder.
   logged the same way.
 
 ## Log
+
+- 2026-11-15 Claude: the founder's words on leaving and on data recorded:
+  the charter's sections 3 (data not for sale), 4 (public data, scrubbed
+  of anything personal) and 5 (whoever leaves takes their records, and
+  their private data is purged); FUNDAMENTALS.md, with "Public data, and
+  personal data" and "Purged, demonstrably"; AGENTS.md's rule, house rule
+  13, WORLD-TYPES.md's departure, and COURSE.md (keys kept where they
+  can be destroyed, with step 8a).
 
 - 2026-11-15 Claude: worlds can leave the multiverse, recorded at the
   founder's word: docs/WORLD-TYPES.md ("Leaving the multiverse"),

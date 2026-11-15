@@ -162,7 +162,9 @@ has changed since that record, in the order to read it:
    And [FUNDAMENTALS.md](FUNDAMENTALS.md) gathers every decision on
    freedom and privacy in one place, the founder's "absolutely
    fundamental" (2026-11-15): among them, everyone has a private space,
-   encrypted, that no one else can read, not even ADMIN.
+   encrypted, that no one else can read, not even ADMIN; data is never
+   for sale; and whoever leaves the multiverse takes their records with
+   them, and their private data is purged.
    [WORLD-TYPES.md](WORLD-TYPES.md) has a taxonomy of world types, and
    what can be done with a world of each, as with virtual machines and
    containers: pause, resume, stop, restart, reset (the founder,
@@ -568,7 +570,8 @@ These apply to code that comes into open-worlds, not to the draft (see
     "possibly the most fundamental fact" ([VISION.md](VISION.md), "Never
     a money machine"). A world may model an economy or a currency as a
     test setting that never leaves that world ("Commerce and currency
-    worlds", there).
+    worlds", there). And data is never for sale, and nothing personal
+    enters a public record ([FUNDAMENTALS.md](FUNDAMENTALS.md)).
 14. **The charter is the founder's words.** `CHARTER.md` grows only from
     the founder's recorded statements, quoted or paraphrased; nothing
     else goes into it without the founder's approval
@@ -850,6 +853,10 @@ page.
   charter's guarantees.
 - 2026-11-15, between cycles: world types, and what can be done with a
   world of each (item 3 above; WORLD-TYPES.md).
+- 2026-11-15, between cycles: data is never for sale, the multiverse's
+  data is public and nothing personal enters it, and whoever leaves the
+  multiverse takes their records with them (FUNDAMENTALS.md; house rule
+  13; the charter).
 
 ## Every file, by its full link
 

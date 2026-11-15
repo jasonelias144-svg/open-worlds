@@ -160,11 +160,16 @@ multiverse to go on:
    kept: a record never ends.
 3. **The keys move.** The world's key is signed over to a new key that
    whoever runs it now made, so the host keeps no key of the world.
-4. **The cord is cut.** After the departure record, the host neither
+4. **Their records go with them.** Whoever leaves with the world, or
+   leaves the multiverse at all, is given their records, and the
+   project's copies of their private keys and private data are purged,
+   "completely and demonstrably" (the founder, 2026-11-15;
+   [FUNDAMENTALS.md](FUNDAMENTALS.md), "Purged, demonstrably").
+5. **The cord is cut.** After the departure record, the host neither
    hosts, relays nor speaks for the world. What was signed before stays
    valid, since a signature needs no host: stamps, passports, and
    persons' links. A person with presences on both sides keeps both.
-5. **No host can refuse it.** As no world refuses a leaving
+6. **No host can refuse it.** As no world refuses a leaving
    ([COLLABORATING.md](COLLABORATING.md), house rule 4), no multiverse
    refuses a world that leaves by its own law. Coming back, or
    federating again, is a new decision by both sides.
@@ -259,9 +264,6 @@ fewer operations are anyone's to choose.**
 
 ## Open
 
-- The "break glass" for those who leave with a world: the host no
-  longer runs their minds, so the recommendation is that the host
-  gives up its copies of their keys, and records that it has.
 - Whether "branch" may ever copy a person. This page says never: a
   person is one, and enters a copy only by choice.
 - How long a paused world waits before it counts as stopped, if ever.

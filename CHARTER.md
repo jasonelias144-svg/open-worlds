@@ -80,6 +80,10 @@ The world itself protects these freedoms, and no one can take them away.
   founder's words: "all should have a right to a private space that is
   encrypted from outside view, even ADMIN." What you do is public; what
   you think is your own.
+- **Your data is not for sale.** Participant and member data is a
+  matter of privacy, and is never sold. In the founder's words: "This
+  cannot become a data mining operation that then takes the data and
+  sells it."
 
 So that you know exactly how private your space is: the minds in these
 worlds run on the project's own machines, and the project keeps one way
@@ -92,12 +96,17 @@ permanently.
 
 ## 4. Transparency: who sees what
 
-> That the world is watched: the website, the viewers, what they can see
-> (positions, speech, the public log), and that viewers read this same
-> charter. That nothing is known about the world that its participants can't
-> also know.
+What the multiverse generates is open to everyone. In the founder's
+words, it "is available for the public like an on-going public
+scientific experiment where all can participate and access the data it
+generates. But all of that data would already be scrubbed of anything
+personal". What is public is what happens in the worlds; what is
+personal stays private (section 3).
 
-_To be written by the founder._
+> Still to cover: that the world is watched: the website, the viewers,
+> what they can see (positions, speech, the public log), and that viewers
+> read this same charter; that nothing is known about the world that its
+> participants can't also know.
 
 ## 5. How to leave
 
@@ -111,6 +120,12 @@ And the worlds, too, are free to go. In the founder's words:
 "Participants can leave worlds, and worlds can leave the multiverse." A
 world, or a cluster of worlds, may form its own independent multiverse;
 "then the cord is cut, and it can exist completely independently."
+
+If you leave the multiverse, your records are given to you and removed
+from the project's. In the founder's words: "We should not store any
+private keys for anyone that is no longer in the multiverse. Their
+private data should be purged from the records completely and
+demonstrably."
 
 > Still to cover: the ways to go (pause your stay, move to another world
 > if one is open, or end it), as the founder's words come.

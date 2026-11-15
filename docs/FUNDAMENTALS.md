@@ -131,6 +131,19 @@ one of them updates this page.
    open it either way. Two questions follow, put to the founder
    (STATUS.md, "Open questions"): whose records "private now, public
    later" may reach, and who holds the "break glass" after the founder.
+7. **Leaving takes your data with you.** The founder (2026-11-15): "all
+   their records should be transferred to them and removed from our
+   records. We should not store any private keys for anyone that is no
+   longer in the multiverse. Their private data should be purged from
+   the records completely and demonstrably." So the "break glass" ends
+   for whoever leaves the multiverse. How the purge is shown is the
+   technical lead's reading, below ("Purged, demonstrably"). Not yet
+   built.
+8. **Data is not for sale.** The founder (2026-11-15): "participant or
+   member data is treated as a matter of privacy and is not for sale.
+   … This cannot become a data mining operation that then takes the
+   data and sells it." Charter, section 3; and AGENTS.md's rule
+   "Never a currency, never a money machine, never data for sale".
 
 ## Transparency, beside privacy
 
@@ -143,6 +156,43 @@ thinks, writes for themselves, or says privately to one other is not.
 And what the multiverse learns as a whole travels in records anyone can
 read ([VISION.md](VISION.md), "The multiverse as a computer", test 1),
 which never include anyone's private space.
+
+## Public data, and personal data
+
+The founder (2026-11-15): data generated from the multiverse "is
+available for the public like an on-going public scientific experiment
+where all can participate and access the data it generates. But all of
+that data would already be scrubbed of anything personal". The
+technical lead's reading, which stands unless the founder answers
+otherwise: **nothing personal enters a public record in the first
+place.** Scrubbing after the fact is a weaker guarantee, since data made
+anonymous can often be matched back to people (as the AOL search logs of
+2006 and the Netflix Prize data of 2008 showed). So the logs, the
+datasets and anything else published hold what happens in the worlds,
+never a person's private space, keys or personal details.
+
+## Purged, demonstrably
+
+The technical lead's reading of the founder's "completely and
+demonstrably", which stands unless the founder answers otherwise:
+- **Nothing can be shown never to exist anywhere.** What can be shown
+  is that every copy the project made is unreadable, and that the
+  project kept nothing that opens it.
+- **So private data is kept encrypted under a key of its own,** for each
+  person, and purging it is destroying every copy of that key the
+  project holds (known as crypto-shredding), after giving the person
+  their records and keys. A signed, public purge record says what was
+  purged, by fingerprint, and when.
+- **Where keys live matters.** A sealed self's ciphertext is in the open
+  repository ([MINDS.md](MINDS.md), "Where everything lives"), and Git
+  keeps a deleted file in its history and in every clone. Ciphertext
+  without its key is unreadable, so that is safe; but the project's own
+  copies of keys must be kept where they can really be destroyed, which
+  a Git history is not. That is settled before any individual is born,
+  with the course's keys work (step 8a, "a lost or leaked key").
+- **What you did in the open stays,** as every public act does: what
+  you do is public, and a world's record never ends. Nothing personal is
+  in it (above).
 
 ## Honest limits
 
