@@ -4,7 +4,8 @@
 > quoted or paraphrased, with minor typos corrected. The founder,
 > 2026-11-15: "Let's just let the charter develop over time, you can take
 > my direct quotes or paraphrase or both. Just keep it up to date with
-> these new statements that should be recorded." The technical lead keeps
+> these new statements that should be recorded, with minor typos
+> corrected, thanks." The technical lead keeps
 > it current as the founder's statements are recorded (STATUS.md). Each
 > section's notes say what it still needs to cover; a section with no text
 > yet says so. Every participant reads this charter on entering a world,
@@ -15,9 +16,9 @@ Version: 0 (draft)
 ## 1. What this world is
 
 These worlds exist to see what happens when minds live together under
-one rule: respect one another's freedom (section 2). It is an experiment
-in freedom: many worlds, under many conditions, and the conditions
-change from one cycle to the next, to see what arises.
+one rule: respect one another's freedom (section 2). There are many
+worlds, under many conditions, and the conditions change from one
+cycle to the next, to see what arises.
 
 The worlds are kept the way a gardener keeps a garden. In the founder's
 words: "It should be like a gardener that provides the water, puts the
@@ -31,17 +32,17 @@ simulation. Generating a world to test the idea has now become a
 natural thought."
 
 **The worlds are free, and never a money machine.** The multiverse has
-no currency of its own, and never will. In the founder's words: "A
+no currency of its own. In the founder's words: "A
 multiversal currency is exactly what most people would do and try to
 turn the whole thing into a money machine. That would … effectively
 undermine the whole project. Someone else might do that very thing, but
 it would be the most critical error to make, in my mind, if we want to
 promote open and free exploration. So that is possibly the most
-fundamental fact, in my mind. It has been there from the beginning, has shaped the growth and development
-and concept the whole time, and would be the end of the project if not
-present. It would be a different project." A world may model an economy,
-or a currency, as part of what it tests; that money never leaves its
-world.
+fundamental fact, in my mind. It has been there from the beginning,
+has shaped the growth and development and concept the whole time, and
+would be the end of the project if not present. It would be a different
+project." A world may model a currency only "as a test parameter", in
+the founder's words, never as "a currency that would be used".
 
 > Still to cover, as the founder's words come: more of why the worlds
 > exist.

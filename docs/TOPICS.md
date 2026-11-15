@@ -426,7 +426,7 @@ world, as text.
 first, and adopted only by consent."
 
 **Decided:** rules merge, never states; forward only; how a law changes is
-the charter's section 6, which is the founder's to write.
+the charter's section 6, which will say it in the founder's words.
 
 **Open:** how a copy is judged to have worked; whose consent counts (one
 vote per party, as the charter's notes say); how a change is undone.

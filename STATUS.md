@@ -82,7 +82,8 @@ free, and never a money machine
   mirror's Keeper runs on V4.1-Flash, and V4-Pro may be part of ADMIN's
   mind. The policy Apertus asks for waits until course step 8 (Open
   questions).
-- Founder: writing the charter's words into the structure in `CHARTER.md`.
+- Claude: the charter, kept from the founder's recorded words as they
+  come (`CHARTER.md`; the founder, 2026-11-15, in Decided).
 
 ## Next
 

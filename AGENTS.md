@@ -83,7 +83,8 @@ effect (docs/ADMIN.md).
   the technical lead keeps it current as they are recorded (the founder,
   2026-11-15: "Let's just let the charter develop over time, you can take
   my direct quotes or paraphrase or both. Just keep it up to date with
-  these new statements that should be recorded."). Nothing else goes into
+  these new statements that should be recorded, with minor typos
+  corrected, thanks."). Nothing else goes into
   `CHARTER.md` without the founder's approval, and a pull request that
   changes it says which statements it draws on.
 - **The kernel is the only authority.** Agents get immutable observations and

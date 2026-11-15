@@ -556,6 +556,11 @@ These apply to code that comes into open-worlds, not to the draft (see
     a money machine"). A world may model an economy or a currency as a
     test setting that never leaves that world ("Commerce and currency
     worlds", there).
+14. **The charter is the founder's words.** `CHARTER.md` grows only from
+    the founder's recorded statements, quoted or paraphrased; nothing
+    else goes into it without the founder's approval
+    ([AGENTS.md](../AGENTS.md)). A proposal for the charter is a
+    question for the founder, not a change.
 
 ## Code in Rust
 
