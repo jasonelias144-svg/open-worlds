@@ -162,8 +162,8 @@ technical lead's. Each part is one reviewed pull request.
      garden gives each plant a step of its own time, until it finishes.
    - **Two logs, one step.** The plant writes each step in its own log,
      and the garden's `tended` entry names that entry's hash: DeepSeek's
-     idea from its microverse (`sketches/INDEX.md`, record 012-06-02,
-     piece 47), in our own code. `hosting_problems` checks the two logs
+     idea from its microverse's `advance_cycle` (`sketches/INDEX.md`,
+     record 012-06-02, piece 47), in our own code. `hosting_problems` checks the two logs
      against each other in Rust, and `tests/test_ur_world_vectors.py`
      does again in Python, with each plant grown by the rule.
    - **The vectors** are in `vectors/ur-garden-hosted.json`.

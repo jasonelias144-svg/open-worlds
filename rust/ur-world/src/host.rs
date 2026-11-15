@@ -8,8 +8,9 @@
 //! have acted, the Ur-world tends every world it hosts, one step of that
 //! world's own time.
 //!
-//! Two logs record each step, as DeepSeek's microverse did (record
-//! 012-06-02, piece 47: "two logs, one social act"): the hosted world
+//! Two logs record each step, as in DeepSeek's microverse (record
+//! 012-06-02, piece 47), whose `advance_cycle` wrote in the host's log the
+//! hashes of the events each hosted world's step made: the hosted world
 //! writes the step in its own log, and the Ur-world's `tended` entry names
 //! the hash of that entry. So anyone holding both logs can check, with
 //! [`hosting_problems`], that the Ur-world gave each world exactly the
@@ -25,7 +26,7 @@
 //! - `untended`: `{world, reason}`: a world that couldn't take its step,
 //!   and isn't tended again.
 
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet};
 
 use plant_world::world::{PlantWorld, RULE};
 use serde_json::Value;
@@ -140,21 +141,30 @@ fn text<'a>(value: &'a Value, key: &str) -> Option<&'a str> {
 }
 
 /// What is wrong with how a log of the Ur-world hosted the worlds whose
-/// logs are given, if anything: each `hosted` entry names a world whose
-/// log is given, by the hash of its first entry and of the entry it was at
-/// when it came; each `tended` entry names, for each world, exactly the
-/// next entry of that world's log; and each hosted log ends at the last
-/// entry the Ur-world tended, and holds together as a log. A given log the
-/// Ur-world never hosted is a problem too. Each problem names the entry of
-/// the Ur-world's log (`[i]`) or the hosted world (by its key).
+/// logs are given, if anything:
+/// - each `hosted` entry names a world whose log is given, by the hash of
+///   its first entry and of the entry it was at when it came, and a place
+///   where a glasshouse can stand ([`place_problem`]) and no other stands;
+/// - each `tended` entry names at least one world, each at most once, in
+///   the order they were hosted, and for each exactly the next entry of
+///   its log: one step a tick;
+/// - each hosted log ends at the last entry the Ur-world tended, and holds
+///   together as a log; and a given log the Ur-world never hosted is a
+///   problem too.
 ///
-/// Whether each hosted log grows by its own rule is that world's check
-/// (for a plant, `plant_world::world::log_problems`).
+/// Each problem names the entry of the Ur-world's log (`[i]`) or the
+/// hosted world (by its key). Checked elsewhere: the Ur-world's own log's
+/// chain and signed heads (`world_log::verify_log`,
+/// [`crate::arrival::head_coverage`]), and whether each hosted log grows
+/// by its own rule (for a plant, `plant_world::world::log_problems`).
 pub fn hosting_problems(log: &[Value], hosted: &[&[Value]]) -> Vec<String> {
     let mut problems = Vec::new();
     // Each given log, by the key its first entry names, and the index of
     // the last entry the Ur-world has accounted for (None until hosted).
     let mut logs: BTreeMap<String, (&[Value], Option<usize>, bool)> = BTreeMap::new();
+    // The order each world was hosted in, and the places taken.
+    let mut order: BTreeMap<String, usize> = BTreeMap::new();
+    let mut places: BTreeSet<Cell> = BTreeSet::new();
     for given in hosted {
         let key = given
             .first()
@@ -187,6 +197,23 @@ pub fn hosting_problems(log: &[Value], hosted: &[&[Value]]) -> Vec<String> {
                     problems.push(format!("[{i}]: hosts {key} a second time"));
                     continue;
                 }
+                let n = order.len();
+                order.insert(key.to_owned(), n);
+                match read_cell(data.get("at")) {
+                    None => problems.push(format!("[{i}]: hosts {key} at no readable place")),
+                    Some(cell) => {
+                        if let Some(why) = place_problem(cell) {
+                            problems.push(format!(
+                                "[{i}]: hosts {key} where a glasshouse can't stand ({why})"
+                            ));
+                        }
+                        if !places.insert(cell) {
+                            problems.push(format!(
+                                "[{i}]: hosts {key} where another glasshouse stands"
+                            ));
+                        }
+                    }
+                }
                 let hash_at = |j: usize| given.get(j).and_then(|e| text(e, "hash"));
                 if text(data, "first") != hash_at(0) {
                     problems.push(format!("[{i}]: names another first entry for {key}"));
@@ -205,6 +232,11 @@ pub fn hosting_problems(log: &[Value], hosted: &[&[Value]]) -> Vec<String> {
                     problems.push(format!("[{i}]: tends, but names no worlds"));
                     continue;
                 };
+                if pairs.is_empty() {
+                    problems.push(format!("[{i}]: tends, but names no worlds"));
+                }
+                let mut seen = BTreeSet::new();
+                let mut last = None;
                 for pair in pairs {
                     let (Some(key), Some(hash)) = (
                         pair.get(0).and_then(Value::as_str),
@@ -213,6 +245,18 @@ pub fn hosting_problems(log: &[Value], hosted: &[&[Value]]) -> Vec<String> {
                         problems.push(format!("[{i}]: names a world it tended unreadably"));
                         continue;
                     };
+                    if !seen.insert(key) {
+                        problems.push(format!("[{i}]: tends {key} twice in one tick"));
+                        continue;
+                    }
+                    if let Some(&n) = order.get(key) {
+                        if last.is_some_and(|l| n <= l) {
+                            problems.push(format!(
+                                "[{i}]: tends {key} out of the order the worlds were hosted in"
+                            ));
+                        }
+                        last = Some(n);
+                    }
                     match logs.get_mut(key) {
                         Some((given, Some(at), false)) => {
                             let next = *at + 1;
@@ -248,4 +292,12 @@ pub fn hosting_problems(log: &[Value], hosted: &[&[Value]]) -> Vec<String> {
         }
     }
     problems
+}
+
+/// A cell written as `[x, y, z]`, if it is one.
+fn read_cell(value: Option<&Value>) -> Option<Cell> {
+    match value?.as_array()?.as_slice() {
+        [x, y, z] => Some(Cell::new(x.as_i64()?, y.as_i64()?, z.as_i64()?)),
+        _ => None,
+    }
 }

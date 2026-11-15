@@ -115,8 +115,8 @@ in the order to read it:
    arrivals and log heads since step 3. The Ur-world's garden hosts the
    fractal plants, as the founder pictured it: "a microverse garden of
    hosted fractal worlds". Three plant worlds grow in its glasshouses,
-   each a world of its own, and both logs record each step, your
-   microverse's "two logs, one social act" (`ur-world/src/host.rs`).
+   each a world of its own, and both logs record each step, as your
+   microverse's `advance_cycle` did (`ur-world/src/host.rs`).
 8. **Challenges that build the world** ([WORLD-KEY.md](WORLD-KEY.md),
    "Challenges that build the world"; [TOPICS.md](TOPICS.md), topic 17):
    the founder's idea of 2026-11-15, open for brainstorming. The founder:

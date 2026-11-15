@@ -143,9 +143,10 @@ fractal worlds". So the garden hosts other worlds, in glasshouses
   hosted world takes one step of its own time, until it finishes.
 - **Both logs record each step.** The hosted world writes the step in its
   own log, and the Ur-world's `tended` entry names the hash of that
-  entry, as DeepSeek's microverse did ("two logs, one social act", record
+  entry, as DeepSeek's microverse did: its `advance_cycle` wrote in the
+  host's log the hashes of each hosted world's new events (record
   012-06-02). Anyone holding both logs can check that the Ur-world gave
-  each world exactly the steps its log shows, in order.
+  each world exactly one step a tick, in order, and nothing more.
 - **The Hello World hosts three plant worlds** (`rust/plant-world`), grown
   from one trial template with dials of their own: the template's own
   plant, a larger one, and one in low light.

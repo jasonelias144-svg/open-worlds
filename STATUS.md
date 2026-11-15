@@ -1488,7 +1488,8 @@ it was wrong. Questions of what the project is for stay with the founder.
   Ur-world's garden hosts three plant worlds in glasshouses, each a
   world of its own with its own key and log; each tick the garden gives
   each a step of its time, and its `tended` entry names the entry that
-  step wrote in the plant's log (DeepSeek's "two logs, one social act").
+  step wrote in the plant's log (from DeepSeek's microverse, whose
+  `advance_cycle` named each hosted world's new events).
   `hosting_problems` checks both logs against each other, and Python
   again, with each plant grown by the rule. The Ur-world's rules are now
   ur-world/0.4, and its garden vectors are written again.

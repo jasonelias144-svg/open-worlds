@@ -302,6 +302,40 @@ fn hosting_problems_finds_what_doesnt_match() {
         json!({"kind": "untended", "data": {"world": key, "reason": "test"}}),
     );
     found(&after, &hosted, "after it was untended");
+    // Within a tick: a world twice, worlds out of hosting order, none.
+    let mut twice_a_tick = log.clone();
+    let pair = log[first_tended]["data"]["worlds"][0].clone();
+    twice_a_tick[first_tended]["data"]["worlds"]
+        .as_array_mut()
+        .unwrap()
+        .push(pair);
+    found(&twice_a_tick, &hosted, "twice in one tick");
+    let mut out_of_order = log.clone();
+    out_of_order[first_tended]["data"]["worlds"]
+        .as_array_mut()
+        .unwrap()
+        .reverse();
+    found(
+        &out_of_order,
+        &hosted,
+        "out of the order the worlds were hosted in",
+    );
+    let mut none = log.clone();
+    none.insert(
+        first_tended,
+        json!({"kind": "tended", "data": {"worlds": []}}),
+    );
+    found(&none, &hosted, "names no worlds");
+    // A glasshouse moved onto the trunk, or onto another's place.
+    let mut trunk = log.clone();
+    trunk[first_hosted]["data"]["at"] = json!([0, 1, 0]);
+    found(&trunk, &hosted, "the tree stands there");
+    let mut shared = log.clone();
+    shared[first_hosted + 1]["data"]["at"] = log[first_hosted]["data"]["at"].clone();
+    found(&shared, &hosted, "where another glasshouse stands");
+    let mut nowhere = log.clone();
+    nowhere[first_hosted]["data"]["at"] = json!([0, 1]);
+    found(&nowhere, &hosted, "at no readable place");
     // A hosted log that doesn't hold together.
     let mut broken = hosted.clone();
     broken[0][1]["tick"] = json!(99);

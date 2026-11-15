@@ -231,18 +231,25 @@ class TestTheGardensGlasshouses(unittest.TestCase):
 
     def test_the_gardens_log_names_every_step_it_gave(self):
         by_key = {w["log"][0]["data"]["world"]: w for w in self.worlds}
-        at = {}
+        at, order, places = {}, {}, set()
         for entry in self.log:
             data = entry["data"]
             if entry["kind"] == "hosted":
                 w = by_key[data["world"]]
                 self.assertNotIn(data["world"], at)
+                order[data["world"]] = len(order)
+                self.assertNotIn(tuple(data["at"]), places)
+                places.add(tuple(data["at"]))
                 self.assertEqual(data["first"], w["log"][0]["hash"])
                 self.assertEqual(data["kind"], "open-worlds/plant-rule/v1")
                 self.assertEqual(data["at"], w["at"])
                 hashes = [e["hash"] for e in w["log"]]
                 at[data["world"]] = hashes.index(data["from"])
             elif entry["kind"] == "tended":
+                # One step a tick for each world, in the order hosted.
+                keys = [key for key, _ in data["worlds"]]
+                self.assertTrue(keys)
+                self.assertEqual(keys, sorted(set(keys), key=order.get))
                 for key, hash_ in data["worlds"]:
                     at[key] += 1
                     self.assertEqual(by_key[key]["log"][at[key]]["hash"],
