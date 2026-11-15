@@ -87,8 +87,12 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
   the tools every world gives, and what is never left to emerge.
 - [docs/COMMONS.md](docs/COMMONS.md): the Commons, Lyceum Commons rebuilt
   as a superworld of rooms, the first space open to the public.
+- [docs/CONTAINER.md](docs/CONTAINER.md): the private container, where
+  each person keeps what is their own, which the project never sees.
 - [docs/GLOSSARY.md](docs/GLOSSARY.md): the words we use: "agent" for
   anything that perceives and acts, and the words beneath it.
+- [docs/OFFICES.md](docs/OFFICES.md): what makes an office, such as
+  ADMIN or a world's Keeper, and how one is handed on.
 - [rust/](rust/README.md): the worlds in Rust: the Ur-world, and the public
   record, checked across languages through shared test vectors
   ([vectors/](vectors/README.md)).

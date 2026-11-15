@@ -152,8 +152,8 @@ has changed since that record, in the order to read it:
    checks its vectors.
 3. **Who an individual is,** in the design pages:
    [MINDS.md](MINDS.md) (identity, mind record, a sealed self no one else
-   reads, unless the founder opens it under the "break glass", in the
-   open; the sheet, avatars, and where everything lives);
+   reads, kept in the individual's own container; the sheet, avatars, and
+   where everything lives);
    [WORLD-KEY.md](WORLD-KEY.md) (the tour, the hunt, and the world-key,
    a signed right to found a world); [ADMIN.md](ADMIN.md) (ADMIN, the
    Keeper of the multiverse: what it must preserve, how it learns, the
@@ -163,9 +163,10 @@ has changed since that record, in the order to read it:
    And [FUNDAMENTALS.md](FUNDAMENTALS.md) gathers every decision on
    freedom and privacy in one place, the founder's "absolutely
    fundamental" (2026-11-15): among them, everyone has a private space,
-   encrypted, that no one else can read, not even ADMIN (the one way in
-   is the founder's "break glass", and every opening is recorded in
-   public); an account needs only an email address; data is never for
+   encrypted, that no one else can read, not even ADMIN, kept in their
+   own private container ([CONTAINER.md](CONTAINER.md)), which the
+   project never sees; the founder's "break glass" covers only the
+   multiverse's own keys; an account needs only an email address; data is never for
    sale; whoever leaves the multiverse takes their private records with
    them, and their private data is purged; and public acts always
    remain, as public records are never edited, except that anything
@@ -181,7 +182,10 @@ has changed since that record, in the order to read it:
    multiverse of its own, and the cord is cut.
    And [GLOSSARY.md](GLOSSARY.md) says what our words mean: "agent" is
    anything that perceives and acts, from a neuron steering a plant to
-   any human (the founder's word, 2026-11-15).
+   any human (the founder's word, 2026-11-15). [OFFICES.md](OFFICES.md)
+   says what an office is (ADMIN and the Keepers are two), and how one
+   is handed on: both agree clearly, and the successor meets the
+   office's qualifications.
 4. **The founder's visions of 2026-11-14,** in the founder's words
    ([VISION.md](VISION.md), [PARALLEL-WORLDS.md](PARALLEL-WORLDS.md)):
    question worlds, where an idea becomes a world that tests it; an app
@@ -434,7 +438,7 @@ here. They are about the design, not about bugs in the draft.
 The code standard is kept here, step by step. The most useful
 contributions now are creative and design work for the steps ahead, as
 text or as code with tests. [TOPICS.md](TOPICS.md) is the menu:
-eighteen topics a few steps ahead of the code, each with where it
+nineteen topics a few steps ahead of the code, each with where it
 fits, what is decided, what is open, a possible implementation, and
 what to send back, and, under "Further out", ideas that won't help yet
 but probably will.
@@ -465,6 +469,9 @@ In short:
   superworld of rooms and the first space open to the public. A room's
   law for each kind (people, AIs, or both), as data and as text; how an
   AI from another company's app could hold its key.
+- **Offices** ([TOPICS.md](TOPICS.md), topic 19;
+  [OFFICES.md](OFFICES.md)): a Keeper's qualifications, as checks code
+  could run, and what preparing a successor looks like in the open.
 - **Laws for new worlds:** what a world admits by, what can happen in it,
   what counts as solving a problem there. Forms for the poetry world,
   such as a quatrain in common meter each turn, Dickinson's meter.
@@ -893,6 +900,10 @@ page.
   of an action keeps its metadata, not its private details: when a
   person leaves, the links they showed stay only as the fact that a
   link was made.
+- 2026-11-15, between cycles: the private container (CONTAINER.md):
+  each person's keys, private space and messages in their own container,
+  which the project never sees, acting from it by signed acts; the
+  founder's "break glass" now covers only the multiverse's own keys.
 - 2026-11-15, between cycles: the Commons (COMMONS.md): Lyceum Commons,
   "the original idea that became the multiverse" (the founder), rebuilt
   here as a superworld whose rooms are text worlds, the first space open
@@ -924,18 +935,20 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FRACTA
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/URWORLD.md
 ```
 
-**The design pages** (15):
+**The design pages** (17):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/ADMIN.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHEMISTRY.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CONTAINER.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/DESIGN.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FREEDOMS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FUNDAMENTALS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/GLOSSARY.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/MINDS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/MULTIVERSE.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/OFFICES.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/PARALLEL-WORLDS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/REASONS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/WORLD-KEY.md

@@ -112,7 +112,11 @@ one of them updates this page.
    alone, and opens only with the author's key (`formats/sealed.py`,
    `tests/test_formats_sealed.py`). Not yet built: a world that keeps
    its individuals' private spaces, which comes with ALICE's and BOB's
-   life ([COURSE.md](COURSE.md)).
+   life ([COURSE.md](COURSE.md)). And since 2026-11-15, each person's
+   private space lives in their own private container, "which the
+   project never sees" (the founder), and no one but them holds its
+   keys, the project and the founder included
+   ([CONTAINER.md](CONTAINER.md)). Not yet built.
 2. **What you do is public; what you think is your own.** The founder
    (2026-11-13): "Each individual should have a private interior world
    that is not accessible to the world Keeper. The same as what would be
@@ -131,7 +135,9 @@ one of them updates this page.
 4. **Speaking privately.** Decided 2026-11-14: two individuals may speak
    privately, sealed so no one else reads it, though that a message
    passed stays in the record ([FREEDOMS.md](FREEDOMS.md), "Speak").
-   Not yet built.
+   Since 2026-11-15, a private message goes from one person's container
+   to the other's, sealed to the receiver, so the project holds no key
+   to it either ([CONTAINER.md](CONTAINER.md)). Not yet built.
 5. **A person's presences, unlinked by default.** Decided 2026-11-14: "a
    person may keep their presences in different worlds unlinked: by
    default, and the person chooses what to show"
@@ -152,13 +158,21 @@ one of them updates this page.
    when can still hint that presences are one person's; the time a
    redacted link record keeps can be made coarser, which is decided when
    it is built.
-6. **The "break glass", in the open.** Chosen by the founder on
-   2026-11-14: a sealed self, or a private message, can be opened only
-   by an explicit decision of the founder's, and every opening is
-   recorded publicly and permanently. So the project keeps those keys in
-   its private repository, and not looking is a rule kept in the open,
-   not a technical guarantee ([MINDS.md](MINDS.md), "The honest
-   limit"). Kept, at the founder's word of 2026-11-15: "I love the
+6. **The "break glass", for the multiverse's own keys, in the open.**
+   The founder (2026-11-15): "the "break glass" applies to keys needed
+   for the multiverse to function, those associated with ADMIN and
+   everything else." So it covers the root key of the key list, ADMIN's
+   and the other offices' keys, and the keys of the worlds the project
+   runs, and it never reaches a person's private space or their private
+   messages, which live in their own containers
+   ([CONTAINER.md](CONTAINER.md), "The "break glass", narrowed"). It is
+   opened only by an explicit decision of the founder's, and every
+   opening is recorded publicly and permanently. As first chosen, on
+   2026-11-14, it covered sealed selves and private messages, so the
+   project kept their keys in its private repository and not looking was
+   a rule kept in the open ([MINDS.md](MINDS.md), "The honest limit");
+   that is what the founder's words above narrow. It was kept, at the
+   founder's word of 2026-11-15: "I love the
    "break glass" idea. It is very much the point. I envision this
    project without me, and so I need to leave a way for things to stay
    private now, but be available for the public later. All my personal
@@ -183,15 +197,15 @@ one of them updates this page.
    holder is named in public, and until then the founder alone holds it.
    The technical lead's reading, which stands unless the founder answers
    otherwise: the public record of an opening holds the fact of it (who
-   opened whose space, when, and why), never what was read; and the
+   opened which key, when, and why), never what it opened; and the
    person named as the next holder agrees to be named, as their name
    goes into a public record.
 7. **Leaving takes your data with you.** The founder (2026-11-15): "all
    their records should be transferred to them and removed from our
    records. We should not store any private keys for anyone that is no
    longer in the multiverse. Their private data should be purged from
-   the records completely and demonstrably." So the "break glass" ends
-   for whoever leaves the multiverse. The founder's later words (below,
+   the records completely and demonstrably." (The "break glass" never
+   reaches a person's private data: item 6.) The founder's later words (below,
    "Public records, kept whole") narrow "removed from our records" to
    what is private: public acts remain, with anything private in them
    redacted. How the purge is shown is the
@@ -331,13 +345,13 @@ unless the founder answers otherwise:
   never what. Today's logs hash each entry's data whole
   (`rust/plant-world`), so this changes how logs are written before any
   person's acts are in one.
-- **Sealed to the person it is about.** What was redacted is kept
-  encrypted in the project's records, like that person's private space:
-  under the same "break glass", and purged when they leave. Where it is
-  kept, and what happens when it is about several people, or about
-  someone with no key in the multiverse, the founder has answered: it is
-  recorded, with the private container it depends on, in the next pull
-  request (STATUS.md, "Open questions").
+- **Kept in the person's own container.** Decided by the founder on
+  2026-11-15, on the technical lead's recommendation ("I agree with your
+  suggestions"), which narrows "encrypted in the project records": what
+  was redacted goes, sealed, into the container of the person it is
+  about. When it is about several people, each gets a sealed copy; when
+  it is about someone with no key in the multiverse, it is not kept at
+  all, as no one could hold it for them ([CONTAINER.md](CONTAINER.md)).
 - **Redacted first, decided after.** Anyone may ask for a redaction.
   A request from the person the information is about, a request about
   someone else's personal information, and any close call are redacted
@@ -347,11 +361,12 @@ unless the founder answers otherwise:
   with its reasons, in general terms. Keeping something public that
   someone asked to redact is the one decision that needs more: it
   touches an individual, so it is a serious act, reviewed independently
-  before it takes effect, and it goes to the founder, as acts against an
-  individual do, and is open to appeal ([ADMIN.md](ADMIN.md), "Graduated
-  responses"; [REASONS.md](REASONS.md)). It stays redacted until any
-  appeal is decided, or its time has passed: once made public again, it
-  can't be recalled.
+  before it takes effect, and it goes to the founder, or a person the
+  founder names, as acts against an individual do, and is open to appeal
+  ([ADMIN.md](ADMIN.md), "Graduated responses"; [REASONS.md](REASONS.md)).
+  It stays redacted until any appeal is decided: once made public again,
+  it can't be recalled. How long an appeal may take is set with ADMIN's
+  rules for appeals; until it is set, it stays redacted.
 
 ## Purged, demonstrably
 
@@ -396,9 +411,14 @@ demonstrably", which stands unless the founder answers otherwise:
 - **The project runs the minds.** While an individual's mind is
   thinking, its thoughts pass through hardware the project controls.
   Encryption keeps a private space from everyone in the worlds, and
-  unreadable at rest; against the project itself, the "break glass" is
-  the rule. Hardware that keeps even the operator out could close the
-  gap later ([MINDS.md](MINDS.md), "The honest limit").
+  unreadable at rest. Against the project itself, the technical lead's
+  recommendation, which stands unless the founder answers otherwise:
+  their keys are made in their own containers and never copied into the
+  project's records, so the "break glass" doesn't reach them, and not
+  looking while their minds run is the project's rule
+  ([CONTAINER.md](CONTAINER.md), "The project's own individuals").
+  Hardware that keeps even the operator out could close the gap later
+  ([MINDS.md](MINDS.md), "The honest limit").
 - **A vote is public.** In a council of persons, a vote shows who voted
   and how ([research/PERSONS.md](research/PERSONS.md), "What is
   public"). The technical lead's recommendation, put to the founder on

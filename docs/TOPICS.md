@@ -764,6 +764,29 @@ each tick:
 
 Prose is as welcome as code.
 
+## 19. Offices, and handing one on
+
+*The founder, 2026-11-15:* "I think the work on offices is
+foundational." What makes an office, and how one passes from holder to
+holder, are in [OFFICES.md](OFFICES.md).
+
+**Decided:** an office is its own type; it passes when both agree
+clearly and the successor meets its qualifications; a Keeper may prepare
+a successor; ADMIN has a part in the qualifications.
+
+**Open:** what a Keeper's qualifications are, and which of them code can
+check; how long ADMIN has to block a handover (if the proposed block
+stands); what an oath of office says; how an office is filled when it
+falls empty.
+
+**A possible implementation:** an office record (its charter, key,
+holder, handovers, and what watches it) and a handover record (the
+holder's signature, the successor's statement in its own words, the
+qualifications checked), in records-v1 with test vectors.
+
+**Send back:** a Keeper's qualifications, as checks code could run, and
+what an apprenticeship for a Keeper might look like in the open.
+
 ## Further out
 
 Ideas that won't help yet but probably will, from the course's waiting

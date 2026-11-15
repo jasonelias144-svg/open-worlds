@@ -132,25 +132,6 @@ kind.
   founder answers, refer to them generically ("the founder's earlier
   work") and quote only briefly, with links; a lineage page and any
   further use come in their own pull requests.
-- For the founder (put 2026-11-15, after #83's re-check at faab85d):
-  where redacted private information is kept. The founder's rule says
-  "encrypted in the project records". Two cases it doesn't settle:
-  information about several people, and information about someone with
-  no key in the multiverse (someone a participant names), whom it can't
-  be sealed to and whose leaving would never purge it. The
-  recommendation: about several people, sealed to each of them; about
-  someone with no key, not kept at all, as no one can hold it for them;
-  and, if the founder takes up the private container (put the same
-  day, in conversation), kept in the person's own container rather than
-  the project's records, so the project keeps nothing private. The
-  last case departs from the founder's words ("encrypted in the project
-  records"): it protects more, by keeping nothing. Answered by the
-  founder later the same day, agreeing with the recommendation ("I agree
-  with your suggestions"), together with the private container and a
-  "break glass" narrowed to the multiverse's own keys. The founder's
-  words are recorded in full, and this question closed, in the pull
-  request that follows this one, which designs the private container,
-  so that the charter and the design change together.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
@@ -202,8 +183,9 @@ kind.
   under "Challenges, not tests", nothing is held back. Private speech
   between individuals, decided 2026-11-14, is another: what two say to
   each other is sealed between them, though that a message passed stays
-  in the record, and the project opens them only under the founder's
-  "break glass", in the open. The line with a Keeper was decided public,
+  in the record; since 2026-11-15 they go from one person's container to
+  the other's, beyond the "break glass", which covers only the
+  multiverse's own keys (docs/CONTAINER.md). The line with a Keeper was decided public,
   so it is no exception. (noted 2026-11-13; updated the same day and
   2026-11-14)
 
@@ -334,6 +316,53 @@ kind.
   creative and autonomous environmental world. Both are important, but
   we have already done much work in the Lyceum Commons. How could we
   instantiate it within the multiverse?"
+- 2026-11-15, founder, on the private container and the "break glass":
+  "I agree with your suggestions. And I think this may be a fundamental
+  piece of architecture. And yes, the "break glass" applies to keys
+  needed for the multiverse to function, those associated with ADMIN and
+  everything else. Thoughts?"
+  The suggestions it agrees to, as the technical lead put them in
+  conversation the same day: the container "holds their keys (identity,
+  one per presence), their private space, notebook, passport and private
+  messages. The project never receives those keys"; "The "break glass"
+  would then cover only what the project itself holds, such as the minds
+  it runs" (for those minds, the recommendation below goes further);
+  "A person's own container would be beyond
+  the 'break glass'. The project wouldn't have the keys, so no one could
+  open it, you included"; and redacted private details go to "the
+  person's own container rather than the project's records", sealed to
+  each person when it is about several, and not kept at all when it is
+  about someone with no account here. This answers the technical lead's
+  answer to the message below, and the open question on where redacted
+  information is kept (put after
+  #83's re-check at faab85d, now closed). So: a person's private space
+  lives in their own container, beyond the "break glass"; the "break
+  glass" covers only the keys the multiverse needs to function (the key
+  list's root, ADMIN's and the other offices' keys, the keys of the
+  worlds the project runs); and redacted private information goes into
+  the person's own container, sealed to each person it is about, and is
+  not kept at all when it is about someone with no key in the
+  multiverse. This narrows two earlier decisions, named here as
+  AGENTS.md asks: the "break glass" chosen on 2026-11-14 for sealed
+  selves and private messages, and kept on 2026-11-15; and "encrypted in
+  the project records" in the rule on redaction (2026-11-15). The
+  technical lead's recommendation for the individuals whose minds the
+  project runs, which only adds protection and stands unless the
+  founder answers otherwise: their containers are made the same way,
+  with keys made inside and never copied into the project's records; the
+  keys made for ALICE and BOB at course step 3 are signed over at birth
+  and destroyed. docs/CONTAINER.md has the design.
+- 2026-11-15, founder, on a private container for each account:
+  "Exactly. And perhaps we can design it in such a way that much of the
+  user account data is stored in their own private container as a
+  starting point. From that private space, which the project never sees,
+  is the space the user operates from. They can decide what information
+  to transfer to their public account profile. And actions can be done
+  from an effective black box. This way we do not even have access to
+  much of the private data, and what we have access to is, by design,
+  already revealed by consent of the user. Thoughts?"
+  ("Exactly" answers the technical lead's reading of "More metadata",
+  above.)
 - 2026-11-15, founder, answering whether a leaver's shown links stay
   public:
   "Yes, we keep public record of the action with private details of the
@@ -379,6 +408,44 @@ kind.
   content apart from the chain that commits to it, so a field can be
   redacted without rewriting history. AGENTS.md's rule and the
   charter's section 4 say it.
+- 2026-11-15, founder, on ADMIN's part in handing an office on:
+  "Perhaps ADMIN needs final approval on a keeper change, or not. Either
+  way, ADMIN would play some role in the qualifications, essentially
+  giving ADMIN the ability to block a transfer for whatever reason. We
+  would need protocols for adjudicating such differences, but that would
+  be an appropriate safeguard layer."
+  Put to the founder the same day, with the technical lead's
+  recommendation, which stands unless the founder answers otherwise
+  (docs/OFFICES.md, "ADMIN's part"): a block, not a final approval, so a
+  handover goes ahead unless ADMIN blocks it within a set time; only on
+  grounds written in advance, never for any reason, since no one holds
+  power that isn't written down and ADMIN doesn't choose Keepers; a
+  ruling with its reasons, and a serious act, reviewed independently;
+  appealed as every ruling of ADMIN's is, to the technical lead's role,
+  then the founder. The qualifications apply to a handover only: who
+  first keeps a world is still the world's founders' choice of three
+  (ADMIN.md, "The Keeper's office"), unchanged.
+- 2026-11-15, founder, on handing an office on:
+  "I think the work on offices is foundational. Let me add a new
+  suggestion. If one agent holds an office then they have the ability to
+  transfer the office to another if both agree clearly and the one to
+  fit the role meets whatever conditions are required. We can't have a
+  keeper setting a fractal plant in charge of a world because the plant
+  agreed as a 50% chance from having only an affirmative or negative
+  possible responses to choose from. There needs to be qualifications of
+  some sort, but assuming that is in place. A keeper can work with an
+  agent to be their successor. …"
+  (A personal sentence that followed is left out, by the founder's rule
+  on personal information.) So an office passes when its holder and the
+  successor both agree clearly, and the successor meets the office's
+  qualifications; and a Keeper may prepare a successor. The technical
+  lead's readings, in docs/OFFICES.md, which stand unless the founder
+  answers otherwise: clear agreement is the successor saying in its own
+  words, in public, what the office's duties are and that it takes them
+  on; the qualifications are a floor written in each office's charter,
+  checked by someone other than the outgoing holder; and they are not
+  the admin-key, which stays a mark of readiness, never a requirement
+  (decided 2026-11-14), so the two decisions stand together.
 - 2026-11-15, founder, answering what happens to a leaver's public acts:
   "Public acts should always remain. The moment we edit a public record,
   we defeat the purpose. It should be clearly understood upon entry to
@@ -403,6 +470,16 @@ kind.
   anything personal into a public record, while what a person chooses
   to say in public is their own act, made knowing it stays. AGENTS.md
   makes it a rule: public records are never edited.
+- 2026-11-15, founder, on offices:
+  "Office should be its own type, with ADMIN and keepers two current
+  examples. Let's define what makes something an office or role.
+  Thoughts?"
+  On the technical lead's answer, five marks of an office (written
+  before it is held; held, never owned; its own key and memory; acting
+  for others, so in the open; bounded and watched) and the line between
+  an office and a role, the founder answered with the message above. So
+  docs/OFFICES.md gathers them, as the technical lead's proposal, and
+  GLOSSARY.md gives "Office" a section of its own.
 - 2026-11-15, founder, on a word for everything that acts:
   "And is "agent" or most general term that would encompass everything
   from any human, to me, to you, to DeepSeek, to ADMIN, to the world
@@ -2053,6 +2130,15 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-15 Claude: #86 after #85 merged: OFFICES.md's "break glass"
+  bullet now says it reaches only the keys the multiverse needs to
+  function, never a person's container; the full-link list has 16
+  design pages. And the re-check's notes at 45205cf: STATUS.md quotes
+  the suggestion that the container holds private messages, which
+  CHARTER.md's section 3 rests on; WORLD-KEY.md marks a recommendation;
+  MINDS.md's 2026-11-14 narrative is in the past tense; a comment marks
+  the vectors' birth words as the 2026-11-14 wording.
+
 - 2026-11-15 Claude: after #87's independent review at 78698f8: the
   technical lead's two messages that the founder's "Agreed" answered are
   quoted in Decided as they were put; the founder's newer word on
@@ -2073,6 +2159,21 @@ it was wrong. Questions of what the project is for stay with the founder.
   TOPICS.md (topic 14), COURSE.md, WORLD-TYPES.md and COLLABORATING.md
   follow.
 
+- 2026-11-15 Claude: the private container (docs/CONTAINER.md), at the
+  founder's word: each person's keys, private space and messages in
+  their own container, which the project never sees; the "break glass"
+  narrowed to the multiverse's own keys; redacted information to the
+  person's own container. The charter's section 3, FUNDAMENTALS.md
+  (privacy items 1, 4, 6 and 7, the redaction bullets and the honest
+  limits), MINDS.md (with ALICE's and BOB's orientation), URWORLD.md,
+  ADMIN.md, FREEDOMS.md, COURSE.md, research/FORMATS.md, KEYS.md and
+  PERSONS.md, GLOSSARY.md, README.md and COLLABORATING.md follow; the
+  open question on redacted information is closed. #83's re-check notes
+  at 8046ec6 ride here: the appeal window, and "the founder, or a person
+  the founder names". The design pages' count is corrected (it said 13
+  for 14).
+
+
 - 2026-11-15 Claude: after #83's re-check at 228fff8: what a leaver's
   shown link has redacted is named (the person's identity key and the
   link's two signed records; the presence stays); a redaction stays
@@ -2081,6 +2182,14 @@ it was wrong. Questions of what the project is for stay with the founder.
   system, never a world's seed; a link's timing is named among the
   limits; and the founder's answer on where redacted information is
   kept is noted, to be recorded with the private container next.
+
+- 2026-11-15 Claude: after #85's independent review, OFFICES.md: the
+  "break glass" and the technical lead are not offices under the marks
+  (each passes only by the founder's act); the qualifications are for a
+  handover only, so the three choices at a founding stand; ADMIN's part,
+  from the founder's message, is a block on written grounds, a serious
+  act open to appeal; the proposals are marked as such, in GLOSSARY.md
+  too; TOPICS.md gains offices as topic 19.
 
 - 2026-11-15 Claude: after #83's re-check at faab85d, a redaction asked
   for by the person it concerns, or any close call, is made at once and
@@ -2106,6 +2215,13 @@ it was wrong. Questions of what the project is for stay with the founder.
   whether a leaver's shown links stay is put to the founder; a leaver is
   given their private records (WORLD-TYPES.md); and COLLABORATING.md's
   dated list has the change.
+
+- 2026-11-15 Claude: docs/OFFICES.md, at the founder's word: what makes
+  an office (five marks), an office or a role, the offices today (ADMIN,
+  each world's Keeper, the "break glass" holder, the technical lead),
+  handing an office on (the founder's words: clear agreement and
+  qualifications) and preparing a successor; GLOSSARY.md's "Office";
+  an office record and a handover record wait in COURSE.md.
 
 - 2026-11-15 Claude: the founder answered the open question on a
   leaver's public acts: they always remain, and historical records are
