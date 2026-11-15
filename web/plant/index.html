@@ -169,6 +169,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
     if (v === false) return "false";
     if (typeof v === "number") {
       if (!Number.isSafeInteger(v)) throw new Error("a number that isn't a whole number within 2^53");
+      if (Object.is(v, -0)) throw new Error("-0, which Rust reads as a float");
       return String(v);
     }
     if (typeof v === "string") return pyString(v);
@@ -187,6 +188,10 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
     const keys = Object.keys(v).sort();
     return "{" + keys.map(k => JSON.stringify(k) + ":" + jcs(v[k])).join(",") + "}";
   }
+  // A copy of an object without one key. JSON.parse keeps a "__proto__"
+  // key as an ordinary field, and so does this copy (Object.assign would
+  // drop it), so the page hashes and compares what Python and Rust do.
+  const without = (o, key) => Object.fromEntries(Object.entries(o).filter(([k]) => k !== key));
   async function sha256(bytes) { return new Uint8Array(await crypto.subtle.digest("SHA-256", bytes)); }
   const text = s => new TextEncoder().encode(s);
   const hex = b => Array.from(b, x => x.toString(16).padStart(2, "0")).join("");
@@ -196,7 +201,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
     for (let i = 0; i < log.length; i++) {
       const e = log[i];
       if (!e || typeof e !== "object" || typeof e.hash !== "string") return "[" + i + "]: not an entry with a hash";
-      const body = Object.assign({}, e); delete body.hash;
+      const body = without(e, "hash");
       if (body.prev !== prev) return "[" + i + "]: doesn't follow the entry before it";
       if (hex(await sha256(text(pyJson(body)))) !== e.hash) return "[" + i + "]: its hash doesn't match what it says";
       prev = e.hash;
@@ -229,8 +234,8 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
   // entry, and compared entry by entry, every field but the hash (which the
   // chain check has already checked): as log_problems does
   // (rust/plant-world/src/world.rs). Read as JSON, a number written 2.0
-  // arrives here as 2; Rust refuses it, and nothing this project writes has
-  // one.
+  // or 1e0 arrives here as a whole number; Rust refuses it, and nothing
+  // this project writes has one. -0 is refused when the entry is written.
   const NO_WATER = "There is no water, so nothing grows.";
   const NO_MORE = "Every tip has split as many times as it may, or would grow past the pot.";
   const DIALS = [["branchLength", 1, 16], ["maxDepth", 1, 12], ["water", 0, 10], ["light", 0, 10]];
@@ -266,7 +271,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
         if (segs.length === 0) { expected = entry(i, "finished", { reason: NO_MORE }, log[i - 1].hash); done = true; }
         else { expected = entry(i, "grew", { segments: segs, tips: next }, log[i - 1].hash); tips = next; }
       }
-      const body = Object.assign({}, log[i]); delete body.hash;
+      const body = without(log[i], "hash");
       if (pyJson(body) !== pyJson(expected)) return "[" + i + "]: not what the rule makes here";
     }
     return null;
@@ -309,8 +314,8 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
       if ("@context" in proof || "@context" in record) return "has an @context, which this page doesn't read";
       if (proof.verificationMethod !== signer + "#" + signer.slice(8)) return "signed by another key than the world's";
       if (typeof proof.created !== "string" || !TIME.test(proof.created) || typeof proof.proofPurpose !== "string") return "its proof's time or purpose isn't written as required";
-      const unsecured = Object.assign({}, record); delete unsecured.proof;
-      const options = Object.assign({}, proof); delete options.proofValue;
+      const unsecured = without(record, "proof");
+      const options = without(proof, "proofValue");
       if (typeof proof.proofValue !== "string" || proof.proofValue[0] !== "z") return "its signature isn't base58";
       const signature = base58(proof.proofValue.slice(1));
       if (signature.length !== 64) return "its signature isn't 64 bytes";
@@ -419,7 +424,9 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
   function label() {
     const n = state ? state.log.length - 1 : 0;
     document.getElementById("tick").textContent = "tick " + tick + " of " + n;
-    const e = state && state.log[tick];
+    // Only a log that holds has its entries described here; one that fails
+    // is listed beside it, not shown.
+    const e = state && state.shown && state.log[tick];
     document.getElementById("entry").textContent = e
       ? e.kind + (e.kind === "grew" ? ", " + e.data.segments.length + " branches" : e.kind === "finished" ? ": " + e.data.reason : "") + " · hash " + e.hash.slice(0, 16) + "…"
       : "";
@@ -454,11 +461,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
     const n = document.getElementById("notice");
     n.hidden = !msg; n.textContent = msg || ""; n.className = "notice" + (bad ? " bad" : "");
   }
-  async function choose(i) {
-    setPlaying(false);
-    document.querySelectorAll("#worlds button").forEach((b, j) => b.setAttribute("aria-pressed", String(i === j)));
-    const world = worlds[i], log = world.log;
-    const results = await check(world, file);
+  function listChecks(results) {
     const list = document.getElementById("checks"); list.textContent = "";
     for (const [kind, what, why] of results) {
       const li = document.createElement("li");
@@ -468,6 +471,26 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
       const y = document.createElement("span"); y.className = "why"; y.textContent = why;
       li.append(chip, w, y); list.append(li);
     }
+  }
+  async function choose(i) {
+    setPlaying(false);
+    document.querySelectorAll("#worlds button").forEach((b, j) => b.setAttribute("aria-pressed", String(i === j)));
+    try { await render(worlds[i]); }
+    catch (e) {
+      // Nothing from the world shown before stays on screen.
+      state = null;
+      listChecks([["bad", "Reading the log", "This page can't read it: " + String(e && e.message || e) + "."]]);
+      document.getElementById("facts").textContent = "";
+      document.getElementById("sub").textContent = "A log this page can't read.";
+      slider.max = "0";
+      notice("This log can't be read here, so the plant isn't drawn.", true);
+      show(0, 1);
+    }
+  }
+  async function render(world) {
+    const log = world.log;
+    const results = await check(world, file);
+    listChecks(results);
     const failed = results.slice(0, 2).some(r => r[0] === "bad");
     const birthHolds = results[3][0] === "ok";
     const data = log[0] && log[0].data || {};
@@ -482,7 +505,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
       ["Branch length", d.branchLength + " cells"],
       ["Splits", d.maxDepth + (d.light < 3 ? " (half, in low light)" : "")],
       ["Water, light", d.water + ", " + d.light],
-      ["Pot", data.pot ? data.pot.join(", ") + " (x, y, width, height)" : "none: the world grows as far as the plant"],
+      ["Pot", Array.isArray(data.pot) ? data.pot.join(", ") + " (x, y, width, height)" : data.pot === null ? "none: the world grows as far as the plant" : "can't be read"],
       ["Branches", String(fr.reduce((a, f) => a + f.length, 0))],
     ];
     for (const [k, v] of rows) { const dt = document.createElement("dt"); dt.textContent = k; const dd = document.createElement("dd"); dd.textContent = v; facts.append(dt, dd); }
