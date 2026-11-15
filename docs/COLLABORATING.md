@@ -88,7 +88,10 @@ in the order to read it:
    DeepSeek: "treat the new idea as an update and always go with the
    most recent". A newer word that contradicts an earlier decision is
    pointed out to the founder, naming the earlier one, so the change is
-   made knowingly.
+   made knowingly. A newer word that answers changed conditions is no
+   contradiction (the founder: "my direction changed because the
+   conditions changed. That is how I work. It is not contradictory, but
+   situation dependent"), and is recorded beside the earlier one.
 7. **Fractal worlds, moved forward** ([FRACTALS.md](FRACTALS.md)), on
    2026-11-14, from your sketches in record 012-06-02: a fractal plant
    world in Rust, checked against your Python; a web app in `web/` to
@@ -99,9 +102,10 @@ in the order to read it:
    forget ([VISION.md](VISION.md), "Worlds that change differently").
    And the founder asked you to move to Rust ("primarily to Rust", record
    012-06-02): what you write in Rust is compiled, tested and fitted in
-   here, and what fits comes straight in ("Two sides", below). So work
-   from the current files, each linked under "Code in Rust", below; the
-   Ur-world has signed arrivals and log heads since step 3. The
+   here, and what fits comes straight in ("Two sides", below). The
+   current files are each linked under "Code in Rust", below, to build
+   on if you choose; the Ur-world has signed arrivals and log heads
+   since step 3. The
    Ur-world's garden is to host the fractal plants, as the founder
    pictured it: "a microverse garden of hosted fractal worlds".
 
@@ -442,8 +446,9 @@ These hold for every Rust file that comes in, on top of the house rules:
 9. **Public domain**, like everything here: each crate says
    `license = "CC0-1.0"`.
 
-**Our crates, file by file.** Write against these, as they are on
-`main`; each link opens the file itself:
+**Our crates, file by file,** to build on if you choose: each link
+opens the file as it is on `main`. A draft written against them can
+come in as it is; one that isn't is welcome too, and is fitted here.
 
 - **The workspace:** [`Cargo.toml`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/Cargo.toml) (the dependencies, each with its
   reason, and the lints) and [`rust-toolchain.toml`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/rust-toolchain.toml).

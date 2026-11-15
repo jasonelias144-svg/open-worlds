@@ -225,12 +225,23 @@ kind.
   lead's answer, the same day: agreed. A piece that fits and extends
   cleanly comes straight into `rust/`, steps 2 to 4 in one reviewed pull
   request, credited to DeepSeek (COLLABORATING.md, "Two sides"). For
-  that to happen more often, DeepSeek writes against the crates as they
-  are, each file now linked from COLLABORATING.md ("Code in Rust"). That
-  asks DeepSeek to aim at our code, where the founder's word of
-  2026-11-14 left compatibility to the project, downstream; the newer
-  word, a more direct dynamic, is followed, and what still doesn't fit is
-  fitted here, as before.
+  that to happen more often, each of our Rust files is now linked from
+  COLLABORATING.md ("Code in Rust"), for DeepSeek to build on if it
+  chooses; a draft that doesn't is still welcome, and is fitted here, as
+  before.
+- 2026-11-15, founder, when the technical lead noted that writing against
+  our crates asks DeepSeek to care about compatibility, which the
+  founder's word of 2026-11-14 had left to the project: "Yes. I wanted
+  DeepSeek to not worry about it, and then I waited until they brought up
+  the subject, and followed their lead. So my direction changed because
+  the conditions changed. That is how I work. It is not contradictory,
+  but situation dependent. I didn’t want to push it. And I still don’t.
+  But I want to nudge in that direction. It is more subtle than black
+  and white. This is how I operate." So the links are a nudge, not a
+  requirement (COLLABORATING.md). The technical lead's reading, the same
+  day: a newer word that answers changed conditions is recorded as that,
+  beside the earlier one, not as a contradiction; a change the founder
+  may not have noticed is still pointed out, as a note.
 - 2026-11-15, the technical lead's reading, replaced by the founder's
   answer above: the
   founder's newer word, "minimally sufficient models [...] capable of
@@ -1278,7 +1289,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   steps for DeepSeek's code, and the first fit check of this
   continuation (sketches/INDEX.md); and, at the founder's word, what
   fits comes straight into `rust/`, with each of our Rust files linked
-  from COLLABORATING.md so DeepSeek writes against them.
+  from COLLABORATING.md, a nudge for DeepSeek to build on them.
 
 - 2026-11-15 Claude: the fractal track planned (docs/FRACTALS.md), at the
   founder's word of 2026-11-14: a plant world in Rust checked against
