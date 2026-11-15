@@ -145,10 +145,13 @@ in the order to read it:
     people shaping the land and the water, and life spreading where
     water lets it. And: "All three elements could be components of one
     world type that models living systems." The three are water, light
-    and food. Every run repeats from its seed and can be
-    turned into a video; the first, of the garden's three hosted plants,
-    was made the same night. The map page comes first: "For now, let’s
-    keep moving forward with what we have."
+    and food. Water is endless across a world but finite in any one
+    place, so no garden depends on one source: the technical lead's
+    reading, put to the founder (FRACTALS.md, "Water is where freedoms
+    meet"). Every run repeats from its seed and can be turned into a
+    video; the first, of the garden's three hosted plants, was made the
+    same night. The map page comes first: "For now, let’s keep moving
+    forward with what we have."
 
 The multiverse began as a sketch the founder wrote with DeepSeek
 (conversation records 012-04-00 and 012-03-02). This repository brought

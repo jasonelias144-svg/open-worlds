@@ -216,7 +216,7 @@ kind.
 
 ## Decided
 
-- 2026-11-15, founder, in six messages quoted whole in docs/FRACTALS.md
+- 2026-11-15, founder, in six messages quoted in docs/FRACTALS.md
   ("Where it leads: living worlds"), the aim for the fractal track: "So
   instead of a prescribed number of turns, I can set it going and watch
   it develop and make choices over time." "It could be how “water” flows
@@ -229,9 +229,23 @@ kind.
   otherwise: seven stages after the map page, from an endless plant in
   the browser and a choice neuron, through water as particles, plants
   that drink, people shaping the land, and seeds that inherit, to living
-  worlds with water, light and food; every run repeatable from its seed
-  and turned into a video. Open for DeepSeek to brainstorm
-  (docs/TOPICS.md, topic 18).
+  worlds with water, light and food; every run repeatable from its seed,
+  and any run can be turned into a video. Open for DeepSeek to
+  brainstorm (docs/TOPICS.md, topic 18).
+
+  One point is put to the founder as a question (#72's independent
+  review found it): how water worth controlling fits the founder's
+  earlier word in docs/FREEDOMS.md, "Much source of problems fall away
+  when space is infinite and resources are endless." The newer
+  messages point to water that is worth shaping: "In fact, for a
+  species to control water flow is a huge evolutionary advantage,
+  obviously." The recommendation, which stands unless the founder
+  answers otherwise: the two fit, since water is endless across a
+  world, as rain falls on all land and new land holds springs of its
+  own, but finite in any one place at any one time. So no garden
+  depends on one source, and there is always water a little further
+  out; how people shape it where they are is the experiment
+  (docs/FRACTALS.md, "Water is where freedoms meet").
 - 2026-11-15, founder, later the same night: "Either way sounds good.
   Just go with what makes the most sense to you. For DeepSeek, yeah,
   let’s leave the Pro model for ADMIN potentially, and we can use Flash
@@ -1509,7 +1523,10 @@ it was wrong. Questions of what the project is for stay with the founder.
   docs/COLLABORATING.md item 10, so DeepSeek starts from it. The first
   video from a world was made the same night, from the garden's three
   hosted plants and their checked logs, and shared with the founder
-  privately.
+  privately. #72's independent review asked how water worth controlling
+  fits "resources are endless" (docs/FREEDOMS.md); the reading and a
+  question for the founder are in Decided, and its smaller points are
+  taken.
 
 - 2026-11-15 Claude: the fractal track's part 3, first half. The
   Ur-world's garden hosts three plant worlds in glasshouses, each a

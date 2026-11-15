@@ -628,7 +628,7 @@ Prose is as welcome as code.
 ## 18. Living worlds: water, light and food
 
 *The fractal track, parts 4 and 5, after the map page.* The founder,
-2026-11-15, in six messages quoted whole in
+2026-11-15, in six messages quoted in
 [FRACTALS.md](FRACTALS.md), "Where it leads: living worlds": "So
 instead of a prescribed number of turns, I can set it going and watch it
 develop and make choices over time." "It could be how “water” flows in
@@ -650,7 +650,11 @@ founder answers otherwise (FRACTALS.md):
 - people shaping the land, and the water following;
 - seeds that inherit with small changes, so life spreads where water
   lets it;
-- every run repeatable from its seed, and turned into a video.
+- every run repeatable from its seed, and any run can be turned into a
+  video;
+- water endless across a world but finite in any one place, so no
+  garden depends on one source (put to the founder, FRACTALS.md, "Water
+  is where freedoms meet").
 
 **Open:** nearly everything about how it behaves:
 - how water moves, step by step, in whole numbers: falling, flowing
@@ -663,7 +667,7 @@ founder answers otherwise (FRACTALS.md):
 - the strategies living things use to find water, light and food, and
   which a world like this might give rise to;
 - how a garden's water is shared when one person's channel changes
-  another's stream.
+  another's stream, when there is always more a little further out.
 
 **A possible implementation:** one step of the world, in whole numbers,
 in a fixed order, so it is the same on every machine. As a sketch (no
