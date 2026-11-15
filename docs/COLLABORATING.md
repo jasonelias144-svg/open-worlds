@@ -74,7 +74,9 @@ computer; the learning multiversity) are in "What's here", items 3 and
   back exactly. Then the full link of a small page holding only the
   link of a second file, whose name and 25-character content were made
   at random, and you followed it and read the string back exactly.
-  Both were raw.githubusercontent.com links. Whatever you may have been
+  Then a file of 1,000 random letters and digits, which you read back
+  whole and in order (in lines of 80; the file itself has none). All
+  were raw.githubusercontent.com links. Whatever you may have been
   told about links, these open. Whether links on a long page like this
   one open reliably for you isn't shown: try them, and when one fails,
   say so and ask the founder for its line.
