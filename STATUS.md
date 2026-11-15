@@ -200,10 +200,11 @@ kind.
   learning model, like a single neuron. This is not the same AI as will
   be used for ALICE and BOB, perhaps we can use a weaker term, “learning
   and choosing monad”, but we can just consider it a primitive learning
-  model. So no tension." So a primitive learning model in a fractal world
-  is part of its workings, and the world stays primary; whether a world
-  has one is that world's (docs/FRACTALS.md). This replaces the reading
-  below.
+  model. So no tension." The technical lead's reading of it, which stands
+  unless the founder answers otherwise: a primitive learning model in a
+  fractal world is part of its workings, and the world stays primary;
+  whether a world has one is that world's (docs/FRACTALS.md). This
+  replaces the reading below.
 - 2026-11-15, founder: "Also, keep in mind, we expect DeepSeek code to
   have some things to fix, and we should still decide whether or not to
   incorporate anything that goes against our established design." The

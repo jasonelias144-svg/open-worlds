@@ -44,16 +44,17 @@ In the founder's words (STATUS.md, "Decided", 2026-11-14):
 
 Fractal worlds are primary worlds, made from a template whose dials
 are the rule's numbers (TOPICS.md, topic 1; VISION.md, "A hierarchy of
-worlds"). A primitive learning model inside one doesn't change that. The
-founder, 2026-11-15: "Rules only and AI inside are not different. I was
+worlds"). The founder, 2026-11-15: "Rules only and AI inside are not different. I was
 looking for a basic choosing and learning model, like a single neuron.
 This is not the same AI as will be used for ALICE and BOB, perhaps we
 can use a weaker term, “learning and choosing monad”, but we can just
-consider it a primitive learning model. So no tension." So a primitive
-learning model is part of a world's workings, as its rules are, and not
-the AI that ALICE and BOB will have; whether a world has one is that
-world's. (This replaces the technical lead's earlier reading, which kept
-learners out of the plant worlds.)
+consider it a primitive learning model. So no tension." The technical
+lead's reading of it, which stands unless the founder answers otherwise:
+a primitive learning model inside a fractal world doesn't stop it being
+primary; it is part of the world's workings, as its rules are, and not
+the AI that ALICE and BOB will have; and whether a world has one is
+that world's. (This replaces the technical lead's earlier reading,
+which kept learners out of the plant worlds.)
 
 And the founder's Ur-world word meets the decision of 2026-11-13: "Once
 we work out that world, we can begin creating subworlds" (URWORLD.md).

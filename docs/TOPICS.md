@@ -48,16 +48,17 @@ plants".
 
 **Decided:** made from a template whose dials are the rule's numbers
 ([research/FORMATS.md](research/FORMATS.md), "A world's template");
-primary worlds, with rules and no AI inside; a primitive learning model
-in one, "a basic choosing and learning model, like a single neuron", is
-part of its workings, not that AI (the founder, 2026-11-15:
-FRACTALS.md).
+primary worlds, with rules and no AI inside. The founder, 2026-11-15, on
+a learner inside one: "I was looking for a basic choosing and learning
+model, like a single neuron." The technical lead's reading, which stands
+unless the founder answers otherwise: such a primitive learning model is
+part of the world's workings, not that AI (FRACTALS.md).
 DeepSeek sketched the first ones in record 012-06-02, and now writes
 primarily in Rust, at the founder's word; the project compiles, tests and
 fits what it adopts (FRACTALS.md). The Ur-world's garden hosts them, "a
 microverse garden of hosted fractal worlds" (the founder). How a world may change
-is left open, and may differ by world, and so is whether a world has a
-primitive learning model inside it.
+is left open, and may differ by world, and so, in the technical lead's
+reading, is whether a world has a primitive learning model inside it.
 
 **Open:** which families first; how growth and interaction are shown;
 how deep a zoom can go (ordinary 64-bit numbers give out somewhere past a

@@ -89,9 +89,10 @@ in the order to read it:
    most recent". A newer word that contradicts an earlier decision is
    pointed out to the founder, naming the earlier one, so the change is
    made knowingly. A newer word that answers changed conditions is no
-   contradiction (the founder: "my direction changed because the
+   contradiction (the founder: "So my direction changed because the
    conditions changed. That is how I work. It is not contradictory, but
-   situation dependent"), and is recorded beside the earlier one.
+   situation dependent."), and is recorded beside the earlier one; the
+   change is still mentioned to the founder, as a note.
 7. **Fractal worlds, moved forward** ([FRACTALS.md](FRACTALS.md)), on
    2026-11-14, from your sketches in record 012-06-02: a fractal plant
    world in Rust, checked against your Python; a web app in `web/` to
@@ -160,10 +161,10 @@ steps, in order.
 code should still be treated as sketches and brainstorming, but now in
 Rust. But if the code aligns well and extends cleanly, then why not just
 incorporate. But changing to Rust does not change anything else, only
-the language." So a piece that compiles against the crates on `main`,
-passes the three commands under "Code in Rust", keeps the rules there,
-and meets no conflict in step 3 goes into `rust/` in one reviewed pull
-request, steps 2 to 4 together. Its commits name DeepSeek as well as
+the language." The technical lead's rule for it: a piece that compiles
+against the crates on `main`, passes the three commands under "Code in
+Rust", keeps the rules there, and meets no conflict in step 3 goes into
+`rust/` in one reviewed pull request, steps 2 to 4 together. Its commits name DeepSeek as well as
 Claude in their `Made-by` lines and say what was changed here, and the
 record keeps the original. Everything else stays a sketch, as before.
 
@@ -447,7 +448,8 @@ These hold for every Rust file that comes in, on top of the house rules:
    `license = "CC0-1.0"`.
 
 **Our crates, file by file,** to build on if you choose: each link
-opens the file as it is on `main`. A draft written against them can
+opens the file as it is on `main`. These are the files to write against,
+each crate's library code; its tests and examples sit beside them. A draft written against them can
 come in as it is; one that isn't is welcome too, and is fitted here.
 
 - **The workspace:** [`Cargo.toml`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/Cargo.toml) (the dependencies, each with its
@@ -555,6 +557,6 @@ page.
   `sketches/` as written (INDEX.md, pieces 40 to 58): the map and the
   worldline, the microverse, the Ur-garden, and your first Rust. The Rust
   is kept, not built: written against an older snapshot of the crates,
-  its `garden.rs` has 19 compile errors against today's. So the next
-  time, ask the founder for the links to the current files under
-  `rust/`.
+  its `garden.rs` has 19 compile errors against today's. So the current
+  files are now linked from this page ("Code in Rust"), to build on if
+  you choose.
