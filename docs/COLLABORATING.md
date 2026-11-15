@@ -884,7 +884,10 @@ page.
   records are never edited, except that personal or private information
   in them is redacted and kept encrypted in the project's records, and
   close calls are redacted (FUNDAMENTALS.md, "Public records, kept
-  whole"; AGENTS.md; the charter's sections 4 and 5).
+  whole"; AGENTS.md; the charter's sections 4 and 5). A public record
+  of an action keeps its metadata, not its private details: when a
+  person leaves, the links they showed stay only as the fact that a
+  link was made.
 
 ## Every file, by its full link
 

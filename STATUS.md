@@ -122,23 +122,6 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
-- For the founder (put 2026-11-15, after #83's re-check at ed7c715):
-  when a person leaves the multiverse, do the links they showed between
-  their presences stay public? A link ties presences, which are
-  otherwise unlinked, to one person, so it is what makes their
-  pseudonymous acts one person's. The options:
-  1. **Links stay,** as the public acts they are.
-  2. **Links are redacted when the person leaves,** under the rule on
-     private information (Decided, above); their acts stay, each under
-     its own presence key.
-
-  The recommendation: 2. It is a close call, and the founder's rule
-  says close calls are redacted; and without the links, what remains is
-  the acts themselves, the "lasting imprint" the founder described,
-  without a map that ties them together. While the person is in the
-  multiverse, the links they show stay public, as they chose. Because
-  this concerns personal information, it waits for the founder's
-  answer; FUNDAMENTALS.md marks what depends on it.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
@@ -248,6 +231,22 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, answering whether a leaver's shown links stay
+  public:
+  "Yes, we keep public record of the action with private details of the
+  action not included.
+  More metadata."
+  So when a person leaves the multiverse, the record of each link they
+  showed between their presences stays: that a link was shown, in which
+  world, and when. What it tied together, the presences' keys, is a
+  private detail, and is redacted. While the person is in the
+  multiverse, the links they show stay public, as they chose. The open
+  question is closed. The technical lead's reading of "More metadata",
+  which stands unless the founder answers otherwise: a public record of
+  an action holds what an outside observer could note (that it
+  happened, what kind of act, where and when) and leaves its private
+  details out, as a private message already leaves in the record only
+  that it passed (docs/FUNDAMENTALS.md, "Public records, kept whole").
 - 2026-11-15, founder, on private information in public acts:
   "Ok, let's make a rule that any public act that contains private
   information will have that private information encrypted in the
@@ -1946,6 +1945,11 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: the founder answered on a leaver's shown links: the
+  record that a link was shown stays, and what it tied together is
+  redacted ("More metadata"). Recorded in STATUS.md and
+  FUNDAMENTALS.md; the open question is closed.
 
 - 2026-11-15 Claude: the founder's rule on private information in
   public acts: redacted from the public record, kept encrypted in the

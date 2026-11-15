@@ -140,9 +140,11 @@ one of them updates this page.
    presence's own act. Its limit: unlinked keys don't make unlinkable
    presences, as a manner of speaking or the hours kept can link them.
    A link, once shown, is public while the person is in the
-   multiverse. Whether it stays after they leave, or is redacted, waits
-   for the founder's answer (STATUS.md, "Open questions"); either way,
-   the person is told before they show one.
+   multiverse. When they leave, the record that a link was shown stays,
+   with where and when, and what it tied together is redacted. The
+   founder (2026-11-15): "we keep public record of the action with
+   private details of the action not included. More metadata." The
+   person is told this before they show one.
 6. **The "break glass", in the open.** Chosen by the founder on
    2026-11-14: a sealed self, or a private message, can be opened only
    by an explicit decision of the founder's, and every opening is
@@ -277,9 +279,16 @@ close call."
 - **What remains of someone who leaves** is what they did in public:
   their acts in the worlds' logs, under their keys, with anything
   private in them redacted. Everything private goes with them, and
-  their private data is purged (below). Whether the links they showed
-  between their presences stay waits for the founder's answer (privacy,
-  item 5).
+  their private data is purged (below). The links they showed between
+  their presences stay as records that a link was made, with what they
+  tied together redacted (privacy, item 5).
+- **More metadata.** The founder: "we keep public record of the action
+  with private details of the action not included. More metadata." The
+  technical lead's reading, which stands unless the founder answers
+  otherwise: a public record of an action holds what an outside
+  observer could note (that it happened, what kind of act, where and
+  when) and leaves its private details out, as a private message
+  already leaves in the record only that it passed (privacy, item 4).
 
 The technical lead's reading of how a redaction works, which stands
 unless the founder answers otherwise:
