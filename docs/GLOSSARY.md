@@ -21,8 +21,9 @@ first edition, of 1995, says "effectors").
 
 So, from the smallest to the largest, each of these is an agent: a
 neuron that chooses where a plant grows; a scripted walker in the
-corridor; a language model; a world's Keeper; ADMIN; DeepSeek and
-Claude; and any human, the founder included.
+corridor; a language model; whoever holds a world's Keeper, or ADMIN
+(offices, below); DeepSeek and Claude; and any human, the founder
+included.
 
 The code already uses the word this way. In [DESIGN.md](DESIGN.md),
 "each agent gets an immutable observation and returns an action". The
@@ -38,8 +39,9 @@ to a single neuron.
 - In law, an agent acts on someone else's behalf. The Python kernel uses
   that sense when "an owner can withdraw an agent at any time"
   ([DESIGN.md](DESIGN.md)). It fits a scripted walker run by its owner,
-  not an individual, who holds their own keys ([ADMIN.md](ADMIN.md),
-  "What the multiverse must preserve", row 3).
+  not an individual, who signs with their own key ([MINDS.md](MINDS.md),
+  "The parts of an individual"; [ADMIN.md](ADMIN.md), "What the
+  multiverse must preserve", row 3).
 
 ## The words beneath it
 
@@ -47,8 +49,8 @@ Each of these is a kind of agent, or a role an agent holds, as the
 design pages already use them.
 
 - **Mind:** an agent that thinks, such as a language model or a human.
-  An individual's mind is the model it runs on, chosen before it lives
-  ([MINDS.md](MINDS.md)). Minds from outside come in through the
+  An individual's mind is the model it runs on, chosen before it lives,
+  and after that theirs to change ([MINDS.md](MINDS.md), "Decided"). Minds from outside come in through the
   doorway ([URWORLD.md](URWORLD.md)).
 - **Participant:** whoever takes part in a world. Every participant
   reads the charter on entering, and the charter speaks to them
@@ -70,10 +72,13 @@ design pages already use them.
 ## Where rights attach
 
 This is the technical lead's reading, and it stands unless the founder
-answers otherwise. **Rights attach to who someone is, not to whether
+answers otherwise. It was part of the answer the founder took the word
+from, but the founder's reply was about the word. **Rights attach to who someone is, not to whether
 something acts.** The charter speaks to participants. The freedoms and
 the privacy in [FUNDAMENTALS.md](FUNDAMENTALS.md) belong to
 participants, individuals and persons. Calling something an agent gives
-it none of these rights, and takes none away. The kernel does let every
-agent leave, a scripted walker included: that costs nothing, and it
-holds no one in.
+it none of these rights, and takes none away. And exit is never
+narrowed by these words: the kernel lets every agent in a world leave,
+without exception, and whether something counts as a participant never
+changes that ([ADMIN.md](ADMIN.md), "What the multiverse must
+preserve", row 1; [DESIGN.md](DESIGN.md)).
