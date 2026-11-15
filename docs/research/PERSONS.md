@@ -496,8 +496,10 @@ worlds.
 - **Every arm reports** each tick, what it stands on and what came of
   its last action: the efference copy.
 - **Only the brain hears them all.** An arm holds only a line to the
-  brain, which reads its own intent and carries its own reports, so no
-  arm can read another's.
+  brain, which reads its own intent and carries its own reports. A mind
+  written outside the octopus's module can't reach past it to another
+  arm's, since the line's fields are private; inside the module, it is
+  the code as written that keeps them apart.
 - **The run:** each arm's way east runs into the tree's trunk, and its
   reflex takes it round. The third arm starts further west, and the
   brain waits for it before telling all three to plant. Nine intents in
