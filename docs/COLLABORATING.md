@@ -163,9 +163,22 @@ has changed since that record, in the order to read it:
    And [FUNDAMENTALS.md](FUNDAMENTALS.md) gathers every decision on
    freedom and privacy in one place, the founder's "absolutely
    fundamental" (2026-11-15): among them, everyone has a private space,
-   encrypted, that no one else can read, not even ADMIN. The one way in
+   encrypted, that no one else can read, not even ADMIN (the one way in
    is the founder's "break glass", and every opening is recorded in
-   public.
+   public); an account needs only an email address; data is never for
+   sale; whoever leaves the multiverse takes their private records with
+   them, and their private data is purged; and public acts always
+   remain, as public records are never edited, except that anything
+   private in them is redacted, and close calls are redacted.
+   [WORLD-TYPES.md](WORLD-TYPES.md) has a taxonomy of world types, and
+   what can be done with a world of each, as with virtual machines and
+   containers: pause, resume, stop, restart, reset (the founder,
+   2026-11-15). Every world can pause itself, every person can leave,
+   a paused world included, and a person who returns picks up where
+   they left off. And, as a goal for later, time: slow motion and a
+   fast view, rewind and fast forward. And worlds can leave the
+   multiverse: a world, or a cluster, may branch into an independent
+   multiverse of its own, and the cord is cut.
    And [GLOSSARY.md](GLOSSARY.md) says what our words mean: "agent" is
    anything that perceives and acts, from a neuron steering a plant to
    any human (the founder's word, 2026-11-15).
@@ -565,7 +578,8 @@ These apply to code that comes into open-worlds, not to the draft (see
     "possibly the most fundamental fact" ([VISION.md](VISION.md), "Never
     a money machine"). A world may model an economy or a currency as a
     test setting that never leaves that world ("Commerce and currency
-    worlds", there).
+    worlds", there). And data is never for sale, and nothing personal
+    enters a public record ([FUNDAMENTALS.md](FUNDAMENTALS.md)).
 14. **The charter is the founder's words.** `CHARTER.md` grows only from
     the founder's recorded statements, quoted or paraphrased; nothing
     else goes into it without the founder's approval
@@ -860,6 +874,20 @@ page.
 - 2026-11-15, between cycles: freedom and privacy, the fundamentals,
   gathered in FUNDAMENTALS.md (item 3 above), and privacy among the
   charter's guarantees.
+- 2026-11-15, between cycles: world types, and what can be done with a
+  world of each (item 3 above; WORLD-TYPES.md).
+- 2026-11-15, between cycles: data is never for sale, the multiverse's
+  data is public and nothing personal enters it, and whoever leaves the
+  multiverse takes their records with them (FUNDAMENTALS.md; house rule
+  13; the charter).
+- 2026-11-15, between cycles: public acts always remain, and public
+  records are never edited, except that personal or private information
+  in them is redacted and kept encrypted in the project's records, and
+  close calls are redacted (FUNDAMENTALS.md, "Public records, kept
+  whole"; AGENTS.md; the charter's sections 4 and 5). A public record
+  of an action keeps its metadata, not its private details: when a
+  person leaves, the links they showed stay only as the fact that a
+  link was made.
 
 ## Every file, by its full link
 
@@ -899,6 +927,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/MULTIV
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/PARALLEL-WORLDS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/REASONS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/WORLD-KEY.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/WORLD-TYPES.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/cycles/README.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/cycles/cycle-000.md
 ```

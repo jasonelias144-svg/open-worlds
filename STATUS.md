@@ -122,28 +122,25 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
-- For the founder (asked 2026-11-15), after keeping the "break glass":
-  whose records may "stay private now, but be available for the public
-  later"? Recommendation: the founder's own records and the project's,
-  by the founder's choice; a participant's private space only by that
-  participant's own choice (a time capsule they seal "until" a date or
-  an event), and never by the project's. The "break glass" stays for a
-  real emergency only, never a way to publish someone's private space.
-  Publishing what was private can't be undone, so this waits for the
-  founder's explicit word.
-- For the founder (asked 2026-11-15): who holds the "break glass" after
-  the founder ("I envision this project without me")? Recommendation:
-  a person the founder names, in the open, as serious acts already go
-  "to the founder, or to a person the founder names" (docs/ADMIN.md);
-  until one is named, the founder. Naming them is the founder's own
-  act.
-- For the founder (asked 2026-11-15, after #81's independent review):
-  once others run worlds, the multiverse as a whole can't be stopped by
-  any one party, only part by part (docs/VISION.md, "The multiverse as a
-  computer", test 3). That is the price of having no master. Accept it?
-  Recommendation: yes, with every world able to pause itself and every
-  person able to leave. It is hard to undo, so it waits for the
-  founder's explicit word, and doesn't stand by silence.
+- For the founder (put 2026-11-15, after #83's re-check at faab85d):
+  where redacted private information is kept. The founder's rule says
+  "encrypted in the project records". Two cases it doesn't settle:
+  information about several people, and information about someone with
+  no key in the multiverse (someone a participant names), whom it can't
+  be sealed to and whose leaving would never purge it. The
+  recommendation: about several people, sealed to each of them; about
+  someone with no key, not kept at all, as no one can hold it for them;
+  and, if the founder takes up the private container (put the same
+  day, in conversation), kept in the person's own container rather than
+  the project's records, so the project keeps nothing private. The
+  last case departs from the founder's words ("encrypted in the project
+  records"): it protects more, by keeping nothing. Answered by the
+  founder later the same day, agreeing with the recommendation ("I agree
+  with your suggestions"), together with the private container and a
+  "break glass" narrowed to the multiverse's own keys. The founder's
+  words are recorded in full, and this question closed, in the pull
+  request that follows this one, which designs the private container,
+  so that the charter and the design change together.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
@@ -253,6 +250,75 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, answering whether a leaver's shown links stay
+  public:
+  "Yes, we keep public record of the action with private details of the
+  action not included.
+  More metadata."
+  So when a person leaves the multiverse, the record of each link they
+  showed between their presences stays: that a link was shown, in which
+  world, and when. What it tied together is a private detail, and is
+  redacted: the person's identity key, and the link's two signed records
+  (the person's `holds` and the presence's `held-by`). The presence that
+  showed it stays, as the author of the act, as all its acts do. While the person is in the
+  multiverse, the links they show stay public, as they chose. The open
+  question is closed, and this replaces the technical lead's earlier
+  reading (in the entry "answering what happens to a leaver's public
+  acts", below) that a shown link stays whole. The technical lead's reading of "More metadata",
+  which stands unless the founder answers otherwise: a public record of
+  an action holds what an outside observer could note (that it
+  happened, what kind of act, where and when) and leaves its private
+  details out, as a private message already leaves in the record only
+  that it passed (docs/FUNDAMENTALS.md, "Public records, kept whole").
+- 2026-11-15, founder, on private information in public acts:
+  "Ok, let's make a rule that any public act that contains private
+  information will have that private information encrypted in the
+  project records and removed or redacted in the public records. We can
+  redact personal or private information in public records, and we
+  should always err on the side of redacting if it is a close call."
+  So public records are never edited, with one exception: personal or
+  private information in them is redacted, and close calls are
+  redacted. The information itself is kept encrypted in the project's
+  records. This replaces the technical lead's reading in the entry
+  below that what a person says about themselves in public stays; and,
+  with the entry below, the founder's earlier "removed from our records"
+  (2026-11-15, on leaving and on data) now reads: private data is
+  removed, public acts remain, and anything private in them is
+  redacted. The technical lead's readings, in docs/FUNDAMENTALS.md
+  ("Public records, kept whole"), which stand unless the founder
+  answers otherwise: a redaction is visible (the entry keeps its place
+  and a salted fingerprint, so the log still checks, with a mark saying
+  when, by which office and why in general terms, never what); the
+  information is sealed to the person it is about, kept like their
+  private space and purged when they leave; the best redaction is the
+  one made before anything is published; and logs keep each field's
+  content apart from the chain that commits to it, so a field can be
+  redacted without rewriting history. AGENTS.md's rule and the
+  charter's section 4 say it.
+- 2026-11-15, founder, answering what happens to a leaver's public acts:
+  "Public acts should always remain. The moment we edit a public record,
+  we defeat the purpose. It should be clearly understood upon entry to
+  the multiverse that public actions are recorded as a matter of keeping
+  ledgers and for learning and they become part of the project data. We
+  do not edit historical records as an absolute rule. We make sure we
+  never enter data that would need to be edited later. But that would be
+  a small subset of the data that would be associated with a given
+  account, it would be all that would remain. It would be a lasting
+  imprint or legacy of all that come and go."
+  So public acts always remain, after their author leaves too, and no
+  historical record is ever edited: a correction is a new entry that
+  says so. Everyone is told on entering (the charter's sections 4 and
+  5). What a person leaves behind is what they did in public, and
+  nothing else: their private records go with them, and their private
+  data is purged. The open question is closed, and with it the idea of
+  log entries whose content could be removed. The technical lead's
+  readings, which stand unless the founder answers otherwise: a link a
+  person shows between their presences is a public act, and stays, so
+  they are told so before they show one; and "never enter data that
+  would need to be edited later" means the project itself never writes
+  anything personal into a public record, while what a person chooses
+  to say in public is their own act, made knowing it stays. AGENTS.md
+  makes it a rule: public records are never edited.
 - 2026-11-15, founder, on a word for everything that acts:
   "And is "agent" or most general term that would encompass everything
   from any human, to me, to you, to DeepSeek, to ADMIN, to the world
@@ -263,6 +329,86 @@ kind.
   attached to those, not to every agent): "It works for me. I have been
   struggling to find the right word." So docs/GLOSSARY.md says what each
   word means here.
+- 2026-11-15, founder, on naming who holds the "break glass" next:
+  "It will be a person I name publicly, but there is only me for now.
+  There is nobody to hand it to that would be able to know what to do.
+  We will worry about that later, but as soon as one more person joins
+  me, we'll have someone, and then they will be named publicly and all
+  will be a matter of record and all that. But let's build the village
+  before picking the next chief. First things first."
+  So the next holder is a person, named publicly when the founder
+  chooses them, and the choice is on record; the charter's section 3
+  says so. Until someone else joins, the founder alone holds it, and
+  nothing more is built or decided for it now. The technical lead's
+  reading beside it, which only adds protection and stands unless the
+  founder answers otherwise: the person named agrees to be named, as
+  their name goes into a public record (FUNDAMENTALS.md, privacy,
+  item 6).
+- 2026-11-15, founder, on who holds the "break glass" after the founder:
+  "And who holds it is whoever I leave it to. Now, there is nobody. But
+  I am building something that will bring in others. At that point, we
+  can figure out who will hold the break glass if not me."
+  So the founder holds it, and leaves it to whomever the founder
+  chooses, once others are part of the project; that is the founder's
+  own act, and it is recorded when it is made. Until then, no one else
+  can use it.
+- 2026-11-15, founder, on what an account needs, and whose records:
+  "In fact, I would go as far as only an email address is needed to
+  start a profile or account. No need for any personal information
+  beyond that."
+  And, answering whose records may be "private now, public later":
+  "My records private now public later. Sorry I thought that was
+  understood. I have no right to make that decision for another, so
+  yeah, just me."
+  So the charter's section 3 says an email address is all an account
+  needs, and "private now, public later" is the founder's alone, for the
+  founder's own records: no one else's private space is ever made public
+  by the project. The technical lead's reading of the email, which
+  stands unless the founder answers otherwise: used only to sign in and
+  to recover an account, and kept apart from everything else, never in a
+  log or a public record (docs/FUNDAMENTALS.md).
+- 2026-11-15, founder, on leaving and on data:
+  "Yes, all their records should be transferred to them and removed from
+  our records. We should not store any private keys for anyone that is
+  no longer in the multiverse. Their private data should be purged
+  from the records completely and demonstrably. That should be in the
+  charter. It is important and related to privacy."
+  And:
+  "Also, for the charter: data is not for sale. This cannot become a
+  data mining operation that then takes the data and sells it. That
+  should be forbidden at the start with a statement like this that
+  makes it clear that participant or member data is treated as a
+  matter of privacy and is not for sale. That too would defeat the
+  purpose. But data generated from the multiverse is available for the
+  public like an on-going public scientific experiment where all can
+  participate and access the data it generates. But all of that data
+  would already be scrubbed of anything personal and would consistent
+  with our overall philosophy on privacy and freedom."
+  So the charter says both (sections 3, 4 and 5), and AGENTS.md's rule
+  is now "Never a currency, never a money machine, never data for
+  sale". The technical lead's reading, in docs/FUNDAMENTALS.md, which
+  stands unless the founder answers otherwise: nothing personal enters
+  a public record in the first place; and a purge is shown by
+  crypto-shredding, every copy of a person's key destroyed, with a
+  signed, public purge record, which needs keys kept where they can
+  really be destroyed (settled with course step 8a).
+- 2026-11-15, founder, on worlds leaving the multiverse:
+  "Yes, multiverse can only be stopped, part by part. And perhaps this
+  could help, we could define branching protocols for a cluster of
+  worlds or a single world that want to form their own, independent
+  multiverse, severing connections with our host multiverse. So any
+  worlds that want to exist in another multiverse can branch into
+  their own, then the cord is cut, and it can exist completely
+  independently. We should crate this mechanism from the start.
+  Participants can leave worlds, and worlds can leave the multiverse."
+  So docs/WORLD-TYPES.md ("Leaving the multiverse") has the technical
+  lead's reading: a world leaves by its own law (with every party's
+  consent, if anyone is inside, and anyone who won't go leaves first);
+  a departure record, signed by the world, closes the host's copy of
+  its log, which is kept; its key is signed over to one the host never
+  held; the cord is cut, and what was signed before stays valid. The
+  departure record is made from the start, at the course's next
+  recheck. The charter's section 5 says it, in the founder's words.
 - 2026-11-15, founder, keeping the "break glass":
   "I love the "break glass" idea. It is very much the point. I envision
   this project without me, and so I need to leave a way for things to
@@ -288,6 +434,30 @@ kind.
   2026-11-14: a sealed self, or a private message, opened only by the
   founder's explicit decision, every opening recorded publicly and
   permanently; ADMIN can't open one. Two questions follow, above.
+- 2026-11-15, founder, on time:
+  "And some way to speed up or slow down the flow of time. A slow motion
+  and a fast speed view. Rewind and fast forward in time to previous
+  states. This would be a goal eventually."
+  So docs/WORLD-TYPES.md ("Time") keeps it as a goal, with the technical
+  lead's reading: watching a world's past faster, slower, back and
+  forward changes nothing (Plant Watch does part of it already); a
+  world's own pace is a setting in its law (MULTIVERSE.md, "Time"); and
+  rewinding a world itself is a branch, which never erases what came
+  after.
+- 2026-11-15, founder, on stopping part by part, and world types:
+  "I accept it. Every world can pause itself and every person can leave.
+  If they return, they can pick up where they left off on challenges,
+  or anything else. Also, we can treat worlds like virtual machines
+  without much stretch of the imagination, or like containers. In
+  either case, we can pause a state and later resume. We can stop. We
+  can restart or reset. We should have that functionality for worlds
+  of a certain type. We need a full taxonomy of world types."
+  So the question put after #81's independent review is answered:
+  accepted (docs/VISION.md, test 3). The lifecycle (pause, resume,
+  checkpoint, stop, restart, reset, branch) and a taxonomy of world
+  types are in docs/WORLD-TYPES.md, as the technical lead's reading,
+  which stands unless the founder answers otherwise; the charter's
+  section 5 says leaving and returning in the founder's words.
 - 2026-11-15, founder, on privacy and freedom:
   "Also note my decision on all should have a right to a private space
   that is encrypted from outside view, even ADMIN. And anything
@@ -352,9 +522,9 @@ kind.
   part by part; growth by decision, the founder's, one stage at a time;
   signs named in advance; if someone develops, they may be someone),
   checked against the steps ahead at each course recheck (docs/COURSE.md).
-  One part doesn't stand by silence: accepting that, once others run
-  worlds, the whole can be stopped only part by part is hard to undo,
-  so it waits for the founder's explicit word (Open questions).
+  One part didn't stand by silence: accepting that, once others run
+  worlds, the whole can be stopped only part by part, which is hard to
+  undo. The founder accepted it explicitly the same day (above).
 - 2026-11-15, founder, on working with DeepSeek, to the technical lead
   in this session. On reading the repository: "Ok, so DeepSeek needs me
   to provide the whole URL for each rust file, and it has to be in the
@@ -1799,16 +1969,113 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-15 Claude: after #83's re-check at 228fff8: what a leaver's
+  shown link has redacted is named (the person's identity key and the
+  link's two signed records; the presence stays); a redaction stays
+  until any appeal is decided, and keeping something public over a
+  request goes to the founder first; salts come from the operating
+  system, never a world's seed; a link's timing is named among the
+  limits; and the founder's answer on where redacted information is
+  kept is noted, to be recorded with the private container next.
+
+- 2026-11-15 Claude: after #83's re-check at faab85d, a redaction asked
+  for by the person it concerns, or any close call, is made at once and
+  decided after, and keeping something public is a serious act, open to
+  appeal to the founder; the salted fingerprint is said in full and as
+  to be built, with Git's history among the honest limits; where
+  redacted information is kept is put to the founder. These restate two
+  readings in faab85d's Decided entry (on private information in public
+  acts): logs with fields kept apart from the chain are to be built, not
+  built; and where redacted information is kept was an open question.
+
+- 2026-11-15 Claude: the founder answered on a leaver's shown links: the
+  record that a link was shown stays, and what it tied together is
+  redacted ("More metadata"). Recorded in STATUS.md and
+  FUNDAMENTALS.md; the open question is closed.
+
+- 2026-11-15 Claude: the founder's rule on private information in
+  public acts: redacted from the public record, kept encrypted in the
+  project's, and close calls redacted. Recorded in STATUS.md, AGENTS.md,
+  the charter's section 4, FUNDAMENTALS.md, WORLD-TYPES.md, COURSE.md
+  and COLLABORATING.md; the earlier reading that what a person says
+  about themselves stays is replaced. After #83's re-check at ed7c715:
+  whether a leaver's shown links stay is put to the founder; a leaver is
+  given their private records (WORLD-TYPES.md); and COLLABORATING.md's
+  dated list has the change.
+
+- 2026-11-15 Claude: the founder answered the open question on a
+  leaver's public acts: they always remain, and historical records are
+  never edited, as an absolute rule. Recorded in STATUS.md, the
+  charter's sections 4 and 5, AGENTS.md, FUNDAMENTALS.md, WORLD-TYPES.md,
+  COURSE.md and COLLABORATING.md; the question is closed.
+
+- 2026-11-15 Claude: after #83's re-check at c0ba011, the one point it
+  found for the founder is put as an open question: when someone leaves
+  the multiverse, whether their public acts stay or go too ("removed
+  from our records", 2026-11-15, against "a world's record never ends",
+  2026-11-14); what depends on it is marked as waiting. And: a world
+  with inhabitants leaves only if no one says no, and those who go are
+  told first that they leave the charter's protections; the public
+  record of a "break glass" opening holds the fact, never what was read;
+  the next holder agrees to be named; the charter's section 4 keeps only
+  the founder's words; and Plant Watch's replay is said as built for the
+  plant world only.
+
 - 2026-11-15 Claude: docs/GLOSSARY.md, at the founder's word: "agent"
   for anything that perceives and acts, from a neuron steering a plant
   to any human; the words beneath it as the design pages use them; and
   where rights attach.
+
+- 2026-11-15 Claude: after #83's independent review, the charter's
+  section 5 keeps only the founder's words (two sentences that weren't
+  the founder's are gone), and WORLD-TYPES.md says leaving always works,
+  a pause included: a paused world still takes each leaving, and a
+  superworld's pause never holds anyone in. A restart runs on only from
+  the last signed head; what is built of replaying is said as it is
+  (closed worlds from their seed, logs checked; not yet a state rebuilt
+  from a log); and the taxonomy gains game worlds, accelerated time, an
+  eighth dimension (space, bounded or growing), and a note on the
+  private interior, which is part of an individual, not a world type.
+
+- 2026-11-15 Claude: the next holder of the "break glass" is a person
+  the founder names publicly, once someone else joins; recorded, and
+  said in the charter's section 3.
+
+- 2026-11-15 Claude: who holds the "break glass" after the founder is
+  the founder's to leave, once others join; recorded, and the open
+  question closed.
+
+- 2026-11-15 Claude: only an email address for an account, in the
+  charter's section 3 and FUNDAMENTALS.md; "private now, public later"
+  is the founder's, for the founder's own records, and that open
+  question is closed.
+
+- 2026-11-15 Claude: the founder's words on leaving and on data recorded:
+  the charter's sections 3 (data not for sale), 4 (public data, scrubbed
+  of anything personal) and 5 (whoever leaves takes their records, and
+  their private data is purged); FUNDAMENTALS.md, with "Public data, and
+  personal data" and "Purged, demonstrably"; AGENTS.md's rule, house rule
+  13, WORLD-TYPES.md's departure, and COURSE.md (keys kept where they
+  can be destroyed, with step 8a).
+
+- 2026-11-15 Claude: worlds can leave the multiverse, recorded at the
+  founder's word: docs/WORLD-TYPES.md ("Leaving the multiverse"),
+  FUNDAMENTALS.md (freedom, item 7), the charter's section 5, COURSE.md
+  (a departure record, from the start), TOPICS.md and COLLABORATING.md.
 
 - 2026-11-15 Claude: the founder kept the "break glass" ("It is very
   much the point"), recorded in FUNDAMENTALS.md, MINDS.md and STATUS.md,
   with its sentence on the founder's notebooks, at the founder's word;
   two questions put to the founder: whose records "private now, public
   later" may reach, and who holds the "break glass" after the founder.
+- 2026-11-15 Claude: world types, and what can be done with a world
+  (docs/WORLD-TYPES.md), at the founder's word: looked first at
+  containers (the OCI runtime's states; Docker's pause and checkpoints)
+  and virtual machines; seven lifecycle operations, each an entry in a
+  world's log, none deleting a record; returning picks up where one
+  left off; a taxonomy on seven dimensions; and which world has which
+  operations. A design: the operations are taken up at the course's
+  next recheck.
 
 - 2026-11-15 Claude: after #82's independent review, FUNDAMENTALS.md
   gathers the decisions it had left out: four on freedom (room enough,

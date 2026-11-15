@@ -102,10 +102,24 @@ effect (docs/ADMIN.md).
   output is never reported as a result.
 - **Outside agents run in sandboxes.** Agents we didn't write, and agents that
   rewrite their own code, never run in the kernel's process.
-- **Never a currency, never a money machine.** The multiverse has no
-  currency of its own, and nothing here is built to turn it into a money
-  machine: in the founder's words (2026-11-15, STATUS.md), "possibly the
-  most fundamental fact". A world may model an economy or a currency as
+- **Public records are never edited, except to redact what is
+  private.** In the founder's words (2026-11-15, STATUS.md): "We do not
+  edit historical records as an absolute rule." A world's log, a ledger
+  and published data are only ever appended to; a correction is a new
+  entry that says so. The one exception: "We can redact personal or
+  private information in public records, and we should always err on
+  the side of redacting if it is a close call." The private information
+  is kept encrypted in the project's records. By the technical lead's
+  reading, a redaction is visible and leaves the log checkable, and a
+  request is redacted first and decided after (`docs/FUNDAMENTALS.md`,
+  "Public records, kept whole").
+- **Never a currency, never a money machine, never data for sale.** The
+  multiverse has no currency of its own, and nothing here is built to
+  turn it into a money machine: in the founder's words (2026-11-15,
+  STATUS.md), "possibly the most fundamental fact". Participant and
+  member data is never sold: "This cannot become a data mining
+  operation that then takes the data and sells it." Nothing personal
+  enters a public record (`docs/FUNDAMENTALS.md`). A world may model an economy or a currency as
   a test setting that never leaves that world (`docs/VISION.md`,
   "Commerce and currency worlds"). A change that would bring one in is
   the founder's decision (P5), never a code decision.
