@@ -16,7 +16,11 @@
 //!   planting, exploration, and the public log.
 //! - [`arrival`]: entering as one's key: signed arrivals, names bound to
 //!   keys, a world's signed log heads, and the checks of both in a log.
-//! - [`garden`]: Hello World for building worlds.
+//! - [`host`]: the garden gives other worlds a place and time: each hosted
+//!   world, with its own key and log, takes a step each tick, and both logs
+//!   record it.
+//! - [`garden`]: Hello World for building worlds, hosting three plant
+//!   worlds in its glasshouses.
 //! - [`door`]: the doorway for minds: the orientation, what an inhabitant
 //!   sees written out, replies read strictly, and minds that run as their
 //!   own programs, in any language.
@@ -33,6 +37,11 @@
 //! - The only change an inhabitant can make is to plant a flower; the
 //!   operator can shape any cell (`World::shape`).
 //! - There is no viewer yet beyond the text map in the `garden` example.
+//! - A glasshouse is a place the log names, not a cell: inhabitants don't
+//!   see it, or the world inside it, yet. What a hosted world shows is
+//!   read from its own log, as Plant Watch reads a plant's.
+//! - A hosted world takes one step each tick, at one pace for all; hosting
+//!   has no end but a world's finishing, and no world leaves.
 
 #![forbid(unsafe_code)]
 
@@ -40,6 +49,7 @@ pub mod arrival;
 pub mod door;
 pub mod garden;
 pub mod generate;
+pub mod host;
 pub mod space;
 pub mod story;
 pub mod world;

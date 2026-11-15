@@ -969,6 +969,7 @@ version = "0.1.0"
 dependencies = [
  "formats",
  "getrandom 0.4.3",
+ "plant-world",
  "serde_json",
  "sha2",
  "world-log",

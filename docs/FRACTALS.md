@@ -121,7 +121,8 @@ technical lead's. Each part is one reviewed pull request.
    Not yet:
    - The template is signed by a trial key, and names the commit the
      crate was built on. A template signed by the project's own key
-     comes with part 3.
+     comes when plants are hosted in the Ur-world itself, not in its
+     trial Hello World (part 3).
    - A pot is set by the world, not by the template.
    - Past four or five splits, DeepSeek's rule turns branches all the way
      round, so they grow back down. That is the rule as written. Plants
@@ -148,7 +149,30 @@ technical lead's. Each part is one reviewed pull request.
    publishes, opening onto its live view (below, "The multiversal map").
    DeepSeek's Rust Ur-garden (record 012-06-02, as extended, from line
    52842) is an input here, once compiled and checked against the
-   current code.
+   current code. In two pull requests, the technical lead's call: the
+   hosting first, then the map.
+
+   **The hosting, built** on 2026-11-15:
+   [`ur-world/src/host.rs`](../rust/ur-world/src/host.rs)
+   ([URWORLD.md](URWORLD.md), "Glasshouses").
+   - **Three plant worlds in glasshouses.** The Hello World garden hosts
+     them, each a world of its own with a trial key, grown from the plant
+     vectors' template with dials of its own.
+   - **Time from the garden.** Each tick, after the stand-ins act, the
+     garden gives each plant a step of its own time, until it finishes.
+   - **Two logs, one step.** The plant writes each step in its own log,
+     and the garden's `tended` entry names that entry's hash: DeepSeek's
+     idea from its microverse's `advance_cycle` (`sketches/INDEX.md`,
+     record 012-06-02, piece 47), in our own code. `hosting_problems` checks the two logs
+     against each other in Rust, and `tests/test_ur_world_vectors.py`
+     does again in Python, with each plant grown by the rule.
+   - **The vectors** are in `vectors/ur-garden-hosted.json`.
+
+   Not yet, for the map's pull request:
+   - the map page, with a card for each world;
+   - inhabitants seeing a glasshouse: for now it is a place the log
+     names, not a cell;
+   - a template signed by the project's own key (part 1, above).
 4. **Running on, with no server.** Since a world is deterministic, the
    page can compute where a world is now from its template, its seed and
    the time since its birth, with every change from outside a signed

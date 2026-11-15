@@ -62,6 +62,25 @@ pub fn tell(world: &World) -> String {
             "unanswered" => format!("{who} doesn't answer in time."),
             "shaped" => format!("The operator makes {} {}.", field("at"), field("to")),
             "exited" => format!("{who} leaves ({}).", field("reason")),
+            "hosted" => format!(
+                "A glasshouse at {} now hosts a world of its own, {}, which grows by {}.",
+                field("at"),
+                field("world"),
+                field("kind")
+            ),
+            "tended" => {
+                let n = data
+                    .and_then(|d| d.get("worlds"))
+                    .and_then(Value::as_array)
+                    .map_or(0, Vec::len);
+                let worlds = if n == 1 { "world" } else { "worlds" };
+                format!("The garden gives {n} hosted {worlds} a step of time.")
+            }
+            "untended" => format!(
+                "The garden can't tend {} any more ({}).",
+                field("world"),
+                field("reason")
+            ),
             other => format!("{other} {who}"),
         };
         let stamp = if last_tick.as_ref() == Some(&tick) {

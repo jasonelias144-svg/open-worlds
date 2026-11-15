@@ -26,10 +26,11 @@ use serde_json::{Map, Value, json};
 
 use crate::arrival;
 use crate::generate::{self, Chunk, GENERATOR, SEA};
+use crate::host::{Glasshouse, HostError, Hosted, place_problem};
 use crate::space::{CHUNK, Cell, ChunkCoord, Dir, Material};
 
 /// The rules' name and version, as the log records it.
-pub const RULES: &str = "ur-world/0.3";
+pub const RULES: &str = "ur-world/0.4";
 
 /// The most a single `Say` carries, in characters; longer speech is cut.
 pub const MAX_SAY: usize = 280;
@@ -237,6 +238,8 @@ pub struct World {
     /// Each key, and its name here.
     known: BTreeMap<String, String>,
     log: Vec<Value>,
+    /// The worlds it hosts, in the order they came ([`crate::host`]).
+    glasshouses: Vec<Glasshouse>,
 }
 
 impl World {
@@ -257,6 +260,7 @@ impl World {
             names: BTreeMap::new(),
             known: BTreeMap::new(),
             log: Vec::new(),
+            glasshouses: Vec::new(),
         };
         let key = world.key.clone();
         world.record(
@@ -527,7 +531,110 @@ impl World {
         self.heard = spoken;
         self.settle();
         self.explore();
+        self.tend();
         self.tick += 1;
+    }
+
+    /// Hosts `world` in a glasshouse at `at` ([`crate::host`]): from the
+    /// next tick on, it takes one step of its own time each tick, until it
+    /// finishes. Written to the log as `hosted`. Refused if a glasshouse
+    /// can't stand there or stands there already, if the world is hosted
+    /// here already or is this world, or if its log doesn't begin by naming
+    /// its key.
+    pub fn host(&mut self, at: Cell, world: Box<dyn Hosted>) -> Result<(), HostError> {
+        if let Some(why) = place_problem(at) {
+            return Err(HostError::Place(why));
+        }
+        if self.glasshouses.iter().any(|g| g.at == at) {
+            return Err(HostError::Taken);
+        }
+        let key = world.key().to_owned();
+        if key == self.key {
+            return Err(HostError::OwnKey);
+        }
+        if self.glasshouses.iter().any(|g| g.world.key() == key) {
+            return Err(HostError::AlreadyHosted);
+        }
+        let hash = |e: &Value| e.get("hash").and_then(Value::as_str).map(str::to_owned);
+        let first = world.log().first();
+        let named = first
+            .and_then(|e| e.get("data"))
+            .and_then(|d| d.get("world"))
+            .and_then(Value::as_str);
+        let (Some(first), Some(from)) = (first.and_then(hash), world.log().last().and_then(hash))
+        else {
+            return Err(HostError::NoLog);
+        };
+        if named != Some(key.as_str()) {
+            return Err(HostError::NoLog);
+        }
+        self.record(
+            "hosted",
+            None,
+            json!({
+                "world": key,
+                "kind": world.kind(),
+                "at": at.json(),
+                "first": first,
+                "from": from,
+            }),
+        );
+        self.glasshouses.push(Glasshouse {
+            at,
+            world,
+            untended: false,
+        });
+        Ok(())
+    }
+
+    /// The worlds it hosts, in the order they came.
+    pub fn glasshouses(&self) -> &[Glasshouse] {
+        &self.glasshouses
+    }
+
+    /// Each hosted world that hasn't finished takes one step; a `tended`
+    /// entry names the entry each step wrote. A world that can't take its
+    /// step is written as `untended`, and isn't tended again.
+    fn tend(&mut self) {
+        let mut tended = Vec::new();
+        let mut untended = Vec::new();
+        for glasshouse in &mut self.glasshouses {
+            if glasshouse.untended || glasshouse.world.finished() {
+                continue;
+            }
+            let before = glasshouse.world.log().len();
+            match glasshouse.world.tend() {
+                Ok(()) if glasshouse.world.log().len() == before + 1 => {
+                    let last = glasshouse.world.log().last();
+                    let hash = last
+                        .and_then(|e| e.get("hash"))
+                        .and_then(Value::as_str)
+                        .unwrap_or_default();
+                    tended.push(json!([glasshouse.world.key(), hash]));
+                }
+                Ok(()) => {
+                    glasshouse.untended = true;
+                    untended.push((
+                        glasshouse.world.key().to_owned(),
+                        "its step didn't write exactly one entry".to_owned(),
+                    ));
+                }
+                Err(why) => {
+                    glasshouse.untended = true;
+                    untended.push((glasshouse.world.key().to_owned(), why));
+                }
+            }
+        }
+        if !tended.is_empty() {
+            self.record("tended", None, json!({ "worlds": tended }));
+        }
+        for (world, reason) in untended {
+            self.record(
+                "untended",
+                None,
+                json!({ "world": world, "reason": reason }),
+            );
+        }
     }
 
     /// `ticks` ticks.

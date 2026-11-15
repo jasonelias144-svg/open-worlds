@@ -12,6 +12,13 @@
 //! flower, and WALKER walks out of the garden into land no one has seen,
 //! which comes into view as WALKER goes.
 //!
+//! The garden also hosts three plant worlds, each in a glasshouse
+//! ([`crate::host`]): the founder's "microverse garden of hosted fractal
+//! worlds". Each is a world of its own (`rust/plant-world`), with its own
+//! trial key and log, grown from the plant vectors' trial template with
+//! dials of its own; the garden gives each a step of its time every tick,
+//! until it finishes.
+//!
 //! The Hello World is a trial world of its own, not the Ur-world: its key,
 //! and its stand-ins' keys, are trial keys made from the seed
 //! ([`crate::arrival::trial_secret`]), so its log is the same on every
@@ -20,6 +27,11 @@
 use std::collections::VecDeque;
 
 use formats::proof::public_key;
+use formats::records::record_hash;
+use plant_world::rule::Dials;
+use plant_world::vectors::{TRIAL_CODE, TRIAL_TIME};
+use plant_world::world::{PlantWorld, law, law_hash, template};
+use serde_json::{Value, json};
 
 use crate::arrival::{self, trial_secret};
 use crate::space::{Cell, Dir};
@@ -90,18 +102,95 @@ pub fn gardener() -> Script {
     ])
 }
 
-/// The Hello World: the garden, WALKER and GARDENER, `TICKS` ticks. Each
-/// enters with an arrival signed by its own trial key.
-pub fn hello_world() -> Result<World, EntryError> {
+/// The plant worlds the garden hosts: a name, where its glasshouse
+/// stands, and its dials.
+pub fn plants() -> Vec<(&'static str, Cell, Dials)> {
+    let dials = |branch_length, max_depth, water, light| Dials {
+        branch_length,
+        max_depth,
+        water,
+        light,
+    };
+    vec![
+        (
+            "the template's own plant",
+            Cell::new(-5, 1, -4),
+            Dials::default(),
+        ),
+        ("a larger plant", Cell::new(0, 1, -6), dials(3, 8, 10, 10)),
+        (
+            "a plant in low light",
+            Cell::new(5, 1, -4),
+            dials(3, 7, 10, 2),
+        ),
+    ]
+}
+
+/// A hosted plant's trial key, made from the garden's seed and its name.
+pub fn plant_secret(name: &str) -> [u8; 32] {
+    trial_secret(SEED, &format!("plant world: {name}"))
+}
+
+/// The template the plants grow from: the plant vectors' own
+/// (`plant_world::vectors`), signed by the same trial key.
+pub fn plant_template() -> Result<Value, String> {
+    let keeper = plant_world::world::trial_secret(0, "template keeper");
+    template(&keeper, TRIAL_CODE.0, TRIAL_CODE.1, TRIAL_TIME)
+}
+
+/// The Hello World: the garden, its three glasshouses, WALKER and
+/// GARDENER, `TICKS` ticks. Each plant is hosted before anyone enters;
+/// each stand-in enters with an arrival signed by its own trial key.
+pub fn hello_world() -> Result<World, String> {
     let mut world = World::new(SEED, &public_key(&world_secret()));
+    let template_hash = record_hash(&plant_template()?)?;
+    for (name, at, dials) in plants() {
+        let key = plant_world::world::did(&plant_secret(name));
+        let plant = PlantWorld::new(&key, &template_hash, dials, None)?;
+        world.host(at, Box::new(plant)).map_err(|e| e.to_string())?;
+    }
     for (name, script, at) in [
         ("WALKER", walker(), FIRST_AT),
         ("GARDENER", gardener(), SECOND_AT),
     ] {
-        let arrival = arrival::sign(&world, &trial_secret(SEED, name), name, CREATED)
-            .map_err(EntryError::BadArrival)?;
-        world.enter(&arrival, Box::new(script), at)?;
+        let arrival = arrival::sign(&world, &trial_secret(SEED, name), name, CREATED)?;
+        world
+            .enter(&arrival, Box::new(script), at)
+            .map_err(|e: EntryError| e.to_string())?;
     }
     world.run(TICKS);
     Ok(world)
+}
+
+/// The hosted plants as shared vectors (`vectors/ur-garden-hosted.json`):
+/// each one's name, glasshouse, log, signed head and birth record, with
+/// the template and law they name.
+pub fn hosted_vectors(world: &World) -> Result<Value, String> {
+    let template = plant_template()?;
+    let mut worlds = Vec::new();
+    for (name, at, _) in plants() {
+        let secret = plant_secret(name);
+        let key = plant_world::world::did(&secret);
+        let plant = world
+            .glasshouses()
+            .iter()
+            .find(|g| g.world.key() == key)
+            .and_then(|g| g.world.as_any().downcast_ref::<PlantWorld>())
+            .ok_or_else(|| format!("{name} isn't hosted"))?;
+        worlds.push(json!({
+            "name": name,
+            "at": at.json(),
+            "birth": plant.birth(&secret, name, TRIAL_TIME)?,
+            "log": plant.log(),
+            "head": plant.head(&secret, TRIAL_TIME)?,
+        }));
+    }
+    Ok(json!({
+        "about": "The plant worlds the Ur-world's garden hosts (rust/ur-world, garden.rs), written by `cargo run -p ur-world --example garden -- --vectors ../vectors`. Each is a world of its own with a trial key made from the garden's seed and its name, public to everyone and never for anything real; the template is the plant vectors' own, signed by a trial key.",
+        "template": template,
+        "templateHash": record_hash(&template)?,
+        "law": law(),
+        "lawHash": law_hash()?,
+        "worlds": worlds,
+    }))
 }

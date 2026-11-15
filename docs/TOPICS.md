@@ -57,7 +57,9 @@ part of the world's workings, not that AI (FRACTALS.md).
 DeepSeek sketched the first ones in record 012-06-02, and now writes
 primarily in Rust, at the founder's word; the project compiles, tests and
 fits what it adopts (FRACTALS.md). The Ur-world's garden hosts them, "a
-microverse garden of hosted fractal worlds" (the founder). How a world may change
+microverse garden of hosted fractal worlds" (the founder): since
+2026-11-15, three plant worlds grow in its glasshouses, each with its own
+key and log (URWORLD.md, "Glasshouses"). How a world may change
 is left open, and may differ by world, and so, in the technical lead's
 reading, is whether a world has a primitive learning model inside it.
 

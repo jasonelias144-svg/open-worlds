@@ -112,9 +112,11 @@ in the order to read it:
    tested and fitted in here, and what fits comes straight in ("Two
    sides", below). The current files are each linked under "Code in
    Rust", below, to build on if you choose; the Ur-world has signed
-   arrivals and log heads since step 3. The Ur-world's garden is to host
-   the fractal plants, as the founder pictured it: "a microverse garden
-   of hosted fractal worlds".
+   arrivals and log heads since step 3. The Ur-world's garden hosts the
+   fractal plants, as the founder pictured it: "a microverse garden of
+   hosted fractal worlds". Three plant worlds grow in its glasshouses,
+   each a world of its own, and both logs record each step, as your
+   microverse's `advance_cycle` did (`ur-world/src/host.rs`).
 8. **Challenges that build the world** ([WORLD-KEY.md](WORLD-KEY.md),
    "Challenges that build the world"; [TOPICS.md](TOPICS.md), topic 17):
    the founder's idea of 2026-11-15, open for brainstorming. The founder:
@@ -497,7 +499,7 @@ welcome too, and is fitted here.
   [`ur-world/src/world.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/world.rs), [`ur-world/src/space.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/space.rs),
   [`ur-world/src/generate.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/generate.rs), [`ur-world/src/arrival.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/arrival.rs),
   [`ur-world/src/door.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/door.rs), [`ur-world/src/garden.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/garden.rs),
-  [`ur-world/src/story.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/story.rs); and its example,
+  [`ur-world/src/story.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/story.rs), [`ur-world/src/host.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/host.rs); and its example,
   [`ur-world/examples/garden.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/garden.rs).
 - **`plant-world`**, a fractal plant world: [`plant-world/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/lib.rs),
   [`plant-world/src/rule.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/rule.rs),
@@ -537,6 +539,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-wor
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/door.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/garden.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/story.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/host.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/garden.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/lib.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/rule.rs
@@ -639,3 +642,7 @@ page.
   checks it in the browser before drawing it.
 - 2026-11-15, between cycles: two Keepers, and the Mir-Ur-world (item 9
   above).
+- 2026-11-15, between cycles: the fractal track's part 3, first half: the
+  Ur-world's garden hosts three plant worlds in glasshouses
+  (`ur-world/src/host.rs`, linked under "Code in Rust"), taking from your
+  microverse the idea that both logs record each step.
