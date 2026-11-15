@@ -1,15 +1,20 @@
 """docs/COLLABORATING.md's list of full links ("Every file, by its full
-link") names exactly the files it says it does, and every one exists.
+link") and docs/FILES.md hold, between them, every file in the
+repository, each once, and every link on either page leads to a file.
 
 The founder pastes those links into a conversation with DeepSeek, which
 can open a full link given in a message but not, reliably, one found
 inside a page (the founder, 2026-11-15: "I have to provide the link.
 Fetching is unreliable from in the page, but from a prompt with full
-URL, it has worked."). So the list must be whole and current: this test
-fails when a file is added, moved or removed and the list isn't changed
-with it. It also checks that every full link anywhere on the page leads
-to a file that exists.
+URL, it has worked."; and later that day: "Remember links in the
+collaborating page are not accessible. So all files need links through
+this method."). So the lists must be whole and current: this test fails
+when a file is added, moved or removed and they aren't changed with it.
+COLLABORATING.md lists the files a reader works from; FILES.md, written
+by docs/files.py, the files of record (DeepSeek's records, the code
+taken from them, and Experiment 001's run logs).
 """
+import importlib.util
 import os
 import re
 import unittest
@@ -20,46 +25,30 @@ BASE = "https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/"
 LINK = re.compile(re.escape(BASE) + r"([^\s)<>\"'`#?]+)")
 SECTION = "## Every file, by its full link"
 
-# The files the list holds, besides those found below.
-ALWAYS = ["README.md", "AGENTS.md", "STATUS.md", "rust/README.md",
-          "rust/Cargo.toml", "rust/rust-toolchain.toml",
-          "vectors/README.md", "sketches/README.md", "sketches/INDEX.md"]
+FILES_PAGE = os.path.join(ROOT, "docs", "FILES.md")
 
 
-def _files(folder, suffix, deep=True):
-    """Paths, from the root, of the files under `folder` ending in
-    `suffix` (in its subfolders too, if `deep`)."""
-    top = os.path.join(ROOT, folder)
-    found = []
-    for here, dirs, names in os.walk(top):
-        dirs.sort()
-        if not deep:
-            dirs.clear()
-        found.extend(os.path.relpath(os.path.join(here, n), ROOT)
-                     .replace(os.sep, "/")
-                     for n in sorted(names) if n.endswith(suffix))
-    return found
+def _load_files_script():
+    spec = importlib.util.spec_from_file_location(
+        "docs_files", os.path.join(ROOT, "docs", "files.py"))
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+FILES = _load_files_script()
+TRACKED = FILES.tracked()
 
 
 def expected():
-    """Every file the list should hold: the pages in docs/, the key
-    list, the schemas, and each Rust crate's manifest, library code and
-    examples (not its tests), with ALWAYS."""
-    paths = list(ALWAYS)
-    paths += _files("docs", ".md")
-    paths += _files("keys", "", deep=False)
-    paths += _files("schemas", ".json", deep=False)
-    rust = os.path.join(ROOT, "rust")
-    for crate in sorted(os.listdir(rust)):
-        if os.path.isfile(os.path.join(rust, crate, "Cargo.toml")):
-            paths.append(f"rust/{crate}/Cargo.toml")
-            paths += _files(f"rust/{crate}/src", ".rs")
-            paths += _files(f"rust/{crate}/examples", ".rs", deep=False)
-    return paths
+    """Every file COLLABORATING.md's list should hold: every file in the
+    repository but those FILES.md holds."""
+    held_there = set(FILES.here(TRACKED))
+    return [p for p in TRACKED if p not in held_there]
 
 
-def page():
-    with open(PAGE, encoding="utf-8") as f:
+def page(path=PAGE):
+    with open(path, encoding="utf-8") as f:
         return f.read()
 
 
@@ -71,12 +60,13 @@ def listed():
     return LINK.findall(text[start:end if end >= 0 else len(text)])
 
 
+@unittest.skipIf(TRACKED is None, "not a git checkout: can't list the files")
 class TheList(unittest.TestCase):
 
     def test_it_holds_every_file_it_should_and_no_other(self):
         have, want = listed(), expected()
-        self.assertEqual(sorted(set(want) - set(have)), [],
-                         "files missing from the list")
+        self.assertEqual([BASE + p for p in sorted(set(want) - set(have))],
+                         [], "files missing from the list")
         self.assertEqual(sorted(set(have) - set(want)), [],
                          "files in the list it shouldn't hold")
 
@@ -92,6 +82,31 @@ class TheList(unittest.TestCase):
     def test_every_full_link_on_the_page_leads_to_a_file(self):
         for path in LINK.findall(page()):
             path = path.rstrip(".,;:")
+            with self.subTest(path=path):
+                self.assertTrue(
+                    os.path.isfile(os.path.join(ROOT, *path.split("/"))),
+                    path)
+
+
+@unittest.skipIf(TRACKED is None, "not a git checkout: can't list the files")
+class TheRest(unittest.TestCase):
+
+    def test_files_page_is_current(self):
+        self.assertTrue(page(FILES_PAGE) == FILES.render(TRACKED),
+                        "docs/FILES.md is stale: run python3 docs/files.py")
+
+    def test_the_two_hold_every_file_once(self):
+        here = LINK.findall(page(FILES_PAGE))
+        both = listed() + here
+        self.assertEqual(len(both), len(set(both)), "a file listed twice")
+        self.assertEqual(sorted(both), sorted(TRACKED))
+
+    def test_it_holds_the_records(self):
+        here = LINK.findall(page(FILES_PAGE))
+        self.assertTrue(any(p.startswith("sketches/records/") for p in here))
+
+    def test_every_link_on_it_leads_to_a_file(self):
+        for path in LINK.findall(page(FILES_PAGE)):
             with self.subTest(path=path):
                 self.assertTrue(
                     os.path.isfile(os.path.join(ROOT, *path.split("/"))),

@@ -237,6 +237,17 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on links to every file:
+  "Remember links in the collaborating page are not accessible. So all
+  files need links through this method. Are these all of them?"
+  They weren't: docs/COLLABORATING.md's list held 88 of the 1,045 files
+  then on `main`, and none of the Python code or the tests. Now every
+  file has its full link to paste. COLLABORATING.md's list ("Every
+  file, by its full link") holds the files a reader works from: every
+  page, all the code in Python and Rust, the tests, the vectors and the
+  web pages. docs/FILES.md, written by docs/files.py, holds the files
+  of record: DeepSeek's records, the code taken from them, and
+  Experiment 001's run logs.
 - 2026-11-15, founder, on where the record lives:
   "Sounds good. Is the COLLABORATING.md page up to date with these
   changes? Because we need to make sure that many of the comments that I
@@ -1864,6 +1875,23 @@ Decisions about the code, made by the technical lead under the founder's
 deference (above, 2026-11-13), each with its reason and what would show
 it was wrong. Questions of what the project is for stay with the founder.
 
+- 2026-11-15, every file's full link, all of them: the founder's word
+  (Decided, "on links to every file") widens the list of 2026-11-15
+  below from the pages and Rust library code to every file in the
+  repository. Two pages hold them. docs/COLLABORATING.md's list holds
+  everything a reader works from, the Python code and all the tests
+  included. docs/FILES.md holds DeepSeek's records, the code taken from
+  them, and Experiment 001's run logs, grouped at most 40 to a paste,
+  with sizes, and written by `python3 docs/files.py`.
+  `tests/test_collaborating_links.py` lists the repository with git and
+  fails unless the two pages hold every file, each once, and FILES.md
+  is as the script writes it. *Why:* a link inside a page can't be
+  opened in DeepSeek's conversation, so a file with no list line can't
+  be read at all; the files of record are kept apart because they are
+  about 17 MB, more than a conversation can take in, and best sent when
+  a question needs them. *Revisit if:* DeepSeek can follow links from a
+  page, or the records are needed often enough to belong in the main
+  list.
 - 2026-11-15, the endless plant (record 012-07-03): DeepSeek's decisions
   are accepted as the record gives them (signed heads in batches; a
   crate and template of its own, `hasMonad` a dial; the neuron's weights
@@ -2297,6 +2325,13 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: every file's full link. docs/COLLABORATING.md's
+  list now holds every file a reader works from (242), the Python code
+  and tests for the first time; docs/FILES.md, written by
+  docs/files.py, holds the 805 files of record. The links test now
+  lists the repository with git and checks the two pages hold every
+  file once, and that FILES.md is current.
 
 - 2026-11-15 Claude: after #89's independent review at 03e3923, its six
   notes: COLLABORATING.md's "in brief" says it is a selection and where
