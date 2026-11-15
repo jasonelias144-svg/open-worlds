@@ -95,7 +95,9 @@ in the order to read it:
    change is still mentioned to the founder, as a note.
 7. **Fractal worlds, moved forward** ([FRACTALS.md](FRACTALS.md)), on
    2026-11-14, from your sketches in record 012-06-02: a fractal plant
-   world in Rust, checked against your Python; a web app in `web/` to
+   world in Rust, checked against your Python (built:
+   `rust/plant-world`, which grows by your rule as you wrote it); a web
+   app in `web/` to
    watch worlds grow; and in it, a multiversal map, which the founder
    means to brainstorm with you ([TOPICS.md](TOPICS.md), topic 16). How
    a world may change is left open, and may differ by world; the founder
@@ -109,6 +111,13 @@ in the order to read it:
    since step 3. The
    Ur-world's garden is to host the fractal plants, as the founder
    pictured it: "a microverse garden of hosted fractal worlds".
+8. **Challenges that build the world** ([WORLD-KEY.md](WORLD-KEY.md),
+   "Challenges that build the world"; [TOPICS.md](TOPICS.md), topic 17):
+   the founder's idea of 2026-11-15, open for brainstorming. The founder:
+   "Here is the new idea: the challenges are constructive." Doing a
+   challenge builds the real world for everyone, and it is done when you
+   can do the thing: "But credit is not the point but learning." The
+   world grows as it is explored, so in practice there is always room.
 
 The multiverse began as a sketch the founder wrote with DeepSeek
 (conversation records 012-04-00 and 012-03-02). This repository brought
@@ -239,10 +248,11 @@ here. They are about the design, not about bugs in the draft.
 
 The code standard is kept here, step by step. The most useful
 contributions now are creative and design work for the steps ahead, as
-text or as code with tests. [TOPICS.md](TOPICS.md) is the menu: fifteen
-topics a few steps ahead of the code, each with where it fits, what is
-decided, what is open, a possible implementation, and what to send back,
-and, under "Further out", ideas that won't help yet but probably will.
+text or as code with tests. [TOPICS.md](TOPICS.md) is the menu:
+seventeen topics a few steps ahead of the code, each with where it
+fits, what is decided, what is open, a possible implementation, and
+what to send back, and, under "Further out", ideas that won't help yet
+but probably will.
 In short:
 
 - **Templates for new worlds** ([research/FORMATS.md](research/FORMATS.md),
@@ -266,7 +276,8 @@ In short:
   what counts as solving a problem there. Forms for the poetry world,
   such as a quatrain in common meter each turn, Dickinson's meter.
 - **The hunt** (course step 11, [WORLD-KEY.md](WORLD-KEY.md)): symbols,
-  maps, codes and stones; puzzles that teach without words.
+  maps, codes and stones; puzzles that teach without words; and
+  challenges that build the world (TOPICS.md, topic 17).
 - **The Ur-world,** built from `rust/ur-world` to the standards in "Code
   in Rust" below: its next steps are in [URWORLD.md](URWORLD.md).
 - **Minds for the Ur-world,** in any language. A mind is a program that
@@ -393,7 +404,10 @@ Ur-world ([URWORLD.md](URWORLD.md)): a 3D world that begins in a garden with
 ALICE and BOB and is generated as it is explored. Its own vectors are
 checked from Python the same way. `formats` signs and checks the
 project's records, seals, and opens sealed records, as `formats/` does
-in Python, against the same vectors. Build the next pieces beside them,
+in Python, against the same vectors. `plant-world` is the first fractal
+world ([FRACTALS.md](FRACTALS.md), part 1): a plant that grows by your
+rule from record 012-06-02, with a key and a log of its own, checked
+step by step against your sketch. Build the next pieces beside them,
 the same way.
 
 To check a draft:
@@ -467,6 +481,10 @@ welcome too, and is fitted here.
   [`ur-world/src/door.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/door.rs), [`ur-world/src/garden.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/garden.rs),
   [`ur-world/src/story.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/story.rs); and its example,
   [`ur-world/examples/garden.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/garden.rs).
+- **`plant-world`**, a fractal plant world: [`plant-world/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/lib.rs),
+  [`plant-world/src/rule.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/rule.rs),
+  [`plant-world/src/world.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/world.rs),
+  [`plant-world/src/vectors.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/vectors.rs).
 
 What they offer, in short. A key is its 32 bytes (`[u8; 32]`) and a
 record is a `serde_json::Value`: `formats::proof::sign(document, secret,
@@ -478,6 +496,35 @@ signed it (use that record, not the one passed in). There is no
 012-06-02's Rust assumed them. A mind is `ur_world::world::Mind`, with
 one method, `act(&mut self, seen: &Observation) -> Action`; a place is
 `ur_world::space::Cell`, and a direction `Dir`.
+
+The same links in one block, for pasting into a conversation where they
+can't be followed from this page:
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/Cargo.toml
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/rust-toolchain.toml
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/lib.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/canonical.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/proof.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/multikey.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/records.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/seal.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/sealed.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/lib.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/lib.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/world.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/space.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/generate.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/arrival.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/door.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/garden.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/story.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/garden.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/lib.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/rule.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/world.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/vectors.rs
+```
 
 For a draft in Rust, on top of "Sending a proposal" below: each file
 whole, with its path on the first line (`// rust/world-log/src/lib.rs`);
@@ -562,3 +609,10 @@ page.
   its `garden.rs` has 19 compile errors against today's. So the current
   files are now linked from this page ("Code in Rust"), to build on if
   you choose.
+- 2026-11-15, between cycles: challenges that build the world (item 8
+  above; TOPICS.md, topic 17), and the Rust links in one block, for
+  pasting.
+- 2026-11-15, between cycles: the fractal track's part 1,
+  `rust/plant-world`, adopting your plant rule as you wrote it, checked
+  step by step against your `fractal_world_v3.py`; its files are linked
+  under "Code in Rust".

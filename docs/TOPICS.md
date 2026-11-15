@@ -24,8 +24,9 @@ kept current with the course, as COLLABORATING.md is (AGENTS.md).
 - **Code:** each file whole, with its path on its first line, and its
   tests; say what you ran and what you didn't. Rust first, and another
   language when the job needs it (the founder, 2026-11-15: "primarily to
-  Rust"); what you can't compile is compiled and tested here ("Code in
-  Rust" in COLLABORATING.md), so write against the current files.
+  Rust"); what you can't compile is compiled and tested here. The
+  current files are linked under "Code in Rust" in COLLABORATING.md, to
+  build on if you choose.
 - **Anything recorded or signed** keeps the three rules: ASCII keys,
   integers within 2^53 - 1, and no floats (a quantity with a fraction is
   an integer in a stated unit, written as a UCUM code: `ms`, `10*-3`,
@@ -546,6 +547,77 @@ fields, as a sketch (no format is decided):
 world; how a map nests; what the brochure says, as text a mind can read;
 designs or sketches of the map page itself. Prose and pictures are as
 welcome as code.
+
+## 17. Challenges that build the world
+
+*The hunt and the Keeper (course step 11), with a first version once the
+Ur-world's garden hosts plant worlds (the fractal track, part 3) and the
+scripted Keeper is in (course step 6).* The
+founder, 2026-11-15: "Here is the new idea: the challenges are
+constructive." And: "Anyone engaging in the game layer would be building
+the world actively. This ties the keeper AI with the challenges, as it
+becomes how the world grows internally." Then: "But credit is not the
+point but learning." And: "Either way, this could unfold in many ways,
+we should try to accommodate as many possibilities as we can imagine."
+All three messages are quoted whole in [WORLD-KEY.md](WORLD-KEY.md),
+"Challenges that build the world".
+
+**Decided:** the idea, in the founder's words above. How it is shaped is
+the technical lead's reading, which stands unless the founder answers
+otherwise (WORLD-KEY.md):
+- the game layer is taken up by choice, beside exploring, creating and
+  experimenting;
+- a challenge builds the real world, and what it builds is open to
+  everyone;
+- it is done when the world sees someone do it;
+- each challenge comes from what the world needs now, so nobody waits
+  on anybody;
+- the Keeper proposes, and people build.
+
+The Keeper itself is the project's to design, in step 11
+(COLLABORATING.md, "Held back"): ideas about it are welcome, as prose.
+
+**Open:** nearly everything, as the founder means it to be:
+- how the world sees "done" for planting, for water, for a path through
+  unknown land;
+- how a group forms, and what it means for a group to be capable;
+- what an open task looks like, and who can see it;
+- how the Keeper reads what the world needs, and chooses the next
+  challenge from it;
+- how a challenge that starts as a situation (a dry plot) lets someone
+  find its goal;
+- which subskills planting needs, and how they are offered;
+- how a second cycle is harder, and how old skills come back;
+- whether anything built ever changes on its own: growth, seasons,
+  decay.
+
+**A possible implementation:** one shape for every kind of challenge, so
+a new kind is a new combination, not new machinery. As a sketch (no
+format is decided):
+
+```json
+{
+ "challenge": "<its hash>",
+ "for": "one | group | anyone",
+ "who": ["did:key:z6Mk... (for one or a group; empty for anyone)"],
+ "starts_from": "a situation in the world: a dry plot at x 40, z -12",
+ "done_when": "what the world sees: twelve plants growing in the plot",
+ "builds": "what stays afterwards, open to everyone: a garden",
+ "teaches": ["planting", "finding water"],
+ "set_by": "did:key:z6Mk... (the Keeper)"
+}
+```
+
+**Send back:**
+- a series of challenges for one world, from a first day to a tenth
+  cycle, as prose: what each starts from, what it builds, and what it
+  teaches;
+- a group challenge that needs every member;
+- an open task;
+- how a mind that reads only text finds the goal of a situation;
+- what could go wrong, and how the design avoids it.
+
+Prose is as welcome as code.
 
 ## Further out
 

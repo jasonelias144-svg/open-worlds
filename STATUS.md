@@ -163,6 +163,29 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, in three messages, quoted whole in
+  docs/WORLD-KEY.md ("Challenges that build the world"): "Here is the
+  new idea: the challenges are constructive." "Anyone engaging in the
+  game layer would be building the world actively." "But credit is not
+  the point but learning." "Either way, this could unfold in many ways,
+  we should try to accommodate as many possibilities as we can imagine."
+  "Being able to expand the world map space through the act of
+  exploration allows everyone to create freely, without any need to
+  affect others." "We shouldn’t expect conflict to arise from freedom in
+  such an infinite space." The technical lead's reading, put to the
+  founder the same day, which stands unless the founder answers
+  otherwise: the game layer is taken up by choice, beside exploring,
+  creating and experimenting; a challenge builds the real world and is
+  done when the world sees someone do it; challenges come from what the
+  world needs now, so nobody waits on anybody; the Keeper proposes and
+  people build; and challenges for one, for a group, and open to anyone
+  share one shape (TOPICS.md, topic 17). Put to the founder as a note:
+  WORLD-KEY.md had said what is built "belongs to whoever built it";
+  after the founder's "And all for the greater good of the world, which
+  is available for everyone.", the reading is that what a challenge
+  builds is the world's, and what someone creates freely is theirs.
+  docs/FREEDOMS.md records that space and resources need not be scarce,
+  and keeps its tools for what can still meet.
 - 2026-11-15, founder, the other choices in the continued conversation
   with DeepSeek (record 012-06-02, as extended), as directions to
   DeepSeek: "Actually, I Ike the cross-federation map first, and then
@@ -1274,6 +1297,17 @@ it was wrong. Questions of what the project is for stay with the founder.
   Recommendation), or a seed's loss or leak costs a person more than
   separate keys would, or the architectures need the kernel changed.
 
+- 2026-11-15, reviews in proportion: after a pull request's independent
+  review, a fix that changes only wording (a quote's boundaries, a line's
+  wrap, a typo) gets the technical lead's own check, by a script where
+  one can check it, and the check is named in the P4 record; a fix to
+  code, or to what a page means or whose a word is, still gets a fresh
+  narrow re-check. *Why:* each re-check is a full session, and on #65
+  every one of the three re-checks after the review found a quote's
+  boundary, which a script checks exactly. Put to the founder the same
+  day; it stands unless the founder answers otherwise. *Wrong if:* a
+  wording-only fix merged this way is later found to have changed a
+  meaning.
 - 2026-11-15, the plant world (docs/FRACTALS.md, part 1). DeepSeek's
   plant rule is adopted as written, with its screen coordinates (`y`
   grows downward) and its order of tips. Its log uses the format every
@@ -1298,6 +1332,15 @@ it was wrong. Questions of what the project is for stay with the founder.
   against DeepSeek's `advance` in the sketch's folder, and from Python in
   `tests/test_plant_world_vectors.py`. CI also runs the example, which
   draws a plant in text.
+
+- 2026-11-15 Claude: challenges that build the world, the founder's idea
+  of the same night: the founder's three messages and the technical
+  lead's reading in docs/WORLD-KEY.md, a new section; docs/FREEDOMS.md
+  on endless space; docs/TOPICS.md topic 17, for brainstorming with
+  DeepSeek; COLLABORATING.md item 8, and the Rust links in one block for
+  pasting. TOPICS.md's "For every topic" now offers the links rather than
+  asking DeepSeek to write against them, as the founder's "nudge" has
+  it.
 
 - 2026-11-15 Claude: record 012-06-02 brought in again, as the founder
   shared it continued: the first 43,170 lines are the same, and 19,440
