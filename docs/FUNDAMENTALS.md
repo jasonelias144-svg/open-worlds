@@ -157,8 +157,8 @@ one of them updates this page.
    2026-11-14: the project may end a world, but its record never ends,
    sealed selves stay sealed and keys stay their holders'
    ([ADMIN.md](ADMIN.md), "Questions for the founder").
-9. **Fear of the Keeper silences no one.** The founder, 2026-11-14, on
-   the technical lead's recommendation: the author of a suggestion about
+9. **Fear of the Keeper silences no one.** Decided 2026-11-14, on the
+   technical lead's recommendation: the author of a suggestion about
    a Keeper may ask for their name, and their rating of how it was
    handled, to be withheld until it has an outcome; each is recorded as
    withheld, and published with the outcome ([ADMIN.md](ADMIN.md)). Not
