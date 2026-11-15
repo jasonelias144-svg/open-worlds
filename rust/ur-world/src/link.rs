@@ -18,10 +18,12 @@
 //!
 //! The world writes a link it takes into its log whole, as `linked`, so
 //! anyone can check it ([`link_log_problems`]). A link it refuses is
-//! written as `blocked`, with a fixed reason, and without the records:
-//! shown in the wrong world, a link that holds in its own would otherwise
-//! be published here, linking that world's presence to its person in
-//! public. The reason's details are told only to the one who showed it.
+//! written as `blocked`, with neither the records nor the reason: shown
+//! in the wrong world, a link that holds in its own would otherwise be
+//! published here, linking that world's presence to its person in public;
+//! and even the reason would say too much, since "the link names another
+//! world" is only ever said of a link that holds. Why it was refused is
+//! told only to the one who showed it ([`Refusal`]).
 //!
 //! # Limits
 //!
@@ -62,8 +64,9 @@ pub enum Refusal {
 }
 
 impl Refusal {
-    /// The reason as the log writes it: fixed words, with no detail from
-    /// the records, which the log never holds for a link it refused.
+    /// The reason in fixed words, without the details
+    /// [`Refusal::DoesntHold`] carries. It is told only to the one who
+    /// showed the link: the log says that a link was refused, not why.
     pub const fn reason(&self) -> &'static str {
         match self {
             Refusal::DoesntHold(_) => "the link doesn't hold",

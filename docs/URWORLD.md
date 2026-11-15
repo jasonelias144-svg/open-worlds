@@ -226,9 +226,9 @@ fractal worlds". So the garden hosts other worlds, in glasshouses
   "Part three, built"). The world takes it only if both of the link's
   records hold, name this world, and name the key the one who acts
   entered under, and if that presence has shown no link here before.
-  It writes a link it takes into its log whole, and one it refuses with
-  a reason and neither record. Minds through the doorway can't show one
-  yet.
+  It writes a link it takes into its log whole, and of one it refuses
+  only that it was refused: neither record, nor why, which only the one
+  who showed it is told. Minds through the doorway can't show one yet.
 - **Wait.**
 - **Exit**: leaving always succeeds. An inhabitant's keeper can also take
   them out at any time.

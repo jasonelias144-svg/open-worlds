@@ -3,7 +3,7 @@
 //! what the shared vectors record; a lesson goes from one world to another
 //! only through the person; each presence is a key of its own, made from
 //! the person's seed; a presence shows its own link, and the world takes
-//! it, refuses it with a reason and without its records, and a log check
+//! it, or refuses it and logs neither its records nor why, and a log check
 //! finds every link the world would have refused.
 
 // Tests may unwrap, expect, panic and index: a failure here is a failed
@@ -265,7 +265,7 @@ fn shown(actions: impl Fn(&World) -> Vec<Action>) -> (Vec<Outcome>, World) {
 }
 
 #[test]
-fn a_link_is_refused_with_a_reason_and_logged_without_its_records() {
+fn a_refused_link_is_logged_with_neither_its_records_nor_why() {
     let person = person();
     let other = Person::new(
         trial_secret(SEED, "another trial person: identity"),
@@ -318,11 +318,9 @@ fn a_link_is_refused_with_a_reason_and_logged_without_its_records() {
         }
         let blocked = of_kind(w.log(), "blocked");
         assert_eq!(blocked.len(), 1, "{name}");
-        assert_eq!(
-            blocked[0]["data"],
-            json!({ "action": "show", "reason": expected.reason() }),
-            "{name}"
-        );
+        // Only that a link was refused: why is told to WREN alone.
+        assert_eq!(blocked[0]["data"], json!({ "action": "show" }), "{name}");
+        assert!(!text(w.log()).contains(expected.reason()), "{name}");
         assert!(of_kind(w.log(), "linked").is_empty(), "{name}");
         // Neither record, nor either signature, is in the log.
         for record in [&refused.0, &refused.1] {
@@ -361,8 +359,64 @@ fn a_link_is_refused_with_a_reason_and_logged_without_its_records() {
             "{name}"
         );
         let blocked = of_kind(w.log(), "blocked");
-        assert_eq!(blocked[0]["data"]["reason"], expected.reason(), "{name}");
+        assert_eq!(blocked[0]["data"], json!({ "action": "show" }), "{name}");
+        // The other person is named nowhere in the log.
+        assert!(!text(w.log()).contains(other.key().as_str()), "{name}");
     }
+}
+
+#[test]
+fn a_presence_that_leaves_and_comes_back_is_still_held_by_its_person() {
+    let person = person();
+    let other = Person::new(
+        trial_secret(SEED, "another trial person: identity"),
+        trial_seed(SEED, PERSON),
+    );
+    let mut w = world("a world for links");
+    let link = person.link(w.key(), 0, CREATED).unwrap();
+    let others = other.link(w.key(), 0, CREATED).unwrap();
+    let first = enter(
+        &mut w,
+        &person,
+        0,
+        "WREN",
+        FIRST_AT,
+        vec![show(link.clone()), Action::Exit],
+    );
+    w.run(2);
+    assert_eq!(w.position("WREN"), None);
+    let again = enter(
+        &mut w,
+        &person,
+        0,
+        "WREN",
+        FIRST_AT,
+        vec![show(link), show(others)],
+    );
+    w.run(3);
+    assert_eq!(
+        *first.borrow(),
+        vec![Outcome::Linked {
+            person: person.key()
+        }]
+    );
+    assert_eq!(
+        *again.borrow(),
+        vec![
+            Outcome::LinkRefused(Refusal::Shown),
+            Outcome::LinkRefused(Refusal::HeldByAnother)
+        ]
+    );
+    assert_eq!(of_kind(w.log(), "linked").len(), 1);
+    assert_eq!(of_kind(w.log(), "blocked").len(), 2);
+    assert_eq!(of_kind(w.log(), "entered").len(), 2);
+    assert_eq!(
+        w.held_by(&person.presence(w.key(), 0).unwrap()),
+        Some(person.key().as_str())
+    );
+    assert!(!text(w.log()).contains(other.key().as_str()));
+    assert_eq!(arrival_problems(w.log()), Vec::<String>::new());
+    assert_eq!(link_log_problems(w.log()), Vec::<String>::new());
 }
 
 #[test]

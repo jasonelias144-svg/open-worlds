@@ -720,6 +720,6 @@ page.
   client (`ur-world/src/person.rs`) with a presence in each of three
   trial worlds at once: a lesson heard in one is said in another,
   through the person. A presence shows its link as an action of its own
-  (`ur-world/src/link.rs`), which its world checks and logs; a link it
-  refuses is logged without its records. The rules are now
+  (`ur-world/src/link.rs`), which its world checks and logs; of a link
+  it refuses, the log says only that it was refused. The rules are now
   `ur-world/0.5`.

@@ -229,9 +229,9 @@ in the first, and the person's presence in the second says it in its
 own world on the same tick, through the person's notebook. A presence
 shows its link as its own action, which its world checks (both records
 hold, name this world and this presence, and the presence has shown no
-link there before) and writes into its log; a link it refuses is logged
-with a reason and without its records. Next is part four, the
-architectures.
+link there before) and writes into its log; of a link it refuses, the
+log says only that it was refused, with neither its records nor why.
+Next is part four, the architectures.
 
 **A possible implementation:** DeepSeek's architectures (components 36
 to 52: the octopus, the relay, the swarm, the council) become small

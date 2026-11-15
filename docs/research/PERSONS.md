@@ -395,12 +395,17 @@ it takes effect, as it checks every action. The world takes it only if:
 
 **What the log holds.**
 - **A link the world takes** goes into its log whole, as `linked`.
-- **A link it refuses** goes in as `blocked`, with a fixed reason and
-  neither record. Shown in the wrong world, a link that holds in its own
-  world would otherwise be published here, linking that world's
-  presence to its person in public.
-- **The details of a refusal** are told only to the one who showed it,
-  on its next tick.
+- **A link it refuses** goes in as `blocked`, with neither record nor
+  reason: only that a link was refused.
+  - **Why not the records:** shown in the wrong world, a link that holds
+    in its own world would otherwise be published here, linking that
+    world's presence to its person in public.
+  - **Why not the reason:** "the link names another world", or "the link
+    is another presence's", is only ever said of a link whose records
+    hold. So even that reason would tell every reader that this presence
+    holds a link elsewhere (the independent review of #76).
+- **Why a link was refused** is told only to the one who showed it, on
+  its next tick.
 - **`link_log_problems`** checks every `linked` entry in a log as the
   world would have, and the `log` example runs it beside the arrivals'
   check.
@@ -428,6 +433,16 @@ The first two worlds' logs never name the person's key, and no world's
 log names another world or another world's presence; the third names
 the person only in the link CEDAR showed. Rust and Python both check
 this.
+
+**Never named isn't unlinkable.** A reader of both public logs sees
+TEACHER say a sentence in the first world at tick 0, and BIRCH say the
+same sentence, word for word, in the second at tick 1; ASH and BIRCH
+also entered at the same cell, with the same time in their arrivals'
+proofs. That is enough to guess that ASH and BIRCH are one person's. It
+is the first of the honest limits below ("a manner of speaking ... can
+link them"), shown on purpose: the trial shows a lesson carried, not a
+presence kept unlinked. A person who must stay unlinked carries what
+they learned, not the words.
 
 **What a world doesn't check.**
 - **The person is a key, not a born identity.** Neither the world nor

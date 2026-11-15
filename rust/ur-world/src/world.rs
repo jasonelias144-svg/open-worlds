@@ -76,7 +76,8 @@ pub enum Action {
     /// presence of theirs ([`crate::link`]). The world takes it if both
     /// records hold as one link, name this world, and name the key the
     /// one who acts entered under, and if that presence has shown no link
-    /// here before; then it writes both records into its log.
+    /// here before; then it writes both records into its log. A link it
+    /// refuses is logged with neither record nor reason.
     ShowLink {
         /// The person's half, `open-worlds/holds/v1`.
         holds: Value,
@@ -849,18 +850,14 @@ impl World {
     }
 
     /// `name` shows a link ([`crate::link`]). A link the world takes goes
-    /// into the log whole; one it refuses goes in as `blocked`, with the
-    /// reason in fixed words and neither record, and the details are told
-    /// only to the one who showed it.
+    /// into the log whole; one it refuses goes in as `blocked`, with
+    /// neither record nor reason, and why is told only to the one who
+    /// showed it.
     fn show_link(&mut self, name: &str, holds: &Value, held_by: &Value) -> Outcome {
         let presence = self.names.get(name).cloned().unwrap_or_default();
         match link::refusal(&self.key, &presence, holds, held_by, &self.links) {
             Some(refusal) => {
-                self.record(
-                    "blocked",
-                    Some(name),
-                    json!({ "action": "show", "reason": refusal.reason() }),
-                );
+                self.record("blocked", Some(name), json!({ "action": "show" }));
                 Outcome::LinkRefused(refusal)
             }
             None => {

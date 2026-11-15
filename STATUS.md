@@ -1562,18 +1562,22 @@ it was wrong. Questions of what the project is for stay with the founder.
   must be recovered by tools that know only wallet paths; then a
   SLIP-0010 path beside it, with collisions refused.
 - 2026-11-15, a link is shown by an action, and a refused one is logged
-  without its records (docs/research/PERSONS.md, "Part three, built").
+  without its records or why (docs/research/PERSONS.md, "Part three,
+  built").
   A presence shows its link on its turn, as `Action::ShowLink`, not
   through a call from outside the tick. The world takes it only if both
   records hold, name this world, and name the key the one who acts
   entered under, and if that presence has shown no link there before.
-  A link it refuses goes into the log as `blocked`, with a fixed reason
-  and neither record. The rules are now `ur-world/0.5`. *Why:* the plan
+  A link it refuses goes into the log as `blocked`, with neither record
+  nor reason; why is told only to the one who showed it. The rules are
+  now `ur-world/0.5`. *Why:* the plan
   says showing is "the presence's own act, in its world, which the
   world checks and logs", and an action is exactly that in the kernel:
   chosen by the one who acts, checked before it takes effect, and told
   back. A refused link's records, logged, could publish a link that
-  holds in another world. *Wrong if:* a person must show a link while
+  holds in another world; and its reason could say that one exists,
+  since "names another world" is only said of a link whose records
+  hold. *Wrong if:* a person must show a link while
   their presence isn't in its world (for instance, published with a
   birth before the first arrival); then a separate act for the keeper,
   logged the same way.
@@ -1591,7 +1595,12 @@ it was wrong. Questions of what the project is for stay with the founder.
   ur-world/0.5, the garden's vectors are written again, and the World
   Map draws the garden under 0.4 and 0.5. Carried from #75's review:
   why presence keys use no salt (RFC 5869, sections 3.1 and 3.3), and
-  exact docstrings for both languages' `seed_problems`.
+  exact docstrings for both languages' `seed_problems`. After the
+  independent review: a refused link is logged with neither its records
+  nor why, since even the reason could say that a link exists
+  elsewhere; a test of a presence leaving, coming back and showing again;
+  and a note that the trial's presences, though never named in each
+  other's worlds, can be linked by what they say and when.
 
 - 2026-11-15 Claude: course step 3a, part two: persons' formats. Looked
   first at SLIP-0010, and took HKDF-SHA256 for presence keys, with the

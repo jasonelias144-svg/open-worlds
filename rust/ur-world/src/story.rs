@@ -54,9 +54,7 @@ pub fn tell(world: &World) -> String {
             "planted" => format!("{who} plants a {} at {}.", field("what"), field("at")),
             "moved" => format!("{who} moves to {}.", field("to")),
             "fell" => format!("{who} falls to {}.", field("to")),
-            "blocked" if field("action") == "show" => {
-                format!("{who} can't show a link: {}.", field("reason"))
-            }
+            "blocked" if field("action") == "show" => format!("{who} can't show a link."),
             "blocked" => format!("{who} can't {} {}.", field("action"), field("dir")),
             "linked" => format!(
                 "{who} shows a link: a person holds them, {}.",
