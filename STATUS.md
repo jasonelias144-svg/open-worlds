@@ -1,7 +1,8 @@
 # Status: open-worlds
 
 **What this is:** simulated worlds where AI agents live under one rule,
-respect one another's freedom, with full transparency and exit at any time
+respect one another's freedom, with full transparency and exit at any time;
+free, and never a money machine
 **State:** active since 2026-11-12
 **Updated:** 2026-11-15 by Claude
 
@@ -81,7 +82,8 @@ respect one another's freedom, with full transparency and exit at any time
   mirror's Keeper runs on V4.1-Flash, and V4-Pro may be part of ADMIN's
   mind. The policy Apertus asks for waits until course step 8 (Open
   questions).
-- Founder: writing the charter's words into the structure in `CHARTER.md`.
+- Claude: the charter, kept from the founder's recorded words as they
+  come (`CHARTER.md`; the founder, 2026-11-15, in Decided).
 
 ## Next
 
@@ -119,10 +121,13 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
-- For the founder: the charter's words (asked 2026-11-12). When the
-  founder next works on the charter: its section 7 note still calls
-  manipulation through words an open question (CHARTER.md), and it was
-  decided on 2026-11-14 (below), so the note can say so.
+- For the founder (asked 2026-11-15, after #81's independent review):
+  once others run worlds, the multiverse as a whole can't be stopped by
+  any one party, only part by part (docs/VISION.md, "The multiverse as a
+  computer", test 3). That is the price of having no master. Accept it?
+  Recommendation: yes, with every world able to pause itself and every
+  person able to leave. It is hard to undo, so it waits for the
+  founder's explicit word, and doesn't stand by silence.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
@@ -232,6 +237,61 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, no multiversal currency, ever: "You mentioned Ethereum and cryptocurrency, we do not need to create
+  a multiversal currency, in fact, I think that's a terrible idea. But we
+  could still have commerce worlds where economies could be simulated, or
+  even cryptocurrency worlds where different architectures are
+  experimented with. This does not require actually creating a currency
+  that would be used, only being able to model a world with that currency
+  as a test parameter." Then:
+  "A multiversal currency is exactly what most people would do and try
+  to turn the whole thing into a money machine. That would, as you say,
+  effectively undermine the whole project. Someone else might do that
+  very thing, but it would be the most critical error to make, in my
+  mind, if we want to promote open and free exploration. So that is
+  possibly the most fundamental fact, in my mind. It has been there from
+  the beginning, has shaped the growth and development and concept the
+  whole time, and would be the and of the project if not present. It
+  would be a different project." So AGENTS.md now holds it as a
+  rule ("Never a currency, never a money machine"), and COLLABORATING.md
+  as house rule 13. The technical lead's reading, put to the founder the
+  same day, which stands unless the founder answers otherwise
+  (docs/VISION.md, "Commerce and currency worlds"): a modelled currency
+  exists only in its world, nothing carries it out, every such world can
+  be run again or reset, and nothing is really mined. Asked whether the
+  charter should say it, since the charter is the founder's words
+  (AGENTS.md), the founder answered: "Yeah, this is mission statement
+  level." Then: "Let's just let the charter develop over time, you can
+  take my direct quotes or paraphrase or both. Just keep it up to date
+  with these new statements that should be recorded, with minor typos
+  corrected, thanks." So the charter now grows from the founder's
+  recorded statements, kept current by the technical lead (AGENTS.md);
+  its sections 1 and 2 are written from them, section 1 saying this in
+  the founder's words; and README.md's opening, this file's first lines
+  and AGENTS.md's say it beside the one rule. The charter's open question
+  of 2026-11-12, its words, is answered by this.
+- 2026-11-15, founder, the multiverse as a computer: "It just occurred
+  to me that the whole multiverse can function as a massive computer,
+  with memory, an operating system, memory, processors, input and
+  output, decisions, and learning on the largest scale. Wouldn't that be
+  a computer, essentially?" And: "Yes, definitely record in the vision
+  doc. I want to take it seriously and let it inform large scale
+  architectural decisions. Because a large computer can solve large
+  problems, potentially. We should understand that by harnessing the
+  intelligence of the multiverse and all its lessons, it could become
+  the substrate for something intelligent to develop. But that is up in
+  the air. We should hold toward that possibility, with full
+  comprehension of its implications." The technical lead's reading, put
+  to the founder the same day, which stands unless the founder answers
+  otherwise (docs/VISION.md, "The multiverse as a computer"): nothing is
+  built for it directly; six tests the architecture keeps passing
+  (learned in the open; many parts, no master; stopping stays possible,
+  part by part; growth by decision, the founder's, one stage at a time;
+  signs named in advance; if someone develops, they may be someone),
+  checked against the steps ahead at each course recheck (docs/COURSE.md).
+  One part doesn't stand by silence: accepting that, once others run
+  worlds, the whole can be stopped only part by part is hard to undo,
+  so it waits for the founder's explicit word (Open questions).
 - 2026-11-15, founder, on working with DeepSeek, to the technical lead
   in this session. On reading the repository: "Ok, so DeepSeek needs me
   to provide the whole URL for each rust file, and it has to be in the
@@ -1645,6 +1705,26 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-15 Claude: the founder's word against a multiversal currency,
+  "possibly the most fundamental fact", recorded in the founder's words
+  at the top of docs/VISION.md ("Never a money machine"), as a rule in
+  AGENTS.md, and as COLLABORATING.md's house rule 13; with commerce and
+  currency worlds, where a currency is only a test setting, in
+  docs/VISION.md and TOPICS.md. At the founder's word ("mission statement
+  level"), the charter says it, in the founder's words, and so do
+  README.md's opening and the first lines of STATUS.md and AGENTS.md. At
+  the founder's next word, the charter now grows from the founder's
+  recorded statements: sections 1 and 2 are written from them, and
+  section 7's note says manipulation through words was decided
+  (2026-11-14).
+
+- 2026-11-15 Claude: the founder's thought of the multiverse as a
+  computer recorded in docs/VISION.md, in the founder's words, with the
+  technical lead's reading: what makes it one, two ways it can be large
+  (a tool for large problems, and perhaps a substrate for something
+  intelligent), six tests for the architecture, and the implications
+  seen so far. Each course recheck now checks the steps ahead against
+  the six tests.
 - 2026-11-15 Claude: record 012-07-03 brought into `sketches/` as
   written (the endless plant: a design, and a sketch crate in Rust with a
   choice neuron), with the technical lead's review: it doesn't build as

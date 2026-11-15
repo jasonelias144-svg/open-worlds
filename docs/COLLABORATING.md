@@ -170,7 +170,17 @@ has changed since that record, in the order to read it:
    (COURSE.md, waiting list). And on 2026-11-15, a learning
    multiversity: lessons learned in each world travel upward, to the
    Keepers and to ADMIN, and teaching comes back down
-   ([VISION.md](VISION.md), "A learning multiversity").
+   ([VISION.md](VISION.md), "A learning multiversity"). And the same
+   day, the multiverse as a computer: memory, processors, input and
+   output, decisions and learning, at the largest scale, and perhaps
+   one day the substrate for something intelligent, which the founder
+   holds toward "with full comprehension of its implications"; six tests
+   for the architecture follow from it ([VISION.md](VISION.md), "The
+   multiverse as a computer"). And no multiversal currency, ever, which
+   the founder calls "possibly the most fundamental fact", though a
+   world may model an economy or a currency as a test setting
+   ([VISION.md](VISION.md), "Never a money machine" and "Commerce and
+   currency worlds").
 5. **Formats that last** ([research/FORMATS.md](research/FORMATS.md)).
    Every new signed record is a W3C Data Integrity proof
    (`eddsa-jcs-2022`) over its RFC 8785 form, with keys named as did:key.
@@ -540,6 +550,17 @@ These apply to code that comes into open-worlds, not to the draft (see
     in its private repository, and
     `tests/test_no_private_keys.py` fails on anything else
     ([research/KEYS.md](research/KEYS.md)).
+13. **Never a currency.** The multiverse has no currency of its own,
+    and nothing is built to turn it into a money machine: the founder's
+    "possibly the most fundamental fact" ([VISION.md](VISION.md), "Never
+    a money machine"). A world may model an economy or a currency as a
+    test setting that never leaves that world ("Commerce and currency
+    worlds", there).
+14. **The charter is the founder's words.** `CHARTER.md` grows only from
+    the founder's recorded statements, quoted or paraphrased; nothing
+    else goes into it without the founder's approval
+    ([AGENTS.md](../AGENTS.md)). A proposal for the charter is a
+    question for the founder, not a change.
 
 ## Code in Rust
 
@@ -807,6 +828,10 @@ page.
   `rust/endless-plant`. This page gained "Messages from the technical
   lead", where the technical lead answers you, and "Every file, by its
   full link", kept whole by a test.
+- 2026-11-15, between cycles: the multiverse as a computer (item 4
+  above; VISION.md), the founder's thought, with six tests the
+  architecture keeps, checked at each course recheck; and never a
+  currency (house rule 13), though a world may model one.
 
 ## Every file, by its full link
 

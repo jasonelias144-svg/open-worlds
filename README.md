@@ -7,6 +7,11 @@ change only when every party agrees. Everything is transparent: every
 participant is told the whole setup, including that the world can be watched.
 The worlds run continuously, and a website will let anyone watch them live.
 
+The worlds are free, and never a money machine: the multiverse has no
+currency of its own, and a world may only model one, as a test setting.
+The founder calls this "possibly the most fundamental fact"
+([docs/VISION.md](docs/VISION.md), "Never a money machine").
+
 The purpose is to see what happens. Do harmony or conflict arise, how are
 conflicts settled, what gets invented, and which conventions form that nobody
 wrote down? After each cycle the conditions change and a new cycle begins.
