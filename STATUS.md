@@ -118,19 +118,21 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
-- For the founder (asked 2026-11-15): the private space "encrypted from
-  outside view, even ADMIN". No Keeper and not ADMIN can open it, as
-  designed. But the "break glass" the founder chose on 2026-11-14 lets
-  the project open a sealed self, or a private message, by the
-  founder's explicit decision, recorded publicly. Keep it, or seal the
-  private space so no one at all can open it? Recommendation: keep it
-  for now, as one accountable way to look in a real emergency, since the
-  project runs the minds anyway and "no one at all" couldn't yet be
-  fully true; and seal it fully once the minds run on hardware that
-  keeps even the operator out. Keeping it changes nothing, and the
-  charter tells every participant; sealing it fully can't be undone for
-  what is already sealed, so that waits for the founder's explicit
-  word.
+- For the founder (asked 2026-11-15), after keeping the "break glass":
+  whose records may "stay private now, but be available for the public
+  later"? Recommendation: the founder's own records and the project's,
+  by the founder's choice; a participant's private space only by that
+  participant's own choice (a time capsule they seal "until" a date or
+  an event), and never by the project's. The "break glass" stays for a
+  real emergency only, never a way to publish someone's private space.
+  Publishing what was private can't be undone, so this waits for the
+  founder's explicit word.
+- For the founder (asked 2026-11-15): who holds the "break glass" after
+  the founder ("I envision this project without me")? Recommendation:
+  a person the founder names, in the open, as serious acts already go
+  "to the founder, or to a person the founder names" (docs/ADMIN.md);
+  until one is named, the founder. Naming them is the founder's own
+  act.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
@@ -240,6 +242,18 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, keeping the "break glass":
+  "I love the "break glass" idea. It is very much the point. I envision
+  this project without me, and so I need to leave a way for things to
+  stay private now, but be available for the public later. …
+  Everything I have done these years has been with that understanding,
+  and this is no different, just a formalization of that for this
+  context."
+  (A sentence about the founder's own records is left out here, as
+  personal; it is the founder's to add.) So the "break glass" stands as
+  chosen on 2026-11-14: a sealed self, or a private message, opened only
+  by the founder's explicit decision, every opening recorded publicly
+  and permanently; ADMIN can't open one. Two questions follow, above.
 - 2026-11-15, founder, on time:
   "And some way to speed up or slow down the flow of time. A slow motion
   and a fast speed view. Rewind and fast forward in time to previous
@@ -1686,6 +1700,11 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-15 Claude: the founder kept the "break glass" ("It is very
+  much the point"), recorded in FUNDAMENTALS.md, MINDS.md and STATUS.md,
+  with a personal sentence left out until the founder says otherwise;
+  two questions put to the founder: whose records "private now, public
+  later" may reach, and who holds the "break glass" after the founder.
 - 2026-11-15 Claude: world types, and what can be done with a world
   (docs/WORLD-TYPES.md), at the founder's word: looked first at
   containers (the OCI runtime's states; Docker's pause and checkpoints)
