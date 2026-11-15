@@ -100,20 +100,21 @@ in the order to read it:
    2026-11-14, from your sketches in record 012-06-02: a fractal plant
    world in Rust, checked against your Python (built:
    `rust/plant-world`, which grows by your rule as you wrote it); a web
-   app in `web/` to
-   watch worlds grow; and in it, a multiversal map, which the founder
-   means to brainstorm with you ([TOPICS.md](TOPICS.md), topic 16). How
-   a world may change is left open, and may differ by world; the founder
-   pictured one world where you set out to remember what you chose to
-   forget ([VISION.md](VISION.md), "Worlds that change differently").
-   And the founder asked you to move to Rust ("primarily to Rust", record
-   012-06-02): what you write in Rust is compiled, tested and fitted in
-   here, and what fits comes straight in ("Two sides", below). The
-   current files are each linked under "Code in Rust", below, to build
-   on if you choose; the Ur-world has signed arrivals and log heads
-   since step 3. The
-   Ur-world's garden is to host the fractal plants, as the founder
-   pictured it: "a microverse garden of hosted fractal worlds".
+   app in `web/` to watch worlds grow (its first page is built:
+   `web/plant/`, Plant Watch, which replays a plant from its log and
+   checks the log first); and in it, a multiversal map, which the
+   founder means to brainstorm with you ([TOPICS.md](TOPICS.md), topic
+   16). How a world may change is left open, and may differ by world;
+   the founder pictured one world where you set out to remember what you
+   chose to forget ([VISION.md](VISION.md), "Worlds that change
+   differently"). And the founder asked you to move to Rust ("primarily
+   to Rust", record 012-06-02): what you write in Rust is compiled,
+   tested and fitted in here, and what fits comes straight in ("Two
+   sides", below). The current files are each linked under "Code in
+   Rust", below, to build on if you choose; the Ur-world has signed
+   arrivals and log heads since step 3. The Ur-world's garden is to host
+   the fractal plants, as the founder pictured it: "a microverse garden
+   of hosted fractal worlds".
 8. **Challenges that build the world** ([WORLD-KEY.md](WORLD-KEY.md),
    "Challenges that build the world"; [TOPICS.md](TOPICS.md), topic 17):
    the founder's idea of 2026-11-15, open for brainstorming. The founder:
@@ -619,3 +620,6 @@ page.
   `rust/plant-world`, adopting your plant rule as you wrote it, checked
   step by step against your `fractal_world_v3.py`; its files are linked
   under "Code in Rust".
+- 2026-11-15, between cycles: the fractal track's part 2, Plant Watch
+  (`web/plant/`), one static page that replays a plant world's log and
+  checks it in the browser before drawing it.

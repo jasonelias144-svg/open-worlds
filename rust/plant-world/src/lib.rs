@@ -23,6 +23,11 @@
 //!   that runs it, is for when plant worlds are hosted in the Ur-world's
 //!   garden (part 3).
 //! - A pot is set by the world, not by the template.
+//! - `world::log_problems` checks a log's dials against this crate's own
+//!   ranges, not against the template the log names, which it isn't
+//!   given: the world's birth record, checked with
+//!   `formats::records::dial_problems`, is what ties a world to its
+//!   template.
 //! - Nothing draws it but the example's text: the web page is part 2.
 
 pub mod rule;

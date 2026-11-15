@@ -145,7 +145,8 @@
   "conftest.py",
   "pytest.ini",
   "known-failures.txt",
-  "sketch_status_test.py", "plant_world_vectors_test.py"
+  "sketch_status_test.py",
+  "plant_world_vectors_test.py"
  ],
  "changed": {
   "fractal_world_v2.py": "Fix 6: its demo, which the record gives as a separate block after the module (fractal_world_v2.py@1390), appended unchanged, as the tests import demo from here. Fix 7: GrowthRecord gains a read-only `prior` (its `prev`), which the verifier reads of every record. Fix 8: a parameter change keeps the time its authority signed, not a second reading of the clock.",
