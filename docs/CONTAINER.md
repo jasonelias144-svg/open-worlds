@@ -116,10 +116,12 @@ the multiverse needs to function:
 It is opened only by the founder's explicit decision, every opening is
 recorded publicly and permanently, and its next holder is a person the
 founder names publicly ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy,
-item 6). Handing it on needs no emergency: in the founder's words, it is
-"more like nuclear codes passed from one president to another", "a
-handoff of "keys to the kingdom"": a transfer of authority, made in the
-open.
+item 6). It is "much more like a janitor's set of keys, than a fire
+extinguisher", in the founder's words: kept for the upkeep of the
+multiverse's own machinery, not for emergencies. And handing it on needs
+no emergency either: it is "more like nuclear codes passed from one
+president to another", "a handoff of "keys to the kingdom"": a transfer
+of authority, made in the open.
 
 **What this replaces.** The founder chose the "break glass" on
 2026-11-14 for sealed selves and private messages, so the project kept

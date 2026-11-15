@@ -198,8 +198,14 @@ one of them updates this page.
    And how it passes (2026-11-15): it is "more like nuclear codes passed
    from one president to another. There need be no emergency, only a
    transfer of authority to another. A handoff of "keys to the
-   kingdom"." So handing it on is a transfer of authority, made in the
-   open, and needs no emergency; opening it stays what it was.
+   kingdom"." And: "Much more like a janitor's set of keys, than a fire
+   extinguisher." So it is not kept for emergencies: it is the set of
+   keys that looks after the multiverse's own machinery, and handing it
+   on is a transfer of authority, made in the open. The technical lead's
+   reading, which stands unless the founder answers otherwise: using it
+   is part of ordinary upkeep, by its holder's decision; each use is
+   still recorded publicly and permanently, as first decided; and it
+   still never reaches anyone's private space.
    The technical lead's reading, which stands unless the founder answers
    otherwise: the public record of an opening holds the fact of it (who
    opened which key, when, and why), never what it opened; and the
