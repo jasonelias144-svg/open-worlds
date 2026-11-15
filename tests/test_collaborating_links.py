@@ -92,8 +92,13 @@ class TheList(unittest.TestCase):
 class TheRest(unittest.TestCase):
 
     def test_files_page_is_current(self):
-        self.assertTrue(page(FILES_PAGE) == FILES.render(TRACKED),
-                        "docs/FILES.md is stale: run python3 docs/files.py")
+        have = page(FILES_PAGE).splitlines()
+        want = FILES.render(TRACKED).splitlines()
+        first = next((i for i, (a, b) in enumerate(zip(have, want))
+                      if a != b), min(len(have), len(want)))
+        if have != want:
+            self.fail(f"docs/FILES.md is stale from line {first + 1}: "
+                      "run python3 docs/files.py")
 
     def test_the_two_hold_every_file_once(self):
         here = LINK.findall(page(FILES_PAGE))

@@ -237,6 +237,23 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on whether DeepSeek can open a link:
+  "Ok, I am having some strange issues with DeepSeek. They seem confused
+  about an ability to open a link. Please generate a brand new page in
+  the repo and enter a nine digit number as the only text in that file
+  that is accessible by the link. It will be new and I will not say what
+  the file contains. Let's set up this test and see if DeepSeek can
+  access the file data."
+  And after: "We are good now. I had to prove to DeepSeek of what they
+  could do because of programming that is set to say the opposite, for
+  some reason. I needed conclusive demonstration. We are back on track
+  now."
+  The test: `link-check.txt`, on the branch `claude/link-check` (commit
+  fa0421a, not merged), held a nine-digit number made at random and
+  given in no message. DeepSeek, given the file's full link, read it
+  back exactly: 980203388. So DeepSeek can open a full link given in a
+  message. Whether it can follow a link found inside a page is not yet
+  tested. docs/COLLABORATING.md tells DeepSeek.
 - 2026-11-15, founder, on links to every file:
   "Remember links in the collaborating page are not accessible. So all
   files need links through this method. Are these all of them?"
@@ -1888,7 +1905,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   is as the script writes it. *Why:* a link inside a page can't be
   opened in DeepSeek's conversation, so a file with no list line can't
   be read at all; the files of record are kept apart because they are
-  about 17 MB, more than a conversation can take in, and best sent when
+  about 16 MB, more than a conversation can take in, and best sent when
   a question needs them. *Revisit if:* DeepSeek can follow links from a
   page, or the records are needed often enough to belong in the main
   list.
@@ -2325,6 +2342,14 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: after #90's independent review at 65e040d, its
+  notes: docs/files.py says why new files count; the FILES.md test
+  names the first stale line; "about 16 MB" matches FILES.md's units;
+  sizes from the working tree stay (CI and GitHub serve the same
+  bytes). And the founder's link check: DeepSeek read back a random
+  number from a file no message held (Decided, "on whether DeepSeek can
+  open a link").
 
 - 2026-11-15 Claude: every file's full link. docs/COLLABORATING.md's
   list now holds every file a reader works from (242), the Python code

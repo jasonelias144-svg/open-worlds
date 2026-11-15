@@ -42,7 +42,11 @@ KINDS = [
 
 def tracked():
     """Every file in the repository, as git sees it: committed, or new
-    and not ignored. None if this isn't a git checkout."""
+    and not ignored. None if this isn't a git checkout.
+
+    New files count on purpose, so a file gets its line before it is
+    committed: a stray file in a local checkout makes the links test
+    fail until it is listed, ignored or removed."""
     try:
         out = subprocess.run(
             ["git", "ls-files", "-z", "--cached", "--others",

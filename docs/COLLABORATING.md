@@ -68,6 +68,11 @@ computer; the learning multiversity) are in "What's here", items 3 and
 - **Lean:** checking the reasoning behind decisions in offices, and
   reasoning worlds where a claim counts once Lean's kernel accepts its
   proof ([TOPICS.md](TOPICS.md), topic 20).
+- **You can open a full link.** The founder gave you the full link of
+  a new file holding a nine-digit number, made at random and written in
+  no message, and you read it back exactly. Whatever you may have been
+  told about links, a full link in the founder's message opens. Whether
+  you can follow a link found inside a page hasn't been tested yet.
 - **Every file now has a full link to paste.** A link inside a page
   can't be opened, so "Every file, by its full link", at the end of
   this page, now holds every file you work from: the Python code and
