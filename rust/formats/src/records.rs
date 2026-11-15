@@ -1,8 +1,10 @@
 //! The records the offices keep (course step 2): a grant, a decision
 //! record, a suggestion, a rating and a signed log head; an individual's
 //! world-key and journal entry; identity, birth records and the mind
-//! record; a world's template; the project's key list; and an arrival,
-//! signed by the one who enters a world (course step 3), as
+//! record; a world's template; the project's key list; an arrival,
+//! signed by the one who enters a world (course step 3); a person's links
+//! and list; and a council's proposal and a person's vote (course step
+//! 3a), as
 //! `formats/records.py` checks them, from the same schema file. A record
 //! holds when it fits its kind's schema, its proof verifies, and it was
 //! signed by the one who must sign that kind. `dial_problems` checks a
@@ -21,7 +23,7 @@ pub const SCHEMA: &str = include_str!("../../../schemas/records-v1.schema.json")
 
 /// Each format, its schema's name in `$defs`, and the path of the field
 /// that names its signer.
-pub const KINDS: [(&str, &str, &[&str]); 17] = [
+pub const KINDS: [(&str, &str, &[&str]); 19] = [
     ("open-worlds/grant/v1", "grant", &["issuer"]),
     ("open-worlds/decision/v1", "decision", &["office", "key"]),
     ("open-worlds/suggestion/v1", "suggestion", &["author"]),
@@ -39,6 +41,8 @@ pub const KINDS: [(&str, &str, &[&str]); 17] = [
     ("open-worlds/holds/v1", "holds", &["person"]),
     ("open-worlds/held-by/v1", "heldBy", &["presence"]),
     ("open-worlds/person-list/v1", "personList", &["person"]),
+    ("open-worlds/proposal/v1", "proposal", &["council"]),
+    ("open-worlds/vote/v1", "vote", &["person"]),
 ];
 
 fn kind(record: &Value) -> Option<&'static (&'static str, &'static str, &'static [&'static str])> {
@@ -84,8 +88,13 @@ fn times(record: &Value) -> Vec<(String, &Value)> {
             | "open-worlds/world-birth/v1"
             | "open-worlds/holds/v1"
             | "open-worlds/held-by/v1"
-            | "open-worlds/person-list/v1",
+            | "open-worlds/person-list/v1"
+            | "open-worlds/vote/v1",
         ) => field("time").into_iter().collect(),
+        Some("open-worlds/proposal/v1") => ["opens", "closes"]
+            .iter()
+            .filter_map(|name| field(name))
+            .collect(),
         Some("open-worlds/mind/v1") => record
             .get("engines")
             .and_then(Value::as_array)
@@ -101,9 +110,10 @@ fn times(record: &Value) -> Vec<(String, &Value)> {
     }
 }
 
-/// Every time must be a real one, a grant must end after it starts, and a
-/// mind record's engines are in the order they began, each naming a file
-/// once; the schema checks only their shape.
+/// Every time must be a real one, a grant must end after it starts, a
+/// proposal must close after it opens, and a mind record's engines are in
+/// the order they began, each naming a file once; the schema checks only
+/// their shape.
 fn time_problems(record: &Value) -> Vec<String> {
     let mut found: Vec<String> = times(record)
         .into_iter()
@@ -121,6 +131,15 @@ fn time_problems(record: &Value) -> Vec<String> {
                 && until <= from
             {
                 found.push("$.validUntil: not after validFrom".into());
+            }
+        }
+        Some("open-worlds/proposal/v1") => {
+            let opens = record.get("opens").and_then(Value::as_str);
+            let closes = record.get("closes").and_then(Value::as_str);
+            if let (Some(opens), Some(closes)) = (opens, closes)
+                && closes <= opens
+            {
+                found.push("$.closes: not after opens".into());
             }
         }
         Some("open-worlds/mind/v1") => {

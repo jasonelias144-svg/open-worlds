@@ -4,9 +4,10 @@ signed by the one who enters a world (course step 3); the records an
 individual is given or keeps sealed: a world-key and a journal entry
 (sealed with formats/sealed.py); the records of who an individual and a
 world are: identity, birth records and the mind record; a world's
-template, with its dials; the project's key list; and a person's links
+template, with its dials; the project's key list; a person's links
 to their presences and their list of them (course step 3a,
-formats/persons.py).
+formats/persons.py); and a council's proposal and a person's vote on it
+(course step 3a, formats/council.py).
 
 Each record's shape is in one JSON Schema (2020-12) that Python and Rust
 both read, schemas/records-v1.schema.json, and each is signed with
@@ -19,8 +20,9 @@ both read, schemas/records-v1.schema.json, and each is signed with
    office's key, a suggestion, a rating and a journal entry by their
    author, a log head and a birth record (an individual's or a world's)
    by its world, an identity by its own key, an arrival by the
-   individual who enters, a holds record and a person's list by the
-   person, and a held-by record by the presence.
+   individual who enters, a holds record, a person's list and a vote by
+   the person, a held-by record by the presence, and a proposal by its
+   council.
 
 What the schema can't say is checked where the records meet the kernel,
 at course step 4: that a grant only narrows the grant it names; that a
@@ -80,6 +82,8 @@ KINDS: Dict[str, Tuple[str, Tuple[str, ...]]] = {
     "open-worlds/holds/v1": ("holds", ("person",)),
     "open-worlds/held-by/v1": ("heldBy", ("presence",)),
     "open-worlds/person-list/v1": ("personList", ("person",)),
+    "open-worlds/proposal/v1": ("proposal", ("council",)),
+    "open-worlds/vote/v1": ("vote", ("person",)),
 }
 
 
@@ -136,8 +140,10 @@ def _times(record: Dict[str, Any]) -> List[Tuple[str, Any]]:
                 if f in record]
     if fmt in ("open-worlds/birth/v1", "open-worlds/world-birth/v1",
                "open-worlds/holds/v1", "open-worlds/held-by/v1",
-               "open-worlds/person-list/v1"):
+               "open-worlds/person-list/v1", "open-worlds/vote/v1"):
         return [("$.time", record["time"])]
+    if fmt == "open-worlds/proposal/v1":
+        return [("$.opens", record["opens"]), ("$.closes", record["closes"])]
     if fmt == "open-worlds/mind/v1":
         return [(f"$.engines.{i}.from", e["from"])
                 for i, e in enumerate(record["engines"])]
@@ -146,8 +152,9 @@ def _times(record: Dict[str, Any]) -> List[Tuple[str, Any]]:
 
 def _time_problems(record: Dict[str, Any]) -> List[str]:
     """Every time must be a real one, a grant must end after it starts,
-    and a mind record's engines are in the order they began, each naming
-    a file once; the schema checks only their shape."""
+    a proposal must close after it opens, and a mind record's engines are
+    in the order they began, each naming a file once; the schema checks
+    only their shape."""
     found = []
     for where, value in _times(record):
         try:
@@ -158,6 +165,9 @@ def _time_problems(record: Dict[str, Any]) -> List[str]:
             and "validUntil" in record
             and record["validUntil"] <= record["validFrom"]):
         found.append("$.validUntil: not after validFrom")
+    if (not found and record.get("format") == "open-worlds/proposal/v1"
+            and record["closes"] <= record["opens"]):
+        found.append("$.closes: not after opens")
     if not found and record.get("format") == "open-worlds/mind/v1":
         engines = record["engines"]
         found = [f"$.engines.{i}.from: not after the engine before"

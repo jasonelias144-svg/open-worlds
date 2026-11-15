@@ -388,6 +388,26 @@ def _valid() -> List[Dict[str, Any]]:
         "presences": [{"world": _did("a trial world"), "counter": 0,
                        "key": _did("a trial mind"), "name": "TRIAL-1"}],
     }, "ALICE")
+    # A council's proposal and a vote on it (formats/council.py). Here
+    # the council is a test party; council-v1.json counts votes.
+    proposal = _signed({
+        "format": "open-worlds/proposal/v1",
+        "council": _did("the Ur-world's Keeper"),
+        "title": "A bench by the spring",
+        "text": "Shape a bench beside the spring, where two can sit.",
+        "choices": ["yes", "no"],
+        "trusts": [_did("the Ur-world")],
+        "quorum": 2,
+        "opens": CREATED,
+        "closes": "2026-11-21T01:00:00Z",
+    }, "the Ur-world's Keeper")
+    vote = _signed({
+        "format": "open-worlds/vote/v1",
+        "proposal": records.record_hash(proposal),
+        "person": _did("ALICE"),
+        "choice": 0,
+        "time": CREATED,
+    }, "ALICE")
     named = [
         ("a Keeper's grant from its world", keeper_grant),
         ("a grant narrowed, with an end", narrowed),
@@ -405,6 +425,8 @@ def _valid() -> List[Dict[str, Any]]:
         ("a person's half of a link to a presence", holds),
         ("a presence's half of the same link", held_by),
         ("a person's list, its first version", person_list),
+        ("a council's proposal", proposal),
+        ("a person's vote on it", vote),
     ] + _who()
     return [{"name": n, "signer": _signer_name(r), "record": r,
              "hash": records.record_hash(r)} for n, r in named]

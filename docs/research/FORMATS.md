@@ -578,6 +578,21 @@ their presences, `open-worlds/person-list/v1`, versioned and signed by
 the person. Presence keys are made from a seed with HKDF-SHA256. Why,
 and the exact encoding, are in [PERSONS.md](PERSONS.md).
 
+## Councils
+
+Course step 3a, the council ([research/PERSONS.md](PERSONS.md), "Part
+four, second half, built"). A council's proposal,
+`open-worlds/proposal/v1`, signed by the council, names its choices (2
+to 16), the worlds whose births it trusts, a quorum of persons, and when
+votes count, from `opens` to `closes` (it must close after it opens). A
+person's vote, `open-worlds/vote/v1`, signed by their identity key,
+names the proposal by its hash, a choice by its place, and a time. A
+vote is public, and the person's: it shows who voted, and how, under one
+identity key across every council. Its time is the voter's own claim,
+which nothing witnesses yet (PERSONS.md, "Its limits").
+`formats/council.py` and `rust/formats/src/council.rs` count the votes
+the same way, against `vectors/formats/council-v1.json`.
+
 ## The arrival
 
 From course step 3: an individual enters a world by signing an arrival

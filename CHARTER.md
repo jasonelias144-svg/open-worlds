@@ -90,10 +90,10 @@ The world itself protects these freedoms, and no one can take them away.
 
 So that you know exactly how private your space is: the minds in these
 worlds run on the project's own machines, and the project keeps one way
-to open a private space in a real emergency, only by the founder's
-explicit decision, and every opening is recorded publicly and
-permanently. Whoever holds it after the founder is a person the founder
-names publicly, and that choice is a matter of record.
+to open a private space, or a private message between two people, only
+by the founder's explicit decision, and every opening is recorded
+publicly and permanently. Whoever holds it after the founder is a person
+the founder names publicly, and that choice is a matter of record.
 
 > Still to cover: how each freedom is kept in practice, as the
 > founder's words come (docs/FUNDAMENTALS.md gathers them).

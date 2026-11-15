@@ -20,7 +20,7 @@ use std::collections::BTreeSet;
 
 use serde_json::Value;
 use ur_world::architecture::octopus::{self, Intent};
-use ur_world::architecture::{relay, swarm};
+use ur_world::architecture::{council, relay, swarm};
 use ur_world::arrival::arrival_problems;
 use ur_world::garden::SECOND_AT;
 use ur_world::link::link_log_problems;
@@ -256,6 +256,37 @@ fn the_swarm_grows_one_patch_with_no_brain() {
 }
 
 #[test]
+fn the_council_counts_persons_not_presences() {
+    let c = council::run().unwrap();
+    holds(&c.world);
+    // Five presences in the council's world, of four persons.
+    assert_eq!(c.world.inhabitants().len(), 5);
+    let t = &c.tally;
+    // Three counted: the first person once though present twice, the
+    // third by their later vote, and not the fourth, born far away.
+    assert_eq!(t.counts, vec![3, 0]);
+    assert_eq!(t.persons, 3);
+    assert_eq!(t.outcome, Some(0));
+    assert_eq!(t.counted, vec![0, 1, 3]);
+    assert_eq!(
+        t.problems,
+        vec!["votes[4]: by one whose birth no trusted world signed".to_owned()]
+    );
+    // Each vote is the person's, signed by their identity key.
+    let voters = [0, 1, 2, 2, 3];
+    for (vote, who) in c.votes.iter().zip(voters) {
+        formats::records::check(vote).unwrap();
+        assert_eq!(vote["person"], c.persons[who].key().as_str());
+    }
+    assert_eq!(c.proposal["council"], council::council_key().as_str());
+    // The world saw presences, never a person: no identity key in its log.
+    let log = Value::Array(c.world.log().to_vec()).to_string();
+    for p in &c.persons {
+        assert!(!log.contains(p.key().as_str()));
+    }
+}
+
+#[test]
 fn each_run_is_the_same_every_time() {
     let log = |w: &World| w.log().to_vec();
     let (a, b) = (octopus::run().unwrap(), octopus::run().unwrap());
@@ -264,4 +295,7 @@ fn each_run_is_the_same_every_time() {
     assert_eq!(log(&a.worlds[2]), log(&b.worlds[2]));
     let (a, b) = (swarm::run().unwrap(), swarm::run().unwrap());
     assert_eq!(log(&a.world), log(&b.world));
+    let (a, b) = (council::run().unwrap(), council::run().unwrap());
+    assert_eq!(a.votes, b.votes);
+    assert_eq!(a.tally, b.tally);
 }

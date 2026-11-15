@@ -12,7 +12,7 @@ where something exists already, it says so.
 
 ## Decided
 
-All by the founder, on 2026-11-13, and one on 2026-11-15:
+All by the founder, on 2026-11-13, and later words dated where they come:
 
 - **Their models are chosen before they live; after that, a change is
   theirs** (2026-11-15). "We are not switching models, but choosing

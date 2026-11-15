@@ -41,9 +41,10 @@ free, and never a money machine
   in Rust with a presence in each of three trial worlds at once,
   carrying a note from one to another, and a link shown by the
   presence's own act, which its world checks and logs (rules
-  `ur-world/0.5`). Of its fourth part, the architectures as small
-  examples, the octopus, the relay and the swarm are built; the
-  council, which needs a record for a signed vote, is next.
+  `ur-world/0.5`). Its fourth part is built: the architectures as
+  small examples, the octopus, the relay and the swarm, and the council,
+  counting persons' signed votes (`open-worlds/proposal/v1` and
+  `vote/v1`). Next, the course is rechecked, as after step 3.
 - Claude: the fractal track, alongside the course (docs/FRACTALS.md),
   set by the founder on 2026-11-14: a fractal plant world in Rust, the
   web app in `web/` to watch worlds grow, and in it the multiversal map.
@@ -1832,6 +1833,37 @@ it was wrong. Questions of what the project is for stay with the founder.
   their presence isn't in its world (for instance, published with a
   birth before the first arrival); then a separate act for the keeper,
   logged the same way.
+- 2026-11-15, a council counts persons by signed votes: two record kinds
+  and one count (docs/research/PERSONS.md, "Part four, second half,
+  built"). A proposal (`open-worlds/proposal/v1`), signed by its
+  council, names its choices, quorum, open time and the worlds whose
+  births it trusts. A vote (`open-worlds/vote/v1`) is signed by the
+  person's identity key. Each person counts once, by their latest vote
+  dated from the opening to the close (two or more at the latest date
+  count for none; a copy of a vote given again is refused, so it can't
+  cancel anyone), and only persons whose birth a trusted world signed;
+  the choice with the most persons decides, if the quorum was counted
+  and it has no tie.
+  *Why:* decision 8 counts persons, not presences, and only births a
+  council trusts; a vote signed by the person is the act a count can be
+  checked from, as DeepSeek's council and Snapshot both have it; letting
+  a person change their vote until the close keeps room for
+  deliberation. These rules are the example's, not any office's: the
+  round table keeps full consensus. *Wrong if:* a council needs secret
+  ballots, or must count presences, not persons; then a different
+  record, decided first. Or if a count must be final: a vote's date is
+  the voter's own claim, so a vote signed after the close but dated
+  before it still counts, and a count is final only once something that
+  saw the votes before the close fixes them (a log signed before
+  `closes`, say), which isn't built (#78's independent review).
+
+  Put to the founder the same day, with the technical lead's
+  recommendation, which stands unless the founder answers otherwise: a
+  public vote links all of a person's votes, in every council, to their
+  identity key, and through their birth record to the world they were
+  born in. The recommendation: public ballots for this example, as the
+  project's "full transparency" has it; whether governance needs secret
+  ballots is decided before any governance is built on these records.
 
 ## Log
 
@@ -1875,6 +1907,15 @@ it was wrong. Questions of what the project is for stay with the founder.
   operations. A design: the operations are taken up at the course's
   next recheck.
 
+- 2026-11-15 Claude: after #82's independent review, FUNDAMENTALS.md
+  gathers the decisions it had left out: four on freedom (room enough,
+  coming into a world and forks, one's own model once living, the open
+  line) and three on privacy (keys and "lost is lost", a world's record
+  when it ends, a suggestion's author withheld), so eleven and nine; the
+  principles are quoted as DESIGN.md words them; the charter's "break
+  glass" says no condition that wasn't decided ("in a real emergency"
+  is gone) and covers private messages, as decided on 2026-11-14.
+
 - 2026-11-15 Claude: freedom and privacy, the fundamentals, in one place
   (docs/FUNDAMENTALS.md), at the founder's word: seven decisions on
   freedom and six on privacy, each with the founder's words, where it is
@@ -1912,6 +1953,16 @@ it was wrong. Questions of what the project is for stay with the founder.
   link is at the end of that page, kept whole by a test. The record-links
   test now ends a link where markup begins, as this record writes links
   inside tool-call markup.
+- 2026-11-15 Claude: course step 3a, part four, second half: the
+  council (docs/research/PERSONS.md, "Part four, second half, built").
+  Looked first at DeepSeek's components 44 to 46 and at Snapshot's
+  signed votes. Two record kinds, `open-worlds/proposal/v1` and
+  `open-worlds/vote/v1`; a count in Python and Rust
+  (`formats/council.py`, `rust/formats/src/council.rs`) that agree on
+  `vectors/formats/council-v1.json`, problem for problem; and the
+  council among the architectures, where five presences in its world
+  are three persons counted. Step 3a's four parts are built; the course
+  is rechecked next.
 
 - 2026-11-15 Claude: course step 3a, part four, first half: the
   octopus, the relay and the swarm (docs/research/PERSONS.md, "Part four,

@@ -245,16 +245,25 @@ built"; `rust/ur-world/src/architecture/`), from DeepSeek's components
 - **the swarm:** five presences in one world, one rule and no brain,
   growing one patch of flowers by what each leaves for the others.
 
-The council is next. It needs a record for a vote, signed by the
-person, which no record kind holds yet.
+**Built** (2026-11-15, step 3a, part four, second half): the council
+([research/PERSONS.md](research/PERSONS.md), "Part four, second half,
+built"), from DeepSeek's component 44. A council signs a proposal
+(`open-worlds/proposal/v1`) naming its choices, a quorum, when votes
+count, and the worlds whose births it trusts; each person signs a vote
+(`open-worlds/vote/v1`) with their identity key. Anyone counts again:
+each person once, by their latest vote dated from the opening to the
+close, and only persons whose birth a trusted world signed. A vote is
+public, and its date is the voter's own claim, which nothing witnesses
+yet. In the run, five presences in the council's world are three
+persons counted.
 
-**A possible implementation:** the council from DeepSeek's components 44
-to 46 (signed votes, deliberation, councils that cite each other),
-counting distinct persons as decision 8 says: a design, as prose, is
-welcome.
+**A possible implementation:** deliberation before the vote (component
+45: signed positions that change, round by round) and councils that cite
+each other's decisions (component 46), on the records above; or a
+secret ballot, which waits for proofs that reveal less.
 
-**Send back:** what a vote record should hold, and how a council counts
-persons, not presences; what stays private, and from whom.
+**Send back:** a design for deliberation on these records, as prose;
+what a vote should keep private, and from whom.
 
 ## 5. Laws for new worlds
 
