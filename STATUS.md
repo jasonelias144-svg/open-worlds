@@ -121,15 +121,6 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
-- For the founder (asked 2026-11-15), after keeping the "break glass":
-  whose records may "stay private now, but be available for the public
-  later"? Recommendation: the founder's own records and the project's,
-  by the founder's choice; a participant's private space only by that
-  participant's own choice (a time capsule they seal "until" a date or
-  an event), and never by the project's. The "break glass" stays for a
-  real emergency only, never a way to publish someone's private space.
-  Publishing what was private can't be undone, so this waits for the
-  founder's explicit word.
 - For the founder (asked 2026-11-15): who holds the "break glass" after
   the founder ("I envision this project without me")? Recommendation:
   a person the founder names, in the open, as serious acts already go
@@ -245,6 +236,21 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on what an account needs, and whose records:
+  "In fact, I would go as far as only an email address is needed to
+  start a profile or account. No need for any personal information
+  beyond that."
+  And, answering whose records may be "private now, public later":
+  "My records private now public later. Sorry I thought that was
+  understood. I have no right to make that decision for another, so
+  yeah, just me."
+  So the charter's section 3 says an email address is all an account
+  needs, and "private now, public later" is the founder's alone, for the
+  founder's own records: no one else's private space is ever made public
+  by the project. The technical lead's reading of the email, which
+  stands unless the founder answers otherwise: used only to sign in and
+  to recover an account, and kept apart from everything else, never in a
+  log or a public record (docs/FUNDAMENTALS.md).
 - 2026-11-15, founder, on leaving and on data:
   "Yes, all their records should be transferred to them and removed from
   our records. We should not store any private keys for anyone that is
@@ -1815,6 +1821,11 @@ it was wrong. Questions of what the project is for stay with the founder.
   logged the same way.
 
 ## Log
+
+- 2026-11-15 Claude: only an email address for an account, in the
+  charter's section 3 and FUNDAMENTALS.md; "private now, public later"
+  is the founder's, for the founder's own records, and that open
+  question is closed.
 
 - 2026-11-15 Claude: the founder's words on leaving and on data recorded:
   the charter's sections 3 (data not for sale), 4 (public data, scrubbed

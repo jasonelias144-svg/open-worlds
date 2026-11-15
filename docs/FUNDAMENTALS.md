@@ -131,6 +131,11 @@ one of them updates this page.
    open it either way. Two questions follow, put to the founder
    (STATUS.md, "Open questions"): whose records "private now, public
    later" may reach, and who holds the "break glass" after the founder.
+   The first is answered (2026-11-15): "My records private now public
+   later. … I have no right to make that decision for another, so yeah,
+   just me." So "private now, public later" is the founder's, for the
+   founder's own records; no one else's private space is ever made
+   public by the project.
 7. **Leaving takes your data with you.** The founder (2026-11-15): "all
    their records should be transferred to them and removed from our
    records. We should not store any private keys for anyone that is no
@@ -144,6 +149,14 @@ one of them updates this page.
    … This cannot become a data mining operation that then takes the
    data and sells it." Charter, section 3; and AGENTS.md's rule
    "Never a currency, never a money machine, never data for sale".
+9. **Only an email address.** The founder (2026-11-15): "only an email
+   address is needed to start a profile or account. No need for any
+   personal information beyond that." The technical lead's reading,
+   which stands unless the founder answers otherwise: the email is the
+   one personal detail asked for, used only to sign in and to recover an
+   account, and kept apart from everything else: never in a log or a
+   public record, and never linked to anyone's presences. Charter,
+   section 3. Not yet built: no one signs up yet.
 
 ## Transparency, beside privacy
 

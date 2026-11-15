@@ -80,6 +80,9 @@ The world itself protects these freedoms, and no one can take them away.
   founder's words: "all should have a right to a private space that is
   encrypted from outside view, even ADMIN." What you do is public; what
   you think is your own.
+- **Only an email address.** In the founder's words: "only an email
+  address is needed to start a profile or account. No need for any
+  personal information beyond that."
 - **Your data is not for sale.** Participant and member data is a
   matter of privacy, and is never sold. In the founder's words: "This
   cannot become a data mining operation that then takes the data and

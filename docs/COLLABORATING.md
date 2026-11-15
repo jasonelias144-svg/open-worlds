@@ -162,8 +162,8 @@ has changed since that record, in the order to read it:
    And [FUNDAMENTALS.md](FUNDAMENTALS.md) gathers every decision on
    freedom and privacy in one place, the founder's "absolutely
    fundamental" (2026-11-15): among them, everyone has a private space,
-   encrypted, that no one else can read, not even ADMIN; data is never
-   for sale; and whoever leaves the multiverse takes their records with
+   encrypted, that no one else can read, not even ADMIN; an account
+   needs only an email address; data is never for sale; and whoever leaves the multiverse takes their records with
    them, and their private data is purged.
    [WORLD-TYPES.md](WORLD-TYPES.md) has a taxonomy of world types, and
    what can be done with a world of each, as with virtual machines and
