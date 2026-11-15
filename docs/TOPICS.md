@@ -549,6 +549,13 @@ fields, as a sketch (no format is decided):
 }
 ```
 
+**Built, as a first version** (2026-11-15): the World Map
+([`web/map/`](../web/map/index.html); [../web/README.md](../web/README.md)).
+A card for the Ur-world, its garden from above, and a card for each
+plant world it hosts, built from its birth record, its template and
+dials, and its signed head, and opening onto the plant's live view. It
+answers none of the open questions above; it is a page to try them on.
+
 **Send back:** what a card and a lobby are, for three different kinds of
 world; how a map nests; what the brochure says, as text a mind can read;
 designs or sketches of the map page itself. Prose and pictures are as

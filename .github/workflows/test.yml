@@ -57,6 +57,18 @@ jobs:
           # run; tests that vary for other reasons are marked "sometimes"
           # in known-failures.txt.
           PYTHONHASHSEED: "0"
+  web:
+    # The web app's shared checks (web/lib/checks.js), run in Node against
+    # the shared vectors: the same file the pages load in the browser, with
+    # the same WebCrypto. Node is pinned, as the Rust toolchain is.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.22.0"
+      - run: node --version
+      - run: node --test "tests/web/*.test.mjs"
   rust:
     # The Rust workspace (docs/COLLABORATING.md, "Code in Rust"): the pinned
     # toolchain, formatting, lints as errors, and tests, which read the
