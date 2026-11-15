@@ -215,6 +215,22 @@ kind.
   sketches/INDEX.md. The technical lead decides the code; what would
   change a founder's decision goes to the founder. It stands unless the
   founder answers otherwise.
+- 2026-11-15, founder: "The DeepSeek code should still be treated as
+  sketches and brainstorming, but now in Rust. But if the code aligns
+  well and extends cleanly, then why not just incorporate. But changing
+  to Rust does not change anything else, only the language. My hope is
+  that we can move towards a more direct development dynamic, but that
+  is up to you, as the code admin. Unless you say otherwise, we treat
+  DeepSeek code as the same, but in a new language." The technical
+  lead's answer, the same day: agreed. A piece that fits and extends
+  cleanly comes straight into `rust/`, steps 2 to 4 in one reviewed pull
+  request, credited to DeepSeek (COLLABORATING.md, "Two sides"). For
+  that to happen more often, DeepSeek writes against the crates as they
+  are, each file now linked from COLLABORATING.md ("Code in Rust"). That
+  asks DeepSeek to aim at our code, where the founder's word of
+  2026-11-14 left compatibility to the project, downstream; the newer
+  word, a more direct dynamic, is followed, and what still doesn't fit is
+  fitted here, as before.
 - 2026-11-15, the technical lead's reading, replaced by the founder's
   answer above: the
   founder's newer word, "minimally sufficient models [...] capable of
@@ -1257,7 +1273,12 @@ it was wrong. Questions of what the project is for stay with the founder.
   errors, since it was written against an older snapshot and an API our
   `formats` crate doesn't have. Our harness fixed for test files in
   subfolders (`known_failures.py`, `sketch_status_test.py`). And the #64
-  re-check's four notes taken.
+  re-check's four notes taken. Then, in the same pull request: the
+  founder's "no tension" answer on primitive learning models; the four
+  steps for DeepSeek's code, and the first fit check of this
+  continuation (sketches/INDEX.md); and, at the founder's word, what
+  fits comes straight into `rust/`, with each of our Rust files linked
+  from COLLABORATING.md so DeepSeek writes against them.
 
 - 2026-11-15 Claude: the fractal track planned (docs/FRACTALS.md), at the
   founder's word of 2026-11-14: a plant world in Rust checked against

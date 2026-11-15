@@ -99,8 +99,9 @@ in the order to read it:
    forget ([VISION.md](VISION.md), "Worlds that change differently").
    And the founder asked you to move to Rust ("primarily to Rust", record
    012-06-02): what you write in Rust is compiled, tested and fitted in
-   here, so work from the current files, whose links the founder can give
-   you; the Ur-world has signed arrivals and log heads since step 3. The
+   here, and what fits comes straight in ("Two sides", below). So work
+   from the current files, each linked under "Code in Rust", below; the
+   Ur-world has signed arrivals and log heads since step 3. The
    Ur-world's garden is to host the fractal plants, as the founder
    pictured it: "a microverse garden of hosted fractal worlds".
 
@@ -150,6 +151,17 @@ steps, in order.
    sketch, with the reason in `sketches/INDEX.md`. The technical lead
    decides the code; what would change a founder's decision goes to the
    founder, with a recommendation.
+
+**What fits comes straight in.** The founder, 2026-11-15: "The DeepSeek
+code should still be treated as sketches and brainstorming, but now in
+Rust. But if the code aligns well and extends cleanly, then why not just
+incorporate. But changing to Rust does not change anything else, only
+the language." So a piece that compiles against the crates on `main`,
+passes the three commands under "Code in Rust", keeps the rules there,
+and meets no conflict in step 3 goes into `rust/` in one reviewed pull
+request, steps 2 to 4 together. Its commits name DeepSeek as well as
+Claude in their `Made-by` lines and say what was changed here, and the
+record keeps the original. Everything else stays a sketch, as before.
 
 **The standard is open-worlds' own code, not the sketches.** Build on
 the code merged into `main` (`multiverse/`, `formats/`, `rust/`) and the
@@ -429,6 +441,34 @@ These hold for every Rust file that comes in, on top of the house rules:
    crate says what it doesn't do yet, under "Limits".
 9. **Public domain**, like everything here: each crate says
    `license = "CC0-1.0"`.
+
+**Our crates, file by file.** Write against these, as they are on
+`main`; each link opens the file itself:
+
+- **The workspace:** [`Cargo.toml`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/Cargo.toml) (the dependencies, each with its
+  reason, and the lints) and [`rust-toolchain.toml`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/rust-toolchain.toml).
+- **`formats`**, records signed the standard way: [`formats/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/lib.rs),
+  [`formats/src/canonical.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/canonical.rs), [`formats/src/proof.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/proof.rs),
+  [`formats/src/multikey.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/multikey.rs), [`formats/src/records.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/records.rs),
+  [`formats/src/seal.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/seal.rs), [`formats/src/sealed.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/sealed.rs).
+- **`world-log`**, a world's log, checked: [`world-log/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/lib.rs).
+- **`ur-world`**, the Ur-world: [`ur-world/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/lib.rs),
+  [`ur-world/src/world.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/world.rs), [`ur-world/src/space.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/space.rs),
+  [`ur-world/src/generate.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/generate.rs), [`ur-world/src/arrival.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/arrival.rs),
+  [`ur-world/src/door.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/door.rs), [`ur-world/src/garden.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/garden.rs),
+  [`ur-world/src/story.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/story.rs); and its example,
+  [`ur-world/examples/garden.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/garden.rs).
+
+What they offer, in short. A key is its 32 bytes (`[u8; 32]`) and a
+record is a `serde_json::Value`: `formats::proof::sign(document, secret,
+created, purpose)` signs one, and `formats::proof::verify(secured)`
+checks it and returns the record without its proof, and the key that
+signed it (use that record, not the one passed in). There is no
+`SigningKey`, `Proof` or `Suite` of ours to import, and no `jcs_bytes`
+(`formats::canonical::canonical` writes the RFC 8785 form); record
+012-06-02's Rust assumed them. A mind is `ur_world::world::Mind`, with
+one method, `act(&mut self, seen: &Observation) -> Action`; a place is
+`ur_world::space::Cell`, and a direction `Dir`.
 
 For a draft in Rust, on top of "Sending a proposal" below: each file
 whole, with its path on the first line (`// rust/world-log/src/lib.rs`);
