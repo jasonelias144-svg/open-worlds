@@ -3,7 +3,9 @@
 // records signed the standard way (eddsa-jcs-2022), read field for field
 // as records-v1 (schemas/records-v1.schema.json) reads them. A classic
 // script, so a page served from disk can load it too; it defines one name,
-// OpenWorlds, and nothing it holds can be changed from outside.
+// OpenWorlds, a frozen object of functions and one string. What the checks
+// use inside (their patterns and tables) isn't handed out, so nothing
+// outside can change how they check.
 "use strict";
 const OpenWorlds = (function () {
   // ---- The common log format: each entry's hash is SHA-256 of the entry
@@ -223,7 +225,7 @@ const OpenWorlds = (function () {
   }
 
   return Object.freeze({
-    GENESIS, HASH, TIME, pyJson, jcs, without, sha256, text, hex, recordHash,
+    GENESIS, pyJson, jcs, without, sha256, text, hex, recordHash,
     chainProblem, base58, base58encode, publicKey, isKey, shapeProblem,
     signedBy, covers, dialsProblem,
   });

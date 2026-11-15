@@ -47,13 +47,18 @@ The plan is in [../docs/FRACTALS.md](../docs/FRACTALS.md).
     rules, only the places its log names are drawn.
   - **Each hosted world:** where the garden's log puts its glasshouse,
     and how many steps of its time the garden gave it; its birth record
-    (its name, its template and law by hash, and the dials it set, each
-    within the template's range); its signed head, which must end where
+    (its name, its template and law by hash, and the dials it set: each
+    within the template's range, and, where its log is given, exactly
+    those its log was made with); its signed head, which must end where
     the garden's log last tended it; and its log's chain. A card whose
     records hold opens onto the world's live view, Plant Watch.
   - **Not here:** whether the garden tended each world one step a tick,
     in order (Rust's `hosting_problems` and the Python vectors test check
-    that), and each plant's growth by its rule (its live view does).
+    that); each plant's growth by its rule (its live view does); and
+    whose world the Ur-world is: any log and head that hold together are
+    shown as the Ur-world, since its key isn't yet compared with the
+    project's key list (`keys/key-list.json`). In the shared vectors it
+    is a trial key.
 
   It reads `vectors/ur-garden-log.json`, `ur-garden-head.json` and
   `ur-garden-hosted.json`, which the Rust garden writes.

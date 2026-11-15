@@ -150,7 +150,12 @@ test("a log changed anywhere breaks its chain", async () => {
   assert.match(await OW.chainProblem(proto), /^\[2\]: its hash doesn't match/);
 });
 
-test("nothing it holds can be changed from outside", () => {
+test("what it hands out can't change how it checks", () => {
   assert.ok(Object.isFrozen(OW));
   assert.throws(() => { "use strict"; OW.signedBy = async () => "ok"; }, TypeError);
+  // Only functions and a string: no pattern or table the checks use
+  // inside is reachable from outside.
+  for (const [name, v] of Object.entries(OW)) {
+    assert.ok(typeof v === "function" || typeof v === "string", name);
+  }
 });

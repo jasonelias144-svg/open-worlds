@@ -239,6 +239,7 @@ details summary { cursor: pointer; font-size: 0.875rem; color: var(--muted); }
         : ["bad", "Its signed head", "Signed, but it doesn't cover the log as given."]));
     }
     results.push(["warn", "How it tended its worlds", "Checked in Rust and Python (hosting_problems), not here: here the page reads where each world stands and the last step the garden names."]);
+    results.push(["warn", "Whose world it is", "Not checked here: its key isn't yet compared with the project's key list (keys/key-list.json). In the shared vectors it is a trial key."]);
     return { results, key, data, holds: named && headOk };
   }
 
@@ -271,11 +272,17 @@ details summary { cursor: pointer; font-size: 0.875rem; color: var(--muted); }
       if (!file.template || await recordHash(file.template) !== file.templateHash) why = "the template given with it isn't the one its hash names";
       else if (pub.birth.template !== file.templateHash) why = "names another template than the one given with it";
       else if (!file.law || await recordHash(file.law) !== file.lawHash || pub.birth.law !== file.lawHash) why = "its law isn't the law given with it";
-      else why = dialsProblem(pub.birth, file.template, null);
+      else {
+        // With its log, the dials it set must be exactly those its first
+        // entry was made with; without, only the template's ranges.
+        const first = Array.isArray(pub.log) && pub.log[0];
+        const madeWith = first && first.hash === h.first && !(await chainProblem(pub.log)) && first.data ? first.data.dials : null;
+        why = dialsProblem(pub.birth, file.template, madeWith && typeof madeWith === "object" ? madeWith : null);
+      }
       birthOk = !why;
     }
     results.push(sig(bs, "Its birth record", why ? ["bad", "Its birth record", why]
-      : ["ok", "Its birth record", "Signed by its own key, naming its template and law by hash, and dials within the template's ranges."]));
+      : ["ok", "Its birth record", "Signed by its own key, naming its template and law by hash, and the dials its log was made with, each within the template's range."]));
     const hs = await signedBy(pub.head, h.key, HEAD);
     let agrees = false;
     if (hs === "ok") {
