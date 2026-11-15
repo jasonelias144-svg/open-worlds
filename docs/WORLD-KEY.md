@@ -4,8 +4,9 @@ What there is to do in the Ur-world: a purpose, a tour for the first day,
 and a challenge that runs through the land, whose prize is the power to
 found a world. It is a game, in the sense the founder means: "The whole
 place could be like one large video game, essentially." Its stakes are
-real: what is built persists, is on record, and belongs to whoever built
-it.
+real: what is built persists and is on record. What a challenge builds
+is the world's, open to everyone, and what someone creates freely is
+theirs (below, "Challenges that build the world").
 
 Course step 1 ([COURSE.md](COURSE.md)); built in steps 4 to 6 (the first
 room), 11 (the hunt) and 12 (founding). Who plays it, and what they are
@@ -497,6 +498,103 @@ and the freedom to leave. Then:
 What they learned on the way is theirs to use: they can found again, and
 better, and leave clues of their own in their worlds for whoever comes
 next. Making puzzles becomes part of what is passed on.
+
+## Challenges that build the world
+
+The founder, 2026-11-15, in three messages:
+
+"Here is a new thought: perhaps, when entering a world there a various
+interaction modes to engage in. One could be exploration. Or creation,
+or experimentation. But in each world there is also a game layer, and
+that relates to the world-key. Here is the new idea: the challenges are
+constructive. The first could be to plant a certain number of fractals
+in a certain place, and that leads to the expansion of the garden. The
+next individual is given a series of challenges that amount to finding a
+source of water and irrigating the new garden. The next person is tasked
+to explore and plant trees. And so on. Anyone engaging in the game layer
+would be building the world actively. This ties the keeper AI with the
+challenges, as it becomes how the world grows internally. Or one way it
+does."
+
+"Perfect. But credit is not the point but learning. You would not
+complete a challenge by getting credit for this or that, but by being
+capable of doing this or that. Also, consider groups may arrive together
+and work on a set of group challenges together. There may be open task
+or challenges. Not everything needs to be for credit, it should be about
+the experience or skill that is learned in the process. It should be a
+challenge. My examples were not precise. They may have to figure out the
+goal is to plant, that may take learning subskills. Either way, this
+could unfold in many ways, we should try to accommodate as many
+possibilities as we can imagine."
+
+"And keep in mind. Someone may way to go through a number of challenge
+cycles in a world, and the keeper, like a good teacher, would just give
+harder tasks each time, ways to practice new skills and reinforce old
+ones. And all for the greater good of the world, which is available for
+everyone. Also, keep in mind how many problems arise from space
+limitations. Being able to expand the world map space through the act of
+exploration allows everyone to create freely, without any need to affect
+others. But others could build together, and that would be possible too.
+Much source of problems fall away when space is infinite and resources
+are endless. We shouldn’t expect conflict to arise from freedom in such
+an infinite space."
+
+The technical lead's reading, put to the founder the same day; it
+stands unless the founder answers otherwise, and stays open, as the
+founder asked: "Either way, this could unfold in many ways, we should
+try to accommodate as many possibilities as we can imagine."
+
+- **Ways to be in a world.** Exploring, creating and experimenting are
+  open to anyone. The game layer, with its challenges and the world-key,
+  is taken up by choice; someone who only explores loses nothing. Each
+  world's law says which ways it offers.
+- **A challenge builds the real world.** What it builds stays in the
+  world, open to everyone. The Keeper never builds: it proposes the
+  world's growth as challenges, and people carry them out, as ADMIN can
+  suggest changes and never make them ([ADMIN.md](ADMIN.md),
+  "Suggestions from inside").
+- **Done means capable.** A challenge is done when the world sees the
+  individual do it, so its pieces are ones whose doing is the skill
+  (above, "What makes a challenge"). The log records what happened, as
+  it records everything; it is not a score.
+- **The goal can be part of the challenge.** A challenge can begin as a
+  situation, a dry and empty plot, and not an instruction; working out
+  that the goal is to plant is part of it. When someone is stuck, the
+  Keeper offers smaller challenges that build the subskill they lack.
+- **Many kinds, side by side:** a path of one's own; challenges for a
+  group that arrives together; open tasks anyone can take up at any
+  time; and no challenge at all. Founding together is already planned
+  (course step 12).
+- **Cycles, as many as someone wants.** Each is a little beyond what they
+  can already do, and old skills come back, mixed in with new ones, so
+  they stay. The Keeper's running estimate of what each individual knows
+  (above, "What the Keeper remembers") is what lets it teach this way.
+- **Nobody waits on anybody.** Each challenge comes from what the world
+  needs now, not from a queue: if the garden isn't planted yet, the next
+  person gets a different need. No challenge asks anyone to undo
+  another's work.
+- **Room without end.** The Ur-world reaches 2^40 cells from the garden
+  in every direction (`LIMIT` in `rust/ur-world/src/space.rs`), generated
+  from its seed as it is explored. Land no one has changed is computed
+  again from the seed when needed, so only what is built is stored. So
+  anyone can create freely a little further out, and building together
+  is a choice.
+- **One shape for every kind,** so a new kind is a new combination, not
+  new machinery: who a challenge is for (one, a group, or anyone), the
+  situation it starts from, and how the world sees it done (a sketch is
+  in [TOPICS.md](TOPICS.md), topic 17).
+- **When.** A first, simple version comes when the Ur-world's garden
+  hosts plant worlds (the fractal track, part 3,
+  [FRACTALS.md](FRACTALS.md)): the scripted Keeper offers a plot to plant.
+  The full version comes with the AI Keeper, in course step 11.
+
+What is built, and whose it is: until 2026-11-15, this page opened by
+saying that what is built "belongs to whoever built it". The founder's
+newer word is "And all for the greater good of the world, which is
+available for everyone." The technical lead's reading, put to the
+founder as a note: what a challenge builds is the world's, open to
+everyone; what someone creates freely, in a place of their own, is
+theirs.
 
 ## A way through, not a way out
 
