@@ -172,7 +172,7 @@ has changed since that record, in the order to read it:
    what can be done with a world of each, as with virtual machines and
    containers: pause, resume, stop, restart, reset (the founder,
    2026-11-15). Every world can pause itself, every person can leave,
-   and a person who returns picks up where they left off. And, as a
+   a paused world included, and a person who returns picks up where they left off. And, as a
    goal for later, time: slow motion and a fast view, rewind and fast
    forward. And worlds can leave the multiverse: a world, or a cluster,
    may branch into an independent multiverse of its own, and the cord

@@ -114,11 +114,10 @@ personal stays private (section 3).
 
 ## 5. How to leave
 
-You can leave at any time, and nothing can stop you. Leaving is a door,
-not a punishment. In the founder's words: "Every world can pause itself
-and every person can leave. If they return, they can pick up where they
-left off on challenges, or anything else." What you did, you take with
-you: your passport, your notebook and your private space are yours.
+You can leave at any time, and nothing can stop you. In the founder's
+words: "Every world can pause itself and every person can leave. If they
+return, they can pick up where they left off on challenges, or anything
+else."
 
 And the worlds, too, are free to go. In the founder's words:
 "Participants can leave worlds, and worlds can leave the multiverse." A

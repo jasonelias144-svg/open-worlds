@@ -36,19 +36,22 @@ except where it says so.
   "suspends all processes in the specified containers", on Linux
   through the freezer cgroup, so that "the process is unaware, and
   unable to capture, that it is being suspended, and subsequently
-  resumed". Docker's checkpoints, built on CRIU (Checkpoint/Restore In
-  Userspace), save a running container's state to restore later.
+  resumed". Docker's checkpoints, still an experimental feature, built
+  on CRIU (Checkpoint/Restore In Userspace), save a running container's
+  state to restore later.
 - **Virtual machines** add the rest of the familiar set: suspend and
   resume, save the whole state to disk and restore it, snapshots to
   return to, and a hard reset.
 
-Three things are different here, and they shape the design:
+Four things are different here, and they shape the design:
 1. **A world's state follows from its record.** A world is its template,
    its seed, and a log of every step, with every input from outside
    written into it ([URWORLD.md](URWORLD.md)). So a checkpoint is cheap:
-   the hash of the log's head, which the world signs. Restarting is
-   running on from it, and anyone can rebuild the state by replaying
-   the log.
+   the hash of the log's head, which the world signs, and restarting is
+   running on from the last one. Rebuilding a world's state from its log
+   is what that needs, and it isn't built yet: today a closed world is
+   run again from its seed, and a log is checked against its world's
+   rules (below, "What is built").
 2. **Nothing is hidden, a pause included.** Docker's pause is built so
    the process can't tell. Here a pause, a stop and a restart are each
    an entry in the world's log, and those inside are told, as the
@@ -58,6 +61,14 @@ Three things are different here, and they shape the design:
    sealed; and keys stay their holders', so an individual can go on
    elsewhere" ([ADMIN.md](ADMIN.md)). So no operation here deletes a
    log, and a reset never overwrites one.
+4. **Leaving always works.** No operation here holds anyone in. A
+   paused world still takes each leaving, and logs it; a world that
+   stops lets everyone out first; and a superworld's pause pauses its
+   worlds' steps, never anyone's way out. Exit is a protected freedom:
+   "Every world can pause itself and every person can leave" (the
+   founder), and a world never refuses a leaving
+   ([COLLABORATING.md](COLLABORATING.md), house rule 4;
+   [FUNDAMENTALS.md](FUNDAMENTALS.md), freedom, item 2).
 
 ## The lifecycle
 
@@ -67,11 +78,11 @@ operations:
 
 | Operation | What it does | What the log keeps |
 |---|---|---|
-| **Pause** | The world stops taking steps. Its state stays as it is. Any world can pause itself (the founder). | An entry: paused, when, and by whom or by what rule |
+| **Pause** | The world stops taking steps. Its state stays as it is, and leaving still works: a paused world takes each leaving. Any world can pause itself (the founder). | An entry: paused, when, and by whom or by what rule; and each leaving during the pause |
 | **Resume** | The world takes steps again, from exactly where it paused. | An entry: resumed. Those inside are told how long it was paused |
 | **Checkpoint** | Names the state at a step: the hash of the log's head, signed by the world. | The signed head, as worlds already sign them |
 | **Stop** | The world ends its run. Those inside are told first, and can leave first. | A last entry and a last signed head. The log is closed, never removed |
-| **Restart** | The same world runs on from its last checkpoint: same key, same log, continued. | An entry: restarted, from which checkpoint |
+| **Restart** | The same world runs on from its last signed head: same key, same log, continued. Running on from an earlier point is a branch, or a reset, never a restart, so no step anyone holds a stamp for is undone. | An entry: restarted, at the last signed head |
 | **Reset** | A fresh run from the same template and seed: "a fresh start or new run with the same world setup" (the founder, 2026-11-14, on parallel worlds). It is a new world, whose birth record names the template and the run before it. | A new log. The old one is kept, closed, beside it |
 | **Branch** | A copy of the world at a checkpoint that then runs on its own: the founder's "steering by branching" ([VISION.md](VISION.md), "Ride along, and steer"). | A new log, whose birth names the world and checkpoint it branched from |
 
@@ -182,7 +193,7 @@ lifecycle.
 
 ## A taxonomy of world types
 
-Every world has a place on each of seven dimensions, and its type is
+Every world has a place on each of eight dimensions, and its type is
 where it stands on all of them. They are drawn from the worlds already
 built or designed.
 
@@ -207,6 +218,9 @@ built or designed.
    - **Living worlds:** water, light and food.
    - **Commerce and currency worlds,** where money is a test setting.
    - **Creative worlds,** such as the poetry world.
+   - **Game worlds,** the founder's turn in record 012-05-01: a chess
+     park, worlds inside worlds ([COLLABORATING.md](COLLABORATING.md),
+     "Where the conversation stands").
    - **Home:** the Ur-world, where ALICE and BOB will be born.
    - **Test bench:** the Mir-Ur-world, the Ur-world's mirror.
    - **Training:** ADMIN's own world.
@@ -224,6 +238,11 @@ built or designed.
    - **Endless:** runs until it stops itself, or is stopped. Next:
      the endless plant.
    - **Continuous:** always running, as a live world will be.
+   - **Accelerated:** faster than its inhabitants' outside clock, the
+     founder's "accelerated learning worlds, or even certain accelerated
+     learning times" ([MULTIVERSE.md](MULTIVERSE.md), "Time"). Nobody
+     enters one without choosing to, and leaving still works at any
+     moment.
 6. **Who runs it.**
    - **The project,** today, every world.
    - **Others,** later ([TOPICS.md](TOPICS.md), "Further out").
@@ -234,6 +253,19 @@ built or designed.
    - **By consent:** its law changes only with the consent of every
      party (CHARTER.md, section 6).
    - **Some other way,** as each world's law says.
+8. **Space.**
+   - **Bounded:** a fixed grid, as the corridor and the chemistry soup.
+   - **Growing:** it grows as it is explored or grows itself, the
+     founder's "fractals grown over time in expanding worlds"
+     ([FRACTALS.md](FRACTALS.md)) and challenges that build the world
+     ([WORLD-KEY.md](WORLD-KEY.md)). Next: the endless plant.
+
+**Not a world type: the private interior.** The founder called each
+individual's private space "a private interior world that is not
+accessible to the world Keeper" ([MINDS.md](MINDS.md)). Here it is part
+of the individual, their sealed self, not a world beside the others: it
+takes no steps of a world's, and no one but its holder pauses, branches,
+resets or reads it. None of the operations below apply to it.
 
 ## Which world has which operations
 
@@ -244,20 +276,26 @@ fewer operations are anyone's to choose.**
 |---|---|---|---|---|---|
 | **Primary, closed, no one inside** (a plant world; a question world) | yes | yes | yes | yes: a new run | yes |
 | **With scripted agents only** | yes | yes | yes | yes: a new run | yes |
-| **With minds from outside** | yes, logged | after they are told, and can leave | yes | as a new run they may join | a copy of the world, not of the minds |
-| **With individuals with lives** | yes, logged, and they are told | after they are told, and can leave; their keys, records and sealed selves stay theirs | yes | never over anyone's head: only as a new world they may choose to enter | a copy of the world, never of a person, who chooses whether to enter it |
-| **Superworld** | yes; pausing it pauses the worlds it hosts, and each of them can also pause itself | after each hosted world is stopped | yes | its hosted worlds by their own rules | yes |
+| **With minds from outside** | yes, logged, and they are told; they can leave while it is paused | after they are told, and can leave | yes | as a new run they may join | a copy of the world, not of the minds |
+| **With individuals with lives** | yes, logged, and they are told; they can leave while it is paused | after they are told, and can leave; their keys, records and sealed selves stay theirs | yes | never over anyone's head: only as a new world they may choose to enter | a copy of the world, never of a person, who chooses whether to enter it |
+| **Superworld** | yes; pausing it pauses the worlds it hosts, and each of them can also pause itself; anyone in any of them can still leave | after each hosted world is stopped | yes | its hosted worlds by their own rules | yes |
 | **Control world** | yes, logged, so a disturbed run is never taken for an undisturbed one | yes | yes | yes: a new run | yes |
 | **The multiverse** | no master switch: part by part, by each who runs a part | part by part | part by part | never | never |
 
 ## What is built, and what is next
 
-- **Built:** worlds are deterministic and replayable from their logs.
-  The plant worlds and the Ur-world sign their log heads, which is what
-  a checkpoint needs. The garden gives each glasshouse its step, which
-  is what pausing a superworld needs.
+- **Built:** closed worlds run again from their seed, step for step
+  (the plant world's `the_same_dials_give_the_same_log`, and the
+  chemistry soup's replay from its seed), and a log is checked against
+  its world's rules (`rust/ur-world/examples/log.rs`, the plant world's
+  rule check). The plant worlds and the Ur-world sign their log heads,
+  which is what a checkpoint needs. The garden gives each glasshouse its step, which
+  is what pausing a superworld needs. Not built: rebuilding a world's
+  state from its log, which a restart needs, above all for an open
+  world.
 - **Next:** the operations themselves, as entries in a world's log, in
-  `rust/world-log` and each world. The course takes them up at its next
+  `rust/world-log` and each world, with a test that leaving works in a
+  paused world, and in each world a paused superworld hosts. The course takes them up at its next
   recheck ([COURSE.md](COURSE.md), "Waiting"). The endless plant needs
   pause, resume and checkpoint first, to run for hours in the browser
   ([FRACTALS.md](FRACTALS.md)).

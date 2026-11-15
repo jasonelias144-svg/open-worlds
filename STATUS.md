@@ -1867,6 +1867,17 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-15 Claude: after #83's independent review, the charter's
+  section 5 keeps only the founder's words (two sentences that weren't
+  the founder's are gone), and WORLD-TYPES.md says leaving always works,
+  a pause included: a paused world still takes each leaving, and a
+  superworld's pause never holds anyone in. A restart runs on only from
+  the last signed head; what is built of replaying is said as it is
+  (closed worlds from their seed, logs checked; not yet a state rebuilt
+  from a log); and the taxonomy gains game worlds, accelerated time, an
+  eighth dimension (space, bounded or growing), and a note on the
+  private interior, which is part of an individual, not a world type.
+
 - 2026-11-15 Claude: the next holder of the "break glass" is a person
   the founder names publicly, once someone else joins; recorded, and
   said in the charter's section 3.
