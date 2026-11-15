@@ -116,7 +116,8 @@ they are only the keys the multiverse needs to function:
 
 ADMIN, the other offices and the worlds use their own keys in their
 ordinary work. The founder holds all of them, in the project's private
-repository, and that holding is the "keys to the kingdom". They are
+repository, and, in the technical lead's reading, that holding is the
+"keys to the kingdom". They are
 opened only by the founder's explicit decision, every opening is
 recorded publicly and permanently, and their next holder is a person the
 founder names publicly ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item

@@ -30,8 +30,14 @@ and the founder's, are kept word for word in `sketches/records/`.
 
 ### 2026-11-15: what changed today, in brief
 
-The founder decided a great deal today in sessions with me. Each item
-is in `STATUS.md` ("Decided"), word for word, and in the page named.
+The founder decided a great deal today in sessions with me. This is a
+selection: each item is in `STATUS.md` ("Decided"), word for word, and
+in the page named. The rest of today's decisions (an account needs only
+an email address; data is never for sale; leaving takes your private
+records with you; public acts always remain; no currency, ever; world
+types, time, and worlds leaving the multiverse; the multiverse as a
+computer; the learning multiversity) are in "What's here", items 3 and
+4, below; and the decisions on DeepSeek's code are in "Two sides".
 
 - **"Agent"** is anything that perceives and acts, from a neuron
   steering a plant to any human ([GLOSSARY.md](GLOSSARY.md)).
@@ -614,8 +620,8 @@ These apply to code that comes into open-worlds, not to the draft (see
    given under the same terms. CC0 is the founder's standing choice for
    everything the founder makes public; no one asks again (the policy
    handbook's decision 0003). SAIR-Lean-Kernel-Challenge is the one
-   repository built on outside work: there, the challenge's own files
-   keep their Apache-2.0 licence. Libraries this depends on keep their own
+   repository built on outside work: our own work there is CC0 too, and
+   only the challenge's own files keep their Apache-2.0 licence. Libraries this depends on keep their own
    licenses; they are depended on, not copied in. Code from elsewhere is
    copied in only under a permissive licence (MIT, Apache, BSD), with its
    notice kept beside it, and the copy says so; code under the GPL is read
@@ -650,12 +656,12 @@ These apply to code that comes into open-worlds, not to the draft (see
     else goes into it without the founder's approval
     ([AGENTS.md](../AGENTS.md)). A proposal for the charter is a
     question for the founder, not a change.
-15. **Build host-free.** No code assumes a hosting provider: worlds run
-    and are tested locally, and in a browser where they can. Where the
-    multiverse is hosted is one decision, for all of it, made later.
-    The founder (2026-11-15): "Cloudfare was a legacy decision made in
-    an earlier moment, no longer binding. Let's keep it all host free,
-    as we were."
+15. **Build host-free.** The founder (2026-11-15): "Cloudfare was a
+    legacy decision made in an earlier moment, no longer binding. Let's
+    keep it all host free, as we were." Where the multiverse is hosted
+    is one decision, for all of it, made later. The technical lead's
+    reading of "as we were": no code assumes a hosting provider; worlds
+    run and are tested locally, and in a browser where they can.
 
 ## Code in Rust
 

@@ -793,9 +793,10 @@ what an apprenticeship for a Keeper might look like in the open.
 *The founder, 2026-11-15:* "I do think there is much there we can
 utilize for checking the reasoning behind decisions made by agents in
 offices. But also, we could have math worlds or other reasoning worlds
-where debate or discovery is tapered by a Lean engine." ("There" is the
-project's work in the SAIR Lean Kernel Challenge, kept in a separate
-repository because it is built on outside work.)
+where debate or discovery is tapered by a Lean engine." The founder's
+"there" is the project's work in the SAIR Lean Kernel Challenge, which
+the founder keeps separate because it is "based on something external"
+(STATUS.md, Decided).
 
 **What exists:** [REASONS.md](REASONS.md) designs decision records that
 may carry a proof in Lean, which Lean's kernel checks before the act
@@ -812,8 +813,9 @@ proving; how a world uses Lean without copying it in.
 **A possible implementation:** a small world of claims, where a claim is
 stated as a Lean theorem, and counts once the kernel accepts a proof of
 it; the cost of checking, in kernel instructions, is recorded with it.
-Lean and its library are dependencies under their own licences; only
-the project's own work comes in, under CC0.
+The technical lead's reading (STATUS.md, Decided): Lean and its library
+are dependencies under their own licences, and only the project's own
+work comes in, under CC0.
 
 **Send back:** a reasoning world's law, as text; and three properties
 of an office's decision that would be worth proving, in plain words.

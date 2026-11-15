@@ -176,8 +176,8 @@ one of them updates this page.
    own containers ([CONTAINER.md](CONTAINER.md), "The "keys to the
    kingdom""). ADMIN, the other offices and the worlds use their own keys
    in their ordinary work, as before. The founder holds all of them, in
-   the project's private repository, and that holding is the "keys to
-   the kingdom". They are opened only by an explicit decision of the
+   the project's private repository, and, in the technical lead's
+   reading, that holding is the "keys to the kingdom". They are opened only by an explicit decision of the
    founder's, and every opening is recorded publicly and permanently.
    The technical lead's reading of "opened", which stands unless the
    founder answers otherwise: a key used or copied outside its own

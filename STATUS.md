@@ -2298,6 +2298,14 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-15 Claude: after #89's independent review at 03e3923, its six
+  notes: COLLABORATING.md's "in brief" says it is a selection and where
+  the rest is; house rule 15 marks "as we were" read as the technical
+  lead's; rule 9 says our own work in SAIR-Lean-Kernel-Challenge is CC0
+  too; AGENTS.md step 5 separates the founder's words from the technical
+  lead's procedure; FUNDAMENTALS.md and CONTAINER.md mark "that holding
+  is the keys to the kingdom" as a reading; topic 20 marks its glosses.
+
 - 2026-11-15 Claude: after #88's re-check at de2e7ee, its notes, carried
   here: today every private half, the offices' and worlds' included, is
   a file in the one private repository, so "a private half taken out of
