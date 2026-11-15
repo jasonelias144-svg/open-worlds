@@ -18,12 +18,16 @@ def _without_paths(message):
     return message.split(" (")[0]
 
 
+HERE = Path(__file__).parent.resolve()
+
+
 def _load(filename):
     """Import a test file from its path, with its own folder first on the
     import path, as pytest does: so a file in a subfolder (such as
     rust/ur-world/examples/) finds the modules beside it."""
-    path = Path(__file__).parent / filename
+    path = HERE / filename
     folder = str(path.parent)
+    before = set(sys.modules)
     sys.path.insert(0, folder)
     try:
         spec = importlib.util.spec_from_file_location(path.stem, path)
@@ -31,6 +35,17 @@ def _load(filename):
         spec.loader.exec_module(module)
     finally:
         sys.path.remove(folder)
+        _forget_new_modules(before)
+
+
+def _forget_new_modules(before):
+    """Drop the modules from this folder that a load imported, even one
+    that failed: two subfolders can each have a module of the same name,
+    and a later load must find its own, not one cached here."""
+    for name in set(sys.modules) - before:
+        file = getattr(sys.modules[name], "__file__", None)
+        if file and Path(file).resolve().is_relative_to(HERE):
+            del sys.modules[name]
 
 
 @pytest.mark.parametrize("filename", sorted(KNOWN_FILES))

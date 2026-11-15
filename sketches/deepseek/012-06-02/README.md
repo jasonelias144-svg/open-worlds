@@ -25,7 +25,9 @@ open-worlds never imports it ([../../README.md](../../README.md)).
   at the founder's word, Rust: an Ur-garden for open-worlds' own
   `rust/ur-world`, its keeper, a server and client, and verifiers in
   Rust, Python and Node.js. These are kept under `rust/`, `vectors/` and
-  `schemas/` in this folder, at the paths DeepSeek gave them. **Nothing
+  `schemas/` in this folder, at the paths DeepSeek gave them; one name
+  is ours, `rust/ur-world/examples/garden_curator_loop.rs`, for a block
+  DeepSeek headed only "Demo" (record line 59469). **Nothing
   builds or runs the Rust or the JavaScript here:** DeepSeek couldn't
   compile them, and they were written against an older snapshot of
   open-worlds' crates (INDEX.md says how far off they are). Read before
