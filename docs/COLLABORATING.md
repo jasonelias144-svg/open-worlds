@@ -168,7 +168,8 @@ has changed since that record, in the order to read it:
    public); an account needs only an email address; data is never for
    sale; whoever leaves the multiverse takes their private records with
    them, and their private data is purged; and public acts always
-   remain, as public records are never edited.
+   remain, as public records are never edited, except that anything
+   private in them is redacted, and close calls are redacted.
    [WORLD-TYPES.md](WORLD-TYPES.md) has a taxonomy of world types, and
    what can be done with a world of each, as with virtual machines and
    containers: pause, resume, stop, restart, reset (the founder,
@@ -879,6 +880,11 @@ page.
   data is public and nothing personal enters it, and whoever leaves the
   multiverse takes their records with them (FUNDAMENTALS.md; house rule
   13; the charter).
+- 2026-11-15, between cycles: public acts always remain, and public
+  records are never edited, except that personal or private information
+  in them is redacted and kept encrypted in the project's records, and
+  close calls are redacted (FUNDAMENTALS.md, "Public records, kept
+  whole"; AGENTS.md; the charter's sections 4 and 5).
 
 ## Every file, by its full link
 

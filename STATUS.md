@@ -122,6 +122,23 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder (put 2026-11-15, after #83's re-check at ed7c715):
+  when a person leaves the multiverse, do the links they showed between
+  their presences stay public? A link ties presences, which are
+  otherwise unlinked, to one person, so it is what makes their
+  pseudonymous acts one person's. The options:
+  1. **Links stay,** as the public acts they are.
+  2. **Links are redacted when the person leaves,** under the rule on
+     private information (Decided, above); their acts stay, each under
+     its own presence key.
+
+  The recommendation: 2. It is a close call, and the founder's rule
+  says close calls are redacted; and without the links, what remains is
+  the acts themselves, the "lasting imprint" the founder described,
+  without a map that ties them together. While the person is in the
+  multiverse, the links they show stay public, as they chose. Because
+  this concerns personal information, it waits for the founder's
+  answer; FUNDAMENTALS.md marks what depends on it.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
@@ -231,6 +248,31 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on private information in public acts:
+  "Ok, let's make a rule that any public act that contains private
+  information will have that private information encrypted in the
+  project records and removed or redacted in the public records. We can
+  redact personal or private information in public records, and we
+  should always err on the side of redacting if it is a close call."
+  So public records are never edited, with one exception: personal or
+  private information in them is redacted, and close calls are
+  redacted. The information itself is kept encrypted in the project's
+  records. This replaces the technical lead's reading in the entry
+  below that what a person says about themselves in public stays; and,
+  with the entry below, the founder's earlier "removed from our records"
+  (2026-11-15, on leaving and on data) now reads: private data is
+  removed, public acts remain, and anything private in them is
+  redacted. The technical lead's readings, in docs/FUNDAMENTALS.md
+  ("Public records, kept whole"), which stand unless the founder
+  answers otherwise: a redaction is visible (the entry keeps its place
+  and a salted fingerprint, so the log still checks, with a mark saying
+  when, by which office and why in general terms, never what); the
+  information is sealed to the person it is about, kept like their
+  private space and purged when they leave; the best redaction is the
+  one made before anything is published; and logs keep each field's
+  content apart from the chain that commits to it, so a field can be
+  redacted without rewriting history. AGENTS.md's rule and the
+  charter's section 4 say it.
 - 2026-11-15, founder, answering what happens to a leaver's public acts:
   "Public acts should always remain. The moment we edit a public record,
   we defeat the purpose. It should be clearly understood upon entry to
@@ -1904,6 +1946,16 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: the founder's rule on private information in
+  public acts: redacted from the public record, kept encrypted in the
+  project's, and close calls redacted. Recorded in STATUS.md, AGENTS.md,
+  the charter's section 4, FUNDAMENTALS.md, WORLD-TYPES.md, COURSE.md
+  and COLLABORATING.md; the earlier reading that what a person says
+  about themselves stays is replaced. After #83's re-check at ed7c715:
+  whether a leaver's shown links stay is put to the founder; a leaver is
+  given their private records (WORLD-TYPES.md); and COLLABORATING.md's
+  dated list has the change.
 
 - 2026-11-15 Claude: the founder answered the open question on a
   leaver's public acts: they always remain, and historical records are

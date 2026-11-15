@@ -398,10 +398,15 @@ Added one at a time, as steps are done:
   [FUNDAMENTALS.md](FUNDAMENTALS.md), "Purged, demonstrably"): settled
   with step 8a, before ALICE's and BOB's birth;
 - a check, wherever something is written to a public record, that
-  nothing personal goes in, as public records are never edited (the
-  founder, 2026-11-15: "We make sure we never enter data that would
-  need to be edited later"): placed with the lifecycle, before anyone
-  lives in a world;
+  redacts anything personal or private before it is published, close
+  calls included (the founder, 2026-11-15: "we should always err on the
+  side of redacting if it is a close call"); and log entries whose
+  fields are kept apart from the chain that commits to them, by a
+  salted fingerprint, so a field found private later can be redacted
+  while the log still checks, with a redaction mark and the information
+  sealed to the person it is about ([FUNDAMENTALS.md](FUNDAMENTALS.md),
+  "Public records, kept whole"): placed with the lifecycle, before
+  anyone lives in a world;
 - the Commons (the founder, 2026-11-14): Lyceum Commons as "a single
   superworld, where the atomic subworlds are chat rooms"; recommended
   after step 4a, as the second superworld (docs/TOPICS.md, topic 14,

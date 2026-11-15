@@ -102,13 +102,16 @@ effect (docs/ADMIN.md).
   output is never reported as a result.
 - **Outside agents run in sandboxes.** Agents we didn't write, and agents that
   rewrite their own code, never run in the kernel's process.
-- **Public records are never edited.** In the founder's words
-  (2026-11-15, STATUS.md): "We do not edit historical records as an
-  absolute rule." A world's log, a ledger and published data are only
-  ever appended to; a correction is a new entry that says so. So
-  nothing that might need editing is written to them: "We make sure we
-  never enter data that would need to be edited later"
-  (`docs/FUNDAMENTALS.md`, "Public records, kept whole").
+- **Public records are never edited, except to redact what is
+  private.** In the founder's words (2026-11-15, STATUS.md): "We do not
+  edit historical records as an absolute rule." A world's log, a ledger
+  and published data are only ever appended to; a correction is a new
+  entry that says so. The one exception: "We can redact personal or
+  private information in public records, and we should always err on
+  the side of redacting if it is a close call." The private information
+  is kept encrypted in the project's records, and a redaction is
+  visible and leaves the log checkable (`docs/FUNDAMENTALS.md`, "Public
+  records, kept whole").
 - **Never a currency, never a money machine, never data for sale.** The
   multiverse has no currency of its own, and nothing here is built to
   turn it into a money machine: in the founder's words (2026-11-15,

@@ -139,8 +139,10 @@ one of them updates this page.
    a key of its own for each presence, and a link shown only by the
    presence's own act. Its limit: unlinked keys don't make unlinkable
    presences, as a manner of speaking or the hours kept can link them.
-   A link, once shown, is a public act, and stays ("Public records, kept
-   whole", below), so the person is told so before they show one.
+   A link, once shown, is public while the person is in the
+   multiverse. Whether it stays after they leave, or is redacted, waits
+   for the founder's answer (STATUS.md, "Open questions"); either way,
+   the person is told before they show one.
 6. **The "break glass", in the open.** Chosen by the founder on
    2026-11-14: a sealed self, or a private message, can be opened only
    by an explicit decision of the founder's, and every opening is
@@ -180,7 +182,10 @@ one of them updates this page.
    records. We should not store any private keys for anyone that is no
    longer in the multiverse. Their private data should be purged from
    the records completely and demonstrably." So the "break glass" ends
-   for whoever leaves the multiverse. How the purge is shown is the
+   for whoever leaves the multiverse. The founder's later words (below,
+   "Public records, kept whole") narrow "removed from our records" to
+   what is private: public acts remain, with anything private in them
+   redacted. How the purge is shown is the
    technical lead's reading, below ("Purged, demonstrably"). Not yet
    built.
 8. **Data is not for sale.** The founder (2026-11-15): "participant or
@@ -256,21 +261,49 @@ later. But that would be a small subset of the data that would be
 associated with a given account, it would be all that would remain. It
 would be a lasting imprint or legacy of all that come and go."
 
-- **Never edited.** A world's log, a ledger and published data are only
-  ever appended to. A mistake is corrected by a new entry that says so,
-  as a ledger is, never by changing the old one. The charter says so on
-  entry (sections 4 and 5), and AGENTS.md makes it a rule.
+And the same day: "Ok, let's make a rule that any public act that
+contains private information will have that private information
+encrypted in the project records and removed or redacted in the public
+records. We can redact personal or private information in public
+records, and we should always err on the side of redacting if it is a
+close call."
+
+- **Never edited, except to redact what is private.** A world's log, a
+  ledger and published data are only ever appended to. A mistake is
+  corrected by a new entry that says so, as a ledger is, never by
+  changing the old one. The one exception is personal or private
+  information, which is redacted, and close calls are redacted. The
+  charter says so on entry (section 4), and AGENTS.md makes it a rule.
 - **What remains of someone who leaves** is what they did in public:
-  their acts in the worlds' logs, under their keys, and the links they
-  chose to show. Everything private goes with them, and their private
-  data is purged (below).
-- **Nothing that might need editing goes in.** The technical lead's
-  reading, which stands unless the founder answers otherwise: the
-  project itself never writes anything personal into a public record
-  ("Public data, and personal data", above), and a check wherever
-  anything is written will make sure of it (to be built, before anyone
-  lives in a world: [COURSE.md](COURSE.md), "Waiting"). What a person
-  says or does in public is their own act, made knowing that it stays.
+  their acts in the worlds' logs, under their keys, with anything
+  private in them redacted. Everything private goes with them, and
+  their private data is purged (below). Whether the links they showed
+  between their presences stay waits for the founder's answer (privacy,
+  item 5).
+
+The technical lead's reading of how a redaction works, which stands
+unless the founder answers otherwise:
+- **Before publishing, first.** Wherever something is written to a
+  public record, a check redacts anything personal or private before it
+  is published, and redacts close calls (to be built, before anyone
+  lives in a world: [COURSE.md](COURSE.md), "Waiting"). That is the
+  redaction that works best: copies others make of what is published
+  can't be recalled afterwards.
+- **Visible, and the log still checks.** A redacted entry keeps its
+  place and a salted fingerprint of what was taken out, so the chain of
+  hashes still holds and the salt keeps anyone from confirming a guess.
+  A mark says that something private was redacted, when, by which
+  office, and why in general terms (such as "contact details"), never
+  what. Logs keep each field's content apart from the chain that
+  commits to it, so a field can be redacted without rewriting history.
+- **Sealed to the person it is about.** What was redacted is kept
+  encrypted in the project's records, like that person's private space:
+  under the same "break glass", and purged when they leave.
+- **Who decides.** Anyone may ask for a redaction, the person it is
+  about first. The office that keeps the record decides: a world's
+  Keeper for its world's log, ADMIN for the multiverse's. Each decision
+  is on record with its reasons, in general terms, and a refusal can be
+  appealed ([REASONS.md](REASONS.md)).
 
 ## Purged, demonstrably
 
@@ -297,14 +330,13 @@ demonstrably", which stands unless the founder answers otherwise:
 
 ## Honest limits
 
-- **What a person says in public stays.** If someone puts their own
-  personal details into a public act, the record keeps them, as it
-  keeps every public act. The charter's word on entering is what makes
-  that fair, and a world can remind people before they speak. Some
-  laws give a right to have personal data erased. Keeping personal data
-  out of what the project itself writes is what lets the rule hold for
-  those records; if a law ever required removing what a person said
-  about themselves, that conflict would go to the founder.
+- **A redaction can't reach copies already made.** What was published
+  before it was redacted may already be in someone else's copy: a
+  clone of the repository, a mirror, an archive. So the check before
+  publishing matters most, and close calls are redacted then.
+- **No check finds everything.** Some personal details won't look
+  personal to a check. Erring on the side of redacting narrows that,
+  and anyone may ask for a redaction afterwards.
 - **The project runs the minds.** While an individual's mind is
   thinking, its thoughts pass through hardware the project controls.
   Encryption keeps a private space from everyone in the worlds, and

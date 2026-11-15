@@ -63,8 +63,9 @@ Four things are different here, and they shape the design:
    log, and a reset never overwrites one. Nor is any entry ever edited:
    "We do not edit historical records as an absolute rule" (the
    founder, 2026-11-15), so what someone did in public stays after they
-   leave too ([FUNDAMENTALS.md](FUNDAMENTALS.md), "Public records, kept
-   whole").
+   leave too. The one exception is personal or private information,
+   which is redacted, visibly, while the log still checks
+   ([FUNDAMENTALS.md](FUNDAMENTALS.md), "Public records, kept whole").
 4. **Leaving always works.** No operation here holds anyone in. A
    paused world still takes each leaving, and logs it; a world that
    stops lets everyone out first; and a superworld's pause pauses its
@@ -176,11 +177,12 @@ multiverse to go on:
 2. **A departure record,** signed by the world: where it goes, and the
    head of its log at the moment it leaves. The host publishes it, and
    closes its own copy of the world's log at that head. That copy is
-   kept, whole, as a record never ends: public acts always remain.
+   kept, whole, as a record never ends: public acts always remain, with
+   anything private in them redacted.
 3. **The keys move.** The world's key is signed over to a new key that
    whoever runs it now made, so the host keeps no key of the world.
 4. **Their records go with them.** Whoever leaves with the world, or
-   leaves the multiverse at all, is given their records, and the
+   leaves the multiverse at all, is given their private records, and the
    project's copies of their private keys and private data are purged,
    "completely and demonstrably" (the founder, 2026-11-15;
    [FUNDAMENTALS.md](FUNDAMENTALS.md), "Purged, demonstrably").

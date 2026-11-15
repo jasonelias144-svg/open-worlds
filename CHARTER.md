@@ -113,6 +113,13 @@ learning and they become part of the project data. We do not edit
 historical records as an absolute rule. We make sure we never enter data
 that would need to be edited later."
 
+And anything private in what you do in public is kept out of the public
+record. In the founder's words: "any public act that contains private
+information will have that private information encrypted in the project
+records and removed or redacted in the public records. We can redact
+personal or private information in public records, and we should always
+err on the side of redacting if it is a close call."
+
 > Still to cover: that the world is watched: the website, the viewers,
 > what they can see (positions, speech, the public log), and that viewers
 > read this same charter; that nothing is known about the world that its
