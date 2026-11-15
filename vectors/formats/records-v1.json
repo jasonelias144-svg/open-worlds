@@ -449,6 +449,55 @@
    "hash": "e39b3a45a651d8c35ddceb5216af92d95adc16ecc4b7574cf9c357fd3ad1e8eb"
   },
   {
+   "name": "a council's proposal",
+   "signer": "the Ur-world's Keeper",
+   "record": {
+    "format": "open-worlds/proposal/v1",
+    "council": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "title": "A bench by the spring",
+    "text": "Shape a bench beside the spring, where two can sit.",
+    "choices": [
+     "yes",
+     "no"
+    ],
+    "trusts": [
+     "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX"
+    ],
+    "quorum": 2,
+    "opens": "2026-11-14T01:00:00Z",
+    "closes": "2026-11-21T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4eJUS2bC6nKePabWu3UHdNLfAVzNtxu7jYJMFpQq4r77uF7X4vKERueDQ9HJLXwcGD8KFPgjrQeafXEzNvkoUc74"
+    }
+   },
+   "hash": "ee7bf209b2b3b83b49d30419dea62cf67c10c0775f7ce8126bf4e8a0fc5cd3f1"
+  },
+  {
+   "name": "a person's vote on it",
+   "signer": "ALICE",
+   "record": {
+    "format": "open-worlds/vote/v1",
+    "proposal": "ee7bf209b2b3b83b49d30419dea62cf67c10c0775f7ce8126bf4e8a0fc5cd3f1",
+    "person": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "choice": 0,
+    "time": "2026-11-14T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4WLg8NZz1UH9cvKwQNvy84d6gXD2F3ARLKFUfcRs87w4kBmsz9kwxuGefAGNthhfrXtToen7NttSp6Bv89vX1Wsc"
+    }
+   },
+   "hash": "cebeda3f5d20283363aecbbd586298cbfb946af5d61cc336dd4426f4fb7ee456"
+  },
+  {
    "name": "a mind record, with one engine",
    "signer": "the project",
    "record": {

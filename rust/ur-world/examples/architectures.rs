@@ -1,6 +1,6 @@
 // rust/ur-world/examples/architectures.rs
-//! The architectures (`ur_world::architecture`): the octopus, the relay
-//! and the swarm, each a small run over trial worlds. Tells what happened
+//! The architectures (`ur_world::architecture`): the octopus, the relay,
+//! the swarm and the council, each a small run over trial worlds. Tells what happened
 //! in each world, and checks each world's log: its chain, its arrivals,
 //! and any link shown in it.
 //!
@@ -10,7 +10,7 @@ use std::process::ExitCode;
 
 use serde_json::Value;
 use ur_world::World;
-use ur_world::architecture::{octopus, relay, swarm};
+use ur_world::architecture::{council, octopus, relay, swarm};
 use ur_world::arrival::arrival_problems;
 use ur_world::link::link_log_problems;
 use ur_world::story::tell;
@@ -81,6 +81,30 @@ fn main() -> ExitCode {
         }
         Err(e) => {
             eprintln!("the swarm could not run: {e}");
+            held = false;
+        }
+    }
+    match council::run() {
+        Ok(c) => {
+            println!("THE COUNCIL: four persons, a proposal, signed votes.\n");
+            held &= show(&format!("In {}", council::COUNCIL_WORLD), &c.world);
+            let t = &c.tally;
+            println!(
+                "{} presences in the council's world; {} persons counted. Yes {}, no {}; the outcome: {}.",
+                c.world.inhabitants().len(),
+                t.persons,
+                t.counts.first().copied().unwrap_or(0),
+                t.counts.get(1).copied().unwrap_or(0),
+                t.outcome
+                    .map_or("none".to_owned(), |i| format!("choice {i}"))
+            );
+            for p in &t.problems {
+                println!("  {p}");
+            }
+            println!();
+        }
+        Err(e) => {
+            eprintln!("the council could not run: {e}");
             held = false;
         }
     }
