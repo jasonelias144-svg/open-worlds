@@ -124,7 +124,10 @@ one of them updates this page.
    limit"). Kept, at the founder's word of 2026-11-15: "I love the
    "break glass" idea. It is very much the point. I envision this
    project without me, and so I need to leave a way for things to stay
-   private now, but be available for the public later." ADMIN can't
+   private now, but be available for the public later. All my personal
+   notebooks for the past 25 years have been written with such an
+   understanding: they are private records now, but may be public
+   later." ADMIN can't
    open it either way. Two questions follow, put to the founder
    (STATUS.md, "Open questions"): whose records "private now, public
    later" may reach, and who holds the "break glass" after the founder.
