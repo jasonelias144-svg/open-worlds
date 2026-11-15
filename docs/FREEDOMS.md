@@ -27,6 +27,17 @@ restricted in advance; harmony or disharmony are left to arise."
 Thoughts don't collide; actions do, where they touch something shared:
 space, time, a resource, a rule, or another's mind.
 
+Two of those need not be scarce. The founder, 2026-11-15: "Much source
+of problems fall away when space is infinite and resources are endless.
+We shouldn’t expect conflict to arise from freedom in such an infinite
+space." A world grows as it is explored, so in practice there is always
+room a little further out ([WORLD-KEY.md](WORLD-KEY.md), "Challenges
+that build the world"). The technical lead's reading: a world's law can
+make its resources endless too; so conflict isn't expected, and the
+tools below stay as they are, for what can still meet: the same moment, a
+rule, another's mind, or a thing two people chose to build together.
+They cost nothing while no one needs them.
+
 - **A limit takes options away.** An act limits another's freedom when it
   takes options from them without their consent: it blocks their way,
   takes what they needed, deceives them, forces them, or holds them in.
