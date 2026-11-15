@@ -129,9 +129,27 @@ can be read, run and debugged, without committing to using them.
 [`sketches/INDEX.md`](../sketches/INDEX.md) is the one place that says
 where the sketch and the course meet: each component, how its tests fare,
 which course step it relates to, and whether any of it is in open-worlds.
-Its "Course" column uses the first course's step numbers ("Done: the
-first course" in [COURSE.md](COURSE.md) is the key), not the course now
-running.
+Its "Course" column uses the first course's step numbers for records
+012-04-00 and 012-05-01 ("Done: the first course" in
+[COURSE.md](COURSE.md) is the key), and the course now running for
+record 012-06-02.
+
+**Taking a piece in is a decision of its own** (the founder, 2026-11-15:
+"we expect DeepSeek code to have some things to fix, and we should still
+decide whether or not to incorporate anything that goes against our
+established design"). The technical lead's answer, put to the founder
+the same day (it stands unless the founder answers otherwise): four
+steps, in order.
+
+1. **Bring it in as written,** in `sketches/`, with every test's result.
+2. **Make it run:** fix what is broken, the design unchanged, each fix
+   listed with its reason.
+3. **Check its fit** with the established design (the decisions in
+   STATUS.md and the design pages), naming each conflict.
+4. **Decide, piece by piece:** adopt it, adapt it, or keep it as a
+   sketch, with the reason in `sketches/INDEX.md`. The technical lead
+   decides the code; what would change a founder's decision goes to the
+   founder, with a recommendation.
 
 **The standard is open-worlds' own code, not the sketches.** Build on
 the code merged into `main` (`multiverse/`, `formats/`, `rust/`) and the

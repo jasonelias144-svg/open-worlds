@@ -332,6 +332,46 @@ conversation", and its Rust "may not compile as-is".
 | 57 | Proof cases every language must agree on (`vectors/proof_cases.json`, and runners in Rust and Python) | 61460 | not run | 2 (shared vectors) | the practice is ours, these cases aren't |
 | 58 | A Node.js verifier (`examples/verify_garden.mjs`, `verify_proof_offline.mjs`, `package.json`), the founder's choice ("I would go with the Node.js verifier first") | 61995 | not run: its packages aren't installed here, and wouldn't be without a review and exact pins | the fractal track, part 2 (the web app checks logs in the page) | no |
 
+Their fit with the established design, a first look (the third of the
+four steps in [docs/COLLABORATING.md](../docs/COLLABORATING.md), "Two
+sides"); nothing here is adopted yet:
+
+- **One key across worlds.** The unified individual and its worldline
+  (40, 42) carry one key from world to world; the persons plan gives a
+  person a presence with a key of its own in each world, unlinked by
+  default ([../docs/research/PERSONS.md](../docs/research/PERSONS.md)).
+  The worldline's idea fits; built from a person's presences, it would
+  be adapted.
+- **A second "world-key".** The map's governance (45) calls an access
+  credential a world-key; here the world-key is the signed right to found
+  a world, earned on the hunt ([../docs/WORLD-KEY.md](../docs/WORLD-KEY.md)).
+  One of them is renamed before any of it comes in.
+- **Records outside records-v1.** The Rust pieces define their own proof
+  types and new records (the keeper's proposal, the whisper: 51, 54).
+  A record here goes through records-v1: its schema, shared vectors, and
+  Python and Rust ([../docs/research/FORMATS.md](../docs/research/FORMATS.md)).
+- **ALICE and BOB as small networks.** In the Ur-garden (48, 49, 52)
+  they are the four-unit network; here their minds are language models
+  chosen by course step 8's audition. The network fits as a primitive
+  learning model in a fractal world.
+- **Floats in the learner.** The network computes in `f64`, with `tanh`
+  and `exp` (52), whose last bits can differ between machines and maths
+  libraries; and DeepSeek notes that its Rust and Python runs already
+  choose differently, their random numbers being different. A world
+  gives the same log on any machine
+  ([../docs/FRACTALS.md](../docs/FRACTALS.md), "What stays fixed"), so a
+  learner inside one is adapted to whole numbers, or kept out of the log.
+- **A server in the Ur-world** (53): a world speaking over the network
+  belongs with course step 12's world protocol in Rust, and putting
+  anything online is the founder's decision.
+- **What fits as it is:** a keeper that proposes and never applies its
+  own proposals (51, 55), as ADMIN can suggest changes and never make
+  them ([../docs/ADMIN.md](../docs/ADMIN.md), "Suggestions from inside");
+  a keeper's whisper written to the public log (54), as the open line to
+  a Keeper is logged ([../docs/MINDS.md](../docs/MINDS.md)); cases every
+  language must agree on (50, 57); and a verifier for the web app's page
+  (56, 58).
+
 126 code blocks of the continuation are written out as files: 64 in
 Rust, 47 in Python, and JSON, JavaScript, TOML and Makefiles. 17 Python
 blocks are left in the record, where DeepSeek drafts and redrafts a

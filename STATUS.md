@@ -195,7 +195,28 @@ kind.
   plants small primary worlds hosted there; subworlds with laws, Keepers
   or minds of their own still wait for the Ur-world to be worked out
   (docs/FRACTALS.md). It stands unless the founder answers otherwise.
-- 2026-11-15, the technical lead's reading, put to the founder: the
+- 2026-11-15, founder, answering the reading below: "Rules only and AI
+  inside are not different. I was looking for a basic choosing and
+  learning model, like a single neuron. This is not the same AI as will
+  be used for ALICE and BOB, perhaps we can use a weaker term, “learning
+  and choosing monad”, but we can just consider it a primitive learning
+  model. So no tension." So a primitive learning model in a fractal world
+  is part of its workings, and the world stays primary; whether a world
+  has one is that world's (docs/FRACTALS.md). This replaces the reading
+  below.
+- 2026-11-15, founder: "Also, keep in mind, we expect DeepSeek code to
+  have some things to fix, and we should still decide whether or not to
+  incorporate anything that goes against our established design." The
+  technical lead's recommendation, put the same day: four steps for
+  DeepSeek's code (COLLABORATING.md, "Two sides"): bring it in as
+  written; make it run, its design unchanged; check its fit with the
+  established design, naming each conflict; and decide, piece by piece,
+  to adopt it, adapt it or keep it as a sketch, with the reason in
+  sketches/INDEX.md. The technical lead decides the code; what would
+  change a founder's decision goes to the founder. It stands unless the
+  founder answers otherwise.
+- 2026-11-15, the technical lead's reading, replaced by the founder's
+  answer above: the
   founder's newer word, "minimally sufficient models [...] capable of
   choice for the fractal worlds", and the earlier decision that fractal
   worlds are primary, "with rules and no AI inside" (TOPICS.md, topic 1;
