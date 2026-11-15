@@ -121,12 +121,6 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
-- For the founder (asked 2026-11-15): who holds the "break glass" after
-  the founder ("I envision this project without me")? Recommendation:
-  a person the founder names, in the open, as serious acts already go
-  "to the founder, or to a person the founder names" (docs/ADMIN.md);
-  until one is named, the founder. Naming them is the founder's own
-  act.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
@@ -236,6 +230,14 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on who holds the "break glass" after the founder:
+  "And who holds it is whoever I leave it to. Now, there is nobody. But
+  I am building something that will bring in others. At that point, we
+  can figure out who will hold the break glass if not me."
+  So the founder holds it, and leaves it to whomever the founder
+  chooses, once others are part of the project; that is the founder's
+  own act, and it is recorded when it is made. Until then, no one else
+  can use it.
 - 2026-11-15, founder, on what an account needs, and whose records:
   "In fact, I would go as far as only an email address is needed to
   start a profile or account. No need for any personal information
@@ -1821,6 +1823,10 @@ it was wrong. Questions of what the project is for stay with the founder.
   logged the same way.
 
 ## Log
+
+- 2026-11-15 Claude: who holds the "break glass" after the founder is
+  the founder's to leave, once others join; recorded, and the open
+  question closed.
 
 - 2026-11-15 Claude: only an email address for an account, in the
   charter's section 3 and FUNDAMENTALS.md; "private now, public later"

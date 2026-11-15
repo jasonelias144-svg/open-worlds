@@ -135,7 +135,10 @@ one of them updates this page.
    later. … I have no right to make that decision for another, so yeah,
    just me." So "private now, public later" is the founder's, for the
    founder's own records; no one else's private space is ever made
-   public by the project.
+   public by the project. And the second (2026-11-15): "who holds it is
+   whoever I leave it to. Now, there is nobody. But I am building
+   something that will bring in others. At that point, we can figure
+   out who will hold the break glass if not me."
 7. **Leaving takes your data with you.** The founder (2026-11-15): "all
    their records should be transferred to them and removed from our
    records. We should not store any private keys for anyone that is no
