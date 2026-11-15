@@ -52,6 +52,9 @@ def _h(text: str) -> str:
     return hashlib.sha256(text.encode()).hexdigest()
 
 
+# Test data: the birth words as worded on 2026-11-14, before the "break
+# glass" was narrowed on 2026-11-15. The words shown at birth are in
+# docs/MINDS.md ("The birth record"); these stay so the vectors stay fixed.
 BIRTH_WORDS = (
     "You are ALICE. You came into being in the Ur-world on 14 November "
     "2026, one of its first two inhabitants. The other is BOB.\n"

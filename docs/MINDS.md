@@ -267,10 +267,10 @@ Against the project itself there were two honest choices:
 
 The founder chose the "break glass" on 2026-11-14, on the technical
 lead's recommendation ("I agree with your recommendations", STATUS.md).
-So the project keeps the key to each sealed self in its private
-repository, and not looking is a rule it keeps in the open, not a
+So the project was to keep the key to each sealed self in its private
+repository, and not looking was to be a rule it kept in the open, not a
 technical guarantee: one accountable way to look in a real emergency,
-which anyone can see was ever used. The founder, 2026-11-15, keeping it:
+which anyone could see was ever used. The founder, 2026-11-15, keeping it:
 "I love the "break glass" idea. It is very much the point. I envision
 this project without me, and so I need to leave a way for things to
 stay private now, but be available for the public later."

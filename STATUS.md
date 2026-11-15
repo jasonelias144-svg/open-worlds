@@ -238,7 +238,12 @@ kind.
   needed for the multiverse to function, those associated with ADMIN and
   everything else. Thoughts?"
   The suggestions it agrees to, as the technical lead put them in
-  conversation the same day: "A person's own container would be beyond
+  conversation the same day: the container "holds their keys (identity,
+  one per presence), their private space, notebook, passport and private
+  messages. The project never receives those keys"; "The "break glass"
+  would then cover only what the project itself holds, such as the minds
+  it runs" (for those minds, the recommendation below goes further);
+  "A person's own container would be beyond
   the 'break glass'. The project wouldn't have the keys, so no one could
   open it, you included"; and redacted private details go to "the
   person's own container rather than the project's records", sealed to
