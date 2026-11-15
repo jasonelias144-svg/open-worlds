@@ -165,8 +165,8 @@ has changed since that record, in the order to read it:
    fundamental" (2026-11-15): among them, everyone has a private space,
    encrypted, that no one else can read, not even ADMIN, kept in their
    own private container ([CONTAINER.md](CONTAINER.md)), which the
-   project never sees; the founder's "break glass" covers only the
-   multiverse's own keys; an account needs only an email address; data is never for
+   project never sees; the founder's "keys to the kingdom" (first called
+   the "break glass") are only the multiverse's own keys; an account needs only an email address; data is never for
    sale; whoever leaves the multiverse takes their private records with
    them, and their private data is purged; and public acts always
    remain, as public records are never edited, except that anything

@@ -19,9 +19,9 @@ those associated with ADMIN and everything else. Thoughts?"
   the project never sees. They act from it, and they choose what goes
   from it to their public profile. So what the project holds about them
   is, by design, what they chose to reveal.
-- **The "break glass" covers only the keys the multiverse needs to
-  function:** ADMIN's, and the rest of the multiverse's own. It never
-  reaches a person's container.
+- **The "keys to the kingdom" (first called the "break glass") are only
+  the keys the multiverse needs to function:** ADMIN's, and the rest of
+  the multiverse's own. They never reach a person's container.
 - **Redacted private information goes into the person's own container,**
   not the project's records. When it is about several people, each of
   them gets a sealed copy. When it is about someone with no key in the
@@ -104,24 +104,26 @@ has been published yet, so it is where a redaction works best.
   [FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item 10). Backups,
   encrypted under the person's own key, go wherever they choose.
 
-## The "break glass", narrowed
+## The "keys to the kingdom"
 
-By the founder's word above, the "break glass" now covers only the keys
-the multiverse needs to function:
+First called the "break glass"; the founder renamed them on 2026-11-15:
+""keys to the kingdom" is more appropriate". By the founder's word above,
+they are only the keys the multiverse needs to function:
 - the root key that signs the multiverse's key list
   ([research/KEYS.md](research/KEYS.md));
 - ADMIN's keys, and the keys of the other offices;
 - the keys of the worlds the project runs.
 
-It is opened only by the founder's explicit decision, every opening is
-recorded publicly and permanently, and its next holder is a person the
-founder names publicly ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy,
-item 6). It is "much more like a janitor's set of keys, than a fire
-extinguisher", in the founder's words: kept for the upkeep of the
-multiverse's own machinery, not for emergencies. And handing it on needs
-no emergency either: it is "more like nuclear codes passed from one
-president to another", "a handoff of "keys to the kingdom"": a transfer
-of authority, made in the open.
+They are used only by their holder's explicit decision, today the
+founder's, every use is recorded publicly and permanently, and their
+next holder is a person the founder names publicly
+([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item 6). They are "much
+more like a janitor's set of keys, than a fire extinguisher", in the
+founder's words: kept for the upkeep of the multiverse's own machinery,
+not for emergencies. And handing them on needs no emergency either: it
+is "more like nuclear codes passed from one president to another", "a
+handoff of "keys to the kingdom"": a transfer of authority, made in the
+open.
 
 **What this replaces.** The founder chose the "break glass" on
 2026-11-14 for sealed selves and private messages, so the project kept
@@ -132,9 +134,9 @@ or to their private messages, is held by the project, and redacted
 information goes to the person's own container. "Private now, public
 later" stays what it was: the founder's, for the founder's own records.
 
-**Later:** once others join, the "break glass" could be split among
-several holders, so that no single one can open it alone, as the keys of
-the internet's root zone (DNSSEC) are held.
+**Later:** once others join, the "keys to the kingdom" could be split
+among several holders, so that no single one can use them alone, as the
+keys of the internet's root zone (DNSSEC) are held.
 
 ## The project's own individuals
 

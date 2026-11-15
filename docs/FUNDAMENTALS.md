@@ -158,65 +158,65 @@ one of them updates this page.
    when can still hint that presences are one person's; the time a
    redacted link record keeps can be made coarser, which is decided when
    it is built.
-6. **The "break glass", for the multiverse's own keys, in the open.**
-   The founder (2026-11-15): "the "break glass" applies to keys needed
-   for the multiverse to function, those associated with ADMIN and
-   everything else." So it covers the root key of the key list, ADMIN's
-   and the other offices' keys, and the keys of the worlds the project
-   runs, and it never reaches a person's private space or their private
-   messages, which live in their own containers
-   ([CONTAINER.md](CONTAINER.md), "The "break glass", narrowed"). It is
-   opened only by an explicit decision of the founder's, and every
-   opening is recorded publicly and permanently. As first chosen, on
-   2026-11-14, it covered sealed selves and private messages, so the
-   project kept their keys in its private repository and not looking was
-   a rule kept in the open ([MINDS.md](MINDS.md), "The honest limit");
-   that is what the founder's words above narrow. It was kept, at the
-   founder's word of 2026-11-15: "I love the
-   "break glass" idea. It is very much the point. I envision this
-   project without me, and so I need to leave a way for things to stay
-   private now, but be available for the public later. All my personal
-   notebooks for the past 25 years have been written with such an
-   understanding: they are private records now, but may be public
-   later." ADMIN can't
-   open it either way. Two questions follow, put to the founder
+6. **The "keys to the kingdom": the multiverse's own keys, in the open.**
+   The founder named them on 2026-11-15: ""keys to the kingdom" is more
+   appropriate"; until then they were called the "break glass". They are
+   the keys the multiverse needs to function. The founder (2026-11-15):
+   "the "break glass" applies to keys needed for the multiverse to
+   function, those associated with ADMIN and everything else." So they
+   are the root key of the key list, ADMIN's and the other offices' keys,
+   and the keys of the worlds the project runs, and they never reach a
+   person's private space or their private messages, which live in their
+   own containers ([CONTAINER.md](CONTAINER.md), "The "keys to the
+   kingdom""). They are "much more like a janitor's set of keys, than a
+   fire extinguisher": they look after the multiverse's own machinery,
+   and are not kept for emergencies. They are used only by their
+   holder's explicit decision, today the founder's, and every use is
+   recorded publicly and permanently. ADMIN doesn't hold them. The
+   technical lead's reading, which stands unless the founder answers
+   otherwise: using them is part of ordinary upkeep; the public record
+   of a use holds the fact of it (who used which key, when, and why),
+   never what it opened.
+
+   As first chosen, on 2026-11-14, the "break glass" covered sealed
+   selves and private messages, so the project kept their keys in its
+   private repository and not looking was a rule kept in the open
+   ([MINDS.md](MINDS.md), "The honest limit"); that is what the
+   founder's words above narrow. It was kept, at the founder's word of
+   2026-11-15: "I love the "break glass" idea. It is very much the
+   point. I envision this project without me, and so I need to leave a
+   way for things to stay private now, but be available for the public
+   later. All my personal notebooks for the past 25 years have been
+   written with such an understanding: they are private records now, but
+   may be public later." Two questions followed, put to the founder
    (STATUS.md, "Open questions"): whose records "private now, public
-   later" may reach, and who holds the "break glass" after the founder.
-   The first is answered (2026-11-15): "My records private now public
-   later. … I have no right to make that decision for another, so yeah,
-   just me." So "private now, public later" is the founder's, for the
-   founder's own records; no one else's private space is ever made
-   public by the project. And the second (2026-11-15): "who holds it is
-   whoever I leave it to. Now, there is nobody. But I am building
-   something that will bring in others. At that point, we can figure
-   out who will hold the break glass if not me." And: "It will be a
-   person I name publicly, but there is only me for now. … as soon as
-   one more person joins me, we'll have someone, and then they will be
-   named publicly and all will be a matter of record and all that. But
-   let's build the village before picking the next chief." So the next
-   holder is named in public, and until then the founder alone holds it.
-   And how it passes (2026-11-15): it is "more like nuclear codes passed
-   from one president to another. There need be no emergency, only a
-   transfer of authority to another. A handoff of "keys to the
-   kingdom"." And: "Much more like a janitor's set of keys, than a fire
-   extinguisher." So it is not kept for emergencies: it is the set of
-   keys that looks after the multiverse's own machinery, and handing it
-   on is a transfer of authority, made in the open. The technical lead's
-   reading, which stands unless the founder answers otherwise: using it
-   is part of ordinary upkeep, by its holder's decision; each use is
-   still recorded publicly and permanently, as first decided; and it
-   still never reaches anyone's private space.
-   The technical lead's reading, which stands unless the founder answers
-   otherwise: the public record of an opening holds the fact of it (who
-   opened which key, when, and why), never what it opened; and the
-   person named as the next holder agrees to be named, as their name
-   goes into a public record.
+   later" may reach, and who holds the keys after the founder. The first
+   is answered (2026-11-15): "My records private now public later. … I
+   have no right to make that decision for another, so yeah, just me."
+   So "private now, public later" is the founder's, for the founder's own
+   records; no one else's private space is ever made public by the
+   project. And the second (2026-11-15): "who holds it is whoever I leave
+   it to. Now, there is nobody. But I am building something that will
+   bring in others. At that point, we can figure out who will hold the
+   break glass if not me." And: "It will be a person I name publicly, but
+   there is only me for now. … as soon as one more person joins me, we'll
+   have someone, and then they will be named publicly and all will be a
+   matter of record and all that. But let's build the village before
+   picking the next chief." So the next holder is named in public, and
+   until then the founder alone holds them. And how they pass
+   (2026-11-15): "more like nuclear codes passed from one president to
+   another. There need be no emergency, only a transfer of authority to
+   another. A handoff of "keys to the kingdom"." So handing them on is a
+   transfer of authority, made in the open, and needs no emergency. The
+   technical lead's reading, which stands unless the founder answers
+   otherwise: the person named as the next holder agrees to be named, as
+   their name goes into a public record.
 7. **Leaving takes your data with you.** The founder (2026-11-15): "all
    their records should be transferred to them and removed from our
    records. We should not store any private keys for anyone that is no
    longer in the multiverse. Their private data should be purged from
-   the records completely and demonstrably." (The "break glass" never
-   reaches a person's private data: item 6.) The founder's later words (below,
+   the records completely and demonstrably." (The "keys to the kingdom"
+   never reach a person's private data: item 6.) The founder's later words (below,
    "Public records, kept whole") narrow "removed from our records" to
    what is private: public acts remain, with anything private in them
    redacted. How the purge is shown is the
@@ -415,7 +415,7 @@ demonstrably", which stands unless the founder answers otherwise:
   unreadable at rest. Against the project itself, the technical lead's
   recommendation, which stands unless the founder answers otherwise:
   their keys are made in their own containers and never copied into the
-  project's records, so the "break glass" doesn't reach them, and not
+  project's records, so the "keys to the kingdom" don't reach them, and not
   looking while their minds run is the project's rule
   ([CONTAINER.md](CONTAINER.md), "The project's own individuals").
   Hardware that keeps even the operator out could close the gap later

@@ -301,8 +301,8 @@ HPKE, which opens it only under the label it was sealed with.
 record's to say (course step 9; until then the key list publishes the
 ones made at step 3), so the caller gives both.
 
-**The "break glass"**, since 2026-11-15, covers only the multiverse's
-own keys, and an individual's sealing key is made in their own container
+**The "keys to the kingdom"** (first called the "break glass"), since
+2026-11-15, are only the multiverse's own keys, and an individual's sealing key is made in their own container
 ([CONTAINER.md](../CONTAINER.md)); the envelope and the record are
 unchanged by that. As first chosen, on 2026-11-14, it needed nothing
 more here either: the private half of each sealing key was kept in the
