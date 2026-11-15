@@ -174,15 +174,20 @@ one of them updates this page.
    and the keys of the worlds the project runs, and they never reach a
    person's private space or their private messages, which live in their
    own containers ([CONTAINER.md](CONTAINER.md), "The "keys to the
-   kingdom""). They are "much more like a janitor's set of keys, than a
-   fire extinguisher": they look after the multiverse's own machinery,
-   and are not kept for emergencies. They are used only by their
-   holder's explicit decision, today the founder's, and every use is
-   recorded publicly and permanently. ADMIN doesn't hold them. The
-   technical lead's reading, which stands unless the founder answers
-   otherwise: using them is part of ordinary upkeep; the public record
-   of a use holds the fact of it (who used which key, when, and why),
-   never what it opened.
+   kingdom""). ADMIN, the other offices and the worlds use their own keys
+   in their ordinary work, as before; the "keys to the kingdom" are the
+   founder's set of them, kept in the project's private repository. They
+   are opened (a private half taken out of keeping, or a key used by its
+   holder in place of its office) only by an explicit decision of the
+   founder's, and every opening is recorded publicly and permanently.
+   ADMIN can't open them. The founder: "Much more like a janitor's set of
+   keys, than a fire extinguisher", and passing them on needs "no
+   emergency" (below); in the latest of those messages the janitor
+   comparison was chosen "to not sound as pretentious". The technical
+   lead's reading, which stands unless the founder answers otherwise: an
+   opening needs no emergency either; it may be ordinary upkeep, such as
+   replacing a key; and the public record of an opening holds the fact
+   of it (who opened which key, when, and why), never what it opened.
 
    As first chosen, on 2026-11-14, the "break glass" covered sealed
    selves and private messages, so the project kept their keys in its

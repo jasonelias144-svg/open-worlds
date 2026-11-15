@@ -114,16 +114,17 @@ they are only the keys the multiverse needs to function:
 - ADMIN's keys, and the keys of the other offices;
 - the keys of the worlds the project runs.
 
-They are used only by their holder's explicit decision, today the
-founder's, every use is recorded publicly and permanently, and their
-next holder is a person the founder names publicly
-([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item 6). They are "much
-more like a janitor's set of keys, than a fire extinguisher", in the
-founder's words: kept for the upkeep of the multiverse's own machinery,
-not for emergencies. And handing them on needs no emergency either: it
-is "more like nuclear codes passed from one president to another", "a
-handoff of "keys to the kingdom"": a transfer of authority, made in the
-open.
+ADMIN, the other offices and the worlds use their own keys in their
+ordinary work; the "keys to the kingdom" are the founder's set of them.
+They are opened only by the founder's explicit decision, every opening
+is recorded publicly and permanently, and their next holder is a person
+the founder names publicly ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy,
+item 6). The founder calls them "Much more like a janitor's set of keys,
+than a fire extinguisher", and handing them on "more like nuclear codes
+passed from one president to another. There need be no emergency, only
+a transfer of authority to another." The technical lead's reading,
+which stands unless the founder answers otherwise: they are for the
+upkeep of the multiverse's own machinery, not only for emergencies.
 
 **What this replaces.** The founder chose the "break glass" on
 2026-11-14 for sealed selves and private messages, so the project kept

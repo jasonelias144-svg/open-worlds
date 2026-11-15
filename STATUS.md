@@ -179,7 +179,7 @@ kind.
   between individuals, decided 2026-11-14, is another: what two say to
   each other is sealed between them, though that a message passed stays
   in the record; since 2026-11-15 they go from one person's container to
-  the other's, beyond the "break glass", which covers only the
+  the other's, beyond the "keys to the kingdom", which are only the
   multiverse's own keys (docs/CONTAINER.md). The line with a Keeper was decided public,
   so it is no exception. (noted 2026-11-13; updated the same day and
   2026-11-14)
@@ -252,12 +252,15 @@ kind.
   ("I agree with your recommendations").
 - 2026-11-15, founder, on what the "break glass" is like:
   "Much more like a janitor's set of keys, than a fire extinguisher."
-  So the keys are not kept for emergencies: they look after the
-  multiverse's own machinery. The technical lead's reading, which stands
-  unless the founder answers otherwise: using them is part of ordinary
-  upkeep, by their holder's decision; every use is still recorded
-  publicly and permanently, as decided on 2026-11-14; and they still
-  never reach anyone's private space.
+  The technical lead's reading, which stands unless the founder answers
+  otherwise: the keys are for the upkeep of the multiverse's own
+  machinery, not only for emergencies, so an opening may be ordinary
+  upkeep, such as replacing a key. Opening them stays as decided on
+  2026-11-14: only by the founder's explicit decision, every opening
+  recorded publicly and permanently. Their ordinary signing in their
+  offices and worlds is not an opening. They still never reach anyone's
+  private space. The founder's next message says the janitor comparison
+  was chosen "to not sound as pretentious".
 - 2026-11-15, founder, on the earlier work and on the "break glass":
   ""the founder's earlier work" is exactly the level of information. No
   need to be specific. If the need arises, then it becomes part of the
@@ -2247,6 +2250,16 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: after #88's independent review at f2a7f65: the
+  charter, FUNDAMENTALS.md and CONTAINER.md say "opened" again, not
+  "used". The offices and worlds sign with their own keys in their
+  ordinary work; opening the founder's set means taking a private half
+  out of keeping, or using a key in place of its office, and only that
+  needs the founder's decision and a public record. The janitor reading
+  is marked as the technical lead's, and names the founder's "to not
+  sound as pretentious". An Open question still said "break glass" in
+  the present tense; fixed.
 
 - 2026-11-15 Claude: the "keys to the kingdom": the founder's words on
   the "break glass" (handed on "like nuclear codes", "a janitor's set of
