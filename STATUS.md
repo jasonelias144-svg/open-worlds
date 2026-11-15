@@ -1176,16 +1176,20 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 - 2026-11-14 Claude: record 012-06-02's code made to work, a first
   round: fixes 6 to 14 (sketches/INDEX.md), the tests unchanged. 478 of
-  DeepSeek's 597 tests that load now pass, from 296 as written: every
-  fractal world, the chaos game, the gallery and its governance and
-  revocation, and most of the individual bundle. DeepSeek's later
+  DeepSeek's 597 tests that load now pass, from 296 as written. Every
+  test passes for the plant worlds with parameters and branches, the
+  garden, the elementary and grid automata, two automata in one space,
+  the chaos game, and the gallery world and its revocation; most do for
+  the first plant world (10 of 11), Life (22 of 24), the coupled chaos
+  games (21 of 23), the gallery's governance (26 of 27) and the
+  individual bundle (16 of 20). DeepSeek's later
   additions that are outlines were merged by hand, as its prose
   describes. Each test's keys are now made from its name, so a run
   repeats exactly; with fresh random keys, 19 of the individual pieces'
   tests pass or fail by chance. Left for a second round, each with its
   error in known-failures.txt: those replays, the coupled chaos games'
-  coupling (a question about
-  the model), the gallery's attention tests (their plant can't grow as
+  coupling (a question about the model), the gallery's attention tests
+  (their plant can't grow as
   far as they expect), the remaining outlines, and a tail of separate
   causes in the lineage pieces.
 

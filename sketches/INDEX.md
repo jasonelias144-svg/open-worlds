@@ -436,7 +436,11 @@ world-key is refused, and its demo expects it, but no request method
 checked; each now does, before the governed one. And DeepSeek's hook
 for extenders, an outline (`gallery_revocation.py@16659`), is merged
 into `verify_revocable_governed_log`, which `gallery_attention.py` and
-`gallery_burst.py` call with it.
+`gallery_burst.py` call with it. The outline starts the extenders' shared
+`state` with an empty `occupied`, and asks that the base keep it up to
+date; the merge hands it the base's own, and keeps `state["policy"]`
+current too, so an extender that changes `state["occupied"]` changes
+the base's checks as well.
 
 **Fix 11: `Transform.to_dict`.** `coupled_learners.py`'s `Transform`
 lacked the `to_dict` that `choice_fractal.py`'s has, and every
@@ -478,6 +482,20 @@ Not fixed, and why:
   pass or fail by chance with fresh random keys (above, "Record
   012-06-02, piece by piece"); `conftest.py` makes each test's keys from
   its name, so a run is repeatable, and the cause is for the next round.
+  Some of them pass with the keys the names give, so the count of tests
+  passing depends on them too. The 19:
+  - `test_delegated_resumption.py`: `test_resume_with_delegation_happy`;
+  - `test_federated_bundle.py`: `test_demo`, `test_full_verifies`,
+    `test_save_load_roundtrip`, `test_with_world_logs_verifies`;
+  - `test_federated_spawn.py`: `test_federated_child_verifies_all_tiers`,
+    `test_replay_detects_wrong_index`, `test_save_load_child`;
+  - `test_forking.py`: `test_altered_parent_memory_breaks_continuity`,
+    `test_forged_weights_hash_breaks_basic`, `test_fork_at_mid`,
+    `test_fork_at_tip`, `test_forked_basic`, `test_forked_full`,
+    `test_shifted_K_breaks_basic`, `test_tampered_fork_record_sig`,
+    `test_wrong_parent_breaks_continuity`;
+  - `test_resumable.py`: `test_verify_resumed_from_tampered`,
+    `test_verify_resumed_from_tampered_prefix`.
 - **The rest** are listed in `known-failures.txt` with their errors, for
   the next round: the remaining outlines (`federated_spawn.py@27094`,
   `lifetime.py`, `unified_individual.py`, the chess pieces), and a
