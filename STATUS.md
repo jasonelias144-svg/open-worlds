@@ -118,10 +118,6 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
-- For the founder: the charter's words (asked 2026-11-12). When the
-  founder next works on the charter: its section 7 note still calls
-  manipulation through words an open question (CHARTER.md), and it was
-  decided on 2026-11-14 (below), so the note can say so.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
@@ -255,9 +251,15 @@ kind.
   be run again or reset, and nothing is really mined. Asked whether the
   charter should say it, since the charter is the founder's words
   (AGENTS.md), the founder answered: "Yeah, this is mission statement
-  level." So CHARTER.md's notes for section 1 now say it is to be stated
-  there, in the founder's words, and README.md's opening, this file's
-  first lines and AGENTS.md's say it beside the one rule.
+  level." Then: "Let's just let the charter develop over time, you can
+  take my direct quotes or paraphrase or both. Just keep it up to date
+  with these new statements that should be recorded, with minor typos
+  corrected, thanks." So the charter now grows from the founder's
+  recorded statements, kept current by the technical lead (AGENTS.md);
+  its sections 1 and 2 are written from them, section 1 saying this in
+  the founder's words; and README.md's opening, this file's first lines
+  and AGENTS.md's say it beside the one rule. The charter's open question
+  of 2026-11-12, its words, is answered by this.
 - 2026-11-15, founder, the multiverse as a computer: "It just occurred
   to me that the whole multiverse can function as a massive computer,
   with memory, an operating system, memory, processors, input and
@@ -1638,8 +1640,12 @@ it was wrong. Questions of what the project is for stay with the founder.
   AGENTS.md, and as COLLABORATING.md's house rule 13; with commerce and
   currency worlds, where a currency is only a test setting, in
   docs/VISION.md and TOPICS.md. At the founder's word ("mission statement
-  level"), CHARTER.md's notes for section 1, README.md's opening, and the
-  first lines of STATUS.md and AGENTS.md say it too.
+  level"), the charter says it, in the founder's words, and so do
+  README.md's opening and the first lines of STATUS.md and AGENTS.md. At
+  the founder's next word, the charter now grows from the founder's
+  recorded statements: sections 1 and 2 are written from them, and
+  section 7's note says manipulation through words was decided
+  (2026-11-14).
 
 - 2026-11-15 Claude: the founder's thought of the multiverse as a
   computer recorded in docs/VISION.md, in the founder's words, with the

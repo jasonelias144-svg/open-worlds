@@ -78,8 +78,14 @@ effect (docs/ADMIN.md).
 
 ## Rules specific to this repository
 
-- **The charter is the founder's words.** Change `CHARTER.md` only with the
-  founder's approval, and say so in the pull request.
+- **The charter is the founder's words.** It grows from the founder's
+  recorded statements, quoted or paraphrased, with minor typos corrected:
+  the technical lead keeps it current as they are recorded (the founder,
+  2026-11-15: "Let's just let the charter develop over time, you can take
+  my direct quotes or paraphrase or both. Just keep it up to date with
+  these new statements that should be recorded."). Nothing else goes into
+  `CHARTER.md` without the founder's approval, and a pull request that
+  changes it says which statements it draws on.
 - **The kernel is the only authority.** Agents get immutable observations and
   return actions; nothing an agent returns is trusted until the kernel has
   checked it. Agents never get references to the world's internals.
