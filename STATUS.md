@@ -1964,6 +1964,20 @@ it was wrong. Questions of what the project is for stay with the founder.
   link is at the end of that page, kept whole by a test. The record-links
   test now ends a link where markup begins, as this record writes links
   inside tool-call markup.
+- 2026-11-15 Claude: two fixes to Plant Watch, carried from #74's
+  review. Opening a file is now a choice of its own, whatever it holds:
+  before, a file with no world, or one that isn't JSON, took no choice
+  number, so the checks of a world chosen just before could still appear
+  after it (reproduced in Chromium with the command's download delayed).
+  And the words of the "Grown again by its own code" row are in
+  `web/lib/checks.js` as `grownAgain`, tested for each way it can read,
+  with an answer that isn't a log now said to be one. After #79's
+  independent review: when no world is shown, no world's button stays
+  pressed; and the page's own first load, and a file being read, are
+  choices too, so a file opened before the first load arrives, or a
+  world chosen while a file is read, is what stays shown (both
+  reproduced in Chromium first, and shown fixed).
+
 - 2026-11-15 Claude: course step 3a, part four, second half: the
   council (docs/research/PERSONS.md, "Part four, second half, built").
   Looked first at DeepSeek's components 44 to 46 and at Snapshot's

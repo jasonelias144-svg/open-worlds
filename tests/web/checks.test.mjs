@@ -156,6 +156,27 @@ test("two logs are the same only if every entry is, and as many", () => {
   assert.match(sameLog(odd, log).why, /whole number/);
 });
 
+test("Plant Watch says how a log and its world grown again compare", () => {
+  // Its answers come from the script's own realm: compare them as data.
+  const row = (a, b) => [...OW.grownAgain(a, b)];
+  const log = hosted.worlds[1].log;
+  assert.deepEqual(row(log, copy(log)), ["ok",
+    "The plant world's own Rust code, compiled to WebAssembly, grows the same " + log.length + " entries here, hash for hash."]);
+  const changed = copy(log); changed[3].data.tips = [];
+  assert.deepEqual(row(log, changed), ["bad", "The plant world's own code grows another log, from [3]."]);
+  assert.deepEqual(row(log, log.slice(0, 7)), ["bad",
+    "The plant world's own code grows 7 entries, where this log has " + log.length + "."]);
+  const longer = [...copy(log), { tick: 99, kind: "more" }];
+  assert.deepEqual(row(log, longer), ["bad",
+    "The plant world's own code grows " + longer.length + " entries, where this log has " + log.length + "."]);
+  // An answer that isn't a log, and one with an entry no log can hold.
+  for (const answer of [{ worlds: [] }, "a log", null, 5]) {
+    assert.deepEqual(row(log, answer), ["bad", "Its answer isn't a log."], JSON.stringify(answer));
+  }
+  const odd = copy(log); odd[2].tick = 0.5;
+  assert.match(row(log, odd)[1], /^Its answer can't be compared: .*whole number/);
+});
+
 test("a log changed anywhere breaks its chain", async () => {
   const log = copy(urLog);
   log[40].data.text = "changed";

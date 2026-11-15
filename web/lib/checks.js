@@ -202,6 +202,23 @@ const OpenWorlds = (function () {
     } catch (e) { return { why: String(e && e.message || e) }; }
   }
 
+  // What Plant Watch says of a log against the same world grown again by
+  // the plant world's own code (its row "Grown again by its own code"):
+  // ["ok", why] if every entry is the same, hash for hash, or ["bad", why]
+  // with where they part.
+  function grownAgain(log, grown) {
+    if (!Array.isArray(grown)) return ["bad", "Its answer isn't a log."];
+    const diff = sameLog(log, grown);
+    if (diff && diff.why) return ["bad", "Its answer can't be compared: " + diff.why];
+    if (diff) {
+      const lengths = diff.at === Math.min(log.length, grown.length);
+      return ["bad", lengths
+        ? "The plant world's own code grows " + grown.length + " entries, where this log has " + log.length + "."
+        : "The plant world's own code grows another log, from [" + diff.at + "]."];
+    }
+    return ["ok", "The plant world's own Rust code, compiled to WebAssembly, grows the same " + log.length + " entries here, hash for hash."];
+  }
+
   // Whether a head covers all of `log` as given: its length and last hash
   // are the log's, and its tick isn't before the last entry's. A head's
   // tick says only that the world was at least that far along, since ticks
@@ -242,6 +259,6 @@ const OpenWorlds = (function () {
   return Object.freeze({
     GENESIS, pyJson, jcs, without, sha256, text, hex, recordHash,
     chainProblem, base58, base58encode, publicKey, isKey, shapeProblem,
-    signedBy, covers, dialsProblem, sameLog,
+    signedBy, covers, dialsProblem, sameLog, grownAgain,
   });
 })();

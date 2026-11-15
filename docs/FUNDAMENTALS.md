@@ -203,8 +203,8 @@ one of them updates this page.
     ([ADMIN.md](ADMIN.md), "Questions for the founder"). What a world's
     record keeps of a person who leaves the multiverse is what was public
     from the start; their private data goes with them (item 7).
-12. **Fear of the Keeper silences no one.** The founder, 2026-11-14, on
-    the technical lead's recommendation: the author of a suggestion about
+12. **Fear of the Keeper silences no one.** Decided 2026-11-14, on the
+    technical lead's recommendation: the author of a suggestion about
     a Keeper may ask for their name, and their rating of how it was
     handled, to be withheld until it has an outcome; each is recorded as
     withheld, and published with the outcome ([ADMIN.md](ADMIN.md)). Not
