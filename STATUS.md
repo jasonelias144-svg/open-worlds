@@ -40,13 +40,15 @@ respect one another's freedom, with full transparency and exit at any time
   Its plan is in, and its first part, the plant world, is built
   (`rust/plant-world`), and so is its second, Plant Watch, the page that
   replays a plant tick by tick and checks its log first (`web/plant/`).
-  The third is half built: the Ur-world's garden hosts three plant
-  worlds in glasshouses, and both logs record each step
-  (`rust/ur-world/src/host.rs`). Its other half, the map's first page,
-  is next. Beyond it, the founder's aim: living worlds, where plants grow
-  without end and choose, water flows as particles, people shape the
-  land, and life spreads (docs/FRACTALS.md, "Where it leads: living
-  worlds").
+  The third is built: the Ur-world's garden hosts three plant worlds in
+  glasshouses, and both logs record each step
+  (`rust/ur-world/src/host.rs`); and the first map, the World Map
+  (`web/map/`), draws the garden from above with a card for each world,
+  built from what it publishes and opening onto Plant Watch. Next, the
+  founder's aim: living worlds, where plants grow without end and
+  choose, water flows as particles, people shape the land, and life
+  spreads, beginning with an endless plant in the browser
+  (docs/FRACTALS.md, "Where it leads: living worlds").
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
@@ -1514,8 +1516,32 @@ it was wrong. Questions of what the project is for stay with the founder.
   running it is. *Wrong if:* the rule needs changing to look like a
   plant. That is a second rule beside it, not a change to this one, so
   the logs already written stay true.
+- 2026-11-15, the web app's checks in one shared file
+  (`web/lib/checks.js`), loaded by each page from its own site, with its
+  own tests in Node in CI (`tests/web/`). A page may now load the web
+  app's own scripts (`script-src 'self'`), and still nothing from
+  outside. Records are read field for field as records-v1 has them, and
+  a head covers a log as Rust's `head_coverage` says: its tick isn't
+  before the last entry's. *Why:* the map and Plant Watch check the same
+  signatures, and two copies of that code would drift; the checks had no
+  test in CI, and a field named `toString` passing the field check was
+  caught by the first one written. *Wrong if:* a browser refuses the
+  shared script for a page opened from disk (Chromium loads it; others
+  weren't tried); then the file is inlined into each page by a build
+  step, and tested the same.
 
 ## Log
+
+- 2026-11-15 Claude: the fractal track's part 3, second half: the World
+  Map (`web/map/`). A card for the Ur-world, shown once its log and
+  signed head hold; its garden from above, with each glasshouse where
+  the garden's log puts it; and a card for each hosted plant, built from
+  its birth record, template and dials, and signed head, which must end
+  where the garden's log last tended it, opening onto Plant Watch on that
+  plant (`?world=`). The checks the pages share moved to
+  `web/lib/checks.js`, with tests in Node in CI; a signed head or birth
+  record with a field its format doesn't have is now refused (#69's
+  note).
 
 - 2026-11-15 Claude: living worlds, the founder's aim for the fractal
   track, in six messages, recorded in docs/FRACTALS.md with the

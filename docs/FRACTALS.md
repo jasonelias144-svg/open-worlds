@@ -169,11 +169,31 @@ technical lead's. Each part is one reviewed pull request.
      plant grown by the rule.
    - **The vectors** are in `vectors/ur-garden-hosted.json`.
 
-   Not yet, for the map's pull request:
-   - the map page, with a card for each world;
+   **The map, built** on 2026-11-15: the World Map
+   ([`web/map/`](../web/map/index.html); [web/README.md](../web/README.md)).
+   - **A card for the Ur-world,** shown only once its log's chain and its
+     signed head hold.
+   - **Its garden from above,** each glasshouse where the garden's log
+     puts it.
+   - **A card for each hosted world,** built only from what it
+     publishes: its birth record (name, template and law by hash, the
+     dials it set, each within the template's range) and its signed
+     head, which must end where the garden's log last tended it. A card
+     whose records hold opens onto the world's live view, Plant Watch,
+     on that world.
+   - **One set of checks,** shared by the map and Plant Watch
+     (`web/lib/checks.js`), and run in CI against the shared vectors
+     (`tests/web/`). Records are read field for field as records-v1 has
+     them, so a signed head with a field its format doesn't have is
+     refused (#69's note).
+
+   Not yet:
    - inhabitants seeing a glasshouse: for now it is a place the log
      names, not a cell;
-   - a template signed by the project's own key (part 1, above).
+   - maps that nest further: the garden's map is the only one, inside
+     the Ur-world's card;
+   - a template signed by the project's own key (part 1, above), which
+     waits until the project's own worlds are made.
 4. **Running on, with no server.** Since a world is deterministic, the
    page can compute where a world is now from its template, its seed and
    the time since its birth, with every change from outside a signed
