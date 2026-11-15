@@ -10,8 +10,8 @@ for the sake of having a fully open version, let’s also make a base
 keeper model from Aperatus 1.5." (The model is Apertus 1.5, by the Swiss
 AI Initiative.) Later the same night: "For DeepSeek, yeah, let’s leave
 the Pro model for ADMIN potentially, and we can use Flash for the
-Keeper." The founder's messages are quoted whole in STATUS.md (Decided,
-2026-11-15).
+Keeper." The founder's messages are quoted in STATUS.md (Decided,
+2026-11-15), whole except for the later one's closing note.
 
 Sources:
 - Model facts are as Hugging Face showed them that day, on each model's
@@ -68,7 +68,8 @@ course step 8, so the Keepers' sizes are weighed against theirs then.
   "Weights, intermediate checkpoints, data preparation pipelines,
   training code, and evaluation harnesses, released under the Apache 2.0
   license." And: "All training data is fully available: every dataset is
-  public". The datasets are listed in `swiss-ai/apertus-data-transparency`.
+  public". Data from others is obtained from its original providers. The
+  datasets are listed in `swiss-ai/apertus-data-transparency`.
   (The model page still says the report "will be published in the coming
   weeks"; that sentence is out of date.) It is a continued pretraining
   of Apertus 1.0.

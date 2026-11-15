@@ -25,9 +25,9 @@ two added on 2026-11-15:
   model is Apertus 1.5.) And: "We are not switching models, but choosing
   them." Later: "For DeepSeek, yeah, let’s leave the Pro model for ADMIN
   potentially, and we can use Flash for the Keeper." The messages are
-  quoted whole in STATUS.md, and what follows from them is below, "The
-  Mir-Ur-world". Whether the project accepts the policy
-  Apertus asks for waits until course step 8
+  quoted in STATUS.md, whole except for the later one's closing note, and
+  what follows from them is below, "The Mir-Ur-world". Whether the
+  project accepts the policy Apertus asks for waits until course step 8
   ([research/KEEPER-MIND.md](research/KEEPER-MIND.md)).
 
 - **A garden of hosted fractal worlds** (2026-11-15, to DeepSeek, record
@@ -316,7 +316,7 @@ governance.
   - **a memory**, written in their own words and kept with integrity;
   - **a history**: the public log and their passports.
 - **Learning, in layers.** Memory first: they write down what they learn
-  and read it back. Later, each gets a small personal layer, a few
+  and read it back. Later, each may choose a small personal layer, a few
   megabytes, trained on their own experience over a shared base model. True
   continual learning comes when it matures. Because identity lives in the
   key, the memory and the history, they can move to better methods of
