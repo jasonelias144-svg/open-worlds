@@ -1,0 +1,10 @@
+def keeper_whisper(self, record: dict):
+    """Record a signed keeper whisper. The record must be
+    signed by the keeper's key (the garden's curator key)."""
+    body = {k: v for k, v in record.items() if k != "sig"}
+    _pubkey_from_did(record["keeper_did"]).verify(
+        bytes.fromhex(record["sig"]), _canonical(body))
+    if record["keeper_did"] != self._world_signer:
+        raise ValueError(
+            "keeper_did does not match garden's curator")
+    self._append(record)

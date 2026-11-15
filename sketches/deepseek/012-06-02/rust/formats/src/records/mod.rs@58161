@@ -1,0 +1,2 @@
+#[serde(rename = "keeper_whisper")]
+KeeperWhisper(SignedKeeperWhisper),

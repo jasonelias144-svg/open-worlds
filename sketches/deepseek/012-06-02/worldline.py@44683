@@ -1,0 +1,341 @@
+def demo(artifact_dir=None):
+    from pathlib import Path
+    import time
+    import json as _json
+    from cryptography.hazmat.primitives.asymmetric.ed25519 import (
+        Ed25519PrivateKey)
+    from coupled_learners import TinyRNN, SIERPINSKI
+    from world_agent_coupling import ScriptedWorld
+    from multiverse_c73 import ChessWorld
+    from multiverse_c81 import GrowingWorld
+    from signed_world_log import SignedLogWorld
+    from lobby_server import LobbyServer
+    from map_world import (
+        MapRegistry, WorldPin, MultiversalMap, MapServer,
+        _get_json, _post_json,
+    )
+    from worldline import (
+        worldline_from_bundle, verify_annotated_worldline,
+        AnnotatedWorldline,
+    )
+    from unified_individual import (
+        UnifiedIndividualSession, pack_unified_bundle,
+    )
+    from world_adapters import ChessAdapter, GrowingCanvasAdapter
+
+    if not HAS_CRYPTO:
+        raise RuntimeError("cryptography not installed")
+    if artifact_dir is None:
+        artifact_dir = "artifacts"
+    root = Path(artifact_dir) / "cross_federation_map"
+    root.mkdir(parents=True, exist_ok=True)
+
+    def _kp():
+        return Ed25519PrivateKey.generate()
+
+    # ---- World W1 (chess) — federation A ----
+    chess_kp = _kp()
+    chess_signed = SignedLogWorld(
+        ChessWorld("world:chess", "Chess"), chess_kp)
+    chess_srv = LobbyServer(
+        chess_signed, chess_kp,
+        description="Two seats, one board.",
+        summary_fn=lambda w: {
+            "moves": sum(
+                1 for e in w.log_since(None)
+                if e.kind == "chess.move")},
+        port=0)
+    chess_srv.serve_in_thread()
+
+    # ---- World W2 (canvas) — federation B ----
+    canvas_kp = _kp()
+    canvas_signed = SignedLogWorld(
+        GrowingWorld("world:canvas", "Canvas", canvas_kp),
+        canvas_kp)
+    canvas_srv = LobbyServer(
+        canvas_signed, canvas_kp,
+        description="A shared growing canvas.",
+        summary_fn=lambda w: {
+            "plots": len(w.current_plots())},
+        port=0)
+    canvas_srv.serve_in_thread()
+
+    time.sleep(0.2)
+    chess_url = (f"http://127.0.0.1:"
+                  f"{chess_srv._httpd.server_address[1]}")
+    canvas_url = (f"http://127.0.0.1:"
+                   f"{canvas_srv._httpd.server_address[1]}")
+
+    # ---- Map B (federation B) — knows canvas ----
+    map_b_kp = _kp()
+    reg_b = MapRegistry()
+    reg_b.add(WorldPin(
+        world_id="world:canvas", url=canvas_url,
+        world_signer=canvas_signed.world_signer,
+        cluster="Art"))
+    mv_b = MultiversalMap(
+        "map:federation-b", "Federation B Map",
+        map_b_kp, reg_b)
+    signed_b = SignedLogWorld(mv_b, map_b_kp)
+    srv_b = MapServer(
+        signed_b, map_b_kp, mv_b,
+        description="Federation B's worlds.",
+        port=0)
+    srv_b.serve_in_thread()
+    time.sleep(0.15)
+    map_b_url = (f"http://127.0.0.1:"
+                  f"{srv_b._httpd.server_address[1]}")
+
+    # ---- Map A (federation A) — knows chess AND map B ----
+    map_a_kp = _kp()
+    reg_a = MapRegistry()
+    reg_a.add(WorldPin(
+        world_id="world:chess", url=chess_url,
+        world_signer=chess_signed.world_signer,
+        cluster="Games"))
+    reg_a.add(WorldPin(
+        world_id="map:federation-b", url=map_b_url,
+        world_signer=mv_b.world_signer(),
+        description="Federation B's map",
+        cluster="Federated",
+        kind="map"))
+    mv_a = MultiversalMap(
+        "map:federation-a", "Federation A Map",
+        map_a_kp, reg_a)
+    signed_a = SignedLogWorld(mv_a, map_a_kp)
+    srv_a = MapServer(
+        signed_a, map_a_kp, mv_a,
+        description="Federation A's map — federated with B.",
+        port=0)
+    srv_a.serve_in_thread()
+    time.sleep(0.15)
+    map_a_url = (f"http://127.0.0.1:"
+                  f"{srv_a._httpd.server_address[1]}")
+
+    try:
+        # ---- Cross-federation routing ----
+        # Client asks map A for a world it doesn't know: world:canvas
+        route_resp = _post_json(f"{map_a_url}/petition", {
+            "petitioner_token": "visitor",
+            "petitioner_name": "Visitor",
+            "passport_admissions": [],
+            "message": "looking for canvas",
+            "target": "world:canvas",
+        })
+        canvas_reached = (
+            route_resp.get("kind") == "route"
+            and route_resp["target_manifest"]["entity_id"]
+                == "world:canvas"
+        )
+
+        # Direct world still works
+        direct_route = _post_json(f"{map_a_url}/petition", {
+            "petitioner_token": "visitor",
+            "petitioner_name": "Visitor",
+            "passport_admissions": [],
+            "message": "",
+            "target": "world:chess",
+        })
+        direct_ok = (
+            direct_route.get("kind") == "route"
+            and direct_route["target_manifest"]["entity_id"]
+                == "world:chess")
+
+        # Unknown world fails
+        miss_route = _post_json(f"{map_a_url}/petition", {
+            "petitioner_token": "visitor",
+            "petitioner_name": "Visitor",
+            "passport_admissions": [],
+            "message": "",
+            "target": "world:nowhere",
+        })
+        miss_ok = miss_route.get("kind") == "refusal"
+
+        # ---- Individual travels to both worlds ----
+        individual_kp = _kp()
+        session = UnifiedIndividualSession(
+            individual_kp=individual_kp,
+            model=TinyRNN(n_actions=3, hidden=4,
+                           n_extra_inputs=0, seed=42))
+        session.enter_world_via_adapter(ChessAdapter(), {
+            "world_id": "world:chess",
+            "world_url": chess_url,
+            "world_signer": chess_signed.world_signer,
+            "seat": "white",
+            "display_name": "Visitor",
+        })
+        session.step_via_adapter()   # one chess step
+        session.enter_world_via_adapter(
+            GrowingCanvasAdapter(), {
+                "world_id": "world:canvas",
+                "world": canvas_signed._base
+                          if hasattr(canvas_signed, "_base")
+                          else None,
+                "world_signer": canvas_signed.world_signer,
+                "display_name": "Visitor",
+            })
+        session.step_via_adapter()   # one canvas step
+
+        bundle = pack_unified_bundle(
+            session, persona="a visitor across federations",
+            name="Visitor", initial_seed=42)
+
+        # ---- Worldline ----
+        summary = worldline_from_bundle(bundle, individual_kp)
+        annotated_raw = _post_json(f"{map_a_url}/worldline", {
+            "summary": summary.to_dict(),
+        })
+        aw = AnnotatedWorldline(
+            individual_id=annotated_raw["individual_id"],
+            map_id=annotated_raw["map_id"],
+            annotated_visits=tuple(
+                annotated_raw["annotated_visits"]),
+            original_summary=dict(
+                annotated_raw["original_summary"]),
+            ts=annotated_raw["ts"],
+            sig=annotated_raw["sig"],
+        )
+        v_aw = verify_annotated_worldline(
+            aw, expected_map=mv_a.world_signer(),
+            expected_individual=bundle.individual_id)
+
+        # ---- Tamper: altered annotation ----
+        tampered_ann = AnnotatedWorldline(
+            individual_id=aw.individual_id,
+            map_id=aw.map_id,
+            annotated_visits=tuple(
+                {**dict(v), "cluster": "Forged"}
+                for v in aw.annotated_visits),
+            original_summary=aw.original_summary,
+            ts=aw.ts, sig=aw.sig)
+        v_t1 = verify_annotated_worldline(tampered_ann)
+
+        # ---- Tamper: altered original summary ----
+        tampered_orig = AnnotatedWorldline(
+            individual_id=aw.individual_id,
+            map_id=aw.map_id,
+            annotated_visits=aw.annotated_visits,
+            original_summary={
+                **aw.original_summary,
+                "visits": [
+                    {**v, "world_id": "world:forged"}
+                    for v in aw.original_summary["visits"]
+                ]},
+            ts=aw.ts, sig=aw.sig)
+        v_t2 = verify_annotated_worldline(tampered_orig)
+
+        # ---- Print ----
+        print("=" * 74)
+        print("Cross-federation map — two maps, one Route")
+        print("=" * 74)
+        print()
+        print(f"  Map A (federation A): {map_a_url}")
+        print(f"    owns:    world:chess")
+        print(f"    federated with: map:federation-b")
+        print(f"  Map B (federation B): {map_b_url}")
+        print(f"    owns:    world:canvas")
+        print()
+        print("  Cross-federation routing via A:")
+        print(f"    Route to world:chess (direct):  {direct_ok}")
+        print(f"    Route to world:canvas (via B):  {canvas_reached}")
+        if canvas_reached:
+            print(f"      reason: "
+                  f"{route_resp.get('reason', '')}")
+        print(f"    Route to world:nowhere:          "
+              f"{miss_ok} (refused)")
+        print()
+        print(f"  Individual: {bundle.individual_id[:32]}...")
+        print(f"    worlds visited: "
+              f"{[v.world_id for v in summary.visits]}")
+        print()
+        print("  Annotated worldline (from Map A):")
+        for i, v in enumerate(aw.annotated_visits):
+            marker = "●" if v.get("current_status") == "live" \
+                     else "○"
+            origin = ("direct" if v.get("in_this_map")
+                      else f"via {v.get('resolved_via')}")
+            print(f"    {marker} {v['world_id']:20s}  "
+                  f"[{v['tier']:10s}]  cluster={v['cluster']:10s}  "
+                  f"status={v['current_status']:12s}  ({origin})")
+        print()
+        print("  Verification:")
+        print(f"    annotated worldline: {v_aw[0]}  ({v_aw[1]})")
+        print()
+        print("  Tampering:")
+        print(f"    altered cluster in annotation: "
+              f"{v_t1[0]}  ({v_t1[1]})")
+        print(f"    altered world_id in summary:   "
+              f"{v_t2[0]}  ({v_t2[1]})")
+        print()
+        print("  What this establishes:")
+        print("    - A pin can be a map. When map A can't resolve a")
+        print("      target directly, it queries each sub-map's")
+        print("      /pin/<target>. First match wins; A builds a")
+        print("      Route to that world. The client follows it")
+        print("      normally — the world lives in another")
+        print("      federation entirely.")
+        print("    - The individual's worldline is a claim about")
+        print("      their own history, signed by their own key.")
+        print("      The map annotates it with clusters, status,")
+        print("      and provenance (direct vs. via-sub-map), then")
+        print("      signs the whole thing.")
+        print("    - Two signatures compose: the individual")
+        print("      guarantees the visits are real; the map")
+        print("      guarantees the annotation is honest. Both")
+        print("      must verify.")
+        print("    - Cross-federation is transparent. The")
+        print("      individual's worldline shows 'world:canvas'")
+        print("      annotated by Map A as 'via map:federation-b'")
+        print("      — the fact of crossing a federation boundary")
+        print("      is preserved in the annotation, not erased.")
+        print()
+        print("  Honest limit: sub-map queries are one hop deep.")
+        print("  A chain of three maps (A → B → C → world) would")
+        print("  require A to ask B which asks C. Each map")
+        print("  currently queries only its own direct map-pins.")
+        print("  Documented; a recursive resolution with a depth")
+        print("  bound would be a small future extension.")
+        print()
+        print("  Anchor (public domain, Emily Dickinson):")
+        print("    'The Brain – is wider than the Sky –'")
+        print("    'For – put them side by side –'")
+        print("    'The one the other will contain'")
+        print("    'With ease – and You – beside –'")
+
+        audit = {
+            "map_a_url": map_a_url,
+            "map_b_url": map_b_url,
+            "cross_federation": {
+                "direct_route_ok": direct_ok,
+                "via_submap_route_ok": canvas_reached,
+                "unknown_target_refused": miss_ok,
+            },
+            "worldline": {
+                "individual_id": bundle.individual_id,
+                "visits": [
+                    {
+                        "world_id": v["world_id"],
+                        "tier": v["tier"],
+                        "in_this_map": v["in_this_map"],
+                        "resolved_via": v["resolved_via"],
+                        "current_status": v["current_status"],
+                    }
+                    for v in aw.annotated_visits
+                ],
+                "verified": v_aw[0],
+            },
+            "tampering": {
+                "altered_annotation_detected": not v_t1[0],
+                "altered_summary_detected": not v_t2[0],
+            },
+        }
+        (root / "cross_federation_demo.json").write_text(
+            _json.dumps(audit, indent=2))
+        print(f"\n  → {root}/cross_federation_demo.json")
+        return audit
+    finally:
+        for srv in (chess_srv, canvas_srv, srv_b, srv_a):
+            try:
+                srv.stop()
+            except Exception:
+                pass

@@ -1,0 +1,13 @@
+_B58_ALPHABET = b"123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
+
+
+def b58encode(data: bytes) -> str:
+    n = int.from_bytes(data, "big")
+    if n == 0:
+        return "1" * len(data)
+    out = []
+    while n:
+        out.append(_B58_ALPHABET[n % 58])
+        n //= 58
+    pad = len(data) - len(data.lstrip(b"\x00"))
+    return ("1" * pad) + bytes(reversed(out)).decode()

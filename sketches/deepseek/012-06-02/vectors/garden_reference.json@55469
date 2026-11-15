@@ -1,0 +1,6 @@
+{
+  "proposal_body_hashes": ["<hash1>", "<hash2>", ...],
+  "proposal_count": 2,
+  "keeper_whisper_body_hash": "<hash>",
+  "all_proofs_verify": true
+}

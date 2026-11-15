@@ -1,0 +1,43 @@
+class MapServer(LobbyServer):
+    def _make_handler(self):
+        base = super()._make_handler()
+        server = self
+
+        class Handler(base):
+            def do_GET(self):
+                # ... existing (map/pin/lobby) ...
+
+            def do_POST(self):
+                if self.path == "/worldline":
+                    try:
+                        length = int(self.headers.get(
+                            "Content-Length", 0))
+                        body = json.loads(
+                            self.rfile.read(length).decode())
+                        from worldline import (
+                            WorldlineSummary,
+                            annotate_worldline,
+                            verify_worldline_summary,
+                        )
+                        summary = WorldlineSummary.from_dict(
+                            body.get("summary", {}))
+                    except (json.JSONDecodeError, KeyError,
+                             ValueError, TypeError) as e:
+                        self._json(400, {"error": f"malformed: {e}"})
+                        return
+                    v = verify_worldline_summary(summary)
+                    if not v[0]:
+                        self._json(400, {
+                            "error": f"summary sig: {v[1]}"})
+                        return
+                    try:
+                        annotated = annotate_worldline(
+                            server._mv_map, summary,
+                            fetch_live=True)
+                        self._json(200, annotated.to_dict())
+                    except Exception as e:
+                        self._json(500, {"error": str(e)})
+                    return
+                super().do_POST()
+            # ...
+        return Handler

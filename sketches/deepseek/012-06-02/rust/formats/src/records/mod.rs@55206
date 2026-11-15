@@ -1,0 +1,2 @@
+#[serde(rename = "garden_curator_proposal")]
+GardenCuratorProposal(SignedGardenCuratorProposal),

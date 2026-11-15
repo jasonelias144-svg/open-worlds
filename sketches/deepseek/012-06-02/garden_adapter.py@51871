@@ -1,0 +1,261 @@
+"""
+garden_adapter.py — inhabit the Ur-garden as an arc individual.
+
+The model's 3 outputs are *dispositions*, not directions:
+  0 → wander    (adapter picks a direction, agent walks one cell)
+  1 → attend    (observe: only yields events if adjacent to plant)
+  2 → gesture   (speak: heard only if another agent is within 2)
+
+Spatial rewards:
+  wander to a new cell:     0.05
+  wander to a visited cell: 0.02
+  observe near a plant:     0.50
+  observe nothing:          0.02
+  speak with agent nearby:  0.30
+  speak alone:              0.02
+"""
+
+from typing import Optional, Tuple
+
+from individual_bundle import _hash
+from multiverse_c3 import Act, Ack
+from world_adapters import WorldAdapter
+from ur_garden import Cell, GardenWorld
+
+
+_PHRASES = [
+    "the fern is growing",
+    "the tree unfolds",
+    "the vine is quiet today",
+    "come look at this",
+    "the garden is alive",
+    "I wonder what it becomes",
+    "each cycle changes everything",
+]
+
+
+class GardenAdapter(WorldAdapter):
+    def tier_name(self): return "garden"
+
+    def open(self, config): return config["world"]
+
+    def enter(self, handle, individual_id, individual_kp, config):
+        start = config.get("start_position", [0, 0])
+        resp = handle.act(Act(
+            actor_token=individual_id,
+            type="garden.walk",
+            payload={"start": list(start)},
+        ))
+        if not isinstance(resp, Ack):
+            raise RuntimeError(
+                f"garden entry failed: "
+                f"{getattr(resp, 'reason', '?')}")
+        return {
+            "display_name": config.get(
+                "display_name", "resident"),
+            "start_position": list(start),
+            "garden_size": [GardenWorld.WIDTH,
+                              GardenWorld.HEIGHT],
+        }
+
+    def state(self, memory, handle):
+        last_action = 0
+        last_reward = 0.0
+        for rec in reversed(memory):
+            if rec.get("type") == "agent_step" \
+                    and rec.get("tier") == "garden":
+                last_action = rec["action_idx"]
+                last_reward = rec["reward_micros"] / 1_000_000
+                break
+        pos = self._position_from_memory(memory) or (0, 0)
+        x = pos[0] / max(GardenWorld.WIDTH - 1, 1)
+        y = pos[1] / max(GardenWorld.HEIGHT - 1, 1)
+        return (last_action, last_reward, x, y)
+
+    def _position_from_memory(self, memory):
+        for rec in reversed(memory):
+            if rec.get("type") == "agent_step" \
+                    and rec.get("tier") == "garden":
+                pa = rec.get("position_after")
+                if pa is not None:
+                    return tuple(pa)
+            if rec.get("type") == "world_entry" \
+                    and rec.get("tier") == "garden":
+                sp = rec.get("start_position")
+                if sp is not None:
+                    return tuple(sp)
+        return None
+
+    def action_from_index(self, idx, memory):
+        n = sum(1 for r in memory
+                 if r.get("type") == "agent_step")
+        if idx == 0:
+            return {"disposition": "wander"}
+        if idx == 1:
+            return {"disposition": "attend"}
+        return {
+            "disposition": "gesture",
+            "_text": _PHRASES[n % len(_PHRASES)],
+        }
+
+    def submit(self, handle, individual_id, individual_kp, action):
+        disp = action["disposition"]
+        if disp == "wander":
+            return self._wander(handle, individual_id)
+        if disp == "attend":
+            return self._observe(handle, individual_id)
+        return self._speak(handle, individual_id,
+                            action.get("_text", "hello"))
+
+    def _choose_direction(self, pos, visited, world):
+        """Prefer unvisited cells toward the nearest plant;
+        fall back to any unvisited; then any."""
+        plants = world.plants()
+        target = None
+        if plants:
+            nearest = min(plants.values(),
+                            key=lambda p:
+                            p.position.distance(pos))
+            if nearest.position.distance(pos) > 1:
+                target = nearest.position
+        def _step(d):
+            p = pos.step(d)
+            if not (0 <= p.x < GardenWorld.WIDTH
+                    and 0 <= p.y < GardenWorld.HEIGHT):
+                return None
+            if world.plant_at(p) is not None:
+                return None
+            return p
+        if target is not None:
+            dx = target.x - pos.x
+            dy = target.y - pos.y
+            primary = ("E" if dx > 0 else "W") if dx else (
+                "S" if dy > 0 else "N")
+            secondary = ("S" if dy > 0 else "N") if dy else (
+                "E" if dx > 0 else "W")
+            for d in (primary, secondary):
+                if _step(d) is not None \
+                        and (_step(d).x, _step(d).y) not in visited:
+                    return d
+        for d in ("N", "E", "S", "W"):
+            p = _step(d)
+            if p is not None and (p.x, p.y) not in visited:
+                return d
+        for d in ("N", "E", "S", "W"):
+            if _step(d) is not None:
+                return d
+        return "N"
+
+    def _wander(self, world, individual_id):
+        pos = world.position_of(individual_id)
+        if pos is None:
+            return (None, 0.0)
+        visited = world.agent_visited(individual_id)
+        direction = self._choose_direction(pos, visited, world)
+        resp = world.act(Act(
+            actor_token=individual_id,
+            type="garden.walk",
+            payload={"direction": direction},
+        ))
+        if not isinstance(resp, Ack):
+            return (None, 0.0)
+        latest = world.log_since(None)[-1]
+        entry_hash = _hash(latest)
+        to_cell = tuple(latest.get("to", [pos.x, pos.y]))
+        was_new = to_cell not in visited
+        reward = 0.05 if was_new else 0.02
+        return ({
+            "garden_entry_hash": entry_hash,
+            "act": "wander",
+            "position_after": list(to_cell),
+            "direction": direction,
+        }, reward)
+
+    def _observe(self, world, individual_id):
+        resp = world.act(Act(
+            actor_token=individual_id,
+            type="garden.observe",
+            payload={},
+        ))
+        if not isinstance(resp, Ack):
+            return (None, 0.0)
+        latest = world.log_since(None)[-1]
+        entry_hash = _hash(latest)
+        result = latest.get("result")
+        reward = 0.5 if result == "observed_plant" else 0.02
+        pos = latest.get("position", [0, 0])
+        return ({
+            "garden_entry_hash": entry_hash,
+            "act": "observe",
+            "position_after": list(pos),
+            "result": result,
+            "plant_id": latest.get("plant_id"),
+            "plant_event_hash": latest.get("plant_event_hash"),
+        }, reward)
+
+    def _speak(self, world, individual_id, text):
+        resp = world.act(Act(
+            actor_token=individual_id,
+            type="garden.speak",
+            payload={"text": text},
+        ))
+        if not isinstance(resp, Ack):
+            return (None, 0.0)
+        latest = world.log_since(None)[-1]
+        entry_hash = _hash(latest)
+        heard_by = latest.get("heard_by", [])
+        reward = 0.3 if heard_by else 0.02
+        pos = latest.get("position", [0, 0])
+        return ({
+            "garden_entry_hash": entry_hash,
+            "act": "speak",
+            "position_after": list(pos),
+            "text": text,
+            "heard_by": heard_by,
+        }, reward)
+
+    def step_fields(self, action, world_ref):
+        if world_ref is None:
+            return {"act": action.get("disposition")}
+        return dict(world_ref)
+
+    def world_log(self, handle):
+        if handle is None:
+            return []
+        entries = list(handle.log_since(None))
+        for plant in handle.all_plants().values():
+            entries.extend(plant.host.events())
+        return entries
+
+    def verify_step(self, step_record, memory, model, rng,
+                     handle, world_log):
+        state = self.state(memory, None)
+        idx = model.act(state, rng)
+        if idx != step_record["action_idx"]:
+            return (False,
+                     f"action_idx {step_record['action_idx']} "
+                     f"!= {idx}")
+        target = step_record.get("garden_entry_hash")
+        matched = None
+        for e in world_log:
+            if isinstance(e, dict) and _hash(e) == target:
+                matched = e
+                break
+        if matched is None:
+            return (False, "garden entry not found")
+        expected = {0: "agent_walked",
+                     1: "agent_observed",
+                     2: "agent_spoke"}[idx]
+        if matched.get("kind") != expected:
+            return (False,
+                     f"kind {matched.get('kind')} != {expected}")
+        if idx == 1 and matched.get("result") == "observed_plant":
+            ev_hash = matched.get("plant_event_hash")
+            if not any(
+                isinstance(e, dict) and e.get("hash") == ev_hash
+                for e in world_log
+            ):
+                return (False, "plant event not found")
+        reward = step_record["reward_micros"] / 1_000_000
+        model.learn(reward)
+        return (True, "ok")

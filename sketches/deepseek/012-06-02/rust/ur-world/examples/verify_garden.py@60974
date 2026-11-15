@@ -1,0 +1,17 @@
+import json
+import sys
+from pathlib import Path
+
+import pytest
+
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from cryptography.hazmat.primitives.asymmetric.ed25519 import (
+    Ed25519PrivateKey,
+)
+
+from rust_verify import (  # or whatever module name you use
+    b58decode, did_key_to_verifying_key,
+    check_proof_metadata, verify_proof,
+    jcs, sha256,
+)

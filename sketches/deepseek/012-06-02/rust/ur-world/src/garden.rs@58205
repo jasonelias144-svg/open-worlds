@@ -1,0 +1,23 @@
+use formats::records::SignedKeeperWhisper;
+
+impl Garden {
+    /// Record a keeper whisper. The keeper signs the record
+    /// *before* submitting; the garden verifies and appends
+    /// it verbatim (the garden's `append` injects `tick`,
+    /// nothing else).
+    pub fn keeper_whisper(
+        &mut self,
+        record: SignedKeeperWhisper,
+    ) -> Result<&Entry, GardenError> {
+        record.verify().map_err(|_| GardenError::SignatureInvalid)?;
+        if record.payload.keeper_did != self.curator_did {
+            return Err(GardenError::Refused(
+                "keeper_did does not match garden's curator".into()));
+        }
+        let body = serde_json::to_value(&record)
+            .map_err(|_| GardenError::ChainBroken {
+                at: self.log.len(),
+            })?;
+        self.append(body)
+    }
+}

@@ -1,0 +1,38 @@
+// rust/ur-world/src/garden.rs
+
+use formats::records::SignedGardenCuratorProposal;
+
+impl Garden {
+    /// Append a signed curator proposal to the log. The
+    /// garden doesn't apply it; the keeper does. The record
+    /// is stored in `Entry.body` as its full serialized form
+    /// (payload + proof), so chain verification covers it.
+    pub fn record_proposal(
+        &mut self,
+        record: SignedGardenCuratorProposal,
+    ) -> Result<&Entry, GardenError> {
+        record.verify().map_err(|_| GardenError::SignatureInvalid)?;
+        let body = serde_json::to_value(&record)
+            .map_err(|_| GardenError::ChainBroken {
+                at: self.log.len(),
+            })?;
+        self.append(body)
+    }
+
+    /// Proposals recorded in the log, in order, as signed
+    /// records.
+    pub fn proposals(
+        &self,
+    ) -> Vec<SignedGardenCuratorProposal> {
+        self.log.iter()
+            .filter_map(|e| {
+                if e.body.get("kind").and_then(|v| v.as_str())
+                    != Some("garden_curator_proposal")
+                {
+                    return None;
+                }
+                serde_json::from_value(e.body.clone()).ok()
+            })
+            .collect()
+    }
+}

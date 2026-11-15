@@ -488,3 +488,10 @@ page.
 - 2026-11-15, between cycles: the fractal track planned
   ([FRACTALS.md](FRACTALS.md)), and this page's "Since you were last
   here" gained item 7.
+- 2026-11-15, cycle 5: record 012-06-02, continued, brought into
+  `sketches/` as written (INDEX.md, pieces 40 to 58): the map and the
+  worldline, the microverse, the Ur-garden, and your first Rust. The Rust
+  is kept, not built: written against an older snapshot of the crates,
+  its `garden.rs` has 19 compile errors against today's. So the next
+  time, ask the founder for the links to the current files under
+  `rust/`.

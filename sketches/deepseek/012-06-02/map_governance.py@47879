@@ -1,0 +1,260 @@
+def demo(artifact_dir=None):
+    from pathlib import Path
+    import time
+    import json as _json
+    from cryptography.hazmat.primitives.asymmetric.ed25519 import (
+        Ed25519PrivateKey)
+    from multiverse_c74 import ChatWorld
+    from signed_world_log import SignedLogWorld
+    from lobby_server import LobbyServer
+    from map_world import (
+        MapRegistry, WorldPin, MultiversalMap, MapServer,
+        _get_json, _post_json,
+    )
+    from map_governance import (
+        sign_pin_added_request, sign_pin_removed_request,
+        PinAddedRequest, PinRemovedRequest,
+    )
+
+    if not HAS_CRYPTO:
+        raise RuntimeError("cryptography not installed")
+    if artifact_dir is None:
+        artifact_dir = "artifacts"
+    root = Path(artifact_dir) / "map_governance"
+    root.mkdir(parents=True, exist_ok=True)
+
+    def _kp():
+        return Ed25519PrivateKey.generate()
+
+    # Build 4 worlds
+    worlds = {}
+    world_servers = []
+    for wid, wname in [
+        ("world:chess", "Chess"),
+        ("world:canvas", "Canvas"),
+        ("world:garden", "Garden"),
+        ("world:park", "Park"),
+    ]:
+        kp = _kp()
+        signed = SignedLogWorld(ChatWorld(wid, wname), kp)
+        srv = LobbyServer(signed, kp, port=0)
+        srv.serve_in_thread()
+        world_servers.append(srv)
+        url = (f"http://127.0.0.1:"
+                f"{srv._httpd.server_address[1]}")
+        worlds[wid] = (url, signed.world_signer)
+    time.sleep(0.2)
+
+    # Build map: initially empty
+    map_kp = _kp()
+    mv = MultiversalMap("map:m", "Map", map_kp)
+    signed_map = SignedLogWorld(mv, map_kp)
+    srv_map = MapServer(signed_map, map_kp, mv, port=0)
+    srv_map.serve_in_thread()
+    time.sleep(0.15)
+    map_url = (f"http://127.0.0.1:"
+                f"{srv_map._httpd.server_address[1]}")
+
+    try:
+        # 1. Keeper adds two pins directly
+        mv.add(WorldPin(
+            "world:chess", *worlds["world:chess"],
+            cluster="Games"))
+        mv.add(WorldPin(
+            "world:canvas", *worlds["world:canvas"],
+            cluster="Art"))
+
+        # 2. Keeper issues edit + observe keys to an external
+        #    actor and a friend
+        actor_kp = _kp()
+        actor_id = _did_from_kp(actor_kp)
+        observer_kp = _kp()
+        observer_id = _did_from_kp(observer_kp)
+
+        edit_key = mv.issue_world_key(actor_id, "edit")
+        observe_key = mv.issue_world_key(
+            observer_id, "observe")
+
+        # 3. Actor with edit key adds a pin (via HTTP)
+        add_req = sign_pin_added_request(
+            actor_kp, edit_key, {
+                "world_id": "world:garden",
+                "url": worlds["world:garden"][0],
+                "world_signer":
+                    worlds["world:garden"][1],
+                "description": "The garden",
+                "cluster": "Nature",
+                "kind": "world",
+            })
+        r_add = _post_json(
+            f"{map_url}/pin_added", add_req.to_dict())
+
+        # 4. Observer tries to add a pin (insufficient tier)
+        obs_req = sign_pin_added_request(
+            observer_kp, observe_key, {
+                "world_id": "world:park",
+                "url": worlds["world:park"][0],
+                "world_signer":
+                    worlds["world:park"][1],
+                "description": "The park",
+                "cluster": "Nature",
+                "kind": "world",
+            })
+        r_obs = _post_json(
+            f"{map_url}/pin_added", obs_req.to_dict())
+
+        # 5. Observer tries to remove a pin
+        obs_rem = sign_pin_removed_request(
+            observer_kp, observe_key, "world:chess")
+        r_obs_rem = _post_json(
+            f"{map_url}/pin_removed", obs_rem.to_dict())
+
+        # 6. Actor with edit key removes their pin
+        rem_req = sign_pin_removed_request(
+            actor_kp, edit_key, "world:garden")
+        r_rem = _post_json(
+            f"{map_url}/pin_removed", rem_req.to_dict())
+
+        # 7. Keeper removes canvas
+        mv.remove("world:canvas")
+
+        # 8. Fetch current registry
+        reg_now = _get_json(f"{map_url}/registry")
+        # 9. Historical snapshots
+        reg_0 = _get_json(f"{map_url}/registry_at/0")  # empty
+        reg_2 = _get_json(f"{map_url}/registry_at/2")  # after 2 adds
+        reg_4 = _get_json(f"{map_url}/registry_at/4")  # after edit add
+        # 10. Verify log
+        v_log = mv.verify_log()
+
+        # 11. Tamper: alter a log entry's pin url
+        tampered_mv = MultiversalMap("map:tampered", "T", _kp())
+        # Build a fresh copy with the same log
+        tampered_mv._log = [
+            {**e} if e.get("kind") != "pin_added"
+            else {**e, "pin": {**e["pin"],
+                                "url": "http://evil.example"}}
+            for e in mv._log
+        ]
+        v_tampered = tampered_mv.verify_log()
+
+        # ---- Print ----
+        print("=" * 74)
+        print("Map governance — the registry becomes an audit trail")
+        print("=" * 74)
+        print()
+        print(f"  Map:  {map_url}")
+        print(f"  Signer: {mv.world_signer()[:32]}...")
+        print()
+        print("  Acts (in log order):")
+        for i, e in enumerate(mv._log):
+            kind = e["kind"]
+            actor = e.get("actor", "")[:16] + "..."
+            if kind == "pin_added":
+                wid = e["pin"]["world_id"]
+                wkey = "edit" if e.get("world_key") else "keeper"
+                print(f"    [{i}] pin_added    {wid:20s}  "
+                      f"by {actor}  ({wkey})")
+            elif kind == "pin_removed":
+                wid = e["world_id"]
+                wkey = "edit" if e.get("world_key") else "keeper"
+                print(f"    [{i}] pin_removed  {wid:20s}  "
+                      f"by {actor}  ({wkey})")
+            else:
+                print(f"    [{i}] {kind:12s}")
+        print()
+        print("  External requests:")
+        print(f"    edit key   pin_added  world:garden   → "
+              f"{r_add['ok']}  ({r_add['reason']})")
+        print(f"    observe    pin_added  world:park     → "
+              f"{r_obs['ok']}  ({r_obs['reason']})")
+        print(f"    observe    pin_removed world:chess   → "
+              f"{r_obs_rem['ok']}  ({r_obs_rem['reason']})")
+        print(f"    edit key   pin_removed world:garden  → "
+              f"{r_rem['ok']}  ({r_rem['reason']})")
+        print()
+        print("  Current registry:")
+        for p in reg_now["pins"]:
+            print(f"    {p['world_id']:20s}  "
+                  f"cluster={p['cluster']}")
+        print(f"    registry_hash: "
+              f"{reg_now['registry_hash'][:16]}...")
+        print(f"    log_length: {reg_now['log_length']}")
+        print()
+        print("  Historical replay:")
+        print(f"    at index 0: {reg_0['pins']}  "
+              f"(empty — before any act)")
+        print(f"    at index 2: {reg_2['pins']}  "
+              f"(after 2 keeper adds)")
+        print(f"    at index 4: {reg_4['pins']}  "
+              f"(after edit-key add)")
+        print()
+        print(f"  Log verification: {v_log[0]}  ({v_log[1]})")
+        print()
+        print("  Tampering (one pin's url altered):")
+        print(f"    log verification: {v_tampered[0]}  "
+              f"({v_tampered[1]})")
+        print()
+        print("  What this establishes:")
+        print("    - The registry IS the log. Every mutation —")
+        print("      keeper-added, edit-key-added, keeper-removed,")
+        print("      edit-key-removed — is a signed entry. The")
+        print("      current registry is a fold of the log; the")
+        print("      log is the audit trail.")
+        print("    - World-keys gate external mutations. observe")
+        print("      can't add or remove; edit can. The map")
+        print("      verifies the key, then countersigns the act.")
+        print("    - Every log entry is signed by the map's")
+        print("      keeper. A stranger with the log can verify")
+        print("      each entry, replay to reconstruct the")
+        print("      registry at any historical point, and")
+        print("      confirm the current state.")
+        print("    - Historical snapshots work by replay. The")
+        print("      registry at index 0 is empty; at index 2")
+        print("      it has two keeper-added pins; at index 4")
+        print("      it has three. Same log, different folds.")
+        print("    - Tampering is caught. Alter one entry's pin")
+        print("      url, and the map's signature on that entry")
+        print("      no longer verifies.")
+        print()
+        print("  Honest limit: no per-pin scoping for edit keys.")
+        print("  An 'edit' key can remove any pin, not just ones")
+        print("  the same actor added. A future scoped tier")
+        print("  ('edit-own') would be small.")
+        print()
+        print("  Anchor (public domain, Emily Dickinson):")
+        print("    'Forever – is composed of Nows –'")
+        print("    'Tis not a different time –'")
+
+        audit = {
+            "map_id": "map:m",
+            "log_entries": len(mv._log),
+            "requests": {
+                "edit_pin_added_garden": r_add["ok"],
+                "observe_pin_added_park": r_obs["ok"],
+                "observe_pin_removed_chess": r_obs_rem["ok"],
+                "edit_pin_removed_garden": r_rem["ok"],
+            },
+            "current_registry": [
+                p["world_id"] for p in reg_now["pins"]
+            ],
+            "historical": {
+                "at_0": reg_0["pins"],
+                "at_2": reg_2["pins"],
+                "at_4": reg_4["pins"],
+            },
+            "log_verified": v_log[0],
+            "tampering": {
+                "url_altered_detected": not v_tampered[0],
+            },
+        }
+        (root / "map_governance_demo.json").write_text(
+            _json.dumps(audit, indent=2))
+        print(f"\n  → {root}/map_governance_demo.json")
+        return audit
+    finally:
+        for srv in world_servers + [srv_map]:
+            try:
+                srv.stop()
+            except Exception:
+                pass

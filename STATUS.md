@@ -161,13 +161,28 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, the other choices in the continued conversation
+  with DeepSeek (record 012-06-02, as extended), as directions to
+  DeepSeek: "Actually, I Ike the cross-federation map first, and then
+  then individual’s worldline" (44227); "It sounds like god-game/
+  Microverse would be a good example learn from, as it could easily
+  represent a single world type" (48626); "And now I wonder if we can run
+  a fractal world or a collection of fractal worlds in a single
+  microverse. This way we draw a link into what we have already been
+  doing" (48677); and "I would go with the Node.js verifier first"
+  (61985). The technical lead's reading: the map pieces feed topic 16,
+  the multiversal map; the microverse and the Ur-garden feed the fractal
+  track's part 3; and a verifier in JavaScript fits the web app, which
+  checks a log in the page, once its npm packages are reviewed and pinned
+  (sketches/INDEX.md, pieces 40 to 58).
 - 2026-11-15, founder, in the continued conversation with DeepSeek
   (record 012-06-02, as extended, line 52822): "My preference would be to
   move to Rust, I only wanted us to transition naturally, as we are doing
   now. Let’s move forward in Rust, or other languages when needed, but
   primarily to Rust." This replaces the founder's word of the evening
-  before, that DeepSeek sketches in Python and the project ports it
-  downstream (2026-11-14, below), and was pointed out to the founder.
+  before, that DeepSeek sketches in the language it chooses (it chose
+  Python) and the project ports it downstream (2026-11-14, below), and
+  was pointed out to the founder.
   The technical lead's reading: DeepSeek writes Rust as proposals, which
   it can't compile; the project compiles, tests and fits them to the
   current code, and DeepSeek works best from links to the current files.
@@ -1209,6 +1224,19 @@ it was wrong. Questions of what the project is for stay with the founder.
   separate keys would, or the architectures need the kernel changed.
 
 ## Log
+
+- 2026-11-15 Claude: record 012-06-02 brought in again, as the founder
+  shared it continued: the first 43,170 lines are the same, and 19,440
+  more follow (pieces 40 to 58 in sketches/INDEX.md). 126 more code blocks
+  written out: 64 in Rust, 47 in Python, and JSON, JavaScript, TOML and
+  Makefiles. `tools/extract.py` now reads Rust. As written, none of the
+  eight new Python test files loads (each reason in known-failures.txt),
+  and the earlier results stand (478 pass). DeepSeek's Rust is kept, not
+  built: against today's crates its `garden.rs` alone has 19 compile
+  errors, since it was written against an older snapshot and an API our
+  `formats` crate doesn't have. Our harness fixed for test files in
+  subfolders (`known_failures.py`, `sketch_status_test.py`). And the #64
+  re-check's four notes taken.
 
 - 2026-11-15 Claude: the fractal track planned (docs/FRACTALS.md), at the
   founder's word of 2026-11-14: a plant world in Rust checked against

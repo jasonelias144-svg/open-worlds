@@ -1,0 +1,21 @@
+fn handle(&self, mut req: tiny_http::Request) -> std::io::Result<()> {
+    let method = req.method().clone();
+    let url = req.url().to_string();
+    let (path, qs) = url.split_once('?').unwrap_or((url.as_str(), ""));
+
+    let response = match (method, path) {
+        (Method::Get, "/manifest") => self.get_manifest(),
+        (Method::Get, "/log") => self.get_log(qs, false),
+        (Method::Get, "/signed-log") => self.get_log(qs, true),
+        (Method::Get, "/state") => self.get_state(),
+        (Method::Get, "/lobby") => self.get_lobby(),
+        (Method::Get, "/plants") => self.get_plants(),
+        (Method::Post, "/petition") => self.post_petition(&mut req),
+        (Method::Post, "/act") => self.post_act(&mut req),
+        (Method::Post, "/advance_cycle") =>
+            self.post_advance_cycle(&mut req),
+        _ => Ok(json_error(StatusCode(404), "not found")),
+    }?;
+    req.respond(response).map_err(|e|
+        std::io::Error::other(format!("respond: {e}")))
+}

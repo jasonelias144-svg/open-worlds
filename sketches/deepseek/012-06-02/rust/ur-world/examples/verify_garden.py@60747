@@ -1,0 +1,36 @@
+PROOF_TYPE = "DataIntegrityProof"
+PROOF_CRYPTOSUITE = "eddsa-jcs-2022"
+PROOF_PURPOSE = "assertionMethod"
+
+
+def check_proof_metadata(proof: dict) -> None:
+    """Enforce the W3C DataIntegrity proof's required shape.
+    Raises ValueError on any violation."""
+    if not isinstance(proof, dict):
+        raise ValueError("proof is not an object")
+    ptype = proof.get("type")
+    if ptype != PROOF_TYPE:
+        raise ValueError(
+            f"proof.type must be {PROOF_TYPE!r}, got {ptype!r}")
+    suite = proof.get("cryptosuite")
+    if suite != PROOF_CRYPTOSUITE:
+        raise ValueError(
+            f"cryptosuite must be {PROOF_CRYPTOSUITE!r}, "
+            f"got {suite!r}")
+    purpose = proof.get("proofPurpose")
+    if purpose != PROOF_PURPOSE:
+        raise ValueError(
+            f"proofPurpose must be {PROOF_PURPOSE!r}, "
+            f"got {purpose!r}")
+    created = proof.get("created")
+    if not isinstance(created, str) \
+            or len(created) < 20 \
+            or "T" not in created:
+        raise ValueError(
+            f"proof.created is not ISO 8601: {created!r}")
+
+
+def verify_proof(body: dict, proof: dict,
+                 expected_did: str) -> None:
+    check_proof_metadata(proof)
+    # ... rest unchanged

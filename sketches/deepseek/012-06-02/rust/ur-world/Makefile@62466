@@ -1,0 +1,44 @@
+.PHONY: verify-garden-node verify-garden-all \
+        verify-vectors verify-vectors-rust verify-vectors-python \
+        verify-vectors-node
+
+# Install Node deps (one-time)
+examples/npm-install:
+	cd rust/ur-world/examples && npm install
+
+verify-garden-node: examples/npm-install
+	@if [ -z "$(URL)" ]; then \
+		echo "Usage: make verify-garden-node URL=<url>"; \
+		exit 1; \
+	fi
+	cd rust/ur-world/examples && node verify_garden.mjs $(URL)
+
+verify-garden-all: examples/npm-install
+	@if [ -z "$(URL)" ]; then \
+		echo "Usage: make verify-garden-all URL=<url>"; \
+		exit 1; \
+	fi
+	@echo "=== Rust verifier ==="
+	cargo run --manifest-path rust/ur-world/Cargo.toml \
+		--example verify_garden -- $(URL)
+	@echo ""
+	@echo "=== Python verifier ==="
+	$(PYTHON) rust/ur-world/examples/verify_garden.py $(URL)
+	@echo ""
+	@echo "=== Node.js verifier ==="
+	cd rust/ur-world/examples && node verify_garden.mjs $(URL)
+
+verify-vectors-rust:
+	cargo run --manifest-path rust/ur-world/Cargo.toml \
+		--example verify_proof_offline -- \
+		vectors/proof_cases.json
+
+verify-vectors-python:
+	$(PYTHON) rust/ur-world/examples/verify_proof_offline.py \
+		vectors/proof_cases.json
+
+verify-vectors-node: examples/npm-install
+	cd rust/ur-world/examples && node verify_proof_offline.mjs \
+		../../../../vectors/proof_cases.json
+
+verify-vectors: verify-vectors-rust verify-vectors-python verify-vectors-node

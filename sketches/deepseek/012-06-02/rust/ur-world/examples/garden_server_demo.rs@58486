@@ -1,0 +1,21 @@
+// Keeper issues a whisper over HTTP
+{
+    use formats::records::{
+        KeeperWhisperKindTag, KeeperWhisperPayload,
+    };
+    let payload = KeeperWhisperPayload {
+        kind: KeeperWhisperKindTag::KeeperWhisper,
+        keeper_did: keeper_did.clone(),
+        cycle: g.lock().unwrap().cycle,
+        to: None,
+        text: "come see the fern".into(),
+    };
+    let signed = payload.sign(&curator_key_for_whisper)
+        .expect("sign");
+    let resp = ureq::post(
+        "http://127.0.0.1:8765/keeper_whisper")
+        .send_json(serde_json::to_value(&signed).unwrap())
+        .expect("post whisper");
+    let v: serde_json::Value = resp.into_json().unwrap();
+    println!("keeper_whisper response: {:?}", v);
+}

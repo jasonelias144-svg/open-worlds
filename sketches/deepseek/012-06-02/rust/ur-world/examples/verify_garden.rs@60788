@@ -1,0 +1,181 @@
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use ed25519_dalek::{Signer, SigningKey as DalekSigningKey};
+
+    /// Build a `(did, signer)` pair from a fixed 32-byte seed.
+    fn test_identity() -> (String, DalekSigningKey) {
+        let raw = DalekSigningKey::from_bytes(&[42u8; 32]);
+        let pk = raw.verifying_key().to_bytes();
+        let multikey =
+            [&[0xed, 0x01][..], &pk[..]].concat();
+        let did = format!(
+            "did:key:z{}",
+            bs58::encode(&multikey).into_string());
+        (did, raw)
+    }
+
+    /// Construct a proof with the given options, signing it
+    /// correctly over the given body.
+    fn signed_proof(
+        options: Value,
+        body: &Value,
+        signer: &DalekSigningKey,
+    ) -> Value {
+        let options_jcs = serde_jcs::to_vec(&options).unwrap();
+        let body_jcs = serde_jcs::to_vec(body).unwrap();
+        let mut payload = Vec::with_capacity(64);
+        payload.extend_from_slice(&Sha256::digest(&options_jcs));
+        payload.extend_from_slice(&Sha256::digest(&body_jcs));
+        let sig = signer.sign(&payload);
+        let pv = format!(
+            "z{}",
+            bs58::encode(sig.to_bytes()).into_string());
+        let mut proof = options;
+        proof["proofValue"] = serde_json::json!(pv);
+        proof
+    }
+
+    fn default_options(did: &str) -> Value {
+        serde_json::json!({
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-11-15T00:00:00Z",
+            "verificationMethod": format!("{did}#{did}"),
+            "proofPurpose": "assertionMethod",
+        })
+    }
+
+    fn default_body(did: &str) -> Value {
+        serde_json::json!({"kind": "test", "actor": did})
+    }
+
+    #[test]
+    fn valid_proof_verifies() {
+        let (did, signer) = test_identity();
+        let body = default_body(&did);
+        let proof = signed_proof(
+            default_options(&did), &body, &signer);
+        assert!(verify_proof(&body, &proof, &did).is_ok());
+    }
+
+    #[test]
+    fn wrong_type_rejected() {
+        let (did, signer) = test_identity();
+        let body = default_body(&did);
+        let mut opts = default_options(&did);
+        opts["type"] = serde_json::json!("SomeOtherProof");
+        let proof = signed_proof(opts, &body, &signer);
+        let err = verify_proof(&body, &proof, &did)
+            .unwrap_err();
+        assert!(err.contains("proof.type"), "got: {err}");
+    }
+
+    #[test]
+    fn wrong_cryptosuite_rejected() {
+        let (did, signer) = test_identity();
+        let body = default_body(&did);
+        let mut opts = default_options(&did);
+        opts["cryptosuite"] =
+            serde_json::json!("eddsa-rdfc-2022");
+        let proof = signed_proof(opts, &body, &signer);
+        let err = verify_proof(&body, &proof, &did)
+            .unwrap_err();
+        assert!(err.contains("cryptosuite"), "got: {err}");
+    }
+
+    #[test]
+    fn wrong_purpose_rejected() {
+        let (did, signer) = test_identity();
+        let body = default_body(&did);
+        let mut opts = default_options(&did);
+        opts["proofPurpose"] = serde_json::json!("authentication");
+        let proof = signed_proof(opts, &body, &signer);
+        let err = verify_proof(&body, &proof, &did)
+            .unwrap_err();
+        assert!(err.contains("proofPurpose"), "got: {err}");
+    }
+
+    #[test]
+    fn missing_type_rejected() {
+        let (did, signer) = test_identity();
+        let body = default_body(&did);
+        let mut opts = default_options(&did);
+        opts.as_object_mut().unwrap().remove("type");
+        let proof = signed_proof(opts, &body, &signer);
+        let err = verify_proof(&body, &proof, &did)
+            .unwrap_err();
+        assert!(err.contains("proof.type"), "got: {err}");
+    }
+
+    #[test]
+    fn missing_cryptosuite_rejected() {
+        let (did, signer) = test_identity();
+        let body = default_body(&did);
+        let mut opts = default_options(&did);
+        opts.as_object_mut().unwrap().remove("cryptosuite");
+        let proof = signed_proof(opts, &body, &signer);
+        let err = verify_proof(&body, &proof, &did)
+            .unwrap_err();
+        assert!(err.contains("cryptosuite"), "got: {err}");
+    }
+
+    #[test]
+    fn missing_purpose_rejected() {
+        let (did, signer) = test_identity();
+        let body = default_body(&did);
+        let mut opts = default_options(&did);
+        opts.as_object_mut().unwrap().remove("proofPurpose");
+        let proof = signed_proof(opts, &body, &signer);
+        let err = verify_proof(&body, &proof, &did)
+            .unwrap_err();
+        assert!(err.contains("proofPurpose"), "got: {err}");
+    }
+
+    #[test]
+    fn missing_created_rejected() {
+        let (did, signer) = test_identity();
+        let body = default_body(&did);
+        let mut opts = default_options(&did);
+        opts.as_object_mut().unwrap().remove("created");
+        let proof = signed_proof(opts, &body, &signer);
+        let err = verify_proof(&body, &proof, &did)
+            .unwrap_err();
+        assert!(err.contains("created"), "got: {err}");
+    }
+
+    #[test]
+    fn tampered_signature_rejected() {
+        let (did, signer) = test_identity();
+        let body = default_body(&did);
+        let mut proof = signed_proof(
+            default_options(&did), &body, &signer);
+        // Overwrite proofValue with 64 zero bytes, base58.
+        let zeros = bs58::encode([0u8; 64]).into_string();
+        proof["proofValue"] =
+            serde_json::json!(format!("z{zeros}"));
+        let err = verify_proof(&body, &proof, &did)
+            .unwrap_err();
+        assert!(err.contains("signature"), "got: {err}");
+    }
+
+    #[test]
+    fn wrong_did_rejected() {
+        let (did, signer) = test_identity();
+        let body = default_body(&did);
+        let proof = signed_proof(
+            default_options(&did), &body, &signer);
+        // Verify against a *different* DID
+        let (other_did, _) = {
+            let raw = DalekSigningKey::from_bytes(&[99u8; 32]);
+            let pk = raw.verifying_key().to_bytes();
+            let mk = [&[0xed, 0x01][..], &pk[..]].concat();
+            (format!("did:key:z{}",
+                bs58::encode(&mk).into_string()), raw)
+        };
+        let err = verify_proof(&body, &proof, &other_did)
+            .unwrap_err();
+        assert!(err.contains("verificationMethod"),
+            "got: {err}");
+    }
+}

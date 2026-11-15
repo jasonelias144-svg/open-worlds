@@ -29,7 +29,7 @@ In the founder's words (STATUS.md, "Decided", 2026-11-14):
 - On change: "nothing set in stone yet, let’s explore different ideas.
   [...] it may differ by world". How a world may change (not at all, in
   place, by branching, sandboxed) is left open, and may differ by world.
-- On language, later the same night, to DeepSeek (record 012-06-02, as
+- On language, after that evening, to DeepSeek (record 012-06-02, as
   extended on 2026-11-15, line 52822): "My preference would be to move to
   Rust, I only wanted us to transition naturally, as we are doing now.
   Let’s move forward in Rust, or other languages when needed, but

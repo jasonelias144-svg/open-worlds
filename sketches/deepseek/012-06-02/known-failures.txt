@@ -9,11 +9,19 @@
 # So the list is always true. The text after "  # " is the error.
 
 # Test files that do not load
+rust/ur-world/examples/test_verify_garden.py  # ImportError: cannot import name 'check_proof_metadata' from 'verify_garden' (rust/ur-world/examples/verify_garden.py)
 test_chess_individual.py  # ModuleNotFoundError: No module named 'chess'
 test_gallery_meta_coupling.py  # ModuleNotFoundError: No module named 'multiverse_utils_sig'
 test_lifetime.py  # ImportError: cannot import name '_entry_hash' from 'lifetime' (lifetime.py)
+test_map_explain.py  # NameError: name 'dataclass' is not defined
+test_map_governance.py  # NameError: name 'dataclass' is not defined
+test_map_recursive.py  # NameError: name 'dataclass' is not defined
+test_map_world.py  # NameError: name 'dataclass' is not defined
+test_microverse.py  # ImportError: cannot import name '_canonical' from 'multiverse_c13' (../012-04-00/multiverse_c13.py)
 test_signed_world_log.py  # ModuleNotFoundError: No module named 'chess'
 test_unified_individual.py  # ModuleNotFoundError: No module named 'chess'
+test_unified_resume.py  # ModuleNotFoundError: No module named 'chess'
+test_ur_garden.py  # ImportError: cannot import name '_PHRASES' from 'garden_adapter' (garden_adapter.py)
 test_world_adapters.py  # ModuleNotFoundError: No module named 'chess'
 
 # Tests that fail

@@ -1,0 +1,93 @@
+impl TinyRnnMind {
+    fn choose_direction(
+        &self,
+        pos: Cell,
+        plants: &[(String, Cell)],
+        whispers: &[WhisperRecord],
+        size: [i64; 3],
+    ) -> Direction {
+        // 1. Whisper-guided target: the most recent whisper
+        //    that mentions a plant by ID wins.
+        let mut whispered_target: Option<Cell> = None;
+        for w in whispers.iter().rev() {
+            for (id, p) in plants {
+                if w.text.contains(id.as_str()) {
+                    whispered_target = Some(*p);
+                    break;
+                }
+            }
+            if whispered_target.is_some() {
+                break;
+            }
+        }
+
+        // 2. Fallback: nearest plant (as before).
+        let target = whispered_target.or_else(|| {
+            plants.iter()
+                .min_by_key(|(_, p)| p.distance(&pos))
+                .map(|(_, p)| *p)
+        });
+
+        // 3. Same stepping logic as before, but toward `target`.
+        let step = |d: Direction| -> Option<Cell> {
+            let (dx, dy, dz) = d.delta();
+            let c = Cell {
+                x: pos.x + dx, y: pos.y + dy, z: pos.z + dz,
+            };
+            if c.x < 0 || c.x >= size[0]
+                || c.y < 0 || c.y >= size[1]
+                || c.z < 0 || c.z >= size[2]
+            {
+                return None;
+            }
+            if plants.iter().any(|(_, p)| *p == c) {
+                return None;
+            }
+            Some(c)
+        };
+
+        if let Some(t) = target {
+            if t.distance(&pos) > 1 {
+                let dx = t.x - pos.x;
+                let dy = t.y - pos.y;
+                let primary = if dx != 0 {
+                    if dx > 0 { Direction::East } else { Direction::West }
+                } else if dy > 0 {
+                    Direction::South
+                } else {
+                    Direction::North
+                };
+                let secondary = if dy != 0 {
+                    if dy > 0 { Direction::South } else { Direction::North }
+                } else if dx > 0 {
+                    Direction::East
+                } else {
+                    Direction::West
+                };
+                for d in [primary, secondary] {
+                    if let Some(c) = step(d) {
+                        if !self.visited.contains(&(c.x, c.y, c.z)) {
+                            return d;
+                        }
+                    }
+                }
+            }
+        }
+        // ... unvisited-then-any fallback unchanged ...
+        for d in [Direction::North, Direction::East,
+                   Direction::South, Direction::West] {
+            if let Some(c) = step(d) {
+                if !self.visited.contains(&(c.x, c.y, c.z)) {
+                    return d;
+                }
+            }
+        }
+        for d in [Direction::North, Direction::East,
+                   Direction::South, Direction::West] {
+            if step(d).is_some() {
+                return d;
+            }
+        }
+        Direction::North
+    }
+}

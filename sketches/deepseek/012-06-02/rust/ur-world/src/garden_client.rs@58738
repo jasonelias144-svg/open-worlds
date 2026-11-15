@@ -1,0 +1,93 @@
+pub struct GardenClient {
+    base_url: String,
+    agent_key: SigningKey,
+    agent_did: String,
+    garden_size: [i64; 3],
+    last_log_tick: Option<u64>,   // NEW
+    whisper_ttl_cycles: u64,       // NEW (default 10)
+}
+
+impl GardenClient {
+    pub fn new(base_url: String, agent_key: SigningKey) -> Self {
+        let agent_did = agent_key.did();
+        Self {
+            base_url: base_url.trim_end_matches('/').to_string(),
+            agent_key, agent_did,
+            garden_size: [9, 8, 1],
+            last_log_tick: None,
+            whisper_ttl_cycles: 10,
+        }
+    }
+
+    pub fn observe(&mut self) -> Result<Observation, String> {
+        // 1. Current state (O(plants + agents))
+        let state = self.get("/state")?;
+
+        // 2. Current cycle (for whisper TTL)
+        let current_cycle = state.get("cycle")
+            .and_then(|v| v.as_u64())
+            .unwrap_or(0);
+
+        // 3. Incremental log delta (O(new entries))
+        let slice = self.log_since(self.last_log_tick)?;
+
+        // 4. Extract whispers from the delta, filtered:
+        //    - broadcast (to: null) OR targeted to me
+        //    - within TTL
+        let mut whispers: Vec<WhisperRecord> = Vec::new();
+        for entry in &slice.entries {
+            let Some(body) = entry.get("body") else { continue };
+            if body.get("kind").and_then(|v| v.as_str())
+                != Some("keeper_whisper")
+            {
+                continue;
+            }
+            // Freshness: whisper cycle >= current_cycle - TTL
+            let cycle = body.get("cycle")
+                .and_then(|v| v.as_u64()).unwrap_or(0);
+            if current_cycle.saturating_sub(cycle)
+                > self.whisper_ttl_cycles
+            {
+                continue;
+            }
+            // Addressee
+            let to = match body.get("to") {
+                Some(Value::Null) | None => None,
+                Some(Value::String(s)) => Some(s.clone()),
+                _ => continue,
+            };
+            if let Some(ref target) = to {
+                if target != &self.agent_did {
+                    continue;  // not for me
+                }
+            }
+            let text = body.get("text")
+                .and_then(|v| v.as_str())
+                .unwrap_or("")
+                .to_string();
+            whispers.push(WhisperRecord { to, text, cycle });
+        }
+        self.last_log_tick = slice.last_tick;
+
+        // 5. Build the observation (same parsing as before,
+        //    plus whispers).
+        let garden_size = parse_garden_size(&state)
+            .unwrap_or([9, 8, 1]);
+        let (my_pos, others) = parse_agents(&state, &self.agent_did)?;
+        let nearby_agents: Vec<String> = others.iter()
+            .filter(|(_, p)| p.distance(&my_pos) <= 2)
+            .map(|(did, _)| did.clone())
+            .collect();
+        let plants = parse_plants(&state);
+
+        Ok(Observation {
+            position: my_pos,
+            last_action: 0,
+            last_reward_micros: 0,
+            plants,
+            nearby_agents,
+            garden_size,
+            whispers,
+        })
+    }
+}

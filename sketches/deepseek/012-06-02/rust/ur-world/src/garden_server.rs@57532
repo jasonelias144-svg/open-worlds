@@ -1,0 +1,1 @@
+(Method::Get, "/state") => self.get_state(),

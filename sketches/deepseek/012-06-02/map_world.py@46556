@@ -1,0 +1,48 @@
+if url.path.startswith("/pin/"):
+    from urllib.parse import parse_qs
+    world_id = url.path[len("/pin/"):]
+    qs = parse_qs(url.query)
+    try:
+        depth = int(qs.get("depth", ["0"])[0])
+    except ValueError:
+        depth = 0
+    visited_raw = qs.get("visited", [""])[0]
+    visited = (set(visited_raw.split(","))
+                if visited_raw else set())
+    want_trace = qs.get("trace", ["0"])[0] == "1"
+    try:
+        result, trace = _resolve_impl(
+            server._mv_map, world_id,
+            visited=visited, depth=depth,
+            fetch_live=True, want_trace=want_trace)
+        if result is None:
+            result = {
+                "world_id": world_id,
+                "status": "not_registered",
+                "via": [],
+            }
+        if want_trace:
+            result["trace"] = trace
+        self._json(200, result)
+    except Exception as e:
+        self._json(500, {"error": str(e)})
+    return
+
+if url.path.startswith("/explain/"):
+    target = url.path[len("/explain/"):]
+    try:
+        result, trace = _explain_resolve(
+            server._mv_map, target, fetch_live=True)
+        payload = {
+            "target": target,
+            "found": result is not None,
+            "trace": trace,
+        }
+        if result is not None:
+            payload["via"] = result.get("via", [])
+            payload["url"] = result.get("url")
+            payload["status"] = result.get("status")
+        self._json(200, payload)
+    except Exception as e:
+        self._json(500, {"error": str(e)})
+    return

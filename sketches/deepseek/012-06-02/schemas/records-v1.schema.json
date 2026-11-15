@@ -1,0 +1,100 @@
+{
+  "$defs": {
+    "GardenCuratorProposal": {
+      "type": "object",
+      "properties": {
+        "kind": { "const": "garden_curator_proposal" },
+        "curator_did": {
+          "type": "string",
+          "pattern": "^did:key:z[1-9A-HJ-NP-Za-km-z]+$"
+        },
+        "cycle": { "type": "integer", "minimum": 0 },
+        "proposal": { "$ref": "#/$defs/GardenProposal" },
+        "proof": { "$ref": "#/$defs/DataIntegrityProof" }
+      },
+      "required": ["kind", "curator_did", "cycle", "proposal", "proof"],
+      "additionalProperties": false
+    },
+    "GardenProposal": {
+      "oneOf": [
+        { "$ref": "#/$defs/GardenProposalMovePlant" },
+        { "$ref": "#/$defs/GardenProposalAddPlant" },
+        { "$ref": "#/$defs/GardenProposalRetirePlant" },
+        { "$ref": "#/$defs/GardenProposalInvite" },
+        { "$ref": "#/$defs/GardenProposalWhisper" }
+      ]
+    },
+    "GardenProposalMovePlant": {
+      "type": "object",
+      "properties": {
+        "proposal_type": { "const": "move_plant" },
+        "plant_id": { "type": "string", "minLength": 1 },
+        "to": {
+          "type": "array",
+          "items": { "type": "integer" },
+          "minItems": 3, "maxItems": 3
+        }
+      },
+      "required": ["proposal_type", "plant_id", "to"],
+      "additionalProperties": false
+    },
+    "GardenProposalAddPlant": {
+      "type": "object",
+      "properties": {
+        "proposal_type": { "const": "add_plant" },
+        "plant_id": { "type": "string", "minLength": 1 },
+        "kind": { "type": "string", "enum": ["fern", "tree", "vine"] },
+        "at": {
+          "type": "array",
+          "items": { "type": "integer" },
+          "minItems": 3, "maxItems": 3
+        }
+      },
+      "required": ["proposal_type", "plant_id", "kind", "at"],
+      "additionalProperties": false
+    },
+    "GardenProposalRetirePlant": {
+      "type": "object",
+      "properties": {
+        "proposal_type": { "const": "retire_plant" },
+        "plant_id": { "type": "string", "minLength": 1 },
+        "reason": { "type": "string" }
+      },
+      "required": ["proposal_type", "plant_id", "reason"],
+      "additionalProperties": false
+    },
+    "GardenProposalInvite": {
+      "type": "object",
+      "properties": {
+        "proposal_type": { "const": "invite" },
+        "agent_a": { "type": "string" },
+        "agent_b": { "type": "string" },
+        "at": {
+          "type": "array",
+          "items": { "type": "integer" },
+          "minItems": 3, "maxItems": 3
+        }
+      },
+      "required": ["proposal_type", "agent_a", "agent_b", "at"],
+      "additionalProperties": false
+    },
+    "GardenProposalWhisper": {
+      "type": "object",
+      "properties": {
+        "proposal_type": { "const": "whisper" },
+        "to": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "string" }
+          ]
+        },
+        "text": { "type": "string", "minLength": 1 }
+      },
+      "required": ["proposal_type", "to", "text"],
+      "additionalProperties": false
+    }
+  },
+  "oneOf": [
+    { "$ref": "#/$defs/GardenCuratorProposal" }
+  ]
+}

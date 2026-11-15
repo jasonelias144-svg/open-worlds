@@ -1,0 +1,25 @@
+// After the 10 Mind steps and one advance_cycle:
+
+let mut c2 = GardenClient::new(
+    "http://127.0.0.1:8765".to_string(),
+    SigningKey::generate(),
+);
+// Bootstrap: everything so far
+let first = c2.log_since(None).expect("first log read");
+println!("first read: {} entries, last_tick = {:?}",
+    first.entries.len(), first.last_tick);
+
+// Ten more observations
+for _ in 0..10 {
+    let obs = c2.observe().expect("observe");
+    let action = ur_world::garden::GardenAction::Observe;
+    let _ = c2.act(action);
+    let _ = obs; // consumed
+}
+
+// Incremental: only new entries
+let second = c2.log_since(first.last_tick)
+    .expect("incremental read");
+println!("incremental read: {} new entries",
+    second.entries.len());
+assert!(!second.entries.is_empty());

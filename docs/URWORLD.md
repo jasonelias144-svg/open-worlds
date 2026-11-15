@@ -21,10 +21,12 @@ one picture added on 2026-11-15:
 
 - **A garden of hosted fractal worlds** (2026-11-15, to DeepSeek, record
   012-06-02): "This is exactly how I envisioned the Ur-world, ALICE and
-  BOB is a microverse garden of hosted fractal worlds." The plants in the
-  garden are small primary worlds, each with its own key and log, hosted
-  by the Ur-world (FRACTALS.md, part 3, which also says how this meets
-  "Once we work out that world, we can begin creating subworlds", below).
+  BOB is a microverse garden of hosted fractal worlds." The technical
+  lead's reading, put to the founder (it stands unless the founder
+  answers otherwise): the plants in the garden are small primary worlds,
+  each with its own key and log, hosted by the Ur-world (FRACTALS.md,
+  part 3, which also says how this meets "Once we work out that world,
+  we can begin creating subworlds", below).
 
 - **One main world first.** "We create one central world that is the first
   main world and one that connects with all other worlds, a multiverse lobby

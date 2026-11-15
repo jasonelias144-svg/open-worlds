@@ -16,7 +16,7 @@ message; the rest is DeepSeek's reply.
 | [012-04-00, Patterns and Multiverses](records/012-04-00-DPSK-Patterns_Multiverses.txt) | The multiverse sketch, components 1 to 63, complete. It ends with DeepSeek proposing component 64, a specification for a first live federation | 70,958 | `6a348012fe321fc758f37f8a7625cc124872f4806beef6096ad475081d409387` |
 | [012-05-01, Patterns and Multiverses, continued](records/012-05-01-DPSK-Patterns_Multiverses.txt) | The multiverse sketch, components 64 to 87: a live federation and its tools, then the founder's turn to game worlds (a chess park, worlds inside worlds, worlds that grow and govern themselves, a world that keeps running) | 28,540 | `758c3e3e26eafb77d934251595b0696ba1e75d83f346f69cf3978e02c52bdee5` |
 | [012-03-02, Patterns, Texts and Inventions](records/012-03-02-DPSK-Patterns_Texts_and_Inventions.txt) | The poetry engine and its curriculum, which the multiverse sketch builds on | 23,426 | `978eac920205ec2b487efc33f927dfd62da95b12ad78f1760fef9277b74908de` |
-| [012-06-02, Patterns and Multiverses, a new cycle](records/012-06-02-DPSK-Patterns_Multiverses.txt) | After reading `docs/COLLABORATING.md`, proposals for steps ahead: fractal worlds, a hierarchy of worlds, branching, a gallery of worlds and its governance; then the smallest learner that chooses, and individuals as signed, replayable bundles across worlds. It ends with DeepSeek asking which piece is next | 43,170 | `15d51e1cd49162e7e85fc633a07be049a8608cb7f372c8371c2e96a95efa45db` |
+| [012-06-02, Patterns and Multiverses, a new cycle](records/012-06-02-DPSK-Patterns_Multiverses.txt) | After reading `docs/COLLABORATING.md`, proposals for steps ahead: fractal worlds, a hierarchy of worlds, branching, a gallery of worlds and its governance; then the smallest learner that chooses, and individuals as signed, replayable bundles across worlds. Continued (from line 43168, shared on 2026-11-15): a multiversal map and an individual's worldline, a look at games, a microverse, the Ur-world as a garden of hosted fractal worlds, and the move to Rust: an Ur-garden, its keeper, a server, and verifiers in Rust, Python and Node.js. It ends with DeepSeek asking which piece is next | 62,610 | `979f7eef52c10396a682e2fcc0a4e76e1b5d0080b23a71ef22734f265ef0343c` |
 
 ## Links from the records
 
@@ -285,8 +285,9 @@ that way). As written, 296 passed and 301 failed, 236 of them for one
 missing method, `to_dict` on `coupled_learners.py`'s `Transform` (fix
 11).
 
-All 99 code blocks in the record are written out, each as a file; 21 of
-them are later additions or demos, kept as `name@LINE`.
+All 99 code blocks of the record's first part (to line 43168) are
+written out, each as a file; 21 of them are later additions or demos,
+kept as `name@LINE`.
 
 The founder's messages in this record, with their line numbers, are in
 [STATUS.md](../STATUS.md) ("Decided", 2026-11-14), with where they meet
@@ -298,6 +299,54 @@ kind (4568, 5682) and of chaos, where choice enters (8231); two worlds
 interacting (9759); continuing in Python after looking at the Rust code
 (11099); and the smallest model that chooses and learns, taken as the
 atomic model (18688, 19389).
+
+### The record continued (2026-11-15)
+
+The founder went back to DeepSeek, and the record was shared again,
+longer: its first 43,170 lines are the same, byte for byte, and 19,440
+more follow. The pieces go on from 40. "Tests as written": the new
+Python test files, all as written; the Rust and the JavaScript are kept
+as written, and nothing builds or runs them here (open-worlds' own Rust
+is in `rust/`). DeepSeek says so too: it "can't run cargo build in this
+conversation", and its Rust "may not compile as-is".
+
+| # | What it is | Line | Tests as written | Course | In open-worlds |
+|---|---|---|---|---|---|
+| 40 | Resuming an individual who lived in several kinds of world (additions to `unified_individual.py` and `lifetime.py`) | 43182 | `test_unified_resume.py` doesn't load: needs `python-chess` | 7 (memory), in part | no |
+| 41 | A multiversal map: a map that pins worlds and other maps, and routes a visitor across federations (`map_world.py`) | 44241 | `test_map_world.py` doesn't load: `map_world.py` is written as additions to a module that isn't there, and uses `dataclass` without importing it; and the tests import `lobby_server`, which no record defines | the fractal track's web app, topic 16 (the map) | no |
+| 42 | An individual's worldline: their path through worlds, read from the maps (`worldline.py`) | 44332 | in `test_map_world.py` | topic 16; 9 (legends pages), in part | no |
+| 43 | Maps within maps, resolved recursively | 45552 | `test_map_recursive.py` doesn't load, as 41 | topic 16 ("maps nest") | no |
+| 44 | A map that explains its route | 46407 | `test_map_explain.py` doesn't load, as 41 | topic 16 | no |
+| 45 | A map that governs itself: world-keys, signed pins, a registry rebuilt from its log (`map_governance.py`) | 47266 | `test_map_governance.py` doesn't load, as 41 | topic 16; 4 (grants) | no |
+| 46 | A look at games, at the founder's request: characters that grow, a keeper as a director above the game, escape rooms and Myst as puzzle graphs, worlds as places to learn | 48569 | prose, no code; its sources are DeepSeek's searches, not checked here | 5 (the sheet), 11 (the hunt, the AI Keeper) | no |
+| 47 | A microverse: a small social world that hosts fractal worlds and gives them time (`microverse.py`, `microverse_adapter.py`) | 48695 | `test_microverse.py` doesn't load: it reaches `signed_world_log.py`, which imports `_canonical` from `multiverse_c13` (record 012-04-00), which doesn't define it | the fractal track, part 3 | no |
+| 48 | The Ur-garden in Python: the Ur-world as a microverse garden, ALICE and BOB walking among plants (`ur_garden.py`, `garden_adapter.py`, rewritten at 51459 and 51871) | 50117 | `test_ur_garden.py` doesn't load: imports `_PHRASES` from `garden_adapter.py`, which doesn't define it | the fractal track, part 3; 9 (ALICE and BOB) | no; the Ur-world's garden (`rust/ur-world`) is ours |
+| 49 | The Ur-garden in Rust: the garden as the Ur-world's world, residents as minds (`rust/ur-world/src/garden.rs`, `garden/mind.rs`) | 52842 | not built; against today's `rust/` crates, `garden.rs` alone has 19 compile errors: it assumes key and proof types our `formats` crate doesn't have, and crates our workspace doesn't use | the fractal track, part 3 (an input) | no |
+| 50 | Shared test vectors for the garden (`vectors/garden_reference.json` and its generator) | 53807 | not run | 2 (shared vectors) | the practice is ours (`vectors/`), these vectors aren't |
+| 51 | The garden's keeper: observes, proposes, never applies its own proposals; a typed proposal record (`garden_curator.rs`) | 54430 | not built | 11 (the Keeper), and ADMIN's "suggest, never make" | no |
+| 52 | The smallest learner in Rust, as a resident (`garden/rnn.rs`, `garden/rnn_mind.rs`) | 55689 | not built | the fractal track, part 5 | no |
+| 53 | The garden as a server and a client, and reading its log a piece at a time (`garden_server.rs`, `garden_client.rs`) | 56592 | not built | 12 (the world protocol in Rust); the web app | no |
+| 54 | A keeper's whisper: a keeper's message, signed, in the public log (`keeper_whisper.rs`) | 58040 | not built | 11 (the line to a Keeper, which is public) | no |
+| 55 | The keeper's loop: the garden runs itself, its keeper proposing as it goes (`examples/garden_curator_loop.rs`) | 59170 | not built | 11 | no |
+| 56 | Checking a garden from outside, in Rust and Python (`examples/verify_garden.rs`, `verify_garden.py`) | 59641 | `rust/ur-world/examples/test_verify_garden.py` doesn't load: imports `check_proof_metadata`, which `verify_garden.py` doesn't define | 2; the web app (the page checks a log) | partly: a log's chain and its arrivals are checked by `world-log` and `rust/ur-world` |
+| 57 | Proof cases every language must agree on (`vectors/proof_cases.json`, and runners in Rust and Python) | 61460 | not run | 2 (shared vectors) | the practice is ours, these cases aren't |
+| 58 | A Node.js verifier (`examples/verify_garden.mjs`, `verify_proof_offline.mjs`, `package.json`), the founder's choice ("I would go with the Node.js verifier first") | 61995 | not run: its packages aren't installed here, and wouldn't be without a review and exact pins | the fractal track, part 2 (the web app checks logs in the page) | no |
+
+126 code blocks of the continuation are written out as files: 64 in
+Rust, 47 in Python, and JSON, JavaScript, TOML and Makefiles. 17 Python
+blocks are left in the record, where DeepSeek drafts and redrafts a
+piece within one answer (lines 50890 to 51406), and so is a shell block
+of commands (62525).
+
+The founder's messages in the continuation are in
+[STATUS.md](../STATUS.md) ("Decided", 2026-11-15), as the founder's rule
+on changes of mind asks. In short: the map across federations first, then
+an individual's worldline (44227); maps within maps (45540); a look at
+games, keepers, escape rooms and learning (48569); the microverse as a
+world type (48626), hosting fractal worlds (48677); "This is exactly how
+I envisioned the Ur-world, ALICE and BOB is a microverse garden of
+hosted fractal worlds" (50034); "primarily to Rust" (52822); and the
+Node.js verifier first (61985).
 
 ## Record 012-03-02, component by component
 

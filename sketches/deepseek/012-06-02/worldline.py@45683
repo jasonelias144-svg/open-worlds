@@ -1,0 +1,30 @@
+def annotate_worldline(
+    map_world, summary, fetch_live: bool = True,
+) -> AnnotatedWorldline:
+    from map_world import _recursive_resolve
+
+    annotated = []
+    for v in summary.visits:
+        entry = v.to_dict()
+        result = _recursive_resolve(
+            map_world, v.world_id, fetch_live=fetch_live)
+        if result is None:
+            entry["in_this_map"] = False
+            entry["cluster"] = None
+            entry["resolved_via"] = None
+            entry["current_status"] = "not_registered"
+        else:
+            entry["in_this_map"] = result.get(
+                "in_this_map", False)
+            entry["cluster"] = result.get("cluster")
+            via = result.get("via", [])
+            entry["resolved_via"] = via if via else None
+            entry["current_status"] = result.get(
+                "status", "not_registered")
+            if result.get("status") == "live":
+                entry["current_lobby_hash"] = \
+                    result.get("lobby_hash")
+                entry["current_lobby_ts"] = \
+                    result.get("lobby_ts")
+        annotated.append(entry)
+    # ... same signing as before ...

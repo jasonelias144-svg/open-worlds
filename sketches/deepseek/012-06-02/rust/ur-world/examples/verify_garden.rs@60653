@@ -1,0 +1,89 @@
+const PROOF_TYPE: &str = "DataIntegrityProof";
+const PROOF_CRYPTOSUITE: &str = "eddsa-jcs-2022";
+const PROOF_PURPOSE: &str = "assertionMethod";
+
+fn check_proof_metadata(proof: &Value) -> Result<(), String> {
+    // 1. type
+    let ptype = proof.get("type").and_then(|v| v.as_str())
+        .ok_or("proof missing 'type'")?;
+    if ptype != PROOF_TYPE {
+        return Err(format!(
+            "proof.type must be {PROOF_TYPE:?}, got {ptype:?}"));
+    }
+    // 2. cryptosuite
+    let suite = proof.get("cryptosuite").and_then(|v| v.as_str())
+        .ok_or("proof missing 'cryptosuite'")?;
+    if suite != PROOF_CRYPTOSUITE {
+        return Err(format!(
+            "cryptosuite must be {PROOF_CRYPTOSUITE:?}, \
+             got {suite:?}"));
+    }
+    // 3. proofPurpose — must be an assertion, not
+    //    authentication, keyAgreement, etc.
+    let purpose = proof.get("proofPurpose")
+        .and_then(|v| v.as_str())
+        .ok_or("proof missing 'proofPurpose'")?;
+    if purpose != PROOF_PURPOSE {
+        return Err(format!(
+            "proofPurpose must be {PROOF_PURPOSE:?}, \
+             got {purpose:?}"));
+    }
+    // 4. created — require presence and rough ISO 8601 shape.
+    //    The garden always emits it; a proof without it is
+    //    malformed for our purposes.
+    let created = proof.get("created").and_then(|v| v.as_str())
+        .ok_or("proof missing 'created'")?;
+    if created.len() < 20 || !created.contains('T') {
+        return Err(format!(
+            "proof.created is not ISO 8601: {created:?}"));
+    }
+    Ok(())
+}
+
+fn verify_proof(
+    body: &Value, proof: &Value, expected_did: &str,
+) -> Result<(), String> {
+    // Metadata checks run *before* the cryptographic check —
+    // a malformed proof is rejected regardless of whether its
+    // signature happens to be valid.
+    check_proof_metadata(proof)?;
+
+    let proof_value = proof.get("proofValue")
+        .and_then(|v| v.as_str())
+        .ok_or("proof missing proofValue")?;
+    let Some(b58) = proof_value.strip_prefix('z') else {
+        return Err(format!(
+            "proofValue must be base58btc, got {proof_value:?}"));
+    };
+    let sig_bytes = bs58::decode(b58).into_vec()
+        .map_err(|e| format!("base58 proofValue: {e}"))?;
+    if sig_bytes.len() != 64 {
+        return Err(format!(
+            "signature length {} != 64", sig_bytes.len()));
+    }
+    let signature = Signature::from_slice(&sig_bytes)
+        .map_err(|_| "invalid signature bytes")?;
+
+    let vm = proof_verification_method(proof)?;
+    if vm != expected_did {
+        return Err(format!(
+            "verificationMethod {vm} != expected {expected_did}"));
+    }
+
+    let mut options_obj = proof.as_object()
+        .ok_or("proof is not an object")?.clone();
+    options_obj.remove("proofValue");
+    let options_jcs = serde_jcs::to_vec(
+        &Value::Object(options_obj))
+        .map_err(|e| format!("jcs options: {e}"))?;
+    let body_jcs = serde_jcs::to_vec(body)
+        .map_err(|e| format!("jcs body: {e}"))?;
+    let mut payload = Vec::with_capacity(64);
+    payload.extend_from_slice(&Sha256::digest(&options_jcs));
+    payload.extend_from_slice(&Sha256::digest(&body_jcs));
+
+    let vk = verifying_key_from_did(expected_did)?;
+    vk.verify(&payload, &signature)
+        .map_err(|_| "signature does not verify")?;
+    Ok(())
+}

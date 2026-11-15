@@ -1,0 +1,15 @@
+def petition(self, p):
+    if p.target is not None:
+        return self._route_to_pin(p)
+    if p.petitioner_token in self._admitted:
+        return Refusal(reason="Already admitted")
+    self._admitted[p.petitioner_token] = p.petitioner_name
+    self._append_log({
+        "kind": "admission",
+        "actor": p.petitioner_token,
+        "ts": _now(),
+    })
+    return Admission(
+        entity_id=self._manifest.entity_id, timestamp=_now())
+
+# _route_to_pin appends its log entry via _append_log too

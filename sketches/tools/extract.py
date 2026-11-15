@@ -37,9 +37,10 @@ import sys
 from typing import Dict, List
 
 CODE_LANGUAGES = {"python", "py", "typescript", "ts", "go", "makefile",
-                  "javascript", "js", "bash", "sh", "json", "toml", "yaml"}
+                  "javascript", "js", "bash", "sh", "json", "toml", "yaml",
+                  "rust", "rs"}
 _NAME = re.compile(r"((?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_-]+"
-                   r"\.(?:py|ts|go|js|json|toml|yml|yaml|mod|sh)|Makefile)\b")
+                   r"\.(?:py|ts|go|js|mjs|json|toml|yml|yaml|mod|sh|rs)|Makefile)\b")
 
 
 def read_lines(path: str) -> List[str]:

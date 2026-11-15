@@ -1,0 +1,23 @@
+// Keeper whispers through the garden
+{
+    use formats::records::{KeeperWhisperKindTag, KeeperWhisperPayload};
+    let payload = KeeperWhisperPayload {
+        kind: KeeperWhisperKindTag::KeeperWhisper,
+        keeper_did: keeper_did.clone(),
+        cycle: g.lock().unwrap().cycle,
+        to: None,
+        text: "come see the fern".into(),
+    };
+    let signed = payload.sign(&curator_key_for_whisper)
+        .expect("sign");
+    ureq::post("http://127.0.0.1:8765/keeper_whisper")
+        .send_json(serde_json::to_value(&signed).unwrap())
+        .expect("post whisper");
+}
+
+// Resident's next observation sees it
+let obs = client.observe().expect("observe");
+if !obs.whispers.is_empty() {
+    println!("resident heard: {:?}",
+        obs.whispers[0].text);
+}

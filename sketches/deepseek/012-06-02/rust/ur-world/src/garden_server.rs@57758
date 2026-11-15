@@ -1,0 +1,68 @@
+/// `since` semantics:
+///   absent  → return the entire log
+///   =N      → return entries with `tick > N` (i.e., "since the
+///             last tick I have")
+///
+/// The reason for `>` not `>=`: a client that has already seen
+/// tick N passes `since=N` and gets only the *new* entries.
+/// Bootstrapping is the absent case, which returns everything.
+fn get_log(&self, qs: &str, signed: bool)
+    -> Result<Response<std::io::Cursor<Vec<u8>>>, std::io::Error>
+{
+    let since = match parse_since(qs) {
+        Ok(s) => s,
+        Err(msg) => return Ok(json_error(StatusCode(400), &msg)),
+    };
+
+    let g = self.garden.lock().unwrap();
+    let total = g.log.len();
+    let entries: Vec<Value> = g.log.iter()
+        .filter(|e| match since {
+            None => true,
+            Some(t) => e.body.get("tick")
+                .and_then(|v| v.as_u64())
+                .map(|tick| tick > t)
+                .unwrap_or(false),
+        })
+        .map(|e| {
+            if signed {
+                json!({
+                    "body": e.body,
+                    "proof": e.proof,
+                    "prev": e.prev,
+                    "hash": e.hash,
+                })
+            } else {
+                json!({
+                    "body": e.body,
+                    "prev": e.prev,
+                    "hash": e.hash,
+                })
+            }
+        })
+        .collect();
+    let last_tick = entries.last()
+        .and_then(|v| v.get("body"))
+        .and_then(|b| b.get("tick"))
+        .and_then(|v| v.as_u64())
+        .or(since);
+    Ok(json_ok(&json!({
+        "entries": entries,
+        "since": since,
+        "total_in_garden": total,
+        "last_tick": last_tick,
+    })))
+}
+
+fn parse_since(qs: &str) -> Result<Option<u64>, String> {
+    if qs.is_empty() { return Ok(None); }
+    for pair in qs.split('&') {
+        let Some((k, v)) = pair.split_once('=') else { continue };
+        if k == "since" {
+            return v.parse::<u64>()
+                .map(Some)
+                .map_err(|_| format!("bad since: {v:?}"));
+        }
+    }
+    Ok(None)
+}

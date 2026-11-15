@@ -22,10 +22,10 @@ kept current with the course, as COLLABORATING.md is (AGENTS.md).
 - **Prose and designs** are as welcome as code: what you would build,
   why, and what could go wrong.
 - **Code:** each file whole, with its path on its first line, and its
-  tests; say what you ran and what you didn't. Python is fine for a
-  first sketch of anything; a world's kernel is built in Rust in the end
-  ("Code in Rust" in COLLABORATING.md), so say which parts are meant to
-  move there.
+  tests; say what you ran and what you didn't. Rust first, and another
+  language when the job needs it (the founder, 2026-11-15: "primarily to
+  Rust"); what you can't compile is compiled and tested here ("Code in
+  Rust" in COLLABORATING.md), so write against the current files.
 - **Anything recorded or signed** keeps the three rules: ASCII keys,
   integers within 2^53 - 1, and no floats (a quantity with a fraction is
   an integer in a stated unit, written as a UCUM code: `ms`, `10*-3`,

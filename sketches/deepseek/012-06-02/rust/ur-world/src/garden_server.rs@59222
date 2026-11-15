@@ -1,0 +1,52 @@
+/// Run the curator, record proposals, and (per policy)
+/// auto-broadcast whispers. Returns the number of proposals
+/// recorded. Never raises to the caller — logs to stderr.
+fn run_curator_loop(&self, g: &mut Garden) -> usize {
+    let proposals = self.curator.observe_and_propose(g);
+    let mut recorded = 0;
+    for p in proposals {
+        // Capture the whisper payload before moving `p` into
+        // the log.
+        let whisper_payload = match &p.payload.proposal {
+            formats::records::GardenProposal::Whisper { to, text } =>
+                Some((to.clone(), text.clone())),
+            _ => None,
+        };
+        if g.record_proposal(p).is_err() {
+            eprintln!("curator: record_proposal failed");
+            continue;
+        }
+        recorded += 1;
+
+        let should_broadcast = matches!(
+            self.keeper_policy,
+            KeeperPolicy::AutoBroadcastWhispers
+                | KeeperPolicy::AutoApplyAll,
+        );
+        if let (true, Some((to, text))) = (should_broadcast, whisper_payload) {
+            // Truncate at char boundary to respect schema max.
+            let text = if text.chars().count() > 200 {
+                text.chars().take(200).collect()
+            } else {
+                text
+            };
+            let payload = formats::records::KeeperWhisperPayload {
+                kind: formats::records::KeeperWhisperKindTag::KeeperWhisper,
+                keeper_did: g.curator_did.clone(),
+                cycle: g.cycle,
+                to,
+                text,
+            };
+            let key = g.curator_key.clone();
+            match payload.sign(&key) {
+                Ok(signed) => {
+                    if g.keeper_whisper(signed).is_err() {
+                        eprintln!("curator: keeper_whisper failed");
+                    }
+                }
+                Err(_) => eprintln!("curator: sign whisper failed"),
+            }
+        }
+    }
+    recorded
+}

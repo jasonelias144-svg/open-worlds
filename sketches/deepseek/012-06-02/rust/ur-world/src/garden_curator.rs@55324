@@ -1,0 +1,84 @@
+// rust/ur-world/src/garden_curator.rs — updated signatures
+
+use formats::records::{
+    GardenCuratorProposalPayload, GardenProposal,
+    GardenProposalKindTag, SignedGardenCuratorProposal,
+};
+
+impl GardenCurator {
+    pub fn propose(
+        &self, obs: &CuratorObservation,
+    ) -> Vec<GardenProposal> {
+        // ... same body, but GardenProposal is the formats type
+        let mut out: Vec<GardenProposal> = Vec::new();
+
+        for p in &obs.plants {
+            if p.observations_recent < self.isolated_plant_threshold {
+                out.push(GardenProposal::Whisper {
+                    to: None,
+                    text: format!(
+                        "the {} at ({}, {}) has been quiet",
+                        plant_kind_str(p.kind),
+                        p.position.x, p.position.y,
+                    ),
+                });
+            }
+        }
+
+        for a in &obs.agents {
+            if a.observation_count_recent
+                    < self.isolated_agent_threshold
+                && a.nearby_agents.is_empty()
+            {
+                if let Some(other) = obs.agents.iter()
+                    .find(|o| o.did != a.did)
+                {
+                    let mx = (a.position.x + other.position.x) / 2;
+                    let my = (a.position.y + other.position.y) / 2;
+                    if mx != a.position.x || my != a.position.y {
+                        out.push(GardenProposal::Invite {
+                            agent_a: a.did.clone(),
+                            agent_b: other.did.clone(),
+                            at: [mx, my, 0],
+                        });
+                    }
+                }
+            }
+        }
+
+        for a in &obs.agents {
+            if a.speech_count_recent
+                    >= self.unheard_speech_threshold
+                && a.heard_count_recent == 0
+            {
+                out.push(GardenProposal::Whisper {
+                    to: Some(a.did.clone()),
+                    text: "perhaps walk toward the other to be heard".into(),
+                });
+            }
+        }
+
+        out
+    }
+
+    /// Produce signed records — the payload + proof — one per
+    /// proposal. Callers append these via `record_proposal`.
+    pub fn observe_and_propose(
+        &self, garden: &Garden,
+    ) -> Vec<SignedGardenCuratorProposal> {
+        let obs = self.observe(garden);
+        self.propose(&obs)
+            .into_iter()
+            .map(|p| {
+                let payload = GardenCuratorProposalPayload {
+                    kind: GardenProposalKindTag::GardenCuratorProposal,
+                    curator_did: self.curator_did.clone(),
+                    cycle: obs.cycle,
+                    proposal: p,
+                };
+                payload.sign(&self.curator_key)
+                    .expect("signing should not fail")
+            })
+            .collect()
+    }
+}

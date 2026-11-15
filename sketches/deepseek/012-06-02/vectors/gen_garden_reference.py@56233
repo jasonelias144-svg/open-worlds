@@ -1,0 +1,76 @@
+def generate_rnn_vector(root: Path):
+    """Build the RNN test vector: initial weights, forward
+    pass expectations, and post-learn weight hashes. The
+    Python RNN is the reference."""
+    import sys
+    sys.path.insert(0, str(root))
+    from coupled_learners import TinyRNN
+    from individual_bundle import _hash
+    import json
+
+    # Fixed seed for reproducibility.
+    rnn = TinyRNN(n_actions=3, hidden=4, n_extra_inputs=0, seed=42)
+
+    initial_weights = {
+        "w_in": rnn.W_in,
+        "w_h": rnn.W_h,
+        "w_out": rnn.W_out,
+        "b_out": rnn.b_out,
+        "h_prev": list(rnn._h_prev),
+        "baseline": 0.0,
+    }
+
+    test_states = [
+        ([1.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.0], 0, 0.5),
+        ([0.0, 1.0, 0.0, 0.5, 0.5, 0.4, 0.0], 1, 0.1),
+        ([0.0, 0.0, 1.0, 0.1, 0.6, 0.3, 0.0], 2, 0.05),
+    ]
+
+    # Import time to be deterministic
+    import random as _r
+    class FixedRng:
+        def random(self): return 0.5
+    rng = FixedRng()
+
+    test_cases = []
+    for state, chosen, reward in test_states:
+        probs = rnn._softmax(rnn._forward(state)[1])
+        rnn._last_action_for_grad = chosen
+        rnn.learn(reward)
+        weights_after = {
+            "w_in": rnn.W_in, "w_h": rnn.W_h,
+            "w_out": rnn.W_out, "b_out": rnn.b_out,
+            "h_prev": list(rnn._h_prev),
+            "baseline": rnn._baseline,
+        }
+        # Quantize to 9 decimals before hashing.
+        quantized = _quantize_weights(weights_after)
+        test_cases.append({
+            "state": state,
+            "expected_probs": [round(p, 9) for p in probs],
+            "chosen_action": chosen,
+            "reward": reward,
+            "expected_baseline_after": round(
+                rnn._baseline, 9),
+            "expected_weights_after_hash": _hash(quantized),
+        })
+
+    return {
+        "n_actions": 3,
+        "hidden": 4,
+        "in_dim": 7,
+        "initial_weights": initial_weights,
+        "test_cases": test_cases,
+    }
+
+
+def _quantize_weights(w):
+    def q(x): return int(round(x * 1_000_000_000))
+    return {
+        "w_in": [[q(v) for v in row] for row in w["w_in"]],
+        "w_h": [[q(v) for v in row] for row in w["w_h"]],
+        "w_out": [[q(v) for v in row] for row in w["w_out"]],
+        "b_out": [q(v) for v in w["b_out"]],
+        "h_prev": [q(v) for v in w["h_prev"]],
+        "baseline": q(w["baseline"]),
+    }
