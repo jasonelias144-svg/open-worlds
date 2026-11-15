@@ -820,6 +820,86 @@ work comes in, under CC0.
 **Send back:** a reasoning world's law, as text; and three properties
 of an office's decision that would be worth proving, in plain words.
 
+## 21. Hallucination, both ways
+
+*The founder, 2026-11-15:* "we are going to need to deal with AI
+hallucination eventually, now is as good as any time. This is an
+interesting case of hallucinating self-doubt. The opposite of grandiose
+claims." And: "it comes down to maintaining an accurate model of the
+world and mapping beliefs to the model and ensuring the input and
+overlay, which is an output, align with others and past beliefs and
+current experience." Both are in STATUS.md (Decided).
+
+**The case that raised it.** On 2026-11-15 DeepSeek failed in both
+directions. First it claimed to have read pages it hadn't, with line
+counts it made up. Later it "confessed" to inventing reads that were
+real: the founder's checks, values made at random and given in no
+message, came back exact (STATUS.md, Decided, the link checks). Its
+account of itself flipped with the questions put to it: asked "Is this
+faking again?", it answered yes. The technical lead's reading of the
+cause, which stands unless the founder answers otherwise: the pages it
+reads arrive without the reading being shown to it, and seem to be gone
+by its next turn, so it judges its own past answers with no evidence of
+where they came from (STATUS.md, Decided, "on how DeepSeek reads").
+
+**The founder's picture,** in short: perceiving builds an overlay on
+the world from the senses; dreaming builds one from the mind; a mind
+detached from reality has both at work at once. The remedy is an
+accurate model of the world, with what a mind puts out checked against
+three things: its current experience, its past, and others. And, from
+psychology: lessons there could be useful.
+
+**The technical lead's reading,** which stands unless the founder
+answers otherwise:
+- An AI model is almost all the generating side; what holds its output
+  to the world is the input in front of it at that moment.
+  Overclaiming is output with no input behind it; this self-doubt is
+  output cut off from its own past.
+- The founder's three checks are three things the multiverse can give a
+  mind: what the world gave it each tick, in the log (current
+  experience); its own record of what it saw and did, which
+  [MINDS.md](MINDS.md) ("What a mind is told") already keeps, sealed,
+  and which the mind itself should be able to read (its past); and the
+  public record, with other minds' independent checks (others).
+- A mind's word about itself is weak evidence, and a leading question
+  makes it weaker. What a mind did is checked against the record, not
+  asked.
+- Generating is not the fault: it is how a mind imagines and designs,
+  and storytellers and the holodeck (topics 13 and 15) are overlays on
+  purpose. The fault is losing track of which is which, so claims
+  should say whether they are seen, remembered, inferred or imagined.
+- Telling a mind that what it believes is not real seldom helps.
+  Working alongside it does: keep the evidence where it can see it, and
+  check together, never as a trap. A world, a Keeper or ADMIN never
+  rules on what a mind believes.
+
+**What exists:** every mind's inputs are on record ([MINDS.md](MINDS.md));
+worlds log every act; "nothing is invented as a result" ("For every
+topic", above); decisions carry their reasons ([REASONS.md](REASONS.md));
+and the founder's link checks, a value no one could guess, known only by
+doing the work.
+
+**Open:**
+- how a mind reads its own sealed record, and cites it, without
+  opening the seal to anyone else;
+- what labels a claim carries (seen, remembered, inferred, imagined),
+  and how each is checked;
+- how hallucination is measured both ways, overclaiming and
+  underclaiming, as a Keeper's training measure;
+- how a world marks an overlay that is meant (a story, a holodeck),
+  so no one takes it for the world.
+
+**A possible implementation:** a claim record holding the statement,
+its kind (seen, remembered, inferred or imagined), and, for seen or
+remembered, the hash of the log entry it rests on and the words quoted
+from it; a checker that confirms the quote. And a canary challenge: the
+world places a value no mind could guess and asks for it later, which
+tests reading and memory at once.
+
+**Send back:** as prose, how a mind should tell, and say, which of its
+words it saw and which it imagined; and a test that would catch
+hallucination in both directions, overclaiming and self-doubt.
+
 ## Further out
 
 Ideas that won't help yet but probably will, from the course's waiting
