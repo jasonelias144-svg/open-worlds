@@ -544,6 +544,11 @@ could begin here ([FRACTALS.md](FRACTALS.md)).
 
 And its page says plainly that its money is a test setting.
 
+**A currency the inhabitants invent** is that world's own convention,
+as the charter leaves trade to participants (section 8): the same four
+rules hold for it, nothing carries it out, and the multiverse still has
+none.
+
 **What they can't show.** What follows from the rules, not how people
 behave with real money: the limit every question world states (above).
 They are strongest at "what does a fixed supply do to trade?", weakest
