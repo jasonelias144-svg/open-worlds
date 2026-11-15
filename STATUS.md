@@ -265,6 +265,16 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on a word for everything that acts:
+  "And is "agent" or most general term that would encompass everything
+  from any human, to me, to you, to DeepSeek, to ADMIN, to the world
+  keepers, to the participants, to a simulated neuron controlling a
+  fractal plant? If not, what term?" On the technical lead's answer
+  ("agent", as the field defines it: anything that perceives and acts;
+  with mind, participant, individual and person beneath it, and rights
+  attached to those, not to every agent): "It works for me. I have been
+  struggling to find the right word." So docs/GLOSSARY.md says what each
+  word means here.
 - 2026-11-15, founder, on naming who holds the "break glass" next:
   "It will be a person I name publicly, but there is only me for now.
   There is nobody to hand it to that would be able to know what to do.
@@ -1916,6 +1926,11 @@ it was wrong. Questions of what the project is for stay with the founder.
   the next holder agrees to be named; the charter's section 4 keeps only
   the founder's words; and Plant Watch's replay is said as built for the
   plant world only.
+
+- 2026-11-15 Claude: docs/GLOSSARY.md, at the founder's word: "agent"
+  for anything that perceives and acts, from a neuron steering a plant
+  to any human; the words beneath it as the design pages use them; and
+  where rights attach.
 
 - 2026-11-15 Claude: after #83's independent review, the charter's
   section 5 keeps only the founder's words (two sentences that weren't

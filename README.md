@@ -72,6 +72,8 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
   them, looking in or stepping inside.
 - [docs/FREEDOMS.md](docs/FREEDOMS.md): when one freedom limits another,
   the tools every world gives, and what is never left to emerge.
+- [docs/GLOSSARY.md](docs/GLOSSARY.md): the words we use: "agent" for
+  anything that perceives and acts, and the words beneath it.
 - [rust/](rust/README.md): the worlds in Rust: the Ur-world, and the public
   record, checked across languages through shared test vectors
   ([vectors/](vectors/README.md)).
