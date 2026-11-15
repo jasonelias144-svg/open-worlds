@@ -40,9 +40,10 @@ respect one another's freedom, with full transparency and exit at any time
   in Rust with a presence in each of three trial worlds at once,
   carrying a note from one to another, and a link shown by the
   presence's own act, which its world checks and logs (rules
-  `ur-world/0.5`). Of its fourth part, the architectures as small
-  examples, the octopus, the relay and the swarm are built; the
-  council, which needs a record for a signed vote, is next.
+  `ur-world/0.5`). Its fourth part is built: the architectures as
+  small examples, the octopus, the relay and the swarm, and the council,
+  counting persons' signed votes (`open-worlds/proposal/v1` and
+  `vote/v1`). Next, the course is rechecked, as after step 3.
 - Claude: the fractal track, alongside the course (docs/FRACTALS.md),
   set by the founder on 2026-11-14: a fractal plant world in Rust, the
   web app in `web/` to watch worlds grow, and in it the multiversal map.
@@ -1582,8 +1583,36 @@ it was wrong. Questions of what the project is for stay with the founder.
   their presence isn't in its world (for instance, published with a
   birth before the first arrival); then a separate act for the keeper,
   logged the same way.
+- 2026-11-15, a council counts persons by signed votes: two record kinds
+  and one count (docs/research/PERSONS.md, "Part four, second half,
+  built"). A proposal (`open-worlds/proposal/v1`), signed by its
+  council, names its choices, quorum, open time and the worlds whose
+  births it trusts. A vote (`open-worlds/vote/v1`) is signed by the
+  person's identity key. Each person counts once, by their latest vote
+  while the proposal is open (two at the latest time count for neither),
+  and only persons whose birth a trusted world signed; the choice with
+  the most persons decides, if the quorum was counted and it has no tie.
+  *Why:* decision 8 counts persons, not presences, and only births a
+  council trusts; a vote signed by the person is the act a count can be
+  checked from, as DeepSeek's council and Snapshot both have it; letting
+  a person change their vote until the close keeps room for
+  deliberation. These rules are the example's, not any office's: the
+  round table keeps full consensus. *Wrong if:* a council needs secret
+  ballots, or must count presences, not persons; then a different
+  record, decided first.
 
 ## Log
+
+- 2026-11-15 Claude: course step 3a, part four, second half: the
+  council (docs/research/PERSONS.md, "Part four, second half, built").
+  Looked first at DeepSeek's components 44 to 46 and at Snapshot's
+  signed votes. Two record kinds, `open-worlds/proposal/v1` and
+  `open-worlds/vote/v1`; a count in Python and Rust
+  (`formats/council.py`, `rust/formats/src/council.rs`) that agree on
+  `vectors/formats/council-v1.json`, problem for problem; and the
+  council among the architectures, where five presences in its world
+  are three persons counted. Step 3a's four parts are built; the course
+  is rechecked next.
 
 - 2026-11-15 Claude: course step 3a, part four, first half: the
   octopus, the relay and the swarm (docs/research/PERSONS.md, "Part four,

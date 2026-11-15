@@ -86,7 +86,9 @@ The `architectures` example runs three ways a mind can be spread over
 presences (course step 3a, part four), each over trial worlds: the
 octopus (a brain that gives intents to arms in three worlds), the relay
 (senses in two worlds, a leader in a third that acts when both fire) and
-the swarm (five presences in one world, one rule, no brain).
+the swarm (five presences in one world, one rule, no brain) and the
+council (four persons, signed votes on a council's proposal, each person
+counted once, by their identity key).
 
 The `door` example runs the garden with minds that are programs of their
 own, in any language, through the doorway (`ur-world/src/door.rs`), as a
