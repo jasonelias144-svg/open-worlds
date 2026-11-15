@@ -32,6 +32,13 @@ open-worlds never imports it ([../../README.md](../../README.md)).
   collect them.
 - **The tests are named `test_*.py`** in this record, not `*_test.py` as
   in the earlier ones; `pytest.ini` collects both kinds here.
+- **Eleven files carry our fixes,** each marked "Fix (ours)" where it
+  changes the code, and listed with its reason in
+  [../../INDEX.md](../../INDEX.md), "Changes to DeepSeek's code" (fixes 6
+  to 14). The tests are as written, and so is every other file.
+- **Each test's keys are made from its own name** (`conftest.py`), so
+  every run gives the same results; with fresh random keys, some of the
+  individual pieces' tests pass or fail by chance (INDEX.md).
 - **Which tests fail, and why:** [known-failures.txt](known-failures.txt).
   Four test files import `python-chess`, which isn't installed here (it
   is GPL-3.0-or-later), so they don't load.

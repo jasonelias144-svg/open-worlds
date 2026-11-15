@@ -201,6 +201,27 @@ class RevocableGalleryWorld(GovernedGalleryWorld):
     def is_key_revoked(self, key):
         return _hash(key.body()) in self._revoked_keys
 
+    # Fix (ours): the module's docstring says requests made with a
+    # revoked world-key are refused, and its demo expects it, but no
+    # request method checked; each now does, before the governed one.
+    def request_add(self, request, member):
+        if self.is_key_revoked(request.world_key):
+            return self._refuse(request, "add_member_request",
+                                "world-key revoked")
+        return super().request_add(request, member)
+
+    def request_retire(self, request):
+        if self.is_key_revoked(request.world_key):
+            return self._refuse(request, "retire_member_request",
+                                "world-key revoked")
+        return super().request_retire(request)
+
+    def request_change_policy(self, request):
+        if self.is_key_revoked(request.world_key):
+            return self._refuse(request, "change_policy_request",
+                                "world-key revoked")
+        return super().request_change_policy(request)
+
 
 # =====================================================================
 # Verification
@@ -273,8 +294,19 @@ def _verify_refused_request(
     return (True, "refused request verifies")
 
 
-def verify_revocable_governed_log(gallery):
-    """Extended verifier: keeper timeline + revocation set."""
+def verify_revocable_governed_log(gallery, extend=None):
+    """Extended verifier: keeper timeline + revocation set.
+
+    extend: optional callback(rec, i, state) -> None | (ok, reason).
+    None = base handles this record. (True, "") = extender handled
+    it, skip base. (False, reason) = fail. state is a shared dict
+    the extender can read/write; base populates 'occupied' if
+    present but does not depend on it.
+    """
+    # Fix (ours): DeepSeek's hook for extenders (gallery_attention.py,
+    # gallery_burst.py), which the record gives as an outline with
+    # "# ... existing ..." in place of this function's body
+    # (gallery_revocation.py@16659), merged into it by hand.
     if not HAS_CRYPTO:
         return (False, "cryptography not installed")
     seed = gallery.seed_body()
@@ -298,6 +330,8 @@ def verify_revocable_governed_log(gallery):
     prev = None
     accepted_hashes = set()
     refused_hashes = set()
+    state = {"occupied": occupied, "valid_keepers": valid_keepers,
+             "revoked_keys": revoked_keys, "policy": policy}
 
     for i, rec in enumerate(gallery.records()):
         if rec.world_id != gallery.world_id:
@@ -330,6 +364,15 @@ def verify_revocable_governed_log(gallery):
                          f"record {i}: signature invalid "
                          f"against keeper "
                          f"{current_keeper[:16]}...")
+
+            if extend is not None:
+                result = extend(rec, i, state)
+                if result is not None:
+                    ok, reason = result
+                    if not ok:
+                        return (False, reason)
+                    prev = rec.record_hash()
+                    continue
 
             if isinstance(rec, WorldKeyRevokedRecord):
                 revoked_keys[rec.key_hash] = rec.effective_at
@@ -365,6 +408,7 @@ def verify_revocable_governed_log(gallery):
                                  f"record {i}: {reason}")
                     accepted_hashes.add(rec.request_hash)
                 policy = new_policy
+                state["policy"] = policy
 
             elif isinstance(rec, MemberAddedRecord):
                 if rec.slot in occupied:

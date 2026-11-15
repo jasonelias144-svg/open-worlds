@@ -383,6 +383,12 @@ class GrowthRecord:
     ts: str
     sig: str
 
+    @property
+    def prior(self):
+        # Fix (ours): the verifiers read every record's `prior`; this
+        # record names it `prev`. The signed body is unchanged.
+        return self.prev
+
     def body(self):
         return {
             "type": "growth",
@@ -989,3 +995,242 @@ def _line_cells(x1, y1, x2, y2):
             err += dy; x += sx
         if e2 <= dx:
             err += dx; y += sy
+
+
+# Fix (ours): the demo, which the record gives as its own block after
+# the module (fractal_world_v3.py@2816), appended unchanged.
+def demo(artifact_dir=None):
+    """The world grows, refuses, and branches — all signed.
+
+    Setup: a plant in a 40x30 pot, standard template. The
+    keeper issues three world-keys:
+        Alice — control tier, can change branch_length in [1,5]
+        Bob   — terminal tier, can change any param in template range
+        Carol — observe tier (cannot branch)
+
+    Sequences:
+      [1] Plant grows 5 steps → 5 growth records.
+      [2] Alice asks for branch_length=1 → accepted. Branch B1.
+          Parent continues with branch_length=3.
+      [3] Carol asks for branch_length=1 (at observe tier) →
+          refused: insufficient_tier. Signed refusal.
+      [4] Bob asks for max_depth=100 (out of template range) →
+          refused: template_range. Signed refusal.
+      [5] A second plant, sandboxed template, refuses every
+          branch request regardless of tier.
+      [6] Verification: parent log, branch log, all refusals,
+          all branch seeds, all verify offline.
+    """
+    import json as _json
+    from pathlib import Path
+
+    if not HAS_CRYPTO:
+        raise RuntimeError("demo requires `cryptography`")
+
+    if artifact_dir is None:
+        artifact_dir = "artifacts"
+    path = Path(artifact_dir) / "fractal_world_v3"
+    path.mkdir(parents=True, exist_ok=True)
+
+    template = WorldTemplate(
+        template_id="fractal-plant-branchy-v1",
+        branch_length=3, max_depth=4, water=10, light=10,
+        branch_policy={
+            "control": {"branch_length": (1, 5),
+                         "water": (0, 10)},
+            "terminal": {"branch_length": (1, 10),
+                          "max_depth": (1, 8),
+                          "water": (0, 10),
+                          "light": (0, 10)},
+        })
+    pot = (0, 0, 40, 30)
+    start = (20, 26, 0)
+
+    keeper_kp = Ed25519PrivateKey.generate()
+    parent = AtomicFractalWorld(
+        template=template, pot=pot,
+        initial_tip=start, keypair=keeper_kp)
+
+    alice_kp = Ed25519PrivateKey.generate()
+    bob_kp = Ed25519PrivateKey.generate()
+    carol_kp = Ed25519PrivateKey.generate()
+
+    alice_key = parent.issue_world_key(
+        _did_from_kp(alice_kp), "control",
+        param_scopes={"branch_length": (1, 5)})
+    bob_key = parent.issue_world_key(
+        _did_from_kp(bob_kp), "terminal")
+    carol_key = parent.issue_world_key(
+        _did_from_kp(carol_kp), "observe")
+
+    log = []
+
+    # [1] Parent grows 5 steps
+    parent.grow_n(5)
+    log.append(("grow", f"parent, 5 steps, "
+                        f"{len(parent.segments())} segments"))
+
+    # [2] Alice requests a branch with branch_length=1
+    req_a = sign_branch_request(
+        parent_id=parent.world_id,
+        branch_point_hash=parent.last_hash(),
+        requested_params={"branch_length": 1},
+        requester_kp=alice_kp,
+        world_key=alice_key)
+    result = parent.request_branch(req_a)
+    branch_a = None
+    if isinstance(result, tuple):
+        seed_a, branch_a = result
+        log.append(("accepted",
+                    f"Alice: branch {branch_a.world_id[:24]}... "
+                    f"params={branch_a.params.to_dict()}"))
+    else:
+        log.append(("refused", f"Alice: {result.reason}"))
+
+    # Parent keeps growing with its original params
+    parent.grow_n(5)
+
+    # Branch grows with its new params
+    branch_a.grow_until()
+
+    # [3] Carol (observe) requests — should be refused
+    req_c = sign_branch_request(
+        parent_id=parent.world_id,
+        branch_point_hash=parent.last_hash(),
+        requested_params={"branch_length": 1},
+        requester_kp=carol_kp,
+        world_key=carol_key)
+    res_c = parent.request_branch(req_c)
+    if isinstance(res_c, RefusalRecord):
+        log.append(("refused", f"Carol: {res_c.reason}"))
+    else:
+        log.append(("ERROR", "Carol should have been refused"))
+
+    # [4] Bob requests max_depth=100 — out of template range
+    req_b = sign_branch_request(
+        parent_id=parent.world_id,
+        branch_point_hash=parent.last_hash(),
+        requested_params={"max_depth": 100},
+        requester_kp=bob_kp,
+        world_key=bob_key)
+    res_b = parent.request_branch(req_b)
+    if isinstance(res_b, RefusalRecord):
+        log.append(("refused", f"Bob: {res_b.reason}"))
+    else:
+        log.append(("ERROR", "Bob should have been refused"))
+
+    # [5] Sandboxed world — refuses everyone
+    sandbox_template = WorldTemplate(
+        template_id="fractal-plant-sandbox-v1",
+        branch_length=3, max_depth=4,
+        branch_policy=None)
+    sandbox = AtomicFractalWorld(
+        template=sandbox_template, pot=pot,
+        initial_tip=start, keypair=Ed25519PrivateKey.generate())
+    sandbox.grow_n(3)
+    sb_key = sandbox.issue_world_key(
+        _did_from_kp(alice_kp), "terminal")
+    req_s = sign_branch_request(
+        parent_id=sandbox.world_id,
+        branch_point_hash=sandbox.last_hash(),
+        requested_params={"branch_length": 1},
+        requester_kp=alice_kp,
+        world_key=sb_key)
+    res_s = sandbox.request_branch(req_s)
+    if isinstance(res_s, RefusalRecord):
+        log.append(("refused", f"sandbox: {res_s.reason}"))
+    else:
+        log.append(("ERROR", "sandbox should have refused"))
+
+    # [6] Verify everything offline
+    checks = {}
+    for name, w in (("parent", parent),
+                     ("branch", branch_a),
+                     ("sandbox", sandbox)):
+        v_log, v_grow = verify_world_log(w), verify_growth(w)
+        checks[name] = {
+            "log_valid": v_log[0],
+            "growth_valid": v_grow[0],
+            "log_reason": v_log[1],
+            "growth_reason": v_grow[1],
+        }
+
+    # Print
+    print("=" * 74)
+    print("Fractal Worlds v3 — branch-based parameter change")
+    print("=" * 74)
+    print()
+    print(f"  Parent:  {parent.world_id[:28]}...")
+    print(f"  Branch:  {branch_a.world_id[:28]}..." if branch_a else "  Branch:  (none)")
+    print(f"  Sandbox: {sandbox.world_id[:28]}...")
+    print()
+    print("  Sequence:")
+    for kind, note in log:
+        marker = {"grow": "·", "accepted": "✓",
+                  "refused": "✗", "ERROR": "!"}[kind]
+        print(f"    {marker} {note}")
+    print()
+    print("  Parent plant (original params):")
+    p_parent = reconstruct(parent)
+    for line in render_ascii(p_parent).split("\n"):
+        print(f"    {line}")
+    print(f"    params: {p_parent.params.to_dict()}")
+    print(f"    steps: {p_parent.steps}  "
+          f"branches: {p_parent.branches_issued}  "
+          f"refusals: {p_parent.refusals_logged}")
+    print()
+    print("  Branch plant (branch_length=1):")
+    p_branch = reconstruct(branch_a)
+    for line in render_ascii(p_branch).split("\n"):
+        print(f"    {line}")
+    print(f"    params: {p_branch.params.to_dict()}")
+    print(f"    steps: {p_branch.steps}  "
+          f"inherited segments: {len(branch_a.segments()) - len(p_branch.frontier) if p_branch.steps == 0 else 'mixed'}")
+    print()
+    print("  Verification (offline, no network):")
+    for name, c in checks.items():
+        print(f"    {name:8s}  log={c['log_valid']}  "
+              f"growth={c['growth_valid']}  ({c['growth_reason']})")
+    print()
+    print("  What this establishes:")
+    print("    - Parameter changes do not mutate the world. A branch")
+    print("      request creates a new world whose seed references the")
+    print("      parent and inherits its geometry at the branch point.")
+    print("    - The parent is unchanged and continues growing under")
+    print("      its original params. Only the branch has the new one.")
+    print("    - A world can refuse. Refusals are signed records in")
+    print("      the world's own log — not silent no-ops. What a")
+    print("      world accepts depends on its template's policy, not")
+    print("      a universal rule.")
+    print("    - Access is tiered via world-keys. The keeper issues")
+    print("      them; the individual presents one with each request.")
+    print("      Tier and per-param scope both constrain.")
+    print("    - A sandboxed world never branches, regardless of tier.")
+    print()
+    print("  Anchor (public domain, Emily Dickinson):")
+    print("    'I dwell in Possibility –'")
+    print("    'A fairer House than Prose –'")
+    print("    'More numerous of Windows –'")
+    print("    'Superior – for Doors –'")
+
+    audit = {
+        "parent_id": parent.world_id,
+        "branch_id": branch_a.world_id if branch_a else None,
+        "sandbox_id": sandbox.world_id,
+        "sequence": [{"kind": k, "note": n} for k, n in log],
+        "parent_records": {
+            "growth": sum(1 for r in parent.records()
+                          if isinstance(r, GrowthRecord)),
+            "branches": sum(1 for r in parent.records()
+                            if isinstance(r, BranchRecord)),
+            "refusals": sum(1 for r in parent.records()
+                            if isinstance(r, RefusalRecord)),
+        },
+        "parent_params": parent.params.to_dict(),
+        "branch_params": branch_a.params.to_dict() if branch_a else None,
+        "verification": checks,
+    }
+    (path / "fractal_world_v3_demo.json").write_text(
+        _json.dumps(audit, indent=2))
+    print(f"\n  → {path}/fractal_world_v3_demo.json")
+    return audit

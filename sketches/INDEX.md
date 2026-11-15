@@ -224,59 +224,66 @@ naming pieces rather than numbering components. A few pieces import
 code from `deepseek/012-05-01` and `deepseek/012-04-00`. The columns are
 as above, with one difference: "Course" means the course set on
 2026-11-13 ([docs/COURSE.md](../docs/COURSE.md)), its steps and its
-waiting list, not the first course. Tests are run on Python 3.12,
-exactly as written: no fixes yet. Making the code work is the next pull
-request, and its fixes will be listed below, under "Changes to
-DeepSeek's code". The pieces are numbered here, for this table only.
+waiting list, not the first course. Tests are run on Python 3.12, as
+written, with fixes 6 to 14 (below, "Changes to DeepSeek's code"),
+which a row names where they touch the code it tests. The pieces are
+numbered here, for this table only.
 
 | # | What it is | Line | Tests as written | Course | In open-worlds |
 |---|---|---|---|---|---|
 | 1 | The atomic fractal world: one plant that grows by its rule (a proposal) | 153 | 10 of 11 | waiting (fractal worlds) | no |
-| 2 | Parameters from inside the world and from outside it (`fractal_world_v2.py`, with additions at 1390) | 707 | 11 of 17 | waiting (fractal worlds); a template's dials are step 2's | no |
-| 3 | Branching instead of changing in place: a new parameter makes a new world, and the original continues | 1820 | 16 of 19 | waiting (fractal worlds; the founder's "steering by branching", VISION.md) | no |
-| 4 | A garden of plants: a composite world of atomic fractal worlds | 3438 | 21 of 24 | waiting (fractal worlds); 4a's garden, in spirit | no |
+| 2 | Parameters from inside the world and from outside it (`fractal_world_v2.py`, with additions at 1390) | 707 | 17 of 17, with fixes 6, 7, 8 | waiting (fractal worlds); a template's dials are step 2's | no |
+| 3 | Branching instead of changing in place: a new parameter makes a new world, and the original continues | 1820 | 19 of 19, with fixes 6, 7 | waiting (fractal worlds; the founder's "steering by branching", VISION.md) | no |
+| 4 | A garden of plants: a composite world of atomic fractal worlds | 3438 | 24 of 24, with fix 7 | waiting (fractal worlds); 4a's garden, in spirit | no |
 | 5 | The Game of Life, and Life-like rules, as an atomic world | 4583 | 22 of 24 | waiting (fractal worlds) | no |
 | 6 | Elementary cellular automata (rule 90 and others) as an atomic fractal world | 5700 | 28 of 28 | waiting (fractal worlds) | no |
 | 7 | A grid-embedded fractal: an automaton's generations as one 2D pattern | 6962 | 28 of 28 | waiting (fractal worlds) | no |
-| 8 | Chaos games: a fractal drawn by choosing among maps, where choice enters | 8251 | 27 of 29 | waiting (fractal worlds) | no |
-| 9 | Two chaos games coupled by their recent histories | 9773 | 17 of 23 | waiting (fractal worlds: "watch them grow or interact") | no |
+| 8 | Chaos games: a fractal drawn by choosing among maps, where choice enters | 8251 | 29 of 29, with fix 8 | waiting (fractal worlds) | no |
+| 9 | Two chaos games coupled by their recent histories | 9773 | 21 of 23, with fix 8 | waiting (fractal worlds: "watch them grow or interact") | no |
 | 10 | Two cellular automata growing in one space, meeting by a coupling parameter | 11123 | 12 of 12 | waiting (fractal worlds) | no |
-| 11 | A gallery: one composite world holding worlds of four kinds | 11851 | 13 of 15 | 4a, in part (a garden of rooms); the Commons, as a superworld | no |
-| 12 | The gallery's interior and exterior: world-keys, signed requests to change it, signed refusals | 12979 | 22 of 27 | 4 (grants) and 12 | partly: worlds are keys, and sign their stamps (the first course's step 3) and their log's heads (step 3); a world refusing a change, no |
-| 13 | Revoking a key, and rotating the keeper (with a change at 16659) | 14833 | 9 of 14 | 8a (a lost or leaked key) | no |
+| 11 | A gallery: one composite world holding worlds of four kinds | 11851 | 15 of 15, with fix 7 | 4a, in part (a garden of rooms); the Commons, as a superworld | no |
+| 12 | The gallery's interior and exterior: world-keys, signed requests to change it, signed refusals | 12979 | 26 of 27, with fixes 7, 9 | 4 (grants) and 12 | partly: worlds are keys, and sign their stamps (the first course's step 3) and their log's heads (step 3); a world refusing a change, no |
+| 13 | Revoking a key, and rotating the keeper (with a change at 16659) | 14833 | 14 of 14, with fixes 9, 10 | 8a (a lost or leaked key) | no |
 | 14 | The gallery watches and schedules: an attention budget across its members | 15892 | doesn't load: imports `multiverse_utils_sig`, which no record defines | not yet | no |
-| 15 | Attention per member, by deficit round-robin | 16700 | 3 of 17 | not yet | no |
-| 16 | Bursts: attention raised for a bounded time, by a signed record | 17581 | 10 of 20 | not yet | no |
+| 15 | Attention per member, by deficit round-robin | 16700 | 9 of 17, with fix 10 | not yet | no |
+| 16 | Bursts: attention raised for a bounded time, by a signed record | 17581 | 15 of 20, with fix 10 | not yet | no |
 | 17 | The smallest learner that chooses: a 4-unit recurrent network, or a lookup table, in a chaos game | 18698 | 9 of 10 | waiting (fractal worlds), and 3a's architectures (the founder, 2026-11-14) | no |
 | 18 | Two learners in one chaos game | 19408 | 8 of 11 | the same | no |
-| 19 | A learner beside a scripted world | 20187 | 4 of 18 | the same | no |
-| 20 | The individual as a bundle: four signed files that describe it whole, replayable (with additions at 23274, 27017, 27054, 32475 and 34393) | 21268 | 3 of 20 | 7 (memory), in part | no |
-| 21 | An individual that makes an individual | 22301 | 0 of 15 | not yet | no |
-| 22 | The child starts from the parent's weights | 23332 | 0 of 14 | not yet | no |
-| 23 | One individual across worlds: one key, its model and memory carried (with additions at 27067 and 34853) | 24250 | 0 of 15 | 3a, which differs: a presence in each world, each a key of its own | no |
-| 24 | An individual who lived in several worlds makes a child (with an addition at 27094) | 25192 | 0 of 13 | not yet | no |
-| 25 | Generations: grandparent, parent, child | 26203 | 1 of 12 | not yet | no |
-| 26 | Proof of descent from a root, from one bundle alone | 27124 | 0 of 17 | not yet | no |
-| 27 | A lineage tree, checked whole | 27939 | 0 of 14 | not yet | no |
-| 28 | Shorter proofs of ancestry | 28994 | 2 of 17 | not yet | no |
-| 29 | Shorter proofs of what was inherited | 30152 | 0 of 13 | not yet | no |
-| 30 | Two lineage trees recognising each other | 31239 | 11 of 24 | not yet | no |
-| 31 | Continuing a life from its bundle (with additions at 34429 and 34871) | 32484 | 0 of 17 | 7, in part | no |
-| 32 | Memory checkpoints: a signed summary in place of the entries before it | 33637 | 1 of 18 | 7, in part | no |
-| 33 | Continuing a life on someone's behalf, by a key they authorise | 34895 | 6 of 21 | not yet; compare step 3's doorway, which signs for the minds it runs (research/KEYS.md, "Honest limits") | no |
-| 34 | Forking an individual into a new lineage | 36279 | 2 of 20 | not yet | no |
+| 19 | A learner beside a scripted world | 20187 | 16 of 18, with fixes 11, 12 | the same | no |
+| 20 | The individual as a bundle: four signed files that describe it whole, replayable (with additions at 23274, 27017, 27054, 32475 and 34393) | 21268 | 16 of 20, with fixes 11 to 13 | 7 (memory), in part | no |
+| 21 | An individual that makes an individual | 22301 | 10 of 15, with fixes 11 to 13 | not yet | no |
+| 22 | The child starts from the parent's weights | 23332 | 8 of 14, with fixes 11 to 13 | not yet | no |
+| 23 | One individual across worlds: one key, its model and memory carried (with additions at 27067 and 34853) | 24250 | 14 of 15, with fixes 11 to 14 | 3a, which differs: a presence in each world, each a key of its own | no |
+| 24 | An individual who lived in several worlds makes a child (with an addition at 27094) | 25192 | 9 of 13, with fixes 11 to 14 | not yet | no |
+| 25 | Generations: grandparent, parent, child | 26203 | 4 of 12, with fixes 11 to 14 | not yet | no |
+| 26 | Proof of descent from a root, from one bundle alone | 27124 | 7 of 17, with fixes 11 to 14 | not yet | no |
+| 27 | A lineage tree, checked whole | 27939 | 9 of 14, with fixes 11 to 14 | not yet | no |
+| 28 | Shorter proofs of ancestry | 28994 | 13 of 17, with fixes 11 to 14 | not yet | no |
+| 29 | Shorter proofs of what was inherited | 30152 | 5 of 13, with fixes 11 to 14 | not yet | no |
+| 30 | Two lineage trees recognising each other | 31239 | 15 of 24, with fixes 11 to 14 | not yet | no |
+| 31 | Continuing a life from its bundle (with additions at 34429 and 34871) | 32484 | 11 of 17, with fixes 11 to 14 | 7, in part | no |
+| 32 | Memory checkpoints: a signed summary in place of the entries before it | 33637 | 10 of 18, with fixes 11 to 14 | 7, in part | no |
+| 33 | Continuing a life on someone's behalf, by a key they authorise | 34895 | 10 of 21, with fixes 11 to 14 | not yet; compare step 3's doorway, which signs for the minds it runs (research/KEYS.md, "Honest limits") | no |
+| 34 | Forking an individual into a new lineage | 36279 | 15 of 20, with fixes 11 to 14 | not yet | no |
 | 35 | A whole lifetime, checked across bundles (with additions at 40276 and 41514) | 37602 | doesn't load: imports `_entry_hash` from `lifetime.py`, which defines it only inside its demo | 9 (legends pages), in part | no |
 | 36 | An individual that plays chess in 012-05-01's chess world (with additions at 40076, 40158 and 40178) | 38708 | doesn't load: needs `python-chess` | not yet (the founder, on the chess park: "not yet") | no |
 | 37 | A world's log, each entry signed by the world's key | 39909 | doesn't load: needs `python-chess` | 3 | built independently: the Ur-world signs its log's heads (`open-worlds/log-head/v1`) |
 | 38 | One individual across worlds of different kinds, with one key and one memory (with additions at 42553, 42625 and 42684) | 40662 | doesn't load: needs `python-chess` | 3a, which differs, as for 23 | no |
 | 39 | Adapters, so an individual can enter any kind of world | 41968 | doesn't load: needs `python-chess` | 12 (the world protocol) | no |
 
-In all, as written: 296 of DeepSeek's tests pass and 301 fail, and six
-test files don't load (74 tests: four need `python-chess`, which isn't
-installed here, as for 012-05-01; two import names that can't be imported).
-One missing method is the error in 236 of the 301 failures: the
-`Transform` of `coupled_learners.py` has no `to_dict`, though the one in
-`choice_fractal.py` has. Every piece from 19 to 34 builds on it.
+In all, with fixes 6 to 14: 478 of DeepSeek's tests pass and 119 fail,
+and six test files don't load (74 tests: four need `python-chess`, which
+isn't installed here, as for 012-05-01; two import names that can't be
+imported). Each test's keys are made from its own name (`conftest.py`,
+ours), so every run gives the same results. With fresh random keys, as
+the tests make them, 19 of the individual pieces' tests (in
+`test_forking.py`, `test_federated_bundle.py`, `test_federated_spawn.py`,
+`test_resumable.py` and `test_delegated_resumption.py`) passed in some
+of 28 runs and failed in others: the replays they check depend on the
+keys, a fault left for the next round (`SKETCH_RANDOM_KEYS=1` runs them
+that way). As written, 296 passed and 301 failed, 236 of them for one
+missing method, `to_dict` on `coupled_learners.py`'s `Transform` (fix
+11).
 
 All 99 code blocks in the record are written out, each as a file; 21 of
 them are later additions or demos, kept as `name@LINE`.
@@ -344,7 +351,8 @@ component 21 (22163 to 22270); and a worked example for component 22
 Each change is listed here, with its reason, and under `"changed"` in
 the record's names file ([tools/names-012-03-02.json](tools/names-012-03-02.json),
 [tools/names-012-04-00.json](tools/names-012-04-00.json),
-[tools/names-012-05-01.json](tools/names-012-05-01.json)), which
+[tools/names-012-05-01.json](tools/names-012-05-01.json),
+[tools/names-012-06-02.json](tools/names-012-06-02.json)), which
 `extract.py check` holds the folder to. Every other file in
 `deepseek/` is exactly as its record has it, and git history shows each
 change exactly.
@@ -389,3 +397,107 @@ atoms, its composites and the ReflectivePoet composite; components 21
 and 22 as their atoms and then their composites. Each module's later
 parts are appended to it unchanged, in order, and stay as their own
 `@LINE` files too ([tools/names-012-03-02.json](tools/names-012-03-02.json)).
+
+Fixes 6 to 14 are record 012-06-02's (2026-11-14). The tests are never
+changed. Where DeepSeek's later addition to a file is a whole block, it
+is appended unchanged, as in fixes 1 and 3. Where it is an outline,
+with "# ... existing ..." in place of the code it changes, it is merged
+into the file by hand, line for line as the outline and the record's
+prose describe. The additions stay as their own `@LINE` files too.
+
+**Fix 6: two demos, attached.** `fractal_world_v2.py` and
+`fractal_world_v3.py`, as fix 1: the record gives each demo as its own
+block after the module (`@1390`, `@2816`), and the tests import `demo`
+from the module.
+
+**Fix 7: a growth record's `prior`.** The fractal worlds' verifiers read
+every record's `prior`, but `GrowthRecord` names that field `prev`, so
+every log with growth failed to verify. `GrowthRecord` gains a
+read-only `prior` that returns `prev`; the signed body is unchanged
+(`fractal_world_v2.py`, `fractal_world_v3.py`).
+
+**Fix 8: one time per signature.** Three places signed a body stamped
+with one reading of the clock, then stored a second reading, so the
+signature could never check: a parameter change in
+`fractal_world_v2.py`; a step driven by a signed choice in
+`chaos_game_world.py`, whose verifier also rebuilt the choice for the
+step after the one it was signed for; and the same in
+`coupled_chaos_world.py`, which signs two choices and a step. Each now
+keeps the time that was signed (`sign_choice` may be given it), and the
+verifiers rebuild a choice for the step it grew from.
+
+**Fix 9: requests embedded with their signatures.**
+`gallery_governance.py`'s records embedded the request they answer
+without its signature, which the full verifier then checks.
+
+**Fix 10: revoked keys refused, and the verifier's hook.**
+`gallery_revocation.py`'s docstring says a request made with a revoked
+world-key is refused, and its demo expects it, but no request method
+checked; each now does, before the governed one. And DeepSeek's hook
+for extenders, an outline (`gallery_revocation.py@16659`), is merged
+into `verify_revocable_governed_log`, which `gallery_attention.py` and
+`gallery_burst.py` call with it. The outline starts the extenders' shared
+`state` with an empty `occupied`, and asks that the base keep it up to
+date; the merge hands it the base's own, and keeps `state["policy"]`
+current too, so an extender that changes `state["occupied"]` changes
+the base's checks as well.
+
+**Fix 11: `Transform.to_dict`.** `coupled_learners.py`'s `Transform`
+lacked the `to_dict` that `choice_fractal.py`'s has, and every
+individual piece calls it: it was the error in 236 of the 301
+failures as written.
+
+**Fix 12: hashing bytes.** `world_agent_coupling.py`'s `_hash` hashes a
+JSON object; the individual pieces import it and also hash bytes
+(weights, observations, Merkle levels), which JSON can't encode. Bytes
+are now hashed as they are; nothing that worked before changes.
+
+**Fix 13: the individual pieces' later additions, merged.**
+`individual_bundle.py` (`@23274`, `@27017`, `@27054`, `@32475`,
+`@34393`: initial weights, ancestry, checkpoint weights, with their
+saving, loading and checks), `federated_bundle.py` (`@27067`, `@34853`:
+lineage in the federated bundle, and acting under another's id after
+a delegation) and `resumable.py` (`@34429`, `@34871`: verification by
+tier, and the same).
+
+**Fix 14: the empty observations' hash.** `pack_federated_bundle` took
+it over the JSON string `"[]"`, and the verifier over the bytes `[]`,
+so no federated bundle could verify.
+
+Not fixed, and why:
+
+- **The two coupled chaos games don't steer apart.** The coupling
+  subtracts a penalty on a 0 to 100 scale from the preset's weights,
+  which are 1 each with a floor of 1, so no setting can move them, and
+  the tests that expect fewer shared picks fail. Putting the weights on
+  the penalty's scale broke the verifier's rebuild and raised the share
+  of shared picks, so it is a question about the model, left as it is.
+- **Attention and bursts in the gallery** (`test_gallery_attention.py`,
+  `test_gallery_burst.py`): the tests' plant, depth 2 in a 10 by 10 pot,
+  can grow only 2 steps, and the tests expect 10 or 15.
+- **A test that doesn't import what it uses:**
+  `test_gallery_governance.py`'s `test_duplicate_request_hash_rejected`
+  calls `_canonical` without importing it.
+- **Replays that depend on the keys:** 19 tests of the individual pieces
+  pass or fail by chance with fresh random keys (above, "Record
+  012-06-02, piece by piece"); `conftest.py` makes each test's keys from
+  its name, so a run is repeatable, and the cause is for the next round.
+  Some of them pass with the keys the names give, so the count of tests
+  passing depends on them too. The 19:
+  - `test_delegated_resumption.py`: `test_resume_with_delegation_happy`;
+  - `test_federated_bundle.py`: `test_demo`, `test_full_verifies`,
+    `test_save_load_roundtrip`, `test_with_world_logs_verifies`;
+  - `test_federated_spawn.py`: `test_federated_child_verifies_all_tiers`,
+    `test_replay_detects_wrong_index`, `test_save_load_child`;
+  - `test_forking.py`: `test_altered_parent_memory_breaks_continuity`,
+    `test_forged_weights_hash_breaks_basic`, `test_fork_at_mid`,
+    `test_fork_at_tip`, `test_forked_basic`, `test_forked_full`,
+    `test_shifted_K_breaks_basic`, `test_tampered_fork_record_sig`,
+    `test_wrong_parent_breaks_continuity`;
+  - `test_resumable.py`: `test_verify_resumed_from_tampered`,
+    `test_verify_resumed_from_tampered_prefix`.
+- **The rest** are listed in `known-failures.txt` with their errors, for
+  the next round: the remaining outlines (`federated_spawn.py@27094`,
+  `lifetime.py`, `unified_individual.py`, the chess pieces), and a
+  long tail of separate causes in the lineage, compact and forking
+  pieces.

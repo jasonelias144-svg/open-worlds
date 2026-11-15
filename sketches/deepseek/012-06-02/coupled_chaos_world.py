@@ -355,12 +355,15 @@ class CoupledChaosWorld:
             self._k_b, n_vertices)
         pick_a = pick_weighted(out_a, eff_a)
         pick_b = pick_weighted(out_b, eff_b)
+        # Fix (ours): one time for both choices and the step record, so
+        # the verifier can rebuild each choice from the step record.
+        ts = _now()
         choice_a = sign_choice(
             self._sub_a.world_id, self._sub_a.step(),
-            pick_a, self._keypair)
+            pick_a, self._keypair, ts=ts)
         choice_b = sign_choice(
             self._sub_b.world_id, self._sub_b.step(),
-            pick_b, self._keypair)
+            pick_b, self._keypair, ts=ts)
         rec_a = self._sub_a.grow_with_input(choice_a)
         rec_b = self._sub_b.grow_with_input(choice_b)
         if rec_a is None or rec_b is None:
@@ -383,7 +386,7 @@ class CoupledChaosWorld:
             "point_b": list(rec_b.point),
             "sig_a": choice_a.sig,
             "sig_b": choice_b.sig,
-            "ts": _now(),
+            "ts": ts,
         }
         rec = CoupledStepRecord(
             world_id=self._world_id,
@@ -559,10 +562,12 @@ def verify_coupled_growth(world: CoupledChaosWorld
             return (False, f"record {i}: point_a mismatch")
         if tuple(rec.point_b) != point_b:
             return (False, f"record {i}: point_b mismatch")
+        # Fix (ours): each choice is signed for the step it grows from,
+        # one before the step record's own.
         choice_a_body = {
             "type": "chaos_choice",
             "world_id": world._sub_a.world_id,
-            "step": rec.step,
+            "step": rec.step - 1,
             "transform_idx": rec.pick_a,
             "authority_id": world.world_id,
             "ts": rec.ts,
@@ -572,7 +577,7 @@ def verify_coupled_growth(world: CoupledChaosWorld
         choice_b_body = {
             "type": "chaos_choice",
             "world_id": world._sub_b.world_id,
-            "step": rec.step,
+            "step": rec.step - 1,
             "transform_idx": rec.pick_b,
             "authority_id": world.world_id,
             "ts": rec.ts,

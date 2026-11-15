@@ -35,7 +35,7 @@ Honest limits:
 
 import hashlib
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
@@ -157,10 +157,17 @@ def apply_weights(model, weights: Dict) -> None:
 
 @dataclass
 class IndividualBundle:
+    # Fix (ours): DeepSeek's later additions to this class, merged by
+    # hand from the record's outlines (individual_bundle.py@23274,
+    # @27017, @27054, @32475 and @34393): initial_weights, ancestry and
+    # checkpoint_weights, with their saving, loading and checks.
     manifest: Dict
     memory: List[Dict]
     weights: Dict
-    observations: List[Dict]
+    initial_weights: Optional[Dict] = None
+    observations: List[Dict] = field(default_factory=list)
+    ancestry: List[Dict] = field(default_factory=list)
+    checkpoint_weights: Optional[Dict] = None
 
     @property
     def individual_id(self) -> str:
@@ -185,6 +192,15 @@ class IndividualBundle:
         with open(path / "observations.jsonl", "w") as f:
             for obs in self.observations:
                 f.write(json.dumps(obs, sort_keys=True) + "\n")
+        if self.initial_weights is not None:
+            (path / "initial_weights.json").write_text(
+                json.dumps(self.initial_weights))
+        if self.ancestry:
+            (path / "ancestry.json").write_text(
+                json.dumps(self.ancestry, indent=2))
+        if self.checkpoint_weights is not None:
+            (path / "checkpoint_weights.json").write_text(
+                json.dumps(self.checkpoint_weights))
 
     @classmethod
     def load(cls, path) -> "IndividualBundle":
@@ -203,8 +219,21 @@ class IndividualBundle:
             for line in obs_path.read_text().splitlines():
                 if line.strip():
                     observations.append(json.loads(line))
+        iw_path = path / "initial_weights.json"
+        initial_weights = (json.loads(iw_path.read_text())
+                            if iw_path.exists() else None)
+        anc_path = path / "ancestry.json"
+        ancestry = (json.loads(anc_path.read_text())
+                     if anc_path.exists() else [])
+        cw_path = path / "checkpoint_weights.json"
+        checkpoint_weights = (json.loads(cw_path.read_text())
+                               if cw_path.exists() else None)
         return cls(manifest=manifest, memory=memory,
-                    weights=weights, observations=observations)
+                    weights=weights,
+                    initial_weights=initial_weights,
+                    observations=observations,
+                    ancestry=ancestry,
+                    checkpoint_weights=checkpoint_weights)
 
     # -- Instantiate -------------------------------------
 
@@ -242,6 +271,7 @@ def pack_bundle(
     persona: str,
     parent_did: Optional[str] = None,
     initial_seed: int = 0,
+    initial_weights: Optional[Dict] = None,
 ) -> IndividualBundle:
     """Package a session's agent into a bundle."""
     if not HAS_CRYPTO:
@@ -306,6 +336,10 @@ def pack_bundle(
         "observations_hash": observations_hash,
         "ts": _now(),
     }
+    if initial_weights is not None:
+        iw_canon = json.dumps(initial_weights, sort_keys=True,
+                               separators=(",", ":")).encode()
+        manifest_body["initial_weights_hash"] = _hash(iw_canon)
     sig = session.agent_kp.sign(
         _canonical(manifest_body)).hex()
     manifest = {**manifest_body, "sig": sig}
@@ -313,6 +347,7 @@ def pack_bundle(
         manifest=manifest,
         memory=memory,
         weights=weights,
+        initial_weights=initial_weights,
         observations=observations,
     )
 
@@ -365,6 +400,11 @@ def verify_bundle_basic(bundle: IndividualBundle) -> Tuple[bool, str]:
     if _hash(weights_canonical) != \
             manifest["model_weights_hash"]:
         return (False, "weights hash mismatch")
+    if bundle.initial_weights is not None:
+        iw_canon = json.dumps(bundle.initial_weights, sort_keys=True,
+                               separators=(",", ":")).encode()
+        if _hash(iw_canon) != manifest.get("initial_weights_hash"):
+            return (False, "initial_weights hash mismatch")
     # Observations hash
     obs_canonical = json.dumps(
         bundle.observations, sort_keys=True,
@@ -372,6 +412,13 @@ def verify_bundle_basic(bundle: IndividualBundle) -> Tuple[bool, str]:
     if _hash(obs_canonical) != \
             manifest["observations_hash"]:
         return (False, "observations hash mismatch")
+    if "ancestry_hash" in manifest:
+        if not bundle.ancestry:
+            return (False, "ancestry_hash present but ancestry empty")
+        anc_canon = json.dumps(bundle.ancestry, sort_keys=True,
+                                separators=(",", ":")).encode()
+        if _hash(anc_canon) != manifest["ancestry_hash"]:
+            return (False, "ancestry hash mismatch")
     return (True, "bundle verifies")
 
 
@@ -380,7 +427,11 @@ def verify_bundle_full(bundle: IndividualBundle) -> Tuple[bool, str]:
     ok, reason = verify_bundle_basic(bundle)
     if not ok:
         return (False, f"basic: {reason}")
-    model = bundle.initial_model()
+    if bundle.initial_weights is not None:
+        model = build_model(bundle.manifest["model_config"])
+        apply_weights(model, bundle.initial_weights)
+    else:
+        model = bundle.initial_model()
     if bundle.manifest["observes"]:
         obs_map = {o["step"]: o["freq"]
                     for o in bundle.observations}
