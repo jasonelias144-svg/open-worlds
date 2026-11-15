@@ -63,6 +63,10 @@ design pages already use them. Offices are a type of their own (below).
   ([research/PERSONS.md](research/PERSONS.md)).
 - **Presence:** a person's being in one world, with a key, a name and a
   history of its own there ([research/PERSONS.md](research/PERSONS.md)).
+- **Private container:** where a person keeps everything that is their
+  own (their keys, private space, private messages and passport), which
+  the project never sees, and which they act from
+  ([CONTAINER.md](CONTAINER.md)).
 - **Owner:** in the Python kernel, whoever runs an agent in a world and
   can withdraw it.
 

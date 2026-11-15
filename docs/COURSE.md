@@ -268,8 +268,8 @@ from a seed.
    log; recall by recency, importance and relevance; reflections; held
    thoughts in a few slots; a library of routines they write, whose
    format joins records-v1 here. All of it
-   in a sealed self that no one else reads, opened only under the
-   founder's "break glass", with public fingerprints. *Borrowing:* Generative
+   in a sealed self that no one else reads, kept in the individual's own
+   container ([CONTAINER.md](CONTAINER.md)), with public fingerprints. *Borrowing:* Generative
    Agents, Voyager's skill library, Disco Elysium's thought cabinet,
    guarding against their known failures.
 8. **Experiment 002, the audition.** Candidate sizes of Qwen 3.5 and OLMo
@@ -413,6 +413,12 @@ Added one at a time, as steps are done:
   signature, the successor's clear agreement, the qualifications
   checked), in records-v1 with vectors ([OFFICES.md](OFFICES.md));
   placed at the course's next recheck;
+- the private container (the founder, 2026-11-15: "this may be a
+  fundamental piece of architecture"): each person's keys, private space
+  and messages in their own container, which the project never sees,
+  acting from it by signed acts, with the check for private information
+  inside it ([CONTAINER.md](CONTAINER.md)); before anyone lives in a
+  world, and built first where people first arrive;
 - the Commons (the founder, 2026-11-14): Lyceum Commons as "a single
   superworld, where the atomic subworlds are chat rooms"; recommended
   after step 4a, as the second superworld (docs/TOPICS.md, topic 14,

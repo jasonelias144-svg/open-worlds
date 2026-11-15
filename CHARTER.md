@@ -88,12 +88,17 @@ The world itself protects these freedoms, and no one can take them away.
   cannot become a data mining operation that then takes the data and
   sells it."
 
-So that you know exactly how private your space is: the minds in these
-worlds run on the project's own machines, and the project keeps one way
-to open a private space, or a private message between two people, only
-by the founder's explicit decision, and every opening is recorded
-publicly and permanently. Whoever holds it after the founder is a person
-the founder names publicly, and that choice is a matter of record.
+So that you know exactly how private your space is: it is kept in your
+own private container, "which the project never sees", in the founder's
+words, and what the project holds of you is "by design, already revealed
+by consent of the user". The project holds no key to it, nor to a
+private message between two people. The minds in these worlds run on the
+project's own machines. The project keeps one way in, a "break glass",
+and only to the "keys needed for the multiverse to function, those
+associated with ADMIN and everything else": it is opened only by the
+founder's explicit decision, and every opening is recorded publicly and
+permanently. Whoever holds it after the founder is a person the founder
+names publicly, and that choice is a matter of record.
 
 > Still to cover: how each freedom is kept in practice, as the
 > founder's words come (docs/FUNDAMENTALS.md gathers them).

@@ -83,7 +83,11 @@ root does.
      under its own label (`open-worlds/journal/v1`), a world-key under
      another, so the labels keep the purposes apart and one key serves
      both. MINDS.md named "the keys to their sealed selves" beside the
-     sealing keys; this is how they are the same key.
+     sealing keys; this is how they are the same key. Since 2026-11-15,
+     by the technical lead's recommendation, which stands unless the
+     founder answers otherwise, these are held only until birth: then they are signed over to keys
+     ALICE's and BOB's own containers make, and destroyed
+     ([CONTAINER.md](../CONTAINER.md), "The project's own individuals").
    - **Not yet:** Keepers' keys (course step 11), each founded world's
      (step 12), and persons' (step 3a), each made when its step comes.
 2. **A key list, signed by the root,** names each role's keys, as TUF's

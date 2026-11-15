@@ -152,8 +152,8 @@ has changed since that record, in the order to read it:
    checks its vectors.
 3. **Who an individual is,** in the design pages:
    [MINDS.md](MINDS.md) (identity, mind record, a sealed self no one else
-   reads, unless the founder opens it under the "break glass", in the
-   open; the sheet, avatars, and where everything lives);
+   reads, kept in the individual's own container; the sheet, avatars, and
+   where everything lives);
    [WORLD-KEY.md](WORLD-KEY.md) (the tour, the hunt, and the world-key,
    a signed right to found a world); [ADMIN.md](ADMIN.md) (ADMIN, the
    Keeper of the multiverse: what it must preserve, how it learns, the
@@ -163,9 +163,10 @@ has changed since that record, in the order to read it:
    And [FUNDAMENTALS.md](FUNDAMENTALS.md) gathers every decision on
    freedom and privacy in one place, the founder's "absolutely
    fundamental" (2026-11-15): among them, everyone has a private space,
-   encrypted, that no one else can read, not even ADMIN (the one way in
-   is the founder's "break glass", and every opening is recorded in
-   public); an account needs only an email address; data is never for
+   encrypted, that no one else can read, not even ADMIN, kept in their
+   own private container ([CONTAINER.md](CONTAINER.md)), which the
+   project never sees; the founder's "break glass" covers only the
+   multiverse's own keys; an account needs only an email address; data is never for
    sale; whoever leaves the multiverse takes their private records with
    them, and their private data is purged; and public acts always
    remain, as public records are never edited, except that anything
@@ -894,6 +895,10 @@ page.
   of an action keeps its metadata, not its private details: when a
   person leaves, the links they showed stay only as the fact that a
   link was made.
+- 2026-11-15, between cycles: the private container (CONTAINER.md):
+  each person's keys, private space and messages in their own container,
+  which the project never sees, acting from it by signed acts; the
+  founder's "break glass" now covers only the multiverse's own keys.
 
 ## Every file, by its full link
 
@@ -919,11 +924,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FRACTA
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/URWORLD.md
 ```
 
-**The design pages** (15):
+**The design pages** (16):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/ADMIN.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHEMISTRY.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CONTAINER.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/DESIGN.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FREEDOMS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FUNDAMENTALS.md

@@ -301,13 +301,15 @@ HPKE, which opens it only under the label it was sealed with.
 record's to say (course step 9; until then the key list publishes the
 ones made at step 3), so the caller gives both.
 
-**The "break glass"**, chosen by the founder on 2026-11-14, needs nothing
-more here. The private half of each sealing key is kept in the project's
-private repository ([MINDS.md](../MINDS.md), "Where everything lives"),
-so a sealed self can be opened there, by the founder's explicit decision
-only, and every opening is recorded publicly. The envelope and the record
-stay as they are; a second envelope, which this page once expected, isn't
-needed.
+**The "break glass"**, since 2026-11-15, covers only the multiverse's
+own keys, and an individual's sealing key is made in their own container
+([CONTAINER.md](../CONTAINER.md)); the envelope and the record are
+unchanged by that. As first chosen, on 2026-11-14, it needed nothing
+more here either: the private half of each sealing key was kept in the
+project's private repository ([MINDS.md](../MINDS.md), "Where
+everything lives"), so a sealed self could be opened there, by the
+founder's explicit decision only, with every opening recorded publicly.
+A second envelope, which this page once expected, isn't needed.
 
 **Shared vectors** (`vectors/formats/sealed-records-v1.json`): 3 records
 that hold and 7 that don't; 3 envelopes that open, each with the hash of
