@@ -163,6 +163,18 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder: "I would like to consider this a sort of learning
+  multiversity." And: "So lessons are learned at each layer, fed upward,
+  and inform decisions downward." Quoted whole in docs/VISION.md, "A
+  learning multiversity", with the technical lead's reading, which stands
+  unless the founder answers otherwise. Most of the loop is designed
+  already (the Keepers' reflections and shared craft, suggestions, the
+  round table, ADMIN's own world and its training of the Keepers); what
+  a Keeper knows of each individual stays in its world. Three written
+  rules keep it safe: craft, never files; coaching, not command; and
+  worlds stay different. The technical lead adds that a lesson earns its
+  spread: it travels with its evidence, is tried in ADMIN's own world
+  first, and each world adopts it or doesn't, on record.
 - 2026-11-15, founder, in three messages, quoted whole in
   docs/WORLD-KEY.md ("Challenges that build the world"): "Here is the
   new idea: the challenges are constructive." "Anyone engaging in the
@@ -1324,6 +1336,11 @@ it was wrong. Questions of what the project is for stay with the founder.
   the logs already written stay true.
 
 ## Log
+
+- 2026-11-15 Claude: a learning multiversity, the founder's vision of the
+  same night, in docs/VISION.md, with the technical lead's reading; and
+  #66's two optional notes (WORLD-KEY.md: "the world's growth"; "course
+  step 6, the first room", also in TOPICS.md topic 17).
 
 - 2026-11-15 Claude: the fractal track's part 1, a plant world in Rust
   (`rust/plant-world`). It grows by DeepSeek's rule, has its own key and

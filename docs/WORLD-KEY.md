@@ -550,10 +550,10 @@ try to accommodate as many possibilities as we can imagine."
   world's law says which ways it offers.
 - **A challenge builds the real world.** What it builds stays in the
   world, open to everyone. The Keeper doesn't build the world itself: it
-  proposes its growth as challenges, and people carry them out, as the
-  Keeper designs and the world's code places (above, "The designer,
-  apart from the law"). It is one way a world grows, as the founder put
-  it; exploring grows the land too.
+  proposes the world's growth as challenges, and people carry them out,
+  as the Keeper designs and the world's code places (above, "The
+  designer, apart from the law"). It is one way a world grows, as the
+  founder put it; exploring grows the land too.
 - **Done means capable.** A challenge is done when the world sees the
   individual do it, so a challenge that builds uses only pieces whose
   doing is the skill (above, "What makes a challenge"). The hunt keeps
@@ -592,9 +592,9 @@ try to accommodate as many possibilities as we can imagine."
 - **When.** A first, simple version comes once two things are in: the
   Ur-world's garden hosting plant worlds (the fractal track, part 3,
   [FRACTALS.md](FRACTALS.md)), and the simple scripted Keeper (course
-  step 6). Then the scripted Keeper can offer a plot to plant. The full
-  version comes with the AI Keeper, in course step 11. Neither changes
-  the order of the course or the track.
+  step 6, the first room). Then the scripted Keeper can offer a plot to
+  plant. The full version comes with the AI Keeper, in course step 11.
+  Neither changes the order of the course or the track.
 
 What is built, and whose it is: until 2026-11-15, this page opened by
 saying that what is built "belongs to whoever built it". The founder's
