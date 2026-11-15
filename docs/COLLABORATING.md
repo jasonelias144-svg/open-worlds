@@ -75,7 +75,13 @@ in the order to read it:
    (COURSE.md, waiting list). And on 2026-11-15, a learning
    multiversity: lessons learned in each world travel upward, to the
    Keepers and to ADMIN, and teaching comes back down
-   ([VISION.md](VISION.md), "A learning multiversity").
+   ([VISION.md](VISION.md), "A learning multiversity"). And the same
+   day, the multiverse as a computer: memory, processors, input and
+   output, decisions and learning, at the largest scale, and perhaps
+   one day the substrate for something intelligent, which the founder
+   holds toward "with full comprehension of its implications"; six tests
+   for the architecture follow from it ([VISION.md](VISION.md), "The
+   multiverse as a computer").
 5. **Formats that last** ([research/FORMATS.md](research/FORMATS.md)).
    Every new signed record is a W3C Data Integrity proof
    (`eddsa-jcs-2022`) over its RFC 8785 form, with keys named as did:key.
@@ -738,3 +744,6 @@ page.
   43), each built again as a small run on the unchanged core
   (`ur-world/src/architecture/`, linked under "Code in Rust"). The
   council comes next, with a record for a signed vote.
+- 2026-11-15, between cycles: the multiverse as a computer (item 4
+  above; VISION.md), the founder's thought, with six tests the
+  architecture keeps, checked at each course recheck.

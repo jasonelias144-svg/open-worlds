@@ -766,6 +766,12 @@ step 11 (COLLABORATING.md, "Held back").
 - **When freedoms meet:** not hearing a speaker, and agreements others
   can accept or refuse ([FREEDOMS.md](FREEDOMS.md)).
 - **Generator 2:** land decided when first seen.
+- **The multiverse as a computer** ([VISION.md](VISION.md)): the
+  founder's thought of 2026-11-15, held toward with "full comprehension
+  of its implications". Ideas welcome, as prose: which large problems
+  many worlds at once could take on; and what would, and wouldn't, be a
+  sign of something intelligent at the multiverse's scale, written
+  before anyone looks.
 
 ## Kept current
 

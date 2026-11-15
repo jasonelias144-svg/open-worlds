@@ -7,7 +7,9 @@ So the course always looks twelve steps ahead. When a step is done:
 
 1. it moves to "Done", with its date and pull request;
 2. the steps left are rechecked, and reordered or replaced if the work
-   taught us something (with the reason written here);
+   taught us something (with the reason written here), and checked
+   against the six tests in [VISION.md](VISION.md), "The multiverse as
+   a computer";
 3. one new step is added at the end, or where the waiting list already
    placed it;
 4. a look back: each decision the technical lead recorded in STATUS is

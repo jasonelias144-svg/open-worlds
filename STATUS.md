@@ -230,6 +230,25 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, the multiverse as a computer: "It just occurred
+  to me that the whole multiverse can function as a massive computer,
+  with memory, an operating system, memory, processors, input and
+  output, decisions, and learning on the largest scale. Wouldn't that be
+  a computer, essentially?" And: "Yes, definitely record in the vision
+  doc. I want to take it seriously and let it inform large scale
+  architectural decisions. Because a large computer can solve large
+  problems, potentially. We should understand that by harnessing the
+  intelligence of the multiverse and all its lessons, it could become
+  the substrate for something intelligent to develop. But that is up in
+  the air. We should hold toward that possibility, with full
+  comprehension of its implications." The technical lead's reading, put
+  to the founder the same day, which stands unless the founder answers
+  otherwise (docs/VISION.md, "The multiverse as a computer"): nothing is
+  built for it directly; six tests the architecture keeps passing
+  (learned in the open; many parts, no master; stopping stays possible,
+  part by part; growth by decision, the founder's, one stage at a time;
+  signs named in advance; if someone develops, they may be someone),
+  checked against the steps ahead at each course recheck (docs/COURSE.md).
 - 2026-11-15, founder, in six messages quoted in docs/FRACTALS.md
   ("Where it leads: living worlds"), the aim for the fractal track: "So
   instead of a prescribed number of turns, I can set it going and watch
@@ -1584,6 +1603,14 @@ it was wrong. Questions of what the project is for stay with the founder.
   logged the same way.
 
 ## Log
+
+- 2026-11-15 Claude: the founder's thought of the multiverse as a
+  computer recorded in docs/VISION.md, in the founder's words, with the
+  technical lead's reading: what makes it one, two ways it can be large
+  (a tool for large problems, and perhaps a substrate for something
+  intelligent), six tests for the architecture, and the implications
+  seen so far. Each course recheck now checks the steps ahead against
+  the six tests.
 
 - 2026-11-15 Claude: course step 3a, part four, first half: the
   octopus, the relay and the swarm (docs/research/PERSONS.md, "Part four,
