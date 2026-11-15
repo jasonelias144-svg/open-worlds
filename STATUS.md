@@ -132,9 +132,15 @@ kind.
   someone with no key, not kept at all, as no one can hold it for them;
   and, if the founder takes up the private container (put the same
   day, in conversation), kept in the person's own container rather than
-  the project's records, so the project keeps nothing private. Because
-  this concerns personal information, it waits for the founder's
-  answer; FUNDAMENTALS.md marks it.
+  the project's records, so the project keeps nothing private. The
+  last case departs from the founder's words ("encrypted in the project
+  records"): it protects more, by keeping nothing. Answered by the
+  founder later the same day, agreeing with the recommendation ("I agree
+  with your suggestions"), together with the private container and a
+  "break glass" narrowed to the multiverse's own keys. The founder's
+  words are recorded in full, and this question closed, in the pull
+  request that follows this one, which designs the private container,
+  so that the charter and the design change together.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
@@ -251,8 +257,10 @@ kind.
   More metadata."
   So when a person leaves the multiverse, the record of each link they
   showed between their presences stays: that a link was shown, in which
-  world, and when. What it tied together, the presences' keys, is a
-  private detail, and is redacted. While the person is in the
+  world, and when. What it tied together is a private detail, and is
+  redacted: the person's identity key, and the link's two signed records
+  (the person's `holds` and the presence's `held-by`). The presence that
+  showed it stays, as the author of the act, as all its acts do. While the person is in the
   multiverse, the links they show stay public, as they chose. The open
   question is closed, and this replaces the technical lead's earlier
   reading (in the entry "answering what happens to a leaver's public
@@ -1961,12 +1969,24 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-15 Claude: after #83's re-check at 228fff8: what a leaver's
+  shown link has redacted is named (the person's identity key and the
+  link's two signed records; the presence stays); a redaction stays
+  until any appeal is decided, and keeping something public over a
+  request goes to the founder first; salts come from the operating
+  system, never a world's seed; a link's timing is named among the
+  limits; and the founder's answer on where redacted information is
+  kept is noted, to be recorded with the private container next.
+
 - 2026-11-15 Claude: after #83's re-check at faab85d, a redaction asked
   for by the person it concerns, or any close call, is made at once and
   decided after, and keeping something public is a serious act, open to
   appeal to the founder; the salted fingerprint is said in full and as
   to be built, with Git's history among the honest limits; where
-  redacted information is kept is put to the founder.
+  redacted information is kept is put to the founder. These restate two
+  readings in faab85d's Decided entry (on private information in public
+  acts): logs with fields kept apart from the chain are to be built, not
+  built; and where redacted information is kept was an open question.
 
 - 2026-11-15 Claude: the founder answered on a leaver's shown links: the
   record that a link was shown stays, and what it tied together is

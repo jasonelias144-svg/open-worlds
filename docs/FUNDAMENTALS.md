@@ -141,10 +141,17 @@ one of them updates this page.
    presences, as a manner of speaking or the hours kept can link them.
    A link, once shown, is public while the person is in the
    multiverse. When they leave, the record that a link was shown stays,
-   with where and when, and what it tied together is redacted. The
+   with where and when, and what it tied together is redacted: the
+   person's identity key, and the link's two signed records (`holds` and
+   `held-by`, `rust/ur-world/src/link.rs`); the presence stays, as the
+   author of the act. The
    founder (2026-11-15): "we keep public record of the action with
    private details of the action not included. More metadata." The
-   person is told this before they show one.
+   person is told this before they show one. Its limit: a person's
+   client may show links in several worlds close together, so where and
+   when can still hint that presences are one person's; the time a
+   redacted link record keeps can be made coarser, which is decided when
+   it is built.
 6. **The "break glass", in the open.** Chosen by the founder on
    2026-11-14: a sealed self, or a private message, can be opened only
    by an explicit decision of the founder's, and every opening is
@@ -302,7 +309,10 @@ unless the founder answers otherwise:
 - **Visible, and the log still checks.** To be built, before anyone
   lives in a world: each field of an entry enters the chain of hashes
   only as a salted fingerprint of its content, with a fresh random salt
-  of at least 128 bits for each field, from the moment it is written. A
+  of at least 128 bits for each field, from the moment it is written,
+  drawn from the operating system's random source, never from a world's
+  seed (which would let anyone who knows the seed rebuild it); so a log
+  with such fields is not byte for byte the same on a replay. A
   redacted field then keeps its place and its fingerprint, so every
   hash, and every signed head, still checks. The salt is redacted and
   sealed with the content, so no one can confirm a guess at what was
@@ -315,19 +325,23 @@ unless the founder answers otherwise:
   encrypted in the project's records, like that person's private space:
   under the same "break glass", and purged when they leave. Where it is
   kept, and what happens when it is about several people, or about
-  someone with no key in the multiverse, waits for the founder's answer
-  (STATUS.md, "Open questions").
+  someone with no key in the multiverse, the founder has answered: it is
+  recorded, with the private container it depends on, in the next pull
+  request (STATUS.md, "Open questions").
 - **Redacted first, decided after.** Anyone may ask for a redaction.
-  A request from the person the information is about, and any close
-  call, is redacted at once, while it is decided. The office that keeps
+  A request from the person the information is about, a request about
+  someone else's personal information, and any close call are redacted
+  at once, while they are decided. The office that keeps
   the record decides: a world's Keeper for its world's log, ADMIN for
   the multiverse's. Redacting needs no more than that, and is on record
   with its reasons, in general terms. Keeping something public that
   someone asked to redact is the one decision that needs more: it
   touches an individual, so it is a serious act, reviewed independently
-  before it takes effect, and open to appeal to the founder
-  ([ADMIN.md](ADMIN.md), "Graduated responses"; [REASONS.md](REASONS.md)).
-  Until then, it stays redacted.
+  before it takes effect, and it goes to the founder, as acts against an
+  individual do, and is open to appeal ([ADMIN.md](ADMIN.md), "Graduated
+  responses"; [REASONS.md](REASONS.md)). It stays redacted until any
+  appeal is decided, or its time has passed: once made public again, it
+  can't be recalled.
 
 ## Purged, demonstrably
 
