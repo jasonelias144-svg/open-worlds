@@ -233,6 +233,48 @@ tier seems to be carried by its paid tiers (not checked, below), the
 same shape as the founder's money principle: free at the core, and a
 paid tier later that lets the whole thing run (STATUS.md).
 
+## A map of the multiverse
+
+The founder, 2026-11-14: "we need to build and maintain a multiversal map
+and index. I imagine walking into an amusement park, like Disneyland. I
+unfold the brochure map and investigate the worlds to explore. In our
+case, you could tap on the map for a given world and get information or
+a detailed map, but also a live view of the world in some standard lobby
+location for each world. It is where you land when entering a new
+world." And: "I can brainstorm the whole multiversal map with DeepSeek
+later. But it will be good to have it on the radar."
+
+- **Where it is built:** the fractal track's web app, from its start,
+  with the fractal worlds as its first entries
+  ([FRACTALS.md](FRACTALS.md)); the garden of step 4a is one of its
+  pages; inside the Ur-world, the "multiverse lobby or travel hub"
+  (URWORLD.md), a brochure later (recommended, decided under the rule).
+- **Its design** is open, for the brainstorm with DeepSeek
+  ([TOPICS.md](TOPICS.md), topic 16).
+
+## Worlds that change differently
+
+The founder, 2026-11-14: "As for the branching and choices and changes,
+nothing set in stone yet, let’s explore different ideas. I offered one
+way, and then another, it may differ by world and that makes it easier.
+Nothing applies completely across the board, we can always have worlds
+without change allowed. Others that are sandboxed from other worlds.
+Maybe a world where participant information is intentionally blocked,
+like amnesia, and the goal is to remember things about yourself that you
+chose to forget. That is one possible world. We shouldn’t fix anything
+in stone too much now. We can put something in place, but give it a
+chance to develop. That is the balancing act we have been performing."
+
+- **Left open, and may differ by world:** whether a world takes change
+  at all, changes in place, branches, or is sandboxed from others. A
+  world's template could say which (the technical lead's reading).
+- **The amnesia world,** one possible world. In the persons plan, a
+  presence knows only what its person passes it
+  ([research/PERSONS.md](research/PERSONS.md), decision 7), so a person
+  could choose to pass nothing, and leave clues to find; the world's
+  public log stays public (the technical lead's reading). It suits the
+  hunt (step 11).
+
 ## Not checked
 
 - How hard each template is to build well; the first, chemistry, shows.
