@@ -37,7 +37,9 @@ in the order to read it:
    a presence in each of three trial worlds at once, carrying a note
    from one to another, and a link shown by the presence's own act,
    which the world checks and logs (the rules are now `ur-world/0.5`).
-   Its fourth part, the architectures as small examples, is next.
+   Of its fourth part, the architectures as small examples, the
+   octopus, the relay and the swarm are built; the council, which needs
+   a record for a signed vote, is next.
    Rechecked after step 3, the course gained step 8a, a lost or leaked
    key, before ALICE's and BOB's birth.
    It returns to DeepSeek at step 10, or sooner if the founder chooses.
@@ -537,8 +539,11 @@ welcome too, and is fitted here.
   [`ur-world/src/generate.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/generate.rs), [`ur-world/src/arrival.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/arrival.rs),
   [`ur-world/src/door.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/door.rs), [`ur-world/src/garden.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/garden.rs),
   [`ur-world/src/story.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/story.rs), [`ur-world/src/host.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/host.rs),
-  [`ur-world/src/link.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/link.rs), [`ur-world/src/person.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/person.rs); and its examples,
-  [`ur-world/examples/garden.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/garden.rs), [`ur-world/examples/person.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/person.rs).
+  [`ur-world/src/link.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/link.rs), [`ur-world/src/person.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/person.rs),
+  [`ur-world/src/architecture/mod.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/mod.rs), [`ur-world/src/architecture/octopus.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/octopus.rs),
+  [`ur-world/src/architecture/relay.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/relay.rs), [`ur-world/src/architecture/swarm.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/swarm.rs); and its examples,
+  [`ur-world/examples/garden.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/garden.rs), [`ur-world/examples/person.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/person.rs),
+  [`ur-world/examples/architectures.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/architectures.rs).
 - **`plant-world`**, a fractal plant world: [`plant-world/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/lib.rs),
   [`plant-world/src/rule.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/rule.rs),
   [`plant-world/src/world.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/world.rs),
@@ -588,8 +593,13 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-wor
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/host.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/link.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/person.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/mod.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/octopus.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/relay.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/swarm.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/garden.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/person.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/architectures.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/lib.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/rule.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/world.rs
@@ -723,3 +733,8 @@ page.
   (`ur-world/src/link.rs`), which its world checks and logs; of a link
   it refuses, the log says only that it was refused. The rules are now
   `ur-world/0.5`.
+- 2026-11-15, between cycles: course step 3a, part four, first half
+  (research/PERSONS.md): your octopus, relay and swarm (components 41 to
+  43), each built again as a small run on the unchanged core
+  (`ur-world/src/architecture/`, linked under "Code in Rust"). The
+  council comes next, with a record for a signed vote.

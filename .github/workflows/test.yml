@@ -97,6 +97,8 @@ jobs:
       # A person with a presence in three trial worlds; each world's log,
       # its arrivals and the link shown in it must hold.
       - run: cargo run --locked -q -p ur-world --example person
+      # Three architectures over trial worlds; every world's log must hold.
+      - run: cargo run --locked -q -p ur-world --example architectures
       # A plant world grows and is drawn in text (rust/plant-world).
       - run: cargo run --locked -q -p plant-world --example plant
       # Two minds in another language, through the doorway, in a trial world

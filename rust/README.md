@@ -38,6 +38,7 @@ cargo run --locked -p ur-world --example log -- \
     ../vectors/ur-garden-log.json ../vectors/ur-garden-head.json
 cargo run --locked -p ur-world --example garden
 cargo run --locked -p ur-world --example person
+cargo run --locked -p ur-world --example architectures
 cargo run --locked -p plant-world --example plant
 rustup target add wasm32-wasip1
 cargo build --locked --release -p plant-wasi --target wasm32-wasip1
@@ -80,6 +81,12 @@ local in the first says something, the presence there writes it down,
 and the person's presence in the second says it in its own world; the
 presence in the third shows its link, which its world checks and logs.
 It tells what happened in each world, and checks each world's log.
+
+The `architectures` example runs three ways a mind can be spread over
+presences (course step 3a, part four), each over trial worlds: the
+octopus (a brain that gives intents to arms in three worlds), the relay
+(senses in two worlds, a leader in a third that acts when both fire) and
+the swarm (five presences in one world, one rule, no brain).
 
 The `door` example runs the garden with minds that are programs of their
 own, in any language, through the doorway (`ur-world/src/door.rs`), as a

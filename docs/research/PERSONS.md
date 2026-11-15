@@ -283,7 +283,9 @@ link every presence too.
    (decision 10) uses the same act, at step 9. Built (below, "Part
    three, built").
 4. **The architectures,** as small examples: the octopus, the relay, the
-   swarm and the council.
+   swarm and the council. The first three are built (below, "Part four,
+   first half, built"). The council needs a record for a vote, and
+   comes next.
 
 ## Part two, built
 
@@ -474,6 +476,84 @@ same way.
   (decision 9) are tested, but not shown in the trial.
 - **Trial persons only.** Where a real seed is kept waits for the
   founder (decision 13).
+
+## Part four, first half, built
+
+Built on 2026-11-15: `rust/ur-world/src/architecture/`, with the
+`architectures` example and `rust/ur-world/tests/architectures.rs`. Three
+of decision 11's four architectures, each a small run over trial worlds,
+on the unchanged core: no new action, no new record. The ideas come from
+DeepSeek's components 41 to 43 (record 012-04-00); their code is not
+brought in.
+
+**The octopus** (component 41): one brain, an arm in each of three
+worlds.
+- **The brain** is the person's client. It gives each arm an intent (go
+  there, plant that way, rest), and changes it only when every arm has
+  reported doing it. It never chooses an arm's steps.
+- **Each arm** works out its own steps, and has a reflex: blocked, it
+  steps aside on its next tick without asking the brain.
+- **Every arm reports** each tick, what it stands on and what came of
+  its last action: the efference copy.
+- **Only the brain hears them all.** An arm holds only a line to the
+  brain, which reads its own intent and carries its own reports. A mind
+  written outside the octopus's module can't reach past it to another
+  arm's, since the line's fields are private; inside the module, it is
+  the code as written that keeps them apart.
+- **The run:** each arm's way east runs into the tree's trunk, and its
+  reflex takes it round. The third arm starts further west, and the
+  brain waits for it before telling all three to plant. Nine intents in
+  all, against 45 reports and the arms' own steps.
+
+**The relay** (component 42): two senses and a leader, in three worlds.
+- **Each sense** only watches, and fires when anyone stands within two
+  cells, through a wire to the person's board that writes its own
+  firings and reads nothing.
+- **The leader**, in a world no sense can see, reads how many fired on
+  its tick, and acts only when both did. The octopus's brain pushes
+  intents; the leader pulls what fired.
+- **The run:** a stranger walks toward each sense, the second five ticks
+  after the first. The first sense fires from tick 4, alone, and the
+  leader waits; on tick 9 both fire, and the leader plants a flower,
+  once.
+
+**The swarm** (component 43): five presences of one person in one
+world, one rule, no brain.
+- **No unit leads,** and the person's client tells none of them
+  anything: each has only its own number, which sets how it wanders.
+  They talk only through the world (stigmergy).
+- **The rule:** standing on a flower, plant another on a free side;
+  beside a flower no one stands on, step onto it (a flower isn't
+  solid); otherwise wander, turning back near the garden's edge.
+- **The run:** the operator plants one flower, as a gardener would, and
+  in 60 ticks four of the five units grow it into one patch of 52. The
+  fifth never finds it. Every flower planted is beside the one its
+  planter stood on, so the patch is always one, which the tests check by
+  replaying the log.
+- **Their names share a pattern** (BEE-1 to BEE-5). That links them, but
+  so does what they do: a swarm in one world is plain to see.
+
+**What every run shares.**
+- One person's client runs every presence (decision 7). What goes
+  between worlds goes through it, and the tests check that no world's
+  log names another world, another world's presence, or the person.
+- Each run is the same every time: the worlds take their ticks in a
+  fixed order.
+
+**The council waits.** Decision 8 has a council count distinct persons,
+by their identity keys, and only persons whose birth a world it trusts
+signed. A vote is the person's act, signed, which no record kind holds
+yet: `say` in a world's log is the world's record of what was said, not
+the voter's signature. So the council comes with a look at how others
+sign and count votes, and a record of its own, in Python and Rust with
+shared vectors, as every format has.
+
+**Not checked.**
+- How the architectures behave with minds that aren't scripts: each mind
+  here is a short rule. What a model would do as an arm, a sense or a
+  unit waits for the minds of step 8.
+- DeepSeek's later architectures (components 47, 50 and 52: autonomic,
+  institutional, epidemic) aren't in decision 11, and aren't built.
 
 ## Honest limits
 

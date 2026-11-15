@@ -231,15 +231,30 @@ shows its link as its own action, which its world checks (both records
 hold, name this world and this presence, and the presence has shown no
 link there before) and writes into its log; of a link it refuses, the
 log says only that it was refused, with neither its records nor why.
-Next is part four, the architectures.
 
-**A possible implementation:** DeepSeek's architectures (components 36
-to 52: the octopus, the relay, the swarm, the council) become small
-examples on the same core: a design for any of them, as prose, is
+**Built** (2026-11-15, step 3a, part four, first half): three of the
+architectures, as small runs on the unchanged core
+([research/PERSONS.md](research/PERSONS.md), "Part four, first half,
+built"; `rust/ur-world/src/architecture/`), from DeepSeek's components
+41 to 43:
+- **the octopus:** the person's client as a brain that gives intents to
+  arms in three worlds, each finding its own way, with a reflex, and
+  reporting back;
+- **the relay:** senses in two worlds, a leader in a third that acts
+  only when both fire at once;
+- **the swarm:** five presences in one world, one rule and no brain,
+  growing one patch of flowers by what each leaves for the others.
+
+The council is next. It needs a record for a vote, signed by the
+person, which no record kind holds yet.
+
+**A possible implementation:** the council from DeepSeek's components 44
+to 46 (signed votes, deliberation, councils that cite each other),
+counting distinct persons as decision 8 says: a design, as prose, is
 welcome.
 
-**Send back:** one architecture as a worked example, using the records
-above; what stays private, and from whom.
+**Send back:** what a vote record should hold, and how a council counts
+persons, not presences; what stays private, and from whom.
 
 ## 5. Laws for new worlds
 
