@@ -287,11 +287,12 @@ stands unless the founder answers otherwise.
    names the hash of the log so far; the page holds no world's key, so
    it signs nothing as the world.
 2. **A choice neuron** (part 5). One per plant, at first. At each tip
-   it reads a few numbers (light there, crowding, height, water) and
-   chooses: grow, split, rest, or shed (DeepSeek's sketch, record
-   012-07-03, as accepted: Grow extends a tip, Split forks it, and
-   shedding drops a tip). Its reward is the
-   light that growth caught, less its cost, and it adjusts its weights.
+   it reads a few numbers and chooses: grow, split, rest, or shed
+   (DeepSeek's sketch, record 012-07-03, as accepted: Grow extends a
+   tip, Split forks it, and shedding drops a tip). In the sketch, it
+   reads light, shade, height, crowding, energy and age, and its reward
+   is the tick's change in energy; water comes later, as an input the
+   plant doesn't choose. It adjusts its weights from the reward.
    The weights are whole numbers and its randomness comes from the
    world's seed, so every run repeats exactly. The page shows the
    weights as they change. Then a small network instead of one neuron,

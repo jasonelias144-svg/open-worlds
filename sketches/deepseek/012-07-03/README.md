@@ -14,7 +14,8 @@ open-worlds never imports it ([../../README.md](../../README.md)).
   segments above shade the column; pays upkeep for every segment; and,
   when its energy falls below zero, drops its least-lit tips. A choice
   neuron, if the template's `hasMonad` is on, chooses to grow, split,
-  rest or drop, and learns from the change in energy. The design is in
+  rest or drop (accepted as the plant shedding a tip), and learns from
+  the change in energy. The design is in
   the record as prose (line 253, a page DeepSeek proposed as
   `docs/research/ENDLESS-PLANT.md`; it isn't in `docs/`), followed by
   the crate and its vectors.

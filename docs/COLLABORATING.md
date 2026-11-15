@@ -70,8 +70,8 @@ test there:
    them changes nothing.
 4. Two sibling tips share the segment that leads to them, and dropping
    both pays that segment back twice: once the stored energy runs out,
-   one tick drops 9 tips, removes 5 segments, and pays back 9. A plant that dies leaves segments
-   standing: 8, with no tips.
+   one tick drops 9 tips, removes 5 segments, and pays back 9. A plant
+   that dies leaves segments standing: 8, with no tips.
 5. Nothing stops a segment growing where one already is, and stored
    energy has no bound: after 2,000 ticks in a 20 by 20 pot there are
    2,000 segments, only 477 of them distinct, and 2,189,945 units of

@@ -233,8 +233,9 @@ kind.
 ## Decided
 
 - 2026-11-15, founder, on working with DeepSeek, to the technical lead
-  in this session. On reading the repository: "Ok, so DeepSeek needs me to provide the whole URL for each
-  rust file, and it has to be in the chat prompt." Then: "Ok, the links
+  in this session. On reading the repository: "Ok, so DeepSeek needs me
+  to provide the whole URL for each rust file, and it has to be in the
+  chat prompt." Then: "Ok, the links
   worked. But sometimes the pages themselves contain links. But it is ok
   since all relevant files have links. We may consider having README
   pages where we can put code and the explanation together, keep it
