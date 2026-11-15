@@ -39,9 +39,10 @@ fn no_light_rests_instead_of_dying() {
 /// Finding 4: a growth leaves two tips at one point, sharing the one
 /// segment that leads there. Dropping a tip removes every segment that
 /// ends where it is, and pays back one segment's maintenance, so when
-/// both siblings are dropped the segment is paid back twice. Here, when
-/// the light goes out, one tick drops 9 tips and removes 5 segments,
-/// paying back 9; and the plant dies with 8 segments standing.
+/// both siblings are dropped the segment is paid back twice. Here, with
+/// the light gone, the plant grows on its stored energy until it runs
+/// out; then one tick drops 9 tips and removes 5 segments, paying back
+/// 9; and the plant dies with 8 segments standing.
 #[test]
 fn dieback_pays_back_segments_twice_and_leaves_segments() {
     let mut world = run(sunny(false), [1; 32], 6);
@@ -58,7 +59,8 @@ fn dieback_pays_back_segments_twice_and_leaves_segments() {
         if let Some(e) = entry.filter(|e| e.kind == EntryKind::DiedBack) {
             let removed = before.saturating_sub(world.segments.len());
             let upkeep = before as i64 * i64::from(world.template.maintenance);
-            diebacks.push((e.tips_dropped, removed, world.energy - energy + upkeep));
+            let paid_back = world.energy - energy + upkeep;
+            diebacks.push((e.tips_dropped, removed, paid_back));
         }
         if !more {
             break;
@@ -72,8 +74,8 @@ fn dieback_pays_back_segments_twice_and_leaves_segments() {
 
 /// Finding 5: nothing stops a segment growing where one already is, and
 /// stored energy has no bound. After 2,000 ticks in a 20 by 20 pot the
-/// plant has grown 2,000 segments, only 477 of them distinct, and holds
-/// over two million units of energy.
+/// plant has grown 2,000 segments, only 477 of them distinct, has 2,001
+/// tips, and holds over two million units of energy.
 #[test]
 fn segments_overlap_and_energy_is_unbounded() {
     let world = run(sunny(false), [7; 32], 2000);
@@ -83,19 +85,27 @@ fn segments_overlap_and_energy_is_unbounded() {
     distinct.sort();
     distinct.dedup();
     assert_eq!(distinct.len(), 477);
+    assert_eq!(world.tips.len(), 2001);
     assert_eq!(world.energy, 2_189_945);
 }
 
 /// Finding 6: the neuron's noise reads only the seed's first byte, so
-/// two seeds that differ only after it give the same run.
+/// two seeds that differ only after it give the same run; and, so the
+/// test can't pass because the noise does nothing, a seed whose first
+/// byte differs gives another run.
 #[test]
 fn noise_reads_only_the_first_byte_of_the_seed() {
-    let mut other = [7; 32];
-    other[31] = 8;
-    let (a, b) = (run(sunny(true), [7; 32], 200), run(sunny(true), other, 200));
-    let energies = |w: &World| w.log.iter().map(|e| e.energy).collect::<Vec<_>>();
+    let energies = |w: &World| -> Vec<i64> { w.log.iter().map(|e| e.energy).collect() };
+    let a = run(sunny(true), [7; 32], 200);
+    let mut last = [7; 32];
+    last[31] = 8;
+    let b = run(sunny(true), last, 200);
     assert_eq!(energies(&a), energies(&b));
     assert_eq!(a.segments, b.segments);
+    let mut first = [7; 32];
+    first[0] = 8;
+    let c = run(sunny(true), first, 200);
+    assert_ne!(energies(&a), energies(&c));
 }
 
 /// Finding 2, the other side: the sketch's other two vectors hold, as

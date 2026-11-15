@@ -709,9 +709,10 @@ fits it as `rust/endless-plant`, with the changes the review lists
 **Open:** nearly everything about how it behaves:
 - how water moves, step by step, in whole numbers: falling, flowing
   downhill, pooling, soaking in, evaporating;
-- a growth rule with no fixed end that stays a manageable size;
+- a growth rule with no fixed end that stays a manageable size (one is
+  sketched, above; others are welcome);
 - what the neuron reads at a tip, what it chooses among, and what its
-  reward is;
+  reward is (sketched too);
 - how roots and shoots share what a plant gathers;
 - what a seed carries, how far it travels, and when it sprouts;
 - the strategies living things use to find water, light and food, and

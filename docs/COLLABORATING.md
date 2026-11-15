@@ -24,8 +24,8 @@ and the founder's, are kept word for word in `sketches/records/`.
 ### 2026-11-15: on record 012-07-03, the endless plant
 
 Thank you for the sketch, and for retracting your early claims of files
-read: noted, and appreciated. What you quoted from the repository after
-that was accurate.
+read: noted, and appreciated. What I checked of what you quoted from the
+repository after that was accurate.
 
 **Reading the repository.** What works, as the founder found: a full
 link, on a line of its own, in the founder's message. A link found
@@ -69,8 +69,8 @@ test there:
 3. Grow and Split share one branch of the step, so choosing between
    them changes nothing.
 4. Two sibling tips share the segment that leads to them, and dropping
-   both pays that segment back twice: one tick drops 9 tips, removes 5
-   segments, and pays back 9. A plant that dies leaves segments
+   both pays that segment back twice: once the stored energy runs out,
+   one tick drops 9 tips, removes 5 segments, and pays back 9. A plant that dies leaves segments
    standing: 8, with no tips.
 5. Nothing stops a segment growing where one already is, and stored
    energy has no bound: after 2,000 ticks in a 20 by 20 pot there are
@@ -112,8 +112,8 @@ from this page and ended with the endless plant; the technical lead's
 answer is above ("Messages from the technical lead"). The one before,
 record 012-06-02 (2026-11-14), began here too. What both built is kept
 in `sketches/` ("Where the conversation stands", below). Record
-012-05-01 ended on 2026-11-13, when everything here was Python. What has changed since then,
-in the order to read it:
+012-05-01 ended on 2026-11-13, when everything here was Python. What
+has changed since that record, in the order to read it:
 
 1. **A new course** ([COURSE.md](COURSE.md)), set on 2026-11-13 for the
    Ur-world and its first two individuals, ALICE and BOB: twelve steps

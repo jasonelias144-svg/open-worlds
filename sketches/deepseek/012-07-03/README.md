@@ -51,7 +51,8 @@ functions added, and runs `review/review.rs` against it (it needs Rust
    segment that leads there. Dropping a tip removes every segment that
    ends where it is, and pays back one segment's upkeep, so when both
    are dropped the one segment is paid back twice. In the review's run,
-   when the light goes out, one tick drops 9 tips and removes 5
+   with the light gone, the plant grows on its stored energy until it
+   runs out (tick 19); then one tick drops 9 tips and removes 5
    segments, and pays back 9. The plant then dies with 8 segments still
    standing, and no tips.
 5. **Segments overlap, and stored energy has no bound.** Nothing stops a

@@ -4,8 +4,9 @@
 // line 333): growth picks the tip with the most light, then the
 // shallowest, then the lowest (x, y, direction); dieback picks the tip
 // with the least light, then the deepest, then the lowest
-// (x, y, direction). "Lowest" is our reading: the record doesn't say. review/run.sh appends this file to a scratch
-// copy's rule.rs, so the sketch can be built and its behaviour checked.
+// (x, y, direction). "Lowest" is our reading: the record doesn't say.
+// review/run.sh appends this file to a scratch copy's rule.rs, so the
+// sketch can be built and its behaviour checked.
 
 pub fn growth_priority(
     t: &Template,
