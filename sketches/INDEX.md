@@ -351,9 +351,10 @@ sides"); nothing here is adopted yet:
   A record here goes through records-v1: its schema, shared vectors, and
   Python and Rust ([../docs/research/FORMATS.md](../docs/research/FORMATS.md)).
 - **ALICE and BOB as small networks.** In the Ur-garden they become the
-  four-unit network (48 and 52; in 49 their minds are still scripted); here their minds are language models
-  chosen by course step 8's audition. The network fits as a primitive
-  learning model in a fractal world.
+  four-unit network (48 and 52; in 49 their minds are still scripted);
+  here their minds are language models chosen by course step 8's
+  audition. The network fits as a primitive learning model in a fractal
+  world (the technical lead's reading, FRACTALS.md).
 - **Floats in the learner.** The network computes in `f64`, with `tanh`
   and `exp` (52), whose last bits can differ between machines and maths
   libraries; and DeepSeek notes that its Rust and Python runs already

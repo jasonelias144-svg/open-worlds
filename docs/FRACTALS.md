@@ -42,19 +42,19 @@ In the founder's words (STATUS.md, "Decided", 2026-11-14):
   exactly how I envisioned the Ur-world, ALICE and BOB is a microverse
   garden of hosted fractal worlds."
 
-Fractal worlds are primary worlds, made from a template whose dials
-are the rule's numbers (TOPICS.md, topic 1; VISION.md, "A hierarchy of
-worlds"). The founder, 2026-11-15: "Rules only and AI inside are not different. I was
-looking for a basic choosing and learning model, like a single neuron.
-This is not the same AI as will be used for ALICE and BOB, perhaps we
-can use a weaker term, “learning and choosing monad”, but we can just
-consider it a primitive learning model. So no tension." The technical
-lead's reading of it, which stands unless the founder answers otherwise:
-a primitive learning model inside a fractal world doesn't stop it being
-primary; it is part of the world's workings, as its rules are, and not
-the AI that ALICE and BOB will have; and whether a world has one is
-that world's. (This replaces the technical lead's earlier reading,
-which kept learners out of the plant worlds.)
+Fractal worlds are primary worlds, made from a template whose dials are
+the rule's numbers (TOPICS.md, topic 1; VISION.md, "A hierarchy of
+worlds"). The founder, 2026-11-15: "Rules only and AI inside are not
+different. I was looking for a basic choosing and learning model, like a
+single neuron. This is not the same AI as will be used for ALICE and
+BOB, perhaps we can use a weaker term, “learning and choosing monad”,
+but we can just consider it a primitive learning model. So no tension."
+The technical lead's reading of it, which stands unless the founder
+answers otherwise: a primitive learning model inside a fractal world
+doesn't stop it being primary; it is part of the world's workings, as
+its rules are, and not the AI that ALICE and BOB will have; and whether
+a world has one is that world's. (This replaces the technical lead's
+earlier reading, which kept learners out of the plant worlds.)
 
 And the founder's Ur-world word meets the decision of 2026-11-13: "Once
 we work out that world, we can begin creating subworlds" (URWORLD.md).
@@ -125,13 +125,13 @@ technical lead's. Each part is one reviewed pull request.
    waits for it.
 5. **More families, and choice.** Automata and chaos games, as DeepSeek
    sketched them; then primitive learning models that choose (DeepSeek's
-   lookup table and four-unit network; the founder's "learning and
-   choosing monad"), in any fractal world whose template has one: the
-   first rungs of the ladder that leads to
-   step 8's audition, which measures what is minimally sufficient for
-   ALICE and BOB. A learner learns from rewards, and ALICE and BOB will be
-   language models that speak, so the learners teach about choice and
-   don't become them.
+   lookup table and four-unit network; the learning and choosing monad,
+   in the founder's term), in any fractal world whose template has one
+   (the technical lead's reading, above): the first rungs of the ladder
+   that leads to step 8's audition, which measures what is minimally
+   sufficient for ALICE and BOB. A learner learns from rewards, and
+   ALICE and BOB will be language models that speak, so the learners
+   teach about choice and don't become them.
 
 How each world may change is its own: a template can say that no change
 is taken, or that a change makes a branch and the original continues, or

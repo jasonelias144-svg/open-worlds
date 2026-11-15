@@ -1286,7 +1286,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   `formats` crate doesn't have. Our harness fixed for test files in
   subfolders (`known_failures.py`, `sketch_status_test.py`). And the #64
   re-check's four notes taken. Then, in the same pull request: the
-  founder's "no tension" answer on primitive learning models; the four
+  founder's answer that primitive learning models bring no tension; the four
   steps for DeepSeek's code, and the first fit check of this
   continuation (sketches/INDEX.md); and, at the founder's word, what
   fits comes straight into `rust/`, with each of our Rust files linked

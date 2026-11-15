@@ -141,11 +141,11 @@ Its "Course" column uses the first course's step numbers for records
 record 012-06-02.
 
 **Taking a piece in is a decision of its own** (the founder, 2026-11-15:
-"we expect DeepSeek code to have some things to fix, and we should still
-decide whether or not to incorporate anything that goes against our
-established design"). The technical lead's answer, put to the founder
-the same day (it stands unless the founder answers otherwise): four
-steps, in order.
+"Also, keep in mind, we expect DeepSeek code to have some things to fix,
+and we should still decide whether or not to incorporate anything that
+goes against our established design."). The technical lead's answer, put
+to the founder the same day (it stands unless the founder answers
+otherwise): four steps, in order.
 
 1. **Bring it in as written,** in `sketches/`, with every test's result.
 2. **Make it run:** fix what is broken, the design unchanged, each fix
@@ -164,9 +164,10 @@ incorporate. But changing to Rust does not change anything else, only
 the language." The technical lead's rule for it: a piece that compiles
 against the crates on `main`, passes the three commands under "Code in
 Rust", keeps the rules there, and meets no conflict in step 3 goes into
-`rust/` in one reviewed pull request, steps 2 to 4 together. Its commits name DeepSeek as well as
-Claude in their `Made-by` lines and say what was changed here, and the
-record keeps the original. Everything else stays a sketch, as before.
+`rust/` in one reviewed pull request, steps 2 to 4 together. Its commits
+name DeepSeek as well as Claude in their `Made-by` lines and say what
+was changed here, and the record keeps the original. Everything else
+stays a sketch, as before.
 
 **The standard is open-worlds' own code, not the sketches.** Build on
 the code merged into `main` (`multiverse/`, `formats/`, `rust/`) and the
@@ -449,8 +450,9 @@ These hold for every Rust file that comes in, on top of the house rules:
 
 **Our crates, file by file,** to build on if you choose: each link
 opens the file as it is on `main`. These are the files to write against,
-each crate's library code; its tests and examples sit beside them. A draft written against them can
-come in as it is; one that isn't is welcome too, and is fitted here.
+each crate's library code; its tests and examples sit beside them. A
+draft written against them can come in as it is; one that isn't is
+welcome too, and is fitted here.
 
 - **The workspace:** [`Cargo.toml`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/Cargo.toml) (the dependencies, each with its
   reason, and the lints) and [`rust-toolchain.toml`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/rust-toolchain.toml).
