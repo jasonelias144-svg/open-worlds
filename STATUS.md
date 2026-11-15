@@ -237,6 +237,53 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on where the record lives:
+  "Sounds good. Is the COLLABORATING.md page up to date with these
+  changes? Because we need to make sure that many of the comments that I
+  make here do not need to be repeated there. Our conversation here is
+  the only one I am not keeping records for because the on going takes
+  and mainly coding based notes make this a different type of chat
+  environment and our conversation a different type. As a result, you
+  can read what I say with DeepSeek, but DeepSeek doesn't read what we
+  discuss here. That is what GitHub is for. This is why it is good to
+  move any project related statements into the project directly, as you
+  have been doing. I mention only to note the importance and to note the
+  asymmetry. Thoughts?"
+  So the repository is the record: the founder keeps the DeepSeek
+  conversations, but not these sessions with the technical lead, and
+  DeepSeek reads the repository, never these sessions. AGENTS.md
+  ("Every session", step 5) makes it a rule: whatever the founder says
+  in a session that bears on the project goes into STATUS.md, word for
+  word, and into the pages it changes, and a session checks before it
+  ends that nothing is missing. docs/COLLABORATING.md says so at its top,
+  and its newest message lists what changed on 2026-11-15.
+- 2026-11-15, founder, on the SAIR work and on Lean:
+  "Also note SAIR work is intentionally separate from the other repos.
+  It is the only one that includes work and publications from outside.
+  It should be considered distinct because based on something external.
+  But, I do think there is much there we can utilize for checking the
+  reasoning behind decisions made by agents in offices. But also, we
+  could have math worlds or other reasoning worlds where debate or
+  discovery is tapered by a Lean engine. There is much to integrate
+  there, but would be the only place to look for a different license.
+  Thoughts?"
+  So:
+  - **SAIR-Lean-Kernel-Challenge stays separate,** as the one repository
+    built on outside work, and the one place a licence other than CC0 is
+    looked at: there, the challenge's own files keep their Apache-2.0
+    licence (that repository's README lists them; the policy handbook's
+    decision 0003).
+  - **Lean, two ways** (docs/TOPICS.md, topic 20): checking the reasoning
+    behind decisions made in offices, which docs/REASONS.md already
+    designs; and reasoning worlds, such as mathematical worlds, where a
+    claim counts once Lean's kernel accepts its proof. The technical
+    lead reads "tapered" as tempered: the kernel keeps debate and
+    discovery honest.
+  - **What comes in from SAIR,** the technical lead's reading, which
+    stands unless the founder answers otherwise: our own work, under CC0:
+    the proofs, and the tools that set up Lean and count kernel
+    instructions. Lean and its library are depended on, under their own
+    licences, not copied in; the challenge's files stay there.
 - 2026-11-15, founder, renaming the "break glass":
   "We can change the name. I didn't choose it, but did love it. But upon
   further discussion, "keys to the kingdom" is more appropriate. I
@@ -2250,6 +2297,34 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: after #89's independent review at 03e3923, its six
+  notes: COLLABORATING.md's "in brief" says it is a selection and where
+  the rest is; house rule 15 marks "as we were" read as the technical
+  lead's; rule 9 says our own work in SAIR-Lean-Kernel-Challenge is CC0
+  too; AGENTS.md step 5 separates the founder's words from the technical
+  lead's procedure; FUNDAMENTALS.md and CONTAINER.md mark "that holding
+  is the keys to the kingdom" as a reading; topic 20 marks its glosses.
+
+- 2026-11-15 Claude: after #88's re-check at de2e7ee, its notes, carried
+  here: today every private half, the offices' and worlds' included, is
+  a file in the one private repository, so "a private half taken out of
+  keeping" would have read as routine signing. FUNDAMENTALS.md and
+  CONTAINER.md now say the founder's holding of the keys is the "keys to
+  the kingdom", and mark what "opened" means as the technical lead's
+  reading: a key used or copied outside its own office's work, never a
+  key's own office signing. CONTAINER.md names the founder's "to not
+  sound as pretentious".
+
+- 2026-11-15 Claude: the record for DeepSeek. AGENTS.md gains step 5:
+  the repository is the record, as the founder's sessions with the
+  technical lead aren't kept. docs/COLLABORATING.md says so at its top,
+  with a message listing what changed on 2026-11-15, and its house rules
+  gain what was missing: build host-free; the licence as a standing
+  rule, with SAIR the one repository built on outside work; and "the
+  founder's earlier work", with no titles. docs/TOPICS.md gains topic
+  20, reasoning checked by Lean. The founder's two messages are in
+  Decided.
 
 - 2026-11-15 Claude: after #88's independent review at f2a7f65: the
   charter, FUNDAMENTALS.md and CONTAINER.md say "opened" again, not

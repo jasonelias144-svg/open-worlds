@@ -788,6 +788,38 @@ qualifications checked), in records-v1 with test vectors.
 **Send back:** a Keeper's qualifications, as checks code could run, and
 what an apprenticeship for a Keeper might look like in the open.
 
+## 20. Reasoning checked by Lean
+
+*The founder, 2026-11-15:* "I do think there is much there we can
+utilize for checking the reasoning behind decisions made by agents in
+offices. But also, we could have math worlds or other reasoning worlds
+where debate or discovery is tapered by a Lean engine." The founder's
+"there" is the project's work in the SAIR Lean Kernel Challenge, which
+the founder keeps separate because it is "based on something external"
+(STATUS.md, Decided).
+
+**What exists:** [REASONS.md](REASONS.md) designs decision records that
+may carry a proof in Lean, which Lean's kernel checks before the act
+takes effect ("What Lean checks"); [ADMIN.md](ADMIN.md) has two rows on
+it in its table of risks (24 and 25). From the SAIR work: proofs that an
+implementation equals its specification for every input, a pinned Lean
+setup, and a way to count the kernel instructions a check costs.
+
+**Open:** what a reasoning world's law is (who may state a claim, what
+a counterexample does, whether proving costs something, measured in
+kernel instructions); which properties of an office's decision are worth
+proving; how a world uses Lean without copying it in.
+
+**A possible implementation:** a small world of claims, where a claim is
+stated as a Lean theorem, and counts once the kernel accepts a proof of
+it; the cost of checking, in kernel instructions, is recorded with it.
+The technical lead's reading (STATUS.md, Decided): Lean and its library
+are dependencies under their own licences, and only the project's own
+work comes in, under CC0.
+
+**Send back:** a reasoning world's law, as text; and three properties
+of an office's decision that would be worth proving, in plain words.
+
 ## Further out
 
 Ideas that won't help yet but probably will, from the course's waiting

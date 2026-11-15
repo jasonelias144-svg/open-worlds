@@ -115,15 +115,20 @@ they are only the keys the multiverse needs to function:
 - the keys of the worlds the project runs.
 
 ADMIN, the other offices and the worlds use their own keys in their
-ordinary work; the "keys to the kingdom" are the founder's set of them.
-They are opened only by the founder's explicit decision, every opening
-is recorded publicly and permanently, and their next holder is a person
-the founder names publicly ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy,
-item 6). The founder calls them "Much more like a janitor's set of keys,
-than a fire extinguisher", and handing them on "more like nuclear codes
-passed from one president to another. There need be no emergency, only
-a transfer of authority to another." The technical lead's reading,
-which stands unless the founder answers otherwise: they are for the
+ordinary work. The founder holds all of them, in the project's private
+repository, and, in the technical lead's reading, that holding is the
+"keys to the kingdom". They are
+opened only by the founder's explicit decision, every opening is
+recorded publicly and permanently, and their next holder is a person the
+founder names publicly ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item
+6). The founder calls them "Much more like a janitor's set of keys, than
+a fire extinguisher", and handing them on "more like nuclear codes passed
+from one president to another. There need be no emergency, only a
+transfer of authority to another." In a later message, the janitor
+comparison was chosen "to not sound as pretentious". The technical
+lead's reading, which stands unless the founder answers otherwise: an
+opening is a key used or copied outside its own office's work, never a
+key's own office signing as it always does; and the keys are for the
 upkeep of the multiverse's own machinery, not only for emergencies.
 
 **What this replaces.** The founder chose the "break glass" on

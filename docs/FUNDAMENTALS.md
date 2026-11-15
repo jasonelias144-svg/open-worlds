@@ -175,11 +175,15 @@ one of them updates this page.
    person's private space or their private messages, which live in their
    own containers ([CONTAINER.md](CONTAINER.md), "The "keys to the
    kingdom""). ADMIN, the other offices and the worlds use their own keys
-   in their ordinary work, as before; the "keys to the kingdom" are the
-   founder's set of them, kept in the project's private repository. They
-   are opened (a private half taken out of keeping, or a key used by its
-   holder in place of its office) only by an explicit decision of the
+   in their ordinary work, as before. The founder holds all of them, in
+   the project's private repository, and, in the technical lead's
+   reading, that holding is the "keys to the kingdom". They are opened only by an explicit decision of the
    founder's, and every opening is recorded publicly and permanently.
+   The technical lead's reading of "opened", which stands unless the
+   founder answers otherwise: a key used or copied outside its own
+   office's work, such as by the founder in its office's place, or to
+   replace it; a key's own office reading it to sign, as it always does,
+   is not an opening.
    ADMIN can't open them. The founder: "Much more like a janitor's set of
    keys, than a fire extinguisher", and passing them on needs "no
    emergency" (below); in the latest of those messages the janitor
