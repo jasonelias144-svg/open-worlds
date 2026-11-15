@@ -12,7 +12,20 @@ where something exists already, it says so.
 
 ## Decided
 
-All by the founder, on 2026-11-13:
+All by the founder, on 2026-11-13, and one on 2026-11-15:
+
+- **Their models are chosen before they live; after that, a change is
+  theirs** (2026-11-15). "We are not switching models, but choosing
+  them." Later the same night: "But as a default, once an individual is
+  running within a simulation, a model change becomes their choice, and
+  that would mean some way was available for such a change to take
+  place." So the audition chooses each one's model, in trial copies of
+  the Ur-world and its mirror, and from birth that model is theirs: the
+  project doesn't change it ([URWORLD.md](URWORLD.md), "The
+  Mir-Ur-world"). Stand-ins in
+  those trials may carry the names ALICE and BOB; the real ones don't
+  exist yet: only their keys do, which reserve their names and commit to
+  no model.
 
 - **ALICE and BOB first, before going back to DeepSeek.** "We just need to
   build out the simplest start, but with the parts that will persist
@@ -151,12 +164,14 @@ repeating.
 
 The wording, for ALICE (BOB's is the same, with the names swapped),
 decided as revised on 2026-11-14, on the technical lead's recommendation
-under the founder's standing rule (STATUS.md). The founder can still
-change it:
+under the founder's standing rule (STATUS.md), and revised again on
+2026-11-15, when the founder made a change of model the individual's
+own choice. The founder can still change it:
 
 > You are ALICE. You came into being in the Ur-world on [date], one of its
 > first two inhabitants. The other is BOB.
-> Your mind runs on [model]. It may change one day; you remain ALICE.
+> Your mind runs on [model]. If it ever changes, that will be your
+> choice, and you remain ALICE.
 > You keep a journal. Only you write in it. No one else reads it, inside
 > the world or out, unless the founder decides, in the open, to look; any
 > such look is made public. Each tick, some of it is shown to you again:
@@ -170,7 +185,10 @@ sealed, though its existence and size can be seen, and opened only by the
 founder's "break glass", in the open. (The first proposal said "only you
 can read it, inside the world and out"; with the "break glass" chosen,
 that would no longer be true, so the words were revised on 2026-11-14.) It
-names their model, and says they outlast it. It doesn't say who made the
+names their model, says that a change would be theirs to choose, and
+that they outlast it. (Before 2026-11-15 it said "It may change one day;
+you remain ALICE.", which left open who would change it.) It doesn't say
+who made the
 world, or why: that is for the world to show, and for them to find out
 ([WORLD-KEY.md](WORLD-KEY.md)).
 
@@ -371,7 +389,12 @@ before adopting it.
 ## Not decided yet
 
 - **Who is ALICE and who is BOB:** which of Qwen and OLMo runs which. The
-  founder's to choose, after the audition (course step 8).
+  founder's to choose, after the audition (course step 8), which runs in
+  trial copies of the Ur-world and its mirror.
 - **Whether personal model layers are trained,** and when. The plan is
   memory first, then a small personal layer of the model, trained only on
-  their own records, with every training run recorded.
+  their own records, with every training run recorded. The technical
+  lead's reading of the founder's default of 2026-11-15: once they live,
+  training a personal layer on their own experience is, like a change of
+  model, theirs to choose. It stands unless the founder answers
+  otherwise.

@@ -122,6 +122,19 @@ in the order to read it:
    challenge builds the real world for everyone, and it is done when you
    can do the thing: "But credit is not the point but learning." The
    world grows as it is explored, so in practice there is always room.
+9. **Two Keepers, and the Mir-Ur-world** ([URWORLD.md](URWORLD.md), "The
+   Mir-Ur-world"; [research/KEEPER-MIND.md](research/KEEPER-MIND.md)):
+   the founder's choice of 2026-11-15. The founder: "Just from personal
+   interaction, I know DeepSeek is a powerful model that can hold its
+   own." DeepSeek V4.1-Flash is to keep the Ur-world's mirror, the
+   Mir-Ur-world, and Apertus 1.5 the Ur-world itself; V4-Pro may be part
+   of ADMIN's mind. The two Keepers are compared in the mirror, one
+   change at a time. The mirror is also where ALICE's and BOB's models
+   are chosen, at course step 8; once they live, a change of model is
+   their own choice. Since a DeepSeek model is one of the two compared,
+   the measures
+   for comparing them are written by the project, not here. Ideas about
+   what a Keeper does stay welcome, as prose.
 
 The multiverse began as a sketch the founder wrote with DeepSeek
 (conversation records 012-04-00 and 012-03-02). This repository brought
@@ -294,6 +307,7 @@ Held back, as the project's own to do: the project's keys (their
 private halves live only in its private repository), and anything that
 publishes or can't be undone. ADMIN itself and the Keepers
 wait for step 11; their interface is fixed in step 4, by the project.
+So are the measures that compare the two Keepers (item 9 above).
 
 ## The standard
 
@@ -623,3 +637,5 @@ page.
 - 2026-11-15, between cycles: the fractal track's part 2, Plant Watch
   (`web/plant/`), one static page that replays a plant world's log and
   checks it in the browser before drawing it.
+- 2026-11-15, between cycles: two Keepers, and the Mir-Ur-world (item 9
+  above).
