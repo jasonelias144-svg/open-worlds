@@ -232,6 +232,27 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on the earlier work and on the "break glass":
+  ""the founder's earlier work" is exactly the level of information. No
+  need to be specific. If the need arises, then it becomes part of the
+  current project and not just part of earlier work. And the sounds good
+  for the "break glass" which is more like nuclear codes passed from one
+  president to another. There need be no emergency, only a transfer of
+  authority to another. A handoff of "keys to the kingdom"."
+  So:
+  - **The founder's earlier work is referred to as just that,** with no
+    titles. If a part of it is needed, it is brought into the current
+    project and becomes part of it. This replaces the technical lead's
+    reading in the next entry, that those works may be named.
+  - **The "break glass" covers the keys the technical lead named,** which
+    the founder confirms: the root of the key list, ADMIN's and the other
+    offices' keys, and the keys of the worlds the project runs.
+  - **It is the "keys to the kingdom", handed on like "nuclear codes
+    passed from one president to another".** Passing it needs no
+    emergency: it is a transfer of authority to the next holder. The
+    design pages that describe it (CONTAINER.md, FUNDAMENTALS.md privacy
+    item 6, OFFICES.md) are brought into line in the pull request after
+    this one.
 - 2026-11-15, founder, on choosing the licence once:
   "I tried to answer the living patten institute question last time. I
   actually do not care to look up the difference between those licenses
@@ -2195,6 +2216,12 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: the founder: "the founder's earlier work" is the
+  level of detail, so the technical lead's reading that it may be named
+  is replaced; and the "break glass" is a handoff of the "keys to the
+  kingdom", which needs no emergency. Recorded here; the design pages
+  follow in the next pull request.
 
 - 2026-11-15 Claude: the founder asked for the licence to be chosen once.
   CC0 1.0 is the standing choice; the other repositories are corrected
