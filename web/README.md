@@ -70,8 +70,9 @@ The plan is in [../docs/FRACTALS.md](../docs/FRACTALS.md).
   `ur-garden-hosted.json`, which the Rust garden writes.
 - **[`lib/checks.js`](lib/checks.js), the checks the pages share:** the
   log format's hashes, keys, and records signed the standard way, read
-  field for field. One file, so the pages check the same way, and
-  `tests/web/` runs it in Node against the shared vectors, in CI.
+  field for field, and how Plant Watch words a log against its world
+  grown again (`grownAgain`). One file, so the pages check the same way,
+  and `tests/web/` runs it in Node against the shared vectors, in CI.
 - **[`lib/wasi.js`](lib/wasi.js), the WASI shim:** runs a WebAssembly
   command, such as the plant world's, giving it the five calls it uses
   (standard input and output, an empty environment, exit) and nothing

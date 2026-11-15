@@ -142,7 +142,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
 (function () {
   // The checks the web app's pages share (web/lib/checks.js): the log
   // format's hashes, keys, and records signed the standard way.
-  const { GENESIS, pyJson, jcs, without, sha256, text, hex, chainProblem, publicKey, signedBy, covers, dialsProblem, sameLog } = OpenWorlds;
+  const { GENESIS, pyJson, jcs, without, sha256, text, hex, chainProblem, publicKey, signedBy, covers, dialsProblem, grownAgain } = OpenWorlds;
   const RULE = "open-worlds/plant-rule/v1";
   const DIRECTIONS = [[0, -1], [1, -1], [1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1]];
 
@@ -249,15 +249,8 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
     if (r.code !== 0) return ["bad", OWN, "It refuses this world's first entry: " + r.stderr.trim()];
     let grown;
     try { grown = JSON.parse(r.stdout); } catch (e) { return ["bad", OWN, "Its answer isn't JSON."]; }
-    const diff = sameLog(log, grown);
-    if (diff && diff.why) return ["bad", OWN, "Its answer can't be compared: " + diff.why];
-    if (diff) {
-      const lengths = Array.isArray(grown) && diff.at === Math.min(log.length, grown.length);
-      return ["bad", OWN, lengths
-        ? "The plant world's own code grows " + grown.length + " entries, where this log has " + log.length + "."
-        : "The plant world's own code grows another log, from [" + diff.at + "]."];
-    }
-    return ["ok", OWN, "The plant world's own Rust code, compiled to WebAssembly, grows the same " + log.length + " entries here, hash for hash."];
+    const [kind, why] = grownAgain(log, grown);
+    return [kind, OWN, why];
   }
 
   async function check(world, file) {
@@ -406,7 +399,22 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
   }
   // Each choice is numbered, so a world whose checks finish after a newer
   // choice was made shows nothing: only the latest choice is shown.
+  // Opening a file is a choice too, whatever it holds, so a world chosen
+  // before it never appears after it.
   let chosen = 0;
+  // What the page shows when it has no world to show: nothing of the
+  // world shown before, and why.
+  function showNothing(why) {
+    ++chosen;
+    setPlaying(false);
+    state = null;
+    listChecks([]);
+    document.getElementById("facts").textContent = "";
+    document.getElementById("sub").textContent = "No world chosen.";
+    slider.max = "0";
+    notice(why, true);
+    show(0, 1);
+  }
   async function choose(i) {
     const mine = ++chosen;
     const current = () => mine === chosen;
@@ -462,7 +470,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
     worlds = Array.isArray(json) ? [{ name: source, log: json }] : (json && Array.isArray(json.worlds) ? json.worlds : []);
     worlds = worlds.filter(w => w && Array.isArray(w.log) && w.log.length);
     const bar = document.getElementById("worlds"); bar.textContent = "";
-    if (!worlds.length) { notice("No plant world's log was found in " + source + ".", true); return; }
+    if (!worlds.length) { showNothing("No plant world's log was found in " + source + "."); return; }
     worlds.forEach((w, i) => {
       const b = document.createElement("button"); b.type = "button"; b.id = "world-" + i;
       b.textContent = w.name || "world " + (i + 1); b.addEventListener("click", () => choose(i)); bar.append(b);
@@ -470,7 +478,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
     if (want) {
       const i = worlds.findIndex(w => w.log[0] && w.log[0].data && w.log[0].data.world === want);
       if (i >= 0) choose(i);
-      else { notice("No world in " + source + " has the key that ?world= names. Choose one above.", true); draw(); }
+      else showNothing("No world in " + source + " has the key that ?world= names. Choose one above.");
       return;
     }
     choose(worlds.length > 1 ? 1 : 0);
@@ -478,7 +486,11 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
   document.getElementById("file").addEventListener("change", ev => {
     const f = ev.target.files && ev.target.files[0]; if (!f) return;
     const r = new FileReader();
-    r.onload = () => { try { load(JSON.parse(r.result), f.name); } catch (e) { notice(f.name + " isn't JSON: " + e.message, true); } };
+    r.onload = () => {
+      let json;
+      try { json = JSON.parse(r.result); } catch (e) { showNothing(f.name + " isn't JSON: " + e.message); return; }
+      load(json, f.name);
+    };
     r.readAsText(f);
   });
   const embedded = document.getElementById("embedded").textContent.trim();

@@ -1585,6 +1585,15 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-15 Claude: two fixes to Plant Watch, carried from #74's
+  review. Opening a file is now a choice of its own, whatever it holds:
+  before, a file with no world, or one that isn't JSON, took no choice
+  number, so the checks of a world chosen just before could still appear
+  after it (reproduced in Chromium with the command's download delayed).
+  And the words of the "Grown again by its own code" row are in
+  `web/lib/checks.js` as `grownAgain`, tested for each way it can read,
+  with an answer that isn't a log now said to be one.
+
 - 2026-11-15 Claude: course step 3a, part four, first half: the
   octopus, the relay and the swarm (docs/research/PERSONS.md, "Part four,
   first half, built"), from DeepSeek's components 41 to 43, as small
