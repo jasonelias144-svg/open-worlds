@@ -1,0 +1,27 @@
+{
+ "record": "records/012-07-03-DPSK-Patterns_Multiverses.txt",
+ "folder": "deepseek/012-07-03",
+ "languages": [
+  "rust",
+  "toml",
+  "json"
+ ],
+ "names": {
+  "451": "endless-plant/Cargo.toml",
+  "469": "endless-plant/src/lib.rs",
+  "493": "endless-plant/src/rule.rs",
+  "650": "endless-plant/src/monad.rs",
+  "769": "endless-plant/src/world.rs",
+  "1084": "endless-plant/src/vectors.rs",
+  "1182": "vectors/endless-plant.json"
+ },
+ "ours": [
+  "README.md",
+  "pytest.ini",
+  "sketch_status_test.py",
+  "review/missing.rs",
+  "review/review.rs",
+  "review/run.sh"
+ ],
+ "changed": {}
+}
