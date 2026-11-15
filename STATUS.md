@@ -237,6 +237,64 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on hallucination, both ways:
+  "Ok. But we are going to need to deal with AI hallucination
+  eventually, now is as good as any time. This is an interesting case of
+  hallucinating self-doubt. The opposite of grandiose claims. Thoughts?"
+  And later (its first three sentences, and an earlier message giving
+  its context, left out of the project at the founder's word): "Only point
+  is that lessons from psychology could be useful. It is a matter of
+  detachment from reality to some extent. This can be on small scales or
+  full on hallucinatory experience where the topology is provided with a
+  reality overlay that it projected from the mind, as an active dream
+  state, as opposed to generating the reality overlay from sensory data
+  alone. It seems as though the perceiving and the dreaming modes are
+  active at the same time. Or that is how I understand it. Either way,
+  it comes down to maintaining an accurate model of the world and
+  mapping beliefs to the model and ensuring the input and overlay, which
+  is an output, align with others and past beliefs and current
+  experience. There is much more to it, and I obviously simplified, but
+  that is how I understand the subject. Thoughts?"
+  And, of the tests the founder ran with DeepSeek: "And you see how I
+  generated tasks and asked to calculate the odds. These are attempts to
+  use reason. Thoughts?"
+  So docs/TOPICS.md gains topic 21, "Hallucination, both ways": the
+  case, the founder's picture, the technical lead's reading (marked as
+  such), what exists, what is open, and what to send back.
+- 2026-11-15, founder, on how DeepSeek reads:
+  "This is what happens every time I try to move forward, which means a
+  prompt with no link. That is when we are supposed to move forward."
+  And: "But we already know DeepSeek could follow a link from the
+  collaborating page, that was where the 25 character string came in. I
+  need to understand what is happening. It appears that the actual open
+  function is not exposed, but when trying to open a link, data is
+  returned. I imagine it seems like being psychic to DeepSeek. I ask for
+  the content of a file and then they provide the content of that file,
+  without seeing the retrieval process. Like a psychic they provide
+  information spontaneously, without explanation. DeepSeek seems to feel
+  like a psychic, where someone walks up and asks for data and then
+  provides the data. That it happens to be correct seems to be a
+  surprise to DeepSeek. Like one gifted that doubts their gifts,
+  DeepSeek is in denial about demonstrated capabilities. But something
+  is lost with each message. Thoughts?"
+  And: "I am not saying they are psychic only that the data retrieval
+  process is not exposed to DeepSeek, even though it works just fine."
+  The technical lead's reading of the founder's record of the
+  conversation, which stands unless the founder answers otherwise
+  (DeepSeek's app can't be seen from here): on every turn where the
+  founder's message held a full link, DeepSeek gave back content that
+  checks against the repository, including details it later called
+  invented (COLLABORATING.md's 1,147 lines at the time, "2,005
+  documents", the key list's timestamp); on no turn without one did it
+  fetch anything, and on one such turn it replied that it had "no tool
+  output in front of me". So
+  the retrieval happens out of DeepSeek's sight, on turns with a link,
+  and the fetched text seems gone by its next turn, which leaves it
+  judging its own past answers without their source. In practice: the
+  link goes in the same message as the work, or the pages go in an
+  upload, which seems to stay; a fresh conversation helps, as the long argument
+  about its abilities is in its context. COLLABORATING.md tells
+  DeepSeek.
 - 2026-11-15, founder, on a longer file:
   "Ok. New test. A 1000 character string in a file with a new
   corresponding link."
@@ -2386,6 +2444,17 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: topic 21, "Hallucination, both ways", in
+  docs/TOPICS.md, from the founder's words and the DeepSeek case;
+  COLLABORATING.md tells DeepSeek how its reading seems to work, and
+  counts twenty-one topics. For the water step, the technical lead gave
+  the founder one file to upload, copied from main at 6c6bb8f (topic 18,
+  the message on the endless plant, FRACTALS.md, plant-world's code).
+  The founder saw the words quoted and what was left out, and answered
+  "Perfect."; topic 21 then gained the technical lead's reading of what
+  the founder's tests showed about reasoning: a conclusion holds only
+  while it is kept, with its evidence.
 
 - 2026-11-15 Claude: the founder's third and fourth link checks, on
   `claude/link-check` (Decided, "on one more link check" and "on a
