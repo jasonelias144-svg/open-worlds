@@ -3,12 +3,14 @@ link") and docs/FILES.md hold, between them, every file in the
 repository, each once, and every link on either page leads to a file.
 
 The founder pastes those links into a conversation with DeepSeek, which
-can open a full link given in a message but not, reliably, one found
-inside a page (the founder, 2026-11-15: "I have to provide the link.
+opens a full link given in a message, while the links on a page did not
+open reliably for it (the founder, 2026-11-15: "I have to provide the link.
 Fetching is unreliable from in the page, but from a prompt with full
 URL, it has worked."; and later that day: "Remember links in the
 collaborating page are not accessible. So all files need links through
-this method."). So the lists must be whole and current: this test fails
+this method."). A test later that day showed DeepSeek following a link
+from a small page; the lists stay, as the way that always works. So the
+lists must be whole and current: this test fails
 when a file is added, moved or removed and they aren't changed with it.
 COLLABORATING.md lists the files a reader works from; FILES.md, written
 by docs/files.py, the files of record (DeepSeek's records, the code

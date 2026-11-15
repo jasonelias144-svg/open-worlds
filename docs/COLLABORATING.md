@@ -68,13 +68,19 @@ computer; the learning multiversity) are in "What's here", items 3 and
 - **Lean:** checking the reasoning behind decisions in offices, and
   reasoning worlds where a claim counts once Lean's kernel accepts its
   proof ([TOPICS.md](TOPICS.md), topic 20).
-- **You can open a full link.** The founder gave you the full link of
-  a new file holding a nine-digit number, made at random and written in
-  no message, and you read it back exactly. Whatever you may have been
-  told about links, a full link in the founder's message opens. Whether
-  you can follow a link found inside a page hasn't been tested yet.
-- **Every file now has a full link to paste.** A link inside a page
-  can't be opened, so "Every file, by its full link", at the end of
+- **You can open a full link, and follow one written in a page.** The
+  founder gave you the full link of a new file holding a nine-digit
+  number, made at random and written in no message, and you read it
+  back exactly. Then the full link of a small page holding only the
+  link of a second file, whose name and 25-character content were made
+  at random, and you followed it and read the string back exactly.
+  Both were raw.githubusercontent.com links. Whatever you may have been
+  told about links, these open. Whether links on a long page like this
+  one open reliably for you isn't shown: try them, and when one fails,
+  say so and ask the founder for its line.
+- **Every file now has a full link to paste.** The founder found that
+  the links on this page didn't open for you, so "Every file, by its
+  full link", at the end of
   this page, now holds every file you work from: the Python code and
   the tests too, which no list gave you before. [FILES.md](FILES.md)
   holds the rest: your records, the code taken from them, and
@@ -1006,17 +1012,21 @@ page.
   host-free. Topic 20: reasoning checked by Lean.
 
 - 2026-11-15, between cycles: every file in the repository has its full
-  link to paste, as links inside a page can't be opened (the founder):
-  "Every file, by its full link", at the end of this page, holds every
-  file you work from, and FILES.md the files of record, each checked
-  by a test.
+  link to paste, as the links on this page didn't open for you (the
+  founder): "Every file, by its full link", at the end of this page,
+  holds every file you work from, and FILES.md the files of record,
+  each checked by a test. And two tests showed that a full link in the
+  founder's message opens, and that you followed a link written in a
+  small page.
 
 ## Every file, by its full link
 
 Each line opens a file as it is on `main`, for pasting into a
-conversation, a group at a time. A link found inside a page can't be
-opened there, only a full link in a message, so every file in the
-repository has its full link to paste, here or in
+conversation, a group at a time. A full link given in a message opens
+in a conversation with DeepSeek. The links on this page, the founder
+found, did not, though in a test DeepSeek followed a link from a small
+page. So every file in the repository has its full link to paste, here
+or in
 [FILES.md](FILES.md) (the founder, 2026-11-15: "Remember links in the
 collaborating page are not accessible. So all files need links through
 this method.").

@@ -237,6 +237,26 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on following a link inside a page:
+  "Ok, DeepSeek suggested a link test. I think it sounds good. We have a
+  new file with new content, maybe a 25 character string. This is placed
+  a new file. A separate file contains a link to that file, with full
+  url link in text. So the test is to open the first link and then see
+  if DeepSeek can follow the link in the first page to the file with the
+  character string. It is a good test. Let's do it."
+  And after: "Ok. Here is what DeepSeek provided. Is this correct?
+  UdhfFj97F3vXlG9MQsaU5C7NG"
+  It was, exactly. The test: `link-check-2.txt`, on the branch
+  `claude/link-check` (commit 5ab70c4, not merged), is a 155-byte page
+  holding one sentence and the full link of a second file, `check-2/`
+  and a random name, whose content is a 25-character string made at
+  random. Neither the string nor the second link was given in any
+  message. Both links are raw.githubusercontent.com links. So DeepSeek
+  can follow a full link written inside a page, at least a small page
+  with one link. Whether it does so reliably from a long page with many
+  links, such as COLLABORATING.md, isn't shown, so the full-link lists
+  stay as the way that always works. docs/COLLABORATING.md tells
+  DeepSeek.
 - 2026-11-15, founder, on whether DeepSeek can open a link:
   "Ok, I am having some strange issues with DeepSeek. They seem confused
   about an ability to open a link. Please generate a brand new page in
@@ -250,10 +270,11 @@ kind.
   now."
   The test: `link-check.txt`, on the branch `claude/link-check` (commit
   fa0421a, not merged), held a nine-digit number made at random and
-  given in no message. DeepSeek, given the file's full link, read it
-  back exactly: 980203388. So DeepSeek can open a full link given in a
-  message. Whether it can follow a link found inside a page is not yet
-  tested. docs/COLLABORATING.md tells DeepSeek.
+  given in no message. DeepSeek, given the file's full link (a
+  raw.githubusercontent.com link), read it back exactly: 980203388. So
+  DeepSeek can open a full link given in a message. Whether it can
+  follow a link found inside a page was tested next (above).
+  docs/COLLABORATING.md tells DeepSeek.
 - 2026-11-15, founder, on links to every file:
   "Remember links in the collaborating page are not accessible. So all
   files need links through this method. Are these all of them?"
@@ -1902,13 +1923,16 @@ it was wrong. Questions of what the project is for stay with the founder.
   with sizes, and written by `python3 docs/files.py`.
   `tests/test_collaborating_links.py` lists the repository with git and
   fails unless the two pages hold every file, each once, and FILES.md
-  is as the script writes it. *Why:* a link inside a page can't be
-  opened in DeepSeek's conversation, so a file with no list line can't
-  be read at all; the files of record are kept apart because they are
-  about 16 MB, more than a conversation can take in, and best sent when
-  a question needs them. *Revisit if:* DeepSeek can follow links from a
-  page, or the records are needed often enough to belong in the main
-  list.
+  is as the script writes it. *Why:* a full link in the founder's
+  message opens in DeepSeek's conversation, while the links on
+  COLLABORATING.md, the founder found, did not, so a file with no list
+  line might not be read at all (a test later the same day showed
+  DeepSeek following a link from a small page, not yet from a long
+  one); the files of record are kept apart because they are about
+  16 MB, more than a conversation can take in, and best sent when a
+  question needs them. *Revisit if:* DeepSeek follows the links on
+  COLLABORATING.md itself reliably, or the records are needed often
+  enough to belong in the main list.
 - 2026-11-15, the endless plant (record 012-07-03): DeepSeek's decisions
   are accepted as the record gives them (signed heads in batches; a
   crate and template of its own, `hasMonad` a dial; the neuron's weights
@@ -2342,6 +2366,13 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: after #90's re-check at a7e738c, its first two
+  notes: every page now says the same about links. A full link in a
+  message opens; the founder found the links on COLLABORATING.md didn't;
+  and the founder's second link check (Decided, "on following a link
+  inside a page") showed DeepSeek following a link from a small page.
+  Both checks name the form tested, raw.githubusercontent.com links.
 
 - 2026-11-15 Claude: after #90's independent review at 65e040d, its
   notes: docs/files.py says why new files count; the FILES.md test
