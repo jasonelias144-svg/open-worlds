@@ -37,8 +37,9 @@ to a single neuron.
   too.
 - In law, an agent acts on someone else's behalf. The Python kernel uses
   that sense when "an owner can withdraw an agent at any time"
-  ([DESIGN.md](DESIGN.md)). It fits a scripted walker run by its owner.
-  No individual and no person is ever owned.
+  ([DESIGN.md](DESIGN.md)). It fits a scripted walker run by its owner,
+  not an individual, who holds their own keys ([ADMIN.md](ADMIN.md),
+  "What the multiverse must preserve", row 3).
 
 ## The words beneath it
 
