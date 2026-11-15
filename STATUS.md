@@ -122,40 +122,6 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
-- For the founder (put 2026-11-15, after #83's re-check found it): when
-  someone leaves the multiverse, what happens to what they did in
-  public? The founder's words of 2026-11-15: "all their records should
-  be transferred to them and removed from our records." An earlier
-  decision, of 2026-11-14 on the technical lead's recommendation under
-  the standing rule: "the project may end a world, but its record never
-  ends". The two agree for everything private (keys, sealed self,
-  notebook, passport copies, email): those go with the person and are
-  purged. They differ for public acts, what someone said or did in a
-  world where everyone could see it, which are in that world's log.
-  The options:
-  1. **Public acts stay** in the world's log, under a presence key that
-     names no one once the person is gone; the links between their
-     presences, which they chose to show, are removed. Its limit:
-     unlinked keys don't make unlinkable acts, as a manner of speaking
-     or the hours kept can still point to someone (FUNDAMENTALS.md,
-     privacy, item 5).
-  2. **Public acts are removed too:** the log keeps only a sealed
-     fingerprint of each (a salted hash, whose salt goes too), so it
-     still checks, and everyone else's acts stay.
-  3. **The leaver chooses,** between 1 and 2, for any or all of their
-     acts.
-
-  Option 2 is the plain reading of the founder's newest words, which
-  win over the earlier decision. The recommendation departs from them,
-  and says so: 3, with 1 as the default. A world's history, and other
-  people's (a reply, a thing built together, a stamp), stands on those
-  acts, and once the links are gone they point to no one directly; but
-  if the person wants them gone, that is their right, as the founder's
-  words say. Either way, logs are built from the start so that an
-  entry's content can be removed while the log still checks, so the
-  choice can change later. Because this concerns personal information,
-  it waits for the founder's answer; until then FUNDAMENTALS.md and
-  WORLD-TYPES.md mark what depends on it.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
@@ -265,6 +231,30 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, answering what happens to a leaver's public acts:
+  "Public acts should always remain. The moment we edit a public record,
+  we defeat the purpose. It should be clearly understood upon entry to
+  the multiverse that public actions are recorded as a matter of keeping
+  ledgers and for learning and they become part of the project data. We
+  do not edit historical records as an absolute rule. We make sure we
+  never enter data that would need to be edited later. But that would be
+  a small subset of the data that would be associated with a given
+  account, it would be all that would remain. It would be a lasting
+  imprint or legacy of all that come and go."
+  So public acts always remain, after their author leaves too, and no
+  historical record is ever edited: a correction is a new entry that
+  says so. Everyone is told on entering (the charter's sections 4 and
+  5). What a person leaves behind is what they did in public, and
+  nothing else: their private records go with them, and their private
+  data is purged. The open question is closed, and with it the idea of
+  log entries whose content could be removed. The technical lead's
+  readings, which stand unless the founder answers otherwise: a link a
+  person shows between their presences is a public act, and stays, so
+  they are told so before they show one; and "never enter data that
+  would need to be edited later" means the project itself never writes
+  anything personal into a public record, while what a person chooses
+  to say in public is their own act, made knowing it stays. AGENTS.md
+  makes it a rule: public records are never edited.
 - 2026-11-15, founder, on a word for everything that acts:
   "And is "agent" or most general term that would encompass everything
   from any human, to me, to you, to DeepSeek, to ADMIN, to the world
@@ -1914,6 +1904,12 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: the founder answered the open question on a
+  leaver's public acts: they always remain, and historical records are
+  never edited, as an absolute rule. Recorded in STATUS.md, the
+  charter's sections 4 and 5, AGENTS.md, FUNDAMENTALS.md, WORLD-TYPES.md,
+  COURSE.md and COLLABORATING.md; the question is closed.
 
 - 2026-11-15 Claude: after #83's re-check at c0ba011, the one point it
   found for the founder is put as an open question: when someone leaves

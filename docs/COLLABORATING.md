@@ -166,8 +166,9 @@ has changed since that record, in the order to read it:
    encrypted, that no one else can read, not even ADMIN (the one way in
    is the founder's "break glass", and every opening is recorded in
    public); an account needs only an email address; data is never for
-   sale; and whoever leaves the multiverse takes their records with
-   them, and their private data is purged.
+   sale; whoever leaves the multiverse takes their private records with
+   them, and their private data is purged; and public acts always
+   remain, as public records are never edited.
    [WORLD-TYPES.md](WORLD-TYPES.md) has a taxonomy of world types, and
    what can be done with a world of each, as with virtual machines and
    containers: pause, resume, stop, restart, reset (the founder,

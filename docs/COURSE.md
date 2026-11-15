@@ -397,12 +397,11 @@ Added one at a time, as steps are done:
   purged "completely and demonstrably" (the founder, 2026-11-15;
   [FUNDAMENTALS.md](FUNDAMENTALS.md), "Purged, demonstrably"): settled
   with step 8a, before ALICE's and BOB's birth;
-- log entries whose content can be removed while the log still checks
-  (a salted hash kept in its place, its salt removed with the content,
-  so no one can confirm a guess at what was said), so whatever the
-  founder answers on a leaver's public acts can be done (STATUS.md,
-  "Open questions"): placed with the lifecycle, before anyone lives in
-  a world;
+- a check, wherever something is written to a public record, that
+  nothing personal goes in, as public records are never edited (the
+  founder, 2026-11-15: "We make sure we never enter data that would
+  need to be edited later"): placed with the lifecycle, before anyone
+  lives in a world;
 - the Commons (the founder, 2026-11-14): Lyceum Commons as "a single
   superworld, where the atomic subworlds are chat rooms"; recommended
   after step 4a, as the second superworld (docs/TOPICS.md, topic 14,

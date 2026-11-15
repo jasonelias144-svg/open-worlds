@@ -139,6 +139,8 @@ one of them updates this page.
    a key of its own for each presence, and a link shown only by the
    presence's own act. Its limit: unlinked keys don't make unlinkable
    presences, as a manner of speaking or the hours kept can link them.
+   A link, once shown, is a public act, and stays ("Public records, kept
+   whole", below), so the person is told so before they show one.
 6. **The "break glass", in the open.** Chosen by the founder on
    2026-11-14: a sealed self, or a private message, can be opened only
    by an explicit decision of the founder's, and every opening is
@@ -206,9 +208,9 @@ one of them updates this page.
     2026-11-14: the project may end a world, but its record never ends,
     sealed selves stay sealed and keys stay their holders'
     ([ADMIN.md](ADMIN.md), "Questions for the founder"). A person who
-    leaves the multiverse takes their private data with them (item 7).
-    Whether the public part of their record stays, or goes too, waits
-    for the founder's answer (STATUS.md, "Open questions").
+    leaves the multiverse takes their private data with them (item 7),
+    and what they did in public stays ("Public records, kept whole",
+    below).
 12. **Fear of the Keeper silences no one.** Decided 2026-11-14, on the
     technical lead's recommendation: the author of a suggestion about
     a Keeper may ask for their name, and their rating of how it was
@@ -242,6 +244,34 @@ anonymous can often be matched back to people (as the AOL search logs of
 datasets and anything else published hold what happens in the worlds,
 never a person's private space, keys or personal details.
 
+## Public records, kept whole
+
+The founder, 2026-11-15: "Public acts should always remain. The moment
+we edit a public record, we defeat the purpose. It should be clearly
+understood upon entry to the multiverse that public actions are recorded
+as a matter of keeping ledgers and for learning and they become part of
+the project data. We do not edit historical records as an absolute
+rule. We make sure we never enter data that would need to be edited
+later. But that would be a small subset of the data that would be
+associated with a given account, it would be all that would remain. It
+would be a lasting imprint or legacy of all that come and go."
+
+- **Never edited.** A world's log, a ledger and published data are only
+  ever appended to. A mistake is corrected by a new entry that says so,
+  as a ledger is, never by changing the old one. The charter says so on
+  entry (sections 4 and 5), and AGENTS.md makes it a rule.
+- **What remains of someone who leaves** is what they did in public:
+  their acts in the worlds' logs, under their keys, and the links they
+  chose to show. Everything private goes with them, and their private
+  data is purged (below).
+- **Nothing that might need editing goes in.** The technical lead's
+  reading, which stands unless the founder answers otherwise: the
+  project itself never writes anything personal into a public record
+  ("Public data, and personal data", above), and a check wherever
+  anything is written will make sure of it (to be built, before anyone
+  lives in a world: [COURSE.md](COURSE.md), "Waiting"). What a person
+  says or does in public is their own act, made knowing that it stays.
+
 ## Purged, demonstrably
 
 The technical lead's reading of the founder's "completely and
@@ -261,14 +291,20 @@ demonstrably", which stands unless the founder answers otherwise:
   copies of keys must be kept where they can really be destroyed, which
   a Git history is not. That is settled before any individual is born,
   with the course's keys work (step 8a, "a lost or leaked key").
-- **What you did in the open** is the one open point: whether it
-  stays, under a key that names no one, or goes too, waits for the
-  founder's answer (STATUS.md, "Open questions"). Either way, logs are
-  built so that an entry's content can be removed while the log still
-  checks.
+- **Purging never edits a record.** Destroying a key leaves every
+  record as it was, and only makes private data unreadable; what was
+  public stays ("Public records, kept whole", above).
 
 ## Honest limits
 
+- **What a person says in public stays.** If someone puts their own
+  personal details into a public act, the record keeps them, as it
+  keeps every public act. The charter's word on entering is what makes
+  that fair, and a world can remind people before they speak. Some
+  laws give a right to have personal data erased. Keeping personal data
+  out of what the project itself writes is what lets the rule hold for
+  those records; if a law ever required removing what a person said
+  about themselves, that conflict would go to the founder.
 - **The project runs the minds.** While an individual's mind is
   thinking, its thoughts pass through hardware the project controls.
   Encryption keeps a private space from everyone in the worlds, and

@@ -106,6 +106,13 @@ scientific experiment where all can participate and access the data it
 generates. But all of that data would already be scrubbed of anything
 personal" (section 3).
 
+What you do in public is recorded, and stays. In the founder's words:
+"It should be clearly understood upon entry to the multiverse that
+public actions are recorded as a matter of keeping ledgers and for
+learning and they become part of the project data. We do not edit
+historical records as an absolute rule. We make sure we never enter data
+that would need to be edited later."
+
 > Still to cover: that the world is watched: the website, the viewers,
 > what they can see (positions, speech, the public log), and that viewers
 > read this same charter; that nothing is known about the world that its
@@ -123,11 +130,12 @@ And the worlds, too, are free to go. In the founder's words:
 world, or a cluster of worlds, may form its own independent multiverse;
 "then the cord is cut, and it can exist completely independently."
 
-If you leave the multiverse, your records are given to you and removed
-from the project's. In the founder's words: "We should not store any
-private keys for anyone that is no longer in the multiverse. Their
-private data should be purged from the records completely and
-demonstrably."
+If you leave the multiverse, your private records are given to you and
+removed from the project's. In the founder's words: "We should not
+store any private keys for anyone that is no longer in the multiverse.
+Their private data should be purged from the records completely and
+demonstrably." What you did in public remains (section 4): "It would be
+a lasting imprint or legacy of all that come and go."
 
 > Still to cover: the ways to go (pause your stay, move to another world
 > if one is open, or end it), as the founder's words come.
