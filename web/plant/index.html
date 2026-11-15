@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <!--PAGE-START-->
 <title>Plant Watch</title>
@@ -136,6 +136,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
 </div>
 <script id="embedded" type="application/json"></script>
 <script src="../lib/checks.js"></script>
+<script src="../lib/wasi.js"></script>
 <script>
 "use strict";
 (function () {
@@ -214,6 +215,45 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
   }
 
   // ---- What the page checks, before it shows anything.
+  // ---- The plant world's own code, compiled to WebAssembly
+  // (rust/plant-wasi), and run here through the page's WASI shim
+  // (web/lib/wasi.js). It is built, not committed: if it isn't where cargo
+  // puts it, the page says so and checks without it.
+  const COMMAND = "../../rust/target/wasm32-wasip1/release/plant-wasi.wasm";
+  const BUILD = "cd rust && cargo build --release -p plant-wasi --target wasm32-wasip1";
+  const MAX_TICKS = 10000;
+  let command = null;
+  function loadCommand() {
+    if (!command) {
+      command = fetch(COMMAND, { credentials: "omit", referrerPolicy: "no-referrer" })
+        .then(r => { if (!r.ok) throw new Error(r.status + " " + r.statusText); return r.arrayBuffer(); })
+        .then(bytes => WebAssembly.compile(bytes))
+        .catch(e => ({ unavailable: String(e && e.message || e) }));
+    }
+    return command;
+  }
+  const OWN = "Grown again by its own code";
+  // The log, grown again from its first entry by the plant world's own
+  // Rust code, and compared whole, every entry and hash.
+  async function ownCodeCheck(log, chain) {
+    if (chain) return ["warn", OWN, "Not checked: the chain doesn't hold."];
+    const first = log[0].data;
+    if (!first || typeof first !== "object" || Array.isArray(first)) return ["warn", OWN, "Not checked: its first entry has no data."];
+    if (log.length - 1 > MAX_TICKS) return ["warn", OWN, "Not checked: longer than " + MAX_TICKS + " steps."];
+    const module = await loadCommand();
+    if (module.unavailable) return ["warn", OWN, "Not checked: the plant world's command isn't built here (" + module.unavailable + "). To build it: " + BUILD + "."];
+    const request = { key: first.world, template: first.template, dials: first.dials, pot: first.pot, ticks: log.length - 1 };
+    let r;
+    try { r = await OpenWorldsWasi.run(module, JSON.stringify(request)); }
+    catch (e) { return ["bad", OWN, "It couldn't be run: " + String(e && e.message || e)]; }
+    if (r.code !== 0) return ["bad", OWN, "It refuses this world's first entry: " + r.stderr.trim()];
+    let grown;
+    try { grown = JSON.parse(r.stdout); } catch (e) { return ["bad", OWN, "Its answer isn't JSON."]; }
+    const at = Array.isArray(grown) ? log.findIndex((e, i) => pyJson(e) !== pyJson(grown[i])) : 0;
+    if (at >= 0 || grown.length !== log.length) return ["bad", OWN, "The plant world's own code grows another log" + (at >= 0 ? ", from [" + at + "]" : ", of another length") + "."];
+    return ["ok", OWN, "The plant world's own Rust code, compiled to WebAssembly, grows the same " + log.length + " entries here, hash for hash."];
+  }
+
   async function check(world, file) {
     const log = world.log, results = [];
     const chain = await chainProblem(log);
@@ -222,6 +262,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
     const rule = chain ? "not checked: the chain doesn't hold" : ruleProblem(log);
     results.push(rule ? ["bad", "Growth by its rule", rule]
                       : ["ok", "Growth by its rule", "Every step grown again here, the same branches and tips."]);
+    results.push(await ownCodeCheck(log, chain));
     const key = log[0] && log[0].data && log[0].data.world;
     if (world.head) {
       // A head is read field for field as records-v1 has it: one with a
@@ -376,8 +417,11 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
     const log = world.log;
     const results = await check(world, file);
     listChecks(results);
-    const failed = results.slice(0, 2).some(r => r[0] === "bad");
-    const birthHolds = results[3][0] === "ok";
+    // Not drawn if its chain, its growth by the rule, or its own code's
+    // growth fails.
+    const row = what => results.find(r => r[1] === what) || [];
+    const failed = ["The chain of hashes", "Growth by its rule", OWN].some(w => row(w)[0] === "bad");
+    const birthHolds = row("Its birth record")[0] === "ok";
     const data = log[0] && log[0].data || {};
     const fr = failed ? [[]] : frames(log);
     state = { log, frames: fr, pot: data.pot || null, bounds: bounds(fr, data.pot), shown: !failed };

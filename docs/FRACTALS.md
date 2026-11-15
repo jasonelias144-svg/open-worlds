@@ -201,6 +201,25 @@ technical lead's. Each part is one reviewed pull request.
    the same code the reference does. A world that runs on a machine of its
    own, all the time, costs money, so it is the founder's decision, and
    waits for it.
+
+   **First step, built** on 2026-11-15, after looking first
+   ([research/WASM.md](research/WASM.md)):
+   - **The plant world's own code, in the browser.** `rust/plant-wasi`
+     builds it as a WebAssembly command for WASI (`wasm32-wasip1`): one
+     request in, the world's log out. It needs no `unsafe` and no new
+     dependency, and it asks the page for five calls and nothing else:
+     no clock and no randomness.
+   - **Run through the page's own shim** (`web/lib/wasi.js`), which gives
+     those five calls and refuses a command that asks for more.
+   - **Plant Watch uses it:** each world it shows is grown again by the
+     plant world's own Rust, and compared with its log, hash for hash.
+     The `.wasm` file is built, not committed; where it isn't built, the
+     page says so.
+   - **CI builds it** and runs it through the shim in Node, against the
+     shared vectors (`tests/web/wasi.test.mjs`).
+
+   Next: the endless plant of living worlds' first stage, run the same
+   way, with checkpoints so it can run for hours.
 5. **More families, and choice.** Automata and chaos games, as DeepSeek
    sketched them; then primitive learning models that choose (DeepSeek's
    lookup table and four-unit network; the learning and choosing monad,
@@ -394,5 +413,5 @@ is open, and may differ by world.
 
 - Whether a browser computing a long-lived world from its seed stays fast
   enough as a world grows: part 4 measures it before relying on it.
-- Which Rust-to-WebAssembly toolchain fits the workspace's pins: looked at
-  in part 4.
+- Browsers other than Chromium, for WebAssembly: research/WASM.md says
+  what was and wasn't tried.
