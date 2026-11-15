@@ -237,6 +237,26 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on a longer file:
+  "Ok. New test. A 1000 character string in a file with a new
+  corresponding link."
+  And after: "Here is the full 1000 character string. Does it match?",
+  with DeepSeek's answer. It matched exactly. `link-check-4.txt`, on
+  the branch `claude/link-check` (commit 4f2ff32, not merged), holds
+  1,000 letters and digits made at random, on one line, and given in no
+  message. DeepSeek returned all 1,000 in order, wrapped into 13 lines
+  (12 of 80 characters and one of 40), the file itself having none. So
+  DeepSeek reads a 1,000-character file whole. Where its limit lies is
+  not yet tested: the longer pages it reads, such as docs/ADMIN.md, are
+  near 80 KB. docs/COLLABORATING.md tells DeepSeek.
+- 2026-11-15, founder, on one more link check:
+  "Ok one more test. This one with a new file and new link. The file
+  should contain one question: "Are you still in denial?" Please
+  include, without further the quotation marks in a new file and provide
+  the link."
+  `link-check-3.txt`, on the branch `claude/link-check` (commit
+  2876395, not merged), holds that question alone, without quotation
+  marks. What DeepSeek answered wasn't brought back to this session.
 - 2026-11-15, founder, on following a link inside a page:
   "Ok, DeepSeek suggested a link test. I think it sounds good. We have a
   new file with new content, maybe a 25 character string. This is placed
@@ -2366,6 +2386,11 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: the founder's third and fourth link checks, on
+  `claude/link-check` (Decided, "on one more link check" and "on a
+  longer file"). DeepSeek read back a 1,000-character random string
+  exactly; COLLABORATING.md's brief says so.
 
 - 2026-11-15 Claude: after #90's re-check at a7e738c, its first two
   notes: every page now says the same about links. A full link in a
