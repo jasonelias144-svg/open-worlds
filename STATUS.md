@@ -122,9 +122,10 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
-- For the founder (put 2026-11-15, in chat): the Living Pattern
-  Institute's material, which shows where many of the multiverse's ideas
-  were first worked out. Its licence: CC0, if "consider it all public"
+- For the founder (put 2026-11-15, in chat): the founder's earlier
+  work, in the repository the founder named that day (Decided), which
+  shows where many of the multiverse's ideas were first worked out. Its
+  licence: CC0, if "consider it all public"
   covers it too, or the CC BY-SA 4.0 (writing) and Apache 2.0 (code) its
   README intends; its LICENSE file says CC0. And whether its earlier
   works may be named in this repository. The recommendation: until the
@@ -265,12 +266,12 @@ kind.
   And it might also be worth while to check the living pattern institute
   repo. It is just a single page with links. If they work, follow them to
   some of the old project files. Thoughts?"
-  This answers, in so many words, the question the technical lead put
-  (next entry): Lyceum's code is public already, and may come into
-  open-worlds under its public-domain dedication (CC0). Nothing is copied
-  until the building starts. The Living Pattern Institute was looked at
-  in chat the same day; its licence, and whether its earlier works are
-  named, are put to the founder (Open questions).
+  Read as yes to the question the technical lead put (next entry):
+  Lyceum's code is public already, and may come into open-worlds under
+  its public-domain dedication (CC0). Nothing is copied until the
+  building starts. The repository the founder names here was looked at
+  in chat the same day; the licence of that earlier work, and whether it
+  is named, are put to the founder (Open questions).
 - 2026-11-15, founder, answering the technical lead on the Commons:
   "Agreed. We leave the other repos as is. When we start to work on a
   mobile app for the multiverse, we can start by looking at that code.
@@ -2061,8 +2062,8 @@ it was wrong. Questions of what the project is for stay with the founder.
   public), and COMMONS.md the test that no one outside a closed room
   can read its words. TOPICS.md and COMMONS.md now give what is decided
   the same label; COMMONS.md's Lyceum table is corrected against Lyceum
-  at 5eb12e9 (leaving, labels, lobbies). The Living Pattern Institute
-  questions go to Open questions.
+  at 5eb12e9 (leaving, labels, lobbies). The questions on the founder's
+  earlier work go to Open questions.
 
 - 2026-11-15 Claude: docs/COMMONS.md, at the founder's word: Lyceum
   Commons rebuilt in the multiverse as the Commons, a superworld whose

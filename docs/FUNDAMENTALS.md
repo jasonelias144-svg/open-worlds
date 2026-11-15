@@ -235,8 +235,8 @@ one of them updates this page.
 13. **What a room keeps in public is its law, told on entering.**
     Decided 2026-11-15: the founder's "Agreed" answered the technical
     lead's recommendation, which STATUS.md quotes as it was put. In the
-    Commons, the lobby and the Open rooms are on the record: kept whole,
-    with anything private in them redacted ("Public records, kept
+    Commons, its one lobby and the Open rooms are on the record: kept
+    whole, with anything private in them redacted ("Public records, kept
     whole", below). A closed room keeps only metadata in public, and its
     words pass between its members' private containers, sealed, so no
     one else reads them, ADMIN and the project included. Building a
