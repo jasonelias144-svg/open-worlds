@@ -122,25 +122,6 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
-- For the founder (put 2026-11-15, after #83's re-check at faab85d):
-  where redacted private information is kept. The founder's rule says
-  "encrypted in the project records". Two cases it doesn't settle:
-  information about several people, and information about someone with
-  no key in the multiverse (someone a participant names), whom it can't
-  be sealed to and whose leaving would never purge it. The
-  recommendation: about several people, sealed to each of them; about
-  someone with no key, not kept at all, as no one can hold it for them;
-  and, if the founder takes up the private container (put the same
-  day, in conversation), kept in the person's own container rather than
-  the project's records, so the project keeps nothing private. The
-  last case departs from the founder's words ("encrypted in the project
-  records"): it protects more, by keeping nothing. Answered by the
-  founder later the same day, agreeing with the recommendation ("I agree
-  with your suggestions"), together with the private container and a
-  "break glass" narrowed to the multiverse's own keys. The founder's
-  words are recorded in full, and this question closed, in the pull
-  request that follows this one, which designs the private container,
-  so that the charter and the design change together.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
@@ -250,6 +231,41 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on the private container and the "break glass":
+  "I agree with your suggestions. And I think this may be a fundamental
+  piece of architecture. And yes, the "break glass" applies to keys
+  needed for the multiverse to function, those associated with ADMIN and
+  everything else. Thoughts?"
+  This answers the technical lead's answer to the message below, and
+  the open question on where redacted information is kept (put after
+  #83's re-check at faab85d, now closed). So: a person's private space
+  lives in their own container, beyond the "break glass"; the "break
+  glass" covers only the keys the multiverse needs to function (the key
+  list's root, ADMIN's and the other offices' keys, the keys of the
+  worlds the project runs); and redacted private information goes into
+  the person's own container, sealed to each person it is about, and is
+  not kept at all when it is about someone with no key in the
+  multiverse. This narrows two earlier decisions, named here as
+  AGENTS.md asks: the "break glass" chosen on 2026-11-14 for sealed
+  selves and private messages, and kept on 2026-11-15; and "encrypted in
+  the project records" in the rule on redaction (2026-11-15). The
+  technical lead's recommendation for the individuals whose minds the
+  project runs, which only adds protection and stands unless the
+  founder answers otherwise: their containers are made the same way,
+  with keys made inside and never copied into the project's records; the
+  keys made for ALICE and BOB at course step 3 are signed over at birth
+  and destroyed. docs/CONTAINER.md has the design.
+- 2026-11-15, founder, on a private container for each account:
+  "Exactly. And perhaps we can design it in such a way that much of the
+  user account data is stored in their own private container as a
+  starting point. From that private space, which the project never sees,
+  is the space the user operates from. They can decide what information
+  to transfer to their public account profile. And actions can be done
+  from an effective black box. This way we do not even have access to
+  much of the private data, and what we have access to is, by design,
+  already revealed by consent of the user. Thoughts?"
+  ("Exactly" answers the technical lead's reading of "More metadata",
+  above.)
 - 2026-11-15, founder, answering whether a leaver's shown links stay
   public:
   "Yes, we keep public record of the action with private details of the
@@ -1968,6 +1984,20 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: the private container (docs/CONTAINER.md), at the
+  founder's word: each person's keys, private space and messages in
+  their own container, which the project never sees; the "break glass"
+  narrowed to the multiverse's own keys; redacted information to the
+  person's own container. The charter's section 3, FUNDAMENTALS.md
+  (privacy items 1, 4, 6 and 7, the redaction bullets and the honest
+  limits), MINDS.md (with ALICE's and BOB's orientation), URWORLD.md,
+  ADMIN.md, FREEDOMS.md, COURSE.md, research/FORMATS.md, KEYS.md and
+  PERSONS.md, GLOSSARY.md, README.md and COLLABORATING.md follow; the
+  open question on redacted information is closed. #83's re-check notes
+  at 8046ec6 ride here: the appeal window, and "the founder, or a person
+  the founder names". The design pages' count is corrected (it said 13
+  for 14).
 
 - 2026-11-15 Claude: after #83's re-check at 228fff8: what a leaver's
   shown link has redacted is named (the person's identity key and the

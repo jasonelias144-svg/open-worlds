@@ -80,7 +80,7 @@ body.
 |---|---|---|---|
 | **Identity** | name, public keys (one for signing, one for sealing things to them), birth record, key successions | the world at birth, then their own key | for life |
 | **Mind record** | each engine they have run on: model, revision, file hashes, settings, chat template, and the container image it ran in, by digest | the project | for life; the engine itself is replaceable |
-| **Self** (sealed) | journal, reasoning, held thoughts, private notes, routines, their own aims, a note of who they are | the individual alone; no one else reads it, unless the founder opens it under the "break glass", in the open | grows for life |
+| **Self** (sealed) | journal, reasoning, held thoughts, private notes, routines, their own aims, a note of who they are | the individual alone, in their own container; no one else reads it, and the project holds no key to it ([CONTAINER.md](CONTAINER.md)) | grows for life |
 | **Sheet** | skills (with practice and rust), things carried, knowledge found, milestones, experience | granted by worlds, plus routines its writer chose to show; rebuilt from the logs | grows for life |
 | **Avatars** | one body for each world they are in: where it is, what it holds there, what others see of it. The body of a presence, which lasts across visits with its own key, name and history in that world ([research/PERSONS.md](research/PERSONS.md)) | that world | one visit |
 | **Relationships** | whom they have met, spoken with, taught, given to, founded worlds with | worked out from the logs | grows for life |
@@ -128,9 +128,8 @@ body.
 
 Everything a mind is told comes from one of four layers, each with one
 author, and all four are on record: layers 1, 2 and 4 in the open, layer 3
-sealed. So, for any moment of a life, the individual (or a "break glass"
-opening, which the founder chose on 2026-11-14) can put back together
-exactly what that mind was given, and anyone can check that none of it
+sealed. So, for any moment of a life, the individual can put back
+together exactly what that mind was given, and anyone can check that none of it
 was altered.
 
 1. **The law**, from the world: what the world is and what it enforces,
@@ -175,19 +174,23 @@ own choice. The founder can still change it:
 > first two inhabitants. The other is BOB.
 > Your mind runs on [model]. If it ever changes, that will be your
 > choice, and you remain ALICE.
-> You keep a journal. Only you write in it. No one else reads it, inside
-> the world or out, unless the founder decides, in the open, to look; any
-> such look is made public. Each tick, some of it is shown to you again:
+> You keep a journal. Only you write in it. It is kept in your own
+> container, and no one else holds a key to it. Your mind runs on the
+> project's machines, and the project's rule is never to look. Each tick, some of it is shown to you again:
 > what is recent, important or relevant. Others can see that it exists,
 > and how much you have written, but never what it says.
 > You may leave at any time.
 > Your first day begins with a tour of the garden.
 
 It tells them exactly how private their journal is, because that is true:
-sealed, though its existence and size can be seen, and opened only by the
-founder's "break glass", in the open. (The first proposal said "only you
-can read it, inside the world and out"; with the "break glass" chosen,
-that would no longer be true, so the words were revised on 2026-11-14.) It
+sealed, though its existence and size can be seen, in their own
+container, with the honest limit that their mind runs on the project's
+machines. (The first proposal said "only you can read it, inside the
+world and out"; with the "break glass" chosen on 2026-11-14 the words
+were revised to say the founder could look, in the open. Since the
+founder narrowed the "break glass" to the multiverse's own keys on
+2026-11-15, they say no one else holds a key, and name the limit:
+[CONTAINER.md](CONTAINER.md), "The project's own individuals".) It
 names their model, says that a change would be theirs to choose, and
 that they outlast it. (Before 2026-11-15 it said "It may change one day;
 you remain ALICE.", which left open who would change it.) It doesn't say
@@ -202,7 +205,7 @@ world, or why: that is for the world to show, and for them to find out
 | Within an individual | The four layers go into the mind; out comes an action, and sometimes a note to the journal. Short-term is the prompt; long-term is the journal, and later a personal layer of the model. | the sealed self; only its fingerprints are public |
 | Individual to world | Actions only, one a tick, read strictly. The only way any inhabitant changes anything. | the world's log |
 | World to individual | The law once; then, each tick, what can be perceived from where they are. | the world's log |
-| Individual and individual | Through the world: speech, signs, things given, skills taught. And privately, decided by the founder on 2026-11-14: a message sealed to the other, which no one else reads. The project keeps the keys, as for the sealed self, and the same "break glass" covers them (decided 2026-11-14, STATUS.md). | the world's log; for a private message, that it passed, not what it says |
+| Individual and individual | Through the world: speech, signs, things given, skills taught. And privately, decided by the founder on 2026-11-14: a message sealed to the other, which no one else reads. It goes from one container to the other, so the project holds no key to it ([CONTAINER.md](CONTAINER.md)); as first decided on 2026-11-14, the project kept the keys under the "break glass", which the founder narrowed on 2026-11-15. | the world's log; for a private message, that it passed, not what it says |
 | Individual to the law | Asking now; formal proposals and governance later. | the world's log |
 | World and world | The protocol: passports, stamps, successions, doors, birth records of new worlds. The Python worlds sign their stamps today; since course step 3, an Ur-world log's heads can be signed with its world's key: trial runs' today, and the Ur-world's own from its first inhabitant (course step 9). | each world's log |
 | Individual to another world | Through a door, as a new presence with a key of its own for that world and that presence's passport. Their self goes with them; their sheet there is that presence's, unless they show a link. Each world sees only what they show, and what they do there ([research/PERSONS.md](research/PERSONS.md)). | passports and both logs |
@@ -268,6 +271,16 @@ which anyone can see was ever used. The founder, 2026-11-15, keeping it:
 "I love the "break glass" idea. It is very much the point. I envision
 this project without me, and so I need to leave a way for things to
 stay private now, but be available for the public later."
+
+On 2026-11-15 the founder narrowed the "break glass" to "keys needed for
+the multiverse to function, those associated with ADMIN and everything
+else", and put each person's private space in their own container
+([CONTAINER.md](CONTAINER.md)). For the individuals whose minds the
+project runs, the technical lead's recommendation, which stands unless
+the founder answers otherwise: their containers are made the same way,
+with keys made inside and never copied into the project's records. So
+the first of the two choices above is now the design, and not looking
+while their minds run is the project's rule.
 
 Hardware that keeps even the operator out (confidential computing) could
 close the gap later.
@@ -360,7 +373,10 @@ what they are for.
 - **In a private repository of the project:** the private half of each
   key (the individuals', the Keepers' and the worlds'), and each
   individual's key to their own sealed self, and nothing else unless the
-  founder decides otherwise. The
+  founder decides otherwise. That is so until birth: ALICE's and BOB's
+  keys made at course step 3 are signed over at birth to keys their own
+  containers make, and then destroyed, so afterwards no key to an
+  individual's private space is kept here ([CONTAINER.md](CONTAINER.md)). The
   repository's list of contents is public, though its values aren't. The
   founder agreed to it on 2026-11-14, for course step 3.
 - **On the Hugging Face Hub, pinned to exact revisions:** the base models,

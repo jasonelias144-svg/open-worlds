@@ -256,7 +256,9 @@ link every presence too.
     get shared vectors.
 13. **Human accounts wait.** The founder's "account" in the open-worlds
     app, a human holding their own keys safely, is the plug-in's and
-    human accounts' work (VISION.md), not this step's. Here the persons
+    human accounts' work (VISION.md), not this step's. Since 2026-11-15
+    that account is a private container the person holds, which the
+    project never sees ([CONTAINER.md](../CONTAINER.md)). Here the persons
     are the project's individuals, whose seeds the project keeps, as it
     keeps their keys ("public to the project", MINDS.md).
     - Neither the seeds nor the persons' lists have a place yet. A seed

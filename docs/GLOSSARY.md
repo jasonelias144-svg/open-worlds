@@ -63,6 +63,10 @@ design pages already use them.
   ([research/PERSONS.md](research/PERSONS.md)).
 - **Presence:** a person's being in one world, with a key, a name and a
   history of its own there ([research/PERSONS.md](research/PERSONS.md)).
+- **Private container:** where a person keeps everything that is their
+  own (their keys, private space, private messages and passport), which
+  the project never sees, and which they act from
+  ([CONTAINER.md](CONTAINER.md)).
 - **Offices:** ADMIN, the Keeper of the multiverse, and each world's
   Keeper. An agent holds an office, and every decision the office makes
   that affects others is on record with its reasons

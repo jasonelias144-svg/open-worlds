@@ -424,8 +424,9 @@ one speaks while the other listens, then they turn.
 - **What they do is public; what they think is their own.** Everything
   observable is public. Each individual has a sealed interior (journal,
   reasoning, held thoughts) that no one else reads, not even the world's
-  Keeper; only the founder can open it, under the "break glass", and
-  every opening is public ([MINDS.md](MINDS.md), "Who can see what").
+  Keeper; it is kept in their own container, and no one else holds a key
+  to it ([MINDS.md](MINDS.md), "Who can see what";
+  [CONTAINER.md](CONTAINER.md)).
   Their private keys are kept in a private repository of the project,
   "public to our project", and nothing lives on a personal computer:
   "Let's keep everything online."

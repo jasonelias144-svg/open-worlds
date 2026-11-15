@@ -307,7 +307,10 @@ private repository ([MINDS.md](../MINDS.md), "Where everything lives"),
 so a sealed self can be opened there, by the founder's explicit decision
 only, and every opening is recorded publicly. The envelope and the record
 stay as they are; a second envelope, which this page once expected, isn't
-needed.
+needed. Since 2026-11-15 the "break glass" covers only the multiverse's
+own keys, and an individual's sealing key is made in their own container
+([CONTAINER.md](../CONTAINER.md)): the envelope and the record are
+unchanged by that.
 
 **Shared vectors** (`vectors/formats/sealed-records-v1.json`): 3 records
 that hold and 7 that don't; 3 envelopes that open, each with the hash of
