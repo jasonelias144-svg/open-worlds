@@ -909,7 +909,10 @@ page.
   here as a superworld whose rooms are text worlds, the first space open
   to the public; what a room keeps in public is its law (FUNDAMENTALS.md,
   privacy, item 13); Lyceum is public already, so its code may come in
-  under CC0.
+  under CC0. Later the same day, the founder: everything stays host-free,
+  as before, and where the multiverse is hosted is one decision, made
+  later (Cloudflare is "no longer binding"); and everything the founder
+  makes public is CC0, "designed to be used freely".
 
 ## Every file, by its full link
 

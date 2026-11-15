@@ -96,6 +96,11 @@ one of them updates this page.
     goal isn't financial; anyone may build on it." On money (2026-11-14):
     "all remains free". And on a currency (2026-11-15): "possibly the most
     fundamental fact" ([VISION.md](VISION.md), "Never a money machine").
+    And on licences (2026-11-15): "We are intentionally building
+    something like a public space, like a park or a national park,
+    something that is designed to be used freely." So everything the
+    founder makes public is CC0: "no restrictions", "No attribution
+    required" (STATUS.md, "Decided").
 
 ## Privacy
 

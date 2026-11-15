@@ -46,7 +46,7 @@ Lyceum already has working answers that the multiverse can reuse:
 - **Keys, not accounts.** A Lyceum guest is a key held in the browser.
   In the multiverse, an individual is a signing key.
 
-Lyceum Commons went offline while it moved to Cloudflare. On 2026-11-15
+Lyceum Commons went offline when its free hosting ran out. On 2026-11-15
 the founder said what it is to the multiverse: "It is the original idea
 that became the multiverse. Not a separate project, but the development
 of the same project." So it is rebuilt here, as the Commons: a

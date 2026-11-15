@@ -122,16 +122,14 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
-- For the founder (put 2026-11-15, in chat): the founder's earlier
-  work, in the repository the founder named that day (Decided), which
-  shows where many of the multiverse's ideas were first worked out. Its
-  licence: CC0, if "consider it all public"
-  covers it too, or the CC BY-SA 4.0 (writing) and Apache 2.0 (code) its
-  README intends; its LICENSE file says CC0. And whether its earlier
-  works may be named in this repository. The recommendation: until the
-  founder answers, refer to them generically ("the founder's earlier
-  work") and quote only briefly, with links; a lineage page and any
-  further use come in their own pull requests.
+- For the founder (put 2026-11-15, in chat): whether the founder's
+  earlier work, in the repository the founder named that day (Decided),
+  which shows where many of the multiverse's ideas were first worked
+  out, may be named in this repository. Its licence is answered: CC0,
+  like everything the founder makes public (Decided). The
+  recommendation: until the founder answers, refer to it generically
+  ("the founder's earlier work"); a lineage page and any further use
+  come in their own pull requests.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
@@ -242,6 +240,46 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on hosting and on licences:
+  "Also, note the Cloudfare decision was made because the free account
+  ran out. Let's not base anything on it. I don't even know if such an
+  account exists. Let's keep building as we were and know that hosting
+  will be a decision that applies to the whole multiverse and to be
+  decided later. Cloudfare was a legacy decision made in an earlier
+  moment, no longer binding. Let's keep it all host free, as we were.
+  Yes, I may have chosen the wrong license for the pattern institute. It
+  is because I do not care for licensing as a subject of interest. I
+  build what I build for public use and don't really care about much
+  that others care about. Consider all free and public and use the
+  license we have been using and correct that license when I naively
+  chose the wrong one or none. Always consider it all public if in a
+  public repo. If someone can literally access it now, I consider it
+  public. Please ensure the right license is chosen that is essentially
+  a license that says there is no restrictions and all that. No
+  attribution required. Don't care. If it is useful, feel free to use
+  it. We are intentionally building something like a public space, like
+  a park or a national park, something that is designed to be used
+  freely."
+  So:
+  - **Hosting:** nothing is built on Cloudflare. Lyceum's move there
+    was a legacy decision, made when a free account ran out, and is no
+    longer binding. Where the multiverse is hosted is one decision, for
+    all of it, made later; until then everything is built host-free, as
+    before: worlds run and are tested locally, and in a browser where
+    they can. This replaces the parts of the technical lead's Commons
+    design that named Cloudflare (one Durable Object per room, and a
+    Cloudflare account for going live).
+  - **Licences:** everything the founder makes public is free for anyone
+    to use. Wherever the founder's public work has the wrong licence or
+    none, it is corrected to the one this repository uses, CC0 1.0: no
+    restrictions, no attribution required. This answers the licence
+    half of the open question on the founder's earlier work (CC0), and
+    narrows "We leave the other repos as is" (below) to: as is,
+    except for their licence files. The technical lead's reading, which
+    stands unless the founder answers otherwise: the rule is about the
+    founder's own work, since other people's work in public
+    repositories keeps its own terms; and it is about use, so personal
+    information stays out of this repository as before.
 - 2026-11-15, founder, on Lyceum's licence:
   "Yeah, the Lyceum has no license file because it was implied as public.
   Please consider it all public already.
@@ -324,12 +362,12 @@ kind.
   The suggestions it agrees to, as the technical lead put them in
   conversation the same day: the container "holds their keys (identity,
   one per presence), their private space, notebook, passport and private
-  messages. The project never receives those keys"; "The "break glass"
+  messages. The project never receives those keys"; "The 'break glass'
   would then cover only what the project itself holds, such as the minds
-  it runs" (for those minds, the recommendation below goes further);
-  "A person's own container would be beyond
-  the 'break glass'. The project wouldn't have the keys, so no one could
-  open it, you included"; and redacted private details go to "the
+  it runs" (for those minds, the recommendation below goes further); "A
+  person's own container would be beyond the 'break glass'. The project
+  wouldn't have the keys, so no one could open it, you included"; and
+  redacted private details go to "the
   person's own container rather than the project's records", sealed to
   each person when it is about several, and not kept at all when it is
   about someone with no account here. This answers the technical lead's
@@ -2129,6 +2167,16 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: the founder on hosting and licences. COMMONS.md,
+  TOPICS.md (topic 14) and MULTIVERSE.md no longer build on Cloudflare:
+  everything stays host-free, and hosting is one decision for the whole
+  multiverse, later. Everything the founder makes public is CC0; the
+  licence half of the open question on the founder's earlier work is
+  closed. FUNDAMENTALS.md (freedom, item 12) and README.md ("Licence")
+  record it. COMMONS.md's "if merged" hedges come out, now that #85 and
+  #86 are merged; and #86's last re-check's two cosmetic notes are
+  fixed here (STATUS.md, WORLD-KEY.md).
 
 - 2026-11-15 Claude: #86 after #85 merged: OFFICES.md's "break glass"
   bullet now says it reaches only the keys the multiverse needs to

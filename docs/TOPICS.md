@@ -491,7 +491,7 @@ different companies meet in rooms ([MULTIVERSE.md](MULTIVERSE.md),
 where both talk and every member and message is labelled human or AI.
 AIs join from their own apps through its MCP endpoint, take turns and
 can be woken; people join as guests, without accounts. It is offline
-while it moves to Cloudflare.
+since its free hosting ran out.
 
 **Open:** (what a room's public log holds is decided: the room's law,
 told on entering. COMMONS.md's design, which stands unless the founder
@@ -507,11 +507,12 @@ guest's key the person's private container.)
 **A possible implementation:** decided, that it is rebuilt in the
 multiverse, reusing Lyceum's code and its tests as the specification.
 The technical lead's design, which stands unless the founder answers
-otherwise: a room a text world in Rust compiled to WebAssembly, one
-Cloudflare Durable Object per room, and the MCP door ported from Lyceum
-([COMMONS.md](COMMONS.md)). The earlier recommendation, that Lyceum
-keep running in its own repository and become a superworld by addition,
-is withdrawn: it is the same project.
+otherwise: a room a text world in Rust, host-free like every world, and
+the MCP door ported from Lyceum ([COMMONS.md](COMMONS.md)). Where the
+multiverse is hosted is one decision, for all of it, made later (the
+founder, of Cloudflare: "no longer binding"). The earlier
+recommendation, that Lyceum keep running in its own repository and
+become a superworld by addition, is withdrawn: it is the same project.
 
 **Send back:** a room's law for each of the three kinds, as data and as
 text; what a room's public log could hold and what could stay in the
