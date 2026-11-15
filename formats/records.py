@@ -4,7 +4,9 @@ signed by the one who enters a world (course step 3); the records an
 individual is given or keeps sealed: a world-key and a journal entry
 (sealed with formats/sealed.py); the records of who an individual and a
 world are: identity, birth records and the mind record; a world's
-template, with its dials; and the project's key list.
+template, with its dials; the project's key list; and a person's links
+to their presences and their list of them (course step 3a,
+formats/persons.py).
 
 Each record's shape is in one JSON Schema (2020-12) that Python and Rust
 both read, schemas/records-v1.schema.json, and each is signed with
@@ -16,8 +18,9 @@ both read, schemas/records-v1.schema.json, and each is signed with
    world-key, a mind record and a template by their issuer, a decision by the
    office's key, a suggestion, a rating and a journal entry by their
    author, a log head and a birth record (an individual's or a world's)
-   by its world, an identity by its own key, and an arrival by the
-   individual who enters.
+   by its world, an identity by its own key, an arrival by the
+   individual who enters, a holds record and a person's list by the
+   person, and a held-by record by the presence.
 
 What the schema can't say is checked where the records meet the kernel,
 at course step 4: that a grant only narrows the grant it names; that a
@@ -74,6 +77,9 @@ KINDS: Dict[str, Tuple[str, Tuple[str, ...]]] = {
     "open-worlds/mind/v1": ("mind", ("issuer",)),
     "open-worlds/template/v1": ("template", ("issuer",)),
     "open-worlds/key-list/v1": ("keyList", ("issuer",)),
+    "open-worlds/holds/v1": ("holds", ("person",)),
+    "open-worlds/held-by/v1": ("heldBy", ("presence",)),
+    "open-worlds/person-list/v1": ("personList", ("person",)),
 }
 
 
@@ -128,7 +134,9 @@ def _times(record: Dict[str, Any]) -> List[Tuple[str, Any]]:
     if fmt == "open-worlds/grant/v1":
         return [(f"$.{f}", record[f]) for f in ("validFrom", "validUntil")
                 if f in record]
-    if fmt in ("open-worlds/birth/v1", "open-worlds/world-birth/v1"):
+    if fmt in ("open-worlds/birth/v1", "open-worlds/world-birth/v1",
+               "open-worlds/holds/v1", "open-worlds/held-by/v1",
+               "open-worlds/person-list/v1"):
         return [("$.time", record["time"])]
     if fmt == "open-worlds/mind/v1":
         return [(f"$.engines.{i}.from", e["from"])

@@ -14,10 +14,14 @@
 //! - [`seal`]: messages sealed to one key with HPKE (RFC 9180), checked
 //!   through `vectors/formats/hpke-base-v1.json`;
 //! - [`sealed`]: world-keys and journal entries, signed and sealed to the
-//!   one they name, checked through `vectors/formats/sealed-records-v1.json`.
+//!   one they name, checked through `vectors/formats/sealed-records-v1.json`;
+//! - [`persons`]: one individual across worlds: presence keys from a
+//!   seed, links that hold only both ways, and a person's list, checked
+//!   through `vectors/formats/persons-v1.json`.
 
 pub mod canonical;
 pub mod multikey;
+pub mod persons;
 pub mod proof;
 pub mod records;
 pub mod seal;

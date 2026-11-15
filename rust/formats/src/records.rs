@@ -21,7 +21,7 @@ pub const SCHEMA: &str = include_str!("../../../schemas/records-v1.schema.json")
 
 /// Each format, its schema's name in `$defs`, and the path of the field
 /// that names its signer.
-pub const KINDS: [(&str, &str, &[&str]); 14] = [
+pub const KINDS: [(&str, &str, &[&str]); 17] = [
     ("open-worlds/grant/v1", "grant", &["issuer"]),
     ("open-worlds/decision/v1", "decision", &["office", "key"]),
     ("open-worlds/suggestion/v1", "suggestion", &["author"]),
@@ -36,6 +36,9 @@ pub const KINDS: [(&str, &str, &[&str]); 14] = [
     ("open-worlds/mind/v1", "mind", &["issuer"]),
     ("open-worlds/template/v1", "template", &["issuer"]),
     ("open-worlds/key-list/v1", "keyList", &["issuer"]),
+    ("open-worlds/holds/v1", "holds", &["person"]),
+    ("open-worlds/held-by/v1", "heldBy", &["presence"]),
+    ("open-worlds/person-list/v1", "personList", &["person"]),
 ];
 
 fn kind(record: &Value) -> Option<&'static (&'static str, &'static str, &'static [&'static str])> {
@@ -76,9 +79,13 @@ fn times(record: &Value) -> Vec<(String, &Value)> {
             .iter()
             .filter_map(|name| field(name))
             .collect(),
-        Some("open-worlds/birth/v1" | "open-worlds/world-birth/v1") => {
-            field("time").into_iter().collect()
-        }
+        Some(
+            "open-worlds/birth/v1"
+            | "open-worlds/world-birth/v1"
+            | "open-worlds/holds/v1"
+            | "open-worlds/held-by/v1"
+            | "open-worlds/person-list/v1",
+        ) => field("time").into_iter().collect(),
         Some("open-worlds/mind/v1") => record
             .get("engines")
             .and_then(Value::as_array)

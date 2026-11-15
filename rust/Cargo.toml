@@ -34,6 +34,10 @@ bs58 = "0.5.1"
 # anything over the network; 0.60.2, three weeks old, rather than a release
 # of the last few days.
 jsonschema = { version = "=0.60.2", default-features = false }
+# HKDF-SHA256 (RFC 5869), from the RustCrypto project, for a person's
+# presence keys (formats::persons); already in the tree through hpke, so
+# no new crate comes with it. Pinned exactly, as it is pre-1.0.
+hkdf = "=0.13.0"
 # HPKE (RFC 9180) for sealing (formats), the same suite as Python's
 # cryptography: only base mode with X25519, HKDF-SHA256 and
 # ChaCha20Poly1305 is turned on. Its authors say it has had no paid audit;

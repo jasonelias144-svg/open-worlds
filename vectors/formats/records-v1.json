@@ -382,6 +382,73 @@
    "hash": "6771a3eaf638b78fe68ab615d2b0c878f7b94cc0ed1deb1af45dfced06933f99"
   },
   {
+   "name": "a person's half of a link to a presence",
+   "signer": "ALICE",
+   "record": {
+    "format": "open-worlds/holds/v1",
+    "person": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "presence": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+    "time": "2026-11-14T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3SwaGq3Y5J1noCG2zAhg1dCMTr1CEkAojgeto1bLWixFAGCQQ46BLwZDyoZUw1PFzCo34FiQ5WSrzjR6WPxzrAYb"
+    }
+   },
+   "hash": "f5a85ec1edfffa5f1a9e65c6849445376e4149f3c6376233cabd1232a03b789f"
+  },
+  {
+   "name": "a presence's half of the same link",
+   "signer": "a trial mind",
+   "record": {
+    "format": "open-worlds/held-by/v1",
+    "person": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "presence": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+    "time": "2026-11-14T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA#z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5bf3RqiTmP1csLkT9Lm5rpLxWUmMTtXY5m3CX82AN6ZjJd6GzJs6bJMJqpEzjnK7FxLEnqnBAgDfPAysBb382nBM"
+    }
+   },
+   "hash": "dc541f7b8f8362af593f7baa0f26452e3e809678887f296655716e37151d0d65"
+  },
+  {
+   "name": "a person's list, its first version",
+   "signer": "ALICE",
+   "record": {
+    "format": "open-worlds/person-list/v1",
+    "person": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "version": 1,
+    "time": "2026-11-14T01:00:00Z",
+    "presences": [
+     {
+      "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+      "counter": 0,
+      "key": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+      "name": "TRIAL-1"
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zZhmLUi711zAmoTRYfpTfUN7n17P4YjXUXEx9BxDL3k32rmJikPMQgo1Q1BwJYyknAZsGbcMbwnHvDMAZK7UWbSZ"
+    }
+   },
+   "hash": "e39b3a45a651d8c35ddceb5216af92d95adc16ecc4b7574cf9c357fd3ad1e8eb"
+  },
+  {
    "name": "a mind record, with one engine",
    "signer": "the project",
    "record": {

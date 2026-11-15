@@ -33,7 +33,11 @@ respect one another's freedom, with full transparency and exit at any time
   and a world signs its log's heads. The course was rechecked after
   step 3 and gained step 8a, a lost or leaked key, before ALICE's and
   BOB's birth. Step 3a, persons, is under way: its plan, after looking
-  first, is in docs/research/PERSONS.md.
+  first, is in docs/research/PERSONS.md, and its second part, the
+  formats, is built: presence keys from a seed by HKDF-SHA256, a link
+  that holds only both ways, and a person's list, in Python and Rust
+  with shared vectors. Its third part, a person in the Ur-world, is
+  next.
 - Claude: the fractal track, alongside the course (docs/FRACTALS.md),
   set by the founder on 2026-11-14: a fractal plant world in Rust, the
   web app in `web/` to watch worlds grow, and in it the multiversal map.
@@ -1545,8 +1549,25 @@ it was wrong. Questions of what the project is for stay with the founder.
   command again from a checkpoint allows; then a long-lived instance
   with exported functions, in a crate of its own like the planned bridge
   to Unity and Unreal, each `unsafe` explained and tested.
+- 2026-11-15, presence keys by HKDF-SHA256, not SLIP-0010
+  (docs/research/PERSONS.md, "Part two, built"). *Why:* SLIP-0010
+  derives Ed25519 keys only along 31-bit hardened indices, so a world
+  would have to become an index, where two worlds could collide and
+  share a presence key; HKDF binds the key to the world's did:key whole,
+  in `info`, and both languages already have it. *Wrong if:* presences
+  must be recovered by tools that know only wallet paths; then a
+  SLIP-0010 path beside it, with collisions refused.
 
 ## Log
+
+- 2026-11-15 Claude: course step 3a, part two: persons' formats. Looked
+  first at SLIP-0010, and took HKDF-SHA256 for presence keys, with the
+  encoding pinned (docs/research/PERSONS.md, "Part two, built"). New
+  kinds: `open-worlds/holds/v1`, `open-worlds/held-by/v1` and
+  `open-worlds/person-list/v1`. `formats/persons.py` and
+  `rust/formats/src/persons.rs` agree on
+  `vectors/formats/persons-v1.json`, and records-v1's vectors gain a
+  valid record of each new kind.
 
 - 2026-11-15 Claude: the fractal track's part 4, first step: the plant
   world's own Rust in the browser. Looked first (docs/research/WASM.md):

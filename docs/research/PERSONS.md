@@ -133,7 +133,8 @@ link every presence too.
    bytes out, which is always a valid Ed25519 secret key. That is the idea
    of OpenID's pairwise identifiers and BIP-32's hardened children, one
    secret and a key for each place, though each of them computes its own
-   way. Part two pins the exact encoding, with vectors.
+   way. Part two pins the exact encoding, with vectors (below, "Part
+   two, built").
    - No one without the seed can relate two presences' keys.
    - The seed, with the person's list of worlds and counters (decision 6),
      or a bounded search of a known world's counters, recovers every
@@ -283,6 +284,77 @@ link every presence too.
 4. **The architectures,** as small examples: the octopus, the relay, the
    swarm and the council.
 
+## Part two, built
+
+Built on 2026-11-15, after looking at SLIP-0010 as "Not checked" asked:
+`formats/persons.py` and `rust/formats/src/persons.rs`, checked against
+the same vectors (`vectors/formats/persons-v1.json`), and three new
+kinds in `schemas/records-v1.schema.json`.
+
+**HKDF, not SLIP-0010.**
+- **What SLIP-0010 does for Ed25519.** It derives keys only along a path
+  of 31-bit indices, hardened, with HMAC-SHA512: "For ed25519 and
+  curve25519 only hardened key generation from private parent key to
+  private child key is supported."
+- **Why that doesn't fit.** A presence's key belongs to a world, named by
+  its did:key. Under SLIP-0010, the world would have to become an index:
+  a hash cut to 31 bits, where two worlds can collide and so give one
+  presence key to both, linking them. Or several levels of index, each
+  a piece of a hash. Its path is made for wallets, which nothing here
+  needs to be compatible with.
+- **Why HKDF fits.** HKDF (RFC 5869) binds the key to any bytes in
+  `info`, whose "main objective is to bind the derived key material to
+  application- and context-specific information" (section 3.2). The
+  world's did:key goes in whole, so two worlds never share a presence
+  key. Both languages already have it: Python's `cryptography`, and in
+  Rust the `hkdf` crate, already in the tree through `hpke`.
+
+**The exact encoding.** The presence `counter` in `world`:
+- **Input key material:** the person's presence seed, 32 bytes.
+- **Salt:** none. RFC 5869 then uses a string of zeros (section 2.2),
+  and "HKDF is defined to operate with and without random salt"
+  (section 3.1). With a seed of 32 random bytes, extracting under that
+  fixed salt is sound.
+- **`info`:** the bytes of `open-worlds/presence/v1`, a zero byte, the
+  world's did:key in ASCII, a zero byte, and the counter as four bytes,
+  big-endian. A did:key has no zero byte, so the parts can't run into
+  each other.
+- **Out:** 32 bytes, the presence's Ed25519 secret key. RFC 8032 takes
+  any 32 bytes, so no derivation is ever refused for its output.
+- **Counters** are from 0 to 2^32 - 1. A presence's succession (step 8a)
+  takes the next one.
+
+**A link** is `open-worlds/holds/v1`, signed by the person's identity
+key, and `open-worlds/held-by/v1`, signed by the presence. Each names
+the person, the presence and the world, and the two must name the same
+three. A person's identity key is never one of their presences. Whether
+the world has admitted the presence, and has seen it linked to no one
+else, is the world's to check when the link is shown there (part three).
+
+**The person's list** is `open-worlds/person-list/v1`. Each presence has
+its world, counter, key and name. Version 1 names no version before it;
+each later version names the one before by hash, is the next number, is
+the same person's, and is no earlier. No world and counter, and no key,
+appears twice. Every version is signed by the person's identity key.
+- **A presence dropped between two versions is shown, not refused,** by
+  comparing them, as decision 6 says.
+- **With the seed,** a person's own client can check every key in the
+  list against its world and counter (`seed_problems`).
+
+**The vectors** (`vectors/formats/persons-v1.json`, written by `python3
+-m formats.persons_vectors`) hold:
+- a trial seed made from a label, with the presence keys it gives and
+  each one's `info`;
+- RFC 5869's first test case, so each language checks its HKDF;
+- derivations that must be refused;
+- links that hold, and links that don't, with why;
+- histories of a person's list, with their problems;
+- checks of a list against the seed.
+
+Rust gives the same problems as Python, word for word, wherever both
+records of a link, or every version of a list, hold as records. A
+record's own refusal is worded by each language.
+
 ## Honest limits
 
 - **Unlinked keys don't make unlinkable presences.** A name, a manner of
@@ -317,9 +389,10 @@ link every presence too.
 ## Not checked
 
 - Whether a standard derivation for Ed25519 keys (SLIP-0010, for
-  example) would serve better than HKDF: looked at in part two, before
-  the encoding is pinned. HKDF's output, 32 bytes, is always a valid
-  Ed25519 secret key (RFC 8032), and HKDF is a pseudorandom function of
-  a random seed; neither was re-read for this page.
+  example) would serve better than HKDF: looked at in part two, and
+  answered above ("Part two, built"). RFC 8032's acceptance of any 32
+  bytes as a secret key, and HKDF's being a pseudorandom function of a
+  random seed, weren't re-read; RFC 5869's sections 2.2, 3.1, 3.2 and
+  3.3 were.
 - BBS's progress to Recommendation, and its implementations in Python
   and Rust.
