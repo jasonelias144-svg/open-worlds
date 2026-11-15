@@ -206,11 +206,12 @@ the last stretch taught"), that a self spread across worlds needs each
 part linked to it, with both signing, and that the person's list of
 identities should be a chain, are taken by the plan: decisions 4 and 6.
 
-**Open:** how a lesson learned in one world becomes available in
-another without the worlds talking (through the person's notes, in this
-step; through their memory, at step 7); a link shown to one party only,
-off any log, which waits for proofs that reveal less; what each
-architecture shows about a mind spread across worlds.
+**Open:** how a lesson becomes available in another world through the
+person's memory, at step 7 (through the person's notes, it is built:
+below); a link shown to one party only, off any log, which waits for
+proofs that reveal less; how a mind through the doorway asks its client
+to show a link; what each architecture shows about a mind spread across
+worlds.
 
 **Built** (2026-11-15, step 3a, part two): the records and the keys.
 A link is `open-worlds/holds/v1`, signed by the person, and
@@ -218,8 +219,19 @@ A link is `open-worlds/holds/v1`, signed by the person, and
 `open-worlds/person-list/v1`; and presence keys are made from the
 person's seed by HKDF-SHA256, with the exact encoding pinned
 ([research/PERSONS.md](research/PERSONS.md), "Part two, built";
-`formats/persons.py`, `rust/formats/src/persons.rs`). Next is part
-three, a person in the Ur-world.
+`formats/persons.py`, `rust/formats/src/persons.rs`).
+
+**Built** (2026-11-15, step 3a, part three): a person in the Ur-world
+([research/PERSONS.md](research/PERSONS.md), "Part three, built";
+`rust/ur-world/src/person.rs` and `link.rs`). A person's client with a
+presence in each of three trial worlds at once: a local says something
+in the first, and the person's presence in the second says it in its
+own world on the same tick, through the person's notebook. A presence
+shows its link as its own action, which its world checks (both records
+hold, name this world and this presence, and the presence has shown no
+link there before) and writes into its log; of a link it refuses, the
+log says only that it was refused, with neither its records nor why.
+Next is part four, the architectures.
 
 **A possible implementation:** DeepSeek's architectures (components 36
 to 52: the octopus, the relay, the swarm, the council) become small

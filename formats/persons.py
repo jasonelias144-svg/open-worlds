@@ -177,7 +177,8 @@ def seed_problems(person_list: Dict[str, Any], seed: bytes) -> List[str]:
     """Which presences in a person's list weren't made from `seed` with
     their world and counter, or []: what the person's own client checks.
     The list must hold (`person_list_chain_problems`); given one that
-    doesn't, a counter out of range raises ValueError."""
+    doesn't, it may raise: KeyError or TypeError for a field it can't
+    read, and ValueError for a world or counter that makes no key."""
     return [f"$.presences.{i}: its key isn't the one its world and counter "
             "give" for i, e in enumerate(person_list["presences"])
             if presence_key(seed, e["world"], e["counter"]) != e["key"]]

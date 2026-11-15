@@ -25,7 +25,7 @@
 //!   refused: whether a person may drop one is theirs to decide.
 //! - Whether a world has admitted a presence, and has seen it linked to
 //!   no one else, is the world's to check when a link is shown there
-//!   (part three).
+//!   (part three: `rust/ur-world/src/link.rs`).
 
 use hkdf::Hkdf;
 use serde_json::Value;
@@ -225,8 +225,9 @@ pub fn person_list_chain_problems(versions: &[Value]) -> Vec<String> {
 /// Which presences in a person's list weren't made from `seed` with their
 /// world and counter, or an empty list: what the person's own client
 /// checks. The list must hold ([`person_list_chain_problems`]); given one
-/// that doesn't, an entry it can't read is reported as not made from the
-/// seed.
+/// that doesn't, an entry whose world and counter make no key (one
+/// missing, or not a key's) is reported as not made from the seed if it
+/// has a key, and passed over if it has none.
 pub fn seed_problems(person_list: &Value, seed: &[u8; 32]) -> Vec<String> {
     presences(person_list)
         .iter()

@@ -257,6 +257,10 @@ fn told(outcome: &Outcome) -> String {
             "you couldn't plant {}: there was no open air on grass or soil there.",
             dir.name()
         ),
+        Outcome::Linked { person } => {
+            format!("you showed your link: you are held by {person}.")
+        }
+        Outcome::LinkRefused(why) => format!("your link wasn't shown: {why}."),
         Outcome::Unreadable => {
             "your reply couldn't be read as an action, so nothing happened.".to_owned()
         }
@@ -325,6 +329,8 @@ fn outcome_json(outcome: &Outcome) -> Value {
             json!({ "kind": "planted", "dir": dir.name(), "at": at.json() })
         }
         Outcome::PlantBlocked(dir) => json!({ "kind": "plant_blocked", "dir": dir.name() }),
+        Outcome::Linked { person } => json!({ "kind": "linked", "person": person }),
+        Outcome::LinkRefused(why) => json!({ "kind": "link_refused", "why": why.to_string() }),
         Outcome::Unreadable => json!({ "kind": "unreadable" }),
         Outcome::Unanswered => json!({ "kind": "unanswered" }),
     }

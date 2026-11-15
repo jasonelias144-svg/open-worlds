@@ -33,11 +33,15 @@ respect one another's freedom, with full transparency and exit at any time
   and a world signs its log's heads. The course was rechecked after
   step 3 and gained step 8a, a lost or leaked key, before ALICE's and
   BOB's birth. Step 3a, persons, is under way: its plan, after looking
-  first, is in docs/research/PERSONS.md, and its second part, the
-  formats, is built: presence keys from a seed by HKDF-SHA256, a link
-  that holds only both ways, and a person's list, in Python and Rust
-  with shared vectors. Its third part, a person in the Ur-world, is
-  next.
+  first, is in docs/research/PERSONS.md. Its second part, the formats,
+  is built: presence keys from a seed by HKDF-SHA256, a link that holds
+  only both ways, and a person's list, in Python and Rust with shared
+  vectors. So is its third, a person in the Ur-world: a person's client
+  in Rust with a presence in each of three trial worlds at once,
+  carrying a note from one to another, and a link shown by the
+  presence's own act, which its world checks and logs (rules
+  `ur-world/0.5`). Its fourth part, the architectures as small
+  examples, is next.
 - Claude: the fractal track, alongside the course (docs/FRACTALS.md),
   set by the founder on 2026-11-14: a fractal plant world in Rust, the
   web app in `web/` to watch worlds grow, and in it the multiversal map.
@@ -1557,8 +1561,46 @@ it was wrong. Questions of what the project is for stay with the founder.
   in `info`, and both languages already have it. *Wrong if:* presences
   must be recovered by tools that know only wallet paths; then a
   SLIP-0010 path beside it, with collisions refused.
+- 2026-11-15, a link is shown by an action, and a refused one is logged
+  without its records or why (docs/research/PERSONS.md, "Part three,
+  built").
+  A presence shows its link on its turn, as `Action::ShowLink`, not
+  through a call from outside the tick. The world takes it only if both
+  records hold, name this world, and name the key the one who acts
+  entered under, and if that presence has shown no link there before.
+  A link it refuses goes into the log as `blocked`, with neither record
+  nor reason; why is told only to the one who showed it. The rules are
+  now `ur-world/0.5`. *Why:* the plan
+  says showing is "the presence's own act, in its world, which the
+  world checks and logs", and an action is exactly that in the kernel:
+  chosen by the one who acts, checked before it takes effect, and told
+  back. A refused link's records, logged, could publish a link that
+  holds in another world; and its reason could say that one exists,
+  since "names another world" is only said of a link whose records
+  hold. *Wrong if:* a person must show a link while
+  their presence isn't in its world (for instance, published with a
+  birth before the first arrival); then a separate act for the keeper,
+  logged the same way.
 
 ## Log
+
+- 2026-11-15 Claude: course step 3a, part three: a person in the
+  Ur-world (docs/research/PERSONS.md, "Part three, built"). A presence
+  shows its link as an action of its own (`rust/ur-world/src/link.rs`),
+  which its world checks and logs, and `link_log_problems` checks every
+  shown link in a log; a person's client (`rust/ur-world/src/person.rs`)
+  with a trial person in three trial worlds at once, a lesson carried
+  from one to another through the person's notebook; its vectors
+  (`vectors/ur-person.json`), checked from Python. The rules are now
+  ur-world/0.5, the garden's vectors are written again, and the World
+  Map draws the garden under 0.4 and 0.5. Carried from #75's review:
+  why presence keys use no salt (RFC 5869, sections 3.1 and 3.3), and
+  exact docstrings for both languages' `seed_problems`. After the
+  independent review: a refused link is logged with neither its records
+  nor why, since even the reason could say that a link exists
+  elsewhere; a test of a presence leaving, coming back and showing again;
+  and a note that the trial's presences, though never named in each
+  other's worlds, can be linked by what they say and when.
 
 - 2026-11-15 Claude: course step 3a, part two: persons' formats. Looked
   first at SLIP-0010, and took HKDF-SHA256 for presence keys, with the

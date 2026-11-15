@@ -30,10 +30,14 @@ in the order to read it:
    whoever enters signs an arrival, a name stays the key's that first
    used it, and a world signs its log's heads. Step 3a, persons, is
    under way: its plan is in
-   [research/PERSONS.md](research/PERSONS.md), and its second part,
-   the formats, is built: presence keys from a seed, a link that holds
-   only both ways, and a person's list ("Part two, built"). Its third
-   part, a person in the Ur-world, is next.
+   [research/PERSONS.md](research/PERSONS.md). Its second part, the
+   formats, is built: presence keys from a seed, a link that holds only
+   both ways, and a person's list ("Part two, built"). So is its third,
+   a person in the Ur-world ("Part three, built"): a person's client with
+   a presence in each of three trial worlds at once, carrying a note
+   from one to another, and a link shown by the presence's own act,
+   which the world checks and logs (the rules are now `ur-world/0.5`).
+   Its fourth part, the architectures as small examples, is next.
    Rechecked after step 3, the course gained step 8a, a lost or leaked
    key, before ALICE's and BOB's birth.
    It returns to DeepSeek at step 10, or sooner if the founder chooses.
@@ -532,8 +536,9 @@ welcome too, and is fitted here.
   [`ur-world/src/world.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/world.rs), [`ur-world/src/space.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/space.rs),
   [`ur-world/src/generate.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/generate.rs), [`ur-world/src/arrival.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/arrival.rs),
   [`ur-world/src/door.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/door.rs), [`ur-world/src/garden.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/garden.rs),
-  [`ur-world/src/story.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/story.rs), [`ur-world/src/host.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/host.rs); and its example,
-  [`ur-world/examples/garden.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/garden.rs).
+  [`ur-world/src/story.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/story.rs), [`ur-world/src/host.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/host.rs),
+  [`ur-world/src/link.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/link.rs), [`ur-world/src/person.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/person.rs); and its examples,
+  [`ur-world/examples/garden.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/garden.rs), [`ur-world/examples/person.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/person.rs).
 - **`plant-world`**, a fractal plant world: [`plant-world/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/lib.rs),
   [`plant-world/src/rule.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/rule.rs),
   [`plant-world/src/world.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/world.rs),
@@ -551,7 +556,11 @@ signed it (use that record, not the one passed in). There is no
 (`formats::canonical::canonical` writes the RFC 8785 form); record
 012-06-02's Rust assumed them. A mind is `ur_world::world::Mind`, with
 one method, `act(&mut self, seen: &Observation) -> Action`; a place is
-`ur_world::space::Cell`, and a direction `Dir`.
+`ur_world::space::Cell`, and a direction `Dir`. A person's client is
+`ur_world::person::Person`: `presence(world, counter)` gives a
+presence's key, `arrival(...)` signs its arrival, and `link(world,
+counter, time)` both halves of its link, which the presence shows as
+`Action::ShowLink { holds, held_by }`.
 
 The same links in one block, for pasting into a conversation where they
 can't be followed from this page:
@@ -577,7 +586,10 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-wor
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/garden.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/story.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/host.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/link.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/person.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/garden.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/person.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/lib.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/rule.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/world.rs
@@ -703,3 +715,11 @@ page.
   `held-by/v1`), and a person's list, in Python and Rust
   (`formats/src/persons.rs`, linked under "Code in Rust") with shared
   vectors.
+- 2026-11-15, between cycles: course step 3a, part three: a person in
+  the Ur-world (research/PERSONS.md, "Part three, built"). A person's
+  client (`ur-world/src/person.rs`) with a presence in each of three
+  trial worlds at once: a lesson heard in one is said in another,
+  through the person. A presence shows its link as an action of its own
+  (`ur-world/src/link.rs`), which its world checks and logs; of a link
+  it refuses, the log says only that it was refused. The rules are now
+  `ur-world/0.5`.

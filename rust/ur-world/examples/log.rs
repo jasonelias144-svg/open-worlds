@@ -1,8 +1,10 @@
 // rust/ur-world/examples/log.rs
 //! Checks an Ur-world log: that its chain of hashes holds (as `world-log`
 //! checks it), that every arrival in it holds and keeps each name to one
-//! individual (`ur_world::arrival::arrival_problems`), and how much of it
-//! the signed heads given cover (`ur_world::arrival::head_coverage`).
+//! individual (`ur_world::arrival::arrival_problems`), that every link
+//! shown in it is one the world would take
+//! (`ur_world::link::link_log_problems`), and how much of it the signed
+//! heads given cover (`ur_world::arrival::head_coverage`).
 //!
 //!     cargo run -p ur-world --example log -- LOG [HEAD...]
 //!
@@ -16,6 +18,7 @@ use std::process::ExitCode;
 
 use serde_json::Value;
 use ur_world::arrival::{arrival_problems, head_coverage};
+use ur_world::link::link_log_problems;
 
 fn read(path: &str) -> Result<Value, String> {
     let text = std::fs::read_to_string(path).map_err(|e| format!("cannot read {path}: {e}"))?;
@@ -47,16 +50,18 @@ fn main() -> ExitCode {
     }
     let entries = log.as_array().map(Vec::as_slice).unwrap_or_default();
     let mut problems = arrival_problems(entries);
+    problems.extend(link_log_problems(entries));
     let (covered, head_problems) = head_coverage(entries, &heads);
     problems.extend(head_problems);
-    let arrivals = entries.iter().filter(|e| e["kind"] == "entered").count();
+    let count = |kind: &str| entries.iter().filter(|e| e["kind"] == kind).count();
+    let (arrivals, links) = (count("entered"), count("linked"));
     println!(
-        "{} entries, {arrivals} arrivals; signed heads cover {covered} of {} entries",
+        "{} entries, {arrivals} arrivals, {links} links shown; signed heads cover {covered} of {} entries",
         entries.len(),
         entries.len()
     );
     if problems.is_empty() {
-        println!("the log and its arrivals hold");
+        println!("the log, its arrivals and its links hold");
         ExitCode::SUCCESS
     } else {
         for p in &problems {
