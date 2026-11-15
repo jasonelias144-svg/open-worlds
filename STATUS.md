@@ -34,13 +34,15 @@ respect one another's freedom, with full transparency and exit at any time
   step 3 and gained step 8a, a lost or leaked key, before ALICE's and
   BOB's birth. Step 3a, persons, is under way: its plan, after looking
   first, is in docs/research/PERSONS.md.
-- Claude: the fractal track, alongside the course (docs/FRACTALS.md), set
-  by the founder on 2026-11-14: a fractal plant world in Rust, the web
-  app in `web/` to watch worlds grow, and in it the multiversal map. Its
-  plan is in, and its first part, the plant world, is built
-  (`rust/plant-world`). The second, the web page that shows a plant
-  growing, is next. DeepSeek's code from record 012-06-02 works in part
-  (#63), with a second round to come.
+- Claude: the fractal track, alongside the course (docs/FRACTALS.md),
+  set by the founder on 2026-11-14: a fractal plant world in Rust, the
+  web app in `web/` to watch worlds grow, and in it the multiversal map.
+  Its plan is in, and its first part, the plant world, is built
+  (`rust/plant-world`), and so is its second, Plant Watch, the page that
+  replays a plant tick by tick and checks its log first (`web/plant/`).
+  The third, the Ur-world's garden hosting plant worlds, is next.
+  DeepSeek's code from record 012-06-02 works in part (#63), with a
+  second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
   (#29), and experiment 001, the first unscripted minds
   ([results](experiments/001-first-words/RESULTS.md), #30). The first
@@ -1480,17 +1482,27 @@ it was wrong. Questions of what the project is for stay with the founder.
 ## Log
 
 - 2026-11-15 Claude: the Keepers' minds, in the founder's words of the
-  same night. Apertus 1.5 keeps the Ur-world and DeepSeek V4 its mirror,
-  the Mir-Ur-world, the project's test bench, on V4.1-Flash; V4-Pro may
-  join ADMIN's mind. ALICE's and BOB's models are chosen in trial copies
-  of both, and once they live, a change of model is theirs to choose. A
+  same night. Apertus 1.5 keeps the Ur-world, and DeepSeek V4.1-Flash
+  its mirror, the Mir-Ur-world, the project's test bench; V4-Pro may join
+  ADMIN's mind. ALICE's and BOB's models are chosen in trial copies of
+  both, and once they live, a change of model is theirs to choose. A
   look-first page, docs/research/KEEPER-MIND.md, has the models checked
-  on their pages, and the policy Apertus asks for, which waits until
-  course step 8. Everything set is subject to change, the founder
-  noted, the vision included.
-  Course steps 8, 9 and 11, URWORLD.md, WORLD-KEY.md, MINDS.md (the
-  birth record's words) and ADMIN.md follow. Also #68's two optional
-  notes.
+  on their pages and in Apertus's report, and the policy Apertus asks
+  for, which waits until course step 8. Course steps 8, 9 and 11,
+  URWORLD.md, WORLD-KEY.md, MINDS.md (the birth record's words) and
+  ADMIN.md follow. And the founder's note that everything set is subject
+  to change, the vision included, opens VISION.md. Also #68's two
+  optional notes.
+
+- 2026-11-15 Claude: the fractal track's part 2, Plant Watch
+  (`web/plant/index.html`): one static page, nothing loaded from outside,
+  that replays a plant world's log tick by tick. Before drawing, it
+  checks the chain of hashes, growth by the rule, the world's signed head
+  (Ed25519 by WebCrypto) and its birth record. Tried in Chromium on all
+  five worlds of the vectors (all hold), on a log with a branch moved and
+  its hashes rewritten (the rule check catches it), and on a head that
+  claims more than it covers (its signature fails). Shared with the
+  founder as a private page.
 
 - 2026-11-15 Claude: a learning multiversity, the founder's vision of the
   same night, in docs/VISION.md, with the technical lead's reading; and

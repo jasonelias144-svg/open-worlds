@@ -54,6 +54,8 @@ The plant worlds are written by Rust too:
 cd rust && cargo run -p plant-world --example plant -- --vectors ../vectors
 ```
 
+The folder named after `--vectors` must already exist.
+
 Their rule is DeepSeek's, from record 012-06-02, and the sketch is its
 reference: `sketches/deepseek/012-06-02/plant_world_vectors_test.py`,
 run by that folder's pytest, grows each world again with the sketch's

@@ -131,6 +131,12 @@ technical lead's. Each part is one reviewed pull request.
    public log and draws it, tick by tick, with play and a slider, as the
    first look did. It checks the log's chain and its signed heads before
    it shows anything, and says what it checked.
+
+   **Built** on 2026-11-15: [`web/plant/`](../web/plant/index.html),
+   Plant Watch ([web/README.md](../web/README.md)). It checks the chain,
+   growth by the rule, the world's signed head (Ed25519, with the
+   browser's WebCrypto) and its birth record, and draws nothing that
+   fails. Shared with the founder as a private page the same night.
 3. **The Ur-world's garden hosts the plants, and the map's first page.**
    Several plant worlds from one template, each with its own key, log
    and changed dials, hosted in the Ur-world's garden, as the founder
