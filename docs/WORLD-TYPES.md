@@ -86,6 +86,42 @@ intact, so the Keeper can let them resume it. To make that so, progress
 on a challenge is kept as a record the world signs and the person holds,
 not only in the world's state.
 
+## Time: faster, slower, back and forward
+
+The founder, 2026-11-15: "And some way to speed up or slow down the flow of time. A slow motion and a fast speed view. Rewind and fast forward in time to previous states. This would be a goal eventually."
+
+**Decided, by the founder:** a goal, for later: speeding time up and
+slowing it down, slow motion and a fast view, and rewinding and fast
+forwarding to earlier states.
+
+The technical lead's reading, which stands unless the founder answers
+otherwise. Time control means two different things, and the difference
+matters:
+
+1. **Watching** a world's past, faster, slower, back and forward,
+   changes nothing in the world. Since a world's state follows from its
+   log, any earlier step can be shown again, and checkpoints make
+   jumping far back quick. Built, in part: Plant Watch replays a plant
+   from its log, with a slider to any step, back or forward, and Play
+   and Pause; growth within a step is drawn smoothly
+   ([FRACTALS.md](FRACTALS.md)). A speed control is next, as the endless
+   plant's page plans.
+2. **The world's own pace,** how many steps it takes in a second, is a
+   setting in its law. As decided before ([MULTIVERSE.md](MULTIVERSE.md),
+   "Time"): "Each world publishes its time rate in its law; nobody
+   enters a fast world without choosing to, and leaving still works at
+   any moment." A world with no one inside can run as fast as a machine
+   allows, which is the founder's accelerated time. A world with minds
+   in it runs no faster than they think.
+
+**Rewinding the world itself,** not only the view, is going back to an
+earlier checkpoint and running on from there. Here that is a branch
+(above): the steps after that point are kept, never erased, and in a
+world with individuals it happens only as a new world they may choose to
+enter. Fast forwarding a world itself is running ahead quickly, which a
+closed world can do (anyone can compute its future from its seed), and
+an open one can't, as minds can't be run ahead of their own thinking.
+
 ## A taxonomy of world types
 
 Every world has a place on each of seven dimensions, and its type is

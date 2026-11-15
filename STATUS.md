@@ -240,6 +240,16 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on time:
+  "And some way to speed up or slow down the flow of time. A slow motion
+  and a fast speed view. Rewind and fast forward in time to previous
+  states. This would be a goal eventually."
+  So docs/WORLD-TYPES.md ("Time") keeps it as a goal, with the technical
+  lead's reading: watching a world's past faster, slower, back and
+  forward changes nothing (Plant Watch does part of it already); a
+  world's own pace is a setting in its law (MULTIVERSE.md, "Time"); and
+  rewinding a world itself is a branch, which never erases what came
+  after.
 - 2026-11-15, founder, on stopping part by part, and world types:
   "I accept it. Every world can pause itself and every person can leave.
   If they return, they can pick up where they left off on challenges,

@@ -72,7 +72,9 @@ in the order to read it:
    what can be done with a world of each, as with virtual machines and
    containers: pause, resume, stop, restart, reset (the founder,
    2026-11-15). Every world can pause itself, every person can leave,
-   and a person who returns picks up where they left off.
+   and a person who returns picks up where they left off. And, as a
+   goal for later, time: slow motion and a fast view, rewind and fast
+   forward.
 4. **The founder's visions of 2026-11-14,** in the founder's words
    ([VISION.md](VISION.md), [PARALLEL-WORLDS.md](PARALLEL-WORLDS.md)):
    question worlds, where an idea becomes a world that tests it; an app
