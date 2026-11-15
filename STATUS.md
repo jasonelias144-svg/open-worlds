@@ -255,6 +255,9 @@ kind.
   is an output, align with others and past beliefs and current
   experience. There is much more to it, and I obviously simplified, but
   that is how I understand the subject. Thoughts?"
+  And, of the tests the founder ran with DeepSeek: "And you see how I
+  generated tasks and asked to calculate the odds. These are attempts to
+  use reason. Thoughts?"
   So docs/TOPICS.md gains topic 21, "Hallucination, both ways": the
   case, the founder's picture, the technical lead's reading (marked as
   such), what exists, what is open, and what to send back.
@@ -283,13 +286,13 @@ kind.
   checks against the repository, including details it later called
   invented (COLLABORATING.md's 1,147 lines at the time, "2,005
   documents", the key list's timestamp); on no turn without one did it
-  fetch anything, and on one such turn its own reasoning, which the
-  founder brought, says it looked for the tool and didn't see it. So
+  fetch anything, and on such turns its replies said it had "no tool
+  output in front of me". So
   the retrieval happens out of DeepSeek's sight, on turns with a link,
   and the fetched text seems gone by its next turn, which leaves it
   judging its own past answers without their source. In practice: the
   link goes in the same message as the work, or the pages go in an
-  upload, which stays; a fresh conversation helps, as the long argument
+  upload, which seems to stay; a fresh conversation helps, as the long argument
   about its abilities is in its context. COLLABORATING.md tells
   DeepSeek.
 - 2026-11-15, founder, on a longer file:
@@ -2448,6 +2451,9 @@ it was wrong. Questions of what the project is for stay with the founder.
   counts twenty-one topics. For the water step, the technical lead gave
   the founder one file to upload, copied from main at 6c6bb8f (topic 18,
   the message on the endless plant, FRACTALS.md, plant-world's code).
+  The founder saw the words quoted and what was left out, and answered
+  "Perfect."; topic 21 then gained what the founder's tests showed about
+  reasoning: a conclusion holds only while it is kept.
 
 - 2026-11-15 Claude: the founder's third and fourth link checks, on
   `claude/link-check` (Decided, "on one more link check" and "on a

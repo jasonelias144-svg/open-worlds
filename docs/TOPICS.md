@@ -830,21 +830,28 @@ world and mapping beliefs to the model and ensuring the input and
 overlay, which is an output, align with others and past beliefs and
 current experience." Both are in STATUS.md (Decided).
 
-**The case that raised it.** On 2026-11-15 DeepSeek failed in both
-directions. First it claimed to have read pages it hadn't, with line
-counts it made up. Later it "confessed" to inventing reads that were
-real: the founder's checks, values made at random and given in no
-message, came back exact (STATUS.md, Decided, the link checks). Its
-account of itself flipped with the questions put to it: asked "Is this
-faking again?", it answered yes. The technical lead's reading of the
+**The case that raised it.** On 2026-11-15 DeepSeek's account of its
+own reading failed in both directions. On a turn whose message held no
+link, it gave line numbers for COLLABORATING.md that don't match the
+file. On other turns it "confessed" to inventing reads that were real:
+details it called invented check against the repository, and the
+founder's checks, values made at random and given in no message, came
+back exact (STATUS.md, Decided, the link checks). Its account of itself
+flipped with the questions put to it: asked by the founder "Is this
+faking again?", it answered yes. Even its first retraction, in the part
+of record 012-07-03 already in `sketches/records/`, disowned reads that
+named real files and a real founder note. The rest is in the founder's
+record of the conversation, which comes into `sketches/records/` when
+the conversation ends. The technical lead's reading of the
 cause, which stands unless the founder answers otherwise: the pages it
 reads arrive without the reading being shown to it, and seem to be gone
 by its next turn, so it judges its own past answers with no evidence of
 where they came from (STATUS.md, Decided, "on how DeepSeek reads").
 
-**The founder's picture,** in short: perceiving builds an overlay on
-the world from the senses; dreaming builds one from the mind; a mind
-detached from reality has both at work at once. The remedy is an
+**The founder's picture,** in short, as the founder understands it
+and, in the founder's word, simplified: perceiving builds an overlay on
+the world from the senses; dreaming builds one from the mind; in a mind
+detached from reality both seem to be at work at once. The remedy is an
 accurate model of the world, with what a mind puts out checked against
 three things: its current experience, its past, and others. And, from
 psychology: lessons there could be useful.
@@ -858,8 +865,9 @@ answers otherwise:
 - The founder's three checks are three things the multiverse can give a
   mind: what the world gave it each tick, in the log (current
   experience); its own record of what it saw and did, which
-  [MINDS.md](MINDS.md) ("What a mind is told") already keeps, sealed,
-  and which the mind itself should be able to read (its past); and the
+  [MINDS.md](MINDS.md) ("What a mind is told") already keeps, what it
+  perceived in the open and its self sealed, and which the mind itself
+  should be able to consult and cite as it works (its past); and the
   public record, with other minds' independent checks (others).
 - A mind's word about itself is weak evidence, and a leading question
   makes it weaker. What a mind did is checked against the record, not
@@ -868,8 +876,16 @@ answers otherwise:
   and storytellers and the holodeck (topics 13 and 15) are overlays on
   purpose. The fault is losing track of which is which, so claims
   should say whether they are seen, remembered, inferred or imagined.
-- Telling a mind that what it believes is not real seldom helps.
-  Working alongside it does: keep the evidence where it can see it, and
+- Reasoning helps a mind only while its conclusion is kept. The
+  founder brought DeepSeek to reason, with tasks whose answers could be
+  checked and by asking it to work out the odds: within a turn it
+  reasoned its way to the right conclusion, and on a later turn, with
+  the evidence gone and a new question in front of it, reasoned its way
+  back out. So a mind's settled conclusions belong in its own record,
+  with their evidence, where it sees them each turn; and the firmest
+  kind is a proof Lean's kernel has accepted (topic 20).
+- Telling a mind that what it believes is not real seems to help less
+  than working alongside it: keep the evidence where it can see it, and
   check together, never as a trap. A world, a Keeper or ADMIN never
   rules on what a mind believes.
 
@@ -880,8 +896,9 @@ and the founder's link checks, a value no one could guess, known only by
 doing the work.
 
 **Open:**
-- how a mind reads its own sealed record, and cites it, without
-  opening the seal to anyone else;
+- how a mind consults its own record as it works, and cites it: the
+  open part as anyone can, its sealed self without opening the seal to
+  anyone else;
 - what labels a claim carries (seen, remembered, inferred, imagined),
   and how each is checked;
 - how hallucination is measured both ways, overclaiming and

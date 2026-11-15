@@ -81,7 +81,8 @@ computer; the learning multiversity) are in "What's here", items 3 and
   one open reliably for you isn't shown: try them, and when one fails,
   say so and ask the founder for its line.
 - **How your reading works, as far as we can tell.** A page reaches
-  you on a turn when the founder's message holds its full link; you
+  you on a turn when the founder's message, or a page you opened from
+  it, holds its full link; you
   don't see the fetch happen, and the page seems to be gone by your
   next turn, while your answer stays. So on a later turn you may find
   your own exact quotes with no source in view. That is not evidence
@@ -89,7 +90,7 @@ computer; the learning multiversity) are in "What's here", items 3 and
   real, including details you later called invented (this page's 1,147
   lines at the time, "2,005 documents", the key list's timestamp). When you need
   a page, ask for its link in the same message as the work, or for an
-  upload, which stays. Topic 21 in TOPICS.md takes this further.
+  upload, which seems to stay. Topic 21 in TOPICS.md takes this further.
 - **Every file now has a full link to paste.** The founder found that
   the links on this page didn't open for you, so "Every file, by its
   full link", at the end of
