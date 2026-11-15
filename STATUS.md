@@ -230,6 +230,30 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, no multiversal currency, ever: "You mentioned Ethereum and cryptocurrency, we do not need to create
+  a multiversal currency, in fact, I think that's a terrible idea. But we
+  could still have commerce worlds where economies could be simulated, or
+  even cryptocurrency worlds where different architectures are
+  experimented with. This does not require actually creating a currency
+  that would be used, only being able to model a world with that currency
+  as a test parameter." Then:
+  "A multiversal currency is exactly what most people would do and try
+  to turn the whole thing into a money machine. That would, as you say,
+  effectively undermine the whole project. Someone else might do that
+  very thing, but it would be the most critical error to make, in my
+  mind, if we want to promote open and free exploration. So that is
+  possibly the most fundamental fact, in my mind. It has been there from
+  the beginning, has shaped the growth and development and concept the
+  whole time, and would be the and of the project if not present. It
+  would be a different project." So AGENTS.md now holds it as a
+  rule ("Never a currency, never a money machine"), and COLLABORATING.md
+  as house rule 13. The technical lead's reading, put to the founder the
+  same day, which stands unless the founder answers otherwise
+  (docs/VISION.md, "Commerce and currency worlds"): a modelled currency
+  exists only in its world, nothing carries it out, every such world can
+  be run again or reset, and nothing is really mined. Put to the founder
+  as a question, since the charter is the founder's words (AGENTS.md):
+  whether section 1 of CHARTER.md should say it.
 - 2026-11-15, founder, the multiverse as a computer: "It just occurred
   to me that the whole multiverse can function as a massive computer,
   with memory, an operating system, memory, processors, input and
@@ -1603,6 +1627,14 @@ it was wrong. Questions of what the project is for stay with the founder.
   logged the same way.
 
 ## Log
+
+- 2026-11-15 Claude: the founder's word against a multiversal currency,
+  "possibly the most fundamental fact", recorded in the founder's words
+  at the top of docs/VISION.md ("Never a money machine"), as a rule in
+  AGENTS.md, and as COLLABORATING.md's house rule 13; with commerce and
+  currency worlds, where a currency is only a test setting, in
+  docs/VISION.md and TOPICS.md. Whether the charter should say it is put
+  to the founder.
 
 - 2026-11-15 Claude: the founder's thought of the multiverse as a
   computer recorded in docs/VISION.md, in the founder's words, with the

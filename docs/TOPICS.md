@@ -766,6 +766,11 @@ step 11 (COLLABORATING.md, "Held back").
 - **When freedoms meet:** not hearing a speaker, and agreements others
   can accept or refuse ([FREEDOMS.md](FREEDOMS.md)).
 - **Generator 2:** land decided when first seen.
+- **Commerce and currency worlds** ([VISION.md](VISION.md)): economies,
+  and currency designs such as different blockchains, modelled as a
+  world's test settings, never a currency anyone uses: the multiverse
+  has none, the founder's "possibly the most fundamental fact". Ideas
+  welcome, as prose: which economy first, and what question it answers.
 - **The multiverse as a computer** ([VISION.md](VISION.md)): the
   founder's thought of 2026-11-15, held toward with "full comprehension
   of its implications". Ideas welcome, as prose: which large problems

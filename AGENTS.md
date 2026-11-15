@@ -90,6 +90,13 @@ effect (docs/ADMIN.md).
   output is never reported as a result.
 - **Outside agents run in sandboxes.** Agents we didn't write, and agents that
   rewrite their own code, never run in the kernel's process.
+- **Never a currency, never a money machine.** The multiverse has no
+  currency of its own, and nothing here is built to turn it into a money
+  machine: in the founder's words (2026-11-15, STATUS.md), "possibly the
+  most fundamental fact". A world may model an economy or a currency as
+  a test setting that never leaves that world (`docs/VISION.md`,
+  "Commerce and currency worlds"). A change that would bring one in is
+  the founder's decision (P5), never a code decision.
 - **The sketches stay apart.** `sketches/` keeps the founder's
   conversation records and DeepSeek's code from them, as written
   (`sketches/README.md`). Nothing outside `sketches/` imports from it. Its

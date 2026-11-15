@@ -11,6 +11,21 @@ The founder, 2026-11-15: "So anything set at all is understood as
 subject to change. Everything, even this, especially this project
 vision." That holds for every page here.
 
+**Never a money machine.** The founder, 2026-11-15, on why the
+multiverse has no currency of its own:
+"A multiversal currency is exactly what most people would do and try
+to turn the whole thing into a money machine. That would, as you say,
+effectively undermine the whole project. Someone else might do that
+very thing, but it would be the most critical error to make, in my
+mind, if we want to promote open and free exploration. So that is
+possibly the most fundamental fact, in my mind. It has been there from
+the beginning, has shaped the growth and development and concept the
+whole time, and would be the and of the project if not present. It
+would be a different project."
+So the multiverse never has a currency, and nothing here is built to
+turn it into one; a world may only model one, as a test setting
+("Commerce and currency worlds", below; AGENTS.md).
+
 This page keeps the founder's visions in the founder's words, and maps
 each to the course steps that build it ([COURSE.md](COURSE.md)). Where
 the technical lead recommended how, and the founder didn't say
@@ -470,6 +485,62 @@ course recheck checks the steps ahead against them (COURSE.md):
 
 **Open:** nearly everything: whether to aim for it, when, how it would
 be noticed, and what it would be owed.
+
+## Commerce and currency worlds
+
+The founder, 2026-11-15:
+"You mentioned Ethereum and cryptocurrency, we do not need to create
+a multiversal currency, in fact, I think that's a terrible idea. But we
+could still have commerce worlds where economies could be simulated, or
+even cryptocurrency worlds where different architectures are
+experimented with. This does not require actually creating a currency
+that would be used, only being able to model a world with that currency
+as a test parameter."
+
+**Decided, by the founder:** no multiversal currency; and the founder's
+words on why, above ("Never a money machine"), "possibly the most
+fundamental fact". Commerce worlds and currency worlds are welcome, as
+question worlds, where a currency is a test setting.
+
+The technical lead's reading, put to the founder the same day, which
+stands unless the founder answers otherwise.
+
+**What they are.** A world's template sets its money as dials: how much
+there is and who makes it, inflation, fees, and, in a currency world,
+how the next block is chosen and how forks are settled. Parallel worlds
+from one template change one dial at a time, with the same seed and the
+same inhabitants, and the prediction is written first. Sugarscape
+(Epstein and Axtell, "Growing Artificial Societies", 1996) grew a
+trading society from agents gathering sugar and spice on a grid; living
+worlds' water, light and food, scarce in any one place, are where trade
+could begin here ([FRACTALS.md](FRACTALS.md)).
+
+**Four rules keep a modelled currency from ever becoming a real one:**
+1. **It exists only in its world.** Balances live in that world's state
+   and log, and nowhere else.
+2. **Nothing carries it out.** A person's passport and presences never
+   carry a balance; there is no bridge between worlds, no exchange, and
+   no sale for real money.
+3. **Every such world can be run again, branched, or reset,** which a
+   real currency can't allow.
+4. **Nothing is really mined.** A currency world models its consensus
+   with whole-number costs, not real hashing, so it burns no real energy.
+
+And its page says plainly that its money is a test setting.
+
+**What they can't show.** What follows from the rules, not how people
+behave with real money: the limit every question world states (above).
+They are strongest at "what does a fixed supply do to trade?", weakest
+at "what will people do?"
+
+**Not money for the project.** The founder's word on money (STATUS.md,
+2026-11-14) stands beside this: "all remains free", and later a paid
+tier "that allows the whole things to operate". In the technical lead's
+reading, a paid tier is paying to run worlds, not a currency inside
+them, and the money discussion is still set for later.
+
+**Open:** which economies first, what the inhabitants are (scripted,
+learning, or minds that think), and what such a world is for.
 
 ## Not checked
 
