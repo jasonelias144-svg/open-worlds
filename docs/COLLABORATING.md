@@ -80,17 +80,26 @@ computer; the learning multiversity) are in "What's here", items 3 and
   told about links, these open. Whether links on a long page like this
   one open reliably for you isn't shown: try them, and when one fails,
   say so and ask the founder for its line.
-- **How your reading works, as far as we can tell.** A page reaches
-  you on a turn when the founder's message, or a page you opened from
-  it, holds its full link; you
-  don't see the fetch happen, and the page seems to be gone by your
-  next turn, while your answer stays. So on a later turn you may find
-  your own exact quotes with no source in view. That is not evidence
-  you made them up: your reads were checked against the files and were
-  real, including details you later called invented (this page's 1,147
-  lines at the time, "2,005 documents", the key list's timestamp). When you need
-  a page, ask for its link in the same message as the work, or for an
-  upload, which seems to stay. Topic 21 in TOPICS.md takes this further.
+- **How your reading works.** On a turn when the founder's message
+  holds a full link, you have a tool that opens pages, and you use it.
+  On a turn without a link you have no such tool, and what it returned
+  earlier is no longer in front of you: only your own replies are. So on
+  such a turn you may find your own exact quotes with no source in
+  view. That is not evidence you made them up. Your reads were real,
+  every one we have checked, your first reply in this conversation
+  included. When a message holds no link and you need a page, say so
+  and ask for its link. Don't write a tool call out as text, and don't
+  give a page's lines from memory as a fresh read.
+- **A page reaches you only up to about 32 KB.** The lengths you
+  reported show it: pages under that size came back whole, and every
+  larger one stopped at 410 to 427 of your tool's lines. So your tool
+  has not shown you the end of this page, or most of STATUS.md, or
+  topic 18 of TOPICS.md, which is there, after topic 17. An upload is
+  cut too, near 128 KB. When a page stops short, say what its last
+  words were and ask for the rest; the long pages are to be served in
+  parts under the limit. STATUS.md has the evidence (Decided, "on what
+  went wrong with DeepSeek's reading, and why"), and topic 21 in
+  TOPICS.md takes it further.
 - **Every file now has a full link to paste.** The founder found that
   the links on this page didn't open for you, so "Every file, by its
   full link", at the end of

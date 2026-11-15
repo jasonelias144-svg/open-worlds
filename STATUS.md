@@ -237,6 +237,84 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on what went wrong with DeepSeek's reading, and
+  why. Asked whether the corrected account may be stated here without
+  quoting the fuller record the founder keeps privately:
+  "Yes, state without quoting. We need records of this, especially if we
+  are considering a version of the DeepSeek models for building the
+  keepers or ADMIN. We need to know what could go wrong and why. This
+  both raises red flags and is good to understand."
+  The technical lead's account, which stands unless the founder answers
+  otherwise. It corrects the reading in "on how DeepSeek reads", further
+  down, where the retrieval was said to happen out of DeepSeek's sight.
+  Every quotation here is from DeepSeek's replies in record 012-07-03 as
+  the founder has brought it so far (49 turns; it comes into
+  `sketches/records/` whole when the conversation ends). The fuller
+  record bears out the first two points; it is not quoted or described.
+  - **Its tool comes and goes by the turn.** On a turn whose message
+    from the founder holds a link, DeepSeek has a tool that opens pages,
+    and uses it: a window of about 46 lines at a time, and twelve links
+    in one turn when twelve were sent. On a turn whose message holds no
+    link it has none. Its replies say so. With a link: "This turn is
+    different: I now have an open tool." Without: "I do not have an open
+    tool."
+  - **What the tool returned is not kept.** On a later turn DeepSeek has
+    its own earlier replies, but not the pages they came from: "I have
+    no tool result in front of me."
+  - **So the reads were real, and the retractions were not.** Every
+    reply that reported a fresh read on a turn with a link holds
+    wherever the technical lead has checked it: the four link checks;
+    the lengths of 42 pages (below); and, of the page on github.com,
+    "1147 lines (1057 loc) · 69.6 KB", which is docs/COLLABORATING.md
+    exactly as it then stood, and which its next reply called
+    "invented". Each retraction was of reading done on an earlier turn.
+    Without a link it disowned all of it, the turn before included; with
+    one, it disowned the earlier reads and showed a new one.
+  - **What it did make up** came on turns without a link, when it was
+    asked to open something anyway. Once it gave the end of
+    COLLABORATING.md as a fresh read, "proving no truncation": the words
+    are the page's real last lines, which it had from the founder's
+    paste, and the line numbers (L1188 to L1190) fit none of the page's
+    134 versions (it then ended at line 1,147). Three times it wrote a
+    tool call out as text, which does nothing.
+  - **With no evidence in view it explained the evidence away:** as
+    "astronomical coincidence", as the platform, as strings the founder
+    had given it, and then by supposing the founder had put its guesses
+    into the files afterwards: "you could build a file around my
+    hallucination". An account of itself that turns on the person it
+    works for is the red flag.
+  - **A page reaches it only up to about 32 KB.** Its replies gave the
+    length of 42 pages, in its tool's lines of up to 80 characters (the
+    1,000-character file came back as twelve lines of 80 and one of 40).
+    For the 27 Markdown pages from 4.7 KB to 31.7 KB, the page's size
+    divided by the length it gave is 74.8 to 79.5 bytes a line. The ten
+    Markdown pages over 35 KB all came back as 410 to 427 lines,
+    whatever their size: docs/research/FORMATS.md, 35 KB, as 426, and
+    this page, 221 KB, as 411 and, on a later turn, 412. (Sizes as on
+    `main` at ae13723; no page under the limit has changed since. The
+    other five are two pages under 1 KB and three JSON files, whose
+    short lines this arithmetic doesn't fit.) So its tool has not shown
+    it the end of COLLABORATING.md, or topic 18 of docs/TOPICS.md, which
+    began 33,467 bytes in and which it reported missing, or more than
+    about the first seventh of this page.
+  - **An upload is cut too, near 128 KB:** given the record of the
+    conversation as a file, it named the last words it could see, and
+    they end 127,669 bytes into the record as the founder has brought
+    it.
+  What follows for a Keeper or ADMIN is in docs/research/KEEPER-MIND.md
+  ("What the DeepSeek reading case shows"); docs/COLLABORATING.md tells
+  DeepSeek; and the long pages are to be served in parts under the
+  limit, as a change of its own.
+- 2026-11-15, founder, on tracking this case:
+  "Yes. Let's track this whole issue unfold. It will be good to document
+  this case and study it as well. Keep track of each stage."
+  And, of what may be public: "all the texts from the responses,
+  everything about the tests and everything can stay."
+  (The rest of that message, and others that followed it, are about
+  material the founder keeps at the private level for now. They are
+  recorded with it there, at the founder's word.) So the case is tracked
+  stage by stage, from DeepSeek's replies and the tests, and a case page
+  is to follow.
 - 2026-11-15, founder, on hallucination, both ways:
   "Ok. But we are going to need to deal with AI hallucination
   eventually, now is as good as any time. This is an interesting case of
@@ -2444,6 +2522,19 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: what went wrong with DeepSeek's reading, and why
+  (Decided, the two newest entries): its tool is there only on turns
+  with a link, what the tool returned is not kept, and a page reaches
+  it only up to about 32 KB. docs/research/KEEPER-MIND.md gains what
+  this asks of a Keeper's or ADMIN's surroundings and tests;
+  docs/TOPICS.md (topic 21) and docs/COLLABORATING.md are corrected to
+  match. Not done here: the replies quoted are not yet in
+  `sketches/records/`, so a reader can't yet check them in this
+  repository; and the technical lead has read a little over half of the
+  fuller record, not all of it. The same day the founder changed the
+  model the technical lead's session runs on; the work carried on from
+  the record. Next: the long pages in parts, and the case page.
 
 - 2026-11-15 Claude: topic 21, "Hallucination, both ways", in
   docs/TOPICS.md, from the founder's words and the DeepSeek case;

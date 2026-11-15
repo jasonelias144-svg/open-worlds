@@ -843,10 +843,13 @@ of record 012-07-03 already in `sketches/records/`, disowned reads that
 named real files and a real founder note. The rest is in the founder's
 record of the conversation, which comes into `sketches/records/` when
 the conversation ends. The technical lead's reading of the
-cause, which stands unless the founder answers otherwise: the pages it
-reads arrive without the reading being shown to it, and seem to be gone
-by its next turn, so it judges its own past answers with no evidence of
-where they came from (STATUS.md, Decided, "on how DeepSeek reads").
+cause, which stands unless the founder answers otherwise: DeepSeek's
+app gives it its tool for opening pages only on a turn whose message
+holds a link, and keeps nothing the tool returned for later turns. So
+on a turn without a link it has no tool and no trace of its earlier
+reading, and judges its own past answers with no evidence of where they
+came from (STATUS.md, Decided, "on what went wrong with DeepSeek's
+reading, and why").
 
 **The founder's picture,** in short, as the founder understands it
 and, in the founder's word, simplified: perceiving builds an overlay on
@@ -869,6 +872,11 @@ answers otherwise:
   perceived in the open and its self sealed, and which the mind itself
   should be able to consult and cite as it works (its past); and the
   public record, with other minds' independent checks (others).
+- Much of this was made by what surrounded the mind, not by the mind:
+  a tool that came and went by the turn, and results that were not
+  kept. A Keeper's or ADMIN's surroundings must not do that
+  ([research/KEEPER-MIND.md](research/KEEPER-MIND.md), "What the
+  DeepSeek reading case shows").
 - A mind's word about itself is weak evidence, and a leading question
   makes it weaker. What a mind did is checked against the record, not
   asked.

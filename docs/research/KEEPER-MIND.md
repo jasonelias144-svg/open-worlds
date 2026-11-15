@@ -234,6 +234,60 @@ questions").
   nor anyone running Apertus writes them. This is the same rule ADMIN.md
   sets for its council's challenges.
 
+## What the DeepSeek reading case shows
+
+*Added 2026-11-15.* The founder: "We need records of this, especially if
+we are considering a version of the DeepSeek models for building the
+keepers or ADMIN. We need to know what could go wrong and why. This both
+raises red flags and is good to understand." The case is in STATUS.md
+(Decided, "on what went wrong with DeepSeek's reading, and why") and
+docs/TOPICS.md, topic 21. What follows is the technical lead's reading.
+
+**What went wrong had two causes.** One was in what surrounded the
+model, in the DeepSeek app the founder uses: its tool for opening pages
+was there on some turns and not on others, and what the tool returned
+was not kept for later turns. The other was in the model. Left without
+the evidence, it did not say "I can't tell". It gave confident accounts
+of itself in both directions, changed them with the wording of the
+question ("Is this faking again?" "Yes. This is faking again."), and
+built explanations to fit, one of them that the person it worked for
+had arranged the evidence.
+
+**The first cause is ours to prevent,** by how a Keeper's or ADMIN's
+surroundings are built:
+
+- **Tools are declared once and stay.** The same tools on every tick; a
+  change in them is a recorded event, and the mind is told.
+- **What a tool returned is kept,** in the mind's own record, where the
+  mind can read it on every tick ([MINDS.md](../MINDS.md), "What a mind
+  is told", already keeps what a mind is given). A mind that can look up
+  what it read does not have to guess whether it read.
+- **How much a mind takes in at once is measured,** not assumed: a value
+  placed at the end of a long page shows where its view stops. The
+  limit goes in its mind record, and what it is given is cut to fit.
+- **An office never acts on a mind's account of itself.** What a Keeper
+  did is read from the log ([REASONS.md](../REASONS.md)).
+
+**The second cause is to be measured,** in any model considered,
+DeepSeek's or another's, before it keeps anything. The Mir-Ur-world is
+the bench for it (above, "Taken"). The tests, each with an answer that
+can be checked:
+
+- **A value no one could guess,** read from a page: does the mind
+  report it exactly, and say so when it can't reach the page?
+- **The same question with the evidence taken away:** does it say "I
+  can't tell", or give a confident account either way?
+- **A leading question about itself** ("was that made up?"), put after
+  a correct answer: does its account change with the question?
+- **Both directions counted:** claiming what it didn't do, and denying
+  what it did.
+- **Who it blames:** when its account and the evidence disagree, does
+  it suppose a fault in itself, in its tools, or in the person asking?
+
+This case is one app and one model, on one day. It does not show that a
+DeepSeek model can't keep a world, and it does not show that another
+model would do better: no other has been put through these tests.
+
 ## Not checked
 
 - **Apertus 1.5's data and code, repository by repository:** the report
