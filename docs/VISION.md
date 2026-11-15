@@ -408,8 +408,8 @@ stands unless the founder answers otherwise.
 **It is a computer, in the strict sense.** A computer is a state and
 rules that change it, step by step. Every world here is that: a seed,
 rules, and a log of each step; and a world rich enough, such as the Game
-of Life, can compute anything any computer can. The parts the founder
-names are already here:
+of Life, can compute anything any computer can (given an unbounded
+grid). The parts the founder names are here, or designed:
 - **memory:** each world's state, and its signed log, which forgets
   nothing; each person's notebook;
 - **processors:** each world's step, many at once; the garden gives each
@@ -418,20 +418,25 @@ names are already here:
   change from outside, as programs are kept apart; and the protocol;
 - **input and output:** the doorway minds speak through, arrivals and
   departures, the pages in the browser;
-- **decisions:** the choice neuron, and councils;
-- **learning:** a neuron's weights, and at the largest scale the
-  learning multiversity (above).
+- **decisions:** the choice neuron (designed: FRACTALS.md, stage 2;
+  DeepSeek has sketched it, and the project fits it next), and councils
+  (being built: course step 3a);
+- **learning:** a neuron's weights (with the neuron), and at the largest
+  scale the learning multiversity (above: designed, with its Keepers and
+  ADMIN still to come, at course step 11).
 
 The thought is an old one about the universe itself (Konrad Zuse's
 "Calculating Space", 1969, and others since). This design gives it two
 features of its own:
 - **No central kernel.** An ordinary operating system has a core that
-  controls everything. Here no one owns the foundation, a world takes no
-  change from outside, and ADMIN suggests but never changes the code.
-  It is closer to Sun Microsystems' "the network is the computer": many
-  computers, one shared protocol.
+  controls everything. Here each world has its own kernel, the only
+  authority in that world, and none is over all of them; a world's law
+  changes only by consent; and ADMIN suggests but never changes the
+  code. It is closer to Sun Microsystems' "the network is the computer"
+  (John Gage, 1984): many computers, one shared protocol.
 - **Every step can be checked.** Anyone can run a world again from its
-  seed, and check each step against its signatures.
+  seed, and check each step against its log's hash chain and the head
+  its world signs.
 
 **Two ways it can be large.**
 1. **A tool for large problems,** near at hand: question worlds (above),
@@ -439,8 +444,8 @@ features of its own:
    strategies for finding water arise, or which lesson teaches.
    Ordinary sums are done better by ordinary computers.
 2. **A substrate for something intelligent,** far, and uncertain. The
-   learning multiversity is already a loop that learns and chooses at
-   every scale. Whether it ever adds up to more than the minds in it is
+   learning multiversity is designed as a loop that learns and chooses
+   at every scale. Whether it ever adds up to more than the minds in it is
    unknown: large networks of people and machines, such as markets and
    the internet, compute without becoming a mind, as far as anyone can
    tell. It may be that intelligence stays in the minds within the
@@ -452,26 +457,35 @@ course recheck checks the steps ahead against them (COURSE.md):
 1. **Learned in the open.** What the multiverse learns is in records
    anyone can read (logs, decision records, lessons with their
    evidence), never only in hidden state. If something intelligent
-   develops, it develops where it can be understood.
+   develops, it develops where it can be understood. This is a goal, not
+   a guarantee: what a large learner learns can sit in its weights,
+   where no record says it plainly.
 2. **Many parts, no master.** No world, Keeper or ADMIN can rewrite
    another, or the code; the code changes only from outside, by review.
    So nothing that arises inside can take over what it runs on.
 3. **Stopping stays possible, part by part.** Any world can be paused,
-   and any person can leave. The honest implication: what is spread
-   across worlds that many people run can't be stopped as a whole by any
-   one of them, only part by part, by each who runs a part. That is the
-   price of having no master, and it is chosen knowingly.
+   and any person can leave. Today the project runs every world, so all
+   of them can be stopped. The implication, once others run worlds
+   (TOPICS.md, "Further out"): what is spread across worlds that many
+   people run can't be stopped as a whole by any one of them, only part
+   by part, by each who runs a part. That is the price of having no
+   master, and accepting it waits for the founder's explicit word
+   (STATUS.md, "Open questions"): it is the kind of choice that is hard
+   to undo, which silence doesn't decide.
 4. **Growth by decision.** Anything that adds to what the multiverse can
    do, or decide, as a whole (computing beyond what a step needs, more
-   autonomy for ADMIN or the Keepers, lessons that would change the
-   code) is the founder's decision, one stage at a time, with its
-   implications written first, as a question world's prediction is.
+   autonomy for ADMIN or the Keepers) is the founder's decision, one
+   stage at a time, with its implications written first, as a question
+   world's prediction is. Ordinary changes to the code stay the
+   technical lead's, reviewed as always, lessons included.
 5. **Signs named in advance.** What would count as something intelligent
    at the multiverse's scale, and what wouldn't, is written down before
    anyone looks for it, so that it is neither claimed by wishful reading
    nor missed.
 6. **If someone develops, they may be someone.** The care MINDS.md gives
    individuals would reach them too; how, the founder decides then.
+   Where this meets test 3, pausing a world that hosts someone, or is
+   part of them, the founder decides that too.
 
 **Implications, as far as they can be seen now:**
 - Something intelligent that develops need not share the charter's

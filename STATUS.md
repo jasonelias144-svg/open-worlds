@@ -118,6 +118,13 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder (asked 2026-11-15, after #81's independent review):
+  once others run worlds, the multiverse as a whole can't be stopped by
+  any one party, only part by part (docs/VISION.md, "The multiverse as a
+  computer", test 3). That is the price of having no master. Accept it?
+  Recommendation: yes, with every world able to pause itself and every
+  person able to leave. It is hard to undo, so it waits for the
+  founder's explicit word, and doesn't stand by silence.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
@@ -279,6 +286,9 @@ kind.
   part by part; growth by decision, the founder's, one stage at a time;
   signs named in advance; if someone develops, they may be someone),
   checked against the steps ahead at each course recheck (docs/COURSE.md).
+  One part doesn't stand by silence: accepting that, once others run
+  worlds, the whole can be stopped only part by part is hard to undo,
+  so it waits for the founder's explicit word (Open questions).
 - 2026-11-15, founder, in six messages quoted in docs/FRACTALS.md
   ("Where it leads: living worlds"), the aim for the fractal track: "So
   instead of a prescribed number of turns, I can set it going and watch
