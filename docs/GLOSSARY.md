@@ -13,10 +13,11 @@ own: where a word comes from a design page, the page is named.
 ## Agent
 
 **Anything that perceives its surroundings and acts on them.** This is
-the definition the field uses: "An agent is anything that can be viewed
-as perceiving its environment through sensors and acting upon that
-environment through actuators" (Russell and Norvig, *Artificial
-Intelligence: A Modern Approach*, chapter 2).
+the definition the field uses. Russell and Norvig's textbook, *Artificial
+Intelligence: A Modern Approach* (chapter 2, "Intelligent Agents"),
+defines an agent as anything that can be viewed as perceiving its
+environment through sensors and acting on it through actuators (the
+first edition, of 1995, says "effectors").
 
 So, from the smallest to the largest, each of these is an agent: a
 neuron that chooses where a plant grows; a scripted walker in the
