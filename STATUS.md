@@ -166,9 +166,10 @@ kind.
   and inform decisions downward." Quoted whole in docs/VISION.md, "A
   learning multiversity", with the technical lead's reading, which stands
   unless the founder answers otherwise. Most of the loop is designed
-  already (the Keepers' learner models, suggestions, the round table,
-  ADMIN's own world and its training of the Keepers). Three rules already
-  written keep it safe: craft, never files; coaching, not command; and
+  already (the Keepers' reflections and shared craft, suggestions, the
+  round table, ADMIN's own world and its training of the Keepers); what
+  a Keeper knows of each individual stays in its world. Three written
+  rules keep it safe: craft, never files; coaching, not command; and
   worlds stay different. The technical lead adds that a lesson earns its
   spread: it travels with its evidence, is tried in ADMIN's own world
   first, and each world adopts it or doesn't, on record.
