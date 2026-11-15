@@ -53,8 +53,9 @@ The plan is in [../docs/FRACTALS.md](../docs/FRACTALS.md).
   - **Each hosted world:** where the garden's log puts its glasshouse,
     and how many steps of its time the garden gave it; its birth record
     (its name, its template and law by hash, and the dials it set: each
-    within the template's range, and, where its log is given, exactly
-    those its log was made with); its signed head, which must end where
+    within the template's range, and, where its log is given, holds and
+    begins with the entry the garden's log names, exactly those its log
+    was made with); its signed head, which must end where
     the garden's log last tended it; and its log's chain. A card whose
     records hold opens onto the world's live view, Plant Watch.
   - **Not here:** whether the garden tended each world one step a tick,
