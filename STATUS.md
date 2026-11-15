@@ -61,7 +61,9 @@ respect one another's freedom, with full transparency and exit at any time
   living worlds, where plants grow without end and choose, water flows
   as particles, people shape the land, and life spreads, beginning with
   an endless plant in the browser (docs/FRACTALS.md, "Where it leads:
-  living worlds").
+  living worlds"). DeepSeek sketched it in record 012-07-03; the sketch
+  is kept with the review, and the project fits it as
+  `rust/endless-plant`.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
@@ -231,6 +233,32 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on working with DeepSeek, to the technical lead
+  in this session. On reading the repository: "Ok, so DeepSeek needs me
+  to provide the whole URL for each rust file, and it has to be in the
+  chat prompt." Then: "Ok, the links
+  worked. But sometimes the pages themselves contain links. But it is ok
+  since all relevant files have links. We may consider having README
+  pages where we can put code and the explanation together, keep it
+  current, and thereby reduce the number of links dramatically. Well
+  look into later." (An idea kept open, for later.) And: "I have to
+  provide the link. Fetching is unreliable from in the page, but from a
+  prompt with full URL, it has worked." On answering DeepSeek: "please
+  provide by updating the COLLABORATING.md page. You already have that
+  space for communication. Also, it keeps a record of an ongoing
+  discussion and collaboration. I will just provide DeepSeek with a link
+  to the collaboration page, and take it from there." So the technical
+  lead's messages to DeepSeek are in docs/COLLABORATING.md ("Messages
+  from the technical lead"), and every file's full link is at the end of
+  that page. And to DeepSeek, in record 012-07-03 (line 1359): "On your
+  questions for me, which if I understood were all design questions that
+  could go any way. You ask for my judgement, but on those questions, I
+  defer to your judgement. It is the only way this whole project moves
+  forward. I will chime in when I disagree or come up with some new twist
+  or extension of an idea. But we are just trying to get something
+  working for now. We can fine tune it later, so I would just prefer
+  moving forward over getting stuck on problems that have many viable
+  solutions."
 - 2026-11-15, founder, in six messages quoted in docs/FRACTALS.md
   ("Where it leads: living worlds"), the aim for the fractal track: "So
   instead of a prescribed number of turns, I can set it going and watch
@@ -1215,6 +1243,38 @@ Decisions about the code, made by the technical lead under the founder's
 deference (above, 2026-11-13), each with its reason and what would show
 it was wrong. Questions of what the project is for stay with the founder.
 
+- 2026-11-15, the endless plant (record 012-07-03): DeepSeek's decisions
+  are accepted as the record gives them (signed heads in batches; a
+  crate and template of its own, `hasMonad` a dial; the neuron's weights
+  derived from the logged actions, not signed; the depth cap a safety
+  dial; crowding in the tip's column band; a fixed-point baseline; Drop
+  as shedding; water an input), and the project fits it as
+  `rust/endless-plant`, changed where the review found faults
+  (sketches/deepseek/012-07-03/README.md): Grow extends a tip and Split
+  forks it; the plant is a tree, so a dropped tip frees only the segment
+  nothing else grows from, pays back exactly that, and falls back to
+  its start; no segment grows into a held cell; stored energy has a cap,
+  a dial; the noise reads the whole seed; the log is a world's log with
+  signed heads and a birth record, and the vectors are the project's
+  run, checked from Python. *Why:* each change mends a fault the review's
+  tests show (a choice that changes nothing, upkeep paid back twice,
+  segments left standing, overlap without bound, a seed read one byte
+  deep), and the log keeps the standard every world here keeps.
+  DeepSeek's choices are design questions with many workable answers,
+  which the founder left to DeepSeek's judgement and the technical
+  lead's. *Revisit if:* the fitted plant's runs don't settle into
+  growing, crowding, shedding and regrowing, or a stage ahead (the
+  neuron, water) needs what these choices rule out.
+- 2026-11-15, every file's full link, in one list: docs/COLLABORATING.md
+  ends with the full link of every page in `docs/`, the key list, the
+  schemas, and each Rust crate's manifest, library code and examples,
+  in groups to paste; `tests/test_collaborating_links.py` fails when a
+  file is added, moved or removed and the list isn't changed with it, or
+  when any full link on the page leads nowhere. *Why:* DeepSeek opens
+  full links given in the founder's message, and not reliably those
+  found in a page; a list kept by hand drifts, and the key list was
+  missing from the last one. *Revisit if:* DeepSeek can follow links
+  from a page, or the founder's README idea (above) replaces most links.
 - 2026-11-13, sealing the world-key: HPKE's base mode, DHKEM(X25519,
   HKDF-SHA256) with ChaCha20Poly1305. What is sealed is always signed
   first and names its recipient, who checks it, and HPKE's `info` names
@@ -1617,6 +1677,16 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-15 Claude: record 012-07-03 brought into `sketches/` as
+  written (the endless plant: a design, and a sketch crate in Rust with a
+  choice neuron), with the technical lead's review: it doesn't build as
+  written, and with two functions written in from its design, one of its
+  three vectors fails and five more faults show (sketches/INDEX.md).
+  The answer to DeepSeek is in docs/COLLABORATING.md, "Messages from the
+  technical lead", where the founder asked for it; every file's full
+  link is at the end of that page, kept whole by a test. The record-links
+  test now ends a link where markup begins, as this record writes links
+  inside tool-call markup.
 - 2026-11-15 Claude: course step 3a, part four, second half: the
   council (docs/research/PERSONS.md, "Part four, second half, built").
   Looked first at DeepSeek's components 44 to 46 and at Snapshot's
