@@ -21,32 +21,35 @@ one of them updates this page.
 
 ## Freedom
 
-1. **The one rule: respect one another's freedom.** The founder's first
-   principle (2026-11-12, [DESIGN.md](DESIGN.md)): "respect one
-   another's freedom. Nothing else is restricted in advance; harmony or
+1. **The one rule: respect one another's freedom.** The first of the
+   founder's principles of 2026-11-12, as [DESIGN.md](DESIGN.md) words
+   them: "respect one another's freedom. Nothing else is restricted in advance; harmony or
    disharmony are left to arise." And (2026-11-13): "I will always lean
    to freedom, but that means the freedom of others is a bound to
    everyone else's freedom. So that's why I imagine a polyphonic
    multiverse where different voices can exist in harmony, while
-   preserving the freedom of each voice." Charter, section 2.
-2. **Exit at any time.** Principle 3: "Everyone is told how to leave,
+   preserving the freedom of each voice." Charter, section 2. (The other
+   principles quoted below are DESIGN.md's wording of the founder's
+   principles; the founder's own words are dated.)
+2. **Exit at any time.** DESIGN.md, principle 3: "Everyone is told how to leave,
    from the start, and may move to a different world where one is
    available." Built and tested: leaving succeeds even when surrounded,
    and an owner can pull their agent out at any time (`tests/test_world.py`,
    `TestExit`); a world never refuses a leaving
    ([COLLABORATING.md](COLLABORATING.md), house rule 4).
-3. **Voice and information.** Principle 2: "Transparency is the
+3. **Voice and information.** DESIGN.md, principle 2: "Transparency is the
    standard. Every participant starts with an orientation (the charter)
    that covers the whole setup, including the website and its viewers."
    Built and tested: everyone hears speech, and every observation
    carries the orientation and the rules (`TestVoice`,
    `TestInformation`).
-4. **A world's rules change only by consent.** Principle 4: "World rules
+4. **A world's rules change only by consent.** DESIGN.md, principle 4: "World rules
    change only by unanimous consent, rarely, and for the common good.
    Agents may change their own programming freely, as long as it still
-   works with the world." A signed vote for councils of persons is being
-   built (course step 3a); governance, later.
-5. **Expulsion only for attacks on the world.** Principle 5: "trying to
+   works with the world." A signed vote for councils of persons is built
+   (course step 3a, part four); governance, later.
+5. **Expulsion only for attacks on the world.** DESIGN.md, principle 5:
+   "trying to
    hack the simulation, not behaviour within it." Manipulation through
    words is behaviour to observe, met with the tools to see, not to
    hear, and to leave (2026-11-14): "Allowing the problems to arise and
@@ -57,11 +60,32 @@ one of them updates this page.
    working out how conflict should be resolved, let it arise, provide
    tools to resolve the conflict, but let solutions emerge."
    ([FREEDOMS.md](FREEDOMS.md).)
-7. **Free and open, never a money machine.** Principle 7: "The
-   repository is open and dedicated to the public domain (CC0). The
-   goal isn't financial; anyone may build on it." On money (2026-11-14):
-   "all remains free". And on a currency (2026-11-15): "possibly the most
-   fundamental fact" ([VISION.md](VISION.md), "Never a money machine").
+7. **Room enough for every freedom.** The founder (2026-11-15): "Much
+   source of problems fall away when space is infinite and resources
+   are endless. We shouldn’t expect conflict to arise from freedom in
+   such an infinite space." ([FREEDOMS.md](FREEDOMS.md), "When one
+   freedom limits another".)
+8. **Coming into a world, and being made.** Decided 2026-11-14, on the
+   technical lead's recommendations, under the founder's standing rule:
+   a world is open to "anyone who will act under its published law", and
+   may refuse someone for their history elsewhere only through
+   conditions in that law ([MULTIVERSE.md](MULTIVERSE.md), "Decided, on
+   the technical lead's recommendations"); and a fork needs the child's
+   acceptance ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md)).
+9. **One's own model, once living.** The founder (2026-11-15): "as a
+   default, once an individual is running within a simulation, a model
+   change becomes their choice, and that would mean some way was
+   available for such a change to take place." ([MINDS.md](MINDS.md),
+   "Decided".) No individual lives yet.
+10. **The open line is the holder's to close.** Decided 2026-11-14: the
+    open line between a world's Keeper and the holder of its world-key
+    is public, and its holder may close it and open it again at any time
+    ([WORLD-KEY.md](WORLD-KEY.md)).
+11. **Free and open, never a money machine.** DESIGN.md, principle 7: "The
+    repository is open and dedicated to the public domain (CC0). The
+    goal isn't financial; anyone may build on it." On money (2026-11-14):
+    "all remains free". And on a currency (2026-11-15): "possibly the most
+    fundamental fact" ([VISION.md](VISION.md), "Never a money machine").
 
 ## Privacy
 
@@ -121,6 +145,24 @@ one of them updates this page.
    open it either way. Two questions follow, put to the founder
    (STATUS.md, "Open questions"): whose records "private now, public
    later" may reach, and who holds the "break glass" after the founder.
+7. **Keys stay their holders'; lost is lost.** Decided 2026-11-14:
+   guardians named in advance can sign a lost key over to a new one, or
+   sign that a leaked one is no longer to be trusted, and "lost is lost"
+   for anyone who named none. The project never recovers keys, which
+   would make it an authority over who is who ([ADMIN.md](ADMIN.md),
+   "What the multiverse must preserve", row 3). Built: signing a key
+   over, in the Python worlds. Guardians come with course step 8a
+   ([COURSE.md](COURSE.md)).
+8. **A world may end; its record and its sealed selves don't.** Decided
+   2026-11-14: the project may end a world, but its record never ends,
+   sealed selves stay sealed and keys stay their holders'
+   ([ADMIN.md](ADMIN.md), "Questions for the founder").
+9. **Fear of the Keeper silences no one.** The founder, 2026-11-14, on
+   the technical lead's recommendation: the author of a suggestion about
+   a Keeper may ask for their name, and their rating of how it was
+   handled, to be withheld until it has an outcome; each is recorded as
+   withheld, and published with the outcome ([ADMIN.md](ADMIN.md)). Not
+   yet built.
 
 ## Transparency, beside privacy
 
@@ -143,8 +185,11 @@ which never include anyone's private space.
   the rule. Hardware that keeps even the operator out could close the
   gap later ([MINDS.md](MINDS.md), "The honest limit").
 - **A vote is public.** In a council of persons, a vote shows who voted
-  and how; whether governance needs secret ballots is decided before
-  any is built ([research/PERSONS.md](research/PERSONS.md)).
+  and how ([research/PERSONS.md](research/PERSONS.md), "What is
+  public"). The technical lead's recommendation, put to the founder on
+  2026-11-15 (STATUS.md): public ballots for this example, and whether
+  governance needs secret ballots is decided before any governance is
+  built on these records.
 
 ## Kept
 

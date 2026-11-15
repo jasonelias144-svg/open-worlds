@@ -1795,6 +1795,15 @@ it was wrong. Questions of what the project is for stay with the founder.
   two questions put to the founder: whose records "private now, public
   later" may reach, and who holds the "break glass" after the founder.
 
+- 2026-11-15 Claude: after #82's independent review, FUNDAMENTALS.md
+  gathers the decisions it had left out: four on freedom (room enough,
+  coming into a world and forks, one's own model once living, the open
+  line) and three on privacy (keys and "lost is lost", a world's record
+  when it ends, a suggestion's author withheld), so eleven and nine; the
+  principles are quoted as DESIGN.md words them; the charter's "break
+  glass" says no condition that wasn't decided ("in a real emergency"
+  is gone) and covers private messages, as decided on 2026-11-14.
+
 - 2026-11-15 Claude: freedom and privacy, the fundamentals, in one place
   (docs/FUNDAMENTALS.md), at the founder's word: seven decisions on
   freedom and six on privacy, each with the founder's words, where it is

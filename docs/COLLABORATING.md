@@ -163,7 +163,9 @@ has changed since that record, in the order to read it:
    And [FUNDAMENTALS.md](FUNDAMENTALS.md) gathers every decision on
    freedom and privacy in one place, the founder's "absolutely
    fundamental" (2026-11-15): among them, everyone has a private space,
-   encrypted, that no one else can read, not even ADMIN.
+   encrypted, that no one else can read, not even ADMIN. The one way in
+   is the founder's "break glass", and every opening is recorded in
+   public.
 4. **The founder's visions of 2026-11-14,** in the founder's words
    ([VISION.md](VISION.md), [PARALLEL-WORLDS.md](PARALLEL-WORLDS.md)):
    question worlds, where an idea becomes a world that tests it; an app
