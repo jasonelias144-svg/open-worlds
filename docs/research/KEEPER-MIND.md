@@ -16,6 +16,9 @@ Keeper." The founder's messages are quoted whole in STATUS.md (Decided,
 Sources:
 - Model facts are as Hugging Face showed them that day, on each model's
   page.
+- Apertus 1.5's technical report, arXiv
+  [2610.15542](https://arxiv.org/abs/2610.15542), published in October
+  2026.
 - Apertus's policy is quoted from its PDF, version 1.5 of July 14, 2026.
 - Sizes in memory are the technical lead's arithmetic from parameter
   counts. Nothing was run.
@@ -56,23 +59,29 @@ course step 8, so the Keepers' sizes are weighed against theirs then.
 - **What it reads:** "The model takes images, audio, and text as input
   and generates text."
 - **Reasoning and tools:** it has a thinking mode and was "trained for
-  better tool integration". But "tool calling is unsupported in thinking
-  mode, so we don't recommend combining the two." A Keeper needs both,
-  so the comparison has to find out how it manages with one at a time.
-- **What isn't out yet:** "The technical report with further details
-  along with benchmark results, training pipelines, and intermediate
-  checkpoints will be published in the coming weeks." The page doesn't
-  link 1.5's training data or training code. It is a continued
-  pretraining of Apertus 1.0.
+  better tool integration". But its report says: "Tool calling and
+  thinking do not combine in the released models." And: "More generally,
+  the post-training of this release is not designed for agentic use".
+  A Keeper acts through tools and needs to reason, so this is the first
+  thing the comparison has to test.
+- **What is published:** the report lists, under "Full release":
+  "Weights, intermediate checkpoints, data preparation pipelines,
+  training code, and evaluation harnesses, released under the Apache 2.0
+  license." And: "All training data is fully available: every dataset is
+  public". The datasets are listed in `swiss-ai/apertus-data-transparency`.
+  (The model page still says the report "will be published in the coming
+  weeks"; that sentence is out of date.) It is a continued pretraining
+  of Apertus 1.0.
 - **To download it,** one clicks "Agree", which says: "I confirm I have
   read and agree to the Apache 2․0 license and the Acceptable Use Policy
   (AUP)". It also says: "you accept to share your contact information
   (email and username) with the repository authors." The policy is
   below.
-- **To run it,** the page's own example serves the 70B model across four
-  GPUs (`--tensor-parallel-size 4`) with a modified vLLM, until support
-  reaches the released versions. In bfloat16 its weights alone take
-  about 144 GB.
+- **To run it,** the page's own example splits the 70B model across four
+  GPUs (`--tensor-parallel-size 4`), with a modified version of vLLM, a
+  program that serves models, until support reaches the released
+  versions. Stored at two bytes a number (bfloat16), its weights alone
+  take about 144 GB.
 
 ## DeepSeek V4
 
@@ -83,8 +92,10 @@ course step 8, so the Keepers' sizes are weighed against theirs then.
   - `deepseek-ai/DeepSeek-V4.1-Flash`: about 763 billion parameters by
     Hugging Face's count. Its page: "a multimodal Mixture-of-Experts
     (MoE) model with 552B backbone parameters and support for contexts
-    of up to one million tokens." It reads images: "The model natively
-    processes images and text, and generates text autoregressively."
+    of up to one million tokens." (A mixture of experts uses only some
+    of its parts for each word it reads or writes.) It reads images:
+    "The model natively processes images and text, and generates text
+    autoregressively."
   - `deepseek-ai/DeepSeek-V4.1-Flash-1017`, the newest, updated on
     2026-11-10: "a minor update to DeepSeek-V4.1-Flash".
 - **What its licence says:** "This repository and the model weights are
@@ -97,9 +108,9 @@ course step 8, so the Keepers' sizes are weighed against theirs then.
   "trained from scratch on a multimodal corpus comprising 45T tokens".
 - **To run it:** stored in 8-bit, V4.1-Flash's weights take about 763 GB.
   A machine of eight GPUs with 141 GB each (1,128 GB) would hold them.
-  V4-Pro needs about twice that. Each activates only a small part of
-  itself per token: "8B parameters per token during prefill and 16B
-  during decode", for Flash.
+  V4-Pro needs about twice that. Each uses only a small part of itself
+  per token: for Flash, "8B parameters per token during prefill and 16B
+  during decode", that is, while reading the input and while writing.
 
 ## Free, in four senses
 
@@ -111,12 +122,12 @@ test, here is how the two bases measure up:
 |---|---|---|
 | Free of cost | yes: the weights cost nothing; the machines do | the same |
 | Free as in freedom | Apache 2.0, but its policy adds a promise of indemnity, and a duty to pass the policy on to everyone who receives a copy (below) | MIT, with nothing added |
-| Free to study | claimed: "fully open", with all data and recipes. Not yet shown for 1.5 | no: the data and training code aren't published, so it is open-weight, not open source AI by OSI's definition |
+| Free to study | yes, by its report: data, training code and recipes are published (not checked repository by repository) | no: the data and training code aren't published, so it is open-weight, not open source AI by OSI's definition |
 | Free of dependence | yes, once downloaded; downloading means agreeing and giving an email | yes |
 
-Neither meets all four today. DeepSeek V4 fails "free to study" for
-good, as DeepSeek-R1 did in ADMIN-MIND.md. Apertus 1.5 may meet it once
-its data and code are out. Its policy is the open question.
+DeepSeek V4 fails "free to study", as DeepSeek-R1 did in ADMIN-MIND.md.
+Apertus 1.5 meets it, by its report. What stands between Apertus and all
+four is its policy, which adds conditions to "free as in freedom".
 
 ## The policy Apertus asks for
 
@@ -131,11 +142,14 @@ The policy, version 1.5 of July 14, 2026, adds to Apache 2.0:
   assent", and the recipient must pass the same obligations on, in turn
   ("back-to-back").
 - **Personal data:** "You process Personal Data as independent
-  controller in accordance with applicable data protection law." It
-  says the developers "will regularly provide a file with hash values"
-  to filter outputs. But the model's page says "Currently no output
-  filter is provided", and advises: "We strongly advise downloading and
-  updating new model weights from this site every six months."
+  controller in accordance with applicable data protection law." The
+  policy says the Swiss National AI Institute (SNAI), the partnership of
+  ETH Zurich and EPFL behind it, "will regularly provide a file with hash
+  values" to filter outputs, and advises applying that filter every six
+  months. The model's page differs: "Currently no output filter is
+  provided", and its six-month advice is about the weights themselves:
+  "We strongly advise downloading and updating new model weights from
+  this site every six months."
 
 **What it would mean here:**
 - Whoever clicks "Agree" for the project takes on these promises. In
@@ -155,13 +169,18 @@ The technical lead isn't a lawyer, and this is not legal advice.
    added policy, and its data and code are published. But it is a
    family already chosen for ALICE and BOB, so the Keeper would share
    their habits.
-3. Wait until Apertus 1.5's data and code are out, then decide.
+3. Wait, and decide before course step 8.
+
+As first put, option 3 was to wait for Apertus 1.5's data and code.
+They were already out: the technical lead missed the report, and the
+independent review found it. So the only open matter is the policy
+itself, which the report doesn't change.
 
 **Decided for now: 3, wait,** on the technical lead's recommendation.
 The founder: "Either way sounds good. Just go with what makes the most
-sense to you." Nothing needs Apertus before course step 8, when the
-untrained Keepers first run in trial copies of the worlds. By then the
-technical report may be out, and with it the data and code, or not.
+sense to you." The reason that still holds: nothing needs Apertus before
+course step 8, when the untrained Keepers first run in trial copies of
+the worlds, so there is no cause to take on a legal promise sooner.
 Until then nothing is downloaded and no one clicks "Agree".
 
 The question comes back before step 8. Accepting the policy is a legal
@@ -216,8 +235,8 @@ questions").
 
 ## Not checked
 
-- **Apertus 1.5's training data and code:** its page doesn't link them.
-  Whether Apertus 1.0's are published wasn't checked.
+- **Apertus 1.5's data and code, repository by repository:** the report
+  lists them; they weren't opened one by one.
 - **The models' files:** Apertus's are gated, and weren't opened.
   DeepSeek's sizes are Hugging Face's count.
 - **Memory:** the sizes above are arithmetic from parameter counts, not

@@ -115,7 +115,12 @@ kind.
   The options:
   1. accept it and keep Apertus for the Ur-world's Keeper;
   2. use OLMo for the fully open Keeper instead;
-  3. wait until Apertus 1.5's data and code are out.
+  3. wait, and decide before course step 8.
+
+  As first put, option 3 was to wait for Apertus 1.5's data and code.
+  They were already out, by its technical report of October 2026
+  (arXiv 2610.15542), which the technical lead missed and #70's
+  independent review found. So only the policy is open.
 
   Decided for now: 3, wait, on the recommendation (the founder,
   2026-11-15: "Either way sounds good. Just go with what makes the most

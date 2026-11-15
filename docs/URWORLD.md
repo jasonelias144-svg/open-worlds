@@ -400,8 +400,10 @@ The founder, 2026-11-15: "We can run simulations with both and see how
 each takes up the keeper task." And: "This setup is to determine which
 model is better as a keeper, and we could use the Mir-Ur-world to test
 different models for ALICE and BOB, or switch their models, but leave
-all else the same." Then: "We could use this time to test different
-models before the actual ALICE and BOB go live in Ur-world."
+all else the same." The next message corrected "switch" to "choose":
+"We are not switching models, but choosing them. We could use this time
+to test different models before the actual ALICE and BOB go live in
+Ur-world."
 
 So the Mir-Ur-world is the project's test bench. What follows is the
 technical lead's reading, put to the founder the same day. It stands
