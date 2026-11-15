@@ -496,6 +496,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
       try { json = JSON.parse(r.result); } catch (e) { showNothing(f.name + " isn't JSON: " + e.message); return; }
       load(json, f.name);
     };
+    r.onerror = () => { if (mine === chosen) showNothing("Couldn't read " + f.name + "."); };
     r.readAsText(f);
   });
   const embedded = document.getElementById("embedded").textContent.trim();
