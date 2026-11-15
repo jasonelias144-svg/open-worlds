@@ -382,6 +382,31 @@ seed.
 ## Waiting
 
 Added one at a time, as steps are done:
+- a world's lifecycle (the founder, 2026-11-15): pause, resume,
+  checkpoint, stop, restart, reset and branch, each an entry in the
+  world's log, with which world has which by its type
+  ([WORLD-TYPES.md](WORLD-TYPES.md)); to be placed at the recheck after
+  step 3a, with pause, resume and checkpoint first, which the endless
+  plant needs to run for hours;
+- a world leaving the multiverse (the founder, 2026-11-15: "We should
+  crate this mechanism from the start"): a departure record, signed by
+  the world, with schema and vectors, placed with the lifecycle at the
+  recheck after step 3a ([WORLD-TYPES.md](WORLD-TYPES.md), "Leaving the
+  multiverse");
+- keys kept where they can be destroyed, so a person who leaves is
+  purged "completely and demonstrably" (the founder, 2026-11-15;
+  [FUNDAMENTALS.md](FUNDAMENTALS.md), "Purged, demonstrably"): settled
+  with step 8a, before ALICE's and BOB's birth;
+- a check, wherever something is written to a public record, that
+  redacts anything personal or private before it is published, close
+  calls included (the founder, 2026-11-15: "we should always err on the
+  side of redacting if it is a close call"); and log entries whose
+  fields are kept apart from the chain that commits to them, by a
+  salted fingerprint, so a field found private later can be redacted
+  while the log still checks, with a redaction mark and the information
+  sealed to the person it is about ([FUNDAMENTALS.md](FUNDAMENTALS.md),
+  "Public records, kept whole"): placed with the lifecycle, before
+  anyone lives in a world;
 - offices as records (the founder, 2026-11-15: "I think the work on
   offices is foundational"): an office record (charter, key, holder,
   handovers, what watches it) and a handover record (the holder's

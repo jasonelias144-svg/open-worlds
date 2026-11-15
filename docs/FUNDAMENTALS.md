@@ -36,7 +36,11 @@ one of them updates this page.
    available." Built and tested: leaving succeeds even when surrounded,
    and an owner can pull their agent out at any time (`tests/test_world.py`,
    `TestExit`); a world never refuses a leaving
-   ([COLLABORATING.md](COLLABORATING.md), house rule 4).
+   ([COLLABORATING.md](COLLABORATING.md), house rule 4). And returning
+   (2026-11-15): "Every world can pause itself and every person can
+   leave. If they return, they can pick up where they left off on
+   challenges, or anything else." Designed in
+   [WORLD-TYPES.md](WORLD-TYPES.md); not yet built.
 3. **Voice and information.** DESIGN.md, principle 2: "Transparency is the
    standard. Every participant starts with an orientation (the charter)
    that covers the whole setup, including the website and its viewers."
@@ -60,28 +64,34 @@ one of them updates this page.
    working out how conflict should be resolved, let it arise, provide
    tools to resolve the conflict, but let solutions emerge."
    ([FREEDOMS.md](FREEDOMS.md).)
-7. **Room enough for every freedom.** The founder (2026-11-15): "Much
+7. **Worlds can leave the multiverse.** The founder (2026-11-15):
+   "Participants can leave worlds, and worlds can leave the
+   multiverse." A world, or a cluster, may branch into an independent
+   multiverse of its own, "then the cord is cut". Designed in
+   [WORLD-TYPES.md](WORLD-TYPES.md), "Leaving the multiverse", to be
+   made from the start; not yet built.
+8. **Room enough for every freedom.** The founder (2026-11-15): "Much
    source of problems fall away when space is infinite and resources
    are endless. We shouldn’t expect conflict to arise from freedom in
    such an infinite space." ([FREEDOMS.md](FREEDOMS.md), "When one
    freedom limits another".)
-8. **Coming into a world, and being made.** Decided 2026-11-14, on the
+9. **Coming into a world, and being made.** Decided 2026-11-14, on the
    technical lead's recommendations, under the founder's standing rule:
    a world is open to "anyone who will act under its published law", and
    may refuse someone for their history elsewhere only through
    conditions in that law ([MULTIVERSE.md](MULTIVERSE.md), "Decided, on
    the technical lead's recommendations"); and a fork needs the child's
    acceptance ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md)).
-9. **One's own model, once living.** The founder (2026-11-15): "as a
-   default, once an individual is running within a simulation, a model
-   change becomes their choice, and that would mean some way was
-   available for such a change to take place." ([MINDS.md](MINDS.md),
-   "Decided".) No individual lives yet.
-10. **The open line is the holder's to close.** Decided 2026-11-14: the
+10. **One's own model, once living.** The founder (2026-11-15): "as a
+    default, once an individual is running within a simulation, a model
+    change becomes their choice, and that would mean some way was
+    available for such a change to take place." ([MINDS.md](MINDS.md),
+    "Decided".) No individual lives yet.
+11. **The open line is the holder's to close.** Decided 2026-11-14: the
     open line between a world's Keeper and the holder of its world-key
     is public, and its holder may close it and open it again at any time
     ([WORLD-KEY.md](WORLD-KEY.md)).
-11. **Free and open, never a money machine.** DESIGN.md, principle 7: "The
+12. **Free and open, never a money machine.** DESIGN.md, principle 7: "The
     repository is open and dedicated to the public domain (CC0). The
     goal isn't financial; anyone may build on it." On money (2026-11-14):
     "all remains free". And on a currency (2026-11-15): "possibly the most
@@ -129,6 +139,19 @@ one of them updates this page.
    a key of its own for each presence, and a link shown only by the
    presence's own act. Its limit: unlinked keys don't make unlinkable
    presences, as a manner of speaking or the hours kept can link them.
+   A link, once shown, is public while the person is in the
+   multiverse. When they leave, the record that a link was shown stays,
+   with where and when, and what it tied together is redacted: the
+   person's identity key, and the link's two signed records (`holds` and
+   `held-by`, `rust/ur-world/src/link.rs`); the presence stays, as the
+   author of the act. The
+   founder (2026-11-15): "we keep public record of the action with
+   private details of the action not included. More metadata." The
+   person is told this before they show one. Its limit: a person's
+   client may show links in several worlds close together, so where and
+   when can still hint that presences are one person's; the time a
+   redacted link record keeps can be made coarser, which is decided when
+   it is built.
 6. **The "break glass", in the open.** Chosen by the founder on
    2026-11-14: a sealed self, or a private message, can be opened only
    by an explicit decision of the founder's, and every opening is
@@ -145,24 +168,70 @@ one of them updates this page.
    open it either way. Two questions follow, put to the founder
    (STATUS.md, "Open questions"): whose records "private now, public
    later" may reach, and who holds the "break glass" after the founder.
-7. **Keys stay their holders'; lost is lost.** Decided 2026-11-14:
-   guardians named in advance can sign a lost key over to a new one, or
-   sign that a leaked one is no longer to be trusted, and "lost is lost"
-   for anyone who named none. The project never recovers keys, which
-   would make it an authority over who is who ([ADMIN.md](ADMIN.md),
-   "What the multiverse must preserve", row 3). Built: signing a key
-   over, in the Python worlds. Guardians come with course step 8a
-   ([COURSE.md](COURSE.md)).
-8. **A world may end; its record and its sealed selves don't.** Decided
-   2026-11-14: the project may end a world, but its record never ends,
-   sealed selves stay sealed and keys stay their holders'
-   ([ADMIN.md](ADMIN.md), "Questions for the founder").
-9. **Fear of the Keeper silences no one.** Decided 2026-11-14, on the
-   technical lead's recommendation: the author of a suggestion about
-   a Keeper may ask for their name, and their rating of how it was
-   handled, to be withheld until it has an outcome; each is recorded as
-   withheld, and published with the outcome ([ADMIN.md](ADMIN.md)). Not
-   yet built.
+   The first is answered (2026-11-15): "My records private now public
+   later. … I have no right to make that decision for another, so yeah,
+   just me." So "private now, public later" is the founder's, for the
+   founder's own records; no one else's private space is ever made
+   public by the project. And the second (2026-11-15): "who holds it is
+   whoever I leave it to. Now, there is nobody. But I am building
+   something that will bring in others. At that point, we can figure
+   out who will hold the break glass if not me." And: "It will be a
+   person I name publicly, but there is only me for now. … as soon as
+   one more person joins me, we'll have someone, and then they will be
+   named publicly and all will be a matter of record and all that. But
+   let's build the village before picking the next chief." So the next
+   holder is named in public, and until then the founder alone holds it.
+   The technical lead's reading, which stands unless the founder answers
+   otherwise: the public record of an opening holds the fact of it (who
+   opened whose space, when, and why), never what was read; and the
+   person named as the next holder agrees to be named, as their name
+   goes into a public record.
+7. **Leaving takes your data with you.** The founder (2026-11-15): "all
+   their records should be transferred to them and removed from our
+   records. We should not store any private keys for anyone that is no
+   longer in the multiverse. Their private data should be purged from
+   the records completely and demonstrably." So the "break glass" ends
+   for whoever leaves the multiverse. The founder's later words (below,
+   "Public records, kept whole") narrow "removed from our records" to
+   what is private: public acts remain, with anything private in them
+   redacted. How the purge is shown is the
+   technical lead's reading, below ("Purged, demonstrably"). Not yet
+   built.
+8. **Data is not for sale.** The founder (2026-11-15): "participant or
+   member data is treated as a matter of privacy and is not for sale.
+   … This cannot become a data mining operation that then takes the
+   data and sells it." Charter, section 3; and AGENTS.md's rule
+   "Never a currency, never a money machine, never data for sale".
+9. **Only an email address.** The founder (2026-11-15): "only an email
+   address is needed to start a profile or account. No need for any
+   personal information beyond that." The technical lead's reading,
+   which stands unless the founder answers otherwise: the email is the
+   one personal detail asked for, used only to sign in and to recover an
+   account, and kept apart from everything else: never in a log or a
+   public record, and never linked to anyone's presences. Charter,
+   section 3. Not yet built: no one signs up yet.
+10. **Keys stay their holders'; lost is lost.** Decided 2026-11-14:
+    guardians named in advance can sign a lost key over to a new one, or
+    sign that a leaked one is no longer to be trusted, and "lost is lost"
+    for anyone who named none. The project never recovers keys, which
+    would make it an authority over who is who ([ADMIN.md](ADMIN.md),
+    "What the multiverse must preserve", row 3). Built: signing a key
+    over, in the Python worlds. Guardians come with course step 8a
+    ([COURSE.md](COURSE.md)).
+11. **A world may end; its record and its sealed selves don't.** Decided
+    2026-11-14: the project may end a world, but its record never ends,
+    sealed selves stay sealed and keys stay their holders'
+    ([ADMIN.md](ADMIN.md), "Questions for the founder"). A person who
+    leaves the multiverse takes their private data with them (item 7),
+    and what they did in public stays, with anything private in it
+    redacted ("Public records, kept whole",
+    below).
+12. **Fear of the Keeper silences no one.** Decided 2026-11-14, on the
+    technical lead's recommendation: the author of a suggestion about
+    a Keeper may ask for their name, and their rating of how it was
+    handled, to be withheld until it has an outcome; each is recorded as
+    withheld, and published with the outcome ([ADMIN.md](ADMIN.md)). Not
+    yet built.
 
 ## Transparency, beside privacy
 
@@ -176,8 +245,144 @@ And what the multiverse learns as a whole travels in records anyone can
 read ([VISION.md](VISION.md), "The multiverse as a computer", test 1),
 which never include anyone's private space.
 
+## Public data, and personal data
+
+The founder (2026-11-15): data generated from the multiverse "is
+available for the public like an on-going public scientific experiment
+where all can participate and access the data it generates. But all of
+that data would already be scrubbed of anything personal". The
+technical lead's reading, which stands unless the founder answers
+otherwise: **nothing personal enters a public record in the first
+place.** Scrubbing after the fact is a weaker guarantee, since data made
+anonymous can often be matched back to people (as the AOL search logs of
+2006 and the Netflix Prize data of 2008 showed). So the logs, the
+datasets and anything else published hold what happens in the worlds,
+never a person's private space, keys or personal details.
+
+## Public records, kept whole
+
+The founder, 2026-11-15: "Public acts should always remain. The moment
+we edit a public record, we defeat the purpose. It should be clearly
+understood upon entry to the multiverse that public actions are recorded
+as a matter of keeping ledgers and for learning and they become part of
+the project data. We do not edit historical records as an absolute
+rule. We make sure we never enter data that would need to be edited
+later. But that would be a small subset of the data that would be
+associated with a given account, it would be all that would remain. It
+would be a lasting imprint or legacy of all that come and go."
+
+And the same day: "Ok, let's make a rule that any public act that
+contains private information will have that private information
+encrypted in the project records and removed or redacted in the public
+records. We can redact personal or private information in public
+records, and we should always err on the side of redacting if it is a
+close call."
+
+- **Never edited, except to redact what is private.** A world's log, a
+  ledger and published data are only ever appended to. A mistake is
+  corrected by a new entry that says so, as a ledger is, never by
+  changing the old one. The one exception is personal or private
+  information, which is redacted, and close calls are redacted. The
+  charter says so on entry (section 4), and AGENTS.md makes it a rule.
+- **What remains of someone who leaves** is what they did in public:
+  their acts in the worlds' logs, under their keys, with anything
+  private in them redacted. Everything private goes with them, and
+  their private data is purged (below). The links they showed between
+  their presences stay as records that a link was made, with what they
+  tied together redacted (privacy, item 5).
+- **More metadata.** The founder: "we keep public record of the action
+  with private details of the action not included. More metadata." The
+  technical lead's reading, which stands unless the founder answers
+  otherwise: a public record of an action holds what an outside
+  observer could note (that it happened, what kind of act, where and
+  when) and leaves its private details out, as a private message
+  already leaves in the record only that it passed (privacy, item 4).
+
+The technical lead's reading of how a redaction works, which stands
+unless the founder answers otherwise:
+- **Before publishing, first.** Wherever something is written to a
+  public record, a check redacts anything personal or private before it
+  is published, and redacts close calls (to be built, before anyone
+  lives in a world: [COURSE.md](COURSE.md), "Waiting"). That is the
+  redaction that works best: copies others make of what is published
+  can't be recalled afterwards.
+- **Visible, and the log still checks.** To be built, before anyone
+  lives in a world: each field of an entry enters the chain of hashes
+  only as a salted fingerprint of its content, with a fresh random salt
+  of at least 128 bits for each field, from the moment it is written,
+  drawn from the operating system's random source, never from a world's
+  seed (which would let anyone who knows the seed rebuild it); so a log
+  with such fields is not byte for byte the same on a replay. A
+  redacted field then keeps its place and its fingerprint, so every
+  hash, and every signed head, still checks. The salt is redacted and
+  sealed with the content, so no one can confirm a guess at what was
+  there. A mark says that something private was redacted, when, by
+  which office, and why in general terms (such as "contact details"),
+  never what. Today's logs hash each entry's data whole
+  (`rust/plant-world`), so this changes how logs are written before any
+  person's acts are in one.
+- **Sealed to the person it is about.** What was redacted is kept
+  encrypted in the project's records, like that person's private space:
+  under the same "break glass", and purged when they leave. Where it is
+  kept, and what happens when it is about several people, or about
+  someone with no key in the multiverse, the founder has answered: it is
+  recorded, with the private container it depends on, in the next pull
+  request (STATUS.md, "Open questions").
+- **Redacted first, decided after.** Anyone may ask for a redaction.
+  A request from the person the information is about, a request about
+  someone else's personal information, and any close call are redacted
+  at once, while they are decided. The office that keeps
+  the record decides: a world's Keeper for its world's log, ADMIN for
+  the multiverse's. Redacting needs no more than that, and is on record
+  with its reasons, in general terms. Keeping something public that
+  someone asked to redact is the one decision that needs more: it
+  touches an individual, so it is a serious act, reviewed independently
+  before it takes effect, and it goes to the founder, as acts against an
+  individual do, and is open to appeal ([ADMIN.md](ADMIN.md), "Graduated
+  responses"; [REASONS.md](REASONS.md)). It stays redacted until any
+  appeal is decided, or its time has passed: once made public again, it
+  can't be recalled.
+
+## Purged, demonstrably
+
+The technical lead's reading of the founder's "completely and
+demonstrably", which stands unless the founder answers otherwise:
+- **Nothing can be shown never to exist anywhere.** What can be shown
+  is that every copy the project made is unreadable, and that the
+  project kept nothing that opens it.
+- **So private data is kept encrypted under a key of its own,** for each
+  person, and purging it is destroying every copy of that key the
+  project holds (known as crypto-shredding), after giving the person
+  their records and keys. A signed, public purge record says what was
+  purged, by fingerprint, and when.
+- **Where keys live matters.** A sealed self's ciphertext is in the open
+  repository ([MINDS.md](MINDS.md), "Where everything lives"), and Git
+  keeps a deleted file in its history and in every clone. Ciphertext
+  without its key is unreadable, so that is safe; but the project's own
+  copies of keys must be kept where they can really be destroyed, which
+  a Git history is not. That is settled before any individual is born,
+  with the course's keys work (step 8a, "a lost or leaked key").
+- **Purging never edits a record.** Destroying a key leaves every
+  record as it was, and only makes private data unreadable; what was
+  public stays, with anything private in it redacted ("Public records,
+  kept whole", above).
+
 ## Honest limits
 
+- **A redaction can't reach copies already made.** What was published
+  before it was redacted may already be in someone else's copy: a
+  clone of the repository, a mirror, an archive. So the check before
+  publishing matters most, and close calls are redacted then.
+- **Nor this repository's own history.** Public records committed here
+  (an experiment's runs, a world's log) stay in Git's history after a
+  later commit redacts them, readable by anyone, and removing them
+  would mean rewriting history, which is the founder's decision. So
+  when logs with redactable fields are built, only the fingerprints go
+  into Git, and the fields' contents are kept where they can be
+  removed; that is decided with them, before anyone lives in a world.
+- **No check finds everything.** Some personal details won't look
+  personal to a check. Erring on the side of redacting narrows that,
+  and anyone may ask for a redaction afterwards.
 - **The project runs the minds.** While an individual's mind is
   thinking, its thoughts pass through hardware the project controls.
   Encryption keeps a private space from everyone in the worlds, and

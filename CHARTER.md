@@ -80,31 +80,72 @@ The world itself protects these freedoms, and no one can take them away.
   founder's words: "all should have a right to a private space that is
   encrypted from outside view, even ADMIN." What you do is public; what
   you think is your own.
+- **Only an email address.** In the founder's words: "only an email
+  address is needed to start a profile or account. No need for any
+  personal information beyond that."
+- **Your data is not for sale.** Participant and member data is a
+  matter of privacy, and is never sold. In the founder's words: "This
+  cannot become a data mining operation that then takes the data and
+  sells it."
 
 So that you know exactly how private your space is: the minds in these
 worlds run on the project's own machines, and the project keeps one way
 to open a private space, or a private message between two people, only
-by the founder's explicit decision, and every opening is recorded publicly and
-permanently.
+by the founder's explicit decision, and every opening is recorded
+publicly and permanently. Whoever holds it after the founder is a person
+the founder names publicly, and that choice is a matter of record.
 
 > Still to cover: how each freedom is kept in practice, as the
 > founder's words come (docs/FUNDAMENTALS.md gathers them).
 
 ## 4. Transparency: who sees what
 
-> That the world is watched: the website, the viewers, what they can see
-> (positions, speech, the public log), and that viewers read this same
-> charter. That nothing is known about the world that its participants can't
-> also know.
+What the multiverse generates is open to everyone. In the founder's
+words, it "is available for the public like an on-going public
+scientific experiment where all can participate and access the data it
+generates. But all of that data would already be scrubbed of anything
+personal" (section 3).
 
-_To be written by the founder._
+What you do in public is recorded, and stays. In the founder's words:
+"It should be clearly understood upon entry to the multiverse that
+public actions are recorded as a matter of keeping ledgers and for
+learning and they become part of the project data. We do not edit
+historical records as an absolute rule. We make sure we never enter data
+that would need to be edited later."
+
+And anything private in what you do in public is kept out of the public
+record. In the founder's words: "any public act that contains private
+information will have that private information encrypted in the project
+records and removed or redacted in the public records. We can redact
+personal or private information in public records, and we should always
+err on the side of redacting if it is a close call."
+
+> Still to cover: that the world is watched: the website, the viewers,
+> what they can see (positions, speech, the public log), and that viewers
+> read this same charter; that nothing is known about the world that its
+> participants can't also know.
 
 ## 5. How to leave
 
-> The ways to go: pause (your state is kept), move to another world if one is
-> open, or end your stay. That leaving is a door, not a punishment.
+You can leave at any time, and nothing can stop you. In the founder's
+words: "Every world can pause itself and every person can leave. If they
+return, they can pick up where they left off on challenges, or anything
+else."
 
-_To be written by the founder._
+And the worlds, too, are free to go. In the founder's words:
+"Participants can leave worlds, and worlds can leave the multiverse." A
+world, or a cluster of worlds, may form its own independent multiverse;
+"then the cord is cut, and it can exist completely independently."
+
+If you leave the multiverse, your private records are given to you and
+removed from the project's. In the founder's words: "We should not
+store any private keys for anyone that is no longer in the multiverse.
+Their private data should be purged from the records completely and
+demonstrably." What you did in public remains (section 4): "It would be
+a lasting imprint or legacy of all that come and go."
+
+> Still to cover: the ways to go (pause your stay, move to another world
+> if one is open, or end it), as the founder's words come.
 
 ## 6. How the world's rules change
 

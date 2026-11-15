@@ -471,9 +471,10 @@ course recheck checks the steps ahead against them (COURSE.md):
    (TOPICS.md, "Further out"): what is spread across worlds that many
    people run can't be stopped as a whole by any one of them, only part
    by part, by each who runs a part. That is the price of having no
-   master, and accepting it waits for the founder's explicit word
-   (STATUS.md, "Open questions"): it is the kind of choice that is hard
-   to undo, which silence doesn't decide.
+   master, and the founder accepted it explicitly (2026-11-15): "I
+   accept it. Every world can pause itself and every person can leave."
+   What can be done with a world of each type, pausing it among them,
+   is in [WORLD-TYPES.md](WORLD-TYPES.md).
 4. **Growth by decision.** Anything that adds to what the multiverse can
    do, or decide, as a whole (computing beyond what a step needs, more
    autonomy for ADMIN or the Keepers) is the founder's decision, one
