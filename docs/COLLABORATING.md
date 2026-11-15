@@ -116,7 +116,12 @@ in the order to read it:
    fractal plants, as the founder pictured it: "a microverse garden of
    hosted fractal worlds". Three plant worlds grow in its glasshouses,
    each a world of its own, and both logs record each step, as your
-   microverse's `advance_cycle` did (`ur-world/src/host.rs`).
+   microverse's `advance_cycle` did (`ur-world/src/host.rs`). And the
+   first map is built: the World Map (`web/map/`) draws the garden from
+   above, with a card for each of its worlds, built only from what that
+   world publishes and checked in the page, opening onto Plant Watch.
+   It is a page to try the map's open questions on (TOPICS.md, topic
+   16).
 8. **Challenges that build the world** ([WORLD-KEY.md](WORLD-KEY.md),
    "Challenges that build the world"; [TOPICS.md](TOPICS.md), topic 17):
    the founder's idea of 2026-11-15, open for brainstorming. The founder:
@@ -145,13 +150,15 @@ in the order to read it:
     people shaping the land and the water, and life spreading where
     water lets it. And: "All three elements could be components of one
     world type that models living systems." The three are water, light
-    and food. Water is endless across a world but finite in any one
+    and food. Water will be endless across a world but finite in any one
     place, so no garden depends on one source: the technical lead's
     reading, put to the founder (FRACTALS.md, "Water is where freedoms
     meet"). Every run repeats from its seed and can be turned into a
     video; the first, of the garden's three hosted plants, was made the
-    same night. The map page comes first: "For now, let’s keep moving
-    forward with what we have."
+    same night. The map page came first, as the founder asked: "For
+    now, let’s keep moving forward with what we have." It is built (item
+    7), and the stages follow it, beginning with an endless plant in the
+    browser.
 
 The multiverse began as a sketch the founder wrote with DeepSeek
 (conversation records 012-04-00 and 012-03-02). This repository brought
@@ -668,3 +675,7 @@ page.
   topic 18), the founder's aim for the fractal track: plants that grow
   without end and choose, water as particles, people shaping the land,
   and life spreading.
+- 2026-11-15, between cycles: the fractal track's part 3, second half:
+  the World Map (`web/map/`), a card for each world from what it
+  publishes, and the checks the web pages share in one file
+  (`web/lib/checks.js`), tested in CI.

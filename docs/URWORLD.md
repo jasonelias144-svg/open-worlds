@@ -150,6 +150,12 @@ fractal worlds". So the garden hosts other worlds, in glasshouses
 - **The Hello World hosts three plant worlds** (`rust/plant-world`), grown
   from one trial template with dials of their own: the template's own
   plant, a larger one, and one in low light.
+- **On the map:** the World Map (`web/map/`) draws the garden from
+  above, with each glasshouse where the garden's log puts it, and a card
+  for each world built from what it publishes: its birth record, its
+  template and dials, and its signed head, which must end where the
+  garden's log last tended it. A card opens onto the world's live view
+  ([../web/README.md](../web/README.md)).
 - **Not yet:** a glasshouse is a place the log names, not a cell, so
   inhabitants don't see it yet; what a hosted world shows is read from
   its own log, as Plant Watch reads a plant's. And every world takes a

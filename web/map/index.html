@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>World Map</title>
+<style>
+/* Layout: the Ur-world's card across the top; under it, its garden seen
+   from above, and a card for each world the garden hosts, beside the
+   drawing on wide screens and under it on narrow. */
+:root {
+  --bg: #f3f5f1;
+  --panel: #fbfcfa;
+  --fg: #1d2620;
+  --muted: #5d6a61;
+  --line: #d5ddd6;
+  --accent: #2f8a4c;
+  --ok: #2c7a45;
+  --bad: #b3372b;
+  --warn: #9a6a12;
+  --ok-bg: #e2f1e6;
+  --bad-bg: #f8e2df;
+  --warn-bg: #f5ead2;
+  --hill: #dfe3d6;
+  --grass: #cfe5c4;
+  --leaves: #4f9a5b;
+  --wood: #7a5a3a;
+  --water: #4a90c8;
+  --glass: #eef7fb;
+  --glass-edge: #5d8fa6;
+  --flower: #c2477d;
+  --font-ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111613; --panel: #18201b; --fg: #e3ebe5; --muted: #9aa89f; --line: #2c3830;
+    --accent: #6fd08f; --ok: #7ad49a; --bad: #f08a7e; --warn: #e7b65c;
+    --ok-bg: #1d3325; --bad-bg: #3a201d; --warn-bg: #352b16;
+    --hill: #222a24; --grass: #2a4430; --leaves: #5fae6b; --wood: #a07a52; --water: #5aa6e0;
+    --glass: #1f3a45; --glass-edge: #8cc3da; --flower: #e278a8; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111613; --panel: #18201b; --fg: #e3ebe5; --muted: #9aa89f; --line: #2c3830;
+  --accent: #6fd08f; --ok: #7ad49a; --bad: #f08a7e; --warn: #e7b65c;
+  --ok-bg: #1d3325; --bad-bg: #3a201d; --warn-bg: #352b16;
+  --hill: #222a24; --grass: #2a4430; --leaves: #5fae6b; --wood: #a07a52; --water: #5aa6e0;
+  --glass: #1f3a45; --glass-edge: #8cc3da; --flower: #e278a8; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-ui);
+  font-size: 15px; line-height: 1.5;
+}
+.page {
+  max-width: 1100px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 32px;
+  display: grid; gap: 16px;
+}
+header { display: grid; gap: 2px; }
+h1 { font-size: 1.6rem; margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+h2 { font-size: 1.1rem; margin: 0; }
+h3 { font-size: 1rem; margin: 0; }
+.sub { color: var(--muted); margin: 0; }
+.notice { margin: 0; padding: 10px 12px; border-radius: 8px; background: var(--warn-bg); color: var(--warn); }
+.notice.bad { background: var(--bad-bg); color: var(--bad); }
+.card {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+  padding: 12px 14px; display: grid; gap: 8px; min-width: 0;
+}
+.card .title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.card .kind { color: var(--muted); font-size: 0.875rem; }
+.main { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); align-items: start; }
+@media (min-width: 860px) {
+  .main { grid-template-columns: minmax(0, 1fr) minmax(0, 420px); }
+  .stage { position: sticky; top: 12px; }
+}
+svg { width: 100%; height: auto; display: block; border-radius: 6px; }
+.house { cursor: pointer; }
+.house rect { fill: var(--glass); stroke: var(--glass-edge); stroke-width: 0.12; }
+.house text { fill: var(--fg); font: 600 0.7px var(--font-ui); text-anchor: middle; dominant-baseline: central; }
+.house.selected rect { stroke: var(--accent); stroke-width: 0.22; }
+.house:focus { outline: none; }
+.house:focus-visible rect { stroke: var(--accent); stroke-width: 0.22; stroke-dasharray: 0.3 0.15; }
+.house.failed rect { stroke: var(--bad); stroke-dasharray: 0.25 0.15; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 0; padding: 0; list-style: none; font-size: 0.8rem; color: var(--muted); }
+.legend li { display: inline-flex; align-items: center; gap: 6px; }
+.swatch { width: 12px; height: 12px; border-radius: 3px; border: 1px solid var(--line); display: inline-block; }
+.cards { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.cards > li { scroll-margin-top: 12px; }
+.cards .card.selected { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.badge {
+  display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 6px;
+  border-radius: 6px; background: var(--glass); border: 1px solid var(--glass-edge);
+  font-size: 0.8rem; font-weight: 700; color: var(--fg);
+}
+.card button.pick { all: unset; cursor: pointer; display: inline-flex; align-items: baseline; gap: 8px; }
+.card button.pick:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 3px 12px; font-size: 0.875rem; }
+dt { color: var(--muted); }
+dd { margin: 0; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+dd.mono { font-family: var(--font-mono); font-size: 0.8rem; }
+details summary { cursor: pointer; font-size: 0.875rem; color: var(--muted); }
+.checks { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 6px; }
+.checks li { display: grid; grid-template-columns: auto 1fr; gap: 2px 8px; align-items: baseline; font-size: 0.875rem; }
+.chip { font-size: 0.7rem; font-weight: 700; padding: 1px 7px; border-radius: 999px; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; }
+.chip.ok { background: var(--ok-bg); color: var(--ok); }
+.chip.bad { background: var(--bad-bg); color: var(--bad); }
+.chip.warn { background: var(--warn-bg); color: var(--warn); }
+.checks .what { font-weight: 600; }
+.checks .why { grid-column: 2; color: var(--muted); overflow-wrap: anywhere; }
+.summary { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.watch {
+  justify-self: start; font-weight: 600; text-decoration: none; color: var(--panel);
+  background: var(--accent); border-radius: 6px; padding: 6px 14px;
+}
+.watch:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.none { color: var(--muted); font-size: 0.875rem; margin: 0; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <h1>World Map</h1>
+    <p class="sub">Each world is shown from what it publishes, and checked here before it is shown.</p>
+  </header>
+  <p class="notice" id="notice" role="status" hidden></p>
+  <section class="card" id="ur" aria-labelledby="ur-name">
+    <div class="title"><h2 id="ur-name">The Ur-world</h2><span class="kind" id="ur-kind">Reading its log…</span></div>
+    <dl id="ur-facts"></dl>
+    <details>
+      <summary id="ur-summary">What this page checked</summary>
+      <ul class="checks" id="ur-checks"></ul>
+    </details>
+  </section>
+  <div class="main">
+    <section class="card stage" aria-labelledby="garden-name">
+      <div class="title"><h2 id="garden-name">Its garden, from above</h2><span class="kind">north is up; one square is one cell</span></div>
+      <svg id="garden" viewBox="-11.5 -11.5 23 23" role="group" aria-label="The Ur-world's garden, seen from above, with its glasshouses"></svg>
+      <ul class="legend" id="legend"></ul>
+    </section>
+    <section aria-labelledby="hosted-name" style="display:grid;gap:12px;min-width:0">
+      <h2 id="hosted-name">The worlds it hosts</h2>
+      <ol class="cards" id="cards"></ol>
+    </section>
+  </div>
+</div>
+<script src="../lib/checks.js"></script>
+<script>
+"use strict";
+(function () {
+  const { signedBy, covers, chainProblem, recordHash, dialsProblem, isKey } = OpenWorlds;
+  // What the map reads: the Ur-world's log and its signed head, and what
+  // the worlds it hosts publish, each from where it is in the repository.
+  const SOURCES = {
+    log: "../../vectors/ur-garden-log.json",
+    head: "../../vectors/ur-garden-head.json",
+    hosted: "../../vectors/ur-garden-hosted.json",
+  };
+  const PLANT_RULE = "open-worlds/plant-rule/v1";
+  const HEAD = "open-worlds/log-head/v1", BIRTH = "open-worlds/world-birth/v1";
+  // The garden as these rules lay it out (rust/ur-world/src/generate.rs):
+  // flat ground out to the radius, the spring, and the tree at the centre.
+  const LAYOUT = { rules: "ur-world/0.4", radius: 8, spring: [2, 3] };
+  const isqrt = n => Math.floor(Math.sqrt(n));
+
+  const $ = id => document.getElementById(id);
+  function el(tag, attrs, ...kids) {
+    const e = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs || {})) e.setAttribute(k, v);
+    for (const k of kids) e.append(k);
+    return e;
+  }
+  // The SVG namespace, from the drawing's own element, so the page names
+  // no address at all.
+  const SVG = document.getElementById("garden").namespaceURI;
+  function svg(tag, attrs) {
+    const e = document.createElementNS(SVG, tag);
+    for (const [k, v] of Object.entries(attrs || {})) e.setAttribute(k, String(v));
+    return e;
+  }
+  function notice(msg, bad) { const n = $("notice"); n.hidden = !msg; n.textContent = msg || ""; n.className = "notice" + (bad ? " bad" : ""); }
+  const short = key => typeof key === "string" ? key.slice(0, 18) + "…" + key.slice(-6) : "?";
+  const words = k => k.replace(/([A-Z])/g, " $1").toLowerCase();
+  function where(at) {
+    const [x, , z] = at, parts = [];
+    if (x) parts.push(Math.abs(x) + (x < 0 ? " west" : " east"));
+    if (z) parts.push(Math.abs(z) + (z < 0 ? " north" : " south"));
+    return parts.length ? parts.join(" and ") + " of the tree" : "at the tree";
+  }
+  function checksList(list, results) {
+    list.textContent = "";
+    for (const [kind, what, why] of results) {
+      const chip = el("span", { class: "chip " + kind });
+      chip.textContent = kind === "ok" ? "holds" : kind === "bad" ? "fails" : "not checked";
+      const w = el("span", { class: "what" }); w.textContent = what;
+      const y = el("span", { class: "why" }); y.textContent = why;
+      list.append(el("li", {}, chip, w, y));
+    }
+  }
+  function tally(results) {
+    const n = k => results.filter(r => r[0] === k).length;
+    return [n("ok") + " hold", n("bad") ? n("bad") + " fail" : "", n("warn") ? n("warn") + " not checked" : ""].filter(Boolean).join(", ");
+  }
+  function facts(dl, rows) {
+    dl.textContent = "";
+    for (const [k, v, mono] of rows) {
+      const dt = el("dt"); dt.textContent = k;
+      const dd = el("dd", mono ? { class: "mono" } : {}); dd.textContent = v;
+      dl.append(dt, dd);
+    }
+  }
+  const sig = (s, what, ok) => s === "unsupported" ? ["warn", what, "Not checked: this browser can't check Ed25519 signatures."]
+                             : s !== "ok" ? ["bad", what, s] : ok;
+
+  // ---- The Ur-world: its log holds, and its signed head covers it.
+  async function checkUr(log, head) {
+    const results = [];
+    const chain = await chainProblem(log);
+    results.push(chain ? ["bad", "Its log's chain of hashes", chain]
+                       : ["ok", "Its log's chain of hashes", "All " + log.length + " entries hold, each linked to the one before."]);
+    const first = log[0], data = first && first.data;
+    const key = data && data.world;
+    const named = !chain && first.kind === "world_created" && isKey(key);
+    if (!chain && !named) results.push(["bad", "Its first entry", "doesn't create a world named by its key"]);
+    let headOk = false;
+    if (!named) results.push(["warn", "Its signed head", "Not checked: the log doesn't hold."]);
+    else if (!head) results.push(["warn", "Its signed head", "Not given."]);
+    else {
+      const s = await signedBy(head, key, HEAD);
+      headOk = s === "ok" && covers(head, log);
+      results.push(sig(s, "Its signed head", headOk
+        ? ["ok", "Its signed head", "Signed by the world's own key, over all " + head.length + " entries."]
+        : ["bad", "Its signed head", "Signed, but it doesn't cover the log as given."]));
+    }
+    results.push(["warn", "How it tended its worlds", "Checked in Rust and Python (hosting_problems), not here: here the page reads where each world stands and the last step the garden names."]);
+    results.push(["warn", "Whose world it is", "Not checked here: its key isn't yet compared with the project's key list (keys/key-list.json). In the shared vectors it is a trial key."]);
+    return { results, key, data, holds: named && headOk };
+  }
+
+  // Where the garden's log puts each world it hosts, how many steps it
+  // gave each, and the last step it names.
+  function hostings(log) {
+    const out = new Map();
+    for (const e of log) {
+      const d = e && e.data && typeof e.data === "object" ? e.data : {};
+      if (e.kind === "hosted" && typeof d.world === "string" && !out.has(d.world)) {
+        const at = Array.isArray(d.at) && d.at.length === 3 && d.at.every(Number.isSafeInteger) ? d.at : null;
+        out.set(d.world, { key: d.world, at, kind: d.kind, first: d.first, from: d.from, last: d.from, steps: 0, untended: null });
+      } else if (e.kind === "tended" && Array.isArray(d.worlds)) {
+        for (const pair of d.worlds) { const h = Array.isArray(pair) && out.get(pair[0]); if (h) { h.last = pair[1]; h.steps += 1; } }
+      } else if (e.kind === "untended" && out.has(d.world)) out.get(d.world).untended = String(d.reason);
+    }
+    return [...out.values()];
+  }
+  const keyOf = w => (w && Array.isArray(w.log) && w.log[0] && w.log[0].data && w.log[0].data.world) || (w && w.birth && w.birth.world);
+
+  // ---- A hosted world: what it publishes, checked against itself and
+  // against what the garden's log says of it.
+  async function checkWorld(h, pub, file) {
+    const results = [];
+    if (!pub) return { results: [["bad", "What it publishes", "Not given: the garden hosts it, but its records aren't in the file."]], birthOk: false, headOk: false };
+    let birthOk = false, headOk = false;
+    const bs = await signedBy(pub.birth, h.key, BIRTH);
+    let why = null;
+    if (bs === "ok") {
+      if (!file.template || await recordHash(file.template) !== file.templateHash) why = "the template given with it isn't the one its hash names";
+      else if (pub.birth.template !== file.templateHash) why = "names another template than the one given with it";
+      else if (!file.law || await recordHash(file.law) !== file.lawHash || pub.birth.law !== file.lawHash) why = "its law isn't the law given with it";
+      else {
+        // With its log, the dials it set must be exactly those its first
+        // entry was made with; without, only the template's ranges.
+        const first = Array.isArray(pub.log) && pub.log[0];
+        const madeWith = first && first.hash === h.first && !(await chainProblem(pub.log)) && first.data ? first.data.dials : null;
+        why = dialsProblem(pub.birth, file.template, madeWith && typeof madeWith === "object" ? madeWith : null);
+      }
+      birthOk = !why;
+    }
+    results.push(sig(bs, "Its birth record", why ? ["bad", "Its birth record", why]
+      : ["ok", "Its birth record", "Signed by its own key, naming its template and law by hash, and the dials its log was made with, each within the template's range."]));
+    const hs = await signedBy(pub.head, h.key, HEAD);
+    let agrees = false;
+    if (hs === "ok") {
+      // From its first entry, the garden gave it one step per `tended`.
+      agrees = pub.head.last === h.last && (h.from !== h.first || pub.head.length === h.steps + 1);
+      headOk = agrees;
+    }
+    results.push(sig(hs, "Its signed head", agrees
+      ? ["ok", "Its signed head", "Signed by its own key, " + pub.head.length + " entries to tick " + pub.head.tick + ", ending where the garden's log last tended it."]
+      : ["bad", "Its signed head", "Signed, but it doesn't end where the garden's log says it was last tended."]));
+    if (Array.isArray(pub.log) && pub.log.length) {
+      const chain = await chainProblem(pub.log);
+      if (chain) results.push(["bad", "Its log", chain]);
+      else if (pub.log[0].hash !== h.first) results.push(["bad", "Its log", "doesn't begin with the entry the garden's log names"]);
+      else if (!headOk) results.push(["warn", "Its log", "Its chain holds; not compared with its head, which doesn't hold."]);
+      else if (!covers(pub.head, pub.log)) results.push(["bad", "Its log", "its signed head doesn't cover it"]);
+      else results.push(["ok", "Its log", "Its chain holds, it begins with the entry the garden's log names, and its head covers it."]);
+    } else results.push(["warn", "Its log", "Not given; its live view needs it."]);
+    results.push(["warn", "Its growth, step by step", "Checked in its live view, which grows every step again by its rule."]);
+    return { results, birthOk, headOk };
+  }
+
+  // ---- Drawing the garden.
+  let selected = -1;
+  const houses = [], cardsByIndex = [];
+  function select(i, scroll) {
+    selected = i;
+    houses.forEach((g, j) => { g.classList.toggle("selected", i === j); g.setAttribute("aria-pressed", String(i === j)); });
+    cardsByIndex.forEach((c, j) => c.classList.toggle("selected", i === j));
+    if (scroll && cardsByIndex[i]) cardsByIndex[i].scrollIntoView({ block: "nearest", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }
+  function drawGarden(data, log, worlds) {
+    const g = $("garden"); g.textContent = "";
+    const legend = $("legend"); legend.textContent = "";
+    const key = (name, color) => legend.append(el("li", {}, el("span", { class: "swatch", style: "background:" + color }), name));
+    g.append(svg("rect", { x: -11.5, y: -11.5, width: 23, height: 23, fill: "var(--hill)" }));
+    const laidOut = data && data.rules_version === LAYOUT.rules;
+    if (laidOut) {
+      const R = LAYOUT.radius;
+      for (let z = -R; z <= R; z++) for (let x = -R; x <= R; x++) {
+        if (isqrt(x * x + z * z) > R) continue;
+        g.append(svg("rect", { x: x - 0.5, y: z - 0.5, width: 1, height: 1, fill: "var(--grass)", stroke: "var(--panel)", "stroke-width": 0.03 }));
+      }
+      // The tree's crown, five across without its corners, over its trunk.
+      for (let z = -2; z <= 2; z++) for (let x = -2; x <= 2; x++) {
+        if (Math.abs(x) === 2 && Math.abs(z) === 2) continue;
+        g.append(svg("rect", { x: x - 0.5, y: z - 0.5, width: 1, height: 1, fill: "var(--leaves)", stroke: "var(--panel)", "stroke-width": 0.03 }));
+      }
+      g.append(svg("circle", { cx: 0, cy: 0, r: 0.28, fill: "var(--wood)" }));
+      const [sx, sz] = LAYOUT.spring;
+      g.append(svg("rect", { x: sx - 0.5, y: sz - 0.5, width: 1, height: 1, fill: "var(--water)", rx: 0.2 }));
+      key("garden", "var(--grass)"); key("tree", "var(--leaves)"); key("spring", "var(--water)"); key("hills", "var(--hill)");
+    }
+    // What the log says was planted.
+    let flowers = 0;
+    for (const e of log) {
+      const at = e && e.kind === "planted" && e.data && e.data.at;
+      if (Array.isArray(at) && at.length === 3 && at.every(Number.isSafeInteger) && Math.abs(at[0]) <= 11 && Math.abs(at[2]) <= 11) {
+        g.append(svg("circle", { cx: at[0], cy: at[2], r: 0.3, fill: "var(--flower)" })); flowers++;
+      }
+    }
+    if (flowers) key("planted", "var(--flower)");
+    key("glasshouse", "var(--glass)");
+    // The compass.
+    const n = svg("text", { x: 10.4, y: -9.6, "text-anchor": "middle", fill: "var(--muted)", "font-size": 0.9, "font-weight": 700 }); n.textContent = "N";
+    g.append(svg("path", { d: "M10.4 -11 L10.75 -10.3 L10.05 -10.3 Z", fill: "var(--muted)" }), n);
+    // The glasshouses, where the garden's log puts them.
+    houses.length = 0;
+    worlds.forEach((w, i) => {
+      if (!w.h.at) return;
+      const [x, , z] = w.h.at;
+      const house = svg("g", { class: "house" + (w.shown ? "" : " failed"), tabindex: 0, role: "button", "aria-pressed": "false",
+                               "aria-label": "Glasshouse " + (i + 1) + ": " + w.title + ", " + where(w.h.at) });
+      house.append(svg("rect", { x: x - 0.45, y: z - 0.45, width: 0.9, height: 0.9, rx: 0.18 }));
+      const t = svg("text", { x, y: z + 0.03 }); t.textContent = String(i + 1); house.append(t);
+      const pick = () => select(i, true);
+      house.addEventListener("click", pick);
+      house.addEventListener("keydown", ev => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); pick(); } });
+      houses[i] = house; g.append(house);
+    });
+    if (!laidOut) notice("The garden is drawn as " + LAYOUT.rules + " lays it out, and this log names other rules, so only the places its log names are drawn.", false);
+  }
+
+  // ---- A card for each hosted world.
+  function card(i, w, file) {
+    const b = w.pub && w.pub.birth, t = file.template || {};
+    const pick = el("button", { class: "pick", type: "button" }, el("span", { class: "badge" }, String(i + 1)));
+    const h3 = el("h3"); h3.textContent = w.title; pick.append(h3);
+    pick.addEventListener("click", () => select(i, false));
+    const kind = el("span", { class: "kind" });
+    kind.textContent = (w.h.kind === PLANT_RULE ? "a plant world" : "a world of the kind " + w.h.kind) + (w.h.at ? ", " + where(w.h.at) : "");
+    const dl = el("dl");
+    const rows = [["Key", short(w.h.key), true]];
+    if (w.birthOk) {
+      rows.push(["Template", (typeof t.name === "string" ? t.name : "?") + " (by hash)"]);
+      const set = Object.entries(b.dials || {});
+      rows.push(["Dials set", set.length ? set.map(([k, v]) => words(k) + " " + v + " (template " + t.parameters[k].value + ")").join("; ") : "none: the template's own"]);
+    }
+    if (w.headOk) {
+      const log = w.pub.log, last = Array.isArray(log) && log[log.length - 1];
+      const done = w.logOk && last && last.kind === "finished";
+      rows.push(["Grown", w.pub.head.length + " entries, to tick " + w.pub.head.tick + (done ? ": finished" : "")]);
+    }
+    rows.push(["Tended", w.h.steps + " steps of its time, by the garden" + (w.h.untended ? "; then left untended: " + w.h.untended : "")]);
+    facts(dl, rows);
+    const list = el("ul", { class: "checks" });
+    checksList(list, w.results);
+    const summary = el("summary"); summary.textContent = "What this page checked: " + tally(w.results);
+    const parts = [el("div", { class: "title" }, pick, kind), dl, el("details", {}, summary, list)];
+    if (w.shown && w.h.kind === PLANT_RULE && w.logOk) {
+      const a = el("a", { class: "watch", href: "../plant/?log=" + SOURCES.hosted + "&world=" + encodeURIComponent(w.h.key) });
+      a.textContent = "Watch it grow";
+      parts.push(a);
+    } else if (!w.shown) {
+      const p = el("p", { class: "none" }); p.textContent = "Not opened: what it publishes doesn't hold. What failed is listed above.";
+      parts.push(p);
+    }
+    const c = el("article", { class: "card", "aria-label": "Glasshouse " + (i + 1) + ": " + w.title }, ...parts);
+    cardsByIndex[i] = c;
+    return el("li", {}, c);
+  }
+
+  async function fetchJson(path) {
+    const r = await fetch(path, { credentials: "omit", referrerPolicy: "no-referrer" });
+    if (!r.ok) throw new Error(path + ": " + r.status + " " + r.statusText);
+    return r.json();
+  }
+
+  async function main() {
+    let log, head = null, file = null;
+    try { log = await fetchJson(SOURCES.log); }
+    catch (e) {
+      notice("Couldn't read the Ur-world's log (" + e.message + "). Serve the repository's folder, for example with python3 -m http.server, and open web/map/.", false);
+      $("ur-kind").textContent = "Its log can't be read.";
+      return;
+    }
+    try { head = await fetchJson(SOURCES.head); } catch (e) { head = null; }
+    try { file = await fetchJson(SOURCES.hosted); } catch (e) { file = null; }
+    if (!Array.isArray(log) || !log.length) { notice("The Ur-world's log isn't a list of entries.", true); return; }
+
+    const ur = await checkUr(log, head);
+    checksList($("ur-checks"), ur.results);
+    $("ur-summary").textContent = "What this page checked: " + tally(ur.results);
+    const d = ur.data || {};
+    $("ur-kind").textContent = ur.holds ? (typeof d.begins === "string" ? "It began as " + d.begins + "." : "") : "Its log or its signed head doesn't hold, so nothing it says is shown.";
+    if (!ur.holds) {
+      facts($("ur-facts"), [["Key", short(ur.key), true]]);
+      const why = el("li"); why.textContent = "Not drawn: the Ur-world's log or its signed head doesn't hold."; $("legend").append(why);
+      notice("The Ur-world's log or its signed head doesn't hold, so the worlds it hosts aren't shown. What failed is listed in its card.", true);
+      return;
+    }
+    const hosted = hostings(log);
+    facts($("ur-facts"), [
+      ["Key", short(ur.key), true],
+      ["Rules", String(d.rules_version)],
+      ["Seed", String(d.seed)],
+      ["Signed head", head.length + " entries, to tick " + head.tick],
+      ["Hosts", hosted.length + (hosted.length === 1 ? " world" : " worlds") + ", each in a glasshouse"],
+    ]);
+
+    const pubs = file && Array.isArray(file.worlds) ? file.worlds : [];
+    if (!file) notice("Couldn't read what the hosted worlds publish (" + SOURCES.hosted + "), so their cards can't be checked.", true);
+    const worlds = [];
+    for (const h of hosted) {
+      const pub = pubs.find(p => keyOf(p) === h.key) || null;
+      const c = await checkWorld(h, pub, file || {});
+      const logOk = c.results.some(r => r[1] === "Its log" && r[0] === "ok");
+      const title = c.birthOk ? pub.birth.name : "an unnamed world";
+      worlds.push({ h, pub, title, results: c.results, birthOk: c.birthOk, headOk: c.headOk, logOk, shown: c.birthOk && c.headOk });
+    }
+    drawGarden(d, log, worlds);
+    const list = $("cards"); list.textContent = "";
+    if (!worlds.length) { const p = el("p", { class: "none" }); p.textContent = "It hosts no worlds yet."; list.append(p); }
+    worlds.forEach((w, i) => list.append(card(i, w, file || {})));
+  }
+  main().catch(e => notice("Something went wrong while reading the worlds: " + String(e && e.message || e), true));
+})();
+</script>
+</body>
+</html>
