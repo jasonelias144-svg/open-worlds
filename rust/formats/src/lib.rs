@@ -18,8 +18,12 @@
 //! - [`persons`]: one individual across worlds: presence keys from a
 //!   seed, links that hold only both ways, and a person's list, checked
 //!   through `vectors/formats/persons-v1.json`.
+//! - [`council`]: a council's count: persons' signed votes on a
+//!   proposal, each person counted once, and only persons whose birth a
+//!   world the proposal trusts signed.
 
 pub mod canonical;
+pub mod council;
 pub mod multikey;
 pub mod persons;
 pub mod proof;

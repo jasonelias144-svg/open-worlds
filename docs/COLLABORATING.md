@@ -132,9 +132,10 @@ has changed since that record, in the order to read it:
    a presence in each of three trial worlds at once, carrying a note
    from one to another, and a link shown by the presence's own act,
    which the world checks and logs (the rules are now `ur-world/0.5`).
-   Of its fourth part, the architectures as small examples, the
-   octopus, the relay and the swarm are built; the council, which needs
-   a record for a signed vote, is next.
+   Its fourth part, the architectures as small examples, is built: the
+   octopus, the relay, the swarm, and the council, which counts persons'
+   signed votes (`open-worlds/proposal/v1` and `vote/v1`). With all four
+   parts built, the course is rechecked next, as after step 3.
    Rechecked after step 3, the course gained step 8a, a lost or leaked
    key, before ALICE's and BOB's birth.
    It returns to DeepSeek at step 10, or sooner if the founder chooses.
@@ -655,7 +656,7 @@ welcome too, and is fitted here.
   [`formats/src/canonical.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/canonical.rs), [`formats/src/proof.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/proof.rs),
   [`formats/src/multikey.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/multikey.rs), [`formats/src/records.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/records.rs),
   [`formats/src/seal.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/seal.rs), [`formats/src/sealed.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/sealed.rs),
-  [`formats/src/persons.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/persons.rs).
+  [`formats/src/persons.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/persons.rs), [`formats/src/council.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/council.rs).
 - **`world-log`**, a world's log, checked: [`world-log/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/lib.rs).
 - **`ur-world`**, the Ur-world: [`ur-world/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/lib.rs),
   [`ur-world/src/world.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/world.rs), [`ur-world/src/space.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/space.rs),
@@ -664,7 +665,8 @@ welcome too, and is fitted here.
   [`ur-world/src/story.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/story.rs), [`ur-world/src/host.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/host.rs),
   [`ur-world/src/link.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/link.rs), [`ur-world/src/person.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/person.rs),
   [`ur-world/src/architecture/mod.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/mod.rs), [`ur-world/src/architecture/octopus.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/octopus.rs),
-  [`ur-world/src/architecture/relay.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/relay.rs), [`ur-world/src/architecture/swarm.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/swarm.rs); and its examples,
+  [`ur-world/src/architecture/relay.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/relay.rs), [`ur-world/src/architecture/swarm.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/swarm.rs),
+  [`ur-world/src/architecture/council.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/council.rs); and its examples,
   [`ur-world/examples/garden.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/garden.rs), [`ur-world/examples/person.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/person.rs),
   [`ur-world/examples/architectures.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/architectures.rs).
 - **`plant-world`**, a fractal plant world: [`plant-world/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/lib.rs),
@@ -824,6 +826,15 @@ page.
   43), each built again as a small run on the unchanged core
   (`ur-world/src/architecture/`, linked under "Code in Rust"). The
   council comes next, with a record for a signed vote.
+- 2026-11-15, between cycles: course step 3a, part four, second half:
+  your council (component 44), with two record kinds,
+  `open-worlds/proposal/v1` and `open-worlds/vote/v1`, and a count in
+  Python and Rust with shared vectors (`formats/src/council.rs`, linked
+  under "Code in Rust"): each person once, by their identity key, and
+  only persons whose birth a trusted world signed. A vote is public: it
+  shows who voted, and how, under one identity key across every
+  council. Its date is the voter's own claim, which nothing witnesses
+  yet. Your deliberation (45) and citing councils (46) aren't built.
 - 2026-11-15, cycle 6: record 012-07-03 (the endless plant: a design,
   and a sketch crate in Rust with a choice neuron) brought into
   `sketches/` as written, with the technical lead's review: it doesn't
@@ -919,11 +930,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/Cargo.
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/rust-toolchain.toml
 ```
 
-**Rust: `formats`**, records signed the standard way (9):
+**Rust: `formats`**, records signed the standard way (10):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/Cargo.toml
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/canonical.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/council.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/lib.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/multikey.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/persons.rs
@@ -941,7 +953,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/main.rs
 ```
 
-**Rust: `ur-world`**, the Ur-world, with its examples (21):
+**Rust: `ur-world`**, the Ur-world, with its examples (22):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/Cargo.toml
@@ -956,6 +968,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-wor
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/space.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/story.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/world.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/council.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/mod.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/octopus.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/relay.rs
