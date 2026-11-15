@@ -257,7 +257,8 @@ kind.
   So docs/FUNDAMENTALS.md gathers every decision on freedom and privacy
   in one place, with where each is designed and whether it is built;
   privacy joins the charter's guarantees (section 3) and AGENTS.md's
-  protected freedoms. One question is put to the founder, below.
+  protected freedoms. One question is put to the founder (Open
+  questions, above).
 - 2026-11-15, founder, no multiversal currency, ever: "You mentioned Ethereum and cryptocurrency, we do not need to create
   a multiversal currency, in fact, I think that's a terrible idea. But we
   could still have commerce worlds where economies could be simulated, or
