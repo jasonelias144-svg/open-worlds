@@ -11,10 +11,15 @@ The plan is in [../docs/FRACTALS.md](../docs/FRACTALS.md).
   track's part 2). Before it draws anything, it checks four things, and
   lists each with what it found:
   - the log's chain of hashes, written as the Python kernel writes them;
-  - growth by the rule, every step grown again in the page;
-  - the world's signed head, its Ed25519 signature checked with the
-    browser's own WebCrypto, and that it covers the whole log;
-  - the birth record, signed by the world, naming its template and law.
+  - the log as the Rust world writes it: every entry grown again in the
+    page and compared whole, every field but the hash, as
+    `rust/plant-world`'s `log_problems` does, so nothing the rule didn't
+    write can pass;
+  - the world's signed head: its format, its world, and its Ed25519
+    signature checked with the browser's own WebCrypto, and that it
+    covers the whole log;
+  - the birth record, signed by the world: its template, its law, and
+    exactly the dials it changed from the template's values.
 
   A log that fails the chain or the rule isn't drawn. Where the browser
   can't check Ed25519, the page says so rather than claiming it did.
@@ -23,9 +28,12 @@ The plan is in [../docs/FRACTALS.md](../docs/FRACTALS.md).
   To run it, serve the repository's folder and open the page:
   `python3 -m http.server`, then `http://localhost:8000/web/plant/`.
   It reads `vectors/plant-world.json`, five worlds the Rust plant world
-  grew, unless `?log=` names another file. A log can also be opened
+  grew, unless `?log=` names another file on the same site, by a
+  relative path; any other address is refused. A log can also be opened
   from disk. One file, with no library and nothing loaded from outside:
-  `tests/test_web_pages.py` checks that no page names an outside
+  its Content-Security-Policy lets the browser load nothing but the page
+  itself and connect only to its own site, and `tests/test_web_pages.py`
+  checks that every page carries such a policy and names no outside
   address.
 
 What it will be:

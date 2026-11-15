@@ -34,14 +34,15 @@ respect one another's freedom, with full transparency and exit at any time
   step 3 and gained step 8a, a lost or leaked key, before ALICE's and
   BOB's birth. Step 3a, persons, is under way: its plan, after looking
   first, is in docs/research/PERSONS.md.
-- Claude: the fractal track, alongside the course (docs/FRACTALS.md), set
-  by the founder on 2026-11-14: a fractal plant world in Rust, the web
-  app in `web/` to watch worlds grow, and in it the multiversal map. Its
-  plan is in, and its first part, the plant world, is built
+- Claude: the fractal track, alongside the course (docs/FRACTALS.md),
+  set by the founder on 2026-11-14: a fractal plant world in Rust, the
+  web app in `web/` to watch worlds grow, and in it the multiversal map.
+  Its plan is in, and its first part, the plant world, is built
   (`rust/plant-world`), and so is its second, Plant Watch, the page that
   replays a plant tick by tick and checks its log first (`web/plant/`).
-  The third, the Ur-world's garden hosting plant worlds, is next. DeepSeek's code from record 012-06-02 works in part
-  (#63), with a second round to come.
+  The third, the Ur-world's garden hosting plant worlds, is next.
+  DeepSeek's code from record 012-06-02 works in part (#63), with a
+  second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
   (#29), and experiment 001, the first unscripted minds
   ([results](experiments/001-first-words/RESULTS.md), #30). The first

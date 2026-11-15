@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
 <!--PAGE-START-->
 <title>Plant Watch</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -104,14 +106,14 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
     <p class="sub" id="sub">A plant world, replayed from its own log.</p>
   </header>
   <div class="worlds" id="worlds" role="group" aria-label="Worlds"></div>
-  <p class="notice" id="notice" hidden></p>
+  <p class="notice" id="notice" role="status" hidden></p>
   <div class="main">
     <section class="stage" aria-label="The plant">
       <canvas id="plant" width="800" height="600" aria-label="The plant as it grows"></canvas>
       <div class="controls">
         <button id="play" type="button">Play</button>
         <input id="slider" type="range" min="0" max="0" value="0" step="1" aria-label="Tick">
-        <span class="tick" id="tick">tick 0 of 0</span>
+        <span class="tick" id="tick" aria-live="polite">tick 0 of 0</span>
       </div>
       <p class="entry" id="entry"></p>
     </section>
@@ -203,6 +205,12 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
   }
 
   // ---- The plant's rule, as rust/plant-world/src/rule.rs documents it.
+  const I64 = 2n ** 63n;
+  function holds(pot, x, y) {
+    const [px, py, pw, ph] = pot.map(BigInt), right = px + pw, bottom = py + ph;
+    if (right >= I64 || right < -I64 || bottom >= I64 || bottom < -I64) return false;
+    return px <= BigInt(x) && BigInt(x) < right && py <= BigInt(y) && BigInt(y) < bottom;
+  }
   function advance(tips, d, pot) {
     if (d.water <= 0) return [[], tips];
     const depth = d.light >= 3 ? d.maxDepth : Math.floor(d.maxDepth / 2);
@@ -211,32 +219,55 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
       if (n >= depth) continue;
       const [dx, dy] = DIRECTIONS[dir];
       const nx = x + dx * d.branchLength, ny = y + dy * d.branchLength;
-      if (pot && !(pot[0] <= nx && nx < pot[0] + pot[2] && pot[1] <= ny && ny < pot[1] + pot[3])) continue;
+      if (pot && !holds(pot, nx, ny)) continue;
       segs.push([x, y, nx, ny]);
       next.push([nx, ny, (dir + 7) % 8, n + 1], [nx, ny, (dir + 1) % 8, n + 1]);
     }
     return [segs, next];
   }
+  // The log as the Rust world writes it, grown again from its first
+  // entry, and compared entry by entry, every field but the hash (which the
+  // chain check has already checked): as log_problems does
+  // (rust/plant-world/src/world.rs). Read as JSON, a number written 2.0
+  // arrives here as 2; Rust refuses it, and nothing this project writes has
+  // one.
+  const NO_WATER = "There is no water, so nothing grows.";
+  const NO_MORE = "Every tip has split as many times as it may, or would grow past the pot.";
+  const DIALS = [["branchLength", 1, 16], ["maxDepth", 1, 12], ["water", 0, 10], ["light", 0, 10]];
+  const isInt = v => Number.isSafeInteger(v);
+  function readDials(v) {
+    if (!v || typeof v !== "object" || Array.isArray(v) || Object.keys(v).length !== 4) return null;
+    for (const [k, lo, hi] of DIALS) if (!isInt(v[k]) || v[k] < lo || v[k] > hi) return null;
+    return v;
+  }
+  function readPot(v) {
+    if (v === null) return { pot: null };
+    if (!Array.isArray(v) || v.length !== 4 || !v.every(isInt)) return null;
+    return { pot: v };
+  }
+  function entry(tick, kind, data, prev) { return { tick, kind, agent: null, data, prev }; }
   function ruleProblem(log) {
-    const first = log[0];
-    const data = first && first.data;
-    if (!data || first.kind !== "world_created" || data.rule !== RULE) return "[0]: not a plant world's first entry";
-    const d = data.dials || {};
-    for (const k of ["branchLength", "maxDepth", "water", "light"]) if (!Number.isSafeInteger(d[k])) return "[0]: its dials can't be read";
-    if (d.branchLength < 1 || d.branchLength > 16 || d.maxDepth < 1 || d.maxDepth > 12 || d.water < 0 || d.water > 10 || d.light < 0 || d.light > 10) return "[0]: a dial is outside its range";
-    if (pyJson(data.tip) !== "[0,0,0,0]") return "[0]: the plant doesn't begin at the origin, pointing up";
+    const first = log[0], data = first && first.data;
+    const fields = data && typeof data === "object" ? Object.keys(data).sort().join(",") : "";
+    if (fields !== "dials,pot,rule,template,tip,world" || data.rule !== RULE) return "[0]: not a plant world's first entry";
+    try { publicKey(data.world); } catch (e) { return "[0]: the world's key isn't an Ed25519 did:key"; }
+    if (typeof data.template !== "string" || !/^[0-9a-f]{64}$/.test(data.template)) return "[0]: the template's hash isn't 64 lowercase hex digits";
+    const d = readDials(data.dials), p = readPot(data.pot);
+    if (!d || !p) return "[0]: its dials or pot can't be read, or a dial is outside its range";
+    const made = { world: data.world, template: data.template, rule: RULE, dials: d, pot: p.pot, tip: [0, 0, 0, 0] };
+    if (pyJson(first) !== pyJson(Object.assign(entry(0, "world_created", made, GENESIS), { hash: first.hash }))) return "[0]: not what a plant world writes first";
     let tips = [[0, 0, 0, 0]], done = false;
     for (let i = 1; i < log.length; i++) {
       if (done) return "[" + i + "]: an entry after finished";
-      const e = log[i];
-      if (e.tick !== i) return "[" + i + "]: the wrong tick";
-      const [segs, next] = advance(tips, d, data.pot);
-      if (d.water <= 0 || segs.length === 0) {
-        if (e.kind !== "finished") return "[" + i + "]: the plant should have finished here";
-        done = true; continue;
+      let expected;
+      if (d.water <= 0) { expected = entry(i, "finished", { reason: NO_WATER }, log[i - 1].hash); done = true; }
+      else {
+        const [segs, next] = advance(tips, d, p.pot);
+        if (segs.length === 0) { expected = entry(i, "finished", { reason: NO_MORE }, log[i - 1].hash); done = true; }
+        else { expected = entry(i, "grew", { segments: segs, tips: next }, log[i - 1].hash); tips = next; }
       }
-      if (e.kind !== "grew" || pyJson(e.data) !== pyJson({ segments: segs, tips: next })) return "[" + i + "]: not what the rule grows here";
-      tips = next;
+      const body = Object.assign({}, log[i]); delete body.hash;
+      if (pyJson(body) !== pyJson(expected)) return "[" + i + "]: not what the rule makes here";
     }
     return null;
   }
@@ -251,20 +282,33 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
     for (const ch of s) { if (ch === "1") out.unshift(0); else break; }
     return new Uint8Array(out);
   }
+  function base58encode(bytes) {
+    let n = 0n;
+    for (const x of bytes) n = n * 256n + BigInt(x);
+    let out = "";
+    while (n > 0n) { out = B58[Number(n % 58n)] + out; n /= 58n; }
+    for (const x of bytes) { if (x === 0) out = "1" + out; else break; }
+    return out;
+  }
   function publicKey(did) {
     if (typeof did !== "string" || !did.startsWith("did:key:z")) throw new Error("not a did:key");
     const b = base58(did.slice(9));
     if (b.length !== 34 || b[0] !== 0xed || b[1] !== 0x01) throw new Error("not an Ed25519 key");
+    if (base58encode(b) !== did.slice(9)) throw new Error("not the key's one written form");
     return b.slice(2);
   }
   // Whether `record` is signed by `signer` (a did:key): "ok", or why not,
   // or "unsupported" where this browser can't check Ed25519.
-  async function signedBy(record, signer) {
+  const TIME = /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$/;
+  async function signedBy(record, signer, format) {
     try {
+      if (!record || record.format !== format) return "not a record of the format " + format;
+      if (record.world !== signer) return "names another world";
       const proof = record && record.proof;
       if (!proof || proof.type !== "DataIntegrityProof" || proof.cryptosuite !== "eddsa-jcs-2022") return "not an eddsa-jcs-2022 proof";
       if ("@context" in proof || "@context" in record) return "has an @context, which this page doesn't read";
       if (proof.verificationMethod !== signer + "#" + signer.slice(8)) return "signed by another key than the world's";
+      if (typeof proof.created !== "string" || !TIME.test(proof.created) || typeof proof.proofPurpose !== "string") return "its proof's time or purpose isn't written as required";
       const unsecured = Object.assign({}, record); delete unsecured.proof;
       const options = Object.assign({}, proof); delete options.proofValue;
       if (typeof proof.proofValue !== "string" || proof.proofValue[0] !== "z") return "its signature isn't base58";
@@ -291,7 +335,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
                       : ["ok", "Growth by its rule", "Every step grown again here, the same branches and tips."]);
     const key = log[0] && log[0].data && log[0].data.world;
     if (world.head) {
-      const s = await signedBy(world.head, key), h = world.head;
+      const s = await signedBy(world.head, key, "open-worlds/log-head/v1"), h = world.head;
       const covers = h.length === log.length && h.last === log[log.length - 1].hash && h.tick === log[log.length - 1].tick;
       if (s === "unsupported") results.push(["warn", "The world's signed head", "Not checked: this browser can't check Ed25519 signatures."]);
       else if (s !== "ok") results.push(["bad", "The world's signed head", s]);
@@ -299,12 +343,18 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
                                : ["bad", "The world's signed head", "Signed, but it doesn't cover this log as shown."]);
     } else results.push(["warn", "The world's signed head", "Not given with this log."]);
     if (world.birth) {
-      const s = await signedBy(world.birth, key), b = world.birth;
+      const s = await signedBy(world.birth, key, "open-worlds/world-birth/v1"), b = world.birth;
       let why = null;
       if (s === "unsupported") results.push(["warn", "Its birth record", "Not checked: this browser can't check Ed25519 signatures."]);
       else if (s !== "ok") results.push(["bad", "Its birth record", s]);
       else {
+        const logDials = log[0].data.dials, given = file && file.template && file.template.parameters;
+        const setDials = b.dials || {};
         if (b.template !== log[0].data.template) why = "names another template than the log";
+        else if (file && file.template && file.templateHash && hex(await sha256(text(jcs(file.template)))) !== file.templateHash) why = "the template given with it isn't the one its hash names";
+        else if (file && file.templateHash && b.template !== file.templateHash) why = "names another template than the one given with it";
+        else if (Object.keys(setDials).some(k => setDials[k] !== logDials[k])) why = "its dials aren't the log's";
+        else if (given && Object.keys(logDials).some(k => (logDials[k] !== (given[k] || {}).value) !== (k in setDials))) why = "it doesn't name exactly the dials changed from the template";
         else if (file && file.law && file.lawHash) {
           const lawHash = hex(await sha256(text(jcs(file.law))));
           if (lawHash !== file.lawHash || b.law !== lawHash) why = "its law isn't the law given with it";
@@ -419,6 +469,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
       li.append(chip, w, y); list.append(li);
     }
     const failed = results.slice(0, 2).some(r => r[0] === "bad");
+    const birthHolds = results[3][0] === "ok";
     const data = log[0] && log[0].data || {};
     const fr = failed ? [[]] : frames(log);
     state = { log, frames: fr, pot: data.pot || null, bounds: bounds(fr, data.pot), shown: !failed };
@@ -426,7 +477,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
     const facts = document.getElementById("facts"); facts.textContent = "";
     const d = data.dials || {};
     const rows = [
-      ["World", world.name || "unnamed"],
+      ["World", birthHolds ? world.birth.name + " (as its birth record names it)" : (world.name || "unnamed")],
       ["Key", typeof data.world === "string" ? data.world.slice(0, 20) + "…" + data.world.slice(-6) : "?"],
       ["Branch length", d.branchLength + " cells"],
       ["Splits", d.maxDepth + (d.light < 3 ? " (half, in low light)" : "")],
@@ -435,7 +486,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
       ["Branches", String(fr.reduce((a, f) => a + f.length, 0))],
     ];
     for (const [k, v] of rows) { const dt = document.createElement("dt"); dt.textContent = k; const dd = document.createElement("dd"); dd.textContent = v; facts.append(dt, dd); }
-    document.getElementById("sub").textContent = (world.name || "A plant world") + ", replayed from its own log.";
+    document.getElementById("sub").textContent = (birthHolds ? world.birth.name : world.name || "A plant world") + ", replayed from its own log.";
     slider.max = String(Math.max(log.length - 1, 0));
     // At rest, the whole plant; Play grows it from the first tick.
     show(state.shown ? log.length - 1 : 0, 1);
@@ -461,8 +512,17 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
   const embedded = document.getElementById("embedded").textContent.trim();
   if (embedded) load(JSON.parse(embedded), "the shared vectors");
   else {
-    const src = new URLSearchParams(location.search).get("log") || "../../vectors/plant-world.json";
-    fetch(src).then(r => { if (!r.ok) throw new Error(r.status + " " + r.statusText); return r.json(); })
+    // ?log= names a file on this site only: a relative path, never another
+    // address, so the page never asks any other host for anything.
+    const asked = new URLSearchParams(location.search).get("log");
+    const src = asked === null ? "../../vectors/plant-world.json" : asked;
+    let url = null;
+    try {
+      const u = new URL(src, location.href);
+      if (/^[A-Za-z0-9._\/-]+$/.test(src) && !src.startsWith("/") && !src.includes("//") && u.origin === location.origin) url = u.href;
+    } catch (e) { url = null; }
+    if (!url) { notice("Only a file on this site can be named with ?log=, by a relative path such as ../../vectors/plant-world.json.", true); draw(); return; }
+    fetch(url, { credentials: "omit", referrerPolicy: "no-referrer" }).then(r => { if (!r.ok) throw new Error(r.status + " " + r.statusText); return r.json(); })
       .then(j => load(j, src))
       .catch(e => notice("Couldn't read " + src + " (" + e.message + "). Serve the repository's folder, for example with python3 -m http.server, or open a log below.", false));
   }
