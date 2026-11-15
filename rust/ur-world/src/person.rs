@@ -34,8 +34,10 @@
 use std::cell::RefCell;
 use std::rc::Rc;
 
+use formats::council::VOTE;
 use formats::persons::{HELD_BY, HOLDS, presence_key, presence_secret};
 use formats::proof::{self, public_key};
+use formats::records::record_hash;
 use serde_json::{Value, json};
 
 use crate::arrival::{self, did, trial_secret};
@@ -114,6 +116,21 @@ impl Person {
     ) -> Result<Value, String> {
         let secret = presence_secret(&self.seed, world.key(), counter)?;
         arrival::sign(world, &secret, name, created)
+    }
+
+    /// The person's vote on `proposal` (a council's
+    /// `open-worlds/proposal/v1`): the choice at `choice`'s place, signed
+    /// at `time` by their identity key ([`formats::council`]). A vote is
+    /// the person's, never a presence's, and public as theirs.
+    pub fn vote(&self, proposal: &Value, choice: u64, time: &str) -> Result<Value, String> {
+        let record = json!({
+            "format": VOTE,
+            "proposal": record_hash(proposal)?,
+            "person": self.key(),
+            "choice": choice,
+            "time": time,
+        });
+        proof::sign(&record, &self.identity, time, "assertionMethod")
     }
 
     /// Both halves of the link between the person and their presence
