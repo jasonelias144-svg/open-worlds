@@ -75,9 +75,9 @@ Two other parts look like offices, and are not under these marks:
   in the open, and it passes only by the founder's act
   ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item 6), never by the
   handover rule below.
-- **The technical lead.** It is an office of the project, not of the
-  multiverse. ADMIN.md, row 9, lists it among the offices that need a
-  succession, and under AGENTS.md it passes only by the founder's act,
+- **The technical lead.** It is a role of the project, not of the
+  multiverse, with a succession: ADMIN.md, row 9, lists it among those
+  that need one, and under AGENTS.md it passes only by the founder's act,
   since the founder decides who works on the project.
 
 ## Handing an office on
@@ -139,17 +139,22 @@ stands unless the founder answers otherwise:
 - **A block, not a final approval.** A handover goes ahead unless ADMIN
   blocks it within a set time, so a silent ADMIN never freezes a
   world's succession.
-- **On written grounds, never for any reason.** ADMIN may block only on
+- **On written grounds, never for any reason.** This narrows the
+  founder's "for whatever reason", and says so. ADMIN may block only on
   grounds written in advance: the successor doesn't meet the office's
   qualifications, has misused an office before, or holds an office that
   watches this one. "No one holds power that isn't written down,
   checked and answerable" (ADMIN.md, "What the multiverse must
-  preserve", row 6), and ADMIN deliberately doesn't choose Keepers ("ADMIN
-  doesn't choose it", ADMIN.md, "The admin-key"). A veto without
-  reasons would let it choose them indirectly.
+  preserve", row 6), and ADMIN doesn't choose Keepers, as when the
+  multiverse assigns one ("ADMIN doesn't choose it", ADMIN.md, "The
+  admin-key"). A veto without reasons would let it choose them
+  indirectly.
 - **A ruling, and a serious act.** A block is logged with its reasons,
   like every ruling of ADMIN's, and reviewed independently before it
-  takes effect, as removing a Keeper is.
+  takes effect, as removing a Keeper is; ADMIN.md's list of serious acts
+  gains it when this is adopted. A block against a successor who is an
+  individual touches an individual, so it also goes to the founder, or a
+  person the founder names, as such acts do.
 - **Settled by the appeals that already exist.** The outgoing holder or
   the successor may appeal: to the technical lead's role, then to the
   founder, and in time to the multiverse's governance; no one judges

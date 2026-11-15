@@ -768,7 +768,8 @@ clearly and the successor meets its qualifications; a Keeper may prepare
 a successor; ADMIN has a part in the qualifications.
 
 **Open:** what a Keeper's qualifications are, and which of them code can
-check; how long ADMIN has to block a handover; what an oath of office
+check; how long ADMIN has to block a handover (if the proposed block
+stands); what an oath of office
 says; how an office is filled when it falls empty.
 
 **A possible implementation:** an office record (its charter, key,

@@ -79,8 +79,8 @@ successor are in [OFFICES.md](OFFICES.md).
 
 A **role** is any part an agent plays, such as a walker, a voter or a
 guardian someone names for a lost key. A role becomes an office when it
-holds power over others given by a law rather than by the people it
-affects.
+holds power over others, or over something shared, given by a law
+rather than by the people it affects.
 
 ## Where rights attach
 
