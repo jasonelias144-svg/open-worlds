@@ -251,9 +251,10 @@ built"), from DeepSeek's component 44. A council signs a proposal
 (`open-worlds/proposal/v1`) naming its choices, a quorum, when votes
 count, and the worlds whose births it trusts; each person signs a vote
 (`open-worlds/vote/v1`) with their identity key. Anyone counts again:
-each person once, by their latest vote while the proposal is open, and
-only persons whose birth a trusted world signed. In the run, five
-presences in the council's world are three persons counted.
+each person once, by their latest vote dated before the close, and only
+persons whose birth a trusted world signed. A vote is public, and its
+date is the voter's own claim, which nothing witnesses yet. In the run,
+five presences in the council's world are three persons counted.
 
 **A possible implementation:** deliberation before the vote (component
 45: signed positions that change, round by round) and councils that cite

@@ -586,7 +586,10 @@ four, second half, built"). A council's proposal,
 to 16), the worlds whose births it trusts, a quorum of persons, and when
 votes count, from `opens` to `closes` (it must close after it opens). A
 person's vote, `open-worlds/vote/v1`, signed by their identity key,
-names the proposal by its hash, a choice by its place, and a time.
+names the proposal by its hash, a choice by its place, and a time. A
+vote is public, and the person's: it shows who voted, and how, under one
+identity key across every council. Its time is the voter's own claim,
+which nothing witnesses yet (PERSONS.md, "Its limits").
 `formats/council.py` and `rust/formats/src/council.rs` count the votes
 the same way, against `vectors/formats/council-v1.json`.
 

@@ -590,13 +590,16 @@ shared vectors, and a council run among the architectures.
      included; it must close after it opens);
    - `open-worlds/vote/v1`, signed by the person's identity key: the
      proposal by its hash, a choice by its place, and a time.
-2. **A vote counts** only if it holds, names this proposal, names a
-   choice it has, was cast while the proposal was open, and its person's
-   birth was signed by a world the proposal trusts.
+2. **A vote counts** only if it holds, isn't a copy of a vote given
+   before it, names this proposal, names a choice it has, is dated from
+   `opens` to `closes`, and its person's birth was signed by a world the
+   proposal trusts. A copy is refused so that no one can cancel a
+   person's vote by giving it twice: votes are public, so anyone
+   presenting a count could.
 3. **Each person counts once:** the latest of their votes that count. A
-   person can change their vote until the proposal closes, as in
-   deliberation (component 45) and as Snapshot allows; two votes at the
-   latest time count for neither, since neither is the later.
+   person can change their vote, by its date, up to the close, as in
+   deliberation (component 45) and as Snapshot allows; two or more votes
+   at the latest time count for none, since none is the later.
 4. **The outcome** is the choice with the most persons, if at least the
    quorum was counted and no other choice has as many; a tie, or too few,
    decides nothing.
@@ -628,10 +631,11 @@ unlinked, and the votes are off any world.
 
 **The vectors** (`vectors/formats/council-v1.json`, written by `python3
 -m formats.council_vectors`) hold a proposal, five trial persons' births
-(three trusted, one not, one with none), and nine cases: votes that
-count, a vote changed, two votes at one time, a tie, too few, votes at
-the opening and the closing, votes refused for each reason, a birth that
-doesn't hold, and a proposal that doesn't hold. Rust gives the same
+(three trusted, one not, one with none), and twelve cases: votes that
+count, a vote changed, two votes at one time, three at one time, the
+same vote given twice, a person born in two trusted worlds, a tie, too
+few, votes at the opening and the closing, votes refused for each
+reason, a birth that doesn't hold, and a proposal that doesn't hold. Rust gives the same
 count, word for word.
 
 ### Its limits
@@ -643,6 +647,20 @@ count, word for word.
 - **Births are given, not found.** Whoever counts gathers the birth
   records; a person whose birth isn't given isn't counted.
 - **A vote is public.** See above.
+- **A vote's date is the voter's own claim.** Nothing witnesses when a
+  vote was made: a person can sign a vote after the close, date it
+  before, and it counts, replacing their earlier one. So "until the
+  close" holds only by the votes' dates, and no count is final while
+  votes can still be signed. A count becomes final once the votes are
+  fixed by something that saw them before the close, such as entries in
+  a log signed before `closes`, which a governance built on this would
+  need. That witness isn't built.
+- **The run's births are trials.** The run's persons are born in the
+  council's world under the names ONE, TWO and THREE, while their
+  presences there are unlinked and named otherwise; it doesn't follow
+  decision 10's order, where the first presence in the birth world
+  bears the birth name and is linked. Births are given to the count, so
+  the count doesn't depend on it.
 - **No deliberation or citing.** Positions before the vote (component
   45) and councils that cite each other (component 46) aren't built.
 

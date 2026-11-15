@@ -33,10 +33,11 @@ class TheVectors(unittest.TestCase):
                             for p in t["problems"])
         for words in ("not a vote that holds", "names another proposal",
                       "a choice the proposal doesn't have",
-                      "cast before the proposal opens",
-                      "cast after the proposal closes",
+                      "dated before the proposal opens",
+                      "dated after the proposal closes",
                       "by one whose birth no trusted world signed",
-                      "one of two votes by one person at one time",
+                      "one of several votes by one person at one time",
+                      "the same vote as votes[",
                       "not a birth record that holds",
                       "not a proposal that holds"):
             self.assertIn(words, problems)
@@ -75,12 +76,26 @@ class TheCount(unittest.TestCase):
             with self.subTest(proposal=proposal):
                 council.tally(proposal, junk, junk)
 
-    def test_a_person_counts_once_however_often_they_vote(self):
+    def test_a_copy_of_a_vote_cancels_nothing(self):
+        # Votes are public, so anyone presenting a count could repeat a
+        # person's vote; the copy is refused, and the person still counts.
+        alone = council.tally(self.proposal, self.votes, self.births)
         votes = self.votes + [self.votes[0]]
         counted = council.tally(self.proposal, votes, self.births)
-        # The same vote twice is two votes at one time: neither counts.
-        self.assertEqual(counted["persons"], 2)
-        self.assertIsNone(counted["outcome"])
+        self.assertEqual(counted["counts"], alone["counts"])
+        self.assertEqual(counted["outcome"], alone["outcome"])
+        self.assertEqual(counted["problems"], [
+            f"votes[{len(self.votes)}]: the same vote as votes[0]"])
+
+    def test_a_copy_of_a_vote_that_doesnt_count_is_named_a_copy(self):
+        other = next(v for c in VECTORS["cases"] for v in c["votes"]
+                     if isinstance(v, dict)
+                     and v.get("proposal") not in (None, records.record_hash(
+                         self.proposal)))
+        counted = council.tally(self.proposal, [other, other], self.births)
+        self.assertEqual(counted["problems"], [
+            "votes[0]: names another proposal",
+            "votes[1]: the same vote as votes[0]"])
 
     def test_a_birth_from_an_untrusted_world_counts_no_one(self):
         untrusted = [b for b in self.births

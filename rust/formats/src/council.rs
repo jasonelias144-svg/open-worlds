@@ -10,11 +10,12 @@
 //!   (`quorum`), and the worlds whose births it trusts (`trusts`).
 //! - **A vote** (`open-worlds/vote/v1`), signed by the person's identity
 //!   key, names the proposal by its hash and a choice by its place.
-//! - **A vote counts** only if it holds, names this proposal, names a
-//!   choice it has, was cast from `opens` to `closes`, and its person's
-//!   birth was signed by a world the proposal trusts.
+//! - **A vote counts** only if it holds, isn't a copy of a vote given
+//!   before it, names this proposal, names a choice it has, is dated
+//!   from `opens` to `closes`, and its person's birth was signed by a
+//!   world the proposal trusts.
 //! - **Each person counts once:** the latest of their votes that count.
-//!   Two at the latest time are refused, both.
+//!   Two or more at the latest time are refused, all of them.
 //! - **The outcome** is the choice with the most persons, if at least
 //!   `quorum` persons were counted and no other choice has as many.
 //!
@@ -24,6 +25,11 @@
 //!   identity key, so it shows who voted, and how: there is no secret
 //!   ballot here (`docs/research/PERSONS.md`, "Part four, second half,
 //!   built").
+//! - **A vote's date is the voter's own claim.** Nothing here witnesses
+//!   when a vote was made, so a vote signed after the close but dated
+//!   before it counts, and replaces the person's earlier one. A count is
+//!   final only once the votes are fixed by something that saw them
+//!   before the close; that witness isn't built.
 //! - **Births are given, not found.** Whoever counts gathers the birth
 //!   records; a person whose birth isn't given doesn't count.
 //! - **A person is one only as far as their birth shows** (decision 8): a
@@ -99,24 +105,35 @@ pub fn tally(proposal: &Value, votes: &[Value], births: &[Value]) -> Tally {
     let (opens, closes) = (text(proposal, "opens"), text(proposal, "closes"));
     // Each person's votes that count so far: their time, and their place.
     let mut by_person: BTreeMap<&str, Vec<(&str, usize)>> = BTreeMap::new();
+    // The place of each vote that holds, by its record's hash: a copy
+    // given again is refused, so it can't cancel its person's vote.
+    let mut first: BTreeMap<String, usize> = BTreeMap::new();
     for (i, vote) in votes.iter().enumerate() {
         let choice = vote
             .get("choice")
             .and_then(Value::as_u64)
             .and_then(|c| usize::try_from(c).ok());
         let time = text(vote, "time");
-        let problem = if !holds(vote, VOTE) {
-            Some("not a vote that holds")
+        let held = holds(vote, VOTE);
+        let digest = if held { record_hash(vote).ok() } else { None };
+        let copy_of = digest.as_ref().and_then(|d| first.get(d).copied());
+        if let (Some(d), None) = (digest, copy_of) {
+            first.insert(d, i);
+        }
+        let problem = if !held {
+            Some("not a vote that holds".to_owned())
+        } else if let Some(j) = copy_of {
+            Some(format!("the same vote as votes[{j}]"))
         } else if text(vote, "proposal") != this {
-            Some("names another proposal")
+            Some("names another proposal".to_owned())
         } else if choice.is_none_or(|c| c >= choices) {
-            Some("a choice the proposal doesn't have")
+            Some("a choice the proposal doesn't have".to_owned())
         } else if time < opens {
-            Some("cast before the proposal opens")
+            Some("dated before the proposal opens".to_owned())
         } else if time > closes {
-            Some("cast after the proposal closes")
+            Some("dated after the proposal closes".to_owned())
         } else if !born.contains(text(vote, "person")) {
-            Some("by one whose birth no trusted world signed")
+            Some("by one whose birth no trusted world signed".to_owned())
         } else {
             None
         };
@@ -152,7 +169,7 @@ pub fn tally(proposal: &Value, votes: &[Value], births: &[Value]) -> Tally {
             several => result.problems.extend(
                 several
                     .iter()
-                    .map(|i| format!("votes[{i}]: one of two votes by one person at one time")),
+                    .map(|i| format!("votes[{i}]: one of several votes by one person at one time")),
             ),
         }
     }

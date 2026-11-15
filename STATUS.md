@@ -1589,9 +1589,11 @@ it was wrong. Questions of what the project is for stay with the founder.
   council, names its choices, quorum, open time and the worlds whose
   births it trusts. A vote (`open-worlds/vote/v1`) is signed by the
   person's identity key. Each person counts once, by their latest vote
-  while the proposal is open (two at the latest time count for neither),
-  and only persons whose birth a trusted world signed; the choice with
-  the most persons decides, if the quorum was counted and it has no tie.
+  dated from the opening to the close (two or more at the latest date
+  count for none; a copy of a vote given again is refused, so it can't
+  cancel anyone), and only persons whose birth a trusted world signed;
+  the choice with the most persons decides, if the quorum was counted
+  and it has no tie.
   *Why:* decision 8 counts persons, not presences, and only births a
   council trusts; a vote signed by the person is the act a count can be
   checked from, as DeepSeek's council and Snapshot both have it; letting
@@ -1599,7 +1601,19 @@ it was wrong. Questions of what the project is for stay with the founder.
   deliberation. These rules are the example's, not any office's: the
   round table keeps full consensus. *Wrong if:* a council needs secret
   ballots, or must count presences, not persons; then a different
-  record, decided first.
+  record, decided first. Or if a count must be final: a vote's date is
+  the voter's own claim, so a vote signed after the close but dated
+  before it still counts, and a count is final only once something that
+  saw the votes before the close fixes them (a log signed before
+  `closes`, say), which isn't built (#78's independent review).
+
+  Put to the founder the same day, with the technical lead's
+  recommendation, which stands unless the founder answers otherwise: a
+  public vote links all of a person's votes, in every council, to their
+  identity key, and through their birth record to the world they were
+  born in. The recommendation: public ballots for this example, as the
+  project's "full transparency" has it; whether governance needs secret
+  ballots is decided before any governance is built on these records.
 
 ## Log
 

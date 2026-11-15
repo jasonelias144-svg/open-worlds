@@ -22,6 +22,12 @@
 //! before the proposal closes; the fourth votes no, but was born in a far
 //! world the council doesn't trust. Three persons are counted, all yes,
 //! and the proposal passes.
+//!
+//! The births are trials: the persons are born under the names ONE,
+//! TWO, THREE and FOUR, while their presences are unlinked and named
+//! otherwise, so the run doesn't follow decision 10's order (the first
+//! presence in the birth world bears the birth name, and is linked).
+//! The count takes the births it is given, and doesn't depend on it.
 
 use formats::council::{BIRTH, PROPOSAL, Tally, tally};
 use formats::proof;

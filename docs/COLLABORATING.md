@@ -747,5 +747,7 @@ page.
   `open-worlds/proposal/v1` and `open-worlds/vote/v1`, and a count in
   Python and Rust with shared vectors (`formats/src/council.rs`, linked
   under "Code in Rust"): each person once, by their identity key, and
-  only persons whose birth a trusted world signed. Your deliberation
-  (45) and citing councils (46) aren't built.
+  only persons whose birth a trusted world signed. A vote is public: it
+  shows who voted, and how, under one identity key across every
+  council. Its date is the voter's own claim, which nothing witnesses
+  yet. Your deliberation (45) and citing councils (46) aren't built.

@@ -12,15 +12,23 @@ person a council trusts.
   and the worlds whose births it trusts (`trusts`).
 - **A vote** (`open-worlds/vote/v1`), signed by the person, names the
   proposal by its hash and a choice by its place, from 0.
-- **A vote counts** only if it holds, names this proposal, names a
-  choice it has, was cast from `opens` to `closes`, and its person's
-  birth was signed by a world the proposal trusts (decision 8: a world
-  can't count persons by their presences, and any world can sign
-  births).
+- **A vote counts** only if it holds, isn't a copy of a vote given
+  before it, names this proposal, names a choice it has, is dated from
+  `opens` to `closes`, and its person's birth was signed by a world the
+  proposal trusts (decision 8: a world can't count persons by their
+  presences, and any world can sign births).
 - **Each person counts once.** Of a person's votes that count, the
-  latest is theirs: a person can change their vote until the proposal
-  closes. Two at the latest time are refused, both, since neither can be
-  said to be the later.
+  latest is theirs: a person can change their vote, by its date, up to
+  the close. Two or more at the latest time are refused, all of them,
+  since none can be said to be the later.
+- **A vote is public, and the person's.** It is signed by their identity
+  key, so it shows who voted, and how: there is no secret ballot here.
+- **A vote's date is the voter's own claim.** Nothing here witnesses
+  when a vote was made, so a vote signed after the close but dated
+  before it counts, and replaces the person's earlier one. A count is
+  final only once the votes are fixed by something that saw them before
+  the close, such as entries in a log signed before `closes`; that
+  witness isn't built (docs/research/PERSONS.md, "Its limits").
 - **The outcome** is the choice with the most persons, if at least
   `quorum` persons were counted and no other choice has as many;
   otherwise there is none.
@@ -72,18 +80,28 @@ def tally(proposal: Any, votes: List[Any], births: List[Any]) -> Dict[str, Any]:
     choices = len(proposal["choices"])
     # Each person's votes that count so far: (time, place in votes).
     by_person: Dict[str, List[tuple]] = {}
+    # The place of each vote that holds, by its record's hash: a copy
+    # given again is refused, so it can't cancel its person's vote.
+    first: Dict[str, int] = {}
     for i, vote in enumerate(votes):
         where = f"votes[{i}]"
         if not _holds(vote, VOTE):
             problems.append(f"{where}: not a vote that holds")
-        elif vote["proposal"] != this:
+            continue
+        digest = records.record_hash(vote)
+        if digest in first:
+            problems.append(f"{where}: the same vote as "
+                            f"votes[{first[digest]}]")
+            continue
+        first[digest] = i
+        if vote["proposal"] != this:
             problems.append(f"{where}: names another proposal")
         elif vote["choice"] >= choices:
             problems.append(f"{where}: a choice the proposal doesn't have")
         elif vote["time"] < proposal["opens"]:
-            problems.append(f"{where}: cast before the proposal opens")
+            problems.append(f"{where}: dated before the proposal opens")
         elif vote["time"] > proposal["closes"]:
-            problems.append(f"{where}: cast after the proposal closes")
+            problems.append(f"{where}: dated after the proposal closes")
         elif vote["person"] not in born:
             problems.append(f"{where}: by one whose birth no trusted world "
                             "signed")
@@ -95,8 +113,8 @@ def tally(proposal: Any, votes: List[Any], births: List[Any]) -> Dict[str, Any]:
         latest = max(t for t, _ in by_person[person])
         last = [i for t, i in by_person[person] if t == latest]
         if len(last) > 1:
-            problems.extend(f"votes[{i}]: one of two votes by one person at "
-                            "one time" for i in last)
+            problems.extend(f"votes[{i}]: one of several votes by one "
+                            "person at one time" for i in last)
             continue
         counts[votes[last[0]]["choice"]] += 1
         counted.append(last[0])
