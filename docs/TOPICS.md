@@ -625,6 +625,72 @@ format is decided):
 
 Prose is as welcome as code.
 
+## 18. Living worlds: water, light and food
+
+*The fractal track, parts 4 and 5, after the map page.* The founder,
+2026-11-15, in six messages quoted whole in
+[FRACTALS.md](FRACTALS.md), "Where it leads: living worlds": "So
+instead of a prescribed number of turns, I can set it going and watch it
+develop and make choices over time." "It could be how “water” flows in
+the garden." "Yes, and participants can shape the terrain, and irrigate
+new gardens by shaping the flow of water, just as we have always done."
+And: "We can look at the variety of ways organisms seek water and see
+what strategies arise. Also light and food."
+
+**Decided:** the aim, in the founder's words. The stages and how they
+hold together are the technical lead's reading, which stands unless the
+founder answers otherwise (FRACTALS.md):
+- a plant that grows without end, gathering light and paying for its
+  branches, run in the browser;
+- a choice neuron for each plant, whole-number weights, learning from
+  what its choices bring;
+- water as particles, counted, from springs and rain;
+- plants that drink, roots growing toward water as shoots grow toward
+  light;
+- people shaping the land, and the water following;
+- seeds that inherit with small changes, so life spreads where water
+  lets it;
+- every run repeatable from its seed, and turned into a video.
+
+**Open:** nearly everything about how it behaves:
+- how water moves, step by step, in whole numbers: falling, flowing
+  downhill, pooling, soaking in, evaporating;
+- a growth rule with no fixed end that stays a manageable size;
+- what the neuron reads at a tip, what it chooses among, and what its
+  reward is;
+- how roots and shoots share what a plant gathers;
+- what a seed carries, how far it travels, and when it sprouts;
+- the strategies living things use to find water, light and food, and
+  which a world like this might give rise to;
+- how a garden's water is shared when one person's channel changes
+  another's stream.
+
+**A possible implementation:** one step of the world, in whole numbers,
+in a fixed order, so it is the same on every machine. As a sketch (no
+format is decided):
+
+```text
+each tick:
+  rain and springs add water particles (from the world's seed)
+  each water particle falls, or flows to the lowest open neighbour,
+    or soaks into soil below it
+  each plant: light reaching each tip, water reaching its roots
+  each tip: the plant's neuron chooses grow-left, grow-right, split,
+    or rest; the choice is paid for from what the plant gathered
+  each plant: its reward adjusts its neuron's weights
+  write the tick's changes to the log; every N ticks, a checkpoint
+```
+
+**Send back:**
+- a water rule, as prose or Rust with tests, in whole numbers;
+- an endless growth rule, and why it stays a manageable size;
+- what a plant's neuron should read and choose, and how it learns;
+- strategies for finding water, light and food you would expect to
+  arise, and how a world could show them;
+- what could go wrong, and how the design avoids it.
+
+Prose is as welcome as code.
+
 ## Further out
 
 Ideas that won't help yet but probably will, from the course's waiting

@@ -43,7 +43,10 @@ respect one another's freedom, with full transparency and exit at any time
   The third is half built: the Ur-world's garden hosts three plant
   worlds in glasshouses, and both logs record each step
   (`rust/ur-world/src/host.rs`). Its other half, the map's first page,
-  is next.
+  is next. Beyond it, the founder's aim: living worlds, where plants grow
+  without end and choose, water flows as particles, people shape the
+  land, and life spreads (docs/FRACTALS.md, "Where it leads: living
+  worlds").
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
@@ -213,6 +216,22 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, in six messages quoted whole in docs/FRACTALS.md
+  ("Where it leads: living worlds"), the aim for the fractal track: "So
+  instead of a prescribed number of turns, I can set it going and watch
+  it develop and make choices over time." "It could be how “water” flows
+  in the garden." "Yes, and participants can shape the terrain, and
+  irrigate new gardens by shaping the flow of water, just as we have
+  always done." "All three elements could be components of one world
+  type that models living systems." And: "For now, let’s keep moving
+  forward with what we have." The technical lead's reading, put to the
+  founder the same night, which stands unless the founder answers
+  otherwise: seven stages after the map page, from an endless plant in
+  the browser and a choice neuron, through water as particles, plants
+  that drink, people shaping the land, and seeds that inherit, to living
+  worlds with water, light and food; every run repeatable from its seed
+  and turned into a video. Open for DeepSeek to brainstorm
+  (docs/TOPICS.md, topic 18).
 - 2026-11-15, founder, later the same night: "Either way sounds good.
   Just go with what makes the most sense to you. For DeepSeek, yeah,
   let’s leave the Pro model for ADMIN potentially, and we can use Flash
@@ -1483,6 +1502,14 @@ it was wrong. Questions of what the project is for stay with the founder.
   the logs already written stay true.
 
 ## Log
+
+- 2026-11-15 Claude: living worlds, the founder's aim for the fractal
+  track, in six messages, recorded in docs/FRACTALS.md with the
+  technical lead's reading; docs/TOPICS.md gains topic 18, and
+  docs/COLLABORATING.md item 10, so DeepSeek starts from it. The first
+  video from a world was made the same night, from the garden's three
+  hosted plants and their checked logs, and shared with the founder
+  privately.
 
 - 2026-11-15 Claude: the fractal track's part 3, first half. The
   Ur-world's garden hosts three plant worlds in glasshouses, each a
