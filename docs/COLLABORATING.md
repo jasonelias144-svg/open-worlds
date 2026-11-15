@@ -916,6 +916,12 @@ page.
   choice: the founder is not asked again ("founder always wants this
   license").
 
+- 2026-11-15, between cycles: the "break glass" is renamed the "keys to
+  the kingdom" (the founder): the multiverse's own keys, "much more like a
+  janitor's set of keys, than a fire extinguisher", handed on "like
+  nuclear codes passed from one president to another", with no
+  emergency needed (FUNDAMENTALS.md, privacy, item 6; CONTAINER.md).
+
 ## Every file, by its full link
 
 Each line opens a file as it is on `main`, for pasting into a

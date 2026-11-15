@@ -237,6 +237,27 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, renaming the "break glass":
+  "We can change the name. I didn't choose it, but did love it. But upon
+  further discussion, "keys to the kingdom" is more appropriate. I
+  changed to janitor's key to not sound as pretentious. But "keys to the
+  kingdom" is a phrase, so let's go with that."
+  So the "break glass" is now the "keys to the kingdom", wherever the
+  keys are described as they are now: the charter's section 3,
+  FUNDAMENTALS.md (privacy, item 6), CONTAINER.md, OFFICES.md, ADMIN.md,
+  research/FORMATS.md and COLLABORATING.md. The founder's quoted words
+  and dated history keep "break glass", as records do. A correction the
+  founder's words make: the name was the technical lead's, put in the
+  options on 2026-11-14; what the founder chose then was the option
+  ("I agree with your recommendations").
+- 2026-11-15, founder, on what the "break glass" is like:
+  "Much more like a janitor's set of keys, than a fire extinguisher."
+  So the keys are not kept for emergencies: they look after the
+  multiverse's own machinery. The technical lead's reading, which stands
+  unless the founder answers otherwise: using them is part of ordinary
+  upkeep, by their holder's decision; every use is still recorded
+  publicly and permanently, as decided on 2026-11-14; and they still
+  never reach anyone's private space.
 - 2026-11-15, founder, on the earlier work and on the "break glass":
   ""the founder's earlier work" is exactly the level of information. No
   need to be specific. If the need arises, then it becomes part of the
@@ -2226,6 +2247,17 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: the "keys to the kingdom": the founder's words on
+  the "break glass" (handed on "like nuclear codes", "a janitor's set of
+  keys", and the new name) brought into the charter, FUNDAMENTALS.md
+  (privacy, item 6, rewritten around the new name), CONTAINER.md,
+  OFFICES.md, ADMIN.md, research/FORMATS.md and COLLABORATING.md, as the
+  Decided entry recorded in #87 said would follow. And a correction to
+  the licence entry of the same day ("on choosing the licence once"):
+  "nothing here is patented" is to our knowledge, and trademark rights,
+  as in the projects' names, are still held; the entry's "nothing is
+  held back" is about copyright.
 
 - 2026-11-15 Claude: the founder: "the founder's earlier work" is the
   level of detail, so the technical lead's reading that it may be named
