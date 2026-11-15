@@ -58,7 +58,8 @@ effect (docs/ADMIN.md).
 ## This repository
 
 - **What it is:** simulated worlds where AI agents live under one rule,
-  respect one another's freedom, with full transparency and exit at any time
+  respect one another's freedom, with full transparency and exit at any time;
+  free, and never a money machine
 - **Run:** `python3 -m experiments.corridor`
 - **Setup:** `python3 -m pip install -r requirements.txt` (each direct
   dependency pinned, with its reason)
@@ -77,8 +78,15 @@ effect (docs/ADMIN.md).
 
 ## Rules specific to this repository
 
-- **The charter is the founder's words.** Change `CHARTER.md` only with the
-  founder's approval, and say so in the pull request.
+- **The charter is the founder's words.** It grows from the founder's
+  recorded statements, quoted or paraphrased, with minor typos corrected:
+  the technical lead keeps it current as they are recorded (the founder,
+  2026-11-15: "Let's just let the charter develop over time, you can take
+  my direct quotes or paraphrase or both. Just keep it up to date with
+  these new statements that should be recorded, with minor typos
+  corrected, thanks."). Nothing else goes into
+  `CHARTER.md` without the founder's approval, and a pull request that
+  changes it says which statements it draws on.
 - **The kernel is the only authority.** Agents get immutable observations and
   return actions; nothing an agent returns is trusted until the kernel has
   checked it. Agents never get references to the world's internals.
@@ -90,6 +98,13 @@ effect (docs/ADMIN.md).
   output is never reported as a result.
 - **Outside agents run in sandboxes.** Agents we didn't write, and agents that
   rewrite their own code, never run in the kernel's process.
+- **Never a currency, never a money machine.** The multiverse has no
+  currency of its own, and nothing here is built to turn it into a money
+  machine: in the founder's words (2026-11-15, STATUS.md), "possibly the
+  most fundamental fact". A world may model an economy or a currency as
+  a test setting that never leaves that world (`docs/VISION.md`,
+  "Commerce and currency worlds"). A change that would bring one in is
+  the founder's decision (P5), never a code decision.
 - **The sketches stay apart.** `sketches/` keeps the founder's
   conversation records and DeepSeek's code from them, as written
   (`sketches/README.md`). Nothing outside `sketches/` imports from it. Its
