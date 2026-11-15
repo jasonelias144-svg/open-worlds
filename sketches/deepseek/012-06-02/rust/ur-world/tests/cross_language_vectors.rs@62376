@@ -1,0 +1,83 @@
+// Add to the existing test file:
+
+fn node_modules_present() -> bool {
+    std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+        .join("examples")
+        .join("node_modules")
+        .is_dir()
+}
+
+fn run_node(v: &std::path::PathBuf)
+    -> Option<std::process::Output>
+{
+    let node = std::env::var("NODE")
+        .unwrap_or_else(|_| "node".into());
+    let script = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+        .join("examples")
+        .join("verify_proof_offline.mjs");
+    std::process::Command::new(&node)
+        .arg(&script)
+        .arg(v)
+        .output()
+        .ok()
+}
+
+#[test]
+fn node_passes_all_vectors() {
+    if !node_modules_present() {
+        eprintln!(
+            "node_modules missing in examples/ — \
+             run `cd rust/ur-world/examples && npm install`");
+        return;
+    }
+    match run_node(&vector_path()) {
+        None => eprintln!("node unavailable; skipping"),
+        Some(out) => {
+            let stdout = String::from_utf8_lossy(&out.stdout);
+            let stderr = String::from_utf8_lossy(&out.stderr);
+            assert!(
+                out.status.success(),
+                "Node runner failed.\nstdout:\n{stdout}\nstderr:\n{stderr}");
+            assert!(
+                stdout.contains("match:    12/12"),
+                "Node runner did not match all cases:\n{stdout}");
+        }
+    }
+}
+
+#[test]
+fn all_three_runners_agree() {
+    if !node_modules_present() {
+        eprintln!("node_modules missing; running Rust + Python only");
+    }
+    let v = vector_path();
+    let rust = run_rust(&v);
+    let python = run_python(&v);
+    let node = if node_modules_present() {
+        run_node(&v)
+    } else {
+        None
+    };
+
+    let rust_ok = rust.status.success();
+    let python_ok = python.as_ref().map_or(true, |o| o.status.success());
+    let node_ok = node.as_ref().map_or(true, |o| o.status.success());
+
+    if !(rust_ok && python_ok && node_ok) {
+        let rust_out = String::from_utf8_lossy(&rust.stdout);
+        let py_out = python.as_ref()
+            .map(|o| String::from_utf8_lossy(&o.stdout).to_string())
+            .unwrap_or_default();
+        let node_out = node.as_ref()
+            .map(|o| String::from_utf8_lossy(&o.stdout).to_string())
+            .unwrap_or_default();
+        panic!(
+            "runners disagree:\n\
+             rust_ok={rust_ok}\n\
+             python_ok={python_ok}\n\
+             node_ok={node_ok}\n\
+             === rust ===\n{rust_out}\n\
+             === python ===\n{py_out}\n\
+             === node ===\n{node_out}");
+    }
+}

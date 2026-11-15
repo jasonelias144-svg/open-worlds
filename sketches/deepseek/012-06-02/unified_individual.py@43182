@@ -1,0 +1,127 @@
+# 1. pack_unified_bundle gains a resumed_from parameter
+def pack_unified_bundle(
+    session: UnifiedIndividualSession,
+    persona: str,
+    name: str,
+    initial_seed: int,
+    resumed_from: Optional[str] = None,   # NEW
+) -> IndividualBundle:
+    weights = serialize_weights(session.model)
+    weights_hash = _hash(json.dumps(
+        weights, sort_keys=True,
+        separators=(",", ":")).encode())
+    memory_root = _merkle(
+        [_entry_hash(r) for r in session.memory])
+
+    world_contexts = []
+    for i, rec in enumerate(session.memory):
+        if rec.get("type") == "world_entry":
+            ctx = {
+                "world_id": rec["world_id"],
+                "tier": rec["tier"],
+                "world_signer": rec["world_signer"],
+                "first_memory_index": i,
+            }
+            if "seat" in rec:
+                ctx["seat"] = rec["seat"]
+            if "initial_point" in rec:
+                ctx["initial_point"] = rec["initial_point"]
+            world_contexts.append(ctx)
+
+    body = {
+        "kind": "unified_individual",
+        "version": "1.8",
+        "individual_id": session.individual_id,
+        "name": name,
+        "persona": persona,
+        "created_at": _now(),
+        "parent_did": None,
+        "lineage_root": session.individual_id,
+        "model_config": {
+            "kind": "rnn", "hidden": 4,
+            "n_actions": 3, "n_extra_inputs": 0,
+        },
+        "model_initial_seed": int(initial_seed),
+        "model_weights_hash": weights_hash,
+        "observes": False,
+        "memory_entries": len(session.memory),
+        "memory_root": memory_root,
+        "observations_hash": _hash("[]"),
+        "world_contexts": world_contexts,
+        "ts": _now(),
+    }
+    if resumed_from is not None:
+        body["resumed_from"] = resumed_from
+    sig = session.individual_kp.sign(_canonical(body)).hex()
+    return IndividualBundle(
+        manifest={**body, "sig": sig},
+        memory=list(session.memory),
+        weights=weights,
+        initial_weights=None,
+        observations=[],
+        ancestry=[],
+        checkpoint_weights=None,
+    )
+
+
+# 2. New: resume_unified_from_bundle
+def resume_unified_from_bundle(
+    parent_bundle: IndividualBundle,
+    individual_kp,
+    adapter,   # WorldAdapter instance
+    config: dict,
+) -> Tuple[Optional[UnifiedIndividualSession], str]:
+    """Resume a unified individual into a new world via adapter.
+    The new session continues the parent's memory; the caller
+    bundles it with pack_unified_bundle(..., resumed_from=...).
+    """
+    if not HAS_CRYPTO:
+        return (None, "cryptography not installed")
+    if not isinstance(parent_bundle, IndividualBundle):
+        return (None, "not an IndividualBundle")
+    kp_did = _did_from_kp(individual_kp)
+    if kp_did != parent_bundle.individual_id:
+        return (None,
+                 f"keypair DID {kp_did[:16]}... does not match "
+                 f"bundle {parent_bundle.individual_id[:16]}...")
+    if parent_bundle.manifest.get("kind") != "unified_individual":
+        return (None,
+                 "parent kind is "
+                 f"{parent_bundle.manifest.get('kind')!r}, "
+                 "expected 'unified_individual'")
+    v = verify_unified_individual_basic(parent_bundle)
+    if not v[0]:
+        return (None, f"parent basic: {v[1]}")
+
+    model = build_model(parent_bundle.manifest["model_config"])
+    apply_weights(model, parent_bundle.weights)
+
+    memory = list(parent_bundle.memory)
+    session = UnifiedIndividualSession(
+        individual_kp=individual_kp, model=model, memory=memory)
+    try:
+        session.enter_world_via_adapter(adapter, config)
+    except Exception as e:
+        return (None, f"enter failed: {e}")
+    return (session, "resumed")
+
+
+# 3. New: composite verifier
+def verify_resumed_unified_full(
+    resumed_bundle: IndividualBundle,
+    parent_bundle: IndividualBundle,
+    world_logs: Dict[str, List[dict]],
+    adapters_by_tier: Optional[Dict[str, object]] = None,
+) -> Tuple[bool, str]:
+    """Full adapter verification + resume continuity."""
+    v = verify_unified_individual_with_adapters(
+        resumed_bundle, world_logs, adapters_by_tier)
+    if not v[0]:
+        return (False, f"full: {v[1]}")
+    from resumable import verify_resumed_from
+    v2 = verify_resumed_from(resumed_bundle, parent_bundle)
+    if not v2[0]:
+        return (False, f"continuity: {v2[1]}")
+    return (True,
+             f"resumed unified verifies (full + continuity); "
+             f"{v[1]}")

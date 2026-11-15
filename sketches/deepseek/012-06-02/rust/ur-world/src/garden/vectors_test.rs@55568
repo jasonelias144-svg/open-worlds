@@ -1,0 +1,63 @@
+// rust/ur-world/src/garden/vectors_test.rs — additions
+
+#[test]
+fn garden_reference_proposals() {
+    let v = load_vector();
+    // ... build the garden and run the scenario (as before) ...
+
+    // Assert proposal count and hashes match the vector.
+    let proposals = garden.proposals();
+    assert_eq!(
+        proposals.len(),
+        v.expected.proposal_count,
+        "proposal count mismatch"
+    );
+
+    for (i, record) in proposals.iter().enumerate() {
+        let body_hash_hex = hex::encode(record.body_hash());
+        assert_eq!(
+            body_hash_hex,
+            v.expected.proposal_body_hashes[i],
+            "proposal {} body hash mismatch",
+            i
+        );
+        // Record's own proof must verify.
+        record.verify()
+            .unwrap_or_else(|_| panic!(
+                "proposal {} proof invalid", i));
+    }
+
+    // Assert the keeper whisper is present and hashed correctly.
+    let whisper = garden.log.iter().find(|e| {
+        e.body.get("kind").and_then(|v| v.as_str())
+            == Some("keeper_whisper")
+    }).expect("keeper whisper missing");
+    let whisper_body = {
+        let mut b = whisper.body.clone();
+        b.as_object_mut().unwrap().remove("sig");
+        sha256_hex(&serde_jcs::to_vec(&b).unwrap())
+    };
+    assert_eq!(
+        whisper_body,
+        v.expected.keeper_whisper_body_hash,
+        "keeper whisper body hash mismatch"
+    );
+
+    // Assert every entry's proof verifies against its actor.
+    for (i, entry) in garden.log.iter().enumerate() {
+        let actor = entry.body.get("actor")
+            .and_then(|v| v.as_str())
+            .unwrap_or_else(|| panic!(
+                "entry {} has no actor", i));
+        let vk = formats::proof::VerifyingKey::from_did(actor)
+            .unwrap_or_else(|_| panic!(
+                "entry {} actor has invalid DID", i));
+        formats::proof::verify(
+            formats::proof::Suite::EddsaJcs2022,
+            &entry.proof,
+            &entry.body,
+            &vk,
+        ).unwrap_or_else(|_| panic!(
+            "entry {} proof invalid", i));
+    }
+}

@@ -1,0 +1,15 @@
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum KeeperPolicy {
+    /// Record proposals; keeper decides when to act. Residents
+    /// see nothing new until the keeper issues a whisper by
+    /// hand.
+    RecordOnly,
+    /// Record proposals AND auto-broadcast a `keeper_whisper`
+    /// for every `Whisper` proposal. Residents' next
+    /// `observe()` sees the keeper's voice.
+    AutoBroadcastWhispers,
+    /// Record proposals AND apply everything. Plants move,
+    /// agents are invited — the curator *is* the keeper's
+    /// hand. Full automation.
+    AutoApplyAll,
+}

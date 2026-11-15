@@ -1,0 +1,32 @@
+// In `impl GardenServer`:
+
+fn get_state(&self)
+    -> Result<Response<std::io::Cursor<Vec<u8>>>, std::io::Error>
+{
+    let g = self.garden.lock().unwrap();
+    let plants: Vec<Value> = g.plants_active.iter()
+        .map(|(id, p)| json!({
+            "id": id,
+            "kind": match p.kind {
+                PlantKind::Fern => "fern",
+                PlantKind::Tree => "tree",
+                PlantKind::Vine => "vine",
+            },
+            "position": [p.position.x, p.position.y, p.position.z],
+            "event_count": p.events().len(),
+        }))
+        .collect();
+    let agents: Vec<Value> = g.agent_positions.iter()
+        .map(|(did, pos)| json!({
+            "did": did,
+            "name": g.admitted.get(did),
+            "position": [pos.x, pos.y, pos.z],
+        }))
+        .collect();
+    Ok(json_ok(&json!({
+        "cycle": g.cycle,
+        "garden_size": [g.width, g.height, g.depth],
+        "plants": plants,
+        "agents": agents,
+    })))
+}

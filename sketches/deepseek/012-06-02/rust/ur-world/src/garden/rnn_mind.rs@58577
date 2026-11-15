@@ -1,0 +1,25 @@
+// ────────────────────────────────────────────────────────────
+// Whispers
+// ────────────────────────────────────────────────────────────
+
+/// A keeper whisper the resident has recently received.
+/// Filtered by the client to those addressed to the resident
+/// (broadcast or targeted) and within the freshness window.
+#[derive(Debug, Clone)]
+pub struct WhisperRecord {
+    pub to: Option<String>,
+    pub text: String,
+    pub cycle: u64,
+}
+
+/// What a resident sees at its turn.
+#[derive(Debug, Clone)]
+pub struct Observation {
+    pub position: Cell,
+    pub last_action: u8,
+    pub last_reward_micros: u64,
+    pub plants: Vec<(String, Cell)>,
+    pub nearby_agents: Vec<String>,
+    pub garden_size: [i64; 3],
+    pub whispers: Vec<WhisperRecord>,   // NEW
+}

@@ -1,0 +1,2 @@
+(Method::Post, "/keeper_whisper") =>
+    self.post_keeper_whisper(&mut req),

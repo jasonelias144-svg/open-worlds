@@ -1,0 +1,27 @@
+pub struct GardenServer {
+    pub garden: Arc<Mutex<Garden>>,
+    pub keeper_did: String,
+    pub world_url: String,
+    pub name: String,
+    pub description: String,
+    pub curator: GardenCurator,
+    pub keeper_policy: KeeperPolicy,
+}
+
+impl GardenServer {
+    pub fn new(
+        garden: Arc<Mutex<Garden>>,
+        keeper_key: SigningKey,
+        world_url: String,
+        name: String,
+        description: String,
+        keeper_policy: KeeperPolicy,
+    ) -> Self {
+        let keeper_did = keeper_key.did();
+        let curator = GardenCurator::new(keeper_key);
+        Self {
+            garden, keeper_did, world_url, name, description,
+            curator, keeper_policy,
+        }
+    }
+}

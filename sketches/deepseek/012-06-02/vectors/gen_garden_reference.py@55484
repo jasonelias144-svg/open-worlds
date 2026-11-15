@@ -1,0 +1,79 @@
+def build_scenario(scenario):
+    # ... existing ...
+    for action in scenario["actions"]:
+        # ... existing cases ...
+        elif t == "curator_propose":
+            from garden_curator import GardenCurator
+            curator = GardenCurator(garden._kp)
+            proposal_bodies = curator.observe_and_propose(garden)
+            for body in proposal_bodies:
+                garden.record_proposal(body)
+        elif t == "keeper_whisper":
+            garden.keeper_whisper(
+                action.get("to"), action["text"])
+        # ...
+    return garden, agent_dids
+
+
+def compute_expected(garden, agent_dids):
+    from individual_bundle import _hash
+
+    def body_hash(e):
+        # Body without sig, hashed.
+        body = {k: v for k, v in e.items() if k != "sig"}
+        return _hash(body)
+
+    entry_body_hashes = [
+        body_hash(e) for e in garden.log_since(None)]
+
+    proposals = [
+        e for e in garden.log_since(None)
+        if e.get("kind") == "garden_curator_proposal"
+    ]
+    proposal_body_hashes = [body_hash(e) for e in proposals]
+
+    whisper = next(
+        (e for e in garden.log_since(None)
+         if e.get("kind") == "keeper_whisper"),
+        None)
+
+    # All signatures verify against the actor's key
+    from cryptography.hazmat.primitives.asymmetric.ed25519 import (
+        Ed25519PublicKey)
+    from individual_bundle import _canonical
+    all_proofs_verify = True
+    for e in garden.log_since(None):
+        actor = e.get("actor")
+        if not actor:
+            all_proofs_verify = False
+            break
+        body = {k: v for k, v in e.items() if k != "sig"}
+        try:
+            pk = Ed25519PublicKey.from_public_bytes(
+                bytes.fromhex(actor[len("did:key:"):]))
+            pk.verify(bytes.fromhex(e["sig"]),
+                       _canonical(body))
+        except Exception:
+            all_proofs_verify = False
+            break
+
+    return {
+        "entry_body_hashes": entry_body_hashes,
+        "plant_event_hashes": {
+            pid: [ev["hash"] for ev in plant.host.events()]
+            for pid, plant in garden.all_plants().items()
+        },
+        "proposal_body_hashes": proposal_body_hashes,
+        "proposal_count": len(proposals),
+        "keeper_whisper_body_hash":
+            body_hash(whisper) if whisper else None,
+        "cross_reference_count": sum(
+            1 for e in garden.log_since(None)
+            if e.get("kind") == "agent_observed"
+            and e.get("result") == "observed_plant"),
+        "alice_final_position":
+            garden.position_of(agent_dids["ALICE"]).to_list(),
+        "bob_final_position":
+            garden.position_of(agent_dids["BOB"]).to_list(),
+        "all_proofs_verify": all_proofs_verify,
+    }

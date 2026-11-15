@@ -1,0 +1,38 @@
+// In `impl Garden`:
+
+/// Append a signed curator proposal to the log. The garden
+/// doesn't apply it; the keeper does.
+pub fn record_proposal(
+    &mut self,
+    body: serde_json::Value,
+) -> Result<&Entry, GardenError> {
+    self.append(body)
+}
+
+/// Proposals recorded in the log, in order.
+pub fn proposals(&self) -> Vec<&Entry> {
+    self.log.iter()
+        .filter(|e| {
+            e.body.get("kind").and_then(|v| v.as_str())
+                == Some("garden_curator_proposal")
+        })
+        .collect()
+}
+
+/// A keeper whisper. Visible in the log; agents see it in
+/// their next `observe` in a fuller implementation. Broadcast
+/// when `to` is `None`; targeted otherwise.
+pub fn keeper_whisper(
+    &mut self,
+    to: Option<String>,
+    text: String,
+) -> Result<(), GardenError> {
+    self.append(json!({
+        "kind": "keeper_whisper",
+        "actor": self.curator_did,
+        "to": to,
+        "text": text,
+        "ts": now_iso8601(),
+    }))?;
+    Ok(())
+}

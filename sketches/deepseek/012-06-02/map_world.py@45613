@@ -1,0 +1,35 @@
+def _route_to_pin(self, p: Petition):
+    result = _recursive_resolve(
+        self, p.target, fetch_live=False)
+    if result is None:
+        return Refusal(reason=f"unknown pin: {p.target}")
+    url = result.get("url")
+    if not url:
+        return Refusal(reason=f"pin missing url: {p.target}")
+    via = result.get("via", [])
+    via_str = " → ".join(via) if via else None
+    self._log.append({
+        "kind": "navigate",
+        "actor": p.petitioner_token,
+        "target": p.target,
+        "via": via,
+        "ts": _now(),
+    })
+    try:
+        m = _get_json(f"{url.rstrip('/')}/manifest")
+        if m is None:
+            return Refusal(
+                reason=f"world {p.target} unreachable")
+    except Exception as e:
+        return Refusal(reason=f"world unavailable: {e}")
+    target_manifest = Manifest(
+        entity_id=m["entity_id"], name=m["name"],
+        protocol_version=m["protocol_version"],
+        law_url=m["law_url"],
+        act_endpoint=m["act_endpoint"],
+        log_endpoint=m["log_endpoint"],
+        sub_registry_endpoint=m.get("sub_registry_endpoint"),
+    )
+    reason = (f"entering {p.target}"
+              + (f" (via {via_str})" if via_str else ""))
+    return Route(target_manifest=target_manifest, reason=reason)

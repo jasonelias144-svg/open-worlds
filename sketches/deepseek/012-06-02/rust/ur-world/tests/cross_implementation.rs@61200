@@ -1,0 +1,85 @@
+#[test]
+fn both_verifiers_reject_malformed_proofs() {
+    // Construct a valid garden, extract a proof, mutate one
+    // metadata field, and confirm both verifiers reject.
+    use ed25519_dalek::{Signer, SigningKey as DalekSigningKey};
+
+    let raw = DalekSigningKey::from_bytes(&[42u8; 32]);
+    let pk = raw.verifying_key().to_bytes();
+    let mk = [&[0xed, 0x01][..], &pk[..]].concat();
+    let did = format!("did:key:z{}",
+        bs58::encode(&mk).into_string());
+
+    let body = serde_json::json!({"kind": "test"});
+    let opts_ok = serde_json::json!({
+        "type": "DataIntegrityProof",
+        "cryptosuite": "eddsa-jcs-2022",
+        "created": "2026-11-15T00:00:00Z",
+        "verificationMethod": format!("{did}#{did}"),
+        "proofPurpose": "assertionMethod",
+    });
+
+    let mutations = [
+        ("wrong_type", |o: &mut serde_json::Value| {
+            o["type"] = serde_json::json!("NotAProof");
+        }),
+        ("wrong_cryptosuite", |o: &mut serde_json::Value| {
+            o["cryptosuite"] =
+                serde_json::json!("eddsa-rdfc-2022");
+        }),
+        ("wrong_purpose", |o: &mut serde_json::Value| {
+            o["proofPurpose"] =
+                serde_json::json!("authentication");
+        }),
+    ];
+
+    for (name, mutate) in mutations {
+        let mut opts = opts_ok.clone();
+        mutate(&mut opts);
+        let options_jcs = serde_jcs::to_vec(&opts).unwrap();
+        let body_jcs = serde_jcs::to_vec(&body).unwrap();
+        let mut payload = Vec::new();
+        use sha2::{Digest, Sha256};
+        payload.extend_from_slice(&Sha256::digest(&options_jcs));
+        payload.extend_from_slice(&Sha256::digest(&body_jcs));
+        let sig = raw.sign(&payload);
+        let pv = format!("z{}",
+            bs58::encode(sig.to_bytes()).into_string());
+        let mut proof = opts;
+        proof["proofValue"] = serde_json::json!(pv);
+
+        // Write to a temp vector file
+        let tmp = std::env::temp_dir().join(
+            format!("bad_proof_{name}.json"));
+        std::fs::write(&tmp, serde_json::to_string_pretty(
+            &serde_json::json!({
+                "body": body,
+                "proof": proof,
+                "expected_did": did,
+            })).unwrap()).unwrap();
+
+        // Run both verifiers on the malformed proof
+        let rust_out = std::process::Command::new(
+            env!("CARGO"))
+            .args(["run", "--quiet", "--example",
+                "verify_garden_offline", "--", &tmp.to_string_lossy()])
+            .output()
+            .expect("rust verify");
+        assert!(!rust_out.status.success(),
+            "Rust verifier should reject {name}");
+
+        let python = std::env::var("PYTHON")
+            .unwrap_or_else(|_| "python3".into());
+        let py_out = std::process::Command::new(&python)
+            .arg("rust/ur-world/examples/verify_garden_offline.py")
+            .arg(&tmp.to_string_lossy())
+            .output();
+        if let Ok(out) = py_out {
+            if out.status.code().is_some() {
+                assert!(!out.status.success(),
+                    "Python verifier should reject {name}");
+            }
+        }
+        let _ = std::fs::remove_file(tmp);
+    }
+}

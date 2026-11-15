@@ -1,0 +1,25 @@
+if url.path.startswith("/pin/"):
+    world_id = url.path[len("/pin/"):]
+    from urllib.parse import parse_qs
+    qs = parse_qs(url.query)
+    try:
+        depth = int(qs.get("depth", ["0"])[0])
+    except ValueError:
+        depth = 0
+    visited_raw = qs.get("visited", [""])[0]
+    visited = (set(visited_raw.split(","))
+                if visited_raw else set())
+    try:
+        result = _recursive_resolve(
+            server._mv_map, world_id,
+            visited=visited, depth=depth)
+        if result is None:
+            result = {
+                "world_id": world_id,
+                "status": "not_registered",
+                "via": [],
+            }
+        self._json(200, result)
+    except Exception as e:
+        self._json(500, {"error": str(e)})
+    return

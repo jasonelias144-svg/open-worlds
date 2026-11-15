@@ -28,8 +28,8 @@ of earlier ideas.
 | `deepseek/012-04-00/` | The code files from record 012-04-00, written out one by one (INDEX.md lists the few code examples in the prose that are left in the record) |
 | `deepseek/012-05-01/` | The code files from record 012-05-01, which continues 012-04-00 and imports its code from the folder beside it |
 | `deepseek/012-03-02/` | The code files from record 012-03-02: the poetry engine (and a model of Aristotle's practical reasoning), which the two later records import |
-| `deepseek/012-06-02/` | The code files from record 012-06-02: fractal worlds, a gallery of worlds and its governance, the smallest learner that chooses, and individuals as signed, replayable bundles. A few import the earlier folders' code |
-| `tools/extract.py` | Writes the code out of a record, and checks it against the record |
+| `deepseek/012-06-02/` | The code files from record 012-06-02: fractal worlds, a gallery of worlds and its governance, the smallest learner that chooses, and individuals as signed, replayable bundles; then, continued, a multiversal map, a microverse, the Ur-world as a garden of fractal worlds, and DeepSeek's first Rust (kept, not built). A few import the earlier folders' code |
+| `tools/extract.py` | Writes the code out of a record (Python, Rust, JavaScript, JSON and the rest), and checks it against the record |
 | `tools/names-012-03-02.json`, `tools/names-012-04-00.json`, `tools/names-012-05-01.json`, `tools/names-012-06-02.json` | For each record: which code blocks to take, the names of blocks that don't state one, and the files changed since |
 | `tools/known_failures.py` | Rewrites a folder's `known-failures.txt` from a fresh run |
 | `requirements.txt` | What the sketches' tests need (pytest, cryptography); open-worlds itself never installs it |

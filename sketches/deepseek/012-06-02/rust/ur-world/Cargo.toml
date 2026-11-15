@@ -1,0 +1,6 @@
+[dev-dependencies]
+ureq = "2"
+serde_jcs = "0.1"
+sha2 = "0.10"
+ed25519-dalek = { version = "2", features = ["rand_core"] }
+bs58 = "0.5"

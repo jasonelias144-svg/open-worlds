@@ -1,0 +1,4 @@
+let curator_key = SigningKey::generate();
+let keeper_did = curator_key.did();
+let curator_key_for_whisper = curator_key.clone();
+// ... build garden ...

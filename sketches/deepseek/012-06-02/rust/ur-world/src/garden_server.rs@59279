@@ -1,0 +1,51 @@
+fn post_advance_cycle(&self, req: &mut tiny_http::Request)
+    -> Result<Response<std::io::Cursor<Vec<u8>>>, std::io::Error>
+{
+    let mut body = String::new();
+    req.as_reader().read_to_string(&mut body)?;
+    let payload: Value = match serde_json::from_str(&body) {
+        Ok(v) => v,
+        Err(_) => return Ok(json_error(StatusCode(400), "malformed")),
+    };
+    let signer_did = payload.get("keeper_did").and_then(|v| v.as_str());
+    let proof_val = payload.get("proof");
+    let steps = payload.get("steps").and_then(|v| v.as_u64())
+        .unwrap_or(1) as usize;
+    let body_to_verify = json!({"kind": "advance_cycle", "steps": steps});
+    let (signer_did, proof_val) = match (signer_did, proof_val) {
+        (Some(s), Some(p)) => (s, p),
+        _ => return Ok(json_error(StatusCode(400),
+            "keeper_did and proof required")),
+    };
+    let proof: formats::proof::DataIntegrityProof =
+        match serde_json::from_value(proof_val.clone()) {
+            Ok(p) => p,
+            Err(_) => return Ok(json_error(StatusCode(400),
+                "malformed proof")),
+        };
+    let vk = VerifyingKey::from_did(signer_did).map_err(|_|
+        std::io::Error::other("bad did"))?;
+    if formats::proof::verify(
+        Suite::EddsaJcs2022, &proof, &body_to_verify, &vk,
+    ).is_err() {
+        return Ok(json_error(StatusCode(401),
+            "proof does not verify"));
+    }
+
+    let mut g = self.garden.lock().unwrap();
+    if signer_did != self.keeper_did {
+        return Ok(json_error(StatusCode(403),
+            "signer is not the keeper"));
+    }
+    if let Err(e) = g.advance_cycle(steps) {
+        return Ok(json_error(StatusCode(500),
+            &format!("advance: {:?}", e)));
+    }
+    let recorded = self.run_curator_loop(&mut g);
+    Ok(json_ok(&json!({
+        "kind": "ack",
+        "cycle": g.cycle,
+        "proposals_recorded": recorded,
+        "keeper_policy": format!("{:?}", self.keeper_policy),
+    })))
+}

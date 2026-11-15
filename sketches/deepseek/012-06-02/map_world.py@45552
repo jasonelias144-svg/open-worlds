@@ -1,0 +1,56 @@
+MAX_DEPTH = 3
+
+
+def _recursive_resolve(
+    map_world, target: str,
+    visited: Optional[set] = None,
+    depth: int = 0,
+    fetch_live: bool = True,
+) -> Optional[Dict]:
+    """Recursively find `target` across this map and its sub-maps.
+
+    Returns the pin view (with `via` chain and `in_this_map`)
+    or None if not found within MAX_DEPTH hops and without
+    revisiting any map. Never raises.
+    """
+    if visited is None:
+        visited = set()
+    my_id = map_world._manifest.entity_id
+    if my_id in visited:
+        return None  # cycle
+    if depth > MAX_DEPTH:
+        return None  # depth exceeded
+    visited.add(my_id)
+
+    # Direct hit
+    pin = map_world._registry.get_pin(target)
+    if pin is not None:
+        view = map_world._pin_view(target, fetch_live=fetch_live)
+        view["via"] = []
+        view["in_this_map"] = True
+        view["depth"] = depth
+        return view
+
+    # Recurse into sub-maps
+    for map_pin in map_world._registry.map_pins():
+        if map_pin.world_id in visited:
+            continue
+        if depth + 1 > MAX_DEPTH:
+            continue
+        visited_param = ",".join(sorted(visited))
+        sub_url = (
+            f"{map_pin.url.rstrip('/')}/pin/{target}"
+            f"?depth={depth + 1}&visited={visited_param}"
+        )
+        sub = _get_json(sub_url)
+        if sub is None:
+            continue  # sub-map unreachable, try next
+        status = sub.get("status")
+        if status == "not_registered":
+            continue  # sub-map doesn't have it, try next
+        # Sub-map found the world (live/unavailable/signature_invalid)
+        sub["via"] = [map_pin.world_id] + sub.get("via", [])
+        sub["in_this_map"] = False
+        sub["depth"] = depth
+        return sub
+    return None

@@ -57,6 +57,11 @@ def _reason(element, tree: str) -> str:
     return re.sub(r"\s+", " ", reason)[:150]
 
 
+def _path(module: str) -> str:
+    """A test module's dotted name as its path in the folder."""
+    return module.replace(".", "/")
+
+
 def _run(tree: str, junit: str, seed: int):
     """One run: (test files that don't load, failing tests), each a
     dict from name to error."""
@@ -72,10 +77,13 @@ def _run(tree: str, junit: str, seed: int):
         bad = [c for c in case if c.tag in ("failure", "error")]
         if not bad:
             continue
+        # JUnit names a module with dots (rust.ur-world.examples.test_x);
+        # the list names its file, as pytest does (rust/ur-world/...).
+        # No test here is in a class, so every dot is a folder's.
         if case.get("classname") == "":
-            files[case.get("name") + ".py"] = _reason(bad[0], tree)
+            files[_path(case.get("name")) + ".py"] = _reason(bad[0], tree)
         else:
-            tests[f"{case.get('classname')}.py::{case.get('name')}"] = \
+            tests[f"{_path(case.get('classname'))}.py::{case.get('name')}"] = \
                 _reason(bad[0], tree)
     return files, tests
 

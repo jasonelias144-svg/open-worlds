@@ -1,0 +1,17 @@
+fn append(&mut self, mut body: Value) -> Result<&Entry, GardenError> {
+    let tick = self.log.len() as u64;
+    if let Some(obj) = body.as_object_mut() {
+        obj.insert("tick".to_string(), json!(tick));
+    }
+    let prev = self.log.last().map(|e| e.hash.clone());
+    let jcs = serde_jcs::to_vec(&body)
+        .map_err(|_| GardenError::ChainBroken { at: self.log.len() })?;
+    let hash = sha256_hex(&jcs);
+    let proof = formats::proof::sign(
+        formats::proof::Suite::EddsaJcs2022,
+        &self.curator_key,
+        &body,
+    ).map_err(|_| GardenError::SignatureInvalid)?;
+    self.log.push(Entry { body, proof, prev, hash });
+    Ok(self.log.last().unwrap())
+}

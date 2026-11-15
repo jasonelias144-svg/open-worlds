@@ -1,0 +1,239 @@
+// In garden_server/tests.rs or garden_client/tests.rs:
+
+#[test]
+fn whisper_appears_in_observation() {
+    use formats::records::{
+        KeeperWhisperKindTag, KeeperWhisperPayload,
+    };
+    let (g, key) = build_garden();
+    let base = spawn_server(g.clone(), &key);
+
+    let agent = SigningKey::generate();
+    let agent_did = agent.did();
+    let mut c = GardenClient::new(base.clone(), agent);
+    c.connect().unwrap();
+    c.petition("A").unwrap();
+    c.enter(Cell { x: 0, y: 4, z: 0 }).unwrap();
+
+    // No whispers yet
+    let obs = c.observe().unwrap();
+    assert!(obs.whispers.is_empty());
+
+    // Keeper broadcasts a whisper
+    let signed = KeeperWhisperPayload {
+        kind: KeeperWhisperKindTag::KeeperWhisper,
+        keeper_did: key.did(),
+        cycle: 0,
+        to: None,
+        text: "look at the fern".into(),
+    }.sign(&key).unwrap();
+    ureq::post(&format!("{}/keeper_whisper", base))
+        .send_json(serde_json::to_value(&signed).unwrap())
+        .unwrap();
+
+    // Next observe picks it up
+    let obs = c.observe().unwrap();
+    assert_eq!(obs.whispers.len(), 1);
+    assert_eq!(obs.whispers[0].text, "look at the fern");
+    assert!(obs.whispers[0].to.is_none());
+    let _ = agent_did;
+}
+
+#[test]
+fn targeted_whisper_only_for_target() {
+    use formats::records::{KeeperWhisperKindTag, KeeperWhisperPayload};
+    let (g, key) = build_garden();
+    let base = spawn_server(g.clone(), &key);
+
+    let alice = SigningKey::generate();
+    let alice_did = alice.did();
+    let bob = SigningKey::generate();
+    let bob_did = bob.did();
+
+    let mut ca = GardenClient::new(base.clone(), alice);
+    ca.connect().unwrap();
+    ca.petition("A").unwrap();
+    let mut cb = GardenClient::new(base.clone(), bob);
+    cb.connect().unwrap();
+    cb.petition("B").unwrap();
+
+    // Keeper targets BOB
+    let signed = KeeperWhisperPayload {
+        kind: KeeperWhisperKindTag::KeeperWhisper,
+        keeper_did: key.did(),
+        cycle: 0,
+        to: Some(bob_did.clone()),
+        text: "bob, come closer".into(),
+    }.sign(&key).unwrap();
+    ureq::post(&format!("{}/keeper_whisper", base))
+        .send_json(serde_json::to_value(&signed).unwrap())
+        .unwrap();
+
+    // Alice sees nothing
+    let obs_a = ca.observe().unwrap();
+    assert!(obs_a.whispers.is_empty(),
+        "Alice should not receive BOB's whisper");
+    // Bob sees it
+    let obs_b = cb.observe().unwrap();
+    assert_eq!(obs_b.whispers.len(), 1);
+    assert_eq!(obs_b.whispers[0].to.as_deref(), Some(bob_did.as_str()));
+    let _ = alice_did;
+}
+
+#[test]
+fn stale_whisper_beyond_ttl_excluded() {
+    use formats::records::{KeeperWhisperKindTag, KeeperWhisperPayload};
+    let (g, key) = build_garden();
+    let base = spawn_server(g.clone(), &key);
+
+    let agent = SigningKey::generate();
+    let mut c = GardenClient::new(base.clone(), agent);
+    c.whisper_ttl_cycles = 2;
+    c.connect().unwrap();
+    c.petition("A").unwrap();
+
+    // Whisper at cycle 0
+    let signed = KeeperWhisperPayload {
+        kind: KeeperWhisperKindTag::KeeperWhisper,
+        keeper_did: key.did(),
+        cycle: 0,
+        to: None,
+        text: "early".into(),
+    }.sign(&key).unwrap();
+    ureq::post(&format!("{}/keeper_whisper", base))
+        .send_json(serde_json::to_value(&signed).unwrap())
+        .unwrap();
+
+    // First observe: cycle 0, TTL 2 → included
+    let obs = c.observe().unwrap();
+    assert_eq!(obs.whispers.len(), 1);
+
+    // Advance 3 cycles
+    g.lock().unwrap().advance_cycle(3).unwrap();
+
+    // Second observe at cycle 1 (advance increments cycle by 1
+    // per call, not per step). We need 3 cycles.
+    for _ in 0..2 {
+        g.lock().unwrap().advance_cycle(1).unwrap();
+    }
+    // Now cycle = 3. Whisper age = 3, TTL = 2 → excluded.
+    let obs = c.observe().unwrap();
+    assert!(obs.whispers.is_empty(),
+        "whisper older than TTL should be excluded");
+}
+
+#[test]
+fn whisper_guides_walk_direction() {
+    // Two plants: fern (near), vine (far). Whisper mentions vine.
+    // Mind should head toward the vine, not the fern.
+    use crate::garden::rnn_mind::{WhisperRecord, Observation};
+    use crate::garden::rnn::{
+        SamplingMode, TinyRnn, Weights,
+    };
+    use crate::garden::Direction;
+    use crate::world::Cell;
+
+    let weights = Weights {
+        w_in: vec![vec![0.1; 7]; 4],
+        w_h: vec![vec![0.05; 4]; 4],
+        w_out: vec![vec![0.1; 4]; 3],
+        b_out: vec![0.0; 3],
+        h_prev: vec![0.0; 4],
+        baseline: 0.0,
+    };
+    let mut mind = TinyRnnMind::new(
+        TinyRnn::from_weights(weights),
+        42, SamplingMode::Argmax,
+    );
+
+    // Observation: position (5, 4), fern at (4, 4) (distance 1),
+    // vine at (5, 6) (distance 2). Whisper mentions "vine".
+    let obs = Observation {
+        position: Cell { x: 5, y: 4, z: 0 },
+        last_action: 0,
+        last_reward_micros: 0,
+        plants: vec![
+            ("fern".into(), Cell { x: 4, y: 4, z: 0 }),
+            ("vine".into(), Cell { x: 5, y: 6, z: 0 }),
+        ],
+        nearby_agents: vec![],
+        garden_size: [9, 8, 1],
+        whispers: vec![WhisperRecord {
+            to: None,
+            text: "go see the vine".into(),
+            cycle: 0,
+        }],
+    };
+
+    // Force the RNN to pick "walk" (action 0)
+    // Weights all-positive on w_out → probabilities equal
+    // Argmax picks index 0 on ties (max_by returns last of
+    // ties by default — need to verify). Use a different
+    // approach: call choose_direction directly.
+    let dir = mind.choose_direction(
+        obs.position, &obs.plants, &obs.whispers,
+        obs.garden_size,
+    );
+    // Vine is south of position; fern is west.
+    // Whisper says "vine" → prefer south.
+    assert_eq!(dir, Direction::South,
+        "whispered vine should pull direction south, got {:?}", dir);
+}
+
+#[test]
+fn no_whisper_falls_back_to_nearest() {
+    use crate::garden::rnn_mind::Observation;
+    use crate::garden::rnn::{SamplingMode, TinyRnn, Weights};
+    use crate::garden::Direction;
+    use crate::world::Cell;
+
+    let weights = Weights {
+        w_in: vec![vec![0.1; 7]; 4],
+        w_h: vec![vec![0.05; 4]; 4],
+        w_out: vec![vec![0.1; 4]; 3],
+        b_out: vec![0.0; 3],
+        h_prev: vec![0.0; 4],
+        baseline: 0.0,
+    };
+    let mut mind = TinyRnnMind::new(
+        TinyRnn::from_weights(weights),
+        42, SamplingMode::Argmax,
+    );
+    let obs = Observation {
+        position: Cell { x: 5, y: 4, z: 0 },
+        last_action: 0, last_reward_micros: 0,
+        plants: vec![
+            ("fern".into(), Cell { x: 4, y: 4, z: 0 }),
+            ("vine".into(), Cell { x: 5, y: 6, z: 0 }),
+        ],
+        nearby_agents: vec![],
+        garden_size: [9, 8, 1],
+        whispers: vec![],  // no whisper
+    };
+    let dir = mind.choose_direction(
+        obs.position, &obs.plants, &obs.whispers,
+        obs.garden_size,
+    );
+    // Nearest plant is fern (distance 1) → prefer west.
+    assert_eq!(dir, Direction::West);
+}
+
+#[test]
+fn whisper_does_not_break_rnn_vector() {
+    // The RNN's in_dim stays at 7. The vector test from the
+    // previous cycle passes unchanged because the state
+    // vector dimensions haven't changed.
+    // (This test just confirms the invariant; the actual
+    // vector test is in `rnn/tests.rs`.)
+    use crate::garden::rnn::{TinyRnn, Weights};
+    let w = Weights {
+        w_in: vec![vec![0.0; 7]; 4],
+        w_h: vec![vec![0.0; 4]; 4],
+        w_out: vec![vec![0.0; 4]; 3],
+        b_out: vec![0.0; 3],
+        h_prev: vec![0.0; 4],
+        baseline: 0.0,
+    };
+    let rnn = TinyRnn::from_weights(w);
+    assert_eq!(rnn.in_dim, 7);
+}

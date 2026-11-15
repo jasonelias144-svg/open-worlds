@@ -1,0 +1,37 @@
+{
+  "kind": "proof_vector",
+  "version": "1.0",
+  "description": "Cross-implementation test cases for eddsa-jcs-2022. Every verify_proof implementation must produce the verdict in 'expected' for every case.",
+  "identity": {
+    "seed_hex": "2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a",
+    "did": "did:key:z6Mk..."
+  },
+  "cases": [
+    {
+      "id": "valid",
+      "description": "Well-formed proof, all fields correct",
+      "body": {"kind": "test", "value": 42},
+      "proof": {
+        "type": "DataIntegrityProof",
+        "cryptosuite": "eddsa-jcs-2022",
+        "created": "2026-11-15T00:00:00Z",
+        "verificationMethod": "did:key:z...#did:key:z...",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "z..."
+      },
+      "expected_did": "did:key:z...",
+      "expected": "pass"
+    },
+    { "id": "wrong_type", "expected": "fail", "..." : "..." },
+    { "id": "wrong_cryptosuite", "expected": "fail", "..." : "..." },
+    { "id": "wrong_purpose", "expected": "fail", "..." : "..." },
+    { "id": "missing_created", "expected": "fail", "..." : "..." },
+    { "id": "missing_type", "expected": "fail", "..." : "..." },
+    { "id": "missing_cryptosuite", "expected": "fail", "..." : "..." },
+    { "id": "missing_purpose", "expected": "fail", "..." : "..." },
+    { "id": "tampered_signature", "expected": "fail", "..." : "..." },
+    { "id": "tampered_body", "expected": "fail", "..." : "..." },
+    { "id": "wrong_did", "expected": "fail", "..." : "..." },
+    { "id": "no_z_prefix", "expected": "fail", "..." : "..." }
+  ]
+}

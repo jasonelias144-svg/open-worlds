@@ -1,0 +1,75 @@
+/// Rebuild an `Observation` for a Mind from the garden's
+/// current state. O(plants + agents) — does not read the log.
+pub fn observe(&self) -> Result<Observation, String> {
+    let state = self.get("/state")?;
+
+    let garden_size: [i64; 3] = state.get("garden_size")
+        .and_then(|v| v.as_array())
+        .and_then(|a| {
+            if a.len() == 3 {
+                Some([
+                    a[0].as_i64()?,
+                    a[1].as_i64()?,
+                    a[2].as_i64()?,
+                ])
+            } else {
+                None
+            }
+        })
+        .unwrap_or([9, 8, 1]);
+
+    let agents = state.get("agents")
+        .and_then(|v| v.as_array())
+        .ok_or("missing agents")?;
+
+    let mut my_pos: Option<Cell> = None;
+    let mut others: Vec<(String, Cell)> = Vec::new();
+    for a in agents {
+        let did = a.get("did").and_then(|v| v.as_str())
+            .unwrap_or("");
+        let Some(arr) = a.get("position").and_then(|v| v.as_array())
+        else { continue };
+        if arr.len() != 3 { continue; }
+        let pos = Cell {
+            x: arr[0].as_i64().unwrap_or(0),
+            y: arr[1].as_i64().unwrap_or(0),
+            z: arr[2].as_i64().unwrap_or(0),
+        };
+        if did == self.agent_did {
+            my_pos = Some(pos);
+        } else {
+            others.push((did.to_string(), pos));
+        }
+    }
+    let my_pos = my_pos.ok_or("self not in garden")?;
+
+    let nearby_agents: Vec<String> = others.iter()
+        .filter(|(_, p)| p.distance(&my_pos) <= 2)
+        .map(|(did, _)| did.clone())
+        .collect();
+
+    let plants: Vec<(String, Cell)> = state.get("plants")
+        .and_then(|v| v.as_array())
+        .map(|arr| {
+            arr.iter().filter_map(|p| {
+                let id = p.get("id").and_then(|v| v.as_str())?;
+                let arr = p.get("position").and_then(|v| v.as_array())?;
+                if arr.len() != 3 { return None; }
+                Some((id.to_string(), Cell {
+                    x: arr[0].as_i64()?,
+                    y: arr[1].as_i64()?,
+                    z: arr[2].as_i64()?,
+                }))
+            }).collect()
+        })
+        .unwrap_or_default();
+
+    Ok(Observation {
+        position: my_pos,
+        last_action: 0,           // unused by TinyRnnMind
+        last_reward_micros: 0,    // tracked internally by the Mind
+        plants,
+        nearby_agents,
+        garden_size,
+    })
+}

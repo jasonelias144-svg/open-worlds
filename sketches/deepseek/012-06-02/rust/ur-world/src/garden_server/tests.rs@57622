@@ -1,0 +1,70 @@
+// In garden_server/tests.rs:
+
+#[test]
+fn state_endpoint_returns_current_world() {
+    let (g, key) = build_garden();
+    let base = spawn_server(g.clone(), &key);
+
+    let agent = SigningKey::generate();
+    let mut c = GardenClient::new(base.clone(), agent);
+    c.connect().unwrap();
+    c.petition("A").unwrap();
+    c.enter(Cell { x: 0, y: 4, z: 0 }).unwrap();
+
+    let state = ureq::get(&format!("{}/state", base))
+        .call().unwrap()
+        .into_json::<serde_json::Value>().unwrap();
+
+    assert_eq!(state["cycle"], 0);
+    assert_eq!(state["garden_size"][0], 9);
+    // one plant, one agent
+    assert_eq!(state["plants"].as_array().unwrap().len(), 1);
+    assert_eq!(state["agents"].as_array().unwrap().len(), 1);
+    assert_eq!(state["plants"][0]["id"], "fern");
+    assert_eq!(state["plants"][0]["position"][0], 2);
+}
+
+#[test]
+fn client_observe_uses_state_not_log() {
+    let (g, key) = build_garden();
+    let base = spawn_server(g.clone(), &key);
+
+    let agent = SigningKey::generate();
+    let mut c = GardenClient::new(base, agent);
+    c.connect().unwrap();
+    c.petition("A").unwrap();
+    c.enter(Cell { x: 0, y: 4, z: 0 }).unwrap();
+
+    let obs = c.observe().unwrap();
+    assert_eq!((obs.position.x, obs.position.y), (0, 4));
+    assert_eq!(obs.plants.len(), 1);
+    assert_eq!(obs.plants[0].0, "fern");
+    assert_eq!(obs.plants[0].1.x, 2);
+    assert_eq!(obs.garden_size, [9, 8, 1]);
+}
+
+#[test]
+fn observe_reflects_advance_cycle() {
+    let (g, key) = build_garden();
+    let base = spawn_server(g.clone(), &key);
+
+    let agent = SigningKey::generate();
+    let mut c = GardenClient::new(base.clone(), agent);
+    c.connect().unwrap();
+    c.petition("A").unwrap();
+    c.enter(Cell { x: 0, y: 0, z: 0 }).unwrap();
+
+    // Advance the garden via keeper access (not HTTP for simplicity)
+    g.lock().unwrap().advance_cycle(3).unwrap();
+
+    let obs = c.observe().unwrap();
+    // Cycle is visible in /state, not in /Observation — but
+    // plant event_count in /state reflects the cycle_advanced.
+    let state = ureq::get(&format!("{}/state", base))
+        .call().unwrap()
+        .into_json::<serde_json::Value>().unwrap();
+    assert_eq!(state["cycle"], 1);
+    assert_eq!(state["plants"][0]["event_count"], 3);
+    // Observation still works post-advance
+    assert_eq!(obs.plants.len(), 1);
+}

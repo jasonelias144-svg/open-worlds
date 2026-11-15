@@ -1,0 +1,195 @@
+from map_governance import (
+    MapWorldKey, PinAddedRequest, PinRemovedRequest,
+    sign_world_key, verify_world_key,
+    verify_request_signature, verify_request_authorization,
+)
+
+
+class MultiversalMap:
+    def __init__(self, entity_id, name, keypair, registry=None):
+        # ... existing manifest, kp, admitted, log ...
+        self._log = []
+        self._registry_cache = None
+        if registry is not None:
+            for pin in registry.all_pins():
+                self._log_pin_added(
+                    pin, actor=self.world_signer())
+
+    # -- Log primitives --------------------------------------
+
+    def _append_log(self, entry: Dict) -> Dict:
+        body = {k: v for k, v in entry.items() if k != "sig"}
+        sig = self._kp.sign(_canonical(body)).hex()
+        signed = {**body, "sig": sig}
+        self._log.append(signed)
+        self._registry_cache = None
+        return signed
+
+    def _log_pin_added(
+        self, pin: WorldPin, actor: str,
+        world_key: Optional[Dict] = None,
+    ) -> Dict:
+        return self._append_log({
+            "kind": "pin_added",
+            "actor": actor,
+            "pin": {
+                "world_id": pin.world_id,
+                "url": pin.url,
+                "world_signer": pin.world_signer,
+                "description": pin.description,
+                "cluster": pin.cluster,
+                "kind": pin.kind,
+            },
+            "world_key": world_key,
+            "ts": _now(),
+        })
+
+    def _log_pin_removed(
+        self, world_id: str, actor: str,
+        world_key: Optional[Dict] = None,
+    ) -> Dict:
+        return self._append_log({
+            "kind": "pin_removed",
+            "actor": actor,
+            "world_id": world_id,
+            "world_key": world_key,
+            "ts": _now(),
+        })
+
+    # -- Registry replay -------------------------------------
+
+    def _apply_to_registry(
+        self, reg: MapRegistry, entry: Dict,
+    ) -> Tuple[bool, str]:
+        kind = entry.get("kind")
+        if kind == "pin_added":
+            pd = entry["pin"]
+            wid = pd["world_id"]
+            if reg.get_pin(wid) is not None:
+                return (False, f"{wid} already pinned")
+            reg.add(WorldPin(
+                world_id=wid, url=pd["url"],
+                world_signer=pd["world_signer"],
+                description=pd.get("description", ""),
+                cluster=pd.get("cluster", "Uncategorized"),
+                kind=pd.get("kind", "world"),
+            ))
+        elif kind == "pin_removed":
+            wid = entry["world_id"]
+            if reg.get_pin(wid) is None:
+                return (False, f"{wid} not pinned")
+            reg.remove(wid)
+        # admission, navigate, etc. don't affect registry
+        return (True, "ok")
+
+    def _replay_registry(self) -> MapRegistry:
+        reg = MapRegistry()
+        for entry in self._log:
+            ok, _ = self._apply_to_registry(reg, entry)
+            if not ok:
+                # Log is corrupt; return partial
+                return reg
+        return reg
+
+    @property
+    def _registry(self) -> MapRegistry:
+        if self._registry_cache is None:
+            self._registry_cache = self._replay_registry()
+        return self._registry_cache
+
+    def registry_at(self, index: int) -> MapRegistry:
+        """Registry after applying log[0:index]."""
+        reg = MapRegistry()
+        for entry in self._log[:index]:
+            self._apply_to_registry(reg, entry)
+        return reg
+
+    # -- Verification ----------------------------------------
+
+    def verify_log(self) -> Tuple[bool, str]:
+        """Every entry signed by map, replay reaches a clean
+        state with no duplicates or orphan removals."""
+        if not HAS_CRYPTO:
+            return (False, "cryptography not installed")
+        reg = MapRegistry()
+        for i, entry in enumerate(self._log):
+            body = {k: v for k, v in entry.items()
+                     if k != "sig"}
+            try:
+                _pubkey_from_did(self.world_signer()).verify(
+                    bytes.fromhex(entry["sig"]),
+                    _canonical(body))
+            except Exception:
+                return (False,
+                         f"log[{i}]: map signature invalid")
+            ok, reason = self._apply_to_registry(reg, entry)
+            if not ok:
+                return (False, f"log[{i}]: {reason}")
+        return (True,
+                 f"log verifies ({len(self._log)} entries, "
+                 f"{len(reg.all_pins())} pins)")
+
+    # -- Keeper acts -----------------------------------------
+
+    def add(self, pin: WorldPin) -> Dict:
+        """Keeper: add a pin directly."""
+        if self._registry.get_pin(pin.world_id) is not None:
+            raise ValueError(
+                f"{pin.world_id} already pinned")
+        return self._log_pin_added(
+            pin, actor=self.world_signer())
+
+    def remove(self, world_id: str) -> Dict:
+        if self._registry.get_pin(world_id) is None:
+            raise ValueError(f"{world_id} not pinned")
+        return self._log_pin_removed(
+            world_id, actor=self.world_signer())
+
+    def issue_world_key(
+        self, subject_id: str, tier: str,
+        valid_until: Optional[str] = None,
+    ) -> MapWorldKey:
+        return sign_world_key(
+            self._kp, self.world_signer(),
+            subject_id, tier, valid_until,
+        )
+
+    # -- External requests -----------------------------------
+
+    def pin_added_request(
+        self, request: PinAddedRequest,
+    ) -> Tuple[bool, str]:
+        ok, reason = verify_request_signature(request)
+        if not ok:
+            return (False, f"request sig: {reason}")
+        ok, reason = verify_request_authorization(
+            request, self.world_signer(), "edit")
+        if not ok:
+            return (False, f"auth: {reason}")
+        try:
+            pin = WorldPin(**request.pin)
+        except (KeyError, TypeError, ValueError) as e:
+            return (False, f"malformed pin: {e}")
+        if self._registry.get_pin(pin.world_id) is not None:
+            return (False, f"{pin.world_id} already pinned")
+        self._log_pin_added(
+            pin, actor=request.actor_id,
+            world_key=request.world_key)
+        return (True, "ok")
+
+    def pin_removed_request(
+        self, request: PinRemovedRequest,
+    ) -> Tuple[bool, str]:
+        ok, reason = verify_request_signature(request)
+        if not ok:
+            return (False, f"request sig: {reason}")
+        ok, reason = verify_request_authorization(
+            request, self.world_signer(), "edit")
+        if not ok:
+            return (False, f"auth: {reason}")
+        if self._registry.get_pin(request.world_id) is None:
+            return (False, f"{request.world_id} not pinned")
+        self._log_pin_removed(
+            request.world_id, actor=request.actor_id,
+            world_key=request.world_key)
+        return (True, "ok")

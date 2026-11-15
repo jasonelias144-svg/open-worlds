@@ -1,0 +1,16 @@
+// In garden.rs, in impl Garden:
+
+/// The current observation for `agent_did`, ready for a
+/// Mind's `observe` call. Returns None if the agent has not
+/// entered.
+pub fn observe_for(&self, agent_did: &str) -> Option<Observation> {
+    let pos = *self.agent_positions.get(agent_did)?;
+    Some(Observation {
+        position: pos,
+        last_action: 0,        // filled by the session
+        last_reward_micros: 0, // filled by the session
+        garden_width: self.width,
+        garden_height: self.height,
+        garden_depth: self.depth,
+    })
+}

@@ -1,0 +1,10 @@
+elif t == "keeper_whisper":
+    body = {
+        "kind": "keeper_whisper",
+        "keeper_did": _did_from_kp(garden._kp),
+        "cycle": garden.cycle(),
+        "to": action.get("to"),
+        "text": action["text"],
+    }
+    sig = garden._kp.sign(_canonical(body)).hex()
+    garden.keeper_whisper({**body, "sig": sig})

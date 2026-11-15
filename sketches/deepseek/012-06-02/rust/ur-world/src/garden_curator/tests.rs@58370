@@ -1,0 +1,109 @@
+#[cfg(test)]
+mod tests {
+    use formats::records::{
+        KeeperWhisperKindTag, KeeperWhisperPayload,
+        SignedKeeperWhisper,
+    };
+    use crate::garden::{Garden, GardenError, PlantKind};
+    use crate::world::{Cell, World};
+    use formats::proof::SigningKey;
+
+    fn garden_and_key() -> (Garden, SigningKey) {
+        let key = SigningKey::generate();
+        let world = World::new("garden:test".to_string(), 0);
+        let mut g = Garden::new(
+            world, "test".into(), key.clone(), 9, 8, 1);
+        g.add_plant("fern".into(), PlantKind::Fern,
+            Cell { x: 2, y: 2, z: 0 }, 0xAAAA).unwrap();
+        (g, key)
+    }
+
+    #[test]
+    fn keeper_whisper_logs_and_verifies() {
+        let (mut g, key) = garden_and_key();
+        let payload = KeeperWhisperPayload {
+            kind: KeeperWhisperKindTag::KeeperWhisper,
+            keeper_did: key.did(),
+            cycle: 0,
+            to: None,
+            text: "welcome".into(),
+        };
+        let signed = payload.sign(&key).expect("sign");
+        let body_hash = signed.body_hash();
+        g.keeper_whisper(signed).expect("record");
+        let last = g.log.last().unwrap();
+        assert_eq!(last.body["kind"], "keeper_whisper");
+        assert_eq!(last.body["text"], "welcome");
+        assert_eq!(last.body["to"], serde_json::Value::Null);
+        // The hash we computed before recording matches what
+        // a verifier computes now.
+        let recovered: SignedKeeperWhisper =
+            serde_json::from_value(last.body.clone()).unwrap();
+        assert_eq!(recovered.body_hash(), body_hash);
+        recovered.verify().expect("verify");
+        g.verify_log().expect("chain");
+    }
+
+    #[test]
+    fn keeper_whisper_targeted() {
+        let (mut g, key) = garden_and_key();
+        let target = SigningKey::generate().did();
+        let payload = KeeperWhisperPayload {
+            kind: KeeperWhisperKindTag::KeeperWhisper,
+            keeper_did: key.did(),
+            cycle: 0,
+            to: Some(target.clone()),
+            text: "for you".into(),
+        };
+        let signed = payload.sign(&key).expect("sign");
+        g.keeper_whisper(signed).expect("record");
+        let last = g.log.last().unwrap();
+        assert_eq!(last.body["to"], target);
+    }
+
+    #[test]
+    fn keeper_whisper_wrong_key_refused() {
+        let (mut g, _key) = garden_and_key();
+        let wrong = SigningKey::generate();
+        let payload = KeeperWhisperPayload {
+            kind: KeeperWhisperKindTag::KeeperWhisper,
+            keeper_did: wrong.did(),  // signed by wrong key
+            cycle: 0,
+            to: None,
+            text: "hi".into(),
+        };
+        let signed = payload.sign(&wrong).expect("sign");
+        let result = g.keeper_whisper(signed);
+        assert!(matches!(result, Err(GardenError::Refused(_))));
+    }
+
+    #[test]
+    fn keeper_whisper_tampered_proof_refused() {
+        let (mut g, key) = garden_and_key();
+        let payload = KeeperWhisperPayload {
+            kind: KeeperWhisperKindTag::KeeperWhisper,
+            keeper_did: key.did(),
+            cycle: 0,
+            to: None,
+            text: "hi".into(),
+        };
+        let mut signed = payload.sign(&key).expect("sign");
+        // Tamper the proof in a way that changes it (not the
+        // body). The signature will fail because proof bytes
+        // change but the body doesn't.
+        if let Ok(mut p) = serde_json::to_value(&signed.proof) {
+            if let Some(obj) = p.as_object_mut() {
+                obj.insert(
+                    "proofValue".to_string(),
+                    serde_json::Value::String("z00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000".to_string()),
+                );
+            }
+            if let Ok(p2) = serde_json::from_value(
+                p) {
+                signed.proof = p2;
+            }
+        }
+        let result = g.keeper_whisper(signed);
+        assert!(result.is_err());
+    }
+}

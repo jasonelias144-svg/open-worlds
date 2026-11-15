@@ -1,0 +1,26 @@
+fn post_keeper_whisper(&self, req: &mut tiny_http::Request)
+    -> Result<Response<std::io::Cursor<Vec<u8>>>, std::io::Error>
+{
+    let mut body = String::new();
+    req.as_reader().read_to_string(&mut body)?;
+    let payload: Value = match serde_json::from_str(&body) {
+        Ok(v) => v,
+        Err(_) => return Ok(json_error(StatusCode(400), "malformed")),
+    };
+    let record: formats::records::SignedKeeperWhisper =
+        match serde_json::from_value(payload) {
+            Ok(r) => r,
+            Err(_) => return Ok(json_error(StatusCode(400),
+                "malformed keeper_whisper record")),
+        };
+    let mut g = self.garden.lock().unwrap();
+    match g.keeper_whisper(record) {
+        Ok(_) => Ok(json_ok(&json!({"kind": "ack"}))),
+        Err(GardenError::SignatureInvalid) =>
+            Ok(json_error(StatusCode(401),
+                "record proof does not verify")),
+        Err(GardenError::Refused(r)) => Ok(json_refusal(&r)),
+        Err(e) => Ok(json_error(StatusCode(500),
+            &format!("keeper_whisper: {:?}", e))),
+    }
+}

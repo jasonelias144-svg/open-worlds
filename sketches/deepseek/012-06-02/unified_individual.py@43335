@@ -1,0 +1,329 @@
+def demo(artifact_dir=None):
+    from pathlib import Path
+    import time
+    import json as _json
+    from cryptography.hazmat.primitives.asymmetric.ed25519 import (
+        Ed25519PrivateKey)
+    from coupled_learners import TinyRNN, SIERPINSKI
+    from world_agent_coupling import ScriptedWorld
+    from multiverse_c73 import ChessWorld
+    from multiverse_c81 import GrowingWorld
+    from signed_world_log import (
+        SignedLogWorld, SignedLogWorldServer,
+        signed_entry_hash,
+    )
+    from chess_individual import ChessIndividualSession
+    from world_adapters import (
+        ChessAdapter, FederatedAdapter, GrowingCanvasAdapter,
+    )
+    from lifetime import verify_individual_lifetime
+
+    if not HAS_CRYPTO or not HAS_CHESS:
+        raise RuntimeError(
+            "requires cryptography and python-chess")
+    if artifact_dir is None:
+        artifact_dir = "artifacts"
+    root = Path(artifact_dir) / "resumable_unified"
+    root.mkdir(parents=True, exist_ok=True)
+
+    def _kp():
+        return Ed25519PrivateKey.generate()
+
+    # ---- Chess world (signed) ----
+    chess_kp = _kp()
+    base = ChessWorld("world:park", "Union Square")
+    signed_chess = SignedLogWorld(base, chess_kp)
+    chess_server = SignedLogWorldServer(signed_chess, port=0)
+    chess_server.serve_in_thread()
+    time.sleep(0.2)
+    chess_url = (f"http://127.0.0.1:"
+                  f"{chess_server._httpd.server_address[1]}")
+
+    try:
+        # ---- Black opponent ----
+        black = ChessIndividualSession(
+            individual_kp=_kp(),
+            model=TinyRNN(n_actions=3, hidden=4,
+                           n_extra_inputs=0, seed=300),
+            world_url=chess_url, world_id="world:park",
+            world_signer=signed_chess.world_signer,
+            memory=[], seat="black")
+        black.enter_and_sit("Black-bot")
+
+        # ---- Federated world ----
+        fed_kp = _kp()
+        fed_world = ScriptedWorld(
+            kp=fed_kp, initial_point_b=(800, 800),
+            k_b=50, prng_seed_b=0xBBBB, rule=SIERPINSKI)
+
+        # ---- Canvas world ----
+        canvas_kp = _kp()
+        canvas_world = GrowingWorld(
+            "world:canvas", "Open Canvas", canvas_kp)
+
+        # ---- Parent unified individual ----
+        white_kp = _kp()
+        white_model = TinyRNN(
+            n_actions=3, hidden=4, n_extra_inputs=0, seed=100)
+        white = UnifiedIndividualSession(
+            individual_kp=white_kp, model=white_model)
+
+        # Chess: 2 moves
+        white.enter_world_via_adapter(ChessAdapter(), {
+            "world_id": "world:park",
+            "world_url": chess_url,
+            "world_signer": signed_chess.world_signer,
+            "seat": "white",
+            "display_name": "White-bot",
+        })
+        for _ in range(2):
+            if white.step_via_adapter() is None:
+                break
+            black.play_turn()
+
+        # Federated: 3 steps
+        white.enter_world_via_adapter(FederatedAdapter(), {
+            "world_id": fed_world.world_id,
+            "world": fed_world,
+            "world_signer": fed_world.world_id,
+            "initial_point": (200, 800),
+        })
+        for _ in range(3):
+            white.step_via_adapter()
+
+        parent_bundle = pack_unified_bundle(
+            white,
+            persona="an individual across chess and chaos",
+            name="White-bot", initial_seed=100)
+        parent_bundle.save(root / "parent")
+        parent_loaded = IndividualBundle.load(root / "parent")
+
+        # ---- Build world logs for parent ----
+        chess_log = signed_chess.signed_log_since(None)
+        fed_log = [
+            {"body": r.body(), "sig": r.sig,
+             "record_hash": r.record_hash()}
+            for r in fed_world.records
+        ]
+        parent_world_logs = {
+            "world:park": chess_log,
+            fed_world.world_id: fed_log,
+        }
+
+        # ---- Verify parent ----
+        v_parent_full = verify_unified_individual_with_adapters(
+            parent_loaded, parent_world_logs)
+
+        # ---- Resume into canvas ----
+        resumed_session, reason = resume_unified_from_bundle(
+            parent_loaded, white_kp, GrowingCanvasAdapter(), {
+                "world_id": "world:canvas",
+                "world": canvas_world,
+                "world_signer": canvas_world.curator_public_key,
+                "display_name": "White-bot",
+            })
+        assert resumed_session is not None, reason
+
+        # 3 canvas turns
+        for _ in range(3):
+            resumed_session.step_via_adapter()
+
+        resumed_bundle = pack_unified_bundle(
+            resumed_session,
+            persona="an individual across chess, chaos, and canvas",
+            name="White-bot", initial_seed=100,
+            resumed_from=parent_loaded.manifest["memory_root"])
+        resumed_bundle.save(root / "resumed")
+        resumed_loaded = IndividualBundle.load(root / "resumed")
+
+        # ---- Build world logs for resumed (adds canvas) ----
+        canvas_log = [
+            {"event_hash": e.event_hash(),
+             "event_dict": e.to_dict()}
+            for e in canvas_world.events()
+        ]
+        all_world_logs = dict(parent_world_logs)
+        all_world_logs["world:canvas"] = canvas_log
+
+        # ---- Verify resumed ----
+        v_resumed_full = verify_resumed_unified_full(
+            resumed_loaded, parent_loaded, all_world_logs)
+
+        # ---- Lifetime ----
+        bundles = {
+            parent_loaded.individual_id: parent_loaded,
+            resumed_loaded.individual_id: resumed_loaded,
+        }
+        # Lifetime needs world_logs in raw shape per tier;
+        # our adapter world_logs are already in that shape.
+        report = verify_individual_lifetime(
+            bundles, parent_loaded.individual_id,
+            world_logs=all_world_logs)
+
+        # ---- Tampering ----
+        # T1: altered prefix
+        tampered_prefix = IndividualBundle(
+            manifest=dict(resumed_loaded.manifest),
+            memory=list(resumed_loaded.memory),
+            weights=dict(resumed_loaded.weights),
+            initial_weights=None, observations=[],
+            ancestry=[], checkpoint_weights=None,
+        )
+        for i, r in enumerate(tampered_prefix.memory):
+            if r.get("type") == "agent_step":
+                tampered_prefix.memory[i] = {
+                    **r, "reward_micros": 999999}
+                break
+        t1 = verify_resumed_unified_full(
+            tampered_prefix, parent_loaded, all_world_logs)
+
+        # T2: altered suffix (canvas coords)
+        tampered_suffix = IndividualBundle(
+            manifest=dict(resumed_loaded.manifest),
+            memory=list(resumed_loaded.memory),
+            weights=dict(resumed_loaded.weights),
+            initial_weights=None, observations=[],
+            ancestry=[], checkpoint_weights=None,
+        )
+        for i, r in enumerate(tampered_suffix.memory):
+            if r.get("tier") == "canvas":
+                tampered_suffix.memory[i] = {
+                    **r, "x": 999, "y": 999}
+                break
+        t2 = verify_resumed_unified_full(
+            tampered_suffix, parent_loaded, all_world_logs)
+
+        # T3: resume with wrong keypair
+        wrong_kp = _kp()
+        t3_sessions, t3_reason = resume_unified_from_bundle(
+            parent_loaded, wrong_kp, GrowingCanvasAdapter(), {
+                "world_id": "world:canvas",
+                "world": canvas_world,
+                "world_signer": canvas_world.curator_public_key,
+                "display_name": "Wrong",
+            })
+
+        # T4: resumed_from points to a fake root
+        tampered_resumed_from = IndividualBundle(
+            manifest=dict(resumed_loaded.manifest),
+            memory=list(resumed_loaded.memory),
+            weights=dict(resumed_loaded.weights),
+            initial_weights=None, observations=[],
+            ancestry=[], checkpoint_weights=None,
+        )
+        tampered_resumed_from.manifest["resumed_from"] = "00" * 32
+        body = {k: v for k, v in
+                 tampered_resumed_from.manifest.items()
+                 if k != "sig"}
+        tampered_resumed_from.manifest["sig"] = white_kp.sign(
+            _canonical(body)).hex()
+        t4 = verify_resumed_unified_full(
+            tampered_resumed_from, parent_loaded, all_world_logs)
+
+        # ---- Print ----
+        print("=" * 74)
+        print("Resumable unified — the individual continues across "
+              "a tier")
+        print("=" * 74)
+        print()
+        print(f"  Parent:  {parent_loaded.individual_id[:32]}...")
+        print(f"           {len(parent_loaded.memory)} entries, "
+              f"{len(parent_loaded.manifest['world_contexts'])} worlds")
+        print(f"           {[c['tier'] for c in parent_loaded.manifest['world_contexts']]}")
+        print()
+        print(f"  Resumed: {resumed_loaded.individual_id[:32]}...")
+        print(f"           {len(resumed_loaded.memory)} entries, "
+              f"{len(resumed_loaded.manifest['world_contexts'])} worlds")
+        print(f"           {[c['tier'] for c in resumed_loaded.manifest['world_contexts']]}")
+        print(f"           resumed_from: "
+              f"{resumed_loaded.manifest['resumed_from'][:16]}...")
+        print()
+        print("  Verification:")
+        print(f"    parent full:   {v_parent_full[0]}  "
+              f"({v_parent_full[1]})")
+        print(f"    resumed full:  {v_resumed_full[0]}  "
+              f"({v_resumed_full[1]})")
+        print(f"    lifetime:      {report.ok}")
+        if report.ok:
+            print(f"                   tier(s): "
+                  f"{sorted(set(b['tier'] for b in report.bundles))}")
+            print(f"                   edges:  "
+                  f"{len(report.edges)} "
+                  f"(delegated={sum(1 for e in report.edges if e.get('delegated'))})")
+        else:
+            for e in report.errors:
+                print(f"      ✗ {e}")
+        print()
+        print("  Tampering:")
+        print(f"    altered prefix reward:   {t1[0]}  ({t1[1]})")
+        print(f"    altered suffix coords:   {t2[0]}  ({t2[1]})")
+        print(f"    wrong keypair at resume: "
+              f"{t3_sessions is None}  ({t3_reason})")
+        print(f"    forged resumed_from:     {t4[0]}  ({t4[1]})")
+        print()
+        print("  What this establishes:")
+        print("    - Resume doesn't distinguish between tiers. The")
+        print("      unified individual's memory is one chain;")
+        print("      resumption appends a new world_entry and")
+        print("      continues. No per-tier session type, no per-")
+        print("      tier verifier variant.")
+        print("    - The model carries across the resume boundary.")
+        print("      Weights and RNN hidden state persist; the new")
+        print("      tier starts with a fresh per-tier state vector")
+        print("      but the same learned model.")
+        print("    - Continuity is proven, not trusted. The")
+        print("      resumed bundle's prefix hashes to the parent's")
+        print("      memory_root. verify_resumed_from — unchanged")
+        print("      from resumable.py — works on any entry shape.")
+        print("    - Lifetime verification composes without")
+        print("      modification. It sees two unified bundles,")
+        print("      dispatches each to the adapter verifier,")
+        print("      then checks the resume edge — all with the")
+        print("      same machinery as federated resume.")
+        print("    - The payoff of the adapter abstraction: the")
+        print("      lifecycle operations (resume, delegate,")
+        print("      compact, fork) compose across tiers without")
+        print("      per-tier special-casing, because each tier is")
+        print("      just another adapter the unified machinery")
+        print("      dispatches to.")
+        print()
+        print("  Honest limit: resumed_from is a single field,")
+        print("  not a chain. Multi-resume needs one bundle per")
+        print("  step, with the lifetime verifier walking them.")
+        print("  Same pattern as federated multi-resume.")
+        print()
+        print("  Anchor (public domain, Emily Dickinson):")
+        print("    'Forever – is composed of Nows –'")
+        print("    'Tis not a different time –'")
+
+        audit = {
+            "parent_id": parent_loaded.individual_id,
+            "parent_entries": len(parent_loaded.memory),
+            "parent_tiers": [c["tier"] for c in
+                              parent_loaded.manifest["world_contexts"]],
+            "resumed_entries": len(resumed_loaded.memory),
+            "resumed_tiers": [c["tier"] for c in
+                               resumed_loaded.manifest["world_contexts"]],
+            "resumed_from": resumed_loaded.manifest.get(
+                "resumed_from"),
+            "verification": {
+                "parent_full": v_parent_full[0],
+                "resumed_full": v_resumed_full[0],
+                "lifetime": report.ok,
+            },
+            "tampering": {
+                "altered_prefix_detected": not t1[0],
+                "altered_suffix_detected": not t2[0],
+                "wrong_keypair_refused": t3_sessions is None,
+                "forged_resumed_from_detected": not t4[0],
+            },
+        }
+        (root / "resumable_unified_demo.json").write_text(
+            _json.dumps(audit, indent=2))
+        print(f"\n  → {root}/resumable_unified_demo.json")
+        return audit
+    finally:
+        try:
+            chess_server.stop()
+        except Exception:
+            pass

@@ -1,0 +1,81 @@
+#[test]
+fn log_without_since_returns_all() {
+    let (g, key) = build_garden();
+    let base = spawn_server(g.clone(), &key);
+
+    // Generate some entries
+    let agent = SigningKey::generate();
+    let mut c = GardenClient::new(base.clone(), agent);
+    c.connect().unwrap();
+    c.petition("A").unwrap();
+    c.enter(Cell { x: 0, y: 4, z: 0 }).unwrap();
+
+    let slice = c.log_since(None).unwrap();
+    // plant_added + admission + agent_entered = 3
+    assert_eq!(slice.entries.len(), 3);
+    assert!(slice.since.is_none());
+    assert_eq!(slice.total_in_garden, 3);
+    assert_eq!(slice.last_tick, Some(2));
+}
+
+#[test]
+fn log_since_filters_to_new_entries() {
+    let (g, key) = build_garden();
+    let base = spawn_server(g.clone(), &key);
+
+    let agent = SigningKey::generate();
+    let mut c = GardenClient::new(base.clone(), agent);
+    c.connect().unwrap();
+    c.petition("A").unwrap();
+    c.enter(Cell { x: 0, y: 4, z: 0 }).unwrap();
+
+    // First read: everything
+    let first = c.log_since(None).unwrap();
+    let last_tick = first.last_tick.unwrap();
+    assert_eq!(last_tick, 2);
+
+    // Do more acts
+    c.act(crate::garden::GardenAction::Observe).unwrap();
+    c.act(crate::garden::GardenAction::Speak {
+        text: "hi".into(),
+    }).unwrap();
+
+    // Incremental read: only the new two
+    let second = c.log_since(Some(last_tick)).unwrap();
+    assert_eq!(second.entries.len(), 2);
+    let kinds: Vec<&str> = second.entries.iter()
+        .filter_map(|e| e.get("body"))
+        .filter_map(|b| b.get("kind").and_then(|v| v.as_str()))
+        .collect();
+    assert_eq!(kinds, vec!["agent_observed", "agent_spoke"]);
+    assert_eq!(second.last_tick, Some(4));
+}
+
+#[test]
+fn log_since_at_head_returns_empty() {
+    let (g, key) = build_garden();
+    let base = spawn_server(g.clone(), &key);
+
+    let agent = SigningKey::generate();
+    let mut c = GardenClient::new(base, agent);
+    c.connect().unwrap();
+    c.petition("A").unwrap();
+
+    let all = c.log_since(None).unwrap();
+    let last = all.last_tick.unwrap();
+    let head = c.log_since(Some(last)).unwrap();
+    assert_eq!(head.entries.len(), 0);
+    assert_eq!(head.last_tick, Some(last));  // echoes since
+    assert_eq!(head.total_in_garden, all.total_in_garden);
+}
+
+#[test]
+fn log_since_bad_value_refused() {
+    let (g, key) = build_garden();
+    let base = spawn_server(g.clone(), &key);
+
+    let resp = ureq::get(&format!("{}/log?since=abc", base))
+        .call();
+    // tiny_http returns 400; ureq surfaces it as an error.
+    assert!(resp.is_err());
+}

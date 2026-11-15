@@ -1,0 +1,14 @@
+# In _verify_bundle_at_tier, the existing unified dispatch becomes:
+if kind == "unified_individual":
+    if world_logs is not None:
+        from unified_individual import (
+            verify_unified_individual_with_adapters,
+        )
+        ok, reason = verify_unified_individual_with_adapters(
+            bundle, world_logs)
+        return {"ok": ok, "tier": "unified", "reason": reason}
+    from unified_individual import (
+        verify_unified_individual_basic,
+    )
+    ok, reason = verify_unified_individual_basic(bundle)
+    return {"ok": ok, "tier": "unified-basic", "reason": reason}

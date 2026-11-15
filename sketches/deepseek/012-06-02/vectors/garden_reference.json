@@ -1,0 +1,57 @@
+{
+  "kind": "garden_test_vector",
+  "version": "1.0",
+  "description": "Fixed scenario; every implementation must produce identical hashes.",
+  "scenario": {
+    "garden": {
+      "entity_id": "garden:reference",
+      "width": 9,
+      "height": 8,
+      "depth": 1,
+      "curator_seed_hex": "0000000000000000000000000000000000000000000000000000000000000001"
+    },
+    "admitted": [
+      {
+        "name": "ALICE",
+        "seed_hex": "00000000000000000000000000000000000000000000000000000000000000a1"
+      },
+      {
+        "name": "BOB",
+        "seed_hex": "00000000000000000000000000000000000000000000000000000000000000b1"
+      }
+    ],
+    "actions": [
+      { "type": "add_plant", "id": "fern", "kind": "fern", "position": [2, 2, 0], "seed": 43981 },
+      { "type": "add_plant", "id": "vine", "kind": "vine", "position": [4, 6, 0], "seed": 48059 },
+      { "type": "admit", "agent": "ALICE" },
+      { "type": "admit", "agent": "BOB" },
+      { "type": "enter", "agent": "ALICE", "at": [0, 4, 0] },
+      { "type": "enter", "agent": "BOB", "at": [0, 5, 0] },
+      { "type": "cycle_advance", "steps": 3 },
+      { "type": "walk", "agent": "ALICE", "direction": "E" },
+      { "type": "walk", "agent": "ALICE", "direction": "E" },
+      { "type": "walk", "agent": "ALICE", "direction": "N" },
+      { "type": "walk", "agent": "ALICE", "direction": "N" },
+      { "type": "observe", "agent": "ALICE" },
+      { "type": "cycle_advance", "steps": 1 },
+      { "type": "observe", "agent": "ALICE" },
+      { "type": "speak", "agent": "ALICE", "text": "the fern is growing" },
+      { "type": "walk", "agent": "BOB", "direction": "N" },
+      { "type": "speak", "agent": "BOB", "text": "I see it too" }
+    ]
+  },
+  "expected": {
+    "log_length": 16,
+    "entry_hashes": [
+      "<placeholder: filled by generator>",
+      "... 16 total ..."
+    ],
+    "plant_event_hashes": {
+      "fern": ["<placeholder 1>", "<placeholder 2>", "<placeholder 3>", "<placeholder 4>"],
+      "vine": ["<placeholder 1>", "<placeholder 2>", "<placeholder 3>", "<placeholder 4>"]
+    },
+    "cross_reference_count": 2,
+    "alice_final_position": [2, 3, 0],
+    "bob_final_position": [0, 4, 0]
+  }
+}

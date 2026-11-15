@@ -29,7 +29,7 @@ In the founder's words (STATUS.md, "Decided", 2026-11-14):
 - On change: "nothing set in stone yet, let’s explore different ideas.
   [...] it may differ by world". How a world may change (not at all, in
   place, by branching, sandboxed) is left open, and may differ by world.
-- On language, later the same night, to DeepSeek (record 012-06-02, as
+- On language, after that evening, to DeepSeek (record 012-06-02, as
   extended on 2026-11-15, line 52822): "My preference would be to move to
   Rust, I only wanted us to transition naturally, as we are doing now.
   Let’s move forward in Rust, or other languages when needed, but
@@ -42,21 +42,19 @@ In the founder's words (STATUS.md, "Decided", 2026-11-14):
   exactly how I envisioned the Ur-world, ALICE and BOB is a microverse
   garden of hosted fractal worlds."
 
-Earlier: fractal worlds are primary worlds, with rules and no AI inside,
-made from a template whose dials are the rule's numbers (TOPICS.md,
-topic 1; VISION.md, "A hierarchy of worlds"). The founder's newer word,
-"minimally sufficient models [...] capable of choice for the fractal
-worlds", meets it. The technical lead's reading, put to the founder on
-2026-11-15 (it stands unless the founder answers otherwise): the newer
-word changes the earlier decision for some fractal worlds, not all. "No
-AI inside" now holds for the plant worlds, and for any fractal world of
-rules alone; a fractal world made for choosing, such as the chaos game
-where a choice picks the next step, has a small learner inside it, a
-model, though not a language model. The learners are "minimally
-sufficient models", not the minds of ALICE and BOB. So the plant worlds
-stay primary, rules alone, and the learners enter fractal worlds made
-for choosing, such as the chaos game where a choice picks
-the next step (part 5).
+Fractal worlds are primary worlds, made from a template whose dials are
+the rule's numbers (TOPICS.md, topic 1; VISION.md, "A hierarchy of
+worlds"). The founder, 2026-11-15: "Rules only and AI inside are not
+different. I was looking for a basic choosing and learning model, like a
+single neuron. This is not the same AI as will be used for ALICE and
+BOB, perhaps we can use a weaker term, “learning and choosing monad”,
+but we can just consider it a primitive learning model. So no tension."
+The technical lead's reading of it, which stands unless the founder
+answers otherwise: a primitive learning model inside a fractal world
+doesn't stop it being primary; it is part of the world's workings, as
+its rules are, and not the AI that ALICE and BOB will have; and whether
+a world has one is that world's. (This replaces the technical lead's
+earlier reading, which kept learners out of the plant worlds.)
 
 And the founder's Ur-world word meets the decision of 2026-11-13: "Once
 we work out that world, we can begin creating subworlds" (URWORLD.md).
@@ -126,13 +124,14 @@ technical lead's. Each part is one reviewed pull request.
    own, all the time, costs money, so it is the founder's decision, and
    waits for it.
 5. **More families, and choice.** Automata and chaos games, as DeepSeek
-   sketched them; then the smallest learners that choose (DeepSeek's
-   lookup table and four-unit network), as the first inhabitants with
-   choice in a fractal world: the first rungs of the ladder that leads to
-   step 8's audition, which measures what is minimally sufficient for
-   ALICE and BOB. A learner learns from rewards, and ALICE and BOB will be
-   language models that speak, so the learners teach about choice and
-   don't become them.
+   sketched them; then primitive learning models that choose (DeepSeek's
+   lookup table and four-unit network; the learning and choosing monad,
+   in the founder's term), in any fractal world whose template has one
+   (the technical lead's reading, above): the first rungs of the ladder
+   that leads to step 8's audition, which measures what is minimally
+   sufficient for ALICE and BOB. A learner learns from rewards, and
+   ALICE and BOB will be language models that speak, so the learners
+   teach about choice and don't become them.
 
 How each world may change is its own: a template can say that no change
 is taken, or that a change makes a branch and the original continues, or

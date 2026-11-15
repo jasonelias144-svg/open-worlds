@@ -88,7 +88,11 @@ in the order to read it:
    DeepSeek: "treat the new idea as an update and always go with the
    most recent". A newer word that contradicts an earlier decision is
    pointed out to the founder, naming the earlier one, so the change is
-   made knowingly.
+   made knowingly. A newer word that answers changed conditions is no
+   contradiction (the founder: "So my direction changed because the
+   conditions changed. That is how I work. It is not contradictory, but
+   situation dependent."), and is recorded beside the earlier one; the
+   change is still mentioned to the founder, as a note.
 7. **Fractal worlds, moved forward** ([FRACTALS.md](FRACTALS.md)), on
    2026-11-14, from your sketches in record 012-06-02: a fractal plant
    world in Rust, checked against your Python; a web app in `web/` to
@@ -99,8 +103,10 @@ in the order to read it:
    forget ([VISION.md](VISION.md), "Worlds that change differently").
    And the founder asked you to move to Rust ("primarily to Rust", record
    012-06-02): what you write in Rust is compiled, tested and fitted in
-   here, so work from the current files, whose links the founder can give
-   you; the Ur-world has signed arrivals and log heads since step 3. The
+   here, and what fits comes straight in ("Two sides", below). The
+   current files are each linked under "Code in Rust", below, to build
+   on if you choose; the Ur-world has signed arrivals and log heads
+   since step 3. The
    Ur-world's garden is to host the fractal plants, as the founder
    pictured it: "a microverse garden of hosted fractal worlds".
 
@@ -129,9 +135,39 @@ can be read, run and debugged, without committing to using them.
 [`sketches/INDEX.md`](../sketches/INDEX.md) is the one place that says
 where the sketch and the course meet: each component, how its tests fare,
 which course step it relates to, and whether any of it is in open-worlds.
-Its "Course" column uses the first course's step numbers ("Done: the
-first course" in [COURSE.md](COURSE.md) is the key), not the course now
-running.
+Its "Course" column uses the first course's step numbers for records
+012-04-00 and 012-05-01 ("Done: the first course" in
+[COURSE.md](COURSE.md) is the key), and the course now running for
+record 012-06-02.
+
+**Taking a piece in is a decision of its own** (the founder, 2026-11-15:
+"Also, keep in mind, we expect DeepSeek code to have some things to fix,
+and we should still decide whether or not to incorporate anything that
+goes against our established design."). The technical lead's answer, put
+to the founder the same day (it stands unless the founder answers
+otherwise): four steps, in order.
+
+1. **Bring it in as written,** in `sketches/`, with every test's result.
+2. **Make it run:** fix what is broken, the design unchanged, each fix
+   listed with its reason.
+3. **Check its fit** with the established design (the decisions in
+   STATUS.md and the design pages), naming each conflict.
+4. **Decide, piece by piece:** adopt it, adapt it, or keep it as a
+   sketch, with the reason in `sketches/INDEX.md`. The technical lead
+   decides the code; what would change a founder's decision goes to the
+   founder, with a recommendation.
+
+**What fits comes straight in.** The founder, 2026-11-15: "The DeepSeek
+code should still be treated as sketches and brainstorming, but now in
+Rust. But if the code aligns well and extends cleanly, then why not just
+incorporate. But changing to Rust does not change anything else, only
+the language." The technical lead's rule for it: a piece that compiles
+against the crates on `main`, passes the three commands under "Code in
+Rust", keeps the rules there, and meets no conflict in step 3 goes into
+`rust/` in one reviewed pull request, steps 2 to 4 together. Its commits
+name DeepSeek as well as Claude in their `Made-by` lines and say what
+was changed here, and the record keeps the original. Everything else
+stays a sketch, as before.
 
 **The standard is open-worlds' own code, not the sketches.** Build on
 the code merged into `main` (`multiverse/`, `formats/`, `rust/`) and the
@@ -412,6 +448,37 @@ These hold for every Rust file that comes in, on top of the house rules:
 9. **Public domain**, like everything here: each crate says
    `license = "CC0-1.0"`.
 
+**Our crates, file by file,** to build on if you choose: each link
+opens the file as it is on `main`. These are the files to write against,
+each crate's library code; its tests and examples sit beside them. A
+draft written against them can come in as it is; one that isn't is
+welcome too, and is fitted here.
+
+- **The workspace:** [`Cargo.toml`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/Cargo.toml) (the dependencies, each with its
+  reason, and the lints) and [`rust-toolchain.toml`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/rust-toolchain.toml).
+- **`formats`**, records signed the standard way: [`formats/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/lib.rs),
+  [`formats/src/canonical.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/canonical.rs), [`formats/src/proof.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/proof.rs),
+  [`formats/src/multikey.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/multikey.rs), [`formats/src/records.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/records.rs),
+  [`formats/src/seal.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/seal.rs), [`formats/src/sealed.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/sealed.rs).
+- **`world-log`**, a world's log, checked: [`world-log/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/lib.rs).
+- **`ur-world`**, the Ur-world: [`ur-world/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/lib.rs),
+  [`ur-world/src/world.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/world.rs), [`ur-world/src/space.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/space.rs),
+  [`ur-world/src/generate.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/generate.rs), [`ur-world/src/arrival.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/arrival.rs),
+  [`ur-world/src/door.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/door.rs), [`ur-world/src/garden.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/garden.rs),
+  [`ur-world/src/story.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/story.rs); and its example,
+  [`ur-world/examples/garden.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/garden.rs).
+
+What they offer, in short. A key is its 32 bytes (`[u8; 32]`) and a
+record is a `serde_json::Value`: `formats::proof::sign(document, secret,
+created, purpose)` signs one, and `formats::proof::verify(secured)`
+checks it and returns the record without its proof, and the key that
+signed it (use that record, not the one passed in). There is no
+`SigningKey`, `Proof` or `Suite` of ours to import, and no `jcs_bytes`
+(`formats::canonical::canonical` writes the RFC 8785 form); record
+012-06-02's Rust assumed them. A mind is `ur_world::world::Mind`, with
+one method, `act(&mut self, seen: &Observation) -> Action`; a place is
+`ur_world::space::Cell`, and a direction `Dir`.
+
 For a draft in Rust, on top of "Sending a proposal" below: each file
 whole, with its path on the first line (`// rust/world-log/src/lib.rs`);
 only the crates already in the workspace, unless the draft names a new
@@ -488,3 +555,10 @@ page.
 - 2026-11-15, between cycles: the fractal track planned
   ([FRACTALS.md](FRACTALS.md)), and this page's "Since you were last
   here" gained item 7.
+- 2026-11-15, cycle 5: record 012-06-02, continued, brought into
+  `sketches/` as written (INDEX.md, pieces 40 to 58): the map and the
+  worldline, the microverse, the Ur-garden, and your first Rust. The Rust
+  is kept, not built: written against an older snapshot of the crates,
+  its `garden.rs` has 19 compile errors against today's. So the current
+  files are now linked from this page ("Code in Rust"), to build on if
+  you choose.

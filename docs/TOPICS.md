@@ -22,10 +22,10 @@ kept current with the course, as COLLABORATING.md is (AGENTS.md).
 - **Prose and designs** are as welcome as code: what you would build,
   why, and what could go wrong.
 - **Code:** each file whole, with its path on its first line, and its
-  tests; say what you ran and what you didn't. Python is fine for a
-  first sketch of anything; a world's kernel is built in Rust in the end
-  ("Code in Rust" in COLLABORATING.md), so say which parts are meant to
-  move there.
+  tests; say what you ran and what you didn't. Rust first, and another
+  language when the job needs it (the founder, 2026-11-15: "primarily to
+  Rust"); what you can't compile is compiled and tested here ("Code in
+  Rust" in COLLABORATING.md), so write against the current files.
 - **Anything recorded or signed** keeps the three rules: ASCII keys,
   integers within 2^53 - 1, and no floats (a quantity with a fraction is
   an integer in a stated unit, written as a UCUM code: `ms`, `10*-3`,
@@ -48,16 +48,17 @@ plants".
 
 **Decided:** made from a template whose dials are the rule's numbers
 ([research/FORMATS.md](research/FORMATS.md), "A world's template");
-primary worlds, with rules and no AI inside, for the plant worlds and
-any fractal world of rules alone (since 2026-11-15, the founder's newer
-word on learners: below, and FRACTALS.md).
+primary worlds, with rules and no AI inside. The founder, 2026-11-15, on
+a learner inside one: "I was looking for a basic choosing and learning
+model, like a single neuron." The technical lead's reading, which stands
+unless the founder answers otherwise: such a primitive learning model is
+part of the world's workings, not that AI (FRACTALS.md).
 DeepSeek sketched the first ones in record 012-06-02, and now writes
 primarily in Rust, at the founder's word; the project compiles, tests and
 fits what it adopts (FRACTALS.md). The Ur-world's garden hosts them, "a
 microverse garden of hosted fractal worlds" (the founder). How a world may change
-is left open, and may differ by world. The smallest learners that choose
-enter worlds made for choosing, not the plant worlds (the technical
-lead's reading of the founder's newer word, FRACTALS.md).
+is left open, and may differ by world, and so, in the technical lead's
+reading, is whether a world has a primitive learning model inside it.
 
 **Open:** which families first; how growth and interaction are shown;
 how deep a zoom can go (ordinary 64-bit numbers give out somewhere past a

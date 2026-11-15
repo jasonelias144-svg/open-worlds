@@ -1,0 +1,28 @@
+{
+  "$defs": {
+    "KeeperWhisper": {
+      "type": "object",
+      "properties": {
+        "kind": { "const": "keeper_whisper" },
+        "keeper_did": {
+          "type": "string",
+          "pattern": "^did:key:z[1-9A-HJ-NP-Za-km-z]+$"
+        },
+        "cycle": { "type": "integer", "minimum": 0 },
+        "to": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "string",
+              "pattern": "^did:key:z[1-9A-HJ-NP-Za-km-z]+$"
+            }
+          ]
+        },
+        "text": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "proof": { "$ref": "#/$defs/DataIntegrityProof" }
+      },
+      "required": ["kind", "keeper_did", "cycle", "to", "text", "proof"],
+      "additionalProperties": false
+    }
+  }
+}

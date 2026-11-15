@@ -1,0 +1,129 @@
+// garden_server/tests.rs
+
+#[test]
+fn curator_runs_on_advance() {
+    let (g, key) = build_garden();
+    let base = spawn_server_with_policy(
+        g.clone(), key.clone(), KeeperPolicy::RecordOnly);
+    let keeper = key.clone();
+
+    keeper_advance(&base, &keeper, 1).unwrap();
+
+    let g = g.lock().unwrap();
+    let proposals: Vec<_> = g.log.iter()
+        .filter(|e| e.body.get("kind").and_then(|v| v.as_str())
+            == Some("garden_curator_proposal"))
+        .collect();
+    // Two plants, both isolated → 2 whispers proposed.
+    assert_eq!(proposals.len(), 2);
+}
+
+#[test]
+fn auto_broadcast_whispers() {
+    let (g, key) = build_garden();
+    let base = spawn_server_with_policy(
+        g.clone(), key.clone(),
+        KeeperPolicy::AutoBroadcastWhispers);
+    keeper_advance(&base, &key, 1).unwrap();
+
+    let g = g.lock().unwrap();
+    let whispers: Vec<_> = g.log.iter()
+        .filter(|e| e.body.get("kind").and_then(|v| v.as_str())
+            == Some("keeper_whisper"))
+        .collect();
+    assert_eq!(whispers.len(), 2,
+        "expected 2 auto-broadcast whispers, got {}",
+        whispers.len());
+    // Each whisper's text mentions a plant id
+    for w in &whispers {
+        let text = w.body.get("text").and_then(|v| v.as_str())
+            .unwrap_or("");
+        assert!(text.contains("fern") || text.contains("vine"),
+            "whisper text should mention a plant: {:?}", text);
+    }
+}
+
+#[test]
+fn record_only_policy_no_whispers() {
+    let (g, key) = build_garden();
+    let base = spawn_server_with_policy(
+        g.clone(), key.clone(), KeeperPolicy::RecordOnly);
+    keeper_advance(&base, &key, 1).unwrap();
+
+    let g = g.lock().unwrap();
+    let whispers = g.log.iter()
+        .filter(|e| e.body.get("kind").and_then(|v| v.as_str())
+            == Some("keeper_whisper"))
+        .count();
+    assert_eq!(whispers, 0);
+    // But proposals ARE recorded.
+    let proposals = g.log.iter()
+        .filter(|e| e.body.get("kind").and_then(|v| v.as_str())
+            == Some("garden_curator_proposal"))
+        .count();
+    assert_eq!(proposals, 2);
+}
+
+#[test]
+fn resident_hears_curator_whispers() {
+    let (g, key) = build_garden();
+    let base = spawn_server_with_policy(
+        g.clone(), key.clone(),
+        KeeperPolicy::AutoBroadcastWhispers);
+
+    let agent_key = SigningKey::generate();
+    let mut c = GardenClient::new(base.clone(), agent_key);
+    c.connect().unwrap();
+    c.petition("A").unwrap();
+    c.enter(Cell { x: 0, y: 4, z: 0 }).unwrap();
+
+    // Before advance: no whispers yet (curator hasn't run)
+    let obs = c.observe().unwrap();
+    assert!(obs.whispers.is_empty());
+
+    // Advance → curator runs → keeper auto-broadcasts
+    keeper_advance(&base, &key, 1).unwrap();
+
+    // Next observe sees both whispers
+    let obs = c.observe().unwrap();
+    assert_eq!(obs.whispers.len(), 2);
+    let texts: Vec<&str> = obs.whispers.iter()
+        .map(|w| w.text.as_str()).collect();
+    assert!(texts.iter().any(|t| t.contains("fern")));
+    assert!(texts.iter().any(|t| t.contains("vine")));
+}
+
+#[test]
+fn full_loop_verifies() {
+    let (g, key) = build_garden();
+    let base = spawn_server_with_policy(
+        g.clone(), key.clone(),
+        KeeperPolicy::AutoBroadcastWhispers);
+    keeper_advance(&base, &key, 1).unwrap();
+    keeper_advance(&base, &key, 1).unwrap();
+    keeper_advance(&base, &key, 1).unwrap();
+
+    let g = g.lock().unwrap();
+    g.verify_log().expect("log verification");
+    g.verify_cross_references().expect("cross-references");
+}
+
+// Helper
+fn keeper_advance(base: &str, key: &SigningKey, steps: usize)
+    -> Result<Value, String>
+{
+    let body = serde_json::json!({
+        "kind": "advance_cycle", "steps": steps,
+    });
+    let proof = formats::proof::sign(
+        formats::proof::Suite::EddsaJcs2022, key, &body,
+    ).map_err(|_| "sign".to_string())?;
+    let resp = ureq::post(&format!("{}/advance_cycle", base))
+        .send_json(serde_json::json!({
+            "keeper_did": key.did(),
+            "proof": proof,
+            "steps": steps,
+        }))
+        .map_err(|e| format!("post: {e}"))?;
+    resp.into_json().map_err(|e| format!("parse: {e}"))
+}

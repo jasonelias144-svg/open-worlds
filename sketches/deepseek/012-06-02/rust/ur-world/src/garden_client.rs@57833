@@ -1,0 +1,35 @@
+/// A log slice — what `/log?since=` returned.
+pub struct LogSlice {
+    pub entries: Vec<Value>,
+    pub since: Option<u64>,
+    pub total_in_garden: usize,
+    pub last_tick: Option<u64>,
+}
+
+impl GardenClient {
+    /// Fetch log entries after the last tick seen.
+    ///
+    /// First call: `log_since(None)` returns everything.
+    /// Subsequent calls: `log_since(slice.last_tick)` returns
+    /// only the new entries.
+    pub fn log_since(&self, since: Option<u64>) -> Result<LogSlice, String> {
+        let url = match since {
+            Some(t) => format!("{}/log?since={}", self.base_url, t),
+            None => format!("{}/log", self.base_url),
+        };
+        let resp = ureq::get(&url).call()
+            .map_err(|e| format!("GET {url}: {e}"))?;
+        let v: Value = resp.into_json()
+            .map_err(|e| format!("parse: {e}"))?;
+        let entries = v.get("entries")
+            .and_then(|a| a.as_array())
+            .cloned()
+            .ok_or("missing entries")?;
+        let since = v.get("since").and_then(|t| t.as_u64());
+        let total_in_garden = v.get("total_in_garden")
+            .and_then(|t| t.as_u64())
+            .unwrap_or(entries.len() as u64) as usize;
+        let last_tick = v.get("last_tick").and_then(|t| t.as_u64());
+        Ok(LogSlice { entries, since, total_in_garden, last_tick })
+    }
+}

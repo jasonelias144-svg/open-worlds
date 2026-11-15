@@ -19,6 +19,22 @@ open-worlds never imports it ([../../README.md](../../README.md)).
   learner beside a scripted world, and an individual as a signed,
   replayable bundle: spawning, inheritance, lineage, resuming, forking,
   a chess player, and one individual across several worlds.
+- **The record continued** (from line 43168, shared on 2026-11-15): a
+  multiversal map and an individual's worldline, a microverse that hosts
+  fractal worlds, the Ur-world as a garden of them (`ur_garden.py`), and,
+  at the founder's word, Rust: an Ur-garden for open-worlds' own
+  `rust/ur-world`, its keeper, a server and client, and verifiers in
+  Rust, Python and Node.js. These are kept under `rust/`, `vectors/` and
+  `schemas/` in this folder, at the paths DeepSeek gave them; one name
+  is ours, `rust/ur-world/examples/garden_curator_loop.rs`, for a block
+  DeepSeek headed only "Demo" (record line 59466) and whose first line
+  calls it a "Curator loop demo". **Nothing
+  builds or runs the Rust or the JavaScript here:** DeepSeek couldn't
+  compile them, and they were written against an older snapshot of
+  open-worlds' crates (INDEX.md says how far off they are). Read before
+  running any of it: the server and the verifiers open network ports on
+  this machine, and the Node.js files need packages from npm, which are
+  not installed here.
 - **It builds on records 012-05-01 and 012-04-00.** A few components
   import the chess world, the HTTP shim and the growing world of
   `../012-05-01`, and helpers of `../012-04-00`. `conftest.py` puts those

@@ -1,0 +1,142 @@
+MAX_DEPTH = 3
+
+
+def _resolve_impl(
+    map_world, target: str,
+    visited: set, depth: int,
+    fetch_live: bool, want_trace: bool,
+):
+    """Core recursion. Returns (result, trace_node).
+    trace_node is None if want_trace=False.
+    Never raises."""
+    node = ({
+        "map_id": map_world._manifest.entity_id,
+        "depth": depth,
+        "children": [],
+    } if want_trace else None)
+    t0 = time.monotonic()
+
+    my_id = map_world._manifest.entity_id
+    if my_id in visited:
+        if want_trace:
+            node["result"] = "cycle_blocked"
+            node["elapsed_ms"] = 0
+        return (None, node)
+    if depth > MAX_DEPTH:
+        if want_trace:
+            node["result"] = "depth_blocked"
+            node["elapsed_ms"] = 0
+        return (None, node)
+
+    visited = visited | {my_id}
+
+    # Direct hit
+    pin = map_world._registry.get_pin(target)
+    if pin is not None:
+        view = map_world._pin_view(target, fetch_live=fetch_live)
+        view["via"] = []
+        view["in_this_map"] = True
+        view["depth"] = depth
+        if want_trace:
+            node["result"] = "found_directly"
+            node["found_via"] = []
+            node["elapsed_ms"] = int(
+                (time.monotonic() - t0) * 1000)
+        return (view, node)
+
+    # Recurse
+    for map_pin in map_world._registry.map_pins():
+        child = ({
+            "map_id": map_pin.world_id,
+            "depth": depth + 1,
+            "children": [],
+        } if want_trace else None)
+
+        # Pre-checks (record skips in trace, don't HTTP)
+        if map_pin.world_id in visited:
+            if want_trace:
+                child["result"] = "cycle_blocked"
+                node["children"].append(child)
+            continue
+        if depth + 1 > MAX_DEPTH:
+            if want_trace:
+                child["result"] = "depth_blocked"
+                node["children"].append(child)
+            continue
+
+        visited_param = ",".join(sorted(visited))
+        trace_param = "1" if want_trace else "0"
+        t_child = time.monotonic()
+        sub = _get_json(
+            f"{map_pin.url.rstrip('/')}/pin/{target}"
+            f"?depth={depth + 1}&visited={visited_param}"
+            f"&trace={trace_param}"
+        )
+        child_ms = int((time.monotonic() - t_child) * 1000)
+
+        if sub is None:
+            if want_trace:
+                child["result"] = "unreachable"
+                child["elapsed_ms"] = child_ms
+                node["children"].append(child)
+            continue
+
+        if sub.get("status") == "not_registered":
+            if want_trace:
+                child["result"] = "not_found"
+                child["elapsed_ms"] = child_ms
+                sub_trace = sub.get("trace")
+                if sub_trace is not None:
+                    child["children"] = sub_trace.get(
+                        "children", [])
+                    child["sub_elapsed_ms"] = sub_trace.get(
+                        "elapsed_ms")
+                node["children"].append(child)
+            continue
+
+        # Found via this sub-map
+        sub["via"] = [map_pin.world_id] + sub.get("via", [])
+        sub["in_this_map"] = False
+        sub["depth"] = depth
+        if want_trace:
+            sub_trace = sub.get("trace")
+            if sub_trace is not None:
+                child.update(sub_trace)
+                child["http_ms"] = child_ms
+            else:
+                child["result"] = "found_directly" \
+                    if not sub["via"] else "found_via_children"
+                child["elapsed_ms"] = child_ms
+            node["children"].append(child)
+            node["result"] = "found_via_children"
+            node["found_via"] = list(sub["via"])
+            node["elapsed_ms"] = int(
+                (time.monotonic() - t0) * 1000)
+        return (sub, node)
+
+    if want_trace:
+        node["result"] = "not_found"
+        node["elapsed_ms"] = int(
+            (time.monotonic() - t0) * 1000)
+    return (None, node)
+
+
+def _recursive_resolve(
+    map_world, target, visited=None, depth=0,
+    fetch_live=True,
+):
+    """Public API — same signature as before, no trace overhead."""
+    result, _ = _resolve_impl(
+        map_world, target, visited or set(),
+        depth, fetch_live, want_trace=False)
+    return result
+
+
+def _explain_resolve(
+    map_world, target, visited=None, depth=0,
+    fetch_live=True,
+):
+    """Trace-collecting variant. Returns (result, trace_tree)."""
+    return _resolve_impl(
+        map_world, target, visited or set(),
+        depth, fetch_live, want_trace=True)

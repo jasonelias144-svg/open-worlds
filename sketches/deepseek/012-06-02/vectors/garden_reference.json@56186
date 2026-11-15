@@ -1,0 +1,40 @@
+{
+  "rnn": {
+    "n_actions": 3,
+    "hidden": 4,
+    "in_dim": 7,
+    "initial_weights": {
+      "w_in": [
+        [0.123456789, -0.234567890, ...],
+        "... 4 rows × 7 cols ..."
+      ],
+      "w_h": [
+        ["... 4 × 4 ..."]
+      ],
+      "w_out": [
+        ["... 3 × 4 ..."]
+      ],
+      "b_out": [0.0, 0.0, 0.0],
+      "h_prev": [0.0, 0.0, 0.0, 0.0],
+      "baseline": 0.0
+    },
+    "test_cases": [
+      {
+        "state": [1.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.0],
+        "expected_probs": [0.333333, 0.333333, 0.333334],
+        "chosen_action": 0,
+        "reward": 0.5,
+        "expected_baseline_after": 0.005,
+        "expected_weights_after_hash": "<placeholder>"
+      },
+      {
+        "state": [0.0, 1.0, 0.0, 0.5, 0.5, 0.4, 0.0],
+        "expected_probs": [0.334, 0.333, 0.333],
+        "chosen_action": 1,
+        "reward": 0.1,
+        "expected_baseline_after": 0.00595,
+        "expected_weights_after_hash": "<placeholder>"
+      }
+    ]
+  }
+}

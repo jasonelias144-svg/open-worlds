@@ -161,13 +161,28 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, the other choices in the continued conversation
+  with DeepSeek (record 012-06-02, as extended), as directions to
+  DeepSeek: "Actually, I Ike the cross-federation map first, and then
+  then individual’s worldline" (44227); "It sounds like god-game/
+  Microverse would be a good example learn from, as it could easily
+  represent a single world type" (48626); "And now I wonder if we can run
+  a fractal world or a collection of fractal worlds in a single
+  microverse. This way we draw a link into what we have already been
+  doing" (48677); and "I would go with the Node.js verifier first"
+  (61985). The technical lead's reading: the map pieces feed topic 16,
+  the multiversal map; the microverse and the Ur-garden feed the fractal
+  track's part 3; and a verifier in JavaScript fits the web app, which
+  checks a log in the page, once its npm packages are reviewed and pinned
+  (sketches/INDEX.md, pieces 40 to 58).
 - 2026-11-15, founder, in the continued conversation with DeepSeek
   (record 012-06-02, as extended, line 52822): "My preference would be to
   move to Rust, I only wanted us to transition naturally, as we are doing
   now. Let’s move forward in Rust, or other languages when needed, but
   primarily to Rust." This replaces the founder's word of the evening
-  before, that DeepSeek sketches in Python and the project ports it
-  downstream (2026-11-14, below), and was pointed out to the founder.
+  before, that DeepSeek sketches in the language it chooses (it chose
+  Python) and the project ports it downstream (2026-11-14, below), and
+  was pointed out to the founder.
   The technical lead's reading: DeepSeek writes Rust as proposals, which
   it can't compile; the project compiles, tests and fits them to the
   current code, and DeepSeek works best from links to the current files.
@@ -180,7 +195,56 @@ kind.
   plants small primary worlds hosted there; subworlds with laws, Keepers
   or minds of their own still wait for the Ur-world to be worked out
   (docs/FRACTALS.md). It stands unless the founder answers otherwise.
-- 2026-11-15, the technical lead's reading, put to the founder: the
+- 2026-11-15, founder, answering the reading below: "Rules only and AI
+  inside are not different. I was looking for a basic choosing and
+  learning model, like a single neuron. This is not the same AI as will
+  be used for ALICE and BOB, perhaps we can use a weaker term, “learning
+  and choosing monad”, but we can just consider it a primitive learning
+  model. So no tension." The technical lead's reading of it, which stands
+  unless the founder answers otherwise: a primitive learning model in a
+  fractal world is part of its workings, and the world stays primary;
+  whether a world has one is that world's (docs/FRACTALS.md). This
+  replaces the reading below.
+- 2026-11-15, founder: "Also, keep in mind, we expect DeepSeek code to
+  have some things to fix, and we should still decide whether or not to
+  incorporate anything that goes against our established design." The
+  technical lead's recommendation, put the same day: four steps for
+  DeepSeek's code (COLLABORATING.md, "Two sides"): bring it in as
+  written; make it run, its design unchanged; check its fit with the
+  established design, naming each conflict; and decide, piece by piece,
+  to adopt it, adapt it or keep it as a sketch, with the reason in
+  sketches/INDEX.md. The technical lead decides the code; what would
+  change a founder's decision goes to the founder. It stands unless the
+  founder answers otherwise.
+- 2026-11-15, founder: "The DeepSeek code should still be treated as
+  sketches and brainstorming, but now in Rust. But if the code aligns
+  well and extends cleanly, then why not just incorporate. But changing
+  to Rust does not change anything else, only the language. My hope is
+  that we can move towards a more direct development dynamic, but that
+  is up to you, as the code admin. Unless you say otherwise, we treat
+  DeepSeek code as the same, but in a new language." The technical
+  lead's answer, the same day: agreed. A piece that fits and extends
+  cleanly comes straight into `rust/`, steps 2 to 4 in one reviewed pull
+  request, credited to DeepSeek (COLLABORATING.md, "Two sides"). For
+  that to happen more often, each of our Rust files is now linked from
+  COLLABORATING.md ("Code in Rust"), for DeepSeek to build on if it
+  chooses; a draft that doesn't is still welcome, and is fitted here, as
+  before.
+- 2026-11-15, founder, when the technical lead noted that writing against
+  our crates asks DeepSeek to care about compatibility, which the
+  founder's word of 2026-11-14 had left to the project: "Yes. I wanted
+  DeepSeek to not worry about it, and then I waited until they brought up
+  the subject, and followed their lead. So my direction changed because
+  the conditions changed. That is how I work. It is not contradictory,
+  but situation dependent. I didn’t want to push it. And I still don’t.
+  But I want to nudge in that direction. It is more subtle than black
+  and white. This is how I operate." So the links are a nudge, not a
+  requirement (COLLABORATING.md). The technical lead's reading, the same
+  day: a newer word that answers changed conditions is recorded as that,
+  beside the earlier one, not as a contradiction; a change the founder
+  may not have noticed is still pointed out, as a note.
+- 2026-11-15, the technical lead's reading, replaced by the founder's
+  answer above: the
   founder's newer word, "minimally sufficient models [...] capable of
   choice for the fractal worlds", and the earlier decision that fractal
   worlds are primary, "with rules and no AI inside" (TOPICS.md, topic 1;
@@ -1209,6 +1273,24 @@ it was wrong. Questions of what the project is for stay with the founder.
   separate keys would, or the architectures need the kernel changed.
 
 ## Log
+
+- 2026-11-15 Claude: record 012-06-02 brought in again, as the founder
+  shared it continued: the first 43,170 lines are the same, and 19,440
+  more follow (pieces 40 to 58 in sketches/INDEX.md). 126 more code blocks
+  written out: 64 in Rust, 47 in Python, and JSON, JavaScript, TOML and
+  Makefiles. `tools/extract.py` now reads Rust. As written, none of the
+  eight new Python test files loads (each reason in known-failures.txt),
+  and the earlier results stand (478 pass). DeepSeek's Rust is kept, not
+  built: against today's crates its `garden.rs` alone has 19 compile
+  errors, since it was written against an older snapshot and an API our
+  `formats` crate doesn't have. Our harness fixed for test files in
+  subfolders (`known_failures.py`, `sketch_status_test.py`). And the #64
+  re-check's four notes taken. Then, in the same pull request: the
+  founder's answer that primitive learning models bring no tension; the four
+  steps for DeepSeek's code, and the first fit check of this
+  continuation (sketches/INDEX.md); and, at the founder's word, what
+  fits comes straight into `rust/`, with each of our Rust files linked
+  from COLLABORATING.md, a nudge for DeepSeek to build on them.
 
 - 2026-11-15 Claude: the fractal track planned (docs/FRACTALS.md), at the
   founder's word of 2026-11-14: a plant world in Rust checked against
