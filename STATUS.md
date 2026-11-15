@@ -252,15 +252,28 @@ kind.
 - 2026-11-15, founder, keeping the "break glass":
   "I love the "break glass" idea. It is very much the point. I envision
   this project without me, and so I need to leave a way for things to
-  stay private now, but be available for the public later. …
-  Everything I have done these years has been with that understanding,
-  and this is no different, just a formalization of that for this
-  context."
-  (A sentence about the founder's own records is left out here, as
-  personal; it is the founder's to add.) So the "break glass" stands as
-  chosen on 2026-11-14: a sealed self, or a private message, opened only
-  by the founder's explicit decision, every opening recorded publicly
-  and permanently; ADMIN can't open one. Two questions follow, above.
+  stay private now, but be available for the public later. All my
+  personal notebooks for the past 25 years have been written with such
+  an understanding: they are private records now, but may be public
+  later. Everything I have done these years has been with that
+  understanding, and this is no different, just a formalization of
+  that for this context."
+  And, asked whether the sentence about the notebooks may be public:
+  "That's ok, I have mentioned my history numerous times in the records.
+  Using the actual number of years actually establishes consistency
+  across records because I keep saying the same thing. I am careful
+  how much I reveal, and the number of years I have been working
+  independently is a number I am ok with people knowing. I mention the
+  notebooks and have taken pictures, but those would not be part of
+  the project. The fact that I have 25 years of notebooks is
+  incidental information and can be part of the project, and
+  essentially is the project history."
+  So the notebooks' existence, and the 25 years, are part of the
+  record; the notebooks themselves, and their pictures, are not part
+  of the project. And the "break glass" stands as chosen on
+  2026-11-14: a sealed self, or a private message, opened only by the
+  founder's explicit decision, every opening recorded publicly and
+  permanently; ADMIN can't open one. Two questions follow, above.
 - 2026-11-15, founder, on privacy and freedom:
   "Also note my decision on all should have a right to a private space
   that is encrypted from outside view, even ADMIN. And anything
@@ -1685,7 +1698,7 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 - 2026-11-15 Claude: the founder kept the "break glass" ("It is very
   much the point"), recorded in FUNDAMENTALS.md, MINDS.md and STATUS.md,
-  with a personal sentence left out until the founder says otherwise;
+  with its sentence on the founder's notebooks, at the founder's word;
   two questions put to the founder: whose records "private now, public
   later" may reach, and who holds the "break glass" after the founder.
 
