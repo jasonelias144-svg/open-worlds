@@ -37,6 +37,7 @@ cargo run --locked -p world-log -- ../vectors/world-log.json
 cargo run --locked -p ur-world --example log -- \
     ../vectors/ur-garden-log.json ../vectors/ur-garden-head.json
 cargo run --locked -p ur-world --example garden
+cargo run --locked -p ur-world --example person
 cargo run --locked -p plant-world --example plant
 rustup target add wasm32-wasip1
 cargo build --locked --release -p plant-wasi --target wasm32-wasip1
@@ -60,16 +61,25 @@ checks the Ur-world's log the same way:
 `cargo run -p world-log -- ../vectors/ur-garden-log.json`.
 
 The `log` example checks an Ur-world log further: every arrival in it,
-and how much of it the heads its world signed cover:
+every link shown in it, and how much of it the heads its world signed
+cover:
 
 ```
-87 entries, 2 arrivals; signed heads cover 87 of 87 entries
-the log and its arrivals hold
+99 entries, 2 arrivals, 0 links shown; signed heads cover 99 of 99 entries
+the log, its arrivals and its links hold
 ```
 
 The `garden` example is Hello World for building worlds: it runs the
 garden with its two scripted stand-ins, tells what happened, and draws a
 map of what has come into view.
+
+The `person` example is a person's Hello World (course step 3a, part
+three; [docs/research/PERSONS.md](../docs/research/PERSONS.md)): one
+trial person with a presence in each of three trial worlds at once. A
+local in the first says something, the presence there writes it down,
+and the person's presence in the second says it in its own world; the
+presence in the third shows its link, which its world checks and logs.
+It tells what happened in each world, and checks each world's log.
 
 The `door` example runs the garden with minds that are programs of their
 own, in any language, through the doorway (`ur-world/src/door.rs`), as a

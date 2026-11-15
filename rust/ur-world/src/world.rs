@@ -27,10 +27,11 @@ use serde_json::{Map, Value, json};
 use crate::arrival;
 use crate::generate::{self, Chunk, GENERATOR, SEA};
 use crate::host::{Glasshouse, HostError, Hosted, place_problem};
+use crate::link::{self, Refusal};
 use crate::space::{CHUNK, Cell, ChunkCoord, Dir, Material};
 
 /// The rules' name and version, as the log records it.
-pub const RULES: &str = "ur-world/0.4";
+pub const RULES: &str = "ur-world/0.5";
 
 /// The most a single `Say` carries, in characters; longer speech is cut.
 pub const MAX_SAY: usize = 280;
@@ -71,6 +72,17 @@ pub enum Action {
     Plant(Dir),
     /// Leave the world. Always succeeds.
     Exit,
+    /// Show a link: that a person holds the one who acts, which is a
+    /// presence of theirs ([`crate::link`]). The world takes it if both
+    /// records hold as one link, name this world, and name the key the
+    /// one who acts entered under, and if that presence has shown no link
+    /// here before; then it writes both records into its log.
+    ShowLink {
+        /// The person's half, `open-worlds/holds/v1`.
+        holds: Value,
+        /// The presence's half, `open-worlds/held-by/v1`.
+        held_by: Value,
+    },
     /// A reply that couldn't be read as an action (see `door::read_reply`).
     /// It is recorded, cut to `MAX_SAY` characters, and nothing happens.
     Unreadable(String),
@@ -104,6 +116,13 @@ pub enum Outcome {
     },
     /// There was nowhere to plant that way.
     PlantBlocked(Dir),
+    /// It showed its link, and the world took it: it is held by `person`.
+    Linked {
+        /// The person, by their identity key.
+        person: String,
+    },
+    /// The world refused its link: why.
+    LinkRefused(Refusal),
     /// Its reply couldn't be read as an action.
     Unreadable,
     /// No reply came in time.
@@ -237,6 +256,9 @@ pub struct World {
     names: BTreeMap<String, String>,
     /// Each key, and its name here.
     known: BTreeMap<String, String>,
+    /// Each presence that has shown its link here, by its key, and the
+    /// person who holds it.
+    links: BTreeMap<String, String>,
     log: Vec<Value>,
     /// The worlds it hosts, in the order they came ([`crate::host`]).
     glasshouses: Vec<Glasshouse>,
@@ -259,6 +281,7 @@ impl World {
             heard: Vec::new(),
             names: BTreeMap::new(),
             known: BTreeMap::new(),
+            links: BTreeMap::new(),
             log: Vec::new(),
             glasshouses: Vec::new(),
         };
@@ -306,6 +329,12 @@ impl World {
     /// The name bound to `individual`'s key (a did:key) here, if any.
     pub fn name_of(&self, individual: &str) -> Option<&str> {
         self.known.get(individual).map(String::as_str)
+    }
+
+    /// The person who holds `presence` (a did:key), if it has shown its
+    /// link here ([`Action::ShowLink`]).
+    pub fn held_by(&self, presence: &str) -> Option<&str> {
+        self.links.get(presence).map(String::as_str)
     }
 
     /// What the cell holds now. Beyond the edge the generator's rules still
@@ -688,6 +717,7 @@ impl World {
                 Outcome::Said(text)
             }
             Action::Plant(dir) => self.plant(name, dir),
+            Action::ShowLink { holds, held_by } => self.show_link(name, &holds, &held_by),
             Action::Exit => {
                 self.remove(name, "chose to leave");
                 return;
@@ -815,6 +845,38 @@ impl World {
                 json!({ "action": "plant", "dir": dir.name() }),
             );
             Outcome::PlantBlocked(dir)
+        }
+    }
+
+    /// `name` shows a link ([`crate::link`]). A link the world takes goes
+    /// into the log whole; one it refuses goes in as `blocked`, with the
+    /// reason in fixed words and neither record, and the details are told
+    /// only to the one who showed it.
+    fn show_link(&mut self, name: &str, holds: &Value, held_by: &Value) -> Outcome {
+        let presence = self.names.get(name).cloned().unwrap_or_default();
+        match link::refusal(&self.key, &presence, holds, held_by, &self.links) {
+            Some(refusal) => {
+                self.record(
+                    "blocked",
+                    Some(name),
+                    json!({ "action": "show", "reason": refusal.reason() }),
+                );
+                Outcome::LinkRefused(refusal)
+            }
+            None => {
+                let person = holds
+                    .get("person")
+                    .and_then(Value::as_str)
+                    .unwrap_or_default()
+                    .to_owned();
+                self.links.insert(presence, person.clone());
+                self.record(
+                    "linked",
+                    Some(name),
+                    json!({ "holds": holds, "held_by": held_by }),
+                );
+                Outcome::Linked { person }
+            }
         }
     }
 

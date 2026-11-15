@@ -221,6 +221,14 @@ fractal worlds". So the garden hosts other worlds, in glasshouses
   climbs it, if there is headroom. A step off an edge falls.
 - **Say** something: everyone hears it on the next tick.
 - **Plant** a flower in open air on grass or soil.
+- **Show a link**: that a person holds the one who acts, a presence of
+  theirs (from `ur-world/0.5`; [research/PERSONS.md](research/PERSONS.md),
+  "Part three, built"). The world takes it only if both of the link's
+  records hold, name this world, and name the key the one who acts
+  entered under, and if that presence has shown no link here before.
+  It writes a link it takes into its log whole, and one it refuses with
+  a reason and neither record. Minds through the doorway can't show one
+  yet.
 - **Wait.**
 - **Exit**: leaving always succeeds. An inhabitant's keeper can also take
   them out at any time.
@@ -229,7 +237,8 @@ fractal worlds". So the garden hosts other worlds, in glasshouses
   `unanswered`. In both cases, nothing happens.
 - **What came of it.** At the next tick, each is told what came of its
   last action: where it stepped to, that it was blocked, what it said or
-  planted, or that its reply couldn't be read.
+  planted, whether its link was taken, or that its reply couldn't be
+  read.
 - **One inhabitant to a cell.**
 - **The operator's hand.** The operator can shape any cell, as a gardener
   shapes a garden, and it is recorded like everything else.

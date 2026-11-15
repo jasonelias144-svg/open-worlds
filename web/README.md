@@ -48,8 +48,8 @@ The plan is in [../docs/FRACTALS.md](../docs/FRACTALS.md).
     whole log, before anything it says is shown. Its rules, seed, and
     how far along it is come from its log and head. Its ground, tree
     and spring are drawn as the rules its log names lay them out
-    (`ur-world/0.4`, in `rust/ur-world/src/generate.rs`); under other
-    rules, only the places its log names are drawn.
+    (`ur-world/0.4` and `0.5`, in `rust/ur-world/src/generate.rs`);
+    under other rules, only the places its log names are drawn.
   - **Each hosted world:** where the garden's log puts its glasshouse,
     and how many steps of its time the garden gave it; its birth record
     (its name, its template and law by hash, and the dials it set: each

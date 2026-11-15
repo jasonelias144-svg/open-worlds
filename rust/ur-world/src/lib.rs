@@ -16,6 +16,11 @@
 //!   planting, exploration, and the public log.
 //! - [`arrival`]: entering as one's key: signed arrivals, names bound to
 //!   keys, a world's signed log heads, and the checks of both in a log.
+//! - [`link`]: a presence shows, by its own act, that a person holds it,
+//!   and the world checks the link and logs it.
+//! - [`person`]: a person's client: a presence's key for each world, its
+//!   arrivals, and both halves of a link; with a trial of one person in
+//!   three worlds at once.
 //! - [`host`]: the garden gives other worlds a place and time: each hosted
 //!   world, with its own key and log, takes a step each tick, and both logs
 //!   record it.
@@ -31,8 +36,9 @@
 //! - Minds are scripts in the same process, or programs speaking the
 //!   doorway's protocol ([`door`]). The world-crossing protocol (WCP) isn't
 //!   in Rust yet. Arrivals are signed, but by the doorway, with keys made
-//!   for the run: no holder's key is read yet (docs/research/KEYS.md,
-//!   "As built, part four").
+//!   for the run, or by a trial person's client ([`person`]), with keys
+//!   made from a trial seed: no holder's real key is read yet
+//!   (docs/research/KEYS.md, "As built, part four").
 //! - Everyone hears everyone, wherever they are.
 //! - The only change an inhabitant can make is to plant a flower; the
 //!   operator can shape any cell (`World::shape`).
@@ -50,6 +56,8 @@ pub mod door;
 pub mod garden;
 pub mod generate;
 pub mod host;
+pub mod link;
+pub mod person;
 pub mod space;
 pub mod story;
 pub mod world;

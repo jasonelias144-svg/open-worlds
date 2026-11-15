@@ -166,7 +166,9 @@ details summary { cursor: pointer; font-size: 0.875rem; color: var(--muted); }
   const HEAD = "open-worlds/log-head/v1", BIRTH = "open-worlds/world-birth/v1";
   // The garden as these rules lay it out (rust/ur-world/src/generate.rs):
   // flat ground out to the radius, the spring, and the tree at the centre.
-  const LAYOUT = { rules: "ur-world/0.4", radius: 8, spring: [2, 3] };
+  // ur-world/0.5 added links shown by presences, and left the ground as
+  // it was.
+  const LAYOUT = { rules: ["ur-world/0.4", "ur-world/0.5"], radius: 8, spring: [2, 3] };
   const isqrt = n => Math.floor(Math.sqrt(n));
 
   const $ = id => document.getElementById(id);
@@ -322,7 +324,7 @@ details summary { cursor: pointer; font-size: 0.875rem; color: var(--muted); }
     const legend = $("legend"); legend.textContent = "";
     const key = (name, color) => legend.append(el("li", {}, el("span", { class: "swatch", style: "background:" + color }), name));
     g.append(svg("rect", { x: -11.5, y: -11.5, width: 23, height: 23, fill: "var(--hill)" }));
-    const laidOut = data && data.rules_version === LAYOUT.rules;
+    const laidOut = Boolean(data) && LAYOUT.rules.includes(data.rules_version);
     if (laidOut) {
       const R = LAYOUT.radius;
       for (let z = -R; z <= R; z++) for (let x = -R; x <= R; x++) {
@@ -366,7 +368,7 @@ details summary { cursor: pointer; font-size: 0.875rem; color: var(--muted); }
       house.addEventListener("keydown", ev => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); pick(); } });
       houses[i] = house; g.append(house);
     });
-    if (!laidOut) notice("The garden is drawn as " + LAYOUT.rules + " lays it out, and this log names other rules, so only the places its log names are drawn.", false);
+    if (!laidOut) notice("The garden is drawn as " + LAYOUT.rules.join(" and ") + " lay it out, and this log names other rules, so only the places its log names are drawn.", false);
   }
 
   // ---- A card for each hosted world.

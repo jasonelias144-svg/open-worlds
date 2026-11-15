@@ -1,0 +1,1754 @@
+{
+  "description": "A person's Hello World (rust/ur-world/src/person.rs): one trial person with a presence in each of three trial worlds at once. A local in the first says something, which the presence there writes down; the presence in the second says it in its world; the presence in the third shows its link. Written by `cargo run -p ur-world --example person -- --vectors ../vectors`. The person's keys and seed are trial keys made from labels, never anyone's.",
+  "lesson": "The spring is south-east of the tree.",
+  "person": "did:key:z6MkssVNirvHGNRGaxjsAS72J3Bns8hGZar6k2FJaKaD5N96",
+  "seed": {
+    "from": "open-worlds trial key, never for anything real: 20261115: a trial person: presence seed",
+    "hex": "7ca8e58efd0007a43b75a2547a175428f23e377f094a62d9c75d7a25b1f4efd8",
+    "label": "a trial person"
+  },
+  "worlds": [
+    {
+      "head": {
+        "format": "open-worlds/log-head/v1",
+        "last": "7773949405cc7ffd66b78c989ccf43ea18142a73ae189715ea612aa5e7a907de",
+        "length": 40,
+        "proof": {
+          "created": "2026-11-15T00:00:00Z",
+          "cryptosuite": "eddsa-jcs-2022",
+          "proofPurpose": "assertionMethod",
+          "proofValue": "z3TjhMuAnbMZuycULFkGvajaSMHpDPoXYM9pDA2WHGcGkCyJjk3DZi3gZuMTjunBqeDhKUAh2tF74eyyP7Ppx7UE7",
+          "type": "DataIntegrityProof",
+          "verificationMethod": "did:key:z6MkwVQB7ZxydScABVEqskveCLftJuxnAkZKnHB5wTo4mDha#z6MkwVQB7ZxydScABVEqskveCLftJuxnAkZKnHB5wTo4mDha"
+        },
+        "tick": 3,
+        "world": "did:key:z6MkwVQB7ZxydScABVEqskveCLftJuxnAkZKnHB5wTo4mDha"
+      },
+      "log": [
+        {
+          "agent": null,
+          "data": {
+            "begins": "a garden, with a tree and a spring",
+            "chunk": 16,
+            "generator": 1,
+            "rules_version": "ur-world/0.5",
+            "sea": -2,
+            "seed": 20261115,
+            "world": "did:key:z6MkwVQB7ZxydScABVEqskveCLftJuxnAkZKnHB5wTo4mDha"
+          },
+          "hash": "fccc354bb9ad3980a2207916b25f25dc9a00c93a096f3c596e3f56ba4315cf02",
+          "kind": "world_created",
+          "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "arrival": {
+              "format": "open-worlds/arrival/v1",
+              "individual": "did:key:z6MknynGhVaZbbjQtpoRs9zfr4hV1JQAALbufxYHcJwZrjNG",
+              "name": "ASH",
+              "previous": "fccc354bb9ad3980a2207916b25f25dc9a00c93a096f3c596e3f56ba4315cf02",
+              "proof": {
+                "created": "2026-11-15T00:00:00Z",
+                "cryptosuite": "eddsa-jcs-2022",
+                "proofPurpose": "assertionMethod",
+                "proofValue": "z4pzNhTCa5i4TJKkWkvDJ2MVP9gbFeYARD6ZZGfeguxLeeVMDpTK9Yhhtoyzd2u6LH8WdggwYu9AXpoX6f5sMdhL1",
+                "type": "DataIntegrityProof",
+                "verificationMethod": "did:key:z6MknynGhVaZbbjQtpoRs9zfr4hV1JQAALbufxYHcJwZrjNG#z6MknynGhVaZbbjQtpoRs9zfr4hV1JQAALbufxYHcJwZrjNG"
+              },
+              "tick": 0,
+              "world": "did:key:z6MkwVQB7ZxydScABVEqskveCLftJuxnAkZKnHB5wTo4mDha"
+            },
+            "pos": [
+              -3,
+              1,
+              0
+            ]
+          },
+          "hash": "cd50a465cde06a0fc8bc0f6877781f82dda9febac9b4bfb9a605834348a10383",
+          "kind": "entered",
+          "prev": "fccc354bb9ad3980a2207916b25f25dc9a00c93a096f3c596e3f56ba4315cf02",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              -2,
+              -1,
+              -1
+            ],
+            "generator": 1,
+            "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+          },
+          "hash": "2c562567fd888f33d8e26dfeb74440e2a75d3226eadbad2d8ae8242f15eb4d44",
+          "kind": "explored",
+          "prev": "cd50a465cde06a0fc8bc0f6877781f82dda9febac9b4bfb9a605834348a10383",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              -1,
+              -1,
+              -1
+            ],
+            "generator": 1,
+            "hash": "81dabe382a41d1df5717148a5a19669ddea8b1649b3f516f6e29d77f45521da7"
+          },
+          "hash": "d673fbdb15dbfe06f010f310a2e4541b44ebf09a5b548ec3911452777c2dcac3",
+          "kind": "explored",
+          "prev": "2c562567fd888f33d8e26dfeb74440e2a75d3226eadbad2d8ae8242f15eb4d44",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              0,
+              -1,
+              -1
+            ],
+            "generator": 1,
+            "hash": "a836a5ae3930061f160d2af1d7d63bf18a8af9328aa72ee6954428565e3aba85"
+          },
+          "hash": "461f79617959254a634aa007fde2f62551254538b7ffb44f93f000ed7386564b",
+          "kind": "explored",
+          "prev": "d673fbdb15dbfe06f010f310a2e4541b44ebf09a5b548ec3911452777c2dcac3",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              -2,
+              -1,
+              0
+            ],
+            "generator": 1,
+            "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+          },
+          "hash": "aeb998c2831f3843e53b072b8dcd9854d66e4b271a074123ab8cd693c5ab1a98",
+          "kind": "explored",
+          "prev": "461f79617959254a634aa007fde2f62551254538b7ffb44f93f000ed7386564b",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              -1,
+              -1,
+              0
+            ],
+            "generator": 1,
+            "hash": "24ab56e4c384393f82025d01260658f4195096471766ff9194139a0844aa0d57"
+          },
+          "hash": "36a9ba5bb04a62efc8e405050b649cac341ab406b58c31140d1000c84627f2d9",
+          "kind": "explored",
+          "prev": "aeb998c2831f3843e53b072b8dcd9854d66e4b271a074123ab8cd693c5ab1a98",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              0,
+              -1,
+              0
+            ],
+            "generator": 1,
+            "hash": "73f725dfdc6fe8a070406756c39d611fa483e006e8cb8853e1b4c1d3dc95a481"
+          },
+          "hash": "6004e50928846a308081cbd90707124d020388ccfd858b87bbeb052aa6bbbfae",
+          "kind": "explored",
+          "prev": "36a9ba5bb04a62efc8e405050b649cac341ab406b58c31140d1000c84627f2d9",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              -2,
+              -1,
+              1
+            ],
+            "generator": 1,
+            "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+          },
+          "hash": "40a49ad47df207c74dabce382d6a067cddb2fdc9fecfc5ca710b55d848b04093",
+          "kind": "explored",
+          "prev": "6004e50928846a308081cbd90707124d020388ccfd858b87bbeb052aa6bbbfae",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              -1,
+              -1,
+              1
+            ],
+            "generator": 1,
+            "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+          },
+          "hash": "7041044f53c4c6f1cc553fefcd9dcab7bf911a2ec22739b8e7f70220ebe9031d",
+          "kind": "explored",
+          "prev": "40a49ad47df207c74dabce382d6a067cddb2fdc9fecfc5ca710b55d848b04093",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              0,
+              -1,
+              1
+            ],
+            "generator": 1,
+            "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+          },
+          "hash": "63748afc23bb32f361d4193c52fe0b452165107ad8df03e76dd1e94d8444f297",
+          "kind": "explored",
+          "prev": "7041044f53c4c6f1cc553fefcd9dcab7bf911a2ec22739b8e7f70220ebe9031d",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              -2,
+              0,
+              -1
+            ],
+            "generator": 1,
+            "hash": "f309fcd36a1f4b1c7002160417006f6462fde3ee1bfe6d53e2df765096e0009a"
+          },
+          "hash": "e5d491a77e5dc6b66f8afb787d57cb647552bf4d88612dc5916d0adeed59e1a3",
+          "kind": "explored",
+          "prev": "63748afc23bb32f361d4193c52fe0b452165107ad8df03e76dd1e94d8444f297",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              -1,
+              0,
+              -1
+            ],
+            "generator": 1,
+            "hash": "a20c743f0705e5ed1c247f4a9bfec1a862d3ef3789b7eaa049dbb0ba736dff04"
+          },
+          "hash": "a037fc16af151c8e52aa3f1353ae84a598de2731e3192b937e9f949b4fbc6379",
+          "kind": "explored",
+          "prev": "e5d491a77e5dc6b66f8afb787d57cb647552bf4d88612dc5916d0adeed59e1a3",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              0,
+              0,
+              -1
+            ],
+            "generator": 1,
+            "hash": "583323669b9ff7dbee3cbba53ef861bd37f47c883fb493601917f174027b6179"
+          },
+          "hash": "1217ddcd3e82c0c8071e68774049a883eded47ad105dded62f893c3c07428c7a",
+          "kind": "explored",
+          "prev": "a037fc16af151c8e52aa3f1353ae84a598de2731e3192b937e9f949b4fbc6379",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              -2,
+              0,
+              0
+            ],
+            "generator": 1,
+            "hash": "4b2ca3d7afb096be140d13773cf7fdc0b945cfedc6ffec776ac18e8469018d72"
+          },
+          "hash": "64b866dd49a6de87b58eda46119c4bb7d0de520da33962a8c826a36f3c9d41d6",
+          "kind": "explored",
+          "prev": "1217ddcd3e82c0c8071e68774049a883eded47ad105dded62f893c3c07428c7a",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              -1,
+              0,
+              0
+            ],
+            "generator": 1,
+            "hash": "91d9384d77888f87a73ad2ded3f783f0c19be3a4c4cc174f88a8a3dd1cc8e92a"
+          },
+          "hash": "782c3b1aefb8074ac74cfad7b356392507fba9c57e9bac622c2a729b0c1c56c4",
+          "kind": "explored",
+          "prev": "64b866dd49a6de87b58eda46119c4bb7d0de520da33962a8c826a36f3c9d41d6",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              0,
+              0,
+              0
+            ],
+            "generator": 1,
+            "hash": "c8fca1e2a43f8bfc3a784decf25941af1a4d4cd21d1e9108318d6038174c149a"
+          },
+          "hash": "5130cd24d1befcfc9f7d61262720c994d7c6ec3e47d4d63c540daf87da9e93ec",
+          "kind": "explored",
+          "prev": "782c3b1aefb8074ac74cfad7b356392507fba9c57e9bac622c2a729b0c1c56c4",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              -2,
+              0,
+              1
+            ],
+            "generator": 1,
+            "hash": "0fff4ed5238aa504b457eb7472015034b522107f0445592637d66bc113b689f1"
+          },
+          "hash": "4359080bf7c08408edb1d8853e409a49a4af1d963a8f9652289b91b7ad4970d0",
+          "kind": "explored",
+          "prev": "5130cd24d1befcfc9f7d61262720c994d7c6ec3e47d4d63c540daf87da9e93ec",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              -1,
+              0,
+              1
+            ],
+            "generator": 1,
+            "hash": "f31b1a57faa118a51657cb97c647bfc8ed3da9c98e8292b18e226129561471e6"
+          },
+          "hash": "a28d660522e385813513a24643dce972b3c3f226e071d1b8324b685e6bae55c9",
+          "kind": "explored",
+          "prev": "4359080bf7c08408edb1d8853e409a49a4af1d963a8f9652289b91b7ad4970d0",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              0,
+              0,
+              1
+            ],
+            "generator": 1,
+            "hash": "a0f91069559adf761ef61860f0f992710b7e33410221c5e07ece7d44f163f6f0"
+          },
+          "hash": "96ea69e8c6ee7c0bf9634bbc862d571f373b3fb2b378313fd5d18308381f44f2",
+          "kind": "explored",
+          "prev": "a28d660522e385813513a24643dce972b3c3f226e071d1b8324b685e6bae55c9",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              -2,
+              1,
+              -1
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "9f6dbc158748a9d3c657bdc07b95787b12eb3405f6cda45282cf029f7cf55c48",
+          "kind": "explored",
+          "prev": "96ea69e8c6ee7c0bf9634bbc862d571f373b3fb2b378313fd5d18308381f44f2",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              -1,
+              1,
+              -1
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "9563107794babfe9deb95923d66eec0bef704baba7a63b87f024f7fb427566cb",
+          "kind": "explored",
+          "prev": "9f6dbc158748a9d3c657bdc07b95787b12eb3405f6cda45282cf029f7cf55c48",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              0,
+              1,
+              -1
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "056773153f82901aa206c7d125e8c50bb2e1b59511c7d38c49a4bfa7db20ba2a",
+          "kind": "explored",
+          "prev": "9563107794babfe9deb95923d66eec0bef704baba7a63b87f024f7fb427566cb",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              -2,
+              1,
+              0
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "aa7a3712d470cdd3bec0ad2da2403a0d22725ba5839958bab5e52631341f48fa",
+          "kind": "explored",
+          "prev": "056773153f82901aa206c7d125e8c50bb2e1b59511c7d38c49a4bfa7db20ba2a",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              -1,
+              1,
+              0
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "62def6252085fe51a3f0ea0af7d982906db97601e869f8fd5f91fb60d6d2c18a",
+          "kind": "explored",
+          "prev": "aa7a3712d470cdd3bec0ad2da2403a0d22725ba5839958bab5e52631341f48fa",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              0,
+              1,
+              0
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "9abc090050b2815e555a5db9194b4f591fe59443dcfe1168efe85c69db7dd4ae",
+          "kind": "explored",
+          "prev": "62def6252085fe51a3f0ea0af7d982906db97601e869f8fd5f91fb60d6d2c18a",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              -2,
+              1,
+              1
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "4356e74970885a84597fa3496f14c312943b9b8f34687a8f9344db9102f57868",
+          "kind": "explored",
+          "prev": "9abc090050b2815e555a5db9194b4f591fe59443dcfe1168efe85c69db7dd4ae",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              -1,
+              1,
+              1
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "c16047cf19f42999fad42081bdfed5ceef4d9dc43c2c766cb4d591b60af067e3",
+          "kind": "explored",
+          "prev": "4356e74970885a84597fa3496f14c312943b9b8f34687a8f9344db9102f57868",
+          "tick": 0
+        },
+        {
+          "agent": "ASH",
+          "data": {
+            "chunk": [
+              0,
+              1,
+              1
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "8d3add9cce17a35af13adf3c9d7178a34fd2748d7543f219bf27aece618bb1b5",
+          "kind": "explored",
+          "prev": "c16047cf19f42999fad42081bdfed5ceef4d9dc43c2c766cb4d591b60af067e3",
+          "tick": 0
+        },
+        {
+          "agent": "TEACHER",
+          "data": {
+            "arrival": {
+              "format": "open-worlds/arrival/v1",
+              "individual": "did:key:z6MkuXVxvqAevs12i6mZcu7cG1qd6APYJpgkRUzeAp7ZFrZb",
+              "name": "TEACHER",
+              "previous": "8d3add9cce17a35af13adf3c9d7178a34fd2748d7543f219bf27aece618bb1b5",
+              "proof": {
+                "created": "2026-11-15T00:00:00Z",
+                "cryptosuite": "eddsa-jcs-2022",
+                "proofPurpose": "assertionMethod",
+                "proofValue": "z5sGMhL3Une6fEAhyCoFDQCAqF9RzaqxYtapLFEZsnBRoLj1Nqj8QGAHT8Zv7MZ4iRH5PFy5jW8k9rMgJimdvGyed",
+                "type": "DataIntegrityProof",
+                "verificationMethod": "did:key:z6MkuXVxvqAevs12i6mZcu7cG1qd6APYJpgkRUzeAp7ZFrZb#z6MkuXVxvqAevs12i6mZcu7cG1qd6APYJpgkRUzeAp7ZFrZb"
+              },
+              "tick": 0,
+              "world": "did:key:z6MkwVQB7ZxydScABVEqskveCLftJuxnAkZKnHB5wTo4mDha"
+            },
+            "pos": [
+              3,
+              1,
+              0
+            ]
+          },
+          "hash": "39abed5089d411ffd023742502dc1e94cb724f8374074b8d8a847203d8037256",
+          "kind": "entered",
+          "prev": "8d3add9cce17a35af13adf3c9d7178a34fd2748d7543f219bf27aece618bb1b5",
+          "tick": 0
+        },
+        {
+          "agent": "TEACHER",
+          "data": {
+            "chunk": [
+              1,
+              -1,
+              -1
+            ],
+            "generator": 1,
+            "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+          },
+          "hash": "e5d35d2156a1bf28042eac69b24e0d920d96465ed4feed10321e43270834abc1",
+          "kind": "explored",
+          "prev": "39abed5089d411ffd023742502dc1e94cb724f8374074b8d8a847203d8037256",
+          "tick": 0
+        },
+        {
+          "agent": "TEACHER",
+          "data": {
+            "chunk": [
+              1,
+              -1,
+              0
+            ],
+            "generator": 1,
+            "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+          },
+          "hash": "1f5455d324c33fa64bd01035fc3791885d0b57048292f49bbe0f109e78b28455",
+          "kind": "explored",
+          "prev": "e5d35d2156a1bf28042eac69b24e0d920d96465ed4feed10321e43270834abc1",
+          "tick": 0
+        },
+        {
+          "agent": "TEACHER",
+          "data": {
+            "chunk": [
+              1,
+              -1,
+              1
+            ],
+            "generator": 1,
+            "hash": "4539cc1fbc3c22bb131672c62f20ff87f3f587ba2d3d4c5b161c271c98c07b38"
+          },
+          "hash": "76a6c1983f02e7e66377d4f3884427d27076775637567811b2052cbc4553e2e4",
+          "kind": "explored",
+          "prev": "1f5455d324c33fa64bd01035fc3791885d0b57048292f49bbe0f109e78b28455",
+          "tick": 0
+        },
+        {
+          "agent": "TEACHER",
+          "data": {
+            "chunk": [
+              1,
+              0,
+              -1
+            ],
+            "generator": 1,
+            "hash": "3fad105f9df0aebed376b1acd33910f1d3fae36d308630c5a39410782e7eb651"
+          },
+          "hash": "2ee9279d84fa6e7d7c162d8dac109874dd50c10f30492d6c1f5ec0c168cf52e0",
+          "kind": "explored",
+          "prev": "76a6c1983f02e7e66377d4f3884427d27076775637567811b2052cbc4553e2e4",
+          "tick": 0
+        },
+        {
+          "agent": "TEACHER",
+          "data": {
+            "chunk": [
+              1,
+              0,
+              0
+            ],
+            "generator": 1,
+            "hash": "cf24e0c7351a17b90539b56027a1f770f8227d342f909cf14b9f02fdd9f8b5cb"
+          },
+          "hash": "5c8087b1611fbfcc7ab89c7322f96e2c45cf14f8e20b64f2a76cdfab821dd527",
+          "kind": "explored",
+          "prev": "2ee9279d84fa6e7d7c162d8dac109874dd50c10f30492d6c1f5ec0c168cf52e0",
+          "tick": 0
+        },
+        {
+          "agent": "TEACHER",
+          "data": {
+            "chunk": [
+              1,
+              0,
+              1
+            ],
+            "generator": 1,
+            "hash": "b602a2f5714c7dcec79092b1d78d8098f1350418ded15e96baa897d908958b54"
+          },
+          "hash": "7446926b42fb001cbb955febb58f4cd5b6864108f49bec5772a3a8035ba4371f",
+          "kind": "explored",
+          "prev": "5c8087b1611fbfcc7ab89c7322f96e2c45cf14f8e20b64f2a76cdfab821dd527",
+          "tick": 0
+        },
+        {
+          "agent": "TEACHER",
+          "data": {
+            "chunk": [
+              1,
+              1,
+              -1
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "3fddc66d553ab0eb7eb3fa11a836af9f2ffa48e40b6863a87b1584951b1f17c1",
+          "kind": "explored",
+          "prev": "7446926b42fb001cbb955febb58f4cd5b6864108f49bec5772a3a8035ba4371f",
+          "tick": 0
+        },
+        {
+          "agent": "TEACHER",
+          "data": {
+            "chunk": [
+              1,
+              1,
+              0
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "230b24ca150f349abcf9eef7bb97308431b69ec8eaec0ae7f6cadc88e81671d5",
+          "kind": "explored",
+          "prev": "3fddc66d553ab0eb7eb3fa11a836af9f2ffa48e40b6863a87b1584951b1f17c1",
+          "tick": 0
+        },
+        {
+          "agent": "TEACHER",
+          "data": {
+            "chunk": [
+              1,
+              1,
+              1
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "2a43beea113ea352681ef4406beb2b7c4dee9e6ece938515cb0d87c00127191a",
+          "kind": "explored",
+          "prev": "230b24ca150f349abcf9eef7bb97308431b69ec8eaec0ae7f6cadc88e81671d5",
+          "tick": 0
+        },
+        {
+          "agent": "TEACHER",
+          "data": {
+            "text": "The spring is south-east of the tree."
+          },
+          "hash": "7773949405cc7ffd66b78c989ccf43ea18142a73ae189715ea612aa5e7a907de",
+          "kind": "said",
+          "prev": "2a43beea113ea352681ef4406beb2b7c4dee9e6ece938515cb0d87c00127191a",
+          "tick": 0
+        }
+      ],
+      "name": "the first trial world",
+      "presence": {
+        "counter": 0,
+        "key": "did:key:z6MknynGhVaZbbjQtpoRs9zfr4hV1JQAALbufxYHcJwZrjNG",
+        "name": "ASH"
+      }
+    },
+    {
+      "head": {
+        "format": "open-worlds/log-head/v1",
+        "last": "a788abb6d46996ec26d1e559bd83be04800ba0204c503fe3063fd4ed65e154e1",
+        "length": 30,
+        "proof": {
+          "created": "2026-11-15T00:00:00Z",
+          "cryptosuite": "eddsa-jcs-2022",
+          "proofPurpose": "assertionMethod",
+          "proofValue": "z3EijRw69ZVCjzdB3gQnTqGof9Zhu7bGaucnjFrJGSv2raqGyB7jawTMQh2untoUcpDtTgzY9yB5pKP3yUy5LuvUX",
+          "type": "DataIntegrityProof",
+          "verificationMethod": "did:key:z6MkwaDYWwfKUG4vsG7rTZoXsaNd3MHKsR372bTM6Z4d3htH#z6MkwaDYWwfKUG4vsG7rTZoXsaNd3MHKsR372bTM6Z4d3htH"
+        },
+        "tick": 3,
+        "world": "did:key:z6MkwaDYWwfKUG4vsG7rTZoXsaNd3MHKsR372bTM6Z4d3htH"
+      },
+      "log": [
+        {
+          "agent": null,
+          "data": {
+            "begins": "a garden, with a tree and a spring",
+            "chunk": 16,
+            "generator": 1,
+            "rules_version": "ur-world/0.5",
+            "sea": -2,
+            "seed": 20261116,
+            "world": "did:key:z6MkwaDYWwfKUG4vsG7rTZoXsaNd3MHKsR372bTM6Z4d3htH"
+          },
+          "hash": "0263ee57563eb6c6b50524eba84441099ae65ae828cb058292812910d08a8536",
+          "kind": "world_created",
+          "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "arrival": {
+              "format": "open-worlds/arrival/v1",
+              "individual": "did:key:z6Mkq9axjibtoeU51Xka5W8F4P2d9NAa25NQp3PQdLztwnpn",
+              "name": "BIRCH",
+              "previous": "0263ee57563eb6c6b50524eba84441099ae65ae828cb058292812910d08a8536",
+              "proof": {
+                "created": "2026-11-15T00:00:00Z",
+                "cryptosuite": "eddsa-jcs-2022",
+                "proofPurpose": "assertionMethod",
+                "proofValue": "z3pWLKmVrP7Qb74mELiUiTBC3aUdSmBRWMftyc6CW1xMaJ7qVRGs9EHJbk3AnoG1Q8GKdZCr5xQTe3uCKu69DBUp7",
+                "type": "DataIntegrityProof",
+                "verificationMethod": "did:key:z6Mkq9axjibtoeU51Xka5W8F4P2d9NAa25NQp3PQdLztwnpn#z6Mkq9axjibtoeU51Xka5W8F4P2d9NAa25NQp3PQdLztwnpn"
+              },
+              "tick": 0,
+              "world": "did:key:z6MkwaDYWwfKUG4vsG7rTZoXsaNd3MHKsR372bTM6Z4d3htH"
+            },
+            "pos": [
+              -3,
+              1,
+              0
+            ]
+          },
+          "hash": "2476182a3648d62032030f1e7586002e405f525016628dd159f1ac7f84a44581",
+          "kind": "entered",
+          "prev": "0263ee57563eb6c6b50524eba84441099ae65ae828cb058292812910d08a8536",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              -2,
+              -1,
+              -1
+            ],
+            "generator": 1,
+            "hash": "459ca0a63c526ef39ac699c1d12810a9c6dd694bf1c234efe98aac265fc82fb3"
+          },
+          "hash": "b9e5177430d1e72b3e5356a6f129f3ea1f78e24fd82b6c6cbe9ff08daf2dda08",
+          "kind": "explored",
+          "prev": "2476182a3648d62032030f1e7586002e405f525016628dd159f1ac7f84a44581",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              -1,
+              -1,
+              -1
+            ],
+            "generator": 1,
+            "hash": "c96a98115f11f61dffed594debd2d66eb7e6c72a662fbcab72e509fc8bca5f4d"
+          },
+          "hash": "2e71dc16b24005d8212708b63a1341e5f812fdefd78c5abf8f5db1a7aef36b26",
+          "kind": "explored",
+          "prev": "b9e5177430d1e72b3e5356a6f129f3ea1f78e24fd82b6c6cbe9ff08daf2dda08",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              0,
+              -1,
+              -1
+            ],
+            "generator": 1,
+            "hash": "ecca44502ad49823d4d1cf560e3c4905c24a7756570a81d5b7dcb24b87119397"
+          },
+          "hash": "8ec24765159a34063ee100e7aadc3b7fd9df36bd986a5835b6cbd90bb1583e76",
+          "kind": "explored",
+          "prev": "2e71dc16b24005d8212708b63a1341e5f812fdefd78c5abf8f5db1a7aef36b26",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              -2,
+              -1,
+              0
+            ],
+            "generator": 1,
+            "hash": "0bfc9eb13519fcb40c488776a7a0b5bcff76223894952a764dec0297e7eff51d"
+          },
+          "hash": "3fc03aa6adcbc63883a2933abfb4be1c14d7d4e84767c893270ebf235df72c60",
+          "kind": "explored",
+          "prev": "8ec24765159a34063ee100e7aadc3b7fd9df36bd986a5835b6cbd90bb1583e76",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              -1,
+              -1,
+              0
+            ],
+            "generator": 1,
+            "hash": "8cb3ef924e746116716e947372243e55c27d2c58bc7ae2629f2f559407372c99"
+          },
+          "hash": "988dcc8f360fbbc3ec12e4b12b5a7210e4f94dabdedfdf57a085107ad0cd254a",
+          "kind": "explored",
+          "prev": "3fc03aa6adcbc63883a2933abfb4be1c14d7d4e84767c893270ebf235df72c60",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              0,
+              -1,
+              0
+            ],
+            "generator": 1,
+            "hash": "246d4eb1a67e856997497acef4e9e61cd14e669d20a357c61274ee414bcfeb62"
+          },
+          "hash": "b4bacda346ebab29e03ca54d1b442ae002453e23e9f358003f673abe345e6918",
+          "kind": "explored",
+          "prev": "988dcc8f360fbbc3ec12e4b12b5a7210e4f94dabdedfdf57a085107ad0cd254a",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              -2,
+              -1,
+              1
+            ],
+            "generator": 1,
+            "hash": "8b443f58abd5651e3e643e3f4c7ad87782e9dd5f890dafdfc0789cc936ad8ca0"
+          },
+          "hash": "9a6dc581b41a2f8207fc37cd720c0841790549b1bfae293b87400bd56aa262fe",
+          "kind": "explored",
+          "prev": "b4bacda346ebab29e03ca54d1b442ae002453e23e9f358003f673abe345e6918",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              -1,
+              -1,
+              1
+            ],
+            "generator": 1,
+            "hash": "a423c933e2f1b435df963ea241e7520859b62ce42d0071bc52bc9f52bf30370c"
+          },
+          "hash": "04584a4c11faf74a1b0fb59eaa49bd247f385218527b61685697bf078551faaf",
+          "kind": "explored",
+          "prev": "9a6dc581b41a2f8207fc37cd720c0841790549b1bfae293b87400bd56aa262fe",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              0,
+              -1,
+              1
+            ],
+            "generator": 1,
+            "hash": "7b51da4edf52b3237b264f30bfddb32efc28c1f31309bd31036ab1f26f14d24a"
+          },
+          "hash": "09aa4b9d5aed230916fbe75846e4693a23131d249010d426e2ebb79841f42db9",
+          "kind": "explored",
+          "prev": "04584a4c11faf74a1b0fb59eaa49bd247f385218527b61685697bf078551faaf",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              -2,
+              0,
+              -1
+            ],
+            "generator": 1,
+            "hash": "caa1704fce3d6fa9fecd0911124e0082fc8244561556a47f708c85ca7369db34"
+          },
+          "hash": "89002e8d46f750823d6d6a9ab145fcd9bd26d46fcda4988ff7a0f0bf92a6cc56",
+          "kind": "explored",
+          "prev": "09aa4b9d5aed230916fbe75846e4693a23131d249010d426e2ebb79841f42db9",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              -1,
+              0,
+              -1
+            ],
+            "generator": 1,
+            "hash": "2c87cb71ca84127c86bdb8fd2b66b97dc8c45279a347e3d1b363e35e0a3f9eea"
+          },
+          "hash": "4158e48610fbef2c6ea76013848b498466b027e83502f20fbba4731379e8f4a0",
+          "kind": "explored",
+          "prev": "89002e8d46f750823d6d6a9ab145fcd9bd26d46fcda4988ff7a0f0bf92a6cc56",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              0,
+              0,
+              -1
+            ],
+            "generator": 1,
+            "hash": "1a34fe3c633652c9837a60b1d20df3f44d163f3aaa9b8ddc9fadfe6474abbb51"
+          },
+          "hash": "30a5ee45ae665c82177ed53877bbec2086cb06a803520f16119cc6d4996bc7df",
+          "kind": "explored",
+          "prev": "4158e48610fbef2c6ea76013848b498466b027e83502f20fbba4731379e8f4a0",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              -2,
+              0,
+              0
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "6321565e7d49d6ea971f76062c834477099a816da8a1da6557521aa734d45ef8",
+          "kind": "explored",
+          "prev": "30a5ee45ae665c82177ed53877bbec2086cb06a803520f16119cc6d4996bc7df",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              -1,
+              0,
+              0
+            ],
+            "generator": 1,
+            "hash": "2484a47602632689e7e08795bcec9496e12a06434b21ad25f5a1b0d46999a3da"
+          },
+          "hash": "3eab3976a0b4b5d2950f2adfc8b4e8e4b032be11f7d660603b80e0460d2a6d42",
+          "kind": "explored",
+          "prev": "6321565e7d49d6ea971f76062c834477099a816da8a1da6557521aa734d45ef8",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              0,
+              0,
+              0
+            ],
+            "generator": 1,
+            "hash": "05ec7f4d75ab723e0f73c4ce11bd0e1050f51942d67665a6ee2c4bbdd6d9e847"
+          },
+          "hash": "4e380dd1b7e86eddef23893949e9c3d03b4ecfcd718e633826748a69950e0899",
+          "kind": "explored",
+          "prev": "3eab3976a0b4b5d2950f2adfc8b4e8e4b032be11f7d660603b80e0460d2a6d42",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              -2,
+              0,
+              1
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "fb9205ab954f04275815bf6e687343a35d4387f2195e5aea5c2cfdf66dbd0e76",
+          "kind": "explored",
+          "prev": "4e380dd1b7e86eddef23893949e9c3d03b4ecfcd718e633826748a69950e0899",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              -1,
+              0,
+              1
+            ],
+            "generator": 1,
+            "hash": "7990534026fc56735cd059b0a702ed2d5b6440238f878c9f7f12a2c1f9358294"
+          },
+          "hash": "c59d9e19fc35cc946584e18be3306a601b7482dd6a2ec476306914577d98d6d1",
+          "kind": "explored",
+          "prev": "fb9205ab954f04275815bf6e687343a35d4387f2195e5aea5c2cfdf66dbd0e76",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              0,
+              0,
+              1
+            ],
+            "generator": 1,
+            "hash": "74620628270a2af481c04783da6e46b49e87ca7487d4f2a1c5dc027b624411cd"
+          },
+          "hash": "95820acd79880b122c4c5f1377dc27f474e586057360d1db0ab882d0bd0ef601",
+          "kind": "explored",
+          "prev": "c59d9e19fc35cc946584e18be3306a601b7482dd6a2ec476306914577d98d6d1",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              -2,
+              1,
+              -1
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "9f56a76413d7ba942f54a2489bb46a8ba5648b7c91cd4bc7ec06f565d3f0d2f2",
+          "kind": "explored",
+          "prev": "95820acd79880b122c4c5f1377dc27f474e586057360d1db0ab882d0bd0ef601",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              -1,
+              1,
+              -1
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "36ecacb3f43b9bfdab409676304a6c46bba4a6434408f6cf76978088493fa931",
+          "kind": "explored",
+          "prev": "9f56a76413d7ba942f54a2489bb46a8ba5648b7c91cd4bc7ec06f565d3f0d2f2",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              0,
+              1,
+              -1
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "646725e8a8e9e9bb381f2aedf9071f559a3a55cd2130f2dba4176f9416c2328d",
+          "kind": "explored",
+          "prev": "36ecacb3f43b9bfdab409676304a6c46bba4a6434408f6cf76978088493fa931",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              -2,
+              1,
+              0
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "ac45ae514a0ccd7c1c21ab932c44478def7332a353bb2f61929032cc684fb11f",
+          "kind": "explored",
+          "prev": "646725e8a8e9e9bb381f2aedf9071f559a3a55cd2130f2dba4176f9416c2328d",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              -1,
+              1,
+              0
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "1a0a29754f759f462dcd0f8e8fd0a61df0f6822016c6157bcadd16ce0737f3d9",
+          "kind": "explored",
+          "prev": "ac45ae514a0ccd7c1c21ab932c44478def7332a353bb2f61929032cc684fb11f",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              0,
+              1,
+              0
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "3a63d93e736b8976c206f45c01b515c5bf66c9115dadd125504cccfcd5c3d87a",
+          "kind": "explored",
+          "prev": "1a0a29754f759f462dcd0f8e8fd0a61df0f6822016c6157bcadd16ce0737f3d9",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              -2,
+              1,
+              1
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "665c73c3d671a98742da0c722f1c50c3e05b4884eeb788bdbbad2e9bb5369934",
+          "kind": "explored",
+          "prev": "3a63d93e736b8976c206f45c01b515c5bf66c9115dadd125504cccfcd5c3d87a",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              -1,
+              1,
+              1
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "3c8c242c0d7a2ff0a607956b8017d783ed4fa973aabc415091f3d62fbff2cd37",
+          "kind": "explored",
+          "prev": "665c73c3d671a98742da0c722f1c50c3e05b4884eeb788bdbbad2e9bb5369934",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "chunk": [
+              0,
+              1,
+              1
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "390e361340ecfc23940d38a84451c80cfae02ff5669dbbe8f9aa2a1bebf35b57",
+          "kind": "explored",
+          "prev": "3c8c242c0d7a2ff0a607956b8017d783ed4fa973aabc415091f3d62fbff2cd37",
+          "tick": 0
+        },
+        {
+          "agent": "BIRCH",
+          "data": {
+            "text": "The spring is south-east of the tree."
+          },
+          "hash": "a788abb6d46996ec26d1e559bd83be04800ba0204c503fe3063fd4ed65e154e1",
+          "kind": "said",
+          "prev": "390e361340ecfc23940d38a84451c80cfae02ff5669dbbe8f9aa2a1bebf35b57",
+          "tick": 1
+        }
+      ],
+      "name": "the second trial world",
+      "presence": {
+        "counter": 0,
+        "key": "did:key:z6Mkq9axjibtoeU51Xka5W8F4P2d9NAa25NQp3PQdLztwnpn",
+        "name": "BIRCH"
+      }
+    },
+    {
+      "head": {
+        "format": "open-worlds/log-head/v1",
+        "last": "6f7bc973221913f0dbf22f817907be9a6f48372cb56719cd7ded017a8b96b2b7",
+        "length": 30,
+        "proof": {
+          "created": "2026-11-15T00:00:00Z",
+          "cryptosuite": "eddsa-jcs-2022",
+          "proofPurpose": "assertionMethod",
+          "proofValue": "z2xMKSGRDhUkeQUAwEzp7Bhfpb5rWabnYnUFec7UtdasR5jAY7s5LrW8t2zNMD1Xy7tZtEtQUm1WwkCfad8AV6SH3",
+          "type": "DataIntegrityProof",
+          "verificationMethod": "did:key:z6MkiPqNcv9TtqycGsBBEtmYUgzqx3DgBSmc1W1Poig6gxMi#z6MkiPqNcv9TtqycGsBBEtmYUgzqx3DgBSmc1W1Poig6gxMi"
+        },
+        "tick": 3,
+        "world": "did:key:z6MkiPqNcv9TtqycGsBBEtmYUgzqx3DgBSmc1W1Poig6gxMi"
+      },
+      "log": [
+        {
+          "agent": null,
+          "data": {
+            "begins": "a garden, with a tree and a spring",
+            "chunk": 16,
+            "generator": 1,
+            "rules_version": "ur-world/0.5",
+            "sea": -2,
+            "seed": 20261117,
+            "world": "did:key:z6MkiPqNcv9TtqycGsBBEtmYUgzqx3DgBSmc1W1Poig6gxMi"
+          },
+          "hash": "f8fcea67a783023e679e31a2e8d6c2dc22cddd71f0c18f7c708d7f4bb26a7a7e",
+          "kind": "world_created",
+          "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "arrival": {
+              "format": "open-worlds/arrival/v1",
+              "individual": "did:key:z6MkoXFAX1eVYcZV222EVEBeXsqf4XwzjgF2L5mQba1y1SAJ",
+              "name": "CEDAR",
+              "previous": "f8fcea67a783023e679e31a2e8d6c2dc22cddd71f0c18f7c708d7f4bb26a7a7e",
+              "proof": {
+                "created": "2026-11-15T00:00:00Z",
+                "cryptosuite": "eddsa-jcs-2022",
+                "proofPurpose": "assertionMethod",
+                "proofValue": "z5hunjfy17RqFzja7PtJddrkRDEoEECtB9E2NhfY8s25voutmfLjVzksHWQiRT67DfMtJsKEoWjchyTfbkcm46vXE",
+                "type": "DataIntegrityProof",
+                "verificationMethod": "did:key:z6MkoXFAX1eVYcZV222EVEBeXsqf4XwzjgF2L5mQba1y1SAJ#z6MkoXFAX1eVYcZV222EVEBeXsqf4XwzjgF2L5mQba1y1SAJ"
+              },
+              "tick": 0,
+              "world": "did:key:z6MkiPqNcv9TtqycGsBBEtmYUgzqx3DgBSmc1W1Poig6gxMi"
+            },
+            "pos": [
+              -3,
+              1,
+              0
+            ]
+          },
+          "hash": "6706b632baba21a3d25af7a0ee2f8863972fab65705964c14f73e5bae4a442eb",
+          "kind": "entered",
+          "prev": "f8fcea67a783023e679e31a2e8d6c2dc22cddd71f0c18f7c708d7f4bb26a7a7e",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              -2,
+              -1,
+              -1
+            ],
+            "generator": 1,
+            "hash": "d1e66bf73e32d1d6b55b3ccbeda2e1aee9b27c40baa1984681c5edc6c4c96580"
+          },
+          "hash": "8a6582cbd1d5d2d2f7892ea4e74dc3ad19b9ac3cb935cc31cedf9f41740fcbf3",
+          "kind": "explored",
+          "prev": "6706b632baba21a3d25af7a0ee2f8863972fab65705964c14f73e5bae4a442eb",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              -1,
+              -1,
+              -1
+            ],
+            "generator": 1,
+            "hash": "4ebf133b50456e2288b8a986b987add17be218b53c048cd518b46f031e8adfd1"
+          },
+          "hash": "1bd5f90f28d6b9ffc87252d6a833cf7db35100d167ac3015f49846214afc5d08",
+          "kind": "explored",
+          "prev": "8a6582cbd1d5d2d2f7892ea4e74dc3ad19b9ac3cb935cc31cedf9f41740fcbf3",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              0,
+              -1,
+              -1
+            ],
+            "generator": 1,
+            "hash": "ec55043ada4186f9638fd30367bc7cd6c64dfb11ec42046cc4438aa89e625a10"
+          },
+          "hash": "d5689661ca0af9215c8f60cd0040c2fc0e187f4aed9b5075c1bfbfe4ec6295b0",
+          "kind": "explored",
+          "prev": "1bd5f90f28d6b9ffc87252d6a833cf7db35100d167ac3015f49846214afc5d08",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              -2,
+              -1,
+              0
+            ],
+            "generator": 1,
+            "hash": "a1d0efbdf29db31f6474afa94013663eb13c6c30e5efb8ff044c045b73fda5e7"
+          },
+          "hash": "302d99686ed3b222acd85916e385619e4fbc6cddf11ec3bcb43fe8bf05d2fdd9",
+          "kind": "explored",
+          "prev": "d5689661ca0af9215c8f60cd0040c2fc0e187f4aed9b5075c1bfbfe4ec6295b0",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              -1,
+              -1,
+              0
+            ],
+            "generator": 1,
+            "hash": "95ad4f5de7093b075593e4ad6a9bfe94ea38a0afa9d2d27bdd4972085c258e01"
+          },
+          "hash": "742b33421d7fcbd807af94beb25d8ad3398b1cee82f6157d9d4a24493ed18795",
+          "kind": "explored",
+          "prev": "302d99686ed3b222acd85916e385619e4fbc6cddf11ec3bcb43fe8bf05d2fdd9",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              0,
+              -1,
+              0
+            ],
+            "generator": 1,
+            "hash": "c3cca3ef5ca8de2a6d068da3026e66820768711bb9530afff9397ab4608471e2"
+          },
+          "hash": "b41ff86cf8d84e41b59438d21ec17b5f7b724dff884a6ae1c4c3c56906e6a981",
+          "kind": "explored",
+          "prev": "742b33421d7fcbd807af94beb25d8ad3398b1cee82f6157d9d4a24493ed18795",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              -2,
+              -1,
+              1
+            ],
+            "generator": 1,
+            "hash": "d30dc2ceb3b2f5151d23ccf798c2520edd96278194b89744b380383b0896b26e"
+          },
+          "hash": "a5acca903880ec63416d86e2c581fcc38dc7c3b78cd01dfa35d513721b826890",
+          "kind": "explored",
+          "prev": "b41ff86cf8d84e41b59438d21ec17b5f7b724dff884a6ae1c4c3c56906e6a981",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              -1,
+              -1,
+              1
+            ],
+            "generator": 1,
+            "hash": "58eee6b5a43f8b3ded0d783850e13493f6e47e0b2d28bfbe5ae712caf42b822e"
+          },
+          "hash": "7b79fa64e438d12e4fee128d92742cb2384637d6e5e33d56ce70fdb8f4662bd6",
+          "kind": "explored",
+          "prev": "a5acca903880ec63416d86e2c581fcc38dc7c3b78cd01dfa35d513721b826890",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              0,
+              -1,
+              1
+            ],
+            "generator": 1,
+            "hash": "d99da7f5d0067dc5340fbc54170255ba44aca86f176ed00f379a7cf7a7420669"
+          },
+          "hash": "2209351dd453a9cc29bad2d75a13d54ad6625ba6e9379bcaffa7d88cce8ddbb3",
+          "kind": "explored",
+          "prev": "7b79fa64e438d12e4fee128d92742cb2384637d6e5e33d56ce70fdb8f4662bd6",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              -2,
+              0,
+              -1
+            ],
+            "generator": 1,
+            "hash": "1a30be851584ea14cdeb5e2617f1327c34c2963e8e59583fc282734b46a2d58f"
+          },
+          "hash": "1686f5ed8e5861cecd0fb9b29444c5b75b32af95f21e2f1a19476c4a38da99fd",
+          "kind": "explored",
+          "prev": "2209351dd453a9cc29bad2d75a13d54ad6625ba6e9379bcaffa7d88cce8ddbb3",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              -1,
+              0,
+              -1
+            ],
+            "generator": 1,
+            "hash": "ded082a4885759722a47a8fcf6dac3d7b4b08acebd1807e6b411c38ab7ddb25c"
+          },
+          "hash": "246091692575f1af7191c35adc9d59881429ee6fa4d7412436e2f59c4b277a50",
+          "kind": "explored",
+          "prev": "1686f5ed8e5861cecd0fb9b29444c5b75b32af95f21e2f1a19476c4a38da99fd",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              0,
+              0,
+              -1
+            ],
+            "generator": 1,
+            "hash": "33056b7fbf1ce925eda06ff095dab5e7a26169977c3a3908a1007b92a5cc5a80"
+          },
+          "hash": "92d896b2645b78d623e5cb1e39050830d467903b6e2debcee21d6c86a55eb890",
+          "kind": "explored",
+          "prev": "246091692575f1af7191c35adc9d59881429ee6fa4d7412436e2f59c4b277a50",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              -2,
+              0,
+              0
+            ],
+            "generator": 1,
+            "hash": "8e62342f2225f898d28a165a607a34bda2ab3cd2210f750639fca34b81e30c77"
+          },
+          "hash": "6e087d3dd2db9034345193823c78829239fd112313964fa01ee6b7044249d004",
+          "kind": "explored",
+          "prev": "92d896b2645b78d623e5cb1e39050830d467903b6e2debcee21d6c86a55eb890",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              -1,
+              0,
+              0
+            ],
+            "generator": 1,
+            "hash": "a6a48114bf0ea5fb0dbac923175949aacd808b4fe7013f6b8e1c455361458b0a"
+          },
+          "hash": "7beb5edff7cabbb775cc88b075fcf07eb0dc225bcc39e086538ce5e058ac33fd",
+          "kind": "explored",
+          "prev": "6e087d3dd2db9034345193823c78829239fd112313964fa01ee6b7044249d004",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              0,
+              0,
+              0
+            ],
+            "generator": 1,
+            "hash": "5c45025a21bc63bc7a553c661991cb3feb06586cf748033f05b64c19e8f21496"
+          },
+          "hash": "35cc0c667ec14dcc760d3119dac07aa74419cc3c10d2f9318158fc72d93b0151",
+          "kind": "explored",
+          "prev": "7beb5edff7cabbb775cc88b075fcf07eb0dc225bcc39e086538ce5e058ac33fd",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              -2,
+              0,
+              1
+            ],
+            "generator": 1,
+            "hash": "c0a28a1081a5a721911f5c6b3f6a5d3625270b5c95eca2aaf6d0c4f7cb0da9e6"
+          },
+          "hash": "e8eb30349e66ce5285bba08f0571012eac773891f9d9127b09e8a9246c88d98a",
+          "kind": "explored",
+          "prev": "35cc0c667ec14dcc760d3119dac07aa74419cc3c10d2f9318158fc72d93b0151",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              -1,
+              0,
+              1
+            ],
+            "generator": 1,
+            "hash": "724da9b928344efd12ee5323847a05f327a3fa516520a242bc26ce0fa8d8bb48"
+          },
+          "hash": "066d7adb9a34a4afbace93be65b1c76c2bc83c5155fa5caf02fe057917a25e2d",
+          "kind": "explored",
+          "prev": "e8eb30349e66ce5285bba08f0571012eac773891f9d9127b09e8a9246c88d98a",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              0,
+              0,
+              1
+            ],
+            "generator": 1,
+            "hash": "f758cc114df87323e3258de8ba05ca698aa99465b5e9f5d740e413888b8c183d"
+          },
+          "hash": "9bd3f34103053dc6e0f1ab0870fb5234fec4c253136f55aff8150b1c0d8074c9",
+          "kind": "explored",
+          "prev": "066d7adb9a34a4afbace93be65b1c76c2bc83c5155fa5caf02fe057917a25e2d",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              -2,
+              1,
+              -1
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "6d464536e0521ed975b5c46a451eae8b5b5303f397dbc3055c015b68b3f051bc",
+          "kind": "explored",
+          "prev": "9bd3f34103053dc6e0f1ab0870fb5234fec4c253136f55aff8150b1c0d8074c9",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              -1,
+              1,
+              -1
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "04196cd570e633e8e27feafd4171b4fa8607305fc6c85806ecd95c53948e6198",
+          "kind": "explored",
+          "prev": "6d464536e0521ed975b5c46a451eae8b5b5303f397dbc3055c015b68b3f051bc",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              0,
+              1,
+              -1
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "2793f46e3176685d95ea1004bd29e14e7b76f3194af15dc0d4a0469344766871",
+          "kind": "explored",
+          "prev": "04196cd570e633e8e27feafd4171b4fa8607305fc6c85806ecd95c53948e6198",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              -2,
+              1,
+              0
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "d005d352d14cb989572a6d373e7db67b82371d42ab571cd97959e38cb523ded5",
+          "kind": "explored",
+          "prev": "2793f46e3176685d95ea1004bd29e14e7b76f3194af15dc0d4a0469344766871",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              -1,
+              1,
+              0
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "ec936723113d2a94cd7bb6b034d7aa8ae815793e1b2afbbfe4e53f4ed42ccd47",
+          "kind": "explored",
+          "prev": "d005d352d14cb989572a6d373e7db67b82371d42ab571cd97959e38cb523ded5",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              0,
+              1,
+              0
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "c43bcae597563ef79df80802f0bda0d7581e9dd60a7de6d8cc8333da20f66c27",
+          "kind": "explored",
+          "prev": "ec936723113d2a94cd7bb6b034d7aa8ae815793e1b2afbbfe4e53f4ed42ccd47",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              -2,
+              1,
+              1
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "1602a92101859955b5d03a620cdd9fc6d7c557382ca1cb0109ff2fd893f0b1e4",
+          "kind": "explored",
+          "prev": "c43bcae597563ef79df80802f0bda0d7581e9dd60a7de6d8cc8333da20f66c27",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              -1,
+              1,
+              1
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "fc5e55e2dafe852391e135fe9d9194d90a2bda1f3e46f849bf23f039adb55087",
+          "kind": "explored",
+          "prev": "1602a92101859955b5d03a620cdd9fc6d7c557382ca1cb0109ff2fd893f0b1e4",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "chunk": [
+              0,
+              1,
+              1
+            ],
+            "generator": 1,
+            "hash": "ad7facb2586fc6e966c004d7d1d16b024f5805ff7cb47c7a85dabd8b48892ca7"
+          },
+          "hash": "cccc3f09308f2d0bd0f808a4b7d16ea782dcb1bd8ea55d9d9b03fad21d19286d",
+          "kind": "explored",
+          "prev": "fc5e55e2dafe852391e135fe9d9194d90a2bda1f3e46f849bf23f039adb55087",
+          "tick": 0
+        },
+        {
+          "agent": "CEDAR",
+          "data": {
+            "held_by": {
+              "format": "open-worlds/held-by/v1",
+              "person": "did:key:z6MkssVNirvHGNRGaxjsAS72J3Bns8hGZar6k2FJaKaD5N96",
+              "presence": "did:key:z6MkoXFAX1eVYcZV222EVEBeXsqf4XwzjgF2L5mQba1y1SAJ",
+              "proof": {
+                "created": "2026-11-15T00:00:00Z",
+                "cryptosuite": "eddsa-jcs-2022",
+                "proofPurpose": "assertionMethod",
+                "proofValue": "z3jmNiaEaUK7x9eTENaYftdqRdahgFxM9funxsSChNpKi4RL8vqFCLn8HFYVf3L9o25noSCAyvcxikVmCo6UBQfZW",
+                "type": "DataIntegrityProof",
+                "verificationMethod": "did:key:z6MkoXFAX1eVYcZV222EVEBeXsqf4XwzjgF2L5mQba1y1SAJ#z6MkoXFAX1eVYcZV222EVEBeXsqf4XwzjgF2L5mQba1y1SAJ"
+              },
+              "time": "2026-11-15T00:00:00Z",
+              "world": "did:key:z6MkiPqNcv9TtqycGsBBEtmYUgzqx3DgBSmc1W1Poig6gxMi"
+            },
+            "holds": {
+              "format": "open-worlds/holds/v1",
+              "person": "did:key:z6MkssVNirvHGNRGaxjsAS72J3Bns8hGZar6k2FJaKaD5N96",
+              "presence": "did:key:z6MkoXFAX1eVYcZV222EVEBeXsqf4XwzjgF2L5mQba1y1SAJ",
+              "proof": {
+                "created": "2026-11-15T00:00:00Z",
+                "cryptosuite": "eddsa-jcs-2022",
+                "proofPurpose": "assertionMethod",
+                "proofValue": "z54TbVcVaWjHtc4sGdWZKcLcBCGqUcnuAcFhfU2ELWmen4TFaWKYcYyW4g1DGQkRG2wiyXmUgnh2WDtBVcuMFM5oC",
+                "type": "DataIntegrityProof",
+                "verificationMethod": "did:key:z6MkssVNirvHGNRGaxjsAS72J3Bns8hGZar6k2FJaKaD5N96#z6MkssVNirvHGNRGaxjsAS72J3Bns8hGZar6k2FJaKaD5N96"
+              },
+              "time": "2026-11-15T00:00:00Z",
+              "world": "did:key:z6MkiPqNcv9TtqycGsBBEtmYUgzqx3DgBSmc1W1Poig6gxMi"
+            }
+          },
+          "hash": "6f7bc973221913f0dbf22f817907be9a6f48372cb56719cd7ded017a8b96b2b7",
+          "kind": "linked",
+          "prev": "cccc3f09308f2d0bd0f808a4b7d16ea782dcb1bd8ea55d9d9b03fad21d19286d",
+          "tick": 1
+        }
+      ],
+      "name": "the third trial world",
+      "presence": {
+        "counter": 0,
+        "key": "did:key:z6MkoXFAX1eVYcZV222EVEBeXsqf4XwzjgF2L5mQba1y1SAJ",
+        "name": "CEDAR"
+      }
+    }
+  ]
+}

@@ -280,7 +280,8 @@ link every presence too.
    (trial) seed, makes presences, enters several trial worlds at once,
    carries notes between them, and shows a link by the presence's act,
    which the world checks and logs. The link published with a birth
-   (decision 10) uses the same act, at step 9.
+   (decision 10) uses the same act, at step 9. Built (below, "Part
+   three, built").
 4. **The architectures,** as small examples: the octopus, the relay, the
    swarm and the council.
 
@@ -315,6 +316,22 @@ kinds in `schemas/records-v1.schema.json`.
   and "HKDF is defined to operate with and without random salt"
   (section 3.1). With a seed of 32 random bytes, extracting under that
   fixed salt is sound.
+  - **What section 3.1 recommends.** It also says that "the use of salt
+    adds significantly to the strength of HKDF", and that "designers of
+    applications are therefore encouraged to provide salt values to HKDF
+    if such values can be obtained by the application".
+  - **Why none is used here.** The seed is already 32 uniformly random
+    bytes. For input like that, section 3.3 allows skipping the extract
+    step altogether: "one can skip the extract part and use IKM directly
+    to key HMAC in the expand step". A salt matters most where the input
+    isn't uniform, such as a Diffie-Hellman value, for which section 3.3
+    says the extract step "SHOULD NOT be skipped".
+  - **What a salt would cost.** The salt section 3.1 describes is a
+    random value that "is non-secret and can be re-used". A person's
+    client would have to keep it beside the seed, since every presence
+    is made again from both, and losing either would lose them all.
+  - **What keeps one use apart from another.** The label and the world,
+    which keep this use of the seed apart from any other, are in `info`.
 - **`info`:** the bytes of `open-worlds/presence/v1`, a zero byte, the
   world's did:key in ASCII, a zero byte, and the counter as four bytes,
   big-endian. A did:key has no zero byte, so the parts can't run into
@@ -355,6 +372,85 @@ Rust gives the same problems as Python, word for word, wherever both
 records of a link, or every version of a list, hold as records. A
 record's own refusal is worded by each language.
 
+## Part three, built
+
+Built on 2026-11-15:
+- `rust/ur-world/src/link.rs`, the world's side;
+- `rust/ur-world/src/person.rs`, the person's client;
+- the `person` example;
+- `vectors/ur-person.json`, which `tests/test_ur_person_vectors.py`
+  checks from Python.
+
+**Showing is an action.** A presence shows its link on its turn, as
+`Action::ShowLink`, with both records, as it would step or speak. So it
+is the presence's own act, in its world, and the world checks it before
+it takes effect, as it checks every action. The world takes it only if:
+- both records hold as one link (`link_problems`);
+- the link names this world;
+- its presence is the key that the one who shows it entered under, so
+  the presence is one the world has admitted, and is there;
+- the presence has shown no link here before. A second link to the same
+  person is refused as shown already; one to another person, as held by
+  another.
+
+**What the log holds.**
+- **A link the world takes** goes into its log whole, as `linked`.
+- **A link it refuses** goes in as `blocked`, with a fixed reason and
+  neither record. Shown in the wrong world, a link that holds in its own
+  world would otherwise be published here, linking that world's
+  presence to its person in public.
+- **The details of a refusal** are told only to the one who showed it,
+  on its next tick.
+- **`link_log_problems`** checks every `linked` entry in a log as the
+  world would have, and the `log` example runs it beside the arrivals'
+  check.
+
+**The rules are now `ur-world/0.5`,** since an inhabitant can do
+something new. The ground is laid out as before, so the World Map draws
+the garden under both 0.4 and 0.5. The garden's vectors are written
+again.
+
+**A person's client** (`ur_world::person`). `Person` holds an identity
+key and a presence seed. It makes each presence's key with
+`presence_secret`, signs each presence's arrival, and signs both halves
+of a link. Its Hello World, `trial`, is one trial person with a presence
+in each of three trial worlds at once, each under a name of its own
+(ASH, BIRCH and CEDAR), the worlds run tick by tick in step:
+- in the first world, a local says "The spring is south-east of the
+  tree."; ASH hears it on the next tick, and the person's client writes
+  it into the person's notebook;
+- in the second world, BIRCH says it on that same tick, since the first
+  world takes its tick first: a lesson learned in one world, available
+  at once in another, through the person (decision 7);
+- in the third, CEDAR shows its link.
+
+The first two worlds' logs never name the person's key, and no world's
+log names another world or another world's presence; the third names
+the person only in the link CEDAR showed. Rust and Python both check
+this.
+
+**What a world doesn't check.**
+- **The person is a key, not a born identity.** Neither the world nor
+  `link_problems` asks whether any world signed the person's birth
+  (births come at step 9). A link shows which key holds a presence: not
+  who the person is, nor that they are one (decision 8).
+- **That an identity key never enters a world** (decision 1) is the
+  person's to keep. A world refuses neither an arrival signed by a key
+  that is a person in a link it took, nor a link whose person has
+  entered it.
+
+**Not yet.**
+- **Minds through the doorway can't show a link.** The doorway reads a
+  reply as a line of text, and a link is two signed records. An
+  unscripted mind will need a way to ask its client, which holds the
+  keys, to show one.
+- **The client keeps no person's list** (`person-list/v1`). It knows
+  each presence by its world and counter.
+- **One presence per world in the trial.** Several in one world
+  (decision 9) are tested, but not shown in the trial.
+- **Trial persons only.** Where a real seed is kept waits for the
+  founder (decision 13).
+
 ## Honest limits
 
 - **Unlinked keys don't make unlinkable presences.** A name, a manner of
@@ -393,6 +489,7 @@ record's own refusal is worded by each language.
   answered above ("Part two, built"). RFC 8032's acceptance of any 32
   bytes as a secret key, and HKDF's being a pseudorandom function of a
   random seed, weren't re-read; RFC 5869's sections 2.2, 3.1, 3.2 and
-  3.3 were.
+  3.3 were, and sections 3.1 and 3.3 again in part three, for what the
+  page quotes of them.
 - BBS's progress to Recommendation, and its implementations in Python
   and Rust.

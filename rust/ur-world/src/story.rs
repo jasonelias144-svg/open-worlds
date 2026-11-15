@@ -54,7 +54,17 @@ pub fn tell(world: &World) -> String {
             "planted" => format!("{who} plants a {} at {}.", field("what"), field("at")),
             "moved" => format!("{who} moves to {}.", field("to")),
             "fell" => format!("{who} falls to {}.", field("to")),
+            "blocked" if field("action") == "show" => {
+                format!("{who} can't show a link: {}.", field("reason"))
+            }
             "blocked" => format!("{who} can't {} {}.", field("action"), field("dir")),
+            "linked" => format!(
+                "{who} shows a link: a person holds them, {}.",
+                text(
+                    data.and_then(|d| d.get("holds"))
+                        .and_then(|h| h.get("person"))
+                )
+            ),
             "unreadable" => format!(
                 "{who}'s reply can't be read as an action: {}",
                 Value::String(field("reply"))
