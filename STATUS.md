@@ -34,6 +34,11 @@ respect one another's freedom, with full transparency and exit at any time
   step 3 and gained step 8a, a lost or leaked key, before ALICE's and
   BOB's birth. Step 3a, persons, is under way: its plan, after looking
   first, is in docs/research/PERSONS.md.
+- Claude: the fractal track, alongside the course (docs/FRACTALS.md), set
+  by the founder on 2026-11-14: a fractal plant world in Rust, the web
+  app in `web/` to watch worlds grow, and in it the multiversal map. Its
+  plan is in; the first part, the plant world, is next. DeepSeek's code
+  from record 012-06-02 works in part (#63), with a second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
   (#29), and experiment 001, the first unscripted minds
   ([results](experiments/001-first-words/RESULTS.md), #30). The first
@@ -156,6 +161,14 @@ kind.
 
 ## Decided
 
+- 2026-11-15, the technical lead's reading, put to the founder: the
+  founder's newer word, "minimally sufficient models [...] capable of
+  choice for the fractal worlds", and the earlier decision that fractal
+  worlds are primary, "with rules and no AI inside" (TOPICS.md, topic 1;
+  VISION.md, the hierarchy of worlds), both hold. The plant worlds stay
+  primary, rules alone, and the smallest learners enter fractal worlds
+  made for choosing, such as the chaos game (docs/FRACTALS.md). It stands
+  unless the founder answers otherwise.
 - 2026-11-14, founder, later the same evening: "And on the ALICE and BOB
   comment, we are working up to that and is why I am suggesting we
   experiment with minimally sufficient models, and so lightweight and
@@ -1173,6 +1186,18 @@ it was wrong. Questions of what the project is for stay with the founder.
   separate keys would, or the architectures need the kernel changed.
 
 ## Log
+
+- 2026-11-15 Claude: the fractal track planned (docs/FRACTALS.md), at the
+  founder's word of 2026-11-14: a plant world in Rust checked against
+  DeepSeek's sketch, the web app (`web/`, set aside with a README), a
+  garden and the map's first page, worlds that run on with no server,
+  then more families and the smallest learners. COURSE.md gains
+  "Alongside the course", fractal worlds leave the waiting list, and step
+  4a's garden becomes a page of the map; TOPICS.md gains topic 16, the
+  multiversal map, for the brainstorm with DeepSeek; VISION.md keeps the
+  founder's map and worlds that change differently, the amnesia world
+  among them; COLLABORATING.md tells DeepSeek. One meeting of a newer
+  word with an earlier decision, read and put to the founder (Decided).
 
 - 2026-11-14 Claude: record 012-06-02's code made to work, a first
   round: fixes 6 to 14 (sketches/INDEX.md), the tests unchanged. 478 of

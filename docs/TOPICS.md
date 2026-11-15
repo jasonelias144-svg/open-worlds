@@ -38,13 +38,22 @@ kept current with the course, as COLLABORATING.md is (AGENTS.md).
 
 ## 1. Fractal worlds
 
-*Waiting list, after step 4a, as the garden's second kind of room.* The
-founder: "Worlds where you can navigate through fractals, generate them in
-different forms, watch them grow or interact, and more."
+*The fractal track, alongside the course ([FRACTALS.md](FRACTALS.md)).*
+The founder: "Worlds where you can navigate through fractals, generate
+them in different forms, watch them grow or interact, and more." And on
+2026-11-14, moving them forward from the waiting list: "I am eager to see
+visuals of fractals grown over time in expanding worlds", with "a web app
+that would allow me to monitor some ongoing simulation run of fractal
+plants".
 
 **Decided:** primary worlds, with rules and no AI inside; made from a
 template whose dials are the rule's numbers
 ([research/FORMATS.md](research/FORMATS.md), "A world's template").
+DeepSeek sketched the first ones in record 012-06-02, and the project
+carries them into Rust (FRACTALS.md, the plan). How a world may change
+is left open, and may differ by world. The smallest learners that choose
+enter worlds made for choosing, not the plant worlds (the technical
+lead's reading of the founder's newer word, FRACTALS.md).
 
 **Open:** which families first; how growth and interaction are shown;
 how deep a zoom can go (ordinary 64-bit numbers give out somewhere past a
@@ -164,7 +173,7 @@ def describe(log_entries, template, dials):
 
 **Send back:** what a room's sign and window say, for a chemistry world
 and for one other kind; how the garden is arranged; as text a mind can
-read.
+read. The garden's view is a page of the multiversal map (topic 16).
 
 ## 4. Persons, above their presences
 
@@ -484,6 +493,55 @@ it shows. A start, from Star Trek:
 simulated worlds, each naming the work and the episode or chapter; for
 each gap, what the design would need, as prose.
 
+## 16. The multiversal map
+
+*The fractal track's web app ([FRACTALS.md](FRACTALS.md)), and step 4a.*
+The founder, 2026-11-14: "we need to build and maintain a multiversal map
+and index. I imagine walking into an amusement park, like Disneyland. I
+unfold the brochure map and investigate the worlds to explore. In our
+case, you could tap on the map for a given world and get information or
+a detailed map, but also a live view of the world in some standard lobby
+location for each world. It is where you land when entering a new world.
+This is a general concept that we can implement in various ways in
+different worlds, but we need a map to figure out where to go and get up
+to date information on that world." And: "I can brainstorm the whole
+multiversal map with DeepSeek later."
+
+**Decided:** the map is in the web app from its start, with the fractal
+worlds as its first entries (the technical lead's recommendation, under
+the founder's standing rule). No map is the authority, as no registry is
+([MULTIVERSE.md](MULTIVERSE.md)).
+
+**Open:** nearly everything, for the brainstorm. What a world's card
+shows, and in what order; what a lobby is in a world with no ground (a
+plant, an automaton, a chat room); how maps nest, from the multiverse to
+a superworld to its rooms; how the map shows a world that is paused,
+ended, sandboxed, or forked from another; what a visitor can do from the
+map besides look; how a mind, which reads text, reads the map; how the
+map changes as worlds are founded.
+
+**A possible implementation:** a card built only from what the world
+publishes, so anyone can check it and anyone can make another map. Its
+fields, as a sketch (no format is decided):
+
+```json
+{
+ "world": "did:key:z6Mk... (the world's key)",
+ "name": "a plant that grows by its rule",
+ "kind": "fractal/plant",
+ "template": "<the template's hash>",
+ "dials": {"branch_length": 4, "max_depth": 6},
+ "lobby": "where an arrival lands, as the world's law names it",
+ "head": "<its latest signed log head: how far along it is>",
+ "within": "did:key:z6Mk... (the superworld it is in, if any)"
+}
+```
+
+**Send back:** what a card and a lobby are, for three different kinds of
+world; how a map nests; what the brochure says, as text a mind can read;
+designs or sketches of the map page itself. Prose and pictures are as
+welcome as code.
+
 ## Further out
 
 Ideas that won't help yet but probably will, from the course's waiting
@@ -492,7 +550,8 @@ of them now is welcome, as prose; their code waits for their step. For
 ADMIN and the Keepers, ideas only: their design is the project's, at
 step 11 (COLLABORATING.md, "Held back").
 
-- **A window onto the worlds:** a web viewer, in Bevy, in the browser.
+- **A window onto the worlds in 3D:** in Bevy, in the browser, after the
+  fractal track's web app (topic 16), the first window.
 - **The gate and districts,** with the chemistry and poetry worlds as
   the first districts.
 - **Worlds others built,** and an interface to worlds made with Unity

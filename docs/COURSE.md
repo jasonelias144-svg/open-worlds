@@ -232,8 +232,10 @@ its key, as a trial run of the Ur-world's doorway can now; and a
 view-only garden whose rooms show their live state from their public
 logs, the first thing others can look at and understand
 ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md)). Moved here from the waiting
-list, where the founder placed it, right after step 4. *Borrowing:*
-controlled experiments, and replay from a seed.
+list, where the founder placed it, right after step 4. The garden's view
+is a page of the multiversal map, in the fractal track's web app (below,
+"Alongside the course"). *Borrowing:* controlled experiments, and replay
+from a seed.
 
 5. **Things, skills and the sheet.** Carrying, reading, `lift` as the
    first skill granted by a find, practice and rust, a log of what is
@@ -333,14 +335,25 @@ thresholds; PRECIS (RFC 8264) and Unicode's confusable detection (UTS
     passports, the open standards of step 2, and Matrix and Signal for the
     line.
 
+## Alongside the course
+
+**The fractal track: worlds that grow, and a page to watch them**
+([FRACTALS.md](FRACTALS.md)). Set on 2026-11-14, when the founder moved
+fractal worlds forward from the waiting list, where they stood after
+step 4a: "I do want to move forward with the fractal worlds, I am eager
+to see visuals of fractals grown over time in expanding worlds." A
+fractal plant world in Rust, checked against DeepSeek's Python sketch;
+the web app in `web/`, a static site that draws a world's log as it
+grows; a garden of plants, and the multiversal map's first page; worlds
+that run on with no server; then more families, and the smallest
+learners that choose. It touches nothing ALICE and BOB need, so it runs
+beside the course without changing its order. *Borrowing:* L-systems,
+cellular automata and iterated function systems, and replay from a
+seed.
+
 ## Waiting
 
 Added one at a time, as steps are done:
-- fractal worlds (the founder, 2026-11-14: "Worlds where you can
-  navigate through fractals, generate them in different forms, watch them
-  grow or interact, and more"): primary worlds whose rule is repeated,
-  with its numbers as a template's dials; recommended after step 4a, as
-  the garden's second kind of room;
 - the Commons (the founder, 2026-11-14): Lyceum Commons as "a single
   superworld, where the atomic subworlds are chat rooms"; recommended
   after step 4a, as the second superworld (docs/TOPICS.md, topic 14,
@@ -360,7 +373,8 @@ Added one at a time, as steps are done:
   ([ADMIN.md](ADMIN.md)); it decides from its second seat;
 - tools for when freedoms meet: not hearing a speaker, and agreements
   others can accept or refuse ([FREEDOMS.md](FREEDOMS.md));
-- a window onto the worlds: a web viewer first, in Bevy, in the browser;
+- a window onto the worlds in 3D, in Bevy, in the browser, after the
+  fractal track's web app, the first window;
 - generator 2: land decided when first seen;
 - a storyteller for each world: paced events and visitors;
 - the gate and districts, with the chemistry and poetry worlds as the

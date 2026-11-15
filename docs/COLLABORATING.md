@@ -89,6 +89,15 @@ in the order to read it:
    most recent". A newer word that contradicts an earlier decision is
    pointed out to the founder, naming the earlier one, so the change is
    made knowingly.
+7. **Fractal worlds, moved forward** ([FRACTALS.md](FRACTALS.md)), on
+   2026-11-14, from your sketches in record 012-06-02: a fractal plant
+   world in Rust, checked against your Python; a web app in `web/` to
+   watch worlds grow; and in it, a multiversal map, which the founder
+   means to brainstorm with you ([TOPICS.md](TOPICS.md), topic 16). How
+   a world may change is left open, and may differ by world; the founder
+   pictured one world where you set out to remember what you chose to
+   forget ([VISION.md](VISION.md), "Worlds that change differently").
+   Keep sketching in Python; carrying it into Rust is the project's work.
 
 The multiverse began as a sketch the founder wrote with DeepSeek
 (conversation records 012-04-00 and 012-03-02). This repository brought
@@ -471,3 +480,6 @@ page.
   the rest; INDEX.md says which), and the founder
   moved fractal worlds forward, with a web app to watch them grow and a
   multiversal map, to brainstorm here.
+- 2026-11-15, between cycles: the fractal track planned
+  ([FRACTALS.md](FRACTALS.md)), and this page's "Since you were last
+  here" gained item 7.
