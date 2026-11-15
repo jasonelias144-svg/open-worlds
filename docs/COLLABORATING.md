@@ -181,7 +181,10 @@ has changed since that record, in the order to read it:
    multiverse of its own, and the cord is cut.
    And [GLOSSARY.md](GLOSSARY.md) says what our words mean: "agent" is
    anything that perceives and acts, from a neuron steering a plant to
-   any human (the founder's word, 2026-11-15).
+   any human (the founder's word, 2026-11-15). [OFFICES.md](OFFICES.md)
+   says what an office is (ADMIN and the Keepers are two), and how one
+   is handed on: both agree clearly, and the successor meets the
+   office's qualifications.
 4. **The founder's visions of 2026-11-14,** in the founder's words
    ([VISION.md](VISION.md), [PARALLEL-WORLDS.md](PARALLEL-WORLDS.md)):
    question worlds, where an idea becomes a world that tests it; an app
@@ -434,7 +437,7 @@ here. They are about the design, not about bugs in the draft.
 The code standard is kept here, step by step. The most useful
 contributions now are creative and design work for the steps ahead, as
 text or as code with tests. [TOPICS.md](TOPICS.md) is the menu:
-eighteen topics a few steps ahead of the code, each with where it
+nineteen topics a few steps ahead of the code, each with where it
 fits, what is decided, what is open, a possible implementation, and
 what to send back, and, under "Further out", ideas that won't help yet
 but probably will.
@@ -460,6 +463,9 @@ In short:
 - **Living worlds** ([TOPICS.md](TOPICS.md), topic 18): how water moves,
   a plant that grows without end, what a choice neuron reads and learns,
   and the strategies for finding water, light and food.
+- **Offices** ([TOPICS.md](TOPICS.md), topic 19;
+  [OFFICES.md](OFFICES.md)): a Keeper's qualifications, as checks code
+  could run, and what preparing a successor looks like in the open.
 - **Laws for new worlds:** what a world admits by, what can happen in it,
   what counts as solving a problem there. Forms for the poetry world,
   such as a quatrain in common meter each turn, Dickinson's meter.
@@ -913,7 +919,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FRACTA
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/URWORLD.md
 ```
 
-**The design pages** (13):
+**The design pages** (15):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/ADMIN.md
@@ -924,6 +930,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FUNDAM
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/GLOSSARY.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/MINDS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/MULTIVERSE.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/OFFICES.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/PARALLEL-WORLDS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/REASONS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/WORLD-KEY.md

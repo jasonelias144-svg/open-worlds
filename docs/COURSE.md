@@ -407,6 +407,12 @@ Added one at a time, as steps are done:
   sealed to the person it is about ([FUNDAMENTALS.md](FUNDAMENTALS.md),
   "Public records, kept whole"): placed with the lifecycle, before
   anyone lives in a world;
+- offices as records (the founder, 2026-11-15: "I think the work on
+  offices is foundational"): an office record (charter, key, holder,
+  handovers, what watches it) and a handover record (the holder's
+  signature, the successor's clear agreement, the qualifications
+  checked), in records-v1 with vectors ([OFFICES.md](OFFICES.md));
+  placed at the course's next recheck;
 - the Commons (the founder, 2026-11-14): Lyceum Commons as "a single
   superworld, where the atomic subworlds are chat rooms"; recommended
   after step 4a, as the second superworld (docs/TOPICS.md, topic 14,

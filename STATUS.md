@@ -295,6 +295,44 @@ kind.
   content apart from the chain that commits to it, so a field can be
   redacted without rewriting history. AGENTS.md's rule and the
   charter's section 4 say it.
+- 2026-11-15, founder, on ADMIN's part in handing an office on:
+  "Perhaps ADMIN needs final approval on a keeper change, or not. Either
+  way, ADMIN would play some role in the qualifications, essentially
+  giving ADMIN the ability to block a transfer for whatever reason. We
+  would need protocols for adjudicating such differences, but that would
+  be an appropriate safeguard layer."
+  Put to the founder the same day, with the technical lead's
+  recommendation, which stands unless the founder answers otherwise
+  (docs/OFFICES.md, "ADMIN's part"): a block, not a final approval, so a
+  handover goes ahead unless ADMIN blocks it within a set time; only on
+  grounds written in advance, never for any reason, since no one holds
+  power that isn't written down and ADMIN doesn't choose Keepers; a
+  ruling with its reasons, and a serious act, reviewed independently;
+  appealed as every ruling of ADMIN's is, to the technical lead's role,
+  then the founder. The qualifications apply to a handover only: who
+  first keeps a world is still the world's founders' choice of three
+  (ADMIN.md, "The Keeper's office"), unchanged.
+- 2026-11-15, founder, on handing an office on:
+  "I think the work on offices is foundational. Let me add a new
+  suggestion. If one agent holds an office then they have the ability to
+  transfer the office to another if both agree clearly and the one to
+  fit the role meets whatever conditions are required. We can't have a
+  keeper setting a fractal plant in charge of a world because the plant
+  agreed as a 50% chance from having only an affirmative or negative
+  possible responses to choose from. There needs to be qualifications of
+  some sort, but assuming that is in place. A keeper can work with an
+  agent to be their successor. …"
+  (A personal sentence that followed is left out, by the founder's rule
+  on personal information.) So an office passes when its holder and the
+  successor both agree clearly, and the successor meets the office's
+  qualifications; and a Keeper may prepare a successor. The technical
+  lead's readings, in docs/OFFICES.md, which stand unless the founder
+  answers otherwise: clear agreement is the successor saying in its own
+  words, in public, what the office's duties are and that it takes them
+  on; the qualifications are a floor written in each office's charter,
+  checked by someone other than the outgoing holder; and they are not
+  the admin-key, which stays a mark of readiness, never a requirement
+  (decided 2026-11-14), so the two decisions stand together.
 - 2026-11-15, founder, answering what happens to a leaver's public acts:
   "Public acts should always remain. The moment we edit a public record,
   we defeat the purpose. It should be clearly understood upon entry to
@@ -319,6 +357,16 @@ kind.
   anything personal into a public record, while what a person chooses
   to say in public is their own act, made knowing it stays. AGENTS.md
   makes it a rule: public records are never edited.
+- 2026-11-15, founder, on offices:
+  "Office should be its own type, with ADMIN and keepers two current
+  examples. Let's define what makes something an office or role.
+  Thoughts?"
+  On the technical lead's answer, five marks of an office (written
+  before it is held; held, never owned; its own key and memory; acting
+  for others, so in the open; bounded and watched) and the line between
+  an office and a role, the founder answered with the message above. So
+  docs/OFFICES.md gathers them, as the technical lead's proposal, and
+  GLOSSARY.md gives "Office" a section of its own.
 - 2026-11-15, founder, on a word for everything that acts:
   "And is "agent" or most general term that would encompass everything
   from any human, to me, to you, to DeepSeek, to ADMIN, to the world
@@ -1978,6 +2026,14 @@ it was wrong. Questions of what the project is for stay with the founder.
   limits; and the founder's answer on where redacted information is
   kept is noted, to be recorded with the private container next.
 
+- 2026-11-15 Claude: after #85's independent review, OFFICES.md: the
+  "break glass" and the technical lead are not offices under the marks
+  (each passes only by the founder's act); the qualifications are for a
+  handover only, so the three choices at a founding stand; ADMIN's part,
+  from the founder's message, is a block on written grounds, a serious
+  act open to appeal; the proposals are marked as such, in GLOSSARY.md
+  too; TOPICS.md gains offices as topic 19.
+
 - 2026-11-15 Claude: after #83's re-check at faab85d, a redaction asked
   for by the person it concerns, or any close call, is made at once and
   decided after, and keeping something public is a serious act, open to
@@ -2002,6 +2058,13 @@ it was wrong. Questions of what the project is for stay with the founder.
   whether a leaver's shown links stay is put to the founder; a leaver is
   given their private records (WORLD-TYPES.md); and COLLABORATING.md's
   dated list has the change.
+
+- 2026-11-15 Claude: docs/OFFICES.md, at the founder's word: what makes
+  an office (five marks), an office or a role, the offices today (ADMIN,
+  each world's Keeper, the "break glass" holder, the technical lead),
+  handing an office on (the founder's words: clear agreement and
+  qualifications) and preparing a successor; GLOSSARY.md's "Office";
+  an office record and a handover record wait in COURSE.md.
 
 - 2026-11-15 Claude: the founder answered the open question on a
   leaver's public acts: they always remain, and historical records are
