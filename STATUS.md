@@ -2373,6 +2373,9 @@ it was wrong. Questions of what the project is for stay with the founder.
   and the founder's second link check (Decided, "on following a link
   inside a page") showed DeepSeek following a link from a small page.
   Both checks name the form tested, raw.githubusercontent.com links.
+  The 2026-11-15 decision "every file's full link, in one list" was to
+  be revisited if DeepSeek could follow links from a page: looked at,
+  and the lists stay, as following links from a long page isn't shown.
 
 - 2026-11-15 Claude: after #90's independent review at 65e040d, its
   notes: docs/files.py says why new files count; the FILES.md test

@@ -806,7 +806,7 @@ counter, time)` both halves of its link, which the presence shows as
 `Action::ShowLink { holds, held_by }`.
 
 The same links, and every other file's, are in one place for pasting
-into a conversation where they can't be followed from this page: "Every
+into a conversation where they may not open from this page: "Every
 file, by its full link", at the end of this page (and the files of
 record in [FILES.md](FILES.md)).
 
