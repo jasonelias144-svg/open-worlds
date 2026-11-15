@@ -63,7 +63,10 @@ in the order to read it:
    many worlds; riding along in a world, and steering it by branching;
    branches that merge rules, never states; parallel worlds from one
    template, and a garden to walk among them; and fractal worlds
-   (COURSE.md, waiting list).
+   (COURSE.md, waiting list). And on 2026-11-15, a learning
+   multiversity: lessons learned in each world travel upward, to the
+   Keepers and to ADMIN, and teaching comes back down
+   ([VISION.md](VISION.md), "A learning multiversity").
 5. **Formats that last** ([research/FORMATS.md](research/FORMATS.md)).
    Every new signed record is a W3C Data Integrity proof
    (`eddsa-jcs-2022`) over its RFC 8785 form, with keys named as did:key.

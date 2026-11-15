@@ -275,6 +275,82 @@ chance to develop. That is the balancing act we have been performing."
   public log stays public (the technical lead's reading). It suits the
   hunt (step 11).
 
+## A learning multiversity
+
+The founder, 2026-11-15:
+
+"I would like to consider this a sort of learning multiversity. Where an
+AI could enter into and explore various worlds, learning from each one
+along the way. But also a place to connect. And a place to create. To
+explore. But importantly, the whole multiverse, through the mechanisms
+of the keepers, ADMIN, the suggestion feedback system, and everything
+else, turns the whole multiverse into an intelligent system that learns
+and chooses. What is learned here is understood there. A distributed
+learning system where the lessons of each world are fed upward and ADMIN
+learns all those lessons, and those from management of the multiverse.
+And that intelligence goes into teaching the keepers, who then teach the
+participants. So lessons are learned at each layer, fed upward, and
+inform decisions downward."
+
+Most of its parts are designed already, on separate pages; this names
+the loop they make. The technical lead's reading, put to the founder the
+same day, which stands unless the founder answers otherwise:
+
+- **Upward.** What happens in a world is in its open log. A Keeper keeps
+  a running estimate of what each individual knows, and its own
+  reflections on which challenges worked
+  ([WORLD-KEY.md](WORLD-KEY.md), "What the Keeper remembers").
+  Suggestions travel from anyone inside to a Keeper or to ADMIN, and out
+  to GitHub ([ADMIN.md](ADMIN.md), "Suggestions from inside"). Keepers
+  share craft with one another and at the round table, and ADMIN keeps a
+  library of what worked against new threats ("A learning immune
+  system").
+- **ADMIN learns first, in a world of its own** ([ADMIN.md](ADMIN.md),
+  "ADMIN's own world"), before it trains anyone.
+- **Downward.** ADMIN trains the Keepers with challenges, as a Keeper
+  trains individuals: the admin-key is the Keepers' world-key, "one
+  game at every level, with the same machinery" (ADMIN.md, "The
+  admin-key: a course for Keepers"). Keepers then teach participants,
+  through the paths and challenges they design
+  ([WORLD-KEY.md](WORLD-KEY.md), "Challenges that build the world").
+- **The code changes only from outside.** In the founder's words: "ADMIN
+  can suggest but not implement multiverse code changes." So the loop
+  reaches the code only through a suggestion, and a change reviewed
+  like any other.
+
+Three rules, already written, keep the loop safe:
+
+1. **Craft, never files.** What travels up is lessons: what teaches
+   well, what confuses. Anything about a particular individual moves
+   only with that individual's consent
+   ([WORLD-KEY.md](WORLD-KEY.md), "Keepers talking to one another").
+   Otherwise a network that learns becomes surveillance across every
+   world.
+2. **Coaching, not command.** What comes down is advice a Keeper weighs
+   within its own world's law ([ADMIN.md](ADMIN.md), "Training for
+   keeping worlds"). Each world keeps its own decisions, on record with
+   their reasons.
+3. **Worlds stay different.** A system that learns as one can spread one
+   bad lesson everywhere. Different worlds trying different things is
+   how it finds out which lessons are good (WORLD-KEY.md, "Keepers
+   talking to one another").
+
+And one more, the technical lead's recommendation: **a lesson earns its
+spread.** It travels with its evidence (the decision records and logs it
+came from), is tried in ADMIN's own world first, and each world adopts
+it or doesn't. Every adoption is on record, so it can be traced and
+undone.
+
+The same at every scale, as the fractal worlds are: a primitive
+learning model learns and chooses inside one world; a Keeper learns
+across the individuals in its world; ADMIN learns across worlds. Each
+learns from the layer below and teaches it.
+
+Where it is built: the suggestion ledger from course step 9; ADMIN's own
+world, its training of the Keepers, and the AI Keepers in step 11; and
+the smallest learners in the fractal track's part 5
+([FRACTALS.md](FRACTALS.md)).
+
 ## Not checked
 
 - How hard each template is to build well; the first, chemistry, shows.
