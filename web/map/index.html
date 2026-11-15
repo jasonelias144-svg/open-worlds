@@ -267,7 +267,7 @@ details summary { cursor: pointer; font-size: 0.875rem; color: var(--muted); }
     if (!pub) return { results: [["bad", "What it publishes", "Not given: the garden hosts it, but its records aren't in the file."]], birthOk: false, headOk: false };
     let birthOk = false, headOk = false;
     const bs = await signedBy(pub.birth, h.key, BIRTH);
-    let why = null;
+    let why = null, againstLog = false;
     if (bs === "ok") {
       if (!file.template || await recordHash(file.template) !== file.templateHash) why = "the template given with it isn't the one its hash names";
       else if (pub.birth.template !== file.templateHash) why = "names another template than the one given with it";
@@ -277,12 +277,15 @@ details summary { cursor: pointer; font-size: 0.875rem; color: var(--muted); }
         // entry was made with; without, only the template's ranges.
         const first = Array.isArray(pub.log) && pub.log[0];
         const madeWith = first && first.hash === h.first && !(await chainProblem(pub.log)) && first.data ? first.data.dials : null;
-        why = dialsProblem(pub.birth, file.template, madeWith && typeof madeWith === "object" ? madeWith : null);
+        againstLog = Boolean(madeWith && typeof madeWith === "object");
+        why = dialsProblem(pub.birth, file.template, againstLog ? madeWith : null);
       }
       birthOk = !why;
     }
     results.push(sig(bs, "Its birth record", why ? ["bad", "Its birth record", why]
-      : ["ok", "Its birth record", "Signed by its own key, naming its template and law by hash, and the dials its log was made with, each within the template's range."]));
+      : ["ok", "Its birth record", "Signed by its own key, naming its template and law by hash, and " + (againstLog
+          ? "the dials its log was made with, each within the template's range."
+          : "dials within the template's ranges, not compared with its log, which isn't given here or doesn't hold.")]));
     const hs = await signedBy(pub.head, h.key, HEAD);
     let agrees = false;
     if (hs === "ok") {
