@@ -17,6 +17,15 @@ loosen it.
    The founder (2026-11-14): "please make sure the COLLABORATING.md is
    up to date as we go. This way, if we run out of data for a few days, I
    can still go and work with DeepSeek during that time."
+5. **The repository is the record.** The founder (2026-11-15): "Our
+   conversation here is the only one I am not keeping records for … you
+   can read what I say with DeepSeek, but DeepSeek doesn't read what we
+   discuss here. That is what GitHub is for." So whatever the founder
+   says in a session that bears on the project goes into `STATUS.md`
+   (Decided, word for word) in the pull request that acts on it, or the
+   next one, and into the pages it changes. Before a session ends, it
+   checks that nothing the founder said there is missing, and that
+   `docs/COLLABORATING.md` tells DeepSeek what changed.
 
 ## Who decides
 
