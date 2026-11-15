@@ -15,6 +15,7 @@ ed25519-dalek.workspace = true
 bs58.workspace = true
 jsonschema.workspace = true
 hpke.workspace = true
+hkdf.workspace = true
 x25519-dalek.workspace = true
 
 [lints]

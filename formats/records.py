@@ -74,6 +74,9 @@ KINDS: Dict[str, Tuple[str, Tuple[str, ...]]] = {
     "open-worlds/mind/v1": ("mind", ("issuer",)),
     "open-worlds/template/v1": ("template", ("issuer",)),
     "open-worlds/key-list/v1": ("keyList", ("issuer",)),
+    "open-worlds/holds/v1": ("holds", ("person",)),
+    "open-worlds/held-by/v1": ("heldBy", ("presence",)),
+    "open-worlds/person-list/v1": ("personList", ("person",)),
 }
 
 
@@ -128,7 +131,9 @@ def _times(record: Dict[str, Any]) -> List[Tuple[str, Any]]:
     if fmt == "open-worlds/grant/v1":
         return [(f"$.{f}", record[f]) for f in ("validFrom", "validUntil")
                 if f in record]
-    if fmt in ("open-worlds/birth/v1", "open-worlds/world-birth/v1"):
+    if fmt in ("open-worlds/birth/v1", "open-worlds/world-birth/v1",
+               "open-worlds/holds/v1", "open-worlds/held-by/v1",
+               "open-worlds/person-list/v1"):
         return [("$.time", record["time"])]
     if fmt == "open-worlds/mind/v1":
         return [(f"$.engines.{i}.from", e["from"])

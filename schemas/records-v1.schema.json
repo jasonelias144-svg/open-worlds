@@ -1237,6 +1237,167 @@
         ]
       },
       "additionalProperties": false
+    },
+    "holds": {
+      "description": "A person's half of a link between the person and one of their presences: \"I hold this presence\". Signed by the person's identity key. A link holds only together with the presence's held-by record, naming the same person, presence and world (docs/research/PERSONS.md, decision 4).",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/holds/v1"
+        },
+        "person": {
+          "description": "The person, by their identity key.",
+          "$ref": "#/$defs/didKey"
+        },
+        "presence": {
+          "description": "The presence they hold, by its key.",
+          "$ref": "#/$defs/didKey"
+        },
+        "world": {
+          "description": "The world the presence is in.",
+          "$ref": "#/$defs/didKey"
+        },
+        "time": {
+          "$ref": "#/$defs/time"
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "person",
+        "presence",
+        "world",
+        "time",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
+    "heldBy": {
+      "description": "A presence's half of a link: \"I am held by this person\". Signed by the presence's key. A link holds only together with the person's holds record, naming the same person, presence and world (docs/research/PERSONS.md, decision 4).",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/held-by/v1"
+        },
+        "presence": {
+          "description": "The presence, by its key.",
+          "$ref": "#/$defs/didKey"
+        },
+        "person": {
+          "description": "The person who holds it, by their identity key.",
+          "$ref": "#/$defs/didKey"
+        },
+        "world": {
+          "description": "The world the presence is in.",
+          "$ref": "#/$defs/didKey"
+        },
+        "time": {
+          "$ref": "#/$defs/time"
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "presence",
+        "person",
+        "world",
+        "time",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
+    "presenceEntry": {
+      "description": "One of a person's presences, in their list: its world, the counter its key was made with, its key, and its name there (docs/research/PERSONS.md, decisions 2 and 6).",
+      "type": "object",
+      "properties": {
+        "world": {
+          "$ref": "#/$defs/didKey"
+        },
+        "counter": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "key": {
+          "$ref": "#/$defs/didKey"
+        },
+        "name": {
+          "$ref": "#/$defs/name"
+        }
+      },
+      "required": [
+        "world",
+        "counter",
+        "key",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "personList": {
+      "description": "A person's list of their presences, kept by the person with their private halves and never shown whole. Each version after the first names the one before by hash, and every version is signed by the person's identity key (docs/research/PERSONS.md, decision 6).",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/person-list/v1"
+        },
+        "person": {
+          "description": "The person, by their identity key.",
+          "$ref": "#/$defs/didKey"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "previous": {
+          "description": "The version before, by hash.",
+          "$ref": "#/$defs/hash"
+        },
+        "time": {
+          "$ref": "#/$defs/time"
+        },
+        "presences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/presenceEntry"
+          }
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "person",
+        "version",
+        "time",
+        "presences",
+        "proof"
+      ],
+      "if": {
+        "properties": {
+          "version": {
+            "const": 1
+          }
+        }
+      },
+      "then": {
+        "not": {
+          "required": [
+            "previous"
+          ]
+        }
+      },
+      "else": {
+        "required": [
+          "previous"
+        ]
+      },
+      "additionalProperties": false
     }
   }
 }

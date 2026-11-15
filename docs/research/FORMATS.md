@@ -568,6 +568,16 @@ signed by the multiverse's root, names the key that holds each role;
 each version names the one before and is signed by its root. Why, and
 how it is checked, is in [KEYS.md](KEYS.md).
 
+## Persons
+
+From course step 3a, part two: a link between a person and one of their
+presences, `open-worlds/holds/v1`, signed by the person, and
+`open-worlds/held-by/v1`, signed by the presence, which holds only when
+both name the same person, presence and world; and a person's list of
+their presences, `open-worlds/person-list/v1`, versioned and signed by
+the person. Presence keys are made from a seed with HKDF-SHA256. Why,
+and the exact encoding, are in [PERSONS.md](PERSONS.md).
+
 ## The arrival
 
 From course step 3: an individual enters a world by signing an arrival

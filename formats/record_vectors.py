@@ -372,6 +372,22 @@ def _valid() -> List[Dict[str, Any]]:
         "tick": 0,
         "previous": _h("the entry just before the arrival's own"),
     }, "a trial mind")
+    # A link and a person's list (docs/research/PERSONS.md). Here the
+    # presence is a test party; persons-v1.json has presences made from a
+    # seed.
+    link = {"person": _did("ALICE"), "presence": _did("a trial mind"),
+            "world": _did("a trial world"), "time": CREATED}
+    holds = _signed({"format": "open-worlds/holds/v1", **link}, "ALICE")
+    held_by = _signed({"format": "open-worlds/held-by/v1", **link},
+                      "a trial mind")
+    person_list = _signed({
+        "format": "open-worlds/person-list/v1",
+        "person": _did("ALICE"),
+        "version": 1,
+        "time": CREATED,
+        "presences": [{"world": _did("a trial world"), "counter": 0,
+                       "key": _did("a trial mind"), "name": "TRIAL-1"}],
+    }, "ALICE")
     named = [
         ("a Keeper's grant from its world", keeper_grant),
         ("a grant narrowed, with an end", narrowed),
@@ -386,6 +402,9 @@ def _valid() -> List[Dict[str, Any]]:
         ("a rating of how a suggestion was handled", rating),
         ("a signed log head", head),
         ("an arrival in a trial world", arrival),
+        ("a person's half of a link to a presence", holds),
+        ("a presence's half of the same link", held_by),
+        ("a person's list, its first version", person_list),
     ] + _who()
     return [{"name": n, "signer": _signer_name(r), "record": r,
              "hash": records.record_hash(r)} for n, r in named]

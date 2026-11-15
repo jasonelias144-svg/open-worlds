@@ -1,0 +1,854 @@
+{
+ "about": "Persons (formats/persons.py, rust/formats/src/persons.rs): presence keys from a trial seed, links both ways, and a person's list. Written by `python3 -m formats.persons_vectors`. Every key is made from a label, public to everyone and never for anything real.",
+ "created": "2026-11-15T01:00:00Z",
+ "hkdf": {
+  "ikm": "0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b",
+  "salt": "000102030405060708090a0b0c",
+  "info": "f0f1f2f3f4f5f6f7f8f9",
+  "length": 42,
+  "okm": "3cb25f25faacd57a90434f64d0362f2a2d2d0a90cf1a5a4c5db02d56ecc4c5bf34007208d5b887185865"
+ },
+ "seed": {
+  "label": "open-worlds trial presence seed: a trial person; never for anything real",
+  "hex": "2f88f1c872cdaec4a18cbc91bc4a241891b4dc35e273cbdb6dcb6930abf6c9b1"
+ },
+ "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+ "presences": [
+  {
+   "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+   "counter": 0,
+   "info": "6f70656e2d776f726c64732f70726573656e63652f7631006469643a6b65793a7a364d6b6e446e453257526b79534a57644565424647546439536879556d436233653365766b333935766478626644580000000000",
+   "key": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb"
+  },
+  {
+   "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+   "counter": 1,
+   "info": "6f70656e2d776f726c64732f70726573656e63652f7631006469643a6b65793a7a364d6b6e446e453257526b79534a57644565424647546439536879556d436233653365766b333935766478626644580000000001",
+   "key": "did:key:z6MktWLumk9SQQ3EngjKPqAfBHTGbhRsj2PUtug5TKPEeb13"
+  },
+  {
+   "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+   "counter": 0,
+   "info": "6f70656e2d776f726c64732f70726573656e63652f7631006469643a6b65793a7a364d6b6d4173464d34435a71667678714b6a59765178546557676269557937335254596d4b614c7462744c31696f6e0000000000",
+   "key": "did:key:z6MkgUGjsVyZzC8K9uV7HjkLE1VBomNguCz7Sot4SJvSaiiZ"
+  },
+  {
+   "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+   "counter": 1,
+   "info": "6f70656e2d776f726c64732f70726573656e63652f7631006469643a6b65793a7a364d6b6d4173464d34435a71667678714b6a59765178546557676269557937335254596d4b614c7462744c31696f6e0000000001",
+   "key": "did:key:z6MkqmiE4B9AWWjrdzDgEpWKbHCnrEJZNzyf1UARNmVHwuS9"
+  },
+  {
+   "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+   "counter": 4294967295,
+   "info": "6f70656e2d776f726c64732f70726573656e63652f7631006469643a6b65793a7a364d6b6d4173464d34435a71667678714b6a59765178546557676269557937335254596d4b614c7462744c31696f6e00ffffffff",
+   "key": "did:key:z6MkhPsXkbi1iiYuTg4jRhLnzLJdSppGvrj2kxXxQL9GSTt4"
+  }
+ ],
+ "refusedDerivations": [
+  {
+   "name": "a counter below 0",
+   "seed": "2f88f1c872cdaec4a18cbc91bc4a241891b4dc35e273cbdb6dcb6930abf6c9b1",
+   "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+   "counter": -1,
+   "why": "the counter must be from 0 to 4294967295"
+  },
+  {
+   "name": "a counter of four bytes and more",
+   "seed": "2f88f1c872cdaec4a18cbc91bc4a241891b4dc35e273cbdb6dcb6930abf6c9b1",
+   "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+   "counter": 4294967296,
+   "why": "the counter must be from 0 to 4294967295"
+  },
+  {
+   "name": "a world that isn't a did:key",
+   "seed": "2f88f1c872cdaec4a18cbc91bc4a241891b4dc35e273cbdb6dcb6930abf6c9b1",
+   "world": "the Ur-world",
+   "counter": 0,
+   "why": "the world isn't a did:key"
+  },
+  {
+   "name": "a world whose did:key isn't an Ed25519 key",
+   "seed": "2f88f1c872cdaec4a18cbc91bc4a241891b4dc35e273cbdb6dcb6930abf6c9b1",
+   "world": "did:key:z6LSbysY2xFMRpGMhb7tFTLMpeuPRaqaWM1yECx2AtzE3KCc",
+   "counter": 0,
+   "why": "the world isn't an Ed25519 did:key: not a key of the expected kind"
+  },
+  {
+   "name": "a seed of 31 bytes",
+   "seed": "2f88f1c872cdaec4a18cbc91bc4a241891b4dc35e273cbdb6dcb6930abf6c9",
+   "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+   "counter": 0,
+   "why": "a presence seed is 32 bytes"
+  }
+ ],
+ "links": [
+  {
+   "name": "a person and their first presence in the Ur-world",
+   "holds": {
+    "format": "open-worlds/holds/v1",
+    "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "presence": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "time": "2026-11-15T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3EzZW1gwGrzYrSPsKzF7DM3ZmVWwimzW4z7ttuAvPk7aHPn5k4uy7p1HkTdxd3sFkys4ms3q8muJQ8WG1iUuRuGv"
+    }
+   },
+   "heldBy": {
+    "format": "open-worlds/held-by/v1",
+    "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "presence": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "time": "2026-11-15T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb#z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3kz4kuyktLL4FmTYbFY2J3EJKKHv9ExAcA7SUMByXFZCSeTj5qzBKkjM6KX9hAtHFjXmt1gRKez9oRrrenuzcmaU"
+    }
+   },
+   "linked": true,
+   "problems": []
+  },
+  {
+   "name": "a person and their second presence in a trial world",
+   "holds": {
+    "format": "open-worlds/holds/v1",
+    "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "presence": "did:key:z6MkqmiE4B9AWWjrdzDgEpWKbHCnrEJZNzyf1UARNmVHwuS9",
+    "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+    "time": "2026-11-15T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4iQ6f8qGo8M7Voww87x5VwuSMujJsnb4YTNzqkN2iC7BQAi5WPfRAQGDp3qmXt14qKmxwpbeWn1JjNUk33ts51Na"
+    }
+   },
+   "heldBy": {
+    "format": "open-worlds/held-by/v1",
+    "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "presence": "did:key:z6MkqmiE4B9AWWjrdzDgEpWKbHCnrEJZNzyf1UARNmVHwuS9",
+    "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+    "time": "2026-11-15T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqmiE4B9AWWjrdzDgEpWKbHCnrEJZNzyf1UARNmVHwuS9#z6MkqmiE4B9AWWjrdzDgEpWKbHCnrEJZNzyf1UARNmVHwuS9",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3LVy3uvffwfDJvAzpnbDquWzstdGBG1zu6Lsdi62Youc7DNZhA74g9ifyjTo1ooBSZm7FsTKmn5DpCZFAkDAzaUL"
+    }
+   },
+   "linked": true,
+   "problems": []
+  },
+  {
+   "name": "held-by naming another world",
+   "holds": {
+    "format": "open-worlds/holds/v1",
+    "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "presence": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "time": "2026-11-15T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3EzZW1gwGrzYrSPsKzF7DM3ZmVWwimzW4z7ttuAvPk7aHPn5k4uy7p1HkTdxd3sFkys4ms3q8muJQ8WG1iUuRuGv"
+    }
+   },
+   "heldBy": {
+    "format": "open-worlds/held-by/v1",
+    "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "presence": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+    "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+    "time": "2026-11-15T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb#z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2XJ3BFo5hbM5ZEfTBMQMUHHmMdK8uMhWPaA1tFPSkKWCz83sLuBDBrzr3teiyyMTb1SrXmt8fEQdLRQ67z8L3bYY"
+    }
+   },
+   "linked": false,
+   "problems": [
+    "the two halves name another world"
+   ]
+  },
+  {
+   "name": "holds naming another presence",
+   "holds": {
+    "format": "open-worlds/holds/v1",
+    "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "presence": "did:key:z6MktWLumk9SQQ3EngjKPqAfBHTGbhRsj2PUtug5TKPEeb13",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "time": "2026-11-15T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3tJKHDC4yUQSbuDacavLP1rtGsj2zsPJPA9vKE9hs3sMg7GEx3mgd4Vcx4xJqkMKGvUjimNf5fQXUgXzLKt472J6"
+    }
+   },
+   "heldBy": {
+    "format": "open-worlds/held-by/v1",
+    "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "presence": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "time": "2026-11-15T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb#z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3kz4kuyktLL4FmTYbFY2J3EJKKHv9ExAcA7SUMByXFZCSeTj5qzBKkjM6KX9hAtHFjXmt1gRKez9oRrrenuzcmaU"
+    }
+   },
+   "linked": false,
+   "problems": [
+    "the two halves name another presence"
+   ]
+  },
+  {
+   "name": "held-by naming another person",
+   "holds": {
+    "format": "open-worlds/holds/v1",
+    "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "presence": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "time": "2026-11-15T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3EzZW1gwGrzYrSPsKzF7DM3ZmVWwimzW4z7ttuAvPk7aHPn5k4uy7p1HkTdxd3sFkys4ms3q8muJQ8WG1iUuRuGv"
+    }
+   },
+   "heldBy": {
+    "format": "open-worlds/held-by/v1",
+    "person": "did:key:z6MkkGv4PLmJEUvABTpyGKTm5zAbbKSdKXzD3D15vrFqt4T7",
+    "presence": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "time": "2026-11-15T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb#z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5JBoSZhJLYMfSaC8cFCxJJ43RsExLdV9WHJepw2fFHRapzou3gRP33vHR2qp2EcUR9hgLJ8UNzVpHgCT8P2srD5"
+    }
+   },
+   "linked": false,
+   "problems": [
+    "the two halves name another person"
+   ]
+  },
+  {
+   "name": "held-by signed by the person, not the presence",
+   "holds": {
+    "format": "open-worlds/holds/v1",
+    "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "presence": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "time": "2026-11-15T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3EzZW1gwGrzYrSPsKzF7DM3ZmVWwimzW4z7ttuAvPk7aHPn5k4uy7p1HkTdxd3sFkys4ms3q8muJQ8WG1iUuRuGv"
+    }
+   },
+   "heldBy": {
+    "format": "open-worlds/held-by/v1",
+    "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "presence": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "time": "2026-11-15T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2uh1DLWHD1ZqW7q3k4Tyz4PbbHf7x5AVq5ujQ6jHVPcQ5WnqnLrmE7mEkzGEefYDMvWd5mBxGQihnWRroka8twMa"
+    }
+   },
+   "linked": false,
+   "problems": [
+    "held-by: $.proof: signed by another key than the one that must sign"
+   ]
+  },
+  {
+   "name": "holds signed by the presence, not the person",
+   "holds": {
+    "format": "open-worlds/holds/v1",
+    "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "presence": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "time": "2026-11-15T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb#z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z42dJN6P8DuayDApFTkxYKMuazoTLWC3Yo2XLhcmW2J8FJTSokiyWV7oQNtamxUK191tuuuW2QPrnxYjnFaZCHS5j"
+    }
+   },
+   "heldBy": {
+    "format": "open-worlds/held-by/v1",
+    "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "presence": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "time": "2026-11-15T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb#z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3kz4kuyktLL4FmTYbFY2J3EJKKHv9ExAcA7SUMByXFZCSeTj5qzBKkjM6KX9hAtHFjXmt1gRKez9oRrrenuzcmaU"
+    }
+   },
+   "linked": false,
+   "problems": [
+    "holds: $.proof: signed by another key than the one that must sign"
+   ]
+  },
+  {
+   "name": "holds with a field its format doesn't have",
+   "holds": {
+    "format": "open-worlds/holds/v1",
+    "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "presence": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "time": "2026-11-15T01:00:00Z",
+    "note": "mine",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zybXjJZpNeUAWHCtTLfUyk635TKmHKtx9nffdtCH5EaxBBbTn1Sg2jjhMUhs5KVvN1iLhHzSVHTwej4Pt3ddtXYE"
+    }
+   },
+   "heldBy": {
+    "format": "open-worlds/held-by/v1",
+    "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "presence": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "time": "2026-11-15T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb#z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3kz4kuyktLL4FmTYbFY2J3EJKKHv9ExAcA7SUMByXFZCSeTj5qzBKkjM6KX9hAtHFjXmt1gRKez9oRrrenuzcmaU"
+    }
+   },
+   "linked": false,
+   "problems": [
+    "holds: $: Additional properties are not allowed ('note' was unexpected)"
+   ]
+  },
+  {
+   "name": "held-by at a time that doesn't exist",
+   "holds": {
+    "format": "open-worlds/holds/v1",
+    "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "presence": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "time": "2026-11-15T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3EzZW1gwGrzYrSPsKzF7DM3ZmVWwimzW4z7ttuAvPk7aHPn5k4uy7p1HkTdxd3sFkys4ms3q8muJQ8WG1iUuRuGv"
+    }
+   },
+   "heldBy": {
+    "format": "open-worlds/held-by/v1",
+    "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "presence": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "time": "2026-02-30T00:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb#z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zhLtebix8uV6T4bYb7YguPH7frtNEEAD5DmxpJSEymiMiuMC8cd4cQuDjLi4azfLoF6Je1ybiZqWJ5Sb1WPC97QJ"
+    }
+   },
+   "linked": false,
+   "problems": [
+    "held-by: $.time: not a real UTC time"
+   ]
+  },
+  {
+   "name": "the person's own identity key as the presence",
+   "holds": {
+    "format": "open-worlds/holds/v1",
+    "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "presence": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "time": "2026-11-15T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3kfLdHKBjvunT2JbzQ7Gg9fBPFFYKQV2u3KEGi7j7fzxsuHibGdGbHCBBCvXPG7WNE8qW7T6vUXo2gfmX3teGsE2"
+    }
+   },
+   "heldBy": {
+    "format": "open-worlds/held-by/v1",
+    "presence": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "time": "2026-11-15T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4fyXfmVSvNMWjUqka1rqWCFzJZMkB2P6NsEA9ruaiXfWQYsQHxYs3suzyRAiPp9Rtu2U6qBmEDqqCG3wD5mjUsfA"
+    }
+   },
+   "linked": false,
+   "problems": [
+    "the presence is the person's own identity key"
+   ]
+  },
+  {
+   "name": "the two halves given the other way round",
+   "holds": {
+    "format": "open-worlds/held-by/v1",
+    "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "presence": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "time": "2026-11-15T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb#z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3kz4kuyktLL4FmTYbFY2J3EJKKHv9ExAcA7SUMByXFZCSeTj5qzBKkjM6KX9hAtHFjXmt1gRKez9oRrrenuzcmaU"
+    }
+   },
+   "heldBy": {
+    "format": "open-worlds/holds/v1",
+    "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+    "presence": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "time": "2026-11-15T01:00:00Z",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-15T01:00:00Z",
+     "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3EzZW1gwGrzYrSPsKzF7DM3ZmVWwimzW4z7ttuAvPk7aHPn5k4uy7p1HkTdxd3sFkys4ms3q8muJQ8WG1iUuRuGv"
+    }
+   },
+   "linked": false,
+   "problems": [
+    "holds: not a record of the format open-worlds/holds/v1",
+    "held-by: not a record of the format open-worlds/held-by/v1"
+   ]
+  }
+ ],
+ "personLists": {
+  "versions": [
+   {
+    "name": "version 1",
+    "record": {
+     "format": "open-worlds/person-list/v1",
+     "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "version": 1,
+     "time": "2026-11-15T01:00:00Z",
+     "presences": [
+      {
+       "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+       "counter": 0,
+       "key": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+       "name": "Wren"
+      },
+      {
+       "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+       "counter": 0,
+       "key": "did:key:z6MkgUGjsVyZzC8K9uV7HjkLE1VBomNguCz7Sot4SJvSaiiZ",
+       "name": "Moss"
+      }
+     ],
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-15T01:00:00Z",
+      "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z4nZs2AskXkK1ogP7uEmbTgTBtnr7aQAaS9GJMmUFDDDbddY3W783FAUbE8VTtoMoTo2vy31eKMsZ2U94buLyvVsc"
+     }
+    }
+   },
+   {
+    "name": "version 2, adding a presence",
+    "record": {
+     "format": "open-worlds/person-list/v1",
+     "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "version": 2,
+     "time": "2026-11-15T02:00:00Z",
+     "presences": [
+      {
+       "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+       "counter": 0,
+       "key": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+       "name": "Wren"
+      },
+      {
+       "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+       "counter": 0,
+       "key": "did:key:z6MkgUGjsVyZzC8K9uV7HjkLE1VBomNguCz7Sot4SJvSaiiZ",
+       "name": "Moss"
+      },
+      {
+       "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+       "counter": 1,
+       "key": "did:key:z6MkqmiE4B9AWWjrdzDgEpWKbHCnrEJZNzyf1UARNmVHwuS9",
+       "name": "Fern"
+      }
+     ],
+     "previous": "f9cdc4aec50ea15a3f354dad6b3619b97f7a194179a52802c1ebaef388614846",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-15T01:00:00Z",
+      "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z48j57zDct4MpGNvttbzKRNxv9aZKE4dgaAar1YNxdLkc6yw676XtnDiVvsbZbbxhZPkdRscPPxUFVoSToxGr4dZH"
+     }
+    }
+   },
+   {
+    "name": "version 2 naming another version",
+    "record": {
+     "format": "open-worlds/person-list/v1",
+     "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "version": 2,
+     "time": "2026-11-15T01:00:00Z",
+     "presences": [
+      {
+       "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+       "counter": 0,
+       "key": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+       "name": "Wren"
+      }
+     ],
+     "previous": "aaf28e97128371d9718a7dbd61426121b2613286d01c2594de8704480099faab",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-15T01:00:00Z",
+      "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z62Ze4F5bs1k5qf2sddwWUuc2hbdmHpyxvz8PCkNQe2xhBYobUFFzF3g5EqGKxydTPwM6fxPnoSgEiA8nmfR12qML"
+     }
+    }
+   },
+   {
+    "name": "version 3 after version 1",
+    "record": {
+     "format": "open-worlds/person-list/v1",
+     "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "version": 3,
+     "time": "2026-11-15T01:00:00Z",
+     "presences": [
+      {
+       "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+       "counter": 0,
+       "key": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+       "name": "Wren"
+      }
+     ],
+     "previous": "f9cdc4aec50ea15a3f354dad6b3619b97f7a194179a52802c1ebaef388614846",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-15T01:00:00Z",
+      "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z3pzuPkLEUaFnqFZuWBYBD2FC2KdZouPNwt2Ex1TY7UZYuUmiQYb6im3jiV6LiYfzYmBX95rkuhtXdQHnXx6VyUJ5"
+     }
+    }
+   },
+   {
+    "name": "version 2 by another person",
+    "record": {
+     "format": "open-worlds/person-list/v1",
+     "person": "did:key:z6MkkGv4PLmJEUvABTpyGKTm5zAbbKSdKXzD3D15vrFqt4T7",
+     "version": 2,
+     "time": "2026-11-15T01:00:00Z",
+     "presences": [
+      {
+       "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+       "counter": 0,
+       "key": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+       "name": "Wren"
+      }
+     ],
+     "previous": "f9cdc4aec50ea15a3f354dad6b3619b97f7a194179a52802c1ebaef388614846",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-15T01:00:00Z",
+      "verificationMethod": "did:key:z6MkkGv4PLmJEUvABTpyGKTm5zAbbKSdKXzD3D15vrFqt4T7#z6MkkGv4PLmJEUvABTpyGKTm5zAbbKSdKXzD3D15vrFqt4T7",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z627VCVBuoEYn6uUbSpNo4p9cJd6B8CKD4hDzfNfcAvZBW3eQTXzn42Rmv6ok5PPezR25rYjxKnPsenbUuTuznBJq"
+     }
+    }
+   },
+   {
+    "name": "version 2 earlier than version 1",
+    "record": {
+     "format": "open-worlds/person-list/v1",
+     "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "version": 2,
+     "time": "2026-11-14T23:00:00Z",
+     "presences": [
+      {
+       "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+       "counter": 0,
+       "key": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+       "name": "Wren"
+      }
+     ],
+     "previous": "f9cdc4aec50ea15a3f354dad6b3619b97f7a194179a52802c1ebaef388614846",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-15T01:00:00Z",
+      "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z64zZ13yPF37fy12b8QB3Dvgq8gnwSNkEtkNTqwdP8P1wbzbWahUtb2Rwk8uBxLAYHsj4GXd7LUnq1JjT1cfvpwrf"
+     }
+    }
+   },
+   {
+    "name": "version 2 with one world and counter twice",
+    "record": {
+     "format": "open-worlds/person-list/v1",
+     "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "version": 2,
+     "time": "2026-11-15T01:00:00Z",
+     "presences": [
+      {
+       "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+       "counter": 0,
+       "key": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+       "name": "Wren"
+      },
+      {
+       "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+       "counter": 0,
+       "key": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+       "name": "Wren again"
+      }
+     ],
+     "previous": "f9cdc4aec50ea15a3f354dad6b3619b97f7a194179a52802c1ebaef388614846",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-15T01:00:00Z",
+      "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z5LbEUaBM18kzjJ8sHPEyVfkTdMdte9dBz3pXnq3KApKyzaYcetMuWsaGsvUdFujQgYGrrsf5zQKBeNmHzzLy18gL"
+     }
+    }
+   },
+   {
+    "name": "version 2 dropping a presence",
+    "record": {
+     "format": "open-worlds/person-list/v1",
+     "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "version": 2,
+     "time": "2026-11-15T01:00:00Z",
+     "presences": [
+      {
+       "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+       "counter": 0,
+       "key": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+       "name": "Wren"
+      }
+     ],
+     "previous": "f9cdc4aec50ea15a3f354dad6b3619b97f7a194179a52802c1ebaef388614846",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-15T01:00:00Z",
+      "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "zuT3C8NB7EMNohNMcQinS5XrqN5WLVStasUNs1EKciY26RvwnUJBamrAkRJ3YJ637mqFqjkfNhBeNrZy3uu5u4b9"
+     }
+    }
+   }
+  ],
+  "histories": [
+   {
+    "name": "versions 1 and 2",
+    "versions": [
+     "version 1",
+     "version 2, adding a presence"
+    ],
+    "problems": []
+   },
+   {
+    "name": "version 1 alone",
+    "versions": [
+     "version 1"
+    ],
+    "problems": []
+   },
+   {
+    "name": "version 2 alone",
+    "versions": [
+     "version 2, adding a presence"
+    ],
+    "problems": [
+     "[0] $.version: the history doesn't start at 1"
+    ]
+   },
+   {
+    "name": "a version naming another before it",
+    "versions": [
+     "version 1",
+     "version 2 naming another version"
+    ],
+    "problems": [
+     "[1] $.previous: names another version"
+    ]
+   },
+   {
+    "name": "a version skipped",
+    "versions": [
+     "version 1",
+     "version 3 after version 1"
+    ],
+    "problems": [
+     "[1] $.version: not the next version"
+    ]
+   },
+   {
+    "name": "another person's version",
+    "versions": [
+     "version 1",
+     "version 2 by another person"
+    ],
+    "problems": [
+     "[1] $.person: another person's list"
+    ]
+   },
+   {
+    "name": "a version earlier than the one before",
+    "versions": [
+     "version 1",
+     "version 2 earlier than version 1"
+    ],
+    "problems": [
+     "[1] $.time: earlier than the version before"
+    ]
+   },
+   {
+    "name": "a version that repeats a presence",
+    "versions": [
+     "version 1",
+     "version 2 with one world and counter twice"
+    ],
+    "problems": [
+     "[1] $.presences.1: a second presence with this world and counter",
+     "[1] $.presences.1: a second presence with this key"
+    ]
+   },
+   {
+    "name": "a version dropping a presence, which shows but holds",
+    "versions": [
+     "version 1",
+     "version 2 dropping a presence"
+    ],
+    "problems": []
+   },
+   {
+    "name": "no versions",
+    "versions": [],
+    "problems": [
+     "[]: no versions"
+    ]
+   }
+  ],
+  "seedChecks": [
+   {
+    "name": "version 2, each key from its world and counter",
+    "version": "version 2, adding a presence",
+    "problems": []
+   },
+   {
+    "name": "a list whose key is another counter's",
+    "record": {
+     "format": "open-worlds/person-list/v1",
+     "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "version": 1,
+     "time": "2026-11-15T01:00:00Z",
+     "presences": [
+      {
+       "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+       "counter": 0,
+       "name": "Wren",
+       "key": "did:key:z6MktWLumk9SQQ3EngjKPqAfBHTGbhRsj2PUtug5TKPEeb13"
+      }
+     ],
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-15T01:00:00Z",
+      "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z2ojDhZ9cXSAXuERpePmQkMy4rmcRpe7k2GAhHH23Tofrfh1BtLi76sSZ8AzpLNVGnVnrLDPNVwXCGEDD1oik21zZ"
+     }
+    },
+    "problems": [
+     "$.presences.0: its key isn't the one its world and counter give"
+    ]
+   }
+  ]
+ }
+}
