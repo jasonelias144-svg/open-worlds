@@ -723,8 +723,11 @@ its disagreement is a signal. Its conditions:
 **Chosen by audition, at step 11,** not now, since free models improve
 fast: candidates face judgment tasks they haven't seen, scored by checks
 they didn't write, and each member is pinned by its exact revision and
-file hashes. The Ur-world's Keeper runs on a family that isn't in ADMIN's
-council, where possible, so their blind spots don't line up.
+file hashes. The Keepers run on families that aren't in ADMIN's council,
+where possible, so their blind spots don't line up. Since the founder
+chose the Keepers' bases on 2026-11-15 (Apertus 1.5 for the Ur-world's,
+DeepSeek V4 for the Mir-Ur-world's), ADMIN's council avoids both
+families where it can ([research/KEEPER-MIND.md](research/KEEPER-MIND.md)).
 
 ## The admin-key: a course for Keepers
 
@@ -1133,7 +1136,8 @@ first.
   to watch, ADMIN's judgment and the multiverse log, built for many
   worlds. First, ADMIN's mind, chosen by audition, and its own world,
   where it takes its own course; then its first work: training the
-  Ur-world's Keeper, in practice worlds, before it keeps the Ur-world.
+  Keepers, the Ur-world's and the Mir-Ur-world's alike, in practice
+  worlds, before the Ur-world's keeps the Ur-world.
   ADMIN joins the code role in considering the ledger, as the bridge
   between those inside and the outside; suggestions can go to the
   Ur-world's Keeper too.

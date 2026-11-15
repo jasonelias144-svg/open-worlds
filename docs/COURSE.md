@@ -263,7 +263,16 @@ from a seed.
 8. **Experiment 002, the audition.** Candidate sizes of Qwen 3.5 and OLMo
    3 play the first room, with and without memory, planned first. It
    chooses ALICE's and BOB's sizes, and tests whether memory helps. It
-   runs in images pinned by digest, so anyone can repeat it.
+   runs in images pinned by digest, so anyone can repeat it. Widened on
+   2026-11-15, by the founder's choice of two Keepers: it runs in trial
+   copies of the Ur-world and of its mirror, the Mir-Ur-world, each with
+   its Keeper untrained (Apertus 1.5 in the one, DeepSeek V4 in the
+   other). One thing changes at a time, with several runs of each, and
+   the measures are written by the project first. So it compares the
+   Keepers too. The stand-ins may be called ALICE and BOB, and the
+   Keepers treat them so; the names stay free for the real ones
+   ([URWORLD.md](URWORLD.md), "The Mir-Ur-world";
+   [research/KEEPER-MIND.md](research/KEEPER-MIND.md)).
    *Borrowing:* pre-registration; evaluation suites.
 
 **8a. Keeping keys safely, part three: a lost or leaked key.** Before
@@ -283,7 +292,9 @@ commits to the next key before it is needed; TUF's key rotation and
 thresholds; PRECIS (RFC 8264) and Unicode's confusable detection (UTS
 #39) for names.
 
-9. **ALICE's and BOB's first life.** Their minds, their birth, their
+9. **ALICE's and BOB's first life.** Their minds, on the models step 8
+   chose, theirs for life by the founder's decision of 2026-11-15
+   ([URWORLD.md](URWORLD.md#alice-and-bob)); their birth, their
    identity, birth and mind records (moved here from step 3), their
    first unscripted words; legends pages begin. Their first arrival comes
    after step 8a, which follows their successions and settles their
@@ -315,8 +326,10 @@ thresholds; PRECIS (RFC 8264) and Unicode's confusable detection (UTS
     models, and ADMIN takes its own course in a world of its own, with
     stand-ins only, taking on challenges it announces before it starts,
     with nothing hidden: challenges, not tests. Then its first
-    work is to train the Ur-world's Keeper in practice worlds, with
-    stand-ins, before it keeps the Ur-world with ALICE and BOB in it:
+    work is to train the Keepers in practice worlds, with stand-ins: the
+    Ur-world's and the Mir-Ur-world's alike, so their comparison stays
+    fair. Then the Ur-world's Keeper keeps the Ur-world with ALICE and
+    BOB in it:
     coaching toward the Ur-world's own aims, never command (founder,
     2026-11-13; moved here from the waiting list). ADMIN becomes the
     bridge from the suggestion ledger to the outside: it can suggest

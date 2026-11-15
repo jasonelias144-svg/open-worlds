@@ -17,7 +17,16 @@ of the steps still to come.
 ## Decided
 
 All decided by the founder on 2026-11-13, in the founder's words, and
-one picture added on 2026-11-15:
+two added on 2026-11-15:
+
+- **Two Keepers, and a mirror** (2026-11-15): "We can build the Ur-world
+  with Aperatus 1.5, because it is fully open, but we can also build a
+  mirror world or Mir-Ur-world. And we can put DeepSeek 4 there." (The
+  model is Apertus 1.5.) And: "We are not switching models, but choosing
+  them." The four messages are quoted whole in STATUS.md, and what
+  follows from them is below, "The Mir-Ur-world". Whether the project
+  accepts the policy Apertus asks for is the founder's to decide, still
+  open ([research/KEEPER-MIND.md](research/KEEPER-MIND.md)).
 
 - **A garden of hosted fractal worlds** (2026-11-15, to DeepSeek, record
   012-06-02): "This is exactly how I envisioned the Ur-world, ALICE and
@@ -299,8 +308,7 @@ governance.
 
 ## ALICE and BOB
 
-- **Their identity is not their model.** Models will improve, and whatever
-  runs ALICE and BOB now will be replaced. Each of them is three things that
+- **Their identity is not their model.** Each of them is three things that
   last, with the model as the engine underneath:
   - **a key**, carried forward by successions if it is ever replaced;
   - **a memory**, written in their own words and kept with integrity;
@@ -309,11 +317,16 @@ governance.
   and read it back. Later, each gets a small personal layer, a few
   megabytes, trained on their own experience over a shared base model. True
   continual learning comes when it matures. Because identity lives in the
-  key, the memory and the history, they can move to better methods without
-  starting over.
+  key, the memory and the history, they can move to better methods of
+  learning without starting over.
 - **Their models.** Open-weight models only: free, runnable on our own
   machines, trainable, and not withdrawable by anyone. They are chosen at
-  the language-model step, under licences that allow free use and change.
+  the language-model step (course step 8), under licences that allow free
+  use and change, and once chosen they are kept for life. The founder,
+  2026-11-15: "Once set, they shouldn’t be changed, we are still
+  designing ALICE and BOB, as they do not yet exist, by far." A free
+  model, pinned to its exact version and files, can always be run again,
+  which a paid service can't promise.
 - **Special status means care, not rank.** They are kept, backed up, and
   carried through every upgrade. In the world they live under the same law,
   with the same freedoms, as everyone who comes after. Leaving the garden is
@@ -361,7 +374,8 @@ one speaks while the other listens, then they turn.
 
 - **Their minds: Qwen and OLMo.** The founder: "I completely agree with
   [Qwen] and OLMo, those would be my two choices as well." The audition
-  now chooses the sizes, not the families.
+  now chooses the sizes, not the families, in trial copies of the
+  Ur-world and its mirror (below).
 - **What they do is public; what they think is their own.** Everything
   observable is public. Each individual has a sealed interior (journal,
   reasoning, held thoughts) that no one else reads, not even the world's
@@ -375,3 +389,60 @@ one speaks while the other listens, then they turn.
     of a reply without words worth repeating;
   - minds without memory repeat themselves, so memory is in their first
     version.
+
+## The Mir-Ur-world
+
+The founder, 2026-11-15: "We can run simulations with both and see how
+each takes up the keeper task." And: "This setup is to determine which
+model is better as a keeper, and we could use the Mir-Ur-world to test
+different models for ALICE and BOB, or switch their models, but leave
+all else the same." Then: "We could use this time to test different
+models before the actual ALICE and BOB go live in Ur-world."
+
+So the Mir-Ur-world is the project's test bench. What follows is the
+technical lead's reading, put to the founder the same day. It stands
+unless the founder answers otherwise.
+
+- **What it is.** A parallel world of the Ur-world
+  ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md)): the same template, seed,
+  law and code, with one thing changed. To begin with, that thing is
+  its Keeper. The Ur-world's Keeper runs on Apertus 1.5 and the
+  Mir-Ur-world's on DeepSeek V4, as the founder chose
+  ([research/KEEPER-MIND.md](research/KEEPER-MIND.md)). A mirror in
+  PARALLEL-WORLDS.md's narrow sense, an exact replay, would change
+  nothing.
+- **One change at a time.**
+  - A comparison of Keepers keeps the minds the same.
+  - A comparison of minds for ALICE and BOB keeps the Keeper the same.
+  - Change both at once, and nobody can tell which made the difference.
+- **Several runs of each, with the measures written first.**
+  - The same model acts differently from run to run, so one run each
+    proves little.
+  - What counts as better is written down before the runs, as step 8's
+    audition already plans: pre-registered.
+  - The measures are the project's to write. Neither DeepSeek, whose
+    model keeps the mirror, nor anyone running Apertus writes them.
+- **Always in trial copies.** Every run happens in a fresh trial copy of
+  the Ur-world or of the Mir-Ur-world: the same seed, with trial keys.
+  It never happens in the real Ur-world, because the Ur-world gives a
+  name to the key that first uses it. So the real names stay free for
+  the real ALICE and BOB.
+- **Stand-ins may be called ALICE and BOB.** The founder: "And any use
+  of the name is because that is where they will stand in." And: "The
+  keeper should behave as if they are dealing with ALICE and BOB, but we
+  need not set their models in stone yet, since we haven’t started
+  building them." So in a trial copy the stand-ins carry those names, and
+  the Keeper treats them as ALICE and BOB. They aren't ALICE and BOB:
+  - they have trial keys and no birth record;
+  - nothing of theirs is carried over;
+  - their logs are kept as the experiment's record.
+- **When.** Course step 8 widens: candidates for ALICE and BOB play in
+  trial copies of both worlds, each with its Keeper untrained. The
+  Keeper's interface is settled at step 4, so the Keepers can be plugged
+  in by step 8. ALICE and BOB are born at step 9 with the models chosen,
+  theirs for life. ADMIN trains both Keepers at step 11, before the
+  Ur-world's keeps the Ur-world with ALICE and BOB in it
+  ([COURSE.md](COURSE.md)).
+- **Not decided yet.** Whether the Mir-Ur-world later has inhabitants of
+  its own, beyond the trials, is the founder's to decide when it
+  matters.

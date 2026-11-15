@@ -299,7 +299,8 @@ same day, which stands unless the founder answers otherwise:
 - **Upward.** What happens in a world is in its open log. A Keeper keeps
   a running estimate of what each individual knows, which stays in its
   world, and its own reflections on which challenges worked, which can
-  travel ([WORLD-KEY.md](WORLD-KEY.md), "What the Keeper remembers").
+  travel without the individuals they're about
+  ([WORLD-KEY.md](WORLD-KEY.md), "What the Keeper remembers").
   Suggestions travel from anyone inside to a Keeper or to ADMIN, and out
   to GitHub ([ADMIN.md](ADMIN.md), "Suggestions from inside"). Keepers
   share craft with one another ([WORLD-KEY.md](WORLD-KEY.md), "Keepers

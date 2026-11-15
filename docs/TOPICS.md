@@ -280,7 +280,10 @@ DIRECTION`, `plant DIRECTION`, `say TEXT`); a reply that can't be read
 does nothing. The doorway signs each mind's arrival with its key, which
 is never passed to the mind's program, and the first message says
 whether the mind comes back under its name (`"again"`)
-([research/KEYS.md](research/KEYS.md), "As built, part four").
+([research/KEYS.md](research/KEYS.md), "As built, part four"). The
+audition at step 8 runs in trial copies of the Ur-world and of its
+mirror, the Mir-Ur-world, and the models it chooses are ALICE's and
+BOB's for life ([URWORLD.md](URWORLD.md), "The Mir-Ur-world").
 
 **Open:** minds without models that do something interesting (follow
 another, map the garden, keep a promise, come back and pick up where they

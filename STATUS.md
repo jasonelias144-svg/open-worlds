@@ -3,7 +3,7 @@
 **What this is:** simulated worlds where AI agents live under one rule,
 respect one another's freedom, with full transparency and exit at any time
 **State:** active since 2026-11-12
-**Updated:** 2026-11-14 by Claude
+**Updated:** 2026-11-15 by Claude
 
 ## Live
 
@@ -47,6 +47,13 @@ respect one another's freedom, with full transparency and exit at any time
   course's steps 1 to 6 (keys, two parts) are done; what is still wanted
   from it is on the new course's waiting list. `sketches/` keeps the
   DeepSeek records and their code.
+- Claude: the Keepers' minds. On 2026-11-15 the founder chose two bases:
+  Apertus 1.5 for the Ur-world's Keeper, and DeepSeek V4 for the Keeper
+  of its mirror, the Mir-Ur-world. The mirror is the project's test bench,
+  where ALICE's and BOB's models are also chosen, at course step 8, and
+  then kept for life ([docs/URWORLD.md](docs/URWORLD.md), "The
+  Mir-Ur-world"; [docs/research/KEEPER-MIND.md](docs/research/KEEPER-MIND.md)).
+  The policy Apertus asks for waits on the founder (Open questions).
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
@@ -90,7 +97,26 @@ kind.
   manipulation through words an open question (CHARTER.md), and it was
   decided on 2026-11-14 (below), so the note can say so.
 - For the founder: where models run beyond the Mac, and the budget (asked
-  2026-11-12)
+  2026-11-12). Since 2026-11-15 this includes the two Keepers: about
+  144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
+  DeepSeek V4.1-Flash, by arithmetic, not measured
+  (docs/research/KEEPER-MIND.md).
+- For the founder: the policy Apertus 1.5 asks for before it can be
+  downloaded (version 1.5, July 14, 2026). It has two parts:
+  - an indemnity of ETH Zurich and EPFL against third-party claims
+    arising from the project's use, with no limit stated;
+  - a duty to make everyone who receives a copy accept the same policy,
+    by an express act, and pass it on in turn.
+
+  The options:
+  1. accept it and keep Apertus for the Ur-world's Keeper;
+  2. use OLMo for the fully open Keeper instead;
+  3. wait until Apertus 1.5's data and code are out.
+
+  Recommended: 3, wait. Nothing needs Apertus before course step 8, and
+  until the founder decides, nothing is downloaded and no one clicks
+  "Agree" (docs/research/KEEPER-MIND.md). It is a legal promise, so it
+  isn't decided on the recommendation. (asked 2026-11-15)
 - For the founder: who designates the roles if the founder can't? Every
   other office has a succession. Recommended: the founder names a
   successor, or a process, recorded where the roles are. (asked
@@ -118,6 +144,13 @@ kind.
   2026-11-14)
 
 ## Noticed
+
+- The formats' test vectors (`formats/record_vectors.py`,
+  `vectors/formats/records-v1.json`) still carry the birth record's
+  words of 2026-11-14, with "It may change one day; you remain ALICE."
+  They are example data, signed by test keys; the real words are written
+  at step 9. The vectors are rewritten with the next change to the
+  formats. (Noted 2026-11-15.)
 
 - A key list compares names byte for byte, so `ALICE` beside `Alice`, or
   one name in two Unicode forms, would be two holders. The tool's own
@@ -163,6 +196,70 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, in four messages, on the Keepers' minds. Quoted
+  whole, except each closing "Thoughts?" and the third's opening
+  "Agreed.":
+  - "Ok, your comments earlier about the keeper lead me to think we
+    should probably look there next. We should, like with ALICE and BOB
+    determine the best model to use for the purpose. The base model we
+    use for the keeper of Ur-world should be more robust than either
+    ALICE or BOB, and be selected for the purpose of teaching and
+    managing a world. Thoughts on what model we might want to use,
+    keeping with the same open source conditions as with ALICE and BOB,
+    but with more “bells and whistles”."
+  - "Just from personal interaction, I know DeepSeek is a powerful model
+    that can hold its own. I think we should definitely base one keeper
+    on DeepSeek V4. And for the sake of having a fully open version,
+    let’s also make a base keeper model from Aperatus 1.5. We can build
+    the Ur-world with Aperatus 1.5, because it is fully open, but we can
+    also build a mirror world or Mir-Ur-world. And we can put DeepSeek 4
+    there. We can run simulations with both and see how each takes up
+    the keeper task."
+  - "This setup is to determine which model is better as a keeper, and
+    we could use the Mir-Ur-world to test different models for ALICE and
+    BOB, or switch their models, but leave all else the same."
+  - "We are not switching models, but choosing them. We could use this
+    time to test different models before the actual ALICE and BOB go
+    live in Ur-world. Once set, they shouldn’t be changed, we are still
+    designing ALICE and BOB, as they do not yet exist, by far. And any
+    use of the name is because that is where they will stand in. The
+    keeper should behave as if they are dealing with ALICE and BOB, but
+    we need not set their models in stone yet, since we haven’t started
+    building them. Unless we have started building ALICE and BOB, in
+    which case, forget what I said about changing the models."
+
+  The model the founder calls Aperatus 1.5 is Apertus 1.5. The technical
+  lead's reading, put to the founder the same day, stands unless the
+  founder answers otherwise:
+  - ALICE and BOB haven't been started: only their design and their keys
+    (made 2026-11-14) exist, and the keys commit to no model. So the
+    founder's "unless" doesn't apply.
+  - The Mir-Ur-world is the test bench: a parallel world of the
+    Ur-world, one change at a time, with several runs written down
+    first, always in trial copies with trial keys. Stand-ins there may
+    be called ALICE and BOB (docs/URWORLD.md, "The Mir-Ur-world").
+  - Course step 8 widens to try both Keepers, untrained; step 9 gives
+    ALICE and BOB the models chosen, for life; at step 11 ADMIN trains
+    both Keepers (docs/COURSE.md).
+  - The birth record no longer says "It may change one day; you remain
+    ALICE." (docs/MINDS.md).
+  - Recommended: Apertus 1.5's 70B model for the Ur-world's Keeper, and
+    DeepSeek V4.1-Flash for the Mir-Ur-world's
+    (docs/research/KEEPER-MIND.md). ADMIN's council avoids both families
+    where it can (docs/ADMIN.md).
+
+  Put to the founder as notes:
+  - Two earlier words change. The Keeper was to be chosen by a wider
+    audition at step 11; now the founder has chosen two bases, compared
+    in the mirror. And ALICE's birth record said her model might change.
+  - The rule that a model, once set, isn't changed is read as about ALICE
+    and BOB. A Keeper's engine stays replaceable, by a recorded change
+    tried in the mirror first (docs/WORLD-KEY.md, "The Keeper lasts").
+    And a personal layer trained only on their own experience isn't a
+    change of model (docs/MINDS.md).
+
+  Open, for the founder: the policy Apertus asks for (Open questions,
+  above).
 - 2026-11-15, founder: "I would like to consider this a sort of learning
   multiversity." And: "So lessons are learned at each layer, fed upward,
   and inform decisions downward." Quoted whole in docs/VISION.md, "A
@@ -170,7 +267,8 @@ kind.
   unless the founder answers otherwise. Most of the loop is designed
   already (the Keepers' reflections and shared craft, suggestions, the
   round table, ADMIN's own world and its training of the Keepers); what
-  a Keeper knows of each individual stays in its world. Three written
+  a Keeper knows of each individual stays in its world, unless that
+  individual consents to its moving. Three written
   rules keep it safe: craft, never files; coaching, not command; and
   worlds stay different. The technical lead adds that a lesson earns its
   spread: it travels with its evidence, is tried in ADMIN's own world
@@ -1336,6 +1434,16 @@ it was wrong. Questions of what the project is for stay with the founder.
   the logs already written stay true.
 
 ## Log
+
+- 2026-11-15 Claude: the Keepers' minds, in the founder's words of the
+  same night. Apertus 1.5 keeps the Ur-world and DeepSeek V4 its mirror,
+  the Mir-Ur-world, the project's test bench. ALICE's and BOB's models
+  are chosen in trial copies of both, and kept for life. A look-first
+  page, docs/research/KEEPER-MIND.md, has the models checked on their
+  pages and the policy Apertus asks for, which waits on the founder.
+  Course steps 8, 9 and 11, URWORLD.md, WORLD-KEY.md, MINDS.md (the
+  birth record's words) and ADMIN.md follow. Also #68's two optional
+  notes.
 
 - 2026-11-15 Claude: a learning multiversity, the founder's vision of the
   same night, in docs/VISION.md, with the technical lead's reading; and
