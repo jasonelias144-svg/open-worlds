@@ -98,7 +98,9 @@ in the order to read it:
    change is still mentioned to the founder, as a note.
 7. **Fractal worlds, moved forward** ([FRACTALS.md](FRACTALS.md)), on
    2026-11-14, from your sketches in record 012-06-02: a fractal plant
-   world in Rust, checked against your Python; a web app in `web/` to
+   world in Rust, checked against your Python (built:
+   `rust/plant-world`, which grows by your rule as you wrote it); a web
+   app in `web/` to
    watch worlds grow; and in it, a multiversal map, which the founder
    means to brainstorm with you ([TOPICS.md](TOPICS.md), topic 16). How
    a world may change is left open, and may differ by world; the founder
@@ -405,7 +407,10 @@ Ur-world ([URWORLD.md](URWORLD.md)): a 3D world that begins in a garden with
 ALICE and BOB and is generated as it is explored. Its own vectors are
 checked from Python the same way. `formats` signs and checks the
 project's records, seals, and opens sealed records, as `formats/` does
-in Python, against the same vectors. Build the next pieces beside them,
+in Python, against the same vectors. `plant-world` is the first fractal
+world ([FRACTALS.md](FRACTALS.md), part 1): a plant that grows by your
+rule from record 012-06-02, with a key and a log of its own, checked
+step by step against your sketch. Build the next pieces beside them,
 the same way.
 
 To check a draft:
@@ -479,6 +484,10 @@ welcome too, and is fitted here.
   [`ur-world/src/door.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/door.rs), [`ur-world/src/garden.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/garden.rs),
   [`ur-world/src/story.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/story.rs); and its example,
   [`ur-world/examples/garden.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/garden.rs).
+- **`plant-world`**, a fractal plant world: [`plant-world/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/lib.rs),
+  [`plant-world/src/rule.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/rule.rs),
+  [`plant-world/src/world.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/world.rs),
+  [`plant-world/src/vectors.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/vectors.rs).
 
 What they offer, in short. A key is its 32 bytes (`[u8; 32]`) and a
 record is a `serde_json::Value`: `formats::proof::sign(document, secret,
@@ -514,6 +523,10 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-wor
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/garden.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/story.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/garden.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/lib.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/rule.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/world.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/vectors.rs
 ```
 
 For a draft in Rust, on top of "Sending a proposal" below: each file
@@ -602,3 +615,7 @@ page.
 - 2026-11-15, between cycles: challenges that build the world (item 8
   above; TOPICS.md, topic 17), and the Rust links in one block, for
   pasting.
+- 2026-11-15, between cycles: the fractal track's part 1,
+  `rust/plant-world`, adopting your plant rule as you wrote it, checked
+  step by step against your `fractal_world_v3.py`; its files are linked
+  under "Code in Rust".

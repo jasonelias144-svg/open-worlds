@@ -231,8 +231,8 @@ numbered here, for this table only.
 
 | # | What it is | Line | Tests as written | Course | In open-worlds |
 |---|---|---|---|---|---|
-| 1 | The atomic fractal world: one plant that grows by its rule (a proposal) | 153 | 10 of 11 | the fractal track | no |
-| 2 | Parameters from inside the world and from outside it (`fractal_world_v2.py`, with additions at 1390) | 707 | 17 of 17, with fixes 6, 7, 8 | the fractal track; a template's dials are step 2's | no |
+| 1 | The atomic fractal world: one plant that grows by its rule (a proposal) | 153 | 10 of 11 | the fractal track | its rule, with piece 2's water and light as `fractal_world_v3.py` keeps them, adopted as written (step 4: whole numbers, deterministic, no conflict found): `rust/plant-world` grows by it, checked step by step against that file's `advance` (the fractal track, part 1) |
+| 2 | Parameters from inside the world and from outside it (`fractal_world_v2.py`, with additions at 1390) | 707 | 17 of 17, with fixes 6, 7, 8 | the fractal track; a template's dials are step 2's | the water and light dials, in `rust/plant-world` (with piece 1) |
 | 3 | Branching instead of changing in place: a new parameter makes a new world, and the original continues | 1820 | 19 of 19, with fixes 6, 7 | the fractal track; the founder's "steering by branching", VISION.md | no |
 | 4 | A garden of plants: a composite world of atomic fractal worlds | 3438 | 24 of 24, with fix 7 | the fractal track; the Ur-world's garden, which hosts the plants | no |
 | 5 | The Game of Life, and Life-like rules, as an atomic world | 4583 | 22 of 24 | the fractal track | no |

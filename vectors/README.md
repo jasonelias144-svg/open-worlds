@@ -11,6 +11,7 @@ language can check itself against it, hash for hash. The Rust crate in
 | `ur-garden-log.json` | The Ur-world's Hello World: the whole log of the garden with its two scripted stand-ins, WALKER and GARDENER, each entering with a signed arrival (`open-worlds/arrival/v1`), written by the Rust kernel (`rust/ur-world`). The garden is a trial world of its own, and its keys are trial keys made from its seed, public to everyone. |
 | `ur-garden-head.json` | The head of that log, signed by the garden's trial world key (`open-worlds/log-head/v1`), covering all of it. |
 | `ur-chunks.json` | The Ur-world's generator, version 1: for three seeds, the ground height of some columns and the hash of some chunks. |
+| `plant-world.json` | Plant worlds (`rust/plant-world`): five worlds grown from one template with different dials, one of them in a pot, each with its whole log, its signed head and its signed birth record; the template, signed by a trial key; and the plants' law with its hash. Written by Rust; every step is checked against DeepSeek's sketch, and the rest from Python. |
 | `formats/eddsa-jcs-2022.json` | Records signed with `eddsa-jcs-2022` (course step 2): the W3C specification's own example, step by step; records this project signs, with their RFC 8785 form; proofs that must be refused; and values that break this project's three rules. Written by `python3 -m formats.vectors`, read by `rust/formats`. |
 | `formats/records-v1.json` | The records the offices keep, who an individual and a world are (identity, birth records, mind record), a world's template, and the project's key list, against `schemas/records-v1.schema.json`: test parties (keys public to everyone, never for anything real), records of every kind that hold, each with its hash, records that must be refused, each named for why, worlds' birth records checked against their template's dials, and key lists checked against the version before. Written by `python3 -m formats.record_vectors`, read by `rust/formats`. |
 | `formats/hpke-base-v1.json` | Sealing with HPKE (course step 2): RFC 9180's own example for the suite in use; test recipients; boxes made by Python and by Rust, each opened by the other (Rust also makes its own again from a fixed `ikmE`); and boxes, labels and keys that must be refused. Written by `python3 -m formats.seal_vectors`, which keeps each box that still opens, read by `rust/formats`. |
@@ -46,6 +47,22 @@ The Rust tests check that they are still what the kernel writes, and
 holds by `World.verify_log`, its arrivals and head hold by
 `formats/records.py`, and the generator, written again in Python from its
 documented rules, gives the same heights and chunks.
+
+The plant worlds are written by Rust too:
+
+```
+cd rust && cargo run -p plant-world --example plant -- --vectors ../vectors
+```
+
+Their rule is DeepSeek's, from record 012-06-02, and the sketch is its
+reference: `sketches/deepseek/012-06-02/plant_world_vectors_test.py`,
+run by that folder's pytest, grows each world again with the sketch's
+own `advance` and must get the same branches and tips at every step.
+`tests/test_plant_world_vectors.py` checks the rest from Python, without
+importing the sketch: each log holds by `World.verify_log` and grows by
+the rule as `rust/plant-world/src/rule.rs` documents it, each head
+covers its whole log, and each birth record names its template, law and
+dials as `formats/records.py` requires.
 
 ## How the kernel writes a log entry
 
