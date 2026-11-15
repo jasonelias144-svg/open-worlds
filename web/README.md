@@ -21,7 +21,12 @@ The plan is in [../docs/FRACTALS.md](../docs/FRACTALS.md).
     browser's own WebCrypto, and that it covers the whole log;
   - the birth record, signed by the world and read field for field the
     same way: its template, its law, and exactly the dials it changed
-    from the template's values.
+    from the template's values;
+  - the log grown again by the plant world's own Rust code, compiled to
+    WebAssembly (`rust/plant-wasi`), and compared whole, hash for hash.
+    The `.wasm` file is built, not committed: `cd rust && cargo build
+    --locked --release -p plant-wasi --target wasm32-wasip1` puts it
+    where the page looks, and where it isn't built the page says so.
 
   A log that fails the chain or the rule isn't drawn. Where the browser
   can't check Ed25519, the page says so rather than claiming it did.
@@ -48,9 +53,9 @@ The plan is in [../docs/FRACTALS.md](../docs/FRACTALS.md).
   - **Each hosted world:** where the garden's log puts its glasshouse,
     and how many steps of its time the garden gave it; its birth record
     (its name, its template and law by hash, and the dials it set: each
-    within the template's range, and, where its log is given, holds and
-    begins with the entry the garden's log names, exactly those its log
-    was made with); its signed head, which must end where
+    within the template's range, and exactly those its log was made with
+    where its log is given, holds, and begins with the entry the
+    garden's log names); its signed head, which must end where
     the garden's log last tended it; and its log's chain. A card whose
     records hold opens onto the world's live view, Plant Watch.
   - **Not here:** whether the garden tended each world one step a tick,
@@ -67,10 +72,16 @@ The plan is in [../docs/FRACTALS.md](../docs/FRACTALS.md).
   log format's hashes, keys, and records signed the standard way, read
   field for field. One file, so the pages check the same way, and
   `tests/web/` runs it in Node against the shared vectors, in CI.
+- **[`lib/wasi.js`](lib/wasi.js), the WASI shim:** runs a WebAssembly
+  command, such as the plant world's, giving it the five calls it uses
+  (standard input and output, an empty environment, exit) and nothing
+  else: a command that asks for any other call, a clock or randomness
+  say, isn't run ([../docs/research/WASM.md](../docs/research/WASM.md)).
 
 Nothing is loaded from outside the site: each page's
 Content-Security-Policy lets the browser load nothing but the page and
-the web app's own scripts, and connect only to its own site, and
+the web app's own scripts, compile WebAssembly but never evaluate text
+as script, and connect only to its own site, and
 `tests/test_web_pages.py` checks that every page carries such a policy,
 loads only the web app's own scripts, and names no outside address.
 
@@ -84,9 +95,10 @@ What it will be:
 - **It checks before it shows.** A log's chain and its signed heads are
   checked in the page, and the page says what it checked and what it
   didn't.
-- **The same code as the worlds, later.** The fractal worlds are built in
-  Rust; compiled to WebAssembly, the same code runs in the page, so a
-  world can be computed from its seed without a server.
+- **The same code as the worlds.** The fractal worlds are built in Rust;
+  compiled to WebAssembly, the same code runs in the page, so a world can
+  be computed from its seed without a server. Begun: Plant Watch grows
+  each plant again with the plant world's own code.
 - **Private until the founder decides** where, and whether, it is
   published.
 

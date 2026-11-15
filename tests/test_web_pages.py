@@ -7,7 +7,10 @@
   outside address, or a way to send one (a beacon, a socket, an event
   stream).
 - A script a page loads is a file of the web app, named by a relative
-  path: the shared checks (web/lib/checks.js), which tests/web/ runs.
+  path: the shared checks (web/lib/checks.js) and the WASI shim
+  (web/lib/wasi.js), which tests/web/ runs. A page may compile
+  WebAssembly ('wasm-unsafe-eval'), but never evaluate text as script
+  ('unsafe-eval').
 - The plant page reads the shared vectors by default, from where they are
   in the repository, and takes ?log= only as a path on its own site. The
   map reads the Ur-world's garden from the shared vectors.
@@ -62,7 +65,13 @@ class WebPages(unittest.TestCase):
                 self.assertTrue(target.is_relative_to(WEB.resolve()), src)
                 self.assertTrue(target.is_file(), src)
                 loaded.add(target)
-        self.assertEqual(loaded, {(WEB / "lib" / "checks.js").resolve()})
+        self.assertEqual(loaded, {(WEB / "lib" / name).resolve()
+                                  for name in ("checks.js", "wasi.js")})
+
+    def test_no_page_evaluates_text_as_script(self):
+        for page in self.pages():
+            m = CSP.search(page.read_text(encoding="utf-8"))
+            self.assertNotIn("'unsafe-eval'", m.group(1), page.name)
 
     def test_the_map_reads_the_gardens_vectors(self):
         page = WEB / "map" / "index.html"

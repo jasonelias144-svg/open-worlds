@@ -44,11 +44,14 @@ respect one another's freedom, with full transparency and exit at any time
   glasshouses, and both logs record each step
   (`rust/ur-world/src/host.rs`); and the first map, the World Map
   (`web/map/`), draws the garden from above with a card for each world,
-  built from what it publishes and opening onto Plant Watch. Next, the
-  founder's aim: living worlds, where plants grow without end and
-  choose, water flows as particles, people shape the land, and life
-  spreads, beginning with an endless plant in the browser
-  (docs/FRACTALS.md, "Where it leads: living worlds").
+  built from what it publishes and opening onto Plant Watch. The fourth
+  has begun: the browser runs the plant world's own Rust, built as a
+  WebAssembly command (`rust/plant-wasi`), and Plant Watch grows each
+  plant again with it (docs/research/WASM.md). Next, the founder's aim:
+  living worlds, where plants grow without end and choose, water flows
+  as particles, people shape the land, and life spreads, beginning with
+  an endless plant in the browser (docs/FRACTALS.md, "Where it leads:
+  living worlds").
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
@@ -1529,8 +1532,30 @@ it was wrong. Questions of what the project is for stay with the founder.
   shared script for a page opened from disk (Chromium loads it; others
   weren't tried); then the file is inlined into each page by a build
   step, and tested the same.
+- 2026-11-15, Rust in the browser as a WASI command
+  (`wasm32-wasip1`, `rust/plant-wasi`), run through the page's own shim
+  of five calls (`web/lib/wasi.js`), not wasm-bindgen. *Why:* the plant
+  world builds for it as it is; a command needs only `main`, so no
+  `unsafe`, which the workspace forbids, and no new dependency; and the
+  same file runs in Node, so CI tests what the page runs. The usual
+  browser target doesn't build today without turning on getrandom's
+  browser feature, and exporting functions there needs `unsafe` or
+  generated code (docs/research/WASM.md). *Wrong if:* a world needs to
+  keep running inside the page between calls, faster than starting the
+  command again from a checkpoint allows; then a long-lived instance
+  with exported functions, in a crate of its own like the planned bridge
+  to Unity and Unreal, each `unsafe` explained and tested.
 
 ## Log
+
+- 2026-11-15 Claude: the fractal track's part 4, first step: the plant
+  world's own Rust in the browser. Looked first (docs/research/WASM.md):
+  it builds for `wasm32-wasip1` as it is, and as a WASI command it needs
+  no `unsafe` and no new dependency, and asks for five calls, with no
+  clock and no randomness. `rust/plant-wasi` reads a request and writes
+  the world's log; `web/lib/wasi.js` runs it in the page; Plant Watch
+  grows each plant again with it and compares the logs hash for hash;
+  CI builds it and runs it through the shim against the shared vectors.
 
 - 2026-11-15 Claude: the fractal track's part 3, second half: the World
   Map (`web/map/`). A card for the Ur-world, shown once its log and

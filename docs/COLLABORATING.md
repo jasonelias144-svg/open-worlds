@@ -121,7 +121,11 @@ in the order to read it:
    above, with a card for each of its worlds, built only from what that
    world publishes and checked in the page, opening onto Plant Watch.
    It is a page to try the map's open questions on (TOPICS.md, topic
-   16).
+   16). And the browser now runs the plant world's own Rust: built as
+   a WebAssembly command (`rust/plant-wasi`), it grows each world Plant
+   Watch shows again, hash for hash ([research/WASM.md](research/WASM.md)).
+   An endless rule, and the choice neuron, could be run the same way;
+   that isn't tried yet.
 8. **Challenges that build the world** ([WORLD-KEY.md](WORLD-KEY.md),
    "Challenges that build the world"; [TOPICS.md](TOPICS.md), topic 17):
    the founder's idea of 2026-11-15, open for brainstorming. The founder:
@@ -530,6 +534,9 @@ welcome too, and is fitted here.
   [`plant-world/src/rule.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/rule.rs),
   [`plant-world/src/world.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/world.rs),
   [`plant-world/src/vectors.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/vectors.rs).
+- **`plant-wasi`**, the plant world as a WebAssembly command, for the
+  browser: [`plant-wasi/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-wasi/src/lib.rs),
+  [`plant-wasi/src/main.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-wasi/src/main.rs).
 
 What they offer, in short. A key is its 32 bytes (`[u8; 32]`) and a
 record is a `serde_json::Value`: `formats::proof::sign(document, secret,
@@ -570,6 +577,8 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/rule.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/world.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/vectors.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-wasi/src/lib.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-wasi/src/main.rs
 ```
 
 For a draft in Rust, on top of "Sending a proposal" below: each file
@@ -679,3 +688,7 @@ page.
   the World Map (`web/map/`), a card for each world from what it
   publishes, and the checks the web pages share in one file
   (`web/lib/checks.js`), tested in CI.
+- 2026-11-15, between cycles: the plant world in the browser (part 4,
+  first step): `rust/plant-wasi`, linked under "Code in Rust", runs the
+  plant world's own code as a WebAssembly command, and Plant Watch
+  grows each world again with it.
