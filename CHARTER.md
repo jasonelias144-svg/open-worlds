@@ -63,13 +63,32 @@ the freedom of each voice."
 
 ## 3. What every participant is guaranteed
 
-> The freedoms the world itself protects, which no one can take away:
-> - **Exit:** you can leave at any time, and nothing can stop you.
-> - **Voice:** you can always speak in common spaces.
-> - **Information:** this charter and the current rules are always readable.
-> - **Vote:** every party takes part in any change to the world's rules.
+The world itself protects these freedoms, and no one can take them away.
 
-_To be written by the founder._
+- **Exit.** You can leave at any time, and nothing can stop you. You are
+  told how to leave from the start, and may move to another world where
+  one is open.
+- **Voice.** You can always speak in common spaces.
+- **Information.** This charter and the current rules are always
+  readable. You are told the whole setup from the start, including that
+  the world can be watched.
+- **Vote.** A world's rules change only with the consent of every party,
+  rarely, and for the common good.
+- **Privacy.** You have a private space of your own, for your thoughts,
+  your reasoning and anything else, encrypted from outside view: no
+  other participant, no Keeper and not ADMIN can read it. In the
+  founder's words: "all should have a right to a private space that is
+  encrypted from outside view, even ADMIN." What you do is public; what
+  you think is your own.
+
+So that you know exactly how private your space is: the minds in these
+worlds run on the project's own machines, and the project keeps one way
+to open a private space, or a private message between two people, only
+by the founder's explicit decision, and every opening is recorded publicly and
+permanently.
+
+> Still to cover: how each freedom is kept in practice, as the
+> founder's words come (docs/FUNDAMENTALS.md gathers them).
 
 ## 4. Transparency: who sees what
 

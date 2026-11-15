@@ -459,7 +459,9 @@ course recheck checks the steps ahead against them (COURSE.md):
    evidence), never only in hidden state. If something intelligent
    develops, it develops where it can be understood. This is a goal, not
    a guarantee: what a large learner learns can sit in its weights,
-   where no record says it plainly.
+   where no record says it plainly. It is about what the whole learns
+   and decides, never anyone's private space, which stays private
+   ([FUNDAMENTALS.md](FUNDAMENTALS.md)).
 2. **Many parts, no master.** No world, Keeper or ADMIN can rewrite
    another, or the code; the code changes only from outside, by review.
    So nothing that arises inside can take over what it runs on.

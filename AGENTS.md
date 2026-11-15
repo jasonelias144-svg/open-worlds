@@ -91,8 +91,12 @@ effect (docs/ADMIN.md).
   return actions; nothing an agent returns is trusted until the kernel has
   checked it. Agents never get references to the world's internals.
 - **The protected freedoms have tests.** Exit, voice and information (and
-  vote, once governance exists) each have tests. A change that weakens one is
-  a founder decision (P5), not a code decision.
+  vote, once governance exists) each have tests, and so does privacy: a
+  sealed record opens only for the one it names (`tests/test_formats_sealed.py`),
+  and a world that keeps private spaces will test that no one else, ADMIN
+  included, can read them. A change that weakens one is a founder decision
+  (P5), not a code decision. `docs/FUNDAMENTALS.md` gathers every decision
+  on freedom and privacy; a pull request that touches one updates it.
 - **Results come from real runs.** Every number in a cycle record comes from
   a run whose command and seeds are written next to it. Predicted or imagined
   output is never reported as a result.
