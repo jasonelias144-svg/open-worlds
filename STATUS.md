@@ -1,7 +1,8 @@
 # Status: open-worlds
 
 **What this is:** simulated worlds where AI agents live under one rule,
-respect one another's freedom, with full transparency and exit at any time
+respect one another's freedom, with full transparency and exit at any time;
+free, and never a money machine
 **State:** active since 2026-11-12
 **Updated:** 2026-11-15 by Claude
 
@@ -251,9 +252,12 @@ kind.
   same day, which stands unless the founder answers otherwise
   (docs/VISION.md, "Commerce and currency worlds"): a modelled currency
   exists only in its world, nothing carries it out, every such world can
-  be run again or reset, and nothing is really mined. Put to the founder
-  as a question, since the charter is the founder's words (AGENTS.md):
-  whether section 1 of CHARTER.md should say it.
+  be run again or reset, and nothing is really mined. Asked whether the
+  charter should say it, since the charter is the founder's words
+  (AGENTS.md), the founder answered: "Yeah, this is mission statement
+  level." So CHARTER.md's notes for section 1 now say it is to be stated
+  there, in the founder's words, and README.md's opening, this file's
+  first lines and AGENTS.md's say it beside the one rule.
 - 2026-11-15, founder, the multiverse as a computer: "It just occurred
   to me that the whole multiverse can function as a massive computer,
   with memory, an operating system, memory, processors, input and
@@ -1633,8 +1637,9 @@ it was wrong. Questions of what the project is for stay with the founder.
   at the top of docs/VISION.md ("Never a money machine"), as a rule in
   AGENTS.md, and as COLLABORATING.md's house rule 13; with commerce and
   currency worlds, where a currency is only a test setting, in
-  docs/VISION.md and TOPICS.md. Whether the charter should say it is put
-  to the founder.
+  docs/VISION.md and TOPICS.md. At the founder's word ("mission statement
+  level"), CHARTER.md's notes for section 1, README.md's opening, and the
+  first lines of STATUS.md and AGENTS.md say it too.
 
 - 2026-11-15 Claude: the founder's thought of the multiverse as a
   computer recorded in docs/VISION.md, in the founder's words, with the

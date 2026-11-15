@@ -12,6 +12,10 @@ Version: 0 (draft)
 
 > Why the worlds exist, in a few sentences. That this is an experiment in
 > freedom: conditions change from cycle to cycle to see what arises.
+> That the worlds are free, and never a money machine: the multiverse has
+> no currency of its own (the founder, 2026-11-15: "possibly the most
+> fundamental fact", and, on whether the charter should say it, "Yeah,
+> this is mission statement level").
 
 _To be written by the founder._
 

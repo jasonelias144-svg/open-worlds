@@ -58,7 +58,8 @@ effect (docs/ADMIN.md).
 ## This repository
 
 - **What it is:** simulated worlds where AI agents live under one rule,
-  respect one another's freedom, with full transparency and exit at any time
+  respect one another's freedom, with full transparency and exit at any time;
+  free, and never a money machine
 - **Run:** `python3 -m experiments.corridor`
 - **Setup:** `python3 -m pip install -r requirements.txt` (each direct
   dependency pinned, with its reason)
