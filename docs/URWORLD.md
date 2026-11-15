@@ -111,6 +111,8 @@ It tells what happens, from the world's own log, then draws a map of what
 has come into view:
 
 - The world is created, from seed 20261113, the day it was decided.
+- Three glasshouses, north of the tree, each host a plant world of its
+  own (below, "Glasshouses").
 - WALKER enters, west of the tree, and the land around WALKER comes into
   view. GARDENER enters, east of it.
 - WALKER says "Hello, world." GARDENER listens. Then GARDENER answers
@@ -128,6 +130,29 @@ with an arrival signed by its own key, and the garden is a trial world of
 its own, with a key of its own: these keys are made from the seed, so the
 log is the same on every run, and anyone can make them. Minds that choose
 for themselves come in through the doorway (below).
+
+### Glasshouses
+
+The founder pictured the Ur-world as "a microverse garden of hosted
+fractal worlds". So the garden hosts other worlds, in glasshouses
+(`rust/ur-world/src/host.rs`; [FRACTALS.md](FRACTALS.md), part 3):
+
+- **A hosted world is a world of its own,** with its own key and its own
+  log. The Ur-world gives it a place, a glasshouse on the garden's
+  ground, and time: each tick, after its inhabitants have acted, each
+  hosted world takes one step of its own time, until it finishes.
+- **Both logs record each step.** The hosted world writes the step in its
+  own log, and the Ur-world's `tended` entry names the hash of that
+  entry, as DeepSeek's microverse did ("two logs, one social act", record
+  012-06-02). Anyone holding both logs can check that the Ur-world gave
+  each world exactly the steps its log shows, in order.
+- **The Hello World hosts three plant worlds** (`rust/plant-world`), grown
+  from one trial template with dials of their own: the template's own
+  plant, a larger one, and one in low light.
+- **Not yet:** a glasshouse is a place the log names, not a cell, so
+  inhabitants don't see it yet; what a hosted world shows is read from
+  its own log, as Plant Watch reads a plant's. And every world takes a
+  step each tick, at one pace.
 
 ### Space
 

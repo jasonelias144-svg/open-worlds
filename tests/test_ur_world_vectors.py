@@ -9,6 +9,11 @@ reference. Python checks what it can independently:
   and names the log's world, its entry's tick, name and the entry before
   it, with each name kept to one key; and the head the garden's world
   signed (vectors/ur-garden-head.json) covers the whole log;
+- the glasshouses (vectors/ur-garden-hosted.json): every plant world the
+  garden hosts holds by the Python kernel's check and grows by the plant
+  rule, its head and birth record hold, and the garden's log names each
+  step it gave each plant, in order: its `hosted` entry names the plant's
+  first entry, and each `tended` entry the plant's next one, to the last;
 - the generator: written again below from its documented rules
   (rust/ur-world/src/generate.rs), it gives the same ground heights and the
   same chunk hashes as vectors/ur-chunks.json, and the same chunk for every
@@ -25,6 +30,7 @@ import unittest
 from pathlib import Path
 
 from formats import records
+from tests.test_plant_world_vectors import advance, trial_did
 from world import World
 
 VECTORS = Path(__file__).resolve().parent.parent / "vectors"
@@ -181,6 +187,77 @@ class TestTheGardensLog(unittest.TestCase):
                 self.assertEqual(e["data"]["generator"], 1)
                 self.assertEqual(chunk_hash(seed, *e["data"]["chunk"]),
                                  e["data"]["hash"])
+
+
+class TestTheGardensGlasshouses(unittest.TestCase):
+
+    def setUp(self):
+        self.log = json.loads((VECTORS / "ur-garden-log.json").read_text())
+        self.hosted = json.loads(
+            (VECTORS / "ur-garden-hosted.json").read_text())
+        self.worlds = self.hosted["worlds"]
+
+    def test_three_plants_each_a_world_of_its_own(self):
+        self.assertEqual(len(self.worlds), 3)
+        plants = json.loads((VECTORS / "plant-world.json").read_text())
+        self.assertEqual(self.hosted["templateHash"], plants["templateHash"])
+        for w in self.worlds:
+            log = w["log"]
+            self.assertTrue(World.verify_log(log), w["name"])
+            data = log[0]["data"]
+            self.assertEqual(data["world"],
+                             trial_did(20261113, "plant world: " + w["name"]))
+            self.assertEqual(data["template"], self.hosted["templateHash"])
+            # It grows by the plant rule, step by step, and finishes.
+            tips = [data["tip"]]
+            for entry in log[1:-1]:
+                segments, tips = advance(tips, data["dials"], data["pot"])
+                self.assertEqual(entry["data"],
+                                 {"segments": segments, "tips": tips})
+            self.assertEqual(log[-1]["kind"], "finished")
+            self.assertEqual(advance(tips, data["dials"], data["pot"])[0], [])
+
+    def test_each_head_and_birth_holds(self):
+        for w in self.worlds:
+            head = records.check(w["head"])
+            self.assertEqual((head["length"], head["last"]),
+                             (len(w["log"]), w["log"][-1]["hash"]))
+            birth = records.check(w["birth"])
+            self.assertEqual(birth["world"], w["log"][0]["data"]["world"])
+            self.assertEqual(birth["template"], self.hosted["templateHash"])
+            self.assertEqual(records.dial_problems(w["birth"],
+                                                   self.hosted["template"]),
+                             [])
+
+    def test_the_gardens_log_names_every_step_it_gave(self):
+        by_key = {w["log"][0]["data"]["world"]: w for w in self.worlds}
+        at = {}
+        for entry in self.log:
+            data = entry["data"]
+            if entry["kind"] == "hosted":
+                w = by_key[data["world"]]
+                self.assertNotIn(data["world"], at)
+                self.assertEqual(data["first"], w["log"][0]["hash"])
+                self.assertEqual(data["kind"], "open-worlds/plant-rule/v1")
+                self.assertEqual(data["at"], w["at"])
+                hashes = [e["hash"] for e in w["log"]]
+                at[data["world"]] = hashes.index(data["from"])
+            elif entry["kind"] == "tended":
+                for key, hash_ in data["worlds"]:
+                    at[key] += 1
+                    self.assertEqual(by_key[key]["log"][at[key]]["hash"],
+                                     hash_)
+            self.assertNotEqual(entry["kind"], "untended")
+        for key, w in by_key.items():
+            self.assertEqual(at[key], len(w["log"]) - 1, w["name"])
+
+    def test_each_glasshouse_stands_on_the_gardens_ground(self):
+        for w in self.worlds:
+            x, y, z = w["at"]
+            self.assertEqual(y, 1)
+            self.assertLessEqual(math.isqrt(x * x + z * z), GARDEN_RADIUS)
+            self.assertNotEqual((x, z), (0, 0))
+            self.assertNotEqual((x, z), (SPRING[0], SPRING[2]))
 
 
 class TestTheGenerator(unittest.TestCase):

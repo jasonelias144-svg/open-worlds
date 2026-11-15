@@ -40,7 +40,10 @@ respect one another's freedom, with full transparency and exit at any time
   Its plan is in, and its first part, the plant world, is built
   (`rust/plant-world`), and so is its second, Plant Watch, the page that
   replays a plant tick by tick and checks its log first (`web/plant/`).
-  The third, the Ur-world's garden hosting plant worlds, is next.
+  The third is half built: the Ur-world's garden hosts three plant
+  worlds in glasshouses, and both logs record each step
+  (`rust/ur-world/src/host.rs`). Its other half, the map's first page,
+  is next.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
@@ -1480,6 +1483,15 @@ it was wrong. Questions of what the project is for stay with the founder.
   the logs already written stay true.
 
 ## Log
+
+- 2026-11-15 Claude: the fractal track's part 3, first half. The
+  Ur-world's garden hosts three plant worlds in glasshouses, each a
+  world of its own with its own key and log; each tick the garden gives
+  each a step of its time, and its `tended` entry names the entry that
+  step wrote in the plant's log (DeepSeek's "two logs, one social act").
+  `hosting_problems` checks both logs against each other, and Python
+  again, with each plant grown by the rule. The Ur-world's rules are now
+  ur-world/0.4, and its garden vectors are written again.
 
 - 2026-11-15 Claude: the Keepers' minds, in the founder's words of the
   same night. Apertus 1.5 keeps the Ur-world, and DeepSeek V4.1-Flash

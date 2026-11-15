@@ -7,14 +7,16 @@
 //!
 //! With `--vectors DIR`, it also writes the shared test vectors
 //! `ur-garden-log.json`, `ur-garden-head.json` (the log's head, signed by
-//! the garden's trial world key) and `ur-chunks.json` into DIR.
+//! the garden's trial world key), `ur-garden-hosted.json` (the plant
+//! worlds the garden hosts: their logs, heads and birth records) and
+//! `ur-chunks.json` into DIR. The folder must exist.
 
 use std::process::ExitCode;
 
 use serde_json::Value;
 use ur_world::World;
 use ur_world::arrival::head;
-use ur_world::garden::{CREATED, hello_world, world_secret};
+use ur_world::garden::{CREATED, hello_world, hosted_vectors, world_secret};
 use ur_world::story::{map, tell};
 
 fn main() -> ExitCode {
@@ -45,6 +47,8 @@ fn write_vectors(world: &World, dir: &str) -> std::io::Result<()> {
     std::fs::write(format!("{dir}/ur-garden-log.json"), pretty(&log))?;
     let head = head(world, &world_secret(), CREATED).map_err(std::io::Error::other)?;
     std::fs::write(format!("{dir}/ur-garden-head.json"), pretty(&head))?;
+    let hosted = hosted_vectors(world).map_err(std::io::Error::other)?;
+    std::fs::write(format!("{dir}/ur-garden-hosted.json"), pretty(&hosted))?;
     std::fs::write(
         format!("{dir}/ur-chunks.json"),
         pretty(&ur_world::generate::vectors()),

@@ -9,6 +9,7 @@ publish.workspace = true
 
 [dependencies]
 formats = { path = "../formats" }
+plant-world = { path = "../plant-world" }
 serde_json.workspace = true
 sha2.workspace = true
 world-log = { path = "../world-log" }
