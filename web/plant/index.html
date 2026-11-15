@@ -142,7 +142,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
 (function () {
   // The checks the web app's pages share (web/lib/checks.js): the log
   // format's hashes, keys, and records signed the standard way.
-  const { GENESIS, pyJson, jcs, without, sha256, text, hex, chainProblem, publicKey, signedBy, covers, dialsProblem } = OpenWorlds;
+  const { GENESIS, pyJson, jcs, without, sha256, text, hex, chainProblem, publicKey, signedBy, covers, dialsProblem, sameLog } = OpenWorlds;
   const RULE = "open-worlds/plant-rule/v1";
   const DIRECTIONS = [[0, -1], [1, -1], [1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1]];
 
@@ -220,7 +220,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
   // (web/lib/wasi.js). It is built, not committed: if it isn't where cargo
   // puts it, the page says so and checks without it.
   const COMMAND = "../../rust/target/wasm32-wasip1/release/plant-wasi.wasm";
-  const BUILD = "cd rust && cargo build --release -p plant-wasi --target wasm32-wasip1";
+  const BUILD = "cd rust && cargo build --locked --release -p plant-wasi --target wasm32-wasip1";
   const MAX_TICKS = 10000;
   let command = null;
   function loadCommand() {
@@ -249,8 +249,14 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
     if (r.code !== 0) return ["bad", OWN, "It refuses this world's first entry: " + r.stderr.trim()];
     let grown;
     try { grown = JSON.parse(r.stdout); } catch (e) { return ["bad", OWN, "Its answer isn't JSON."]; }
-    const at = Array.isArray(grown) ? log.findIndex((e, i) => pyJson(e) !== pyJson(grown[i])) : 0;
-    if (at >= 0 || grown.length !== log.length) return ["bad", OWN, "The plant world's own code grows another log" + (at >= 0 ? ", from [" + at + "]" : ", of another length") + "."];
+    const diff = sameLog(log, grown);
+    if (diff && diff.why) return ["bad", OWN, "Its answer can't be compared: " + diff.why];
+    if (diff) {
+      const lengths = Array.isArray(grown) && diff.at === Math.min(log.length, grown.length);
+      return ["bad", OWN, lengths
+        ? "The plant world's own code grows " + grown.length + " entries, where this log has " + log.length + "."
+        : "The plant world's own code grows another log, from [" + diff.at + "]."];
+    }
     return ["ok", OWN, "The plant world's own Rust code, compiled to WebAssembly, grows the same " + log.length + " entries here, hash for hash."];
   }
 
@@ -398,11 +404,17 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
       li.append(chip, w, y); list.append(li);
     }
   }
+  // Each choice is numbered, so a world whose checks finish after a newer
+  // choice was made shows nothing: only the latest choice is shown.
+  let chosen = 0;
   async function choose(i) {
+    const mine = ++chosen;
+    const current = () => mine === chosen;
     setPlaying(false);
     document.querySelectorAll("#worlds button").forEach((b, j) => b.setAttribute("aria-pressed", String(i === j)));
-    try { await render(worlds[i]); }
+    try { await render(worlds[i], current); }
     catch (e) {
+      if (!current()) return;
       // Nothing from the world shown before stays on screen.
       state = null;
       listChecks([["bad", "Reading the log", "This page can't read it: " + String(e && e.message || e) + "."]]);
@@ -413,9 +425,10 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
       show(0, 1);
     }
   }
-  async function render(world) {
+  async function render(world, current) {
     const log = world.log;
     const results = await check(world, file);
+    if (!current()) return;
     listChecks(results);
     // Not drawn if its chain, its growth by the rule, or its own code's
     // growth fails.

@@ -17,6 +17,9 @@
 //! - `pot`: `[x, y, width, height]`, or `null` for none;
 //! - `ticks`: how many steps to grow at most, from 0 to [`MAX_TICKS`].
 //!
+//! A field written twice counts once, by its last value, as `serde_json`
+//! reads JSON; the page never writes one twice.
+//!
 //! The answer is the world's log, a JSON array, as
 //! `plant_world::world::PlantWorld` writes it: the world grown from its
 //! first entry, until it finishes or has taken `ticks` steps.

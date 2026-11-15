@@ -54,6 +54,15 @@ fn ticks_bound_the_steps() {
 }
 
 #[test]
+fn a_field_written_twice_counts_by_its_last_value() {
+    let v = vectors();
+    let good = request(&v["worlds"][1], 3).to_string();
+    let twice = good.replacen('{', "{\"ticks\":-1,", 1);
+    assert!(twice.contains("\"ticks\":-1") && twice.contains("\"ticks\":3"));
+    assert_eq!(respond(&twice).unwrap(), respond(&good).unwrap());
+}
+
+#[test]
 fn what_isnt_a_request_is_refused_with_the_reason() {
     let v = vectors();
     let good = request(&v["worlds"][1], 5);

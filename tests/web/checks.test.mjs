@@ -138,6 +138,24 @@ test("a birth record names exactly the dials changed from its template", () => {
   assert.match(OW.dialsProblem({ ...b, dials: { ...b.dials, maxDepth: 9 } }, t, logDials), /aren't the log's/);
 });
 
+test("two logs are the same only if every entry is, and as many", () => {
+  // Its answers come from the script's own realm: compare them as data.
+  const sameLog = (a, b) => { const r = OW.sameLog(a, b); return r === null ? null : { ...r }; };
+  const log = hosted.worlds[1].log;
+  assert.equal(sameLog(log, copy(log)), null);
+  const changed = copy(log); changed[3].data.tips = [];
+  assert.deepEqual(sameLog(log, changed), { at: 3 });
+  // A grown log that stops sooner, and one that goes on further.
+  assert.deepEqual(sameLog(log, log.slice(0, 7)), { at: 7 });
+  const longer = [...copy(log), { tick: 99, kind: "more" }];
+  assert.deepEqual(sameLog(log, longer), { at: log.length });
+  assert.deepEqual(sameLog(longer, log), { at: log.length });
+  assert.deepEqual(sameLog(log, "not a log"), { at: 0 });
+  // An entry the log format can't write is reported, not thrown.
+  const odd = copy(log); odd[2].tick = 0.5;
+  assert.match(sameLog(odd, log).why, /whole number/);
+});
+
 test("a log changed anywhere breaks its chain", async () => {
   const log = copy(urLog);
   log[40].data.text = "changed";

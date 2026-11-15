@@ -187,6 +187,21 @@ const OpenWorlds = (function () {
     } catch (e) { return String(e.message || e); }
   }
 
+  // Where two logs part, compared whole, entry by entry and every field,
+  // as the log format writes each entry: null if they are the same; { at }
+  // for the first entry that differs, or that one has and the other
+  // doesn't; { why } if an entry can't be written as the format writes it.
+  function sameLog(given, grown) {
+    if (!Array.isArray(given) || !Array.isArray(grown)) return { at: 0 };
+    try {
+      const n = Math.max(given.length, grown.length);
+      for (let i = 0; i < n; i++) {
+        if (i >= given.length || i >= grown.length || pyJson(given[i]) !== pyJson(grown[i])) return { at: i };
+      }
+      return null;
+    } catch (e) { return { why: String(e && e.message || e) }; }
+  }
+
   // Whether a head covers all of `log` as given: its length and last hash
   // are the log's, and its tick isn't before the last entry's. A head's
   // tick says only that the world was at least that far along, since ticks
@@ -227,6 +242,6 @@ const OpenWorlds = (function () {
   return Object.freeze({
     GENESIS, pyJson, jcs, without, sha256, text, hex, recordHash,
     chainProblem, base58, base58encode, publicKey, isKey, shapeProblem,
-    signedBy, covers, dialsProblem,
+    signedBy, covers, dialsProblem, sameLog,
   });
 })();

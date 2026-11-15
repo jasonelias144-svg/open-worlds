@@ -83,14 +83,14 @@ Why:
 - **Each run starts fresh.** A request grows a world from its first
   entry. A world that runs for hours will hand its state over as a
   checkpoint instead, as living worlds' first stage plans.
-- **Its size.** 294 KB, since the schema checks and signing code in
-  `formats` come along, though the command doesn't use them. Splitting
-  out what a plant needs could shrink it; not tried.
+- **Its size.** 294 KB. What fills those bytes wasn't measured.
+  Splitting out only what a plant needs might shrink it; not tried.
 - **The page must be allowed to compile WebAssembly.** Its
   Content-Security-Policy needs `'wasm-unsafe-eval'`, which allows
   compiling WebAssembly and nothing else (not JavaScript's `eval`).
 - **The `.wasm` file is built, not committed.** A page finds it where
-  `cargo build --release -p plant-wasi --target wasm32-wasip1` puts it.
+  `cargo build --locked --release -p plant-wasi --target wasm32-wasip1`
+  puts it.
   A published site would need a build step, and where the site is
   published is the founder's call (FRACTALS.md, "Waiting on the
   founder").

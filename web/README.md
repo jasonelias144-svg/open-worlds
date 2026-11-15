@@ -25,8 +25,8 @@ The plan is in [../docs/FRACTALS.md](../docs/FRACTALS.md).
   - the log grown again by the plant world's own Rust code, compiled to
     WebAssembly (`rust/plant-wasi`), and compared whole, hash for hash.
     The `.wasm` file is built, not committed: `cd rust && cargo build
-    --release -p plant-wasi --target wasm32-wasip1` puts it where the
-    page looks, and where it isn't built the page says so.
+    --locked --release -p plant-wasi --target wasm32-wasip1` puts it
+    where the page looks, and where it isn't built the page says so.
 
   A log that fails the chain or the rule isn't drawn. Where the browser
   can't check Ed25519, the page says so rather than claiming it did.

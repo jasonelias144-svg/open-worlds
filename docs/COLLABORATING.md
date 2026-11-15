@@ -124,7 +124,8 @@ in the order to read it:
    16). And the browser now runs the plant world's own Rust: built as
    a WebAssembly command (`rust/plant-wasi`), it grows each world Plant
    Watch shows again, hash for hash ([research/WASM.md](research/WASM.md)).
-   An endless rule, and the choice neuron, can be run the same way.
+   An endless rule, and the choice neuron, could be run the same way;
+   that isn't tried yet.
 8. **Challenges that build the world** ([WORLD-KEY.md](WORLD-KEY.md),
    "Challenges that build the world"; [TOPICS.md](TOPICS.md), topic 17):
    the founder's idea of 2026-11-15, open for brainstorming. The founder:
