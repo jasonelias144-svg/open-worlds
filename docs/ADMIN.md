@@ -724,10 +724,16 @@ its disagreement is a signal. Its conditions:
 fast: candidates face judgment tasks they haven't seen, scored by checks
 they didn't write, and each member is pinned by its exact revision and
 file hashes. The Keepers run on families that aren't in ADMIN's council,
-where possible, so their blind spots don't line up. Since the founder
-chose the Keepers' bases on 2026-11-15 (Apertus 1.5 for the Ur-world's,
-DeepSeek V4 for the Mir-Ur-world's), ADMIN's council avoids both
-families where it can ([research/KEEPER-MIND.md](research/KEEPER-MIND.md)).
+where possible, so their blind spots don't line up. The founder chose
+the Keepers' bases on 2026-11-15: Apertus 1.5 for the Ur-world's, and
+DeepSeek V4.1-Flash for the Mir-Ur-world's. And for ADMIN: "For
+DeepSeek, yeah, let’s leave the Pro model for ADMIN potentially, and we
+can use Flash for the Keeper." So DeepSeek V4-Pro is a candidate for
+ADMIN's mind, beside at least one fully open member, as above. With it,
+ADMIN would share a family with the Mir-Ur-world's Keeper, which the
+rule here tries to avoid; the audition weighs that. ADMIN's council
+avoids Apertus where it can
+([research/KEEPER-MIND.md](research/KEEPER-MIND.md)).
 
 ## The admin-key: a course for Keepers
 

@@ -50,10 +50,13 @@ respect one another's freedom, with full transparency and exit at any time
 - Claude: the Keepers' minds. On 2026-11-15 the founder chose two bases:
   Apertus 1.5 for the Ur-world's Keeper, and DeepSeek V4 for the Keeper
   of its mirror, the Mir-Ur-world. The mirror is the project's test bench,
-  where ALICE's and BOB's models are also chosen, at course step 8, and
-  then kept for life ([docs/URWORLD.md](docs/URWORLD.md), "The
-  Mir-Ur-world"; [docs/research/KEEPER-MIND.md](docs/research/KEEPER-MIND.md)).
-  The policy Apertus asks for waits on the founder (Open questions).
+  where ALICE's and BOB's models are also chosen, at course step 8.
+  Once they live, a change of model is their own choice
+  ([docs/URWORLD.md](docs/URWORLD.md), "The Mir-Ur-world";
+  [docs/research/KEEPER-MIND.md](docs/research/KEEPER-MIND.md)). The
+  mirror's Keeper runs on V4.1-Flash, and V4-Pro may be part of ADMIN's
+  mind. The policy Apertus asks for waits until course step 8 (Open
+  questions).
 - Founder: writing the charter's words into the structure in `CHARTER.md`.
 
 ## Next
@@ -101,8 +104,9 @@ kind.
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
   DeepSeek V4.1-Flash, by arithmetic, not measured
   (docs/research/KEEPER-MIND.md).
-- For the founder: the policy Apertus 1.5 asks for before it can be
-  downloaded (version 1.5, July 14, 2026). It has two parts:
+- For the founder, before course step 8: the policy Apertus 1.5 asks for
+  before it can be downloaded (version 1.5, July 14, 2026). It has two
+  parts:
   - an indemnity of ETH Zurich and EPFL against third-party claims
     arising from the project's use, with no limit stated;
   - a duty to make everyone who receives a copy accept the same policy,
@@ -113,10 +117,13 @@ kind.
   2. use OLMo for the fully open Keeper instead;
   3. wait until Apertus 1.5's data and code are out.
 
-  Recommended: 3, wait. Nothing needs Apertus before course step 8, and
-  until the founder decides, nothing is downloaded and no one clicks
-  "Agree" (docs/research/KEEPER-MIND.md). It is a legal promise, so it
-  isn't decided on the recommendation. (asked 2026-11-15)
+  Decided for now: 3, wait, on the recommendation (the founder,
+  2026-11-15: "Either way sounds good. Just go with what makes the most
+  sense to you."). Nothing needs Apertus before course step 8, and until
+  then nothing is downloaded and no one clicks "Agree"
+  (docs/research/KEEPER-MIND.md). It comes back before step 8:
+  accepting it is a legal promise, and needs the founder's own act,
+  agreeing and giving an email address. (asked 2026-11-15)
 - For the founder: who designates the roles if the founder can't? Every
   other office has a succession. Recommended: the founder names a
   successor, or a process, recorded where the roles are. (asked
@@ -196,6 +203,38 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, later the same night: "Either way sounds good.
+  Just go with what makes the most sense to you. For DeepSeek, yeah,
+  let’s leave the Pro model for ADMIN potentially, and we can use Flash
+  for the Keeper. Everything else, go with what makes sense." And: "No
+  need to set anything too firm in place. There may be a decent way to
+  change your model and keep your memory and identity. In which case,
+  someone can change their noodle and still be the same individual. But
+  as a default, once an individual is running within a simulation, a
+  model change becomes their choice, and that would mean some way was
+  available for such a change to take place. My only point is we can
+  leave some decisions open because there may be a reason for it later.
+  So anything set at all is understood as subject to change. Everything,
+  even this, especially this project vision." What follows, on the
+  technical lead's recommendations:
+  - The policy Apertus asks for: wait. It comes back before course step
+    8, since accepting it needs the founder's own act (Open questions).
+  - The Mir-Ur-world's Keeper runs on DeepSeek V4.1-Flash. V4-Pro is a
+    candidate for ADMIN's mind, beside at least one fully open member,
+    as ADMIN.md requires of any model that isn't fully open.
+  - ALICE's and BOB's models: the project chooses them before they live
+    and doesn't change them. Once they live, a change of model is their
+    own choice, if a way exists that keeps their memory and identity.
+    This updates the earlier word that their models, once set, shouldn't
+    be changed (below): the newer word says who decides. The birth
+    record says so (docs/MINDS.md).
+  - Everything recorded here, the vision included, is subject to change;
+    docs/VISION.md says so at its top.
+
+  Put to the founder as a note: with V4-Pro in ADMIN's mind, ADMIN would
+  share a family with the Mir-Ur-world's Keeper, which ADMIN.md's rule
+  (the Keepers' families kept out of ADMIN's council where possible)
+  tries to avoid. ADMIN's audition weighs it.
 - 2026-11-15, founder, in four messages, on the Keepers' minds. Quoted
   whole, except each closing "Thoughts?" and the third's opening
   "Agreed.":
@@ -239,27 +278,27 @@ kind.
     first, always in trial copies with trial keys. Stand-ins there may
     be called ALICE and BOB (docs/URWORLD.md, "The Mir-Ur-world").
   - Course step 8 widens to try both Keepers, untrained; step 9 gives
-    ALICE and BOB the models chosen, for life; at step 11 ADMIN trains
-    both Keepers (docs/COURSE.md).
-  - The birth record no longer says "It may change one day; you remain
-    ALICE." (docs/MINDS.md).
+    ALICE and BOB the models chosen; at step 11 ADMIN trains both
+    Keepers (docs/COURSE.md).
+  - The birth record's line on their model changes (docs/MINDS.md; its
+    final words follow the later entry above).
   - Recommended: Apertus 1.5's 70B model for the Ur-world's Keeper, and
-    DeepSeek V4.1-Flash for the Mir-Ur-world's
-    (docs/research/KEEPER-MIND.md). ADMIN's council avoids both families
-    where it can (docs/ADMIN.md).
+    DeepSeek V4.1-Flash for the Mir-Ur-world's, which the founder took
+    (the later entry above; docs/research/KEEPER-MIND.md). ADMIN's
+    council avoids Apertus where it can (docs/ADMIN.md).
 
   Put to the founder as notes:
   - Two earlier words change. The Keeper was to be chosen by a wider
     audition at step 11; now the founder has chosen two bases, compared
     in the mirror. And ALICE's birth record said her model might change.
-  - The rule that a model, once set, isn't changed is read as about ALICE
-    and BOB. A Keeper's engine stays replaceable, by a recorded change
-    tried in the mirror first (docs/WORLD-KEY.md, "The Keeper lasts").
-    And a personal layer trained only on their own experience isn't a
-    change of model (docs/MINDS.md).
+  - A Keeper is an office, so its engine stays replaceable, by a
+    recorded change tried in the mirror first (docs/WORLD-KEY.md, "The
+    Keeper lasts"). And once ALICE and BOB live, training a personal
+    layer on their own experience is, like a change of model, theirs to
+    choose (docs/MINDS.md).
 
-  Open, for the founder: the policy Apertus asks for (Open questions,
-  above).
+  The policy Apertus asks for waits until course step 8 (Open
+  questions, above).
 - 2026-11-15, founder: "I would like to consider this a sort of learning
   multiversity." And: "So lessons are learned at each layer, fed upward,
   and inform decisions downward." Quoted whole in docs/VISION.md, "A
@@ -1437,10 +1476,13 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 - 2026-11-15 Claude: the Keepers' minds, in the founder's words of the
   same night. Apertus 1.5 keeps the Ur-world and DeepSeek V4 its mirror,
-  the Mir-Ur-world, the project's test bench. ALICE's and BOB's models
-  are chosen in trial copies of both, and kept for life. A look-first
-  page, docs/research/KEEPER-MIND.md, has the models checked on their
-  pages and the policy Apertus asks for, which waits on the founder.
+  the Mir-Ur-world, the project's test bench, on V4.1-Flash; V4-Pro may
+  join ADMIN's mind. ALICE's and BOB's models are chosen in trial copies
+  of both, and once they live, a change of model is theirs to choose. A
+  look-first page, docs/research/KEEPER-MIND.md, has the models checked
+  on their pages, and the policy Apertus asks for, which waits until
+  course step 8. Everything set is subject to change, the founder
+  noted, the vision included.
   Course steps 8, 9 and 11, URWORLD.md, WORLD-KEY.md, MINDS.md (the
   birth record's words) and ADMIN.md follow. Also #68's two optional
   notes.

@@ -23,10 +23,12 @@ two added on 2026-11-15:
   with Aperatus 1.5, because it is fully open, but we can also build a
   mirror world or Mir-Ur-world. And we can put DeepSeek 4 there." (The
   model is Apertus 1.5.) And: "We are not switching models, but choosing
-  them." The four messages are quoted whole in STATUS.md, and what
-  follows from them is below, "The Mir-Ur-world". Whether the project
-  accepts the policy Apertus asks for is the founder's to decide, still
-  open ([research/KEEPER-MIND.md](research/KEEPER-MIND.md)).
+  them." Later: "For DeepSeek, yeah, let’s leave the Pro model for ADMIN
+  potentially, and we can use Flash for the Keeper." The messages are
+  quoted whole in STATUS.md, and what follows from them is below, "The
+  Mir-Ur-world". Whether the project accepts the policy
+  Apertus asks for waits until course step 8
+  ([research/KEEPER-MIND.md](research/KEEPER-MIND.md)).
 
 - **A garden of hosted fractal worlds** (2026-11-15, to DeepSeek, record
   012-06-02): "This is exactly how I envisioned the Ur-world, ALICE and
@@ -322,11 +324,13 @@ governance.
 - **Their models.** Open-weight models only: free, runnable on our own
   machines, trainable, and not withdrawable by anyone. They are chosen at
   the language-model step (course step 8), under licences that allow free
-  use and change, and once chosen they are kept for life. The founder,
-  2026-11-15: "Once set, they shouldn’t be changed, we are still
-  designing ALICE and BOB, as they do not yet exist, by far." A free
-  model, pinned to its exact version and files, can always be run again,
-  which a paid service can't promise.
+  use and change. The project chooses them before ALICE and BOB live,
+  and doesn't change them after. The founder, 2026-11-15: "But as a
+  default, once an individual is running within a simulation, a model
+  change becomes their choice, and that would mean some way was
+  available for such a change to take place." A free model, pinned to
+  its exact version and files, can always be run again, so no company's
+  decision can take it from them, as a paid service's could.
 - **Special status means care, not rank.** They are kept, backed up, and
   carried through every upgrade. In the world they live under the same law,
   with the same freedoms, as everyone who comes after. Leaving the garden is
@@ -407,7 +411,7 @@ unless the founder answers otherwise.
   ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md)): the same template, seed,
   law and code, with one thing changed. To begin with, that thing is
   its Keeper. The Ur-world's Keeper runs on Apertus 1.5 and the
-  Mir-Ur-world's on DeepSeek V4, as the founder chose
+  Mir-Ur-world's on DeepSeek V4.1-Flash, as the founder chose
   ([research/KEEPER-MIND.md](research/KEEPER-MIND.md)). A mirror in
   PARALLEL-WORLDS.md's narrow sense, an exact replay, would change
   nothing.
@@ -439,8 +443,9 @@ unless the founder answers otherwise.
 - **When.** Course step 8 widens: candidates for ALICE and BOB play in
   trial copies of both worlds, each with its Keeper untrained. The
   Keeper's interface is settled at step 4, so the Keepers can be plugged
-  in by step 8. ALICE and BOB are born at step 9 with the models chosen,
-  theirs for life. ADMIN trains both Keepers at step 11, before the
+  in by step 8. ALICE and BOB are born at step 9 with the models chosen;
+  after that, a change of model is their own choice. ADMIN trains both
+  Keepers at step 11, before the
   Ur-world's keeps the Ur-world with ALICE and BOB in it
   ([COURSE.md](COURSE.md)).
 - **Not decided yet.** Whether the Mir-Ur-world later has inhabitants of

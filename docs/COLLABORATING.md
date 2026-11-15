@@ -125,11 +125,13 @@ in the order to read it:
    Mir-Ur-world"; [research/KEEPER-MIND.md](research/KEEPER-MIND.md)):
    the founder's choice of 2026-11-15. The founder: "Just from personal
    interaction, I know DeepSeek is a powerful model that can hold its
-   own." A DeepSeek V4 model is to keep the Ur-world's mirror, the
-   Mir-Ur-world, and Apertus 1.5 the Ur-world itself. The two are
-   compared there, one change at a time. The mirror is also where
-   ALICE's and BOB's models are chosen, at course step 8, to be kept for
-   life. Since a DeepSeek model is one of the two compared, the measures
+   own." DeepSeek V4.1-Flash is to keep the Ur-world's mirror, the
+   Mir-Ur-world, and Apertus 1.5 the Ur-world itself; V4-Pro may be part
+   of ADMIN's mind. The two Keepers are compared in the mirror, one
+   change at a time. The mirror is also where ALICE's and BOB's models
+   are chosen, at course step 8; once they live, a change of model is
+   their own choice. Since a DeepSeek model is one of the two compared,
+   the measures
    for comparing them are written by the project, not here. Ideas about
    what a Keeper does stay welcome, as prose.
 

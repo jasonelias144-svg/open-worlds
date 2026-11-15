@@ -7,6 +7,10 @@ become a natural thought." And: "That was an accidental implementation
 of my goal, which to create a space where such a quick movement is
 possible."
 
+The founder, 2026-11-15: "So anything set at all is understood as
+subject to change. Everything, even this, especially this project
+vision." That holds for every page here.
+
 This page keeps the founder's visions in the founder's words, and maps
 each to the course steps that build it ([COURSE.md](COURSE.md)). Where
 the technical lead recommended how, and the founder didn't say

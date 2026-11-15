@@ -8,8 +8,10 @@ Mir-Ur-world ([WORLD-KEY.md](../WORLD-KEY.md), "The Keeper";
 "I think we should definitely base one keeper on DeepSeek V4." And: "And
 for the sake of having a fully open version, let’s also make a base
 keeper model from Aperatus 1.5." (The model is Apertus 1.5, by the Swiss
-AI Initiative.) The founder's four messages are quoted whole in
-STATUS.md (Decided, 2026-11-15).
+AI Initiative.) Later the same night: "For DeepSeek, yeah, let’s leave
+the Pro model for ADMIN potentially, and we can use Flash for the
+Keeper." The founder's messages are quoted whole in STATUS.md (Decided,
+2026-11-15).
 
 Sources:
 - Model facts are as Hugging Face showed them that day, on each model's
@@ -155,15 +157,16 @@ The technical lead isn't a lawyer, and this is not legal advice.
    their habits.
 3. Wait until Apertus 1.5's data and code are out, then decide.
 
-**Recommended: 3, wait.** Nothing needs Apertus before course step 8,
-when the untrained Keepers first run in trial copies of the worlds. By
-then the technical report may be out, and with it the data and code, or
-not. Until the founder decides, nothing is downloaded and no one clicks
-"Agree".
+**Decided for now: 3, wait,** on the technical lead's recommendation.
+The founder: "Either way sounds good. Just go with what makes the most
+sense to you." Nothing needs Apertus before course step 8, when the
+untrained Keepers first run in trial copies of the worlds. By then the
+technical report may be out, and with it the data and code, or not.
+Until then nothing is downloaded and no one clicks "Agree".
 
-The founder's standing rule doesn't decide this one on the
-recommendation. It is a legal promise, outward-facing and hard to undo,
-so it stays open until the founder answers (STATUS.md, "Open
+The question comes back before step 8. Accepting the policy is a legal
+promise, outward-facing and hard to undo, and it needs the founder's
+own act: agreeing, and giving an email address (STATUS.md, "Open
 questions").
 
 ## Pinned, and the six-month advice
@@ -172,9 +175,10 @@ questions").
   hashes, as ADMIN's mind is, and as a mind record lists an engine
   ([FORMATS.md](FORMATS.md), "A mind record").
 - **Apertus advises new weights every six months,** for deletion
-  requests. The founder's rule that a model, once set, isn't changed is
-  about ALICE and BOB, whose families are Qwen and OLMo, so the two
-  don't meet.
+  requests. That is advice for whoever runs Apertus. ALICE and BOB
+  don't: their families are Qwen and OLMo, and once they live, a change
+  of their model is their own choice
+  ([URWORLD.md](../URWORLD.md#alice-and-bob)).
 - **A Keeper's engine stays replaceable** ([WORLD-KEY.md](../WORLD-KEY.md),
   "The Keeper lasts"). So following the advice for the Ur-world's Keeper
   would be a recorded change, tried in the mirror first.
@@ -187,18 +191,24 @@ questions").
   since the founder asked for a Keeper more robust than either ALICE or
   BOB. The 8B model may stand in for cheap trial runs, where a run says
   so.
-- **The Mir-Ur-world's Keeper:** DeepSeek V4, as the founder chose.
-  Recommended: V4.1-Flash, at the exact revision current when step 8
-  begins (today, V4.1-Flash-1017). It is newer than Pro, reads images,
-  and has about half Pro's parameters, so it is cheaper to run. V4-Pro
-  remains an option.
+- **The Mir-Ur-world's Keeper:** DeepSeek V4.1-Flash, as the founder
+  chose on the technical lead's recommendation, at the exact revision
+  current when step 8 begins (today, V4.1-Flash-1017). It is newer than
+  Pro, reads images, and has about half Pro's parameters, so it is
+  cheaper to run.
+- **DeepSeek V4-Pro, for ADMIN, potentially:** a candidate for ADMIN's
+  mind at its audition, at step 11. Since it isn't fully open, it may
+  sit only beside at least one fully open member, and never decide
+  alone ([ADMIN.md](../ADMIN.md), "ADMIN's mind").
 - **Where they run:** on machines the project rents or owns, running the
   pinned weights. They are never reached only through a company's
   service. The cost goes to the founder before anything is rented
   (STATUS.md, "Open questions": where models run, and the budget).
-- **ADMIN's council avoids both families** where it can, so that ADMIN,
-  which watches the Keepers, doesn't share their blind spots
-  ([ADMIN.md](../ADMIN.md)).
+- **ADMIN's council avoids Apertus** where it can, so that ADMIN, which
+  watches the Ur-world's Keeper, doesn't share its blind spots. With
+  V4-Pro in it, ADMIN would share a family with the Mir-Ur-world's
+  Keeper, which the same rule tries to avoid; ADMIN's audition weighs
+  that ([ADMIN.md](../ADMIN.md)).
 - **The measures for comparing the two Keepers** are written before the
   runs, by the project. Neither DeepSeek, whose model keeps the mirror,
   nor anyone running Apertus writes them. This is the same rule ADMIN.md

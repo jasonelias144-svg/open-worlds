@@ -266,8 +266,8 @@ from a seed.
    runs in images pinned by digest, so anyone can repeat it. Widened on
    2026-11-15, by the founder's choice of two Keepers: it runs in trial
    copies of the Ur-world and of its mirror, the Mir-Ur-world, each with
-   its Keeper untrained (Apertus 1.5 in the one, DeepSeek V4 in the
-   other). One thing changes at a time, with several runs of each, and
+   its Keeper untrained (Apertus 1.5 in the one, DeepSeek V4.1-Flash in
+   the other). One thing changes at a time, with several runs of each, and
    the measures are written by the project first. So it compares the
    Keepers too. The stand-ins may be called ALICE and BOB, and the
    Keepers treat them so; the names stay free for the real ones
@@ -293,8 +293,9 @@ thresholds; PRECIS (RFC 8264) and Unicode's confusable detection (UTS
 #39) for names.
 
 9. **ALICE's and BOB's first life.** Their minds, on the models step 8
-   chose, theirs for life by the founder's decision of 2026-11-15
-   ([URWORLD.md](URWORLD.md#alice-and-bob)); their birth, their
+   chose, which from then on only they may choose to change (the
+   founder, 2026-11-15; [URWORLD.md](URWORLD.md#alice-and-bob)); their
+   birth, their
    identity, birth and mind records (moved here from step 3), their
    first unscripted words; legends pages begin. Their first arrival comes
    after step 8a, which follows their successions and settles their

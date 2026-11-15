@@ -122,11 +122,12 @@ have shown they know; and "new game plus", a harder round for those who
 have finished.
 
 **What it runs on.** The founder chose two bases on 2026-11-15: Apertus
-1.5, which is fully open, for the Ur-world's Keeper, and DeepSeek V4 for
-the Keeper of its mirror, the Mir-Ur-world. The two are compared there,
-one change at a time ([URWORLD.md](URWORLD.md), "The Mir-Ur-world").
-The models, their licences, and the policy Apertus asks for, which is
-still the founder's to decide, are in
+1.5, which is fully open, for the Ur-world's Keeper, and DeepSeek V4, as
+V4.1-Flash, for the Keeper of its mirror, the Mir-Ur-world. The two are
+compared there, one change at a time ([URWORLD.md](URWORLD.md), "The
+Mir-Ur-world").
+The models, their licences, and the policy Apertus asks for, which
+waits until course step 8, are in
 [research/KEEPER-MIND.md](research/KEEPER-MIND.md). No model runs a
 Keeper before course step 8, and then only in trial copies of the two
 worlds. In the Ur-world itself the Keeper stays scripted until step 11.
@@ -341,10 +342,10 @@ there is more than one world to talk to.
 
 Like an individual, a Keeper will have its own key, memory and history,
 and a public mind record (which model, what it was told); its engine is
-replaceable, and upgrading the model doesn't wipe what it knows. (The
-founder's rule of 2026-11-15, that a model once set isn't changed, is
-about ALICE and BOB. A Keeper is an office, so the technical lead reads
-its engine as still replaceable, by a recorded change tried in the
+replaceable, and upgrading the model doesn't wipe what it knows. (For
+an individual, a change of model is their own choice, by the founder's
+default of 2026-11-15. A Keeper is an office, so the technical lead
+reads its engine as replaced by a recorded change, tried in the
 Mir-Ur-world first. That reading stands unless the founder answers
 otherwise.) Every
 world ALICE and BOB found gets a Keeper of its own, so a Keeper's
