@@ -21,6 +21,8 @@
 //! - [`person`]: a person's client: a presence's key for each world, its
 //!   arrivals, and both halves of a link; with a trial of one person in
 //!   three worlds at once.
+//! - [`architecture`]: ways a mind can be spread over presences, as small
+//!   runs over trial worlds: the octopus, the relay and the swarm.
 //! - [`host`]: the garden gives other worlds a place and time: each hosted
 //!   world, with its own key and log, takes a step each tick, and both logs
 //!   record it.
@@ -51,6 +53,7 @@
 
 #![forbid(unsafe_code)]
 
+pub mod architecture;
 pub mod arrival;
 pub mod door;
 pub mod garden;

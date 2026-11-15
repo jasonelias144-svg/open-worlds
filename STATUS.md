@@ -40,8 +40,9 @@ respect one another's freedom, with full transparency and exit at any time
   in Rust with a presence in each of three trial worlds at once,
   carrying a note from one to another, and a link shown by the
   presence's own act, which its world checks and logs (rules
-  `ur-world/0.5`). Its fourth part, the architectures as small
-  examples, is next.
+  `ur-world/0.5`). Of its fourth part, the architectures as small
+  examples, the octopus, the relay and the swarm are built; the
+  council, which needs a record for a signed vote, is next.
 - Claude: the fractal track, alongside the course (docs/FRACTALS.md),
   set by the founder on 2026-11-14: a fractal plant world in Rust, the
   web app in `web/` to watch worlds grow, and in it the multiversal map.
@@ -1583,6 +1584,15 @@ it was wrong. Questions of what the project is for stay with the founder.
   logged the same way.
 
 ## Log
+
+- 2026-11-15 Claude: course step 3a, part four, first half: the
+  octopus, the relay and the swarm (docs/research/PERSONS.md, "Part four,
+  first half, built"), from DeepSeek's components 41 to 43, as small
+  runs over trial worlds on the unchanged core
+  (`rust/ur-world/src/architecture/`, the `architectures` example). The
+  council is split off: decision 8 counts signed votes, and no record
+  kind holds a vote yet, so it comes with a look first and a record of
+  its own.
 
 - 2026-11-15 Claude: course step 3a, part three: a person in the
   Ur-world (docs/research/PERSONS.md, "Part three, built"). A presence
