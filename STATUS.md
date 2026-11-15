@@ -238,6 +238,16 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on a word for everything that acts:
+  "And is "agent" or most general term that would encompass everything
+  from any human, to me, to you, to DeepSeek, to ADMIN, to the world
+  keepers, to the participants, to a simulated neuron controlling a
+  fractal plant? If not, what term?" On the technical lead's answer
+  ("agent", as the field defines it: anything that perceives and acts;
+  with mind, participant, individual and person beneath it, and rights
+  attached to those, not to every agent): "It works for me. I have been
+  struggling to find the right word." So docs/GLOSSARY.md says what each
+  word means here.
 - 2026-11-15, founder, no multiversal currency, ever: "You mentioned Ethereum and cryptocurrency, we do not need to create
   a multiversal currency, in fact, I think that's a terrible idea. But we
   could still have commerce worlds where economies could be simulated, or
@@ -1736,6 +1746,11 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: docs/GLOSSARY.md, at the founder's word: "agent"
+  for anything that perceives and acts, from a neuron steering a plant
+  to any human; the words beneath it as the design pages use them; and
+  where rights attach.
 
 - 2026-11-15 Claude: the founder's word against a multiversal currency,
   "possibly the most fundamental fact", recorded in the founder's words
