@@ -817,6 +817,350 @@
       }
     },
     {
+      "name": "the same vote given three times counts once, each copy naming the first",
+      "votes": [
+        {
+          "format": "open-worlds/vote/v1",
+          "proposal": "72bb30f0523240bf53ef97a75366f0709e973eee1effe2ecd695cc466fe5a577",
+          "person": "did:key:z6MkoD22zi4arBFoQ84Hi3dJK1PwBR7MjVLzxmoMKutpfppZ",
+          "choice": 0,
+          "time": "2026-11-15T04:00:00Z",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-11-15T04:00:00Z",
+            "verificationMethod": "did:key:z6MkoD22zi4arBFoQ84Hi3dJK1PwBR7MjVLzxmoMKutpfppZ#z6MkoD22zi4arBFoQ84Hi3dJK1PwBR7MjVLzxmoMKutpfppZ",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "z42eqNQZ9ySfMbG79AmwA1HgDqBRxN9hamMNDDffQnmsQDLCRmhVuQMdBK8t4d1cZxTxGv8h2HkRhK2JLXpnheYRK"
+          }
+        },
+        {
+          "format": "open-worlds/vote/v1",
+          "proposal": "72bb30f0523240bf53ef97a75366f0709e973eee1effe2ecd695cc466fe5a577",
+          "person": "did:key:z6MkoD22zi4arBFoQ84Hi3dJK1PwBR7MjVLzxmoMKutpfppZ",
+          "choice": 0,
+          "time": "2026-11-15T04:00:00Z",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-11-15T04:00:00Z",
+            "verificationMethod": "did:key:z6MkoD22zi4arBFoQ84Hi3dJK1PwBR7MjVLzxmoMKutpfppZ#z6MkoD22zi4arBFoQ84Hi3dJK1PwBR7MjVLzxmoMKutpfppZ",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "z42eqNQZ9ySfMbG79AmwA1HgDqBRxN9hamMNDDffQnmsQDLCRmhVuQMdBK8t4d1cZxTxGv8h2HkRhK2JLXpnheYRK"
+          }
+        },
+        {
+          "format": "open-worlds/vote/v1",
+          "proposal": "72bb30f0523240bf53ef97a75366f0709e973eee1effe2ecd695cc466fe5a577",
+          "person": "did:key:z6MkwBbhNKc5UepRdEEYMmXqWgdmgxhhcTjKGoubW1hk4vqF",
+          "choice": 0,
+          "time": "2026-11-15T04:00:00Z",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-11-15T04:00:00Z",
+            "verificationMethod": "did:key:z6MkwBbhNKc5UepRdEEYMmXqWgdmgxhhcTjKGoubW1hk4vqF#z6MkwBbhNKc5UepRdEEYMmXqWgdmgxhhcTjKGoubW1hk4vqF",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "zFnfdY5mV7x8K8JKtdBMHTE6RNnnv98FuomxLxbz8BZTDGBPb5TgkfT5ejAACMvJ1LMaHscSSga6WEgYBijLSnPX"
+          }
+        },
+        {
+          "format": "open-worlds/vote/v1",
+          "proposal": "72bb30f0523240bf53ef97a75366f0709e973eee1effe2ecd695cc466fe5a577",
+          "person": "did:key:z6MkoD22zi4arBFoQ84Hi3dJK1PwBR7MjVLzxmoMKutpfppZ",
+          "choice": 0,
+          "time": "2026-11-15T04:00:00Z",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-11-15T04:00:00Z",
+            "verificationMethod": "did:key:z6MkoD22zi4arBFoQ84Hi3dJK1PwBR7MjVLzxmoMKutpfppZ#z6MkoD22zi4arBFoQ84Hi3dJK1PwBR7MjVLzxmoMKutpfppZ",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "z42eqNQZ9ySfMbG79AmwA1HgDqBRxN9hamMNDDffQnmsQDLCRmhVuQMdBK8t4d1cZxTxGv8h2HkRhK2JLXpnheYRK"
+          }
+        },
+        {
+          "format": "open-worlds/vote/v1",
+          "proposal": "72bb30f0523240bf53ef97a75366f0709e973eee1effe2ecd695cc466fe5a577",
+          "person": "did:key:z6MkobDPeYgy9Vso85vmc9ZSMrEWb78TRcvYjT1shfWYTiLy",
+          "choice": 1,
+          "time": "2026-11-15T04:00:00Z",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-11-15T04:00:00Z",
+            "verificationMethod": "did:key:z6MkobDPeYgy9Vso85vmc9ZSMrEWb78TRcvYjT1shfWYTiLy#z6MkobDPeYgy9Vso85vmc9ZSMrEWb78TRcvYjT1shfWYTiLy",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "z4KuY43DhwWqS8Tn6bpmWfobBKAXQGAsiz9nsaz31edrv37uurwDyYvcRGhiz5tpBB7i1kUZVCHT9z23VZJZviU2H"
+          }
+        }
+      ],
+      "births": [
+        {
+          "format": "open-worlds/birth/v1",
+          "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+          "individual": "did:key:z6MkoD22zi4arBFoQ84Hi3dJK1PwBR7MjVLzxmoMKutpfppZ",
+          "name": "ONE",
+          "tick": 0,
+          "time": "2026-11-15T02:00:00Z",
+          "mind": "aa908dd7673947edebbafd1f5238f9029d5af04ed42087edd59ecfc9378be14b",
+          "words": "You came into being in a trial world. A trial, for the council's vectors.",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-11-15T02:00:00Z",
+            "verificationMethod": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion#z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "zvvxQKpPv7dBPXhS5wjYYze4neCzGzyshcpw6WorwkrTqsB3XeRuQV3dLZ4U1npThWpxhR7tnNjNqFgBLeZNXC48"
+          }
+        },
+        {
+          "format": "open-worlds/birth/v1",
+          "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+          "individual": "did:key:z6MkwBbhNKc5UepRdEEYMmXqWgdmgxhhcTjKGoubW1hk4vqF",
+          "name": "TWO",
+          "tick": 0,
+          "time": "2026-11-15T02:00:00Z",
+          "mind": "27a962f0554273e2454e2da4aeec603bc8308738420380d164a8555c830bfe27",
+          "words": "You came into being in a trial world. A trial, for the council's vectors.",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-11-15T02:00:00Z",
+            "verificationMethod": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion#z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "z5UmiLa6wfjCCsNTidsp6ZYiazxCRnE5HVDNGCZJ86kL7XMvk41UzyDqaDkwv6qu8foZg7XtPPrfDvsGjJbkWz8R4"
+          }
+        },
+        {
+          "format": "open-worlds/birth/v1",
+          "world": "did:key:z6MknLCZG2nAA9eGnzo2MXMh99ywpfPNWejnTmy7BvtjkdfR",
+          "individual": "did:key:z6MkobDPeYgy9Vso85vmc9ZSMrEWb78TRcvYjT1shfWYTiLy",
+          "name": "THREE",
+          "tick": 0,
+          "time": "2026-11-15T02:00:00Z",
+          "mind": "35a16b468933193a104a5bf547bc37531bf76987113c66a3506ae017c2fcf06d",
+          "words": "You came into being in another trial world. A trial, for the council's vectors.",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-11-15T02:00:00Z",
+            "verificationMethod": "did:key:z6MknLCZG2nAA9eGnzo2MXMh99ywpfPNWejnTmy7BvtjkdfR#z6MknLCZG2nAA9eGnzo2MXMh99ywpfPNWejnTmy7BvtjkdfR",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "zbJaraQ9R71rBs2bxEKC9pKkJwqLDvWCEJCMzA2D8VbhWSk3NiRMyL7SL6GHv8TGVxuyApDCoEPV3VZ4VR81yYGb"
+          }
+        },
+        {
+          "format": "open-worlds/birth/v1",
+          "world": "did:key:z6MkqKzRmouTZohBPU7kf2EGWxS3izovtuq92s9RqH3qSMJ1",
+          "individual": "did:key:z6MkrpvvbRFz84ucc4TqLLumcCeuGjhMxotxYceNNEYFNuSC",
+          "name": "FOUR",
+          "tick": 0,
+          "time": "2026-11-15T02:00:00Z",
+          "mind": "c11d52391314cb9f7cf41092b834eff9d79aa2ba829f8786aba841780512ccb9",
+          "words": "You came into being in an untrusted trial world. A trial, for the council's vectors.",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-11-15T02:00:00Z",
+            "verificationMethod": "did:key:z6MkqKzRmouTZohBPU7kf2EGWxS3izovtuq92s9RqH3qSMJ1#z6MkqKzRmouTZohBPU7kf2EGWxS3izovtuq92s9RqH3qSMJ1",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "z3Zmz1JZ45sDNf2iUN5ZM5XrAQJbzkjpCTu1JGUVieHPwZ5xmJu67tfYRrJkDjZ5pdxtywsd1UDSiyjzYx4DP2LmT"
+          }
+        }
+      ],
+      "tally": {
+        "counts": [
+          2,
+          1,
+          0
+        ],
+        "persons": 3,
+        "outcome": 0,
+        "counted": [
+          0,
+          2,
+          4
+        ],
+        "problems": [
+          "votes[1]: the same vote as votes[0]",
+          "votes[3]: the same vote as votes[0]"
+        ]
+      }
+    },
+    {
+      "name": "a copy of a vote that doesn't count is named a copy",
+      "votes": [
+        {
+          "format": "open-worlds/vote/v1",
+          "proposal": "d7c0690c65269f943432cc3d3dcaa8b2835d85d749d62277b018ed6557f22af5",
+          "person": "did:key:z6MkoD22zi4arBFoQ84Hi3dJK1PwBR7MjVLzxmoMKutpfppZ",
+          "choice": 1,
+          "time": "2026-11-15T04:00:00Z",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-11-15T04:00:00Z",
+            "verificationMethod": "did:key:z6MkoD22zi4arBFoQ84Hi3dJK1PwBR7MjVLzxmoMKutpfppZ#z6MkoD22zi4arBFoQ84Hi3dJK1PwBR7MjVLzxmoMKutpfppZ",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "z5DHJ7fuwSTCG5YAyt7xji8b7rQ9u7Xpne5SBFQsLAub2D647K15m96KSJRESSE7dEMquiLBTuZ6jioPRhsYqJ6Sc"
+          }
+        },
+        {
+          "format": "open-worlds/vote/v1",
+          "proposal": "d7c0690c65269f943432cc3d3dcaa8b2835d85d749d62277b018ed6557f22af5",
+          "person": "did:key:z6MkoD22zi4arBFoQ84Hi3dJK1PwBR7MjVLzxmoMKutpfppZ",
+          "choice": 1,
+          "time": "2026-11-15T04:00:00Z",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-11-15T04:00:00Z",
+            "verificationMethod": "did:key:z6MkoD22zi4arBFoQ84Hi3dJK1PwBR7MjVLzxmoMKutpfppZ#z6MkoD22zi4arBFoQ84Hi3dJK1PwBR7MjVLzxmoMKutpfppZ",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "z5DHJ7fuwSTCG5YAyt7xji8b7rQ9u7Xpne5SBFQsLAub2D647K15m96KSJRESSE7dEMquiLBTuZ6jioPRhsYqJ6Sc"
+          }
+        },
+        {
+          "format": "open-worlds/vote/v1",
+          "proposal": "72bb30f0523240bf53ef97a75366f0709e973eee1effe2ecd695cc466fe5a577",
+          "person": "did:key:z6MkoD22zi4arBFoQ84Hi3dJK1PwBR7MjVLzxmoMKutpfppZ",
+          "choice": 0,
+          "time": "2026-11-15T04:00:00Z",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-11-15T04:00:00Z",
+            "verificationMethod": "did:key:z6MkoD22zi4arBFoQ84Hi3dJK1PwBR7MjVLzxmoMKutpfppZ#z6MkoD22zi4arBFoQ84Hi3dJK1PwBR7MjVLzxmoMKutpfppZ",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "z42eqNQZ9ySfMbG79AmwA1HgDqBRxN9hamMNDDffQnmsQDLCRmhVuQMdBK8t4d1cZxTxGv8h2HkRhK2JLXpnheYRK"
+          }
+        },
+        {
+          "format": "open-worlds/vote/v1",
+          "proposal": "72bb30f0523240bf53ef97a75366f0709e973eee1effe2ecd695cc466fe5a577",
+          "person": "did:key:z6MkwBbhNKc5UepRdEEYMmXqWgdmgxhhcTjKGoubW1hk4vqF",
+          "choice": 0,
+          "time": "2026-11-15T04:00:00Z",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-11-15T04:00:00Z",
+            "verificationMethod": "did:key:z6MkwBbhNKc5UepRdEEYMmXqWgdmgxhhcTjKGoubW1hk4vqF#z6MkwBbhNKc5UepRdEEYMmXqWgdmgxhhcTjKGoubW1hk4vqF",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "zFnfdY5mV7x8K8JKtdBMHTE6RNnnv98FuomxLxbz8BZTDGBPb5TgkfT5ejAACMvJ1LMaHscSSga6WEgYBijLSnPX"
+          }
+        },
+        {
+          "format": "open-worlds/vote/v1",
+          "proposal": "72bb30f0523240bf53ef97a75366f0709e973eee1effe2ecd695cc466fe5a577",
+          "person": "did:key:z6MkobDPeYgy9Vso85vmc9ZSMrEWb78TRcvYjT1shfWYTiLy",
+          "choice": 1,
+          "time": "2026-11-15T04:00:00Z",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-11-15T04:00:00Z",
+            "verificationMethod": "did:key:z6MkobDPeYgy9Vso85vmc9ZSMrEWb78TRcvYjT1shfWYTiLy#z6MkobDPeYgy9Vso85vmc9ZSMrEWb78TRcvYjT1shfWYTiLy",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "z4KuY43DhwWqS8Tn6bpmWfobBKAXQGAsiz9nsaz31edrv37uurwDyYvcRGhiz5tpBB7i1kUZVCHT9z23VZJZviU2H"
+          }
+        }
+      ],
+      "births": [
+        {
+          "format": "open-worlds/birth/v1",
+          "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+          "individual": "did:key:z6MkoD22zi4arBFoQ84Hi3dJK1PwBR7MjVLzxmoMKutpfppZ",
+          "name": "ONE",
+          "tick": 0,
+          "time": "2026-11-15T02:00:00Z",
+          "mind": "aa908dd7673947edebbafd1f5238f9029d5af04ed42087edd59ecfc9378be14b",
+          "words": "You came into being in a trial world. A trial, for the council's vectors.",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-11-15T02:00:00Z",
+            "verificationMethod": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion#z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "zvvxQKpPv7dBPXhS5wjYYze4neCzGzyshcpw6WorwkrTqsB3XeRuQV3dLZ4U1npThWpxhR7tnNjNqFgBLeZNXC48"
+          }
+        },
+        {
+          "format": "open-worlds/birth/v1",
+          "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+          "individual": "did:key:z6MkwBbhNKc5UepRdEEYMmXqWgdmgxhhcTjKGoubW1hk4vqF",
+          "name": "TWO",
+          "tick": 0,
+          "time": "2026-11-15T02:00:00Z",
+          "mind": "27a962f0554273e2454e2da4aeec603bc8308738420380d164a8555c830bfe27",
+          "words": "You came into being in a trial world. A trial, for the council's vectors.",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-11-15T02:00:00Z",
+            "verificationMethod": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion#z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "z5UmiLa6wfjCCsNTidsp6ZYiazxCRnE5HVDNGCZJ86kL7XMvk41UzyDqaDkwv6qu8foZg7XtPPrfDvsGjJbkWz8R4"
+          }
+        },
+        {
+          "format": "open-worlds/birth/v1",
+          "world": "did:key:z6MknLCZG2nAA9eGnzo2MXMh99ywpfPNWejnTmy7BvtjkdfR",
+          "individual": "did:key:z6MkobDPeYgy9Vso85vmc9ZSMrEWb78TRcvYjT1shfWYTiLy",
+          "name": "THREE",
+          "tick": 0,
+          "time": "2026-11-15T02:00:00Z",
+          "mind": "35a16b468933193a104a5bf547bc37531bf76987113c66a3506ae017c2fcf06d",
+          "words": "You came into being in another trial world. A trial, for the council's vectors.",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-11-15T02:00:00Z",
+            "verificationMethod": "did:key:z6MknLCZG2nAA9eGnzo2MXMh99ywpfPNWejnTmy7BvtjkdfR#z6MknLCZG2nAA9eGnzo2MXMh99ywpfPNWejnTmy7BvtjkdfR",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "zbJaraQ9R71rBs2bxEKC9pKkJwqLDvWCEJCMzA2D8VbhWSk3NiRMyL7SL6GHv8TGVxuyApDCoEPV3VZ4VR81yYGb"
+          }
+        },
+        {
+          "format": "open-worlds/birth/v1",
+          "world": "did:key:z6MkqKzRmouTZohBPU7kf2EGWxS3izovtuq92s9RqH3qSMJ1",
+          "individual": "did:key:z6MkrpvvbRFz84ucc4TqLLumcCeuGjhMxotxYceNNEYFNuSC",
+          "name": "FOUR",
+          "tick": 0,
+          "time": "2026-11-15T02:00:00Z",
+          "mind": "c11d52391314cb9f7cf41092b834eff9d79aa2ba829f8786aba841780512ccb9",
+          "words": "You came into being in an untrusted trial world. A trial, for the council's vectors.",
+          "proof": {
+            "type": "DataIntegrityProof",
+            "cryptosuite": "eddsa-jcs-2022",
+            "created": "2026-11-15T02:00:00Z",
+            "verificationMethod": "did:key:z6MkqKzRmouTZohBPU7kf2EGWxS3izovtuq92s9RqH3qSMJ1#z6MkqKzRmouTZohBPU7kf2EGWxS3izovtuq92s9RqH3qSMJ1",
+            "proofPurpose": "assertionMethod",
+            "proofValue": "z3Zmz1JZ45sDNf2iUN5ZM5XrAQJbzkjpCTu1JGUVieHPwZ5xmJu67tfYRrJkDjZ5pdxtywsd1UDSiyjzYx4DP2LmT"
+          }
+        }
+      ],
+      "tally": {
+        "counts": [
+          2,
+          1,
+          0
+        ],
+        "persons": 3,
+        "outcome": 0,
+        "counted": [
+          2,
+          3,
+          4
+        ],
+        "problems": [
+          "votes[0]: names another proposal",
+          "votes[1]: the same vote as votes[0]"
+        ]
+      }
+    },
+    {
       "name": "a person born in two trusted worlds counts once",
       "votes": [
         {

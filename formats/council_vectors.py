@@ -7,7 +7,8 @@ It holds a council's proposal, the birth records of five trial persons
 (three born in worlds the proposal trusts, one in a world it doesn't,
 one with no birth), and cases of votes, each with the count it must
 give: votes that count, a vote changed, two or three votes at one time,
-the same vote given twice, a person born twice, a tie, no quorum, and
+the same vote given twice or three times, a copy of a vote that doesn't
+count, a person born twice, a tie, no quorum, and
 votes that don't count, each named for why. Every key is
 made from a label, public to everyone and never for anything real.
 tests/test_council.py checks that the file is still exactly what this
@@ -109,6 +110,14 @@ def _cases() -> List[Dict[str, Any]]:
          births),
         ("the same vote given twice counts once",
          [_vote(0, 0), _vote(0, 0), _vote(1, 0), _vote(2, 1)], births),
+        ("the same vote given three times counts once, each copy naming "
+         "the first",
+         [_vote(0, 0), _vote(0, 0), _vote(1, 0), _vote(0, 0), _vote(2, 1)],
+         births),
+        ("a copy of a vote that doesn't count is named a copy",
+         [_vote(0, 1, proposal=_proposal(title="The south bed")),
+          _vote(0, 1, proposal=_proposal(title="The south bed")),
+          _vote(0, 0), _vote(1, 0), _vote(2, 1)], births),
         ("a person born in two trusted worlds counts once",
          [_vote(0, 0), _vote(1, 0), _vote(2, 1)],
          births + [_birth(PERSONS[0][0], TRUSTED[1])]),

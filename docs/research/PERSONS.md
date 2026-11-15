@@ -631,12 +631,13 @@ unlinked, and the votes are off any world.
 
 **The vectors** (`vectors/formats/council-v1.json`, written by `python3
 -m formats.council_vectors`) hold a proposal, five trial persons' births
-(three trusted, one not, one with none), and twelve cases: votes that
-count, a vote changed, two votes at one time, three at one time, the
-same vote given twice, a person born in two trusted worlds, a tie, too
-few, votes at the opening and the closing, votes refused for each
-reason, a birth that doesn't hold, and a proposal that doesn't hold. Rust gives the same
-count, word for word.
+(three trusted, one not, one with none), and fourteen cases: votes
+that count, a vote changed, two votes at one time, three at one time,
+the same vote given twice, and three times, a copy of a vote that
+doesn't count, a person born in two trusted worlds, a tie, too few,
+votes at the opening and the closing, votes refused for each reason, a
+birth that doesn't hold, and a proposal that doesn't hold. Rust gives
+the same count, word for word.
 
 ### Its limits
 
