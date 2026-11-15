@@ -109,9 +109,10 @@ effect (docs/ADMIN.md).
   entry that says so. The one exception: "We can redact personal or
   private information in public records, and we should always err on
   the side of redacting if it is a close call." The private information
-  is kept encrypted in the project's records, and a redaction is
-  visible and leaves the log checkable (`docs/FUNDAMENTALS.md`, "Public
-  records, kept whole").
+  is kept encrypted in the project's records. By the technical lead's
+  reading, a redaction is visible and leaves the log checkable, and a
+  request is redacted first and decided after (`docs/FUNDAMENTALS.md`,
+  "Public records, kept whole").
 - **Never a currency, never a money machine, never data for sale.** The
   multiverse has no currency of its own, and nothing here is built to
   turn it into a money machine: in the founder's words (2026-11-15,

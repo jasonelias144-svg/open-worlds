@@ -216,7 +216,8 @@ one of them updates this page.
     sealed selves stay sealed and keys stay their holders'
     ([ADMIN.md](ADMIN.md), "Questions for the founder"). A person who
     leaves the multiverse takes their private data with them (item 7),
-    and what they did in public stays ("Public records, kept whole",
+    and what they did in public stays, with anything private in it
+    redacted ("Public records, kept whole",
     below).
 12. **Fear of the Keeper silences no one.** Decided 2026-11-14, on the
     technical lead's recommendation: the author of a suggestion about
@@ -298,21 +299,35 @@ unless the founder answers otherwise:
   lives in a world: [COURSE.md](COURSE.md), "Waiting"). That is the
   redaction that works best: copies others make of what is published
   can't be recalled afterwards.
-- **Visible, and the log still checks.** A redacted entry keeps its
-  place and a salted fingerprint of what was taken out, so the chain of
-  hashes still holds and the salt keeps anyone from confirming a guess.
-  A mark says that something private was redacted, when, by which
-  office, and why in general terms (such as "contact details"), never
-  what. Logs keep each field's content apart from the chain that
-  commits to it, so a field can be redacted without rewriting history.
+- **Visible, and the log still checks.** To be built, before anyone
+  lives in a world: each field of an entry enters the chain of hashes
+  only as a salted fingerprint of its content, with a fresh random salt
+  of at least 128 bits for each field, from the moment it is written. A
+  redacted field then keeps its place and its fingerprint, so every
+  hash, and every signed head, still checks. The salt is redacted and
+  sealed with the content, so no one can confirm a guess at what was
+  there. A mark says that something private was redacted, when, by
+  which office, and why in general terms (such as "contact details"),
+  never what. Today's logs hash each entry's data whole
+  (`rust/plant-world`), so this changes how logs are written before any
+  person's acts are in one.
 - **Sealed to the person it is about.** What was redacted is kept
   encrypted in the project's records, like that person's private space:
-  under the same "break glass", and purged when they leave.
-- **Who decides.** Anyone may ask for a redaction, the person it is
-  about first. The office that keeps the record decides: a world's
-  Keeper for its world's log, ADMIN for the multiverse's. Each decision
-  is on record with its reasons, in general terms, and a refusal can be
-  appealed ([REASONS.md](REASONS.md)).
+  under the same "break glass", and purged when they leave. Where it is
+  kept, and what happens when it is about several people, or about
+  someone with no key in the multiverse, waits for the founder's answer
+  (STATUS.md, "Open questions").
+- **Redacted first, decided after.** Anyone may ask for a redaction.
+  A request from the person the information is about, and any close
+  call, is redacted at once, while it is decided. The office that keeps
+  the record decides: a world's Keeper for its world's log, ADMIN for
+  the multiverse's. Redacting needs no more than that, and is on record
+  with its reasons, in general terms. Keeping something public that
+  someone asked to redact is the one decision that needs more: it
+  touches an individual, so it is a serious act, reviewed independently
+  before it takes effect, and open to appeal to the founder
+  ([ADMIN.md](ADMIN.md), "Graduated responses"; [REASONS.md](REASONS.md)).
+  Until then, it stays redacted.
 
 ## Purged, demonstrably
 
@@ -335,7 +350,8 @@ demonstrably", which stands unless the founder answers otherwise:
   with the course's keys work (step 8a, "a lost or leaked key").
 - **Purging never edits a record.** Destroying a key leaves every
   record as it was, and only makes private data unreadable; what was
-  public stays ("Public records, kept whole", above).
+  public stays, with anything private in it redacted ("Public records,
+  kept whole", above).
 
 ## Honest limits
 
@@ -343,6 +359,13 @@ demonstrably", which stands unless the founder answers otherwise:
   before it was redacted may already be in someone else's copy: a
   clone of the repository, a mirror, an archive. So the check before
   publishing matters most, and close calls are redacted then.
+- **Nor this repository's own history.** Public records committed here
+  (an experiment's runs, a world's log) stay in Git's history after a
+  later commit redacts them, readable by anyone, and removing them
+  would mean rewriting history, which is the founder's decision. So
+  when logs with redactable fields are built, only the fingerprints go
+  into Git, and the fields' contents are kept where they can be
+  removed; that is decided with them, before anyone lives in a world.
 - **No check finds everything.** Some personal details won't look
   personal to a check. Erring on the side of redacting narrows that,
   and anyone may ask for a redaction afterwards.

@@ -122,6 +122,19 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder (put 2026-11-15, after #83's re-check at faab85d):
+  where redacted private information is kept. The founder's rule says
+  "encrypted in the project records". Two cases it doesn't settle:
+  information about several people, and information about someone with
+  no key in the multiverse (someone a participant names), whom it can't
+  be sealed to and whose leaving would never purge it. The
+  recommendation: about several people, sealed to each of them; about
+  someone with no key, not kept at all, as no one can hold it for them;
+  and, if the founder takes up the private container (put the same
+  day, in conversation), kept in the person's own container rather than
+  the project's records, so the project keeps nothing private. Because
+  this concerns personal information, it waits for the founder's
+  answer; FUNDAMENTALS.md marks it.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
@@ -241,7 +254,9 @@ kind.
   world, and when. What it tied together, the presences' keys, is a
   private detail, and is redacted. While the person is in the
   multiverse, the links they show stay public, as they chose. The open
-  question is closed. The technical lead's reading of "More metadata",
+  question is closed, and this replaces the technical lead's earlier
+  reading (in the entry "answering what happens to a leaver's public
+  acts", below) that a shown link stays whole. The technical lead's reading of "More metadata",
   which stands unless the founder answers otherwise: a public record of
   an action holds what an outside observer could note (that it
   happened, what kind of act, where and when) and leaves its private
@@ -1945,6 +1960,13 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: after #83's re-check at faab85d, a redaction asked
+  for by the person it concerns, or any close call, is made at once and
+  decided after, and keeping something public is a serious act, open to
+  appeal to the founder; the salted fingerprint is said in full and as
+  to be built, with Git's history among the honest limits; where
+  redacted information is kept is put to the founder.
 
 - 2026-11-15 Claude: the founder answered on a leaver's shown links: the
   record that a link was shown stays, and what it tied together is
