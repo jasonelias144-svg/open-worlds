@@ -1,0 +1,15 @@
+[package]
+name = "plant-wasi"
+version = "0.1.0"
+description = "A plant world as a WebAssembly command (WASI), so a browser runs the same code the reference does"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+plant-world = { path = "../plant-world" }
+serde_json.workspace = true
+
+[lints]
+workspace = true
