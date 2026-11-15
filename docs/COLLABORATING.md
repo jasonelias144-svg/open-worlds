@@ -74,7 +74,9 @@ in the order to read it:
    2026-11-15). Every world can pause itself, every person can leave,
    and a person who returns picks up where they left off. And, as a
    goal for later, time: slow motion and a fast view, rewind and fast
-   forward.
+   forward. And worlds can leave the multiverse: a world, or a cluster,
+   may branch into an independent multiverse of its own, and the cord
+   is cut.
 4. **The founder's visions of 2026-11-14,** in the founder's words
    ([VISION.md](VISION.md), [PARALLEL-WORLDS.md](PARALLEL-WORLDS.md)):
    question worlds, where an idea becomes a world that tests it; an app

@@ -386,6 +386,11 @@ Added one at a time, as steps are done:
   ([WORLD-TYPES.md](WORLD-TYPES.md)); to be placed at the recheck after
   step 3a, with pause, resume and checkpoint first, which the endless
   plant needs to run for hours;
+- a world leaving the multiverse (the founder, 2026-11-15: "We should
+  crate this mechanism from the start"): a departure record, signed by
+  the world, with schema and vectors, placed with the lifecycle at the
+  recheck after step 3a ([WORLD-TYPES.md](WORLD-TYPES.md), "Leaving the
+  multiverse");
 - the Commons (the founder, 2026-11-14): Lyceum Commons as "a single
   superworld, where the atomic subworlds are chat rooms"; recommended
   after step 4a, as the second superworld (docs/TOPICS.md, topic 14,

@@ -769,7 +769,8 @@ step 11 (COLLABORATING.md, "Held back").
 - **World types** ([WORLD-TYPES.md](WORLD-TYPES.md)): the founder's "We
   need a full taxonomy of world types", and what can be done with a
   world of each (pause, resume, stop, restart, reset, branch), and time:
-  faster, slower, back and forward ("a goal eventually"). Ideas
+  faster, slower, back and forward ("a goal eventually"); and a world,
+  or a cluster, leaving to form its own multiverse. Ideas
   welcome, as prose: a dimension the taxonomy misses, a type that fits
   none, and who may pause a world that others are in.
 - **Commerce and currency worlds** ([VISION.md](VISION.md)): economies,

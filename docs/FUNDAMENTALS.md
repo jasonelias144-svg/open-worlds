@@ -61,7 +61,13 @@ one of them updates this page.
    working out how conflict should be resolved, let it arise, provide
    tools to resolve the conflict, but let solutions emerge."
    ([FREEDOMS.md](FREEDOMS.md).)
-7. **Free and open, never a money machine.** Principle 7: "The
+7. **Worlds can leave the multiverse.** The founder (2026-11-15):
+   "Participants can leave worlds, and worlds can leave the
+   multiverse." A world, or a cluster, may branch into an independent
+   multiverse of its own, "then the cord is cut". Designed in
+   [WORLD-TYPES.md](WORLD-TYPES.md), "Leaving the multiverse", to be
+   made from the start; not yet built.
+8. **Free and open, never a money machine.** Principle 7: "The
    repository is open and dedicated to the public domain (CC0). The
    goal isn't financial; anyone may build on it." On money (2026-11-14):
    "all remains free". And on a currency (2026-11-15): "possibly the most

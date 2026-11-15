@@ -122,6 +122,59 @@ enter. Fast forwarding a world itself is running ahead quickly, which a
 closed world can do (anyone can compute its future from its seed), and
 an open one can't, as minds can't be run ahead of their own thinking.
 
+## Leaving the multiverse
+
+The founder, 2026-11-15: "Yes, multiverse can only be stopped, part by part. And perhaps this could help, we could define branching protocols for a cluster of worlds or a single world that want to form their own, independent multiverse, severing connections with our host multiverse. So any worlds that want to exist in another multiverse can branch into their own, then the cord is cut, and it can exist completely independently. We should crate this mechanism from the start. Participants can leave worlds, and worlds can leave the multiverse."
+
+**Decided, by the founder:** a single world, or a cluster of worlds, can
+leave this multiverse to form an independent one of its own: it
+branches, "then the cord is cut, and it can exist completely
+independently". The mechanism is made from the start. "Participants can
+leave worlds, and worlds can leave the multiverse."
+
+The technical lead's reading, which stands unless the founder answers
+otherwise.
+
+**What already makes it possible.** A world needs nothing from this
+multiverse to go on:
+- **its own key and its own log:** every world signs its own heads;
+- **open code:** everything here is public domain, so anyone can run
+  it;
+- **checkable by anyone:** a world's log is checked offline, with no
+  host involved;
+- **a key can be signed over:** the old key hands over and the new one
+  accepts, both signing (`multiverse/succession.py`, course step 6 of
+  the first course).
+
+**What leaving takes:**
+1. **The world's own decision, by its own law.** A world with no one
+   inside leaves at its runner's word. A world with inhabitants leaves
+   only as its law changes: with the consent of every party (the
+   charter, section 6). Anyone who doesn't want to go leaves first,
+   and keeps everything that is theirs. A cluster leaves as each of its
+   worlds decides by its own law; a world that stays is hosted here
+   again.
+2. **A departure record,** signed by the world: where it goes, and the
+   head of its log at the moment it leaves. The host publishes it, and
+   closes its own copy of the world's log at that head. That copy is
+   kept: a record never ends.
+3. **The keys move.** The world's key is signed over to a new key that
+   whoever runs it now made, so the host keeps no key of the world.
+4. **The cord is cut.** After the departure record, the host neither
+   hosts, relays nor speaks for the world. What was signed before stays
+   valid, since a signature needs no host: stamps, passports, and
+   persons' links. A person with presences on both sides keeps both.
+5. **No host can refuse it.** As no world refuses a leaving
+   ([COLLABORATING.md](COLLABORATING.md), house rule 4), no multiverse
+   refuses a world that leaves by its own law. Coming back, or
+   federating again, is a new decision by both sides.
+
+**From the start.** The first piece is the departure record: a record
+kind in `schemas/records-v1.schema.json`, with test vectors that Python
+and Rust both check, as every record kind has. The course takes it up at
+its next recheck ([COURSE.md](COURSE.md), "Waiting"), with the
+lifecycle.
+
 ## A taxonomy of world types
 
 Every world has a place on each of seven dimensions, and its type is
@@ -206,6 +259,9 @@ fewer operations are anyone's to choose.**
 
 ## Open
 
+- The "break glass" for those who leave with a world: the host no
+  longer runs their minds, so the recommendation is that the host
+  gives up its copies of their keys, and records that it has.
 - Whether "branch" may ever copy a person. This page says never: a
   person is one, and enters a copy only by choice.
 - How long a paused world waits before it counts as stopped, if ever.

@@ -106,6 +106,11 @@ and every person can leave. If they return, they can pick up where they
 left off on challenges, or anything else." What you did, you take with
 you: your passport, your notebook and your private space are yours.
 
+And the worlds, too, are free to go. In the founder's words:
+"Participants can leave worlds, and worlds can leave the multiverse." A
+world, or a cluster of worlds, may form its own independent multiverse;
+"then the cord is cut, and it can exist completely independently."
+
 > Still to cover: the ways to go (pause your stay, move to another world
 > if one is open, or end it), as the founder's words come.
 

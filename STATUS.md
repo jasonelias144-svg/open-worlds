@@ -242,6 +242,23 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on worlds leaving the multiverse:
+  "Yes, multiverse can only be stopped, part by part. And perhaps this
+  could help, we could define branching protocols for a cluster of
+  worlds or a single world that want to form their own, independent
+  multiverse, severing connections with our host multiverse. So any
+  worlds that want to exist in another multiverse can branch into
+  their own, then the cord is cut, and it can exist completely
+  independently. We should crate this mechanism from the start.
+  Participants can leave worlds, and worlds can leave the multiverse."
+  So docs/WORLD-TYPES.md ("Leaving the multiverse") has the technical
+  lead's reading: a world leaves by its own law (with every party's
+  consent, if anyone is inside, and anyone who won't go leaves first);
+  a departure record, signed by the world, closes the host's copy of
+  its log, which is kept; its key is signed over to one the host never
+  held; the cord is cut, and what was signed before stays valid. The
+  departure record is made from the start, at the course's next
+  recheck. The charter's section 5 says it, in the founder's words.
 - 2026-11-15, founder, keeping the "break glass":
   "I love the "break glass" idea. It is very much the point. I envision
   this project without me, and so I need to leave a way for things to
@@ -1699,6 +1716,11 @@ it was wrong. Questions of what the project is for stay with the founder.
   logged the same way.
 
 ## Log
+
+- 2026-11-15 Claude: worlds can leave the multiverse, recorded at the
+  founder's word: docs/WORLD-TYPES.md ("Leaving the multiverse"),
+  FUNDAMENTALS.md (freedom, item 7), the charter's section 5, COURSE.md
+  (a departure record, from the start), TOPICS.md and COLLABORATING.md.
 
 - 2026-11-15 Claude: the founder kept the "break glass" ("It is very
   much the point"), recorded in FUNDAMENTALS.md, MINDS.md and STATUS.md,
