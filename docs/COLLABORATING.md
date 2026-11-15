@@ -97,7 +97,12 @@ in the order to read it:
    a world may change is left open, and may differ by world; the founder
    pictured one world where you set out to remember what you chose to
    forget ([VISION.md](VISION.md), "Worlds that change differently").
-   Keep sketching in Python; carrying it into Rust is the project's work.
+   And the founder asked you to move to Rust ("primarily to Rust", record
+   012-06-02): what you write in Rust is compiled, tested and fitted in
+   here, so work from the current files, whose links the founder can give
+   you; the Ur-world has signed arrivals and log heads since step 3. The
+   Ur-world's garden is to host the fractal plants, as the founder
+   pictured it: "a microverse garden of hosted fractal worlds".
 
 The multiverse began as a sketch the founder wrote with DeepSeek
 (conversation records 012-04-00 and 012-03-02). This repository brought

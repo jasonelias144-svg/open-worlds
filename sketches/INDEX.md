@@ -231,23 +231,23 @@ numbered here, for this table only.
 
 | # | What it is | Line | Tests as written | Course | In open-worlds |
 |---|---|---|---|---|---|
-| 1 | The atomic fractal world: one plant that grows by its rule (a proposal) | 153 | 10 of 11 | waiting (fractal worlds) | no |
-| 2 | Parameters from inside the world and from outside it (`fractal_world_v2.py`, with additions at 1390) | 707 | 17 of 17, with fixes 6, 7, 8 | waiting (fractal worlds); a template's dials are step 2's | no |
-| 3 | Branching instead of changing in place: a new parameter makes a new world, and the original continues | 1820 | 19 of 19, with fixes 6, 7 | waiting (fractal worlds; the founder's "steering by branching", VISION.md) | no |
-| 4 | A garden of plants: a composite world of atomic fractal worlds | 3438 | 24 of 24, with fix 7 | waiting (fractal worlds); 4a's garden, in spirit | no |
-| 5 | The Game of Life, and Life-like rules, as an atomic world | 4583 | 22 of 24 | waiting (fractal worlds) | no |
-| 6 | Elementary cellular automata (rule 90 and others) as an atomic fractal world | 5700 | 28 of 28 | waiting (fractal worlds) | no |
-| 7 | A grid-embedded fractal: an automaton's generations as one 2D pattern | 6962 | 28 of 28 | waiting (fractal worlds) | no |
-| 8 | Chaos games: a fractal drawn by choosing among maps, where choice enters | 8251 | 29 of 29, with fix 8 | waiting (fractal worlds) | no |
-| 9 | Two chaos games coupled by their recent histories | 9773 | 21 of 23, with fix 8 | waiting (fractal worlds: "watch them grow or interact") | no |
-| 10 | Two cellular automata growing in one space, meeting by a coupling parameter | 11123 | 12 of 12 | waiting (fractal worlds) | no |
+| 1 | The atomic fractal world: one plant that grows by its rule (a proposal) | 153 | 10 of 11 | the fractal track | no |
+| 2 | Parameters from inside the world and from outside it (`fractal_world_v2.py`, with additions at 1390) | 707 | 17 of 17, with fixes 6, 7, 8 | the fractal track; a template's dials are step 2's | no |
+| 3 | Branching instead of changing in place: a new parameter makes a new world, and the original continues | 1820 | 19 of 19, with fixes 6, 7 | the fractal track; the founder's "steering by branching", VISION.md | no |
+| 4 | A garden of plants: a composite world of atomic fractal worlds | 3438 | 24 of 24, with fix 7 | the fractal track; the Ur-world's garden, which hosts the plants | no |
+| 5 | The Game of Life, and Life-like rules, as an atomic world | 4583 | 22 of 24 | the fractal track | no |
+| 6 | Elementary cellular automata (rule 90 and others) as an atomic fractal world | 5700 | 28 of 28 | the fractal track | no |
+| 7 | A grid-embedded fractal: an automaton's generations as one 2D pattern | 6962 | 28 of 28 | the fractal track | no |
+| 8 | Chaos games: a fractal drawn by choosing among maps, where choice enters | 8251 | 29 of 29, with fix 8 | the fractal track | no |
+| 9 | Two chaos games coupled by their recent histories | 9773 | 21 of 23, with fix 8 | the fractal track ("watch them grow or interact") | no |
+| 10 | Two cellular automata growing in one space, meeting by a coupling parameter | 11123 | 12 of 12 | the fractal track | no |
 | 11 | A gallery: one composite world holding worlds of four kinds | 11851 | 15 of 15, with fix 7 | 4a, in part (a garden of rooms); the Commons, as a superworld | no |
 | 12 | The gallery's interior and exterior: world-keys, signed requests to change it, signed refusals | 12979 | 26 of 27, with fixes 7, 9 | 4 (grants) and 12 | partly: worlds are keys, and sign their stamps (the first course's step 3) and their log's heads (step 3); a world refusing a change, no |
 | 13 | Revoking a key, and rotating the keeper (with a change at 16659) | 14833 | 14 of 14, with fixes 9, 10 | 8a (a lost or leaked key) | no |
 | 14 | The gallery watches and schedules: an attention budget across its members | 15892 | doesn't load: imports `multiverse_utils_sig`, which no record defines | not yet | no |
 | 15 | Attention per member, by deficit round-robin | 16700 | 9 of 17, with fix 10 | not yet | no |
 | 16 | Bursts: attention raised for a bounded time, by a signed record | 17581 | 15 of 20, with fix 10 | not yet | no |
-| 17 | The smallest learner that chooses: a 4-unit recurrent network, or a lookup table, in a chaos game | 18698 | 9 of 10 | waiting (fractal worlds), and 3a's architectures (the founder, 2026-11-14) | no |
+| 17 | The smallest learner that chooses: a 4-unit recurrent network, or a lookup table, in a chaos game | 18698 | 9 of 10 | the fractal track, and 3a's architectures (the founder, 2026-11-14) | no |
 | 18 | Two learners in one chaos game | 19408 | 8 of 11 | the same | no |
 | 19 | A learner beside a scripted world | 20187 | 16 of 18, with fixes 11, 12 | the same | no |
 | 20 | The individual as a bundle: four signed files that describe it whole, replayable (with additions at 23274, 27017, 27054, 32475 and 34393) | 21268 | 16 of 20, with fixes 11 to 13 | 7 (memory), in part | no |

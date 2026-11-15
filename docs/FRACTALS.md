@@ -3,8 +3,9 @@
 A track alongside the course ([COURSE.md](COURSE.md)), set on 2026-11-14:
 fractal worlds, built in Rust on the foundations the course has laid, and
 a web app to watch them grow, which is also the first home of the
-multiversal map. It touches nothing ALICE and BOB need, so it runs beside
-the course's steps without changing their order.
+multiversal map. Its plants are hosted in the Ur-world's garden, rules
+alone, so it runs beside the course's steps without changing their order
+or anything ALICE and BOB need.
 
 ## Decided
 
@@ -19,7 +20,8 @@ In the founder's words (STATUS.md, "Decided", 2026-11-14):
   also includes the multiversal map." And: "I can brainstorm the whole
   multiversal map with DeepSeek later. But it will be good to have it on
   the radar."
-- "we are working up to that and is why I am suggesting we experiment
+- "And on the ALICE and BOB comment, we are working up to that and is
+  why I am suggesting we experiment
   with minimally sufficient models, and so lightweight and capable of
   choice for the fractal worlds. We are working towards ALICE and BOB who
   will be the first inhabitants to persist once is running. That is
@@ -27,18 +29,43 @@ In the founder's words (STATUS.md, "Decided", 2026-11-14):
 - On change: "nothing set in stone yet, let’s explore different ideas.
   [...] it may differ by world". How a world may change (not at all, in
   place, by branching, sandboxed) is left open, and may differ by world.
-- DeepSeek sketches in Python, and the project carries what it adopts
-  into Rust, on its own formats.
+- On language, later the same night, to DeepSeek (record 012-06-02, as
+  extended on 2026-11-15, line 52822): "My preference would be to move to
+  Rust, I only wanted us to transition naturally, as we are doing now.
+  Let’s move forward in Rust, or other languages when needed, but
+  primarily to Rust." This replaces the founder's word of the evening
+  before, that DeepSeek sketches in the language it chooses (it chose
+  Python) and the project ports it downstream. So
+  DeepSeek now writes primarily in Rust, as proposals: it can't compile
+  them, so the project compiles, tests and fits them to the current code.
+- On the Ur-world, to DeepSeek (the same record, line 50034): "This is
+  exactly how I envisioned the Ur-world, ALICE and BOB is a microverse
+  garden of hosted fractal worlds."
 
 Earlier: fractal worlds are primary worlds, with rules and no AI inside,
 made from a template whose dials are the rule's numbers (TOPICS.md,
 topic 1; VISION.md, "A hierarchy of worlds"). The founder's newer word,
 "minimally sufficient models [...] capable of choice for the fractal
 worlds", meets it. The technical lead's reading, put to the founder on
-2026-11-15 (it stands unless the founder answers otherwise): both hold.
-The plant worlds stay primary, rules alone; the learners enter fractal
-worlds made for choosing, such as the chaos game where a choice picks
+2026-11-15 (it stands unless the founder answers otherwise): the newer
+word changes the earlier decision for some fractal worlds, not all. "No
+AI inside" now holds for the plant worlds, and for any fractal world of
+rules alone; a fractal world made for choosing, such as the chaos game
+where a choice picks the next step, has a small learner inside it, a
+model, though not a language model. The learners are "minimally
+sufficient models", not the minds of ALICE and BOB. So the plant worlds
+stay primary, rules alone, and the learners enter fractal worlds made
+for choosing, such as the chaos game where a choice picks
 the next step (part 5).
+
+And the founder's Ur-world word meets the decision of 2026-11-13: "Once
+we work out that world, we can begin creating subworlds" (URWORLD.md).
+Plant worlds hosted in the Ur-world's garden are small subworlds from the
+start. The technical lead's reading, put to the founder on 2026-11-15
+(it stands unless the founder answers otherwise): the newer word wins,
+and only primary worlds are hosted early, rules alone, so the Ur-world's
+own design is not changed by them; subworlds with laws, Keepers or minds
+of their own still wait for the Ur-world to be worked out.
 
 ## What there is to start from
 
@@ -59,8 +86,10 @@ the next step (part 5).
 
 ## The plan
 
-The recommendation, put to the founder the same evening; it stands unless
-the founder answers otherwise. Each part is one reviewed pull request.
+Building on the recommendation put to the founder the same evening (the
+track, a Rust plant world, and a page with no server; it stands unless
+the founder answers otherwise): the five parts, and their order, are the
+technical lead's. Each part is one reviewed pull request.
 
 1. **A fractal plant world in Rust.** A primary world with its own key
    and log, made from a template; whole-number geometry; growth decided
@@ -77,12 +106,18 @@ the founder answers otherwise. Each part is one reviewed pull request.
    public log and draws it, tick by tick, with play and a slider, as the
    first look did. It checks the log's chain and its signed heads before
    it shows anything, and says what it checked.
-3. **A garden of plants, and the map's first page.** Several plant worlds
-   from one template, each with its own key, log and changed dials, in a
-   garden (the course's step 4a, in spirit, and PARALLEL-WORLDS.md). The
-   web app gains its first map: a card for each world, built only from
-   what the world publishes, opening onto its live view (below, "The
-   multiversal map").
+3. **The Ur-world's garden hosts the plants, and the map's first page.**
+   Several plant worlds from one template, each with its own key, log
+   and changed dials, hosted in the Ur-world's garden, as the founder
+   pictured it: "a microverse garden of hosted fractal worlds". The
+   garden gives them time and a place; walking among them is the
+   Ur-world's own walking, tended by its stand-ins (WALKER and GARDENER)
+   until ALICE and BOB are born (course step 9). The web app gains its
+   first map: a card for each world, built only from what the world
+   publishes, opening onto its live view (below, "The multiversal map").
+   DeepSeek's Rust Ur-garden (record 012-06-02, as extended, from line
+   52842) is an input here, once compiled and checked against the
+   current code.
 4. **Running on, with no server.** Since a world is deterministic, the
    page can compute where a world is now from its template, its seed and
    the time since its birth, with every change from outside a signed

@@ -344,10 +344,12 @@ step 4a: "I do want to move forward with the fractal worlds, I am eager
 to see visuals of fractals grown over time in expanding worlds." A
 fractal plant world in Rust, checked against DeepSeek's Python sketch;
 the web app in `web/`, a static site that draws a world's log as it
-grows; a garden of plants, and the multiversal map's first page; worlds
+grows; the plants hosted in the Ur-world's garden ("a microverse garden
+of hosted fractal worlds", the founder), and the multiversal map's first
+page; worlds
 that run on with no server; then more families, and the smallest
-learners that choose. It touches nothing ALICE and BOB need, so it runs
-beside the course without changing its order. *Borrowing:* L-systems,
+learners that choose. Its plants are rules alone, so it runs beside the
+course without changing its order or anything ALICE and BOB need. *Borrowing:* L-systems,
 cellular automata and iterated function systems, and replay from a
 seed.
 

@@ -46,11 +46,15 @@ visuals of fractals grown over time in expanding worlds", with "a web app
 that would allow me to monitor some ongoing simulation run of fractal
 plants".
 
-**Decided:** primary worlds, with rules and no AI inside; made from a
-template whose dials are the rule's numbers
-([research/FORMATS.md](research/FORMATS.md), "A world's template").
-DeepSeek sketched the first ones in record 012-06-02, and the project
-carries them into Rust (FRACTALS.md, the plan). How a world may change
+**Decided:** made from a template whose dials are the rule's numbers
+([research/FORMATS.md](research/FORMATS.md), "A world's template");
+primary worlds, with rules and no AI inside, for the plant worlds and
+any fractal world of rules alone (since 2026-11-15, the founder's newer
+word on learners: below, and FRACTALS.md).
+DeepSeek sketched the first ones in record 012-06-02, and now writes
+primarily in Rust, at the founder's word; the project compiles, tests and
+fits what it adopts (FRACTALS.md). The Ur-world's garden hosts them, "a
+microverse garden of hosted fractal worlds" (the founder). How a world may change
 is left open, and may differ by world. The smallest learners that choose
 enter worlds made for choosing, not the plant worlds (the technical
 lead's reading of the founder's newer word, FRACTALS.md).
