@@ -699,6 +699,13 @@ founder answers otherwise (FRACTALS.md):
   garden depends on one source (put to the founder, FRACTALS.md, "Water
   is where freedoms meet").
 
+**Sketched:** the first two stages, by DeepSeek in record 012-07-03: an
+endless plant that lives on the light it gathers and dies back when it
+runs short, with an optional choice neuron. Kept as written, with the
+technical lead's review, in `sketches/deepseek/012-07-03/`; the project
+fits it as `rust/endless-plant`, with the changes the review lists
+(COLLABORATING.md, "Messages from the technical lead"). Water is next.
+
 **Open:** nearly everything about how it behaves:
 - how water moves, step by step, in whole numbers: falling, flowing
   downhill, pooling, soaking in, evaporating;
@@ -729,8 +736,10 @@ each tick:
 ```
 
 **Send back:**
-- a water rule, as prose or Rust with tests, in whole numbers;
-- an endless growth rule, and why it stays a manageable size;
+- a water rule, as prose or Rust with tests, in whole numbers: the
+  most useful now;
+- an endless growth rule, and why it stays a manageable size (one is
+  sketched, above; others are welcome);
 - what a plant's neuron should read and choose, and how it learns;
 - strategies for finding water, light and food you would expect to
   arise, and how a world could show them;

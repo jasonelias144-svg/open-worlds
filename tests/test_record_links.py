@@ -21,7 +21,7 @@ REPO = "jasonelias144-svg/open-worlds"
 LINK = re.compile(
     r"https?://(?:github\.com/" + re.escape(REPO) + r"/(?:blob|tree)/main"
     r"|raw\.githubusercontent\.com/" + re.escape(REPO) + r"/main)"
-    r"/([^\s)>\"'`#?]+)")
+    r"/([^\s)<>\"'`#?]+)")
 
 
 def links_in(text):
@@ -58,6 +58,12 @@ class TestRecordLinks(unittest.TestCase):
                 "or https://raw.githubusercontent.com/" + REPO +
                 "/main/docs/B.md.")
         self.assertEqual(links_in(text), ["docs/A.md", "docs/B.md"])
+
+    def test_a_link_ends_where_markup_begins(self):
+        # Record 012-07-03 writes links inside tool-call markup.
+        text = ("<tool_call>fetch_url: https://raw.githubusercontent.com/" +
+                REPO + "/main/docs/C.md</tool_call>")
+        self.assertEqual(links_in(text), ["docs/C.md"])
 
 
 if __name__ == "__main__":
