@@ -286,7 +286,7 @@ kind.
   checks against the repository, including details it later called
   invented (COLLABORATING.md's 1,147 lines at the time, "2,005
   documents", the key list's timestamp); on no turn without one did it
-  fetch anything, and on such turns its replies said it had "no tool
+  fetch anything, and on one such turn it replied that it had "no tool
   output in front of me". So
   the retrieval happens out of DeepSeek's sight, on turns with a link,
   and the fetched text seems gone by its next turn, which leaves it
@@ -2452,8 +2452,9 @@ it was wrong. Questions of what the project is for stay with the founder.
   the founder one file to upload, copied from main at 6c6bb8f (topic 18,
   the message on the endless plant, FRACTALS.md, plant-world's code).
   The founder saw the words quoted and what was left out, and answered
-  "Perfect."; topic 21 then gained what the founder's tests showed about
-  reasoning: a conclusion holds only while it is kept.
+  "Perfect."; topic 21 then gained the technical lead's reading of what
+  the founder's tests showed about reasoning: a conclusion holds only
+  while it is kept, with its evidence.
 
 - 2026-11-15 Claude: the founder's third and fourth link checks, on
   `claude/link-check` (Decided, "on one more link check" and "on a

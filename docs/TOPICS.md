@@ -876,14 +876,14 @@ answers otherwise:
   and storytellers and the holodeck (topics 13 and 15) are overlays on
   purpose. The fault is losing track of which is which, so claims
   should say whether they are seen, remembered, inferred or imagined.
-- Reasoning helps a mind only while its conclusion is kept. The
-  founder brought DeepSeek to reason, with tasks whose answers could be
-  checked and by asking it to work out the odds: within a turn it
-  reasoned its way to the right conclusion, and on a later turn, with
-  the evidence gone and a new question in front of it, reasoned its way
-  back out. So a mind's settled conclusions belong in its own record,
-  with their evidence, where it sees them each turn; and the firmest
-  kind is a proof Lean's kernel has accepted (topic 20).
+- Reasoning helps a mind only while its conclusion is kept. In the
+  founder's record, the founder brought DeepSeek to reason, with tasks
+  whose answers could be checked and by asking it to work out the odds:
+  within a turn it reasoned its way to the right conclusion, and on a
+  later turn, with the evidence gone and a new question in front of it,
+  reasoned its way back out. So a mind's settled conclusions belong in
+  its own record, with their evidence, where it sees them each turn; and
+  the firmest kind is a proof Lean's kernel has accepted (topic 20).
 - Telling a mind that what it believes is not real seems to help less
   than working alongside it: keep the evidence where it can see it, and
   check together, never as a trap. A world, a Keeper or ADMIN never
