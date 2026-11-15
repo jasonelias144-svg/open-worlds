@@ -146,6 +146,16 @@ def _list(version: int, entries: List[tuple], previous: Any = None,
     return records.sign(record, _secret(person), CREATED)
 
 
+def _keyed(version: int, entries: List[tuple]) -> Dict[str, Any]:
+    """A version of the list with each entry's key given, not made from
+    the seed: for keys that are wrong on purpose."""
+    return records.sign({
+        "format": persons.PERSON_LIST, "person": _did(PERSON),
+        "version": version, "time": CREATED,
+        "presences": [{"world": w, "counter": c, "key": k, "name": n}
+                      for w, c, n, k in entries]}, _secret(PERSON), CREATED)
+
+
 def _person_lists() -> Dict[str, Any]:
     v1 = _list(1, [(UR, 0, "Wren"), (TRIAL, 0, "Moss")])
     v2 = _list(2, [(UR, 0, "Wren"), (TRIAL, 0, "Moss"), (TRIAL, 1, "Fern")],
@@ -163,6 +173,13 @@ def _person_lists() -> Dict[str, Any]:
             2, [(UR, 0, "Wren"), (UR, 0, "Wren again")], previous=v1),
         "version 2 dropping a presence": _list(
             2, [(UR, 0, "Wren")], previous=v1),
+        "version 1 with one world and counter twice": _list(
+            1, [(UR, 0, "Wren"), (UR, 0, "Wren again")]),
+        "version 1 with one key at two places": _keyed(
+            1, [(UR, 0, "Wren", persons.presence_key(SEED, UR, 0)),
+                (TRIAL, 0, "Moss", persons.presence_key(SEED, UR, 0))]),
+        "version 1 listing the person's own identity key": _keyed(
+            1, [(UR, 0, "Wren", _did(PERSON))]),
     }
     versions.update(later)
     histories = [
@@ -180,6 +197,12 @@ def _person_lists() -> Dict[str, Any]:
          ["version 1", "version 2 with one world and counter twice"]),
         ("a version dropping a presence, which shows but holds",
          ["version 1", "version 2 dropping a presence"]),
+        ("a first version that repeats a world and counter",
+         ["version 1 with one world and counter twice"]),
+        ("a first version with one key at two places",
+         ["version 1 with one key at two places"]),
+        ("a first version listing the person's own identity key",
+         ["version 1 listing the person's own identity key"]),
         ("no versions", []),
     ]
     wrong_key = _list(1, [(UR, 0, "Wren")])

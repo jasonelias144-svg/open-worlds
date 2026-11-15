@@ -30,7 +30,10 @@ in the order to read it:
    whoever enters signs an arrival, a name stays the key's that first
    used it, and a world signs its log's heads. Step 3a, persons, is
    under way: its plan is in
-   [research/PERSONS.md](research/PERSONS.md).
+   [research/PERSONS.md](research/PERSONS.md), and its second part,
+   the formats, is built: presence keys from a seed, a link that holds
+   only both ways, and a person's list ("Part two, built"). Its third
+   part, a person in the Ur-world, is next.
    Rechecked after step 3, the course gained step 8a, a lost or leaked
    key, before ALICE's and BOB's birth.
    It returns to DeepSeek at step 10, or sooner if the founder chooses.

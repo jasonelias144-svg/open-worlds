@@ -212,13 +212,22 @@ step; through their memory, at step 7); a link shown to one party only,
 off any log, which waits for proofs that reveal less; what each
 architecture shows about a mind spread across worlds.
 
-**A possible implementation:** decided now (`holds/v1` and `held-by/v1`,
-PERSONS.md, decision 4). DeepSeek's architectures (components 36 to 52:
-the octopus, the relay, the swarm, the council) become small examples on
-the same core: a design for any of them, as prose, is welcome.
+**Built** (2026-11-15, step 3a, part two): the records and the keys.
+A link is `open-worlds/holds/v1`, signed by the person, and
+`open-worlds/held-by/v1`, signed by the presence; a person's list is
+`open-worlds/person-list/v1`; and presence keys are made from the
+person's seed by HKDF-SHA256, with the exact encoding pinned
+([research/PERSONS.md](research/PERSONS.md), "Part two, built";
+`formats/persons.py`, `rust/formats/src/persons.rs`). Next is part
+three, a person in the Ur-world.
 
-**Send back:** the records, field by field; one architecture as a worked
-example; what stays private.
+**A possible implementation:** DeepSeek's architectures (components 36
+to 52: the octopus, the relay, the swarm, the council) become small
+examples on the same core: a design for any of them, as prose, is
+welcome.
+
+**Send back:** one architecture as a worked example, using the records
+above; what stays private, and from whom.
 
 ## 5. Laws for new worlds
 

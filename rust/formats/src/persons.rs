@@ -126,13 +126,18 @@ fn presences(record: &Value) -> &[Value] {
         .map_or(&[], Vec::as_slice)
 }
 
-/// Where a person's list repeats itself, or an empty list: no two
-/// presences with the same world and counter, or the same key.
+/// Where a person's list repeats itself, or lists the person, or an empty
+/// list: no two presences with the same world and counter, or the same
+/// key, and no presence whose key is the person's own identity key, which
+/// never enters a world (`docs/research/PERSONS.md`, decision 1).
 pub fn entries_problems(person_list: &Value) -> Vec<String> {
     let mut found = Vec::new();
     let mut places = std::collections::BTreeSet::new();
     let mut keys = std::collections::BTreeSet::new();
     for (i, entry) in presences(person_list).iter().enumerate() {
+        if text(entry, "key").is_some() && text(entry, "key") == text(person_list, "person") {
+            found.push(format!("$.presences.{i}: the person's own identity key"));
+        }
         let place = (
             text(entry, "world"),
             entry.get("counter").and_then(Value::as_u64),
@@ -219,7 +224,9 @@ pub fn person_list_chain_problems(versions: &[Value]) -> Vec<String> {
 
 /// Which presences in a person's list weren't made from `seed` with their
 /// world and counter, or an empty list: what the person's own client
-/// checks.
+/// checks. The list must hold ([`person_list_chain_problems`]); given one
+/// that doesn't, an entry it can't read is reported as not made from the
+/// seed.
 pub fn seed_problems(person_list: &Value, seed: &[u8; 32]) -> Vec<String> {
     presences(person_list)
         .iter()

@@ -106,10 +106,14 @@ def _person_list(record: Any) -> Dict[str, Any]:
 
 
 def entries_problems(person_list: Dict[str, Any]) -> List[str]:
-    """Where a person's list repeats itself, or []: no two presences with
-    the same world and counter, or the same key."""
+    """Where a person's list repeats itself, or lists the person, or []:
+    no two presences with the same world and counter, or the same key,
+    and no presence whose key is the person's own identity key, which
+    never enters a world (docs/research/PERSONS.md, decision 1)."""
     found, places, keys = [], set(), set()
     for i, entry in enumerate(person_list["presences"]):
+        if entry["key"] == person_list["person"]:
+            found.append(f"$.presences.{i}: the person's own identity key")
         place = (entry["world"], entry["counter"])
         if place in places:
             found.append(f"$.presences.{i}: a second presence with this "
@@ -171,7 +175,9 @@ def person_list_chain_problems(versions: List[Any]) -> List[str]:
 
 def seed_problems(person_list: Dict[str, Any], seed: bytes) -> List[str]:
     """Which presences in a person's list weren't made from `seed` with
-    their world and counter, or []: what the person's own client checks."""
+    their world and counter, or []: what the person's own client checks.
+    The list must hold (`person_list_chain_problems`); given one that
+    doesn't, a counter out of range raises ValueError."""
     return [f"$.presences.{i}: its key isn't the one its world and counter "
             "give" for i, e in enumerate(person_list["presences"])
             if presence_key(seed, e["world"], e["counter"]) != e["key"]]

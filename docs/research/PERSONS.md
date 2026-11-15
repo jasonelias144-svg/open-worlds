@@ -311,8 +311,10 @@ kinds in `schemas/records-v1.schema.json`.
 
 **The exact encoding.** The presence `counter` in `world`:
 - **Input key material:** the person's presence seed, 32 bytes.
-- **Salt:** none. RFC 5869 then uses a string of zeros, and allows it,
-  since a random seed is already a strong key.
+- **Salt:** none. RFC 5869 then uses a string of zeros (section 2.2),
+  and "HKDF is defined to operate with and without random salt"
+  (section 3.1). With a seed of 32 random bytes, extracting under that
+  fixed salt is sound.
 - **`info`:** the bytes of `open-worlds/presence/v1`, a zero byte, the
   world's did:key in ASCII, a zero byte, and the counter as four bytes,
   big-endian. A did:key has no zero byte, so the parts can't run into
@@ -390,7 +392,7 @@ record's own refusal is worded by each language.
   example) would serve better than HKDF: looked at in part two, and
   answered above ("Part two, built"). RFC 8032's acceptance of any 32
   bytes as a secret key, and HKDF's being a pseudorandom function of a
-  random seed, weren't re-read; RFC 5869's sections 2.2, 3.2 and 3.3
-  were.
+  random seed, weren't re-read; RFC 5869's sections 2.2, 3.1, 3.2 and
+  3.3 were.
 - BBS's progress to Recommendation, and its implementations in Python
   and Rust.

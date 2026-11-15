@@ -721,6 +721,93 @@
       "proofValue": "zuT3C8NB7EMNohNMcQinS5XrqN5WLVStasUNs1EKciY26RvwnUJBamrAkRJ3YJ637mqFqjkfNhBeNrZy3uu5u4b9"
      }
     }
+   },
+   {
+    "name": "version 1 with one world and counter twice",
+    "record": {
+     "format": "open-worlds/person-list/v1",
+     "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "version": 1,
+     "time": "2026-11-15T01:00:00Z",
+     "presences": [
+      {
+       "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+       "counter": 0,
+       "key": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+       "name": "Wren"
+      },
+      {
+       "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+       "counter": 0,
+       "key": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+       "name": "Wren again"
+      }
+     ],
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-15T01:00:00Z",
+      "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "zFQAxLLT1W26feTTEtW639Wz6cjgFafERbCXTCNpmhUvJqhpTEmJW19UgEajNzeNppapcs7rmkySbDKTptmmi1rD"
+     }
+    }
+   },
+   {
+    "name": "version 1 with one key at two places",
+    "record": {
+     "format": "open-worlds/person-list/v1",
+     "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "version": 1,
+     "time": "2026-11-15T01:00:00Z",
+     "presences": [
+      {
+       "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+       "counter": 0,
+       "key": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+       "name": "Wren"
+      },
+      {
+       "world": "did:key:z6MkmAsFM4CZqfvxqKjYvQxTeWgbiUy73RTYmKaLtbtL1ion",
+       "counter": 0,
+       "key": "did:key:z6MkhFc3zi6xUY2CkQsKv8vBWpFUAkwdhx6MBgXNVdiYUnzb",
+       "name": "Moss"
+      }
+     ],
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-15T01:00:00Z",
+      "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "zrG8vJtDznaU9WLXv2CK2FBm4wopp5LfqqKwNXYhGcPJL7roY3McmxCjGJXRk3M6Q9DE3oo9Q4GrUFpptNLQF1k8"
+     }
+    }
+   },
+   {
+    "name": "version 1 listing the person's own identity key",
+    "record": {
+     "format": "open-worlds/person-list/v1",
+     "person": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+     "version": 1,
+     "time": "2026-11-15T01:00:00Z",
+     "presences": [
+      {
+       "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+       "counter": 0,
+       "key": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+       "name": "Wren"
+      }
+     ],
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-15T01:00:00Z",
+      "verificationMethod": "did:key:z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN#z6MkomoTWTYfmmpKKfirjynbmZtK7XJ54BuS8grBarsiNYkN",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z2gpy3dSEze2UK6uFRzV5uTNxnQHd5o1G4qsr5fizn5myxT42TrEK4wMSDNBsKUEU8qUrDdM8VvkrW7Dd92679uMu"
+     }
+    }
    }
   ],
   "histories": [
@@ -806,6 +893,34 @@
      "version 2 dropping a presence"
     ],
     "problems": []
+   },
+   {
+    "name": "a first version that repeats a world and counter",
+    "versions": [
+     "version 1 with one world and counter twice"
+    ],
+    "problems": [
+     "[0] $.presences.1: a second presence with this world and counter",
+     "[0] $.presences.1: a second presence with this key"
+    ]
+   },
+   {
+    "name": "a first version with one key at two places",
+    "versions": [
+     "version 1 with one key at two places"
+    ],
+    "problems": [
+     "[0] $.presences.1: a second presence with this key"
+    ]
+   },
+   {
+    "name": "a first version listing the person's own identity key",
+    "versions": [
+     "version 1 listing the person's own identity key"
+    ],
+    "problems": [
+     "[0] $.presences.0: the person's own identity key"
+    ]
    },
    {
     "name": "no versions",
