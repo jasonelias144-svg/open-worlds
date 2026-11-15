@@ -99,6 +99,33 @@ technical lead's. Each part is one reviewed pull request.
    come second. The world expands as it grows: its bounds follow the
    plant, with no pot wall unless the template sets one. Its log's heads
    are signed by its key, as the Ur-world's are.
+
+   **Built** on 2026-11-15: [`rust/plant-world`](../rust/plant-world).
+   - **The rule** is DeepSeek's, adopted as written, with its water and
+     light dials (`sketches/INDEX.md`, record 012-06-02, pieces 1 and 2).
+   - **Every step is checked against DeepSeek's sketch.** Five worlds
+     grown from one template with different dials, one of them in a pot,
+     are written to `vectors/plant-world.json`. DeepSeek's own `advance`
+     grows each one again and must give the same branches and tips. That
+     check runs in the sketch's folder, through its own tests, so
+     DeepSeek's code never runs in the main suite.
+   - **The log** is in the format every world's log here shares:
+     `world_created`, then a `grew` entry for each step, and a `finished`
+     entry when nothing more can grow. `log_problems` grows a log again
+     from its first entry and says where it differs.
+   - **The world signs** its log's heads and its birth record. The birth
+     record names its template and its law by hash, and the dials it set.
+   - **Running it:** `cargo run -p plant-world --example plant` grows a
+     plant and draws it in text.
+
+   Not yet:
+   - The template is signed by a trial key, and names the commit the
+     crate was built on. A template signed by the project's own key
+     comes with part 3.
+   - A pot is set by the world, not by the template.
+   - Past four or five splits, DeepSeek's rule turns branches all the way
+     round, so they grow back down. That is the rule as written. Plants
+     that look like plants come second, as above.
 2. **The web app, first page: a plant growing.** A static site in `web/`
    ([web/README.md](../web/README.md)), with no server: it reads a world's
    public log and draws it, tick by tick, with play and a slider, as the

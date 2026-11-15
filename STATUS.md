@@ -37,8 +37,10 @@ respect one another's freedom, with full transparency and exit at any time
 - Claude: the fractal track, alongside the course (docs/FRACTALS.md), set
   by the founder on 2026-11-14: a fractal plant world in Rust, the web
   app in `web/` to watch worlds grow, and in it the multiversal map. Its
-  plan is in; the first part, the plant world, is next. DeepSeek's code
-  from record 012-06-02 works in part (#63), with a second round to come.
+  plan is in, and its first part, the plant world, is built
+  (`rust/plant-world`). The second, the web page that shows a plant
+  growing, is next. DeepSeek's code from record 012-06-02 works in part
+  (#63), with a second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
   (#29), and experiment 001, the first unscripted minds
   ([results](experiments/001-first-words/RESULTS.md), #30). The first
@@ -1272,7 +1274,30 @@ it was wrong. Questions of what the project is for stay with the founder.
   Recommendation), or a seed's loss or leak costs a person more than
   separate keys would, or the architectures need the kernel changed.
 
+- 2026-11-15, the plant world (docs/FRACTALS.md, part 1). DeepSeek's
+  plant rule is adopted as written, with its screen coordinates (`y`
+  grows downward) and its order of tips. Its log uses the format every
+  world's log here shares, with `world_created`, `grew` and `finished`
+  entries. Its birth record names only the dials changed from the
+  template's values, as records-v1 requires. It is checked against
+  DeepSeek's `advance` from inside the sketch's folder, through that
+  folder's own pytest, and the main suite checks the rest without
+  importing the sketch. *Why:* the rule is whole numbers and
+  deterministic, so the sketch can be its reference; and DeepSeek's code
+  runs only through its folder's tests, as the project's practice for
+  running it is. *Wrong if:* the rule needs changing to look like a
+  plant. That is a second rule beside it, not a change to this one, so
+  the logs already written stay true.
+
 ## Log
+
+- 2026-11-15 Claude: the fractal track's part 1, a plant world in Rust
+  (`rust/plant-world`). It grows by DeepSeek's rule, has its own key and
+  a log in the common format, and signs its heads and its birth record.
+  Five worlds are in `vectors/plant-world.json`, checked step by step
+  against DeepSeek's `advance` in the sketch's folder, and from Python in
+  `tests/test_plant_world_vectors.py`. CI also runs the example, which
+  draws a plant in text.
 
 - 2026-11-15 Claude: record 012-06-02 brought in again, as the founder
   shared it continued: the first 43,170 lines are the same, and 19,440

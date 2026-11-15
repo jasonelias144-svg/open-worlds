@@ -14,6 +14,7 @@ The standards for every Rust file are in
 |---|---|
 | [`world-log`](world-log) | Checks a world's public record exactly as the Python kernel writes it. |
 | [`ur-world`](ur-world) | The Ur-world: a 3D world that begins in a garden, and is made from its seed as it is explored, where whoever enters signs an arrival with their key ([docs/URWORLD.md](../docs/URWORLD.md)). |
+| [`plant-world`](plant-world) | A fractal plant world, the fractal track's first part ([docs/FRACTALS.md](../docs/FRACTALS.md)): a primary world with a key and a log of its own, made from a template, that grows by DeepSeek's plant rule and its dials alone, checked step by step against DeepSeek's sketch. |
 | [`formats`](formats) | Records signed with `eddsa-jcs-2022`, as the Python package `formats/` signs them, checked against the same vectors and the W3C specification's own example; the records the offices keep, identity, birth and mind records, a world's template and its dials, the project's key list, and the arrival, checked against `schemas/records-v1.schema.json`; sealing with HPKE, checked against RFC 9180's example and the Python code's boxes; and world-keys and journal entries sealed to the one they name, checked against the same sealed-record vectors. |
 
 The workspace's settings, which every crate shares, are in
@@ -35,6 +36,7 @@ cargo run --locked -p world-log -- ../vectors/world-log.json
 cargo run --locked -p ur-world --example log -- \
     ../vectors/ur-garden-log.json ../vectors/ur-garden-head.json
 cargo run --locked -p ur-world --example garden
+cargo run --locked -p plant-world --example plant
 cargo run --locked -p ur-world --example door -- --log /tmp/door-log.json \
     --head /tmp/door-head.json \
     --mind TRIAL-1=python3 -I ../minds/wanderer.py \
