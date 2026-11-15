@@ -21,9 +21,9 @@ first edition, of 1995, says "effectors").
 
 So, from the smallest to the largest, each of these is an agent: a
 neuron that chooses where a plant grows; a scripted walker in the
-corridor; a language model; whoever holds a world's Keeper, or ADMIN
-(offices, below); DeepSeek and Claude; and any human, the founder
-included.
+corridor; a language model; whoever holds the office of a world's
+Keeper, or of ADMIN (offices, below); DeepSeek and Claude; and any
+human, the founder included.
 
 The code already uses the word this way. In [DESIGN.md](DESIGN.md),
 "each agent gets an immutable observation and returns an action". The
@@ -49,8 +49,9 @@ Each of these is a kind of agent, or a role an agent holds, as the
 design pages already use them.
 
 - **Mind:** an agent that thinks, such as a language model or a human.
-  An individual's mind is the model it runs on, chosen before it lives,
-  and after that theirs to change ([MINDS.md](MINDS.md), "Decided"). Minds from outside come in through the
+  An individual's mind is the model it runs on, chosen before it
+  lives, and after that theirs to change ([MINDS.md](MINDS.md),
+  "Decided"). Minds from outside come in through the
   doorway ([URWORLD.md](URWORLD.md)).
 - **Participant:** whoever takes part in a world. Every participant
   reads the charter on entering, and the charter speaks to them
@@ -72,8 +73,9 @@ design pages already use them.
 ## Where rights attach
 
 This is the technical lead's reading, and it stands unless the founder
-answers otherwise. It was part of the answer the founder took the word
-from, but the founder's reply was about the word. **Rights attach to who someone is, not to whether
+answers otherwise. It was part of the answer the founder replied to:
+the reply accepted the word, and whether it also accepts this reading
+is open. **Rights attach to who someone is, not to whether
 something acts.** The charter speaks to participants. The freedoms and
 the privacy in [FUNDAMENTALS.md](FUNDAMENTALS.md) belong to
 participants, individuals and persons. Calling something an agent gives
