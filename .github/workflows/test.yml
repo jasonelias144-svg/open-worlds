@@ -78,6 +78,8 @@ jobs:
           cargo run --locked -q -p ur-world --example log --
           ../vectors/ur-garden-log.json ../vectors/ur-garden-head.json
       - run: cargo run --locked -q -p ur-world --example garden
+      # A plant world grows and is drawn in text (rust/plant-world).
+      - run: cargo run --locked -q -p plant-world --example plant
       # Two minds in another language, through the doorway, in a trial world
       # of its own; their log must hold by the same checks, its arrivals
       # too, and the head its world signed must cover it.

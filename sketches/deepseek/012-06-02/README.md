@@ -75,4 +75,7 @@ components (`chess_individual.py`, `signed_world_log.py`,
 served on this machine (127.0.0.1). Nothing reaches outside the machine.
 
 Ours, not DeepSeek's: this `README.md`, `conftest.py`, `pytest.ini`,
-`known-failures.txt` and `sketch_status_test.py`.
+`known-failures.txt`, `sketch_status_test.py`, and
+`plant_world_vectors_test.py`, which checks the Rust plant world
+(`rust/plant-world`) against this folder's `fractal_world_v3.py`, step
+by step.
