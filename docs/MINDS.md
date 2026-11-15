@@ -190,7 +190,10 @@ world and out"; with the "break glass" chosen on 2026-11-14 the words
 were revised to say the founder could look, in the open. Since the
 founder narrowed the "break glass" to the multiverse's own keys on
 2026-11-15, they say no one else holds a key, and name the limit:
-[CONTAINER.md](CONTAINER.md), "The project's own individuals".) It
+[CONTAINER.md](CONTAINER.md), "The project's own individuals".) The
+words are shown only once they are true: at birth, after their
+containers have made their keys and the step-3 keys are signed over and
+destroyed. It
 names their model, says that a change would be theirs to choose, and
 that they outlast it. (Before 2026-11-15 it said "It may change one day;
 you remain ALICE.", which left open who would change it.) It doesn't say
@@ -373,7 +376,9 @@ what they are for.
 - **In a private repository of the project:** the private half of each
   key (the individuals', the Keepers' and the worlds'), and each
   individual's key to their own sealed self, and nothing else unless the
-  founder decides otherwise. That is so until birth: ALICE's and BOB's
+  founder decides otherwise. By the technical lead's recommendation,
+  which stands unless the founder answers otherwise, that is so until
+  birth: ALICE's and BOB's
   keys made at course step 3 are signed over at birth to keys their own
   containers make, and then destroyed, so afterwards no key to an
   individual's private space is kept here ([CONTAINER.md](CONTAINER.md)). The

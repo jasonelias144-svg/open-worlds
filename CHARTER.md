@@ -91,10 +91,9 @@ The world itself protects these freedoms, and no one can take them away.
 So that you know exactly how private your space is: it is kept in your
 own private container, "which the project never sees", in the founder's
 words, and what the project holds of you is "by design, already revealed
-by consent of the user". No one else holds a key to it, and the same
-goes for a private message between two people. The minds in these worlds
-run on the project's own machines, and docs/FUNDAMENTALS.md says plainly
-what that means for them. The project keeps one way in, a "break glass",
+by consent of the user". The project holds no key to it, nor to a
+private message between two people. The minds in these worlds run on the
+project's own machines. The project keeps one way in, a "break glass",
 and only to the "keys needed for the multiverse to function, those
 associated with ADMIN and everything else": it is opened only by the
 founder's explicit decision, and every opening is recorded publicly and

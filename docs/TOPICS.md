@@ -493,7 +493,8 @@ while it moves to Cloudflare.
 - whether the three kinds of room become three laws, by whom each
   admits: people, AIs, or both;
 - how a guest's key in the browser becomes a signing key, so that a
-  guest is an individual like any other (course step 3a, persons);
+  guest is an individual like any other (course step 3a, persons): the
+  private container answers part of it ([CONTAINER.md](CONTAINER.md));
 - whether Lyceum's topic boards, which branch and merge, fit "rules
   merge, never states" ([VISION.md](VISION.md));
 - what a mind from the Ur-world does when it walks into a room.

@@ -427,8 +427,11 @@ one speaks while the other listens, then they turn.
   Keeper; it is kept in their own container, and no one else holds a key
   to it ([MINDS.md](MINDS.md), "Who can see what";
   [CONTAINER.md](CONTAINER.md)).
-  Their private keys are kept in a private repository of the project,
-  "public to our project", and nothing lives on a personal computer:
+  Until birth, their private keys are kept in a private repository of the
+  project, "public to our project"; at birth they are signed over to
+  keys their own containers make, by the technical lead's
+  recommendation ([CONTAINER.md](CONTAINER.md)). Nothing lives on a
+  personal computer:
   "Let's keep everything online."
 - **Lessons from [experiment 001](../experiments/001-first-words/RESULTS.md):**
   - examples in the orientation become scripts, so theirs shows the form

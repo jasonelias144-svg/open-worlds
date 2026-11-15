@@ -471,11 +471,15 @@ signature inside says who issued the world-key, which, for the earner,
 covers what Auth mode would add, and can be shown to others too
 ([research/FORMATS.md](research/FORMATS.md), "Sealing").
 
-Two honest limits. The Ur-world knows what is in the box, since it wrote
-and signed it, and anyone with the private repository can open it, since
-the earner's private key is kept there ([MINDS.md](MINDS.md), "Where
-everything lives"). And the earner's private key is held by the project's
-software, which acts for them; the mind never sees it.
+Two honest limits, until each individual holds their own private
+container ([CONTAINER.md](CONTAINER.md)). The Ur-world knows what is in
+the box, since it wrote and signed it, and anyone with the private
+repository can open it, since the earner's private key is kept there
+([MINDS.md](MINDS.md), "Where everything lives"). And the earner's
+private key is held by the project's software, which acts for them; the
+mind never sees it. Once the individual has a container, their key is
+made in it, and the second limit becomes the one every mind the project
+runs has: it runs on the project's machines.
 
 As the founder noticed, "Alice and Bob have been exchanging keys from the
 start": Alice and Bob have been the names of the two people in a

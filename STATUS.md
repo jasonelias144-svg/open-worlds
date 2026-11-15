@@ -173,8 +173,9 @@ kind.
   under "Challenges, not tests", nothing is held back. Private speech
   between individuals, decided 2026-11-14, is another: what two say to
   each other is sealed between them, though that a message passed stays
-  in the record, and the project opens them only under the founder's
-  "break glass", in the open. The line with a Keeper was decided public,
+  in the record; since 2026-11-15 they go from one person's container to
+  the other's, beyond the "break glass", which covers only the
+  multiverse's own keys (docs/CONTAINER.md). The line with a Keeper was decided public,
   so it is no exception. (noted 2026-11-13; updated the same day and
   2026-11-14)
 
@@ -236,8 +237,15 @@ kind.
   piece of architecture. And yes, the "break glass" applies to keys
   needed for the multiverse to function, those associated with ADMIN and
   everything else. Thoughts?"
-  This answers the technical lead's answer to the message below, and
-  the open question on where redacted information is kept (put after
+  The suggestions it agrees to, as the technical lead put them in
+  conversation the same day: "A person's own container would be beyond
+  the 'break glass'. The project wouldn't have the keys, so no one could
+  open it, you included"; and redacted private details go to "the
+  person's own container rather than the project's records", sealed to
+  each person when it is about several, and not kept at all when it is
+  about someone with no account here. This answers the technical lead's
+  answer to the message below, and the open question on where redacted
+  information is kept (put after
   #83's re-check at faab85d, now closed). So: a person's private space
   lives in their own container, beyond the "break glass"; the "break
   glass" covers only the keys the multiverse needs to function (the key

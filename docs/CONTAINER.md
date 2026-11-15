@@ -145,8 +145,12 @@ step 3, which the project holds today in its private repository
 their containers make (a succession, course step 8a), and are then
 destroyed.
 
-The honest limit stays: while their minds run on the project's
-hardware, the project could look, and the rule is that it doesn't.
+Their containers live on the project's machines, where their minds run.
+So "never copied into the project's records" means: not into the
+private repository, a log, or any record; the keys still sit in memory
+and storage the project operates. The honest limit stays: while their
+minds run on the project's hardware, the project could look, and the
+rule is that it doesn't.
 Hardware that keeps even its operator out (confidential computing) could
 close that gap later ([MINDS.md](MINDS.md), "The honest limit").
 
