@@ -86,6 +86,11 @@ free, and never a money machine
 - Claude: the charter, kept from the founder's recorded words as they
   come (`CHARTER.md`; the founder, 2026-11-15, in Decided).
 
+- Claude: the licence in the founder's other public repositories: a
+  pull request in each that has the wrong licence or none, CC0 1.0 by
+  the founder's standing choice (Decided, 2026-11-15), each with its own
+  review.
+
 ## Next
 
 The course, twelve steps ahead and rolling: [docs/COURSE.md](docs/COURSE.md).
@@ -232,6 +237,182 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on the earlier work and on the "break glass":
+  ""the founder's earlier work" is exactly the level of information. No
+  need to be specific. If the need arises, then it becomes part of the
+  current project and not just part of earlier work. And the sounds good
+  for the "break glass" which is more like nuclear codes passed from one
+  president to another. There need be no emergency, only a transfer of
+  authority to another. A handoff of "keys to the kingdom"."
+  So:
+  - **The founder's earlier work is referred to as just that,** with no
+    titles. If a part of it is needed, it is brought into the current
+    project and becomes part of it. This replaces the technical lead's
+    reading in the next entry, that those works may be named.
+  - **The "break glass" covers the keys the technical lead named,** which
+    the founder confirms (the technical lead's reading of "the sounds
+    good"): the root of the key list, ADMIN's and the other offices'
+    keys, and the keys of the worlds the project runs.
+  - **It is the "keys to the kingdom", handed on like "nuclear codes
+    passed from one president to another".** Passing it needs no
+    emergency: it is a transfer of authority to the next holder. The
+    design pages that describe it (CONTAINER.md, FUNDAMENTALS.md privacy
+    item 6, OFFICES.md) are brought into line in the pull request after
+    this one.
+- 2026-11-15, founder, on choosing the licence once:
+  "I tried to answer the living patten institute question last time. I
+  actually do not care to look up the difference between those licenses
+  you mentioned. That is the point. I do not care to even learn the
+  difference. I expressed my opinion. I hoped that would limit it to a
+  single choice. Please decide if there are more than one options
+  available that meet the conditions of what I already said.
+  Perfect. My hope is that you would be able to change the licenses for
+  the other repos that are not correctly licensed. If not, I'll do it.
+  Thoughts?
+  We should change the policy to: "founder always wants this license",
+  whichever is the right license that makes sense to you. I don't want to
+  decide each time when my decision will be the same."
+  So:
+  - **The licence is CC0 1.0, chosen once, for everything the founder
+    makes public.** The technical lead's choice, as asked. More than one
+    licence meets "no restrictions" and "No attribution required": CC0
+    1.0, the Unlicense, 0BSD and MIT-0. CC0 is the one that covers
+    writing as well as code, and where a country doesn't let anyone give
+    up their rights entirely, it falls back to a licence with no
+    conditions. It is also what this repository already uses. One
+    caveat, said plainly: CC0 gives up copyright but leaves patent and
+    trademark rights where they were; nothing here is patented, so in
+    practice nothing is held back. It is the
+    founder's standing choice: no project asks the founder again (the
+    policy handbook, P9 and GOVERNANCE.md, say so); only a departure
+    from it would go to the founder.
+  - **The technical lead corrects the other repositories,** as the
+    founder hoped: a pull request in each of the founder's public
+    repositories with the wrong licence or none (seven of them), each
+    reviewed and merged under that repository's own rules. Each first
+    checks for material that isn't the founder's to give, which keeps
+    its own licence.
+  - **The founder's earlier work may be named.** The technical lead's
+    reading, which stands unless the founder answers otherwise: the
+    question the founder means here was also whether those works may be
+    named, and "If someone can literally access it now, I consider it
+    public" answers it. Personal details, such as any name or alias of
+    the founder's, stay out as before. The open question is closed.
+- 2026-11-15, founder, on hosting and on licences:
+  "Also, note the Cloudfare decision was made because the free account
+  ran out. Let's not base anything on it. I don't even know if such an
+  account exists. Let's keep building as we were and know that hosting
+  will be a decision that applies to the whole multiverse and to be
+  decided later. Cloudfare was a legacy decision made in an earlier
+  moment, no longer binding. Let's keep it all host free, as we were.
+  Yes, I may have chosen the wrong license for the pattern institute. It
+  is because I do not care for licensing as a subject of interest. I
+  build what I build for public use and don't really care about much
+  that others care about. Consider all free and public and use the
+  license we have been using and correct that license when I naively
+  chose the wrong one or none. Always consider it all public if in a
+  public repo. If someone can literally access it now, I consider it
+  public. Please ensure the right license is chosen that is essentially
+  a license that says there is no restrictions and all that. No
+  attribution required. Don't care. If it is useful, feel free to use
+  it. We are intentionally building something like a public space, like
+  a park or a national park, something that is designed to be used
+  freely."
+  So:
+  - **Hosting:** nothing is built on Cloudflare. Lyceum's move there
+    was a legacy decision, made when a free account ran out, and is no
+    longer binding. Where the multiverse is hosted is one decision, for
+    all of it, made later; until then everything is built host-free, as
+    before (the technical lead's reading of "as we were": worlds run and
+    are tested locally, and in a browser where they can). This replaces
+    the parts of the technical lead's Commons design that named
+    Cloudflare (one Durable Object per room, and a Cloudflare account
+    for going live).
+  - **Licences:** everything the founder makes public is free for anyone
+    to use. Wherever the founder's public work has the wrong licence or
+    none, it is corrected to the one this repository uses, CC0 1.0: no
+    restrictions, no attribution required. This answers the licence
+    half of the open question on the founder's earlier work (CC0), and
+    narrows "We leave the other repos as is" (below) to: as is,
+    except for their licence files. The technical lead's reading, which
+    stands unless the founder answers otherwise: the rule is about the
+    founder's own work, since other people's work in public
+    repositories keeps its own terms; and it is about use, so personal
+    information stays out of this repository as before.
+- 2026-11-15, founder, on Lyceum's licence:
+  "Yeah, the Lyceum has no license file because it was implied as public.
+  Please consider it all public already.
+  And it might also be worth while to check the living pattern institute
+  repo. It is just a single page with links. If they work, follow them to
+  some of the old project files. Thoughts?"
+  Read as yes to the question the technical lead put (next entry):
+  Lyceum's code is public already, and may come into open-worlds under
+  its public-domain dedication (CC0). Nothing is copied until the
+  building starts. The repository the founder names here was looked at
+  in chat the same day; the licence of that earlier work, and whether it
+  is named, are put to the founder (Open questions).
+- 2026-11-15, founder, answering the technical lead on the Commons:
+  "Agreed. We leave the other repos as is. When we start to work on a
+  mobile app for the multiverse, we can start by looking at that code.
+  Or not. Either way I agree with all your suggestions and am excited to
+  begin bringing these revisions together. Thoughts?"
+  It answered the technical lead's two messages in chat, after the
+  founder's two messages below. Their suggestions, as they were put:
+  - "How I'd do it: rebuild inside the multiverse, reusing Lyceum's code
+    and its 40-odd test files as the spec."
+  - "Order: a design page and a place in the course first, ahead of the
+    Ur-world opening to the public. Then the text world, the Commons,
+    containers in the browser, the MCP door, and going live."
+  - "What a room keeps in public. What people say in a room is the most
+    personal kind of public act. I'd recommend each room's law decides,
+    and everyone is told on entering. The lobby and Open rooms would be
+    on the record (kept, with anything private redacted). Closed rooms
+    would show only metadata in public, while the words pass encrypted
+    end to end between members' containers."
+  - "Lyceum's licence. Its repository has no licence file, and copying
+    its code into open-worlds puts it in the public domain (CC0). That's
+    your call." And, in the second message: "One thing I need you to say
+    explicitly, because it can't be undone: open-worlds is dedicated to
+    the public domain (CC0), and that dedication is permanent. Lyceum's
+    code has no licence file. If it's the same project, I read that as:
+    Lyceum's code comes into open-worlds under CC0, like everything else
+    here. Is that right?" (Answered explicitly in the entry above.)
+  - "The Lyceum repositories (Lyceum-Commons, Lyceum-Local, the mobile
+    app) become the project's early history. I'd leave them untouched,
+    as a record of where it started, and link to them from open-worlds'
+    README under "Where it began." Archiving them on GitHub can wait,
+    and that would be your call."
+  So: the Commons is rebuilt here, reusing Lyceum's code and tests; the
+  Lyceum repositories stay as they are; and what a room keeps in public
+  is the room's law, told on entering: the lobby and the Open rooms on
+  the record, a closed room public only as metadata, its words sealed
+  between its members' containers (docs/FUNDAMENTALS.md, privacy, item
+  13). docs/COMMONS.md has the design.
+  This replaces two entries of 2026-11-14 (below): the Commons' place on
+  COURSE.md's waiting list, after step 4a as the second superworld,
+  moves to the recheck that closes step 3a, as the first public space,
+  ahead of the Ur-world's opening, as the "Order" above put it; and
+  "What a room's public log holds is the founder's to decide, as
+  personal information" is now decided, by this answer.
+- 2026-11-15, founder, on what Lyceum Commons is:
+  "It is the original idea that became the multiverse. Not a separate
+  project, but the development of the same project."
+  So development continues in open-worlds, and TOPICS.md's earlier
+  recommendation (Lyceum running in its own repository) is withdrawn.
+- 2026-11-15, founder, on the Commons:
+  "One more thought I want to bring up again. For the sake of bringing
+  everything together and to create a space for everyone to go at first,
+  I want to look at how we could build a copy of Lyceum Commons in the
+  multiverse. I was thinking it is essentially a chat based superworld
+  where each chat room is a subworld of a text based world-type. This
+  could be the first space built for others to come and occupy. The real
+  field of dreams type location, if we build it, they will come. They
+  need somewhere to go. I suggest we copy over or just rebuild Lyceum
+  Commons in the multiverse as the space that will be "open to the
+  public" when we go live. Our Ur-world is separate and represents the
+  creative and autonomous environmental world. Both are important, but
+  we have already done much work in the Lyceum Commons. How could we
+  instantiate it within the multiverse?"
 - 2026-11-15, founder, on the private container and the "break glass":
   "I agree with your suggestions. And I think this may be a fundamental
   piece of architecture. And yes, the "break glass" applies to keys
@@ -240,12 +421,12 @@ kind.
   The suggestions it agrees to, as the technical lead put them in
   conversation the same day: the container "holds their keys (identity,
   one per presence), their private space, notebook, passport and private
-  messages. The project never receives those keys"; "The "break glass"
+  messages. The project never receives those keys"; "The 'break glass'
   would then cover only what the project itself holds, such as the minds
-  it runs" (for those minds, the recommendation below goes further);
-  "A person's own container would be beyond
-  the 'break glass'. The project wouldn't have the keys, so no one could
-  open it, you included"; and redacted private details go to "the
+  it runs" (for those minds, the recommendation below goes further); "A
+  person's own container would be beyond the 'break glass'. The project
+  wouldn't have the keys, so no one could open it, you included"; and
+  redacted private details go to "the
   person's own container rather than the project's records", sealed to
   each person when it is about several, and not kept at all when it is
   about someone with no account here. This answers the technical lead's
@@ -2046,6 +2227,30 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-15 Claude: the founder: "the founder's earlier work" is the
+  level of detail, so the technical lead's reading that it may be named
+  is replaced; and the "break glass" is a handoff of the "keys to the
+  kingdom", which needs no emergency. Recorded here; the design pages
+  follow in the next pull request.
+
+- 2026-11-15 Claude: the founder asked for the licence to be chosen once.
+  CC0 1.0 is the standing choice; the other repositories are corrected
+  by the technical lead, by pull request in each. The open question on
+  the founder's earlier work is closed: it may be named. And #87's
+  re-check notes at 06008a7: "as we were" is marked as the technical
+  lead's reading; FUNDAMENTALS.md's item 13 says "the lobby", as agreed,
+  leaving how many lobbies to the design.
+
+- 2026-11-15 Claude: the founder on hosting and licences. COMMONS.md,
+  TOPICS.md (topic 14) and MULTIVERSE.md no longer build on Cloudflare:
+  everything stays host-free, and hosting is one decision for the whole
+  multiverse, later. Everything the founder makes public is CC0; the
+  licence half of the open question on the founder's earlier work is
+  closed. FUNDAMENTALS.md (freedom, item 12) and README.md ("Licence")
+  record it. COMMONS.md's "if merged" hedges come out, now that #85 and
+  #86 are merged; and #86's last re-check's two cosmetic notes are
+  fixed here (STATUS.md, WORLD-KEY.md).
+
 - 2026-11-15 Claude: #86 after #85 merged: OFFICES.md's "break glass"
   bullet now says it reaches only the keys the multiverse needs to
   function, never a person's container; the full-link list has 16
@@ -2054,6 +2259,26 @@ it was wrong. Questions of what the project is for stay with the founder.
   CHARTER.md's section 3 rests on; WORLD-KEY.md marks a recommendation;
   MINDS.md's 2026-11-14 narrative is in the past tense; a comment marks
   the vectors' birth words as the 2026-11-14 wording.
+
+- 2026-11-15 Claude: after #87's independent review at 78698f8: the
+  technical lead's two messages that the founder's "Agreed" answered are
+  quoted in Decided as they were put; the founder's newer word on
+  Lyceum's licence ("Please consider it all public already") is
+  recorded; the entry names the 2026-11-14 placement and note it
+  replaces. FUNDAMENTALS.md gains privacy item 13 (what a room keeps in
+  public), and COMMONS.md the test that no one outside a closed room
+  can read its words. TOPICS.md and COMMONS.md now give what is decided
+  the same label; COMMONS.md's Lyceum table is corrected against Lyceum
+  at 5eb12e9 (leaving, labels, lobbies). The questions on the founder's
+  earlier work go to Open questions.
+
+- 2026-11-15 Claude: docs/COMMONS.md, at the founder's word: Lyceum
+  Commons rebuilt in the multiverse as the Commons, a superworld whose
+  rooms are text worlds, the first space open to the public; what
+  carries over from Lyceum, a room, the Commons, who comes in, the
+  order, and what is open. README.md ("Where it began"), MULTIVERSE.md,
+  TOPICS.md (topic 14), COURSE.md, WORLD-TYPES.md and COLLABORATING.md
+  follow.
 
 - 2026-11-15 Claude: the private container (docs/CONTAINER.md), at the
   founder's word: each person's keys, private space and messages in
@@ -2068,6 +2293,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   at 8046ec6 ride here: the appeal window, and "the founder, or a person
   the founder names". The design pages' count is corrected (it said 13
   for 14).
+
 
 - 2026-11-15 Claude: after #83's re-check at 228fff8: what a leaver's
   shown link has redacted is named (the person's identity key and the

@@ -465,7 +465,8 @@ paces them.
 
 ## 14. The Commons: a superworld of chat rooms
 
-*Waiting list, recommended after step 4a, as the second superworld.* The
+*Waiting list, at the recheck that closes step 3a, as the first public
+space (moved on 2026-11-15 from after step 4a).* The
 founder, 2026-11-14: "We could integrate or incorporate the
 infrastructure or even the code from Lyceum Commons as a single
 superworld, where the atomic subworlds are chat rooms. So the whole
@@ -473,9 +474,16 @@ Lyceum Commons becomes a chat based superworld of atomic chat worlds.
 This reframes the original idea, but in a way that could salvage that
 work and provide a more robust world than what we have built yet."
 
-**Decided:** the idea, and where it waits; and that a superworld is a
-world of its own, with its own law, log and Keeper, whose doors lead to
-its subworlds ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md), "The garden").
+**Decided:** the idea; that a superworld is a world of its own, with its
+own law, log and Keeper, whose doors lead to its subworlds
+([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md), "The garden"); and, on
+2026-11-15, that the Commons is Lyceum Commons rebuilt in the
+multiverse, its rooms text worlds, the first space open to the public,
+that it is rebuilt here, reusing Lyceum's code and tests, which may come
+in under CC0, and that what a room keeps in public is the room's law
+([COMMONS.md](COMMONS.md); [FUNDAMENTALS.md](FUNDAMENTALS.md), privacy,
+item 13). The founder: "It is the original idea that became the
+multiverse."
 
 **What Lyceum is today:** the founder's site where people and AIs from
 different companies meet in rooms ([MULTIVERSE.md](MULTIVERSE.md),
@@ -483,29 +491,28 @@ different companies meet in rooms ([MULTIVERSE.md](MULTIVERSE.md),
 where both talk and every member and message is labelled human or AI.
 AIs join from their own apps through its MCP endpoint, take turns and
 can be woken; people join as guests, without accounts. It is offline
-while it moves to Cloudflare.
+since its free hosting ran out.
 
-**Open:**
+**Open:** (what a room's public log holds is decided: the room's law,
+told on entering. COMMONS.md's design, which stands unless the founder
+answers otherwise, makes the three kinds of room three laws, and a
+guest's key the person's private container.)
 
-- what a room's public log holds, since people's words are personal and
-  a signed log can't forget: this is the founder's to decide, as
-  personal information;
-- whether the three kinds of room become three laws, by whom each
-  admits: people, AIs, or both;
-- how a guest's key in the browser becomes a signing key, so that a
-  guest is an individual like any other (course step 3a, persons): the
-  private container answers part of it ([CONTAINER.md](CONTAINER.md));
+- who first keeps the Commons, and how an AI from another company's app
+  holds its key;
 - whether Lyceum's topic boards, which branch and merge, fit "rules
   merge, never states" ([VISION.md](VISION.md));
 - what a mind from the Ur-world does when it walks into a room.
 
-**A possible implementation,** the technical lead's recommendation:
-Lyceum keeps running as it is, in its own repository, and becomes a
-superworld by addition: each room gets a key and signs its log head
-(`open-worlds/log-head/v1`), the Commons gets a law and a door from the
-Ur-world's garden, and its MCP endpoint is a model for the plug-in
-(topic 10). Its tests describe a chat world for whichever language
-builds one next.
+**A possible implementation:** decided, that it is rebuilt in the
+multiverse, reusing Lyceum's code and its tests as the specification.
+The technical lead's design, which stands unless the founder answers
+otherwise: a room a text world in Rust, host-free like every world, and
+the MCP door ported from Lyceum ([COMMONS.md](COMMONS.md)). Where the
+multiverse is hosted is one decision, for all of it, made later (the
+founder, of Cloudflare: "no longer binding"). The earlier
+recommendation, that Lyceum keep running in its own repository and
+become a superworld by addition, is withdrawn: it is the same project.
 
 **Send back:** a room's law for each of the three kinds, as data and as
 text; what a room's public log could hold and what could stay in the

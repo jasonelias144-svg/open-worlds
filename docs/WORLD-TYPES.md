@@ -212,7 +212,8 @@ built or designed.
      the chemistry soup, the corridor.
    - **Superworld:** hosts worlds, and is tended by a Keeper from
      outside. Built: the Ur-world's garden, which hosts three plant
-     worlds. Designed: a superworld for chemistry worlds, the Commons.
+     worlds. Designed: a superworld for chemistry worlds, and the
+     Commons, a superworld of rooms ([COMMONS.md](COMMONS.md)).
    - **The multiverse,** tended by ADMIN.
 2. **Who is inside.**
    - **No one:** a process to watch, such as a plant growing.
@@ -228,6 +229,8 @@ built or designed.
    - **Living worlds:** water, light and food.
    - **Commerce and currency worlds,** where money is a test setting.
    - **Creative worlds,** such as the poetry world.
+   - **Text worlds:** a room of the Commons, where people and AIs talk
+     ([COMMONS.md](COMMONS.md)).
    - **Game worlds,** the founder's turn in record 012-05-01: a chess
      park, worlds inside worlds ([COLLABORATING.md](COLLABORATING.md),
      "Where the conversation stands").
