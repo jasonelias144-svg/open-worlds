@@ -60,7 +60,9 @@ Four things are different here, and they shape the design:
    multiverse, but a world's record never ends; sealed selves stay
    sealed; and keys stay their holders', so an individual can go on
    elsewhere" ([ADMIN.md](ADMIN.md)). So no operation here deletes a
-   log, and a reset never overwrites one.
+   log, and a reset never overwrites one. What a log keeps of someone
+   who leaves the multiverse waits for the founder's answer (STATUS.md,
+   "Open questions"); either way the log itself stays.
 4. **Leaving always works.** No operation here holds anyone in. A
    paused world still takes each leaving, and logs it; a world that
    stops lets everyone out first; and a superworld's pause pauses its

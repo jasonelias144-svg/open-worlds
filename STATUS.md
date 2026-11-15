@@ -135,17 +135,22 @@ kind.
   The options:
   1. **Public acts stay** in the world's log, under a presence key that
      names no one once the person is gone; the links between their
-     presences, which they chose to show, are removed.
+     presences, which they chose to show, are removed. Its limit:
+     unlinked keys don't make unlinkable acts, as a manner of speaking
+     or the hours kept can still point to someone (FUNDAMENTALS.md,
+     privacy, item 5).
   2. **Public acts are removed too:** the log keeps only a sealed
-     fingerprint of each (a salted hash), so it still checks, and
-     everyone else's acts stay.
+     fingerprint of each (a salted hash, whose salt goes too), so it
+     still checks, and everyone else's acts stay.
   3. **The leaver chooses,** between 1 and 2, for any or all of their
      acts.
 
-  The recommendation: 3, with 1 as the default. A world's history, and
-  other people's (a reply, a thing built together, a stamp), stands on
-  those acts, and once the links are gone they point to no one; but if
-  the person wants them gone, that is their right, as the founder's
+  Option 2 is the plain reading of the founder's newest words, which
+  win over the earlier decision. The recommendation departs from them,
+  and says so: 3, with 1 as the default. A world's history, and other
+  people's (a reply, a thing built together, a stamp), stands on those
+  acts, and once the links are gone they point to no one directly; but
+  if the person wants them gone, that is their right, as the founder's
   words say. Either way, logs are built from the start so that an
   entry's content can be removed while the log still checks, so the
   choice can change later. Because this concerns personal information,
@@ -270,7 +275,11 @@ kind.
   So the next holder is a person, named publicly when the founder
   chooses them, and the choice is on record; the charter's section 3
   says so. Until someone else joins, the founder alone holds it, and
-  nothing more is built or decided for it now.
+  nothing more is built or decided for it now. The technical lead's
+  reading beside it, which only adds protection and stands unless the
+  founder answers otherwise: the person named agrees to be named, as
+  their name goes into a public record (FUNDAMENTALS.md, privacy,
+  item 6).
 - 2026-11-15, founder, on who holds the "break glass" after the founder:
   "And who holds it is whoever I leave it to. Now, there is nobody. But
   I am building something that will bring in others. At that point, we
