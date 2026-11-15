@@ -131,13 +131,6 @@ kind.
   charter tells every participant; sealing it fully can't be undone for
   what is already sealed, so that waits for the founder's explicit
   word.
-- For the founder (asked 2026-11-15, after #81's independent review):
-  once others run worlds, the multiverse as a whole can't be stopped by
-  any one party, only part by part (docs/VISION.md, "The multiverse as a
-  computer", test 3). That is the price of having no master. Accept it?
-  Recommendation: yes, with every world able to pause itself and every
-  person able to leave. It is hard to undo, so it waits for the
-  founder's explicit word, and doesn't stand by silence.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
@@ -247,6 +240,20 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on stopping part by part, and world types:
+  "I accept it. Every world can pause itself and every person can leave.
+  If they return, they can pick up where they left off on challenges,
+  or anything else. Also, we can treat worlds like virtual machines
+  without much stretch of the imagination, or like containers. In
+  either case, we can pause a state and later resume. We can stop. We
+  can restart or reset. We should have that functionality for worlds
+  of a certain type. We need a full taxonomy of world types."
+  So the question put after #81's independent review is answered:
+  accepted (docs/VISION.md, test 3). The lifecycle (pause, resume,
+  checkpoint, stop, restart, reset, branch) and a taxonomy of world
+  types are in docs/WORLD-TYPES.md, as the technical lead's reading,
+  which stands unless the founder answers otherwise; the charter's
+  section 5 says leaving and returning in the founder's words.
 - 2026-11-15, founder, on privacy and freedom:
   "Also note my decision on all should have a right to a private space
   that is encrypted from outside view, even ADMIN. And anything
@@ -311,9 +318,9 @@ kind.
   part by part; growth by decision, the founder's, one stage at a time;
   signs named in advance; if someone develops, they may be someone),
   checked against the steps ahead at each course recheck (docs/COURSE.md).
-  One part doesn't stand by silence: accepting that, once others run
-  worlds, the whole can be stopped only part by part is hard to undo,
-  so it waits for the founder's explicit word (Open questions).
+  One part didn't stand by silence: accepting that, once others run
+  worlds, the whole can be stopped only part by part, which is hard to
+  undo. The founder accepted it explicitly the same day (above).
 - 2026-11-15, founder, in six messages quoted in docs/FRACTALS.md
   ("Where it leads: living worlds"), the aim for the fractal track: "So
   instead of a prescribed number of turns, I can set it going and watch
@@ -1668,6 +1675,15 @@ it was wrong. Questions of what the project is for stay with the founder.
   logged the same way.
 
 ## Log
+
+- 2026-11-15 Claude: world types, and what can be done with a world
+  (docs/WORLD-TYPES.md), at the founder's word: looked first at
+  containers (the OCI runtime's states; Docker's pause and checkpoints)
+  and virtual machines; seven lifecycle operations, each an entry in a
+  world's log, none deleting a record; returning picks up where one
+  left off; a taxonomy on seven dimensions; and which world has which
+  operations. A design: the operations are taken up at the course's
+  next recheck.
 
 - 2026-11-15 Claude: freedom and privacy, the fundamentals, in one place
   (docs/FUNDAMENTALS.md), at the founder's word: seven decisions on

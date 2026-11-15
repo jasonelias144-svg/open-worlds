@@ -68,6 +68,11 @@ in the order to read it:
    freedom and privacy in one place, the founder's "absolutely
    fundamental" (2026-11-15): among them, everyone has a private space,
    encrypted, that no one else can read, not even ADMIN.
+   [WORLD-TYPES.md](WORLD-TYPES.md) has a taxonomy of world types, and
+   what can be done with a world of each, as with virtual machines and
+   containers: pause, resume, stop, restart, reset (the founder,
+   2026-11-15). Every world can pause itself, every person can leave,
+   and a person who returns picks up where they left off.
 4. **The founder's visions of 2026-11-14,** in the founder's words
    ([VISION.md](VISION.md), [PARALLEL-WORLDS.md](PARALLEL-WORLDS.md)):
    question worlds, where an idea becomes a world that tests it; an app
@@ -765,3 +770,5 @@ page.
 - 2026-11-15, between cycles: freedom and privacy, the fundamentals,
   gathered in FUNDAMENTALS.md (item 3 above), and privacy among the
   charter's guarantees.
+- 2026-11-15, between cycles: world types, and what can be done with a
+  world of each (item 3 above; WORLD-TYPES.md).

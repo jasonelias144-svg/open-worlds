@@ -766,6 +766,11 @@ step 11 (COLLABORATING.md, "Held back").
 - **When freedoms meet:** not hearing a speaker, and agreements others
   can accept or refuse ([FREEDOMS.md](FREEDOMS.md)).
 - **Generator 2:** land decided when first seen.
+- **World types** ([WORLD-TYPES.md](WORLD-TYPES.md)): the founder's "We
+  need a full taxonomy of world types", and what can be done with a
+  world of each (pause, resume, stop, restart, reset, branch). Ideas
+  welcome, as prose: a dimension the taxonomy misses, a type that fits
+  none, and who may pause a world that others are in.
 - **Commerce and currency worlds** ([VISION.md](VISION.md)): economies,
   and currency designs such as different blockchains, modelled as a
   world's test settings, never a currency anyone uses: the multiverse

@@ -380,6 +380,12 @@ seed.
 ## Waiting
 
 Added one at a time, as steps are done:
+- a world's lifecycle (the founder, 2026-11-15): pause, resume,
+  checkpoint, stop, restart, reset and branch, each an entry in the
+  world's log, with which world has which by its type
+  ([WORLD-TYPES.md](WORLD-TYPES.md)); to be placed at the recheck after
+  step 3a, with pause, resume and checkpoint first, which the endless
+  plant needs to run for hours;
 - the Commons (the founder, 2026-11-14): Lyceum Commons as "a single
   superworld, where the atomic subworlds are chat rooms"; recommended
   after step 4a, as the second superworld (docs/TOPICS.md, topic 14,

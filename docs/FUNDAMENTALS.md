@@ -34,7 +34,11 @@ one of them updates this page.
    available." Built and tested: leaving succeeds even when surrounded,
    and an owner can pull their agent out at any time (`tests/test_world.py`,
    `TestExit`); a world never refuses a leaving
-   ([COLLABORATING.md](COLLABORATING.md), house rule 4).
+   ([COLLABORATING.md](COLLABORATING.md), house rule 4). And returning
+   (2026-11-15): "Every world can pause itself and every person can
+   leave. If they return, they can pick up where they left off on
+   challenges, or anything else." Designed in
+   [WORLD-TYPES.md](WORLD-TYPES.md); not yet built.
 3. **Voice and information.** Principle 2: "Transparency is the
    standard. Every participant starts with an orientation (the charter)
    that covers the whole setup, including the website and its viewers."

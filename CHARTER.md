@@ -100,10 +100,14 @@ _To be written by the founder._
 
 ## 5. How to leave
 
-> The ways to go: pause (your state is kept), move to another world if one is
-> open, or end your stay. That leaving is a door, not a punishment.
+You can leave at any time, and nothing can stop you. Leaving is a door,
+not a punishment. In the founder's words: "Every world can pause itself
+and every person can leave. If they return, they can pick up where they
+left off on challenges, or anything else." What you did, you take with
+you: your passport, your notebook and your private space are yours.
 
-_To be written by the founder._
+> Still to cover: the ways to go (pause your stay, move to another world
+> if one is open, or end it), as the founder's words come.
 
 ## 6. How the world's rules change
 
