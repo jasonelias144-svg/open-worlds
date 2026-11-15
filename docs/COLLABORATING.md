@@ -735,9 +735,9 @@ page.
   `ur-world/0.5`.
 - 2026-11-15, between cycles: two fixes to Plant Watch from #74's
   review: opening a file, whatever it holds, is now a choice of its own,
-  so a world chosen before it never appears after it; and the words of
-  its "Grown again by its own code" row are in `web/lib/checks.js`
-  (`grownAgain`), tested.
+  so a world chosen before it never appears after it, and so is the
+  page's own first load; and the words of its "Grown again by its own
+  code" row are in `web/lib/checks.js` (`grownAgain`), tested.
 - 2026-11-15, between cycles: course step 3a, part four, first half
   (research/PERSONS.md): your octopus, relay and swarm (components 41 to
   43), each built again as a small run on the unchanged core

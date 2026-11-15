@@ -1592,7 +1592,12 @@ it was wrong. Questions of what the project is for stay with the founder.
   after it (reproduced in Chromium with the command's download delayed).
   And the words of the "Grown again by its own code" row are in
   `web/lib/checks.js` as `grownAgain`, tested for each way it can read,
-  with an answer that isn't a log now said to be one.
+  with an answer that isn't a log now said to be one. After #79's
+  independent review: when no world is shown, no world's button stays
+  pressed; and the page's own first load, and a file being read, are
+  choices too, so a file opened before the first load arrives, or a
+  world chosen while a file is read, is what stays shown (both
+  reproduced in Chromium first, and shown fixed).
 
 - 2026-11-15 Claude: course step 3a, part four, first half: the
   octopus, the relay and the swarm (docs/research/PERSONS.md, "Part four,

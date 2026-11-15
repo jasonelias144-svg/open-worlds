@@ -400,7 +400,8 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
   // Each choice is numbered, so a world whose checks finish after a newer
   // choice was made shows nothing: only the latest choice is shown.
   // Opening a file is a choice too, whatever it holds, so a world chosen
-  // before it never appears after it.
+  // before it never appears after it; and so is the page's own first
+  // load, so it never replaces a file opened before it arrives.
   let chosen = 0;
   // What the page shows when it has no world to show: nothing of the
   // world shown before, and why.
@@ -408,6 +409,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
     ++chosen;
     setPlaying(false);
     state = null;
+    document.querySelectorAll("#worlds button").forEach(b => b.setAttribute("aria-pressed", "false"));
     listChecks([]);
     document.getElementById("facts").textContent = "";
     document.getElementById("sub").textContent = "No world chosen.";
@@ -485,8 +487,11 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
   }
   document.getElementById("file").addEventListener("change", ev => {
     const f = ev.target.files && ev.target.files[0]; if (!f) return;
+    // Opening it is the choice, so a world chosen while it is read wins.
+    const mine = ++chosen;
     const r = new FileReader();
     r.onload = () => {
+      if (mine !== chosen) return;
       let json;
       try { json = JSON.parse(r.result); } catch (e) { showNothing(f.name + " isn't JSON: " + e.message); return; }
       load(json, f.name);
@@ -507,9 +512,12 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
       if (/^[A-Za-z0-9._\/-]+$/.test(src) && !src.startsWith("/") && !src.includes("//") && u.origin === location.origin) url = u.href;
     } catch (e) { url = null; }
     if (!url) { notice("Only a file on this site can be named with ?log=, by a relative path such as ../../vectors/plant-world.json.", true); draw(); return; }
+    // The page's own first load is a choice too: a file opened before it
+    // arrives wins, and its answer, or its failure, is then set aside.
+    const mine = ++chosen;
     fetch(url, { credentials: "omit", referrerPolicy: "no-referrer" }).then(r => { if (!r.ok) throw new Error(r.status + " " + r.statusText); return r.json(); })
-      .then(j => load(j, src, want))
-      .catch(e => notice("Couldn't read " + src + " (" + e.message + "). Serve the repository's folder, for example with python3 -m http.server, or open a log below.", false));
+      .then(j => { if (mine === chosen) load(j, src, want); })
+      .catch(e => { if (mine === chosen) notice("Couldn't read " + src + " (" + e.message + "). Serve the repository's folder, for example with python3 -m http.server, or open a log below.", false); });
   }
   draw();
 })();
