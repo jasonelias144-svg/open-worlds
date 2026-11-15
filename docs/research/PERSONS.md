@@ -434,15 +434,24 @@ log names another world or another world's presence; the third names
 the person only in the link CEDAR showed. Rust and Python both check
 this.
 
-**Never named isn't unlinkable.** A reader of both public logs sees
-TEACHER say a sentence in the first world at tick 0, and BIRCH say the
-same sentence, word for word, in the second at tick 1; ASH and BIRCH
-also entered at the same cell, with the same time in their arrivals'
-proofs. That is enough to guess that ASH and BIRCH are one person's. It
-is the first of the honest limits below ("a manner of speaking ... can
-link them"), shown on purpose: the trial shows a lesson carried, not a
-presence kept unlinked. A person who must stay unlinked carries what
-they learned, not the words.
+**Never named isn't unlinkable.** A reader of the three public logs
+can link more than the logs name:
+- **By what BIRCH says.** TEACHER says a sentence in the first world at
+  tick 0, and BIRCH says the same sentence, word for word, in the second
+  at tick 1. That is enough to guess that ASH and BIRCH are one
+  person's.
+- **By where they entered.** ASH, BIRCH and CEDAR all entered at the
+  same cell, [-3, 1, 0], at tick 0, and CEDAR's link names its person.
+  So a reader can guess that ASH and BIRCH are that person's too.
+- **Not by the time.** Every proof in the trial has the same `created`
+  time, the worlds' heads and TEACHER's arrival included, so it says
+  little on its own.
+
+This is the first of the honest limits below ("a manner of speaking ...
+can link them"), shown on purpose: the trial shows a lesson carried,
+not presences kept unlinked. A person who must stay unlinked carries
+what they learned, not the words, and doesn't enter every world the
+same way.
 
 **What a world doesn't check.**
 - **The person is a key, not a born identity.** Neither the world nor
