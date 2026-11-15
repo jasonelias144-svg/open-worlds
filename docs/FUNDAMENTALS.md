@@ -138,7 +138,12 @@ one of them updates this page.
    public by the project. And the second (2026-11-15): "who holds it is
    whoever I leave it to. Now, there is nobody. But I am building
    something that will bring in others. At that point, we can figure
-   out who will hold the break glass if not me."
+   out who will hold the break glass if not me." And: "It will be a
+   person I name publicly, but there is only me for now. … as soon as
+   one more person joins me, we'll have someone, and then they will be
+   named publicly and all will be a matter of record and all that. But
+   let's build the village before picking the next chief." So the next
+   holder is named in public, and until then the founder alone holds it.
 7. **Leaving takes your data with you.** The founder (2026-11-15): "all
    their records should be transferred to them and removed from our
    records. We should not store any private keys for anyone that is no

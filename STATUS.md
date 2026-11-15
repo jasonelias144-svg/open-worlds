@@ -230,6 +230,17 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on naming who holds the "break glass" next:
+  "It will be a person I name publicly, but there is only me for now.
+  There is nobody to hand it to that would be able to know what to do.
+  We will worry about that later, but as soon as one more person joins
+  me, we'll have someone, and then they will be named publicly and all
+  will be a matter of record and all that. But let's build the village
+  before picking the next chief. First things first."
+  So the next holder is a person, named publicly when the founder
+  chooses them, and the choice is on record; the charter's section 3
+  says so. Until someone else joins, the founder alone holds it, and
+  nothing more is built or decided for it now.
 - 2026-11-15, founder, on who holds the "break glass" after the founder:
   "And who holds it is whoever I leave it to. Now, there is nobody. But
   I am building something that will bring in others. At that point, we
@@ -1823,6 +1834,10 @@ it was wrong. Questions of what the project is for stay with the founder.
   logged the same way.
 
 ## Log
+
+- 2026-11-15 Claude: the next holder of the "break glass" is a person
+  the founder names publicly, once someone else joins; recorded, and
+  said in the charter's section 3.
 
 - 2026-11-15 Claude: who holds the "break glass" after the founder is
   the founder's to leave, once others join; recorded, and the open
