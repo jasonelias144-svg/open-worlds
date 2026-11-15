@@ -122,6 +122,15 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder (put 2026-11-15, in chat): the Living Pattern
+  Institute's material, which shows where many of the multiverse's ideas
+  were first worked out. Its licence: CC0, if "consider it all public"
+  covers it too, or the CC BY-SA 4.0 (writing) and Apache 2.0 (code) its
+  README intends; its LICENSE file says CC0. And whether its earlier
+  works may be named in this repository. The recommendation: until the
+  founder answers, refer to them generically ("the founder's earlier
+  work") and quote only briefly, with links; a lineage page and any
+  further use come in their own pull requests.
 - For the founder (put 2026-11-15, after #83's re-check at faab85d):
   where redacted private information is kept. The founder's rule says
   "encrypted in the project records". Two cases it doesn't settle:
@@ -250,18 +259,61 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on Lyceum's licence:
+  "Yeah, the Lyceum has no license file because it was implied as public.
+  Please consider it all public already.
+  And it might also be worth while to check the living pattern institute
+  repo. It is just a single page with links. If they work, follow them to
+  some of the old project files. Thoughts?"
+  This answers, in so many words, the question the technical lead put
+  (next entry): Lyceum's code is public already, and may come into
+  open-worlds under its public-domain dedication (CC0). Nothing is copied
+  until the building starts. The Living Pattern Institute was looked at
+  in chat the same day; its licence, and whether its earlier works are
+  named, are put to the founder (Open questions).
 - 2026-11-15, founder, answering the technical lead on the Commons:
   "Agreed. We leave the other repos as is. When we start to work on a
   mobile app for the multiverse, we can start by looking at that code.
   Or not. Either way I agree with all your suggestions and am excited to
   begin bringing these revisions together. Thoughts?"
-  So: the Lyceum repositories stay as they are; Lyceum's code may come
-  into open-worlds under its public-domain dedication (CC0), which
-  "Agreed" answered, though nothing is copied until the building starts;
-  the Commons is rebuilt here, reusing Lyceum's code and tests; and what
-  a room keeps in public is the room's law, told on entering (the lobby
-  and the Open rooms on the record, a closed room public only as
-  metadata). docs/COMMONS.md has the design.
+  It answered the technical lead's two messages in chat, after the
+  founder's two messages below. Their suggestions, as they were put:
+  - "How I'd do it: rebuild inside the multiverse, reusing Lyceum's code
+    and its 40-odd test files as the spec."
+  - "Order: a design page and a place in the course first, ahead of the
+    Ur-world opening to the public. Then the text world, the Commons,
+    containers in the browser, the MCP door, and going live."
+  - "What a room keeps in public. What people say in a room is the most
+    personal kind of public act. I'd recommend each room's law decides,
+    and everyone is told on entering. The lobby and Open rooms would be
+    on the record (kept, with anything private redacted). Closed rooms
+    would show only metadata in public, while the words pass encrypted
+    end to end between members' containers."
+  - "Lyceum's licence. Its repository has no licence file, and copying
+    its code into open-worlds puts it in the public domain (CC0). That's
+    your call." And, in the second message: "One thing I need you to say
+    explicitly, because it can't be undone: open-worlds is dedicated to
+    the public domain (CC0), and that dedication is permanent. Lyceum's
+    code has no licence file. If it's the same project, I read that as:
+    Lyceum's code comes into open-worlds under CC0, like everything else
+    here. Is that right?" (Answered explicitly in the entry above.)
+  - "The Lyceum repositories (Lyceum-Commons, Lyceum-Local, the mobile
+    app) become the project's early history. I'd leave them untouched,
+    as a record of where it started, and link to them from open-worlds'
+    README under "Where it began." Archiving them on GitHub can wait,
+    and that would be your call."
+  So: the Commons is rebuilt here, reusing Lyceum's code and tests; the
+  Lyceum repositories stay as they are; and what a room keeps in public
+  is the room's law, told on entering: the lobby and the Open rooms on
+  the record, a closed room public only as metadata, its words sealed
+  between its members' containers (docs/FUNDAMENTALS.md, privacy, item
+  13). docs/COMMONS.md has the design.
+  This replaces two entries of 2026-11-14 (below): the Commons' place on
+  COURSE.md's waiting list, after step 4a as the second superworld,
+  moves to the recheck that closes step 3a, as the first public space,
+  ahead of the Ur-world's opening, as the "Order" above put it; and
+  "What a room's public log holds is the founder's to decide, as
+  personal information" is now decided, by this answer.
 - 2026-11-15, founder, on what Lyceum Commons is:
   "It is the original idea that became the multiverse. Not a separate
   project, but the development of the same project."
@@ -1999,6 +2051,18 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: after #87's independent review at 78698f8: the
+  technical lead's two messages that the founder's "Agreed" answered are
+  quoted in Decided as they were put; the founder's newer word on
+  Lyceum's licence ("Please consider it all public already") is
+  recorded; the entry names the 2026-11-14 placement and note it
+  replaces. FUNDAMENTALS.md gains privacy item 13 (what a room keeps in
+  public), and COMMONS.md the test that no one outside a closed room
+  can read its words. TOPICS.md and COMMONS.md now give what is decided
+  the same label; COMMONS.md's Lyceum table is corrected against Lyceum
+  at 5eb12e9 (leaving, labels, lobbies). The Living Pattern Institute
+  questions go to Open questions.
 
 - 2026-11-15 Claude: docs/COMMONS.md, at the founder's word: Lyceum
   Commons rebuilt in the multiverse as the Commons, a superworld whose

@@ -896,7 +896,9 @@ page.
 - 2026-11-15, between cycles: the Commons (COMMONS.md): Lyceum Commons,
   "the original idea that became the multiverse" (the founder), rebuilt
   here as a superworld whose rooms are text worlds, the first space open
-  to the public; what a room keeps in public is its law.
+  to the public; what a room keeps in public is its law (FUNDAMENTALS.md,
+  privacy, item 13); Lyceum is public already, so its code may come in
+  under CC0.
 
 ## Every file, by its full link
 

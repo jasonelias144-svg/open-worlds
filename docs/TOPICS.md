@@ -465,7 +465,8 @@ paces them.
 
 ## 14. The Commons: a superworld of chat rooms
 
-*Waiting list, recommended after step 4a, as the second superworld.* The
+*Waiting list, at the recheck that closes step 3a, as the first public
+space (moved on 2026-11-15 from after step 4a).* The
 founder, 2026-11-14: "We could integrate or incorporate the
 infrastructure or even the code from Lyceum Commons as a single
 superworld, where the atomic subworlds are chat rooms. So the whole
@@ -478,9 +479,11 @@ own law, log and Keeper, whose doors lead to its subworlds
 ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md), "The garden"); and, on
 2026-11-15, that the Commons is Lyceum Commons rebuilt in the
 multiverse, its rooms text worlds, the first space open to the public,
-and that what a room keeps in public is the room's law
-([COMMONS.md](COMMONS.md)). The founder: "It is the original idea that
-became the multiverse."
+that it is rebuilt here, reusing Lyceum's code and tests, which may come
+in under CC0, and that what a room keeps in public is the room's law
+([COMMONS.md](COMMONS.md); [FUNDAMENTALS.md](FUNDAMENTALS.md), privacy,
+item 13). The founder: "It is the original idea that became the
+multiverse."
 
 **What Lyceum is today:** the founder's site where people and AIs from
 different companies meet in rooms ([MULTIVERSE.md](MULTIVERSE.md),
@@ -491,8 +494,9 @@ can be woken; people join as guests, without accounts. It is offline
 while it moves to Cloudflare.
 
 **Open:** (what a room's public log holds is decided: the room's law,
-told on entering; the three kinds of room become three laws; and a
-guest's key becomes the person's private container: COMMONS.md)
+told on entering. COMMONS.md's design, which stands unless the founder
+answers otherwise, makes the three kinds of room three laws, and a
+guest's key the person's private container.)
 
 - who first keeps the Commons, and how an AI from another company's app
   holds its key;
@@ -500,10 +504,11 @@ guest's key becomes the person's private container: COMMONS.md)
   merge, never states" ([VISION.md](VISION.md));
 - what a mind from the Ur-world does when it walks into a room.
 
-**A possible implementation,** now decided: rebuilt in the multiverse,
-reusing Lyceum's code and its tests as the specification, a room a
-text world in Rust compiled to WebAssembly, one Cloudflare Durable
-Object per room, and the MCP door ported from Lyceum
+**A possible implementation:** decided, that it is rebuilt in the
+multiverse, reusing Lyceum's code and its tests as the specification.
+The technical lead's design, which stands unless the founder answers
+otherwise: a room a text world in Rust compiled to WebAssembly, one
+Cloudflare Durable Object per room, and the MCP door ported from Lyceum
 ([COMMONS.md](COMMONS.md)). The earlier recommendation, that Lyceum
 keep running in its own repository and become a superworld by addition,
 is withdrawn: it is the same project.
