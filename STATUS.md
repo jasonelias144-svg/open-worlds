@@ -38,8 +38,9 @@ respect one another's freedom, with full transparency and exit at any time
   by the founder on 2026-11-14: a fractal plant world in Rust, the web
   app in `web/` to watch worlds grow, and in it the multiversal map. Its
   plan is in, and its first part, the plant world, is built
-  (`rust/plant-world`). The second, the web page that shows a plant
-  growing, is next. DeepSeek's code from record 012-06-02 works in part
+  (`rust/plant-world`), and so is its second, Plant Watch, the page that
+  replays a plant tick by tick and checks its log first (`web/plant/`).
+  The third, the Ur-world's garden hosting plant worlds, is next. DeepSeek's code from record 012-06-02 works in part
   (#63), with a second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
   (#29), and experiment 001, the first unscripted minds
@@ -1324,6 +1325,16 @@ it was wrong. Questions of what the project is for stay with the founder.
   the logs already written stay true.
 
 ## Log
+
+- 2026-11-15 Claude: the fractal track's part 2, Plant Watch
+  (`web/plant/index.html`): one static page, nothing loaded from outside,
+  that replays a plant world's log tick by tick. Before drawing, it
+  checks the chain of hashes, growth by the rule, the world's signed head
+  (Ed25519 by WebCrypto) and its birth record. Tried in Chromium on all
+  five worlds of the vectors (all hold), on a log with a branch moved and
+  its hashes rewritten (the rule check catches it), and on a head that
+  claims more than it covers (its signature fails). Shared with the
+  founder as a private page.
 
 - 2026-11-15 Claude: the fractal track's part 1, a plant world in Rust
   (`rust/plant-world`). It grows by DeepSeek's rule, has its own key and
