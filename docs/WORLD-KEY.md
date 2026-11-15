@@ -549,14 +549,18 @@ try to accommodate as many possibilities as we can imagine."
   is taken up by choice; someone who only explores loses nothing. Each
   world's law says which ways it offers.
 - **A challenge builds the real world.** What it builds stays in the
-  world, open to everyone. The Keeper never builds: it proposes the
-  world's growth as challenges, and people carry them out, as ADMIN can
-  suggest changes and never make them ([ADMIN.md](ADMIN.md),
-  "Suggestions from inside").
+  world, open to everyone. The Keeper doesn't build the world itself: it
+  proposes its growth as challenges, and people carry them out, as the
+  Keeper designs and the world's code places (above, "The designer,
+  apart from the law"). It is one way a world grows, as the founder put
+  it; exploring grows the land too.
 - **Done means capable.** A challenge is done when the world sees the
-  individual do it, so its pieces are ones whose doing is the skill
-  (above, "What makes a challenge"). The log records what happened, as
-  it records everything; it is not a score.
+  individual do it, so a challenge that builds uses only pieces whose
+  doing is the skill (above, "What makes a challenge"). The hunt keeps
+  both kinds, as that section says: pieces with a fixed solution stay as
+  clues that lead somewhere, and where a path means to teach a skill, it
+  uses pieces whose doing is the skill. The log records what happened,
+  as it records everything; it is not a score.
 - **The goal can be part of the challenge.** A challenge can begin as a
   situation, a dry and empty plot, and not an instruction; working out
   that the goal is to plant is part of it. When someone is stuck, the
@@ -573,20 +577,24 @@ try to accommodate as many possibilities as we can imagine."
   needs now, not from a queue: if the garden isn't planted yet, the next
   person gets a different need. No challenge asks anyone to undo
   another's work.
-- **Room without end.** The Ur-world reaches 2^40 cells from the garden
-  in every direction (`LIMIT` in `rust/ur-world/src/space.rs`), generated
-  from its seed as it is explored. Land no one has changed is computed
-  again from the seed when needed, so only what is built is stored. So
-  anyone can create freely a little further out, and building together
-  is a choice.
+- **Room without end, in practice.** The Ur-world reaches 2^40 cells
+  from the garden in every direction (`LIMIT` in
+  `rust/ur-world/src/space.rs`: "Far enough to be endless for anyone
+  walking it"), generated from its seed as it is explored. Land is
+  computed again from the seed when needed: only what has been explored
+  (a set of chunks) and what has been changed (a map of cells) is kept,
+  and the log records what happens. So anyone can create freely a little
+  further out, and building together is a choice.
 - **One shape for every kind,** so a new kind is a new combination, not
   new machinery: who a challenge is for (one, a group, or anyone), the
   situation it starts from, and how the world sees it done (a sketch is
   in [TOPICS.md](TOPICS.md), topic 17).
-- **When.** A first, simple version comes when the Ur-world's garden
-  hosts plant worlds (the fractal track, part 3,
-  [FRACTALS.md](FRACTALS.md)): the scripted Keeper offers a plot to plant.
-  The full version comes with the AI Keeper, in course step 11.
+- **When.** A first, simple version comes once two things are in: the
+  Ur-world's garden hosting plant worlds (the fractal track, part 3,
+  [FRACTALS.md](FRACTALS.md)), and the simple scripted Keeper (course
+  step 6). Then the scripted Keeper can offer a plot to plant. The full
+  version comes with the AI Keeper, in course step 11. Neither changes
+  the order of the course or the track.
 
 What is built, and whose it is: until 2026-11-15, this page opened by
 saying that what is built "belongs to whoever built it". The founder's

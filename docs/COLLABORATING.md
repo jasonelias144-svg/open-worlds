@@ -115,7 +115,7 @@ in the order to read it:
    "Here is the new idea: the challenges are constructive." Doing a
    challenge builds the real world for everyone, and it is done when you
    can do the thing: "But credit is not the point but learning." The
-   world grows as it is explored, so there is always room.
+   world grows as it is explored, so in practice there is always room.
 
 The multiverse began as a sketch the founder wrote with DeepSeek
 (conversation records 012-04-00 and 012-03-02). This repository brought
