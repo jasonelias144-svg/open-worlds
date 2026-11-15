@@ -104,8 +104,7 @@ What the multiverse generates is open to everyone. In the founder's
 words, it "is available for the public like an on-going public
 scientific experiment where all can participate and access the data it
 generates. But all of that data would already be scrubbed of anything
-personal". What is public is what happens in the worlds; what is
-personal stays private (section 3).
+personal" (section 3).
 
 > Still to cover: that the world is watched: the website, the viewers,
 > what they can see (positions, speech, the public log), and that viewers

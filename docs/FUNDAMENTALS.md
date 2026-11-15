@@ -168,6 +168,11 @@ one of them updates this page.
    named publicly and all will be a matter of record and all that. But
    let's build the village before picking the next chief." So the next
    holder is named in public, and until then the founder alone holds it.
+   The technical lead's reading, which stands unless the founder answers
+   otherwise: the public record of an opening holds the fact of it (who
+   opened whose space, when, and why), never what was read; and the
+   person named as the next holder agrees to be named, as their name
+   goes into a public record.
 7. **Leaving takes your data with you.** The founder (2026-11-15): "all
    their records should be transferred to them and removed from our
    records. We should not store any private keys for anyone that is no
@@ -200,9 +205,10 @@ one of them updates this page.
 11. **A world may end; its record and its sealed selves don't.** Decided
     2026-11-14: the project may end a world, but its record never ends,
     sealed selves stay sealed and keys stay their holders'
-    ([ADMIN.md](ADMIN.md), "Questions for the founder"). What a world's
-    record keeps of a person who leaves the multiverse is what was public
-    from the start; their private data goes with them (item 7).
+    ([ADMIN.md](ADMIN.md), "Questions for the founder"). A person who
+    leaves the multiverse takes their private data with them (item 7).
+    Whether the public part of their record stays, or goes too, waits
+    for the founder's answer (STATUS.md, "Open questions").
 12. **Fear of the Keeper silences no one.** Decided 2026-11-14, on the
     technical lead's recommendation: the author of a suggestion about
     a Keeper may ask for their name, and their rating of how it was
@@ -255,9 +261,11 @@ demonstrably", which stands unless the founder answers otherwise:
   copies of keys must be kept where they can really be destroyed, which
   a Git history is not. That is settled before any individual is born,
   with the course's keys work (step 8a, "a lost or leaked key").
-- **What you did in the open stays,** as every public act does: what
-  you do is public, and a world's record never ends. Nothing personal is
-  in it (above).
+- **What you did in the open** is the one open point: whether it
+  stays, under a key that names no one, or goes too, waits for the
+  founder's answer (STATUS.md, "Open questions"). Either way, logs are
+  built so that an entry's content can be removed while the log still
+  checks.
 
 ## Honest limits
 

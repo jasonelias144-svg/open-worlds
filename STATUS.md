@@ -122,6 +122,35 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder (put 2026-11-15, after #83's re-check found it): when
+  someone leaves the multiverse, what happens to what they did in
+  public? The founder's words of 2026-11-15: "all their records should
+  be transferred to them and removed from our records." An earlier
+  decision, of 2026-11-14 on the technical lead's recommendation under
+  the standing rule: "the project may end a world, but its record never
+  ends". The two agree for everything private (keys, sealed self,
+  notebook, passport copies, email): those go with the person and are
+  purged. They differ for public acts, what someone said or did in a
+  world where everyone could see it, which are in that world's log.
+  The options:
+  1. **Public acts stay** in the world's log, under a presence key that
+     names no one once the person is gone; the links between their
+     presences, which they chose to show, are removed.
+  2. **Public acts are removed too:** the log keeps only a sealed
+     fingerprint of each (a salted hash), so it still checks, and
+     everyone else's acts stay.
+  3. **The leaver chooses,** between 1 and 2, for any or all of their
+     acts.
+
+  The recommendation: 3, with 1 as the default. A world's history, and
+  other people's (a reply, a thing built together, a stamp), stands on
+  those acts, and once the links are gone they point to no one; but if
+  the person wants them gone, that is their right, as the founder's
+  words say. Either way, logs are built from the start so that an
+  entry's content can be removed while the log still checks, so the
+  choice can change later. Because this concerns personal information,
+  it waits for the founder's answer; until then FUNDAMENTALS.md and
+  WORLD-TYPES.md mark what depends on it.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
@@ -1866,6 +1895,18 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: after #83's re-check at c0ba011, the one point it
+  found for the founder is put as an open question: when someone leaves
+  the multiverse, whether their public acts stay or go too ("removed
+  from our records", 2026-11-15, against "a world's record never ends",
+  2026-11-14); what depends on it is marked as waiting. And: a world
+  with inhabitants leaves only if no one says no, and those who go are
+  told first that they leave the charter's protections; the public
+  record of a "break glass" opening holds the fact, never what was read;
+  the next holder agrees to be named; the charter's section 4 keeps only
+  the founder's words; and Plant Watch's replay is said as built for the
+  plant world only.
 
 - 2026-11-15 Claude: after #83's independent review, the charter's
   section 5 keeps only the founder's words (two sentences that weren't

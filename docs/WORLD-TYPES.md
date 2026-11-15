@@ -110,10 +110,10 @@ otherwise. Time control means two different things, and the difference
 matters:
 
 1. **Watching** a world's past, faster, slower, back and forward,
-   changes nothing in the world. Since a world's state follows from its
-   log, any earlier step can be shown again, and checkpoints make
-   jumping far back quick. Built, in part: Plant Watch replays a plant
-   from its log, with a slider to any step, back or forward, and Play
+   changes nothing in the world. A world whose state can be rebuilt
+   from its log can show any earlier step again, and checkpoints make
+   jumping far back quick. Built, for the plant world: Plant Watch
+   replays a plant from its log, with a slider to any step, back or forward, and Play
    and Pause; growth within a step is drawn smoothly
    ([FRACTALS.md](FRACTALS.md)). A speed control is next, as the endless
    plant's page plans.
@@ -160,15 +160,21 @@ multiverse to go on:
 **What leaving takes:**
 1. **The world's own decision, by its own law.** A world with no one
    inside leaves at its runner's word. A world with inhabitants leaves
-   only as its law changes: with the consent of every party (the
-   charter, section 6). Anyone who doesn't want to go leaves first,
-   and keeps everything that is theirs. A cluster leaves as each of its
-   worlds decides by its own law; a world that stays is hosted here
-   again.
+   only as its law changes: with the consent of every party
+   ([FUNDAMENTALS.md](FUNDAMENTALS.md), freedom, item 4). So one "no"
+   stops it. Leaving first, to stay in this multiverse, is only ever the
+   dissenter's own choice, never a condition put on them, and whoever
+   leaves keeps everything that is theirs. Before anyone consents, they
+   are told that going with the world takes them out of the charter's
+   protections (exit, privacy, data never for sale), into whatever the
+   new multiverse's law gives. A cluster leaves as each of its worlds
+   decides by its own law; a world that stays is hosted here again.
 2. **A departure record,** signed by the world: where it goes, and the
    head of its log at the moment it leaves. The host publishes it, and
    closes its own copy of the world's log at that head. That copy is
-   kept: a record never ends.
+   kept, as a record never ends; what it keeps of the people who go
+   with the world waits for the founder's answer on a leaver's public
+   acts (STATUS.md, "Open questions").
 3. **The keys move.** The world's key is signed over to a new key that
    whoever runs it now made, so the host keeps no key of the world.
 4. **Their records go with them.** Whoever leaves with the world, or
