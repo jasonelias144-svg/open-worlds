@@ -68,14 +68,14 @@ design pages already use them. Offices are a type of their own (below).
 
 ## Office
 
-**A part written down before anyone holds it, with power over others
-or over something shared, which an agent holds and acts through.** An
-office is not an agent: it is held, never owned, and it outlasts every
-holder (the founder, 2026-11-15: "Office should be its own type, with
-ADMIN and keepers two current examples"). ADMIN and each world's Keeper
-are offices today; so are the holder of the "break glass" and the
-technical lead. What makes an office, how one is handed on, and how a
-holder prepares a successor are in [OFFICES.md](OFFICES.md).
+The founder, 2026-11-15: "Office should be its own type, with ADMIN and
+keepers two current examples." The technical lead's proposal, which
+stands unless the founder answers otherwise: **an office is a part
+written down before anyone holds it, with power over others or over
+something shared, which an agent holds and acts through.** An office is
+not an agent: it is held, never owned, and it outlasts every holder.
+What makes an office, how one is handed on, and how a holder prepares a
+successor are in [OFFICES.md](OFFICES.md).
 
 A **role** is any part an agent plays, such as a walker, a voter or a
 guardian someone names for a lost key. A role becomes an office when it

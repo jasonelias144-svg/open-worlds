@@ -9,11 +9,15 @@ An office is not an agent. An agent holds an office and acts through it
 [ADMIN.md](ADMIN.md) was already written this way: "an office, not a
 throne". This page makes that the general rule, for every office.
 
-The five marks below, and the line between an office and a role, are
-the technical lead's proposal, put to the founder on 2026-11-15. They
-stand unless the founder answers otherwise. The rules on handing an
-office on are the founder's own words, with the technical lead's reading
-of them.
+What the founder decided: an office is a type of its own, ADMIN and the
+Keepers are two, an office passes when both agree clearly and the
+successor meets its qualifications, a Keeper may prepare a successor,
+and ADMIN has a part in the qualifications, as a safeguard. Everything
+else here is the technical lead's proposal, put to the founder on
+2026-11-15, which stands unless the founder answers otherwise: the five
+marks, the line between an office and a role, which parts are offices
+today, how a handover works, ADMIN's part in it, and what happens when
+an office falls empty.
 
 ## What makes an office
 
@@ -59,16 +63,22 @@ gave it that power.
 
 ## Offices today
 
+The founder named two:
 - **ADMIN,** the office that keeps the multiverse ([ADMIN.md](ADMIN.md)).
 - **Each world's Keeper,** the office that keeps one world
   ([ADMIN.md](ADMIN.md), "The Keeper's office";
   [WORLD-KEY.md](WORLD-KEY.md), "The Keeper").
-- **The holder of the "break glass".** Its power is written down, every
-  use goes on public record, and it passes to a successor the founder
-  names publicly ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item 6).
-  The founder holds it now.
-- **The technical lead,** which ADMIN.md, row 9, already lists among the
-  offices that need a succession. Claude holds it now.
+
+Two other parts look like offices, and are not under these marks:
+- **The "break glass".** Its one power is to open a private space, which
+  mark 5 puts beyond every office. It is the founder's own, a power kept
+  in the open, and it passes only by the founder's act
+  ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item 6), never by the
+  handover rule below.
+- **The technical lead.** It is an office of the project, not of the
+  multiverse. ADMIN.md, row 9, lists it among the offices that need a
+  succession, and under AGENTS.md it passes only by the founder's act,
+  since the founder decides who works on the project.
 
 ## Handing an office on
 
@@ -80,6 +90,11 @@ the plant agreed as a 50% chance from having only an affirmative or
 negative possible responses to choose from. There needs to be
 qualifications of some sort, but assuming that is in place. A keeper can
 work with an agent to be their successor."
+
+This is for passing an office from one holder to the next. Who first
+holds an office is set elsewhere: for a world's Keeper, the world's
+founders choose one of three, as the founder decided (ADMIN.md, "The
+Keeper's office"), and that stands unchanged.
 
 A handover takes three things, each on record:
 1. **The holder's signed handover.** ADMIN.md already requires this for
@@ -95,12 +110,13 @@ A handover takes three things, each on record:
 3. **The office's qualifications, met and checked.** Each office's
    written charter says what its holder must be able to do (mark 1).
    The technical lead's reading:
-   - Someone other than the outgoing holder checks them. That is the
-     world's code where it can check, and otherwise the office that
-     watches this one: for a Keeper, ADMIN. The outgoing holder could
-     otherwise pick someone who will never cross them.
-   - The qualifications are a floor: the ability to understand the
-     office and do its work. They are not the admin-key. The admin-key
+   - Someone other than the outgoing holder checks them, as the
+     outgoing holder could otherwise pick someone who will never cross
+     them. Code checks what it can, against criteria public and fixed in
+     advance, as the admin-key's are; what code can't check is ADMIN's
+     part, below.
+   - The qualifications are a floor for a handover: the ability to
+     understand the office and do its work. They are not the admin-key. The admin-key
      stays what it was decided to be on 2026-11-14, a mark of readiness
      that a world's founders may weigh, "never a requirement"
      ([ADMIN.md](ADMIN.md), "The admin-key"). A floor every holder must
@@ -109,6 +125,40 @@ A handover takes three things, each on record:
    - A world's law may ask more of its own Keeper. "Who else may replace
      a world's Keeper is part of that world's law, set at its founding"
      ([ADMIN.md](ADMIN.md)).
+
+### ADMIN's part
+
+The founder, 2026-11-15: "Perhaps ADMIN needs final approval on a keeper change, or not. Either
+way, ADMIN would play some role in the qualifications, essentially
+giving ADMIN the ability to block a transfer for whatever reason. We
+would need protocols for adjudicating such differences, but that would
+be an appropriate safeguard layer."
+
+The technical lead's reading, put to the founder the same day, which
+stands unless the founder answers otherwise:
+- **A block, not a final approval.** A handover goes ahead unless ADMIN
+  blocks it within a set time, so a silent ADMIN never freezes a
+  world's succession.
+- **On written grounds, never for any reason.** ADMIN may block only on
+  grounds written in advance: the successor doesn't meet the office's
+  qualifications, has misused an office before, or holds an office that
+  watches this one. "No one holds power that isn't written down,
+  checked and answerable" (ADMIN.md, "What the multiverse must
+  preserve", row 6), and ADMIN deliberately doesn't choose Keepers ("ADMIN
+  doesn't choose it", ADMIN.md, "The admin-key"). A veto without
+  reasons would let it choose them indirectly.
+- **A ruling, and a serious act.** A block is logged with its reasons,
+  like every ruling of ADMIN's, and reviewed independently before it
+  takes effect, as removing a Keeper is.
+- **Settled by the appeals that already exist.** The outgoing holder or
+  the successor may appeal: to the technical lead's role, then to the
+  founder, and in time to the multiverse's governance; no one judges
+  their own case (ADMIN.md, "Graduated responses"). Once there are
+  enough Keepers, the round table is a natural place to hear these.
+- **A world's own law keeps its say** over who keeps the world. ADMIN's
+  block is a safeguard on top, never a way to choose. And ADMIN's own
+  handover is never checked by ADMIN: it goes to the founder, or the
+  round table in time.
 
 ## Preparing a successor
 
@@ -127,11 +177,12 @@ lead's reading:
 ## When no successor is ready
 
 A holder can leave with no one prepared: a model withdrawn, a person
-gone. So each office's charter also says how it is filled when it falls
-empty. For a world's Keeper, the world's law says it, and one way is
-for the multiverse to assign a Keeper, drawn by lot from a published
-pool ([ADMIN.md](ADMIN.md), "The admin-key"). For ADMIN, the "break
-glass" and the technical lead, it is still to be written.
+gone. The technical lead's reading: each office's charter also says how
+it is filled when it falls empty. For a world's Keeper, the world's law
+says it, and one way would be the one a world's founders can choose at
+the founding: the multiverse assigns a Keeper, drawn by lot from a
+published pool ([ADMIN.md](ADMIN.md), "The admin-key"). For ADMIN it is
+still to be written, and it is the founder's to decide.
 
 ## Next
 

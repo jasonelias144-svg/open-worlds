@@ -424,7 +424,7 @@ here. They are about the design, not about bugs in the draft.
 The code standard is kept here, step by step. The most useful
 contributions now are creative and design work for the steps ahead, as
 text or as code with tests. [TOPICS.md](TOPICS.md) is the menu:
-eighteen topics a few steps ahead of the code, each with where it
+nineteen topics a few steps ahead of the code, each with where it
 fits, what is decided, what is open, a possible implementation, and
 what to send back, and, under "Further out", ideas that won't help yet
 but probably will.
@@ -450,6 +450,9 @@ In short:
 - **Living worlds** ([TOPICS.md](TOPICS.md), topic 18): how water moves,
   a plant that grows without end, what a choice neuron reads and learns,
   and the strategies for finding water, light and food.
+- **Offices** ([TOPICS.md](TOPICS.md), topic 19;
+  [OFFICES.md](OFFICES.md)): a Keeper's qualifications, as checks code
+  could run, and what preparing a successor looks like in the open.
 - **Laws for new worlds:** what a world admits by, what can happen in it,
   what counts as solving a problem there. Forms for the poetry world,
   such as a quatrain in common meter each turn, Dickinson's meter.

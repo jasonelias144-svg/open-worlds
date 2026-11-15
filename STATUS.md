@@ -253,6 +253,23 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, on ADMIN's part in handing an office on:
+  "Perhaps ADMIN needs final approval on a keeper change, or not. Either
+  way, ADMIN would play some role in the qualifications, essentially
+  giving ADMIN the ability to block a transfer for whatever reason. We
+  would need protocols for adjudicating such differences, but that would
+  be an appropriate safeguard layer."
+  Put to the founder the same day, with the technical lead's
+  recommendation, which stands unless the founder answers otherwise
+  (docs/OFFICES.md, "ADMIN's part"): a block, not a final approval, so a
+  handover goes ahead unless ADMIN blocks it within a set time; only on
+  grounds written in advance, never for any reason, since no one holds
+  power that isn't written down and ADMIN doesn't choose Keepers; a
+  ruling with its reasons, and a serious act, reviewed independently;
+  appealed as every ruling of ADMIN's is, to the technical lead's role,
+  then the founder. The qualifications apply to a handover only: who
+  first keeps a world is still the world's founders' choice of three
+  (ADMIN.md, "The Keeper's office"), unchanged.
 - 2026-11-15, founder, on handing an office on:
   "I think the work on offices is foundational. Let me add a new
   suggestion. If one agent holds an office then they have the ability to
@@ -1829,6 +1846,14 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: after #85's independent review, OFFICES.md: the
+  "break glass" and the technical lead are not offices under the marks
+  (each passes only by the founder's act); the qualifications are for a
+  handover only, so the three choices at a founding stand; ADMIN's part,
+  from the founder's message, is a block on written grounds, a serious
+  act open to appeal; the proposals are marked as such, in GLOSSARY.md
+  too; TOPICS.md gains offices as topic 19.
 
 - 2026-11-15 Claude: docs/OFFICES.md, at the founder's word: what makes
   an office (five marks), an office or a role, the offices today (ADMIN,
