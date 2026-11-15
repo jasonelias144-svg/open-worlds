@@ -122,6 +122,21 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder (asked 2026-11-15), after keeping the "break glass":
+  whose records may "stay private now, but be available for the public
+  later"? Recommendation: the founder's own records and the project's,
+  by the founder's choice; a participant's private space only by that
+  participant's own choice (a time capsule they seal "until" a date or
+  an event), and never by the project's. The "break glass" stays for a
+  real emergency only, never a way to publish someone's private space.
+  Publishing what was private can't be undone, so this waits for the
+  founder's explicit word.
+- For the founder (asked 2026-11-15): who holds the "break glass" after
+  the founder ("I envision this project without me")? Recommendation:
+  a person the founder names, in the open, as serious acts already go
+  "to the founder, or to a person the founder names" (docs/ADMIN.md);
+  until one is named, the founder. Naming them is the founder's own
+  act.
 - For the founder (asked 2026-11-15, after #81's independent review):
   once others run worlds, the multiverse as a whole can't be stopped by
   any one party, only part by part (docs/VISION.md, "The multiverse as a
@@ -248,6 +263,43 @@ kind.
   attached to those, not to every agent): "It works for me. I have been
   struggling to find the right word." So docs/GLOSSARY.md says what each
   word means here.
+- 2026-11-15, founder, keeping the "break glass":
+  "I love the "break glass" idea. It is very much the point. I envision
+  this project without me, and so I need to leave a way for things to
+  stay private now, but be available for the public later. All my
+  personal notebooks for the past 25 years have been written with such
+  an understanding: they are private records now, but may be public
+  later. Everything I have done these years has been with that
+  understanding, and this is no different, just a formalization of
+  that for this context."
+  And, asked whether the sentence about the notebooks may be public:
+  "That's ok, I have mentioned my history numerous times in the records.
+  Using the actual number of years actually establishes consistency
+  across records because I keep saying the same thing. I am careful
+  how much I reveal, and the number of years I have been working
+  independently is a number I am ok with people knowing. I mention the
+  notebooks and have taken pictures, but those would not be part of
+  the project. The fact that I have 25 years of notebooks is
+  incidental information and can be part of the project, and
+  essentially is the project history."
+  So the notebooks' existence, and the 25 years, are part of the
+  record; the notebooks themselves, and their pictures, are not part
+  of the project. And the "break glass" stands as chosen on
+  2026-11-14: a sealed self, or a private message, opened only by the
+  founder's explicit decision, every opening recorded publicly and
+  permanently; ADMIN can't open one. Two questions follow, above.
+- 2026-11-15, founder, on privacy and freedom:
+  "Also note my decision on all should have a right to a private space
+  that is encrypted from outside view, even ADMIN. And anything
+  related to freedom, which goes with privacy. Please make sure you
+  capture what about privacy and freedom and related topics because
+  they are absolutely fundamental towards how the whole multiverse
+  functions."
+  So docs/FUNDAMENTALS.md gathers every decision on freedom and privacy
+  in one place, with where each is designed and whether it is built;
+  privacy joins the charter's guarantees (section 3) and AGENTS.md's
+  protected freedoms. One question is put to the founder (Open
+  questions, above).
 - 2026-11-15, founder, no multiversal currency, ever: "You mentioned Ethereum and cryptocurrency, we do not need to create
   a multiversal currency, in fact, I think that's a terrible idea. But we
   could still have commerce worlds where economies could be simulated, or
@@ -1751,6 +1803,28 @@ it was wrong. Questions of what the project is for stay with the founder.
   for anything that perceives and acts, from a neuron steering a plant
   to any human; the words beneath it as the design pages use them; and
   where rights attach.
+
+- 2026-11-15 Claude: the founder kept the "break glass" ("It is very
+  much the point"), recorded in FUNDAMENTALS.md, MINDS.md and STATUS.md,
+  with its sentence on the founder's notebooks, at the founder's word;
+  two questions put to the founder: whose records "private now, public
+  later" may reach, and who holds the "break glass" after the founder.
+
+- 2026-11-15 Claude: after #82's independent review, FUNDAMENTALS.md
+  gathers the decisions it had left out: four on freedom (room enough,
+  coming into a world and forks, one's own model once living, the open
+  line) and three on privacy (keys and "lost is lost", a world's record
+  when it ends, a suggestion's author withheld), so eleven and nine; the
+  principles are quoted as DESIGN.md words them; the charter's "break
+  glass" says no condition that wasn't decided ("in a real emergency"
+  is gone) and covers private messages, as decided on 2026-11-14.
+
+- 2026-11-15 Claude: freedom and privacy, the fundamentals, in one place
+  (docs/FUNDAMENTALS.md), at the founder's word: seven decisions on
+  freedom and six on privacy, each with the founder's words, where it is
+  designed and whether it is built; privacy in the charter's section 3
+  and in AGENTS.md's protected freedoms; and the "break glass" question
+  put to the founder.
 
 - 2026-11-15 Claude: the founder's word against a multiversal currency,
   "possibly the most fundamental fact", recorded in the founder's words

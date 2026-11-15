@@ -12,7 +12,7 @@ where something exists already, it says so.
 
 ## Decided
 
-All by the founder, on 2026-11-13, and one on 2026-11-15:
+All by the founder, on 2026-11-13, and later words dated where they come:
 
 - **Their models are chosen before they live; after that, a change is
   theirs** (2026-11-15). "We are not switching models, but choosing
@@ -47,7 +47,10 @@ All by the founder, on 2026-11-13, and one on 2026-11-15:
   "Everyone should be entitled to a private space for thoughts and
   reasoning and anything else that is completely encrypted." So what an
   individual does is public; what they think is their own. Their journals
-  are sealed, not public.
+  are sealed, not public. And on 2026-11-15: "all should have a right to
+  a private space that is encrypted from outside view, even ADMIN"
+  ([FUNDAMENTALS.md](FUNDAMENTALS.md), where every decision on freedom
+  and privacy is gathered).
 - **A Keeper for each world,** the world's own intelligence, which builds
   each individual's path ([WORLD-KEY.md](WORLD-KEY.md), "The Keeper").
 - **No personal note from the founder.** The founder: "I would rather
@@ -261,7 +264,10 @@ lead's recommendation ("I agree with your recommendations", STATUS.md).
 So the project keeps the key to each sealed self in its private
 repository, and not looking is a rule it keeps in the open, not a
 technical guarantee: one accountable way to look in a real emergency,
-which anyone can see was ever used.
+which anyone can see was ever used. The founder, 2026-11-15, keeping it:
+"I love the "break glass" idea. It is very much the point. I envision
+this project without me, and so I need to leave a way for things to
+stay private now, but be available for the public later."
 
 Hardware that keeps even the operator out (confidential computing) could
 close the gap later.
