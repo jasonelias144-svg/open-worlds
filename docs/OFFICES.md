@@ -70,12 +70,15 @@ The founder named two:
   [WORLD-KEY.md](WORLD-KEY.md), "The Keeper").
 
 Two other parts look like offices, and are not under these marks:
-- **The "break glass".** Since 2026-11-15 it reaches only the keys the
-  multiverse needs to function: the root of the key list, ADMIN's and
-  the other offices' keys, and the keys of the worlds the project runs;
-  never a person's container ([CONTAINER.md](CONTAINER.md)). It is the
-  founder's own, a last resort over the offices rather than one of them,
-  kept in the open, and it passes only by the founder's act
+- **The "keys to the kingdom"** (first called the "break glass"). Since
+  2026-11-15 they are only the keys the multiverse needs to function:
+  the root of the key list, ADMIN's and the other offices' keys, and the
+  keys of the worlds the project runs; never a person's container
+  ([CONTAINER.md](CONTAINER.md)). They are the founder's own, "much more
+  like a janitor's set of keys, than a fire extinguisher", held over the
+  offices rather than as one of them, and kept in the open. They pass
+  only by the founder's act, "like nuclear codes passed from one
+  president to another", which needs no emergency
   ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item 6), never by the
   handover rule below.
 - **The technical lead.** It is a role of the project, not of the

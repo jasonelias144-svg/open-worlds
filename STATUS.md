@@ -179,7 +179,7 @@ kind.
   between individuals, decided 2026-11-14, is another: what two say to
   each other is sealed between them, though that a message passed stays
   in the record; since 2026-11-15 they go from one person's container to
-  the other's, beyond the "break glass", which covers only the
+  the other's, beyond the "keys to the kingdom", which are only the
   multiverse's own keys (docs/CONTAINER.md). The line with a Keeper was decided public,
   so it is no exception. (noted 2026-11-13; updated the same day and
   2026-11-14)
@@ -237,6 +237,30 @@ kind.
 
 ## Decided
 
+- 2026-11-15, founder, renaming the "break glass":
+  "We can change the name. I didn't choose it, but did love it. But upon
+  further discussion, "keys to the kingdom" is more appropriate. I
+  changed to janitor's key to not sound as pretentious. But "keys to the
+  kingdom" is a phrase, so let's go with that."
+  So the "break glass" is now the "keys to the kingdom", wherever the
+  keys are described as they are now: the charter's section 3,
+  FUNDAMENTALS.md (privacy, item 6), CONTAINER.md, OFFICES.md, ADMIN.md,
+  research/FORMATS.md and COLLABORATING.md. The founder's quoted words
+  and dated history keep "break glass", as records do. A correction the
+  founder's words make: the name was the technical lead's, put in the
+  options on 2026-11-14; what the founder chose then was the option
+  ("I agree with your recommendations").
+- 2026-11-15, founder, on what the "break glass" is like:
+  "Much more like a janitor's set of keys, than a fire extinguisher."
+  The technical lead's reading, which stands unless the founder answers
+  otherwise: the keys are for the upkeep of the multiverse's own
+  machinery, not only for emergencies, so an opening may be ordinary
+  upkeep, such as replacing a key. Opening them stays as decided on
+  2026-11-14: only by the founder's explicit decision, every opening
+  recorded publicly and permanently. Their ordinary signing in their
+  offices and worlds is not an opening. They still never reach anyone's
+  private space. The founder's next message says the janitor comparison
+  was chosen "to not sound as pretentious".
 - 2026-11-15, founder, on the earlier work and on the "break glass":
   ""the founder's earlier work" is exactly the level of information. No
   need to be specific. If the need arises, then it becomes part of the
@@ -2226,6 +2250,27 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-15 Claude: after #88's independent review at f2a7f65: the
+  charter, FUNDAMENTALS.md and CONTAINER.md say "opened" again, not
+  "used". The offices and worlds sign with their own keys in their
+  ordinary work; opening the founder's set means taking a private half
+  out of keeping, or using a key in place of its office, and only that
+  needs the founder's decision and a public record. The janitor reading
+  is marked as the technical lead's, and names the founder's "to not
+  sound as pretentious". An Open question still said "break glass" in
+  the present tense; fixed.
+
+- 2026-11-15 Claude: the "keys to the kingdom": the founder's words on
+  the "break glass" (handed on "like nuclear codes", "a janitor's set of
+  keys", and the new name) brought into the charter, FUNDAMENTALS.md
+  (privacy, item 6, rewritten around the new name), CONTAINER.md,
+  OFFICES.md, ADMIN.md, research/FORMATS.md and COLLABORATING.md, as the
+  Decided entry recorded in #87 said would follow. And a correction to
+  the licence entry of the same day ("on choosing the licence once"):
+  "nothing here is patented" is to our knowledge, and trademark rights,
+  as in the projects' names, are still held; the entry's "nothing is
+  held back" is about copyright.
 
 - 2026-11-15 Claude: the founder: "the founder's earlier work" is the
   level of detail, so the technical lead's reading that it may be named

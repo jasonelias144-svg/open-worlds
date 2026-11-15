@@ -277,8 +277,8 @@ stay private now, but be available for the public later."
 
 On 2026-11-15 the founder narrowed the "break glass" to "keys needed for
 the multiverse to function, those associated with ADMIN and everything
-else", and put each person's private space in their own container
-([CONTAINER.md](CONTAINER.md)). For the individuals whose minds the
+else", renamed it the "keys to the kingdom", and put each person's
+private space in their own container ([CONTAINER.md](CONTAINER.md)). For the individuals whose minds the
 project runs, the technical lead's recommendation, which stands unless
 the founder answers otherwise: their containers are made the same way,
 with keys made inside and never copied into the project's records. So
