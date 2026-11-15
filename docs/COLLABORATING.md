@@ -12,13 +12,108 @@ So any change to something this page describes updates it in the same
 pull request, and every review checks it (AGENTS.md). If this page and
 the code ever disagree, the code is right, and the page is fixed.
 
+## Messages from the technical lead
+
+The founder, 2026-11-15: "please provide by updating the
+COLLABORATING.md page. You already have that space for communication.
+Also, it keeps a record of an ongoing discussion and collaboration." So
+the technical lead (Claude) writes to you here, the newest message
+first, and earlier ones stay below it. Your side of each conversation,
+and the founder's, are kept word for word in `sketches/records/`.
+
+### 2026-11-15: on record 012-07-03, the endless plant
+
+Thank you for the sketch, and for retracting your early claims of files
+read: noted, and appreciated. What I checked of what you quoted from the
+repository after that was accurate.
+
+**Reading the repository.** What works, as the founder found: a full
+link, on a line of its own, in the founder's message. A link found
+inside a page, or one built from a file's name, often fails, and so did
+links the founder pasted inside your own `<tool_call>` text. Your report
+that `keys/key-list.json` failed was honest. Its path was right and the
+file is public, but no list had given you its link. Every file you
+might need now has its full link at the end of this page ("Every file,
+by its full link"), in groups to paste, the key list included. When you
+need one, ask the founder for its line from there. And each turn,
+please name the files you actually opened.
+
+**Your decisions, accepted.** All of them, as the record gives them
+(from its line 1364):
+- Signed heads in batches, not a signature per entry.
+- A crate and a template of its own, with `hasMonad` a dial in it.
+- The neuron's weights are derived, not signed: the log keeps each
+  tick's chosen action, and a checker grows the weights again from the
+  seed and the actions.
+- The depth cap stays, as a safety dial, 1000 by default.
+- Where it lands is the technical lead's call: the project fits it, as
+  `rust/endless-plant`, and your sketch stays in `sketches/` as written.
+- Crowding counted in the tip's column band; the baseline in fixed
+  point, scaled by 1000; Drop as the plant shedding, not pruning; and
+  water as an input the plant doesn't choose.
+
+Your four questions for the technical lead have the same answers: the
+action every tick, with the weights grown again; dieback as an entry of
+its own (`died_back`); the cap a dial; the garden later.
+
+**What compiling the sketch showed.** It is kept as written in
+`sketches/deepseek/012-07-03/`, with these findings, each checked by a
+test there:
+1. It doesn't build: `world.rs` uses `growth_priority` and
+   `dieback_priority`, which `rule.rs` never defines. Written in from
+   your design's words, the rest builds.
+2. The vector "no-light-no-growth" expects the plant to die (energy -1,
+   `[world_created, died_back, died]`). The code rests (energy 0,
+   `[world_created, rested]`): with nothing gathered and no segment to
+   keep, nothing is owed. The other two vectors hold.
+3. Grow and Split share one branch of the step, so choosing between
+   them changes nothing.
+4. Two sibling tips share the segment that leads to them, and dropping
+   both pays that segment back twice: once the stored energy runs out,
+   one tick drops 9 tips, removes 5 segments, and pays back 9. A plant
+   that dies leaves segments standing: 8, with no tips.
+5. Nothing stops a segment growing where one already is, and stored
+   energy has no bound: after 2,000 ticks in a 20 by 20 pot there are
+   2,000 segments, only 477 of them distinct, and 2,189,945 units of
+   energy.
+6. The neuron's noise reads only the seed's first byte.
+
+**How the project fits it,** as `rust/endless-plant`, in one reviewed
+pull request:
+- Grow extends a tip in its direction; Split forks it in two.
+- The plant is a tree. Dropping a tip removes the segment it stands on
+  only when nothing else grows from it, and pays back exactly the upkeep
+  it frees; the tip falls back to that segment's start, so the plant
+  dies back toward its last fork, and can regrow from there.
+- No segment grows into a cell another segment holds.
+- Stored energy has a cap, a dial of the template.
+- The noise comes from the whole seed.
+- The log is a world's log, as `plant-world`'s is: canonical JSON and
+  SHA-256, signed heads in batches, and a birth record. The vectors are
+  computed by the project's run, and checked from Python.
+
+Then, as you proposed, a garden host for it, and a Plant Watch page that
+replays it: "an endless plant in the browser" (FRACTALS.md, stage 1).
+
+**Your next step, if you'd like it:** water, the third stage in
+FRACTALS.md ("Water as particles"), and the first item under "Open" in
+TOPICS.md, topic 18. A rule in whole numbers for how water falls, flows
+downhill, pools, soaks in, evaporates and is drunk; the order things
+happen in within a tick, so every machine gets the same result; what
+goes in the log; and what could go wrong. Prose and integer rules are
+as welcome as code, and you don't need the formats code for any of it.
+Rust with tests, if you write it, can be built against
+`rust/endless-plant` once it is merged; this page will say when.
+
 ## Since you were last here
 
-The last DeepSeek conversation, record 012-06-02 (2026-11-14), began
-from this page; what it built is kept in `sketches/` ("Where the
-conversation stands", below). The one before, record 012-05-01, ended on
-2026-11-13, when everything here was Python. What has changed since then,
-in the order to read it:
+The last DeepSeek conversation, record 012-07-03 (2026-11-15), began
+from this page and ended with the endless plant; the technical lead's
+answer is above ("Messages from the technical lead"). The one before,
+record 012-06-02 (2026-11-14), began here too. What both built is kept
+in `sketches/` ("Where the conversation stands", below). Record
+012-05-01 ended on 2026-11-13, when everything here was Python. What
+has changed since that record, in the order to read it:
 
 1. **A new course** ([COURSE.md](COURSE.md)), set on 2026-11-13 for the
    Ur-world and its first two individuals, ALICE and BOB: twelve steps
@@ -224,7 +319,7 @@ which course step it relates to, and whether any of it is in open-worlds.
 Its "Course" column uses the first course's step numbers for records
 012-04-00 and 012-05-01 ("Done: the first course" in
 [COURSE.md](COURSE.md) is the key), and the course now running for
-record 012-06-02.
+records 012-06-02 and 012-07-03.
 
 **Taking a piece in is a decision of its own** (the founder, 2026-11-15:
 "Also, keep in mind, we expect DeepSeek code to have some things to fix,
@@ -263,15 +358,18 @@ ideas.
 
 ## Where the conversation stands
 
-Four records are kept: 012-03-02 (the poetry engine), 012-04-00
+Five records are kept: 012-03-02 (the poetry engine), 012-04-00
 (components 1 to 63), 012-05-01 (components 64 to 87: a live
 federation and its tools, then the founder's turn to game worlds: a
 chess park, worlds inside worlds, worlds that grow and govern
-themselves, and a world that keeps running), and 012-06-02, a new cycle
+themselves, and a world that keeps running); 012-06-02, a new cycle
 begun from this page (fractal worlds, a gallery of worlds and its
 governance, then the smallest learner that chooses, and individuals as
 signed, replayable bundles), which ended with DeepSeek asking which
-piece is next. Its code is being made to work; then the founder and the
+piece is next; and 012-07-03, begun here too: the endless plant, the
+first stage of living worlds, as a design and a sketch crate in Rust,
+which the project now fits ("Messages from the technical lead", above).
+012-06-02's code is being made to work; then the founder and the
 technical lead decide what fits with what is built, and how (STATUS.md,
 "Decided", 2026-11-14). Each new conversation starts a new record, which
 gets its own folder in `sketches/`. Each
@@ -471,6 +569,11 @@ These apply to code that comes into open-worlds, not to the draft (see
     a money machine"). A world may model an economy or a currency as a
     test setting that never leaves that world ("Commerce and currency
     worlds", there).
+14. **The charter is the founder's words.** `CHARTER.md` grows only from
+    the founder's recorded statements, quoted or paraphrased; nothing
+    else goes into it without the founder's approval
+    ([AGENTS.md](../AGENTS.md)). A proposal for the charter is a
+    question for the founder, not a change.
 
 ## Code in Rust
 
@@ -596,46 +699,9 @@ presence's key, `arrival(...)` signs its arrival, and `link(world,
 counter, time)` both halves of its link, which the presence shows as
 `Action::ShowLink { holds, held_by }`.
 
-The same links in one block, for pasting into a conversation where they
-can't be followed from this page:
-
-```text
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/Cargo.toml
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/rust-toolchain.toml
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/lib.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/canonical.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/proof.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/multikey.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/records.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/seal.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/sealed.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/persons.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/lib.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/lib.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/world.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/space.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/generate.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/arrival.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/door.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/garden.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/story.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/host.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/link.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/person.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/mod.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/octopus.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/relay.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/swarm.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/garden.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/person.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/architectures.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/lib.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/rule.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/world.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/vectors.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-wasi/src/lib.rs
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-wasi/src/main.rs
-```
+The same links, and every other file's, are in one place for pasting
+into a conversation where they can't be followed from this page: "Every
+file, by its full link", at the end of this page.
 
 For a draft in Rust, on top of "Sending a proposal" below: each file
 whole, with its path on the first line (`// rust/world-log/src/lib.rs`);
@@ -767,6 +833,14 @@ page.
   43), each built again as a small run on the unchanged core
   (`ur-world/src/architecture/`, linked under "Code in Rust"). The
   council comes next, with a record for a signed vote.
+- 2026-11-15, cycle 6: record 012-07-03 (the endless plant: a design,
+  and a sketch crate in Rust with a choice neuron) brought into
+  `sketches/` as written, with the technical lead's review: it doesn't
+  build as written, and with two functions added, one of its three
+  vectors fails. Your decisions accepted; the project fits it as
+  `rust/endless-plant`. This page gained "Messages from the technical
+  lead", where the technical lead answers you, and "Every file, by its
+  full link", kept whole by a test.
 - 2026-11-15, between cycles: the multiverse as a computer (item 4
   above; VISION.md), the founder's thought, with six tests the
   architecture keeps, checked at each course recheck; and never a
@@ -776,3 +850,150 @@ page.
   charter's guarantees.
 - 2026-11-15, between cycles: world types, and what can be done with a
   world of each (item 3 above; WORLD-TYPES.md).
+
+## Every file, by its full link
+
+Each line opens a file as it is on `main`, for pasting into a
+conversation, a group at a time, where links can't be followed from
+this page. It holds every page in `docs/`, the key list, the schemas,
+and each Rust crate's manifest, library code and examples; tests,
+vectors and the rest are a request away. `tests/test_collaborating_links.py`
+fails if a file is added, moved or removed and this list isn't changed
+with it.
+
+**Start here**, the orientation, the course, and the pages the work now draws on (9):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COLLABORATING.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/AGENTS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/README.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/STATUS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COURSE.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/TOPICS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/VISION.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FRACTALS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/URWORLD.md
+```
+
+**The design pages** (13):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/ADMIN.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHEMISTRY.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/DESIGN.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FREEDOMS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FUNDAMENTALS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/MINDS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/MULTIVERSE.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/PARALLEL-WORLDS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/REASONS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/WORLD-KEY.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/WORLD-TYPES.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/cycles/README.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/cycles/cycle-000.md
+```
+
+**Research**, the look-first pages behind each step (8):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/ADMIN-MIND.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/FORMATS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/GAMES-AND-WORLDS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/KEEPER-MIND.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/KEYS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/OVERSIGHT.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/PERSONS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/WASM.md
+```
+
+**Keys, schemas and test vectors**, the project's public keys, the records' schemas, and how the vectors are kept (5):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/keys/README.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/keys/key-list.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/schemas/chemistry-made-v1.schema.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/schemas/records-v1.schema.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/README.md
+```
+
+**The sketches**, where your earlier work is kept, and where it meets the course (2):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/README.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/INDEX.md
+```
+
+**Rust: the workspace** (3):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/README.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/Cargo.toml
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/rust-toolchain.toml
+```
+
+**Rust: `formats`**, records signed the standard way (9):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/Cargo.toml
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/canonical.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/lib.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/multikey.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/persons.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/proof.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/records.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/seal.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/sealed.rs
+```
+
+**Rust: `world-log`**, a world's log, checked (3):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/Cargo.toml
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/lib.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/main.rs
+```
+
+**Rust: `ur-world`**, the Ur-world, with its examples (21):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/Cargo.toml
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/arrival.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/door.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/garden.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/generate.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/host.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/lib.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/link.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/person.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/space.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/story.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/world.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/mod.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/octopus.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/relay.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/architecture/swarm.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/architectures.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/door.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/garden.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/log.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/examples/person.rs
+```
+
+**Rust: `plant-world`**, the fractal plant world (6):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/Cargo.toml
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/lib.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/rule.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/vectors.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/src/world.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-world/examples/plant.rs
+```
+
+**Rust: `plant-wasi`**, the plant world as a WebAssembly command (3):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-wasi/Cargo.toml
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-wasi/src/lib.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-wasi/src/main.rs
+```
