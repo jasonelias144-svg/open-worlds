@@ -15,6 +15,7 @@ import json
 from pathlib import Path
 from typing import Dict, List
 
+from .apart_vectors import log_apart
 from .core import Exit, Move, Say, Wait, World, _digest
 
 FOLDER = Path(__file__).resolve().parent.parent / "vectors"
@@ -104,7 +105,8 @@ def files() -> Dict[str, str]:
     def text(value: object) -> str:
         return json.dumps(value, sort_keys=True, indent=1) + "\n"
     return {"world-log.json": text(world_log()),
-            "digests.json": text(digests())}
+            "digests.json": text(digests()),
+            "log-apart.json": text(log_apart())}
 
 
 def main() -> None:

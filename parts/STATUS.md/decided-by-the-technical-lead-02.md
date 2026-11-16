@@ -12,6 +12,43 @@ Decisions about the code, made by the technical lead under the founder's
 deference (above, 2026-11-13), each with its reason and what would show
 it was wrong. Questions of what the project is for stay with the founder.
 
+- 2026-11-16, the form of a log whose fields are kept apart
+  (docs/research/REDACTION.md, "Part two, built"; course step 3b, part
+  two), settled in building it. (a) The form is named
+  `open-worlds/log-apart/v1`, in the first entry. (b) An entry's
+  fingerprints sit in a map of their own, `apart`, beside its open
+  `data`, never in the values' places. (c) The table of which fields
+  are kept apart, kind by kind, is in the first entry, and every entry
+  is held to it; an entry holds its seven keys and nothing else, so
+  nothing sits where the table doesn't reach. (d) `agent` stays in the
+  open and can't be kept apart. (e) Two kinds of entry are the form's own: a mark, and a
+  decision to keep a field public, each naming in the open what it is
+  on. (f) A mark stands until such a decision answers it; a field
+  whose mark was answered and which is gone is missing, the one case
+  decision 4 had not named. (g) A field under a standing mark is never
+  shown by the joining function, even while it is still in the
+  contents. (h) The contents hold nothing the log doesn't commit to,
+  and no salt twice. (i) A missing field is a state, not a refusal;
+  the command line fails on it.
+  *Why:* (b) a reader that doesn't know the form finds a field absent,
+  and can't show a fingerprint as someone's words; (c) "fixed kind by
+  kind" is then checked from the log alone, by anyone; (e) a field's
+  state has to be worked out from open fields (decision 9), so the
+  form has to know a mark when it sees one; (g) a redaction cut short
+  must not leave the field showing; (i) a reader of a copy that has
+  lost fields should be told which, not only that it failed.
+  *Wrong if:* (b, c) a room needs a field kept apart in some entries
+  of a kind and open in others (then the table gives way to the
+  entry's own `apart`); (d) a room has to hide which office acted;
+  (e) part three needs a mark to name more than one field, or
+  something other than an entry; (f) an office that keeps a field
+  public has to do it in two steps, and the step between reads as a
+  fault; (g) a reader needs an unfinished field's value (the
+  contents still hold it; the joining function would then grow a way
+  to ask); (h) contents for two logs have to be kept in one file;
+  (i) a missing field is ever shown to a reader as if the log were
+  whole.
+
 - 2026-11-16, a log that can be redacted, and removals on record
   (docs/research/REDACTION.md, decisions 1 to 10; course step 3b), as
   reworked after the independent review of #100.

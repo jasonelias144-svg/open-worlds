@@ -8,6 +8,7 @@ language can check itself against it, hash for hash. The Rust crate in
 |---|---|
 | `world-log.json` | The whole log of a short seeded run of the world kernel (`world/core.py`), with every kind of entry it writes. |
 | `digests.json` | Bodies chosen to test the edges of writing JSON (key order, escapes, characters outside the basic plane, integers at the ends of 64 bits), each with the exact text the kernel hashes and its SHA-256. |
+| `log-apart.json` | A log whose fields are kept apart (`open-worlds/log-apart/v1`, `world/apart.py`; course step 3b): fingerprints of values at their edges, each with the exact text that is hashed; values a fingerprint refuses; a trial room's log and its contents, with what was written to make it; logs and contents that hold, each with every field's state and the entries as a reader gets them; and logs and contents that must be refused, each named for why, in fixed words. Its salts are trial salts, fixed and public to everyone. Read by `rust/world-log`. |
 | `ur-garden-log.json` | The Ur-world's Hello World: the whole log of the garden with its two scripted stand-ins, WALKER and GARDENER, each entering with a signed arrival (`open-worlds/arrival/v1`), written by the Rust kernel (`rust/ur-world`). The garden is a trial world of its own, and its keys are trial keys made from its seed, public to everyone. |
 | `ur-garden-head.json` | The head of that log, signed by the garden's trial world key (`open-worlds/log-head/v1`), covering all of it. |
 | `ur-garden-hosted.json` | The three plant worlds that garden hosts in its glasshouses (`rust/ur-world/src/host.rs`): each one's log, signed head and birth record, with the trial template and law they name. The garden's log names each step it gave each of them; `tests/test_ur_world_vectors.py` checks the two against each other. Every key is a trial key, public to everyone. |
@@ -28,8 +29,9 @@ https://www.w3.org/TR/vc-di-eddsa/. Copyright © 2025 World Wide Web
 Consortium. https://www.w3.org/copyright/software-license-2023/. The rest
 of this repository is CC0.
 
-The first two are written by the Python kernel,
-[`world/vectors.py`](../world/vectors.py):
+The first three are written by the Python kernel,
+[`world/vectors.py`](../world/vectors.py) (the third through
+[`world/apart_vectors.py`](../world/apart_vectors.py)):
 
 ```
 python3 -m world.vectors

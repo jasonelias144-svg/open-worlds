@@ -12,7 +12,7 @@ The standards for every Rust file are in
 
 | Crate | What it does |
 |---|---|
-| [`world-log`](world-log) | Checks a world's public record exactly as the Python kernel writes it. |
+| [`world-log`](world-log) | Checks a world's public record exactly as the Python kernel writes it; and a log whose fields are kept apart, with the contents kept beside it (course step 3b). |
 | [`ur-world`](ur-world) | The Ur-world: a 3D world that begins in a garden, and is made from its seed as it is explored, where whoever enters signs an arrival with their key ([docs/URWORLD.md](../docs/URWORLD.md)). |
 | [`plant-world`](plant-world) | A fractal plant world, the fractal track's first part ([docs/FRACTALS.md](../docs/FRACTALS.md)): a primary world with a key and a log of its own, made from a template, that grows by DeepSeek's plant rule and its dials alone, checked step by step against DeepSeek's sketch. |
 | [`plant-wasi`](plant-wasi) | The plant world as a WebAssembly command (WASI), so a browser runs the plant world's own code: one request on standard input, the world's log on standard output ([docs/research/WASM.md](../docs/research/WASM.md)). |
@@ -60,6 +60,19 @@ the log holds: 19 entries, head 32751b80c4058dd070b961b9e098ff344acef34e676b9c0f
 Change a value in that file, and it says which entry no longer holds. It
 checks the Ur-world's log the same way:
 `cargo run -p world-log -- ../vectors/ur-garden-log.json`.
+
+For a log whose fields are kept apart (`open-worlds/log-apart/v1`,
+[`world-log/src/apart.rs`](world-log/src/apart.rs)), give the contents
+file too: `world-log LOG CONTENTS`. It checks the chain as before, then
+holds the contents to the fingerprints in the log, and counts the
+fields in each state:
+
+```
+the fields kept apart: 15 present, 0 redacted, 0 unfinished, 0 kept public, 0 missing
+```
+
+It fails if the contents hold anything the log doesn't commit to, or
+if a field is missing: gone, with no mark standing.
 
 The `log` example checks an Ur-world log further: every arrival in it,
 every link shown in it, and how much of it the heads its world signed

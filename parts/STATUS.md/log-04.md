@@ -8,6 +8,27 @@
 
 ## Log
 
+- 2026-11-16 Claude: course step 3b, part two, built: the form of a
+  log whose fields are kept apart (`open-worlds/log-apart/v1`). In
+  Python, `world/apart.py`: the fingerprint, the values it allows, a
+  writer (`Log`), the check of a log with its contents (`check`), which
+  gives each field one of five states, and the function that joins the
+  two for a reader (`join`). In Rust, `rust/world-log/src/apart.rs`,
+  the same, and `world-log LOG CONTENTS` on the command line. The
+  kernel's own form and `verify_log` are unchanged, and the chain of
+  the new form is checked by that same function. Shared vectors,
+  `vectors/log-apart.json`, written by Python: 18 fingerprints with
+  the exact text hashed, 9 values refused, 4 logs with contents that
+  hold (every state among them) and 72 that are refused, each for one
+  of fifteen reasons in fixed words; Rust gives the same answer for
+  every one, and writes the trial room again from the same salts to
+  the same log. What building it settled is recorded as the technical
+  lead's (above), with one case the plan had not named. Not done here:
+  no reader is changed, since no world writes the form yet, and
+  nothing is redacted. docs/research/REDACTION.md ("Part two, built"),
+  docs/COURSE.md, docs/FUNDAMENTALS.md, vectors/README.md,
+  rust/README.md and docs/COLLABORATING.md (a message to DeepSeek on
+  the form its rooms will be written in) brought into line.
 - 2026-11-16 Claude: course step 3b begun by looking first
   (docs/research/REDACTION.md): the project's one log and why nothing
   can be taken out of it today, `decision/v1` and `sealed/v1` as they

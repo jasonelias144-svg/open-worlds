@@ -11,6 +11,11 @@
 //! [`python_json`] writes that text, [`digest`] hashes it, and
 //! [`verify_log`] checks a whole log, as `World.verify_log` does in Python.
 //!
+//! [`apart`] is a second form of the log, for worlds persons act in: an
+//! entry's fields can be kept apart from the chain, each by a salted
+//! fingerprint, so that one can later be redacted and the log still
+//! checks (course step 3b).
+//!
 //! This is the first piece of the world kernel in Rust. The shared test
 //! vectors in `vectors/` are written by the Python kernel
 //! (`python3 -m world.vectors`), and this crate's tests check it against
@@ -31,6 +36,8 @@
 use serde_json::{Map, Value};
 use sha2::{Digest, Sha256};
 use std::fmt;
+
+pub mod apart;
 
 /// The `prev` of a log's first entry: sixty-four zeros.
 pub const GENESIS: &str = "0000000000000000000000000000000000000000000000000000000000000000";

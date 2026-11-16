@@ -6,14 +6,6 @@
 > After this part: nothing; this is the last part.
 > Made by docs/parts.py from the file. To change it, change the file.
 
-A page or a file of code longer than 28,000 bytes is also kept cut
-into parts, for a reader who is shown only the start of a page:
-[parts/INDEX.md](../parts/INDEX.md) gives every part's full link, and
-its own link is in the last group below. The test vectors and
-Cargo.lock are left whole.
-
-**Start here**, the orientation, the charter, the course, and the pages the work now draws on (10):
-
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COLLABORATING.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/AGENTS.md
@@ -66,7 +58,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/resear
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/jcs_compare.py
 ```
 
-**Keys, schemas and test vectors**, the project's public keys, the records' schemas, and the vectors code in any language checks itself against (19):
+**Keys, schemas and test vectors**, the project's public keys, the records' schemas, and the vectors code in any language checks itself against (20):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/keys/README.md
@@ -81,6 +73,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/for
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/formats/persons-v1.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/formats/records-v1.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/formats/sealed-records-v1.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/log-apart.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/plant-world.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/ur-chunks.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/ur-garden-head.json
@@ -148,10 +141,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/formats/sea
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/formats/vectors.py
 ```
 
-**Python: `world`, `chem` and `minds`**, the world kernel, the chemistry, and two minds that live in the Ur-world through its doorway (13):
+**Python: `world`, `chem` and `minds`**, the world kernel, the chemistry, and two minds that live in the Ur-world through its doorway (15):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/__init__.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/apart.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/apart_vectors.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/core.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/vectors.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/chem/__init__.py
@@ -190,11 +185,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/web/map/ind
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/web/plant/index.html
 ```
 
-**Tests in Python**, with the two checks for the web pages (39):
+**Tests in Python**, with the two checks for the web pages (40):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/__init__.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/fixtures/rfc8032_ed25519.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_apart.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_chem_molecules.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_chem_rdkit.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_chem_reactions.py
@@ -264,12 +260,14 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/format
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/tests/vectors.rs
 ```
 
-**Rust: `world-log`**, a world's log, checked, with its tests (5):
+**Rust: `world-log`**, a world's log, checked, and a log whose fields are kept apart, with its tests (7):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/Cargo.toml
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/apart.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/lib.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/main.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/tests/apart_vectors.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/tests/cli.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/tests/vectors.rs
 ```

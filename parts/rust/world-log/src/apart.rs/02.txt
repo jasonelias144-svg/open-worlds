@@ -1,0 +1,108 @@
+Part of `rust/world-log/src/apart.rs` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 2.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/world-log/src/apart.rs/01.txt
+After this part: nothing; this is the last part.
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+impl Log {
+    /// Starts a log: its first entry, of kind `kind`, holds `data` with
+    /// the form's name and `table` added. `table` gives, for each kind of
+    /// entry, the names of the fields kept apart, in ascending order.
+    pub fn new(
+        table: &Value,
+        data: &Map<String, Value>,
+        kind: &str,
+        salt: &mut dyn FnMut() -> String,
+    ) -> Result<Log, Refused> {
+        if data.contains_key("form") || data.contains_key("kept_apart") {
+            return Err(Refused::FirstGiven);
+        }
+        let mut first = data.clone();
+        first.insert("form".to_owned(), Value::String(FORM.to_owned()));
+        first.insert("kept_apart".to_owned(), table.clone());
+        let mut log = Log {
+            entries: Vec::new(),
+            contents: Map::new(),
+            scan: Scan::default(),
+            salts: BTreeSet::new(),
+        };
+        log.append(0, kind, None, &first, &Map::new(), salt)?;
+        Ok(log)
+    }
+
+    /// The entries: the chain.
+    pub fn entries(&self) -> &[Value] {
+        &self.entries
+    }
+
+    /// The contents: for each entry that keeps fields apart, each field's
+    /// `[salt, value]`.
+    pub fn contents(&self) -> &Map<String, Value> {
+        &self.contents
+    }
+
+    /// The hash of the last entry.
+    pub fn head(&self) -> &str {
+        self.scan.order.last().map_or(GENESIS, String::as_str)
+    }
+
+    /// The entries and the contents, to keep or to publish.
+    pub fn into_parts(self) -> (Vec<Value>, Map<String, Value>) {
+        (self.entries, self.contents)
+    }
+
+    /// Appends one entry and returns its hash. `data` holds the open
+    /// fields, `apart` the fields kept apart, by name. Refuses, and
+    /// appends nothing, if the entry would not hold.
+    pub fn append(
+        &mut self,
+        tick: u64,
+        kind: &str,
+        agent: Option<&str>,
+        data: &Map<String, Value>,
+        apart: &Map<String, Value>,
+        salt: &mut dyn FnMut() -> String,
+    ) -> Result<String, Refused> {
+        let sorted: BTreeMap<&String, &Value> = apart.iter().collect();
+        let mut prints = Map::new();
+        let mut kept = Map::new();
+        let mut salts = BTreeSet::new();
+        for (name, value) in sorted {
+            let salt = salt();
+            if !is_salt(&salt) {
+                return Err(Refused::Salt(Place::default()));
+            }
+            if self.salts.contains(&salt) || salts.contains(&salt) {
+                return Err(Refused::SaltTwice(Place::default()));
+            }
+            let print = fingerprint(&salt, name, value)?;
+            prints.insert(name.clone(), Value::String(print));
+            kept.insert(name.clone(), json!([salt, value]));
+            salts.insert(salt);
+        }
+        let mut body = Map::new();
+        body.insert("tick".to_owned(), json!(tick));
+        body.insert("kind".to_owned(), json!(kind));
+        body.insert("agent".to_owned(), json!(agent));
+        body.insert("data".to_owned(), Value::Object(data.clone()));
+        body.insert("apart".to_owned(), Value::Object(prints));
+        body.insert("prev".to_owned(), json!(self.head()));
+        let index = self.entries.len();
+        let hash = digest(&Value::Object(body.clone()))
+            .map_err(|error| Refused::Unwritable(LogError::Unwritable { index, error }))?;
+        body.insert("hash".to_owned(), Value::String(hash.clone()));
+        let entry = Value::Object(body);
+        self.scan.take(&entry)?;
+        self.entries.push(entry);
+        self.salts.extend(salts);
+        if !kept.is_empty() {
+            self.contents.insert(hash.clone(), Value::Object(kept));
+        }
+        Ok(hash)
+    }
+}
+
+------------------------------------------------------------------------
+End of `rust/world-log/src/apart.rs`.

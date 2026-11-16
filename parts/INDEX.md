@@ -45,11 +45,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/ADMIN.md/when-each-part-is-built.md
 ```
 
-## `docs/COLLABORATING.md`, in 7 parts
+## `docs/COLLABORATING.md`, in 8 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/start.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-02.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-01.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/since-you-were-last-here.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/the-standard.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/cycles.md
@@ -64,11 +65,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/personal-information-in-a-room-ideas.md
 ```
 
-## `docs/COURSE.md`, in 2 parts
+## `docs/COURSE.md`, in 3 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COURSE.md/start.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COURSE.md/ahead.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COURSE.md/waiting.md
 ```
 
 ## `docs/FILES.md`, in 8 parts
@@ -162,6 +164,13 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/ur-world/src/world.rs/02.txt
 ```
 
+## `rust/world-log/src/apart.rs`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/world-log/src/apart.rs/01.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/world-log/src/apart.rs/02.txt
+```
+
 ## `schemas/records-v1.schema.json`, in 2 parts
 
 ```text
@@ -210,7 +219,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/web/p
 Longer than 28,000 bytes, and not cut:
 
 - `rust/Cargo.lock`: the lock file cargo writes.
-- `vectors/` (8 of its files): test vectors, which programs check and nobody reads through.
+- `vectors/` (9 of its files): test vectors, which programs check and nobody reads through.
 - The files of record, which [docs/FILES.md](../docs/FILES.md)
   lists: DeepSeek's records, the code taken from them, what
   DeepSeek was given in reply, and experiment 001's run logs.

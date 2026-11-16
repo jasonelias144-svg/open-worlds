@@ -364,7 +364,10 @@ multiverse as a computer", for the first time (they were written on
 the plan, after looking first, is in
 [research/REDACTION.md](research/REDACTION.md), in four parts (the
 plan; fingerprints and contents; redacting; removing, taking back and
-restoring). Before any room is built on it. Two things. The founder
+restoring). The second is built: a form of the log whose fields are
+kept apart (`world/apart.py`, `rust/world-log`), with the check of a
+log against its contents and the function that joins them; nothing is
+redacted yet. Before any room is built on it. Two things. The founder
 asked that private information be redacted in public records
 (2026-11-15), and that removals be on record "from the beginning"
 (2026-11-16). How each is built is the technical lead's reading:

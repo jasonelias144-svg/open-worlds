@@ -4,7 +4,7 @@
 respect one another's freedom, with full transparency and exit at any time;
 free, and never a money machine
 **State:** active since 2026-11-12
-**Updated:** 2026-11-15 by Claude
+**Updated:** 2026-11-16 by Claude
 
 ## Live
 
@@ -48,9 +48,14 @@ free, and never a money machine
   of twelve (docs/COURSE.md, "Rechecked on 2026-11-16"). Step 3b is
   under way, a log whose fields can be redacted, with removals and
   restorings on record: its plan, after looking first, is in
-  docs/research/REDACTION.md, and nothing of it is built yet. Then
-  step 3c, the room, where DeepSeek's `chat-world` is fitted onto the
-  project's formats.
+  docs/research/REDACTION.md. Its second part is built: a form of the
+  log whose fields are kept apart by salted fingerprints, with the
+  contents beside it, the check that holds the two together, and the
+  function that joins them (`world/apart.py`, `rust/world-log`, with
+  shared vectors). Nothing is redacted yet: that is its third part,
+  which waits for the founder's answer on the office's copy (Open
+  questions). Then step 3c, the room, where DeepSeek's `chat-world` is
+  fitted onto the project's formats.
 - Claude: the fractal track, alongside the course (docs/FRACTALS.md),
   set by the founder on 2026-11-14: a fractal plant world in Rust, the
   web app in `web/` to watch worlds grow, and in it the multiversal map.
@@ -2422,6 +2427,43 @@ Decisions about the code, made by the technical lead under the founder's
 deference (above, 2026-11-13), each with its reason and what would show
 it was wrong. Questions of what the project is for stay with the founder.
 
+- 2026-11-16, the form of a log whose fields are kept apart
+  (docs/research/REDACTION.md, "Part two, built"; course step 3b, part
+  two), settled in building it. (a) The form is named
+  `open-worlds/log-apart/v1`, in the first entry. (b) An entry's
+  fingerprints sit in a map of their own, `apart`, beside its open
+  `data`, never in the values' places. (c) The table of which fields
+  are kept apart, kind by kind, is in the first entry, and every entry
+  is held to it; an entry holds its seven keys and nothing else, so
+  nothing sits where the table doesn't reach. (d) `agent` stays in the
+  open and can't be kept apart. (e) Two kinds of entry are the form's own: a mark, and a
+  decision to keep a field public, each naming in the open what it is
+  on. (f) A mark stands until such a decision answers it; a field
+  whose mark was answered and which is gone is missing, the one case
+  decision 4 had not named. (g) A field under a standing mark is never
+  shown by the joining function, even while it is still in the
+  contents. (h) The contents hold nothing the log doesn't commit to,
+  and no salt twice. (i) A missing field is a state, not a refusal;
+  the command line fails on it.
+  *Why:* (b) a reader that doesn't know the form finds a field absent,
+  and can't show a fingerprint as someone's words; (c) "fixed kind by
+  kind" is then checked from the log alone, by anyone; (e) a field's
+  state has to be worked out from open fields (decision 9), so the
+  form has to know a mark when it sees one; (g) a redaction cut short
+  must not leave the field showing; (i) a reader of a copy that has
+  lost fields should be told which, not only that it failed.
+  *Wrong if:* (b, c) a room needs a field kept apart in some entries
+  of a kind and open in others (then the table gives way to the
+  entry's own `apart`); (d) a room has to hide which office acted;
+  (e) part three needs a mark to name more than one field, or
+  something other than an entry; (f) an office that keeps a field
+  public has to do it in two steps, and the step between reads as a
+  fault; (g) a reader needs an unfinished field's value (the
+  contents still hold it; the joining function would then grow a way
+  to ask); (h) contents for two logs have to be kept in one file;
+  (i) a missing field is ever shown to a reader as if the log were
+  whole.
+
 - 2026-11-16, a log that can be redacted, and removals on record
   (docs/research/REDACTION.md, decisions 1 to 10; course step 3b), as
   reworked after the independent review of #100.
@@ -3046,6 +3088,27 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-16 Claude: course step 3b, part two, built: the form of a
+  log whose fields are kept apart (`open-worlds/log-apart/v1`). In
+  Python, `world/apart.py`: the fingerprint, the values it allows, a
+  writer (`Log`), the check of a log with its contents (`check`), which
+  gives each field one of five states, and the function that joins the
+  two for a reader (`join`). In Rust, `rust/world-log/src/apart.rs`,
+  the same, and `world-log LOG CONTENTS` on the command line. The
+  kernel's own form and `verify_log` are unchanged, and the chain of
+  the new form is checked by that same function. Shared vectors,
+  `vectors/log-apart.json`, written by Python: 18 fingerprints with
+  the exact text hashed, 9 values refused, 4 logs with contents that
+  hold (every state among them) and 72 that are refused, each for one
+  of fifteen reasons in fixed words; Rust gives the same answer for
+  every one, and writes the trial room again from the same salts to
+  the same log. What building it settled is recorded as the technical
+  lead's (above), with one case the plan had not named. Not done here:
+  no reader is changed, since no world writes the form yet, and
+  nothing is redacted. docs/research/REDACTION.md ("Part two, built"),
+  docs/COURSE.md, docs/FUNDAMENTALS.md, vectors/README.md,
+  rust/README.md and docs/COLLABORATING.md (a message to DeepSeek on
+  the form its rooms will be written in) brought into line.
 - 2026-11-16 Claude: course step 3b begun by looking first
   (docs/research/REDACTION.md): the project's one log and why nothing
   can be taken out of it today, `decision/v1` and `sealed/v1` as they
