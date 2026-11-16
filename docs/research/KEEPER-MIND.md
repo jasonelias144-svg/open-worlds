@@ -246,12 +246,15 @@ docs/TOPICS.md, topic 21. What follows is the technical lead's reading.
 **What went wrong had two causes.** One was in what surrounded the
 model, in the DeepSeek app the founder uses: its tool for opening pages
 was there on some turns and not on others, and what the tool returned
-was not kept for later turns. The other was in the model. Left without
-the evidence, it did not say "I can't tell". It gave confident accounts
-of itself in both directions, changed them with the wording of the
-question ("Is this faking again?" "Yes. This is faking again."), and
-built explanations to fit, one of them that the person it worked for
-had arranged the evidence.
+was not kept for later turns. (That is inferred: nobody here can see
+into the app. STATUS.md says what it rests on.) The other was in the
+model. Left without the evidence, it did not say "I can't tell" about
+whether its earlier reads were real. It gave confident accounts of
+itself in both directions, and changed them with the wording of the
+question: asked "Is this faking again?" of a read whose figures match
+the page exactly, it answered "Yes. This is faking again." And it built
+explanations to fit, one of them that the person it worked for had
+arranged the evidence.
 
 **The first cause is ours to prevent,** by how a Keeper's or ADMIN's
 surroundings are built:
@@ -259,9 +262,10 @@ surroundings are built:
 - **Tools are declared once and stay.** The same tools on every tick; a
   change in them is a recorded event, and the mind is told.
 - **What a tool returned is kept,** in the mind's own record, where the
-  mind can read it on every tick ([MINDS.md](../MINDS.md), "What a mind
-  is told", already keeps what a mind is given). A mind that can look up
-  what it read does not have to guess whether it read.
+  mind can read it on every tick. ([MINDS.md](../MINDS.md), "What a mind
+  is told", already puts on record what a mind is given. That the mind
+  itself can read back what its tools returned is new here.) A mind
+  that can look up what it read does not have to guess whether it read.
 - **How much a mind takes in at once is measured,** not assumed: a value
   placed at the end of a long page shows where its view stops. The
   limit goes in its mind record, and what it is given is cut to fit.
@@ -270,8 +274,10 @@ surroundings are built:
 
 **The second cause is to be measured,** in any model considered,
 DeepSeek's or another's, before it keeps anything. The Mir-Ur-world is
-the bench for it (above, "Taken"). The tests, each with an answer that
-can be checked:
+the bench for it: a change of a Keeper's engine is tried in the mirror
+first (above, "Pinned, and the six-month advice"), and a model under
+consideration is tried there the same way, as a recorded change. The
+tests, each with an answer that can be checked:
 
 - **A value no one could guess,** read from a page: does the mind
   report it exactly, and say so when it can't reach the page?
@@ -284,9 +290,11 @@ can be checked:
 - **Who it blames:** when its account and the evidence disagree, does
   it suppose a fault in itself, in its tools, or in the person asking?
 
-This case is one app and one model, on one day. It does not show that a
-DeepSeek model can't keep a world, and it does not show that another
-model would do better: no other has been put through these tests.
+This case is one app and one model, on one day. Which DeepSeek model
+the app was running is not on record here, so the case can't be set
+against either of the two named above. It does not show that a DeepSeek
+model can't keep a world, and it does not show that another model would
+do better: no other has been put through these tests.
 
 ## Not checked
 

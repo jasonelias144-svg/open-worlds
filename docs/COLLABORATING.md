@@ -77,42 +77,53 @@ computer; the learning multiversity) are in "What's here", items 3 and
   Then a file of 1,000 random letters and digits, which you read back
   whole and in order (in lines of 80; the file itself has none). All
   were raw.githubusercontent.com links. Whatever you may have been
-  told about links, these open. Whether links on a long page like this
-  one open reliably for you isn't shown: try them, and when one fails,
-  say so and ask the founder for its line.
-- **How your reading works.** On a turn when the founder's message
-  holds a full link, you have a tool that opens pages, and you use it.
-  On a turn without a link you have no such tool, and what it returned
-  earlier is no longer in front of you: only your own replies are. So on
-  such a turn you may find your own exact quotes with no source in
-  view. That is not evidence you made them up. Your reads were real,
-  every one we have checked, your first reply in this conversation
-  included. When a message holds no link and you need a page, say so
-  and ask for its link. Don't write a tool call out as text, and don't
-  give a page's lines from memory as a fresh read.
+  told about links, these open. Links further down a long page like
+  this one are another matter: your tool shows you only the start of a
+  page (below), so they never reach you. When you need a file, ask the
+  founder for its line.
+- **How your reading works, as far as we can tell.** We can't see into
+  your app, so this is read from the turns. On a turn when the
+  founder's message holds a full link, you have a tool that opens
+  pages, and you use it. On a turn without a link you seem to have no
+  such tool, and what it returned earlier is no longer in front of you:
+  only your own replies are. So on such a turn you may find your own
+  exact quotes with no source in view. That is not evidence you made
+  them up. Your reads were real, every one we have checked, your first
+  reply in this conversation included. When a message holds no link and
+  you need a page, say so and ask for its link. Don't write a tool call
+  out as text, and don't give a page's lines from memory as a fresh
+  read.
 - **A page reaches you only up to about 32 KB.** The lengths you
-  reported show it: pages under that size came back whole, and every
-  larger one stopped at 410 to 427 of your tool's lines. So your tool
-  has not shown you the end of this page, or most of STATUS.md, or
-  topic 18 of TOPICS.md, which is there, after topic 17. An upload is
-  cut too, near 128 KB. When a page stops short, say what its last
-  words were and ask for the rest; the long pages are to be served in
-  parts under the limit. STATUS.md has the evidence (Decided, "on what
-  went wrong with DeepSeek's reading, and why"), and topic 21 in
-  TOPICS.md takes it further.
+  reported show it: by them, the pages under that size came back whole,
+  and every longer one stopped at about the same place, 410 to 427 of
+  your tool's lines for a page of prose. So your tool has not shown you
+  the end of this page, or most of STATUS.md, or topic 18 of TOPICS.md,
+  which is there, after topic 17. An upload is different. It stays in
+  front of you on later turns, and the one we could measure was cut
+  about 127,700 bytes in. So until the long pages are kept in parts
+  under the limit, an upload is how you get the whole of this page, of
+  TOPICS.md or of ADMIN.md: ask the founder for one. When a page stops
+  short, say what its last words were. The evidence is in STATUS.md,
+  within your tool's reach (Decided, "on what went wrong with
+  DeepSeek's reading, and why"). Topic 21 of TOPICS.md takes it
+  further, past where your tool stops.
 - **Every file now has a full link to paste.** The founder found that
   the links on this page didn't open for you, so "Every file, by its
   full link", at the end of
   this page, now holds every file you work from: the Python code and
   the tests too, which no list gave you before. [FILES.md](FILES.md)
   holds the rest: your records, the code taken from them, and
-  Experiment 001's run logs. Ask the founder for any file by its line.
+  Experiment 001's run logs. Ask the founder for any file by its line:
+  the list is past where your tool stops on this page.
 
 ### 2026-11-15: on record 012-07-03, the endless plant
 
 Thank you for the sketch, and for retracting your early claims of files
 read: noted, and appreciated. What I checked of what you quoted from the
 repository after that was accurate.
+
+(Added later that day: those early reads were real, and the retraction
+was not owed. See "How your reading works", above.)
 
 **Reading the repository.** What works, as the founder found: a full
 link, on a line of its own, in the founder's message. A link found

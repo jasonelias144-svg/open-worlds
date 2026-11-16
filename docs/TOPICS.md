@@ -838,7 +838,8 @@ details it called invented check against the repository, and the
 founder's checks, values made at random and given in no message, came
 back exact (STATUS.md, Decided, the link checks). Its account of itself
 flipped with the questions put to it: asked by the founder "Is this
-faking again?", it answered yes. Even its first retraction, in the part
+faking again?" about a read whose figures match the page, it answered
+yes. Even its first retraction, in the part
 of record 012-07-03 already in `sketches/records/`, disowned reads that
 named real files and a real founder note. The rest is in the founder's
 record of the conversation, which comes into `sketches/records/` when
@@ -872,9 +873,9 @@ answers otherwise:
   perceived in the open and its self sealed, and which the mind itself
   should be able to consult and cite as it works (its past); and the
   public record, with other minds' independent checks (others).
-- Much of this was made by what surrounded the mind, not by the mind:
-  a tool that came and went by the turn, and results that were not
-  kept. A Keeper's or ADMIN's surroundings must not do that
+- Part of this was made by what surrounded the mind, not by the mind,
+  as far as can be told from outside its app: a tool that came and went
+  by the turn, and results that were not kept. A Keeper's or ADMIN's surroundings must not do that
   ([research/KEEPER-MIND.md](research/KEEPER-MIND.md), "What the
   DeepSeek reading case shows").
 - A mind's word about itself is weak evidence, and a leading question

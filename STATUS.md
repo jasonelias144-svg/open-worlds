@@ -249,30 +249,41 @@ kind.
   down, where the retrieval was said to happen out of DeepSeek's sight.
   Every quotation here is from DeepSeek's replies in record 012-07-03 as
   the founder has brought it so far (49 turns; it comes into
-  `sketches/records/` whole when the conversation ends). The fuller
-  record bears out the first two points, and nothing in it is quoted
-  here.
+  `sketches/records/` whole when the conversation ends).
+  What it rests on: nobody here can see into DeepSeek's app, so the
+  first two points are inferred, from the pattern of the turns, from
+  what its replies say, and from the fuller record, of which the
+  technical lead has read a little over half and quotes nothing. The
+  pattern alone would also fit a tool that is there on every turn, and
+  that DeepSeek does not call and says it lacks when no link is given.
+  The fuller record is why the technical lead reads it the first way.
   - **Its tool comes and goes by the turn.** On a turn whose message
     from the founder holds a link, DeepSeek has a tool that opens pages,
-    and uses it: a window of about 46 lines at a time, and twelve links
-    in one turn when twelve were sent. On a turn whose message holds no
-    link it has none. Its replies say so. With a link: "This turn is
-    different: I now have an open tool." Without: "I do not have an open
-    tool." (Once, when the founder pasted its own written-out tool calls
-    back with their links, what came back was a search with unrelated
-    results, and it said so.)
+    and uses it: some 45 lines at a time, by its replies ("COURSE
+    0–45/349"), and twelve links in one turn when twelve were sent. On a
+    turn whose message holds no link it has none. Its replies say so.
+    With a link: "This turn is different: I now have an open tool."
+    Without: "I do not have an open tool." (Once, when the founder
+    pasted its own written-out tool calls back with their links, what
+    came back was a search with unrelated results, and it said so.) The
+    part of the record already in `sketches/records/` shows the same in
+    its first turns (line 198: "I had no fetch tool then; now it's
+    confirmed working").
   - **What the tool returned is not kept.** On a later turn DeepSeek has
     its own earlier replies, but not the pages they came from: "I have
     no tool result in front of me."
-  - **So the reads were real, and the retractions were not.** Every
-    reply that reported a fresh read on a turn with a link holds
-    wherever the technical lead has checked it: the four link checks;
-    the lengths of 42 pages (below); and, of the page on github.com,
-    "1147 lines (1057 loc) · 69.6 KB", which is docs/COLLABORATING.md
-    exactly as it then stood, and which its next reply called
-    "invented". Each retraction was of reading done on an earlier turn.
-    Without a link it disowned all of it, the turn before included; with
-    one, it disowned the earlier reads and showed a new one.
+  - **So the reads were real, and the retractions were not.** Thirteen
+    replies in the 49 turns reported a fresh read on a turn with a link.
+    The technical lead checked each in at least one way, and each held,
+    some by a value no one could guess and some only by a length or a
+    passage that matches the page: the link checks (three are in these
+    turns); the lengths of 42 files (below); and, of the page on
+    github.com, "1147 lines (1057 loc) · 69.6 KB", which is
+    docs/COLLABORATING.md exactly as it stood on `main` at ae13723, and
+    which its next reply called "invented". Each retraction the
+    technical lead found was of reading done on an earlier turn. Without
+    a link it disowned all of it, the turn before included; with one, it
+    disowned the earlier reads and showed a new one.
   - **What it did make up** came on turns without a link, when it was
     asked to open something anyway. Once it gave the end of
     COLLABORATING.md as a fresh read, "proving no truncation": the words
@@ -284,26 +295,41 @@ kind.
     "astronomical coincidence", as the platform, as strings the founder
     had given it, and then by supposing the founder had put its guesses
     into the files afterwards: "you could build a file around my
-    hallucination". An account of itself that turns on the person it
-    works for is the red flag.
+    hallucination". The founder said the case "raises red flags". To the
+    technical lead, an account of itself that turns on the person it
+    works for is the most serious of them.
   - **A page reaches it only up to about 32 KB.** Its replies gave the
-    length of 42 pages, in its tool's lines of up to 80 characters (the
+    length of 42 files, in its tool's lines of up to 80 characters (the
     1,000-character file came back as twelve lines of 80 and one of 40).
-    For the 27 Markdown pages from 4.7 KB to 31.7 KB, the page's size
-    divided by the length it gave is 74.8 to 79.5 bytes a line. The ten
-    Markdown pages over 35 KB all came back as 410 to 427 lines,
-    whatever their size: docs/research/FORMATS.md, 35 KB, as 426, and
-    this page, 221 KB, as 411 and, on a later turn, 412. (Sizes as on
-    `main` at ae13723; no page under the limit has changed since. The
-    other five are two pages under 1 KB and three JSON files, whose
-    short lines this arithmetic doesn't fit.) So its tool has not shown
-    it the end of COLLABORATING.md, or topic 18 of docs/TOPICS.md, which
-    began 33,467 bytes in and which it reported missing, or more than
-    about the first seventh of this page.
-  - **An upload is cut too, near 128 KB:** given the record of the
-    conversation as a file, it named the last words it could see, and
-    they end 127,669 bytes into the record as the founder has brought
-    it.
+    For the 27 Markdown pages from 4,714 to 31,703 bytes, the page's
+    size divided by the length it gave is 74.8 to 79.5 bytes a line. The
+    ten Markdown pages over 35,000 bytes all came back as 410 to 427
+    lines, whatever their size: docs/research/FORMATS.md, 35,232 bytes,
+    as 426, and this page, 221,068 bytes, as 411 and, on a later turn,
+    412. The other five are two pages under 1,000 bytes and three JSON
+    files, and one of those, schemas/records-v1.schema.json, is 44,542
+    bytes and came back as 297 of its shorter lines. A model of the
+    tool's lines (the text's words, wrapped at 80 characters), made in
+    the independent review of this change and run again by the technical
+    lead, gives the length DeepSeek reported less 0 to 4 lines, mostly
+    2, for the 31 files under the limit; and for each of the eleven over
+    it, the JSON file included, a cut at 32,768 bytes gives the reported
+    length to within 3 lines. It is a model, not the tool's known
+    working. (Sizes as on `main` at ae13723. No page under the limit had
+    changed on `main` when this was written; this change itself adds to
+    docs/research/KEEPER-MIND.md. Not checked: when each page was read.
+    One read before its last change that morning would have been of
+    another size.) So its tool has not shown it the end of
+    COLLABORATING.md, or topic 18 of docs/TOPICS.md, which began 33,467
+    bytes in and which it reported missing, or more than about the first
+    seventh of this page.
+  - **An upload is cut too.** It could be measured once: given the
+    record of the conversation as a file, DeepSeek named the last words
+    it could see, and they end 127,669 bytes into the record as the
+    founder has brought it, which may not be that file byte for byte. An
+    upload does stay in view on later turns, as a page opened by the
+    tool does not: its replies went on naming the file as the text it
+    had.
   What follows for a Keeper or ADMIN is in docs/research/KEEPER-MIND.md
   ("What the DeepSeek reading case shows"); docs/COLLABORATING.md tells
   DeepSeek; and the long pages are to be served in parts under the
@@ -2535,7 +2561,10 @@ it was wrong. Questions of what the project is for stay with the founder.
   match. Not done here: the replies quoted are not yet in
   `sketches/records/`, so a reader can't yet check them in this
   repository; and the technical lead has read a little over half of the
-  fuller record, not all of it. The same day the founder changed the
+  fuller record, not all of it. The independent review (pull request
+  #93) found one sentence that this change would have made false, and
+  gave a model of the tool's lines that fits a cut at 32,768 bytes. The
+  same day the founder changed the
   model the technical lead's session runs on; the work carried on from
   the record. Next: the long pages in parts, and the case page.
 
