@@ -26,8 +26,9 @@ it was wrong. Questions of what the project is for stay with the founder.
   top-level items and gathered from its end, so that a new entry at the
   top of "Decided" or "Log" changes one part, and the parts below it
   keep their names and their text. (When that part is full, a new one
-  is added above it, and the parts on either side of the new one change
-  the links at their top and bottom.) Left whole: the test vectors and
+  is added above it and the section's heading moves into it, and the
+  parts on either side of the new one change the links at their top and
+  bottom.) Left whole: the test vectors and
   Cargo.lock, which nobody reads through, and the files of record.
   `parts/` is the script's alone: it removes anything there that it did
   not write.

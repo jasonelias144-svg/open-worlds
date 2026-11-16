@@ -235,7 +235,14 @@ class TheRepository(unittest.TestCase):
                     self.assertEqual(text.encode("utf-8"), f.read())
 
     def test_an_argument_it_does_not_know_changes_nothing(self):
-        self.assertEqual(PARTS.main(["--chek"]), 2)
+        # It must stop before it works anything out, let alone writes.
+        def never(*_):
+            raise AssertionError("the parts were built")
+        build, PARTS.build = PARTS.build, never
+        try:
+            self.assertEqual(PARTS.main(["--chek"]), 2)
+        finally:
+            PARTS.build = build
 
     def test_every_long_file_is_cut_or_named_as_left_whole(self):
         to_cut, left = PARTS.long_files(TRACKED)

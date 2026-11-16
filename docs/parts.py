@@ -24,9 +24,18 @@ that grow at the top of a section, as STATUS.md's "Decided" and "Log"
 do: a new entry then changes only that section's first part, and the
 parts below keep their names and their text, so a change to the page
 changes few parts. (When that first part is full, a new one is added
-above it, and the parts on either side of the new one change the links
-at their top and bottom.) Any other file is cut between its
-paragraphs, gathered from its start.
+above it and the section's heading moves into it, and the parts on
+either side of the new one change the links at their top and bottom.)
+Any other file is cut between its paragraphs, gathered from its start.
+
+Two things it reads more loosely than CommonMark, neither of which
+loses text. A line of backticks or tildes counts as a fence however far
+it is indented, so that fences inside list items are seen; one indented
+four spaces or more, which CommonMark takes for indented code, is read
+as a fence too. And a file that isn't Markdown is read for fences the
+same way, so a line of tildes in one (an underline in reStructuredText,
+say) is taken for an open block, and cuts after it fall between lines
+and not between paragraphs.
 
 parts/ is this script's alone. It removes anything there that it did
 not write, ignored files included.
