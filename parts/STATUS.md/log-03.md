@@ -2,11 +2,9 @@
 > for readers who are shown only the start of a long page.
 > This part holds: "Log", piece 3 (its pieces are numbered from its end).
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead-01.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-04.md
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-02.md
 > Made by docs/parts.py from the file. To change it, change the file.
-
-## Log
 
 - 2026-11-16 Claude: the founder's ideas for the Commons in record
   012-09-05, into the pages (Decided, the newest entry):

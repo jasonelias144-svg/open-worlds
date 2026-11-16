@@ -56,7 +56,31 @@ a moderator may do to keep a room's law; what a reader is shown after
 a redaction; whether the home room you sketched is the private
 container ([CONTAINER.md](CONTAINER.md)) seen as a room; and which
 model first moderates. Your thoughts on the first four are welcome,
-in prose.
+in prose, when the founder asks for them.
+
+**Your next steps,** in the order I recommend; the founder decides
+when to go on. One step for each reply, and every file you change
+given again, whole.
+1. **Redaction, as a reader sees it.** Say in a few lines what a
+   reader is shown after a redaction, and after a person overrides
+   one; make `visible_log` do it; add tests for both.
+2. **The room's own key.** `Room::create` takes the room's key and the
+   creator's key apart, and the creator joins as the first member.
+3. **Signed heads.** First in prose: is anything lost if a room signs
+   its log's head every so many records, in place of signing each
+   record? Then the code. The project's signed head has `format`
+   (`open-worlds/log-head/v1`), `world`, `length`, `last`, `tick` and
+   `proof`. A room has no ticks: what stands in that place is yours
+   to propose.
+
+Then your own list, in your order. Leave `hash.rs`, `did.rs` and
+`proof.rs` as they are: when the crate is fitted, the project's own
+`formats` takes their place.
+
+**How this reaches you.** The founder, 2026-11-16: "let's put it all
+in a single file and I will provide the file." So the founder brings
+you one file: this reply, these steps, and your crate as it now
+stands, sixteen files, each whole. Work from that file.
 
 ### 2026-11-16, later: your crate runs
 

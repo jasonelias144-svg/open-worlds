@@ -8,6 +8,17 @@
 
 ## Decided
 
+- 2026-11-16, founder, on what to show DeepSeek: "As far as what to show
+  DeepSeek, let's put it all in a single file and I will provide the
+  file. No link necessary. Just one long file within everything
+  included. But only what is needed to continue working." (The rest of
+  the message is not recorded here.) So for the founder's return to
+  DeepSeek the technical lead builds one file, holding only what
+  DeepSeek needs to go on: the reply, the next steps, and the code as it
+  stands, each file whole (Log, 2026-11-16). docs/COLLABORATING.md says
+  so to DeepSeek, and carries the same reply and steps, so that the
+  repository holds everything the file says.
+
 - 2026-11-16, founder, in conversation with DeepSeek (record 012-09-05,
   brought in that day; the numbers are its lines), on the Commons as
   rooms of chat: "So the basic idea would be a primary communication

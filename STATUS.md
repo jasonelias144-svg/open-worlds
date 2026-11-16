@@ -262,6 +262,17 @@ kind.
 
 ## Decided
 
+- 2026-11-16, founder, on what to show DeepSeek: "As far as what to show
+  DeepSeek, let's put it all in a single file and I will provide the
+  file. No link necessary. Just one long file within everything
+  included. But only what is needed to continue working." (The rest of
+  the message is not recorded here.) So for the founder's return to
+  DeepSeek the technical lead builds one file, holding only what
+  DeepSeek needs to go on: the reply, the next steps, and the code as it
+  stands, each file whole (Log, 2026-11-16). docs/COLLABORATING.md says
+  so to DeepSeek, and carries the same reply and steps, so that the
+  repository holds everything the file says.
+
 - 2026-11-16, founder, in conversation with DeepSeek (record 012-09-05,
   brought in that day; the numbers are its lines), on the Commons as
   rooms of chat: "So the basic idea would be a primary communication
@@ -2609,6 +2620,22 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-16 Claude: one file for the founder to give DeepSeek (Decided,
+  the newest entry): the technical lead's reply to record 012-09-05,
+  three next steps in order (redaction as a reader sees it; the room's
+  own key; signed heads), and the `chat-world` crate as it stands after
+  fixes 15 to 18, sixteen files, each whole. 92,658 bytes, 2,545 lines,
+  built by script from commit 6c9d64f; SHA-256
+  4a8db4a0333cea95070e46ce55f3916dc347579b933d6e151679d7a482ae2582. The
+  script read the file back and found each of the sixteen as it is in
+  the repository, and the crate rebuilt from the file alone builds with
+  no warnings, passes its 18 tests, and both demos' logs verify. The
+  file isn't kept here: its code is under
+  sketches/deepseek/012-09-05/chat-world, and its reply and steps are in
+  docs/COLLABORATING.md ("2026-11-16, later still"), worded for the
+  page. Not checked: that the whole file reaches DeepSeek; it ends with
+  a line DeepSeek is asked to quote back.
 
 - 2026-11-16 Claude: the founder's ideas for the Commons in record
   012-09-05, into the pages (Decided, the newest entry):
