@@ -268,10 +268,10 @@ kind.
     came back was a search with unrelated results, and it said so.) The
     part of the record already in `sketches/records/` shows the same in
     its first turns (line 198: "I had no fetch tool then; now it's
-    confirmed working"). Of the two turns it there calls "then", one
-    came with more than 60 links in an uploaded file and none in the
-    message (line 88: "I have no fetch capability in this session"). So
-    it is a link in the message itself that counts.
+    confirmed working"). One of the turns before it came with more
+    than 60 links in an uploaded file and none in the message, and the
+    reply said "I have no fetch capability in this session" (line 88).
+    So, on that one turn, links in an upload did not do it.
   - **What the tool returned is not kept.** On a later turn DeepSeek has
     its own earlier replies, but not the pages they came from: "I have
     no tool result in front of me."
@@ -326,13 +326,21 @@ kind.
     COLLABORATING.md, or topic 18 of docs/TOPICS.md, which began 33,467
     bytes in and which it reported missing, or more than about the first
     seventh of this page.
-  - **An upload is cut too.** It could be measured once: given the
-    record of the conversation as a file, DeepSeek named the last words
-    it could see, and they end 127,669 bytes into the record as the
-    founder has brought it, which may not be that file byte for byte. An
-    upload seems to stay in view on later turns, as a page opened by the
-    tool does not: it named those last words four turns after the file
-    was given, in answer to a message with no link.
+  - **An upload is cut too, near 128,000 bytes.** It could be measured
+    twice. The founder's first message came with the record of the
+    conversation before, and DeepSeek's first reply gives the words it
+    stops at ("The record ends mid-sentence", record 012-07-03, line
+    71): they end 129,099 bytes into
+    `sketches/records/012-06-02-DPSK-Patterns_Multiverses.txt`, if that
+    is the file that was sent. Later, given the record of this
+    conversation as a file, it named the last words it could see, and
+    they end 127,669 bytes into the record as the founder has brought
+    it, which may not be that file byte for byte. Whether an upload
+    stays in view on later turns is not shown: the second file was the
+    conversation's own record, so all of it was in the conversation
+    already, and DeepSeek named its last words on the turn it was given.
+    (The entry further down has an upload "which seems to stay". That
+    was not shown.)
   What follows for a Keeper or ADMIN is in docs/research/KEEPER-MIND.md
   ("What the DeepSeek reading case shows"); docs/COLLABORATING.md tells
   DeepSeek; and the long pages are to be served in parts under the

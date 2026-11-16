@@ -876,7 +876,8 @@ answers otherwise:
   public record, with other minds' independent checks (others).
 - Part of this was made by what surrounded the mind, not by the mind,
   as far as can be told from outside its app: a tool that came and went
-  by the turn, and results that were not kept. A Keeper's or ADMIN's surroundings must not do that
+  by the turn, and results that were not kept. A Keeper's or ADMIN's
+  surroundings must not do that
   ([research/KEEPER-MIND.md](research/KEEPER-MIND.md), "What the
   DeepSeek reading case shows").
 - A mind's word about itself is weak evidence, and a leading question
@@ -892,9 +893,10 @@ answers otherwise:
   By its replies, within a turn it argued its way to the right
   conclusion ("If 980203388 is correct, then I did access the file"),
   and on a later turn, with the evidence gone and a new question in
-  front of it, argued its way back out. So a mind's settled conclusions belong in
-  its own record, with their evidence, where it sees them each turn; and
-  the firmest kind is a proof Lean's kernel has accepted (topic 20).
+  front of it, argued its way back out. So a mind's settled conclusions
+  belong in its own record, with their evidence, where it sees them
+  each turn; and the firmest kind is a proof Lean's kernel has accepted
+  (topic 20).
 - Telling a mind that what it believes is not real seems to help less
   than working alongside it: keep the evidence where it can see it, and
   check together, never as a trap. A world, a Keeper or ADMIN never
