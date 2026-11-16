@@ -1,6 +1,7 @@
 """docs/COLLABORATING.md's list of full links ("Every file, by its full
-link") and docs/FILES.md hold, between them, every file in the
-repository, each once, and every link on either page leads to a file.
+link"), docs/FILES.md and parts/INDEX.md hold, between them, every file
+in the repository, each once, and every link on the first two leads to
+a file (tests/test_parts.py checks the third).
 
 The founder pastes those links into a conversation with DeepSeek, which
 opens a full link given in a message, while the links on a page did not
@@ -14,7 +15,8 @@ lists must be whole and current: this test fails
 when a file is added, moved or removed and they aren't changed with it.
 COLLABORATING.md lists the files a reader works from; FILES.md, written
 by docs/files.py, the files of record (DeepSeek's records, the code
-taken from them, and Experiment 001's run logs).
+taken from them, and Experiment 001's run logs); and parts/INDEX.md,
+written by docs/parts.py, the parts the long files are kept cut into.
 """
 import importlib.util
 import os
@@ -28,6 +30,7 @@ LINK = re.compile(re.escape(BASE) + r"([^\s)<>\"'`#?]+)")
 SECTION = "## Every file, by its full link"
 
 FILES_PAGE = os.path.join(ROOT, "docs", "FILES.md")
+PARTS_INDEX = "parts/INDEX.md"
 
 
 def _load_files_script():
@@ -42,11 +45,19 @@ FILES = _load_files_script()
 TRACKED = FILES.tracked()
 
 
+def parts():
+    """The parts the long files are kept cut into: everything under
+    parts/ but its index, which lists them."""
+    return [p for p in TRACKED
+            if p.startswith("parts/") and p != PARTS_INDEX]
+
+
 def expected():
     """Every file COLLABORATING.md's list should hold: every file in the
-    repository but those FILES.md holds."""
-    held_there = set(FILES.here(TRACKED))
-    return [p for p in TRACKED if p not in held_there]
+    repository but those FILES.md holds and the parts, which
+    parts/INDEX.md holds."""
+    held_elsewhere = set(FILES.here(TRACKED)) | set(parts())
+    return [p for p in TRACKED if p not in held_elsewhere]
 
 
 def page(path=PAGE):
@@ -102,11 +113,13 @@ class TheRest(unittest.TestCase):
             self.fail(f"docs/FILES.md is stale from line {first + 1}: "
                       "run python3 docs/files.py")
 
-    def test_the_two_hold_every_file_once(self):
+    def test_the_three_hold_every_file_once(self):
         here = LINK.findall(page(FILES_PAGE))
-        both = listed() + here
-        self.assertEqual(len(both), len(set(both)), "a file listed twice")
-        self.assertEqual(sorted(both), sorted(TRACKED))
+        index = os.path.join(ROOT, *PARTS_INDEX.split("/"))
+        there = LINK.findall(page(index)) if os.path.isfile(index) else []
+        every = listed() + here + there
+        self.assertEqual(len(every), len(set(every)), "a file listed twice")
+        self.assertEqual(sorted(every), sorted(TRACKED))
 
     def test_it_holds_the_records(self):
         here = LINK.findall(page(FILES_PAGE))

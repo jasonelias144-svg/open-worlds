@@ -1,0 +1,278 @@
+Part of `rust/ur-world/src/world.rs` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 1.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: nothing; this is the first part.
+After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/ur-world/src/world.rs/02.txt
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+// rust/ur-world/src/world.rs
+//! The world kernel: the only authority over the Ur-world's state.
+//!
+//! A world has a key of its own, and whoever enters signs an arrival with
+//! theirs ([`crate::arrival`]): a name, once used, is bound to the key
+//! that signed its first arrival, so whoever comes back with that key is
+//! known as the same individual, and no one else can enter under it.
+//!
+//! Inhabitants never touch the world directly. Each tick, every inhabitant
+//! receives an observation and returns an action; the kernel checks the
+//! action before it takes effect. The freedoms of the Python kernel hold
+//! here too: leaving always succeeds, and what anyone says reaches everyone
+//! on the next tick.
+//!
+//! What the world remembers is small. The ground comes from the generator,
+//! so only what has been explored (a set of chunks) and what has been
+//! changed (a map of cells) is kept. Every event goes into an append-only,
+//! hash-chained log, written exactly as the Python kernel writes its own,
+//! so the same checks (`world-log`, `World.verify_log`) hold it.
+
+use std::collections::{BTreeMap, BTreeSet};
+use std::fmt;
+
+use formats::multikey::did_key;
+use serde_json::{Map, Value, json};
+
+use crate::arrival;
+use crate::generate::{self, Chunk, GENERATOR, SEA};
+use crate::host::{Glasshouse, HostError, Hosted, place_problem};
+use crate::link::{self, Refusal};
+use crate::space::{CHUNK, Cell, ChunkCoord, Dir, Material};
+
+/// The rules' name and version, as the log records it.
+pub const RULES: &str = "ur-world/0.5";
+
+/// The most a single `Say` carries, in characters; longer speech is cut.
+pub const MAX_SAY: usize = 280;
+
+/// The longest a name may be, in characters.
+pub const MAX_NAME: usize = 64;
+
+/// Whether the world allows `name`: 1 to `MAX_NAME` characters, with no
+/// control character (Unicode's Cc: line breaks and tabs among them,
+/// which records-v1's text allows). [`World::admit`] and
+/// [`crate::arrival::arrival_problems`] both read names by it.
+pub fn good_name(name: &str) -> bool {
+    !name.is_empty() && name.chars().count() <= MAX_NAME && !name.chars().any(char::is_control)
+}
+
+/// How far anyone falls in one tick, in cells: a deeper drop goes on at
+/// the next tick, as the world settles.
+pub const MAX_FALL: i64 = 64;
+
+/// How far an inhabitant sees others, in cells (on every axis).
+pub const SIGHT: i64 = 16;
+
+/// The chunks within this many chunks of an inhabitant's own come into view.
+pub const VIEW: i64 = 1;
+
+/// What an inhabitant can do in a tick.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum Action {
+    /// Nothing.
+    Wait,
+    /// Step to the neighbouring cell. A step onto a block one cell high
+    /// climbs it, if there is headroom; a step off an edge falls.
+    Step(Dir),
+    /// Speak to everyone in the world: heard on the next tick.
+    Say(String),
+    /// Plant a flower in the neighbouring cell, if it is open air on grass
+    /// or soil.
+    Plant(Dir),
+    /// Leave the world. Always succeeds.
+    Exit,
+    /// Show a link: that a person holds the one who acts, which is a
+    /// presence of theirs ([`crate::link`]). The world takes it if both
+    /// records hold as one link, name this world, and name the key the
+    /// one who acts entered under, and if that presence has shown no link
+    /// here before; then it writes both records into its log. A link it
+    /// refuses is logged with neither record nor reason.
+    ShowLink {
+        /// The person's half, `open-worlds/holds/v1`.
+        holds: Value,
+        /// The presence's half, `open-worlds/held-by/v1`.
+        held_by: Value,
+    },
+    /// A reply that couldn't be read as an action (see `door::read_reply`).
+    /// It is recorded, cut to `MAX_SAY` characters, and nothing happens.
+    Unreadable(String),
+    /// No reply came in time. It is recorded, and nothing happens.
+    Unanswered,
+}
+
+/// What came of an inhabitant's last action, as it is told at the next
+/// tick.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum Outcome {
+    /// It waited.
+    Waited,
+    /// It stepped, and stands at `to` (after any climb or fall).
+    Moved {
+        /// The way it stepped.
+        dir: Dir,
+        /// Where it came to rest.
+        to: Cell,
+    },
+    /// Its step was blocked.
+    StepBlocked(Dir),
+    /// It spoke (the text as heard, cut to `MAX_SAY` characters).
+    Said(String),
+    /// It planted a flower at `at`.
+    Planted {
+        /// The way it reached.
+        dir: Dir,
+        /// The flower's cell.
+        at: Cell,
+    },
+    /// There was nowhere to plant that way.
+    PlantBlocked(Dir),
+    /// It showed its link, and the world took it: it is held by `person`.
+    Linked {
+        /// The person, by their identity key.
+        person: String,
+    },
+    /// The world refused its link: why.
+    LinkRefused(Refusal),
+    /// Its reply couldn't be read as an action.
+    Unreadable,
+    /// No reply came in time.
+    Unanswered,
+}
+
+/// What an inhabitant sees at the start of a tick.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Observation {
+    /// The tick.
+    pub tick: u64,
+    /// The inhabitant's own name.
+    pub me: String,
+    /// Where it stands.
+    pub position: Cell,
+    /// Who said what on the last tick.
+    pub heard: Vec<(String, String)>,
+    /// The 27 cells around and including its own, `x` fastest, then `z`,
+    /// then `y`, from `(-1, -1, -1)` to `(1, 1, 1)`: see `at`.
+    pub around: Vec<Material>,
+    /// Others within `SIGHT`, and where they stand.
+    pub others: Vec<(String, Cell)>,
+    /// What came of its last action; `None` on its first tick.
+    pub last: Option<Outcome>,
+}
+
+impl Observation {
+    /// The cell `(dx, dy, dz)` from where it stands, each from -1 to 1.
+    pub fn at(&self, dx: i64, dy: i64, dz: i64) -> Option<Material> {
+        if dx.abs() > 1 || dy.abs() > 1 || dz.abs() > 1 {
+            return None;
+        }
+        let i = usize::try_from(((dy + 1) * 3 + (dz + 1)) * 3 + (dx + 1)).ok()?;
+        self.around.get(i).copied()
+    }
+}
+
+/// An inhabitant's mind: whatever chooses its actions. In the garden's
+/// first version, a short script; later, a model that learns.
+pub trait Mind {
+    /// Choose this tick's action.
+    fn act(&mut self, seen: &Observation) -> Action;
+}
+
+/// Why someone can't enter where they asked.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum EntryError {
+    /// The arrival doesn't hold, or isn't an arrival: why.
+    BadArrival(String),
+    /// The arrival names another world.
+    OtherWorld,
+    /// The arrival was signed over another tick, or another last entry of
+    /// the log, than the world's now: signed too early, or used before.
+    Stale,
+    /// The name is empty, too long, or has a control character.
+    BadName,
+    /// The name is bound to another key: the one that signed its first
+    /// arrival. That may be someone else, or the same individual with a
+    /// key signed over from it, which isn't checked yet.
+    NameBound,
+    /// The one who signed has another name here: that one.
+    KnownAs(String),
+    /// The one who signed is here already.
+    AlreadyHere,
+    /// The cell is outside the world.
+    Outside,
+    /// The cell is solid.
+    Solid,
+    /// Nothing solid underneath to stand on.
+    NoGround,
+    /// Someone stands there.
+    Occupied,
+}
+
+impl fmt::Display for EntryError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            EntryError::BadArrival(why) => write!(f, "the arrival doesn't hold: {why}"),
+            EntryError::OtherWorld => write!(f, "the arrival names another world"),
+            EntryError::Stale => write!(
+                f,
+                "the arrival was signed over another moment of the log: sign it again over the world as it is now"
+            ),
+            EntryError::BadName => write!(
+                f,
+                "a name must be 1 to {MAX_NAME} characters, with no control characters"
+            ),
+            EntryError::NameBound => write!(
+                f,
+                "that name is bound to another key: not this name's birth key (successions aren't checked yet)"
+            ),
+            EntryError::KnownAs(name) => write!(f, "this key has another name here: {name}"),
+            EntryError::AlreadyHere => write!(f, "this key's holder is here already"),
+            EntryError::Outside => write!(f, "that cell is outside the world"),
+            EntryError::Solid => write!(f, "that cell is solid"),
+            EntryError::NoGround => write!(f, "there is nothing solid under that cell"),
+            EntryError::Occupied => write!(f, "someone stands in that cell"),
+        }
+    }
+}
+
+impl std::error::Error for EntryError {}
+
+/// Whether an arrival is someone's first under their name in this world,
+/// or their coming back.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Admission {
+    /// The first time: the name is bound to the key that signed.
+    First,
+    /// The same individual coming back: the name's own key signed.
+    Again,
+}
+
+struct Inhabitant {
+    position: Cell,
+    mind: Box<dyn Mind>,
+    last: Option<Outcome>,
+}
+
+/// The Ur-world.
+pub struct World {
+    seed: u64,
+    key: String,
+    tick: u64,
+    explored: BTreeSet<ChunkCoord>,
+    changes: BTreeMap<Cell, Material>,
+    inhabitants: BTreeMap<String, Inhabitant>,
+    occupied: BTreeMap<Cell, String>,
+    heard: Vec<(String, String)>,
+    /// Each name, and the key it is bound to.
+    names: BTreeMap<String, String>,
+    /// Each key, and its name here.
+    known: BTreeMap<String, String>,
+    /// Each presence that has shown its link here, by its key, and the
+    /// person who holds it.
+    links: BTreeMap<String, String>,
+    log: Vec<Value>,
+    /// The worlds it hosts, in the order they came ([`crate::host`]).
+    glasshouses: Vec<Glasshouse>,
+}
+
+
+------------------------------------------------------------------------
+The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/ur-world/src/world.rs/02.txt

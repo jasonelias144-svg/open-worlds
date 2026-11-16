@@ -1,0 +1,82 @@
+Part of `tests/test_mv_passport.py` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 2.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests/test_mv_passport.py/01.txt
+After this part: nothing; this is the last part.
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+class TestConformanceChecksStamps(unittest.TestCase):
+    """Each check the conformance test makes on keys and stamps fails a
+    world that breaks it, and only that check."""
+
+    STAMP = ("the Departure: its stamp is not this world's signed "
+             "departure stamp for the petitioner")
+
+    def failures(self, world):
+        result = run_conformance(world)
+        self.assertFalse(result["passed"])
+        return result["failures"]
+
+    def test_a_manifest_that_doesnt_verify(self):
+        class Unsigned(PoetryWorld):
+            def __init__(self, *args):
+                super().__init__(*args)
+                self._manifest = dataclasses.replace(self._manifest,
+                                                     signature="00" * 64)
+        self.assertEqual(self.failures(Unsigned("world:u", "U")),
+                         ["the manifest: its signature does not verify "
+                          "against its world_key"])
+
+    def test_a_stamp_that_doesnt_verify(self):
+        class Smudged(PoetryWorld):
+            def _departure_stamp(self, token, timestamp, arrival):
+                stamp = super()._departure_stamp(token, timestamp, arrival)
+                return dataclasses.replace(stamp, signature="00" * 64)
+        self.assertEqual(self.failures(Smudged("world:s", "S")),
+                         [self.STAMP])
+
+    def test_a_stamp_for_another_id_or_under_another_key(self):
+        class OtherId(PoetryWorld):
+            def _departure_stamp(self, token, timestamp, arrival):
+                return make_stamp(self._key, "departure", "world:other",
+                                  token, timestamp,
+                                  arrival=arrival.fingerprint())
+
+        class OtherKey(PoetryWorld):
+            def _departure_stamp(self, token, timestamp, arrival):
+                return make_stamp(Signer(), "departure",
+                                  self.manifest().entity_id, token,
+                                  timestamp, arrival=arrival.fingerprint())
+        for world in (OtherId("world:i", "I"), OtherKey("world:k", "K")):
+            with self.subTest(world=type(world).__name__):
+                self.assertEqual(self.failures(world), [self.STAMP])
+
+    def test_a_departure_that_closes_another_arrival(self):
+        class Muddled(PoetryWorld):
+            def _departure_stamp(self, token, timestamp, arrival):
+                return make_stamp(self._key, "departure",
+                                  self.manifest().entity_id, token,
+                                  timestamp, arrival="ab" * 32)
+        self.assertEqual(self.failures(Muddled("world:m", "M")),
+                         ["the departure stamp does not name the arrival "
+                          "it closes"])
+
+    def test_a_world_that_doesnt_bind_requests_to_its_key(self):
+        # It checks only that a signature looks like one: it refuses an
+        # unsigned petition, but admits one signed for another key.
+        def looks_signed(token, seq, signature, document, last_seq):
+            if type(signature) is str and len(signature) == 128:
+                return ""
+            return "The signature does not verify"
+        with mock.patch("multiverse.entity.request_problem", looks_signed):
+            failures = self.failures(PoetryWorld("world:l", "L"))
+        self.assertIn("a petition signed for another world's key was "
+                      "admitted", failures)
+
+
+if __name__ == "__main__":
+    unittest.main()
+
+------------------------------------------------------------------------
+End of `tests/test_mv_passport.py`.

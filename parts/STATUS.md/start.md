@@ -1,0 +1,247 @@
+> Part of `STATUS.md` in open-worlds, which is kept cut into parts
+> for readers who are shown only the start of a long page.
+> This part holds: from the start to "Noticed".
+> Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+> Before this part: nothing; this is the first part.
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-05.md
+> Made by docs/parts.py from the file. To change it, change the file.
+
+# Status: open-worlds
+
+**What this is:** simulated worlds where AI agents live under one rule,
+respect one another's freedom, with full transparency and exit at any time;
+free, and never a money machine
+**State:** active since 2026-11-12
+**Updated:** 2026-11-15 by Claude
+
+## Live
+
+- Where: not deployed
+- Version: —
+- Last check: —
+
+## Now
+
+- Claude: the new course ([docs/COURSE.md](docs/COURSE.md)), set on
+  2026-11-13 for the Ur-world and ALICE and BOB. Step 1, the design pages,
+  is in: [docs/MINDS.md](docs/MINDS.md) (what an individual is made of,
+  what a mind is told, how information moves, where everything lives) and
+  [docs/WORLD-KEY.md](docs/WORLD-KEY.md) (the purpose, the tour, and the
+  hunt for the world-key), with the research behind them. Its second part,
+  [docs/ADMIN.md](docs/ADMIN.md): what the multiverse must preserve, who
+  keeps each world, and ADMIN, the Keeper of the multiverse, with the
+  Keepers' training and the round table. Steps 1 to 3 are done
+  (2026-11-14). Formats that last: every record signed the standard
+  way, one schema read by Python and Rust, sealing, and who an
+  individual and a world are
+  ([docs/research/FORMATS.md](docs/research/FORMATS.md)). Keys and
+  identities (docs/research/KEYS.md): the real keys were made on
+  2026-11-14, the private halves in the project's private repository
+  and the key list in keys/key-list.json; in the Ur-world, whoever
+  enters signs an arrival, a name stays the key's that first used it,
+  and a world signs its log's heads. The course was rechecked after
+  step 3 and gained step 8a, a lost or leaked key, before ALICE's and
+  BOB's birth. Step 3a, persons, is under way: its plan, after looking
+  first, is in docs/research/PERSONS.md. Its second part, the formats,
+  is built: presence keys from a seed by HKDF-SHA256, a link that holds
+  only both ways, and a person's list, in Python and Rust with shared
+  vectors. So is its third, a person in the Ur-world: a person's client
+  in Rust with a presence in each of three trial worlds at once,
+  carrying a note from one to another, and a link shown by the
+  presence's own act, which its world checks and logs (rules
+  `ur-world/0.5`). Its fourth part is built: the architectures as
+  small examples, the octopus, the relay and the swarm, and the council,
+  counting persons' signed votes (`open-worlds/proposal/v1` and
+  `vote/v1`). Next, the course is rechecked, as after step 3.
+- Claude: the fractal track, alongside the course (docs/FRACTALS.md),
+  set by the founder on 2026-11-14: a fractal plant world in Rust, the
+  web app in `web/` to watch worlds grow, and in it the multiversal map.
+  Its plan is in, and its first part, the plant world, is built
+  (`rust/plant-world`), and so is its second, Plant Watch, the page that
+  replays a plant tick by tick and checks its log first (`web/plant/`).
+  The third is built: the Ur-world's garden hosts three plant worlds in
+  glasshouses, and both logs record each step
+  (`rust/ur-world/src/host.rs`); and the first map, the World Map
+  (`web/map/`), draws the garden from above with a card for each world,
+  built from what it publishes and opening onto Plant Watch. The fourth
+  has begun: the browser runs the plant world's own Rust, built as a
+  WebAssembly command (`rust/plant-wasi`), and Plant Watch grows each
+  plant again with it (docs/research/WASM.md). Next, the founder's aim:
+  living worlds, where plants grow without end and choose, water flows
+  as particles, people shape the land, and life spreads, beginning with
+  an endless plant in the browser (docs/FRACTALS.md, "Where it leads:
+  living worlds"). DeepSeek sketched it in record 012-07-03; the sketch
+  is kept with the review, and the project fits it as
+  `rust/endless-plant`.
+  DeepSeek's code from record 012-06-02 works in part (#63), with a
+  second round to come.
+- Claude: the Ur-world so far: the garden (#28), the doorway for minds
+  (#29), and experiment 001, the first unscripted minds
+  ([results](experiments/001-first-words/RESULTS.md), #30). The first
+  course's steps 1 to 6 (keys, two parts) are done; what is still wanted
+  from it is on the new course's waiting list. `sketches/` keeps the
+  DeepSeek records and their code.
+- Claude: the Keepers' minds. On 2026-11-15 the founder chose two bases:
+  Apertus 1.5 for the Ur-world's Keeper, and DeepSeek V4 for the Keeper
+  of its mirror, the Mir-Ur-world. The mirror is the project's test bench,
+  where ALICE's and BOB's models are also chosen, at course step 8.
+  Once they live, a change of model is their own choice
+  ([docs/URWORLD.md](docs/URWORLD.md), "The Mir-Ur-world";
+  [docs/research/KEEPER-MIND.md](docs/research/KEEPER-MIND.md)). The
+  mirror's Keeper runs on V4.1-Flash, and V4-Pro may be part of ADMIN's
+  mind. The policy Apertus asks for waits until course step 8 (Open
+  questions).
+- Claude: the charter, kept from the founder's recorded words as they
+  come (`CHARTER.md`; the founder, 2026-11-15, in Decided).
+
+- Claude: the licence in the founder's other public repositories: a
+  pull request in each that has the wrong licence or none, CC0 1.0 by
+  the founder's standing choice (Decided, 2026-11-15), each with its own
+  review.
+
+## Next
+
+The course, twelve steps ahead and rolling: [docs/COURSE.md](docs/COURSE.md).
+After each step is done, the rest are rechecked and one new step is added.
+In short: persons; the kernel as entities and components; parallel worlds
+and the garden; things, skills and the sheet; the first room, end to end;
+memory; experiment 002, the audition; a lost or leaked key; ALICE's and
+BOB's first life; back to DeepSeek; the hunt and the world-key; founding
+worlds, and doors. Waiting behind them: fractal worlds, the Commons, the
+founder's visions, a window onto the worlds, generator 2, storytellers,
+the gate and districts, governance, and the first course's steps still
+wanted.
+
+Also kept from earlier plans, outside the course for now: side cycles
+suggested by Cycle 0 (walkers with different speeds, to test "respect
+momentum"; whether a convention spreads by imitation). The first course's
+step 8 (real rates, now on the new course's waiting list) resumes the
+paused chemistry step: primary sources, read properly,
+and how water is counted ([docs/CHEMISTRY.md](docs/CHEMISTRY.md)).
+
+The design is in [docs/DESIGN.md](docs/DESIGN.md) and
+[docs/MULTIVERSE.md](docs/MULTIVERSE.md); how to build on it, for anyone
+and for the founder's conversations with DeepSeek, is in
+[docs/COLLABORATING.md](docs/COLLABORATING.md).
+
+## Open questions
+
+Each question for the founder comes with a recommendation, and "take your
+recommendation" is a full answer, recorded as the founder's decision on
+the technical lead's recommendation. And by the founder's standing rule
+of 2026-11-14, a question the founder hasn't answered is decided on the
+recommendation once it has been put (Decided, below), except where it
+needs the founder's own words or act, money, personal information, or
+anything outward-facing or hard to undo. What is left here is of that
+kind.
+
+- For the founder: where models run beyond the Mac, and the budget (asked
+  2026-11-12). Since 2026-11-15 this includes the two Keepers: about
+  144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
+  DeepSeek V4.1-Flash, by arithmetic, not measured
+  (docs/research/KEEPER-MIND.md).
+- For the founder, before course step 8: the policy Apertus 1.5 asks for
+  before it can be downloaded (version 1.5, July 14, 2026). It has two
+  parts:
+  - an indemnity of ETH Zurich and EPFL against third-party claims
+    arising from the project's use, with no limit stated;
+  - a duty to make everyone who receives a copy accept the same policy,
+    by an express act, and pass it on in turn.
+
+  The options:
+  1. accept it and keep Apertus for the Ur-world's Keeper;
+  2. use OLMo for the fully open Keeper instead;
+  3. wait, and decide before course step 8.
+
+  As first put, option 3 was to wait for Apertus 1.5's data and code.
+  They were already out, by its technical report of October 2026
+  (arXiv 2610.15542), which the technical lead missed and #70's
+  independent review found. So only the policy is open.
+
+  Decided for now: 3, wait, on the recommendation (the founder,
+  2026-11-15: "Either way sounds good. Just go with what makes the most
+  sense to you."). Nothing needs Apertus before course step 8, and until
+  then nothing is downloaded and no one clicks "Agree"
+  (docs/research/KEEPER-MIND.md). It comes back before step 8:
+  accepting it is a legal promise, and needs the founder's own act,
+  agreeing and giving an email address. (asked 2026-11-15)
+- For the founder: who designates the roles if the founder can't? Every
+  other office has a succession. Recommended: the founder names a
+  successor, or a process, recorded where the roles are. (asked
+  2026-11-13)
+- For the founder, whenever ready: the method of learning the founder
+  hopes to pass to ADMIN, in the founder's words, to be ADMIN's first
+  routine and tested with and without it (docs/ADMIN.md). (asked
+  2026-11-13)
+- For the founder, with the budget question above: what running ADMIN's
+  models will cost, and whether to own the machines or rent them. Renting
+  from providers that can be swapped keeps ADMIN free of dependence;
+  priced before course step 11. (noted 2026-11-13)
+- For the founder, when writing the charter's section 4 ("nothing is known
+  about the world that its participants can't also know"): one exception
+  now stands in the design, and the section should name it: each one's
+  private core of their own thoughts, an individual's sealed self, and the
+  core every Keeper and ADMIN keeps too, which never decides a case. The
+  answer to a challenge is no longer one:
+  under "Challenges, not tests", nothing is held back. Private speech
+  between individuals, decided 2026-11-14, is another: what two say to
+  each other is sealed between them, though that a message passed stays
+  in the record; since 2026-11-15 they go from one person's container to
+  the other's, beyond the "keys to the kingdom", which are only the
+  multiverse's own keys (docs/CONTAINER.md). The line with a Keeper was decided public,
+  so it is no exception. (noted 2026-11-13; updated the same day and
+  2026-11-14)
+
+## Noticed
+
+- The formats' test vectors (`formats/record_vectors.py`,
+  `vectors/formats/records-v1.json`) still carry the birth record's
+  words of 2026-11-14, with "It may change one day; you remain ALICE."
+  They are example data, signed by test keys; the real words are written
+  at step 9. The vectors are rewritten with the next change to the
+  formats. (Noted 2026-11-15.)
+
+- A key list compares names byte for byte, so `ALICE` beside `Alice`, or
+  one name in two Unicode forms, would be two holders. The tool's own
+  first list can't make that happen; when individuals are added after
+  version 1, compare names case-folded and in NFC, in both languages.
+  (Noted by #53's narrow check.) The Ur-world's names are the same: it
+  refuses only control characters, so U+2028, a zero-width character,
+  another case or another form makes another name. One rule for both,
+  before step 9 (COURSE.md; noted by #59's independent review).
+
+- Python isn't a sandbox: agents in the kernel's process could reach its
+  internals. That's acceptable only for agents written here (AGENTS.md), and
+  is why later stages run agents in separate sandboxes.
+- The identity search prunes by symmetry and identifies separate parts one
+  at a time, so neither symmetric molecules nor repeated parts can stall it.
+  Its cap (10,000 leaves) stays as a safety net: connected graphs built
+  specially to defeat refinement can still need exponentially many leaves,
+  though none is known among real molecules. A world running for a long
+  time should still bound the time an identity may take.
+- An in-process agent that raises `SystemExit` or `KeyboardInterrupt`, or
+  never returns from `act()`, still stops the world. That falls under the
+  same limit. Once agents run in separate processes, each call gets a
+  timeout. (Noted by the independent review of #1.)
+- From #38's approving review, for when the ledger is built (before
+  step 9, and step 3 for keys):
+  - a copy of a GitHub thread brought into the log names other people's
+    accounts; keep the text and replace other accounts with a role or a
+    hash, or take it to the founder (P8);
+  - which key issues ADMIN's grants: decided at step 11, when ADMIN
+    begins; its entry in the key list names its key and nothing more
+    (docs/research/KEYS.md, point 8);
+  - say who holds the private half of the multiverse's root key, and
+    how its every use is logged: answered at step 3
+    (docs/research/KEYS.md, point 8): the project, in its private
+    repository; the root signs only key lists, and every version is
+    published in this repository's history;
+  - the ledger and outcomes use the multiverse log from step 9, which
+    "When each part is built" brings at step 11: say that a first form
+    exists from step 9, or that until step 11 those entries go into the
+    Ur-world's log;
+  - count entries marked as a floor breach that weren't one only in
+    total, never per author, so that marking in good faith costs nothing.
+
+
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-05.md

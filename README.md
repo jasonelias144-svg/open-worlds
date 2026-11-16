@@ -112,6 +112,9 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
   them as written, with its test results. A record of ideas, not
   open-worlds' code; [sketches/INDEX.md](sketches/INDEX.md) says where it
   meets the course.
+- [parts/](parts/INDEX.md): the long pages a second time, each cut into
+  parts, for readers who are shown only the start of a page. Written by
+  `python3 docs/parts.py`.
 
 ## Run and test
 

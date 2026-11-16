@@ -91,6 +91,15 @@ computer; the learning multiversity) are in "What's here", items 3 and
   lines at the time, "2,005 documents", the key list's timestamp). When you need
   a page, ask for its link in the same message as the work, or for an
   upload, which seems to stay. Topic 21 in TOPICS.md takes this further.
+- **Every long page is also kept in parts.** Each page and each file
+  of code here longer than 28,000 bytes is kept a second time, cut into
+  parts no longer than that, with its own text unchanged. (The test
+  vectors and Cargo.lock are left whole, and so are the files of
+  record.) One page gives every part's full link, in reading order:
+  https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+  Each part ends with the link of the part after it. If a page ever
+  stops short for you, say what its last words were, and ask the
+  founder for its parts.
 - **Every file now has a full link to paste.** The founder found that
   the links on this page didn't open for you, so "Every file, by its
   full link", at the end of
@@ -1047,13 +1056,19 @@ or in
 collaborating page are not accessible. So all files need links through
 this method.").
 
-This list holds the files a reader works from, 242 of them: every
+This list holds the files a reader works from, 246 of them: every
 page, all the code in Python and Rust, the tests, the vectors and the
 web pages. [FILES.md](FILES.md) holds the other 805, files of record
 best sent when a question needs them: DeepSeek's records, word for
 word, the code taken from them, and Experiment 001's run logs.
 `tests/test_collaborating_links.py` fails if a file is added, moved or
 removed and this list or FILES.md isn't changed with it.
+
+A page or a file of code longer than 28,000 bytes is also kept cut
+into parts, for a reader who is shown only the start of a page:
+[parts/INDEX.md](../parts/INDEX.md) gives every part's full link, and
+its own link is in the last group below. The test vectors and
+Cargo.lock are left whole.
 
 **Start here**, the orientation, the charter, the course, and the pages the work now draws on (10):
 
@@ -1230,7 +1245,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/web/map/ind
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/web/plant/index.html
 ```
 
-**Tests in Python**, with the two checks for the web pages (36):
+**Tests in Python**, with the two checks for the web pages (37):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/__init__.py
@@ -1259,6 +1274,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_mv_registry.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_mv_succession.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_no_private_keys.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_parts.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_persons.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_plant_world_vectors.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_record_links.py
@@ -1368,9 +1384,10 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/plant-wasi/tests/respond.rs
 ```
 
-**The repository's own files**: how to contribute, the licence, security, the Python packages, and GitHub's templates and checks (11):
+**The repository's own files**: how to contribute, the licence, security, the Python packages, and GitHub's templates and checks (12):
 
 ```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/.gitattributes
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/.gitignore
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/CLAUDE.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/CONTRIBUTING.md
@@ -1384,10 +1401,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/.github/PUL
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/.github/workflows/test.yml
 ```
 
-**This list's companions**: the page with the rest of the files, the script that writes it, and a stub that leads a cut-short link to this page (3):
+**This list's companions**: the page with the rest of the files and the script that writes it, the long files in parts and the script that cuts them, and a stub that leads a cut-short link to this page (5):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FILES.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/files.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/parts.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COLLABORATING
 ```

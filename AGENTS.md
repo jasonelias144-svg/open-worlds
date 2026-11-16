@@ -139,6 +139,13 @@ effect (docs/ADMIN.md).
   (`sketches/README.md`). Nothing outside `sketches/` imports from it. Its
   code changes only in small fixes listed in `sketches/INDEX.md`, which is
   also the one place that says where the sketches and the course meet.
+- **Two things are written by script, never by hand:** `docs/FILES.md`
+  (`python3 docs/files.py`, the full link of every file of record) and
+  `parts/` (`python3 docs/parts.py`, the long files cut into parts for
+  readers who are shown only the start of a page). Run both before you
+  push, in that order. `STATUS.md` is one of the long files, so nearly
+  every change needs the second. The tests fail when either is out of
+  step. Put nothing else under `parts/`: the script removes it.
 
 ## Always
 

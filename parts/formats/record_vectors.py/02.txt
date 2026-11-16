@@ -1,0 +1,298 @@
+Part of `formats/record_vectors.py` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 2.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/formats/record_vectors.py/01.txt
+After this part: nothing; this is the last part.
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    by = {v["name"]: v["record"] for v in valid}
+    grant = by["a Keeper's grant from its world"]
+    suggestion = by["a suggestion to a world's Keeper"]
+    outcome = by["an outcome on a suggestion, with its reasons"]
+    rating = by["a rating of how a suggestion was handled"]
+    head = by["a signed log head"]
+    arrival = by["an arrival in a trial world"]
+    identity = by["an identity, binding a sealing key to its did:key"]
+    birth = by["an individual's birth record, in the words decided"]
+    parallel = by["a world's birth record, forked from another, with "
+                  "founders"]
+    mind = by["a mind record, with one engine"]
+    engine = mind["engines"][0]
+    changed = by["a mind record, after a change of engine"]["engines"]
+    template = by["a template for chemistry worlds, with its dials"]
+
+    def parameters(name: str, **fields: Any) -> Dict[str, Any]:
+        """The template's parameters, with `name`'s fields changed (None
+        drops one)."""
+        p = {**template["parameters"][name], **fields}
+        p = {k: v for k, v in p.items() if v is not None}
+        return {**template["parameters"], name: p}
+
+    def unsigned(r: Dict[str, Any]) -> Dict[str, Any]:
+        return {k: v for k, v in r.items() if k != "proof"}
+
+    def resigned(r: Dict[str, Any], by_name: str, **fields: Any):
+        """Changed, then signed again, so only the change is wrong."""
+        changed = {**unsigned(r), **fields}
+        changed = {k: v for k, v in changed.items() if v is not None}
+        return proof.sign(changed, _secret(by_name), CREATED)
+
+    alice = _did("ALICE")
+    cases = [
+        ("a format no one defines",
+         resigned(grant, "the Ur-world", format="open-worlds/grant/v2")),
+        ("a grant with no start",
+         resigned(grant, "the Ur-world", validFrom=None)),
+        ("a grant that allows nothing",
+         resigned(grant, "the Ur-world", allows=[])),
+        ("a grant that names an act twice",
+         resigned(grant, "the Ur-world",
+                  allows=["design-path", "design-path"])),
+        ("a grant with a field no one defines",
+         resigned(grant, "the Ur-world", extra="x")),
+        ("a grant within a place that is neither a world nor the multiverse",
+         resigned(grant, "the Ur-world", within="everywhere")),
+        ("a grant signed by its holder, not its issuer",
+         resigned(grant, "the Ur-world's Keeper")),
+        ("a grant that ends before it starts",
+         resigned(grant, "the Ur-world",
+                  validUntil="2026-11-13T00:00:00Z")),
+        ("a grant that ends as it starts",
+         resigned(grant, "the Ur-world",
+                  validUntil="2026-11-14T00:00:00Z")),
+        ("a grant that starts on 29 February 2025",
+         resigned(grant, "the Ur-world",
+                  validFrom="2025-02-29T00:00:00Z")),
+        ("a decision whose reasons are only spaces and line breaks",
+         resigned(outcome, "the Ur-world's Keeper", reasons=" \n\t ")),
+        ("a decision with no grounds",
+         resigned(outcome, "the Ur-world's Keeper", grounds=[])),
+        ("a decision whose record ground isn't a hash",
+         resigned(outcome, "the Ur-world's Keeper",
+                  grounds=[{"kind": "record", "ref": "CHARTER.md#3"}])),
+        ("a decision with no inputs field",
+         resigned(outcome, "the Ur-world's Keeper", inputs=None)),
+        ("a decision whose reasons were changed after signing",
+         {**outcome, "reasons": outcome["reasons"] + " Also."}),
+        ("a decision signed by someone other than its office",
+         resigned(outcome, "ADMIN")),
+        ("a decision whose tick is beyond 2^53 - 1, written as text",
+         resigned(outcome, "the Ur-world's Keeper",
+                  tick="9007199254740992")),
+        ("a suggestion to a Keeper that names no world",
+         resigned(suggestion, "ALICE", to={"office": "keeper"})),
+        ("a suggestion whose text is 10,001 characters",
+         resigned(suggestion, "ALICE", text="a" * 10001)),
+        ("a suggestion whose author's did:key ends in a line break",
+         resigned(suggestion, "ALICE", author=alice + "\n")),
+        ("a suggestion signed by someone other than its author",
+         resigned(suggestion, "BOB")),
+        ("a rating of 6",
+         resigned(rating, "ALICE", score=6)),
+        ("a rating of 0",
+         resigned(rating, "ALICE", score=0)),
+        ("a rating whose suggestion hash is in capitals",
+         resigned(rating, "ALICE",
+                  suggestion=rating["suggestion"].upper())),
+        ("a log head with a negative length",
+         resigned(head, "the Ur-world", length=-1)),
+        ("a log head signed by someone other than its world",
+         resigned(head, "ADMIN")),
+        ("an arrival signed by the world, not the one who enters",
+         resigned(arrival, "a trial world")),
+        ("an arrival that names no entry before it",
+         resigned(arrival, "a trial mind", previous=None)),
+        ("an arrival whose previous entry's hash is in capitals",
+         resigned(arrival, "a trial mind",
+                  previous=arrival["previous"].upper())),
+        ("an arrival whose name is 65 characters",
+         resigned(arrival, "a trial mind", name="T" * 65)),
+        ("an arrival whose name is only spaces",
+         resigned(arrival, "a trial mind", name="   ")),
+        ("an arrival whose world is a name, not a did:key",
+         resigned(arrival, "a trial mind", world="the Ur-world")),
+        ("an arrival whose name was changed after signing",
+         {**arrival, "name": "TRIAL-2"}),
+        ("an arrival whose tick is negative",
+         resigned(arrival, "a trial mind", tick=-1)),
+        ("a record with no proof",
+         unsigned(grant)),
+        ("not an object but a list", []),
+        ("a format that is a list, not text",
+         {**unsigned(grant), "format": []}),
+        ("a suggestion whose text is only no-break and ideographic spaces",
+         resigned(suggestion, "ALICE", text="\u00a0\u3000\u2028")),
+        ("a suggestion whose text holds a NUL",
+         resigned(suggestion, "ALICE", text="Hello\u0000")),
+        ("a suggestion whose text holds a C1 control character",
+         resigned(suggestion, "ALICE", text="Hello\u0080")),
+        ("a suggestion to ADMIN about a Keeper that doesn't say which",
+         resigned(suggestion, "ALICE", to={"office": "admin"},
+                  about={"kind": "keeper"})),
+        ("a decision that names the same record it makes twice",
+         resigned(outcome, "the Ur-world's Keeper",
+                  act={"kind": "adjust-conditions",
+                       "records": [records.record_hash(grant)] * 2})),
+        ("a suggestion about a Keeper that names it other than by key",
+         resigned(suggestion, "ALICE",
+                  about={"kind": "keeper", "ref": "the Keeper"})),
+        ("a record whose proof has an @context",
+         {**grant, "proof": {**grant["proof"], "@context": ["x"]}}),
+        ("an identity signed by its world, not its own key",
+         resigned(identity, "the Ur-world")),
+        ("an identity whose sealing key is an Ed25519 key",
+         resigned(identity, "ALICE",
+                  sealingKey=alice[len("did:key:"):])),
+        ("an identity whose sealing key is of small order",
+         resigned(identity, "ALICE", sealingKey=sealing_multikey(bytes(32)))),
+        ("an identity whose sealing key is 2^255 - 10, another spelling of 9",
+         resigned(identity, "ALICE", sealingKey=sealing_multikey(
+             (2**255 - 10).to_bytes(32, "little")))),
+        ("an identity whose name is 65 characters",
+         resigned(identity, "ALICE", name="A" * 65)),
+        ("a birth record signed by the one born, though it names the "
+         "world",
+         resigned(birth, "ALICE")),
+        ("a birth record on 30 February",
+         resigned(birth, "the Ur-world", time="2026-02-30T04:00:00Z")),
+        ("a world's birth record forked from a world, with no log hash",
+         resigned(parallel, "a parallel chemistry world",
+                  forkedFrom={"world": _did("a chemistry world"),
+                              "tick": 1000})),
+        ("a world's birth record naming a founder twice",
+         resigned(parallel, "a parallel chemistry world",
+                  founders=[alice, alice])),
+        ("a world's birth record setting dials, with no template",
+         resigned(parallel, "a parallel chemistry world", template=None)),
+        ("a world's birth record setting a dial to a fraction",
+         {**parallel, "dials": {"soilWater": 200.5}}),
+        ("a world's birth record setting no dials, as an empty set",
+         resigned(parallel, "a parallel chemistry world", dials={})),
+        ("a mind record with a setting as a number with a fraction",
+         {**mind, "engines": [{**engine, "settings": {"temperature": 0.7}}]}),
+        ("a mind record whose image is named by a tag",
+         resigned(mind, "the project", engines=[
+             {**engine, "image": {"ref": "ghcr.io/example/mind:latest"}}])),
+        ("a mind record whose revision is a branch name",
+         resigned(mind, "the project", engines=[
+             {**engine, "model": {"repo": "example/test-model",
+                                  "revision": "main"}}])),
+        ("a mind record with no engines",
+         resigned(mind, "the project", engines=[])),
+        ("a mind record signed by the individual, though it names the "
+         "project",
+         resigned(mind, "ALICE")),
+        ("a mind record whose engine began on 31 April",
+         resigned(mind, "the project", engines=[
+             {**engine, "from": "2026-04-31T00:00:00Z"}])),
+        ("a mind record naming a file outside its model's repository",
+         resigned(mind, "the project", engines=[
+             {**engine, "files": [{"path": "../weights.bin",
+                                   "sha256": _h("elsewhere")}]}])),
+        ("a mind record naming one file twice, with two hashes",
+         resigned(mind, "the project", engines=[
+             {**engine, "files": [*engine["files"],
+                                  {**engine["files"][0],
+                                   "sha256": _h("another")}]}])),
+        ("a mind record whose engines are out of order",
+         resigned(mind, "the project", engines=changed[::-1])),
+        ("a mind record whose second engine began with the first",
+         resigned(mind, "the project", engines=[
+             changed[0], {**changed[1], "from": changed[0]["from"]}])),
+        *_refused_key_lists(by),
+        ("a template signed by a world, not the project",
+         resigned(template, "a chemistry world")),
+        ("a template whose dial's value is beyond its range",
+         resigned(template, "the project",
+                  parameters=parameters("soilWater", value=200000))),
+        ("a template whose dial has no room to turn",
+         resigned(template, "the project",
+                  parameters=parameters("soilWater", min=100, max=100))),
+        ("a template with a parameter given a least value but no most",
+         resigned(template, "the project",
+                  parameters=parameters("volume", min=1000))),
+        ("a template with a parameter as a number with a fraction",
+         {**template, "parameters": parameters("volume", value=10.5)}),
+        ("a template whose unit has a space in it",
+         resigned(template, "the project",
+                  parameters=parameters("secondsPerAct",
+                                        unit="milli second"))),
+        ("a template with no parameters",
+         resigned(template, "the project", parameters={})),
+        ("a template whose code is named by a branch",
+         resigned(template, "the project",
+                  code={"repo": "example/open-worlds",
+                        "revision": "main"})),
+        ("a template with a parameter's name in two parts",
+         resigned(template, "the project", parameters={
+             **template["parameters"],
+             "soil.water": template["parameters"]["soilWater"]})),
+    ]
+    return [{"name": n, "record": r} for n, r in cases]
+
+
+def _dials(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """World birth records, each of which holds, against the template:
+    whether the dials they set agree with it."""
+    by = {v["name"]: v["record"] for v in valid}
+    template = "a template for chemistry worlds, with its dials"
+    parallel = by["a world's birth record, forked from another, with "
+                  "founders"]
+
+    def dials(**set_: Any) -> Dict[str, Any]:
+        fields = {k: v for k, v in parallel.items() if k != "proof"}
+        return _signed({**fields, "dials": set_},
+                       "a parallel chemistry world")
+
+    other = _signed({k: v for k, v in parallel.items() if k != "proof"}
+                    | {"template": _h("another template")},
+                    "a parallel chemistry world")
+    cases = [
+        ("a forked world, setting the seed and the water", parallel, True),
+        ("one dial, at the top of its range", dials(soilWater=100000),
+         True),
+        ("a world naming another template", other, False),
+        ("a world made from no template",
+         by["a world's birth record, made by the project"], False),
+        ("a dial the template doesn't have", dials(temperature=310000),
+         False),
+        ("a parameter the template fixes", dials(volume=20000), False),
+        ("a dial beyond its range", dials(soilWater=100001), False),
+        ("a dial set to the template's own value", dials(seed=0), False),
+    ]
+    return [{"name": n, "template": template, "worldBirth": r, "holds": h}
+            for n, r, h in cases]
+
+
+def vectors() -> Dict[str, Any]:
+    valid = _valid()
+    return {
+        "parties": {p: {"secretKeyMultibase": secret_multikey(_secret(p)),
+                        "didKey": _did(p)} for p in PARTIES},
+        "created": CREATED,
+        "valid": valid,
+        "refused": _refused(valid),
+        "dials": _dials(valid),
+        "keyListChains": _key_list_chains(valid),
+        "keyListHistories": _key_list_histories(),
+    }
+
+
+def text() -> str:
+    """The file's exact text."""
+    return json.dumps(vectors(), indent=1, ensure_ascii=False) + "\n"
+
+
+def main() -> None:
+    FILE.parent.mkdir(parents=True, exist_ok=True)
+    FILE.write_text(text(), encoding="utf-8")
+    print(f"wrote {FILE}")
+
+
+if __name__ == "__main__":
+    main()
+
+------------------------------------------------------------------------
+End of `formats/record_vectors.py`.

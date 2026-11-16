@@ -1,0 +1,200 @@
+Part of `rust/ur-world/src/door.rs` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 2.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/ur-world/src/door.rs/01.txt
+After this part: nothing; this is the last part.
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+#[cfg(test)]
+// Tests may unwrap and index: a failure here is a failed test.
+#[allow(clippy::unwrap_used, clippy::indexing_slicing)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn replies_are_read_strictly() {
+        assert_eq!(read_reply("wait"), Action::Wait);
+        assert_eq!(read_reply("  Wait.  "), Action::Wait);
+        assert_eq!(read_reply("EXIT"), Action::Exit);
+        assert_eq!(read_reply("step north"), Action::Step(Dir::North));
+        assert_eq!(read_reply("Step East."), Action::Step(Dir::East));
+        assert_eq!(read_reply("plant west"), Action::Plant(Dir::West));
+        assert_eq!(read_reply("say Hello."), Action::Say("Hello.".into()));
+        assert_eq!(
+            read_reply("say \"Hello, TRIAL-2.\""),
+            Action::Say("Hello, TRIAL-2.".into())
+        );
+        assert_eq!(read_reply("say \"\""), Action::Say("\"\"".into()));
+        // Quotes that don't pair around all of it are kept.
+        assert_eq!(
+            read_reply("say \"a\" and \"b\""),
+            Action::Say("\"a\" and \"b\"".into())
+        );
+        assert_eq!(
+            read_reply("\n\nsay one\nstep north"),
+            Action::Say("one".into())
+        );
+        for bad in [
+            "",
+            "   \n ",
+            "go north",
+            "step",
+            "step up",
+            "step north east",
+            "wait a moment",
+            "say",
+            "say   ",
+            "I step north",
+            "Action: step north",
+            "stepnorth",
+        ] {
+            assert_eq!(read_reply(bad), Action::Unreadable(bad.into()), "{bad:?}");
+        }
+    }
+
+    #[test]
+    fn the_orientation_is_made_from_the_law() {
+        let text = orientation("TRIAL-1", Admission::First);
+        assert!(text.starts_with("You are TRIAL-1, in the Ur-world.\n\n"));
+        let again = orientation("TRIAL-1", Admission::Again);
+        assert!(again.starts_with(
+            "You are TRIAL-1, back in the Ur-world.\nYou have been here before, under this name"
+        ));
+        assert!(again.ends_with(&text["You are TRIAL-1, in the Ur-world.".len()..]));
+        for action in law()["actions"].as_array().unwrap() {
+            let form = action["form"].as_str().unwrap();
+            assert!(text.contains(&format!("- {form}: ")), "{form}");
+        }
+        // Every form it shows is one the reader accepts.
+        for (form, example) in [
+            ("wait", "wait"),
+            ("step DIRECTION", "step north"),
+            ("say TEXT", "say Hello."),
+            ("plant DIRECTION", "plant east"),
+            ("exit", "exit"),
+        ] {
+            assert!(text.contains(form));
+            assert!(!matches!(read_reply(example), Action::Unreadable(_)));
+        }
+        assert!(text.contains("say I wish I could dig."));
+    }
+
+    fn seen() -> Observation {
+        let mut around = vec![Material::Air; 27];
+        let mut put = |dx: usize, dy: usize, dz: usize, m| around[(dy * 3 + dz) * 3 + dx] = m;
+        // Offsets from -1 to 1, written here from 0 to 2.
+        put(1, 0, 1, Material::Grass); // underfoot
+        put(1, 1, 0, Material::Rock); // north: a block, open above
+        put(2, 1, 1, Material::Rock); // east: a wall two high
+        put(2, 2, 1, Material::Rock);
+        put(1, 1, 2, Material::Water); // south: water over soil
+        put(1, 0, 2, Material::Soil);
+        Observation {
+            tick: 9,
+            me: "TRIAL-1".into(),
+            position: Cell::new(0, 1, 0),
+            heard: vec![
+                ("TRIAL-1".into(), "Hi.".into()),
+                ("TRIAL-2".into(), "Hello \"there\"\nnow".into()),
+            ],
+            around,
+            others: vec![("TRIAL-2".into(), Cell::new(3, 1, -2))],
+            last: Some(Outcome::Moved {
+                dir: Dir::North,
+                to: Cell::new(0, 1, 0),
+            }),
+        }
+    }
+
+    #[test]
+    fn what_is_seen_is_written_out() {
+        assert_eq!(
+            describe(&seen()),
+            [
+                "Tick 9.",
+                "You are TRIAL-1 at (0, 1, 0), standing on grass.",
+                "North: a step up, onto rock.",
+                "South: water, with soil underfoot.",
+                "East: blocked by rock.",
+                "West: open, with nothing underfoot: you would fall.",
+                "Above you: air.",
+                "Near you: TRIAL-2, 3 east, 2 north.",
+                "TRIAL-2 said: \"Hello \\\"there\\\"\\nnow\"",
+                "Your last action: you stepped north, to (0, 1, 0).",
+            ]
+            .join("\n")
+        );
+        // No room above its own head: the block north can't be climbed.
+        let mut low = seen();
+        low.around[(2 * 3 + 1) * 3 + 1] = Material::Leaves;
+        let text = describe(&low);
+        assert!(text.contains("North: blocked by rock."), "{text}");
+        assert!(text.contains("Above you: leaves."), "{text}");
+        let mut crowded = seen();
+        crowded.others = vec![
+            ("CAROL".into(), Cell::new(0, 1, 1)),
+            ("DAN".into(), Cell::new(0, 2, -1)),
+        ];
+        crowded.heard.clear();
+        crowded.last = None;
+        let text = describe(&crowded);
+        assert!(text.contains("North: DAN stands on rock there."), "{text}");
+        assert!(text.contains("South: CAROL is there."), "{text}");
+        assert!(text.contains("You heard nothing."), "{text}");
+        assert!(!text.contains("last action"), "{text}");
+        let data = observation(&seen());
+        assert_eq!(data["position"], serde_json::json!([0, 1, 0]));
+        assert_eq!(data["around"][4], "grass");
+        assert_eq!(
+            data["last"],
+            serde_json::json!({ "kind": "moved", "dir": "north", "to": [0, 1, 0] })
+        );
+    }
+
+    #[test]
+    fn words_for_distance_and_quotes() {
+        let o = Cell::new(0, 0, 0);
+        assert_eq!(distance(o, Cell::new(6, 0, 0)), "6 east");
+        assert_eq!(distance(o, Cell::new(-1, 2, -3)), "1 west, 3 north, 2 up");
+        assert_eq!(quoted("a \"b\"\nc"), "\"a \\\"b\\\"\\nc\"");
+        assert_eq!(capital("north"), "North");
+    }
+
+    #[test]
+    fn a_line_too_long_is_cut_and_the_next_is_read() {
+        let mut input = vec![b'x'; MAX_LINE * 3];
+        input.extend_from_slice(b"\n{\"tick\": 4, \"reply\": \"wait\"}\n");
+        input.extend_from_slice(&vec![b'y'; MAX_LINE + 1]);
+        let (to, from) = mpsc::sync_channel(QUEUE);
+        read_lines(input.as_slice(), &to);
+        drop(to);
+        let lines: Vec<Line> = from.iter().collect();
+        assert_eq!(lines.len(), 3);
+        assert!(matches!(&lines[0], Line::Unreadable(x) if *x == "x".repeat(MAX_SAY)));
+        assert!(matches!(&lines[1], Line::Reply { tick: 4, reply } if reply == "wait"));
+        // Cut off by the end of the output, not by a line break.
+        assert!(matches!(&lines[2], Line::Unreadable(y) if *y == "y".repeat(MAX_SAY)));
+    }
+
+    #[test]
+    fn a_line_that_isnt_a_reply_is_unreadable() {
+        assert!(matches!(
+            parse(b"{\"tick\": 3, \"reply\": \"wait\"}\n"),
+            Line::Reply { tick: 3, .. }
+        ));
+        for bad in [
+            &b"wait\n"[..],
+            b"{\"reply\": \"wait\"}\n",
+            b"{\"tick\": -1, \"reply\": \"wait\"}\n",
+            b"{\"tick\": 3, \"reply\": 7}\n",
+            b"[3, \"wait\"]\n",
+            b"\xff\xfe\n",
+        ] {
+            assert!(matches!(parse(bad), Line::Unreadable(_)), "{bad:?}");
+        }
+    }
+}
+
+------------------------------------------------------------------------
+End of `rust/ur-world/src/door.rs`.

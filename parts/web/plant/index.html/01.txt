@@ -1,0 +1,490 @@
+Part of `web/plant/index.html` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 1.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: nothing; this is the first part.
+After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/web/plant/index.html/02.txt
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'unsafe-inline'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<!--PAGE-START-->
+<title>Plant Watch</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: one column; the plant large on top, its controls under it, and
+   what the page checked beside it on wide screens, under it on narrow. */
+:root {
+  --bg: #f3f5f1;
+  --panel: #fbfcfa;
+  --fg: #1d2620;
+  --muted: #5d6a61;
+  --line: #d5ddd6;
+  --branch: #3d4a40;
+  --growth: #2f8a4c;
+  --ok: #2c7a45;
+  --bad: #b3372b;
+  --warn: #9a6a12;
+  --ok-bg: #e2f1e6;
+  --bad-bg: #f8e2df;
+  --warn-bg: #f5ead2;
+  --font-ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111613; --panel: #18201b; --fg: #e3ebe5; --muted: #9aa89f; --line: #2c3830;
+    --branch: #b9c7bd; --growth: #6fd08f; --ok: #7ad49a; --bad: #f08a7e; --warn: #e7b65c;
+    --ok-bg: #1d3325; --bad-bg: #3a201d; --warn-bg: #352b16; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111613; --panel: #18201b; --fg: #e3ebe5; --muted: #9aa89f; --line: #2c3830;
+  --branch: #b9c7bd; --growth: #6fd08f; --ok: #7ad49a; --bad: #f08a7e; --warn: #e7b65c;
+  --ok-bg: #1d3325; --bad-bg: #3a201d; --warn-bg: #352b16; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-ui);
+  font-size: 15px; line-height: 1.5;
+}
+.page {
+  max-width: 1100px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 32px;
+  display: grid; gap: 16px;
+}
+header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; }
+h1 { font-size: 1.6rem; margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; }
+.worlds { display: flex; flex-wrap: wrap; gap: 6px; }
+.worlds button {
+  font: inherit; font-size: 0.875rem; padding: 6px 12px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--panel); color: var(--fg); cursor: pointer;
+}
+.worlds button[aria-pressed="true"] { border-color: var(--growth); color: var(--growth); font-weight: 600; }
+.main { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 860px) { .main { grid-template-columns: minmax(0, 1fr) 320px; } }
+.stage {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+  display: grid; gap: 10px; padding: 12px; min-width: 0;
+}
+canvas { width: 100%; aspect-ratio: 4 / 3; max-width: 100%; display: block; border-radius: 6px; }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+.controls button {
+  font: inherit; font-weight: 600; padding: 7px 16px; border-radius: 6px; cursor: pointer;
+  border: 1px solid var(--growth); background: var(--growth); color: var(--panel); min-width: 84px;
+}
+.controls input[type="range"] { flex: 1 1 200px; min-width: 0; accent-color: var(--growth); }
+.tick { font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.entry { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); overflow-wrap: anywhere; margin: 0; }
+aside { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.box { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 8px; min-width: 0; }
+.box h2 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 0; }
+.checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.checks li { display: grid; grid-template-columns: auto 1fr; gap: 2px 8px; align-items: baseline; }
+.chip { font-size: 0.72rem; font-weight: 700; padding: 1px 7px; border-radius: 999px; letter-spacing: 0.04em; text-transform: uppercase; }
+.chip.ok { background: var(--ok-bg); color: var(--ok); }
+.chip.bad { background: var(--bad-bg); color: var(--bad); }
+.chip.warn { background: var(--warn-bg); color: var(--warn); }
+.checks .what { font-weight: 600; }
+.checks .why { grid-column: 2; color: var(--muted); font-size: 0.85rem; overflow-wrap: anywhere; }
+dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 0.875rem; }
+dt { color: var(--muted); }
+dd { margin: 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.open { font-size: 0.85rem; color: var(--muted); display: grid; gap: 6px; }
+.open input { font: inherit; font-size: 0.8rem; max-width: 100%; }
+.notice { margin: 0; padding: 10px 12px; border-radius: 8px; background: var(--warn-bg); color: var(--warn); }
+.notice.bad { background: var(--bad-bg); color: var(--bad); }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); outline-offset: 2px; }
+</style>
+<!--HEAD-END-->
+</head>
+<body>
+<!--BODY-START-->
+<div class="page">
+  <header>
+    <h1>Plant Watch</h1>
+    <p class="sub" id="sub">A plant world, replayed from its own log.</p>
+  </header>
+  <div class="worlds" id="worlds" role="group" aria-label="Worlds"></div>
+  <p class="notice" id="notice" role="status" hidden></p>
+  <div class="main">
+    <section class="stage" aria-label="The plant">
+      <canvas id="plant" width="800" height="600" aria-label="The plant as it grows"></canvas>
+      <div class="controls">
+        <button id="play" type="button">Play</button>
+        <input id="slider" type="range" min="0" max="0" value="0" step="1" aria-label="Tick">
+        <span class="tick" id="tick" aria-live="polite">tick 0 of 0</span>
+      </div>
+      <p class="entry" id="entry"></p>
+    </section>
+    <aside>
+      <section class="box" aria-labelledby="checked">
+        <h2 id="checked">What this page checked</h2>
+        <ul class="checks" id="checks"></ul>
+      </section>
+      <section class="box" aria-labelledby="about">
+        <h2 id="about">This world</h2>
+        <dl id="facts"></dl>
+      </section>
+      <section class="box open" aria-labelledby="other">
+        <h2 id="other">Another log</h2>
+        <span>Open a plant world's log, or a file of them like <code>vectors/plant-world.json</code>. Nothing leaves this page.</span>
+        <input id="file" type="file" accept="application/json,.json">
+      </section>
+    </aside>
+  </div>
+</div>
+<script id="embedded" type="application/json"></script>
+<script src="../lib/checks.js"></script>
+<script src="../lib/wasi.js"></script>
+<script>
+"use strict";
+(function () {
+  // The checks the web app's pages share (web/lib/checks.js): the log
+  // format's hashes, keys, and records signed the standard way.
+  const { GENESIS, pyJson, jcs, without, sha256, text, hex, chainProblem, publicKey, signedBy, covers, dialsProblem, grownAgain } = OpenWorlds;
+  const RULE = "open-worlds/plant-rule/v1";
+  const DIRECTIONS = [[0, -1], [1, -1], [1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1]];
+
+  // ---- The plant's rule, as rust/plant-world/src/rule.rs documents it.
+  const I64 = 2n ** 63n;
+  function holds(pot, x, y) {
+    const [px, py, pw, ph] = pot.map(BigInt), right = px + pw, bottom = py + ph;
+    if (right >= I64 || right < -I64 || bottom >= I64 || bottom < -I64) return false;
+    return px <= BigInt(x) && BigInt(x) < right && py <= BigInt(y) && BigInt(y) < bottom;
+  }
+  function advance(tips, d, pot) {
+    if (d.water <= 0) return [[], tips];
+    const depth = d.light >= 3 ? d.maxDepth : Math.floor(d.maxDepth / 2);
+    const segs = [], next = [];
+    for (const [x, y, dir, n] of tips) {
+      if (n >= depth) continue;
+      const [dx, dy] = DIRECTIONS[dir];
+      const nx = x + dx * d.branchLength, ny = y + dy * d.branchLength;
+      if (pot && !holds(pot, nx, ny)) continue;
+      segs.push([x, y, nx, ny]);
+      next.push([nx, ny, (dir + 7) % 8, n + 1], [nx, ny, (dir + 1) % 8, n + 1]);
+    }
+    return [segs, next];
+  }
+  // The log as the Rust world writes it, grown again from its first
+  // entry, and compared entry by entry, every field but the hash (which the
+  // chain check has already checked): as log_problems does
+  // (rust/plant-world/src/world.rs). Read as JSON, a number written 2.0
+  // or 1e0 arrives here as a whole number; Rust refuses it, and nothing
+  // this project writes has one. -0 is refused when the entry is written.
+  const NO_WATER = "There is no water, so nothing grows.";
+  const NO_MORE = "Every tip has split as many times as it may, or would grow past the pot.";
+  const DIALS = [["branchLength", 1, 16], ["maxDepth", 1, 12], ["water", 0, 10], ["light", 0, 10]];
+  const isInt = v => Number.isSafeInteger(v);
+  function readDials(v) {
+    if (!v || typeof v !== "object" || Array.isArray(v) || Object.keys(v).length !== 4) return null;
+    for (const [k, lo, hi] of DIALS) if (!isInt(v[k]) || v[k] < lo || v[k] > hi) return null;
+    return v;
+  }
+  function readPot(v) {
+    if (v === null) return { pot: null };
+    if (!Array.isArray(v) || v.length !== 4 || !v.every(isInt)) return null;
+    return { pot: v };
+  }
+  function entry(tick, kind, data, prev) { return { tick, kind, agent: null, data, prev }; }
+  function ruleProblem(log) {
+    const first = log[0], data = first && first.data;
+    const fields = data && typeof data === "object" ? Object.keys(data).sort().join(",") : "";
+    if (fields !== "dials,pot,rule,template,tip,world" || data.rule !== RULE) return "[0]: not a plant world's first entry";
+    try { publicKey(data.world); } catch (e) { return "[0]: the world's key isn't an Ed25519 did:key"; }
+    if (typeof data.template !== "string" || !/^[0-9a-f]{64}$/.test(data.template)) return "[0]: the template's hash isn't 64 lowercase hex digits";
+    const d = readDials(data.dials), p = readPot(data.pot);
+    if (!d || !p) return "[0]: its dials or pot can't be read, or a dial is outside its range";
+    const made = { world: data.world, template: data.template, rule: RULE, dials: d, pot: p.pot, tip: [0, 0, 0, 0] };
+    if (pyJson(first) !== pyJson(Object.assign(entry(0, "world_created", made, GENESIS), { hash: first.hash }))) return "[0]: not what a plant world writes first";
+    let tips = [[0, 0, 0, 0]], done = false;
+    for (let i = 1; i < log.length; i++) {
+      if (done) return "[" + i + "]: an entry after finished";
+      let expected;
+      if (d.water <= 0) { expected = entry(i, "finished", { reason: NO_WATER }, log[i - 1].hash); done = true; }
+      else {
+        const [segs, next] = advance(tips, d, p.pot);
+        if (segs.length === 0) { expected = entry(i, "finished", { reason: NO_MORE }, log[i - 1].hash); done = true; }
+        else { expected = entry(i, "grew", { segments: segs, tips: next }, log[i - 1].hash); tips = next; }
+      }
+      const body = without(log[i], "hash");
+      if (pyJson(body) !== pyJson(expected)) return "[" + i + "]: not what the rule makes here";
+    }
+    return null;
+  }
+
+  // ---- What the page checks, before it shows anything.
+  // ---- The plant world's own code, compiled to WebAssembly
+  // (rust/plant-wasi), and run here through the page's WASI shim
+  // (web/lib/wasi.js). It is built, not committed: if it isn't where cargo
+  // puts it, the page says so and checks without it.
+  const COMMAND = "../../rust/target/wasm32-wasip1/release/plant-wasi.wasm";
+  const BUILD = "cd rust && cargo build --locked --release -p plant-wasi --target wasm32-wasip1";
+  const MAX_TICKS = 10000;
+  let command = null;
+  function loadCommand() {
+    if (!command) {
+      command = fetch(COMMAND, { credentials: "omit", referrerPolicy: "no-referrer" })
+        .then(r => { if (!r.ok) throw new Error(r.status + " " + r.statusText); return r.arrayBuffer(); })
+        .then(bytes => WebAssembly.compile(bytes))
+        .catch(e => ({ unavailable: String(e && e.message || e) }));
+    }
+    return command;
+  }
+  const OWN = "Grown again by its own code";
+  // The log, grown again from its first entry by the plant world's own
+  // Rust code, and compared whole, every entry and hash.
+  async function ownCodeCheck(log, chain) {
+    if (chain) return ["warn", OWN, "Not checked: the chain doesn't hold."];
+    const first = log[0].data;
+    if (!first || typeof first !== "object" || Array.isArray(first)) return ["warn", OWN, "Not checked: its first entry has no data."];
+    if (log.length - 1 > MAX_TICKS) return ["warn", OWN, "Not checked: longer than " + MAX_TICKS + " steps."];
+    const module = await loadCommand();
+    if (module.unavailable) return ["warn", OWN, "Not checked: the plant world's command isn't built here (" + module.unavailable + "). To build it: " + BUILD + "."];
+    const request = { key: first.world, template: first.template, dials: first.dials, pot: first.pot, ticks: log.length - 1 };
+    let r;
+    try { r = await OpenWorldsWasi.run(module, JSON.stringify(request)); }
+    catch (e) { return ["bad", OWN, "It couldn't be run: " + String(e && e.message || e)]; }
+    if (r.code !== 0) return ["bad", OWN, "It refuses this world's first entry: " + r.stderr.trim()];
+    let grown;
+    try { grown = JSON.parse(r.stdout); } catch (e) { return ["bad", OWN, "Its answer isn't JSON."]; }
+    const [kind, why] = grownAgain(log, grown);
+    return [kind, OWN, why];
+  }
+
+  async function check(world, file) {
+    const log = world.log, results = [];
+    const chain = await chainProblem(log);
+    results.push(chain ? ["bad", "The chain of hashes", chain]
+                       : ["ok", "The chain of hashes", "All " + log.length + " entries hold, each linked to the one before."]);
+    const rule = chain ? "not checked: the chain doesn't hold" : ruleProblem(log);
+    results.push(rule ? ["bad", "Growth by its rule", rule]
+                      : ["ok", "Growth by its rule", "Every step grown again here, the same branches and tips."]);
+    results.push(await ownCodeCheck(log, chain));
+    const key = log[0] && log[0].data && log[0].data.world;
+    if (world.head) {
+      // A head is read field for field as records-v1 has it: one with a
+      // field its format doesn't have is refused, even signed.
+      const s = await signedBy(world.head, key, "open-worlds/log-head/v1"), h = world.head;
+      if (s === "unsupported") results.push(["warn", "The world's signed head", "Not checked: this browser can't check Ed25519 signatures."]);
+      else if (s !== "ok") results.push(["bad", "The world's signed head", s]);
+      else results.push(covers(h, log) ? ["ok", "The world's signed head", "Signed by the world's own key, over all " + h.length + " entries."]
+                                       : ["bad", "The world's signed head", "Signed, but it doesn't cover this log as shown."]);
+    } else results.push(["warn", "The world's signed head", "Not given with this log."]);
+    if (world.birth) {
+      const s = await signedBy(world.birth, key, "open-worlds/world-birth/v1"), b = world.birth;
+      let why = null;
+      if (s === "unsupported") results.push(["warn", "Its birth record", "Not checked: this browser can't check Ed25519 signatures."]);
+      else if (s !== "ok") results.push(["bad", "Its birth record", s]);
+      else {
+        const logDials = log[0].data.dials, given = file && file.template;
+        const setDials = b.dials || {};
+        if (b.template !== log[0].data.template) why = "names another template than the log";
+        else if (given && file.templateHash && hex(await sha256(text(jcs(file.template)))) !== file.templateHash) why = "the template given with it isn't the one its hash names";
+        else if (file && file.templateHash && b.template !== file.templateHash) why = "names another template than the one given with it";
+        else if (Object.keys(setDials).some(k => setDials[k] !== logDials[k])) why = "its dials aren't the log's";
+        else if (given) why = dialsProblem(b, file.template, logDials);
+        if (!why && file && file.law && file.lawHash) {
+          const lawHash = hex(await sha256(text(jcs(file.law))));
+          if (lawHash !== file.lawHash || b.law !== lawHash) why = "its law isn't the law given with it";
+        }
+        results.push(why ? ["bad", "Its birth record", why]
+                         : ["ok", "Its birth record", "Signed by the world, naming its template" + (file && file.law ? " and its law" : "") + " by hash."]);
+      }
+    } else results.push(["warn", "Its birth record", "Not given with this log."]);
+    results.push(["warn", "Who made the template", "Not checked here. In the shared vectors it is signed by a trial key, public to everyone."]);
+    return results;
+  }
+
+  // ---- Drawing.
+  const canvas = document.getElementById("plant"), ctx = canvas.getContext("2d");
+  const slider = document.getElementById("slider"), playBtn = document.getElementById("play");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let state = null, tick = 0, u = 1, playing = false, last = null;
+  const tok = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+  function frames(log) {
+    const out = [[]];
+    for (let i = 1; i < log.length; i++) out.push(log[i].kind === "grew" ? log[i].data.segments : []);
+    return out;
+  }
+  function bounds(fr, pot) {
+    let x0 = 0, y0 = 0, x1 = 0, y1 = 0;
+    const take = (x, y) => { x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y); };
+    fr.forEach(f => f.forEach(s => { take(s[0], s[1]); take(s[2], s[3]); }));
+    if (pot) { take(pot[0], pot[1]); take(pot[0] + pot[2], pot[1] + pot[3]); }
+    return [x0, y0, Math.max(x1 - x0, 1), Math.max(y1 - y0, 1)];
+  }
+  function draw() {
+    const dpr = window.devicePixelRatio || 1, w = canvas.clientWidth, h = canvas.clientHeight;
+    if (canvas.width !== Math.round(w * dpr)) { canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr); }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = tok("--panel"); ctx.fillRect(0, 0, w, h);
+    if (!state || !state.shown) return;
+    const [bx, by, bw, bh] = state.bounds, m = 24;
+    const s = Math.min((w - 2 * m) / bw, (h - 2 * m) / bh);
+    const ox = (w - bw * s) / 2 - bx * s, oy = (h - bh * s) / 2 - by * s;
+    const X = v => ox + v * s, Y = v => oy + v * s;
+    if (state.pot) {
+      const p = state.pot;
+      ctx.strokeStyle = tok("--line"); ctx.lineWidth = 1; ctx.setLineDash([4, 4]);
+      ctx.strokeRect(X(p[0]) + 0.5, Y(p[1]) + 0.5, p[2] * s, p[3] * s); ctx.setLineDash([]);
+    }
+    ctx.lineCap = "round";
+    for (let t = 1; t <= tick; t++) {
+      const now = t === tick, k = now ? u : 1;
+      ctx.strokeStyle = now ? tok("--growth") : tok("--branch");
+      ctx.lineWidth = Math.max(1, 2.6 - 0.15 * t);
+      ctx.beginPath();
+      state.frames[t].forEach(g => {
+        ctx.moveTo(X(g[0]), Y(g[1]));
+        ctx.lineTo(X(g[0] + (g[2] - g[0]) * k), Y(g[1] + (g[3] - g[1]) * k));
+      });
+      ctx.stroke();
+    }
+    ctx.fillStyle = tok("--growth");
+    ctx.beginPath(); ctx.arc(X(0), Y(0), 3.5, 0, Math.PI * 2); ctx.fill();
+  }
+  function label() {
+    const n = state ? state.log.length - 1 : 0;
+    document.getElementById("tick").textContent = "tick " + tick + " of " + n;
+    // Only a log that holds has its entries described here; one that fails
+    // is listed beside it, not shown.
+    const e = state && state.shown && state.log[tick];
+    document.getElementById("entry").textContent = e
+      ? e.kind + (e.kind === "grew" ? ", " + e.data.segments.length + " branches" : e.kind === "finished" ? ": " + e.data.reason : "") + " · hash " + e.hash.slice(0, 16) + "…"
+      : "";
+  }
+  function show(t, part) { tick = t; u = part; slider.value = String(t); label(); draw(); }
+  function setPlaying(p) { playing = p; playBtn.textContent = p ? "Pause" : "Play"; if (p) { last = null; requestAnimationFrame(step); } }
+  function step(now) {
+    if (!playing || !state) return;
+    if (last === null) last = now;
+    const dt = (now - last) / 700; last = now;
+    let t = tick, part = u + (reduce ? 1 : dt);
+    if (part >= 1) {
+      if (t >= state.log.length - 1) { setPlaying(false); return; }
+      t += 1; part = reduce ? 1 : 0;
+    }
+    show(t, Math.min(part, 1));
+    requestAnimationFrame(step);
+  }
+  playBtn.addEventListener("click", () => {
+    if (!state || !state.shown) return;
+    if (!playing && tick >= state.log.length - 1) show(0, 1);
+    setPlaying(!playing);
+  });
+  slider.addEventListener("input", () => { setPlaying(false); show(Number(slider.value), 1); });
+  window.addEventListener("resize", draw);
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw);
+  new MutationObserver(draw).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+  // ---- Loading worlds.
+  let file = null, worlds = [];
+  function notice(msg, bad) {
+    const n = document.getElementById("notice");
+    n.hidden = !msg; n.textContent = msg || ""; n.className = "notice" + (bad ? " bad" : "");
+  }
+  function listChecks(results) {
+    const list = document.getElementById("checks"); list.textContent = "";
+    for (const [kind, what, why] of results) {
+      const li = document.createElement("li");
+      const chip = document.createElement("span"); chip.className = "chip " + kind;
+      chip.textContent = kind === "ok" ? "holds" : kind === "bad" ? "fails" : "not checked";
+      const w = document.createElement("span"); w.className = "what"; w.textContent = what;
+      const y = document.createElement("span"); y.className = "why"; y.textContent = why;
+      li.append(chip, w, y); list.append(li);
+    }
+  }
+  // Each choice is numbered, so a world whose checks finish after a newer
+  // choice was made shows nothing: only the latest choice is shown.
+  // Opening a file is a choice too, whatever it holds, so a world chosen
+  // before it never appears after it; and so is the page's own first
+  // load, so it never replaces a file opened before it arrives.
+  let chosen = 0;
+  // What the page shows when it has no world to show: nothing of the
+  // world shown before, and why.
+  function showNothing(why) {
+    ++chosen;
+    setPlaying(false);
+    state = null;
+    document.querySelectorAll("#worlds button").forEach(b => b.setAttribute("aria-pressed", "false"));
+    listChecks([]);
+    document.getElementById("facts").textContent = "";
+    document.getElementById("sub").textContent = "No world chosen.";
+    slider.max = "0";
+    notice(why, true);
+    show(0, 1);
+  }
+  async function choose(i) {
+    const mine = ++chosen;
+    const current = () => mine === chosen;
+    setPlaying(false);
+    document.querySelectorAll("#worlds button").forEach((b, j) => b.setAttribute("aria-pressed", String(i === j)));
+    try { await render(worlds[i], current); }
+    catch (e) {
+      if (!current()) return;
+      // Nothing from the world shown before stays on screen.
+      state = null;
+      listChecks([["bad", "Reading the log", "This page can't read it: " + String(e && e.message || e) + "."]]);
+      document.getElementById("facts").textContent = "";
+      document.getElementById("sub").textContent = "A log this page can't read.";
+      slider.max = "0";
+      notice("This log can't be read here, so the plant isn't drawn.", true);
+      show(0, 1);
+    }
+  }
+  async function render(world, current) {
+    const log = world.log;
+    const results = await check(world, file);
+    if (!current()) return;
+    listChecks(results);
+    // Not drawn if its chain, its growth by the rule, or its own code's
+    // growth fails.
+    const row = what => results.find(r => r[1] === what) || [];
+    const failed = ["The chain of hashes", "Growth by its rule", OWN].some(w => row(w)[0] === "bad");
+    const birthHolds = row("Its birth record")[0] === "ok";
+    const data = log[0] && log[0].data || {};
+    const fr = failed ? [[]] : frames(log);
+    state = { log, frames: fr, pot: data.pot || null, bounds: bounds(fr, data.pot), shown: !failed };
+    notice(failed ? "This log doesn't hold, so the plant isn't drawn. What failed is listed beside it." : "", true);
+    const facts = document.getElementById("facts"); facts.textContent = "";
+    const d = data.dials || {};
+    const rows = [
+      ["World", birthHolds ? world.birth.name + " (as its birth record names it)" : (world.name || "unnamed")],
+      ["Key", typeof data.world === "string" ? data.world.slice(0, 20) + "…" + data.world.slice(-6) : "?"],
+      ["Branch length", d.branchLength + " cells"],
+      ["Splits", d.maxDepth + (d.light < 3 ? " (half, in low light)" : "")],
+      ["Water, light", d.water + ", " + d.light],
+      ["Pot", Array.isArray(data.pot) ? data.pot.join(", ") + " (x, y, width, height)" : data.pot === null ? "none: the world grows as far as the plant" : "can't be read"],
+      ["Branches", String(fr.reduce((a, f) => a + f.length, 0))],
+    ];
+    for (const [k, v] of rows) { const dt = document.createElement("dt"); dt.textContent = k; const dd = document.createElement("dd"); dd.textContent = v; facts.append(dt, dd); }
+    document.getElementById("sub").textContent = (birthHolds ? world.birth.name : world.name || "A plant world") + ", replayed from its own log.";
+    slider.max = String(Math.max(log.length - 1, 0));
+    // At rest, the whole plant; Play grows it from the first tick.
+    show(state.shown ? log.length - 1 : 0, 1);
+  }
+  // `want`, if given, is the key of the world to show first (?world=).
+  function load(json, source, want) {
+    file = json && !Array.isArray(json) ? json : null;
+    worlds = Array.isArray(json) ? [{ name: source, log: json }] : (json && Array.isArray(json.worlds) ? json.worlds : []);
+    worlds = worlds.filter(w => w && Array.isArray(w.log) && w.log.length);
+    const bar = document.getElementById("worlds"); bar.textContent = "";
+    if (!worlds.length) { showNothing("No plant world's log was found in " + source + "."); return; }
+    worlds.forEach((w, i) => {
+      const b = document.createElement("button"); b.type = "button"; b.id = "world-" + i;
+      b.textContent = w.name || "world " + (i + 1); b.addEventListener("click", () => choose(i)); bar.append(b);
+    });
+
+------------------------------------------------------------------------
+The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/web/plant/index.html/02.txt

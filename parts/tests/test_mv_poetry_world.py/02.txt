@@ -1,0 +1,146 @@
+Part of `tests/test_mv_poetry_world.py` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 2.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests/test_mv_poetry_world.py/01.txt
+After this part: nothing; this is the last part.
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+class TestConvergence(PoetryWorldCase):
+
+    def test_convergence_by_invitation(self):
+        w = self.world(convergence_window=3, convergence_similarity=0.99)
+        alice, bob, charlie = self.enter(w, "Alice", "Bob", "Charlie")
+        turns = [(alice, "(seed)", "first poem text here"),
+                 (bob, "You said 'poem' and 'text' here",
+                  "second poem text here"),
+                 (charlie, "You said 'poem' and 'text' here",
+                  "third poem text here")]
+        for who, ack, proposal in turns:
+            w.act(_turn(w, who, ack, proposal, "What is the poem?"))
+            self.assertFalse(w.is_converged())
+        w.act(_turn(w, alice, "You said 'poem' and 'text' here",
+                    "fourth poem text here", "What is the poem?"))
+        self.assertTrue(w.is_converged())
+        self.assertIn("same invitation", w.convergence_reason())
+
+    def test_convergence_by_echo(self):
+        w = self.world(convergence_window=3, convergence_similarity=0.6)
+        alice, bob = self.enter(w, "Alice", "Bob")
+        w.act(_turn(w, alice, "(seed)", SEED, "Question one?"))
+        lines = ["I never saw a moor, I never saw the sea",
+                 "I never saw the sea, I never saw a moor",
+                 "I never saw a moor, I never saw the sea"]
+        for i, line in enumerate(lines):
+            who = (bob, alice)[i % 2]
+            self.assertIsInstance(w.act(_turn(w, who, "the soul, the sea",
+                                              line, f"Question {i}?")),
+                Ack)
+        self.assertTrue(w.is_converged())
+        self.assertIn("echo", w.convergence_reason())
+
+    def test_refuses_after_convergence(self):
+        w = self.world(convergence_window=2, convergence_similarity=0.99)
+        alice, = self.enter(w, "Alice")
+        for _ in range(3):
+            w.act(_turn(w, alice, "I respond to the poem",
+                        "a different poem line", "What is the poem?"))
+        self.assertTrue(w.is_converged())
+        extra = w.act(_turn(w, alice, "I respond to the poem",
+                            "another line", "What is the poem?"))
+        self.assertIsInstance(extra, Refusal)
+        self.assertIn("converged", extra.reason)
+
+
+class TestLog(PoetryWorldCase):
+
+    def test_log_records_everything(self):
+        w = self.world()
+        alice, = self.enter(w, "Alice")
+        w.act(_turn(w, alice, "(seed)", "a poem here", "what next?"))
+        w.act(_turn(w, alice, "nothing", "x", "y"))
+        w.leave(_out(w, alice))
+        self.assertEqual([e.kind for e in w.log_since(None)],
+                         ["admission", "turn", "act_refused", "departure"])
+
+    def test_log_query_by_timestamp(self):
+        w = self.world()
+        self.enter(w, "Alice")
+        first = w.log_since(None)[0].timestamp
+        self.assertEqual(w.log_since(first), [])
+        self.assertEqual(len(w.log_since("")), 1)
+        for odd in (5, ["x"], b"t"):
+            self.assertEqual(w.log_since(odd), [])
+
+    def test_log_keeps_its_own_copy(self):
+        w = self.world()
+        alice, = self.enter(w, "Alice")
+        w.act(_turn(w, alice, "(seed)", SEED, "What next?"))
+        w.turns()[0]["proposal"] = "changed by a reader of turns()"
+        self.assertEqual(w.turns()[0]["proposal"], SEED)
+        w.log_since(None)[-1].data["proposal"] = "changed in the log"
+        self.assertEqual(w.turns()[0]["proposal"], SEED)
+
+    def test_reconstruct_turns_from_log(self):
+        w = self.world()
+        alice, bob = self.enter(w, "Alice", "Bob")
+        w.act(_turn(w, alice, "(seed)", SEED, "What of the bird?"))
+        w.act(_turn(w, bob, "You said 'soul' and 'feathers'.",
+                    "The soul selects her own society,", "What is the door?"))
+        turns = turns_from_log(w.log_since(None))
+        self.assertEqual([t["actor_name"] for t in turns], ["Alice", "Bob"])
+        self.assertEqual(turns, w.turns())
+
+    def test_conformance(self):
+        self.assertTrue(run_conformance(self.world())["passed"])
+
+
+class TestTwoWorlds(PoetryWorldCase):
+
+    def test_two_worlds_independent(self):
+        wa = PoetryWorld("world:poetry-A", "A",
+                         law=PoetryWorldLaw(max_admitted=2))
+        wb = PoetryWorld("world:poetry-B", "B",
+                         law=PoetryWorldLaw(max_admitted=10))
+        alice, bob, charlie = (Individual(n)
+                               for n in ("Alice", "Bob", "Charlie"))
+        for w, p in [(wa, alice), (wb, alice), (wa, bob), (wb, charlie)]:
+            self.assertIsInstance(
+                w.petition(_in(w, p)), Admission)
+        # A is full: Charlie can't enter, and so can't act there.
+        self.assertIsInstance(wa.petition(_in(wa, charlie)),
+                              Refusal)
+        self.assertIsInstance(wa.act(_turn(wa, charlie, "hi", "p", "i")),
+                              Refusal)
+        self.assertIsInstance(wa.act(_turn(wa, alice, "hi", "alice poem",
+                                           "invitation")), Ack)
+        self.assertIsInstance(wa.act(_turn(wa, bob, "you said 'alice'",
+                                           "bob poem", "invitation")), Ack)
+        self.assertEqual(len(wa.turns()), 2)
+        self.assertEqual(len(wb.turns()), 0)
+
+    def test_end_to_end(self):
+        w = self.world(convergence_window=3, convergence_similarity=0.5)
+        alice, bob, charlie = self.enter(w, "Alice", "Bob", "Charlie")
+        dialogue = [
+            (alice, "(seed)", SEED, "What does the bird sing?"),
+            (bob, "You said 'hope' and 'feathers' and 'soul'.",
+             "The soul selects her own society,\nThen shuts the door;",
+             "What is the soul's song?"),
+            # Answers Bob's question, not his lines: allowed since the law
+            # change (an acknowledgment may reference the invitation).
+            (charlie, "You said 'song' and 'tune' and 'words'.",
+             "And sings the tune without the words,\nAnd never stops at all,",
+             "What is the tune without words?"),
+        ]
+        for who, ack, proposal, invitation in dialogue:
+            self.assertIsInstance(
+                w.act(_turn(w, who, ack, proposal, invitation)), Ack)
+        self.assertEqual(len(turns_from_log(w.log_since(None))), 3)
+
+
+if __name__ == "__main__":
+    unittest.main()
+
+------------------------------------------------------------------------
+End of `tests/test_mv_poetry_world.py`.
