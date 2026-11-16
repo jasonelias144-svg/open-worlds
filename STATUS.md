@@ -167,10 +167,11 @@ kind.
      the founder's word.
   2. Whether a world may be in two multiverses at once. The founder
      spoke of "a separate index for current multiverse", which is one,
-     and said no more. Recommended: one at a time for now, built so
-     that a second could be allowed later without a new kind of
-     record. A world in two would be recognised by both, which is
-     outward-facing too.
+     and said no more. Being in two would let both list the world as
+     their own, and both sets of offices act in it; one at a time
+     rules that out, so that one law and one set of offices answer for
+     a world at any time. Recommended: one at a time for now. A world
+     in two would be recognised by both, which is outward-facing too.
   3. One sentence about the founder's own first computer is left out of
      that day's record, as the one about the founder's first experience
      of the internet is left out of docs/COMMONS.md. Say if either

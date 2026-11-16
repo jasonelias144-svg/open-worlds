@@ -975,7 +975,8 @@ sandboxed holding place, and a refusal is an incident with a report;
 the addressing must be able to grow in ways no one foresaw.
 
 **Open:** whether a multiverse recognises only those that keep the same
-floor of exit, voice and information; what the record looks like by
+floor of exit, voice and information; whether a world may be in two
+multiverses at once; what the record looks like by
 which one multiverse recognises another; how an identity moves to
 another kind of key when the kind itself fails; what a holding place
 can check beyond the records.

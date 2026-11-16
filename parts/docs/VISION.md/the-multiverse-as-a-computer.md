@@ -258,7 +258,8 @@ it is a network, and what the addressing still lacks, are on the
 course's waiting list ([COURSE.md](COURSE.md), "Waiting").
 
 **Open:** whether this multiverse recognises only those that keep the
-charter's floor (STATUS.md, "Open questions").
+charter's floor, and whether a world may be in two multiverses at once
+(STATUS.md, "Open questions").
 
 ## Not checked
 

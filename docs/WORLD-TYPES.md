@@ -290,8 +290,11 @@ above, still holds: this section adds the other half.
 - **It can't prove code safe** (taken). What is malicious can wait
   until it is admitted. So the wall is to be permanent: no world's
   code will ever run outside a sandbox, native or immigrant, for its
-  whole life. A world's code is the program that runs its rules, and
-  any program that acts in it. Admission changes what a world is
+  whole life. (What counts as a world's code is the technical lead's
+  reading: the program that runs its rules, and any program that acts
+  in it. That is wider than the rule in force today, AGENTS.md, which
+  sandboxes agents the project did not write and agents that rewrite
+  themselves.) Admission changes what a world is
   connected to, never where it runs. The holding place catches what is
   known and what is plain. None of this is so today: every world but
   the plant world runs with no sandbox.
