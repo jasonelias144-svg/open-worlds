@@ -225,6 +225,18 @@ def holds() -> List[dict]:
     del contents[names["second removal"]]["record"]
     cases.append(_case("removed, restored, taken back and put back",
                        room.entries, contents))
+
+    # A ground's reference at its longest, in characters that each take
+    # two UTF-16 units and four bytes: the limit counts code points.
+    room = _room()
+    room.append(5, apart.REMOVED, None,
+                {"entry": room.entries[3]["hash"], "office": MODERATOR,
+                 "ground": {"kind": "law",
+                            "ref": "\U0001D11E" * apart.MAX_REF},
+                 "decision": trial_decision(6)},
+                {"record": "trial decision record 6, not a signed one"})
+    cases.append(_case("a ground's reference at its longest",
+                       room.entries, room.contents))
     return cases
 
 
@@ -521,6 +533,9 @@ def refused() -> List[dict]:
              {"ground": {"kind": "law", "ref": ""}}),
             ("a removal whose ground holds more than a kind and a ref",
              {"ground": {**GROUND, "more": "x"}}),
+            ("a removal whose ground's reference is one character too long",
+             {"ground": {"kind": "law",
+                         "ref": "\U0001D11E" * (apart.MAX_REF + 1)}}),
             ("a removal without a decision", {"decision": None}),
             ("a removal whose decision is 63 digits",
              {"decision": trial_decision(9)[:63]})]:
@@ -760,6 +775,7 @@ def log_apart() -> dict:
         "short_ids": short_ids(),
         "max_whole": apart.MAX_WHOLE,
         "max_nesting": apart.MAX_NESTING,
+        "max_ref": apart.MAX_REF,
         "states": list(apart.STATES),
         "reasons": list(apart.REASONS),
         "table": TABLE,

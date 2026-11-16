@@ -17,9 +17,9 @@
 use serde_json::{Map, Value, json};
 use std::collections::BTreeSet;
 use world_log::apart::{
-    self, EntryState, FORM, GROUNDS, KEPT, Log, MARK, MAX_NESTING, MAX_WHOLE, PUT_BACK, REMOVED,
-    RESTORED, Refused, SHORT, State, TAKEN_BACK, check, fingerprint, fingerprint_text, incidents,
-    join, short_ids, value_allowed,
+    self, EntryState, FORM, GROUNDS, KEPT, Log, MARK, MAX_NESTING, MAX_REF, MAX_WHOLE, PUT_BACK,
+    REMOVED, RESTORED, Refused, SHORT, State, TAKEN_BACK, check, fingerprint, fingerprint_text,
+    incidents, join, short_ids, value_allowed,
 };
 use world_log::{LogError, sha256_hex, verify_log};
 
@@ -146,6 +146,7 @@ fn the_names_and_limits_are_pythons() {
     assert_eq!(v["kept"], KEPT);
     assert_eq!(v["max_whole"], MAX_WHOLE);
     assert_eq!(v["max_nesting"], MAX_NESTING);
+    assert_eq!(v["max_ref"], MAX_REF);
     assert_eq!(v["removed"], REMOVED);
     assert_eq!(v["restored"], RESTORED);
     assert_eq!(v["taken_back"], TAKEN_BACK);
@@ -282,7 +283,7 @@ fn the_trial_room_written_here_is_the_one_python_wrote() {
 fn each_case_that_holds_gives_pythons_states_and_entries() {
     let v = vectors();
     let holds = cases(&v, "holds");
-    assert_eq!(holds.len(), 6, "the vectors are all there");
+    assert_eq!(holds.len(), 7, "the vectors are all there");
     let mut seen = BTreeSet::new();
     let mut entry_states = BTreeSet::new();
     for case in holds {
@@ -504,7 +505,7 @@ fn what_wins_among_removing_restoring_taking_back_and_putting_back() {
 fn each_case_that_is_refused_is_refused_for_pythons_reason() {
     let v = vectors();
     let refused = cases(&v, "refused");
-    assert_eq!(refused.len(), 121, "the vectors are all there");
+    assert_eq!(refused.len(), 122, "the vectors are all there");
     let mut seen = BTreeSet::new();
     for case in refused {
         let name = &case["name"];

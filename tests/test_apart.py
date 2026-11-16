@@ -815,7 +815,7 @@ class TestTheVectors(unittest.TestCase):
 
     def test_each_case_that_holds(self):
         cases = vectors()["holds"]
-        self.assertEqual(len(cases), 6)
+        self.assertEqual(len(cases), 7)
         seen = set()
         for case in cases:
             with self.subTest(case["name"]):
@@ -831,7 +831,7 @@ class TestTheVectors(unittest.TestCase):
 
     def test_each_case_that_is_refused(self):
         cases = vectors()["refused"]
-        self.assertEqual(len(cases), 121)
+        self.assertEqual(len(cases), 122)
         for case in cases:
             with self.subTest(case["name"]):
                 self.assertEqual(refusal(case["log"], case["contents"]),

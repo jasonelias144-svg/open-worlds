@@ -8,6 +8,31 @@
 
 ## Decided
 
+- 2026-11-16, founder, a thought on paying for the multiverse; not a
+  decision. After describing an idea for a game: "In fact, I might
+  have a few more game ideas. Perhaps we can build some game apps to
+  fund the multiverse, keeping it free by funding it using another
+  project. I think I could come up with some ideas for fun games that
+  we could charge a minimal amount for and use to fun operating
+  expenses. Just a thought." The ideas the founder named, in the
+  technical lead's words: a word game with falling letter blocks, a
+  music synthesizer, a generator of cymatic patterns from a frequency,
+  and a strategy game on a chessboard, between chess and go, drawing
+  on the founder's work on opposites. Of the synthesizer and the
+  generator: "An audio synthesizer could work with a cymatic image
+  generator and our fractal worlds, but for music and image generating
+  in conjunction." The technical lead's reading: this bears on "free,
+  and never a money machine" and on the rule "Never a currency, never
+  a money machine, never data for sale". As described it does not go
+  against them: the multiverse would stay free, nothing in it would be
+  sold, and the money would come from a separate project. It would go
+  against them if a game were sold inside the multiverse, or the
+  multiverse were used to sell one. Nothing is decided and nothing is
+  built. It is the founder's to decide, with the money discussion the
+  founder set for later. The games themselves belong to that other
+  project and are not described here: this repository is public and
+  under CC0, so whether an idea meant to be sold is put into it is the
+  founder's choice (Open questions).
 - 2026-11-16, founder, on worlds entering a new multiverse. "Perfect.
   But for security, we need some sandboxed holding place for worlds
   entering a new multiverse. I can easily imagine hackers exploiting

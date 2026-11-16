@@ -1,0 +1,80 @@
+Part of `world/apart.py` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 2.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world/apart.py/01.txt
+After this part: nothing; this is the last part.
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+class Log:
+    """Writes a log in this form: `entries` is the chain, `contents`
+    what is kept beside it. Every entry is offered to the same check a
+    reader runs before it is appended, so this never writes a log that
+    `check` would refuse.
+
+    `table` gives, for each kind of entry, the names of the fields kept
+    apart, in ascending order. `salt` is called once for each field
+    kept apart; leave it as it is for anything real. The shared test
+    vectors pass fixed salts, which are public to everyone."""
+
+    def __init__(self, table: Dict[str, List[str]],
+                 data: Optional[dict] = None, *, kind: str = "world_created",
+                 salt: Callable[[], str] = new_salt):
+        self.entries: List[dict] = []
+        self.contents: Dict[str, Dict[str, list]] = {}
+        self._scan = _Scan()
+        self._salt = salt
+        self._salts: Set[str] = set()
+        first = dict(data or {})
+        if "form" in first or "kept_apart" in first:
+            raise ValueError("the first entry's form and table are written "
+                             "here, not given")
+        # Before the entry is looked at as a whole, as the check does: so
+        # a table that isn't one is refused as that, whatever it holds.
+        if not _table_ok(table):
+            raise Refused(TABLE)
+        first["form"] = FORM
+        first["kept_apart"] = table
+        self.append(0, kind, None, first)
+
+    def head(self) -> str:
+        return self.entries[-1]["hash"]
+
+    def append(self, tick: int, kind: str, agent: Optional[str], data: dict,
+               apart: Optional[Dict[str, Any]] = None) -> str:
+        """Appends one entry and returns its hash. `data` holds the open
+        fields, `apart` the fields kept apart, by name. Raises `Refused`,
+        and appends nothing, if the entry would not hold."""
+        prints: Dict[str, str] = {}
+        kept: Dict[str, list] = {}
+        salts: Set[str] = set()
+        apart = {} if apart is None else apart
+        # Before anything is copied or hashed: what Python can hold and
+        # JSON can't (a key that isn't text, a set, a map nested too deep
+        # to write) is refused here, not written or left to crash.
+        if type(apart) is not dict or not _open_ok(tick, kind, agent, data):
+            raise Refused(ENTRY, len(self.entries))
+        for name in sorted(apart, key=str):
+            salt = self._salt()
+            if not _is_salt(salt):
+                raise Refused(SALT)
+            if salt in self._salts or salt in salts:
+                raise Refused(SALT_TWICE)
+            # Checked before it is copied: a value nested too deep to
+            # copy is refused, not a crash.
+            prints[name] = fingerprint(salt, name, apart[name])
+            kept[name] = [salt, copy.deepcopy(apart[name])]
+            salts.add(salt)
+        prev = self.entries[-1]["hash"] if self.entries else GENESIS
+        body = {"tick": tick, "kind": kind, "agent": agent,
+                "data": copy.deepcopy(data), "apart": prints, "prev": prev}
+        entry = {**body, "hash": _digest(body)}
+        self._scan.take(entry)
+        self.entries.append(entry)
+        self._salts.update(salts)
+        if kept:
+            self.contents[entry["hash"]] = kept
+        return entry["hash"]
+
+------------------------------------------------------------------------
+End of `world/apart.py`.

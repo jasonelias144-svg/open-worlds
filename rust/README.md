@@ -65,10 +65,12 @@ For a log whose fields are kept apart (`open-worlds/log-apart/v1`,
 [`world-log/src/apart.rs`](world-log/src/apart.rs)), give the contents
 file too: `world-log LOG CONTENTS`. It checks the chain as before, then
 holds the contents to the fingerprints in the log, and counts the
-fields in each state:
+fields in each state, and the entries removed, taken back and
+restored:
 
 ```
 the fields kept apart: 15 present, 0 redacted, 0 unfinished, 0 kept public, 0 missing
+the entries: 0 removed, 0 taken back, 0 restored, the rest as written
 ```
 
 It fails if the contents hold anything the log doesn't commit to, or

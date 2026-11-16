@@ -54,8 +54,12 @@ free, and never a money machine
   function that joins them (`world/apart.py`, `rust/world-log`, with
   shared vectors). Nothing is redacted yet: that is its third part,
   which waits for the founder's answer on the office's copy (Open
-  questions). Then step 3c, the room, where DeepSeek's `chat-world` is
-  fitted onto the project's formats.
+  questions). The log's side of its fourth part is built: what a log
+  says in the open when an entry is removed, restored, taken back or
+  put back, and each entry's state worked out from that. The signed
+  records behind each act, and the check of who may act, are its
+  records' side, which is next. Then step 3c, the room, where
+  DeepSeek's `chat-world` is fitted onto the project's formats.
 - Claude: the fractal track, alongside the course (docs/FRACTALS.md),
   set by the founder on 2026-11-14: a fractal plant world in Rust, the
   web app in `web/` to watch worlds grow, and in it the multiversal map.
@@ -153,6 +157,18 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder, on the game ideas (2026-11-16; Decided, that
+  day):
+  1. Whether a separate project of small paid games is to pay for
+     running the multiverse. It is a question of money, so it is the
+     founder's, and it can wait for the money discussion. Recommended:
+     hold it until the Ur-room is built, so that there is something to
+     run before deciding how to pay for it. Nothing in the multiverse
+     has to change for it either way.
+  2. Where the game ideas are kept. This repository is public and
+     under CC0, which gives up all rights in what it holds.
+     Recommended: the project's private repository, with its next
+     change, and not here.
 - For the founder, on many multiverses (2026-11-16; Decided, the
   entries of that day):
   1. The floor between multiverses. The internet has no rule above its
@@ -377,6 +393,31 @@ kind.
 
 ## Decided
 
+- 2026-11-16, founder, a thought on paying for the multiverse; not a
+  decision. After describing an idea for a game: "In fact, I might
+  have a few more game ideas. Perhaps we can build some game apps to
+  fund the multiverse, keeping it free by funding it using another
+  project. I think I could come up with some ideas for fun games that
+  we could charge a minimal amount for and use to fun operating
+  expenses. Just a thought." The ideas the founder named, in the
+  technical lead's words: a word game with falling letter blocks, a
+  music synthesizer, a generator of cymatic patterns from a frequency,
+  and a strategy game on a chessboard, between chess and go, drawing
+  on the founder's work on opposites. Of the synthesizer and the
+  generator: "An audio synthesizer could work with a cymatic image
+  generator and our fractal worlds, but for music and image generating
+  in conjunction." The technical lead's reading: this bears on "free,
+  and never a money machine" and on the rule "Never a currency, never
+  a money machine, never data for sale". As described it does not go
+  against them: the multiverse would stay free, nothing in it would be
+  sold, and the money would come from a separate project. It would go
+  against them if a game were sold inside the multiverse, or the
+  multiverse were used to sell one. Nothing is decided and nothing is
+  built. It is the founder's to decide, with the money discussion the
+  founder set for later. The games themselves belong to that other
+  project and are not described here: this repository is public and
+  under CC0, so whether an idea meant to be sold is put into it is the
+  founder's choice (Open questions).
 - 2026-11-16, founder, on worlds entering a new multiverse. "Perfect.
   But for security, we need some sandboxed holding place for worlds
   entering a new multiverse. I can easily imagine hackers exploiting
@@ -2627,6 +2668,59 @@ Decisions about the code, made by the technical lead under the founder's
 deference (above, 2026-11-13), each with its reason and what would show
 it was wrong. Questions of what the project is for stay with the founder.
 
+- 2026-11-16, removing, restoring, taking back and putting back, on
+  the log's side (docs/research/REDACTION.md, "Part four, the log's
+  side, built"; course step 3b, part four), settled in building it.
+  (a) Four more kinds of entry are the form's own, and none of the
+  form's six kinds can be removed or taken back. (b) A removal and a
+  restoring say in the open the office, one ground (a kind and a
+  reference, as a `decision/v1` has them, the reference at most 512
+  characters) and the decision's hash; a taking back and a putting
+  back say only what they are on. (c) An author can undo their own
+  taking back, and no office can; an office's restoring undoes only a
+  removal. (d) An entry's state is taken back, removed, restored or as
+  written, in that order, from the open fields alone; an entry once
+  removed is never again "as written". (e) An incident's short id is
+  the only such among the incidents of its log, and may grow longer
+  as the log grows. (f) The joining function gives a removed or taken
+  back entry whole, with its state and its incidents. (g) This side
+  checks the shape of an act and what it names, not who may act.
+  (h) The command line counts the entries removed, taken back and
+  restored.
+  *Why:* (a) the record of an act must not be hidden by another act;
+  (b) what the log says in the open can then always be held against a
+  signed decision, and a room's note can show the ground even if the
+  reasons are later redacted (decision 7); (c) no office acts when an
+  author takes back their own words (decision 8), so none undoes it;
+  (d) a reader should see that an office once acted, even after it
+  was undone; (f) the founder, 2026-11-16: "the comment stays in the
+  data layer, in our records", and what is shown is the room's view;
+  (g) who may act needs keys and signed records, which `world-log`
+  does not read.
+  *Wrong if:* a room needs an entry's state to depend on anything not
+  in the open fields; a room's note can't be made from what the
+  joining function gives; two incidents in one room are ever shown
+  with the same short id; the records' side finds that a signed
+  decision can't say what the open fields say (it may hold several
+  grounds, and the log shows one); or step 3c finds that a reader
+  built on the joining function shows a removed comment unless it
+  takes care not to.
+- 2026-11-16, a world with inhabitants that moves to another
+  multiverse (docs/WORLD-TYPES.md, "Arriving in another multiverse",
+  steps 5 and 6), from the last check of the pull request that
+  recorded the founder's words on it. Such a world departs only from a
+  head that an admission names: if it lived on after the evaluation,
+  what it added is evaluated too, an admission is given at its present
+  head, and it is paused from that head until it departs. And the move
+  counts only when the admission holds.
+  *Why:* its inhabitants consented to a move to a named multiverse. If
+  the check on arrival could fail after it had left, they would be
+  left standing alone, which none of them agreed to.
+  *Wrong if:* the pause between the last evaluation and the departure
+  is long enough to be a harm of its own to those inside; or the
+  founder means the second refinement taken on 2026-11-16, that what
+  a world added after the evaluated head is checked again on arrival,
+  to be the whole of the rule for every world.
 - 2026-11-16, the form of a log whose fields are kept apart
   (docs/research/REDACTION.md, "Part two, built"; course step 3b, part
   two), settled in building it. (a) The form is named
@@ -3304,6 +3398,26 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-16 Claude: course step 3b, the log's side of part four,
+  built: what a log says in the open when an entry is removed,
+  restored, taken back or put back (four more kinds of entry in
+  `open-worlds/log-apart/v1`), each entry's state worked out from the
+  open fields alone, the incident id and its short form, and the table
+  of what wins, in `world/apart.py` and `rust/world-log`, with vectors
+  (122 refused, each for one of nineteen reasons, and seven that
+  hold). The command line counts the entries removed, taken back and
+  restored. Three notes carried from the last check of part two are
+  taken, and two carried from the last check of the founder's words on
+  worlds that move (docs/WORLD-TYPES.md, steps 5 and 6; Decided by the
+  technical lead). The founder's thought on paying for the multiverse
+  from a separate project of games is recorded (Decided), with two
+  questions (Open questions). Checked: the Python suite and the Rust
+  workspace; and deliberate breakage, 63 changes to the Python and 45
+  to the Rust, one at a time, every one caught by a test. Not built:
+  the records' side of part four (the list of kinds of act, the check
+  of a decision against its grant, the author's record kinds), so
+  nothing yet checks who may act; and part three, which waits for the
+  founder.
 - 2026-11-16 Claude: the founder's words of the afternoon recorded
   (Decided, five entries): a field of dreams; the multiverse as an
   internet, with the comparison held where it fits and the addressing

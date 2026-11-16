@@ -16,8 +16,10 @@ import unittest
 
 from world import World, apart
 from world.apart import Log, Refused
-from world.apart_vectors import (FIRST, TABLE, VALUES_ALLOWED, WRITTEN,
-                                 log_apart, place, trial_salt)
+from world.apart_vectors import (FIRST, GROUND, KEEPER, MODERATOR, TABLE,
+                                 VALUES_ALLOWED, WRITTEN, acted_on,
+                                 log_apart, place, trial_decision,
+                                 trial_salt)
 from world.vectors import FOLDER, world_log
 
 
@@ -329,8 +331,11 @@ class TestWriting(unittest.TestCase):
                 Log(TABLE, {key: "mine"})
 
     def test_a_table_that_is_not_well_formed_is_refused_at_the_start(self):
+        # A table holding nothing or a fraction is refused as a table
+        # too, as the check refuses it, not as an entry out of form.
         for table in [{"said": ["text", "key"]}, {"said": "text"}, [],
-                      {"said": ["Text"]}]:
+                      {"said": ["Text"]}, {"said": [None]}, {"said": [1.5]},
+                      {"said": None}, None, 1.5, {"said": ["text", None]}]:
             with self.subTest(table=table), self.assertRaises(Refused) as c:
                 Log(table)
             self.assertEqual(c.exception.reason, apart.TABLE)
@@ -519,50 +524,27 @@ class TestChecking(unittest.TestCase):
         self.assertEqual(c.exception.reason, apart.BAD_MARK)
 
 
-class TestJoining(unittest.TestCase):
+def remove(log, entry, n=1, tick=9):
+    return log.append(tick, apart.REMOVED, None,
+                      {"entry": entry, "office": MODERATOR, "ground": GROUND,
+                       "decision": trial_decision(n)}, {"record": f"r{n}"})
 
-    def test_a_whole_log_reads_as_it_was_written(self):
-        log = room()
-        joined = apart.join(log.entries, log.contents)
-        self.assertEqual(len(joined), len(WRITTEN) + 1)
-        for one, (tick, kind, agent, data, kept) in zip(joined[1:], WRITTEN):
-            self.assertEqual(one["tick"], tick)
-            self.assertEqual(one["kind"], kind)
-            self.assertEqual(one["agent"], agent)
-            self.assertEqual(one["data"], {**data, **kept})
-            self.assertEqual(one["fields"], {n: "present" for n in kept})
-            self.assertNotIn("apart", one)
-        self.assertEqual(joined[0]["data"]["form"], apart.FORM)
-        self.assertEqual([j["hash"] for j in joined],
-                         [e["hash"] for e in log.entries])
 
-    def test_a_field_under_a_standing_mark_is_never_shown(self):
-        log = room()
-        target = log.entries[3]["hash"]
-        log.append(5, apart.MARK, "o", {"entry": target, "field": "text"})
-        self.assertIn("text", log.contents[target])   # still in the contents
-        one = apart.join(log.entries, log.contents)[3]
-        self.assertNotIn("text", one["data"])
-        self.assertEqual(one["fields"]["text"], "unfinished")
-        self.assertNotIn("hello, room", json.dumps(
-            apart.join(log.entries, log.contents)))
+def restore(log, incident, n=2, tick=9):
+    return log.append(tick, apart.RESTORED, None,
+                      {"incident": incident, "office": KEEPER,
+                       "ground": GROUND, "decision": trial_decision(n)},
+                      {"record": f"r{n}"})
 
-    def test_joining_changes_neither_the_log_nor_the_contents(self):
-        log = room()
-        entries = copy.deepcopy(log.entries)
-        contents = copy.deepcopy(log.contents)
-        joined = apart.join(log.entries, log.contents)
-        joined[6]["data"]["thing"]["words"].append("c")
-        joined[0]["data"]["kept_apart"]["said"].append("more")
-        self.assertEqual(log.entries, entries)
-        self.assertEqual(log.contents, contents)
 
-    def test_joining_refuses_what_checking_refuses(self):
-        log = room()
-        with self.assertRaises(Refused):
-            apart.join(log.entries, {"f" * 64: {}})
-        with self.assertRaises(Refused):
-            apart.join(world_log(), {})
+def take_back(log, entry, tick=9):
+    return log.append(tick, apart.TAKEN_BACK, None, {"entry": entry},
+                      {"record": "taken back"})
+
+
+def put_back(log, taking, tick=9):
+    return log.append(tick, apart.PUT_BACK, None, {"taken_back": taking},
+                      {"record": "put back"})
 
 
 

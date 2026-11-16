@@ -137,6 +137,31 @@ fn a_whole_log_and_its_contents_hold() {
 }
 
 #[test]
+fn entries_removed_and_taken_back_are_counted() {
+    let (log, contents) = case(
+        "acted",
+        "holds",
+        "removed, restored, taken back and put back",
+    );
+    let (code, out) = run_with(&log.0, &contents.0);
+    assert_eq!(code, Some(0), "{out}");
+    // One removed again after a restoring, one removed with a field
+    // redacted; one removed and then taken back by its author; and the
+    // one taken back and put back is as written.
+    assert!(
+        out.contains("the entries: 2 removed, 1 taken back, 0 restored, the rest as written"),
+        "{out}"
+    );
+    // A log no one has acted on says so too.
+    let (log, contents) = case("acted-none", "holds", "every field is there");
+    let (_, out) = run_with(&log.0, &contents.0);
+    assert!(
+        out.contains("the entries: 0 removed, 0 taken back, 0 restored, the rest as written"),
+        "{out}"
+    );
+}
+
+#[test]
 fn the_log_alone_holds_and_asks_for_its_contents() {
     let (log, _contents) = case("alone", "holds", "every field is there");
     let (code, out) = run(&log.0);

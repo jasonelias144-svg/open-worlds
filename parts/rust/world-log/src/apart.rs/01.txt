@@ -46,9 +46,21 @@ Made by docs/parts.py from the file. To change it, change the file.
 //!   which names an earlier mark (`data.mark`), which then no longer
 //!   stands.
 //!
+//! - **Four more kinds are the form's own,** for what a room shows: a
+//!   removal ([`REMOVED`]), an office's, which names in the open an
+//!   earlier entry (`data.entry`), the office (`data.office`), the ground
+//!   it rests on (`data.ground`, a `kind` and a `ref`) and the hash of
+//!   its decision record (`data.decision`); a restoring ([`RESTORED`]),
+//!   which names a removal that stands (`data.incident`); a taking back
+//!   ([`TAKEN_BACK`]), the author's own (`data.entry`); and a putting
+//!   back ([`PUT_BACK`]), which undoes a taking back that stands
+//!   (`data.taken_back`). None takes anything out of the log or the
+//!   contents. What wins among them is in [`EntryState`] and
+//!   `docs/research/REDACTION.md`, decision 9.
+//!
 //! [`check`] holds the contents to the log and gives every field's
-//! [`State`]; [`join`] gives each entry as a reader uses it; [`Log`]
-//! writes the form. Every reason for refusing ([`Refused::reason`]) is in
+//! [`State`]; [`incidents`] gives every entry's [`EntryState`]; [`join`]
+//! gives each entry as a reader uses it; [`Log`] writes the form. Every reason for refusing ([`Refused::reason`]) is in
 //! the same fixed words as in Python, checked against
 //! `vectors/log-apart.json`.
 //!
@@ -56,6 +68,12 @@ Made by docs/parts.py from the file. To change it, change the file.
 //!
 //! - A field under a standing mark is never shown by [`join`], even while
 //!   it is still in the contents.
+//! - An entry that is removed or taken back is still given whole by
+//!   [`join`], with its state: nothing has left the record.
+//! - This module does not check who may remove, restore or take back:
+//!   that needs the signed records and the keys, which are kept apart.
+//! - Nothing can be the value of an open field: a field with no value is
+//!   left out.
 //! - The check holds a world to its table by name: it can't know that an
 //!   open field of another name holds what should have been kept apart.
 //! - A fingerprint commits a log to a value, and says nothing of who
@@ -86,11 +104,28 @@ pub const FORM: &str = "open-worlds/log-apart/v1";
 pub const MARK: &str = "field_redacted";
 /// The kind of a decision to keep a field public.
 pub const KEPT: &str = "field_kept_public";
+/// The kind of a removal: an office hides an entry, and says why.
+pub const REMOVED: &str = "entry_removed";
+/// The kind of a restoring: an office undoes a removal that stands.
+pub const RESTORED: &str = "entry_restored";
+/// The kind of a taking back: an author hides their own entry.
+pub const TAKEN_BACK: &str = "entry_taken_back";
+/// The kind of a putting back: an author undoes their own taking back.
+pub const PUT_BACK: &str = "entry_put_back";
+/// The form's own kinds: none of them can itself be removed or taken back.
+pub const OWN: [&str; 6] = [MARK, KEPT, REMOVED, RESTORED, TAKEN_BACK, PUT_BACK];
+/// What a ground can be, as in a decision record's grounds.
+pub const GROUNDS: [&str; 4] = ["charter", "law", "rule", "record"];
+/// The shortest an incident's id is ever shown, in hex digits.
+pub const SHORT: usize = 12;
 /// The largest whole number a fingerprint allows, 2^53 - 1; the smallest
 /// is its negative.
 pub const MAX_WHOLE: i64 = 9_007_199_254_740_991;
 /// The deepest nesting of lists and maps in a value kept apart.
 pub const MAX_NESTING: usize = 32;
+/// The longest a ground's reference can be, in characters (code points),
+/// as in a decision record's grounds.
+pub const MAX_REF: usize = 512;
 /// The keys of an entry in this form: these, and no others.
 pub const KEYS: [&str; 7] = ["tick", "kind", "agent", "data", "apart", "prev", "hash"];
 
@@ -134,6 +169,61 @@ impl fmt::Display for State {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         f.write_str(self.as_str())
     }
+}
+
+/// The state of an entry, worked out from the open fields alone: what a
+/// room shows of it.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+pub enum EntryState {
+    /// Never removed, and no taking back of it stands.
+    AsWritten,
+    /// A removal of it stands, and no taking back.
+    Removed,
+    /// A taking back of it stands, whatever an office has done.
+    TakenBack,
+    /// It was removed, and no removal or taking back of it stands now.
+    Restored,
+}
+
+impl EntryState {
+    /// The state in the fixed words Python uses.
+    pub fn as_str(self) -> &'static str {
+        match self {
+            EntryState::AsWritten => "as written",
+            EntryState::Removed => "removed",
+            EntryState::TakenBack => "taken back",
+            EntryState::Restored => "restored",
+        }
+    }
+}
+
+impl fmt::Display for EntryState {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+
+/// One removal or taking back of an entry.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Incident {
+    /// The hash of the entry that carries it: the incident's id.
+    pub id: String,
+    /// The id as it is shown: the fewest hex digits, [`SHORT`] or more,
+    /// that no other incident in the log begins with.
+    pub short: String,
+    /// [`EntryState::Removed`] or [`EntryState::TakenBack`].
+    pub kind: EntryState,
+    /// Whether it still stands: not restored, or not put back.
+    pub stands: bool,
+}
+
+/// An entry's state, and its incidents in the log's order.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Standing {
+    /// What a room shows of the entry.
+    pub state: EntryState,
+    /// Every removal and taking back of it, standing or not.
+    pub incidents: Vec<Incident>,
 }
 
 /// Where in the contents something was refused: the entry's hash and the
@@ -219,6 +309,30 @@ pub enum Refused {
         /// The decision's place in the log.
         index: usize,
     },
+    /// A removal does not name an earlier entry that can be removed (one
+    /// that is not the form's own, and that no removal or taking back
+    /// stands on), with its office, ground and decision.
+    BadRemoval {
+        /// The removal's place in the log.
+        index: usize,
+    },
+    /// A restoring does not name a removal that stands, on an entry its
+    /// author has not taken back, with its office, ground and decision.
+    BadRestoring {
+        /// The restoring's place in the log.
+        index: usize,
+    },
+    /// A taking back does not name an earlier entry that can be taken
+    /// back: one that is not the form's own, with no taking back standing.
+    BadTakingBack {
+        /// The taking back's place in the log.
+        index: usize,
+    },
+    /// A putting back does not name a taking back that stands.
+    BadPuttingBack {
+        /// The putting back's place in the log.
+        index: usize,
+    },
     /// The contents are not a map of maps of `[salt, value]`.
     Contents(Place),
     /// The contents name an entry or a field the log does not keep apart.
@@ -255,6 +369,20 @@ impl Refused {
             Refused::BadKept { .. } => {
                 "a decision to keep a field public does not name an earlier mark"
             }
+            Refused::BadRemoval { .. } => {
+                "a removal does not name an earlier entry that can be removed, \
+                 with its office, ground and decision"
+            }
+            Refused::BadRestoring { .. } => {
+                "a restoring does not name a removal that stands, \
+                 with its office, ground and decision"
+            }
+            Refused::BadTakingBack { .. } => {
+                "a taking back does not name an earlier entry that can be taken back"
+            }
+            Refused::BadPuttingBack { .. } => {
+                "a putting back does not name a taking back that stands"
+            }
             Refused::Contents(_) => "the contents are not well formed",
             Refused::Unknown(_) => {
                 "the contents name an entry or a field the log does not keep apart"
@@ -278,7 +406,11 @@ impl fmt::Display for Refused {
             | Refused::Open { index }
             | Refused::Twice { index }
             | Refused::BadMark { index }
-            | Refused::BadKept { index } => write!(f, ": entry {index}"),
+            | Refused::BadKept { index }
+            | Refused::BadRemoval { index }
+            | Refused::BadRestoring { index }
+            | Refused::BadTakingBack { index }
+            | Refused::BadPuttingBack { index } => write!(f, ": entry {index}"),
             Refused::Contents(place)
             | Refused::Unknown(place)
             | Refused::Salt(place)
@@ -401,248 +533,38 @@ struct Scan {
     answered: BTreeSet<String>,
     /// Every fingerprint so far.
     seen: BTreeSet<String>,
+    /// Each entry's kind.
+    kinds: BTreeMap<String, String>,
+    /// Every removal and taking back, in the log's order: the incident's
+    /// entry, the entry it is on, and which of the two it is.
+    incidents: Vec<(String, String, EntryState)>,
+    /// For each removal, the entry it is on.
+    removals: BTreeMap<String, String>,
+    /// For each taking back, the entry it is on.
+    takings: BTreeMap<String, String>,
+    /// For each entry, the removal of it that stands.
+    removed: BTreeMap<String, String>,
+    /// For each entry, the taking back of it that stands.
+    taken: BTreeMap<String, String>,
 }
 
-impl Scan {
-    fn take(&mut self, entry: &Value) -> Result<(), Refused> {
-        let index = self.order.len();
-        let shape = Refused::Entry { index: Some(index) };
-        let fields = entry.as_object().ok_or(shape.clone())?;
-        let data = fields.get("data").and_then(Value::as_object);
-        let first_table = if index == 0 {
-            let data = data
-                .filter(|d| d.get("form").and_then(Value::as_str) == Some(FORM))
-                .ok_or(Refused::NoForm)?;
-            Some(read_table(data.get("kept_apart")).ok_or(Refused::Table)?)
-        } else {
-            None
-        };
-        let table = first_table.as_ref().unwrap_or(&self.table);
-        let kind = fields.get("kind").and_then(Value::as_str);
-        let apart = fields.get("apart").and_then(Value::as_object);
-        // The callers have seen that `hash` is text, and see to the chain.
-        let hash = fields.get("hash").and_then(Value::as_str);
-        let (Some(kind), Some(data), Some(apart), Some(hash)) = (kind, data, apart, hash) else {
-            return Err(shape);
-        };
-        if fields.len() != KEYS.len()
-            || KEYS.iter().any(|key| !fields.contains_key(*key))
-            || !open_ok(fields)
-        {
-            return Err(shape);
-        }
-        // BTreeMap: the names in ascending order, whatever order
-        // serde_json keeps a map in.
-        let mut prints: BTreeMap<String, String> = BTreeMap::new();
-        for (name, print) in apart {
-            let print = print.as_str().filter(|p| is_hash(p));
-            match print {
-                Some(print) if is_name(name) => prints.insert(name.clone(), print.to_owned()),
-                _ => return Err(shape),
-            };
-        }
-        let named: &[String] = table.get(kind).map_or(&[], Vec::as_slice);
-        if prints.keys().any(|name| !named.contains(name)) {
-            return Err(Refused::Untabled { index });
-        }
-        if named.iter().any(|name| data.contains_key(name)) {
-            return Err(Refused::Open { index });
-        }
-        let distinct: BTreeSet<&String> = prints.values().collect();
-        if distinct.len() != prints.len() || distinct.iter().any(|p| self.seen.contains(*p)) {
-            return Err(Refused::Twice { index });
-        }
-        let mut mark = None;
-        let mut answers = None;
-        if kind == MARK {
-            let target = data.get("entry").and_then(Value::as_str);
-            let field = data.get("field").and_then(Value::as_str);
-            match (target, field) {
-                (Some(target), Some(field))
-                    if self
-                        .apart
-                        .get(target)
-                        .is_some_and(|held| held.contains_key(field)) =>
-                {
-                    mark = Some((target.to_owned(), field.to_owned()));
-                }
-                _ => return Err(Refused::BadMark { index }),
-            }
-        } else if kind == KEPT {
-            match data.get("mark").and_then(Value::as_str) {
-                Some(named_mark) if self.marks.contains_key(named_mark) => {
-                    answers = Some(named_mark.to_owned());
-                }
-                _ => return Err(Refused::BadKept { index }),
-            }
-        }
-        // The entry holds: only now is anything kept.
-        let hash = hash.to_owned();
-        self.seen.extend(prints.values().cloned());
-        if let Some(table) = first_table {
-            self.table = table;
-        }
-        if let Some(mark) = mark {
-            self.marks.insert(hash.clone(), mark);
-        }
-        if let Some(answers) = answers {
-            self.answered.insert(answers);
-        }
-        self.apart.insert(hash.clone(), prints);
-        self.order.push(hash);
-        Ok(())
+/// True if an office's act says, in the open, which office acted, the
+/// ground it rests on, and the hash of its decision record.
+fn office_ok(data: &Map<String, Value>) -> bool {
+    fn text(value: Option<&Value>) -> Option<&str> {
+        value.and_then(Value::as_str).filter(|t| !t.is_empty())
     }
-}
-
-/// True if an entry's open part is as the form has it: a tick from 0 to
-/// 2^53 - 1, an agent that is text or nothing, and data that is a map a
-/// fingerprint would allow. (That the kind is text is seen to where the
-/// kind is read: by `take`, and by the writer's own types.)
-fn open_ok(fields: &Map<String, Value>) -> bool {
-    let tick = fields.get("tick").and_then(Value::as_u64);
-    let agent = fields.get("agent");
-    tick.is_some_and(|t| t <= MAX_WHOLE.unsigned_abs())
-        && agent.is_some_and(|a| a.is_string() || a.is_null())
-        && fields
-            .get("data")
-            .is_some_and(|d| d.is_object() && value_allowed(d))
-}
-
-/// Reads a whole log. For each entry in turn: its link to the entry
-/// before, then what it says, then its hash. The chain is the kernel's (a
-/// log that passes here passes [`verify_log`](crate::verify_log)); the
-/// checks are taken an entry at a time so that the first fault in the
-/// log's order is the one named, here and in Python.
-fn scan(log: &Value) -> Result<Scan, Refused> {
-    let entries = log.as_array().ok_or(Refused::Chain(LogError::NotAList))?;
-    if entries.is_empty() {
-        return Err(Refused::NoForm);
-    }
-    let mut scan = Scan::default();
-    let mut prev = GENESIS;
-    for (index, entry) in entries.iter().enumerate() {
-        let malformed = Refused::Chain(LogError::Malformed { index });
-        let fields = entry.as_object().ok_or(malformed.clone())?;
-        let hash = fields
-            .get("hash")
+    let ground = data.get("ground").and_then(Value::as_object);
+    text(data.get("office")).is_some()
+        && ground.is_some_and(|g| {
+            g.len() == 2
+                && text(g.get("kind")).is_some_and(|kind| GROUNDS.contains(&kind))
+                && text(g.get("ref")).is_some_and(|r| r.chars().count() <= MAX_REF)
+        })
+        && data
+            .get("decision")
             .and_then(Value::as_str)
-            .ok_or(malformed)?;
-        if fields.get("prev").and_then(Value::as_str) != Some(prev) {
-            return Err(Refused::Chain(LogError::BrokenChain { index }));
-        }
-        scan.take(entry)?;
-        // An entry that holds can always be written: its numbers fit and
-        // it is nested far less deeply than the writer's limit.
-        if body_hash(fields).ok().as_deref() != Some(hash) {
-            return Err(Refused::Chain(LogError::WrongHash { index }));
-        }
-        prev = hash;
-    }
-    Ok(scan)
-}
-
-/// The contents, held to the log: for each entry, each field's value that
-/// is there and matches its fingerprint.
-fn held<'a>(
-    scan: &Scan,
-    contents: &'a Value,
-) -> Result<BTreeMap<&'a str, BTreeMap<&'a str, &'a Value>>, Refused> {
-    let contents = contents
-        .as_object()
-        .ok_or(Refused::Contents(Place::default()))?;
-    // Read in ascending order, so that Python and Rust refuse a contents
-    // file with two faults for the same one.
-    let sorted: BTreeMap<&str, &Value> = contents.iter().map(|(k, v)| (k.as_str(), v)).collect();
-    let mut held = BTreeMap::new();
-    let mut salts: BTreeSet<&str> = BTreeSet::new();
-    for (entry, fields) in sorted {
-        let prints = scan
-            .apart
-            .get(entry)
-            .ok_or_else(|| Refused::Unknown(Place::entry(entry)))?;
-        let fields = fields
-            .as_object()
-            .ok_or_else(|| Refused::Contents(Place::entry(entry)))?;
-        let fields: BTreeMap<&str, &Value> = fields.iter().map(|(k, v)| (k.as_str(), v)).collect();
-        let mut values = BTreeMap::new();
-        for (name, pair) in fields {
-            let place = || Place::field(entry, name);
-            let print = prints.get(name).ok_or_else(|| Refused::Unknown(place()))?;
-            let Some([salt, value]) = pair.as_array().map(Vec::as_slice) else {
-                return Err(Refused::Contents(place()));
-            };
-            let salt = salt
-                .as_str()
-                .filter(|s| is_salt(s))
-                .ok_or_else(|| Refused::Salt(place()))?;
-            if !value_allowed(value) {
-                return Err(Refused::Value(place()));
-            }
-            if fingerprint(salt, name, value).ok().as_ref() != Some(print) {
-                return Err(Refused::Fingerprint(place()));
-            }
-            // Only once both match: so this always means a salt that was
-            // truly used for two fields, never a field copied elsewhere.
-            if !salts.insert(salt) {
-                return Err(Refused::SaltTwice(place()));
-            }
-            values.insert(name, value);
-        }
-        held.insert(entry, values);
-    }
-    Ok(held)
-}
-
-fn states(scan: &Scan, held: &BTreeMap<&str, BTreeMap<&str, &Value>>) -> States {
-    let marked: BTreeSet<&(String, String)> = scan.marks.values().collect();
-    let standing: BTreeSet<&(String, String)> = scan
-        .marks
-        .iter()
-        .filter(|(mark, _)| !scan.answered.contains(*mark))
-        .map(|(_, field)| field)
-        .collect();
-    let mut states = States::new();
-    for (entry, prints) in &scan.apart {
-        for name in prints.keys() {
-            let there = held
-                .get(entry.as_str())
-                .is_some_and(|values| values.contains_key(name.as_str()));
-            let field = (entry.clone(), name.clone());
-            let state = if standing.contains(&field) {
-                if there {
-                    State::Unfinished
-                } else {
-                    State::Redacted
-                }
-            } else if there {
-                if marked.contains(&field) {
-                    State::KeptPublic
-                } else {
-                    State::Present
-                }
-            } else {
-                State::Missing
-            };
-            states
-                .entry(entry.clone())
-                .or_default()
-                .insert(name.clone(), state);
-        }
-    }
-    states
-}
-
-/// Checks a log in this form and its contents together, and gives the
-/// state of every field kept apart. Refuses if the chain doesn't hold,
-/// the log isn't in this form, or the contents hold anything the log
-/// doesn't commit to.
-///
-/// A missing field is not refused: it is a state, so that a reader can
-/// say which fields a copy of a log has lost.
-pub fn check(log: &Value, contents: &Value) -> Result<States, Refused> {
-    let scan = scan(log)?;
-    let held = held(&scan, contents)?;
-    Ok(states(&scan, &held))
+            .is_some_and(is_hash)
 }
 
 

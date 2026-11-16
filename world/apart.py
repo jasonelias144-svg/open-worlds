@@ -132,6 +132,9 @@ GROUNDS = ("charter", "law", "rule", "record")
 
 MAX_WHOLE = 2 ** 53 - 1
 MAX_NESTING = 32
+# The longest a ground's reference can be, in characters (code points),
+# as in a decision record's grounds (schemas/records-v1.schema.json).
+MAX_REF = 512
 
 PRESENT = "present"
 REDACTED = "redacted"
@@ -284,7 +287,8 @@ def _office_ok(data: dict) -> bool:
     return (type(data.get("office")) is str and data["office"] != ""
             and type(ground) is dict and set(ground) == {"kind", "ref"}
             and ground["kind"] in GROUNDS
-            and type(ground["ref"]) is str and ground["ref"] != ""
+            and type(ground["ref"]) is str
+            and 0 < len(ground["ref"]) <= MAX_REF
             and _is_hash(data.get("decision")))
 
 

@@ -8,6 +8,26 @@
 
 ## Log
 
+- 2026-11-16 Claude: course step 3b, the log's side of part four,
+  built: what a log says in the open when an entry is removed,
+  restored, taken back or put back (four more kinds of entry in
+  `open-worlds/log-apart/v1`), each entry's state worked out from the
+  open fields alone, the incident id and its short form, and the table
+  of what wins, in `world/apart.py` and `rust/world-log`, with vectors
+  (122 refused, each for one of nineteen reasons, and seven that
+  hold). The command line counts the entries removed, taken back and
+  restored. Three notes carried from the last check of part two are
+  taken, and two carried from the last check of the founder's words on
+  worlds that move (docs/WORLD-TYPES.md, steps 5 and 6; Decided by the
+  technical lead). The founder's thought on paying for the multiverse
+  from a separate project of games is recorded (Decided), with two
+  questions (Open questions). Checked: the Python suite and the Rust
+  workspace; and deliberate breakage, 63 changes to the Python and 45
+  to the Rust, one at a time, every one caught by a test. Not built:
+  the records' side of part four (the list of kinds of act, the check
+  of a decision against its grant, the author's record kinds), so
+  nothing yet checks who may act; and part three, which waits for the
+  founder.
 - 2026-11-16 Claude: the founder's words of the afternoon recorded
   (Decided, five entries): a field of dreams; the multiverse as an
   internet, with the comparison held where it fits and the addressing

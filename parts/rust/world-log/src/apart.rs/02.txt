@@ -6,15 +6,397 @@ Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-world
 After this part: nothing; this is the last part.
 Made by docs/parts.py from the file. To change it, change the file.
 ------------------------------------------------------------------------
+impl Scan {
+    /// The hash of an earlier entry that is not one of the form's own, if
+    /// `target` names one.
+    fn can_be_acted_on<'a>(&self, target: Option<&'a Value>) -> Option<&'a str> {
+        let target = target.and_then(Value::as_str)?;
+        let kind = self.kinds.get(target)?;
+        (!OWN.contains(&kind.as_str())).then_some(target)
+    }
+
+    fn take(&mut self, entry: &Value) -> Result<(), Refused> {
+        let index = self.order.len();
+        let shape = Refused::Entry { index: Some(index) };
+        let fields = entry.as_object().ok_or(shape.clone())?;
+        let data = fields.get("data").and_then(Value::as_object);
+        let first_table = if index == 0 {
+            let data = data
+                .filter(|d| d.get("form").and_then(Value::as_str) == Some(FORM))
+                .ok_or(Refused::NoForm)?;
+            Some(read_table(data.get("kept_apart")).ok_or(Refused::Table)?)
+        } else {
+            None
+        };
+        let table = first_table.as_ref().unwrap_or(&self.table);
+        let kind = fields.get("kind").and_then(Value::as_str);
+        let apart = fields.get("apart").and_then(Value::as_object);
+        // The callers have seen that `hash` is text, and see to the chain.
+        let hash = fields.get("hash").and_then(Value::as_str);
+        let (Some(kind), Some(data), Some(apart), Some(hash)) = (kind, data, apart, hash) else {
+            return Err(shape);
+        };
+        if fields.len() != KEYS.len()
+            || KEYS.iter().any(|key| !fields.contains_key(*key))
+            || !open_ok(fields)
+        {
+            return Err(shape);
+        }
+        // BTreeMap: the names in ascending order, whatever order
+        // serde_json keeps a map in.
+        let mut prints: BTreeMap<String, String> = BTreeMap::new();
+        for (name, print) in apart {
+            let print = print.as_str().filter(|p| is_hash(p));
+            match print {
+                Some(print) if is_name(name) => prints.insert(name.clone(), print.to_owned()),
+                _ => return Err(shape),
+            };
+        }
+        let named: &[String] = table.get(kind).map_or(&[], Vec::as_slice);
+        if prints.keys().any(|name| !named.contains(name)) {
+            return Err(Refused::Untabled { index });
+        }
+        if named.iter().any(|name| data.contains_key(name)) {
+            return Err(Refused::Open { index });
+        }
+        let distinct: BTreeSet<&String> = prints.values().collect();
+        if distinct.len() != prints.len() || distinct.iter().any(|p| self.seen.contains(*p)) {
+            return Err(Refused::Twice { index });
+        }
+        let mut mark = None;
+        let mut answers = None;
+        if kind == MARK {
+            let target = data.get("entry").and_then(Value::as_str);
+            let field = data.get("field").and_then(Value::as_str);
+            match (target, field) {
+                (Some(target), Some(field))
+                    if self
+                        .apart
+                        .get(target)
+                        .is_some_and(|held| held.contains_key(field)) =>
+                {
+                    mark = Some((target.to_owned(), field.to_owned()));
+                }
+                _ => return Err(Refused::BadMark { index }),
+            }
+        } else if kind == KEPT {
+            match data.get("mark").and_then(Value::as_str) {
+                Some(named_mark) if self.marks.contains_key(named_mark) => {
+                    answers = Some(named_mark.to_owned());
+                }
+                _ => return Err(Refused::BadKept { index }),
+            }
+        }
+        // What wins, among removing, restoring, taking back and putting
+        // back (docs/research/REDACTION.md, decision 9).
+        let mut on: Option<String> = None;
+        if kind == REMOVED {
+            match self.can_be_acted_on(data.get("entry")) {
+                Some(target)
+                    if !self.removed.contains_key(target)
+                        && !self.taken.contains_key(target)
+                        && office_ok(data) =>
+                {
+                    on = Some(target.to_owned());
+                }
+                _ => return Err(Refused::BadRemoval { index }),
+            }
+        } else if kind == RESTORED {
+            let incident = data.get("incident").and_then(Value::as_str);
+            let target = incident.and_then(|i| self.removals.get(i));
+            match (incident, target) {
+                (Some(incident), Some(target))
+                    if self.removed.get(target).map(String::as_str) == Some(incident)
+                        && !self.taken.contains_key(target)
+                        && office_ok(data) =>
+                {
+                    on = Some(target.clone());
+                }
+                _ => return Err(Refused::BadRestoring { index }),
+            }
+        } else if kind == TAKEN_BACK {
+            match self.can_be_acted_on(data.get("entry")) {
+                Some(target) if !self.taken.contains_key(target) => {
+                    on = Some(target.to_owned());
+                }
+                _ => return Err(Refused::BadTakingBack { index }),
+            }
+        } else if kind == PUT_BACK {
+            let taking = data.get("taken_back").and_then(Value::as_str);
+            let target = taking.and_then(|t| self.takings.get(t));
+            match (taking, target) {
+                (Some(taking), Some(target))
+                    if self.taken.get(target).map(String::as_str) == Some(taking) =>
+                {
+                    on = Some(target.clone());
+                }
+                _ => return Err(Refused::BadPuttingBack { index }),
+            }
+        }
+        // The entry holds: only now is anything kept.
+        let hash = hash.to_owned();
+        self.seen.extend(prints.values().cloned());
+        if let Some(table) = first_table {
+            self.table = table;
+        }
+        if let Some(mark) = mark {
+            self.marks.insert(hash.clone(), mark);
+        }
+        if let Some(answers) = answers {
+            self.answered.insert(answers);
+        }
+        if let Some(on) = on {
+            if kind == REMOVED {
+                self.removals.insert(hash.clone(), on.clone());
+                self.removed.insert(on.clone(), hash.clone());
+                self.incidents.push((hash.clone(), on, EntryState::Removed));
+            } else if kind == RESTORED {
+                self.removed.remove(&on);
+            } else if kind == TAKEN_BACK {
+                self.takings.insert(hash.clone(), on.clone());
+                self.taken.insert(on.clone(), hash.clone());
+                self.incidents
+                    .push((hash.clone(), on, EntryState::TakenBack));
+            } else if kind == PUT_BACK {
+                self.taken.remove(&on);
+            }
+        }
+        self.kinds.insert(hash.clone(), kind.to_owned());
+        self.apart.insert(hash.clone(), prints);
+        self.order.push(hash);
+        Ok(())
+    }
+}
+
+/// True if an entry's open part is as the form has it: a tick from 0 to
+/// 2^53 - 1, an agent that is text or nothing, and data that is a map a
+/// fingerprint would allow. (That the kind is text is seen to where the
+/// kind is read: by `take`, and by the writer's own types.)
+fn open_ok(fields: &Map<String, Value>) -> bool {
+    let tick = fields.get("tick").and_then(Value::as_u64);
+    let agent = fields.get("agent");
+    tick.is_some_and(|t| t <= MAX_WHOLE.unsigned_abs())
+        && agent.is_some_and(|a| a.is_string() || a.is_null())
+        && fields
+            .get("data")
+            .is_some_and(|d| d.is_object() && value_allowed(d))
+}
+
+/// Reads a whole log. For each entry in turn: its link to the entry
+/// before, then what it says, then its hash. The chain is the kernel's (a
+/// log that passes here passes [`verify_log`](crate::verify_log)); the
+/// checks are taken an entry at a time so that the first fault in the
+/// log's order is the one named, here and in Python.
+fn scan(log: &Value) -> Result<Scan, Refused> {
+    let entries = log.as_array().ok_or(Refused::Chain(LogError::NotAList))?;
+    if entries.is_empty() {
+        return Err(Refused::NoForm);
+    }
+    let mut scan = Scan::default();
+    let mut prev = GENESIS;
+    for (index, entry) in entries.iter().enumerate() {
+        let malformed = Refused::Chain(LogError::Malformed { index });
+        let fields = entry.as_object().ok_or(malformed.clone())?;
+        let hash = fields
+            .get("hash")
+            .and_then(Value::as_str)
+            .ok_or(malformed)?;
+        if fields.get("prev").and_then(Value::as_str) != Some(prev) {
+            return Err(Refused::Chain(LogError::BrokenChain { index }));
+        }
+        scan.take(entry)?;
+        // An entry that holds can always be written: its numbers fit and
+        // it is nested far less deeply than the writer's limit.
+        if body_hash(fields).ok().as_deref() != Some(hash) {
+            return Err(Refused::Chain(LogError::WrongHash { index }));
+        }
+        prev = hash;
+    }
+    Ok(scan)
+}
+
+/// The contents, held to the log: for each entry, each field's value that
+/// is there and matches its fingerprint.
+fn held<'a>(
+    scan: &Scan,
+    contents: &'a Value,
+) -> Result<BTreeMap<&'a str, BTreeMap<&'a str, &'a Value>>, Refused> {
+    let contents = contents
+        .as_object()
+        .ok_or(Refused::Contents(Place::default()))?;
+    // Read in ascending order, so that Python and Rust refuse a contents
+    // file with two faults for the same one.
+    let sorted: BTreeMap<&str, &Value> = contents.iter().map(|(k, v)| (k.as_str(), v)).collect();
+    let mut held = BTreeMap::new();
+    let mut salts: BTreeSet<&str> = BTreeSet::new();
+    for (entry, fields) in sorted {
+        let prints = scan
+            .apart
+            .get(entry)
+            .ok_or_else(|| Refused::Unknown(Place::entry(entry)))?;
+        let fields = fields
+            .as_object()
+            .ok_or_else(|| Refused::Contents(Place::entry(entry)))?;
+        let fields: BTreeMap<&str, &Value> = fields.iter().map(|(k, v)| (k.as_str(), v)).collect();
+        let mut values = BTreeMap::new();
+        for (name, pair) in fields {
+            let place = || Place::field(entry, name);
+            let print = prints.get(name).ok_or_else(|| Refused::Unknown(place()))?;
+            let Some([salt, value]) = pair.as_array().map(Vec::as_slice) else {
+                return Err(Refused::Contents(place()));
+            };
+            let salt = salt
+                .as_str()
+                .filter(|s| is_salt(s))
+                .ok_or_else(|| Refused::Salt(place()))?;
+            if !value_allowed(value) {
+                return Err(Refused::Value(place()));
+            }
+            if fingerprint(salt, name, value).ok().as_ref() != Some(print) {
+                return Err(Refused::Fingerprint(place()));
+            }
+            // Only once both match: so this always means a salt that was
+            // truly used for two fields, never a field copied elsewhere.
+            if !salts.insert(salt) {
+                return Err(Refused::SaltTwice(place()));
+            }
+            values.insert(name, value);
+        }
+        held.insert(entry, values);
+    }
+    Ok(held)
+}
+
+fn states(scan: &Scan, held: &BTreeMap<&str, BTreeMap<&str, &Value>>) -> States {
+    let marked: BTreeSet<&(String, String)> = scan.marks.values().collect();
+    let standing: BTreeSet<&(String, String)> = scan
+        .marks
+        .iter()
+        .filter(|(mark, _)| !scan.answered.contains(*mark))
+        .map(|(_, field)| field)
+        .collect();
+    let mut states = States::new();
+    for (entry, prints) in &scan.apart {
+        for name in prints.keys() {
+            let there = held
+                .get(entry.as_str())
+                .is_some_and(|values| values.contains_key(name.as_str()));
+            let field = (entry.clone(), name.clone());
+            let state = if standing.contains(&field) {
+                if there {
+                    State::Unfinished
+                } else {
+                    State::Redacted
+                }
+            } else if there {
+                if marked.contains(&field) {
+                    State::KeptPublic
+                } else {
+                    State::Present
+                }
+            } else {
+                State::Missing
+            };
+            states
+                .entry(entry.clone())
+                .or_default()
+                .insert(name.clone(), state);
+        }
+    }
+    states
+}
+
+/// Each incident's id as it is shown: the fewest hex digits, [`SHORT`] or
+/// more, that no other of `ids` begins with. The ids are 64 hex digits,
+/// as an entry's hash is, and no two are the same.
+pub fn short_ids(ids: &[String]) -> BTreeMap<String, String> {
+    let mut short = BTreeMap::new();
+    for one in ids {
+        let mut n = SHORT.min(one.len());
+        while n < one.len()
+            && ids
+                .iter()
+                .any(|other| other != one && other.get(..n) == one.get(..n))
+        {
+            n += 1;
+        }
+        short.insert(one.clone(), one.get(..n).unwrap_or(one).to_owned());
+    }
+    short
+}
+
+/// The state of every entry that has an incident, with them.
+fn entry_states(scan: &Scan) -> BTreeMap<String, Standing> {
+    let ids: Vec<String> = scan.incidents.iter().map(|(id, _, _)| id.clone()).collect();
+    let short = short_ids(&ids);
+    let mut states: BTreeMap<String, Standing> = BTreeMap::new();
+    for (id, on, kind) in &scan.incidents {
+        let stands = scan.removed.get(on) == Some(id) || scan.taken.get(on) == Some(id);
+        states
+            .entry(on.clone())
+            .or_insert(Standing {
+                state: EntryState::AsWritten,
+                incidents: Vec::new(),
+            })
+            .incidents
+            .push(Incident {
+                id: id.clone(),
+                short: short.get(id).cloned().unwrap_or_default(),
+                kind: *kind,
+                stands,
+            });
+    }
+    for (on, standing) in &mut states {
+        standing.state = if scan.taken.contains_key(on) {
+            EntryState::TakenBack
+        } else if scan.removed.contains_key(on) {
+            EntryState::Removed
+        } else if standing
+            .incidents
+            .iter()
+            .any(|i| i.kind == EntryState::Removed)
+        {
+            EntryState::Restored
+        } else {
+            EntryState::AsWritten
+        };
+    }
+    states
+}
+
+/// Checks a log in this form and gives the state of every entry that was
+/// ever removed or taken back, with its incidents in the log's order.
+/// Every other entry is as written. It needs no contents: what is shown
+/// is worked out from the open fields alone.
+pub fn incidents(log: &Value) -> Result<BTreeMap<String, Standing>, Refused> {
+    Ok(entry_states(&scan(log)?))
+}
+
+/// Checks a log in this form and its contents together, and gives the
+/// state of every field kept apart. Refuses if the chain doesn't hold,
+/// the log isn't in this form, or the contents hold anything the log
+/// doesn't commit to.
+///
+/// A missing field is not refused: it is a state, so that a reader can
+/// say which fields a copy of a log has lost.
+pub fn check(log: &Value, contents: &Value) -> Result<States, Refused> {
+    let scan = scan(log)?;
+    let held = held(&scan, contents)?;
+    Ok(states(&scan, &held))
+}
+
 /// Each entry as a reader uses it, after [`check`]: the entry without its
 /// `apart`, its `data` holding the open fields and every field kept apart
-/// that is present or kept public, and `fields` giving the state of each
-/// field kept apart, in Python's words. A field under a standing mark is
-/// left out even if it is still in the contents.
+/// that is present or kept public, `fields` giving the state of each
+/// field kept apart, and the entry's own `state` and `incidents`, all in
+/// Python's words. A field under a standing mark is left out even if it
+/// is still in the contents. An entry that is removed or taken back is
+/// given whole: hiding it is for whatever shows the room.
 pub fn join(log: &Value, contents: &Value) -> Result<Vec<Value>, Refused> {
     let scan = scan(log)?;
     let held = held(&scan, contents)?;
     let states = states(&scan, &held);
+    let acted_on = entry_states(&scan);
     let entries = log.as_array().ok_or(Refused::Chain(LogError::NotAList))?;
     let none = BTreeMap::new();
     let mut joined = Vec::with_capacity(entries.len());
@@ -35,6 +417,19 @@ pub fn join(log: &Value, contents: &Value) -> Result<Vec<Value>, Refused> {
             }
         }
         one.insert("fields".to_owned(), Value::Object(shown));
+        let standing = acted_on.get(hash);
+        let state = standing.map_or(EntryState::AsWritten, |s| s.state);
+        let its: Vec<Value> = standing.map_or(Vec::new(), |s| {
+            s.incidents
+                .iter()
+                .map(|i| {
+                    json!({"id": i.id, "short": i.short, "kind": i.kind.as_str(),
+                           "stands": i.stands})
+                })
+                .collect()
+        });
+        one.insert("state".to_owned(), json!(state.as_str()));
+        one.insert("incidents".to_owned(), Value::Array(its));
         joined.push(Value::Object(one));
     }
     Ok(joined)
@@ -70,6 +465,11 @@ impl Log {
     ) -> Result<Log, Refused> {
         if data.contains_key("form") || data.contains_key("kept_apart") {
             return Err(Refused::FirstGiven);
+        }
+        // Before the entry is looked at as a whole, as the check does: so
+        // a table that isn't one is refused as that, whatever it holds.
+        if read_table(Some(table)).is_none() {
+            return Err(Refused::Table);
         }
         let mut first = data.clone();
         first.insert("form".to_owned(), Value::String(FORM.to_owned()));

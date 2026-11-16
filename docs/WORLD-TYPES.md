@@ -274,17 +274,27 @@ above, still holds: this section adds the other half.
    smear a world. (This was not one of the four refinements; it was in
    the same message, and is read as taken with them.)
 5. **Only then does it depart:** the departure record of "Leaving the
-   multiverse", naming where it goes. The move counts when both the
-   departure and the admission exist, so a world can't claim a home
-   that never took it in, and no multiverse can claim a world that
-   never left.
+   multiverse", naming where it goes. The move counts when the
+   departure and the admission both exist and the admission holds
+   (step 6), so a world can't claim a home that never took it in, and
+   no multiverse can claim a world that never left.
 6. **On arrival,** whatever the world added to its log after the head
    that was evaluated is checked again. If that check fails, the
    admission does not hold. The world has left by then, so it stands
    alone, as "Leaving the multiverse" has it, unless the multiverse it
-   left takes it back, which is a new decision by both sides. To keep
-   clear of that, a world can pause at the head that was evaluated and
-   depart from there, so that nothing is left to check.
+   left takes it back, which is a new decision by both sides.
+   - *A world with inhabitants does not take that risk* (the technical
+     lead's reading, from the review of this section). Its inhabitants
+     consented to a move to a named multiverse, and standing alone is a
+     different outcome. So such a world departs only from a head that
+     an admission names: if it lived on after the evaluation, it asks
+     for what it added since to be evaluated too, and for an admission
+     at its present head, and it is paused from that head until it
+     departs. Its departure is then the one entry after the head that
+     was admitted, and the check on arrival is that this is so.
+   - *A world with no one in it* may go on running and depart from a
+     later head. What it added is checked on arrival, and the risk of
+     standing alone is its own.
 
 **What a holding place can and can't do.**
 - **It can't prove code safe** (taken). What is malicious can wait

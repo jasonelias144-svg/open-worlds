@@ -62,7 +62,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/start.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/personal-information-in-a-room-ideas.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/rooms-with-moderators-the-founder-s-ideas-in.md
 ```
 
 ## `docs/COURSE.md`, in 3 parts
@@ -143,6 +143,13 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/research/PERSONS.md/part-three-built.md
 ```
 
+## `docs/research/REDACTION.md`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/research/REDACTION.md/start.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/research/REDACTION.md/part-four-the-log-s-side-built.md
+```
+
 ## `formats/record_vectors.py`, in 2 parts
 
 ```text
@@ -219,6 +226,20 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/web/plant/index.html/01.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/web/plant/index.html/02.txt
+```
+
+## `world/apart.py`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world/apart.py/01.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world/apart.py/02.txt
+```
+
+## `world/apart_vectors.py`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world/apart_vectors.py/01.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world/apart_vectors.py/02.txt
 ```
 
 ## Left whole

@@ -62,8 +62,12 @@ free, and never a money machine
   function that joins them (`world/apart.py`, `rust/world-log`, with
   shared vectors). Nothing is redacted yet: that is its third part,
   which waits for the founder's answer on the office's copy (Open
-  questions). Then step 3c, the room, where DeepSeek's `chat-world` is
-  fitted onto the project's formats.
+  questions). The log's side of its fourth part is built: what a log
+  says in the open when an entry is removed, restored, taken back or
+  put back, and each entry's state worked out from that. The signed
+  records behind each act, and the check of who may act, are its
+  records' side, which is next. Then step 3c, the room, where
+  DeepSeek's `chat-world` is fitted onto the project's formats.
 - Claude: the fractal track, alongside the course (docs/FRACTALS.md),
   set by the founder on 2026-11-14: a fractal plant world in Rust, the
   web app in `web/` to watch worlds grow, and in it the multiversal map.
@@ -161,6 +165,18 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder, on the game ideas (2026-11-16; Decided, that
+  day):
+  1. Whether a separate project of small paid games is to pay for
+     running the multiverse. It is a question of money, so it is the
+     founder's, and it can wait for the money discussion. Recommended:
+     hold it until the Ur-room is built, so that there is something to
+     run before deciding how to pay for it. Nothing in the multiverse
+     has to change for it either way.
+  2. Where the game ideas are kept. This repository is public and
+     under CC0, which gives up all rights in what it holds.
+     Recommended: the project's private repository, with its next
+     change, and not here.
 - For the founder, on many multiverses (2026-11-16; Decided, the
   entries of that day):
   1. The floor between multiverses. The internet has no rule above its

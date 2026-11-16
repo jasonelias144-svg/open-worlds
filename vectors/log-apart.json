@@ -3260,11 +3260,484 @@
      "record": "present"
     }
    }
+  },
+  {
+   "contents": {
+    "023ae83af4f3103624532da8bd458fa4e4fa01a3ab8633717f8272629befeab6": {
+     "key": [
+      "df6f0c866073d65019e9cc35b5b5580d",
+      "trial key of ada"
+     ],
+     "text": [
+      "41a0eb6e4a594903f982bd8655bb8448",
+      "my door is 1 Trial Street"
+     ],
+     "time": [
+      "44359067d210f078270e1c7b9c605276",
+      1794787320
+     ]
+    },
+    "0dad1905f735706c1264d5bb90b7c8f92f60e863861026c7cd0f73effe853c88": {
+     "key": [
+      "e4726a8655824dea87d0d4b8020367be",
+      "trial key of ada"
+     ],
+     "text": [
+      "e928a52464d9b02a00517c283dbeb3c7",
+      "hello, room"
+     ],
+     "time": [
+      "4db750998119dffbd303862f817812d9",
+      1794787200
+     ]
+    },
+    "4609b9ac6b9ddcc4e50373c232e271127ec92baca87b2bdfa9d5849eac1288b1": {
+     "key": [
+      "4c81de58866b150007314c561dd5a71a",
+      "trial key of ada"
+     ],
+     "name": [
+      "42f392f40e2fa5f71c7b5ca498fcebb6",
+      "ada"
+     ]
+    },
+    "535840c346ed9943ff3ede473a1d06c6dd5010ba68a9e6179e5bc6b837967453": {
+     "key": [
+      "fba752dd43e02cfc7537569b6821a37a",
+      "trial key of bo"
+     ],
+     "text": [
+      "6ec72e028d1d6c70fc8bb3344783486b",
+      "caf\u00e9 \u4e2d\u6587 \ud83d\ude42 \u2028 \" \\ \n"
+     ],
+     "time": [
+      "29ace1401be08bc9736b0c413eb7d78c",
+      1794787260
+     ]
+    },
+    "813407ffa45d6bb1025e3494f4ed66dae7a3a4862796ea2bed58340e75a6c3ec": {
+     "key": [
+      "9f2290454fe2cc462a47997b2e738d87",
+      "trial key of bo"
+     ],
+     "name": [
+      "b389910382fff94cb0fb20a2af11aebe",
+      "bo"
+     ]
+    },
+    "bc5f8eecac4048fa2eaf5386fc5565264591e947172c3efd0ee97ab0d85f5a7d": {
+     "key": [
+      "c79be804e9e9318a694841a99cbdac1e",
+      "trial key of bo"
+     ],
+     "thing": [
+      "50e7ce537b7e3cf83b9658b098f6202b",
+      {
+       "count": -3,
+       "loud": true,
+       "words": [
+        "a",
+        "b"
+       ]
+      }
+     ]
+    },
+    "e43cfc329c494412631079ea7c6af42a6e1c335d0253dc516a7910e40f1ac266": {
+     "record": [
+      "d68f3e951f2f033642bf6b945003f0b0",
+      "trial decision record 6, not a signed one"
+     ]
+    }
+   },
+   "incidents": {
+    "0dad1905f735706c1264d5bb90b7c8f92f60e863861026c7cd0f73effe853c88": {
+     "incidents": [
+      {
+       "id": "e43cfc329c494412631079ea7c6af42a6e1c335d0253dc516a7910e40f1ac266",
+       "kind": "removed",
+       "short": "e43cfc329c49",
+       "stands": true
+      }
+     ],
+     "state": "removed"
+    }
+   },
+   "joined": [
+    {
+     "agent": null,
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "entry_put_back": [
+        "record"
+       ],
+       "entry_removed": [
+        "record"
+       ],
+       "entry_restored": [
+        "record"
+       ],
+       "entry_taken_back": [
+        "record"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "fields": {},
+     "hash": "0c1ada6b274d877be69e5568cc15498882e9815f3cc8908364093f95ee3334de",
+     "incidents": [],
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "state": "as written",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "data": {
+      "key": "trial key of ada",
+      "name": "ada"
+     },
+     "fields": {
+      "key": "present",
+      "name": "present"
+     },
+     "hash": "4609b9ac6b9ddcc4e50373c232e271127ec92baca87b2bdfa9d5849eac1288b1",
+     "incidents": [],
+     "kind": "entered",
+     "prev": "0c1ada6b274d877be69e5568cc15498882e9815f3cc8908364093f95ee3334de",
+     "state": "as written",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "data": {
+      "key": "trial key of bo",
+      "name": "bo"
+     },
+     "fields": {
+      "key": "present",
+      "name": "present"
+     },
+     "hash": "813407ffa45d6bb1025e3494f4ed66dae7a3a4862796ea2bed58340e75a6c3ec",
+     "incidents": [],
+     "kind": "entered",
+     "prev": "4609b9ac6b9ddcc4e50373c232e271127ec92baca87b2bdfa9d5849eac1288b1",
+     "state": "as written",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "data": {
+      "key": "trial key of ada",
+      "text": "hello, room",
+      "time": 1794787200
+     },
+     "fields": {
+      "key": "present",
+      "text": "present",
+      "time": "present"
+     },
+     "hash": "0dad1905f735706c1264d5bb90b7c8f92f60e863861026c7cd0f73effe853c88",
+     "incidents": [
+      {
+       "id": "e43cfc329c494412631079ea7c6af42a6e1c335d0253dc516a7910e40f1ac266",
+       "kind": "removed",
+       "short": "e43cfc329c49",
+       "stands": true
+      }
+     ],
+     "kind": "said",
+     "prev": "813407ffa45d6bb1025e3494f4ed66dae7a3a4862796ea2bed58340e75a6c3ec",
+     "state": "removed",
+     "tick": 1
+    },
+    {
+     "agent": null,
+     "data": {
+      "key": "trial key of bo",
+      "text": "caf\u00e9 \u4e2d\u6587 \ud83d\ude42 \u2028 \" \\ \n",
+      "time": 1794787260
+     },
+     "fields": {
+      "key": "present",
+      "text": "present",
+      "time": "present"
+     },
+     "hash": "535840c346ed9943ff3ede473a1d06c6dd5010ba68a9e6179e5bc6b837967453",
+     "incidents": [],
+     "kind": "said",
+     "prev": "0dad1905f735706c1264d5bb90b7c8f92f60e863861026c7cd0f73effe853c88",
+     "state": "as written",
+     "tick": 2
+    },
+    {
+     "agent": null,
+     "data": {
+      "key": "trial key of ada",
+      "text": "my door is 1 Trial Street",
+      "time": 1794787320
+     },
+     "fields": {
+      "key": "present",
+      "text": "present",
+      "time": "present"
+     },
+     "hash": "023ae83af4f3103624532da8bd458fa4e4fa01a3ab8633717f8272629befeab6",
+     "incidents": [],
+     "kind": "said",
+     "prev": "535840c346ed9943ff3ede473a1d06c6dd5010ba68a9e6179e5bc6b837967453",
+     "state": "as written",
+     "tick": 3
+    },
+    {
+     "agent": null,
+     "data": {
+      "key": "trial key of bo",
+      "thing": {
+       "count": -3,
+       "loud": true,
+       "words": [
+        "a",
+        "b"
+       ]
+      },
+      "where": "the table"
+     },
+     "fields": {
+      "key": "present",
+      "thing": "present"
+     },
+     "hash": "bc5f8eecac4048fa2eaf5386fc5565264591e947172c3efd0ee97ab0d85f5a7d",
+     "incidents": [],
+     "kind": "showed",
+     "prev": "023ae83af4f3103624532da8bd458fa4e4fa01a3ab8633717f8272629befeab6",
+     "state": "as written",
+     "tick": 4
+    },
+    {
+     "agent": null,
+     "data": {
+      "decision": "c868686293106e05a217e11666dc8648f3995d54ac567cd900d20a91fe7c684b",
+      "entry": "0dad1905f735706c1264d5bb90b7c8f92f60e863861026c7cd0f73effe853c88",
+      "ground": {
+       "kind": "law",
+       "ref": "\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e"
+      },
+      "office": "trial moderator",
+      "record": "trial decision record 6, not a signed one"
+     },
+     "fields": {
+      "record": "present"
+     },
+     "hash": "e43cfc329c494412631079ea7c6af42a6e1c335d0253dc516a7910e40f1ac266",
+     "incidents": [],
+     "kind": "entry_removed",
+     "prev": "bc5f8eecac4048fa2eaf5386fc5565264591e947172c3efd0ee97ab0d85f5a7d",
+     "state": "as written",
+     "tick": 5
+    }
+   ],
+   "log": [
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "entry_put_back": [
+        "record"
+       ],
+       "entry_removed": [
+        "record"
+       ],
+       "entry_restored": [
+        "record"
+       ],
+       "entry_taken_back": [
+        "record"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "hash": "0c1ada6b274d877be69e5568cc15498882e9815f3cc8908364093f95ee3334de",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "4aaee554e1db4e990128f3391aab0a015152d112587da255e1d492f72b5363bb",
+      "name": "4b18f34129246be7c13e709f54271a210a5b1ab4b080ee0de8382122453d3fb0"
+     },
+     "data": {},
+     "hash": "4609b9ac6b9ddcc4e50373c232e271127ec92baca87b2bdfa9d5849eac1288b1",
+     "kind": "entered",
+     "prev": "0c1ada6b274d877be69e5568cc15498882e9815f3cc8908364093f95ee3334de",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "876c50af710a5b8b75a12eddbbbcd0b7e3a08c2ef5a1a45e7dff5807042d3801",
+      "name": "9487cb885092808b2a1263c7246af5fc5934c9b6625910d972532f45bb72770a"
+     },
+     "data": {},
+     "hash": "813407ffa45d6bb1025e3494f4ed66dae7a3a4862796ea2bed58340e75a6c3ec",
+     "kind": "entered",
+     "prev": "4609b9ac6b9ddcc4e50373c232e271127ec92baca87b2bdfa9d5849eac1288b1",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "8f1221e295ade68c1c5affdc2bd794c53a96850cb71214b92a39475ca1f4732c",
+      "text": "97727365c75b6496fde53feff4aba788d2861b13355fac1bfa5719dae8ff2e94",
+      "time": "fb1125e6461850bc2a729ea91dcde652349fb60460610b5a7569b585276552c3"
+     },
+     "data": {},
+     "hash": "0dad1905f735706c1264d5bb90b7c8f92f60e863861026c7cd0f73effe853c88",
+     "kind": "said",
+     "prev": "813407ffa45d6bb1025e3494f4ed66dae7a3a4862796ea2bed58340e75a6c3ec",
+     "tick": 1
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "85866e500456c509eb3495aa384d54e512f9f3fcdc20370c674416e4857b9596",
+      "text": "f71ccfa8d681c7ccebfa9094978def32f707a4f003570f6fb8cf92720f1c25d6",
+      "time": "92eaf72229b81ff58e14d7d8b889b2a86760d260299e3fe9284e4d8ac8ca6c55"
+     },
+     "data": {},
+     "hash": "535840c346ed9943ff3ede473a1d06c6dd5010ba68a9e6179e5bc6b837967453",
+     "kind": "said",
+     "prev": "0dad1905f735706c1264d5bb90b7c8f92f60e863861026c7cd0f73effe853c88",
+     "tick": 2
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "24b3575136594e0dcfd1cd45fd196c8b813e90a412cad8fda5804f6cad9d3dc3",
+      "text": "dceed6577394d84c10cf295d35e85e2e1143ebdcaf6e18679ecf42d94c75826d",
+      "time": "65ece4c5cfd535ad061dcc667d3d932783cbf03c550af4c8f06494b98ed499d1"
+     },
+     "data": {},
+     "hash": "023ae83af4f3103624532da8bd458fa4e4fa01a3ab8633717f8272629befeab6",
+     "kind": "said",
+     "prev": "535840c346ed9943ff3ede473a1d06c6dd5010ba68a9e6179e5bc6b837967453",
+     "tick": 3
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "359a5a824ead9a3ed0ed6c64d5c726f0d6706018aa1a68edb2866fe46b7c5590",
+      "thing": "8592613435e9d23212ecdcd4238e9f25d167b72f832751703a3c4a42b424d7bf"
+     },
+     "data": {
+      "where": "the table"
+     },
+     "hash": "bc5f8eecac4048fa2eaf5386fc5565264591e947172c3efd0ee97ab0d85f5a7d",
+     "kind": "showed",
+     "prev": "023ae83af4f3103624532da8bd458fa4e4fa01a3ab8633717f8272629befeab6",
+     "tick": 4
+    },
+    {
+     "agent": null,
+     "apart": {
+      "record": "1717784bf0dafd82a6f5911a7ab1c005b03fae33d1b690903317fc9a2ac28026"
+     },
+     "data": {
+      "decision": "c868686293106e05a217e11666dc8648f3995d54ac567cd900d20a91fe7c684b",
+      "entry": "0dad1905f735706c1264d5bb90b7c8f92f60e863861026c7cd0f73effe853c88",
+      "ground": {
+       "kind": "law",
+       "ref": "\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e"
+      },
+      "office": "trial moderator"
+     },
+     "hash": "e43cfc329c494412631079ea7c6af42a6e1c335d0253dc516a7910e40f1ac266",
+     "kind": "entry_removed",
+     "prev": "bc5f8eecac4048fa2eaf5386fc5565264591e947172c3efd0ee97ab0d85f5a7d",
+     "tick": 5
+    }
+   ],
+   "name": "a ground's reference at its longest",
+   "states": {
+    "023ae83af4f3103624532da8bd458fa4e4fa01a3ab8633717f8272629befeab6": {
+     "key": "present",
+     "text": "present",
+     "time": "present"
+    },
+    "0dad1905f735706c1264d5bb90b7c8f92f60e863861026c7cd0f73effe853c88": {
+     "key": "present",
+     "text": "present",
+     "time": "present"
+    },
+    "4609b9ac6b9ddcc4e50373c232e271127ec92baca87b2bdfa9d5849eac1288b1": {
+     "key": "present",
+     "name": "present"
+    },
+    "535840c346ed9943ff3ede473a1d06c6dd5010ba68a9e6179e5bc6b837967453": {
+     "key": "present",
+     "text": "present",
+     "time": "present"
+    },
+    "813407ffa45d6bb1025e3494f4ed66dae7a3a4862796ea2bed58340e75a6c3ec": {
+     "key": "present",
+     "name": "present"
+    },
+    "bc5f8eecac4048fa2eaf5386fc5565264591e947172c3efd0ee97ab0d85f5a7d": {
+     "key": "present",
+     "thing": "present"
+    },
+    "e43cfc329c494412631079ea7c6af42a6e1c335d0253dc516a7910e40f1ac266": {
+     "record": "present"
+    }
+   }
   }
  ],
  "kept": "field_kept_public",
  "mark": "field_redacted",
  "max_nesting": 32,
+ "max_ref": 512,
  "max_whole": 9007199254740991,
  "note": "Trial vectors for open-worlds/log-apart/v1. The salts are fixed and public: salt n is the first 32 hex digits of the SHA-256 of 'open-worlds trial salt n'. Never for anything real.",
  "put_back": "entry_put_back",
@@ -9748,6 +10221,233 @@
     }
    ],
    "name": "a removal whose ground holds more than a kind and a ref",
+   "reason": "a removal does not name an earlier entry that can be removed, with its office, ground and decision",
+   "where": 7
+  },
+  {
+   "contents": {
+    "023ae83af4f3103624532da8bd458fa4e4fa01a3ab8633717f8272629befeab6": {
+     "key": [
+      "df6f0c866073d65019e9cc35b5b5580d",
+      "trial key of ada"
+     ],
+     "text": [
+      "41a0eb6e4a594903f982bd8655bb8448",
+      "my door is 1 Trial Street"
+     ],
+     "time": [
+      "44359067d210f078270e1c7b9c605276",
+      1794787320
+     ]
+    },
+    "0dad1905f735706c1264d5bb90b7c8f92f60e863861026c7cd0f73effe853c88": {
+     "key": [
+      "e4726a8655824dea87d0d4b8020367be",
+      "trial key of ada"
+     ],
+     "text": [
+      "e928a52464d9b02a00517c283dbeb3c7",
+      "hello, room"
+     ],
+     "time": [
+      "4db750998119dffbd303862f817812d9",
+      1794787200
+     ]
+    },
+    "4609b9ac6b9ddcc4e50373c232e271127ec92baca87b2bdfa9d5849eac1288b1": {
+     "key": [
+      "4c81de58866b150007314c561dd5a71a",
+      "trial key of ada"
+     ],
+     "name": [
+      "42f392f40e2fa5f71c7b5ca498fcebb6",
+      "ada"
+     ]
+    },
+    "535840c346ed9943ff3ede473a1d06c6dd5010ba68a9e6179e5bc6b837967453": {
+     "key": [
+      "fba752dd43e02cfc7537569b6821a37a",
+      "trial key of bo"
+     ],
+     "text": [
+      "6ec72e028d1d6c70fc8bb3344783486b",
+      "caf\u00e9 \u4e2d\u6587 \ud83d\ude42 \u2028 \" \\ \n"
+     ],
+     "time": [
+      "29ace1401be08bc9736b0c413eb7d78c",
+      1794787260
+     ]
+    },
+    "813407ffa45d6bb1025e3494f4ed66dae7a3a4862796ea2bed58340e75a6c3ec": {
+     "key": [
+      "9f2290454fe2cc462a47997b2e738d87",
+      "trial key of bo"
+     ],
+     "name": [
+      "b389910382fff94cb0fb20a2af11aebe",
+      "bo"
+     ]
+    },
+    "bc5f8eecac4048fa2eaf5386fc5565264591e947172c3efd0ee97ab0d85f5a7d": {
+     "key": [
+      "c79be804e9e9318a694841a99cbdac1e",
+      "trial key of bo"
+     ],
+     "thing": [
+      "50e7ce537b7e3cf83b9658b098f6202b",
+      {
+       "count": -3,
+       "loud": true,
+       "words": [
+        "a",
+        "b"
+       ]
+      }
+     ]
+    }
+   },
+   "log": [
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "entry_put_back": [
+        "record"
+       ],
+       "entry_removed": [
+        "record"
+       ],
+       "entry_restored": [
+        "record"
+       ],
+       "entry_taken_back": [
+        "record"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "hash": "0c1ada6b274d877be69e5568cc15498882e9815f3cc8908364093f95ee3334de",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "4aaee554e1db4e990128f3391aab0a015152d112587da255e1d492f72b5363bb",
+      "name": "4b18f34129246be7c13e709f54271a210a5b1ab4b080ee0de8382122453d3fb0"
+     },
+     "data": {},
+     "hash": "4609b9ac6b9ddcc4e50373c232e271127ec92baca87b2bdfa9d5849eac1288b1",
+     "kind": "entered",
+     "prev": "0c1ada6b274d877be69e5568cc15498882e9815f3cc8908364093f95ee3334de",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "876c50af710a5b8b75a12eddbbbcd0b7e3a08c2ef5a1a45e7dff5807042d3801",
+      "name": "9487cb885092808b2a1263c7246af5fc5934c9b6625910d972532f45bb72770a"
+     },
+     "data": {},
+     "hash": "813407ffa45d6bb1025e3494f4ed66dae7a3a4862796ea2bed58340e75a6c3ec",
+     "kind": "entered",
+     "prev": "4609b9ac6b9ddcc4e50373c232e271127ec92baca87b2bdfa9d5849eac1288b1",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "8f1221e295ade68c1c5affdc2bd794c53a96850cb71214b92a39475ca1f4732c",
+      "text": "97727365c75b6496fde53feff4aba788d2861b13355fac1bfa5719dae8ff2e94",
+      "time": "fb1125e6461850bc2a729ea91dcde652349fb60460610b5a7569b585276552c3"
+     },
+     "data": {},
+     "hash": "0dad1905f735706c1264d5bb90b7c8f92f60e863861026c7cd0f73effe853c88",
+     "kind": "said",
+     "prev": "813407ffa45d6bb1025e3494f4ed66dae7a3a4862796ea2bed58340e75a6c3ec",
+     "tick": 1
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "85866e500456c509eb3495aa384d54e512f9f3fcdc20370c674416e4857b9596",
+      "text": "f71ccfa8d681c7ccebfa9094978def32f707a4f003570f6fb8cf92720f1c25d6",
+      "time": "92eaf72229b81ff58e14d7d8b889b2a86760d260299e3fe9284e4d8ac8ca6c55"
+     },
+     "data": {},
+     "hash": "535840c346ed9943ff3ede473a1d06c6dd5010ba68a9e6179e5bc6b837967453",
+     "kind": "said",
+     "prev": "0dad1905f735706c1264d5bb90b7c8f92f60e863861026c7cd0f73effe853c88",
+     "tick": 2
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "24b3575136594e0dcfd1cd45fd196c8b813e90a412cad8fda5804f6cad9d3dc3",
+      "text": "dceed6577394d84c10cf295d35e85e2e1143ebdcaf6e18679ecf42d94c75826d",
+      "time": "65ece4c5cfd535ad061dcc667d3d932783cbf03c550af4c8f06494b98ed499d1"
+     },
+     "data": {},
+     "hash": "023ae83af4f3103624532da8bd458fa4e4fa01a3ab8633717f8272629befeab6",
+     "kind": "said",
+     "prev": "535840c346ed9943ff3ede473a1d06c6dd5010ba68a9e6179e5bc6b837967453",
+     "tick": 3
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "359a5a824ead9a3ed0ed6c64d5c726f0d6706018aa1a68edb2866fe46b7c5590",
+      "thing": "8592613435e9d23212ecdcd4238e9f25d167b72f832751703a3c4a42b424d7bf"
+     },
+     "data": {
+      "where": "the table"
+     },
+     "hash": "bc5f8eecac4048fa2eaf5386fc5565264591e947172c3efd0ee97ab0d85f5a7d",
+     "kind": "showed",
+     "prev": "023ae83af4f3103624532da8bd458fa4e4fa01a3ab8633717f8272629befeab6",
+     "tick": 4
+    },
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "decision": "0f4c55c18e0c01c1f2588a541dab85a593b992c143556c706b927d71623ad8a4",
+      "entry": "0dad1905f735706c1264d5bb90b7c8f92f60e863861026c7cd0f73effe853c88",
+      "ground": {
+       "kind": "law",
+       "ref": "\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e\ud834\udd1e"
+      },
+      "office": "trial moderator"
+     },
+     "hash": "88af94a3a0977c879b5ad89d2a02fc853f150f8e28ad6bc033460d4a8118fe68",
+     "kind": "entry_removed",
+     "prev": "bc5f8eecac4048fa2eaf5386fc5565264591e947172c3efd0ee97ab0d85f5a7d",
+     "tick": 9
+    }
+   ],
+   "name": "a removal whose ground's reference is one character too long",
    "reason": "a removal does not name an earlier entry that can be removed, with its office, ground and decision",
    "where": 7
   },

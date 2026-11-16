@@ -52,7 +52,9 @@ guest's key the person's private container.)
   keep a room's law, and who may remove a comment (COMMONS.md, "Open",
   each with a recommendation). What happens to a removed comment is
   decided, by the founder on 2026-11-16: it stays in the records, and
-  the room shows a note with the reason and an incident id;
+  the room shows a note with the reason and an incident id (the form
+  of a removal in a log is built, course step 3b; who may remove is
+  not checked yet);
 - the levels of privacy a room may have, and what the record keeps at
   each: three are proposed, and wait for the founder (COMMONS.md, "A
   spectrum of privacy");

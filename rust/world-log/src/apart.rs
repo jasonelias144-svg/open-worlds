@@ -115,6 +115,9 @@ pub const SHORT: usize = 12;
 pub const MAX_WHOLE: i64 = 9_007_199_254_740_991;
 /// The deepest nesting of lists and maps in a value kept apart.
 pub const MAX_NESTING: usize = 32;
+/// The longest a ground's reference can be, in characters (code points),
+/// as in a decision record's grounds.
+pub const MAX_REF: usize = 512;
 /// The keys of an entry in this form: these, and no others.
 pub const KEYS: [&str; 7] = ["tick", "kind", "agent", "data", "apart", "prev", "hash"];
 
@@ -548,7 +551,7 @@ fn office_ok(data: &Map<String, Value>) -> bool {
         && ground.is_some_and(|g| {
             g.len() == 2
                 && text(g.get("kind")).is_some_and(|kind| GROUNDS.contains(&kind))
-                && text(g.get("ref")).is_some()
+                && text(g.get("ref")).is_some_and(|r| r.chars().count() <= MAX_REF)
         })
         && data
             .get("decision")

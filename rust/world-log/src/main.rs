@@ -23,7 +23,7 @@
 
 use serde_json::Value;
 use std::process::ExitCode;
-use world_log::apart::{self, State};
+use world_log::apart::{self, EntryState, State};
 
 fn read(path: &str) -> Result<Value, ExitCode> {
     let text = std::fs::read_to_string(path).map_err(|e| {
@@ -98,6 +98,16 @@ fn check_contents(log: &Value, contents: &Value) -> ExitCode {
         count(State::Unfinished),
         count(State::KeptPublic),
         missing
+    );
+    // What a room shows of each entry, from the open fields alone. The
+    // log has held by now, so this can't be refused.
+    let standing = apart::incidents(log).unwrap_or_default();
+    let shown = |state: EntryState| standing.values().filter(|s| s.state == state).count();
+    println!(
+        "the entries: {} removed, {} taken back, {} restored, the rest as written",
+        shown(EntryState::Removed),
+        shown(EntryState::TakenBack),
+        shown(EntryState::Restored)
     );
     if missing > 0 {
         println!("the contents are not whole: {missing} missing, gone with no mark standing");
