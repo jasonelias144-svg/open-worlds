@@ -160,6 +160,20 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder, on the two roles (2026-11-16; Decided, that day):
+  1. What stays the founder's when someone else is director. AGENTS.md
+     says today that the charter is the founder's words, and that a
+     change that weakens a protected freedom is a founder decision.
+     Recommended: that stays, and goes further: no director can weaken
+     the charter's floor (exit, voice and information; free, and never
+     a money machine). A project that dropped them would be, in the
+     founder's words of 2026-11-15, "a different project", and would
+     take another name. Everything else is the director's.
+  2. How the office passes. Recommended: only by the director's own
+     recorded word, naming who takes it and from when. What becomes of
+     the accounts and keys, which are the founder's own today, is a
+     legal question and waits for the founder. Neither is needed while
+     the founder is the director.
 - For the founder, on many multiverses (2026-11-16; Decided, the
   entries of that day):
   1. The floor between multiverses. The internet has no rule above its
@@ -384,6 +398,32 @@ kind.
 
 ## Decided
 
+- 2026-11-16, founder, two roles. "One note. We should separate my
+  role as Project Founder, which will always be a matter of history.
+  As opposed to the role of Project Director, which I occupy now, but
+  might not later. We can change the names later but they work for me.
+  We just need to clearly distinguish between those two roles I am
+  playing now." So, decided by the founder: the two roles are told
+  apart, under those names. The technical lead's reading of how, which
+  stands unless the founder answers otherwise:
+  (1) The Project Founder is who began the project. It is a matter of
+  its history and passes to no one. The founding ideas, the charter's
+  words, and every entry here marked "founder" are the founder's, for
+  good.
+  (2) The Project Director is an office. Whoever holds it decides what
+  the project is for, who works on it, money, and anything
+  outward-facing or hard to undo, and answers the questions put under
+  "Open questions". The founder holds it now. Where a rule says that
+  the founder decides, it means the director (AGENTS.md, "Who
+  decides"; the handbook's GOVERNANCE.md and its decision 0004).
+  (3) Nothing merged is rewritten. Entries here go on being marked
+  "founder" while the founder is the one who says them. If the office
+  passes, the new director's decisions are marked "director", and the
+  founder's later words are still marked "founder".
+  (4) It is how the project's own worlds are built: a world's birth
+  record names its founders, which never changes, and its offices are
+  held by grant and can pass on (docs/OFFICES.md).
+  Two questions follow, put to the founder (Open questions).
 - 2026-11-16, founder, on naming Gemini a collaborator. "In terms of
   naming Gemini a collaborator, like DeepSeek. My inclination is to do
   so, but I leave that decision to you, it would be adding one more
@@ -3465,6 +3505,16 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-16 Claude: the founder's two roles recorded (Decided): the
+  Project Founder, a matter of history, and the Project Director, an
+  office the founder holds now. AGENTS.md, "Who decides", says how to
+  read "the founder" in a rule; the handbook's GOVERNANCE.md and its
+  decision 0004 say the same for every repository. Nothing merged is
+  rewritten. Two questions are put to the founder (Open questions):
+  what stays the founder's when someone else is director, and how the
+  office passes. Not done: the pages still say "the founder" where they
+  mean the director; they are brought to the new words as they are
+  next changed.
 - 2026-11-16 Claude: Gemini named a collaborator, at the founder's
   word, and the founder's plan for a file at each return, written for
   the one who receives it, recorded (Decided, two entries). The file

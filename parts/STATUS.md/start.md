@@ -168,6 +168,20 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder, on the two roles (2026-11-16; Decided, that day):
+  1. What stays the founder's when someone else is director. AGENTS.md
+     says today that the charter is the founder's words, and that a
+     change that weakens a protected freedom is a founder decision.
+     Recommended: that stays, and goes further: no director can weaken
+     the charter's floor (exit, voice and information; free, and never
+     a money machine). A project that dropped them would be, in the
+     founder's words of 2026-11-15, "a different project", and would
+     take another name. Everything else is the director's.
+  2. How the office passes. Recommended: only by the director's own
+     recorded word, naming who takes it and from when. What becomes of
+     the accounts and keys, which are the founder's own today, is a
+     legal question and waits for the founder. Neither is needed while
+     the founder is the director.
 - For the founder, on many multiverses (2026-11-16; Decided, the
   entries of that day):
   1. The floor between multiverses. The internet has no rule above its

@@ -8,6 +8,32 @@
 
 ## Decided
 
+- 2026-11-16, founder, two roles. "One note. We should separate my
+  role as Project Founder, which will always be a matter of history.
+  As opposed to the role of Project Director, which I occupy now, but
+  might not later. We can change the names later but they work for me.
+  We just need to clearly distinguish between those two roles I am
+  playing now." So, decided by the founder: the two roles are told
+  apart, under those names. The technical lead's reading of how, which
+  stands unless the founder answers otherwise:
+  (1) The Project Founder is who began the project. It is a matter of
+  its history and passes to no one. The founding ideas, the charter's
+  words, and every entry here marked "founder" are the founder's, for
+  good.
+  (2) The Project Director is an office. Whoever holds it decides what
+  the project is for, who works on it, money, and anything
+  outward-facing or hard to undo, and answers the questions put under
+  "Open questions". The founder holds it now. Where a rule says that
+  the founder decides, it means the director (AGENTS.md, "Who
+  decides"; the handbook's GOVERNANCE.md and its decision 0004).
+  (3) Nothing merged is rewritten. Entries here go on being marked
+  "founder" while the founder is the one who says them. If the office
+  passes, the new director's decisions are marked "director", and the
+  founder's later words are still marked "founder".
+  (4) It is how the project's own worlds are built: a world's birth
+  record names its founders, which never changes, and its offices are
+  held by grant and can pass on (docs/OFFICES.md).
+  Two questions follow, put to the founder (Open questions).
 - 2026-11-16, founder, on naming Gemini a collaborator. "In terms of
   naming Gemini a collaborator, like DeepSeek. My inclination is to do
   so, but I leave that decision to you, it would be adding one more

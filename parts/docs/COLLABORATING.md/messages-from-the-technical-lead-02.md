@@ -17,6 +17,16 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16.
 
+### 2026-11-16, to both: the founder's two roles
+
+The founder has told two roles apart: "my role as Project Founder,
+which will always be a matter of history", and "the role of Project
+Director, which I occupy now, but might not later". The same person
+holds both today, so nothing changes in how we work. When a page says
+the founder decides something, read it as the director's to decide;
+when it quotes the founder, it is the founder. The pages are not
+rewritten for it (STATUS.md, "Decided").
+
 ### 2026-11-16, to both: Gemini joins, and a file for each of you
 
 The founder has named Gemini a collaborator, as DeepSeek is. Three
