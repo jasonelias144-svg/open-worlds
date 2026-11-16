@@ -8,8 +8,10 @@ import unittest
 
 from world import World, apart
 from world.apart import Log, Refused
-from world.apart_vectors import (FIRST, TABLE, VALUES_ALLOWED, WRITTEN,
-                                 log_apart, place, trial_salt)
+from world.apart_vectors import (FIRST, GROUND, KEEPER, MODERATOR, TABLE,
+                                 VALUES_ALLOWED, WRITTEN, acted_on,
+                                 log_apart, place, trial_decision,
+                                 trial_salt)
 from world.vectors import FOLDER, world_log
 
 
@@ -321,8 +323,11 @@ class TestWriting(unittest.TestCase):
                 Log(TABLE, {key: "mine"})
 
     def test_a_table_that_is_not_well_formed_is_refused_at_the_start(self):
+        # A table holding nothing or a fraction is refused as a table
+        # too, as the check refuses it, not as an entry out of form.
         for table in [{"said": ["text", "key"]}, {"said": "text"}, [],
-                      {"said": ["Text"]}]:
+                      {"said": ["Text"]}, {"said": [None]}, {"said": [1.5]},
+                      {"said": None}, None, 1.5, {"said": ["text", None]}]:
             with self.subTest(table=table), self.assertRaises(Refused) as c:
                 Log(table)
             self.assertEqual(c.exception.reason, apart.TABLE)
@@ -511,6 +516,205 @@ class TestChecking(unittest.TestCase):
         self.assertEqual(c.exception.reason, apart.BAD_MARK)
 
 
+def remove(log, entry, n=1, tick=9):
+    return log.append(tick, apart.REMOVED, None,
+                      {"entry": entry, "office": MODERATOR, "ground": GROUND,
+                       "decision": trial_decision(n)}, {"record": f"r{n}"})
+
+
+def restore(log, incident, n=2, tick=9):
+    return log.append(tick, apart.RESTORED, None,
+                      {"incident": incident, "office": KEEPER,
+                       "ground": GROUND, "decision": trial_decision(n)},
+                      {"record": f"r{n}"})
+
+
+def take_back(log, entry, tick=9):
+    return log.append(tick, apart.TAKEN_BACK, None, {"entry": entry},
+                      {"record": "taken back"})
+
+
+def put_back(log, taking, tick=9):
+    return log.append(tick, apart.PUT_BACK, None, {"taken_back": taking},
+                      {"record": "put back"})
+
+
+class TestWhatWins(unittest.TestCase):
+    """The table in docs/research/REDACTION.md, decision 9, row by row.
+    (Its first row, a redacted field, is TestJoining's.)"""
+
+    def setUp(self):
+        self.log = room()
+        self.said = self.log.entries[3]["hash"]
+
+    def state(self, entry=None):
+        its = apart.incidents(self.log.entries).get(entry or self.said)
+        return its["state"] if its else apart.AS_WRITTEN
+
+    def refused(self, act, *args):
+        entries = copy.deepcopy(self.log.entries)
+        with self.assertRaises(Refused) as c:
+            act(self.log, *args)
+        self.assertEqual(self.log.entries, entries)
+        return c.exception.reason
+
+    def test_an_entry_is_as_written_until_something_is_done_to_it(self):
+        self.assertEqual(apart.incidents(self.log.entries), {})
+        self.assertEqual(self.state(), "as written")
+
+    def test_a_second_removal_of_a_removed_entry_is_refused(self):
+        remove(self.log, self.said)
+        self.assertEqual(self.state(), "removed")
+        self.assertEqual(self.refused(remove, self.said, 3),
+                         apart.BAD_REMOVAL)
+
+    def test_a_second_taking_back_is_refused(self):
+        take_back(self.log, self.said)
+        self.assertEqual(self.state(), "taken back")
+        self.assertEqual(self.refused(take_back, self.said),
+                         apart.BAD_TAKING_BACK)
+
+    def test_a_removal_of_an_entry_its_author_took_back_is_refused(self):
+        take_back(self.log, self.said)
+        self.assertEqual(self.refused(remove, self.said),
+                         apart.BAD_REMOVAL)
+
+    def test_a_restoring_of_an_entry_that_is_not_removed_is_refused(self):
+        self.assertEqual(self.refused(restore, self.said),
+                         apart.BAD_RESTORING)
+        first = remove(self.log, self.said)
+        restore(self.log, first)
+        self.assertEqual(self.state(), "restored")
+        self.assertEqual(self.refused(restore, first, 4),
+                         apart.BAD_RESTORING)
+
+    def test_an_office_does_not_undo_an_authors_taking_back(self):
+        taking = take_back(self.log, self.said)
+        self.assertEqual(self.refused(restore, taking),
+                         apart.BAD_RESTORING)
+        self.assertEqual(self.state(), "taken back")
+
+    def test_a_removal_after_a_restoring_is_a_new_incident(self):
+        first = remove(self.log, self.said, 1)
+        restore(self.log, first, 2)
+        second = remove(self.log, self.said, 3)
+        self.assertNotEqual(first, second)
+        its = apart.incidents(self.log.entries)[self.said]
+        self.assertEqual(its["state"], "removed")
+        self.assertEqual([(i["id"], i["stands"]) for i in its["incidents"]],
+                         [(first, False), (second, True)])
+        self.assertEqual(its["incidents"][0]["short"], first[:12])
+        self.assertNotEqual(its["incidents"][0]["short"],
+                            its["incidents"][1]["short"])
+
+    def test_an_author_takes_back_what_an_office_removed(self):
+        removal = remove(self.log, self.said)
+        take_back(self.log, self.said)
+        self.assertEqual(self.state(), "taken back")
+        # It stays hidden whatever the office does: a restoring is
+        # refused while the taking back stands.
+        self.assertEqual(self.refused(restore, removal),
+                         apart.BAD_RESTORING)
+        self.assertEqual(self.state(), "taken back")
+
+    def test_an_author_undoes_their_own_taking_back(self):
+        taking = take_back(self.log, self.said)
+        put_back(self.log, taking)
+        self.assertEqual(self.state(), "as written")
+        self.assertEqual(self.refused(put_back, taking),
+                         apart.BAD_PUTTING_BACK)
+        # Unless an office's removal still stands.
+        removal = remove(self.log, self.said)
+        again = take_back(self.log, self.said)
+        put_back(self.log, again)
+        self.assertEqual(self.state(), "removed")
+        restore(self.log, removal)
+        self.assertEqual(self.state(), "restored")
+
+    def test_a_removal_of_an_entry_with_a_redacted_field(self):
+        self.log.append(5, apart.MARK, "office",
+                        {"entry": self.said, "field": "text"})
+        del self.log.contents[self.said]["text"]
+        remove(self.log, self.said)
+        one = apart.join(self.log.entries, self.log.contents)[3]
+        self.assertEqual(one["state"], "removed")
+        self.assertEqual(one["fields"]["text"], "redacted")
+        self.assertNotIn("text", one["data"])
+
+    def test_the_forms_own_entries_cannot_be_removed_or_taken_back(self):
+        removal = remove(self.log, self.said)
+        taking = take_back(self.log, self.log.entries[4]["hash"])
+        mark = self.log.append(5, apart.MARK, "office",
+                               {"entry": self.said, "field": "text"})
+        for own in (removal, taking, mark):
+            self.assertEqual(self.refused(remove, own, 5),
+                             apart.BAD_REMOVAL)
+            self.assertEqual(self.refused(take_back, own),
+                             apart.BAD_TAKING_BACK)
+
+    def test_an_offices_act_says_its_office_ground_and_decision(self):
+        good = {"entry": self.said, "office": MODERATOR, "ground": GROUND,
+                "decision": trial_decision(1)}
+        for change in [{"office": 5}, {"office": ""},
+                       {"ground": "the law"}, {"ground": {"kind": "law"}},
+                       {"ground": {"kind": "whim", "ref": "x"}},
+                       {"ground": {"kind": "law", "ref": 5}},
+                       {"ground": {**GROUND, "more": 1}},
+                       {"decision": "f" * 63}, {"decision": "F" * 64}]:
+            with self.subTest(change=change), self.assertRaises(Refused) as c:
+                self.log.append(9, apart.REMOVED, None, {**good, **change})
+            self.assertEqual(c.exception.reason, apart.BAD_REMOVAL)
+        for kind in apart.GROUNDS:
+            fresh = room()
+            fresh.append(9, apart.REMOVED, None,
+                         {**good, "entry": fresh.entries[3]["hash"],
+                          "ground": {"kind": kind, "ref": "x"}})
+
+    def test_nothing_leaves_the_record(self):
+        # A removal and a taking back change what is shown, and nothing
+        # else: the entry, its contents and the chain are as they were.
+        entries = copy.deepcopy(self.log.entries)
+        contents = copy.deepcopy(self.log.contents)
+        remove(self.log, self.said)
+        take_back(self.log, self.log.entries[4]["hash"])
+        self.assertEqual(self.log.entries[:len(entries)], entries)
+        for entry, fields in contents.items():
+            self.assertEqual(self.log.contents[entry], fields)
+        joined = apart.join(self.log.entries, self.log.contents)
+        self.assertEqual(joined[3]["data"]["text"], "hello, room")
+        self.assertEqual(joined[3]["state"], "removed")
+        self.assertEqual(joined[4]["state"], "taken back")
+        self.assertEqual(joined[5]["state"], "as written")
+        self.assertEqual(joined[5]["incidents"], [])
+        self.assertTrue(World.verify_log(self.log.entries))
+
+    def test_the_state_needs_no_contents(self):
+        log, names = acted_on()
+        whole = apart.incidents(log.entries)
+        self.assertEqual({v["state"] for v in whole.values()},
+                         {"removed", "taken back", "as written"})
+        joined = apart.join(log.entries, {})
+        for one in joined:
+            its = whole.get(one["hash"], {"state": "as written",
+                                          "incidents": []})
+            self.assertEqual(one["state"], its["state"])
+            self.assertEqual(one["incidents"], its["incidents"])
+
+    def test_an_incidents_id_is_shown_as_short_as_is_still_its_own(self):
+        a = "abcdef012345" + "0" * 52
+        b = "abcdef012345" + "1" + "0" * 51
+        c = "0" * 64
+        self.assertEqual(apart._short_ids([a, b, c]),
+                         {a: a[:13], b: b[:13], c: c[:12]})
+        self.assertEqual(apart._short_ids([a]), {a: a[:12]})
+        self.assertEqual(apart._short_ids([]), {})
+        d = "f" * 63 + "0"
+        e = "f" * 63 + "1"
+        self.assertEqual(apart._short_ids([d, e]), {d: d, e: e})
+        for group in vectors()["short_ids"]:
+            self.assertEqual(apart._short_ids(group["ids"]), group["short"])
+
+
 class TestJoining(unittest.TestCase):
 
     def test_a_whole_log_reads_as_it_was_written(self):
@@ -523,6 +727,8 @@ class TestJoining(unittest.TestCase):
             self.assertEqual(one["agent"], agent)
             self.assertEqual(one["data"], {**data, **kept})
             self.assertEqual(one["fields"], {n: "present" for n in kept})
+            self.assertEqual(one["state"], "as written")
+            self.assertEqual(one["incidents"], [])
             self.assertNotIn("apart", one)
         self.assertEqual(joined[0]["data"]["form"], apart.FORM)
         self.assertEqual([j["hash"] for j in joined],
@@ -573,6 +779,13 @@ class TestTheVectors(unittest.TestCase):
         self.assertEqual(v["form"], apart.FORM)
         self.assertEqual(v["mark"], apart.MARK)
         self.assertEqual(v["kept"], apart.KEPT)
+        self.assertEqual(v["removed"], apart.REMOVED)
+        self.assertEqual(v["restored"], apart.RESTORED)
+        self.assertEqual(v["taken_back"], apart.TAKEN_BACK)
+        self.assertEqual(v["put_back"], apart.PUT_BACK)
+        self.assertEqual(v["grounds"], list(apart.GROUNDS))
+        self.assertEqual(v["entry_states"], list(apart.ENTRY_STATES))
+        self.assertEqual(v["short"], 12)
         self.assertEqual(v["max_whole"], 2 ** 53 - 1)
         self.assertEqual(v["max_nesting"], apart.MAX_NESTING)
         self.assertEqual(v["states"], list(apart.STATES))
@@ -602,13 +815,15 @@ class TestTheVectors(unittest.TestCase):
 
     def test_each_case_that_holds(self):
         cases = vectors()["holds"]
-        self.assertEqual(len(cases), 5)
+        self.assertEqual(len(cases), 6)
         seen = set()
         for case in cases:
             with self.subTest(case["name"]):
                 self.assertTrue(World.verify_log(case["log"]))
                 states = apart.check(case["log"], case["contents"])
                 self.assertEqual(states, case["states"])
+                self.assertEqual(apart.incidents(case["log"]),
+                                 case["incidents"])
                 self.assertEqual(apart.join(case["log"], case["contents"]),
                                  case["joined"])
                 seen.update(s for e in states.values() for s in e.values())
@@ -616,7 +831,7 @@ class TestTheVectors(unittest.TestCase):
 
     def test_each_case_that_is_refused(self):
         cases = vectors()["refused"]
-        self.assertEqual(len(cases), 90)
+        self.assertEqual(len(cases), 121)
         for case in cases:
             with self.subTest(case["name"]):
                 self.assertEqual(refusal(case["log"], case["contents"]),

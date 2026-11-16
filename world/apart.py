@@ -46,6 +46,31 @@ contents leaves the log exactly as it was, and the chain still checks.
   earlier mark by its hash (`data.mark`), and that mark then no longer
   stands. What else these entries say, and the act of redacting, are
   part three's.
+- **Four more kinds are the form's own,** for what a room shows
+  (docs/research/REDACTION.md, decisions 7 to 9). A removal, kind
+  `entry_removed`, names in the open an earlier entry (`data.entry`),
+  the office that acted (`data.office`), the ground it rests on
+  (`data.ground`, a `kind` and a `ref`, as a decision record's grounds
+  have) and the hash of its decision record (`data.decision`). A
+  restoring, `entry_restored`, names a removal that stands
+  (`data.incident`), with its office, ground and decision. A taking
+  back, `entry_taken_back`, is the author's own: it names the entry
+  (`data.entry`). A putting back, `entry_put_back`, undoes a taking
+  back that stands (`data.taken_back`). None of them takes anything out
+  of the log or the contents: they change what is shown. The signed
+  records they carry are kept apart, like anything else a person
+  gives, and are checked against these open fields elsewhere.
+- **The state of an entry** is worked out from the open fields alone,
+  never stored: `taken back` if a taking back of it stands; else
+  `removed` if a removal of it stands; else `restored` if it was ever
+  removed; else `as written`. What wins: an office can't remove what is
+  already removed, or what its author took back; it can't restore what
+  isn't removed, or what its author took back; an author can take back
+  what an office removed, and it then stays hidden whatever the office
+  does; a removal after a restoring is a new incident. An incident's id
+  is the hash of the entry that carries the removal or the taking
+  back, shown as the fewest hex digits, twelve or more, that no other
+  incident in the log begins with.
 - **The state of a field**, from the log and the contents together:
   `present`; `redacted` (a mark stands, and the field is gone);
   `unfinished` (a mark stands, and the field is still there); `kept
@@ -54,7 +79,8 @@ contents leaves the log exactly as it was, and the chain still checks.
   a fault in whoever published the log).
 
 `check` holds the contents to the log and gives every field's state.
-`join` gives each entry as a reader uses it. `Log` writes the form.
+`incidents` gives every entry's state, with its incidents. `join`
+gives each entry as a reader uses it. `Log` writes the form.
 Every reason for refusing is in fixed words, and names the same place,
 in Rust (`rust/world-log/src/apart.rs`), checked against
 `vectors/log-apart.json`.
@@ -66,7 +92,12 @@ are read in the log's order; for each, its link to the entry before
 ascending order of entry hash, and of field name within an entry.
 
 Limits. A field under a standing mark is never shown by `join`, even
-while it is still in the contents. The check holds a world to its table
+while it is still in the contents. An entry that is removed or taken
+back is still given whole by `join`, with its state: nothing has left
+the record, and hiding it is for whatever shows a room. This module
+does not check who may remove, restore or take back: that needs the
+signed records and the keys, which are kept apart. Nothing can be the
+value of an open field: a field with no value is left out. The check holds a world to its table
 by name: it can't know that an open field of another name holds what
 should have been kept apart. A fingerprint commits a log to a value,
 and says nothing of who wrote it: that is a signature's work. JSON's
@@ -90,6 +121,15 @@ FORM = "open-worlds/log-apart/v1"
 MARK = "field_redacted"
 KEPT = "field_kept_public"
 
+REMOVED = "entry_removed"
+RESTORED = "entry_restored"
+TAKEN_BACK = "entry_taken_back"
+PUT_BACK = "entry_put_back"
+# The form's own kinds: none of them can itself be removed or taken back.
+OWN = (MARK, KEPT, REMOVED, RESTORED, TAKEN_BACK, PUT_BACK)
+# What a ground can be, as in a decision record's grounds.
+GROUNDS = ("charter", "law", "rule", "record")
+
 MAX_WHOLE = 2 ** 53 - 1
 MAX_NESTING = 32
 
@@ -100,6 +140,14 @@ KEPT_PUBLIC = "kept public"
 MISSING = "missing"
 STATES = (PRESENT, REDACTED, UNFINISHED, KEPT_PUBLIC, MISSING)
 
+AS_WRITTEN = "as written"
+IS_REMOVED = "removed"
+IS_TAKEN_BACK = "taken back"
+IS_RESTORED = "restored"
+ENTRY_STATES = (AS_WRITTEN, IS_REMOVED, IS_TAKEN_BACK, IS_RESTORED)
+# The shortest an incident's id is ever shown.
+SHORT = 12
+
 CHAIN = "the chain does not hold"
 NO_FORM = "the first entry does not name this form"
 TABLE = "the table of fields kept apart is not well formed"
@@ -109,6 +157,13 @@ OPEN = "a field the table keeps apart is in the open"
 TWICE = "a fingerprint appears twice"
 BAD_MARK = "a mark does not name an earlier entry and a field it keeps apart"
 BAD_KEPT = "a decision to keep a field public does not name an earlier mark"
+BAD_REMOVAL = ("a removal does not name an earlier entry that can be "
+               "removed, with its office, ground and decision")
+BAD_RESTORING = ("a restoring does not name a removal that stands, with "
+                 "its office, ground and decision")
+BAD_TAKING_BACK = ("a taking back does not name an earlier entry that can "
+                   "be taken back")
+BAD_PUTTING_BACK = "a putting back does not name a taking back that stands"
 CONTENTS = "the contents are not well formed"
 UNKNOWN = "the contents name an entry or a field the log does not keep apart"
 SALT = "a salt is not 32 lowercase hex digits"
@@ -116,7 +171,9 @@ SALT_TWICE = "a salt appears twice"
 VALUE = "a value is not one a fingerprint allows"
 FINGERPRINT = "the contents do not match the fingerprint"
 REASONS = (CHAIN, NO_FORM, TABLE, ENTRY, UNTABLED, OPEN, TWICE, BAD_MARK,
-           BAD_KEPT, CONTENTS, UNKNOWN, SALT, SALT_TWICE, VALUE, FINGERPRINT)
+           BAD_KEPT, BAD_REMOVAL, BAD_RESTORING, BAD_TAKING_BACK,
+           BAD_PUTTING_BACK, CONTENTS, UNKNOWN, SALT, SALT_TWICE, VALUE,
+           FINGERPRINT)
 
 KEYS = frozenset(("tick", "kind", "agent", "data", "apart", "prev", "hash"))
 
@@ -220,6 +277,17 @@ def _table_ok(table: object) -> bool:
     return True
 
 
+def _office_ok(data: dict) -> bool:
+    """True if an office's act says, in the open, which office acted,
+    the ground it rests on, and the hash of its decision record."""
+    ground = data.get("ground")
+    return (type(data.get("office")) is str and data["office"] != ""
+            and type(ground) is dict and set(ground) == {"kind", "ref"}
+            and ground["kind"] in GROUNDS
+            and type(ground["ref"]) is str and ground["ref"] != ""
+            and _is_hash(data.get("decision")))
+
+
 class _Scan:
     """Reads a log's entries in order, keeping what later entries and
     the contents are checked against. `take` changes nothing unless the
@@ -233,7 +301,20 @@ class _Scan:
         self.marks: Dict[str, Tuple[str, str]] = {}  # mark -> (entry, name)
         self.answered: Set[str] = set()              # marks no longer standing
         self.seen: Set[str] = set()                  # every fingerprint
+        self.kinds: Dict[str, str] = {}              # entry -> its kind
+        # Every removal and taking back, in the log's order:
+        # (the incident's entry, the entry it is on, which of the two).
+        self.incidents: List[Tuple[str, str, str]] = []
+        self.removals: Dict[str, str] = {}           # removal -> entry
+        self.takings: Dict[str, str] = {}            # taking back -> entry
+        self.removed: Dict[str, str] = {}   # entry -> removal that stands
+        self.taken: Dict[str, str] = {}     # entry -> taking back that stands
         self.count = 0
+
+    def _can_be_acted_on(self, target: object) -> bool:
+        """True for an earlier entry that is not one of the form's own."""
+        return (type(target) is str and target in self.kinds
+                and self.kinds[target] not in OWN)
 
     def take(self, entry: Any) -> None:
         index = self.count
@@ -274,14 +355,51 @@ class _Scan:
             answers = data.get("mark")
             if type(answers) is not str or answers not in self.marks:
                 raise Refused(BAD_KEPT, index)
+        # What wins, among removing, restoring, taking back and putting
+        # back (docs/research/REDACTION.md, decision 9).
+        on: Optional[str] = None
+        if kind == REMOVED:
+            on = data.get("entry")
+            if (not self._can_be_acted_on(on) or on in self.removed
+                    or on in self.taken or not _office_ok(data)):
+                raise Refused(BAD_REMOVAL, index)
+        elif kind == RESTORED:
+            incident = data.get("incident")
+            on = self.removals.get(incident) if type(incident) is str else None
+            if (on is None or self.removed.get(on) != incident
+                    or on in self.taken or not _office_ok(data)):
+                raise Refused(BAD_RESTORING, index)
+        elif kind == TAKEN_BACK:
+            on = data.get("entry")
+            if not self._can_be_acted_on(on) or on in self.taken:
+                raise Refused(BAD_TAKING_BACK, index)
+        elif kind == PUT_BACK:
+            taking = data.get("taken_back")
+            on = self.takings.get(taking) if type(taking) is str else None
+            if on is None or self.taken.get(on) != taking:
+                raise Refused(BAD_PUTTING_BACK, index)
         # The entry holds: only now is anything kept.
+        here = entry["hash"]
         self.table = table
-        self.apart[entry["hash"]] = dict(apart)
+        self.apart[here] = dict(apart)
+        self.kinds[here] = kind
         self.seen.update(prints)
         if mark is not None:
-            self.marks[entry["hash"]] = mark
+            self.marks[here] = mark
         if answers is not None:
             self.answered.add(answers)
+        if kind == REMOVED:
+            self.removals[here] = on
+            self.removed[on] = here
+            self.incidents.append((here, on, IS_REMOVED))
+        elif kind == RESTORED:
+            del self.removed[on]
+        elif kind == TAKEN_BACK:
+            self.takings[here] = on
+            self.taken[on] = here
+            self.incidents.append((here, on, IS_TAKEN_BACK))
+        elif kind == PUT_BACK:
+            del self.taken[on]
         self.count += 1
 
 
@@ -371,6 +489,52 @@ def _states(scan: _Scan,
     return states
 
 
+def _short_ids(ids: List[str]) -> Dict[str, str]:
+    """Each incident's id as it is shown: the fewest hex digits, `SHORT`
+    or more, that no other incident in the log begins with."""
+    short = {}
+    for one in ids:
+        n = SHORT
+        while any(other != one and other.startswith(one[:n])
+                  for other in ids):
+            n += 1
+        short[one] = one[:n]
+    return short
+
+
+def _entry_states(scan: _Scan) -> Dict[str, dict]:
+    """The state of every entry that has an incident, with them."""
+    short = _short_ids([incident for incident, _, _ in scan.incidents])
+    states: Dict[str, dict] = {}
+    for incident, on, which in scan.incidents:
+        stands = (scan.removed.get(on) == incident
+                  or scan.taken.get(on) == incident)
+        states.setdefault(on, {"state": AS_WRITTEN, "incidents": []})
+        states[on]["incidents"].append(
+            {"id": incident, "short": short[incident], "kind": which,
+             "stands": stands})
+    for on, state in states.items():
+        if on in scan.taken:
+            state["state"] = IS_TAKEN_BACK
+        elif on in scan.removed:
+            state["state"] = IS_REMOVED
+        elif any(i["kind"] == IS_REMOVED for i in state["incidents"]):
+            state["state"] = IS_RESTORED
+    return states
+
+
+def incidents(log: Any) -> Dict[str, dict]:
+    """Checks a log in this form and gives the state of every entry
+    that was ever removed or taken back: a map from the entry's hash to
+    its `state` (one of `ENTRY_STATES`) and its `incidents`, in the
+    log's order, each with its `id` (the hash of the entry that carries
+    it), its `short` id as shown, its `kind` (`removed` or `taken
+    back`), and whether it `stands`. Every other entry is `as written`.
+    It needs no contents: what is shown is worked out from the open
+    fields alone."""
+    return _entry_states(_scan(log))
+
+
 def check(log: Any, contents: Any) -> Dict[str, Dict[str, str]]:
     """Checks a log in this form and its contents together, and gives
     the state of every field kept apart: a map from an entry's hash to a
@@ -388,12 +552,16 @@ def check(log: Any, contents: Any) -> Dict[str, Dict[str, str]]:
 def join(log: Any, contents: Any) -> List[dict]:
     """Each entry as a reader uses it, after `check`: the entry without
     its `apart`, its `data` holding the open fields and every field kept
-    apart that is `present` or `kept public`, and `fields` giving the
-    state of each field kept apart. A field under a standing mark is
-    left out even if it is still in the contents."""
+    apart that is `present` or `kept public`, `fields` giving the state
+    of each field kept apart, and the entry's own `state` and
+    `incidents` (as `incidents` gives them; `as written` and none, for
+    most). A field under a standing mark is left out even if it is
+    still in the contents. An entry that is removed or taken back is
+    given whole: hiding it is for whatever shows the room."""
     scan = _scan(log)
     held = _held(scan, contents)
     states = _states(scan, held)
+    acted_on = _entry_states(scan)
     joined = []
     for entry in log:
         fields = states.get(entry["hash"], {})
@@ -402,6 +570,9 @@ def join(log: Any, contents: Any) -> List[dict]:
             if state in (PRESENT, KEPT_PUBLIC):
                 one["data"][name] = copy.deepcopy(held[entry["hash"]][name])
         one["fields"] = dict(fields)
+        its = acted_on.get(entry["hash"], {})
+        one["state"] = its.get("state", AS_WRITTEN)
+        one["incidents"] = copy.deepcopy(its.get("incidents", []))
         joined.append(one)
     return joined
 
@@ -429,6 +600,10 @@ class Log:
         if "form" in first or "kept_apart" in first:
             raise ValueError("the first entry's form and table are written "
                              "here, not given")
+        # Before the entry is looked at as a whole, as the check does: so
+        # a table that isn't one is refused as that, whatever it holds.
+        if not _table_ok(table):
+            raise Refused(TABLE)
         first["form"] = FORM
         first["kept_apart"] = table
         self.append(0, kind, None, first)

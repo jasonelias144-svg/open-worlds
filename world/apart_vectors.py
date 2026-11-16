@@ -19,6 +19,10 @@ from .core import GENESIS, _digest
 
 TABLE = {
     "entered": ["key", "name"],
+    "entry_put_back": ["record"],
+    "entry_removed": ["record"],
+    "entry_restored": ["record"],
+    "entry_taken_back": ["record"],
     "field_kept_public": ["reason"],
     "field_redacted": ["reason"],
     "said": ["key", "text", "time"],
@@ -29,6 +33,15 @@ TABLE = {
 FIRST = {"rules_version": "vectors-apart-1"}
 
 OFFICE = "trial office"
+MODERATOR = "trial moderator"
+KEEPER = "trial keeper"
+GROUND = {"kind": "law", "ref": "trial room law, part 3"}
+
+
+def trial_decision(n: int) -> str:
+    """A stand-in for a decision record's hash: 64 hex digits, public,
+    and the hash of no record."""
+    return hashlib.sha256(f"open-worlds trial decision {n}".encode()).hexdigest()
 
 
 def trial_salt(n: int) -> str:
@@ -90,7 +103,62 @@ def _keep(log: apart.Log, tick: int, mark: str, reason: str) -> str:
 def _case(name: str, log: List[dict], contents: Any) -> dict:
     return {"name": name, "log": log, "contents": contents,
             "states": apart.check(log, contents),
+            "incidents": apart.incidents(log),
             "joined": apart.join(log, contents)}
+
+
+def _remove(log: apart.Log, tick: int, entry: str, n: int) -> str:
+    return log.append(tick, apart.REMOVED, None,
+                      {"entry": entry, "office": MODERATOR, "ground": GROUND,
+                       "decision": trial_decision(n)},
+                      {"record": f"trial decision record {n}, not a signed one"})
+
+
+def _restore(log: apart.Log, tick: int, incident: str, n: int) -> str:
+    return log.append(tick, apart.RESTORED, None,
+                      {"incident": incident, "office": KEEPER,
+                       "ground": {"kind": "rule", "ref": "trial appeal rule"},
+                       "decision": trial_decision(n)},
+                      {"record": f"trial decision record {n}, not a signed one"})
+
+
+def _take_back(log: apart.Log, tick: int, entry: str) -> str:
+    return log.append(tick, apart.TAKEN_BACK, None, {"entry": entry},
+                      {"record": "trial record of taking back, not signed"})
+
+
+def _put_back(log: apart.Log, tick: int, taking: str) -> str:
+    return log.append(tick, apart.PUT_BACK, None, {"taken_back": taking},
+                      {"record": "trial record of putting back, not signed"})
+
+
+def acted_on() -> Tuple[apart.Log, Dict[str, str]]:
+    """The trial room with every row of the table of what wins that
+    holds (docs/research/REDACTION.md, decision 9), and what each entry
+    is named in the tests."""
+    room = _room()
+    h = [e["hash"] for e in room.entries]
+    names = {"hello": h[3], "cafe": h[4], "door": h[5], "thing": h[6]}
+    # Removed, restored, and removed again: a new incident, a new id.
+    first = _remove(room, 5, h[3], 1)
+    _restore(room, 6, first, 2)
+    names["second removal"] = _remove(room, 7, h[3], 3)
+    # Taken back by its author, and put back: it shows again.
+    taking = _take_back(room, 8, h[4])
+    _put_back(room, 9, taking)
+    # Removed by an office, then taken back by its author: allowed, and
+    # it stays hidden whatever the office does next.
+    names["removal of door"] = _remove(room, 10, h[5], 4)
+    _take_back(room, 11, h[5])
+    # Removed, and one of its fields redacted: the entry is hidden, and
+    # the field stays redacted.
+    _remove(room, 12, h[6], 5)
+    _mark(room, 13, h[6], "thing", "it names a third person")
+    # A removal whose own record has to be redacted: the removal still
+    # stands, and still says its office and its ground in the open.
+    _mark(room, 14, names["second removal"], "record",
+          "the reasons repeated what was removed")
+    return room, names
 
 
 def holds() -> List[dict]:
@@ -150,6 +218,13 @@ def holds() -> List[dict]:
                  "flags": [True, False], "empty": {}}, {})
     cases.append(_case("the open part at its edges", edge.entries,
                        edge.contents))
+
+    room, names = acted_on()
+    contents = copy.deepcopy(room.contents)
+    del contents[names["thing"]]["thing"]
+    del contents[names["second removal"]]["record"]
+    cases.append(_case("removed, restored, taken back and put back",
+                       room.entries, contents))
     return cases
 
 
@@ -400,6 +475,103 @@ def refused() -> List[dict]:
     _raw(log, 1, apart.KEPT, OFFICE, {"mark": [log[1]["hash"]]}, {})
     add(apart.BAD_KEPT, "a decision whose mark is a list", log, contents)
 
+    # -- removing, restoring, taking back and putting back --
+    def acted(*steps: Any) -> Tuple[List[dict], Any, Dict[str, str]]:
+        """The trial room, with the steps that hold, as a raw log."""
+        room = _room()
+        made: Dict[str, str] = {}
+        for name, step, *args in steps:
+            made[name] = step(room, 5, *[made.get(a, a) if isinstance(a, str)
+                                         else a for a in args])
+        return (copy.deepcopy(room.entries), copy.deepcopy(room.contents),
+                made)
+
+    said = _room().entries[3]["hash"]
+    removal = {"entry": said, "office": MODERATOR, "ground": GROUND,
+               "decision": trial_decision(9)}
+
+    def refuse(reason: str, name: str, kind: str, data: Any,
+               *steps: Any) -> None:
+        log, contents, made = acted(*steps)
+        data = {k: made.get(v, v) if isinstance(v, str) else v
+                for k, v in data.items()}
+        _raw(log, 9, kind, None, data, {})
+        add(reason, name, log, contents)
+
+    refuse(apart.BAD_REMOVAL, "a removal that names no entry of the log",
+           apart.REMOVED, {**removal, "entry": "f" * 64})
+    refuse(apart.BAD_REMOVAL, "a removal whose entry is a number",
+           apart.REMOVED, {**removal, "entry": 3})
+    refuse(apart.BAD_REMOVAL, "a removal of a removal", apart.REMOVED,
+           {**removal, "entry": "r"}, ("r", _remove, said, 1))
+    refuse(apart.BAD_REMOVAL, "a removal of a taking back", apart.REMOVED,
+           {**removal, "entry": "t"}, ("t", _take_back, said))
+    refuse(apart.BAD_REMOVAL, "a second removal of a removed entry",
+           apart.REMOVED, removal, ("r", _remove, said, 1))
+    refuse(apart.BAD_REMOVAL, "a removal of an entry its author took back",
+           apart.REMOVED, removal, ("t", _take_back, said))
+    for name, change in [
+            ("a removal without an office", {"office": None}),
+            ("a removal whose office is empty", {"office": ""}),
+            ("a removal without a ground", {"ground": None}),
+            ("a removal whose ground is text", {"ground": "the law"}),
+            ("a removal whose ground is of no known kind",
+             {"ground": {"kind": "whim", "ref": "trial"}}),
+            ("a removal whose ground names nothing",
+             {"ground": {"kind": "law", "ref": ""}}),
+            ("a removal whose ground holds more than a kind and a ref",
+             {"ground": {**GROUND, "more": "x"}}),
+            ("a removal without a decision", {"decision": None}),
+            ("a removal whose decision is 63 digits",
+             {"decision": trial_decision(9)[:63]})]:
+        data = {k: v for k, v in {**removal, **change}.items()
+                if v is not None}
+        refuse(apart.BAD_REMOVAL, name, apart.REMOVED, data)
+
+    restoring = {"incident": "r", "office": KEEPER, "ground": GROUND,
+                 "decision": trial_decision(8)}
+    refuse(apart.BAD_RESTORING, "a restoring of an entry that is not removed",
+           apart.RESTORED, {**restoring, "incident": said})
+    refuse(apart.BAD_RESTORING, "a restoring that names no entry of the log",
+           apart.RESTORED, {**restoring, "incident": "f" * 64})
+    refuse(apart.BAD_RESTORING, "a restoring of a removal already restored",
+           apart.RESTORED, restoring, ("r", _remove, said, 1),
+           ("back", _restore, "r", 2))
+    refuse(apart.BAD_RESTORING, "a restoring of an entry its author took "
+           "back", apart.RESTORED, restoring, ("r", _remove, said, 1),
+           ("t", _take_back, said))
+    refuse(apart.BAD_RESTORING, "a restoring of a taking back",
+           apart.RESTORED, {**restoring, "incident": "t"},
+           ("t", _take_back, said))
+    refuse(apart.BAD_RESTORING, "a restoring without an office",
+           apart.RESTORED, {k: v for k, v in restoring.items()
+                            if k != "office"}, ("r", _remove, said, 1))
+    refuse(apart.BAD_RESTORING, "a restoring whose incident is a list",
+           apart.RESTORED, {**restoring, "incident": ["r"]},
+           ("r", _remove, said, 1))
+
+    refuse(apart.BAD_TAKING_BACK, "a taking back that names no entry of the "
+           "log", apart.TAKEN_BACK, {"entry": "f" * 64})
+    refuse(apart.BAD_TAKING_BACK, "a taking back that names nothing",
+           apart.TAKEN_BACK, {})
+    refuse(apart.BAD_TAKING_BACK, "a second taking back", apart.TAKEN_BACK,
+           {"entry": said}, ("t", _take_back, said))
+    refuse(apart.BAD_TAKING_BACK, "a taking back of a removal",
+           apart.TAKEN_BACK, {"entry": "r"}, ("r", _remove, said, 1))
+    refuse(apart.BAD_TAKING_BACK, "a taking back of a mark",
+           apart.TAKEN_BACK, {"entry": "m"},
+           ("m", _mark, said, "text", "asked"))
+
+    refuse(apart.BAD_PUTTING_BACK, "a putting back of an entry that was not "
+           "taken back", apart.PUT_BACK, {"taken_back": said})
+    refuse(apart.BAD_PUTTING_BACK, "a putting back of a removal",
+           apart.PUT_BACK, {"taken_back": "r"}, ("r", _remove, said, 1))
+    refuse(apart.BAD_PUTTING_BACK, "a putting back of a taking back already "
+           "put back", apart.PUT_BACK, {"taken_back": "t"},
+           ("t", _take_back, said), ("p", _put_back, "t"))
+    refuse(apart.BAD_PUTTING_BACK, "a putting back that names nothing",
+           apart.PUT_BACK, {}, ("t", _take_back, said))
+
     # -- the contents' shape --
     log, contents = _short()
     arrival = log[1]["hash"]
@@ -546,6 +718,28 @@ def fingerprints() -> List[dict]:
             for n, value in enumerate(VALUES_ALLOWED)]
 
 
+def _id(start: str, n: int) -> str:
+    """A made-up incident id: `start`, then filled out to 64 hex digits."""
+    fill = hashlib.sha256(f"open-worlds trial id {n}".encode()).hexdigest()
+    return (start + fill)[:64]
+
+
+def short_ids() -> List[dict]:
+    """Made-up incident ids that begin alike, and each as it is shown.
+    Real ids that begin alike for twelve digits can't be made here: it
+    would take about 2^48 hashes."""
+    groups = [
+        [_id("", 1), _id("", 2), _id("", 3)],
+        [_id("abcdef012345", 1), _id("abcdef012345", 2)],
+        [_id("abcdef0123456789ab", 1), _id("abcdef0123456789ab", 2),
+         _id("abcdef012345", 3), _id("0123", 4)],
+        [_id("f" * 63, 1), ("f" * 63 + "0") if not _id("f" * 63, 1).endswith(
+            "0") else ("f" * 63 + "1")],
+        [],
+    ]
+    return [{"ids": ids, "short": apart._short_ids(ids)} for ids in groups]
+
+
 def log_apart() -> dict:
     """Everything in `vectors/log-apart.json`."""
     return {
@@ -556,6 +750,14 @@ def log_apart() -> dict:
         "form": apart.FORM,
         "mark": apart.MARK,
         "kept": apart.KEPT,
+        "removed": apart.REMOVED,
+        "restored": apart.RESTORED,
+        "taken_back": apart.TAKEN_BACK,
+        "put_back": apart.PUT_BACK,
+        "grounds": list(apart.GROUNDS),
+        "entry_states": list(apart.ENTRY_STATES),
+        "short": apart.SHORT,
+        "short_ids": short_ids(),
         "max_whole": apart.MAX_WHOLE,
         "max_nesting": apart.MAX_NESTING,
         "states": list(apart.STATES),

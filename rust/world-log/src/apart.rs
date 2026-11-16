@@ -38,9 +38,21 @@
 //!   which names an earlier mark (`data.mark`), which then no longer
 //!   stands.
 //!
+//! - **Four more kinds are the form's own,** for what a room shows: a
+//!   removal ([`REMOVED`]), an office's, which names in the open an
+//!   earlier entry (`data.entry`), the office (`data.office`), the ground
+//!   it rests on (`data.ground`, a `kind` and a `ref`) and the hash of
+//!   its decision record (`data.decision`); a restoring ([`RESTORED`]),
+//!   which names a removal that stands (`data.incident`); a taking back
+//!   ([`TAKEN_BACK`]), the author's own (`data.entry`); and a putting
+//!   back ([`PUT_BACK`]), which undoes a taking back that stands
+//!   (`data.taken_back`). None takes anything out of the log or the
+//!   contents. What wins among them is in [`EntryState`] and
+//!   `docs/research/REDACTION.md`, decision 9.
+//!
 //! [`check`] holds the contents to the log and gives every field's
-//! [`State`]; [`join`] gives each entry as a reader uses it; [`Log`]
-//! writes the form. Every reason for refusing ([`Refused::reason`]) is in
+//! [`State`]; [`incidents`] gives every entry's [`EntryState`]; [`join`]
+//! gives each entry as a reader uses it; [`Log`] writes the form. Every reason for refusing ([`Refused::reason`]) is in
 //! the same fixed words as in Python, checked against
 //! `vectors/log-apart.json`.
 //!
@@ -48,6 +60,12 @@
 //!
 //! - A field under a standing mark is never shown by [`join`], even while
 //!   it is still in the contents.
+//! - An entry that is removed or taken back is still given whole by
+//!   [`join`], with its state: nothing has left the record.
+//! - This module does not check who may remove, restore or take back:
+//!   that needs the signed records and the keys, which are kept apart.
+//! - Nothing can be the value of an open field: a field with no value is
+//!   left out.
 //! - The check holds a world to its table by name: it can't know that an
 //!   open field of another name holds what should have been kept apart.
 //! - A fingerprint commits a log to a value, and says nothing of who
@@ -78,6 +96,20 @@ pub const FORM: &str = "open-worlds/log-apart/v1";
 pub const MARK: &str = "field_redacted";
 /// The kind of a decision to keep a field public.
 pub const KEPT: &str = "field_kept_public";
+/// The kind of a removal: an office hides an entry, and says why.
+pub const REMOVED: &str = "entry_removed";
+/// The kind of a restoring: an office undoes a removal that stands.
+pub const RESTORED: &str = "entry_restored";
+/// The kind of a taking back: an author hides their own entry.
+pub const TAKEN_BACK: &str = "entry_taken_back";
+/// The kind of a putting back: an author undoes their own taking back.
+pub const PUT_BACK: &str = "entry_put_back";
+/// The form's own kinds: none of them can itself be removed or taken back.
+pub const OWN: [&str; 6] = [MARK, KEPT, REMOVED, RESTORED, TAKEN_BACK, PUT_BACK];
+/// What a ground can be, as in a decision record's grounds.
+pub const GROUNDS: [&str; 4] = ["charter", "law", "rule", "record"];
+/// The shortest an incident's id is ever shown, in hex digits.
+pub const SHORT: usize = 12;
 /// The largest whole number a fingerprint allows, 2^53 - 1; the smallest
 /// is its negative.
 pub const MAX_WHOLE: i64 = 9_007_199_254_740_991;
@@ -126,6 +158,61 @@ impl fmt::Display for State {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         f.write_str(self.as_str())
     }
+}
+
+/// The state of an entry, worked out from the open fields alone: what a
+/// room shows of it.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+pub enum EntryState {
+    /// Never removed, and no taking back of it stands.
+    AsWritten,
+    /// A removal of it stands, and no taking back.
+    Removed,
+    /// A taking back of it stands, whatever an office has done.
+    TakenBack,
+    /// It was removed, and no removal or taking back of it stands now.
+    Restored,
+}
+
+impl EntryState {
+    /// The state in the fixed words Python uses.
+    pub fn as_str(self) -> &'static str {
+        match self {
+            EntryState::AsWritten => "as written",
+            EntryState::Removed => "removed",
+            EntryState::TakenBack => "taken back",
+            EntryState::Restored => "restored",
+        }
+    }
+}
+
+impl fmt::Display for EntryState {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+
+/// One removal or taking back of an entry.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Incident {
+    /// The hash of the entry that carries it: the incident's id.
+    pub id: String,
+    /// The id as it is shown: the fewest hex digits, [`SHORT`] or more,
+    /// that no other incident in the log begins with.
+    pub short: String,
+    /// [`EntryState::Removed`] or [`EntryState::TakenBack`].
+    pub kind: EntryState,
+    /// Whether it still stands: not restored, or not put back.
+    pub stands: bool,
+}
+
+/// An entry's state, and its incidents in the log's order.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Standing {
+    /// What a room shows of the entry.
+    pub state: EntryState,
+    /// Every removal and taking back of it, standing or not.
+    pub incidents: Vec<Incident>,
 }
 
 /// Where in the contents something was refused: the entry's hash and the
@@ -211,6 +298,30 @@ pub enum Refused {
         /// The decision's place in the log.
         index: usize,
     },
+    /// A removal does not name an earlier entry that can be removed (one
+    /// that is not the form's own, and that no removal or taking back
+    /// stands on), with its office, ground and decision.
+    BadRemoval {
+        /// The removal's place in the log.
+        index: usize,
+    },
+    /// A restoring does not name a removal that stands, on an entry its
+    /// author has not taken back, with its office, ground and decision.
+    BadRestoring {
+        /// The restoring's place in the log.
+        index: usize,
+    },
+    /// A taking back does not name an earlier entry that can be taken
+    /// back: one that is not the form's own, with no taking back standing.
+    BadTakingBack {
+        /// The taking back's place in the log.
+        index: usize,
+    },
+    /// A putting back does not name a taking back that stands.
+    BadPuttingBack {
+        /// The putting back's place in the log.
+        index: usize,
+    },
     /// The contents are not a map of maps of `[salt, value]`.
     Contents(Place),
     /// The contents name an entry or a field the log does not keep apart.
@@ -247,6 +358,20 @@ impl Refused {
             Refused::BadKept { .. } => {
                 "a decision to keep a field public does not name an earlier mark"
             }
+            Refused::BadRemoval { .. } => {
+                "a removal does not name an earlier entry that can be removed, \
+                 with its office, ground and decision"
+            }
+            Refused::BadRestoring { .. } => {
+                "a restoring does not name a removal that stands, \
+                 with its office, ground and decision"
+            }
+            Refused::BadTakingBack { .. } => {
+                "a taking back does not name an earlier entry that can be taken back"
+            }
+            Refused::BadPuttingBack { .. } => {
+                "a putting back does not name a taking back that stands"
+            }
             Refused::Contents(_) => "the contents are not well formed",
             Refused::Unknown(_) => {
                 "the contents name an entry or a field the log does not keep apart"
@@ -270,7 +395,11 @@ impl fmt::Display for Refused {
             | Refused::Open { index }
             | Refused::Twice { index }
             | Refused::BadMark { index }
-            | Refused::BadKept { index } => write!(f, ": entry {index}"),
+            | Refused::BadKept { index }
+            | Refused::BadRemoval { index }
+            | Refused::BadRestoring { index }
+            | Refused::BadTakingBack { index }
+            | Refused::BadPuttingBack { index } => write!(f, ": entry {index}"),
             Refused::Contents(place)
             | Refused::Unknown(place)
             | Refused::Salt(place)
@@ -393,9 +522,49 @@ struct Scan {
     answered: BTreeSet<String>,
     /// Every fingerprint so far.
     seen: BTreeSet<String>,
+    /// Each entry's kind.
+    kinds: BTreeMap<String, String>,
+    /// Every removal and taking back, in the log's order: the incident's
+    /// entry, the entry it is on, and which of the two it is.
+    incidents: Vec<(String, String, EntryState)>,
+    /// For each removal, the entry it is on.
+    removals: BTreeMap<String, String>,
+    /// For each taking back, the entry it is on.
+    takings: BTreeMap<String, String>,
+    /// For each entry, the removal of it that stands.
+    removed: BTreeMap<String, String>,
+    /// For each entry, the taking back of it that stands.
+    taken: BTreeMap<String, String>,
+}
+
+/// True if an office's act says, in the open, which office acted, the
+/// ground it rests on, and the hash of its decision record.
+fn office_ok(data: &Map<String, Value>) -> bool {
+    fn text(value: Option<&Value>) -> Option<&str> {
+        value.and_then(Value::as_str).filter(|t| !t.is_empty())
+    }
+    let ground = data.get("ground").and_then(Value::as_object);
+    text(data.get("office")).is_some()
+        && ground.is_some_and(|g| {
+            g.len() == 2
+                && text(g.get("kind")).is_some_and(|kind| GROUNDS.contains(&kind))
+                && text(g.get("ref")).is_some()
+        })
+        && data
+            .get("decision")
+            .and_then(Value::as_str)
+            .is_some_and(is_hash)
 }
 
 impl Scan {
+    /// The hash of an earlier entry that is not one of the form's own, if
+    /// `target` names one.
+    fn can_be_acted_on<'a>(&self, target: Option<&'a Value>) -> Option<&'a str> {
+        let target = target.and_then(Value::as_str)?;
+        let kind = self.kinds.get(target)?;
+        (!OWN.contains(&kind.as_str())).then_some(target)
+    }
+
     fn take(&mut self, entry: &Value) -> Result<(), Refused> {
         let index = self.order.len();
         let shape = Refused::Entry { index: Some(index) };
@@ -468,6 +637,52 @@ impl Scan {
                 _ => return Err(Refused::BadKept { index }),
             }
         }
+        // What wins, among removing, restoring, taking back and putting
+        // back (docs/research/REDACTION.md, decision 9).
+        let mut on: Option<String> = None;
+        if kind == REMOVED {
+            match self.can_be_acted_on(data.get("entry")) {
+                Some(target)
+                    if !self.removed.contains_key(target)
+                        && !self.taken.contains_key(target)
+                        && office_ok(data) =>
+                {
+                    on = Some(target.to_owned());
+                }
+                _ => return Err(Refused::BadRemoval { index }),
+            }
+        } else if kind == RESTORED {
+            let incident = data.get("incident").and_then(Value::as_str);
+            let target = incident.and_then(|i| self.removals.get(i));
+            match (incident, target) {
+                (Some(incident), Some(target))
+                    if self.removed.get(target).map(String::as_str) == Some(incident)
+                        && !self.taken.contains_key(target)
+                        && office_ok(data) =>
+                {
+                    on = Some(target.clone());
+                }
+                _ => return Err(Refused::BadRestoring { index }),
+            }
+        } else if kind == TAKEN_BACK {
+            match self.can_be_acted_on(data.get("entry")) {
+                Some(target) if !self.taken.contains_key(target) => {
+                    on = Some(target.to_owned());
+                }
+                _ => return Err(Refused::BadTakingBack { index }),
+            }
+        } else if kind == PUT_BACK {
+            let taking = data.get("taken_back").and_then(Value::as_str);
+            let target = taking.and_then(|t| self.takings.get(t));
+            match (taking, target) {
+                (Some(taking), Some(target))
+                    if self.taken.get(target).map(String::as_str) == Some(taking) =>
+                {
+                    on = Some(target.clone());
+                }
+                _ => return Err(Refused::BadPuttingBack { index }),
+            }
+        }
         // The entry holds: only now is anything kept.
         let hash = hash.to_owned();
         self.seen.extend(prints.values().cloned());
@@ -480,6 +695,23 @@ impl Scan {
         if let Some(answers) = answers {
             self.answered.insert(answers);
         }
+        if let Some(on) = on {
+            if kind == REMOVED {
+                self.removals.insert(hash.clone(), on.clone());
+                self.removed.insert(on.clone(), hash.clone());
+                self.incidents.push((hash.clone(), on, EntryState::Removed));
+            } else if kind == RESTORED {
+                self.removed.remove(&on);
+            } else if kind == TAKEN_BACK {
+                self.takings.insert(hash.clone(), on.clone());
+                self.taken.insert(on.clone(), hash.clone());
+                self.incidents
+                    .push((hash.clone(), on, EntryState::TakenBack));
+            } else if kind == PUT_BACK {
+                self.taken.remove(&on);
+            }
+        }
+        self.kinds.insert(hash.clone(), kind.to_owned());
         self.apart.insert(hash.clone(), prints);
         self.order.push(hash);
         Ok(())
@@ -624,6 +856,72 @@ fn states(scan: &Scan, held: &BTreeMap<&str, BTreeMap<&str, &Value>>) -> States 
     states
 }
 
+/// Each incident's id as it is shown: the fewest hex digits, [`SHORT`] or
+/// more, that no other of `ids` begins with. The ids are 64 hex digits,
+/// as an entry's hash is, and no two are the same.
+pub fn short_ids(ids: &[String]) -> BTreeMap<String, String> {
+    let mut short = BTreeMap::new();
+    for one in ids {
+        let mut n = SHORT.min(one.len());
+        while n < one.len()
+            && ids
+                .iter()
+                .any(|other| other != one && other.get(..n) == one.get(..n))
+        {
+            n += 1;
+        }
+        short.insert(one.clone(), one.get(..n).unwrap_or(one).to_owned());
+    }
+    short
+}
+
+/// The state of every entry that has an incident, with them.
+fn entry_states(scan: &Scan) -> BTreeMap<String, Standing> {
+    let ids: Vec<String> = scan.incidents.iter().map(|(id, _, _)| id.clone()).collect();
+    let short = short_ids(&ids);
+    let mut states: BTreeMap<String, Standing> = BTreeMap::new();
+    for (id, on, kind) in &scan.incidents {
+        let stands = scan.removed.get(on) == Some(id) || scan.taken.get(on) == Some(id);
+        states
+            .entry(on.clone())
+            .or_insert(Standing {
+                state: EntryState::AsWritten,
+                incidents: Vec::new(),
+            })
+            .incidents
+            .push(Incident {
+                id: id.clone(),
+                short: short.get(id).cloned().unwrap_or_default(),
+                kind: *kind,
+                stands,
+            });
+    }
+    for (on, standing) in &mut states {
+        standing.state = if scan.taken.contains_key(on) {
+            EntryState::TakenBack
+        } else if scan.removed.contains_key(on) {
+            EntryState::Removed
+        } else if standing
+            .incidents
+            .iter()
+            .any(|i| i.kind == EntryState::Removed)
+        {
+            EntryState::Restored
+        } else {
+            EntryState::AsWritten
+        };
+    }
+    states
+}
+
+/// Checks a log in this form and gives the state of every entry that was
+/// ever removed or taken back, with its incidents in the log's order.
+/// Every other entry is as written. It needs no contents: what is shown
+/// is worked out from the open fields alone.
+pub fn incidents(log: &Value) -> Result<BTreeMap<String, Standing>, Refused> {
+    Ok(entry_states(&scan(log)?))
+}
+
 /// Checks a log in this form and its contents together, and gives the
 /// state of every field kept apart. Refuses if the chain doesn't hold,
 /// the log isn't in this form, or the contents hold anything the log
@@ -639,13 +937,16 @@ pub fn check(log: &Value, contents: &Value) -> Result<States, Refused> {
 
 /// Each entry as a reader uses it, after [`check`]: the entry without its
 /// `apart`, its `data` holding the open fields and every field kept apart
-/// that is present or kept public, and `fields` giving the state of each
-/// field kept apart, in Python's words. A field under a standing mark is
-/// left out even if it is still in the contents.
+/// that is present or kept public, `fields` giving the state of each
+/// field kept apart, and the entry's own `state` and `incidents`, all in
+/// Python's words. A field under a standing mark is left out even if it
+/// is still in the contents. An entry that is removed or taken back is
+/// given whole: hiding it is for whatever shows the room.
 pub fn join(log: &Value, contents: &Value) -> Result<Vec<Value>, Refused> {
     let scan = scan(log)?;
     let held = held(&scan, contents)?;
     let states = states(&scan, &held);
+    let acted_on = entry_states(&scan);
     let entries = log.as_array().ok_or(Refused::Chain(LogError::NotAList))?;
     let none = BTreeMap::new();
     let mut joined = Vec::with_capacity(entries.len());
@@ -666,6 +967,19 @@ pub fn join(log: &Value, contents: &Value) -> Result<Vec<Value>, Refused> {
             }
         }
         one.insert("fields".to_owned(), Value::Object(shown));
+        let standing = acted_on.get(hash);
+        let state = standing.map_or(EntryState::AsWritten, |s| s.state);
+        let its: Vec<Value> = standing.map_or(Vec::new(), |s| {
+            s.incidents
+                .iter()
+                .map(|i| {
+                    json!({"id": i.id, "short": i.short, "kind": i.kind.as_str(),
+                           "stands": i.stands})
+                })
+                .collect()
+        });
+        one.insert("state".to_owned(), json!(state.as_str()));
+        one.insert("incidents".to_owned(), Value::Array(its));
         joined.push(Value::Object(one));
     }
     Ok(joined)
@@ -701,6 +1015,11 @@ impl Log {
     ) -> Result<Log, Refused> {
         if data.contains_key("form") || data.contains_key("kept_apart") {
             return Err(Refused::FirstGiven);
+        }
+        // Before the entry is looked at as a whole, as the check does: so
+        // a table that isn't one is refused as that, whatever it holds.
+        if read_table(Some(table)).is_none() {
+            return Err(Refused::Table);
         }
         let mut first = data.clone();
         first.insert("form".to_owned(), Value::String(FORM.to_owned()));

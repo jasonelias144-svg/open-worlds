@@ -17,8 +17,9 @@
 use serde_json::{Map, Value, json};
 use std::collections::BTreeSet;
 use world_log::apart::{
-    self, FORM, KEPT, Log, MARK, MAX_NESTING, MAX_WHOLE, Refused, State, check, fingerprint,
-    fingerprint_text, join, value_allowed,
+    self, EntryState, FORM, GROUNDS, KEPT, Log, MARK, MAX_NESTING, MAX_WHOLE, PUT_BACK, REMOVED,
+    RESTORED, Refused, SHORT, State, TAKEN_BACK, check, fingerprint, fingerprint_text, incidents,
+    join, short_ids, value_allowed,
 };
 use world_log::{LogError, sha256_hex, verify_log};
 
@@ -58,6 +59,25 @@ fn states_json(states: &apart::States) -> Value {
     Value::Object(out)
 }
 
+fn incidents_json(standing: &std::collections::BTreeMap<String, apart::Standing>) -> Value {
+    let mut out = Map::new();
+    for (entry, its) in standing {
+        let list: Vec<Value> = its
+            .incidents
+            .iter()
+            .map(|i| {
+                json!({"id": i.id, "short": i.short, "kind": i.kind.as_str(),
+                       "stands": i.stands})
+            })
+            .collect();
+        out.insert(
+            entry.clone(),
+            json!({"state": its.state.as_str(), "incidents": list}),
+        );
+    }
+    Value::Object(out)
+}
+
 fn map(value: &Value) -> Map<String, Value> {
     value.as_object().unwrap().clone()
 }
@@ -83,7 +103,11 @@ fn place(error: &Refused) -> Value {
         | Refused::Open { index }
         | Refused::Twice { index }
         | Refused::BadMark { index }
-        | Refused::BadKept { index } => json!(index),
+        | Refused::BadKept { index }
+        | Refused::BadRemoval { index }
+        | Refused::BadRestoring { index }
+        | Refused::BadTakingBack { index }
+        | Refused::BadPuttingBack { index } => json!(index),
         Refused::Contents(p)
         | Refused::Unknown(p)
         | Refused::Salt(p)
@@ -122,6 +146,22 @@ fn the_names_and_limits_are_pythons() {
     assert_eq!(v["kept"], KEPT);
     assert_eq!(v["max_whole"], MAX_WHOLE);
     assert_eq!(v["max_nesting"], MAX_NESTING);
+    assert_eq!(v["removed"], REMOVED);
+    assert_eq!(v["restored"], RESTORED);
+    assert_eq!(v["taken_back"], TAKEN_BACK);
+    assert_eq!(v["put_back"], PUT_BACK);
+    assert_eq!(v["grounds"], json!(GROUNDS));
+    assert_eq!(v["short"], SHORT);
+    let entry_states: Vec<&str> = [
+        EntryState::AsWritten,
+        EntryState::Removed,
+        EntryState::TakenBack,
+        EntryState::Restored,
+    ]
+    .iter()
+    .map(|s| s.as_str())
+    .collect();
+    assert_eq!(v["entry_states"], json!(entry_states));
     let states: Vec<&str> = [
         State::Present,
         State::Redacted,
@@ -242,25 +282,229 @@ fn the_trial_room_written_here_is_the_one_python_wrote() {
 fn each_case_that_holds_gives_pythons_states_and_entries() {
     let v = vectors();
     let holds = cases(&v, "holds");
-    assert_eq!(holds.len(), 5, "the vectors are all there");
+    assert_eq!(holds.len(), 6, "the vectors are all there");
     let mut seen = BTreeSet::new();
+    let mut entry_states = BTreeSet::new();
     for case in holds {
         let name = &case["name"];
         assert!(verify_log(&case["log"]).is_ok(), "{name}");
         let states = check(&case["log"], &case["contents"]).unwrap();
         assert_eq!(states_json(&states), case["states"], "{name}");
+        let standing = incidents(&case["log"]).unwrap();
+        assert_eq!(incidents_json(&standing), case["incidents"], "{name}");
+        entry_states.extend(standing.values().map(|s| s.state));
         let joined = join(&case["log"], &case["contents"]).unwrap();
         assert_eq!(Value::Array(joined), case["joined"], "{name}");
         seen.extend(states.values().flat_map(|fields| fields.values().copied()));
     }
     assert_eq!(seen.len(), 5, "every state is in the vectors");
+    // Removed, taken back, and as written with an incident that no longer
+    // stands; "restored" is in the writer's test below.
+    assert_eq!(entry_states.len(), 3, "the entries' states are there");
+}
+
+#[test]
+fn an_incidents_id_is_shown_as_short_as_is_still_its_own() {
+    let v = vectors();
+    let groups = cases(&v, "short_ids");
+    assert_eq!(groups.len(), 5, "the vectors are all there");
+    for group in groups {
+        let ids: Vec<String> = group["ids"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|id| id.as_str().unwrap().to_owned())
+            .collect();
+        let short: Map<String, Value> = short_ids(&ids)
+            .into_iter()
+            .map(|(id, short)| (id, json!(short)))
+            .collect();
+        assert_eq!(Value::Object(short), group["short"]);
+    }
+}
+
+#[test]
+fn what_wins_among_removing_restoring_taking_back_and_putting_back() {
+    // The table in docs/research/REDACTION.md, decision 9, through the
+    // writer: each refused act leaves the log as it was.
+    let v = vectors();
+    let mut salt = trial_salts();
+    let mut log = room(&v, &mut salt);
+    let said = log.entries()[3]["hash"].as_str().unwrap().to_owned();
+    let ground = json!({"kind": "law", "ref": "trial room law, part 3"});
+    let decision = "ab".repeat(32);
+    let office = |name: &str, key: &str, target: &str| {
+        map(&json!({key: target, "office": name, "ground": ground, "decision": decision}))
+    };
+    let none = Map::new();
+    let state = |log: &Log| {
+        incidents(&Value::Array(log.entries().to_vec()))
+            .unwrap()
+            .get(&said)
+            .map_or(EntryState::AsWritten, |s| s.state)
+    };
+    assert_eq!(state(&log), EntryState::AsWritten);
+    // A restoring of what is not removed.
+    let error = log
+        .append(
+            5,
+            RESTORED,
+            None,
+            &office("keeper", "incident", &said),
+            &none,
+            &mut salt,
+        )
+        .unwrap_err();
+    assert_eq!(error, Refused::BadRestoring { index: 7 });
+    // Removed; a second removal is refused.
+    let removal = log
+        .append(
+            5,
+            REMOVED,
+            None,
+            &office("moderator", "entry", &said),
+            &none,
+            &mut salt,
+        )
+        .unwrap();
+    assert_eq!(state(&log), EntryState::Removed);
+    let error = log
+        .append(
+            5,
+            REMOVED,
+            None,
+            &office("moderator", "entry", &said),
+            &none,
+            &mut salt,
+        )
+        .unwrap_err();
+    assert_eq!(error, Refused::BadRemoval { index: 8 });
+    // The author takes it back; the office can no longer restore it.
+    let taking = log
+        .append(
+            6,
+            TAKEN_BACK,
+            None,
+            &map(&json!({"entry": said})),
+            &none,
+            &mut salt,
+        )
+        .unwrap();
+    assert_eq!(state(&log), EntryState::TakenBack);
+    let error = log
+        .append(
+            6,
+            RESTORED,
+            None,
+            &office("keeper", "incident", &removal),
+            &none,
+            &mut salt,
+        )
+        .unwrap_err();
+    assert_eq!(error, Refused::BadRestoring { index: 9 });
+    let error = log
+        .append(
+            6,
+            TAKEN_BACK,
+            None,
+            &map(&json!({"entry": said})),
+            &none,
+            &mut salt,
+        )
+        .unwrap_err();
+    assert_eq!(error, Refused::BadTakingBack { index: 9 });
+    // Put back: the removal still stands. Then restored.
+    log.append(
+        7,
+        PUT_BACK,
+        None,
+        &map(&json!({"taken_back": taking})),
+        &none,
+        &mut salt,
+    )
+    .unwrap();
+    assert_eq!(state(&log), EntryState::Removed);
+    let error = log
+        .append(
+            7,
+            PUT_BACK,
+            None,
+            &map(&json!({"taken_back": taking})),
+            &none,
+            &mut salt,
+        )
+        .unwrap_err();
+    assert_eq!(error, Refused::BadPuttingBack { index: 10 });
+    log.append(
+        8,
+        RESTORED,
+        None,
+        &office("keeper", "incident", &removal),
+        &none,
+        &mut salt,
+    )
+    .unwrap();
+    assert_eq!(state(&log), EntryState::Restored);
+    // A removal after a restoring is a new incident, with a new id.
+    let again = log
+        .append(
+            9,
+            REMOVED,
+            None,
+            &office("moderator", "entry", &said),
+            &none,
+            &mut salt,
+        )
+        .unwrap();
+    assert_ne!(again, removal);
+    // The form's own entries can't be removed or taken back.
+    for own in [&removal, &taking] {
+        assert_eq!(
+            log.append(
+                9,
+                REMOVED,
+                None,
+                &office("moderator", "entry", own),
+                &none,
+                &mut salt
+            )
+            .unwrap_err(),
+            Refused::BadRemoval { index: 12 }
+        );
+        assert_eq!(
+            log.append(
+                9,
+                TAKEN_BACK,
+                None,
+                &map(&json!({"entry": own})),
+                &none,
+                &mut salt
+            )
+            .unwrap_err(),
+            Refused::BadTakingBack { index: 12 }
+        );
+    }
+    assert_eq!(log.entries().len(), 12);
+    // Nothing left the record: the entry is given whole, with its state.
+    let (entries, contents) = log.into_parts();
+    let joined = join(&Value::Array(entries), &Value::Object(contents)).unwrap();
+    assert_eq!(joined[3]["data"]["text"], "hello, room");
+    assert_eq!(joined[3]["state"], "removed");
+    let its = joined[3]["incidents"].as_array().unwrap();
+    assert_eq!(its.len(), 3);
+    assert_eq!(its[0]["id"], json!(removal));
+    assert_eq!(its[0]["stands"], false);
+    assert_eq!(its[1]["kind"], "taken back");
+    assert_eq!(its[2]["stands"], true);
+    assert_eq!(joined[4]["state"], "as written");
+    assert_eq!(joined[4]["incidents"], json!([]));
 }
 
 #[test]
 fn each_case_that_is_refused_is_refused_for_pythons_reason() {
     let v = vectors();
     let refused = cases(&v, "refused");
-    assert_eq!(refused.len(), 90, "the vectors are all there");
+    assert_eq!(refused.len(), 121, "the vectors are all there");
     let mut seen = BTreeSet::new();
     for case in refused {
         let name = &case["name"];
@@ -460,11 +704,18 @@ fn the_first_entry_is_written_not_given() {
             Refused::FirstGiven
         );
     }
+    // A table holding nothing or a fraction is refused as a table too, as
+    // the check refuses it, not as an entry out of form.
     for table in [
         json!({"said": ["text", "key"]}),
         json!({"said": "text"}),
         json!([]),
         json!({"said": ["Text"]}),
+        json!({"said": [null]}),
+        json!({"said": [1.5]}),
+        json!({"said": null}),
+        json!(null),
+        json!(1.5),
     ] {
         assert_eq!(
             Log::new(&table, &Map::new(), "world_created", &mut salt).unwrap_err(),
