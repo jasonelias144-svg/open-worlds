@@ -197,9 +197,9 @@ multiverse to go on:
 
 **From the start.** The first piece is the departure record: a record
 kind in `schemas/records-v1.schema.json`, with test vectors that Python
-and Rust both check, as every record kind has. The course takes it up at
-its next recheck ([COURSE.md](COURSE.md), "Waiting"), with the
-lifecycle.
+and Rust both check, as every record kind has. The course takes it up
+at step 3e, with the lifecycle ([COURSE.md](COURSE.md); placed at the
+recheck of 2026-11-16).
 
 ## A taxonomy of world types
 
@@ -308,8 +308,10 @@ fewer operations are anyone's to choose.**
   world.
 - **Next:** the operations themselves, as entries in a world's log, in
   `rust/world-log` and each world, with a test that leaving works in a
-  paused world, and in each world a paused superworld hosts. The course takes them up at its next
-  recheck ([COURSE.md](COURSE.md), "Waiting"). The endless plant needs
+  paused world, and in each world a paused superworld hosts. The
+  course takes them up at step 3e ([COURSE.md](COURSE.md); placed at
+  the recheck of 2026-11-16), and finishes restart at step 4, which
+  rebuilds a world's state from its log. The endless plant needs
   pause, resume and checkpoint first, to run for hours in the browser
   ([FRACTALS.md](FRACTALS.md)).
 

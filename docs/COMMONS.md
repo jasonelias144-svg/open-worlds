@@ -330,17 +330,79 @@ fitted to open-worlds' own code as `rust/chat-world`
 ([COLLABORATING.md](COLLABORATING.md), "Messages from the technical
 lead").
 
+## Personal information in a room: ideas
+
+Not decided. The founder, 2026-11-16, after deciding how a comment is
+removed: "Private information is always the exception and should be
+flagged in chats before being posted. This can exist in a temporary
+record of the chat room, available to those in the chat who may have
+legitimate reason to share personal information. But we flag it before,
+an Are you sure? window can pop up. It remains in presentation layer
+while that individual is in the chat, so they can copy and paste
+portions in full. But when they leave, their personal information is
+removed from the presentation layer, shows up as redacted in the chat
+window history with a similar incident id. And the official records
+encrypt the personal information before storing as an official and
+verified record." And then: "These are just ideas, off the top of my
+head. Does this work, or would you change that in some way."
+
+So, as the technical lead reads it: a person may share personal
+information in a room on purpose. They are asked first. While they are
+in the room, those in it can read it, and copy it. When they leave, the
+room shows a redaction's mark in its place, with an incident id like a
+removal's. The record never holds it in the open.
+
+The technical lead's answer, given in the session: it works, and it
+fits what is already decided, a redaction's mark and the information
+sealed to the person it is about ([FUNDAMENTALS.md](FUNDAMENTALS.md),
+"Public records, kept whole"). Six changes are proposed. They touch
+personal information, so none of them stands until the founder says
+so:
+1. **One's own only.** The window and the showing are for a person's
+   own personal information. Another person's is not theirs to share
+   this way; the check before publishing treats it as it does anywhere,
+   and redacts it.
+2. **The window says who will read it.** It names who is in the room
+   now, and which of them are AIs. It is shown to an AI in the room
+   only if the person turns that on.
+3. **Never in the open in the record.** From the moment it is posted
+   the log holds only its salted fingerprint, and the information is
+   sealed. There is then no time when the record holds it openly, and
+   no later step that has to remember to encrypt it. What those in the
+   room read is opened for them while the person is there.
+4. **Taken back at any time.** The person can redact it while still in
+   the room. Leaving does it for them.
+5. **The limit, said in the window.** Whoever read it may have copied
+   it, as the founder's idea allows on purpose. Redacting takes it out
+   of what the room shows and out of what anyone can read in the
+   record. It can't recall a copy. The window says so before the
+   person agrees.
+6. **Sealed to the person.** What was redacted goes, sealed, into the
+   container of the person it is about, as already decided for every
+   redaction ([FUNDAMENTALS.md](FUNDAMENTALS.md), "Kept in the person's
+   own container"). The record keeps the fingerprint and the mark.
+
+It is noted for the plan of course step 6a, the private container and
+the check before publishing ([COURSE.md](COURSE.md), "Waiting"). The
+log it needs, with fields that can be redacted, is step 3b.
+
 ## Order
 
-1. This design, and its place in the course: at the recheck that closes
-   step 3a, as the first public space, ahead of the Ur-world's opening
-   ([COURSE.md](COURSE.md)).
-2. The text world: a room's law, acts and log, in Rust, with vectors,
+1. This design, and its place in the course. Since the recheck of
+   2026-11-16 the Commons is in the course, as the first public space,
+   ahead of the Ur-world's opening: a log that can be redacted, with
+   removals on record (step 3b); the room (3c); a room's moderator and
+   the Commons' Keeper as offices on record (3d); a world's lifecycle
+   (3e); the Commons hosting rooms (3f); and the private container
+   (6a) ([COURSE.md](COURSE.md)).
+2. The text world (course step 3c): a room's law, acts and log, in
+   Rust, with vectors,
    and a test that no one outside a closed room, ADMIN included, can
    read its words (AGENTS.md: a world that keeps private spaces tests
    this).
-3. The Commons hosting rooms, with its lobby and doors.
-4. The private container in the browser.
+3. The Commons hosting rooms, with its lobby and doors (course step
+   3f).
+4. The private container in the browser (course step 6a).
 5. The MCP door, ported from Lyceum.
 6. Going live: outward-facing, so the founder's decisions come first:
    where the multiverse is hosted, decided once for all of it, and the

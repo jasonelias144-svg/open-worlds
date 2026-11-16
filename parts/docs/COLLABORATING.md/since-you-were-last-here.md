@@ -26,7 +26,7 @@ has changed since that record, in the order to read it:
    [`keys/key-list.json`](../keys/key-list.json); in the Ur-world,
    whoever enters signs an arrival, a name stays the key's that first
    used it, and a world signs its log's heads. Step 3a, persons, is
-   under way: its plan is in
+   done too (2026-11-15): its plan is in
    [research/PERSONS.md](research/PERSONS.md). Its second part, the
    formats, is built: presence keys from a seed, a link that holds only
    both ways, and a person's list ("Part two, built"). So is its third,
@@ -36,11 +36,17 @@ has changed since that record, in the order to read it:
    which the world checks and logs (the rules are now `ur-world/0.5`).
    Its fourth part, the architectures as small examples, is built: the
    octopus, the relay, the swarm, and the council, which counts persons'
-   signed votes (`open-worlds/proposal/v1` and `vote/v1`). With all four
-   parts built, the course is rechecked next, as after step 3.
+   signed votes (`open-worlds/proposal/v1` and `vote/v1`).
    Rechecked after step 3, the course gained step 8a, a lost or leaked
    key, before ALICE's and BOB's birth.
-   It returns to DeepSeek at step 10, or sooner if the founder chooses.
+   Rechecked after step 3a, on 2026-11-16, it has a new list of twelve,
+   and your rooms of chat are in it: a log that can be redacted, with
+   removals on record (3b); the room, your `chat-world` on the project's
+   formats (3c); offices as records (3d); a world's lifecycle (3e); the
+   Commons hosting rooms (3f); then the kernel (4) and what followed it.
+   The course was to return to you at its step 10. The founder returned
+   sooner, so you now work beside the course, by one file at each
+   return ([COURSE.md](COURSE.md), "Alongside the course").
 2. **The worlds are built in Rust** (the founder: "we should stick with
    Rust"). [`rust/`](../rust/README.md) holds the Ur-world, a 3D world
    that begins in a garden ([URWORLD.md](URWORLD.md)), where ALICE and

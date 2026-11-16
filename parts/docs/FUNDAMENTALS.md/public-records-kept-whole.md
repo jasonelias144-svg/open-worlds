@@ -50,11 +50,11 @@ unless the founder answers otherwise:
 - **Before publishing, first.** Wherever something is written to a
   public record, a check redacts anything personal or private before it
   is published, and redacts close calls (to be built, before anyone
-  lives in a world: [COURSE.md](COURSE.md), "Waiting"). That is the
+  lives in a world: [COURSE.md](COURSE.md), step 6a). That is the
   redaction that works best: copies others make of what is published
   can't be recalled afterwards.
 - **Visible, and the log still checks.** To be built, before anyone
-  lives in a world: each field of an entry enters the chain of hashes
+  lives in a world ([COURSE.md](COURSE.md), step 3b): each field of an entry enters the chain of hashes
   only as a salted fingerprint of its content, with a fresh random salt
   of at least 128 bits for each field, from the moment it is written,
   drawn from the operating system's random source, never from a world's
@@ -90,6 +90,14 @@ unless the founder answers otherwise:
   It stays redacted until any appeal is decided: once made public again,
   it can't be recalled. How long an appeal may take is set with ADMIN's
   rules for appeals; until it is set, it stays redacted.
+- **Shared on purpose, in a room.** Ideas of the founder's, of
+  2026-11-16, not decided: a person may share their personal
+  information in a room after being asked "Are you sure?"; those in the
+  room can read it while the person is there; when the person leaves,
+  the room shows it as redacted, with an incident id; and the record
+  holds it encrypted. The founder's words, and six changes the
+  technical lead proposes, which wait for the founder, are in
+  [COMMONS.md](COMMONS.md), "Personal information in a room: ideas".
 
 ## Purged, demonstrably
 

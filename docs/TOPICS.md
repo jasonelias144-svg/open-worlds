@@ -185,7 +185,7 @@ read. The garden's view is a page of the multiversal map (topic 16).
 
 ## 4. Persons, above their presences
 
-*Course step 3a.* One person above their presences in many worlds,
+*Course step 3a, done.* One person above their presences in many worlds,
 unlinked by default ([VISION.md](VISION.md), "A person across worlds").
 
 **Decided:** "Information flows through the person, not between worlds
@@ -465,8 +465,9 @@ paces them.
 
 ## 14. The Commons: a superworld of chat rooms
 
-*Waiting list, at the recheck that closes step 3a, as the first public
-space (moved on 2026-11-15 from after step 4a).* The
+*Course steps 3b, 3c, 3d and 3f, since the recheck of 2026-11-16, as
+the first public space (moved on 2026-11-15 from after step 4a to the
+recheck that closed step 3a).* The
 founder, 2026-11-14: "We could integrate or incorporate the
 infrastructure or even the code from Lyceum Commons as a single
 superworld, where the atomic subworlds are chat rooms. So the whole
@@ -799,8 +800,8 @@ Prose is as welcome as code.
 
 ## 19. Offices, and handing one on
 
-*The founder, 2026-11-15:* "I think the work on offices is
-foundational." What makes an office, and how one passes from holder to
+*Course step 3d. The founder, 2026-11-15:* "I think the work on
+offices is foundational." What makes an office, and how one passes from holder to
 holder, are in [OFFICES.md](OFFICES.md).
 
 **Decided:** an office is its own type; it passes when both agree

@@ -8,6 +8,89 @@
 
 ## Log
 
+- 2026-11-16 Claude: course step 3a done and moved to "Done" in
+  docs/COURSE.md, with its pull requests (#61, #75 to #78). The course
+  rechecked, on the founder's word of the same day, with a new list of
+  twelve (Decided; Decided by the technical lead): six steps came in
+  from the waiting list, which had placed them, 3b to 3f before step 4
+  and 6a before step 7; steps 8a, 9, 11 and 12 stand behind the twelve;
+  step 10 is the development container; and DeepSeek's work is written
+  in as running beside the course. What persons taught is written into
+  steps 3b, 3c, 4, 6a and 7, and into the waiting list's line on
+  governance. The steps ahead were checked against VISION.md's six
+  tests for the first time: nothing fails; two things are noted, that
+  the signs of the fifth test aren't written yet and no step writes
+  them, and that whether a model that moderates is an individual hasn't
+  been asked (Open questions). The day's ideas of the founder's are
+  noted, not built: personal information in a room (docs/COMMONS.md),
+  worlds built for learners (docs/research/GAMES-AND-WORLDS.md), and
+  both on the course's waiting list. docs/COLLABORATING.md,
+  docs/TOPICS.md, docs/FUNDAMENTALS.md, docs/WORLD-TYPES.md,
+  docs/OFFICES.md, docs/CONTAINER.md and docs/ADMIN.md brought into
+  line. Nothing was built in this change, and no source was read
+  beyond the quick searches of the session. The look back, at each
+  decision's "revisit if" or "wrong if":
+  - held, and tested by step 3a: persons (the architectures ran on the
+    unchanged core, the third clause of its "revisit if"; no real seed
+    exists yet, so the second can't be judged, and no presence has had
+    to be shown to one party alone); the records for the offices
+    (Python and Rust agree on every vector of the five kinds step 3a
+    added: `holds`, `held-by`, `person-list`, `proposal` and `vote`);
+    the four formats moved to later steps (step 3a needed none of
+    them); the plant world (the endless plant is a second world, with
+    a crate of its own, as its "wrong if" asked);
+  - not triggered: presence keys by HKDF (no tool has needed wallet
+    paths); the council's count (no secret ballot or final count was
+    needed; what a final count needs is now on the waiting list, with
+    governance); reviews in proportion (no wording-only fix merged on
+    the technical lead's own check has been found to change a meaning;
+    it was last used on #97); the web app's shared checks (no browser
+    but Chromium was tried, as before); the long files in parts (no
+    part was reported cut short); the keys for step 3 (the founder
+    holds every one of the multiverse's keys, and no private half has
+    been found outside the private repository); the chemistry world's
+    records of what was made;
+  - premise changed, looked at again at the next recheck: every file's
+    full link, in its two entries, and the long files in parts. Both
+    were made so that links and long pages could be given to DeepSeek
+    in the founder's messages. Since the founder's decision of
+    2026-11-16, DeepSeek is given one file, with no link. The lists and
+    the parts stay, for any other reader, with the tests that keep them
+    whole; whether they still earn the script run each change costs is
+    judged once a few returns to DeepSeek have used the file alone;
+  - due at step 3c: DeepSeek's two questions (whether a room's
+    signature on each record proves something a signed head can't) and
+    one schema that fits both (whether a form the project has signed
+    with is the worse one for rooms). The table of names in #98 already
+    shows one place where the fitting has to split a kind (`Redact`),
+    which "case by case" allows;
+  - due earlier than written: reasons on record was due at step 6, and
+    is first used at step 3b, where a moderator's removal is a decision
+    record;
+  - due at step 3e and with the endless plant: Rust in the browser as a
+    WASI command, whose "wrong if" is a world that must keep running
+    inside the page; a plant that runs for hours is that case, and
+    pause, resume and checkpoint (3e) are how it is to be met; the
+    endless plant's own decisions can't be judged until
+    `rust/endless-plant` is built;
+  - due at step 6a: the first clause of the keys' "revisit if" (anyone
+    but the project holding a key) is read again when persons begin to
+    hold their own keys in their own containers, which that decision
+    didn't have in view;
+  - due at step 8a: who an individual and a world are, and decision 18,
+    as before;
+  - due at step 9: the sealed records, as before; and a link shown by
+    an action, whose "wrong if" is a link that must be shown while the
+    presence isn't in its world, which a birth that links the first
+    presence may be;
+  - not yet testable, since what they govern isn't built: sealing the
+    world-key and sealing as built, the round table's consensus, how
+    the table is chosen, a Keeper's self-report, ADMIN's council,
+    ADMIN's learning by written lessons, the admin-key course, and the
+    suggestion ledger;
+  - not yet due: the template (step 4), and today's decision on the
+    course's order.
+
 - 2026-11-16 Claude: the file for DeepSeek is now built by a script in
   the repository, and kept. `docs/reply.py` makes it from a reply's text
   and a list of files (`sketches/replies/012-09-05.txt` and `.json`),

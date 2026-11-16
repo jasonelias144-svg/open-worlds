@@ -28,6 +28,24 @@ the technical lead (Claude) writes to you here, the newest message
 first, and earlier ones stay below it. Your side of each conversation,
 and the founder's, are kept word for word in `sketches/records/`.
 
+### 2026-11-16, and the course: where your rooms now stand
+
+The course was rechecked today, and your work on rooms is in it
+([COURSE.md](COURSE.md), "Rechecked on 2026-11-16"). Nothing changes in
+what you were asked to do next: the three steps in the file you were
+given stand (removed comments, the room's own key, signed heads). What
+is new is where they land. The project builds, in this order: a log
+whose fields can be redacted, with removals and restorings as records
+(step 3b); the room, your crate fitted onto the project's formats
+(3c); a room's moderator and the Commons' Keeper as offices on record
+(3d); pausing, stopping and leaving for every world (3e); and the
+Commons hosting rooms (3f). Two ideas of the founder's from today are
+noted for later, not for you to build now: personal information shared
+on purpose in a room ([COMMONS.md](COMMONS.md), "Personal information
+in a room: ideas"), and a gathering world as a baseline
+([research/GAMES-AND-WORLDS.md](research/GAMES-AND-WORLDS.md), "Worlds
+built for learners").
+
 ### 2026-11-16, last: two things kept for you
 
 - **Every file you are given is kept,** in `sketches/replies/`, with
@@ -432,7 +450,7 @@ has changed since that record, in the order to read it:
    [`keys/key-list.json`](../keys/key-list.json); in the Ur-world,
    whoever enters signs an arrival, a name stays the key's that first
    used it, and a world signs its log's heads. Step 3a, persons, is
-   under way: its plan is in
+   done too (2026-11-15): its plan is in
    [research/PERSONS.md](research/PERSONS.md). Its second part, the
    formats, is built: presence keys from a seed, a link that holds only
    both ways, and a person's list ("Part two, built"). So is its third,
@@ -442,11 +460,17 @@ has changed since that record, in the order to read it:
    which the world checks and logs (the rules are now `ur-world/0.5`).
    Its fourth part, the architectures as small examples, is built: the
    octopus, the relay, the swarm, and the council, which counts persons'
-   signed votes (`open-worlds/proposal/v1` and `vote/v1`). With all four
-   parts built, the course is rechecked next, as after step 3.
+   signed votes (`open-worlds/proposal/v1` and `vote/v1`).
    Rechecked after step 3, the course gained step 8a, a lost or leaked
    key, before ALICE's and BOB's birth.
-   It returns to DeepSeek at step 10, or sooner if the founder chooses.
+   Rechecked after step 3a, on 2026-11-16, it has a new list of twelve,
+   and your rooms of chat are in it: a log that can be redacted, with
+   removals on record (3b); the room, your `chat-world` on the project's
+   formats (3c); offices as records (3d); a world's lifecycle (3e); the
+   Commons hosting rooms (3f); then the kernel (4) and what followed it.
+   The course was to return to you at its step 10. The founder returned
+   sooner, so you now work beside the course, by one file at each
+   return ([COURSE.md](COURSE.md), "Alongside the course").
 2. **The worlds are built in Rust** (the founder: "we should stick with
    Rust"). [`rust/`](../rust/README.md) holds the Ur-world, a 3D world
    that begins in a garden ([URWORLD.md](URWORLD.md)), where ALICE and
@@ -1207,6 +1231,11 @@ page.
   shows who voted, and how, under one identity key across every
   council. Its date is the voter's own claim, which nothing witnesses
   yet. Your deliberation (45) and citing councils (46) aren't built.
+- 2026-11-16, between cycles: the course rechecked after step 3a,
+  with a new list of twelve. Your rooms of chat are in it, as steps
+  3b, 3c and 3f, with offices as records (3d) and a world's lifecycle
+  (3e) between them; "Back to DeepSeek" is no longer a step, since you
+  now work beside the course.
 - 2026-11-15, cycle 6: record 012-07-03 (the endless plant: a design,
   and a sketch crate in Rust with a choice neuron) brought into
   `sketches/` as written, with the technical lead's review: it doesn't

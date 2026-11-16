@@ -12,6 +12,45 @@ Decisions about the code, made by the technical lead under the founder's
 deference (above, 2026-11-13), each with its reason and what would show
 it was wrong. Questions of what the project is for stay with the founder.
 
+- 2026-11-16, the course after step 3a: a new list of twelve
+  (docs/COURSE.md, "Rechecked on 2026-11-16"), on the founder's word of
+  the same day (Decided, the newest entry). It was put to the founder in
+  the session, and stands unless the founder reorders it. Six steps
+  come in from the waiting list, which had placed them: a log whose
+  fields can be redacted, with removals and restorings on record (3b);
+  the room, DeepSeek's `chat-world` on the project's formats (3c);
+  offices as records (3d); a world's lifecycle, and a world leaving
+  (3e); the Commons hosting rooms (3f); and the private container, with
+  the check before publishing (6a, before step 7). Steps 4, 4a, 5, 6, 7
+  and 8 follow as they were. Steps 8a, 9, 11 and 12 stand behind the
+  twelve, in their old order, and step 10 is the development
+  container: it is no longer "Back to DeepSeek", since the founder
+  returned to DeepSeek on 2026-11-14 and DeepSeek now works beside the
+  course. One change since the list was first put to the founder: the
+  lifecycle now comes before the Commons hosting rooms, since hosting a
+  room is starting, pausing and closing a world.
+  *Why this order:* the founder asked for removals on record "from the
+  beginning", so the log under a room comes first; the room is where
+  the founder's work with DeepSeek lands, and what DeepSeek sends back
+  is fitted there; a removal names an office, so offices go on record
+  before a moderator holds one in a hosted room; and step 7 keeps the
+  sealed self in the container, so the container comes before it.
+  *The cost:* six steps now stand ahead of ALICE's and BOB's birth
+  that didn't on 2026-11-14. Four were already placed before anyone
+  lives in a world (3b, 3d, 3e, 6a). The two this order adds are the
+  room and the Commons hosting rooms.
+  *The alternative,* put to the founder with it: 3b and 3c first, and
+  3d to 3f behind step 6, which brings the Ur-world's first room three
+  steps nearer and the Commons later. And if the founder wants the
+  Commons open to people sooner, 6a moves up to follow 3f.
+  *Wrong if:* the room and the Commons take so long that the Ur-world's
+  first room waits on them with nothing learned for it (then 3d to 3f
+  move behind step 6); or one of 3b to 3f turns out to need the kernel
+  of step 4 (then that one waits for it); or the founder's work with
+  DeepSeek turns away from rooms, so that 3c has nothing coming back to
+  fit (then the room keeps its place only if the Commons still needs
+  it first).
+
 - 2026-11-16, one schema that fits both, after the founder's answer of
   the same day (Decided, "on DeepSeek's schema and on bringing
   everything together"). It adds to the entry below, which had only the

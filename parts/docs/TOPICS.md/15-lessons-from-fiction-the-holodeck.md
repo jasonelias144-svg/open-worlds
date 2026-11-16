@@ -263,8 +263,8 @@ Prose is as welcome as code.
 
 ## 19. Offices, and handing one on
 
-*The founder, 2026-11-15:* "I think the work on offices is
-foundational." What makes an office, and how one passes from holder to
+*Course step 3d. The founder, 2026-11-15:* "I think the work on
+offices is foundational." What makes an office, and how one passes from holder to
 holder, are in [OFFICES.md](OFFICES.md).
 
 **Decided:** an office is its own type; it passes when both agree

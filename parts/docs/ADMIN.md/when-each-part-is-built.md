@@ -26,8 +26,9 @@
 - **Course step 9 (ALICE's and BOB's first life):** the ledger opens to
   them, and the bridge to GitHub with it; the code role considers each
   entry, and the measures begin.
-- **Before step 10 (back to DeepSeek):** a development container, so the
-  project can be picked up anywhere.
+- **Course step 10:** a development container, so the project can be
+  picked up anywhere. (Until the recheck of 2026-11-16 the step was
+  "Back to DeepSeek"; the founder returned to DeepSeek sooner.)
 - **Course step 11 (the AI Keeper):** the Ur-world's Keeper, its own
   office under these rules; and with it, since ADMIN then has an office
   to watch, ADMIN's judgment and the multiverse log, built for many

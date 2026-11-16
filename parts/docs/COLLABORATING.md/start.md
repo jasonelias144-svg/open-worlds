@@ -36,6 +36,24 @@ the technical lead (Claude) writes to you here, the newest message
 first, and earlier ones stay below it. Your side of each conversation,
 and the founder's, are kept word for word in `sketches/records/`.
 
+### 2026-11-16, and the course: where your rooms now stand
+
+The course was rechecked today, and your work on rooms is in it
+([COURSE.md](COURSE.md), "Rechecked on 2026-11-16"). Nothing changes in
+what you were asked to do next: the three steps in the file you were
+given stand (removed comments, the room's own key, signed heads). What
+is new is where they land. The project builds, in this order: a log
+whose fields can be redacted, with removals and restorings as records
+(step 3b); the room, your crate fitted onto the project's formats
+(3c); a room's moderator and the Commons' Keeper as offices on record
+(3d); pausing, stopping and leaving for every world (3e); and the
+Commons hosting rooms (3f). Two ideas of the founder's from today are
+noted for later, not for you to build now: personal information shared
+on purpose in a room ([COMMONS.md](COMMONS.md), "Personal information
+in a room: ideas"), and a gathering world as a baseline
+([research/GAMES-AND-WORLDS.md](research/GAMES-AND-WORLDS.md), "Worlds
+built for learners").
+
 ### 2026-11-16, last: two things kept for you
 
 - **Every file you are given is kept,** in `sketches/replies/`, with

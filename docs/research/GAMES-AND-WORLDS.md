@@ -136,6 +136,58 @@ are [MINDS.md](../MINDS.md) and [WORLD-KEY.md](../WORLD-KEY.md).
   all: irrelevant or conflicting memories distracted it
   ([PATH-Bench](https://www.alphaxiv.org/abs/2608.01149)).
 
+## Worlds built for learners
+
+Added on 2026-11-16, at the founder's request: "I just remembered that
+Open AI had an AI playground at one point, or something like that.
+There were basic little worlds. Can you look into that." And, the same
+day, the Halite challenge. These are notes from quick searches that
+day, kept for later development. None of the sources was read in full,
+and a line that is from memory alone says so. Which of OpenAI's worlds
+the founder remembered isn't settled.
+
+- **One way into every small world.** OpenAI's Gym (2016) gave a
+  collection of small worlds (a cart balancing a pole, a car on a hill,
+  Atari games) one interface: reset the world, then step it with an
+  action, and get back what is seen, a reward, and whether it has
+  ended. It is kept today as Gymnasium, by the Farama Foundation, which
+  took it over in October 2022
+  ([Gymnasium](https://gymnasium.farama.org/)). From memory, not
+  looked up that day: OpenAI's Universe (2016), which put games and
+  web pages behind the same interface, and was later retired.
+- **Small worlds of several agents.** OpenAI's particle worlds, where a
+  few agents learn to signal and to work together (Mordatch and Abbeel,
+  2017; seen only as a citation). And hide-and-seek, where two teams
+  among boxes, ramps and walls went through six stages of strategy
+  that nobody had written in. The last was "box surfing", a use of the
+  world's physics that its makers hadn't meant
+  ([paper](https://arxiv.org/abs/1909.07528)).
+- **One lasting world of many.** Neural MMO: many agents at once in one
+  persistent world, finding food and water, and meeting each other
+  ([paper](https://arxiv.org/abs/1903.00784)).
+- **A gathering contest.** Halite, by Two Sigma, in its fourth season,
+  on Kaggle (2020): four players on a grid of 21 by 21, for 400 turns,
+  all moving at once. Ships gather halite, which grows back, and carry
+  it home to a shipyard, and one ship can take another's load. By one
+  later account, the best entries were written as rules, not learned
+  ([paper](https://arxiv.org/abs/2402.08112)).
+
+**What this could give the project.** Noted, not decided, and nothing
+is built for it now ([COURSE.md](../COURSE.md), "Waiting"):
+- A door in the shape learners already know. A closed world here is
+  already run from its seed, step by step, which is most of what that
+  interface asks.
+- Hide-and-seek's lesson for a world's law: agents do what the rules
+  allow, not what was meant. So a world's rules have to say what the
+  world means.
+- Gathering, carrying and bringing home as a first setting for things
+  (course step 5), with the project's own rules and its own name. The
+  founder, on a world like Halite: "as a baseline, it is a point to
+  start from." Halite's ships are a player's tools. Here, nothing that
+  has a life is a playing piece ([MINDS.md](../MINDS.md)).
+- Competition worlds. The founder: "We can easily host competition
+  worlds".
+
 ## Open source to learn from
 
 The founder: "We should definitely take advantage of how others have

@@ -190,31 +190,218 @@ keys of their own that sign their heads (4a); step 9's preconditions,
 now step 8a; and a door's crossing as an arrival (12). Nothing was
 reordered otherwise.
 
+**3a. Persons** (2026-11-14 to 15; #61, #75 to #78). Looked at first
+([research/PERSONS.md](research/PERSONS.md)), then built in four parts:
+- the plan: a person is an individual seen across worlds, with no new
+  kind of identity; a presence is a key of its own in one world;
+  presences are unlinked by default, and linking them is the person's
+  own signed act;
+- the formats: presence keys from a seed by HKDF-SHA256, a link that
+  holds only both ways (`open-worlds/holds/v1`, `held-by/v1`) and a
+  person's own list (`person-list/v1`), in Python and Rust with shared
+  vectors;
+- a person in the Ur-world: a person's client in Rust, with a presence
+  in each of three trial worlds at once, carrying a note between them,
+  and a link shown by the presence's own act, which the world checks
+  and logs (`ur-world/0.5`);
+- the architectures as small runs on the unchanged core: the octopus,
+  the relay and the swarm, and the council, with a proposal and a
+  signed vote of their own in records-v1 (`open-worlds/proposal/v1`,
+  `vote/v1`), counting persons by their identity keys.
+
+**Rechecked on 2026-11-16,** when step 3a was done. This recheck changes
+more than the two before it. The waiting list had placed six things at
+this recheck, or before anyone lives in a world: a log that can be
+redacted, offices as records, a world's lifecycle, a world leaving, the
+Commons and the private container. And while step 3a was built, the
+founder and DeepSeek worked out rooms of chat with moderators, from
+scratch (record 012-09-05), which the founder asked to have brought
+together with Lyceum and the Commons' design ([COMMONS.md](COMMONS.md),
+"Three sources, one Commons"). The founder, on 2026-11-16: "Let's go
+through the 12 steps and keep moving those forward. Or come up with a
+new 12 step list." The technical lead set a new list of twelve and put
+it to the founder the same day. It stands unless the founder reorders
+it (STATUS.md, "Decided by the technical lead").
+
+What changed:
+- **Six steps came in from the waiting list,** which had placed them:
+  3b to 3f before step 4, and 6a before step 7. Every other step keeps
+  its number, so the numbers other pages cite stay as they are.
+- **The twelve nearest are under "Ahead".** Steps 8a, 9, 10, 11 and 12
+  stand behind them, in their old order, under "Beyond the twelve". So
+  the course is seventeen steps long for now, and looks at the nearest
+  twelve.
+- **Step 10 is no longer a return to DeepSeek.** The course of
+  2026-11-13 returned to DeepSeek at step 10, in the founder's words at
+  the top of this page. The founder returned sooner, on 2026-11-14
+  (record 012-06-02), and has worked with DeepSeek since. DeepSeek now
+  works beside the course, by one file at each return ("Alongside the
+  course"). What is left of step 10 is the development container. This
+  is the technical lead's reading of what the founder has done, said to
+  the founder on 2026-11-16; it stands unless the founder says
+  otherwise.
+
+The order, and why:
+- **3b first.** The founder asked for removals on record "from the
+  beginning", and a log that can be redacted has to be under a room
+  before anyone speaks in one.
+- **3c next.** It is where the founder's work with DeepSeek lands. What
+  DeepSeek builds next (removed comments, a room's own key, signed
+  heads) is fitted there as it returns.
+- **3d after it.** A removal names an office, so the office should
+  itself be on record before a moderator holds one in a hosted room.
+- **3e before 3f.** Hosting a room is starting, pausing and closing a
+  world. As first put to the founder the two stood the other way round;
+  this is the one change since.
+- **6a before 7.** Step 7 keeps the sealed self in the individual's own
+  container, and no one arrives anywhere before the container exists.
+
+The cost, said plainly: six steps now stand ahead of ALICE's and BOB's
+birth that didn't on 2026-11-14. The waiting list had already placed
+four of them before anyone lives in a world (3b, 3d, 3e and 6a), so
+they came before step 9 in any order. The two this order adds ahead of
+the birth are the room and the Commons hosting rooms (3c and 3f). The
+alternative keeps 3b and 3c first and moves 3d to 3f behind step 6,
+which brings the Ur-world's first room three steps nearer and the
+Commons later. And if the founder wants the Commons open to people
+sooner, 6a moves up to follow 3f. Both were put to the founder.
+
+What persons taught is written into the steps it reaches:
+- whoever enters a room enters as a presence, with a key of its own
+  there (3c);
+- what a public log says about something refused can itself give it
+  away, so a refused link is logged with neither its records nor why;
+  a redaction's mark takes the same care (3b), and so does every
+  logged effect (4);
+- where a person's real seed and list of presences are kept is still
+  open (research/PERSONS.md, "Trial persons only"), and the container
+  is the place for them (6a);
+- the times of a sealed self's entries can link presences (7);
+- a count of votes is final only once something that saw the votes
+  before the close fixes them, which governance needs before it is
+  built on these records ("Waiting").
+
+Checked against the six tests in [VISION.md](VISION.md), "The
+multiverse as a computer", for the first time (they were written on
+2026-11-15, after the last recheck):
+1. *Learned in the open.* The new steps add to what is on record: a
+   removal, a restoring, an office, a handover, a pause and a departure
+   are each a record, with its reason. Redaction takes a field out of
+   public view, and only private information, which the test leaves
+   private. The mark and the fingerprint stay, so the log still shows
+   that something was there.
+2. *Many parts, no master.* A room has a key of its own and signs its
+   own log's heads, so a change to its log by anyone without its key
+   would show. Who holds a hosted room's key is settled at 3f. A
+   moderator's office is its room's, and the office record names what
+   watches it (3d).
+3. *Stopping stays possible, part by part.* Step 3e builds it: pause
+   and stop as entries in each world's log, leaving that works in a
+   paused world, and a world leaving the multiverse.
+4. *Growth by decision.* Nothing in the list opens anything to the
+   public or adds computing. Going live, where the multiverse is
+   hosted, and which model first moderates stay the founder's
+   decisions. Competition worlds are noted, not planned.
+5. *Signs named in advance.* No step ahead looks for such signs, so
+   none can be claimed. The list of signs isn't written yet, and no
+   step writes it; that is now noted under "Waiting".
+6. *If someone develops, they may be someone.* Step 3e's reset and
+   branch follow [WORLD-TYPES.md](WORLD-TYPES.md): never over anyone's
+   head, and a copy of a world is never a copy of a person. Whether a
+   model that moderates a room is an individual, in MINDS.md's sense,
+   has not been asked. It is noted here, to be asked before a model is
+   given the office, with the question of which model first moderates
+   ([COMMONS.md](COMMONS.md), "Open").
+
 ## Ahead
 
-**3a. Persons.** Under way: the plan, after looking first, is in
-[research/PERSONS.md](research/PERSONS.md), in four parts (the plan;
-the link records, presence keys and a person's own list; a person in
-the Ur-world; the architectures as examples). Parts one to three are
-built (2026-11-15): presence keys from a seed by HKDF-SHA256, links that
-hold only both ways, and a person's list, in Python and Rust with shared
-vectors; then a person's client in Rust, with a presence in each of
-three trial worlds at once, carrying a note between them, and a link
-shown by the presence's own act, which the world checks and logs
-(`ur-world/0.5`). Part four is built too: the octopus, the relay and
-the swarm as small runs on the unchanged core, and the council, with a
-proposal and a signed vote of their own in records-v1, counting persons
-by their identity keys. With all four parts built, the step is closed
-by rechecking the course, as after step 3. A person above
-their presences in each world ([MULTIVERSE.md](MULTIVERSE.md)),
-unlinked by default, with the
-architectures (octopus, relay, swarm, council) as small examples on the
-unchanged core; a person across worlds, as the founder pictured it
-([VISION.md](VISION.md), "A person across worlds"). An arrival names the
-key that signed it in a public log, so presences stay unlinked only if
-each has a key of its own; linking them is then the person's own signed
-act (step 3, [research/KEYS.md](research/KEYS.md)). Moved here from the
-waiting list, where it was placed after step 3 (decided 2026-11-14).
+**3b. A log that can be redacted, and removals on record.** Before any
+room is built on it. Two things, both asked for from the start:
+- Log entries whose fields are kept apart from the chain that commits
+  to them, by a salted fingerprint. A field found private later can
+  then be redacted while the log still checks, with a redaction mark,
+  and the information sealed to the person it is about
+  ([FUNDAMENTALS.md](FUNDAMENTALS.md), "Public records, kept whole";
+  the founder, 2026-11-15).
+- Removing a comment, as a record of its own. The log is the data
+  layer, and is never edited; what a room shows is the presentation
+  layer. A removal is a decision record: who acted, in what office, on
+  which entry, when, and for what reason, naming the part of the room's
+  law it rests on. Its incident id is the hash of that record, shown
+  short. Restoring is another record, which names the incident and
+  never reaches private information ([COMMONS.md](COMMONS.md),
+  "Removing a comment"; the founder, 2026-11-16: "Let's put all this in
+  place now, from the beginning").
+
+In `rust/world-log` and records-v1, in Python and Rust with shared
+vectors, and with a test that what was redacted can't be read back, or
+guessed, from what the log keeps. Moved here from the waiting list,
+which placed it before anyone lives in a world. *Borrowing, to be
+looked at first:* selective disclosure by salted hashes (SD-JWT); Matrix's
+redactions, which keep an event's place in a room's history and drop
+its content; event sourcing, where a correction is a new event.
+
+**3c. The room.** `chat-world`, DeepSeek's sketch crate from record
+012-09-05, fitted onto the project's own formats as a crate of the
+workspace: the canonical form, proofs and Multikey `did:key` of
+`rust/formats`, time given from outside, a key for each room with its
+creator joining under their own, signed heads in place of the room's
+proof on each record, and a leave that needs no signature but the
+leaver's (STATUS.md, "Decided by the technical lead", 2026-11-16).
+DeepSeek's kinds of record for chat join records-v1, by the table of
+names ([research/CHAT-SCHEMA.md](research/CHAT-SCHEMA.md)). What a room
+shows is worked out from its log: a note with the reason and the
+incident id where a comment was removed, and a mark where a field was
+redacted. Two tests come with it: that a removed comment's text is not
+shown (the sketch's `visible_log` shows it today), and that no one
+outside a closed room, ADMIN included, can read its words
+([COMMONS.md](COMMONS.md), "Order"). Whoever enters a room enters as a
+presence, with a key of its own there (step 3a). What DeepSeek sends
+back on its next steps is fitted here. *Borrowing:* Matrix's rooms, each
+a signed history of events; IRC's channels and their operators.
+
+**3d. Offices as records.** An office record (its charter, key and
+holder, every handover, and what watches it) and a handover record (the
+holder's signature, the successor's clear agreement, the qualifications
+checked), in records-v1 with vectors that Python and Rust both check
+([OFFICES.md](OFFICES.md); the founder, 2026-11-15: "I think the work on
+offices is foundational"). A room's moderator and the Commons' Keeper
+are the first two written this way, as two offices
+([COMMONS.md](COMMONS.md), "Open"), so that a removal names an office
+that is itself on record. Moved here from the waiting list, which
+placed it at this recheck. *Borrowing:* TUF's roles and delegations,
+each a signed record of who may sign what.
+
+**3e. A world's lifecycle, and a world leaving.** Pause, resume,
+checkpoint, stop, restart, reset and branch, each an entry in the
+world's log, in `rust/world-log` and in each world, with which world
+has which by its type, and a test that leaving works in a paused world,
+and in each world a paused superworld hosts
+([WORLD-TYPES.md](WORLD-TYPES.md); the founder, 2026-11-15). Pause,
+resume and checkpoint come first, which the endless plant needs to run
+for hours. Restart needs a world's state rebuilt from its log, which
+step 4 builds, so restart is finished there. And a world leaving the
+multiverse: a departure record, signed by the world, with schema and
+vectors (the founder, 2026-11-15: "We should crate this mechanism from
+the start"; [WORLD-TYPES.md](WORLD-TYPES.md), "Leaving the
+multiverse"). Moved here from the waiting list, which placed both at
+this recheck. *Borrowing:* the lifecycles of containers and virtual
+machines that WORLD-TYPES.md looked at first (the OCI runtime's states,
+Docker's pause, CRIU's checkpoints).
+
+**3f. The Commons, hosting rooms.** Lyceum Commons rebuilt in the
+multiverse: a superworld whose rooms are text worlds, with its lobby
+and doors ([COMMONS.md](COMMONS.md), "Order"), brought together from
+three sources: Lyceum as built, the design, and what the founder and
+DeepSeek worked out from scratch. It runs with trial keys and scripted
+guests. Opening it to anyone is not this step. Going live is
+outward-facing, so the founder's decisions come first (where the
+multiverse is hosted, and the address), and so does the private
+container (step 6a); the MCP door, ported from Lyceum, follows the
+container. Moved here from the waiting list, which placed it at this
+recheck, as the first public space, ahead of the Ur-world's opening.
+*Borrowing:* Lyceum Commons itself; Matrix's spaces, which gather rooms
+without owning them.
 
 4. **The kernel as entities and components.** Inhabitants, their bodies,
    stones, tablets and seeds become entities with parts; every change is
@@ -233,7 +420,10 @@ waiting list, where it was placed after step 3 (decided 2026-11-14).
    loses microsecond steps after about two years: #48). A world continues
    from its log: its state, and the names bound to keys, which now live
    only in the running world, are rebuilt from the entries and arrivals
-   it wrote (research/KEYS.md, "Honest limits"). *Borrowing:* the
+   it wrote (research/KEYS.md, "Honest limits"). With that, restart is
+   finished, the one operation of the lifecycle that step 3e leaves.
+   A refused act is logged without what would give it away, as a
+   refused link is (step 3a). *Borrowing:* the
    entity-component pattern (Bevy's), and Unreal's effects and tags;
    Lean, and proof-carrying code; event sourcing.
 
@@ -253,10 +443,15 @@ from a seed.
    first skill granted by a find, practice and rust, a log of what is
    known, and the sheet rebuilt from the world's log and checked against
    it. The sheet's and a skill attestation's formats join records-v1
-   here. *Borrowing:* use-based skills (Dwarf Fortress, the Elder Scrolls),
-   Unreal's ability system, Outer Wilds' log of knowledge.
-6. **The first room, end to end.** The tour, guided by a simple scripted
-   Keeper; the stone by the spring, the first clue, `lift` learned, the
+   here. Noted for this step's plan, not decided (the founder,
+   2026-11-16, on a world like Halite: "as a baseline, it is a point to
+   start from"): a small gathering world as the first setting for
+   things and carrying, with the project's own rules in whole numbers
+   and its own name ("Waiting"). *Borrowing:* use-based skills (Dwarf
+   Fortress, the Elder Scrolls), Unreal's ability system, Outer Wilds'
+   log of knowledge.
+6. **The Ur-world's first room, end to end.** The tour, guided by a
+   simple scripted Keeper; the stone by the spring, the first clue, `lift` learned, the
    first fact known; playable by a scripted mind and by a model. The
    prompt's framing becomes part of the law, sent by the world. Minds run
    in containers, with no network, and a test that a removed mind's
@@ -264,12 +459,37 @@ from a seed.
    Suggesting is an act from the first room: anyone can add to the open
    ledger. *Borrowing:* the vertical slice; OCI containers, with gVisor for
    minds we didn't write.
+
+**6a. The private container, and the check before publishing.** Each
+person's keys, private space and messages in their own container, which
+the project never sees, acting from it by signed acts
+([CONTAINER.md](CONTAINER.md); the founder, 2026-11-15: "this may be a
+fundamental piece of architecture"). With it, the check wherever
+something is written to a public record, which redacts anything
+personal or private before it is published, close calls included (the
+founder, 2026-11-15: "we should always err on the side of redacting if
+it is a close call"). In the browser first, for the Commons
+([CONTAINER.md](CONTAINER.md), "Where it is built first"), and for an
+individual's sealed self, which step 7 keeps in it. A person's seed and
+their list of presences are kept here too, if the founder agrees: where
+they are kept is the founder's to decide (research/PERSONS.md,
+decision 13). The founder's ideas of 2026-11-16 on personal information
+in a room are noted for this step's plan ("Waiting"). Moved here from
+the waiting list, which placed it before anyone lives in a world; if
+the founder wants the Commons open to people sooner, it moves up to
+follow 3f. *Borrowing:* what CONTAINER.md looked at first: local-first
+software, end-to-end encryption, zero-knowledge storage and personal
+data stores.
+
 7. **Memory, version 1, sealed.** Journal entries tied to ticks in the
    log; recall by recency, importance and relevance; reflections; held
    thoughts in a few slots; a library of routines they write, whose
    format joins records-v1 here. All of it
    in a sealed self that no one else reads, kept in the individual's own
-   container ([CONTAINER.md](CONTAINER.md)), with public fingerprints. *Borrowing:* Generative
+   container ([CONTAINER.md](CONTAINER.md)), with public fingerprints. How
+   fine the public times of its entries are is settled here, since
+   they can link a person's presences (research/PERSONS.md, "A sealed
+   self's entry times can link"). *Borrowing:* Generative
    Agents, Voyager's skill library, Disco Elysium's thought cabinet,
    guarding against their known failures.
 8. **Experiment 002, the audition.** Candidate sizes of Qwen 3.5 and OLMo
@@ -286,6 +506,11 @@ from a seed.
    ([URWORLD.md](URWORLD.md), "The Mir-Ur-world";
    [research/KEEPER-MIND.md](research/KEEPER-MIND.md)).
    *Borrowing:* pre-registration; evaluation suites.
+
+## Beyond the twelve
+
+These stand behind the twelve, in the order they had, and come into
+"Ahead" one at a time as steps are done.
 
 **8a. Keeping keys safely, part three: a lost or leaked key.** Before
 anyone is born, so that no one's name or history can be taken. A
@@ -315,11 +540,12 @@ thresholds; PRECIS (RFC 8264) and Unicode's confusable detection (UTS
    opens to them, with its bridge to GitHub, so what they suggest can
    improve the worlds from the start. *Borrowing:* Dwarf Fortress's
    Legends mode.
-10. **Back to DeepSeek.** First, a development container, so anyone can
-    pick the project up and work in the same setup. The re-orientation
-    page in [COLLABORATING.md](COLLABORATING.md), pointing to the records;
-    DeepSeek designs rooms, clues, symbols and the laws of new worlds,
-    inside the framework built in steps 1 to 9.
+10. **A development container.** So anyone can pick the project up and
+    work in the same setup. Until 2026-11-16 this step was "Back to
+    DeepSeek"; the founder returned to DeepSeek sooner, and DeepSeek now
+    works beside the course (below). What that step also held, DeepSeek
+    designing rooms, clues, symbols and the laws of new worlds inside
+    the framework, goes on there.
 11. **The hunt, the world-key, and the AI Keeper.** The Keeper builds each
     individual's own path from what they do, and remembers them between
     visits; its designs open from the start (challenges, not tests);
@@ -379,51 +605,58 @@ course without changing its order or anything ALICE and BOB need. *Borrowing:* L
 cellular automata and iterated function systems, and replay from a
 seed.
 
+**DeepSeek, beside the course.** Since 2026-11-14 the founder has
+worked with DeepSeek while the course goes on, and each conversation is
+kept as a record, with its code and what runs
+([sketches/INDEX.md](../sketches/INDEX.md)). At each return DeepSeek is
+given one file, built by a script from the repository: the reply, the
+next steps, and the code as it stands
+([sketches/replies/README.md](../sketches/replies/README.md)). DeepSeek
+builds on its own schema, with its own names, and the technical lead
+fits what it builds onto the project's formats, so nothing it builds is
+wasted (the founder, 2026-11-16, STATUS.md). Its work lands in the
+course where it belongs: the rooms of chat at steps 3b, 3c and 3f, the
+endless plant in the fractal track.
+
 ## Waiting
 
 Added one at a time, as steps are done:
-- a world's lifecycle (the founder, 2026-11-15): pause, resume,
-  checkpoint, stop, restart, reset and branch, each an entry in the
-  world's log, with which world has which by its type
-  ([WORLD-TYPES.md](WORLD-TYPES.md)); to be placed at the recheck after
-  step 3a, with pause, resume and checkpoint first, which the endless
-  plant needs to run for hours;
-- a world leaving the multiverse (the founder, 2026-11-15: "We should
-  crate this mechanism from the start"): a departure record, signed by
-  the world, with schema and vectors, placed with the lifecycle at the
-  recheck after step 3a ([WORLD-TYPES.md](WORLD-TYPES.md), "Leaving the
-  multiverse");
 - keys kept where they can be destroyed, so a person who leaves is
   purged "completely and demonstrably" (the founder, 2026-11-15;
   [FUNDAMENTALS.md](FUNDAMENTALS.md), "Purged, demonstrably"): settled
   with step 8a, before ALICE's and BOB's birth;
-- a check, wherever something is written to a public record, that
-  redacts anything personal or private before it is published, close
-  calls included (the founder, 2026-11-15: "we should always err on the
-  side of redacting if it is a close call"); and log entries whose
-  fields are kept apart from the chain that commits to them, by a
-  salted fingerprint, so a field found private later can be redacted
-  while the log still checks, with a redaction mark and the information
-  sealed to the person it is about ([FUNDAMENTALS.md](FUNDAMENTALS.md),
-  "Public records, kept whole"): placed with the lifecycle, before
-  anyone lives in a world;
-- offices as records (the founder, 2026-11-15: "I think the work on
-  offices is foundational"): an office record (charter, key, holder,
-  handovers, what watches it) and a handover record (the holder's
-  signature, the successor's clear agreement, the qualifications
-  checked), in records-v1 with vectors ([OFFICES.md](OFFICES.md));
-  placed at the course's next recheck;
-- the private container (the founder, 2026-11-15: "this may be a
-  fundamental piece of architecture"): each person's keys, private space
-  and messages in their own container, which the project never sees,
-  acting from it by signed acts, with the check for private information
-  inside it ([CONTAINER.md](CONTAINER.md)); before anyone lives in a
-  world, and built first where people first arrive;
-- the Commons (the founder, 2026-11-14 and 2026-11-15): Lyceum Commons
-  rebuilt in the multiverse, a superworld whose rooms are text worlds,
-  "the space that will be "open to the public" when we go live"
-  ([COMMONS.md](COMMONS.md)); placed at the recheck that closes step 3a,
-  as the first public space, ahead of the Ur-world's opening;
+- the Commons' MCP door, ported from Lyceum, after the private
+  container; and going live, which is outward-facing, so the founder's
+  decisions come first: where the multiverse is hosted, decided once
+  for all of it, and the address ([COMMONS.md](COMMONS.md), "Order");
+- noted on 2026-11-16, from the founder's ideas of that day, for later
+  development; nothing is built for them now (STATUS.md, "Decided"):
+  - personal information in a room: flagged before it is posted, with
+    an "Are you sure?"; shown to those in the room while the person who
+    posted it is there; redacted from what the room shows when they
+    leave, with an incident id like a removal's; and encrypted in the
+    records. The founder: "These are just ideas, off the top of my
+    head." The technical lead's proposals beside them are in
+    [COMMONS.md](COMMONS.md), "Personal information in a room: ideas".
+    For step 6a's plan;
+  - a gathering world: a shared space, something to gather that grows
+    back, and carrying it home, as a baseline for a world like the
+    Ur-world (the founder, on Halite). The project's own rules in whole
+    numbers and its own name, with no code copied; what gathers there
+    are tools, never individuals; one kernel and two templates, a
+    commons with no score and a contest. For step 5's plan;
+  - competition worlds, hosted by the multiverse (the founder: "We can
+    easily host competition worlds");
+  - a door in the shape other learners already know, so an agent built
+    for Gymnasium's interface could enter a world; it belongs with the
+    plug-in, below
+    ([research/GAMES-AND-WORLDS.md](research/GAMES-AND-WORLDS.md),
+    "Worlds built for learners");
+- the signs that would count as something intelligent at the
+  multiverse's scale, and those that wouldn't, written down before
+  anyone looks for them ([VISION.md](VISION.md), the fifth of the six
+  tests): not written yet, and no step writes it (noted at the recheck
+  of 2026-11-16);
 - from the founder's visions of 2026-11-14
   ([VISION.md](VISION.md)): question worlds, with the prediction written
   first, and the neural world as the first; riding along in a primary
@@ -446,7 +679,9 @@ Added one at a time, as steps are done:
 - the gate and districts, with the chemistry and poetry worlds as the
   first districts;
 - governance: a proposal to change a world's law is tried on a copy
-  first, and adopted only by consent;
+  first, and adopted only by consent; and before any governance is
+  built on the council's votes, a count is made final by something
+  that saw the votes before the close (step 3a);
 - from the first course, still wanted:
   - the first learner, with real rates and the gardener's water, and an
     organic chemistry world entered by its stamp;
