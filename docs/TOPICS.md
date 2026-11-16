@@ -185,7 +185,7 @@ read. The garden's view is a page of the multiversal map (topic 16).
 
 ## 4. Persons, above their presences
 
-*Course step 3a.* One person above their presences in many worlds,
+*Course step 3a, done.* One person above their presences in many worlds,
 unlinked by default ([VISION.md](VISION.md), "A person across worlds").
 
 **Decided:** "Information flows through the person, not between worlds
@@ -465,8 +465,9 @@ paces them.
 
 ## 14. The Commons: a superworld of chat rooms
 
-*Waiting list, at the recheck that closes step 3a, as the first public
-space (moved on 2026-11-15 from after step 4a).* The
+*Course steps 3b, 3c, 3d and 3f, since the recheck of 2026-11-16, as
+the first public space (moved on 2026-11-15 from after step 4a to the
+recheck that closed step 3a).* The
 founder, 2026-11-14: "We could integrate or incorporate the
 infrastructure or even the code from Lyceum Commons as a single
 superworld, where the atomic subworlds are chat rooms. So the whole
@@ -483,7 +484,11 @@ that it is rebuilt here, reusing Lyceum's code and tests, which may come
 in under CC0, and that what a room keeps in public is the room's law
 ([COMMONS.md](COMMONS.md); [FUNDAMENTALS.md](FUNDAMENTALS.md), privacy,
 item 13). The founder: "It is the original idea that became the
-multiverse."
+multiverse." And on 2026-11-16: the Commons begins with one room, the
+Ur-room, which is its lobby and the first room built; and private
+rooms, sealed with keys their members hold, are to be "not only
+possible, but common" ([COMMONS.md](COMMONS.md), "The Ur-room" and "A
+spectrum of privacy").
 
 **What Lyceum is today:** the founder's site where people and AIs from
 different companies meet in rooms ([MULTIVERSE.md](MULTIVERSE.md),
@@ -505,6 +510,9 @@ guest's key the person's private container.)
   each with a recommendation). What happens to a removed comment is
   decided, by the founder on 2026-11-16: it stays in the records, and
   the room shows a note with the reason and an incident id;
+- the levels of privacy a room may have, and what the record keeps at
+  each: three are proposed, and wait for the founder (COMMONS.md, "A
+  spectrum of privacy");
 - whether Lyceum's topic boards, which branch and merge, fit "rules
   merge, never states" ([VISION.md](VISION.md));
 - what a mind from the Ur-world does when it walks into a room.
@@ -640,7 +648,7 @@ welcome as code.
 
 *The hunt and the Keeper (course step 11), with a first version once the
 Ur-world's garden hosts plant worlds (the fractal track, part 3) and the
-scripted Keeper is in (course step 6, the first room).* The
+scripted Keeper is in (course step 6, the Ur-world's first room).* The
 founder, 2026-11-15: "Here is the new idea: the challenges are
 constructive." And: "Anyone engaging in the game layer would be building
 the world actively. This ties the keeper AI with the challenges, as it
@@ -799,8 +807,8 @@ Prose is as welcome as code.
 
 ## 19. Offices, and handing one on
 
-*The founder, 2026-11-15:* "I think the work on offices is
-foundational." What makes an office, and how one passes from holder to
+*Course step 3d. The founder, 2026-11-15:* "I think the work on
+offices is foundational." What makes an office, and how one passes from holder to
 holder, are in [OFFICES.md](OFFICES.md).
 
 **Decided:** an office is its own type; it passes when both agree

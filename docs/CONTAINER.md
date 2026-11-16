@@ -172,8 +172,10 @@ close that gap later ([MINDS.md](MINDS.md), "The honest limit").
 Where people first arrive: the Commons, in the browser, if the founder's
 plan for it goes ahead. A guest key held in the browser is already how
 Lyceum Commons knew its guests, and it becomes the person's key. The
-course places the container before anyone lives in a world
-([COURSE.md](COURSE.md), "Waiting").
+course places the container before anyone lives in a world, at step
+6a ([COURSE.md](COURSE.md); placed at the recheck of 2026-11-16). If
+the founder wants the Commons open to people sooner, it moves up to
+follow the Commons hosting rooms.
 
 ## Honest limits
 

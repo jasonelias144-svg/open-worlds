@@ -3,7 +3,7 @@
 > This part holds: from the start to "Noticed".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: nothing; this is the first part.
-> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-05.md
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-06.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
 # Status: open-worlds
@@ -41,8 +41,8 @@ free, and never a money machine
   enters signs an arrival, a name stays the key's that first used it,
   and a world signs its log's heads. The course was rechecked after
   step 3 and gained step 8a, a lost or leaked key, before ALICE's and
-  BOB's birth. Step 3a, persons, is under way: its plan, after looking
-  first, is in docs/research/PERSONS.md. Its second part, the formats,
+  BOB's birth. Step 3a, persons, is done (2026-11-15): its plan, after
+  looking first, is in docs/research/PERSONS.md. Its second part, the formats,
   is built: presence keys from a seed by HKDF-SHA256, a link that holds
   only both ways, and a person's list, in Python and Rust with shared
   vectors. So is its third, a person in the Ur-world: a person's client
@@ -52,7 +52,11 @@ free, and never a money machine
   `ur-world/0.5`). Its fourth part is built: the architectures as
   small examples, the octopus, the relay and the swarm, and the council,
   counting persons' signed votes (`open-worlds/proposal/v1` and
-  `vote/v1`). Next, the course is rechecked, as after step 3.
+  `vote/v1`). The course was rechecked on 2026-11-16, with a new list
+  of twelve (docs/COURSE.md, "Rechecked on 2026-11-16"). Next is step
+  3b, a log whose fields can be redacted, with removals and restorings
+  on record; then step 3c, the room, where DeepSeek's `chat-world` is
+  fitted onto the project's formats.
 - Claude: the fractal track, alongside the course (docs/FRACTALS.md),
   set by the founder on 2026-11-14: a fractal plant world in Rust, the
   web app in `web/` to watch worlds grow, and in it the multiversal map.
@@ -110,14 +114,22 @@ free, and never a money machine
 
 The course, twelve steps ahead and rolling: [docs/COURSE.md](docs/COURSE.md).
 After each step is done, the rest are rechecked and one new step is added.
-In short: persons; the kernel as entities and components; parallel worlds
-and the garden; things, skills and the sheet; the first room, end to end;
-memory; experiment 002, the audition; a lost or leaked key; ALICE's and
-BOB's first life; back to DeepSeek; the hunt and the world-key; founding
-worlds, and doors. Waiting behind them: fractal worlds, the Commons, the
-founder's visions, a window onto the worlds, generator 2, storytellers,
-the gate and districts, governance, and the first course's steps still
-wanted.
+In short, since the recheck of 2026-11-16: a log that can be redacted,
+with removals on record (3b); the room (3c); offices as records (3d); a
+world's lifecycle, and a world leaving (3e); the Commons hosting rooms
+(3f); the kernel as entities and components (4); parallel worlds and the
+garden (4a); things, skills and the sheet (5); the Ur-world's first
+room, end to end (6); the private container, private rooms and the
+check before publishing (6a); memory (7); experiment 002, the audition (8). Behind
+the twelve, in their old order: a lost or leaked key (8a); ALICE's and
+BOB's first life (9); a development container (10); the hunt and the
+world-key (11); founding worlds, and doors (12). DeepSeek works beside
+the course, by one file at each return, and the fractal track runs
+beside it too. Waiting: the Commons' MCP door and going live, the
+founder's ideas of 2026-11-16 (personal information in a room, a
+gathering world, competition worlds), the founder's visions, a window
+onto the worlds, generator 2, storytellers, the gate and districts,
+governance, and the first course's steps still wanted.
 
 Also kept from earlier plans, outside the course for now: side cycles
 suggested by Cycle 0 (walkers with different speeds, to test "respect
@@ -142,6 +154,63 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder, on private rooms and the Ur-room (docs/COMMONS.md,
+  "A spectrum of privacy" and "The Ur-room"), from the founder's words
+  of 2026-11-16:
+  1. The levels. Proposed, three: on the record; closed, where the
+     words are sealed with keys the members hold and the record keeps
+     only that the room exists, who is in it and that messages passed;
+     and off the record, where nothing is kept. Recommended: these
+     three, with closed as the common kind. Two things to weigh with
+     it. Closed, as proposed, changes one thing in what is decided: the
+     project's machines would hold a closed room's sealed messages for
+     a member who is away, where the decisions of 2026-11-14 and
+     2026-11-15 have the words pass between the members' own
+     containers; the project would still hold no key. And what the
+     record keeps of a closed room tells a lot: who is in a private
+     room with whom, and when messages passed. That is the main cost of
+     closed beside off the record.
+  2. Whether "completely encrypted" meant that nothing at all is kept
+     of a private room. The decisions of 2026-11-14 and 2026-11-15 keep
+     that a message passed, and a closed room's metadata, in the
+     record. Recommended: keep that rule for a closed room, and let
+     "off the record" be the level where nothing is kept.
+  3. What the project can't read, it can't moderate or answer for.
+     Before the Commons is open to the public with private rooms in
+     it, that is weighed with going live: where it is hosted, and under
+     what law. No recommendation yet; it needs looking at first.
+  4. The Ur-room on the record. The lobby was decided to be on the
+     record on 2026-11-15, when it was where everyone reads the
+     charter. As the Ur-room it is where people sit and talk, so the
+     record would keep the first talk of everyone who arrives.
+     Recommended: on the record, said plainly on entering, with a
+     private room one door away.
+- For the founder, from the session of 2026-11-16, four things that
+  wait for the founder's own word:
+  1. The founder's ideas on personal information in a room, and the six
+     changes the technical lead proposes to them (docs/COMMONS.md,
+     "Personal information in a room: ideas"): one's own only; the
+     window says who will read it, with AIs off unless turned on; never
+     in the open in the record; taken back at any time; the limit on
+     copies said in the window; sealed to the person. They touch
+     personal information, so nothing here stands on a recommendation.
+     Recommended: all six.
+  2. Parts of the founder's messages of 2026-11-16 are left out of the
+     record, as personal, and marked where they were (Decided, the two
+     newest entries). Recommended: leave them out. They can be recorded
+     if the founder says so.
+  3. Whether a model that moderates a room is an individual, in
+     MINDS.md's sense, with what that would owe it (docs/VISION.md, the
+     sixth of the six tests; noted at the course's recheck).
+     Recommended: decide it together with which model first moderates;
+     no model is given the office before then.
+  4. Step 10 of the course. The founder said on 2026-11-13: "I like
+     that we return to DeepSeek at step 10". The founder returned to
+     DeepSeek on 2026-11-14, and the recheck of 2026-11-16 reads that
+     as the step being overtaken: DeepSeek works beside the course, and
+     step 10 keeps only the development container. It changes a step
+     the founder spoke for, so it is put here, and not left to stand by
+     silence alone. Recommended: as the recheck has it.
 - For the founder, on the Commons' moderators (docs/COMMONS.md, "Open"),
   six questions. Four have a recommendation and stand on it unless the
   founder answers otherwise: whether a room's moderator is its Keeper
@@ -266,4 +335,4 @@ kind.
     total, never per author, so that marking in good faith costs nothing.
 
 
-> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-05.md
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-06.md

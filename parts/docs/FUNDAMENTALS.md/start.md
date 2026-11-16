@@ -294,7 +294,8 @@ one of them updates this page.
 13. **What a room keeps in public is its law, told on entering.**
     Decided 2026-11-15: the founder's "Agreed" answered the technical
     lead's recommendation, which STATUS.md quotes as it was put. In the
-    Commons, the lobby and the Open rooms are on the record: kept
+    Commons, the lobby (since 2026-11-16 the Ur-room, the first room
+    built) and the Open rooms are on the record: kept
     whole, with anything private in them redacted ("Public records, kept
     whole", below). A closed room keeps only metadata in public, and its
     words pass between its members' private containers, sealed, so no
@@ -320,6 +321,17 @@ one of them updates this page.
     on the ground of item 3, while the keys an AI merely takes part
     with stay unlinked by default, as in item 5
     ([COMMONS.md](COMMONS.md), "Rooms with moderators"). Not yet built.
+15. **Private rooms, and common.** The founder (2026-11-16): "Private
+    messaging and private rooms should be possible", "encrypted by keys
+    held by the users", and "This should be not only possible, but
+    common." It confirms items 4 and 13 and asks for more of them:
+    private rooms are not the exception, and there may be levels
+    between a room on the record and a room no one outside can read
+    ("There is a spectrum of privacy to consider"). The levels are not
+    decided. The technical lead proposes three, with what the record
+    keeps at each, and they wait for the founder
+    ([COMMONS.md](COMMONS.md), "A spectrum of privacy"). Not yet
+    built.
 
 ## Transparency, beside privacy
 

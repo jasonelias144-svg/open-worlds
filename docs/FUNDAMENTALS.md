@@ -286,7 +286,8 @@ one of them updates this page.
 13. **What a room keeps in public is its law, told on entering.**
     Decided 2026-11-15: the founder's "Agreed" answered the technical
     lead's recommendation, which STATUS.md quotes as it was put. In the
-    Commons, the lobby and the Open rooms are on the record: kept
+    Commons, the lobby (since 2026-11-16 the Ur-room, the first room
+    built) and the Open rooms are on the record: kept
     whole, with anything private in them redacted ("Public records, kept
     whole", below). A closed room keeps only metadata in public, and its
     words pass between its members' private containers, sealed, so no
@@ -312,6 +313,17 @@ one of them updates this page.
     on the ground of item 3, while the keys an AI merely takes part
     with stay unlinked by default, as in item 5
     ([COMMONS.md](COMMONS.md), "Rooms with moderators"). Not yet built.
+15. **Private rooms, and common.** The founder (2026-11-16): "Private
+    messaging and private rooms should be possible", "encrypted by keys
+    held by the users", and "This should be not only possible, but
+    common." It confirms items 4 and 13 and asks for more of them:
+    private rooms are not the exception, and there may be levels
+    between a room on the record and a room no one outside can read
+    ("There is a spectrum of privacy to consider"). The levels are not
+    decided. The technical lead proposes three, with what the record
+    keeps at each, and they wait for the founder
+    ([COMMONS.md](COMMONS.md), "A spectrum of privacy"). Not yet
+    built.
 
 ## Transparency, beside privacy
 
@@ -383,11 +395,11 @@ unless the founder answers otherwise:
 - **Before publishing, first.** Wherever something is written to a
   public record, a check redacts anything personal or private before it
   is published, and redacts close calls (to be built, before anyone
-  lives in a world: [COURSE.md](COURSE.md), "Waiting"). That is the
+  lives in a world: [COURSE.md](COURSE.md), step 6a). That is the
   redaction that works best: copies others make of what is published
   can't be recalled afterwards.
 - **Visible, and the log still checks.** To be built, before anyone
-  lives in a world: each field of an entry enters the chain of hashes
+  lives in a world ([COURSE.md](COURSE.md), step 3b): each field of an entry enters the chain of hashes
   only as a salted fingerprint of its content, with a fresh random salt
   of at least 128 bits for each field, from the moment it is written,
   drawn from the operating system's random source, never from a world's
@@ -423,6 +435,14 @@ unless the founder answers otherwise:
   It stays redacted until any appeal is decided: once made public again,
   it can't be recalled. How long an appeal may take is set with ADMIN's
   rules for appeals; until it is set, it stays redacted.
+- **Shared on purpose, in a room.** Ideas of the founder's, of
+  2026-11-16, not decided: a person may share their personal
+  information in a room after being asked "Are you sure?"; those in the
+  room can read it while the person is there; when the person leaves,
+  the room shows it as redacted, with an incident id; and the record
+  holds it encrypted. The founder's words, and six changes the
+  technical lead proposes, which wait for the founder, are in
+  [COMMONS.md](COMMONS.md), "Personal information in a room: ideas".
 
 ## Purged, demonstrably
 

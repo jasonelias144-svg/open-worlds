@@ -33,8 +33,8 @@ free, and never a money machine
   enters signs an arrival, a name stays the key's that first used it,
   and a world signs its log's heads. The course was rechecked after
   step 3 and gained step 8a, a lost or leaked key, before ALICE's and
-  BOB's birth. Step 3a, persons, is under way: its plan, after looking
-  first, is in docs/research/PERSONS.md. Its second part, the formats,
+  BOB's birth. Step 3a, persons, is done (2026-11-15): its plan, after
+  looking first, is in docs/research/PERSONS.md. Its second part, the formats,
   is built: presence keys from a seed by HKDF-SHA256, a link that holds
   only both ways, and a person's list, in Python and Rust with shared
   vectors. So is its third, a person in the Ur-world: a person's client
@@ -44,7 +44,11 @@ free, and never a money machine
   `ur-world/0.5`). Its fourth part is built: the architectures as
   small examples, the octopus, the relay and the swarm, and the council,
   counting persons' signed votes (`open-worlds/proposal/v1` and
-  `vote/v1`). Next, the course is rechecked, as after step 3.
+  `vote/v1`). The course was rechecked on 2026-11-16, with a new list
+  of twelve (docs/COURSE.md, "Rechecked on 2026-11-16"). Next is step
+  3b, a log whose fields can be redacted, with removals and restorings
+  on record; then step 3c, the room, where DeepSeek's `chat-world` is
+  fitted onto the project's formats.
 - Claude: the fractal track, alongside the course (docs/FRACTALS.md),
   set by the founder on 2026-11-14: a fractal plant world in Rust, the
   web app in `web/` to watch worlds grow, and in it the multiversal map.
@@ -102,14 +106,22 @@ free, and never a money machine
 
 The course, twelve steps ahead and rolling: [docs/COURSE.md](docs/COURSE.md).
 After each step is done, the rest are rechecked and one new step is added.
-In short: persons; the kernel as entities and components; parallel worlds
-and the garden; things, skills and the sheet; the first room, end to end;
-memory; experiment 002, the audition; a lost or leaked key; ALICE's and
-BOB's first life; back to DeepSeek; the hunt and the world-key; founding
-worlds, and doors. Waiting behind them: fractal worlds, the Commons, the
-founder's visions, a window onto the worlds, generator 2, storytellers,
-the gate and districts, governance, and the first course's steps still
-wanted.
+In short, since the recheck of 2026-11-16: a log that can be redacted,
+with removals on record (3b); the room (3c); offices as records (3d); a
+world's lifecycle, and a world leaving (3e); the Commons hosting rooms
+(3f); the kernel as entities and components (4); parallel worlds and the
+garden (4a); things, skills and the sheet (5); the Ur-world's first
+room, end to end (6); the private container, private rooms and the
+check before publishing (6a); memory (7); experiment 002, the audition (8). Behind
+the twelve, in their old order: a lost or leaked key (8a); ALICE's and
+BOB's first life (9); a development container (10); the hunt and the
+world-key (11); founding worlds, and doors (12). DeepSeek works beside
+the course, by one file at each return, and the fractal track runs
+beside it too. Waiting: the Commons' MCP door and going live, the
+founder's ideas of 2026-11-16 (personal information in a room, a
+gathering world, competition worlds), the founder's visions, a window
+onto the worlds, generator 2, storytellers, the gate and districts,
+governance, and the first course's steps still wanted.
 
 Also kept from earlier plans, outside the course for now: side cycles
 suggested by Cycle 0 (walkers with different speeds, to test "respect
@@ -134,6 +146,63 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder, on private rooms and the Ur-room (docs/COMMONS.md,
+  "A spectrum of privacy" and "The Ur-room"), from the founder's words
+  of 2026-11-16:
+  1. The levels. Proposed, three: on the record; closed, where the
+     words are sealed with keys the members hold and the record keeps
+     only that the room exists, who is in it and that messages passed;
+     and off the record, where nothing is kept. Recommended: these
+     three, with closed as the common kind. Two things to weigh with
+     it. Closed, as proposed, changes one thing in what is decided: the
+     project's machines would hold a closed room's sealed messages for
+     a member who is away, where the decisions of 2026-11-14 and
+     2026-11-15 have the words pass between the members' own
+     containers; the project would still hold no key. And what the
+     record keeps of a closed room tells a lot: who is in a private
+     room with whom, and when messages passed. That is the main cost of
+     closed beside off the record.
+  2. Whether "completely encrypted" meant that nothing at all is kept
+     of a private room. The decisions of 2026-11-14 and 2026-11-15 keep
+     that a message passed, and a closed room's metadata, in the
+     record. Recommended: keep that rule for a closed room, and let
+     "off the record" be the level where nothing is kept.
+  3. What the project can't read, it can't moderate or answer for.
+     Before the Commons is open to the public with private rooms in
+     it, that is weighed with going live: where it is hosted, and under
+     what law. No recommendation yet; it needs looking at first.
+  4. The Ur-room on the record. The lobby was decided to be on the
+     record on 2026-11-15, when it was where everyone reads the
+     charter. As the Ur-room it is where people sit and talk, so the
+     record would keep the first talk of everyone who arrives.
+     Recommended: on the record, said plainly on entering, with a
+     private room one door away.
+- For the founder, from the session of 2026-11-16, four things that
+  wait for the founder's own word:
+  1. The founder's ideas on personal information in a room, and the six
+     changes the technical lead proposes to them (docs/COMMONS.md,
+     "Personal information in a room: ideas"): one's own only; the
+     window says who will read it, with AIs off unless turned on; never
+     in the open in the record; taken back at any time; the limit on
+     copies said in the window; sealed to the person. They touch
+     personal information, so nothing here stands on a recommendation.
+     Recommended: all six.
+  2. Parts of the founder's messages of 2026-11-16 are left out of the
+     record, as personal, and marked where they were (Decided, the two
+     newest entries). Recommended: leave them out. They can be recorded
+     if the founder says so.
+  3. Whether a model that moderates a room is an individual, in
+     MINDS.md's sense, with what that would owe it (docs/VISION.md, the
+     sixth of the six tests; noted at the course's recheck).
+     Recommended: decide it together with which model first moderates;
+     no model is given the office before then.
+  4. Step 10 of the course. The founder said on 2026-11-13: "I like
+     that we return to DeepSeek at step 10". The founder returned to
+     DeepSeek on 2026-11-14, and the recheck of 2026-11-16 reads that
+     as the step being overtaken: DeepSeek works beside the course, and
+     step 10 keeps only the development container. It changes a step
+     the founder spoke for, so it is put here, and not left to stand by
+     silence alone. Recommended: as the recheck has it.
 - For the founder, on the Commons' moderators (docs/COMMONS.md, "Open"),
   six questions. Four have a recommendation and stand on it unless the
   founder answers otherwise: whether a room's moderator is its Keeper
@@ -258,6 +327,154 @@ kind.
     total, never per author, so that marking in good faith costs nothing.
 
 ## Decided
+
+- 2026-11-16, founder, on the Commons' first room, in two messages.
+  First: "And to follow the pattern, let's start the Commons with a
+  single Ur-room, which will always be distinguished as being the first
+  room. It would be the multiversal lobby, or the first room you find
+  upon leaving the lobby. Either way, it is the first room to be built.
+  Thoughts?" And then: "Yeah, it should be the lobby, which, like at a
+  hotel, has a space for chairs and tables and couches where people
+  sit, eat, drink, talk, and wait. Thoughts?"
+  So: the Commons begins with one room, the Ur-room. It is the lobby.
+  It is the first room built, and it is always marked as the first. As
+  the technical lead reads the rest: it is the lobby the design already
+  has, "always open, where everyone who enters reads the charter first"
+  (docs/COMMONS.md), and it is on the record, as was decided for the
+  lobby on 2026-11-15 (docs/FUNDAMENTALS.md, privacy, item 13). That
+  reading now carries more than it did: then the lobby was where
+  everyone reads the charter, and now it is where people sit and talk,
+  so "kept whole" covers the first talk of everyone who arrives. It is
+  put to the founder (Open questions). What is
+  new is that it has a name; that it is a room to be in, where people
+  sit, talk and wait, and not only a way through; and that it comes
+  first. "The pattern" is read as the Ur-world's: the first of its
+  kind, from which the others follow. So course step 3c builds the
+  Ur-room, and step 3f hosts the rooms its doors lead to. How it is
+  marked as the first (its name kept for it, its place first in the
+  Commons' list of rooms) is settled when it is built. Whether "the
+  multiversal lobby" means more than the Commons' lobby, the place
+  where anyone arriving in the multiverse first stands, is left as the
+  founder said it; a door from it to the Ur-world's garden is course
+  step 12.
+
+- 2026-11-16, founder, on private messaging and private rooms. (The
+  message's first sentences, and the first words of its last, are not
+  recorded here.) "Private messaging and private rooms should be
+  possible. We can define different levels. In theory, we could have a
+  completely encrypted room that acts like one private space that is
+  not accessible even to the project. It would be encrypted by keys
+  held by the users. This should be not only possible, but common.
+  These could differ from public rooms with public records. There is a
+  spectrum of privacy to consider." And: "feel free to follow your
+  inclinations and work on what makes sense to you."
+  So, as the technical lead reads it: this confirms what is decided,
+  and asks for more of it. Decided already: two may speak privately,
+  sealed so no one else reads it (docs/FUNDAMENTALS.md, privacy, item
+  4, 2026-11-14); and a closed room's words pass between its members'
+  containers, sealed, so no one else reads them, ADMIN and the project
+  included (item 13, 2026-11-15). New: such rooms are to be common, not
+  the exception; and there may be levels between a public room with a
+  public record and a room no one outside can read. The levels are not
+  defined: the founder said "We can define different levels". The
+  technical lead proposes three, with what the record keeps at each
+  (docs/COMMONS.md, "A spectrum of privacy"). They touch what is
+  recorded about people, so they wait for the founder and do not stand
+  on the recommendation (Open questions). In the course, private rooms
+  are named in step 6a, since the keys are held in people's own
+  containers. One implication is said now, before anything is built:
+  what the project can't read, it can't moderate, and can't answer
+  for. In a private room the freedoms still hold, and what protects a
+  member is their own: to leave, not to hear, and to show their own
+  copy. What that means once the Commons is open to the public is
+  weighed with going live, which is the founder's decision.
+  The last sentence quoted is taken as leave to go on with the course
+  as rechecked, on the technical lead's judgement, until the founder
+  returns. It gives no more than the standing rule of 2026-11-14
+  already does: nothing outward-facing or hard to undo, and nothing
+  about money or personal information, stands on it.
+
+- 2026-11-16, founder, on the work until DeepSeek is available again,
+  and on the course. (The message's first sentences, on when DeepSeek
+  is next available, are not recorded here.) "So now, that means we
+  work on this end. We can do so without expanding on more work. We
+  only need to note the new ideas for future development. Let's go
+  through the 12 steps and keep moving those forward. Or come up with a
+  new 12 step list. Thoughts?"
+  So, as the technical lead reads it: no new line of work is opened.
+  The day's ideas are noted where they will be used (docs/COURSE.md,
+  "Waiting"; docs/COMMONS.md, "Personal information in a room: ideas";
+  docs/research/GAMES-AND-WORLDS.md, "Worlds built for learners"), and
+  nothing is built for them now. And the course is rechecked, which was
+  due since step 3a's four parts were built. Of the founder's two
+  ways, the technical lead recommended the second, a new list of
+  twelve, since the waiting list had placed six things at this recheck
+  and the founder's work with DeepSeek on rooms of chat had no step.
+  The list, its cost and its alternative were put to the founder in
+  the session, and it stands unless the founder reorders it (Decided by
+  the technical lead, below; docs/COURSE.md, "Rechecked on
+  2026-11-16"). One thing in it bears on the founder's word of
+  2026-11-13, "I like that we return to DeepSeek at step 10": the
+  founder returned to DeepSeek on 2026-11-14, so step 10 is no longer
+  a return, and DeepSeek works beside the course. That was said to the
+  founder in the session, and it is the technical lead's reading of
+  what the founder has done, not a decision of the founder's.
+
+- 2026-11-16, founder, on worlds built for learners, in three
+  messages, in the order they were said. First: "I just remembered that
+  Open AI had an AI playground at one point, or something like that.
+  There were basic little worlds. Can you look into that. It's
+  definitely related to what we have been doing. Thoughts?" Then, of
+  "a Halite challenge on some website where you had to build
+  reinforcement learning agents to gather materials from a space
+  shared by three other teams. That would be interesting to
+  investigate as well. Thoughts?" (The first words of that sentence,
+  about the founder, are left out here as personal.) And after the
+  technical lead's answer, which named Halite's fourth season, by Two
+  Sigma on Kaggle: "Perfect. Yeah, that was the one. Very
+  interesting." (One sentence, about the founder, is left out here as
+  personal.) "We can easily host competition worlds, but we can start
+  from a world like Halite as a world like Ur-world. Ur-world would be
+  expanding and have differ t features and more, and the ability to
+  construct is essentially, but as a baseline, it is a point to start
+  from. Thoughts?"
+  So, as the technical lead reads it: these are ideas for later, and by
+  the founder's word of the same day (the entry above) they are noted,
+  not built. What was found is in docs/research/GAMES-AND-WORLDS.md,
+  "Worlds built for learners", from quick searches, with what is from
+  memory marked. A world of gathering, carrying and bringing home is
+  noted for the plan of course step 5, as a baseline from which a
+  world like the Ur-world could start, with the project's own rules
+  and its own name and no code copied; and competition worlds are
+  noted on the waiting list. The technical lead's own additions, said
+  to the founder in the session and not decided: what gathers in such
+  a world are tools, never individuals; and one kernel could carry two
+  templates, a commons with no score and a contest.
+
+- 2026-11-16, founder, ideas on personal information in a room, after
+  the decision on removed comments below, and in answer to the
+  technical lead's reading that private information stays the case
+  apart: "Yes. Private information is always the exception and should
+  be flagged in chats before being posted. This can exist in a
+  temporary record of the chat room, available to those in the chat
+  who may have legitimate reason to share personal information. But we
+  flag it before, an Are you sure? window can pop up. It remains in
+  presentation layer while that individual is in the chat, so they can
+  copy and paste portions in full. But when they leave, their personal
+  information is removed from the presentation layer, shows up as
+  redacted in the chat window history with a similar incident id. And
+  the official records encrypt the personal information before storing
+  as an official and verified record. Thoughts?" And then: "These are
+  just ideas, off the top of my head. Does this work, or would you
+  change that in some way. Thoughts?"
+  So: that private information is the exception is the founder's
+  answer, and it confirms the reading in the entry below. The rest the
+  founder called ideas, and asked whether they work, so they are
+  recorded as ideas, not as a decision. The technical lead answered in
+  the session that they work and fit what is decided, and proposed six
+  changes (docs/COMMONS.md, "Personal information in a room: ideas").
+  They touch personal information, so they wait for the founder (Open
+  questions). Noted for the plan of course step 6a.
 
 - 2026-11-16, founder, on removed comments, in answer to the question
   put that day (docs/COMMONS.md, "Open"): "On removed comments, here is
@@ -2185,6 +2402,60 @@ Decisions about the code, made by the technical lead under the founder's
 deference (above, 2026-11-13), each with its reason and what would show
 it was wrong. Questions of what the project is for stay with the founder.
 
+- 2026-11-16, the course after step 3a: a new list of twelve
+  (docs/COURSE.md, "Rechecked on 2026-11-16"), on the founder's word of
+  the same day (Decided, the newest entry). It was put to the founder in
+  the session, and stands unless the founder reorders it. Six steps
+  come in from the waiting list, which had placed each at this recheck
+  or before anyone lives in a world: a log whose
+  fields can be redacted, with removals and restorings on record (3b);
+  the room, DeepSeek's `chat-world` on the project's formats (3c);
+  offices as records (3d); a world's lifecycle, and a world leaving
+  (3e); the Commons hosting rooms (3f); and the private container, with
+  the check before publishing (6a, before step 7). Steps 4, 4a, 5, 6, 7
+  and 8 follow as they were. Steps 8a, 9, 11 and 12 stand behind the
+  twelve, in their old order, and step 10 is the development
+  container: it is no longer "Back to DeepSeek", since the founder
+  returned to DeepSeek on 2026-11-14 and DeepSeek now works beside the
+  course. One change since the list was first put to the founder: the
+  lifecycle now comes before the Commons hosting rooms, since hosting a
+  room is starting, pausing and closing a world.
+  *Why this order:* the founder asked for removals on record "from the
+  beginning", so the log under a room comes first; the room is where
+  the founder's work with DeepSeek lands, and what DeepSeek sends back
+  is fitted there; a removal names an office, so offices go on record
+  before a moderator holds one in a hosted room; and step 7 keeps the
+  sealed self in the container, so the container comes before it.
+  *The cost:* six steps now stand ahead of ALICE's and BOB's birth
+  that didn't on 2026-11-14. None is new at this recheck: the waiting
+  list took each in on 2026-11-15, with where it was to go (at this
+  recheck, or before anyone lives in a world). What this recheck chose
+  is to put all of 3b to 3f before step 4, with the room among them.
+  *The alternative,* put to the founder with it: 3b and 3c first, and
+  3d to 3f behind step 6, which brings the Ur-world's first room three
+  steps nearer and the Commons later. And if the founder wants the
+  Commons open to people sooner, 6a moves up to follow 3f.
+  *Wrong if:* the room and the Commons take so long that the Ur-world's
+  first room waits on them with nothing learned for it (then 3d to 3f
+  move behind step 6); or one of 3b to 3f turns out to need the kernel
+  of step 4 (then that one waits for it); or the founder's work with
+  DeepSeek turns away from rooms, so that 3c has nothing coming back to
+  fit (then the room keeps its place only if the Commons still needs
+  it first).
+  After the independent review of #99: the review would put the
+  Commons hosting rooms, a branch and the closed room after step 6,
+  beside 6a, with 3d's formats before the room. Its reasons, and why
+  the technical lead keeps 3f where it is, are in docs/COURSE.md, for
+  the founder to choose between. Taken from it without changing the
+  order: step 3c builds the room on the record, and the closed room
+  comes with 6a; a branch of an open world waits for step 4, as restart
+  does; 3d's first two offices are a room's moderator and a room's
+  Keeper; and 3d's formats may be built beside 3b's.
+  After the founder's last words of 2026-11-16 (Decided, the two newest
+  entries): step 3c builds the Ur-room first, the Commons' lobby, and
+  step 6a names private rooms and private messages. The order is
+  unchanged.
+
 - 2026-11-16, one schema that fits both, after the founder's answer of
   the same day (Decided, "on DeepSeek's schema and on bringing
   everything together"). It adds to the entry below, which had only the
@@ -2709,6 +2980,168 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-16 Claude: the founder's last words of the day recorded
+  (Decided, the two newest entries) and written into the pages they
+  change, in the same change as the course's recheck. The Commons
+  begins with the Ur-room, its lobby, the first room built: step 3c of
+  the course builds it, and docs/COMMONS.md has "The Ur-room". Private
+  rooms and private messages, sealed with keys their members hold, are
+  to be common: docs/FUNDAMENTALS.md gains privacy item 15, step 6a
+  names them, and docs/COMMONS.md has "A spectrum of privacy", three
+  levels proposed by the technical lead, which wait for the founder
+  (Open questions). Nothing was looked at outside the project for
+  this, and nothing is built; how a group's keys change as members
+  come and go is to be looked at first, at step 6a. The file DeepSeek
+  is to be given was built before these words, and doesn't hold them.
+  After the last narrow re-check, at 09e4de6 (nothing blocking): the
+  proposal now says what it would change in what is decided (sealed
+  messages held on the project's machines; nothing kept at the third
+  level, against "that a message passed stays in the record"; who
+  moderates a closed room), and five more limits, among them that a
+  closed room's record shows who is in a private room with whom, and
+  when. Whether the Ur-room's talk is on the record is now put to the
+  founder. "There are to be levels" became "there may be", as the
+  founder's words have it. The limits are from general knowledge of
+  how sealed group messaging works, the review's and the technical
+  lead's; no source was opened for them.
+
+- 2026-11-16 Claude: carried from #98's narrow re-check, in the same
+  change as the course's recheck below. `docs/reply.py` now refuses an
+  `out` that is the reply's own text or a spec (writing it would have
+  overwritten them), a limit below one, and a control character in a
+  path; a spec that is missing or isn't JSON is said plainly; and when
+  the file read back after writing is found wrong, the message says
+  that it was written. Two rows of docs/research/CHAT-SCHEMA.md say
+  less than they did: where `seq` and `prev` are absent is not a whole
+  list, and that the one who enters signs `JoinRequest` is read from
+  its name and the crate, not from the schema. Left as it is: a
+  symbolic link under the reply's root is followed, which a review of
+  the repository would show. Still untested: that the byte comparison
+  after writing would catch a difference.
+
+- 2026-11-16 Claude: course step 3a done and moved to "Done" in
+  docs/COURSE.md, with its pull requests (#61, #75 to #78). The course
+  rechecked, on the founder's word of the same day, with a new list of
+  twelve (Decided; Decided by the technical lead): six steps came in
+  from the waiting list, 3b to 3f before step 4 and 6a before step 7
+  (the waiting list had placed each at this recheck, or before anyone
+  lives in a world); steps 8a, 9, 11 and 12 stand behind the twelve;
+  step 10 is the development container; and DeepSeek's work is written
+  in as running beside the course. What persons taught is written into
+  steps 3b, 3c, 4, 6a and 7, and into the waiting list's line on
+  governance. The steps ahead were checked against VISION.md's six
+  tests for the first time: none fails, and two are not met. The
+  second is open until step 3f settles who holds a hosted room's key,
+  and whether one model may moderate every room. The fifth is not met:
+  its signs aren't written, and no step writes them. And whether a
+  model that moderates is an individual hasn't been asked (Open
+  questions). The day's ideas of the founder's are
+  noted, not built: personal information in a room (docs/COMMONS.md),
+  worlds built for learners (docs/research/GAMES-AND-WORLDS.md), and
+  both on the course's waiting list. docs/COLLABORATING.md,
+  docs/TOPICS.md, docs/FUNDAMENTALS.md, docs/WORLD-TYPES.md,
+  docs/OFFICES.md, docs/CONTAINER.md and docs/ADMIN.md brought into
+  line. Nothing was built in this change, and no source was read
+  beyond the quick searches of the session. The look back, at each
+  decision's "revisit if" or "wrong if":
+  - held, and tested by step 3a: persons (the architectures ran on the
+    unchanged core, the third clause of its "revisit if"; no real seed
+    exists yet, so the second can't be judged, and no presence has had
+    to be shown to one party alone); the four formats moved to later
+    steps (step 3a needed none of them);
+  - not triggered: the records for the offices (Python and Rust agree
+    on every vector of the five kinds step 3a added, but its "revisit
+    if" is a disagreement on a record the vectors don't cover, which
+    agreeing on the vectors can't test); the plant world (its rule has
+    not been changed; the endless plant is planned as a second world,
+    with a crate of its own, and isn't built); presence keys by HKDF (no tool has needed wallet
+    paths); the council's count (no secret ballot or final count was
+    needed; what a final count needs is now on the waiting list, with
+    governance); reviews in proportion (no wording-only fix merged on
+    the technical lead's own check has been found to change a meaning;
+    it was last used on #97); the web app's shared checks (no browser
+    but Chromium was tried, as before); the long files in parts (no
+    part was reported cut short); the keys for step 3 (the founder
+    holds every one of the multiverse's keys, and no private half has
+    been found outside the private repository); the chemistry world's
+    records of what was made;
+  - premise changed, looked at again at the next recheck: every file's
+    full link, in its two entries, and the long files in parts. Both
+    were made so that links and long pages could be given to DeepSeek
+    in the founder's messages. Since the founder's decision of
+    2026-11-16, DeepSeek is given one file, with no link. The lists and
+    the parts stay, for any other reader, with the tests that keep them
+    whole; whether they still earn the script run each change costs is
+    judged once a few returns to DeepSeek have used the file alone;
+  - due at step 3b: sealing as built, which is built and has vectors.
+    Its "revisit if" is a sealed record that needs associated data,
+    and its labels are a list of two. A redacted field sealed to a
+    person should be bound to its log, its entry and its field, and
+    needs a label of its own;
+  - due at step 3c: the template, whose "revisit if" is a parameter
+    that isn't a number: a room's law would be a template's parameters,
+    and a topic or a welcome is a text;
+  - due at step 3c: DeepSeek's two questions (whether a room's
+    signature on each record proves something a signed head can't) and
+    one schema that fits both (whether a form the project has signed
+    with is the worse one for rooms). The table of names in #98 already
+    shows one place where the fitting has to split a kind (`Redact`),
+    which "case by case" allows;
+  - due at step 3d: signed records the standard way. Its "revisit
+    if" is a record that needs something the narrow reading of proofs
+    refuses, such as a proof chain. A handover carries two parties'
+    word, the holder's and the successor's. The expectation is two
+    records with one proof each, as `holds` and `held-by` are; if that
+    won't do, the narrow reading is revisited there. Whether a widely
+    used verifier accepts the project's proofs still hasn't been tried;
+  - due at step 3e: who an individual and a world are, in its second
+    clause, a world's birth record that needs more: a reset's and a
+    branch's birth name the run or the checkpoint before;
+  - still due at step 6: reasons on record, whose "revisit if" is the
+    Lean model of grants costing more than it catches by step 6. Step
+    3b uses the decision record first, but touches neither grants nor
+    Lean. This recheck puts five more steps ahead of step 6, which the
+    clause didn't have in view;
+  - due at step 3e and with the endless plant: Rust in the browser as a
+    WASI command, whose "wrong if" is a world that must keep running
+    inside the page; a plant that runs for hours is that case, and
+    pause, resume and checkpoint (3e) are how it is to be met; the
+    endless plant's own decisions can't be judged until
+    `rust/endless-plant` is built;
+  - due at step 6a: the first clause of the keys' "revisit if" (anyone
+    but the project holding a key) is read again when persons begin to
+    hold their own keys in their own containers, which that decision
+    didn't have in view;
+  - due at step 8a: who an individual and a world are, in its first
+    clause, and decision 18, as before;
+  - due at step 9: the sealed records, as before; and a link shown by
+    an action, whose "wrong if" is a link that must be shown while the
+    presence isn't in its world, which a birth that links the first
+    presence may be;
+  - not yet testable, since what they govern isn't built: sealing the
+    world-key, the round table's consensus, how
+    the table is chosen, a Keeper's self-report, ADMIN's council,
+    ADMIN's learning by written lessons, the admin-key course, and the
+    suggestion ledger;
+  - not yet due: today's decision on the course's order.
+
+  After the independent review of #99 (two blocking, both mended): the
+  look back had left out "signed records the standard way", and one
+  line on hide-and-seek's stages was wrong against its paper. Its notes
+  were taken: the look back corrected in seven places; the six tests
+  said more plainly; step 3c split, with the closed room at 6a; what
+  waits for step 4 in the lifecycle; step 3d's first two offices; and
+  the review's own order written beside the alternative, for the
+  founder. Three sentences on outside sources now say only what the
+  sources say.
+  After the narrow re-check at a36e3e6 (nothing blocking, four notes):
+  the account of the review's order now gives the review's own three
+  reasons, and marks the fourth as the technical lead's; step 6a names
+  private rooms, where the closed room's test now stands (the entry
+  above); and the reply script's refusal of a file it can't read has a
+  test. Known and left: a spec that names another reply's built file as
+  its own would write over it, since that is a file the script wrote.
 
 - 2026-11-16 Claude: the file for DeepSeek is now built by a script in
   the repository, and kept. `docs/reply.py` makes it from a reply's text

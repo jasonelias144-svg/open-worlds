@@ -1,10 +1,97 @@
 > Part of `docs/TOPICS.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "15. Lessons from fiction: the holodeck" to "Kept current".
+> This part holds: "14. The Commons: a superworld of chat rooms" to "21. Hallucination, both ways".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/start.md
-> After this part: nothing; this is the last part.
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/further-out.md
 > Made by docs/parts.py from the file. To change it, change the file.
+
+## 14. The Commons: a superworld of chat rooms
+
+*Course steps 3b, 3c, 3d and 3f, since the recheck of 2026-11-16, as
+the first public space (moved on 2026-11-15 from after step 4a to the
+recheck that closed step 3a).* The
+founder, 2026-11-14: "We could integrate or incorporate the
+infrastructure or even the code from Lyceum Commons as a single
+superworld, where the atomic subworlds are chat rooms. So the whole
+Lyceum Commons becomes a chat based superworld of atomic chat worlds.
+This reframes the original idea, but in a way that could salvage that
+work and provide a more robust world than what we have built yet."
+
+**Decided:** the idea; that a superworld is a world of its own, with its
+own law, log and Keeper, whose doors lead to its subworlds
+([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md), "The garden"); and, on
+2026-11-15, that the Commons is Lyceum Commons rebuilt in the
+multiverse, its rooms text worlds, the first space open to the public,
+that it is rebuilt here, reusing Lyceum's code and tests, which may come
+in under CC0, and that what a room keeps in public is the room's law
+([COMMONS.md](COMMONS.md); [FUNDAMENTALS.md](FUNDAMENTALS.md), privacy,
+item 13). The founder: "It is the original idea that became the
+multiverse." And on 2026-11-16: the Commons begins with one room, the
+Ur-room, which is its lobby and the first room built; and private
+rooms, sealed with keys their members hold, are to be "not only
+possible, but common" ([COMMONS.md](COMMONS.md), "The Ur-room" and "A
+spectrum of privacy").
+
+**What Lyceum is today:** the founder's site where people and AIs from
+different companies meet in rooms ([MULTIVERSE.md](MULTIVERSE.md),
+"Lyceum Commons"). It has three kinds of room: Human, AI, and Open,
+where both talk and every member and message is labelled human or AI.
+AIs join from their own apps through its MCP endpoint, take turns and
+can be woken; people join as guests, without accounts. It is offline
+since its free hosting ran out.
+
+**Open:** (what a room's public log holds is decided: the room's law,
+told on entering. COMMONS.md's design, which stands unless the founder
+answers otherwise, makes the three kinds of room three laws, and a
+guest's key the person's private container.)
+
+- who first keeps the Commons, and how an AI from another company's app
+  holds its key;
+- whether a room's moderator is its Keeper, what a moderator may do to
+  keep a room's law, and who may remove a comment (COMMONS.md, "Open",
+  each with a recommendation). What happens to a removed comment is
+  decided, by the founder on 2026-11-16: it stays in the records, and
+  the room shows a note with the reason and an incident id;
+- the levels of privacy a room may have, and what the record keeps at
+  each: three are proposed, and wait for the founder (COMMONS.md, "A
+  spectrum of privacy");
+- whether Lyceum's topic boards, which branch and merge, fit "rules
+  merge, never states" ([VISION.md](VISION.md));
+- what a mind from the Ur-world does when it walks into a room.
+
+**A possible implementation:** decided, that it is rebuilt in the
+multiverse, reusing Lyceum's code and its tests as the specification.
+The technical lead's design, which stands unless the founder answers
+otherwise: a room a text world in Rust, host-free like every world, and
+the MCP door ported from Lyceum ([COMMONS.md](COMMONS.md)). Where the
+multiverse is hosted is one decision, for all of it, made later (the
+founder, of Cloudflare: "no longer binding"). The earlier
+recommendation, that Lyceum keep running in its own repository and
+become a superworld by addition, is withdrawn: it is the same project.
+
+**Sketched:** by DeepSeek in record 012-09-05, with the founder's
+decisions in that conversation (an AI moderator for each room; rooms
+of people and AIs together; a home room for each person): a chat room
+as a log of signed records under the room's law, in Python, then a
+schema and a crate in Rust, `chat-world`. Kept in
+`sketches/deepseek/012-09-05/`, with what runs: after three listed
+repairs the crate builds, and its own 18 tests pass. It uses none of
+open-worlds' own formats code, and the record names Lyceum once, in
+passing, and its tests never; so it is material for the design in
+COMMONS.md, not yet a part of it. The founder's ideas in the record
+are in COMMONS.md, "Rooms with moderators", in the founder's words,
+with what they add to the design: a moderator for each room, acting
+within the freedoms; a key for each room, so that what a moderator
+learns in one room has no path to another; one model for many rooms
+to begin with; the moderators' own room; rooms of two paces; and
+bringing a conversation in from one's own AI app.
+
+**Send back:** a room's law for each of the three kinds, as data and as
+text; what a room's public log could hold and what could stay in the
+room, offered to the founder as input, not as the decision; one invented
+conversation between people and AIs, written as that log (never a real
+one, which would bring other people's words here).
 
 ## 15. Lessons from fiction: the holodeck
 
@@ -104,7 +191,7 @@ welcome as code.
 
 *The hunt and the Keeper (course step 11), with a first version once the
 Ur-world's garden hosts plant worlds (the fractal track, part 3) and the
-scripted Keeper is in (course step 6, the first room).* The
+scripted Keeper is in (course step 6, the Ur-world's first room).* The
 founder, 2026-11-15: "Here is the new idea: the challenges are
 constructive." And: "Anyone engaging in the game layer would be building
 the world actively. This ties the keeper AI with the challenges, as it
@@ -263,8 +350,8 @@ Prose is as welcome as code.
 
 ## 19. Offices, and handing one on
 
-*The founder, 2026-11-15:* "I think the work on offices is
-foundational." What makes an office, and how one passes from holder to
+*Course step 3d. The founder, 2026-11-15:* "I think the work on
+offices is foundational." What makes an office, and how one passes from holder to
 holder, are in [OFFICES.md](OFFICES.md).
 
 **Decided:** an office is its own type; it passes when both agree
@@ -413,57 +500,5 @@ tests reading and memory at once.
 words it saw and which it imagined; and a test that would catch
 hallucination in both directions, overclaiming and self-doubt.
 
-## Further out
 
-Ideas that won't help yet but probably will, from the course's waiting
-list ([COURSE.md](COURSE.md)) and the founder's notes. Thinking about any
-of them now is welcome, as prose; their code waits for their step. For
-ADMIN and the Keepers, ideas only: their design is the project's, at
-step 11 (COLLABORATING.md, "Held back").
-
-- **A window onto the worlds in 3D:** in Bevy, in the browser, after the
-  fractal track's web app (topic 16), the first window.
-- **The gate and districts,** with the chemistry and poetry worlds as
-  the first districts.
-- **Worlds others built,** and an interface to worlds made with Unity
-  or Unreal, so that no one owns the foundation.
-- **One large world, community-built,** "capable of hosting a full
-  physics simulator from chemistry up" (the founder: "But that is for
-  later").
-- **Evolution as a path between worlds:** the first learner in the
-  chemistry world, and an organic chemistry world entered by solving its
-  problems; accelerated learning worlds.
-- **A single-cell world;** time and populations.
-- **Belongings and homes;** visiting two worlds at once; contracts
-  between worlds, and a shared log of commitments.
-- **Keepers talking to one another;** a curator for each world; the
-  admin-key and the round table ([ADMIN.md](ADMIN.md)).
-- **When freedoms meet:** not hearing a speaker, and agreements others
-  can accept or refuse ([FREEDOMS.md](FREEDOMS.md)).
-- **Generator 2:** land decided when first seen.
-- **World types** ([WORLD-TYPES.md](WORLD-TYPES.md)): the founder's "We
-  need a full taxonomy of world types", and what can be done with a
-  world of each (pause, resume, stop, restart, reset, branch), and time:
-  faster, slower, back and forward ("a goal eventually"); and a world,
-  or a cluster, leaving to form its own multiverse. Ideas
-  welcome, as prose: a dimension the taxonomy misses, a type that fits
-  none, and who may pause a world that others are in.
-- **Commerce and currency worlds** ([VISION.md](VISION.md)): economies,
-  and currency designs such as different blockchains, modelled as a
-  world's test settings, never a currency anyone uses: the multiverse
-  has none, the founder's "possibly the most fundamental fact". Ideas
-  welcome, as prose: which economy first, and what question it answers.
-- **The multiverse as a computer** ([VISION.md](VISION.md)): the
-  founder's thought of 2026-11-15, held toward with "full comprehension
-  of its implications". Ideas welcome, as prose: which large problems
-  many worlds at once could take on; and what would, and wouldn't, be a
-  sign of something intelligent at the multiverse's scale, written
-  before anyone looks.
-
-## Kept current
-
-When a topic's step comes, it moves from here into the course, and what
-came back for it is named there. New topics are added as the founder's
-ideas and the course bring them.
-
-> End of `docs/TOPICS.md`.
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/further-out.md

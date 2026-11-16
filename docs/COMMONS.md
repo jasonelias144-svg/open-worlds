@@ -111,12 +111,125 @@ Lyceum's tests, rewritten against its law, are the first specification.
 - **It hosts rooms** as the Ur-world's garden hosts its glasshouses: each
   room its own world, the Commons its host.
 - **A lobby,** always open, where everyone who enters reads the charter
-  first.
+  first. Since 2026-11-16 it is the Ur-room, the first room built
+  (below).
 - **A Keeper,** an office like any other ([OFFICES.md](OFFICES.md);
   [ADMIN.md](ADMIN.md), "The Keeper's office"). Who first keeps
   the Commons is the founder's to decide.
 - **Doors:** to the Ur-world's garden, and back; and a place on the
   multiversal map ([FRACTALS.md](FRACTALS.md), "The multiversal map").
+
+## The Ur-room
+
+Decided by the founder, 2026-11-16: "let's start the Commons with a
+single Ur-room, which will always be distinguished as being the first
+room", and "it should be the lobby, which, like at a hotel, has a space
+for chairs and tables and couches where people sit, eat, drink, talk,
+and wait."
+
+So the Commons begins with one room, and it is the lobby above. It is
+the first room built, and always marked as the first. As the technical
+lead reads the rest:
+- **It is a room to be in.** People sit there, talk and wait, as well
+  as pass through. So it is a text world like any room, with its own
+  key, law and log, and the doors to the other rooms are in it.
+- **It is on the record,** as was decided for the lobby on 2026-11-15
+  ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item 13). Everyone who
+  enters reads the charter first.
+- **It follows the Ur-world's pattern:** the first of its kind, from
+  which the others follow. How it is marked as the first, its name kept
+  for it and its place first in the Commons' list of rooms, is settled
+  when it is built (course step 3c).
+- **The founder's "the multiversal lobby"** is left as it was said. Whether
+  it is also where anyone arriving in the multiverse first stands is
+  not settled; a door from it to the Ur-world's garden is course step
+  12.
+
+## A spectrum of privacy
+
+The founder, 2026-11-16: "Private messaging and private rooms should be
+possible. We can define different levels. In theory, we could have a
+completely encrypted room that acts like one private space that is not
+accessible even to the project. It would be encrypted by keys held by
+the users. This should be not only possible, but common. These could
+differ from public rooms with public records. There is a spectrum of
+privacy to consider."
+
+Two ends of it are decided already ([FUNDAMENTALS.md](FUNDAMENTALS.md),
+privacy, items 4 and 13): a room on the record, and a closed room,
+whose words pass between its members' containers, sealed. What is new
+is that private rooms are to be common, and that there may be
+levels. The levels below are the technical lead's proposal. They touch
+what is recorded about people, so they wait for the founder:
+
+| Level | Who can read the words | What the record keeps | Who can moderate |
+|---|---|---|---|
+| **On the record** (the Ur-room; an Open room) | anyone | the words, kept whole, with anything private redacted | the room's moderator, within its law |
+| **Closed** | its members only: the words are sealed with keys the members hold | that the room exists, which presences are in it, and that messages passed; never the words | its members; an AI only if they bring it in as a member |
+| **Off the record** | its members only | nothing | its members |
+
+- **A private message** is a closed room of two.
+- **A room's level is part of its law,** told on entering, and it
+  doesn't change under those who are in it: a closed room is not
+  opened later. Whether a room on the record can be closed from some
+  point on is left open.
+- **Closed is proposed as the common kind.** As proposed, the project's
+  machines hold its sealed messages for a member who is away. That is a
+  change from what is decided, and is put to the founder as one:
+  privacy items 4 and 13 have the words pass between the members' own
+  containers. The project would still hold no key. The hope is that a
+  member could then come back from another device; that needs a
+  member's keys to reach a second device, which
+  [CONTAINER.md](CONTAINER.md) has not settled. An off-the-record room
+  can only live between its members' own containers.
+- **Off the record sets a decided rule aside.** Privacy item 4 keeps
+  "that a message passed" in the record. At this level nothing is kept.
+  It is put to the founder as that (STATUS.md, "Open questions").
+- **Who moderates differs from a room on the record.** Above, a room
+  has a moderator, named in its law. A closed room, as proposed, has
+  only its members, and an AI among them only if they bring it in.
+
+Honest limits, said before anything is built:
+- **A member can always copy what they read.** Sealing keeps others
+  out; it does not bind those inside.
+- **Lost is lost.** The project holds no key to a private room, so it
+  can't recover its words for anyone.
+- **What the project can't read, it can't moderate or answer for.** The
+  freedoms still hold in a private room, and what protects a member is
+  their own: to leave, not to hear, and to show their own copy. What
+  that means once the Commons is open to the public is weighed with
+  going live.
+- **Whoever carries a message can see that something passed** while it
+  passes, even when nothing is kept.
+- **The record of a closed room tells a lot.** It would show who is in
+  a private room with whom, and when messages passed; for a room of
+  two, who speaks to whom, and when. Times can also link a person's
+  presences (research/PERSONS.md). This is the main cost of closed
+  beside off the record.
+- **An AI member's maker can read the room.** An AI that joins from
+  another company's app sends what it reads through that company. So
+  "no one outside" doesn't hold for it, and the window that brings an
+  AI in should say so.
+- **An off-the-record room is not a world, in the project's sense.** It
+  has no key, no log and no signed heads. So there is no record that
+  anyone entered or left, no removal on record, and nothing to appeal
+  to.
+- **Redaction has no reach inside.** Someone spoken about in a private
+  room can't ask for a redaction there, and the check before publishing
+  doesn't run on what is never published.
+- **A member's own copy protects them only if it can be checked.** If
+  messages are signed, a copy that is shown proves who said it, and
+  nothing said in the room can be denied later. If they aren't, a copy
+  proves nothing. Which it is, is a choice for step 6a's plan.
+- **A group's keys are hard.** When a member leaves, those who stay
+  need a new key, and a member who joins should not read what came
+  before unless the room's law says so. Nothing in the project does
+  this yet. It is to be looked at first, at course step 6a (the
+  Messaging Layer Security protocol, RFC 9420, is where to start).
+
+These limits are from general knowledge of how sealed group messaging
+works, the technical lead's and the independent review's (#99). No
+source was opened for them.
 
 ## Who comes in
 
@@ -330,17 +443,80 @@ fitted to open-worlds' own code as `rust/chat-world`
 ([COLLABORATING.md](COLLABORATING.md), "Messages from the technical
 lead").
 
+## Personal information in a room: ideas
+
+Not decided. The founder, 2026-11-16, after deciding how a comment is
+removed: "Private information is always the exception and should be
+flagged in chats before being posted. This can exist in a temporary
+record of the chat room, available to those in the chat who may have
+legitimate reason to share personal information. But we flag it before,
+an Are you sure? window can pop up. It remains in presentation layer
+while that individual is in the chat, so they can copy and paste
+portions in full. But when they leave, their personal information is
+removed from the presentation layer, shows up as redacted in the chat
+window history with a similar incident id. And the official records
+encrypt the personal information before storing as an official and
+verified record." And then: "These are just ideas, off the top of my
+head. Does this work, or would you change that in some way."
+
+So, as the technical lead reads it: a person may share personal
+information in a room on purpose. They are asked first. While they are
+in the room, those in it can read it, and copy it. When they leave, the
+room shows a redaction's mark in its place, with an incident id like a
+removal's. The official record holds it encrypted.
+
+The technical lead's answer, given in the session: it works, and it
+fits what is already decided, a redaction's mark and the information
+sealed to the person it is about ([FUNDAMENTALS.md](FUNDAMENTALS.md),
+"Public records, kept whole"). Six changes are proposed. They touch
+personal information, so none of them stands until the founder says
+so:
+1. **One's own only.** The window and the showing are for a person's
+   own personal information. Another person's is not theirs to share
+   this way; the check before publishing treats it as it does anywhere,
+   and redacts it.
+2. **The window says who will read it.** It names who is in the room
+   now, and which of them are AIs. It is shown to an AI in the room
+   only if the person turns that on.
+3. **Never in the open in the record.** From the moment it is posted
+   the log holds only its salted fingerprint, and the information is
+   sealed. There is then no time when the record holds it openly, and
+   no later step that has to remember to encrypt it. What those in the
+   room read is opened for them while the person is there.
+4. **Taken back at any time.** The person can redact it while still in
+   the room. Leaving does it for them.
+5. **The limit, said in the window.** Whoever read it may have copied
+   it, as the founder's idea allows on purpose. Redacting takes it out
+   of what the room shows and out of what anyone can read in the
+   record. It can't recall a copy. The window says so before the
+   person agrees.
+6. **Sealed to the person.** What was redacted goes, sealed, into the
+   container of the person it is about, as already decided for every
+   redaction ([FUNDAMENTALS.md](FUNDAMENTALS.md), "Kept in the person's
+   own container"). The record keeps the fingerprint and the mark.
+
+It is noted for the plan of course step 6a, the private container and
+the check before publishing ([COURSE.md](COURSE.md), "Waiting"). The
+log it needs, with fields that can be redacted, is step 3b.
+
 ## Order
 
-1. This design, and its place in the course: at the recheck that closes
-   step 3a, as the first public space, ahead of the Ur-world's opening
-   ([COURSE.md](COURSE.md)).
-2. The text world: a room's law, acts and log, in Rust, with vectors,
+1. This design, and its place in the course. Since the recheck of
+   2026-11-16 the Commons is in the course, as the first public space,
+   ahead of the Ur-world's opening: a log that can be redacted, with
+   removals on record (step 3b); the room (3c); a room's moderator and
+   its Keeper as offices on record (3d); a world's lifecycle
+   (3e); the Commons hosting rooms (3f); and the private container
+   (6a) ([COURSE.md](COURSE.md)).
+2. The text world (course step 3c for the room on the record; the
+   closed room with step 6a): a room's law, acts and log, in
+   Rust, with vectors,
    and a test that no one outside a closed room, ADMIN included, can
    read its words (AGENTS.md: a world that keeps private spaces tests
    this).
-3. The Commons hosting rooms, with its lobby and doors.
-4. The private container in the browser.
+3. The Commons hosting rooms, with its lobby and doors (course step
+   3f).
+4. The private container in the browser (course step 6a).
 5. The MCP door, ported from Lyceum.
 6. Going live: outward-facing, so the founder's decisions come first:
    where the multiverse is hosted, decided once for all of it, and the

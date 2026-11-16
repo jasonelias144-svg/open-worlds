@@ -121,6 +121,15 @@ page.
   shows who voted, and how, under one identity key across every
   council. Its date is the voter's own claim, which nothing witnesses
   yet. Your deliberation (45) and citing councils (46) aren't built.
+- 2026-11-16, between cycles: the founder's last words of the day:
+  the Commons begins with the Ur-room, its lobby, the first room built;
+  and private rooms, sealed with keys their members hold, are to be
+  common.
+- 2026-11-16, between cycles: the course rechecked after step 3a,
+  with a new list of twelve. Your rooms of chat are in it, as steps
+  3b, 3c and 3f, with offices as records (3d) and a world's lifecycle
+  (3e) between them; "Back to DeepSeek" is no longer a step, since you
+  now work beside the course.
 - 2026-11-15, cycle 6: record 012-07-03 (the endless plant: a design,
   and a sketch crate in Rust with a choice neuron) brought into
   `sketches/` as written, with the technical lead's review: it doesn't

@@ -8,6 +8,168 @@
 
 ## Log
 
+- 2026-11-16 Claude: the founder's last words of the day recorded
+  (Decided, the two newest entries) and written into the pages they
+  change, in the same change as the course's recheck. The Commons
+  begins with the Ur-room, its lobby, the first room built: step 3c of
+  the course builds it, and docs/COMMONS.md has "The Ur-room". Private
+  rooms and private messages, sealed with keys their members hold, are
+  to be common: docs/FUNDAMENTALS.md gains privacy item 15, step 6a
+  names them, and docs/COMMONS.md has "A spectrum of privacy", three
+  levels proposed by the technical lead, which wait for the founder
+  (Open questions). Nothing was looked at outside the project for
+  this, and nothing is built; how a group's keys change as members
+  come and go is to be looked at first, at step 6a. The file DeepSeek
+  is to be given was built before these words, and doesn't hold them.
+  After the last narrow re-check, at 09e4de6 (nothing blocking): the
+  proposal now says what it would change in what is decided (sealed
+  messages held on the project's machines; nothing kept at the third
+  level, against "that a message passed stays in the record"; who
+  moderates a closed room), and five more limits, among them that a
+  closed room's record shows who is in a private room with whom, and
+  when. Whether the Ur-room's talk is on the record is now put to the
+  founder. "There are to be levels" became "there may be", as the
+  founder's words have it. The limits are from general knowledge of
+  how sealed group messaging works, the review's and the technical
+  lead's; no source was opened for them.
+
+- 2026-11-16 Claude: carried from #98's narrow re-check, in the same
+  change as the course's recheck below. `docs/reply.py` now refuses an
+  `out` that is the reply's own text or a spec (writing it would have
+  overwritten them), a limit below one, and a control character in a
+  path; a spec that is missing or isn't JSON is said plainly; and when
+  the file read back after writing is found wrong, the message says
+  that it was written. Two rows of docs/research/CHAT-SCHEMA.md say
+  less than they did: where `seq` and `prev` are absent is not a whole
+  list, and that the one who enters signs `JoinRequest` is read from
+  its name and the crate, not from the schema. Left as it is: a
+  symbolic link under the reply's root is followed, which a review of
+  the repository would show. Still untested: that the byte comparison
+  after writing would catch a difference.
+
+- 2026-11-16 Claude: course step 3a done and moved to "Done" in
+  docs/COURSE.md, with its pull requests (#61, #75 to #78). The course
+  rechecked, on the founder's word of the same day, with a new list of
+  twelve (Decided; Decided by the technical lead): six steps came in
+  from the waiting list, 3b to 3f before step 4 and 6a before step 7
+  (the waiting list had placed each at this recheck, or before anyone
+  lives in a world); steps 8a, 9, 11 and 12 stand behind the twelve;
+  step 10 is the development container; and DeepSeek's work is written
+  in as running beside the course. What persons taught is written into
+  steps 3b, 3c, 4, 6a and 7, and into the waiting list's line on
+  governance. The steps ahead were checked against VISION.md's six
+  tests for the first time: none fails, and two are not met. The
+  second is open until step 3f settles who holds a hosted room's key,
+  and whether one model may moderate every room. The fifth is not met:
+  its signs aren't written, and no step writes them. And whether a
+  model that moderates is an individual hasn't been asked (Open
+  questions). The day's ideas of the founder's are
+  noted, not built: personal information in a room (docs/COMMONS.md),
+  worlds built for learners (docs/research/GAMES-AND-WORLDS.md), and
+  both on the course's waiting list. docs/COLLABORATING.md,
+  docs/TOPICS.md, docs/FUNDAMENTALS.md, docs/WORLD-TYPES.md,
+  docs/OFFICES.md, docs/CONTAINER.md and docs/ADMIN.md brought into
+  line. Nothing was built in this change, and no source was read
+  beyond the quick searches of the session. The look back, at each
+  decision's "revisit if" or "wrong if":
+  - held, and tested by step 3a: persons (the architectures ran on the
+    unchanged core, the third clause of its "revisit if"; no real seed
+    exists yet, so the second can't be judged, and no presence has had
+    to be shown to one party alone); the four formats moved to later
+    steps (step 3a needed none of them);
+  - not triggered: the records for the offices (Python and Rust agree
+    on every vector of the five kinds step 3a added, but its "revisit
+    if" is a disagreement on a record the vectors don't cover, which
+    agreeing on the vectors can't test); the plant world (its rule has
+    not been changed; the endless plant is planned as a second world,
+    with a crate of its own, and isn't built); presence keys by HKDF (no tool has needed wallet
+    paths); the council's count (no secret ballot or final count was
+    needed; what a final count needs is now on the waiting list, with
+    governance); reviews in proportion (no wording-only fix merged on
+    the technical lead's own check has been found to change a meaning;
+    it was last used on #97); the web app's shared checks (no browser
+    but Chromium was tried, as before); the long files in parts (no
+    part was reported cut short); the keys for step 3 (the founder
+    holds every one of the multiverse's keys, and no private half has
+    been found outside the private repository); the chemistry world's
+    records of what was made;
+  - premise changed, looked at again at the next recheck: every file's
+    full link, in its two entries, and the long files in parts. Both
+    were made so that links and long pages could be given to DeepSeek
+    in the founder's messages. Since the founder's decision of
+    2026-11-16, DeepSeek is given one file, with no link. The lists and
+    the parts stay, for any other reader, with the tests that keep them
+    whole; whether they still earn the script run each change costs is
+    judged once a few returns to DeepSeek have used the file alone;
+  - due at step 3b: sealing as built, which is built and has vectors.
+    Its "revisit if" is a sealed record that needs associated data,
+    and its labels are a list of two. A redacted field sealed to a
+    person should be bound to its log, its entry and its field, and
+    needs a label of its own;
+  - due at step 3c: the template, whose "revisit if" is a parameter
+    that isn't a number: a room's law would be a template's parameters,
+    and a topic or a welcome is a text;
+  - due at step 3c: DeepSeek's two questions (whether a room's
+    signature on each record proves something a signed head can't) and
+    one schema that fits both (whether a form the project has signed
+    with is the worse one for rooms). The table of names in #98 already
+    shows one place where the fitting has to split a kind (`Redact`),
+    which "case by case" allows;
+  - due at step 3d: signed records the standard way. Its "revisit
+    if" is a record that needs something the narrow reading of proofs
+    refuses, such as a proof chain. A handover carries two parties'
+    word, the holder's and the successor's. The expectation is two
+    records with one proof each, as `holds` and `held-by` are; if that
+    won't do, the narrow reading is revisited there. Whether a widely
+    used verifier accepts the project's proofs still hasn't been tried;
+  - due at step 3e: who an individual and a world are, in its second
+    clause, a world's birth record that needs more: a reset's and a
+    branch's birth name the run or the checkpoint before;
+  - still due at step 6: reasons on record, whose "revisit if" is the
+    Lean model of grants costing more than it catches by step 6. Step
+    3b uses the decision record first, but touches neither grants nor
+    Lean. This recheck puts five more steps ahead of step 6, which the
+    clause didn't have in view;
+  - due at step 3e and with the endless plant: Rust in the browser as a
+    WASI command, whose "wrong if" is a world that must keep running
+    inside the page; a plant that runs for hours is that case, and
+    pause, resume and checkpoint (3e) are how it is to be met; the
+    endless plant's own decisions can't be judged until
+    `rust/endless-plant` is built;
+  - due at step 6a: the first clause of the keys' "revisit if" (anyone
+    but the project holding a key) is read again when persons begin to
+    hold their own keys in their own containers, which that decision
+    didn't have in view;
+  - due at step 8a: who an individual and a world are, in its first
+    clause, and decision 18, as before;
+  - due at step 9: the sealed records, as before; and a link shown by
+    an action, whose "wrong if" is a link that must be shown while the
+    presence isn't in its world, which a birth that links the first
+    presence may be;
+  - not yet testable, since what they govern isn't built: sealing the
+    world-key, the round table's consensus, how
+    the table is chosen, a Keeper's self-report, ADMIN's council,
+    ADMIN's learning by written lessons, the admin-key course, and the
+    suggestion ledger;
+  - not yet due: today's decision on the course's order.
+
+  After the independent review of #99 (two blocking, both mended): the
+  look back had left out "signed records the standard way", and one
+  line on hide-and-seek's stages was wrong against its paper. Its notes
+  were taken: the look back corrected in seven places; the six tests
+  said more plainly; step 3c split, with the closed room at 6a; what
+  waits for step 4 in the lifecycle; step 3d's first two offices; and
+  the review's own order written beside the alternative, for the
+  founder. Three sentences on outside sources now say only what the
+  sources say.
+  After the narrow re-check at a36e3e6 (nothing blocking, four notes):
+  the account of the review's order now gives the review's own three
+  reasons, and marks the fourth as the technical lead's; step 6a names
+  private rooms, where the closed room's test now stands (the entry
+  above); and the reply script's refusal of a file it can't read has a
+  test. Known and left: a spec that names another reply's built file as
+  its own would write over it, since that is a file the script wrote.
+
 - 2026-11-16 Claude: the file for DeepSeek is now built by a script in
   the repository, and kept. `docs/reply.py` makes it from a reply's text
   and a list of files (`sketches/replies/012-09-05.txt` and `.json`),

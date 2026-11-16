@@ -613,7 +613,8 @@ try to accommodate as many possibilities as we can imagine."
 - **When.** A first, simple version comes once two things are in: the
   Ur-world's garden hosting plant worlds (the fractal track, part 3,
   [FRACTALS.md](FRACTALS.md)), and the simple scripted Keeper (course
-  step 6, the first room). Then the scripted Keeper can offer a plot to
+  step 6, the Ur-world's first room). Then the scripted Keeper can
+  offer a plot to
   plant. The full version comes with the AI Keeper, in course step 11.
   Neither changes the order of the course or the track.
 

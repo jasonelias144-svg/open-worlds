@@ -2,11 +2,65 @@
 > for readers who are shown only the start of a long page.
 > This part holds: "Decided", piece 5 (its pieces are numbered from its end).
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/start.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-06.md
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-04.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
-## Decided
+- 2026-11-16, founder, on worlds built for learners, in three
+  messages, in the order they were said. First: "I just remembered that
+  Open AI had an AI playground at one point, or something like that.
+  There were basic little worlds. Can you look into that. It's
+  definitely related to what we have been doing. Thoughts?" Then, of
+  "a Halite challenge on some website where you had to build
+  reinforcement learning agents to gather materials from a space
+  shared by three other teams. That would be interesting to
+  investigate as well. Thoughts?" (The first words of that sentence,
+  about the founder, are left out here as personal.) And after the
+  technical lead's answer, which named Halite's fourth season, by Two
+  Sigma on Kaggle: "Perfect. Yeah, that was the one. Very
+  interesting." (One sentence, about the founder, is left out here as
+  personal.) "We can easily host competition worlds, but we can start
+  from a world like Halite as a world like Ur-world. Ur-world would be
+  expanding and have differ t features and more, and the ability to
+  construct is essentially, but as a baseline, it is a point to start
+  from. Thoughts?"
+  So, as the technical lead reads it: these are ideas for later, and by
+  the founder's word of the same day (the entry above) they are noted,
+  not built. What was found is in docs/research/GAMES-AND-WORLDS.md,
+  "Worlds built for learners", from quick searches, with what is from
+  memory marked. A world of gathering, carrying and bringing home is
+  noted for the plan of course step 5, as a baseline from which a
+  world like the Ur-world could start, with the project's own rules
+  and its own name and no code copied; and competition worlds are
+  noted on the waiting list. The technical lead's own additions, said
+  to the founder in the session and not decided: what gathers in such
+  a world are tools, never individuals; and one kernel could carry two
+  templates, a commons with no score and a contest.
+
+- 2026-11-16, founder, ideas on personal information in a room, after
+  the decision on removed comments below, and in answer to the
+  technical lead's reading that private information stays the case
+  apart: "Yes. Private information is always the exception and should
+  be flagged in chats before being posted. This can exist in a
+  temporary record of the chat room, available to those in the chat
+  who may have legitimate reason to share personal information. But we
+  flag it before, an Are you sure? window can pop up. It remains in
+  presentation layer while that individual is in the chat, so they can
+  copy and paste portions in full. But when they leave, their personal
+  information is removed from the presentation layer, shows up as
+  redacted in the chat window history with a similar incident id. And
+  the official records encrypt the personal information before storing
+  as an official and verified record. Thoughts?" And then: "These are
+  just ideas, off the top of my head. Does this work, or would you
+  change that in some way. Thoughts?"
+  So: that private information is the exception is the founder's
+  answer, and it confirms the reading in the entry below. The rest the
+  founder called ideas, and asked whether they work, so they are
+  recorded as ideas, not as a decision. The technical lead answered in
+  the session that they work and fit what is decided, and proposed six
+  changes (docs/COMMONS.md, "Personal information in a room: ideas").
+  They touch personal information, so they wait for the founder (Open
+  questions). Noted for the plan of course step 6a.
 
 - 2026-11-16, founder, on removed comments, in answer to the question
   put that day (docs/COMMONS.md, "Open"): "On removed comments, here is
