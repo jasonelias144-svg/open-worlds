@@ -294,6 +294,17 @@ class Small(unittest.TestCase):
         with open(os.path.join(self.root, "replies", "README.md"),
                   encoding="utf-8") as f:
             self.assertEqual(f.read(), "Keep me.\n")
+        # The same for a file that can't even be read as text.
+        with open(os.path.join(self.root, "replies", "README.md"),
+                  "wb") as f:
+            f.write(b"\xff\xfe\nEND OF FILE\n")
+        self.assertEqual(
+            run(path),
+            (1, "README.md is there already and is not a file this script "
+                "wrote: it is left as it is\n"))
+        with open(os.path.join(self.root, "replies", "README.md"),
+                  "rb") as f:
+            self.assertEqual(f.read(), b"\xff\xfe\nEND OF FILE\n")
         self.write("code/src/a.rs", "fn a() { /* moved on */ }\n")
         missing = os.path.join(self.root, "replies", "none.json")
         self.assertEqual(run(missing),

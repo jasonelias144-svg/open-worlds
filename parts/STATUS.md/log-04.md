@@ -151,6 +151,13 @@
   the review's own order written beside the alternative, for the
   founder. Three sentences on outside sources now say only what the
   sources say.
+  After the narrow re-check at a36e3e6 (nothing blocking, four notes):
+  the account of the review's order now gives the review's own three
+  reasons, and marks the fourth as the technical lead's; step 6a names
+  private rooms, where the closed room's test now stands (the entry
+  above); and the reply script's refusal of a file it can't read has a
+  test. Known and left: a spec that names another reply's built file as
+  its own would write over it, since that is a file the script wrote.
 
 - 2026-11-16 Claude: the file for DeepSeek is now built by a script in
   the repository, and kept. `docs/reply.py` makes it from a reply's text
