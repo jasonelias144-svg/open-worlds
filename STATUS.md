@@ -327,20 +327,25 @@ kind.
     bytes in and which it reported missing, or more than about the first
     seventh of this page.
   - **An upload is cut too, near 128,000 bytes.** It could be measured
-    twice. The founder's first message came with the record of the
-    conversation before, and DeepSeek's first reply gives the words it
+    twice. The founder's first message came with a record of the
+    conversation before, and DeepSeek's second reply gives the words it
     stops at ("The record ends mid-sentence", record 012-07-03, line
     71): they end 129,099 bytes into
     `sketches/records/012-06-02-DPSK-Patterns_Multiverses.txt`, if that
     is the file that was sent. Later, given the record of this
     conversation as a file, it named the last words it could see, and
     they end 127,669 bytes into the record as the founder has brought
-    it, which may not be that file byte for byte. Whether an upload
-    stays in view on later turns is not shown: the second file was the
-    conversation's own record, so all of it was in the conversation
-    already, and DeepSeek named its last words on the turn it was given.
-    (The entry further down has an upload "which seems to stay". That
-    was not shown.)
+    it, which may not be that file byte for byte.
+  - **An upload stays in view at least to the next turn,** as a page
+    opened by the tool does not. That second reply answers a message
+    with no link, and gives details of the first file that are in
+    neither DeepSeek's first reply nor the founder's messages (unless
+    the file was sent again with the second message, which the record
+    doesn't show). Beyond the next turn it is not shown. The second
+    file shows nothing either way: it was the conversation's own
+    record, so all of it was in the conversation already. This is how
+    far the words "which seems to stay", in the entry further down, are
+    borne out.
   What follows for a Keeper or ADMIN is in docs/research/KEEPER-MIND.md
   ("What the DeepSeek reading case shows"); docs/COLLABORATING.md tells
   DeepSeek; and the long pages are to be served in parts under the

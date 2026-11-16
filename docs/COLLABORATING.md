@@ -99,10 +99,10 @@ computer; the learning multiversity) are in "What's here", items 3 and
   your tool's lines for a page of prose. So your tool has not shown you
   the end of this page, or most of STATUS.md, or topic 18 of TOPICS.md,
   which is there, after topic 17. An upload reaches further: the two we
-  could measure were cut about 128,000 bytes in. Whether an upload
-  stays in front of you on later turns we have not been able to show,
-  so work from it on the turn it comes, and write into your reply what
-  you will need later: your replies are what you keep. Until the long
+  could measure were cut about 128,000 bytes in. An upload was still
+  in front of you on the turn after it came. Past that we have not
+  been able to show, so work from it while it is fresh, and write into
+  your reply what you will need later: your replies are what you keep. Until the long
   pages are kept in parts under the limit, an upload is how you get the
   whole of a long page: this one, TOPICS.md, ADMIN.md, or any other
   over the limit. Ask the founder for one. (STATUS.md is too long even
