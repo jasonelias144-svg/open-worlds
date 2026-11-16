@@ -336,7 +336,7 @@ kind.
     conversation as a file, it named the last words it could see, and
     they end 127,669 bytes into the record as the founder has brought
     it, which may not be that file byte for byte.
-  - **An upload stays in view at least to the next turn,** as a page
+  - **An upload stayed in view to the next turn, once,** as a page
     opened by the tool does not. That second reply answers a message
     with no link, and gives details of the first file that are in
     neither DeepSeek's first reply nor the founder's messages (unless
