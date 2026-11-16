@@ -384,6 +384,48 @@ kind.
 
 ## Decided
 
+- 2026-11-16, founder, on naming Gemini a collaborator. "In terms of
+  naming Gemini a collaborator, like DeepSeek. My inclination is to do
+  so, but I leave that decision to you, it would be adding one more
+  member to the team." Who works on the project is the founder's to
+  decide; the founder leans to yes and left it to the technical lead,
+  who had recommended it. So, decided: Gemini is a collaborator, named
+  as DeepSeek is. What follows, the technical lead's: code that Gemini
+  writes is kept and credited as Gemini's; the file Gemini is given is
+  kept beside DeepSeek's (sketches/replies/); Gemini, like DeepSeek,
+  works through the founder and holds no access to the repository,
+  and what it sends is built, tested and reviewed here before any of
+  it is used. What does not change: a conversation is kept in public
+  only when it holds nothing personal, and the founder says which. The
+  founder's earlier conversation with Gemini is not kept here. The
+  steps Gemini wrote in it were built and measured (the file Gemini
+  was given says how each fared) and are not kept, since DeepSeek's
+  deliveries of the same steps were taken.
+- 2026-11-16, founder, a file for each return, written for the one who
+  receives it. First: "Actually, it is going to be a day until I can
+  work with DeepSeek again. Something changed with the data. Not sure.
+  Either way, I'm going to go back to Gemini first. My thoughts are
+  that we work now, and when done, you provide the latest collab
+  specs, and I take those to Gemini. And then once we hit a stride and
+  are productive, the data will run out there. I return here integrate
+  the Gemini code, have a discussion, and then generate a new collab
+  specs file. And that will be what I take to DeepSeek tomorrow
+  morning when we start the process again. It may even become as
+  regular as a work data, running out of data at predictable times.
+  We'll see." Then, on the technical lead's recommendation that the
+  two be given different work: "And I agree with different tasks. This
+  time it was because I only had one file. By the time DeepSeek was
+  available, you were not, so I was stuck with the same file. My
+  proposal earlier was meant to avoid they by updating with a new file
+  each time. That way the instructions can be geared toward the
+  recipient." So, decided by the founder: at each return the technical
+  lead builds a new file, for the one who is to receive it, with work
+  suited to them; and the two are given different work. The technical
+  lead's reading of how: one of them writes to the crate at a time,
+  and each starts from a file built after the other's work is in;
+  DeepSeek, who wrote the crate, builds it up, and Gemini is first
+  asked to try to break it; each file is built by docs/reply.py from
+  the repository as it stands that day, so it can't be out of date.
 - 2026-11-16, founder, the games are kept separate. "And let's keep
   the games separate, so that the financial apps do not cross paths
   with our free work. There is obvious overlap and an easy way to
@@ -3423,6 +3465,20 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-16 Claude: Gemini named a collaborator, at the founder's
+  word, and the founder's plan for a file at each return, written for
+  the one who receives it, recorded (Decided, two entries). The file
+  Gemini was given that day is kept in sketches/replies/, built by
+  docs/reply.py from the crate as it stands
+  (sketches/deepseek/012-09-05/chat-world-now/): where things stand,
+  three steps, and sixteen files. It asks Gemini to make a room's log
+  checkable from outside, then to attack the check, then to repair
+  what gets through. That came from a finding while writing it:
+  `verify_room` takes a `Room`, which only the crate's own code can
+  build, so no forged log can be put to it, and the crate's test named
+  for tampering tampers with nothing. docs/COLLABORATING.md tells
+  DeepSeek, and now speaks to both. Not done: nothing has come back
+  from Gemini yet.
 - 2026-11-16 Claude: record 012-09-05, continued, brought in: the
   record as the founder shared it again (its first 595,416 bytes
   unchanged, 9,212 lines more), with the cycle on signed heads, the

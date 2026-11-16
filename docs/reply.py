@@ -1,11 +1,14 @@
-"""Build the one file the founder gives DeepSeek.
+"""Build the one file the founder gives a collaborator: DeepSeek, or
+Gemini.
 
 The founder, 2026-11-16: "let's put it all in a single file and I will
 provide the file. No link necessary. Just one long file within
 everything included. But only what is needed to continue working."
 So each time the founder returns to DeepSeek, the technical lead's
 reply, the next steps and the code as it stands go into one file, and
-the founder provides it. This script builds that file, and checks it.
+the founder provides it. From 2026-11-16 the same holds for Gemini,
+with a file written for whichever of the two is to receive it. This
+script builds that file, and checks it.
 
     python3 docs/reply.py SPEC          # write the file SPEC names
     python3 docs/reply.py --check SPEC  # exit 1 if it is out of step

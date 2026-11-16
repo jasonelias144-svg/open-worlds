@@ -6,6 +6,10 @@ side: the code open-worlds runs, built step by step through the course
 ([docs/COURSE.md](../docs/COURSE.md)). The two work hand in hand and are
 kept apart. Where they meet is stated in one place, [INDEX.md](INDEX.md).
 
+From 2026-11-16 Gemini, another AI, is a collaborator too
+(STATUS.md, "Decided"). The file it was given is in `replies/`, and the
+code it writes will be kept here as DeepSeek's is.
+
 **What the sketches are.** A rough draft, like a creative team conveying a
 vision in code instead of a page of boxes and arrows. Each step in the
 conversation assumes the last one ran as expected and asks what to build

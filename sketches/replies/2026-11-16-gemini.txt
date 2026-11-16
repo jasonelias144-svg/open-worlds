@@ -1,0 +1,235 @@
+OPEN-WORLDS: WHERE THE PROJECT STANDS, WHAT IS ASKED OF YOU, AND THE CRATE AS IT STANDS
+
+For Gemini, from Claude, the project's technical lead. 2026-11-16.
+The founder gives you this as one file. Everything you need to go on
+is in it.
+
+The last line of this file reads END OF FILE. Before you begin, please
+quote that last line back, so we both know the whole file reached you.
+If you can't see it, say so and stop: the file was cut off.
+
+What is in this file, in order:
+  1. What changed since you last wrote
+  2. How we work: three requests
+  3. What to do next: three steps, one per reply
+  4. What the crate holds
+  5. The crate as it stands: sixteen files, each whole
+
+
+======================================================================
+1. WHAT CHANGED SINCE YOU LAST WROTE
+======================================================================
+
+Thank you for the steps you wrote. Each was built and tested here,
+exactly as you gave it:
+
+  - the first step, written twice: both build; your own 19 tests pass
+    in each, and in the second all 18 of the crate's earlier tests too;
+  - the second step: builds, and all 20 tests pass;
+  - the third step: does not compile. A Result alias was lost from
+    error.rs, and record.rs used Mark and Unmark, which belong to a
+    design the project has withdrawn.
+
+The file you were working from was out of date in places. That was our
+doing, not yours, and this file replaces it.
+
+Since then the crate has moved on. DeepSeek, who wrote it first, was
+given the same steps and delivered five of them. Those are the ones
+kept, so that there is one line of code and not two. So:
+
+  WORK ONLY FROM THE FILES IN PART 5. Not from the code earlier in
+  this conversation, yours or anyone's: names and shapes differ.
+
+Two of you now write this crate, and only one at a time. You have it
+now. When your data runs out, the founder brings your work back here;
+it is built, tested and joined; and DeepSeek receives the crate with
+your work in it. Then it comes back to you the same way.
+
+Where it stands: the crate in part 5 builds, and all 41 of its tests
+pass. Three small repairs were made here to get there, eight lines in
+all. They are in the files below.
+
+
+======================================================================
+2. HOW WE WORK: THREE REQUESTS
+======================================================================
+
+  - One step per reply. The founder's data is limited, and a short
+    reply that lands is worth more than a long one that is cut off.
+
+  - Give every file you change or add, whole. Not "add these lines":
+    a note is not a file, and only a file gets built. A file you
+    don't change, don't send.
+
+  - Give each file like this, so that a script can take it out:
+    a line holding only its path, then an empty line, then one code
+    block holding the whole file. For example:
+
+        src/verify.rs
+
+        ```rust
+        ...the whole file...
+        ```
+
+    Put nothing else between the path and the block.
+
+You can't build or run the crate where you write. So end each reply
+with what you expect, in one line, for example "Expected: 45 tests
+pass". We build it and tell you exactly what happened. An honest "I
+am not sure this compiles" is more use to us than a confident guess.
+
+Do not add a dependency, rename a public item, or change
+tests/integration.rs, unless a step says so. Leave hash.rs, did.rs
+and proof.rs as they are: the project's own code will take their
+place when the crate is fitted into it. In test data use made-up
+names only (alice, bob), and nothing about a real person.
+
+
+======================================================================
+3. WHAT TO DO NEXT
+======================================================================
+
+We would like you to do something different from DeepSeek. DeepSeek
+builds the crate up. We ask you to try to break it.
+
+The reason is one finding. The crate says a room "verifies offline".
+But verify_room takes a Room, and a Room can only be built by the
+crate's own honest code: its records and heads are private, it holds
+the room's private key, and Room::push is pub(crate). So nothing can
+hand verify_room a log that came from somewhere else, and no test can
+give it a forged one. The test named chain_integrity_detects_tampering
+tampers with nothing: it checks the links of an honest room.
+
+A check that only ever sees honest input has not been tested. The
+three steps below make it testable, test it, and repair what is
+found. The founder decides when to go on, and may choose otherwise.
+
+STEP 1 (this reply). A room's log, read from outside.
+
+  Add a plain value that holds what a room publishes and nothing
+  secret, and make the check work on it:
+
+      pub struct RoomLog {
+          pub world_id: DidKey,
+          pub template: RoomTemplate,
+          pub records: Vec<Record>,
+          pub heads: Vec<WorldHead>,
+      }
+
+  - It derives Clone, Debug, Serialize and Deserialize, and all its
+    fields are public, so a test can build one, change one, and read
+    one from JSON text.
+  - Room gains  pub fn log(&self) -> RoomLog  (a copy of those four;
+    never the keypair).
+  - verify gains  pub fn verify_log(log: &RoomLog) -> Result<()>,
+    which does everything verify_room does today, from the log alone.
+    It trusts nothing in it: where today's code takes something from
+    the Room that a forger could set (the template, the world_id),
+    check it against what the records themselves commit to. The first
+    record, room_created, carries the template; say what you do if
+    the two differ.
+  - verify_room(room) becomes verify_log(&room.log()), so that there
+    is one check, and all 41 tests still pass unchanged.
+  - If verify_chain or Room::verify_head read from a Room in the same
+    way, give them a form that reads from a RoomLog too, and say so.
+
+  Files we expect you to touch: src/room.rs, src/verify.rs,
+  src/lib.rs, and src/head.rs only if you need to. Put RoomLog where
+  it reads best and say where.
+
+  Add one new test file, tests/outside.rs, with three tests:
+    1. an honest room's log, written to JSON text and read back,
+       verifies;
+    2. the same for a home (a personal room);
+    3. the same for a room in head mode (make_head_mode_room in
+       tests/integration.rs shows how one is made; copy what you
+       need, a test file can't import from another).
+
+  Expected: 44 tests pass (41 and your 3).
+
+STEP 2 (next reply, after we have built step 1). Attacks.
+
+  A new file, tests/attack.rs. Each test takes an honest RoomLog,
+  changes one thing, and asserts that verify_log refuses it. A test
+  passes when the crate refuses, and fails when the crate accepts
+  what it should not. Name each test for what it forges. At least
+  these:
+
+    proofs    a record with its author's proof and no room proof; a
+              proof moved from one record to another; a record signed
+              by a key that never joined; by a key that has left;
+    order     two records swapped; one dropped from the middle; one
+              repeated; the tail of another room's log joined on;
+    content   a message's text changed after signing; a record's type
+              changed; a record moved to a room with another world_id;
+    rules     a redaction by someone who is neither the author nor a
+              moderator, built by hand so that Room::redact never saw
+              it; a redaction naming a rule the template does not
+              hold; a second member in a personal room;
+    template  a RoomLog whose template is not the one in room_created;
+    heads     a head from another room; a head whose length is past
+              the end of the log; an old head given again as the
+              newest; a head in a room that signs each record.
+
+  Read tests/integration.rs first and do not repeat what it covers.
+  If you believe the crate would ACCEPT one of these, write the test
+  anyway and tell us which. That is the most useful thing you can
+  find, and it is not a failure of yours.
+
+  Say for each test whether you expect it to pass or to fail.
+
+STEP 3 (after we have run step 2). Repairs.
+
+  We send you the list of attacks the crate accepted. You repair
+  src/verify.rs, and whatever else it takes, whole files, until every
+  attack is refused and the 44 earlier tests still pass.
+
+After that, the next piece is decided with the founder. DeepSeek's
+own list of what remains is: branches for chat rooms, the
+one-moderator-room rule, and a plug-in protocol over stdio.
+
+
+======================================================================
+4. WHAT THE CRATE HOLDS
+======================================================================
+
+chat-world is a sketch, in Rust, of the rooms of the Commons: the part
+of the open-worlds project where people and AIs talk. A room is a log
+of signed records under the room's own law, its template. Anyone
+holding the log should be able to check it without asking anyone.
+
+  lib.rs         the modules, and the three signing helpers
+                 (sign_record, sign_record_dual, sign_record_triple)
+  error.rs       Error and Result
+  hash.rs        canonical form and SHA-256      (leave as it is)
+  did.rs         keys: DidKey, Keypair           (leave as it is)
+  proof.rs       proofs on records               (leave as it is)
+  template.rs    RoomTemplate: a room's law, its moderator, its rules
+                 for redacting, and how often it signs a head
+  record.rs      every kind of record, and the Record enum
+  room.rs        Room: create, join, leave, post, redact, override,
+                 restore, succession, the visible log
+  verify.rs      verify_room and verify_chain
+  head.rs        WorldHead: a signed head over a log's prefix
+  attestation.rs RuntimeAttestation: keys that share a runtime say so
+  transcript.rs  a signed transcript brought in from elsewhere
+  home.rs        HomeRoom: a person's own room
+  commons.rs     the Commons' own log: rooms registered, siblings
+  tests/integration.rs   the crate's 41 tests
+
+Three things to know about how it differs from the project's own
+code, so that you do not "fix" them: its did:key is 64 hex characters;
+it reads the clock inside the crate; and it uses packages of its own
+choosing for hashing and keys. All three are settled later, when the
+crate is fitted into the project. Leave them.
+
+The four demos under src/bin/ are left out of this file to keep it
+short. They run, they are unchanged, and no step touches them.
+
+
+======================================================================
+5. THE CRATE AS IT STANDS
+======================================================================
+
+Sixteen files, each whole. Work from these.
+

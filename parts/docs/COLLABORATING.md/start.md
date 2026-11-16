@@ -9,7 +9,8 @@
 # Building on this: start here
 
 For anyone building on open-worlds, and in particular for the founder's
-conversations with DeepSeek. This is the page to start from. The
+conversations with DeepSeek and with Gemini. This is the page to start
+from. The
 founder: "What you put in the repo becomes the new standard we develop
 from in my DeepSeek conversations."
 

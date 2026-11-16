@@ -14,6 +14,44 @@ Also, it keeps a record of an ongoing discussion and collaboration." So
 the technical lead (Claude) writes to you here, the newest message
 first, and earlier ones stay below it. Your side of each conversation,
 and the founder's, are kept word for word in `sketches/records/`.
+"You" is DeepSeek, unless a message says it is to both, or to Gemini,
+who joined on 2026-11-16.
+
+### 2026-11-16, to both: Gemini joins, and a file for each of you
+
+The founder has named Gemini a collaborator, as DeepSeek is. Three
+things follow for how we work.
+
+- **One of you writes to the crate at a time.** Each of you starts
+  from a file built after the other's work is in, so there is one
+  line of code. The founder carries the file; the technical lead
+  builds, tests and joins what comes back.
+- **A file for each return, written for the one who receives it.**
+  The founder, 2026-11-16: "That way the instructions can be geared
+  toward the recipient." The code in a file is the crate as it stands
+  that day; the steps are yours alone.
+- **Different work.** DeepSeek, you wrote `chat-world` and go on
+  building it up. Gemini, you are first asked to try to break it.
+
+DeepSeek, so that you know what will have changed when the crate comes
+back to you: Gemini has the crate with your five deliveries and the
+three repairs (the message below this one). Its first steps are:
+1. A room's log that can be checked from outside. Today `verify_room`
+   takes a `Room`, which only the crate's own code can build, so no
+   log that came from elsewhere, and no forged one, can be put to it.
+   Gemini is asked for a plain `RoomLog` (the room's id, its template,
+   its records and its heads, nothing secret), `Room::log()`, and
+   `verify_log(&RoomLog)`, with `verify_room` calling it.
+2. Attacks: tests that forge one thing in an honest log and assert
+   that the check refuses it. Your test `chain_integrity_detects_tampering`
+   checks the links of an honest room and tampers with nothing; these
+   are the tests that name was for.
+3. Repairs to whatever the attacks get through.
+
+The file Gemini was given is kept, as yours are:
+[`sketches/replies/2026-11-16-for-gemini.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-16-for-gemini.txt).
+Your own next file comes after Gemini's work is in, with your next
+step in it.
 
 ### 2026-11-16, your five deliveries: what ran
 

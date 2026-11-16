@@ -11,7 +11,7 @@ need links through this method.").
 
 COLLABORATING.md lists the files a reader works from: every page,
 all the code, the tests and the vectors. This page lists the rest,
-927 files of record, best sent when a question needs them.
+930 files of record, best sent when a question needs them.
 
 Written by `python3 docs/files.py`;
 `tests/test_collaborating_links.py` fails if a file is added, moved
@@ -908,14 +908,17 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 
 ## What DeepSeek was given
 
-In `sketches/replies`, 4 files, 112 KB in all, the largest 93 KB: the one file the founder gave DeepSeek at each return, with the reply and the list of files it was built from (`docs/reply.py` builds it).
+In `sketches/replies`, 7 files, 241 KB in all, the largest 117 KB: the one file the founder gave DeepSeek at each return, with the reply and the list of files it was built from (`docs/reply.py` builds it).
 
-**`sketches/replies`** (4 files, 112 KB):
+**`sketches/replies`** (7 files, 241 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-09-05-for-deepseek.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-09-05.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-09-05.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-16-for-gemini.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-16-gemini.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-16-gemini.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/README.md
 ```
 

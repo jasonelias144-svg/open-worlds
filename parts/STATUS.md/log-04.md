@@ -8,6 +8,20 @@
 
 ## Log
 
+- 2026-11-16 Claude: Gemini named a collaborator, at the founder's
+  word, and the founder's plan for a file at each return, written for
+  the one who receives it, recorded (Decided, two entries). The file
+  Gemini was given that day is kept in sketches/replies/, built by
+  docs/reply.py from the crate as it stands
+  (sketches/deepseek/012-09-05/chat-world-now/): where things stand,
+  three steps, and sixteen files. It asks Gemini to make a room's log
+  checkable from outside, then to attack the check, then to repair
+  what gets through. That came from a finding while writing it:
+  `verify_room` takes a `Room`, which only the crate's own code can
+  build, so no forged log can be put to it, and the crate's test named
+  for tampering tampers with nothing. docs/COLLABORATING.md tells
+  DeepSeek, and now speaks to both. Not done: nothing has come back
+  from Gemini yet.
 - 2026-11-16 Claude: record 012-09-05, continued, brought in: the
   record as the founder shared it again (its first 595,416 bytes
   unchanged, 9,212 lines more), with the cycle on signed heads, the
