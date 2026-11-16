@@ -11,7 +11,7 @@ need links through this method.").
 
 COLLABORATING.md lists the files a reader works from: every page,
 all the code, the tests and the vectors. This page lists the rest,
-907 files of record, best sent when a question needs them.
+927 files of record, best sent when a question needs them.
 
 Written by `python3 docs/files.py`;
 `tests/test_collaborating_links.py` fails if a file is added, moved
@@ -34,7 +34,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/re
 
 ## Code taken from DeepSeek's records
 
-In `sketches/deepseek`, 690 files, 6.3 MB in all, the largest 55 KB: DeepSeek's code as each record gave it, a folder per record; `name@offset` is an earlier version of `name`, found at that offset in the record.
+In `sketches/deepseek`, 710 files, 6.5 MB in all, the largest 55 KB: DeepSeek's code as each record gave it, a folder per record; `name@offset` is an earlier version of `name`, found at that offset in the record.
 
 **`sketches/deepseek/012-03-02`**, part 1 of 2 (40 files, 440 KB):
 
@@ -754,7 +754,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-07-03/vectors/endless-plant.json
 ```
 
-**`sketches/deepseek/012-09-05`** (25 files, 253 KB):
+**`sketches/deepseek/012-09-05`** (25 files, 254 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/README.md
@@ -827,6 +827,31 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-draft/src/verify.rs
 ```
 
+**`sketches/deepseek/012-09-05/chat-world-now`** (20 files, 134 KB):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/Cargo.toml
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/attestation.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/bin/chat-demo.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/bin/head-demo.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/bin/home-demo.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/bin/succession-demo.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/commons.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/did.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/error.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/hash.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/head.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/home.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/lib.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/proof.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/record.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/room.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/template.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/transcript.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/verify.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/tests/integration.rs
+```
+
 **`sketches/deepseek/012-09-05/chat-world-steps`** (34 files, 308 KB):
 
 ```text
@@ -866,7 +891,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-steps/5/tests/integration.rs
 ```
 
-**`sketches/deepseek/012-09-05/review`** (3 files, 8 KB):
+**`sketches/deepseek/012-09-05/review`** (3 files, 12 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/review/run.sh
