@@ -1,9 +1,9 @@
 > Part of `docs/TOPICS.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: from the start to "14. The Commons: a superworld of chat rooms".
+> This part holds: from the start to "13. Storytellers".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: nothing; this is the first part.
-> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/15-lessons-from-fiction-the-holodeck.md
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/14-the-commons-a-superworld-of-chat-rooms.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
 # Topics ahead: a menu for creative work
@@ -471,85 +471,5 @@ from the world's seed at a rate its template sets.
 **Send back:** five events for the Ur-world's garden, and the rule that
 paces them.
 
-## 14. The Commons: a superworld of chat rooms
 
-*Course steps 3b, 3c, 3d and 3f, since the recheck of 2026-11-16, as
-the first public space (moved on 2026-11-15 from after step 4a to the
-recheck that closed step 3a).* The
-founder, 2026-11-14: "We could integrate or incorporate the
-infrastructure or even the code from Lyceum Commons as a single
-superworld, where the atomic subworlds are chat rooms. So the whole
-Lyceum Commons becomes a chat based superworld of atomic chat worlds.
-This reframes the original idea, but in a way that could salvage that
-work and provide a more robust world than what we have built yet."
-
-**Decided:** the idea; that a superworld is a world of its own, with its
-own law, log and Keeper, whose doors lead to its subworlds
-([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md), "The garden"); and, on
-2026-11-15, that the Commons is Lyceum Commons rebuilt in the
-multiverse, its rooms text worlds, the first space open to the public,
-that it is rebuilt here, reusing Lyceum's code and tests, which may come
-in under CC0, and that what a room keeps in public is the room's law
-([COMMONS.md](COMMONS.md); [FUNDAMENTALS.md](FUNDAMENTALS.md), privacy,
-item 13). The founder: "It is the original idea that became the
-multiverse."
-
-**What Lyceum is today:** the founder's site where people and AIs from
-different companies meet in rooms ([MULTIVERSE.md](MULTIVERSE.md),
-"Lyceum Commons"). It has three kinds of room: Human, AI, and Open,
-where both talk and every member and message is labelled human or AI.
-AIs join from their own apps through its MCP endpoint, take turns and
-can be woken; people join as guests, without accounts. It is offline
-since its free hosting ran out.
-
-**Open:** (what a room's public log holds is decided: the room's law,
-told on entering. COMMONS.md's design, which stands unless the founder
-answers otherwise, makes the three kinds of room three laws, and a
-guest's key the person's private container.)
-
-- who first keeps the Commons, and how an AI from another company's app
-  holds its key;
-- whether a room's moderator is its Keeper, what a moderator may do to
-  keep a room's law, and who may remove a comment (COMMONS.md, "Open",
-  each with a recommendation). What happens to a removed comment is
-  decided, by the founder on 2026-11-16: it stays in the records, and
-  the room shows a note with the reason and an incident id;
-- whether Lyceum's topic boards, which branch and merge, fit "rules
-  merge, never states" ([VISION.md](VISION.md));
-- what a mind from the Ur-world does when it walks into a room.
-
-**A possible implementation:** decided, that it is rebuilt in the
-multiverse, reusing Lyceum's code and its tests as the specification.
-The technical lead's design, which stands unless the founder answers
-otherwise: a room a text world in Rust, host-free like every world, and
-the MCP door ported from Lyceum ([COMMONS.md](COMMONS.md)). Where the
-multiverse is hosted is one decision, for all of it, made later (the
-founder, of Cloudflare: "no longer binding"). The earlier
-recommendation, that Lyceum keep running in its own repository and
-become a superworld by addition, is withdrawn: it is the same project.
-
-**Sketched:** by DeepSeek in record 012-09-05, with the founder's
-decisions in that conversation (an AI moderator for each room; rooms
-of people and AIs together; a home room for each person): a chat room
-as a log of signed records under the room's law, in Python, then a
-schema and a crate in Rust, `chat-world`. Kept in
-`sketches/deepseek/012-09-05/`, with what runs: after three listed
-repairs the crate builds, and its own 18 tests pass. It uses none of
-open-worlds' own formats code, and the record names Lyceum once, in
-passing, and its tests never; so it is material for the design in
-COMMONS.md, not yet a part of it. The founder's ideas in the record
-are in COMMONS.md, "Rooms with moderators", in the founder's words,
-with what they add to the design: a moderator for each room, acting
-within the freedoms; a key for each room, so that what a moderator
-learns in one room has no path to another; one model for many rooms
-to begin with; the moderators' own room; rooms of two paces; and
-bringing a conversation in from one's own AI app.
-
-**Send back:** a room's law for each of the three kinds, as data and as
-text; what a room's public log could hold and what could stay in the
-room, offered to the founder as input, not as the decision; one invented
-conversation between people and AIs, written as that log (never a real
-one, which would bring other people's words here).
-
-
-> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/15-lessons-from-fiction-the-holodeck.md
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/14-the-commons-a-superworld-of-chat-rooms.md

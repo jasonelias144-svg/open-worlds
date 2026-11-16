@@ -484,7 +484,11 @@ that it is rebuilt here, reusing Lyceum's code and tests, which may come
 in under CC0, and that what a room keeps in public is the room's law
 ([COMMONS.md](COMMONS.md); [FUNDAMENTALS.md](FUNDAMENTALS.md), privacy,
 item 13). The founder: "It is the original idea that became the
-multiverse."
+multiverse." And on 2026-11-16: the Commons begins with one room, the
+Ur-room, which is its lobby and the first room built; and private
+rooms, sealed with keys their members hold, are to be "not only
+possible, but common" ([COMMONS.md](COMMONS.md), "The Ur-room" and "A
+spectrum of privacy").
 
 **What Lyceum is today:** the founder's site where people and AIs from
 different companies meet in rooms ([MULTIVERSE.md](MULTIVERSE.md),
@@ -506,6 +510,9 @@ guest's key the person's private container.)
   each with a recommendation). What happens to a removed comment is
   decided, by the founder on 2026-11-16: it stays in the records, and
   the room shows a note with the reason and an incident id;
+- the levels of privacy a room may have, and what the record keeps at
+  each: three are proposed, and wait for the founder (COMMONS.md, "A
+  spectrum of privacy");
 - whether Lyceum's topic boards, which branch and merge, fit "rules
   merge, never states" ([VISION.md](VISION.md));
 - what a mind from the Ur-world does when it walks into a room.

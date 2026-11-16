@@ -164,6 +164,21 @@ Each is recorded in STATUS.md with what would show it wrong.
     is: logs that hold, and logs that are refused, each for one named
     reason.
 
+## Where the founder's last words of 2026-11-16 meet this
+
+This plan was written before them (STATUS.md, "Decided").
+- **The first room it is built for is the Ur-room,** the Commons'
+  lobby, which is on the record ([COMMONS.md](../COMMONS.md), "The
+  Ur-room"). Removals and redactions as planned here are for a room of
+  that kind.
+- **A private room's words are not this step's.** They are sealed with
+  keys the room's members hold ([COMMONS.md](../COMMONS.md), "A
+  spectrum of privacy"; course step 6a). There is nothing in them that
+  the project can read, so nothing for it to redact, and no office of
+  the project's removes a comment there. What a closed room's log
+  holds, if the founder keeps that level as proposed, is settled with
+  it.
+
 ## Honest limits
 
 - **Copies.** A redaction takes a field out of what the record keeps.

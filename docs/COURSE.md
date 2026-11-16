@@ -283,10 +283,14 @@ The independent review of this recheck (#99) would order it differently
 again: 3b; the formats of 3d; the room on the record (3c); pause,
 resume, checkpoint and the departure record from 3e; then step 4. The
 Commons hosting rooms, a branch, and the closed room would come after
-step 6, beside 6a. Its reasons are fair: the Commons can't open to
-people before 6a and the founder's decisions on hosting; nothing in
-steps 4 to 6 needs it; and step 4 may change how worlds are hosted. It
-is close to the alternative above. The technical lead keeps 3f where it
+step 6, beside 6a. Its reasons: the Commons can't open to people
+before 6a and the founder's decisions on hosting; nothing in steps 4 to
+6 needs it; and meanwhile ALICE and BOB wait behind it. They are fair,
+with one thing to add: in either order the Commons' steps come before
+the birth, so what comes sooner in the review's order is the Ur-world's
+first room. The technical lead adds a reason on the review's side:
+step 4 may change how worlds are hosted. It is close to the
+alternative above. The technical lead keeps 3f where it
 is because the waiting list placed the Commons as the first public
 space, and with 6a moved up it could open before the Ur-world's work is
 done. Which of the two matters more is the founder's to say.
@@ -306,6 +310,12 @@ What persons taught is written into the steps it reaches:
 - a count of votes is final only once something that saw the votes
   before the close fixes them, which governance needs before it is
   built on these records ("Waiting").
+
+Added the same day, after the list was set: the founder's last words
+of 2026-11-16 (STATUS.md, "Decided"). The first room built is the
+Ur-room, the Commons' lobby, which step 3c now says. And private rooms
+"should be not only possible, but common", so step 6a names them, where
+the closed room already stood. The order did not change.
 
 Checked against the six tests in [VISION.md](VISION.md), "The
 multiverse as a computer", for the first time (they were written on
@@ -387,7 +397,11 @@ selective disclosure by salted hashes (SD-JWT, RFC 9901); Matrix's
 events, signed in the form a redaction leaves, so a room's history
 still checks; event sourcing, where a correction is a new event.
 
-**3c. The room.** `chat-world`, DeepSeek's sketch crate from record
+**3c. The room: the Ur-room first.** The first room built is the
+Commons' lobby (the founder, 2026-11-16: "let's start the Commons with
+a single Ur-room, which will always be distinguished as being the first
+room"; [COMMONS.md](COMMONS.md), "The Ur-room"). It is on the record.
+It is built from `chat-world`, DeepSeek's sketch crate from record
 012-09-05, fitted onto the project's own formats as a crate of the
 workspace: the canonical form, proofs and Multikey `did:key` of
 `rust/formats`, time given from outside, a key for each room with its
@@ -404,7 +418,8 @@ it today). The closed room, whose words no one outside can read, ADMIN
 included ([COMMONS.md](COMMONS.md), "Order"), is a part of its own,
 built with the private container (6a): its members seal to each other,
 with a new key when someone leaves, and nothing in the project does
-that for a group yet. A room's law would be a template's parameters,
+that for a group yet. The founder, the same day: private rooms "should
+be not only possible, but common". A room's law would be a template's parameters,
 and some are not numbers (a topic, a welcome), so the template's
 decision is read again here (STATUS.md). Settled here too: whether a person
 has one presence for the Commons or one for each room, since a
@@ -462,8 +477,9 @@ which is built; doors to the Ur-world's garden and between worlds are
 step 12. Before any of Lyceum's code is copied, the founder confirms
 that all of it is the project's own ([COMMONS.md](COMMONS.md), "Open").
 Who holds a hosted room's key is settled here, and the second of the
-six tests is open until it is. It runs with trial keys and scripted
-guests. Opening it to anyone is not this step. Going live is
+six tests is open until it is. The lobby is the Ur-room, built at 3c;
+this step hosts the rooms its doors lead to. It runs with trial keys
+and scripted guests. Opening it to anyone is not this step. Going live is
 outward-facing, so the founder's decisions come first (where the
 multiverse is hosted, and the address), and so does the private
 container (step 6a); the MCP door, ported from Lyceum, follows the
@@ -529,7 +545,8 @@ from a seed.
    ledger. *Borrowing:* the vertical slice; OCI containers, with gVisor for
    minds we didn't write.
 
-**6a. The private container, and the check before publishing.** Each
+**6a. The private container, private rooms, and the check before
+publishing.** Each
 person's keys, private space and messages in their own container, which
 the project never sees, acting from it by signed acts
 ([CONTAINER.md](CONTAINER.md); the founder, 2026-11-15: "this may be a
@@ -543,7 +560,17 @@ individual's sealed self, which step 7 keeps in it. A person's seed and
 their list of presences are kept here too, if the founder agrees: where
 they are kept is the founder's to decide (research/PERSONS.md,
 decision 13). The founder's ideas of 2026-11-16 on personal information
-in a room are noted for this step's plan ("Waiting"). Moved here from
+in a room are noted for this step's plan ("Waiting"). Private rooms
+and private messages are built here, sealed with keys their members
+hold, so that no one outside reads them, the project included, with
+the test that says so (the founder, 2026-11-16: "This should be not
+only possible, but common"; [FUNDAMENTALS.md](FUNDAMENTALS.md),
+privacy, items 4, 13 and 15). The levels between a room on the record
+and a private one are proposed in [COMMONS.md](COMMONS.md), "A spectrum
+of privacy", and wait for the founder. How a group's keys change as
+members come and go is looked at first (the Messaging Layer Security
+protocol, RFC 9420). If this proves a step of its own when 6a is
+planned, it becomes 6b. Moved here from
 the waiting list, which placed it before anyone lives in a world; if
 the founder wants the Commons open to people sooner, it moves up to
 follow 3f. *Borrowing:* what CONTAINER.md looked at first: local-first

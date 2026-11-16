@@ -291,10 +291,14 @@ The independent review of this recheck (#99) would order it differently
 again: 3b; the formats of 3d; the room on the record (3c); pause,
 resume, checkpoint and the departure record from 3e; then step 4. The
 Commons hosting rooms, a branch, and the closed room would come after
-step 6, beside 6a. Its reasons are fair: the Commons can't open to
-people before 6a and the founder's decisions on hosting; nothing in
-steps 4 to 6 needs it; and step 4 may change how worlds are hosted. It
-is close to the alternative above. The technical lead keeps 3f where it
+step 6, beside 6a. Its reasons: the Commons can't open to people
+before 6a and the founder's decisions on hosting; nothing in steps 4 to
+6 needs it; and meanwhile ALICE and BOB wait behind it. They are fair,
+with one thing to add: in either order the Commons' steps come before
+the birth, so what comes sooner in the review's order is the Ur-world's
+first room. The technical lead adds a reason on the review's side:
+step 4 may change how worlds are hosted. It is close to the
+alternative above. The technical lead keeps 3f where it
 is because the waiting list placed the Commons as the first public
 space, and with 6a moved up it could open before the Ur-world's work is
 done. Which of the two matters more is the founder's to say.
@@ -314,6 +318,12 @@ What persons taught is written into the steps it reaches:
 - a count of votes is final only once something that saw the votes
   before the close fixes them, which governance needs before it is
   built on these records ("Waiting").
+
+Added the same day, after the list was set: the founder's last words
+of 2026-11-16 (STATUS.md, "Decided"). The first room built is the
+Ur-room, the Commons' lobby, which step 3c now says. And private rooms
+"should be not only possible, but common", so step 6a names them, where
+the closed room already stood. The order did not change.
 
 Checked against the six tests in [VISION.md](VISION.md), "The
 multiverse as a computer", for the first time (they were written on

@@ -20,7 +20,39 @@
   opened, and what is said of event sourcing is from memory, as the
   page says. Nothing is built yet. docs/COURSE.md and
   docs/COLLABORATING.md (with a message to DeepSeek on what it settles
-  for removed comments) brought into line.
+  for removed comments) brought into line. The plan was written before
+  the founder's last words of the day and now says where they meet it:
+  the first room it is built for is the Ur-room, which is on the
+  record, and a private room's words are not this step's. Carried from
+  #99's last re-check, two small notes: the recommendation on the
+  Ur-room no longer speaks of a private room "one door away" before
+  private rooms exist, and docs/COMMONS.md, "The Ur-room", points to
+  the open question on its being on the record.
+
+- 2026-11-16 Claude: the founder's last words of the day recorded
+  (Decided, the two newest entries) and written into the pages they
+  change, in the same change as the course's recheck. The Commons
+  begins with the Ur-room, its lobby, the first room built: step 3c of
+  the course builds it, and docs/COMMONS.md has "The Ur-room". Private
+  rooms and private messages, sealed with keys their members hold, are
+  to be common: docs/FUNDAMENTALS.md gains privacy item 15, step 6a
+  names them, and docs/COMMONS.md has "A spectrum of privacy", three
+  levels proposed by the technical lead, which wait for the founder
+  (Open questions). Nothing was looked at outside the project for
+  this, and nothing is built; how a group's keys change as members
+  come and go is to be looked at first, at step 6a. The file DeepSeek
+  is to be given was built before these words, and doesn't hold them.
+  After the last narrow re-check, at 09e4de6 (nothing blocking): the
+  proposal now says what it would change in what is decided (sealed
+  messages held on the project's machines; nothing kept at the third
+  level, against "that a message passed stays in the record"; who
+  moderates a closed room), and five more limits, among them that a
+  closed room's record shows who is in a private room with whom, and
+  when. Whether the Ur-room's talk is on the record is now put to the
+  founder. "There are to be levels" became "there may be", as the
+  founder's words have it. The limits are from general knowledge of
+  how sealed group messaging works, the review's and the technical
+  lead's; no source was opened for them.
 
 - 2026-11-16 Claude: carried from #98's narrow re-check, in the same
   change as the course's recheck below. `docs/reply.py` now refuses an
@@ -151,6 +183,13 @@
   the review's own order written beside the alternative, for the
   founder. Three sentences on outside sources now say only what the
   sources say.
+  After the narrow re-check at a36e3e6 (nothing blocking, four notes):
+  the account of the review's order now gives the review's own three
+  reasons, and marks the fourth as the technical lead's; step 6a names
+  private rooms, where the closed room's test now stands (the entry
+  above); and the reply script's refusal of a file it can't read has a
+  test. Known and left: a spec that names another reply's built file as
+  its own would write over it, since that is a file the script wrote.
 
 - 2026-11-16 Claude: the file for DeepSeek is now built by a script in
   the repository, and kept. `docs/reply.py` makes it from a reply's text
