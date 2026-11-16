@@ -1,0 +1,213 @@
+# --- RoomTemplate gains membership and inter_ai_pace ---
+
+@dataclass(frozen=True)
+class RoomTemplate:
+    template_id: str
+    topic: str
+    max_msg_len: int = 4000
+    rate_limit_count: int = 10
+    rate_limit_window: int = 20
+    join_policy: str = "open"
+    moderation: str = "author_only"
+    membership: str = "mixed"          # NEW: "mixed" | "ai_only" | "human_only"
+    inter_ai_pace: int = 0             # NEW: 0 = no pace; N = min records between AI-to-AI
+    welcome: str = ""
+    branch_policy: Optional[Dict] = None
+    moderator: Optional[ModeratorSpec] = None
+
+    def to_dict(self):
+        return {
+            "template_id": self.template_id,
+            "topic": self.topic,
+            "max_msg_len": self.max_msg_len,
+            "rate_limit_count": self.rate_limit_count,
+            "rate_limit_window": self.rate_limit_window,
+            "join_policy": self.join_policy,
+            "moderation": self.moderation,
+            "membership": self.membership,
+            "inter_ai_pace": self.inter_ai_pace,
+            "welcome": self.welcome,
+            "branch_policy": self.branch_policy,
+            "moderator": (self.moderator.to_dict()
+                          if self.moderator else None),
+        }
+
+
+# --- JoinRequest and Join gain is_ai ---
+
+@dataclass(frozen=True)
+class JoinRequest:
+    world_id: str
+    subject_id: str
+    tier: str
+    is_ai: bool
+    ts: str
+    sig: str
+
+    def body(self):
+        return {
+            "type": "join_request",
+            "world_id": self.world_id,
+            "subject_id": self.subject_id,
+            "tier": self.tier,
+            "is_ai": self.is_ai,
+            "ts": self.ts,
+        }
+
+    def request_hash(self):
+        return _hash(self.body())
+
+
+def sign_join_request(world_id, subject_kp, tier, is_ai=False, ts=None):
+    subject_id = _did_from_kp(subject_kp)
+    body = {
+        "type": "join_request",
+        "world_id": world_id,
+        "subject_id": subject_id,
+        "tier": tier,
+        "is_ai": is_ai,
+        "ts": ts or _now(),
+    }
+    return JoinRequest(
+        world_id=world_id, subject_id=subject_id, tier=tier,
+        is_ai=is_ai, ts=body["ts"],
+        sig=subject_kp.sign(_canonical(body)).hex())
+
+
+@dataclass(frozen=True)
+class Join:
+    world_id: str
+    seq: int
+    prev: Optional[str]
+    subject_id: str
+    tier: str
+    is_ai: bool
+    ts: str
+    sig_subject: str
+    sig_room: str
+
+    def body(self):
+        return {
+            "type": "join",
+            "world_id": self.world_id,
+            "seq": self.seq,
+            "prev": self.prev,
+            "subject_id": self.subject_id,
+            "tier": self.tier,
+            "is_ai": self.is_ai,
+            "ts": self.ts,
+        }
+
+    def record_hash(self):
+        return _hash(self.body())
+
+
+# --- ChatRoom.join checks membership policy and records is_ai ---
+
+def join(self, request: JoinRequest):
+    if not _verify_simple_sig(request.body(), request.sig,
+                              request.subject_id):
+        return self._refuse(request, "invalid_request_sig")
+    if request.subject_id in self._members:
+        return self._refuse(request, "already_member")
+    if request.tier not in TIER_RANK:
+        return self._refuse(request, "unknown_tier")
+    # Membership policy
+    if self._template.membership == "human_only" and request.is_ai:
+        return self._refuse(request, "human_only_room")
+    if self._template.membership == "ai_only" and not request.is_ai:
+        return self._refuse(request, "ai_only_room")
+    if self._template.join_policy == "invite":
+        return self._refuse(request, "invite_required")
+    if self._template.join_policy == "approval":
+        return self._refuse(request, "approval_required")
+    body = {
+        "type": "join",
+        "world_id": self._world_id,
+        "seq": self._seq,
+        "prev": self._last_hash,
+        "subject_id": request.subject_id,
+        "tier": request.tier,
+        "is_ai": request.is_ai,
+        "ts": request.ts,
+    }
+    sig_room = self._keypair.sign(
+        _canonical({**body, "sig_subject": request.sig})).hex()
+    rec = Join(
+        world_id=self._world_id, seq=self._seq,
+        prev=self._last_hash,
+        subject_id=request.subject_id,
+        tier=request.tier, is_ai=request.is_ai,
+        ts=request.ts,
+        sig_subject=request.sig, sig_room=sig_room)
+    self._members[request.subject_id] = request.tier
+    self._member_meta[request.subject_id] = {"is_ai": request.is_ai}
+    self._append(rec)
+    return rec
+
+
+# --- ChatRoom gains membership helpers ---
+
+def members_by_type(self):
+    return {
+        "human": [sid for sid, m in self._member_meta.items()
+                  if not m["is_ai"]],
+        "ai": [sid for sid, m in self._member_meta.items()
+               if m["is_ai"]],
+    }
+
+
+def ai_participants(self):
+    return [sid for sid, m in self._member_meta.items()
+            if m["is_ai"]]
+
+
+# --- ChatRoom.post enforces inter_ai_pace ---
+
+def _inter_ai_pace_ok(self, author_id):
+    if self._template.inter_ai_pace <= 0:
+        return True
+    author_meta = self._member_meta.get(author_id, {})
+    if not author_meta.get("is_ai"):
+        return True  # pace only applies to AI-to-AI
+    recent = [r for r in self._records[-self._template.inter_ai_pace:]
+              if isinstance(r, Message)
+              and self._member_meta.get(r.author_id, {}).get("is_ai")]
+    # If the most recent message is from another AI, refuse
+    for r in reversed(self._records):
+        if isinstance(r, Message):
+            return not (r.author_id != author_id
+                        and self._member_meta.get(r.author_id, {})
+                            .get("is_ai"))
+    return True
+
+
+def post(self, request: PostRequest, kind="normal"):
+    # ... existing checks ...
+    if not self._inter_ai_pace_ok(request.author_id):
+        return self._refuse(request, "inter_ai_pace")
+    # ... existing construction ...
+
+
+# --- ChatRoom.override extends to any AI record ---
+
+def override(self, overrides_hash, overrider_kp, action, reason):
+    overrider_id = _did_from_kp(overrider_kp)
+    if overrider_id not in self._members:
+        return None
+    if TIER_RANK[self._members[overrider_id]] < TIER_RANK["control"]:
+        return None
+    if self._member_meta.get(overrider_id, {}).get("is_ai"):
+        return None  # only humans can override AIs
+    target = next((r for r in self._records
+                   if r.record_hash() == overrides_hash), None)
+    if target is None:
+        return None
+    if not self._member_meta.get(target.author_id, {}).get("is_ai"):
+        return None  # target must be an AI
+    # The AI must be overridable per its moderator spec
+    spec = self._template.moderator
+    if spec and spec.moderator_id == target.author_id:
+        if not spec.can_be_overridden:
+            return None
+    # ... build HumanOverride record ...

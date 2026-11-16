@@ -1,0 +1,42 @@
+#[test]
+fn home_bookmark_and_presence_verify() -> Result<()> {
+    let alice = Keypair::generate();
+    let bob = Keypair::generate();
+    let mut home = HomeRoom::create(alice, "test home")?;
+    let bob_room = Room::create(RoomTemplate::chat("t", "test"), bob)?;
+    home.bookmark(&bob_room, "note")?;
+    home.announce_presence(&[bob_room.world_id().clone()], 300)?;
+    verify_room(home.room())
+}
+
+#[test]
+fn commons_registration_verifies() -> Result<()> {
+    let alice = Keypair::generate();
+    let commons_kp = Keypair::generate();
+    let room = Room::create(RoomTemplate::chat("t", "test"), alice.clone())?;
+    let mut commons = Commons::new(commons_kp);
+    commons.register_room(&room, &alice, None)?;
+    verify_commons(&commons)
+}
+
+#[test]
+fn commit_draft_links_home_and_room() -> Result<()> {
+    let alice = Keypair::generate();
+    let bob = Keypair::generate();
+    let mut home = HomeRoom::create(alice.clone(), "test home")?;
+    let mut bob_room = Room::create(RoomTemplate::chat("t", "test"), bob)?;
+    bob_room.join(&alice, "communicate", false)?;
+    let draft = home.draft("hello", Some(bob_room.world_id()))?;
+    let draft_hash = draft.hash()?;
+    let committed = home.commit_draft_to_room(&draft_hash, &mut bob_room)?;
+    match committed {
+        Record::Message(m) => {
+            assert!(m.text.contains("home_ref="));
+            assert!(m.text.contains(&draft_hash[..16]));
+        }
+        _ => panic!("expected message"),
+    }
+    verify_room(home.room())?;
+    verify_room(&bob_room)?;
+    Ok(())
+}

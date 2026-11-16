@@ -1,0 +1,45 @@
+impl Record {
+    pub fn seq(&self) -> u64 {
+        match self {
+            // ... existing arms ...
+            Record::PortLanding(p) => p.seq,
+            Record::Bookmark(b) => b.seq,
+            Record::Presence(p) => p.seq,
+        }
+    }
+    pub fn prev(&self) -> Option<&String> {
+        match self {
+            // ... existing arms ...
+            Record::PortLanding(p) => p.prev.as_ref(),
+            Record::Bookmark(b) => b.prev.as_ref(),
+            Record::Presence(p) => p.prev.as_ref(),
+        }
+    }
+    pub fn proof(&self) -> &ProofOrArray {
+        match self {
+            // ... existing arms ...
+            Record::PortLanding(p) => &p.proof,
+            Record::Bookmark(b) => &b.proof,
+            Record::Presence(p) => &p.proof,
+        }
+    }
+    pub fn world_id(&self) -> &DidKey {
+        match self {
+            // ... existing arms ...
+            Record::PortLanding(p) => &p.world_id,
+            Record::Bookmark(b) => &b.world_id,
+            Record::Presence(p) => &p.world_id,
+        }
+    }
+    pub fn author_id(&self) -> Option<&DidKey> {
+        match self {
+            // ... existing arms ...
+            // PortLanding/Bookmark/Presence are room-signed, not
+            // authored by a member — return None so they can't be
+            // override targets.
+            Record::PortLanding(_) => None,
+            Record::Bookmark(_) => None,
+            Record::Presence(_) => None,
+        }
+    }
+}

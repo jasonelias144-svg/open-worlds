@@ -1,0 +1,1279 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/schemas/records-v1.schema.json",
+  "title": "WCP/0.4 signed records",
+  "description": "One schema for all signed records in the multiverse. ASCII keys, integers only within 2^53-1, RFC 8785 canonical form, W3C Data Integrity proof (eddsa-jcs-2022). Keys are did:key identifiers. No floats.",
+
+  "oneOf": [
+    { "$ref": "#/$defs/RoomCreated" },
+    { "$ref": "#/$defs/Message" },
+    { "$ref": "#/$defs/Join" },
+    { "$ref": "#/$defs/Leave" },
+    { "$ref": "#/$defs/Redact" },
+    { "$ref": "#/$defs/Refusal" },
+    { "$ref": "#/$defs/HumanOverride" },
+    { "$ref": "#/$defs/ModeratorSuccession" },
+    { "$ref": "#/$defs/KnowledgeCreated" },
+    { "$ref": "#/$defs/KnowledgeShardExport" },
+    { "$ref": "#/$defs/RoomRegistered" },
+    { "$ref": "#/$defs/SiblingDeclared" },
+    { "$ref": "#/$defs/RuntimeAttestation" },
+    { "$ref": "#/$defs/Presence" },
+    { "$ref": "#/$defs/PortLanding" },
+    { "$ref": "#/$defs/Bookmark" },
+    { "$ref": "#/$defs/Transcript" },
+    { "$ref": "#/$defs/WorldKey" },
+    { "$ref": "#/$defs/PlantSeed" },
+    { "$ref": "#/$defs/PlantGrowth" },
+    { "$ref": "#/$defs/PlantBranch" },
+    { "$ref": "#/$defs/PlantRefusal" },
+    { "$ref": "#/$defs/GardenSeed" },
+    { "$ref": "#/$defs/GardenTick" },
+    { "$ref": "#/$defs/GardenBranch" },
+    { "$ref": "#/$defs/GardenRefusal" },
+    { "$ref": "#/$defs/BotanicalSeed" },
+    { "$ref": "#/$defs/BotanicalTick" },
+    { "$ref": "#/$defs/BotanicalBranch" },
+    { "$ref": "#/$defs/BotanicalRefusal" },
+    { "$ref": "#/$defs/WaterTick" },
+    { "$ref": "#/$defs/WorldHead" }
+  ],
+
+  "$defs": {
+
+    "DidKey": {
+      "type": "string",
+      "pattern": "^did:key:[0-9a-f]{64}$",
+      "description": "Simplification of the W3C did:key form: 64 lowercase hex chars after did:key:. The W3C base58btc form is a future refinement."
+    },
+    "Hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "Timestamp": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$"
+    },
+    "SafeInt": {
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "NonNegInt": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "Prev": {
+      "oneOf": [
+        { "type": "null" },
+        { "$ref": "#/$defs/Hash" }
+      ]
+    },
+    "Tier": {
+      "enum": ["observe", "communicate", "control", "terminal"]
+    },
+    "Mode": {
+      "enum": ["live", "async"]
+    },
+    "Membership": {
+      "enum": ["mixed", "ai_only", "human_only"]
+    },
+    "Proof": {
+      "type": "object",
+      "required": ["type", "cryptosuite", "created",
+                    "verificationMethod", "proofPurpose",
+                    "proofValue"],
+      "properties": {
+        "type": { "const": "DataIntegrityProof" },
+        "cryptosuite": { "const": "eddsa-jcs-2022" },
+        "created": { "$ref": "#/$defs/Timestamp" },
+        "verificationMethod": { "$ref": "#/$defs/DidKey" },
+        "proofPurpose": {
+          "enum": ["assertionMethod", "authentication"]
+        },
+        "proofValue": {
+          "type": "string",
+          "pattern": "^z[1-9A-HJ-NP-Za-km-z]+$",
+          "description": "Multibase-encoded ed25519 signature (base58btc, z-prefixed)."
+        }
+      },
+      "additionalProperties": false
+    },
+    "ProofOrArray": {
+      "oneOf": [
+        { "$ref": "#/$defs/Proof" },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/Proof" }
+        }
+      ]
+    },
+
+    "Seg": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": { "$ref": "#/$defs/SafeInt" },
+      "description": "A line segment [x1, y1, x2, y2] in world coordinates."
+    },
+    "Tip": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": { "$ref": "#/$defs/SafeInt" },
+      "description": "A growing tip [x, y, direction, depth]."
+    },
+    "LevelGrid": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": { "$ref": "#/$defs/NonNegInt" }
+      }
+    },
+    "PlantParams": {
+      "type": "object",
+      "required": ["branch_length", "max_depth", "water", "light"],
+      "properties": {
+        "branch_length": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "max_depth": { "type": "integer", "minimum": 1, "maximum": 8 },
+        "water": { "type": "integer", "minimum": 0, "maximum": 10 },
+        "light": { "type": "integer", "minimum": 0, "maximum": 10 }
+      },
+      "additionalProperties": false
+    },
+    "SlotRect": {
+      "type": "object",
+      "required": ["slot_id", "x", "y", "w", "h"],
+      "properties": {
+        "slot_id": { "type": "string", "pattern": "^[a-z0-9_\\-]+$" },
+        "x": { "$ref": "#/$defs/SafeInt" },
+        "y": { "$ref": "#/$defs/SafeInt" },
+        "w": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+        "h": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 }
+      },
+      "additionalProperties": false
+    },
+    "PlantAssignment": {
+      "type": "object",
+      "required": ["slot_id", "initial_tip", "plant_params"],
+      "properties": {
+        "slot_id": { "type": "string", "pattern": "^[a-z0-9_\\-]+$" },
+        "initial_tip": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": { "$ref": "#/$defs/SafeInt" }
+        },
+        "plant_params": { "$ref": "#/$defs/PlantParams" }
+      },
+      "additionalProperties": false
+    },
+    "SegmentsList": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Seg" }
+    },
+    "TipsList": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Tip" }
+    },
+    "SegOrTipList": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Seg" }
+    },
+
+    "ModeratorSpec": {
+      "type": "object",
+      "required": ["moderator_id", "moderator_type",
+                    "capabilities", "can_be_overridden"],
+      "properties": {
+        "moderator_id": { "$ref": "#/$defs/DidKey" },
+        "moderator_type": { "enum": ["ai", "human"] },
+        "capabilities": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "enum": ["post", "redact", "summarize",
+                      "pin", "invite", "override"]
+          }
+        },
+        "can_be_overridden": { "type": "boolean" },
+        "knowledge_world_id": { "$ref": "#/$defs/DidKey" },
+        "meta_room": { "type": "boolean", "default": false }
+      },
+      "additionalProperties": false
+    },
+
+    "RoomTemplate": {
+      "type": "object",
+      "required": ["template_id", "topic", "max_msg_len",
+                    "rate_limit_count", "rate_limit_window",
+                    "join_policy", "moderation", "membership",
+                    "inter_ai_pace", "mode", "personal"],
+      "properties": {
+        "template_id": { "type": "string", "maxLength": 200 },
+        "topic": { "type": "string", "maxLength": 200 },
+        "max_msg_len": {
+          "type": "integer", "minimum": 1, "maximum": 8000
+        },
+        "rate_limit_count": {
+          "type": "integer", "minimum": 1, "maximum": 1000
+        },
+        "rate_limit_window": {
+          "type": "integer", "minimum": 1, "maximum": 10000
+        },
+        "join_policy": {
+          "enum": ["open", "invite", "approval"]
+        },
+        "moderation": {
+          "enum": ["author_only", "moderator", "none"]
+        },
+        "membership": { "$ref": "#/$defs/Membership" },
+        "inter_ai_pace": {
+          "type": "integer", "minimum": 0, "maximum": 1000
+        },
+        "mode": { "$ref": "#/$defs/Mode" },
+        "personal": { "type": "boolean" },
+        "welcome": { "type": "string", "maxLength": 2000 },
+        "moderator": { "$ref": "#/$defs/ModeratorSpec" }
+      },
+      "additionalProperties": false
+    },
+
+    "WorldTemplate": {
+      "type": "object",
+      "required": ["template_id", "branch_length", "max_depth",
+                    "water", "light"],
+      "properties": {
+        "template_id": { "type": "string", "maxLength": 200 },
+        "branch_length": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "max_depth": { "type": "integer", "minimum": 1, "maximum": 8 },
+        "water": { "type": "integer", "minimum": 0, "maximum": 10 },
+        "light": { "type": "integer", "minimum": 0, "maximum": 10 }
+      },
+      "additionalProperties": false
+    },
+
+    "GardenTemplate": {
+      "type": "object",
+      "required": ["template_id", "slot_rects", "water_width",
+                    "water_height", "rain_rate", "evap_rate",
+                    "water_max", "energy_cap", "growth_cost",
+                    "light_level"],
+      "properties": {
+        "template_id": { "type": "string", "maxLength": 200 },
+        "slot_rects": {
+          "type": "array", "minItems": 1,
+          "items": { "$ref": "#/$defs/SlotRect" }
+        },
+        "water_width": { "type": "integer", "minimum": 1 },
+        "water_height": { "type": "integer", "minimum": 2 },
+        "rain_rate": { "type": "integer", "minimum": 0, "maximum": 256 },
+        "evap_rate": { "type": "integer", "minimum": 0, "maximum": 256 },
+        "water_max": { "type": "integer", "minimum": 1, "maximum": 255 },
+        "energy_cap": { "type": "integer", "minimum": 1 },
+        "growth_cost": { "type": "integer", "minimum": 1 },
+        "light_level": { "type": "integer", "minimum": 0, "maximum": 10 }
+      },
+      "additionalProperties": false
+    },
+
+    "BotanicalTemplate": {
+      "type": "object",
+      "required": ["template_id", "roof_width", "roof_height",
+                    "garden_specs", "rain_rate", "dispatch_policy",
+                    "opening_hours"],
+      "properties": {
+        "template_id": { "type": "string", "maxLength": 200 },
+        "roof_width": { "type": "integer", "minimum": 1 },
+        "roof_height": { "type": "integer", "minimum": 2 },
+        "garden_specs": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["slot_id", "garden_template",
+                          "plant_assignments", "gutter_x_start",
+                          "gutter_x_end"],
+            "properties": {
+              "slot_id": { "type": "string" },
+              "garden_template": { "$ref": "#/$defs/GardenTemplate" },
+              "plant_assignments": {
+                "type": "array",
+                "items": { "$ref": "#/$defs/PlantAssignment" }
+              },
+              "gutter_x_start": { "$ref": "#/$defs/SafeInt" },
+              "gutter_x_end": { "$ref": "#/$defs/SafeInt" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "rain_rate": { "type": "integer", "minimum": 0, "maximum": 256 },
+        "dispatch_policy": { "enum": ["by_gutter", "equal"] },
+        "opening_hours": {
+          "type": "array", "minItems": 2, "maxItems": 2,
+          "items": { "type": "integer", "minimum": 0, "maximum": 23 }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "KnowledgeTemplate": {
+      "type": "object",
+      "required": ["template_id", "topic"],
+      "properties": {
+        "template_id": { "type": "string", "maxLength": 200 },
+        "topic": { "type": "string", "maxLength": 200 }
+      },
+      "additionalProperties": false
+    },
+
+    "JoinRequest": {
+      "type": "object",
+      "required": ["type", "world_id", "subject_id",
+                    "tier", "is_ai", "ts", "proof"],
+      "properties": {
+        "type": { "const": "join_request" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "subject_id": { "$ref": "#/$defs/DidKey" },
+        "tier": { "$ref": "#/$defs/Tier" },
+        "is_ai": { "type": "boolean" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      },
+      "additionalProperties": false
+    },
+    "PostRequest": {
+      "type": "object",
+      "required": ["type", "world_id", "author_id",
+                    "text", "kind", "ts", "proof"],
+      "properties": {
+        "type": { "const": "post_request" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "author_id": { "$ref": "#/$defs/DidKey" },
+        "text": { "type": "string", "maxLength": 8000 },
+        "kind": {
+          "enum": ["normal", "welcome", "prompt",
+                    "summary", "response", "note",
+                    "journal", "draft", "presence", "port", "reply"]
+        },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      },
+      "additionalProperties": false
+    },
+    "RedactRequest": {
+      "type": "object",
+      "required": ["type", "world_id", "subject_id",
+                    "target_hash", "reason", "ts", "proof"],
+      "properties": {
+        "type": { "const": "redact_request" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "subject_id": { "$ref": "#/$defs/DidKey" },
+        "target_hash": { "$ref": "#/$defs/Hash" },
+        "reason": { "type": "string", "maxLength": 500 },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      },
+      "additionalProperties": false
+    },
+    "OverrideRequest": {
+      "type": "object",
+      "required": ["type", "world_id", "overridden_by",
+                    "overrides_hash", "action", "reason",
+                    "ts", "proof"],
+      "properties": {
+        "type": { "const": "override_request" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "overridden_by": { "$ref": "#/$defs/DidKey" },
+        "overrides_hash": { "$ref": "#/$defs/Hash" },
+        "action": { "enum": ["none", "redact"] },
+        "reason": { "type": "string", "maxLength": 500 },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      },
+      "additionalProperties": false
+    },
+    "SuccessionRequest": {
+      "type": "object",
+      "required": ["type", "world_id", "outgoing_id",
+                    "incoming_id", "reason", "ts", "proof"],
+      "properties": {
+        "type": { "const": "succession_request" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "outgoing_id": { "$ref": "#/$defs/DidKey" },
+        "incoming_id": { "$ref": "#/$defs/DidKey" },
+        "reason": { "type": "string", "maxLength": 500 },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      },
+      "additionalProperties": false
+    },
+    "BranchRequest": {
+      "type": "object",
+      "required": ["type", "parent_id", "branch_point_hash",
+                    "requested_params", "requested_by",
+                    "world_key", "ts", "proof"],
+      "properties": {
+        "type": { "const": "branch_request" },
+        "parent_id": { "$ref": "#/$defs/DidKey" },
+        "branch_point_hash": { "$ref": "#/$defs/Hash" },
+        "requested_params": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/SafeInt" }
+        },
+        "requested_by": { "$ref": "#/$defs/DidKey" },
+        "world_key": { "$ref": "#/$defs/WorldKey" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      },
+      "additionalProperties": false
+    },
+
+    "RoomCreated": {
+      "type": "object",
+      "required": ["type", "world_id", "template",
+                    "creator_id", "ts", "proof"],
+      "properties": {
+        "type": { "const": "room_created" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "template": { "$ref": "#/$defs/RoomTemplate" },
+        "creator_id": { "$ref": "#/$defs/DidKey" },
+        "opening_transcript": { "$ref": "#/$defs/Transcript" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "Message": {
+      "type": "object",
+      "required": ["type", "world_id", "seq", "prev",
+                    "author_id", "text", "kind", "ts", "proof"],
+      "properties": {
+        "type": { "const": "message" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "seq": { "$ref": "#/$defs/NonNegInt" },
+        "prev": { "$ref": "#/$defs/Prev" },
+        "author_id": { "$ref": "#/$defs/DidKey" },
+        "text": { "type": "string", "maxLength": 8000 },
+        "kind": {
+          "enum": ["normal", "welcome", "prompt",
+                    "summary", "response", "note",
+                    "journal", "draft", "presence", "port", "reply"]
+        },
+        "in_reply_to": { "$ref": "#/$defs/Hash" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "Join": {
+      "type": "object",
+      "required": ["type", "world_id", "seq", "prev",
+                    "subject_id", "tier", "is_ai", "ts", "proof"],
+      "properties": {
+        "type": { "const": "join" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "seq": { "$ref": "#/$defs/NonNegInt" },
+        "prev": { "$ref": "#/$defs/Prev" },
+        "subject_id": { "$ref": "#/$defs/DidKey" },
+        "tier": { "$ref": "#/$defs/Tier" },
+        "is_ai": { "type": "boolean" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "Leave": {
+      "type": "object",
+      "required": ["type", "world_id", "seq", "prev",
+                    "subject_id", "ts", "proof"],
+      "properties": {
+        "type": { "const": "leave" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "seq": { "$ref": "#/$defs/NonNegInt" },
+        "prev": { "$ref": "#/$defs/Prev" },
+        "subject_id": { "$ref": "#/$defs/DidKey" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "Redact": {
+      "type": "object",
+      "required": ["type", "world_id", "seq", "prev",
+                    "subject_id", "target_hash", "reason",
+                    "ts", "proof"],
+      "properties": {
+        "type": { "const": "redact" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "seq": { "$ref": "#/$defs/NonNegInt" },
+        "prev": { "$ref": "#/$defs/Prev" },
+        "subject_id": { "$ref": "#/$defs/DidKey" },
+        "target_hash": { "$ref": "#/$defs/Hash" },
+        "reason": { "type": "string", "maxLength": 500 },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "Refusal": {
+      "type": "object",
+      "required": ["type", "world_id", "seq", "prev",
+                    "request_hash", "requester_id",
+                    "reason", "ts", "proof"],
+      "properties": {
+        "type": { "const": "refusal" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "seq": { "$ref": "#/$defs/NonNegInt" },
+        "prev": { "$ref": "#/$defs/Prev" },
+        "request_hash": { "$ref": "#/$defs/Hash" },
+        "requester_id": { "$ref": "#/$defs/DidKey" },
+        "reason": {
+          "enum": [
+            "not_a_member", "insufficient_tier", "rate_limit",
+            "inter_ai_pace", "message_too_long",
+            "already_member", "invite_required",
+            "approval_required", "human_only_room",
+            "ai_only_room", "personal_room", "unknown_tier",
+            "invalid_request_sig", "not_allowed",
+            "target_not_found", "moderation_disabled",
+            "already_moderator_elsewhere", "sandboxed",
+            "expired_world_key", "foreign_world_key",
+            "invalid_world_key", "world_key_subject_mismatch",
+            "stale_branch_point", "template_range",
+            "world_key_scope", "param_not_allowed",
+            "unknown_param"
+          ]
+        },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "HumanOverride": {
+      "type": "object",
+      "required": ["type", "world_id", "seq", "prev",
+                    "overrides_hash", "overridden_by",
+                    "action", "reason", "ts", "proof"],
+      "properties": {
+        "type": { "const": "human_override" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "seq": { "$ref": "#/$defs/NonNegInt" },
+        "prev": { "$ref": "#/$defs/Prev" },
+        "overrides_hash": { "$ref": "#/$defs/Hash" },
+        "overridden_by": { "$ref": "#/$defs/DidKey" },
+        "action": { "enum": ["none", "redact"] },
+        "reason": { "type": "string", "maxLength": 500 },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "ModeratorSuccession": {
+      "type": "object",
+      "required": ["type", "world_id", "seq", "prev",
+                    "outgoing_id", "incoming_id",
+                    "knowledge_shard_hash", "reason",
+                    "ts", "proof"],
+      "properties": {
+        "type": { "const": "moderator_succession" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "seq": { "$ref": "#/$defs/NonNegInt" },
+        "prev": { "$ref": "#/$defs/Prev" },
+        "outgoing_id": { "$ref": "#/$defs/DidKey" },
+        "incoming_id": { "$ref": "#/$defs/DidKey" },
+        "knowledge_shard_hash": { "$ref": "#/$defs/Hash" },
+        "reason": { "type": "string", "maxLength": 500 },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "KnowledgeCreated": {
+      "type": "object",
+      "required": ["type", "world_id", "template",
+                    "owner_id", "ts", "proof"],
+      "properties": {
+        "type": { "const": "knowledge_created" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "template": { "$ref": "#/$defs/KnowledgeTemplate" },
+        "owner_id": { "$ref": "#/$defs/DidKey" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "KnowledgeShardExport": {
+      "type": "object",
+      "required": ["type", "world_id", "seq", "prev",
+                    "target_room_id", "successor_id",
+                    "entry_hashes", "ts", "proof"],
+      "properties": {
+        "type": { "const": "knowledge_shard_export" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "seq": { "$ref": "#/$defs/NonNegInt" },
+        "prev": { "$ref": "#/$defs/Prev" },
+        "target_room_id": { "$ref": "#/$defs/DidKey" },
+        "successor_id": { "$ref": "#/$defs/DidKey" },
+        "entry_hashes": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/Hash" },
+          "description": "Sorted, deduplicated. The successor's knowledge is a verifiable subset of the parent's."
+        },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "RoomRegistered": {
+      "type": "object",
+      "required": ["type", "commons_id", "seq", "prev",
+                    "room_id", "topic", "template_hash",
+                    "room_seed_hash", "registered_by",
+                    "ts", "proof"],
+      "properties": {
+        "type": { "const": "room_registered" },
+        "commons_id": { "$ref": "#/$defs/DidKey" },
+        "seq": { "$ref": "#/$defs/NonNegInt" },
+        "prev": { "$ref": "#/$defs/Prev" },
+        "room_id": { "$ref": "#/$defs/DidKey" },
+        "topic": { "type": "string", "maxLength": 200 },
+        "template_hash": { "$ref": "#/$defs/Hash" },
+        "room_seed_hash": { "$ref": "#/$defs/Hash" },
+        "registered_by": { "$ref": "#/$defs/DidKey" },
+        "also_listed_in": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/DidKey" },
+          "description": "Other Commons that also list this room. Supports the internet-like federation topology."
+        },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "SiblingDeclared": {
+      "type": "object",
+      "required": ["type", "commons_id", "seq", "prev",
+                    "parent_id", "sibling_id", "parent_kw_id",
+                    "shard_hash", "purpose", "ts", "proof"],
+      "properties": {
+        "type": { "const": "sibling_declared" },
+        "commons_id": { "$ref": "#/$defs/DidKey" },
+        "seq": { "$ref": "#/$defs/NonNegInt" },
+        "prev": { "$ref": "#/$defs/Prev" },
+        "parent_id": { "$ref": "#/$defs/DidKey" },
+        "sibling_id": { "$ref": "#/$defs/DidKey" },
+        "parent_kw_id": { "$ref": "#/$defs/DidKey" },
+        "shard_hash": { "$ref": "#/$defs/Hash" },
+        "purpose": { "type": "string", "maxLength": 500 },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "RuntimeAttestation": {
+      "type": "object",
+      "required": ["type", "runtime_id", "keys", "ts", "proof"],
+      "properties": {
+        "type": { "const": "runtime_attestation" },
+        "runtime_id": { "$ref": "#/$defs/DidKey" },
+        "keys": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/DidKey" }
+        },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/Proof" },
+          "description": "One proof per listed key (co-signed). No key can be added without its owner's consent."
+        }
+      }
+    },
+
+    "Presence": {
+      "type": "object",
+      "required": ["type", "world_id", "seq", "prev",
+                    "subject_id", "rooms", "ttl", "ts", "proof"],
+      "properties": {
+        "type": { "const": "presence" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "seq": { "$ref": "#/$defs/NonNegInt" },
+        "prev": { "$ref": "#/$defs/Prev" },
+        "subject_id": { "$ref": "#/$defs/DidKey" },
+        "rooms": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/DidKey" }
+        },
+        "ttl": { "type": "integer", "minimum": 0, "maximum": 86400 },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "PortLanding": {
+      "type": "object",
+      "required": ["type", "world_id", "seq", "prev",
+                    "transcript", "intent", "ts", "proof"],
+      "properties": {
+        "type": { "const": "port_landing" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "seq": { "$ref": "#/$defs/NonNegInt" },
+        "prev": { "$ref": "#/$defs/Prev" },
+        "transcript": { "$ref": "#/$defs/Transcript" },
+        "intent": { "enum": ["journal", "room"] },
+        "target_room": { "$ref": "#/$defs/DidKey" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "Bookmark": {
+      "type": "object",
+      "required": ["type", "world_id", "seq", "prev",
+                    "room_id", "note", "ts", "proof"],
+      "properties": {
+        "type": { "const": "bookmark" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "seq": { "$ref": "#/$defs/NonNegInt" },
+        "prev": { "$ref": "#/$defs/Prev" },
+        "room_id": { "$ref": "#/$defs/DidKey" },
+        "note": { "type": "string", "maxLength": 500 },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "Transcript": {
+      "type": "object",
+      "required": ["type", "source_label", "entries",
+                    "porter_id", "ts", "proof"],
+      "properties": {
+        "type": { "const": "transcript" },
+        "source_label": { "type": "string", "maxLength": 200 },
+        "entries": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["speaker", "ts", "text"],
+            "properties": {
+              "speaker": { "type": "string", "maxLength": 100 },
+              "ts": { "$ref": "#/$defs/Timestamp" },
+              "text": { "type": "string", "maxLength": 8000 }
+            },
+            "additionalProperties": false
+          }
+        },
+        "porter_id": { "$ref": "#/$defs/DidKey" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "WorldKey": {
+      "type": "object",
+      "required": ["type", "issuer_id", "subject_id",
+                    "tier", "param_scopes", "valid_until",
+                    "ts", "proof"],
+      "properties": {
+        "type": { "const": "world_key" },
+        "issuer_id": { "$ref": "#/$defs/DidKey" },
+        "subject_id": { "$ref": "#/$defs/DidKey" },
+        "tier": { "$ref": "#/$defs/Tier" },
+        "param_scopes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array", "minItems": 2, "maxItems": 2,
+            "items": { "$ref": "#/$defs/SafeInt" }
+          }
+        },
+        "valid_until": { "$ref": "#/$defs/Timestamp" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "PlantBranchSeed": {
+      "type": "object",
+      "required": ["type", "new_world_id", "parent_id",
+                    "parent_branch_hash", "template_hash",
+                    "params", "inherited_segments",
+                    "initial_frontier", "pot", "ts", "proof"],
+      "properties": {
+        "type": { "const": "plant_branch_seed" },
+        "new_world_id": { "$ref": "#/$defs/DidKey" },
+        "parent_id": { "$ref": "#/$defs/DidKey" },
+        "parent_branch_hash": { "$ref": "#/$defs/Hash" },
+        "template_hash": { "$ref": "#/$defs/Hash" },
+        "params": { "$ref": "#/$defs/PlantParams" },
+        "inherited_segments": { "$ref": "#/$defs/SegmentsList" },
+        "initial_frontier": { "$ref": "#/$defs/TipsList" },
+        "pot": {
+          "type": "array", "minItems": 4, "maxItems": 4,
+          "items": { "$ref": "#/$defs/SafeInt" }
+        },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": {
+          "type": "array", "minItems": 2, "maxItems": 2,
+          "items": { "$ref": "#/$defs/Proof" },
+          "description": "Parent authorizes; child accepts. Order: [parent, child]."
+        }
+      }
+    },
+
+    "GardenBranchSeed": {
+      "type": "object",
+      "required": ["type", "new_world_id", "parent_id",
+                    "parent_branch_hash", "template_hash",
+                    "inherited_water", "inherited_plants",
+                    "params", "ts", "proof"],
+      "properties": {
+        "type": { "const": "garden_branch_seed" },
+        "new_world_id": { "$ref": "#/$defs/DidKey" },
+        "parent_id": { "$ref": "#/$defs/DidKey" },
+        "parent_branch_hash": { "$ref": "#/$defs/Hash" },
+        "template_hash": { "$ref": "#/$defs/Hash" },
+        "inherited_water": { "$ref": "#/$defs/LevelGrid" },
+        "inherited_plants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["slot_id", "parent_plant_id",
+                          "plant_segments", "plant_frontier",
+                          "plant_params", "energy"],
+            "properties": {
+              "slot_id": { "type": "string" },
+              "parent_plant_id": { "$ref": "#/$defs/DidKey" },
+              "plant_segments": { "$ref": "#/$defs/SegmentsList" },
+              "plant_frontier": { "$ref": "#/$defs/TipsList" },
+              "plant_params": { "$ref": "#/$defs/PlantParams" },
+              "plant_last_hash": { "$ref": "#/$defs/Hash" },
+              "energy": { "$ref": "#/$defs/NonNegInt" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "params": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/SafeInt" }
+        },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": {
+          "type": "array", "minItems": 2, "maxItems": 2,
+          "items": { "$ref": "#/$defs/Proof" }
+        }
+      }
+    },
+
+    "BotanicalBranchSeed": {
+      "type": "object",
+      "required": ["type", "new_world_id", "parent_id",
+                    "parent_branch_hash", "template_hash",
+                    "inherited_gardens", "params", "ts", "proof"],
+      "properties": {
+        "type": { "const": "botanical_branch_seed" },
+        "new_world_id": { "$ref": "#/$defs/DidKey" },
+        "parent_id": { "$ref": "#/$defs/DidKey" },
+        "parent_branch_hash": { "$ref": "#/$defs/Hash" },
+        "template_hash": { "$ref": "#/$defs/Hash" },
+        "inherited_gardens": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["water_init", "energy"],
+            "properties": {
+              "water_init": { "$ref": "#/$defs/LevelGrid" },
+              "energy": {
+                "type": "object",
+                "additionalProperties": { "$ref": "#/$defs/NonNegInt" }
+              }
+            }
+          }
+        },
+        "params": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/SafeInt" }
+        },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": {
+          "type": "array", "minItems": 2, "maxItems": 2,
+          "items": { "$ref": "#/$defs/Proof" }
+        }
+      }
+    },
+
+    "PlantSeed": {
+      "type": "object",
+      "required": ["type", "world_id", "template", "pot",
+                    "initial_tip", "p0", "ts", "proof"],
+      "properties": {
+        "type": { "const": "plant_seed" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "template": { "$ref": "#/$defs/WorldTemplate" },
+        "pot": {
+          "type": "array", "minItems": 4, "maxItems": 4,
+          "items": { "$ref": "#/$defs/SafeInt" }
+        },
+        "initial_tip": {
+          "type": "array", "minItems": 3, "maxItems": 3,
+          "items": { "$ref": "#/$defs/SafeInt" }
+        },
+        "p0": { "$ref": "#/$defs/PlantParams" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "PlantGrowth": {
+      "type": "object",
+      "required": ["type", "world_id", "step", "seed",
+                    "prev", "p", "segs", "tips", "ts", "proof"],
+      "properties": {
+        "type": { "const": "plant_growth" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "step": { "$ref": "#/$defs/NonNegInt" },
+        "seed": { "$ref": "#/$defs/Hash" },
+        "prev": { "$ref": "#/$defs/Prev" },
+        "p": { "$ref": "#/$defs/Hash" },
+        "segs": { "$ref": "#/$defs/SegmentsList" },
+        "tips": { "$ref": "#/$defs/TipsList" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "PlantBranch": {
+      "type": "object",
+      "required": ["type", "world_id", "step", "branch_seed",
+                    "prior", "ts", "proof"],
+      "properties": {
+        "type": { "const": "plant_branch" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "step": { "$ref": "#/$defs/NonNegInt" },
+        "branch_seed": { "$ref": "#/$defs/PlantBranchSeed" },
+        "prior": { "$ref": "#/$defs/Prev" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "PlantRefusal": {
+      "type": "object",
+      "required": ["type", "world_id", "step", "request_hash",
+                    "requester_id", "reason", "prior",
+                    "ts", "proof"],
+      "properties": {
+        "type": { "const": "plant_refusal" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "step": { "$ref": "#/$defs/NonNegInt" },
+        "request_hash": { "$ref": "#/$defs/Hash" },
+        "requester_id": { "$ref": "#/$defs/DidKey" },
+        "reason": { "type": "string", "maxLength": 500 },
+        "prior": { "$ref": "#/$defs/Prev" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "GardenSeed": {
+      "type": "object",
+      "required": ["type", "world_id", "template", "plants",
+                    "water_init", "ts", "proof"],
+      "properties": {
+        "type": { "const": "garden_seed" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "template": { "$ref": "#/$defs/GardenTemplate" },
+        "plants": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/PlantAssignment" }
+        },
+        "water_init": { "$ref": "#/$defs/LevelGrid" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "GardenTick": {
+      "type": "object",
+      "required": ["type", "world_id", "step", "t", "prev",
+                    "rain", "moves", "soak", "evap",
+                    "energy_delta", "plant_growths",
+                    "plant_hashes", "level_hash", "ts", "proof"],
+      "properties": {
+        "type": { "const": "garden_tick" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "step": { "$ref": "#/$defs/NonNegInt" },
+        "t": { "$ref": "#/$defs/NonNegInt" },
+        "prev": { "$ref": "#/$defs/Prev" },
+        "rain": {
+          "type": "array",
+          "items": {
+            "type": "array", "minItems": 3, "maxItems": 3,
+            "items": { "$ref": "#/$defs/SafeInt" }
+          }
+        },
+        "moves": {
+          "type": "array",
+          "items": {
+            "type": "array", "minItems": 5, "maxItems": 5,
+            "items": { "$ref": "#/$defs/SafeInt" }
+          }
+        },
+        "soak": {
+          "type": "array",
+          "items": {
+            "type": "array", "minItems": 4, "maxItems": 4,
+            "items": {
+              "oneOf": [
+                { "$ref": "#/$defs/SafeInt" },
+                { "type": "string", "pattern": "^[a-z0-9_\\-]+$" }
+              ]
+            }
+          }
+        },
+        "evap": {
+          "type": "array",
+          "items": {
+            "type": "array", "minItems": 3, "maxItems": 3,
+            "items": { "$ref": "#/$defs/SafeInt" }
+          }
+        },
+        "ext_rain": {
+          "type": "array",
+          "items": {
+            "type": "array", "minItems": 3, "maxItems": 3,
+            "items": { "$ref": "#/$defs/SafeInt" }
+          }
+        },
+        "energy_delta": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/SafeInt" }
+        },
+        "plant_growths": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/NonNegInt" }
+        },
+        "plant_hashes": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/Hash" }
+        },
+        "level_hash": { "$ref": "#/$defs/Hash" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "GardenBranch": {
+      "type": "object",
+      "required": ["type", "world_id", "step", "t",
+                    "branch_seed", "prior", "ts", "proof"],
+      "properties": {
+        "type": { "const": "garden_branch" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "step": { "$ref": "#/$defs/NonNegInt" },
+        "t": { "$ref": "#/$defs/NonNegInt" },
+        "branch_seed": { "$ref": "#/$defs/GardenBranchSeed" },
+        "prior": { "$ref": "#/$defs/Prev" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "GardenRefusal": {
+      "type": "object",
+      "required": ["type", "world_id", "step", "t",
+                    "request_hash", "requester_id",
+                    "reason", "prior", "ts", "proof"],
+      "properties": {
+        "type": { "const": "garden_refusal" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "step": { "$ref": "#/$defs/NonNegInt" },
+        "t": { "$ref": "#/$defs/NonNegInt" },
+        "request_hash": { "$ref": "#/$defs/Hash" },
+        "requester_id": { "$ref": "#/$defs/DidKey" },
+        "reason": { "type": "string", "maxLength": 500 },
+        "prior": { "$ref": "#/$defs/Prev" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "BotanicalSeed": {
+      "type": "object",
+      "required": ["type", "world_id", "template",
+                    "garden_ids", "garden_seed_hashes",
+                    "ts", "proof"],
+      "properties": {
+        "type": { "const": "botanical_seed" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "template": { "$ref": "#/$defs/BotanicalTemplate" },
+        "garden_ids": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/DidKey" }
+        },
+        "garden_seed_hashes": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/Hash" }
+        },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "BotanicalTick": {
+      "type": "object",
+      "required": ["type", "world_id", "step", "t", "prev",
+                    "roof_rain", "roof_moves", "dispatch",
+                    "garden_hashes", "roof_level_hash",
+                    "ts", "proof"],
+      "properties": {
+        "type": { "const": "botanical_tick" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "step": { "$ref": "#/$defs/NonNegInt" },
+        "t": { "$ref": "#/$defs/NonNegInt" },
+        "prev": { "$ref": "#/$defs/Prev" },
+        "roof_rain": {
+          "type": "array",
+          "items": {
+            "type": "array", "minItems": 3, "maxItems": 3,
+            "items": { "$ref": "#/$defs/SafeInt" }
+          }
+        },
+        "roof_moves": {
+          "type": "array",
+          "items": {
+            "type": "array", "minItems": 5, "maxItems": 5,
+            "items": { "$ref": "#/$defs/SafeInt" }
+          }
+        },
+        "dispatch": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "array", "minItems": 3, "maxItems": 3,
+              "items": { "$ref": "#/$defs/SafeInt" }
+            }
+          }
+        },
+        "garden_hashes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "last_hash": { "$ref": "#/$defs/Hash" },
+              "level_hash": { "$ref": "#/$defs/Hash" }
+            }
+          }
+        },
+        "roof_level_hash": { "$ref": "#/$defs/Hash" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "BotanicalBranch": {
+      "type": "object",
+      "required": ["type", "world_id", "step", "t",
+                    "branch_seed", "prior", "ts", "proof"],
+      "properties": {
+        "type": { "const": "botanical_branch" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "step": { "$ref": "#/$defs/NonNegInt" },
+        "t": { "$ref": "#/$defs/NonNegInt" },
+        "branch_seed": { "$ref": "#/$defs/BotanicalBranchSeed" },
+        "prior": { "$ref": "#/$defs/Prev" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "BotanicalRefusal": {
+      "type": "object",
+      "required": ["type", "world_id", "step", "t",
+                    "request_hash", "requester_id",
+                    "reason", "prior", "ts", "proof"],
+      "properties": {
+        "type": { "const": "botanical_refusal" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "step": { "$ref": "#/$defs/NonNegInt" },
+        "t": { "$ref": "#/$defs/NonNegInt" },
+        "request_hash": { "$ref": "#/$defs/Hash" },
+        "requester_id": { "$ref": "#/$defs/DidKey" },
+        "reason": { "type": "string", "maxLength": 500 },
+        "prior": { "$ref": "#/$defs/Prev" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "WaterTick": {
+      "type": "object",
+      "required": ["type", "world_id", "step", "t", "prev",
+                    "rain", "moves", "soak", "evap",
+                    "level_hash", "ts", "proof"],
+      "properties": {
+        "type": { "const": "water_tick" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "step": { "$ref": "#/$defs/NonNegInt" },
+        "t": { "$ref": "#/$defs/NonNegInt" },
+        "prev": { "$ref": "#/$defs/Prev" },
+        "rain": {
+          "type": "array",
+          "items": {
+            "type": "array", "minItems": 3, "maxItems": 3,
+            "items": { "$ref": "#/$defs/SafeInt" }
+          }
+        },
+        "moves": {
+          "type": "array",
+          "items": {
+            "type": "array", "minItems": 5, "maxItems": 5,
+            "items": { "$ref": "#/$defs/SafeInt" }
+          }
+        },
+        "soak": {
+          "type": "array",
+          "items": {
+            "type": "array", "minItems": 3, "maxItems": 3,
+            "items": { "$ref": "#/$defs/SafeInt" }
+          }
+        },
+        "evap": {
+          "type": "array",
+          "items": {
+            "type": "array", "minItems": 3, "maxItems": 3,
+            "items": { "$ref": "#/$defs/SafeInt" }
+          }
+        },
+        "level_hash": { "$ref": "#/$defs/Hash" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    },
+
+    "WorldHead": {
+      "type": "object",
+      "required": ["type", "world_id", "tick", "chain_head",
+                    "log_len", "state_hash", "params_hash",
+                    "template_hash", "ts", "proof"],
+      "properties": {
+        "type": { "const": "world_head" },
+        "world_id": { "$ref": "#/$defs/DidKey" },
+        "tick": { "$ref": "#/$defs/NonNegInt" },
+        "chain_head": { "$ref": "#/$defs/Hash" },
+        "log_len": { "$ref": "#/$defs/NonNegInt" },
+        "state_hash": { "$ref": "#/$defs/Hash" },
+        "ext_rain_commitment": { "$ref": "#/$defs/Hash" },
+        "params_hash": { "$ref": "#/$defs/Hash" },
+        "template_hash": { "$ref": "#/$defs/Hash" },
+        "ts": { "$ref": "#/$defs/Timestamp" },
+        "proof": { "$ref": "#/$defs/ProofOrArray" }
+      }
+    }
+  }
+}

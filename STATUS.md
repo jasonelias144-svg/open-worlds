@@ -63,8 +63,13 @@ free, and never a money machine
   as particles, people shape the land, and life spreads, beginning with
   an endless plant in the browser (docs/FRACTALS.md, "Where it leads:
   living worlds"). DeepSeek sketched it in record 012-07-03; the sketch
-  is kept with the review, and the project fits it as
-  `rust/endless-plant`.
+  is kept with the review, and the project is to fit it as
+  `rust/endless-plant` (not built yet).
+  Record 012-09-05 (water, the garden, chat rooms for the Commons with
+  AI moderators, the home room, a schema, and a sketch crate in Rust,
+  `chat-world`) is kept as written, with what runs
+  (`sketches/deepseek/012-09-05/README.md`); fitting it is next,
+  piece by piece.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
@@ -236,6 +241,20 @@ kind.
     total, never per author, so that marking in good faith costs nothing.
 
 ## Decided
+
+- 2026-11-16, founder, on record 012-09-05, the founder's new
+  conversation with DeepSeek: "Perfect. I'm glad I have a working
+  method. Let's import as much code they works and adapt the rest. It
+  is moving in a new direction. I was going to keep going, but we ran
+  out of data on the message I stopped. But let's get it in the repo
+  and begin integrating it. Thoughts?"
+  So the record and its code are kept in `sketches/` as written, with
+  what runs, and are fitted piece by piece (the technical lead's
+  reading of "import as much code [that] works and adapt the rest":
+  what fits open-worlds' own code is taken in, and the rest is
+  rewritten to fit). The founder's decisions inside the record are in
+  it word for word, and go into the pages they change in the pull
+  request after this one.
 
 - 2026-11-15, founder, on hallucination, both ways:
   "Ok. But we are going to need to deal with AI hallucination
@@ -1991,6 +2010,31 @@ Decisions about the code, made by the technical lead under the founder's
 deference (above, 2026-11-13), each with its reason and what would show
 it was wrong. Questions of what the project is for stay with the founder.
 
+- 2026-11-16, DeepSeek's two questions in record 012-09-05 (its line
+  13769), and what follows for fitting `chat-world`:
+  (1) A room has its own key, and its creator joins with theirs.
+  Reason: every world here is a key of its own, and a room is a world
+  (docs/COMMONS.md, "The text world: a room"); so a room can be handed
+  on without a person's key changing hands, and a person's key never
+  signs as two things. (2) A leave needs no signature but the
+  leaver's, and never the room's. Reason: leaving can't be refused, so
+  it can't wait on the room's signature; and a world here doesn't sign
+  each entry of its log, it signs its log's heads in batches
+  (`open-worlds/log-head/v1`). The leaver's signature is enough, not
+  required: a leave the leaver can't sign (a lost key or connection, a
+  time-out, a keeper taking an inhabitant out) is still a leave, which
+  the room records as its own entry and its heads cover, as the
+  Ur-world records an exit today (docs/URWORLD.md, "Exit";
+  docs/COMMONS.md, "Leaving always works, everywhere").
+  So when the sketch is fitted, the room's proof on each record gives
+  way to signed heads, the crate stands on `rust/formats` (canonical
+  form, proofs, Multikey `did:key`, time given from outside), and its
+  records are fitted into `schemas/records-v1.schema.json`, not put in
+  its place. Wrong if: a room's signature on each record proves
+  something a signed head over the same entries can't (for one, that
+  the room took an entry in at a stated time, between heads); then the
+  question returns.
+
 - 2026-11-16, the long files in parts: a tool that opens a page for a
   reader may show only its start, so each file a reader works from that
   is longer than 28,000 bytes is also kept under `parts/`, cut into
@@ -2475,6 +2519,21 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-16 Claude: record 012-09-05 brought in as written (Decided,
+  the newest entry): the record, 55 files of DeepSeek's code under
+  `sketches/deepseek/012-09-05/`, and the technical lead's first pass.
+  Python: 60 of its 98 tests pass, and the 38 that fail are listed and
+  held true by CI. Rust: `chat-world` is one line from building; with
+  it changed, 4 of its 12 tests pass, and the other 8 fail for one
+  cause, found: a record is signed without its `type` and checked with
+  it. `review/run.sh` shows both, outside CI. COLLABORATING.md has the
+  message to DeepSeek, with the answers to its two questions (Decided
+  by the technical lead, the newest entry); TOPICS.md, topics 14 and
+  18, say what is sketched. Not checked: the first version of the
+  crate; the files of DeepSeek's later reply, joined to the crate; the
+  schema, beyond the names of its definitions; the sketches as
+  designs.
 
 - 2026-11-16 Claude: the long files in parts (Decided by the technical
   lead, the newest entry): `parts/`, written by `docs/parts.py` and

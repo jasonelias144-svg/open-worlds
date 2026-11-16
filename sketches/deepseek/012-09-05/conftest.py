@@ -1,0 +1,101 @@
+"""Ours, not DeepSeek's (see README.md).
+
+Reads known-failures.txt, which says which of DeepSeek's tests fail as the
+code stands here:
+  - a test file listed alone does not load, so it is not collected;
+  - a test listed by name is an expected failure, strictly: if it starts
+    passing, the run fails until it is taken off the list;
+  - a test whose error starts with "sometimes:" fails on some runs and
+    passes on others (for example, it depends on the order of random keys
+    or of a set), so either result is accepted for it.
+A run of the whole folder (pytest with no arguments, as CI runs it) also
+fails if the list names a test that doesn't exist. So a green run of the
+whole folder means the list is exactly true.
+
+With SKETCH_RAW=1 set, nothing is listed: every test runs as written
+(tools/known_failures.py uses this to rewrite the list).
+
+Each test's keys are made from its own name (_repeatable_keys, below), so
+a run gives the same results every time. With fresh random keys, some of
+the individual pieces' tests pass or fail by chance, since the replays
+they check depend on the keys (sketches/INDEX.md, "Not fixed"); set
+SKETCH_RANDOM_KEYS=1 to run them that way.
+"""
+import hashlib
+import itertools
+import os
+import sys
+from pathlib import Path
+
+import pytest
+
+# This record's sketches build on fractal_world_v3.py, which is in the
+# folder of record 012-06-02. We put that folder on the import path so
+# the import resolves, without copying code that isn't from this record
+# into this folder. This folder comes first, so its own files win.
+# (Ours, not DeepSeek's.)
+for _name in ("012-06-02",):
+    _DEPS = Path(__file__).resolve().parent.parent / _name
+    if _DEPS.is_dir() and str(_DEPS) not in sys.path:
+        sys.path.insert(0, str(_DEPS))
+
+_HERE = Path(__file__).parent
+SOMETIMES = "sometimes:"
+
+
+def _known():
+    files, tests = {}, {}
+    text = (_HERE / "known-failures.txt").read_text(encoding="utf-8")
+    for raw in text.splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        entry, _, reason = line.partition("  # ")
+        entry = entry.strip()
+        (tests if "::" in entry else files)[entry] = reason.strip()
+    return files, tests
+
+
+KNOWN_FILES, KNOWN_TESTS = ({}, {}) if os.environ.get("SKETCH_RAW") \
+    else _known()
+collect_ignore = sorted(KNOWN_FILES)
+
+
+def pytest_collection_modifyitems(config, items):
+    seen = set()
+    for item in items:
+        reason = KNOWN_TESTS.get(item.nodeid)
+        if reason is not None:
+            seen.add(item.nodeid)
+            strict = not reason.startswith(SOMETIMES)
+            item.add_marker(pytest.mark.xfail(reason=reason, strict=strict))
+    # Only a run of the whole folder sees every test, so only then can a
+    # listed test be known not to exist. `pytest some_test.py`, `pytest .`
+    # or `pytest -k ...` skip this check.
+    whole_run = not config.args or config.args == [str(_HERE)]
+    stale = sorted(set(KNOWN_TESTS) - seen)
+    if whole_run and not config.option.keyword and stale:
+        raise pytest.UsageError(
+            "known-failures.txt lists tests that don't exist: "
+            + ", ".join(stale))
+
+
+@pytest.fixture(autouse=True)
+def _repeatable_keys(request, monkeypatch):
+    """Ours: Ed25519PrivateKey.generate() makes each test's keys from the
+    test's own name and a counter, not from the operating system's
+    randomness, so every run of a test uses the same keys. These keys
+    protect nothing and are never for anything real."""
+    if os.environ.get("SKETCH_RANDOM_KEYS"):
+        return
+    from cryptography.hazmat.primitives.asymmetric import ed25519
+    count = itertools.count()
+
+    def generate():
+        seed = hashlib.sha256(
+            f"open-worlds sketch test key, never for anything real: "
+            f"{request.node.nodeid}: {next(count)}".encode()).digest()
+        return ed25519.Ed25519PrivateKey.from_private_bytes(seed)
+
+    monkeypatch.setattr(ed25519.Ed25519PrivateKey, "generate",
+                        staticmethod(generate))

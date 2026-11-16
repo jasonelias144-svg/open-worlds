@@ -522,6 +522,18 @@ founder, of Cloudflare: "no longer binding"). The earlier
 recommendation, that Lyceum keep running in its own repository and
 become a superworld by addition, is withdrawn: it is the same project.
 
+**Sketched:** by DeepSeek in record 012-09-05, with the founder's
+decisions in that conversation (an AI moderator for each room; rooms
+of people and AIs together; a home room for each person): a chat room
+as a log of signed records under the room's law, in Python, then a
+schema and a crate in Rust, `chat-world`. Kept as written in
+`sketches/deepseek/012-09-05/`, with what runs. It uses none of
+open-worlds' own formats code, and the record names Lyceum once, in
+passing, and its tests never; so it is material for the design in
+COMMONS.md, not yet a part of it. The founder's
+decisions in the record go into COMMONS.md and STATUS.md in the pull
+request after this one.
+
 **Send back:** a room's law for each of the three kinds, as data and as
 text; what a room's public log could hold and what could stay in the
 room, offered to the founder as input, not as the decision; one invented

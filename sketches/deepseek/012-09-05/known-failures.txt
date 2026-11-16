@@ -1,0 +1,51 @@
+# Which of DeepSeek's tests fail, as the code stands here. Written by us,
+# not by DeepSeek (see README.md), with tools/known_failures.py, from
+# runs under several hash seeds. conftest.py reads it:
+#   - a test file listed alone does not load, and is not collected;
+#   - a test listed by name is an expected failure, and strict: if it
+#     starts passing, the run fails until it is taken off this list;
+#   - a test whose error starts with "sometimes:" failed in some runs
+#     and passed in others, so either result is accepted.
+# So the list is always true. The text after "  # " is the error.
+
+# Test files that do not load
+
+# Tests that fail
+test_botanical_garden.py::test_accept_branch  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
+test_botanical_garden.py::test_branch_continues_independently  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
+test_botanical_garden.py::test_branch_inherits_gardens  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
+test_botanical_garden.py::test_branch_verifies  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
+test_botanical_garden.py::test_cross_check_detects_mismatch  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
+test_botanical_garden.py::test_cross_check_matches  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
+test_botanical_garden.py::test_demo  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
+test_botanical_garden.py::test_dispatch_reaches_gardens  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
+test_botanical_garden.py::test_each_garden_verifies  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
+test_botanical_garden.py::test_gardens_tick_under_superworld  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
+test_botanical_garden.py::test_log_verifies  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
+test_botanical_garden.py::test_rain_falls_on_roof  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
+test_botanical_garden.py::test_refuse_observe  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
+test_botanical_garden.py::test_refuse_out_of_range  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
+test_botanical_garden.py::test_refuse_sandbox  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
+test_botanical_garden.py::test_render_shape  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
+test_chat_room.py::test_demo  # assert False
+test_chat_room.py::test_redact_visible_hides_text  # KeyError: 'redacted'
+test_chat_room.py::test_room_verifies_after_activity  # AssertionError: record 1: subject sig
+test_fractal_garden.py::test_demo  # AttributeError: 'GardenRefusalRecord' object has no attribute 'prev'
+test_personal_world.py::test_bookmark  # TypeError: RoomTemplate.__init__() got an unexpected keyword argument 'membership'
+test_personal_world.py::test_commit_draft_to_room  # TypeError: RoomTemplate.__init__() got an unexpected keyword argument 'membership'
+test_personal_world.py::test_commit_port_to_room  # TypeError: RoomTemplate.__init__() got an unexpected keyword argument 'membership'
+test_personal_world.py::test_cross_reference_verifies  # TypeError: RoomTemplate.__init__() got an unexpected keyword argument 'membership'
+test_personal_world.py::test_draft  # TypeError: RoomTemplate.__init__() got an unexpected keyword argument 'membership'
+test_personal_world.py::test_export_is_portable  # TypeError: RoomTemplate.__init__() got an unexpected keyword argument 'membership'
+test_personal_world.py::test_home_is_personal  # TypeError: RoomTemplate.__init__() got an unexpected keyword argument 'membership'
+test_personal_world.py::test_home_refuses_join_records  # TypeError: RoomTemplate.__init__() got an unexpected keyword argument 'membership'
+test_personal_world.py::test_home_refuses_other_key  # TypeError: RoomTemplate.__init__() got an unexpected keyword argument 'membership'
+test_personal_world.py::test_home_refuses_second_copy_of_seed  # TypeError: RoomTemplate.__init__() got an unexpected keyword argument 'membership'
+test_personal_world.py::test_home_verifies  # TypeError: RoomTemplate.__init__() got an unexpected keyword argument 'membership'
+test_personal_world.py::test_journal  # TypeError: RoomTemplate.__init__() got an unexpected keyword argument 'membership'
+test_personal_world.py::test_port_journal  # TypeError: RoomTemplate.__init__() got an unexpected keyword argument 'membership'
+test_personal_world.py::test_port_rejects_tampered_transcript  # TypeError: RoomTemplate.__init__() got an unexpected keyword argument 'membership'
+test_personal_world.py::test_port_to_room_requires_target  # TypeError: RoomTemplate.__init__() got an unexpected keyword argument 'membership'
+test_personal_world.py::test_port_verifies  # TypeError: RoomTemplate.__init__() got an unexpected keyword argument 'membership'
+test_personal_world.py::test_presence  # TypeError: RoomTemplate.__init__() got an unexpected keyword argument 'membership'
+test_water_particles.py::test_water_pools_at_bottom  # + where WaterGrid(width=10, height=6, levels=[[0, 1, 0, 0, 0], [0, 0, 0, 1, 0], [0, 0, 1, 0, 2], [0, 1, 0, 0, 0], [0, 0, 1, 0, 5], [0, 1, 0, 0, 0], [0

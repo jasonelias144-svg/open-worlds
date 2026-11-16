@@ -1,0 +1,79 @@
+# --- moderator_succession (in the room's log) ---
+
+@dataclass(frozen=True)
+class ModeratorSuccession:
+    world_id: str
+    seq: int
+    prev: Optional[str]
+    outgoing_id: str
+    incoming_id: str
+    knowledge_shard_hash: str
+    reason: str
+    ts: str
+    sig_outgoing: str
+    sig_incoming: str
+    sig_room: str
+
+    def body(self):
+        return {
+            "type": "moderator_succession",
+            "world_id": self.world_id,
+            "seq": self.seq,
+            "prev": self.prev,
+            "outgoing_id": self.outgoing_id,
+            "incoming_id": self.incoming_id,
+            "knowledge_shard_hash": self.knowledge_shard_hash,
+            "reason": self.reason,
+            "ts": self.ts,
+        }
+
+    def record_hash(self):
+        return _hash(self.body())
+
+
+# --- knowledge_shard_export (in the parent's KnowledgeWorld) ---
+
+@dataclass(frozen=True)
+class KnowledgeShardExport:
+    world_id: str
+    seq: int
+    prev: Optional[str]
+    target_room_id: str
+    successor_id: str
+    entry_hashes: List[str]
+    ts: str
+    sig: str
+
+    def body(self):
+        return {
+            "type": "knowledge_shard_export",
+            "world_id": self.world_id,
+            "seq": self.seq,
+            "prev": self.prev,
+            "target_room_id": self.target_room_id,
+            "successor_id": self.successor_id,
+            "entry_hashes": list(self.entry_hashes),
+            "ts": self.ts,
+        }
+
+    def record_hash(self):
+        return _hash(self.body())
+
+
+# --- sibling_declared (in the Commons) ---
+
+@dataclass(frozen=True)
+class SiblingDeclared:
+    commons_id: str
+    seq: int
+    prev: Optional[str]
+    parent_id: str
+    sibling_id: str
+    parent_kw_id: str
+    shard_hash: str
+    purpose: str
+    ts: str
+    sig_parent: str
+    sig_sibling: str
+    sig_commons: str
+    # ...

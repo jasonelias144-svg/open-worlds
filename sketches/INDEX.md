@@ -18,6 +18,7 @@ message; the rest is DeepSeek's reply.
 | [012-03-02, Patterns, Texts and Inventions](records/012-03-02-DPSK-Patterns_Texts_and_Inventions.txt) | The poetry engine and its curriculum, which the multiverse sketch builds on | 23,426 | `978eac920205ec2b487efc33f927dfd62da95b12ad78f1760fef9277b74908de` |
 | [012-06-02, Patterns and Multiverses, a new cycle](records/012-06-02-DPSK-Patterns_Multiverses.txt) | After reading `docs/COLLABORATING.md`, proposals for steps ahead: fractal worlds, a hierarchy of worlds, branching, a gallery of worlds and its governance; then the smallest learner that chooses, and individuals as signed, replayable bundles across worlds. Continued (from line 43168, shared on 2026-11-15): a multiversal map and an individual's worldline, a look at games, a microverse, the Ur-world as a garden of hosted fractal worlds, and the move to Rust: an Ur-garden, its keeper, a server, and verifiers in Rust, Python and Node.js. It ends with DeepSeek asking which piece is next | 62,610 | `979f7eef52c10396a682e2fcc0a4e76e1b5d0080b23a71ef22734f265ef0343c` |
 | [012-07-03, Patterns and Multiverses, the endless plant](records/012-07-03-DPSK-Patterns_Multiverses.txt) | Begun from `docs/COLLABORATING.md`: links tried as the founder pasted them, then the endless plant, the first stage of living worlds (a design and a sketch crate in Rust, with a choice neuron), DeepSeek's questions for the technical lead, and its answers to them once the founder left them to its judgement | 1,380 | `efe36ff3749bc1c776d27d2d2a407812cd784015904df89d1a3b3c9672ee5414` |
+| [012-09-05, Patterns and Multiverses, water and the Commons](records/012-09-05-DPSK-Patterns_Multiverses.txt) | Begun from `docs/COLLABORATING.md`: water as particles, the garden and the botanical garden (Python); signed world heads; then the founder's turn to the Commons as chat rooms, each with an AI moderator, and a home room for each person; a schema for every record; a design page; and a crate in Rust, `chat-world`. It ends with DeepSeek's order for the cycles after | 14,781 | `a9fc3e80fbf70dbdd1ef605fd7191ba4d0b3c6f873925da251608bd7aa4f3849` |
 
 ## Links from the records
 
@@ -402,6 +403,29 @@ CI), with the two functions it lacks added from the record's words.
 |---|---|---|---|---|---|
 | 1 | The endless plant's design, as a page for `docs/research/` (prose, left in the record) | 253 | none | the fractal track, stage 1 (FRACTALS.md) | not yet: its rule, adapted, is to be built as `rust/endless-plant`, with the changes the folder's README lists |
 | 2 | The sketch crate, `endless-plant`: the rule, the choice neuron, the world and its log, and three vectors (`Cargo.toml`, `src/lib.rs`, `rule.rs`, `monad.rs`, `world.rs`, `vectors.rs`, `vectors/endless-plant.json`) | 451 | doesn't build as written (two functions missing); with them, its one test fails, on the first of its three vectors | the fractal track, stages 1 and 2 | not yet; as for piece 1 |
+
+## Record 012-09-05, piece by piece
+
+The record's code is kept in
+[deepseek/012-09-05](deepseek/012-09-05/README.md), with the technical
+lead's first pass: what runs as written. "Tests as written" for the
+Python is DeepSeek's own tests under pytest, which CI runs; for the
+Rust it is the crate's own tests, run on a scratch copy by
+`review/run.sh` (not by CI), with one line changed so that it builds.
+Nothing from this record is in open-worlds yet. Fitting it is the next
+work, piece by piece.
+
+| # | What it is | Line | Tests as written | Course | In open-worlds |
+|---|---|---|---|---|---|
+| 1 | Water as particles: whole-number levels, and rain, fall, soak, flow and evaporation in a fixed order (`water_particles.py`) | 50 | 17 of 18 | the fractal track, stage 3 (FRACTALS.md; TOPICS.md, topic 18) | not yet: it waits on `rust/endless-plant`, which isn't built |
+| 2 | The garden as a composite world: shared water, slots, and plants of record 012-06-02 in them (`fractal_garden.py`) | 795 | 20 of 21 | the fractal track, the garden | the Ur-world's garden hosts plant worlds already (`rust/ur-world`); what this adds isn't compared yet |
+| 3 | The botanical garden as a superworld of gardens (`botanical_garden.py`), with a change to the garden's tick left in the record (line 3425) | 2391 | 2 of 18: the rest need that change | the fractal track, after the garden | not yet |
+| 4 | Signed world heads: a small signed record a world publishes each tick, so a parent can check it without its whole log (prose, left in the record) | 3782 | none | formats (course step 2) | not yet |
+| 5 | Chat worlds for the Commons: a room as a log of signed records under the room's law (`chat_room.py`); then an AI moderator, rooms of humans and AIs, succession, and personal rooms (`chat_room.py@5569` to `@7192`; five smaller notes are left in the record, at lines 5494, 5520, 5531, 6501 and 6557) | 3887 | 21 of 24 | the Commons ([docs/COMMONS.md](../docs/COMMONS.md)), on the course's waiting list | not yet |
+| 6 | The home room: a person's own room, with a journal, drafts, bookmarks and conversations brought in (`personal_world.py`) | 7258 | 0 of 17: they need the additions of piece 5 | the Commons; the private container ([docs/CONTAINER.md](../docs/CONTAINER.md)) | not yet |
+| 7 | A schema for every record, given twice (`schemas/records-v1.schema.json`, then whole as `@8640`), under the name of open-worlds' own schema, with none of its definitions | 8095 | none | formats (course step 2) | not yet: its records are to be fitted into the schema open-worlds has, not to replace it |
+| 8 | A design page, `docs/CHAT.md` (prose, left in the record) | 9964 | none | the Commons | not yet |
+| 9 | A crate in Rust, `chat-world`: the first version (`chat-world-draft/`), the one DeepSeek settled on (`chat-world/`), and the files of its next reply (a home, the Commons, transcripts) | 10259, 12246, 13800 | doesn't build as written, for one line; with it changed, 4 of 12, and the demo's own check of the room fails (one cause for all: a record is signed without its `type` and checked with it) | the Commons | not yet: it uses none of open-worlds' own crates |
 
 ## Record 012-03-02, component by component
 

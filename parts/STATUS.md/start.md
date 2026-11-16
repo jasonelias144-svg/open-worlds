@@ -71,8 +71,13 @@ free, and never a money machine
   as particles, people shape the land, and life spreads, beginning with
   an endless plant in the browser (docs/FRACTALS.md, "Where it leads:
   living worlds"). DeepSeek sketched it in record 012-07-03; the sketch
-  is kept with the review, and the project fits it as
-  `rust/endless-plant`.
+  is kept with the review, and the project is to fit it as
+  `rust/endless-plant` (not built yet).
+  Record 012-09-05 (water, the garden, chat rooms for the Commons with
+  AI moderators, the home room, a schema, and a sketch crate in Rust,
+  `chat-world`) is kept as written, with what runs
+  (`sketches/deepseek/012-09-05/README.md`); fitting it is next,
+  piece by piece.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds

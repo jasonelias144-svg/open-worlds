@@ -1,0 +1,89 @@
+# Moderator disclosure
+def test_ai_moderator_disclosed():
+    """A room with an AI moderator discloses it in the
+    room's log and in every join response."""
+    room = _room_with_ai_moderator()
+    disclosure = room.moderator_disclosure()
+    assert disclosure["moderator_type"] == "ai"
+    assert disclosure["moderator_id"] == _ai_did(room)
+    # The room_created record names the AI
+    created = room.records()[0]
+    assert "moderator" in created.body()
+
+# AI can be refused
+def test_ai_can_be_refused():
+    """The AI's redaction request is refused if the room's
+    template says moderation is 'author_only' (the AI has
+    no moderation authority in that room)."""
+    room = _room_with_ai_moderator(moderation="author_only")
+    bob_kp = _kp()
+    room.join(sign_join_request(room.world_id, bob_kp, "communicate"))
+    msg = room.post(sign_post_request(room.world_id, bob_kp, "hi"))
+    req = sign_redact_request(room.world_id, _ai_kp(room),
+                               msg.record_hash(), "test")
+    result = room.redact(req)
+    assert isinstance(result, Refusal)
+    assert result.reason == "not_allowed"
+
+# AI can be overridden
+def test_ai_can_be_overridden():
+    """A human moderator can override the AI's action. The
+    AI's original record stays; the override is a new record."""
+    room = _room_with_ai_moderator()
+    ai_join(room)
+    bob_kp = _kp()
+    room.join(sign_join_request(room.world_id, bob_kp, "communicate"))
+    bob_msg = room.post(sign_post_request(room.world_id, bob_kp, "ok"))
+    # AI tries to redact
+    req = sign_redact_request(room.world_id, _ai_kp(room),
+                               bob_msg.record_hash(), "spam")
+    redact = room.redact(req)
+    # Dave overrides
+    dave_kp = _kp()
+    room.join(sign_join_request(room.world_id, dave_kp, "control"))
+    override = room.override(
+        overrides_hash=redact.record_hash(),
+        overrider_kp=dave_kp,
+        action="none",
+        reason="I want this message to stay.")
+    assert isinstance(override, HumanOverride)
+    # The AI's redact record is still in the log
+    assert any(isinstance(r, Redact) for r in room.records())
+    # The override is in the log
+    assert any(isinstance(r, HumanOverride) for r in room.records())
+    # visible_log shows both, marks the target overridden
+    view = visible_log(room)
+    override_entry = next(v for v in view
+                          if v.get("type") == "human_override")
+    assert override_entry["overrides_hash"] == redact.record_hash()
+
+# AI's KnowledgeWorld verifies
+def test_ai_knowledge_world_verifies():
+    ai_kp = _kp()
+    kw = ChatRoom(RoomTemplate(
+        template_id="kw", topic="ai memory",
+        join_policy="open", moderation="author_only"), ai_kp)
+    # AI posts an observation
+    kw.post(sign_post_request(kw.world_id, ai_kp,
+                               "I observed X in room Y"))
+    ok, r = verify_room(kw)
+    assert ok, r
+
+# AI learning is referenceable
+def test_ai_observation_references_room_hash():
+    """The AI's KnowledgeWorld messages reference the exact
+    record hashes of the rooms they mention. Any reader can
+    verify the reference."""
+    room = _room_with_ai_moderator()
+    ai_join(room)
+    bob_kp = _kp()
+    room.join(sign_join_request(room.world_id, bob_kp, "communicate"))
+    bob_msg = room.post(sign_post_request(room.world_id, bob_kp, "hello"))
+    # AI records an observation
+    ai = _ai_for(room)  # the test helper returns the AI
+    ai._observe(room, bob_msg)
+    # The AI's KW has a message that references the room's hash
+    kw_msgs = [r for r in ai._kw.records() if isinstance(r, Message)]
+    assert len(kw_msgs) >= 1
+    last = kw_msgs[-1].text
+    assert bob_msg.record_hash()[:16] in last

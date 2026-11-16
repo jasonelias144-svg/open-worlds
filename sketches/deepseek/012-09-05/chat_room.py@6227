@@ -1,0 +1,118 @@
+def demo(artifact_dir=None):
+    """A mixed room: two humans, two AIs. One AI is the
+    moderator (dealer), one is a participant. The moderator
+    welcomes, prompts, and redacts one clear violation. The
+    participant converses with the humans. The AIs briefly
+    converse with each other. A human moderator overrides
+    one of the participant AI's observations. Everyone's
+    KnowledgeWorld — moderator and participant — verifies
+    offline. The dealer is in the game and running it."""
+    # ... keys: alice, bob (humans); ai_mod, ai_part (AIs);
+    #     dave (human with override authority) ...
+
+    # AI participant and moderator each get a KnowledgeWorld
+    ai_mod_kw = ChatRoom(RoomTemplate(
+        template_id="kw-mod", topic="ai-mod observations",
+        join_policy="open", moderation="author_only",
+        membership="ai_only"), ai_mod_kp)
+    ai_part_kw = ChatRoom(RoomTemplate(
+        template_id="kw-part", topic="ai-part observations",
+        join_policy="open", moderation="author_only",
+        membership="ai_only"), ai_part_kp)
+
+    ai_mod = AIModerator(
+        keypair=ai_mod_kp,
+        policy={"ask_question_on_silence": 4, "summary_every": 8},
+        knowledge_world=ai_mod_kw)
+    ai_part = AIParticipant(
+        keypair=ai_part_kp,
+        policy={"respond_to_questions": True},
+        knowledge_world=ai_part_kw)
+
+    # Alice creates the room, declares ai-mod as moderator
+    template = RoomTemplate(
+        template_id="mixed-room-v1",
+        topic="how should a room hold disagreement?",
+        join_policy="open",
+        moderation="moderator",
+        membership="mixed",
+        inter_ai_pace=2,  # AI-to-AI must have one human record between
+        moderator=ModeratorSpec(
+            moderator_id=ai_mod.moderator_id,
+            moderator_type="ai",
+            capabilities=["post", "redact", "summarize"],
+            can_be_overridden=True,
+            knowledge_world_id=ai_mod_kw.world_id))
+    room = alice.create_room(commons, template)
+    ai_mod.accept(room)   # dealer takes the table
+
+    log = []
+    # Bob (human) joins; moderator welcomes; participant AI also joins
+    bob.join_room(room)
+    ai_mod.on_new_records(room, room.records()[-1:])
+    ai_part.join(room)
+    log.append(("join", "Bob (human), ai-mod (dealer), ai-part (AI)"))
+
+    # Bob asks a question — both AIs respond
+    bob.post_message(room,
+        "I think a room should make room for disagreement without "
+        "turning into a fight. How does that work?")
+    ai_part.on_new_records(room, room.records()[-1:])
+    ai_mod.on_new_records(room, room.records()[-1:])
+    # inter_ai_pace forces a human record between AI exchanges,
+    # so the room stays human-paced
+
+    # Alice (human) adds a thought; ai-part responds
+    alice.post_message(room,
+        "Disagreement is fine. Contempt is not.")
+    ai_part.on_new_records(room, room.records()[-1:])
+
+    # AIs briefly converse — the dealer asks a question,
+    # the participant answers
+    ai_mod._maybe_ask_question(room)
+    ai_part.on_new_records(room, room.records()[-1:])
+
+    # ai-part posts a "clear violation" (too short); the
+    # dealer redacts it — a clear, mechanical action
+    ai_part.post(room, "k")
+    ai_mod.on_new_records(room, room.records()[-1:])
+    log.append(("redact",
+                "ai-mod redacted ai-part's too-short message"))
+
+    # Dave (human, control tier) overrides ai-part's last
+    # observation — shows that human override works on
+    # any AI's record, not just the dealer's
+    ai_obs_hashes = [r.record_hash() for r in room.records()
+                     if isinstance(r, Message)
+                     and r.author_id == ai_part.participant_id]
+    dave_kp = Ed25519PrivateKey.generate()
+    room.join(sign_join_request(room.world_id, dave_kp,
+                                 "control", is_ai=False))
+    override = room.override(
+        overrides_hash=ai_obs_hashes[-1],
+        overrider_kp=dave_kp,
+        action="none",
+        reason="I want this observation to stand as-is. "
+               "It's a good one.")
+    log.append(("override",
+                "Dave (human) overrode ai-part's observation"))
+
+    # Verify all three logs
+    ok_room, r1 = verify_room(room)
+    ok_mod_kw, r2 = verify_room(ai_mod_kw)
+    ok_part_kw, r3 = verify_room(ai_part_kw)
+    ok_commons, r4 = verify_commons(commons)
+
+    print("Moderator's KnowledgeWorld:")
+    for entry in visible_log(ai_mod_kw):
+        if entry.get("type") == "message":
+            print(f"  {entry['text'][:80]}")
+    print()
+    print("Participant AI's KnowledgeWorld:")
+    for entry in visible_log(ai_part_kw):
+        if entry.get("type") == "message":
+            print(f"  {entry['text'][:80]}")
+    print()
+    print(f"room verifies: {ok_room}  "
+          f"mod-kw: {ok_mod_kw}  part-kw: {ok_part_kw}  "
+          f"commons: {ok_commons}")

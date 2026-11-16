@@ -1,0 +1,179 @@
+def demo(artifact_dir=None):
+    """Alice's home. She journals, drafts a message, ports a
+    conversation from an external AI app, bookmarks a room,
+    then commits the draft and the port to that room. The
+    home verifies; the room verifies; cross-references bind
+    the two logs. Alice exports her home and it's complete."""
+    import json as _json
+    from pathlib import Path
+
+    if not HAS_CRYPTO:
+        raise RuntimeError("demo requires `cryptography`")
+
+    if artifact_dir is None:
+        artifact_dir = "artifacts"
+    path = Path(artifact_dir) / "personal_world"
+    path.mkdir(parents=True, exist_ok=True)
+
+    # Setup
+    alice_kp = Ed25519PrivateKey.generate()
+    bob_kp = Ed25519PrivateKey.generate()
+    commons_kp = Ed25519PrivateKey.generate()
+    from chat_room import Commons, RoomTemplate as CRoomTemplate
+    commons = Commons(commons_kp)
+
+    # Bob creates a room
+    bob = ChatRoom(CRoomTemplate(
+        template_id="bobs-room-v1",
+        topic="fractal worlds",
+        join_policy="open",
+        moderation="moderator"), bob_kp)
+    commons.register_room(bob, bob_kp)
+
+    # Alice creates her home — the first thing the plugin does
+    home = HomeRoom(alice_kp, display_name="alice's home")
+
+    log = []
+    log.append(("create", f"home created: {home.world_id[:24]}..."))
+
+    # Journal
+    home.journal("First entry. I want to understand how "
+                 "composition works at three levels.")
+    home.journal("Note: the parent supplies, the child decides.")
+    log.append(("journal", "2 journal entries"))
+
+    # Draft a message for Bob's room
+    draft = home.draft(
+        "I've been thinking about the composition rule. "
+        "What if a plant could refuse even when the garden "
+        "gives it water?",
+        target_room=bob.world_id)
+    log.append(("draft", f"draft: {draft.record_hash()[:16]}..."))
+
+    # Port a conversation from an external AI app
+    external = [
+        {"speaker": "user",
+         "ts": "2026-11-15T10:00:00Z",
+         "text": "What is composition in fractal worlds?"},
+        {"speaker": "assistant",
+         "ts": "2026-11-15T10:00:15Z",
+         "text": "The parent delegates the child's law to the "
+                 "child. It enforces only interaction rules. A "
+                 "garden doesn't re-enforce a plant's pot; the "
+                 "plant does."},
+    ]
+    transcript = sign_transcript(
+        "claude.ai session, 2026-11-15", external, alice_kp)
+    port = home.port(transcript, intent="room",
+                      target_room=bob.world_id)
+    log.append(("port", f"ported from claude.ai: "
+                        f"{port.record_hash()[:16]}..."))
+
+    # Bookmark Bob's room
+    home.bookmark(bob, note="good conversation, come back")
+    log.append(("bookmark", f"Bob's room bookmarked"))
+
+    # Announce presence in Bob's room
+    home.announce_presence([bob.world_id], ttl=300)
+    log.append(("presence", f"presence: in Bob's room"))
+
+    # Alice joins Bob's room and commits
+    alice_kp2 = alice_kp   # same user
+    from chat_room import sign_join_request
+    bob.join(sign_join_request(bob.world_id, alice_kp2, "communicate"))
+    committed_draft = home.commit_draft_to_room(
+        draft.record_hash(), bob)
+    log.append(("commit", f"draft committed to Bob's room"))
+    committed_port = home.commit_port_to_room(
+        port.record_hash(), bob)
+    log.append(("commit", f"port committed to Bob's room"))
+
+    # Verify
+    ok_home, home_r = verify_home(home)
+    ok_room, room_r = verify_room(bob)
+    ok_commons, com_r = verify_commons(commons)
+    log.append(("verify",
+                f"home: {ok_home}  room: {ok_room}  "
+                f"commons: {ok_commons}"))
+
+    # Export home
+    exported = home.export_log()
+    log.append(("export",
+                f"exported {len(exported['records'])} records"))
+
+    # Print
+    print("=" * 74)
+    print("Home Room — the user's personal world")
+    print("=" * 74)
+    print()
+    print(f"  Home:    {home.world_id[:32]}...")
+    print(f"  Bob's:   {bob.world_id[:32]}...")
+    print()
+    print("  Sequence:")
+    for kind, note in log:
+        marker = {"create": "✚", "journal": "✎", "draft": "✐",
+                  "port": "↓", "bookmark": "★", "presence": "◉",
+                  "commit": "→", "verify": "✓", "export": "⤓"}.get(kind, "·")
+        print(f"    {marker} {note}")
+    print()
+    print("  Home log:")
+    for entry in visible_log(home):
+        t = entry.get("type", "?")
+        if t == "message":
+            k = entry.get("kind", "normal")
+            txt = entry["text"][:60]
+            print(f"    [{entry['seq']:>3}] {k:9s} {txt}")
+        elif t == "port":
+            print(f"    [{entry['seq']:>3}] port_landing")
+        elif t == "bookmark":
+            print(f"    [{entry['seq']:>3}] bookmark")
+    print()
+    print("  Bob's room log (Alice's commits, cross-referenced):")
+    for entry in visible_log(bob):
+        if entry.get("type") == "message" and \
+                entry.get("kind") in ("normal", "port"):
+            txt = entry["text"][:80]
+            print(f"    [{entry['seq']:>3}] {txt}")
+    print()
+    print("  Cross-reference check:")
+    # Find any home_ref in Bob's room and verify it matches
+    # a record in Alice's home
+    for entry in visible_log(bob):
+        if entry.get("type") == "message" and \
+                "home_ref=" in entry.get("text", ""):
+            ref = entry["text"].split("home_ref=")[1][:16]
+            # Search home for a record whose hash starts with ref
+            found = any(r.record_hash().startswith(ref)
+                        for r in home.records())
+            print(f"    home_ref={ref}: {'found in home' if found else 'MISSING'}")
+    print()
+    print("  What this establishes:")
+    print("    - The home is a ChatRoom with personal=True. Only the")
+    print("      seed key can be a member. No moderator it didn't")
+    print("      choose (it has none). No platform can take it away.")
+    print("    - The home holds journals, drafts, ports, bookmarks,")
+    print("      and presence — one chain, five kinds, all signed.")
+    print("    - Committing a draft or a port to a room is an")
+    print("      explicit act. The room's log carries a home_ref")
+    print("      back to the home's record, so the two logs bind.")
+    print("    - The home can be exported whole. No lock-in: the")
+    print("      user's memory is theirs.")
+    print("    - Presence lives in the home, not in a Commons")
+    print("      server. The Commons reads it; it never owns it.")
+    print()
+    print("  Anchor (public domain, Emily Dickinson):")
+    print("    'I'm Nobody! Who are you?'")
+    print("    'Are you – Nobody – too?'")
+
+    audit = {
+        "home_id": home.world_id,
+        "home_verifies": ok_home,
+        "bob_room_id": bob.world_id,
+        "bob_room_verifies": ok_room,
+        "exported_records": len(exported["records"]),
+        "sequence": [{"kind": k, "note": n} for k, n in log],
+    }
+    (path / "home_demo.json").write_text(
+        _json.dumps(audit, indent=2))
+    print(f"\n  → {path}/home_demo.json")
+    return audit
