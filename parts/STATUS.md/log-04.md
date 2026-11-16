@@ -8,6 +8,23 @@
 
 ## Log
 
+- 2026-11-16 Claude: the file for DeepSeek is now built by a script in
+  the repository, and kept. `docs/reply.py` makes it from a reply's text
+  and a list of files (`sketches/replies/012-09-05.txt` and `.json`),
+  refuses a file over its limit, and reads what it wrote back against
+  the repository; `sketches/replies/012-09-05-for-deepseek.txt` is the
+  file the founder was given on 2026-11-16, byte for byte (95,149 bytes;
+  SHA-256
+  f1f7435f21dbaf8d49de3aea07e83d502d38c6011323feb591b769c2c1c97447),
+  which replaces the earlier entry's "The file isn't kept here".
+  `tests/test_reply.py` holds a reply to its sources while its code is
+  current, and to its limit and its last line always. docs/FILES.md
+  lists the folder among the files of record ("What DeepSeek was
+  given"), so it is neither in COLLABORATING.md's list nor cut into
+  parts. Not checked: that the whole file reaches DeepSeek. The table of
+  DeepSeek's schema names beside the project's is not in this change; it
+  comes with the first step of the one schema.
+
 - 2026-11-16 Claude: one file for the founder to give DeepSeek (Decided,
   the newest entry): the technical lead's reply to record 012-09-05,
   three next steps in order (removed comments, in the data layer and the

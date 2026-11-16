@@ -6,11 +6,12 @@
 > After this part: nothing; this is the last part.
 > Made by docs/parts.py from the file. To change it, change the file.
 
-This list holds the files a reader works from, 247 of them: every
+This list holds the files a reader works from, 249 of them: every
 page, all the code in Python and Rust, the tests, the vectors and the
-web pages. [FILES.md](FILES.md) holds the other 867, files of record
+web pages. [FILES.md](FILES.md) holds the other 871, files of record
 best sent when a question needs them: DeepSeek's records, word for
-word, the code taken from them, and Experiment 001's run logs.
+word, the code taken from them, what DeepSeek was given in reply, and
+Experiment 001's run logs.
 `tests/test_collaborating_links.py` fails if a file is added, moved or
 removed and this list or FILES.md isn't changed with it.
 
@@ -196,7 +197,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/web/map/ind
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/web/plant/index.html
 ```
 
-**Tests in Python**, with the two checks for the web pages (37):
+**Tests in Python**, with the two checks for the web pages (38):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/__init__.py
@@ -229,6 +230,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_persons.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_plant_world_vectors.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_record_links.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_reply.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_ur_person_vectors.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_ur_world_vectors.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_vectors.py
@@ -352,13 +354,14 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/.github/PUL
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/.github/workflows/test.yml
 ```
 
-**This list's companions**: the page with the rest of the files and the script that writes it, the long files in parts and the script that cuts them, and a stub that leads a cut-short link to this page (5):
+**This list's companions**: the page with the rest of the files and the script that writes it, the long files in parts and the script that cuts them, the script that builds the one file the founder gives DeepSeek, and a stub that leads a cut-short link to this page (6):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FILES.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/files.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/parts.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/reply.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COLLABORATING
 ```
 

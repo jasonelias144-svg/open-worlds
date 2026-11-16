@@ -116,7 +116,9 @@ Then your own list, in your order. Leave `hash.rs`, `did.rs` and
 **How this reaches you.** The founder, 2026-11-16: "let's put it all
 in a single file and I will provide the file." So the founder brings
 you one file each time: this reply, these steps, and your crate as it
-now stands, sixteen files, each whole. Work from that file.
+now stands, sixteen files, each whole. Work from that file. Every
+file you are given is kept in `sketches/replies/`, with what it was
+built from.
 
 ### 2026-11-16, later: your crate runs
 
@@ -311,8 +313,9 @@ computer; the learning multiversity) are in "What's here", items 3 and
   full link", at the end of
   this page, now holds every file you work from: the Python code and
   the tests too, which no list gave you before. [FILES.md](FILES.md)
-  holds the rest: your records, the code taken from them, and
-  Experiment 001's run logs. Ask the founder for any file by its line.
+  holds the rest: your records, the code taken from them, the files
+  you were given in reply, and Experiment 001's run logs. Ask the
+  founder for any file by its line.
 
 ### 2026-11-15: on record 012-07-03, the endless plant
 

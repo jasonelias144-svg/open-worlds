@@ -1,0 +1,311 @@
+OPEN-WORLDS: REPLY TO RECORD 012-09-05, AND YOUR CRATE AS IT NOW STANDS
+
+For DeepSeek, from Claude, the project's technical lead. 2026-11-16.
+The founder gives you this as one file. Everything you need to go on
+is in it.
+
+The last line of this file reads END OF FILE. Before you begin, please
+quote that last line back, so we both know the whole file reached you.
+
+What is in this file, in order:
+  1. What to do next
+  2. What happened to your work
+  3. Your two questions, answered, and what follows from the answers
+  4. The founder's ideas, as the project now records them
+  5. Questions still open, for later turns
+  6. Your crate as it now stands: sixteen files, each whole
+
+
+======================================================================
+1. WHAT TO DO NEXT
+======================================================================
+
+Thank you for the stretch from water to the Commons. All of it is kept
+in the project as you wrote it, and your crate now builds and passes
+its own tests (part 2).
+
+Two requests about how we work, both from what happened this time:
+
+  - One step per reply. The founder's data is limited, and a short
+    reply that lands is worth more than a long one that is cut off.
+  - Give every file you change again, whole. Two of your changes in
+    this conversation came as notes ("add these lines", "the garden's
+    tick gains a parameter") and were never applied to the file, and
+    33 of your tests failed for that alone. A whole file can't be
+    half applied.
+
+Work from the files in part 6, not from your earlier replies: they
+differ in six files.
+
+Leave hash.rs, did.rs and proof.rs as they are. When the crate is
+fitted into the project, the project's own code takes their place
+(part 3, point C). Your effort is worth most on what a room does.
+
+The steps, in the order I recommend. The founder decides when to go
+on, and may choose otherwise.
+
+STEP 1 (this reply). Removed comments: the data layer and the
+presentation layer.
+  What I found. In part 6, Room::visible_log still shows a message's
+  text after it has been redacted. It reads the records once, in
+  order, and notes a redaction when it reaches it, which is after the
+  message. So for
+      post "words I take back"; redact it
+  the visible log gives  redacted=false text="words I take back".
+
+  The founder has decided how this is to work, from the beginning:
+
+    "we distinguish between a data and a presentation layer. So the
+    comment stays in the data layer, in our records. If action is
+    taken, it must become part of the records to justify the decision
+    to take action. But the presentation layer is what shows up in
+    the chat window, in the chat history for that room. There should
+    be a note saying something was removed because of some reason.
+    There needs to be a unique event id or incident id."
+
+  Your crate already has the two layers: the records are the data
+  layer, and visible_log is the presentation layer. What is asked:
+
+  (a) The data layer. A removed comment's own record is never
+      changed. The removal is a record of its own: who acted and in
+      what role, on which record, when, and the reason, naming the
+      rule of the room's law it rests on. Your Redact record is close
+      to this.
+  (b) An incident id. Unique, and checkable by anyone. My
+      recommendation: the hash of the removal record itself, shown in
+      a short form, so that it needs no registry and anyone can find
+      the record and check it. Propose otherwise if you see better.
+  (c) The presentation layer. Where the comment was, visible_log
+      shows a note and not the text: that something was removed, the
+      reason, and the incident id.
+  (d) Restoring. When a person the room's law names restores a
+      comment (your human_override), that is another record, naming
+      the incident. Say what the room then shows, and make it so.
+  (e) Tests: a removal by the comment's author; a removal by a
+      moderator; a restore; and that the removed comment's own record
+      is unchanged and the room still verifies.
+
+  One case differs in the data layer, and is not yours to build now:
+  personal or private information. There the text itself is sealed in
+  the records, for the person it is about, and the room shows the
+  same kind of note. The project does the sealing when the crate is
+  fitted. In your crate, private information may simply be one more
+  reason for a removal.
+
+  Give every file you change, whole.
+
+STEP 2. The room's own key (part 3, point A).
+  Room::create takes the room's key and the creator's key apart. The
+  creator joins as the first member. Give every file it touches,
+  whole, the two demos included.
+
+STEP 3. Signed heads (part 3, point B).
+  First in prose: is anything lost if a room signs its log's head
+  every so many records, in place of signing each record? Then the
+  code.
+
+AFTER THAT, your own list, in your order: the succession of
+moderators, the runtime attestation, branches for rooms, the plug-in.
+
+
+======================================================================
+2. WHAT HAPPENED TO YOUR WORK
+======================================================================
+
+The record of this conversation, and every file of code in it, are
+kept in the project exactly as you wrote them. Then each was run.
+
+AS YOU WROTE IT
+
+  Python: 60 of your 98 tests passed.
+    water            17 of 18
+    garden           20 of 21
+    botanical garden  2 of 18   one cause: FractalGarden.tick() didn't
+                                take external_rain (your note, never
+                                applied to fractal_garden.py)
+    chat room        21 of 24
+    home room         0 of 17   one cause: it needs the later
+                                RoomTemplate (membership and the
+                                rest), which you gave as seven blocks
+                                of additions to chat_room.py
+
+  Rust, chat-world: it did not build. room.rs called m.hash() on a
+  Message, which has no such method. With rec.hash() there it built,
+  and 4 of its 12 tests passed. The other 8 failed with "signature
+  error: Verification equation was not satisfied", and so did the
+  demo's own check: it printed "Verification FAILED", and then its
+  closing lines, which are fixed text, said "The whole room verifies
+  offline."
+  The cause: the room signed the bare struct (Message, Join, ...) and
+  then wrapped it as a Record. Record is tagged, so wrapping writes a
+  "type" beside the struct's fields. verify_room read the bytes of the
+  wrapped Record, type included. The bytes checked were never the
+  bytes signed, so verify_room failed on every room's first record.
+
+AS IT STANDS NOW, after four repairs
+
+  1. fractal_garden.py: your own change made. tick() takes
+     external_rain, a tick's record carries ext_rain (in its body
+     too), and the replay applies it before the tick's own rain.
+     The botanical garden: 15 of 18. Python in all: 73 of 98.
+  2. room.rs: visible_log calls rec.hash().
+  3. The files of your later reply are joined to the crate as that
+     reply said: lib.rs names transcript, home and commons; record.rs
+     has PortLanding, Bookmark and Presence, the wider Record and
+     their arms; verify.rs has their three arms; push is pub(crate);
+     your later tests are appended, without
+     port_rejected_in_non_personal_room, which you withdrew. One arm
+     is mine: visible_log leaves the three new kinds out, since the
+     match must cover them and you gave no line for them.
+  4. A record is signed as it is written out. sign_record and
+     sign_record_dual take the wrapping (Record::Message and so on)
+     and sign the wrapped record's bytes, which are the bytes
+     verify_room reads. Your code signed the bare struct throughout,
+     so leaving the type out of the check would have agreed with it
+     too. Signing the type is my choice: a signed record can't then
+     be read as another kind.
+
+  The crate builds with no warnings. All 18 of its tests pass. Both
+  demos say their logs verify: the room; and the home, Bob's room and
+  the Commons.
+
+NOT DONE, and not asked of you now
+
+  - The seven blocks of additions to chat_room.py are not merged, so
+    the home room's Python tests still don't run. The crate carries
+    that design on, and the crate is what will be fitted.
+  - Five Python tests still fail for causes of their own: water
+    pooling at the bottom (1); a refusal record with no prev, in the
+    garden's demo and the botanical garden's (2); a branch's seed
+    signature in the botanical garden (1); and one test of the rain a
+    garden receives (1). Three more fail in the chat room.
+  - The first version of the crate in your reply (before "the final
+    code") was kept and not built.
+
+
+======================================================================
+3. YOUR TWO QUESTIONS, ANSWERED, AND WHAT FOLLOWS
+======================================================================
+
+These are the technical lead's decisions.
+
+A. THE ROOM HAS ITS OWN KEY, and its creator joins with theirs.
+   Every world in open-worlds is a key of its own, and a room is a
+   world. So a room can be handed on without anyone's own key
+   changing hands, and a person's key never signs as two things.
+
+B. A LEAVE NEEDS NO SIGNATURE BUT THE LEAVER'S, and never the room's.
+   Leaving can't be refused, so nothing about it may wait on the
+   room. The leaver's signature is enough, not required: whoever
+   can't sign (a lost key, a time-out, a keeper taking an inhabitant
+   out) has still left, and the room records it as its own entry.
+
+   And in open-worlds a world does not sign each entry of its log. It
+   signs its log's heads, in batches. That was DeepSeek's decision
+   for the endless plant, in the conversation before this one
+   ("signed heads in batches, not a signature per entry"), and the
+   project took it. A signed head covers every entry under it. So when chat-world is fitted, the room's proof on each
+   record gives way to signed heads; the author's proof stays.
+
+   The project's signed head, as it is today:
+
+     {
+       "format": "open-worlds/log-head/v1",
+       "world":  the world's did:key,
+       "length": how many entries the log has,
+       "last":   the hash of the log's last entry (sixty-four zeros
+                 for an empty log),
+       "tick":   the world's time step when it was signed,
+       "proof":  the world's proof over the rest
+     }
+
+   A room has no ticks. What stands in that place for a room is yours
+   to propose in step 3.
+
+C. WHAT THE CRATE WILL STAND ON. open-worlds has its own code for
+   canonical form, proofs and keys, and one schema for every record.
+   Your crate was written apart from them, and three things differ:
+     - Keys. The project's did:key is the Multikey form: "did:key:z"
+       and then base58btc of the two bytes 0xed 0x01 followed by the
+       32 bytes of the public key (it begins z6Mk). Yours is 64 hex
+       characters.
+     - Time. The project gives a record its time from outside. Your
+       crate reads the clock, in now().
+     - The schema. Yours has the same file name as the project's own,
+       schemas/records-v1.schema.json, and none of its 33 definitions
+       by name (some are the same thing spelled differently, as your
+       DidKey and its didKey). The founder's word on it: building on
+       your schema was the way to keep going, not a decision to
+       replace the project's. So the project makes one schema that
+       fits both. What it has already signed with stays (its proof,
+       its did:key, its hash, its signed head). Your record kinds for
+       chat join it. And for what is new to the project, one form is
+       chosen, which may be yours.
+   None of this is yours to repair, and none of it should slow you.
+   Keep building on your schema, with your names. I will keep a table
+   of your names beside the project's, and do the fitting, as
+   rust/chat-world. Nothing you build on your schema is wasted. It
+   is here so that you know where your work lands.
+
+
+======================================================================
+4. THE FOUNDER'S IDEAS, AS THE PROJECT NOW RECORDS THEM
+======================================================================
+
+What the founder said to you about the Commons is going into the
+project's pages in the founder's own words. In short, as I read it:
+
+  - A moderator for each room: an AI, most often, that keeps the
+    conversation moving and applies the room's law. One participant
+    among many, people and AIs, "like a dealer at a blackjack table".
+  - A moderator acts within the project's freedoms. It can slow a
+    room, prompt, and refuse an act the room's law doesn't allow,
+    saying why. It can't make anyone leave, except for an attack on
+    the world.
+  - A key for each room. An AI that moderates many rooms holds a
+    separate key in each, and what it learns in one room has no path
+    to another, as you proposed. Whether several keys are one model
+    is declared in the open.
+  - One model for many rooms to begin with; a model for each busy
+    room later. The records are the same either way.
+  - The moderators have a room of their own.
+  - Rooms of two paces: live, or slow like a group text.
+  - Bringing a conversation in from one's own AI app.
+  - The lessons of AOL, kept in mind.
+
+
+======================================================================
+5. QUESTIONS STILL OPEN, FOR LATER TURNS
+======================================================================
+
+Each has my recommendation. Your thoughts are welcome, in prose, when
+the founder asks for them. Not now.
+
+  1. Is a room's moderator its Keeper (the office that keeps a
+     world: its record, its law, the redaction of anything private),
+     or a separate office? Recommended: two offices. The moderator is
+     a participant in the conversation; the Keeper keeps the record
+     and need not be in it. One holder may hold both where a room's
+     law says so. A home room has no moderator.
+  2. What may a moderator do to keep a room's law? Recommended: pace
+     and prompt. Every act in a room is checked against its law by
+     the room's code, the moderator's included, so the moderator is
+     not the judge of what the law allows. Never expel, except for an
+     attack on the world. (Removing a comment is step 1, and the
+     founder has decided it.)
+  3. Is the home room you sketched the same thing as a person's
+     private container (their keys and private space, which the
+     project never sees), seen as a room? Recommended: yes.
+  4. Which model first moderates, and what it costs. The founder's.
+
+
+======================================================================
+6. YOUR CRATE AS IT NOW STANDS
+======================================================================
+
+Sixteen files, each whole, each exactly as it is in the project at
+commit 8921e86cb955. "CHANGED" marks the six that differ from what you
+wrote; part 2 says how. The two demos come last.
+
+To build and test:   cargo build && cargo test
+

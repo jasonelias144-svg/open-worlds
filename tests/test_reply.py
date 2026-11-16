@@ -1,0 +1,171 @@
+"""The file the founder gives DeepSeek is what its sources make.
+
+docs/reply.py builds one file for each return to DeepSeek: the
+technical lead's reply, then the code as it stands, each file whole
+(sketches/replies/README.md). This test builds small replies of its own
+to check the script, and holds every reply kept in sketches/replies/ to
+its spec: within its limit, ending with its last line, and, while it is
+current, byte for byte what its text and the repository's files make.
+
+It imports docs/reply.py and nothing from sketches/: the files there
+are read as text.
+"""
+import hashlib
+import importlib.util
+import json
+import os
+import tempfile
+import unittest
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REPLIES = os.path.join(ROOT, "sketches", "replies")
+
+
+def load_reply():
+    spec = importlib.util.spec_from_file_location(
+        "docs_reply", os.path.join(ROOT, "docs", "reply.py"))
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+REPLY = load_reply()
+
+
+def kept_specs():
+    return sorted(os.path.join(REPLIES, name) for name in os.listdir(REPLIES)
+                  if name.endswith(".json"))
+
+
+class Small(unittest.TestCase):
+    """A reply built here, in a folder of its own."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.root = self.tmp.name
+        os.makedirs(os.path.join(self.root, "code", "src"))
+        os.makedirs(os.path.join(self.root, "replies"))
+        self.write("code/src/a.rs", "fn a() {}\n")
+        self.write("code/Cargo.toml", "[package]\nname = \"a\"")  # no last newline
+        self.write("replies/r.txt", "Dear reader.\n\n")
+        self.spec = {
+            "text": "r.txt", "out": "r-out.txt", "root": "code",
+            "name": "crate", "limit": 1000, "current": True,
+            "files": [["Cargo.toml", "as written"], ["src/a.rs", "changed"]],
+            "folder": os.path.join(self.root, "replies"),
+        }
+
+    def write(self, path, text):
+        with open(os.path.join(self.root, path), "w", encoding="utf-8",
+                  newline="\n") as f:
+            f.write(text)
+
+    def build(self):
+        return REPLY.build(self.spec, self.root)
+
+    def test_it_is_the_text_then_each_file_whole_then_the_last_line(self):
+        self.assertEqual(
+            self.build(),
+            "Dear reader.\n\n"
+            "----- FILE: crate/Cargo.toml  (as written) -----\n"
+            "```toml\n[package]\nname = \"a\"\n```\n\n"
+            "----- FILE: crate/src/a.rs  (changed) -----\n"
+            "```rust\nfn a() {}\n```\n\n"
+            "END OF FILE\n")
+
+    def test_the_files_can_be_read_back_out_of_it(self):
+        self.assertEqual(
+            REPLY.embedded(self.build()),
+            [("crate/Cargo.toml", "as written", "[package]\nname = \"a\"\n"),
+             ("crate/src/a.rs", "changed", "fn a() {}\n")])
+
+    def test_a_file_that_would_end_its_own_block_is_refused(self):
+        self.write("code/src/a.rs", "// ```\nfn a() {}\n")
+        with self.assertRaisesRegex(REPLY.Problem, "three backticks"):
+            self.build()
+
+    def test_a_reply_over_its_limit_is_refused(self):
+        self.spec["limit"] = 100
+        with self.assertRaisesRegex(REPLY.Problem, "over the limit of 100"):
+            self.build()
+
+    def test_a_text_that_holds_the_last_line_is_refused(self):
+        self.write("replies/r.txt", "Dear reader.\nEND OF FILE\n\n")
+        with self.assertRaisesRegex(REPLY.Problem, "layout"):
+            self.build()
+
+    def test_a_text_must_end_with_an_empty_line(self):
+        self.write("replies/r.txt", "Dear reader.\n")
+        with self.assertRaisesRegex(REPLY.Problem, "empty line"):
+            self.build()
+
+    def test_a_kept_file_out_of_step_with_its_sources_is_caught(self):
+        self.write("replies/r-out.txt", self.build())
+        self.assertEqual(REPLY.check(self.spec, self.root), [])
+        self.write("code/src/a.rs", "fn a() { /* moved on */ }\n")
+        self.assertEqual(
+            REPLY.check(self.spec, self.root),
+            ["it is not what its text and the repository's files now make"])
+        # A past reply is a record: it is no longer held to the files.
+        self.spec["current"] = False
+        self.assertEqual(REPLY.check(self.spec, self.root), [])
+
+    def test_a_kept_file_cut_short_is_caught_even_when_past(self):
+        whole = self.build()
+        self.write("replies/r-out.txt", whole[:-len("END OF FILE\n")])
+        self.spec["current"] = False
+        self.assertEqual(REPLY.check(self.spec, self.root),
+                         ["it doesn't end with the line END OF FILE"])
+
+    def test_a_missing_file_is_said(self):
+        self.assertEqual(REPLY.check(self.spec, self.root),
+                         ["r-out.txt is missing"])
+
+
+class Kept(unittest.TestCase):
+    """The replies in sketches/replies/."""
+
+    def test_there_is_one(self):
+        self.assertTrue(kept_specs())
+
+    def test_each_is_what_its_spec_says(self):
+        # If this fails for a current reply, the code it holds has
+        # changed: write the next reply, and set this one's "current"
+        # to false in the same change (sketches/replies/README.md).
+        for path in kept_specs():
+            with self.subTest(reply=os.path.basename(path)):
+                self.assertEqual(REPLY.check(REPLY.load(path)), [])
+
+    def test_each_has_its_three_files_and_no_others(self):
+        names = set(os.listdir(REPLIES)) - {"README.md"}
+        want = set()
+        for path in kept_specs():
+            spec = REPLY.load(path)
+            want |= {os.path.basename(path), spec["text"], spec["out"]}
+        self.assertEqual(names, want)
+
+    def test_the_readme_gives_each_files_size_and_hash(self):
+        with open(os.path.join(REPLIES, "README.md"), encoding="utf-8") as f:
+            readme = f.read()
+        for path in kept_specs():
+            spec = REPLY.load(path)
+            with open(os.path.join(REPLIES, spec["out"]), "rb") as f:
+                data = f.read()
+            with self.subTest(reply=spec["out"]):
+                self.assertIn(format(len(data), ","), readme)
+                self.assertIn(hashlib.sha256(data).hexdigest(), readme)
+
+    def test_a_spec_names_only_what_it_needs(self):
+        for path in kept_specs():
+            with open(path, encoding="utf-8") as f:
+                spec = json.load(f)
+            with self.subTest(reply=os.path.basename(path)):
+                self.assertEqual(
+                    sorted(spec),
+                    ["current", "files", "limit", "name", "out", "root",
+                     "text"])
+
+
+if __name__ == "__main__":
+    unittest.main()
