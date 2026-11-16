@@ -326,6 +326,12 @@ questions at line 6463. In the turn about the app, one sentence about
 the founder's own first experience of the internet is left in the
 record and not repeated here.
 
+On 2026-11-16 the founder took the last of these up in earnest: "I do
+want to consider this idea seriously, that this multiverse is very much
+like an AI internet" ([VISION.md](VISION.md), "An infrastructure for
+connection"). The lessons of the internet, AOL's among them, are looked
+at first when the Commons is built ([COURSE.md](COURSE.md), step 3f).
+
 **Three sources, one Commons.** The founder, 2026-11-16: "I introduced
 the whole concept of the Commons from scratch, without a single
 reference to the Lyceum Commons, or our work on the Commons world. My

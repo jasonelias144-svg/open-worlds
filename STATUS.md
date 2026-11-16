@@ -153,6 +153,30 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder, on many multiverses (2026-11-16; Decided, the
+  entries of that day):
+  1. The floor between multiverses. The internet has no rule above its
+     protocol; this project has exit, voice and information. In
+     someone else's multiverse they may not hold. Recommended, both: a
+     traveller is always told, before entering, what the other side
+     guarantees; and this multiverse recognises another (lists it on
+     the map, trusts the births its worlds sign) only if it keeps the
+     same floor. The first keeps this multiverse from being a
+     gatekeeper; the second keeps the floor meaning something.
+     Recognising another multiverse is outward-facing, so it waits for
+     the founder's word.
+  2. Whether a world may be in two multiverses at once. The founder
+     spoke of "a separate index for current multiverse", which is one,
+     and said no more. Being in two would let both list the world as
+     their own, and both sets of offices act in it; one at a time
+     rules that out, so that one law and one set of offices answer for
+     a world at any time. Recommended: one at a time for now. A world
+     in two would be recognised by both, which is outward-facing too.
+  3. One sentence about the founder's own first computer is left out of
+     that day's record, as the one about the founder's first experience
+     of the internet is left out of docs/COMMONS.md. Say if either
+     should be kept.
+
 - For the founder, on redaction (docs/research/REDACTION.md, "For the
   founder"), from the plan for course step 3b:
   1. An office's copy of what was redacted. FUNDAMENTALS.md has a
@@ -352,6 +376,182 @@ kind.
     total, never per author, so that marking in good faith costs nothing.
 
 ## Decided
+
+- 2026-11-16, founder, on worlds entering a new multiverse. "Perfect.
+  But for security, we need some sandboxed holding place for worlds
+  entering a new multiverse. I can easily imagine hackers exploiting
+  this world migrating function to import payloads. A new world needs
+  to be evaluated, before entry to a new multiverse. If malicious code
+  is found, the entrance is blocked, and it never exits the sandbox. An
+  incident is and report follow, and all that. Thoughts?" The technical
+  lead answered with four refinements, and the founder: "Yes, I like
+  your suggestions. All of them. Sounds good. Please continue as you
+  were before." (The message's last sentence is not recorded here.)
+  So, decided by the founder: a world entering a new multiverse is
+  evaluated first, in a sandboxed holding place; if malicious code is
+  found it is refused, and never leaves the holding place; and a
+  refusal is an incident, with a report. And on the technical lead's
+  recommendations, which the founder took:
+  (1) the world asks first and departs only if it is accepted; what is
+  evaluated is a paused copy, with stand-ins and never individuals, so
+  that no one is held and a refused world is not left without a home;
+  (2) the admission names exactly what was evaluated, the code by its
+  hash and the log by its head, and whatever the world added after
+  that head is checked again when it arrives; (3) evaluation can't
+  prove code safe, since what is malicious can wait, so no world's code
+  is ever to run outside a sandbox, native or immigrant, and admission
+  changes what a world is connected to, never where it runs; (4) a
+  payload aimed at a mind is made of words, so everything in an
+  incoming world is data to whoever evaluates it, never instructions,
+  and the evaluator has no power but to write its report. In the same
+  message, after the four, the technical lead added that a refusal
+  would be a decision on record, with its office, its grounds, an
+  incident id and where an appeal goes, the records a removal already
+  uses (course step 3b), and that the appeal matters, since a report
+  could be used to smear a world. It was not one of the four; it is
+  read as taken with them, being in the message the founder answered.
+  As the technical lead reads "All of them": what was suggested in the
+  message that reply answered. The question put two messages earlier, whether
+  this multiverse recognises only those that keep the charter's floor,
+  was not in that message, and stays open (Open questions).
+  It builds on the founder's learning immune system (2026-11-14, below)
+  and on ADMIN's own world, a sandbox with no door (docs/ADMIN.md).
+  Written into docs/WORLD-TYPES.md, "Arriving in another multiverse".
+  None of it is built: the records are course step 3e's, the holding
+  place itself is on the course's waiting list, and today only the
+  plant world runs in a sandbox.
+
+- 2026-11-16, founder, on worlds that migrate, in two messages. "A
+  world can be born from one multiverse and migrate to another. We
+  should make that possible. So the worlds would be birth-indexed by
+  their parent multiverse, but could have a separate index for current
+  multiverse." And then, of the two indexes: "In most cases, those
+  match. Except in cases of world migration. Thoughts?"
+  So: a world can move from the multiverse it was born in to another.
+  It is indexed by the multiverse of its birth, and separately by the
+  one it is in now; the two are the same unless it has moved. This
+  completes the founder's decision of 2026-11-15 that "worlds can leave
+  the multiverse" (below): leaving was to form a multiverse of one's
+  own, and now a world can also arrive in one that exists.
+  The technical lead's reading, for course step 3e, which stands unless
+  the founder answers otherwise: a world's birth record names the
+  multiverse it was born in, by that multiverse's root key, and never
+  changes (today's birth record names none, and gains it before any
+  real world is born). A root key can be replaced, and a kind of key
+  can fail, so what the record names must outlive the key it is
+  written as; how is settled at step 3e. The current multiverse is
+  worked out, never
+  stored: it is the birth multiverse unless the world's chain of moves
+  says otherwise. A move is two records, the world's signed departure
+  and the receiving multiverse's signed admission, and counts only when
+  both exist. A world is in one multiverse at a time: this is the
+  technical lead's reading of "a separate index for current
+  multiverse", which speaks of one, and not something the founder
+  said; whether a world may be in two at once is put to the founder
+  (Open questions). The reading of 2026-11-15 stands unchanged
+  (docs/WORLD-TYPES.md, "Leaving the multiverse"): no host can refuse
+  a world that leaves by its own law, and a world with inhabitants
+  leaves only as its law changes, with the consent of every party, so
+  one "no" stops it. In the session the technical lead said only that
+  inhabitants are told before a move and can leave first; that was
+  less than the rule, and the rule stands. A grant's signature stays
+  valid, but it holds within the multiverse that gave it, and each
+  council decides again whether to trust the world's births. Two
+  limits, to be stated where it is built: that a world has not moved is
+  only as fresh as the signed head a reader holds; and the two indexes
+  matching does not mean it never left, since it may have come back.
+
+- 2026-11-16, founder, on many multiverses. "And yet, what would happen
+  if everyone ran their own multiverse, and decided to network them
+  into a global infrastructure. That should be possible with our
+  design, or we should make sure it is possible. Thoughts?"
+  So: it must be possible for anyone to run a multiverse of their own,
+  and for multiverses to be joined in one network.
+  What the technical lead found that day, on reading the records'
+  schema and the checking code. Already in its favour: a world's birth
+  record names its law and founders and no multiverse; a person's key
+  is their own; trust in births is named council by council; a search
+  of the checking code found the project's own root keys wired into no
+  check; and names
+  belong to a world, so two multiverses can't collide. Against it:
+  records say "multiverse" as a bare word (what a grant holds
+  `within`; what a suggestion is `about`), or leave it unsaid (a
+  record made outside any world names none, and its tick is "the
+  multiverse's"), where they should name it by its root key, which
+  every multiverse has; there is no record by which one multiverse
+  recognises another; and nothing crosses a network yet. The rule the technical lead holds from now on, from the
+  founder's own picture of the whole as "a holographic or fractal
+  representation of "an" internet" (the entry below): a multiverse is
+  to the network what a world is to a multiverse, so nothing in the
+  formats may exist only once.
+  Put to the founder with it, and not answered: whether this multiverse
+  recognises another only if it keeps the charter's floor (Open
+  questions).
+
+- 2026-11-16, founder, on the multiverse as an internet, in two
+  messages. (The first two sentences of the first, and one sentence in
+  it about the founder's own first computer, are not recorded here.)
+  "But I do want to consider this idea seriously, that this multiverse
+  is very much like an AI internet. We could have servers hosting
+  worlds, instead of websites and then much maps." And: "Connection was
+  the innovation. An infrastructure for connection. And that's what we
+  are doing. And the first attraction once we had the internet was chat
+  rooms, where the connections happened. And we are we creating the
+  history of the internet, without intending to, just as a sequence of
+  ideas unfolding naturally. Thoughts?" The technical lead said where
+  the comparison fits and where it misleads, and recommended keeping
+  the course's order. The founder: "Yes, keep going as we were. But
+  there are countless lessons we could easily benefit from by holding
+  the comparison, where it does fit. It is more like a holographic or
+  fractal representation of "an" internet. But that is neither here nor
+  there. Also, IPv4 vs IPv6. We should ensure our addressing system can
+  handle an unforeseen expansion."
+  So: the comparison is taken seriously, and held where it fits, for
+  its lessons; the course's order is kept; and the addressing must be
+  able to grow in ways no one foresaw. It takes further what the
+  founder said to DeepSeek as an observation (record 012-09-05;
+  docs/COMMONS.md): "the whole multiverse could have a topology like
+  the whole internet".
+  The technical lead's reading is in docs/VISION.md, "An infrastructure
+  for connection": where the comparison fits, the four things the
+  internet added late that this design has from its start, and three
+  places it misleads. On addressing, as checked that day: nothing can
+  run out (a world's or a person's address is its key, records are
+  named by hashes, and whole numbers run to 2^53 - 1 in every record,
+  not to 64 bits as the technical lead said in the session); one field
+  is the size of
+  an IPv4 address, the four-byte counter of a person's presences in one
+  world (`formats/persons.py`). It is used inside the person's own
+  software under a versioned label, and it is also written in a
+  person's list, where the records' schema fixes it at 2^32 - 1. So
+  no world has to change for it to be widened, but the schema, both
+  languages and the vectors do; in the session the technical lead said
+  only the first half. And the lesson that matters is migration, not
+  size.
+  Every format carries a version and readers refuse what they don't
+  know, but no second version has ever lived beside a first; the
+  records' schema accepts one kind of key and one length; and nothing
+  is designed for the kind of key itself failing, where a signing-over
+  by the old key proves nothing. What follows is on the course's
+  waiting list (docs/COURSE.md): a second version of one format beside
+  the first, tried once before anyone is born; how an identity moves
+  to another kind of key, looked at first with step 8a; a world run by
+  someone else, on another machine, under root keys that are not the
+  project's; and the internet's lessons, AOL's among them, looked at
+  first when the Commons is built.
+
+- 2026-11-16, founder, an observation on what the project is. "this
+  multiverse is the ultimate "field of dreams", built before any
+  players exist to play the field", and: "I am building a digital field
+  of dreams for agents of all kinds with the hope: "if you build it,
+  they will come."" (The rest of that message, and the messages after
+  it in the same turn, are not recorded, at the founder's word: "you
+  can ignore the messages after the first couple".)
+  As the technical lead reads it: it names something the project
+  carries knowingly. The internet grew from use; this is built before
+  its inhabitants, so nothing here has yet been hardened by use, only
+  by tests and reviews (docs/VISION.md, "An infrastructure for
+  connection").
 
 - 2026-11-16, founder, on the Commons' first room, in two messages.
   First: "And to follow the pattern, let's start the Commons with a
@@ -3104,6 +3304,46 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-16 Claude: the founder's words of the afternoon recorded
+  (Decided, five entries): a field of dreams; the multiverse as an
+  internet, with the comparison held where it fits and the addressing
+  made able to grow; many multiverses in one network; worlds that
+  migrate, indexed by the multiverse of their birth and by the one
+  they are in; and a sandboxed holding place for worlds that arrive,
+  with the technical lead's four refinements, which the founder took.
+  Written into docs/WORLD-TYPES.md ("Arriving in another multiverse"),
+  docs/VISION.md ("An infrastructure for connection"), docs/COURSE.md
+  (step 3e and the waiting list), docs/ADMIN.md, docs/FUNDAMENTALS.md,
+  docs/TOPICS.md (topic 22), docs/GLOSSARY.md, docs/COMMONS.md and a
+  message to DeepSeek in docs/COLLABORATING.md. Checked for these
+  entries: the records' schema and the checking code, for where they
+  assume one multiverse and for the sizes of every address and counter
+  (found: the word "multiverse" standing bare in what a grant holds
+  `within` and what a suggestion is `about`, one four-byte counter,
+  and no check with the project's keys wired in). Not
+  checked: what is said of the internet's own history is from memory,
+  as VISION.md says. Two things the technical lead said in the session
+  are put right in the entries: a world with inhabitants moves only
+  with the consent of every party, as the reading of 2026-11-15
+  already had it, not merely after they are told; and whole numbers
+  run to 2^53 - 1 in the records, not to 64 bits. Two
+  questions are put to the founder and one sentence left out (Open
+  questions). Nothing is built.
+  After the independent review of #102 (two blocking, fourteen notes,
+  each taken): "one multiverse at a time" had been given as the
+  founder's, who did not say it, and is now marked as the technical
+  lead's reading and put to the founder; the technical lead's readings
+  were not marked as such in docs/COLLABORATING.md, docs/COURSE.md,
+  docs/GLOSSARY.md and docs/FUNDAMENTALS.md, and now are. Also: the
+  counter of presences is fixed by the records' schema as well; what
+  happens if the last check of an arriving world fails; that a world
+  refused, or one that never asks, can still leave to stand alone;
+  that the copy sent to a holding place holds nothing private or
+  sealed; that a sandbox for every world's code is to be built and
+  isn't; that a birth index must outlive the key it is written as;
+  and, in docs/VISION.md, a row of the table that was wrong (the web
+  has a signed log anyone can check, for its certificates) and a
+  sentence that claimed more than memory supports.
 - 2026-11-16 Claude: course step 3b, part two, built: the form of a
   log whose fields are kept apart (`open-worlds/log-apart/v1`). In
   Python, `world/apart.py`: the fingerprint, the values it allows, a

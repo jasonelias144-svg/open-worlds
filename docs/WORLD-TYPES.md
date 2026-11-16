@@ -201,6 +201,134 @@ and Rust both check, as every record kind has. The course takes it up
 at step 3e, with the lifecycle ([COURSE.md](COURSE.md); placed at the
 recheck of 2026-11-16).
 
+## Arriving in another multiverse
+
+The founder, 2026-11-16: "A world can be born from one multiverse and
+migrate to another. We should make that possible. So the worlds would be
+birth-indexed by their parent multiverse, but could have a separate
+index for current multiverse." Of the two indexes: "In most cases, those
+match. Except in cases of world migration." And, on security: "we need
+some sandboxed holding place for worlds entering a new multiverse. I can
+easily imagine hackers exploiting this world migrating function to
+import payloads. A new world needs to be evaluated, before entry to a
+new multiverse. If malicious code is found, the entrance is blocked, and
+it never exits the sandbox. An incident is and report follow, and all
+that."
+
+**Decided, by the founder:** a world can leave the multiverse it was
+born in and arrive in another. It is indexed by the multiverse of its
+birth and, separately, by the one it is in now. Before it is admitted
+it is evaluated in a sandboxed holding place; if malicious code is
+found it is refused and never leaves that place; and a refusal is an
+incident, with a report. The four refinements below marked "taken" were
+the technical lead's, and the founder took them: "Yes, I like your
+suggestions. All of them."
+
+The rest is the technical lead's reading, which stands unless the
+founder answers otherwise. Everything in "Leaving the multiverse",
+above, still holds: this section adds the other half.
+
+**The two indexes.**
+- **Birth.** A world's birth record names the multiverse it was born
+  in, by that multiverse's root key (the issuer of its key list), and
+  never changes. Today's birth record names none, so it gains this
+  before any real world is born; so far only trial worlds have been.
+  A root key can be replaced, and a kind of key can fail, so what the
+  record names must outlive the key it is written as. How is settled
+  at step 3e.
+- **Current.** Worked out, never stored: the birth multiverse, unless
+  the world's chain of moves says otherwise. A world that never moved
+  carries nothing extra. A map shows both only where they differ:
+  "born in X, now in Y".
+- **One at a time.** This is the technical lead's reading of the
+  founder's "a separate index for current multiverse", which speaks of
+  one. Whether a world may be in two at once is put to the founder
+  (STATUS.md, "Open questions"). A world that left to stand alone, as
+  "Leaving the multiverse" has it, was admitted by no one: it is the
+  first world of a multiverse of its own.
+
+**A move, in order.**
+1. **The world decides, by its own law,** exactly as for leaving: a
+   world with inhabitants moves only with the consent of every party,
+   so one "no" stops it, and each is told beforehand what the new
+   multiverse's law gives and takes away ("Leaving the multiverse",
+   item 1).
+2. **It asks first** (taken). A request for admission, signed by the
+   world, names the multiverse it asks, its code by its hash, and its
+   log's head. It has not left: it goes on living where it is. Asking
+   is for arriving, never for leaving: a world that is refused, or
+   that never asks anyone, can still leave to stand alone, and no host
+   can refuse that.
+3. **A copy is evaluated in the holding place** (taken). The copy is a
+   checkpoint, paused, with stand-ins and never individuals, so no one
+   is held while it is looked at, and a world that is refused is not
+   left without a home. The copy holds what the world publishes: its
+   code, its law and its public log. Nothing from anyone's private
+   container, and nothing sealed, goes into it.
+4. **Admitted, or refused.** An admission is signed by the receiving
+   multiverse and names exactly what was evaluated: the code's hash and
+   the log's head (taken). A refusal is a decision on record: the
+   office, its grounds, an incident id, and where an appeal goes, the
+   same records a removal uses ([research/REDACTION.md](research/REDACTION.md),
+   decision 7). The appeal matters, since a report could be used to
+   smear a world. (This was not one of the four refinements; it was in
+   the same message, and is read as taken with them.)
+5. **Only then does it depart:** the departure record of "Leaving the
+   multiverse", naming where it goes. The move counts when both the
+   departure and the admission exist, so a world can't claim a home
+   that never took it in, and no multiverse can claim a world that
+   never left.
+6. **On arrival,** whatever the world added to its log after the head
+   that was evaluated is checked again. If that check fails, the
+   admission does not hold. The world has left by then, so it stands
+   alone, as "Leaving the multiverse" has it, unless the multiverse it
+   left takes it back, which is a new decision by both sides. To keep
+   clear of that, a world can pause at the head that was evaluated and
+   depart from there, so that nothing is left to check.
+
+**What a holding place can and can't do.**
+- **It can't prove code safe** (taken). What is malicious can wait
+  until it is admitted. So the wall is to be permanent: no world's
+  code will ever run outside a sandbox, native or immigrant, for its
+  whole life. (What counts as a world's code is the technical lead's
+  reading: the program that runs its rules, and any program that acts
+  in it. That is wider than the rule in force today, AGENTS.md, which
+  sandboxes agents the project did not write and agents that rewrite
+  themselves.) Admission changes what a world is
+  connected to, never where it runs. The holding place catches what is
+  known and what is plain. None of this is so today: every world but
+  the plant world runs with no sandbox.
+- **A payload aimed at a mind is made of words** (taken). An incoming
+  world's names, law and log could carry instructions aimed at whoever
+  evaluates it. Everything in it is data to the evaluator, never
+  instructions, and the evaluator has no power but to write its report.
+- **It has a model already:** ADMIN's own world, a sandbox with no door
+  and stand-ins only ([ADMIN.md](ADMIN.md), "ADMIN's own world"), and
+  the library of remedies of the learning immune system, where what a
+  holding place finds is kept. Reports shared between multiverses would
+  be that immune system across the network.
+
+**What does not travel.** A grant's signature stays valid, as every
+signature does, but a grant holds within the multiverse that gave it:
+the receiving multiverse is not bound by it. Each council decides again
+whether to trust the births the world signs.
+
+**Limits, to be stated where it is built.**
+- That a world has not moved is only as fresh as the signed head a
+  reader holds: a departure is an entry in the world's own log, and an
+  old copy still shows the world at its birthplace. The multiverse it
+  left also records that it saw the departure.
+- The two indexes matching does not mean a world never left. It may
+  have come back, and its chain of moves shows the trip.
+
+**From the start, and what waits.** The records (the birth index, the
+request, the admission and the refusal) belong with the departure
+record at course step 3e, and can be tried there with no network: a
+second multiverse is a second set of trial root keys. The holding place
+itself, a sandbox fit for any world's code, is real engineering and is
+on the course's waiting list ([COURSE.md](COURSE.md)); today only the
+plant world runs in a sandbox (`rust/plant-wasi`).
+
 ## A taxonomy of world types
 
 Every world has a place on each of eight dimensions, and its type is
