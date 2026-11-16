@@ -1,0 +1,74 @@
+{
+ "text": "2026-11-16-gemini.txt",
+ "out": "2026-11-16-for-gemini.txt",
+ "root": "sketches/deepseek/012-09-05/chat-world-now",
+ "name": "chat-world",
+ "limit": 125000,
+ "current": true,
+ "files": [
+  [
+   "Cargo.toml",
+   "unchanged"
+  ],
+  [
+   "src/lib.rs",
+   "the modules and the signing helpers"
+  ],
+  [
+   "src/error.rs",
+   "unchanged"
+  ],
+  [
+   "src/hash.rs",
+   "leave as it is"
+  ],
+  [
+   "src/did.rs",
+   "leave as it is"
+  ],
+  [
+   "src/proof.rs",
+   "leave as it is"
+  ],
+  [
+   "src/template.rs",
+   "a room's law"
+  ],
+  [
+   "src/record.rs",
+   "every kind of record"
+  ],
+  [
+   "src/room.rs",
+   "STEP 1: Room gains log()"
+  ],
+  [
+   "src/verify.rs",
+   "STEP 1: verify_log; verify_room calls it"
+  ],
+  [
+   "src/head.rs",
+   "signed heads; touch only if step 1 needs it"
+  ],
+  [
+   "src/attestation.rs",
+   "runtime attestations"
+  ],
+  [
+   "src/transcript.rs",
+   "signed transcripts"
+  ],
+  [
+   "src/home.rs",
+   "a person's own room; three records now signed by both keys"
+  ],
+  [
+   "src/commons.rs",
+   "the Commons' own log"
+  ],
+  [
+   "tests/integration.rs",
+   "the crate's 41 tests; do not change"
+  ]
+ ]
+}

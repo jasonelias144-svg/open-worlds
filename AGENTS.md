@@ -27,7 +27,7 @@ loosen it.
    The technical lead's procedure for it: in the pull request that acts
    on them, or the next one; and before a session ends, it checks that
    nothing the founder said there is missing, and that
-   `docs/COLLABORATING.md` tells DeepSeek what changed.
+   `docs/COLLABORATING.md` tells DeepSeek and Gemini what changed.
 
 ## Who decides
 
@@ -136,7 +136,7 @@ effect (docs/ADMIN.md).
   the founder's decision (P5), never a code decision.
 - **The sketches stay apart.** `sketches/` keeps the founder's
   conversation records and DeepSeek's code from them, as written, and
-  each file DeepSeek was given in reply (`sketches/README.md`). Nothing outside `sketches/` imports from it. Its
+  each file DeepSeek or Gemini was given (`sketches/README.md`). Nothing outside `sketches/` imports from it. Its
   code changes only in small fixes listed in `sketches/INDEX.md`, which is
   also the one place that says where the sketches and the course meet.
 - **Two things are written by script, never by hand:** `docs/FILES.md`
@@ -146,7 +146,7 @@ effect (docs/ADMIN.md).
   push, in that order. `STATUS.md` is one of the long files, so nearly
   every change needs the second. The tests fail when either is out of
   step. Put nothing else under `parts/`: the script removes it. A third
-  is written by script too: the file DeepSeek is given, in
+  is written by script too: the file DeepSeek or Gemini is given, in
   `sketches/replies/` (`python3 docs/reply.py SPEC`), which is run when
   a reply is written, not before every push.
 

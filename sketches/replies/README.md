@@ -1,4 +1,4 @@
-# What DeepSeek was given
+# What DeepSeek and Gemini were given
 
 The founder, 2026-11-16: "let's put it all in a single file and I will
 provide the file. No link necessary. Just one long file within
@@ -13,15 +13,24 @@ and the code as it stands, each file whole. This folder keeps every
 such file, as a record of what DeepSeek was given, with what it was
 built from.
 
+From 2026-11-16 there are two collaborators, DeepSeek and Gemini, and
+a file is written for the one who is to receive it. The founder: "My
+proposal earlier was meant to avoid they by updating with a new file
+each time. That way the instructions can be geared toward the
+recipient." What is said here of a file for DeepSeek holds for a file
+for Gemini.
+
 ## For each reply, three files
 
-Named for the record the reply answers:
+Named for the record the reply answers, or, where there is no record
+to answer, for the day it was given and the one it was for
+(`2026-11-16-gemini`):
 
 | File | What it is |
 |---|---|
 | `NAME.txt` | The reply itself, written by the technical lead: all that comes before the code |
 | `NAME.json` | What goes with it: the folder the code comes from, the files in order, a note for each, and the most bytes the file may have |
-| `NAME-for-deepseek.txt` | The file as the founder was given it: the reply, then each file whole, then the line `END OF FILE`, which DeepSeek is asked to quote back |
+| `NAME-for-deepseek.txt`, or `DATE-for-gemini.txt` | The file as the founder was given it: the reply, then each file whole, then the line `END OF FILE`, which the one who receives it is asked to quote back |
 
 `python3 docs/reply.py sketches/replies/NAME.json` writes the third
 from the first two and the repository's files, and reads it back
@@ -46,9 +55,10 @@ given whole, as one upload. The script refuses to write a longer one.
 
 ## The replies
 
-| Reply | Answers | Given | Bytes | SHA-256 |
-|---|---|---|---|---|
-| `012-09-05` | Record 012-09-05: the first pass, the repairs, the answers to DeepSeek's two questions, three next steps, and the `chat-world` crate as it stands, sixteen files | 2026-11-16 | 95,149 | `f1f7435f21dbaf8d49de3aea07e83d502d38c6011323feb591b769c2c1c97447` |
+| Reply | For | Answers | Given | Bytes | SHA-256 |
+|---|---|---|---|---|---|
+| `2026-11-16-gemini` | Gemini | No record: Gemini's first file. Where the project stands, how we work, three steps (a room's log checked from outside; attacks on the check; repairs), and the `chat-world` crate as it stands after DeepSeek's five deliveries, sixteen files, its demos left out | 2026-11-16 | 119,297 | `324d1392a495fff72480460f27617950d64f3b475f90079720031f7a0b417609` |
+| `012-09-05` | DeepSeek | Record 012-09-05: the first pass, the repairs, the answers to DeepSeek's two questions, three next steps, and the `chat-world` crate as it stands, sixteen files | 2026-11-16 | 95,149 | `f1f7435f21dbaf8d49de3aea07e83d502d38c6011323feb591b769c2c1c97447` |
 
 ## Found after a file was given
 
