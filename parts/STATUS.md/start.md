@@ -142,6 +142,24 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder, on "Let's build from this schema as the standard"
+  (record 012-09-05, line 9957; Decided, 2026-11-16): the schema
+  DeepSeek wrote in that conversation has the same file name as the
+  project's own, `schemas/records-v1.schema.json`, and none of its 33
+  definitions. Taken as it stands it would drop every record the project
+  signs today (arrivals, births, log heads, persons, votes). The
+  recommendation: its record kinds for chat become the standard for the
+  chat layer once fitted into the project's one schema, with the
+  project's proofs and keys; nothing the project has is dropped. Decided
+  so for now, on the recommendation, since it is a matter of code; put
+  here because it reads the founder's own words.
+- For the founder, on the Commons' moderators (docs/COMMONS.md, "Open"):
+  whether a room's moderator is its Keeper; what a moderator may do to
+  keep a room's law; what a reader is shown after a redaction; whether
+  the home room is the private container; and which model first
+  moderates, with its cost. Each has a recommendation there, and all but
+  the last stand on it unless the founder answers otherwise. The last is
+  money, and waits for the founder.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for

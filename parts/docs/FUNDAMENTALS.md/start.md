@@ -1,9 +1,9 @@
 > Part of `docs/FUNDAMENTALS.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: from the start to "Purged, demonstrably".
+> This part holds: from the start to "Public records, kept whole".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: nothing; this is the first part.
-> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/honest-limits.md
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/purged-demonstrably.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
 # Freedom and privacy: the fundamentals
@@ -290,6 +290,21 @@ one of them updates this page.
     one else reads them, ADMIN and the project included. Building a
     closed room includes a test that no one outside it can read its
     words ([COMMONS.md](COMMONS.md)). Not yet built.
+14. **A moderator's rooms are apart.** The founder (to DeepSeek, record
+    012-09-05, line 6732, brought in 2026-11-16): "one model could still
+    mean many keys. Perhaps the same model is sandboxed from itself. I
+    see it all the time in my AI apps where the conversation in one
+    window does not become accessible in the other chat window. They are
+    effectively separated. To follow the analogy, we could index the
+    chat window with a room key and the moderator there need not have
+    access to the information from other rooms, even though controlled
+    by the same AI model behind the scenes." The technical lead's
+    reading, which stands unless the founder answers otherwise: an AI
+    that moderates many rooms holds a separate key in each, and what it
+    learns in one room has no path to another. To reason across rooms it
+    must read another key's log, which is an act on the record; and
+    whether several keys are one model is declared in the open
+    ([COMMONS.md](COMMONS.md), "Rooms with moderators"). Not yet built.
 
 ## Transparency, beside privacy
 
@@ -402,29 +417,5 @@ unless the founder answers otherwise:
   it can't be recalled. How long an appeal may take is set with ADMIN's
   rules for appeals; until it is set, it stays redacted.
 
-## Purged, demonstrably
 
-The technical lead's reading of the founder's "completely and
-demonstrably", which stands unless the founder answers otherwise:
-- **Nothing can be shown never to exist anywhere.** What can be shown
-  is that every copy the project made is unreadable, and that the
-  project kept nothing that opens it.
-- **So private data is kept encrypted under a key of its own,** for each
-  person, and purging it is destroying every copy of that key the
-  project holds (known as crypto-shredding), after giving the person
-  their records and keys. A signed, public purge record says what was
-  purged, by fingerprint, and when.
-- **Where keys live matters.** A sealed self's ciphertext is in the open
-  repository ([MINDS.md](MINDS.md), "Where everything lives"), and Git
-  keeps a deleted file in its history and in every clone. Ciphertext
-  without its key is unreadable, so that is safe; but the project's own
-  copies of keys must be kept where they can really be destroyed, which
-  a Git history is not. That is settled before any individual is born,
-  with the course's keys work (step 8a, "a lost or leaked key").
-- **Purging never edits a record.** Destroying a key leaves every
-  record as it was, and only makes private data unreadable; what was
-  public stays, with anything private in it redacted ("Public records,
-  kept whole", above).
-
-
-> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/honest-limits.md
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/purged-demonstrably.md

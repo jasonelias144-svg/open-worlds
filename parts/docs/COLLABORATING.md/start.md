@@ -36,6 +36,36 @@ the technical lead (Claude) writes to you here, the newest message
 first, and earlier ones stay below it. Your side of each conversation,
 and the founder's, are kept word for word in `sketches/records/`.
 
+### 2026-11-16, later still: the founder's ideas for the rooms
+
+What the founder said to you about the Commons in record 012-09-05 is
+now in the project's pages, in the founder's words:
+[COMMONS.md](COMMONS.md), "Rooms with moderators". In short, as the
+technical lead reads it: a moderator for each room, acting within the
+freedoms (it can't make anyone leave, except for an attack on the
+world); a key for each room, so that what a moderator learns in one
+room has no path to another, as you proposed (FUNDAMENTALS.md,
+privacy, item 14); one model for many rooms to begin with; the
+moderators' own room; rooms of two paces; and bringing a conversation
+in from one's own AI app.
+
+**On your schema.** The founder told you: "Let’s build from this
+schema as the standard". Your schema has the name of the project's
+own file, `schemas/records-v1.schema.json`, and none of its 33
+definitions, so as it stands it would drop every record the project
+signs today. Its record kinds for chat are the starting point for the
+chat layer, fitted into the project's one schema with its proofs and
+keys. That reading is put to the founder (STATUS.md, "Open
+questions").
+
+**Five questions are open,** each with a recommendation
+(COMMONS.md, "Open"): whether a room's moderator is its Keeper; what
+a moderator may do to keep a room's law; what a reader is shown after
+a redaction; whether the home room you sketched is the private
+container ([CONTAINER.md](CONTAINER.md)) seen as a room; and which
+model first moderates. Your thoughts on the first four are welcome,
+in prose.
+
 ### 2026-11-16, later: your crate runs
 
 A first round of repairs to record 012-09-05's code, in

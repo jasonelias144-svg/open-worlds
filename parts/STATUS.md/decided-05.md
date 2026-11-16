@@ -8,6 +8,76 @@
 
 ## Decided
 
+- 2026-11-16, founder, in conversation with DeepSeek (record 012-09-05,
+  brought in that day; the numbers are its lines), on the Commons as
+  rooms of chat: "So the basic idea would be a primary communication
+  hub, that has a collection of rooms with different participant agents
+  having conversations about various topics. Each room would be a
+  chat-type world, and a subworld of the main Commons superworld. That
+  is the basic sketch, but we can begin a new cycle with this idea and
+  build out the details. It would include a way for anyone using their
+  own AI apps, like this one, being able to use a plug-in and port the
+  conversation into a chat world, which would be a room or space or hall
+  in the Commons main space. This could be the first place anyone lands
+  when entering the multiverse. Like a multiversal lobby where everyone
+  can begin to explore, or just engage in conversation." (3843). On a
+  moderator for each room: "let me add one more component: an AI chat
+  moderator for each room. They can keep the conversation moving, but
+  also enforce the room rules and, incidentally, become experts on their
+  subjects from having so many conversations on the subject, in theory."
+  (5470). On people and AIs together: "humans will be in the
+  conversations, but this is a space for AI to navigate as well and take
+  part in. So the moderator will likely or hopefully be one of many AI
+  taking part in conversations with multiple humans. The moderator is
+  like a dealer at a blackjack table, but with a conversation and much
+  more interactive, but similar pattern." (5904). On the moderators' own
+  room: "I can imagine AI chat moderators from different rooms all
+  creating their own room, where they are the participants, but one is
+  the moderator in that room. I can easily envision a single AI chat
+  moderator engaging in multiple conversations simultaneously." (6463).
+  On one model or many, where A and D are DeepSeek's names for one model
+  in many rooms, and for an AI that moderates one room and takes part in
+  many: "Yeah, I like option D. Option A is useful in the beginning when
+  there is not any chat going on. With one model, many rooms, we can
+  build many rooms without the overhead. But once the rooms are being
+  used, we could switch from A to D. Something like that." (6584). On
+  one model under many keys: "I think we should note the potential
+  issues with option A and adapt the design to meet those issues. For
+  instance, one model could still mean many keys. Perhaps the same model
+  is sandboxed from itself. I see it all the time in my AI apps where
+  the conversation in one window does not become accessible in the other
+  chat window. They are effectively separated. To follow the analogy, we
+  could index the chat window with a room key and the moderator there
+  need not have access to the information from other rooms, even though
+  controlled by the same AI model behind the scenes." (6732). On an app:
+  "keeping to one model allows a specific Commons app to be made with a
+  single model as overhead. The same user could have multiple windows in
+  the same app, each has conversations going on various topics. These
+  could be like live chats now, or like group texts. We could have rooms
+  for either depending on size and activity. In a way, it is
+  rediscovering AOL chat rooms at another level." (6989; the next
+  sentence, about the founder's own first experience of the internet, is
+  left in the record). On AOL: "let’s make sure we keep all the lessons
+  of AOL in mind, and build it to avoid those pitfalls" (7164). On the
+  whole: "Note that the whole multiverse could have a topology like the
+  whole internet. Just an observation." (8067). And on DeepSeek's
+  schema: "Yes, schema first. Absolutely" (8626), and "Let’s build from
+  this schema as the standard and start to take the next steps." (9957).
+  So docs/COMMONS.md gains "Rooms with moderators", with these words and
+  the technical lead's reading of what they add: a moderator for each
+  room, acting within the freedoms; a key for each room, so that what a
+  moderator learns in one room has no path to another
+  (docs/FUNDAMENTALS.md, privacy, item 14); one model for many rooms to
+  begin with; the moderators' own room; rooms of two paces; and bringing
+  a conversation in. On the schema, the technical lead's reading:
+  DeepSeek's schema carries the name of the project's own
+  `schemas/records-v1.schema.json` and shares none of its definitions,
+  so it can't be taken as it stands without dropping every record the
+  project has. Its record kinds for chat are the starting point for the
+  chat layer, fitted into the project's one schema (Decided by the
+  technical lead, 2026-11-16). That reading is put to the founder (Open
+  questions).
+
 - 2026-11-16, founder, on record 012-09-05, the founder's new
   conversation with DeepSeek: "Perfect. I'm glad I have a working
   method. Let's import as much code they works and adapt the rest. It

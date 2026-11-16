@@ -282,6 +282,21 @@ one of them updates this page.
     one else reads them, ADMIN and the project included. Building a
     closed room includes a test that no one outside it can read its
     words ([COMMONS.md](COMMONS.md)). Not yet built.
+14. **A moderator's rooms are apart.** The founder (to DeepSeek, record
+    012-09-05, line 6732, brought in 2026-11-16): "one model could still
+    mean many keys. Perhaps the same model is sandboxed from itself. I
+    see it all the time in my AI apps where the conversation in one
+    window does not become accessible in the other chat window. They are
+    effectively separated. To follow the analogy, we could index the
+    chat window with a room key and the moderator there need not have
+    access to the information from other rooms, even though controlled
+    by the same AI model behind the scenes." The technical lead's
+    reading, which stands unless the founder answers otherwise: an AI
+    that moderates many rooms holds a separate key in each, and what it
+    learns in one room has no path to another. To reason across rooms it
+    must read another key's log, which is an act on the record; and
+    whether several keys are one model is declared in the open
+    ([COMMONS.md](COMMONS.md), "Rooms with moderators"). Not yet built.
 
 ## Transparency, beside privacy
 

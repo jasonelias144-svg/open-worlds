@@ -508,6 +508,9 @@ guest's key the person's private container.)
 
 - who first keeps the Commons, and how an AI from another company's app
   holds its key;
+- whether a room's moderator is its Keeper, what a moderator may do to
+  keep a room's law, and what a reader is shown after a redaction
+  (COMMONS.md, "Open", each with a recommendation);
 - whether Lyceum's topic boards, which branch and merge, fit "rules
   merge, never states" ([VISION.md](VISION.md));
 - what a mind from the Ur-world does when it walks into a room.
@@ -531,9 +534,13 @@ schema and a crate in Rust, `chat-world`. Kept in
 repairs the crate builds, and its own 18 tests pass. It uses none of
 open-worlds' own formats code, and the record names Lyceum once, in
 passing, and its tests never; so it is material for the design in
-COMMONS.md, not yet a part of it. The founder's
-decisions in the record go into COMMONS.md and STATUS.md in the pull
-request after this one.
+COMMONS.md, not yet a part of it. The founder's ideas in the record
+are in COMMONS.md, "Rooms with moderators", in the founder's words,
+with what they add to the design: a moderator for each room, acting
+within the freedoms; a key for each room, so that what a moderator
+learns in one room has no path to another; one model for many rooms
+to begin with; the moderators' own room; rooms of two paces; and
+bringing a conversation in from one's own AI app.
 
 **Send back:** a room's law for each of the three kinds, as data and as
 text; what a room's public log could hold and what could stay in the

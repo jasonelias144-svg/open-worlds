@@ -202,5 +202,11 @@ page.
   a redaction, the crate's visible log still shows the text. This page
   gained the message "2026-11-16, later".
 
+- 2026-11-16, between cycles: the founder's ideas for the Commons in
+  record 012-09-05, in the founder's words (COMMONS.md, "Rooms with
+  moderators"): a moderator for each room, people and AIs together,
+  the moderators' own room, one model under a key for each room
+  (FUNDAMENTALS.md, privacy, item 14), an app, and AOL's lessons.
+
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/every-file-by-its-full-link-02.md

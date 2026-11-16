@@ -1,10 +1,34 @@
 > Part of `docs/FUNDAMENTALS.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "Honest limits" to "Kept".
+> This part holds: "Purged, demonstrably" to "Kept".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/start.md
 > After this part: nothing; this is the last part.
 > Made by docs/parts.py from the file. To change it, change the file.
+
+## Purged, demonstrably
+
+The technical lead's reading of the founder's "completely and
+demonstrably", which stands unless the founder answers otherwise:
+- **Nothing can be shown never to exist anywhere.** What can be shown
+  is that every copy the project made is unreadable, and that the
+  project kept nothing that opens it.
+- **So private data is kept encrypted under a key of its own,** for each
+  person, and purging it is destroying every copy of that key the
+  project holds (known as crypto-shredding), after giving the person
+  their records and keys. A signed, public purge record says what was
+  purged, by fingerprint, and when.
+- **Where keys live matters.** A sealed self's ciphertext is in the open
+  repository ([MINDS.md](MINDS.md), "Where everything lives"), and Git
+  keeps a deleted file in its history and in every clone. Ciphertext
+  without its key is unreadable, so that is safe; but the project's own
+  copies of keys must be kept where they can really be destroyed, which
+  a Git history is not. That is settled before any individual is born,
+  with the course's keys work (step 8a, "a lost or leaked key").
+- **Purging never edits a record.** Destroying a key leaves every
+  record as it was, and only makes private data unreadable; what was
+  public stays, with anything private in it redacted ("Public records,
+  kept whole", above).
 
 ## Honest limits
 
