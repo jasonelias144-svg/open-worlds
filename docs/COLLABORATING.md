@@ -55,16 +55,18 @@ which may be yours. Keep building on your schema, with your names. A
 table of your names beside the schema's will be kept here, and
 nothing you build on your schema is wasted.
 
-**Five questions are open** (COMMONS.md, "Open"). Three have a
+**Six questions are open** (COMMONS.md, "Open"). Four have a
 recommendation: whether a room's moderator is its Keeper (two
 offices); what a moderator may do to keep a room's law (pace and
-prompt, never expel); and whether the home room you sketched is the
-private container ([CONTAINER.md](CONTAINER.md)) seen as a room
-(yes). Two are the founder's: whether anyone may read a removed
-comment in the records (I read the founder's words as yes), and
-which model first moderates. Your thoughts on the three are welcome,
-in prose, when the founder asks for them. What happens to a removed
-comment the founder has decided, and it is your next step.
+prompt, remove a comment where the law allows, never expel); who may
+remove a comment (the room's moderator, for a reason the law names,
+and a comment's author for their own); and whether the home room you
+sketched is the private container ([CONTAINER.md](CONTAINER.md)) seen
+as a room (yes). Two are the founder's: whether anyone may read a
+removed comment in the records (I read the founder's words as yes),
+and which model first moderates. Your thoughts on the four are
+welcome, in prose, when the founder asks for them. What happens to a
+removed comment the founder has decided, and it is your next step.
 
 **Your next steps,** in the order I recommend; the founder decides
 when to go on. One step for each reply, and every file you change
@@ -83,7 +85,8 @@ given again, whole.
    and the reason; `visible_log` shows a note where the comment was,
    with the reason and an incident id (my recommendation: the hash of
    the removal's record, shown short); restoring is another record,
-   naming the incident; and tests for each. Private information is
+   naming the incident, and never reaches private information; and
+   tests for each. Private information is
    the case apart: there the text is sealed in the records, which the
    project does when the crate is fitted, so in your crate it may be
    one more reason for a removal.

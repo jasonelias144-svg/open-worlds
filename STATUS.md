@@ -135,15 +135,18 @@ anything outward-facing or hard to undo. What is left here is of that
 kind.
 
 - For the founder, on the Commons' moderators (docs/COMMONS.md, "Open"),
-  five questions. Three have a recommendation and stand on it unless the
+  six questions. Four have a recommendation and stand on it unless the
   founder answers otherwise: whether a room's moderator is its Keeper
   (two offices); what a moderator may do to keep a room's law (pace and
-  prompt, never expel); and whether the home room is the private
-  container (yes). One reads the founder's own words on a protected
-  freedom, voice and information, so it is put plainly: the founder
-  decided on 2026-11-16 that a removed comment "stays in the data layer,
-  in our records", and the technical lead reads that, for a room on the
-  record, as readable there by anyone who goes to the records, private
+  prompt, remove a comment where the law allows, never expel); who may
+  remove a comment (the room's moderator, for a reason the law names,
+  and a comment's author for their own; this one bears on voice and
+  information, and is put plainly); and whether the home room is the
+  private container (yes). One reads the founder's own words on a
+  protected freedom, so it is put plainly too: the founder decided on
+  2026-11-16 that a removed comment "stays in the data layer, in our
+  records", and the technical lead reads that, for a room on the record,
+  as readable there by anyone who goes to the records, private
   information apart, which is sealed. The last, which model first
   moderates and its cost, is money, and waits for the founder.
 - For the founder: where models run beyond the Mac, and the budget (asked
@@ -268,19 +271,32 @@ kind.
   from the beginning. Thoughts?"
   So: a room has a data layer, its log, never edited, and a presentation
   layer, what it shows. A removed comment stays in the log. The removal
-  is a record of its own (who, in what office, on which entry, when, and
-  the reason, naming the part of the room's law it rests on), which is
-  what justifies it. The room shows a note where the comment was, with
-  the reason and an incident id. The technical lead's reading of the
-  rest: the incident id is the hash of the removal's record, shown
-  short; restoring is another record, naming the incident; private
-  information stays the case apart, sealed in the records as decided on
-  2026-11-15; and a comment removed for any other reason stays readable
-  in the records, which for a room on the record are public (put to the
-  founder, Open questions). All of it is in a room's kinds of record
-  from the first version of `rust/chat-world`, and is DeepSeek's next
-  step. The technical lead's starting point of the same day, to mark a
-  message and let each reader fold it away, is withdrawn.
+  is a record of its own, which is what justifies it. The room shows a
+  note where the comment was, with the reason and an incident id. The
+  technical lead's reading of the rest: the removal's record says who
+  acted, in what office, on which entry, when, and the reason, naming
+  the part of the room's law it rests on; the incident id is the hash of
+  the removal's record, shown short; restoring is another record, naming
+  the incident, and doesn't reach private information, whose return to
+  public view is the serious act "Public records, kept whole" describes;
+  private information stays the case apart, sealed in the records as
+  decided on 2026-11-15; and a comment removed for any other reason
+  stays readable in the records, which for a room on the record are
+  public (put to the founder, Open questions). Three limits are
+  recommended, and stand unless the founder answers otherwise: a comment
+  is removed only for a reason the room's law names, told on entering;
+  never silently; and its author can always see the note and ask for
+  another look. Who may remove a comment is open, with a recommendation
+  (Open questions). All of it is in a room's kinds of record from the
+  first version of `rust/chat-world`, and is DeepSeek's next step. This
+  is new beside the decision of 2026-11-14 that unwanted speech is met
+  with each reader's own tools, to see, not to hear, and to leave
+  (docs/FUNDAMENTALS.md, freedom, item 5), and beside the founder's "the
+  least restrictions on communication in any room": the technical lead
+  named both to the founder in the session before the founder decided,
+  and the readers' tools stay. The technical lead's starting point of
+  the same day, to mark a message and let each reader fold it away, is
+  withdrawn.
 
 - 2026-11-16, founder, on DeepSeek's schema and on bringing everything
   together, in answer to the question put that day: "Yeah, on the schema
@@ -2717,8 +2733,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   012-09-05, into the pages (Decided, the newest entry):
   docs/COMMONS.md, "Rooms with moderators", with the founder's words and
   the technical lead's reading; docs/FUNDAMENTALS.md, privacy, item 14;
-  docs/TOPICS.md, topic 14; and one entry under Open questions, for five
-  questions about moderators. The same day the founder answered the
+  docs/TOPICS.md, topic 14; and one entry under Open questions, for six questions about moderators. The same day the founder answered the
   question on the schema and the one on removed comments, and both
   answers are in Decided (docs/COMMONS.md, "Three sources, one Commons"
   and "Removing a comment"; docs/FUNDAMENTALS.md, freedom, item 5). The

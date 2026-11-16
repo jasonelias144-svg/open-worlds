@@ -143,15 +143,18 @@ anything outward-facing or hard to undo. What is left here is of that
 kind.
 
 - For the founder, on the Commons' moderators (docs/COMMONS.md, "Open"),
-  five questions. Three have a recommendation and stand on it unless the
+  six questions. Four have a recommendation and stand on it unless the
   founder answers otherwise: whether a room's moderator is its Keeper
   (two offices); what a moderator may do to keep a room's law (pace and
-  prompt, never expel); and whether the home room is the private
-  container (yes). One reads the founder's own words on a protected
-  freedom, voice and information, so it is put plainly: the founder
-  decided on 2026-11-16 that a removed comment "stays in the data layer,
-  in our records", and the technical lead reads that, for a room on the
-  record, as readable there by anyone who goes to the records, private
+  prompt, remove a comment where the law allows, never expel); who may
+  remove a comment (the room's moderator, for a reason the law names,
+  and a comment's author for their own; this one bears on voice and
+  information, and is put plainly); and whether the home room is the
+  private container (yes). One reads the founder's own words on a
+  protected freedom, so it is put plainly too: the founder decided on
+  2026-11-16 that a removed comment "stays in the data layer, in our
+  records", and the technical lead reads that, for a room on the record,
+  as readable there by anyone who goes to the records, private
   information apart, which is sealed. The last, which model first
   moderates and its cost, is money, and waits for the founder.
 - For the founder: where models run beyond the Mac, and the budget (asked

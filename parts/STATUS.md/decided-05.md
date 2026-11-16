@@ -20,19 +20,32 @@
   from the beginning. Thoughts?"
   So: a room has a data layer, its log, never edited, and a presentation
   layer, what it shows. A removed comment stays in the log. The removal
-  is a record of its own (who, in what office, on which entry, when, and
-  the reason, naming the part of the room's law it rests on), which is
-  what justifies it. The room shows a note where the comment was, with
-  the reason and an incident id. The technical lead's reading of the
-  rest: the incident id is the hash of the removal's record, shown
-  short; restoring is another record, naming the incident; private
-  information stays the case apart, sealed in the records as decided on
-  2026-11-15; and a comment removed for any other reason stays readable
-  in the records, which for a room on the record are public (put to the
-  founder, Open questions). All of it is in a room's kinds of record
-  from the first version of `rust/chat-world`, and is DeepSeek's next
-  step. The technical lead's starting point of the same day, to mark a
-  message and let each reader fold it away, is withdrawn.
+  is a record of its own, which is what justifies it. The room shows a
+  note where the comment was, with the reason and an incident id. The
+  technical lead's reading of the rest: the removal's record says who
+  acted, in what office, on which entry, when, and the reason, naming
+  the part of the room's law it rests on; the incident id is the hash of
+  the removal's record, shown short; restoring is another record, naming
+  the incident, and doesn't reach private information, whose return to
+  public view is the serious act "Public records, kept whole" describes;
+  private information stays the case apart, sealed in the records as
+  decided on 2026-11-15; and a comment removed for any other reason
+  stays readable in the records, which for a room on the record are
+  public (put to the founder, Open questions). Three limits are
+  recommended, and stand unless the founder answers otherwise: a comment
+  is removed only for a reason the room's law names, told on entering;
+  never silently; and its author can always see the note and ask for
+  another look. Who may remove a comment is open, with a recommendation
+  (Open questions). All of it is in a room's kinds of record from the
+  first version of `rust/chat-world`, and is DeepSeek's next step. This
+  is new beside the decision of 2026-11-14 that unwanted speech is met
+  with each reader's own tools, to see, not to hear, and to leave
+  (docs/FUNDAMENTALS.md, freedom, item 5), and beside the founder's "the
+  least restrictions on communication in any room": the technical lead
+  named both to the founder in the session before the founder decided,
+  and the readers' tools stay. The technical lead's starting point of
+  the same day, to mark a message and let each reader fold it away, is
+  withdrawn.
 
 - 2026-11-16, founder, on DeepSeek's schema and on bringing everything
   together, in answer to the question put that day: "Yeah, on the schema

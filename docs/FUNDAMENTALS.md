@@ -67,7 +67,10 @@ one of them updates this page.
    removed from what a room shows stays in the room's records; the
    removal is a record of its own, with its reason; and the room
    shows a note in its place, with an incident id
-   ([COMMONS.md](COMMONS.md), "Removing a comment"). Not yet built.
+   ([COMMONS.md](COMMONS.md), "Removing a comment"). That is new
+   beside the readers' own tools, which stay; the technical lead named
+   the decision of 2026-11-14 to the founder before the founder
+   decided. Not yet built.
 6. **Tools, not solutions.** The founder (2026-11-13): "instead of
    working out how conflict should be resolved, let it arise, provide
    tools to resolve the conflict, but let solutions emerge."

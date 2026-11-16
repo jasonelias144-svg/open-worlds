@@ -289,17 +289,29 @@ What that settles, as the technical lead reads it:
   needs no registry and anyone can find the record and check it.
   Every entry in a log already has such an id, its hash.
 - **Restoring is another record,** naming the incident, and the room
-  then shows that too.
+  then shows that too. It doesn't reach private information: making
+  that public again is the serious act "Public records, kept whole"
+  describes, reviewed first, never a moderator's or a member's.
 - **Private information stays the case apart** in the data layer. It
   is kept in the records sealed, in the container of the person it is
   about, as decided on 2026-11-15
   ([FUNDAMENTALS.md](FUNDAMENTALS.md), "Public records, kept whole"),
   and the room shows the same kind of note. A comment removed for any
-  other reason stays readable in the records.
+  other reason stays readable in the records, as read under "Open",
+  below.
 - **From the beginning:** the removal, the restore and the incident
   id are among a room's kinds of record in the first version of
   `rust/chat-world`, and they are DeepSeek's next step
   ([COLLABORATING.md](COLLABORATING.md)).
+
+**New beside the readers' own tools.** On 2026-11-14 it was decided
+that unwanted speech is met with each reader's tools, to see, not to
+hear, and to leave ([FUNDAMENTALS.md](FUNDAMENTALS.md), freedom, item
+5), and the founder asked DeepSeek for "the least restrictions on
+communication in any room". Removing a comment from what a room shows
+to everyone is a further remedy, beside those tools, which stay. The
+technical lead named both to the founder in the session before the
+founder decided.
 
 The technical lead's earlier starting point, that a message be marked
 and each reader fold it away, is withdrawn: the founder's answer
@@ -347,9 +359,19 @@ lead").
   keeper of the record inside the sealed talk. One holder may hold
   both where a room's law says so. A home room has no moderator.
 - **What a moderator may do to keep a room's law.** The
-  recommendation: pace and prompt; every act checked against the law
-  by the room's code, the moderator's included; never expel, except
-  for an attack on the world.
+  recommendation: pace and prompt, and remove a comment where the next
+  entry allows it; every act checked against the law by the room's
+  code, the moderator's included; never expel, except for an attack
+  on the world.
+- **Who may remove a comment.** The founder's words name no one: "If
+  action is taken". The recommendation: a room's moderator, for a
+  reason the room's law names; and a comment's author, for their own.
+  No one else. Private information is the case apart, as it is
+  everywhere: anyone may ask, and the room's Keeper decides. This
+  bears on voice and information
+  ([FUNDAMENTALS.md](FUNDAMENTALS.md), freedom, items 3 and 5), so it
+  is put to the founder plainly; it stands on the recommendation
+  until the founder answers, since DeepSeek's next step builds on it.
 - **Whether anyone may read a removed comment in the records.** The
   founder: the comment "stays in the data layer, in our records". In a
   room on the record, the records are public data, so the technical

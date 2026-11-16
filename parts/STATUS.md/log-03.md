@@ -10,8 +10,7 @@
   012-09-05, into the pages (Decided, the newest entry):
   docs/COMMONS.md, "Rooms with moderators", with the founder's words and
   the technical lead's reading; docs/FUNDAMENTALS.md, privacy, item 14;
-  docs/TOPICS.md, topic 14; and one entry under Open questions, for five
-  questions about moderators. The same day the founder answered the
+  docs/TOPICS.md, topic 14; and one entry under Open questions, for six questions about moderators. The same day the founder answered the
   question on the schema and the one on removed comments, and both
   answers are in Decided (docs/COMMONS.md, "Three sources, one Commons"
   and "Removing a comment"; docs/FUNDAMENTALS.md, freedom, item 5). The
