@@ -141,13 +141,16 @@ Each is recorded in STATUS.md with what would show it wrong.
    a log is no longer the same, byte for byte, on a second run. The
    plant worlds are checked by exactly that, and no person acts in
    them. So this form is for a world persons act in: a room first
-   (step 3c), and the Ur-world before anyone is born into it. A run of
-   such a world is repeated from its seed and its salts together.
+   (step 3c), and the Ur-world before anyone is born into it, which is
+   not this step's work. A run of such a world is repeated from its
+   seed and its salts together.
 7. **A moderator's removal is a `decision/v1`,** with no new kind of
    record: the act's kind is `remove-comment`, its records are the
    comment's entry, it affects the author, and its grounds name the
-   part of the room's law it rests on. **The incident id is that
-   record's hash,** shown as its first twelve hex digits, with the
+   part of the room's law it rests on. The office it names holds a
+   grant from the room's key that allows `remove-comment` in that room;
+   how a moderator comes to hold one is step 3d's. **The incident id is
+   that record's hash,** shown as its first twelve hex digits, with the
    whole hash one step away. Restoring is a `decision/v1` of kind
    `restore-comment` that supersedes the removal, and it is refused for
    a field that was redacted: there is nothing left to show.
@@ -159,7 +162,9 @@ Each is recorded in STATUS.md with what would show it wrong.
 9. **What is shown is worked out, never stored.** This step gives, for
    a log and its contents, the state of each entry: as written,
    removed (with the incident, the reason, and by whom), restored, or
-   redacted in some field. The room's own view of it is step 3c's.
+   redacted in some field. A removal, a taking back and a restoring
+   are each an entry in the same log, so a log and its contents are
+   enough to work it out. The room's own view of it is step 3c's.
 10. **In Python and Rust, with shared vectors,** as every format here
     is: logs that hold, and logs that are refused, each for one named
     reason.
@@ -183,8 +188,9 @@ This plan was written before them (STATUS.md, "Decided").
 
 - **Copies.** A redaction takes a field out of what the record keeps.
   It can't recall what someone read or copied before.
-- **What stays visible.** That an entry had a field of a given name,
-  and that it was redacted, when, and by which office. The kinds of
+- **What stays visible.** The entry itself: its tick, its kind and the
+  key that acted. That it had a field of a given name, and that it was
+  redacted, when, and by which office. The kinds of
   entry and their field names are fixed by a world's rules, so they say
   nothing a reader of the rules didn't know; SD-JWT's decoys are not
   taken up for that reason.
