@@ -186,6 +186,13 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketc
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/changes-to-deepseek-s-code.md
 ```
 
+## `tests/test_apart.py`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests/test_apart.py/01.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests/test_apart.py/02.txt
+```
+
 ## `tests/test_mv_passport.py`, in 2 parts
 
 ```text

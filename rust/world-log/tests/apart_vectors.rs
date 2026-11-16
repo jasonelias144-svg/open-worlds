@@ -20,7 +20,7 @@ use world_log::apart::{
     self, FORM, KEPT, Log, MARK, MAX_NESTING, MAX_WHOLE, Refused, State, check, fingerprint,
     fingerprint_text, join, value_allowed,
 };
-use world_log::{sha256_hex, verify_log};
+use world_log::{LogError, sha256_hex, verify_log};
 
 const VECTORS: &str = include_str!("../../../vectors/log-apart.json");
 
@@ -60,6 +60,41 @@ fn states_json(states: &apart::States) -> Value {
 
 fn map(value: &Value) -> Map<String, Value> {
     value.as_object().unwrap().clone()
+}
+
+/// Where a refusal points, as the vectors write it: nothing; an entry's
+/// place in the log; or, in the contents, an entry's hash alone or with
+/// a field's name.
+fn place(error: &Refused) -> Value {
+    match error {
+        Refused::Chain(LogError::NotAList)
+        | Refused::NoForm
+        | Refused::Table
+        | Refused::FirstGiven
+        | Refused::Entry { index: None } => Value::Null,
+        Refused::Chain(
+            LogError::Malformed { index }
+            | LogError::BrokenChain { index }
+            | LogError::WrongHash { index }
+            | LogError::Unwritable { index, .. },
+        )
+        | Refused::Entry { index: Some(index) }
+        | Refused::Untabled { index }
+        | Refused::Open { index }
+        | Refused::Twice { index }
+        | Refused::BadMark { index }
+        | Refused::BadKept { index } => json!(index),
+        Refused::Contents(p)
+        | Refused::Unknown(p)
+        | Refused::Salt(p)
+        | Refused::SaltTwice(p)
+        | Refused::Value(p)
+        | Refused::Fingerprint(p) => match (&p.entry, &p.field) {
+            (Some(entry), Some(field)) => json!([entry, field]),
+            (Some(entry), None) => json!([entry]),
+            _ => Value::Null,
+        },
+    }
 }
 
 /// The trial room of the vectors, written again here.
@@ -207,7 +242,7 @@ fn the_trial_room_written_here_is_the_one_python_wrote() {
 fn each_case_that_holds_gives_pythons_states_and_entries() {
     let v = vectors();
     let holds = cases(&v, "holds");
-    assert_eq!(holds.len(), 4, "the vectors are all there");
+    assert_eq!(holds.len(), 5, "the vectors are all there");
     let mut seen = BTreeSet::new();
     for case in holds {
         let name = &case["name"];
@@ -225,7 +260,7 @@ fn each_case_that_holds_gives_pythons_states_and_entries() {
 fn each_case_that_is_refused_is_refused_for_pythons_reason() {
     let v = vectors();
     let refused = cases(&v, "refused");
-    assert_eq!(refused.len(), 72, "the vectors are all there");
+    assert_eq!(refused.len(), 90, "the vectors are all there");
     let mut seen = BTreeSet::new();
     for case in refused {
         let name = &case["name"];
@@ -237,13 +272,20 @@ fn each_case_that_is_refused_is_refused_for_pythons_reason() {
             error,
             "{name}"
         );
+        assert_eq!(place(&error), case["where"], "{name}");
         // Only the chain's own cases break the chain: every other log is
-        // refused for what it says, never for a hash.
-        assert_eq!(
-            verify_log(&case["log"]).is_ok(),
-            !matches!(error, Refused::Chain(_)),
-            "{name}"
-        );
+        // refused for what it says, never for a hash. (The cases with two
+        // faults are left out: some break the chain as their second.) A
+        // log holding a number this crate can't write is one the kernel's
+        // own check can't judge here; the form's check names its entry.
+        if !name.as_str().unwrap().starts_with("two faults") {
+            match verify_log(&case["log"]) {
+                Err(LogError::Unwritable { index, .. }) => {
+                    assert_eq!(error, Refused::Entry { index: Some(index) }, "{name}");
+                }
+                held => assert_eq!(held.is_ok(), !matches!(error, Refused::Chain(_)), "{name}"),
+            }
+        }
         assert!(error.to_string().starts_with(reason), "{name}");
         seen.insert(reason.to_owned());
     }
@@ -439,20 +481,75 @@ fn the_first_entry_is_written_not_given() {
 }
 
 #[test]
-fn a_float_in_the_open_data_is_reported_as_unchecked() {
-    // Python can check such a log; this crate can't write the float as
-    // Python does, and says so rather than calling the chain broken.
+fn the_open_part_is_held_to_the_rule_for_values() {
+    // The kernel's own check can't judge a log holding a float here. The
+    // form allows no such value, so its check refuses the entry by name,
+    // as Python's does, and never has to hash it.
     let v = vectors();
     let mut log = v["holds"][0]["log"].clone();
     log[4]["data"]["height"] = json!(1.5);
-    let error = check(&log, &json!({})).unwrap_err();
-    assert!(matches!(error, Refused::Unwritable(_)), "{error}");
-    let mut salt = trial_salts();
+    assert!(matches!(
+        verify_log(&log),
+        Err(LogError::Unwritable { index: 4, .. })
+    ));
+    assert_eq!(
+        check(&log, &json!({})).unwrap_err(),
+        Refused::Entry { index: Some(4) }
+    );
+    // The writer refuses the same, before a salt is drawn, and goes on.
+    let drawn = std::cell::Cell::new(0);
+    let mut salt = {
+        let mut next = trial_salts();
+        let drawn = &drawn;
+        move || {
+            drawn.set(drawn.get() + 1);
+            next()
+        }
+    };
     let mut written = room(&v, &mut salt);
-    let data = map(&json!({"height": 1.5}));
-    let error = written
-        .append(9, "measured", None, &data, &Map::new(), &mut salt)
-        .unwrap_err();
-    assert!(matches!(error, Refused::Unwritable(_)), "{error}");
-    assert_eq!(written.entries().len(), 7);
+    let before = written.entries().len();
+    let drawn_before = drawn.get();
+    let kept = map(&json!({"text": "kept apart"}));
+    for data in [
+        json!({"height": 1.5}),
+        json!({"where": null}),
+        json!({"count": MAX_WHOLE + 1}),
+        json!({"count": u64::MAX}),
+        json!({"list": [{"deep": 0.5}]}),
+    ] {
+        let error = written
+            .append(9, "said", None, &map(&data), &kept, &mut salt)
+            .unwrap_err();
+        assert_eq!(
+            error,
+            Refused::Entry {
+                index: Some(before)
+            },
+            "{data}"
+        );
+    }
+    let too_late = u64::try_from(MAX_WHOLE).unwrap() + 1;
+    assert_eq!(
+        written
+            .append(too_late, "said", None, &Map::new(), &kept, &mut salt)
+            .unwrap_err(),
+        Refused::Entry {
+            index: Some(before)
+        }
+    );
+    assert_eq!(written.entries().len(), before);
+    assert_eq!(drawn.get(), drawn_before, "no salt was drawn for them");
+    let last = u64::try_from(MAX_WHOLE).unwrap();
+    written
+        .append(
+            last,
+            "said",
+            Some("an office"),
+            &Map::new(),
+            &kept,
+            &mut salt,
+        )
+        .unwrap();
+    let (entries, contents) = written.into_parts();
+    assert!(check(&Value::Array(entries), &Value::Object(contents)).is_ok());
 }

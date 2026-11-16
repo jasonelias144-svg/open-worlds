@@ -18,12 +18,29 @@
   kernel's own form and `verify_log` are unchanged, and the chain of
   the new form is checked by that same function. Shared vectors,
   `vectors/log-apart.json`, written by Python: 18 fingerprints with
-  the exact text hashed, 9 values refused, 4 logs with contents that
-  hold (every state among them) and 72 that are refused, each for one
-  of fifteen reasons in fixed words; Rust gives the same answer for
-  every one, and writes the trial room again from the same salts to
-  the same log. What building it settled is recorded as the technical
-  lead's (above), with one case the plan had not named. Not done here:
+  the exact text hashed, 9 values refused, 5 logs with contents that
+  hold (every state among them) and 90 that are refused, each for one
+  of fifteen reasons in fixed words and at one place; Rust gives the
+  same answer for every one, and writes the trial room again from the
+  same salts to the same log. What building it settled is recorded as
+  the technical lead's (above), with one case the plan had not named.
+  After the independent review of #101 (nothing blocking, six notes,
+  each taken): Python's writer held the open part of an entry to
+  nothing, so it could write what Rust could not check, and a key that
+  wasn't text (True, written by JSON as "true") could put a field the
+  table keeps apart into the open; the open part is now held to the
+  same rule as a value kept apart, by the check and so by the writer,
+  before anything is hashed. The checks are now taken an entry at a
+  time (link, what it says, hash), so that both languages name the
+  first fault in the log's order and Rust never hashes an entry it
+  could not write; Rust's reason of its own for that is gone. Eight
+  vectors hold two faults, and every refused vector now gives its
+  place, which the two languages had differed on for two reasons. A
+  check that could not be reached was removed, and a redundant one in
+  Rust. One note is carried to part three (docs/research/REDACTION.md).
+  The reviewer's own run of 20,000 generated logs through both
+  languages, before these changes, found them the same in every
+  reason, state and joined entry. Not done here:
   no reader is changed, since no world writes the form yet, and
   nothing is redacted. docs/research/REDACTION.md ("Part two, built"),
   docs/COURSE.md, docs/FUNDAMENTALS.md, vectors/README.md,

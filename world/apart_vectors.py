@@ -138,6 +138,18 @@ def holds() -> List[dict]:
     for entry, field in gone:
         del contents[entry][field]
     cases.append(_case("the five states", room.entries, contents))
+
+    # The open part at its edges: the largest tick and whole numbers,
+    # the deepest nesting, an agent that is text, and text that needs
+    # escaping.
+    edge = apart.Log(TABLE, FIRST, salt=_salts())
+    edge.append(apart.MAX_WHOLE, "measured", OFFICE,
+                {"most": apart.MAX_WHOLE, "least": -apart.MAX_WHOLE,
+                 "deep": _nested(apart.MAX_NESTING - 1),
+                 "text": "caf\u00e9 \U0001F642 \" \\ \n",
+                 "flags": [True, False], "empty": {}}, {})
+    cases.append(_case("the open part at its edges", edge.entries,
+                       edge.contents))
     return cases
 
 
@@ -174,8 +186,21 @@ def _print(n: int, name: str, value: Any) -> str:
     return apart.fingerprint(trial_salt(n), name, value)
 
 
+def place(e: apart.Refused) -> Any:
+    """Where a refusal points, as the vectors write it: nothing; an
+    entry's place in the log, from 0; or, in the contents, an entry's
+    hash alone or with a field's name."""
+    if isinstance(e.where, tuple):
+        return list(e.where)
+    if isinstance(e.where, str):
+        return [e.where]
+    return e.where
+
+
 def refused() -> List[dict]:
-    """Logs and contents that must be refused, each for one reason."""
+    """Logs and contents that must be refused, each for one reason and
+    at one place. Most hold one fault; those named "two faults" hold
+    two, and say which is met first."""
     cases: List[dict] = []
 
     def add(reason: str, name: str, log: Any, contents: Any) -> None:
@@ -184,10 +209,11 @@ def refused() -> List[dict]:
         except apart.Refused as e:
             if e.reason != reason:
                 raise AssertionError(f"{name}: {e.reason}") from None
+            where = place(e)
         else:
             raise AssertionError(f"{name}: not refused")
         cases.append({"name": name, "log": log, "contents": contents,
-                      "reason": reason})
+                      "reason": reason, "where": where})
 
     # -- the chain --
     log, contents = _short()
@@ -261,6 +287,50 @@ def refused() -> List[dict]:
         body = {k: v for k, v in log[1].items() if k != "hash"}
         log[1]["hash"] = _digest(body)
         add(apart.ENTRY, f"an entry without its {missing}", log, {})
+
+    # -- an entry's open part --
+    for name, tick, agent, data in [
+            ("a number with a fraction in the open data", 0, None,
+             {"height": 1.5}),
+            ("nothing as a value in the open data", 0, None, {"where": None}),
+            ("two to the 53 in the open data", 0, None,
+             {"count": apart.MAX_WHOLE + 1}),
+            ("open data nested one too deep", 0, None,
+             {"deep": _nested(apart.MAX_NESTING)}),
+            ("a tick with a fraction", 1.5, None, {}),
+            ("a tick that is text", "1", None, {}),
+            ("a tick below zero", -1, None, {}),
+            ("a tick of two to the 53", apart.MAX_WHOLE + 1, None, {}),
+            ("an agent that is a number", 0, 7, {}),
+            ("an agent that is a list", 0, ["trial office"], {})]:
+        log = _start()
+        _raw(log, tick, "entered", agent, data, {})
+        add(apart.ENTRY, name, log, {})
+
+    # -- two faults in a log: the first in the log's order is named, and
+    # within an entry its link, then what it says, then its hash --
+    log = _start()
+    _raw(log, 0, "entered", None, {"height": 1.5}, {})
+    _raw(log, 1, "entered", None, {}, {})
+    log[2]["prev"] = "f" * 64
+    add(apart.ENTRY, "two faults: a number with a fraction, then a broken "
+        "link", log, {})
+    log = _start()
+    _raw(log, 0, "entered", None, {"height": 1.5}, {})
+    log[1]["hash"] = "f" * 64
+    add(apart.ENTRY, "two faults: a number with a fraction in an entry "
+        "whose hash is wrong", log, {})
+    log = _start()
+    _raw(log, 0, "entered", None, {}, {})
+    _raw(log, 1, "entered", None, {"height": 1.5}, {})
+    log[1]["prev"] = "f" * 64
+    add(apart.CHAIN, "two faults: a broken link, then a number with a "
+        "fraction", log, {})
+    log = _start()
+    _raw(log, 0, "entered", None, {"height": 1.5}, {})
+    log[1]["prev"] = "f" * 64
+    add(apart.CHAIN, "two faults: a broken link in an entry that holds a "
+        "number with a fraction", log, {})
 
     # -- the table, entry by entry --
     log = _start()
@@ -402,6 +472,36 @@ def refused() -> List[dict]:
         {room.entries[3]["hash"]: {
             "time": [room.contents[room.entries[3]["hash"]]["time"][0],
                      "1794787200"]}})
+
+    # -- two faults in the contents: entries are read in ascending order
+    # of their hashes, and an entry's fields in ascending order of their
+    # names, so the first met is the one named --
+    low, high = sorted([one, two])
+
+    def changed(entry: str, field: str) -> list:
+        salt, value = room.contents[entry][field]
+        return [salt, value + "!"]
+
+    def capitals(entry: str, field: str) -> list:
+        salt, value = room.contents[entry][field]
+        return [salt.upper(), value]
+
+    add(apart.FINGERPRINT, "two faults: a changed value in the lower "
+        "entry, a salt in capitals in the higher", room.entries,
+        {low: {"name": changed(low, "name")},
+         high: {"name": capitals(high, "name")}})
+    add(apart.SALT, "two faults: a salt in capitals in the lower entry, "
+        "a changed value in the higher", room.entries,
+        {low: {"name": capitals(low, "name")},
+         high: {"name": changed(high, "name")}})
+    add(apart.FINGERPRINT, "two faults in one entry: a changed key, a "
+        "name's salt in capitals", room.entries,
+        {one: {"key": changed(one, "key"),
+               "name": capitals(one, "name")}})
+    add(apart.SALT, "two faults in one entry: a key's salt in capitals, "
+        "a changed name", room.entries,
+        {one: {"key": capitals(one, "key"),
+               "name": changed(one, "name")}})
     return cases
 
 

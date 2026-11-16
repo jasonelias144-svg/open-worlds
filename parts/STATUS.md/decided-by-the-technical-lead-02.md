@@ -29,14 +29,27 @@ it was wrong. Questions of what the project is for stay with the founder.
   shown by the joining function, even while it is still in the
   contents. (h) The contents hold nothing the log doesn't commit to,
   and no salt twice. (i) A missing field is a state, not a refusal;
-  the command line fails on it.
+  the command line fails on it. (j) The open part of an entry is held
+  to the same rule as a value kept apart: a tick from 0 to 2^53 - 1, a
+  kind that is text, an agent that is text or nothing, data with no
+  fraction, nothing beyond 2^53 - 1, and every key text. (k) The order
+  of the checks is part of the form: entries in the log's order, each
+  by its link, then what it says, then its hash; the contents in
+  ascending order of entry hash and field name.
   *Why:* (b) a reader that doesn't know the form finds a field absent,
   and can't show a fingerprint as someone's words; (c) "fixed kind by
   kind" is then checked from the log alone, by anyone; (e) a field's
   state has to be worked out from open fields (decision 9), so the
   form has to know a mark when it sees one; (g) a redaction cut short
   must not leave the field showing; (i) a reader of a copy that has
-  lost fields should be told which, not only that it failed.
+  lost fields should be told which, not only that it failed; (j) the
+  independent review of #101 showed Python's writer writing logs Rust
+  could not check, and, through a key that wasn't text, a field the
+  table keeps apart in the open; one rule for everything in an entry
+  closes both, and is the project's rule for signed records already;
+  (k) a log or contents with two faults is then refused for the same
+  one in both languages, which the review found was true of the code
+  and held by no test.
   *Wrong if:* (b, c) a room needs a field kept apart in some entries
   of a kind and open in others (then the table gives way to the
   entry's own `apart`); (d) a room has to hide which office acted;
@@ -47,7 +60,10 @@ it was wrong. Questions of what the project is for stay with the founder.
   contents still hold it; the joining function would then grow a way
   to ask); (h) contents for two logs have to be kept in one file;
   (i) a missing field is ever shown to a reader as if the log were
-  whole.
+  whole; (j) a room needs a number with a fraction, or nothing as a
+  value, in the open (then it is written as text, or the rule is
+  widened in a second version); (k) a third language can't read a map
+  in ascending order, or the two here are found to differ on any log.
 
 - 2026-11-16, a log that can be redacted, and removals on record
   (docs/research/REDACTION.md, decisions 1 to 10; course step 3b), as

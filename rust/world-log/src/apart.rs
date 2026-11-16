@@ -17,7 +17,13 @@
 //!   field's name to its fingerprint; these seven and nothing else, so
 //!   nothing sits beside `data` where the table doesn't reach. A field the
 //!   table keeps apart for an entry's kind is never in its `data`. The
-//!   chain is checked by [`verify_log`](crate::verify_log), unchanged.
+//!   chain of a log in this form holds by
+//!   [`verify_log`](crate::verify_log), unchanged.
+//! - **The open part is held to the same rule as a value kept apart.**
+//!   `tick` is a whole number from 0 to 2^53 - 1, `kind` is text, `agent`
+//!   is text or nothing, and `data` is a map a fingerprint would allow.
+//!   So every log in this form can be written, and checked, in both
+//!   languages.
 //! - **A fingerprint** ([`fingerprint`]) is the SHA-256, in lowercase hex,
 //!   of the list `[salt, name, value]` as [`python_json`](crate::python_json)
 //!   writes it. The salt is 32 lowercase hex digits, fresh for each field
@@ -46,13 +52,22 @@
 //!   open field of another name holds what should have been kept apart.
 //! - A fingerprint commits a log to a value, and says nothing of who
 //!   wrote it: that is a signature's work.
-//! - JSON's `-0` in a contents file is read by Python as 0 and refused
-//!   here, since `serde_json` reads it as a float. Nothing writes it.
-//! - The open `data` follows the kernel's rules, not a fingerprint's: a
-//!   log whose open data holds a float can't be checked here
-//!   ([`Refused::Unwritable`]).
+//! - JSON's `-0` is read by Python as 0 and refused here, since
+//!   `serde_json` reads it as a float. Nothing writes it.
+//! - A file that isn't JSON as the standard has it (`NaN`, a number too
+//!   large to read, half of a surrogate pair) is refused by Python's check
+//!   and can't be read at all here.
+//!
+//! # The order of the checks
+//!
+//! It is part of the form, so that a log or contents with two faults is
+//! refused for the same one in both languages. Entries are read in the
+//! log's order; for each, its link to the entry before (`prev`), then
+//! what it says, then its hash, so this crate is never asked to hash an
+//! entry it could not write. The contents are read in ascending order of
+//! entry hash, and of field name within an entry.
 
-use crate::{GENESIS, LogError, digest, python_json, sha256_hex, verify_log};
+use crate::{GENESIS, LogError, body_hash, python_json, sha256_hex};
 use serde_json::{Map, Value, json};
 use std::collections::{BTreeMap, BTreeSet};
 use std::fmt;
@@ -160,8 +175,10 @@ pub enum Refused {
     /// The table of fields kept apart is not well formed.
     Table,
     /// An entry is not in this form: it doesn't hold exactly [`KEYS`], its
-    /// kind isn't text, its `data` or `apart` isn't a map, or a name or
-    /// fingerprint in `apart` isn't one.
+    /// open part isn't as the form has it (a tick from 0 to 2^53 - 1, a
+    /// kind that is text, an agent that is text or nothing, data that is a
+    /// map a fingerprint would allow), its `apart` isn't a map, or a name
+    /// or fingerprint in `apart` isn't one.
     /// Also a field's name that isn't one, given to [`fingerprint`], which
     /// has no place in a log.
     Entry {
@@ -206,10 +223,6 @@ pub enum Refused {
     Value(Place),
     /// A field's salt and value do not give the fingerprint the log holds.
     Fingerprint(Place),
-    /// Only here, not in Python: the log holds a value this crate can't
-    /// write as Python does, such as a float in an entry's open data, so
-    /// it can't be checked here.
-    Unwritable(LogError),
     /// Only when writing: the first entry's `form` and `kept_apart` are
     /// written by [`Log::new`], not given to it. (Python raises a
     /// `ValueError`.)
@@ -242,7 +255,6 @@ impl Refused {
             Refused::SaltTwice(_) => "a salt appears twice",
             Refused::Value(_) => "a value is not one a fingerprint allows",
             Refused::Fingerprint(_) => "the contents do not match the fingerprint",
-            Refused::Unwritable(_) => "the log holds a value that can't be written here",
             Refused::FirstGiven => "the first entry's form and table are written here, not given",
         }
     }
@@ -252,7 +264,7 @@ impl fmt::Display for Refused {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         f.write_str(self.reason())?;
         match self {
-            Refused::Chain(e) | Refused::Unwritable(e) => write!(f, ": {e}"),
+            Refused::Chain(e) => write!(f, ": {e}"),
             Refused::Entry { index: Some(index) }
             | Refused::Untabled { index }
             | Refused::Open { index }
@@ -400,14 +412,15 @@ impl Scan {
         let table = first_table.as_ref().unwrap_or(&self.table);
         let kind = fields.get("kind").and_then(Value::as_str);
         let apart = fields.get("apart").and_then(Value::as_object);
-        let hash = fields
-            .get("hash")
-            .and_then(Value::as_str)
-            .filter(|h| is_hash(h));
+        // The callers have seen that `hash` is text, and see to the chain.
+        let hash = fields.get("hash").and_then(Value::as_str);
         let (Some(kind), Some(data), Some(apart), Some(hash)) = (kind, data, apart, hash) else {
             return Err(shape);
         };
-        if fields.len() != KEYS.len() || KEYS.iter().any(|key| !fields.contains_key(*key)) {
+        if fields.len() != KEYS.len()
+            || KEYS.iter().any(|key| !fields.contains_key(*key))
+            || !open_ok(fields)
+        {
             return Err(shape);
         }
         // BTreeMap: the names in ascending order, whatever order
@@ -473,18 +486,49 @@ impl Scan {
     }
 }
 
+/// True if an entry's open part is as the form has it: a tick from 0 to
+/// 2^53 - 1, an agent that is text or nothing, and data that is a map a
+/// fingerprint would allow. (That the kind is text is seen to where the
+/// kind is read: by `take`, and by the writer's own types.)
+fn open_ok(fields: &Map<String, Value>) -> bool {
+    let tick = fields.get("tick").and_then(Value::as_u64);
+    let agent = fields.get("agent");
+    tick.is_some_and(|t| t <= MAX_WHOLE.unsigned_abs())
+        && agent.is_some_and(|a| a.is_string() || a.is_null())
+        && fields
+            .get("data")
+            .is_some_and(|d| d.is_object() && value_allowed(d))
+}
+
+/// Reads a whole log. For each entry in turn: its link to the entry
+/// before, then what it says, then its hash. The chain is the kernel's (a
+/// log that passes here passes [`verify_log`](crate::verify_log)); the
+/// checks are taken an entry at a time so that the first fault in the
+/// log's order is the one named, here and in Python.
 fn scan(log: &Value) -> Result<Scan, Refused> {
-    verify_log(log).map_err(|e| match e {
-        LogError::Unwritable { .. } => Refused::Unwritable(e),
-        _ => Refused::Chain(e),
-    })?;
     let entries = log.as_array().ok_or(Refused::Chain(LogError::NotAList))?;
     if entries.is_empty() {
         return Err(Refused::NoForm);
     }
     let mut scan = Scan::default();
-    for entry in entries {
+    let mut prev = GENESIS;
+    for (index, entry) in entries.iter().enumerate() {
+        let malformed = Refused::Chain(LogError::Malformed { index });
+        let fields = entry.as_object().ok_or(malformed.clone())?;
+        let hash = fields
+            .get("hash")
+            .and_then(Value::as_str)
+            .ok_or(malformed)?;
+        if fields.get("prev").and_then(Value::as_str) != Some(prev) {
+            return Err(Refused::Chain(LogError::BrokenChain { index }));
+        }
         scan.take(entry)?;
+        // An entry that holds can always be written: its numbers fit and
+        // it is nested far less deeply than the writer's limit.
+        if body_hash(fields).ok().as_deref() != Some(hash) {
+            return Err(Refused::Chain(LogError::WrongHash { index }));
+        }
+        prev = hash;
     }
     Ok(scan)
 }
@@ -704,6 +748,16 @@ impl Log {
         apart: &Map<String, Value>,
         salt: &mut dyn FnMut() -> String,
     ) -> Result<String, Refused> {
+        let index = self.entries.len();
+        let mut body = Map::new();
+        body.insert("tick".to_owned(), json!(tick));
+        body.insert("kind".to_owned(), json!(kind));
+        body.insert("agent".to_owned(), json!(agent));
+        body.insert("data".to_owned(), Value::Object(data.clone()));
+        // Before any salt is drawn or anything is hashed.
+        if !open_ok(&body) {
+            return Err(Refused::Entry { index: Some(index) });
+        }
         let sorted: BTreeMap<&String, &Value> = apart.iter().collect();
         let mut prints = Map::new();
         let mut kept = Map::new();
@@ -721,16 +775,9 @@ impl Log {
             kept.insert(name.clone(), json!([salt, value]));
             salts.insert(salt);
         }
-        let mut body = Map::new();
-        body.insert("tick".to_owned(), json!(tick));
-        body.insert("kind".to_owned(), json!(kind));
-        body.insert("agent".to_owned(), json!(agent));
-        body.insert("data".to_owned(), Value::Object(data.clone()));
         body.insert("apart".to_owned(), Value::Object(prints));
         body.insert("prev".to_owned(), json!(self.head()));
-        let index = self.entries.len();
-        let hash = digest(&Value::Object(body.clone()))
-            .map_err(|error| Refused::Unwritable(LogError::Unwritable { index, error }))?;
+        let hash = body_hash(&body).map_err(|_| Refused::Entry { index: Some(index) })?;
         body.insert("hash".to_owned(), Value::String(hash.clone()));
         let entry = Value::Object(body);
         self.scan.take(&entry)?;

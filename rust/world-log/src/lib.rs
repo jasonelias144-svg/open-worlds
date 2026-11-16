@@ -152,15 +152,21 @@ pub fn verify_log(log: &Value) -> Result<&str, LogError> {
         if fields.get("prev").and_then(Value::as_str) != Some(prev) {
             return Err(LogError::BrokenChain { index });
         }
-        let mut body = String::new();
-        write_object(fields, Some("hash"), &mut body, 0)
-            .map_err(|error| LogError::Unwritable { index, error })?;
-        if sha256_hex(body.as_bytes()) != hash {
+        let computed = body_hash(fields).map_err(|error| LogError::Unwritable { index, error })?;
+        if computed != hash {
             return Err(LogError::WrongHash { index });
         }
         prev = hash;
     }
     Ok(prev)
+}
+
+/// The hash an entry should carry: of all its fields but `hash`, written
+/// as Python writes them.
+pub(crate) fn body_hash(fields: &Map<String, Value>) -> Result<String, Error> {
+    let mut body = String::new();
+    write_object(fields, Some("hash"), &mut body, 0)?;
+    Ok(sha256_hex(body.as_bytes()))
 }
 
 fn write_value(value: &Value, out: &mut String, depth: usize) -> Result<(), Error> {

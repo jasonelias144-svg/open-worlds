@@ -9,12 +9,14 @@
 //! the fields in each state.
 //!
 //! Exits 0 if everything given holds, and 1 if it doesn't: the chain is
-//! broken, the contents hold something the log doesn't commit to, or a
-//! field is missing (gone, with no mark standing). Exits 2 if it can't be
-//! checked here: a file can't be read as JSON, or the log holds a value
-//! this crate can't write exactly as Python does, such as a float. The
-//! chemistry soup's log holds floats: check it with Python's
-//! `World.verify_log`.
+//! broken, the log is not in the form, the contents hold something the
+//! log doesn't commit to, or a field is missing (gone, with no mark
+//! standing). Exits 2 if it can't be checked here: a file can't be read
+//! as JSON, or, with no `CONTENTS`, the log holds a value this crate
+//! can't write exactly as Python does, such as a float. The chemistry
+//! soup's log holds floats: check it with Python's `World.verify_log`.
+//! With `CONTENTS`, such a log is refused, not left unchecked: the form
+//! allows no such value, and the entry that holds one is named.
 
 use serde_json::Value;
 use std::process::ExitCode;
@@ -91,6 +93,10 @@ fn main() -> ExitCode {
             let count = log.as_array().map_or(0, Vec::len);
             println!("the log holds: {count} entries, head {head}");
         }
+        // A log whose fields are kept apart holds no value this crate
+        // can't write, so with its contents it is checked as that form,
+        // which names the entry.
+        Err(world_log::LogError::Unwritable { .. }) if contents_path.is_some() => {}
         Err(world_log::LogError::Unwritable { index, error }) => {
             println!("the log can't be checked here: entry {index}: {error}");
             return ExitCode::from(2);

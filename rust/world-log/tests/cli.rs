@@ -188,6 +188,33 @@ fn contents_that_do_not_match_fail() {
 }
 
 #[test]
+fn a_value_the_form_does_not_allow_is_refused_by_name() {
+    let (log, contents) = case(
+        "fraction",
+        "refused",
+        "a number with a fraction in the open data",
+    );
+    // Alone, it is the kernel's check, which can't judge a float here.
+    let (code, out) = run(&log.0);
+    assert_eq!(code, Some(2), "{out}");
+    assert!(
+        out.starts_with("the log can't be checked here: entry 1"),
+        "{out}"
+    );
+    // With its contents it is checked as the form, which allows no such
+    // value and names the entry.
+    let (code, out) = run_with(&log.0, &contents.0);
+    assert_eq!(code, Some(1), "{out}");
+    assert!(
+        out.starts_with(
+            "the log and its contents do not hold together: \
+             an entry is not in this form: entry 1"
+        ),
+        "{out}"
+    );
+}
+
+#[test]
 fn contents_that_cannot_be_read_are_reported() {
     let (log, _contents) = case("unread", "holds", "every field is there");
     let broken = Scratch::new("broken-contents.json", "{");

@@ -9,7 +9,7 @@ import unittest
 from world import World, apart
 from world.apart import Log, Refused
 from world.apart_vectors import (FIRST, TABLE, VALUES_ALLOWED, WRITTEN,
-                                 log_apart, trial_salt)
+                                 log_apart, place, trial_salt)
 from world.vectors import FOLDER, world_log
 
 
@@ -29,6 +29,15 @@ def reason(log, contents):
         apart.check(log, contents)
     except Refused as e:
         return e.reason
+    return None
+
+
+def refusal(log, contents):
+    """The reason and the place, as the vectors write them."""
+    try:
+        apart.check(log, contents)
+    except Refused as e:
+        return e.reason, place(e)
     return None
 
 
@@ -228,6 +237,67 @@ class TestWriting(unittest.TestCase):
         self.assertEqual(c.exception.reason, apart.ENTRY)
         self.assertEqual(len(log.entries), 1)
 
+    def test_what_python_can_hold_and_json_cannot_is_never_written(self):
+        # A key that isn't text is written by JSON as text: True as
+        # "true", a field's name. It would put a field the table keeps
+        # apart into the open, in the chain, for good.
+        log = Log({"said": ["null", "true"], "showed": ["thing"]})
+        before = copy.deepcopy(log.entries)
+        nan = float("nan")
+        for data in [{True: "in the open"}, {None: "in the open"},
+                     {False: 1}, {1: "a"}, {"deep": {True: 1}},
+                     {"list": [{None: 1}]}, {"height": 1.5}, {"n": nan},
+                     {"n": float("inf")}, {"n": 2 ** 53}, {"n": 2 ** 64},
+                     {"n": -(2 ** 63) - 1}, {"text": "\ud800"},
+                     {"\ud800": 1}, {"where": None}, {"set": {1, 2}},
+                     {"bytes": b"x"}, {"pair": (1, 2)}, [], None, "data"]:
+            with self.subTest(data=repr(data)), \
+                    self.assertRaises(Refused) as c:
+                log.append(1, "said", None, data, {})
+            self.assertEqual(c.exception.reason, apart.ENTRY)
+            self.assertEqual(c.exception.where, 1)
+        for tick in [1.5, "1", -1, 2 ** 53, None, True, nan]:
+            with self.subTest(tick=repr(tick)), \
+                    self.assertRaises(Refused) as c:
+                log.append(tick, "said", None, {}, {})
+            self.assertEqual(c.exception.reason, apart.ENTRY)
+        for kind in ["\ud800", 5, None, b"said"]:
+            with self.subTest(kind=repr(kind)), \
+                    self.assertRaises(Refused) as c:
+                log.append(1, kind, None, {}, {})
+            self.assertEqual(c.exception.reason, apart.ENTRY)
+        for agent in ["\ud800", 5, ["office"], True]:
+            with self.subTest(agent=repr(agent)), \
+                    self.assertRaises(Refused) as c:
+                log.append(1, "said", agent, {}, {})
+            self.assertEqual(c.exception.reason, apart.ENTRY)
+        deep = "x"
+        for _ in range(100000):
+            deep = [deep]
+        with self.assertRaises(Refused) as c:
+            log.append(1, "said", None, {"deep": deep}, {})
+        self.assertEqual(c.exception.reason, apart.ENTRY)
+        self.assertEqual(log.entries, before)
+        self.assertEqual(log.contents, {})
+        log.append(apart.MAX_WHOLE, "said", "an office",
+                   {"n": apart.MAX_WHOLE}, {"true": "kept apart"})
+        self.assertEqual(len(log.entries), 2)
+
+    def test_a_log_reads_back_from_json_as_it_was_written(self):
+        # What is checked in memory is what is checked from a file.
+        log = room()
+        log.append(5, apart.MARK, "office",
+                   {"entry": log.entries[3]["hash"], "field": "text"},
+                   {"reason": "asked"})
+        entries = json.loads(json.dumps(log.entries))
+        contents = json.loads(json.dumps(log.contents))
+        self.assertEqual(entries, log.entries)
+        self.assertEqual(contents, log.contents)
+        self.assertEqual(apart.check(entries, contents),
+                         apart.check(log.entries, log.contents))
+        self.assertEqual(apart.join(entries, contents),
+                         apart.join(log.entries, log.contents))
+
     def test_a_salt_source_that_repeats_or_is_wrong_is_refused(self):
         log = Log({"said": ["key", "text"]},
                   salt=lambda: "0" * 32)
@@ -306,9 +376,17 @@ class TestChecking(unittest.TestCase):
             self.assertIn(log.head(), str(e))
         entries = copy.deepcopy(log.entries[:2])
         del entries[1]["apart"]
+        scan = apart._Scan()
+        scan.take(entries[0])
+        with self.assertRaises(Refused) as c:
+            scan.take(entries[1])
+        self.assertEqual(c.exception.reason, apart.ENTRY)
+        self.assertEqual(c.exception.where, 1)
+        # The form and the table are the first entry's: no place is given.
         with self.assertRaises(Refused) as c:
             apart._Scan().take(entries[1])
-        self.assertEqual(c.exception.where, 0)
+        self.assertEqual(c.exception.reason, apart.NO_FORM)
+        self.assertIsNone(c.exception.where)
 
     def test_nothing_sits_beside_an_entrys_data(self):
         # The table reaches `data` and `apart` only, so an entry holds
@@ -339,6 +417,67 @@ class TestChecking(unittest.TestCase):
             with self.subTest(contents=repr(contents)):
                 self.assertEqual(reason(log.entries, contents),
                                  apart.CONTENTS)
+
+    def test_the_first_fault_in_the_logs_order_is_the_one_named(self):
+        from world.core import _digest
+
+        def rehash(entry):
+            body = {k: v for k, v in entry.items() if k != "hash"}
+            entry["hash"] = _digest(body)
+
+        log = room()
+        # A fault in what an entry says, and a broken link after it:
+        # the earlier entry's fault is the one named.
+        entries = copy.deepcopy(log.entries)
+        entries[2]["data"]["height"] = 1.5
+        rehash(entries[2])     # its own hash is right; entry 3's link isn't
+        self.assertEqual(refusal(entries, {}), (apart.ENTRY, 2))
+        entries[2] = copy.deepcopy(log.entries[2])
+        entries[5]["data"]["height"] = 1.5
+        entries[3]["prev"] = "f" * 64
+        self.assertEqual(refusal(entries, {}), (apart.CHAIN, 3))
+        # Within one entry: its link, then what it says, then its hash.
+        entries = copy.deepcopy(log.entries)
+        entries[2]["data"]["height"] = 1.5
+        self.assertEqual(refusal(entries, {}), (apart.ENTRY, 2))
+        entries[2]["prev"] = "f" * 64
+        self.assertEqual(refusal(entries, {}), (apart.CHAIN, 2))
+        entries = copy.deepcopy(log.entries)
+        entries[2]["tick"] = 99
+        self.assertEqual(refusal(entries, {}), (apart.CHAIN, 2))
+        # A log that is refused here for its chain is refused by the
+        # kernel's own check, and one that holds here holds there.
+        self.assertFalse(World.verify_log(entries))
+        self.assertTrue(World.verify_log(log.entries))
+
+    def test_the_contents_are_read_in_ascending_order(self):
+        # Whatever order a map was built in: Python keeps that order,
+        # Rust does not, and both must name the same fault.
+        log = room()
+        hashes = sorted(e["hash"] for e in log.entries[1:3])
+        low, high = hashes
+
+        def changed(entry, field):
+            salt, value = log.contents[entry][field]
+            return [salt, value + "!"]
+
+        def capitals(entry, field):
+            salt, value = log.contents[entry][field]
+            return [salt.upper(), value]
+
+        for first, second in [(low, high), (high, low)]:
+            contents = {first: {"name": changed(first, "name")},
+                        second: {"name": capitals(second, "name")}}
+            for built in (contents, dict(reversed(list(contents.items())))):
+                want = (apart.FINGERPRINT if first == low else apart.SALT,
+                        [low, "name"])
+                self.assertEqual(refusal(log.entries, built), want)
+        for fields in [{"name": capitals(low, "name"),
+                        "key": changed(low, "key")},
+                       {"key": changed(low, "key"),
+                        "name": capitals(low, "name")}]:
+            self.assertEqual(refusal(log.entries, {low: fields}),
+                             (apart.FINGERPRINT, [low, "key"]))
 
     def test_a_mark_stands_until_it_is_answered(self):
         log = room()
@@ -463,7 +602,7 @@ class TestTheVectors(unittest.TestCase):
 
     def test_each_case_that_holds(self):
         cases = vectors()["holds"]
-        self.assertEqual(len(cases), 4)
+        self.assertEqual(len(cases), 5)
         seen = set()
         for case in cases:
             with self.subTest(case["name"]):
@@ -477,17 +616,22 @@ class TestTheVectors(unittest.TestCase):
 
     def test_each_case_that_is_refused(self):
         cases = vectors()["refused"]
-        self.assertEqual(len(cases), 72)
+        self.assertEqual(len(cases), 90)
         for case in cases:
             with self.subTest(case["name"]):
-                self.assertEqual(reason(case["log"], case["contents"]),
-                                 case["reason"])
+                self.assertEqual(refusal(case["log"], case["contents"]),
+                                 (case["reason"], case["where"]))
         self.assertEqual({c["reason"] for c in cases}, set(apart.REASONS))
+        self.assertEqual(
+            len([c for c in cases if c["name"].startswith("two faults")]), 8)
 
     def test_only_the_chain_cases_break_the_chain(self):
         # Every other refused log is a chain that holds: it is refused
-        # for what it says, never for a hash.
+        # for what it says, never for a hash. (The cases with two faults
+        # are left out: some of them break the chain as their second.)
         for case in vectors()["refused"]:
+            if case["name"].startswith("two faults"):
+                continue
             with self.subTest(case["name"]):
                 self.assertEqual(World.verify_log(case["log"]),
                                  case["reason"] != apart.CHAIN)

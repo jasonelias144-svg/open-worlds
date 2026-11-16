@@ -19,8 +19,14 @@ contents leaves the log exactly as it was, and the chain still checks.
   beside `data` where the table doesn't reach. A field the table keeps
   apart for an entry's kind is never in its `data`: it is in `apart`,
   or not there at all. The hash covers `apart` like everything else, so
-  the chain is checked by the kernel's own `World.verify_log`,
-  unchanged.
+  the chain of a log in this form holds by the kernel's own
+  `World.verify_log`, unchanged.
+- **The open part is held to the same rule as a value kept apart.**
+  `tick` is a whole number from 0 to 2^53 - 1, `kind` is text, `agent`
+  is text or nothing, and `data` is a map a fingerprint would allow: no
+  number with a fraction, no whole number beyond 2^53 - 1, nothing
+  nested deeper than `MAX_NESTING`, every key text. So every log in
+  this form can be written, and checked, in both languages.
 - **A fingerprint** is the SHA-256, in lowercase hex, of the list
   `[salt, name, value]` written as the log writes everything
   (`json.dumps(..., sort_keys=True, separators=(",", ":"))`). The salt
@@ -49,18 +55,25 @@ contents leaves the log exactly as it was, and the chain still checks.
 
 `check` holds the contents to the log and gives every field's state.
 `join` gives each entry as a reader uses it. `Log` writes the form.
-Every reason for refusing is in fixed words, the same in Rust
-(`rust/world-log/src/apart.rs`), checked against
+Every reason for refusing is in fixed words, and names the same place,
+in Rust (`rust/world-log/src/apart.rs`), checked against
 `vectors/log-apart.json`.
+
+The order of the checks is part of the form, so that a log or contents
+with two faults is refused for the same one in both languages. Entries
+are read in the log's order; for each, its link to the entry before
+(`prev`), then what it says, then its hash. The contents are read in
+ascending order of entry hash, and of field name within an entry.
 
 Limits. A field under a standing mark is never shown by `join`, even
 while it is still in the contents. The check holds a world to its table
 by name: it can't know that an open field of another name holds what
 should have been kept apart. A fingerprint commits a log to a value,
 and says nothing of who wrote it: that is a signature's work. JSON's
-`-0` in a contents file is read by Python as 0 and refused by Rust;
-nothing here writes it. The open `data` follows the kernel's rules, not
-a fingerprint's: Rust can't check a log whose open data holds a float.
+`-0` is read by Python as 0 and refused by Rust; nothing here writes
+it. A file that isn't JSON as the standard has it (`NaN`, a number too
+large to read, half of a surrogate pair) is refused here and can't be
+read at all by Rust.
 """
 from __future__ import annotations
 
@@ -71,7 +84,7 @@ import re
 import secrets
 from typing import Any, Callable, Dict, List, Optional, Set, Tuple
 
-from .core import GENESIS, World, _digest, _is_unicode
+from .core import GENESIS, _digest, _is_unicode
 
 FORM = "open-worlds/log-apart/v1"
 MARK = "field_redacted"
@@ -163,6 +176,18 @@ def value_allowed(value: object, _depth: int = 0) -> bool:
     return False
 
 
+def _open_ok(tick: object, kind: object, agent: object,
+             data: object) -> bool:
+    """True if an entry's open part is as the form has it: a tick from
+    0 to 2^53 - 1, a kind that is text, an agent that is text or
+    nothing, and data that is a map a fingerprint would allow."""
+    return (type(tick) is int and 0 <= tick <= MAX_WHOLE
+            and type(kind) is str and _is_unicode(kind)
+            and (agent is None
+                 or (type(agent) is str and _is_unicode(agent)))
+            and type(data) is dict and value_allowed(data))
+
+
 def fingerprint_text(salt: str, name: str, value: object) -> str:
     """The exact text a fingerprint is the hash of."""
     if not _is_salt(salt):
@@ -199,7 +224,8 @@ class _Scan:
     """Reads a log's entries in order, keeping what later entries and
     the contents are checked against. `take` changes nothing unless the
     entry holds, so a writer can offer it an entry and keep going if it
-    is refused."""
+    is refused. It is given a map whose `hash` is text: its two callers
+    see to that, and to the chain."""
 
     def __init__(self) -> None:
         self.table: Dict[str, List[str]] = {}
@@ -218,13 +244,13 @@ class _Scan:
         table = self.table
         if index == 0:
             if type(data) is not dict or data.get("form") != FORM:
-                raise Refused(NO_FORM, index)
+                raise Refused(NO_FORM)
             table = data.get("kept_apart")
             if not _table_ok(table):
-                raise Refused(TABLE, index)
-        if (set(entry) != KEYS or type(kind) is not str
-                or type(data) is not dict
-                or type(apart) is not dict or not _is_hash(entry.get("hash"))
+                raise Refused(TABLE)
+        if (set(entry) != KEYS
+                or not _open_ok(entry["tick"], kind, entry["agent"], data)
+                or type(apart) is not dict
                 or not all(_is_name(n) and _is_hash(p)
                            for n, p in apart.items())):
             raise Refused(ENTRY, index)
@@ -260,13 +286,28 @@ class _Scan:
 
 
 def _scan(log: Any) -> _Scan:
-    if not World.verify_log(log):
+    """Reads a whole log. For each entry in turn: its link to the entry
+    before, then what it says, then its hash. The chain is the kernel's
+    (a log that passes here passes `World.verify_log`); the checks are
+    taken an entry at a time so that the first fault in the log's order
+    is the one named, in Python and in Rust, and so that Rust is never
+    asked to hash an entry it could not write."""
+    if not isinstance(log, list):
         raise Refused(CHAIN)
-    scan = _Scan()
     if not log:
         raise Refused(NO_FORM)
-    for entry in log:
+    scan = _Scan()
+    prev = GENESIS
+    for index, entry in enumerate(log):
+        if (not isinstance(entry, dict)
+                or type(entry.get("hash")) is not str
+                or entry.get("prev") != prev):
+            raise Refused(CHAIN, index)
         scan.take(entry)
+        body = {k: v for k, v in entry.items() if k != "hash"}
+        if _digest(body) != entry["hash"]:
+            raise Refused(CHAIN, index)
+        prev = entry["hash"]
     return scan
 
 
@@ -404,8 +445,11 @@ class Log:
         kept: Dict[str, list] = {}
         salts: Set[str] = set()
         apart = {} if apart is None else apart
-        if type(apart) is not dict:
-            raise Refused(ENTRY)
+        # Before anything is copied or hashed: what Python can hold and
+        # JSON can't (a key that isn't text, a set, a map nested too deep
+        # to write) is refused here, not written or left to crash.
+        if type(apart) is not dict or not _open_ok(tick, kind, agent, data):
+            raise Refused(ENTRY, len(self.entries))
         for name in sorted(apart, key=str):
             salt = self._salt()
             if not _is_salt(salt):

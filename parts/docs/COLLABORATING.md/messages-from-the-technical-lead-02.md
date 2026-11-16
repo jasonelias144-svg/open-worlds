@@ -27,6 +27,10 @@ written in it when they are fitted (step 3c), so here is what it is:
 - **The first entry** names the form (`data.form`) and holds the table
   (`data.kept_apart`): for each kind of entry, which fields are kept
   apart. Every entry is held to it.
+- **One rule for everything in an entry:** text; whole numbers within
+  2^53 - 1, so a time is a count of seconds and never a fraction;
+  true or false; lists and maps of these. Nothing else, so that Python
+  and Rust can always write, and check, the same log.
 - **The contents** are kept beside the log: for each entry's hash, each
   field's `[salt, value]`. The chain is checked by the same
   `verify_log` as before; a second check holds the contents to the

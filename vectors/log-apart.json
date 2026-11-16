@@ -1887,6 +1887,243 @@
      "reason": "redacted"
     }
    }
+  },
+  {
+   "contents": {},
+   "joined": [
+    {
+     "agent": null,
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "fields": {},
+     "hash": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": "trial office",
+     "data": {
+      "deep": [
+       [
+        [
+         [
+          [
+           [
+            [
+             [
+              [
+               [
+                [
+                 [
+                  [
+                   [
+                    [
+                     [
+                      [
+                       [
+                        [
+                         [
+                          [
+                           [
+                            [
+                             [
+                              [
+                               [
+                                [
+                                 [
+                                  [
+                                   [
+                                    [
+                                     "deep"
+                                    ]
+                                   ]
+                                  ]
+                                 ]
+                                ]
+                               ]
+                              ]
+                             ]
+                            ]
+                           ]
+                          ]
+                         ]
+                        ]
+                       ]
+                      ]
+                     ]
+                    ]
+                   ]
+                  ]
+                 ]
+                ]
+               ]
+              ]
+             ]
+            ]
+           ]
+          ]
+         ]
+        ]
+       ]
+      ],
+      "empty": {},
+      "flags": [
+       true,
+       false
+      ],
+      "least": -9007199254740991,
+      "most": 9007199254740991,
+      "text": "caf\u00e9 \ud83d\ude42 \" \\ \n"
+     },
+     "fields": {},
+     "hash": "cec75cba50e56567fe285846ed930fd0d99121471f6adc8353398c566eca2b1f",
+     "kind": "measured",
+     "prev": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "tick": 9007199254740991
+    }
+   ],
+   "log": [
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "hash": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": "trial office",
+     "apart": {},
+     "data": {
+      "deep": [
+       [
+        [
+         [
+          [
+           [
+            [
+             [
+              [
+               [
+                [
+                 [
+                  [
+                   [
+                    [
+                     [
+                      [
+                       [
+                        [
+                         [
+                          [
+                           [
+                            [
+                             [
+                              [
+                               [
+                                [
+                                 [
+                                  [
+                                   [
+                                    [
+                                     "deep"
+                                    ]
+                                   ]
+                                  ]
+                                 ]
+                                ]
+                               ]
+                              ]
+                             ]
+                            ]
+                           ]
+                          ]
+                         ]
+                        ]
+                       ]
+                      ]
+                     ]
+                    ]
+                   ]
+                  ]
+                 ]
+                ]
+               ]
+              ]
+             ]
+            ]
+           ]
+          ]
+         ]
+        ]
+       ]
+      ],
+      "empty": {},
+      "flags": [
+       true,
+       false
+      ],
+      "least": -9007199254740991,
+      "most": 9007199254740991,
+      "text": "caf\u00e9 \ud83d\ude42 \" \\ \n"
+     },
+     "hash": "cec75cba50e56567fe285846ed930fd0d99121471f6adc8353398c566eca2b1f",
+     "kind": "measured",
+     "prev": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "tick": 9007199254740991
+    }
+   ],
+   "name": "the open part at its edges",
+   "states": {}
   }
  ],
  "kept": "field_kept_public",
@@ -1973,19 +2210,22 @@
     }
    ],
    "name": "an entry was changed after it was written",
-   "reason": "the chain does not hold"
+   "reason": "the chain does not hold",
+   "where": 1
   },
   {
    "contents": {},
    "log": {},
    "name": "the log is a map",
-   "reason": "the chain does not hold"
+   "reason": "the chain does not hold",
+   "where": null
   },
   {
    "contents": {},
    "log": [],
    "name": "an empty log",
-   "reason": "the first entry does not name this form"
+   "reason": "the first entry does not name this form",
+   "where": null
   },
   {
    "contents": {},
@@ -2002,7 +2242,8 @@
     }
    ],
    "name": "the kernel's own form",
-   "reason": "the first entry does not name this form"
+   "reason": "the first entry does not name this form",
+   "where": null
   },
   {
    "contents": {},
@@ -2041,7 +2282,8 @@
     }
    ],
    "name": "another version of the form",
-   "reason": "the first entry does not name this form"
+   "reason": "the first entry does not name this form",
+   "where": null
   },
   {
    "contents": {},
@@ -2057,7 +2299,8 @@
     }
    ],
    "name": "a first entry whose data is not a map",
-   "reason": "the first entry does not name this form"
+   "reason": "the first entry does not name this form",
+   "where": null
   },
   {
    "contents": {},
@@ -2085,7 +2328,8 @@
     }
    ],
    "name": "the table is a list",
-   "reason": "the table of fields kept apart is not well formed"
+   "reason": "the table of fields kept apart is not well formed",
+   "where": null
   },
   {
    "contents": {},
@@ -2107,7 +2351,8 @@
     }
    ],
    "name": "a kind's fields are text",
-   "reason": "the table of fields kept apart is not well formed"
+   "reason": "the table of fields kept apart is not well formed",
+   "where": null
   },
   {
    "contents": {},
@@ -2132,7 +2377,8 @@
     }
    ],
    "name": "names out of order",
-   "reason": "the table of fields kept apart is not well formed"
+   "reason": "the table of fields kept apart is not well formed",
+   "where": null
   },
   {
    "contents": {},
@@ -2157,7 +2403,8 @@
     }
    ],
    "name": "a name twice",
-   "reason": "the table of fields kept apart is not well formed"
+   "reason": "the table of fields kept apart is not well formed",
+   "where": null
   },
   {
    "contents": {},
@@ -2181,7 +2428,8 @@
     }
    ],
    "name": "a name in capitals",
-   "reason": "the table of fields kept apart is not well formed"
+   "reason": "the table of fields kept apart is not well formed",
+   "where": null
   },
   {
    "contents": {},
@@ -2205,7 +2453,8 @@
     }
    ],
    "name": "an empty name",
-   "reason": "the table of fields kept apart is not well formed"
+   "reason": "the table of fields kept apart is not well formed",
+   "where": null
   },
   {
    "contents": {},
@@ -2229,7 +2478,8 @@
     }
    ],
    "name": "a name of 65 characters",
-   "reason": "the table of fields kept apart is not well formed"
+   "reason": "the table of fields kept apart is not well formed",
+   "where": null
   },
   {
    "contents": {},
@@ -2253,7 +2503,8 @@
     }
    ],
    "name": "a name that is a number",
-   "reason": "the table of fields kept apart is not well formed"
+   "reason": "the table of fields kept apart is not well formed",
+   "where": null
   },
   {
    "contents": {},
@@ -2271,7 +2522,8 @@
     }
    ],
    "name": "no table at all",
-   "reason": "the table of fields kept apart is not well formed"
+   "reason": "the table of fields kept apart is not well formed",
+   "where": null
   },
   {
    "contents": {},
@@ -2319,7 +2571,8 @@
     }
    ],
    "name": "an entry without its apart",
-   "reason": "an entry is not in this form"
+   "reason": "an entry is not in this form",
+   "where": 1
   },
   {
    "contents": {},
@@ -2370,7 +2623,8 @@
     }
    ],
    "name": "an entry whose apart is a list",
-   "reason": "an entry is not in this form"
+   "reason": "an entry is not in this form",
+   "where": 1
   },
   {
    "contents": {},
@@ -2421,7 +2675,8 @@
     }
    ],
    "name": "a fingerprint in capitals",
-   "reason": "an entry is not in this form"
+   "reason": "an entry is not in this form",
+   "where": 1
   },
   {
    "contents": {},
@@ -2472,7 +2727,8 @@
     }
    ],
    "name": "a fingerprint of 63 digits",
-   "reason": "an entry is not in this form"
+   "reason": "an entry is not in this form",
+   "where": 1
   },
   {
    "contents": {},
@@ -2523,7 +2779,8 @@
     }
    ],
    "name": "a fingerprint that is a number",
-   "reason": "an entry is not in this form"
+   "reason": "an entry is not in this form",
+   "where": 1
   },
   {
    "contents": {},
@@ -2572,7 +2829,8 @@
     }
    ],
    "name": "data that is not a map",
-   "reason": "an entry is not in this form"
+   "reason": "an entry is not in this form",
+   "where": 1
   },
   {
    "contents": {},
@@ -2621,7 +2879,8 @@
     }
    ],
    "name": "a kind that is not text",
-   "reason": "an entry is not in this form"
+   "reason": "an entry is not in this form",
+   "where": 1
   },
   {
    "contents": {},
@@ -2672,7 +2931,8 @@
     }
    ],
    "name": "a field's name in capitals",
-   "reason": "an entry is not in this form"
+   "reason": "an entry is not in this form",
+   "where": 1
   },
   {
    "contents": {},
@@ -2724,7 +2984,8 @@
     }
    ],
    "name": "an entry with a field of its own beside its data",
-   "reason": "an entry is not in this form"
+   "reason": "an entry is not in this form",
+   "where": 1
   },
   {
    "contents": {},
@@ -2774,7 +3035,8 @@
     }
    ],
    "name": "an entry without its tick",
-   "reason": "an entry is not in this form"
+   "reason": "an entry is not in this form",
+   "where": 1
   },
   {
    "contents": {},
@@ -2824,7 +3086,808 @@
     }
    ],
    "name": "an entry without its agent",
-   "reason": "an entry is not in this form"
+   "reason": "an entry is not in this form",
+   "where": 1
+  },
+  {
+   "contents": {},
+   "log": [
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "hash": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "height": 1.5
+     },
+     "hash": "396ac6e1574ccccd4ee71d637c68e8700838c870d71698ec73ec892150706596",
+     "kind": "entered",
+     "prev": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "tick": 0
+    }
+   ],
+   "name": "a number with a fraction in the open data",
+   "reason": "an entry is not in this form",
+   "where": 1
+  },
+  {
+   "contents": {},
+   "log": [
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "hash": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "where": null
+     },
+     "hash": "8fc584154744045d7729748e6bff80aec37dffe883dec8f3d8454ac09742a987",
+     "kind": "entered",
+     "prev": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "tick": 0
+    }
+   ],
+   "name": "nothing as a value in the open data",
+   "reason": "an entry is not in this form",
+   "where": 1
+  },
+  {
+   "contents": {},
+   "log": [
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "hash": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "count": 9007199254740992
+     },
+     "hash": "b7dfd5c56878b38f8a0ae998bc9fabeee32ba8a708e0fc52bb67101d4fbe6cf3",
+     "kind": "entered",
+     "prev": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "tick": 0
+    }
+   ],
+   "name": "two to the 53 in the open data",
+   "reason": "an entry is not in this form",
+   "where": 1
+  },
+  {
+   "contents": {},
+   "log": [
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "hash": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "deep": [
+       [
+        [
+         [
+          [
+           [
+            [
+             [
+              [
+               [
+                [
+                 [
+                  [
+                   [
+                    [
+                     [
+                      [
+                       [
+                        [
+                         [
+                          [
+                           [
+                            [
+                             [
+                              [
+                               [
+                                [
+                                 [
+                                  [
+                                   [
+                                    [
+                                     [
+                                      "deep"
+                                     ]
+                                    ]
+                                   ]
+                                  ]
+                                 ]
+                                ]
+                               ]
+                              ]
+                             ]
+                            ]
+                           ]
+                          ]
+                         ]
+                        ]
+                       ]
+                      ]
+                     ]
+                    ]
+                   ]
+                  ]
+                 ]
+                ]
+               ]
+              ]
+             ]
+            ]
+           ]
+          ]
+         ]
+        ]
+       ]
+      ]
+     },
+     "hash": "1fa888a724b6796d7809fdcdae2db0cd60ef33bdc04a1f9d470bb7a921eccbc2",
+     "kind": "entered",
+     "prev": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "tick": 0
+    }
+   ],
+   "name": "open data nested one too deep",
+   "reason": "an entry is not in this form",
+   "where": 1
+  },
+  {
+   "contents": {},
+   "log": [
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "hash": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {},
+     "data": {},
+     "hash": "4fedcd714bc9c6502acfa497d42d9bd6677436fcd74fe050d8fd5ea53823e86e",
+     "kind": "entered",
+     "prev": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "tick": 1.5
+    }
+   ],
+   "name": "a tick with a fraction",
+   "reason": "an entry is not in this form",
+   "where": 1
+  },
+  {
+   "contents": {},
+   "log": [
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "hash": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {},
+     "data": {},
+     "hash": "7635f705da6f7759f589beb41527ed09035ec02737db2ed3d184443efe199bed",
+     "kind": "entered",
+     "prev": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "tick": "1"
+    }
+   ],
+   "name": "a tick that is text",
+   "reason": "an entry is not in this form",
+   "where": 1
+  },
+  {
+   "contents": {},
+   "log": [
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "hash": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {},
+     "data": {},
+     "hash": "668e2b4fe7f57d3db57493c37527ff6198a549f61b23fb31e210647e91eb8c8c",
+     "kind": "entered",
+     "prev": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "tick": -1
+    }
+   ],
+   "name": "a tick below zero",
+   "reason": "an entry is not in this form",
+   "where": 1
+  },
+  {
+   "contents": {},
+   "log": [
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "hash": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {},
+     "data": {},
+     "hash": "7cf3b44da22b4be5188065a570017c943842ae93ced2cd915992ae284f29f856",
+     "kind": "entered",
+     "prev": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "tick": 9007199254740992
+    }
+   ],
+   "name": "a tick of two to the 53",
+   "reason": "an entry is not in this form",
+   "where": 1
+  },
+  {
+   "contents": {},
+   "log": [
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "hash": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": 7,
+     "apart": {},
+     "data": {},
+     "hash": "5aad89e30a38624bb2118922744ea13cfe8d0137ecfed51518fa0b990a49ee0c",
+     "kind": "entered",
+     "prev": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "tick": 0
+    }
+   ],
+   "name": "an agent that is a number",
+   "reason": "an entry is not in this form",
+   "where": 1
+  },
+  {
+   "contents": {},
+   "log": [
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "hash": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": [
+      "trial office"
+     ],
+     "apart": {},
+     "data": {},
+     "hash": "ab21b8285cba589190d587db5376519aff876589c4d797b5dc176abecfc1476c",
+     "kind": "entered",
+     "prev": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "tick": 0
+    }
+   ],
+   "name": "an agent that is a list",
+   "reason": "an entry is not in this form",
+   "where": 1
+  },
+  {
+   "contents": {},
+   "log": [
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "hash": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "height": 1.5
+     },
+     "hash": "396ac6e1574ccccd4ee71d637c68e8700838c870d71698ec73ec892150706596",
+     "kind": "entered",
+     "prev": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {},
+     "data": {},
+     "hash": "bb2728fbaf489e851093bdfbf4bb8c313d03419704a2e00c07193b1f0cb12f0e",
+     "kind": "entered",
+     "prev": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+     "tick": 1
+    }
+   ],
+   "name": "two faults: a number with a fraction, then a broken link",
+   "reason": "an entry is not in this form",
+   "where": 1
+  },
+  {
+   "contents": {},
+   "log": [
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "hash": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "height": 1.5
+     },
+     "hash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+     "kind": "entered",
+     "prev": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "tick": 0
+    }
+   ],
+   "name": "two faults: a number with a fraction in an entry whose hash is wrong",
+   "reason": "an entry is not in this form",
+   "where": 1
+  },
+  {
+   "contents": {},
+   "log": [
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "hash": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {},
+     "data": {},
+     "hash": "d33245d9d42721130a92c7593526002356c5562fa77241232c21962017747743",
+     "kind": "entered",
+     "prev": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "height": 1.5
+     },
+     "hash": "064582388762d32a77bdcb60df2ae0c425223aee18c59e664ecff64ba7b3500e",
+     "kind": "entered",
+     "prev": "d33245d9d42721130a92c7593526002356c5562fa77241232c21962017747743",
+     "tick": 1
+    }
+   ],
+   "name": "two faults: a broken link, then a number with a fraction",
+   "reason": "the chain does not hold",
+   "where": 1
+  },
+  {
+   "contents": {},
+   "log": [
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "hash": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "height": 1.5
+     },
+     "hash": "396ac6e1574ccccd4ee71d637c68e8700838c870d71698ec73ec892150706596",
+     "kind": "entered",
+     "prev": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+     "tick": 0
+    }
+   ],
+   "name": "two faults: a broken link in an entry that holds a number with a fraction",
+   "reason": "the chain does not hold",
+   "where": 1
   },
   {
    "contents": {},
@@ -2875,7 +3938,8 @@
     }
    ],
    "name": "a field the table does not name for this kind",
-   "reason": "a field is kept apart that the table does not name"
+   "reason": "a field is kept apart that the table does not name",
+   "where": 1
   },
   {
    "contents": {},
@@ -2926,7 +3990,8 @@
     }
    ],
    "name": "a kind the table does not name keeps a field apart",
-   "reason": "a field is kept apart that the table does not name"
+   "reason": "a field is kept apart that the table does not name",
+   "where": 1
   },
   {
    "contents": {},
@@ -2979,7 +4044,8 @@
     }
    ],
    "name": "a field the table keeps apart is in the open",
-   "reason": "a field the table keeps apart is in the open"
+   "reason": "a field the table keeps apart is in the open",
+   "where": 1
   },
   {
    "contents": {},
@@ -3033,7 +4099,8 @@
     }
    ],
    "name": "a field both kept apart and in the open",
-   "reason": "a field the table keeps apart is in the open"
+   "reason": "a field the table keeps apart is in the open",
+   "where": 1
   },
   {
    "contents": {},
@@ -3095,7 +4162,8 @@
     }
    ],
    "name": "the same salt, name and value in two entries",
-   "reason": "a fingerprint appears twice"
+   "reason": "a fingerprint appears twice",
+   "where": 2
   },
   {
    "contents": {},
@@ -3147,7 +4215,8 @@
     }
    ],
    "name": "one fingerprint under two names in one entry",
-   "reason": "a fingerprint appears twice"
+   "reason": "a fingerprint appears twice",
+   "where": 1
   },
   {
    "contents": {
@@ -3222,7 +4291,8 @@
     }
    ],
    "name": "a mark that names no entry of the log",
-   "reason": "a mark does not name an earlier entry and a field it keeps apart"
+   "reason": "a mark does not name an earlier entry and a field it keeps apart",
+   "where": 2
   },
   {
    "contents": {
@@ -3297,7 +4367,8 @@
     }
    ],
    "name": "a mark on a field its entry does not keep apart",
-   "reason": "a mark does not name an earlier entry and a field it keeps apart"
+   "reason": "a mark does not name an earlier entry and a field it keeps apart",
+   "where": 2
   },
   {
    "contents": {
@@ -3371,7 +4442,8 @@
     }
    ],
    "name": "a mark without a field",
-   "reason": "a mark does not name an earlier entry and a field it keeps apart"
+   "reason": "a mark does not name an earlier entry and a field it keeps apart",
+   "where": 2
   },
   {
    "contents": {
@@ -3448,7 +4520,8 @@
     }
    ],
    "name": "a mark whose field is a list",
-   "reason": "a mark does not name an earlier entry and a field it keeps apart"
+   "reason": "a mark does not name an earlier entry and a field it keeps apart",
+   "where": 2
   },
   {
    "contents": {
@@ -3522,7 +4595,8 @@
     }
    ],
    "name": "a mark without an entry",
-   "reason": "a mark does not name an earlier entry and a field it keeps apart"
+   "reason": "a mark does not name an earlier entry and a field it keeps apart",
+   "where": 2
   },
   {
    "contents": {
@@ -3597,7 +4671,8 @@
     }
    ],
    "name": "a mark whose entry is a number",
-   "reason": "a mark does not name an earlier entry and a field it keeps apart"
+   "reason": "a mark does not name an earlier entry and a field it keeps apart",
+   "where": 2
   },
   {
    "contents": {
@@ -3672,7 +4747,8 @@
     }
    ],
    "name": "a mark on a field that is in the open",
-   "reason": "a mark does not name an earlier entry and a field it keeps apart"
+   "reason": "a mark does not name an earlier entry and a field it keeps apart",
+   "where": 2
   },
   {
    "contents": {
@@ -3746,7 +4822,8 @@
     }
    ],
    "name": "a decision that names an entry that is not a mark",
-   "reason": "a decision to keep a field public does not name an earlier mark"
+   "reason": "a decision to keep a field public does not name an earlier mark",
+   "where": 2
   },
   {
    "contents": {
@@ -3818,7 +4895,8 @@
     }
    ],
    "name": "a decision that names nothing",
-   "reason": "a decision to keep a field public does not name an earlier mark"
+   "reason": "a decision to keep a field public does not name an earlier mark",
+   "where": 2
   },
   {
    "contents": {
@@ -3892,7 +4970,8 @@
     }
    ],
    "name": "a decision that names no entry of the log",
-   "reason": "a decision to keep a field public does not name an earlier mark"
+   "reason": "a decision to keep a field public does not name an earlier mark",
+   "where": 2
   },
   {
    "contents": {
@@ -3968,7 +5047,8 @@
     }
    ],
    "name": "a decision whose mark is a list",
-   "reason": "a decision to keep a field public does not name an earlier mark"
+   "reason": "a decision to keep a field public does not name an earlier mark",
+   "where": 2
   },
   {
    "contents": [
@@ -4033,7 +5113,8 @@
     }
    ],
    "name": "the contents are a list",
-   "reason": "the contents are not well formed"
+   "reason": "the contents are not well formed",
+   "where": null
   },
   {
    "contents": {
@@ -4092,7 +5173,10 @@
     }
    ],
    "name": "an entry's fields are a list",
-   "reason": "the contents are not well formed"
+   "reason": "the contents are not well formed",
+   "where": [
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762"
+   ]
   },
   {
    "contents": {
@@ -4152,7 +5236,11 @@
     }
    ],
    "name": "a field given as three things",
-   "reason": "the contents are not well formed"
+   "reason": "the contents are not well formed",
+   "where": [
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -4210,7 +5298,11 @@
     }
    ],
    "name": "a field given as one thing",
-   "reason": "the contents are not well formed"
+   "reason": "the contents are not well formed",
+   "where": [
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -4269,7 +5361,11 @@
     }
    ],
    "name": "a field given as a map",
-   "reason": "the contents are not well formed"
+   "reason": "the contents are not well formed",
+   "where": [
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -4338,7 +5434,10 @@
     }
    ],
    "name": "an entry the log does not hold",
-   "reason": "the contents name an entry or a field the log does not keep apart"
+   "reason": "the contents name an entry or a field the log does not keep apart",
+   "where": [
+    "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+   ]
   },
   {
    "contents": {
@@ -4405,7 +5504,11 @@
     }
    ],
    "name": "a field the entry does not keep apart",
-   "reason": "the contents name an entry or a field the log does not keep apart"
+   "reason": "the contents name an entry or a field the log does not keep apart",
+   "where": [
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+    "text"
+   ]
   },
   {
    "contents": {
@@ -4474,7 +5577,11 @@
     }
    ],
    "name": "a field of an entry that keeps nothing apart",
-   "reason": "the contents name an entry or a field the log does not keep apart"
+   "reason": "the contents name an entry or a field the log does not keep apart",
+   "where": [
+    "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+    "form"
+   ]
   },
   {
    "contents": {
@@ -4533,7 +5640,11 @@
     }
    ],
    "name": "a salt of 31 digits",
-   "reason": "a salt is not 32 lowercase hex digits"
+   "reason": "a salt is not 32 lowercase hex digits",
+   "where": [
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -4592,7 +5703,11 @@
     }
    ],
    "name": "a salt of 33 digits",
-   "reason": "a salt is not 32 lowercase hex digits"
+   "reason": "a salt is not 32 lowercase hex digits",
+   "where": [
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -4651,7 +5766,11 @@
     }
    ],
    "name": "a salt in capitals",
-   "reason": "a salt is not 32 lowercase hex digits"
+   "reason": "a salt is not 32 lowercase hex digits",
+   "where": [
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -4710,7 +5829,11 @@
     }
    ],
    "name": "a salt that is a number",
-   "reason": "a salt is not 32 lowercase hex digits"
+   "reason": "a salt is not 32 lowercase hex digits",
+   "where": [
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -4769,7 +5892,11 @@
     }
    ],
    "name": "a salt that is not hex",
-   "reason": "a salt is not 32 lowercase hex digits"
+   "reason": "a salt is not 32 lowercase hex digits",
+   "where": [
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -4832,7 +5959,11 @@
     }
    ],
    "name": "one salt for two fields of an entry",
-   "reason": "a salt appears twice"
+   "reason": "a salt appears twice",
+   "where": [
+    "8b3a39aff51ccb8d4007b060d19c27896a33f879a406c514eb46931d26435e6b",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -4907,7 +6038,11 @@
     }
    ],
    "name": "one salt in two entries",
-   "reason": "a salt appears twice"
+   "reason": "a salt appears twice",
+   "where": [
+    "d83f2d32473dddb3266c420faec3d02ae6ea47de2856b84c305090fc0d483843",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -4965,7 +6100,11 @@
     }
    ],
    "name": "a number with a fraction",
-   "reason": "a value is not one a fingerprint allows"
+   "reason": "a value is not one a fingerprint allows",
+   "where": [
+    "81a2c809c244b753b0227d36b14b5d1cb4fa6d1b72bc82bf016c7abcf521b00c",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -5023,7 +6162,11 @@
     }
    ],
    "name": "a whole number written with a fraction",
-   "reason": "a value is not one a fingerprint allows"
+   "reason": "a value is not one a fingerprint allows",
+   "where": [
+    "81a2c809c244b753b0227d36b14b5d1cb4fa6d1b72bc82bf016c7abcf521b00c",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -5081,7 +6224,11 @@
     }
    ],
    "name": "nothing",
-   "reason": "a value is not one a fingerprint allows"
+   "reason": "a value is not one a fingerprint allows",
+   "where": [
+    "81a2c809c244b753b0227d36b14b5d1cb4fa6d1b72bc82bf016c7abcf521b00c",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -5139,7 +6286,11 @@
     }
    ],
    "name": "two to the 53",
-   "reason": "a value is not one a fingerprint allows"
+   "reason": "a value is not one a fingerprint allows",
+   "where": [
+    "81a2c809c244b753b0227d36b14b5d1cb4fa6d1b72bc82bf016c7abcf521b00c",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -5197,7 +6348,11 @@
     }
    ],
    "name": "minus two to the 53",
-   "reason": "a value is not one a fingerprint allows"
+   "reason": "a value is not one a fingerprint allows",
+   "where": [
+    "81a2c809c244b753b0227d36b14b5d1cb4fa6d1b72bc82bf016c7abcf521b00c",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -5255,7 +6410,11 @@
     }
    ],
    "name": "two to the 64",
-   "reason": "a value is not one a fingerprint allows"
+   "reason": "a value is not one a fingerprint allows",
+   "where": [
+    "81a2c809c244b753b0227d36b14b5d1cb4fa6d1b72bc82bf016c7abcf521b00c",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -5316,7 +6475,11 @@
     }
    ],
    "name": "a list holding nothing",
-   "reason": "a value is not one a fingerprint allows"
+   "reason": "a value is not one a fingerprint allows",
+   "where": [
+    "81a2c809c244b753b0227d36b14b5d1cb4fa6d1b72bc82bf016c7abcf521b00c",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -5376,7 +6539,11 @@
     }
    ],
    "name": "a map holding a number with a fraction",
-   "reason": "a value is not one a fingerprint allows"
+   "reason": "a value is not one a fingerprint allows",
+   "where": [
+    "81a2c809c244b753b0227d36b14b5d1cb4fa6d1b72bc82bf016c7abcf521b00c",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -5500,7 +6667,11 @@
     }
    ],
    "name": "a list nested one too deep",
-   "reason": "a value is not one a fingerprint allows"
+   "reason": "a value is not one a fingerprint allows",
+   "where": [
+    "81a2c809c244b753b0227d36b14b5d1cb4fa6d1b72bc82bf016c7abcf521b00c",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -5559,7 +6730,11 @@
     }
    ],
    "name": "the value was changed",
-   "reason": "the contents do not match the fingerprint"
+   "reason": "the contents do not match the fingerprint",
+   "where": [
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -5618,7 +6793,11 @@
     }
    ],
    "name": "the salt was changed",
-   "reason": "the contents do not match the fingerprint"
+   "reason": "the contents do not match the fingerprint",
+   "where": [
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -5681,7 +6860,11 @@
     }
    ],
    "name": "two fields' contents the wrong way round",
-   "reason": "the contents do not match the fingerprint"
+   "reason": "the contents do not match the fingerprint",
+   "where": [
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+    "key"
+   ]
   },
   {
    "contents": {
@@ -5878,7 +7061,11 @@
     }
    ],
    "name": "another entry's contents",
-   "reason": "the contents do not match the fingerprint"
+   "reason": "the contents do not match the fingerprint",
+   "where": [
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+    "name"
+   ]
   },
   {
    "contents": {
@@ -6002,7 +7189,543 @@
     }
    ],
    "name": "text where the log has a number",
-   "reason": "the contents do not match the fingerprint"
+   "reason": "the contents do not match the fingerprint",
+   "where": [
+    "346308dc978fa8b1671d50b196f51b19f0cacb448255e7f13a363e1babd50d68",
+    "time"
+   ]
+  },
+  {
+   "contents": {
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762": {
+     "name": [
+      "42f392f40e2fa5f71c7b5ca498fcebb6",
+      "ada!"
+     ]
+    },
+    "f02c8688e84b4ad2d0485ea73bcfdeb2eaa8e08bc69644e89f5009d38e091167": {
+     "name": [
+      "B389910382FFF94CB0FB20A2AF11AEBE",
+      "bo"
+     ]
+    }
+   },
+   "log": [
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "hash": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "4aaee554e1db4e990128f3391aab0a015152d112587da255e1d492f72b5363bb",
+      "name": "4b18f34129246be7c13e709f54271a210a5b1ab4b080ee0de8382122453d3fb0"
+     },
+     "data": {},
+     "hash": "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+     "kind": "entered",
+     "prev": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "876c50af710a5b8b75a12eddbbbcd0b7e3a08c2ef5a1a45e7dff5807042d3801",
+      "name": "9487cb885092808b2a1263c7246af5fc5934c9b6625910d972532f45bb72770a"
+     },
+     "data": {},
+     "hash": "f02c8688e84b4ad2d0485ea73bcfdeb2eaa8e08bc69644e89f5009d38e091167",
+     "kind": "entered",
+     "prev": "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "8f1221e295ade68c1c5affdc2bd794c53a96850cb71214b92a39475ca1f4732c",
+      "text": "97727365c75b6496fde53feff4aba788d2861b13355fac1bfa5719dae8ff2e94",
+      "time": "fb1125e6461850bc2a729ea91dcde652349fb60460610b5a7569b585276552c3"
+     },
+     "data": {},
+     "hash": "346308dc978fa8b1671d50b196f51b19f0cacb448255e7f13a363e1babd50d68",
+     "kind": "said",
+     "prev": "f02c8688e84b4ad2d0485ea73bcfdeb2eaa8e08bc69644e89f5009d38e091167",
+     "tick": 1
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "85866e500456c509eb3495aa384d54e512f9f3fcdc20370c674416e4857b9596",
+      "text": "f71ccfa8d681c7ccebfa9094978def32f707a4f003570f6fb8cf92720f1c25d6",
+      "time": "92eaf72229b81ff58e14d7d8b889b2a86760d260299e3fe9284e4d8ac8ca6c55"
+     },
+     "data": {},
+     "hash": "66b5e810c4033263ab0aaef159b45fcc6a326c3610d6c411d9c2e7b5812da75a",
+     "kind": "said",
+     "prev": "346308dc978fa8b1671d50b196f51b19f0cacb448255e7f13a363e1babd50d68",
+     "tick": 2
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "24b3575136594e0dcfd1cd45fd196c8b813e90a412cad8fda5804f6cad9d3dc3",
+      "text": "dceed6577394d84c10cf295d35e85e2e1143ebdcaf6e18679ecf42d94c75826d",
+      "time": "65ece4c5cfd535ad061dcc667d3d932783cbf03c550af4c8f06494b98ed499d1"
+     },
+     "data": {},
+     "hash": "308b46619f18fe315e2ed2c0dcaba7374d05b04a3b9e49771e418f3a2d6420d5",
+     "kind": "said",
+     "prev": "66b5e810c4033263ab0aaef159b45fcc6a326c3610d6c411d9c2e7b5812da75a",
+     "tick": 3
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "359a5a824ead9a3ed0ed6c64d5c726f0d6706018aa1a68edb2866fe46b7c5590",
+      "thing": "8592613435e9d23212ecdcd4238e9f25d167b72f832751703a3c4a42b424d7bf"
+     },
+     "data": {
+      "where": "the table"
+     },
+     "hash": "2b2d263f0cd644e573c28ede68ae62d0ca1ac785024e35de13f700a3e966037d",
+     "kind": "showed",
+     "prev": "308b46619f18fe315e2ed2c0dcaba7374d05b04a3b9e49771e418f3a2d6420d5",
+     "tick": 4
+    }
+   ],
+   "name": "two faults: a changed value in the lower entry, a salt in capitals in the higher",
+   "reason": "the contents do not match the fingerprint",
+   "where": [
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+    "name"
+   ]
+  },
+  {
+   "contents": {
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762": {
+     "name": [
+      "42F392F40E2FA5F71C7B5CA498FCEBB6",
+      "ada"
+     ]
+    },
+    "f02c8688e84b4ad2d0485ea73bcfdeb2eaa8e08bc69644e89f5009d38e091167": {
+     "name": [
+      "b389910382fff94cb0fb20a2af11aebe",
+      "bo!"
+     ]
+    }
+   },
+   "log": [
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "hash": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "4aaee554e1db4e990128f3391aab0a015152d112587da255e1d492f72b5363bb",
+      "name": "4b18f34129246be7c13e709f54271a210a5b1ab4b080ee0de8382122453d3fb0"
+     },
+     "data": {},
+     "hash": "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+     "kind": "entered",
+     "prev": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "876c50af710a5b8b75a12eddbbbcd0b7e3a08c2ef5a1a45e7dff5807042d3801",
+      "name": "9487cb885092808b2a1263c7246af5fc5934c9b6625910d972532f45bb72770a"
+     },
+     "data": {},
+     "hash": "f02c8688e84b4ad2d0485ea73bcfdeb2eaa8e08bc69644e89f5009d38e091167",
+     "kind": "entered",
+     "prev": "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "8f1221e295ade68c1c5affdc2bd794c53a96850cb71214b92a39475ca1f4732c",
+      "text": "97727365c75b6496fde53feff4aba788d2861b13355fac1bfa5719dae8ff2e94",
+      "time": "fb1125e6461850bc2a729ea91dcde652349fb60460610b5a7569b585276552c3"
+     },
+     "data": {},
+     "hash": "346308dc978fa8b1671d50b196f51b19f0cacb448255e7f13a363e1babd50d68",
+     "kind": "said",
+     "prev": "f02c8688e84b4ad2d0485ea73bcfdeb2eaa8e08bc69644e89f5009d38e091167",
+     "tick": 1
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "85866e500456c509eb3495aa384d54e512f9f3fcdc20370c674416e4857b9596",
+      "text": "f71ccfa8d681c7ccebfa9094978def32f707a4f003570f6fb8cf92720f1c25d6",
+      "time": "92eaf72229b81ff58e14d7d8b889b2a86760d260299e3fe9284e4d8ac8ca6c55"
+     },
+     "data": {},
+     "hash": "66b5e810c4033263ab0aaef159b45fcc6a326c3610d6c411d9c2e7b5812da75a",
+     "kind": "said",
+     "prev": "346308dc978fa8b1671d50b196f51b19f0cacb448255e7f13a363e1babd50d68",
+     "tick": 2
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "24b3575136594e0dcfd1cd45fd196c8b813e90a412cad8fda5804f6cad9d3dc3",
+      "text": "dceed6577394d84c10cf295d35e85e2e1143ebdcaf6e18679ecf42d94c75826d",
+      "time": "65ece4c5cfd535ad061dcc667d3d932783cbf03c550af4c8f06494b98ed499d1"
+     },
+     "data": {},
+     "hash": "308b46619f18fe315e2ed2c0dcaba7374d05b04a3b9e49771e418f3a2d6420d5",
+     "kind": "said",
+     "prev": "66b5e810c4033263ab0aaef159b45fcc6a326c3610d6c411d9c2e7b5812da75a",
+     "tick": 3
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "359a5a824ead9a3ed0ed6c64d5c726f0d6706018aa1a68edb2866fe46b7c5590",
+      "thing": "8592613435e9d23212ecdcd4238e9f25d167b72f832751703a3c4a42b424d7bf"
+     },
+     "data": {
+      "where": "the table"
+     },
+     "hash": "2b2d263f0cd644e573c28ede68ae62d0ca1ac785024e35de13f700a3e966037d",
+     "kind": "showed",
+     "prev": "308b46619f18fe315e2ed2c0dcaba7374d05b04a3b9e49771e418f3a2d6420d5",
+     "tick": 4
+    }
+   ],
+   "name": "two faults: a salt in capitals in the lower entry, a changed value in the higher",
+   "reason": "a salt is not 32 lowercase hex digits",
+   "where": [
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+    "name"
+   ]
+  },
+  {
+   "contents": {
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762": {
+     "key": [
+      "4c81de58866b150007314c561dd5a71a",
+      "trial key of ada!"
+     ],
+     "name": [
+      "42F392F40E2FA5F71C7B5CA498FCEBB6",
+      "ada"
+     ]
+    }
+   },
+   "log": [
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "hash": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "4aaee554e1db4e990128f3391aab0a015152d112587da255e1d492f72b5363bb",
+      "name": "4b18f34129246be7c13e709f54271a210a5b1ab4b080ee0de8382122453d3fb0"
+     },
+     "data": {},
+     "hash": "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+     "kind": "entered",
+     "prev": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "876c50af710a5b8b75a12eddbbbcd0b7e3a08c2ef5a1a45e7dff5807042d3801",
+      "name": "9487cb885092808b2a1263c7246af5fc5934c9b6625910d972532f45bb72770a"
+     },
+     "data": {},
+     "hash": "f02c8688e84b4ad2d0485ea73bcfdeb2eaa8e08bc69644e89f5009d38e091167",
+     "kind": "entered",
+     "prev": "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "8f1221e295ade68c1c5affdc2bd794c53a96850cb71214b92a39475ca1f4732c",
+      "text": "97727365c75b6496fde53feff4aba788d2861b13355fac1bfa5719dae8ff2e94",
+      "time": "fb1125e6461850bc2a729ea91dcde652349fb60460610b5a7569b585276552c3"
+     },
+     "data": {},
+     "hash": "346308dc978fa8b1671d50b196f51b19f0cacb448255e7f13a363e1babd50d68",
+     "kind": "said",
+     "prev": "f02c8688e84b4ad2d0485ea73bcfdeb2eaa8e08bc69644e89f5009d38e091167",
+     "tick": 1
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "85866e500456c509eb3495aa384d54e512f9f3fcdc20370c674416e4857b9596",
+      "text": "f71ccfa8d681c7ccebfa9094978def32f707a4f003570f6fb8cf92720f1c25d6",
+      "time": "92eaf72229b81ff58e14d7d8b889b2a86760d260299e3fe9284e4d8ac8ca6c55"
+     },
+     "data": {},
+     "hash": "66b5e810c4033263ab0aaef159b45fcc6a326c3610d6c411d9c2e7b5812da75a",
+     "kind": "said",
+     "prev": "346308dc978fa8b1671d50b196f51b19f0cacb448255e7f13a363e1babd50d68",
+     "tick": 2
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "24b3575136594e0dcfd1cd45fd196c8b813e90a412cad8fda5804f6cad9d3dc3",
+      "text": "dceed6577394d84c10cf295d35e85e2e1143ebdcaf6e18679ecf42d94c75826d",
+      "time": "65ece4c5cfd535ad061dcc667d3d932783cbf03c550af4c8f06494b98ed499d1"
+     },
+     "data": {},
+     "hash": "308b46619f18fe315e2ed2c0dcaba7374d05b04a3b9e49771e418f3a2d6420d5",
+     "kind": "said",
+     "prev": "66b5e810c4033263ab0aaef159b45fcc6a326c3610d6c411d9c2e7b5812da75a",
+     "tick": 3
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "359a5a824ead9a3ed0ed6c64d5c726f0d6706018aa1a68edb2866fe46b7c5590",
+      "thing": "8592613435e9d23212ecdcd4238e9f25d167b72f832751703a3c4a42b424d7bf"
+     },
+     "data": {
+      "where": "the table"
+     },
+     "hash": "2b2d263f0cd644e573c28ede68ae62d0ca1ac785024e35de13f700a3e966037d",
+     "kind": "showed",
+     "prev": "308b46619f18fe315e2ed2c0dcaba7374d05b04a3b9e49771e418f3a2d6420d5",
+     "tick": 4
+    }
+   ],
+   "name": "two faults in one entry: a changed key, a name's salt in capitals",
+   "reason": "the contents do not match the fingerprint",
+   "where": [
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+    "key"
+   ]
+  },
+  {
+   "contents": {
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762": {
+     "key": [
+      "4C81DE58866B150007314C561DD5A71A",
+      "trial key of ada"
+     ],
+     "name": [
+      "42f392f40e2fa5f71c7b5ca498fcebb6",
+      "ada!"
+     ]
+    }
+   },
+   "log": [
+    {
+     "agent": null,
+     "apart": {},
+     "data": {
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "field_kept_public": [
+        "reason"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ],
+       "showed": [
+        "key",
+        "thing"
+       ]
+      },
+      "rules_version": "vectors-apart-1"
+     },
+     "hash": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "kind": "world_created",
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "4aaee554e1db4e990128f3391aab0a015152d112587da255e1d492f72b5363bb",
+      "name": "4b18f34129246be7c13e709f54271a210a5b1ab4b080ee0de8382122453d3fb0"
+     },
+     "data": {},
+     "hash": "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+     "kind": "entered",
+     "prev": "454bb32fd34ca72cba461b086f4b836acb867f0b1036d5885942d3e1c078e438",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "876c50af710a5b8b75a12eddbbbcd0b7e3a08c2ef5a1a45e7dff5807042d3801",
+      "name": "9487cb885092808b2a1263c7246af5fc5934c9b6625910d972532f45bb72770a"
+     },
+     "data": {},
+     "hash": "f02c8688e84b4ad2d0485ea73bcfdeb2eaa8e08bc69644e89f5009d38e091167",
+     "kind": "entered",
+     "prev": "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+     "tick": 0
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "8f1221e295ade68c1c5affdc2bd794c53a96850cb71214b92a39475ca1f4732c",
+      "text": "97727365c75b6496fde53feff4aba788d2861b13355fac1bfa5719dae8ff2e94",
+      "time": "fb1125e6461850bc2a729ea91dcde652349fb60460610b5a7569b585276552c3"
+     },
+     "data": {},
+     "hash": "346308dc978fa8b1671d50b196f51b19f0cacb448255e7f13a363e1babd50d68",
+     "kind": "said",
+     "prev": "f02c8688e84b4ad2d0485ea73bcfdeb2eaa8e08bc69644e89f5009d38e091167",
+     "tick": 1
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "85866e500456c509eb3495aa384d54e512f9f3fcdc20370c674416e4857b9596",
+      "text": "f71ccfa8d681c7ccebfa9094978def32f707a4f003570f6fb8cf92720f1c25d6",
+      "time": "92eaf72229b81ff58e14d7d8b889b2a86760d260299e3fe9284e4d8ac8ca6c55"
+     },
+     "data": {},
+     "hash": "66b5e810c4033263ab0aaef159b45fcc6a326c3610d6c411d9c2e7b5812da75a",
+     "kind": "said",
+     "prev": "346308dc978fa8b1671d50b196f51b19f0cacb448255e7f13a363e1babd50d68",
+     "tick": 2
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "24b3575136594e0dcfd1cd45fd196c8b813e90a412cad8fda5804f6cad9d3dc3",
+      "text": "dceed6577394d84c10cf295d35e85e2e1143ebdcaf6e18679ecf42d94c75826d",
+      "time": "65ece4c5cfd535ad061dcc667d3d932783cbf03c550af4c8f06494b98ed499d1"
+     },
+     "data": {},
+     "hash": "308b46619f18fe315e2ed2c0dcaba7374d05b04a3b9e49771e418f3a2d6420d5",
+     "kind": "said",
+     "prev": "66b5e810c4033263ab0aaef159b45fcc6a326c3610d6c411d9c2e7b5812da75a",
+     "tick": 3
+    },
+    {
+     "agent": null,
+     "apart": {
+      "key": "359a5a824ead9a3ed0ed6c64d5c726f0d6706018aa1a68edb2866fe46b7c5590",
+      "thing": "8592613435e9d23212ecdcd4238e9f25d167b72f832751703a3c4a42b424d7bf"
+     },
+     "data": {
+      "where": "the table"
+     },
+     "hash": "2b2d263f0cd644e573c28ede68ae62d0ca1ac785024e35de13f700a3e966037d",
+     "kind": "showed",
+     "prev": "308b46619f18fe315e2ed2c0dcaba7374d05b04a3b9e49771e418f3a2d6420d5",
+     "tick": 4
+    }
+   ],
+   "name": "two faults in one entry: a key's salt in capitals, a changed name",
+   "reason": "a salt is not 32 lowercase hex digits",
+   "where": [
+    "3e51bb5c9c8625693d60767984fc1a8305f2f5d4603d4bcff8f514da7616b762",
+    "key"
+   ]
   }
  ],
  "states": [

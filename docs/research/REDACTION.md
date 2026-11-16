@@ -333,6 +333,23 @@ lead's (STATUS.md has what would show it wrong):
   `agent`, `data`, `apart`, `prev` and `hash`. The table reaches `data`
   and `apart` only, so a field beside them would be in the open
   whatever the table said.
+- **The open part is held to the same rule as a value kept apart.**
+  `tick` is a whole number from 0 to 2^53 - 1, `kind` is text, `agent`
+  is text or nothing, and `data` is a map a fingerprint would allow: no
+  number with a fraction, nothing beyond 2^53 - 1, every key text. This
+  came from the independent review of #101. Python's writer had held
+  the open part to nothing, so it could write a log that Rust could not
+  check, and, through a key that wasn't text, could put a field the
+  table keeps apart into the open. Now every log in this form can be
+  written and checked in both languages, and the writer refuses before
+  anything is hashed.
+- **The order of the checks is part of the form.** Entries are read in
+  the log's order; for each, its link to the entry before, then what it
+  says, then its hash. The contents are read in ascending order of
+  entry hash, and of field name within an entry. So a log or contents
+  with two faults is refused for the same one, at the same place, in
+  both languages. The chain is still the kernel's: a log that holds
+  here holds by `verify_log`, unchanged.
 - **`agent` is not a field that can be kept apart.** It stays in the
   open, as the kernel has it. A room leaves it empty for a person's
   act and puts who acted, by name and by key, among the fields kept
@@ -364,10 +381,12 @@ lead's (STATUS.md has what would show it wrong):
   refused. So is one salt used for two fields, which the rule on
   fingerprints (decision 2) can't see when the two values differ.
 - **Fifteen reasons for refusing, in fixed words,** the same in both
-  languages. The vectors hold 72 logs or contents that are refused,
-  each for one of them, and four that hold, with every field's state
-  and the entries as a reader gets them. Rust writes the trial room
-  again from the same salts and gets Python's log and contents.
+  languages, each with the same place. The vectors hold 90 logs or
+  contents that are refused, each for one reason at one place (eight of
+  them hold two faults, to fix which is met first), and five that hold,
+  with every field's state and the entries as a reader gets them. Rust
+  writes the trial room again from the same salts and gets Python's log
+  and contents.
 - **`world-log LOG CONTENTS`** checks the two together from the
   command line, counts the fields in each state, and fails if any is
   missing.
@@ -388,8 +407,18 @@ Not done in this part, and why:
   know that an open field of another name holds what should have been
   kept apart. A fingerprint commits a log to a value, and says nothing
   of who wrote it: that is a signature's work, in the signed record a
-  room keeps apart (step 3c). And JSON's `-0` in a contents file is
-  read by Python as 0 and refused by Rust; nothing writes it.
+  room keeps apart (step 3c). JSON's `-0` is read by Python as 0 and
+  refused by Rust; nothing writes it. And a file that isn't JSON as the
+  standard has it (`NaN`, a number too large to read, half of a
+  surrogate pair) is refused by Python's check and can't be read at all
+  by Rust.
+
+Carried to part three, from the same review: a single entry of kind
+`field_kept_public` turns a finished redaction into a missing field,
+and the command line then fails until the field is put back. Nothing in
+this part says who may append one. Part three has to: the world writes
+it only for the office that decides, with the field put back first or
+in the same step.
 
 ## The parts
 
