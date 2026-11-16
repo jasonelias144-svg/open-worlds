@@ -72,11 +72,16 @@ def load(spec_path):
     return spec
 
 
+def _control(c):
+    """Whether c is a control character: C0, or DEL."""
+    return ord(c) < 32 or ord(c) == 127
+
+
 def _name(value):
     """Whether value is a file's name, with no folder in it."""
     return (isinstance(value, str) and value not in ("", ".", "..")
             and "/" not in value and "\\" not in value
-            and not any(ord(c) < 32 for c in value))
+            and not any(_control(c) for c in value))
 
 
 def _under(value):
@@ -85,7 +90,7 @@ def _under(value):
     empty part, no white space."""
     if not isinstance(value, str) or not value or "\\" in value:
         return False
-    if any(c.isspace() or ord(c) < 32 for c in value) \
+    if any(c.isspace() or _control(c) for c in value) \
             or os.path.isabs(value):
         return False
     return all(part not in ("", ".", "..") for part in value.split("/"))
@@ -97,7 +102,7 @@ def shape(spec):
     for key in ("text", "out"):
         if not _name(spec[key]):
             raise Problem(f"\"{key}\" must be a file's name, beside the spec")
-    if spec["out"] == spec["text"] or spec["out"].endswith(".json"):
+    if spec["out"] == spec["text"] or spec["out"].lower().endswith(".json"):
         raise Problem("\"out\" must not be the reply's own text, or a spec: "
                       "writing it would overwrite them")
     if not _under(spec["root"]):
@@ -251,6 +256,18 @@ def main(argv, root=ROOT):
         print(problem, file=sys.stderr)
         return 1
     out = os.path.join(spec["folder"], spec["out"])
+    if os.path.exists(out):
+        # Only a file this script wrote is written over: anything else
+        # beside the spec (a README, another reply's text) is left alone.
+        try:
+            with open(out, encoding="utf-8", newline="") as f:
+                ours = ends_as_it_should(f.read())
+        except (OSError, UnicodeDecodeError):
+            ours = False
+        if not ours:
+            print(f"{spec['out']} is there already and is not a file this "
+                  "script wrote: it is left as it is", file=sys.stderr)
+            return 1
     with open(out, "w", encoding="utf-8", newline="\n") as f:
         f.write(whole)
     with open(out, "rb") as f:

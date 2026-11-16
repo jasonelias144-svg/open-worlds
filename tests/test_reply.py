@@ -196,11 +196,16 @@ class Small(unittest.TestCase):
                     with self.assertRaisesRegex(REPLY.Problem, "beside"):
                         REPLY.check(spec, self.root)
         # Writing must never overwrite the reply's own text, or a spec.
-        for out in ("r.txt", "r.json", "other.json"):
+        for out in ("r.txt", "r.json", "other.json", "OTHER.JSON"):
             with self.subTest(out=out):
                 with self.assertRaisesRegex(REPLY.Problem, "overwrite"):
                     REPLY.build(dict(self.spec, out=out), self.root)
-        for path in ("src/a\x00.rs", "src/a\x07.rs"):
+        for key in ("out", "text"):
+            for name in ("r\x00.txt", "r\x07.txt", "r\x7f.txt"):
+                with self.subTest(key=key, name=name):
+                    with self.assertRaisesRegex(REPLY.Problem, "beside"):
+                        REPLY.build(dict(self.spec, **{key: name}), self.root)
+        for path in ("src/a\x00.rs", "src/a\x07.rs", "src/a\x7f.rs"):
             with self.subTest(path=path):
                 self.spec["files"][1][0] = path
                 with self.assertRaisesRegex(REPLY.Problem, "under \"root\""):
@@ -276,6 +281,20 @@ class Small(unittest.TestCase):
         self.assertEqual(run(path),
                          (1, "192 bytes, over the limit of 10\n"))
         self.assertEqual(run()[0], 2)
+        # A file beside the spec that this script didn't write is never
+        # written over, whatever the spec calls it.
+        self.write("code/src/a.rs", "fn a() {}\n")
+        self.write("replies/README.md", "Keep me.\n")
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(dict(spec, out="README.md"), f)
+        self.assertEqual(
+            run(path),
+            (1, "README.md is there already and is not a file this script "
+                "wrote: it is left as it is\n"))
+        with open(os.path.join(self.root, "replies", "README.md"),
+                  encoding="utf-8") as f:
+            self.assertEqual(f.read(), "Keep me.\n")
+        self.write("code/src/a.rs", "fn a() { /* moved on */ }\n")
         missing = os.path.join(self.root, "replies", "none.json")
         self.assertEqual(run(missing),
                          (1, f"{missing}: can't be read as JSON\n"))

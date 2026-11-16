@@ -19,7 +19,7 @@
   administrative actions as grants; an office's act refused without its
   decision record; and a model of grants in Lean, with a proof that no
   chain of grants widens.
-- **Course step 6 (the first room):** minds in containers, with the test
+- **Course step 6 (the Ur-world's first room):** minds in containers, with the test
   that a removed mind's container stops; and suggesting, an act anyone can
   take, adding to the ledger.
 - **Course step 8 (the audition):** in images pinned by digest.

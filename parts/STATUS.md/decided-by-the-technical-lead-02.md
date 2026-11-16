@@ -52,6 +52,15 @@ it was wrong. Questions of what the project is for stay with the founder.
   DeepSeek turns away from rooms, so that 3c has nothing coming back to
   fit (then the room keeps its place only if the Commons still needs
   it first).
+  After the independent review of #99: the review would put the
+  Commons hosting rooms, a branch and the closed room after step 6,
+  beside 6a, with 3d's formats before the room. Its reasons, and why
+  the technical lead keeps 3f where it is, are in docs/COURSE.md, for
+  the founder to choose between. Taken from it without changing the
+  order: step 3c builds the room on the record, and the closed room
+  comes with 6a; a branch of an open world waits for step 4, as restart
+  does; 3d's first two offices are a room's moderator and a room's
+  Keeper; and 3d's formats may be built beside 3b's.
 
 - 2026-11-16, one schema that fits both, after the founder's answer of
   the same day (Decided, "on DeepSeek's schema and on bringing

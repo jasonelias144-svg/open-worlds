@@ -146,7 +146,7 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
-- For the founder, from the session of 2026-11-16, three things that
+- For the founder, from the session of 2026-11-16, four things that
   wait for the founder's own word:
   1. The founder's ideas on personal information in a room, and the six
      changes the technical lead proposes to them (docs/COMMONS.md,
@@ -165,6 +165,13 @@ kind.
      sixth of the six tests; noted at the course's recheck).
      Recommended: decide it together with which model first moderates;
      no model is given the office before then.
+  4. Step 10 of the course. The founder said on 2026-11-13: "I like
+     that we return to DeepSeek at step 10". The founder returned to
+     DeepSeek on 2026-11-14, and the recheck of 2026-11-16 reads that
+     as the step being overtaken: DeepSeek works beside the course, and
+     step 10 keeps only the development container. It changes a step
+     the founder spoke for, so it is put here, and not left to stand by
+     silence alone. Recommended: as the recheck has it.
 - For the founder, on the Commons' moderators (docs/COMMONS.md, "Open"),
   six questions. Four have a recommendation and stand on it unless the
   founder answers otherwise: whether a room's moderator is its Keeper
@@ -2338,6 +2345,15 @@ it was wrong. Questions of what the project is for stay with the founder.
   DeepSeek turns away from rooms, so that 3c has nothing coming back to
   fit (then the room keeps its place only if the Commons still needs
   it first).
+  After the independent review of #99: the review would put the
+  Commons hosting rooms, a branch and the closed room after step 6,
+  beside 6a, with 3d's formats before the room. Its reasons, and why
+  the technical lead keeps 3f where it is, are in docs/COURSE.md, for
+  the founder to choose between. Taken from it without changing the
+  order: step 3c builds the room on the record, and the closed room
+  comes with 6a; a branch of an open world waits for step 4, as restart
+  does; 3d's first two offices are a room's moderator and a room's
+  Keeper; and 3d's formats may be built beside 3b's.
 
 - 2026-11-16, one schema that fits both, after the founder's answer of
   the same day (Decided, "on DeepSeek's schema and on bringing
@@ -2889,10 +2905,12 @@ it was wrong. Questions of what the project is for stay with the founder.
   in as running beside the course. What persons taught is written into
   steps 3b, 3c, 4, 6a and 7, and into the waiting list's line on
   governance. The steps ahead were checked against VISION.md's six
-  tests for the first time: nothing fails; two things are noted, that
-  the signs of the fifth test aren't written yet and no step writes
-  them, and that whether a model that moderates is an individual hasn't
-  been asked (Open questions). The day's ideas of the founder's are
+  tests for the first time: none fails, and two are not met. The
+  second is open until step 3f settles who holds a hosted room's key,
+  and whether one model may moderate every room. The fifth is not met:
+  its signs aren't written, and no step writes them. And whether a
+  model that moderates is an individual hasn't been asked (Open
+  questions). The day's ideas of the founder's are
   noted, not built: personal information in a room (docs/COMMONS.md),
   worlds built for learners (docs/research/GAMES-AND-WORLDS.md), and
   both on the course's waiting list. docs/COLLABORATING.md,
@@ -2904,13 +2922,14 @@ it was wrong. Questions of what the project is for stay with the founder.
   - held, and tested by step 3a: persons (the architectures ran on the
     unchanged core, the third clause of its "revisit if"; no real seed
     exists yet, so the second can't be judged, and no presence has had
-    to be shown to one party alone); the records for the offices
-    (Python and Rust agree on every vector of the five kinds step 3a
-    added: `holds`, `held-by`, `person-list`, `proposal` and `vote`);
-    the four formats moved to later steps (step 3a needed none of
-    them); the plant world (the endless plant is a second world, with
-    a crate of its own, as its "wrong if" asked);
-  - not triggered: presence keys by HKDF (no tool has needed wallet
+    to be shown to one party alone); the four formats moved to later
+    steps (step 3a needed none of them);
+  - not triggered: the records for the offices (Python and Rust agree
+    on every vector of the five kinds step 3a added, but its "revisit
+    if" is a disagreement on a record the vectors don't cover, which
+    agreeing on the vectors can't test); the plant world (its rule has
+    not been changed; the endless plant is planned as a second world,
+    with a crate of its own, and isn't built); presence keys by HKDF (no tool has needed wallet
     paths); the council's count (no secret ballot or final count was
     needed; what a final count needs is now on the waiting list, with
     governance); reviews in proportion (no wording-only fix merged on
@@ -2929,15 +2948,35 @@ it was wrong. Questions of what the project is for stay with the founder.
     the parts stay, for any other reader, with the tests that keep them
     whole; whether they still earn the script run each change costs is
     judged once a few returns to DeepSeek have used the file alone;
+  - due at step 3b: sealing as built, which is built and has vectors.
+    Its "revisit if" is a sealed record that needs associated data,
+    and its labels are a list of two. A redacted field sealed to a
+    person should be bound to its log, its entry and its field, and
+    needs a label of its own;
+  - due at step 3c: the template, whose "revisit if" is a parameter
+    that isn't a number: a room's law would be a template's parameters,
+    and a topic or a welcome is a text;
   - due at step 3c: DeepSeek's two questions (whether a room's
     signature on each record proves something a signed head can't) and
     one schema that fits both (whether a form the project has signed
     with is the worse one for rooms). The table of names in #98 already
     shows one place where the fitting has to split a kind (`Redact`),
     which "case by case" allows;
-  - due earlier than written: reasons on record was due at step 6, and
-    is first used at step 3b, where a moderator's removal is a decision
-    record;
+  - due at step 3d: signed records the standard way. Its "revisit
+    if" is a record that needs something the narrow reading of proofs
+    refuses, such as a proof chain. A handover carries two parties'
+    word, the holder's and the successor's. The expectation is two
+    records with one proof each, as `holds` and `held-by` are; if that
+    won't do, the narrow reading is revisited there. Whether a widely
+    used verifier accepts the project's proofs still hasn't been tried;
+  - due at step 3e: who an individual and a world are, in its second
+    clause, a world's birth record that needs more: a reset's and a
+    branch's birth name the run or the checkpoint before;
+  - still due at step 6: reasons on record, whose "revisit if" is the
+    Lean model of grants costing more than it catches by step 6. Step
+    3b uses the decision record first, but touches neither grants nor
+    Lean. This recheck puts five more steps ahead of step 6, which the
+    clause didn't have in view;
   - due at step 3e and with the endless plant: Rust in the browser as a
     WASI command, whose "wrong if" is a world that must keep running
     inside the page; a plant that runs for hours is that case, and
@@ -2948,19 +2987,28 @@ it was wrong. Questions of what the project is for stay with the founder.
     but the project holding a key) is read again when persons begin to
     hold their own keys in their own containers, which that decision
     didn't have in view;
-  - due at step 8a: who an individual and a world are, and decision 18,
-    as before;
+  - due at step 8a: who an individual and a world are, in its first
+    clause, and decision 18, as before;
   - due at step 9: the sealed records, as before; and a link shown by
     an action, whose "wrong if" is a link that must be shown while the
     presence isn't in its world, which a birth that links the first
     presence may be;
   - not yet testable, since what they govern isn't built: sealing the
-    world-key and sealing as built, the round table's consensus, how
+    world-key, the round table's consensus, how
     the table is chosen, a Keeper's self-report, ADMIN's council,
     ADMIN's learning by written lessons, the admin-key course, and the
     suggestion ledger;
-  - not yet due: the template (step 4), and today's decision on the
-    course's order.
+  - not yet due: today's decision on the course's order.
+
+  After the independent review of #99 (two blocking, both mended): the
+  look back had left out "signed records the standard way", and one
+  line on hide-and-seek's stages was wrong against its paper. Its notes
+  were taken: the look back corrected in seven places; the six tests
+  said more plainly; step 3c split, with the closed room at 6a; what
+  waits for step 4 in the lifecycle; step 3d's first two offices; and
+  the review's own order written beside the alternative, for the
+  founder. Three sentences on outside sources now say only what the
+  sources say.
 
 - 2026-11-16 Claude: the file for DeepSeek is now built by a script in
   the repository, and kept. `docs/reply.py` makes it from a reply's text

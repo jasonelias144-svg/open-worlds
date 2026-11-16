@@ -159,17 +159,20 @@ the founder remembered isn't settled.
   few agents learn to signal and to work together (Mordatch and Abbeel,
   2017; seen only as a citation). And hide-and-seek, where two teams
   among boxes, ramps and walls went through six stages of strategy
-  that nobody had written in. The last was "box surfing", a use of the
-  world's physics that its makers hadn't meant
+  that nobody had written in: running and chasing, building forts,
+  using ramps, defending against ramps, "box surfing", and last the
+  hiders' answer to it, locking every box they don't use
   ([paper](https://arxiv.org/abs/1909.07528)).
 - **One lasting world of many.** Neural MMO: many agents at once in one
-  persistent world, finding food and water, and meeting each other
-  ([paper](https://arxiv.org/abs/1903.00784)).
+  persistent world ([paper](https://arxiv.org/abs/1903.00784), its
+  abstract). From memory, not from the abstract: they forage for food
+  and water, and meet each other.
 - **A gathering contest.** Halite, by Two Sigma, in its fourth season,
   on Kaggle (2020): four players on a grid of 21 by 21, for 400 turns,
   all moving at once. Ships gather halite, which grows back, and carry
-  it home to a shipyard, and one ship can take another's load. By one
-  later account, the best entries were written as rules, not learned
+  it home to a shipyard, and one ship can take another's load. A
+  later paper, about another contest, says in one sentence:
+  "Rules-based agents won Halite, Kore, and Lux AI Season 2"
   ([paper](https://arxiv.org/abs/2402.08112)).
 
 **What this could give the project.** Noted, not decided, and nothing
@@ -177,9 +180,9 @@ is built for it now ([COURSE.md](../COURSE.md), "Waiting"):
 - A door in the shape learners already know. A closed world here is
   already run from its seed, step by step, which is most of what that
   interface asks.
-- Hide-and-seek's lesson for a world's law: agents do what the rules
-  allow, not what was meant. So a world's rules have to say what the
-  world means.
+- Hide-and-seek's lesson for a world's law, as the project reads it:
+  agents do what the rules allow, whether or not it was meant. So a
+  world's rules have to say what the world means.
 - Gathering, carrying and bringing home as a first setting for things
   (course step 5), with the project's own rules and its own name. The
   founder, on a world like Halite: "as a baseline, it is a point to

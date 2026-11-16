@@ -217,6 +217,14 @@ reordered otherwise.
   signed vote of their own in records-v1 (`open-worlds/proposal/v1`,
   `vote/v1`), counting persons by their identity keys.
 
+A person stands above their presences in each world
+([MULTIVERSE.md](MULTIVERSE.md)), as the founder pictured it
+([VISION.md](VISION.md), "A person across worlds"). An arrival names
+the key that signed it in a public log, so presences stay unlinked only
+if each has a key of its own (step 3,
+[research/KEYS.md](research/KEYS.md)). The step came in from the
+waiting list, which had placed it after step 3 (decided 2026-11-14).
+
 **Rechecked on 2026-11-16,** when step 3a was done. This recheck changes
 more than the two before it. The waiting list had placed six things at
 this recheck, or before anyone lives in a world: a log that can be
@@ -279,6 +287,18 @@ first room three steps nearer and the Commons later. And if the
 founder wants the Commons open to people sooner, 6a moves up to follow
 3f. Both were put to the founder.
 
+The independent review of this recheck (#99) would order it differently
+again: 3b; the formats of 3d; the room on the record (3c); pause,
+resume, checkpoint and the departure record from 3e; then step 4. The
+Commons hosting rooms, a branch, and the closed room would come after
+step 6, beside 6a. Its reasons are fair: the Commons can't open to
+people before 6a and the founder's decisions on hosting; nothing in
+steps 4 to 6 needs it; and step 4 may change how worlds are hosted. It
+is close to the alternative above. The technical lead keeps 3f where it
+is because the waiting list placed the Commons as the first public
+space, and with 6a moved up it could open before the Ur-world's work is
+done. Which of the two matters more is the founder's to say.
+
 What persons taught is written into the steps it reaches:
 - a presence is a key of its own in one world, and a room is a world;
   so whether a person has one presence for the Commons or one for each
@@ -303,12 +323,18 @@ multiverse as a computer", for the first time (they were written on
    are each a record, with its reason. Redaction takes a field out of
    public view, and only private information, which the test leaves
    private. The mark and the fingerprint stay, so the log still shows
-   that something was there.
-2. *Many parts, no master.* A room has a key of its own and signs its
-   own log's heads, so a change to its log by anyone without its key
-   would show. Who holds a hosted room's key is settled at 3f. A
-   moderator's office is its room's, and the office record names what
-   watches it (3d).
+   that something was there. Not looked at here: what a moderator
+   learns across its rooms, and whether that is on record. It stays
+   open with the moderators' questions
+   ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item 14).
+2. *Many parts, no master.* Open until 3f, not passed. A room has a
+   key of its own and signs its own log's heads, so a change to its log
+   by anyone without its key would show. But if the Commons held its
+   rooms' keys it could sign for them, and one model holding the
+   moderator's office in every room would be a master of a kind.
+   Neither is settled. Both are conditions on 3f, and on the choice of
+   a moderator. A moderator's office is its room's, and the office
+   record names what watches it (3d).
 3. *Stopping stays possible, part by part.* Step 3e builds it: pause
    and stop as entries in each world's log, leaving that works in a
    paused world, and a world leaving the multiverse.
@@ -325,7 +351,10 @@ multiverse as a computer", for the first time (they were written on
    model that moderates a room is an individual, in MINDS.md's sense,
    has not been asked. It is noted here, to be asked before a model is
    given the office, with the question of which model first moderates
-   ([COMMONS.md](COMMONS.md), "Open").
+   ([COMMONS.md](COMMONS.md), "Open"). And where pausing meets someone
+   a world hosts, the test gives the decision to the founder: step 3e
+   builds pause for every world, and who may pause a world that others
+   are in is still open ([WORLD-TYPES.md](WORLD-TYPES.md), "Open").
 
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COURSE.md/ahead.md
