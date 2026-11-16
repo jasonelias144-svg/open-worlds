@@ -471,8 +471,12 @@ The titles are DeepSeek's.
 Three faults, none repaired here:
 1. From delivery 2 on, the same two tests fail, `home_port_verifies`
    and `home_bookmark_and_presence_verify`, each with "record 1:
-   missing room proof". They passed in delivery 1. The cause was not
-   traced further than the delivery it begins in.
+   missing room proof". They passed in delivery 1. The cause, as read
+   and not yet confirmed by a repair: delivery 2 makes the room and
+   its maker two keys, and the check asks every record but a leaving
+   for a proof by the room's key; a home's port landing, bookmark and
+   presence records are signed by the person's key alone
+   (`src/home.rs`), which was the room's key until then.
 2. Delivery 5, `src/verify.rs`: one condition does not compile
    (mismatched types).
 3. Delivery 5, `src/bin/succession-demo.rs`: it calls `.hash()` on
