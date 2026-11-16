@@ -35,6 +35,14 @@ The founder decides what this project is for and who works on it. The technical
 lead (Claude) decides everything about the code, and records an approval on
 every pull request before it merges (P4). Intent questions go to the founder (P5).
 
+Two roles are told apart (the founder, 2026-11-16; STATUS.md, "Decided";
+the handbook's GOVERNANCE.md). The **Project Founder** began the project: a
+matter of its history, which passes to no one. The **Project Director** is
+an office, which the founder holds today and might not later. Deciding is the
+director's. So where these rules say that the founder decides, or send a
+question to the founder, they mean whoever is director. Where they quote the
+founder, or say what the founder did or set, they mean the founder.
+
 The founder's standing rule (2026-11-14): "if I have not answered a question or
 settled anything directly, follow your own recommendation." So an intent
 question, once put to the founder with a recommendation, is decided on that

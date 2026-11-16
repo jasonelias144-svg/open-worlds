@@ -2,11 +2,9 @@
 > for readers who are shown only the start of a long page.
 > This part holds: "Log", piece 4 (its pieces are numbered from its end).
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead-01.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-05.md
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-03.md
 > Made by docs/parts.py from the file. To change it, change the file.
-
-## Log
 
 - 2026-11-16 Claude: Gemini named a collaborator, at the founder's
   word, and the founder's plan for a file at each return, written for
