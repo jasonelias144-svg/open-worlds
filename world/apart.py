@@ -501,10 +501,10 @@ def _states(scan: _Scan,
 
 def _short_ids(ids: List[str]) -> Dict[str, str]:
     """Each incident's id as it is shown: the fewest hex digits, `SHORT`
-    or more, that no other incident in the log begins with. Sorted, an
-    id shares its longest beginning with one of its two neighbours, so
-    each is held against those two alone. An id is never cut longer
-    than it is."""
+    or more, that no other incident in the log begins with. The ids
+    are hex digits, as an entry's hash is. Sorted, an id shares its
+    longest beginning with one of its two neighbours, so each is held
+    against those two alone. An id is never cut longer than it is."""
     def shared(a: str, b: str) -> int:
         n = 0
         while n < len(a) and n < len(b) and a[n] == b[n]:

@@ -243,7 +243,7 @@ that did not hold together; STATUS.md's Log says what changed.
    | a restoring of a removal, of an entry its author has since taken back | allowed: the removal no longer stands, and the entry stays taken back: an office does not undo an author's taking back |
    | a removal after a restoring | a new incident, with a new id |
    | an author takes back a comment that an office removed | allowed: it stays hidden even if the removal is later restored |
-   | an author undoes their own taking back, if part four allows it | the comment shows again, unless an office's removal still stands |
+   | an author undoes their own taking back | the comment shows again, unless an office's removal still stands |
    | a removal of an entry that has a redacted field | allowed: the entry is hidden, and the field stays redacted |
 
    The room's own view of it is step 3c's. (The row on restoring what

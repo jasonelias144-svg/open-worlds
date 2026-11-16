@@ -310,9 +310,10 @@ fn states(scan: &Scan, held: &BTreeMap<&str, BTreeMap<&str, &Value>>) -> States 
 
 /// Each incident's id as it is shown: the fewest hex digits, [`SHORT`] or
 /// more, that no other of `ids` begins with. The ids are 64 hex digits,
-/// as an entry's hash is. Sorted, an id shares its longest beginning
-/// with one of its two neighbours, so each is held against those two
-/// alone. An id is never cut longer than it is.
+/// as an entry's hash is, so a beginning counted in bytes is counted in
+/// characters. Sorted, an id shares its longest beginning with one of
+/// its two neighbours, so each is held against those two alone. An id
+/// is never cut longer than it is.
 pub fn short_ids(ids: &[String]) -> BTreeMap<String, String> {
     fn shared(a: &str, b: &str) -> usize {
         a.bytes().zip(b.bytes()).take_while(|(x, y)| x == y).count()
