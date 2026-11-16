@@ -88,7 +88,9 @@ given again, whole.
    room. There should be a note saying something was removed because
    of some reason. There needs to be a unique event id or incident
    id." Your crate has the two layers already: its records, and
-   `visible_log`. So: a removed comment's own record is never changed;
+   `visible_log`. Who may remove: a room's moderator, for a reason the
+   room's law names, and a comment's author, for their own. So: a
+   removed comment's own record is never changed;
    the removal is a record of its own, with who acted, in what role,
    and the reason; `visible_log` shows a note where the comment was,
    with the reason and an incident id (my recommendation: the hash of

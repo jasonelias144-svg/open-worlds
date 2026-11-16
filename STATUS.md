@@ -283,14 +283,15 @@ kind.
   decided on 2026-11-15; and a comment removed for any other reason
   stays readable in the records, which for a room on the record are
   public (put to the founder, Open questions). Three limits are
-  recommended, and stand unless the founder answers otherwise: a comment
-  is removed only for a reason the room's law names, told on entering;
-  never silently; and its author can always see the note and ask for
-  another look. Who may remove a comment is open, with a recommendation
-  (Open questions). All of it is in a room's kinds of record from the
-  first version of `rust/chat-world`, and is DeepSeek's next step. This
-  is new beside the decision of 2026-11-14 that unwanted speech is met
-  with each reader's own tools, to see, not to hear, and to leave
+  recommended, and stand unless the founder answers otherwise: a
+  moderator removes a comment only for a reason the room's law names,
+  told on entering (an author needs none to remove their own); never
+  silently; and its author can always see the note and ask for another
+  look. Who may remove a comment is open, with a recommendation (Open
+  questions). All of it is in a room's kinds of record from the first
+  version of `rust/chat-world`, and is DeepSeek's next step. This is new
+  beside the decision of 2026-11-14 that unwanted speech is met with
+  each reader's own tools, to see, not to hear, and to leave
   (docs/FUNDAMENTALS.md, freedom, item 5), and beside the founder's "the
   least restrictions on communication in any room": the technical lead
   named both to the founder in the session before the founder decided,
@@ -2733,7 +2734,8 @@ it was wrong. Questions of what the project is for stay with the founder.
   012-09-05, into the pages (Decided, the newest entry):
   docs/COMMONS.md, "Rooms with moderators", with the founder's words and
   the technical lead's reading; docs/FUNDAMENTALS.md, privacy, item 14;
-  docs/TOPICS.md, topic 14; and one entry under Open questions, for six questions about moderators. The same day the founder answered the
+  docs/TOPICS.md, topic 14; and one entry under Open questions, for six
+  questions about moderators. The same day the founder answered the
   question on the schema and the one on removed comments, and both
   answers are in Decided (docs/COMMONS.md, "Three sources, one Commons"
   and "Removing a comment"; docs/FUNDAMENTALS.md, freedom, item 5). The

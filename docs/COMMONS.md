@@ -316,10 +316,10 @@ founder decided.
 The technical lead's earlier starting point, that a message be marked
 and each reader fold it away, is withdrawn: the founder's answer
 replaces it. Three limits are recommended, and stand unless the founder
-answers otherwise: a comment is removed only for a reason the room's
-law names, which everyone is told on entering; never silently; and its
-author can always see the note and ask for the removal to be looked
-at again.
+answers otherwise: a moderator removes a comment only for a reason the
+room's law names, which everyone is told on entering (an author needs
+none to remove their own); never silently; and its author can always
+see the note and ask for the removal to be looked at again.
 
 **Sketched** by DeepSeek in the same record, and kept in
 `sketches/deepseek/012-09-05/` with what runs: a room as a log of
