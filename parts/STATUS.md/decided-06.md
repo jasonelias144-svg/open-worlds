@@ -21,7 +21,11 @@
   the technical lead reads the rest: it is the lobby the design already
   has, "always open, where everyone who enters reads the charter first"
   (docs/COMMONS.md), and it is on the record, as was decided for the
-  lobby on 2026-11-15 (docs/FUNDAMENTALS.md, privacy, item 13). What is
+  lobby on 2026-11-15 (docs/FUNDAMENTALS.md, privacy, item 13). That
+  reading now carries more than it did: then the lobby was where
+  everyone reads the charter, and now it is where people sit and talk,
+  so "kept whole" covers the first talk of everyone who arrives. It is
+  put to the founder (Open questions). What is
   new is that it has a name; that it is a room to be in, where people
   sit, talk and wait, and not only a way through; and that it comes
   first. "The pattern" is read as the Ur-world's: the first of its
@@ -50,9 +54,9 @@
   4, 2026-11-14); and a closed room's words pass between its members'
   containers, sealed, so no one else reads them, ADMIN and the project
   included (item 13, 2026-11-15). New: such rooms are to be common, not
-  the exception; and there are to be levels between a public room with
-  a public record and a room no one outside can read. The levels are
-  not defined: the founder said "We can define different levels". The
+  the exception; and there may be levels between a public room with a
+  public record and a room no one outside can read. The levels are not
+  defined: the founder said "We can define different levels". The
   technical lead proposes three, with what the record keeps at each
   (docs/COMMONS.md, "A spectrum of privacy"). They touch what is
   recorded about people, so they wait for the founder and do not stand
@@ -66,7 +70,9 @@
   weighed with going live, which is the founder's decision.
   The last sentence quoted is taken as leave to go on with the course
   as rechecked, on the technical lead's judgement, until the founder
-  returns.
+  returns. It gives no more than the standing rule of 2026-11-14
+  already does: nothing outward-facing or hard to undo, and nothing
+  about money or personal information, stands on it.
 
 - 2026-11-16, founder, on the work until DeepSeek is available again,
   and on the course. (The message's first sentences, on when DeepSeek

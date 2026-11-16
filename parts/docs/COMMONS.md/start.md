@@ -166,7 +166,7 @@ privacy to consider."
 Two ends of it are decided already ([FUNDAMENTALS.md](FUNDAMENTALS.md),
 privacy, items 4 and 13): a room on the record, and a closed room,
 whose words pass between its members' containers, sealed. What is new
-is that private rooms are to be common, and that there are to be
+is that private rooms are to be common, and that there may be
 levels. The levels below are the technical lead's proposal. They touch
 what is recorded about people, so they wait for the founder:
 
@@ -181,10 +181,21 @@ what is recorded about people, so they wait for the founder:
   doesn't change under those who are in it: a closed room is not
   opened later. Whether a room on the record can be closed from some
   point on is left open.
-- **Closed is proposed as the common kind.** The project's machines can
-  hold its sealed messages for a member who is away, and a member can
-  come back from another device. An off-the-record room can only live
-  between its members' own containers.
+- **Closed is proposed as the common kind.** As proposed, the project's
+  machines hold its sealed messages for a member who is away. That is a
+  change from what is decided, and is put to the founder as one:
+  privacy items 4 and 13 have the words pass between the members' own
+  containers. The project would still hold no key. The hope is that a
+  member could then come back from another device; that needs a
+  member's keys to reach a second device, which
+  [CONTAINER.md](CONTAINER.md) has not settled. An off-the-record room
+  can only live between its members' own containers.
+- **Off the record sets a decided rule aside.** Privacy item 4 keeps
+  "that a message passed" in the record. At this level nothing is kept.
+  It is put to the founder as that (STATUS.md, "Open questions").
+- **Who moderates differs from a room on the record.** Above, a room
+  has a moderator, named in its law. A closed room, as proposed, has
+  only its members, and an AI among them only if they bring it in.
 
 Honest limits, said before anything is built:
 - **A member can always copy what they read.** Sealing keeps others
@@ -198,11 +209,35 @@ Honest limits, said before anything is built:
   going live.
 - **Whoever carries a message can see that something passed** while it
   passes, even when nothing is kept.
+- **The record of a closed room tells a lot.** It would show who is in
+  a private room with whom, and when messages passed; for a room of
+  two, who speaks to whom, and when. Times can also link a person's
+  presences (research/PERSONS.md). This is the main cost of closed
+  beside off the record.
+- **An AI member's maker can read the room.** An AI that joins from
+  another company's app sends what it reads through that company. So
+  "no one outside" doesn't hold for it, and the window that brings an
+  AI in should say so.
+- **An off-the-record room is not a world, in the project's sense.** It
+  has no key, no log and no signed heads. So there is no record that
+  anyone entered or left, no removal on record, and nothing to appeal
+  to.
+- **Redaction has no reach inside.** Someone spoken about in a private
+  room can't ask for a redaction there, and the check before publishing
+  doesn't run on what is never published.
+- **A member's own copy protects them only if it can be checked.** If
+  messages are signed, a copy that is shown proves who said it, and
+  nothing said in the room can be denied later. If they aren't, a copy
+  proves nothing. Which it is, is a choice for step 6a's plan.
 - **A group's keys are hard.** When a member leaves, those who stay
   need a new key, and a member who joins should not read what came
   before unless the room's law says so. Nothing in the project does
   this yet. It is to be looked at first, at course step 6a (the
   Messaging Layer Security protocol, RFC 9420, is where to start).
+
+These limits are from general knowledge of how sealed group messaging
+works, the technical lead's and the independent review's (#99). No
+source was opened for them.
 
 ## Who comes in
 

@@ -119,8 +119,8 @@ with removals on record (3b); the room (3c); offices as records (3d); a
 world's lifecycle, and a world leaving (3e); the Commons hosting rooms
 (3f); the kernel as entities and components (4); parallel worlds and the
 garden (4a); things, skills and the sheet (5); the Ur-world's first
-room, end to end (6); the private container and the check before
-publishing (6a); memory (7); experiment 002, the audition (8). Behind
+room, end to end (6); the private container, private rooms and the
+check before publishing (6a); memory (7); experiment 002, the audition (8). Behind
 the twelve, in their old order: a lost or leaked key (8a); ALICE's and
 BOB's first life (9); a development container (10); the hunt and the
 world-key (11); founding worlds, and doors (12). DeepSeek works beside
@@ -154,13 +154,22 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
-- For the founder, on private rooms (docs/COMMONS.md, "A spectrum of
-  privacy"), from the founder's words of 2026-11-16:
+- For the founder, on private rooms and the Ur-room (docs/COMMONS.md,
+  "A spectrum of privacy" and "The Ur-room"), from the founder's words
+  of 2026-11-16:
   1. The levels. Proposed, three: on the record; closed, where the
      words are sealed with keys the members hold and the record keeps
      only that the room exists, who is in it and that messages passed;
      and off the record, where nothing is kept. Recommended: these
-     three, with closed as the common kind.
+     three, with closed as the common kind. Two things to weigh with
+     it. Closed, as proposed, changes one thing in what is decided: the
+     project's machines would hold a closed room's sealed messages for
+     a member who is away, where the decisions of 2026-11-14 and
+     2026-11-15 have the words pass between the members' own
+     containers; the project would still hold no key. And what the
+     record keeps of a closed room tells a lot: who is in a private
+     room with whom, and when messages passed. That is the main cost of
+     closed beside off the record.
   2. Whether "completely encrypted" meant that nothing at all is kept
      of a private room. The decisions of 2026-11-14 and 2026-11-15 keep
      that a message passed, and a closed room's metadata, in the
@@ -170,6 +179,12 @@ kind.
      Before the Commons is open to the public with private rooms in
      it, that is weighed with going live: where it is hosted, and under
      what law. No recommendation yet; it needs looking at first.
+  4. The Ur-room on the record. The lobby was decided to be on the
+     record on 2026-11-15, when it was where everyone reads the
+     charter. As the Ur-room it is where people sit and talk, so the
+     record would keep the first talk of everyone who arrives.
+     Recommended: on the record, said plainly on entering, with a
+     private room one door away.
 - For the founder, from the session of 2026-11-16, four things that
   wait for the founder's own word:
   1. The founder's ideas on personal information in a room, and the six

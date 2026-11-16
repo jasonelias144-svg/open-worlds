@@ -111,8 +111,8 @@ with removals on record (3b); the room (3c); offices as records (3d); a
 world's lifecycle, and a world leaving (3e); the Commons hosting rooms
 (3f); the kernel as entities and components (4); parallel worlds and the
 garden (4a); things, skills and the sheet (5); the Ur-world's first
-room, end to end (6); the private container and the check before
-publishing (6a); memory (7); experiment 002, the audition (8). Behind
+room, end to end (6); the private container, private rooms and the
+check before publishing (6a); memory (7); experiment 002, the audition (8). Behind
 the twelve, in their old order: a lost or leaked key (8a); ALICE's and
 BOB's first life (9); a development container (10); the hunt and the
 world-key (11); founding worlds, and doors (12). DeepSeek works beside
@@ -146,13 +146,22 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
-- For the founder, on private rooms (docs/COMMONS.md, "A spectrum of
-  privacy"), from the founder's words of 2026-11-16:
+- For the founder, on private rooms and the Ur-room (docs/COMMONS.md,
+  "A spectrum of privacy" and "The Ur-room"), from the founder's words
+  of 2026-11-16:
   1. The levels. Proposed, three: on the record; closed, where the
      words are sealed with keys the members hold and the record keeps
      only that the room exists, who is in it and that messages passed;
      and off the record, where nothing is kept. Recommended: these
-     three, with closed as the common kind.
+     three, with closed as the common kind. Two things to weigh with
+     it. Closed, as proposed, changes one thing in what is decided: the
+     project's machines would hold a closed room's sealed messages for
+     a member who is away, where the decisions of 2026-11-14 and
+     2026-11-15 have the words pass between the members' own
+     containers; the project would still hold no key. And what the
+     record keeps of a closed room tells a lot: who is in a private
+     room with whom, and when messages passed. That is the main cost of
+     closed beside off the record.
   2. Whether "completely encrypted" meant that nothing at all is kept
      of a private room. The decisions of 2026-11-14 and 2026-11-15 keep
      that a message passed, and a closed room's metadata, in the
@@ -162,6 +171,12 @@ kind.
      Before the Commons is open to the public with private rooms in
      it, that is weighed with going live: where it is hosted, and under
      what law. No recommendation yet; it needs looking at first.
+  4. The Ur-room on the record. The lobby was decided to be on the
+     record on 2026-11-15, when it was where everyone reads the
+     charter. As the Ur-room it is where people sit and talk, so the
+     record would keep the first talk of everyone who arrives.
+     Recommended: on the record, said plainly on entering, with a
+     private room one door away.
 - For the founder, from the session of 2026-11-16, four things that
   wait for the founder's own word:
   1. The founder's ideas on personal information in a room, and the six
@@ -326,7 +341,11 @@ kind.
   the technical lead reads the rest: it is the lobby the design already
   has, "always open, where everyone who enters reads the charter first"
   (docs/COMMONS.md), and it is on the record, as was decided for the
-  lobby on 2026-11-15 (docs/FUNDAMENTALS.md, privacy, item 13). What is
+  lobby on 2026-11-15 (docs/FUNDAMENTALS.md, privacy, item 13). That
+  reading now carries more than it did: then the lobby was where
+  everyone reads the charter, and now it is where people sit and talk,
+  so "kept whole" covers the first talk of everyone who arrives. It is
+  put to the founder (Open questions). What is
   new is that it has a name; that it is a room to be in, where people
   sit, talk and wait, and not only a way through; and that it comes
   first. "The pattern" is read as the Ur-world's: the first of its
@@ -355,9 +374,9 @@ kind.
   4, 2026-11-14); and a closed room's words pass between its members'
   containers, sealed, so no one else reads them, ADMIN and the project
   included (item 13, 2026-11-15). New: such rooms are to be common, not
-  the exception; and there are to be levels between a public room with
-  a public record and a room no one outside can read. The levels are
-  not defined: the founder said "We can define different levels". The
+  the exception; and there may be levels between a public room with a
+  public record and a room no one outside can read. The levels are not
+  defined: the founder said "We can define different levels". The
   technical lead proposes three, with what the record keeps at each
   (docs/COMMONS.md, "A spectrum of privacy"). They touch what is
   recorded about people, so they wait for the founder and do not stand
@@ -371,7 +390,9 @@ kind.
   weighed with going live, which is the founder's decision.
   The last sentence quoted is taken as leave to go on with the course
   as rechecked, on the technical lead's judgement, until the founder
-  returns.
+  returns. It gives no more than the standing rule of 2026-11-14
+  already does: nothing outward-facing or hard to undo, and nothing
+  about money or personal information, stands on it.
 
 - 2026-11-16, founder, on the work until DeepSeek is available again,
   and on the course. (The message's first sentences, on when DeepSeek
@@ -2973,6 +2994,17 @@ it was wrong. Questions of what the project is for stay with the founder.
   this, and nothing is built; how a group's keys change as members
   come and go is to be looked at first, at step 6a. The file DeepSeek
   is to be given was built before these words, and doesn't hold them.
+  After the last narrow re-check, at 09e4de6 (nothing blocking): the
+  proposal now says what it would change in what is decided (sealed
+  messages held on the project's machines; nothing kept at the third
+  level, against "that a message passed stays in the record"; who
+  moderates a closed room), and five more limits, among them that a
+  closed room's record shows who is in a private room with whom, and
+  when. Whether the Ur-room's talk is on the record is now put to the
+  founder. "There are to be levels" became "there may be", as the
+  founder's words have it. The limits are from general knowledge of
+  how sealed group messaging works, the review's and the technical
+  lead's; no source was opened for them.
 
 - 2026-11-16 Claude: carried from #98's narrow re-check, in the same
   change as the course's recheck below. `docs/reply.py` now refuses an

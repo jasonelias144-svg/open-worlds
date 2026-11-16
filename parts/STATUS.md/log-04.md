@@ -21,6 +21,17 @@
   this, and nothing is built; how a group's keys change as members
   come and go is to be looked at first, at step 6a. The file DeepSeek
   is to be given was built before these words, and doesn't hold them.
+  After the last narrow re-check, at 09e4de6 (nothing blocking): the
+  proposal now says what it would change in what is decided (sealed
+  messages held on the project's machines; nothing kept at the third
+  level, against "that a message passed stays in the record"; who
+  moderates a closed room), and five more limits, among them that a
+  closed room's record shows who is in a private room with whom, and
+  when. Whether the Ur-room's talk is on the record is now put to the
+  founder. "There are to be levels" became "there may be", as the
+  founder's words have it. The limits are from general knowledge of
+  how sealed group messaging works, the review's and the technical
+  lead's; no source was opened for them.
 
 - 2026-11-16 Claude: carried from #98's narrow re-check, in the same
   change as the course's recheck below. `docs/reply.py` now refuses an

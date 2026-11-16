@@ -325,7 +325,7 @@ one of them updates this page.
     messaging and private rooms should be possible", "encrypted by keys
     held by the users", and "This should be not only possible, but
     common." It confirms items 4 and 13 and asks for more of them:
-    private rooms are not the exception, and there are to be levels
+    private rooms are not the exception, and there may be levels
     between a room on the record and a room no one outside can read
     ("There is a spectrum of privacy to consider"). The levels are not
     decided. The technical lead proposes three, with what the record
