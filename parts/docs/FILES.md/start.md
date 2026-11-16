@@ -19,7 +19,7 @@ need links through this method.").
 
 COLLABORATING.md lists the files a reader works from: every page,
 all the code, the tests and the vectors. This page lists the rest,
-871 files of record, best sent when a question needs them.
+907 files of record, best sent when a question needs them.
 
 Written by `python3 docs/files.py`;
 `tests/test_collaborating_links.py` fails if a file is added, moved
@@ -27,9 +27,9 @@ or removed and this page isn't written again.
 
 ## DeepSeek's records
 
-In `sketches/records`, 6 files, 7.9 MB in all, the largest 2.7 MB: each conversation with DeepSeek, word for word; most are too large to read in one go.
+In `sketches/records`, 6 files, 8.2 MB in all, the largest 2.7 MB: each conversation with DeepSeek, word for word; most are too large to read in one go.
 
-**`sketches/records`** (6 files, 7.9 MB):
+**`sketches/records`** (6 files, 8.2 MB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-03-02-DPSK-Patterns_Texts_and_Inventions.txt

@@ -1,10 +1,57 @@
 > Part of `sketches/INDEX.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "Changes to DeepSeek's code".
+> This part holds: "Record 012-03-02, component by component" to "Changes to DeepSeek's code".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-06-02-piece-by-piece.md
 > After this part: nothing; this is the last part.
 > Made by docs/parts.py from the file. To change it, change the file.
+
+## Record 012-03-02, component by component
+
+Three series of components, written out in `deepseek/012-03-02/`: a
+model of Aristotle's practical reasoning as a control system, one
+component of a music engine, and the poetry engine (components 1 to 22,
+with its curriculum in the prose). Step 1 brought parts of the poetry
+engine's components 21 and 22 (the turn, the critical stances, the
+apprentice poet) into open-worlds as `multiverse/apprentice.py`, changed
+([docs/MULTIVERSE.md](../docs/MULTIVERSE.md) says how). Records 012-04-00
+and 012-05-01 import components 21 and 22 from this folder. "Line" is
+where the component's code begins. Tests are run on Python 3.12 with fix
+5 (below).
+
+| Component | What it is | Line | Tests as written |
+|---|---|---|---|
+| `aristotle_cybernetics_c2` to `c7` | The virtuous agent as a control system: the telos hierarchy, a telos that learns, mutual and asymmetric correction | 996 to 3181 | no tests |
+| `music_engine_c8` | The Listener | 3698 | doesn't load: needs `music_engine_c1`, which no record here has |
+| `poetry_engine_c1` | Phonemes, syllables, stress | 4523 | doesn't load: `poetry_engine_c1.py` has a syntax error (line 45) |
+| `poetry_engine_c2` | The cognitive frame | 5393 | doesn't load: imports `poetry_engine_c1`, which has a syntax error |
+| `poetry_engine_c3` | Meter and scansion, through both grammars | 6195 | 13 of 15 (one of the two imports `poetry_engine_c1`) |
+| `poetry_engine_c4` | The score-performance gap | 7287 | doesn't load: imports `poetry_engine_c1`, which has a syntax error |
+| `poetry_engine_c5` | The native voice | 8351 | 11 of 11 |
+| `poetry_engine_c6` | Architecture: cycle, refrain, the foregrounding monitor | 9282 | 12 of 14 |
+| `poetry_engine_c7` | The composition engine | 10185 | 18 of 18 |
+| `poetry_engine_c8` | Rest as meta-work | 11311 | 13 of 14 |
+| `poetry_engine_c9` | Cross-cycle coherence: the collection | 12212 | 13 of 15 |
+| `poetry_engine_c10` | Revision through feedback | 13174 | 12 of 13 |
+| `poetry_engine_c13` | The development spiral | 14161 | 14 of 15 |
+| `poetry_engine_c14` | The living collection | 15002 | 19 of 19 |
+| `poetry_engine_c17` | The complete agent | 15894 | 14 of 15 |
+| `poetry_engine_c18` | The reflective rewriting cycle, given in three parts | 17038 | no tests; its parts joined (fix 5) |
+| `poetry_engine_c19` | The long run | 17680 | 0 of 4 (its test is a block from the prose) |
+| `poetry_engine_c20` | The full agent | 18263 | 2 of 12 |
+| `poetry_engine_c21` | The collaboration protocol: turns, stances, the polyphony | 21859 | no tests; its two parts joined (fix 5) |
+| `poetry_engine_c22` | The runnable apprentice | 22431 | no tests; its two parts joined (fix 5) |
+
+In all: 141 of DeepSeek's tests pass and 24 fail. 4 test files don't
+load. Components 11, 12, 15 and 16 are named in the record only as
+proposals, with no code.
+
+45 of the record's 56 code blocks are written out. The other 11 are
+examples in the prose and stay in the record: a run of component 17
+(16820); a worked example for component 18 (17333, 17403, 17422, 17440);
+the curriculum's apprentice (19436); four turns of a worked example for
+component 21 (22163 to 22270); and a worked example for component 22
+(22974).
 
 ## Changes to DeepSeek's code
 

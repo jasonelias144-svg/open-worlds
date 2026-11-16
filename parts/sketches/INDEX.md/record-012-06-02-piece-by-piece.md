@@ -1,9 +1,9 @@
 > Part of `sketches/INDEX.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "Record 012-06-02, piece by piece" to "Record 012-03-02, component by component".
+> This part holds: "Record 012-06-02, piece by piece" to "Record 012-09-05, piece by piece".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/start.md
-> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/changes-to-deepseek-s-code.md
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-03-02-component-by-component.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
 ## Record 012-06-02, piece by piece
@@ -216,52 +216,69 @@ next work, piece by piece.
 | 8 | A design page, `docs/CHAT.md` (prose, left in the record) | 9964 | none | the Commons | not yet |
 | 9 | A crate in Rust, `chat-world`: the first version (`chat-world-draft/`), the one DeepSeek settled on (`chat-world/`), and the files of its next reply (a home, the Commons, transcripts) | 10259, 12246, 13800 | 18 of 18, and both demos' logs verify (as written it doesn't build, for one line, fix 16; with it changed, 4 of 12, the rest failing for one cause: a record was signed without its `type` and checked with it, fix 18; the later reply's files are joined by fix 17) | the Commons | not yet: it uses none of open-worlds' own crates |
 
-## Record 012-03-02, component by component
+### The record continued (2026-11-16)
 
-Three series of components, written out in `deepseek/012-03-02/`: a
-model of Aristotle's practical reasoning as a control system, one
-component of a music engine, and the poetry engine (components 1 to 22,
-with its curriculum in the prose). Step 1 brought parts of the poetry
-engine's components 21 and 22 (the turn, the critical stances, the
-apprentice poet) into open-worlds as `multiverse/apprentice.py`, changed
-([docs/MULTIVERSE.md](../docs/MULTIVERSE.md) says how). Records 012-04-00
-and 012-05-01 import components 21 and 22 from this folder. "Line" is
-where the component's code begins. Tests are run on Python 3.12 with fix
-5 (below).
+The founder went back to DeepSeek with one file, and the record was
+shared again, longer. Its first 595,416 bytes are the same, byte for
+byte: the record as it was kept ended at the founder's next prompt,
+the opening of line 14,782, and 9,212 lines more follow. Three things
+are in them.
 
-| Component | What it is | Line | Tests as written |
-|---|---|---|---|
-| `aristotle_cybernetics_c2` to `c7` | The virtuous agent as a control system: the telos hierarchy, a telos that learns, mutual and asymmetric correction | 996 to 3181 | no tests |
-| `music_engine_c8` | The Listener | 3698 | doesn't load: needs `music_engine_c1`, which no record here has |
-| `poetry_engine_c1` | Phonemes, syllables, stress | 4523 | doesn't load: `poetry_engine_c1.py` has a syntax error (line 45) |
-| `poetry_engine_c2` | The cognitive frame | 5393 | doesn't load: imports `poetry_engine_c1`, which has a syntax error |
-| `poetry_engine_c3` | Meter and scansion, through both grammars | 6195 | 13 of 15 (one of the two imports `poetry_engine_c1`) |
-| `poetry_engine_c4` | The score-performance gap | 7287 | doesn't load: imports `poetry_engine_c1`, which has a syntax error |
-| `poetry_engine_c5` | The native voice | 8351 | 11 of 11 |
-| `poetry_engine_c6` | Architecture: cycle, refrain, the foregrounding monitor | 9282 | 12 of 14 |
-| `poetry_engine_c7` | The composition engine | 10185 | 18 of 18 |
-| `poetry_engine_c8` | Rest as meta-work | 11311 | 13 of 14 |
-| `poetry_engine_c9` | Cross-cycle coherence: the collection | 12212 | 13 of 15 |
-| `poetry_engine_c10` | Revision through feedback | 13174 | 12 of 13 |
-| `poetry_engine_c13` | The development spiral | 14161 | 14 of 15 |
-| `poetry_engine_c14` | The living collection | 15002 | 19 of 19 |
-| `poetry_engine_c17` | The complete agent | 15894 | 14 of 15 |
-| `poetry_engine_c18` | The reflective rewriting cycle, given in three parts | 17038 | no tests; its parts joined (fix 5) |
-| `poetry_engine_c19` | The long run | 17680 | 0 of 4 (its test is a block from the prose) |
-| `poetry_engine_c20` | The full agent | 18263 | 2 of 12 |
-| `poetry_engine_c21` | The collaboration protocol: turns, stances, the polyphony | 21859 | no tests; its two parts joined (fix 5) |
-| `poetry_engine_c22` | The runnable apprentice | 22431 | no tests; its two parts joined (fix 5) |
+**Signed heads for `chat-world`** (line 14785), the cycle DeepSeek had
+proposed. It came as changes to parts of files, with `src/head.rs`,
+`src/lib.rs` and a demo whole (kept in `chat-world-steps/0/`). It was
+not built on its own: the crate DeepSeek was then given does not hold
+it, and delivery 3, below, gives those files whole again.
 
-In all: 141 of DeepSeek's tests pass and 24 fail. 4 test files don't
-load. Components 11, 12, 15 and 16 are named in the record only as
-proposals, with no code.
+**The one file reached DeepSeek whole** (line 15501). The file is
+[replies/012-09-05-for-deepseek.txt](replies/012-09-05-for-deepseek.txt):
+the technical lead's reply, the next steps, and the crate as it stands
+here. DeepSeek quotes back its last line, `END OF FILE`, says "The
+whole file reached me.", and takes the reply's two requests: "One step
+per reply; every file I change, whole."
 
-45 of the record's 56 code blocks are written out. The other 11 are
-examples in the prose and stay in the record: a run of component 17
-(16820); a worked example for component 18 (17333, 17403, 17422, 17440);
-the curriculum's apprentice (19436); four turns of a worked example for
-component 21 (22163 to 22270); and a worked example for component 22
-(22974).
+**Five deliveries of `chat-world`,** each a step of that reply. Every
+file DeepSeek changed came whole, so each delivery can be built as
+given, with no joining by hand. The files are kept as the record gives
+them in `deepseek/012-09-05/chat-world-steps/1` to `5`;
+[deepseek/012-09-05/review/steps.py](deepseek/012-09-05/review/steps.py)
+lays each delivery over the one before, starting from the crate
+DeepSeek was given, and `review/steps.sh` builds and tests each (not
+run by CI). "Tests" is
+the crate's own tests, `cargo test --test integration`, on 2026-11-16.
+The titles are DeepSeek's.
+
+| Delivery | What it is | Line | Files given whole | Tests, built as given |
+|---|---|---|---|---|
+| 1 | "the data layer and the presentation layer": a redaction names who acted, in what role and under which rule, and a room's template holds its rules for redacting | 15540 | 6 | 22 of 22 |
+| 2 | "the room's own key": the room and the one who made it are two keys | 17168 | 6 | 20 of 22 |
+| 3 | "signed heads, first in prose, then code": what is lost if a room signs its log's head in place of each record, then heads in code | 18832 | 8 | 27 of 29 |
+| 4 | "runtime attestation": keys that share a runtime say so together, in a published record | 20714 | 3 | 31 of 33 |
+| 5 | "the succession trio": a shard of knowledge exported, a moderator's succession, and a sibling declared in the Commons | 21474 | 8 | does not compile; with its two faults set aside, 39 of 41 |
+
+Three faults, none repaired here:
+1. From delivery 2 on, the same two tests fail, `home_port_verifies`
+   and `home_bookmark_and_presence_verify`, each with "record 1:
+   missing room proof". They passed in delivery 1. The cause was not
+   traced further than the delivery it begins in.
+2. Delivery 5, `src/verify.rs`: one condition does not compile
+   (mismatched types).
+3. Delivery 5, `src/bin/succession-demo.rs`: it calls `.hash()` on
+   `commons::SiblingDeclared`, which has no such method.
+
+DeepSeek ends delivery 5 with "Expected: 41 tests pass" (line 23989).
+It can't build or run the crate where it writes, as it has said
+before, so the count is what it meant, not what it measured. With the
+two faults of delivery 5 set aside (the condition replaced by `false`,
+the demo left out), 39 of the 41 pass, and the two that fail are the
+two of fault 1.
+
+The crate kept in `deepseek/012-09-05/chat-world/` is still the one
+DeepSeek was given: the deliveries are beside it, as written.
+Repairing the three faults and joining the result to that crate come
+with the next reply to DeepSeek. Not checked: the demos of deliveries 2 to 5
+were not run; the prose of delivery 3 was read only in part; nothing
+of this has been compared with open-worlds' own formats.
 
 
-> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/changes-to-deepseek-s-code.md
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-03-02-component-by-component.md

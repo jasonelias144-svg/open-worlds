@@ -1,0 +1,12 @@
+pub mod error;
+pub mod hash;
+pub mod did;
+pub mod proof;
+pub mod template;
+pub mod record;
+pub mod room;
+pub mod verify;
+pub mod transcript;
+pub mod home;
+pub mod commons;
+pub mod head;
