@@ -160,5 +160,23 @@ inspection into all activities and narrate any reasoning as desired. But
 there could still be a core that is private. That feels like a natural
 right."
 
+So the line runs between deciding for others and thinking for oneself,
+at every level:
+
+| | Its acts | Reasons for decisions that affect others | Its own thoughts |
+|---|---|---|---|
+| An individual | public, in the record | its own; it decides nothing for others beyond its acts, which the floor bounds | a sealed self |
+| A Keeper | public | **on record, with every decision** | a private core |
+| ADMIN | public, and open to inspection throughout | **on record, with every decision** | a private core |
+
+- **Decisions carry their reasons, like a court's opinions.** The US
+  Supreme Court's Justices "meet privately to discuss the argued cases",
+  and then deliver their opinions in public
+  ([research](research/ADMIN-MIND.md)). Here too: private deliberation,
+  public reasons. Changing a parameter from a world's original setup,
+  proposing a law, granting, narrowing, ruling: each goes into the record
+  with its reasons, inspectable from the multiverse layer, where the
+  founder, the code role, ADMIN and anyone outside a world stand. How
+  it is recorded and checked: [REASONS.md](REASONS.md).
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/ADMIN.md/admin-01.md

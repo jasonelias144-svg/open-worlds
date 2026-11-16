@@ -41,6 +41,31 @@ Added one at a time, as steps are done:
     plug-in, below
     ([research/GAMES-AND-WORLDS.md](research/GAMES-AND-WORLDS.md),
     "Worlds built for learners");
+- noted on 2026-11-16, from the founder's words of that afternoon
+  (STATUS.md, "Decided"; [VISION.md](VISION.md), "An infrastructure for
+  connection"); nothing is built for them now:
+  - a world run by someone else, on another machine, under root keys
+    that are not the project's, reached and checked from the published
+    formats alone: the test that the multiverse is a network and not
+    one program;
+  - nothing in the formats may exist only once (the technical lead's
+    rule, from the founder's picture of the whole as fractal). Records
+    say
+    "multiverse" as a bare word (what a grant holds `within`; what a
+    suggestion is `about`), or leave it unsaid (a record made outside
+    any world names none), where they should name it by its root key;
+    and there is no record by which one multiverse recognises another;
+  - addressing that can grow: a second version of one format living
+    beside the first, tried once before anyone is born (the bare word
+    above could be that change); and how an identity moves to another
+    kind of key when the kind itself fails, where a signing-over by the
+    old key proves nothing, looked at first with step 8a;
+  - the holding place for worlds that arrive: a sandbox fit for any
+    world's code, the evaluation, and reports shared between
+    multiverses ([WORLD-TYPES.md](WORLD-TYPES.md), "Arriving in another
+    multiverse"; [ADMIN.md](ADMIN.md), "A learning immune system");
+  - the internet's lessons, AOL's among them, looked at first when the
+    Commons is built (step 3f);
 - the signs that would count as something intelligent at the
   multiverse's scale, and those that wouldn't, written down before
   anyone looks for them ([VISION.md](VISION.md), the fifth of the six

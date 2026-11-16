@@ -3,7 +3,7 @@
 > This part holds: "14. The Commons: a superworld of chat rooms" to "21. Hallucination, both ways".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/start.md
-> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/further-out.md
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/22-many-multiverses-and-worlds-that-move.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
 ## 14. The Commons: a superworld of chat rooms
@@ -501,4 +501,4 @@ words it saw and which it imagined; and a test that would catch
 hallucination in both directions, overclaiming and self-doubt.
 
 
-> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/further-out.md
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/22-many-multiverses-and-worlds-that-move.md

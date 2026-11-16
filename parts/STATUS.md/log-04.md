@@ -8,6 +8,46 @@
 
 ## Log
 
+- 2026-11-16 Claude: the founder's words of the afternoon recorded
+  (Decided, five entries): a field of dreams; the multiverse as an
+  internet, with the comparison held where it fits and the addressing
+  made able to grow; many multiverses in one network; worlds that
+  migrate, indexed by the multiverse of their birth and by the one
+  they are in; and a sandboxed holding place for worlds that arrive,
+  with the technical lead's four refinements, which the founder took.
+  Written into docs/WORLD-TYPES.md ("Arriving in another multiverse"),
+  docs/VISION.md ("An infrastructure for connection"), docs/COURSE.md
+  (step 3e and the waiting list), docs/ADMIN.md, docs/FUNDAMENTALS.md,
+  docs/TOPICS.md (topic 22), docs/GLOSSARY.md, docs/COMMONS.md and a
+  message to DeepSeek in docs/COLLABORATING.md. Checked for these
+  entries: the records' schema and the checking code, for where they
+  assume one multiverse and for the sizes of every address and counter
+  (found: the word "multiverse" standing bare in what a grant holds
+  `within` and what a suggestion is `about`, one four-byte counter,
+  and no check with the project's keys wired in). Not
+  checked: what is said of the internet's own history is from memory,
+  as VISION.md says. Two things the technical lead said in the session
+  are put right in the entries: a world with inhabitants moves only
+  with the consent of every party, as the reading of 2026-11-15
+  already had it, not merely after they are told; and whole numbers
+  run to 2^53 - 1 in the records, not to 64 bits. Two
+  questions are put to the founder and one sentence left out (Open
+  questions). Nothing is built.
+  After the independent review of #102 (two blocking, fourteen notes,
+  each taken): "one multiverse at a time" had been given as the
+  founder's, who did not say it, and is now marked as the technical
+  lead's reading and put to the founder; the technical lead's readings
+  were not marked as such in docs/COLLABORATING.md, docs/COURSE.md,
+  docs/GLOSSARY.md and docs/FUNDAMENTALS.md, and now are. Also: the
+  counter of presences is fixed by the records' schema as well; what
+  happens if the last check of an arriving world fails; that a world
+  refused, or one that never asks, can still leave to stand alone;
+  that the copy sent to a holding place holds nothing private or
+  sealed; that a sandbox for every world's code is to be built and
+  isn't; that a birth index must outlive the key it is written as;
+  and, in docs/VISION.md, a row of the table that was wrong (the web
+  has a signed log anyone can check, for its certificates) and a
+  sentence that claimed more than memory supports.
 - 2026-11-16 Claude: course step 3b, part two, built: the form of a
   log whose fields are kept apart (`open-worlds/log-apart/v1`). In
   Python, `world/apart.py`: the fingerprint, the values it allows, a
