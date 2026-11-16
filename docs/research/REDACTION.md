@@ -112,7 +112,9 @@ that did not hold together; STATUS.md's Log says what changed.
    removal, a taking back, a restoring), the act, the entry it is on,
    and the office that acted. A reason in free text is kept apart even
    there, since it may turn out to repeat what it should not. A field
-   is redacted whole.
+   is redacted whole. So an office's key is never redacted, which
+   agrees with the rule that the keys which moderate are declared
+   (FUNDAMENTALS.md, privacy, item 14).
    - *The key that acted* is kept apart so that the question stays
      open. Nothing about it is hidden unless it is redacted, and
      whether it ever may be is the founder's (below, "For the
@@ -129,8 +131,8 @@ that did not hold together; STATUS.md's Log says what changed.
    32 hex digits, fresh for each field of each entry, and never taken
    from a world's seed (FUNDAMENTALS.md). No fingerprint may appear
    twice in a log, which catches a salt used again. A value is text, a
-   whole number no larger than 2^53 - 1, true or false, or a list or
-   map of these; both languages refuse anything else, so that Python
+   whole number from -(2^53 - 1) to 2^53 - 1, true or false, or a list
+   or map of these; both languages refuse anything else, so that Python
    never writes what Rust would refuse.
 3. **The contents are kept beside the log, not in it.** A log is then
    two things: the entries, which are the chain, and the contents,
@@ -153,9 +155,11 @@ that did not hold together; STATUS.md's Log says what changed.
    entry that was redacted is not touched. If the work stops after the
    mark, the log shows a field that is marked and still there, which
    the check reports and the office can finish. The second check gives
-   each field one of four states: **present**; **redacted** (gone, with
-   a mark); **unfinished** (marked, still there); **missing** (gone,
-   with no mark), which is a fault in whoever published the log.
+   each field one of five states: **present**; **redacted** (gone, with
+   a mark); **unfinished** (marked, still there); **kept public**
+   (marked, still there, with a later decision to keep it public); and
+   **missing** (gone, with no mark), which is a fault in whoever
+   published the log.
    - *The sealed copy* is a `sealed/v1` with a label of its own. Inside
      the box is a signed record that names the log, the entry's hash,
      the field, the salt and the value. Whoever opens it works out the
@@ -196,8 +200,10 @@ that did not hold together; STATUS.md's Log says what changed.
    name the comment's entry by the entry's own hash, the log's kind of
    hash; it affects the author; its grounds name the part of the room's
    law it rests on. The entry that carries it says in the open the
-   act, the entry it is on, the office, and the decision's own hash;
-   the signed decision is in the contents. Restoring is a `decision/v1`
+   act, the entry it is on, the office, the ground, and the decision's
+   own hash; the signed decision is in the contents. So if a reason
+   has to be redacted, which takes the whole signed decision out, the
+   note can still show the ground. Restoring is a `decision/v1`
    of kind `restore-comment` that supersedes the removal.
    - *The incident id is the hash of the entry that carries the
      removal,* shown short: the fewest hex digits, twelve or more, that
@@ -211,8 +217,8 @@ that did not hold together; STATUS.md's Log says what changed.
      records for a decision (its office holds the grant it names, and
      the grant allows the act), which `formats/records.py` leaves to
      the kernel. So part four is larger than it reads.
-   - *The room's note* shows the ground, the part of the law, and the
-     reasons where they are still there.
+   - *The room's note* shows the incident id and the ground, the part
+     of the law, and the reasons where they are still there.
 8. **An author taking back their own comment is not a decision.** No
    office acts, so there is no grant, no grounds and no appeal. It is a
    record kind of its own in records-v1, signed by the author, that
@@ -231,10 +237,12 @@ that did not hold together; STATUS.md's Log says what changed.
    | Then | Result |
    |---|---|
    | a field is redacted | it wins over everything, for that field: nothing shows it again, unless the office decides to keep it public |
-   | a removal, or a taking back, of an entry that is already hidden | refused |
+   | a second removal of a removed entry, a second taking back, or a removal of an entry its author took back | refused |
    | a restoring of an entry that is not removed, or that its author took back | refused: an office does not undo an author's taking back |
    | a removal after a restoring | a new incident, with a new id |
    | an author takes back a comment that an office removed | allowed: it stays hidden even if the removal is later restored |
+   | an author undoes their own taking back, if part four allows it | the comment shows again, unless an office's removal still stands |
+   | a removal of an entry that has a redacted field | allowed: the entry is hidden, and the field stays redacted |
 
    The room's own view of it is step 3c's.
 10. **In Python and Rust, with shared vectors,** as every format here
@@ -254,9 +262,12 @@ founder in STATUS.md, "Open questions". Part two needs neither.
   the founder's words on a redacted link are "we keep public record of
   the action with private details of the action not included". The
   plan keeps the key apart so that either answer can be built; a log
-  that hashed it in the open could never allow it. Recommended: keep
-  the option, and decide with the purging of a person who leaves
-  (step 8a).
+  that hashed it in the open could never allow it. The cost of
+  allowing it: once a key is redacted, no reader can check again that
+  an act was that key's, such as that the one who took a comment back
+  was the one who wrote it. It would rest on the world's word at the
+  time of writing. Recommended: keep the option, and decide with the
+  purging of a person who leaves (step 8a).
 
 ## Where the founder's last words of 2026-11-16 meet this
 
@@ -302,7 +313,7 @@ This plan was written before them (STATUS.md, "Decided").
 
 1. This plan.
 2. Fingerprints and contents: the form and how a log names it, the two
-   checks with the four states of a field, and the function that joins
+   checks with the five states of a field, and the function that joins
    entries and contents, in Python and Rust, with vectors. It needs
    nothing from the founder.
 3. Redacting: the mark, the sealed copies and their label, and

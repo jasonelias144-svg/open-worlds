@@ -39,7 +39,18 @@
   hash; the sealed copy is bound by what is inside it, with no change
   to sealing; a log names its form; a table of what wins; what part
   four builds for the first time; three more limits; and a "wrong if"
-  for each decision that can be tested. Carried from
+  for each decision that can be tested.
+  After the narrow re-check at 6792e3c (the four met; one new thing
+  blocking, a contradiction in the table of what wins, mended as the
+  reviewer wrote it): an author may take back a comment an office
+  removed, and only a second removal, a second taking back, or a
+  removal of what its author took back is refused. Its notes were
+  taken too: a fifth state for a field put back by decision; the
+  ground in the open part of a removal's entry, so the note can show
+  it when a reason is redacted; that an office's key is never
+  redacted; the cost of redacting a key, in the founder's question;
+  and docs/FUNDAMENTALS.md's clause on which fields are fingerprints.
+  Carried from
   #99's last re-check, two small notes: the recommendation on the
   Ur-room no longer speaks of a private room "one door away" before
   private rooms exist, and docs/COMMONS.md, "The Ur-room", points to

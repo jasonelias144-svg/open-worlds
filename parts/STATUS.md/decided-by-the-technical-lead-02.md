@@ -26,7 +26,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   contents are kept beside the log, so the log is never written again,
   and one function joins the two for every reader. (4) Redacting is
   seal, then mark, then take out, and a field is present, redacted,
-  unfinished or missing; the sealed copy is a `sealed/v1` with a new
+  unfinished, kept public or missing; the sealed copy is a `sealed/v1` with a new
   label, bound by what is inside it. (5) Proposed, and the founder's:
   a second sealed copy for the office that decides, until the decision
   and any appeal are over. (6) A world with no one in it keeps today's
@@ -50,7 +50,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   published log is found without its contents, or a reader skips the
   joining function (then the contents move into the entry under a key
   the hash skips); (4) a state of a field turns up that is none of the
-  four; (6) a reader takes one form for the other, or the Ur-world
+  five; (6) a reader takes one form for the other, or the Ur-world
   can't change form before anyone is born (then one form, with salts
   given to a run); (7) a moderator's act needs a field `decision/v1`
   hasn't, or two incidents in one room show the same id; (8) an

@@ -169,9 +169,11 @@ kind.
      yes. Redacting is not built before the answer.
   2. Whether the key that acted may ever be redacted. The plan keeps
      the key apart, so that either answer can be built; nothing about
-     it is hidden unless it is redacted. Recommended: keep the option,
-     and decide with the purging of a person who leaves (course step
-     8a).
+     it is hidden unless it is redacted. The cost of allowing it: once
+     a key is redacted, no reader can check again that an act was that
+     key's; it would rest on the world's word at the time of writing.
+     Recommended: keep the option, and decide with the purging of a
+     person who leaves (course step 8a).
 - For the founder, on private rooms and the Ur-room (docs/COMMONS.md,
   "A spectrum of privacy" and "The Ur-room"), from the founder's words
   of 2026-11-16:

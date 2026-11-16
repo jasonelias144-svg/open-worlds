@@ -161,9 +161,11 @@ kind.
      yes. Redacting is not built before the answer.
   2. Whether the key that acted may ever be redacted. The plan keeps
      the key apart, so that either answer can be built; nothing about
-     it is hidden unless it is redacted. Recommended: keep the option,
-     and decide with the purging of a person who leaves (course step
-     8a).
+     it is hidden unless it is redacted. The cost of allowing it: once
+     a key is redacted, no reader can check again that an act was that
+     key's; it would rest on the world's word at the time of writing.
+     Recommended: keep the option, and decide with the purging of a
+     person who leaves (course step 8a).
 - For the founder, on private rooms and the Ur-room (docs/COMMONS.md,
   "A spectrum of privacy" and "The Ur-room"), from the founder's words
   of 2026-11-16:
@@ -2434,7 +2436,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   contents are kept beside the log, so the log is never written again,
   and one function joins the two for every reader. (4) Redacting is
   seal, then mark, then take out, and a field is present, redacted,
-  unfinished or missing; the sealed copy is a `sealed/v1` with a new
+  unfinished, kept public or missing; the sealed copy is a `sealed/v1` with a new
   label, bound by what is inside it. (5) Proposed, and the founder's:
   a second sealed copy for the office that decides, until the decision
   and any appeal are over. (6) A world with no one in it keeps today's
@@ -2458,7 +2460,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   published log is found without its contents, or a reader skips the
   joining function (then the contents move into the entry under a key
   the hash skips); (4) a state of a field turns up that is none of the
-  four; (6) a reader takes one form for the other, or the Ur-world
+  five; (6) a reader takes one form for the other, or the Ur-world
   can't change form before anyone is born (then one form, with salts
   given to a run); (7) a moderator's act needs a field `decision/v1`
   hasn't, or two incidents in one room show the same id; (8) an
@@ -3075,7 +3077,18 @@ it was wrong. Questions of what the project is for stay with the founder.
   hash; the sealed copy is bound by what is inside it, with no change
   to sealing; a log names its form; a table of what wins; what part
   four builds for the first time; three more limits; and a "wrong if"
-  for each decision that can be tested. Carried from
+  for each decision that can be tested.
+  After the narrow re-check at 6792e3c (the four met; one new thing
+  blocking, a contradiction in the table of what wins, mended as the
+  reviewer wrote it): an author may take back a comment an office
+  removed, and only a second removal, a second taking back, or a
+  removal of what its author took back is refused. Its notes were
+  taken too: a fifth state for a field put back by decision; the
+  ground in the open part of a removal's entry, so the note can show
+  it when a reason is redacted; that an office's key is never
+  redacted; the cost of redacting a key, in the founder's question;
+  and docs/FUNDAMENTALS.md's clause on which fields are fingerprints.
+  Carried from
   #99's last re-check, two small notes: the recommendation on the
   Ur-room no longer speaks of a private room "one door away" before
   private rooms exist, and docs/COMMONS.md, "The Ur-room", points to
