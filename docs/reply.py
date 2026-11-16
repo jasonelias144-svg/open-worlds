@@ -57,8 +57,11 @@ KEYS = ("text", "out", "root", "name", "files", "limit", "current")
 
 def load(spec_path):
     """The spec, with the folder it is in."""
-    with open(spec_path, encoding="utf-8") as f:
-        spec = json.load(f)
+    try:
+        with open(spec_path, encoding="utf-8") as f:
+            spec = json.load(f)
+    except (OSError, ValueError):
+        raise Problem(f"{spec_path}: can't be read as JSON") from None
     if not isinstance(spec, dict):
         raise Problem(f"{spec_path}: not a JSON object")
     for key in KEYS:
@@ -72,7 +75,8 @@ def load(spec_path):
 def _name(value):
     """Whether value is a file's name, with no folder in it."""
     return (isinstance(value, str) and value not in ("", ".", "..")
-            and "/" not in value and "\\" not in value)
+            and "/" not in value and "\\" not in value
+            and not any(ord(c) < 32 for c in value))
 
 
 def _under(value):
@@ -81,7 +85,8 @@ def _under(value):
     empty part, no white space."""
     if not isinstance(value, str) or not value or "\\" in value:
         return False
-    if any(c.isspace() for c in value) or os.path.isabs(value):
+    if any(c.isspace() or ord(c) < 32 for c in value) \
+            or os.path.isabs(value):
         return False
     return all(part not in ("", ".", "..") for part in value.split("/"))
 
@@ -92,12 +97,16 @@ def shape(spec):
     for key in ("text", "out"):
         if not _name(spec[key]):
             raise Problem(f"\"{key}\" must be a file's name, beside the spec")
+    if spec["out"] == spec["text"] or spec["out"].endswith(".json"):
+        raise Problem("\"out\" must not be the reply's own text, or a spec: "
+                      "writing it would overwrite them")
     if not _under(spec["root"]):
         raise Problem("\"root\" must be a path under the repository's root")
     if not _under(spec["name"]) or "/" in spec["name"]:
         raise Problem("\"name\" must be one word")
-    if isinstance(spec["limit"], bool) or not isinstance(spec["limit"], int):
-        raise Problem("\"limit\" must be a whole number of bytes")
+    if isinstance(spec["limit"], bool) or not isinstance(spec["limit"], int) \
+            or spec["limit"] < 1:
+        raise Problem("\"limit\" must be a whole number of bytes, above none")
     if not isinstance(spec["current"], bool):
         raise Problem("\"current\" must be true or false")
     files = spec["files"]
@@ -255,6 +264,8 @@ def main(argv, root=ROOT):
     if problems:
         for problem in problems:
             print(f"{spec['out']}: {problem}", file=sys.stderr)
+        print(f"{spec['out']} was written, and is wrong as it stands: "
+              "build it again once this is mended", file=sys.stderr)
         return 1
     print(f"{spec['out']}: {len(whole.encode('utf-8'))} bytes, "
           f"{whole.count(chr(10))} lines, {len(spec['files'])} files")

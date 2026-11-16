@@ -195,6 +195,21 @@ class Small(unittest.TestCase):
                         REPLY.build(spec, self.root)
                     with self.assertRaisesRegex(REPLY.Problem, "beside"):
                         REPLY.check(spec, self.root)
+        # Writing must never overwrite the reply's own text, or a spec.
+        for out in ("r.txt", "r.json", "other.json"):
+            with self.subTest(out=out):
+                with self.assertRaisesRegex(REPLY.Problem, "overwrite"):
+                    REPLY.build(dict(self.spec, out=out), self.root)
+        for path in ("src/a\x00.rs", "src/a\x07.rs"):
+            with self.subTest(path=path):
+                self.spec["files"][1][0] = path
+                with self.assertRaisesRegex(REPLY.Problem, "under \"root\""):
+                    self.build()
+        self.spec["files"][1][0] = "src/a.rs"
+        for limit in (0, -1, True, "1000", 10.5, None):
+            with self.subTest(limit=limit):
+                with self.assertRaisesRegex(REPLY.Problem, "whole number"):
+                    REPLY.build(dict(self.spec, limit=limit), self.root)
         for root in ("..", "/", "code/../.."):
             with self.subTest(root=root):
                 with self.assertRaisesRegex(REPLY.Problem, "\"root\""):
@@ -261,6 +276,13 @@ class Small(unittest.TestCase):
         self.assertEqual(run(path),
                          (1, "192 bytes, over the limit of 10\n"))
         self.assertEqual(run()[0], 2)
+        missing = os.path.join(self.root, "replies", "none.json")
+        self.assertEqual(run(missing),
+                         (1, f"{missing}: can't be read as JSON\n"))
+        with open(missing, "w", encoding="utf-8") as f:
+            f.write("{not json")
+        self.assertEqual(run("--check", missing),
+                         (1, f"{missing}: can't be read as JSON\n"))
 
         # After writing, the file is read from disk as a reader would
         # read it: a problem found then is said, and the run fails.
@@ -274,7 +296,11 @@ class Small(unittest.TestCase):
 
         REPLY.read_back = second_time
         self.addCleanup(setattr, REPLY, "read_back", real)
-        self.assertEqual(run(path), (1, "r-out.txt: planted\n"))
+        self.assertEqual(
+            run(path),
+            (1, "r-out.txt: planted\n"
+                "r-out.txt was written, and is wrong as it stands: build it "
+                "again once this is mended\n"))
         self.assertEqual(len(calls), 2)
         self.assertEqual(calls[0], calls[1])
 

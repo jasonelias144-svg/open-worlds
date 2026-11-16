@@ -2862,6 +2862,20 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-16 Claude: carried from #98's narrow re-check, in the same
+  change as the course's recheck below. `docs/reply.py` now refuses an
+  `out` that is the reply's own text or a spec (writing it would have
+  overwritten them), a limit below one, and a control character in a
+  path; a spec that is missing or isn't JSON is said plainly; and when
+  the file read back after writing is found wrong, the message says
+  that it was written. Two rows of docs/research/CHAT-SCHEMA.md say
+  less than they did: where `seq` and `prev` are absent is not a whole
+  list, and that the one who enters signs `JoinRequest` is read from
+  its name and the crate, not from the schema. Left as it is: a
+  symbolic link under the reply's root is followed, which a review of
+  the repository would show. Still untested: that the byte comparison
+  after writing would catch a difference.
+
 - 2026-11-16 Claude: course step 3a done and moved to "Done" in
   docs/COURSE.md, with its pull requests (#61, #75 to #78). The course
   rechecked, on the founder's word of the same day, with a new list of
