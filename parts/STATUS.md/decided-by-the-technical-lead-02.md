@@ -16,7 +16,8 @@ it was wrong. Questions of what the project is for stay with the founder.
   (docs/COURSE.md, "Rechecked on 2026-11-16"), on the founder's word of
   the same day (Decided, the newest entry). It was put to the founder in
   the session, and stands unless the founder reorders it. Six steps
-  come in from the waiting list, which had placed them: a log whose
+  come in from the waiting list, which had placed each at this recheck
+  or before anyone lives in a world: a log whose
   fields can be redacted, with removals and restorings on record (3b);
   the room, DeepSeek's `chat-world` on the project's formats (3c);
   offices as records (3d); a world's lifecycle, and a world leaving
@@ -36,9 +37,10 @@ it was wrong. Questions of what the project is for stay with the founder.
   before a moderator holds one in a hosted room; and step 7 keeps the
   sealed self in the container, so the container comes before it.
   *The cost:* six steps now stand ahead of ALICE's and BOB's birth
-  that didn't on 2026-11-14. Four were already placed before anyone
-  lives in a world (3b, 3d, 3e, 6a). The two this order adds are the
-  room and the Commons hosting rooms.
+  that didn't on 2026-11-14. None is new at this recheck: the waiting
+  list took each in on 2026-11-15, with where it was to go (at this
+  recheck, or before anyone lives in a world). What this recheck chose
+  is to put all of 3b to 3f before step 4, with the room among them.
   *The alternative,* put to the founder with it: 3b and 3c first, and
   3d to 3f behind step 6, which brings the Ur-world's first room three
   steps nearer and the Commons later. And if the founder wants the

@@ -232,9 +232,11 @@ it to the founder the same day. It stands unless the founder reorders
 it (STATUS.md, "Decided by the technical lead").
 
 What changed:
-- **Six steps came in from the waiting list,** which had placed them:
-  3b to 3f before step 4, and 6a before step 7. Every other step keeps
-  its number, so the numbers other pages cite stay as they are.
+- **Six steps came in from the waiting list:** 3b to 3f before step 4,
+  and 6a before step 7. The waiting list had placed each at this
+  recheck, or before anyone lives in a world; their order among
+  themselves, and before step 4, is this recheck's. Every other step
+  keeps its number, so the numbers other pages cite stay as they are.
 - **The twelve nearest are under "Ahead".** Steps 8a, 9, 10, 11 and 12
   stand behind them, in their old order, under "Beyond the twelve". So
   the course is seventeen steps long for now, and looks at the nearest
@@ -265,18 +267,22 @@ The order, and why:
   container, and no one arrives anywhere before the container exists.
 
 The cost, said plainly: six steps now stand ahead of ALICE's and BOB's
-birth that didn't on 2026-11-14. The waiting list had already placed
-four of them before anyone lives in a world (3b, 3d, 3e and 6a), so
-they came before step 9 in any order. The two this order adds ahead of
-the birth are the room and the Commons hosting rooms (3c and 3f). The
-alternative keeps 3b and 3c first and moves 3d to 3f behind step 6,
-which brings the Ur-world's first room three steps nearer and the
-Commons later. And if the founder wants the Commons open to people
-sooner, 6a moves up to follow 3f. Both were put to the founder.
+birth that didn't on 2026-11-14. None is new at this recheck. The
+waiting list took each in on 2026-11-15, with where it was to go: the
+log that can be redacted and the private container before anyone lives
+in a world; the Commons at this recheck, ahead of the Ur-world's
+opening; offices, the lifecycle and a world leaving to be placed at
+this recheck. What this recheck chose is to put all of 3b to 3f before
+step 4, with the room among them. The alternative keeps 3b and 3c
+first and moves 3d to 3f behind step 6, which brings the Ur-world's
+first room three steps nearer and the Commons later. And if the
+founder wants the Commons open to people sooner, 6a moves up to follow
+3f. Both were put to the founder.
 
 What persons taught is written into the steps it reaches:
-- whoever enters a room enters as a presence, with a key of its own
-  there (3c);
+- a presence is a key of its own in one world, and a room is a world;
+  so whether a person has one presence for the Commons or one for each
+  room has to be settled when the room is built (3c);
 - what a public log says about something refused can itself give it
   away, so a refused link is logged with neither its records nor why;
   a redaction's mark takes the same care (3b), and so does every

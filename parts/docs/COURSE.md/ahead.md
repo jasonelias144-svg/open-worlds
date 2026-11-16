@@ -48,9 +48,10 @@ incident id where a comment was removed, and a mark where a field was
 redacted. Two tests come with it: that a removed comment's text is not
 shown (the sketch's `visible_log` shows it today), and that no one
 outside a closed room, ADMIN included, can read its words
-([COMMONS.md](COMMONS.md), "Order"). Whoever enters a room enters as a
-presence, with a key of its own there (step 3a). What DeepSeek sends
-back on its next steps is fitted here. *Borrowing:* Matrix's rooms, each
+([COMMONS.md](COMMONS.md), "Order"). Settled here too: whether a person
+has one presence for the Commons or one for each room, since a
+presence is a key of its own in one world, and a room is a world (step
+3a). What DeepSeek sends back on its next steps is fitted here. *Borrowing:* Matrix's rooms, each
 a signed history of events; IRC's channels and their operators.
 
 **3d. Offices as records.** An office record (its charter, key and

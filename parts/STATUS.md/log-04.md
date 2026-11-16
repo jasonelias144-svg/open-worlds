@@ -26,8 +26,9 @@
   docs/COURSE.md, with its pull requests (#61, #75 to #78). The course
   rechecked, on the founder's word of the same day, with a new list of
   twelve (Decided; Decided by the technical lead): six steps came in
-  from the waiting list, which had placed them, 3b to 3f before step 4
-  and 6a before step 7; steps 8a, 9, 11 and 12 stand behind the twelve;
+  from the waiting list, 3b to 3f before step 4 and 6a before step 7
+  (the waiting list had placed each at this recheck, or before anyone
+  lives in a world); steps 8a, 9, 11 and 12 stand behind the twelve;
   step 10 is the development container; and DeepSeek's work is written
   in as running beside the course. What persons taught is written into
   steps 3b, 3c, 4, 6a and 7, and into the waiting list's line on
