@@ -157,11 +157,20 @@ Built as given: delivery 1 passes 22 of 22 tests; delivery 2, 20 of
 22; delivery 3, 27 of 29; delivery 4, 31 of 33; delivery 5 does not
 compile, and with its two faults set aside passes 39 of 41.
 [../../INDEX.md](../../INDEX.md) ("The record continued (2026-11-16)")
-says what each delivery is and names the three faults. None is
-repaired here.
+says what each delivery is and names the three faults.
+
+`chat-world-now/` is the crate as it stands: all five deliveries, with
+the three faults repaired in a few lines (fixes 19 to 21 in
+[../../INDEX.md](../../INDEX.md)). It builds, passes all 41 of its
+tests, and its four demos run. It is put together here, by
+`review/steps.py --now`; `review/steps.py --check` holds the folder to
+that, byte for byte, and `sketch_status_test.py` runs the check. So
+its files are listed below as ours, though all but three are exactly
+as DeepSeek wrote them.
 
 ## Ours, not DeepSeek's
 
 `README.md`, `conftest.py`, `pytest.ini`, `known-failures.txt`,
 `sketch_status_test.py`, `review/run.sh`, `review/steps.py`,
-`review/steps.sh`.
+`review/steps.sh`, and every file under `chat-world-now/` (put
+together here from DeepSeek's files, as said above).

@@ -467,16 +467,18 @@ The titles are DeepSeek's.
 | 3 | "signed heads, first in prose, then code": what is lost if a room signs its log's head in place of each record, then heads in code | 18832 | 8 | 27 of 29 |
 | 4 | "runtime attestation": keys that share a runtime say so together, in a published record | 20714 | 3 | 31 of 33 |
 | 5 | "the succession trio": a shard of knowledge exported, a moderator's succession, and a sibling declared in the Commons | 21474 | 8 | does not compile; with its two faults set aside, 39 of 41 |
+| all five, with three repairs | The crate as it stands, `deepseek/012-09-05/chat-world-now/` (fixes 19 to 21, under "Changes to DeepSeek's code") | | | 41 of 41, and the four demos run |
 
-Three faults, none repaired here:
+Three faults, as the deliveries were written:
 1. From delivery 2 on, the same two tests fail, `home_port_verifies`
    and `home_bookmark_and_presence_verify`, each with "record 1:
-   missing room proof". They passed in delivery 1. The cause, as read
-   and not yet confirmed by a repair: delivery 2 makes the room and
-   its maker two keys, and the check asks every record but a leaving
-   for a proof by the room's key; a home's port landing, bookmark and
-   presence records are signed by the person's key alone
-   (`src/home.rs`), which was the room's key until then.
+   missing room proof". They passed in delivery 1. The cause:
+   delivery 2 makes the room and its maker two keys, and the check
+   asks every record but a leaving for a proof by the room's key; a
+   home's port landing, bookmark and presence records were still
+   signed by the person's key alone (`src/home.rs`), which was the
+   room's key until then. Fix 19 signs them with both, and both tests
+   pass.
 2. Delivery 5, `src/verify.rs`: one condition does not compile
    (mismatched types).
 3. Delivery 5, `src/bin/succession-demo.rs`: it calls `.hash()` on
@@ -490,11 +492,16 @@ the demo left out), 39 of the 41 pass, and the two that fail are the
 two of fault 1.
 
 The crate kept in `deepseek/012-09-05/chat-world/` is still the one
-DeepSeek was given: the deliveries are beside it, as written.
-Repairing the three faults and joining the result to that crate come
-with the next reply to DeepSeek. Not checked: the demos of deliveries 2 to 5
-were not run; the prose of delivery 3 was read only in part; nothing
-of this has been compared with open-worlds' own formats.
+DeepSeek was given, and the deliveries are beside it, as written.
+`chat-world-now/` is the crate as it stands: the five deliveries laid
+over that crate in order, with the three repairs. `review/steps.py`
+puts it together, and its `--check` holds the folder to exactly that,
+byte for byte (the folder's own test runs it, in CI). So every file in
+it is DeepSeek's latest, changed only as fixes 19 to 21 say. Not
+checked: the demos of deliveries 2 to 5 as written were not run, only
+the four demos of the crate as it stands; the prose of delivery 3 was
+read only in part; nothing of this has been compared with open-worlds'
+own formats.
 
 ## Record 012-03-02, component by component
 
@@ -700,6 +707,31 @@ the code as well. Signing the `type` is the stronger, since a record
 can't then be passed off as another kind. (The Commons' registrations
 and the transcripts verified as written: they are signed and checked
 as the same struct.)
+
+**Fix 19 (2026-11-16, record 012-09-05, continued): a home's own
+records carry the room's proof.** From delivery 2 a room and its maker
+are two keys, and `verify_room` asks every record but a leaving for a
+proof by the room's key. `HomeRoom`'s port landing, bookmark and
+presence records were signed by the person's key alone, so two tests
+failed from delivery 2 on with "missing room proof". In
+`chat-world-now/src/home.rs` the three are signed by both keys, with
+the crate's own `sign_record_dual`, as a room's other records are.
+
+**Fix 20: a condition that did not compile is taken out.** Delivery
+5's `src/verify.rs` held a condition on a shard's entry hashes that
+does not compile (mismatched types) and whose own comment says it does
+nothing. It is removed; the check of each hash, which follows it,
+stays.
+
+**Fix 21: the succession demo hashes a sibling's record as the Commons
+does.** Delivery 5's `src/bin/succession-demo.rs` called `.hash()` on
+a `SiblingDeclared`, which has no such method. It now calls the
+crate's `hash_of`, which is what the Commons' own record of it uses.
+
+With the three, the crate after all five deliveries builds, passes all
+41 of its tests, the number DeepSeek gave as expected, and its four
+demos run to the end. The repairs are five lines changed and three
+removed; `review/steps.py` holds them (`REPAIRS`).
 
 Not fixed, and why:
 

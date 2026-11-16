@@ -17,6 +17,7 @@
 #   delivery 4    31 pass, 2 fail
 #   delivery 5    does not compile
 #   5-aside       39 pass, 2 fail (two faults set aside, not repaired)
+#   now           41 pass, and the four demos run (three faults repaired)
 # The two that fail are the same from delivery 2 on:
 # home_port_verifies and home_bookmark_and_presence_verify.
 set -eu
@@ -24,15 +25,15 @@ here=$(cd "$(dirname "$0")/.." && pwd)
 scratch=$(mktemp -d)
 trap 'rm -rf "$scratch"' EXIT
 python3 "$here/review/steps.py" --aside "$scratch"
+python3 "$here/review/steps.py" --check
+mkdir "$scratch/now"
+cp -R "$here/chat-world-now" "$scratch/now/chat-world"
 status=0
 check() {
     # check DELIVERY WHAT-THE-TESTS-MUST-SAY
     echo "== delivery $1"
     ( cd "$scratch/$1/chat-world" && cargo test --test integration ) \
         > "$scratch/$1.out" 2>&1 || true
-    # Each delivery is built on its own, and its build is not kept:
-    # six of them side by side take a few gigabytes.
-    rm -rf "$scratch/$1/chat-world/target"
     grep -E '^test result|FAILED$|could not compile' "$scratch/$1.out" || true
     if grep -q "$2" "$scratch/$1.out"; then
         echo "   as recorded"
@@ -40,6 +41,20 @@ check() {
         echo "   NOT as recorded: wanted \"$2\""
         status=1
     fi
+    if [ "$1" = now ]; then
+        for demo in chat-demo home-demo head-demo succession-demo; do
+            if ( cd "$scratch/now/chat-world" && cargo run --quiet --bin "$demo" ) \
+                > "$scratch/$demo.out" 2>&1; then
+                echo "   $demo runs"
+            else
+                echo "   $demo DOES NOT RUN"
+                status=1
+            fi
+        done
+    fi
+    # Each delivery is built on its own, and its build is not kept:
+    # seven of them side by side take a few gigabytes.
+    rm -rf "$scratch/$1/chat-world/target"
 }
 check 1 '^test result: ok. 22 passed; 0 failed'
 check 2 '^test result: FAILED. 20 passed; 2 failed'
@@ -47,4 +62,5 @@ check 3 '^test result: FAILED. 27 passed; 2 failed'
 check 4 '^test result: FAILED. 31 passed; 2 failed'
 check 5 'could not compile `chat-world`'
 check 5-aside '^test result: FAILED. 39 passed; 2 failed'
+check now '^test result: ok. 41 passed; 0 failed'
 exit $status

@@ -97,7 +97,8 @@ and runs its own tests and its two demos, which must all pass, and
 then shows one finding that stands; it needs Rust and the network, and
 CI doesn't run it.
 `review/steps.sh` there builds each of the five deliveries the record
-ends with, as DeepSeek gave them, and runs their tests
+ends with, as DeepSeek gave them, and the crate as it stands
+(`chat-world-now/`), and runs their tests
 ([INDEX.md](INDEX.md), "The record continued (2026-11-16)"); CI
 doesn't run it either.
 
