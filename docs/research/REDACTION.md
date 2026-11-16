@@ -5,7 +5,8 @@ are kept apart from the chain that commits to them, by a salted
 fingerprint", and "Removing a comment, as a record of its own". As with
 each step, this page looks first, then records what the technical lead
 decided, then the parts the step is built in. Begun on 2026-11-16.
-Nothing on this page is built yet.
+Part two, the fingerprints and the contents, is built (below, "Part
+two, built"); nothing else on this page is.
 
 ## What is asked
 
@@ -309,13 +310,123 @@ This plan was written before them (STATUS.md, "Decided").
   of about 2^48 hashes for twelve digits. So the room shows as many
   digits as make it the only one, and the whole hash is one step away.
 
+## Part two, built
+
+In `world/apart.py` and `rust/world-log/src/apart.rs`, with
+`vectors/log-apart.json`. What building it settled, each the technical
+lead's (STATUS.md has what would show it wrong):
+
+- **The form's name is `open-worlds/log-apart/v1`.** A log names it in
+  its first entry, as `data.form`.
+- **Fingerprints sit in a map of their own.** An entry holds `apart`,
+  from a field's name to its fingerprint, beside its open `data`. They
+  are not put in `data` where the values would be: a reader that
+  doesn't know the form then finds a field absent, and never shows a
+  fingerprint as if it were what someone said.
+- **The table is in the log.** The first entry holds, for each kind of
+  entry, the names of the fields kept apart (`data.kept_apart`). A
+  field the table names for an entry's kind is in `apart` or not there
+  at all, never in the open `data`; and an entry keeps nothing apart
+  that the table doesn't name. So "fixed kind by kind" (decision 1) is
+  checked from the log alone.
+- **An entry holds its seven keys and nothing else:** `tick`, `kind`,
+  `agent`, `data`, `apart`, `prev` and `hash`. The table reaches `data`
+  and `apart` only, so a field beside them would be in the open
+  whatever the table said.
+- **The open part is held to the same rule as a value kept apart.**
+  `tick` is a whole number from 0 to 2^53 - 1, `kind` is text, `agent`
+  is text or nothing, and `data` is a map a fingerprint would allow: no
+  number with a fraction, nothing beyond 2^53 - 1, every key text. This
+  came from the independent review of #101. Python's writer had held
+  the open part to nothing, so it could write a log that Rust could not
+  check, and, through a key that wasn't text, could put a field the
+  table keeps apart into the open. Now every log in this form can be
+  written and checked in both languages, and the writer refuses before
+  anything is hashed.
+- **The order of the checks is part of the form.** Entries are read in
+  the log's order; for each, its link to the entry before, then what it
+  says, then its hash. The contents are read in ascending order of
+  entry hash, and of field name within an entry. So a log or contents
+  with two faults is refused for the same one, at the same place, in
+  both languages. The chain is still the kernel's: a log that holds
+  here holds by `verify_log`, unchanged.
+- **`agent` is not a field that can be kept apart.** It stays in the
+  open, as the kernel has it. A room leaves it empty for a person's
+  act and puts who acted, by name and by key, among the fields kept
+  apart; that is step 3c's to write.
+- **Two kinds of entry are the form's own,** so that a field's state
+  can be worked out: a mark (`field_redacted`), which names in the open
+  an earlier entry by its hash and a field that entry keeps apart; and
+  a decision to keep a field public (`field_kept_public`), which names
+  an earlier mark. What else they say (the office, the ground, the
+  decision's hash) and the act of redacting are part three's.
+- **A mark stands until a decision to keep the field public answers
+  it.** The five states, exactly: present (never marked, and there);
+  redacted (a mark stands, and it is gone); unfinished (a mark stands,
+  and it is still there); kept public (every mark on it was answered,
+  and it is there); missing (no mark stands, and it is gone). Decision
+  4 had left one case without a name: a field whose mark was answered,
+  and which is gone all the same. It is missing: the record says it is
+  public, and it isn't there. A field can be marked again after a
+  decision to keep it public, and is then redacted again.
+- **A field under a standing mark is never shown,** even while it is
+  still in the contents. The joining function leaves it out, so a
+  redaction cut short hides the field from every reader that uses the
+  function.
+- **A name** is a lowercase letter and then up to 63 lowercase
+  letters, digits or underscores. **Nesting** in a value stops at 32
+  lists or maps deep.
+- **The contents hold nothing the log doesn't commit to.** An entry
+  the log doesn't have, or a field an entry doesn't keep apart, is
+  refused. So is one salt used for two fields, which the rule on
+  fingerprints (decision 2) can't see when the two values differ.
+- **Fifteen reasons for refusing, in fixed words,** the same in both
+  languages, each with the same place. The vectors hold 90 logs or
+  contents that are refused, each for one reason at one place (eight of
+  them hold two faults, to fix which is met first), and five that hold,
+  with every field's state and the entries as a reader gets them. Rust
+  writes the trial room again from the same salts and gets Python's log
+  and contents.
+- **`world-log LOG CONTENTS`** checks the two together from the
+  command line, counts the fields in each state, and fails if any is
+  missing.
+
+Not done in this part, and why:
+- **No reader is changed.** No world writes this form yet, so the
+  Ur-world's host, its checks of links and arrivals, and the web app's
+  checks read what they read before. The room is the first to write it
+  (step 3c), and is to use the joining function from its first line.
+- **Nothing is redacted.** There is no sealing, and no office. The
+  tests take a field out of the contents by hand, to show that the
+  chain still checks and what state the field is then in.
+- **The trial salts are fixed and public,** so that the vectors are the
+  same on every run. Everything else takes its salts from the
+  operating system; in Rust the caller supplies them, since
+  `world-log` has no source of randomness of its own.
+- **Limits.** The check holds a world to its table by name: it can't
+  know that an open field of another name holds what should have been
+  kept apart. A fingerprint commits a log to a value, and says nothing
+  of who wrote it: that is a signature's work, in the signed record a
+  room keeps apart (step 3c). JSON's `-0` is read by Python as 0 and
+  refused by Rust; nothing writes it. And a file that isn't JSON as the
+  standard has it (`NaN`, a number too large to read, half of a
+  surrogate pair) is refused by Python's check and can't be read at all
+  by Rust.
+
+Carried to part three, from the same review: a single entry of kind
+`field_kept_public` turns a finished redaction into a missing field,
+and the command line then fails until the field is put back. Nothing in
+this part says who may append one. Part three has to: the world writes
+it only for the office that decides, with the field put back first or
+in the same step.
+
 ## The parts
 
 1. This plan.
 2. Fingerprints and contents: the form and how a log names it, the two
    checks with the five states of a field, and the function that joins
    entries and contents, in Python and Rust, with vectors. It needs
-   nothing from the founder.
+   nothing from the founder. Built (above).
 3. Redacting: the mark, the sealed copies and their label, and
    "redacted first, decided after", with a test that neither the value
    nor its salt is left anywhere in what the log keeps. It waits for

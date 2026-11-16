@@ -18,7 +18,7 @@ or in
 collaborating page are not accessible. So all files need links through
 this method.").
 
-This list holds the files a reader works from, 252 of them: every
+This list holds the files a reader works from, 258 of them: every
 page, all the code in Python and Rust, the tests, the vectors and the
 web pages. [FILES.md](FILES.md) holds the other 871, files of record
 best sent when a question needs them: DeepSeek's records, word for
@@ -26,6 +26,14 @@ word, the code taken from them, what DeepSeek was given in reply, and
 Experiment 001's run logs.
 `tests/test_collaborating_links.py` fails if a file is added, moved or
 removed and this list or FILES.md isn't changed with it.
+
+A page or a file of code longer than 28,000 bytes is also kept cut
+into parts, for a reader who is shown only the start of a page:
+[parts/INDEX.md](../parts/INDEX.md) gives every part's full link, and
+its own link is in the last group below. The test vectors and
+Cargo.lock are left whole.
+
+**Start here**, the orientation, the charter, the course, and the pages the work now draws on (10):
 
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/every-file-by-its-full-link-01.md

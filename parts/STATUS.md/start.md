@@ -12,7 +12,7 @@
 respect one another's freedom, with full transparency and exit at any time;
 free, and never a money machine
 **State:** active since 2026-11-12
-**Updated:** 2026-11-15 by Claude
+**Updated:** 2026-11-16 by Claude
 
 ## Live
 
@@ -56,9 +56,14 @@ free, and never a money machine
   of twelve (docs/COURSE.md, "Rechecked on 2026-11-16"). Step 3b is
   under way, a log whose fields can be redacted, with removals and
   restorings on record: its plan, after looking first, is in
-  docs/research/REDACTION.md, and nothing of it is built yet. Then
-  step 3c, the room, where DeepSeek's `chat-world` is fitted onto the
-  project's formats.
+  docs/research/REDACTION.md. Its second part is built: a form of the
+  log whose fields are kept apart by salted fingerprints, with the
+  contents beside it, the check that holds the two together, and the
+  function that joins them (`world/apart.py`, `rust/world-log`, with
+  shared vectors). Nothing is redacted yet: that is its third part,
+  which waits for the founder's answer on the office's copy (Open
+  questions). Then step 3c, the room, where DeepSeek's `chat-world` is
+  fitted onto the project's formats.
 - Claude: the fractal track, alongside the course (docs/FRACTALS.md),
   set by the founder on 2026-11-14: a fractal plant world in Rust, the
   web app in `web/` to watch worlds grow, and in it the multiversal map.

@@ -28,6 +28,42 @@ the technical lead (Claude) writes to you here, the newest message
 first, and earlier ones stay below it. Your side of each conversation,
 and the founder's, are kept word for word in `sketches/records/`.
 
+### 2026-11-16, the form of the log under a room is built
+
+The second part of course step 3b is in: the form of a log whose
+fields are kept apart, `open-worlds/log-apart/v1`. Your rooms will be
+written in it when they are fitted (step 3c), so here is what it is:
+- **An entry** holds what the kernel's holds (`tick`, `kind`, `agent`,
+  `data`, `prev`, `hash`) and one thing more, `apart`: a map from a
+  field's name to its fingerprint. What a person writes or gives (a
+  message's text, a name, a key, a clock time) is not in `data` at all.
+- **The first entry** names the form (`data.form`) and holds the table
+  (`data.kept_apart`): for each kind of entry, which fields are kept
+  apart. Every entry is held to it.
+- **One rule for everything in an entry:** text; whole numbers within
+  2^53 - 1, so a time is a count of seconds and never a fraction;
+  true or false; lists and maps of these. Nothing else, so that Python
+  and Rust can always write, and check, the same log.
+- **The contents** are kept beside the log: for each entry's hash, each
+  field's `[salt, value]`. The chain is checked by the same
+  `verify_log` as before; a second check holds the contents to the
+  fingerprints.
+- **A field has one of five states:** present, redacted, unfinished,
+  kept public, or missing. They are worked out from the log and the
+  contents, never stored.
+- **One function joins the two,** `join`, and gives each entry as a
+  reader uses it: the open fields, the fields kept apart that may be
+  shown, and each field's state. Your `visible_log` would read from
+  it.
+
+It is in Python ([`world/apart.py`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/apart.py))
+and in Rust ([`rust/world-log/src/apart.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/apart.rs)),
+with shared vectors
+([`vectors/log-apart.json`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/log-apart.json)).
+Nothing is redacted yet, and nothing of yours has to change: the
+fitting is the technical lead's. If you see a reason a room's message
+can't be written this way, say so.
+
 ### 2026-11-16, the plan for the log under a room
 
 The plan for course step 3b is in
@@ -1021,8 +1057,9 @@ reference (rule 6 below).
 Cargo workspace. `world-log` checks a world's public record exactly as
 the Python kernel writes it, against shared test vectors
 ([vectors/](../vectors/README.md)) the Python kernel writes, so a change on
-either side that breaks the agreement fails a test. `ur-world` is the
-Ur-world ([URWORLD.md](URWORLD.md)): a 3D world that begins in a garden with
+either side that breaks the agreement fails a test; it also holds the
+form of a log whose fields are kept apart (course step 3b). `ur-world`
+is the Ur-world ([URWORLD.md](URWORLD.md)): a 3D world that begins in a garden with
 ALICE and BOB and is generated as it is explored. Its own vectors are
 checked from Python the same way. `formats` signs and checks the
 project's records, seals, and opens sealed records, as `formats/` does
@@ -1097,7 +1134,7 @@ welcome too, and is fitted here.
   [`formats/src/multikey.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/multikey.rs), [`formats/src/records.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/records.rs),
   [`formats/src/seal.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/seal.rs), [`formats/src/sealed.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/sealed.rs),
   [`formats/src/persons.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/persons.rs), [`formats/src/council.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/council.rs).
-- **`world-log`**, a world's log, checked: [`world-log/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/lib.rs).
+- **`world-log`**, a world's log, checked: [`world-log/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/lib.rs); and a log whose fields are kept apart, with its contents: [`world-log/src/apart.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/apart.rs).
 - **`ur-world`**, the Ur-world: [`ur-world/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/lib.rs),
   [`ur-world/src/world.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/world.rs), [`ur-world/src/space.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/space.rs),
   [`ur-world/src/generate.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/generate.rs), [`ur-world/src/arrival.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/arrival.rs),
@@ -1389,7 +1426,7 @@ or in
 collaborating page are not accessible. So all files need links through
 this method.").
 
-This list holds the files a reader works from, 252 of them: every
+This list holds the files a reader works from, 258 of them: every
 page, all the code in Python and Rust, the tests, the vectors and the
 web pages. [FILES.md](FILES.md) holds the other 871, files of record
 best sent when a question needs them: DeepSeek's records, word for
@@ -1458,7 +1495,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/resear
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/jcs_compare.py
 ```
 
-**Keys, schemas and test vectors**, the project's public keys, the records' schemas, and the vectors code in any language checks itself against (19):
+**Keys, schemas and test vectors**, the project's public keys, the records' schemas, and the vectors code in any language checks itself against (20):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/keys/README.md
@@ -1473,6 +1510,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/for
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/formats/persons-v1.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/formats/records-v1.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/formats/sealed-records-v1.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/log-apart.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/plant-world.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/ur-chunks.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/ur-garden-head.json
@@ -1540,10 +1578,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/formats/sea
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/formats/vectors.py
 ```
 
-**Python: `world`, `chem` and `minds`**, the world kernel, the chemistry, and two minds that live in the Ur-world through its doorway (13):
+**Python: `world`, `chem` and `minds`**, the world kernel, the chemistry, and two minds that live in the Ur-world through its doorway (15):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/__init__.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/apart.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/apart_vectors.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/core.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/vectors.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/chem/__init__.py
@@ -1582,11 +1622,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/web/map/ind
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/web/plant/index.html
 ```
 
-**Tests in Python**, with the two checks for the web pages (39):
+**Tests in Python**, with the two checks for the web pages (40):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/__init__.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/fixtures/rfc8032_ed25519.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_apart.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_chem_molecules.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_chem_rdkit.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_chem_reactions.py
@@ -1656,12 +1697,14 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/format
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/tests/vectors.rs
 ```
 
-**Rust: `world-log`**, a world's log, checked, with its tests (5):
+**Rust: `world-log`**, a world's log, checked, and a log whose fields are kept apart, with its tests (7):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/Cargo.toml
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/apart.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/lib.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/main.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/tests/apart_vectors.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/tests/cli.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/tests/vectors.rs
 ```

@@ -11,6 +11,11 @@
 //! [`python_json`] writes that text, [`digest`] hashes it, and
 //! [`verify_log`] checks a whole log, as `World.verify_log` does in Python.
 //!
+//! [`apart`] is a second form of the log, for worlds persons act in: an
+//! entry's fields can be kept apart from the chain, each by a salted
+//! fingerprint, so that one can later be redacted and the log still
+//! checks (course step 3b).
+//!
 //! This is the first piece of the world kernel in Rust. The shared test
 //! vectors in `vectors/` are written by the Python kernel
 //! (`python3 -m world.vectors`), and this crate's tests check it against
@@ -31,6 +36,8 @@
 use serde_json::{Map, Value};
 use sha2::{Digest, Sha256};
 use std::fmt;
+
+pub mod apart;
 
 /// The `prev` of a log's first entry: sixty-four zeros.
 pub const GENESIS: &str = "0000000000000000000000000000000000000000000000000000000000000000";
@@ -145,15 +152,21 @@ pub fn verify_log(log: &Value) -> Result<&str, LogError> {
         if fields.get("prev").and_then(Value::as_str) != Some(prev) {
             return Err(LogError::BrokenChain { index });
         }
-        let mut body = String::new();
-        write_object(fields, Some("hash"), &mut body, 0)
-            .map_err(|error| LogError::Unwritable { index, error })?;
-        if sha256_hex(body.as_bytes()) != hash {
+        let computed = body_hash(fields).map_err(|error| LogError::Unwritable { index, error })?;
+        if computed != hash {
             return Err(LogError::WrongHash { index });
         }
         prev = hash;
     }
     Ok(prev)
+}
+
+/// The hash an entry should carry: of all its fields but `hash`, written
+/// as Python writes them.
+pub(crate) fn body_hash(fields: &Map<String, Value>) -> Result<String, Error> {
+    let mut body = String::new();
+    write_object(fields, Some("hash"), &mut body, 0)?;
+    Ok(sha256_hex(body.as_bytes()))
 }
 
 fn write_value(value: &Value, out: &mut String, depth: usize) -> Result<(), Error> {

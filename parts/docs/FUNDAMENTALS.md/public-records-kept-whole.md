@@ -54,7 +54,8 @@ unless the founder answers otherwise:
   redaction that works best: copies others make of what is published
   can't be recalled afterwards.
 - **Visible, and the log still checks.** To be built, before anyone
-  lives in a world ([COURSE.md](COURSE.md), step 3b): each field of an
+  lives in a world ([COURSE.md](COURSE.md), step 3b; the form of the
+  log is built, `world/apart.py`, and redacting is not): each field of an
   entry that is kept apart (what a person writes or gives; which
   fields, kind by kind, is in
   [research/REDACTION.md](research/REDACTION.md)) enters the chain of
