@@ -250,14 +250,17 @@ kind.
   Every quotation here is from DeepSeek's replies in record 012-07-03 as
   the founder has brought it so far (49 turns; it comes into
   `sketches/records/` whole when the conversation ends). The fuller
-  record bears out the first two points; it is not quoted or described.
+  record bears out the first two points, and nothing in it is quoted
+  here.
   - **Its tool comes and goes by the turn.** On a turn whose message
     from the founder holds a link, DeepSeek has a tool that opens pages,
     and uses it: a window of about 46 lines at a time, and twelve links
     in one turn when twelve were sent. On a turn whose message holds no
     link it has none. Its replies say so. With a link: "This turn is
     different: I now have an open tool." Without: "I do not have an open
-    tool."
+    tool." (Once, when the founder pasted its own written-out tool calls
+    back with their links, what came back was a search with unrelated
+    results, and it said so.)
   - **What the tool returned is not kept.** On a later turn DeepSeek has
     its own earlier replies, but not the pages they came from: "I have
     no tool result in front of me."
@@ -275,8 +278,8 @@ kind.
     COLLABORATING.md as a fresh read, "proving no truncation": the words
     are the page's real last lines, which it had from the founder's
     paste, and the line numbers (L1188 to L1190) fit none of the page's
-    134 versions (it then ended at line 1,147). Three times it wrote a
-    tool call out as text, which does nothing.
+    134 versions (the one it had been given ends at line 1,147). Three
+    times it wrote a tool call out as text, which does nothing.
   - **With no evidence in view it explained the evidence away:** as
     "astronomical coincidence", as the platform, as strings the founder
     had given it, and then by supposing the founder had put its guesses
