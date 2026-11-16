@@ -59,7 +59,18 @@ one of them updates this page.
    hear, and to leave (2026-11-14): "Allowing the problems to arise and
    providing the tools for solutions is my goal, and seeing new ways to
    resolve problems is the point." ([ADMIN.md](ADMIN.md), "A learning
-   immune system".)
+   immune system".) For the Commons' rooms, where each is to have a
+   moderator, the founder (2026-11-16): "we distinguish between a data
+   and a presentation layer. So the comment stays in the data layer,
+   in our records. If action is taken, it must become part of the
+   records to justify the decision to take action." So a comment
+   removed from what a room shows stays in the room's records; the
+   removal is a record of its own, with its reason; and the room
+   shows a note in its place, with an incident id
+   ([COMMONS.md](COMMONS.md), "Removing a comment"). That is new
+   beside the readers' own tools, which stay; the technical lead named
+   the decision of 2026-11-14 to the founder before the founder
+   decided. Not yet built.
 6. **Tools, not solutions.** The founder (2026-11-13): "instead of
    working out how conflict should be resolved, let it arise, provide
    tools to resolve the conflict, but let solutions emerge."
@@ -282,6 +293,25 @@ one of them updates this page.
     one else reads them, ADMIN and the project included. Building a
     closed room includes a test that no one outside it can read its
     words ([COMMONS.md](COMMONS.md)). Not yet built.
+14. **A moderator's rooms are apart.** The founder (to DeepSeek, record
+    012-09-05, line 6732, brought in 2026-11-16): "one model could still
+    mean many keys. Perhaps the same model is sandboxed from itself. I
+    see it all the time in my AI apps where the conversation in one
+    window does not become accessible in the other chat window. They are
+    effectively separated. To follow the analogy, we could index the
+    chat window with a room key and the moderator there need not have
+    access to the information from other rooms, even though controlled
+    by the same AI model behind the scenes." These are a leaning, in
+    the founder's own words ("Perhaps"; "need not have access"), not
+    yet a decision. The technical lead's reading, which stands unless
+    the founder answers otherwise: an AI that moderates many rooms
+    holds a separate key in each, and what it learns in one room has no
+    path to another. To reason across rooms it must read another key's
+    log, which is an act on the record. That the keys which moderate
+    are one model is declared in the open: the technical lead's choice,
+    on the ground of item 3, while the keys an AI merely takes part
+    with stay unlinked by default, as in item 5
+    ([COMMONS.md](COMMONS.md), "Rooms with moderators"). Not yet built.
 
 ## Transparency, beside privacy
 

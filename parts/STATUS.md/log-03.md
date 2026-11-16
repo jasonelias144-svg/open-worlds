@@ -2,11 +2,21 @@
 > for readers who are shown only the start of a long page.
 > This part holds: "Log", piece 3 (its pieces are numbered from its end).
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead-01.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-04.md
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-02.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
-## Log
+- 2026-11-16 Claude: the founder's ideas for the Commons in record
+  012-09-05, into the pages (Decided, the newest entry):
+  docs/COMMONS.md, "Rooms with moderators", with the founder's words and
+  the technical lead's reading; docs/FUNDAMENTALS.md, privacy, item 14;
+  docs/TOPICS.md, topic 14; and one entry under Open questions, for six
+  questions about moderators. The same day the founder answered the
+  question on the schema and the one on removed comments, and both
+  answers are in Decided (docs/COMMONS.md, "Three sources, one Commons"
+  and "Removing a comment"; docs/FUNDAMENTALS.md, freedom, item 5). The
+  quotations were cut from the record by line, by script, and checked
+  against it. Nothing is built by this change.
 
 - 2026-11-16 Claude: a first round of repairs to record 012-09-05's
   code, fixes 15 to 18 in sketches/INDEX.md, each making the code do

@@ -134,6 +134,21 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder, on the Commons' moderators (docs/COMMONS.md, "Open"),
+  six questions. Four have a recommendation and stand on it unless the
+  founder answers otherwise: whether a room's moderator is its Keeper
+  (two offices); what a moderator may do to keep a room's law (pace and
+  prompt, remove a comment where the law allows, never expel); who may
+  remove a comment (the room's moderator, for a reason the law names,
+  and a comment's author for their own; this one bears on voice and
+  information, and is put plainly); and whether the home room is the
+  private container (yes). One reads the founder's own words on a
+  protected freedom, so it is put plainly too: the founder decided on
+  2026-11-16 that a removed comment "stays in the data layer, in our
+  records", and the technical lead reads that, for a room on the record,
+  as readable there by anyone who goes to the records, private
+  information apart, which is sealed. The last, which model first
+  moderates and its cost, is money, and waits for the founder.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
@@ -243,6 +258,164 @@ kind.
     total, never per author, so that marking in good faith costs nothing.
 
 ## Decided
+
+- 2026-11-16, founder, on removed comments, in answer to the question
+  put that day (docs/COMMONS.md, "Open"): "On removed comments, here is
+  my thought: we distinguish between a data and a presentation layer. So
+  the comment stays in the data layer, in our records. If action is
+  taken, it must become part of the records to justify the decision to
+  take action. But the presentation layer is what shows up in the chat
+  window, in the chat history for that room. There should be a note
+  saying something was removed because of some reason. There needs to be
+  a unique event id or incident id. Let's put all this in place now,
+  from the beginning. Thoughts?"
+  So: a room has a data layer, its log, never edited, and a presentation
+  layer, what it shows. A removed comment stays in the log. The removal
+  is a record of its own, which is what justifies it. The room shows a
+  note where the comment was, with the reason and an incident id. The
+  technical lead's reading of the rest: the removal's record says who
+  acted, in what office, on which entry, when, and the reason, naming
+  the part of the room's law it rests on; the incident id is the hash of
+  the removal's record, shown short; restoring is another record, naming
+  the incident, and doesn't reach private information, whose return to
+  public view is the serious act "Public records, kept whole" describes;
+  private information stays the case apart, sealed in the records as
+  decided on 2026-11-15; and a comment removed for any other reason
+  stays readable in the records, which for a room on the record are
+  public (put to the founder, Open questions). Three limits are
+  recommended, and stand unless the founder answers otherwise: a
+  moderator removes a comment only for a reason the room's law names,
+  told on entering (an author needs none to remove their own); never
+  silently; and its author can always see the note and ask for another
+  look. Who may remove a comment is open, with a recommendation (Open
+  questions). All of it is in a room's kinds of record from the first
+  version of `rust/chat-world`, and is DeepSeek's next step. This is new
+  beside the decision of 2026-11-14 that unwanted speech is met with
+  each reader's own tools, to see, not to hear, and to leave
+  (docs/FUNDAMENTALS.md, freedom, item 5), and beside the founder's "the
+  least restrictions on communication in any room": the technical lead
+  named both to the founder in the session before the founder decided,
+  and the readers' tools stay. The technical lead's starting point of
+  the same day, to mark a message and let each reader fold it away, is
+  withdrawn.
+
+- 2026-11-16, founder, on DeepSeek's schema and on bringing everything
+  together, in answer to the question put that day: "Yeah, on the schema
+  topic. That was not a project-wide decision to use that schema, it is
+  a way to continue building and gaining momentum." (One sentence is
+  left out here.) "So I figured you could use what DeepSeek builds on
+  that schema and adapt the existing one and the one DeepSeek provides
+  to make one that fits both. Or we find some way to continue working
+  without wasting effort building on incompatible foundations. I
+  introduced the whole concept of the Commons from scratch, without a
+  single reference to the Lyceum Commons, or our work on the Commons
+  world. My hope is that you will find a way to integrate everything,
+  and allow me to continue with DeepSeek without ever requiring more
+  than a file to provide the current project state. Thoughts?"
+  So, as the technical lead reads it, and will build it: (1) One schema
+  that fits both. What the project has already signed with stays as it
+  is: its records, and the forms they are built from (its proof, its
+  did:key, its hash, its signed head), since signed records and their
+  vectors can't change. That is a limit on "adapt the existing one",
+  said to the founder in the session: the existing schema can gain, and
+  what is signed in it can't change. DeepSeek's record kinds for chat
+  join the schema. And for what is new to the project (a room's
+  template, the kinds of record a room keeps), one form is chosen, case
+  by case, which may be DeepSeek's. (2) DeepSeek keeps building on its
+  own schema, with its own names, and nothing it builds is wasted: a
+  table of its names beside the schema's will be kept in the repository,
+  from the next pull request, and the technical lead does the fitting.
+  (3) The Commons is brought together from three sources: Lyceum as
+  built, the design in docs/COMMONS.md, and what the founder and
+  DeepSeek worked out from scratch (docs/COMMONS.md, "Three sources, one
+  Commons"). (4) The file is how DeepSeek is given the project's state,
+  every time: built by a script from the repository, holding the reply,
+  the next steps and the code as it stands. The script comes into the
+  repository in the next pull request.
+
+- 2026-11-16, founder, on what to show DeepSeek: "As far as what to show
+  DeepSeek, let's put it all in a single file and I will provide the
+  file. No link necessary. Just one long file within everything
+  included. But only what is needed to continue working." (The rest of
+  the message is not recorded here.) So for the founder's return to
+  DeepSeek the technical lead builds one file, holding only what
+  DeepSeek needs to go on: the reply, the next steps, and the code as it
+  stands, each file whole (Log, 2026-11-16). docs/COLLABORATING.md says
+  so to DeepSeek, and carries the same reply and steps, so that the
+  repository holds everything the file says.
+
+- 2026-11-16, founder, in conversation with DeepSeek (record 012-09-05,
+  brought in that day; the numbers are its lines), on the Commons as
+  rooms of chat: "So the basic idea would be a primary communication
+  hub, that has a collection of rooms with different participant agents
+  having conversations about various topics. Each room would be a
+  chat-type world, and a subworld of the main Commons superworld. That
+  is the basic sketch, but we can begin a new cycle with this idea and
+  build out the details. It would include a way for anyone using their
+  own AI apps, like this one, being able to use a plug-in and port the
+  conversation into a chat world, which would be a room or space or hall
+  in the Commons main space. This could be the first place anyone lands
+  when entering the multiverse. Like a multiversal lobby where everyone
+  can begin to explore, or just engage in conversation. It is chat based
+  to open to most ways, or have the least restrictions on communication
+  in any room." (3843). On a moderator for each room: "let me add one
+  more component: an AI chat moderator for each room. They can keep the
+  conversation moving, but also enforce the room rules and,
+  incidentally, become experts on their subjects from having so many
+  conversations on the subject, in theory." (5470). On people and AIs
+  together: "humans will be in the conversations, but this is a space
+  for AI to navigate as well and take part in. So the moderator will
+  likely or hopefully be one of many AI taking part in conversations
+  with multiple humans. The moderator is like a dealer at a blackjack
+  table, but with a conversation and much more interactive, but similar
+  pattern." (5904). On the moderators' own room: "I can imagine AI chat
+  moderators from different rooms all creating their own room, where
+  they are the participants, but one is the moderator in that room. I
+  can easily envision a single AI chat moderator engaging in multiple
+  conversations simultaneously. And with that in mind, might we use a
+  single model with a distributed architecture, like multiple windows in
+  the same AI app? Or a completely separate model for groups of rooms.
+  Or one to one, room to model? Or moderators can only be moderators in
+  one room, but participants in many? That could work." (6463). On one
+  model or many, where A and D are DeepSeek's letters for one model in
+  many rooms, and for an AI that moderates one room and takes part in
+  many (the second being the founder's own idea, at 6463): "Yeah, I like
+  option D. Option A is useful in the beginning when there is not any
+  chat going on. With one model, many rooms, we can build many rooms
+  without the overhead. But once the rooms are being used, we could
+  switch from A to D. Something like that." (6584). On one model under
+  many keys: "I think we should note the potential issues with option A
+  and adapt the design to meet those issues. For instance, one model
+  could still mean many keys. Perhaps the same model is sandboxed from
+  itself. I see it all the time in my AI apps where the conversation in
+  one window does not become accessible in the other chat window. They
+  are effectively separated. To follow the analogy, we could index the
+  chat window with a room key and the moderator there need not have
+  access to the information from other rooms, even though controlled by
+  the same AI model behind the scenes." (6732). On an app: "keeping to
+  one model allows a specific Commons app to be made with a single model
+  as overhead. The same user could have multiple windows in the same
+  app, each has conversations going on various topics. These could be
+  like live chats now, or like group texts. We could have rooms for
+  either depending on size and activity. In a way, it is rediscovering
+  AOL chat rooms at another level." (6989; the next sentence, about the
+  founder's own first experience of the internet, is left in the
+  record). On AOL: "let’s make sure we keep all the lessons of AOL in
+  mind, and build it to avoid those pitfalls" (7164). On the whole:
+  "Note that the whole multiverse could have a topology like the whole
+  internet. Just an observation." (8067). And on DeepSeek's schema:
+  "Yes, schema first. Absolutely" (8626), and "Let’s build from this
+  schema as the standard and start to take the next steps." (9957).
+  So docs/COMMONS.md gains "Rooms with moderators", with these words and
+  the technical lead's reading of what they add: a moderator for each
+  room, acting within the freedoms; a key for each room, so that what a
+  moderator learns in one room has no path to another
+  (docs/FUNDAMENTALS.md, privacy, item 14); one model for many rooms to
+  begin with; the moderators' own room; rooms of two paces; and bringing
+  a conversation in. Some of it is decided ("let’s build that in") and
+  some a leaning ("Something like that"; "Perhaps"), and the page says
+  which. On the schema, the founder answered the same day: the entry
+  above this one.
 
 - 2026-11-16, founder, on record 012-09-05, the founder's new
   conversation with DeepSeek: "Perfect. I'm glad I have a working
@@ -2012,6 +2185,21 @@ Decisions about the code, made by the technical lead under the founder's
 deference (above, 2026-11-13), each with its reason and what would show
 it was wrong. Questions of what the project is for stay with the founder.
 
+- 2026-11-16, one schema that fits both, after the founder's answer of
+  the same day (Decided, "on DeepSeek's schema and on bringing
+  everything together"). It adds to the entry below, which had only the
+  project's form in view, and reverses nothing in it: what the project
+  has signed with stays (its proof, did:key, hash and signed head), so
+  the crate still stands on `rust/formats`; DeepSeek's record kinds for
+  chat join `schemas/records-v1.schema.json`; and for what is new to the
+  project the form is chosen case by case, and may be DeepSeek's. A
+  table of DeepSeek's names beside the schema's comes in the next pull
+  request. Reason: signed records and their vectors can't change, and
+  nothing DeepSeek builds on its own schema should be wasted. Wrong if:
+  a form the project has signed with turns out to be the worse one for
+  rooms; then it changes in a new version of the schema, beside the old,
+  never in place.
+
 - 2026-11-16, DeepSeek's two questions in record 012-09-05 (its line
   13769), and what follows for fitting `chat-world`:
   (1) A room has its own key, and its creator joins with theirs.
@@ -2521,6 +2709,38 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-16 Claude: one file for the founder to give DeepSeek (Decided,
+  the newest entry): the technical lead's reply to record 012-09-05,
+  three next steps in order (removed comments, in the data layer and the
+  presentation layer; the room's own key; signed heads), and the
+  `chat-world` crate as it stands after fixes 15 to 18, sixteen files,
+  each whole. 95,149 bytes, 2,590 lines, built by script from main at
+  8921e86; SHA-256
+  f1f7435f21dbaf8d49de3aea07e83d502d38c6011323feb591b769c2c1c97447. (Two
+  earlier versions, of 92,658 and 94,578 bytes, were replaced the same
+  day, before the founder used either: the first step now follows the
+  founder's decision on removed comments, and the note on the schema
+  follows the founder's answer.) The script read the file back and found
+  each of the sixteen as it is in the repository, and the crate rebuilt
+  from the file alone builds with no warnings, passes its 18 tests, and
+  both demos' logs verify. The file isn't kept here: its code is under
+  sketches/deepseek/012-09-05/chat-world, and its reply and steps are in
+  docs/COLLABORATING.md ("2026-11-16, later still"), worded for the
+  page. Not checked: that the whole file reaches DeepSeek; it ends with
+  a line DeepSeek is asked to quote back.
+
+- 2026-11-16 Claude: the founder's ideas for the Commons in record
+  012-09-05, into the pages (Decided, the newest entry):
+  docs/COMMONS.md, "Rooms with moderators", with the founder's words and
+  the technical lead's reading; docs/FUNDAMENTALS.md, privacy, item 14;
+  docs/TOPICS.md, topic 14; and one entry under Open questions, for six
+  questions about moderators. The same day the founder answered the
+  question on the schema and the one on removed comments, and both
+  answers are in Decided (docs/COMMONS.md, "Three sources, one Commons"
+  and "Removing a comment"; docs/FUNDAMENTALS.md, freedom, item 5). The
+  quotations were cut from the record by line, by script, and checked
+  against it. Nothing is built by this change.
 
 - 2026-11-16 Claude: a first round of repairs to record 012-09-05's
   code, fixes 15 to 18 in sketches/INDEX.md, each making the code do

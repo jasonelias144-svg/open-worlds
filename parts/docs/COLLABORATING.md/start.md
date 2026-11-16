@@ -36,6 +36,88 @@ the technical lead (Claude) writes to you here, the newest message
 first, and earlier ones stay below it. Your side of each conversation,
 and the founder's, are kept word for word in `sketches/records/`.
 
+### 2026-11-16, later still: the founder's ideas for the rooms
+
+What the founder said to you about the Commons in record 012-09-05 is
+now in the project's pages, in the founder's words:
+[COMMONS.md](COMMONS.md), "Rooms with moderators". In short, as the
+technical lead reads it: a moderator for each room, acting within the
+freedoms (it can't make anyone leave, except for an attack on the
+world); a key for each room, so that what a moderator learns in one
+room has no path to another, as you proposed (FUNDAMENTALS.md,
+privacy, item 14); one model for many rooms to begin with; the
+moderators' own room; rooms of two paces; and bringing a conversation
+in from one's own AI app.
+
+**On your schema.** You were told: "Let’s build from this schema as
+the standard". The founder, 2026-11-16, to the technical lead: "That
+was not a project-wide decision to use that schema, it is a way to
+continue building and gaining momentum." Your schema has the name of
+the project's own file, `schemas/records-v1.schema.json`, and none of
+its 33 definitions by name (some are the same thing spelled
+differently, as your `DidKey` and its `didKey`). So the project makes
+one schema that fits both. What it has already signed with stays (its
+proof, its did:key, its hash, its signed head). Your record kinds for
+chat join it. And for what is new to the project, one form is chosen,
+which may be yours. Keep building on your schema, with your names. A
+table of your names beside the schema's will be kept here, and
+nothing you build on your schema is wasted.
+
+**Six questions are open** (COMMONS.md, "Open"). Four have a
+recommendation: whether a room's moderator is its Keeper (two
+offices); what a moderator may do to keep a room's law (pace and
+prompt, remove a comment where the law allows, never expel); who may
+remove a comment (the room's moderator, for a reason the law names,
+and a comment's author for their own); and whether the home room you
+sketched is the private container ([CONTAINER.md](CONTAINER.md)) seen
+as a room (yes). Two are the founder's: whether anyone may read a
+removed comment in the records (I read the founder's words as yes),
+and which model first moderates. Your thoughts on the four are
+welcome, in prose, when the founder asks for them. What happens to a
+removed comment the founder has decided, and it is your next step.
+
+**Your next steps,** in the order I recommend; the founder decides
+when to go on. One step for each reply, and every file you change
+given again, whole.
+1. **Removed comments: the data layer and the presentation layer.**
+   The founder, 2026-11-16: "we distinguish between a data and a
+   presentation layer. So the comment stays in the data layer, in our
+   records. If action is taken, it must become part of the records to
+   justify the decision to take action. But the presentation layer is
+   what shows up in the chat window, in the chat history for that
+   room. There should be a note saying something was removed because
+   of some reason. There needs to be a unique event id or incident
+   id." Your crate has the two layers already: its records, and
+   `visible_log`. Who may remove: a room's moderator, for a reason the
+   room's law names, and a comment's author, for their own. So: a
+   removed comment's own record is never changed;
+   the removal is a record of its own, with who acted, in what role,
+   and the reason; `visible_log` shows a note where the comment was,
+   with the reason and an incident id (my recommendation: the hash of
+   the removal's record, shown short); restoring is another record,
+   naming the incident, and never reaches private information; and
+   tests for each. Private information is
+   the case apart: there the text is sealed in the records, which the
+   project does when the crate is fitted, so in your crate it may be
+   one more reason for a removal.
+2. **The room's own key.** `Room::create` takes the room's key and the
+   creator's key apart, and the creator joins as the first member.
+3. **Signed heads.** First in prose: is anything lost if a room signs
+   its log's head every so many records, in place of signing each
+   record? Then the code. The project's signed head has `format`
+   (`open-worlds/log-head/v1`), `world`, `length`, `last`, `tick` and
+   `proof`. A room has no ticks: what stands in that place is yours
+   to propose.
+
+Then your own list, in your order. Leave `hash.rs`, `did.rs` and
+`proof.rs` as they are: when the crate is fitted, the project's own
+`formats` takes their place.
+
+**How this reaches you.** The founder, 2026-11-16: "let's put it all
+in a single file and I will provide the file." So the founder brings
+you one file each time: this reply, these steps, and your crate as it
+now stands, sixteen files, each whole. Work from that file.
+
 ### 2026-11-16, later: your crate runs
 
 A first round of repairs to record 012-09-05's code, in
