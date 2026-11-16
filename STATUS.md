@@ -2016,10 +2016,16 @@ it was wrong. Questions of what the project is for stay with the founder.
   Reason: every world here is a key of its own, and a room is a world
   (docs/COMMONS.md, "The text world: a room"); so a room can be handed
   on without a person's key changing hands, and a person's key never
-  signs as two things. (2) A leave carries the leaver's signature
-  alone. Reason: leaving can't be refused, so it can't wait on the
-  room's signature; and a world here doesn't sign each entry of its
-  log, it signs its log's heads in batches (`open-worlds/log-head/v1`).
+  signs as two things. (2) A leave needs no signature but the
+  leaver's, and never the room's. Reason: leaving can't be refused, so
+  it can't wait on the room's signature; and a world here doesn't sign
+  each entry of its log, it signs its log's heads in batches
+  (`open-worlds/log-head/v1`). The leaver's signature is enough, not
+  required: a leave the leaver can't sign (a lost key or connection, a
+  time-out, a keeper taking an inhabitant out) is still a leave, which
+  the room records as its own entry and its heads cover, as the
+  Ur-world records an exit today (docs/URWORLD.md, "Exit";
+  docs/COMMONS.md, "Leaving always works, everywhere").
   So when the sketch is fitted, the room's proof on each record gives
   way to signed heads, the crate stands on `rust/formats` (canonical
   form, proofs, Multikey `did:key`, time given from outside), and its

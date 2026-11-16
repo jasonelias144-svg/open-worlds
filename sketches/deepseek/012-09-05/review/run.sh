@@ -28,7 +28,7 @@ grep -q 'let hash = rec.hash()' src/room.rs
 echo "== build"
 cargo build --quiet
 echo "== the sketch's own tests (eight are expected to fail: finding 2)"
-cargo test --quiet --test integration 2>&1 | grep -E '^test |^test result' || true
+cargo test --test integration 2>&1 | grep -E '^test |^test result' || true
 echo "== the sketch's demo (its own check of the room fails: finding 2)"
 cargo run --quiet --bin chat-demo | grep -E '^Verification|verifies offline'
 echo "== the same tests, with the type left out of the checked bytes"

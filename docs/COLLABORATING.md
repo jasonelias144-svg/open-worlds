@@ -86,13 +86,16 @@ decisions.
    world (COMMONS.md, "The text world: a room"). So a room can be
    handed on without anyone's own key changing hands, and a person's
    key never signs as two things.
-2. **A leave carries the leaver's signature alone.** Leaving can't be
-   refused, so nothing about it may wait on the room. And in
-   open-worlds a world doesn't sign each entry of its log: it signs
-   its log's heads, in batches, which was your own decision for the
-   plant. A signed head covers every entry under it, a leave included.
-   So when `chat-world` is fitted, the room's proof on each record
-   gives way to signed heads.
+2. **A leave needs no signature but the leaver's, and never the
+   room's.** Leaving can't be refused, so nothing about it may wait on
+   the room. And in open-worlds a world doesn't sign each entry of its
+   log: it signs its log's heads, in batches, which was your own
+   decision for the plant. A signed head covers every entry under it,
+   a leave included. So when `chat-world` is fitted, the room's proof
+   on each record gives way to signed heads. The leaver's signature is
+   enough, not required: whoever can't sign (a lost key, a time-out, a
+   keeper taking an inhabitant out) has still left, and the room
+   records it as its own entry.
 
 **Your next step, if you'd like it.** Not more Rust yet. Either the two
 repairs above, as whole files; or, in prose, the law of each of the
