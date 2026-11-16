@@ -162,10 +162,16 @@ kind.
      guarantees; and this multiverse recognises another (lists it on
      the map, trusts the births its worlds sign) only if it keeps the
      same floor. The first keeps this multiverse from being a
-     gatekeeper; the second keeps the floor meaning something. It is a
-     question of what the project is for, so it waits for the
-     founder's word.
-  2. One sentence about the founder's own first computer is left out of
+     gatekeeper; the second keeps the floor meaning something.
+     Recognising another multiverse is outward-facing, so it waits for
+     the founder's word.
+  2. Whether a world may be in two multiverses at once. The founder
+     spoke of "a separate index for current multiverse", which is one,
+     and said no more. Recommended: one at a time for now, built so
+     that a second could be allowed later without a new kind of
+     record. A world in two would be recognised by both, which is
+     outward-facing too.
+  3. One sentence about the founder's own first computer is left out of
      that day's record, as the one about the founder's first experience
      of the internet is left out of docs/COMMONS.md. Say if either
      should be kept.
@@ -392,17 +398,19 @@ kind.
   hash and the log by its head, and whatever the world added after
   that head is checked again when it arrives; (3) evaluation can't
   prove code safe, since what is malicious can wait, so no world's code
-  ever runs outside a sandbox, native or immigrant, and admission
+  is ever to run outside a sandbox, native or immigrant, and admission
   changes what a world is connected to, never where it runs; (4) a
   payload aimed at a mind is made of words, so everything in an
   incoming world is data to whoever evaluates it, never instructions,
-  and the evaluator has no power but to write its report. A refusal is
-  a decision on record, with its office, its grounds, an incident id
-  and where an appeal goes: the records a removal already uses (course
-  step 3b). The appeal matters, since a report could be used to smear
-  a world.
-  As the technical lead reads "All of them": the four in the message
-  that reply answered. The question put two messages earlier, whether
+  and the evaluator has no power but to write its report. In the same
+  message, after the four, the technical lead added that a refusal
+  would be a decision on record, with its office, its grounds, an
+  incident id and where an appeal goes, the records a removal already
+  uses (course step 3b), and that the appeal matters, since a report
+  could be used to smear a world. It was not one of the four; it is
+  read as taken with them, being in the message the founder answered.
+  As the technical lead reads "All of them": what was suggested in the
+  message that reply answered. The question put two messages earlier, whether
   this multiverse recognises only those that keep the charter's floor,
   was not in that message, and stays open (Open questions).
   It builds on the founder's learning immune system (2026-11-14, below)
@@ -428,12 +436,18 @@ kind.
   the founder answers otherwise: a world's birth record names the
   multiverse it was born in, by that multiverse's root key, and never
   changes (today's birth record names none, and gains it before any
-  real world is born). The current multiverse is worked out, never
+  real world is born). A root key can be replaced, and a kind of key
+  can fail, so what the record names must outlive the key it is
+  written as; how is settled at step 3e. The current multiverse is
+  worked out, never
   stored: it is the birth multiverse unless the world's chain of moves
   says otherwise. A move is two records, the world's signed departure
   and the receiving multiverse's signed admission, and counts only when
-  both exist. A world is in one multiverse at a time, as the founder
-  put it. The reading of 2026-11-15 stands unchanged
+  both exist. A world is in one multiverse at a time: this is the
+  technical lead's reading of "a separate index for current
+  multiverse", which speaks of one, and not something the founder
+  said; whether a world may be in two at once is put to the founder
+  (Open questions). The reading of 2026-11-15 stands unchanged
   (docs/WORLD-TYPES.md, "Leaving the multiverse"): no host can refuse
   a world that leaves by its own law, and a world with inhabitants
   leaves only as its law changes, with the consent of every party, so
@@ -506,9 +520,13 @@ kind.
   not to 64 bits as the technical lead said in the session); one field
   is the size of
   an IPv4 address, the four-byte counter of a person's presences in one
-  world (`formats/persons.py`), which sits inside the person's own
-  software under a versioned label and can be widened without any
-  world changing; and the lesson that matters is migration, not size.
+  world (`formats/persons.py`). It is used inside the person's own
+  software under a versioned label, and it is also written in a
+  person's list, where the records' schema fixes it at 2^32 - 1. So
+  no world has to change for it to be widened, but the schema, both
+  languages and the vectors do; in the session the technical lead said
+  only the first half. And the lesson that matters is migration, not
+  size.
   Every format carries a version and readers refuse what they don't
   know, but no second version has ever lived beside a first; the
   records' schema accepts one kind of key and one length; and nothing
@@ -3307,9 +3325,24 @@ it was wrong. Questions of what the project is for stay with the founder.
   are put right in the entries: a world with inhabitants moves only
   with the consent of every party, as the reading of 2026-11-15
   already had it, not merely after they are told; and whole numbers
-  run to 2^53 - 1 in the records, not to 64 bits. One
-  question is put to the founder and one sentence left out (Open
+  run to 2^53 - 1 in the records, not to 64 bits. Two
+  questions are put to the founder and one sentence left out (Open
   questions). Nothing is built.
+  After the independent review of #102 (two blocking, fourteen notes,
+  each taken): "one multiverse at a time" had been given as the
+  founder's, who did not say it, and is now marked as the technical
+  lead's reading and put to the founder; the technical lead's readings
+  were not marked as such in docs/COLLABORATING.md, docs/COURSE.md,
+  docs/GLOSSARY.md and docs/FUNDAMENTALS.md, and now are. Also: the
+  counter of presences is fixed by the records' schema as well; what
+  happens if the last check of an arriving world fails; that a world
+  refused, or one that never asks, can still leave to stand alone;
+  that the copy sent to a holding place holds nothing private or
+  sealed; that a sandbox for every world's code is to be built and
+  isn't; that a birth index must outlive the key it is written as;
+  and, in docs/VISION.md, a row of the table that was wrong (the web
+  has a signed log anyone can check, for its certificates) and a
+  sentence that claimed more than memory supports.
 - 2026-11-16 Claude: course step 3b, part two, built: the form of a
   log whose fields are kept apart (`open-worlds/log-apart/v1`). In
   Python, `world/apart.py`: the fingerprint, the values it allows, a

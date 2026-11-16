@@ -92,16 +92,19 @@ From the founder's words of 2026-11-16 (STATUS.md, "Decided";
 [WORLD-TYPES.md](WORLD-TYPES.md), "Arriving in another multiverse").
 
 **Birth multiverse.** The multiverse a world was born in: "the worlds
-would be birth-indexed by their parent multiverse". It is named in the
-world's birth record and never changes.
+would be birth-indexed by their parent multiverse". In the technical
+lead's reading, it is to be named in the world's birth record, and
+never to change; today's birth record names none.
 
 **Current multiverse.** The one a world is in now: "a separate index
-for current multiverse". It is worked out from the world's moves, and
-is the birth multiverse unless the world has moved.
+for current multiverse". In the technical lead's reading, it is worked
+out from the world's moves, and is the birth multiverse unless the
+world has moved.
 
 **Holding place.** The founder's "sandboxed holding place for worlds
 entering a new multiverse": where a copy of a world that asks to be
-admitted is evaluated, and from which a refused world never comes out.
+admitted is evaluated, and from which a refused copy never comes out.
+The world itself goes on living where it is.
 
 ## Where rights attach
 

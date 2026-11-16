@@ -17,24 +17,29 @@ and the founder's, are kept word for word in `sketches/records/`.
 
 ### 2026-11-16, the founder's afternoon: an internet of worlds
 
-The founder said five things this afternoon that bear on your rooms.
-All are in STATUS.md, "Decided", word for word.
+The founder said these things this afternoon that bear on your rooms.
+All are in STATUS.md, "Decided", word for word. Where a line below is
+the technical lead's reading and not the founder's own words, it says
+so.
 - **The multiverse as an internet,** taken seriously: "Connection was
   the innovation. An infrastructure for connection. And that's what we
   are doing. And the first attraction once we had the internet was chat
   rooms". So the rooms are rightly first, and the order of your steps
   stands.
 - **Many multiverses.** Anyone should be able to run their own, and to
-  join them in one network. The rule that follows for every format,
-  yours included: nothing may exist only once. A room is a world with a
-  key of its own (your step 2), and a record should never say "the
-  multiverse" as a bare word where it could name one by its key.
+  join them in one network. The technical lead's rule from that, for
+  every format, yours included: nothing may exist only once. A room is
+  a world with a key of its own (your step 2), and a record should
+  never say "the multiverse" as a bare word where it could name one by
+  its key.
 - **Worlds that migrate.** A world is indexed by the multiverse of its
   birth and by the one it is in now
   ([WORLD-TYPES.md](WORLD-TYPES.md), "Arriving in another multiverse").
   A room is a world, so this holds for a room.
 - **A holding place.** A world that arrives is evaluated first, in a
-  sandbox, as a paused copy; a refusal is an incident with a report.
+  sandbox; a refusal is an incident with a report. That what is
+  evaluated is a paused copy was the technical lead's suggestion,
+  which the founder took.
 - **Addressing that can grow:** "We should ensure our addressing system
   can handle an unforeseen expansion." Every format carries a version;
   none has yet had a second.

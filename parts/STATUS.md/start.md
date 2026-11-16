@@ -170,10 +170,16 @@ kind.
      guarantees; and this multiverse recognises another (lists it on
      the map, trusts the births its worlds sign) only if it keeps the
      same floor. The first keeps this multiverse from being a
-     gatekeeper; the second keeps the floor meaning something. It is a
-     question of what the project is for, so it waits for the
-     founder's word.
-  2. One sentence about the founder's own first computer is left out of
+     gatekeeper; the second keeps the floor meaning something.
+     Recognising another multiverse is outward-facing, so it waits for
+     the founder's word.
+  2. Whether a world may be in two multiverses at once. The founder
+     spoke of "a separate index for current multiverse", which is one,
+     and said no more. Recommended: one at a time for now, built so
+     that a second could be allowed later without a new kind of
+     record. A world in two would be recognised by both, which is
+     outward-facing too.
+  3. One sentence about the founder's own first computer is left out of
      that day's record, as the one about the founder's first experience
      of the internet is left out of docs/COMMONS.md. Say if either
      should be kept.

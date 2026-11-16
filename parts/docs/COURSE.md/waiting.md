@@ -48,7 +48,9 @@ Added one at a time, as steps are done:
     that are not the project's, reached and checked from the published
     formats alone: the test that the multiverse is a network and not
     one program;
-  - nothing in the formats may exist only once. Records say
+  - nothing in the formats may exist only once (the technical lead's
+    rule, from the founder's picture of the whole as fractal). Records
+    say
     "multiverse" as a bare word (what a grant holds `within`; what a
     suggestion is `about`), or leave it unsaid (a record made outside
     any world names none), where they should name it by its root key;

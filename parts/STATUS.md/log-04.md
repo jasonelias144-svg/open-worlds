@@ -30,9 +30,24 @@
   are put right in the entries: a world with inhabitants moves only
   with the consent of every party, as the reading of 2026-11-15
   already had it, not merely after they are told; and whole numbers
-  run to 2^53 - 1 in the records, not to 64 bits. One
-  question is put to the founder and one sentence left out (Open
+  run to 2^53 - 1 in the records, not to 64 bits. Two
+  questions are put to the founder and one sentence left out (Open
   questions). Nothing is built.
+  After the independent review of #102 (two blocking, fourteen notes,
+  each taken): "one multiverse at a time" had been given as the
+  founder's, who did not say it, and is now marked as the technical
+  lead's reading and put to the founder; the technical lead's readings
+  were not marked as such in docs/COLLABORATING.md, docs/COURSE.md,
+  docs/GLOSSARY.md and docs/FUNDAMENTALS.md, and now are. Also: the
+  counter of presences is fixed by the records' schema as well; what
+  happens if the last check of an arriving world fails; that a world
+  refused, or one that never asks, can still leave to stand alone;
+  that the copy sent to a holding place holds nothing private or
+  sealed; that a sandbox for every world's code is to be built and
+  isn't; that a birth index must outlive the key it is written as;
+  and, in docs/VISION.md, a row of the table that was wrong (the web
+  has a signed log anyone can check, for its certificates) and a
+  sentence that claimed more than memory supports.
 - 2026-11-16 Claude: course step 3b, part two, built: the form of a
   log whose fields are kept apart (`open-worlds/log-apart/v1`). In
   Python, `world/apart.py`: the fingerprint, the values it allows, a

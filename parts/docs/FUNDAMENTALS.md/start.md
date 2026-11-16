@@ -90,10 +90,11 @@ one of them updates this page.
    [WORLD-TYPES.md](WORLD-TYPES.md), "Leaving the multiverse", to be
    made from the start; not yet built. And a world may arrive in a
    multiverse that exists (the founder, 2026-11-16: "A world can be
-   born from one multiverse and migrate to another"). The rule for
-   leaving holds for moving: a world with inhabitants moves only with
-   the consent of every party. What is evaluated before a world is
-   admitted is a paused copy with stand-ins, so no one is held
+   born from one multiverse and migrate to another"). In the technical
+   lead's reading, the rule for leaving holds for moving: a world with
+   inhabitants moves only with the consent of every party. What is
+   evaluated before a world is admitted is a paused copy with
+   stand-ins, which holds nothing private or sealed, so no one is held
    ([WORLD-TYPES.md](WORLD-TYPES.md), "Arriving in another
    multiverse"); not yet built.
 8. **Room enough for every freedom.** The founder (2026-11-15): "Much

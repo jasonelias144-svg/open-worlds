@@ -30,17 +30,19 @@
   hash and the log by its head, and whatever the world added after
   that head is checked again when it arrives; (3) evaluation can't
   prove code safe, since what is malicious can wait, so no world's code
-  ever runs outside a sandbox, native or immigrant, and admission
+  is ever to run outside a sandbox, native or immigrant, and admission
   changes what a world is connected to, never where it runs; (4) a
   payload aimed at a mind is made of words, so everything in an
   incoming world is data to whoever evaluates it, never instructions,
-  and the evaluator has no power but to write its report. A refusal is
-  a decision on record, with its office, its grounds, an incident id
-  and where an appeal goes: the records a removal already uses (course
-  step 3b). The appeal matters, since a report could be used to smear
-  a world.
-  As the technical lead reads "All of them": the four in the message
-  that reply answered. The question put two messages earlier, whether
+  and the evaluator has no power but to write its report. In the same
+  message, after the four, the technical lead added that a refusal
+  would be a decision on record, with its office, its grounds, an
+  incident id and where an appeal goes, the records a removal already
+  uses (course step 3b), and that the appeal matters, since a report
+  could be used to smear a world. It was not one of the four; it is
+  read as taken with them, being in the message the founder answered.
+  As the technical lead reads "All of them": what was suggested in the
+  message that reply answered. The question put two messages earlier, whether
   this multiverse recognises only those that keep the charter's floor,
   was not in that message, and stays open (Open questions).
   It builds on the founder's learning immune system (2026-11-14, below)
@@ -66,12 +68,18 @@
   the founder answers otherwise: a world's birth record names the
   multiverse it was born in, by that multiverse's root key, and never
   changes (today's birth record names none, and gains it before any
-  real world is born). The current multiverse is worked out, never
+  real world is born). A root key can be replaced, and a kind of key
+  can fail, so what the record names must outlive the key it is
+  written as; how is settled at step 3e. The current multiverse is
+  worked out, never
   stored: it is the birth multiverse unless the world's chain of moves
   says otherwise. A move is two records, the world's signed departure
   and the receiving multiverse's signed admission, and counts only when
-  both exist. A world is in one multiverse at a time, as the founder
-  put it. The reading of 2026-11-15 stands unchanged
+  both exist. A world is in one multiverse at a time: this is the
+  technical lead's reading of "a separate index for current
+  multiverse", which speaks of one, and not something the founder
+  said; whether a world may be in two at once is put to the founder
+  (Open questions). The reading of 2026-11-15 stands unchanged
   (docs/WORLD-TYPES.md, "Leaving the multiverse"): no host can refuse
   a world that leaves by its own law, and a world with inhabitants
   leaves only as its law changes, with the consent of every party, so
@@ -144,9 +152,13 @@
   not to 64 bits as the technical lead said in the session); one field
   is the size of
   an IPv4 address, the four-byte counter of a person's presences in one
-  world (`formats/persons.py`), which sits inside the person's own
-  software under a versioned label and can be widened without any
-  world changing; and the lesson that matters is migration, not size.
+  world (`formats/persons.py`). It is used inside the person's own
+  software under a versioned label, and it is also written in a
+  person's list, where the records' schema fixes it at 2^32 - 1. So
+  no world has to change for it to be widened, but the schema, both
+  languages and the vectors do; in the session the technical lead said
+  only the first half. And the lesson that matters is migration, not
+  size.
   Every format carries a version and readers refuse what they don't
   know, but no second version has ever lived beside a first; the
   records' schema accepts one kind of key and one length; and nothing

@@ -596,8 +596,8 @@ otherwise.
 | its address | the world's own key, with no registrar |
 | a link followed | a passport and an arrival |
 | directories, then search | the map, and the Commons' directory |
-| chat rooms | the Ur-room, the first room built |
-| nothing | a signed log anyone can check |
+| chat rooms | the Ur-room, the first room to be built |
+| a signed log anyone can check, late, and for certificates only | every world's own log, from its first entry |
 
 **What its history says to do on purpose.** The internet added four
 things late, and at great cost: proof of who sent something; privacy;
@@ -617,9 +617,9 @@ holding the comparison and retracing the history by accident.
   inside one program, or to a mind on the same machine. What exists is
   the formats, not the wire.
 - **A website is visited; a world is lived in.** Exit, a world's law, a
-  Keeper, and one's own key and container have no counterpart in the
-  internet's history: they are what its users never got. So that
-  history guides the connecting, not the living.
+  Keeper and one's own container are not things the internet set out
+  to give those who use it. So its history guides the connecting, not
+  the living.
 
 **The fractal step.** A multiverse is to the network what a world is to
 a multiverse. So nothing in the formats may exist only once, and a
@@ -645,6 +645,9 @@ charter's floor (STATUS.md, "Open questions").
 - How GitHub's free tier is paid for: GitHub's business, not this
   project's, and stated here only as it seems from outside.
 - The internet's own history, in "An infrastructure for connection":
-  what it added late is given as generally known, from memory, and
-  nothing was looked up for it. It is looked at first, with AOL's
-  lessons, when the Commons is built.
+  the table, what it added late, and where the comparison misleads are
+  all given as generally known, from memory, and nothing was looked up
+  for them. The signed log for certificates is Certificate
+  Transparency, which [ADMIN.md](ADMIN.md) already borrows from. All
+  of it is looked at first, with AOL's lessons, when the Commons is
+  built.

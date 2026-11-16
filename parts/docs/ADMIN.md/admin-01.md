@@ -260,8 +260,8 @@ Proposed by the technical lead, to build toward:
   be admitted is looked at as a paused copy, with stand-ins only, in a
   sandbox with no door, which is what ADMIN's own world (below)
   already is; what is found goes into the library of remedies. It
-  can't prove code safe, so every world's code stays in a sandbox for
-  its whole life ([WORLD-TYPES.md](WORLD-TYPES.md), "Arriving in
+  can't prove code safe, so every world's code is to stay in a sandbox
+  for its whole life ([WORLD-TYPES.md](WORLD-TYPES.md), "Arriving in
   another multiverse"). Not built.
 
 ADMIN manages the immune system without being it: it keeps the library,
