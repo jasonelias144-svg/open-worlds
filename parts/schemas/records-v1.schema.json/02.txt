@@ -1,0 +1,633 @@
+Part of `schemas/records-v1.schema.json` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 2.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/schemas/records-v1.schema.json/01.txt
+After this part: nothing; this is the last part.
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+          "properties": {
+            "repo": {
+              "description": "The model's repository, as owner/name.",
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$",
+              "maxLength": 128
+            },
+            "revision": {
+              "description": "The exact revision: a 40-digit commit hash.",
+              "type": "string",
+              "pattern": "^[0-9a-f]{40}$"
+            }
+          },
+          "required": [
+            "repo",
+            "revision"
+          ],
+          "additionalProperties": false
+        },
+        "files": {
+          "description": "Its files, each by hash, each path once.",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "description": "Where the file is in the model's repository: names joined by /, none empty and none starting with a dot, so no path leaves the repository.",
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_-][A-Za-z0-9._-]*(/[A-Za-z0-9_-][A-Za-z0-9._-]*)*$",
+                "maxLength": 256
+              },
+              "sha256": {
+                "$ref": "#/$defs/hash"
+              }
+            },
+            "required": [
+              "path",
+              "sha256"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "settings": {
+          "description": "Its settings, each an integer or a string: a quantity with a fraction is written as a string, as the canonical form has no floats.",
+          "type": "object",
+          "additionalProperties": {
+            "oneOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              }
+            ]
+          }
+        },
+        "chatTemplate": {
+          "description": "The model's chat template, by hash.",
+          "$ref": "#/$defs/hash"
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "description": "REGISTRY/NAME@sha256:..., never a tag alone.",
+              "type": "string",
+              "pattern": "^[a-z0-9._/:-]+@sha256:[0-9a-f]{64}$",
+              "maxLength": 256
+            },
+            "index": {
+              "description": "For an image built for several platforms, its index's digest.",
+              "type": "string",
+              "pattern": "^sha256:[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "ref"
+          ],
+          "additionalProperties": false
+        },
+        "from": {
+          "description": "When it began to run for them.",
+          "$ref": "#/$defs/time"
+        }
+      },
+      "required": [
+        "model",
+        "files",
+        "settings",
+        "chatTemplate",
+        "image",
+        "from"
+      ],
+      "additionalProperties": false
+    },
+    "mind": {
+      "description": "An individual's mind record: every engine they have run on, kept by the project (docs/MINDS.md). Signed by the project's key that keeps mind records.",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/mind/v1"
+        },
+        "issuer": {
+          "$ref": "#/$defs/didKey"
+        },
+        "individual": {
+          "$ref": "#/$defs/didKey"
+        },
+        "engines": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/engine"
+          }
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "issuer",
+        "individual",
+        "engines",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
+    "parameter": {
+      "description": "One world-level parameter of a template: its value, an integer in its unit, what it is, and, for a dial, the range a world may set it within.",
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "unit": {
+          "description": "Its unit, as a case-sensitive UCUM code (https://ucum.org): \"1\" for a plain number, \"ms\" for milliseconds, \"10*-3/s\" for thousandths per second, \"{molecule}\" for a count of molecules.",
+          "type": "string",
+          "pattern": "^[!-~]{1,64}$"
+        },
+        "about": {
+          "description": "What it is, in a sentence.",
+          "allOf": [
+            {
+              "$ref": "#/$defs/text"
+            }
+          ],
+          "maxLength": 256
+        },
+        "min": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991,
+          "description": "For a dial: the least a world may set it to."
+        },
+        "max": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991,
+          "description": "For a dial: the most a world may set it to."
+        }
+      },
+      "required": [
+        "value",
+        "unit",
+        "about"
+      ],
+      "dependentRequired": {
+        "min": [
+          "max"
+        ],
+        "max": [
+          "min"
+        ]
+      },
+      "additionalProperties": false
+    },
+    "template": {
+      "description": "A world's template: every world-level parameter, the code that runs it, and which parameters are dials, with their ranges; a world made from it names it by hash, and the dials it set (docs/PARALLEL-WORLDS.md, \"Parallel worlds\"; docs/VISION.md, \"Ride along, and steer\"). Signed by the project's key that keeps templates.",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/template/v1"
+        },
+        "issuer": {
+          "$ref": "#/$defs/didKey"
+        },
+        "name": {
+          "$ref": "#/$defs/name"
+        },
+        "code": {
+          "description": "The reviewed code that runs a world made from it: a repository at an exact commit.",
+          "type": "object",
+          "properties": {
+            "repo": {
+              "description": "The repository, as owner/name.",
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$",
+              "maxLength": 128
+            },
+            "revision": {
+              "description": "The exact commit: 40 hex digits.",
+              "type": "string",
+              "pattern": "^[0-9a-f]{40}$"
+            }
+          },
+          "required": [
+            "repo",
+            "revision"
+          ],
+          "additionalProperties": false
+        },
+        "parameters": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "pattern": "^[a-z][A-Za-z0-9]*$",
+            "maxLength": 64
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/parameter"
+          }
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "issuer",
+        "name",
+        "code",
+        "parameters",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
+    "keyEntry": {
+      "description": "One role's key in a key list: the role, a name for its holder, its signing key, and for those things are sealed to, its sealing key.",
+      "type": "object",
+      "properties": {
+        "role": {
+          "description": "root: signs key lists, nothing else; code: the code role, for outcomes on suggestions until ADMIN exists; mindRecords and templates: the project's issuers of those records; admin: ADMIN; world: a world; individual: an individual (docs/research/KEYS.md).",
+          "enum": [
+            "root",
+            "code",
+            "mindRecords",
+            "templates",
+            "admin",
+            "world",
+            "individual"
+          ]
+        },
+        "name": {
+          "$ref": "#/$defs/name"
+        },
+        "signing": {
+          "$ref": "#/$defs/didKey"
+        },
+        "sealing": {
+          "$ref": "#/$defs/sealingKey"
+        }
+      },
+      "required": [
+        "role",
+        "name",
+        "signing"
+      ],
+      "additionalProperties": false
+    },
+    "keyList": {
+      "description": "The project's key list: which key holds each role, signed by the multiverse's root, as TUF's root metadata is (docs/research/KEYS.md). Versioned: each version after the first names the one before by hash and is signed by that one's root, so a new root is named by the old root, and signs the next version itself.",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/key-list/v1"
+        },
+        "issuer": {
+          "$ref": "#/$defs/didKey"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "previous": {
+          "description": "The version before, by hash.",
+          "$ref": "#/$defs/hash"
+        },
+        "time": {
+          "$ref": "#/$defs/time"
+        },
+        "keys": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/keyEntry"
+          }
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "issuer",
+        "version",
+        "time",
+        "keys",
+        "proof"
+      ],
+      "if": {
+        "properties": {
+          "version": {
+            "const": 1
+          }
+        }
+      },
+      "then": {
+        "not": {
+          "required": [
+            "previous"
+          ]
+        }
+      },
+      "else": {
+        "required": [
+          "previous"
+        ]
+      },
+      "additionalProperties": false
+    },
+    "holds": {
+      "description": "A person's half of a link between the person and one of their presences: \"I hold this presence\". Signed by the person's identity key. A link holds only together with the presence's held-by record, naming the same person, presence and world (docs/research/PERSONS.md, decision 4).",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/holds/v1"
+        },
+        "person": {
+          "description": "The person, by their identity key.",
+          "$ref": "#/$defs/didKey"
+        },
+        "presence": {
+          "description": "The presence they hold, by its key.",
+          "$ref": "#/$defs/didKey"
+        },
+        "world": {
+          "description": "The world the presence is in.",
+          "$ref": "#/$defs/didKey"
+        },
+        "time": {
+          "$ref": "#/$defs/time"
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "person",
+        "presence",
+        "world",
+        "time",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
+    "heldBy": {
+      "description": "A presence's half of a link: \"I am held by this person\". Signed by the presence's key. A link holds only together with the person's holds record, naming the same person, presence and world (docs/research/PERSONS.md, decision 4).",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/held-by/v1"
+        },
+        "presence": {
+          "description": "The presence, by its key.",
+          "$ref": "#/$defs/didKey"
+        },
+        "person": {
+          "description": "The person who holds it, by their identity key.",
+          "$ref": "#/$defs/didKey"
+        },
+        "world": {
+          "description": "The world the presence is in.",
+          "$ref": "#/$defs/didKey"
+        },
+        "time": {
+          "$ref": "#/$defs/time"
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "presence",
+        "person",
+        "world",
+        "time",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
+    "presenceEntry": {
+      "description": "One of a person's presences, in their list: its world, the counter its key was made with, its key, and its name there (docs/research/PERSONS.md, decisions 2 and 6).",
+      "type": "object",
+      "properties": {
+        "world": {
+          "$ref": "#/$defs/didKey"
+        },
+        "counter": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "key": {
+          "$ref": "#/$defs/didKey"
+        },
+        "name": {
+          "$ref": "#/$defs/name"
+        }
+      },
+      "required": [
+        "world",
+        "counter",
+        "key",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "personList": {
+      "description": "A person's list of their presences, kept by the person with their private halves and never shown whole. Each version after the first names the one before by hash, and every version is signed by the person's identity key (docs/research/PERSONS.md, decision 6).",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/person-list/v1"
+        },
+        "person": {
+          "description": "The person, by their identity key.",
+          "$ref": "#/$defs/didKey"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "previous": {
+          "description": "The version before, by hash.",
+          "$ref": "#/$defs/hash"
+        },
+        "time": {
+          "$ref": "#/$defs/time"
+        },
+        "presences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/presenceEntry"
+          }
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "person",
+        "version",
+        "time",
+        "presences",
+        "proof"
+      ],
+      "if": {
+        "properties": {
+          "version": {
+            "const": 1
+          }
+        }
+      },
+      "then": {
+        "not": {
+          "required": [
+            "previous"
+          ]
+        }
+      },
+      "else": {
+        "required": [
+          "previous"
+        ]
+      },
+      "additionalProperties": false
+    },
+    "proposal": {
+      "description": "A council's proposal, for persons to vote on: what is proposed, the choices, when votes count, how many distinct persons must be counted, and which worlds' births the council trusts (docs/research/PERSONS.md, decision 8, and \"Part four, second half, built\"). Signed by the council.",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/proposal/v1"
+        },
+        "council": {
+          "description": "The council, by its key, which signs.",
+          "$ref": "#/$defs/didKey"
+        },
+        "title": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/text"
+            }
+          ],
+          "maxLength": 200
+        },
+        "text": {
+          "description": "What is proposed.",
+          "allOf": [
+            {
+              "$ref": "#/$defs/text"
+            }
+          ],
+          "maxLength": 10000
+        },
+        "choices": {
+          "description": "The choices, which a vote names by their place, from 0.",
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 16,
+          "uniqueItems": true,
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/text"
+              }
+            ],
+            "maxLength": 200
+          }
+        },
+        "trusts": {
+          "description": "The worlds whose births the council counts: a person counts only if one of them signed their birth.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/didKey"
+          }
+        },
+        "quorum": {
+          "description": "The fewest distinct persons who must be counted for the vote to decide.",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000000
+        },
+        "opens": {
+          "description": "The first time a vote counts.",
+          "$ref": "#/$defs/time"
+        },
+        "closes": {
+          "description": "The last time a vote counts; after opens.",
+          "$ref": "#/$defs/time"
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "council",
+        "title",
+        "text",
+        "choices",
+        "trusts",
+        "quorum",
+        "opens",
+        "closes",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
+    "vote": {
+      "description": "A person's vote on a council's proposal: the proposal by hash, and the choice by its place. Signed by the person's identity key, so a vote is public as the person's, never a presence's (docs/research/PERSONS.md, decision 8).",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/vote/v1"
+        },
+        "proposal": {
+          "description": "The proposal, by its hash.",
+          "$ref": "#/$defs/hash"
+        },
+        "person": {
+          "description": "Who votes: their identity key, which signs.",
+          "$ref": "#/$defs/didKey"
+        },
+        "choice": {
+          "description": "The choice, by its place in the proposal's choices, from 0.",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 15
+        },
+        "time": {
+          "$ref": "#/$defs/time"
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "proposal",
+        "person",
+        "choice",
+        "time",
+        "proof"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
+------------------------------------------------------------------------
+End of `schemas/records-v1.schema.json`.

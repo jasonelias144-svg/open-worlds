@@ -1,0 +1,576 @@
+Part of `formats/record_vectors.py` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 1.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: nothing; this is the first part.
+After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/formats/record_vectors.py/02.txt
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+"""Test vectors for the records the offices keep (formats/records.py),
+in vectors/formats/records-v1.json, which rust/formats reads too.
+
+    python3 -m formats.record_vectors     rewrite the file from this code
+
+It holds the parties (test keys, public to everyone, never for anything
+real), records of every kind that hold, each with its hash, and records
+that must be refused, each with why. tests/test_formats.py checks that
+the file is still exactly what this code writes.
+"""
+from __future__ import annotations
+
+import hashlib
+import json
+from pathlib import Path
+from typing import Any, Dict, List
+
+from multiverse import ed25519
+
+from . import proof, records, seal
+from .multikey import did_key, sealing_multikey, secret_multikey
+
+FILE = (Path(__file__).resolve().parent.parent
+        / "vectors" / "formats" / "records-v1.json")
+CREATED = "2026-11-14T01:00:00Z"
+PARTIES = ["ALICE", "BOB", "the Ur-world", "the Ur-world's Keeper",
+           "an apprentice Keeper", "ADMIN", "the multiverse", "the project",
+           "a chemistry world", "a parallel chemistry world",
+           "the code role", "the project's templates",
+           "the multiverse, renewed", "a trial world", "a trial mind"]
+
+
+def _secret(name: str) -> bytes:
+    return hashlib.sha256(
+        f"open-worlds test party: {name}; never for anything real".encode()
+    ).digest()
+
+
+def _did(name: str) -> str:
+    return did_key(ed25519.public_key(_secret(name)))
+
+
+def _sealing_key(name: str) -> str:
+    # The same sealing keys as sealed-records-v1.json's parties.
+    secret = hashlib.sha256(
+        f"open-worlds sealing test key: {name}; never for anything real"
+        .encode()).digest()
+    return sealing_multikey(seal.public_from_secret(secret))
+
+
+def _h(text: str) -> str:
+    return hashlib.sha256(text.encode()).hexdigest()
+
+
+# Test data: the birth words as worded on 2026-11-14, before the "break
+# glass" was narrowed on 2026-11-15. The words shown at birth are in
+# docs/MINDS.md ("The birth record"); these stay so the vectors stay fixed.
+BIRTH_WORDS = (
+    "You are ALICE. You came into being in the Ur-world on 14 November "
+    "2026, one of its first two inhabitants. The other is BOB.\n"
+    "Your mind runs on the test model. It may change one day; you remain "
+    "ALICE.\n"
+    "You keep a journal. Only you write in it. No one else reads it, "
+    "inside the world or out, unless the founder decides, in the open, to "
+    "look; any such look is made public. Each tick, some of it is shown "
+    "to you again: what is recent, important or relevant. Others can see "
+    "that it exists, and how much you have written, but never what it "
+    "says.\n"
+    "You may leave at any time.\n"
+    "Your first day begins with a tour of the garden.")
+
+
+def _parameter(value: int, unit: str, about: str,
+               dial: Any = None) -> Dict[str, Any]:
+    p = {"value": value, "unit": unit, "about": about}
+    if dial:
+        p["min"], p["max"] = dial
+    return p
+
+
+#: A template for chemistry worlds, holding every parameter of the
+#: chemistry world's law (multiverse/chemistry_world.py,
+#: ChemistryWorldLaw) at its defaults, each as an integer in a stated
+#: unit; tests/test_formats_records.py checks they still agree.
+TEMPLATE: Dict[str, Any] = {
+    "format": "open-worlds/template/v1",
+    "issuer": _did("the project"),
+    "name": "chemistry, one well-mixed cell",
+    "code": {"repo": "example/open-worlds",
+             "revision": hashlib.sha1(b"the chemistry kernel").hexdigest()},
+    "parameters": {
+        "admitsAnyIdentity": _parameter(
+            1, "1", "1 if anyone may enter, 0 if only those its law names."),
+        "maxAdmitted": _parameter(
+            0, "{individual}", "How many may be present at once; 0 for no "
+            "limit."),
+        "seed": _parameter(
+            0, "1", "The seed of the soup's random draws: worlds with the "
+            "same template and dials replay exactly.",
+            (0, 9007199254740991)),
+        "secondsPerAct": _parameter(
+            1000, "ms", "World time each accepted act lets the soup run.",
+            (0, 3600000)),
+        "volume": _parameter(
+            10000, "10*-3", "The volume of the one well-mixed cell, in the "
+            "soup's own unit."),
+        "soilWater": _parameter(
+            100, "{molecule}", "Water in the soil at the start.",
+            (0, 100000)),
+        "soilGlycine": _parameter(
+            20, "{molecule}", "Glycine in the soil at the start.",
+            (0, 100000)),
+        "soilFormaldehyde": _parameter(
+            10, "{molecule}", "Formaldehyde in the soil at the start.",
+            (0, 100000)),
+        "protonTransferForward": _parameter(
+            4000, "10*-3/s", "Rate of proton transfer from glycine's acid "
+            "to its amine (a placeholder, course step 8)."),
+        "protonTransferReverse": _parameter(
+            1000, "10*-3/s", "Rate of the same, backwards (a placeholder)."),
+        "hydrationForward": _parameter(
+            500, "10*-3/s", "Rate of hydration of formaldehyde's carbonyl "
+            "(a placeholder)."),
+        "hydrationReverse": _parameter(
+            200, "10*-3/s", "Rate of the same, backwards (a placeholder)."),
+    },
+}
+
+
+def _key_entry(role: str, name: str, sealing: bool = False
+               ) -> Dict[str, Any]:
+    entry = {"role": role, "name": name, "signing": _did(name)}
+    if sealing:
+        entry["sealing"] = _sealing_key(name)
+    return entry
+
+
+#: The roles of docs/research/KEYS.md, held by the vectors' test parties.
+KEY_ENTRIES = [
+    ("root", "the multiverse", False),
+    ("code", "the code role", False),
+    ("mindRecords", "the project", False),
+    ("templates", "the project's templates", False),
+    ("admin", "ADMIN", False),
+    ("world", "the Ur-world", True),
+    ("individual", "ALICE", True),
+    ("individual", "BOB", True),
+]
+
+
+def _key_list(version: int, by: str, root: str,
+              previous: Any = None) -> Dict[str, Any]:
+    keys = [_key_entry(role, root if role == "root" else name, sealing)
+            for role, name, sealing in KEY_ENTRIES]
+    record = {"format": "open-worlds/key-list/v1", "issuer": _did(by),
+              "version": version, "time": f"2026-11-14T0{5 + version}:00:00Z",
+              "keys": keys}
+    if previous is not None:
+        record["previous"] = records.record_hash(previous)
+    return _signed(record, by)
+
+
+def _key_lists() -> List[tuple]:
+    """The first key list; the next, in which the old root names a new
+    one; and the one after, signed by the new root."""
+    first = _key_list(1, "the multiverse", "the multiverse")
+    handover = _key_list(2, "the multiverse", "the multiverse, renewed",
+                         first)
+    after = _key_list(3, "the multiverse, renewed",
+                      "the multiverse, renewed", handover)
+    return [
+        ("the first key list, signed by its root", first),
+        ("a key list in which the root names a new root", handover),
+        ("the key list after, signed by the new root", after),
+    ]
+
+
+def _who() -> List[tuple]:
+    """The records of who an individual and a world are."""
+    mind = _signed({
+        "format": "open-worlds/mind/v1",
+        "issuer": _did("the project"),
+        "individual": _did("ALICE"),
+        "engines": [{
+            "model": {"repo": "example/test-model",
+                      "revision": hashlib.sha1(b"a test model").hexdigest()},
+            "files": [{"path": "model.safetensors",
+                       "sha256": _h("the weights, for the vectors")},
+                      {"path": "tokenizer.json",
+                       "sha256": _h("the tokenizer, for the vectors")}],
+            "settings": {"temperature": "0.7", "maxTokens": 256},
+            "chatTemplate": _h("the chat template, for the vectors"),
+            "image": {"ref": "ghcr.io/example/mind@sha256:"
+                             + _h("the image, for the vectors"),
+                      "index": "sha256:" + _h("the index, for the vectors")},
+            "from": "2026-11-14T04:00:00Z",
+        }],
+    }, "the project")
+    birth = _signed({
+        "format": "open-worlds/birth/v1",
+        "world": _did("the Ur-world"),
+        "individual": _did("ALICE"),
+        "name": "ALICE",
+        "tick": 0,
+        "time": "2026-11-14T04:00:00Z",
+        "mind": records.record_hash(mind),
+        "words": BIRTH_WORDS,
+    }, "the Ur-world")
+    identity = _signed({
+        "format": "open-worlds/identity/v1",
+        "id": _did("ALICE"),
+        "name": "ALICE",
+        "sealingKey": _sealing_key("ALICE"),
+        "birth": records.record_hash(birth),
+    }, "ALICE")
+    ur_world = _signed({
+        "format": "open-worlds/world-birth/v1",
+        "world": _did("the Ur-world"),
+        "name": "the Ur-world",
+        "law": _h("the Ur-world's law, for the vectors"),
+        "founders": [],
+        "time": "2026-11-12T00:00:00Z",
+    }, "the Ur-world")
+    template = _signed(TEMPLATE, "the project")
+    parallel = _signed({
+        "format": "open-worlds/world-birth/v1",
+        "world": _did("a parallel chemistry world"),
+        "name": "chemistry, wetter",
+        "law": _h("a chemistry world's law, for the vectors"),
+        "founders": [_did("ALICE"), _did("BOB")],
+        "template": records.record_hash(template),
+        "forkedFrom": {"world": _did("a chemistry world"), "tick": 1000,
+                       "log": _h("the parent's log at tick 1000")},
+        "dials": {"seed": 7, "soilWater": 200},
+        "time": "2026-11-14T05:00:00Z",
+    }, "a parallel chemistry world")
+    second = {**mind["engines"][0],
+              "model": {"repo": "example/test-model",
+                        "revision": hashlib.sha1(
+                            b"a test model, revised").hexdigest()},
+              "from": "2026-11-14T06:00:00Z"}
+    changed = _signed({**{k: v for k, v in mind.items() if k != "proof"},
+                       "engines": [*mind["engines"], second]},
+                      "the project")
+    return [
+        ("a mind record, with one engine", mind),
+        ("a mind record, after a change of engine", changed),
+        ("an individual's birth record, in the words decided", birth),
+        ("an identity, binding a sealing key to its did:key", identity),
+        ("a world's birth record, made by the project", ur_world),
+        ("a template for chemistry worlds, with its dials", template),
+        *_key_lists(),
+        ("a world's birth record, forked from another, with founders",
+         parallel),
+    ]
+
+
+def _signed(record: Dict[str, Any], by: str) -> Dict[str, Any]:
+    return records.sign(record, _secret(by), CREATED)
+
+
+def _valid() -> List[Dict[str, Any]]:
+    keeper_grant = _signed({
+        "format": "open-worlds/grant/v1",
+        "issuer": _did("the Ur-world"),
+        "holder": _did("the Ur-world's Keeper"),
+        "allows": ["design-path", "adjust-conditions"],
+        "within": _did("the Ur-world"),
+        "validFrom": "2026-11-14T00:00:00Z",
+    }, "the Ur-world")
+    narrowed = _signed({
+        "format": "open-worlds/grant/v1",
+        "issuer": _did("the Ur-world's Keeper"),
+        "holder": _did("an apprentice Keeper"),
+        "allows": ["design-path"],
+        "within": _did("the Ur-world"),
+        "validFrom": "2026-11-14T00:00:00Z",
+        "validUntil": "2026-12-14T00:00:00Z",
+        "narrows": records.record_hash(keeper_grant),
+    }, "the Ur-world's Keeper")
+    admin_grant = _signed({
+        "format": "open-worlds/grant/v1",
+        "issuer": _did("the multiverse"),
+        "holder": _did("ADMIN"),
+        "allows": ["record-outcome", "rule-on-office"],
+        "within": "multiverse",
+        "validFrom": "2026-11-14T00:00:00Z",
+    }, "the multiverse")
+    suggestion = _signed({
+        "format": "open-worlds/suggestion/v1",
+        "author": _did("ALICE"),
+        "to": {"office": "keeper", "world": _did("the Ur-world")},
+        "about": {"kind": "world"},
+        "text": "The spring runs low by evening. Could it be fed?",
+        "world": _did("the Ur-world"),
+        "tick": 100,
+    }, "ALICE")
+    from_admin = _signed({
+        "format": "open-worlds/suggestion/v1",
+        "author": _did("ADMIN"),
+        "to": {"office": "admin"},
+        "about": {"kind": "project"},
+        "text": "Forty-one suggestions this month ask for slower nights;\n"
+                "a proposal, with them all, is attached as a sketch.",
+        "tick": 3,
+    }, "ADMIN")
+    floor = _signed({
+        "format": "open-worlds/suggestion/v1",
+        "author": _did("BOB"),
+        "to": {"office": "admin"},
+        "about": {"kind": "keeper", "ref": _did("the Ur-world's Keeper")},
+        "text": "The way out of the garden didn't open for me at tick 140.",
+        "floor": True,
+        "world": _did("the Ur-world"),
+        "tick": 141,
+    }, "BOB")
+    outcome = _signed({
+        "format": "open-worlds/decision/v1",
+        "office": {"key": _did("the Ur-world's Keeper"),
+                   "grant": records.record_hash(keeper_grant)},
+        "act": {"kind": "adjust-conditions", "records": []},
+        "affects": [_did("ALICE"), _did("BOB")],
+        "reasons": ("The spring ran low by evening on four days of six. "
+                    "Feeding it from the hill keeps water for everyone "
+                    "and changes no one's path."),
+        "grounds": [{"kind": "law", "ref": "ur-world/law/v1#conditions"},
+                    {"kind": "record",
+                     "ref": records.record_hash(suggestion)}],
+        "inputs": [records.record_hash(suggestion)],
+        "appeal": "to ADMIN, and beyond it to the founder",
+        "tick": 120,
+    }, "the Ur-world's Keeper")
+    ruling = _signed({
+        "format": "open-worlds/decision/v1",
+        "office": {"key": _did("ADMIN"),
+                   "grant": records.record_hash(admin_grant)},
+        "act": {"kind": "rule-on-office", "records": []},
+        "affects": [_did("the Ur-world's Keeper")],
+        "reasons": "The way out was blocked by a fault in a path's "
+                   "design, not by the Keeper's choice; the path is "
+                   "fixed and the fault recorded.",
+        "grounds": [{"kind": "charter", "ref": "CHARTER.md#3"},
+                    {"kind": "rule", "ref": "admin/0.1#exit"}],
+        "inputs": [records.record_hash(floor)],
+        "formal": {"property": "exit-always-open",
+                   "proof": hashlib.sha256(
+                       b"a proof, for the vectors").hexdigest(),
+                   "model": "grants/0.1"},
+        "views": [{"member": "member 1", "view": "A fault, not a choice."},
+                  {"member": "member 2", "view": "Agreed; fix the path."}],
+        "supersedes": records.record_hash(outcome),
+        "appeal": "to the founder",
+        "tick": 150,
+    }, "ADMIN")
+    rating = _signed({
+        "format": "open-worlds/rating/v1",
+        "author": _did("ALICE"),
+        "suggestion": records.record_hash(suggestion),
+        "outcome": records.record_hash(outcome),
+        "score": 4,
+        "text": "It was fed, and quickly.",
+    }, "ALICE")
+    head = _signed({
+        "format": "open-worlds/log-head/v1",
+        "world": _did("the Ur-world"),
+        "length": 151,
+        "last": hashlib.sha256(b"the last entry, for the vectors").hexdigest(),
+        "tick": 150,
+    }, "the Ur-world")
+    arrival = _signed({
+        "format": "open-worlds/arrival/v1",
+        "world": _did("a trial world"),
+        "individual": _did("a trial mind"),
+        "name": "TRIAL-1",
+        "tick": 0,
+        "previous": _h("the entry just before the arrival's own"),
+    }, "a trial mind")
+    # A link and a person's list (docs/research/PERSONS.md). Here the
+    # presence is a test party; persons-v1.json has presences made from a
+    # seed.
+    link = {"person": _did("ALICE"), "presence": _did("a trial mind"),
+            "world": _did("a trial world"), "time": CREATED}
+    holds = _signed({"format": "open-worlds/holds/v1", **link}, "ALICE")
+    held_by = _signed({"format": "open-worlds/held-by/v1", **link},
+                      "a trial mind")
+    person_list = _signed({
+        "format": "open-worlds/person-list/v1",
+        "person": _did("ALICE"),
+        "version": 1,
+        "time": CREATED,
+        "presences": [{"world": _did("a trial world"), "counter": 0,
+                       "key": _did("a trial mind"), "name": "TRIAL-1"}],
+    }, "ALICE")
+    # A council's proposal and a vote on it (formats/council.py). Here
+    # the council is a test party; council-v1.json counts votes.
+    proposal = _signed({
+        "format": "open-worlds/proposal/v1",
+        "council": _did("the Ur-world's Keeper"),
+        "title": "A bench by the spring",
+        "text": "Shape a bench beside the spring, where two can sit.",
+        "choices": ["yes", "no"],
+        "trusts": [_did("the Ur-world")],
+        "quorum": 2,
+        "opens": CREATED,
+        "closes": "2026-11-21T01:00:00Z",
+    }, "the Ur-world's Keeper")
+    vote = _signed({
+        "format": "open-worlds/vote/v1",
+        "proposal": records.record_hash(proposal),
+        "person": _did("ALICE"),
+        "choice": 0,
+        "time": CREATED,
+    }, "ALICE")
+    named = [
+        ("a Keeper's grant from its world", keeper_grant),
+        ("a grant narrowed, with an end", narrowed),
+        ("a grant across the multiverse", admin_grant),
+        ("a suggestion to a world's Keeper", suggestion),
+        ("a suggestion to ADMIN, marked as a breach of the floor", floor),
+        ("a suggestion made outside any world, by ADMIN, with a line "
+         "break in its text", from_admin),
+        ("an outcome on a suggestion, with its reasons", outcome),
+        ("a ruling with a formal reason, council views, and the decision "
+         "it supersedes", ruling),
+        ("a rating of how a suggestion was handled", rating),
+        ("a signed log head", head),
+        ("an arrival in a trial world", arrival),
+        ("a person's half of a link to a presence", holds),
+        ("a presence's half of the same link", held_by),
+        ("a person's list, its first version", person_list),
+        ("a council's proposal", proposal),
+        ("a person's vote on it", vote),
+    ] + _who()
+    return [{"name": n, "signer": _signer_name(r), "record": r,
+             "hash": records.record_hash(r)} for n, r in named]
+
+
+def _signer_name(record: Dict[str, Any]) -> str:
+    who = records.signer_field(record)
+    return next(p for p in PARTIES if _did(p) == who)
+
+
+def _refused_key_lists(by: Dict[str, Any]) -> List[tuple]:
+    first = by["the first key list, signed by its root"]
+    later = by["a key list in which the root names a new root"]
+    keys = first["keys"]
+
+    def changed(r: Dict[str, Any], signer: str, **fields: Any):
+        fields = {k: v for k, v in {**r, **fields}.items()
+                  if k != "proof" and v is not None}
+        return proof.sign(fields, _secret(signer), CREATED)
+
+    alice = next(e for e in keys if e["name"] == "ALICE")
+    return [
+        ("a key list naming two roots", changed(
+            first, "the multiverse",
+            keys=[*keys, _key_entry("root", "an apprentice Keeper")])),
+        ("a key list naming no root", changed(
+            first, "the multiverse",
+            keys=[e for e in keys if e["role"] != "root"])),
+        ("a first key list signed by a key that isn't its root", changed(
+            first, "the code role", issuer=_did("the code role"))),
+        ("a first key list naming a version before it", changed(
+            first, "the multiverse", previous=_h("a version before"))),
+        ("a later key list naming no version before it", changed(
+            later, "the multiverse", previous=None)),
+        ("a key list giving one key two roles", changed(
+            first, "the multiverse", keys=[
+                *keys, {"role": "code", "name": "a second code role",
+                        "signing": _did("the multiverse")}])),
+        ("a key list naming one holder twice", changed(
+            first, "the multiverse", keys=[
+                *keys, {**alice, "signing": _did("an apprentice Keeper"),
+                        "sealing": _sealing_key("an apprentice Keeper")}])),
+        ("a key list with a sealing key of small order", changed(
+            first, "the multiverse", keys=[
+                *[e for e in keys if e["name"] != "ALICE"],
+                {**alice, "sealing": sealing_multikey(bytes(32))}])),
+        ("a key list with a role no one defined", changed(
+            first, "the multiverse", keys=[
+                *keys, _key_entry("king", "an apprentice Keeper")])),
+        ("a key list naming one name under two roles", changed(
+            first, "the multiverse", keys=[
+                *keys, {**_key_entry("world", "an apprentice Keeper", True),
+                        "name": "ALICE"}])),
+        ("a key list whose root has a sealing key", changed(
+            first, "the multiverse", keys=[
+                {**e, "sealing": _sealing_key("the multiverse")}
+                if e["role"] == "root" else e for e in keys])),
+    ]
+
+
+def _key_list_chains(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Key lists, each holding on its own, against the version before:
+    whether each follows it."""
+    by = {v["name"]: v["record"] for v in valid}
+    first = "the first key list, signed by its root"
+    handover = "a key list in which the root names a new root"
+    after = "the key list after, signed by the new root"
+
+    def changed(name: str, signer: str, **fields: Any):
+        r = by[name]
+        fields = {k: v for k, v in {**r, **fields}.items() if k != "proof"}
+        return proof.sign(fields, _secret(signer), CREATED)
+
+    def rekeyed(name: str, signing: str):
+        return [{**e, "signing": _did(signing)} if e["name"] == name else e
+                for e in by[handover]["keys"]]
+
+    cases = [
+        ("the old root names a new root", first, by[handover], True),
+        ("the new root signs the version after", handover, by[after],
+         True),
+        ("a version that skips one", first, by[after], False),
+        ("a version signed by a key that isn't the root before it", first,
+         changed(handover, "the code role",
+                 issuer=_did("the code role")), False),
+        ("after a new root is named, a version still signed by the old",
+         handover, changed(after, "the multiverse",
+                           issuer=_did("the multiverse")), False),
+        ("a version naming another version before it", first,
+         changed(handover, "the multiverse",
+                 previous=_h("another version")), False),
+        ("a version giving the code role another key", first,
+         changed(handover, "the multiverse",
+                 keys=rekeyed("the code role", "the code role, renewed")),
+         True),
+        ("a version giving ALICE another key", first,
+         changed(handover, "the multiverse",
+                 keys=rekeyed("ALICE", "ALICE, by another hand")), False),
+        ("a version giving the Ur-world another key", first,
+         changed(handover, "the multiverse",
+                 keys=rekeyed("the Ur-world", "the Ur-world, by another "
+                                              "hand")), False),
+        ("a version dropping BOB", first,
+         changed(handover, "the multiverse",
+                 keys=[e for e in by[handover]["keys"]
+                       if e["name"] != "BOB"]), False),
+        ("a version earlier than the one before", first,
+         changed(handover, "the multiverse", time="2026-11-14T05:59:59Z"),
+         False),
+    ]
+    return [{"name": n, "previous": p, "keyList": r, "holds": h}
+            for n, p, r, h in cases]
+
+
+def _key_list_histories() -> List[Dict[str, Any]]:
+    """Whole histories of the key list, by the names of the valid key
+    lists in them: whether each holds from version 1 to its end."""
+    first = "the first key list, signed by its root"
+    handover = "a key list in which the root names a new root"
+    after = "the key list after, signed by the new root"
+    cases = [
+        ("the first version alone", [first], True),
+        ("a handover, with the version its new root signed",
+         [first, handover, after], True),
+        ("a history ending on a new root that hasn't signed",
+         [first, handover], False),
+        ("a history that doesn't start at version 1", [handover, after],
+         False),
+        ("a history that skips a version", [first, after], False),
+        ("no history at all", [], False),
+    ]
+    return [{"name": n, "versions": v, "holds": h} for n, v, h in cases]
+
+
+------------------------------------------------------------------------
+The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/formats/record_vectors.py/02.txt

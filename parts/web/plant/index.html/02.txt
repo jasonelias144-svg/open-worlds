@@ -1,0 +1,59 @@
+Part of `web/plant/index.html` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 2.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/web/plant/index.html/01.txt
+After this part: nothing; this is the last part.
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+    if (want) {
+      const i = worlds.findIndex(w => w.log[0] && w.log[0].data && w.log[0].data.world === want);
+      if (i >= 0) choose(i);
+      else showNothing("No world in " + source + " has the key that ?world= names. Choose one above.");
+      return;
+    }
+    choose(worlds.length > 1 ? 1 : 0);
+  }
+  document.getElementById("file").addEventListener("change", ev => {
+    const f = ev.target.files && ev.target.files[0]; if (!f) return;
+    // Opening it is the choice, so a world chosen while it is read wins.
+    const mine = ++chosen;
+    const r = new FileReader();
+    r.onload = () => {
+      if (mine !== chosen) return;
+      let json;
+      try { json = JSON.parse(r.result); } catch (e) { showNothing(f.name + " isn't JSON: " + e.message); return; }
+      load(json, f.name);
+    };
+    r.onerror = () => { if (mine === chosen) showNothing("Couldn't read " + f.name + "."); };
+    r.readAsText(f);
+  });
+  const embedded = document.getElementById("embedded").textContent.trim();
+  if (embedded) load(JSON.parse(embedded), "the shared vectors");
+  else {
+    // ?log= names a file on this site only: a relative path, never another
+    // address, so the page never asks any other host for anything.
+    const params = new URLSearchParams(location.search);
+    const asked = params.get("log"), want = params.get("world");
+    const src = asked === null ? "../../vectors/plant-world.json" : asked;
+    let url = null;
+    try {
+      const u = new URL(src, location.href);
+      if (/^[A-Za-z0-9._\/-]+$/.test(src) && !src.startsWith("/") && !src.includes("//") && u.origin === location.origin) url = u.href;
+    } catch (e) { url = null; }
+    if (!url) { notice("Only a file on this site can be named with ?log=, by a relative path such as ../../vectors/plant-world.json.", true); draw(); return; }
+    // The page's own first load is a choice too: a file opened before it
+    // arrives wins, and its answer, or its failure, is then set aside.
+    const mine = ++chosen;
+    fetch(url, { credentials: "omit", referrerPolicy: "no-referrer" }).then(r => { if (!r.ok) throw new Error(r.status + " " + r.statusText); return r.json(); })
+      .then(j => { if (mine === chosen) load(j, src, want); })
+      .catch(e => { if (mine === chosen) notice("Couldn't read " + src + " (" + e.message + "). Serve the repository's folder, for example with python3 -m http.server, or open a log below.", false); });
+  }
+  draw();
+})();
+</script>
+<!--BODY-END-->
+</body>
+</html>
+------------------------------------------------------------------------
+End of `web/plant/index.html`.

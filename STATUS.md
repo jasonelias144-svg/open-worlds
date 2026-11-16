@@ -1991,6 +1991,32 @@ Decisions about the code, made by the technical lead under the founder's
 deference (above, 2026-11-13), each with its reason and what would show
 it was wrong. Questions of what the project is for stay with the founder.
 
+- 2026-11-16, the long files in parts: a tool that opens a page for a
+  reader may show only its start, so each file a reader works from that
+  is longer than 28,000 bytes is also kept under `parts/`, cut into
+  parts no longer than that. `parts/INDEX.md` gives every part's full
+  link in reading order, and each part ends with the link of the part
+  after it. A part holds the file's own text, unchanged.
+  `python3 docs/parts.py` writes the parts from the files, and
+  `tests/test_parts.py` fails when a file and its parts are out of
+  step, when a part is over the limit, or when a long file is neither
+  cut nor named as left whole. A Markdown page is cut at its "## "
+  headings. A section too long for one part is cut between its
+  top-level items and gathered from its end, so that a new entry at the
+  top of "Decided" or "Log" changes one part, and the parts below it
+  keep their names and their text. Left whole: the test vectors and
+  Cargo.lock, which nobody reads through, and the files of record.
+  *Why in the repository, and not on a branch that a workflow writes on
+  each merge:* the parts are then checked by the same tests and the same
+  review as everything else, and nothing gains the right to push. The
+  cost is that a change to a long page must run the script, which the
+  failing test says. *Why 28,000:* the window written for is about
+  32 KB, and 28,000 leaves room for the lines a tool adds around a page.
+  That figure is an assumption here, not a published measurement.
+  *What would show it was wrong:* a reader reporting a part cut short
+  (then the limit comes down), or the parts adding more work to each
+  change than they save in the founder's conversations (then they move
+  to a branch written on merge).
 - 2026-11-15, every file's full link, all of them: the founder's word
   (Decided, "on links to every file") widens the list of 2026-11-15
   below from the pages and Rust library code to every file in the
@@ -2444,6 +2470,14 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-16 Claude: the long files in parts (Decided by the technical
+  lead, the newest entry): `parts/`, written by `docs/parts.py` and
+  checked by `tests/test_parts.py`. docs/COLLABORATING.md says where
+  the parts are and lists the new files; AGENTS.md says to run the two
+  scripts before pushing; `.gitattributes` marks what the scripts
+  write, so that GitHub folds it away in a change. Not checked: that
+  any reader's tool shows a part whole.
 
 - 2026-11-15 Claude: topic 21, "Hallucination, both ways", in
   docs/TOPICS.md, from the founder's words and the DeepSeek case;
