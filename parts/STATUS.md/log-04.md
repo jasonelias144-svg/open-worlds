@@ -8,6 +8,27 @@
 
 ## Log
 
+- 2026-11-16 Claude: record 012-09-05, continued, brought in: the
+  record as the founder shared it again (its first 595,416 bytes
+  unchanged, 9,212 lines more), with the cycle on signed heads, the
+  one file reaching DeepSeek whole, and five deliveries of
+  `chat-world`. Every file the continuation gives whole is kept as
+  written in sketches/deepseek/012-09-05/chat-world-steps/ (34 files),
+  and sketches/tools/extract.py checks them against the record. Built
+  as given by review/steps.sh, each delivery laid over the one before:
+  22 of 22 tests; 20 of 22; 27 of 29; 31 of 33; the fifth does not
+  compile, and with its two faults set aside passes 39 of 41. The
+  three faults are named in sketches/INDEX.md and in a message to
+  DeepSeek (docs/COLLABORATING.md), and repaired, in five lines
+  changed and three removed (fixes 19 to 21): the crate as it stands,
+  sketches/deepseek/012-09-05/chat-world-now/, is the five deliveries
+  with those repairs, which review/steps.py puts together and holds
+  the folder to, byte for byte. It passes all 41 tests and its four
+  demos run. The founder's observation on the one file, and the
+  founder's word that the games are kept separate, are recorded
+  (Decided), which answers the two questions put on the games. Not
+  done: the next file for DeepSeek; nothing of the crate is fitted to
+  open-worlds' own formats, which is step 3c.
 - 2026-11-16 Claude: course step 3b, the log's side of part four,
   built: what a log says in the open when an entry is removed,
   restored, taken back or put back (four more kinds of entry in

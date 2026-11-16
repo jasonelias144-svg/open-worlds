@@ -85,8 +85,11 @@ free, and never a money machine
   `chat-world`) is kept with what runs
   (`sketches/deepseek/012-09-05/README.md`): after a first round of
   repairs the crate builds and passes its own 18 tests, and 73 of the
-  98 Python tests pass. Fitting it to open-worlds' own code is next,
-  piece by piece.
+  98 Python tests pass. The record goes on: given one file, DeepSeek
+  sent five deliveries of the crate, each file whole; with three
+  repairs of a few lines the crate as it stands
+  (`chat-world-now/`) passes all 41 of its tests. Fitting it to
+  open-worlds' own code is next, piece by piece.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
@@ -157,18 +160,6 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
-- For the founder, on the game ideas (2026-11-16; Decided, that
-  day):
-  1. Whether a separate project of small paid games is to pay for
-     running the multiverse. It is a question of money, so it is the
-     founder's, and it can wait for the money discussion. Recommended:
-     hold it until the Ur-room is built, so that there is something to
-     run before deciding how to pay for it. Nothing in the multiverse
-     has to change for it either way.
-  2. Where the game ideas are kept. This repository is public and
-     under CC0, which gives up all rights in what it holds.
-     Recommended: the project's private repository, with its next
-     change, and not here.
 - For the founder, on many multiverses (2026-11-16; Decided, the
   entries of that day):
   1. The floor between multiverses. The internet has no rule above its
@@ -393,6 +384,30 @@ kind.
 
 ## Decided
 
+- 2026-11-16, founder, the games are kept separate. "And let's keep
+  the games separate, so that the financial apps do not cross paths
+  with our free work. There is obvious overlap and an easy way to
+  build game worlds. But let's save that for later. We can make it a
+  dramatic merging of two projects. Or a way to play the game without
+  having to spend $1 on the game app. But that's later." So the two
+  questions put earlier that day are answered: the game ideas are a
+  project of their own, and are not kept or built in this repository;
+  and whether they ever pay for running the multiverse, or meet it,
+  is for later, and the founder's.
+- 2026-11-16, founder, on the first return to DeepSeek with one file;
+  an observation. "It is from DeepSeek. Apparently now run out of
+  data very quickly with DeepSeek. Not the point. We did generate some
+  code before getting cut off. And the single file seemed to work
+  perfectly." The technical lead's reading, after building what came
+  back (sketches/INDEX.md, "The record continued (2026-11-16)"): it
+  did work. DeepSeek read the whole file, quoted back its last line,
+  and sent five deliveries with every changed file whole, so each
+  could be built as given, by a script. The first builds and passes
+  all its tests; the next three build, with the same two tests
+  failing; the fifth does not compile, for two small faults. With
+  three repairs of a few lines, all five together pass all 41 tests.
+  And since a conversation with DeepSeek now ends sooner, each file
+  is to be as short as it can be, and to ask for one step at a time.
 - 2026-11-16, founder, a thought on paying for the multiverse; not a
   decision. After describing an idea for a game: "In fact, I might
   have a few more game ideas. Perhaps we can build some game apps to
@@ -3408,6 +3423,27 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-16 Claude: record 012-09-05, continued, brought in: the
+  record as the founder shared it again (its first 595,416 bytes
+  unchanged, 9,212 lines more), with the cycle on signed heads, the
+  one file reaching DeepSeek whole, and five deliveries of
+  `chat-world`. Every file the continuation gives whole is kept as
+  written in sketches/deepseek/012-09-05/chat-world-steps/ (34 files),
+  and sketches/tools/extract.py checks them against the record. Built
+  as given by review/steps.sh, each delivery laid over the one before:
+  22 of 22 tests; 20 of 22; 27 of 29; 31 of 33; the fifth does not
+  compile, and with its two faults set aside passes 39 of 41. The
+  three faults are named in sketches/INDEX.md and in a message to
+  DeepSeek (docs/COLLABORATING.md), and repaired, in five lines
+  changed and three removed (fixes 19 to 21): the crate as it stands,
+  sketches/deepseek/012-09-05/chat-world-now/, is the five deliveries
+  with those repairs, which review/steps.py puts together and holds
+  the folder to, byte for byte. It passes all 41 tests and its four
+  demos run. The founder's observation on the one file, and the
+  founder's word that the games are kept separate, are recorded
+  (Decided), which answers the two questions put on the games. Not
+  done: the next file for DeepSeek; nothing of the crate is fitted to
+  open-worlds' own formats, which is step 3c.
 - 2026-11-16 Claude: course step 3b, the log's side of part four,
   built: what a log says in the open when an entry is removed,
   restored, taken back or put back (four more kinds of entry in

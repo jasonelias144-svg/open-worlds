@@ -7,6 +7,8 @@ If one of these fails, the sketch has been changed again: say so in
 README.md and INDEX.md, list the file under "changed" in
 ../../tools/names-012-09-05.json, and change the test with them."""
 import re
+import subprocess
+import sys
 from pathlib import Path
 
 HERE = Path(__file__).parent
@@ -109,3 +111,16 @@ def test_its_keys_are_hex_and_its_time_is_the_clock():
     assert 'format!("did:key:{}", hex::encode(vk.to_bytes()))' in \
         _source("did.rs")
     assert "chrono::Utc::now()" in _source("lib.rs")
+
+
+def test_the_crate_as_it_stands_is_the_deliveries_with_three_repairs():
+    # Fixes 19 to 21. chat-world-now is put together here, so nothing in
+    # the record says what it must hold. review/steps.py does: the crate
+    # DeepSeek was given, the five deliveries laid over it in order, and
+    # three repairs, each a few lines. This runs its check.
+    done = subprocess.run(
+        [sys.executable, "-I", str(HERE / "review" / "steps.py"), "--check"],
+        capture_output=True, text=True)
+    assert done.returncode == 0, done.stdout + done.stderr
+    tests = (HERE / "chat-world-now" / "tests" / "integration.rs")
+    assert tests.read_text(encoding="utf-8").count("#[test]") == 41

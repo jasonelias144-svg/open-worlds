@@ -8,6 +8,30 @@
 
 ## Decided
 
+- 2026-11-16, founder, the games are kept separate. "And let's keep
+  the games separate, so that the financial apps do not cross paths
+  with our free work. There is obvious overlap and an easy way to
+  build game worlds. But let's save that for later. We can make it a
+  dramatic merging of two projects. Or a way to play the game without
+  having to spend $1 on the game app. But that's later." So the two
+  questions put earlier that day are answered: the game ideas are a
+  project of their own, and are not kept or built in this repository;
+  and whether they ever pay for running the multiverse, or meet it,
+  is for later, and the founder's.
+- 2026-11-16, founder, on the first return to DeepSeek with one file;
+  an observation. "It is from DeepSeek. Apparently now run out of
+  data very quickly with DeepSeek. Not the point. We did generate some
+  code before getting cut off. And the single file seemed to work
+  perfectly." The technical lead's reading, after building what came
+  back (sketches/INDEX.md, "The record continued (2026-11-16)"): it
+  did work. DeepSeek read the whole file, quoted back its last line,
+  and sent five deliveries with every changed file whole, so each
+  could be built as given, by a script. The first builds and passes
+  all its tests; the next three build, with the same two tests
+  failing; the fifth does not compile, for two small faults. With
+  three repairs of a few lines, all five together pass all 41 tests.
+  And since a conversation with DeepSeek now ends sooner, each file
+  is to be as short as it can be, and to ask for one step at a time.
 - 2026-11-16, founder, a thought on paying for the multiverse; not a
   decision. After describing an idea for a game: "In fact, I might
   have a few more game ideas. Perhaps we can build some game apps to

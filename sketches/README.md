@@ -96,6 +96,11 @@ its crate in Rust is read as text by the folder's test.
 and runs its own tests and its two demos, which must all pass, and
 then shows one finding that stands; it needs Rust and the network, and
 CI doesn't run it.
+`review/steps.sh` there builds each of the five deliveries the record
+ends with, as DeepSeek gave them, and the crate as it stands
+(`chat-world-now/`), and runs their tests
+([INDEX.md](INDEX.md), "The record continued (2026-11-16)"); CI
+doesn't run it either.
 
 The tests start small web servers on this machine (127.0.0.1) and run
 some Python subprocesses. They reach nothing outside the machine.

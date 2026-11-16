@@ -185,7 +185,11 @@ What that settles, as the technical lead reads it:
   `rust/chat-world`, and they are DeepSeek's next step
   ([COLLABORATING.md](COLLABORATING.md)). Their form in a log is
   built ([research/REDACTION.md](research/REDACTION.md), "Part four,
-  the log's side, built"); who may act is not checked yet.
+  the log's side, built"); who may act is not checked yet. DeepSeek's
+  first delivery after the one file takes the same step in its sketch
+  crate: a redaction that names who acted, in what role and under
+  which rule ([../sketches/INDEX.md](../sketches/INDEX.md), "The
+  record continued (2026-11-16)").
 
 **New beside the readers' own tools.** On 2026-11-14 it was decided
 that unwanted speech is met with each reader's tools, to see, not to

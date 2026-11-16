@@ -18,7 +18,7 @@ message; the rest is DeepSeek's reply.
 | [012-03-02, Patterns, Texts and Inventions](records/012-03-02-DPSK-Patterns_Texts_and_Inventions.txt) | The poetry engine and its curriculum, which the multiverse sketch builds on | 23,426 | `978eac920205ec2b487efc33f927dfd62da95b12ad78f1760fef9277b74908de` |
 | [012-06-02, Patterns and Multiverses, a new cycle](records/012-06-02-DPSK-Patterns_Multiverses.txt) | After reading `docs/COLLABORATING.md`, proposals for steps ahead: fractal worlds, a hierarchy of worlds, branching, a gallery of worlds and its governance; then the smallest learner that chooses, and individuals as signed, replayable bundles across worlds. Continued (from line 43168, shared on 2026-11-15): a multiversal map and an individual's worldline, a look at games, a microverse, the Ur-world as a garden of hosted fractal worlds, and the move to Rust: an Ur-garden, its keeper, a server, and verifiers in Rust, Python and Node.js. It ends with DeepSeek asking which piece is next | 62,610 | `979f7eef52c10396a682e2fcc0a4e76e1b5d0080b23a71ef22734f265ef0343c` |
 | [012-07-03, Patterns and Multiverses, the endless plant](records/012-07-03-DPSK-Patterns_Multiverses.txt) | Begun from `docs/COLLABORATING.md`: links tried as the founder pasted them, then the endless plant, the first stage of living worlds (a design and a sketch crate in Rust, with a choice neuron), DeepSeek's questions for the technical lead, and its answers to them once the founder left them to its judgement | 1,380 | `efe36ff3749bc1c776d27d2d2a407812cd784015904df89d1a3b3c9672ee5414` |
-| [012-09-05, Patterns and Multiverses, water and the Commons](records/012-09-05-DPSK-Patterns_Multiverses.txt) | Begun from `docs/COLLABORATING.md`: water as particles, the garden and the botanical garden (Python); signed world heads; then the founder's turn to the Commons as chat rooms, each with an AI moderator, and a home room for each person; a schema for every record; a design page; and a crate in Rust, `chat-world`. It ends with DeepSeek's order for the cycles after | 14,781 | `a9fc3e80fbf70dbdd1ef605fd7191ba4d0b3c6f873925da251608bd7aa4f3849` |
+| [012-09-05, Patterns and Multiverses, water and the Commons](records/012-09-05-DPSK-Patterns_Multiverses.txt) | Begun from `docs/COLLABORATING.md`: water as particles, the garden and the botanical garden (Python); signed world heads; then the founder's turn to the Commons as chat rooms, each with an AI moderator, and a home room for each person; a schema for every record; a design page; and a crate in Rust, `chat-world`; DeepSeek's order for the cycles after. Then, continued: signed heads for the crate; the one file the founder gave DeepSeek, which reached it whole; and five deliveries of `chat-world` from it, a step at a time. It ends with DeepSeek's list of what remains | 23,993 | `fce0bf8a1151da130e7e6de509b728825be838b0fc8dc4d744a3d38477b94130` |
 
 ## Links from the records
 
@@ -428,6 +428,81 @@ next work, piece by piece.
 | 8 | A design page, `docs/CHAT.md` (prose, left in the record) | 9964 | none | the Commons | not yet |
 | 9 | A crate in Rust, `chat-world`: the first version (`chat-world-draft/`), the one DeepSeek settled on (`chat-world/`), and the files of its next reply (a home, the Commons, transcripts) | 10259, 12246, 13800 | 18 of 18, and both demos' logs verify (as written it doesn't build, for one line, fix 16; with it changed, 4 of 12, the rest failing for one cause: a record was signed without its `type` and checked with it, fix 18; the later reply's files are joined by fix 17) | the Commons | not yet: it uses none of open-worlds' own crates |
 
+### The record continued (2026-11-16)
+
+The founder went back to DeepSeek with one file, and the record was
+shared again, longer. Its first 595,416 bytes are the same, byte for
+byte: the record as it was kept ended at the founder's next prompt,
+the opening of line 14,782, and 9,212 lines more follow. Three things
+are in them.
+
+**Signed heads for `chat-world`** (line 14785), the cycle DeepSeek had
+proposed. It came as changes to parts of files, with `src/head.rs`,
+`src/lib.rs` and a demo whole (kept in `chat-world-steps/0/`). It was
+not built on its own: the crate DeepSeek was then given does not hold
+it, and delivery 3, below, gives those files whole again.
+
+**The one file reached DeepSeek whole** (line 15501). The file is
+[replies/012-09-05-for-deepseek.txt](replies/012-09-05-for-deepseek.txt):
+the technical lead's reply, the next steps, and the crate as it stands
+here. DeepSeek quotes back its last line, `END OF FILE`, says "The
+whole file reached me.", and takes the reply's two requests: "One step
+per reply; every file I change, whole."
+
+**Five deliveries of `chat-world`,** each a step of that reply. Every
+file DeepSeek changed came whole, so each delivery can be built as
+given, with no joining by hand. The files are kept as the record gives
+them in `deepseek/012-09-05/chat-world-steps/1` to `5`;
+[deepseek/012-09-05/review/steps.py](deepseek/012-09-05/review/steps.py)
+lays each delivery over the one before, starting from the crate
+DeepSeek was given, and `review/steps.sh` builds and tests each (not
+run by CI). "Tests" is
+the crate's own tests, `cargo test --test integration`, on 2026-11-16.
+The titles are DeepSeek's.
+
+| Delivery | What it is | Line | Files given whole | Tests, built as given |
+|---|---|---|---|---|
+| 1 | "the data layer and the presentation layer": a redaction names who acted, in what role and under which rule, and a room's template holds its rules for redacting | 15540 | 6 | 22 of 22 |
+| 2 | "the room's own key": the room and the one who made it are two keys | 17168 | 6 | 20 of 22 |
+| 3 | "signed heads, first in prose, then code": what is lost if a room signs its log's head in place of each record, then heads in code | 18832 | 8 | 27 of 29 |
+| 4 | "runtime attestation": keys that share a runtime say so together, in a published record | 20714 | 3 | 31 of 33 |
+| 5 | "the succession trio": a shard of knowledge exported, a moderator's succession, and a sibling declared in the Commons | 21474 | 8 | does not compile; with its two faults set aside, 39 of 41 |
+| all five, with three repairs | The crate as it stands, `deepseek/012-09-05/chat-world-now/` (fixes 19 to 21, under "Changes to DeepSeek's code") | | | 41 of 41, and the four demos run |
+
+Three faults, as the deliveries were written:
+1. From delivery 2 on, the same two tests fail, `home_port_verifies`
+   and `home_bookmark_and_presence_verify`, each with "record 1:
+   missing room proof". They passed in delivery 1. The cause:
+   delivery 2 makes the room and its maker two keys, and the check
+   asks every record but a leaving for a proof by the room's key; a
+   home's port landing, bookmark and presence records were still
+   signed by the person's key alone (`src/home.rs`), which was the
+   room's key until then. Fix 19 signs them with both, and both tests
+   pass.
+2. Delivery 5, `src/verify.rs`: one condition does not compile
+   (mismatched types).
+3. Delivery 5, `src/bin/succession-demo.rs`: it calls `.hash()` on
+   `commons::SiblingDeclared`, which has no such method.
+
+DeepSeek ends delivery 5 with "Expected: 41 tests pass" (line 23989).
+It can't build or run the crate where it writes, as it has said
+before, so the count is what it meant, not what it measured. With the
+two faults of delivery 5 set aside (the condition replaced by `false`,
+the demo left out), 39 of the 41 pass, and the two that fail are the
+two of fault 1.
+
+The crate kept in `deepseek/012-09-05/chat-world/` is still the one
+DeepSeek was given, and the deliveries are beside it, as written.
+`chat-world-now/` is the crate as it stands: the five deliveries laid
+over that crate in order, with the three repairs. `review/steps.py`
+puts it together, and its `--check` holds the folder to exactly that,
+byte for byte (the folder's own test runs it, in CI). So every file in
+it is DeepSeek's latest, changed only as fixes 19 to 21 say. Not
+checked: the demos of deliveries 2 to 5 as written were not run, only
+the four demos of the crate as it stands; the prose of delivery 3 was
+read only in part; nothing of this has been compared with open-worlds'
+own formats.
+
 ## Record 012-03-02, component by component
 
 Three series of components, written out in `deepseek/012-03-02/`: a
@@ -632,6 +707,31 @@ the code as well. Signing the `type` is the stronger, since a record
 can't then be passed off as another kind. (The Commons' registrations
 and the transcripts verified as written: they are signed and checked
 as the same struct.)
+
+**Fix 19 (2026-11-16, record 012-09-05, continued): a home's own
+records carry the room's proof.** From delivery 2 a room and its maker
+are two keys, and `verify_room` asks every record but a leaving for a
+proof by the room's key. `HomeRoom`'s port landing, bookmark and
+presence records were signed by the person's key alone, so two tests
+failed from delivery 2 on with "missing room proof". In
+`chat-world-now/src/home.rs` the three are signed by both keys, with
+the crate's own `sign_record_dual`, as a room's other records are.
+
+**Fix 20: a condition that did not compile is taken out.** Delivery
+5's `src/verify.rs` held a condition on a shard's entry hashes that
+does not compile (mismatched types) and whose own comment says it does
+nothing. It is removed; the check of each hash, which follows it,
+stays.
+
+**Fix 21: the succession demo hashes a sibling's record as the Commons
+does.** Delivery 5's `src/bin/succession-demo.rs` called `.hash()` on
+a `SiblingDeclared`, which has no such method. It now calls the
+crate's `hash_of`, which is what the Commons' own record of it uses.
+
+With the three, the crate after all five deliveries builds, passes all
+41 of its tests, the number DeepSeek gave as expected, and its four
+demos run to the end. The repairs are five lines changed and three
+removed; `review/steps.py` holds them (`REPAIRS`).
 
 Not fixed, and why:
 

@@ -93,8 +93,11 @@ free, and never a money machine
   `chat-world`) is kept with what runs
   (`sketches/deepseek/012-09-05/README.md`): after a first round of
   repairs the crate builds and passes its own 18 tests, and 73 of the
-  98 Python tests pass. Fitting it to open-worlds' own code is next,
-  piece by piece.
+  98 Python tests pass. The record goes on: given one file, DeepSeek
+  sent five deliveries of the crate, each file whole; with three
+  repairs of a few lines the crate as it stands
+  (`chat-world-now/`) passes all 41 of its tests. Fitting it to
+  open-worlds' own code is next, piece by piece.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
@@ -165,18 +168,6 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
-- For the founder, on the game ideas (2026-11-16; Decided, that
-  day):
-  1. Whether a separate project of small paid games is to pay for
-     running the multiverse. It is a question of money, so it is the
-     founder's, and it can wait for the money discussion. Recommended:
-     hold it until the Ur-room is built, so that there is something to
-     run before deciding how to pay for it. Nothing in the multiverse
-     has to change for it either way.
-  2. Where the game ideas are kept. This repository is public and
-     under CC0, which gives up all rights in what it holds.
-     Recommended: the project's private repository, with its next
-     change, and not here.
 - For the founder, on many multiverses (2026-11-16; Decided, the
   entries of that day):
   1. The floor between multiverses. The internet has no rule above its

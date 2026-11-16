@@ -137,7 +137,40 @@ shared; some are the same thing spelled differently, as `DidKey` and
 prose pieces were read, not tested. The three botanical tests that
 still fail were not looked into beyond their error lines.
 
+## The five deliveries after the one file (2026-11-16)
+
+The record goes on after the crate kept here. The founder gave
+DeepSeek one file with the crate as it stands here
+([../../replies/012-09-05-for-deepseek.txt](../../replies/012-09-05-for-deepseek.txt)),
+and DeepSeek answered with five deliveries of `chat-world`, a step at
+a time, every changed file whole. Each delivery's files are kept as
+the record gives them, in `chat-world-steps/1` to `5`
+(`chat-world-steps/0` is the cycle on signed heads from just before,
+which delivery 3 gives again). `chat-world/` is unchanged: it is
+still the crate DeepSeek was given. `review/steps.py` puts together
+the crate as it stands after each delivery, each laid over the one
+before, starting from `chat-world/`, and `review/steps.sh` builds and
+tests each one (it needs Rust and the network, and CI doesn't run
+it).
+
+Built as given: delivery 1 passes 22 of 22 tests; delivery 2, 20 of
+22; delivery 3, 27 of 29; delivery 4, 31 of 33; delivery 5 does not
+compile, and with its two faults set aside passes 39 of 41.
+[../../INDEX.md](../../INDEX.md) ("The record continued (2026-11-16)")
+says what each delivery is and names the three faults.
+
+`chat-world-now/` is the crate as it stands: all five deliveries, with
+the three faults repaired in a few lines (fixes 19 to 21 in
+[../../INDEX.md](../../INDEX.md)). It builds, passes all 41 of its
+tests, and its four demos run. It is put together here, by
+`review/steps.py --now`; `review/steps.py --check` holds the folder to
+that, byte for byte, and `sketch_status_test.py` runs the check. So
+its files are listed below as ours, though all but three are exactly
+as DeepSeek wrote them.
+
 ## Ours, not DeepSeek's
 
 `README.md`, `conftest.py`, `pytest.ini`, `known-failures.txt`,
-`sketch_status_test.py`, `review/run.sh`.
+`sketch_status_test.py`, `review/run.sh`, `review/steps.py`,
+`review/steps.sh`, and every file under `chat-world-now/` (put
+together here from DeepSeek's files, as said above).

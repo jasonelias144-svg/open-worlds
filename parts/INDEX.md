@@ -105,7 +105,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/start.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/14-the-commons-a-superworld-of-chat-rooms.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/22-many-multiverses-and-worlds-that-move.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/21-hallucination-both-ways.md
 ```
 
 ## `docs/VISION.md`, in 2 parts
@@ -197,7 +197,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/schem
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/start.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-06-02-piece-by-piece.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/changes-to-deepseek-s-code.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-09-05-piece-by-piece.md
 ```
 
 ## `tests/test_apart.py`, in 2 parts

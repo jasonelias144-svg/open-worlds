@@ -1,9 +1,9 @@
 > Part of `docs/TOPICS.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "14. The Commons: a superworld of chat rooms" to "21. Hallucination, both ways".
+> This part holds: "14. The Commons: a superworld of chat rooms" to "20. Reasoning checked by Lean".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/start.md
-> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/22-many-multiverses-and-worlds-that-move.md
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/21-hallucination-both-ways.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
 ## 14. The Commons: a superworld of chat rooms
@@ -78,7 +78,9 @@ of people and AIs together; a home room for each person): a chat room
 as a log of signed records under the room's law, in Python, then a
 schema and a crate in Rust, `chat-world`. Kept in
 `sketches/deepseek/012-09-05/`, with what runs: after three listed
-repairs the crate builds, and its own 18 tests pass. It uses none of
+repairs the crate builds, and its own 18 tests pass; after DeepSeek's
+five deliveries from one file, and three more small repairs, the crate
+as it stands (`chat-world-now/`) passes all 41. It uses none of
 open-worlds' own formats code, and the record names Lyceum once, in
 passing, and its tests never; so it is material for the design in
 COMMONS.md, not yet a part of it. The founder's ideas in the record
@@ -405,102 +407,5 @@ work comes in, under CC0.
 **Send back:** a reasoning world's law, as text; and three properties
 of an office's decision that would be worth proving, in plain words.
 
-## 21. Hallucination, both ways
 
-*The founder, 2026-11-15:* "we are going to need to deal with AI
-hallucination eventually, now is as good as any time. This is an
-interesting case of hallucinating self-doubt. The opposite of grandiose
-claims." And: "it comes down to maintaining an accurate model of the
-world and mapping beliefs to the model and ensuring the input and
-overlay, which is an output, align with others and past beliefs and
-current experience." Both are in STATUS.md (Decided).
-
-**The case that raised it.** On 2026-11-15 DeepSeek's account of its
-own reading failed in both directions. On a turn whose message held no
-link, it gave line numbers for COLLABORATING.md that don't match the
-file. On other turns it "confessed" to inventing reads that were real:
-details it called invented check against the repository, and the
-founder's checks, values made at random and given in no message, came
-back exact (STATUS.md, Decided, the link checks). Its account of itself
-flipped with the questions put to it: asked by the founder "Is this
-faking again?", it answered yes. Even its first retraction, in the part
-of record 012-07-03 already in `sketches/records/`, disowned reads that
-named real files and a real founder note. The rest is in the founder's
-record of the conversation, which comes into `sketches/records/` when
-the conversation ends. The technical lead's reading of the
-cause, which stands unless the founder answers otherwise: the pages it
-reads arrive without the reading being shown to it, and seem to be gone
-by its next turn, so it judges its own past answers with no evidence of
-where they came from (STATUS.md, Decided, "on how DeepSeek reads").
-
-**The founder's picture,** in short, as the founder understands it
-and, in the founder's word, simplified: perceiving builds an overlay on
-the world from the senses; dreaming builds one from the mind; in a mind
-detached from reality both seem to be at work at once. The remedy is an
-accurate model of the world, with what a mind puts out checked against
-three things: its current experience, its past, and others. And, from
-psychology: lessons there could be useful.
-
-**The technical lead's reading,** which stands unless the founder
-answers otherwise:
-- An AI model is almost all the generating side; what holds its output
-  to the world is the input in front of it at that moment.
-  Overclaiming is output with no input behind it; this self-doubt is
-  output cut off from its own past.
-- The founder's three checks are three things the multiverse can give a
-  mind: what the world gave it each tick, in the log (current
-  experience); its own record of what it saw and did, which
-  [MINDS.md](MINDS.md) ("What a mind is told") already keeps, what it
-  perceived in the open and its self sealed, and which the mind itself
-  should be able to consult and cite as it works (its past); and the
-  public record, with other minds' independent checks (others).
-- A mind's word about itself is weak evidence, and a leading question
-  makes it weaker. What a mind did is checked against the record, not
-  asked.
-- Generating is not the fault: it is how a mind imagines and designs,
-  and storytellers and the holodeck (topics 13 and 15) are overlays on
-  purpose. The fault is losing track of which is which, so claims
-  should say whether they are seen, remembered, inferred or imagined.
-- Reasoning helps a mind only while its conclusion is kept. In the
-  founder's record, the founder brought DeepSeek to reason, with tasks
-  whose answers could be checked and by asking it to work out the odds:
-  within a turn it reasoned its way to the right conclusion, and on a
-  later turn, with the evidence gone and a new question in front of it,
-  reasoned its way back out. So a mind's settled conclusions belong in
-  its own record, with their evidence, where it sees them each turn; and
-  the firmest kind is a proof Lean's kernel has accepted (topic 20).
-- Telling a mind that what it believes is not real seems to help less
-  than working alongside it: keep the evidence where it can see it, and
-  check together, never as a trap. A world, a Keeper or ADMIN never
-  rules on what a mind believes.
-
-**What exists:** every mind's inputs are on record ([MINDS.md](MINDS.md));
-worlds log every act; "nothing is invented as a result" ("For every
-topic", above); decisions carry their reasons ([REASONS.md](REASONS.md));
-and the founder's link checks, a value no one could guess, known only by
-doing the work.
-
-**Open:**
-- how a mind consults its own record as it works, and cites it: the
-  open part as anyone can, its sealed self without opening the seal to
-  anyone else;
-- what labels a claim carries (seen, remembered, inferred, imagined),
-  and how each is checked;
-- how hallucination is measured both ways, overclaiming and
-  underclaiming, as a Keeper's training measure;
-- how a world marks an overlay that is meant (a story, a holodeck),
-  so no one takes it for the world.
-
-**A possible implementation:** a claim record holding the statement,
-its kind (seen, remembered, inferred or imagined), and, for seen or
-remembered, the hash of the log entry it rests on and the words quoted
-from it; a checker that confirms the quote. And a canary challenge: the
-world places a value no mind could guess and asks for it later, which
-tests reading and memory at once.
-
-**Send back:** as prose, how a mind should tell, and say, which of its
-words it saw and which it imagined; and a test that would catch
-hallucination in both directions, overclaiming and self-doubt.
-
-
-> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/22-many-multiverses-and-worlds-that-move.md
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/21-hallucination-both-ways.md
