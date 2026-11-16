@@ -99,25 +99,35 @@ The three repairs to the crate:
   equation was not satisfied", and the demo printed "Verification
   FAILED" before its closing lines, which are fixed text, said "The
   whole room verifies offline." Now the bytes signed are the wrapped
-  record's.
+  record's. This repair is the technical lead's choice, not the
+  record's: DeepSeek's code signs the bare struct throughout, the test
+  it withdrew included, so leaving the `type` out of the check would
+  have agreed with the code as well. Signing the `type` is the
+  stronger of the two, since a record can't then be passed off as
+  another kind.
 
 Findings that stand, for the fitting:
 
 1. **After a redaction, the visible log still shows the message's
    text.** `visible_log` goes through the records once, in order, and
    notes a redaction when it reaches it, which is after the message.
-   `review/run.sh` shows it with a test of ours. Not repaired: what a
-   reader is shown after a redaction, and after a human overrides
-   one, is a question for the design.
+   `review/run.sh` shows it with a test of ours. What the code means
+   in the plain case is clear enough: it has a `hidden` flag and a
+   "[redacted]" text, and the Python sketch's
+   `test_redact_visible_hides_text` expects the text hidden. It is
+   left as it is because the demo has a person overriding a redaction,
+   and what a reader is shown then is not settled; and it touches
+   privacy, so it is for the design, not for a patch here.
 2. **It stands apart from open-worlds' own code.** It uses neither
    `rust/formats` nor `rust/world-log`, and rebuilds canonical form,
    hashing, keys and proofs with packages of its own choosing. Its
    `did:key` is 64 hex characters, where open-worlds' is the Multikey
    form (`z6Mk...`). And it reads the clock inside the crate, where
    open-worlds gives a record its time from outside.
-3. **Every record carries the room's signature beside its author's.**
-   open-worlds' worlds sign their logs' heads, in batches, not each
-   entry (STATUS.md, "Decided by the technical lead", 2026-11-16).
+3. **Every record but a leave carries the room's signature,** beside
+   its author's where it has one. open-worlds' worlds sign their logs'
+   heads, in batches, not each entry (STATUS.md, "Decided by the
+   technical lead", 2026-11-16).
 
 Not checked: `chat-world-draft/`, the first version, was not built. The
 schema was compared with open-worlds' own by the names of its

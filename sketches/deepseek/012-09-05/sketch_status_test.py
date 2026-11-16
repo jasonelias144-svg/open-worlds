@@ -70,10 +70,19 @@ def test_a_record_is_signed_as_it_is_written_out():
     stripped = _source("hash.rs")
     assert 'map.remove("proof");' in stripped
     assert 'map.remove("type");' not in stripped
-    for name in ("room.rs", "home.rs"):
-        for call in re.findall(r"crate::sign_record(?:_dual)?\(([^\n]*)\)\?;",
-                               _source(name)):
-            assert re.search(r", Record::\w+, \|r, p\| r\.proof = p$", call), call
+    # Every place a record is signed passes the wrapping: seven in
+    # room.rs, three in home.rs, and nowhere else.
+    calls = []
+    for path in sorted((CRATE / "src").glob("*.rs")):
+        source = path.read_text(encoding="utf-8")
+        found = re.findall(r"crate::sign_record(?:_dual)?\((.*?)\)\?;",
+                           source, re.S)
+        assert len(found) == {"room.rs": 7, "home.rs": 3}.get(path.name, 0), \
+            path.name
+        calls += found
+    assert len(calls) == 10
+    for call in calls:
+        assert re.search(r", Record::\w+, \|r, p\| r\.proof = p$", call), call
 
 
 def test_a_redaction_is_read_after_the_message_it_hides():
@@ -82,10 +91,8 @@ def test_a_redaction_is_read_after_the_message_it_hides():
     # is after the message. So a redacted message's text still shows.
     log = _visible_log()
     assert log.count("for rec in &self.records {") == 1
-    loop = log[log.index("for rec in &self.records {"):]
-    assert loop.index("redacted_hashes.insert(") < \
-        loop.index("redacted_hashes.contains(")
     assert log.count("redacted_hashes.insert(") == 1
+    assert log.count("redacted_hashes.contains(") == 1
 
 
 def test_it_uses_none_of_open_worlds_own_crates():

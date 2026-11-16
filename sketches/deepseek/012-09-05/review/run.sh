@@ -6,7 +6,9 @@
 #   sh sketches/deepseek/012-09-05/review/run.sh
 #
 # It needs Rust and the network: the sketch names ten packages from
-# crates.io, and cargo fetches them. CI doesn't run it.
+# crates.io, and cargo fetches them. CI doesn't run it. The sketch has
+# no Cargo.lock, so cargo takes the newest versions that fit, and a
+# result can change with what crates.io serves that day.
 #
 # All eighteen of the sketch's tests must pass, and both demos must say
 # their logs verify. Then one more test, ours, shows a finding that is
