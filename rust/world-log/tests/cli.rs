@@ -145,11 +145,13 @@ fn entries_removed_and_taken_back_are_counted() {
     );
     let (code, out) = run_with(&log.0, &contents.0);
     assert_eq!(code, Some(0), "{out}");
-    // One removed again after a restoring, one removed with a field
-    // redacted; one removed and then taken back by its author; and the
-    // one taken back and put back is as written.
+    // Removed: one again after a restoring, one with a field redacted,
+    // one that its author took back and put back while the removal
+    // stood. Taken back: one that an office had removed. Restored: one
+    // removed and restored. The one taken back and put back is as
+    // written.
     assert!(
-        out.contains("the entries: 2 removed, 1 taken back, 0 restored, the rest as written"),
+        out.contains("the entries: 3 removed, 1 taken back, 1 restored, the rest as written"),
         "{out}"
     );
     // A log no one has acted on says so too.

@@ -166,6 +166,31 @@ def acted_on() -> Tuple[apart.Log, Dict[str, str]]:
     # stands, and still says its office and its ground in the open.
     _mark(room, 14, names["second removal"], "record",
           "the reasons repeated what was removed")
+    # The removal of what its author then took back is restored: the
+    # removal stops standing, and the entry stays taken back.
+    _restore(room, 15, names["removal of door"], 6)
+    # Removed and restored, and left so: restored, never again as
+    # written. The ground is an earlier record, named by its hash.
+    names["later"] = room.append(
+        16, "said", None, {},
+        {"key": "trial key of bo", "text": "a later word",
+         "time": 1794787380})
+    removal = room.append(
+        17, apart.REMOVED, None,
+        {"entry": names["later"], "office": MODERATOR,
+         "ground": {"kind": "record", "ref": trial_decision(1)},
+         "decision": trial_decision(7)},
+        {"record": "trial decision record 7, not a signed one"})
+    _restore(room, 18, removal, 8)
+    # Removed, taken back and put back: the removal still stands, so
+    # the entry is removed.
+    names["last"] = room.append(
+        19, "said", None, {},
+        {"key": "trial key of ada", "text": "a last word",
+         "time": 1794787440})
+    _remove(room, 20, names["last"], 9)
+    taking = _take_back(room, 21, names["last"])
+    _put_back(room, 22, taking)
     return room, names
 
 

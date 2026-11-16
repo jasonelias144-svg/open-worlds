@@ -2674,11 +2674,15 @@ it was wrong. Questions of what the project is for stay with the founder.
   (a) Four more kinds of entry are the form's own, and none of the
   form's six kinds can be removed or taken back. (b) A removal and a
   restoring say in the open the office, one ground (a kind and a
-  reference, as a `decision/v1` has them, the reference at most 512
-  characters) and the decision's hash; a taking back and a putting
-  back say only what they are on. (c) An author can undo their own
-  taking back, and no office can; an office's restoring undoes only a
-  removal. (d) An entry's state is taken back, removed, restored or as
+  reference, held to what a `decision/v1` holds a ground to: one of
+  four kinds, a reference of at most 512 characters, and for an
+  earlier record its hash) and the decision's hash; a taking back and
+  a putting back say only what they are on. (c) An author can undo
+  their own taking back, and no office can; an office's restoring
+  undoes only a removal. It can be made while the author's taking
+  back stands: the removal stops standing, and the entry stays taken
+  back. This changes the third row of decision 9's table, which
+  refused it. (d) An entry's state is taken back, removed, restored or as
   written, in that order, from the open fields alone; an entry once
   removed is never again "as written". (e) An incident's short id is
   the only such among the incidents of its log, and may grow longer
@@ -2688,10 +2692,13 @@ it was wrong. Questions of what the project is for stay with the founder.
   (h) The command line counts the entries removed, taken back and
   restored.
   *Why:* (a) the record of an act must not be hidden by another act;
-  (b) what the log says in the open can then always be held against a
-  signed decision, and a room's note can show the ground even if the
-  reasons are later redacted (decision 7); (c) no office acts when an
-  author takes back their own words (decision 8), so none undoes it;
+  (b) a ground the log shows is then always one a signed decision can
+  hold, and a room's note can show the ground even if the reasons are
+  later redacted (decision 7); (c) no office acts when an author takes
+  back their own words (decision 8), so none undoes it; and a removal
+  overturned on appeal must be able to go on record whatever its
+  author has done since, or the log would show a removal standing
+  that the office has overturned (found by the independent review);
   (d) a reader should see that an office once acted, even after it
   was undone; (f) the founder, 2026-11-16: "the comment stays in the
   data layer, in our records", and what is shown is the room's view;
@@ -2708,11 +2715,14 @@ it was wrong. Questions of what the project is for stay with the founder.
 - 2026-11-16, a world with inhabitants that moves to another
   multiverse (docs/WORLD-TYPES.md, "Arriving in another multiverse",
   steps 5 and 6), from the last check of the pull request that
-  recorded the founder's words on it. Such a world departs only from a
-  head that an admission names: if it lived on after the evaluation,
-  what it added is evaluated too, an admission is given at its present
-  head, and it is paused from that head until it departs. And the move
-  counts only when the admission holds.
+  recorded the founder's words on it. In a move, such a world departs
+  only from a head that an admission names: if it lived on after the
+  evaluation, what it added is evaluated too, an admission is given at
+  its present head, and it is paused from that head until it departs.
+  After the admitted head its log may hold the pause, leavings and the
+  departure, and nothing else, and the check on arrival is that this
+  is so. And the move counts only when the admission holds. Leaving to
+  stand alone is unchanged.
   *Why:* its inhabitants consented to a move to a named multiverse. If
   the check on arrival could fail after it had left, they would be
   left standing alone, which none of them agreed to.
@@ -3404,7 +3414,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   `open-worlds/log-apart/v1`), each entry's state worked out from the
   open fields alone, the incident id and its short form, and the table
   of what wins, in `world/apart.py` and `rust/world-log`, with vectors
-  (122 refused, each for one of nineteen reasons, and seven that
+  (124 refused, each for one of nineteen reasons, and seven that
   hold). The command line counts the entries removed, taken back and
   restored. Three notes carried from the last check of part two are
   taken, and two carried from the last check of the founder's words on
@@ -3412,7 +3422,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   technical lead). The founder's thought on paying for the multiverse
   from a separate project of games is recorded (Decided), with two
   questions (Open questions). Checked: the Python suite and the Rust
-  workspace; and deliberate breakage, 63 changes to the Python and 45
+  workspace; and deliberate breakage, 67 changes to the Python and 48
   to the Rust, one at a time, every one caught by a test. Not built:
   the records' side of part four (the list of kinds of act, the check
   of a decision against its grant, the author's record kinds), so

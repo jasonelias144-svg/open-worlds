@@ -122,6 +122,13 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/WORLD-KEY.md/the-hunt.md
 ```
 
+## `docs/WORLD-TYPES.md`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/WORLD-TYPES.md/start.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/WORLD-TYPES.md/which-world-has-which-operations.md
+```
+
 ## `docs/research/FORMATS.md`, in 2 parts
 
 ```text

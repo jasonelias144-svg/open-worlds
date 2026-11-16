@@ -6,6 +6,34 @@ Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-world
 After this part: nothing; this is the last part.
 Made by docs/parts.py from the file. To change it, change the file.
 ------------------------------------------------------------------------
+def join(log: Any, contents: Any) -> List[dict]:
+    """Each entry as a reader uses it, after `check`: the entry without
+    its `apart`, its `data` holding the open fields and every field kept
+    apart that is `present` or `kept public`, `fields` giving the state
+    of each field kept apart, and the entry's own `state` and
+    `incidents` (as `incidents` gives them; `as written` and none, for
+    most). A field under a standing mark is left out even if it is
+    still in the contents. An entry that is removed or taken back is
+    given whole: hiding it is for whatever shows the room."""
+    scan = _scan(log)
+    held = _held(scan, contents)
+    states = _states(scan, held)
+    acted_on = _entry_states(scan)
+    joined = []
+    for entry in log:
+        fields = states.get(entry["hash"], {})
+        one = {k: copy.deepcopy(v) for k, v in entry.items() if k != "apart"}
+        for name, state in fields.items():
+            if state in (PRESENT, KEPT_PUBLIC):
+                one["data"][name] = copy.deepcopy(held[entry["hash"]][name])
+        one["fields"] = dict(fields)
+        its = acted_on.get(entry["hash"], {})
+        one["state"] = its.get("state", AS_WRITTEN)
+        one["incidents"] = copy.deepcopy(its.get("incidents", []))
+        joined.append(one)
+    return joined
+
+
 class Log:
     """Writes a log in this form: `entries` is the chain, `contents`
     what is kept beside it. Every entry is offered to the same check a

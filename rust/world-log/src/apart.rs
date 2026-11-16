@@ -165,7 +165,7 @@ impl fmt::Display for State {
 
 /// The state of an entry, worked out from the open fields alone: what a
 /// room shows of it.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum EntryState {
     /// Never removed, and no taking back of it stands.
     AsWritten,
@@ -308,8 +308,8 @@ pub enum Refused {
         /// The removal's place in the log.
         index: usize,
     },
-    /// A restoring does not name a removal that stands, on an entry its
-    /// author has not taken back, with its office, ground and decision.
+    /// A restoring does not name a removal that stands, with its office,
+    /// ground and decision.
     BadRestoring {
         /// The restoring's place in the log.
         index: usize,
@@ -541,18 +541,20 @@ struct Scan {
 }
 
 /// True if an office's act says, in the open, which office acted, the
-/// ground it rests on, and the hash of its decision record.
+/// ground it rests on, and the hash of its decision record. The ground
+/// is one a decision record can hold: an earlier record is named by its
+/// hash.
 fn office_ok(data: &Map<String, Value>) -> bool {
     fn text(value: Option<&Value>) -> Option<&str> {
         value.and_then(Value::as_str).filter(|t| !t.is_empty())
     }
     let ground = data.get("ground").and_then(Value::as_object);
-    text(data.get("office")).is_some()
-        && ground.is_some_and(|g| {
-            g.len() == 2
-                && text(g.get("kind")).is_some_and(|kind| GROUNDS.contains(&kind))
-                && text(g.get("ref")).is_some_and(|r| r.chars().count() <= MAX_REF)
-        })
+    text(data.get("office")).is_some() && ground.is_some_and(|g| {
+        let kind = text(g.get("kind")).filter(|kind| GROUNDS.contains(kind));
+        let reference = text(g.get("ref")).filter(|r| r.chars().count() <= MAX_REF);
+        g.len() == 2
+            && matches!((kind, reference), (Some(kind), Some(r)) if kind != "record" || is_hash(r))
+    })
         && data
             .get("decision")
             .and_then(Value::as_str)
@@ -659,8 +661,10 @@ impl Scan {
             let target = incident.and_then(|i| self.removals.get(i));
             match (incident, target) {
                 (Some(incident), Some(target))
+                    // Allowed while the author's taking back stands: the
+                    // removal stops standing, and the entry stays taken
+                    // back.
                     if self.removed.get(target).map(String::as_str) == Some(incident)
-                        && !self.taken.contains_key(target)
                         && office_ok(data) =>
                 {
                     on = Some(target.clone());
@@ -861,19 +865,26 @@ fn states(scan: &Scan, held: &BTreeMap<&str, BTreeMap<&str, &Value>>) -> States 
 
 /// Each incident's id as it is shown: the fewest hex digits, [`SHORT`] or
 /// more, that no other of `ids` begins with. The ids are 64 hex digits,
-/// as an entry's hash is, and no two are the same.
+/// as an entry's hash is. Sorted, an id shares its longest beginning
+/// with one of its two neighbours, so each is held against those two
+/// alone. An id is never cut longer than it is.
 pub fn short_ids(ids: &[String]) -> BTreeMap<String, String> {
+    fn shared(a: &str, b: &str) -> usize {
+        a.bytes().zip(b.bytes()).take_while(|(x, y)| x == y).count()
+    }
+    let order: Vec<&String> = ids.iter().collect::<BTreeSet<_>>().into_iter().collect();
     let mut short = BTreeMap::new();
-    for one in ids {
-        let mut n = SHORT.min(one.len());
-        while n < one.len()
-            && ids
-                .iter()
-                .any(|other| other != one && other.get(..n) == one.get(..n))
-        {
-            n += 1;
-        }
-        short.insert(one.clone(), one.get(..n).unwrap_or(one).to_owned());
+    for (i, one) in order.iter().enumerate() {
+        let before = i.checked_sub(1).and_then(|j| order.get(j));
+        let after = order.get(i + 1);
+        let most = before
+            .into_iter()
+            .chain(after)
+            .map(|other| shared(one, other))
+            .max()
+            .unwrap_or(0);
+        let n = SHORT.max(most + 1);
+        short.insert((*one).clone(), one.get(..n).unwrap_or(one).to_owned());
     }
     short
 }

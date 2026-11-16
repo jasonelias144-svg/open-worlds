@@ -255,6 +255,8 @@ def refused() -> List[dict]:
              {"ground": {"kind": "law", "ref": ""}}),
             ("a removal whose ground holds more than a kind and a ref",
              {"ground": {**GROUND, "more": "x"}}),
+            ("a removal whose ground is a record not named by its hash",
+             {"ground": {"kind": "record", "ref": "an earlier decision"}}),
             ("a removal whose ground's reference is one character too long",
              {"ground": {"kind": "law",
                          "ref": "\U0001D11E" * (apart.MAX_REF + 1)}}),
@@ -274,9 +276,10 @@ def refused() -> List[dict]:
     refuse(apart.BAD_RESTORING, "a restoring of a removal already restored",
            apart.RESTORED, restoring, ("r", _remove, said, 1),
            ("back", _restore, "r", 2))
-    refuse(apart.BAD_RESTORING, "a restoring of an entry its author took "
-           "back", apart.RESTORED, restoring, ("r", _remove, said, 1),
-           ("t", _take_back, said))
+    refuse(apart.BAD_RESTORING, "a restoring of an earlier removal, "
+           "already restored, of an entry that is removed again",
+           apart.RESTORED, restoring, ("r", _remove, said, 1),
+           ("back", _restore, "r", 2), ("again", _remove, said, 3))
     refuse(apart.BAD_RESTORING, "a restoring of a taking back",
            apart.RESTORED, {**restoring, "incident": "t"},
            ("t", _take_back, said))
@@ -306,6 +309,10 @@ def refused() -> List[dict]:
     refuse(apart.BAD_PUTTING_BACK, "a putting back of a taking back already "
            "put back", apart.PUT_BACK, {"taken_back": "t"},
            ("t", _take_back, said), ("p", _put_back, "t"))
+    refuse(apart.BAD_PUTTING_BACK, "a putting back of an earlier taking "
+           "back, already put back, when a new one stands",
+           apart.PUT_BACK, {"taken_back": "t"}, ("t", _take_back, said),
+           ("p", _put_back, "t"), ("again", _take_back, said))
     refuse(apart.BAD_PUTTING_BACK, "a putting back that names nothing",
            apart.PUT_BACK, {}, ("t", _take_back, said))
 

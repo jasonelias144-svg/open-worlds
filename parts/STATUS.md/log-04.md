@@ -14,7 +14,7 @@
   `open-worlds/log-apart/v1`), each entry's state worked out from the
   open fields alone, the incident id and its short form, and the table
   of what wins, in `world/apart.py` and `rust/world-log`, with vectors
-  (122 refused, each for one of nineteen reasons, and seven that
+  (124 refused, each for one of nineteen reasons, and seven that
   hold). The command line counts the entries removed, taken back and
   restored. Three notes carried from the last check of part two are
   taken, and two carried from the last check of the founder's words on
@@ -22,7 +22,7 @@
   technical lead). The founder's thought on paying for the multiverse
   from a separate project of games is recorded (Decided), with two
   questions (Open questions). Checked: the Python suite and the Rust
-  workspace; and deliberate breakage, 63 changes to the Python and 45
+  workspace; and deliberate breakage, 67 changes to the Python and 48
   to the Rust, one at a time, every one caught by a test. Not built:
   the records' side of part four (the list of kinds of act, the check
   of a decision against its grant, the author's record kinds), so

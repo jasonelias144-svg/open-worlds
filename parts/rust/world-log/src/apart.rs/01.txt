@@ -173,7 +173,7 @@ impl fmt::Display for State {
 
 /// The state of an entry, worked out from the open fields alone: what a
 /// room shows of it.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum EntryState {
     /// Never removed, and no taking back of it stands.
     AsWritten,
@@ -316,8 +316,8 @@ pub enum Refused {
         /// The removal's place in the log.
         index: usize,
     },
-    /// A restoring does not name a removal that stands, on an entry its
-    /// author has not taken back, with its office, ground and decision.
+    /// A restoring does not name a removal that stands, with its office,
+    /// ground and decision.
     BadRestoring {
         /// The restoring's place in the log.
         index: usize,
@@ -549,18 +549,20 @@ struct Scan {
 }
 
 /// True if an office's act says, in the open, which office acted, the
-/// ground it rests on, and the hash of its decision record.
+/// ground it rests on, and the hash of its decision record. The ground
+/// is one a decision record can hold: an earlier record is named by its
+/// hash.
 fn office_ok(data: &Map<String, Value>) -> bool {
     fn text(value: Option<&Value>) -> Option<&str> {
         value.and_then(Value::as_str).filter(|t| !t.is_empty())
     }
     let ground = data.get("ground").and_then(Value::as_object);
-    text(data.get("office")).is_some()
-        && ground.is_some_and(|g| {
-            g.len() == 2
-                && text(g.get("kind")).is_some_and(|kind| GROUNDS.contains(&kind))
-                && text(g.get("ref")).is_some_and(|r| r.chars().count() <= MAX_REF)
-        })
+    text(data.get("office")).is_some() && ground.is_some_and(|g| {
+        let kind = text(g.get("kind")).filter(|kind| GROUNDS.contains(kind));
+        let reference = text(g.get("ref")).filter(|r| r.chars().count() <= MAX_REF);
+        g.len() == 2
+            && matches!((kind, reference), (Some(kind), Some(r)) if kind != "record" || is_hash(r))
+    })
         && data
             .get("decision")
             .and_then(Value::as_str)

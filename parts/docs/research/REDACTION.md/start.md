@@ -247,13 +247,17 @@ that did not hold together; STATUS.md's Log says what changed.
    |---|---|
    | a field is redacted | it wins over everything, for that field: nothing shows it again, unless the office decides to keep it public |
    | a second removal of a removed entry, a second taking back, or a removal of an entry its author took back | refused |
-   | a restoring of an entry that is not removed, or that its author took back | refused: an office does not undo an author's taking back |
+   | a restoring of an entry that is not removed | refused |
+   | a restoring of a removal, of an entry its author has since taken back | allowed: the removal no longer stands, and the entry stays taken back: an office does not undo an author's taking back |
    | a removal after a restoring | a new incident, with a new id |
    | an author takes back a comment that an office removed | allowed: it stays hidden even if the removal is later restored |
    | an author undoes their own taking back, if part four allows it | the comment shows again, unless an office's removal still stands |
    | a removal of an entry that has a redacted field | allowed: the entry is hidden, and the field stays redacted |
 
-   The room's own view of it is step 3c's.
+   The room's own view of it is step 3c's. (The row on restoring what
+   an author has since taken back was changed in building part four:
+   it had been refused, which would have kept a removal overturned on
+   appeal from going on record until its author put the entry back.)
 10. **In Python and Rust, with shared vectors,** as every format here
     is: logs that hold, and logs that are refused, each for one named
     reason.

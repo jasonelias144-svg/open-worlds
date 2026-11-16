@@ -293,15 +293,15 @@ fn each_case_that_holds_gives_pythons_states_and_entries() {
         assert_eq!(states_json(&states), case["states"], "{name}");
         let standing = incidents(&case["log"]).unwrap();
         assert_eq!(incidents_json(&standing), case["incidents"], "{name}");
-        entry_states.extend(standing.values().map(|s| s.state));
+        entry_states.extend(standing.values().map(|s| s.state.as_str()));
         let joined = join(&case["log"], &case["contents"]).unwrap();
         assert_eq!(Value::Array(joined), case["joined"], "{name}");
         seen.extend(states.values().flat_map(|fields| fields.values().copied()));
     }
     assert_eq!(seen.len(), 5, "every state is in the vectors");
-    // Removed, taken back, and as written with an incident that no longer
-    // stands; "restored" is in the writer's test below.
-    assert_eq!(entry_states.len(), 3, "the entries' states are there");
+    // Removed, taken back, restored, and as written with an incident
+    // that no longer stands.
+    assert_eq!(entry_states.len(), 4, "the entries' states are there");
 }
 
 #[test]
@@ -380,7 +380,7 @@ fn what_wins_among_removing_restoring_taking_back_and_putting_back() {
         )
         .unwrap_err();
     assert_eq!(error, Refused::BadRemoval { index: 8 });
-    // The author takes it back; the office can no longer restore it.
+    // The author takes it back: it stays hidden whatever the office does.
     let taking = log
         .append(
             6,
@@ -392,6 +392,18 @@ fn what_wins_among_removing_restoring_taking_back_and_putting_back() {
         )
         .unwrap();
     assert_eq!(state(&log), EntryState::TakenBack);
+    // The office can still restore its removal, say after an appeal: the
+    // removal stops standing, and the entry stays taken back.
+    log.append(
+        6,
+        RESTORED,
+        None,
+        &office("keeper", "incident", &removal),
+        &none,
+        &mut salt,
+    )
+    .unwrap();
+    assert_eq!(state(&log), EntryState::TakenBack);
     let error = log
         .append(
             6,
@@ -402,7 +414,7 @@ fn what_wins_among_removing_restoring_taking_back_and_putting_back() {
             &mut salt,
         )
         .unwrap_err();
-    assert_eq!(error, Refused::BadRestoring { index: 9 });
+    assert_eq!(error, Refused::BadRestoring { index: 10 });
     let error = log
         .append(
             6,
@@ -413,8 +425,8 @@ fn what_wins_among_removing_restoring_taking_back_and_putting_back() {
             &mut salt,
         )
         .unwrap_err();
-    assert_eq!(error, Refused::BadTakingBack { index: 9 });
-    // Put back: the removal still stands. Then restored.
+    assert_eq!(error, Refused::BadTakingBack { index: 10 });
+    // Put back, it shows as restored: an office once removed it.
     log.append(
         7,
         PUT_BACK,
@@ -424,7 +436,7 @@ fn what_wins_among_removing_restoring_taking_back_and_putting_back() {
         &mut salt,
     )
     .unwrap();
-    assert_eq!(state(&log), EntryState::Removed);
+    assert_eq!(state(&log), EntryState::Restored);
     let error = log
         .append(
             7,
@@ -435,17 +447,7 @@ fn what_wins_among_removing_restoring_taking_back_and_putting_back() {
             &mut salt,
         )
         .unwrap_err();
-    assert_eq!(error, Refused::BadPuttingBack { index: 10 });
-    log.append(
-        8,
-        RESTORED,
-        None,
-        &office("keeper", "incident", &removal),
-        &none,
-        &mut salt,
-    )
-    .unwrap();
-    assert_eq!(state(&log), EntryState::Restored);
+    assert_eq!(error, Refused::BadPuttingBack { index: 11 });
     // A removal after a restoring is a new incident, with a new id.
     let again = log
         .append(
@@ -505,7 +507,7 @@ fn what_wins_among_removing_restoring_taking_back_and_putting_back() {
 fn each_case_that_is_refused_is_refused_for_pythons_reason() {
     let v = vectors();
     let refused = cases(&v, "refused");
-    assert_eq!(refused.len(), 122, "the vectors are all there");
+    assert_eq!(refused.len(), 124, "the vectors are all there");
     let mut seen = BTreeSet::new();
     for case in refused {
         let name = &case["name"];

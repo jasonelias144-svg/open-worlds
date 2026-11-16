@@ -158,6 +158,31 @@ def acted_on() -> Tuple[apart.Log, Dict[str, str]]:
     # stands, and still says its office and its ground in the open.
     _mark(room, 14, names["second removal"], "record",
           "the reasons repeated what was removed")
+    # The removal of what its author then took back is restored: the
+    # removal stops standing, and the entry stays taken back.
+    _restore(room, 15, names["removal of door"], 6)
+    # Removed and restored, and left so: restored, never again as
+    # written. The ground is an earlier record, named by its hash.
+    names["later"] = room.append(
+        16, "said", None, {},
+        {"key": "trial key of bo", "text": "a later word",
+         "time": 1794787380})
+    removal = room.append(
+        17, apart.REMOVED, None,
+        {"entry": names["later"], "office": MODERATOR,
+         "ground": {"kind": "record", "ref": trial_decision(1)},
+         "decision": trial_decision(7)},
+        {"record": "trial decision record 7, not a signed one"})
+    _restore(room, 18, removal, 8)
+    # Removed, taken back and put back: the removal still stands, so
+    # the entry is removed.
+    names["last"] = room.append(
+        19, "said", None, {},
+        {"key": "trial key of ada", "text": "a last word",
+         "time": 1794787440})
+    _remove(room, 20, names["last"], 9)
+    taking = _take_back(room, 21, names["last"])
+    _put_back(room, 22, taking)
     return room, names
 
 
@@ -533,6 +558,8 @@ def refused() -> List[dict]:
              {"ground": {"kind": "law", "ref": ""}}),
             ("a removal whose ground holds more than a kind and a ref",
              {"ground": {**GROUND, "more": "x"}}),
+            ("a removal whose ground is a record not named by its hash",
+             {"ground": {"kind": "record", "ref": "an earlier decision"}}),
             ("a removal whose ground's reference is one character too long",
              {"ground": {"kind": "law",
                          "ref": "\U0001D11E" * (apart.MAX_REF + 1)}}),
@@ -552,9 +579,10 @@ def refused() -> List[dict]:
     refuse(apart.BAD_RESTORING, "a restoring of a removal already restored",
            apart.RESTORED, restoring, ("r", _remove, said, 1),
            ("back", _restore, "r", 2))
-    refuse(apart.BAD_RESTORING, "a restoring of an entry its author took "
-           "back", apart.RESTORED, restoring, ("r", _remove, said, 1),
-           ("t", _take_back, said))
+    refuse(apart.BAD_RESTORING, "a restoring of an earlier removal, "
+           "already restored, of an entry that is removed again",
+           apart.RESTORED, restoring, ("r", _remove, said, 1),
+           ("back", _restore, "r", 2), ("again", _remove, said, 3))
     refuse(apart.BAD_RESTORING, "a restoring of a taking back",
            apart.RESTORED, {**restoring, "incident": "t"},
            ("t", _take_back, said))
@@ -584,6 +612,10 @@ def refused() -> List[dict]:
     refuse(apart.BAD_PUTTING_BACK, "a putting back of a taking back already "
            "put back", apart.PUT_BACK, {"taken_back": "t"},
            ("t", _take_back, said), ("p", _put_back, "t"))
+    refuse(apart.BAD_PUTTING_BACK, "a putting back of an earlier taking "
+           "back, already put back, when a new one stands",
+           apart.PUT_BACK, {"taken_back": "t"}, ("t", _take_back, said),
+           ("p", _put_back, "t"), ("again", _take_back, said))
     refuse(apart.BAD_PUTTING_BACK, "a putting back that names nothing",
            apart.PUT_BACK, {}, ("t", _take_back, said))
 

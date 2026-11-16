@@ -609,13 +609,52 @@ class TestWhatWins(unittest.TestCase):
 
     def test_an_author_takes_back_what_an_office_removed(self):
         removal = remove(self.log, self.said)
-        take_back(self.log, self.said)
+        taking = take_back(self.log, self.said)
         self.assertEqual(self.state(), "taken back")
-        # It stays hidden whatever the office does: a restoring is
-        # refused while the taking back stands.
+        # It stays hidden whatever the office does. The office can
+        # still restore its removal, say after an appeal: the removal
+        # stops standing, and the entry stays taken back.
+        restore(self.log, removal)
+        self.assertEqual(self.state(), "taken back")
+        its = apart.incidents(self.log.entries)[self.said]["incidents"]
+        self.assertEqual([(i["kind"], i["stands"]) for i in its],
+                         [("removed", False), ("taken back", True)])
+        # The removal can't be restored twice.
         self.assertEqual(self.refused(restore, removal),
                          apart.BAD_RESTORING)
-        self.assertEqual(self.state(), "taken back")
+        # Put back, it shows as restored: an office once removed it.
+        put_back(self.log, taking)
+        self.assertEqual(self.state(), "restored")
+
+    def test_a_ground_that_is_a_record_is_named_by_its_hash(self):
+        ground = {"kind": "record", "ref": "an earlier decision"}
+        data = {"entry": self.said, "office": "moderator", "ground": ground,
+                "decision": "d" * 64}
+        with self.assertRaises(apart.Refused) as caught:
+            self.log.append(5, apart.REMOVED, None, data)
+        self.assertEqual(caught.exception.reason, apart.BAD_REMOVAL)
+        data["ground"] = {"kind": "record", "ref": "e" * 64}
+        self.log.append(5, apart.REMOVED, None, data)
+        self.assertEqual(self.state(), "removed")
+        # Any other kind of ground is named in words.
+        self.assertTrue(apart._office_ok(
+            {**data, "ground": {"kind": "law", "ref": "e" * 64}}))
+
+    def test_short_ids_are_held_against_their_neighbours(self):
+        ids = ["ab" + "0" * 62, "ab" + "0" * 20 + "1" + "0" * 41,
+               "cd" + "0" * 62, "ab" + "0" * 30 + "2" + "0" * 31]
+        short = apart._short_ids(ids)
+        self.assertEqual(short[ids[0]], ids[0][:33])
+        self.assertEqual(short[ids[1]], ids[1][:23])
+        self.assertEqual(short[ids[2]], ids[2][:12])
+        self.assertEqual(short[ids[3]], ids[3][:33])
+        # Each is the only id that begins so.
+        for one, cut in short.items():
+            self.assertEqual([i for i in ids if i.startswith(cut)], [one])
+        # An id is never cut longer than it is, and the work ends.
+        self.assertEqual(apart._short_ids(["abc", "abcd"]),
+                         {"abc": "abc", "abcd": "abcd"})
+        self.assertEqual(apart._short_ids([]), {})
 
     def test_an_author_undoes_their_own_taking_back(self):
         taking = take_back(self.log, self.said)
@@ -660,15 +699,19 @@ class TestWhatWins(unittest.TestCase):
                        {"ground": {"kind": "whim", "ref": "x"}},
                        {"ground": {"kind": "law", "ref": 5}},
                        {"ground": {**GROUND, "more": 1}},
+                       {"ground": {"kind": "record", "ref": "x"}},
+                       {"ground": {"kind": "record", "ref": "F" * 64}},
                        {"decision": "f" * 63}, {"decision": "F" * 64}]:
             with self.subTest(change=change), self.assertRaises(Refused) as c:
                 self.log.append(9, apart.REMOVED, None, {**good, **change})
             self.assertEqual(c.exception.reason, apart.BAD_REMOVAL)
         for kind in apart.GROUNDS:
             fresh = room()
+            # An earlier record is named by its hash; the rest in words.
+            ref = "f" * 64 if kind == "record" else "x"
             fresh.append(9, apart.REMOVED, None,
                          {**good, "entry": fresh.entries[3]["hash"],
-                          "ground": {"kind": kind, "ref": "x"}})
+                          "ground": {"kind": kind, "ref": ref}})
 
     def test_nothing_leaves_the_record(self):
         # A removal and a taking back change what is shown, and nothing
@@ -692,7 +735,7 @@ class TestWhatWins(unittest.TestCase):
         log, names = acted_on()
         whole = apart.incidents(log.entries)
         self.assertEqual({v["state"] for v in whole.values()},
-                         {"removed", "taken back", "as written"})
+                         set(apart.ENTRY_STATES))
         joined = apart.join(log.entries, {})
         for one in joined:
             its = whole.get(one["hash"], {"state": "as written",
@@ -831,7 +874,7 @@ class TestTheVectors(unittest.TestCase):
 
     def test_each_case_that_is_refused(self):
         cases = vectors()["refused"]
-        self.assertEqual(len(cases), 122)
+        self.assertEqual(len(cases), 124)
         for case in cases:
             with self.subTest(case["name"]):
                 self.assertEqual(refusal(case["log"], case["contents"]),

@@ -284,14 +284,20 @@ above, still holds: this section adds the other half.
    alone, as "Leaving the multiverse" has it, unless the multiverse it
    left takes it back, which is a new decision by both sides.
    - *A world with inhabitants does not take that risk* (the technical
-     lead's reading, from the review of this section). Its inhabitants
+     lead's reading, from the reviews of this section). Its inhabitants
      consented to a move to a named multiverse, and standing alone is a
-     different outcome. So such a world departs only from a head that
-     an admission names: if it lived on after the evaluation, it asks
-     for what it added since to be evaluated too, and for an admission
-     at its present head, and it is paused from that head until it
-     departs. Its departure is then the one entry after the head that
-     was admitted, and the check on arrival is that this is so.
+     different outcome. So in a move, such a world departs only from a
+     head that an admission names: if it lived on after the evaluation,
+     it asks for what it added since to be evaluated too, and for an
+     admission at its present head. From that head it is paused until
+     it departs. A pause is an entry, and a paused world still takes
+     each leaving ("The lifecycle", above), so after the admitted head
+     the log may hold the pause, leavings and the departure, and
+     nothing else. The check on arrival is that this is so, with each
+     of them checked by its format as any record is. So one person
+     leaving during the pause does not undo the admission. Leaving to
+     stand alone is unchanged: it needs no admission, and no host can
+     refuse it.
    - *A world with no one in it* may go on running and depart from a
      later head. What it added is checked on arrival, and the risk of
      standing alone is its own.

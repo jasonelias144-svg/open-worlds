@@ -30,9 +30,11 @@ would show it wrong):
   hash; the office, as text that is not empty; the ground; and the
   hash of its decision, 64 lowercase hex digits (decision 7). The
   ground is a kind and a reference and nothing else. The kind is one
-  of `charter`, `law`, `rule` and `record`, and the reference is text
-  of 1 to 512 characters: both as a `decision/v1` has its grounds, so
-  that what the log says can always be what a signed decision says.
+  of `charter`, `law`, `rule` and `record`; the reference is text of 1
+  to 512 characters; and where the kind is `record`, the reference is
+  that record's hash. All three are as a `decision/v1` holds its
+  grounds, so that a ground the log shows is always one a signed
+  decision can hold.
   A restoring says the same, and names the removal by its incident id
   in place of the entry.
 - **A taking back says in the open only the entry it is on; a putting
@@ -52,7 +54,12 @@ would show it wrong):
   time.** The table of what wins (decision 9) is checked row by row:
   each row that refuses is a log that must be refused, and the rows
   that allow are together one trial room that holds, with every
-  entry's state.
+  entry's state, each of the four among them.
+- **A removal can be restored while its author's taking back stands.**
+  The removal stops standing, and the entry stays taken back. Put
+  back later, it shows as restored. Decision 9's table had refused
+  this, and is changed (the independent review found what refusing it
+  would do).
 - **An incident's id is the hash of the entry that carries it,** and
   its short form is the fewest hex digits, twelve or more, that no
   other incident in the same log begins with. "In the room" (decision
@@ -73,7 +80,7 @@ would show it wrong):
   the one who wrote it, all need signed records and keys: the other
   side.
 - **Nineteen reasons for refusing now,** four of them new, one for
-  each kind of act. The vectors hold 122 logs or contents that are
+  each kind of act. The vectors hold 124 logs or contents that are
   refused and seven that hold.
 - **`world-log LOG CONTENTS`** also counts the entries removed, taken
   back and restored.

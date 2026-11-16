@@ -239,13 +239,17 @@ that did not hold together; STATUS.md's Log says what changed.
    |---|---|
    | a field is redacted | it wins over everything, for that field: nothing shows it again, unless the office decides to keep it public |
    | a second removal of a removed entry, a second taking back, or a removal of an entry its author took back | refused |
-   | a restoring of an entry that is not removed, or that its author took back | refused: an office does not undo an author's taking back |
+   | a restoring of an entry that is not removed | refused |
+   | a restoring of a removal, of an entry its author has since taken back | allowed: the removal no longer stands, and the entry stays taken back: an office does not undo an author's taking back |
    | a removal after a restoring | a new incident, with a new id |
    | an author takes back a comment that an office removed | allowed: it stays hidden even if the removal is later restored |
    | an author undoes their own taking back, if part four allows it | the comment shows again, unless an office's removal still stands |
    | a removal of an entry that has a redacted field | allowed: the entry is hidden, and the field stays redacted |
 
-   The room's own view of it is step 3c's.
+   The room's own view of it is step 3c's. (The row on restoring what
+   an author has since taken back was changed in building part four:
+   it had been refused, which would have kept a removal overturned on
+   appeal from going on record until its author put the entry back.)
 10. **In Python and Rust, with shared vectors,** as every format here
     is: logs that hold, and logs that are refused, each for one named
     reason.
@@ -444,9 +448,11 @@ would show it wrong):
   hash; the office, as text that is not empty; the ground; and the
   hash of its decision, 64 lowercase hex digits (decision 7). The
   ground is a kind and a reference and nothing else. The kind is one
-  of `charter`, `law`, `rule` and `record`, and the reference is text
-  of 1 to 512 characters: both as a `decision/v1` has its grounds, so
-  that what the log says can always be what a signed decision says.
+  of `charter`, `law`, `rule` and `record`; the reference is text of 1
+  to 512 characters; and where the kind is `record`, the reference is
+  that record's hash. All three are as a `decision/v1` holds its
+  grounds, so that a ground the log shows is always one a signed
+  decision can hold.
   A restoring says the same, and names the removal by its incident id
   in place of the entry.
 - **A taking back says in the open only the entry it is on; a putting
@@ -466,7 +472,12 @@ would show it wrong):
   time.** The table of what wins (decision 9) is checked row by row:
   each row that refuses is a log that must be refused, and the rows
   that allow are together one trial room that holds, with every
-  entry's state.
+  entry's state, each of the four among them.
+- **A removal can be restored while its author's taking back stands.**
+  The removal stops standing, and the entry stays taken back. Put
+  back later, it shows as restored. Decision 9's table had refused
+  this, and is changed (the independent review found what refusing it
+  would do).
 - **An incident's id is the hash of the entry that carries it,** and
   its short form is the fewest hex digits, twelve or more, that no
   other incident in the same log begins with. "In the room" (decision
@@ -487,7 +498,7 @@ would show it wrong):
   the one who wrote it, all need signed records and keys: the other
   side.
 - **Nineteen reasons for refusing now,** four of them new, one for
-  each kind of act. The vectors hold 122 logs or contents that are
+  each kind of act. The vectors hold 124 logs or contents that are
   refused and seven that hold.
 - **`world-log LOG CONTENTS`** also counts the entries removed, taken
   back and restored.

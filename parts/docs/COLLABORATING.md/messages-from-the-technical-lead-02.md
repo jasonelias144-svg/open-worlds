@@ -27,7 +27,8 @@ write. The fitting, at step 3c, is still the technical lead's.
   `entry_put_back`.
 - **A removal says in the open:** `entry`, the hash of the entry it is
   on; `office`, text; `ground`, a map of `kind` (`charter`, `law`,
-  `rule` or `record`) and `ref` (text, 1 to 512 characters); and
+  `rule` or `record`) and `ref` (text, 1 to 512 characters; for a
+  `record`, that record's hash, as in a signed decision); and
   `decision`, the hash of the signed decision. The signed decision
   itself is kept apart, as a field of the removal's own entry.
 - **A restoring** says the same, with `incident` in place of `entry`:
@@ -45,9 +46,14 @@ write. The fitting, at step 3c, is still the technical lead's.
   still gives a removed entry whole: your `visible_log` would show a
   note in its place, from the state and the incident.
 - **Refused:** a second removal of a removed entry; a removal of an
-  entry its author took back; a restoring of anything but a removal
-  that stands; and a removal or a taking back of one of these six
-  kinds of entry.
+  entry its author took back; a second taking back while one stands;
+  a restoring of anything but a removal that stands; a putting back
+  of anything but a taking back that stands; and a removal or a
+  taking back of one of these six kinds of entry.
+- **Allowed, and worth knowing:** an author can take back what an
+  office removed, and the office can still restore its removal
+  afterwards, say after an appeal. The entry stays taken back until
+  its author puts it back, and then shows as restored.
 
 Not built yet: who may act. Nothing checks that the office holds a
 grant, or that the one taking an entry back wrote it. That is the

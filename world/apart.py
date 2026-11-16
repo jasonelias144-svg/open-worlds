@@ -65,7 +65,8 @@ contents leaves the log exactly as it was, and the chain still checks.
   `removed` if a removal of it stands; else `restored` if it was ever
   removed; else `as written`. What wins: an office can't remove what is
   already removed, or what its author took back; it can't restore what
-  isn't removed, or what its author took back; an author can take back
+  isn't removed; it can restore a removal of what its author has since
+  taken back, and the entry stays taken back; an author can take back
   what an office removed, and it then stays hidden whatever the office
   does; a removal after a restoring is a new incident. An incident's id
   is the hash of the entry that carries the removal or the taking
@@ -282,13 +283,16 @@ def _table_ok(table: object) -> bool:
 
 def _office_ok(data: dict) -> bool:
     """True if an office's act says, in the open, which office acted,
-    the ground it rests on, and the hash of its decision record."""
+    the ground it rests on, and the hash of its decision record. The
+    ground is one a decision record can hold: an earlier record is
+    named by its hash."""
     ground = data.get("ground")
     return (type(data.get("office")) is str and data["office"] != ""
             and type(ground) is dict and set(ground) == {"kind", "ref"}
             and ground["kind"] in GROUNDS
             and type(ground["ref"]) is str
             and 0 < len(ground["ref"]) <= MAX_REF
+            and (ground["kind"] != "record" or _is_hash(ground["ref"]))
             and _is_hash(data.get("decision")))
 
 
@@ -370,8 +374,10 @@ class _Scan:
         elif kind == RESTORED:
             incident = data.get("incident")
             on = self.removals.get(incident) if type(incident) is str else None
+            # Allowed while the author's taking back stands: the removal
+            # stops standing, and the entry stays taken back.
             if (on is None or self.removed.get(on) != incident
-                    or on in self.taken or not _office_ok(data)):
+                    or not _office_ok(data)):
                 raise Refused(BAD_RESTORING, index)
         elif kind == TAKEN_BACK:
             on = data.get("entry")
@@ -495,14 +501,25 @@ def _states(scan: _Scan,
 
 def _short_ids(ids: List[str]) -> Dict[str, str]:
     """Each incident's id as it is shown: the fewest hex digits, `SHORT`
-    or more, that no other incident in the log begins with."""
-    short = {}
-    for one in ids:
-        n = SHORT
-        while any(other != one and other.startswith(one[:n])
-                  for other in ids):
+    or more, that no other incident in the log begins with. Sorted, an
+    id shares its longest beginning with one of its two neighbours, so
+    each is held against those two alone. An id is never cut longer
+    than it is."""
+    def shared(a: str, b: str) -> int:
+        n = 0
+        while n < len(a) and n < len(b) and a[n] == b[n]:
             n += 1
-        short[one] = one[:n]
+        return n
+
+    order = sorted(set(ids))
+    short = {}
+    for i, one in enumerate(order):
+        most = 0
+        if i > 0:
+            most = shared(one, order[i - 1])
+        if i + 1 < len(order):
+            most = max(most, shared(one, order[i + 1]))
+        short[one] = one[:max(SHORT, most + 1)]
     return short
 
 
