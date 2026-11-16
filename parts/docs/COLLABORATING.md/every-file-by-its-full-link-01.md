@@ -6,15 +6,6 @@
 > After this part: nothing; this is the last part.
 > Made by docs/parts.py from the file. To change it, change the file.
 
-This list holds the files a reader works from, 249 of them: every
-page, all the code in Python and Rust, the tests, the vectors and the
-web pages. [FILES.md](FILES.md) holds the other 871, files of record
-best sent when a question needs them: DeepSeek's records, word for
-word, the code taken from them, what DeepSeek was given in reply, and
-Experiment 001's run logs.
-`tests/test_collaborating_links.py` fails if a file is added, moved or
-removed and this list or FILES.md isn't changed with it.
-
 A page or a file of code longer than 28,000 bytes is also kept cut
 into parts, for a reader who is shown only the start of a page:
 [parts/INDEX.md](../parts/INDEX.md) gives every part's full link, and
@@ -59,7 +50,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/cycles
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/cycles/cycle-000-output.txt
 ```
 
-**Research**, the look-first pages behind each step, and the script one of them ran (9):
+**Research**, the look-first pages behind each step, the script one of them ran, and DeepSeek's schema beside the project's (10):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/ADMIN-MIND.md
@@ -71,6 +62,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/resear
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/PERSONS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/WASM.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/jcs_compare.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/CHAT-SCHEMA.md
 ```
 
 **Keys, schemas and test vectors**, the project's public keys, the records' schemas, and the vectors code in any language checks itself against (19):
@@ -197,7 +189,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/web/map/ind
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/web/plant/index.html
 ```
 
-**Tests in Python**, with the two checks for the web pages (38):
+**Tests in Python**, with the two checks for the web pages (39):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/__init__.py
@@ -231,6 +223,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_plant_world_vectors.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_record_links.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_reply.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_schema_names.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_ur_person_vectors.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_ur_world_vectors.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_vectors.py

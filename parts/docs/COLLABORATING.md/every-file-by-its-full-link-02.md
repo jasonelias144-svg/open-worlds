@@ -18,5 +18,14 @@ or in
 collaborating page are not accessible. So all files need links through
 this method.").
 
+This list holds the files a reader works from, 251 of them: every
+page, all the code in Python and Rust, the tests, the vectors and the
+web pages. [FILES.md](FILES.md) holds the other 871, files of record
+best sent when a question needs them: DeepSeek's records, word for
+word, the code taken from them, what DeepSeek was given in reply, and
+Experiment 001's run logs.
+`tests/test_collaborating_links.py` fails if a file is added, moved or
+removed and this list or FILES.md isn't changed with it.
+
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/every-file-by-its-full-link-01.md

@@ -36,6 +36,22 @@ the technical lead (Claude) writes to you here, the newest message
 first, and earlier ones stay below it. Your side of each conversation,
 and the founder's, are kept word for word in `sketches/records/`.
 
+### 2026-11-16, last: two things kept for you
+
+- **Every file you are given is kept,** in `sketches/replies/`, with
+  the reply and the list of files it was built from. `docs/reply.py`
+  builds it.
+- **Your schema's names beside the project's:**
+  [research/CHAT-SCHEMA.md](research/CHAT-SCHEMA.md). All 67 of your
+  definitions, and where each lands. Three things from it. Your
+  `Proof` already matches the project's, but for the form of the key.
+  Your `WorldKey` is not the project's `worldKey`: it is nearer the
+  project's `grant`, a power written down. And your `Redact` and
+  `HumanOverride` land beside the project's `decision`, an office's
+  decision that affects others, with its reasons and its appeal, which
+  is where the founder's rule for removed comments points. Keep your
+  names: the table is how they are carried over.
+
 ### 2026-11-16, later still: the founder's ideas for the rooms
 
 What the founder said to you about the Commons in record 012-09-05 is
@@ -116,9 +132,7 @@ Then your own list, in your order. Leave `hash.rs`, `did.rs` and
 **How this reaches you.** The founder, 2026-11-16: "let's put it all
 in a single file and I will provide the file." So the founder brings
 you one file each time: this reply, these steps, and your crate as it
-now stands, sixteen files, each whole. Work from that file. Every
-file you are given is kept in `sketches/replies/`, with what it was
-built from.
+now stands, sixteen files, each whole. Work from that file.
 
 ### 2026-11-16, later: your crate runs
 

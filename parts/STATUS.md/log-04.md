@@ -21,9 +21,15 @@
   current, and to its limit and its last line always. docs/FILES.md
   lists the folder among the files of record ("What DeepSeek was
   given"), so it is neither in COLLABORATING.md's list nor cut into
-  parts. Not checked: that the whole file reaches DeepSeek. The table of
-  DeepSeek's schema names beside the project's is not in this change; it
-  comes with the first step of the one schema.
+  parts. Not checked: that the whole file reaches DeepSeek. And the
+  table of DeepSeek's schema names beside the project's, as the first
+  step toward one schema that fits both: docs/research/CHAT-SCHEMA.md,
+  which `tests/test_schema_names.py` holds to both files. 67 definitions
+  and 33, none shared by name; seven are the same thing under another
+  name; two are one name for different things (DeepSeek's `WorldKey` is
+  nearer the project's `grant`); and a moderator's removal lands beside
+  the project's `decision`. It compares names and fields only: no record
+  was tried against either schema.
 
 - 2026-11-16 Claude: one file for the founder to give DeepSeek (Decided,
   the newest entry): the technical lead's reply to record 012-09-05,
