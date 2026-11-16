@@ -12,6 +12,25 @@ Decisions about the code, made by the technical lead under the founder's
 deference (above, 2026-11-13), each with its reason and what would show
 it was wrong. Questions of what the project is for stay with the founder.
 
+- 2026-11-16, DeepSeek's two questions in record 012-09-05 (its line
+  13769), and what follows for fitting `chat-world`:
+  (1) A room has its own key, and its creator joins with theirs.
+  Reason: every world here is a key of its own, and a room is a world
+  (docs/COMMONS.md, "The text world: a room"); so a room can be handed
+  on without a person's key changing hands, and a person's key never
+  signs as two things. (2) A leave carries the leaver's signature
+  alone. Reason: leaving can't be refused, so it can't wait on the
+  room's signature; and a world here doesn't sign each entry of its
+  log, it signs its log's heads in batches (`open-worlds/log-head/v1`).
+  So when the sketch is fitted, the room's proof on each record gives
+  way to signed heads, the crate stands on `rust/formats` (canonical
+  form, proofs, Multikey `did:key`, time given from outside), and its
+  records are fitted into `schemas/records-v1.schema.json`, not put in
+  its place. Wrong if: a room's signature on each record proves
+  something a signed head over the same entries can't (for one, that
+  the room took an entry in at a stated time, between heads); then the
+  question returns.
+
 - 2026-11-16, the long files in parts: a tool that opens a page for a
   reader may show only its start, so each file a reader works from that
   is longer than 28,000 bytes is also kept under `parts/`, cut into

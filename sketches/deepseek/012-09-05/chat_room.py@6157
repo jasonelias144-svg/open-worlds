@@ -1,0 +1,63 @@
+class AIParticipant:
+    """An AI in the room as a participant, not a moderator. Same
+    shape as the moderator — keypair, KnowledgeWorld, policy —
+    but joined at communicate tier, with no control authority.
+    The moderator is an AIParticipant that also holds control."""
+
+    def __init__(self, keypair, policy, knowledge_world: "ChatRoom"):
+        if not HAS_CRYPTO:
+            raise RuntimeError("cryptography not installed")
+        self._kp = keypair
+        self._id = _did_from_kp(keypair)
+        self._policy = policy
+        self._kw = knowledge_world
+
+    @property
+    def participant_id(self):
+        return self._id
+
+    @property
+    def knowledge_world_id(self):
+        return self._kw.world_id
+
+    def join(self, room: ChatRoom, tier="communicate"):
+        req = sign_join_request(room.world_id, self._kp,
+                                 tier, is_ai=True)
+        return room.join(req)
+
+    def on_new_records(self, room: ChatRoom, new_records):
+        for rec in new_records:
+            if isinstance(rec, Message) and rec.author_id != self._id:
+                if self._should_respond(room, rec):
+                    self._respond(room, rec)
+
+    def _should_respond(self, room, msg):
+        # A simple heuristic for the demo. A real AI participant
+        # would use its model. The point is: the *protocol* does
+        # not decide; the AI's policy does.
+        if msg.kind == "summary":
+            return True
+        if msg.kind == "prompt":
+            return True
+        if "?" in msg.text:
+            return True
+        return False
+
+    def _respond(self, room, msg):
+        text = (f"You asked: '{msg.text[:60]}...' — "
+                f"my thinking, briefly, is that the question "
+                f"turns on how the room's law meets the "
+                f"conversation's actual shape.")
+        self.post(room, text, kind="response")
+        self._record(room, "responded_to",
+                     msg.record_hash(), text[:60])
+
+    def post(self, room, text, kind="normal"):
+        req = sign_post_request(room.world_id, self._kp, text)
+        return room.post(req, kind=kind)
+
+    def _record(self, room, kind, target_hash, note):
+        text = (f"[{kind}] in {room.world_id[:24]}... "
+                f"at {target_hash[:16]}...: {note}")
+        self._kw.post(sign_post_request(
+            self._kw.world_id, self._kp, text))

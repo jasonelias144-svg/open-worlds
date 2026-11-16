@@ -30,8 +30,9 @@ of earlier ideas.
 | `deepseek/012-03-02/` | The code files from record 012-03-02: the poetry engine (and a model of Aristotle's practical reasoning), which the two later records import |
 | `deepseek/012-06-02/` | The code files from record 012-06-02: fractal worlds, a gallery of worlds and its governance, the smallest learner that chooses, and individuals as signed, replayable bundles; then, continued, a multiversal map, a microverse, the Ur-world as a garden of fractal worlds, and DeepSeek's first Rust (kept, not built). A few import the earlier folders' code |
 | `deepseek/012-07-03/` | The code from record 012-07-03: the endless plant, a sketch crate in Rust with a choice neuron, kept as written (it doesn't build), with the technical lead's review and the tests that check it |
+| `deepseek/012-09-05/` | The code from record 012-09-05: water as particles, the garden and a botanical garden of gardens (Python, on 012-06-02's plant world); chat rooms for the Commons, with AI moderators, and the home room (Python); a schema; and a sketch crate in Rust, `chat-world`, in its first version and the one DeepSeek settled on. Kept as written, with the technical lead's first pass: what runs |
 | `tools/extract.py` | Writes the code out of a record (Python, Rust, JavaScript, JSON and the rest), and checks it against the record |
-| `tools/names-012-03-02.json`, `tools/names-012-04-00.json`, `tools/names-012-05-01.json`, `tools/names-012-06-02.json`, `tools/names-012-07-03.json` | For each record: which code blocks to take, the names of blocks that don't state one, and the files changed since |
+| `tools/names-012-03-02.json`, `tools/names-012-04-00.json`, `tools/names-012-05-01.json`, `tools/names-012-06-02.json`, `tools/names-012-07-03.json`, `tools/names-012-09-05.json` | For each record: which code blocks to take, the names of blocks that don't state one, and the files changed since |
 | `tools/known_failures.py` | Rewrites a folder's `known-failures.txt` from a fresh run |
 | `requirements.txt` | What the sketches' tests need (pytest, cryptography); open-worlds itself never installs it |
 | `INDEX.md` | Each component: where it is in the record, its files, how its tests fare, and where it meets the course |
@@ -68,8 +69,8 @@ apart from what the test results in each `known-failures.txt` show.
   change the design. Each changed file is listed in the names file and in
   INDEX.md, with the reason; git history shows the exact change.
 - **Ours, not DeepSeek's:** `README.md`, `conftest.py`, `pytest.ini`,
-  `known-failures.txt` and `sketch_status_test.py` in each code folder, and
-  everything in `tools/`.
+  `known-failures.txt` and `sketch_status_test.py` in each code folder,
+  a folder's `review/` where it has one, and everything in `tools/`.
 
 ## Running it
 
@@ -80,12 +81,19 @@ cd ../012-04-00 && PYTHONHASHSEED=0 python3 -m pytest -q
 cd ../012-05-01 && PYTHONHASHSEED=0 python3 -m pytest -q
 cd ../012-06-02 && PYTHONHASHSEED=0 python3 -m pytest -q
 cd ../012-07-03 && PYTHONHASHSEED=0 python3 -m pytest -q
+cd ../012-09-05 && PYTHONHASHSEED=0 python3 -m pytest -q
 ```
 
 Record 012-07-03's code is Rust, and doesn't build as written: its
 folder's test reads the files as text. `deepseek/012-07-03/review/run.sh`
 builds a scratch copy with two functions added and runs the review's
 tests against it; it needs Rust, and CI doesn't run it.
+
+Record 012-09-05 has both: its Python tests run as the others do, and
+its crate in Rust, which is one line from building, is read as text by
+the folder's test. `deepseek/012-09-05/review/run.sh` builds a scratch
+copy with that line changed, and runs the crate's own tests and its
+demo; it needs Rust and the network, and CI doesn't run it.
 
 The tests start small web servers on this machine (127.0.0.1) and run
 some Python subprocesses. They reach nothing outside the machine.

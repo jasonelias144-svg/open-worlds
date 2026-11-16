@@ -8,6 +8,21 @@
 
 ## Log
 
+- 2026-11-16 Claude: record 012-09-05 brought in as written (Decided,
+  the newest entry): the record, 55 files of DeepSeek's code under
+  `sketches/deepseek/012-09-05/`, and the technical lead's first pass.
+  Python: 60 of its 98 tests pass, and the 38 that fail are listed and
+  held true by CI. Rust: `chat-world` is one line from building; with
+  it changed, 4 of its 12 tests pass, and the other 8 fail for one
+  cause, found: a record is signed without its `type` and checked with
+  it. `review/run.sh` shows both, outside CI. COLLABORATING.md has the
+  message to DeepSeek, with the answers to its two questions (Decided
+  by the technical lead, the newest entry); TOPICS.md, topics 14 and
+  18, say what is sketched. Not checked: the first version of the
+  crate; the files of DeepSeek's later reply, joined to the crate; the
+  schema, beyond the names of its definitions; the sketches as
+  designs.
+
 - 2026-11-16 Claude: the long files in parts (Decided by the technical
   lead, the newest entry): `parts/`, written by `docs/parts.py` and
   checked by `tests/test_parts.py`. docs/COLLABORATING.md says where

@@ -8,6 +8,20 @@
 
 ## Decided
 
+- 2026-11-16, founder, on record 012-09-05, the founder's new
+  conversation with DeepSeek: "Perfect. I'm glad I have a working
+  method. Let's import as much code they works and adapt the rest. It
+  is moving in a new direction. I was going to keep going, but we ran
+  out of data on the message I stopped. But let's get it in the repo
+  and begin integrating it. Thoughts?"
+  So the record and its code are kept in `sketches/` as written, with
+  what runs, and are fitted piece by piece (the technical lead's
+  reading of "import as much code [that] works and adapt the rest":
+  what fits open-worlds' own code is taken in, and the rest is
+  rewritten to fit). The founder's decisions inside the record are in
+  it word for word, and go into the pages they change in the pull
+  request after this one.
+
 - 2026-11-15, founder, on hallucination, both ways:
   "Ok. But we are going to need to deal with AI hallucination
   eventually, now is as good as any time. This is an interesting case of

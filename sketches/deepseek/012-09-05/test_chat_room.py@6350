@@ -1,0 +1,93 @@
+# Membership policy
+def test_human_only_room_refuses_ai():
+    room = ChatRoom(_template(membership="human_only"), _kp())
+    ai_kp = _kp()
+    rec = room.join(sign_join_request(
+        room.world_id, ai_kp, "communicate", is_ai=True))
+    assert isinstance(rec, Refusal)
+    assert rec.reason == "human_only_room"
+
+
+def test_ai_only_room_refuses_human():
+    room = ChatRoom(_template(membership="ai_only"), _kp())
+    human_kp = _kp()
+    rec = room.join(sign_join_request(
+        room.world_id, human_kp, "communicate", is_ai=False))
+    assert isinstance(rec, Refusal)
+    assert rec.reason == "ai_only_room"
+
+
+def test_mixed_room_accepts_both():
+    room = ChatRoom(_template(membership="mixed"), _kp())
+    human_kp = _kp(); ai_kp = _kp()
+    room.join(sign_join_request(room.world_id, human_kp,
+                                 "communicate", is_ai=False))
+    room.join(sign_join_request(room.world_id, ai_kp,
+                                 "communicate", is_ai=True))
+    by_type = room.members_by_type()
+    assert len(by_type["human"]) == 1
+    assert len(by_type["ai"]) == 1
+
+
+# Inter-AI pace
+def test_inter_ai_pace_enforced():
+    room = ChatRoom(_template(inter_ai_pace=2), _kp())
+    a1 = _kp(); a2 = _kp(); h = _kp()
+    room.join(sign_join_request(room.world_id, a1,
+                                 "communicate", is_ai=True))
+    room.join(sign_join_request(room.world_id, a2,
+                                 "communicate", is_ai=True))
+    room.join(sign_join_request(room.world_id, h,
+                                 "communicate", is_ai=False))
+    room.post(sign_post_request(room.world_id, a1, "hello"))
+    # Another AI immediately — should refuse
+    rec = room.post(sign_post_request(room.world_id, a2, "hi"))
+    assert isinstance(rec, Refusal)
+    assert rec.reason == "inter_ai_pace"
+    # Human posts — resets the pace
+    room.post(sign_post_request(room.world_id, h, "hi"))
+    rec = room.post(sign_post_request(room.world_id, a2, "hi"))
+    assert isinstance(rec, Message)
+
+
+# Override extends to any AI, not just the moderator
+def test_human_can_override_participant_ai():
+    room = _room_with_moderator()
+    ai_part_kp = _kp()
+    room.join(sign_join_request(room.world_id, ai_part_kp,
+                                 "communicate", is_ai=True))
+    msg = room.post(sign_post_request(room.world_id,
+                                       ai_part_kp, "an observation"))
+    dave_kp = _kp()
+    room.join(sign_join_request(room.world_id, dave_kp,
+                                 "control", is_ai=False))
+    ov = room.override(msg.record_hash(), dave_kp,
+                       "none", "good observation")
+    assert isinstance(ov, HumanOverride)
+
+
+# AIs cannot override anyone
+def test_ai_cannot_override():
+    room = _room_with_moderator()
+    ai_kp = _kp()
+    room.join(sign_join_request(room.world_id, ai_kp,
+                                 "control", is_ai=True))
+    human_kp = _kp()
+    room.join(sign_join_request(room.world_id, human_kp,
+                                 "communicate", is_ai=False))
+    msg = room.post(sign_post_request(room.world_id, human_kp, "hi"))
+    assert room.override(msg.record_hash(), ai_kp,
+                         "redact", "no") is None
+
+
+# Participant AI's KnowledgeWorld verifies
+def test_participant_kw_verifies():
+    kw = ChatRoom(RoomTemplate(
+        template_id="kw", topic="memory",
+        join_policy="open", moderation="author_only",
+        membership="ai_only"), _kp())
+    ai_kp = _kp()
+    kw.post(sign_post_request(kw.world_id, ai_kp,
+                               "I observed X in room Y"))
+    ok, r = verify_room(kw)
+    assert ok, r

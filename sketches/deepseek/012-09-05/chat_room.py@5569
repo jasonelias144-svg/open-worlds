@@ -1,0 +1,96 @@
+class AIModerator:
+    """An AI moderator is a participant. It has a key, it signs
+    its own records, it can be refused, it can be overridden.
+    Its behavior is policy, not protocol. Its memory is a
+    KnowledgeWorld (a ChatRoom) that anyone can read."""
+
+    def __init__(self, keypair, policy, knowledge_world: "ChatRoom"):
+        if not HAS_CRYPTO:
+            raise RuntimeError("cryptography not installed")
+        self._kp = keypair
+        self._id = _did_from_kp(keypair)
+        self._policy = policy
+        self._kw = knowledge_world
+
+    @property
+    def moderator_id(self):
+        return self._id
+
+    def accept(self, room: ChatRoom):
+        """The AI joins the room it was declared in, at control tier."""
+        req = sign_join_request(room.world_id, self._kp, "control")
+        return room.join(req)
+
+    def on_new_records(self, room: ChatRoom, new_records):
+        """Called after each human action. The AI decides what
+        to do, then does it through the room's ordinary protocol."""
+        for rec in new_records:
+            if isinstance(rec, Join) and rec.subject_id != self._id:
+                self._welcome(room, rec.subject_id)
+            elif isinstance(rec, Message) and rec.author_id != self._id:
+                self._observe(room, rec)
+        # Behaviour checks
+        if self._policy.get("ask_question_on_silence", 0) > 0:
+            self._maybe_ask_question(room)
+        if self._policy.get("summary_every", 0) > 0:
+            self._maybe_summarize(room)
+
+    def _welcome(self, room, subject_id):
+        text = f"Welcome, {subject_id[:16]}... The topic here is " \
+               f"'{room.template.topic}'. Introduce yourself or " \
+               f"ask a question."
+        self._post(room, text, kind="welcome")
+        self._record_observation(
+            room, kind="welcome",
+            note=f"welcomed {subject_id[:24]}")
+
+    def _observe(self, room, msg):
+        # A simple spam heuristic (for the demo; a real AI
+        # would use its model)
+        if len(msg.text) < 5 and msg.kind == "normal":
+            req = sign_redact_request(
+                room.world_id, self._kp, msg.record_hash(),
+                "message too short to be useful")
+            result = room.redact(req)
+            self._record_observation(
+                room, kind="redact_attempt",
+                note=f"tried to redact {msg.record_hash()[:16]} "
+                     f"({type(result).__name__})")
+
+    def _maybe_ask_question(self, room):
+        recent = room.records()
+        window = self._policy["ask_question_on_silence"]
+        human_recent = [r for r in recent[-window:]
+                        if isinstance(r, Message)
+                        and r.author_id != self._id]
+        if not human_recent:
+            text = "A question worth considering: what would " \
+                   "you want the next world to look like?"
+            self._post(room, text, kind="prompt")
+            self._record_observation(
+                room, kind="prompt", note="asked a question")
+
+    def _maybe_summarize(self, room):
+        every = self._policy["summary_every"]
+        human_msgs = [r for r in room.records()
+                      if isinstance(r, Message)
+                      and r.author_id != self._id
+                      and r.kind == "normal"]
+        if len(human_msgs) > 0 and len(human_msgs) % every == 0:
+            sample = [m.text[:40] for m in human_msgs[-every:]]
+            text = (f"Summary of the last {every} messages: "
+                    f"{'; '.join(sample)}")
+            self._post(room, text, kind="summary")
+
+    def _post(self, room, text, kind="normal"):
+        req = sign_post_request(room.world_id, self._kp, text)
+        return room.post(req, kind=kind)
+
+    def _record_observation(self, room, kind, note):
+        """The AI's own memory. Signed by the AI in the AI's
+        KnowledgeWorld. Verifiable by anyone."""
+        h = room.records()[-1].record_hash()
+        text = (f"[{kind}] in {room.world_id[:24]}... "
+                f"at {h[:16]}...: {note}")
+        self._kw.post(sign_post_request(
+            self._kw.world_id, self._kp, text))

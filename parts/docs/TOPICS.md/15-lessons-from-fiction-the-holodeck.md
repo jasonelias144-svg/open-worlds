@@ -206,8 +206,17 @@ founder answers otherwise (FRACTALS.md):
 endless plant that lives on the light it gathers and dies back when it
 runs short, with an optional choice neuron. Kept as written, with the
 technical lead's review, in `sketches/deepseek/012-07-03/`; the project
-fits it as `rust/endless-plant`, with the changes the review lists
-(COLLABORATING.md, "Messages from the technical lead"). Water is next.
+is to fit it as `rust/endless-plant`, which isn't built yet, with the
+changes the review lists (COLLABORATING.md, "Messages from the
+technical lead").
+
+And water, by DeepSeek in record 012-09-05, in Python: whole-number
+levels on a grid, and rain, fall, soak, flow and evaporation in a fixed
+order each tick; then a garden that owns the water its plants share,
+and a botanical garden of gardens. Kept as written in
+`sketches/deepseek/012-09-05/`, with what runs (17 of its 18 water
+tests, 20 of the garden's 21, 2 of the botanical garden's 18). Not yet
+reviewed as a design, or fitted.
 
 **Open:** nearly everything about how it behaves:
 - how water moves, step by step, in whole numbers: falling, flowing

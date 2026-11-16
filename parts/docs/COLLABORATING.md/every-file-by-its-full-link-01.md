@@ -6,9 +6,9 @@
 > After this part: nothing; this is the last part.
 > Made by docs/parts.py from the file. To change it, change the file.
 
-This list holds the files a reader works from, 246 of them: every
+This list holds the files a reader works from, 247 of them: every
 page, all the code in Python and Rust, the tests, the vectors and the
-web pages. [FILES.md](FILES.md) holds the other 805, files of record
+web pages. [FILES.md](FILES.md) holds the other 867, files of record
 best sent when a question needs them: DeepSeek's records, word for
 word, the code taken from them, and Experiment 001's run logs.
 `tests/test_collaborating_links.py` fails if a file is added, moved or
@@ -96,7 +96,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/ur-
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/world-log.json
 ```
 
-**The sketches**, where your earlier work is kept, where it meets the course, and the tools that take your code out of each record (10):
+**The sketches**, where your earlier work is kept, where it meets the course, and the tools that take your code out of each record (11):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/README.md
@@ -109,6 +109,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/to
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/tools/names-012-05-01.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/tools/names-012-06-02.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/tools/names-012-07-03.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/tools/names-012-09-05.json
 ```
 
 **Python: `multiverse`**, the multiverse's core: worlds, the protocol, keys, passports, journeys and successions (16):

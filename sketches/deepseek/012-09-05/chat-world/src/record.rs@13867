@@ -1,0 +1,82 @@
+// ---- new record structs ----
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct PortLanding {
+    pub world_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub transcript: crate::transcript::Transcript,
+    pub intent: String,               // "journal" | "room"
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub target_room: Option<DidKey>,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct Bookmark {
+    pub world_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub room_id: DidKey,
+    pub note: String,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct Presence {
+    pub world_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub subject_id: DidKey,
+    pub rooms: Vec<DidKey>,
+    pub ttl: u64,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+impl PortLanding {
+    pub fn new(
+        world_id: DidKey,
+        seq: u64,
+        prev: Option<String>,
+        transcript: crate::transcript::Transcript,
+        intent: String,
+        target_room: Option<DidKey>,
+    ) -> Self {
+        PortLanding {
+            world_id, seq, prev, transcript, intent, target_room,
+            ts: crate::now(), proof: ProofOrArray::placeholder(),
+        }
+    }
+}
+
+impl Bookmark {
+    pub fn new(world_id: DidKey, seq: u64, prev: Option<String>, room_id: DidKey, note: String) -> Self {
+        Bookmark { world_id, seq, prev, room_id, note, ts: crate::now(), proof: ProofOrArray::placeholder() }
+    }
+}
+
+impl Presence {
+    pub fn new(world_id: DidKey, seq: u64, prev: Option<String>, subject_id: DidKey, rooms: Vec<DidKey>, ttl: u64) -> Self {
+        Presence { world_id, seq, prev, subject_id, rooms, ttl, ts: crate::now(), proof: ProofOrArray::placeholder() }
+    }
+}
+
+// ---- extended enum ----
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(tag = "type", rename_all = "snake_case")]
+pub enum Record {
+    RoomCreated(RoomCreated),
+    Message(Message),
+    Join(Join),
+    Leave(Leave),
+    Redact(Redact),
+    Refusal(Refusal),
+    HumanOverride(HumanOverride),
+    PortLanding(PortLanding),
+    Bookmark(Bookmark),
+    Presence(Presence),
+}

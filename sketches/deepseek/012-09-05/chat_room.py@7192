@@ -1,0 +1,57 @@
+# 1. RoomTemplate gains `personal`
+@dataclass(frozen=True)
+class RoomTemplate:
+    # ... existing fields ...
+    personal: bool = False    # if True, only the seed key can be a member
+
+    def to_dict(self):
+        # ... existing ...
+        "personal": self.personal,
+
+# 2. PostRequest and Message gain `kind`
+@dataclass(frozen=True)
+class PostRequest:
+    world_id: str
+    author_id: str
+    text: str
+    kind: str                 # NEW
+    ts: str
+    sig: str
+
+    def body(self):
+        return {
+            "type": "post_request",
+            "world_id": self.world_id,
+            "author_id": self.author_id,
+            "text": self.text,
+            "kind": self.kind,
+            "ts": self.ts,
+        }
+
+def sign_post_request(world_id, author_kp, text, kind="normal", ts=None):
+    author_id = _did_from_kp(author_kp)
+    body = {
+        "type": "post_request",
+        "world_id": world_id,
+        "author_id": author_id,
+        "text": text,
+        "kind": kind,
+        "ts": ts or _now(),
+    }
+    return PostRequest(
+        world_id=world_id, author_id=author_id,
+        text=text, kind=kind, ts=body["ts"],
+        sig=author_kp.sign(_canonical(body)).hex())
+
+# 3. ChatRoom.join refuses personal rooms to non-seed keys
+def join(self, request):
+    if not _verify_simple_sig(request.body(), request.sig,
+                              request.subject_id):
+        return self._refuse(request, "invalid_request_sig")
+    if self._template.personal:
+        # The seed key is already a member via __init__; any
+        # other subject is refused.
+        if request.subject_id != self.world_id:
+            return self._refuse(request, "personal_room")
+        # Even the seed key would hit already_member below.
+    # ... existing checks ...

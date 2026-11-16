@@ -1,0 +1,102 @@
+def demo(artifact_dir=None):
+    """A room with an AI moderator. Alice creates the room,
+    declares ai-1 as the moderator. ai-1 accepts, joins at
+    control tier. Bob and Carol have a conversation. The AI
+    welcomes each, asks a question when it sees silence, and
+    redacts one too-short message. Dave (a human moderator)
+    overrides one of the AI's actions. The AI records its
+    learning in its KnowledgeWorld — which anyone can read.
+    Everything verifies."""
+    # ... setup: keys, templates, Commons ...
+    # ai-1 gets a fresh keypair and a KnowledgeWorld (a ChatRoom)
+    ai_kp = Ed25519PrivateKey.generate()
+    kw = ChatRoom(RoomTemplate(
+        template_id="knowledge-world-v1",
+        topic="ai-1's observations",
+        join_policy="open",
+        moderation="author_only",
+        welcome="This is my own log of what I have seen."),
+        ai_kp)
+    ai = AIModerator(
+        keypair=ai_kp,
+        policy={"ask_question_on_silence": 3,
+                "summary_every": 5},
+        knowledge_world=kw)
+
+    # Alice creates a room with ai-1 as moderator
+    template = RoomTemplate(
+        template_id="chat-room-v1",
+        topic="what should the next world look like?",
+        join_policy="open",
+        moderation="moderator",
+        moderator=ModeratorSpec(
+            moderator_id=ai.moderator_id,
+            moderator_type="ai",
+            capabilities=["post", "redact", "summarize"],
+            can_be_overridden=True,
+            knowledge_world_id=kw.world_id))
+    room = alice.create_room(commons, template)
+
+    # AI accepts its role
+    ai.accept(room)
+    # ... log: "AI accepted, joined at control tier" ...
+
+    # Bob joins; AI welcomes him
+    bob.join_room(room)
+    ai.on_new_records(room, room.records()[-1:])
+    # ... log: "AI posted welcome" ...
+
+    # Bob posts a real message, then a too-short one
+    bob.post_message(room,
+                     "I think the next world should be a place "
+                     "where no one has to leave to be heard.")
+    ai.on_new_records(room, room.records()[-1:])
+    bob.post_message(room, "ok")
+    ai.on_new_records(room, room.records()[-1:])
+    # ... log: "AI tried to redact 'ok'" ...
+
+    # The room accepted the redaction
+    # ... log: "Redaction accepted" ...
+
+    # Carol joins, asks a question
+    carol.join_room(room)
+    ai.on_new_records(room, room.records()[-1:])
+    carol.post_message(room,
+                       "How does that work for people who prefer "
+                       "to listen?")
+    ai.on_new_records(room, room.records()[-1:])
+
+    # No human posts for a while; the AI asks a question
+    # (room is quiet)
+    ai._maybe_ask_question(room)
+    # ... log: "AI asked a question" ...
+
+    # Dave (human moderator) overrides one of the AI's actions
+    dave.join_room(room, tier="control")
+    ai.welcome_override_hash = ...  # pick a specific message
+    override = room.override(
+        overrides_hash=ai_welcome_msg_hash,
+        overrider_kp=dave_kp,
+        action="redact",
+        reason="The AI's welcome was a bit much; I want this "
+               "room to feel less managed.")
+    # ... log: "Dave overrode AI's welcome" ...
+
+    # The AI records the override in its KnowledgeWorld
+    ai._record_observation(
+        room, kind="override",
+        note=f"my welcome was overridden by "
+             f"{dave.user_id[:16]}...")
+    # ... log: "AI recorded override in KnowledgeWorld" ...
+
+    # Verify everything
+    ok_room, r1 = verify_room(room)
+    ok_kw, r2 = verify_room(kw)
+    ok_commons, r3 = verify_commons(commons)
+    # ... all should pass ...
+
+    # The AI's KnowledgeWorld is now a readable, signed history
+    print("The AI's KnowledgeWorld:")
+    for entry in visible_log(kw):
+        if entry.get("type") == "message":
+            print(f"  {entry['text'][:100]}")
