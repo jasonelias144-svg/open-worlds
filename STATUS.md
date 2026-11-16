@@ -45,10 +45,12 @@ free, and never a money machine
   small examples, the octopus, the relay and the swarm, and the council,
   counting persons' signed votes (`open-worlds/proposal/v1` and
   `vote/v1`). The course was rechecked on 2026-11-16, with a new list
-  of twelve (docs/COURSE.md, "Rechecked on 2026-11-16"). Next is step
-  3b, a log whose fields can be redacted, with removals and restorings
-  on record; then step 3c, the room, where DeepSeek's `chat-world` is
-  fitted onto the project's formats.
+  of twelve (docs/COURSE.md, "Rechecked on 2026-11-16"). Step 3b is
+  under way, a log whose fields can be redacted, with removals and
+  restorings on record: its plan, after looking first, is in
+  docs/research/REDACTION.md, and nothing of it is built yet. Then
+  step 3c, the room, where DeepSeek's `chat-world` is fitted onto the
+  project's formats.
 - Claude: the fractal track, alongside the course (docs/FRACTALS.md),
   set by the founder on 2026-11-14: a fractal plant world in Rust, the
   web app in `web/` to watch worlds grow, and in it the multiversal map.
@@ -146,6 +148,24 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder, on redaction (docs/research/REDACTION.md, "For the
+  founder"), from the plan for course step 3b:
+  1. An office's copy of what was redacted. FUNDAMENTALS.md has a
+     redaction made at once and decided after, and lets the office
+     decide to keep it public. That needs the office to be able to put
+     it back, and "Kept in the person's own container" (2026-11-15)
+     seals it to the person alone. Proposed: a second sealed copy for
+     the office that decides, kept only until the decision and any
+     appeal are over, then deleted, with an entry that says so. For
+     that while an office of the project can read it. Recommended:
+     yes. Redacting is not built before the answer.
+  2. Whether the key that acted may ever be redacted. The plan keeps
+     the key apart, so that either answer can be built; nothing about
+     it is hidden unless it is redacted. The cost of allowing it: once
+     a key is redacted, no reader can check again that an act was that
+     key's; it would rest on the world's word at the time of writing.
+     Recommended: keep the option, and decide with the purging of a
+     person who leaves (course step 8a).
 - For the founder, on private rooms and the Ur-room (docs/COMMONS.md,
   "A spectrum of privacy" and "The Ur-room"), from the founder's words
   of 2026-11-16:
@@ -175,8 +195,8 @@ kind.
      record on 2026-11-15, when it was where everyone reads the
      charter. As the Ur-room it is where people sit and talk, so the
      record would keep the first talk of everyone who arrives.
-     Recommended: on the record, said plainly on entering, with a
-     private room one door away.
+     Recommended: on the record, said plainly on entering; and, once
+     private rooms are built (course step 6a), with one a door away.
 - For the founder, from the session of 2026-11-16, four things that
   wait for the founder's own word:
   1. The founder's ideas on personal information in a room, and the six
@@ -2402,6 +2422,51 @@ Decisions about the code, made by the technical lead under the founder's
 deference (above, 2026-11-13), each with its reason and what would show
 it was wrong. Questions of what the project is for stay with the founder.
 
+- 2026-11-16, a log that can be redacted, and removals on record
+  (docs/research/REDACTION.md, decisions 1 to 10; course step 3b), as
+  reworked after the independent review of #100.
+  (1) Which fields are kept apart is fixed kind by kind: what a person
+  writes or gives (a text, a name, a clock time, the key that acted)
+  enters the chain only as a fingerprint; what a reader needs to work
+  out an entry's state (its kind, tick and place, and for the room's
+  own entries the act, its target and the office) stays in the open.
+  (2) The fingerprint is the SHA-256 of `[salt, name, value]`, with a
+  fresh salt of 128 bits from the operating system; none may appear
+  twice in a log; both languages refuse the same values. (3) The
+  contents are kept beside the log, so the log is never written again,
+  and one function joins the two for every reader. (4) Redacting is
+  seal, then mark, then take out, and a field is present, redacted,
+  unfinished, kept public or missing; the sealed copy is a `sealed/v1` with a new
+  label, bound by what is inside it. (5) Proposed, and the founder's:
+  a second sealed copy for the office that decides, until the decision
+  and any appeal are over. (6) A world with no one in it keeps today's
+  form, and a log names its form. (7) A moderator's removal is a
+  `decision/v1`; the incident id is the hash of the entry that carries
+  it, shown as the fewest digits, twelve or more, that are the only
+  such in the room. (8) An author taking back their own comment is a
+  record kind of its own. (9) What is shown is worked out from the
+  open fields alone, with a table of what wins. (10) Python and Rust,
+  with shared vectors.
+  *Why:* Matrix signs an event in the form a redaction leaves, so a
+  room's history still checks, but its hash of the whole event has no
+  salt; SD-JWT (RFC 9901) fingerprints each claim with a fresh salt of
+  at least 128 bits, which closes that. `decision/v1` already carries
+  what the founder asked a removal to say.
+  *Wrong if:* (1) a room needs to redact part of a field, or something
+  a state depends on turns out to be private (then that kind of entry
+  gets other fields, from its first use); (2) Python and Rust write
+  different text for the same value in a vector, or a value a room
+  needs is refused (then RFC 8785 for the fingerprint); (3) a
+  published log is found without its contents, or a reader skips the
+  joining function (then the contents move into the entry under a key
+  the hash skips); (4) a state of a field turns up that is none of the
+  five; (6) a reader takes one form for the other, or the Ur-world
+  can't change form before anyone is born (then one form, with salts
+  given to a run); (7) a moderator's act needs a field `decision/v1`
+  hasn't, or two incidents in one room show the same id; (8) an
+  author's taking back needs grounds or an appeal after all; (9) a
+  state can't be worked out without the contents.
+
 - 2026-11-16, the course after step 3a: a new list of twelve
   (docs/COURSE.md, "Rechecked on 2026-11-16"), on the founder's word of
   the same day (Decided, the newest entry). It was put to the founder in
@@ -2980,6 +3045,54 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-16 Claude: course step 3b begun by looking first
+  (docs/research/REDACTION.md): the project's one log and why nothing
+  can be taken out of it today, `decision/v1` and `sealed/v1` as they
+  are, then SD-JWT (RFC 9901) for the salted fingerprint and Matrix's
+  signing of redacted events for the shape. Ten decisions (Decided by
+  the technical lead) and four parts: the plan; fingerprints and
+  contents; redacting; removing, taking back and restoring. Every
+  quotation from the two outside sources was checked word for word
+  against the pages as fetched; Matrix's Client-Server API was not
+  opened, and what is said of event sourcing is from memory, as the
+  page says. Nothing is built yet. docs/COURSE.md and
+  docs/COLLABORATING.md (with a message to DeepSeek on what it settles
+  for removed comments) brought into line. The plan was written before
+  the founder's last words of the day and now says where they meet it:
+  the first room it is built for is the Ur-room, which is on the
+  record, and a private room's words are not this step's.
+  After the independent review of #100 (four blocking, each taken): the
+  plan had redaction seal a field to the person alone, which left no
+  way to carry out a decision to keep it public, and let anyone erase a
+  public act for good by asking; it now proposes a copy for the
+  deciding office, and puts that to the founder. It had every field of
+  every entry kept apart, so a mark or a removal could itself be lost
+  and a state not worked out; what is kept apart is now fixed kind by
+  kind, and a state is worked out from the open fields. The order of
+  redacting is seal, mark, take out, so that work cut short can be
+  seen and finished, and the four states of a field are named. Whether
+  the key that acted may be redacted goes to the founder, and the key
+  is kept apart meanwhile. Also taken: the incident id is the entry's
+  hash; the sealed copy is bound by what is inside it, with no change
+  to sealing; a log names its form; a table of what wins; what part
+  four builds for the first time; three more limits; and a "wrong if"
+  for each decision that can be tested.
+  After the narrow re-check at 6792e3c (the four met; one new thing
+  blocking, a contradiction in the table of what wins, mended as the
+  reviewer wrote it): an author may take back a comment an office
+  removed, and only a second removal, a second taking back, or a
+  removal of what its author took back is refused. Its notes were
+  taken too: a fifth state for a field put back by decision; the
+  ground in the open part of a removal's entry, so the note can show
+  it when a reason is redacted; that an office's key is never
+  redacted; the cost of redacting a key, in the founder's question;
+  and docs/FUNDAMENTALS.md's clause on which fields are fingerprints.
+  Carried from
+  #99's last re-check, two small notes: the recommendation on the
+  Ur-room no longer speaks of a private room "one door away" before
+  private rooms exist, and docs/COMMONS.md, "The Ur-room", points to
+  the open question on its being on the record.
 
 - 2026-11-16 Claude: the founder's last words of the day recorded
   (Decided, the two newest entries) and written into the pages they

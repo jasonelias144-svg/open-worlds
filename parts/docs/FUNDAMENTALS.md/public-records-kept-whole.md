@@ -54,8 +54,11 @@ unless the founder answers otherwise:
   redaction that works best: copies others make of what is published
   can't be recalled afterwards.
 - **Visible, and the log still checks.** To be built, before anyone
-  lives in a world ([COURSE.md](COURSE.md), step 3b): each field of an entry enters the chain of hashes
-  only as a salted fingerprint of its content, with a fresh random salt
+  lives in a world ([COURSE.md](COURSE.md), step 3b): each field of an
+  entry that is kept apart (what a person writes or gives; which
+  fields, kind by kind, is in
+  [research/REDACTION.md](research/REDACTION.md)) enters the chain of
+  hashes only as a salted fingerprint of its content, with a fresh random salt
   of at least 128 bits for each field, from the moment it is written,
   drawn from the operating system's random source, never from a world's
   seed (which would let anyone who knows the seed rebuild it); so a log
@@ -90,6 +93,11 @@ unless the founder answers otherwise:
   It stays redacted until any appeal is decided: once made public again,
   it can't be recalled. How long an appeal may take is set with ADMIN's
   rules for appeals; until it is set, it stays redacted.
+  How an office can still decide to keep it public, when what was
+  redacted is sealed to the person, is put to the founder: the plan
+  for course step 3b proposes a second sealed copy for the office that
+  decides, kept only until the decision and any appeal are over
+  ([research/REDACTION.md](research/REDACTION.md), "For the founder").
 - **Shared on purpose, in a room.** Ideas of the founder's, of
   2026-11-16, not decided: a person may share their personal
   information in a room after being asked "Are you sure?"; those in the

@@ -8,6 +8,54 @@
 
 ## Log
 
+- 2026-11-16 Claude: course step 3b begun by looking first
+  (docs/research/REDACTION.md): the project's one log and why nothing
+  can be taken out of it today, `decision/v1` and `sealed/v1` as they
+  are, then SD-JWT (RFC 9901) for the salted fingerprint and Matrix's
+  signing of redacted events for the shape. Ten decisions (Decided by
+  the technical lead) and four parts: the plan; fingerprints and
+  contents; redacting; removing, taking back and restoring. Every
+  quotation from the two outside sources was checked word for word
+  against the pages as fetched; Matrix's Client-Server API was not
+  opened, and what is said of event sourcing is from memory, as the
+  page says. Nothing is built yet. docs/COURSE.md and
+  docs/COLLABORATING.md (with a message to DeepSeek on what it settles
+  for removed comments) brought into line. The plan was written before
+  the founder's last words of the day and now says where they meet it:
+  the first room it is built for is the Ur-room, which is on the
+  record, and a private room's words are not this step's.
+  After the independent review of #100 (four blocking, each taken): the
+  plan had redaction seal a field to the person alone, which left no
+  way to carry out a decision to keep it public, and let anyone erase a
+  public act for good by asking; it now proposes a copy for the
+  deciding office, and puts that to the founder. It had every field of
+  every entry kept apart, so a mark or a removal could itself be lost
+  and a state not worked out; what is kept apart is now fixed kind by
+  kind, and a state is worked out from the open fields. The order of
+  redacting is seal, mark, take out, so that work cut short can be
+  seen and finished, and the four states of a field are named. Whether
+  the key that acted may be redacted goes to the founder, and the key
+  is kept apart meanwhile. Also taken: the incident id is the entry's
+  hash; the sealed copy is bound by what is inside it, with no change
+  to sealing; a log names its form; a table of what wins; what part
+  four builds for the first time; three more limits; and a "wrong if"
+  for each decision that can be tested.
+  After the narrow re-check at 6792e3c (the four met; one new thing
+  blocking, a contradiction in the table of what wins, mended as the
+  reviewer wrote it): an author may take back a comment an office
+  removed, and only a second removal, a second taking back, or a
+  removal of what its author took back is refused. Its notes were
+  taken too: a fifth state for a field put back by decision; the
+  ground in the open part of a removal's entry, so the note can show
+  it when a reason is redacted; that an office's key is never
+  redacted; the cost of redacting a key, in the founder's question;
+  and docs/FUNDAMENTALS.md's clause on which fields are fingerprints.
+  Carried from
+  #99's last re-check, two small notes: the recommendation on the
+  Ur-room no longer speaks of a private room "one door away" before
+  private rooms exist, and docs/COMMONS.md, "The Ur-room", points to
+  the open question on its being on the record.
+
 - 2026-11-16 Claude: the founder's last words of the day recorded
   (Decided, the two newest entries) and written into the pages they
   change, in the same change as the course's recheck. The Commons

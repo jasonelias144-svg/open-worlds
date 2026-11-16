@@ -135,7 +135,9 @@ lead reads the rest:
   key, law and log, and the doors to the other rooms are in it.
 - **It is on the record,** as was decided for the lobby on 2026-11-15
   ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item 13). Everyone who
-  enters reads the charter first.
+  enters reads the charter first. Whether that should hold now that it
+  is a place to talk, and not only to pass through, is put to the
+  founder (STATUS.md, "Open questions").
 - **It follows the Ur-world's pattern:** the first of its kind, from
   which the others follow. How it is marked as the first, its name kept
   for it and its place first in the Commons' list of rooms, is settled

@@ -50,7 +50,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/cycles
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/cycles/cycle-000-output.txt
 ```
 
-**Research**, the look-first pages behind each step, the script one of them ran, and DeepSeek's schema beside the project's (10):
+**Research**, the look-first pages behind each step, the script one of them ran, and DeepSeek's schema beside the project's (11):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/ADMIN-MIND.md
@@ -61,6 +61,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/resear
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/KEYS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/OVERSIGHT.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/PERSONS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/REDACTION.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/WASM.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/jcs_compare.py
 ```

@@ -18,7 +18,7 @@ or in
 collaborating page are not accessible. So all files need links through
 this method.").
 
-This list holds the files a reader works from, 251 of them: every
+This list holds the files a reader works from, 252 of them: every
 page, all the code in Python and Rust, the tests, the vectors and the
 web pages. [FILES.md](FILES.md) holds the other 871, files of record
 best sent when a question needs them: DeepSeek's records, word for

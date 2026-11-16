@@ -53,10 +53,12 @@ free, and never a money machine
   small examples, the octopus, the relay and the swarm, and the council,
   counting persons' signed votes (`open-worlds/proposal/v1` and
   `vote/v1`). The course was rechecked on 2026-11-16, with a new list
-  of twelve (docs/COURSE.md, "Rechecked on 2026-11-16"). Next is step
-  3b, a log whose fields can be redacted, with removals and restorings
-  on record; then step 3c, the room, where DeepSeek's `chat-world` is
-  fitted onto the project's formats.
+  of twelve (docs/COURSE.md, "Rechecked on 2026-11-16"). Step 3b is
+  under way, a log whose fields can be redacted, with removals and
+  restorings on record: its plan, after looking first, is in
+  docs/research/REDACTION.md, and nothing of it is built yet. Then
+  step 3c, the room, where DeepSeek's `chat-world` is fitted onto the
+  project's formats.
 - Claude: the fractal track, alongside the course (docs/FRACTALS.md),
   set by the founder on 2026-11-14: a fractal plant world in Rust, the
   web app in `web/` to watch worlds grow, and in it the multiversal map.
@@ -154,6 +156,24 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder, on redaction (docs/research/REDACTION.md, "For the
+  founder"), from the plan for course step 3b:
+  1. An office's copy of what was redacted. FUNDAMENTALS.md has a
+     redaction made at once and decided after, and lets the office
+     decide to keep it public. That needs the office to be able to put
+     it back, and "Kept in the person's own container" (2026-11-15)
+     seals it to the person alone. Proposed: a second sealed copy for
+     the office that decides, kept only until the decision and any
+     appeal are over, then deleted, with an entry that says so. For
+     that while an office of the project can read it. Recommended:
+     yes. Redacting is not built before the answer.
+  2. Whether the key that acted may ever be redacted. The plan keeps
+     the key apart, so that either answer can be built; nothing about
+     it is hidden unless it is redacted. The cost of allowing it: once
+     a key is redacted, no reader can check again that an act was that
+     key's; it would rest on the world's word at the time of writing.
+     Recommended: keep the option, and decide with the purging of a
+     person who leaves (course step 8a).
 - For the founder, on private rooms and the Ur-room (docs/COMMONS.md,
   "A spectrum of privacy" and "The Ur-room"), from the founder's words
   of 2026-11-16:
@@ -183,8 +203,8 @@ kind.
      record on 2026-11-15, when it was where everyone reads the
      charter. As the Ur-room it is where people sit and talk, so the
      record would keep the first talk of everyone who arrives.
-     Recommended: on the record, said plainly on entering, with a
-     private room one door away.
+     Recommended: on the record, said plainly on entering; and, once
+     private rooms are built (course step 6a), with one a door away.
 - For the founder, from the session of 2026-11-16, four things that
   wait for the founder's own word:
   1. The founder's ideas on personal information in a room, and the six

@@ -8,11 +8,14 @@
 
 ## Ahead
 
-**3b. A log that can be redacted, and removals on record.** Before any
-room is built on it. Two things. The founder asked that private
-information be redacted in public records (2026-11-15), and that
-removals be on record "from the beginning" (2026-11-16). How each is
-built is the technical lead's reading:
+**3b. A log that can be redacted, and removals on record.** Under way:
+the plan, after looking first, is in
+[research/REDACTION.md](research/REDACTION.md), in four parts (the
+plan; fingerprints and contents; redacting; removing, taking back and
+restoring). Before any room is built on it. Two things. The founder
+asked that private information be redacted in public records
+(2026-11-15), and that removals be on record "from the beginning"
+(2026-11-16). How each is built is the technical lead's reading:
 - Log entries whose fields are kept apart from the chain that commits
   to them, by a salted fingerprint. A field found private later can
   then be redacted while the log still checks, with a redaction mark,
@@ -27,8 +30,8 @@ built is the technical lead's reading:
   layer, and is never edited; what a room shows is the presentation
   layer. A removal is a decision record: who acted, in what office, on
   which entry, when, and for what reason, naming the part of the room's
-  law it rests on. Its incident id is the hash of that record, shown
-  short. Restoring is another record, which names the incident and
+  law it rests on. Its incident id is the hash of the entry that
+  carries it, shown short. Restoring is another record, which names the incident and
   never reaches private information. An author taking back their own
   comment is no office's decision, and gets a record of its own
   ([COMMONS.md](COMMONS.md), "Removing a comment"; the founder,
@@ -37,10 +40,10 @@ built is the technical lead's reading:
 In `rust/world-log` and records-v1, in Python and Rust with shared
 vectors, and with a test that what was redacted can't be read back, or
 guessed, from what the log keeps. Moved here from the waiting list,
-which placed it before anyone lives in a world. *Borrowing, to be
-looked at first:* selective disclosure by salted hashes (SD-JWT); Matrix's
-redactions, which keep an event's place in a room's history and drop
-its content; event sourcing, where a correction is a new event.
+which placed it before anyone lives in a world. *Borrowing:*
+selective disclosure by salted hashes (SD-JWT, RFC 9901); Matrix's
+events, signed in the form a redaction leaves, so a room's history
+still checks; event sourcing, where a correction is a new event.
 
 **3c. The room: the Ur-room first.** The first room built is the
 Commons' lobby (the founder, 2026-11-16: "let's start the Commons with
