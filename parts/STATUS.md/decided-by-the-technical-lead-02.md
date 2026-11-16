@@ -12,6 +12,21 @@ Decisions about the code, made by the technical lead under the founder's
 deference (above, 2026-11-13), each with its reason and what would show
 it was wrong. Questions of what the project is for stay with the founder.
 
+- 2026-11-16, one schema that fits both, after the founder's answer of
+  the same day (Decided, "on DeepSeek's schema and on bringing
+  everything together"). It adds to the entry below, which had only the
+  project's form in view, and reverses nothing in it: what the project
+  has signed with stays (its proof, did:key, hash and signed head), so
+  the crate still stands on `rust/formats`; DeepSeek's record kinds for
+  chat join `schemas/records-v1.schema.json`; and for what is new to the
+  project the form is chosen case by case, and may be DeepSeek's. A
+  table of DeepSeek's names beside the schema's comes in the next pull
+  request. Reason: signed records and their vectors can't change, and
+  nothing DeepSeek builds on its own schema should be wasted. Wrong if:
+  a form the project has signed with turns out to be the worse one for
+  rooms; then it changes in a new version of the schema, beside the old,
+  never in place.
+
 - 2026-11-16, DeepSeek's two questions in record 012-09-05 (its line
   13769), and what follows for fitting `chat-world`:
   (1) A room has its own key, and its creator joins with theirs.

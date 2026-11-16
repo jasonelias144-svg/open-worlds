@@ -10,12 +10,13 @@
   012-09-05, into the pages (Decided, the newest entry):
   docs/COMMONS.md, "Rooms with moderators", with the founder's words and
   the technical lead's reading; docs/FUNDAMENTALS.md, privacy, item 14;
-  docs/TOPICS.md, topic 14; and one entry under Open questions, for the
-  five questions about moderators. docs/FUNDAMENTALS.md, freedom, item
-  5, carries the one that bears on voice. The founder's answer on the
-  schema is in Decided, the newest entry. The quotations were cut from
-  the record by line, by script, and checked against it. Nothing is
-  built by this change.
+  docs/TOPICS.md, topic 14; and one entry under Open questions, for five
+  questions about moderators. The same day the founder answered the
+  question on the schema and the one on removed comments, and both
+  answers are in Decided (docs/COMMONS.md, "Three sources, one Commons"
+  and "Removing a comment"; docs/FUNDAMENTALS.md, freedom, item 5). The
+  quotations were cut from the record by line, by script, and checked
+  against it. Nothing is built by this change.
 
 - 2026-11-16 Claude: a first round of repairs to record 012-09-05's
   code, fixes 15 to 18 in sketches/INDEX.md, each making the code do

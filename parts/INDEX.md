@@ -71,7 +71,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/start.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/purged-demonstrably.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/public-records-kept-whole.md
 ```
 
 ## `docs/MULTIVERSE.md`, in 2 parts

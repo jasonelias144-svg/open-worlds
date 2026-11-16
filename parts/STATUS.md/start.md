@@ -147,14 +147,13 @@ kind.
   founder answers otherwise: whether a room's moderator is its Keeper
   (two offices); what a moderator may do to keep a room's law (pace and
   prompt, never expel); and whether the home room is the private
-  container (yes). One bears on a protected freedom, voice and
-  information, and nothing stands on it yet: whether a moderator may
-  hide what someone said. The technical lead's starting point is that
-  redaction stays for private information only, and a message that
-  breaks a room's law stays readable, marked, with each reader free to
-  fold it away. It closes when DeepSeek's answer is in and reviewed, or
-  when the founder answers. The last, which model first moderates and
-  its cost, is money, and waits for the founder.
+  container (yes). One reads the founder's own words on a protected
+  freedom, voice and information, so it is put plainly: the founder
+  decided on 2026-11-16 that a removed comment "stays in the data layer,
+  in our records", and the technical lead reads that, for a room on the
+  record, as readable there by anyone who goes to the records, private
+  information apart, which is sealed. The last, which model first
+  moderates and its cost, is money, and waits for the founder.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for

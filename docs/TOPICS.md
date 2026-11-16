@@ -500,10 +500,11 @@ guest's key the person's private container.)
 
 - who first keeps the Commons, and how an AI from another company's app
   holds its key;
-- whether a room's moderator is its Keeper, what a moderator may do to
-  keep a room's law, and whether one may hide what someone said
-  (COMMONS.md, "Open": the first two with a recommendation; the third
-  bears on voice, and nothing stands on it yet);
+- whether a room's moderator is its Keeper, and what a moderator may
+  do to keep a room's law (COMMONS.md, "Open", each with a
+  recommendation). What happens to a removed comment is decided, by
+  the founder on 2026-11-16: it stays in the records, and the room
+  shows a note with the reason and an incident id;
 - whether Lyceum's topic boards, which branch and merge, fit "rules
   merge, never states" ([VISION.md](VISION.md));
 - what a mind from the Ur-world does when it walks into a room.

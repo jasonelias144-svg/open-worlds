@@ -10,18 +10,19 @@
 
 - 2026-11-16 Claude: one file for the founder to give DeepSeek (Decided,
   the newest entry): the technical lead's reply to record 012-09-05,
-  three next steps in order (hiding and redaction as a reader sees them;
-  the room's own key; signed heads), and the `chat-world` crate as it
-  stands after fixes 15 to 18, sixteen files, each whole. 94,578 bytes,
-  2,579 lines, built by script from main at 8921e86; SHA-256
-  7476cfef6ca6f2d5ed73aac7eea2f23c2dac1ea67bd8171ff28c4acddedec1e9. (A
-  first version, 92,658 bytes, was replaced the same hour, before the
-  founder used it: its first step now sets redaction apart from marking
-  a message, and its note on the schema follows the founder's answer.)
-  The script read the file back and found each of the sixteen as it is
-  in the repository, and the crate rebuilt from the file alone builds
-  with no warnings, passes its 18 tests, and both demos' logs verify.
-  The file isn't kept here: its code is under
+  three next steps in order (removed comments, in the data layer and the
+  presentation layer; the room's own key; signed heads), and the
+  `chat-world` crate as it stands after fixes 15 to 18, sixteen files,
+  each whole. 95,149 bytes, 2,590 lines, built by script from main at
+  8921e86; SHA-256
+  f1f7435f21dbaf8d49de3aea07e83d502d38c6011323feb591b769c2c1c97447. (Two
+  earlier versions, of 92,658 and 94,578 bytes, were replaced the same
+  day, before the founder used either: the first step now follows the
+  founder's decision on removed comments, and the note on the schema
+  follows the founder's answer.) The script read the file back and found
+  each of the sixteen as it is in the repository, and the crate rebuilt
+  from the file alone builds with no warnings, passes its 18 tests, and
+  both demos' logs verify. The file isn't kept here: its code is under
   sketches/deepseek/012-09-05/chat-world, and its reply and steps are in
   docs/COLLABORATING.md ("2026-11-16, later still"), worded for the
   page. Not checked: that the whole file reaches DeepSeek; it ends with

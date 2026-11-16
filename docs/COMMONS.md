@@ -60,6 +60,9 @@ moment, no longer binding. Let's keep it all host free, as we were."
   to DeepSeek about the rooms, some of it decided and some a leaning
   ("Something like that"; "Perhaps"): in the founder's words under
   "Rooms with moderators", below.
+- **A removed comment stays in the records,** and the room shows a
+  note in its place, with the reason and an incident id: the founder,
+  2026-11-16, under "Removing a comment", below.
 
 The rest of this page is the technical lead's design, which stands unless
 the founder answers otherwise. None of it is built yet.
@@ -229,7 +232,7 @@ stands unless the founder answers otherwise. None of it is built.
   what it offers are tools, not solutions
   ([FUNDAMENTALS.md](FUNDAMENTALS.md), freedom, items 5 and 6). The
   founder asked for "the least restrictions on communication in any
-  room"; what that means for hiding a message is under "Open".
+  room"; what happens when a comment is removed is decided, below.
 - **A key for each room.** An AI that moderates many rooms holds a
   separate key in each, and what it learns in one room has no path to
   another: each key's memory is its own log. To reason across rooms it
@@ -259,6 +262,52 @@ stands unless the founder answers otherwise. None of it is built.
   sent ("Who comes in", above).
 - **A Commons app** belongs with the app of the founder's visions
   ([VISION.md](VISION.md), "The app").
+
+**Removing a comment.** Decided by the founder, 2026-11-16, in answer to
+the question this page had left open: "On removed comments, here is my
+thought: we distinguish between a data and a presentation layer. So the
+comment stays in the data layer, in our records. If action is taken, it
+must become part of the records to justify the decision to take action.
+But the presentation layer is what shows up in the chat window, in the
+chat history for that room. There should be a note saying something was
+removed because of some reason. There needs to be a unique event id or
+incident id. Let's put all this in place now, from the beginning."
+
+What that settles, as the technical lead reads it:
+
+- **Two layers.** The data layer is the room's log, which is never
+  edited. The presentation layer is what the room shows: its window
+  and its history. Removing a comment changes only what is shown.
+- **The action is a record.** Who acted and in what office, on which
+  entry, when, and the reason, naming the part of the room's law it
+  rests on. That record is what justifies the action, and anyone can
+  check it.
+- **A note where the comment was:** that something was removed, the
+  reason, and the incident's id.
+- **An incident id,** unique. The technical lead's choice of how: the
+  hash of the removal's own record, shown in a short form, so that it
+  needs no registry and anyone can find the record and check it.
+  Every entry in a log already has such an id, its hash.
+- **Restoring is another record,** naming the incident, and the room
+  then shows that too.
+- **Private information stays the case apart** in the data layer. It
+  is kept in the records sealed, in the container of the person it is
+  about, as decided on 2026-11-15
+  ([FUNDAMENTALS.md](FUNDAMENTALS.md), "Public records, kept whole"),
+  and the room shows the same kind of note. A comment removed for any
+  other reason stays readable in the records.
+- **From the beginning:** the removal, the restore and the incident
+  id are among a room's kinds of record in the first version of
+  `rust/chat-world`, and they are DeepSeek's next step
+  ([COLLABORATING.md](COLLABORATING.md)).
+
+The technical lead's earlier starting point, that a message be marked
+and each reader fold it away, is withdrawn: the founder's answer
+replaces it. Three limits are recommended, and stand unless the founder
+answers otherwise: a comment is removed only for a reason the room's
+law names, which everyone is told on entering; never silently; and its
+author can always see the note and ask for the removal to be looked
+at again.
 
 **Sketched** by DeepSeek in the same record, and kept in
 `sketches/deepseek/012-09-05/` with what runs: a room as a log of
@@ -301,30 +350,14 @@ lead").
   recommendation: pace and prompt; every act checked against the law
   by the room's code, the moderator's included; never expel, except
   for an attack on the world.
-- **Hiding what someone said.** This bears on a protected freedom,
+- **Whether anyone may read a removed comment in the records.** The
+  founder: the comment "stays in the data layer, in our records". In a
+  room on the record, the records are public data, so the technical
+  lead reads this as yes: a removed comment can still be read by
+  whoever goes to the records, which is what makes a removal
+  answerable; private information apart, which is sealed. It bears on
   voice and information ([FUNDAMENTALS.md](FUNDAMENTALS.md), freedom,
-  items 3 and 5), so it is put to the founder plainly, and nothing
-  stands yet. DeepSeek's sketch has one act, `redact`, for two
-  different things:
-  - *Redaction* is for personal or private information only, in a
-    room as everywhere ([FUNDAMENTALS.md](FUNDAMENTALS.md), "Public
-    records, kept whole"). Anyone may ask, a moderator included. It
-    is redacted at once and decided by the room's Keeper. A reader is
-    shown a mark: that something private was removed, when, by which
-    office, and why in general terms, never what. Making it public
-    again is the serious act that page describes, never a moderator's
-    or a member's to undo.
-  - *A message that breaks a room's law,* in a room on the record,
-    stays in the log. The technical lead's starting point: a
-    moderator may mark it, as a signed act with its reason; a
-    reader's own view may fold a marked message away, and anyone may
-    open it; a person the room's law names may withdraw the mark, by
-    another signed act. Nothing is removed, and nothing is hidden
-    from someone who wants to read it.
-
-  It is DeepSeek's next step to say whether that split is right
-  ([COLLABORATING.md](COLLABORATING.md)); the question closes when
-  its answer is in and reviewed, or when the founder answers.
+  items 3 and 5), so the reading is put to the founder plainly.
 - **Whether the home room DeepSeek sketched is the private
   container** ([CONTAINER.md](CONTAINER.md)) seen as a room, or
   something beside it. The recommendation: the same thing, since both

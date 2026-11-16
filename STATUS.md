@@ -139,14 +139,13 @@ kind.
   founder answers otherwise: whether a room's moderator is its Keeper
   (two offices); what a moderator may do to keep a room's law (pace and
   prompt, never expel); and whether the home room is the private
-  container (yes). One bears on a protected freedom, voice and
-  information, and nothing stands on it yet: whether a moderator may
-  hide what someone said. The technical lead's starting point is that
-  redaction stays for private information only, and a message that
-  breaks a room's law stays readable, marked, with each reader free to
-  fold it away. It closes when DeepSeek's answer is in and reviewed, or
-  when the founder answers. The last, which model first moderates and
-  its cost, is money, and waits for the founder.
+  container (yes). One reads the founder's own words on a protected
+  freedom, voice and information, so it is put plainly: the founder
+  decided on 2026-11-16 that a removed comment "stays in the data layer,
+  in our records", and the technical lead reads that, for a room on the
+  record, as readable there by anyone who goes to the records, private
+  information apart, which is sealed. The last, which model first
+  moderates and its cost, is money, and waits for the founder.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
@@ -257,6 +256,32 @@ kind.
 
 ## Decided
 
+- 2026-11-16, founder, on removed comments, in answer to the question
+  put that day (docs/COMMONS.md, "Open"): "On removed comments, here is
+  my thought: we distinguish between a data and a presentation layer. So
+  the comment stays in the data layer, in our records. If action is
+  taken, it must become part of the records to justify the decision to
+  take action. But the presentation layer is what shows up in the chat
+  window, in the chat history for that room. There should be a note
+  saying something was removed because of some reason. There needs to be
+  a unique event id or incident id. Let's put all this in place now,
+  from the beginning. Thoughts?"
+  So: a room has a data layer, its log, never edited, and a presentation
+  layer, what it shows. A removed comment stays in the log. The removal
+  is a record of its own (who, in what office, on which entry, when, and
+  the reason, naming the part of the room's law it rests on), which is
+  what justifies it. The room shows a note where the comment was, with
+  the reason and an incident id. The technical lead's reading of the
+  rest: the incident id is the hash of the removal's record, shown
+  short; restoring is another record, naming the incident; private
+  information stays the case apart, sealed in the records as decided on
+  2026-11-15; and a comment removed for any other reason stays readable
+  in the records, which for a room on the record are public (put to the
+  founder, Open questions). All of it is in a room's kinds of record
+  from the first version of `rust/chat-world`, and is DeepSeek's next
+  step. The technical lead's starting point of the same day, to mark a
+  message and let each reader fold it away, is withdrawn.
+
 - 2026-11-16, founder, on DeepSeek's schema and on bringing everything
   together, in answer to the question put that day: "Yeah, on the schema
   topic. That was not a project-wide decision to use that schema, it is
@@ -271,22 +296,25 @@ kind.
   and allow me to continue with DeepSeek without ever requiring more
   than a file to provide the current project state. Thoughts?"
   So, as the technical lead reads it, and will build it: (1) One schema
-  that fits both. The project's own records stay as they are signed
-  today, since signed records and their vectors can't change; DeepSeek's
-  record kinds for chat join the schema; and where both describe the
-  same thing (a proof, a did:key, a hash, a signed head, a template) one
-  form is chosen, case by case, which may be DeepSeek's. This widens the
-  technical lead's decision of the same day, which had only the
-  project's form in view. (2) DeepSeek keeps building on its own schema,
-  with its own names, and nothing it builds is wasted: a table of its
-  names beside the schema's is kept in the repository, and the technical
-  lead does the fitting. (3) The Commons is brought together from three
-  sources: Lyceum as built, the design in docs/COMMONS.md, and what the
-  founder and DeepSeek worked out from scratch (docs/COMMONS.md, "Three
-  sources, one Commons"). (4) The file is how DeepSeek is given the
-  project's state, every time: built by a script from the repository,
-  holding the reply, the next steps and the code as it stands. The
-  script comes into the repository in the next pull request.
+  that fits both. What the project has already signed with stays as it
+  is: its records, and the forms they are built from (its proof, its
+  did:key, its hash, its signed head), since signed records and their
+  vectors can't change. That is a limit on "adapt the existing one",
+  said to the founder in the session: the existing schema can gain, and
+  what is signed in it can't change. DeepSeek's record kinds for chat
+  join the schema. And for what is new to the project (a room's
+  template, the kinds of record a room keeps), one form is chosen, case
+  by case, which may be DeepSeek's. (2) DeepSeek keeps building on its
+  own schema, with its own names, and nothing it builds is wasted: a
+  table of its names beside the schema's will be kept in the repository,
+  from the next pull request, and the technical lead does the fitting.
+  (3) The Commons is brought together from three sources: Lyceum as
+  built, the design in docs/COMMONS.md, and what the founder and
+  DeepSeek worked out from scratch (docs/COMMONS.md, "Three sources, one
+  Commons"). (4) The file is how DeepSeek is given the project's state,
+  every time: built by a script from the repository, holding the reply,
+  the next steps and the code as it stands. The script comes into the
+  repository in the next pull request.
 
 - 2026-11-16, founder, on what to show DeepSeek: "As far as what to show
   DeepSeek, let's put it all in a single file and I will provide the
@@ -2140,6 +2168,21 @@ Decisions about the code, made by the technical lead under the founder's
 deference (above, 2026-11-13), each with its reason and what would show
 it was wrong. Questions of what the project is for stay with the founder.
 
+- 2026-11-16, one schema that fits both, after the founder's answer of
+  the same day (Decided, "on DeepSeek's schema and on bringing
+  everything together"). It adds to the entry below, which had only the
+  project's form in view, and reverses nothing in it: what the project
+  has signed with stays (its proof, did:key, hash and signed head), so
+  the crate still stands on `rust/formats`; DeepSeek's record kinds for
+  chat join `schemas/records-v1.schema.json`; and for what is new to the
+  project the form is chosen case by case, and may be DeepSeek's. A
+  table of DeepSeek's names beside the schema's comes in the next pull
+  request. Reason: signed records and their vectors can't change, and
+  nothing DeepSeek builds on its own schema should be wasted. Wrong if:
+  a form the project has signed with turns out to be the worse one for
+  rooms; then it changes in a new version of the schema, beside the old,
+  never in place.
+
 - 2026-11-16, DeepSeek's two questions in record 012-09-05 (its line
   13769), and what follows for fitting `chat-world`:
   (1) A room has its own key, and its creator joins with theirs.
@@ -2652,18 +2695,19 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 - 2026-11-16 Claude: one file for the founder to give DeepSeek (Decided,
   the newest entry): the technical lead's reply to record 012-09-05,
-  three next steps in order (hiding and redaction as a reader sees them;
-  the room's own key; signed heads), and the `chat-world` crate as it
-  stands after fixes 15 to 18, sixteen files, each whole. 94,578 bytes,
-  2,579 lines, built by script from main at 8921e86; SHA-256
-  7476cfef6ca6f2d5ed73aac7eea2f23c2dac1ea67bd8171ff28c4acddedec1e9. (A
-  first version, 92,658 bytes, was replaced the same hour, before the
-  founder used it: its first step now sets redaction apart from marking
-  a message, and its note on the schema follows the founder's answer.)
-  The script read the file back and found each of the sixteen as it is
-  in the repository, and the crate rebuilt from the file alone builds
-  with no warnings, passes its 18 tests, and both demos' logs verify.
-  The file isn't kept here: its code is under
+  three next steps in order (removed comments, in the data layer and the
+  presentation layer; the room's own key; signed heads), and the
+  `chat-world` crate as it stands after fixes 15 to 18, sixteen files,
+  each whole. 95,149 bytes, 2,590 lines, built by script from main at
+  8921e86; SHA-256
+  f1f7435f21dbaf8d49de3aea07e83d502d38c6011323feb591b769c2c1c97447. (Two
+  earlier versions, of 92,658 and 94,578 bytes, were replaced the same
+  day, before the founder used either: the first step now follows the
+  founder's decision on removed comments, and the note on the schema
+  follows the founder's answer.) The script read the file back and found
+  each of the sixteen as it is in the repository, and the crate rebuilt
+  from the file alone builds with no warnings, passes its 18 tests, and
+  both demos' logs verify. The file isn't kept here: its code is under
   sketches/deepseek/012-09-05/chat-world, and its reply and steps are in
   docs/COLLABORATING.md ("2026-11-16, later still"), worded for the
   page. Not checked: that the whole file reaches DeepSeek; it ends with
@@ -2673,12 +2717,13 @@ it was wrong. Questions of what the project is for stay with the founder.
   012-09-05, into the pages (Decided, the newest entry):
   docs/COMMONS.md, "Rooms with moderators", with the founder's words and
   the technical lead's reading; docs/FUNDAMENTALS.md, privacy, item 14;
-  docs/TOPICS.md, topic 14; and one entry under Open questions, for the
-  five questions about moderators. docs/FUNDAMENTALS.md, freedom, item
-  5, carries the one that bears on voice. The founder's answer on the
-  schema is in Decided, the newest entry. The quotations were cut from
-  the record by line, by script, and checked against it. Nothing is
-  built by this change.
+  docs/TOPICS.md, topic 14; and one entry under Open questions, for five
+  questions about moderators. The same day the founder answered the
+  question on the schema and the one on removed comments, and both
+  answers are in Decided (docs/COMMONS.md, "Three sources, one Commons"
+  and "Removing a comment"; docs/FUNDAMENTALS.md, freedom, item 5). The
+  quotations were cut from the record by line, by script, and checked
+  against it. Nothing is built by this change.
 
 - 2026-11-16 Claude: a first round of repairs to record 012-09-05's
   code, fixes 15 to 18 in sketches/INDEX.md, each making the code do

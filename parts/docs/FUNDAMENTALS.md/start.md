@@ -1,9 +1,9 @@
 > Part of `docs/FUNDAMENTALS.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: from the start to "Public records, kept whole".
+> This part holds: from the start to "Public data, and personal data".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: nothing; this is the first part.
-> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/purged-demonstrably.md
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/public-records-kept-whole.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
 # Freedom and privacy: the fundamentals
@@ -68,11 +68,14 @@ one of them updates this page.
    providing the tools for solutions is my goal, and seeing new ways to
    resolve problems is the point." ([ADMIN.md](ADMIN.md), "A learning
    immune system".) For the Commons' rooms, where each is to have a
-   moderator, this is read as: a message that breaks a room's law
-   stays readable; a moderator may mark it, and each reader may fold
-   it away. That is the technical lead's starting point, put to the
-   founder and not yet standing ([COMMONS.md](COMMONS.md), "Open",
-   "Hiding what someone said").
+   moderator, the founder (2026-11-16): "we distinguish between a data
+   and a presentation layer. So the comment stays in the data layer,
+   in our records. If action is taken, it must become part of the
+   records to justify the decision to take action." So a comment
+   removed from what a room shows stays in the room's records; the
+   removal is a record of its own, with its reason; and the room
+   shows a note in its place, with an incident id
+   ([COMMONS.md](COMMONS.md), "Removing a comment"). Not yet built.
 6. **Tools, not solutions.** The founder (2026-11-13): "instead of
    working out how conflict should be resolved, let it arise, provide
    tools to resolve the conflict, but let solutions emerge."
@@ -341,90 +344,5 @@ anonymous can often be matched back to people (as the AOL search logs of
 datasets and anything else published hold what happens in the worlds,
 never a person's private space, keys or personal details.
 
-## Public records, kept whole
 
-The founder, 2026-11-15: "Public acts should always remain. The moment
-we edit a public record, we defeat the purpose. It should be clearly
-understood upon entry to the multiverse that public actions are recorded
-as a matter of keeping ledgers and for learning and they become part of
-the project data. We do not edit historical records as an absolute
-rule. We make sure we never enter data that would need to be edited
-later. But that would be a small subset of the data that would be
-associated with a given account, it would be all that would remain. It
-would be a lasting imprint or legacy of all that come and go."
-
-And the same day: "Ok, let's make a rule that any public act that
-contains private information will have that private information
-encrypted in the project records and removed or redacted in the public
-records. We can redact personal or private information in public
-records, and we should always err on the side of redacting if it is a
-close call."
-
-- **Never edited, except to redact what is private.** A world's log, a
-  ledger and published data are only ever appended to. A mistake is
-  corrected by a new entry that says so, as a ledger is, never by
-  changing the old one. The one exception is personal or private
-  information, which is redacted, and close calls are redacted. The
-  charter says so on entry (section 4), and AGENTS.md makes it a rule.
-- **What remains of someone who leaves** is what they did in public:
-  their acts in the worlds' logs, under their keys, with anything
-  private in them redacted. Everything private goes with them, and
-  their private data is purged (below). The links they showed between
-  their presences stay as records that a link was made, with what they
-  tied together redacted (privacy, item 5).
-- **More metadata.** The founder: "we keep public record of the action
-  with private details of the action not included. More metadata." The
-  technical lead's reading, which stands unless the founder answers
-  otherwise: a public record of an action holds what an outside
-  observer could note (that it happened, what kind of act, where and
-  when) and leaves its private details out, as a private message
-  already leaves in the record only that it passed (privacy, item 4).
-
-The technical lead's reading of how a redaction works, which stands
-unless the founder answers otherwise:
-- **Before publishing, first.** Wherever something is written to a
-  public record, a check redacts anything personal or private before it
-  is published, and redacts close calls (to be built, before anyone
-  lives in a world: [COURSE.md](COURSE.md), "Waiting"). That is the
-  redaction that works best: copies others make of what is published
-  can't be recalled afterwards.
-- **Visible, and the log still checks.** To be built, before anyone
-  lives in a world: each field of an entry enters the chain of hashes
-  only as a salted fingerprint of its content, with a fresh random salt
-  of at least 128 bits for each field, from the moment it is written,
-  drawn from the operating system's random source, never from a world's
-  seed (which would let anyone who knows the seed rebuild it); so a log
-  with such fields is not byte for byte the same on a replay. A
-  redacted field then keeps its place and its fingerprint, so every
-  hash, and every signed head, still checks. The salt is redacted and
-  sealed with the content, so no one can confirm a guess at what was
-  there. A mark says that something private was redacted, when, by
-  which office, and why in general terms (such as "contact details"),
-  never what. Today's logs hash each entry's data whole
-  (`rust/plant-world`), so this changes how logs are written before any
-  person's acts are in one.
-- **Kept in the person's own container.** Decided by the founder on
-  2026-11-15, on the technical lead's recommendation ("I agree with your
-  suggestions"), which narrows "encrypted in the project records": what
-  was redacted goes, sealed, into the container of the person it is
-  about. When it is about several people, each gets a sealed copy; when
-  it is about someone with no key in the multiverse, it is not kept at
-  all, as no one could hold it for them ([CONTAINER.md](CONTAINER.md)).
-- **Redacted first, decided after.** Anyone may ask for a redaction.
-  A request from the person the information is about, a request about
-  someone else's personal information, and any close call are redacted
-  at once, while they are decided. The office that keeps
-  the record decides: a world's Keeper for its world's log, ADMIN for
-  the multiverse's. Redacting needs no more than that, and is on record
-  with its reasons, in general terms. Keeping something public that
-  someone asked to redact is the one decision that needs more: it
-  touches an individual, so it is a serious act, reviewed independently
-  before it takes effect, and it goes to the founder, or a person the
-  founder names, as acts against an individual do, and is open to appeal
-  ([ADMIN.md](ADMIN.md), "Graduated responses"; [REASONS.md](REASONS.md)).
-  It stays redacted until any appeal is decided: once made public again,
-  it can't be recalled. How long an appeal may take is set with ADMIN's
-  rules for appeals; until it is set, it stays redacted.
-
-
-> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/purged-demonstrably.md
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/public-records-kept-whole.md

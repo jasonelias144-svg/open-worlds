@@ -60,11 +60,14 @@ one of them updates this page.
    providing the tools for solutions is my goal, and seeing new ways to
    resolve problems is the point." ([ADMIN.md](ADMIN.md), "A learning
    immune system".) For the Commons' rooms, where each is to have a
-   moderator, this is read as: a message that breaks a room's law
-   stays readable; a moderator may mark it, and each reader may fold
-   it away. That is the technical lead's starting point, put to the
-   founder and not yet standing ([COMMONS.md](COMMONS.md), "Open",
-   "Hiding what someone said").
+   moderator, the founder (2026-11-16): "we distinguish between a data
+   and a presentation layer. So the comment stays in the data layer,
+   in our records. If action is taken, it must become part of the
+   records to justify the decision to take action." So a comment
+   removed from what a room shows stays in the room's records; the
+   removal is a record of its own, with its reason; and the room
+   shows a note in its place, with an incident id
+   ([COMMONS.md](COMMONS.md), "Removing a comment"). Not yet built.
 6. **Tools, not solutions.** The founder (2026-11-13): "instead of
    working out how conflict should be resolved, let it arise, provide
    tools to resolve the conflict, but let solutions emerge."

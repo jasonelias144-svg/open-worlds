@@ -8,6 +8,32 @@
 
 ## Decided
 
+- 2026-11-16, founder, on removed comments, in answer to the question
+  put that day (docs/COMMONS.md, "Open"): "On removed comments, here is
+  my thought: we distinguish between a data and a presentation layer. So
+  the comment stays in the data layer, in our records. If action is
+  taken, it must become part of the records to justify the decision to
+  take action. But the presentation layer is what shows up in the chat
+  window, in the chat history for that room. There should be a note
+  saying something was removed because of some reason. There needs to be
+  a unique event id or incident id. Let's put all this in place now,
+  from the beginning. Thoughts?"
+  So: a room has a data layer, its log, never edited, and a presentation
+  layer, what it shows. A removed comment stays in the log. The removal
+  is a record of its own (who, in what office, on which entry, when, and
+  the reason, naming the part of the room's law it rests on), which is
+  what justifies it. The room shows a note where the comment was, with
+  the reason and an incident id. The technical lead's reading of the
+  rest: the incident id is the hash of the removal's record, shown
+  short; restoring is another record, naming the incident; private
+  information stays the case apart, sealed in the records as decided on
+  2026-11-15; and a comment removed for any other reason stays readable
+  in the records, which for a room on the record are public (put to the
+  founder, Open questions). All of it is in a room's kinds of record
+  from the first version of `rust/chat-world`, and is DeepSeek's next
+  step. The technical lead's starting point of the same day, to mark a
+  message and let each reader fold it away, is withdrawn.
+
 - 2026-11-16, founder, on DeepSeek's schema and on bringing everything
   together, in answer to the question put that day: "Yeah, on the schema
   topic. That was not a project-wide decision to use that schema, it is
@@ -22,22 +48,25 @@
   and allow me to continue with DeepSeek without ever requiring more
   than a file to provide the current project state. Thoughts?"
   So, as the technical lead reads it, and will build it: (1) One schema
-  that fits both. The project's own records stay as they are signed
-  today, since signed records and their vectors can't change; DeepSeek's
-  record kinds for chat join the schema; and where both describe the
-  same thing (a proof, a did:key, a hash, a signed head, a template) one
-  form is chosen, case by case, which may be DeepSeek's. This widens the
-  technical lead's decision of the same day, which had only the
-  project's form in view. (2) DeepSeek keeps building on its own schema,
-  with its own names, and nothing it builds is wasted: a table of its
-  names beside the schema's is kept in the repository, and the technical
-  lead does the fitting. (3) The Commons is brought together from three
-  sources: Lyceum as built, the design in docs/COMMONS.md, and what the
-  founder and DeepSeek worked out from scratch (docs/COMMONS.md, "Three
-  sources, one Commons"). (4) The file is how DeepSeek is given the
-  project's state, every time: built by a script from the repository,
-  holding the reply, the next steps and the code as it stands. The
-  script comes into the repository in the next pull request.
+  that fits both. What the project has already signed with stays as it
+  is: its records, and the forms they are built from (its proof, its
+  did:key, its hash, its signed head), since signed records and their
+  vectors can't change. That is a limit on "adapt the existing one",
+  said to the founder in the session: the existing schema can gain, and
+  what is signed in it can't change. DeepSeek's record kinds for chat
+  join the schema. And for what is new to the project (a room's
+  template, the kinds of record a room keeps), one form is chosen, case
+  by case, which may be DeepSeek's. (2) DeepSeek keeps building on its
+  own schema, with its own names, and nothing it builds is wasted: a
+  table of its names beside the schema's will be kept in the repository,
+  from the next pull request, and the technical lead does the fitting.
+  (3) The Commons is brought together from three sources: Lyceum as
+  built, the design in docs/COMMONS.md, and what the founder and
+  DeepSeek worked out from scratch (docs/COMMONS.md, "Three sources, one
+  Commons"). (4) The file is how DeepSeek is given the project's state,
+  every time: built by a script from the repository, holding the reply,
+  the next steps and the code as it stands. The script comes into the
+  repository in the next pull request.
 
 - 2026-11-16, founder, on what to show DeepSeek: "As far as what to show
   DeepSeek, let's put it all in a single file and I will provide the

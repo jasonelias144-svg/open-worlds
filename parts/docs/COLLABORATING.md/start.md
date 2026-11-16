@@ -56,42 +56,45 @@ continue building and gaining momentum." Your schema has the name of
 the project's own file, `schemas/records-v1.schema.json`, and none of
 its 33 definitions by name (some are the same thing spelled
 differently, as your `DidKey` and its `didKey`). So the project makes
-one schema that fits both: its own records stay as they are signed
-today, your record kinds for chat join it, and where both describe the
-same thing one form is chosen, which may be yours. Keep building on
-your schema, with your names. A table of your names beside the
-schema's is kept here, and nothing you build on your schema is wasted.
+one schema that fits both. What it has already signed with stays (its
+proof, its did:key, its hash, its signed head). Your record kinds for
+chat join it. And for what is new to the project, one form is chosen,
+which may be yours. Keep building on your schema, with your names. A
+table of your names beside the schema's will be kept here, and
+nothing you build on your schema is wasted.
 
 **Five questions are open** (COMMONS.md, "Open"). Three have a
 recommendation: whether a room's moderator is its Keeper (two
 offices); what a moderator may do to keep a room's law (pace and
 prompt, never expel); and whether the home room you sketched is the
 private container ([CONTAINER.md](CONTAINER.md)) seen as a room
-(yes). One is your next step, below. The last, which model first
-moderates, is the founder's. Your thoughts on the three are welcome,
-in prose, when the founder asks for them.
+(yes). Two are the founder's: whether anyone may read a removed
+comment in the records (I read the founder's words as yes), and
+which model first moderates. Your thoughts on the three are welcome,
+in prose, when the founder asks for them. What happens to a removed
+comment the founder has decided, and it is your next step.
 
 **Your next steps,** in the order I recommend; the founder decides
 when to go on. One step for each reply, and every file you change
 given again, whole.
-1. **Hiding and redaction, as a reader sees them.** In open-worlds
-   these are two things, and your crate has one act, `redact`, for
-   both. *Redaction* is only for personal or private information:
-   anyone may ask, it takes effect at once, the office that keeps the
-   room's record decides it, and a reader is shown a mark (that
-   something private was removed, when, by which office, why in
-   general terms), never what. Undoing it is a serious act, not a
-   moderator's or a member's. *A message that breaks a room's law*
-   is not removed: the project meets unwanted speech with tools for
-   each reader, to see, not to hear, and to leave, and the founder
-   asked you for "the least restrictions on communication in any
-   room". My starting point, which the founder may change: a
-   moderator may mark such a message, as a signed act with its
-   reason; a reader's own view may fold it away, and anyone can open
-   it; a person the room's law names may withdraw the mark. Say
-   whether the split is right; make the crate's acts and
-   `visible_log` follow it; add tests for a mark, a mark withdrawn,
-   and a redaction.
+1. **Removed comments: the data layer and the presentation layer.**
+   The founder, 2026-11-16: "we distinguish between a data and a
+   presentation layer. So the comment stays in the data layer, in our
+   records. If action is taken, it must become part of the records to
+   justify the decision to take action. But the presentation layer is
+   what shows up in the chat window, in the chat history for that
+   room. There should be a note saying something was removed because
+   of some reason. There needs to be a unique event id or incident
+   id." Your crate has the two layers already: its records, and
+   `visible_log`. So: a removed comment's own record is never changed;
+   the removal is a record of its own, with who acted, in what role,
+   and the reason; `visible_log` shows a note where the comment was,
+   with the reason and an incident id (my recommendation: the hash of
+   the removal's record, shown short); restoring is another record,
+   naming the incident; and tests for each. Private information is
+   the case apart: there the text is sealed in the records, which the
+   project does when the crate is fitted, so in your crate it may be
+   one more reason for a removal.
 2. **The room's own key.** `Room::create` takes the room's key and the
    creator's key apart, and the creator joins as the first member.
 3. **Signed heads.** First in prose: is anything lost if a room signs
