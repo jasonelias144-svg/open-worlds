@@ -141,5 +141,6 @@ class TestTwoWorlds(PoetryWorldCase):
 
 if __name__ == "__main__":
     unittest.main()
+
 ------------------------------------------------------------------------
 End of `tests/test_mv_poetry_world.py`.

@@ -143,8 +143,9 @@ effect (docs/ADMIN.md).
   (`python3 docs/files.py`, the full link of every file of record) and
   `parts/` (`python3 docs/parts.py`, the long files cut into parts for
   readers who are shown only the start of a page). Run both before you
-  push. `STATUS.md` is one of the long files, so nearly every change
-  needs the second. The tests fail when either is out of step.
+  push, in that order. `STATUS.md` is one of the long files, so nearly
+  every change needs the second. The tests fail when either is out of
+  step. Put nothing else under `parts/`: the script removes it.
 
 ## Always
 

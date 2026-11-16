@@ -908,5 +908,6 @@ Made by docs/parts.py from the file. To change it, change the file.
       "properties": {
         "model": {
           "type": "object",
+
 ------------------------------------------------------------------------
 The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/schemas/records-v1.schema.json/02.txt

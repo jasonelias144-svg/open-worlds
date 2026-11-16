@@ -629,5 +629,6 @@ Made by docs/parts.py from the file. To change it, change the file.
     }
   }
 }
+
 ------------------------------------------------------------------------
 End of `schemas/records-v1.schema.json`.

@@ -417,5 +417,6 @@ class TestWorldsKnowRetiredKeys(unittest.TestCase):
                     self.world.know_succession(bad)
 
 
+
 ------------------------------------------------------------------------
 The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests/test_mv_succession.py/02.txt

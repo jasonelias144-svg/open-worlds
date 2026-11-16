@@ -677,5 +677,6 @@ impl World {
         self.log.push(Value::Object(entry));
     }
 }
+
 ------------------------------------------------------------------------
 End of `rust/ur-world/src/world.rs`.

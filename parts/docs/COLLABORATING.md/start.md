@@ -99,10 +99,11 @@ computer; the learning multiversity) are in "What's here", items 3 and
   lines at the time, "2,005 documents", the key list's timestamp). When you need
   a page, ask for its link in the same message as the work, or for an
   upload, which seems to stay. Topic 21 in TOPICS.md takes this further.
-- **Every long page is also kept in parts.** Each file here longer
-  than 28,000 bytes is kept a second time, cut into parts no longer
-  than that, with its own text unchanged. One page gives every part's
-  full link, in reading order:
+- **Every long page is also kept in parts.** Each page and each file
+  of code here longer than 28,000 bytes is kept a second time, cut into
+  parts no longer than that, with its own text unchanged. (The test
+  vectors and Cargo.lock are left whole, and so are the files of
+  record.) One page gives every part's full link, in reading order:
   https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
   Each part ends with the link of the part after it. If a page ever
   stops short for you, say what its last words were, and ask the

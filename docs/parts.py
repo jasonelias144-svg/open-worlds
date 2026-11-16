@@ -23,8 +23,13 @@ gathered from its end. Gathering from the end matters for the pages
 that grow at the top of a section, as STATUS.md's "Decided" and "Log"
 do: a new entry then changes only that section's first part, and the
 parts below keep their names and their text, so a change to the page
-changes few parts. Any other file is cut between its paragraphs,
-gathered from its start.
+changes few parts. (When that first part is full, a new one is added
+above it, and the parts on either side of the new one change the links
+at their top and bottom.) Any other file is cut between its
+paragraphs, gathered from its start.
+
+parts/ is this script's alone. It removes anything there that it did
+not write, ignored files included.
 """
 import importlib.util
 import os
@@ -70,15 +75,50 @@ def _slug(title):
     return slug
 
 
+_FENCE = re.compile(r"^\s*(`{3,}|~{3,})(.*)$")
+
+
+def _lines(text):
+    """The text as lines, each with its "\\n", cut at "\\n" and nowhere
+    else, so that the lines joined are the text whatever else it holds
+    (a "\\r", a form feed, no "\\n" at the end)."""
+    pieces = text.split("\n")
+    return [piece + "\n" for piece in pieces[:-1]] + (
+        [pieces[-1]] if pieces[-1] else [])
+
+
+def _fenced(lines):
+    """For each line, whether it is a line of a fenced code block, its
+    fences included. A block opens at a line of three or more backticks
+    or tildes and closes at the next line of at least as many of the
+    same, with nothing after them. One never closed runs to the end."""
+    out, fence = [], None
+    for line in lines:
+        match = _FENCE.match(line.rstrip("\r\n"))
+        if fence is None:
+            # Backticks followed by more backticks on the line are
+            # inline code, not a fence.
+            if match and not (match.group(1)[0] == "`"
+                              and "`" in match.group(2)):
+                fence = match.group(1)
+            out.append(fence is not None)
+        else:
+            out.append(True)
+            if (match and match.group(1)[0] == fence[0]
+                    and len(match.group(1)) >= len(fence)
+                    and not match.group(2).strip()):
+                fence = None
+    return out
+
+
 def sections(lines):
     """A Markdown page's lines as [title, lines] pairs, cut at its "## "
     headings. The first pair, titled "", is whatever comes before the
-    first heading. A heading inside a code block doesn't count."""
-    out, fenced = [["", []]], False
-    for line in lines:
-        if line.lstrip().startswith("```"):
-            fenced = not fenced
-        elif not fenced and line.startswith("## "):
+    first heading. A heading inside a code block doesn't count, nor one
+    with no title."""
+    out = [["", []]]
+    for line, fenced in zip(lines, _fenced(lines)):
+        if not fenced and line.startswith("## ") and line[3:].strip():
             out.append([line[3:].strip(), []])
         out[-1][1].append(line)
     return [pair for pair in out if pair[1]]
@@ -88,20 +128,15 @@ def units(lines):
     """Lines as the pieces a cut may fall between: each begins at a
     top-level list item, a lower heading, or a paragraph that starts at
     the left margin, and never inside a code block."""
-    starts, fenced = [0], False
+    starts, fenced = [0], _fenced(lines)
     for i, line in enumerate(lines):
-        if i == 0:
-            fenced = line.lstrip().startswith("```")
+        if i == 0 or (fenced[i] and fenced[i - 1]):
             continue
         at_margin = line[:1] not in ("", " ", "\t", "\r", "\n")
         after_blank = lines[i - 1].strip() == ""
-        if line.lstrip().startswith("```"):
-            if not fenced and at_margin and after_blank:
-                starts.append(i)
-            fenced = not fenced
-        elif not fenced and at_margin and (
-                after_blank or line.startswith(("- ", "* ", "### "))
-                or re.match(r"\d+\. ", line)):
+        if at_margin and (after_blank or (not fenced[i] and (
+                line.startswith(("- ", "* ", "### "))
+                or re.match(r"\d+\. ", line)))):
             starts.append(i)
     return [lines[a:b] for a, b in zip(starts, starts[1:] + [len(lines)])]
 
@@ -141,14 +176,13 @@ def gather(pieces, room, from_end=False):
 def cut(path, text, room=BODY):
     """The file's text as parts, in reading order: (name, what it
     holds, lines). The lines of all the parts, joined, are the text."""
-    lines = text.splitlines(keepends=True)
-    parts = []
+    lines = _lines(text)
     if not path.endswith(".md"):
         runs = gather(_fitted(units(lines), room), room)
-        width = max(2, len(str(len(runs))))
-        return [("%0*d" % (width, i), "piece %d" % i, run)
+        return [("%02d" % i, "piece %d" % i, run)
                 for i, run in enumerate(runs, 1)]
 
+    parts = []
     group = []  # neighbouring sections that fit in one part together
 
     def close():
@@ -171,13 +205,12 @@ def cut(path, text, room=BODY):
             close()
             runs = gather(_fitted(units(section), room), room,
                           from_end=bool(title))
-            width = max(2, len(str(len(runs))))
             for i, run in enumerate(runs):
                 # A titled section's pieces are numbered from its end,
-                # so that a piece keeps its number as the section grows
-                # at the top.
+                # so that a piece keeps its number, and so its name, as
+                # the section grows at the top.
                 number = len(runs) - i if title else i + 1
-                name = "%s-%0*d" % (_slug(title) or "start", width, number)
+                name = "%s-%02d" % (_slug(title) or "start", number)
                 holds = ('"%s", piece %d (its pieces are numbered from '
                          'its end)' % (title, number) if title
                          else "the start of the page, piece %d" % number)
@@ -189,13 +222,16 @@ def cut(path, text, room=BODY):
             group.append((title, section))
     close()
 
-    # Two parts of a page never share a name.
-    seen, named = {}, []
+    # Two parts of a page never share a name: a name already taken gets
+    # the next number that is free.
+    used, named = set(), []
     for name, holds, run in parts:
-        name = name or "part"
-        seen[name] = seen.get(name, 0) + 1
-        if seen[name] > 1:
-            name = "%s-%d" % (name, seen[name])
+        base = name = name or "part"
+        number = 1
+        while name in used:
+            number += 1
+            name = "%s-%d" % (base, number)
+        used.add(name)
         named.append((name, holds, run))
     return named
 
@@ -207,10 +243,19 @@ def _target(path, name):
     return "%s/%s/%s%s" % (OUT, path, name, ext)
 
 
+TOP = 7  # the lines at the top of a part that say where it belongs
+
+
 def render(path, parts):
-    """The part files of one file: {where it is kept: its text}."""
+    """The part files of one file: {where it is kept: its text}.
+
+    A part is TOP lines that say where it belongs, one line that sets
+    them off (blank in Markdown, a rule in any other file), the file's
+    own text, a "\\n", and then the bottom: in Markdown one line, in any
+    other file a rule and one line. unwrap() takes them off again."""
     targets = [_target(path, name) for name, _, _ in parts]
     quote = "> " if path.endswith(".md") else ""
+    rule = "" if quote else "-" * 72
     out = {}
     for i, (name, holds, lines) in enumerate(parts):
         before = (BASE + targets[i - 1] if i
@@ -228,20 +273,23 @@ def render(path, parts):
             "Made by docs/parts.py from the file. To change it, change "
             "the file.",
         ]
-        body = "".join(lines)
-        if not body.endswith("\n"):
-            body += "\n"
+        assert len(top) == TOP
         bottom = ("The next part: " + BASE + targets[i + 1]
                   if i + 1 < len(parts) else "End of `%s`." % path)
-        if quote:
-            text = ("".join(quote + line + "\n" for line in top) + "\n"
-                    + body + "\n" + quote + bottom + "\n")
-        else:
-            rule = "-" * 72 + "\n"
-            text = ("".join(line + "\n" for line in top) + rule + body
-                    + rule + bottom + "\n")
-        out[targets[i]] = text
+        out[targets[i]] = (
+            "".join(quote + line + "\n" for line in top) + rule + "\n"
+            + "".join(lines) + "\n"
+            + (rule + "\n" if rule else "") + quote + bottom + "\n")
     return out
+
+
+def unwrap(target, text):
+    """The file's own text in a part file, with the lines render() put
+    round it taken off."""
+    body = text.split("\n", TOP + 1)[TOP + 1]
+    for _ in range(2 if target.endswith(".md") else 3):
+        body = body[:body.rindex("\n")]
+    return body
 
 
 def working(paths):
@@ -331,6 +379,10 @@ def index(cut_files, left):
 def build(paths):
     """Everything under parts/: {path: text}."""
     to_cut, left = long_files(paths)
+    if any(path == "INDEX.md" for path, _ in to_cut):
+        raise SystemExit("a long file named INDEX.md at the root would "
+                         "need the folder parts/INDEX.md, which is the "
+                         "index: name it in LEFT_WHOLE or rename it")
     cut_files = [(path, cut(path, text)) for path, text in to_cut]
     out = {INDEX: index(cut_files, left)}
     for path, parts in cut_files:
@@ -359,6 +411,9 @@ def stale(want, have):
 
 
 def main(argv):
+    if argv not in ([], ["--check"]):
+        print("usage: python3 docs/parts.py [--check]", file=sys.stderr)
+        return 2
     paths = FILES.tracked()
     if paths is None:
         print("not a git checkout: can't list the files", file=sys.stderr)

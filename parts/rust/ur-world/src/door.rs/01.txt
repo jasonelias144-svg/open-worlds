@@ -585,5 +585,6 @@ impl Drop for ProcessMind {
     }
 }
 
+
 ------------------------------------------------------------------------
 The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/ur-world/src/door.rs/02.txt

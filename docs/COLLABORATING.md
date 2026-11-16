@@ -91,10 +91,11 @@ computer; the learning multiversity) are in "What's here", items 3 and
   lines at the time, "2,005 documents", the key list's timestamp). When you need
   a page, ask for its link in the same message as the work, or for an
   upload, which seems to stay. Topic 21 in TOPICS.md takes this further.
-- **Every long page is also kept in parts.** Each file here longer
-  than 28,000 bytes is kept a second time, cut into parts no longer
-  than that, with its own text unchanged. One page gives every part's
-  full link, in reading order:
+- **Every long page is also kept in parts.** Each page and each file
+  of code here longer than 28,000 bytes is kept a second time, cut into
+  parts no longer than that, with its own text unchanged. (The test
+  vectors and Cargo.lock are left whole, and so are the files of
+  record.) One page gives every part's full link, in reading order:
   https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
   Each part ends with the link of the part after it. If a page ever
   stops short for you, say what its last words were, and ask the
@@ -1063,10 +1064,11 @@ word, the code taken from them, and Experiment 001's run logs.
 `tests/test_collaborating_links.py` fails if a file is added, moved or
 removed and this list or FILES.md isn't changed with it.
 
-A file longer than 28,000 bytes is also kept cut into parts, for a
-reader who is shown only the start of a page:
+A page or a file of code longer than 28,000 bytes is also kept cut
+into parts, for a reader who is shown only the start of a page:
 [parts/INDEX.md](../parts/INDEX.md) gives every part's full link, and
-its own link is in the last group below.
+its own link is in the last group below. The test vectors and
+Cargo.lock are left whole.
 
 **Start here**, the orientation, the charter, the course, and the pages the work now draws on (10):
 

@@ -48,7 +48,10 @@ class TheCut(unittest.TestCase):
 
     def test_the_parts_joined_are_the_text(self):
         for text in (page([3, 400, 5]), page([400]), page([]), "",
-                     "no newline at the end"):
+                     "no newline at the end", "one\r" * 900,
+                     "lines\r\nwith both\r\n" * 300,
+                     "a page\n\x0cand a form feed\n\n" * 200,
+                     "x\u2028y\x85z\n" * 500):
             with self.subTest(text=text[:30]):
                 self.assertEqual(joined(PARTS.cut("p.md", text, 2000)), text)
                 self.assertEqual(joined(PARTS.cut("p.py", text, 2000)), text)
@@ -94,9 +97,31 @@ class TheCut(unittest.TestCase):
             self.assertEqual(body, item * (len(body) // len(item)))
 
     def test_a_heading_in_a_code_block_is_not_a_cut(self):
-        text = "## One\n\n```text\n## not a heading\n```\n\n## Two\n\nx\n"
+        for block in ("```text\n## not a heading\n```\n",
+                      "~~~\n## not a heading\n~~~\n",
+                      "````\n```\n## not a heading\n```\n````\n",
+                      "  ```\n## not a heading\n  ```\n"):
+            text = "## One\n\n" + block + "\n## Two\n\nx\n"
+            with self.subTest(block=block):
+                self.assertEqual([t for t, _ in PARTS.sections(
+                    PARTS._lines(text))], ["One", "Two"])
+
+    def test_inline_code_at_the_start_of_a_line_opens_no_block(self):
+        text = "## One\n\n``` inline ``` text\n\n## Two\n\nx\n"
         self.assertEqual([t for t, _ in PARTS.sections(
-            text.splitlines(keepends=True))], ["One", "Two"])
+            PARTS._lines(text))], ["One", "Two"])
+
+    def test_a_heading_with_no_title_is_not_a_cut(self):
+        text = "intro\n\n##  \n\n## One\n\nx\n"
+        self.assertEqual([t for t, _ in PARTS.sections(
+            PARTS._lines(text))], ["", "One"])
+
+    def test_no_cut_falls_inside_a_code_block(self):
+        block = "```text\n" + "a line\n\nand another\n" * 20 + "```\n\n"
+        text = "## Long\n\n" + block * 30
+        for _, _, lines in PARTS.cut("p.md", text, 2000):
+            body = "".join(lines).replace("## Long\n\n", "")
+            self.assertEqual(body, block * (len(body) // len(block)))
 
     def test_an_item_too_long_for_a_part_is_cut_between_its_lines(self):
         text = "## Long\n\n- one item\n" + "  and a line of it\n" * 200
@@ -114,9 +139,25 @@ class TheCut(unittest.TestCase):
             self.assertTrue("".join(lines).startswith("def f"))
 
     def test_two_parts_never_share_a_name(self):
-        text = "## Same\n\nx\n\n" + "## Same\n\n" + "- y\n" * 400
-        names = [name for name, _, _ in PARTS.cut("p.md", text, 600)]
-        self.assertEqual(len(names), len(set(names)))
+        items = "- an item\n" * 5
+        for text in ("## Same\n\nx\n\n" + "## Same\n\n" + "- y\n" * 400,
+                     "## Log\n\n" + items + "## Log\n\n" + items
+                     + "## Log 2\n\n" + items,
+                     "## Start\n\n" + items + "## !!\n\n" + items
+                     + "## ??\n\n" + items):
+            parts = PARTS.cut("p.md", "intro\n\n" + text, 70)
+            names = [name for name, _, _ in parts]
+            with self.subTest(names=names):
+                self.assertEqual(len(names), len(set(names)))
+                self.assertEqual(len(PARTS.render("p.md", parts)),
+                                 len(parts))
+
+    def test_a_piece_keeps_its_name_past_the_hundredth(self):
+        few = PARTS.cut("p.md", "## Long\n\n" + "- an item\n" * 60, 40)
+        many = PARTS.cut("p.md", "## Long\n\n" + "- an item\n" * 600, 40)
+        self.assertGreater(len(many), 100)
+        self.assertEqual([name for name, _, _ in few][-3:],
+                         [name for name, _, _ in many][-3:])
 
 
 class ThePartFiles(unittest.TestCase):
@@ -134,6 +175,18 @@ class ThePartFiles(unittest.TestCase):
             else:
                 self.assertTrue(text.rstrip("\n").endswith(
                     "End of `docs/p.md`."), target)
+
+    def test_the_text_in_a_part_file_is_the_files_own(self):
+        for path in ("docs/p.md", "src/p.rs"):
+            for text in (page([2, 45, 2]), "no newline at the end",
+                         "one\r" * 900, "lines\r\nwith both\r\n" * 300,
+                         "a page\n\x0cand a form feed\n\n" * 200,
+                         "ends in blank lines\n\n\n", "\n\n\n"):
+                parts = PARTS.cut(path, text, 2000)
+                files = PARTS.render(path, parts)
+                with self.subTest(path=path, text=text[:20]):
+                    self.assertEqual("".join(
+                        PARTS.unwrap(t, files[t]) for t in files), text)
 
     def test_a_part_of_a_file_that_is_not_markdown_is_plain_text(self):
         files = PARTS.render("src/p.rs", PARTS.cut(
@@ -164,6 +217,25 @@ class TheRepository(unittest.TestCase):
         for path, text in to_cut:
             with self.subTest(path=path):
                 self.assertEqual(joined(PARTS.cut(path, text)), text)
+
+    def test_every_cut_file_is_whole_in_its_part_files(self):
+        # What is written into the part files, not only what was cut:
+        # the text between each part's top and bottom lines, joined in
+        # the index's order, is the file.
+        built = PARTS.build(TRACKED)
+        to_cut, _ = PARTS.long_files(TRACKED)
+        for path, text in to_cut:
+            mine = [t for t in built
+                    if t.startswith("%s/%s/" % (PARTS.OUT, path))]
+            with self.subTest(path=path):
+                self.assertTrue(mine)
+                self.assertEqual("".join(
+                    PARTS.unwrap(t, built[t]) for t in mine), text)
+                with open(os.path.join(ROOT, path), "rb") as f:
+                    self.assertEqual(text.encode("utf-8"), f.read())
+
+    def test_an_argument_it_does_not_know_changes_nothing(self):
+        self.assertEqual(PARTS.main(["--chek"]), 2)
 
     def test_every_long_file_is_cut_or_named_as_left_whole(self):
         to_cut, left = PARTS.long_files(TRACKED)

@@ -273,5 +273,6 @@ pub struct World {
     glasshouses: Vec<Glasshouse>,
 }
 
+
 ------------------------------------------------------------------------
 The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/ur-world/src/world.rs/02.txt

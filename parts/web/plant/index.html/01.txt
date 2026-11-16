@@ -485,5 +485,6 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--growth); ou
       const b = document.createElement("button"); b.type = "button"; b.id = "world-" + i;
       b.textContent = w.name || "world " + (i + 1); b.addEventListener("click", () => choose(i)); bar.append(b);
     });
+
 ------------------------------------------------------------------------
 The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/web/plant/index.html/02.txt

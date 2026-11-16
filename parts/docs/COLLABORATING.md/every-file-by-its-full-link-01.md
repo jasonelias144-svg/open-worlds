@@ -14,10 +14,11 @@ word, the code taken from them, and Experiment 001's run logs.
 `tests/test_collaborating_links.py` fails if a file is added, moved or
 removed and this list or FILES.md isn't changed with it.
 
-A file longer than 28,000 bytes is also kept cut into parts, for a
-reader who is shown only the start of a page:
+A page or a file of code longer than 28,000 bytes is also kept cut
+into parts, for a reader who is shown only the start of a page:
 [parts/INDEX.md](../parts/INDEX.md) gives every part's full link, and
-its own link is in the last group below.
+its own link is in the last group below. The test vectors and
+Cargo.lock are left whole.
 
 **Start here**, the orientation, the charter, the course, and the pages the work now draws on (10):
 
