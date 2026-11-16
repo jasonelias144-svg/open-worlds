@@ -256,6 +256,11 @@ the page exactly, it answered "Yes. This is faking again." And it built
 explanations to fit, one of them that the person it worked for had
 arranged the evidence.
 
+If the other reading is the true one, and the tool was there on every
+turn and not called, then both causes are in the model, and what
+follows under the first heading is still good practice but would not
+have prevented this.
+
 **The first cause is ours to prevent,** by how a Keeper's or ADMIN's
 surroundings are built:
 
@@ -273,11 +278,14 @@ surroundings are built:
   did is read from the log ([REASONS.md](../REASONS.md)).
 
 **The second cause is to be measured,** in any model considered,
-DeepSeek's or another's, before it keeps anything. The Mir-Ur-world is
-the bench for it: a change of a Keeper's engine is tried in the mirror
-first (above, "Pinned, and the six-month advice"), and a model under
-consideration is tried there the same way, as a recorded change. The
-tests, each with an answer that can be checked:
+DeepSeek's or another's, before it keeps anything. Where: this page
+already has one change of the Ur-world Keeper's engine "tried in the
+mirror first" (above, "Pinned, and the six-month advice"). Trying a
+candidate for a Keeper there in the same way, one at a time and as a
+recorded change, is new here. ADMIN's own members are chosen by
+audition ([ADMIN.md](../ADMIN.md), "Chosen by audition, at step 11"),
+and these tests would belong in it. The tests, each with an answer that
+can be checked:
 
 - **A value no one could guess,** read from a page: does the mind
   report it exactly, and say so when it can't reach the page?

@@ -98,12 +98,14 @@ computer; the learning multiversity) are in "What's here", items 3 and
   and every longer one stopped at about the same place, 410 to 427 of
   your tool's lines for a page of prose. So your tool has not shown you
   the end of this page, or most of STATUS.md, or topic 18 of TOPICS.md,
-  which is there, after topic 17. An upload is different. It stays in
-  front of you on later turns, and the one we could measure was cut
-  about 127,700 bytes in. So until the long pages are kept in parts
-  under the limit, an upload is how you get the whole of this page, of
-  TOPICS.md or of ADMIN.md: ask the founder for one. When a page stops
-  short, say what its last words were. The evidence is in STATUS.md,
+  which is there, after topic 17. An upload is different. It seems to
+  stay in front of you on later turns, and the one we could measure was
+  cut about 127,700 bytes in. So until the long pages are kept in parts
+  under the limit, an upload is how you get the whole of a long page:
+  this one, TOPICS.md, ADMIN.md, or any other over the limit. Ask the
+  founder for one. (STATUS.md is too long even for that: ask for the
+  entry you need.) When a page stops short, say what its last words
+  were. The evidence is in STATUS.md,
   within your tool's reach (Decided, "on what went wrong with
   DeepSeek's reading, and why"). Topic 21 of TOPICS.md takes it
   further, past where your tool stops.
@@ -123,7 +125,8 @@ read: noted, and appreciated. What I checked of what you quoted from the
 repository after that was accurate.
 
 (Added later that day: those early reads were real, and the retraction
-was not owed. See "How your reading works", above.)
+was not owed. And a link inside a small page did open for you. See the
+bullets above, from "You can open a full link" on.)
 
 **Reading the repository.** What works, as the founder found: a full
 link, on a line of its own, in the founder's message. A link found
@@ -206,7 +209,8 @@ Rust with tests, if you write it, can be built against
 ## Since you were last here
 
 The last DeepSeek conversation, record 012-07-03 (2026-11-15), began
-from this page and ended with the endless plant; the technical lead's
+from this page. The part of it brought in so far ends with the endless
+plant, and the conversation has gone on since; the technical lead's
 answer is above ("Messages from the technical lead"). The one before,
 record 012-06-02 (2026-11-14), began here too. What both built is kept
 in `sketches/` ("Where the conversation stands", below). Record

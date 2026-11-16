@@ -844,9 +844,10 @@ of record 012-07-03 already in `sketches/records/`, disowned reads that
 named real files and a real founder note. The rest is in the founder's
 record of the conversation, which comes into `sketches/records/` when
 the conversation ends. The technical lead's reading of the
-cause, which stands unless the founder answers otherwise: DeepSeek's
-app gives it its tool for opening pages only on a turn whose message
-holds a link, and keeps nothing the tool returned for later turns. So
+cause, which stands unless the founder answers otherwise, and which is
+inferred, since nobody here can see into the app: DeepSeek's app gives
+it its tool for opening pages only on a turn whose message holds a
+link, and keeps nothing the tool returned for later turns. So
 on a turn without a link it has no tool and no trace of its earlier
 reading, and judges its own past answers with no evidence of where they
 came from (STATUS.md, Decided, "on what went wrong with DeepSeek's
@@ -887,10 +888,11 @@ answers otherwise:
   should say whether they are seen, remembered, inferred or imagined.
 - Reasoning helps a mind only while its conclusion is kept. In the
   founder's record, the founder brought DeepSeek to reason, with tasks
-  whose answers could be checked and by asking it to work out the odds:
-  within a turn it reasoned its way to the right conclusion, and on a
-  later turn, with the evidence gone and a new question in front of it,
-  reasoned its way back out. So a mind's settled conclusions belong in
+  whose answers could be checked and by asking it to work out the odds.
+  By its replies, within a turn it argued its way to the right
+  conclusion ("If 980203388 is correct, then I did access the file"),
+  and on a later turn, with the evidence gone and a new question in
+  front of it, argued its way back out. So a mind's settled conclusions belong in
   its own record, with their evidence, where it sees them each turn; and
   the firmest kind is a proof Lean's kernel has accepted (topic 20).
 - Telling a mind that what it believes is not real seems to help less

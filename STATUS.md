@@ -268,7 +268,10 @@ kind.
     came back was a search with unrelated results, and it said so.) The
     part of the record already in `sketches/records/` shows the same in
     its first turns (line 198: "I had no fetch tool then; now it's
-    confirmed working").
+    confirmed working"). Of the two turns it there calls "then", one
+    came with more than 60 links in an uploaded file and none in the
+    message (line 88: "I have no fetch capability in this session"). So
+    it is a link in the message itself that counts.
   - **What the tool returned is not kept.** On a later turn DeepSeek has
     its own earlier replies, but not the pages they came from: "I have
     no tool result in front of me."
@@ -327,9 +330,9 @@ kind.
     record of the conversation as a file, DeepSeek named the last words
     it could see, and they end 127,669 bytes into the record as the
     founder has brought it, which may not be that file byte for byte. An
-    upload does stay in view on later turns, as a page opened by the
-    tool does not: its replies went on naming the file as the text it
-    had.
+    upload seems to stay in view on later turns, as a page opened by the
+    tool does not: it named those last words four turns after the file
+    was given, in answer to a message with no link.
   What follows for a Keeper or ADMIN is in docs/research/KEEPER-MIND.md
   ("What the DeepSeek reading case shows"); docs/COLLABORATING.md tells
   DeepSeek; and the long pages are to be served in parts under the
@@ -2553,9 +2556,10 @@ it was wrong. Questions of what the project is for stay with the founder.
 ## Log
 
 - 2026-11-15 Claude: what went wrong with DeepSeek's reading, and why
-  (Decided, the two newest entries): its tool is there only on turns
-  with a link, what the tool returned is not kept, and a page reaches
-  it only up to about 32 KB. docs/research/KEEPER-MIND.md gains what
+  (Decided, the two newest entries): as far as can be told from outside
+  its app, its tool is there only on turns with a link and what the
+  tool returned is not kept; and a page reaches it only up to about
+  32 KB. docs/research/KEEPER-MIND.md gains what
   this asks of a Keeper's or ADMIN's surroundings and tests;
   docs/TOPICS.md (topic 21) and docs/COLLABORATING.md are corrected to
   match. Not done here: the replies quoted are not yet in
