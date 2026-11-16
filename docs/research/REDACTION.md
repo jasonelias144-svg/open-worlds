@@ -517,6 +517,11 @@ Not done, the records' side of part four:
   shown. A `decision/v1` can hold several grounds, and the log shows
   one; which one is settled there.
 - An author whose key has been signed over to a new one (decision 8).
+- Which kinds of entry an act may be on. This side refuses an act on
+  one of the form's own six kinds and allows it on any other: a
+  message, an arrival, even the log's first entry. A room's rules say
+  which, with the list of kinds of act (`remove-comment` is on a
+  comment).
 
 ## The parts
 
