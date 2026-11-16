@@ -45,10 +45,12 @@ free, and never a money machine
   small examples, the octopus, the relay and the swarm, and the council,
   counting persons' signed votes (`open-worlds/proposal/v1` and
   `vote/v1`). The course was rechecked on 2026-11-16, with a new list
-  of twelve (docs/COURSE.md, "Rechecked on 2026-11-16"). Next is step
-  3b, a log whose fields can be redacted, with removals and restorings
-  on record; then step 3c, the room, where DeepSeek's `chat-world` is
-  fitted onto the project's formats.
+  of twelve (docs/COURSE.md, "Rechecked on 2026-11-16"). Step 3b is
+  under way, a log whose fields can be redacted, with removals and
+  restorings on record: its plan, after looking first, is in
+  docs/research/REDACTION.md, and nothing of it is built yet. Then
+  step 3c, the room, where DeepSeek's `chat-world` is fitted onto the
+  project's formats.
 - Claude: the fractal track, alongside the course (docs/FRACTALS.md),
   set by the founder on 2026-11-14: a fractal plant world in Rust, the
   web app in `web/` to watch worlds grow, and in it the multiversal map.
@@ -2298,6 +2300,39 @@ Decisions about the code, made by the technical lead under the founder's
 deference (above, 2026-11-13), each with its reason and what would show
 it was wrong. Questions of what the project is for stay with the founder.
 
+- 2026-11-16, a log that can be redacted, and removals on record
+  (docs/research/REDACTION.md, decisions 1 to 10; course step 3b).
+  Every field of an entry's `data` is kept apart from the chain, which
+  holds only its fingerprint: the SHA-256 of `[salt, name, value]`,
+  with a fresh salt of 128 bits from the operating system for each
+  field. `tick`, `kind`, `agent` and `prev` stay as they are. The
+  contents are kept beside the log, so the chain is checked by today's
+  `verify_log`, and a second check holds the contents to the
+  fingerprints. Redacting seals the salt and the value to the person
+  they are about, takes them out of the contents, and appends a mark;
+  the decision comes after. A world with no one in it keeps today's
+  form. A moderator's removal is a `decision/v1` of kind
+  `remove-comment`, and its hash is the incident id, shown as its first
+  twelve hex digits; restoring is a `decision/v1` that supersedes it,
+  refused for a field that was redacted; an author taking back their
+  own comment is a record of its own. What is shown is worked out,
+  never stored. In Python and Rust, with shared vectors.
+  *Why:* Matrix signs an event in the form a redaction leaves, so a
+  room's history still checks, but its hash of the whole event has no
+  salt, so a short message could be guessed and the guess confirmed;
+  SD-JWT (RFC 9901) fingerprints each claim with a fresh salt of at
+  least 128 bits, which closes that. Contents beside the log leave
+  every reader's check of the chain as it is. `decision/v1` already
+  carries what the founder asked a removal to say: who acted, in what
+  office, on what, why, and on what grounds. And FUNDAMENTALS.md has a
+  person's acts remain "under their keys", so the key that acted stays.
+  *Wrong if:* a room needs to redact part of a field (then that kind
+  of entry gets finer fields, from its first use); the key that acted
+  must be redactable (then `agent` enters as a fingerprint too, in a
+  new form, and logs written before can't be redacted there); contents
+  kept beside a log prove too easy to part from it; or twelve hex
+  digits collide among one room's incidents (then more are shown).
+
 - 2026-11-16, the course after step 3a: a new list of twelve
   (docs/COURSE.md, "Rechecked on 2026-11-16"), on the founder's word of
   the same day (Decided, the newest entry). It was put to the founder in
@@ -2863,6 +2898,20 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-16 Claude: course step 3b begun by looking first
+  (docs/research/REDACTION.md): the project's one log and why nothing
+  can be taken out of it today, `decision/v1` and `sealed/v1` as they
+  are, then SD-JWT (RFC 9901) for the salted fingerprint and Matrix's
+  signing of redacted events for the shape. Ten decisions (Decided by
+  the technical lead) and four parts: the plan; fingerprints and
+  contents; redacting; removing, taking back and restoring. Every
+  quotation from the two outside sources was checked word for word
+  against the pages as fetched; Matrix's Client-Server API was not
+  opened, and what is said of event sourcing is from memory, as the
+  page says. Nothing is built yet. docs/COURSE.md and
+  docs/COLLABORATING.md (with a message to DeepSeek on what it settles
+  for removed comments) brought into line.
 
 - 2026-11-16 Claude: carried from #98's narrow re-check, in the same
   change as the course's recheck below. `docs/reply.py` now refuses an

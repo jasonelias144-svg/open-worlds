@@ -8,6 +8,20 @@
 
 ## Log
 
+- 2026-11-16 Claude: course step 3b begun by looking first
+  (docs/research/REDACTION.md): the project's one log and why nothing
+  can be taken out of it today, `decision/v1` and `sealed/v1` as they
+  are, then SD-JWT (RFC 9901) for the salted fingerprint and Matrix's
+  signing of redacted events for the shape. Ten decisions (Decided by
+  the technical lead) and four parts: the plan; fingerprints and
+  contents; redacting; removing, taking back and restoring. Every
+  quotation from the two outside sources was checked word for word
+  against the pages as fetched; Matrix's Client-Server API was not
+  opened, and what is said of event sourcing is from memory, as the
+  page says. Nothing is built yet. docs/COURSE.md and
+  docs/COLLABORATING.md (with a message to DeepSeek on what it settles
+  for removed comments) brought into line.
+
 - 2026-11-16 Claude: carried from #98's narrow re-check, in the same
   change as the course's recheck below. `docs/reply.py` now refuses an
   `out` that is the reply's own text or a spec (writing it would have

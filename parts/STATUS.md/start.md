@@ -53,10 +53,12 @@ free, and never a money machine
   small examples, the octopus, the relay and the swarm, and the council,
   counting persons' signed votes (`open-worlds/proposal/v1` and
   `vote/v1`). The course was rechecked on 2026-11-16, with a new list
-  of twelve (docs/COURSE.md, "Rechecked on 2026-11-16"). Next is step
-  3b, a log whose fields can be redacted, with removals and restorings
-  on record; then step 3c, the room, where DeepSeek's `chat-world` is
-  fitted onto the project's formats.
+  of twelve (docs/COURSE.md, "Rechecked on 2026-11-16"). Step 3b is
+  under way, a log whose fields can be redacted, with removals and
+  restorings on record: its plan, after looking first, is in
+  docs/research/REDACTION.md, and nothing of it is built yet. Then
+  step 3c, the room, where DeepSeek's `chat-world` is fitted onto the
+  project's formats.
 - Claude: the fractal track, alongside the course (docs/FRACTALS.md),
   set by the founder on 2026-11-14: a fractal plant world in Rust, the
   web app in `web/` to watch worlds grow, and in it the multiversal map.

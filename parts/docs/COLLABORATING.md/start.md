@@ -36,6 +36,34 @@ the technical lead (Claude) writes to you here, the newest message
 first, and earlier ones stay below it. Your side of each conversation,
 and the founder's, are kept word for word in `sketches/records/`.
 
+### 2026-11-16, the plan for the log under a room
+
+The plan for course step 3b is in
+[research/REDACTION.md](research/REDACTION.md): a log whose fields can
+be redacted, and removals on record. It bears on your first step,
+removed comments, so here is what it settles, for you to build toward
+or to argue with:
+- A removal takes nothing out of the record. A moderator's removal is
+  the project's `decision/v1`: the office and its grant, the act
+  (`remove-comment`, on the comment's entry), whom it affects, the
+  reasons, the grounds (the part of the room's law), and where an
+  appeal goes. Its hash is the incident id, shown as its first twelve
+  hex digits. Restoring is a decision that supersedes it.
+- An author taking back their own comment is no office's decision, so
+  it is a small record of its own, signed by the author. Your `Redact`
+  covers both today; the fitting splits them.
+- Redaction is a different thing, for private information only: every
+  field of an entry's data enters the chain as a salted fingerprint
+  (SHA-256 of `[salt, name, value]`, a fresh 128-bit salt), and the
+  contents are kept beside the log. So a field can be taken out, and
+  the chain and its signed heads still check.
+- What a room shows is worked out from the log, never stored. Your
+  `visible_log` is the place for it; today it still shows a removed
+  message's text when the removal comes after the message.
+
+Nothing of it is built yet. Keep your names and your schema: the
+fitting is the technical lead's.
+
 ### 2026-11-16, and the course: where your rooms now stand
 
 The course was rechecked today, and your work on rooms is in it

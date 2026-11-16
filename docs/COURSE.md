@@ -321,8 +321,12 @@ multiverse as a computer", for the first time (they were written on
 
 ## Ahead
 
-**3b. A log that can be redacted, and removals on record.** Before any
-room is built on it. Two things, both asked for from the start:
+**3b. A log that can be redacted, and removals on record.** Under way:
+the plan, after looking first, is in
+[research/REDACTION.md](research/REDACTION.md), in four parts (the
+plan; fingerprints and contents; redacting; removing, taking back and
+restoring). Before any room is built on it. Two things, both asked for
+from the start:
 - Log entries whose fields are kept apart from the chain that commits
   to them, by a salted fingerprint. A field found private later can
   then be redacted while the log still checks, with a redaction mark,
@@ -342,10 +346,10 @@ room is built on it. Two things, both asked for from the start:
 In `rust/world-log` and records-v1, in Python and Rust with shared
 vectors, and with a test that what was redacted can't be read back, or
 guessed, from what the log keeps. Moved here from the waiting list,
-which placed it before anyone lives in a world. *Borrowing, to be
-looked at first:* selective disclosure by salted hashes (SD-JWT); Matrix's
-redactions, which keep an event's place in a room's history and drop
-its content; event sourcing, where a correction is a new event.
+which placed it before anyone lives in a world. *Borrowing:*
+selective disclosure by salted hashes (SD-JWT, RFC 9901); Matrix's
+events, signed in the form a redaction leaves, so a room's history
+still checks; event sourcing, where a correction is a new event.
 
 **3c. The room.** `chat-world`, DeepSeek's sketch crate from record
 012-09-05, fitted onto the project's own formats as a crate of the
