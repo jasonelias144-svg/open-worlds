@@ -1,0 +1,523 @@
+Part of `world/apart_vectors.py` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 2.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world/apart_vectors.py/01.txt
+After this part: nothing; this is the last part.
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+def refused() -> List[dict]:
+    """Logs and contents that must be refused, each for one reason and
+    at one place. Most hold one fault; those named "two faults" hold
+    two, and say which is met first."""
+    cases: List[dict] = []
+
+    def add(reason: str, name: str, log: Any, contents: Any) -> None:
+        try:
+            apart.check(log, contents)
+        except apart.Refused as e:
+            if e.reason != reason:
+                raise AssertionError(f"{name}: {e.reason}") from None
+            where = place(e)
+        else:
+            raise AssertionError(f"{name}: not refused")
+        cases.append({"name": name, "log": log, "contents": contents,
+                      "reason": reason, "where": where})
+
+    # -- the chain --
+    log, contents = _short()
+    log[1]["apart"]["name"] = "0" * 64
+    add(apart.CHAIN, "an entry was changed after it was written",
+        log, contents)
+    add(apart.CHAIN, "the log is a map", {}, {})
+
+    # -- the form --
+    add(apart.NO_FORM, "an empty log", [], {})
+    log = []
+    _raw(log, 0, "world_created", None, {"rules_version": "1"}, None)
+    add(apart.NO_FORM, "the kernel's own form", log, {})
+    log = []
+    _raw(log, 0, "world_created", None,
+         {"form": "open-worlds/log-apart/v2", "kept_apart": TABLE}, {})
+    add(apart.NO_FORM, "another version of the form", log, {})
+    log = []
+    _raw(log, 0, "world_created", None, None, {})
+    add(apart.NO_FORM, "a first entry whose data is not a map", log, {})
+
+    # -- the table --
+    for name, table in [
+            ("the table is a list", [["entered", ["key", "name"]]]),
+            ("a kind's fields are text", {"entered": "name"}),
+            ("names out of order", {"entered": ["name", "key"]}),
+            ("a name twice", {"entered": ["key", "key"]}),
+            ("a name in capitals", {"entered": ["Key"]}),
+            ("an empty name", {"entered": [""]}),
+            ("a name of 65 characters", {"entered": ["k" * 65]}),
+            ("a name that is a number", {"entered": [5]})]:
+        add(apart.TABLE, name, _start(table), {})
+    log = []
+    _raw(log, 0, "world_created", None, {"form": apart.FORM}, {})
+    add(apart.TABLE, "no table at all", log, {})
+
+    # -- an entry's shape --
+    key, name_ = _print(0, "key", "k"), _print(1, "name", "n")
+    log = _start()
+    _raw(log, 0, "entered", None, {}, None)
+    add(apart.ENTRY, "an entry without its apart", log, {})
+    log = _start()
+    _raw(log, 0, "entered", None, {}, [key])
+    add(apart.ENTRY, "an entry whose apart is a list", log, {})
+    log = _start()
+    _raw(log, 0, "entered", None, {}, {"key": key.upper()})
+    add(apart.ENTRY, "a fingerprint in capitals", log, {})
+    log = _start()
+    _raw(log, 0, "entered", None, {}, {"key": key[:63]})
+    add(apart.ENTRY, "a fingerprint of 63 digits", log, {})
+    log = _start()
+    _raw(log, 0, "entered", None, {}, {"key": 7})
+    add(apart.ENTRY, "a fingerprint that is a number", log, {})
+    log = _start()
+    _raw(log, 0, "entered", None, None, {})
+    add(apart.ENTRY, "data that is not a map", log, {})
+    log = _start()
+    _raw(log, 0, 5, None, {}, {})
+    add(apart.ENTRY, "a kind that is not text", log, {})
+    log = _start()
+    _raw(log, 0, "entered", None, {}, {"Name": name_})
+    add(apart.ENTRY, "a field's name in capitals", log, {})
+    log = _start()
+    _raw(log, 0, "entered", None, {}, {"name": name_}, text="in the open")
+    add(apart.ENTRY, "an entry with a field of its own beside its data",
+        log, {})
+    for missing in ("tick", "agent"):
+        log = _start()
+        _raw(log, 0, "entered", None, {}, {"name": name_})
+        del log[1][missing]
+        body = {k: v for k, v in log[1].items() if k != "hash"}
+        log[1]["hash"] = _digest(body)
+        add(apart.ENTRY, f"an entry without its {missing}", log, {})
+
+    # -- an entry's open part --
+    for name, tick, agent, data in [
+            ("a number with a fraction in the open data", 0, None,
+             {"height": 1.5}),
+            ("nothing as a value in the open data", 0, None, {"where": None}),
+            ("two to the 53 in the open data", 0, None,
+             {"count": apart.MAX_WHOLE + 1}),
+            ("open data nested one too deep", 0, None,
+             {"deep": _nested(apart.MAX_NESTING)}),
+            ("a tick with a fraction", 1.5, None, {}),
+            ("a tick that is text", "1", None, {}),
+            ("a tick below zero", -1, None, {}),
+            ("a tick of two to the 53", apart.MAX_WHOLE + 1, None, {}),
+            ("an agent that is a number", 0, 7, {}),
+            ("an agent that is a list", 0, ["trial office"], {})]:
+        log = _start()
+        _raw(log, tick, "entered", agent, data, {})
+        add(apart.ENTRY, name, log, {})
+
+    # -- two faults in a log: the first in the log's order is named, and
+    # within an entry its link, then what it says, then its hash --
+    log = _start()
+    _raw(log, 0, "entered", None, {"height": 1.5}, {})
+    _raw(log, 1, "entered", None, {}, {})
+    log[2]["prev"] = "f" * 64
+    add(apart.ENTRY, "two faults: a number with a fraction, then a broken "
+        "link", log, {})
+    log = _start()
+    _raw(log, 0, "entered", None, {"height": 1.5}, {})
+    log[1]["hash"] = "f" * 64
+    add(apart.ENTRY, "two faults: a number with a fraction in an entry "
+        "whose hash is wrong", log, {})
+    log = _start()
+    _raw(log, 0, "entered", None, {}, {})
+    _raw(log, 1, "entered", None, {"height": 1.5}, {})
+    log[1]["prev"] = "f" * 64
+    add(apart.CHAIN, "two faults: a broken link, then a number with a "
+        "fraction", log, {})
+    log = _start()
+    _raw(log, 0, "entered", None, {"height": 1.5}, {})
+    log[1]["prev"] = "f" * 64
+    add(apart.CHAIN, "two faults: a broken link in an entry that holds a "
+        "number with a fraction", log, {})
+
+    # -- the table, entry by entry --
+    log = _start()
+    _raw(log, 0, "entered", None, {}, {"text": _print(0, "text", "t")})
+    add(apart.UNTABLED, "a field the table does not name for this kind",
+        log, {})
+    log = _start()
+    _raw(log, 0, "waved", None, {}, {"name": name_})
+    add(apart.UNTABLED, "a kind the table does not name keeps a field apart",
+        log, {})
+    log = _start()
+    _raw(log, 0, "entered", None, {"name": "ada"}, {"key": key})
+    add(apart.OPEN, "a field the table keeps apart is in the open",
+        log, {})
+    log = _start()
+    _raw(log, 0, "entered", None, {"name": "ada"},
+         {"key": key, "name": name_})
+    add(apart.OPEN, "a field both kept apart and in the open", log, {})
+
+    # -- a fingerprint twice --
+    log = _start()
+    _raw(log, 0, "entered", None, {}, {"name": name_})
+    _raw(log, 1, "entered", None, {}, {"name": name_})
+    add(apart.TWICE, "the same salt, name and value in two entries",
+        log, {})
+    log = _start()
+    _raw(log, 0, "entered", None, {}, {"key": key, "name": key})
+    add(apart.TWICE, "one fingerprint under two names in one entry",
+        log, {})
+
+    # -- marks --
+    for name, data in [
+            ("a mark that names no entry of the log",
+             {"entry": "f" * 64, "field": "name"}),
+            ("a mark on a field its entry does not keep apart",
+             {"entry": None, "field": "text"}),
+            ("a mark without a field", {"entry": None}),
+            ("a mark whose field is a list",
+             {"entry": None, "field": ["name"]}),
+            ("a mark without an entry", {"field": "name"}),
+            ("a mark whose entry is a number",
+             {"entry": 1, "field": "name"})]:
+        log, contents = _short()
+        if "entry" in data and data["entry"] is None:
+            data = {**data, "entry": log[1]["hash"]}
+        _raw(log, 1, apart.MARK, OFFICE, data, {})
+        add(apart.BAD_MARK, name, log, contents)
+    log, contents = _short()
+    _raw(log, 1, apart.MARK, OFFICE,
+         {"entry": log[0]["hash"], "field": "form"}, {})
+    add(apart.BAD_MARK, "a mark on a field that is in the open",
+        log, contents)
+
+    # -- decisions to keep a field public --
+    log, contents = _short()
+    _raw(log, 1, apart.KEPT, OFFICE, {"mark": log[1]["hash"]}, {})
+    add(apart.BAD_KEPT, "a decision that names an entry that is not a mark",
+        log, contents)
+    log, contents = _short()
+    _raw(log, 1, apart.KEPT, OFFICE, {}, {})
+    add(apart.BAD_KEPT, "a decision that names nothing", log, contents)
+    log, contents = _short()
+    _raw(log, 1, apart.KEPT, OFFICE, {"mark": "f" * 64}, {})
+    add(apart.BAD_KEPT, "a decision that names no entry of the log",
+        log, contents)
+    log, contents = _short()
+    _raw(log, 1, apart.KEPT, OFFICE, {"mark": [log[1]["hash"]]}, {})
+    add(apart.BAD_KEPT, "a decision whose mark is a list", log, contents)
+
+    # -- removing, restoring, taking back and putting back --
+    def acted(*steps: Any) -> Tuple[List[dict], Any, Dict[str, str]]:
+        """The trial room, with the steps that hold, as a raw log."""
+        room = _room()
+        made: Dict[str, str] = {}
+        for name, step, *args in steps:
+            made[name] = step(room, 5, *[made.get(a, a) if isinstance(a, str)
+                                         else a for a in args])
+        return (copy.deepcopy(room.entries), copy.deepcopy(room.contents),
+                made)
+
+    said = _room().entries[3]["hash"]
+    removal = {"entry": said, "office": MODERATOR, "ground": GROUND,
+               "decision": trial_decision(9)}
+
+    def refuse(reason: str, name: str, kind: str, data: Any,
+               *steps: Any) -> None:
+        log, contents, made = acted(*steps)
+        data = {k: made.get(v, v) if isinstance(v, str) else v
+                for k, v in data.items()}
+        _raw(log, 9, kind, None, data, {})
+        add(reason, name, log, contents)
+
+    refuse(apart.BAD_REMOVAL, "a removal that names no entry of the log",
+           apart.REMOVED, {**removal, "entry": "f" * 64})
+    refuse(apart.BAD_REMOVAL, "a removal whose entry is a number",
+           apart.REMOVED, {**removal, "entry": 3})
+    refuse(apart.BAD_REMOVAL, "a removal of a removal", apart.REMOVED,
+           {**removal, "entry": "r"}, ("r", _remove, said, 1))
+    refuse(apart.BAD_REMOVAL, "a removal of a taking back", apart.REMOVED,
+           {**removal, "entry": "t"}, ("t", _take_back, said))
+    refuse(apart.BAD_REMOVAL, "a second removal of a removed entry",
+           apart.REMOVED, removal, ("r", _remove, said, 1))
+    refuse(apart.BAD_REMOVAL, "a removal of an entry its author took back",
+           apart.REMOVED, removal, ("t", _take_back, said))
+    for name, change in [
+            ("a removal without an office", {"office": None}),
+            ("a removal whose office is empty", {"office": ""}),
+            ("a removal without a ground", {"ground": None}),
+            ("a removal whose ground is text", {"ground": "the law"}),
+            ("a removal whose ground is of no known kind",
+             {"ground": {"kind": "whim", "ref": "trial"}}),
+            ("a removal whose ground names nothing",
+             {"ground": {"kind": "law", "ref": ""}}),
+            ("a removal whose ground holds more than a kind and a ref",
+             {"ground": {**GROUND, "more": "x"}}),
+            ("a removal whose ground is a record not named by its hash",
+             {"ground": {"kind": "record", "ref": "an earlier decision"}}),
+            ("a removal whose ground's reference is one character too long",
+             {"ground": {"kind": "law",
+                         "ref": "\U0001D11E" * (apart.MAX_REF + 1)}}),
+            ("a removal without a decision", {"decision": None}),
+            ("a removal whose decision is 63 digits",
+             {"decision": trial_decision(9)[:63]})]:
+        data = {k: v for k, v in {**removal, **change}.items()
+                if v is not None}
+        refuse(apart.BAD_REMOVAL, name, apart.REMOVED, data)
+
+    restoring = {"incident": "r", "office": KEEPER, "ground": GROUND,
+                 "decision": trial_decision(8)}
+    refuse(apart.BAD_RESTORING, "a restoring of an entry that is not removed",
+           apart.RESTORED, {**restoring, "incident": said})
+    refuse(apart.BAD_RESTORING, "a restoring that names no entry of the log",
+           apart.RESTORED, {**restoring, "incident": "f" * 64})
+    refuse(apart.BAD_RESTORING, "a restoring of a removal already restored",
+           apart.RESTORED, restoring, ("r", _remove, said, 1),
+           ("back", _restore, "r", 2))
+    refuse(apart.BAD_RESTORING, "a restoring of an earlier removal, "
+           "already restored, of an entry that is removed again",
+           apart.RESTORED, restoring, ("r", _remove, said, 1),
+           ("back", _restore, "r", 2), ("again", _remove, said, 3))
+    refuse(apart.BAD_RESTORING, "a restoring of a taking back",
+           apart.RESTORED, {**restoring, "incident": "t"},
+           ("t", _take_back, said))
+    refuse(apart.BAD_RESTORING, "a restoring without an office",
+           apart.RESTORED, {k: v for k, v in restoring.items()
+                            if k != "office"}, ("r", _remove, said, 1))
+    refuse(apart.BAD_RESTORING, "a restoring whose incident is a list",
+           apart.RESTORED, {**restoring, "incident": ["r"]},
+           ("r", _remove, said, 1))
+
+    refuse(apart.BAD_TAKING_BACK, "a taking back that names no entry of the "
+           "log", apart.TAKEN_BACK, {"entry": "f" * 64})
+    refuse(apart.BAD_TAKING_BACK, "a taking back that names nothing",
+           apart.TAKEN_BACK, {})
+    refuse(apart.BAD_TAKING_BACK, "a second taking back", apart.TAKEN_BACK,
+           {"entry": said}, ("t", _take_back, said))
+    refuse(apart.BAD_TAKING_BACK, "a taking back of a removal",
+           apart.TAKEN_BACK, {"entry": "r"}, ("r", _remove, said, 1))
+    refuse(apart.BAD_TAKING_BACK, "a taking back of a mark",
+           apart.TAKEN_BACK, {"entry": "m"},
+           ("m", _mark, said, "text", "asked"))
+
+    refuse(apart.BAD_PUTTING_BACK, "a putting back of an entry that was not "
+           "taken back", apart.PUT_BACK, {"taken_back": said})
+    refuse(apart.BAD_PUTTING_BACK, "a putting back of a removal",
+           apart.PUT_BACK, {"taken_back": "r"}, ("r", _remove, said, 1))
+    refuse(apart.BAD_PUTTING_BACK, "a putting back of a taking back already "
+           "put back", apart.PUT_BACK, {"taken_back": "t"},
+           ("t", _take_back, said), ("p", _put_back, "t"))
+    refuse(apart.BAD_PUTTING_BACK, "a putting back of an earlier taking "
+           "back, already put back, when a new one stands",
+           apart.PUT_BACK, {"taken_back": "t"}, ("t", _take_back, said),
+           ("p", _put_back, "t"), ("again", _take_back, said))
+    refuse(apart.BAD_PUTTING_BACK, "a putting back that names nothing",
+           apart.PUT_BACK, {}, ("t", _take_back, said))
+
+    # -- the contents' shape --
+    log, contents = _short()
+    arrival = log[1]["hash"]
+    add(apart.CONTENTS, "the contents are a list", log, [contents])
+    add(apart.CONTENTS, "an entry's fields are a list", log,
+        {arrival: [contents[arrival]["name"]]})
+    add(apart.CONTENTS, "a field given as three things", log,
+        {arrival: {"name": contents[arrival]["name"] + ["more"]}})
+    add(apart.CONTENTS, "a field given as one thing", log,
+        {arrival: {"name": contents[arrival]["name"][:1]}})
+    add(apart.CONTENTS, "a field given as a map", log,
+        {arrival: {"name": {"salt": contents[arrival]["name"][0],
+                            "value": contents[arrival]["name"][1]}}})
+
+    # -- contents the log does not commit to --
+    add(apart.UNKNOWN, "an entry the log does not hold", log,
+        {**contents, "f" * 64: {"name": [trial_salt(9), "eve"]}})
+    add(apart.UNKNOWN, "a field the entry does not keep apart", log,
+        {arrival: {**contents[arrival], "text": [trial_salt(9), "hello"]}})
+    add(apart.UNKNOWN, "a field of an entry that keeps nothing apart", log,
+        {**contents, log[0]["hash"]: {"form": [trial_salt(9), apart.FORM]}})
+
+    # -- salts --
+    salt, value = contents[arrival]["name"]
+    for name, bad in [("a salt of 31 digits", salt[:31]),
+                      ("a salt of 33 digits", salt + "0"),
+                      ("a salt in capitals", salt.upper()),
+                      ("a salt that is a number", 7),
+                      ("a salt that is not hex", "g" * 32)]:
+        add(apart.SALT, name, log, {arrival: {"name": [bad, value]}})
+    log = _start()
+    _raw(log, 0, "entered", None, {},
+         {"key": _print(0, "key", "k"), "name": _print(0, "name", "n")})
+    add(apart.SALT_TWICE, "one salt for two fields of an entry", log,
+        {log[1]["hash"]: {"key": [trial_salt(0), "k"],
+                          "name": [trial_salt(0), "n"]}})
+    log = _start()
+    _raw(log, 0, "entered", None, {}, {"name": _print(0, "name", "n")})
+    _raw(log, 1, "entered", None, {}, {"name": _print(0, "name", "m")})
+    add(apart.SALT_TWICE, "one salt in two entries", log,
+        {log[1]["hash"]: {"name": [trial_salt(0), "n"]},
+         log[2]["hash"]: {"name": [trial_salt(0), "m"]}})
+
+    # -- values --
+    for name, bad in VALUES_REFUSED:
+        log = _start()
+        # The value has no fingerprint, so the entry holds one of
+        # something else: the value is refused before it is compared.
+        _raw(log, 0, "entered", None, {}, {"name": name_})
+        add(apart.VALUE, name, log,
+            {log[1]["hash"]: {"name": [trial_salt(1), bad]}})
+
+    # -- contents that do not match --
+    log, contents = _short()
+    salt, value = contents[arrival]["name"]
+    add(apart.FINGERPRINT, "the value was changed", log,
+        {arrival: {"name": [salt, value + "!"]}})
+    add(apart.FINGERPRINT, "the salt was changed", log,
+        {arrival: {"name": [trial_salt(9), value]}})
+    add(apart.FINGERPRINT, "two fields' contents the wrong way round", log,
+        {arrival: {"name": contents[arrival]["key"],
+                   "key": contents[arrival]["name"]}})
+    room = _room()
+    one, two = room.entries[1]["hash"], room.entries[2]["hash"]
+    swapped = copy.deepcopy(room.contents)
+    swapped[one]["name"], swapped[two]["name"] = (
+        swapped[two]["name"], swapped[one]["name"])
+    add(apart.FINGERPRINT, "another entry's contents", room.entries, swapped)
+    add(apart.FINGERPRINT, "text where the log has a number", room.entries,
+        {room.entries[3]["hash"]: {
+            "time": [room.contents[room.entries[3]["hash"]]["time"][0],
+                     "1794787200"]}})
+
+    # -- two faults in the contents: entries are read in ascending order
+    # of their hashes, and an entry's fields in ascending order of their
+    # names, so the first met is the one named --
+    low, high = sorted([one, two])
+
+    def changed(entry: str, field: str) -> list:
+        salt, value = room.contents[entry][field]
+        return [salt, value + "!"]
+
+    def capitals(entry: str, field: str) -> list:
+        salt, value = room.contents[entry][field]
+        return [salt.upper(), value]
+
+    add(apart.FINGERPRINT, "two faults: a changed value in the lower "
+        "entry, a salt in capitals in the higher", room.entries,
+        {low: {"name": changed(low, "name")},
+         high: {"name": capitals(high, "name")}})
+    add(apart.SALT, "two faults: a salt in capitals in the lower entry, "
+        "a changed value in the higher", room.entries,
+        {low: {"name": capitals(low, "name")},
+         high: {"name": changed(high, "name")}})
+    add(apart.FINGERPRINT, "two faults in one entry: a changed key, a "
+        "name's salt in capitals", room.entries,
+        {one: {"key": changed(one, "key"),
+               "name": capitals(one, "name")}})
+    add(apart.SALT, "two faults in one entry: a key's salt in capitals, "
+        "a changed name", room.entries,
+        {one: {"key": capitals(one, "key"),
+               "name": changed(one, "name")}})
+    return cases
+
+
+def _nested(depth: int) -> Any:
+    value: Any = "deep"
+    for _ in range(depth):
+        value = [value]
+    return value
+
+
+# Values a fingerprint allows, at their edges.
+VALUES_ALLOWED: List[Any] = [
+    "", "plain text", "café 中文 \U0001F642   \U0010FFFF",
+    'quote " backslash \\ tab \t newline \n', "\x00\x1f\x7f",
+    0, 1, -1, apart.MAX_WHOLE, -apart.MAX_WHOLE, True, False,
+    [], {}, ["a", 1, True, [], {}],
+    {"b": 1, "a": 2, "B": 3, "_": 4, "é": 5, "aa": 6, "a b": 7},
+    {"words": ["a", "b"], "loud": True, "count": -3},
+    _nested(apart.MAX_NESTING),
+]
+
+# Values it refuses, as far as a JSON file can hold them.
+VALUES_REFUSED: List[Tuple[str, Any]] = [
+    ("a number with a fraction", 1.5),
+    ("a whole number written with a fraction", 1.0),
+    ("nothing", None),
+    ("two to the 53", apart.MAX_WHOLE + 1),
+    ("minus two to the 53", -apart.MAX_WHOLE - 1),
+    ("two to the 64", 2 ** 64),
+    ("a list holding nothing", ["a", None]),
+    ("a map holding a number with a fraction", {"a": 0.5}),
+    ("a list nested one too deep", _nested(apart.MAX_NESTING + 1)),
+]
+
+
+def fingerprints() -> List[dict]:
+    """Each allowed value under a trial salt: the exact text that is
+    hashed, and the fingerprint."""
+    return [{"salt": trial_salt(n), "name": "thing", "value": value,
+             "text": apart.fingerprint_text(trial_salt(n), "thing", value),
+             "fingerprint": apart.fingerprint(trial_salt(n), "thing", value)}
+            for n, value in enumerate(VALUES_ALLOWED)]
+
+
+def _id(start: str, n: int) -> str:
+    """A made-up incident id: `start`, then filled out to 64 hex digits."""
+    fill = hashlib.sha256(f"open-worlds trial id {n}".encode()).hexdigest()
+    return (start + fill)[:64]
+
+
+def short_ids() -> List[dict]:
+    """Made-up incident ids that begin alike, and each as it is shown.
+    Real ids that begin alike for twelve digits can't be made here: it
+    would take about 2^48 hashes."""
+    groups = [
+        [_id("", 1), _id("", 2), _id("", 3)],
+        [_id("abcdef012345", 1), _id("abcdef012345", 2)],
+        [_id("abcdef0123456789ab", 1), _id("abcdef0123456789ab", 2),
+         _id("abcdef012345", 3), _id("0123", 4)],
+        [_id("f" * 63, 1), ("f" * 63 + "0") if not _id("f" * 63, 1).endswith(
+            "0") else ("f" * 63 + "1")],
+        [],
+    ]
+    return [{"ids": ids, "short": apart._short_ids(ids)} for ids in groups]
+
+
+def log_apart() -> dict:
+    """Everything in `vectors/log-apart.json`."""
+    return {
+        "note": ("Trial vectors for open-worlds/log-apart/v1. The salts "
+                 "are fixed and public: salt n is the first 32 hex digits "
+                 "of the SHA-256 of 'open-worlds trial salt n'. Never for "
+                 "anything real."),
+        "form": apart.FORM,
+        "mark": apart.MARK,
+        "kept": apart.KEPT,
+        "removed": apart.REMOVED,
+        "restored": apart.RESTORED,
+        "taken_back": apart.TAKEN_BACK,
+        "put_back": apart.PUT_BACK,
+        "grounds": list(apart.GROUNDS),
+        "entry_states": list(apart.ENTRY_STATES),
+        "short": apart.SHORT,
+        "short_ids": short_ids(),
+        "max_whole": apart.MAX_WHOLE,
+        "max_nesting": apart.MAX_NESTING,
+        "max_ref": apart.MAX_REF,
+        "states": list(apart.STATES),
+        "reasons": list(apart.REASONS),
+        "table": TABLE,
+        "first": FIRST,
+        "written": [{"tick": tick, "kind": kind, "agent": agent,
+                     "data": data, "apart": kept}
+                    for tick, kind, agent, data, kept in WRITTEN],
+        "fingerprints": fingerprints(),
+        "values_refused": [{"name": name, "value": value}
+                           for name, value in VALUES_REFUSED],
+        "holds": holds(),
+        "refused": refused(),
+    }
+
+------------------------------------------------------------------------
+End of `world/apart_vectors.py`.

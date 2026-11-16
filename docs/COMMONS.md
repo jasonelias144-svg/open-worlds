@@ -423,7 +423,9 @@ What that settles, as the technical lead reads it:
 - **From the beginning:** the removal, the restore and the incident
   id are among a room's kinds of record in the first version of
   `rust/chat-world`, and they are DeepSeek's next step
-  ([COLLABORATING.md](COLLABORATING.md)).
+  ([COLLABORATING.md](COLLABORATING.md)). Their form in a log is
+  built ([research/REDACTION.md](research/REDACTION.md), "Part four,
+  the log's side, built"); who may act is not checked yet.
 
 **New beside the readers' own tools.** On 2026-11-14 it was decided
 that unwanted speech is met with each reader's tools, to see, not to

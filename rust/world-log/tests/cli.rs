@@ -137,6 +137,33 @@ fn a_whole_log_and_its_contents_hold() {
 }
 
 #[test]
+fn entries_removed_and_taken_back_are_counted() {
+    let (log, contents) = case(
+        "acted",
+        "holds",
+        "removed, restored, taken back and put back",
+    );
+    let (code, out) = run_with(&log.0, &contents.0);
+    assert_eq!(code, Some(0), "{out}");
+    // Removed: one again after a restoring, one with a field redacted,
+    // one that its author took back and put back while the removal
+    // stood. Taken back: one that an office had removed. Restored: one
+    // removed and restored. The one taken back and put back is as
+    // written.
+    assert!(
+        out.contains("the entries: 3 removed, 1 taken back, 1 restored, the rest as written"),
+        "{out}"
+    );
+    // A log no one has acted on says so too.
+    let (log, contents) = case("acted-none", "holds", "every field is there");
+    let (_, out) = run_with(&log.0, &contents.0);
+    assert!(
+        out.contains("the entries: 0 removed, 0 taken back, 0 restored, the rest as written"),
+        "{out}"
+    );
+}
+
+#[test]
 fn the_log_alone_holds_and_asks_for_its_contents() {
     let (log, _contents) = case("alone", "holds", "every field is there");
     let (code, out) = run(&log.0);
@@ -210,6 +237,44 @@ fn a_value_the_form_does_not_allow_is_refused_by_name() {
             "the log and its contents do not hold together: \
              an entry is not in this form: entry 1"
         ),
+        "{out}"
+    );
+}
+
+#[test]
+fn with_contents_the_first_fault_in_the_logs_order_is_named() {
+    // A field the table keeps apart, put into the open at entry 2 by
+    // changing the entry after it was written. The kernel's check would
+    // say only that entry 2 does not match its hash; the form's check
+    // comes to what the entry says first, and names that.
+    let (log, contents) = case("order", "holds", "every field is there");
+    let text = std::fs::read_to_string(&log.0).unwrap();
+    let mut entries: serde_json::Value = serde_json::from_str(&text).unwrap();
+    entries[2]["data"]["name"] = serde_json::json!("in the open");
+    let changed = Scratch::new("order-changed-log.json", &entries.to_string());
+    let (code, out) = run(&changed.0);
+    assert_eq!(code, Some(1), "{out}");
+    assert!(
+        out.starts_with("the log does not hold: entry 2 does not match its hash"),
+        "{out}"
+    );
+    let (code, out) = run_with(&changed.0, &contents.0);
+    assert_eq!(code, Some(1), "{out}");
+    assert!(
+        out.starts_with(
+            "the log and its contents do not hold together: \
+             a field the table keeps apart is in the open: entry 2"
+        ),
+        "{out}"
+    );
+    // A broken link is still the chain's, and said as before.
+    entries[2]["data"].as_object_mut().unwrap().remove("name");
+    entries[2]["prev"] = serde_json::json!("f".repeat(64));
+    let broken = Scratch::new("order-broken-log.json", &entries.to_string());
+    let (code, out) = run_with(&broken.0, &contents.0);
+    assert_eq!(code, Some(1), "{out}");
+    assert!(
+        out.starts_with("the log does not hold: entry 2 does not follow the entry before it"),
         "{out}"
     );
 }

@@ -239,13 +239,17 @@ that did not hold together; STATUS.md's Log says what changed.
    |---|---|
    | a field is redacted | it wins over everything, for that field: nothing shows it again, unless the office decides to keep it public |
    | a second removal of a removed entry, a second taking back, or a removal of an entry its author took back | refused |
-   | a restoring of an entry that is not removed, or that its author took back | refused: an office does not undo an author's taking back |
+   | a restoring of an entry that is not removed | refused |
+   | a restoring of a removal, of an entry its author has since taken back | allowed: the removal no longer stands, and the entry stays taken back: an office does not undo an author's taking back |
    | a removal after a restoring | a new incident, with a new id |
    | an author takes back a comment that an office removed | allowed: it stays hidden even if the removal is later restored |
-   | an author undoes their own taking back, if part four allows it | the comment shows again, unless an office's removal still stands |
+   | an author undoes their own taking back | the comment shows again, unless an office's removal still stands |
    | a removal of an entry that has a redacted field | allowed: the entry is hidden, and the field stays redacted |
 
-   The room's own view of it is step 3c's.
+   The room's own view of it is step 3c's. (The row on restoring what
+   an author has since taken back was changed in building part four:
+   it had been refused, which would have kept a removal overturned on
+   appeal from going on record until its author put the entry back.)
 10. **In Python and Rust, with shared vectors,** as every format here
     is: logs that hold, and logs that are refused, each for one named
     reason.
@@ -420,6 +424,116 @@ this part says who may append one. Part three has to: the world writes
 it only for the office that decides, with the field put back first or
 in the same step.
 
+## Part four, the log's side, built
+
+In the same three places: `world/apart.py`,
+`rust/world-log/src/apart.rs` and `vectors/log-apart.json`. Part four
+has two sides. This one is what a log says in the open when an entry is
+removed, restored, taken back or put back, and what a reader works out
+from that. The other is the signed records behind each act, and who may
+act; it comes next, and is listed below.
+
+What building it settled, each the technical lead's (STATUS.md has what
+would show it wrong):
+
+- **Four more kinds of entry are the form's own:** a removal
+  (`entry_removed`), a restoring (`entry_restored`), a taking back
+  (`entry_taken_back`) and a putting back (`entry_put_back`). With the
+  mark and the decision to keep a field public, that makes six. None
+  of the six can itself be removed or taken back: an act is undone by
+  the act made for it, so the record of what was done is never hidden
+  by another act. A field of theirs can still be redacted, as any
+  field kept apart can.
+- **A removal says in the open** the entry it is on, by that entry's
+  hash; the office, as text that is not empty; the ground; and the
+  hash of its decision, 64 lowercase hex digits (decision 7). The
+  ground is a kind and a reference and nothing else. The kind is one
+  of `charter`, `law`, `rule` and `record`; the reference is text of 1
+  to 512 characters; and where the kind is `record`, the reference is
+  that record's hash. All three are as a `decision/v1` holds its
+  grounds, so that a ground the log shows is always one a signed
+  decision can hold.
+  A restoring says the same, and names the removal by its incident id
+  in place of the entry.
+- **A taking back says in the open only the entry it is on; a putting
+  back, only the taking back it undoes.** Decision 8 left open whether
+  an author can undo their own taking back. They can, and no office
+  can: an office's restoring undoes only a removal, and a putting back
+  undoes nothing an office did.
+- **An entry has one of four states,** worked out from the open fields
+  alone, in this order: taken back, if a taking back of it stands;
+  removed, if a removal of it stands; restored, if it was ever removed;
+  as written. So an entry that was removed and restored is shown as
+  restored, and never again as written: that an office once removed it
+  stays in view. An entry taken back and put back is as written again,
+  and its incidents are still listed. Whether a field is redacted is a
+  field's state (part two), beside this one.
+- **At most one removal and one taking back stand on an entry at a
+  time.** The table of what wins (decision 9) is checked row by row:
+  each row that refuses is a log that must be refused, and the rows
+  that allow are together one trial room that holds, with every
+  entry's state, each of the four among them.
+- **A removal can be restored while its author's taking back stands.**
+  The removal stops standing, and the entry stays taken back. Put
+  back later, it shows as restored. Decision 9's table had refused
+  this, and is changed (the independent review found what refusing it
+  would do).
+- **An incident's id is the hash of the entry that carries it,** and
+  its short form is the fewest hex digits, twelve or more, that no
+  other incident in the same log begins with. "In the room" (decision
+  7) is read as "in the log", since a room is one log. A short id is
+  as short as the log allows on the day it is shown: a later incident
+  can make an earlier one's short form longer. The whole hash never
+  changes.
+- **The joining function gives every entry its state and its
+  incidents,** each with its id, its short id, its kind, and whether
+  it still stands. It still gives a removed or taken back entry whole.
+  Removing is not redacting: the founder, 2026-11-16, "the comment
+  stays in the data layer, in our records". What a room shows in its
+  place is the room's view (step 3c).
+- **This side does not check who may act.** It holds an act to its
+  shape, and to naming something it can be done to. That the office
+  holds a grant for the act, that the decision whose hash is given
+  exists and says the same, and that the one taking an entry back is
+  the one who wrote it, all need signed records and keys: the other
+  side.
+- **Nineteen reasons for refusing now,** four of them new, one for
+  each kind of act. The vectors hold 124 logs or contents that are
+  refused and seven that hold.
+- **`world-log LOG CONTENTS`** also counts the entries removed, taken
+  back and restored.
+
+Three things carried from the last check of part two are done here:
+- The open part of an entry can't hold nothing (JSON's `null`)
+  anywhere but as its `agent`. A value a fingerprint allows is never
+  nothing, and the open `data` is held to the same rule; the pages
+  had not said so.
+- With contents, the command line now runs the one check of the two
+  together. A log with one fault in its chain and another in what it
+  says is then refused for the one met first in the log's order, as
+  the two libraries refuse it.
+- Both writers refuse a table that is not well formed, for that
+  reason, before anything is written.
+
+Not done, the records' side of part four:
+- The list of kinds of act "the rules fix" (decision 7), with
+  `remove-comment` and `restore-comment` on it.
+- The checks across records for a decision: its office holds the
+  grant it names, and the grant allows the act.
+- The author's record kinds in records-v1, for taking back and for
+  putting back: the schema, Python and Rust, with vectors.
+- The check of a log's acts against their signed records: that the
+  hash in the open is the hash of the decision kept apart, and that
+  the decision names the same entry and a ground that is the one
+  shown. A `decision/v1` can hold several grounds, and the log shows
+  one; which one is settled there.
+- An author whose key has been signed over to a new one (decision 8).
+- Which kinds of entry an act may be on. This side refuses an act on
+  one of the form's own six kinds and allows it on any other: a
+  message, an arrival, even the log's first entry. A room's rules say
+  which, with the list of kinds of act (`remove-comment` is on a
+  comment).
+
 ## The parts
 
 1. This plan.
@@ -431,6 +545,8 @@ in the same step.
    "redacted first, decided after", with a test that neither the value
    nor its salt is left anywhere in what the log keeps. It waits for
    the founder's answer on the office's copy.
-4. Removing, taking back and restoring: the list of kinds of act, the
-   checks across records for a decision, the author's record kind, the
-   incident id, and the table of what wins.
+4. Removing, taking back and restoring. The log's side is built
+   (above): the four kinds of entry, each entry's state, the incident
+   id, and the table of what wins. The records' side is next: the list
+   of kinds of act, the checks across records for a decision, and the
+   author's record kinds.
