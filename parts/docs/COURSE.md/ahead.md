@@ -30,8 +30,8 @@ asked that private information be redacted in public records
   layer, and is never edited; what a room shows is the presentation
   layer. A removal is a decision record: who acted, in what office, on
   which entry, when, and for what reason, naming the part of the room's
-  law it rests on. Its incident id is the hash of that record, shown
-  short. Restoring is another record, which names the incident and
+  law it rests on. Its incident id is the hash of the entry that
+  carries it, shown short. Restoring is another record, which names the incident and
   never reaches private information. An author taking back their own
   comment is no office's decision, and gets a record of its own
   ([COMMONS.md](COMMONS.md), "Removing a comment"; the founder,

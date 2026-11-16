@@ -23,7 +23,23 @@
   for removed comments) brought into line. The plan was written before
   the founder's last words of the day and now says where they meet it:
   the first room it is built for is the Ur-room, which is on the
-  record, and a private room's words are not this step's. Carried from
+  record, and a private room's words are not this step's.
+  After the independent review of #100 (four blocking, each taken): the
+  plan had redaction seal a field to the person alone, which left no
+  way to carry out a decision to keep it public, and let anyone erase a
+  public act for good by asking; it now proposes a copy for the
+  deciding office, and puts that to the founder. It had every field of
+  every entry kept apart, so a mark or a removal could itself be lost
+  and a state not worked out; what is kept apart is now fixed kind by
+  kind, and a state is worked out from the open fields. The order of
+  redacting is seal, mark, take out, so that work cut short can be
+  seen and finished, and the four states of a field are named. Whether
+  the key that acted may be redacted goes to the founder, and the key
+  is kept apart meanwhile. Also taken: the incident id is the entry's
+  hash; the sealed copy is bound by what is inside it, with no change
+  to sealing; a log names its form; a table of what wins; what part
+  four builds for the first time; three more limits; and a "wrong if"
+  for each decision that can be tested. Carried from
   #99's last re-check, two small notes: the recommendation on the
   Ur-room no longer speaks of a private room "one door away" before
   private rooms exist, and docs/COMMONS.md, "The Ur-room", points to

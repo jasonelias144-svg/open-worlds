@@ -174,7 +174,9 @@ one of them updates this page.
    client may show links in several worlds close together, so where and
    when can still hint that presences are one person's; the time a
    redacted link record keeps can be made coarser, which is decided when
-   it is built.
+   it is built. (The plan for course step 3b keeps a clock time apart,
+   so it can be made coarser or redacted, and leaves the tick, a count,
+   in the open: [research/REDACTION.md](research/REDACTION.md).)
 6. **The "keys to the kingdom": the multiverse's own keys, in the open.**
    The founder named them on 2026-11-15: ""keys to the kingdom" is more
    appropriate"; until then they were called the "break glass". They are
@@ -435,6 +437,11 @@ unless the founder answers otherwise:
   It stays redacted until any appeal is decided: once made public again,
   it can't be recalled. How long an appeal may take is set with ADMIN's
   rules for appeals; until it is set, it stays redacted.
+  How an office can still decide to keep it public, when what was
+  redacted is sealed to the person, is put to the founder: the plan
+  for course step 3b proposes a second sealed copy for the office that
+  decides, kept only until the decision and any appeal are over
+  ([research/REDACTION.md](research/REDACTION.md), "For the founder").
 - **Shared on purpose, in a room.** Ideas of the founder's, of
   2026-11-16, not decided: a person may share their personal
   information in a room after being asked "Are you sure?"; those in the

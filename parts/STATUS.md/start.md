@@ -156,6 +156,22 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder, on redaction (docs/research/REDACTION.md, "For the
+  founder"), from the plan for course step 3b:
+  1. An office's copy of what was redacted. FUNDAMENTALS.md has a
+     redaction made at once and decided after, and lets the office
+     decide to keep it public. That needs the office to be able to put
+     it back, and "Kept in the person's own container" (2026-11-15)
+     seals it to the person alone. Proposed: a second sealed copy for
+     the office that decides, kept only until the decision and any
+     appeal are over, then deleted, with an entry that says so. For
+     that while an office of the project can read it. Recommended:
+     yes. Redacting is not built before the answer.
+  2. Whether the key that acted may ever be redacted. The plan keeps
+     the key apart, so that either answer can be built; nothing about
+     it is hidden unless it is redacted. Recommended: keep the option,
+     and decide with the purging of a person who leaves (course step
+     8a).
 - For the founder, on private rooms and the Ur-room (docs/COMMONS.md,
   "A spectrum of privacy" and "The Ur-room"), from the founder's words
   of 2026-11-16:

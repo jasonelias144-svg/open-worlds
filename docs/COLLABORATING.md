@@ -39,19 +39,21 @@ or to argue with:
   the project's `decision/v1`: the office and its grant, the act
   (`remove-comment`, on the comment's entry), whom it affects, the
   reasons, the grounds (the part of the room's law), and where an
-  appeal goes. Its hash is the incident id, shown as its first twelve
-  hex digits. Restoring is a decision that supersedes it.
+  appeal goes. The incident id is the hash of the log entry that
+  carries it, shown as twelve hex digits or more. Restoring is a
+  decision that supersedes it.
 - An author taking back their own comment is no office's decision, so
   it is a small record of its own, signed by the author. Your `Redact`
   covers both today; the fitting splits them.
-- Redaction is a different thing, for private information only: every
-  field of an entry's data enters the chain as a salted fingerprint
-  (SHA-256 of `[salt, name, value]`, a fresh 128-bit salt), and the
-  contents are kept beside the log. So a field can be taken out, and
+- Redaction is a different thing, for private information only: what
+  a person writes or gives (a message's text, a name) enters the chain
+  as a salted fingerprint (SHA-256 of `[salt, name, value]`, a fresh
+  128-bit salt), and the contents are kept beside the log. What a
+  reader needs to work out an entry's state stays in the open. So a field can be taken out, and
   the chain and its signed heads still check.
 - What a room shows is worked out from the log, never stored. Your
-  `visible_log` is the place for it; today it still shows a removed
-  message's text when the removal comes after the message.
+  `visible_log` is the place for it; today it never hides a message's
+  text, since a removal can only come after the message it removes.
 
 Nothing of it is built yet. Keep your names and your schema: the
 fitting is the technical lead's.

@@ -86,7 +86,8 @@ the record: it changes what a room shows, and says why.
   the chain commits to the form that is left after a redaction, and a
   redaction is an entry of its own. But its second hash has no salt, so
   a short message could be guessed and the guess confirmed against the
-  hash. SD-JWT gives the fingerprint that closes that: a fresh salt for
+  hash; the guess would have to match the whole content, with whatever
+  a client added to it. SD-JWT gives the fingerprint that closes that: a fresh salt for
   each field, kept with the content.
 - **From memory, not looked up for this page:** in event sourcing a
   mistake is corrected by a new event, never by changing an old one,
@@ -97,77 +98,165 @@ the record: it changes what a room shows, and says why.
 
 ## Decided by the technical lead
 
-Each is recorded in STATUS.md with what would show it wrong.
+Each is recorded in STATUS.md with what would show it wrong. They were
+reworked after the independent review of #100, which found four things
+that did not hold together; STATUS.md's Log says what changed.
 
-1. **Every field of an entry's `data` is kept apart.** In a log that can
-   be redacted, an entry's `data` holds, for each of its fields, only
-   the field's fingerprint. `tick`, `kind`, `agent` and `prev` stay as
-   they are. What a person did remains "under their keys"
-   (FUNDAMENTALS.md), so the key that acted is not something a
-   redaction removes. A field is redacted whole; what is inside it is
-   not redacted piece by piece.
+1. **What is kept apart is fixed kind by kind.** A world's rules say,
+   for each kind of entry, which of its fields are kept apart; for
+   those the entry holds only a fingerprint. What a person writes or
+   gives is kept apart: a message's text, a name, a clock time, and the
+   key that acted. What a reader needs to work out an entry's state is
+   always in the open, hashed as today: its `kind`, its `tick` and its
+   `prev`; and, for the room's own entries (a redaction's mark, a
+   removal, a taking back, a restoring), the act, the entry it is on,
+   and the office that acted. A reason in free text is kept apart even
+   there, since it may turn out to repeat what it should not. A field
+   is redacted whole.
+   - *The key that acted* is kept apart so that the question stays
+     open. Nothing about it is hidden unless it is redacted, and
+     whether it ever may be is the founder's (below, "For the
+     founder").
+   - *The tick stays in the open* because it is a count, and says no
+     more than the entry's place in the chain already does. A clock
+     time is a field like any other, so it can be made coarser or
+     redacted (FUNDAMENTALS.md, privacy, item 5). A world whose tick
+     follows the clock would give the time away; a room's tick is to
+     be a count, which step 3c settles.
 2. **The fingerprint** is the SHA-256, in lowercase hex, of the array
    `[salt, name, value]`, written as the log writes everything else.
    The salt is 128 bits from the operating system's random source, as
    32 hex digits, fresh for each field of each entry, and never taken
-   from a world's seed (FUNDAMENTALS.md).
+   from a world's seed (FUNDAMENTALS.md). No fingerprint may appear
+   twice in a log, which catches a salt used again. A value is text, a
+   whole number no larger than 2^53 - 1, true or false, or a list or
+   map of these; both languages refuse anything else, so that Python
+   never writes what Rust would refuse.
 3. **The contents are kept beside the log, not in it.** A log is then
    two things: the entries, which are the chain, and the contents,
-   which give `[salt, value]` for each field of each entry, by the
-   entry's hash. The chain is checked exactly as today, by the same
-   `verify_log`, so a program that knows nothing of this still checks a
-   log's hashes and its signed heads. A second check holds the contents
-   to the fingerprints, and says which fields are there and which are
-   not.
+   which give `[salt, value]` for each field kept apart, by the entry's
+   hash. The log itself is never written again, not even by a
+   redaction: only the contents lose a field. The chain is checked
+   exactly as today, by the same `verify_log`. A second check holds the
+   contents to the fingerprints. Every reader of an entry's `data`
+   does change, so one function joins entries and contents, and every
+   reader uses it: the Ur-world's host, its checks of links and
+   arrivals, and the web app's checks.
    *The alternative,* the contents inside each entry under a key the
-   hash skips, would change what every reader of every log must skip.
+   hash skips, keeps a log in one piece and costs little code. It was
+   not taken because a redaction would then rewrite the log.
 4. **Redacting** is three things, in this order: the field's `[salt,
-   value]` is sealed to the person it is about; it is taken out of the
-   contents; and an entry is appended that says which entry and which
-   field, when, by which office, and why in general terms, never what.
-   The salt goes with the value, so no one else can confirm a guess.
-   The entry that was redacted is not touched. The sealed copy gets a
-   label of its own in `sealed/v1`, and is bound to its log, its entry
-   and its field, so that a box made for one field can't be shown as
-   another's. `sealed/v1` has no place for that binding today: its
-   decision named "a sealed record needs associated data" as the
-   reason to look again (STATUS.md), and this is that record. In a
-   room, the office that decides is the room's Keeper
-   (FUNDAMENTALS.md, "Redacted first, decided after").
-5. **Redacted first, decided after,** as FUNDAMENTALS.md has it. The
-   mark needs no decision. The decision that follows is a
+   value]` is sealed; an entry is appended, the mark, that says which
+   entry and which field, when, by which office, and why in general
+   terms, never what; and the field is taken out of the contents. The
+   salt goes with the value, so no one else can confirm a guess. The
+   entry that was redacted is not touched. If the work stops after the
+   mark, the log shows a field that is marked and still there, which
+   the check reports and the office can finish. The second check gives
+   each field one of four states: **present**; **redacted** (gone, with
+   a mark); **unfinished** (marked, still there); **missing** (gone,
+   with no mark), which is a fault in whoever published the log.
+   - *The sealed copy* is a `sealed/v1` with a label of its own. Inside
+     the box is a signed record that names the log, the entry's hash,
+     the field, the salt and the value. Whoever opens it works out the
+     fingerprint again and finds it in the chain, and that is what
+     binds the box to its place. Sealing itself does not change.
+   - *To whom:* each person the information is about gets a copy, and
+     it is not kept at all for someone who has no key (FUNDAMENTALS.md,
+     "Kept in the person's own container"). The person it is about
+     need not be the one who wrote it. Where a room finds a person's
+     sealing key is part three's.
+5. **Redacted first, decided after, and what the office holds.**
+   FUNDAMENTALS.md has a redaction made at once and decided after, and
+   lets the office decide to keep public what someone asked to redact.
+   That needs the office to be able to put it back, and a copy sealed
+   only to the person does not allow it: anyone could then erase a
+   public act for good by asking. So, proposed, and put to the founder:
+   a second sealed copy goes to the office that decides (in a room, its
+   Keeper), and is kept only until the decision and any appeal are
+   over. If the redaction stands, that copy is deleted, and an entry
+   says so. If the decision is to keep it public, the field goes back
+   into the contents from that copy, and the decision says why. This
+   qualifies "Kept in the person's own container", so part three is
+   not built before the founder answers. The decision is a
    `decision/v1` that names the mark among the records it is on.
-6. **A world with no one in it keeps today's form.** With random salts
-   a log is no longer the same, byte for byte, on a second run. The
-   plant worlds are checked by exactly that, and no person acts in
-   them. So this form is for a world persons act in: a room first
-   (step 3c), and the Ur-world before anyone is born into it, which is
-   not this step's work. A run of such a world is repeated from its
-   seed and its salts together.
+6. **A world with no one in it keeps today's form,** and a log says
+   which form it is in. With random salts a log is no longer the same,
+   byte for byte, on a second run. The plant worlds are checked by
+   exactly that, and no person acts in them. So this form is for a
+   world persons act in: a room first (step 3c), and the Ur-world
+   before anyone is born into it, which is not this step's work. A log
+   names its form in its first entry, since a fingerprint can't be told
+   from any other 64 hex digits. A run of such a world is repeated
+   from its seed and its salts together; once a field has been
+   redacted its salt is gone, so the run can't be repeated past it,
+   and what remains is that the chain checks.
 7. **A moderator's removal is a `decision/v1`,** with no new kind of
-   record: the act's kind is `remove-comment`, its records are the
-   comment's entry, it affects the author, and its grounds name the
-   part of the room's law it rests on. The office it names holds a
-   grant from the room's key that allows `remove-comment` in that room;
-   how a moderator comes to hold one is step 3d's. **The incident id is
-   that record's hash,** shown as its first twelve hex digits, with the
-   whole hash one step away. Restoring is a `decision/v1` of kind
-   `restore-comment` that supersedes the removal, and it is refused for
-   a field that was redacted: there is nothing left to show.
+   record. The act's kind is `remove-comment`; the records it is on
+   name the comment's entry by the entry's own hash, the log's kind of
+   hash; it affects the author; its grounds name the part of the room's
+   law it rests on. The entry that carries it says in the open the
+   act, the entry it is on, the office, and the decision's own hash;
+   the signed decision is in the contents. Restoring is a `decision/v1`
+   of kind `restore-comment` that supersedes the removal.
+   - *The incident id is the hash of the entry that carries the
+     removal,* shown short: the fewest hex digits, twelve or more, that
+     are the only such in the room, with the whole hash one step away.
+     A reason that is later redacted does not change it.
+   - *Its grant* comes from the room's key and allows `remove-comment`
+     in that room; a Keeper needs one for what it does too. How a
+     moderator comes to hold one is step 3d's.
+   - *Built here for the first time:* the list of kinds of act "the
+     rules fix", which does not exist yet, and the checks across
+     records for a decision (its office holds the grant it names, and
+     the grant allows the act), which `formats/records.py` leaves to
+     the kernel. So part four is larger than it reads.
+   - *The room's note* shows the ground, the part of the law, and the
+     reasons where they are still there.
 8. **An author taking back their own comment is not a decision.** No
    office acts, so there is no grant, no grounds and no appeal. It is a
-   small record of its own, signed by the author, that names the entry;
-   the check is that the signer is the entry's `agent`. Its hash is its
-   incident id, in the same form.
-9. **What is shown is worked out, never stored.** This step gives, for
-   a log and its contents, the state of each entry: as written,
-   removed (with the incident, the reason, and by whom), restored, or
-   redacted in some field. A removal, a taking back and a restoring
-   are each an entry in the same log, so a log and its contents are
-   enough to work it out. The room's own view of it is step 3c's.
+   record kind of its own in records-v1, signed by the author, that
+   names the entry; the world writes it only if the signer is the one
+   who wrote the comment. Its entry's hash is its incident id, in the
+   same form. Left open for part four: an author whose key has been
+   signed over to a new one; and whether an author can undo it
+   (proposed: yes, by a record of their own, and no office can).
+9. **What is shown is worked out, never stored, and from the open
+   fields alone.** For a log, the state of each entry is: as written,
+   removed, taken back, restored, or redacted in some field. It does
+   not depend on the contents, which add what was said and why where
+   they are still there. A world checks that an act is allowed when it
+   writes the entry; a reader does not have to. What wins:
+
+   | Then | Result |
+   |---|---|
+   | a field is redacted | it wins over everything, for that field: nothing shows it again, unless the office decides to keep it public |
+   | a removal, or a taking back, of an entry that is already hidden | refused |
+   | a restoring of an entry that is not removed, or that its author took back | refused: an office does not undo an author's taking back |
+   | a removal after a restoring | a new incident, with a new id |
+   | an author takes back a comment that an office removed | allowed: it stays hidden even if the removal is later restored |
+
+   The room's own view of it is step 3c's.
 10. **In Python and Rust, with shared vectors,** as every format here
     is: logs that hold, and logs that are refused, each for one named
     reason.
+
+## For the founder
+
+Two things here are not the technical lead's alone, and are put to the
+founder in STATUS.md, "Open questions". Part two needs neither.
+- **The office's copy** (decision 5). It means that for a while an
+  office of the project can read what was redacted. Before the
+  redaction everyone could. Recommended: yes, only until the decision
+  and any appeal are over.
+- **Whether the key that acted may ever be redacted** (decision 1).
+  FUNDAMENTALS.md has a person's acts remain "under their keys", and
+  the founder's words on a redacted link are "we keep public record of
+  the action with private details of the action not included". The
+  plan keeps the key apart so that either answer can be built; a log
+  that hashed it in the open could never allow it. Recommended: keep
+  the option, and decide with the purging of a person who leaves
+  (step 8a).
 
 ## Where the founder's last words of 2026-11-16 meet this
 
@@ -188,30 +277,38 @@ This plan was written before them (STATUS.md, "Decided").
 
 - **Copies.** A redaction takes a field out of what the record keeps.
   It can't recall what someone read or copied before.
-- **What stays visible.** The entry itself: its tick, its kind and the
-  key that acted. That it had a field of a given name, and that it was
-  redacted, when, and by which office. The kinds of
-  entry and their field names are fixed by a world's rules, so they say
-  nothing a reader of the rules didn't know; SD-JWT's decoys are not
-  taken up for that reason.
+- **A leaked copy can be proved real.** Whoever holds a field's salt and
+  value can show, against a signed head, that it is what the log held,
+  for ever. Plain deletion would not leave that behind.
+- **What stays visible.** The entry itself: its kind, its tick and its
+  place. That it had a field of a given name, and that it was redacted,
+  when, and by which office. The kinds of entry and their field names
+  are fixed by a world's rules, so they say nothing a reader of the
+  rules didn't know; SD-JWT's decoys are not taken up for that reason.
 - **The contents are a second thing to keep.** Whoever publishes a log
   must publish its contents with it, and whoever copies one without the
-  other has a chain that checks and says nothing.
+  other has a chain that checks and says little.
 - **Sealing to the person needs the person's key,** and the place it is
   kept is their container, which is course step 6a. Until then this is
   built and tested with trial keys, and nothing real is redacted.
-- **The key that acted is not redacted.** If purging a person who
-  leaves should ever reach their keys in a public log, that is decided
-  with the keys that can be destroyed (step 8a), and a log written
-  before then would not allow it.
+- **"Deleted" rests on the office's word.** Until keys can be destroyed
+  (step 8a), that an office's copy is gone is a record and a promise,
+  not something a reader can check.
+- **A short incident id can be made to collide on purpose,** at a cost
+  of about 2^48 hashes for twelve digits. So the room shows as many
+  digits as make it the only one, and the whole hash is one step away.
 
 ## The parts
 
 1. This plan.
-2. Fingerprints and contents: the form, the two checks, in Python and
-   Rust, with vectors.
-3. Redacting: the mark, the sealed copy and its label, and "redacted
-   first, decided after", with a test that neither the value nor its
-   salt is left anywhere in what the log keeps.
-4. Removing, taking back and restoring: the checks over `decision/v1`,
-   the author's record, the incident id, and the state of each entry.
+2. Fingerprints and contents: the form and how a log names it, the two
+   checks with the four states of a field, and the function that joins
+   entries and contents, in Python and Rust, with vectors. It needs
+   nothing from the founder.
+3. Redacting: the mark, the sealed copies and their label, and
+   "redacted first, decided after", with a test that neither the value
+   nor its salt is left anywhere in what the log keeps. It waits for
+   the founder's answer on the office's copy.
+4. Removing, taking back and restoring: the list of kinds of act, the
+   checks across records for a decision, the author's record kind, the
+   incident id, and the table of what wins.

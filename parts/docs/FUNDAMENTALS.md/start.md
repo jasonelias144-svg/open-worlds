@@ -182,7 +182,9 @@ one of them updates this page.
    client may show links in several worlds close together, so where and
    when can still hint that presences are one person's; the time a
    redacted link record keeps can be made coarser, which is decided when
-   it is built.
+   it is built. (The plan for course step 3b keeps a clock time apart,
+   so it can be made coarser or redacted, and leaves the tick, a count,
+   in the open: [research/REDACTION.md](research/REDACTION.md).)
 6. **The "keys to the kingdom": the multiverse's own keys, in the open.**
    The founder named them on 2026-11-15: ""keys to the kingdom" is more
    appropriate"; until then they were called the "break glass". They are

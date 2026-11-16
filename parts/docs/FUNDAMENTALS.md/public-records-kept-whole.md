@@ -90,6 +90,11 @@ unless the founder answers otherwise:
   It stays redacted until any appeal is decided: once made public again,
   it can't be recalled. How long an appeal may take is set with ADMIN's
   rules for appeals; until it is set, it stays redacted.
+  How an office can still decide to keep it public, when what was
+  redacted is sealed to the person, is put to the founder: the plan
+  for course step 3b proposes a second sealed copy for the office that
+  decides, kept only until the decision and any appeal are over
+  ([research/REDACTION.md](research/REDACTION.md), "For the founder").
 - **Shared on purpose, in a room.** Ideas of the founder's, of
   2026-11-16, not decided: a person may share their personal
   information in a room after being asked "Are you sure?"; those in the
