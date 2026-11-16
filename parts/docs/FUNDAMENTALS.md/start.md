@@ -78,7 +78,10 @@ one of them updates this page.
    ([COMMONS.md](COMMONS.md), "Removing a comment"). That is new
    beside the readers' own tools, which stay; the technical lead named
    the decision of 2026-11-14 to the founder before the founder
-   decided. Not yet built.
+   decided. Built so far: the form of these records in a log
+   (`world/apart.py`; [research/REDACTION.md](research/REDACTION.md),
+   "Part four, the log's side, built"). Not built: the check of who
+   may remove, and any room.
 6. **Tools, not solutions.** The founder (2026-11-13): "instead of
    working out how conflict should be resolved, let it arise, provide
    tools to resolve the conflict, but let solutions emerge."

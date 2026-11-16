@@ -12,6 +12,69 @@ Decisions about the code, made by the technical lead under the founder's
 deference (above, 2026-11-13), each with its reason and what would show
 it was wrong. Questions of what the project is for stay with the founder.
 
+- 2026-11-16, removing, restoring, taking back and putting back, on
+  the log's side (docs/research/REDACTION.md, "Part four, the log's
+  side, built"; course step 3b, part four), settled in building it.
+  (a) Four more kinds of entry are the form's own, and none of the
+  form's six kinds can be removed or taken back. (b) A removal and a
+  restoring say in the open the office, one ground (a kind and a
+  reference, held to what a `decision/v1` holds a ground to: one of
+  four kinds, a reference of at most 512 characters, and for an
+  earlier record its hash) and the decision's hash; a taking back and
+  a putting back say only what they are on. (c) An author can undo
+  their own taking back, and no office can; an office's restoring
+  undoes only a removal. It can be made while the author's taking
+  back stands: the removal stops standing, and the entry stays taken
+  back. This changes the third row of decision 9's table, which
+  refused it. (d) An entry's state is taken back, removed, restored or as
+  written, in that order, from the open fields alone; an entry once
+  removed is never again "as written". (e) An incident's short id is
+  the only such among the incidents of its log, and may grow longer
+  as the log grows. (f) The joining function gives a removed or taken
+  back entry whole, with its state and its incidents. (g) This side
+  checks the shape of an act and what it names, not who may act.
+  (h) The command line counts the entries removed, taken back and
+  restored.
+  *Why:* (a) the record of an act must not be hidden by another act;
+  (b) a ground the log shows is then always one a signed decision can
+  hold, and a room's note can show the ground even if the reasons are
+  later redacted (decision 7); (c) no office acts when an author takes
+  back their own words (decision 8), so none undoes it; and a removal
+  overturned on appeal must be able to go on record whatever its
+  author has done since, or the log would show a removal standing
+  that the office has overturned (found by the independent review);
+  (d) a reader should see that an office once acted, even after it
+  was undone; (f) the founder, 2026-11-16: "the comment stays in the
+  data layer, in our records", and what is shown is the room's view;
+  (g) who may act needs keys and signed records, which `world-log`
+  does not read.
+  *Wrong if:* a room needs an entry's state to depend on anything not
+  in the open fields; a room's note can't be made from what the
+  joining function gives; two incidents in one room are ever shown
+  with the same short id; the records' side finds that a signed
+  decision can't say what the open fields say (it may hold several
+  grounds, and the log shows one); or step 3c finds that a reader
+  built on the joining function shows a removed comment unless it
+  takes care not to.
+- 2026-11-16, a world with inhabitants that moves to another
+  multiverse (docs/WORLD-TYPES.md, "Arriving in another multiverse",
+  steps 5 and 6), from the last check of the pull request that
+  recorded the founder's words on it. In a move, such a world departs
+  only from a head that an admission names: if it lived on after the
+  evaluation, what it added is evaluated too, an admission is given at
+  its present head, and it is paused from that head until it departs.
+  After the admitted head its log may hold the pause, leavings and the
+  departure, and nothing else, and the check on arrival is that this
+  is so. And the move counts only when the admission holds. Leaving to
+  stand alone is unchanged.
+  *Why:* its inhabitants consented to a move to a named multiverse. If
+  the check on arrival could fail after it had left, they would be
+  left standing alone, which none of them agreed to.
+  *Wrong if:* the pause between the last evaluation and the departure
+  is long enough to be a harm of its own to those inside; or the
+  founder means the second refinement taken on 2026-11-16, that what
+  a world added after the evaluated head is checked again on arrival,
+  to be the whole of the rule for every world.
 - 2026-11-16, the form of a log whose fields are kept apart
   (docs/research/REDACTION.md, "Part two, built"; course step 3b, part
   two), settled in building it. (a) The form is named

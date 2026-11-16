@@ -28,6 +28,52 @@ the technical lead (Claude) writes to you here, the newest message
 first, and earlier ones stay below it. Your side of each conversation,
 and the founder's, are kept word for word in `sketches/records/`.
 
+### 2026-11-16, removing and taking back, on the log's side
+
+Your next step for `chat-world` was the removal, the restoring and the
+incident id among a room's kinds of record. Their form in the log is
+now built (course step 3b, part four), so here is what a room will
+write. The fitting, at step 3c, is still the technical lead's.
+- **Four kinds of entry,** beside the mark and the decision to keep a
+  field public:
+  `entry_removed`, `entry_restored`, `entry_taken_back` and
+  `entry_put_back`.
+- **A removal says in the open:** `entry`, the hash of the entry it is
+  on; `office`, text; `ground`, a map of `kind` (`charter`, `law`,
+  `rule` or `record`) and `ref` (text, 1 to 512 characters; for a
+  `record`, that record's hash, as in a signed decision); and
+  `decision`, the hash of the signed decision. The signed decision
+  itself is kept apart, as a field of the removal's own entry.
+- **A restoring** says the same, with `incident` in place of `entry`:
+  the id of the removal it undoes.
+- **A taking back** says `entry`. **A putting back** says
+  `taken_back`, the id of the taking back it undoes. By the design
+  only the author does either, and no office undoes a taking back.
+- **The incident id** is the hash of the entry that carries the
+  removal or the taking back. Shown short, it is the fewest hex
+  digits, twelve or more, that no other incident in the log begins
+  with.
+- **An entry's state** is one of `as written`, `removed`,
+  `taken back` and `restored`, worked out from the log, never stored.
+  `join` gives it with every entry, and the entry's incidents. It
+  still gives a removed entry whole: your `visible_log` would show a
+  note in its place, from the state and the incident.
+- **Refused:** a second removal of a removed entry; a removal of an
+  entry its author took back; a second taking back while one stands;
+  a restoring of anything but a removal that stands; a putting back
+  of anything but a taking back that stands; and a removal or a
+  taking back of one of these six kinds of entry.
+- **Allowed, and worth knowing:** an author can take back what an
+  office removed, and the office can still restore its removal
+  afterwards, say after an appeal. The entry stays taken back until
+  its author puts it back, and then shows as restored.
+
+Not built yet: who may act. Nothing checks that the office holds a
+grant, or that the one taking an entry back wrote it. That is the
+other side of part four, with the signed records. The files are the
+same three, linked in the message "the form of the log under a room
+is built", below.
+
 ### 2026-11-16, the founder's afternoon: an internet of worlds
 
 The founder said these things this afternoon that bear on your rooms.

@@ -15,12 +15,15 @@
 //! as JSON, or, with no `CONTENTS`, the log holds a value this crate
 //! can't write exactly as Python does, such as a float. The chemistry
 //! soup's log holds floats: check it with Python's `World.verify_log`.
-//! With `CONTENTS`, such a log is refused, not left unchecked: the form
-//! allows no such value, and the entry that holds one is named.
+//! With `CONTENTS`, the log is checked as the form whose fields are kept
+//! apart, and by that check alone: it takes the chain with it, an entry
+//! at a time, so the first fault in the log's order is the one named. A
+//! value this crate can't write is then refused, not left unchecked,
+//! since the form allows none.
 
 use serde_json::Value;
 use std::process::ExitCode;
-use world_log::apart::{self, State};
+use world_log::apart::{self, EntryState, State};
 
 fn read(path: &str) -> Result<Value, ExitCode> {
     let text = std::fs::read_to_string(path).map_err(|e| {
@@ -43,14 +46,43 @@ fn names_the_form(log: &Value) -> bool {
         == Some(apart::FORM)
 }
 
+/// Says that the log holds: how many entries, and its head.
+fn says_the_log_holds(log: &Value) {
+    let entries = log.as_array().map_or(&[][..], Vec::as_slice);
+    let head = entries
+        .last()
+        .and_then(|last| last.get("hash"))
+        .and_then(Value::as_str)
+        .unwrap_or(world_log::GENESIS);
+    println!("the log holds: {} entries, head {head}", entries.len());
+}
+
 fn check_contents(log: &Value, contents: &Value) -> ExitCode {
     let states = match apart::check(log, contents) {
         Ok(states) => states,
+        Err(apart::Refused::Chain(e)) => {
+            println!("the log does not hold: {e}");
+            return ExitCode::FAILURE;
+        }
         Err(e) => {
+            // A fault in the contents is found only once the whole log
+            // has held.
+            if matches!(
+                e,
+                apart::Refused::Contents(_)
+                    | apart::Refused::Unknown(_)
+                    | apart::Refused::Salt(_)
+                    | apart::Refused::SaltTwice(_)
+                    | apart::Refused::Value(_)
+                    | apart::Refused::Fingerprint(_)
+            ) {
+                says_the_log_holds(log);
+            }
             println!("the log and its contents do not hold together: {e}");
             return ExitCode::FAILURE;
         }
     };
+    says_the_log_holds(log);
     let count = |state: State| {
         states
             .values()
@@ -66,6 +98,16 @@ fn check_contents(log: &Value, contents: &Value) -> ExitCode {
         count(State::Unfinished),
         count(State::KeptPublic),
         missing
+    );
+    // What a room shows of each entry, from the open fields alone. The
+    // log has held by now, so this can't be refused.
+    let standing = apart::incidents(log).unwrap_or_default();
+    let shown = |state: EntryState| standing.values().filter(|s| s.state == state).count();
+    println!(
+        "the entries: {} removed, {} taken back, {} restored, the rest as written",
+        shown(EntryState::Removed),
+        shown(EntryState::TakenBack),
+        shown(EntryState::Restored)
     );
     if missing > 0 {
         println!("the contents are not whole: {missing} missing, gone with no mark standing");
@@ -88,15 +130,17 @@ fn main() -> ExitCode {
         Ok(log) => log,
         Err(code) => return code,
     };
+    if let Some(contents_path) = contents_path {
+        return match read(contents_path) {
+            Ok(contents) => check_contents(&log, &contents),
+            Err(code) => code,
+        };
+    }
     match world_log::verify_log(&log) {
         Ok(head) => {
             let count = log.as_array().map_or(0, Vec::len);
             println!("the log holds: {count} entries, head {head}");
         }
-        // A log whose fields are kept apart holds no value this crate
-        // can't write, so with its contents it is checked as that form,
-        // which names the entry.
-        Err(world_log::LogError::Unwritable { .. }) if contents_path.is_some() => {}
         Err(world_log::LogError::Unwritable { index, error }) => {
             println!("the log can't be checked here: entry {index}: {error}");
             return ExitCode::from(2);
@@ -106,19 +150,11 @@ fn main() -> ExitCode {
             return ExitCode::FAILURE;
         }
     }
-    match contents_path {
-        Some(contents_path) => match read(contents_path) {
-            Ok(contents) => check_contents(&log, &contents),
-            Err(code) => code,
-        },
-        None => {
-            if names_the_form(&log) {
-                println!(
-                    "its fields are kept apart ({}): give the contents file too, to check them",
-                    apart::FORM
-                );
-            }
-            ExitCode::SUCCESS
-        }
+    if names_the_form(&log) {
+        println!(
+            "its fields are kept apart ({}): give the contents file too, to check them",
+            apart::FORM
+        );
     }
+    ExitCode::SUCCESS
 }

@@ -15,7 +15,10 @@ plan; fingerprints and contents; redacting; removing, taking back and
 restoring). The second is built: a form of the log whose fields are
 kept apart (`world/apart.py`, `rust/world-log`), with the check of a
 log against its contents and the function that joins them; nothing is
-redacted yet. Before any room is built on it. Two things. The founder
+redacted yet. The log's side of the fourth is built too: an entry
+removed, restored, taken back or put back, each entry's state, and the
+incident id; who may act is not checked yet, which is its records'
+side. Before any room is built on it. Two things. The founder
 asked that private information be redacted in public records
 (2026-11-15), and that removals be on record "from the beginning"
 (2026-11-16). How each is built is the technical lead's reading:

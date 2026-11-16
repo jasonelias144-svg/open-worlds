@@ -1,0 +1,322 @@
+Part of `world/apart_vectors.py` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 1.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: nothing; this is the first part.
+After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world/apart_vectors.py/02.txt
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+"""Shared test vectors for a log whose fields are kept apart
+(`world/apart.py`; course step 3b, part two): `vectors/log-apart.json`,
+written with the kernel's other vectors by `python3 -m world.vectors`
+and read by `rust/world-log`.
+
+Everything in it is a trial. The salts are fixed, so that the file is
+the same on every run, and they are public to everyone: a real log's
+salts come from the operating system and are never written anywhere but
+its contents. The keys and names are plain made-up text.
+"""
+from __future__ import annotations
+
+import copy
+import hashlib
+from typing import Any, Callable, Dict, List, Tuple
+
+from . import apart
+from .core import GENESIS, _digest
+
+TABLE = {
+    "entered": ["key", "name"],
+    "entry_put_back": ["record"],
+    "entry_removed": ["record"],
+    "entry_restored": ["record"],
+    "entry_taken_back": ["record"],
+    "field_kept_public": ["reason"],
+    "field_redacted": ["reason"],
+    "said": ["key", "text", "time"],
+    "showed": ["key", "thing"],
+}
+
+# The first entry's open data, before the form and the table are added.
+FIRST = {"rules_version": "vectors-apart-1"}
+
+OFFICE = "trial office"
+MODERATOR = "trial moderator"
+KEEPER = "trial keeper"
+GROUND = {"kind": "law", "ref": "trial room law, part 3"}
+
+
+def trial_decision(n: int) -> str:
+    """A stand-in for a decision record's hash: 64 hex digits, public,
+    and the hash of no record."""
+    return hashlib.sha256(f"open-worlds trial decision {n}".encode()).hexdigest()
+
+
+def trial_salt(n: int) -> str:
+    """The n-th trial salt: public, fixed, and never for anything real."""
+    text = f"open-worlds trial salt {n}"
+    return hashlib.sha256(text.encode()).hexdigest()[:32]
+
+
+def _salts() -> Callable[[], str]:
+    count = [0]
+
+    def next_salt() -> str:
+        count[0] += 1
+        return trial_salt(count[0] - 1)
+    return next_salt
+
+
+# What the trial room writes after its first entry: tick, kind, agent,
+# open data, and the fields kept apart.
+WRITTEN: List[Tuple[int, str, Any, dict, dict]] = [
+    (0, "entered", None, {},
+     {"key": "trial key of ada", "name": "ada"}),
+    (0, "entered", None, {},
+     {"key": "trial key of bo", "name": "bo"}),
+    (1, "said", None, {},
+     {"key": "trial key of ada", "text": "hello, room",
+      "time": 1794787200}),
+    (2, "said", None, {},
+     {"key": "trial key of bo",
+      "text": "café 中文 \U0001F642   \" \\ \n",
+      "time": 1794787260}),
+    (3, "said", None, {},
+     {"key": "trial key of ada", "text": "my door is 1 Trial Street",
+      "time": 1794787320}),
+    (4, "showed", None, {"where": "the table"},
+     {"key": "trial key of bo",
+      "thing": {"words": ["a", "b"], "loud": True, "count": -3}}),
+]
+
+
+def _room() -> apart.Log:
+    log = apart.Log(TABLE, FIRST, salt=_salts())
+    for tick, kind, agent, data, kept in WRITTEN:
+        log.append(tick, kind, agent, data, kept)
+    return log
+
+
+def _mark(log: apart.Log, tick: int, entry: str, field: str,
+          reason: str) -> str:
+    return log.append(tick, apart.MARK, OFFICE,
+                      {"entry": entry, "field": field}, {"reason": reason})
+
+
+def _keep(log: apart.Log, tick: int, mark: str, reason: str) -> str:
+    return log.append(tick, apart.KEPT, OFFICE, {"mark": mark},
+                      {"reason": reason})
+
+
+def _case(name: str, log: List[dict], contents: Any) -> dict:
+    return {"name": name, "log": log, "contents": contents,
+            "states": apart.check(log, contents),
+            "incidents": apart.incidents(log),
+            "joined": apart.join(log, contents)}
+
+
+def _remove(log: apart.Log, tick: int, entry: str, n: int) -> str:
+    return log.append(tick, apart.REMOVED, None,
+                      {"entry": entry, "office": MODERATOR, "ground": GROUND,
+                       "decision": trial_decision(n)},
+                      {"record": f"trial decision record {n}, not a signed one"})
+
+
+def _restore(log: apart.Log, tick: int, incident: str, n: int) -> str:
+    return log.append(tick, apart.RESTORED, None,
+                      {"incident": incident, "office": KEEPER,
+                       "ground": {"kind": "rule", "ref": "trial appeal rule"},
+                       "decision": trial_decision(n)},
+                      {"record": f"trial decision record {n}, not a signed one"})
+
+
+def _take_back(log: apart.Log, tick: int, entry: str) -> str:
+    return log.append(tick, apart.TAKEN_BACK, None, {"entry": entry},
+                      {"record": "trial record of taking back, not signed"})
+
+
+def _put_back(log: apart.Log, tick: int, taking: str) -> str:
+    return log.append(tick, apart.PUT_BACK, None, {"taken_back": taking},
+                      {"record": "trial record of putting back, not signed"})
+
+
+def acted_on() -> Tuple[apart.Log, Dict[str, str]]:
+    """The trial room with every row of the table of what wins that
+    holds (docs/research/REDACTION.md, decision 9), and what each entry
+    is named in the tests."""
+    room = _room()
+    h = [e["hash"] for e in room.entries]
+    names = {"hello": h[3], "cafe": h[4], "door": h[5], "thing": h[6]}
+    # Removed, restored, and removed again: a new incident, a new id.
+    first = _remove(room, 5, h[3], 1)
+    _restore(room, 6, first, 2)
+    names["second removal"] = _remove(room, 7, h[3], 3)
+    # Taken back by its author, and put back: it shows again.
+    taking = _take_back(room, 8, h[4])
+    _put_back(room, 9, taking)
+    # Removed by an office, then taken back by its author: allowed, and
+    # it stays hidden whatever the office does next.
+    names["removal of door"] = _remove(room, 10, h[5], 4)
+    _take_back(room, 11, h[5])
+    # Removed, and one of its fields redacted: the entry is hidden, and
+    # the field stays redacted.
+    _remove(room, 12, h[6], 5)
+    _mark(room, 13, h[6], "thing", "it names a third person")
+    # A removal whose own record has to be redacted: the removal still
+    # stands, and still says its office and its ground in the open.
+    _mark(room, 14, names["second removal"], "record",
+          "the reasons repeated what was removed")
+    # The removal of what its author then took back is restored: the
+    # removal stops standing, and the entry stays taken back.
+    _restore(room, 15, names["removal of door"], 6)
+    # Removed and restored, and left so: restored, never again as
+    # written. The ground is an earlier record, named by its hash.
+    names["later"] = room.append(
+        16, "said", None, {},
+        {"key": "trial key of bo", "text": "a later word",
+         "time": 1794787380})
+    removal = room.append(
+        17, apart.REMOVED, None,
+        {"entry": names["later"], "office": MODERATOR,
+         "ground": {"kind": "record", "ref": trial_decision(1)},
+         "decision": trial_decision(7)},
+        {"record": "trial decision record 7, not a signed one"})
+    _restore(room, 18, removal, 8)
+    # Removed, taken back and put back: the removal still stands, so
+    # the entry is removed.
+    names["last"] = room.append(
+        19, "said", None, {},
+        {"key": "trial key of ada", "text": "a last word",
+         "time": 1794787440})
+    _remove(room, 20, names["last"], 9)
+    taking = _take_back(room, 21, names["last"])
+    _put_back(room, 22, taking)
+    return room, names
+
+
+def holds() -> List[dict]:
+    """Logs and contents that hold, each with every field's state and
+    the entries as a reader uses them."""
+    cases = []
+
+    room = _room()
+    cases.append(_case("every field is there", room.entries, room.contents))
+
+    cases.append(_case("nothing is kept beside the log", room.entries, {}))
+
+    contents = copy.deepcopy(room.contents)
+    contents[room.entries[1]["hash"]] = {}
+    contents[room.entries[0]["hash"]] = {}
+    cases.append(_case("an entry's fields may be an empty map",
+                       room.entries, contents))
+
+    room = _room()
+    h = [e["hash"] for e in room.entries]
+    gone = []
+    # Redacted: a mark stands, and the field is gone.
+    first_mark = _mark(room, 5, h[5], "text", "private information")
+    gone.append((h[5], "text"))
+    # Unfinished: a mark stands, and the field is still there.
+    _mark(room, 5, h[4], "text", "asked by its author")
+    # Kept public: the mark was answered, and the field is there.
+    mark = _mark(room, 6, h[3], "time", "asked by its author")
+    _keep(room, 7, mark, "a time of day says nothing private here")
+    # Missing: gone, with no mark at all.
+    gone.append((h[1], "name"))
+    # Missing: the mark was answered, and the field is gone all the same.
+    mark = _mark(room, 8, h[2], "name", "asked by its author")
+    _keep(room, 9, mark, "the name is on the door")
+    gone.append((h[2], "name"))
+    # Redacted: marked, kept public, and marked again.
+    mark = _mark(room, 10, h[6], "thing", "asked by its author")
+    _keep(room, 11, mark, "nothing private in it")
+    _mark(room, 12, h[6], "thing", "it names a third person")
+    gone.append((h[6], "thing"))
+    # Redacted: a mark's own reason, which said what it should not.
+    _mark(room, 13, first_mark, "reason", "the reason repeated it")
+    gone.append((first_mark, "reason"))
+    contents = copy.deepcopy(room.contents)
+    for entry, field in gone:
+        del contents[entry][field]
+    cases.append(_case("the five states", room.entries, contents))
+
+    # The open part at its edges: the largest tick and whole numbers,
+    # the deepest nesting, an agent that is text, and text that needs
+    # escaping.
+    edge = apart.Log(TABLE, FIRST, salt=_salts())
+    edge.append(apart.MAX_WHOLE, "measured", OFFICE,
+                {"most": apart.MAX_WHOLE, "least": -apart.MAX_WHOLE,
+                 "deep": _nested(apart.MAX_NESTING - 1),
+                 "text": "caf\u00e9 \U0001F642 \" \\ \n",
+                 "flags": [True, False], "empty": {}}, {})
+    cases.append(_case("the open part at its edges", edge.entries,
+                       edge.contents))
+
+    room, names = acted_on()
+    contents = copy.deepcopy(room.contents)
+    del contents[names["thing"]]["thing"]
+    del contents[names["second removal"]]["record"]
+    cases.append(_case("removed, restored, taken back and put back",
+                       room.entries, contents))
+
+    # A ground's reference at its longest, in characters that each take
+    # two UTF-16 units and four bytes: the limit counts code points.
+    room = _room()
+    room.append(5, apart.REMOVED, None,
+                {"entry": room.entries[3]["hash"], "office": MODERATOR,
+                 "ground": {"kind": "law",
+                            "ref": "\U0001D11E" * apart.MAX_REF},
+                 "decision": trial_decision(6)},
+                {"record": "trial decision record 6, not a signed one"})
+    cases.append(_case("a ground's reference at its longest",
+                       room.entries, room.contents))
+    return cases
+
+
+def _raw(log: List[dict], tick: Any, kind: Any, agent: Any, data: Any,
+         prints: Any, **more: Any) -> str:
+    """Appends an entry as given, checking nothing: for logs that must
+    be refused. `prints` is left out of the entry if it is None."""
+    body = {"tick": tick, "kind": kind, "agent": agent, "data": data,
+            "prev": log[-1]["hash"] if log else GENESIS, **more}
+    if prints is not None:
+        body["apart"] = prints
+    log.append({**body, "hash": _digest(body)})
+    return log[-1]["hash"]
+
+
+def _start(table: Any = None, **first: Any) -> List[dict]:
+    """A raw log holding only a first entry in this form."""
+    data = {"form": apart.FORM,
+            "kept_apart": TABLE if table is None else table, **FIRST}
+    data.update(first)
+    log: List[dict] = []
+    _raw(log, 0, "world_created", None, data, {})
+    return log
+
+
+def _short() -> Tuple[List[dict], Dict[str, Dict[str, list]]]:
+    """The first entry and ada's arrival, with their contents."""
+    log = apart.Log(TABLE, FIRST, salt=_salts())
+    log.append(*WRITTEN[0])
+    return copy.deepcopy(log.entries), copy.deepcopy(log.contents)
+
+
+def _print(n: int, name: str, value: Any) -> str:
+    return apart.fingerprint(trial_salt(n), name, value)
+
+
+def place(e: apart.Refused) -> Any:
+    """Where a refusal points, as the vectors write it: nothing; an
+    entry's place in the log, from 0; or, in the contents, an entry's
+    hash alone or with a field's name."""
+    if isinstance(e.where, tuple):
+        return list(e.where)
+    if isinstance(e.where, str):
+        return [e.where]
+    return e.where
+
+
+
+------------------------------------------------------------------------
+The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world/apart_vectors.py/02.txt
