@@ -212,6 +212,7 @@ class GardenTick:
     level_hash: str
     ts: str
     sig: str
+    ext_rain: Tuple[Tuple[int, int, int], ...] = ()
 
     def body(self):
         return {
@@ -220,6 +221,7 @@ class GardenTick:
             "step": self.step,
             "t": self.t,
             "prev": self.prev,
+            "ext_rain": [list(e) for e in self.ext_rain],
             "rain": [list(r) for r in self.rain],
             "moves": [list(m) for m in self.moves],
             "soak": [[s[0], s[1], s[2], s[3]] for s in self.soak],
@@ -531,9 +533,15 @@ class FractalGarden:
 
     # -- The tick ----------------------------------------------
 
-    def tick(self) -> GardenTick:
+    def tick(self, external_rain=None) -> GardenTick:
         t = self._tick
         tmpl = self._template
+        # 0. External rain (from a superworld)
+        ext_rain = []
+        if external_rain:
+            for (x, y, n) in external_rain:
+                if self._grid.add(x, y, n) > 0:
+                    ext_rain.append((x, y, n))
         # 1. Rain
         rain = []
         for x in range(tmpl.water_width):
@@ -565,6 +573,7 @@ class FractalGarden:
             "step": self._step,
             "t": t,
             "prev": self._last_hash,
+            "ext_rain": [list(e) for e in ext_rain],
             "rain": [list(r) for r in rain],
             "moves": [list(m) for m in moves],
             "soak": [[s[0], s[1], s[2], s[3]] for s in soak],
@@ -584,7 +593,8 @@ class FractalGarden:
             plant_hashes=plant_hashes,
             level_hash=body["level_hash"],
             ts=body["ts"],
-            sig=self._keypair.sign(_canonical(body)).hex())
+            sig=self._keypair.sign(_canonical(body)).hex(),
+            ext_rain=tuple(ext_rain))
         self._records.append(rec)
         self._last_hash = rec.record_hash()
         self._step += 1
@@ -869,6 +879,8 @@ def verify_garden_replay(garden: FractalGarden) -> Tuple[bool, str]:
     for i, rec in enumerate(garden.records()):
         if isinstance(rec, GardenTick):
             # Replay water
+            for (x, y, n) in rec.ext_rain:
+                grid.add(x, y, n)
             for (x, y, n) in rec.rain:
                 grid.add(x, y, n)
             _fall(grid, garden.world_id, rec.t)

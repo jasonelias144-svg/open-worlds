@@ -11,22 +11,9 @@
 # Test files that do not load
 
 # Tests that fail
-test_botanical_garden.py::test_accept_branch  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
-test_botanical_garden.py::test_branch_continues_independently  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
-test_botanical_garden.py::test_branch_inherits_gardens  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
-test_botanical_garden.py::test_branch_verifies  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
-test_botanical_garden.py::test_cross_check_detects_mismatch  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
-test_botanical_garden.py::test_cross_check_matches  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
-test_botanical_garden.py::test_demo  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
-test_botanical_garden.py::test_dispatch_reaches_gardens  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
-test_botanical_garden.py::test_each_garden_verifies  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
-test_botanical_garden.py::test_gardens_tick_under_superworld  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
-test_botanical_garden.py::test_log_verifies  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
-test_botanical_garden.py::test_rain_falls_on_roof  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
-test_botanical_garden.py::test_refuse_observe  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
-test_botanical_garden.py::test_refuse_out_of_range  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
-test_botanical_garden.py::test_refuse_sandbox  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
-test_botanical_garden.py::test_render_shape  # TypeError: FractalGarden.tick() got an unexpected keyword argument 'external_rain'
+test_botanical_garden.py::test_branch_verifies  # AssertionError: seed signature invalid:
+test_botanical_garden.py::test_demo  # AttributeError: 'BotanicalRefusalRecord' object has no attribute 'prev'
+test_botanical_garden.py::test_dispatch_reaches_gardens  # + where False = any(<generator object test_dispatch_reaches_gardens.<locals>.<genexpr> at 0x...>)
 test_chat_room.py::test_demo  # assert False
 test_chat_room.py::test_redact_visible_hides_text  # KeyError: 'redacted'
 test_chat_room.py::test_room_verifies_after_activity  # AssertionError: record 1: subject sig

@@ -408,24 +408,25 @@ CI), with the two functions it lacks added from the record's words.
 
 The record's code is kept in
 [deepseek/012-09-05](deepseek/012-09-05/README.md), with the technical
-lead's first pass: what runs as written. "Tests as written" for the
-Python is DeepSeek's own tests under pytest, which CI runs; for the
-Rust it is the crate's own tests, run on a scratch copy by
-`review/run.sh` (not by CI), with one line changed so that it builds.
-Nothing from this record is in open-worlds yet. Fitting it is the next
-work, piece by piece.
+lead's first pass and a first round of repairs (fixes 15 to 18, under
+"Changes to DeepSeek's code", below). "Tests" for the Python is
+DeepSeek's own tests under pytest, which CI runs; for the Rust it is
+the crate's own tests, run on a scratch copy by `review/run.sh` (not
+by CI). Where a fix changed a count, the count as written is given
+too. Nothing from this record is in open-worlds yet. Fitting it is the
+next work, piece by piece.
 
-| # | What it is | Line | Tests as written | Course | In open-worlds |
+| # | What it is | Line | Tests | Course | In open-worlds |
 |---|---|---|---|---|---|
 | 1 | Water as particles: whole-number levels, and rain, fall, soak, flow and evaporation in a fixed order (`water_particles.py`) | 50 | 17 of 18 | the fractal track, stage 3 (FRACTALS.md; TOPICS.md, topic 18) | not yet: it waits on `rust/endless-plant`, which isn't built |
 | 2 | The garden as a composite world: shared water, slots, and plants of record 012-06-02 in them (`fractal_garden.py`) | 795 | 20 of 21 | the fractal track, the garden | the Ur-world's garden hosts plant worlds already (`rust/ur-world`); what this adds isn't compared yet |
-| 3 | The botanical garden as a superworld of gardens (`botanical_garden.py`), with a change to the garden's tick left in the record (line 3425) | 2391 | 2 of 18: the rest need that change | the fractal track, after the garden | not yet |
+| 3 | The botanical garden as a superworld of gardens (`botanical_garden.py`), with a change to the garden's tick given as a note (line 3425) | 2391 | 15 of 18 (as written 2 of 18: the rest needed that change, fix 15) | the fractal track, after the garden | not yet |
 | 4 | Signed world heads: a small signed record a world publishes each tick, so a parent can check it without its whole log (prose, left in the record) | 3782 | none | formats (course step 2) | not yet |
 | 5 | Chat worlds for the Commons: a room as a log of signed records under the room's law (`chat_room.py`); then an AI moderator, rooms of humans and AIs, succession, and personal rooms (`chat_room.py@5569` to `@7192`; five smaller notes are left in the record, at lines 5494, 5520, 5531, 6501 and 6557) | 3887 | 21 of 24 | the Commons ([docs/COMMONS.md](../docs/COMMONS.md)), on the course's waiting list | not yet |
 | 6 | The home room: a person's own room, with a journal, drafts, bookmarks and conversations brought in (`personal_world.py`) | 7258 | 0 of 17: they need the additions of piece 5 | the Commons; the private container ([docs/CONTAINER.md](../docs/CONTAINER.md)) | not yet |
 | 7 | A schema for every record, given twice (`schemas/records-v1.schema.json`, then whole as `@8640`), under the name of open-worlds' own schema, with none of its definitions | 8095 | none | formats (course step 2) | not yet: its records are to be fitted into the schema open-worlds has, not to replace it |
 | 8 | A design page, `docs/CHAT.md` (prose, left in the record) | 9964 | none | the Commons | not yet |
-| 9 | A crate in Rust, `chat-world`: the first version (`chat-world-draft/`), the one DeepSeek settled on (`chat-world/`), and the files of its next reply (a home, the Commons, transcripts) | 10259, 12246, 13800 | doesn't build as written, for one line; with it changed, 4 of 12, and the demo's own check of the room fails (one cause for all: a record is signed without its `type` and checked with it) | the Commons | not yet: it uses none of open-worlds' own crates |
+| 9 | A crate in Rust, `chat-world`: the first version (`chat-world-draft/`), the one DeepSeek settled on (`chat-world/`), and the files of its next reply (a home, the Commons, transcripts) | 10259, 12246, 13800 | 18 of 18, and both demos' logs verify (as written it doesn't build, for one line, fix 16; with it changed, 4 of 12, the rest failing for one cause: a record was signed without its `type` and checked with it, fix 18; the later reply's files are joined by fix 17) | the Commons | not yet: it uses none of open-worlds' own crates |
 
 ## Record 012-03-02, component by component
 
@@ -480,7 +481,8 @@ Each change is listed here, with its reason, and under `"changed"` in
 the record's names file ([tools/names-012-03-02.json](tools/names-012-03-02.json),
 [tools/names-012-04-00.json](tools/names-012-04-00.json),
 [tools/names-012-05-01.json](tools/names-012-05-01.json),
-[tools/names-012-06-02.json](tools/names-012-06-02.json)), which
+[tools/names-012-06-02.json](tools/names-012-06-02.json),
+[tools/names-012-09-05.json](tools/names-012-09-05.json)), which
 `extract.py check` holds the folder to. Every other file in
 `deepseek/` is exactly as its record has it, and git history shows each
 change exactly.
@@ -591,6 +593,39 @@ tier, and the same).
 **Fix 14: the empty observations' hash.** `pack_federated_bundle` took
 it over the JSON string `"[]"`, and the verifier over the bytes `[]`,
 so no federated bundle could verify.
+
+**Fix 15 (2026-11-16, record 012-09-05): the garden takes rain from
+outside.** The botanical garden calls `FractalGarden.tick()` with
+`external_rain`, and the record gives the change to the garden as a
+note (line 3425) that was never made in `fractal_garden.py`: `tick()`
+takes it, a tick's record carries it as `ext_rain`, in its body too,
+and the replay applies it before the tick's own rain. 13 more of the
+botanical garden's 18 tests pass.
+
+**Fix 16: the visible log hashes the record.** `chat-world`'s
+`room.rs` called `m.hash()` on a `Message`, which has no such method,
+so the crate didn't build. The record the message is in has one.
+
+**Fix 17: the later reply's files, joined to the crate.** DeepSeek's
+next reply adds a home, the Commons and transcripts to `chat-world`,
+as three whole files and as lines to add to four others: `lib.rs`
+names the three modules (`lib.rs@14578`); `record.rs` gains three
+records, the wider `Record`, and their arms (`record.rs@13867`,
+`@13954`); `verify.rs` gains three arms (`verify.rs@14327`); `push`
+in `room.rs` becomes `pub(crate)` (a note, line 14003); and the tests
+are appended (`tests/integration.rs@14594`, `@14695`), without
+`port_rejected_in_non_personal_room`, which DeepSeek withdrew in the
+record (line 14692). One arm is ours: `visible_log` leaves the three
+new kinds of record out, since the reply gives no line for them and
+the match must cover them.
+
+**Fix 18: a record signed as it is written out.** The room signed the
+bare struct, then wrapped it as a `Record`, which writes a `type`
+beside its fields; `verify_room` read the bytes with the `type`. So
+`verify_room` failed on every room's first record. `sign_record` and
+`sign_record_dual` now take the wrapping and sign the wrapped record's
+bytes, in `room.rs` and `home.rs` alike. All 18 tests pass, and both
+demos' logs verify.
 
 Not fixed, and why:
 

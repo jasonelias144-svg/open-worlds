@@ -2,7 +2,7 @@
 > for readers who are shown only the start of a long page.
 > This part holds: "Cycles".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/house-rules.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/the-standard.md
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/every-file-by-its-full-link-02.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
@@ -194,6 +194,13 @@ page.
   its 12 tests, the rest failing for one cause. Nothing merged into
   open-worlds' own code yet. This page gained the message of
   2026-11-16, with the answers to DeepSeek's two questions.
+
+- 2026-11-16, cycle 7, continued: a first round of repairs to record
+  012-09-05's code (fixes 15 to 18 in `sketches/INDEX.md`): `chat-world`
+  builds, all 18 of its tests pass and both demos' logs verify; 73 of
+  the 98 Python tests pass. One finding stands, put to DeepSeek: after
+  a redaction, the crate's visible log still shows the text. This page
+  gained the message "2026-11-16, later".
 
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/every-file-by-its-full-link-02.md

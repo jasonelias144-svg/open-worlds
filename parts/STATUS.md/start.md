@@ -75,8 +75,10 @@ free, and never a money machine
   `rust/endless-plant` (not built yet).
   Record 012-09-05 (water, the garden, chat rooms for the Commons with
   AI moderators, the home room, a schema, and a sketch crate in Rust,
-  `chat-world`) is kept as written, with what runs
-  (`sketches/deepseek/012-09-05/README.md`); fitting it is next,
+  `chat-world`) is kept with what runs
+  (`sketches/deepseek/012-09-05/README.md`): after a first round of
+  repairs the crate builds and passes its own 18 tests, and 73 of the
+  98 Python tests pass. Fitting it to open-worlds' own code is next,
   piece by piece.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.

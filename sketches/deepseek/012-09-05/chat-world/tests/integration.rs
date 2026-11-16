@@ -1,3 +1,6 @@
+use chat_world::commons::{verify_commons, Commons};
+use chat_world::home::HomeRoom;
+use chat_world::transcript::{sign_transcript, verify_transcript, TranscriptEntry};
 use chat_world::error::Result;
 use chat_world::record::Record;
 use chat_world::verify::verify_room;
@@ -182,5 +185,85 @@ fn chain_integrity_detects_tampering() -> Result<()> {
     for i in 1..recs.len() {
         assert_eq!(recs[i].prev(), Some(&recs[i - 1].hash()?));
     }
+    Ok(())
+}
+
+#[test]
+fn home_journal_and_draft_verify() -> Result<()> {
+    let alice = Keypair::generate();
+    let mut home = HomeRoom::create(alice, "test home")?;
+    home.journal("first note")?;
+    home.draft("a draft", None)?;
+    verify_room(home.room())
+}
+
+#[test]
+fn home_port_verifies() -> Result<()> {
+    let alice = Keypair::generate();
+    let mut home = HomeRoom::create(alice.clone(), "test home")?;
+    let entries = vec![TranscriptEntry {
+        speaker: "user".into(),
+        ts: chat_world::now(),
+        text: "hello".into(),
+    }];
+    let t = sign_transcript("app", entries, &alice)?;
+    home.port(&t, "journal", None)?;
+    verify_room(home.room())
+}
+
+#[test]
+fn transcript_tamper_detected() -> Result<()> {
+    let alice = Keypair::generate();
+    let entries = vec![TranscriptEntry {
+        speaker: "u".into(),
+        ts: chat_world::now(),
+        text: "hi".into(),
+    }];
+    let mut t = sign_transcript("app", entries, &alice)?;
+    t.entries[0].text = "tampered".into();
+    assert!(verify_transcript(&t).is_err());
+    Ok(())
+}
+
+#[test]
+fn home_bookmark_and_presence_verify() -> Result<()> {
+    let alice = Keypair::generate();
+    let bob = Keypair::generate();
+    let mut home = HomeRoom::create(alice, "test home")?;
+    let bob_room = Room::create(RoomTemplate::chat("t", "test"), bob)?;
+    home.bookmark(&bob_room, "note")?;
+    home.announce_presence(&[bob_room.world_id().clone()], 300)?;
+    verify_room(home.room())
+}
+
+#[test]
+fn commons_registration_verifies() -> Result<()> {
+    let alice = Keypair::generate();
+    let commons_kp = Keypair::generate();
+    let room = Room::create(RoomTemplate::chat("t", "test"), alice.clone())?;
+    let mut commons = Commons::new(commons_kp);
+    commons.register_room(&room, &alice, None)?;
+    verify_commons(&commons)
+}
+
+#[test]
+fn commit_draft_links_home_and_room() -> Result<()> {
+    let alice = Keypair::generate();
+    let bob = Keypair::generate();
+    let mut home = HomeRoom::create(alice.clone(), "test home")?;
+    let mut bob_room = Room::create(RoomTemplate::chat("t", "test"), bob)?;
+    bob_room.join(&alice, "communicate", false)?;
+    let draft = home.draft("hello", Some(bob_room.world_id()))?;
+    let draft_hash = draft.hash()?;
+    let committed = home.commit_draft_to_room(&draft_hash, &mut bob_room)?;
+    match committed {
+        Record::Message(m) => {
+            assert!(m.text.contains("home_ref="));
+            assert!(m.text.contains(&draft_hash[..16]));
+        }
+        _ => panic!("expected message"),
+    }
+    verify_room(home.room())?;
+    verify_room(&bob_room)?;
     Ok(())
 }

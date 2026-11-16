@@ -45,62 +45,87 @@ A block that adds to an earlier file is kept as `file@LINE`, LINE being
 the record line where its code starts. Nothing reads those files: they
 are DeepSeek's instructions for changing the file they are named after.
 
-## How it fares as written
+## How it fares
 
-The technical lead's first pass, 2026-11-16.
+The technical lead's first pass, 2026-11-16, and a first round of
+repairs the same day. A repair makes the code do what the record says
+it does, most often by applying DeepSeek's own later addition. It
+doesn't change the design. Each changed file is listed with its reason
+in `../../tools/names-012-09-05.json` ("changed") and in
+[../../INDEX.md](../../INDEX.md) ("Changes to DeepSeek's code", fixes
+15 to 18), and git shows the exact change.
 
-**Python: 60 of 98 tests pass.** `known-failures.txt` lists the 38 that
-fail, and CI holds the list true. The tests need `fractal_world_v3.py`
-of record 012-06-02, which `conftest.py` puts on the import path.
+**Python: 73 of 98 tests pass** (60 as written). `known-failures.txt`
+lists the 25 that fail, and CI holds the list true. The tests need
+`fractal_world_v3.py` of record 012-06-02, which `conftest.py` puts on
+the import path.
 
-| Tests | Pass | What fails |
-|---|---|---|
-| `test_water_particles.py` | 17 of 18 | In one test, water doesn't pool at the bottom |
-| `test_fractal_garden.py` | 20 of 21 | The demo: a refusal record has no `prev` |
-| `test_botanical_garden.py` | 2 of 18 | One cause: `FractalGarden.tick()` doesn't take `external_rain`. The record gives that change as a note (line 3425), and it was never made in `fractal_garden.py` |
-| `test_chat_room.py` | 21 of 24 | Redaction as shown to a reader, a room's log after activity, and the demo |
-| `test_personal_world.py` | 0 of 17 | One cause: it needs the later `RoomTemplate` (`membership` and the rest), which the record gives as additions to `chat_room.py`, not as a whole file |
+| Tests | As written | Now | What fails now |
+|---|---|---|---|
+| `test_water_particles.py` | 17 of 18 | 17 of 18 | In one test, water doesn't pool at the bottom |
+| `test_fractal_garden.py` | 20 of 21 | 20 of 21 | The demo: a refusal record has no `prev` |
+| `test_botanical_garden.py` | 2 of 18 | 15 of 18 | The demo, for the same cause; a branch's seed signature; and one test of the rain a garden receives. As written, 16 failed for one cause: `FractalGarden.tick()` didn't take `external_rain` (fix 15) |
+| `test_chat_room.py` | 21 of 24 | 21 of 24 | Redaction as shown to a reader, a room's log after activity, and the demo |
+| `test_personal_world.py` | 0 of 17 | 0 of 17 | One cause: it needs the later `RoomTemplate` (`membership` and the rest), which the record gives as seven blocks of additions to `chat_room.py` (`chat_room.py@5569` to `@7192`, 728 lines), not as a whole file. Not merged: the crate in Rust carries the same design on |
 
-**Rust: `chat-world` is one line from building.**
-`sketch_status_test.py`, which CI runs, checks finding 1, the cause of
-finding 2, and findings 3 and 4, as the files read, without building
-anything. `review/run.sh`, which CI
-doesn't run, builds a scratch copy and runs it; it needs the network,
-for the packages the sketch names.
+**Rust: `chat-world` builds, all 18 of its tests pass, and both of its
+demos say their logs verify.** As written it didn't build. `review/run.sh`,
+which CI doesn't run, builds a scratch copy and shows all of it; it
+needs the network, for the packages the sketch names.
+`sketch_status_test.py`, which CI runs, checks as the files read that
+the repairs are in place and that the findings below still hold,
+without building anything.
 
-1. **It doesn't build as written.** `room.rs` calls `m.hash()` on a
-   `Message`, which has no such method. The record that holds the
-   message has one. With `rec.hash()` there, the crate builds.
-2. **Then 4 of its 12 tests pass, and its demo runs to the end with
-   its own check of the room failing.** The other 8 tests fail the
-   same way as that check: "signature error: Verification equation
-   was not satisfied". (The demo prints "Verification FAILED", and
-   then its closing lines, which are fixed text, say "The whole room
-   verifies offline.") The cause: the room signs each record before
-   the record's `type` is written into it, and the check reads the
-   record with its `type`. So the bytes checked are never the bytes
-   signed. With the `type` left out of the checked bytes too, all 12
-   pass. That shows the cause; it isn't the repair, since a record's
-   type ought to be signed.
-3. **The files of DeepSeek's later reply aren't joined to the crate.**
-   `home.rs`, `commons.rs`, `transcript.rs` and `bin/home-demo.rs` are
-   here, but `lib.rs` as written doesn't name them. The lines to add
-   are in `lib.rs@14578`, `record.rs@13867`, `record.rs@13954` and
-   `verify.rs@14327`, and more tests in `tests/integration.rs@14594`
-   and `@14695`. Not tried yet.
-4. **It stands apart from open-worlds' own code.** It uses neither
+The three repairs to the crate:
+
+- **Fix 16: the visible log hashes the record a message is in.** As
+  written, `room.rs` called `m.hash()` on a `Message`, which has no
+  such method, and the crate didn't build. The record that holds the
+  message has one.
+- **Fix 17: the files of DeepSeek's later reply, joined.** `home.rs`,
+  `commons.rs`, `transcript.rs` and `bin/home-demo.rs` were here, but
+  `lib.rs` didn't name them. Joined as that reply says:
+  `lib.rs@14578`, `record.rs@13867` and `@13954`, `verify.rs@14327`,
+  its note that `push` becomes `pub(crate)` (record line 14003), and
+  its tests (`tests/integration.rs@14594` and `@14695`), without the
+  one DeepSeek withdrew in the record ("Let me skip it", line 14692).
+  One arm is ours: the visible log leaves the three new kinds of
+  record out, as the reply gives no line for them.
+- **Fix 18: a record is signed as it is written out.** As written, the
+  room signed the bare struct and then wrapped it as a `Record`, which
+  writes a `type` beside its fields, and the check read the record
+  with its `type`. So the bytes checked were never the bytes signed:
+  8 of the 12 tests failed with "signature error: Verification
+  equation was not satisfied", and the demo printed "Verification
+  FAILED" before its closing lines, which are fixed text, said "The
+  whole room verifies offline." Now the bytes signed are the wrapped
+  record's.
+
+Findings that stand, for the fitting:
+
+1. **After a redaction, the visible log still shows the message's
+   text.** `visible_log` goes through the records once, in order, and
+   notes a redaction when it reaches it, which is after the message.
+   `review/run.sh` shows it with a test of ours. Not repaired: what a
+   reader is shown after a redaction, and after a human overrides
+   one, is a question for the design.
+2. **It stands apart from open-worlds' own code.** It uses neither
    `rust/formats` nor `rust/world-log`, and rebuilds canonical form,
    hashing, keys and proofs with packages of its own choosing. Its
    `did:key` is 64 hex characters, where open-worlds' is the Multikey
    form (`z6Mk...`). And it reads the clock inside the crate, where
    open-worlds gives a record its time from outside.
+3. **Every record carries the room's signature beside its author's.**
+   open-worlds' worlds sign their logs' heads, in batches, not each
+   entry (STATUS.md, "Decided by the technical lead", 2026-11-16).
 
 Not checked: `chat-world-draft/`, the first version, was not built. The
 schema was compared with open-worlds' own by the names of its
 definitions only (67 in the whole version, 33 in open-worlds', none
 shared; some are the same thing spelled differently, as `DidKey` and
 `didKey`), and was not tried against the sketches' records. The two
-prose pieces were read, not tested.
+prose pieces were read, not tested. The three botanical tests that
+still fail were not looked into beyond their error lines.
 
 ## Ours, not DeepSeek's
 

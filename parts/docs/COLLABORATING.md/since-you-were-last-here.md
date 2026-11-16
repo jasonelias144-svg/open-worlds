@@ -1,9 +1,9 @@
 > Part of `docs/COLLABORATING.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "Since you were last here" to "The standard".
+> This part holds: "Since you were last here" to "What would help most now".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/start.md
-> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/house-rules.md
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/the-standard.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
 ## Since you were last here
@@ -288,9 +288,10 @@ which the project is to fit as `rust/endless-plant` (not built yet);
 and 012-09-05, begun here: water as particles, the garden and a
 botanical garden of gardens, then the founder's turn to the Commons
 as chat rooms, each with an AI moderator, a home room for each person,
-a schema, and a sketch crate in Rust, `chat-world`. It is kept as
-written, with what runs ("Messages from the technical lead", above),
-and is fitted next.
+a schema, and a sketch crate in Rust, `chat-world`. It is kept with a
+first round of repairs, each listed, and what runs: the crate builds
+and passes its own 18 tests ("Messages from the technical lead",
+above). It is fitted next.
 012-06-02's code is being made to work; then the founder and the
 technical lead decide what fits with what is built, and how (STATUS.md,
 "Decided", 2026-11-14). Each new conversation starts a new record, which
@@ -407,43 +408,5 @@ publishes or can't be undone. ADMIN itself and the Keepers
 wait for step 11; their interface is fixed in step 4, by the project.
 So are the measures that compare the two Keepers (item 9 above).
 
-## The standard
 
-- **The code merged into `main`** (`multiverse/`, `formats/`, `rust/`),
-  **at a named commit.** Whatever is merged
-  into `main` is the current standard; a proposal names the commit it
-  built on.
-- **The protocol, WCP/0.4** (`multiverse/protocol.py`): manifest,
-  petition, act, leave, log. An individual is a key, and every request
-  is signed, for one world's id and key (`multiverse/identity.py`). A
-  world is a key too: it signs its manifest, and the stamps in a
-  passport, which anyone can check offline (`multiverse/passport.py`).
-  A key can be saved encrypted (`multiverse/keys.py`), and signed over
-  to a new one by both keys (`multiverse/succession.py`). Leaving can't
-  be refused by any law.
-- **The conformance test** (`multiverse/conformance.py`): a world that
-  passes it speaks the protocol. It says exactly what it checks, and what
-  no outside test can see.
-- **Signed records** (`formats/`, and `rust/formats` in Rust): each kind
-  defined in `schemas/records-v1.schema.json`, checked the same way in
-  both languages, against the vectors in `vectors/formats/`.
-- **The design** ([MULTIVERSE.md](MULTIVERSE.md), and the pages under
-  "Since you were last here") and **the course** ([COURSE.md](COURSE.md)):
-  where this is going, twelve steps ahead.
-
-To see it work:
-
-```
-python3 -m pip install -r requirements.txt
-python3 -m unittest discover -s tests -t .
-python3 -m multiverse.collaboration
-python3 -m multiverse.journey
-```
-
-Read in this order: COURSE.md, MINDS.md and MULTIVERSE.md; then
-`protocol.py`, `conformance.py`, `identity.py`, `passport.py`,
-`entity.py`, `poetry_world.py`, `collaboration.py`; then
-`formats/records.py` and research/FORMATS.md.
-
-
-> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/house-rules.md
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/the-standard.md

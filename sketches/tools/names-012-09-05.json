@@ -72,5 +72,13 @@
   "sketch_status_test.py",
   "review/run.sh"
  ],
- "changed": {}
+ "changed": {
+  "fractal_garden.py": "Fix 15: DeepSeek's own change, which the record gives as a note with the botanical garden (line 3425) and which was never made here: tick() takes external_rain, a GardenTick carries ext_rain, in its body too, and the replay applies it before the tick's own rain.",
+  "chat-world/src/room.rs": "Fix 16: the visible log hashes the record a message is in (rec.hash()), as Message has no hash() and the crate did not build. Fix 17: push is pub(crate), DeepSeek's own note with the later reply (line 14003), and the visible log has an arm for the three later kinds of record, which it leaves out. Fix 18: each record is signed as it is written out.",
+  "chat-world/src/lib.rs": "Fix 17: names the later reply's three modules, as lib.rs@14578 says. Fix 18: sign_record and sign_record_dual sign the record as it is written out, wrapped as a Record with its type, which are the bytes verify_room reads; they signed the bare struct, so no signature ever verified.",
+  "chat-world/src/record.rs": "Fix 17: the later reply's three records (record.rs@13867: PortLanding, Bookmark, Presence, with the extended Record) and their arms (record.rs@13954), merged by hand.",
+  "chat-world/src/verify.rs": "Fix 17: the later reply's three arms (verify.rs@14327), merged by hand after the Refusal arm.",
+  "chat-world/src/home.rs": "Fix 18: its three records are signed as they are written out.",
+  "chat-world/tests/integration.rs": "Fix 17: the later reply's tests (integration.rs@14594 and @14695) appended, without port_rejected_in_non_personal_room and its helper, which DeepSeek withdrew in the record (\"Let me skip it\", line 14692)."
+ }
 }

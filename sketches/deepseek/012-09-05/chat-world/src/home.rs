@@ -55,7 +55,7 @@ impl HomeRoom {
             intent.into(),
             target_room.cloned(),
         );
-        let signed = crate::sign_record(rec, &self.user_kp, |r, p| r.proof = p)?;
+        let signed = crate::sign_record(rec, &self.user_kp, Record::PortLanding, |r, p| r.proof = p)?;
         let record = Record::PortLanding(signed);
         self.room.push(record.clone());
         Ok(record)
@@ -69,7 +69,7 @@ impl HomeRoom {
             room.world_id().clone(),
             note.into(),
         );
-        let signed = crate::sign_record(rec, &self.user_kp, |r, p| r.proof = p)?;
+        let signed = crate::sign_record(rec, &self.user_kp, Record::Bookmark, |r, p| r.proof = p)?;
         let record = Record::Bookmark(signed);
         self.room.push(record.clone());
         Ok(record)
@@ -84,7 +84,7 @@ impl HomeRoom {
             rooms.to_vec(),
             ttl,
         );
-        let signed = crate::sign_record(rec, &self.user_kp, |r, p| r.proof = p)?;
+        let signed = crate::sign_record(rec, &self.user_kp, Record::Presence, |r, p| r.proof = p)?;
         let record = Record::Presence(signed);
         self.room.push(record.clone());
         Ok(record)

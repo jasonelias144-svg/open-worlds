@@ -526,8 +526,9 @@ become a superworld by addition, is withdrawn: it is the same project.
 decisions in that conversation (an AI moderator for each room; rooms
 of people and AIs together; a home room for each person): a chat room
 as a log of signed records under the room's law, in Python, then a
-schema and a crate in Rust, `chat-world`. Kept as written in
-`sketches/deepseek/012-09-05/`, with what runs. It uses none of
+schema and a crate in Rust, `chat-world`. Kept in
+`sketches/deepseek/012-09-05/`, with what runs: after three listed
+repairs the crate builds, and its own 18 tests pass. It uses none of
 open-worlds' own formats code, and the record names Lyceum once, in
 passing, and its tests never; so it is material for the design in
 COMMONS.md, not yet a part of it. The founder's

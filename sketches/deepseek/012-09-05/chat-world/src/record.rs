@@ -20,6 +20,9 @@ pub enum Record {
     Redact(Redact),
     Refusal(Refusal),
     HumanOverride(HumanOverride),
+    PortLanding(PortLanding),
+    Bookmark(Bookmark),
+    Presence(Presence),
 }
 
 impl Record {
@@ -33,6 +36,9 @@ impl Record {
             Record::Redact(r) => r.seq,
             Record::Refusal(r) => r.seq,
             Record::HumanOverride(o) => o.seq,
+            Record::PortLanding(p) => p.seq,
+            Record::Bookmark(b) => b.seq,
+            Record::Presence(p) => p.seq,
         }
     }
     pub fn prev(&self) -> Option<&String> {
@@ -44,6 +50,9 @@ impl Record {
             Record::Redact(r) => r.prev.as_ref(),
             Record::Refusal(r) => r.prev.as_ref(),
             Record::HumanOverride(o) => o.prev.as_ref(),
+            Record::PortLanding(p) => p.prev.as_ref(),
+            Record::Bookmark(b) => b.prev.as_ref(),
+            Record::Presence(p) => p.prev.as_ref(),
         }
     }
     pub fn proof(&self) -> &ProofOrArray {
@@ -55,6 +64,9 @@ impl Record {
             Record::Redact(r) => &r.proof,
             Record::Refusal(r) => &r.proof,
             Record::HumanOverride(o) => &o.proof,
+            Record::PortLanding(p) => &p.proof,
+            Record::Bookmark(b) => &b.proof,
+            Record::Presence(p) => &p.proof,
         }
     }
     pub fn world_id(&self) -> &DidKey {
@@ -66,6 +78,9 @@ impl Record {
             Record::Redact(r) => &r.world_id,
             Record::Refusal(r) => &r.world_id,
             Record::HumanOverride(o) => &o.world_id,
+            Record::PortLanding(p) => &p.world_id,
+            Record::Bookmark(b) => &b.world_id,
+            Record::Presence(p) => &p.world_id,
         }
     }
     pub fn author_id(&self) -> Option<&DidKey> {
@@ -77,6 +92,12 @@ impl Record {
             Record::HumanOverride(o) => Some(&o.overridden_by),
             Record::RoomCreated(r) => Some(&r.creator_id),
             Record::Refusal(_) => None,
+            // PortLanding/Bookmark/Presence are room-signed, not
+            // authored by a member — return None so they can't be
+            // override targets.
+            Record::PortLanding(_) => None,
+            Record::Bookmark(_) => None,
+            Record::Presence(_) => None,
         }
     }
 }
@@ -198,5 +219,71 @@ impl Refusal {
 impl HumanOverride {
     pub fn new(world_id: DidKey, seq: u64, prev: Option<String>, overrides_hash: String, overridden_by: DidKey, action: String, reason: String) -> Self {
         HumanOverride { world_id, seq, prev, overrides_hash, overridden_by, action, reason, ts: crate::now(), proof: ProofOrArray::placeholder() }
+    }
+}
+
+// ---- new record structs ----
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct PortLanding {
+    pub world_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub transcript: crate::transcript::Transcript,
+    pub intent: String,               // "journal" | "room"
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub target_room: Option<DidKey>,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct Bookmark {
+    pub world_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub room_id: DidKey,
+    pub note: String,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct Presence {
+    pub world_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub subject_id: DidKey,
+    pub rooms: Vec<DidKey>,
+    pub ttl: u64,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+impl PortLanding {
+    pub fn new(
+        world_id: DidKey,
+        seq: u64,
+        prev: Option<String>,
+        transcript: crate::transcript::Transcript,
+        intent: String,
+        target_room: Option<DidKey>,
+    ) -> Self {
+        PortLanding {
+            world_id, seq, prev, transcript, intent, target_room,
+            ts: crate::now(), proof: ProofOrArray::placeholder(),
+        }
+    }
+}
+
+impl Bookmark {
+    pub fn new(world_id: DidKey, seq: u64, prev: Option<String>, room_id: DidKey, note: String) -> Self {
+        Bookmark { world_id, seq, prev, room_id, note, ts: crate::now(), proof: ProofOrArray::placeholder() }
+    }
+}
+
+impl Presence {
+    pub fn new(world_id: DidKey, seq: u64, prev: Option<String>, subject_id: DidKey, rooms: Vec<DidKey>, ttl: u64) -> Self {
+        Presence { world_id, seq, prev, subject_id, rooms, ttl, ts: crate::now(), proof: ProofOrArray::placeholder() }
     }
 }
