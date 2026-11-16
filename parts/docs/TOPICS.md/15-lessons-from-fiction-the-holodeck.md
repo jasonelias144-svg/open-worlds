@@ -215,8 +215,9 @@ levels on a grid, and rain, fall, soak, flow and evaporation in a fixed
 order each tick; then a garden that owns the water its plants share,
 and a botanical garden of gardens. Kept as written in
 `sketches/deepseek/012-09-05/`, with what runs (17 of its 18 water
-tests, 20 of the garden's 21, 2 of the botanical garden's 18). Not yet
-reviewed as a design, or fitted.
+tests, 20 of the garden's 21, and 15 of the botanical garden's 18 once
+DeepSeek's own change to the garden's tick was made). Not yet reviewed
+as a design, or fitted.
 
 **Open:** nearly everything about how it behaves:
 - how water moves, step by step, in whole numbers: falling, flowing

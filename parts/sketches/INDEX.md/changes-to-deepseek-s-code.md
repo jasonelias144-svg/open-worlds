@@ -12,7 +12,8 @@ Each change is listed here, with its reason, and under `"changed"` in
 the record's names file ([tools/names-012-03-02.json](tools/names-012-03-02.json),
 [tools/names-012-04-00.json](tools/names-012-04-00.json),
 [tools/names-012-05-01.json](tools/names-012-05-01.json),
-[tools/names-012-06-02.json](tools/names-012-06-02.json)), which
+[tools/names-012-06-02.json](tools/names-012-06-02.json),
+[tools/names-012-09-05.json](tools/names-012-09-05.json)), which
 `extract.py check` holds the folder to. Every other file in
 `deepseek/` is exactly as its record has it, and git history shows each
 change exactly.
@@ -123,6 +124,45 @@ tier, and the same).
 **Fix 14: the empty observations' hash.** `pack_federated_bundle` took
 it over the JSON string `"[]"`, and the verifier over the bytes `[]`,
 so no federated bundle could verify.
+
+**Fix 15 (2026-11-16, record 012-09-05): the garden takes rain from
+outside.** The botanical garden calls `FractalGarden.tick()` with
+`external_rain`, and the record gives the change to the garden as a
+note (line 3425) that was never made in `fractal_garden.py`: `tick()`
+takes it, a tick's record carries it as `ext_rain`, in its body too,
+and the replay applies it before the tick's own rain. 13 more of the
+botanical garden's 18 tests pass.
+
+**Fix 16: the visible log hashes the record.** `chat-world`'s
+`room.rs` called `m.hash()` on a `Message`, which has no such method,
+so the crate didn't build. The record the message is in has one.
+
+**Fix 17: the later reply's files, joined to the crate.** DeepSeek's
+next reply adds a home, the Commons and transcripts to `chat-world`,
+as three whole files and as lines to add to four others: `lib.rs`
+names the three modules (`lib.rs@14578`); `record.rs` gains three
+records, the wider `Record`, and their arms (`record.rs@13867`,
+`@13954`); `verify.rs` gains three arms (`verify.rs@14327`); `push`
+in `room.rs` becomes `pub(crate)` (a note, line 14003); and the tests
+are appended (`tests/integration.rs@14594`, `@14695`), without
+`port_rejected_in_non_personal_room`, which DeepSeek withdrew in the
+record (line 14692). One arm is ours: `visible_log` leaves the three
+new kinds of record out, since the reply gives no line for them and
+the match must cover them.
+
+**Fix 18: a record signed as it is written out.** The room signed the
+bare struct, then wrapped it as a `Record`, which writes a `type`
+beside its fields; `verify_room` read the bytes with the `type`. So
+`verify_room` failed on every room's first record. `sign_record` and
+`sign_record_dual` now take the wrapping and sign the wrapped record's
+bytes, in `room.rs` and `home.rs` alike. All 18 tests pass, and both
+demos' logs verify. How it is repaired is the technical lead's choice:
+DeepSeek's code signs the bare struct throughout (the test it withdrew
+does too), so a check that left the `type` out would have agreed with
+the code as well. Signing the `type` is the stronger, since a record
+can't then be passed off as another kind. (The Commons' registrations
+and the transcripts verified as written: they are signed and checked
+as the same struct.)
 
 Not fixed, and why:
 

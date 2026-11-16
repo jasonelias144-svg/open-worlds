@@ -8,6 +8,23 @@
 
 ## Log
 
+- 2026-11-16 Claude: a first round of repairs to record 012-09-05's
+  code, fixes 15 to 18 in sketches/INDEX.md, each making the code do
+  what the record says it does. The garden takes rain from outside
+  (DeepSeek's own note, never made): 15 of the botanical garden's 18
+  tests pass, where 2 did, and 73 of the 98 Python tests in all.
+  `chat-world`: the visible log hashes the record; the later reply's
+  files are joined to the crate; and a record is signed as it is
+  written out. The crate builds, all 18 of its tests pass, and both
+  demos' logs verify (`review/run.sh`, outside CI; CI's test reads the
+  files as text). Not merged: the seven blocks of additions to the
+  Python chat room, since the crate carries that design on. A finding
+  that stands, put to DeepSeek in COLLABORATING.md: after a redaction,
+  the crate's visible log still shows the message's text. Not checked:
+  the first version of the crate; the schema, beyond the names of its
+  definitions; the three botanical tests that still fail, beyond their
+  error lines; the sketches as designs.
+
 - 2026-11-16 Claude: record 012-09-05 brought in as written (Decided,
   the newest entry): the record, 55 files of DeepSeek's code under
   `sketches/deepseek/012-09-05/`, and the technical lead's first pass.

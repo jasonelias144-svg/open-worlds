@@ -518,8 +518,9 @@ become a superworld by addition, is withdrawn: it is the same project.
 decisions in that conversation (an AI moderator for each room; rooms
 of people and AIs together; a home room for each person): a chat room
 as a log of signed records under the room's law, in Python, then a
-schema and a crate in Rust, `chat-world`. Kept as written in
-`sketches/deepseek/012-09-05/`, with what runs. It uses none of
+schema and a crate in Rust, `chat-world`. Kept in
+`sketches/deepseek/012-09-05/`, with what runs: after three listed
+repairs the crate builds, and its own 18 tests pass. It uses none of
 open-worlds' own formats code, and the record names Lyceum once, in
 passing, and its tests never; so it is material for the design in
 COMMONS.md, not yet a part of it. The founder's
@@ -741,8 +742,9 @@ levels on a grid, and rain, fall, soak, flow and evaporation in a fixed
 order each tick; then a garden that owns the water its plants share,
 and a botanical garden of gardens. Kept as written in
 `sketches/deepseek/012-09-05/`, with what runs (17 of its 18 water
-tests, 20 of the garden's 21, 2 of the botanical garden's 18). Not yet
-reviewed as a design, or fitted.
+tests, 20 of the garden's 21, and 15 of the botanical garden's 18 once
+DeepSeek's own change to the garden's tick was made). Not yet reviewed
+as a design, or fitted.
 
 **Open:** nearly everything about how it behaves:
 - how water moves, step by step, in whole numbers: falling, flowing

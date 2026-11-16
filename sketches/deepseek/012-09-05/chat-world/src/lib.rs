@@ -6,6 +6,9 @@ pub mod template;
 pub mod record;
 pub mod room;
 pub mod verify;
+pub mod transcript;
+pub mod home;
+pub mod commons;
 
 pub use did::{DidKey, Keypair};
 pub use error::{Error, Result};
@@ -17,16 +20,20 @@ pub fn now() -> String {
     chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Millis, true)
 }
 
+// Signs the record as it is written out: `wrap` makes it the Record it
+// will be in the log, which writes a `type` beside its fields, and
+// those are the bytes verify_room reads.
 pub(crate) fn sign_record<T, F>(
     mut rec: T,
     signer: &Keypair,
+    wrap: fn(T) -> record::Record,
     set_proof: F,
 ) -> Result<T>
 where
-    T: serde::Serialize,
+    T: serde::Serialize + Clone,
     F: FnOnce(&mut T, ProofOrArray),
 {
-    let body = hash::body_for_signing(&rec)?;
+    let body = hash::body_for_signing(&wrap(rec.clone()))?;
     let sig = signer.sign(&body);
     let proof = ProofOrArray::Single(Proof::create(signer, &sig));
     set_proof(&mut rec, proof);
@@ -37,13 +44,14 @@ pub(crate) fn sign_record_dual<T, F>(
     mut rec: T,
     subject: &Keypair,
     room: &Keypair,
+    wrap: fn(T) -> record::Record,
     set_proof: F,
 ) -> Result<T>
 where
-    T: serde::Serialize,
+    T: serde::Serialize + Clone,
     F: FnOnce(&mut T, ProofOrArray),
 {
-    let body = hash::body_for_signing(&rec)?;
+    let body = hash::body_for_signing(&wrap(rec.clone()))?;
     let subj_sig = subject.sign(&body);
     let room_sig = room.sign(&body);
     let subj_proof = Proof::create(subject, &subj_sig);

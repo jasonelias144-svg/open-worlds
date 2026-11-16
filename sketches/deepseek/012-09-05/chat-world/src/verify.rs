@@ -105,6 +105,55 @@ pub fn verify_room(room: &Room) -> Result<()> {
             Record::Refusal(r) => {
                 let _ = r;
             }
+            Record::PortLanding(p) => {
+                if !room.template().personal {
+                    return Err(Error::Policy(format!(
+                        "record {i}: port_landing only valid in personal rooms"
+                    )));
+                }
+                let room_proof = proofs.find_by_method(world_id).ok_or_else(|| {
+                    Error::Verification(format!("record {i}: missing room proof"))
+                })?;
+                room_proof.verify(&body)?;
+                crate::transcript::verify_transcript(&p.transcript)
+                    .map_err(|e| Error::Verification(format!("record {i}: transcript: {e}")))?;
+                if p.intent != "journal" && p.intent != "room" {
+                    return Err(Error::Policy(format!("record {i}: unknown port intent")));
+                }
+                if p.intent == "room" && p.target_room.is_none() {
+                    return Err(Error::Policy(format!(
+                        "record {i}: intent 'room' without target_room"
+                    )));
+                }
+            }
+            Record::Bookmark(b) => {
+                if !room.template().personal {
+                    return Err(Error::Policy(format!(
+                        "record {i}: bookmark only valid in personal rooms"
+                    )));
+                }
+                let room_proof = proofs.find_by_method(world_id).ok_or_else(|| {
+                    Error::Verification(format!("record {i}: missing room proof"))
+                })?;
+                room_proof.verify(&body)?;
+                let _ = b;
+            }
+            Record::Presence(p) => {
+                if !room.template().personal {
+                    return Err(Error::Policy(format!(
+                        "record {i}: presence only valid in personal rooms"
+                    )));
+                }
+                let room_proof = proofs.find_by_method(world_id).ok_or_else(|| {
+                    Error::Verification(format!("record {i}: missing room proof"))
+                })?;
+                room_proof.verify(&body)?;
+                if p.subject_id != *world_id {
+                    return Err(Error::Policy(format!(
+                        "record {i}: presence subject must be the room's key"
+                    )));
+                }
+            }
         }
 
         prev = Some(rec.hash()?);
