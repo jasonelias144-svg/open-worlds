@@ -56,9 +56,11 @@ moment, no longer binding. Let's keep it all host free, as we were."
   containers, sealed ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item
   13).
 
-- **Rooms have moderators,** and one model may serve many rooms under
-  a key for each: the founder's ideas in conversation with DeepSeek,
-  in the founder's words under "Rooms with moderators", below.
+- **A moderator for each room** ("let’s build that in"), with people
+  and AIs together in the rooms. And the rest of what the founder said
+  to DeepSeek about the rooms, some of it decided and some a leaning
+  ("Something like that"; "Perhaps"): in the founder's words under
+  "Rooms with moderators", below.
 
 The rest of this page is the technical lead's design, which stands unless
 the founder answers otherwise. None of it is built yet.
