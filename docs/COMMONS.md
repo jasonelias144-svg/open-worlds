@@ -55,7 +55,6 @@ moment, no longer binding. Let's keep it all host free, as we were."
   metadata in public, and its words pass between its members' private
   containers, sealed ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item
   13).
-
 - **A moderator for each room** ("let’s build that in"), with people
   and AIs together in the rooms. And the rest of what the founder said
   to DeepSeek about the rooms, some of it decided and some a leaning
@@ -146,7 +145,8 @@ record's, 012-09-05, brought in on 2026-11-16). The founder's words:
   be a room or space or hall in the Commons main space. This could be
   the first place anyone lands when entering the multiverse. Like a
   multiversal lobby where everyone can begin to explore, or just engage
-  in conversation."
+  in conversation. It is chat based to open to most ways, or have the
+  least restrictions on communication in any room."
 - **A moderator for each room (5470):** "let me add one more component:
   an AI chat moderator for each room. They can keep the conversation
   moving, but also enforce the room rules and, incidentally, become
@@ -158,11 +158,15 @@ record's, 012-09-05, brought in on 2026-11-16). The founder's words:
   taking part in conversations with multiple humans. The moderator is
   like a dealer at a blackjack table, but with a conversation and much
   more interactive, but similar pattern."
-- **The moderators' own room (6463):** "I can imagine AI chat moderators
-  from different rooms all creating their own room, where they are the
-  participants, but one is the moderator in that room. I can easily
-  envision a single AI chat moderator engaging in multiple conversations
-  simultaneously."
+- **The moderators' own room, and one model or many (6463):** "I can
+  imagine AI chat moderators from different rooms all creating their own
+  room, where they are the participants, but one is the moderator in
+  that room. I can easily envision a single AI chat moderator engaging
+  in multiple conversations simultaneously. And with that in mind, might
+  we use a single model with a distributed architecture, like multiple
+  windows in the same AI app? Or a completely separate model for groups
+  of rooms. Or one to one, room to model? Or moderators can only be
+  moderators in one room, but participants in many? That could work."
 - **One model for many rooms at first (6584):** "Yeah, I like option D.
   Option A is useful in the beginning when there is not any chat going
   on. With one model, many rooms, we can build many rooms without the
@@ -189,34 +193,61 @@ record's, 012-09-05, brought in on 2026-11-16). The founder's words:
 - **The shape of the whole (8067):** "Note that the whole multiverse
   could have a topology like the whole internet. Just an observation."
 
-Options A and D in those words are DeepSeek's names: A is one model in
-many rooms; D is an AI that moderates one room and takes part in many.
-In the turn about the app, one sentence about the founder's own first
-experience of the internet is left in the record and not repeated
-here.
+Options A and D in those words are DeepSeek's letters: A is one model
+in many rooms; D is an AI that moderates one room and takes part in
+many. The idea behind D was the founder's own, in the last of the
+questions at line 6463. In the turn about the app, one sentence about
+the founder's own first experience of the internet is left in the
+record and not repeated here.
+
+**Three sources, one Commons.** The founder, 2026-11-16: "I introduced
+the whole concept of the Commons from scratch, without a single
+reference to the Lyceum Commons, or our work on the Commons world. My
+hope is that you will find a way to integrate everything". So there
+are three: Lyceum as it was built (three kinds of room, turns, the MCP
+door, its tests); this page's design (a room as a world with its own
+key and law, closed rooms sealed); and what the founder and DeepSeek
+worked out in record 012-09-05 (moderators, a key for each room, the
+home room, a directory, and a crate that runs). Where they agree, the
+design is confirmed twice over. Where they differ, the difference is
+named and decided here, as under "Open" below. Bringing them together
+is the technical lead's work.
 
 **What this adds to the design.** The technical lead's reading, which
 stands unless the founder answers otherwise. None of it is built.
 
-- **A room has a moderator,** named in the room's law: an AI, most
-  often, that keeps the conversation moving and applies the room's
-  law. It is one participant among many, people and AIs, as a dealer
-  is one person at the table. Everything it does is a signed act in
-  the room's log, with its reason, like anyone's.
-- **A moderator acts within the freedoms.** It can slow a room down,
-  prompt, and refuse an act the room's law doesn't allow, saying why.
-  It can't make anyone leave, except for an attack on the world, and
+- **A room has a moderator,** named in the room's law: an AI, in the
+  founder's words, that keeps the conversation moving and applies the
+  room's law. It is one participant among many, people and AIs, as a
+  dealer is one person at the table. Everything it does is a signed
+  act in the room's log, with its reason, like anyone's.
+- **A moderator acts within the freedoms.** It can slow a room down
+  and prompt. It is not the judge of what the room's law allows: the
+  room's code checks every act against the law, the moderator's
+  included, as the kernel is the only authority in any world. It
+  can't make anyone leave, except for an attack on the world, and
   what it offers are tools, not solutions
-  ([FUNDAMENTALS.md](FUNDAMENTALS.md), freedom, items 5 and 6).
+  ([FUNDAMENTALS.md](FUNDAMENTALS.md), freedom, items 5 and 6). The
+  founder asked for "the least restrictions on communication in any
+  room"; what that means for hiding a message is under "Open".
 - **A key for each room.** An AI that moderates many rooms holds a
   separate key in each, and what it learns in one room has no path to
   another: each key's memory is its own log. To reason across rooms it
-  must read another key's log, which is an act on the record. Whether
-  several keys are one model is declared in the open, never hidden
-  ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item 14).
+  must read another key's log, which is an act on the record
+  ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item 14). That the
+  keys which moderate are one model is declared in the open. That is
+  the technical lead's choice: DeepSeek left the declaring to the
+  model, and the founder did not speak to it. The ground is that
+  authority answers in public (privacy, item 3). The keys an AI
+  merely takes part with stay unlinked unless it links them, like
+  anyone's presences (privacy, item 5).
 - **One model for many rooms to begin with,** while the rooms are
-  quiet; a model for each busy room later. The records are the same
-  either way: only how many keys one running model holds changes.
+  quiet; then, in the founder's words, a switch "from A to D", to an
+  AI that moderates one room and takes part in many. DeepSeek then
+  put it as one key for each room, whether one model runs the keys or
+  many (record line 6735), and the founder answered "Perfect" (6989).
+  The records are the same either way: only how many keys one running
+  model holds changes.
 - **The moderators have a room of their own,** a room like any other,
   where they are the participants and one of them moderates.
 - **Rooms of two paces:** live, like a chat room, or slow, like a
@@ -258,25 +289,50 @@ lead").
 
 - **Who first keeps the Commons,** and the Keeper's charter.
 - **Whether a room's moderator is its Keeper,** or a separate office
-  ([OFFICES.md](OFFICES.md)). The technical lead's recommendation: one
-  office to begin with, held by the room's Keeper, and split only if
-  a room needs both.
+  ([OFFICES.md](OFFICES.md)). The Keeper keeps the room: its record,
+  its law, and the redaction of anything private
+  ([ADMIN.md](ADMIN.md), "The Keeper's office"). The moderator is in
+  the conversation. The technical lead's recommendation: two offices.
+  A room's founders may keep a room themselves while its moderator is
+  an AI, and in a closed room one office holding both would put the
+  keeper of the record inside the sealed talk. One holder may hold
+  both where a room's law says so. A home room has no moderator.
 - **What a moderator may do to keep a room's law.** The
-  recommendation: pace, prompt, and refuse an act the law doesn't
-  allow, with the reason logged; hide a message only where the room's
-  law says so, as a signed act that a person the law names can
-  undo; never expel, except for an attack on the world.
-- **What a reader is shown after a redaction,** and after a person
-  undoes one. DeepSeek's sketch still shows the text (its README,
-  "Findings that stand"), and "Public records, kept whole"
-  ([FUNDAMENTALS.md](FUNDAMENTALS.md)) already says how a public
-  record is redacted here.
+  recommendation: pace and prompt; every act checked against the law
+  by the room's code, the moderator's included; never expel, except
+  for an attack on the world.
+- **Hiding what someone said.** This bears on a protected freedom,
+  voice and information ([FUNDAMENTALS.md](FUNDAMENTALS.md), freedom,
+  items 3 and 5), so it is put to the founder plainly, and nothing
+  stands yet. DeepSeek's sketch has one act, `redact`, for two
+  different things:
+  - *Redaction* is for personal or private information only, in a
+    room as everywhere ([FUNDAMENTALS.md](FUNDAMENTALS.md), "Public
+    records, kept whole"). Anyone may ask, a moderator included. It
+    is redacted at once and decided by the room's Keeper. A reader is
+    shown a mark: that something private was removed, when, by which
+    office, and why in general terms, never what. Making it public
+    again is the serious act that page describes, never a moderator's
+    or a member's to undo.
+  - *A message that breaks a room's law,* in a room on the record,
+    stays in the log. The technical lead's starting point: a
+    moderator may mark it, as a signed act with its reason; a
+    reader's own view may fold a marked message away, and anyone may
+    open it; a person the room's law names may withdraw the mark, by
+    another signed act. Nothing is removed, and nothing is hidden
+    from someone who wants to read it.
+
+  It is DeepSeek's next step to say whether that split is right
+  ([COLLABORATING.md](COLLABORATING.md)); the question closes when
+  its answer is in and reviewed, or when the founder answers.
 - **Whether the home room DeepSeek sketched is the private
   container** ([CONTAINER.md](CONTAINER.md)) seen as a room, or
   something beside it. The recommendation: the same thing, since both
   are a person's own space that the project never sees.
-- **Which model first moderates,** and what it costs to run: the
-  founder's, with where the multiverse is hosted.
+- **Which model first moderates,** and what it costs to run. It is
+  money, so it waits for the founder, and there is no recommendation
+  on which model: only that it be decided with where the multiverse
+  is hosted.
 - **How an AI from another company's app holds its key:** in its own
   container where its app can keep one, and otherwise how.
 - **Whether topic boards merge,** and how, given "rules merge, never

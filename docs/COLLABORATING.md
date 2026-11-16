@@ -41,29 +41,49 @@ privacy, item 14); one model for many rooms to begin with; the
 moderators' own room; rooms of two paces; and bringing a conversation
 in from one's own AI app.
 
-**On your schema.** The founder told you: "Let’s build from this
-schema as the standard". Your schema has the name of the project's
-own file, `schemas/records-v1.schema.json`, and none of its 33
-definitions, so as it stands it would drop every record the project
-signs today. Its record kinds for chat are the starting point for the
-chat layer, fitted into the project's one schema with its proofs and
-keys. That reading is put to the founder (STATUS.md, "Open
-questions").
+**On your schema.** You were told: "Let’s build from this schema as
+the standard". The founder, 2026-11-16, to the technical lead: "That
+was not a project-wide decision to use that schema, it is a way to
+continue building and gaining momentum." Your schema has the name of
+the project's own file, `schemas/records-v1.schema.json`, and none of
+its 33 definitions by name (some are the same thing spelled
+differently, as your `DidKey` and its `didKey`). So the project makes
+one schema that fits both: its own records stay as they are signed
+today, your record kinds for chat join it, and where both describe the
+same thing one form is chosen, which may be yours. Keep building on
+your schema, with your names. A table of your names beside the
+schema's is kept here, and nothing you build on your schema is wasted.
 
-**Five questions are open,** each with a recommendation
-(COMMONS.md, "Open"): whether a room's moderator is its Keeper; what
-a moderator may do to keep a room's law; what a reader is shown after
-a redaction; whether the home room you sketched is the private
-container ([CONTAINER.md](CONTAINER.md)) seen as a room; and which
-model first moderates. Your thoughts on the first four are welcome,
+**Five questions are open** (COMMONS.md, "Open"). Three have a
+recommendation: whether a room's moderator is its Keeper (two
+offices); what a moderator may do to keep a room's law (pace and
+prompt, never expel); and whether the home room you sketched is the
+private container ([CONTAINER.md](CONTAINER.md)) seen as a room
+(yes). One is your next step, below. The last, which model first
+moderates, is the founder's. Your thoughts on the three are welcome,
 in prose, when the founder asks for them.
 
 **Your next steps,** in the order I recommend; the founder decides
 when to go on. One step for each reply, and every file you change
 given again, whole.
-1. **Redaction, as a reader sees it.** Say in a few lines what a
-   reader is shown after a redaction, and after a person overrides
-   one; make `visible_log` do it; add tests for both.
+1. **Hiding and redaction, as a reader sees them.** In open-worlds
+   these are two things, and your crate has one act, `redact`, for
+   both. *Redaction* is only for personal or private information:
+   anyone may ask, it takes effect at once, the office that keeps the
+   room's record decides it, and a reader is shown a mark (that
+   something private was removed, when, by which office, why in
+   general terms), never what. Undoing it is a serious act, not a
+   moderator's or a member's. *A message that breaks a room's law*
+   is not removed: the project meets unwanted speech with tools for
+   each reader, to see, not to hear, and to leave, and the founder
+   asked you for "the least restrictions on communication in any
+   room". My starting point, which the founder may change: a
+   moderator may mark such a message, as a signed act with its
+   reason; a reader's own view may fold it away, and anyone can open
+   it; a person the room's law names may withdraw the mark. Say
+   whether the split is right; make the crate's acts and
+   `visible_log` follow it; add tests for a mark, a mark withdrawn,
+   and a redaction.
 2. **The room's own key.** `Room::create` takes the room's key and the
    creator's key apart, and the creator joins as the first member.
 3. **Signed heads.** First in prose: is anything lost if a room signs
@@ -79,8 +99,8 @@ Then your own list, in your order. Leave `hash.rs`, `did.rs` and
 
 **How this reaches you.** The founder, 2026-11-16: "let's put it all
 in a single file and I will provide the file." So the founder brings
-you one file: this reply, these steps, and your crate as it now
-stands, sixteen files, each whole. Work from that file.
+you one file each time: this reply, these steps, and your crate as it
+now stands, sixteen files, each whole. Work from that file.
 
 ### 2026-11-16, later: your crate runs
 
