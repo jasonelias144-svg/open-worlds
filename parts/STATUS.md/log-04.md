@@ -30,6 +30,23 @@
   nearer the project's `grant`); and a moderator's removal lands beside
   the project's `decision`. It compares names and fields only: no record
   was tried against either schema.
+  After the independent review (nothing blocking, 24 notes): the script
+  now reads the written file from disk as well; refuses a path that
+  leaves its folder, a note with a line break, and a spec of the wrong
+  shape; and says what it can't read in place of stopping with a
+  traceback. Seven tests were added, among them one for the reading
+  back itself, which had none, and one that pins the limit to the
+  byte; a past reply's size and hash are now looked for in its own row
+  of the README. The table was corrected where it claimed more than the
+  schema's fields show: where `seq`, `prev` and `world_id` are and
+  aren't; `JoinRequest`, not `Join`, as the nearer relative of
+  `arrival`; `RuntimeAttestation` beside the project's links, not
+  `mind`; `WorldKey`'s parameter ranges beside a template's dials; and
+  that the fitting has to split `Redact` (an author taking back their
+  own comment is no office's decision) and `HumanOverride`. One
+  sentence in the file already given overstates, and is named in
+  `sketches/replies/README.md`, since a file that was given isn't
+  changed. AGENTS.md names the kept replies.
 
 - 2026-11-16 Claude: one file for the founder to give DeepSeek (Decided,
   the newest entry): the technical lead's reply to record 012-09-05,

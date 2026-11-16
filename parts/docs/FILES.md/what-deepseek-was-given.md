@@ -8,9 +8,9 @@
 
 ## What DeepSeek was given
 
-In `sketches/replies`, 4 files, 111 KB in all, the largest 93 KB: the one file the founder gave DeepSeek at each return, with the reply and the list of files it was built from (`docs/reply.py` builds it).
+In `sketches/replies`, 4 files, 112 KB in all, the largest 93 KB: the one file the founder gave DeepSeek at each return, with the reply and the list of files it was built from (`docs/reply.py` builds it).
 
-**`sketches/replies`** (4 files, 111 KB):
+**`sketches/replies`** (4 files, 112 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-09-05-for-deepseek.txt

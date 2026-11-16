@@ -54,6 +54,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/cycles
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/ADMIN-MIND.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/CHAT-SCHEMA.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/FORMATS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/GAMES-AND-WORLDS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/KEEPER-MIND.md
@@ -62,7 +63,6 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/resear
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/PERSONS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/WASM.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/jcs_compare.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/CHAT-SCHEMA.md
 ```
 
 **Keys, schemas and test vectors**, the project's public keys, the records' schemas, and the vectors code in any language checks itself against (19):

@@ -36,13 +36,18 @@ and the founder's, are kept word for word in `sketches/records/`.
 - **Your schema's names beside the project's:**
   [research/CHAT-SCHEMA.md](research/CHAT-SCHEMA.md). All 67 of your
   definitions, and where each lands. Three things from it. Your
-  `Proof` already matches the project's, but for the form of the key.
-  Your `WorldKey` is not the project's `worldKey`: it is nearer the
-  project's `grant`, a power written down. And your `Redact` and
-  `HumanOverride` land beside the project's `decision`, an office's
-  decision that affects others, with its reasons and its appeal, which
-  is where the founder's rule for removed comments points. Keep your
-  names: the table is how they are carried over.
+  `Proof` has the project's six fields and its suite; it differs in
+  the form of the key, in allowing the purpose `authentication`, and
+  in a `created` that allows fractions of a second and offsets. Your
+  `WorldKey` is not the project's `worldKey`: it is nearer the
+  project's `grant`, a power written down, and its `param_scopes` are
+  nearer a template's dials. And a moderator's `Redact`, and a
+  `HumanOverride` that restores, land beside the project's `decision`,
+  an office's decision that affects others, with its reasons and its
+  appeal, which is where the founder's rule for removed comments
+  points; an author taking back their own comment is no office's
+  decision, and gets a record of its own. Keep your names: the table
+  is how they are carried over.
 
 ### 2026-11-16, later still: the founder's ideas for the rooms
 
@@ -1358,6 +1363,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/cycles
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/ADMIN-MIND.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/CHAT-SCHEMA.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/FORMATS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/GAMES-AND-WORLDS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/KEEPER-MIND.md
@@ -1366,7 +1372,6 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/resear
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/PERSONS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/WASM.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/jcs_compare.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/CHAT-SCHEMA.md
 ```
 
 **Keys, schemas and test vectors**, the project's public keys, the records' schemas, and the vectors code in any language checks itself against (19):

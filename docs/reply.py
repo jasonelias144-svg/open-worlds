@@ -24,9 +24,15 @@ SPEC is a JSON file in sketches/replies/ (its README.md says more):
 
 The file is the text; then each file, whole, under a line that names
 it; then the line END OF FILE, which the reader is asked to quote back.
-After writing, the script reads the file back and compares each file
-in it with the repository, byte for byte. tests/test_reply.py holds
-every current reply to its sources.
+Before writing, the script reads what it has put together as a reader
+would, and compares each file in it with the repository, byte for byte;
+after writing, it reads the file from disk and does the same again.
+tests/test_reply.py holds every current reply to its sources.
+
+A path in SPEC stays where SPEC says: "text" and "out" are file names
+beside SPEC, and "root" and each of "files" are paths with no ".." in
+them and no leading "/". The file is made to be handed outside the
+repository, so nothing from outside the named folder gets into it.
 """
 import json
 import os
@@ -46,22 +52,76 @@ class Problem(Exception):
     """Something that stops a reply being built as its spec says."""
 
 
+KEYS = ("text", "out", "root", "name", "files", "limit", "current")
+
+
 def load(spec_path):
     """The spec, with the folder it is in."""
     with open(spec_path, encoding="utf-8") as f:
         spec = json.load(f)
-    for key in ("text", "out", "root", "name", "files", "limit", "current"):
+    if not isinstance(spec, dict):
+        raise Problem(f"{spec_path}: not a JSON object")
+    for key in KEYS:
         if key not in spec:
             raise Problem(f"{spec_path}: no \"{key}\"")
     spec["folder"] = os.path.dirname(os.path.abspath(spec_path))
+    shape(spec)
     return spec
+
+
+def _name(value):
+    """Whether value is a file's name, with no folder in it."""
+    return (isinstance(value, str) and value not in ("", ".", "..")
+            and "/" not in value and "\\" not in value)
+
+
+def _under(value):
+    """Whether value is a path that stays under the folder it starts
+    from, and can be written in a header: no "..", no leading "/", no
+    empty part, no white space."""
+    if not isinstance(value, str) or not value or "\\" in value:
+        return False
+    if any(c.isspace() for c in value) or os.path.isabs(value):
+        return False
+    return all(part not in ("", ".", "..") for part in value.split("/"))
+
+
+def shape(spec):
+    """Stop, with what is wrong, unless the spec is of the shape the
+    module's docstring gives."""
+    for key in ("text", "out"):
+        if not _name(spec[key]):
+            raise Problem(f"\"{key}\" must be a file's name, beside the spec")
+    if not _under(spec["root"]):
+        raise Problem("\"root\" must be a path under the repository's root")
+    if not _under(spec["name"]) or "/" in spec["name"]:
+        raise Problem("\"name\" must be one word")
+    if isinstance(spec["limit"], bool) or not isinstance(spec["limit"], int):
+        raise Problem("\"limit\" must be a whole number of bytes")
+    if not isinstance(spec["current"], bool):
+        raise Problem("\"current\" must be true or false")
+    files = spec["files"]
+    if not isinstance(files, list) or not all(
+            isinstance(entry, list) and len(entry) == 2
+            and all(isinstance(item, str) for item in entry)
+            for entry in files):
+        raise Problem("\"files\" must be a list of [path, note] pairs")
+    for path, note in files:
+        if not _under(path):
+            raise Problem(f"{path!r}: a file's path must stay under "
+                          "\"root\", with no white space in it")
+        if "\n" in note or "\r" in note:
+            raise Problem(f"{path}: its note can't be written on one line")
 
 
 def _source(spec, path, root=ROOT):
     """A file's text as it goes into the reply: as it is, with a last
     newline if it has none."""
-    with open(os.path.join(root, spec["root"], path), "rb") as f:
-        data = f.read()
+    try:
+        with open(os.path.join(root, spec["root"], path), "rb") as f:
+            data = f.read()
+    except OSError:
+        raise Problem(f"{path}: can't be read under {spec['root']}") from None
     try:
         body = data.decode("utf-8")
     except UnicodeDecodeError:
@@ -74,9 +134,13 @@ def _source(spec, path, root=ROOT):
 
 def build(spec, root=ROOT):
     """The reply's whole text."""
-    with open(os.path.join(spec["folder"], spec["text"]),
-              encoding="utf-8") as f:
-        text = f.read()
+    shape(spec)
+    try:
+        with open(os.path.join(spec["folder"], spec["text"]),
+                  encoding="utf-8") as f:
+            text = f.read()
+    except (OSError, UnicodeDecodeError):
+        raise Problem(f"{spec['text']}: can't be read as text") from None
     if not text.endswith("\n\n"):
         raise Problem(f"{spec['text']}: must end with an empty line")
     if HEADER.search(text) or LAST in text.split("\n"):
@@ -84,8 +148,6 @@ def build(spec, root=ROOT):
                       "layout uses")
     parts = [text]
     for path, note in spec["files"]:
-        if "\n" in note or " -----" in note:
-            raise Problem(f"{path}: its note can't be written on one line")
         language = LANGUAGES.get(os.path.splitext(path)[1], "text")
         parts.append(f"----- FILE: {spec['name']}/{path}  ({note}) -----\n"
                      f"{FENCE}{language}\n{_source(spec, path, root)}"
@@ -106,6 +168,12 @@ def embedded(whole):
     return HEADER.findall(whole)
 
 
+def ends_as_it_should(whole):
+    """Whether a reply's last line is the last line, with one newline
+    after it and nothing else."""
+    return whole == LAST + "\n" or whole.endswith("\n" + LAST + "\n")
+
+
 def read_back(spec, whole, root=ROOT):
     """What is wrong with a reply's text, read as a reader would: a
     file missing or out of order, a file that differs from the
@@ -118,14 +186,17 @@ def read_back(spec, whole, root=ROOT):
     for (name, _, body), (path, _) in zip(found, spec["files"]):
         if body != _source(spec, path, root):
             problems.append(f"{name} differs from the repository")
-    if whole.rstrip("\n").split("\n")[-1] != LAST or \
-            not whole.endswith(LAST + "\n"):
+    if not ends_as_it_should(whole):
         problems.append(f"it doesn't end with the line {LAST}")
     return problems
 
 
 def check(spec, root=ROOT):
-    """What is wrong with the reply as it is kept: [] if nothing."""
+    """What is wrong with the reply as it is kept: [] if nothing. A
+    past reply is a record, no longer held to the repository's files:
+    only its size and its last line are looked at here, and
+    sketches/replies/README.md's hash holds the rest."""
+    shape(spec)
     path = os.path.join(spec["folder"], spec["out"])
     if not os.path.isfile(path):
         return [f"{spec['out']} is missing"]
@@ -135,8 +206,11 @@ def check(spec, root=ROOT):
     if len(data) > spec["limit"]:
         problems.append(f"{len(data)} bytes, over the limit of "
                         f"{spec['limit']}")
-    kept = data.decode("utf-8")
-    if kept.rstrip("\n").split("\n")[-1] != LAST:
+    try:
+        kept = data.decode("utf-8")
+    except UnicodeDecodeError:
+        return problems + ["it is not text"]
+    if not ends_as_it_should(kept):
         problems.append(f"it doesn't end with the line {LAST}")
     if spec["current"]:
         try:
@@ -148,7 +222,7 @@ def check(spec, root=ROOT):
     return problems
 
 
-def main(argv):
+def main(argv, root=ROOT):
     args = argv[1:]
     checking = args[:1] == ["--check"]
     if checking:
@@ -159,17 +233,29 @@ def main(argv):
     try:
         spec = load(args[0])
         if checking:
-            problems = check(spec)
+            problems = check(spec, root)
             for problem in problems:
                 print(f"{spec['out']}: {problem}", file=sys.stderr)
             return 1 if problems else 0
-        whole = build(spec)
+        whole = build(spec, root)
     except Problem as problem:
         print(problem, file=sys.stderr)
         return 1
-    with open(os.path.join(spec["folder"], spec["out"]), "w",
-              encoding="utf-8", newline="\n") as f:
+    out = os.path.join(spec["folder"], spec["out"])
+    with open(out, "w", encoding="utf-8", newline="\n") as f:
         f.write(whole)
+    with open(out, "rb") as f:
+        written = f.read()
+    try:
+        problems = read_back(spec, written.decode("utf-8"), root)
+    except (Problem, UnicodeDecodeError) as problem:
+        problems = [str(problem)]
+    if written != whole.encode("utf-8"):
+        problems.append("what was written is not what was built")
+    if problems:
+        for problem in problems:
+            print(f"{spec['out']}: {problem}", file=sys.stderr)
+        return 1
     print(f"{spec['out']}: {len(whole.encode('utf-8'))} bytes, "
           f"{whole.count(chr(10))} lines, {len(spec['files'])} files")
     return 0

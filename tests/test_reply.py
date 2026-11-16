@@ -10,8 +10,10 @@ current, byte for byte what its text and the repository's files make.
 It imports docs/reply.py and nothing from sketches/: the files there
 are read as text.
 """
+import contextlib
 import hashlib
 import importlib.util
+import io
 import json
 import os
 import tempfile
@@ -122,6 +124,160 @@ class Small(unittest.TestCase):
         self.assertEqual(REPLY.check(self.spec, self.root),
                          ["r-out.txt is missing"])
 
+    def test_reading_back_says_what_is_wrong(self):
+        whole = self.build()
+        cargo = ("----- FILE: crate/Cargo.toml  (as written) -----\n"
+                 "```toml\n[package]\nname = \"a\"\n```\n\n")
+        a = ("----- FILE: crate/src/a.rs  (changed) -----\n"
+             "```rust\nfn a() {}\n```\n\n")
+        self.assertEqual(whole, "Dear reader.\n\n" + cargo + a
+                         + "END OF FILE\n")
+        order = "the files in it are not the spec's, in order"
+        end = "it doesn't end with the line END OF FILE"
+        cases = [
+            ("as built", whole, []),
+            ("a file changed", whole.replace("fn a() {}", "fn b() {}"),
+             ["crate/src/a.rs differs from the repository"]),
+            ("a file left out", whole.replace(a, ""), [order]),
+            ("the files the other way round",
+             "Dear reader.\n\n" + a + cargo + "END OF FILE\n",
+             [order, "crate/src/a.rs differs from the repository",
+              "crate/Cargo.toml differs from the repository"]),
+            ("a file twice", whole.replace(a, a + a), [order]),
+            ("cut off before the last line",
+             whole[:-len("END OF FILE\n")], [end]),
+            ("cut off inside the last file", whole[:whole.index("fn a")],
+             [order, end]),
+            ("no newline after the last line", whole[:-1], [end]),
+            ("a newline too many", whole + "\n", [end]),
+            ("something after the last line", whole + "more\n", [end]),
+        ]
+        for name, text, want in cases:
+            with self.subTest(name):
+                self.assertEqual(
+                    REPLY.read_back(self.spec, text, self.root), want)
+
+    def test_the_limit_itself_is_allowed_and_one_byte_more_is_not(self):
+        size = len(self.build().encode("utf-8"))
+        self.spec["limit"] = size
+        self.assertEqual(len(self.build().encode("utf-8")), size)
+        self.spec["limit"] = size - 1
+        with self.assertRaisesRegex(
+                REPLY.Problem, f"{size} bytes, over the limit of {size - 1}"):
+            self.build()
+
+    def test_a_note_must_fit_on_one_line(self):
+        for note in ("two\nlines", "a return\rin it"):
+            with self.subTest(note=note):
+                self.spec["files"][0][1] = note
+                with self.assertRaisesRegex(REPLY.Problem, "one line"):
+                    self.build()
+        # What looks like the end of a header is still only a note.
+        self.spec["files"][0][1] = "as written) -----"
+        self.assertEqual(REPLY.embedded(self.build())[0][1],
+                         "as written) -----")
+
+    def test_a_path_stays_where_the_spec_says(self):
+        self.write("secret.txt", "not for the reader\n")
+        for path in ("../secret.txt", os.path.join(self.root, "secret.txt"),
+                     "src/../../secret.txt", "src//a.rs", "./src/a.rs",
+                     "src/a b.rs", "src\\a.rs", ""):
+            with self.subTest(path=path):
+                self.spec["files"][1][0] = path
+                with self.assertRaisesRegex(REPLY.Problem, "under \"root\""):
+                    self.build()
+        self.spec["files"][1][0] = "src/a.rs"
+        for key in ("out", "text"):
+            for name in ("../x.txt", "sub/x.txt", "/tmp/x.txt", "..", ""):
+                with self.subTest(key=key, name=name):
+                    spec = dict(self.spec, **{key: name})
+                    with self.assertRaisesRegex(REPLY.Problem, "beside"):
+                        REPLY.build(spec, self.root)
+                    with self.assertRaisesRegex(REPLY.Problem, "beside"):
+                        REPLY.check(spec, self.root)
+        for root in ("..", "/", "code/../.."):
+            with self.subTest(root=root):
+                with self.assertRaisesRegex(REPLY.Problem, "\"root\""):
+                    REPLY.build(dict(self.spec, root=root), self.root)
+
+    def test_what_cannot_be_read_is_said_not_thrown(self):
+        self.write("replies/r-out.txt", self.build())
+        os.remove(os.path.join(self.root, "code", "src", "a.rs"))
+        with self.assertRaisesRegex(REPLY.Problem, "src/a.rs: can't be read"):
+            self.build()
+        self.assertEqual(REPLY.check(self.spec, self.root),
+                         ["src/a.rs: can't be read under code"])
+        self.write("code/src/a.rs", "fn a() {}\n")
+        for files in (["Cargo.toml"], [["Cargo.toml"]],
+                      [["Cargo.toml", "a note", "more"]], [["Cargo.toml", 1]],
+                      "Cargo.toml"):
+            with self.subTest(files=files):
+                with self.assertRaisesRegex(REPLY.Problem, "pairs"):
+                    REPLY.build(dict(self.spec, files=files), self.root)
+        with open(os.path.join(self.root, "replies", "r-out.txt"), "wb") as f:
+            f.write(b"\xff\xfe not text\nEND OF FILE\n")
+        self.assertEqual(REPLY.check(self.spec, self.root), ["it is not text"])
+        os.remove(os.path.join(self.root, "replies", "r.txt"))
+        with self.assertRaisesRegex(REPLY.Problem, "r.txt: can't be read"):
+            self.build()
+
+    def test_a_past_file_must_still_end_exactly(self):
+        whole = self.build()
+        self.spec["current"] = False
+        for name, text in (("no newline after it", whole[:-1]),
+                           ("a newline too many", whole + "\n"),
+                           ("something after it", whole + "more\n")):
+            with self.subTest(name):
+                self.write("replies/r-out.txt", text)
+                self.assertEqual(REPLY.check(self.spec, self.root),
+                                 ["it doesn't end with the line END OF FILE"])
+
+    def test_writing_it_gives_what_was_built_and_says_what_went_wrong(self):
+        path = os.path.join(self.root, "replies", "r.json")
+        spec = {key: self.spec[key] for key in REPLY.KEYS}
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(spec, f)
+
+        def run(*args):
+            said = io.StringIO()
+            with contextlib.redirect_stdout(said), \
+                    contextlib.redirect_stderr(said):
+                code = REPLY.main(["reply.py", *args], self.root)
+            return code, said.getvalue()
+
+        self.assertEqual(run(path),
+                         (0, "r-out.txt: 176 bytes, 14 lines, 2 files\n"))
+        with open(os.path.join(self.root, "replies", "r-out.txt"),
+                  encoding="utf-8", newline="") as f:
+            self.assertEqual(f.read(), self.build())
+        self.assertEqual(run("--check", path), (0, ""))
+        self.write("code/src/a.rs", "fn a() { /* moved on */ }\n")
+        self.assertEqual(
+            run("--check", path),
+            (1, "r-out.txt: it is not what its text and the repository's "
+                "files now make\n"))
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(dict(spec, limit=10), f)
+        self.assertEqual(run(path),
+                         (1, "192 bytes, over the limit of 10\n"))
+        self.assertEqual(run()[0], 2)
+
+        # After writing, the file is read from disk as a reader would
+        # read it: a problem found then is said, and the run fails.
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(spec, f)
+        real, calls = REPLY.read_back, []
+
+        def second_time(*args):
+            calls.append(args[1])
+            return real(*args) if len(calls) == 1 else ["planted"]
+
+        REPLY.read_back = second_time
+        self.addCleanup(setattr, REPLY, "read_back", real)
+        self.assertEqual(run(path), (1, "r-out.txt: planted\n"))
+        self.assertEqual(len(calls), 2)
+        self.assertEqual(calls[0], calls[1])
+
 
 class Kept(unittest.TestCase):
     """The replies in sketches/replies/."""
@@ -152,9 +308,17 @@ class Kept(unittest.TestCase):
             spec = REPLY.load(path)
             with open(os.path.join(REPLIES, spec["out"]), "rb") as f:
                 data = f.read()
+            # In the reply's own row of the table, not just somewhere on
+            # the page: this hash is all that holds a past reply's file.
+            name = os.path.basename(path)[:-len(".json")]
+            rows = [line for line in readme.split("\n")
+                    if line.startswith(f"| `{name}` |")]
             with self.subTest(reply=spec["out"]):
-                self.assertIn(format(len(data), ","), readme)
-                self.assertIn(hashlib.sha256(data).hexdigest(), readme)
+                self.assertEqual(len(rows), 1)
+                cells = [cell.strip() for cell in rows[0].split("|")]
+                self.assertEqual(cells[-3], format(len(data), ","))
+                self.assertEqual(
+                    cells[-2], f"`{hashlib.sha256(data).hexdigest()}`")
 
     def test_a_spec_names_only_what_it_needs(self):
         for path in kept_specs():
