@@ -122,12 +122,18 @@ Each is recorded in STATUS.md with what would show it wrong.
    *The alternative,* the contents inside each entry under a key the
    hash skips, would change what every reader of every log must skip.
 4. **Redacting** is three things, in this order: the field's `[salt,
-   value]` is sealed to the person it is about (a new label for
-   `sealed/v1`); it is taken out of the contents; and an entry is
-   appended that says which entry and which field, when, by which
-   office, and why in general terms, never what. The salt goes with the
-   value, so no one else can confirm a guess. The entry that was
-   redacted is not touched.
+   value]` is sealed to the person it is about; it is taken out of the
+   contents; and an entry is appended that says which entry and which
+   field, when, by which office, and why in general terms, never what.
+   The salt goes with the value, so no one else can confirm a guess.
+   The entry that was redacted is not touched. The sealed copy gets a
+   label of its own in `sealed/v1`, and is bound to its log, its entry
+   and its field, so that a box made for one field can't be shown as
+   another's. `sealed/v1` has no place for that binding today: its
+   decision named "a sealed record needs associated data" as the
+   reason to look again (STATUS.md), and this is that record. In a
+   room, the office that decides is the room's Keeper
+   (FUNDAMENTALS.md, "Redacted first, decided after").
 5. **Redacted first, decided after,** as FUNDAMENTALS.md has it. The
    mark needs no decision. The decision that follows is a
    `decision/v1` that names the mark among the records it is on.

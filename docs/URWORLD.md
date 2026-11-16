@@ -339,13 +339,15 @@ other log.
 
 The steps are on the course ([COURSE.md](COURSE.md)), set anew on
 2026-11-13 for the Ur-world. Done so far: the garden (#28), the doorway for
-minds (#29), and experiment 001 (#30). Next, in order: the design pages;
-formats that last; keys and identities, for ALICE and BOB and for the
-world; the kernel as
-entities and components; things, skills and the sheet; the first room;
-memory; the audition; ALICE's and BOB's first life; back to DeepSeek; the
-hunt and the world-key ([WORLD-KEY.md](WORLD-KEY.md)); founding worlds, and
-doors. Waiting behind them, among others: a window onto the worlds,
+minds (#29), and experiment 001 (#30). Done on the new course: the
+design pages; formats that last; keys and identities, for ALICE and BOB
+and for the world; persons. Next for the Ur-world, in order, with the
+Commons' steps between them (the course has the whole list): the kernel
+as entities and components; parallel worlds and the garden; things,
+skills and the sheet; the Ur-world's first room; the private container;
+memory; the audition; a lost or leaked key; ALICE's and BOB's first
+life; the hunt and the world-key ([WORLD-KEY.md](WORLD-KEY.md));
+founding worlds, and doors. Waiting behind them, among others: a window onto the worlds,
 generator 2 (land decided when first seen), the gate and districts, and
 governance.
 

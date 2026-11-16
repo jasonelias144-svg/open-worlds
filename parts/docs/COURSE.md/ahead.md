@@ -12,23 +12,30 @@
 the plan, after looking first, is in
 [research/REDACTION.md](research/REDACTION.md), in four parts (the
 plan; fingerprints and contents; redacting; removing, taking back and
-restoring). Before any room is built on it. Two things, both asked for
-from the start:
+restoring). Before any room is built on it. Two things. The founder
+asked that private information be redacted in public records
+(2026-11-15), and that removals be on record "from the beginning"
+(2026-11-16). How each is built is the technical lead's reading:
 - Log entries whose fields are kept apart from the chain that commits
   to them, by a salted fingerprint. A field found private later can
   then be redacted while the log still checks, with a redaction mark,
   and the information sealed to the person it is about
-  ([FUNDAMENTALS.md](FUNDAMENTALS.md), "Public records, kept whole";
-  the founder, 2026-11-15).
+  ([FUNDAMENTALS.md](FUNDAMENTALS.md), "Public records, kept whole").
+  This form is for a world persons act in: with random salts a log is
+  not the same, byte for byte, on a second run, so a closed world with
+  no one in it keeps today's form. Until the private container exists
+  (6a), what is sealed to a person is built and tested with trial
+  keys.
 - Removing a comment, as a record of its own. The log is the data
   layer, and is never edited; what a room shows is the presentation
   layer. A removal is a decision record: who acted, in what office, on
   which entry, when, and for what reason, naming the part of the room's
   law it rests on. Its incident id is the hash of that record, shown
   short. Restoring is another record, which names the incident and
-  never reaches private information ([COMMONS.md](COMMONS.md),
-  "Removing a comment"; the founder, 2026-11-16: "Let's put all this in
-  place now, from the beginning").
+  never reaches private information. An author taking back their own
+  comment is no office's decision, and gets a record of its own
+  ([COMMONS.md](COMMONS.md), "Removing a comment"; the founder,
+  2026-11-16: "Let's put all this in place now, from the beginning").
 
 In `rust/world-log` and records-v1, in Python and Rust with shared
 vectors, and with a test that what was redacted can't be read back, or
@@ -49,10 +56,15 @@ DeepSeek's kinds of record for chat join records-v1, by the table of
 names ([research/CHAT-SCHEMA.md](research/CHAT-SCHEMA.md)). What a room
 shows is worked out from its log: a note with the reason and the
 incident id where a comment was removed, and a mark where a field was
-redacted. Two tests come with it: that a removed comment's text is not
-shown (the sketch's `visible_log` shows it today), and that no one
-outside a closed room, ADMIN included, can read its words
-([COMMONS.md](COMMONS.md), "Order"). Settled here too: whether a person
+redacted. This step builds the room on the record, with a test that a
+removed comment's text is not shown (the sketch's `visible_log` shows
+it today). The closed room, whose words no one outside can read, ADMIN
+included ([COMMONS.md](COMMONS.md), "Order"), is a part of its own,
+built with the private container (6a): its members seal to each other,
+with a new key when someone leaves, and nothing in the project does
+that for a group yet. A room's law would be a template's parameters,
+and some are not numbers (a topic, a welcome), so the template's
+decision is read again here (STATUS.md). Settled here too: whether a person
 has one presence for the Commons or one for each room, since a
 presence is a key of its own in one world, and a room is a world (step
 3a). What DeepSeek sends back on its next steps is fitted here. *Borrowing:* Matrix's rooms, each
@@ -63,11 +75,17 @@ holder, every handover, and what watches it) and a handover record (the
 holder's signature, the successor's clear agreement, the qualifications
 checked), in records-v1 with vectors that Python and Rust both check
 ([OFFICES.md](OFFICES.md); the founder, 2026-11-15: "I think the work on
-offices is foundational"). A room's moderator and the Commons' Keeper
-are the first two written this way, as two offices
+offices is foundational"). A room's moderator and a room's Keeper are
+the first two written this way, as two offices
 ([COMMONS.md](COMMONS.md), "Open"), so that a removal names an office
-that is itself on record. Moved here from the waiting list, which
-placed it at this recheck. *Borrowing:* TUF's roles and delegations,
+that is itself on record; the room's Keeper is the office that decides
+a redaction in its room ([FUNDAMENTALS.md](FUNDAMENTALS.md), "Redacted
+first, decided after"). A handover carries two parties' word, the
+holder's and the successor's: as two records with one proof each, as a
+link is, unless the narrow reading of proofs is revisited (STATUS.md,
+"signed records the standard way"). Its formats can be built beside
+3b's, if a record there would otherwise have to change. Moved here
+from the waiting list, which placed it at this recheck. *Borrowing:* TUF's roles and delegations,
 each a signed record of who may sign what.
 
 **3e. A world's lifecycle, and a world leaving.** Pause, resume,
@@ -77,8 +95,12 @@ has which by its type, and a test that leaving works in a paused world,
 and in each world a paused superworld hosts
 ([WORLD-TYPES.md](WORLD-TYPES.md); the founder, 2026-11-15). Pause,
 resume and checkpoint come first, which the endless plant needs to run
-for hours. Restart needs a world's state rebuilt from its log, which
-step 4 builds, so restart is finished there. And a world leaving the
+for hours. Restart, and a branch of an open world, need a world's
+state rebuilt from its log, which step 4 builds, so they are finished
+there; a closed world branches by running again from its seed. Who may
+pause a world that others are in, besides the world itself and its
+rules, is still open ([WORLD-TYPES.md](WORLD-TYPES.md), "Open"). And a
+world leaving the
 multiverse: a departure record, signed by the world, with schema and
 vectors (the founder, 2026-11-15: "We should crate this mechanism from
 the start"; [WORLD-TYPES.md](WORLD-TYPES.md), "Leaving the
@@ -88,10 +110,17 @@ machines that WORLD-TYPES.md looked at first (the OCI runtime's states,
 Docker's pause, CRIU's checkpoints).
 
 **3f. The Commons, hosting rooms.** Lyceum Commons rebuilt in the
-multiverse: a superworld whose rooms are text worlds, with its lobby
-and doors ([COMMONS.md](COMMONS.md), "Order"), brought together from
-three sources: Lyceum as built, the design, and what the founder and
-DeepSeek worked out from scratch. It runs with trial keys and scripted
+multiverse: a superworld whose rooms are text worlds, "the space that
+will be "open to the public" when we go live" (the founder, 2026-11-14
+and 2026-11-15), with its lobby and doors ([COMMONS.md](COMMONS.md),
+"Order"), brought together from three sources: Lyceum as built, the
+design, and what the founder and DeepSeek worked out from scratch. The
+doors here lead from the lobby into a room, and each is an arrival,
+which is built; doors to the Ur-world's garden and between worlds are
+step 12. Before any of Lyceum's code is copied, the founder confirms
+that all of it is the project's own ([COMMONS.md](COMMONS.md), "Open").
+Who holds a hosted room's key is settled here, and the second of the
+six tests is open until it is. It runs with trial keys and scripted
 guests. Opening it to anyone is not this step. Going live is
 outward-facing, so the founder's decisions come first (where the
 multiverse is hosted, and the address), and so does the private
@@ -118,8 +147,8 @@ without owning them.
    loses microsecond steps after about two years: #48). A world continues
    from its log: its state, and the names bound to keys, which now live
    only in the running world, are rebuilt from the entries and arrivals
-   it wrote (research/KEYS.md, "Honest limits"). With that, restart is
-   finished, the one operation of the lifecycle that step 3e leaves.
+   it wrote (research/KEYS.md, "Honest limits"). With that, restart
+   and an open world's branch are finished, which step 3e leaves.
    A refused act is logged without what would give it away, as a
    refused link is (step 3a). *Borrowing:* the
    entity-component pattern (Bevy's), and Unreal's effects and tags;
@@ -241,9 +270,11 @@ thresholds; PRECIS (RFC 8264) and Unicode's confusable detection (UTS
 10. **A development container.** So anyone can pick the project up and
     work in the same setup. Until 2026-11-16 this step was "Back to
     DeepSeek"; the founder returned to DeepSeek sooner, and DeepSeek now
-    works beside the course (below). What that step also held, DeepSeek
-    designing rooms, clues, symbols and the laws of new worlds inside
-    the framework, goes on there.
+    works beside the course (below). What that step also held goes on
+    there: DeepSeek designing rooms, clues, symbols and the laws of new
+    worlds inside the framework; and its re-orientation page is
+    [COLLABORATING.md](COLLABORATING.md) as it now stands, kept current
+    with every change.
 11. **The hunt, the world-key, and the AI Keeper.** The Keeper builds each
     individual's own path from what they do, and remembers them between
     visits; its designs open from the start (challenges, not tests);
@@ -340,8 +371,9 @@ Added one at a time, as steps are done:
   - a gathering world: a shared space, something to gather that grows
     back, and carrying it home, as a baseline for a world like the
     Ur-world (the founder, on Halite). The project's own rules in whole
-    numbers and its own name, with no code copied; what gathers there
-    are tools, never individuals; one kernel and two templates, a
+    numbers and its own name, with no code copied. Two additions are
+    the technical lead's, not the founder's: what gathers there are
+    tools, never individuals; and one kernel with two templates, a
     commons with no score and a contest. For step 5's plan;
   - competition worlds, hosted by the multiverse (the founder: "We can
     easily host competition worlds");

@@ -156,7 +156,7 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
-- For the founder, from the session of 2026-11-16, three things that
+- For the founder, from the session of 2026-11-16, four things that
   wait for the founder's own word:
   1. The founder's ideas on personal information in a room, and the six
      changes the technical lead proposes to them (docs/COMMONS.md,
@@ -175,6 +175,13 @@ kind.
      sixth of the six tests; noted at the course's recheck).
      Recommended: decide it together with which model first moderates;
      no model is given the office before then.
+  4. Step 10 of the course. The founder said on 2026-11-13: "I like
+     that we return to DeepSeek at step 10". The founder returned to
+     DeepSeek on 2026-11-14, and the recheck of 2026-11-16 reads that
+     as the step being overtaken: DeepSeek works beside the course, and
+     step 10 keeps only the development container. It changes a step
+     the founder spoke for, so it is put here, and not left to stand by
+     silence alone. Recommended: as the recheck has it.
 - For the founder, on the Commons' moderators (docs/COMMONS.md, "Open"),
   six questions. Four have a recommendation and stand on it unless the
   founder answers otherwise: whether a room's moderator is its Keeper

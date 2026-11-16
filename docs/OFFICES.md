@@ -204,7 +204,7 @@ it. With it comes a handover record that carries the three things above.
 Both go into `records-v1`, with test vectors that Python and Rust both
 check, as every record kind has. The course takes them up at step 3d
 ([COURSE.md](COURSE.md); placed at the recheck of 2026-11-16), with a
-room's moderator and the Commons' Keeper as the first two written this
+room's moderator and a room's Keeper as the first two written this
 way. Nothing on this page is
 built yet, apart from what ADMIN.md and REASONS.md already describe as
 design.

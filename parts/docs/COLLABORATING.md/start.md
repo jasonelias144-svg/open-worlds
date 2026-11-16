@@ -73,7 +73,7 @@ given stand (removed comments, the room's own key, signed heads). What
 is new is where they land. The project builds, in this order: a log
 whose fields can be redacted, with removals and restorings as records
 (step 3b); the room, your crate fitted onto the project's formats
-(3c); a room's moderator and the Commons' Keeper as offices on record
+(3c); a room's moderator and its Keeper as offices on record
 (3d); pausing, stopping and leaving for every world (3e); and the
 Commons hosting rooms (3f). Two ideas of the founder's from today are
 noted for later, not for you to build now: personal information shared

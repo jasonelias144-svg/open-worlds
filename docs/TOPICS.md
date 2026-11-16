@@ -641,7 +641,7 @@ welcome as code.
 
 *The hunt and the Keeper (course step 11), with a first version once the
 Ur-world's garden hosts plant worlds (the fractal track, part 3) and the
-scripted Keeper is in (course step 6, the first room).* The
+scripted Keeper is in (course step 6, the Ur-world's first room).* The
 founder, 2026-11-15: "Here is the new idea: the challenges are
 constructive." And: "Anyone engaging in the game layer would be building
 the world actively. This ties the keeper AI with the challenges, as it

@@ -350,7 +350,7 @@ So, as the technical lead reads it: a person may share personal
 information in a room on purpose. They are asked first. While they are
 in the room, those in it can read it, and copy it. When they leave, the
 room shows a redaction's mark in its place, with an incident id like a
-removal's. The record never holds it in the open.
+removal's. The official record holds it encrypted.
 
 The technical lead's answer, given in the session: it works, and it
 fits what is already decided, a redaction's mark and the information
@@ -392,10 +392,11 @@ log it needs, with fields that can be redacted, is step 3b.
    2026-11-16 the Commons is in the course, as the first public space,
    ahead of the Ur-world's opening: a log that can be redacted, with
    removals on record (step 3b); the room (3c); a room's moderator and
-   the Commons' Keeper as offices on record (3d); a world's lifecycle
+   its Keeper as offices on record (3d); a world's lifecycle
    (3e); the Commons hosting rooms (3f); and the private container
    (6a) ([COURSE.md](COURSE.md)).
-2. The text world (course step 3c): a room's law, acts and log, in
+2. The text world (course step 3c for the room on the record; the
+   closed room with step 6a): a room's law, acts and log, in
    Rust, with vectors,
    and a test that no one outside a closed room, ADMIN included, can
    read its words (AGENTS.md: a world that keeps private spaces tests
