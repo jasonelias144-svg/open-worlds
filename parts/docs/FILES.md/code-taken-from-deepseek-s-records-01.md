@@ -3,7 +3,7 @@
 > This part holds: "Code taken from DeepSeek's records", piece 1 (its pieces are numbered from its end).
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/code-taken-from-deepseek-s-records-02.md
-> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/experiment-001-s-run-logs-02.md
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/what-deepseek-was-given.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
 **`sketches/deepseek/012-06-02`**, part 4 of 4 (21 files, 245 KB):
@@ -262,4 +262,4 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 ```
 
 
-> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/experiment-001-s-run-logs-02.md
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/what-deepseek-was-given.md

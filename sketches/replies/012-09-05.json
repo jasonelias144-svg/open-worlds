@@ -1,0 +1,74 @@
+{
+ "text": "012-09-05.txt",
+ "out": "012-09-05-for-deepseek.txt",
+ "root": "sketches/deepseek/012-09-05/chat-world",
+ "name": "chat-world",
+ "limit": 120000,
+ "current": true,
+ "files": [
+  [
+   "Cargo.toml",
+   "as you wrote it"
+  ],
+  [
+   "src/lib.rs",
+   "CHANGED: names the three later modules; signs the record as it is written out"
+  ],
+  [
+   "src/error.rs",
+   "as you wrote it"
+  ],
+  [
+   "src/hash.rs",
+   "as you wrote it"
+  ],
+  [
+   "src/did.rs",
+   "as you wrote it"
+  ],
+  [
+   "src/proof.rs",
+   "as you wrote it"
+  ],
+  [
+   "src/template.rs",
+   "as you wrote it"
+  ],
+  [
+   "src/record.rs",
+   "CHANGED: your three later records, the wider Record, and their arms, merged in"
+  ],
+  [
+   "src/room.rs",
+   "CHANGED: rec.hash() in visible_log; push is pub(crate); one arm added to visible_log; each signing call passes the wrapping"
+  ],
+  [
+   "src/verify.rs",
+   "CHANGED: your three later arms merged in"
+  ],
+  [
+   "src/transcript.rs",
+   "as you wrote it"
+  ],
+  [
+   "src/home.rs",
+   "CHANGED: each signing call passes the wrapping"
+  ],
+  [
+   "src/commons.rs",
+   "as you wrote it"
+  ],
+  [
+   "tests/integration.rs",
+   "CHANGED: your later tests appended, without the one you withdrew"
+  ],
+  [
+   "src/bin/chat-demo.rs",
+   "as you wrote it"
+  ],
+  [
+   "src/bin/home-demo.rs",
+   "as you wrote it"
+  ]
+ ]
+}

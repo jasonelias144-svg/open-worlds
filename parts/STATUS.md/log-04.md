@@ -8,6 +8,46 @@
 
 ## Log
 
+- 2026-11-16 Claude: the file for DeepSeek is now built by a script in
+  the repository, and kept. `docs/reply.py` makes it from a reply's text
+  and a list of files (`sketches/replies/012-09-05.txt` and `.json`),
+  refuses a file over its limit, and reads what it wrote back against
+  the repository; `sketches/replies/012-09-05-for-deepseek.txt` is the
+  file the founder was given on 2026-11-16, byte for byte (95,149 bytes;
+  SHA-256
+  f1f7435f21dbaf8d49de3aea07e83d502d38c6011323feb591b769c2c1c97447),
+  which replaces the earlier entry's "The file isn't kept here".
+  `tests/test_reply.py` holds a reply to its sources while its code is
+  current, and to its limit and its last line always. docs/FILES.md
+  lists the folder among the files of record ("What DeepSeek was
+  given"), so it is neither in COLLABORATING.md's list nor cut into
+  parts. Not checked: that the whole file reaches DeepSeek. And the
+  table of DeepSeek's schema names beside the project's, as the first
+  step toward one schema that fits both: docs/research/CHAT-SCHEMA.md,
+  which `tests/test_schema_names.py` holds to both files. 67 definitions
+  and 33, none shared by name; seven are the same thing under another
+  name; two are one name for different things (DeepSeek's `WorldKey` is
+  nearer the project's `grant`); and a moderator's removal lands beside
+  the project's `decision`. It compares names and fields only: no record
+  was tried against either schema.
+  After the independent review (nothing blocking, 24 notes): the script
+  now reads the written file from disk as well; refuses a path that
+  leaves its folder, a note with a line break, and a spec of the wrong
+  shape; and says what it can't read in place of stopping with a
+  traceback. Seven tests were added, among them one for the reading
+  back itself, which had none, and one that pins the limit to the
+  byte; a past reply's size and hash are now looked for in its own row
+  of the README. The table was corrected where it claimed more than the
+  schema's fields show: where `seq`, `prev` and `world_id` are and
+  aren't; `JoinRequest`, not `Join`, as the nearer relative of
+  `arrival`; `RuntimeAttestation` beside the project's links, not
+  `mind`; `WorldKey`'s parameter ranges beside a template's dials; and
+  that the fitting has to split `Redact` (an author taking back their
+  own comment is no office's decision) and `HumanOverride`. One
+  sentence in the file already given overstates, and is named in
+  `sketches/replies/README.md`, since a file that was given isn't
+  changed. AGENTS.md names the kept replies.
+
 - 2026-11-16 Claude: one file for the founder to give DeepSeek (Decided,
   the newest entry): the technical lead's reply to record 012-09-05,
   three next steps in order (removed comments, in the data layer and the

@@ -6,14 +6,6 @@
 > After this part: nothing; this is the last part.
 > Made by docs/parts.py from the file. To change it, change the file.
 
-This list holds the files a reader works from, 247 of them: every
-page, all the code in Python and Rust, the tests, the vectors and the
-web pages. [FILES.md](FILES.md) holds the other 867, files of record
-best sent when a question needs them: DeepSeek's records, word for
-word, the code taken from them, and Experiment 001's run logs.
-`tests/test_collaborating_links.py` fails if a file is added, moved or
-removed and this list or FILES.md isn't changed with it.
-
 A page or a file of code longer than 28,000 bytes is also kept cut
 into parts, for a reader who is shown only the start of a page:
 [parts/INDEX.md](../parts/INDEX.md) gives every part's full link, and
@@ -58,10 +50,11 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/cycles
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/cycles/cycle-000-output.txt
 ```
 
-**Research**, the look-first pages behind each step, and the script one of them ran (9):
+**Research**, the look-first pages behind each step, the script one of them ran, and DeepSeek's schema beside the project's (10):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/ADMIN-MIND.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/CHAT-SCHEMA.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/FORMATS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/GAMES-AND-WORLDS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/KEEPER-MIND.md
@@ -196,7 +189,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/web/map/ind
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/web/plant/index.html
 ```
 
-**Tests in Python**, with the two checks for the web pages (37):
+**Tests in Python**, with the two checks for the web pages (39):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/__init__.py
@@ -229,6 +222,8 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_persons.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_plant_world_vectors.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_record_links.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_reply.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_schema_names.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_ur_person_vectors.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_ur_world_vectors.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_vectors.py
@@ -352,13 +347,14 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/.github/PUL
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/.github/workflows/test.yml
 ```
 
-**This list's companions**: the page with the rest of the files and the script that writes it, the long files in parts and the script that cuts them, and a stub that leads a cut-short link to this page (5):
+**This list's companions**: the page with the rest of the files and the script that writes it, the long files in parts and the script that cuts them, the script that builds the one file the founder gives DeepSeek, and a stub that leads a cut-short link to this page (6):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FILES.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/files.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/parts.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/reply.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COLLABORATING
 ```
 

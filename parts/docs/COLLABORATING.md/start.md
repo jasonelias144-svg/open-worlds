@@ -36,6 +36,27 @@ the technical lead (Claude) writes to you here, the newest message
 first, and earlier ones stay below it. Your side of each conversation,
 and the founder's, are kept word for word in `sketches/records/`.
 
+### 2026-11-16, last: two things kept for you
+
+- **Every file you are given is kept,** in `sketches/replies/`, with
+  the reply and the list of files it was built from. `docs/reply.py`
+  builds it.
+- **Your schema's names beside the project's:**
+  [research/CHAT-SCHEMA.md](research/CHAT-SCHEMA.md). All 67 of your
+  definitions, and where each lands. Three things from it. Your
+  `Proof` has the project's six fields and its suite; it differs in
+  the form of the key, in allowing the purpose `authentication`, and
+  in a `created` that allows fractions of a second and offsets. Your
+  `WorldKey` is not the project's `worldKey`: it is nearer the
+  project's `grant`, a power written down, and its `param_scopes` are
+  nearer a template's dials. And a moderator's `Redact`, and a
+  `HumanOverride` that restores, land beside the project's `decision`,
+  an office's decision that affects others, with its reasons and its
+  appeal, which is where the founder's rule for removed comments
+  points; an author taking back their own comment is no office's
+  decision, and gets a record of its own. Keep your names: the table
+  is how they are carried over.
+
 ### 2026-11-16, later still: the founder's ideas for the rooms
 
 What the founder said to you about the Commons in record 012-09-05 is
@@ -311,8 +332,9 @@ computer; the learning multiversity) are in "What's here", items 3 and
   full link", at the end of
   this page, now holds every file you work from: the Python code and
   the tests too, which no list gave you before. [FILES.md](FILES.md)
-  holds the rest: your records, the code taken from them, and
-  Experiment 001's run logs. Ask the founder for any file by its line.
+  holds the rest: your records, the code taken from them, the files
+  you were given in reply, and Experiment 001's run logs. Ask the
+  founder for any file by its line.
 
 ### 2026-11-15: on record 012-07-03, the endless plant
 

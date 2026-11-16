@@ -135,8 +135,8 @@ effect (docs/ADMIN.md).
   "Commerce and currency worlds"). A change that would bring one in is
   the founder's decision (P5), never a code decision.
 - **The sketches stay apart.** `sketches/` keeps the founder's
-  conversation records and DeepSeek's code from them, as written
-  (`sketches/README.md`). Nothing outside `sketches/` imports from it. Its
+  conversation records and DeepSeek's code from them, as written, and
+  each file DeepSeek was given in reply (`sketches/README.md`). Nothing outside `sketches/` imports from it. Its
   code changes only in small fixes listed in `sketches/INDEX.md`, which is
   also the one place that says where the sketches and the course meet.
 - **Two things are written by script, never by hand:** `docs/FILES.md`
@@ -145,7 +145,10 @@ effect (docs/ADMIN.md).
   readers who are shown only the start of a page). Run both before you
   push, in that order. `STATUS.md` is one of the long files, so nearly
   every change needs the second. The tests fail when either is out of
-  step. Put nothing else under `parts/`: the script removes it.
+  step. Put nothing else under `parts/`: the script removes it. A third
+  is written by script too: the file DeepSeek is given, in
+  `sketches/replies/` (`python3 docs/reply.py SPEC`), which is run when
+  a reply is written, not before every push.
 
 ## Always
 
