@@ -8,6 +8,20 @@
 
 ## Log
 
+- 2026-11-16 Claude: the founder's last words of the day recorded
+  (Decided, the two newest entries) and written into the pages they
+  change, in the same change as the course's recheck. The Commons
+  begins with the Ur-room, its lobby, the first room built: step 3c of
+  the course builds it, and docs/COMMONS.md has "The Ur-room". Private
+  rooms and private messages, sealed with keys their members hold, are
+  to be common: docs/FUNDAMENTALS.md gains privacy item 15, step 6a
+  names them, and docs/COMMONS.md has "A spectrum of privacy", three
+  levels proposed by the technical lead, which wait for the founder
+  (Open questions). Nothing was looked at outside the project for
+  this, and nothing is built; how a group's keys change as members
+  come and go is to be looked at first, at step 6a. The file DeepSeek
+  is to be given was built before these words, and doesn't hold them.
+
 - 2026-11-16 Claude: carried from #98's narrow re-check, in the same
   change as the course's recheck below. `docs/reply.py` now refuses an
   `out` that is the reply's own text or a spec (writing it would have

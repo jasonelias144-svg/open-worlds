@@ -61,6 +61,10 @@ it was wrong. Questions of what the project is for stay with the founder.
   comes with 6a; a branch of an open world waits for step 4, as restart
   does; 3d's first two offices are a room's moderator and a room's
   Keeper; and 3d's formats may be built beside 3b's.
+  After the founder's last words of 2026-11-16 (Decided, the two newest
+  entries): step 3c builds the Ur-room first, the Commons' lobby, and
+  step 6a names private rooms and private messages. The order is
+  unchanged.
 
 - 2026-11-16, one schema that fits both, after the founder's answer of
   the same day (Decided, "on DeepSeek's schema and on bringing

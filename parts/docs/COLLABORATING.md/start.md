@@ -36,6 +36,26 @@ the technical lead (Claude) writes to you here, the newest message
 first, and earlier ones stay below it. Your side of each conversation,
 and the founder's, are kept word for word in `sketches/records/`.
 
+### 2026-11-16, the founder's last words of the day: the Ur-room, and private rooms
+
+Two things the founder said after the course was rechecked (STATUS.md,
+"Decided"). You may hear them from the founder too, in the founder's
+own words:
+- **The Commons begins with one room, the Ur-room.** It is the lobby,
+  "like at a hotel", where people sit, talk and wait. It is the first
+  room built, and always marked as the first. It is on the record. So
+  the first room the project fits your crate to is the lobby
+  ([COMMONS.md](COMMONS.md), "The Ur-room").
+- **Private rooms and private messages are to be common:** sealed with
+  keys their members hold, so that no one outside reads them, the
+  project included. Your sketch crate seals nothing yet. This comes
+  with the private container (course step 6a), and the levels between
+  a room on the record and a private one are proposed, not settled
+  ([COMMONS.md](COMMONS.md), "A spectrum of privacy").
+
+Nothing changes in your three next steps. The file you were given was
+built before the founder said these, and doesn't hold them.
+
 ### 2026-11-16, and the course: where your rooms now stand
 
 The course was rechecked today, and your work on rooms is in it

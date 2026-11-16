@@ -315,6 +315,12 @@ What persons taught is written into the steps it reaches:
   before the close fixes them, which governance needs before it is
   built on these records ("Waiting").
 
+Added the same day, after the list was set: the founder's last words
+of 2026-11-16 (STATUS.md, "Decided"). The first room built is the
+Ur-room, the Commons' lobby, which step 3c now says. And private rooms
+"should be not only possible, but common", so step 6a names them, where
+the closed room already stood. The order did not change.
+
 Checked against the six tests in [VISION.md](VISION.md), "The
 multiverse as a computer", for the first time (they were written on
 2026-11-15, after the last recheck):

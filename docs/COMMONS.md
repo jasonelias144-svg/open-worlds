@@ -111,12 +111,90 @@ Lyceum's tests, rewritten against its law, are the first specification.
 - **It hosts rooms** as the Ur-world's garden hosts its glasshouses: each
   room its own world, the Commons its host.
 - **A lobby,** always open, where everyone who enters reads the charter
-  first.
+  first. Since 2026-11-16 it is the Ur-room, the first room built
+  (below).
 - **A Keeper,** an office like any other ([OFFICES.md](OFFICES.md);
   [ADMIN.md](ADMIN.md), "The Keeper's office"). Who first keeps
   the Commons is the founder's to decide.
 - **Doors:** to the Ur-world's garden, and back; and a place on the
   multiversal map ([FRACTALS.md](FRACTALS.md), "The multiversal map").
+
+## The Ur-room
+
+Decided by the founder, 2026-11-16: "let's start the Commons with a
+single Ur-room, which will always be distinguished as being the first
+room", and "it should be the lobby, which, like at a hotel, has a space
+for chairs and tables and couches where people sit, eat, drink, talk,
+and wait."
+
+So the Commons begins with one room, and it is the lobby above. It is
+the first room built, and always marked as the first. As the technical
+lead reads the rest:
+- **It is a room to be in.** People sit there, talk and wait, as well
+  as pass through. So it is a text world like any room, with its own
+  key, law and log, and the doors to the other rooms are in it.
+- **It is on the record,** as was decided for the lobby on 2026-11-15
+  ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item 13). Everyone who
+  enters reads the charter first.
+- **It follows the Ur-world's pattern:** the first of its kind, from
+  which the others follow. How it is marked as the first, its name kept
+  for it and its place first in the Commons' list of rooms, is settled
+  when it is built (course step 3c).
+- **The founder's "the multiversal lobby"** is left as it was said. Whether
+  it is also where anyone arriving in the multiverse first stands is
+  not settled; a door from it to the Ur-world's garden is course step
+  12.
+
+## A spectrum of privacy
+
+The founder, 2026-11-16: "Private messaging and private rooms should be
+possible. We can define different levels. In theory, we could have a
+completely encrypted room that acts like one private space that is not
+accessible even to the project. It would be encrypted by keys held by
+the users. This should be not only possible, but common. These could
+differ from public rooms with public records. There is a spectrum of
+privacy to consider."
+
+Two ends of it are decided already ([FUNDAMENTALS.md](FUNDAMENTALS.md),
+privacy, items 4 and 13): a room on the record, and a closed room,
+whose words pass between its members' containers, sealed. What is new
+is that private rooms are to be common, and that there are to be
+levels. The levels below are the technical lead's proposal. They touch
+what is recorded about people, so they wait for the founder:
+
+| Level | Who can read the words | What the record keeps | Who can moderate |
+|---|---|---|---|
+| **On the record** (the Ur-room; an Open room) | anyone | the words, kept whole, with anything private redacted | the room's moderator, within its law |
+| **Closed** | its members only: the words are sealed with keys the members hold | that the room exists, which presences are in it, and that messages passed; never the words | its members; an AI only if they bring it in as a member |
+| **Off the record** | its members only | nothing | its members |
+
+- **A private message** is a closed room of two.
+- **A room's level is part of its law,** told on entering, and it
+  doesn't change under those who are in it: a closed room is not
+  opened later. Whether a room on the record can be closed from some
+  point on is left open.
+- **Closed is proposed as the common kind.** The project's machines can
+  hold its sealed messages for a member who is away, and a member can
+  come back from another device. An off-the-record room can only live
+  between its members' own containers.
+
+Honest limits, said before anything is built:
+- **A member can always copy what they read.** Sealing keeps others
+  out; it does not bind those inside.
+- **Lost is lost.** The project holds no key to a private room, so it
+  can't recover its words for anyone.
+- **What the project can't read, it can't moderate or answer for.** The
+  freedoms still hold in a private room, and what protects a member is
+  their own: to leave, not to hear, and to show their own copy. What
+  that means once the Commons is open to the public is weighed with
+  going live.
+- **Whoever carries a message can see that something passed** while it
+  passes, even when nothing is kept.
+- **A group's keys are hard.** When a member leaves, those who stay
+  need a new key, and a member who joins should not read what came
+  before unless the room's law says so. Nothing in the project does
+  this yet. It is to be looked at first, at course step 6a (the
+  Messaging Layer Security protocol, RFC 9420, is where to start).
 
 ## Who comes in
 

@@ -154,6 +154,22 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder, on private rooms (docs/COMMONS.md, "A spectrum of
+  privacy"), from the founder's words of 2026-11-16:
+  1. The levels. Proposed, three: on the record; closed, where the
+     words are sealed with keys the members hold and the record keeps
+     only that the room exists, who is in it and that messages passed;
+     and off the record, where nothing is kept. Recommended: these
+     three, with closed as the common kind.
+  2. Whether "completely encrypted" meant that nothing at all is kept
+     of a private room. The decisions of 2026-11-14 and 2026-11-15 keep
+     that a message passed, and a closed room's metadata, in the
+     record. Recommended: keep that rule for a closed room, and let
+     "off the record" be the level where nothing is kept.
+  3. What the project can't read, it can't moderate or answer for.
+     Before the Commons is open to the public with private rooms in
+     it, that is weighed with going live: where it is hosted, and under
+     what law. No recommendation yet; it needs looking at first.
 - For the founder, from the session of 2026-11-16, four things that
   wait for the founder's own word:
   1. The founder's ideas on personal information in a room, and the six

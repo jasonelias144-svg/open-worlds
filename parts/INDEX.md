@@ -56,6 +56,13 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/every-file-by-its-full-link-01.md
 ```
 
+## `docs/COMMONS.md`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/start.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/personal-information-in-a-room-ideas.md
+```
+
 ## `docs/COURSE.md`, in 2 parts
 
 ```text
@@ -90,11 +97,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/MULTIVERSE.md/keeping-keys-safely-course-step-6-part-one.md
 ```
 
-## `docs/TOPICS.md`, in 2 parts
+## `docs/TOPICS.md`, in 3 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/start.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/15-lessons-from-fiction-the-holodeck.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/14-the-commons-a-superworld-of-chat-rooms.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/TOPICS.md/further-out.md
 ```
 
 ## `docs/VISION.md`, in 2 parts
