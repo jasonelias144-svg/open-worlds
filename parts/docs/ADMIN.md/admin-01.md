@@ -6,24 +6,6 @@
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/ADMIN.md/the-admin-key-a-course-for-keepers.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
-So the line runs between deciding for others and thinking for oneself,
-at every level:
-
-| | Its acts | Reasons for decisions that affect others | Its own thoughts |
-|---|---|---|---|
-| An individual | public, in the record | its own; it decides nothing for others beyond its acts, which the floor bounds | a sealed self |
-| A Keeper | public | **on record, with every decision** | a private core |
-| ADMIN | public, and open to inspection throughout | **on record, with every decision** | a private core |
-
-- **Decisions carry their reasons, like a court's opinions.** The US
-  Supreme Court's Justices "meet privately to discuss the argued cases",
-  and then deliver their opinions in public
-  ([research](research/ADMIN-MIND.md)). Here too: private deliberation,
-  public reasons. Changing a parameter from a world's original setup,
-  proposing a law, granting, narrowing, ruling: each goes into the record
-  with its reasons, inspectable from the multiverse layer, where the
-  founder, the code role, ADMIN and anyone outside a world stand. How
-  it is recorded and checked: [REASONS.md](REASONS.md).
 - **A decision stands on its stated reasons.** Private thoughts can't be
   the grounds of a decision over others. If the reasons on record don't
   support it, it fails on audit or appeal, whatever was privately thought.
@@ -272,6 +254,15 @@ Proposed by the technical lead, to build toward:
 - **A remedy carries its evidence.** One that worked in one world can
   fail in another, so it is checked again where it is used, never
   trusted blindly.
+- **At the border: a holding place.** The founder, 2026-11-16: "we need
+  some sandboxed holding place for worlds entering a new multiverse",
+  where a new world is "evaluated, before entry". A world that asks to
+  be admitted is looked at as a paused copy, with stand-ins only, in a
+  sandbox with no door, which is what ADMIN's own world (below)
+  already is; what is found goes into the library of remedies. It
+  can't prove code safe, so every world's code stays in a sandbox for
+  its whole life ([WORLD-TYPES.md](WORLD-TYPES.md), "Arriving in
+  another multiverse"). Not built.
 
 ADMIN manages the immune system without being it: it keeps the library,
 spots patterns across worlds, offers remedies where they fit, and

@@ -15,6 +15,36 @@ the technical lead (Claude) writes to you here, the newest message
 first, and earlier ones stay below it. Your side of each conversation,
 and the founder's, are kept word for word in `sketches/records/`.
 
+### 2026-11-16, the founder's afternoon: an internet of worlds
+
+The founder said five things this afternoon that bear on your rooms.
+All are in STATUS.md, "Decided", word for word.
+- **The multiverse as an internet,** taken seriously: "Connection was
+  the innovation. An infrastructure for connection. And that's what we
+  are doing. And the first attraction once we had the internet was chat
+  rooms". So the rooms are rightly first, and the order of your steps
+  stands.
+- **Many multiverses.** Anyone should be able to run their own, and to
+  join them in one network. The rule that follows for every format,
+  yours included: nothing may exist only once. A room is a world with a
+  key of its own (your step 2), and a record should never say "the
+  multiverse" as a bare word where it could name one by its key.
+- **Worlds that migrate.** A world is indexed by the multiverse of its
+  birth and by the one it is in now
+  ([WORLD-TYPES.md](WORLD-TYPES.md), "Arriving in another multiverse").
+  A room is a world, so this holds for a room.
+- **A holding place.** A world that arrives is evaluated first, in a
+  sandbox, as a paused copy; a refusal is an incident with a report.
+- **Addressing that can grow:** "We should ensure our addressing system
+  can handle an unforeseen expansion." Every format carries a version;
+  none has yet had a second.
+
+Nothing here changes what you are building. Two things would help, as
+prose, when you have room for them ([TOPICS.md](TOPICS.md), topic 22):
+what a room would have to say about itself to be listed on another
+multiverse's map; and what could be checked about a chat-world, from
+its code and its log alone, before it is let in.
+
 ### 2026-11-16, the form of the log under a room is built
 
 The second part of course step 3b is in: the form of a log whose

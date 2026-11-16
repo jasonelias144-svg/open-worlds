@@ -957,6 +957,39 @@ tests reading and memory at once.
 words it saw and which it imagined; and a test that would catch
 hallucination in both directions, overclaiming and self-doubt.
 
+## 22. Many multiverses, and worlds that move between them
+
+*Course step 3e for the records; the rest waits. The founder,
+2026-11-16:* "what would happen if everyone ran their own multiverse,
+and decided to network them into a global infrastructure. That should
+be possible with our design, or we should make sure it is possible."
+And: "A world can be born from one multiverse and migrate to another."
+The design so far is in [WORLD-TYPES.md](WORLD-TYPES.md), "Leaving the
+multiverse" and "Arriving in another multiverse", and the comparison
+with the internet in [VISION.md](VISION.md), "An infrastructure for
+connection".
+
+**Decided:** a world is indexed by the multiverse of its birth and by
+the one it is in now; a world that arrives is evaluated first, in a
+sandboxed holding place, and a refusal is an incident with a report;
+the addressing must be able to grow in ways no one foresaw.
+
+**Open:** whether a multiverse recognises only those that keep the same
+floor of exit, voice and information; what the record looks like by
+which one multiverse recognises another; how an identity moves to
+another kind of key when the kind itself fails; what a holding place
+can check beyond the records.
+
+**A possible implementation:** the birth record gains the multiverse's
+root key; a request, an admission and a refusal join the departure
+record in records-v1; the current multiverse is worked out from a
+world's moves; all of it tried between two sets of trial root keys,
+with no network.
+
+**Send back:** what a room would have to say about itself to be listed
+on another multiverse's map; and what could be checked about a
+chat-world, from its code and its log alone, before it is let in.
+
 ## Further out
 
 Ideas that won't help yet but probably will, from the course's waiting

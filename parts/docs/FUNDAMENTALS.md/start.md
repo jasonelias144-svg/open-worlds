@@ -88,7 +88,14 @@ one of them updates this page.
    multiverse." A world, or a cluster, may branch into an independent
    multiverse of its own, "then the cord is cut". Designed in
    [WORLD-TYPES.md](WORLD-TYPES.md), "Leaving the multiverse", to be
-   made from the start; not yet built.
+   made from the start; not yet built. And a world may arrive in a
+   multiverse that exists (the founder, 2026-11-16: "A world can be
+   born from one multiverse and migrate to another"). The rule for
+   leaving holds for moving: a world with inhabitants moves only with
+   the consent of every party. What is evaluated before a world is
+   admitted is a paused copy with stand-ins, so no one is held
+   ([WORLD-TYPES.md](WORLD-TYPES.md), "Arriving in another
+   multiverse"); not yet built.
 8. **Room enough for every freedom.** The founder (2026-11-15): "Much
    source of problems fall away when space is infinite and resources
    are endless. We shouldn’t expect conflict to arise from freedom in

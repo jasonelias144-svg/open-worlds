@@ -8,6 +8,31 @@
 
 ## Log
 
+- 2026-11-16 Claude: the founder's words of the afternoon recorded
+  (Decided, five entries): a field of dreams; the multiverse as an
+  internet, with the comparison held where it fits and the addressing
+  made able to grow; many multiverses in one network; worlds that
+  migrate, indexed by the multiverse of their birth and by the one
+  they are in; and a sandboxed holding place for worlds that arrive,
+  with the technical lead's four refinements, which the founder took.
+  Written into docs/WORLD-TYPES.md ("Arriving in another multiverse"),
+  docs/VISION.md ("An infrastructure for connection"), docs/COURSE.md
+  (step 3e and the waiting list), docs/ADMIN.md, docs/FUNDAMENTALS.md,
+  docs/TOPICS.md (topic 22), docs/GLOSSARY.md, docs/COMMONS.md and a
+  message to DeepSeek in docs/COLLABORATING.md. Checked for these
+  entries: the records' schema and the checking code, for where they
+  assume one multiverse and for the sizes of every address and counter
+  (found: the word "multiverse" standing bare in what a grant holds
+  `within` and what a suggestion is `about`, one four-byte counter,
+  and no check with the project's keys wired in). Not
+  checked: what is said of the internet's own history is from memory,
+  as VISION.md says. Two things the technical lead said in the session
+  are put right in the entries: a world with inhabitants moves only
+  with the consent of every party, as the reading of 2026-11-15
+  already had it, not merely after they are told; and whole numbers
+  run to 2^53 - 1 in the records, not to 64 bits. One
+  question is put to the founder and one sentence left out (Open
+  questions). Nothing is built.
 - 2026-11-16 Claude: course step 3b, part two, built: the form of a
   log whose fields are kept apart (`open-worlds/log-apart/v1`). In
   Python, `world/apart.py`: the fingerprint, the values it allows, a

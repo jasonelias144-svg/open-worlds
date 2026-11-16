@@ -161,6 +161,23 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder, on many multiverses (2026-11-16; Decided, the
+  entries of that day):
+  1. The floor between multiverses. The internet has no rule above its
+     protocol; this project has exit, voice and information. In
+     someone else's multiverse they may not hold. Recommended, both: a
+     traveller is always told, before entering, what the other side
+     guarantees; and this multiverse recognises another (lists it on
+     the map, trusts the births its worlds sign) only if it keeps the
+     same floor. The first keeps this multiverse from being a
+     gatekeeper; the second keeps the floor meaning something. It is a
+     question of what the project is for, so it waits for the
+     founder's word.
+  2. One sentence about the founder's own first computer is left out of
+     that day's record, as the one about the founder's first experience
+     of the internet is left out of docs/COMMONS.md. Say if either
+     should be kept.
+
 - For the founder, on redaction (docs/research/REDACTION.md, "For the
   founder"), from the plan for course step 3b:
   1. An office's copy of what was redacted. FUNDAMENTALS.md has a

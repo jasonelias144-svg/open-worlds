@@ -464,8 +464,15 @@ world leaving the
 multiverse: a departure record, signed by the world, with schema and
 vectors (the founder, 2026-11-15: "We should crate this mechanism from
 the start"; [WORLD-TYPES.md](WORLD-TYPES.md), "Leaving the
-multiverse"). Moved here from the waiting list, which placed both at
-this recheck. *Borrowing:* the lifecycles of containers and virtual
+multiverse"). And a world arriving in another (the founder,
+2026-11-16: "A world can be born from one multiverse and migrate to
+another. We should make that possible."): a world's birth record names
+the multiverse it was born in, its current one is worked out from its
+moves, and the records for asking to be admitted, admitting and
+refusing are tried between two sets of trial root keys
+([WORLD-TYPES.md](WORLD-TYPES.md), "Arriving in another multiverse").
+The holding place a world is evaluated in waits (below). Moved here
+from the waiting list, which placed both at this recheck. *Borrowing:* the lifecycles of containers and virtual
 machines that WORLD-TYPES.md looked at first (the OCI runtime's states,
 Docker's pause, CRIU's checkpoints).
 
@@ -754,6 +761,29 @@ Added one at a time, as steps are done:
     plug-in, below
     ([research/GAMES-AND-WORLDS.md](research/GAMES-AND-WORLDS.md),
     "Worlds built for learners");
+- noted on 2026-11-16, from the founder's words of that afternoon
+  (STATUS.md, "Decided"; [VISION.md](VISION.md), "An infrastructure for
+  connection"); nothing is built for them now:
+  - a world run by someone else, on another machine, under root keys
+    that are not the project's, reached and checked from the published
+    formats alone: the test that the multiverse is a network and not
+    one program;
+  - nothing in the formats may exist only once. Records say
+    "multiverse" as a bare word (what a grant holds `within`; what a
+    suggestion is `about`), or leave it unsaid (a record made outside
+    any world names none), where they should name it by its root key;
+    and there is no record by which one multiverse recognises another;
+  - addressing that can grow: a second version of one format living
+    beside the first, tried once before anyone is born (the bare word
+    above could be that change); and how an identity moves to another
+    kind of key when the kind itself fails, where a signing-over by the
+    old key proves nothing, looked at first with step 8a;
+  - the holding place for worlds that arrive: a sandbox fit for any
+    world's code, the evaluation, and reports shared between
+    multiverses ([WORLD-TYPES.md](WORLD-TYPES.md), "Arriving in another
+    multiverse"; [ADMIN.md](ADMIN.md), "A learning immune system");
+  - the internet's lessons, AOL's among them, looked at first when the
+    Commons is built (step 3f);
 - the signs that would count as something intelligent at the
   multiverse's scale, and those that wouldn't, written down before
   anyone looks for them ([VISION.md](VISION.md), the fifth of the six

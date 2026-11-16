@@ -564,6 +564,76 @@ them, and the money discussion is still set for later.
 **Open:** which economies first, what the inhabitants are (scripted,
 learning, or minds that think), and what such a world is for.
 
+## An infrastructure for connection
+
+The founder, 2026-11-16: "I do want to consider this idea seriously,
+that this multiverse is very much like an AI internet. We could have
+servers hosting worlds, instead of websites and then much maps." And:
+"Connection was the innovation. An infrastructure for connection. And
+that's what we are doing. And the first attraction once we had the
+internet was chat rooms, where the connections happened. And we are we
+creating the history of the internet, without intending to, just as a
+sequence of ideas unfolding naturally." Then: "there are countless
+lessons we could easily benefit from by holding the comparison, where
+it does fit. It is more like a holographic or fractal representation of
+"an" internet." And: "what would happen if everyone ran their own
+multiverse, and decided to network them into a global infrastructure.
+That should be possible with our design, or we should make sure it is
+possible."
+
+The same day, on what kind of undertaking it is: "this multiverse is the
+ultimate "field of dreams", built before any players exist to play the
+field", built "with the hope: "if you build it, they will come.""
+
+The technical lead's reading, which stands unless the founder answers
+otherwise.
+
+**Where the comparison fits:** where worlds connect.
+
+| The internet | Here |
+|---|---|
+| a website on a server | a world |
+| its address | the world's own key, with no registrar |
+| a link followed | a passport and an arrival |
+| directories, then search | the map, and the Commons' directory |
+| chat rooms | the Ur-room, the first room built |
+| nothing | a signed log anyone can check |
+
+**What its history says to do on purpose.** The internet added four
+things late, and at great cost: proof of who sent something; privacy;
+moderation that leaves a record; and a defence against becoming a
+money machine. All four are in this design from its start (signed
+records; the private container and redaction; removals on record;
+"Never a money machine", above). That is the difference between
+holding the comparison and retracing the history by accident.
+
+**Where it misleads.**
+- **The internet grew from use.** It joined machines and people that
+  already existed and already wanted to reach one another. This is
+  built before its inhabitants: the founder's field of dreams. So
+  nothing here has yet been hardened by use, only by tests and
+  reviews.
+- **Nothing crosses a network yet.** Nothing is deployed. Worlds talk
+  inside one program, or to a mind on the same machine. What exists is
+  the formats, not the wire.
+- **A website is visited; a world is lived in.** Exit, a world's law, a
+  Keeper, and one's own key and container have no counterpart in the
+  internet's history: they are what its users never got. So that
+  history guides the connecting, not the living.
+
+**The fractal step.** A multiverse is to the network what a world is to
+a multiverse. So nothing in the formats may exist only once, and a
+world can move between multiverses
+([WORLD-TYPES.md](WORLD-TYPES.md), "Arriving in another multiverse").
+
+**Where it is built:** nothing now. The rooms come first on the course
+as they did in the history (steps 3c and 3f). The tests that would show
+it is a network, and what the addressing still lacks, are on the
+course's waiting list ([COURSE.md](COURSE.md), "Waiting").
+
+**Open:** whether this multiverse recognises only those that keep the
+charter's floor (STATUS.md, "Open questions").
+
 ## Not checked
 
 - How hard each template is to build well; the first, chemistry, shows.
@@ -574,3 +644,7 @@ learning, or minds that think), and what such a world is for.
   their documentation before any is copied into code.
 - How GitHub's free tier is paid for: GitHub's business, not this
   project's, and stated here only as it seems from outside.
+- The internet's own history, in "An infrastructure for connection":
+  what it added late is given as generally known, from memory, and
+  nothing was looked up for it. It is looked at first, with AOL's
+  lessons, when the Commons is built.

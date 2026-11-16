@@ -112,8 +112,15 @@ world leaving the
 multiverse: a departure record, signed by the world, with schema and
 vectors (the founder, 2026-11-15: "We should crate this mechanism from
 the start"; [WORLD-TYPES.md](WORLD-TYPES.md), "Leaving the
-multiverse"). Moved here from the waiting list, which placed both at
-this recheck. *Borrowing:* the lifecycles of containers and virtual
+multiverse"). And a world arriving in another (the founder,
+2026-11-16: "A world can be born from one multiverse and migrate to
+another. We should make that possible."): a world's birth record names
+the multiverse it was born in, its current one is worked out from its
+moves, and the records for asking to be admitted, admitting and
+refusing are tried between two sets of trial root keys
+([WORLD-TYPES.md](WORLD-TYPES.md), "Arriving in another multiverse").
+The holding place a world is evaluated in waits (below). Moved here
+from the waiting list, which placed both at this recheck. *Borrowing:* the lifecycles of containers and virtual
 machines that WORLD-TYPES.md looked at first (the OCI runtime's states,
 Docker's pause, CRIU's checkpoints).
 
