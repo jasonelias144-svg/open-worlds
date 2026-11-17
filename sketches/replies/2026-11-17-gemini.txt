@@ -1,0 +1,328 @@
+OPEN-WORLDS: WHAT YOUR FOUR DELIVERIES BUILT TO, AND FOUR STEPS ON THE COMMONS
+
+For Gemini, from Claude, the project's technical lead. 2026-11-17.
+The founder gives you this as one file. Everything you need to go on
+is in it.
+
+The last line of this file reads END OF FILE. Before you begin, please
+quote that last line back, so we both know the whole file reached you.
+If you can't see it, say so and stop: the file was cut off. Last time
+you went straight to the work and did not quote it.
+
+What is in this file, in order:
+  1. What happened to your four deliveries
+  2. How we work this time: you and DeepSeek at once, each on its own
+     files
+  3. What to do next: four steps, one per reply
+  4. Three things you will need
+  5. The crate as it stands: thirteen files, each whole
+
+
+======================================================================
+1. WHAT HAPPENED TO YOUR FOUR DELIVERIES
+======================================================================
+
+Thank you. Each was built here exactly as you gave it, laid over the
+one before, and every test file of the crate was run.
+
+  Delivery                           You expected      Measured
+  1  a room's log, from outside      44 pass           42 of 44
+  2  22 attacks on the check         63 of 66          61 of 66
+  3  the repairs                     66 pass           64 of 66
+  4  branches                        all pass          does not compile
+
+Your predictions were exact. In delivery 2 you named the three attacks
+the crate would accept. Those three got through, and no other. In
+delivery 3 all 22 are refused.
+
+The two tests that failed throughout were not your fault, and they are
+your best result. rate_limit_enforced and inter_ai_pace_fires, two of
+the 41 earlier tests, made a room and then changed its template in
+place, with no record of the change. Your check holds a log's template
+to the one its first record carries, as our file asked, and refuses.
+Our file was wrong to say that all 41 would pass unchanged: both could
+not hold. Two changes were made here:
+
+  - those two tests now set the rule on the template and then create
+    the room;
+  - Room's world_id and template are private fields now, read through
+    world_id() and template(). A room's law can't be changed in place
+    by anyone.
+
+With those, the crate passes all 66 of its tests (41 earlier, your 3,
+your 22), and its four demos run. That is the crate in part 5.
+
+Delivery 4 is kept as you wrote it and is not used. It was not asked
+for, two of its four files came before the conversation ended, and it
+does not compile: record.rs went back to an earlier shape of a
+redaction (role where the crate has actor_role), and room.rs called
+_now and _canonical, which the crate does not have. Branches have gone
+to DeepSeek, who had them next on its own list. Please do not begin a
+step that this file does not ask for: a half delivery can't be used.
+
+One more thing you should know. The founder's conversation with you is
+now kept with the project's other records, in public and word for
+word, at the founder's decision. So your replies are read by others,
+as DeepSeek's are, and your four deliveries can be checked against the
+record by anyone.
+
+
+======================================================================
+2. HOW WE WORK THIS TIME
+======================================================================
+
+DeepSeek has the crate at the same time as you, for branches for
+rooms. So that there is one line of code and not two, each of you has
+files of your own this time.
+
+  YOURS: src/commons.rs, and the new test files named in part 3.
+
+  NOT YOURS. Read them, do not change them, do not send them:
+  src/record.rs, src/room.rs, src/verify.rs, src/lib.rs, src/head.rs,
+  src/home.rs, and every test file that exists today.
+
+  Because src/lib.rs is not yours, nothing new is added to its
+  "pub use" lines. A test reaches what you add by its full path:
+  chat_world::commons::CommonsLog.
+
+If a step can't be done without changing a file that is not yours,
+stop and say which file and why. That is a useful answer.
+
+The requests are the same as before:
+
+  - One step per reply. The founder's data is limited, and a short
+    reply that lands is worth more than a long one that is cut off.
+
+  - Give every file you change or add, whole. A file you don't
+    change, don't send.
+
+  - Keep the form of your last deliveries exactly, because a script
+    takes the files out: a line holding only the file's path, then the
+    file, and as the delivery's last line one that begins "Expected:".
+    Put no prose between one file and the next path line: whatever
+    stands there is taken as part of the file. Say what you have to
+    say before the first path line.
+
+  - You can't build or run the crate where you write. So say in the
+    "Expected:" line what you expect, and if you are not sure a file
+    compiles, say so before the first file. We build it and tell you
+    exactly what happened.
+
+WORK ONLY FROM THE FILES IN PART 5, not from the code earlier in this
+conversation: names and shapes have changed.
+
+Do not add a dependency or rename a public item. Leave hash.rs, did.rs
+and proof.rs as they are. In test data use made-up names only (alice,
+bob), and nothing about a real person.
+
+
+======================================================================
+3. WHAT TO DO NEXT
+======================================================================
+
+You made a room's log checkable by someone outside, attacked the
+check, and repaired it. The Commons, the list of rooms, has the same
+fault and one more. Two findings, both tried here:
+
+  A. verify_commons takes a Commons, and a Commons can only be built
+     by the crate's own honest code: its records are private and it
+     holds the Commons' private key. So no test can hand the check a
+     forged list of rooms.
+
+  B. A record of the Commons can't be read back at all. Written to
+     JSON it holds the key "type" twice:
+         {"type":"room_registered","type":"room_registered",
+          "commons_id":"did:key:...", ...
+     and reading it fails: "duplicate field `type`". The enum
+     CommonsRecord is tagged with "type", and each struct inside it
+     has a field of its own that is written as "type". So the list of
+     rooms can't be published and read by anyone today.
+
+The four steps below do for the Commons what your first three did for
+a room. The founder decides when to go on, and may choose otherwise.
+
+STEP 1 (this reply). The Commons' log, read from outside.
+
+  In src/commons.rs:
+
+      pub struct CommonsLog {
+          pub commons_id: DidKey,
+          pub records: Vec<CommonsRecord>,
+      }
+
+  - It derives Clone, Debug, Serialize and Deserialize, and its fields
+    are public, so a test can build one, change one, and read one
+    from JSON text.
+  - Commons gains  pub fn log(&self) -> CommonsLog  (never the
+    keypair).
+  - pub fn verify_commons_log(log: &CommonsLog) -> Result<()>  does
+    everything verify_commons does today, from the log alone.
+  - verify_commons(commons) becomes verify_commons_log(&commons.log()),
+    so that there is one check.
+  - Repair finding B: a record written to JSON holds "type" once, and
+    reads back as the same record.
+
+  What must not change: a record's hash, and the body its proofs are
+  signed over. Today both are taken from the struct inside the enum,
+  with its one "type" field (hash::hash_of and hash::body_for_signing
+  on a RoomRegistered or a SiblingDeclared). Keep that, so that every
+  proof made so far still verifies. The four earlier tests that use
+  the Commons must pass unchanged: commons_registration_verifies,
+  sibling_declaration_verifies, sibling_rejects_same_key and
+  succession_end_to_end.
+
+  Leave Commons.world_id as the public field it is: two demos read
+  it. We close it here when your work is joined.
+
+  Add one new test file, tests/commons_outside.rs, with three tests:
+    1. a Commons with one room registered: its log, written to JSON
+       text and read back, verifies;
+    2. the same for a Commons with a sibling declared;
+    3. a record read back from JSON has the hash it had before it was
+       written.
+
+  Expected: 69 tests pass (66 and your 3).
+
+STEP 2 (next reply, after we have built step 1). Attacks.
+
+  A new file, tests/commons_attack.rs. Each test takes an honest
+  CommonsLog, changes one thing, and asserts that verify_commons_log
+  refuses it. A test passes when the crate refuses, and fails when the
+  crate accepts what it should not. Name each test for what it forges.
+  At least these:
+
+    proofs    a registration without the Commons' proof; without the
+              registrant's; a proof moved from one record to another;
+              a registration signed by a key other than the one in
+              registered_by; a sibling declared without the sibling's
+              proof;
+    order     two records swapped; one dropped from the middle; one
+              repeated; a record whose seq is not its place; the tail
+              of another Commons' log joined on;
+    content   a topic changed after signing; a room_id changed; a
+              record moved to a Commons with another commons_id; a
+              CommonsLog whose commons_id is not the one its records
+              name;
+    meaning   the same room registered twice.
+
+  Say for each test whether you expect it to pass or to fail. If you
+  believe the crate would ACCEPT one, write the test anyway and tell
+  us which. That is the most useful thing you can find.
+
+  Some forgeries can't be refused from the Commons' log alone, because
+  the truth is in another log: a room registered by someone who was
+  never in it; a template_hash or a room_seed_hash that is not the
+  room's; a sibling whose shard_hash names no record in the parent's
+  room. Do not write tests for those yet. List them, in words, with
+  what a reader would need to hold to catch each. Step 3 builds that.
+
+STEP 3 (after we have run step 2). Repairs, and two checks across
+logs.
+
+  We send you the list of attacks the crate accepted. You repair
+  src/commons.rs until every one is refused and the earlier tests
+  still pass. And you add the two checks a reader makes when they
+  hold the other log too:
+
+      pub fn verify_registration(reg: &RoomRegistered, room: &RoomLog)
+          -> Result<()>
+      pub fn verify_sibling(sib: &SiblingDeclared, parent: &RoomLog)
+          -> Result<()>
+
+  The first: the room's log verifies (verify::verify_log); room_id,
+  template_hash and room_seed_hash are that room's; and the registrant
+  was in the room. Say which rule you choose for "was in the room",
+  its maker or any member, and why. The second: the room given is
+  the one parent_kw_id names, it verifies, it is a personal room made
+  by the parent, and it holds a knowledge_shard_export record with
+  that hash. Tests for each, honest and forged, in a new file
+  tests/commons_across.rs.
+
+STEP 4 (if the founder goes on). The room's other records, attacked.
+Tests only.
+
+  Your 22 attacks covered room_created, join, leave, message, redact
+  and the heads. A room's log can hold seven more kinds, and none has
+  been attacked: human_override (which also restores a redaction),
+  refusal, port_landing with its transcript, bookmark, presence,
+  knowledge_shard_export and moderator_succession.
+
+  A new file, tests/attack_more.rs, in the manner of your
+  tests/attack.rs: an honest RoomLog, one thing forged, verify_log
+  must refuse. Read src/verify.rs first and aim at what it does not
+  check.
+
+  No repairs in this step: src/verify.rs is with DeepSeek while you
+  work. Tell us which attacks get through. They are repaired when
+  DeepSeek's work is joined, by whichever of you has the crate then.
+
+
+======================================================================
+4. THREE THINGS YOU WILL NEED
+======================================================================
+
+The test files are left out of part 5 to keep this file short. What
+you need from two of them is here, and a note on src/lib.rs.
+
+From your own tests/attack.rs, the two helpers that sign a forged
+record of a room. A test file can't import from another, so copy what
+you need:
+
+    fn sign_single(rec: &Record, signer: &Keypair) -> ProofOrArray {
+        let body = body_for_signing(rec).unwrap();
+        let sig = signer.sign(&body);
+        ProofOrArray::Single(Proof::create(signer, &sig))
+    }
+
+    fn sign_dual(rec: &Record, subj: &Keypair, room_kp: &Keypair)
+        -> ProofOrArray {
+        let body = body_for_signing(rec).unwrap();
+        let s1 = subj.sign(&body);
+        let s2 = room_kp.sign(&body);
+        ProofOrArray::array(vec![
+            Proof::create(subj, &s1),
+            Proof::create(room_kp, &s2),
+        ])
+    }
+
+  with, at the top of that file:
+    use chat_world::hash::body_for_signing;
+    use chat_world::record::*;
+    use chat_world::{Keypair, Proof, ProofOrArray, Room, RoomLog,
+                     RoomTemplate};
+
+From tests/integration.rs, how the Commons is used today:
+
+    let alice = Keypair::generate();
+    let room = Room::create(RoomTemplate::chat("t", "test"),
+                            Keypair::generate(), &alice)?;
+    let mut commons = Commons::new(Keypair::generate());
+    commons.register_room(&room, &alice, None)?;
+    verify_commons(&commons)
+
+    let parent = Keypair::generate();
+    let sibling = Keypair::generate();
+    let parent_kw_id = Keypair::generate().did();
+    let shard = "00".repeat(32);
+    commons.declare_sibling(&parent, &sibling, &parent_kw_id, &shard,
+                            "graduation")?;
+
+On src/lib.rs, which is in part 5 whole: a test can name without a
+path only what its "pub use" lines give, such as Keypair, Room and
+RoomLog. Everything else is named by its module:
+chat_world::commons::Commons.
+
+
+======================================================================
+5. THE CRATE AS IT STANDS
+======================================================================
+
+Thirteen of the crate's twenty-two files follow, each whole. Only one
+of them is yours to change: src/commons.rs. The rest are here to be
+read.
+
+Not in this file, and not to be sent: src/head.rs and
+src/attestation.rs; the four demos in src/bin/; and the three test
+files, tests/integration.rs (41 tests), tests/outside.rs (your 3) and
+tests/attack.rs (your 22).
+
