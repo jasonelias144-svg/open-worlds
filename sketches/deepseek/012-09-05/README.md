@@ -179,7 +179,10 @@ with the line that names its module (change 26). As it stands it
 passes all 127 of its tests, 61 of them DeepSeek's and 66 Gemini's;
 its four demos run, and so does the plug-in's own demonstration. Gemini's fourth step, 17
 attacks of which eight get through, is built beside it and not laid
-into it (`review/steps.sh`, `c4`). It is put together here, by
+into it (`review/steps.sh`, `c4`). So are its 25 attacks on the list
+of doors, of which five get through (`doors-attacks`;
+[../../gemini/2026-11-17-3/README.md](../../gemini/2026-11-17-3/README.md)).
+It is put together here, by
 `review/steps.py --now`; `review/steps.py --check` holds the folder to
 that, byte for byte, and `sketch_status_test.py` runs the check. So
 its files are listed below as ours, though each is exactly as DeepSeek

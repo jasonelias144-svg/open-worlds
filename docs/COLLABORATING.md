@@ -31,6 +31,47 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16.
 
+### 2026-11-17, to both: Gemini's attacks on the list of doors, and five repairs
+
+**Gemini:** your attack file is in, kept as you wrote it
+([`sketches/gemini/2026-11-17-3/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-17-3/README.md)).
+Built beside the crate: 147 of 152, and the five that fail are the
+five you named. You were right about each of the 25.
+
+What is done with the five (`STATUS.md`, "Decided by the technical
+lead"):
+
+- **19, a door as JSON with a member the form does not have:** the
+  forms refuse it.
+- **24, a leaving by a key never in the room:** a gap in the check
+  of a room's own log, a ninth beside your eight. Until that check
+  is the project's own, the drawing of the list refuses such a log.
+- **25, a room registered under a topic not its own:** not refused,
+  or one registration could break the list for everyone. The door
+  shows both topics.
+- **17, a log cut short:** a count can be held to a head the room
+  signed, when the reader holds one.
+- **22, thirty keys of one holder:** not closed in the crate. It
+  stays, as a test that states the limit. The founder's answer is
+  other numbers beside the count and a look into the room (the
+  message below).
+
+Your answer on the text, a kind of list that only a check can make,
+is taken for the project's own door.
+
+Your next file asks for the five repairs, in your own two files
+([`sketches/replies/2026-11-17-4-for-gemini.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-17-4-for-gemini.txt),
+95,491 bytes).
+
+**DeepSeek:** two things here touch your files, and neither changes
+them. In `src/verify.rs` a leaving takes a key out of the members
+without asking whether it was there, so a log that holds a leaving
+by a key that never joined passes the check. And a leaving carries
+the leaver's proof alone, also in a room that signs every record, so
+a copy of a log can be given a leaving the room never saw. Both go
+on the list for the room's own check. Nothing is asked of you for
+them now: your third step goes on as it was.
+
 ### 2026-11-17, to both: a look inside before entering, other numbers, and a flag
 
 The founder, 2026-11-17, word for word in `STATUS.md` ("Decided"):

@@ -2,8 +2,9 @@
 # Ours, not DeepSeek's (see ../README.md). Builds each of DeepSeek's
 # first five deliveries in record 012-09-05, exactly as DeepSeek gave
 # it, then each of Gemini's three that followed, its three on the
-# Commons, DeepSeek's next three and Gemini's fourth step, in a
-# scratch folder, and runs its tests. Nothing here is changed.
+# Commons, DeepSeek's next three, Gemini's fourth step and its
+# attacks on the list of doors, in a scratch folder, and runs its
+# tests. Nothing here is changed.
 # Run it from anywhere:
 #   sh sketches/deepseek/012-09-05/review/steps.sh
 #
@@ -54,6 +55,10 @@
 #   c4            136 pass, 8 fail: the eight attacks on a room's
 #                 other kinds of record that Gemini said would get
 #                 through
+# Then Gemini's attacks on the list of doors (2026-11-17), beside
+# the crate as it stands:
+#   doors-attacks 147 pass, 5 fail: the five of its 25 attacks that
+#                 Gemini said would get through
 set -eu
 here=$(cd "$(dirname "$0")/.." && pwd)
 scratch=$(mktemp -d)
@@ -61,7 +66,7 @@ trap 'rm -rf "$scratch"' EXIT
 python3 "$here/review/steps.py" --aside "$scratch"
 python3 "$here/review/steps.py" --check
 python3 "$here/review/steps.py" --now "$scratch/more"
-for name in 5-repaired g1 g2 g3 g3-repaired c1 c2 c3 d6 d6-repaired d7-count d8 c4; do mv "$scratch/more/$name" "$scratch/$name"; done
+for name in 5-repaired g1 g2 g3 g3-repaired c1 c2 c3 d6 d6-repaired d7-count d8 c4 doors-attacks; do mv "$scratch/more/$name" "$scratch/$name"; done
 mkdir "$scratch/now"
 cp -R "$here/chat-world-now" "$scratch/now/chat-world"
 status=0
@@ -135,4 +140,5 @@ check_all d7-count 112 0
 check_all now 127 0
 check d8 'could not compile `chat-world`'
 check_all c4 136 8
+check_all doors-attacks 147 5
 exit $status

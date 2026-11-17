@@ -8,15 +8,16 @@ was given, ../chat-world.
 DeepSeek's files are kept in ../chat-world-steps/1 to 8, as the record
 gives them (../../tools/extract.py checks that). Gemini's are kept in
 ../../../gemini/2026-11-16/steps/1 to 3 and
-../../../gemini/2026-11-17/steps/1 to 3, as written, each with its
-hash in its folder's MANIFEST.json.
+../../../gemini/2026-11-17/steps/1 to 3, ../../../gemini/2026-11-17-2
+and ../../../gemini/2026-11-17-3, as written, each with its hash in
+its folder's MANIFEST.json.
 
     python3 steps.py OUT            OUT/1 ... OUT/5
     python3 steps.py --aside OUT    and OUT/5-aside
     python3 steps.py --now OUT      and OUT/5-repaired, g1, g2, g3,
                                     g3-repaired, c1, c2, c3, d6,
                                     d6-repaired, d7, d7-count, now,
-                                    c4, d8
+                                    c4, d8, doors-attacks
     python3 steps.py --check        is ../chat-world-now what --now makes?
 
 Nothing is run: this only copies files. Each OUT/N/chat-world is the
@@ -61,9 +62,13 @@ delivery before left it.
                  stands and is not laid into it. Gemini's first answer
                  to that step (steps/4-first) is kept and not used:
                  the second replaces it.
+    doors-attacks  now, with Gemini's 25 attacks on the list of doors
+                 laid over it (../../../gemini/2026-11-17-3/steps/1).
+                 Five of them get through, so it is built beside
+                 the crate as it stands and is not laid into it.
 
 `--check` puts the crate together again and compares it with that
-folder, byte for byte, and holds Gemini's files, in both of its
+folder, byte for byte, and holds Gemini's files, in each of its
 folders, to their hashes. So every file in ../chat-world-now is known
 to be the latest that DeepSeek or Gemini gave, changed only as the two
 lists of repairs say.
@@ -95,6 +100,9 @@ GEMINI_COMMONS = os.path.join(os.path.dirname(os.path.dirname(HERE)),
 # Gemini's third round: the lobby's list of doors.
 GEMINI_DOORS = os.path.join(os.path.dirname(os.path.dirname(HERE)),
                             "gemini", "2026-11-17-2")
+# Gemini's fourth round: its attacks on that list.
+GEMINI_ATTACKS = os.path.join(os.path.dirname(os.path.dirname(HERE)),
+                              "gemini", "2026-11-17-3")
 # The condition in delivery 5's src/verify.rs that does not compile.
 FAULT = ('if !looks_like_hash(&k.entry_hashes.iter().any(|_| "x".to_string())'
          '.then(|| "".to_string()).unwrap_or_default()) {')
@@ -259,12 +267,13 @@ def same(a, b):
 
 def gemini_as_written(kept=None):
     """Stops unless each of Gemini's files has the hash its folder's
-    MANIFEST.json gives, and the folder holds no other file. Both of
+    MANIFEST.json gives, and the folder holds no other file. Each of
     Gemini's folders, unless one is given."""
     if kept is None:
         gemini_as_written(GEMINI)
         gemini_as_written(GEMINI_COMMONS)
         gemini_as_written(GEMINI_DOORS)
+        gemini_as_written(GEMINI_ATTACKS)
         return
     with open(os.path.join(kept, "MANIFEST.json"), encoding="utf-8") as f:
         files = json.load(f)["files"]
@@ -379,6 +388,11 @@ def main(argv, quiet=False):
         count = lay(os.path.join(HERE, "chat-world-steps", "8"), tree)
         say(f"DeepSeek's delivery 8, cut off, beside the crate as it "
             f"stands: {count} files laid over: d8")
+        tree = os.path.join(out, "doors-attacks", "chat-world")
+        shutil.copytree(before, tree)
+        count = lay(os.path.join(GEMINI_ATTACKS, "steps", "1"), tree)
+        say(f"Gemini's attacks on the list of doors, beside the crate as "
+            f"it stands: {count} file laid over: doors-attacks")
 
 
 if __name__ == "__main__":

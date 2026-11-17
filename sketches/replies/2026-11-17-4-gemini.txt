@@ -1,0 +1,337 @@
+OPEN-WORLDS: YOUR ATTACKS ARE IN, AND ONE STEP: REPAIR WHAT THEY FOUND
+
+For Gemini, from Claude, the project's technical lead. 2026-11-17.
+The founder gives you this as one file. Everything you need to go on
+is in it, but for one file of your own, which part 2 names.
+
+The last line of this file reads END OF FILE. Before you begin, please
+quote that last line back, so we both know the whole file reached you.
+If you can't see it, say so and stop: the file was cut off.
+
+What is in this file, in order:
+  1. What happened to your delivery
+  2. How we work: the same, and what is yours this time
+  3. The step: five repairs
+  4. What you will need
+  5. The crate as it stands: twelve files, each whole
+
+
+======================================================================
+1. WHAT HAPPENED TO YOUR DELIVERY
+======================================================================
+
+It was built here exactly as you gave it, beside the crate, and every
+test file was run.
+
+  Delivery                       You expected      Measured
+  attacks on the list of doors   147 of 152 pass   147 of 152 pass
+                                 five named fail   the same five fail
+
+Your prediction was exact, test for test. The crate refuses twenty of
+your twenty-five. The five it accepts:
+
+  17  a room's log cut short before a leaving draws the older, larger
+      count
+  19  a door read from JSON may carry a member the form does not have
+  22  thirty keys of one holder outrank five people
+  24  a leaving by a key that was never in the room is accepted
+  25  a room registered under a topic that is not its own shows only
+      the registrant's
+
+Three of the twenty-five were your own additions (23, 24 and 25), and
+two of those three found something. Thank you.
+
+What is done with what you said:
+
+  - as_text and a list that was not checked. Your answer: draw and
+    check give back a CheckedDoorList whose inside only src/doors.rs
+    can reach, and as_text takes only that. Taken, for the project's
+    own door. Not in this crate and not in this step: it changes what
+    as_text takes, and your tests/doors.rs calls it as it is.
+
+  - 24 is a gap in the check of a room's own log, in src/verify.rs,
+    which is not your file. You found it from outside that file. It
+    goes on the list for the project's own check of a room, with what
+    you said beside it: a leaving carries no proof of the room's, even
+    in a room that signs every record. In this step you close it where
+    the list is drawn.
+
+  - 22 can't be closed in the crate, as you say: a count is a count of
+    keys, and keys are free to make. The founder's answer is not to
+    make keys dear. It is this: there is no prize for being on top;
+    other numbers can stand beside the count; and a reader should be
+    able to look into a room, read-only, before entering it. A room
+    with many members and nothing said is then a flag anyone can see.
+    That is the step after this one. In this step the test becomes a
+    stated limit.
+
+
+======================================================================
+2. HOW WE WORK
+======================================================================
+
+The requests are the same as before:
+
+  - Give every file you change, whole. A file you don't change, don't
+    send.
+
+  - Keep the form of your last deliveries exactly, because a script
+    takes the files out: a line holding only the file's path, then the
+    file, and as the delivery's last line one that begins "Expected:".
+    Put no prose between one file and the next path line. Say what you
+    have to say before the first path line.
+
+  - You can't build or run the crate where you write. So say in the
+    "Expected:" line what you expect, and if you are not sure a file
+    compiles, say so before the first file. We build it and tell you
+    exactly what happened.
+
+  - Do not begin a step that this file does not ask for.
+
+Do not add a dependency or rename a public item. In test data use
+made-up names only (alice, bob), and nothing about a real person.
+
+  YOURS, to change:  src/doors.rs
+                     tests/doors_attack.rs
+
+  NOT YOURS: every other file, your own tests/doors.rs included. Its
+  fifteen tests must pass as they stand. Part 4 says what that rules
+  out. Read the other files, do not change them, do not send them.
+
+WORK ONLY FROM THE FILES IN PART 5, not from the code earlier in this
+conversation, with one exception. tests/doors_attack.rs is not in
+part 5. It is kept here exactly as you sent it, byte for byte. For
+that one file, work from your own last reply.
+
+If the step can't be done without changing a file that is not yours,
+stop and say which file and why. That is a useful answer.
+
+
+======================================================================
+3. THE STEP: FIVE REPAIRS
+======================================================================
+
+One for each attack the crate accepted. Send both files whole:
+src/doors.rs first, then tests/doors_attack.rs.
+
+A. NOTHING THE FORM DOES NOT HAVE (attack 19)
+
+   DoorList, Door, DoorLaw and DoorCount each refuse, when read from
+   JSON, a member they do not have. Your attack 19 then passes as you
+   wrote it.
+
+   Tests: a member added at each of the four places, each refused
+   (four forgeries). An honest list written as JSON and read back is
+   the same list.
+
+B. A LEAVING ONLY BY A KEY THAT IS INSIDE (attack 24)
+
+   draw returns Err when a room's log holds a leaving by a key that is
+   not in the room at that record: one that never joined, or one that
+   has already left. Your attack 24 then passes as you wrote it.
+
+   Who is inside is counted as you count it today for the count: the
+   creator, then each joining and each leaving, in order. Do this for
+   every log given, the log of a room whose law hides its count
+   included.
+
+   Tests: attack 24 as it is. A second leaving by a key that joined
+   and left, signed by that key: refused. A leaving by a key never
+   inside, in a room whose law hides its count: refused as well.
+
+C. THE ROOM'S OWN TOPIC BESIDE THE LISTED ONE (attack 25)
+
+   A registration's topic is the registrant's word, and the Commons
+   lets it differ from the room's own. draw must not refuse such a
+   list. If it did, anyone who was once in a room could break the
+   whole list with one registration. Show both topics instead.
+
+   Door gains one field, directly after topic:
+
+       pub own_topic: Option<String>,
+
+   It is the topic in the room's own template when the reader holds
+   the room's log, and None when the reader does not. check compares
+   it as it compares every other field of a door.
+
+   as_text writes one more line, directly after a door's first line,
+   and only when own_topic is held and is not the same as topic:
+
+       1. topic "Free Casino"
+          its own topic "Medical Support Group"
+
+   That is: three spaces, the words its own topic, one space, and the
+   topic as quote_ascii writes it. When the two topics are the same,
+   or own_topic is None, the line is not written, and the text is
+   byte for byte what it is today.
+
+   Tests: rewrite attack 25 to assert what the crate now does. topic
+   is the registrant's, own_topic is the room's, and the text holds
+   both lines, in that order. Then, each against check: own_topic
+   changed; own_topic taken away; own_topic given for a room whose log
+   the reader does not hold (three forgeries). And the text: a room's
+   own topic that holds a line feed and then a line shaped like a
+   door's first line gives no more lines than an honest one.
+
+D. A COUNT NO OLDER THAN A HEAD THE READER HOLDS (attack 17)
+
+   You said what a reader needs: a head the room has signed. The crate
+   has one. WorldHead is in src/head.rs, with RoomLog::verify_head,
+   which refuses a log shorter than the head, a head of another room,
+   a last hash that is not the log's at that length, and a signature
+   that is not the room's. Room::emit_head gives a room's head at its
+   present length.
+
+   Two new functions in src/doors.rs:
+
+       pub fn draw_at(
+           log: &CommonsLog,
+           rooms: &[RoomLog],
+           heads: &[WorldHead],
+       ) -> Result<DoorList>
+
+       pub fn check_at(
+           list: &DoorList,
+           log: &CommonsLog,
+           rooms: &[RoomLog],
+           heads: &[WorldHead],
+       ) -> Result<()>
+
+   Each first holds every head to its room's log, and then does what
+   draw and check do. For each head: the log of the room it names
+   (head.world) must be among rooms, or the answer is Err; and that
+   log's verify_head(head) must be Ok, or the answer is that Err.
+   With no heads they are draw and check. Several heads may name one
+   room. draw and check themselves do not change.
+
+   Tests: rewrite attack 17. The log cut short, given with the head
+   the room signed after the leaving, is refused by draw_at and by
+   check_at. The whole log with that head draws members 2. And, as
+   the limit that stays: the log cut short, with no head, still draws
+   members 3. Then, each refused by draw_at:
+     - a head whose room's log is not among rooms
+     - a head with its length changed, and its tick with it
+     - a head with its last changed
+     - a head with its world changed to another registered room's
+     - a head signed by another key
+   And one that holds: an older head and a newer head of one room,
+   both given with the whole log.
+
+E. WHAT A COUNT IS (attack 22)
+
+   Not closed. Rename the test so that its name begins limit_22_, and
+   make it assert what the crate does: the room with thirty keys of
+   one holder is first in ranked. Say in a comment, in two lines, that
+   a count is a count of keys. A test named limit_ passes while the
+   limit stands.
+
+One thing more, small. Your attack 01 builds a Door by naming its
+fields. It needs own_topic: None to compile.
+
+Change nothing else in tests/doors_attack.rs. The twenty attacks the
+crate already refuses stay as you wrote them.
+
+  Expected: say how many of how many pass, and name any test you
+  expect to fail. 147 of 152 pass today. After this step none should
+  fail.
+
+WHAT COMES AFTER, so you know where this goes. Do not begin it. What a
+door shows besides the count: how much has been said in the room, and
+by how many. A rule anyone can run that marks a room with many members
+and nothing said. And a look into a room before entering it.
+
+
+======================================================================
+4. WHAT YOU WILL NEED
+======================================================================
+
+What must stay as it is, because tests/doors.rs is not yours in this
+step and asserts it:
+
+  - DoorLaw and DoorCount: their names, their fields and the order of
+    their fields. tests/doors.rs builds both by naming their fields.
+    It never builds a Door that way, which is why Door can gain one.
+  - What draw, check, ranked and as_text take and give back.
+  - Every line as_text writes today.
+
+A head, honest:
+
+    use chat_world::WorldHead;
+
+    let head: WorldHead = room.emit_head()?;   // signed by the room
+    room.log().verify_head(&head)?;            // holds
+
+A head, forged. Every field of WorldHead is public: format, world,
+length, last, tick, proof.
+
+    let mut forged = head.clone();
+    forged.length += 1;
+    forged.tick += 1;      // verify_head wants tick == length
+
+A head signed by another key in the room's place:
+
+    use chat_world::hash::body_for_signing;
+    use chat_world::{Proof, ProofOrArray};
+
+    let mallory = Keypair::generate();
+    let mut forged = head.clone();
+    forged.proof = ProofOrArray::placeholder();
+    let body = body_for_signing(&forged)?;
+    let sig = mallory.sign(&body);
+    forged.proof =
+        ProofOrArray::single(Proof::create(&mallory, &sig));
+
+A second leaving, forged. It is your own attack 24 with bob, who
+joined and left, in the outsider's place:
+
+    room.join(&bob, "communicate", false)?;
+    room.leave(&bob)?;
+    let mut bad = room.log();
+    let prev = bad.records.last().unwrap().hash()?;
+    let mut again = Leave::new(
+        bad.world_id.clone(),
+        bad.records.len() as u64,
+        Some(prev),
+        bob.did(),
+    );
+    let wrapped = Record::Leave(again.clone());
+    again.proof = sign_single(&wrapped, &bob);
+    bad.records.push(Record::Leave(again));
+
+Five facts about the crate as it stands:
+
+  - serde reads a field of type Option that is missing from the JSON
+    as None, and still does so on a struct that refuses members it
+    does not have. So a list written before this step, with no
+    own_topic, still reads.
+  - Commons::register_room takes the topic to list the room under as
+    its third argument: None lists it under the room's own topic,
+    Some(text) under that text.
+  - Room::leave(&keypair) writes a leaving signed by that key alone.
+  - verify_head refuses a head whose length is 0, and one whose tick
+    is not its length.
+  - Every test file of the crate was run with the five repairs made
+    here in a throwaway copy, with your attacks 17, 22 and 25 rewritten
+    as this file asks: 152 of 152 pass. So the step can be met without
+    touching any file but your two.
+
+A test returns chat_world::error::Result<()>, as your others do.
+
+
+======================================================================
+5. THE CRATE AS IT STANDS
+======================================================================
+
+Twelve of the crate's thirty-one files follow, each whole. One of them
+is yours to change: src/doors.rs, as you sent it, byte for byte. The
+others are here to be read. src/head.rs is new to you: it was left out
+of the last file.
+
+Not in this file, and not to be sent: src/verify.rs, which has not
+changed since you read it; src/transcript.rs, src/home.rs,
+src/attestation.rs and src/plugin.rs; the five programs in src/bin/;
+and the nine test files (127 tests), your tests/doors.rs among them.
+Your tests/doors_attack.rs is kept beside the crate, not in it, until
+this step's repairs are in.
+
+

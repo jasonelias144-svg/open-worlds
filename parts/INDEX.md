@@ -17,7 +17,7 @@ The file itself is the one to change. `python3 docs/parts.py`
 makes the parts again, and `tests/test_parts.py` fails when they
 are out of step with their files.
 
-## `STATUS.md`, in 18 parts
+## `STATUS.md`, in 19 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/start.md
@@ -33,6 +33,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATU
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead-03.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead-02.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead-01.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-06.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-05.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-04.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-03.md

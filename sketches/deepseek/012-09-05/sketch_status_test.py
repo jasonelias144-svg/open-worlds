@@ -154,7 +154,7 @@ def test_geminis_files_are_the_ones_its_record_gives():
     # with no argument, it takes them out of the record again and
     # compares.
     for folder, count in (("2026-11-16", 10), ("2026-11-17", 7),
-                          ("2026-11-17-2", 2)):
+                          ("2026-11-17-2", 2), ("2026-11-17-3", 1)):
         take = HERE.parent.parent / "gemini" / folder / "take.py"
         done = subprocess.run([sys.executable, "-I", str(take)],
                               capture_output=True, text=True)
@@ -171,6 +171,13 @@ def test_geminis_files_are_the_ones_its_record_gives():
             encoding="utf-8")
         assert text.count("#[test]") == count, name
     assert not (HERE / "chat-world-now" / "tests" / "attack_more.rs").exists()
+    # The 25 attacks on the list of doors: five get through
+    # (review/steps.sh, doors-attacks), so the file is kept beside the
+    # crate as it stands until the list is repaired.
+    attacks = (HERE.parent.parent / "gemini" / "2026-11-17-3" / "steps" / "1"
+               / "tests" / "doors_attack.rs").read_text(encoding="utf-8")
+    assert attacks.count("#[test]") == 25
+    assert not (HERE / "chat-world-now" / "tests" / "doors_attack.rs").exists()
 
 
 def test_the_delivery_that_was_cut_off_is_kept_and_not_laid_in():
