@@ -1,7 +1,7 @@
 # Gemini, 2026-11-17: the lobby's list of doors
 
 Code that Gemini wrote for `chat-world`, the sketch crate of the
-Commons' rooms, from the third file it was given:
+Commons' rooms, from the third file they were given:
 [../../replies/2026-11-17-2-for-gemini.txt](../../replies/2026-11-17-2-for-gemini.txt).
 That file asked one step: the list of the Commons' doors, which is
 what a map of the Commons is first drawn from, in a new source file,
@@ -12,7 +12,7 @@ what a map of the Commons is first drawn from, in a new source file,
 The conversation is
 [../../records/012-00-00-GMNI-Multiverse_Development.txt](../../records/012-00-00-GMNI-Multiverse_Development.txt),
 which has grown again. This delivery begins at its line 16399, where
-Gemini quotes back the last line of the file it was given, as the
+Gemini quotes back the last line of the file they were given, as the
 file asked. The copy kept before is a prefix of the new one, byte for
 byte.
 
@@ -78,7 +78,7 @@ These are Gemini's proposals. What the project takes from them is in
 
 ## What comes next
 
-Gemini's next file asks it to attack the list:
+Gemini's next file asks them to attack the list:
 [../../replies/2026-11-17-3-for-gemini.txt](../../replies/2026-11-17-3-for-gemini.txt).
 
 ## Ours, not Gemini's

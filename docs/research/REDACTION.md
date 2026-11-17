@@ -211,7 +211,7 @@ that did not hold together; STATUS.md's Log says what changed.
      are the only such in the room, with the whole hash one step away.
      A reason that is later redacted does not change it.
    - *Its grant* comes from the room's key and allows `remove-comment`
-     in that room; a Keeper needs one for what it does too. How a
+     in that room; a Keeper needs one for what they do too. How a
      moderator comes to hold one is step 3d's.
    - *Built here for the first time:* the list of kinds of act "the
      rules fix", which does not exist yet, and the checks across

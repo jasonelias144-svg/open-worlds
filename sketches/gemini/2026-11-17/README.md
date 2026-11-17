@@ -1,12 +1,12 @@
 # Gemini, 2026-11-17: the Commons' own log
 
 Code that Gemini wrote for `chat-world`, the sketch crate of the
-Commons' rooms, from the second file it was given:
+Commons' rooms, from the second file they were given:
 [../../replies/2026-11-17-for-gemini.txt](../../replies/2026-11-17-for-gemini.txt).
 That file asked for four steps on the Commons, the crate's list of
 rooms, to be done in one source file, `src/commons.rs`, and in new test
 files. DeepSeek had the crate at the same time for another step, so
-each was given files of its own (STATUS.md, "Decided by the technical
+each was given files of their own (STATUS.md, "Decided by the technical
 lead", 2026-11-17).
 
 Three deliveries came back at first: the first three steps. The fourth
@@ -21,7 +21,7 @@ The conversation is
 [../../records/012-00-00-GMNI-Multiverse_Development.txt](../../records/012-00-00-GMNI-Multiverse_Development.txt),
 which has grown since the first round, and again since the first three
 steps. These deliveries begin at its line 13531, where Gemini quotes
-back the last line of the file it was given, as the file asked. The
+back the last line of the file they were given, as the file asked. The
 fourth step begins at line 14973.
 
 When the record grew the second time, the copy kept here was a prefix
@@ -48,7 +48,7 @@ Each is laid over the one before, starting from the crate Gemini was
 given, and every test file of the crate is run
 (`sh ../../deepseek/012-09-05/review/steps.sh`, which CI doesn't run:
 it needs Rust and the network). Measured on 2026-11-17. "Expected" is
-Gemini's own line; it can't build the crate where it writes.
+Gemini's own line; they can't build the crate where they write.
 
 | Delivery | What it is | Files | Expected | Measured |
 |---|---|---|---|---|
@@ -58,7 +58,7 @@ Gemini's own line; it can't build the crate where it writes.
 | 4, first answer (`steps/4-first`) | Attacks on a room's seven other kinds of record: 10 tests, each forging something the check already refuses. Gemini's next reply says so itself (line 15312): the file "only tested conditions that src/verify.rs already checks (PASS cases), rather than aiming at the unguarded blind spots" | 1 | "79 tests pass (69 earlier and 10 new", which miscounts the earlier tests: the crate had 92 | 10 of 10 on their own, run once by hand. `steps.sh` doesn't build it: the second answer replaces it |
 | 4 (`steps/4`) | The same step again: 17 tests on the seven kinds, eight of which Gemini expects to fail because the check accepts the forgery | 1 | "101 of 109 tests pass", naming the eight that fail | 101 of 109: the eight Gemini named get through, and no other |
 
-Every measured number is the one Gemini gave, but for its count in the
+Every measured number is the one Gemini gave, but for their count in the
 first answer to step 4. Nothing was repaired here. The crate as it
 stood then, `../../deepseek/012-09-05/chat-world-now/`, was the third
 delivery laid over the first two, unchanged; DeepSeek's next two
@@ -85,7 +85,7 @@ reading the code, written as a test that fails, and then repaired:
 3. **The same sibling could be declared twice.**
 
 And what can't be told from the Commons' log alone, which Gemini listed
-in words in its second delivery and built in its third. Holding a
+in words in their second delivery and built in their third. Holding a
 room's log beside the Commons' record, a reader can now tell that
 whoever registered the room was in it, that the template and the first
 record the registration names are that room's, and that a sibling's
@@ -108,11 +108,11 @@ the check of its log. Each is a test that fails now:
 8. **A shard export that names no entries.**
 
 These are Gemini's readings of `src/verify.rs` and `src/transcript.rs`.
-Each test fails here as it said it would. The technical lead has not
+Each test fails here as Gemini said it would. The technical lead has not
 read the check against each claim beyond that.
 
 Gemini's rule for who may register a room: anyone who was in it, its
-maker or anyone who joined, and not its maker alone. Its reason (line
+maker or anyone who joined, and not its maker alone. Their reason (line
 14300): "a room is a world with its own did:key, not the personal
 property of its creator, and a Commons is a directory rather than a
 landlord". That is a choice made in a sketch. It decides nothing for
@@ -125,7 +125,7 @@ Seen by the technical lead and not changed:
 - The Commons itself still writes a second registration of the same
   room when asked. Only the check of its log refuses it, so honest
   code can write a log that its own check refuses. Gemini says so in
-  its third delivery: it kept the writing side as it was so that its
+  their third delivery: they kept the writing side as it was so that their
   attack tests, which build such a log by asking twice, stay as they
   are.
 - `verify_registration` counts anyone who ever joined the room, also
@@ -160,10 +160,10 @@ form of it "for design review only right now, not a delivery step"
 
 What it proposes: a moderator is a member with a key, which chooses
 from a short fixed list of acts (wait, welcome, prompt, respond,
-summarise, remove); silence is the default; it checks the room's pace
-before it asks its model for anything; it accepts a person's override
+summarise, remove); silence is the default; they check the room's pace
+before they ask their model for anything; they accept a person's override
 without arguing; each key is given only its own room's log and its own
-notes; and its notes are tagged by room, so that a handover can
+notes; and their notes are tagged by room, so that a handover can
 collect them. A quiet room may share its moderator, and a busy one
 gets its own, worked out from the logs.
 

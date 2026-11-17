@@ -205,8 +205,8 @@
     the founder's own words ("Perhaps"; "need not have access"), not
     yet a decision. The technical lead's reading, which stands unless
     the founder answers otherwise: an AI that moderates many rooms
-    holds a separate key in each, and what it learns in one room has no
-    path to another. To reason across rooms it must read another key's
+    holds a separate key in each, and what they learn in one room has no
+    path to another. To reason across rooms they must read another key's
     log, which is an act on the record. That the keys which moderate
     are one model is declared in the open: the technical lead's choice,
     on the ground of item 3, while the keys an AI merely takes part

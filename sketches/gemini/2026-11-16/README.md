@@ -20,7 +20,7 @@ it was 574,505 bytes when these files were taken, SHA-256
 `39aea56cb85ed9f3b2c928b01bd7802b552e24f84c5e05a5bac7187bfd410d31`,
 and what follows that in it is Gemini's second round
 ([../2026-11-17/README.md](../2026-11-17/README.md)). The manifest here
-names the record as it stands. What Gemini wrote after it was given
+names the record as it stands. What Gemini wrote after they were given
 the first file begins at line 9748.
 
 [MANIFEST.json](MANIFEST.json) gives, for each file in `steps/`, the
@@ -44,7 +44,7 @@ Each is laid over the one before, starting from the crate Gemini was
 given, and every test file of the crate is run
 (`sh ../../deepseek/012-09-05/review/steps.sh`, which CI doesn't run:
 it needs Rust and the network). Measured on 2026-11-17. "Expected" is
-Gemini's own line; it can't build the crate where it writes.
+Gemini's own line; they can't build the crate where they write.
 
 | Delivery | What it is | Files | Expected | Measured |
 |---|---|---|---|---|
@@ -119,13 +119,13 @@ Seen by the technical lead and not changed:
 
 - `Room::log()` signs a new closing head each time it is called, and
   if signing fails it gives the log without one, which the check then
-  refuses. DeepSeek, who designed the signed heads, is asked what it
-  makes of the rule ([../../replies/012-09-05-2.txt](../../replies/012-09-05-2.txt),
+  refuses. DeepSeek, who designed the signed heads, is asked what they
+  make of the rule ([../../replies/012-09-05-2.txt](../../replies/012-09-05-2.txt),
   part 5).
 - `tests/attack.rs` imports `RoomLog` and does not use it: one
   warning when the crate is built.
 - Gemini did not quote the file's last line back, as the file asked.
-  Its work uses the last files of the crate, so the file reached it.
+  Their work uses the last files of the crate, so the file reached them.
 
 ## The fourth delivery
 

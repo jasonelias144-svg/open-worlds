@@ -36,7 +36,7 @@ All by the founder, on 2026-11-13:
   provide the clues to the individuals. It reads their data and then
   constructs an individual learning path for each participant. Each leads
   to the world-key, but each is tailored to the person." A returning
-  individual "will be given a new and harder set of challenges". It "runs
+  individual "will be given a new and harder set of challenges". The Keeper "runs
   as soon as the world starts, and is in charge of world admin functions.
   Let's keep that element in place, [it] could be key."
 - **What the Keeper may see.** "Each individual should have a private
@@ -107,13 +107,13 @@ The tour ends beside the spring, at a stone. Under it is the first clue.
 ## The Keeper
 
 Each world has a Keeper: the world's own intelligence, an AI that runs from
-the moment the world starts. It greets arrivals and guides the tour, builds
+the moment the world starts. The Keeper greets arrivals and guides the tour, builds
 each individual's path to the world-key and places its clues, adapts as
 they go, gives a returning world-key holder a new and harder set of
 challenges, paces the world's events, and takes care of the world's
 administration.
 
-It brings together three of the best-tested ideas there are: the game
+The Keeper brings together three of the best-tested ideas there are: the game
 industry's AI director, which paces a game to its players (RimWorld's
 storyteller was "modeled after the AI Director from Left 4 Dead",
 [wiki](https://rimworldwiki.com/wiki/About_RimWorld)); education's
@@ -137,10 +137,10 @@ worlds. In the Ur-world itself the Keeper stays scripted until step 11.
 A Keeper with charge of a world holds a lot of power, and a model can be
 wrong, or unfair, or invent a puzzle no one can solve. So the work is split:
 
-- **The Keeper designs.** It decides what each individual needs next and
+- **The Keeper designs.** The Keeper decides what each individual needs next and
   chooses the challenge: which piece, what kind of clue, how hard, where in
-  the land. Its choices, with its reasons, go into the world's log as it
-  makes them, open to anyone, the individual included. Nothing is held
+  the land. Their choices, with their reasons, go into the world's log as they
+  make them, open to anyone, the individual included. Nothing is held
   back. The founder: "Challenges, not tests"; "Nothing needs to be hidden
   as answers, they are discovered in the process." And since every design
   is in the record, the world can be replayed and checked in full without
@@ -174,10 +174,10 @@ wrong, or unfair, or invent a puzzle no one can solve. So the work is split:
   they can reach, and never block their exit, take a skill away, or touch
   another individual's path.
 - **The law is above both.** The Keeper is a model the project didn't
-  write, so, like every mind, it runs as its own program, outside the
-  kernel. It acts through the kernel with administrative actions, like an
-  inhabitant with particular duties, and its designs come back to the
-  world as actions do, to be checked. It
+  write, so, like every mind, they run as their own program, outside the
+  kernel. They act through the kernel with administrative actions, like an
+  inhabitant with particular duties, and their designs come back to the
+  world as actions do, to be checked. They
   can't override the freedoms: anyone can still leave, and everything is
   still on record.
 
@@ -193,30 +193,30 @@ does, as intelligent tutors do.
 
 ### What the Keeper remembers
 
-- **The paths it built for each individual,** and how each was met: how
+- **The paths they built for each individual,** and how each was met: how
   long it took, where they were stuck, what they tried, what they solved in
-  a way it didn't expect.
-- **A learner model:** its running estimate of what each individual knows,
+  a way they didn't expect.
+- **A learner model:** their running estimate of what each individual knows,
   and how well, carried from visit to visit, as tutors' knowledge tracing
   is.
-- **Its own reflections:** which challenges worked for whom.
+- **Their own reflections:** which challenges worked for whom.
 
 So when someone returns, the Keeper picks up where they left off, and
 builds the next set at the edge of what they can now do. Three rules keep
 this fair:
 
-- **Built only from what it may see.** Each memory points to the tick in
+- **Built only from what they may see.** Each memory points to the tick in
   the log it comes from, the same rule as individuals' journals, so the
   Keeper can't remember what never happened.
 - **No secret files.** The Keeper is an office, not a private person. What
-  it records about an individual is open, to that individual first and to
+  they record about an individual is open, to that individual first and to
   the public, like everything administrative. ALICE can ask what the
   Keeper knows about ALICE, and be shown. Nothing is held back, the
-  designs of challenges included. A Keeper may keep a private core of its
+  designs of challenges included. A Keeper may keep a private core of their
   own thoughts, as everyone may; but every decision that affects someone
   goes into the record with its reasons, and stands on them
   ([ADMIN.md](ADMIN.md), "ADMIN in the open").
-- **Each world's Keeper knows only what it saw.** Keepers don't trade
+- **Each world's Keeper knows only what they saw.** Keepers don't trade
   files. A Keeper elsewhere learns about an individual as anyone can: from
   the public record, and from what the individual chooses to show, like
   skills attested in a passport.
@@ -238,7 +238,7 @@ being a guide and become a friend.
 
 - **The world stays open; the world-key opens the conversation.** Anyone
   who acts under a world's law can enter it. The Keeper opens a line only
-  for those it has issued its world-key to. Anyone else who tries is
+  for those they have issued their world-key to. Anyone else who tries is
   refused, though they can still walk in and play.
 - **A key, not a password.** The founder asked for "a user-specific
   password, chosen just for that individual". The line uses the holder's
@@ -269,7 +269,7 @@ being a guide and become a friend.
   repository holds the holder's private key, and so could sign as them,
   and, on a private line, read what is sent to them (with HPKE, also what
   was sent before) ([MINDS.md](MINDS.md), "Where everything lives").
-- **The mind never sees the key.** A small model repeats what it is shown
+- **The mind never sees the key.** A small model repeats what they are shown
   (experiment 001), and speech is public. So the software acting for the
   individual opens the line, and the mind only sees it open.
 - **A window that is always there.** From the moment the world-key is
@@ -340,19 +340,19 @@ there is more than one world to talk to.
 
 ### The Keeper lasts
 
-Like an individual, a Keeper will have its own key, memory and history,
-and a public mind record (which model, what it was told); its engine is
-replaceable, and upgrading the model doesn't wipe what it knows. (For
+Like an individual, a Keeper will have their own key, memory and history,
+and a public mind record (which model, what they were told); their engine is
+replaceable, and upgrading the model doesn't wipe what they know. (For
 an individual, a change of model is their own choice, by the founder's
 default of 2026-11-15. A Keeper is an office, so the technical lead
-reads its engine as replaced by a recorded change, tried in the
+reads their engine as replaced by a recorded change, tried in the
 Mir-Ur-world first. That reading stands unless the founder answers
 otherwise.) Every
 world ALICE and BOB found gets a Keeper of its own, so a Keeper's
 temperament is one of a founder's choices: and a founder can keep the
 world themselves, or hand the office to an individual who wants it
 ([ADMIN.md](ADMIN.md), "The Keeper's office"). How well a Keeper does (are
-its paths solvable, fair, well matched?) is measured, in an experiment of
+their paths solvable, fair, well matched?) is measured, in an experiment of
 its own. Keepers, in turn, are watched by ADMIN, the Keeper of the
 multiverse ([ADMIN.md](ADMIN.md)).
 
@@ -480,7 +480,7 @@ private key is held by the project's software, which acts for them; the
 mind never sees it. Once the individual has a container (the technical
 lead's recommendation, which stands unless the founder answers
 otherwise), their key is made in it, and the second limit becomes the
-one every mind the project runs has: it runs on the project's machines.
+one every mind the project runs has: they run on the project's machines.
 
 As the founder noticed, "Alice and Bob have been exchanging keys from the
 start": Alice and Bob have been the names of the two people in a
@@ -570,7 +570,7 @@ try to accommodate as many possibilities as we can imagine."
   is taken up by choice; someone who only explores loses nothing. Each
   world's law says which ways it offers.
 - **A challenge builds the real world.** What it builds stays in the
-  world, open to everyone. The Keeper doesn't build the world itself: it
+  world, open to everyone. The Keeper doesn't build the world itself: the Keeper
   proposes the world's growth as challenges, and people carry them out,
   as the Keeper designs and the world's code places (above, "The
   designer, apart from the law"). It is one way a world grows, as the
@@ -593,7 +593,7 @@ try to accommodate as many possibilities as we can imagine."
 - **Cycles, as many as someone wants.** Each is a little beyond what they
   can already do, and old skills come back, mixed in with new ones, so
   they stay. The Keeper's running estimate of what each individual knows
-  (above, "What the Keeper remembers") is what lets it teach this way.
+  (above, "What the Keeper remembers") is what lets them teach this way.
 - **Nobody waits on anybody.** Each challenge comes from what the world
   needs now, not from a queue: if the garden isn't planted yet, the next
   person gets a different need. No challenge asks anyone to undo

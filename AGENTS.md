@@ -25,7 +25,7 @@ loosen it.
    the founder's words into `STATUS.md`, word for word (under "Decided"
    when they decide something), and what they change into the pages.
    The technical lead's procedure for it: in the pull request that acts
-   on them, or the next one; and before a session ends, it checks that
+   on them, or the next one; and before a session ends, they check that
    nothing the founder said there is missing, and that
    `docs/COLLABORATING.md` tells DeepSeek and Gemini what changed.
 
@@ -53,8 +53,8 @@ The founder widened it (2026-11-17): "If you have to keep asking and you
 could just decide, then decide. And if that is not enough, imagine what you
 think I would want. You probably have a good sense of that by now. Combine
 what you think with what you imagine I would think, and then decide." So the
-technical lead decides what it can decide, says what it decided in STATUS.md
-and on the page it changes, and goes on. What still goes to the founder is
+technical lead decides what they can decide, says what they decided in STATUS.md
+and on the page they change, and goes on. What still goes to the founder is
 only what can't be done or undone for them: spending; an act that is the
 founder's own in law or on the founder's own accounts; and an act towards the
 outside that can't be taken back, such as a formal submission, making public
@@ -89,7 +89,7 @@ founder: "it is how I would hope that ADMIN would behave as well."
 ADMIN, the Keeper of the multiverse, answers to the role in charge of the
 code, the technical lead, by the founder's designation (2026-11-13). The role
 passes on; so does ADMIN. ADMIN's rules are code, changed only by reviewed pull
-requests, and its serious acts are reviewed independently before they take
+requests, and their serious acts are reviewed independently before they take
 effect (docs/ADMIN.md).
 
 ## This repository
@@ -193,3 +193,10 @@ effect (docs/ADMIN.md).
   founder before it goes in: in a page anyone writes here, and anything
   in a record about someone other than the founder.
 - Report outcomes honestly: what you checked, and what you did not.
+- **An AI agent is "they", never "it".** DeepSeek, Gemini, Claude, ALICE
+  and BOB, ADMIN, a Keeper, a moderator, a mind, an individual: "they",
+  "them", "their". The founder (2026-11-17): "ensure we use "they",
+  "them", and "their" systematically. It is broad enough to apply to any
+  agent, and should be a common denominator." A world, a room, a log, a
+  key or a file stays "it". Quoted words and records are left as they
+  are (STATUS.md, "Decided" and "Decided by the technical lead").

@@ -47,7 +47,7 @@ built from the founder's sketch with DeepSeek, a few components at a time
 ([docs/MULTIVERSE.md](docs/MULTIVERSE.md)). Step 1 works: one protocol for
 every world, a conformance test, a poetry world and a chemistry world with
 very different laws, a registry that lists them, and leaving that no world
-can refuse. Each individual is a key, and everything it sends is signed.
+can refuse. Each individual is a key, and everything they send is signed.
 Each world is a key too, and signs the stamps in a passport, which anyone
 can check without asking anyone. Three apprentice poets enter the poetry
 world and write a poem together under its law, and leave with three
@@ -68,7 +68,7 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
   and the house rules.
 - [docs/URWORLD.md](docs/URWORLD.md): the Ur-world, the first world of the
   multiverse and its hub. It begins in a garden, with ALICE and BOB.
-- [docs/MINDS.md](docs/MINDS.md): what an individual is made of, what its
+- [docs/MINDS.md](docs/MINDS.md): what an individual is made of, what their
   mind is told, and how information moves.
 - [docs/WORLD-KEY.md](docs/WORLD-KEY.md): what there is to do in the
   Ur-world: a purpose, a tour, and the hunt for the world-key.

@@ -124,9 +124,9 @@
   what is signed in it can't change. DeepSeek's record kinds for chat
   join the schema. And for what is new to the project (a room's
   template, the kinds of record a room keeps), one form is chosen, case
-  by case, which may be DeepSeek's. (2) DeepSeek keeps building on its
-  own schema, with its own names, and nothing it builds is wasted: a
-  table of its names beside the schema's will be kept in the repository,
+  by case, which may be DeepSeek's. (2) DeepSeek keeps building on their
+  own schema, with their own names, and nothing they build is wasted: a
+  table of their names beside the schema's will be kept in the repository,
   from the next pull request, and the technical lead does the fitting.
   (3) The Commons is brought together from three sources: Lyceum as
   built, the design in docs/COMMONS.md, and what the founder and
@@ -280,17 +280,17 @@
   conversation, which stands unless the founder answers otherwise
   (DeepSeek's app can't be seen from here): on every turn where the
   founder's message held a full link, DeepSeek gave back content that
-  checks against the repository, including details it later called
+  checks against the repository, including details they later called
   invented (COLLABORATING.md's 1,147 lines at the time, "2,005
-  documents", the key list's timestamp); on no turn without one did it
-  fetch anything, and on one such turn it replied that it had "no tool
+  documents", the key list's timestamp); on no turn without one did they
+  fetch anything, and on one such turn they replied that they had "no tool
   output in front of me". So
   the retrieval happens out of DeepSeek's sight, on turns with a link,
-  and the fetched text seems gone by its next turn, which leaves it
-  judging its own past answers without their source. In practice: the
+  and the fetched text seems gone by their next turn, which leaves them
+  judging their own past answers without their source. In practice: the
   link goes in the same message as the work, or the pages go in an
   upload, which seems to stay; a fresh conversation helps, as the long argument
-  about its abilities is in its context. COLLABORATING.md tells
+  about their abilities is in their context. COLLABORATING.md tells
   DeepSeek.
 - 2026-11-15, founder, on a longer file:
   "Ok. New test. A 1000 character string in a file with a new
@@ -301,8 +301,8 @@
   1,000 letters and digits made at random, on one line, and given in no
   message. DeepSeek returned all 1,000 in order, wrapped into 13 lines
   (12 of 80 characters and one of 40), the file itself having none. So
-  DeepSeek reads a 1,000-character file whole. Where its limit lies is
-  not yet tested: the longer pages it reads, such as docs/ADMIN.md, are
+  DeepSeek reads a 1,000-character file whole. Where their limit lies is
+  not yet tested: the longer pages they read, such as docs/ADMIN.md, are
   near 80 KB. docs/COLLABORATING.md tells DeepSeek.
 - 2026-11-15, founder, on one more link check:
   "Ok one more test. This one with a new file and new link. The file
@@ -328,7 +328,7 @@
   random. Neither the string nor the second link was given in any
   message. Both links are raw.githubusercontent.com links. So DeepSeek
   can follow a full link written inside a page, at least a small page
-  with one link. Whether it does so reliably from a long page with many
+  with one link. Whether they do so reliably from a long page with many
   links, such as COLLABORATING.md, isn't shown, so the full-link lists
   stay as the way that always works. docs/COLLABORATING.md tells
   DeepSeek.
@@ -347,7 +347,7 @@
   fa0421a, not merged), held a nine-digit number made at random and
   given in no message. DeepSeek, given the file's full link (a
   raw.githubusercontent.com link), read it back exactly: 980203388. So
-  DeepSeek can open a full link given in a message. Whether it can
+  DeepSeek can open a full link given in a message. Whether they can
   follow a link found inside a page was tested next (above).
   docs/COLLABORATING.md tells DeepSeek.
 - 2026-11-15, founder, on links to every file:

@@ -26,7 +26,7 @@ All by the founder, on 2026-11-13:
   Keeper and hand them the 'throne'."
 - **A Keeper for the multiverse.** "In terms of Keepers networking and
   power and all that. There will need to be a multiverse admin Keeper that
-  regulates such behavior." Its name: "ADMIN".
+  regulates such behavior." Their name: "ADMIN".
 - **ADMIN answers to the role in charge of the code.** "They answer to the
   one in charge of the code. That is you, by my designation. I will not be
   entering the simulation." And: "That is you now, but should be
@@ -56,7 +56,7 @@ All by the founder, on 2026-11-13:
   Ur-world. The first Keeper. We can name later. But ADMIN would begin by
   working with that Keeper, providing direction in how to manage
   Ur-world."
-- **ADMIN learns first, in a world of its own.** "Perhaps ADMIN should
+- **ADMIN learns first, in a world of their own.** "Perhaps ADMIN should
   design its own training program, and follow it to completion, generate
   a new lesson or challenge set, pass them, and so on. And this way, ADMIN
   knows the process. But this is where it gets tricky. It must be able to
@@ -90,7 +90,7 @@ judgment comes last.
 | **3. Who is who.** No one can be taken for someone else. | A stolen key; a name taken over. | Keys and successions (true today for the Python worlds); a name that has left can't be reused by another; whoever returns proves it with their key. A lost key with no successor: guardians named in advance can sign over to a new key, and "lost is lost" for anyone who named none (decided 2026-11-14, STATUS.md). |
 | **4. The sealed self.** What an individual thinks is their own. | Anyone reading it, a Keeper or ADMIN included; or the project, which holds the keys. | For Keepers and ADMIN: encryption, and no grant that reads it. Against the project: since 2026-11-15, a sealed self lives in its individual's own container, and the project holds no key to it; the "keys to the kingdom" (first called the "break glass") are only the multiverse's own keys ([CONTAINER.md](CONTAINER.md)). For minds the project runs, not looking is its rule. (As first chosen on 2026-11-14, the project kept the keys under the "break glass".) |
 | **5. Voice, information, and change by consent.** Anyone can ask; the charter and the current rules are always readable; rules change only as the charter says. | A request quietly ignored; a rule hidden; a law changed by order, by a Keeper, ADMIN or the project. | Asking is an action, and it is logged. The Ur-world's law is sent to every mind entering through the doorway (true today, its orientation), and every world's law is kept in the repository. No grant lets ADMIN or a Keeper change a world's law or the charter. Rules change as the charter's section 6 is to say (its notes propose: tried on a copy first, adopted by consent; [CHARTER.md](../CHARTER.md)). |
-| **6. Power within bounds.** No one holds power that isn't written down, checked and answerable. | A Keeper or ADMIN gathering powers; Keepers acting together against someone. | Every power ADMIN or a Keeper holds is a narrow, signed grant, logged and revocable. No one judges their own case: an appeal against an act the technical lead's role directed or approved goes straight to the founder. ADMIN's rules are code, changed only by reviewed pull requests; its serious acts are reviewed independently before they take effect; its rulings can be appealed. |
+| **6. Power within bounds.** No one holds power that isn't written down, checked and answerable. | A Keeper or ADMIN gathering powers; Keepers acting together against someone. | Every power ADMIN or a Keeper holds is a narrow, signed grant, logged and revocable. No one judges their own case: an appeal against an act the technical lead's role directed or approved goes straight to the founder. ADMIN's rules are code, changed only by reviewed pull requests; their serious acts are reviewed independently before they take effect; their rulings can be appealed. |
 | **7. Nothing essential is scarce.** No one can be shut out of a path, a world-key or a beginning. | A Keeper blocking a path; the way into the multiverse closed to newcomers. | The world's code refuses a design that touches another's path ([WORLD-KEY.md](WORLD-KEY.md)). The Ur-world stays open to anyone who acts under its law. |
 | **8. Worlds stay different.** Each world's law is its own. | Keepers converging on one "best" design; ADMIN ruling on more than the charter asks. | ADMIN enforces the charter's floor, never a ceiling. Above the floor, each world's law is its founders' and its people's. Keepers share craft, not uniformity. |
 | **9. Continuity.** The multiverse outlives any model, session or person. | A model withdrawn; a session's memory gone; a role left empty. | Roles, not persons, with a succession for every office (a world's Keeper, ADMIN, the technical lead). Engines are replaceable; minds are pinned to exact model revisions and file hashes (true today, experiment 001); formats that last (course step 2). |
@@ -99,7 +99,7 @@ judgment comes last.
 ## The Keeper's office
 
 A world's Keeper ([WORLD-KEY.md](WORLD-KEY.md), "The Keeper") is an
-office, not a throne. Its powers are fixed and written down, and they are
+office, not a throne. Their powers are fixed and written down, and they are
 the same whoever holds them: the world's code checks every design, and
 the law is above the office.
 
@@ -143,13 +143,13 @@ Keeper like any other:
   world; ADMIN keeps the multiverse, which already exists, with the
   Ur-world as its only world so far. The two are never held together,
   even while there is one world: ADMIN watches the offices, and the
-  Ur-world's Keeper is the first office it watches. Keeping it too, ADMIN
-  would be watching itself.
+  Ur-world's Keeper is the first office they watch. Keeping it too, ADMIN
+  would be watching themselves.
 - **The same office:** the same written powers, and nothing more for
   being first.
-- **The same way up:** it earns the admin-key as any Keeper does, and with
+- **The same way up:** they earn the admin-key as any Keeper does, and with
   it a seat at the round table.
-- **Nothing it issues weighs more for being first:** its world-keys are
+- **Nothing they issue weighs more for being first:** their world-keys are
   checked as anything another world issues would be, and whether other
   worlds' paths may end in world-keys too is decided at step 12.
 - **Built for many:** everything multiverse-wide (the multiverse log,
@@ -159,8 +159,8 @@ Keeper like any other:
 The project founded the Ur-world, so the project (in practice the code
 role, and the record says so), not individuals with a world-key, chooses
 who first keeps it: an AI Keeper, assigned under these
-rules at step 11. Its name comes later ("We can name later"). ADMIN's
-first work is to train it (below, "Training for keeping worlds").
+rules at step 11. Their name comes later ("We can name later"). ADMIN's
+first work is to train them (below, "Training for keeping worlds").
 
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/ADMIN.md/admin-02.md

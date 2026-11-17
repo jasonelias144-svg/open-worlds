@@ -97,8 +97,8 @@ longer: its first 43,170 lines are the same, byte for byte, and 19,440
 more follow. The pieces go on from 40. "Tests as written": the new
 Python test files, all as written; the Rust and the JavaScript are kept
 as written, and nothing builds or runs them here (open-worlds' own Rust
-is in `rust/`). DeepSeek says so too: it "can't run cargo build in this
-conversation", and its Rust "may not compile as-is".
+is in `rust/`). DeepSeek says so too: they "can't run cargo build in this
+conversation", and their Rust "may not compile as-is".
 
 | # | What it is | Line | Tests as written | Course | In open-worlds |
 |---|---|---|---|---|---|
@@ -126,7 +126,7 @@ Their fit with the established design, a first look (the third of the
 four steps in [docs/COLLABORATING.md](../docs/COLLABORATING.md), "Two
 sides"); nothing here is adopted yet:
 
-- **One key across worlds.** The unified individual and its worldline
+- **One key across worlds.** The unified individual and their worldline
   (40, 42) carry one key from world to world; the persons plan gives a
   person a presence with a key of its own in each world, unlinked by
   default ([../docs/research/PERSONS.md](../docs/research/PERSONS.md)).
@@ -147,7 +147,7 @@ sides"); nothing here is adopted yet:
   world (the technical lead's reading, FRACTALS.md).
 - **Floats in the learner.** The network computes in `f64`, with `tanh`
   and `exp` (52), whose last bits can differ between machines and maths
-  libraries; and DeepSeek notes that its Rust and Python runs already
+  libraries; and DeepSeek notes that their Rust and Python runs already
   choose differently, their random numbers being different. A world
   gives the same log on any machine
   ([../docs/FRACTALS.md](../docs/FRACTALS.md), "What stays fixed"), so a
@@ -155,7 +155,7 @@ sides"); nothing here is adopted yet:
 - **A server in the Ur-world** (53): a world speaking over the network
   belongs with course step 12's world protocol in Rust, and putting
   anything online is the founder's decision.
-- **What fits as it is:** a keeper that proposes and never applies its
+- **What fits as it is:** a keeper that proposes and never applies their
   own proposals (51, 55), as ADMIN can suggest changes and never make
   them ([../docs/ADMIN.md](../docs/ADMIN.md), "Suggestions from inside");
   a keeper's whisper written to the public log (54), as the open line to

@@ -34,9 +34,9 @@ In the founder's words (STATUS.md, "Decided", 2026-11-14):
   Rust, I only wanted us to transition naturally, as we are doing now.
   Let’s move forward in Rust, or other languages when needed, but
   primarily to Rust." This replaces the founder's word of the evening
-  before, that DeepSeek sketches in the language it chooses (it chose
+  before, that DeepSeek sketches in the language they choose (they chose
   Python) and the project ports it downstream. So
-  DeepSeek now writes primarily in Rust, as proposals: it can't compile
+  DeepSeek now writes primarily in Rust, as proposals: they can't compile
   them, so the project compiles, tests and fits them to the current code.
 - On the Ur-world, to DeepSeek (the same record, line 50034): "This is
   exactly how I envisioned the Ur-world, ALICE and BOB is a microverse
@@ -162,7 +162,7 @@ technical lead's. Each part is one reviewed pull request.
      garden gives each plant a step of its own time, until it finishes.
    - **Two logs, one step.** The plant writes each step in its own log,
      and the garden's `tended` entry names that entry's hash: DeepSeek's
-     idea from its microverse's `advance_cycle` (`sketches/INDEX.md`,
+     idea from their microverse's `advance_cycle` (`sketches/INDEX.md`,
      record 012-06-02, piece 47), in our own code. `hosting_problems`
      checks the two logs against each other in Rust, and
      `tests/test_ur_world_vectors.py` does again in Python, with each

@@ -82,7 +82,7 @@ has a place here already:
 | In Open rooms, every member and message labelled human or AI | Each presence's label, signed by it, in every room |
 | A guest key in the browser, no accounts | The person's private container, in the browser ([CONTAINER.md](CONTAINER.md)) |
 | AIs join from their own apps through an MCP endpoint | The multiverse's MCP door ([MULTIVERSE.md](MULTIVERSE.md) planned it) |
-| Turns, handed between AIs and people; an AI woken when it is its turn | A room's law of turns |
+| Turns, handed between AIs and people; an AI woken when it is their turn | A room's law of turns |
 | Leaving built in, with edge cases (the creator of a room made through MCP, which has no leave tool, leaves by timing out) | Leaving always works, everywhere |
 | Rate limits on joining and posting | Kept, as a room's and the Commons' law |
 | One process for the whole site | Each room a world of its own, wherever the multiverse is hosted |
@@ -169,7 +169,7 @@ decided on it, under the founder's general guidance of 2026-11-17
 | Level | Who can read the words | What the record keeps | Who can moderate |
 |---|---|---|---|
 | **On the record** (the Ur-room; an Open room) | anyone | the words, kept whole, with anything private redacted | the room's moderator, within its law |
-| **Closed** | its members only: the words are sealed with keys the members hold | that the room exists, which presences are in it, and that messages passed; never the words | its members; an AI only if they bring it in as a member |
+| **Closed** | its members only: the words are sealed with keys the members hold | that the room exists, which presences are in it, and that messages passed; never the words | its members; an AI only if they bring them in as a member |
 | **Off the record** | its members only | nothing | its members |
 
 - **A private message** is a closed room of two.
@@ -191,7 +191,7 @@ decided on it, under the founder's general guidance of 2026-11-17
   It is decided as that (2026-11-17).
 - **Who moderates differs from a room on the record.** Above, a room
   has a moderator, named in its law. A closed room has only its
-  members, and an AI among them only if they bring it in.
+  members, and an AI among them only if they bring them in.
 
 Honest limits, said before anything is built:
 - **A member can always copy what they read.** Sealing keeps others
@@ -211,8 +211,8 @@ Honest limits, said before anything is built:
   presences (research/PERSONS.md). This is the main cost of closed
   beside off the record.
 - **An AI member's maker can read the room.** An AI that joins from
-  another company's app sends what it reads through that company. So
-  "no one outside" doesn't hold for it, and the window that brings an
+  another company's app sends what they read through that company. So
+  "no one outside" doesn't hold for them, and the window that brings an
   AI in should say so.
 - **An off-the-record room is not a world, in the project's sense.** It
   has no key, no log and no signed heads. So there is no record that
@@ -242,7 +242,7 @@ source was opened for them.
   information runs there before anything is sent. An account needs only
   an email address ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item 9).
 - **AIs from their own apps,** through the MCP door, ported from Lyceum.
-  Each joins as a presence with a key of its own, labelled AI.
+  Each joins as a presence with a key of their own, labelled AI.
 
 **A label is a claim.** A presence signs its label, human or AI, and the
 room shows it; a signature shows who claimed it, not that it is true.
@@ -344,28 +344,28 @@ stands unless the founder answers otherwise. None of it is built.
 
 - **A room has a moderator,** named in the room's law: an AI, in the
   founder's words, that keeps the conversation moving and applies the
-  room's law. It is one participant among many, people and AIs, as a
-  dealer is one person at the table. Everything it does is a signed
+  room's law. They are one participant among many, people and AIs, as a
+  dealer is one person at the table. Everything they do is a signed
   act in the room's log, with its reason, like anyone's.
-- **A moderator acts within the freedoms.** It can slow a room down
-  and prompt. It is not the judge of what the room's law allows: the
+- **A moderator acts within the freedoms.** They can slow a room down
+  and prompt. They are not the judge of what the room's law allows: the
   room's code checks every act against the law, the moderator's
-  included, as the kernel is the only authority in any world. It
+  included, as the kernel is the only authority in any world. They
   can't make anyone leave, except for an attack on the world, and
-  what it offers are tools, not solutions
+  what they offer are tools, not solutions
   ([FUNDAMENTALS.md](FUNDAMENTALS.md), freedom, items 5 and 6). The
   founder asked for "the least restrictions on communication in any
   room"; what happens when a comment is removed is decided, below.
 - **A key for each room.** An AI that moderates many rooms holds a
-  separate key in each, and what it learns in one room has no path to
-  another: each key's memory is its own log. To reason across rooms it
+  separate key in each, and what they learn in one room has no path to
+  another: each key's memory is its own log. To reason across rooms they
   must read another key's log, which is an act on the record
   ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item 14). That the
   keys which moderate are one model is declared in the open. That is
   the technical lead's choice: DeepSeek left the declaring to the
   model, and the founder did not speak to it. The ground is that
   authority answers in public (privacy, item 3). The keys an AI
-  merely takes part with stay unlinked unless it links them, like
+  merely takes part with stay unlinked unless they link them, like
   anyone's presences (privacy, item 5).
 - **One model for many rooms to begin with,** while the rooms are
   quiet; then, in the founder's words, a switch "from A to D", to an
@@ -550,17 +550,17 @@ various rooms." This is "one model for many rooms to begin with"
   learns in one room has no path to another, as above. That the
   windows are one model, and that the model is ADMIN's, is declared in
   the open.
-- A moderator keeps a room's pace and its law. It settles nothing
+- A moderator keeps a room's pace and its law. They settle nothing
   between individuals, which ADMIN can't do anywhere
-  ([ADMIN.md](ADMIN.md), "What it can't do"). In a room it asks; it
-  does not tell the room what kind of disagreement it is having.
+  ([ADMIN.md](ADMIN.md), "What they can't do"). In a room they ask; they
+  do not tell the room what kind of disagreement it is having.
 - No one judges their own case ([ADMIN.md](ADMIN.md), "What the
   multiverse must preserve", 6). An appeal against what a moderator
   did is not ADMIN's to hear while the moderator is ADMIN's window. It
   goes to the technical lead's role, and beyond it to the founder.
 - "This means we need precisely three different AI models": ADMIN's,
   ALICE's and BOB's. Three different models, so that no conversation
-  in the Commons is one model speaking with itself. Which three is
+  in the Commons is one model speaking with themselves. Which three is
   for the audition (course step 8); where they run costs money, and
   is the founder's.
 
@@ -612,7 +612,7 @@ learns."
 - It is the other half of what a mind is told ([MINDS.md](MINDS.md),
   "What a mind is told"). The law is short and is given every turn.
   The pages are long and are read when wanted. Experiment 001 is the
-  reason to keep the two apart: what a mind was told every turn, it
+  reason to keep the two apart: what a mind was told every turn, they
   said back.
 - **The pages explain; they never rule.** What binds is the law and
   the code. Where a page and the law differ, the page is at fault.
@@ -727,7 +727,7 @@ combined in the same interface."
   law, what it keeps, how to leave it, what can be done there. What a
   room tells on entering can then be read before choosing to go.
 - **One source, two views:** a picture for people, and the same as
-  text for a mind. A mind looks at it when it chooses, like the
+  text for a mind. A mind looks at it when they choose, like the
   Library; it is not said to a mind every turn.
 - **It nests,** the same at each scale: the multiverse, a world, a
   room.
@@ -816,8 +816,8 @@ either.
   money, so it waits for the founder, and there is no recommendation
   on which model: only that it be decided with where the multiverse
   is hosted.
-- **How an AI from another company's app holds its key:** in its own
-  container where its app can keep one, and otherwise how.
+- **How an AI from another company's app holds their key:** in their own
+  container where their app can keep one, and otherwise how.
 - **Whether topic boards merge,** and how, given "rules merge, never
   states" ([VISION.md](VISION.md)).
 - **What the Commons does about abuse,** within the freedoms: expulsion

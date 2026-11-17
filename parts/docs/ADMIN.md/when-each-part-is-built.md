@@ -32,8 +32,8 @@
 - **Course step 11 (the AI Keeper):** the Ur-world's Keeper, its own
   office under these rules; and with it, since ADMIN then has an office
   to watch, ADMIN's judgment and the multiverse log, built for many
-  worlds. First, ADMIN's mind, chosen by audition, and its own world,
-  where it takes its own course; then its first work: training the
+  worlds. First, ADMIN's mind, chosen by audition, and their own world,
+  where they take their own course; then their first work: training the
   Keepers, the Ur-world's and the Mir-Ur-world's alike, in practice
   worlds, before the Ur-world's keeps the Ur-world.
   ADMIN joins the code role in considering the ledger, as the bridge
@@ -70,15 +70,15 @@ recommendations, each of which the founder can still change (STATUS.md):
   consent to their own law.
 - **A seat outlives its holder's office,** revisited if a seat is ever
   used to shield misuse.
-- **ALICE and BOB give the Ur-world's Keeper its name,** once they meet
-  it (the founder: "We can name later"). Naming means only what it is
+- **ALICE and BOB give the Ur-world's Keeper a name,** once they meet
+  the Keeper (the founder: "We can name later"). Naming means only what they are
   called: who the Keeper is stays the code role's choice (above, "The
   Keeper's office"). The founder can still take part, or change this.
 - **A model that is free but not fully open may be part of ADMIN's
   mind,** only beside at least one fully open member, and never as the
   only member deciding a case.
-- **ADMIN takes on challenges it didn't choose:** those the code role and
-  Keepers set, alongside its own, and declines one only with its reason
+- **ADMIN takes on challenges they didn't choose:** those the code role and
+  Keepers set, alongside their own, and declines one only with its reason
   logged.
 - **A remedy is applied without a world's consent only at the floor;**
   above it, ADMIN offers and the world's own law decides, or the library

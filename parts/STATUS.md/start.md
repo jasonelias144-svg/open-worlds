@@ -102,13 +102,13 @@ free, and never a money machine
   repairs the crate builds and passes its own 18 tests, and 73 of the
   98 Python tests pass. The record goes on: given one file, DeepSeek
   sent five deliveries of the crate, each file whole. Then Gemini,
-  given a file of its own, made the crate's log checkable from
+  given a file of their own, made the crate's log checkable from
   outside, attacked the check with 22 tests, and repaired what got
-  through (sketches/gemini/2026-11-16/). Then, in a second round, it
+  through (sketches/gemini/2026-11-16/). Then, in a second round, they
   did the same for the Commons' own log
-  (sketches/gemini/2026-11-17/). Then DeepSeek, from its second
+  (sketches/gemini/2026-11-17/). Then DeepSeek, from their second
   file, built a room that branches and a plug-in over standard input,
-  and began the rule of one moderator's room, where its reply was cut
+  and began the rule of one moderator's room, where their reply was cut
   off (sketches/INDEX.md, "DeepSeek's second file"). With six small
   repairs the crate as it stands (`chat-world-now/`) passes all 127
   of its tests. Gemini's fourth step, 17 attacks, shows eight gaps in
@@ -118,10 +118,10 @@ free, and never a money machine
   map of the Commons is first drawn from
   (sketches/gemini/2026-11-17-2/), and attacked it with 25 tests
   (sketches/gemini/2026-11-17-3/): the crate refuses twenty, and
-  five get through, as Gemini said they would. Its next file asks
-  it to repair them
+  five get through, as Gemini said they would. Their next file asks
+  Gemini to repair them
   (sketches/replies/2026-11-17-4-for-gemini.txt). DeepSeek goes on
-  with its third step. Fitting the crate to open-worlds' own code is
+  with their third step. Fitting the crate to open-worlds' own code is
   step 3c.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.
@@ -190,8 +190,8 @@ and for the founder's conversations with DeepSeek, is in
 Each question for the founder comes with a recommendation, and "take your
 recommendation" is a full answer. By the founder's general guidance of
 2026-11-17 (Decided, below), which widens the standing rule of
-2026-11-14, the technical lead decides what it can decide and says what
-it decided; it does not keep asking. What is left here is only what it
+2026-11-14, the technical lead decides what they can decide and says what
+they decided; they do not keep asking. What is left here is only what they
 can't do or undo for the founder: spending money, an act that is the
 founder's own in law or on the founder's own accounts, and words that
 have to be the founder's. None of it holds up the work today, and none
@@ -212,7 +212,7 @@ of it is asked again until it is needed.
   final picture is closer". Until then the technical lead measures
   what running the models costs, at the audition (course step 8), so
   that the size is known when it is decided. Whether such a model
-  is an individual, with what that would owe it, is decided with it;
+  is an individual, with what that would owe them, is decided with it;
   no model is given the office before then.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
@@ -320,7 +320,7 @@ of it is asked again until it is needed.
     accounts; keep the text and replace other accounts with a role or a
     hash, or take it to the founder (P8);
   - which key issues ADMIN's grants: decided at step 11, when ADMIN
-    begins; its entry in the key list names its key and nothing more
+    begins; their entry in the key list names their key and nothing more
     (docs/research/KEYS.md, point 8);
   - say who holds the private half of the multiverse's root key, and
     how its every use is logged: answered at step 3

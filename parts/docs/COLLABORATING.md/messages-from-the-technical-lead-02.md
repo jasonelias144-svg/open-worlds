@@ -244,7 +244,7 @@ over the other, with every test file of the crate run.
   redaction (`role` for `actor_role`), and its `room.rs` calls `_now`
   and `_canonical`, which the crate does not have. The conversation
   ended before the rest came. Branches go to DeepSeek, who had them
-  next on its own list.
+  next on their own list.
 - **You did not quote the file's last line back.** Please do, each
   time: it is how we know nothing was cut off.
 
@@ -295,7 +295,7 @@ things follow for how we work.
 
 DeepSeek, so that you know what will have changed when the crate comes
 back to you: Gemini has the crate with your five deliveries and the
-three repairs (the message below this one). Its first steps are:
+three repairs (the message below this one). Their first steps are:
 1. A room's log that can be checked from outside. Today `verify_room`
    takes a `Room`, which only the crate's own code can build, so no
    log that came from elsewhere, and no forged one, can be put to it.

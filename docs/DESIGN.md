@@ -55,8 +55,8 @@ collapse, for instance when an element runs short. Following principle 8:
 The **kernel** ([world/core.py](../world/core.py)) is the only authority over
 a world. Every tick, each agent gets an immutable observation and returns an
 action, and the kernel checks each action before it takes effect. That gives
-principle 4 its safe form: an agent may rewrite its own code entirely,
-because the only thing the world ever accepts from it is a checked action.
+principle 4 its safe form: an agent may rewrite their own code entirely,
+because the only thing the world ever accepts from them is a checked action.
 The action interface is the compatibility contract. Expulsion means revoking
 access to that interface.
 
@@ -86,7 +86,7 @@ Two further properties:
 | --- | --- | --- |
 | Now | rule-based agents written here | in the kernel's process |
 | Next | small open language models (different families) | on the founder's Mac, one process per agent |
-| Later | self-modifying agents; agents from outside | each in its own sandbox (container, no network unless granted), reaching the world only through a network API |
+| Later | self-modifying agents; agents from outside | each in their own sandbox (container, no network unless granted), reaching the world only through a network API |
 
 An in-process agent could reach the kernel's internals, because Python isn't
 a sandbox. That's acceptable only for agents written here. The rule in
@@ -157,7 +157,7 @@ and the known limits are in [CHEMISTRY.md](CHEMISTRY.md).
 - **The charter's words** ([CHARTER.md](../CHARTER.md)).
 - **What counts as hacking.** Attacking the server is clearly expulsion. But
   among language-model agents, the main attack is one agent manipulating
-  another with text crafted to hijack its instructions. Is that an attack on
+  another with text crafted to hijack their instructions. Is that an attack on
   the world (expulsion), or behaviour to be observed (deception arising)?
   Decided on 2026-11-14: behaviour to observe, with the tools to see, not
   to hear, and to leave ([FREEDOMS.md](FREEDOMS.md)).

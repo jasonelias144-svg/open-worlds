@@ -122,7 +122,7 @@
   the first plant world (10 of 11), Life (22 of 24), the coupled chaos
   games (21 of 23), the gallery's governance (26 of 27) and the
   individual bundle (16 of 20). DeepSeek's later
-  additions that are outlines were merged by hand, as its prose
+  additions that are outlines were merged by hand, as their prose
   describes. Each test's keys are now made from its name, so a run
   repeats exactly; with fresh random keys, 19 of the individual pieces'
   tests pass or fail by chance. Left for a second round, each with its
@@ -223,7 +223,7 @@
   a name stays the key's that first used it, so the same key comes back
   as the same individual and any other is refused; the doorway signs
   with keys made for the run, admits, then starts the mind, told whether
-  it comes back; the garden's stand-ins are WALKER and GARDENER, a trial
+  they come back; the garden's stand-ins are WALKER and GARDENER, a trial
   world with keys made from its seed; the `log` example checks a log's
   arrivals and its signed heads' coverage, in CI for the garden and a
   door run. Decision 18: successions join records-v1 before ALICE's and

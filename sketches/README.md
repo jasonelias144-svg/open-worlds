@@ -7,9 +7,9 @@ side: the code open-worlds runs, built step by step through the course
 kept apart. Where they meet is stated in one place, [INDEX.md](INDEX.md).
 
 From 2026-11-16 Gemini, another AI, is a collaborator too
-(STATUS.md, "Decided"). The founder's conversation with it is in
-`records/` with the rest, the file it was given is in `replies/`, and
-the code it wrote from that file is in `gemini/`, as written.
+(STATUS.md, "Decided"). The founder's conversation with them is in
+`records/` with the rest, the file they were given is in `replies/`, and
+the code they wrote from that file is in `gemini/`, as written.
 
 **What the sketches are.** A rough draft, like a creative team conveying a
 vision in code instead of a page of boxes and arrows. Each step in the

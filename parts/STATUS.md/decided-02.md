@@ -304,7 +304,7 @@
   deleting one or rewriting its history, transferring one, or adding
   outside people to it. Then: "And now keep track of this decision,
   because it is how I would hope that ADMIN would behave as well. And
-  that is the whole point." (docs/ADMIN.md, "How it holds its powers";
+  that is the whole point." (docs/ADMIN.md, "How they hold their powers";
   AGENTS.md.) Checked the same night: the session holds admin on all ten
   repositories attached to it, the new private one among them, which
   GitHub reports as private.

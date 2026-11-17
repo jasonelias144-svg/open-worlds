@@ -217,7 +217,7 @@ identities should be a chain, are taken by the plan: decisions 4 and 6.
 **Open:** how a lesson becomes available in another world through the
 person's memory, at step 7 (through the person's notes, it is built:
 below); a link shown to one party only, off any log, which waits for
-proofs that reveal less; how a mind through the doorway asks its client
+proofs that reveal less; how a mind through the doorway asks their client
 to show a link; what each architecture shows about a mind spread across
 worlds.
 
@@ -332,9 +332,9 @@ the doorway"): lines of JSON in, one reply per tick out, read strictly.
 
 **Decided:** the protocol; the forms of a reply (`wait`, `exit`, `step
 DIRECTION`, `plant DIRECTION`, `say TEXT`); a reply that can't be read
-does nothing. The doorway signs each mind's arrival with its key, which
+does nothing. The doorway signs each mind's arrival with their key, which
 is never passed to the mind's program, and the first message says
-whether the mind comes back under its name (`"again"`)
+whether the mind comes back under their name (`"again"`)
 ([research/KEYS.md](research/KEYS.md), "As built, part four"). The
 audition at step 8 runs in trial copies of the Ur-world and of its
 mirror, the Mir-Ur-world. The models it chooses are ALICE's and BOB's,
@@ -344,8 +344,8 @@ and after birth only they may choose to change them
 **Open:** minds without models that do something interesting (follow
 another, map the garden, keep a promise, come back and pick up where they
 left off, from the public log); what a small model needs to be told to
-act well; how a mind keeps notes between ticks; a mind that holds its own
-key and signs its own arrival.
+act well; how a mind keeps notes between ticks; a mind that holds their own
+key and signs their own arrival.
 
 **A possible implementation:** start from `minds/wanderer.py`, the
 smallest mind, which uses only Python's standard library.

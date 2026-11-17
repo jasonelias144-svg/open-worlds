@@ -148,7 +148,7 @@
   into all activities and narrate any reasoning as desired. But there
   could still be a core that is private. That feels like a natural
   right." So every decision a Keeper or ADMIN makes that affects others
-  goes on record with its reasons and stands on them; ADMIN opens all its
+  goes on record with its reasons and stands on them; ADMIN opens all their
   activity to inspection; and everyone, ADMIN included, keeps a private
   core of their own thoughts, which never decides a case (docs/ADMIN.md,
   "ADMIN in the open"). And: "Rerunning something should be technically
@@ -164,7 +164,7 @@
   goes for the world-keys as well. Challenges, not tests." So ADMIN's
   hidden exam is dropped for challenges announced in the open
   (docs/ADMIN.md), and the world-keys follow in the next PR.
-- 2026-11-13, founder, on how ADMIN learns and what it runs on
+- 2026-11-13, founder, on how ADMIN learns and what they run on
   (docs/ADMIN.md, "ADMIN's own world" and "ADMIN's mind"): "Perhaps ADMIN
   should design its own training program, and follow it to completion,
   generate a new lesson or challenge set, pass them, and so on. And this
@@ -346,8 +346,8 @@
   - a Keeper for each world, an AI that builds each individual's own
     path to the world-key, gives a returning individual harder
     challenges, runs from the moment the world starts, and administers
-    it: "Let's keep that element in place, [it] could be key." It
-    remembers each individual's past visits.
+    it: "Let's keep that element in place, [it] could be key." They
+    remember each individual's past visits.
   - a sealed interior for everyone, which even the Keeper can't read:
     "everyone should be entitled to a private space for thoughts and
     reasoning and anything else that is completely encrypted." The
@@ -373,7 +373,7 @@
     Keeper and hand them the 'throne'."
   - ADMIN, the Keeper of the multiverse, "a multiverse admin Keeper that
     regulates such behavior", answering to the role in charge of the
-    code: "The one in charge of code is in charge of ADMIN." Its
+    code: "The one in charge of code is in charge of ADMIN." Their
     architecture is the technical lead's to design, and to change when it
     fails: "We need not set things in stone now, but they should be
     strong enough to stand the test of time." Recorded in AGENTS.md and

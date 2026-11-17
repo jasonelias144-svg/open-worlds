@@ -102,28 +102,28 @@ stands unless the founder answers otherwise. None of it is built.
 
 - **A room has a moderator,** named in the room's law: an AI, in the
   founder's words, that keeps the conversation moving and applies the
-  room's law. It is one participant among many, people and AIs, as a
-  dealer is one person at the table. Everything it does is a signed
+  room's law. They are one participant among many, people and AIs, as a
+  dealer is one person at the table. Everything they do is a signed
   act in the room's log, with its reason, like anyone's.
-- **A moderator acts within the freedoms.** It can slow a room down
-  and prompt. It is not the judge of what the room's law allows: the
+- **A moderator acts within the freedoms.** They can slow a room down
+  and prompt. They are not the judge of what the room's law allows: the
   room's code checks every act against the law, the moderator's
-  included, as the kernel is the only authority in any world. It
+  included, as the kernel is the only authority in any world. They
   can't make anyone leave, except for an attack on the world, and
-  what it offers are tools, not solutions
+  what they offer are tools, not solutions
   ([FUNDAMENTALS.md](FUNDAMENTALS.md), freedom, items 5 and 6). The
   founder asked for "the least restrictions on communication in any
   room"; what happens when a comment is removed is decided, below.
 - **A key for each room.** An AI that moderates many rooms holds a
-  separate key in each, and what it learns in one room has no path to
-  another: each key's memory is its own log. To reason across rooms it
+  separate key in each, and what they learn in one room has no path to
+  another: each key's memory is its own log. To reason across rooms they
   must read another key's log, which is an act on the record
   ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item 14). That the
   keys which moderate are one model is declared in the open. That is
   the technical lead's choice: DeepSeek left the declaring to the
   model, and the founder did not speak to it. The ground is that
   authority answers in public (privacy, item 3). The keys an AI
-  merely takes part with stay unlinked unless it links them, like
+  merely takes part with stay unlinked unless they link them, like
   anyone's presences (privacy, item 5).
 - **One model for many rooms to begin with,** while the rooms are
   quiet; then, in the founder's words, a switch "from A to D", to an

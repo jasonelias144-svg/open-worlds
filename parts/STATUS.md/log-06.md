@@ -8,11 +8,31 @@
 
 ## Log
 
+- 2026-11-17 Claude: "they" for AI agents, at the founder's word
+  (Decided, and Decided by the technical lead). The rule is in
+  AGENTS.md ("Always"), docs/COLLABORATING.md (house rule 16, and a
+  message to both collaborators) and docs/GLOSSARY.md ("Agent"). The
+  pages were changed to match: 674 pronouns in 38 files. How it was
+  done: a script listed every "it", "its" and "itself" outside
+  quotation marks and code, in a sentence that names an agent or
+  follows one that does, 3,542 places; the technical lead read each
+  in its sentence and marked the ones that stand for an agent; the
+  script changed those and the verb beside each; then every changed
+  line was read again, with the rest of each sentence whose subject
+  changed, and nineteen places were mended by hand (a second verb, a
+  heading, a quotation of a changed line). Not changed, and why, is
+  under "Decided by the technical lead". Not checked: sentences where
+  the agent is named more than two sentences before the pronoun were
+  looked for only where the sentence begins with "It" or "Its" (88
+  places read, two passages mended); others of that kind may remain.
+  The file built for Gemini (sketches/replies/2026-11-17-4-for-gemini.txt)
+  is unchanged and not yet given: it speaks to Gemini as "you", and
+  no "it" in it stands for an agent.
 - 2026-11-17 Claude: Gemini's record is continued, as the founder
   brought it (769,085 bytes, 17,954 lines; its first 733,438 bytes
   are the record as it was kept). Looked through first: the
   founder's turns in the new part hold nothing personal. It holds
-  Gemini's answer to its fourth file: 25 attacks on the list of
+  Gemini's answer to their fourth file: 25 attacks on the list of
   doors, one test file, kept as written in
   sketches/gemini/2026-11-17-3 and held to the record by that
   folder's take.py. Built beside the crate as it stands: 147 of 152
@@ -31,7 +51,7 @@
   sent to the founder
   (sketches/replies/2026-11-17-4-for-gemini.txt, 95,491 bytes):
   five repairs, in Gemini's own two files. It leaves Gemini's own
-  attack file out and tells Gemini to work from its last reply for
+  attack file out and tells Gemini to work from their last reply for
   that one, which no file before it did.
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-05.md

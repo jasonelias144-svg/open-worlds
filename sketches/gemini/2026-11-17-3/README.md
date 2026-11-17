@@ -1,7 +1,7 @@
 # Gemini, 2026-11-17: attacks on the list of doors
 
 A test file that Gemini wrote for `chat-world`, the sketch crate of
-the Commons' rooms, from the fourth file it was given:
+the Commons' rooms, from the fourth file they were given:
 [../../replies/2026-11-17-3-for-gemini.txt](../../replies/2026-11-17-3-for-gemini.txt).
 That file asked one step: at least twenty-two attacks on the list of
 doors Gemini had built the round before
@@ -13,7 +13,7 @@ in a new file, `tests/doors_attack.rs`.
 The conversation is
 [../../records/012-00-00-GMNI-Multiverse_Development.txt](../../records/012-00-00-GMNI-Multiverse_Development.txt),
 which has grown again. This delivery begins at its line 17196, where
-Gemini quotes back the last line of the file it was given, as the
+Gemini quotes back the last line of the file they were given, as the
 file asked. The copy kept before is a prefix of the new one, byte for
 byte.
 
@@ -39,8 +39,8 @@ Built beside the crate as it stands, every test file run, on
 |---|---|---|
 | Attacks on the list of doors | "147 of 152 tests pass", and five named to fail | 147 of 152; the same five fail |
 
-Before its code Gemini said, for each of the 25, whether it would
-pass. It was right about every one.
+Before their code Gemini said, for each of the 25, whether it would
+pass. They were right about every one.
 
 ## The five that get through
 
@@ -78,7 +78,7 @@ This is Gemini's proposal. What the project takes from it is in
 
 ## What comes next
 
-Gemini's next file asks it to repair the five, in its own two files:
+Gemini's next file asks them to repair the five, in their own two files:
 [../../replies/2026-11-17-4-for-gemini.txt](../../replies/2026-11-17-4-for-gemini.txt).
 
 ## Ours, not Gemini's

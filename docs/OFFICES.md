@@ -58,8 +58,8 @@ marks, and a role needs none of them.
 
 So a guardian is a role. It holds power over one person's key, but that
 person gave it the power, for themselves. A world's Keeper is an office.
-It holds power over a world and everyone in it, and the world's law
-gave it that power.
+They hold power over a world and everyone in it, and the world's law
+gave them that power.
 
 ## Offices today
 
@@ -108,8 +108,8 @@ A handover takes three things, each on record:
    acceptance".
 2. **Clear agreement from the successor.** The technical lead's reading:
    a yes counts as agreement only from an agent that can understand what
-   it accepts. So the successor says, in its own words and in public,
-   what the office's written duties are, and that it takes them on, as
+   they accept. So the successor says, in their own words and in public,
+   what the office's written duties are, and that they take them on, as
    an oath of office does. A plant choosing between two answers can't do
    that, and an AI or a person who can't explain the duties hasn't
    agreed to them.
@@ -152,8 +152,8 @@ stands unless the founder answers otherwise:
   watches this one. "No one holds power that isn't written down,
   checked and answerable" (ADMIN.md, "What the multiverse must
   preserve", row 6), and ADMIN doesn't choose Keepers, as when the
-  multiverse assigns one ("ADMIN doesn't choose it", ADMIN.md, "The
-  admin-key"). A veto without reasons would let it choose them
+  multiverse assigns one ("ADMIN doesn't choose them", ADMIN.md, "The
+  admin-key"). A veto without reasons would let ADMIN choose them
   indirectly.
 - **A ruling, and a serious act.** A block is logged with its reasons,
   like every ruling of ADMIN's, and reviewed independently before it

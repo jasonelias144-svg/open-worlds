@@ -7,12 +7,12 @@
 > Made by docs/parts.py from the file. To change it, change the file.
 
 - 2026-11-17, two collaborators on the sketch crate at once, each on
-  its own files. The rule since 2026-11-16 was one writer at a time,
+  their own files. The rule since 2026-11-16 was one writer at a time,
   so that there is one line of code. The founder had Gemini free
   hours before DeepSeek, and asked whether to give Gemini DeepSeek's
   file renamed. Not that: the same step done twice gives two versions
   of the same files, which is what the rule is there to prevent. For
-  this round each has its own files: DeepSeek the room (record.rs,
+  this round each has their own files: DeepSeek the room (record.rs,
   room.rs, verify.rs, a new tests/branch.rs), Gemini the Commons
   (commons.rs and new test files), and Gemini finds faults in
   verify.rs without repairing them. The two are joined here when both
@@ -243,7 +243,7 @@
   project the form is chosen case by case, and may be DeepSeek's. A
   table of DeepSeek's names beside the schema's comes in the next pull
   request. Reason: signed records and their vectors can't change, and
-  nothing DeepSeek builds on its own schema should be wasted. Wrong if:
+  nothing DeepSeek builds on their own schema should be wasted. Wrong if:
   a form the project has signed with turns out to be the worse one for
   rooms; then it changes in a new version of the schema, beside the old,
   never in place.

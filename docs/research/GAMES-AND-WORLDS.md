@@ -251,8 +251,8 @@ Left, or changed:
   is only the leaver's choice.
 - **A model as judge.** In the Ur-world the kernel decides what happens,
   in code that anyone can check. Each world's Keeper, an AI, designs
-  challenges and paces events, but the kernel checks and places what it
-  designs, and the law stays above both ([WORLD-KEY.md](../WORLD-KEY.md),
+  challenges and paces events, but the kernel checks and places what they
+  design, and the law stays above both ([WORLD-KEY.md](../WORLD-KEY.md),
   "The Keeper").
 - **Copying content.** We borrow ideas and mechanics, not any game's
   content.

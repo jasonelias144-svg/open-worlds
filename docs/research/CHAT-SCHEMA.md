@@ -7,8 +7,8 @@ continue building and gaining momentum." And: "I figured you could use
 what DeepSeek builds on that schema and adapt the existing one and the
 one DeepSeek provides to make one that fits both."
 
-So DeepSeek keeps building on its schema, with its names, and this
-page says where each of its names lands in the project's. The
+So DeepSeek keeps building on their schema, with their names, and this
+page says where each of their names lands in the project's. The
 technical lead keeps it, and does the fitting (STATUS.md, "Decided",
 2026-11-16).
 

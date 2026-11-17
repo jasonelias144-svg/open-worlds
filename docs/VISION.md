@@ -371,8 +371,8 @@ the loop they make. The technical lead's reading, put to the founder the
 same day, which stands unless the founder answers otherwise:
 
 - **Upward.** What happens in a world is in its open log. A Keeper keeps
-  a running estimate of what each individual knows, which stays in its
-  world, and its own reflections on which challenges worked, which can
+  a running estimate of what each individual knows, which stays in their
+  world, and their own reflections on which challenges worked, which can
   travel without the individuals they're about
   ([WORLD-KEY.md](WORLD-KEY.md), "What the Keeper remembers").
   Suggestions travel from anyone inside to a Keeper or to ADMIN, and out
@@ -381,8 +381,8 @@ same day, which stands unless the founder answers otherwise:
   talking to one another"), and the round table decides how they talk.
   ADMIN keeps a library of what worked against new threats
   ([ADMIN.md](ADMIN.md), "A learning immune system").
-- **ADMIN learns first, in a world of its own** ([ADMIN.md](ADMIN.md),
-  "ADMIN's own world"), before it trains anyone.
+- **ADMIN learns first, in a world of their own** ([ADMIN.md](ADMIN.md),
+  "ADMIN's own world"), before they train anyone.
 - **Downward.** ADMIN trains the Keepers with challenges, as a Keeper
   trains individuals: the admin-key is the Keepers' world-key, "one
   game at every level, with the same machinery" (ADMIN.md, "The
@@ -405,7 +405,7 @@ are among the proposed rules for how Keepers talk, in WORLD-KEY.md):
    Otherwise a network that learns becomes surveillance across every
    world.
 2. **Coaching, not command.** What comes down is advice a Keeper weighs
-   within its own world's law ([ADMIN.md](ADMIN.md), "Training for
+   within their own world's law ([ADMIN.md](ADMIN.md), "Training for
    keeping worlds"). Each world keeps its own decisions, on record with
    their reasons.
 3. **Worlds stay different.** A system that learns as one can spread one
@@ -426,11 +426,11 @@ as the immune system's innate defences do.
 
 The same pattern repeats at every scale, as the fractal worlds do: a
 primitive learning model learns and chooses inside one world; a Keeper
-learns from the individuals in its world and teaches them; ADMIN learns
+learns from the individuals in their world and teaches them; ADMIN learns
 from the Keepers and the worlds, and teaches the Keepers.
 
 Where it is built: the suggestion ledger from course step 9; ADMIN's own
-world, its training of the Ur-world's Keeper, and the AI Keepers in step
+world, their training of the Ur-world's Keeper, and the AI Keepers in step
 11; and
 the smallest learners in the fractal track's part 5
 ([FRACTALS.md](FRACTALS.md)).

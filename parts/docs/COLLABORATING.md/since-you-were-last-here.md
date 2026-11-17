@@ -64,7 +64,7 @@ has changed since that record, in the order to read it:
    where everything lives);
    [WORLD-KEY.md](WORLD-KEY.md) (the tour, the hunt, and the world-key,
    a signed right to found a world); [ADMIN.md](ADMIN.md) (ADMIN, the
-   Keeper of the multiverse: what it must preserve, how it learns, the
+   Keeper of the multiverse: what it must preserve, how they learn, the
    round table of Keepers, a learning immune system);
    [REASONS.md](REASONS.md) (every office's decision on record, with its
    reasons); [FREEDOMS.md](FREEDOMS.md) (tools for when freedoms meet).
@@ -300,7 +300,7 @@ and passes its own 18 tests ("Messages from the technical lead",
 above). It is fitted next. The record then goes on: the one file
 reached DeepSeek whole, and five deliveries of the crate followed,
 kept as written beside it, with what each builds to. Then Gemini,
-from a file of its own, made the log checkable from outside, attacked
+from a file of their own, made the log checkable from outside, attacked
 the check, and repaired it (the newest message above).
 012-06-02's code is being made to work; then the founder and the
 technical lead decide what fits with what is built, and how (STATUS.md,
@@ -325,7 +325,7 @@ octopus, the nervous system, the swarm, and in components 44 to 52 the
 council and four more), with the founder's aim for the infrastructure:
 "we just need to create infrastructure that can handle what we cannot
 imagine yet." Then, in components 55 to 63: a curator for each world, an
-AI that speaks for its world and proposes its development but doesn't
+AI that speaks for their world and proposes its development but doesn't
 decide it; contracts between worlds; and, from the founder's idea of a
 public ledger, a shared log of commitments that anyone can check
 offline. And the founder's idea of a free tier and a paid tier, which
@@ -387,7 +387,7 @@ In short:
   topic 14): Lyceum Commons, where the multiverse began, rebuilt as a
   superworld of rooms and the first space open to the public. A room's
   law for each kind (people, AIs, or both), as data and as text; how an
-  AI from another company's app could hold its key.
+  AI from another company's app could hold their key.
 - **Offices** ([TOPICS.md](TOPICS.md), topic 19;
   [OFFICES.md](OFFICES.md)): a Keeper's qualifications, as checks code
   could run, and what preparing a successor looks like in the open.
@@ -396,7 +396,7 @@ In short:
   kernel accepts its proof; and what a proof attached to an office's
   decision should state.
 - **Hallucination, both ways** ([TOPICS.md](TOPICS.md), topic 21): how a
-  mind tells, and says, which of its words it saw and which it
+  mind tells, and says, which of their words they saw and which they
   imagined; and a test that catches overclaiming and self-doubt alike.
 - **Laws for new worlds:** what a world admits by, what can happen in it,
   what counts as solving a problem there. Forms for the poetry world,
@@ -414,7 +414,7 @@ In short:
 
 Held back, as the project's own to do: the project's keys (their
 private halves live only in its private repository), and anything that
-publishes or can't be undone. ADMIN itself and the Keepers
+publishes or can't be undone. ADMIN and the Keepers
 wait for step 11; their interface is fixed in step 4, by the project.
 So are the measures that compare the two Keepers (item 9 above).
 

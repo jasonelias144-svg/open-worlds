@@ -75,7 +75,7 @@ What it doesn't do yet, said plainly:
   else's key. A succession names whose key it is: a world's id, or ""
   for an individual. A key is signed over once, and a new key continues
   only one key: a line, never a fork or a merge.
-- **An individual takes its history along.** Its passport carries the
+- **An individual takes their history along.** Their passport carries the
   succession (`Passport.signed_over`). The stamps given to the old key
   count for the new one wherever the passport is checked
   (`verify_passport`), without asking any world.

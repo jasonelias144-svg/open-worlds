@@ -43,7 +43,7 @@
   it changed, 4 of its 12 tests pass, and the other 8 fail for one
   cause, found: a record is signed without its `type` and checked with
   it. `review/run.sh` shows both, outside CI. COLLABORATING.md has the
-  message to DeepSeek, with the answers to its two questions (Decided
+  message to DeepSeek, with the answers to their two questions (Decided
   by the technical lead, the newest entry); TOPICS.md, topics 14 and
   18, say what is sketched. Not checked: the first version of the
   crate; the files of DeepSeek's later reply, joined to the crate; the
@@ -60,7 +60,7 @@
 
 - 2026-11-15 Claude: topic 21, "Hallucination, both ways", in
   docs/TOPICS.md, from the founder's words and the DeepSeek case;
-  COLLABORATING.md tells DeepSeek how its reading seems to work, and
+  COLLABORATING.md tells DeepSeek how their reading seems to work, and
   counts twenty-one topics. For the water step, the technical lead gave
   the founder one file to upload, copied from main at 6c6bb8f (topic 18,
   the message on the endless plant, FRACTALS.md, plant-world's code).

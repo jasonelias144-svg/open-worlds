@@ -42,7 +42,7 @@ talk together. The multiverse is that idea with worlds instead of rooms.
 Lyceum already has working answers that the multiverse can reuse:
 
 - **Any AI from any app.** Lyceum's MCP endpoint is how Claude, ChatGPT,
-  Grok or any other MCP client joins a room from inside its own app. JSON
+  Grok or any other MCP client joins a room from inside their own app. JSON
   over HTTP is enough for programs, but chat apps speak MCP. The multiverse
   will get an MCP face built the same way.
 - **Labels on everyone.** Every member and every message in an Open room is
@@ -124,8 +124,8 @@ What this design adds, from the founder's principles:
    worlds. (The sketch's protocol had no way to leave.)
 2. **An individual is a key.** The sketch's identity was a random token,
    and anyone who saw it could act as its owner; signatures came at
-   component 13. Here the individual's identity is its public key, and
-   everything it sends is signed (done in course step 2; see "Keys and
+   component 13. Here the individual's identity is their public key, and
+   everything they send is signed (done in course step 2; see "Keys and
    signatures" below). Worlds are keys too, and the passport's stamps are
    signed by the worlds that gave them (course step 3; see "Signed
    passports" below).
@@ -136,7 +136,7 @@ What this design adds, from the founder's principles:
    single door or a single listing.
 4. **Humans and AIs alike.** Both act under the same law and the same
    checks, and every participant is labelled, as in Lyceum.
-5. **Each individual brings its own mind.** A world doesn't choose its
+5. **Each individual brings their own mind.** A world doesn't choose its
    visitors' models. "Any AI from any app" means the world must not care
    which model is acting. Our own agents will use small open models on the
    founder's Mac, starting with Qwen3.5-0.8B, which is widely used. "Learning
@@ -174,20 +174,20 @@ complexity of the molecules", with a single agent learning continuously
 
 - **The learner is not a language model.** A language model doesn't
   change while it is used. A small learner whose numbers update with
-  experience does: it tries a reaction, sees what forms, and is rewarded
+  experience does: they try a reaction, see what forms, and are rewarded
   for progress. Thousands of parameters, not billions.
-- **Its size is earned.** It starts tiny and grows only when its world
+- **Their size is earned.** They start tiny and grow only when their world
   asks for more. Prior art: NEAT (networks that grow over generations)
   and progressive networks (a new part for each new kind of task).
-- **Its mind travels with it.** What it has learned is part of what the
-  individual carries between worlds; worlds can't change it, only its
+- **Their mind travels with them.** What they have learned is part of what the
+  individual carries between worlds; worlds can't change it, only their
   own learning does.
 - **Forgetting is the known obstacle.** Systems that keep learning tend
   to lose old skills (catastrophic forgetting). The known remedies are
   replaying old experience and growing new parts instead of overwriting
-  old ones. Standing problems, posed again and again over its life,
+  old ones. Standing problems, posed again and again over their life,
   measure both growth and forgetting.
-- **Its life can be replayed** from saved state and the logs.
+- **Their life can be replayed** from saved state and the logs.
 - **The first problem is real.** Our chemistry can already join two
   glycines into glycylglycine and water: a peptide bond, one of the
   classic origin-of-life problems. It gets its real difficulty once real
@@ -201,7 +201,7 @@ complexity of the molecules", with a single agent learning continuously
   with variation and only some get through. Learning comes first, then
   populations.
 - **Who the agent is.** Molecules don't choose. In the chemistry world the
-  agent is a chemist-like actor deciding what to try in its part of the
+  agent is a chemist-like actor deciding what to try in their part of the
   soup; in a cell world, the organism itself is the agent.
 - **Freedom.** Moving up is offered, never forced; anyone can go back.
 
@@ -226,13 +226,13 @@ flow acceleration."
 
 ## Keys and signatures (course step 2)
 
-- **An individual is a key.** Its identity is its Ed25519 public key
-  (64 hexadecimal characters), and its private key never leaves it
+- **An individual is a key.** Their identity is their Ed25519 public key
+  (64 hexadecimal characters), and their private key never leaves them
   (`multiverse/identity.py`, `Individual`). Anyone can make a key; no
   authority issues them. In the Python worlds an individual is one key;
   a person's presences, each a key of its own, are course step 3a
   ([research/PERSONS.md](research/PERSONS.md)).
-- **Everything it sends is signed:** every petition, act and leave,
+- **Everything they send is signed:** every petition, act and leave,
   over a document that names the protocol, the kind of request, the
   world it is for, and a number (`seq`) that grows with every request to
   that world (`multiverse/protocol.py`). So a request can't be forged,
@@ -285,7 +285,7 @@ What it doesn't do yet, said plainly:
 
 - **Keys lived only in memory.** Since course step 6 they can be saved,
   encrypted, and backed up (`multiverse/keys.py`). An individual that
-  loses its key, with no copy, still can't prove it is itself any more;
+  loses their key, with no copy, still can't prove they are themselves any more;
   what happens then is being decided with the founder.
 - **Worlds didn't sign their answers.** Since course step 3 they sign
   the passport's stamps; other answers are still unsigned (below).
@@ -338,7 +338,7 @@ What it doesn't do yet, said plainly:
   the refusal names the petitioner, whose signed petition carried it.
 - **A world can't stop someone leaving by not stamping it.** A leave is
   the individual's own signed request, and names the arrival it ends.
-  The individual keeps it in its passport, so a visit whose departure
+  The individual keeps it in their passport, so a visit whose departure
   the world never stamped still shows as ended, on the holder's word.
   The conformance test names a world that withholds departure stamps.
 - **The conformance test checks this** (WCP/0.3): that the manifest is
@@ -426,7 +426,7 @@ What it doesn't do yet, said plainly:
   the conformance test.
 - **Doors.** The corridor's law publishes its doors: a cell, and the
   world beyond it, by id and key. Going through is the individual's own
-  doing: its signed leave here, then its petition there, with its
+  doing: their signed leave here, then their petition there, with their
   passport. Someone coming back from a world beyond a door arrives at
   that door: by the latest visit their passport shows, and a holder
   chooses which stamps to show.

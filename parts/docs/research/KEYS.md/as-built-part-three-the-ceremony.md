@@ -96,9 +96,9 @@ checked from Python through the shared vectors:
 - **The doorway signs** (decision 13). `ur_world::arrival::sign` signs an
   arrival over the world as it is now; the door example signs each
   mind's with a fresh key from the operating system's randomness, admits
-  it, and only then starts the mind's program, which is told in its
-  first message whether it comes back (`"again"`) and, if so, that what
-  it did before is in the public record. No key is passed to a mind's
+  them, and only then starts the mind's program, which is told in its
+  first message whether they come back (`"again"`) and, if so, that what
+  they did before is in the public record. No key is passed to a mind's
   program, and no holder's key is read: until step 9 no holder enters
   (decision 15).
 - **Trial runs are worlds of their own** (decision 14). Each door run
@@ -168,7 +168,7 @@ checked from Python through the shared vectors:
   (decision 13), an arrival shows that whoever ran the doorway held the
   key, not which program is the mind: "the same individual coming back"
   means the same key, and another program can come back under it. That
-  is what "an individual is its key" says, and whoever runs the doorway
+  is what "an individual is their key" says, and whoever runs the doorway
   can enter as anyone whose key it holds.
 - **Only signed heads protect a reader.** An arrival in a log shows who
   entered, but a log is the word of whoever runs the world until a head

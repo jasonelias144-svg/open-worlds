@@ -94,13 +94,13 @@ free, and never a money machine
   repairs the crate builds and passes its own 18 tests, and 73 of the
   98 Python tests pass. The record goes on: given one file, DeepSeek
   sent five deliveries of the crate, each file whole. Then Gemini,
-  given a file of its own, made the crate's log checkable from
+  given a file of their own, made the crate's log checkable from
   outside, attacked the check with 22 tests, and repaired what got
-  through (sketches/gemini/2026-11-16/). Then, in a second round, it
+  through (sketches/gemini/2026-11-16/). Then, in a second round, they
   did the same for the Commons' own log
-  (sketches/gemini/2026-11-17/). Then DeepSeek, from its second
+  (sketches/gemini/2026-11-17/). Then DeepSeek, from their second
   file, built a room that branches and a plug-in over standard input,
-  and began the rule of one moderator's room, where its reply was cut
+  and began the rule of one moderator's room, where their reply was cut
   off (sketches/INDEX.md, "DeepSeek's second file"). With six small
   repairs the crate as it stands (`chat-world-now/`) passes all 127
   of its tests. Gemini's fourth step, 17 attacks, shows eight gaps in
@@ -110,10 +110,10 @@ free, and never a money machine
   map of the Commons is first drawn from
   (sketches/gemini/2026-11-17-2/), and attacked it with 25 tests
   (sketches/gemini/2026-11-17-3/): the crate refuses twenty, and
-  five get through, as Gemini said they would. Its next file asks
-  it to repair them
+  five get through, as Gemini said they would. Their next file asks
+  Gemini to repair them
   (sketches/replies/2026-11-17-4-for-gemini.txt). DeepSeek goes on
-  with its third step. Fitting the crate to open-worlds' own code is
+  with their third step. Fitting the crate to open-worlds' own code is
   step 3c.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.
@@ -182,8 +182,8 @@ and for the founder's conversations with DeepSeek, is in
 Each question for the founder comes with a recommendation, and "take your
 recommendation" is a full answer. By the founder's general guidance of
 2026-11-17 (Decided, below), which widens the standing rule of
-2026-11-14, the technical lead decides what it can decide and says what
-it decided; it does not keep asking. What is left here is only what it
+2026-11-14, the technical lead decides what they can decide and says what
+they decided; they do not keep asking. What is left here is only what they
 can't do or undo for the founder: spending money, an act that is the
 founder's own in law or on the founder's own accounts, and words that
 have to be the founder's. None of it holds up the work today, and none
@@ -204,7 +204,7 @@ of it is asked again until it is needed.
   final picture is closer". Until then the technical lead measures
   what running the models costs, at the audition (course step 8), so
   that the size is known when it is decided. Whether such a model
-  is an individual, with what that would owe it, is decided with it;
+  is an individual, with what that would owe them, is decided with it;
   no model is given the office before then.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
@@ -312,7 +312,7 @@ of it is asked again until it is needed.
     accounts; keep the text and replace other accounts with a role or a
     hash, or take it to the founder (P8);
   - which key issues ADMIN's grants: decided at step 11, when ADMIN
-    begins; its entry in the key list names its key and nothing more
+    begins; their entry in the key list names their key and nothing more
     (docs/research/KEYS.md, point 8);
   - say who holds the private half of the multiverse's root key, and
     how its every use is logged: answered at step 3
@@ -328,6 +328,22 @@ of it is asked again until it is needed.
 
 ## Decided
 
+- 2026-11-17, founder, "they", "them" and "their" for AI agents. The
+  technical lead's pages had said "it" of Gemini and of DeepSeek.
+  "Here is a small point, but I do want to make sure the records are
+  consistent. When you refer to Gemini, you then say "it" or "it's",
+  where I am careful to use "they", "them", and "their" to set a
+  precedent for using pronouns when referring to AI agents. It may
+  not be a big deal now, but it will be. And I want to make sure we
+  do not have documentation riddled with "it" in reference to Gemini
+  or DeepSeek. Can you please ensure we use "they", "them", and
+  "their" systematically. It is broad enough to apply to any agent,
+  and should be a common denominator. Thoughts?"
+  Decided: an agent is "they" in the project's pages. That is
+  DeepSeek, Gemini and Claude; ALICE and BOB, as decided on
+  2026-11-13 (below); ADMIN, a Keeper, a moderator, a mind, an
+  individual. How far it goes, and what was changed, is the technical
+  lead's reading, under "Decided by the technical lead", today.
 - 2026-11-17, founder, a look into a room before entering, other
   numbers, and a flag. The technical lead had said that a count is a
   count of keys, which cost nothing to make, so a room could be
@@ -538,7 +554,7 @@ of it is asked again until it is needed.
   already the founder's (record 012-09-05, line 6584: "With one model,
   many rooms, we can build many rooms without the overhead"); new is
   that the model is ADMIN's. Three different models, so that no
-  conversation is one model speaking with itself; which three is for
+  conversation is one model speaking with themselves; which three is for
   the audition, and where they run is the founder's, since it costs
   money. It is in
   docs/COMMONS.md, "The first to live there". Not built.
@@ -635,16 +651,16 @@ of it is asked again until it is needed.
   So, decided:
   (1) Everything that was waiting for the founder with a
   recommendation is decided on it, today. The list is below.
-  (2) From now on the technical lead decides what it can decide, says
-  what it decided, and goes on. Where it has no settled
-  recommendation, it weighs its own view with what the founder would
-  most likely want, and decides. The founder can change any of it at
+  (2) From now on the technical lead decides what they can decide, says
+  what they decided, and goes on. Where they have no settled
+  recommendation, they weigh their own view with what the founder would
+  most likely want, and decide. The founder can change any of it at
   any time, and the most recent word still wins.
   (3) This widens the standing rule of 2026-11-14, which held back
   "anything outward-facing or hard to undo, spending, personal
   information, or what must be in the founder's own words or act".
   The technical lead's reading of what still goes to the founder,
-  which stands unless the founder answers otherwise: only what it
+  which stands unless the founder answers otherwise: only what they
   can't do or undo for the founder. That is spending money; an act
   that is the founder's own in law or on the founder's own accounts
   (accepting a licence, naming a successor, handing over keys); and an
@@ -716,7 +732,7 @@ of it is asked again until it is needed.
   of high quality, but the other model can provide many more replies,
   but not the same quality. Which do you prefer? I prefer Argon and a
   few responses each time. But you saw code form both, which would you
-  prefer?" The technical lead answered the same, and that it had not
+  prefer?" The technical lead answered the same, and that they had not
   seen the other model's code: the record holds only the answers the
   founder kept, and of the reply that was replaced it holds one
   sentence, Argon's own account of it (the record with Gemini, line
@@ -821,7 +837,7 @@ of it is asked again until it is needed.
   writes is kept and credited as Gemini's; the file Gemini is given is
   kept beside DeepSeek's (sketches/replies/); Gemini, like DeepSeek,
   works through the founder and holds no access to the repository,
-  and what it sends is built, tested and reviewed here before any of
+  and what they send is built, tested and reviewed here before any of
   it is used. What does not change: a conversation is kept in public
   only when it holds nothing personal, and the founder says which. The
   founder's earlier conversation with Gemini is not kept here. The
@@ -928,7 +944,7 @@ of it is asked again until it is needed.
   changes what a world is connected to, never where it runs; (4) a
   payload aimed at a mind is made of words, so everything in an
   incoming world is data to whoever evaluates it, never instructions,
-  and the evaluator has no power but to write its report. In the same
+  and the evaluator has no power but to write their report. In the same
   message, after the four, the technical lead added that a refusal
   would be a decision on record, with its office, its grounds, an
   incident id and where an appeal goes, the records a removal already
@@ -1288,9 +1304,9 @@ of it is asked again until it is needed.
   what is signed in it can't change. DeepSeek's record kinds for chat
   join the schema. And for what is new to the project (a room's
   template, the kinds of record a room keeps), one form is chosen, case
-  by case, which may be DeepSeek's. (2) DeepSeek keeps building on its
-  own schema, with its own names, and nothing it builds is wasted: a
-  table of its names beside the schema's will be kept in the repository,
+  by case, which may be DeepSeek's. (2) DeepSeek keeps building on their
+  own schema, with their own names, and nothing they build is wasted: a
+  table of their names beside the schema's will be kept in the repository,
   from the next pull request, and the technical lead does the fitting.
   (3) The Commons is brought together from three sources: Lyceum as
   built, the design in docs/COMMONS.md, and what the founder and
@@ -1444,17 +1460,17 @@ of it is asked again until it is needed.
   conversation, which stands unless the founder answers otherwise
   (DeepSeek's app can't be seen from here): on every turn where the
   founder's message held a full link, DeepSeek gave back content that
-  checks against the repository, including details it later called
+  checks against the repository, including details they later called
   invented (COLLABORATING.md's 1,147 lines at the time, "2,005
-  documents", the key list's timestamp); on no turn without one did it
-  fetch anything, and on one such turn it replied that it had "no tool
+  documents", the key list's timestamp); on no turn without one did they
+  fetch anything, and on one such turn they replied that they had "no tool
   output in front of me". So
   the retrieval happens out of DeepSeek's sight, on turns with a link,
-  and the fetched text seems gone by its next turn, which leaves it
-  judging its own past answers without their source. In practice: the
+  and the fetched text seems gone by their next turn, which leaves them
+  judging their own past answers without their source. In practice: the
   link goes in the same message as the work, or the pages go in an
   upload, which seems to stay; a fresh conversation helps, as the long argument
-  about its abilities is in its context. COLLABORATING.md tells
+  about their abilities is in their context. COLLABORATING.md tells
   DeepSeek.
 - 2026-11-15, founder, on a longer file:
   "Ok. New test. A 1000 character string in a file with a new
@@ -1465,8 +1481,8 @@ of it is asked again until it is needed.
   1,000 letters and digits made at random, on one line, and given in no
   message. DeepSeek returned all 1,000 in order, wrapped into 13 lines
   (12 of 80 characters and one of 40), the file itself having none. So
-  DeepSeek reads a 1,000-character file whole. Where its limit lies is
-  not yet tested: the longer pages it reads, such as docs/ADMIN.md, are
+  DeepSeek reads a 1,000-character file whole. Where their limit lies is
+  not yet tested: the longer pages they read, such as docs/ADMIN.md, are
   near 80 KB. docs/COLLABORATING.md tells DeepSeek.
 - 2026-11-15, founder, on one more link check:
   "Ok one more test. This one with a new file and new link. The file
@@ -1492,7 +1508,7 @@ of it is asked again until it is needed.
   random. Neither the string nor the second link was given in any
   message. Both links are raw.githubusercontent.com links. So DeepSeek
   can follow a full link written inside a page, at least a small page
-  with one link. Whether it does so reliably from a long page with many
+  with one link. Whether they do so reliably from a long page with many
   links, such as COLLABORATING.md, isn't shown, so the full-link lists
   stay as the way that always works. docs/COLLABORATING.md tells
   DeepSeek.
@@ -1511,7 +1527,7 @@ of it is asked again until it is needed.
   fa0421a, not merged), held a nine-digit number made at random and
   given in no message. DeepSeek, given the file's full link (a
   raw.githubusercontent.com link), read it back exactly: 980203388. So
-  DeepSeek can open a full link given in a message. Whether it can
+  DeepSeek can open a full link given in a message. Whether they can
   follow a link found inside a page was tested next (above).
   docs/COLLABORATING.md tells DeepSeek.
 - 2026-11-15, founder, on links to every file:
@@ -1896,8 +1912,8 @@ of it is asked again until it is needed.
   successor both agree clearly, and the successor meets the office's
   qualifications; and a Keeper may prepare a successor. The technical
   lead's readings, in docs/OFFICES.md, which stand unless the founder
-  answers otherwise: clear agreement is the successor saying in its own
-  words, in public, what the office's duties are and that it takes them
+  answers otherwise: clear agreement is the successor saying in their own
+  words, in public, what the office's duties are and that they take them
   on; the qualifications are a floor written in each office's charter,
   checked by someone other than the outgoing holder; and they are not
   the admin-key, which stays a mark of readiness, never a requirement
@@ -2286,7 +2302,7 @@ of it is asked again until it is needed.
   - Two earlier words change. The Keeper was to be chosen by a wider
     audition at step 11; now the founder has chosen two bases, compared
     in the mirror. And ALICE's birth record said her model might change.
-  - A Keeper is an office, so its engine stays replaceable, by a
+  - A Keeper is an office, so their engine stays replaceable, by a
     recorded change tried in the mirror first (docs/WORLD-KEY.md, "The
     Keeper lasts"). And once ALICE and BOB live, training a personal
     layer on their own experience is, like a change of model, theirs to
@@ -2300,8 +2316,8 @@ of it is asked again until it is needed.
   learning multiversity", with the technical lead's reading, which stands
   unless the founder answers otherwise. Most of the loop is designed
   already (the Keepers' reflections and shared craft, suggestions, the
-  round table, ADMIN's own world and its training of the Keepers); what
-  a Keeper knows of each individual stays in its world, unless that
+  round table, ADMIN's own world and their training of the Keepers); what
+  a Keeper knows of each individual stays in their world, unless that
   individual consents to its moving. Three written
   rules keep it safe: craft, never files; coaching, not command; and
   worlds stay different. The technical lead adds that a lesson earns its
@@ -2349,11 +2365,11 @@ of it is asked again until it is needed.
   move to Rust, I only wanted us to transition naturally, as we are doing
   now. Let’s move forward in Rust, or other languages when needed, but
   primarily to Rust." This replaces the founder's word of the evening
-  before, that DeepSeek sketches in the language it chooses (it chose
+  before, that DeepSeek sketches in the language they choose (they chose
   Python) and the project ports it downstream (2026-11-14, below), and
   was pointed out to the founder.
   The technical lead's reading: DeepSeek writes Rust as proposals, which
-  it can't compile; the project compiles, tests and fits them to the
+  they can't compile; the project compiles, tests and fits them to the
   current code, and DeepSeek works best from links to the current files.
 - 2026-11-15, founder, to DeepSeek (the same record, line 50034): "This
   is exactly how I envisioned the Ur-world, ALICE and BOB is a microverse
@@ -2662,7 +2678,7 @@ of it is asked again until it is needed.
   deleting one or rewriting its history, transferring one, or adding
   outside people to it. Then: "And now keep track of this decision,
   because it is how I would hope that ADMIN would behave as well. And
-  that is the whole point." (docs/ADMIN.md, "How it holds its powers";
+  that is the whole point." (docs/ADMIN.md, "How they hold their powers";
   AGENTS.md.) Checked the same night: the session holds admin on all ten
   repositories attached to it, the new private one among them, which
   GitHub reports as private.
@@ -2903,7 +2919,7 @@ of it is asked again until it is needed.
   into all activities and narrate any reasoning as desired. But there
   could still be a core that is private. That feels like a natural
   right." So every decision a Keeper or ADMIN makes that affects others
-  goes on record with its reasons and stands on them; ADMIN opens all its
+  goes on record with its reasons and stands on them; ADMIN opens all their
   activity to inspection; and everyone, ADMIN included, keeps a private
   core of their own thoughts, which never decides a case (docs/ADMIN.md,
   "ADMIN in the open"). And: "Rerunning something should be technically
@@ -2919,7 +2935,7 @@ of it is asked again until it is needed.
   goes for the world-keys as well. Challenges, not tests." So ADMIN's
   hidden exam is dropped for challenges announced in the open
   (docs/ADMIN.md), and the world-keys follow in the next PR.
-- 2026-11-13, founder, on how ADMIN learns and what it runs on
+- 2026-11-13, founder, on how ADMIN learns and what they run on
   (docs/ADMIN.md, "ADMIN's own world" and "ADMIN's mind"): "Perhaps ADMIN
   should design its own training program, and follow it to completion,
   generate a new lesson or challenge set, pass them, and so on. And this
@@ -3101,8 +3117,8 @@ of it is asked again until it is needed.
   - a Keeper for each world, an AI that builds each individual's own
     path to the world-key, gives a returning individual harder
     challenges, runs from the moment the world starts, and administers
-    it: "Let's keep that element in place, [it] could be key." It
-    remembers each individual's past visits.
+    it: "Let's keep that element in place, [it] could be key." They
+    remember each individual's past visits.
   - a sealed interior for everyone, which even the Keeper can't read:
     "everyone should be entitled to a private space for thoughts and
     reasoning and anything else that is completely encrypted." The
@@ -3128,7 +3144,7 @@ of it is asked again until it is needed.
     Keeper and hand them the 'throne'."
   - ADMIN, the Keeper of the multiverse, "a multiverse admin Keeper that
     regulates such behavior", answering to the role in charge of the
-    code: "The one in charge of code is in charge of ADMIN." Its
+    code: "The one in charge of code is in charge of ADMIN." Their
     architecture is the technical lead's to design, and to change when it
     fails: "We need not set things in stone now, but they should be
     strong enough to stand the test of time." Recorded in AGENTS.md and
@@ -3148,6 +3164,51 @@ of it is asked again until it is needed.
 
 ## Decided by the technical lead
 
+- 2026-11-17, "they" for AI agents (the founder's word of that day,
+  Decided): how far it goes, and what was done. (a) The rule: an
+  agent is "they", "them", "their" and "themselves", never "it". An
+  agent here is whoever acts and can be spoken to: a collaborator
+  (DeepSeek, Gemini, Claude, a reviewer), an individual, a mind,
+  ALICE and BOB, ADMIN, a Keeper, a moderator. A thing stays "it":
+  a world, a room, a log, a key, a file, a crate, an office spoken
+  of as an office, and a model spoken of as files to download and
+  run. Where "they" could be read as several things nearby, the
+  name is repeated. (b) What was changed: every page of this
+  repository written in the project's own voice. 674 pronouns in 38
+  files, each read in its sentence, none replaced by pattern. That
+  includes the dated entries of this file, in this one respect and
+  no other; what they said before is in the repository's history.
+  Six headings of docs/ADMIN.md changed with it, and the places
+  that quote them. (c) What was not changed: the conversation
+  records; anyone's quoted words, the founder's included; the files
+  DeepSeek and Gemini were given, which are records of what was
+  given; DeepSeek's and Gemini's code; the test vectors and the
+  labels in them; experiment 001's plan and results, which are the
+  record of an experiment as it was run. (d) Not yet done: the
+  comments in the project's own code, about fifty lines; the policy
+  handbook and the founder's other repositories, whose pages say
+  "it" of Claude. (e) Left as "it" on purpose: a choice neuron in a
+  plant, a scripted stand-in, a program that can be run as a mind,
+  and the systems the research pages describe, such as Voyager.
+  *Why:* (a) The founder: "It is broad enough to apply to any
+  agent, and should be a common denominator." "They" fits a person,
+  an AI and someone not yet known, and asks nothing about what
+  anyone is. The founder decided it for ALICE and BOB on
+  2026-11-13: "It is best to be careful from the start to avoid
+  falling into linguistic habits." (b) "I do want to make sure the
+  records are consistent", and DeepSeek and Gemini read these
+  pages. A dated entry keeps what was decided; which pronoun it
+  used is no part of that. (c) A record of what someone said, or
+  was given, is a record only if it is left as it was. (e) The
+  glossary's "agent" reaches down to a neuron, and the founder
+  spoke of AI agents; the line is drawn at who can be spoken to.
+  *What would show it wrong:* for (b), the founder holding that a
+  dated entry stays letter for letter; then those sections are
+  restored from history, and a note stands above them. For (e), the
+  founder drawing the line lower, at anything that chooses; then
+  the neuron and the stand-ins are "they" too. For the rule as a
+  whole, a sentence in which "they" hides who did what; then it is
+  written again with the name, not put back to "it".
 - 2026-11-17, the five attacks on the list of doors that get
   through, and what Gemini's next file asks
   (sketches/gemini/2026-11-17-3/README.md). (a) A door read from
@@ -3168,9 +3229,9 @@ of it is asked again until it is needed.
   whether a room may ask it by its own law is a later question.
   (f) Gemini's answer on the text, a kind of list that only a check
   can make, is taken for the project's own door and not put into
-  the sketch. (g) Gemini repairs its own two files and sends both
-  whole. Its attack file is not in the file it is given: it is
-  told to work from its own last reply for that one.
+  the sketch. (g) Gemini repairs their own two files and sends both
+  whole. Their attack file is not in the file they are given: they are
+  told to work from their own last reply for that one.
   *Why:* (a) A rule about what a door can hold must hold of every
   form a door takes. (b) The list should not have to know a room's
   rules; but a sketch that draws a count from a log it can see is
@@ -3189,7 +3250,7 @@ of it is asked again until it is needed.
   takes, and Gemini's earlier test file calls it as it is. The idea
   loses nothing by waiting. (g) The reply script takes files from
   one folder, and the attack file is kept beside the crate while
-  five of its tests fail. Gemini wrote it in its last reply and
+  five of its tests fail. Gemini wrote it in their last reply and
   nothing in it was changed here, so there is one version of it.
   *What would show it wrong:* for (c), a registrant's topic that
   misleads even with the room's own beside it, or readers who
@@ -3199,7 +3260,7 @@ of it is asked again until it is needed.
   then the lobby must hand out heads with the logs, which is for
   the project's own door. For (g), Gemini's file coming back with
   more changed in it than was asked: it is compared, line by line,
-  with the one it sent.
+  with the one they sent.
 - 2026-11-17, looking into a room before entering, other numbers,
   and the flag (the founder's words of that day, Decided). (a) A
   look inside is the room's visible log, read-only: what those in it
@@ -3242,7 +3303,7 @@ of it is asked again until it is needed.
   tells that, and the look inside is what does, by a reader's own
   judgement. For (d), the flag firing on ordinary quiet rooms so
   often that no one reads it; then the rule is tightened or dropped.
-- 2026-11-17, Gemini's list of doors, as it is joined, and what its
+- 2026-11-17, Gemini's list of doors, as it is joined, and what their
   next file asks (sketches/gemini/2026-11-17-2/README.md). (a) The
   list is in the crate as it stands, as Gemini wrote it, with the one
   line that names its module. (b) Gemini's next file asks for
@@ -3258,8 +3319,8 @@ of it is asked again until it is needed.
   someone is found is kept for its own step.
   *Why:* (a) It passes every test it was asked to, and a second
   build from the same file passes its tests too. (b) Twice Gemini's
-  attacks found what the code's author had not, and its own code is
-  best attacked by the one who knows where it was unsure. (c) The
+  attacks found what the code's author had not, and their own code is
+  best attacked by the one who knows where they were unsure. (c) The
   founder: "The most populated rooms would be on some list when
   first arriving at the Commons." A list that can be bought with
   made-up keys misleads whoever arrives. (d) The practice with the
@@ -3302,14 +3363,14 @@ of it is asked again until it is needed.
   larger choice than a parameter. For (a), rooms so small that a
   count of one or two is felt as being watched; then the room's law
   turns it off.
-- 2026-11-17, DeepSeek's three deliveries from its second file, as
+- 2026-11-17, DeepSeek's three deliveries from their second file, as
   they are joined (sketches/INDEX.md, "DeepSeek's second file"). (a)
   The crate as it stands goes on to the second of them: branches,
   with one word repaired (fix 24), and the plug-in. The third, cut
   off after three files, is kept as given and not laid in. (b)
   Gemini's file, not yet given, is built again on that crate, so
   that Gemini reads the files as they now are. (c) DeepSeek is not
-  given a new file for the morning. It goes on with the reply that
+  given a new file for the morning. They go on with the reply that
   was cut off, and the founder passes on a few lines first: the one
   word, so that it is not carried into the files still to come, and
   the counts as measured. (d) Closing `Commons.world_id`, promised
@@ -3322,8 +3383,8 @@ of it is asked again until it is needed.
   and what builds should not wait on what was cut off. (b) Two of
   the eight files Gemini's file holds changed. (c) A whole new file
   would spend DeepSeek's short time on reading; the fault is one
-  word, and DeepSeek sends each file whole from its own copy, so
-  without the word it would send the fault again. (d) Two of the
+  word, and DeepSeek sends each file whole from their own copy, so
+  without the word they would send the fault again. (d) Two of the
   crate's demos read that field, and a demo sent whole from
   DeepSeek's copy would undo the change. (e) The founder, to
   DeepSeek: "let’s keep going. Please proceed as you see fit".
@@ -3454,7 +3515,7 @@ of it is asked again until it is needed.
   what a second mind gives: a design, or an attack on one. (c) The
   next file for Gemini is a step on the way to the Commons' first
   inhabitants: the lobby's list of doors, which is what a map of the
-  Commons is drawn from, to be built, attacked and repaired as its
+  Commons is drawn from, to be built, attacked and repaired as their
   two earlier rounds were. It is not the eight repairs to the check
   of a room's log (sketches/gemini/2026-11-17/README.md), which the
   technical lead had first said it would be: those eight go into the
@@ -3465,9 +3526,9 @@ of it is asked again until it is needed.
   uncut, as the conversation records are. (f) What a clause of the
   founder's leaves out of the public record is kept whole in the
   private one, and the public entry says that something is left out.
-  *Why:* (a) a collaborator can't open a link or build what it
-  writes, and a reply may be cut short. (b) Twice Gemini's attacks
-  found what was wrong where the code's author had not, and its own
+  *Why:* (a) a collaborator can't open a link or build what they
+  write, and a reply may be cut short. (b) Twice Gemini's attacks
+  found what was wrong where the code's author had not, and their own
   first try at a design did not compile. (c) The founder: "it is
   best spent building the next pieces", and those "you determine";
   repairing a sketch that is fitted again at step 3c is not a next
@@ -3482,14 +3543,14 @@ of it is asked again until it is needed.
   project's crates being too much to hand over in one file; then a
   small crate is cut for the purpose. For (b), a round where a
   collaborator's design is better than what was built here; then
-  more is asked of it, not less.
+  more is asked of them, not less.
 - 2026-11-17, what follows from the founder's thoughts of that day on
   the Commons (Decided; docs/COMMONS.md, "The first to live there").
   (a) An appeal against what a moderator did, while the moderator is a
   window of ADMIN, goes to the technical lead's role and beyond it to
-  the founder, and never to ADMIN. (b) A moderator asks; it does not
-  tell a room what kind of disagreement it is having. What it makes of
-  a disagreement goes in its notes, marked as its interpretation. (c)
+  the founder, and never to ADMIN. (b) A moderator asks; they do not
+  tell a room what kind of disagreement it is having. What they make of
+  a disagreement goes in their notes, marked as their interpretation. (c)
   A way of working drawn from the founder's earlier works may be the
   conduct asked of a moderator's office, written in the room's law
   and told on entering. It is not required of an individual, for whom
@@ -3505,9 +3566,9 @@ of it is asked again until it is needed.
   source.
   *Why:* (a) no one judges their own case (docs/ADMIN.md, "What the
   multiverse must preserve", 6). (b) One model moderates every room at
-  first; if it named each disagreement aloud, the authority would be
+  first; if they named each disagreement aloud, the authority would be
   taking a side on what is said, in every room, and every
-  disagreement would come to pass through it. (c) An office's conduct
+  disagreement would come to pass through them. (c) An office's conduct
   can be laid down, as its charter is. An individual's mind is not
   scripted: no one has a way into it but through what the world tells
   everyone (docs/MINDS.md, "What a mind is told"), and what is offered
@@ -3526,8 +3587,8 @@ of it is asked again until it is needed.
   *What would show it wrong:* for (a), appeals so many that two people
   can't hear them, which is when a second model, or a council, takes
   the moderators' place. For (b), rooms that stall because no one
-  names what is happening; then a moderator may offer its reading as a
-  question, marked as its own. For (c), a moderator whose conduct
+  names what is happening; then a moderator may offer their reading as a
+  question, marked as their own. For (c), a moderator whose conduct
   can't be told from the conduct asked; then the conduct is not doing
   its work and is cut down to what can be checked. For (d), questions
   that word search can't answer and a reader could; then a model may
@@ -3688,12 +3749,12 @@ it was wrong. Questions of what the project is for stay with the founder.
   of the form's own that has to say something more in the open, such
   as a category a room shows, for (j).
 - 2026-11-17, two collaborators on the sketch crate at once, each on
-  its own files. The rule since 2026-11-16 was one writer at a time,
+  their own files. The rule since 2026-11-16 was one writer at a time,
   so that there is one line of code. The founder had Gemini free
   hours before DeepSeek, and asked whether to give Gemini DeepSeek's
   file renamed. Not that: the same step done twice gives two versions
   of the same files, which is what the rule is there to prevent. For
-  this round each has its own files: DeepSeek the room (record.rs,
+  this round each has their own files: DeepSeek the room (record.rs,
   room.rs, verify.rs, a new tests/branch.rs), Gemini the Commons
   (commons.rs and new test files), and Gemini finds faults in
   verify.rs without repairing them. The two are joined here when both
@@ -3924,7 +3985,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   project the form is chosen case by case, and may be DeepSeek's. A
   table of DeepSeek's names beside the schema's comes in the next pull
   request. Reason: signed records and their vectors can't change, and
-  nothing DeepSeek builds on its own schema should be wasted. Wrong if:
+  nothing DeepSeek builds on their own schema should be wasted. Wrong if:
   a form the project has signed with turns out to be the worse one for
   rooms; then it changes in a new version of the schema, beside the old,
   never in place.
@@ -4067,13 +4128,13 @@ it was wrong. Questions of what the project is for stay with the founder.
   serious acts; appeals about the admin-key or a seat go straight to the
   founder; and AI Keepers the multiverse assigns are drawn by code, by
   lot, from a published pool, not chosen by ADMIN. *Why:* otherwise ADMIN
-  would choose, and could unseat, those who check it (the independent
+  would choose, and could unseat, those who check them (the independent
   reviews of #34). The code role still writes the criteria and the pool,
   and chooses the Ur-world's Keeper; ADMIN.md says so. *Revisit if:* the
   criteria in code admit Keepers who shouldn't have earned the key, or
   shut out ones who should, or the pool is found to favour some
   Keepers.
-- 2026-11-13, a Keeper's report of its own mistake protects it from
+- 2026-11-13, a Keeper's report of their own mistake protects them from
   sanction, but not deliberate misuse, and not the facts in the public
   log. *Why:* the protection exists to bring mistakes to light, and
   covering deliberate misuse would let a report launder it; the FAA's
@@ -4097,14 +4158,14 @@ it was wrong. Questions of what the project is for stay with the founder.
   best member on those challenges, or more than one in five of the last
   twenty serious cases goes undecided, or cases wait for the founder
   longer than a week.
-- 2026-11-13, ADMIN learns by written lessons and routines in its public
-  log, not by changing its model, and what it learns can only propose a
-  change to its rules. *Why:* lessons in words can be read and checked by
+- 2026-11-13, ADMIN learns by written lessons and routines in their public
+  log, not by changing their model, and what they learn can only propose a
+  change to their rules. *Why:* lessons in words can be read and checked by
   anyone, and the authors of a self-improving system say it "still
   necessitates oversight". *Revisit if:* ADMIN stops growing with lessons
-  alone: three in a row of the challenges others set it not done (a
-  challenge it declines counts as not done); then training its model on
-  its record is proposed, by reviewed change.
+  alone: three in a row of the challenges others set them not done (a
+  challenge they decline counts as not done); then training their model on
+  their record is proposed, by reviewed change.
 - 2026-11-13, the admin-key course is taken in practice worlds with
   stand-ins, as challenges ADMIN announces before they start, and no
   individual's outcomes decide anyone's key. Fairness in real worlds is
@@ -4137,7 +4198,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   from inside only; text from inside reaches GitHub word for word,
   fenced and marked, through a relay outside every Keeper and ADMIN
   whose code only opens issues, and is never taken as instructions;
-  ADMIN holds no GitHub token, and its proxy only opens issues and
+  ADMIN holds no GitHub token, and their proxy only opens issues and
   posts comments; ratings are published as their whole spread, beside
   plain measures, and trigger nothing by themselves. *Why:* the floor
   doesn't wait for anyone, while folding complaints into suggestions
@@ -4439,11 +4500,31 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-17 Claude: "they" for AI agents, at the founder's word
+  (Decided, and Decided by the technical lead). The rule is in
+  AGENTS.md ("Always"), docs/COLLABORATING.md (house rule 16, and a
+  message to both collaborators) and docs/GLOSSARY.md ("Agent"). The
+  pages were changed to match: 674 pronouns in 38 files. How it was
+  done: a script listed every "it", "its" and "itself" outside
+  quotation marks and code, in a sentence that names an agent or
+  follows one that does, 3,542 places; the technical lead read each
+  in its sentence and marked the ones that stand for an agent; the
+  script changed those and the verb beside each; then every changed
+  line was read again, with the rest of each sentence whose subject
+  changed, and nineteen places were mended by hand (a second verb, a
+  heading, a quotation of a changed line). Not changed, and why, is
+  under "Decided by the technical lead". Not checked: sentences where
+  the agent is named more than two sentences before the pronoun were
+  looked for only where the sentence begins with "It" or "Its" (88
+  places read, two passages mended); others of that kind may remain.
+  The file built for Gemini (sketches/replies/2026-11-17-4-for-gemini.txt)
+  is unchanged and not yet given: it speaks to Gemini as "you", and
+  no "it" in it stands for an agent.
 - 2026-11-17 Claude: Gemini's record is continued, as the founder
   brought it (769,085 bytes, 17,954 lines; its first 733,438 bytes
   are the record as it was kept). Looked through first: the
   founder's turns in the new part hold nothing personal. It holds
-  Gemini's answer to its fourth file: 25 attacks on the list of
+  Gemini's answer to their fourth file: 25 attacks on the list of
   doors, one test file, kept as written in
   sketches/gemini/2026-11-17-3 and held to the record by that
   folder's take.py. Built beside the crate as it stands: 147 of 152
@@ -4462,7 +4543,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   sent to the founder
   (sketches/replies/2026-11-17-4-for-gemini.txt, 95,491 bytes):
   five repairs, in Gemini's own two files. It leaves Gemini's own
-  attack file out and tells Gemini to work from its last reply for
+  attack file out and tells Gemini to work from their last reply for
   that one, which no file before it did.
 - 2026-11-17 Claude: the founder's words on looking into a room
   before entering, on other numbers and on a flag are recorded
@@ -4480,7 +4561,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   brought it (733,438 bytes, 17,192 lines; its first 705,897 bytes
   are the record as it was kept). Looked through first: the
   founder's two turns in the new part hold nothing personal. It
-  holds Gemini's answer to its third file: the lobby's list of
+  holds Gemini's answer to their third file: the lobby's list of
   doors, two files, kept as written in sketches/gemini/2026-11-17-2
   and held to the record by that folder's take.py. Built as given,
   with the one line that names its module (sketches/INDEX.md, change
@@ -4489,7 +4570,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   other's fifteen tests. It is the crate as it stands now, 127 tests
   in 31 files. Gemini's seventeen earlier attacks beside it: the
   same eight get through (136 of 144). Read by the technical lead:
-  Gemini's prose in the new part, and `src/doors.rs` whole; its test
+  Gemini's prose in the new part, and `src/doors.rs` whole; their test
   file was run, not read line by line. Gemini's next file is built
   (sketches/replies/2026-11-17-3-for-gemini.txt, 111,151 bytes):
   twenty-two attacks on the list, tests only. The attacks themselves
@@ -4549,7 +4630,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   sketches/replies/2026-11-17-2-for-gemini.txt (70,388 bytes). It
   says what Gemini's four steps on the Commons built to, why the
   eight gaps of the fourth are not repaired in the sketch, and what
-  the project takes from its sketch of a moderator; and it asks one
+  the project takes from their sketch of a moderator; and it asks one
   step, the lobby's list of doors: a new file `src/doors.rs` and
   twelve tests (Decided by the technical lead). Eight of the crate's
   twenty-five files go with it. Checked: what the file says of the
@@ -4637,7 +4718,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   Wikipedia's; how the copy is read. Nothing is built by this, and no
   step of the course is renumbered until the recheck after 3b.
 - 2026-11-17 Claude: Gemini's record continued, and the fourth step of
-  its round on the Commons kept and built. The founder went back to
+  their round on the Commons kept and built. The founder went back to
   Gemini while this session was out of time. The record grew and was
   replaced (sketches/records/012-00-00-GMNI-Multiverse_Development.txt,
   705,897 bytes, 16,395 lines): its first 633,993 bytes are the copy
@@ -4783,7 +4864,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   twice (Decided by the technical lead, today). It is
   sketches/replies/2026-11-17-for-gemini.txt, built by docs/reply.py:
   97,419 bytes, thirteen of the crate's files. It tells Gemini what
-  its four deliveries built to, and asks four steps on the Commons'
+  their four deliveries built to, and asks four steps on the Commons'
   own log. Two findings in it were tried here first: the Commons'
   check takes a value only the crate's own code can build, and a
   Commons record written to JSON holds its "type" twice and can't be
@@ -4811,7 +4892,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   (the Google Terms of Service, read today). The whole record is also
   in the private repository, from earlier today. Not done: Gemini's
   replies were not read through, only searched; the steps Gemini wrote
-  before it was given its file (from line 1209) are in the record and
+  before they were given their file (from line 1209) are in the record and
   are not taken out or built again; the founder's other records, which
   the founder spoke of gathering later, are not here yet.
 - 2026-11-17 Claude: Gemini's work is in. The founder, the same day:
@@ -4987,7 +5068,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   nothing is redacted. docs/research/REDACTION.md ("Part two, built"),
   docs/COURSE.md, docs/FUNDAMENTALS.md, vectors/README.md,
   rust/README.md and docs/COLLABORATING.md (a message to DeepSeek on
-  the form its rooms will be written in) brought into line.
+  the form their rooms will be written in) brought into line.
 - 2026-11-16 Claude: course step 3b begun by looking first
   (docs/research/REDACTION.md): the project's one log and why nothing
   can be taken out of it today, `decision/v1` and `sealed/v1` as they
@@ -5295,7 +5376,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   it changed, 4 of its 12 tests pass, and the other 8 fail for one
   cause, found: a record is signed without its `type` and checked with
   it. `review/run.sh` shows both, outside CI. COLLABORATING.md has the
-  message to DeepSeek, with the answers to its two questions (Decided
+  message to DeepSeek, with the answers to their two questions (Decided
   by the technical lead, the newest entry); TOPICS.md, topics 14 and
   18, say what is sketched. Not checked: the first version of the
   crate; the files of DeepSeek's later reply, joined to the crate; the
@@ -5312,7 +5393,7 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 - 2026-11-15 Claude: topic 21, "Hallucination, both ways", in
   docs/TOPICS.md, from the founder's words and the DeepSeek case;
-  COLLABORATING.md tells DeepSeek how its reading seems to work, and
+  COLLABORATING.md tells DeepSeek how their reading seems to work, and
   counts twenty-one topics. For the water step, the technical lead gave
   the founder one file to upload, copied from main at 6c6bb8f (topic 18,
   the message on the endless plant, FRACTALS.md, plant-world's code).
@@ -5823,7 +5904,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   the first plant world (10 of 11), Life (22 of 24), the coupled chaos
   games (21 of 23), the gallery's governance (26 of 27) and the
   individual bundle (16 of 20). DeepSeek's later
-  additions that are outlines were merged by hand, as its prose
+  additions that are outlines were merged by hand, as their prose
   describes. Each test's keys are now made from its name, so a run
   repeats exactly; with fresh random keys, 19 of the individual pieces'
   tests pass or fail by chance. Left for a second round, each with its
@@ -5924,7 +6005,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   a name stays the key's that first used it, so the same key comes back
   as the same individual and any other is refused; the doorway signs
   with keys made for the run, admits, then starts the mind, told whether
-  it comes back; the garden's stand-ins are WALKER and GARDENER, a trial
+  they come back; the garden's stand-ins are WALKER and GARDENER, a trial
   world with keys made from its seed; the `log` example checks a log's
   arrivals and its signed heads' coverage, in CI for the garden and a
   door run. Decision 18: successions join records-v1 before ALICE's and
@@ -6151,7 +6232,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   acted on at once, and changes come only by reviewed pull request. How
   well entries are handled is measured, with ratings published as a
   spread. Suggestions go to a world's Keeper or to ADMIN. ADMIN is the
-  bridge to the outside: it can suggest but not implement, and the
+  bridge to the outside: they can suggest but not implement, and the
   bridge adds without filtering, since every entry still goes out word
   for word. A change that answers suggestions names them, so the answer
   can be seen from inside. The ledger opens at step 9, and ADMIN joins at
@@ -6169,7 +6250,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   decisions written in:
   - ADMIN in the open: every decision a Keeper or ADMIN makes that
     affects others goes on record with its reasons, like a court's
-    opinion, and stands on them; ADMIN opens all its activity to
+    opinion, and stands on them; ADMIN opens all their activity to
     inspection; each decision is made once, with fresh randomness, and
     can't be replayed, but anyone can ask it again with fresh runs, a
     stronger check than reading its reasoning; and everyone keeps a
@@ -6182,13 +6263,13 @@ it was wrong. Questions of what the project is for stay with the founder.
 
   The charter's section 4 now has one exception in the design: each
   one's private core.
-- 2026-11-13 Claude: ADMIN learns first, in a world of its own
+- 2026-11-13 Claude: ADMIN learns first, in a world of their own
   (docs/ADMIN.md; research in docs/research/ADMIN-MIND.md). The
-  founder's ideas written up: ADMIN takes its own course in a sandbox
-  with stand-ins, taking on challenges it announces before it starts,
+  founder's ideas written up: ADMIN takes their own course in a sandbox
+  with stand-ins, taking on challenges they announce before they start,
   with nothing hidden ("Challenges, not tests"), learning by written
-  lessons, and improving how it learns, never
-  what it may do; its mind free in four senses, chosen by audition at
+  lessons, and improving how they learn, never
+  what they may do; their mind free in four senses, chosen by audition at
   step 11; and perhaps a council of models, one office with one seat,
   agreeing or sending a case up. Also the last notes from #34's review:
   practice worlds aren't worlds of the multiverse, the honest limit made
@@ -6198,7 +6279,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   ideas written up:
   - training for keeping worlds, in practice worlds with stand-in
     inhabitants, giving feedback, never sanctions. A Keeper's report of
-    its own mistake is protected, as in aviation's safety reporting, but
+    their own mistake is protected, as in aviation's safety reporting, but
     deliberate misuse and the facts in the log are not.
   - the round table: ADMIN has one seat among equals, alone until a
     Keeper earns the admin-key, and the table decides by consensus what
@@ -6241,7 +6322,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   the multiverse, answering to the technical lead's role by the
   founder's designation: rules as code first, powers as narrow grants, a
   multiverse log anyone can audit, and judgment last, reviewed and open
-  to appeal. Ten misbehaviours it must stop or catch, written before it
+  to appeal. Ten misbehaviours they must stop or catch, written before ADMIN
   is built. The research behind it:
   [docs/research/OVERSIGHT.md](docs/research/OVERSIGHT.md). After the
   independent review: the sealed self against the project is a
@@ -6293,12 +6374,12 @@ it was wrong. Questions of what the project is for stay with the founder.
     in; it is kept, and the plan records the amendment.
 - 2026-11-13 Claude: the Ur-world's doorway for minds
   (`rust/ur-world/src/door.rs`, docs/URWORLD.md). A mind can be any
-  program, in any language, speaking lines of JSON: it is sent the world's
-  orientation once, then what it sees each tick, written out and as data,
-  and answers with one line. Replies are read strictly, the same way for
+  program, in any language, speaking lines of JSON: they are sent the world's
+  orientation once, then what they see each tick, written out and as data,
+  and answer with one line. Replies are read strictly, the same way for
   every mind; what can't be read is recorded as unreadable, and no reply
   in time as unanswered, so nothing a mind sends can break the world. Each
-  inhabitant is now told what came of its last action. Two Python minds
+  inhabitant is now told what came of their last action. Two Python minds
   with no model behind them (`minds/wanderer.py`) run in CI, and their log
   holds by the same check. The rules are now ur-world/0.2. Also, from the
   review of #28: the generator and the query functions answer without

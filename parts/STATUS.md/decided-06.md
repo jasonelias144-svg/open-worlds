@@ -42,7 +42,7 @@
   writes is kept and credited as Gemini's; the file Gemini is given is
   kept beside DeepSeek's (sketches/replies/); Gemini, like DeepSeek,
   works through the founder and holds no access to the repository,
-  and what it sends is built, tested and reviewed here before any of
+  and what they send is built, tested and reviewed here before any of
   it is used. What does not change: a conversation is kept in public
   only when it holds nothing personal, and the founder says which. The
   founder's earlier conversation with Gemini is not kept here. The
@@ -149,7 +149,7 @@
   changes what a world is connected to, never where it runs; (4) a
   payload aimed at a mind is made of words, so everything in an
   incoming world is data to whoever evaluates it, never instructions,
-  and the evaluator has no power but to write its report. In the same
+  and the evaluator has no power but to write their report. In the same
   message, after the four, the technical lead added that a refusal
   would be a decision on record, with its office, its grounds, an
   incident id and where an appeal goes, the records a removal already

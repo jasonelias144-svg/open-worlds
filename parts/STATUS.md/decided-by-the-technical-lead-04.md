@@ -8,6 +8,51 @@
 
 ## Decided by the technical lead
 
+- 2026-11-17, "they" for AI agents (the founder's word of that day,
+  Decided): how far it goes, and what was done. (a) The rule: an
+  agent is "they", "them", "their" and "themselves", never "it". An
+  agent here is whoever acts and can be spoken to: a collaborator
+  (DeepSeek, Gemini, Claude, a reviewer), an individual, a mind,
+  ALICE and BOB, ADMIN, a Keeper, a moderator. A thing stays "it":
+  a world, a room, a log, a key, a file, a crate, an office spoken
+  of as an office, and a model spoken of as files to download and
+  run. Where "they" could be read as several things nearby, the
+  name is repeated. (b) What was changed: every page of this
+  repository written in the project's own voice. 674 pronouns in 38
+  files, each read in its sentence, none replaced by pattern. That
+  includes the dated entries of this file, in this one respect and
+  no other; what they said before is in the repository's history.
+  Six headings of docs/ADMIN.md changed with it, and the places
+  that quote them. (c) What was not changed: the conversation
+  records; anyone's quoted words, the founder's included; the files
+  DeepSeek and Gemini were given, which are records of what was
+  given; DeepSeek's and Gemini's code; the test vectors and the
+  labels in them; experiment 001's plan and results, which are the
+  record of an experiment as it was run. (d) Not yet done: the
+  comments in the project's own code, about fifty lines; the policy
+  handbook and the founder's other repositories, whose pages say
+  "it" of Claude. (e) Left as "it" on purpose: a choice neuron in a
+  plant, a scripted stand-in, a program that can be run as a mind,
+  and the systems the research pages describe, such as Voyager.
+  *Why:* (a) The founder: "It is broad enough to apply to any
+  agent, and should be a common denominator." "They" fits a person,
+  an AI and someone not yet known, and asks nothing about what
+  anyone is. The founder decided it for ALICE and BOB on
+  2026-11-13: "It is best to be careful from the start to avoid
+  falling into linguistic habits." (b) "I do want to make sure the
+  records are consistent", and DeepSeek and Gemini read these
+  pages. A dated entry keeps what was decided; which pronoun it
+  used is no part of that. (c) A record of what someone said, or
+  was given, is a record only if it is left as it was. (e) The
+  glossary's "agent" reaches down to a neuron, and the founder
+  spoke of AI agents; the line is drawn at who can be spoken to.
+  *What would show it wrong:* for (b), the founder holding that a
+  dated entry stays letter for letter; then those sections are
+  restored from history, and a note stands above them. For (e), the
+  founder drawing the line lower, at anything that chooses; then
+  the neuron and the stand-ins are "they" too. For the rule as a
+  whole, a sentence in which "they" hides who did what; then it is
+  written again with the name, not put back to "it".
 - 2026-11-17, the five attacks on the list of doors that get
   through, and what Gemini's next file asks
   (sketches/gemini/2026-11-17-3/README.md). (a) A door read from
@@ -28,9 +73,9 @@
   whether a room may ask it by its own law is a later question.
   (f) Gemini's answer on the text, a kind of list that only a check
   can make, is taken for the project's own door and not put into
-  the sketch. (g) Gemini repairs its own two files and sends both
-  whole. Its attack file is not in the file it is given: it is
-  told to work from its own last reply for that one.
+  the sketch. (g) Gemini repairs their own two files and sends both
+  whole. Their attack file is not in the file they are given: they are
+  told to work from their own last reply for that one.
   *Why:* (a) A rule about what a door can hold must hold of every
   form a door takes. (b) The list should not have to know a room's
   rules; but a sketch that draws a count from a log it can see is
@@ -49,7 +94,7 @@
   takes, and Gemini's earlier test file calls it as it is. The idea
   loses nothing by waiting. (g) The reply script takes files from
   one folder, and the attack file is kept beside the crate while
-  five of its tests fail. Gemini wrote it in its last reply and
+  five of its tests fail. Gemini wrote it in their last reply and
   nothing in it was changed here, so there is one version of it.
   *What would show it wrong:* for (c), a registrant's topic that
   misleads even with the room's own beside it, or readers who
@@ -59,7 +104,7 @@
   then the lobby must hand out heads with the logs, which is for
   the project's own door. For (g), Gemini's file coming back with
   more changed in it than was asked: it is compared, line by line,
-  with the one it sent.
+  with the one they sent.
 - 2026-11-17, looking into a room before entering, other numbers,
   and the flag (the founder's words of that day, Decided). (a) A
   look inside is the room's visible log, read-only: what those in it
@@ -102,7 +147,7 @@
   tells that, and the look inside is what does, by a reader's own
   judgement. For (d), the flag firing on ordinary quiet rooms so
   often that no one reads it; then the rule is tightened or dropped.
-- 2026-11-17, Gemini's list of doors, as it is joined, and what its
+- 2026-11-17, Gemini's list of doors, as it is joined, and what their
   next file asks (sketches/gemini/2026-11-17-2/README.md). (a) The
   list is in the crate as it stands, as Gemini wrote it, with the one
   line that names its module. (b) Gemini's next file asks for
@@ -118,8 +163,8 @@
   someone is found is kept for its own step.
   *Why:* (a) It passes every test it was asked to, and a second
   build from the same file passes its tests too. (b) Twice Gemini's
-  attacks found what the code's author had not, and its own code is
-  best attacked by the one who knows where it was unsure. (c) The
+  attacks found what the code's author had not, and their own code is
+  best attacked by the one who knows where they were unsure. (c) The
   founder: "The most populated rooms would be on some list when
   first arriving at the Commons." A list that can be bought with
   made-up keys misleads whoever arrives. (d) The practice with the
