@@ -94,10 +94,13 @@ free, and never a money machine
   (`sketches/deepseek/012-09-05/README.md`): after a first round of
   repairs the crate builds and passes its own 18 tests, and 73 of the
   98 Python tests pass. The record goes on: given one file, DeepSeek
-  sent five deliveries of the crate, each file whole; with three
-  repairs of a few lines the crate as it stands
-  (`chat-world-now/`) passes all 41 of its tests. Fitting it to
-  open-worlds' own code is next, piece by piece.
+  sent five deliveries of the crate, each file whole. Then Gemini,
+  given a file of its own, made the crate's log checkable from
+  outside, attacked the check with 22 tests, and repaired what got
+  through (sketches/gemini/2026-11-16/). With five small repairs the
+  crate as it stands (`chat-world-now/`) passes all 66 of its tests.
+  The two take turns: DeepSeek has it next, for branches. Fitting it
+  to open-worlds' own code is step 3c.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
@@ -355,6 +358,16 @@ kind.
 
 ## Noticed
 
+- A log signed by heads in batches has a tail no one has signed.
+  Gemini found it in the sketch crate (sketches/gemini/2026-11-16): in
+  a room that signs a head every so many records, the records after
+  the last head carried only their author's signature, so anyone could
+  add one. docs/research/KEYS.md already says the general thing of
+  open-worlds' own logs ("Only signed heads protect a reader"), and
+  the log check reports how much the heads cover. Gemini's rule goes
+  one step further, and is to be weighed when the room is fitted (step
+  3c): a log that is published ends with a head that covers all of
+  it, and the check refuses one that doesn't.
 - The formats' test vectors (`formats/record_vectors.py`,
   `vectors/formats/records-v1.json`) still carry the birth record's
   words of 2026-11-14, with "It may change one day; you remain ALICE."

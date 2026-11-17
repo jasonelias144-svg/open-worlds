@@ -537,7 +537,10 @@ schema and a crate in Rust, `chat-world`. Kept in
 `sketches/deepseek/012-09-05/`, with what runs: after three listed
 repairs the crate builds, and its own 18 tests pass; after DeepSeek's
 five deliveries from one file, and three more small repairs, the crate
-as it stands (`chat-world-now/`) passes all 41. It uses none of
+passed all 41; after Gemini's three deliveries, which made a room's
+log checkable from outside and attacked the check, and two more
+repairs, the crate as it stands (`chat-world-now/`) passes all 66. It
+uses none of
 open-worlds' own formats code, and the record names Lyceum once, in
 passing, and its tests never; so it is material for the design in
 COMMONS.md, not yet a part of it. The founder's ideas in the record

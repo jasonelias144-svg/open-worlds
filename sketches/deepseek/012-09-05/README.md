@@ -159,18 +159,23 @@ compile, and with its two faults set aside passes 39 of 41.
 [../../INDEX.md](../../INDEX.md) ("The record continued (2026-11-16)")
 says what each delivery is and names the three faults.
 
-`chat-world-now/` is the crate as it stands: all five deliveries, with
-the three faults repaired in a few lines (fixes 19 to 21 in
-[../../INDEX.md](../../INDEX.md)). It builds, passes all 41 of its
-tests, and its four demos run. It is put together here, by
+`chat-world-now/` is the crate as it stands. First that was all five
+deliveries, with the three faults repaired in a few lines (fixes 19 to
+21 in [../../INDEX.md](../../INDEX.md)): it built, passed all 41 of
+its tests, and its four demos ran. That crate went to Gemini, whose
+three deliveries are laid over it
+([../../gemini/2026-11-16/README.md](../../gemini/2026-11-16/README.md)),
+with two more repairs made here (fixes 22 and 23). As it stands it
+passes all 66 of its tests, 41 of them DeepSeek's and 25 Gemini's, and
+its four demos run. It is put together here, by
 `review/steps.py --now`; `review/steps.py --check` holds the folder to
 that, byte for byte, and `sketch_status_test.py` runs the check. So
-its files are listed below as ours, though all but three are exactly
-as DeepSeek wrote them.
+its files are listed below as ours, though each is exactly as DeepSeek
+or Gemini last wrote it, but for the lines the five repairs name.
 
 ## Ours, not DeepSeek's
 
 `README.md`, `conftest.py`, `pytest.ini`, `known-failures.txt`,
 `sketch_status_test.py`, `review/run.sh`, `review/steps.py`,
 `review/steps.sh`, and every file under `chat-world-now/` (put
-together here from DeepSeek's files, as said above).
+together here from DeepSeek's files and Gemini's, as said above).

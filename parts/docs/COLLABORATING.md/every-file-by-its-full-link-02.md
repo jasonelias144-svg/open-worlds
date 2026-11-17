@@ -20,10 +20,10 @@ this method.").
 
 This list holds the files a reader works from, 258 of them: every
 page, all the code in Python and Rust, the tests, the vectors and the
-web pages. [FILES.md](FILES.md) holds the other 871, files of record
-best sent when a question needs them: DeepSeek's records, word for
-word, the code taken from them, what DeepSeek was given in reply, and
-Experiment 001's run logs.
+web pages. [FILES.md](FILES.md) holds the rest, and says how many:
+files of record best sent when a question needs them: DeepSeek's
+records, word for word, the code taken from them, Gemini's code, what
+each of the two was given in reply, and Experiment 001's run logs.
 `tests/test_collaborating_links.py` fails if a file is added, moved or
 removed and this list or FILES.md isn't changed with it.
 

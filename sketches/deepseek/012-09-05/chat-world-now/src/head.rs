@@ -11,7 +11,7 @@ use crate::did::DidKey;
 use crate::error::{Error, Result};
 use crate::hash;
 use crate::proof::{Proof, ProofOrArray};
-use crate::room::Room;
+use crate::room::{Room, RoomLog};
 use serde::{Deserialize, Serialize};
 
 pub const HEAD_FORMAT_V1: &str = "open-worlds/log-head/v1";
@@ -29,6 +29,50 @@ pub struct WorldHead {
 impl WorldHead {
     pub fn hash(&self) -> Result<String> {
         hash::hash_of(self)
+    }
+}
+
+impl RoomLog {
+    /// Verify a head against a published `RoomLog`.
+    /// The log must be at least as long as the head; the head's
+    /// prefix must be intact and its signature valid under `self.world_id`.
+    pub fn verify_head(&self, head: &WorldHead) -> Result<()> {
+        if head.format != HEAD_FORMAT_V1 {
+            return Err(Error::Verification(format!(
+                "head: bad format {:?}",
+                head.format
+            )));
+        }
+        if head.world != self.world_id {
+            return Err(Error::Verification("head: world mismatch".into()));
+        }
+        if head.length as usize > self.records.len() {
+            return Err(Error::Verification(format!(
+                "head: length {} exceeds log length {}",
+                head.length,
+                self.records.len()
+            )));
+        }
+        if head.length == 0 {
+            return Err(Error::Verification("head: length 0".into()));
+        }
+        if head.length != head.tick {
+            return Err(Error::Verification(format!(
+                "head: tick {} != length {}",
+                head.tick, head.length
+            )));
+        }
+        let prefix = &self.records[..head.length as usize];
+        let last_hash = prefix[prefix.len() - 1].hash()?;
+        if last_hash != head.last {
+            return Err(Error::Verification("head: last mismatch".into()));
+        }
+        let body = hash::body_for_signing(head)?;
+        let proof = head
+            .proof
+            .find_by_method(&self.world_id)
+            .ok_or_else(|| Error::Verification("head: missing room proof".into()))?;
+        proof.verify(&body)
     }
 }
 
@@ -57,44 +101,7 @@ impl Room {
     }
 
     /// Verify a head against the room it claims to be about.
-    /// The room must be at least as long as the head; the head's
-    /// prefix must be intact and its signature valid.
     pub fn verify_head(&self, head: &WorldHead) -> Result<()> {
-        if head.format != HEAD_FORMAT_V1 {
-            return Err(Error::Verification(format!(
-                "head: bad format {:?}",
-                head.format
-            )));
-        }
-        if head.world != *self.world_id() {
-            return Err(Error::Verification("head: world mismatch".into()));
-        }
-        if head.length as usize > self.records().len() {
-            return Err(Error::Verification(format!(
-                "head: length {} exceeds log length {}",
-                head.length,
-                self.records().len()
-            )));
-        }
-        if head.length == 0 {
-            return Err(Error::Verification("head: length 0".into()));
-        }
-        if head.length != head.tick {
-            return Err(Error::Verification(format!(
-                "head: tick {} != length {}",
-                head.tick, head.length
-            )));
-        }
-        let prefix = &self.records()[..head.length as usize];
-        let last_hash = prefix[prefix.len() - 1].hash()?;
-        if last_hash != head.last {
-            return Err(Error::Verification("head: last mismatch".into()));
-        }
-        let body = hash::body_for_signing(head)?;
-        let proof = head
-            .proof
-            .find_by_method(self.world_id())
-            .ok_or_else(|| Error::Verification("head: missing room proof".into()))?;
-        proof.verify(&body)
+        self.log().verify_head(head)
     }
 }

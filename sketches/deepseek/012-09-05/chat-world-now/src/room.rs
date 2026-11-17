@@ -3,10 +3,19 @@ use crate::error::{Error, Result};
 use crate::head::WorldHead;
 use crate::record::*;
 use crate::template::RoomTemplate;
+use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, HashSet};
 
 fn short_hash(h: &str) -> String {
     h.chars().take(16).collect()
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct RoomLog {
+    pub world_id: DidKey,
+    pub template: RoomTemplate,
+    pub records: Vec<Record>,
+    pub heads: Vec<WorldHead>,
 }
 
 #[derive(Clone, Debug)]
@@ -16,8 +25,8 @@ pub struct Member {
 }
 
 pub struct Room {
-    pub world_id: DidKey,
-    pub template: RoomTemplate,
+    world_id: DidKey,
+    template: RoomTemplate,
     keypair: Keypair,
     records: Vec<Record>,
     members: HashMap<DidKey, Member>,
@@ -51,6 +60,25 @@ impl Room {
         )?;
         room.records.push(Record::RoomCreated(signed));
         Ok(room)
+    }
+
+    pub fn log(&self) -> RoomLog {
+        let mut heads = self.heads.clone();
+        if self.template.head_interval > 1 && self.records.len() > 1 {
+            let len = self.records.len() as u64;
+            let covered = heads.last().map(|h| h.length == len).unwrap_or(false);
+            if !covered {
+                if let Ok(tail_head) = self.emit_head() {
+                    heads.push(tail_head);
+                }
+            }
+        }
+        RoomLog {
+            world_id: self.world_id.clone(),
+            template: self.template.clone(),
+            records: self.records.clone(),
+            heads,
+        }
     }
 
     pub fn records(&self) -> &[Record] { &self.records }
@@ -345,13 +373,6 @@ impl Room {
         Ok(out)
     }
 
-    /// Declare a moderator succession: the outgoing AI hands its role
-    /// to the incoming. Triple-signed by outgoing, incoming, and the
-    /// room. The outgoing must be a control+ member at this point.
-    /// The shard_hash names the `KnowledgeShardExport` record in the
-    /// outgoing's KnowledgeWorld; the crate cannot verify that
-    /// cross-reference (it's a reader-side check when both logs are
-    /// available), so the hash is taken on faith here.
     pub fn declare_succession(
         &mut self,
         outgoing_kp: &Keypair,

@@ -126,7 +126,9 @@
   "chat-world-now/src/template.rs",
   "chat-world-now/src/transcript.rs",
   "chat-world-now/src/verify.rs",
-  "chat-world-now/tests/integration.rs"
+  "chat-world-now/tests/attack.rs",
+  "chat-world-now/tests/integration.rs",
+  "chat-world-now/tests/outside.rs"
  ],
  "changed": {
   "fractal_garden.py": "Fix 15: DeepSeek's own change, which the record gives as a note with the botanical garden (line 3425) and which was never made here: tick() takes external_rain, a GardenTick carries ext_rain, in its body too, and the replay applies it before the tick's own rain.",

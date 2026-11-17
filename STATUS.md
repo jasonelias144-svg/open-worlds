@@ -86,10 +86,13 @@ free, and never a money machine
   (`sketches/deepseek/012-09-05/README.md`): after a first round of
   repairs the crate builds and passes its own 18 tests, and 73 of the
   98 Python tests pass. The record goes on: given one file, DeepSeek
-  sent five deliveries of the crate, each file whole; with three
-  repairs of a few lines the crate as it stands
-  (`chat-world-now/`) passes all 41 of its tests. Fitting it to
-  open-worlds' own code is next, piece by piece.
+  sent five deliveries of the crate, each file whole. Then Gemini,
+  given a file of its own, made the crate's log checkable from
+  outside, attacked the check with 22 tests, and repaired what got
+  through (sketches/gemini/2026-11-16/). With five small repairs the
+  crate as it stands (`chat-world-now/`) passes all 66 of its tests.
+  The two take turns: DeepSeek has it next, for branches. Fitting it
+  to open-worlds' own code is step 3c.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
@@ -347,6 +350,16 @@ kind.
 
 ## Noticed
 
+- A log signed by heads in batches has a tail no one has signed.
+  Gemini found it in the sketch crate (sketches/gemini/2026-11-16): in
+  a room that signs a head every so many records, the records after
+  the last head carried only their author's signature, so anyone could
+  add one. docs/research/KEYS.md already says the general thing of
+  open-worlds' own logs ("Only signed heads protect a reader"), and
+  the log check reports how much the heads cover. Gemini's rule goes
+  one step further, and is to be weighed when the room is fitted (step
+  3c): a log that is published ends with a head that covers all of
+  it, and the check refuses one that doesn't.
 - The formats' test vectors (`formats/record_vectors.py`,
   `vectors/formats/records-v1.json`) still carry the birth record's
   words of 2026-11-14, with "It may change one day; you remain ALICE."
@@ -3505,6 +3518,37 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-17 Claude: Gemini's work is in. The founder, the same day:
+  "Here is the latest fork Gemini. I run through the credits quickly,
+  but we still got some work done." Four deliveries, taken out of the
+  conversation by script and kept as written in
+  sketches/gemini/2026-11-16/, with the conversation's hash; the
+  conversation itself is not kept here. Built one over the other from
+  the crate Gemini was given, every test file run: a room's log that
+  can be checked from outside, 42 of 44 tests; 22 attacks on the
+  check, 61 of 66, the three that get through being the three Gemini
+  said would; the repairs, 64 of 66, all 22 attacks refused; and a
+  fourth, on branches, not asked for, which does not compile and is
+  not used. The two tests that fail throughout are DeepSeek's: they
+  changed a room's rules after creating it, with no record, and the
+  new check refuses that. With them corrected (fix 22) the crate
+  passes 66 of 66 and its four demos run. One more repair was made
+  here (fix 23): a room's id and law are no longer public fields, so
+  nothing can change a room's law in place; still 66 of 66, and the
+  demos run. That is the crate as it stands,
+  sketches/deepseek/012-09-05/chat-world-now/; review/steps.py puts it
+  together from both collaborators' files and holds the folder to
+  that. One thing Gemini found bears on open-worlds' own logs
+  (Noticed). The next file, for DeepSeek, is built
+  (sketches/replies/012-09-05-2): one step, a room that branches,
+  which is how a room's law changes, and one question on Gemini's rule
+  for signed heads. The reading of a room's branch in that file is the
+  technical lead's, for the sketch, and decides nothing for
+  open-worlds. Not done: nothing of the crate is fitted to
+  open-worlds' own formats; the whole build script was run once before
+  fix 23, and after it only the crate as it stands was built again;
+  the file given to Gemini was at fault in one place, said in
+  sketches/replies/README.md.
 - 2026-11-16 Claude: the founder's two roles recorded (Decided): the
   Project Founder, a matter of history, and the Project Director, an
   office the founder holds now. AGENTS.md, "Who decides", says how to

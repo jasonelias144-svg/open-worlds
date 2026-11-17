@@ -1,25 +1,38 @@
 """Ours, not DeepSeek's (see ../README.md). Puts together the crate as
-it stands after each of the five deliveries that record 012-09-05 ends
-with. The deliveries' files are kept in ../chat-world-steps/1 to 5,
-as the record gives them (../../tools/extract.py checks that). This
-lays each delivery over the one before, starting from the crate
-DeepSeek was given, ../chat-world.
+it stands after each delivery: the five of DeepSeek's that record
+012-09-05 ends with, then the three of Gemini's that followed. Each is
+laid over the one before, starting from the crate DeepSeek was given,
+../chat-world.
+
+DeepSeek's files are kept in ../chat-world-steps/1 to 5, as the record
+gives them (../../tools/extract.py checks that). Gemini's are kept in
+../../../gemini/2026-11-16/steps/1 to 3, as written, each with its
+hash in that folder's MANIFEST.json.
 
     python3 steps.py OUT            OUT/1 ... OUT/5
     python3 steps.py --aside OUT    and OUT/5-aside
-    python3 steps.py --now OUT      and OUT/now
+    python3 steps.py --now OUT      and OUT/5-repaired, g1, g2, g3, now
     python3 steps.py --check        is ../chat-world-now what --now makes?
 
 Nothing is run: this only copies files. Each OUT/N/chat-world is the
 crate after delivery N. A file a delivery doesn't give stays as the
 delivery before left it.
 
-`--now` also writes OUT/now: delivery 5 with its three faults repaired
-(REPAIRS, below, and ../../../INDEX.md, fixes 19 to 21). That is the
-crate as it stands, kept in ../chat-world-now. `--check` puts it
-together again and compares it with that folder, byte for byte, so
-that every file there is known to be DeepSeek's latest, changed only
-as REPAIRS says. sketch_status_test.py runs the check.
+`--now` goes on from delivery 5:
+    5-repaired   delivery 5 with its three faults repaired (REPAIRS;
+                 ../../../INDEX.md, fixes 19 to 21). This is the crate
+                 Gemini was given.
+    g1, g2, g3   Gemini's three deliveries, laid over it in order.
+    now          g3 with two of the crate's earlier tests corrected
+                 and a room's law closed to change in place
+                 (REPAIRS_AFTER; fixes 22 and 23). This is the crate
+                 as it stands, kept in ../chat-world-now.
+
+`--check` puts the crate together again and compares it with that
+folder, byte for byte, and holds Gemini's files to their hashes. So
+every file in ../chat-world-now is known to be the latest that
+DeepSeek or Gemini gave, changed only as the two lists of repairs say.
+sketch_status_test.py runs the check.
 
 `--aside` also writes OUT/5-aside: delivery 5 with its two faults set
 aside, so that the rest of it can be built and tested. The faults are
@@ -31,12 +44,16 @@ before DeepSeek was given the one file, and delivery 3 gives its files
 again.
 """
 import filecmp
+import hashlib
+import json
 import os
 import shutil
 import sys
 import tempfile
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+GEMINI = os.path.join(os.path.dirname(os.path.dirname(HERE)),
+                      "gemini", "2026-11-16")
 # The condition in delivery 5's src/verify.rs that does not compile.
 FAULT = ('if !looks_like_hash(&k.entry_hashes.iter().any(|_| "x".to_string())'
          '.then(|| "".to_string()).unwrap_or_default()) {')
@@ -66,11 +83,71 @@ REPAIRS = [
      "    let sib_hash = chat_world::hash::hash_of(&sib)?;\n"),
 ]
 
+# Fixes 22 and 23, made after Gemini's deliveries. Fix 22: two of the
+# crate's earlier tests built a room and then changed its template in
+# place, with no
+# record of the change. Gemini's check holds a log's template to the
+# one its first record carries, and rightly refuses that. The tests now
+# set the rule before the room is created; what they test is unchanged.
+MADE = ("    let mut room = Room::create(template, Keypair::generate(), "
+        "&Keypair::generate()).unwrap();\n")
+REPAIRS_AFTER = [
+    ("tests/integration.rs",
+     "    let mut room = make_room();\n"
+     "    room.template.rate_limit_count = 2;\n"
+     "    room.template.rate_limit_window = 5;\n",
+     "    let mut template = RoomTemplate::chat(\"t\", \"test\");\n"
+     "    template.rate_limit_count = 2;\n"
+     "    template.rate_limit_window = 5;\n" + MADE),
+    ("tests/integration.rs",
+     "    let mut room = make_room();\n"
+     "    room.template.inter_ai_pace = 1;\n",
+     "    let mut template = RoomTemplate::chat(\"t\", \"test\");\n"
+     "    template.inter_ai_pace = 1;\n" + MADE),
+    # Fix 23: a room's id and its law are no longer public fields, so
+    # nothing outside the room's own code can change them in place. They
+    # are read through world_id() and template(), which the crate had.
+    ("src/room.rs",
+     "pub struct Room {\n"
+     "    pub world_id: DidKey,\n"
+     "    pub template: RoomTemplate,\n",
+     "pub struct Room {\n"
+     "    world_id: DidKey,\n"
+     "    template: RoomTemplate,\n"),
+] + [
+    # Fix 23, the other half: three tests set a room's moderation to
+    # "moderator" after creating it. make_room() had made it so already,
+    # so the three lines did nothing, and they no longer compile.
+    ("tests/integration.rs",
+     "fn " + name + "() -> Result<()> {\n"
+     "    let mut room = make_room();\n"
+     "    room.template.moderation = \"moderator\".into();\n",
+     "fn " + name + "() -> Result<()> {\n"
+     "    let mut room = make_room();\n")
+    for name in ("moderator_can_redact_other",
+                 "non_moderator_cannot_redact_other",
+                 "human_can_override_ai")
+]
 
-def repaired(before, tree):
-    """Copies delivery 5 to `tree` and makes the three repairs."""
+
+def lay(given, tree):
+    """Copies every file under `given` over `tree`; says how many."""
+    count = 0
+    for folder, _, names in sorted(os.walk(given)):
+        for name in sorted(names):
+            source = os.path.join(folder, name)
+            dest = os.path.join(tree, os.path.relpath(source, given))
+            os.makedirs(os.path.dirname(dest), exist_ok=True)
+            shutil.copyfile(source, dest)
+            count += 1
+    return count
+
+
+def repaired(before, tree, repairs=None):
+    """Copies `before` to `tree` and makes the repairs: the three to
+    delivery 5, unless another list is given."""
     shutil.copytree(before, tree)
-    for name, old, new in REPAIRS:
+    for name, old, new in (REPAIRS if repairs is None else repairs):
         path = os.path.join(tree, name)
         with open(path, encoding="utf-8", newline="") as f:
             text = f.read()
@@ -92,15 +169,35 @@ def same(a, b):
         for d in found.common_dirs)
 
 
+def gemini_as_written():
+    """Stops unless each of Gemini's files has the hash its folder's
+    MANIFEST.json gives, and the folder holds no other file."""
+    with open(os.path.join(GEMINI, "MANIFEST.json"), encoding="utf-8") as f:
+        files = json.load(f)["files"]
+    found = set()
+    for folder, _, names in os.walk(os.path.join(GEMINI, "steps")):
+        for name in names:
+            path = os.path.join(folder, name)
+            found.add(os.path.relpath(path, GEMINI).replace(os.sep, "/"))
+    if found != set(files):
+        sys.exit("Gemini's files are not the ones MANIFEST.json lists")
+    for name, entry in files.items():
+        with open(os.path.join(GEMINI, name), "rb") as f:
+            if hashlib.sha256(f.read()).hexdigest() != entry["sha256"]:
+                sys.exit(f"{name} is not as Gemini wrote it")
+
+
 def check():
     """Exit 0 if ../chat-world-now is what `--now` makes."""
+    gemini_as_written()
     with tempfile.TemporaryDirectory() as out:
         main(["--now", out], quiet=True)
         made = os.path.join(out, "now", "chat-world")
         if not same(made, os.path.join(HERE, "chat-world-now")):
-            sys.exit("chat-world-now is not the five deliveries with the "
-                     "three repairs: run steps.py --now and compare")
-    print("chat-world-now is the five deliveries with the three repairs")
+            sys.exit("chat-world-now is not the deliveries with the listed "
+                     "repairs: run steps.py --now and compare")
+    print("chat-world-now is DeepSeek's five deliveries and Gemini's three, "
+          "with the listed repairs")
 
 
 def main(argv, quiet=False):
@@ -115,15 +212,7 @@ def main(argv, quiet=False):
         # additions, kept beside the files they were joined into.
         shutil.copytree(before, tree,
                         ignore=shutil.ignore_patterns("*@*", "target"))
-        given = os.path.join(HERE, "chat-world-steps", step)
-        count = 0
-        for folder, _, names in sorted(os.walk(given)):
-            for name in sorted(names):
-                source = os.path.join(folder, name)
-                dest = os.path.join(tree, os.path.relpath(source, given))
-                os.makedirs(os.path.dirname(dest), exist_ok=True)
-                shutil.copyfile(source, dest)
-                count += 1
+        count = lay(os.path.join(HERE, "chat-world-steps", step), tree)
         say(f"delivery {step}: {count} files laid over the crate")
         before = tree
     if aside:
@@ -139,8 +228,19 @@ def main(argv, quiet=False):
             f.write(text.replace(FAULT, "if false {"))
         say("delivery 5, two faults set aside: 5-aside")
     if now:
-        repaired(before, os.path.join(out, "now", "chat-world"))
-        say("delivery 5, three faults repaired: now")
+        tree = os.path.join(out, "5-repaired", "chat-world")
+        repaired(before, tree)
+        say("delivery 5, three faults repaired: 5-repaired")
+        before = tree
+        for step in "123":
+            tree = os.path.join(out, "g" + step, "chat-world")
+            shutil.copytree(before, tree)
+            count = lay(os.path.join(GEMINI, "steps", step), tree)
+            say(f"Gemini's delivery {step}: {count} files laid over: g{step}")
+            before = tree
+        repaired(before, os.path.join(out, "now", "chat-world"),
+                 REPAIRS_AFTER)
+        say("two earlier tests corrected, a room's law closed: now")
 
 
 if __name__ == "__main__":

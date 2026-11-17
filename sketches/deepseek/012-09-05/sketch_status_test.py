@@ -113,14 +113,19 @@ def test_its_keys_are_hex_and_its_time_is_the_clock():
     assert "chrono::Utc::now()" in _source("lib.rs")
 
 
-def test_the_crate_as_it_stands_is_the_deliveries_with_three_repairs():
-    # Fixes 19 to 21. chat-world-now is put together here, so nothing in
+def test_the_crate_as_it_stands_is_the_deliveries_with_the_listed_repairs():
+    # Fixes 19 to 22. chat-world-now is put together here, so nothing in
     # the record says what it must hold. review/steps.py does: the crate
-    # DeepSeek was given, the five deliveries laid over it in order, and
-    # three repairs, each a few lines. This runs its check.
+    # DeepSeek was given, DeepSeek's five deliveries laid over it in
+    # order, three repairs, Gemini's three deliveries, and two earlier
+    # tests corrected. This runs its check, which also holds Gemini's
+    # files to their hashes.
     done = subprocess.run(
         [sys.executable, "-I", str(HERE / "review" / "steps.py"), "--check"],
         capture_output=True, text=True)
     assert done.returncode == 0, done.stdout + done.stderr
-    tests = (HERE / "chat-world-now" / "tests" / "integration.rs")
-    assert tests.read_text(encoding="utf-8").count("#[test]") == 41
+    tests = HERE / "chat-world-now" / "tests"
+    for name, count in (("integration.rs", 41), ("outside.rs", 3),
+                        ("attack.rs", 22)):
+        text = (tests / name).read_text(encoding="utf-8")
+        assert text.count("#[test]") == count, name
