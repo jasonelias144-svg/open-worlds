@@ -1,12 +1,18 @@
 """Sealed records (course step 2): a signed record, sealed to the one it
 names.
 
-Two kinds of record are sealed, each with its own label (formats/seal.py):
+Three kinds of record are sealed, each with its own label
+(formats/seal.py):
 
 - **a world-key** (`open-worlds/world-key/v1`), signed by the world that
   placed the path, sealed to its holder (docs/WORLD-KEY.md);
 - **a journal entry** (`open-worlds/journal-entry/v1`), signed by its
-  author, sealed to its author alone (docs/MINDS.md, "Memory").
+  author, sealed to its author alone (docs/MINDS.md, "Memory");
+- **a redacted field** (`open-worlds/redacted-field/v1`), signed by the
+  office that redacted it, sealed to one it names: a person the field
+  is about, or the office that decides (docs/research/REDACTION.md,
+  decisions 4 and 5). That it is the field the log held is checked
+  against the log, where the log's form is known (world/redact.py).
 
 A sealed record travels in an envelope (`open-worlds/sealed/v1`): the
 label, the one it is addressed to, and the box in hex. The envelope isn't
@@ -46,6 +52,7 @@ ENVELOPE = "open-worlds/sealed/v1"
 SEALED: Dict[str, Any] = {
     "open-worlds/world-key/v1": ("open-worlds/world-key/v1", "holder"),
     "open-worlds/journal-entry/v1": ("open-worlds/journal/v1", "author"),
+    "open-worlds/redacted-field/v1": ("open-worlds/redacted/v1", "to"),
 }
 
 _ENVELOPE = records.validator("sealed")

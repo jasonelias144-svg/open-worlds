@@ -682,6 +682,101 @@
       ],
       "additionalProperties": false
     },
+    "fieldValue": {
+      "description": "A value a log keeps apart (open-worlds/log-apart/v1, world/apart.py): text, a whole number within 2^53 - 1 either way, true or false, or a list or a map of these. Never nothing, and never a number with a fraction. How deep it may nest is the log's rule, checked where the record is held to its log.",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/fieldValue"
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/fieldValue"
+          }
+        }
+      ]
+    },
+    "redactedField": {
+      "description": "A field that was redacted from a log, as it was. Signed by the office that redacted it and sealed to one who may hold it: a person it is about, or the office that decides whether it stays redacted (docs/research/REDACTION.md, decisions 4 and 5). Whoever opens it works out the field's fingerprint again and finds it in the log, and that binds the record to its place.",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/redacted-field/v1"
+        },
+        "office": {
+          "description": "The office that redacted the field, and signs: its key, and the grant it acts under.",
+          "type": "object",
+          "properties": {
+            "key": {
+              "$ref": "#/$defs/didKey"
+            },
+            "grant": {
+              "$ref": "#/$defs/hash"
+            }
+          },
+          "required": [
+            "key",
+            "grant"
+          ],
+          "additionalProperties": false
+        },
+        "to": {
+          "description": "The one this copy is sealed to, and the only one it is for.",
+          "$ref": "#/$defs/didKey"
+        },
+        "log": {
+          "description": "The log the field was in, by the hash of its first entry.",
+          "$ref": "#/$defs/hash"
+        },
+        "entry": {
+          "description": "The entry the field was in, by its hash in that log.",
+          "$ref": "#/$defs/hash"
+        },
+        "field": {
+          "description": "The field's name, as the log's table has it.",
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]{0,63}$"
+        },
+        "salt": {
+          "description": "The field's salt: 32 lowercase hex digits.",
+          "type": "string",
+          "pattern": "^[0-9a-f]{32}$"
+        },
+        "value": {
+          "description": "What the field held.",
+          "$ref": "#/$defs/fieldValue"
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "office",
+        "to",
+        "log",
+        "entry",
+        "field",
+        "salt",
+        "value",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
     "sealed": {
       "description": "A sealed box as it is placed in the open: the purpose it was sealed for, the one it is addressed to, and the box (formats/seal.py) in lowercase hex. Not signed: what is inside is, and names its recipient, who checks it. Its fingerprint is the hash of its RFC 8785 form.",
       "type": "object",
@@ -692,6 +787,7 @@
         "label": {
           "enum": [
             "open-worlds/journal/v1",
+            "open-worlds/redacted/v1",
             "open-worlds/world-key/v1"
           ]
         },

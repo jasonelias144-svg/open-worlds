@@ -102,7 +102,7 @@ fn what_opens_opens_to_the_same_record() -> Result<(), String> {
         assert_eq!(fingerprint(envelope)?, text(entry, "fingerprint")?);
         opened += 1;
     }
-    assert_eq!(opened, 3);
+    assert_eq!(opened, 5);
     Ok(())
 }
 
