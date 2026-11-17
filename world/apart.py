@@ -861,8 +861,9 @@ class Log:
         back into the contents and appends the entry that answers
         `mark`, in one step, and returns that entry's hash. Raises
         `Refused`, and changes nothing, if the mark is not open, if the
-        salt and value are not the ones the log commits to, or if the
-        entry would not hold."""
+        salt and value are not the ones the log commits to, if another
+        field in the contents already holds that salt, or if the entry
+        would not hold."""
         if (type(mark) is not str or mark not in self._scan.marks
                 or mark in self._scan.answered or mark in self._scan.stays):
             raise Refused(BAD_KEPT, len(self.entries))
@@ -874,6 +875,16 @@ class Log:
             raise Refused(VALUE, where)
         if fingerprint(salt, field, value) != self._scan.apart[entry][field]:
             raise Refused(FINGERPRINT, where)
+        # A log written elsewhere can hold two fields that truly share
+        # a salt, with this one taken out: it holds as it stands, since
+        # the taking out hides the repeat. Putting the field back would
+        # show it, in contents the check refuses. No writer here writes
+        # such a log.
+        if any(pair[0] == salt
+               for other, fields in self.contents.items()
+               for name, pair in fields.items()
+               if (other, name) != where):
+            raise Refused(SALT_TWICE, where)
         # From here the writer knows this salt, and it is about to be
         # in the contents again. A writer that never closed remembers
         # it from when it drew it. One that was opened after the field

@@ -32,11 +32,15 @@
   from the review: in Python the writer reads its own copy of the log
   and goes by that; a test that compared a thing with itself now
   compares it with a copy; and the writer is closed and opened before
-  every act of the five states, in both languages. Checked:
-  Python 828 tests, OK (95 of the log's form, 33 of the act); Rust
-  237 (45 of the log's form against the vectors, 24 in `redact`),
+  every act of the five states, in both languages. Found by the
+  review's re-check, which closed all five, and repaired: a log
+  written elsewhere in which two fields share a salt, one of them
+  taken out, holds as it stands; keeping that one public wrote
+  contents the check refuses, and is now refused. Checked:
+  Python 829 tests, OK (96 of the log's form, 33 of the act); Rust
+  238 (46 of the log's form against the vectors, 24 in `redact`),
   fmt and clippy clean; the vectors' generators give the same files;
-  mutation checks of the opening, 13 changes to the Python and 9 to
+  mutation checks of the opening, 16 changes to the Python and 11 to
   the Rust, each caught. Not done: who may open a log, and one writer
   at a time, which are the room's (step 3c); reading a log from where
   it is kept. Left of step 3b: the records' side of part four.

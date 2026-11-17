@@ -3084,7 +3084,10 @@ of it is asked again until it is needed.
   with, and a salt that was taken out is gone on purpose. A salt it
   is handed back with a field that is kept public is another matter:
   it knows that one, and remembers it from then on, which the
-  independent review found it did not.
+  independent review found it did not. And a field is not kept
+  public if another field in the contents already holds its salt,
+  which the review's re-check found: a log written elsewhere can hide
+  such a repeat behind a taking out.
   (e) A log in this form has no signature of its own; who may write
   to a room's log is the room's to check, with its signed heads.
   *What would show it wrong:* a salt that repeats across a closing
@@ -4108,11 +4111,15 @@ it was wrong. Questions of what the project is for stay with the founder.
   from the review: in Python the writer reads its own copy of the log
   and goes by that; a test that compared a thing with itself now
   compares it with a copy; and the writer is closed and opened before
-  every act of the five states, in both languages. Checked:
-  Python 828 tests, OK (95 of the log's form, 33 of the act); Rust
-  237 (45 of the log's form against the vectors, 24 in `redact`),
+  every act of the five states, in both languages. Found by the
+  review's re-check, which closed all five, and repaired: a log
+  written elsewhere in which two fields share a salt, one of them
+  taken out, holds as it stands; keeping that one public wrote
+  contents the check refuses, and is now refused. Checked:
+  Python 829 tests, OK (96 of the log's form, 33 of the act); Rust
+  238 (46 of the log's form against the vectors, 24 in `redact`),
   fmt and clippy clean; the vectors' generators give the same files;
-  mutation checks of the opening, 13 changes to the Python and 9 to
+  mutation checks of the opening, 16 changes to the Python and 11 to
   the Rust, each caught. Not done: who may open a log, and one writer
   at a time, which are the room's (step 3c); reading a log from where
   it is kept. Left of step 3b: the records' side of part four.

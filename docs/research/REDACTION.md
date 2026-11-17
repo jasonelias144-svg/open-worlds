@@ -854,6 +854,15 @@ what would show it wrong):
   a field back and then took a repeat of its salt, and so wrote
   contents that its own check refuses, where the writer that never
   closed refuses the repeat.)
+- **A salt hidden twice is refused when it would show.** A log
+  written elsewhere can hold two fields that truly share a salt, with
+  one of them taken out. It holds as it stands, because the taking
+  out hides the repeat. Keeping that field public would put the salt
+  into the contents twice, which the check refuses. So the writer
+  refuses it, for the check's own reason, and changes nothing. (The
+  re-check of the independent review found this. No writer here
+  writes such a log, but for an opened one whose source of salts
+  repeats a salt it can't know, as above.)
 - **What it makes possible,** each tried in both languages on the logs
   of `vectors/redaction.json`. The deciding office opens the redacted
   log and keeps the field public from the box in the file, or decides

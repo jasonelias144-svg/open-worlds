@@ -29,7 +29,10 @@
   with, and a salt that was taken out is gone on purpose. A salt it
   is handed back with a field that is kept public is another matter:
   it knows that one, and remembers it from then on, which the
-  independent review found it did not.
+  independent review found it did not. And a field is not kept
+  public if another field in the contents already holds its salt,
+  which the review's re-check found: a log written elsewhere can hide
+  such a repeat behind a taking out.
   (e) A log in this form has no signature of its own; who may write
   to a room's log is the room's to check, with its signed heads.
   *What would show it wrong:* a salt that repeats across a closing

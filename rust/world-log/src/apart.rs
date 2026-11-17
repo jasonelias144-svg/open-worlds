@@ -1512,6 +1512,22 @@ impl Log {
         {
             return Err(Refused::Fingerprint(place));
         }
+        // A log written elsewhere can hold two fields that truly share a
+        // salt, with this one taken out: it holds as it stands, since the
+        // taking out hides the repeat. Putting the field back would show
+        // it, in contents the check refuses. No writer here writes such
+        // a log.
+        let held_elsewhere = self.contents.iter().any(|(other, fields)| {
+            fields.as_object().is_some_and(|fields| {
+                fields.iter().any(|(name, held)| {
+                    (other != &entry || name != &field)
+                        && held.get(0).and_then(Value::as_str) == Some(its_salt)
+                })
+            })
+        });
+        if held_elsewhere {
+            return Err(Refused::SaltTwice(place));
+        }
         // From here the writer knows this salt, and it is about to be in
         // the contents again. A writer that never closed remembers it
         // from when it drew it. One that was opened after the field was

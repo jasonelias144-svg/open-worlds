@@ -1002,8 +1002,8 @@ class TestOpened(unittest.TestCase):
         self.assertEqual(log.contents, never_closed.contents)
 
     def test_it_can_be_closed_and_opened_before_every_act(self):
-        # Not only between appends: before every mark, taking out,
-        # decision, removal and restoring of the five states.
+        # Not only between appends: before every mark, taking out and
+        # decision of the five states.
         class Reopened:
             """A writer that is closed and opened again before each
             thing it is asked to do."""
@@ -1090,6 +1090,53 @@ class TestOpened(unittest.TestCase):
                     log.append(9, "said", None, {}, {"text": "again"})
                 self.assertEqual(c.exception.reason, apart.SALT_TWICE)
                 apart.check(log.entries, log.contents)
+
+    def test_a_salt_hidden_twice_is_refused_when_it_would_show(self):
+        # Found by the independent review's re-check. A log written
+        # elsewhere can hold two fields that truly share a salt, with
+        # one of them taken out: it holds as it stands. Keeping that
+        # one public would put the salt into the contents twice, which
+        # the check refuses. So the writer refuses, and changes
+        # nothing.
+        class Source:
+            """Trial salts in order, or the one it is told to give."""
+
+            def __init__(self):
+                self.fresh, self.next = _salts(), None
+
+            def __call__(self):
+                if self.next is None:
+                    return self.fresh()
+                salt, self.next = self.next, None
+                return salt
+
+        source = Source()
+        log = room(salt=source)
+        said = log.entries[3]["hash"]
+        salt, value = copy.deepcopy(log.contents[said]["text"])
+        a_mark = mark(log, said, "text")
+        log.take_out(a_mark)
+        # Such a log is written here by the one way there is: a writer
+        # opened after the taking out can't know that salt, and takes
+        # it again from a source that repeats it.
+        elsewhere = Log.open(log.entries, log.contents, salt=source)
+        source.next = salt
+        twin = elsewhere.append(9, "said", None, {}, {"text": "again"})
+        self.assertEqual(elsewhere.contents[twin]["text"][0], salt)
+        apart.check(elsewhere.entries, elsewhere.contents)
+        opened = Log.open(elsewhere.entries, elsewhere.contents, salt=source)
+        for writer in (elsewhere, opened):
+            entries = copy.deepcopy(writer.entries)
+            contents = copy.deepcopy(writer.contents)
+            salts = set(writer._salts)
+            with self.assertRaises(Refused) as c:
+                writer.keep_public(10, a_mark, salt, value, KEEPER, APPEAL,
+                                   trial_decision(1))
+            self.assertEqual(c.exception.reason, apart.SALT_TWICE)
+            self.assertEqual(writer.entries, entries)
+            self.assertEqual(writer.contents, contents)
+            self.assertEqual(writer._salts, salts)
+            apart.check(writer.entries, writer.contents)
 
     def test_what_it_keeps_is_what_it_has_checked(self):
         # Found by the independent review: what is checked must be what

@@ -406,6 +406,63 @@ fn a_salt_given_back_is_remembered_from_then_on() {
 }
 
 #[test]
+fn a_salt_hidden_twice_is_refused_when_it_would_show() {
+    // Found by the independent review's re-check. A log written elsewhere
+    // can hold two fields that truly share a salt, with one of them taken
+    // out: it holds as it stands. Keeping that one public would put the
+    // salt into the contents twice, which the check refuses. So the
+    // writer refuses, and changes nothing.
+    let v = vectors();
+    let (ground, decision) = (appeal(), trial_decision(1));
+    let by = Decided {
+        office: KEEPER,
+        ground: &ground,
+        decision: &decision,
+        agent: None,
+    };
+    let mut salt = trial_salts();
+    let mut log = room(&v, &mut salt);
+    let said = log.entries()[3]["hash"].as_str().unwrap().to_owned();
+    let pair = log.contents()[&said]["text"].clone();
+    let its_salt = pair[0].as_str().unwrap().to_owned();
+    let a_mark = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    log.take_out(&a_mark).unwrap();
+    // Such a log is written here by the one way there is: a writer
+    // opened after the taking out can't know that salt, and takes it
+    // again from a source that repeats it.
+    let mut elsewhere = opened(&log);
+    let mut again = || its_salt.clone();
+    let twin = elsewhere
+        .append(
+            9,
+            "said",
+            None,
+            &Map::new(),
+            &map(&json!({"text": "again"})),
+            &mut again,
+        )
+        .unwrap();
+    assert_eq!(elsewhere.contents()[&twin]["text"][0], json!(its_salt));
+    apart::check(
+        &Value::Array(elsewhere.entries().to_vec()),
+        &Value::Object(elsewhere.contents().clone()),
+    )
+    .unwrap();
+    for mut writer in [opened(&elsewhere), elsewhere] {
+        let before = (
+            writer.entries().to_vec(),
+            writer.contents().clone(),
+            format!("{writer:?}"),
+        );
+        let refused = writer.keep_public(10, &a_mark, &pair, by, &Map::new(), &mut salt);
+        assert!(matches!(refused, Err(Refused::SaltTwice(_))), "{refused:?}");
+        assert_eq!(writer.entries(), before.0.as_slice());
+        assert_eq!(writer.contents(), &before.1);
+        assert_eq!(format!("{writer:?}"), before.2);
+    }
+}
+
+#[test]
 fn a_salt_that_is_in_the_contents_is_not_used_again() {
     let v = vectors();
     let written = room(&v, &mut trial_salts());
