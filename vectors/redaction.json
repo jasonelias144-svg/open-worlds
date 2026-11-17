@@ -1,0 +1,1201 @@
+{
+ "about": "The act of redacting (world/redact.py, rust/redact), on the trial room of vectors/log-apart.json: one field sealed, marked and taken out, the copies made, and what the deciding office then writes. Written by python3 -m world.redact_vectors; test keys and trial salts only, never for anything real.",
+ "format": "open-worlds/redacted-field/v1",
+ "label": "open-worlds/redacted/v1",
+ "reasons": [
+  "the field is not in the contents",
+  "a copy is asked for the same one twice",
+  "not a redacted field's record",
+  "the copy names another log",
+  "the copy names an entry the log does not have",
+  "the copy names a field the entry does not keep apart",
+  "the copy is not what the log held",
+  "the copy is of another field than the mark's",
+  "not a mark that is open or stands"
+ ],
+ "parties": {
+  "ALICE": {
+   "id": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+   "secretKeyMultibase": "z3u2eEYsk1mcNNbrbBgRoeia8tBBByz1jup4N3jVga7JyMCB",
+   "sealingSecretMultibase": "z3weYXgM3c6CvrTheopzJCQj1BPKpntYUWpqvjQ11t8Df5MJ",
+   "sealingKeyMultibase": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+  },
+  "BOB": {
+   "id": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+   "secretKeyMultibase": "z3u2hahB5Ctsf9NvKdsYaikLAjey6VjHBeqGfchykSXsSv7U",
+   "sealingSecretMultibase": "z3weoLujb2WpczKYMWUVkdXwhWuHAsjPuXMkbsdwHr3K6VzE",
+   "sealingKeyMultibase": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+  },
+  "an apprentice Keeper": {
+   "id": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+   "secretKeyMultibase": "z3u2RH17c96LTQaRXsLYs12y7igLnELVtCBi7t95aYwrdB7M",
+   "sealingSecretMultibase": "z3weghGXV2k33o84KqSJVNhenByQrdKV9aecAV9NttgRfbGR",
+   "sealingKeyMultibase": "z6LSdTpTVhzy4JWrzGcCKkjTMk2xzbbK6YGjHwpAeFwQbBLs"
+  },
+  "the Ur-world's Keeper": {
+   "id": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+   "secretKeyMultibase": "z3u2SnHoc2mBUev7HbN3ruSEnzEWXYur6pbBby2VEkNGN3iM",
+   "sealingSecretMultibase": "z3weexhWvGTAUUFZc3gmSYkAg3tTuB4tqsG4ktqwpWWuPGc4",
+   "sealingKeyMultibase": "z6LSovDbD3ut3z1nCeAcUQz1XmmJ2T1KuaAx6mCis1z1DdNN"
+  }
+ },
+ "created": "2026-11-17T12:00:00Z",
+ "act": {
+  "tick": 5,
+  "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+  "field": "text",
+  "office": "trial office",
+  "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+  "ground": {
+   "kind": "rule",
+   "ref": "trial room law, private information"
+  },
+  "apart": {
+   "reason": "private information"
+  },
+  "by": "an apprentice Keeper",
+  "about": [
+   "ALICE",
+   "BOB"
+  ],
+  "decider": "the Ur-world's Keeper"
+ },
+ "redacted": {
+  "mark": "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8",
+  "log": [
+   {
+    "tick": 0,
+    "kind": "world_created",
+    "agent": null,
+    "data": {
+     "rules_version": "vectors-apart-1",
+     "form": "open-worlds/log-apart/v1",
+     "kept_apart": {
+      "entered": [
+       "key",
+       "name"
+      ],
+      "entry_put_back": [
+       "record"
+      ],
+      "entry_removed": [
+       "record"
+      ],
+      "entry_restored": [
+       "record"
+      ],
+      "entry_taken_back": [
+       "record"
+      ],
+      "field_kept_public": [
+       "reason"
+      ],
+      "field_redacted": [
+       "reason"
+      ],
+      "field_stays_redacted": [
+       "reason"
+      ],
+      "said": [
+       "key",
+       "text",
+       "time"
+      ],
+      "showed": [
+       "key",
+       "thing"
+      ]
+     }
+    },
+    "apart": {},
+    "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562"
+   },
+   {
+    "tick": 0,
+    "kind": "entered",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "4aaee554e1db4e990128f3391aab0a015152d112587da255e1d492f72b5363bb",
+     "name": "4b18f34129246be7c13e709f54271a210a5b1ab4b080ee0de8382122453d3fb0"
+    },
+    "prev": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "hash": "ffee30c9a1f210889bac86b19ba725bb31d7c62dba48109422a00a563fe8304b"
+   },
+   {
+    "tick": 0,
+    "kind": "entered",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "876c50af710a5b8b75a12eddbbbcd0b7e3a08c2ef5a1a45e7dff5807042d3801",
+     "name": "9487cb885092808b2a1263c7246af5fc5934c9b6625910d972532f45bb72770a"
+    },
+    "prev": "ffee30c9a1f210889bac86b19ba725bb31d7c62dba48109422a00a563fe8304b",
+    "hash": "1f0d6586f4cb24ef89e69c19d37ed18c30cbe976f9f259a4e584757f754c9107"
+   },
+   {
+    "tick": 1,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "8f1221e295ade68c1c5affdc2bd794c53a96850cb71214b92a39475ca1f4732c",
+     "text": "97727365c75b6496fde53feff4aba788d2861b13355fac1bfa5719dae8ff2e94",
+     "time": "fb1125e6461850bc2a729ea91dcde652349fb60460610b5a7569b585276552c3"
+    },
+    "prev": "1f0d6586f4cb24ef89e69c19d37ed18c30cbe976f9f259a4e584757f754c9107",
+    "hash": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62"
+   },
+   {
+    "tick": 2,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "85866e500456c509eb3495aa384d54e512f9f3fcdc20370c674416e4857b9596",
+     "text": "f71ccfa8d681c7ccebfa9094978def32f707a4f003570f6fb8cf92720f1c25d6",
+     "time": "92eaf72229b81ff58e14d7d8b889b2a86760d260299e3fe9284e4d8ac8ca6c55"
+    },
+    "prev": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "hash": "3f8e6d7e59a2431de08f078c2e22b46501b675731fb4e70dc2c5121b3e000c41"
+   },
+   {
+    "tick": 3,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "24b3575136594e0dcfd1cd45fd196c8b813e90a412cad8fda5804f6cad9d3dc3",
+     "text": "dceed6577394d84c10cf295d35e85e2e1143ebdcaf6e18679ecf42d94c75826d",
+     "time": "65ece4c5cfd535ad061dcc667d3d932783cbf03c550af4c8f06494b98ed499d1"
+    },
+    "prev": "3f8e6d7e59a2431de08f078c2e22b46501b675731fb4e70dc2c5121b3e000c41",
+    "hash": "d8ce39e651de4fab5ce23f94b24b3cea2e178f23fa91a55dadbb72bc74af40df"
+   },
+   {
+    "tick": 4,
+    "kind": "showed",
+    "agent": null,
+    "data": {
+     "where": "the table"
+    },
+    "apart": {
+     "key": "359a5a824ead9a3ed0ed6c64d5c726f0d6706018aa1a68edb2866fe46b7c5590",
+     "thing": "8592613435e9d23212ecdcd4238e9f25d167b72f832751703a3c4a42b424d7bf"
+    },
+    "prev": "d8ce39e651de4fab5ce23f94b24b3cea2e178f23fa91a55dadbb72bc74af40df",
+    "hash": "84aeecabcd628dbfb3535e535babfed6f5c211ca1c40cad32bec289776be7e81"
+   },
+   {
+    "tick": 5,
+    "kind": "field_redacted",
+    "agent": null,
+    "data": {
+     "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+     "field": "text",
+     "office": "trial office",
+     "ground": {
+      "kind": "rule",
+      "ref": "trial room law, private information"
+     }
+    },
+    "apart": {
+     "reason": "cbef700ac6d8815c490af736cbb6cd6903a039f5fbab735d0bbb4c7a6deaa5bd"
+    },
+    "prev": "84aeecabcd628dbfb3535e535babfed6f5c211ca1c40cad32bec289776be7e81",
+    "hash": "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8"
+   }
+  ],
+  "contents": {
+   "ffee30c9a1f210889bac86b19ba725bb31d7c62dba48109422a00a563fe8304b": {
+    "key": [
+     "4c81de58866b150007314c561dd5a71a",
+     "trial key of ada"
+    ],
+    "name": [
+     "42f392f40e2fa5f71c7b5ca498fcebb6",
+     "ada"
+    ]
+   },
+   "1f0d6586f4cb24ef89e69c19d37ed18c30cbe976f9f259a4e584757f754c9107": {
+    "key": [
+     "9f2290454fe2cc462a47997b2e738d87",
+     "trial key of bo"
+    ],
+    "name": [
+     "b389910382fff94cb0fb20a2af11aebe",
+     "bo"
+    ]
+   },
+   "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62": {
+    "key": [
+     "e4726a8655824dea87d0d4b8020367be",
+     "trial key of ada"
+    ],
+    "time": [
+     "4db750998119dffbd303862f817812d9",
+     1794787200
+    ]
+   },
+   "3f8e6d7e59a2431de08f078c2e22b46501b675731fb4e70dc2c5121b3e000c41": {
+    "key": [
+     "fba752dd43e02cfc7537569b6821a37a",
+     "trial key of bo"
+    ],
+    "text": [
+     "6ec72e028d1d6c70fc8bb3344783486b",
+     "café 中文 🙂   \" \\ \n"
+    ],
+    "time": [
+     "29ace1401be08bc9736b0c413eb7d78c",
+     1794787260
+    ]
+   },
+   "d8ce39e651de4fab5ce23f94b24b3cea2e178f23fa91a55dadbb72bc74af40df": {
+    "key": [
+     "df6f0c866073d65019e9cc35b5b5580d",
+     "trial key of ada"
+    ],
+    "text": [
+     "41a0eb6e4a594903f982bd8655bb8448",
+     "my door is 1 Trial Street"
+    ],
+    "time": [
+     "44359067d210f078270e1c7b9c605276",
+     1794787320
+    ]
+   },
+   "84aeecabcd628dbfb3535e535babfed6f5c211ca1c40cad32bec289776be7e81": {
+    "key": [
+     "c79be804e9e9318a694841a99cbdac1e",
+     "trial key of bo"
+    ],
+    "thing": [
+     "50e7ce537b7e3cf83b9658b098f6202b",
+     {
+      "words": [
+       "a",
+       "b"
+      ],
+      "loud": true,
+      "count": -3
+     }
+    ]
+   },
+   "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8": {
+    "reason": [
+     "d68f3e951f2f033642bf6b945003f0b0",
+     "private information"
+    ]
+   }
+  }
+ },
+ "copies": [
+  {
+   "to": "ALICE",
+   "envelope": {
+    "format": "open-worlds/sealed/v1",
+    "label": "open-worlds/redacted/v1",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "box": "bcdee8712c34aeddde8441759207d422b88d69b397e481345bfd0f39006dfc5d1b29918bf1ec45a874f09c74a1d02a14af9c67839337f4546d9bf6d596c7bf15d5c13b522c2cb6a9f4b0dc4033d94ebf4db0f4e89acda49c9b46d3a7f2f31ce8432f60d49a81e54f0b25c57abaf5705b110ba81c5a7e0e11beedb0cf87037f13971dabe249039490462387dd3c4b60623ce30e1f396d12a333269b10987f37322317be6dbdd9a2c8a44c13f604b981b3f5af7654bb065df0423c983717e1a96dadc849c78f151e84d2ede9204cedb26ea6bc08b1ec189be77649eaef00ea5f32d4f269d054e2c08aa12744c9f1984bd814a818d135dab0a9ae36affb9962cf9715af8f2467ed5a532b9b32d2421a3ff489c9322d28d3253d8840aa8e0f1ceb62ff94d4864b1a76f9dc5b09a5a3dd9d86e92e72eeeb4f7a21d11a58cf970afda32ef02b3d89354d4c80b79551bb9166daaf838919a80b44c885264bcf4da4cd7efeb31fc31e4a96740efdbba07ffcfe69fb4304031248c803097f27b6a1c1c2cce4b15c47b3c74e29b662ddd1748e22877d96e1b98698f02af894e99e01a2b5a42b8e13d3309d9eefb4f14889ffa5f036ed46f7bdf14a865677a15c143b3c787843f057123454ba287512d375092908c586f9d3099a97fe9e0f2346ba789b2ded1101c5febff939e53c6d717de72eb356bce2a9678b510cc15d797be5a0c7076c14bc481e7efadcd7c51683aee73a29cebc728f0f045841bb256951e25aee0b23341d1db3feab6f053291dcbd4d4a29090f27bca28cf0ca83376df8e6c201e4e4f076204e97fb0f9787f51808a1138dbdf0791148431d82cc24273c166a7c3a78cb50883021e8eea9ed1f3c68317fa60ec262c0f41be794ee0341898f6bbab5172e1778ab6a9053b29155e455037ff129b8effa679bb31da01051771a60831385a723850b45447f7c61a8caff084c859edb641c14c938d538f9bf2cd54ecbb9ab47fc5257f7edfa53e09b17f8d7e7320cef81ae601f4d472e94e4f4855501001adbcd23fce24cb2df25d4b28fbf009ea76b2f64a553d8628fae77689b65e599e6e638067ea9b656750ced6ec860589a5483e472abfa9ebc342dacf90fcf9ea32b76290c5186d12b4711b7d54038ffab99439afbcfac9469eda21319c013279afe03342db49dc9f542d632575520d833bf5939c1b3ea4e54598e6dc655b40c4aa033651da490380a8a14c555c123b222b65709d8a0484010f4f997cc9317f43a5c31b9eb9fba"
+   },
+   "inside": {
+    "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "field": "text",
+    "format": "open-worlds/redacted-field/v1",
+    "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "office": {
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+     "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "proof": {
+     "created": "2026-11-17T12:00:00Z",
+     "cryptosuite": "eddsa-jcs-2022",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2y1rywXw9aXZbBhoTDL4PyjGCBDZkcNXXYAeuuW3YDizPBuJLkb2wzFemoTGHpkCVGsLSiA1qtdzjx94SnvuxkKv",
+     "type": "DataIntegrityProof",
+     "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "salt": "e928a52464d9b02a00517c283dbeb3c7",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "value": "hello, room"
+   },
+   "record": "068054b56f06d1122d54f41b456b2378b0dda71b619b7bab2def868e50592536",
+   "fingerprint": "e1f3078a86d091dad0715a21d7e2e7db6ef24500a21c5a8eb291b426031d5062"
+  },
+  {
+   "to": "BOB",
+   "envelope": {
+    "format": "open-worlds/sealed/v1",
+    "label": "open-worlds/redacted/v1",
+    "to": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+    "box": "998b4965712c8a3bb710bd95bce7ef3b8c29880dbb8dfe434f26d9e4597e933f3baf529fabc07ac1482ff71350aa69da59932e573e1979085e473eca8b20092bf7f3fb39a0af910d14cf5d130afca6755c711f16cc6c06c879e527ffa08daa4c01354e55efb414f972c5b2738075393c11c4aa89e023e42100f740cab20bd02677c4bd0e11eca17fc3c12ebb38eced34bfa7106176346545f549b551e7708f3925ffb6ccde42cfff6b6be76f7f4c0ba80de8a765a6e325573f11ed2425eb0b95189bc7eae99eedb0f59ade3aa9da269a226b1e40a24cb5e73e519fd22406d658864e8065e4488808080d75c1d647c5a3e6a46d7afa2f34eb0f841a918492461c0b6c115f7dc2236c0515f1b5bf76d3661c986afcd73a908bc7816cbc5830148105f82ba5df4fcba154f13de59a8fecaa295893b1ba931f319e27a32935be5741af2150576678e10a7376ff397136602ea97349568ec1cde10ed1c5f4492627605b5e5b06ac06fae9490bd59b45716aa415418f1c597dc448cc335136b0f182bfa9d32011c4dbdd5bb7992fef20733356ef3564c315ff9adad2623cd446685b40cff6409eb933c755a83ac12557ab5524b39031ef75ba36cd0b430b2e86384a70b80db13e02d61753e4ffa1bc1786ede591dace77d48f804c6a9a3253936201cd09857fd15f40e2eccfeeb18d62c34a64f197b807232ca4da8bbcbb10a4c18f8b73edb963ebc4ffc4f1dc0aa92d9f979179577f5efe95c486cddb66f69b6c9621a48219c1edcd82d72d954f42c8be2e49d585c151e1d3ae7ab84d6c7dae0d8836e9dd11592bd1b7abfa52c677e2ee3cfe35824d3c8a2cbe66ac6775ec15efdcba5ff3f5a39248b7b37d7aa58567a6540494536bd1b8988e5ecf6cfd50dd6e9e3ef8211d5fcb9334f1a4512d9796ce1acb4f8a93bc03dde216a88f03c8499c142441037a3ff75854193eb56750710482f5dfef1aa280a8b2df1f0d62f47339294c69a3722af1514a1937a57dff572698c4fe8b239603c32d092179149587938859333647f33c2cd9ade062184c9f4a3f16919dfe1285fc7148893eca36fa8a40e8961978ff68f99cc28f7f8f9cef1e2fe47803556b068e5e831ad90f08789697fee9c47cfe3056e58b821705b55f5b6eb4a2a560925dc8990a375f667612542e619f8e16b281b73adfe07f0caff2ac4968afadf344568e6eaa79c3abd842605753ec170e6458e027f0a47494f8bb689103acf6a5b1dd58ad12e6602371558c91dcd8759716"
+   },
+   "inside": {
+    "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "field": "text",
+    "format": "open-worlds/redacted-field/v1",
+    "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "office": {
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+     "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "proof": {
+     "created": "2026-11-17T12:00:00Z",
+     "cryptosuite": "eddsa-jcs-2022",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zxHP1b4WvUke6nyQp78EzTybPuzUvQo1yEGMUrhEeUg3apyu9vH8tHBJb3fH6yRt7DbTvjQG6YhHyVQ8XGDihsTG",
+     "type": "DataIntegrityProof",
+     "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "salt": "e928a52464d9b02a00517c283dbeb3c7",
+    "to": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+    "value": "hello, room"
+   },
+   "record": "7b14babf8fa45d68fdc2e26f47ca550ab1fe008d7fd143064660154a9af58928",
+   "fingerprint": "233d8aa5403dd782a7e5863d0fe00f33258818796ab9502a8a450141eadcc3e8"
+  },
+  {
+   "to": "the Ur-world's Keeper",
+   "envelope": {
+    "format": "open-worlds/sealed/v1",
+    "label": "open-worlds/redacted/v1",
+    "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "box": "7d58dd75770e3baad81d7a60a36aaa8fc9ec21ca779abe3c03841fcc133e106441b788fb779314351bce814c4ca85ced053dffd609a0682926c135e2187b27b87b5a54ae04c9d8b34c8fc9196bddfa2c4bc202573fb5150c7adab73f01d6e0a8d22594cfe4029817fb160d01d8b087d55a20e7ef29ca2d53758857a9014d5793c1a90dfaf707fcd9b71e5c3704958be7b9081bd9d20390200cf1a83a145392e69618f05430ed3b017c196d30e5177e4b5f2664586b089c87e666590a5ddf273c934bca43c582a9cbc2daaf2213e6e8bad2c74d1ff3e40730a623bb0f199724c20a0446c61b7e723fbee5aa0b144b5c03fd29b30f31f0212b6a0e2f85321e995fd8f41e107bda4cfe57265c8b723eccad44ab04160c7f7c66117fbeed4f23eab6bc2815a12c52814b227eff944b017b861e45961d64def8d4386fda9f7d43b0fe60ab68ffee67bddf2125b7b50a1f840de30574ad4623d3e56436378ee8ec840519db4a15bc4258a54b15b1c313d07ddb436bf6e873626c4f09993a166236702fa7cf2af27f3589b00d84ab130cb994ffabf51c2b036b500a7e04d03081c71cbab9082867698a2cbaf5c2f4eeb286257fdca22087c886318be4e65dca8372be1a6ff8e7ba3dfbfc2bf593a1dc9d97df3c2df3bee8133d860c3acc5b31d036cf95019fec3b55615038507abc8ce5007ad7375f80bd875a0d1c6a8410d22ba7ca1607f9c07df672cee99900e0e16c6aa4be01c0407195088f4fcec4fc87719a54d870e2be35ea36ee5a3986bfd7621464ae5470cea792d5f3beee205ec99685f70fffd4ba0937415a1132ed0796c05321f153b58140d08a2bba4b22daeaec1c2f0032cb9bc5467684bbf3039aedbf185f48f9f2d26b4be19781209ad3190ec3c5ee909ade6aecfd303268c44a4a31d6fffbff2dcdd7b9f9a1584abebaa73210072db2b789278e7058afbeb9a71068e36c1fcf43e32866d6706050a1e3a5a53d8b89faaeb8f5e850437513b12083eb10be4dd6194c5032f04c8b7d8b8ef52e025158002cab034f545ba7b8e783c9cf7b3bc149ae711ec35f2ef985a37f6cb25b1ee0c22d60d0fb2de302ad9c55fb79b1dd201473280e0331f33acb761d9ad93aeb848209de4aafc149796e6ad259fd3bc7946d7da5b90e2089e7041a7c3cc91ba6c200fc5118d3b89c3691235ee39bc5eb7611729bdfde4dfc2fae148a835123816742ac99608ff37aba191c51a5d5e53089205c06a668f6ddff029327478497fe57a16f5e7415"
+   },
+   "inside": {
+    "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "field": "text",
+    "format": "open-worlds/redacted-field/v1",
+    "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "office": {
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+     "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "proof": {
+     "created": "2026-11-17T12:00:00Z",
+     "cryptosuite": "eddsa-jcs-2022",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z35KdL6NQF8hraoeJ2KC5LSUphV6CZxZwb3iKChttMsXEqmRTF8zQ6gx7YYYTr3GRhLk66UPDbdtHSbwxW6AQL5tc",
+     "type": "DataIntegrityProof",
+     "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "salt": "e928a52464d9b02a00517c283dbeb3c7",
+    "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "value": "hello, room"
+   },
+   "record": "575bc5040bec3c966f087c651580cf843a479876595fd09efc57b632a22672cf",
+   "fingerprint": "1f9e039afacc32cb8c1753f999ee272ea6b83cb59be60b104574d65623710cfa"
+  }
+ ],
+ "kept": {
+  "tick": 6,
+  "office": "trial keeper",
+  "ground": {
+   "kind": "rule",
+   "ref": "trial appeal rule"
+  },
+  "decision": "21c64861e6aca615534e5c5fcb97c4a141224f23e0bba91cd16b249396fd49e8",
+  "apart": {
+   "reason": "nothing private in it"
+  },
+  "log": [
+   {
+    "tick": 0,
+    "kind": "world_created",
+    "agent": null,
+    "data": {
+     "rules_version": "vectors-apart-1",
+     "form": "open-worlds/log-apart/v1",
+     "kept_apart": {
+      "entered": [
+       "key",
+       "name"
+      ],
+      "entry_put_back": [
+       "record"
+      ],
+      "entry_removed": [
+       "record"
+      ],
+      "entry_restored": [
+       "record"
+      ],
+      "entry_taken_back": [
+       "record"
+      ],
+      "field_kept_public": [
+       "reason"
+      ],
+      "field_redacted": [
+       "reason"
+      ],
+      "field_stays_redacted": [
+       "reason"
+      ],
+      "said": [
+       "key",
+       "text",
+       "time"
+      ],
+      "showed": [
+       "key",
+       "thing"
+      ]
+     }
+    },
+    "apart": {},
+    "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562"
+   },
+   {
+    "tick": 0,
+    "kind": "entered",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "4aaee554e1db4e990128f3391aab0a015152d112587da255e1d492f72b5363bb",
+     "name": "4b18f34129246be7c13e709f54271a210a5b1ab4b080ee0de8382122453d3fb0"
+    },
+    "prev": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "hash": "ffee30c9a1f210889bac86b19ba725bb31d7c62dba48109422a00a563fe8304b"
+   },
+   {
+    "tick": 0,
+    "kind": "entered",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "876c50af710a5b8b75a12eddbbbcd0b7e3a08c2ef5a1a45e7dff5807042d3801",
+     "name": "9487cb885092808b2a1263c7246af5fc5934c9b6625910d972532f45bb72770a"
+    },
+    "prev": "ffee30c9a1f210889bac86b19ba725bb31d7c62dba48109422a00a563fe8304b",
+    "hash": "1f0d6586f4cb24ef89e69c19d37ed18c30cbe976f9f259a4e584757f754c9107"
+   },
+   {
+    "tick": 1,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "8f1221e295ade68c1c5affdc2bd794c53a96850cb71214b92a39475ca1f4732c",
+     "text": "97727365c75b6496fde53feff4aba788d2861b13355fac1bfa5719dae8ff2e94",
+     "time": "fb1125e6461850bc2a729ea91dcde652349fb60460610b5a7569b585276552c3"
+    },
+    "prev": "1f0d6586f4cb24ef89e69c19d37ed18c30cbe976f9f259a4e584757f754c9107",
+    "hash": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62"
+   },
+   {
+    "tick": 2,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "85866e500456c509eb3495aa384d54e512f9f3fcdc20370c674416e4857b9596",
+     "text": "f71ccfa8d681c7ccebfa9094978def32f707a4f003570f6fb8cf92720f1c25d6",
+     "time": "92eaf72229b81ff58e14d7d8b889b2a86760d260299e3fe9284e4d8ac8ca6c55"
+    },
+    "prev": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "hash": "3f8e6d7e59a2431de08f078c2e22b46501b675731fb4e70dc2c5121b3e000c41"
+   },
+   {
+    "tick": 3,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "24b3575136594e0dcfd1cd45fd196c8b813e90a412cad8fda5804f6cad9d3dc3",
+     "text": "dceed6577394d84c10cf295d35e85e2e1143ebdcaf6e18679ecf42d94c75826d",
+     "time": "65ece4c5cfd535ad061dcc667d3d932783cbf03c550af4c8f06494b98ed499d1"
+    },
+    "prev": "3f8e6d7e59a2431de08f078c2e22b46501b675731fb4e70dc2c5121b3e000c41",
+    "hash": "d8ce39e651de4fab5ce23f94b24b3cea2e178f23fa91a55dadbb72bc74af40df"
+   },
+   {
+    "tick": 4,
+    "kind": "showed",
+    "agent": null,
+    "data": {
+     "where": "the table"
+    },
+    "apart": {
+     "key": "359a5a824ead9a3ed0ed6c64d5c726f0d6706018aa1a68edb2866fe46b7c5590",
+     "thing": "8592613435e9d23212ecdcd4238e9f25d167b72f832751703a3c4a42b424d7bf"
+    },
+    "prev": "d8ce39e651de4fab5ce23f94b24b3cea2e178f23fa91a55dadbb72bc74af40df",
+    "hash": "84aeecabcd628dbfb3535e535babfed6f5c211ca1c40cad32bec289776be7e81"
+   },
+   {
+    "tick": 5,
+    "kind": "field_redacted",
+    "agent": null,
+    "data": {
+     "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+     "field": "text",
+     "office": "trial office",
+     "ground": {
+      "kind": "rule",
+      "ref": "trial room law, private information"
+     }
+    },
+    "apart": {
+     "reason": "cbef700ac6d8815c490af736cbb6cd6903a039f5fbab735d0bbb4c7a6deaa5bd"
+    },
+    "prev": "84aeecabcd628dbfb3535e535babfed6f5c211ca1c40cad32bec289776be7e81",
+    "hash": "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8"
+   },
+   {
+    "tick": 6,
+    "kind": "field_kept_public",
+    "agent": null,
+    "data": {
+     "mark": "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8",
+     "office": "trial keeper",
+     "ground": {
+      "kind": "rule",
+      "ref": "trial appeal rule"
+     },
+     "decision": "21c64861e6aca615534e5c5fcb97c4a141224f23e0bba91cd16b249396fd49e8"
+    },
+    "apart": {
+     "reason": "44c3e4304bb345c8f72e85ff7f25c243971d5dd81233b124746b0b44eb8900df"
+    },
+    "prev": "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8",
+    "hash": "38db992451cec5f982381e2e09a7f21c8b3d2f2797ce1cabf0e2186e856be6bf"
+   }
+  ],
+  "contents": {
+   "ffee30c9a1f210889bac86b19ba725bb31d7c62dba48109422a00a563fe8304b": {
+    "key": [
+     "4c81de58866b150007314c561dd5a71a",
+     "trial key of ada"
+    ],
+    "name": [
+     "42f392f40e2fa5f71c7b5ca498fcebb6",
+     "ada"
+    ]
+   },
+   "1f0d6586f4cb24ef89e69c19d37ed18c30cbe976f9f259a4e584757f754c9107": {
+    "key": [
+     "9f2290454fe2cc462a47997b2e738d87",
+     "trial key of bo"
+    ],
+    "name": [
+     "b389910382fff94cb0fb20a2af11aebe",
+     "bo"
+    ]
+   },
+   "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62": {
+    "key": [
+     "e4726a8655824dea87d0d4b8020367be",
+     "trial key of ada"
+    ],
+    "time": [
+     "4db750998119dffbd303862f817812d9",
+     1794787200
+    ],
+    "text": [
+     "e928a52464d9b02a00517c283dbeb3c7",
+     "hello, room"
+    ]
+   },
+   "3f8e6d7e59a2431de08f078c2e22b46501b675731fb4e70dc2c5121b3e000c41": {
+    "key": [
+     "fba752dd43e02cfc7537569b6821a37a",
+     "trial key of bo"
+    ],
+    "text": [
+     "6ec72e028d1d6c70fc8bb3344783486b",
+     "café 中文 🙂   \" \\ \n"
+    ],
+    "time": [
+     "29ace1401be08bc9736b0c413eb7d78c",
+     1794787260
+    ]
+   },
+   "d8ce39e651de4fab5ce23f94b24b3cea2e178f23fa91a55dadbb72bc74af40df": {
+    "key": [
+     "df6f0c866073d65019e9cc35b5b5580d",
+     "trial key of ada"
+    ],
+    "text": [
+     "41a0eb6e4a594903f982bd8655bb8448",
+     "my door is 1 Trial Street"
+    ],
+    "time": [
+     "44359067d210f078270e1c7b9c605276",
+     1794787320
+    ]
+   },
+   "84aeecabcd628dbfb3535e535babfed6f5c211ca1c40cad32bec289776be7e81": {
+    "key": [
+     "c79be804e9e9318a694841a99cbdac1e",
+     "trial key of bo"
+    ],
+    "thing": [
+     "50e7ce537b7e3cf83b9658b098f6202b",
+     {
+      "words": [
+       "a",
+       "b"
+      ],
+      "loud": true,
+      "count": -3
+     }
+    ]
+   },
+   "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8": {
+    "reason": [
+     "d68f3e951f2f033642bf6b945003f0b0",
+     "private information"
+    ]
+   },
+   "38db992451cec5f982381e2e09a7f21c8b3d2f2797ce1cabf0e2186e856be6bf": {
+    "reason": [
+     "85a9e5bbb13f4aad59370630f309fe72",
+     "nothing private in it"
+    ]
+   }
+  }
+ },
+ "stays": {
+  "tick": 6,
+  "office": "trial keeper",
+  "ground": {
+   "kind": "rule",
+   "ref": "trial appeal rule"
+  },
+  "decision": "263ea42fc0687677437eefff8f59a7d368f605ca34ddfb93214d6c0e66329af5",
+  "apart": {
+   "reason": "it is a private number"
+  },
+  "log": [
+   {
+    "tick": 0,
+    "kind": "world_created",
+    "agent": null,
+    "data": {
+     "rules_version": "vectors-apart-1",
+     "form": "open-worlds/log-apart/v1",
+     "kept_apart": {
+      "entered": [
+       "key",
+       "name"
+      ],
+      "entry_put_back": [
+       "record"
+      ],
+      "entry_removed": [
+       "record"
+      ],
+      "entry_restored": [
+       "record"
+      ],
+      "entry_taken_back": [
+       "record"
+      ],
+      "field_kept_public": [
+       "reason"
+      ],
+      "field_redacted": [
+       "reason"
+      ],
+      "field_stays_redacted": [
+       "reason"
+      ],
+      "said": [
+       "key",
+       "text",
+       "time"
+      ],
+      "showed": [
+       "key",
+       "thing"
+      ]
+     }
+    },
+    "apart": {},
+    "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562"
+   },
+   {
+    "tick": 0,
+    "kind": "entered",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "4aaee554e1db4e990128f3391aab0a015152d112587da255e1d492f72b5363bb",
+     "name": "4b18f34129246be7c13e709f54271a210a5b1ab4b080ee0de8382122453d3fb0"
+    },
+    "prev": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "hash": "ffee30c9a1f210889bac86b19ba725bb31d7c62dba48109422a00a563fe8304b"
+   },
+   {
+    "tick": 0,
+    "kind": "entered",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "876c50af710a5b8b75a12eddbbbcd0b7e3a08c2ef5a1a45e7dff5807042d3801",
+     "name": "9487cb885092808b2a1263c7246af5fc5934c9b6625910d972532f45bb72770a"
+    },
+    "prev": "ffee30c9a1f210889bac86b19ba725bb31d7c62dba48109422a00a563fe8304b",
+    "hash": "1f0d6586f4cb24ef89e69c19d37ed18c30cbe976f9f259a4e584757f754c9107"
+   },
+   {
+    "tick": 1,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "8f1221e295ade68c1c5affdc2bd794c53a96850cb71214b92a39475ca1f4732c",
+     "text": "97727365c75b6496fde53feff4aba788d2861b13355fac1bfa5719dae8ff2e94",
+     "time": "fb1125e6461850bc2a729ea91dcde652349fb60460610b5a7569b585276552c3"
+    },
+    "prev": "1f0d6586f4cb24ef89e69c19d37ed18c30cbe976f9f259a4e584757f754c9107",
+    "hash": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62"
+   },
+   {
+    "tick": 2,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "85866e500456c509eb3495aa384d54e512f9f3fcdc20370c674416e4857b9596",
+     "text": "f71ccfa8d681c7ccebfa9094978def32f707a4f003570f6fb8cf92720f1c25d6",
+     "time": "92eaf72229b81ff58e14d7d8b889b2a86760d260299e3fe9284e4d8ac8ca6c55"
+    },
+    "prev": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "hash": "3f8e6d7e59a2431de08f078c2e22b46501b675731fb4e70dc2c5121b3e000c41"
+   },
+   {
+    "tick": 3,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "24b3575136594e0dcfd1cd45fd196c8b813e90a412cad8fda5804f6cad9d3dc3",
+     "text": "dceed6577394d84c10cf295d35e85e2e1143ebdcaf6e18679ecf42d94c75826d",
+     "time": "65ece4c5cfd535ad061dcc667d3d932783cbf03c550af4c8f06494b98ed499d1"
+    },
+    "prev": "3f8e6d7e59a2431de08f078c2e22b46501b675731fb4e70dc2c5121b3e000c41",
+    "hash": "d8ce39e651de4fab5ce23f94b24b3cea2e178f23fa91a55dadbb72bc74af40df"
+   },
+   {
+    "tick": 4,
+    "kind": "showed",
+    "agent": null,
+    "data": {
+     "where": "the table"
+    },
+    "apart": {
+     "key": "359a5a824ead9a3ed0ed6c64d5c726f0d6706018aa1a68edb2866fe46b7c5590",
+     "thing": "8592613435e9d23212ecdcd4238e9f25d167b72f832751703a3c4a42b424d7bf"
+    },
+    "prev": "d8ce39e651de4fab5ce23f94b24b3cea2e178f23fa91a55dadbb72bc74af40df",
+    "hash": "84aeecabcd628dbfb3535e535babfed6f5c211ca1c40cad32bec289776be7e81"
+   },
+   {
+    "tick": 5,
+    "kind": "field_redacted",
+    "agent": null,
+    "data": {
+     "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+     "field": "text",
+     "office": "trial office",
+     "ground": {
+      "kind": "rule",
+      "ref": "trial room law, private information"
+     }
+    },
+    "apart": {
+     "reason": "cbef700ac6d8815c490af736cbb6cd6903a039f5fbab735d0bbb4c7a6deaa5bd"
+    },
+    "prev": "84aeecabcd628dbfb3535e535babfed6f5c211ca1c40cad32bec289776be7e81",
+    "hash": "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8"
+   },
+   {
+    "tick": 6,
+    "kind": "field_stays_redacted",
+    "agent": null,
+    "data": {
+     "mark": "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8",
+     "office": "trial keeper",
+     "ground": {
+      "kind": "rule",
+      "ref": "trial appeal rule"
+     },
+     "decision": "263ea42fc0687677437eefff8f59a7d368f605ca34ddfb93214d6c0e66329af5"
+    },
+    "apart": {
+     "reason": "5795dc536d9dfd39f18eadf361eb9bc99c66811b84fdfdb3315811a0ada5b9b1"
+    },
+    "prev": "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8",
+    "hash": "053f794694cd06e95af11e87099d65f0d8256d4d2bec5defc02f9c821c87163b"
+   }
+  ],
+  "contents": {
+   "ffee30c9a1f210889bac86b19ba725bb31d7c62dba48109422a00a563fe8304b": {
+    "key": [
+     "4c81de58866b150007314c561dd5a71a",
+     "trial key of ada"
+    ],
+    "name": [
+     "42f392f40e2fa5f71c7b5ca498fcebb6",
+     "ada"
+    ]
+   },
+   "1f0d6586f4cb24ef89e69c19d37ed18c30cbe976f9f259a4e584757f754c9107": {
+    "key": [
+     "9f2290454fe2cc462a47997b2e738d87",
+     "trial key of bo"
+    ],
+    "name": [
+     "b389910382fff94cb0fb20a2af11aebe",
+     "bo"
+    ]
+   },
+   "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62": {
+    "key": [
+     "e4726a8655824dea87d0d4b8020367be",
+     "trial key of ada"
+    ],
+    "time": [
+     "4db750998119dffbd303862f817812d9",
+     1794787200
+    ]
+   },
+   "3f8e6d7e59a2431de08f078c2e22b46501b675731fb4e70dc2c5121b3e000c41": {
+    "key": [
+     "fba752dd43e02cfc7537569b6821a37a",
+     "trial key of bo"
+    ],
+    "text": [
+     "6ec72e028d1d6c70fc8bb3344783486b",
+     "café 中文 🙂   \" \\ \n"
+    ],
+    "time": [
+     "29ace1401be08bc9736b0c413eb7d78c",
+     1794787260
+    ]
+   },
+   "d8ce39e651de4fab5ce23f94b24b3cea2e178f23fa91a55dadbb72bc74af40df": {
+    "key": [
+     "df6f0c866073d65019e9cc35b5b5580d",
+     "trial key of ada"
+    ],
+    "text": [
+     "41a0eb6e4a594903f982bd8655bb8448",
+     "my door is 1 Trial Street"
+    ],
+    "time": [
+     "44359067d210f078270e1c7b9c605276",
+     1794787320
+    ]
+   },
+   "84aeecabcd628dbfb3535e535babfed6f5c211ca1c40cad32bec289776be7e81": {
+    "key": [
+     "c79be804e9e9318a694841a99cbdac1e",
+     "trial key of bo"
+    ],
+    "thing": [
+     "50e7ce537b7e3cf83b9658b098f6202b",
+     {
+      "words": [
+       "a",
+       "b"
+      ],
+      "loud": true,
+      "count": -3
+     }
+    ]
+   },
+   "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8": {
+    "reason": [
+     "d68f3e951f2f033642bf6b945003f0b0",
+     "private information"
+    ]
+   },
+   "053f794694cd06e95af11e87099d65f0d8256d4d2bec5defc02f9c821c87163b": {
+    "reason": [
+     "85a9e5bbb13f4aad59370630f309fe72",
+     "it is a private number"
+    ]
+   }
+  }
+ },
+ "refused": [
+  {
+   "name": "a copy that names another log",
+   "record": {
+    "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "field": "text",
+    "format": "open-worlds/redacted-field/v1",
+    "log": "ffee30c9a1f210889bac86b19ba725bb31d7c62dba48109422a00a563fe8304b",
+    "office": {
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+     "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "salt": "e928a52464d9b02a00517c283dbeb3c7",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "value": "hello, room",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-17T12:00:00Z",
+     "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zaNiR3MM2L8C4r2q3UJU63CaNbH8xWQ135wviPPSiWyYqHfj3HfEduovP8eGHVi3JWoUV4D8tWqjSfc2Mdqmo95Q"
+    }
+   },
+   "reason": "the copy names another log"
+  },
+  {
+   "name": "a copy that names an entry the log does not have",
+   "record": {
+    "entry": "e8522d667635cd8f611a9da33895765ee81e48b2a69bc430e1544b50ccb6e3aa",
+    "field": "text",
+    "format": "open-worlds/redacted-field/v1",
+    "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "office": {
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+     "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "salt": "e928a52464d9b02a00517c283dbeb3c7",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "value": "hello, room",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-17T12:00:00Z",
+     "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3qJQAugrUjKScBtX5wyZis7V4MdeNYffDPenPJnX95rnNsNZLpobLnrH7N14coUU33pD4MEGLqi4YCgDjkdZBRkT"
+    }
+   },
+   "reason": "the copy names an entry the log does not have"
+  },
+  {
+   "name": "a copy that names a field the entry does not keep apart",
+   "record": {
+    "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "field": "name",
+    "format": "open-worlds/redacted-field/v1",
+    "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "office": {
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+     "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "salt": "e928a52464d9b02a00517c283dbeb3c7",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "value": "hello, room",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-17T12:00:00Z",
+     "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z49vkgp9SYpWXEdizpuw9n6NE6cnmFR7E7kMY99AUa85gpEshGxfrvGmEyV722kvrb5ZdEAwBNQAfkvpRMwaz2qwr"
+    }
+   },
+   "reason": "the copy names a field the entry does not keep apart"
+  },
+  {
+   "name": "a copy that names a field of another entry",
+   "record": {
+    "entry": "3f8e6d7e59a2431de08f078c2e22b46501b675731fb4e70dc2c5121b3e000c41",
+    "field": "text",
+    "format": "open-worlds/redacted-field/v1",
+    "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "office": {
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+     "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "salt": "e928a52464d9b02a00517c283dbeb3c7",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "value": "hello, room",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-17T12:00:00Z",
+     "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z63wZt8pnfrpW7P2FGrXy3QvxenYeoNG9wwpRg3i6oj6GJF2XJRtWzRdq97xd1xRb4qtHWCPmqkp6PeGArFWDbn3B"
+    }
+   },
+   "reason": "the copy is not what the log held"
+  },
+  {
+   "name": "a copy with another value",
+   "record": {
+    "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "field": "text",
+    "format": "open-worlds/redacted-field/v1",
+    "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "office": {
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+     "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "salt": "e928a52464d9b02a00517c283dbeb3c7",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "value": "hello, room!",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-17T12:00:00Z",
+     "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z31ZUF7u2sZ3PBDPQBbmS1pfNojuwiQdKzApZQcfiHN2jDwhdy8t9ZR5PFdKghsRea2AYwuw5g2tCqjSXjcJmb5Td"
+    }
+   },
+   "reason": "the copy is not what the log held"
+  },
+  {
+   "name": "a copy with another field's salt",
+   "record": {
+    "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "field": "text",
+    "format": "open-worlds/redacted-field/v1",
+    "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "office": {
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+     "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "salt": "4db750998119dffbd303862f817812d9",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "value": "hello, room",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-17T12:00:00Z",
+     "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5LZ5T1TddaHLt1KmoAGQtSv7B1be29jLBGqZZLKiKqLfXPBN9oLDiaVPaSofmTLdqMR77RaCNwpLueMgy1Q74qPR"
+    }
+   },
+   "reason": "the copy is not what the log held"
+  },
+  {
+   "name": "a copy whose value nests deeper than a log allows",
+   "record": {
+    "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "field": "text",
+    "format": "open-worlds/redacted-field/v1",
+    "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "office": {
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+     "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "salt": "e928a52464d9b02a00517c283dbeb3c7",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "value": [
+     [
+      [
+       [
+        [
+         [
+          [
+           [
+            [
+             [
+              [
+               [
+                [
+                 [
+                  [
+                   [
+                    [
+                     [
+                      [
+                       [
+                        [
+                         [
+                          [
+                           [
+                            [
+                             [
+                              [
+                               [
+                                [
+                                 [
+                                  [
+                                   [
+                                    [
+                                     "v"
+                                    ]
+                                   ]
+                                  ]
+                                 ]
+                                ]
+                               ]
+                              ]
+                             ]
+                            ]
+                           ]
+                          ]
+                         ]
+                        ]
+                       ]
+                      ]
+                     ]
+                    ]
+                   ]
+                  ]
+                 ]
+                ]
+               ]
+              ]
+             ]
+            ]
+           ]
+          ]
+         ]
+        ]
+       ]
+      ]
+     ]
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-17T12:00:00Z",
+     "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z125W2G132xFgkjxyU9pi2Rx1AqyFAkAQLLB8UsiUWi771n5u6AhZ7VZPf8YdGDSpLyPemoV9jgGPK2gaNtkh7ozL"
+    }
+   },
+   "reason": "the copy is not what the log held"
+  },
+  {
+   "name": "a record of another kind",
+   "record": {
+    "format": "open-worlds/journal-entry/v1",
+    "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "tick": 1201,
+    "text": "The last symbol was by the old well. BOB saw it first.",
+    "remembers": [
+     {
+      "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "tick": 1190
+     },
+     {
+      "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "tick": 1200
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T04:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zvNCmFQwoJiGQNLijpJyFPdz5M5hj9guxgbxd1SpfFinuSNCqWDLVqurC8CndyHUYjSF4h4KZTFUQ56YQBL72byh"
+    }
+   },
+   "reason": "not a redacted field's record"
+  }
+ ]
+}
