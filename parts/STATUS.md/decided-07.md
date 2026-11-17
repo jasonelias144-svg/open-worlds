@@ -8,6 +8,24 @@
 
 ## Decided
 
+- 2026-11-17, founder, a few pieces at a time. Bringing Gemini's
+  second round back: "This was quick, but, to be honest, integrating a
+  few new pieces of code at a time is the norm. Coming back with a
+  whole bunch of new code isn't usually how things are done. This
+  incremental, but seems right at this stage anyways, since much of
+  the large scale ideas have been sketched out, at least. At this
+  point, building the parts makes sense, we have enough ideas to keep
+  up busy for a year." Read by the technical lead as a direction for
+  how the work goes from here, which stands unless the founder answers
+  otherwise: (1) a collaborator's round is a few pieces, brought back
+  and joined before the next begins, not a large batch; (2) the weight
+  moves from sketching new ideas to building the parts already
+  sketched, and the ideas on record (docs/TOPICS.md, docs/VISION.md)
+  are what is built from; (3) a new idea is still recorded when it
+  comes, and built in its turn. The technical lead agrees, from what
+  was measured: the rounds that came back as a few whole files were
+  each built as given in the session they came back in, and the large
+  records needed the repairs sketches/INDEX.md lists before they ran.
 - 2026-11-17, founder, the conversation records are kept together, and
   whole. Asked whether the conversation with Gemini should be kept in
   the private repository: "You can include the Gemini conversation

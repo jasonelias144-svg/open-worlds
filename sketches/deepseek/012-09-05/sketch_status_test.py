@@ -118,26 +118,32 @@ def test_the_crate_as_it_stands_is_the_deliveries_with_the_listed_repairs():
     # the record says what it must hold. review/steps.py does: the crate
     # DeepSeek was given, DeepSeek's five deliveries laid over it in
     # order, three repairs, Gemini's three deliveries, two earlier tests
-    # corrected, and a room's law closed to change in place. This runs
-    # its check, which also holds Gemini's files to their hashes.
+    # corrected, a room's law closed to change in place, and Gemini's
+    # three deliveries on the Commons. This runs its check, which also
+    # holds Gemini's files to their hashes.
     done = subprocess.run(
         [sys.executable, "-I", str(HERE / "review" / "steps.py"), "--check"],
         capture_output=True, text=True)
     assert done.returncode == 0, done.stdout + done.stderr
     tests = HERE / "chat-world-now" / "tests"
     for name, count in (("integration.rs", 41), ("outside.rs", 3),
-                        ("attack.rs", 22)):
+                        ("attack.rs", 22), ("commons_outside.rs", 3),
+                        ("commons_attack.rs", 16),
+                        ("commons_across.rs", 7)):
         text = (tests / name).read_text(encoding="utf-8")
         assert text.count("#[test]") == count, name
 
 
 def test_geminis_files_are_the_ones_its_record_gives():
     # Gemini's deliveries are laid over the crate by review/steps.py.
-    # They are kept in ../../gemini/2026-11-16, taken out of Gemini's
-    # conversation record by that folder's take.py. Run with no
-    # argument, it takes them out of the record again and compares.
-    take = HERE.parent.parent / "gemini" / "2026-11-16" / "take.py"
-    done = subprocess.run([sys.executable, "-I", str(take)],
-                          capture_output=True, text=True)
-    assert done.returncode == 0, done.stdout + done.stderr
-    assert "10 files from the record; 0 problem(s)" in done.stdout
+    # They are kept in ../../gemini/2026-11-16 and 2026-11-17, taken
+    # out of Gemini's conversation record by each folder's take.py. Run
+    # with no argument, it takes them out of the record again and
+    # compares.
+    for folder, count in (("2026-11-16", 10), ("2026-11-17", 5)):
+        take = HERE.parent.parent / "gemini" / folder / "take.py"
+        done = subprocess.run([sys.executable, "-I", str(take)],
+                              capture_output=True, text=True)
+        assert done.returncode == 0, done.stdout + done.stderr
+        assert (f"{count} files from the record; 0 problem(s)"
+                in done.stdout), folder

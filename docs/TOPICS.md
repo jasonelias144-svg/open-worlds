@@ -539,8 +539,9 @@ repairs the crate builds, and its own 18 tests pass; after DeepSeek's
 five deliveries from one file, and three more small repairs, the crate
 passed all 41; after Gemini's three deliveries, which made a room's
 log checkable from outside and attacked the check, and two more
-repairs, the crate as it stands (`chat-world-now/`) passes all 66. It
-uses none of
+repairs, the crate passed all 66; after Gemini's three deliveries on
+the Commons' own log, the crate as it stands (`chat-world-now/`)
+passes all 92. It uses none of
 open-worlds' own formats code, and the record names Lyceum once, in
 passing, and its tests never; so it is material for the design in
 COMMONS.md, not yet a part of it. The founder's ideas in the record

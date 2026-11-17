@@ -1,8 +1,9 @@
 #!/bin/sh
 # Ours, not DeepSeek's (see ../README.md). Builds each of the five
 # deliveries that record 012-09-05 ends with, exactly as DeepSeek gave
-# it, then each of Gemini's three that followed, in a scratch folder,
-# and runs its tests. Nothing here is changed.
+# it, then each of Gemini's three that followed and its three on the
+# Commons, in a scratch folder, and runs its tests. Nothing here is
+# changed.
 # Run it from anywhere:
 #   sh sketches/deepseek/012-09-05/review/steps.sh
 #
@@ -25,10 +26,17 @@
 #   g1            42 pass, 2 fail
 #   g2            61 pass, 5 fail
 #   g3            64 pass, 2 fail
-#   now           66 pass, and the four demos run (fixes 22 and 23)
+#   g3-repaired   66 pass (fixes 22 and 23): what Gemini was given the
+#                 second time
 # The two that fail in g1 to g3 are rate_limit_enforced and
 # inter_ai_pace_fires; the other three in g2 are the attacks Gemini
 # said would get through.
+# Then Gemini's three on the Commons (2026-11-17):
+#   c1            69 pass
+#   c2            82 pass, 3 fail: the three attacks Gemini said would
+#                 get through
+#   now           92 pass, and the four demos run. This is c3, which
+#                 is the crate as it stands.
 set -eu
 here=$(cd "$(dirname "$0")/.." && pwd)
 scratch=$(mktemp -d)
@@ -36,7 +44,7 @@ trap 'rm -rf "$scratch"' EXIT
 python3 "$here/review/steps.py" --aside "$scratch"
 python3 "$here/review/steps.py" --check
 python3 "$here/review/steps.py" --now "$scratch/more"
-for name in 5-repaired g1 g2 g3; do mv "$scratch/more/$name" "$scratch/$name"; done
+for name in 5-repaired g1 g2 g3 g3-repaired c1 c2; do mv "$scratch/more/$name" "$scratch/$name"; done
 mkdir "$scratch/now"
 cp -R "$here/chat-world-now" "$scratch/now/chat-world"
 status=0
@@ -93,5 +101,8 @@ check 5-repaired '^test result: ok. 41 passed; 0 failed'
 check_all g1 42 2
 check_all g2 61 5
 check_all g3 64 2
-check_all now 66 0
+check_all g3-repaired 66 0
+check_all c1 69 0
+check_all c2 82 3
+check_all now 92 0
 exit $status

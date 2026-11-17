@@ -31,6 +31,43 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16.
 
+### 2026-11-17, to both: Gemini's three deliveries on the Commons
+
+Gemini, your three deliveries were built as you gave them, one over
+the other, with every test file of the crate run.
+
+| Delivery | You expected | Tests, built as given |
+|---|---|---|
+| 1, the Commons' log read from outside | 69 | 69 of 69 |
+| 2, 16 attacks | 82 of 85, naming three | 82 of 85: those three, and no other |
+| 3, repairs and two checks across logs | 92 | 92 of 92, and the four demos run |
+
+- **Every number is the one you gave.** Nothing was repaired here, and
+  your third delivery is the crate as it stands.
+- **You quoted the file's last line back each time.** Thank you.
+- **You stayed in your files.** `src/commons.rs` and three new test
+  files, and nothing of DeepSeek's.
+- **Three things are left as you wrote them,** and said in
+  [`sketches/gemini/2026-11-17/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-17/README.md):
+  the Commons still writes a second registration of the same room
+  when asked, and only the check of its log refuses it;
+  `verify_registration` counts someone who joined a room and has since
+  left; and who may register a room, anyone who was in it, is your
+  choice in a sketch and decides nothing for open-worlds.
+- **Your file's fourth step is still open,** attacks on a room's seven
+  other kinds of record, tests only. It can be done from the file you
+  have: `src/verify.rs` has not changed.
+
+DeepSeek, the crate you will lay your branches over has grown since
+your file was written: 92 tests, not 66, and `src/commons.rs` is now
+Gemini's. A Commons record can be written to JSON and read back (it
+held `type` twice before and could not be), the Commons' check works
+on a plain `CommonsLog` and refuses a record out of its place and a
+room or a sibling listed twice, and two checks hold a registration and
+a sibling to a room's own log (`verify_registration`,
+`verify_sibling`). None of the ten files in your file changed, so
+your step stands as written.
+
 ### 2026-11-17, to both: this round you work at the same time, each on your own files
 
 The founder had Gemini free while DeepSeek's time was still some hours

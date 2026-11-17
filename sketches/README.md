@@ -37,6 +37,7 @@ of earlier ideas.
 | `deepseek/012-07-03/` | The code from record 012-07-03: the endless plant, a sketch crate in Rust with a choice neuron, kept as written (it doesn't build), with the technical lead's review and the tests that check it |
 | `deepseek/012-09-05/` | The code from record 012-09-05: water as particles, the garden and a botanical garden of gardens (Python, on 012-06-02's plant world); chat rooms for the Commons, with AI moderators, and the home room (Python); a schema; and a sketch crate in Rust, `chat-world`, in its first version and the one DeepSeek settled on. Kept with the technical lead's first pass and a first round of repairs (fixes 15 to 18): what ran as written, and what runs now |
 | `gemini/2026-11-16/` | Gemini's four deliveries for `chat-world`, as written: a room's log that can be checked from outside, 22 attacks on the check, the repairs, and a start on branches that is not used. With what ran, and the script that takes them out of the record they come from |
+| `gemini/2026-11-17/` | Gemini's three deliveries on the Commons' own log, as written: the log read from outside, 16 attacks on its check, and the repairs with two checks across logs. With what ran, and the script that takes them out of the record |
 | `replies/` | What DeepSeek was given in return: for each reply, the technical lead's text, the list of files that go with it, and the one file the founder gave DeepSeek, built from the two by `docs/reply.py` ([replies/README.md](replies/README.md)) |
 | `tools/extract.py` | Writes the code out of a record (Python, Rust, JavaScript, JSON and the rest), and checks it against the record |
 | `tools/names-012-03-02.json`, `tools/names-012-04-00.json`, `tools/names-012-05-01.json`, `tools/names-012-06-02.json`, `tools/names-012-07-03.json`, `tools/names-012-09-05.json` | For each record: which code blocks to take, the names of blocks that don't state one, and the files changed since |
@@ -108,7 +109,7 @@ and runs its own tests and its two demos, which must all pass, and
 then shows one finding that stands; it needs Rust and the network, and
 CI doesn't run it.
 `review/steps.sh` there builds each of the five deliveries the record
-ends with, as DeepSeek gave them, then each of Gemini's three, and the
+ends with, as DeepSeek gave them, then each of Gemini's six, and the
 crate as it stands (`chat-world-now/`), and runs their tests
 ([INDEX.md](INDEX.md), "The record continued (2026-11-16)" and the
 section after it); CI doesn't run it either.

@@ -1,0 +1,60 @@
+{
+ "record": {
+  "name": "012-00-00-GMNI-Multiverse_Development.txt",
+  "bytes": 633994,
+  "sha256": "5c58e01e58e9369828b2a09aada067d00804b49e9cbcff841a745018198d1d9c",
+  "lines": 14970,
+  "new_from_line": 13528
+ },
+ "deliveries": {
+  "1": {
+   "from": 13531,
+   "to": 13887
+  },
+  "2": {
+   "from": 13893,
+   "to": 14287
+  },
+  "3": {
+   "from": 14293,
+   "to": 14967
+  }
+ },
+ "files": {
+  "steps/1/src/commons.rs": {
+   "lines": [
+    13535,
+    13819
+   ],
+   "sha256": "b518d32345c70c8c507fd7d2d0ac7d673aa9335616aa9d3ed1be28ed3b6e5e71"
+  },
+  "steps/1/tests/commons_outside.rs": {
+   "lines": [
+    13822,
+    13885
+   ],
+   "sha256": "4eab2f534cc44a81eb90f4f4fe77b747f20f283edc70877bd5a6bd7883645377"
+  },
+  "steps/2/tests/commons_attack.rs": {
+   "lines": [
+    13924,
+    14285
+   ],
+   "sha256": "4e1992c7a78c493d21f5a7e8e2bdd7db3af9c1987702abfe7718ffcad40efd38"
+  },
+  "steps/3/src/commons.rs": {
+   "lines": [
+    14316,
+    14761
+   ],
+   "sha256": "340062c3c8ffe1cbb6a9f813d577fd6a13839b06464277b0acc08361d52f67d3"
+  },
+  "steps/3/tests/commons_across.rs": {
+   "lines": [
+    14764,
+    14965
+   ],
+   "sha256": "fdeeb2fd7856d1248da6d1acc0327a759d2a55bd745cf54ad1c54fa897ca5387"
+  }
+ }
+}
