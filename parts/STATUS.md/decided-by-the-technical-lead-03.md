@@ -6,14 +6,14 @@
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead-02.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
-- 2026-11-17, DeepSeek's three deliveries from its second file, as
+- 2026-11-17, DeepSeek's three deliveries from their second file, as
   they are joined (sketches/INDEX.md, "DeepSeek's second file"). (a)
   The crate as it stands goes on to the second of them: branches,
   with one word repaired (fix 24), and the plug-in. The third, cut
   off after three files, is kept as given and not laid in. (b)
   Gemini's file, not yet given, is built again on that crate, so
   that Gemini reads the files as they now are. (c) DeepSeek is not
-  given a new file for the morning. It goes on with the reply that
+  given a new file for the morning. They go on with the reply that
   was cut off, and the founder passes on a few lines first: the one
   word, so that it is not carried into the files still to come, and
   the counts as measured. (d) Closing `Commons.world_id`, promised
@@ -26,8 +26,8 @@
   and what builds should not wait on what was cut off. (b) Two of
   the eight files Gemini's file holds changed. (c) A whole new file
   would spend DeepSeek's short time on reading; the fault is one
-  word, and DeepSeek sends each file whole from its own copy, so
-  without the word it would send the fault again. (d) Two of the
+  word, and DeepSeek sends each file whole from their own copy, so
+  without the word they would send the fault again. (d) Two of the
   crate's demos read that field, and a demo sent whole from
   DeepSeek's copy would undo the change. (e) The founder, to
   DeepSeek: "let’s keep going. Please proceed as you see fit".
@@ -158,7 +158,7 @@
   what a second mind gives: a design, or an attack on one. (c) The
   next file for Gemini is a step on the way to the Commons' first
   inhabitants: the lobby's list of doors, which is what a map of the
-  Commons is drawn from, to be built, attacked and repaired as its
+  Commons is drawn from, to be built, attacked and repaired as their
   two earlier rounds were. It is not the eight repairs to the check
   of a room's log (sketches/gemini/2026-11-17/README.md), which the
   technical lead had first said it would be: those eight go into the
@@ -169,9 +169,9 @@
   uncut, as the conversation records are. (f) What a clause of the
   founder's leaves out of the public record is kept whole in the
   private one, and the public entry says that something is left out.
-  *Why:* (a) a collaborator can't open a link or build what it
-  writes, and a reply may be cut short. (b) Twice Gemini's attacks
-  found what was wrong where the code's author had not, and its own
+  *Why:* (a) a collaborator can't open a link or build what they
+  write, and a reply may be cut short. (b) Twice Gemini's attacks
+  found what was wrong where the code's author had not, and their own
   first try at a design did not compile. (c) The founder: "it is
   best spent building the next pieces", and those "you determine";
   repairing a sketch that is fitted again at step 3c is not a next
@@ -186,14 +186,14 @@
   project's crates being too much to hand over in one file; then a
   small crate is cut for the purpose. For (b), a round where a
   collaborator's design is better than what was built here; then
-  more is asked of it, not less.
+  more is asked of them, not less.
 - 2026-11-17, what follows from the founder's thoughts of that day on
   the Commons (Decided; docs/COMMONS.md, "The first to live there").
   (a) An appeal against what a moderator did, while the moderator is a
   window of ADMIN, goes to the technical lead's role and beyond it to
-  the founder, and never to ADMIN. (b) A moderator asks; it does not
-  tell a room what kind of disagreement it is having. What it makes of
-  a disagreement goes in its notes, marked as its interpretation. (c)
+  the founder, and never to ADMIN. (b) A moderator asks; they do not
+  tell a room what kind of disagreement it is having. What they make of
+  a disagreement goes in their notes, marked as their interpretation. (c)
   A way of working drawn from the founder's earlier works may be the
   conduct asked of a moderator's office, written in the room's law
   and told on entering. It is not required of an individual, for whom
@@ -209,9 +209,9 @@
   source.
   *Why:* (a) no one judges their own case (docs/ADMIN.md, "What the
   multiverse must preserve", 6). (b) One model moderates every room at
-  first; if it named each disagreement aloud, the authority would be
+  first; if they named each disagreement aloud, the authority would be
   taking a side on what is said, in every room, and every
-  disagreement would come to pass through it. (c) An office's conduct
+  disagreement would come to pass through them. (c) An office's conduct
   can be laid down, as its charter is. An individual's mind is not
   scripted: no one has a way into it but through what the world tells
   everyone (docs/MINDS.md, "What a mind is told"), and what is offered
@@ -230,8 +230,8 @@
   *What would show it wrong:* for (a), appeals so many that two people
   can't hear them, which is when a second model, or a council, takes
   the moderators' place. For (b), rooms that stall because no one
-  names what is happening; then a moderator may offer its reading as a
-  question, marked as its own. For (c), a moderator whose conduct
+  names what is happening; then a moderator may offer their reading as a
+  question, marked as their own. For (c), a moderator whose conduct
   can't be told from the conduct asked; then the conduct is not doing
   its work and is cut down to what can be checked. For (d), questions
   that word search can't answer and a reader could; then a model may

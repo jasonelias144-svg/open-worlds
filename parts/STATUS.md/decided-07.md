@@ -166,7 +166,7 @@
   already the founder's (record 012-09-05, line 6584: "With one model,
   many rooms, we can build many rooms without the overhead"); new is
   that the model is ADMIN's. Three different models, so that no
-  conversation is one model speaking with itself; which three is for
+  conversation is one model speaking with themselves; which three is for
   the audition, and where they run is the founder's, since it costs
   money. It is in
   docs/COMMONS.md, "The first to live there". Not built.
@@ -263,16 +263,16 @@
   So, decided:
   (1) Everything that was waiting for the founder with a
   recommendation is decided on it, today. The list is below.
-  (2) From now on the technical lead decides what it can decide, says
-  what it decided, and goes on. Where it has no settled
-  recommendation, it weighs its own view with what the founder would
-  most likely want, and decides. The founder can change any of it at
+  (2) From now on the technical lead decides what they can decide, says
+  what they decided, and goes on. Where they have no settled
+  recommendation, they weigh their own view with what the founder would
+  most likely want, and decide. The founder can change any of it at
   any time, and the most recent word still wins.
   (3) This widens the standing rule of 2026-11-14, which held back
   "anything outward-facing or hard to undo, spending, personal
   information, or what must be in the founder's own words or act".
   The technical lead's reading of what still goes to the founder,
-  which stands unless the founder answers otherwise: only what it
+  which stands unless the founder answers otherwise: only what they
   can't do or undo for the founder. That is spending money; an act
   that is the founder's own in law or on the founder's own accounts
   (accepting a licence, naming a successor, handing over keys); and an
@@ -344,7 +344,7 @@
   of high quality, but the other model can provide many more replies,
   but not the same quality. Which do you prefer? I prefer Argon and a
   few responses each time. But you saw code form both, which would you
-  prefer?" The technical lead answered the same, and that it had not
+  prefer?" The technical lead answered the same, and that they had not
   seen the other model's code: the record holds only the answers the
   founder kept, and of the reply that was replaced it holds one
   sentence, Argon's own account of it (the record with Gemini, line

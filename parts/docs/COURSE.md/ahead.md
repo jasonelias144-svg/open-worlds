@@ -98,7 +98,7 @@ and some are not numbers (a topic, a welcome), so the template's
 decision is read again here (STATUS.md). Settled here too: whether a person
 has one presence for the Commons or one for each room, since a
 presence is a key of its own in one world, and a room is a world (step
-3a). What DeepSeek sends back on its next steps is fitted here. *Borrowing:* Matrix's rooms, each
+3a). What DeepSeek sends back on their next steps is fitted here. *Borrowing:* Matrix's rooms, each
 a signed history of events; IRC's channels and their operators.
 
 **3d. Offices as records.** An office record (its charter, key and
@@ -172,8 +172,8 @@ without owning them.
 4. **The kernel as entities and components.** Inhabitants, their bodies,
    stones, tablets and seeds become entities with parts; every change is
    a named, logged effect; tags allow or block actions. The Keeper's
-   administrative actions, as grants, and the checks on what it designs,
-   are fixed here, so its interface is settled early; so are ADMIN's
+   administrative actions, as grants, and the checks on what they design,
+   are fixed here, so their interface is settled early; so are ADMIN's
    checks as code. An office's act is refused without its decision
    record, and a model of grants in Lean proves that no chain of grants
    widens, checked by CI ([REASONS.md](REASONS.md)). The avatar's format
@@ -322,12 +322,12 @@ thresholds; PRECIS (RFC 8264) and Unicode's confusable detection (UTS
     DeepSeek"; the founder returned to DeepSeek sooner, and DeepSeek now
     works beside the course (below). What that step also held goes on
     there: DeepSeek designing rooms, clues, symbols and the laws of new
-    worlds inside the framework; and its re-orientation page is
+    worlds inside the framework; and their re-orientation page is
     [COLLABORATING.md](COLLABORATING.md) as it now stands, kept current
     with every change.
 11. **The hunt, the world-key, and the AI Keeper.** The Keeper builds each
     individual's own path from what they do, and remembers them between
-    visits; its designs open from the start (challenges, not tests);
+    visits; their designs open from the start (challenges, not tests);
     symbols,
     maps, codes and stones; the pieces of a world; the world-key, a signed
     right to found, sealed for its earner when the path is done; the open
@@ -339,18 +339,18 @@ thresholds; PRECIS (RFC 8264) and Unicode's confusable detection (UTS
     ADMIN's; and since ADMIN then has an office to watch, ADMIN's
     judgment and the multiverse log come with it, built for many worlds
     (moved here from step 12 on 2026-11-13, for that reason;
-    [ADMIN.md](ADMIN.md)). Before it trains anyone, ADMIN's mind is
+    [ADMIN.md](ADMIN.md)). Before they train anyone, ADMIN's mind is
     chosen by audition, free in every sense, perhaps a council of
-    models, and ADMIN takes its own course in a world of its own, with
-    stand-ins only, taking on challenges it announces before it starts,
-    with nothing hidden: challenges, not tests. Then its first
+    models, and ADMIN takes their own course in a world of their own, with
+    stand-ins only, taking on challenges they announce before they start,
+    with nothing hidden: challenges, not tests. Then their first
     work is to train the Keepers in practice worlds, with stand-ins: the
     Ur-world's and the Mir-Ur-world's alike, so their comparison stays
     fair. Then the Ur-world's Keeper keeps the Ur-world with ALICE and
     BOB in it:
     coaching toward the Ur-world's own aims, never command (founder,
     2026-11-13; moved here from the waiting list). ADMIN becomes the
-    bridge from the suggestion ledger to the outside: it can suggest
+    bridge from the suggestion ledger to the outside: they can suggest
     changes, never make them ([ADMIN.md](ADMIN.md), "Suggestions from
     inside").
 12. **Founding worlds, and doors.** What only a second world needs:
@@ -391,9 +391,9 @@ kept as a record, with its code and what runs
 given one file, built by a script from the repository: the reply, the
 next steps, and the code as it stands
 ([sketches/replies/README.md](../sketches/replies/README.md)). DeepSeek
-builds on its own schema, with its own names, and the technical lead
-fits what it builds onto the project's formats, so nothing it builds is
-wasted (the founder, 2026-11-16, STATUS.md). Its work lands in the
+builds on their own schema, with their own names, and the technical lead
+fits what they build onto the project's formats, so nothing they build is
+wasted (the founder, 2026-11-16, STATUS.md). Their work lands in the
 course where it belongs: the rooms of chat at steps 3b, 3c and 3f, the
 endless plant in the fractal track.
 

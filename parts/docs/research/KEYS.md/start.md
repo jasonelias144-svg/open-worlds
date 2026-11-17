@@ -161,7 +161,7 @@ root does.
    root's private half, and how its every use is logged, asked by #38's
    review: the project, in its private repository; and every use of it
    is a version of the key list, each published in this repository's
-   history. ADMIN's entry names its key and nothing more: ADMIN.md has
+   history. ADMIN's entry names their key and nothing more: ADMIN.md has
    "No power of ADMIN's or a Keeper's exists outside a grant", and which
    key issues ADMIN's grants is decided at step 11, when ADMIN begins.
 9. **For individuals and worlds, the key list only publishes.** For the
@@ -208,15 +208,15 @@ root does.
    published here. Written up as it happened, like the DNSSEC root's
    ceremonies (done 2026-11-14: "As built, part three").
 4. **Leaving and coming back** in the Ur-world: a mind at its doorway
-   signs as its key, so whoever returns is known as the same individual,
+   signs as their key, so whoever returns is known as the same individual,
    as the Python worlds already do. Its plan: "Part four", below
    (decisions 11 to 17); built: "As built, part four".
 
 ## Part four: leaving and coming back, the plan
 
 **Looked first.** The Python worlds (WCP/0.4, `multiverse/identity.py`):
-an individual is its key; it signs the petition that enters a world, its
-acts, and its leave, and the world checks each against the key, so
+an individual is their key; they sign the petition that enters a world, their
+acts, and their leave, and the world checks each against the key, so
 whoever comes back with the same key is the same individual, and the
 name is only a label. The Ur-world today (`rust/ur-world`): `exit`
 always works, and a name, once used, "can't be used here again"
@@ -239,7 +239,7 @@ another under the same name.
     which always works, since the floor allows no condition on leaving.
     That was weighed against the Python worlds, where a signed leave is
     the individual's own record of leaving: here the log keeps a mind's
-    own `exit` reply apart from the keeper's hand removing it, and a
+    own `exit` reply apart from the keeper's hand removing them, and a
     signed leave, beside the unconditional `exit`, can come later.
 12. **A name stays its individual's.** Once bound, a name belongs to the
     individual: their birth key, and the keys it is signed over to by
@@ -263,12 +263,12 @@ another under the same name.
     the name of the first presence only, in the world of their birth.
 13. **The doorway signs, for now.** A mind is any program in any
     language, and many standard libraries have no Ed25519 (Python's
-    hasn't). So the doorway, which starts each mind's program, signs its
+    hasn't). So the doorway, which starts each mind's program, signs their
     arrival with the key it is given: a holder's file from the private
     repository, or, for a trial mind, a key made for the run and then
     thrown away. The private half is never passed to the mind's process,
-    by its input, its environment or a file. A mind that holds its own
-    key later signs its own arrival, by the same record. What an arrival
+    by its input, its environment or a file. A mind that holds their own
+    key later signs their own arrival, by the same record. What an arrival
     proves, and what it doesn't, is in "Honest limits".
 14. **Trial runs are worlds of their own; the Ur-world is one history.**
     Every run from the same seed opens with the same log, and logs are

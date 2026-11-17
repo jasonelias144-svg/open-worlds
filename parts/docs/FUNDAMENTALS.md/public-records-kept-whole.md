@@ -113,7 +113,7 @@ unless the founder answers otherwise:
   room can read it while the person is there; when the person leaves,
   the room shows it as redacted, with an incident id; and the record
   holds it encrypted. The founder's words, and six changes the
-  technical lead proposed, decided on its recommendation on
+  technical lead proposed, decided on their recommendation on
   2026-11-17 (one's own only; the window says who will read it, with
   AIs off unless turned on; never in the open in the record; taken
   back at any time; the limit on copies said in the window; sealed to
@@ -161,7 +161,7 @@ demonstrably", which stands unless the founder answers otherwise:
   personal to a check. Erring on the side of redacting narrows that,
   and anyone may ask for a redaction afterwards.
 - **The project runs the minds.** While an individual's mind is
-  thinking, its thoughts pass through hardware the project controls.
+  thinking, their thoughts pass through hardware the project controls.
   Encryption keeps a private space from everyone in the worlds, and
   unreadable at rest. Against the project itself, the technical lead's
   recommendation, which stands unless the founder answers otherwise:

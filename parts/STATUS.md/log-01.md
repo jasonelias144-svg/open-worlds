@@ -26,7 +26,7 @@
   acted on at once, and changes come only by reviewed pull request. How
   well entries are handled is measured, with ratings published as a
   spread. Suggestions go to a world's Keeper or to ADMIN. ADMIN is the
-  bridge to the outside: it can suggest but not implement, and the
+  bridge to the outside: they can suggest but not implement, and the
   bridge adds without filtering, since every entry still goes out word
   for word. A change that answers suggestions names them, so the answer
   can be seen from inside. The ledger opens at step 9, and ADMIN joins at
@@ -44,7 +44,7 @@
   decisions written in:
   - ADMIN in the open: every decision a Keeper or ADMIN makes that
     affects others goes on record with its reasons, like a court's
-    opinion, and stands on them; ADMIN opens all its activity to
+    opinion, and stands on them; ADMIN opens all their activity to
     inspection; each decision is made once, with fresh randomness, and
     can't be replayed, but anyone can ask it again with fresh runs, a
     stronger check than reading its reasoning; and everyone keeps a
@@ -57,13 +57,13 @@
 
   The charter's section 4 now has one exception in the design: each
   one's private core.
-- 2026-11-13 Claude: ADMIN learns first, in a world of its own
+- 2026-11-13 Claude: ADMIN learns first, in a world of their own
   (docs/ADMIN.md; research in docs/research/ADMIN-MIND.md). The
-  founder's ideas written up: ADMIN takes its own course in a sandbox
-  with stand-ins, taking on challenges it announces before it starts,
+  founder's ideas written up: ADMIN takes their own course in a sandbox
+  with stand-ins, taking on challenges they announce before they start,
   with nothing hidden ("Challenges, not tests"), learning by written
-  lessons, and improving how it learns, never
-  what it may do; its mind free in four senses, chosen by audition at
+  lessons, and improving how they learn, never
+  what they may do; their mind free in four senses, chosen by audition at
   step 11; and perhaps a council of models, one office with one seat,
   agreeing or sending a case up. Also the last notes from #34's review:
   practice worlds aren't worlds of the multiverse, the honest limit made
@@ -73,7 +73,7 @@
   ideas written up:
   - training for keeping worlds, in practice worlds with stand-in
     inhabitants, giving feedback, never sanctions. A Keeper's report of
-    its own mistake is protected, as in aviation's safety reporting, but
+    their own mistake is protected, as in aviation's safety reporting, but
     deliberate misuse and the facts in the log are not.
   - the round table: ADMIN has one seat among equals, alone until a
     Keeper earns the admin-key, and the table decides by consensus what
@@ -116,7 +116,7 @@
   the multiverse, answering to the technical lead's role by the
   founder's designation: rules as code first, powers as narrow grants, a
   multiverse log anyone can audit, and judgment last, reviewed and open
-  to appeal. Ten misbehaviours it must stop or catch, written before it
+  to appeal. Ten misbehaviours they must stop or catch, written before ADMIN
   is built. The research behind it:
   [docs/research/OVERSIGHT.md](docs/research/OVERSIGHT.md). After the
   independent review: the sealed self against the project is a
@@ -168,12 +168,12 @@
     in; it is kept, and the plan records the amendment.
 - 2026-11-13 Claude: the Ur-world's doorway for minds
   (`rust/ur-world/src/door.rs`, docs/URWORLD.md). A mind can be any
-  program, in any language, speaking lines of JSON: it is sent the world's
-  orientation once, then what it sees each tick, written out and as data,
-  and answers with one line. Replies are read strictly, the same way for
+  program, in any language, speaking lines of JSON: they are sent the world's
+  orientation once, then what they see each tick, written out and as data,
+  and answer with one line. Replies are read strictly, the same way for
   every mind; what can't be read is recorded as unreadable, and no reply
   in time as unanswered, so nothing a mind sends can break the world. Each
-  inhabitant is now told what came of its last action. Two Python minds
+  inhabitant is now told what came of their last action. Two Python minds
   with no model behind them (`minds/wanderer.py`) run in CI, and their log
   holds by the same check. The rules are now ur-world/0.2. Also, from the
   review of #28: the generator and the query functions answer without

@@ -126,7 +126,7 @@ table is small, the consensus is full, not rough.
 Taken: ADMIN's training and evaluation of Keepers give feedback, never
 sanctions; sanctions stay with misuse of the office, by a separate process
 ([ADMIN.md](../ADMIN.md), "Training for keeping worlds"). Like the FAA's
-waiver, a Keeper's report of its own mistake protects it from sanction,
+waiver, a Keeper's report of their own mistake protects them from sanction,
 not the facts from the record, and not deliberate misuse.
 
 ## Containers, and sandboxes for code no one trusts

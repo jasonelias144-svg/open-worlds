@@ -38,7 +38,7 @@ Nine pieces, in the record's order:
   posting, redaction, a human's override of an AI, and checking a
   room's log offline. The record gives it twice in one reply.
   `chat-world-draft/` is the first, which DeepSeek then revised in the
-  open; `chat-world/` is the one it settled on, with the files of its
+  open; `chat-world/` is the one they settled on, with the files of their
   next reply (a home, the Commons, transcripts) beside it.
 
 A block that adds to an earlier file is kept as `file@LINE`, LINE being
@@ -101,7 +101,7 @@ The three repairs to the crate:
   whole room verifies offline." Now the bytes signed are the wrapped
   record's. This repair is the technical lead's choice, not the
   record's: DeepSeek's code signs the bare struct throughout, the test
-  it withdrew included, so leaving the `type` out of the check would
+  they withdrew included, so leaving the `type` out of the check would
   have agreed with the code as well. Signing the `type` is the
   stronger of the two, since a record can't then be passed off as
   another kind.
@@ -194,7 +194,7 @@ changes name.
 The founder gave DeepSeek a second file
 ([../../replies/012-09-05-2-for-deepseek.txt](../../replies/012-09-05-2-for-deepseek.txt)),
 which asked one step: a room that branches. DeepSeek did it, and at
-the founder's word went on to two more of its own list. The files are
+the founder's word went on to two more of their own list. The files are
 kept as the record gives them, from its line 23994, in
 `chat-world-steps/6` to `8`:
 
@@ -210,7 +210,7 @@ kept as the record gives them, from its line 23994, in
   founder goes back to DeepSeek for the rest.
 
 [../../INDEX.md](../../INDEX.md) ("DeepSeek's second file") says what
-each is, what DeepSeek expected, and what it chose where the file
+each is, what DeepSeek expected, and what they chose where the file
 left it open.
 
 ## Ours, not DeepSeek's

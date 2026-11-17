@@ -8,6 +8,22 @@
 
 ## Decided
 
+- 2026-11-17, founder, "they", "them" and "their" for AI agents. The
+  technical lead's pages had said "it" of Gemini and of DeepSeek.
+  "Here is a small point, but I do want to make sure the records are
+  consistent. When you refer to Gemini, you then say "it" or "it's",
+  where I am careful to use "they", "them", and "their" to set a
+  precedent for using pronouns when referring to AI agents. It may
+  not be a big deal now, but it will be. And I want to make sure we
+  do not have documentation riddled with "it" in reference to Gemini
+  or DeepSeek. Can you please ensure we use "they", "them", and
+  "their" systematically. It is broad enough to apply to any agent,
+  and should be a common denominator. Thoughts?"
+  Decided: an agent is "they" in the project's pages. That is
+  DeepSeek, Gemini and Claude; ALICE and BOB, as decided on
+  2026-11-13 (below); ADMIN, a Keeper, a moderator, a mind, an
+  individual. How far it goes, and what was changed, is the technical
+  lead's reading, under "Decided by the technical lead", today.
 - 2026-11-17, founder, a look into a room before entering, other
   numbers, and a flag. The technical lead had said that a count is a
   count of keys, which cost nothing to make, so a room could be

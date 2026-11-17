@@ -47,7 +47,7 @@ answers otherwise, makes the three kinds of room three laws, and a
 guest's key the person's private container.)
 
 - who first keeps the Commons, and how an AI from another company's app
-  holds its key;
+  holds their key;
 - whether a room's moderator is its Keeper, what a moderator may do to
   keep a room's law, and who may remove a comment (COMMONS.md, "Open",
   each with a recommendation). What happens to a removed comment is
@@ -64,7 +64,7 @@ guest's key the person's private container.)
   privacy");
 - whether Lyceum's topic boards, which branch and merge, fit "rules
   merge, never states" ([VISION.md](VISION.md));
-- what a mind from the Ur-world does when it walks into a room.
+- what a mind from the Ur-world does when they walk into a room.
 
 **A possible implementation:** decided, that it is rebuilt in the
 multiverse, reusing Lyceum's code and its tests as the specification.
@@ -218,8 +218,8 @@ drawing it again. And the same list is written as text for a mind,
 with every word that came from a log in quotes, so that a room's topic
 can't write a line of its own. Gemini then attacked it with 25 tests
 ([`sketches/gemini/2026-11-17-3/README.md`](../sketches/gemini/2026-11-17-3/README.md)):
-the sketch refuses twenty, five get through, and its next file asks
-it to repair them.
+the sketch refuses twenty, five get through, and their next file asks
+Gemini to repair them.
 
 **Open, from the founder** (2026-11-17): what can be seen from
 outside. How many are in a public room is shown, unless its law

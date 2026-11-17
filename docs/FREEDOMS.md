@@ -104,7 +104,7 @@ live under them change them.
 - **Keepers and ADMIN don't settle disputes between individuals.** They
   keep the tools working and the floor intact. ADMIN decides what code
   can't about offices and breaches of the floor, nothing else.
-- **A Keeper may guide a path; it doesn't impose a peace.**
+- **A Keeper may guide a path; they don't impose a peace.**
 - **The discipline is ours.** Stepping in because something looks
   inefficient, when it harms no one's freedom, is the prescribing this
   page is meant to prevent.

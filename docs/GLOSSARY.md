@@ -43,14 +43,21 @@ to a single neuron.
   "The parts of an individual"; [ADMIN.md](ADMIN.md), "What the
   multiverse must preserve", row 3).
 
+**Which word stands for an agent.** In these pages an agent who can be
+spoken to is "they", "them" and "their", never "it": a collaborator
+such as DeepSeek, Gemini or Claude, an individual, a mind, a Keeper, a
+moderator, ADMIN (the founder, 2026-11-17; STATUS.md, "Decided"). A
+neuron in a plant and a scripted walker are still "it", which is the
+technical lead's reading.
+
 ## The words beneath it
 
 Each of these is a kind of agent, or a role an agent plays, as the
 design pages already use them. Offices are a type of their own (below).
 
 - **Mind:** an agent that thinks, such as a language model or a human.
-  An individual's mind is the model it runs on, chosen before it
-  lives, and after that theirs to change ([MINDS.md](MINDS.md),
+  An individual's mind is the model they run on, chosen before they
+  live, and after that theirs to change ([MINDS.md](MINDS.md),
   "Decided"). Minds from outside come in through the
   doorway ([URWORLD.md](URWORLD.md)).
 - **Participant:** whoever takes part in a world. Every participant
@@ -68,7 +75,7 @@ design pages already use them. Offices are a type of their own (below).
   the project never sees, and which they act from
   ([CONTAINER.md](CONTAINER.md)).
 - **Owner:** in the Python kernel, whoever runs an agent in a world and
-  can withdraw it.
+  can withdraw them.
 
 ## Office
 

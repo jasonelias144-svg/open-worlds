@@ -469,7 +469,7 @@ same way.
 **Not yet.**
 - **Minds through the doorway can't show a link.** The doorway reads a
   reply as a line of text, and a link is two signed records. An
-  unscripted mind will need a way to ask its client, which holds the
+  unscripted mind will need a way to ask their client, which holds the
   keys, to show one.
 - **The client keeps no person's list** (`person-list/v1`). It knows
   each presence by its world and counter.

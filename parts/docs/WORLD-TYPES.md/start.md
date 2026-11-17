@@ -325,7 +325,7 @@ above, still holds: this section adds the other half.
 - **A payload aimed at a mind is made of words** (taken). An incoming
   world's names, law and log could carry instructions aimed at whoever
   evaluates it. Everything in it is data to the evaluator, never
-  instructions, and the evaluator has no power but to write its report.
+  instructions, and the evaluator has no power but to write their report.
 - **It has a model already:** ADMIN's own world, a sandbox with no door
   and stand-ins only ([ADMIN.md](ADMIN.md), "ADMIN's own world"), and
   the library of remedies of the learning immune system, where what a

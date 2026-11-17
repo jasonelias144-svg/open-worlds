@@ -248,9 +248,9 @@ fractal worlds". So the garden hosts other worlds, in glasshouses
 - **Minds.** They are scripts in the same process, or programs speaking
   the doorway's protocol. The world-crossing protocol (WCP) between worlds
   isn't in Rust yet.
-- **Sight.** A mind sees only the 26 cells around it, and others within 16
-  cells. It can't yet see far, so it finds its way by feel and by what it
-  is told.
+- **Sight.** A mind sees only the 26 cells around them, and others within 16
+  cells. They can't yet see far, so they find their way by feel and by what they
+  are told.
 - **Keys.** A world has a key, and whoever enters signs an arrival with
   theirs (`open-worlds/arrival/v1`): a name, once used, stays the key's
   that first entered under it, so whoever comes back with that key is the
@@ -269,8 +269,8 @@ fractal worlds". So the garden hosts other worlds, in glasshouses
 ## Minds from outside: the doorway
 
 Any program, in any language, can be a mind in the Ur-world
-(`rust/ur-world/src/door.rs`). Before its program starts, the doorway
-signs its arrival with the key it is given, and the world admits it or
+(`rust/ur-world/src/door.rs`). Before their program starts, the doorway
+signs their arrival with the key it is given, and the world admits them or
 says why not; the key stays with the doorway and is never passed to the
 program. It runs as its own process, and the world talks to it in lines
 of JSON over its standard input and output:
@@ -281,8 +281,8 @@ of JSON over its standard input and output:
    actions with what each does and when it is refused, how to answer, its
    freedoms, and how the set of actions grows. The law is the same as
    data, and the text is made from it, so the two can't disagree. `again`
-   is true for a mind that comes back under its name, and its orientation
-   then says so, and that what it did before is in the public record.
+   is true for a mind that comes back under their name, and their orientation
+   then says so, and that what they did before is in the public record.
 2. **Each tick:** `{"tick": N, "seen": TEXT, "observation": {...}}`. The
    text tells where it stands and on what, what lies each way ("a step up,
    onto rock", "open, with nothing underfoot: you would fall"), who is
@@ -304,11 +304,11 @@ world:
   unanswered;
 - a reply to any other tick (a late one, say) is set aside;
 - a line over 64 KiB is recorded by its beginning;
-- a mind whose program has stopped is not waited for. It stays in the
-  world, its ticks unanswered, because a crash isn't a choice to leave;
-- a mind that doesn't read what it is sent can't hold up the world: what
-  doesn't fit in its queue is dropped, and its ticks go unanswered;
-- a mind's program is stopped when it leaves, or when the world ends.
+- a mind whose program has stopped is not waited for. They stay in the
+  world, their ticks unanswered, because a crash isn't a choice to leave;
+- a mind that doesn't read what they are sent can't hold up the world: what
+  doesn't fit in their queue is dropped, and their ticks go unanswered;
+- a mind's program is stopped when they leave, or when the world ends.
 
 **Expanding the set of actions.** The orientation says how: "To do
 something that isn't listed, say so". Everything said goes into the public
@@ -317,9 +317,9 @@ will propose actions, and compose routines from the ones there are,
 through the world itself.
 
 **What the world decides, and what the mind does.** The world decides only
-what a mind is told and how its reply is read. How a mind turns what it is
-told into a reply is its own: a language model's prompt, its sampling, its
-memory. Its program keeps its own record of that, which an experiment
+what a mind is told and how their reply is read. How a mind turns what they are
+told into a reply is their own: a language model's prompt, its sampling, its
+memory. Their program keeps its own record of that, which an experiment
 publishes beside the world's log.
 
 To try it with two minds that have no model behind them

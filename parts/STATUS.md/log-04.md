@@ -138,7 +138,7 @@
   nothing is redacted. docs/research/REDACTION.md ("Part two, built"),
   docs/COURSE.md, docs/FUNDAMENTALS.md, vectors/README.md,
   rust/README.md and docs/COLLABORATING.md (a message to DeepSeek on
-  the form its rooms will be written in) brought into line.
+  the form their rooms will be written in) brought into line.
 - 2026-11-16 Claude: course step 3b begun by looking first
   (docs/research/REDACTION.md): the project's one log and why nothing
   can be taken out of it today, `decision/v1` and `sealed/v1` as they

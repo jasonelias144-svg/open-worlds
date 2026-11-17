@@ -330,8 +330,8 @@
   successor both agree clearly, and the successor meets the office's
   qualifications; and a Keeper may prepare a successor. The technical
   lead's readings, in docs/OFFICES.md, which stand unless the founder
-  answers otherwise: clear agreement is the successor saying in its own
-  words, in public, what the office's duties are and that it takes them
+  answers otherwise: clear agreement is the successor saying in their own
+  words, in public, what the office's duties are and that they take them
   on; the qualifications are a floor written in each office's charter,
   checked by someone other than the outgoing holder; and they are not
   the admin-key, which stays a mark of readiness, never a requirement

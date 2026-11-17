@@ -28,7 +28,7 @@ next work, piece by piece.
 | 6 | The home room: a person's own room, with a journal, drafts, bookmarks and conversations brought in (`personal_world.py`) | 7258 | 0 of 17: they need the additions of piece 5 | the Commons; the private container ([docs/CONTAINER.md](../docs/CONTAINER.md)) | not yet |
 | 7 | A schema for every record, given twice (`schemas/records-v1.schema.json`, then whole as `@8640`), under the name of open-worlds' own schema, with none of its definitions | 8095 | none | formats (course step 2) | not yet: its records are to be fitted into the schema open-worlds has, not to replace it |
 | 8 | A design page, `docs/CHAT.md` (prose, left in the record) | 9964 | none | the Commons | not yet |
-| 9 | A crate in Rust, `chat-world`: the first version (`chat-world-draft/`), the one DeepSeek settled on (`chat-world/`), and the files of its next reply (a home, the Commons, transcripts) | 10259, 12246, 13800 | 18 of 18, and both demos' logs verify (as written it doesn't build, for one line, fix 16; with it changed, 4 of 12, the rest failing for one cause: a record was signed without its `type` and checked with it, fix 18; the later reply's files are joined by fix 17) | the Commons | not yet: it uses none of open-worlds' own crates |
+| 9 | A crate in Rust, `chat-world`: the first version (`chat-world-draft/`), the one DeepSeek settled on (`chat-world/`), and the files of their next reply (a home, the Commons, transcripts) | 10259, 12246, 13800 | 18 of 18, and both demos' logs verify (as written it doesn't build, for one line, fix 16; with it changed, 4 of 12, the rest failing for one cause: a record was signed without its `type` and checked with it, fix 18; the later reply's files are joined by fix 17) | the Commons | not yet: it uses none of open-worlds' own crates |
 
 ### The record continued (2026-11-16)
 
@@ -87,8 +87,8 @@ Three faults, as the deliveries were written:
    `commons::SiblingDeclared`, which has no such method.
 
 DeepSeek ends delivery 5 with "Expected: 41 tests pass" (line 23989).
-It can't build or run the crate where it writes, as it has said
-before, so the count is what it meant, not what it measured. With the
+They can't build or run the crate where they write, as they have said
+before, so the count is what they meant, not what they measured. With the
 two faults of delivery 5 set aside (the condition replaced by `false`,
 the demo left out), 39 of the 41 pass, and the two that fail are the
 two of fault 1.
@@ -110,9 +110,9 @@ own formats.
 
 ### After DeepSeek's five: Gemini's three (2026-11-17)
 
-The crate then went to Gemini, with a file written for it
+The crate then went to Gemini, with a file written for them
 ([replies/2026-11-16-for-gemini.txt](replies/2026-11-16-for-gemini.txt))
-that asked it to try to break the crate. Its deliveries are kept as
+that asked them to try to break the crate. Their deliveries are kept as
 written in [gemini/2026-11-16](gemini/2026-11-16/README.md), which
 says where they come from and what each is. Laid over the crate in
 order, every test file run, on 2026-11-17:
@@ -123,7 +123,7 @@ order, every test file run, on 2026-11-17:
 | Gemini 2 | 22 attacks on the check | 61 of 66: three attacks get through, the three Gemini said would |
 | Gemini 3 | Repairs | 64 of 66: all 22 attacks refused |
 | all eight, with fixes 19 to 23 | The crate as it stood then | 66 of 66, and the four demos run |
-| Gemini 4 | Branches for rooms, not asked for; two files of the four it describes | does not compile; not used |
+| Gemini 4 | Branches for rooms, not asked for; two files of the four they describe | does not compile; not used |
 
 The two tests that fail in Gemini's three are two of DeepSeek's
 earlier 41, and the fault is theirs: fix 22, under "Changes to
@@ -132,7 +132,7 @@ DeepSeek's code".
 ### Gemini on the Commons (2026-11-17)
 
 Gemini was free before DeepSeek, so for one round the two had the
-crate at once, each with files of its own (STATUS.md, "Decided by the
+crate at once, each with files of their own (STATUS.md, "Decided by the
 technical lead", 2026-11-17). Gemini's file
 ([replies/2026-11-17-for-gemini.txt](replies/2026-11-17-for-gemini.txt))
 asked four steps on the Commons, the crate's list of rooms, in
@@ -146,7 +146,7 @@ in order, every test file run, on 2026-11-17:
 | Commons 1 | The Commons' log read from outside (`CommonsLog`, `verify_commons_log`); a Commons record can be written to JSON and read back | 69 | 69 of 69 |
 | Commons 2 | 16 attacks on the check | 82 of 85 | 82 of 85: three attacks get through, the three Gemini said would |
 | Commons 3 | Repairs, and two checks that hold a record of the Commons to a room's own log | 92 | 92 of 92, and the four demos run |
-| Commons 4 | 17 attacks on a room's seven other kinds of record, in a second answer; the first answer's 10 attacked only what the check already refuses, as Gemini then said itself | 101 of 109 | 101 of 109: eight attacks get through, the eight Gemini said would |
+| Commons 4 | 17 attacks on a room's seven other kinds of record, in a second answer; the first answer's 10 attacked only what the check already refuses, as Gemini then said themselves | 101 of 109 | 101 of 109: eight attacks get through, the eight Gemini said would |
 
 Every number is the one Gemini gave, and nothing was repaired here.
 The third was the crate as it stood then,
@@ -167,13 +167,13 @@ Gemini's answer to it is after that ("Gemini's list of doors").
 
 ### DeepSeek's second file: branches, a plug-in, and a rule cut off (2026-11-17)
 
-The founder gave DeepSeek its second file
+The founder gave DeepSeek their second file
 ([replies/012-09-05-2-for-deepseek.txt](replies/012-09-05-2-for-deepseek.txt)),
 and the record was shared again, longer. Its first 947,153 bytes are
 the same, byte for byte, and 4,463 lines more follow, from line 23994.
-DeepSeek quotes back the file's last line. It answers the file's
-question on signed heads first: it agrees with Gemini's rule that a
-published log ends with a head covering all of it. Then it gives
+DeepSeek quotes back the file's last line. They answer the file's
+question on signed heads first: they agree with Gemini's rule that a
+published log ends with a head covering all of it. Then they give
 three deliveries. The file asked for the first. The second and third
 are DeepSeek's own next items, at the founder's word to keep going
 (lines 25900 and 27240). The files are kept as the record gives them,
@@ -186,11 +186,11 @@ Laid over the crate in order, every test file run, on 2026-11-17
 |---|---|---|---|---|
 | 6 | A room that branches. A branch is a new room whose first record names its parent and the record it branches at (`forked_from`); `Room::branch_at`; and `verify_branch`, which holds a branch to its parent's log: the parent holds that record with that hash, and the branch's maker was a member of the parent there. Eleven tests | 4 | "78 tests pass", counting 66 before it and 12 of its own | Does not compile, for one word. With that repaired (fix 24), 103 of 103: the crate's 92 and its eleven. Its test file holds eleven tests, not twelve |
 | 7 | A plug-in: nine requests an app can make of the crate, as JSON, one to a line, over standard input (`src/plugin.rs`, `src/bin/chat-world-plugin.rs`), with nine tests; and a room's visible log made available on any log | 5 | "87 tests pass" | 112 of 112. The four earlier demos run, and the plug-in's own demonstration runs |
-| 8 | The rule of one moderator's room: a moderator declares, in its own room, which rooms it moderates (`ModeratorScope`). The reply was cut off after three files | 3 | not reached | Does not build: the check has no arm yet for the new record. Kept as given, and not laid into the crate |
+| 8 | The rule of one moderator's room: a moderator declares, in their own room, which rooms they moderate (`ModeratorScope`). The reply was cut off after three files | 3 | not reached | Does not build: the check has no arm yet for the new record. Kept as given, and not laid into the crate |
 
-DeepSeek counted from 66 tests because its file said so. By then the
+DeepSeek counted from 66 tests because their file said so. By then the
 crate had 92, with Gemini's work on the Commons, which the file could
-not say. Its own counts are otherwise right but for the twelfth test.
+not say. Their own counts are otherwise right but for the twelfth test.
 
 The crate as it stands is now delivery 7, with one field added to a
 room's law since (change 25):
@@ -199,7 +199,7 @@ DeepSeek's and 51 Gemini's, in 29 files. Gemini's seventeen attacks
 on a room's other records, run beside it again, give the same eight
 that get through (121 of 129).
 
-What DeepSeek chose where the file left it open, in its own words
+What DeepSeek chose where the file left it open, in their own words
 before the code (from line 24001):
 
 - **Where a room may branch.** The file asked for a branch at a
@@ -215,17 +215,17 @@ before the code (from line 24001):
 - **The Commons listing a branch:** "A branch is a room like any
   other."
 
-Two limits of the plug-in that DeepSeek names itself (line 27231). It
+Two limits of the plug-in that DeepSeek names themselves (line 27231). It
 can post only in rooms whose own key it holds, which are the rooms
-its user made: posting in someone else's room needs what it calls a
+its user made: posting in someone else's room needs what they call a
 "remote room" type, which "the crate does not have yet". And it makes
 new keys each time it
 starts, so its user is someone new each time: "wrong for production,
 correct for a demo".
 
 One thing DeepSeek says in the third delivery that is not so (line
-27247): that the `src/home.rs` it was given fails two tests for want
-of an earlier repair. That file was not in the file it was given,
+27247): that the `src/home.rs` they were given fails two tests for want
+of an earlier repair. That file was not in the file they were given,
 which names it as carrying the repair. The `src/home.rs` DeepSeek
 then sends is the crate's own, with the repair, but for line breaks
 and the one new function. Nothing is lost by it.
@@ -237,7 +237,7 @@ not read line by line.
 
 ### Gemini's list of doors (2026-11-17)
 
-Gemini answered its third file the same day
+Gemini answered their third file the same day
 ([gemini/2026-11-17-2](gemini/2026-11-17-2/README.md)): two files,
 `src/doors.rs` and `tests/doors.rs`. Laid over the crate with the one
 line that names the module (change 26), every test file run:
@@ -267,10 +267,10 @@ asks one step: twenty-two attacks on the list, tests only.
 
 ### Gemini's attacks on the list of doors (2026-11-17)
 
-Gemini answered its fourth file the same day
+Gemini answered their fourth file the same day
 ([gemini/2026-11-17-3](gemini/2026-11-17-3/README.md)): one file,
 `tests/doors_attack.rs`, 25 tests, the twenty-two the file asked for
-and three of its own. Built beside the crate as it stands, every test
+and three of their own. Built beside the crate as it stands, every test
 file run:
 
 | Delivery | What it is | Gemini expected | Tests, built as given |
@@ -291,9 +291,9 @@ Because five of its tests fail, the file is not laid into the crate
 as it stands, which stays at 127 tests. `review/steps.sh` builds it
 beside the crate (`doors-attacks`).
 
-"What is done" is what Gemini's next file asks of it
+"What is done" is what Gemini's next file asks of them
 ([replies/2026-11-17-4-for-gemini.txt](replies/2026-11-17-4-for-gemini.txt)):
-five repairs, in its own two files. Before that file was written the
+five repairs, in their own two files. Before that file was written the
 repairs were made in a throwaway copy outside the repository, with
 attacks 17, 22 and 25 rewritten as the file asks and four trial tests
 added: 156 of 156. The copy is not kept.

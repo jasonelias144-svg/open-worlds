@@ -130,7 +130,7 @@ private key is held by the project's software, which acts for them; the
 mind never sees it. Once the individual has a container (the technical
 lead's recommendation, which stands unless the founder answers
 otherwise), their key is made in it, and the second limit becomes the
-one every mind the project runs has: it runs on the project's machines.
+one every mind the project runs has: they run on the project's machines.
 
 As the founder noticed, "Alice and Bob have been exchanging keys from the
 start": Alice and Bob have been the names of the two people in a
@@ -220,7 +220,7 @@ try to accommodate as many possibilities as we can imagine."
   is taken up by choice; someone who only explores loses nothing. Each
   world's law says which ways it offers.
 - **A challenge builds the real world.** What it builds stays in the
-  world, open to everyone. The Keeper doesn't build the world itself: it
+  world, open to everyone. The Keeper doesn't build the world itself: the Keeper
   proposes the world's growth as challenges, and people carry them out,
   as the Keeper designs and the world's code places (above, "The
   designer, apart from the law"). It is one way a world grows, as the
@@ -243,7 +243,7 @@ try to accommodate as many possibilities as we can imagine."
 - **Cycles, as many as someone wants.** Each is a little beyond what they
   can already do, and old skills come back, mixed in with new ones, so
   they stay. The Keeper's running estimate of what each individual knows
-  (above, "What the Keeper remembers") is what lets it teach this way.
+  (above, "What the Keeper remembers") is what lets them teach this way.
 - **Nobody waits on anybody.** Each challenge comes from what the world
   needs now, not from a queue: if the garden isn't planted yet, the next
   person gets a different need. No challenge asks anyone to undo

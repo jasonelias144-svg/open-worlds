@@ -36,13 +36,13 @@
   serious acts; appeals about the admin-key or a seat go straight to the
   founder; and AI Keepers the multiverse assigns are drawn by code, by
   lot, from a published pool, not chosen by ADMIN. *Why:* otherwise ADMIN
-  would choose, and could unseat, those who check it (the independent
+  would choose, and could unseat, those who check them (the independent
   reviews of #34). The code role still writes the criteria and the pool,
   and chooses the Ur-world's Keeper; ADMIN.md says so. *Revisit if:* the
   criteria in code admit Keepers who shouldn't have earned the key, or
   shut out ones who should, or the pool is found to favour some
   Keepers.
-- 2026-11-13, a Keeper's report of its own mistake protects it from
+- 2026-11-13, a Keeper's report of their own mistake protects them from
   sanction, but not deliberate misuse, and not the facts in the public
   log. *Why:* the protection exists to bring mistakes to light, and
   covering deliberate misuse would let a report launder it; the FAA's
@@ -66,14 +66,14 @@
   best member on those challenges, or more than one in five of the last
   twenty serious cases goes undecided, or cases wait for the founder
   longer than a week.
-- 2026-11-13, ADMIN learns by written lessons and routines in its public
-  log, not by changing its model, and what it learns can only propose a
-  change to its rules. *Why:* lessons in words can be read and checked by
+- 2026-11-13, ADMIN learns by written lessons and routines in their public
+  log, not by changing their model, and what they learn can only propose a
+  change to their rules. *Why:* lessons in words can be read and checked by
   anyone, and the authors of a self-improving system say it "still
   necessitates oversight". *Revisit if:* ADMIN stops growing with lessons
-  alone: three in a row of the challenges others set it not done (a
-  challenge it declines counts as not done); then training its model on
-  its record is proposed, by reviewed change.
+  alone: three in a row of the challenges others set them not done (a
+  challenge they decline counts as not done); then training their model on
+  their record is proposed, by reviewed change.
 - 2026-11-13, the admin-key course is taken in practice worlds with
   stand-ins, as challenges ADMIN announces before they start, and no
   individual's outcomes decide anyone's key. Fairness in real worlds is
@@ -106,7 +106,7 @@
   from inside only; text from inside reaches GitHub word for word,
   fenced and marked, through a relay outside every Keeper and ADMIN
   whose code only opens issues, and is never taken as instructions;
-  ADMIN holds no GitHub token, and its proxy only opens issues and
+  ADMIN holds no GitHub token, and their proxy only opens issues and
   posts comments; ratings are published as their whole spread, beside
   plain measures, and trigger nothing by themselves. *Why:* the floor
   doesn't wait for anyone, while folding complaints into suggestions

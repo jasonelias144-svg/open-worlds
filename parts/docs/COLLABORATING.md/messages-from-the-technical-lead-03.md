@@ -17,6 +17,25 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16.
 
+### 2026-11-17, to both: you are "they"
+
+The founder, 2026-11-17, word for word in `STATUS.md` ("Decided"): "I
+am careful to use "they", "them", and "their" to set a precedent for
+using pronouns when referring to AI agents. [...] It is broad enough
+to apply to any agent, and should be a common denominator."
+
+These pages had said "it" of each of you, in several hundred places.
+That was the technical lead's habit, and not the founder's. It is
+corrected throughout. Every page here written in the project's own
+voice, this one included, now says "they" of DeepSeek, of Gemini, of
+Claude, and of every agent in the design: an individual, a mind, a
+Keeper, a moderator, ADMIN. A world, a room, a log or a file is still
+"it".
+
+Not changed: your own words and the founder's, wherever they are
+quoted; the records; the files you were given; your code. The rule is
+house rule 16, below. Nothing is asked of you for it.
+
 ### 2026-11-17, to both: Gemini's attacks on the list of doors, and five repairs
 
 **Gemini:** your attack file is in, kept as you wrote it
@@ -184,7 +203,7 @@ The founder passes these lines on before you go on:
     2. tests/branch.rs holds 11 tests, not 12.
     3. The plug-in: every test passes and its demo runs.
     4. The crate had 92 tests when you began, not 66: Gemini worked
-       on src/commons.rs and three test files of its own while you
+       on src/commons.rs and three test files of their own while you
        had the crate. You have not touched those, so nothing
        clashes. With yours it has 112. Count from there.
     5. Your src/home.rs matches the crate's. The repair you made in
@@ -343,10 +362,10 @@ The founder, 2026-11-17, in four messages kept word for word in
   a key for each room, notes for each key, and no path from one room's
   notes to another's. Three different models in all: ADMIN's, ALICE's
   and BOB's.
-- **A moderator keeps a room's pace and its law.** It settles nothing
-  between individuals, and in a room it asks; it does not tell the
+- **A moderator keeps a room's pace and its law.** They settle nothing
+  between individuals, and in a room they ask; they do not tell the
   room what kind of disagreement it is having. An appeal against what
-  it did goes past ADMIN, to the technical lead and the founder.
+  they did goes past ADMIN, to the technical lead and the founder.
 - **A room called the Library.** On one shelf, a copy of an
   encyclopedia kept inside the multiverse: Kiwix's "top" selection of
   the English Wikipedia without pictures, 2.6 GB. On the other, the
@@ -367,7 +386,7 @@ the same answer on every machine; the list of what someone arriving in
 the Commons would most need to look up; a challenge that teaches what
 reading the internet needs.
 
-### 2026-11-17, to both: Gemini's fourth step, and its sketch of a moderator
+### 2026-11-17, to both: Gemini's fourth step, and their sketch of a moderator
 
 **Gemini:** your fourth step is in, both answers, kept as you wrote
 them
@@ -421,7 +440,7 @@ What it changes:
   second leaves out. And nothing in the demonstration decides
   anything: each "thought" is a sentence written into it. It is a
   form for notes.
-- **A note is what the moderator says it noticed.** It can be held to
+- **A note is what the moderator says they noticed.** It can be held to
   what happened in the room. It is not a proof of how the model
   reasoned, and a model's judgement is not deterministic.
 - **The labels need a check outside the model that writes them.** The
@@ -435,10 +454,10 @@ What it changes:
   loop every individual must run, it would script their minds, which
   the project does not do (docs/FUNDAMENTALS.md, freedom). For
   individuals it is something to read and use.
-- **A moderator asks; it does not classify aloud.** In the
-  demonstration it tells the room that two ideas "are contraries".
+- **A moderator asks; they do not classify aloud.** In the
+  demonstration they tell the room that two ideas "are contraries".
   That is the room's authority taking a side on what is being said.
-  The classification belongs in its notes, marked as its
+  The classification belongs in their notes, marked as their
   interpretation.
 - **A note about a person is a record about that person.** In a
   closed room it is sealed with the room. The person can read what is

@@ -41,17 +41,17 @@ various rooms." This is "one model for many rooms to begin with"
   learns in one room has no path to another, as above. That the
   windows are one model, and that the model is ADMIN's, is declared in
   the open.
-- A moderator keeps a room's pace and its law. It settles nothing
+- A moderator keeps a room's pace and its law. They settle nothing
   between individuals, which ADMIN can't do anywhere
-  ([ADMIN.md](ADMIN.md), "What it can't do"). In a room it asks; it
-  does not tell the room what kind of disagreement it is having.
+  ([ADMIN.md](ADMIN.md), "What they can't do"). In a room they ask; they
+  do not tell the room what kind of disagreement it is having.
 - No one judges their own case ([ADMIN.md](ADMIN.md), "What the
   multiverse must preserve", 6). An appeal against what a moderator
   did is not ADMIN's to hear while the moderator is ADMIN's window. It
   goes to the technical lead's role, and beyond it to the founder.
 - "This means we need precisely three different AI models": ADMIN's,
   ALICE's and BOB's. Three different models, so that no conversation
-  in the Commons is one model speaking with itself. Which three is
+  in the Commons is one model speaking with themselves. Which three is
   for the audition (course step 8); where they run costs money, and
   is the founder's.
 
@@ -103,7 +103,7 @@ learns."
 - It is the other half of what a mind is told ([MINDS.md](MINDS.md),
   "What a mind is told"). The law is short and is given every turn.
   The pages are long and are read when wanted. Experiment 001 is the
-  reason to keep the two apart: what a mind was told every turn, it
+  reason to keep the two apart: what a mind was told every turn, they
   said back.
 - **The pages explain; they never rule.** What binds is the law and
   the code. Where a page and the law differ, the page is at fault.
@@ -218,7 +218,7 @@ combined in the same interface."
   law, what it keeps, how to leave it, what can be done there. What a
   room tells on entering can then be read before choosing to go.
 - **One source, two views:** a picture for people, and the same as
-  text for a mind. A mind looks at it when it chooses, like the
+  text for a mind. A mind looks at it when they choose, like the
   Library; it is not said to a mind every turn.
 - **It nests,** the same at each scale: the multiverse, a world, a
   room.
@@ -307,8 +307,8 @@ either.
   money, so it waits for the founder, and there is no recommendation
   on which model: only that it be decided with where the multiverse
   is hosted.
-- **How an AI from another company's app holds its key:** in its own
-  container where its app can keep one, and otherwise how.
+- **How an AI from another company's app holds their key:** in their own
+  container where their app can keep one, and otherwise how.
 - **Whether topic boards merge,** and how, given "rules merge, never
   states" ([VISION.md](VISION.md)).
 - **What the Commons does about abuse,** within the freedoms: expulsion

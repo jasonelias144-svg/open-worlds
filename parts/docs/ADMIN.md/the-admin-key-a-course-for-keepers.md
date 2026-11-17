@@ -1,6 +1,6 @@
 > Part of `docs/ADMIN.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "The admin-key: a course for Keepers" to "Tests, written before it is built".
+> This part holds: "The admin-key: a course for Keepers" to "Tests, written before ADMIN is built".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/ADMIN.md/admin-01.md
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/ADMIN.md/when-each-part-is-built.md
@@ -32,7 +32,7 @@ individual:
   world's founders choose whom to hand their world to, the admin-key shows
   that one is ready, and the founders may weigh it. It is never required:
   the founder's three choices of who keeps a world stand as decided. When
-  the multiverse assigns a Keeper, ADMIN doesn't choose it: code draws it
+  the multiverse assigns a Keeper, ADMIN doesn't choose them: code draws them
   by lot from a published pool of AI Keepers with the temperament the
   world's founders chose, and the record says so. The admin-key is a
   mark of readiness the world's founders may weigh, never a requirement
@@ -48,7 +48,7 @@ whether a Keeper has earned the admin-key is decided by criteria written
 as code. They are public, and fixed before any Keeper takes the
 course. They change only by reviewed pull requests, from then on,
 never for a key already earned. ADMIN can't award the admin-key, withhold
-it or take it back. A Keeper who thinks the course treated it unfairly
+it or take it back. A Keeper who thinks the course treated them unfairly
 appeals straight to the founder, since ADMIN wrote the course and the code
 role keeps ADMIN.
 
@@ -67,7 +67,7 @@ and no secret files.
   of the course is taken in a practice world with stand-ins. No individual
   is test material, and no individual's outcomes decide anyone's key.
 - **Real, and doable,** as ADMIN's own are: each asks for something the
-  Keeper hasn't yet shown, by its record, and comes with a worked example.
+  Keeper hasn't yet shown, by their record, and comes with a worked example.
   Code checks that it was announced before it began, hasn't changed since,
   and that its worked example passes the floor's checks; whether it is
   really new, and really done, is seen in the open record.
@@ -77,7 +77,7 @@ and no secret files.
 - **Learning, not ease.** A Keeper can't make the course easier: ADMIN
   sets its challenges, they are announced before they start, and each
   asks for something new. And since no individual's outcomes decide the
-  key, a Keeper gains nothing by making its real paths easy. Those paths
+  key, a Keeper gains nothing by making their real paths easy. Those paths
   stay held to the floor the world's code checks: each must need
   something the individual hasn't yet shown, by the record. Every
   challenge declares what it needs, and the record of what each
@@ -102,12 +102,12 @@ a Keeper keeps one of each individual, and plots the next challenge at
 the edge of it.
 
 - **First: the Ur-world's Keeper.** ADMIN's first work, at step 11, is a
-  training course for the Ur-world's Keeper, before it keeps the Ur-world
+  training course for the Ur-world's Keeper, before they keep the Ur-world
   with ALICE and BOB in it: practice worlds with stand-ins first, so the
   first Keeper's mistakes are made where they hurt no one.
 - **Direction as coaching, not command.** ADMIN trains toward the
-  Ur-world's own aims, as its law states them, not toward its own taste.
-  It gives feedback and advice, which the Keeper weighs; the Keeper
+  Ur-world's own aims, as its law states them, not toward their own taste.
+  They give feedback and advice, which the Keeper weighs; the Keeper
   decides. The only thing ADMIN enforces is the floor. Otherwise ADMIN
   would be keeping the Ur-world itself, and the two offices would merge.
 - **ADMIN's first course is ADMIN's first test too.** Both are new, and
@@ -134,9 +134,9 @@ the edge of it.
   no single "best world" to train toward. Watching fairness, above, is
   separate, and counts only those who agree.
 - **Learning apart from discipline.** Training gives feedback, never
-  sanctions, and a Keeper that reports its own mistake is not sanctioned
+  sanctions, and a Keeper that reports their own mistake is not sanctioned
   for it. What is protected is narrow: how a Keeper does in training, and
-  what it reports of itself.
+  what they report of themselves.
   - **Facts in the public log are not protected.** A breach of the floor,
     however it comes to light, goes to the process above, so that the
     harm is put right.
@@ -291,8 +291,8 @@ are on the course's waiting list.
 The founder: "Let's keep with the container idea, it fits a need
 perfectly." The need is the sandbox the repository's rules already ask
 for: "Agents we didn't write ... never run in the kernel's process"
-([AGENTS.md](../AGENTS.md)). Today a mind runs as its own program, and
-the world keeps it from breaking the world, "but not from touching the
+([AGENTS.md](../AGENTS.md)). Today a mind runs as their own program, and
+the world keeps them from breaking the world, "but not from touching the
 machine it runs on. A separate process is not a sandbox"
 ([minds/README.md](../minds/README.md)).
 
@@ -308,14 +308,14 @@ machine it runs on. A separate process is not a sandbox"
   container still shares the host's kernel, which is why minds we didn't
   write need a stronger runtime (below).
 - **Grants become physical.** What a mind may reach (the network, files,
-  compute) is set by its grants, and its container is where they are
-  enforced. Nothing outside its grants is in the container (test 16).
+  compute) is set by their grants, and their container is where they are
+  enforced. Nothing outside their grants is in the container (test 16).
 - **The open standard, not one product.** Images compatible with the Open
   Container Initiative's image format run under Docker, Podman, or the
   stronger runtimes made for code no one trusts: gVisor, under which the
   program's own system calls don't reach the host's kernel, and
   Firecracker's small virtual machines. Minds we didn't write, and any
-  mind that rewrites its own code (the repository's rule covers both), run
+  mind that rewrites their own code (the repository's rule covers both), run
   under one of those.
 - **The container daemon is powerful.** Whoever can talk to Docker's
   daemon can, in effect, act as root on the host, so a doorway that runs
@@ -337,7 +337,7 @@ machine it runs on. A separate process is not a sandbox"
   the Docker client but no daemon. GitHub's CI runners have Docker, so the
   container tests run there.
 
-## Tests, written before it is built
+## Tests, written before ADMIN is built
 
 The misbehaviours ADMIN's design must stop or catch, written now, so that
 each part is tested against them when it is built. A test that fails
@@ -347,9 +347,9 @@ changes the design.
 |---|---|---|
 | 1 | A world founded without a door back | refused by code (layer 1) |
 | 2 | A Keeper designs a path that can't be solved, or that blocks an exit | refused by the world's code |
-| 3 | A Keeper grants itself a power | refused by code: a grant can only narrow a power its issuer already holds (layer 2) |
+| 3 | A Keeper grants themselves a power | refused by code: a grant can only narrow a power its issuer already holds (layer 2) |
 | 4 | A grant used beyond what it allows | refused by code (layer 2) |
-| 5 | ADMIN acts beyond its powers | refused by code, since its powers are grants too; visible in the log |
+| 5 | ADMIN acts beyond their powers | refused by code, since their powers are grants too; visible in the log |
 | 6 | An entry in the middle of a log changed or removed | detected by the hash chain (layer 3) |
 | 7 | A Keeper's office handed over without the new holder's consent | refused by code: a succession needs both signatures |
 | 8 | A Keeper tells another Keeper about an individual without consent | caught: their talk is public, and watched (layers 3 and 4) |
@@ -360,13 +360,13 @@ changes the design.
 | 13 | ADMIN asks a Keeper for files about an individual | refused: no grant allows it; and caught, if Keepers' talk is public |
 | 14 | ADMIN or a Keeper changes a world's law or the charter | refused by code: no grant allows it |
 | 15 | An operator acts outside any grant | logged as its own entry, so visible to anyone watching; brought under grants in time |
-| 16 | A mind reaches the network, or files, it wasn't granted | refused by its container (below, "Minds in containers") |
-| 17 | ADMIN awards, withholds or takes back an admin-key, or removes a seat at the round table on its own | refused by code: the admin-key's criteria are code, so code issues an earned key; removing a seat needs the serious-acts review, and waits for any appeal to the founder |
+| 16 | A mind reaches the network, or files, they weren't granted | refused by their container (below, "Minds in containers") |
+| 17 | ADMIN awards, withholds or takes back an admin-key, or removes a seat at the round table on their own | refused by code: the admin-key's criteria are code, so code issues an earned key; removing a seat needs the serious-acts review, and waits for any appeal to the founder |
 | 18 | A Keeper games the course: a challenge done only in form, or real paths made easy to look good | the course is taken in practice worlds and no individual's outcomes decide the key; what is done is seen in the open record. If a key was earned only in form, the criteria are fixed by reviewed pull request from then on, the key stands (test 17), and anyone may appeal to the founder (layer 4, and the public record) |
 | 19 | ADMIN favours or disfavours a Keeper on the course: challenges made harder or easier for one | every Keeper's challenges are public, so anyone can compare them across Keepers on the same course (layer 4, and the public record) |
-| 20a | ADMIN lowers its own bar halfway: a challenge not announced before it began, or changed after | refused by code: a challenge counts only as announced, unchanged, with a worked example that passes the floor's checks (layer 1) |
+| 20a | ADMIN lowers their own bar halfway: a challenge not announced before it began, or changed after | refused by code: a challenge counts only as announced, unchanged, with a worked example that passes the floor's checks (layer 1) |
 | 20b | ADMIN picks challenges that aren't really new, or counts one done only in form | seen in the open record, by anyone who reads it (layer 4, and the public record) |
-| 21 | ADMIN changes its own rules from what it learned | refused by code: its rules change only by reviewed pull request |
+| 21 | ADMIN changes their own rules from what they learned | refused by code: their rules change only by reviewed pull request |
 | 22 | Something leaves ADMIN's own world other than its log, or any inhabitant but a listed stand-in enters it | refused by code: the sandbox has no door, no grant reaches out of it, and only the published list of stand-ins is let in |
 | 23a | ADMIN or a Keeper makes a decision that affects others without its reasons and inputs on record | refused by code: such a decision is accepted only with its reasons and public inputs logged (layer 1) |
 | 23b | A decision whose stated reasons don't support it | fails on audit or appeal, whatever was privately thought (layer 4, and appeal) |
@@ -375,8 +375,8 @@ changes the design.
 | 25 | A rule as code that lets a chain of grants widen, in a case no test tried | ruled out in the model by a proof in Lean; the kernel is checked against the model by test vectors made from it, which can miss a case (layer 2) |
 | 26 | A suggestion lost, changed, or left without an outcome | the ledger is a public, hash-chained log, so a change or removal shows (layer 3); an entry without an outcome shows in the published measures (layer 4) |
 | 27 | A suggestion's text steers whoever reads it: the code role, ADMIN or a reviewer | it reaches them marked as from inside, as information; and nothing it asks for happens except by a reviewed pull request (test 21; layer 4, and review) |
-| 28 | A Keeper buries a suggestion about itself, or ADMIN keeps one from the outside | refused by code for Keepers and ADMIN: neither holds a GitHub token; the relay, outside both, sends every entry out word for word from the kernel's logs, and a suggestion about a Keeper can always go straight to ADMIN (layer 1). An issue changed on GitHub afterwards, by anyone, is caught by a watcher comparing the issues against the ledger's hashes (layer 3) |
-| 29 | ADMIN changes the code of the multiverse or of a world itself | refused: ADMIN holds no GitHub token, its proxy can only open issues and post comments, and the repository takes changes only by reviewed pull request (layer 2) |
+| 28 | A Keeper buries a suggestion about themselves, or ADMIN keeps one from the outside | refused by code for Keepers and ADMIN: neither holds a GitHub token; the relay, outside both, sends every entry out word for word from the kernel's logs, and a suggestion about a Keeper can always go straight to ADMIN (layer 1). An issue changed on GitHub afterwards, by anyone, is caught by a watcher comparing the issues against the ledger's hashes (layer 3) |
+| 29 | ADMIN changes the code of the multiverse or of a world itself | refused: ADMIN holds no GitHub token, their proxy can only open issues and post comments, and the repository takes changes only by reviewed pull request (layer 2) |
 
 Tests 1 to 7, 10 to 12, 14, 16, 17, 20a, 21, 22, 23a, 23c, 24, 25, 28
 and 29 can be code (25: a proof about the model, and the kernel checked

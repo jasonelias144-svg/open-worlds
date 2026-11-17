@@ -331,7 +331,7 @@
   - Two earlier words change. The Keeper was to be chosen by a wider
     audition at step 11; now the founder has chosen two bases, compared
     in the mirror. And ALICE's birth record said her model might change.
-  - A Keeper is an office, so its engine stays replaceable, by a
+  - A Keeper is an office, so their engine stays replaceable, by a
     recorded change tried in the mirror first (docs/WORLD-KEY.md, "The
     Keeper lasts"). And once ALICE and BOB live, training a personal
     layer on their own experience is, like a change of model, theirs to
@@ -345,8 +345,8 @@
   learning multiversity", with the technical lead's reading, which stands
   unless the founder answers otherwise. Most of the loop is designed
   already (the Keepers' reflections and shared craft, suggestions, the
-  round table, ADMIN's own world and its training of the Keepers); what
-  a Keeper knows of each individual stays in its world, unless that
+  round table, ADMIN's own world and their training of the Keepers); what
+  a Keeper knows of each individual stays in their world, unless that
   individual consents to its moving. Three written
   rules keep it safe: craft, never files; coaching, not command; and
   worlds stay different. The technical lead adds that a lesson earns its
@@ -394,11 +394,11 @@
   move to Rust, I only wanted us to transition naturally, as we are doing
   now. Let’s move forward in Rust, or other languages when needed, but
   primarily to Rust." This replaces the founder's word of the evening
-  before, that DeepSeek sketches in the language it chooses (it chose
+  before, that DeepSeek sketches in the language they choose (they chose
   Python) and the project ports it downstream (2026-11-14, below), and
   was pointed out to the founder.
   The technical lead's reading: DeepSeek writes Rust as proposals, which
-  it can't compile; the project compiles, tests and fits them to the
+  they can't compile; the project compiles, tests and fits them to the
   current code, and DeepSeek works best from links to the current files.
 - 2026-11-15, founder, to DeepSeek (the same record, line 50034): "This
   is exactly how I envisioned the Ur-world, ALICE and BOB is a microverse

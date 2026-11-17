@@ -89,7 +89,7 @@ university, whose rooms are worlds.
 From the founder's later visions the same evening, in
 [VISION.md](VISION.md):
 
-- **The garden's Keeper tends its worlds from outside,** so each world
+- **The garden's Keeper tends their worlds from outside,** so each world
   stays light; scripted code first, an AI Keeper once ADMIN's training
   begins ("A hierarchy of worlds").
 - **Ride along, and steer by branching:** a change to a running primary

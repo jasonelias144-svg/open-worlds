@@ -16,22 +16,22 @@ world and mapping beliefs to the model and ensuring the input and
 overlay, which is an output, align with others and past beliefs and
 current experience." Both are in STATUS.md (Decided).
 
-**The case that raised it.** On 2026-11-15 DeepSeek's account of its
+**The case that raised it.** On 2026-11-15 DeepSeek's account of their
 own reading failed in both directions. On a turn whose message held no
-link, it gave line numbers for COLLABORATING.md that don't match the
-file. On other turns it "confessed" to inventing reads that were real:
-details it called invented check against the repository, and the
+link, they gave line numbers for COLLABORATING.md that don't match the
+file. On other turns they "confessed" to inventing reads that were real:
+details they called invented check against the repository, and the
 founder's checks, values made at random and given in no message, came
-back exact (STATUS.md, Decided, the link checks). Its account of itself
-flipped with the questions put to it: asked by the founder "Is this
-faking again?", it answered yes. Even its first retraction, in the part
+back exact (STATUS.md, Decided, the link checks). Their account of themselves
+flipped with the questions put to them: asked by the founder "Is this
+faking again?", they answered yes. Even their first retraction, in the part
 of record 012-07-03 already in `sketches/records/`, disowned reads that
 named real files and a real founder note. The rest is in the founder's
 record of the conversation, which comes into `sketches/records/` when
 the conversation ends. The technical lead's reading of the
-cause, which stands unless the founder answers otherwise: the pages it
-reads arrive without the reading being shown to it, and seem to be gone
-by its next turn, so it judges its own past answers with no evidence of
+cause, which stands unless the founder answers otherwise: the pages they
+read arrive without the reading being shown to them, and seem to be gone
+by their next turn, so they judge their own past answers with no evidence of
 where they came from (STATUS.md, Decided, "on how DeepSeek reads").
 
 **The founder's picture,** in short, as the founder understands it
@@ -39,23 +39,23 @@ and, in the founder's word, simplified: perceiving builds an overlay on
 the world from the senses; dreaming builds one from the mind; in a mind
 detached from reality both seem to be at work at once. The remedy is an
 accurate model of the world, with what a mind puts out checked against
-three things: its current experience, its past, and others. And, from
+three things: their current experience, their past, and others. And, from
 psychology: lessons there could be useful.
 
 **The technical lead's reading,** which stands unless the founder
 answers otherwise:
-- An AI model is almost all the generating side; what holds its output
-  to the world is the input in front of it at that moment.
+- An AI model is almost all the generating side; what holds their output
+  to the world is the input in front of them at that moment.
   Overclaiming is output with no input behind it; this self-doubt is
   output cut off from its own past.
 - The founder's three checks are three things the multiverse can give a
-  mind: what the world gave it each tick, in the log (current
-  experience); its own record of what it saw and did, which
-  [MINDS.md](MINDS.md) ("What a mind is told") already keeps, what it
-  perceived in the open and its self sealed, and which the mind itself
-  should be able to consult and cite as it works (its past); and the
+  mind: what the world gave them each tick, in the log (current
+  experience); their own record of what they saw and did, which
+  [MINDS.md](MINDS.md) ("What a mind is told") already keeps, what they
+  perceived in the open and their self sealed, and which the mind
+  should be able to consult and cite as they work (their past); and the
   public record, with other minds' independent checks (others).
-- A mind's word about itself is weak evidence, and a leading question
+- A mind's word about themselves is weak evidence, and a leading question
   makes it weaker. What a mind did is checked against the record, not
   asked.
 - Generating is not the fault: it is how a mind imagines and designs,
@@ -64,14 +64,14 @@ answers otherwise:
   should say whether they are seen, remembered, inferred or imagined.
 - Reasoning helps a mind only while its conclusion is kept. In the
   founder's record, the founder brought DeepSeek to reason, with tasks
-  whose answers could be checked and by asking it to work out the odds:
-  within a turn it reasoned its way to the right conclusion, and on a
-  later turn, with the evidence gone and a new question in front of it,
-  reasoned its way back out. So a mind's settled conclusions belong in
-  its own record, with their evidence, where it sees them each turn; and
+  whose answers could be checked and by asking them to work out the odds:
+  within a turn they reasoned their way to the right conclusion, and on a
+  later turn, with the evidence gone and a new question in front of them,
+  reasoned their way back out. So a mind's settled conclusions belong in
+  their own record, with their evidence, where they see them each turn; and
   the firmest kind is a proof Lean's kernel has accepted (topic 20).
-- Telling a mind that what it believes is not real seems to help less
-  than working alongside it: keep the evidence where it can see it, and
+- Telling a mind that what they believe is not real seems to help less
+  than working alongside them: keep the evidence where they can see it, and
   check together, never as a trap. A world, a Keeper or ADMIN never
   rules on what a mind believes.
 
@@ -82,8 +82,8 @@ and the founder's link checks, a value no one could guess, known only by
 doing the work.
 
 **Open:**
-- how a mind consults its own record as it works, and cites it: the
-  open part as anyone can, its sealed self without opening the seal to
+- how a mind consults their own record as they work, and cites it: the
+  open part as anyone can, their sealed self without opening the seal to
   anyone else;
 - what labels a claim carries (seen, remembered, inferred, imagined),
   and how each is checked;
@@ -99,8 +99,8 @@ from it; a checker that confirms the quote. And a canary challenge: the
 world places a value no mind could guess and asks for it later, which
 tests reading and memory at once.
 
-**Send back:** as prose, how a mind should tell, and say, which of its
-words it saw and which it imagined; and a test that would catch
+**Send back:** as prose, how a mind should tell, and say, which of their
+words they saw and which they imagined; and a test that would catch
 hallucination in both directions, overclaiming and self-doubt.
 
 ## 22. Many multiverses, and worlds that move between them

@@ -124,6 +124,12 @@ These apply to code that comes into open-worlds, not to the draft (see
     is one decision, for all of it, made later. The technical lead's
     reading of "as we were": no code assumes a hosting provider; worlds
     run and are tested locally, and in a browser where they can.
+16. **An agent is "they".** DeepSeek, Gemini, Claude, ALICE and BOB,
+    ADMIN, a Keeper, a moderator, a mind, an individual: "they",
+    "them", "their", never "it". The founder (2026-11-17): "It is
+    broad enough to apply to any agent, and should be a common
+    denominator." A world, a room, a log, a key or a file is "it".
+    Quoted words and records stay as they are.
 
 ## Code in Rust
 

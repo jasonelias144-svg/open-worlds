@@ -47,7 +47,7 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    leaving added: identity, passport, protocol, conformance test, poetry
    world, chemistry world, registry, and the first collaboration.
 2. **Keys and signatures** (2026-11-12, #14). An individual's identity is
-   its public key; every petition, act and leave is signed for one world
+   their public key; every petition, act and leave is signed for one world
    with a growing number, so it can't be forged, moved or replayed, and
    the eight weak keys anyone could sign for are refused.
    Ed25519 first written here from RFC 8032, then, once the founder
@@ -66,7 +66,7 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    with `verify_passport`. A forged or altered stamp is refused, and so
    is a stamp "from" a world under a key that isn't the one it is known
    by. Leaving is the individual's own signed request naming the arrival
-   it ends, kept in its passport, so a world that won't stamp a departure
+   it ends, kept in their passport, so a world that won't stamp a departure
    can't stop it: the visit shows as ended on the holder's word, and the
    conformance test names the missing stamp. Requests name the world's
    key as well as its id. Protocol WCP/0.3.
@@ -104,7 +104,7 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    ends with ten stamps that all verify (`python3 -m multiverse.journey`).
    Learned: going through a door is a leave, then a petition, so for a
    moment the individual is in no world, and a refusal on the far side
-   leaves it outside both; and a corridor ticks only when someone acts.
+   leaves them outside both; and a corridor ticks only when someone acts.
 6. **Keeping keys safely, parts one and two** (2026-11-13, #23 and #24).
    Keys saved encrypted, a world's seen numbers kept across a restart,
    and a key signed over to a new one by both keys, for individuals and
@@ -116,7 +116,7 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
 - **The garden** (2026-11-13, #28). The Ur-world's Hello World in Rust: a
   3D world made from its seed as it is explored, ALICE and BOB scripted.
 - **The doorway for minds** (2026-11-13, #29). Any program, in any
-  language, can be a mind: the orientation, what it sees written out,
+  language, can be a mind: the orientation, what they see written out,
   replies read strictly, nothing a mind sends can break the world.
 - **Experiment 001, first words** (2026-11-13, #30). The smallest open
   models in the garden, planned before running. Speech began at about
@@ -131,8 +131,8 @@ course's design is [MULTIVERSE.md](MULTIVERSE.md).
    layers of what a mind is told, how information moves, where everything
    lives. [WORLD-KEY.md](WORLD-KEY.md): the purpose, the tour, the hunt
    for the world-key. [ADMIN.md](ADMIN.md): what the multiverse must
-   preserve, who keeps each world, and ADMIN, with its training, the
-   round table, a learning immune system and how it holds its powers;
+   preserve, who keeps each world, and ADMIN, with their training, the
+   round table, a learning immune system and how they hold their powers;
    [REASONS.md](REASONS.md), decisions on record; [FREEDOMS.md](FREEDOMS.md),
    tools for when freedoms meet; [PARALLEL-WORLDS.md](PARALLEL-WORLDS.md)
    and [VISION.md](VISION.md), the founder's visions of 2026-11-14. The
@@ -334,7 +334,7 @@ multiverse as a computer", for the first time (they were written on
    public view, and only private information, which the test leaves
    private. The mark and the fingerprint stay, so the log still shows
    that something was there. Not looked at here: what a moderator
-   learns across its rooms, and whether that is on record. It stays
+   learns across their rooms, and whether that is on record. It stays
    open with the moderators' questions
    ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item 14).
 2. *Many parts, no master.* Open until 3f, not passed. A room has a

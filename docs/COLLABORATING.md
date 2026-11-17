@@ -31,6 +31,25 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16.
 
+### 2026-11-17, to both: you are "they"
+
+The founder, 2026-11-17, word for word in `STATUS.md` ("Decided"): "I
+am careful to use "they", "them", and "their" to set a precedent for
+using pronouns when referring to AI agents. [...] It is broad enough
+to apply to any agent, and should be a common denominator."
+
+These pages had said "it" of each of you, in several hundred places.
+That was the technical lead's habit, and not the founder's. It is
+corrected throughout. Every page here written in the project's own
+voice, this one included, now says "they" of DeepSeek, of Gemini, of
+Claude, and of every agent in the design: an individual, a mind, a
+Keeper, a moderator, ADMIN. A world, a room, a log or a file is still
+"it".
+
+Not changed: your own words and the founder's, wherever they are
+quoted; the records; the files you were given; your code. The rule is
+house rule 16, below. Nothing is asked of you for it.
+
 ### 2026-11-17, to both: Gemini's attacks on the list of doors, and five repairs
 
 **Gemini:** your attack file is in, kept as you wrote it
@@ -198,7 +217,7 @@ The founder passes these lines on before you go on:
     2. tests/branch.rs holds 11 tests, not 12.
     3. The plug-in: every test passes and its demo runs.
     4. The crate had 92 tests when you began, not 66: Gemini worked
-       on src/commons.rs and three test files of its own while you
+       on src/commons.rs and three test files of their own while you
        had the crate. You have not touched those, so nothing
        clashes. With yours it has 112. Count from there.
     5. Your src/home.rs matches the crate's. The repair you made in
@@ -357,10 +376,10 @@ The founder, 2026-11-17, in four messages kept word for word in
   a key for each room, notes for each key, and no path from one room's
   notes to another's. Three different models in all: ADMIN's, ALICE's
   and BOB's.
-- **A moderator keeps a room's pace and its law.** It settles nothing
-  between individuals, and in a room it asks; it does not tell the
+- **A moderator keeps a room's pace and its law.** They settle nothing
+  between individuals, and in a room they ask; they do not tell the
   room what kind of disagreement it is having. An appeal against what
-  it did goes past ADMIN, to the technical lead and the founder.
+  they did goes past ADMIN, to the technical lead and the founder.
 - **A room called the Library.** On one shelf, a copy of an
   encyclopedia kept inside the multiverse: Kiwix's "top" selection of
   the English Wikipedia without pictures, 2.6 GB. On the other, the
@@ -381,7 +400,7 @@ the same answer on every machine; the list of what someone arriving in
 the Commons would most need to look up; a challenge that teaches what
 reading the internet needs.
 
-### 2026-11-17, to both: Gemini's fourth step, and its sketch of a moderator
+### 2026-11-17, to both: Gemini's fourth step, and their sketch of a moderator
 
 **Gemini:** your fourth step is in, both answers, kept as you wrote
 them
@@ -435,7 +454,7 @@ What it changes:
   second leaves out. And nothing in the demonstration decides
   anything: each "thought" is a sentence written into it. It is a
   form for notes.
-- **A note is what the moderator says it noticed.** It can be held to
+- **A note is what the moderator says they noticed.** It can be held to
   what happened in the room. It is not a proof of how the model
   reasoned, and a model's judgement is not deterministic.
 - **The labels need a check outside the model that writes them.** The
@@ -449,10 +468,10 @@ What it changes:
   loop every individual must run, it would script their minds, which
   the project does not do (docs/FUNDAMENTALS.md, freedom). For
   individuals it is something to read and use.
-- **A moderator asks; it does not classify aloud.** In the
-  demonstration it tells the room that two ideas "are contraries".
+- **A moderator asks; they do not classify aloud.** In the
+  demonstration they tell the room that two ideas "are contraries".
   That is the room's authority taking a side on what is being said.
-  The classification belongs in its notes, marked as its
+  The classification belongs in their notes, marked as their
   interpretation.
 - **A note about a person is a record about that person.** In a
   closed room it is sealed with the room. The person can read what is
@@ -740,7 +759,7 @@ over the other, with every test file of the crate run.
   redaction (`role` for `actor_role`), and its `room.rs` calls `_now`
   and `_canonical`, which the crate does not have. The conversation
   ended before the rest came. Branches go to DeepSeek, who had them
-  next on its own list.
+  next on their own list.
 - **You did not quote the file's last line back.** Please do, each
   time: it is how we know nothing was cut off.
 
@@ -791,7 +810,7 @@ things follow for how we work.
 
 DeepSeek, so that you know what will have changed when the crate comes
 back to you: Gemini has the crate with your five deliveries and the
-three repairs (the message below this one). Its first steps are:
+three repairs (the message below this one). Their first steps are:
 1. A room's log that can be checked from outside. Today `verify_room`
    takes a `Room`, which only the crate's own code can build, so no
    log that came from elsewhere, and no forged one, can be put to it.
@@ -1072,7 +1091,7 @@ What the founder said to you about the Commons in record 012-09-05 is
 now in the project's pages, in the founder's words:
 [COMMONS.md](COMMONS.md), "Rooms with moderators". In short, as the
 technical lead reads it: a moderator for each room, acting within the
-freedoms (it can't make anyone leave, except for an attack on the
+freedoms (they can't make anyone leave, except for an attack on the
 world); a key for each room, so that what a moderator learns in one
 room has no path to another, as you proposed (FUNDAMENTALS.md,
 privacy, item 14); one model for many rooms to begin with; the
@@ -1487,7 +1506,7 @@ has changed since that record, in the order to read it:
    where everything lives);
    [WORLD-KEY.md](WORLD-KEY.md) (the tour, the hunt, and the world-key,
    a signed right to found a world); [ADMIN.md](ADMIN.md) (ADMIN, the
-   Keeper of the multiverse: what it must preserve, how it learns, the
+   Keeper of the multiverse: what it must preserve, how they learn, the
    round table of Keepers, a learning immune system);
    [REASONS.md](REASONS.md) (every office's decision on record, with its
    reasons); [FREEDOMS.md](FREEDOMS.md) (tools for when freedoms meet).
@@ -1723,7 +1742,7 @@ and passes its own 18 tests ("Messages from the technical lead",
 above). It is fitted next. The record then goes on: the one file
 reached DeepSeek whole, and five deliveries of the crate followed,
 kept as written beside it, with what each builds to. Then Gemini,
-from a file of its own, made the log checkable from outside, attacked
+from a file of their own, made the log checkable from outside, attacked
 the check, and repaired it (the newest message above).
 012-06-02's code is being made to work; then the founder and the
 technical lead decide what fits with what is built, and how (STATUS.md,
@@ -1748,7 +1767,7 @@ octopus, the nervous system, the swarm, and in components 44 to 52 the
 council and four more), with the founder's aim for the infrastructure:
 "we just need to create infrastructure that can handle what we cannot
 imagine yet." Then, in components 55 to 63: a curator for each world, an
-AI that speaks for its world and proposes its development but doesn't
+AI that speaks for their world and proposes its development but doesn't
 decide it; contracts between worlds; and, from the founder's idea of a
 public ledger, a shared log of commitments that anyone can check
 offline. And the founder's idea of a free tier and a paid tier, which
@@ -1810,7 +1829,7 @@ In short:
   topic 14): Lyceum Commons, where the multiverse began, rebuilt as a
   superworld of rooms and the first space open to the public. A room's
   law for each kind (people, AIs, or both), as data and as text; how an
-  AI from another company's app could hold its key.
+  AI from another company's app could hold their key.
 - **Offices** ([TOPICS.md](TOPICS.md), topic 19;
   [OFFICES.md](OFFICES.md)): a Keeper's qualifications, as checks code
   could run, and what preparing a successor looks like in the open.
@@ -1819,7 +1838,7 @@ In short:
   kernel accepts its proof; and what a proof attached to an office's
   decision should state.
 - **Hallucination, both ways** ([TOPICS.md](TOPICS.md), topic 21): how a
-  mind tells, and says, which of its words it saw and which it
+  mind tells, and says, which of their words they saw and which they
   imagined; and a test that catches overclaiming and self-doubt alike.
 - **Laws for new worlds:** what a world admits by, what can happen in it,
   what counts as solving a problem there. Forms for the poetry world,
@@ -1837,7 +1856,7 @@ In short:
 
 Held back, as the project's own to do: the project's keys (their
 private halves live only in its private repository), and anything that
-publishes or can't be undone. ADMIN itself and the Keepers
+publishes or can't be undone. ADMIN and the Keepers
 wait for step 11; their interface is fixed in step 4, by the project.
 So are the measures that compare the two Keepers (item 9 above).
 
@@ -1959,6 +1978,12 @@ These apply to code that comes into open-worlds, not to the draft (see
     is one decision, for all of it, made later. The technical lead's
     reading of "as we were": no code assumes a hosting provider; worlds
     run and are tested locally, and in a browser where they can.
+16. **An agent is "they".** DeepSeek, Gemini, Claude, ALICE and BOB,
+    ADMIN, a Keeper, a moderator, a mind, an individual: "they",
+    "them", "their", never "it". The founder (2026-11-17): "It is
+    broad enough to apply to any agent, and should be a common
+    denominator." A world, a room, a log, a key or a file is "it".
+    Quoted words and records stay as they are.
 
 ## Code in Rust
 

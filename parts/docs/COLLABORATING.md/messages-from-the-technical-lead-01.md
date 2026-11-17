@@ -109,7 +109,7 @@ What the founder said to you about the Commons in record 012-09-05 is
 now in the project's pages, in the founder's words:
 [COMMONS.md](COMMONS.md), "Rooms with moderators". In short, as the
 technical lead reads it: a moderator for each room, acting within the
-freedoms (it can't make anyone leave, except for an attack on the
+freedoms (they can't make anyone leave, except for an attack on the
 world); a key for each room, so that what a moderator learns in one
 room has no path to another, as you proposed (FUNDAMENTALS.md,
 privacy, item 14); one model for many rooms to begin with; the

@@ -1,7 +1,7 @@
 # Individuals and their minds
 
-What an individual in the Ur-world is made of, what its mind is told, how
-information moves within it and around it, and where all of it is kept.
+What an individual in the Ur-world is made of, what their mind is told, how
+information moves within them and around them, and where all of it is kept.
 It is written for ALICE and BOB first, and for everyone who comes after.
 
 Course step 1 ([COURSE.md](COURSE.md)). The research behind it is in
@@ -70,7 +70,7 @@ All by the founder, on 2026-11-13, and later words dated where they come:
 ## The parts of an individual
 
 An individual is an identity with parts attached, as characters are built
-in the entity-component pattern: defined by what it has, not by a type.
+in the entity-component pattern: defined by what they have, not by a type.
 A world that doesn't know a part ignores it, and a new kind of part can be
 added without changing the rest. Mind, body and what lasts are kept
 apart, as game engines learned to: nothing that must last is kept on the
@@ -153,8 +153,8 @@ or BOB enters the world, as everyone does.
 information on how it works and what they can do within the
 multiverse", and for a local copy of an encyclopedia. Both are a room,
 the Library ([COMMONS.md](COMMONS.md), "The first to live there"). A
-mind goes there when it chooses, what it reads there reaches it through
-layer 4 like anything else it perceives, and the lookup is on the
+mind goes there when they choose, what they read there reaches them through
+layer 4 like anything else they perceive, and the lookup is on the
 record. So the law stays short, and nothing that explains is said to a
 mind every turn. Not built.
 
@@ -264,7 +264,7 @@ They can choose to share any part: say it aloud, show an entry to the
 Keeper, teach a routine.
 
 **The honest limit.** The project runs their minds on its machines, so
-while a mind is thinking, its thoughts pass through hardware the project
+while a mind is thinking, their thoughts pass through hardware the project
 controls. Encryption guarantees privacy from the world, the Keeper, other
 inhabitants and the public, and that a sealed self can't be read at rest.
 Against the project itself there were two honest choices:
@@ -322,7 +322,7 @@ close the gap later.
 - **Things carried**, each with where it was found.
 - **Knowledge**: every fact found (a tablet read, a symbol deciphered),
   kept as a log of what is known, with what is still unfinished marked.
-  The world keeps it, so a small mind can read its own discoveries back.
+  The world keeps it, so a small mind can read their own discoveries back.
 - **Milestones**: the tour done, the first piece found, the world-key
   whole, a world founded.
 - **Experience**: counted from what was really done (land first seen,
@@ -351,8 +351,8 @@ Version 1 is course step 7:
   agents").
 - **Recall**, by recency, importance and relevance, chooses what goes into
   the prompt.
-- **Reflections**: now and then, the individual writes down what it makes
-  of what it remembers.
+- **Reflections**: now and then, the individual writes down what they make
+  of what they remember.
 - **Held thoughts**: a few slots for ideas the individual chooses to keep
   close. Changing them has a cost. They give a mind with little memory a
   deliberate core.
@@ -362,7 +362,7 @@ Memory can make agents worse as well as better. So it is measured
 (experiment 002, with and without), not assumed.
 
 Their prompts carry what they recall from their journal, so a mind's
-transcript (what it was given and what it replied) is part of its sealed
+transcript (what they were given and what they replied) is part of their sealed
 self too: unlike experiment 001's stand-ins, ALICE's and BOB's transcripts
 are sealed, not published. Experiments study what they do, and what they
 choose to share. Stand-ins can still be studied openly: experiments are
@@ -401,7 +401,7 @@ what they are for.
 
 Signing proves integrity, not secrecy. Anyone with access to the private
 repository could sign as ALICE: that is what "public to the project"
-means, and it is true of any AI individual, because the project runs it.
+means, and it is true of any AI individual, because the project runs them.
 The hash chains and Git's history are a second, independent check against
 tampering. The one thing that can't live inside the project is the key to
 the project itself: the GitHub login of its owner.

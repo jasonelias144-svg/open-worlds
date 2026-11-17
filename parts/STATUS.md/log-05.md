@@ -22,7 +22,7 @@
   brought it (733,438 bytes, 17,192 lines; its first 705,897 bytes
   are the record as it was kept). Looked through first: the
   founder's two turns in the new part hold nothing personal. It
-  holds Gemini's answer to its third file: the lobby's list of
+  holds Gemini's answer to their third file: the lobby's list of
   doors, two files, kept as written in sketches/gemini/2026-11-17-2
   and held to the record by that folder's take.py. Built as given,
   with the one line that names its module (sketches/INDEX.md, change
@@ -31,7 +31,7 @@
   other's fifteen tests. It is the crate as it stands now, 127 tests
   in 31 files. Gemini's seventeen earlier attacks beside it: the
   same eight get through (136 of 144). Read by the technical lead:
-  Gemini's prose in the new part, and `src/doors.rs` whole; its test
+  Gemini's prose in the new part, and `src/doors.rs` whole; their test
   file was run, not read line by line. Gemini's next file is built
   (sketches/replies/2026-11-17-3-for-gemini.txt, 111,151 bytes):
   twenty-two attacks on the list, tests only. The attacks themselves
@@ -91,7 +91,7 @@
   sketches/replies/2026-11-17-2-for-gemini.txt (70,388 bytes). It
   says what Gemini's four steps on the Commons built to, why the
   eight gaps of the fourth are not repaired in the sketch, and what
-  the project takes from its sketch of a moderator; and it asks one
+  the project takes from their sketch of a moderator; and it asks one
   step, the lobby's list of doors: a new file `src/doors.rs` and
   twelve tests (Decided by the technical lead). Eight of the crate's
   twenty-five files go with it. Checked: what the file says of the
@@ -179,7 +179,7 @@
   Wikipedia's; how the copy is read. Nothing is built by this, and no
   step of the course is renumbered until the recheck after 3b.
 - 2026-11-17 Claude: Gemini's record continued, and the fourth step of
-  its round on the Commons kept and built. The founder went back to
+  their round on the Commons kept and built. The founder went back to
   Gemini while this session was out of time. The record grew and was
   replaced (sketches/records/012-00-00-GMNI-Multiverse_Development.txt,
   705,897 bytes, 16,395 lines): its first 633,993 bytes are the copy
@@ -325,7 +325,7 @@
   twice (Decided by the technical lead, today). It is
   sketches/replies/2026-11-17-for-gemini.txt, built by docs/reply.py:
   97,419 bytes, thirteen of the crate's files. It tells Gemini what
-  its four deliveries built to, and asks four steps on the Commons'
+  their four deliveries built to, and asks four steps on the Commons'
   own log. Two findings in it were tried here first: the Commons'
   check takes a value only the crate's own code can build, and a
   Commons record written to JSON holds its "type" twice and can't be
@@ -353,7 +353,7 @@
   (the Google Terms of Service, read today). The whole record is also
   in the private repository, from earlier today. Not done: Gemini's
   replies were not read through, only searched; the steps Gemini wrote
-  before it was given its file (from line 1209) are in the record and
+  before they were given their file (from line 1209) are in the record and
   are not taken out or built again; the founder's other records, which
   the founder spoke of gathering later, are not here yet.
 - 2026-11-17 Claude: Gemini's work is in. The founder, the same day:

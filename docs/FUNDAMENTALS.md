@@ -343,8 +343,8 @@ one of them updates this page.
     the founder's own words ("Perhaps"; "need not have access"), not
     yet a decision. The technical lead's reading, which stands unless
     the founder answers otherwise: an AI that moderates many rooms
-    holds a separate key in each, and what it learns in one room has no
-    path to another. To reason across rooms it must read another key's
+    holds a separate key in each, and what they learn in one room has no
+    path to another. To reason across rooms they must read another key's
     log, which is an act on the record. That the keys which moderate
     are one model is declared in the open: the technical lead's choice,
     on the ground of item 3, while the keys an AI merely takes part
@@ -556,7 +556,7 @@ unless the founder answers otherwise:
   room can read it while the person is there; when the person leaves,
   the room shows it as redacted, with an incident id; and the record
   holds it encrypted. The founder's words, and six changes the
-  technical lead proposed, decided on its recommendation on
+  technical lead proposed, decided on their recommendation on
   2026-11-17 (one's own only; the window says who will read it, with
   AIs off unless turned on; never in the open in the record; taken
   back at any time; the limit on copies said in the window; sealed to
@@ -604,7 +604,7 @@ demonstrably", which stands unless the founder answers otherwise:
   personal to a check. Erring on the side of redacting narrows that,
   and anyone may ask for a redaction afterwards.
 - **The project runs the minds.** While an individual's mind is
-  thinking, its thoughts pass through hardware the project controls.
+  thinking, their thoughts pass through hardware the project controls.
   Encryption keeps a private space from everyone in the worlds, and
   unreadable at rest. Against the project itself, the technical lead's
   recommendation, which stands unless the founder answers otherwise:

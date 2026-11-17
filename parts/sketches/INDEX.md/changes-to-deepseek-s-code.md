@@ -157,7 +157,7 @@ beside its fields; `verify_room` read the bytes with the `type`. So
 `sign_record_dual` now take the wrapping and sign the wrapped record's
 bytes, in `room.rs` and `home.rs` alike. All 18 tests pass, and both
 demos' logs verify. How it is repaired is the technical lead's choice:
-DeepSeek's code signs the bare struct throughout (the test it withdrew
+DeepSeek's code signs the bare struct throughout (the test they withdrew
 does too), so a check that left the `type` out would have agreed with
 the code as well. Signing the `type` is the stronger, since a record
 can't then be passed off as another kind. (The Commons' registrations
@@ -237,7 +237,7 @@ law to read the choice from. All 112 tests pass with it.
 
 **Change 26 (2026-11-17, when Gemini's list of doors was joined): the
 line that names its module.** `src/lib.rs` was not Gemini's to change
-in that round, so its file said the line `pub mod doors;` would be
+in that round, so their file said the line `pub mod doors;` would be
 added here. One line in `chat-world-now/src/lib.rs`; in `DOORS` in
 `review/steps.py`. With Gemini's two files, all 127 tests pass.
 

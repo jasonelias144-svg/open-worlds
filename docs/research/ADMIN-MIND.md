@@ -1,11 +1,11 @@
-# How ADMIN learns, and what it runs on
+# How ADMIN learns, and what they run on
 
 Research for ADMIN ([ADMIN.md](../ADMIN.md)), done on 2026-11-13 under
 house rule 10, "look first" ([COLLABORATING.md](../COLLABORATING.md)).
-The founder asked for three things: that ADMIN design its own training
-and follow it, in a world of its own; that its model be the best
+The founder asked for three things: that ADMIN design their own training
+and follow it, in a world of their own; that their model be the best
 available and free, in "All senses of “free”"; and that ADMIN might
-itself be a council of AI models. Each has been tried elsewhere. Papers
+themselves be a council of AI models. Each has been tried elsewhere. Papers
 are quoted from their arXiv abstracts unless a page is named; model
 licences are as Hugging Face gave them that day.
 
@@ -35,13 +35,13 @@ licences are as Hugging Face gave them that day.
   oversight due to lingering safety concerns"
   ([version 3](https://arxiv.org/html/2505.03335v3)).
 
-Taken: ADMIN sets its own challenges, but each must be doable, not only
-hard, and must ask for something it hasn't yet shown, which the open
+Taken: ADMIN sets their own challenges, but each must be doable, not only
+hard, and must ask for something they haven't yet shown, which the open
 record shows; code checks that it was announced before it began and
 hasn't changed since. So nothing is hidden and the bar can't be lowered
-halfway: the founder's "Challenges, not tests". Its
-self-improvement stays under oversight: what it learns can propose a
-change to its rules, never make one.
+halfway: the founder's "Challenges, not tests". Their
+self-improvement stays under oversight: what they learn can propose a
+change to their rules, never make one.
 
 ## Learning without changing the model
 
@@ -57,8 +57,8 @@ change to its rules, never make one.
   "maintain their own reflective text in an episodic memory buffer"
   ([arXiv 2303.11366](https://arxiv.org/abs/2303.11366)).
 
-Taken: at first, ADMIN learns by writing lessons and keeping routines it
-can reuse, in its public log, not by changing its model. Absolute Zero
+Taken: at first, ADMIN learns by writing lessons and keeping routines they
+can reuse, in their public log, not by changing their model. Absolute Zero
 does change its model's weights; for ADMIN, that waits until a reviewed
 change allows it.
 
@@ -158,7 +158,7 @@ but its models are free and pinned and its inputs are logged, so anyone
 can ask it again with fresh runs and see whether they reach the same
 decision. Reading its reasoning helps; asking again is the stronger
 check. ADMIN
-keeps a private core of its own thoughts, as everyone does, which never
+keeps a private core of their own thoughts, as everyone does, which never
 decides a case.
 
 ## Not checked

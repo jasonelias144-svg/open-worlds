@@ -25,11 +25,11 @@ Sources:
 
 ## What a Keeper needs
 
-A Keeper designs, and the world's code checks and places what it
-designs ([WORLD-KEY.md](../WORLD-KEY.md), "The designer, apart from the
-law"). So it needs:
-- **tools, in structured form:** it acts by proposing records the code
-  checks, so it must call tools and write exact records reliably;
+A Keeper designs, and the world's code checks and places what they
+design ([WORLD-KEY.md](../WORLD-KEY.md), "The designer, apart from the
+law"). So they need:
+- **tools, in structured form:** they act by proposing records the code
+  checks, so they must call tools and write exact records reliably;
 - **long memory, and reasoning when it is needed:** a world's history
   and each visitor's, with long thought for a path and a short word for
   a greeting;
@@ -225,7 +225,7 @@ questions").
   service. The cost goes to the founder before anything is rented
   (STATUS.md, "Open questions": where models run, and the budget).
 - **ADMIN's council avoids Apertus** where it can, so that ADMIN, which
-  watches the Ur-world's Keeper, doesn't share its blind spots. With
+  watches the Ur-world's Keeper, doesn't share their blind spots. With
   V4-Pro in it, ADMIN would share a family with the Mir-Ur-world's
   Keeper, which the same rule tries to avoid; ADMIN's audition weighs
   that ([ADMIN.md](../ADMIN.md)).
