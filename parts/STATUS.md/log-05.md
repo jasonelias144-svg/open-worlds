@@ -8,6 +8,25 @@
 
 ## Log
 
+- 2026-11-17 Claude: Gemini's record is continued, as the founder
+  brought it (733,438 bytes, 17,192 lines; its first 705,897 bytes
+  are the record as it was kept). Looked through first: the
+  founder's two turns in the new part hold nothing personal. It
+  holds Gemini's answer to its third file: the lobby's list of
+  doors, two files, kept as written in sketches/gemini/2026-11-17-2
+  and held to the record by that folder's take.py. Built as given,
+  with the one line that names its module (sketches/INDEX.md, change
+  26): 127 of 127, as Gemini expected. Each of two builds from the
+  one file, Gemini's and the technical lead's own, passes the
+  other's fifteen tests. It is the crate as it stands now, 127 tests
+  in 31 files. Gemini's seventeen earlier attacks beside it: the
+  same eight get through (136 of 144). Read by the technical lead:
+  Gemini's prose in the new part, and `src/doors.rs` whole; its test
+  file was run, not read line by line. Gemini's next file is built
+  (sketches/replies/2026-11-17-3-for-gemini.txt, 111,151 bytes):
+  twenty-two attacks on the list, tests only. The attacks themselves
+  were not written here first, so which get through is not known
+  yet.
 - 2026-11-17 Claude: the founder's decision on the count is recorded
   (Decided), with what follows from it (Decided by the technical
   lead): docs/COMMONS.md, docs/FUNDAMENTALS.md (privacy, 18),

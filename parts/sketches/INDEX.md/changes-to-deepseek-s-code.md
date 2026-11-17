@@ -235,6 +235,12 @@ wrong. It is the one thing in the crate that neither DeepSeek nor
 Gemini wrote, and it is there so that Gemini's list of doors has a
 law to read the choice from. All 112 tests pass with it.
 
+**Change 26 (2026-11-17, when Gemini's list of doors was joined): the
+line that names its module.** `src/lib.rs` was not Gemini's to change
+in that round, so its file said the line `pub mod doors;` would be
+added here. One line in `chat-world-now/src/lib.rs`; in `DOORS` in
+`review/steps.py`. With Gemini's two files, all 127 tests pass.
+
 Not fixed, and why:
 
 - **The two coupled chaos games don't steer apart.** The coupling

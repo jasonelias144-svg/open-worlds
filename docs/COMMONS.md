@@ -714,9 +714,10 @@ combined in the same interface."
 - **It nests,** the same at each scale: the multiverse, a world, a
   room.
 - **Its first form is small:** the Commons' lobby, listing its doors
-  (course step 3f). A sketch of that list is asked of Gemini
-  (2026-11-17):
-  [`sketches/replies/2026-11-17-2-for-gemini.txt`](../sketches/replies/2026-11-17-2-for-gemini.txt).
+  (course step 3f). A sketch of that list is built, by Gemini, in the
+  sketch crate (2026-11-17):
+  [`sketches/gemini/2026-11-17-2/README.md`](../sketches/gemini/2026-11-17-2/README.md).
+  It is being attacked before anything is taken from it.
 
 **One scale up and one scale down** (the practice of 2026-11-17:
 STATUS.md, "Decided by the technical lead"). Down: a room's own page,

@@ -8,6 +8,34 @@
 
 ## Decided by the technical lead
 
+- 2026-11-17, Gemini's list of doors, as it is joined, and what its
+  next file asks (sketches/gemini/2026-11-17-2/README.md). (a) The
+  list is in the crate as it stands, as Gemini wrote it, with the one
+  line that names its module. (b) Gemini's next file asks for
+  attacks on it and no repairs: twenty-two, in one new test file.
+  (c) One of them is on what the count means. A count is a count of
+  keys, and keys cost nothing to make: whoever keeps a room, or
+  anyone who can join an open one, can fill it and put it first
+  among the most populated. (d) Nothing is taken from the sketch
+  into open-worlds' own code until it has been attacked and
+  repaired. (e) Of Gemini's three answers: a count tied to a head
+  the room has signed is taken for the project's own door; so is
+  what a door could show besides, with no id; the record by which
+  someone is found is kept for its own step.
+  *Why:* (a) It passes every test it was asked to, and a second
+  build from the same file passes its tests too. (b) Twice Gemini's
+  attacks found what the code's author had not, and its own code is
+  best attacked by the one who knows where it was unsure. (c) The
+  founder: "The most populated rooms would be on some list when
+  first arriving at the Commons." A list that can be bought with
+  made-up keys misleads whoever arrives. (d) The practice with the
+  room's log and the Commons' log. (e) Gemini named the withheld end
+  of a log as the way a count is made to lie.
+  *What would show it wrong:* for (c), no way being found to tell
+  one holder of many keys from many holders without asking who
+  anyone is, which the project does not ask. Then the count stays
+  what it is, the list says so beside it, and rooms are not ranked
+  by it alone.
 - 2026-11-17, the count on a door (the founder's decision of that
   day, Decided). This takes the place of (b) in the entry of the same
   day on what can be seen from outside, which showed a small count

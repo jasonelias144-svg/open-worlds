@@ -39,16 +39,19 @@
 # Then DeepSeek's deliveries from its second file (2026-11-17):
 #   d6            does not compile: a room that branches, as given
 #   d6-repaired   103 pass (one word repaired, fix 24)
-#   now           112 pass, the four demos run, and the plug-in's own
-#                 demonstration runs. This is d6-repaired with
-#                 DeepSeek's delivery 7, the plug-in, laid over it,
-#                 and one field added to a room's law (change 25),
-#                 which is the crate as it stands.
+#   d7-count      112 pass. This is d6-repaired with DeepSeek's
+#                 delivery 7, the plug-in, laid over it, and one field
+#                 added to a room's law (change 25).
+# Then Gemini's list of doors (2026-11-17):
+#   now           127 pass, the four demos run, and the plug-in's own
+#                 demonstration runs. This is d7-count with Gemini's
+#                 two files laid over it and its module named (change
+#                 26), which is the crate as it stands.
 #   d8            does not compile: the rule of one moderator's room,
 #                 cut off after three files
 # Then Gemini's fourth step (2026-11-17), beside the crate as it
 # stands:
-#   c4            121 pass, 8 fail: the eight attacks on a room's
+#   c4            136 pass, 8 fail: the eight attacks on a room's
 #                 other kinds of record that Gemini said would get
 #                 through
 set -eu
@@ -58,7 +61,7 @@ trap 'rm -rf "$scratch"' EXIT
 python3 "$here/review/steps.py" --aside "$scratch"
 python3 "$here/review/steps.py" --check
 python3 "$here/review/steps.py" --now "$scratch/more"
-for name in 5-repaired g1 g2 g3 g3-repaired c1 c2 c3 d6 d6-repaired d8 c4; do mv "$scratch/more/$name" "$scratch/$name"; done
+for name in 5-repaired g1 g2 g3 g3-repaired c1 c2 c3 d6 d6-repaired d7-count d8 c4; do mv "$scratch/more/$name" "$scratch/$name"; done
 mkdir "$scratch/now"
 cp -R "$here/chat-world-now" "$scratch/now/chat-world"
 status=0
@@ -128,7 +131,8 @@ check_all c2 82 3
 check_all c3 92 0
 check d6 'could not compile `chat-world`'
 check_all d6-repaired 103 0
-check_all now 112 0
+check_all d7-count 112 0
+check_all now 127 0
 check d8 'could not compile `chat-world`'
-check_all c4 121 8
+check_all c4 136 8
 exit $status

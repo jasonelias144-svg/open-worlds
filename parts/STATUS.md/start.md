@@ -110,13 +110,15 @@ free, and never a money machine
   file, built a room that branches and a plug-in over standard input,
   and began the rule of one moderator's room, where its reply was cut
   off (sketches/INDEX.md, "DeepSeek's second file"). With six small
-  repairs the crate as it stands (`chat-world-now/`) passes all 112
+  repairs the crate as it stands (`chat-world-now/`) passes all 127
   of its tests. Gemini's fourth step, 17 attacks, shows eight gaps in
   the check of a room's log; they are built beside the crate, not
   laid into it, and are kept as the list of what the room's own check
-  must refuse. Gemini's next file is built on that crate: the lobby's
-  list of doors, which a map of the Commons is first drawn from
-  (sketches/replies/2026-11-17-2-for-gemini.txt). DeepSeek goes on
+  must refuse. Gemini then built the lobby's list of doors, which a
+  map of the Commons is first drawn from
+  (sketches/gemini/2026-11-17-2/), and its next file asks it to
+  attack that list
+  (sketches/replies/2026-11-17-3-for-gemini.txt). DeepSeek goes on
   with its third step. Fitting the crate to open-worlds' own code is
   step 3c.
   DeepSeek's code from record 012-06-02 works in part (#63), with a

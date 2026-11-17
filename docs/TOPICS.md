@@ -665,9 +665,11 @@ plant world it hosts, built from its birth record, its template and
 dials, and its signed head, and opening onto the plant's live view. It
 answers none of the open questions above; it is a page to try them on.
 
-**Asked for, as a sketch** (2026-11-17): the Commons' lobby listing
-its doors, from Gemini, in the sketch crate
-([`sketches/replies/2026-11-17-2-for-gemini.txt`](../sketches/replies/2026-11-17-2-for-gemini.txt)).
+**Built, as a sketch** (2026-11-17): the Commons' lobby listing its
+doors, by Gemini, in the sketch crate
+([`sketches/gemini/2026-11-17-2/README.md`](../sketches/gemini/2026-11-17-2/README.md)),
+from
+[`sketches/replies/2026-11-17-2-for-gemini.txt`](../sketches/replies/2026-11-17-2-for-gemini.txt).
 A door holds a place and no one in it. A list handed on is checked by
 drawing it again. And the same list is written as text for a mind,
 with every word that came from a log in quotes, so that a room's topic

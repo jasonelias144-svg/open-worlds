@@ -9,6 +9,7 @@ pub mod verify;
 pub mod transcript;
 pub mod home;
 pub mod commons;
+pub mod doors;
 pub mod head;
 pub mod attestation;
 pub mod plugin;
