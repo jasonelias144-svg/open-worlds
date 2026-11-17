@@ -20,7 +20,7 @@ GMNI, Gemini's.
 | [012-06-02, Patterns and Multiverses, a new cycle](records/012-06-02-DPSK-Patterns_Multiverses.txt) | After reading `docs/COLLABORATING.md`, proposals for steps ahead: fractal worlds, a hierarchy of worlds, branching, a gallery of worlds and its governance; then the smallest learner that chooses, and individuals as signed, replayable bundles across worlds. Continued (from line 43168, shared on 2026-11-15): a multiversal map and an individual's worldline, a look at games, a microverse, the Ur-world as a garden of hosted fractal worlds, and the move to Rust: an Ur-garden, its keeper, a server, and verifiers in Rust, Python and Node.js. It ends with DeepSeek asking which piece is next | 62,610 | `979f7eef52c10396a682e2fcc0a4e76e1b5d0080b23a71ef22734f265ef0343c` |
 | [012-07-03, Patterns and Multiverses, the endless plant](records/012-07-03-DPSK-Patterns_Multiverses.txt) | Begun from `docs/COLLABORATING.md`: links tried as the founder pasted them, then the endless plant, the first stage of living worlds (a design and a sketch crate in Rust, with a choice neuron), DeepSeek's questions for the technical lead, and its answers to them once the founder left them to its judgement | 1,380 | `efe36ff3749bc1c776d27d2d2a407812cd784015904df89d1a3b3c9672ee5414` |
 | [012-09-05, Patterns and Multiverses, water and the Commons](records/012-09-05-DPSK-Patterns_Multiverses.txt) | Begun from `docs/COLLABORATING.md`: water as particles, the garden and the botanical garden (Python); signed world heads; then the founder's turn to the Commons as chat rooms, each with an AI moderator, and a home room for each person; a schema for every record; a design page; and a crate in Rust, `chat-world`; DeepSeek's order for the cycles after. Then, continued: signed heads for the crate; the one file the founder gave DeepSeek, which reached it whole; and five deliveries of `chat-world` from it, a step at a time. Then, continued again: DeepSeek's second file, which reached it whole, and three more deliveries from it: a room that branches, a plug-in over standard input, and the rule of one moderator's room, where the reply was cut off after three files | 28,456 | `bb8c5fce23a4286906836536fa2023ac215d6f10d3349ea64879838158aa8a8d` |
-| [012-00-00, Multiverse Development, with Gemini](records/012-00-00-GMNI-Multiverse_Development.txt) | The founder's conversation with Gemini, kept with the rest since 2026-11-17 at the founder's word (STATUS.md, "Decided"). Begun from a link to `docs/COLLABORATING.md`, which Gemini could not open. The founder gives it the project's earlier records one after another, then the founder's own work on opposites, and Gemini reads each. From line 1209 Gemini writes steps for the `chat-world` crate from a file that was out of date (built once and not kept: STATUS.md, "Decided", 2026-11-16, on naming Gemini). From line 9748, given the one file written for it, it writes the four deliveries kept in [gemini/2026-11-16](gemini/2026-11-16/README.md). From line 13528, given a second file, it writes three deliveries on the Commons' own log, and from line 14973 that file's fourth step, answered twice, all kept in [gemini/2026-11-17](gemini/2026-11-17/README.md). From line 15971 it stops writing code, at the founder's word, and sketches how an AI that moderates a room might decide what to do, drawing on three earlier works of the founder's | 16,395 | `56ab2b6f63e207e40ef829b1585eaee3ea420360c8c87914cda4c4dc36994096` |
+| [012-00-00, Multiverse Development, with Gemini](records/012-00-00-GMNI-Multiverse_Development.txt) | The founder's conversation with Gemini, kept with the rest since 2026-11-17 at the founder's word (STATUS.md, "Decided"). Begun from a link to `docs/COLLABORATING.md`, which Gemini could not open. The founder gives it the project's earlier records one after another, then the founder's own work on opposites, and Gemini reads each. From line 1209 Gemini writes steps for the `chat-world` crate from a file that was out of date (built once and not kept: STATUS.md, "Decided", 2026-11-16, on naming Gemini). From line 9748, given the one file written for it, it writes the four deliveries kept in [gemini/2026-11-16](gemini/2026-11-16/README.md). From line 13528, given a second file, it writes three deliveries on the Commons' own log, and from line 14973 that file's fourth step, answered twice, all kept in [gemini/2026-11-17](gemini/2026-11-17/README.md). From line 15971 it stops writing code, at the founder's word, and sketches how an AI that moderates a room might decide what to do, drawing on three earlier works of the founder's. From line 16396, given a third file, it writes the lobby's list of doors, kept in [gemini/2026-11-17-2](gemini/2026-11-17-2/README.md) | 17,192 | `b0242aa31ca132c27852a868735379b1f0b7e35c9d3ae4d303b5353b89ec43fd` |
 
 ## Links from the records
 
@@ -561,8 +561,9 @@ Gemini's next file
 asks one step: the lobby's list of doors, which is what a map of the
 Commons is first drawn from, in a new file `src/doors.rs` with fifteen
 tests. A door shows how many are in the room, unless the room's law
-hides that, and the most populated can be listed first. Nothing has come back yet. The file was built again on the
-crate with DeepSeek's next deliveries in it, below.
+hides that, and the most populated can be listed first. The file was
+built again on the crate with DeepSeek's next deliveries in it, below.
+Gemini's answer to it is after that ("Gemini's list of doors").
 
 ### DeepSeek's second file: branches, a plug-in, and a rule cut off (2026-11-17)
 
@@ -633,6 +634,36 @@ Read by the technical lead: all of DeepSeek's prose in the new part;
 `verify_branch` whole; and each of the eighth delivery's three files
 against the file before it. The rest of the code was built and run,
 not read line by line.
+
+### Gemini's list of doors (2026-11-17)
+
+Gemini answered its third file the same day
+([gemini/2026-11-17-2](gemini/2026-11-17-2/README.md)): two files,
+`src/doors.rs` and `tests/doors.rs`. Laid over the crate with the one
+line that names the module (change 26), every test file run:
+
+| Delivery | What it is | Gemini expected | Tests, built as given |
+|---|---|---|---|
+| The list of doors | `draw`, `check`, `ranked` and `as_text`, with fifteen tests. A door shows a room, its law, and how many are in it unless the room's law hides that | 127 | 127 of 127 |
+
+Nothing was repaired. It is the crate as it stands now:
+`deepseek/012-09-05/chat-world-now/`, 127 tests, 61 of them
+DeepSeek's and 66 Gemini's, in 31 files. Gemini's seventeen attacks
+on a room's other records, run beside it, give the same eight that
+get through (136 of 144).
+
+The technical lead had written the same step out, outside the
+repository. Each build passes the other's fifteen tests.
+
+One thing seen on reading it, which the next file puts to Gemini as
+an attack: a count is a count of keys, and keys cost nothing to make.
+Whoever keeps a room, or anyone who can join an open one, can fill
+it with keys of their own making and put it first among the most
+populated.
+
+Gemini's next file
+([replies/2026-11-17-3-for-gemini.txt](replies/2026-11-17-3-for-gemini.txt))
+asks one step: twenty-two attacks on the list, tests only.
 
 ## Record 012-03-02, component by component
 
@@ -909,6 +940,12 @@ says otherwise. Seven lines in `chat-world-now/src/template.rs`; in
 wrong. It is the one thing in the crate that neither DeepSeek nor
 Gemini wrote, and it is there so that Gemini's list of doors has a
 law to read the choice from. All 112 tests pass with it.
+
+**Change 26 (2026-11-17, when Gemini's list of doors was joined): the
+line that names its module.** `src/lib.rs` was not Gemini's to change
+in that round, so its file said the line `pub mod doors;` would be
+added here. One line in `chat-world-now/src/lib.rs`; in `DOORS` in
+`review/steps.py`. With Gemini's two files, all 127 tests pass.
 
 Not fixed, and why:
 

@@ -15,7 +15,8 @@ hash in its folder's MANIFEST.json.
     python3 steps.py --aside OUT    and OUT/5-aside
     python3 steps.py --now OUT      and OUT/5-repaired, g1, g2, g3,
                                     g3-repaired, c1, c2, c3, d6,
-                                    d6-repaired, d7, now, c4, d8
+                                    d6-repaired, d7, d7-count, now,
+                                    c4, d8
     python3 steps.py --check        is ../chat-world-now what --now makes?
 
 Nothing is run: this only copies files. Each OUT/N/chat-world is the
@@ -40,10 +41,13 @@ delivery before left it.
                  ../../../INDEX.md, fix 24).
     d7           DeepSeek's delivery 7 laid over it: the plug-in
                  (../chat-world-steps/7).
-    now          d7, with one field added to a room's law (COUNT;
+    d7-count     d7, with one field added to a room's law (COUNT;
                  ../../../INDEX.md, change 25): whether how many are in
-                 the room is hidden outside it. This is the crate as it
-                 stands, kept in ../chat-world-now.
+                 the room is hidden outside it.
+    now          d7-count, with Gemini's list of doors laid over it
+                 (../../../gemini/2026-11-17-2/steps/1) and the one
+                 line that names its module (DOORS; change 26). This
+                 is the crate as it stands, kept in ../chat-world-now.
     d8           now, with DeepSeek's delivery 8 laid over it as far as
                  it came: the rule of one moderator's room
                  (../chat-world-steps/8). The reply was cut off after
@@ -88,6 +92,9 @@ GEMINI = os.path.join(os.path.dirname(os.path.dirname(HERE)),
 # Gemini's second round: the Commons' own log.
 GEMINI_COMMONS = os.path.join(os.path.dirname(os.path.dirname(HERE)),
                               "gemini", "2026-11-17")
+# Gemini's third round: the lobby's list of doors.
+GEMINI_DOORS = os.path.join(os.path.dirname(os.path.dirname(HERE)),
+                            "gemini", "2026-11-17-2")
 # The condition in delivery 5's src/verify.rs that does not compile.
 FAULT = ('if !looks_like_hash(&k.entry_hashes.iter().any(|_| "x".to_string())'
          '.then(|| "".to_string()).unwrap_or_default()) {')
@@ -203,6 +210,14 @@ COUNT = [
 ]
 
 
+# Change 26, made when Gemini's list of doors was joined: the one
+# line that names its module. Gemini's file said this line would be
+# added here, since src/lib.rs was not Gemini's to change.
+DOORS = [
+    ("src/lib.rs", "pub mod commons;\n", "pub mod commons;\npub mod doors;\n"),
+]
+
+
 def lay(given, tree):
     """Copies every file under `given` over `tree`; says how many."""
     count = 0
@@ -249,6 +264,7 @@ def gemini_as_written(kept=None):
     if kept is None:
         gemini_as_written(GEMINI)
         gemini_as_written(GEMINI_COMMONS)
+        gemini_as_written(GEMINI_DOORS)
         return
     with open(os.path.join(kept, "MANIFEST.json"), encoding="utf-8") as f:
         files = json.load(f)["files"]
@@ -274,8 +290,8 @@ def check():
         if not same(made, os.path.join(HERE, "chat-world-now")):
             sys.exit("chat-world-now is not the deliveries with the listed "
                      "repairs: run steps.py --now and compare")
-    print("chat-world-now is DeepSeek's seven deliveries and Gemini's six, "
-          "with the listed repairs")
+    print("chat-world-now is DeepSeek's seven deliveries and Gemini's seven, "
+          "with the listed repairs and changes")
 
 
 def main(argv, quiet=False):
@@ -343,9 +359,15 @@ def main(argv, quiet=False):
         say(f"DeepSeek's delivery 7, the plug-in: "
             f"{count} files laid over: d7")
         before = tree
-        tree = os.path.join(out, "now", "chat-world")
+        tree = os.path.join(out, "d7-count", "chat-world")
         repaired(before, tree, COUNT)
-        say("a room's law can hide its count: now")
+        say("a room's law can hide its count: d7-count")
+        before = tree
+        tree = os.path.join(out, "now", "chat-world")
+        repaired(before, tree, DOORS)
+        count = lay(os.path.join(GEMINI_DOORS, "steps", "1"), tree)
+        say(f"Gemini's list of doors: {count} files laid over, and its "
+            f"module named: now")
         before = tree
         tree = os.path.join(out, "c4", "chat-world")
         shutil.copytree(before, tree)

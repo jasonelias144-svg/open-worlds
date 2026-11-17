@@ -102,13 +102,15 @@ free, and never a money machine
   file, built a room that branches and a plug-in over standard input,
   and began the rule of one moderator's room, where its reply was cut
   off (sketches/INDEX.md, "DeepSeek's second file"). With six small
-  repairs the crate as it stands (`chat-world-now/`) passes all 112
+  repairs the crate as it stands (`chat-world-now/`) passes all 127
   of its tests. Gemini's fourth step, 17 attacks, shows eight gaps in
   the check of a room's log; they are built beside the crate, not
   laid into it, and are kept as the list of what the room's own check
-  must refuse. Gemini's next file is built on that crate: the lobby's
-  list of doors, which a map of the Commons is first drawn from
-  (sketches/replies/2026-11-17-2-for-gemini.txt). DeepSeek goes on
+  must refuse. Gemini then built the lobby's list of doors, which a
+  map of the Commons is first drawn from
+  (sketches/gemini/2026-11-17-2/), and its next file asks it to
+  attack that list
+  (sketches/replies/2026-11-17-3-for-gemini.txt). DeepSeek goes on
   with its third step. Fitting the crate to open-worlds' own code is
   step 3c.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
@@ -3127,6 +3129,34 @@ of it is asked again until it is needed.
 
 ## Decided by the technical lead
 
+- 2026-11-17, Gemini's list of doors, as it is joined, and what its
+  next file asks (sketches/gemini/2026-11-17-2/README.md). (a) The
+  list is in the crate as it stands, as Gemini wrote it, with the one
+  line that names its module. (b) Gemini's next file asks for
+  attacks on it and no repairs: twenty-two, in one new test file.
+  (c) One of them is on what the count means. A count is a count of
+  keys, and keys cost nothing to make: whoever keeps a room, or
+  anyone who can join an open one, can fill it and put it first
+  among the most populated. (d) Nothing is taken from the sketch
+  into open-worlds' own code until it has been attacked and
+  repaired. (e) Of Gemini's three answers: a count tied to a head
+  the room has signed is taken for the project's own door; so is
+  what a door could show besides, with no id; the record by which
+  someone is found is kept for its own step.
+  *Why:* (a) It passes every test it was asked to, and a second
+  build from the same file passes its tests too. (b) Twice Gemini's
+  attacks found what the code's author had not, and its own code is
+  best attacked by the one who knows where it was unsure. (c) The
+  founder: "The most populated rooms would be on some list when
+  first arriving at the Commons." A list that can be bought with
+  made-up keys misleads whoever arrives. (d) The practice with the
+  room's log and the Commons' log. (e) Gemini named the withheld end
+  of a log as the way a count is made to lie.
+  *What would show it wrong:* for (c), no way being found to tell
+  one holder of many keys from many holders without asking who
+  anyone is, which the project does not ask. Then the count stays
+  what it is, the list says so beside it, and rooms are not ranked
+  by it alone.
 - 2026-11-17, the count on a door (the founder's decision of that
   day, Decided). This takes the place of (b) in the entry of the same
   day on what can be seen from outside, which showed a small count
@@ -4296,6 +4326,25 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-17 Claude: Gemini's record is continued, as the founder
+  brought it (733,438 bytes, 17,192 lines; its first 705,897 bytes
+  are the record as it was kept). Looked through first: the
+  founder's two turns in the new part hold nothing personal. It
+  holds Gemini's answer to its third file: the lobby's list of
+  doors, two files, kept as written in sketches/gemini/2026-11-17-2
+  and held to the record by that folder's take.py. Built as given,
+  with the one line that names its module (sketches/INDEX.md, change
+  26): 127 of 127, as Gemini expected. Each of two builds from the
+  one file, Gemini's and the technical lead's own, passes the
+  other's fifteen tests. It is the crate as it stands now, 127 tests
+  in 31 files. Gemini's seventeen earlier attacks beside it: the
+  same eight get through (136 of 144). Read by the technical lead:
+  Gemini's prose in the new part, and `src/doors.rs` whole; its test
+  file was run, not read line by line. Gemini's next file is built
+  (sketches/replies/2026-11-17-3-for-gemini.txt, 111,151 bytes):
+  twenty-two attacks on the list, tests only. The attacks themselves
+  were not written here first, so which get through is not known
+  yet.
 - 2026-11-17 Claude: the founder's decision on the count is recorded
   (Decided), with what follows from it (Decided by the technical
   lead): docs/COMMONS.md, docs/FUNDAMENTALS.md (privacy, 18),

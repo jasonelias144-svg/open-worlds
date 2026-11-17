@@ -114,15 +114,16 @@ def test_its_keys_are_hex_and_its_time_is_the_clock():
 
 
 def test_the_crate_as_it_stands_is_the_deliveries_with_the_listed_repairs():
-    # Fixes 19 to 24 and change 25. chat-world-now is put together here, so nothing in
+    # Fixes 19 to 24, changes 25 and 26. chat-world-now is put together here, so nothing in
     # the record says what it must hold. review/steps.py does: the crate
     # DeepSeek was given, DeepSeek's five deliveries laid over it in
     # order, three repairs, Gemini's three deliveries, two earlier tests
     # corrected, a room's law closed to change in place, Gemini's three
     # deliveries on the Commons, DeepSeek's branches with one word
-    # repaired, DeepSeek's plug-in, and one field added to a room's law
-    # at the founder's word. This runs its check, which also holds
-    # Gemini's files to their hashes.
+    # repaired, DeepSeek's plug-in, one field added to a room's law at
+    # the founder's word, and Gemini's list of doors with the line that
+    # names its module. This runs its check, which also holds Gemini's
+    # files to their hashes.
     done = subprocess.run(
         [sys.executable, "-I", str(HERE / "review" / "steps.py"), "--check"],
         capture_output=True, text=True)
@@ -132,7 +133,8 @@ def test_the_crate_as_it_stands_is_the_deliveries_with_the_listed_repairs():
                         ("attack.rs", 22), ("commons_outside.rs", 3),
                         ("commons_attack.rs", 16),
                         ("commons_across.rs", 7),
-                        ("branch.rs", 11), ("plugin.rs", 9)):
+                        ("branch.rs", 11), ("plugin.rs", 9),
+                        ("doors.rs", 15)):
         text = (tests / name).read_text(encoding="utf-8")
         assert text.count("#[test]") == count, name
     # Change 25: the one field, left out of what is written when it is
@@ -151,7 +153,8 @@ def test_geminis_files_are_the_ones_its_record_gives():
     # out of Gemini's conversation record by each folder's take.py. Run
     # with no argument, it takes them out of the record again and
     # compares.
-    for folder, count in (("2026-11-16", 10), ("2026-11-17", 7)):
+    for folder, count in (("2026-11-16", 10), ("2026-11-17", 7),
+                          ("2026-11-17-2", 2)):
         take = HERE.parent.parent / "gemini" / folder / "take.py"
         done = subprocess.run([sys.executable, "-I", str(take)],
                               capture_output=True, text=True)

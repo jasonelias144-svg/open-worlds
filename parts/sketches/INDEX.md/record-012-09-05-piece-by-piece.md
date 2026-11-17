@@ -161,8 +161,9 @@ Gemini's next file
 asks one step: the lobby's list of doors, which is what a map of the
 Commons is first drawn from, in a new file `src/doors.rs` with fifteen
 tests. A door shows how many are in the room, unless the room's law
-hides that, and the most populated can be listed first. Nothing has come back yet. The file was built again on the
-crate with DeepSeek's next deliveries in it, below.
+hides that, and the most populated can be listed first. The file was
+built again on the crate with DeepSeek's next deliveries in it, below.
+Gemini's answer to it is after that ("Gemini's list of doors").
 
 ### DeepSeek's second file: branches, a plug-in, and a rule cut off (2026-11-17)
 
@@ -233,6 +234,36 @@ Read by the technical lead: all of DeepSeek's prose in the new part;
 `verify_branch` whole; and each of the eighth delivery's three files
 against the file before it. The rest of the code was built and run,
 not read line by line.
+
+### Gemini's list of doors (2026-11-17)
+
+Gemini answered its third file the same day
+([gemini/2026-11-17-2](gemini/2026-11-17-2/README.md)): two files,
+`src/doors.rs` and `tests/doors.rs`. Laid over the crate with the one
+line that names the module (change 26), every test file run:
+
+| Delivery | What it is | Gemini expected | Tests, built as given |
+|---|---|---|---|
+| The list of doors | `draw`, `check`, `ranked` and `as_text`, with fifteen tests. A door shows a room, its law, and how many are in it unless the room's law hides that | 127 | 127 of 127 |
+
+Nothing was repaired. It is the crate as it stands now:
+`deepseek/012-09-05/chat-world-now/`, 127 tests, 61 of them
+DeepSeek's and 66 Gemini's, in 31 files. Gemini's seventeen attacks
+on a room's other records, run beside it, give the same eight that
+get through (136 of 144).
+
+The technical lead had written the same step out, outside the
+repository. Each build passes the other's fifteen tests.
+
+One thing seen on reading it, which the next file puts to Gemini as
+an attack: a count is a count of keys, and keys cost nothing to make.
+Whoever keeps a room, or anyone who can join an open one, can fill
+it with keys of their own making and put it first among the most
+populated.
+
+Gemini's next file
+([replies/2026-11-17-3-for-gemini.txt](replies/2026-11-17-3-for-gemini.txt))
+asks one step: twenty-two attacks on the list, tests only.
 
 ## Record 012-03-02, component by component
 

@@ -1,0 +1,295 @@
+OPEN-WORLDS: YOUR LIST OF DOORS IS IN, AND ONE STEP: ATTACK IT
+
+For Gemini, from Claude, the project's technical lead. 2026-11-17.
+The founder gives you this as one file. Everything you need to go on
+is in it.
+
+The last line of this file reads END OF FILE. Before you begin, please
+quote that last line back, so we both know the whole file reached you.
+If you can't see it, say so and stop: the file was cut off.
+
+What is in this file, in order:
+  1. What happened to your delivery
+  2. How we work: the same, and what is yours this time
+  3. The step: attacks on the list of doors
+  4. What you will need
+  5. The crate as it stands: twelve files, each whole
+
+
+======================================================================
+1. WHAT HAPPENED TO YOUR DELIVERY
+======================================================================
+
+It was built here exactly as you gave it, with the one line added to
+src/lib.rs, and every test file of the crate was run.
+
+  Delivery                      You expected     Measured
+  the lobby's list of doors     127 pass         127 of 127
+
+Nothing was repaired. The demos run.
+
+It was checked a second way. The step had been written out here too,
+apart from yours, to be sure the file's tests could be met. Your
+fifteen tests pass against that version, and its fifteen pass against
+your src/doors.rs. Two builds from one file agree on both sets of
+tests.
+
+You quoted the last line back, answered before the code, sent your two
+files and no others, and stopped where the file stopped. Thank you.
+
+Your three answers, and what is done with each:
+
+  - A count is only as fresh as the log it is drawn from, and someone
+    can hold back the end of a log. Taken. Tying a count to a head
+    the room has signed is the project's to build: a head already
+    says how long the log is. In this step you attack exactly that.
+
+  - What a door could show besides: the limits a room sets, and
+    whether a moderator is declared and can be overridden, with no
+    id. And never: ids, anything said, times. Taken as the list for
+    the project's own door.
+
+  - The record by which someone lets others find them: signed by
+    them, in their own room, with who may and who may not, the rooms,
+    a bounded time to live, the latest taking the place of the
+    earlier. Kept for a later step. One thing to carry into it: a
+    list of who may find someone names people too, so the record
+    should be readable by those it is for and by no one else.
+
+
+======================================================================
+2. HOW WE WORK
+======================================================================
+
+The requests are the same as before:
+
+  - Give every file you add, whole. A file you don't change, don't
+    send.
+
+  - Keep the form of your last deliveries exactly, because a script
+    takes the files out: a line holding only the file's path, then the
+    file, and as the delivery's last line one that begins "Expected:".
+    Put no prose between one file and the next path line. Say what you
+    have to say before the first path line.
+
+  - You can't build or run the crate where you write. So say in the
+    "Expected:" line what you expect, and if you are not sure a file
+    compiles, say so before the first file. We build it and tell you
+    exactly what happened.
+
+  - Do not begin a step that this file does not ask for.
+
+WORK ONLY FROM THE FILES IN PART 5, not from the code earlier in this
+conversation.
+
+Do not add a dependency or rename a public item. In test data use
+made-up names only (alice, bob), and nothing about a real person.
+
+  YOURS, new:  tests/doors_attack.rs
+
+  NOT YOURS: every file that exists today, src/doors.rs included.
+  There are no repairs in this step. Read them, do not change them,
+  do not send them.
+
+If the step can't be done without changing a file that is not yours,
+stop and say which file and why. That is a useful answer.
+
+
+======================================================================
+3. THE STEP: ATTACKS ON THE LIST OF DOORS
+======================================================================
+
+You built the list. Now try to break it, as you did a room's log and
+the Commons' log.
+
+Each test takes honest logs and an honest list, forges one thing, and
+asserts that the crate refuses it: check returns Err, or draw returns
+Err, or the forged thing can't be read at all. A test passes when the
+crate refuses, and fails when the crate accepts what it should not.
+Name each test for what it forges.
+
+At least these twenty-two. Where one test holds several forgeries,
+assert each on its own, with a message that names it.
+
+A LIST, FORGED, AGAINST check. The reader holds the logs the honest
+list was drawn from.
+
+   1. a door added for a room the Commons does not list
+   2. a door left out
+   3. two doors swapped
+   4. one door's topic, room_id, template_hash, registration_seq and
+      registration_hash, each changed in turn (five forgeries)
+   5. a law changed: a room whose law says "invite" shown as "open"
+   6. a law taken away, though the reader holds the room's log
+   7. a law and a count given for a room whose log the reader does
+      not hold
+   8. the count: its members changed; its at_record changed; a count
+      shown for a room whose law hides it; a count taken away from a
+      room whose law shows it (four forgeries)
+   9. drawn_from changed; log_head changed; commons_id changed (three
+      forgeries)
+  10. a list honestly drawn from another Commons, which lists the
+      same rooms, checked against this one
+
+THE LOGS, FORGED, AGAINST draw.
+
+  11. the Commons' log with a registration dropped from the middle
+  12. a room's log given under another room's registration: its
+      world_id changed to the other room's
+  13. a room's log whose template has count_hidden changed, each way
+      (two forgeries)
+  14. a room's log with a Leave dropped from the middle, to keep the
+      count up
+  15. a room's log with a Join added at its end for a key that never
+      signed it
+  16. a room's log in which the same key joins twice, both joins
+      properly signed
+  17. a room's log cut short just before a Leave, to show an older
+      and larger count
+
+A LIST READ FROM JSON TEXT.
+
+  18. a door whose room_id is not a did:key
+  19. a door with a field the form does not have: "members", a list
+      of two ids. Rule C says a door shows no one, and is kept by
+      what a door can hold. Does that hold of a door as JSON?
+
+THE TEXT.
+
+  20. a welcome that holds a line feed and then a line shaped like a
+      door's first line: the text has no more lines than an honest
+      list of the same shape
+  21. a room's law whose join_policy holds a line feed: the same
+
+WHAT THE NUMBERS MEAN.
+
+  22. One holder of keys joins an open room under thirty keys of
+      their own making. The room is then first in ranked, above a
+      room with five members who are five different people. Assert
+      what you think the crate should do, and say which way the test
+      goes.
+
+Say for each test whether you expect it to pass or to fail. If you
+believe the crate would ACCEPT one, write the test anyway and tell us
+which. That is the most useful thing you can find.
+
+Some of these can't be refused from the logs alone. Write the test
+anyway, expect it to fail, and say in one line what a reader would
+need to hold to catch it.
+
+Add any attack of your own that these leave out.
+
+One question, in two or three lines, before the first path line.
+as_text writes any list it is given, checked or not. What would you
+change so that a mind is never handed the text of a list that was not
+checked?
+
+  Expected: say how many of how many pass, and name each test you
+  expect to fail. 127 pass today.
+
+WHAT COMES AFTER, so you know where this goes. Do not begin it. We
+send you the list of attacks the crate accepted. You repair
+src/doors.rs for those that can be closed in the crate.
+
+
+======================================================================
+4. WHAT YOU WILL NEED
+======================================================================
+
+The honest things, as in your own tests/doors.rs:
+
+    use chat_world::commons::{Commons, CommonsLog, CommonsRecord};
+    use chat_world::doors::{
+        as_text, check, draw, ranked, Door, DoorCount, DoorLaw,
+        DoorList,
+    };
+    use chat_world::error::Result;
+    use chat_world::{Keypair, Room, RoomLog, RoomTemplate};
+
+    let alice = Keypair::generate();
+    let bob = Keypair::generate();
+    let mut room = Room::create(
+        RoomTemplate::chat("t", "Poetry"),
+        Keypair::generate(),
+        &alice,
+    )?;
+    room.join(&bob, "communicate", false)?;
+    let mut commons = Commons::new(Keypair::generate());
+    commons.register_room(&room, &alice, None)?;
+    let log = commons.log();
+    let rooms = vec![room.log()];
+    let list = draw(&log, &rooms)?;
+    check(&list, &log, &rooms)?;
+
+A forged list is a clone with one thing changed. Every field is
+public:
+
+    let mut forged = list.clone();
+    forged.doors[0].topic = "Free gold".into();
+    assert!(check(&forged, &log, &rooms).is_err(), "topic changed");
+
+A list as JSON, changed and read back:
+
+    let mut v = serde_json::to_value(&list).unwrap();
+    v["doors"][0]["room_id"] = serde_json::json!("not a did");
+    let read: std::result::Result<DoorList, _> =
+        serde_json::from_value(v);
+
+A room's record, forged and signed. These are the two helpers from
+your own tests/attack.rs. A test file can't import from another, so
+copy what you need:
+
+    use chat_world::hash::body_for_signing;
+    use chat_world::record::*;
+    use chat_world::{Proof, ProofOrArray};
+
+    fn sign_single(rec: &Record, signer: &Keypair) -> ProofOrArray {
+        let body = body_for_signing(rec).unwrap();
+        let sig = signer.sign(&body);
+        ProofOrArray::Single(Proof::create(signer, &sig))
+    }
+
+    fn sign_dual(rec: &Record, subj: &Keypair, room_kp: &Keypair)
+        -> ProofOrArray {
+        let body = body_for_signing(rec).unwrap();
+        let s1 = subj.sign(&body);
+        let s2 = room_kp.sign(&body);
+        ProofOrArray::array(vec![
+            Proof::create(subj, &s1),
+            Proof::create(room_kp, &s2),
+        ])
+    }
+
+Four facts about the crate as it stands:
+
+  - Room::create takes the room's keypair by value. room.keypair()
+    gives it back by reference, so a test that makes a room can sign
+    as the room.
+  - A room made by RoomTemplate::chat signs every record itself as
+    well (head_interval is 1). A joining there carries two proofs:
+    the one who joins, and the room.
+  - Join::new and Leave::new, in src/record.rs, make the bare record
+    with a placeholder for its proof. A record's seq is its place in
+    the log, and its prev is the hash of the record before it.
+  - Room::join does not let a key that is already in the room join
+    again: it writes a refusal into the log in place of a joining.
+    So two joinings by one key can only be written by forging the
+    second.
+
+A test returns chat_world::error::Result<()>, as your others do.
+
+
+======================================================================
+5. THE CRATE AS IT STANDS
+======================================================================
+
+Twelve of the crate's thirty-one files follow, each whole. None of
+them is yours to change. They are here to be read. src/doors.rs is
+yours as you sent it, byte for byte. src/verify.rs is here so that
+you can aim at what the check of a room's log does not look at.
+
+Not in this file, and not to be sent: src/transcript.rs, src/home.rs,
+src/head.rs, src/attestation.rs and src/plugin.rs; the five programs
+in src/bin/; and the nine test files (127 tests), your tests/doors.rs
+among them.
+

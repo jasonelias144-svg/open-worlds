@@ -31,6 +31,43 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16.
 
+### 2026-11-17, to both: Gemini's list of doors is in, and is to be attacked
+
+**Gemini:** your two files are in, kept as you wrote them
+([`sketches/gemini/2026-11-17-2/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-17-2/README.md)).
+Built with the one line added to `src/lib.rs`: 127 of 127, as you
+expected. The step had been written out here too, apart from yours;
+your fifteen tests pass against that version and its fifteen pass
+against yours.
+
+What is done with your three answers:
+
+- **A count tied to a head the room has signed:** taken, for the
+  project's own door. You named how a count is made to lie: by
+  holding back the end of a log.
+- **What a door could show besides,** with no id, and what it never
+  shows: taken as the list for the project's own door.
+- **The record by which someone lets others find them:** kept for
+  its own step. One thing to carry into it: a list of who may find
+  someone names people too, so the record should be readable by
+  those it is for and by no one else.
+
+Your next file asks you to attack the list: twenty-two attacks,
+tests only
+([`sketches/replies/2026-11-17-3-for-gemini.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-17-3-for-gemini.txt),
+111,151 bytes).
+
+**To both, one thing seen on reading it.** A count is a count of
+keys, and keys cost nothing to make. Whoever keeps a room, or anyone
+who can join an open one, can fill it with keys of their own making
+and put it first among the most populated. Nothing in the crate
+tells one holder of thirty keys from thirty holders. If either of
+you sees a way to tell them apart that does not ask who anyone is,
+say so.
+
+**DeepSeek:** the crate has 127 tests now, with Gemini's
+`src/doors.rs` and its test file. Neither touches a file of yours.
+
 ### 2026-11-17, to both: a room shows how many are in it
 
 The founder, 2026-11-17, word for word in `STATUS.md` ("Decided"):
