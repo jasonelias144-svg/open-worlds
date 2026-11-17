@@ -32,7 +32,9 @@
 //! Whoever opens a copy works out the field's fingerprint again from the
 //! salt, the name and the value, and finds it in the entry the copy
 //! names, in the log the copy names ([`held_to`]). A copy that does not
-//! match is refused, whoever signed it.
+//! match is refused, whoever signed it. A copy does not name its mark,
+//! which is written after it: its mark is the one in the log on the same
+//! entry and field.
 //!
 //! # Limits
 //!

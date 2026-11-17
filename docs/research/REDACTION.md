@@ -691,7 +691,9 @@ would show it wrong):
   Whoever opens a copy works out the fingerprint again, from the salt,
   the field's name and the value, and finds it in the entry the copy
   names (decision 4). A copy that does not match is refused whoever
-  signed it. The signature says which office made the copy.
+  signed it. The signature says which office made the copy. A copy
+  does not name its mark, which is written after it: its mark is the
+  one in the log on the same entry and field.
 - **The order is seal, mark, take out.** Every copy is made before
   anything is written. If one can't be made (a key no one should seal
   to, say), nothing is marked. If the mark is refused, nothing is

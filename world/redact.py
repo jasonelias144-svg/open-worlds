@@ -30,7 +30,9 @@ redacted (`stays_redacted`), and deletes its copy.
 Whoever opens a copy works out the field's fingerprint again from the
 salt, the name and the value, and finds it in the entry the copy names,
 in the log the copy names (`held_to`). A copy that does not match is
-refused, whoever signed it.
+refused, whoever signed it. A copy does not name its mark, which is
+written after it: its mark is the one in the log on the same entry and
+field.
 
 Limits. This module does not check who may redact or decide: that the
 office holds the grant it names is for the checks across records. It
@@ -39,7 +41,9 @@ everywhere a record is sealed (formats/sealed.py). And it can't delete
 anything: that the office's copy is gone once a redaction stands is the
 office's word, until keys can be destroyed (course step 8a). A log is
 named by the hash of its first entry, which holds its form and its
-table.
+table. Two logs begun with the same first entry share that name. What
+no two logs share is an entry's hash, once a field with a fresh salt is
+behind it, and a copy names its entry.
 """
 from __future__ import annotations
 
