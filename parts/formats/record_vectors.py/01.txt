@@ -335,7 +335,7 @@ def _valid() -> List[Dict[str, Any]]:
                     {"kind": "record",
                      "ref": records.record_hash(suggestion)}],
         "inputs": [records.record_hash(suggestion)],
-        "appeal": "to ADMIN, and beyond it to the founder",
+        "appeal": "to ADMIN, and beyond them to the founder",
         "tick": 120,
     }, "the Ur-world's Keeper")
     ruling = _signed({
@@ -420,7 +420,7 @@ def _valid() -> List[Dict[str, Any]]:
         "time": CREATED,
     }, "ALICE")
     named = [
-        ("a Keeper's grant from its world", keeper_grant),
+        ("a Keeper's grant from their world", keeper_grant),
         ("a grant narrowed, with an end", narrowed),
         ("a grant across the multiverse", admin_grant),
         ("a suggestion to a world's Keeper", suggestion),

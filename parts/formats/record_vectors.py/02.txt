@@ -8,7 +8,7 @@ Made by docs/parts.py from the file. To change it, change the file.
 ------------------------------------------------------------------------
 def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     by = {v["name"]: v["record"] for v in valid}
-    grant = by["a Keeper's grant from its world"]
+    grant = by["a Keeper's grant from their world"]
     suggestion = by["a suggestion to a world's Keeper"]
     outcome = by["an outcome on a suggestion, with its reasons"]
     rating = by["a rating of how a suggestion was handled"]
@@ -135,7 +135,7 @@ def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
          resigned(outcome, "the Ur-world's Keeper",
                   act={"kind": "adjust-conditions",
                        "records": [records.record_hash(grant)] * 2})),
-        ("a suggestion about a Keeper that names it other than by key",
+        ("a suggestion about a Keeper that names them other than by key",
          resigned(suggestion, "ALICE",
                   about={"kind": "keeper", "ref": "the Keeper"})),
         ("a record whose proof has an @context",

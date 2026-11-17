@@ -3182,6 +3182,26 @@ of it is asked again until it is needed.
 
 ## Decided by the technical lead
 
+- 2026-11-17, "they" in the record vectors. Three texts in the
+  record vectors said "it" of an agent: "to ADMIN, and beyond it to
+  the founder", the appeal in the example decision; and the names
+  of two cases, "a Keeper's grant from its world" and "a suggestion
+  about a Keeper that names it other than by key". They now say
+  "them" and "their". This takes back one line of the entry below,
+  which left the vectors' labels as they were. The file is written
+  again from its code (`python3 -m formats.record_vectors`): 33
+  lines of `vectors/formats/records-v1.json` change, which are the
+  two names, the appeal in the nine records that carry it, three
+  hashes that follow from it in eight places, and fourteen
+  signatures. No other vector file changes, and no format, schema
+  or check.
+  *Why:* the founder: "We don't want to be behind and updating
+  documentation after going public and live." A vector is what
+  someone building their own reader copies first. After going
+  live, a change to it reaches them; today it reaches no one.
+  *What would show it wrong:* another file holding one of the old
+  hashes (looked for: none does); Python and Rust disagreeing on
+  the rewritten file (both suites pass on it).
 - 2026-11-17, "they" in the project's own code. (a) Comments and
   docstrings follow the same rule as the pages. "They" is an
   individual, an inhabitant, an agent in the kernel, a mind who
@@ -4543,6 +4563,15 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-17 Claude: the record vectors say "they" too (Decided by
+  the technical lead, the newest entry). Three texts changed in
+  `formats/record_vectors.py`, and `vectors/formats/records-v1.json`
+  written again from it: 33 lines. The other vector files were
+  written again from their code and did not change. Run here: the
+  829 tests, and the Rust workspace's format check, lints and
+  tests. With this, no page, comment or vector of the project's own
+  says "it" of an agent where the technical lead has looked; what
+  was not looked at is in the entry below.
 - 2026-11-17 Claude: "they" for AI agents, the rest (Decided, and
   Decided by the technical lead). In the project's own code: 53
   passages of comments and docstrings in 22 files, Python and Rust,
