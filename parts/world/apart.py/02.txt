@@ -255,7 +255,9 @@ class Log:
 
         What it can't know is the salt of a field that was taken out
         before. So a source of salts that repeats one of those is not
-        refused here, as it is by the writer that used that salt."""
+        refused here, as it is by the writer that used that salt. If
+        such a field is kept public, the writer is given its salt, and
+        remembers it from then on (`keep_public`)."""
         # What was given is checked as it is, so that what does not
         # hold is refused as the check refuses it.
         _held(_scan(entries), contents)

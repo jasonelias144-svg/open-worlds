@@ -827,6 +827,12 @@ what would show it wrong):
   given. Changed afterwards, the writer took an entry that its own
   log's table refuses. Rust can't share it: its writer owns what it
   holds.)
+- **What it keeps is what it has checked.** In Python the log is
+  checked as it is given, then copied, and the writer reads its own
+  copy and goes by that. (The independent review showed why: a map
+  that copies as something else passes the check as given, and its
+  copy does not hold.) The contents need no second look, since only a
+  plain map of plain lists is taken as contents.
 - **An entry with no field left is left out of the contents,** as the
   writer leaves it.
 - **It remembers the salt of every field still in the contents, by its
@@ -835,14 +841,28 @@ what would show it wrong):
   which is what taking out is for. So a source of salts that repeats
   one of those is not refused by an opened writer, as it would be by
   the writer that used it. Outside tests a salt is 128 bits from the
-  machine's random source, and a repeat is not expected.
+  machine's random source, and a repeat is not expected. Why a repeat
+  would matter: a redacted field's salt, drawn again for a field that
+  is published, would put that salt in the open, and guesses at the
+  redacted value could then be tried against its fingerprint.
+- **A salt it is given back, it remembers from then on.** When a field
+  is kept public the writer is handed its salt and value. An opened
+  writer learns the salt there, before the entry that keeps the field
+  public draws salts of its own; if that entry is refused, the field
+  stays out and what was learned is forgotten again. (The independent
+  review found this missing, in both languages: an opened writer put
+  a field back and then took a repeat of its salt, and so wrote
+  contents that its own check refuses, where the writer that never
+  closed refuses the repeat.)
 - **What it makes possible,** each tried in both languages on the logs
   of `vectors/redaction.json`. The deciding office opens the redacted
   log and keeps the field public from the box in the file, or decides
   that it stays redacted, and gets the log and the contents that the
   writer which never closed got. A field is redacted on a log opened
   again, with the same log, contents and mark; and the opened writer
-  then holds neither the value nor its salt. And a redaction that
+  then holds neither the value nor its salt. A writer closed and
+  opened before every act of the five states writes the log of one
+  that never closed. And a redaction that
   stands with its field left in the contents, which no writer here
   leaves but a published log can show, is finished: the field is
   sealed and taken out, and the log is not touched.

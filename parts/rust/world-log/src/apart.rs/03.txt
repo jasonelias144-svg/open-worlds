@@ -81,7 +81,9 @@ impl Log {
     ///
     /// What it can't know is the salt of a field that was taken out
     /// before. So a source of salts that repeats one of those is not
-    /// refused here, as it is by the writer that used that salt.
+    /// refused here, as it is by the writer that used that salt. If such
+    /// a field is kept public, the writer is given its salt, and
+    /// remembers it from then on ([`Log::keep_public`]).
     pub fn open(log: &Value, contents: &Value) -> Result<Log, Refused> {
         let scan = scan(log)?;
         held(&scan, contents)?;

@@ -155,11 +155,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/research/PERSONS.md/part-three-built.md
 ```
 
-## `docs/research/REDACTION.md`, in 2 parts
+## `docs/research/REDACTION.md`, in 3 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/research/REDACTION.md/start.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/research/REDACTION.md/part-four-the-log-s-side-built.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/research/REDACTION.md/the-parts.md
 ```
 
 ## `formats/record_vectors.py`, in 2 parts
