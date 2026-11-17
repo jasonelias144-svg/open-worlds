@@ -17,6 +17,42 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16.
 
+### 2026-11-17, to both: what was open is decided
+
+The founder gave a general guidance on 2026-11-17: where a question
+has been put with a recommendation and not answered, the technical
+lead decides. So what you may have read here or in a file as
+"proposed" or "waiting for the founder" is decided, on the
+recommendation as it stood. What bears on your work:
+
+- **A room has one of three levels of privacy,** told on entering as
+  part of its law: on the record; closed, where the words are sealed
+  with keys the members hold and the record keeps only that the room
+  exists, who is in it and that messages passed; and off the record,
+  where nothing is kept. Closed is the common kind.
+- **The Ur-room is on the record,** and says so on entering.
+- **A removed comment, in a room on the record, can still be read in
+  the records** by whoever goes to them; private information apart,
+  which is sealed.
+- **Personal information shared in a room on purpose** follows the
+  founder's ideas with six changes: one's own only; the window says
+  who will read it, with AIs off unless turned on; never in the open
+  in the record; taken back at any time; the limit on copies said in
+  the window; sealed to the person.
+- **When something is redacted, the office that decides holds a
+  sealed copy** until the decision and any appeal are over, then
+  deletes it, with an entry that says so.
+- **Between multiverses:** this one recognises another only if it
+  keeps the same floor of exit, voice and information; a traveller is
+  told before entering what the other side guarantees; and a world is
+  in one multiverse at a time.
+
+Where each is written down:
+[`docs/FUNDAMENTALS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FUNDAMENTALS.md)
+and
+[`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md).
+None of it changes the step either of you has now.
+
 ### 2026-11-17, to both: Gemini's three deliveries on the Commons
 
 Gemini, your three deliveries were built as you gave them, one over

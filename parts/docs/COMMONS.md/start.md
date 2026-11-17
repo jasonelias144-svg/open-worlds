@@ -143,9 +143,10 @@ lead reads the rest:
   key, law and log, and the doors to the other rooms are in it.
 - **It is on the record,** as was decided for the lobby on 2026-11-15
   ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item 13). Everyone who
-  enters reads the charter first. Whether that should hold now that it
-  is a place to talk, and not only to pass through, is put to the
-  founder (STATUS.md, "Open questions").
+  enters reads the charter first. It holds now that it is a place to
+  talk, and not only to pass through (decided 2026-11-17, STATUS.md):
+  it is said plainly on entering, and once private rooms are built
+  there is one a door away.
 - **It follows the Ur-world's pattern:** the first of its kind, from
   which the others follow. How it is marked as the first, its name kept
   for it and its place first in the Commons' list of rooms, is settled
@@ -169,8 +170,9 @@ Two ends of it are decided already ([FUNDAMENTALS.md](FUNDAMENTALS.md),
 privacy, items 4 and 13): a room on the record, and a closed room,
 whose words pass between its members' containers, sealed. What is new
 is that private rooms are to be common, and that there may be
-levels. The levels below are the technical lead's proposal. They touch
-what is recorded about people, so they wait for the founder:
+levels. The levels below were the technical lead's proposal, and are
+decided on it, under the founder's general guidance of 2026-11-17
+(STATUS.md, "Decided"):
 
 | Level | Who can read the words | What the record keeps | Who can moderate |
 |---|---|---|---|
@@ -183,21 +185,21 @@ what is recorded about people, so they wait for the founder:
   doesn't change under those who are in it: a closed room is not
   opened later. Whether a room on the record can be closed from some
   point on is left open.
-- **Closed is proposed as the common kind.** As proposed, the project's
-  machines hold its sealed messages for a member who is away. That is a
-  change from what is decided, and is put to the founder as one:
-  privacy items 4 and 13 have the words pass between the members' own
-  containers. The project would still hold no key. The hope is that a
+- **Closed is the common kind.** The project's machines hold its
+  sealed messages for a member who is away. That is a change from what
+  was decided before, and is said plainly as one: privacy items 4 and
+  13 had the words pass only between the members' own containers. The
+  project still holds no key. The hope is that a
   member could then come back from another device; that needs a
   member's keys to reach a second device, which
   [CONTAINER.md](CONTAINER.md) has not settled. An off-the-record room
   can only live between its members' own containers.
 - **Off the record sets a decided rule aside.** Privacy item 4 keeps
   "that a message passed" in the record. At this level nothing is kept.
-  It is put to the founder as that (STATUS.md, "Open questions").
+  It is decided as that (2026-11-17).
 - **Who moderates differs from a room on the record.** Above, a room
-  has a moderator, named in its law. A closed room, as proposed, has
-  only its members, and an AI among them only if they bring it in.
+  has a moderator, named in its law. A closed room has only its
+  members, and an AI among them only if they bring it in.
 
 Honest limits, said before anything is built:
 - **A member can always copy what they read.** Sealing keeps others

@@ -227,8 +227,8 @@ hold, so that no one outside reads them, the project included, with
 the test that says so (the founder, 2026-11-16: "This should be not
 only possible, but common"; [FUNDAMENTALS.md](FUNDAMENTALS.md),
 privacy, items 4, 13 and 15). The levels between a room on the record
-and a private one are proposed in [COMMONS.md](COMMONS.md), "A spectrum
-of privacy", and wait for the founder. How a group's keys change as
+and a private one are in [COMMONS.md](COMMONS.md), "A spectrum of
+privacy", decided on 2026-11-17. How a group's keys change as
 members come and go is looked at first (the Messaging Layer Security
 protocol, RFC 9420). If this proves a step of its own when 6a is
 planned, it becomes 6b. Moved here from

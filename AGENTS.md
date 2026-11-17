@@ -47,9 +47,20 @@ The founder's standing rule (2026-11-14): "if I have not answered a question or
 settled anything directly, follow your own recommendation." So an intent
 question, once put to the founder with a recommendation, is decided on that
 recommendation unless the founder answers otherwise, and recorded so in
-STATUS.md, where the founder can change it at any time. Not for what silence
-can't consent to: anything outward-facing or hard to undo, spending, personal
-information, or what must be in the founder's own words or act. Those wait.
+STATUS.md, where the founder can change it at any time.
+
+The founder widened it (2026-11-17): "If you have to keep asking and you
+could just decide, then decide. And if that is not enough, imagine what you
+think I would want. You probably have a good sense of that by now. Combine
+what you think with what you imagine I would think, and then decide." So the
+technical lead decides what it can decide, says what it decided in STATUS.md
+and on the page it changes, and goes on. What still goes to the founder is
+only what can't be done or undone for them: spending; an act that is the
+founder's own in law or on the founder's own accounts; and an act towards the
+outside that can't be taken back, such as a formal submission, making public
+something personal about someone other than the founder, or deleting a record.
+Those are put once, plainly, and not asked again until they are needed. The
+charter's floor binds every answer.
 
 The founder's most recent word wins (2026-11-14): "I change my mind
 frequently, so if you read a comment of mine with DeepSeek, and it occurred

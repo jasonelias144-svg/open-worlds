@@ -242,9 +242,9 @@ removal's. The official record holds it encrypted.
 The technical lead's answer, given in the session: it works, and it
 fits what is already decided, a redaction's mark and the information
 sealed to the person it is about ([FUNDAMENTALS.md](FUNDAMENTALS.md),
-"Public records, kept whole"). Six changes are proposed. They touch
-personal information, so none of them stands until the founder says
-so:
+"Public records, kept whole"). Six changes were proposed, and are
+decided on the recommendation, under the founder's general guidance of
+2026-11-17 (STATUS.md, "Decided"):
 1. **One's own only.** The window and the showing are for a person's
    own personal information. Another person's is not theirs to share
    this way; the check before publishing treats it as it does anywhere,
@@ -329,7 +329,8 @@ log it needs, with fields that can be redacted, is step 3b.
   whoever goes to the records, which is what makes a removal
   answerable; private information apart, which is sealed. It bears on
   voice and information ([FUNDAMENTALS.md](FUNDAMENTALS.md), freedom,
-  items 3 and 5), so the reading is put to the founder plainly.
+  items 3 and 5), so it is said plainly: decided as read (2026-11-17,
+  STATUS.md).
 - **Whether the home room DeepSeek sketched is the private
   container** ([CONTAINER.md](CONTAINER.md)) seen as a room, or
   something beside it. The recommendation: the same thing, since both

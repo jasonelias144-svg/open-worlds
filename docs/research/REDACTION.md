@@ -176,14 +176,14 @@ that did not hold together; STATUS.md's Log says what changed.
    lets the office decide to keep public what someone asked to redact.
    That needs the office to be able to put it back, and a copy sealed
    only to the person does not allow it: anyone could then erase a
-   public act for good by asking. So, proposed, and put to the founder:
+   public act for good by asking. So, decided (2026-11-17, below):
    a second sealed copy goes to the office that decides (in a room, its
    Keeper), and is kept only until the decision and any appeal are
    over. If the redaction stands, that copy is deleted, and an entry
    says so. If the decision is to keep it public, the field goes back
    into the contents from that copy, and the decision says why. This
-   qualifies "Kept in the person's own container", so part three is
-   not built before the founder answers. The decision is a
+   qualifies "Kept in the person's own container"; part three waited
+   for the founder's answer, and can now be built. The decision is a
    `decision/v1` that names the mark among the records it is on.
 6. **A world with no one in it keeps today's form,** and a log says
    which form it is in. With random salts a log is no longer the same,
@@ -254,14 +254,16 @@ that did not hold together; STATUS.md's Log says what changed.
     is: logs that hold, and logs that are refused, each for one named
     reason.
 
-## For the founder
+## For the founder: decided
 
-Two things here are not the technical lead's alone, and are put to the
-founder in STATUS.md, "Open questions". Part two needs neither.
-- **The office's copy** (decision 5). It means that for a while an
+Two things here were not the technical lead's alone, and were put to
+the founder. Both are decided on the technical lead's recommendation,
+under the founder's general guidance of 2026-11-17 (STATUS.md,
+"Decided"). Part two needed neither.
+- **The office's copy** (decision 5). Decided: yes, only until the
+  decision and any appeal are over. It means that for a while an
   office of the project can read what was redacted. Before the
-  redaction everyone could. Recommended: yes, only until the decision
-  and any appeal are over.
+  redaction everyone could.
 - **Whether the key that acted may ever be redacted** (decision 1).
   FUNDAMENTALS.md has a person's acts remain "under their keys", and
   the founder's words on a redacted link are "we keep public record of
@@ -271,8 +273,8 @@ founder in STATUS.md, "Open questions". Part two needs neither.
   allowing it: once a key is redacted, no reader can check again that
   an act was that key's, such as that the one who took a comment back
   was the one who wrote it. It would rest on the world's word at the
-  time of writing. Recommended: keep the option, and decide with the
-  purging of a person who leaves (step 8a).
+  time of writing. Decided: the option is kept, and whether to use it
+  is decided with the purging of a person who leaves (step 8a).
 
 ## Where the founder's last words of 2026-11-16 meet this
 
@@ -286,8 +288,9 @@ This plan was written before them (STATUS.md, "Decided").
   spectrum of privacy"; course step 6a). There is nothing in them that
   the project can read, so nothing for it to redact, and no office of
   the project's removes a comment there. What a closed room's log
-  holds, if the founder keeps that level as proposed, is settled with
-  it.
+  holds is settled with that level, which is decided (2026-11-17):
+  that the room exists, which presences are in it, and that messages
+  passed.
 
 ## Honest limits
 
