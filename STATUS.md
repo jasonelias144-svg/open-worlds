@@ -53,8 +53,8 @@ free, and never a money machine
   contents beside it, the check that holds the two together, and the
   function that joins them (`world/apart.py`, `rust/world-log`, with
   shared vectors). Nothing is redacted yet: that is its third part,
-  which waits for the founder's answer on the office's copy (Open
-  questions). The log's side of its fourth part is built: what a log
+  which no longer waits, since the office's copy is decided (Decided,
+  2026-11-17), and is next. The log's side of its fourth part is built: what a log
   says in the open when an entry is removed, restored, taken back or
   put back, and each entry's state worked out from that. The signed
   records behind each act, and the check of who may act, are its
@@ -157,142 +157,28 @@ and for the founder's conversations with DeepSeek, is in
 ## Open questions
 
 Each question for the founder comes with a recommendation, and "take your
-recommendation" is a full answer, recorded as the founder's decision on
-the technical lead's recommendation. And by the founder's standing rule
-of 2026-11-14, a question the founder hasn't answered is decided on the
-recommendation once it has been put (Decided, below), except where it
-needs the founder's own words or act, money, personal information, or
-anything outward-facing or hard to undo. What is left here is of that
-kind.
+recommendation" is a full answer. By the founder's general guidance of
+2026-11-17 (Decided, below), which widens the standing rule of
+2026-11-14, the technical lead decides what it can decide and says what
+it decided; it does not keep asking. What is left here is only what it
+can't do or undo for the founder: spending money, an act that is the
+founder's own in law or on the founder's own accounts, and words that
+have to be the founder's. None of it holds up the work today, and none
+of it is asked again until it is needed.
 
-- For the founder, on the two roles (2026-11-16; Decided, that day):
-  1. What stays the founder's when someone else is director. AGENTS.md
-     says today that the charter is the founder's words, and that a
-     change that weakens a protected freedom is a founder decision.
-     Recommended: that stays, and goes further: no director can weaken
-     the charter's floor (exit, voice and information; free, and never
-     a money machine). A project that dropped them would be, in the
-     founder's words of 2026-11-15, "a different project", and would
-     take another name. Everything else is the director's.
-  2. How the office passes. Recommended: only by the director's own
-     recorded word, naming who takes it and from when. What becomes of
-     the accounts and keys, which are the founder's own today, is a
-     legal question and waits for the founder. Neither is needed while
-     the founder is the director.
-- For the founder, on many multiverses (2026-11-16; Decided, the
-  entries of that day):
-  1. The floor between multiverses. The internet has no rule above its
-     protocol; this project has exit, voice and information. In
-     someone else's multiverse they may not hold. Recommended, both: a
-     traveller is always told, before entering, what the other side
-     guarantees; and this multiverse recognises another (lists it on
-     the map, trusts the births its worlds sign) only if it keeps the
-     same floor. The first keeps this multiverse from being a
-     gatekeeper; the second keeps the floor meaning something.
-     Recognising another multiverse is outward-facing, so it waits for
-     the founder's word.
-  2. Whether a world may be in two multiverses at once. The founder
-     spoke of "a separate index for current multiverse", which is one,
-     and said no more. Being in two would let both list the world as
-     their own, and both sets of offices act in it; one at a time
-     rules that out, so that one law and one set of offices answer for
-     a world at any time. Recommended: one at a time for now. A world
-     in two would be recognised by both, which is outward-facing too.
-  3. One sentence about the founder's own first computer is left out of
-     that day's record, as the one about the founder's first experience
-     of the internet is left out of docs/COMMONS.md. Say if either
-     should be kept.
-
-- For the founder, on redaction (docs/research/REDACTION.md, "For the
-  founder"), from the plan for course step 3b:
-  1. An office's copy of what was redacted. FUNDAMENTALS.md has a
-     redaction made at once and decided after, and lets the office
-     decide to keep it public. That needs the office to be able to put
-     it back, and "Kept in the person's own container" (2026-11-15)
-     seals it to the person alone. Proposed: a second sealed copy for
-     the office that decides, kept only until the decision and any
-     appeal are over, then deleted, with an entry that says so. For
-     that while an office of the project can read it. Recommended:
-     yes. Redacting is not built before the answer.
-  2. Whether the key that acted may ever be redacted. The plan keeps
-     the key apart, so that either answer can be built; nothing about
-     it is hidden unless it is redacted. The cost of allowing it: once
-     a key is redacted, no reader can check again that an act was that
-     key's; it would rest on the world's word at the time of writing.
-     Recommended: keep the option, and decide with the purging of a
-     person who leaves (course step 8a).
-- For the founder, on private rooms and the Ur-room (docs/COMMONS.md,
-  "A spectrum of privacy" and "The Ur-room"), from the founder's words
-  of 2026-11-16:
-  1. The levels. Proposed, three: on the record; closed, where the
-     words are sealed with keys the members hold and the record keeps
-     only that the room exists, who is in it and that messages passed;
-     and off the record, where nothing is kept. Recommended: these
-     three, with closed as the common kind. Two things to weigh with
-     it. Closed, as proposed, changes one thing in what is decided: the
-     project's machines would hold a closed room's sealed messages for
-     a member who is away, where the decisions of 2026-11-14 and
-     2026-11-15 have the words pass between the members' own
-     containers; the project would still hold no key. And what the
-     record keeps of a closed room tells a lot: who is in a private
-     room with whom, and when messages passed. That is the main cost of
-     closed beside off the record.
-  2. Whether "completely encrypted" meant that nothing at all is kept
-     of a private room. The decisions of 2026-11-14 and 2026-11-15 keep
-     that a message passed, and a closed room's metadata, in the
-     record. Recommended: keep that rule for a closed room, and let
-     "off the record" be the level where nothing is kept.
-  3. What the project can't read, it can't moderate or answer for.
-     Before the Commons is open to the public with private rooms in
-     it, that is weighed with going live: where it is hosted, and under
-     what law. No recommendation yet; it needs looking at first.
-  4. The Ur-room on the record. The lobby was decided to be on the
-     record on 2026-11-15, when it was where everyone reads the
-     charter. As the Ur-room it is where people sit and talk, so the
-     record would keep the first talk of everyone who arrives.
-     Recommended: on the record, said plainly on entering; and, once
-     private rooms are built (course step 6a), with one a door away.
-- For the founder, from the session of 2026-11-16, four things that
-  wait for the founder's own word:
-  1. The founder's ideas on personal information in a room, and the six
-     changes the technical lead proposes to them (docs/COMMONS.md,
-     "Personal information in a room: ideas"): one's own only; the
-     window says who will read it, with AIs off unless turned on; never
-     in the open in the record; taken back at any time; the limit on
-     copies said in the window; sealed to the person. They touch
-     personal information, so nothing here stands on a recommendation.
-     Recommended: all six.
-  2. Parts of the founder's messages of 2026-11-16 are left out of the
-     record, as personal, and marked where they were (Decided, the two
-     newest entries). Recommended: leave them out. They can be recorded
-     if the founder says so.
-  3. Whether a model that moderates a room is an individual, in
-     MINDS.md's sense, with what that would owe it (docs/VISION.md, the
-     sixth of the six tests; noted at the course's recheck).
-     Recommended: decide it together with which model first moderates;
-     no model is given the office before then.
-  4. Step 10 of the course. The founder said on 2026-11-13: "I like
-     that we return to DeepSeek at step 10". The founder returned to
-     DeepSeek on 2026-11-14, and the recheck of 2026-11-16 reads that
-     as the step being overtaken: DeepSeek works beside the course, and
-     step 10 keeps only the development container. It changes a step
-     the founder spoke for, so it is put here, and not left to stand by
-     silence alone. Recommended: as the recheck has it.
-- For the founder, on the Commons' moderators (docs/COMMONS.md, "Open"),
-  six questions. Four have a recommendation and stand on it unless the
-  founder answers otherwise: whether a room's moderator is its Keeper
-  (two offices); what a moderator may do to keep a room's law (pace and
-  prompt, remove a comment where the law allows, never expel); who may
-  remove a comment (the room's moderator, for a reason the law names,
-  and a comment's author for their own; this one bears on voice and
-  information, and is put plainly); and whether the home room is the
-  private container (yes). One reads the founder's own words on a
-  protected freedom, so it is put plainly too: the founder decided on
-  2026-11-16 that a removed comment "stays in the data layer, in our
-  records", and the technical lead reads that, for a room on the record,
-  as readable there by anyone who goes to the records, private
-  information apart, which is sealed. The last, which model first
-  moderates and its cost, is money, and waits for the founder.
+- For the founder, when the time comes: what becomes of the accounts
+  and keys, which are the founder's own today, if the director's office
+  passes; and who designates the roles if the founder can't. The rule
+  is decided (2026-11-17): the office passes only by the director's own
+  recorded word, naming who takes it and from when. Naming a successor,
+  or a process, is the founder's own act, recorded where the roles are.
+  Neither is needed while the founder is the director. (asked
+  2026-11-13 and 2026-11-16)
+- For the founder: which model first moderates a room in the Commons,
+  and what it costs to run. It is money, and is decided with where the
+  multiverse is hosted (docs/COMMONS.md, "Open"). Whether such a model
+  is an individual, with what that would owe it, is decided with it;
+  no model is given the office before then.
 - For the founder: where models run beyond the Mac, and the budget (asked
   2026-11-12). Since 2026-11-15 this includes the two Keepers: about
   144 GB of weights for Apertus 1.5's 70B model, and about 763 GB for
@@ -323,10 +209,6 @@ kind.
   (docs/research/KEEPER-MIND.md). It comes back before step 8:
   accepting it is a legal promise, and needs the founder's own act,
   agreeing and giving an email address. (asked 2026-11-15)
-- For the founder: who designates the roles if the founder can't? Every
-  other office has a succession. Recommended: the founder names a
-  successor, or a process, recorded where the roles are. (asked
-  2026-11-13)
 - For the founder, whenever ready: the method of learning the founder
   hopes to pass to ADMIN, in the founder's words, to be ADMIN's first
   routine and tested with and without it (docs/ADMIN.md). (asked
@@ -352,6 +234,12 @@ kind.
 
 ## Noticed
 
+- What the project can't read, it can't moderate or answer for. With
+  closed rooms decided as the common kind (2026-11-17), this is looked
+  at before the Commons is open to the public with private rooms in
+  it: where it is hosted, and under what law. It is the technical
+  lead's to look into; it comes to the founder only as what it would
+  cost or commit the founder to.
 - A log signed by heads in batches has a tail no one has signed.
   Gemini found it in the sketch crate (sketches/gemini/2026-11-16): in
   a room that signs a head every so many records, the records after
@@ -413,6 +301,108 @@ kind.
 
 ## Decided
 
+- 2026-11-17, founder, general guidance: decide, and do not keep
+  asking. "And go with your recommendation an anything that you wait
+  for me on, but I haven't replied to yet. Essentially that means
+  whenever it is brought up, I find something else of more important
+  to me to talk about. This means go with your recommendation. You
+  mention things, but I tend to respond to the most important point or
+  the first one that grabs me to respond. Let this be a general
+  guidance. If you have to keep asking and you could just decide, then
+  decide. And if that is not enough, imagine what you think I would
+  want. You probably have a good sense of that by now. Combine what
+  you think with what you imagine I would think, and then decide."
+  So, decided:
+  (1) Everything that was waiting for the founder with a
+  recommendation is decided on it, today. The list is below.
+  (2) From now on the technical lead decides what it can decide, says
+  what it decided, and goes on. Where it has no settled
+  recommendation, it weighs its own view with what the founder would
+  most likely want, and decides. The founder can change any of it at
+  any time, and the most recent word still wins.
+  (3) This widens the standing rule of 2026-11-14, which held back
+  "anything outward-facing or hard to undo, spending, personal
+  information, or what must be in the founder's own words or act".
+  The technical lead's reading of what still goes to the founder,
+  which stands unless the founder answers otherwise: only what it
+  can't do or undo for the founder. That is spending money; an act
+  that is the founder's own in law or on the founder's own accounts
+  (accepting a licence, naming a successor, handing over keys); and an
+  act towards the outside that can't be taken back (a formal
+  submission, making public something personal about someone other
+  than the founder, deleting a record). Those are put once, plainly,
+  and not asked again until they are needed. A design question that
+  touches privacy or a freedom is no longer held back for that reason
+  alone: it is decided on the recommendation, and said plainly here
+  and on the page it changes. The charter's floor still binds every
+  answer.
+  Decided under it, each on the technical lead's recommendation as it
+  stood under "Open questions":
+  (a) The two roles. No director can weaken the charter's floor: exit,
+  voice and information; free, and never a money machine. A project
+  that dropped them would be, in the founder's words of 2026-11-15, "a
+  different project", and would take another name. Everything else is
+  the director's. The office passes only by the director's own
+  recorded word, naming who takes it and from when.
+  (b) Many multiverses. A traveller is always told, before entering,
+  what the other side guarantees. This multiverse recognises another
+  (lists it on the map, trusts the births its worlds sign) only if it
+  keeps the same floor. A world is in one multiverse at a time.
+  Recognising any one multiverse is an act towards the outside, and
+  comes to the founder when there is one to recognise.
+  (c) Redaction. The office that decides holds a second sealed copy of
+  what was redacted, only until the decision and any appeal are over;
+  then it is deleted, with an entry that says so. Said plainly: for
+  that while an office of the project can read it. The option to
+  redact the key that acted is kept, and decided with the purging of a
+  person who leaves (course step 8a). So redacting, course step 3b's
+  third part, can be built.
+  (d) Private rooms. Three levels: on the record; closed; and off the
+  record, where nothing is kept. Closed is the common kind. Said
+  plainly, two changes to what was decided before: the project's
+  machines may hold a closed room's sealed messages for a member who
+  is away, where the decisions of 2026-11-14 and 2026-11-15 had the
+  words pass only between the members' own containers (the project
+  still holds no key); and off the record sets aside the rule that the
+  record keeps that a message passed. And one cost: what the record
+  keeps of a closed room, who is in it and when messages passed, tells
+  who is in a private room with whom.
+  (e) The Ur-room is on the record, said plainly on entering; and,
+  once private rooms are built (course step 6a), with one a door
+  away.
+  (f) Personal information in a room. The founder's ideas of
+  2026-11-16 are taken with all six changes: one's own only; the
+  window says who will read it, with AIs off unless turned on; never
+  in the open in the record; taken back at any time; the limit on
+  copies said in the window; sealed to the person.
+  (g) A removed comment, in a room on the record, can be read in the
+  records by whoever goes to them, private information apart, which
+  is sealed. That is the reading of the founder's "stays in the data
+  layer, in our records".
+  (h) Step 10 of the course is as the recheck of 2026-11-16 has it:
+  DeepSeek works beside the course, and step 10 keeps only the
+  development container.
+  (i) What was left out of the record as personal stays out: parts of
+  the founder's messages of 2026-11-16, the sentences about the
+  founder's first computer and first experience of the internet, and
+  the sentences of 2026-11-17 on how the founder discloses things.
+  They are asides to the technical lead that the work does not need.
+  The founder can say otherwise for any of them.
+  (j) When a collaborator's round is joined, the file for whichever
+  collaborator has the crate next is written in the same change,
+  without waiting to be asked.
+- 2026-11-17, founder, which of Gemini's models. "And here is the
+  question: with Argon we only get a few replies, and they seem to be
+  of high quality, but the other model can provide many more replies,
+  but not the same quality. Which do you prefer? I prefer Argon and a
+  few responses each time. But you saw code form both, which would you
+  prefer?" The technical lead answered the same, and that it had not
+  seen the other model's code: the record holds only the answers the
+  founder kept, and of the reply that was replaced it holds one
+  sentence, Argon's own account of it (the record with Gemini, line
+  13532). The founder: "Ok, you answered my question already. Sounds
+  good. We are in the same page." So, decided: Gemini's rounds are
+  with the model the founder calls Argon, a few replies at a time.
 - 2026-11-17, founder, a few pieces at a time. Bringing Gemini's
   second round back: "This was quick, but, to be honest, integrating a
   few new pieces of code at a time is the norm. Coming back with a
@@ -3594,6 +3584,21 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-17 Claude: the founder's general guidance recorded, and what
+  was open decided under it (Decided, today): the two roles, the floor
+  between multiverses, the office's sealed copy, the levels of privacy
+  a room may have, the Ur-room on the record, the six changes to the
+  founder's ideas on personal information in a room, who may read a
+  removed comment, and step 10. "Open questions" now holds only money,
+  acts that are the founder's own, and words that have to be the
+  founder's. The pages those decisions change say so: AGENTS.md,
+  docs/FUNDAMENTALS.md (privacy, items 4, 13 and 15, and the two rules
+  on redaction), docs/COMMONS.md, docs/research/REDACTION.md,
+  docs/COURSE.md, docs/TOPICS.md, docs/VISION.md. Also recorded: which
+  of Gemini's models the founder works with. Nothing is built by this.
+  Next in the course is redacting (step 3b, part three), which no
+  longer waits. Not done: the policy handbook's own page on the two
+  roles follows in its own pull request.
 - 2026-11-17 Claude: Gemini's second round is in. Three deliveries on
   the Commons' own log, taken out of the record by script and kept as
   written in sketches/gemini/2026-11-17/. Built one over the other

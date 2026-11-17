@@ -257,9 +257,10 @@ as they did in the history (steps 3c and 3f). The tests that would show
 it is a network, and what the addressing still lacks, are on the
 course's waiting list ([COURSE.md](COURSE.md), "Waiting").
 
-**Open:** whether this multiverse recognises only those that keep the
-charter's floor, and whether a world may be in two multiverses at once
-(STATUS.md, "Open questions").
+**Decided (2026-11-17; STATUS.md, "Decided"):** this multiverse
+recognises only those that keep the charter's floor; a traveller is
+told, before entering, what the other side guarantees; and a world is
+in one multiverse at a time.
 
 ## Not checked
 

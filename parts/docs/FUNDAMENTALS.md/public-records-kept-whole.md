@@ -95,17 +95,26 @@ unless the founder answers otherwise:
   it can't be recalled. How long an appeal may take is set with ADMIN's
   rules for appeals; until it is set, it stays redacted.
   How an office can still decide to keep it public, when what was
-  redacted is sealed to the person, is put to the founder: the plan
-  for course step 3b proposes a second sealed copy for the office that
-  decides, kept only until the decision and any appeal are over
-  ([research/REDACTION.md](research/REDACTION.md), "For the founder").
+  redacted is sealed to the person, is decided (2026-11-17, on the
+  technical lead's recommendation, under the founder's general
+  guidance of that day): a second sealed copy for the office that
+  decides, kept only until the decision and any appeal are over, then
+  deleted, with an entry that says so. For that while an office of the
+  project can read what was redacted
+  ([research/REDACTION.md](research/REDACTION.md), "For the founder:
+  decided").
 - **Shared on purpose, in a room.** Ideas of the founder's, of
-  2026-11-16, not decided: a person may share their personal
+  2026-11-16, taken since 2026-11-17 with the six changes below: a
+  person may share their personal
   information in a room after being asked "Are you sure?"; those in the
   room can read it while the person is there; when the person leaves,
   the room shows it as redacted, with an incident id; and the record
   holds it encrypted. The founder's words, and six changes the
-  technical lead proposes, which wait for the founder, are in
+  technical lead proposed, decided on its recommendation on
+  2026-11-17 (one's own only; the window says who will read it, with
+  AIs off unless turned on; never in the open in the record; taken
+  back at any time; the limit on copies said in the window; sealed to
+  the person), are in
   [COMMONS.md](COMMONS.md), "Personal information in a room: ideas".
 
 ## Purged, demonstrably

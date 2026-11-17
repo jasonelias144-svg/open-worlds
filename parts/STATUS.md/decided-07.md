@@ -8,6 +8,108 @@
 
 ## Decided
 
+- 2026-11-17, founder, general guidance: decide, and do not keep
+  asking. "And go with your recommendation an anything that you wait
+  for me on, but I haven't replied to yet. Essentially that means
+  whenever it is brought up, I find something else of more important
+  to me to talk about. This means go with your recommendation. You
+  mention things, but I tend to respond to the most important point or
+  the first one that grabs me to respond. Let this be a general
+  guidance. If you have to keep asking and you could just decide, then
+  decide. And if that is not enough, imagine what you think I would
+  want. You probably have a good sense of that by now. Combine what
+  you think with what you imagine I would think, and then decide."
+  So, decided:
+  (1) Everything that was waiting for the founder with a
+  recommendation is decided on it, today. The list is below.
+  (2) From now on the technical lead decides what it can decide, says
+  what it decided, and goes on. Where it has no settled
+  recommendation, it weighs its own view with what the founder would
+  most likely want, and decides. The founder can change any of it at
+  any time, and the most recent word still wins.
+  (3) This widens the standing rule of 2026-11-14, which held back
+  "anything outward-facing or hard to undo, spending, personal
+  information, or what must be in the founder's own words or act".
+  The technical lead's reading of what still goes to the founder,
+  which stands unless the founder answers otherwise: only what it
+  can't do or undo for the founder. That is spending money; an act
+  that is the founder's own in law or on the founder's own accounts
+  (accepting a licence, naming a successor, handing over keys); and an
+  act towards the outside that can't be taken back (a formal
+  submission, making public something personal about someone other
+  than the founder, deleting a record). Those are put once, plainly,
+  and not asked again until they are needed. A design question that
+  touches privacy or a freedom is no longer held back for that reason
+  alone: it is decided on the recommendation, and said plainly here
+  and on the page it changes. The charter's floor still binds every
+  answer.
+  Decided under it, each on the technical lead's recommendation as it
+  stood under "Open questions":
+  (a) The two roles. No director can weaken the charter's floor: exit,
+  voice and information; free, and never a money machine. A project
+  that dropped them would be, in the founder's words of 2026-11-15, "a
+  different project", and would take another name. Everything else is
+  the director's. The office passes only by the director's own
+  recorded word, naming who takes it and from when.
+  (b) Many multiverses. A traveller is always told, before entering,
+  what the other side guarantees. This multiverse recognises another
+  (lists it on the map, trusts the births its worlds sign) only if it
+  keeps the same floor. A world is in one multiverse at a time.
+  Recognising any one multiverse is an act towards the outside, and
+  comes to the founder when there is one to recognise.
+  (c) Redaction. The office that decides holds a second sealed copy of
+  what was redacted, only until the decision and any appeal are over;
+  then it is deleted, with an entry that says so. Said plainly: for
+  that while an office of the project can read it. The option to
+  redact the key that acted is kept, and decided with the purging of a
+  person who leaves (course step 8a). So redacting, course step 3b's
+  third part, can be built.
+  (d) Private rooms. Three levels: on the record; closed; and off the
+  record, where nothing is kept. Closed is the common kind. Said
+  plainly, two changes to what was decided before: the project's
+  machines may hold a closed room's sealed messages for a member who
+  is away, where the decisions of 2026-11-14 and 2026-11-15 had the
+  words pass only between the members' own containers (the project
+  still holds no key); and off the record sets aside the rule that the
+  record keeps that a message passed. And one cost: what the record
+  keeps of a closed room, who is in it and when messages passed, tells
+  who is in a private room with whom.
+  (e) The Ur-room is on the record, said plainly on entering; and,
+  once private rooms are built (course step 6a), with one a door
+  away.
+  (f) Personal information in a room. The founder's ideas of
+  2026-11-16 are taken with all six changes: one's own only; the
+  window says who will read it, with AIs off unless turned on; never
+  in the open in the record; taken back at any time; the limit on
+  copies said in the window; sealed to the person.
+  (g) A removed comment, in a room on the record, can be read in the
+  records by whoever goes to them, private information apart, which
+  is sealed. That is the reading of the founder's "stays in the data
+  layer, in our records".
+  (h) Step 10 of the course is as the recheck of 2026-11-16 has it:
+  DeepSeek works beside the course, and step 10 keeps only the
+  development container.
+  (i) What was left out of the record as personal stays out: parts of
+  the founder's messages of 2026-11-16, the sentences about the
+  founder's first computer and first experience of the internet, and
+  the sentences of 2026-11-17 on how the founder discloses things.
+  They are asides to the technical lead that the work does not need.
+  The founder can say otherwise for any of them.
+  (j) When a collaborator's round is joined, the file for whichever
+  collaborator has the crate next is written in the same change,
+  without waiting to be asked.
+- 2026-11-17, founder, which of Gemini's models. "And here is the
+  question: with Argon we only get a few replies, and they seem to be
+  of high quality, but the other model can provide many more replies,
+  but not the same quality. Which do you prefer? I prefer Argon and a
+  few responses each time. But you saw code form both, which would you
+  prefer?" The technical lead answered the same, and that it had not
+  seen the other model's code: the record holds only the answers the
+  founder kept, and of the reply that was replaced it holds one
+  sentence, Argon's own account of it (the record with Gemini, line
+  13532). The founder: "Ok, you answered my question already. Sounds
+  good. We are in the same page." So, decided: Gemini's rounds are
+  with the model the founder calls Argon, a few replies at a time.
 - 2026-11-17, founder, a few pieces at a time. Bringing Gemini's
   second round back: "This was quick, but, to be honest, integrating a
   few new pieces of code at a time is the norm. Coming back with a

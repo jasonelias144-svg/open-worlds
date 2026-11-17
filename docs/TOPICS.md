@@ -513,8 +513,8 @@ guest's key the person's private container.)
   of a removal in a log is built, course step 3b; who may remove is
   not checked yet);
 - the levels of privacy a room may have, and what the record keeps at
-  each: three are proposed, and wait for the founder (COMMONS.md, "A
-  spectrum of privacy");
+  each: three, decided on 2026-11-17 (COMMONS.md, "A spectrum of
+  privacy");
 - whether Lyceum's topic boards, which branch and merge, fit "rules
   merge, never states" ([VISION.md](VISION.md));
 - what a mind from the Ur-world does when it walks into a room.
@@ -982,9 +982,12 @@ the one it is in now; a world that arrives is evaluated first, in a
 sandboxed holding place, and a refusal is an incident with a report;
 the addressing must be able to grow in ways no one foresaw.
 
-**Open:** whether a multiverse recognises only those that keep the same
-floor of exit, voice and information; whether a world may be in two
-multiverses at once; what the record looks like by
+**Decided (2026-11-17, STATUS.md):** this multiverse recognises another
+only if it keeps the same floor of exit, voice and information; a
+traveller is told, before entering, what the other side guarantees;
+and a world is in one multiverse at a time.
+
+**Open:** what the record looks like by
 which one multiverse recognises another; how an identity moves to
 another kind of key when the kind itself fails; what a holding place
 can check beyond the records.

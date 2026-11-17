@@ -242,8 +242,8 @@ above, still holds: this section adds the other half.
   "born in X, now in Y".
 - **One at a time.** This is the technical lead's reading of the
   founder's "a separate index for current multiverse", which speaks of
-  one. Whether a world may be in two at once is put to the founder
-  (STATUS.md, "Open questions"). A world that left to stand alone, as
+  one. It is decided so (2026-11-17; STATUS.md, "Decided"): a world is
+  in one multiverse at a time. A world that left to stand alone, as
   "Leaving the multiverse" has it, was admitted by no one: it is the
   first world of a multiverse of its own.
 

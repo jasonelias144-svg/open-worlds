@@ -165,7 +165,10 @@ one of them updates this page.
    passed stays in the record ([FREEDOMS.md](FREEDOMS.md), "Speak").
    Since 2026-11-15, a private message goes from one person's container
    to the other's, sealed to the receiver, so the project holds no key
-   to it either ([CONTAINER.md](CONTAINER.md)). Not yet built.
+   to it either ([CONTAINER.md](CONTAINER.md)). Since 2026-11-17 the
+   project's machines may hold a sealed message for someone who is
+   away, as for any closed room (item 15); they hold no key to it. Not
+   yet built.
 5. **A person's presences, unlinked by default.** Decided 2026-11-14: "a
    person may keep their presences in different worlds unlinked: by
    default, and the person chooses what to show"
@@ -304,7 +307,9 @@ one of them updates this page.
     whole, with anything private in them redacted ("Public records, kept
     whole", below). A closed room keeps only metadata in public, and its
     words pass between its members' private containers, sealed, so no
-    one else reads them, ADMIN and the project included. Building a
+    one else reads them, ADMIN and the project included. Since
+    2026-11-17 the project's machines may hold those sealed words for
+    a member who is away (item 15); they hold no key. Building a
     closed room includes a test that no one outside it can read its
     words ([COMMONS.md](COMMONS.md)). Not yet built.
 14. **A moderator's rooms are apart.** The founder (to DeepSeek, record
@@ -332,11 +337,21 @@ one of them updates this page.
     common." It confirms items 4 and 13 and asks for more of them:
     private rooms are not the exception, and there may be levels
     between a room on the record and a room no one outside can read
-    ("There is a spectrum of privacy to consider"). The levels are not
-    decided. The technical lead proposes three, with what the record
-    keeps at each, and they wait for the founder
-    ([COMMONS.md](COMMONS.md), "A spectrum of privacy"). Not yet
-    built.
+    ("There is a spectrum of privacy to consider"). The levels are
+    decided (2026-11-17, on the technical lead's recommendation, under
+    the founder's general guidance of that day; STATUS.md, "Decided").
+    Three: on the record; closed, where the words are sealed with keys
+    the members hold and the record keeps only that the room exists,
+    who is in it and that messages passed; and off the record, where
+    nothing is kept. Closed is the common kind. Two things change with
+    it, said plainly. The project's machines may hold a closed room's
+    sealed words for a member who is away, where items 4 and 13 had
+    them pass only between the members' own containers; the project
+    still holds no key. And off the record sets aside item 4's rule
+    that the record keeps that a message passed. One cost stays: what
+    the record keeps of a closed room tells who is in a private room
+    with whom, and when ([COMMONS.md](COMMONS.md), "A spectrum of
+    privacy"). Not yet built.
 
 ## Transparency, beside privacy
 
@@ -453,17 +468,26 @@ unless the founder answers otherwise:
   it can't be recalled. How long an appeal may take is set with ADMIN's
   rules for appeals; until it is set, it stays redacted.
   How an office can still decide to keep it public, when what was
-  redacted is sealed to the person, is put to the founder: the plan
-  for course step 3b proposes a second sealed copy for the office that
-  decides, kept only until the decision and any appeal are over
-  ([research/REDACTION.md](research/REDACTION.md), "For the founder").
+  redacted is sealed to the person, is decided (2026-11-17, on the
+  technical lead's recommendation, under the founder's general
+  guidance of that day): a second sealed copy for the office that
+  decides, kept only until the decision and any appeal are over, then
+  deleted, with an entry that says so. For that while an office of the
+  project can read what was redacted
+  ([research/REDACTION.md](research/REDACTION.md), "For the founder:
+  decided").
 - **Shared on purpose, in a room.** Ideas of the founder's, of
-  2026-11-16, not decided: a person may share their personal
+  2026-11-16, taken since 2026-11-17 with the six changes below: a
+  person may share their personal
   information in a room after being asked "Are you sure?"; those in the
   room can read it while the person is there; when the person leaves,
   the room shows it as redacted, with an incident id; and the record
   holds it encrypted. The founder's words, and six changes the
-  technical lead proposes, which wait for the founder, are in
+  technical lead proposed, decided on its recommendation on
+  2026-11-17 (one's own only; the window says who will read it, with
+  AIs off unless turned on; never in the open in the record; taken
+  back at any time; the limit on copies said in the window; sealed to
+  the person), are in
   [COMMONS.md](COMMONS.md), "Personal information in a room: ideas".
 
 ## Purged, demonstrably

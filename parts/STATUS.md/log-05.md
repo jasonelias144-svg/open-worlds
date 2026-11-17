@@ -8,6 +8,21 @@
 
 ## Log
 
+- 2026-11-17 Claude: the founder's general guidance recorded, and what
+  was open decided under it (Decided, today): the two roles, the floor
+  between multiverses, the office's sealed copy, the levels of privacy
+  a room may have, the Ur-room on the record, the six changes to the
+  founder's ideas on personal information in a room, who may read a
+  removed comment, and step 10. "Open questions" now holds only money,
+  acts that are the founder's own, and words that have to be the
+  founder's. The pages those decisions change say so: AGENTS.md,
+  docs/FUNDAMENTALS.md (privacy, items 4, 13 and 15, and the two rules
+  on redaction), docs/COMMONS.md, docs/research/REDACTION.md,
+  docs/COURSE.md, docs/TOPICS.md, docs/VISION.md. Also recorded: which
+  of Gemini's models the founder works with. Nothing is built by this.
+  Next in the course is redacting (step 3b, part three), which no
+  longer waits. Not done: the policy handbook's own page on the two
+  roles follows in its own pull request.
 - 2026-11-17 Claude: Gemini's second round is in. Three deliveries on
   the Commons' own log, taken out of the record by script and kept as
   written in sketches/gemini/2026-11-17/. Built one over the other

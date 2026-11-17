@@ -56,8 +56,8 @@ guest's key the person's private container.)
   of a removal in a log is built, course step 3b; who may remove is
   not checked yet);
 - the levels of privacy a room may have, and what the record keeps at
-  each: three are proposed, and wait for the founder (COMMONS.md, "A
-  spectrum of privacy");
+  each: three, decided on 2026-11-17 (COMMONS.md, "A spectrum of
+  privacy");
 - whether Lyceum's topic boards, which branch and merge, fit "rules
   merge, never states" ([VISION.md](VISION.md));
 - what a mind from the Ur-world does when it walks into a room.
