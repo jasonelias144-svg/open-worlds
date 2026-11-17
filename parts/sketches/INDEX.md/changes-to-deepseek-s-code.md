@@ -220,6 +220,21 @@ does not have, so the crate did not compile. The head's field is
 in `chat-world-now/src/verify.rs`; in `REPAIRS_BRANCH` in
 `review/steps.py`. With it all 103 tests pass.
 
+**Change 25 (2026-11-17, at the founder's word): a room's law can hide
+how many are in it.** The founder decided that how many are in a room
+is shown outside it by default, and that a room may turn that off
+(STATUS.md, "Decided"). A room's law, `RoomTemplate`, gains one field,
+`count_hidden`. It is left out of what is written when it is not set,
+so every law written before it hashes as it did. A room made by
+`RoomTemplate::chat` leaves it unset; a home made by
+`RoomTemplate::personal_home` sets it, which is the technical lead's
+reading: a room that is not public hides its count unless its law
+says otherwise. Seven lines in `chat-world-now/src/template.rs`; in
+`COUNT` in `review/steps.py`. This is not a repair: nothing was
+wrong. It is the one thing in the crate that neither DeepSeek nor
+Gemini wrote, and it is there so that Gemini's list of doors has a
+law to read the choice from. All 112 tests pass with it.
+
 Not fixed, and why:
 
 - **The two coupled chaos games don't steer apart.** The coupling

@@ -114,14 +114,15 @@ def test_its_keys_are_hex_and_its_time_is_the_clock():
 
 
 def test_the_crate_as_it_stands_is_the_deliveries_with_the_listed_repairs():
-    # Fixes 19 to 24. chat-world-now is put together here, so nothing in
+    # Fixes 19 to 24 and change 25. chat-world-now is put together here, so nothing in
     # the record says what it must hold. review/steps.py does: the crate
     # DeepSeek was given, DeepSeek's five deliveries laid over it in
     # order, three repairs, Gemini's three deliveries, two earlier tests
     # corrected, a room's law closed to change in place, Gemini's three
     # deliveries on the Commons, DeepSeek's branches with one word
-    # repaired, and DeepSeek's plug-in. This runs its check, which also
-    # holds Gemini's files to their hashes.
+    # repaired, DeepSeek's plug-in, and one field added to a room's law
+    # at the founder's word. This runs its check, which also holds
+    # Gemini's files to their hashes.
     done = subprocess.run(
         [sys.executable, "-I", str(HERE / "review" / "steps.py"), "--check"],
         capture_output=True, text=True)
@@ -134,6 +135,14 @@ def test_the_crate_as_it_stands_is_the_deliveries_with_the_listed_repairs():
                         ("branch.rs", 11), ("plugin.rs", 9)):
         text = (tests / name).read_text(encoding="utf-8")
         assert text.count("#[test]") == count, name
+    # Change 25: the one field, left out of what is written when it is
+    # not set; unset for a public room, set for a home.
+    law = (HERE / "chat-world-now" / "src" / "template.rs").read_text(
+        encoding="utf-8")
+    assert ('    #[serde(default, skip_serializing_if = "is_false")]\n'
+            '    pub count_hidden: bool,\n') in law
+    assert law.count("count_hidden: false,") == 1
+    assert law.count("count_hidden: true,") == 1
 
 
 def test_geminis_files_are_the_ones_its_record_gives():

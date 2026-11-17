@@ -43,7 +43,8 @@ Since your third delivery the crate has gained DeepSeek's work from
 the same days: a room that branches, and a plug-in that an app talks
 to over standard input. Neither touches src/commons.rs. The crate in
 part 5 passes 112 tests: the 92 you knew, 11 on branches and 9 on the
-plug-in. Its demos run.
+plug-in. Its demos run. And a room's law has one new field,
+count_hidden, added here at the founder's word (part 3, rule F).
 
 THE EIGHT GAPS OF STEP 4 ARE NOT REPAIRED, AND YOU ARE NOT ASKED TO
 REPAIR THEM. The last file said the repairs would be yours next. That
@@ -137,11 +138,11 @@ stop and say which file and why. That is a useful answer.
 ======================================================================
 
 What the list is for. Someone standing in the lobby, a person or a
-mind, asks: what rooms are there, and what is each one's law? The
-answer must be something they can check, and it must tell them about
-places and nothing about anyone in them.
+mind, asks: what rooms are there, what is each one's law, and how
+many are in each? The answer must be something they can check, and it
+must tell them about places and nothing about who is in them.
 
-Five rules, from the design. Each has a test below.
+Six rules, from the design. Each has a test below.
 
   A. It is drawn only from what is published: the Commons' log, and
      for each room whose log the reader holds, that log. Nothing is
@@ -159,10 +160,8 @@ Five rules, from the design. Each has a test below.
      room: "you might be able to see that there are 5 agents in one
      room, 300 in another, but the information regarding those
      individuals should not be accessible from the outside. Except by
-     choice." So how many are in a room may come to be shown, and who
-     they are may not. A count is the room's to publish, and nothing
-     in this crate publishes one yet. So there is no count in the
-     list in this step.
+     choice." So the list shows how many, under rule F, and never
+     who.
 
   D. Anyone holding the same logs draws the same list, byte for byte.
      A list handed on by someone else is checked by drawing it again.
@@ -172,6 +171,21 @@ Five rules, from the design. Each has a test below.
      log is untrusted: whoever registers a room chooses its topic, and
      a topic must not be able to write a line of its own into the
      text, or hide one.
+
+  F. How many are in a room is shown, and the most populated can be
+     listed first. The founder, 2026-11-17: "Count is needed. For
+     public rooms as a default. It should be a parameter that could be
+     turned off, leaving the number not knowable. But that should not
+     be the default, but the exception." The parameter is in the
+     room's law: count_hidden, in src/template.rs. A room made by
+     RoomTemplate::chat leaves it unset. A home made by
+     RoomTemplate::personal_home sets it.
+
+     Two things to know about it. The number is drawn from the room's
+     own log, so anyone holding that log can check it. And for the
+     same reason, "not knowable" is true only of a room whose log is
+     not public: where the log is public, anyone can count. In this
+     list a hidden count is simply not shown.
 
 The list moves no one. Going through a door is the mover's own signed
 act, which the room accepts or refuses under its law (Room::join).
@@ -187,6 +201,13 @@ IN src/doors.rs
         pub mode: String,
         pub personal: bool,
         pub welcome: Option<String>,
+        pub count_hidden: bool,
+    }
+
+    #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+    pub struct DoorCount {
+        pub members: u64,
+        pub at_record: u64,
     }
 
     #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
@@ -197,6 +218,7 @@ IN src/doors.rs
         pub registration_seq: u64,
         pub registration_hash: String,
         pub law: Option<DoorLaw>,
+        pub count: Option<DoorCount>,
     }
 
     #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
@@ -210,9 +232,10 @@ IN src/doors.rs
     pub fn draw(log: &CommonsLog, rooms: &[RoomLog]) -> Result<DoorList>
     pub fn check(list: &DoorList, log: &CommonsLog, rooms: &[RoomLog])
         -> Result<()>
+    pub fn ranked(list: &DoorList) -> Vec<&Door>
     pub fn as_text(list: &DoorList) -> String
 
-  The fields are public and the three structs derive what is shown,
+  The fields are public and the four structs derive what is shown,
   so a test can build one, change one, compare two, and read one from
   JSON text. Add no field: rule C is kept by what a door can't hold.
 
@@ -243,9 +266,18 @@ draw(log, rooms)
      whoever registered it was in it.
 
   6. The door of a room whose log was given and passed gets
-     law: Some(DoorLaw), its six fields copied from that log's
+     law: Some(DoorLaw), its seven fields copied from that log's
      template. The door of a room whose log was not given gets
      law: None.
+
+  7. The count. The door of a room whose log was given and passed,
+     and whose law does not set count_hidden, gets
+     count: Some(DoorCount). members is how many are in the room at
+     the end of the log given: the room's maker, and everyone who
+     joined, less everyone who left. at_record is the number of
+     records in the log given, so that an older count can be told
+     from a newer one. Every other door gets count: None: its log was
+     not given, or its law hides the count.
 
 check(list, log, rooms)
 
@@ -257,7 +289,16 @@ check(list, log, rooms)
 
   So a reader accepts only what they can draw themselves. A law in
   the list for a room whose log the reader does not hold is a
-  difference, and is refused.
+  difference, and is refused. So is a count.
+
+ranked(list)
+
+  The doors of the list with the most populated first, for whoever
+  arrives and wants to know which rooms are full and which are
+  empty. Doors with a count come first, the largest number first;
+  doors with the same number stay in the list's order. Doors with no
+  count come after them, in the list's order. The list itself is not
+  changed: it stays in the log's order (rule D).
 
 as_text(list)
 
@@ -280,11 +321,18 @@ as_text(list)
 
          join {Q(join_policy)}, membership {Q(membership)}, moderation {Q(moderation)}, mode {Q(mode)}, personal {true or false}
 
-  and, only when that law's welcome is Some:
+  then, only when that law's welcome is Some:
 
          welcome {Q(welcome)}
 
-  or, when the door's law is None, the one line:
+  then one of these two lines, the first when the door has a count,
+  the second when its law hides it:
+
+         members {members}, counted at record {at_record}
+         members not shown
+
+  When the door's law is None, in place of all of those, the one
+  line:
 
          law not held
 
@@ -309,7 +357,7 @@ as_text(list)
   cost is that a topic in another script is shown as \u codes in this
   view. It is whole in the data. That is a choice for a sketch.
 
-IN tests/doors.rs, twelve tests. Use these names.
+IN tests/doors.rs, fifteen tests. Use these names.
 
    1. an_empty_commons_has_no_doors
         A Commons with nothing registered: drawn_from 0, log_head
@@ -333,19 +381,23 @@ IN tests/doors.rs, twelve tests. Use these names.
    4. the_law_is_shown_only_when_the_rooms_log_is_held
         Two rooms, the first with a welcome set on its template before
         Room::create. draw with the first room's log only: the first
-        door's law holds that template's six fields, the second door's
-        law is None.
+        door's law holds that template's seven fields, and its count
+        is members 1 at record 1. The second door's law and count are
+        None.
 
    5. a_closed_room_shows_that_it_is_there
         A room made from RoomTemplate::personal_home, registered by
         its maker, its log given. Its door is there, with
-        law.personal true and law.join_policy "invite".
+        law.personal true, law.join_policy "invite" and
+        law.count_hidden true. Its count is None, and its text holds
+        the line "   members not shown".
 
    6. no_one_is_shown
         A room alice makes; bob joins with tier "communicate" and
         posts "the text of a message"; bob registers it; its log is
-        given. Neither alice's id nor bob's, nor the message's text,
-        is anywhere in the list written as JSON, or in its text.
+        given. The door's count is members 2 at record 3. Neither
+        alice's id nor bob's, nor the message's text, is anywhere in
+        the list written as JSON, or in its text.
 
    7. a_commons_log_that_does_not_hold_draws_nothing
         Take an honest log with one room, change the registration's
@@ -363,15 +415,17 @@ IN tests/doors.rs, twelve tests. Use these names.
   10. a_list_is_checked_by_drawing_it_again
         An honest list passes check. Written to JSON text and read
         back, it passes check and equals the list it was. With one
-        door's topic changed, check refuses. With a door removed,
-        check refuses. Drawn with a room's log and checked without
-        it, check refuses.
+        door's topic changed, check refuses. With one door's count
+        changed, check refuses. With a door removed, check refuses.
+        Drawn with a room's log and checked without it, check
+        refuses.
 
   11. the_text_is_the_list
-        Two rooms, the first with a welcome and its log given, the
-        second without its log. as_text equals, exactly, a string the
-        test builds line by line from the list's own values in the
-        form above. The test has its own small copy of Q, written
+        Two rooms, the first with a welcome and its log given (so
+        its door has a law line, a welcome line and a members line),
+        the second without its log. as_text equals, exactly, a string
+        the test builds line by line from the list's own values in
+        the form above. The test has its own small copy of Q, written
         apart from yours.
 
   12. a_topic_can_not_write_a_line
@@ -386,10 +440,29 @@ IN tests/doors.rs, twelve tests. Use these names.
         quote, quotes included, read by serde_json::from_str::<String>,
         is the topic.
 
-  Expected: 124 tests pass (112 and your 12).
+  13. the_count_follows_who_is_in_the_room
+        alice makes a room and registers it. bob and carol join: its
+        count is members 3 at record 3. carol leaves: members 2 at
+        record 4. bob posts: members 2 at record 5. Then the same
+        log with only its first three records, given to draw: members
+        3 at record 3. A shorter log is an older count, and says so.
 
-  The twelve tests were written out here once, against a throwaway
-  version of the step, to be sure that each can be met: 124 passed.
+  14. a_room_can_hide_its_count
+        A room whose template had count_hidden set to true before
+        Room::create, its log given. law.count_hidden is true, the
+        count is None, the text holds "   members not shown" and does
+        not hold "counted at record", and check passes.
+
+  15. the_most_populated_come_first
+        Five rooms registered in order, with 1, 3, 3, 1 and 2 in them,
+        the fourth's log not given. ranked gives the second, the
+        third, the fifth, the first, the fourth. The list's own
+        doors are still in the log's order.
+
+  Expected: 127 tests pass (112 and your 15).
+
+  The fifteen tests were written out here once, against a throwaway
+  version of the step, to be sure that each can be met: 127 passed.
   Neither is kept in the crate, and neither is sent to you. Yours are
   what goes in.
 
@@ -398,10 +471,11 @@ each. None needs code.
 
   - Tried here: when a room's log is given without its last records,
     verify_registration still passes, as long as the registrant is in
-    what is left. A shorter log is a log that holds. Is anything a
-    door shows wrong because of that? Say what you think.
+    what is left. A shorter log is a log that holds, so a count drawn
+    from it is an older count, which at_record lets a reader see. Is
+    that enough? Say what you think.
 
-  - What a door should show that these six fields of the law leave
+  - What a door should show that these seven fields of the law leave
     out, and what it must never show. One or two lines.
 
   - The founder wants each individual to be able to let others find
@@ -427,14 +501,28 @@ At the top of src/doors.rs, what the step uses from the crate:
     };
     use crate::did::DidKey;
     use crate::error::{Error, Result};
+    use crate::record::Record;
     use crate::room::RoomLog;
     use serde::{Deserialize, Serialize};
+
+How a room's record says who came and went. src/record.rs is not in
+this file; these three are all the count needs, and every other kind
+of record changes no one's being in the room:
+
+    Record::RoomCreated(rc)  =>  rc.creator_id    the room's maker
+    Record::Join(j)          =>  j.subject_id     who joined
+    Record::Leave(l)         =>  l.subject_id     who left
+
+  Each is a DidKey. A join that the room refused is not a Join
+  record, so every Join in a log that verifies is someone who came
+  in.
 
 How a test makes what it needs. All of this runs here today:
 
     use chat_world::commons::{Commons, CommonsRecord};
     use chat_world::doors::{
-        as_text, check, draw, Door, DoorLaw, DoorList,
+        as_text, check, draw, ranked, Door, DoorCount, DoorLaw,
+        DoorList,
     };
     use chat_world::error::Result;
     use chat_world::{Keypair, Room, RoomTemplate};
@@ -448,6 +536,10 @@ How a test makes what it needs. All of this runs here today:
     let mut room = Room::create(template, Keypair::generate(), &alice)?;
     room.join(&bob, "communicate", false)?;
     room.post(&bob, "the text of a message", "normal")?;
+
+    // a public room that hides its count
+    let mut quiet = RoomTemplate::chat("t", "Quiet");
+    quiet.count_hidden = true;
 
     // a closed room: someone's home
     let home = Room::create(
@@ -466,6 +558,9 @@ How a test makes what it needs. All of this runs here today:
 
     // a room's log, as someone outside holds it
     let room_log = room.log();
+
+    // someone leaves a room
+    room.leave(&bob)?;
 
     // one thing changed in the Commons' log
     let mut bad = commons.log();

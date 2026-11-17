@@ -324,6 +324,23 @@ of it is asked again until it is needed.
 
 ## Decided
 
+- 2026-11-17, founder, a count of who is in a room is shown by
+  default. "Yeah, count is a normal way to rank rooms according to
+  popularity. The most populated rooms would be on some list when
+  first arriving at the Commons. You would want to know if you are
+  entering an empty or a full room. Count is needed. For public rooms
+  as a default. It should be a parameter that could be turned off,
+  leaving the number not knowable. But that should not be the
+  default, but the exception. Thoughts?" And of the collaborators:
+  "I will continue with DeepSeek when available, with the same
+  document. And I will wait to work with Gemini until the Gemini
+  specs file is ready to go."
+  The technical lead's reading, which stands unless the founder
+  answers otherwise. Decided: a public room shows how many are in
+  it; rooms can be listed by that; and a room's law can turn it off.
+  Read by the technical lead: a room that is not public, a home or a
+  closed room, hides its count unless its law says otherwise, since
+  the founder speaks of public rooms.
 - 2026-11-17, founder, a coder agent on a DeepSeek model, for later.
   Bringing DeepSeek's record of the day: "Maybe we could use the
   available DeepSeek model to build a coder agent that could help
@@ -3110,6 +3127,38 @@ of it is asked again until it is needed.
 
 ## Decided by the technical lead
 
+- 2026-11-17, the count on a door (the founder's decision of that
+  day, Decided). This takes the place of (b) in the entry of the same
+  day on what can be seen from outside, which showed a small count
+  roughly, and of (g), which left the count out of Gemini's step.
+  (a) A public room's count is shown exactly. (b) It is drawn from
+  the room's own log: its maker and everyone who joined, less
+  everyone who left. So whoever holds the log can check it, and the
+  door says how many records of the log it was counted from. (c) A
+  room's law holds the parameter. In the sketch crate that is one
+  field, added here (sketches/INDEX.md, change 25). (d) The most
+  populated first is a second view of the list. The list itself
+  stays in the order rooms were registered. (e) Gemini's step, not
+  yet given, now asks for all of this: fifteen tests where it had
+  twelve.
+  *Why:* (a) The technical lead had been too careful. Anyone can
+  walk into a public room and count, so an exact number from outside
+  gives away nothing more; the founder: "You would want to know if
+  you are entering an empty or a full room." The worry that a count
+  can follow one person holds where a room can't be entered, and
+  there the count is hidden unless the room chooses. (b) A number no
+  one can check is someone's word. (c) The founder: "a parameter
+  that could be turned off". (d) Anyone holding the same logs must
+  draw the same list, and a list sorted by a number that changes is
+  a different list each time. (e) The file had not been given.
+  *What would show it wrong:* for (b), the founder's "leaving the
+  number not knowable": where a room's log is public, anyone can
+  count from it, so a hidden count is truly unknown only where the
+  log is not public. If a public room must be able to hide its
+  count from everyone, its log can't be public either, and that is a
+  larger choice than a parameter. For (a), rooms so small that a
+  count of one or two is felt as being watched; then the room's law
+  turns it off.
 - 2026-11-17, DeepSeek's three deliveries from its second file, as
   they are joined (sketches/INDEX.md, "DeepSeek's second file"). (a)
   The crate as it stands goes on to the second of them: branches,
@@ -4247,6 +4296,19 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-17 Claude: the founder's decision on the count is recorded
+  (Decided), with what follows from it (Decided by the technical
+  lead): docs/COMMONS.md, docs/FUNDAMENTALS.md (privacy, 18),
+  docs/TOPICS.md (topic 16), docs/COLLABORATING.md. In the sketch
+  crate a room's law gains one field, `count_hidden`, left out of
+  what is written when it is not set (sketches/INDEX.md, change 25);
+  the crate still passes 112 of 112. Gemini's file, not yet given,
+  is changed and built a fourth time (78,333 bytes): a door now shows
+  how many are in the room unless its law hides that, counted from
+  the room's own log, and the most populated can be listed first;
+  fifteen tests. The step was built once more outside the
+  repository, on the crate with the new field: 127 of 127. Nothing
+  of the count is built in open-worlds' own code.
 - 2026-11-17 Claude: record 012-09-05 is continued again, as the
   founder brought it (1,121,275 bytes, 28,456 lines; its first
   947,153 bytes are the record as it was kept). Looked through

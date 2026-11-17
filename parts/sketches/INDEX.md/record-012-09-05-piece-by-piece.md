@@ -159,8 +159,9 @@ refuse (STATUS.md, "Decided by the technical lead", 2026-11-17).
 Gemini's next file
 ([replies/2026-11-17-2-for-gemini.txt](replies/2026-11-17-2-for-gemini.txt))
 asks one step: the lobby's list of doors, which is what a map of the
-Commons is first drawn from, in a new file `src/doors.rs` with twelve
-tests. Nothing has come back yet. The file was built again on the
+Commons is first drawn from, in a new file `src/doors.rs` with fifteen
+tests. A door shows how many are in the room, unless the room's law
+hides that, and the most populated can be listed first. Nothing has come back yet. The file was built again on the
 crate with DeepSeek's next deliveries in it, below.
 
 ### DeepSeek's second file: branches, a plug-in, and a rule cut off (2026-11-17)
@@ -190,7 +191,8 @@ DeepSeek counted from 66 tests because its file said so. By then the
 crate had 92, with Gemini's work on the Commons, which the file could
 not say. Its own counts are otherwise right but for the twelfth test.
 
-The crate as it stands is now delivery 7:
+The crate as it stands is now delivery 7, with one field added to a
+room's law since (change 25):
 `deepseek/012-09-05/chat-world-now/`, 112 tests, 61 of them
 DeepSeek's and 51 Gemini's, in 29 files. Gemini's seventeen attacks
 on a room's other records, run beside it again, give the same eight

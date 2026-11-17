@@ -398,8 +398,9 @@ one of them updates this page.
     choice", by "a list controlled by each user, each agent, but it
     could be empty or open." So nothing about an individual is to be
     had from outside the world they are in unless they choose it. How
-    many are in a room may be shown, if the room's law says so; who
-    they are is not. The technical lead's design: being found is the
+    many are in a public room is shown, unless the room's law turns
+    that off, which is "the exception" (the founder, the same day);
+    who they are is not. The technical lead's design: being found is the
     individual's own signed record, saying where, for whom and until
     when. There is none unless they make one. It ends by itself. For
     named others it is sealed to their keys. And no room, moderator

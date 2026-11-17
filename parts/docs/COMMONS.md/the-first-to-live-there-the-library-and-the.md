@@ -172,14 +172,20 @@ combined in the same interface."
   "agent information" on the map is one's own: one's passport, one's
   powers, where one is. Others are seen only in a room that shows who
   is in it, under the presence they have there.
-- **How many, perhaps; who, never, but by their choice.** The founder
+- **How many, yes; who, never, but by their choice.** The founder
   (2026-11-17): "you might be able to see that there are 5 agents in
   one room, 300 in another, but the information regarding those
   individuals should not be accessible from the outside. Except by
-  choice." A count is the room's to publish, by its law. A small
-  count is shown roughly, and no more often than the room signs its
-  heads: a count that moves when one person moves would follow that
-  person.
+  choice." And, deciding it the same day: "Count is needed. For
+  public rooms as a default. It should be a parameter that could be
+  turned off, leaving the number not knowable. But that should not
+  be the default, but the exception." So a public room shows how many
+  are in it, and rooms can be listed with the most populated first.
+  The parameter is in the room's law. The number is drawn from the
+  room's own log, so anyone holding the log can check it; and for the
+  same reason it is truly not knowable only where the room's log is
+  not public. A room that is not public hides its count unless its
+  law says otherwise, which is the technical lead's reading.
 - **Being found is one's own act.** The founder: "You should be able
   to allow others to find you, if you want. It should be a list
   controlled by each user, each agent, but it could be empty or

@@ -40,7 +40,9 @@ delivery before left it.
                  ../../../INDEX.md, fix 24).
     d7           DeepSeek's delivery 7 laid over it: the plug-in
                  (../chat-world-steps/7).
-    now          d7, with nothing changed. This is the crate as it
+    now          d7, with one field added to a room's law (COUNT;
+                 ../../../INDEX.md, change 25): whether how many are in
+                 the room is hidden outside it. This is the crate as it
                  stands, kept in ../chat-world-now.
     d8           now, with DeepSeek's delivery 8 laid over it as far as
                  it came: the rule of one moderator's room
@@ -170,6 +172,34 @@ REPAIRS_BRANCH = [
     ("src/verify.rs",
      "parent.heads.last().map(|h| h.len() as usize)",
      "parent.heads.last().map(|h| h.length as usize)"),
+]
+
+
+# Change 25, made at the founder's word of 2026-11-17: how many are
+# in a room is shown outside it by default, and a room's law can turn
+# that off. A room's law gains one field. It is left out of what is
+# written when it is not set, so every law written so far hashes as it
+# did. A public room's law leaves it unset. A home's sets it: that a
+# room which is not public hides its count unless its law says
+# otherwise is the technical lead's reading.
+_LAST = ("    #[serde(skip_serializing_if = \"Option::is_none\")]\n"
+         "    pub moderator: Option<ModeratorSpec>,\n")
+_MADE = "            moderator: None,\n        }\n    }\n\n    pub fn "
+COUNT = [
+    ("src/template.rs", _LAST + "}\n",
+     _LAST +
+     "    /// How many are in the room is shown outside it, unless this\n"
+     "    /// is set. Left out of what is written when it is not set, so\n"
+     "    /// a law written before this field hashes as it did.\n"
+     "    #[serde(default, skip_serializing_if = \"is_false\")]\n"
+     "    pub count_hidden: bool,\n"
+     "}\n"),
+    ("src/template.rs", _MADE + "personal_home",
+     _MADE.replace("        }\n", "            count_hidden: false,\n        }\n")
+     + "personal_home"),
+    ("src/template.rs", _MADE + "hash",
+     _MADE.replace("        }\n", "            count_hidden: true,\n        }\n")
+     + "hash"),
 ]
 
 
@@ -313,8 +343,10 @@ def main(argv, quiet=False):
         say(f"DeepSeek's delivery 7, the plug-in: "
             f"{count} files laid over: d7")
         before = tree
-        shutil.copytree(before, os.path.join(out, "now", "chat-world"))
-        say("nothing changed after it: now")
+        tree = os.path.join(out, "now", "chat-world")
+        repaired(before, tree, COUNT)
+        say("a room's law can hide its count: now")
+        before = tree
         tree = os.path.join(out, "c4", "chat-world")
         shutil.copytree(before, tree)
         count = lay(os.path.join(GEMINI_COMMONS, "steps", "4"), tree)

@@ -8,6 +8,19 @@
 
 ## Log
 
+- 2026-11-17 Claude: the founder's decision on the count is recorded
+  (Decided), with what follows from it (Decided by the technical
+  lead): docs/COMMONS.md, docs/FUNDAMENTALS.md (privacy, 18),
+  docs/TOPICS.md (topic 16), docs/COLLABORATING.md. In the sketch
+  crate a room's law gains one field, `count_hidden`, left out of
+  what is written when it is not set (sketches/INDEX.md, change 25);
+  the crate still passes 112 of 112. Gemini's file, not yet given,
+  is changed and built a fourth time (78,333 bytes): a door now shows
+  how many are in the room unless its law hides that, counted from
+  the room's own log, and the most populated can be listed first;
+  fifteen tests. The step was built once more outside the
+  repository, on the crate with the new field: 127 of 127. Nothing
+  of the count is built in open-worlds' own code.
 - 2026-11-17 Claude: record 012-09-05 is continued again, as the
   founder brought it (1,121,275 bytes, 28,456 lines; its first
   947,153 bytes are the record as it was kept). Looked through

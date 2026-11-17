@@ -42,6 +42,7 @@
 #   now           112 pass, the four demos run, and the plug-in's own
 #                 demonstration runs. This is d6-repaired with
 #                 DeepSeek's delivery 7, the plug-in, laid over it,
+#                 and one field added to a room's law (change 25),
 #                 which is the crate as it stands.
 #   d8            does not compile: the rule of one moderator's room,
 #                 cut off after three files
