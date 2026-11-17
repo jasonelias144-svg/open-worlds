@@ -327,7 +327,7 @@ def _valid() -> List[Dict[str, Any]]:
                     {"kind": "record",
                      "ref": records.record_hash(suggestion)}],
         "inputs": [records.record_hash(suggestion)],
-        "appeal": "to ADMIN, and beyond it to the founder",
+        "appeal": "to ADMIN, and beyond them to the founder",
         "tick": 120,
     }, "the Ur-world's Keeper")
     ruling = _signed({
@@ -412,7 +412,7 @@ def _valid() -> List[Dict[str, Any]]:
         "time": CREATED,
     }, "ALICE")
     named = [
-        ("a Keeper's grant from its world", keeper_grant),
+        ("a Keeper's grant from their world", keeper_grant),
         ("a grant narrowed, with an end", narrowed),
         ("a grant across the multiverse", admin_grant),
         ("a suggestion to a world's Keeper", suggestion),
@@ -566,7 +566,7 @@ def _key_list_histories() -> List[Dict[str, Any]]:
 
 def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     by = {v["name"]: v["record"] for v in valid}
-    grant = by["a Keeper's grant from its world"]
+    grant = by["a Keeper's grant from their world"]
     suggestion = by["a suggestion to a world's Keeper"]
     outcome = by["an outcome on a suggestion, with its reasons"]
     rating = by["a rating of how a suggestion was handled"]
@@ -693,7 +693,7 @@ def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
          resigned(outcome, "the Ur-world's Keeper",
                   act={"kind": "adjust-conditions",
                        "records": [records.record_hash(grant)] * 2})),
-        ("a suggestion about a Keeper that names it other than by key",
+        ("a suggestion about a Keeper that names them other than by key",
          resigned(suggestion, "ALICE",
                   about={"kind": "keeper", "ref": "the Keeper"})),
         ("a record whose proof has an @context",

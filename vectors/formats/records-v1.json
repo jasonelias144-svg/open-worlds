@@ -64,7 +64,7 @@
  "created": "2026-11-14T01:00:00Z",
  "valid": [
   {
-   "name": "a Keeper's grant from its world",
+   "name": "a Keeper's grant from their world",
    "signer": "the Ur-world",
    "record": {
     "format": "open-worlds/grant/v1",
@@ -247,7 +247,7 @@
     "inputs": [
      "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
     ],
-    "appeal": "to ADMIN, and beyond it to the founder",
+    "appeal": "to ADMIN, and beyond them to the founder",
     "tick": 120,
     "proof": {
      "type": "DataIntegrityProof",
@@ -255,10 +255,10 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z5eC5AnkxFL9gJy1djPsjsCMfF5dPNtiM2WFURaakDDHa9Pi2i6S9K3Tnih9Q5msrTHLU5rR9ftTkeVxEzE6QcaH4"
+     "proofValue": "z3ih1ySXXgTobNSj1KUh9egzBFH4QPicTL6WPPRVb3gAvZqj9Nm4szv9aUDvdrAMkVP8SG9y6UB5sCdMJkNNmyPaG"
     }
    },
-   "hash": "af2dccbd1d6af9b83e900937717c6fa527f08e478c9ac355104d9c4666ce3517"
+   "hash": "decbc9204c4f8e6854afa7f6034df19e04490c8a867f1863436a70f3462f09df"
   },
   {
    "name": "a ruling with a formal reason, council views, and the decision it supersedes",
@@ -305,7 +305,7 @@
       "view": "Agreed; fix the path."
      }
     ],
-    "supersedes": "af2dccbd1d6af9b83e900937717c6fa527f08e478c9ac355104d9c4666ce3517",
+    "supersedes": "decbc9204c4f8e6854afa7f6034df19e04490c8a867f1863436a70f3462f09df",
     "appeal": "to the founder",
     "tick": 150,
     "proof": {
@@ -314,10 +314,10 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD#z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z44PdvPEajRycu8jckRXk7LNxDSeUmMrRWWxX7Lx3EU7m9MVDP9EjY1Lx6ipNuzoBDGNsUErdMjV5u5igDT6DuuQ3"
+     "proofValue": "z3SaTBeAD8tpUdonTkpCsrCDC53mXetbqZ1MJX8eLErqUHpD9GAP5T7GQjGtnDXHXzZwT4h1MmsHLEdzBuii9Fq8W"
     }
    },
-   "hash": "494162ae6c330108ca0834b40c31f4a783477779edd7d68e0fbf5cf7293937ba"
+   "hash": "4d06620a55c0c9373c6fb8f6c64827baae1f6cb994ef25e2e83f22c7cf48d5a9"
   },
   {
    "name": "a rating of how a suggestion was handled",
@@ -326,7 +326,7 @@
     "format": "open-worlds/rating/v1",
     "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
     "suggestion": "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a",
-    "outcome": "af2dccbd1d6af9b83e900937717c6fa527f08e478c9ac355104d9c4666ce3517",
+    "outcome": "decbc9204c4f8e6854afa7f6034df19e04490c8a867f1863436a70f3462f09df",
     "score": 4,
     "text": "It was fed, and quickly.",
     "proof": {
@@ -335,10 +335,10 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z2s8PKFdtpbX4dm2tf9ibQ1Y6m8ofi7zigzqaHfAojDSrhbJZz9ezkYfauFjnZtLod3cUTdwiLUxzmxF1TBghxBat"
+     "proofValue": "zLHse8HgzFzvxqqVZc6bqsew2FoFtgE3zoumiz4L5UhmeA4f9fECzhahhDqAtenV24JuNThMHgZRb3VBd8jfJBCW"
     }
    },
-   "hash": "6c12cbb2dba0ed1d2aa79fc640d7857267ef632f9477b449b08be0df56ee9118"
+   "hash": "06ad3ec81e97d822f556bcef8c667c6308775fc3fed2837b777e896c4fa9571e"
   },
   {
    "name": "a signed log head",
@@ -1252,7 +1252,7 @@
     "inputs": [
      "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
     ],
-    "appeal": "to ADMIN, and beyond it to the founder",
+    "appeal": "to ADMIN, and beyond them to the founder",
     "tick": 120,
     "proof": {
      "type": "DataIntegrityProof",
@@ -1260,7 +1260,7 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z4xRFKFGfnPyzeBJTr1wS7koWxRCj26m8TUWKTkayWBuNtNaV2gpGZ4ZmGXxNvNNs231eBdhs8bvqPXA8sj5NXekJ"
+     "proofValue": "z4akPveFv9Y3v249369eAgS77XXjFe6SUrkWzFCsHdQz6EqCcxTcNM4kb8M6NsGwpmFhgVrHaQDLt5bjecNdDQ835"
     }
    }
   },
@@ -1285,7 +1285,7 @@
     "inputs": [
      "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
     ],
-    "appeal": "to ADMIN, and beyond it to the founder",
+    "appeal": "to ADMIN, and beyond them to the founder",
     "tick": 120,
     "proof": {
      "type": "DataIntegrityProof",
@@ -1293,7 +1293,7 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z3dEuDJch6XdUnSxBFzaUgSpEqVJ9fcThy7gvtvWbD1CwVmdHL37oJA6z2Y167ciMgg9ipscHVbwGaqJvBahXCB4L"
+     "proofValue": "z4xv5buBsrYEG2VVWUGwkQUGJb21Nn4LGobnWhufKbaVLSkyjwRoYcJuv3pno5zxHe7UDomjd8Czdwiu9iLbkeF1T"
     }
    }
   },
@@ -1323,7 +1323,7 @@
     "inputs": [
      "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
     ],
-    "appeal": "to ADMIN, and beyond it to the founder",
+    "appeal": "to ADMIN, and beyond them to the founder",
     "tick": 120,
     "proof": {
      "type": "DataIntegrityProof",
@@ -1331,7 +1331,7 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z59iGw5CWn61UgYnoJyCCsRAPgaqqQtkXvUx9XCRP9iQSEaGEE8P1PyneUhdVQb5mxesWNKcG99Kj3hLGzLN8YGUe"
+     "proofValue": "z6mCFLcAPf7nrnwoAWvyZT7rTwSS7n3vtPTdAyn8VPSCTQMboudCRm9hGuKMpi7Bbvgh3szSsehkMpEHeJ7ZqBey"
     }
    }
   },
@@ -1362,7 +1362,7 @@
       "ref": "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
      }
     ],
-    "appeal": "to ADMIN, and beyond it to the founder",
+    "appeal": "to ADMIN, and beyond them to the founder",
     "tick": 120,
     "proof": {
      "type": "DataIntegrityProof",
@@ -1370,7 +1370,7 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z5bPNirWpYyMejDtkrvyFyqDgsYtGtnxzby99bTVuK7mJTn7fTDxP1WuEwxYiffgFDwVwQYKXyzvTwPGT3HdWuCze"
+     "proofValue": "zucZsSjGRnaHELM8ugETSd9pnD9k2jwqYT6qc2BWHdGxsxEd3Cdp9a9phU97ozeBH7y6Vk6k7tSLVJDnrjH8oXvk"
     }
    }
   },
@@ -1404,7 +1404,7 @@
     "inputs": [
      "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
     ],
-    "appeal": "to ADMIN, and beyond it to the founder",
+    "appeal": "to ADMIN, and beyond them to the founder",
     "tick": 120,
     "proof": {
      "type": "DataIntegrityProof",
@@ -1412,7 +1412,7 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z5eC5AnkxFL9gJy1djPsjsCMfF5dPNtiM2WFURaakDDHa9Pi2i6S9K3Tnih9Q5msrTHLU5rR9ftTkeVxEzE6QcaH4"
+     "proofValue": "z3ih1ySXXgTobNSj1KUh9egzBFH4QPicTL6WPPRVb3gAvZqj9Nm4szv9aUDvdrAMkVP8SG9y6UB5sCdMJkNNmyPaG"
     }
    }
   },
@@ -1446,7 +1446,7 @@
     "inputs": [
      "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
     ],
-    "appeal": "to ADMIN, and beyond it to the founder",
+    "appeal": "to ADMIN, and beyond them to the founder",
     "tick": 120,
     "proof": {
      "type": "DataIntegrityProof",
@@ -1454,7 +1454,7 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD#z6MkqeHHQQgrrpHwq7XyKuC2UokzAsQzjrp8wd9d3X43UdzD",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z4SXGF5utTtoX5s9Ft7Lyj52hTW7VcqgjcuxV26ndJ9iRHXcbfHHYjHw1WuowYw7fQmc7Y6vv582TShEFStjF6Mcb"
+     "proofValue": "z3r4kLQLiVDFphTm5NoqJQpL9e3chywfAxUUf6ZotZ7eNVZkSatQXPxZU4Kvsa6B7a5a6ppFYr9FDwYxNn6TYfmTD"
     }
    }
   },
@@ -1488,7 +1488,7 @@
     "inputs": [
      "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
     ],
-    "appeal": "to ADMIN, and beyond it to the founder",
+    "appeal": "to ADMIN, and beyond them to the founder",
     "tick": "9007199254740992",
     "proof": {
      "type": "DataIntegrityProof",
@@ -1496,7 +1496,7 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z3jtDaiLypQZCjri9nQnme1ZB7SKckMEaJkYLh372PMyPAqr3ZHi1MXmoCvhMiG6Zi5RnZapCH9JwVXNneZHWdSW8"
+     "proofValue": "z4HoiBGn3PCpMs8ebZdKZEKzPaDGoutxwmJUoLraVsTED72ync3ahuDsNnrcRjtfsbSKLaeFiV8yyUD2aGa4sd1p5"
     }
    }
   },
@@ -1605,7 +1605,7 @@
     "format": "open-worlds/rating/v1",
     "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
     "suggestion": "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a",
-    "outcome": "af2dccbd1d6af9b83e900937717c6fa527f08e478c9ac355104d9c4666ce3517",
+    "outcome": "decbc9204c4f8e6854afa7f6034df19e04490c8a867f1863436a70f3462f09df",
     "score": 6,
     "text": "It was fed, and quickly.",
     "proof": {
@@ -1614,7 +1614,7 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
      "proofPurpose": "assertionMethod",
-     "proofValue": "zmsLHhw2uKE8bkgAwCG4YjC9QoT1GjeBNC9NMvoTGLDLPunRsVsZwvgD9XuoY43iDjBHWpQ1yWFxWr6rSFiRaCQ5"
+     "proofValue": "z4mzTNMdkaJ8gMDdRoYKePwwgVezua1Pfbu9MpfkL5e7MqMhcRimVRxhnLyPRetdiDC6gnfHnXDt31abSz4VCsM9p"
     }
    }
   },
@@ -1624,7 +1624,7 @@
     "format": "open-worlds/rating/v1",
     "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
     "suggestion": "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a",
-    "outcome": "af2dccbd1d6af9b83e900937717c6fa527f08e478c9ac355104d9c4666ce3517",
+    "outcome": "decbc9204c4f8e6854afa7f6034df19e04490c8a867f1863436a70f3462f09df",
     "score": 0,
     "text": "It was fed, and quickly.",
     "proof": {
@@ -1633,7 +1633,7 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z3xKa81T9VfFJqU82numVpjvwhbD9YqNoP18At8YFV7UgdFZ9H2fshSYant1ye6uDp8YjKM1KWxBw2DGCEMWgDa7M"
+     "proofValue": "z42XcewW37x8mMThYth2UgiqbYRe4i8H7bJcYnH8Anf5eV59p7G7PaiXRXgvg67Ts3fWBfQTp2aoAQU2r5ayNXhmt"
     }
    }
   },
@@ -1643,7 +1643,7 @@
     "format": "open-worlds/rating/v1",
     "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
     "suggestion": "B3EB0BDE0D79BE22B3C31F53A4635E8BB9E25D44817FF2D017528BD1A1E8430A",
-    "outcome": "af2dccbd1d6af9b83e900937717c6fa527f08e478c9ac355104d9c4666ce3517",
+    "outcome": "decbc9204c4f8e6854afa7f6034df19e04490c8a867f1863436a70f3462f09df",
     "score": 4,
     "text": "It was fed, and quickly.",
     "proof": {
@@ -1652,7 +1652,7 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z4mFPf9AvwjhXA7wq4A41BW9ddTDX42s26bCtsxvR6RLVwZxbwNnLbSkTJynzuL5NRUmuLK3GkxEBxGT7otVknoxg"
+     "proofValue": "z5T7ziwQnwwQH6sfZ6yaNWvkkQGvxPepumei9SEKkJr2f7jmD5RWG5SBBJrXvAin875brBcrFZwytKYoV9FdQQf8E"
     }
    }
   },
@@ -2007,7 +2007,7 @@
     "inputs": [
      "b3eb0bde0d79be22b3c31f53a4635e8bb9e25d44817ff2d017528bd1a1e8430a"
     ],
-    "appeal": "to ADMIN, and beyond it to the founder",
+    "appeal": "to ADMIN, and beyond them to the founder",
     "tick": 120,
     "proof": {
      "type": "DataIntegrityProof",
@@ -2015,12 +2015,12 @@
      "created": "2026-11-14T01:00:00Z",
      "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
      "proofPurpose": "assertionMethod",
-     "proofValue": "z52bnqCaz9pFW4uL52mBDjMG2uoCznbc2qjMTM7YC8iZcX7oaTDg7kMnK1CVm9JhiyMhiUqbGUKTM7VuymwiReenw"
+     "proofValue": "z4LbcC3C2ujF9NAwXhx2ep4mEEqzzZgbsVeaQXcVjEJnEw9CdC778oYBvnL9hWifsHz1erjTFPRgDgrcostS2HS8"
     }
    }
   },
   {
-   "name": "a suggestion about a Keeper that names it other than by key",
+   "name": "a suggestion about a Keeper that names them other than by key",
    "record": {
     "format": "open-worlds/suggestion/v1",
     "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",

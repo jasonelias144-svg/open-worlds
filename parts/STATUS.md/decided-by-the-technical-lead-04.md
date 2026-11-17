@@ -8,6 +8,26 @@
 
 ## Decided by the technical lead
 
+- 2026-11-17, "they" in the record vectors. Three texts in the
+  record vectors said "it" of an agent: "to ADMIN, and beyond it to
+  the founder", the appeal in the example decision; and the names
+  of two cases, "a Keeper's grant from its world" and "a suggestion
+  about a Keeper that names it other than by key". They now say
+  "them" and "their". This takes back one line of the entry below,
+  which left the vectors' labels as they were. The file is written
+  again from its code (`python3 -m formats.record_vectors`): 33
+  lines of `vectors/formats/records-v1.json` change, which are the
+  two names, the appeal in the nine records that carry it, three
+  hashes that follow from it in eight places, and fourteen
+  signatures. No other vector file changes, and no format, schema
+  or check.
+  *Why:* the founder: "We don't want to be behind and updating
+  documentation after going public and live." A vector is what
+  someone building their own reader copies first. After going
+  live, a change to it reaches them; today it reaches no one.
+  *What would show it wrong:* another file holding one of the old
+  hashes (looked for: none does); Python and Rust disagreeing on
+  the rewritten file (both suites pass on it).
 - 2026-11-17, "they" in the project's own code. (a) Comments and
   docstrings follow the same rule as the pages. "They" is an
   individual, an inhabitant, an agent in the kernel, a mind who

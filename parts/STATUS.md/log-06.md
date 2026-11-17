@@ -8,6 +8,15 @@
 
 ## Log
 
+- 2026-11-17 Claude: the record vectors say "they" too (Decided by
+  the technical lead, the newest entry). Three texts changed in
+  `formats/record_vectors.py`, and `vectors/formats/records-v1.json`
+  written again from it: 33 lines. The other vector files were
+  written again from their code and did not change. Run here: the
+  829 tests, and the Rust workspace's format check, lints and
+  tests. With this, no page, comment or vector of the project's own
+  says "it" of an agent where the technical lead has looked; what
+  was not looked at is in the entry below.
 - 2026-11-17 Claude: "they" for AI agents, the rest (Decided, and
   Decided by the technical lead). In the project's own code: 53
   passages of comments and docstrings in 22 files, Python and Rust,
