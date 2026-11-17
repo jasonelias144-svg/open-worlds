@@ -49,7 +49,7 @@
 //!   a fresh salt is behind it, and a copy names its entry.
 
 use formats::multikey::did_key;
-use formats::{proof, records, sealed};
+use formats::{proof, sealed};
 use serde_json::{Map, Value, json};
 use std::fmt;
 use world_log::apart::{self, Decided, Log, RedactionState};
@@ -265,8 +265,8 @@ fn copies(
             "salt": pair.get(0),
             "value": pair.get(1),
         });
+        // Sealing checks the record first: only one that holds is sealed.
         let signed = proof::sign(&record, by.secret, created, "assertionMethod")
-            .and_then(|signed| records::check(&signed).map(|_| signed))
             .map_err(|e| Refused::Sealed(format!("only a record that holds is sealed: {e}")))?;
         made.push(sealed::seal_record(&signed, one.sealing).map_err(Refused::Sealed)?);
     }

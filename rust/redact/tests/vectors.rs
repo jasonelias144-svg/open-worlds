@@ -230,8 +230,10 @@ fn each_refused_record_holds_as_a_record_and_not_to_the_log() {
     assert_eq!(refused.len(), 8, "the vectors are all there");
     for case in refused {
         let name = &case["name"];
-        records::check(&case["record"]).expect(&name.to_string());
-        let error = held_to(&case["record"], log).expect_err(&name.to_string());
+        assert!(records::check(&case["record"]).is_ok(), "{name}");
+        let Err(error) = held_to(&case["record"], log) else {
+            panic!("{name}: held");
+        };
         assert_eq!(error.reason(), case["reason"], "{name}");
         assert_eq!(
             error.to_string(),
@@ -286,6 +288,12 @@ fn neither_the_value_nor_its_salt_is_left_anywhere() {
     let everything = all(&log, &[&made.copies[0], &made.copies[1], &made.office_copy]);
     assert!(!everything.contains(its_salt));
     assert!(!everything.contains(VALUE));
+    // Nor anywhere else in what the writer holds, or in what the act
+    // gave back.
+    let held = format!("{log:?}{made:?}");
+    assert!(format!("{before:?}").contains(its_salt));
+    assert!(!held.contains(its_salt));
+    assert!(!held.contains(VALUE));
     // The entry's other fields are untouched.
     let left: Vec<&String> = log.contents()[t.entry()]
         .as_object()
@@ -351,7 +359,8 @@ fn a_redaction_that_cannot_be_made_changes_nothing() {
         sealing: &small,
     }];
     let whim = json!({"kind": "whim", "ref": "x"});
-    let cases: Vec<(&str, Act<'_>, Office<'_>, fn(&Refused) -> bool)> = vec![
+    type Expected = fn(&Refused) -> bool;
+    let cases: Vec<(&str, Act<'_>, Office<'_>, Expected)> = vec![
         (
             "no such entry",
             Act {

@@ -132,6 +132,12 @@ class TestRedacting(unittest.TestCase):
                           self.made.office_copy)
         self.assertNotIn(salt, everything)
         self.assertNotIn(value, everything)
+        # Nor anywhere else in what the writer holds, or in what the
+        # act gave back.
+        held = repr([vars(self.room), vars(self.room._scan), self.made])
+        self.assertIn(salt, repr([vars(before), vars(before._scan)]))
+        self.assertNotIn(salt, held)
+        self.assertNotIn(value, held)
         # Nor as bytes in a box: a box is not the value written in hex.
         for envelope in self.made.copies + [self.made.office_copy]:
             self.assertNotIn(value.encode().hex(), envelope["box"])
@@ -384,6 +390,25 @@ class TestDeciding(unittest.TestCase):
                 self.assertEqual(c.exception.reason, apart.BAD_KEPT)
                 self.assertEqual(c.exception.where,
                                  len(self.room.entries))
+        # Nor is another of the form's own entries that names an entry:
+        # a removal, or a taking back.
+        other = self.room.entries[4]["hash"]
+        removal = self.room.append(
+            7, apart.REMOVED, None,
+            {"entry": other, "office": apart_vectors.MODERATOR,
+             "ground": apart_vectors.GROUND,
+             "decision": apart_vectors.trial_decision(3)})
+        taking = self.room.append(7, apart.TAKEN_BACK, None,
+                                  {"entry": other})
+        for odd in (removal, taking):
+            with self.subTest(odd=odd):
+                with self.assertRaises(Refused) as c:
+                    decide(self.room, odd, self.made.office_copy)
+                self.assertEqual(c.exception.reason, apart.BAD_KEPT)
+                with self.assertRaises(RedactError) as c:
+                    redact.finish(self.room, odd, office(), CREATED,
+                                  decider=_to(DECIDES))
+                self.assertEqual(c.exception.reason, redact.NO_MARK)
 
     def test_a_decision_the_log_refuses_puts_nothing_back(self):
         contents = copy.deepcopy(self.room.contents)
