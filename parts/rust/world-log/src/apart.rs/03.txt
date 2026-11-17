@@ -6,6 +6,36 @@ Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-world
 After this part: nothing; this is the last part.
 Made by docs/parts.py from the file. To change it, change the file.
 ------------------------------------------------------------------------
+/// The open data of an entry that answers a mark.
+fn answer(mark: &str, by: Decided<'_>) -> Map<String, Value> {
+    let mut data = Map::new();
+    data.insert("mark".to_owned(), json!(mark));
+    data.insert("office".to_owned(), json!(by.office));
+    data.insert("ground".to_owned(), by.ground.clone());
+    data.insert("decision".to_owned(), json!(by.decision));
+    data
+}
+
+/// Writes a log in this form: the entries, which are the chain, and the
+/// contents kept beside it. Every entry is offered to the same check a
+/// reader runs before it is appended, so this never writes a log that
+/// [`check`] would refuse.
+///
+/// The caller supplies the salts, one call for each field kept apart, in
+/// the ascending order of the fields' names: 128 bits from the operating
+/// system, as 32 lowercase hex digits, and never made from a world's
+/// seed. The shared test vectors pass fixed salts, which are public to
+/// everyone.
+#[derive(Debug, Clone)]
+pub struct Log {
+    entries: Vec<Value>,
+    contents: Map<String, Value>,
+    scan: Scan,
+    /// Every salt used, as its hash ([`used`]). A salt itself is kept in
+    /// the contents only, and leaves with its field.
+    salts: BTreeSet<String>,
+}
+
 impl Log {
     /// Starts a log: its first entry, of kind `kind`, holds `data` with
     /// the form's name and `table` added. `table` gives, for each kind of
@@ -102,8 +132,15 @@ impl Log {
     }
 
     /// Takes the field under `mark` out of the contents and returns its
-    /// `[salt, value]`, which the log then keeps nowhere. The log itself
-    /// is not touched.
+    /// `[salt, value]`, which this writer then keeps nowhere: neither in
+    /// the entries, nor in the contents, nor in what it remembers of the
+    /// salts it has used. The log itself is not touched.
+    ///
+    /// The mark is one that is open or stands. Through this writer a
+    /// mark that stands always has its field gone already, since
+    /// [`Log::stays_redacted`] is refused while the field is there; that
+    /// case is for a writer opened on a published log, which is not
+    /// built.
     pub fn take_out(&mut self, mark: &str) -> Result<Value, Refused> {
         let (entry, field) = self
             .scan
@@ -233,7 +270,7 @@ impl Log {
             if !is_salt(&salt) {
                 return Err(Refused::Salt(Place::default()));
             }
-            if self.salts.contains(&salt) || salts.contains(&salt) {
+            if self.salts.contains(&used(&salt)) || salts.contains(&salt) {
                 return Err(Refused::SaltTwice(Place::default()));
             }
             let print = fingerprint(&salt, name, value)?;
@@ -248,7 +285,7 @@ impl Log {
         let entry = Value::Object(body);
         self.scan.take(&entry)?;
         self.entries.push(entry);
-        self.salts.extend(salts);
+        self.salts.extend(salts.iter().map(|salt| used(salt)));
         if !kept.is_empty() {
             self.contents.insert(hash.clone(), Value::Object(kept));
         }

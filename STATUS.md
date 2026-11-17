@@ -2859,6 +2859,14 @@ it was wrong. Questions of what the project is for stay with the founder.
   checks the shape of an act and what it names, not who may act.
   (h) The form's name is unchanged, though a bare mark, which part two
   allowed, is now refused. (i) The command line counts redactions.
+  (j) An entry of one of the form's seven own kinds holds, in the
+  open, exactly the keys its kind says; part four's four kinds are
+  held to the same. (k) No table can keep one of those keys apart.
+  (l) The writer remembers a salt it has used by its hash alone, so
+  that once a field is taken out its salt is nowhere in what the
+  writer holds. (m) The form's name is frozen from the day a world
+  first writes a log in it. (j) to (m) came from the independent
+  review of #112.
   *Why:* (a) decision 5 asks that an entry say when a redaction
   stands and the office's copy is deleted; without it a reader can't
   tell a redaction still being decided from one that is settled.
@@ -2876,14 +2884,22 @@ it was wrong. Questions of what the project is for stay with the founder.
   field. (g) Who may act needs the signed records and the keys, as in
   part four. (h) No world writes this form yet; the vectors are the
   only logs in it. (i) So that a reader of a log sees how many
-  redactions are still being decided.
+  redactions are still being decided. (j) "A mark holds no decision"
+  and "never what" were stated and not held: a mark could carry both
+  in the open. (k) Whoever set a room's table could otherwise switch
+  redacting off. (l) The salt is what stops a public fingerprint from
+  being guessed, and the writer's memory, a debug print or a copy of
+  it would have given it away. (m) A name that outlives a change of
+  rules no longer says which rules a log is under.
   *What would show it wrong:* a case where one field must carry two
   requests that are decided apart, for (c); a rule of appeals that
   lets a redaction that stands be reopened, for (d), which would need
   the office's copy kept longer than decision 5 allows; a log in this
   form written by anyone before this change, for (h); a mark that has
   to be written by someone who is not an office, such as a person
-  redacting their own words with no office involved, for (b).
+  redacting their own words with no office involved, for (b); a kind
+  of the form's own that has to say something more in the open, such
+  as a category a room shows, for (j).
 - 2026-11-17, two collaborators on the sketch crate at once, each on
   its own files. The rule since 2026-11-16 was one writer at a time,
   so that there is one line of code. The founder had Gemini free
@@ -3646,13 +3662,19 @@ it was wrong. Questions of what the project is for stay with the founder.
   kept public), and the joining function gives them with each entry;
   the writer has `mark`, `take_out`, `keep_public` and
   `stays_redacted`, and its plain appending refuses the three kinds.
-  Twenty reasons for refusing, 161 logs or contents refused and seven
+  Twenty reasons for refusing, 179 logs or contents refused and seven
   that hold in the vectors. Rust writes the five-states case again
   with its own writer and gets Python's log. The command line counts
-  redactions. Checked: Python's tests of the form (80), Rust's (34,
-  and 12 for the command line), and mutation checks, 19 changes to the
-  Python and 21 to the Rust, each of which makes a test fail. Not
-  done: the act of redacting with the sealed copies, which is next;
+  redactions. The independent review found that the writer still held
+  a field's salt after taking it out, in both languages; it now
+  remembers salts by their hashes alone. From the same review: the
+  form's own kinds are held to exactly what they say in the open, and
+  no table can keep that apart. Checked: Python's tests of the form
+  (83), Rust's (36, and 12 for the command line), and mutation checks,
+  29 changes to the Python and 31 to the Rust, each of which makes a
+  test fail but one in each, which changes nothing that can be seen
+  (a key that is missing is already refused for what it should have
+  said). Not done: the act of redacting with the sealed copies, which is next;
   who may mark or decide; and no test can show that short ids are
   worked out over incidents and redactions together by two ids that
   really collide, since that needs about 2^24 hashes on each side.

@@ -56,6 +56,13 @@
 //!   (`data.taken_back`). None takes anything out of the log or the
 //!   contents. What wins among them is in [`EntryState`] and
 //!   `docs/research/REDACTION.md`, decision 9.
+//! - **What the form's own kinds say in the open is fixed** ([`SAYS`]):
+//!   each holds exactly the keys named above for it, and nothing else.
+//!   So a mark can hold no decision, and nothing beside its ground about
+//!   what was redacted. What else such an entry carries is kept apart,
+//!   as the table allows. And no table can keep one of those keys apart:
+//!   a table that did would make every mark, or every decision,
+//!   impossible to write.
 //!
 //! [`check`] holds the contents to the log and gives every field's
 //! [`State`]; [`incidents`] gives every entry's [`EntryState`];
@@ -68,8 +75,8 @@
 //!
 //! # Limits
 //!
-//! - A field under a standing mark is never shown by [`join`], even while
-//!   it is still in the contents.
+//! - A field under a mark that is open or stands is never shown by
+//!   [`join`], even while it is still in the contents.
 //! - An entry that is removed or taken back is still given whole by
 //!   [`join`], with its state: nothing has left the record.
 //! - This module does not check who may redact, decide, remove, restore
@@ -120,6 +127,17 @@ pub const TAKEN_BACK: &str = "entry_taken_back";
 pub const PUT_BACK: &str = "entry_put_back";
 /// The form's own kinds: none of them can itself be removed or taken back.
 pub const OWN: [&str; 7] = [MARK, KEPT, STAYS, REMOVED, RESTORED, TAKEN_BACK, PUT_BACK];
+/// What each of the form's own kinds says in the open: exactly these
+/// keys. No table can keep one of them apart.
+pub const SAYS: [(&str, &[&str]); 7] = [
+    (MARK, &["entry", "field", "office", "ground"]),
+    (KEPT, &["mark", "office", "ground", "decision"]),
+    (STAYS, &["mark", "office", "ground", "decision"]),
+    (REMOVED, &["entry", "office", "ground", "decision"]),
+    (RESTORED, &["incident", "office", "ground", "decision"]),
+    (TAKEN_BACK, &["entry"]),
+    (PUT_BACK, &["taken_back"]),
+];
 /// What a ground can be, as in a decision record's grounds.
 pub const GROUNDS: [&str; 4] = ["charter", "law", "rule", "record"];
 /// The shortest an incident's id is ever shown, in hex digits.
@@ -141,15 +159,15 @@ pub const KEYS: [&str; 7] = ["tick", "kind", "agent", "data", "apart", "prev", "
 pub enum State {
     /// In the contents, and never marked.
     Present,
-    /// A mark stands, and the field is gone.
+    /// A mark on it is open or stands, and the field is gone.
     Redacted,
-    /// A mark stands, and the field is still there.
+    /// A mark on it is open or stands, and the field is still there.
     Unfinished,
     /// Every mark on it was answered by a decision to keep it public, and
     /// it is there.
     KeptPublic,
-    /// No mark stands, and it is gone: a fault in whoever published the
-    /// log.
+    /// No mark on it is open or stands, and it is gone: a fault in
+    /// whoever published the log.
     Missing,
 }
 
@@ -440,8 +458,8 @@ pub enum Refused {
     /// [`Log::stays_redacted`], not by [`Log::append`]. (Python raises a
     /// `ValueError`.)
     NotByAppend,
-    /// Only when writing: no mark of that hash stands, so nothing is
-    /// taken out. (Python raises a `ValueError`.)
+    /// Only when writing: no mark of that hash is open or stands, so
+    /// nothing is taken out. (Python raises a `ValueError`.)
     NoSuchMark,
     /// Only when writing: the field to take out is not in the contents.
     /// (Python raises a `ValueError`.)
@@ -502,7 +520,7 @@ impl Refused {
                 "a mark and the decision that answers it are written by mark, \
                  keep_public and stays_redacted"
             }
-            Refused::NoSuchMark => "no mark of that hash stands",
+            Refused::NoSuchMark => "no mark of that hash is open or stands",
             Refused::NotThere => "the field is not in the contents",
             Refused::StillThere => "the field is still in the contents: take it out first",
         }
@@ -630,9 +648,35 @@ fn read_table(table: Option<&Value>) -> Option<BTreeMap<String, Vec<String>>> {
             }
             list.push(name.to_owned());
         }
+        // What one of the form's own kinds says in the open can't be
+        // kept apart: no such entry could then be written.
+        if says(kind).is_some_and(|keys| list.iter().any(|n| keys.contains(&n.as_str()))) {
+            return None;
+        }
         read.insert(kind.clone(), list);
     }
     Some(read)
+}
+
+/// What a writer remembers of a salt it has used: its hash. Enough to
+/// refuse a source that repeats, and nothing a fingerprint could be
+/// guessed with.
+fn used(salt: &str) -> String {
+    sha256_hex(salt.as_bytes())
+}
+
+/// The keys one of the form's own kinds says in the open, if `kind` is
+/// one of them.
+fn says(kind: &str) -> Option<&'static [&'static str]> {
+    SAYS.iter().find(|(k, _)| *k == kind).map(|(_, keys)| *keys)
+}
+
+/// True if an entry of one of the form's own kinds holds, in the open,
+/// exactly the keys its kind says.
+fn says_only(kind: &str, data: &Map<String, Value>) -> bool {
+    says(kind).is_some_and(|keys| {
+        data.len() == keys.len() && keys.iter().all(|key| data.contains_key(*key))
+    })
 }
 
 /// Reads a log's entries in order, keeping what later entries and the
@@ -647,7 +691,7 @@ struct Scan {
     apart: BTreeMap<String, BTreeMap<String, String>>,
     /// For each mark, the entry and field it is on.
     marks: BTreeMap<String, (String, String)>,
-    /// The marks that no longer stand.
+    /// The marks answered by a decision to keep the field public.
     answered: BTreeSet<String>,
     /// The marks that stand for good.
     stays: BTreeSet<String>,
@@ -774,7 +818,8 @@ impl Scan {
                         && !self
                             .marked
                             .contains_key(&(target.to_owned(), field.to_owned()))
-                        && office_and_ground_ok(data) =>
+                        && office_and_ground_ok(data)
+                        && says_only(kind, data) =>
                 {
                     mark = Some((target.to_owned(), field.to_owned()));
                 }
@@ -784,7 +829,9 @@ impl Scan {
             // Redacted first, decided after: one answer to a mark, and
             // only while it is open.
             match data.get("mark").and_then(Value::as_str) {
-                Some(named_mark) if self.is_open(named_mark) && office_ok(data) => {
+                Some(named_mark)
+                    if self.is_open(named_mark) && office_ok(data) && says_only(kind, data) =>
+                {
                     answers = Some(named_mark.to_owned());
                 }
                 _ if kind == KEPT => return Err(Refused::BadKept { index }),
@@ -799,7 +846,8 @@ impl Scan {
                 Some(target)
                     if !self.removed.contains_key(target)
                         && !self.taken.contains_key(target)
-                        && office_ok(data) =>
+                        && office_ok(data)
+                        && says_only(kind, data) =>
                 {
                     on = Some(target.to_owned());
                 }
@@ -814,7 +862,8 @@ impl Scan {
                     // removal stops standing, and the entry stays taken
                     // back.
                     if self.removed.get(target).map(String::as_str) == Some(incident)
-                        && office_ok(data) =>
+                        && office_ok(data)
+                        && says_only(kind, data) =>
                 {
                     on = Some(target.clone());
                 }
@@ -822,7 +871,7 @@ impl Scan {
             }
         } else if kind == TAKEN_BACK {
             match self.can_be_acted_on(data.get("entry")) {
-                Some(target) if !self.taken.contains_key(target) => {
+                Some(target) if !self.taken.contains_key(target) && says_only(kind, data) => {
                     on = Some(target.to_owned());
                 }
                 _ => return Err(Refused::BadTakingBack { index }),
@@ -832,7 +881,8 @@ impl Scan {
             let target = taking.and_then(|t| self.takings.get(t));
             match (taking, target) {
                 (Some(taking), Some(target))
-                    if self.taken.get(target).map(String::as_str) == Some(taking) =>
+                    if self.taken.get(target).map(String::as_str) == Some(taking)
+                        && says_only(kind, data) =>
                 {
                     on = Some(target.clone());
                 }
@@ -1162,8 +1212,9 @@ pub fn check(log: &Value, contents: &Value) -> Result<States, Refused> {
 /// `apart`, its `data` holding the open fields and every field kept apart
 /// that is present or kept public, `fields` giving the state of each
 /// field kept apart, `redactions` giving each field's redactions, and
-/// the entry's own `state` and `incidents`, all in Python's words. A field under a standing mark is left out even if it
-/// is still in the contents. An entry that is removed or taken back is
+/// the entry's own `state` and `incidents`, all in Python's words. A
+/// field under a mark that is open or stands is left out even if it is
+/// still in the contents. An entry that is removed or taken back is
 /// given whole: hiding it is for whatever shows the room.
 pub fn join(log: &Value, contents: &Value) -> Result<Vec<Value>, Refused> {
     let scan = scan(log)?;
@@ -1243,6 +1294,8 @@ pub struct Log {
     entries: Vec<Value>,
     contents: Map<String, Value>,
     scan: Scan,
+    /// Every salt used, as its hash ([`used`]). A salt itself is kept in
+    /// the contents only, and leaves with its field.
     salts: BTreeSet<String>,
 }
 
@@ -1342,8 +1395,15 @@ impl Log {
     }
 
     /// Takes the field under `mark` out of the contents and returns its
-    /// `[salt, value]`, which the log then keeps nowhere. The log itself
-    /// is not touched.
+    /// `[salt, value]`, which this writer then keeps nowhere: neither in
+    /// the entries, nor in the contents, nor in what it remembers of the
+    /// salts it has used. The log itself is not touched.
+    ///
+    /// The mark is one that is open or stands. Through this writer a
+    /// mark that stands always has its field gone already, since
+    /// [`Log::stays_redacted`] is refused while the field is there; that
+    /// case is for a writer opened on a published log, which is not
+    /// built.
     pub fn take_out(&mut self, mark: &str) -> Result<Value, Refused> {
         let (entry, field) = self
             .scan
@@ -1473,7 +1533,7 @@ impl Log {
             if !is_salt(&salt) {
                 return Err(Refused::Salt(Place::default()));
             }
-            if self.salts.contains(&salt) || salts.contains(&salt) {
+            if self.salts.contains(&used(&salt)) || salts.contains(&salt) {
                 return Err(Refused::SaltTwice(Place::default()));
             }
             let print = fingerprint(&salt, name, value)?;
@@ -1488,7 +1548,7 @@ impl Log {
         let entry = Value::Object(body);
         self.scan.take(&entry)?;
         self.entries.push(entry);
-        self.salts.extend(salts);
+        self.salts.extend(salts.iter().map(|salt| used(salt)));
         if !kept.is_empty() {
             self.contents.insert(hash.clone(), Value::Object(kept));
         }

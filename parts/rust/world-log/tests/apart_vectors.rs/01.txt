@@ -26,8 +26,9 @@ use serde_json::{Map, Value, json};
 use std::collections::BTreeSet;
 use world_log::apart::{
     self, Decided, EntryState, FORM, GROUNDS, KEPT, Log, MARK, MAX_NESTING, MAX_REF, MAX_WHOLE,
-    Office, PUT_BACK, REMOVED, RESTORED, RedactionState, Refused, SHORT, STAYS, State, TAKEN_BACK,
-    check, fingerprint, fingerprint_text, incidents, join, redactions, short_ids, value_allowed,
+    Office, PUT_BACK, REMOVED, RESTORED, RedactionState, Refused, SAYS, SHORT, STAYS, State,
+    TAKEN_BACK, check, fingerprint, fingerprint_text, incidents, join, redactions, short_ids,
+    value_allowed,
 };
 use world_log::{LogError, sha256_hex, verify_log};
 
@@ -290,6 +291,11 @@ fn the_names_and_limits_are_pythons() {
     assert_eq!(v["mark"], MARK);
     assert_eq!(v["kept"], KEPT);
     assert_eq!(v["stays"], STAYS);
+    let says: Map<String, Value> = SAYS
+        .iter()
+        .map(|(kind, keys)| ((*kind).to_owned(), json!(keys)))
+        .collect();
+    assert_eq!(v["says"], Value::Object(says));
     let redaction_states: Vec<&str> = [
         RedactionState::Open,
         RedactionState::Stands,
@@ -833,48 +839,6 @@ fn what_wins_among_removing_restoring_taking_back_and_putting_back() {
     assert_eq!(its[2]["stands"], true);
     assert_eq!(joined[4]["state"], "as written");
     assert_eq!(joined[4]["incidents"], json!([]));
-}
-
-#[test]
-fn each_case_that_is_refused_is_refused_for_pythons_reason() {
-    let v = vectors();
-    let refused = cases(&v, "refused");
-    assert_eq!(refused.len(), 161, "the vectors are all there");
-    let mut seen = BTreeSet::new();
-    for case in refused {
-        let name = &case["name"];
-        let reason = case["reason"].as_str().unwrap();
-        let error = check(&case["log"], &case["contents"]).expect_err(&name.to_string());
-        assert_eq!(error.reason(), reason, "{name}");
-        assert_eq!(
-            join(&case["log"], &case["contents"]).unwrap_err(),
-            error,
-            "{name}"
-        );
-        assert_eq!(place(&error), case["where"], "{name}");
-        // Only the chain's own cases break the chain: every other log is
-        // refused for what it says, never for a hash. (The cases with two
-        // faults are left out: some break the chain as their second.) A
-        // log holding a number this crate can't write is one the kernel's
-        // own check can't judge here; the form's check names its entry.
-        if !name.as_str().unwrap().starts_with("two faults") {
-            match verify_log(&case["log"]) {
-                Err(LogError::Unwritable { index, .. }) => {
-                    assert_eq!(error, Refused::Entry { index: Some(index) }, "{name}");
-                }
-                held => assert_eq!(held.is_ok(), !matches!(error, Refused::Chain(_)), "{name}"),
-            }
-        }
-        assert!(error.to_string().starts_with(reason), "{name}");
-        seen.insert(reason.to_owned());
-    }
-    let reasons: BTreeSet<String> = v["reasons"]
-        .as_array()
-        .unwrap()
-        .iter()
-        .map(|r| r.as_str().unwrap().to_owned())
-        .collect();
-    assert_eq!(seen, reasons, "every reason is in the vectors");
 }
 
 

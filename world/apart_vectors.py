@@ -394,6 +394,16 @@ def refused() -> List[dict]:
     log = []
     _raw(log, 0, "world_created", None, {"form": apart.FORM}, {})
     add(apart.TABLE, "no table at all", log, {})
+    # What one of the form's own kinds says in the open can't be kept
+    # apart: no such entry could then be written.
+    for kind, name in [
+            (apart.MARK, "entry"), (apart.MARK, "field"),
+            (apart.MARK, "office"), (apart.MARK, "ground"),
+            (apart.KEPT, "mark"), (apart.STAYS, "decision"),
+            (apart.REMOVED, "entry"), (apart.RESTORED, "incident"),
+            (apart.TAKEN_BACK, "entry"), (apart.PUT_BACK, "taken_back")]:
+        add(apart.TABLE, f"a table that keeps apart the {name} of an "
+            f"entry of kind {kind}", _start({kind: [name]}), {})
 
     # -- an entry's shape --
     key, name_ = _print(0, "key", "k"), _print(1, "name", "n")
@@ -726,6 +736,31 @@ def refused() -> List[dict]:
     refuse(apart.BAD_PUTTING_BACK, "a putting back that names nothing",
            apart.PUT_BACK, {}, ("t", _take_back, said))
 
+    # -- what the form's own kinds say in the open, and nothing else --
+    refuse(apart.BAD_MARK, "a mark that holds a decision", apart.MARK,
+           dict(marking, decision=trial_decision(3)))
+    refuse(apart.BAD_MARK, "a mark that says in the open what was there",
+           apart.MARK, dict(marking, what="it said hello"))
+    for kind, reason, what in [
+            (apart.KEPT, apart.BAD_KEPT, "a decision to keep a field public"),
+            (apart.STAYS, apart.BAD_STAYS,
+             "a decision that a field stays redacted")]:
+        refuse(reason, what + " that says more in the open", kind,
+               dict(answer, note="see the mark"),
+               ("m", _mark, said, "text", "asked"))
+    refuse(apart.BAD_REMOVAL, "a removal that says more in the open",
+           apart.REMOVED, dict(removal, note="spam"))
+    refuse(apart.BAD_RESTORING, "a restoring that says more in the open",
+           apart.RESTORED,
+           {"incident": "r", "office": KEEPER, "ground": APPEAL,
+            "decision": trial_decision(2), "note": "on appeal"},
+           ("r", _remove, said, 1))
+    refuse(apart.BAD_TAKING_BACK, "a taking back that names an office",
+           apart.TAKEN_BACK, {"entry": said, "office": MODERATOR})
+    refuse(apart.BAD_PUTTING_BACK, "a putting back that says more in the "
+           "open", apart.PUT_BACK, {"taken_back": "t", "note": "again"},
+           ("t", _take_back, said))
+
     # -- the contents' shape --
     log, contents = _short()
     arrival = log[1]["hash"]
@@ -906,6 +941,7 @@ def log_apart() -> dict:
         "kept": apart.KEPT,
         "stays": apart.STAYS,
         "redaction_states": list(apart.REDACTION_STATES),
+        "says": {kind: list(keys) for kind, keys in apart.SAYS.items()},
         "removed": apart.REMOVED,
         "restored": apart.RESTORED,
         "taken_back": apart.TAKEN_BACK,

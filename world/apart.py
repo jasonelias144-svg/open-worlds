@@ -50,7 +50,7 @@ contents leaves the log exactly as it was, and the chain still checks.
   is **open** until one of two entries answers it, each naming the
   mark (`data.mark`), its office, its ground and the hash of its
   decision record (`data.decision`). A decision to keep the field
-  public, kind `field_kept_public`: the mark no longer stands, and the
+  public, kind `field_kept_public`: the mark is answered, and the
   field may be marked again. Or a decision that the field stays
   redacted, kind `field_stays_redacted`: the mark **stands** for good,
   and nothing answers it again. A redaction's id is its mark's hash,
@@ -82,11 +82,19 @@ contents leaves the log exactly as it was, and the chain still checks.
   back, shown as the fewest hex digits, twelve or more, that no other
   incident or redaction in the log begins with.
 - **The state of a field**, from the log and the contents together:
-  `present`; `redacted` (a mark stands, and the field is gone);
-  `unfinished` (a mark stands, and the field is still there); `kept
-  public` (every mark on it was answered by a decision to keep it
-  public, and it is there); `missing` (no mark stands, and it is gone:
-  a fault in whoever published the log).
+  `present`; `redacted` (a mark on it is open or stands, and the field
+  is gone); `unfinished` (a mark on it is open or stands, and the field
+  is still there); `kept public` (every mark on it was answered by a
+  decision to keep it public, and it is there); `missing` (no mark on
+  it is open or stands, and it is gone: a fault in whoever published
+  the log).
+- **What the form's own kinds say in the open is fixed** (`SAYS`): each
+  holds exactly the keys named above for it, and nothing else. So a
+  mark can hold no decision, and nothing beside its ground about what
+  was redacted. What else such an entry carries is kept apart, as the
+  table allows. And no table can keep one of those keys apart: a table
+  that did would make every mark, or every decision, impossible to
+  write.
 
 `check` holds the contents to the log and gives every field's state.
 `incidents` gives every entry's state, with its incidents.
@@ -107,8 +115,8 @@ are read in the log's order; for each, its link to the entry before
 (`prev`), then what it says, then its hash. The contents are read in
 ascending order of entry hash, and of field name within an entry.
 
-Limits. A field under a standing mark is never shown by `join`, even
-while it is still in the contents. An entry that is removed or taken
+Limits. A field under a mark that is open or stands is never shown by
+`join`, even while it is still in the contents. An entry that is removed or taken
 back is still given whole by `join`, with its state: nothing has left
 the record, and hiding it is for whatever shows a room. This module
 does not check who may redact, decide, remove, restore or take back:
@@ -146,6 +154,17 @@ TAKEN_BACK = "entry_taken_back"
 PUT_BACK = "entry_put_back"
 # The form's own kinds: none of them can itself be removed or taken back.
 OWN = (MARK, KEPT, STAYS, REMOVED, RESTORED, TAKEN_BACK, PUT_BACK)
+# What each of them says in the open: exactly these keys. No table can
+# keep one of them apart.
+SAYS = {
+    MARK: ("entry", "field", "office", "ground"),
+    KEPT: ("mark", "office", "ground", "decision"),
+    STAYS: ("mark", "office", "ground", "decision"),
+    REMOVED: ("entry", "office", "ground", "decision"),
+    RESTORED: ("incident", "office", "ground", "decision"),
+    TAKEN_BACK: ("entry",),
+    PUT_BACK: ("taken_back",),
+}
 # What a ground can be, as in a decision record's grounds.
 GROUNDS = ("charter", "law", "rule", "record")
 
@@ -295,6 +314,11 @@ def fingerprint(salt: str, name: str, value: object) -> str:
     return hashlib.sha256(text.encode()).hexdigest()
 
 
+def _used(salt: str) -> str:
+    """What a writer remembers of a salt it has used: its hash."""
+    return hashlib.sha256(salt.encode()).hexdigest()
+
+
 def _table_ok(table: object) -> bool:
     if type(table) is not dict:
         return False
@@ -305,7 +329,17 @@ def _table_ok(table: object) -> bool:
             return False
         if any(a >= b for a, b in zip(names, names[1:])):
             return False
+        # What one of the form's own kinds says in the open can't be
+        # kept apart: no such entry could then be written.
+        if any(name in SAYS.get(kind, ()) for name in names):
+            return False
     return True
+
+
+def _says_only(kind: str, data: dict) -> bool:
+    """True if an entry of one of the form's own kinds holds, in the
+    open, exactly the keys its kind says."""
+    return set(data) == set(SAYS[kind])
 
 
 def _office_and_ground_ok(data: dict) -> bool:
@@ -393,7 +427,8 @@ class _Scan:
             if (type(target) is not str or type(field) is not str
                     or field not in self.apart.get(target, {})
                     or (target, field) in self.marked
-                    or not _office_and_ground_ok(data)):
+                    or not _office_and_ground_ok(data)
+                    or not _says_only(kind, data)):
                 raise Refused(BAD_MARK, index)
             mark = (target, field)
         elif kind in (KEPT, STAYS):
@@ -402,7 +437,8 @@ class _Scan:
             answers = data.get("mark")
             if (type(answers) is not str or answers not in self.marks
                     or answers in self.answered or answers in self.stays
-                    or not _office_ok(data)):
+                    or not _office_ok(data)
+                    or not _says_only(kind, data)):
                 raise Refused(BAD_KEPT if kind == KEPT else BAD_STAYS, index)
         # What wins, among removing, restoring, taking back and putting
         # back (docs/research/REDACTION.md, decision 9).
@@ -410,7 +446,8 @@ class _Scan:
         if kind == REMOVED:
             on = data.get("entry")
             if (not self._can_be_acted_on(on) or on in self.removed
-                    or on in self.taken or not _office_ok(data)):
+                    or on in self.taken or not _office_ok(data)
+                    or not _says_only(kind, data)):
                 raise Refused(BAD_REMOVAL, index)
         elif kind == RESTORED:
             incident = data.get("incident")
@@ -418,16 +455,19 @@ class _Scan:
             # Allowed while the author's taking back stands: the removal
             # stops standing, and the entry stays taken back.
             if (on is None or self.removed.get(on) != incident
-                    or not _office_ok(data)):
+                    or not _office_ok(data)
+                    or not _says_only(kind, data)):
                 raise Refused(BAD_RESTORING, index)
         elif kind == TAKEN_BACK:
             on = data.get("entry")
-            if not self._can_be_acted_on(on) or on in self.taken:
+            if (not self._can_be_acted_on(on) or on in self.taken
+                    or not _says_only(kind, data)):
                 raise Refused(BAD_TAKING_BACK, index)
         elif kind == PUT_BACK:
             taking = data.get("taken_back")
             on = self.takings.get(taking) if type(taking) is str else None
-            if on is None or self.taken.get(on) != taking:
+            if (on is None or self.taken.get(on) != taking
+                    or not _says_only(kind, data)):
                 raise Refused(BAD_PUTTING_BACK, index)
         # The entry holds: only now is anything kept.
         here = entry["hash"]
@@ -655,8 +695,8 @@ def join(log: Any, contents: Any) -> List[dict]:
     of each field kept apart, `redactions` giving each field's
     redactions (as `redactions` gives them; none, for most), and the
     entry's own `state` and `incidents` (as `incidents` gives them; `as
-    written` and none, for most). A field under a standing mark is left
-    out even if it is
+    written` and none, for most). A field under a mark that is open or
+    stands is left out even if it is
     still in the contents. An entry that is removed or taken back is
     given whole: hiding it is for whatever shows the room."""
     scan = _scan(log)
@@ -698,6 +738,10 @@ class Log:
         self.contents: Dict[str, Dict[str, list]] = {}
         self._scan = _Scan()
         self._salt = salt
+        # Every salt used, as its hash: enough to refuse a source that
+        # repeats, and nothing a fingerprint could be guessed with. A
+        # salt itself is kept in the contents only, and leaves with its
+        # field.
         self._salts: Set[str] = set()
         first = dict(data or {})
         if "form" in first or "kept_apart" in first:
@@ -742,11 +786,18 @@ class Log:
 
     def take_out(self, mark: str) -> list:
         """Takes the field under `mark` out of the contents and returns
-        its `[salt, value]`, which the log then keeps nowhere. The log
-        itself is not touched."""
+        its `[salt, value]`, which this writer then keeps nowhere:
+        neither in the entries, nor in the contents, nor in what it
+        remembers of the salts it has used. The log itself is not
+        touched.
+
+        The mark is one that is open or stands. Through this writer a
+        mark that stands always has its field gone already, since
+        `stays_redacted` is refused while the field is there; that case
+        is for a writer opened on a published log, which is not built."""
         if (type(mark) is not str or mark not in self._scan.marks
                 or mark in self._scan.answered):
-            raise ValueError("no mark of that hash stands")
+            raise ValueError("no mark of that hash is open or stands")
         entry, field = self._scan.marks[mark]
         fields = self.contents.get(entry, {})
         if field not in fields:
@@ -818,7 +869,7 @@ class Log:
             salt = self._salt()
             if not _is_salt(salt):
                 raise Refused(SALT)
-            if salt in self._salts or salt in salts:
+            if _used(salt) in self._salts or salt in salts:
                 raise Refused(SALT_TWICE)
             # Checked before it is copied: a value nested too deep to
             # copy is refused, not a crash.
@@ -831,7 +882,7 @@ class Log:
         entry = {**body, "hash": _digest(body)}
         self._scan.take(entry)
         self.entries.append(entry)
-        self._salts.update(salts)
+        self._salts.update(_used(salt) for salt in salts)
         if kept:
             self.contents[entry["hash"]] = kept
         return entry["hash"]

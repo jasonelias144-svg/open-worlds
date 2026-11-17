@@ -6,6 +6,56 @@ Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-world
 After this part: nothing; this is the last part.
 Made by docs/parts.py from the file. To change it, change the file.
 ------------------------------------------------------------------------
+def _states(scan: _Scan,
+            held: Dict[str, Dict[str, Any]]) -> Dict[str, Dict[str, str]]:
+    marked = set(scan.marks.values())
+    standing = {field for mark, field in scan.marks.items()
+                if mark not in scan.answered}
+    states: Dict[str, Dict[str, str]] = {}
+    for entry, apart in scan.apart.items():
+        for name in sorted(apart):
+            there = name in held.get(entry, {})
+            if (entry, name) in standing:
+                state = UNFINISHED if there else REDACTED
+            elif there:
+                state = KEPT_PUBLIC if (entry, name) in marked else PRESENT
+            else:
+                state = MISSING
+            states.setdefault(entry, {})[name] = state
+    return states
+
+
+def _short_ids(ids: List[str]) -> Dict[str, str]:
+    """Each incident's id as it is shown: the fewest hex digits, `SHORT`
+    or more, that no other incident in the log begins with. The ids
+    are hex digits, as an entry's hash is. Sorted, an id shares its
+    longest beginning with one of its two neighbours, so each is held
+    against those two alone. An id is never cut longer than it is."""
+    def shared(a: str, b: str) -> int:
+        n = 0
+        while n < len(a) and n < len(b) and a[n] == b[n]:
+            n += 1
+        return n
+
+    order = sorted(set(ids))
+    short = {}
+    for i, one in enumerate(order):
+        most = 0
+        if i > 0:
+            most = shared(one, order[i - 1])
+        if i + 1 < len(order):
+            most = max(most, shared(one, order[i + 1]))
+        short[one] = one[:max(SHORT, most + 1)]
+    return short
+
+
+def _shown(scan: _Scan) -> Dict[str, str]:
+    """Every id a room may show, as it is shown: incidents and
+    redactions together, so that no two begin alike."""
+    return _short_ids([incident for incident, _, _ in scan.incidents]
+                      + scan.redactions)
+
+
 def _redactions(scan: _Scan) -> Dict[str, Dict[str, List[dict]]]:
     """Every field's redactions, in the log's order."""
     short = _shown(scan)
@@ -85,8 +135,8 @@ def join(log: Any, contents: Any) -> List[dict]:
     of each field kept apart, `redactions` giving each field's
     redactions (as `redactions` gives them; none, for most), and the
     entry's own `state` and `incidents` (as `incidents` gives them; `as
-    written` and none, for most). A field under a standing mark is left
-    out even if it is
+    written` and none, for most). A field under a mark that is open or
+    stands is left out even if it is
     still in the contents. An entry that is removed or taken back is
     given whole: hiding it is for whatever shows the room."""
     scan = _scan(log)
@@ -128,6 +178,10 @@ class Log:
         self.contents: Dict[str, Dict[str, list]] = {}
         self._scan = _Scan()
         self._salt = salt
+        # Every salt used, as its hash: enough to refuse a source that
+        # repeats, and nothing a fingerprint could be guessed with. A
+        # salt itself is kept in the contents only, and leaves with its
+        # field.
         self._salts: Set[str] = set()
         first = dict(data or {})
         if "form" in first or "kept_apart" in first:
@@ -172,11 +226,18 @@ class Log:
 
     def take_out(self, mark: str) -> list:
         """Takes the field under `mark` out of the contents and returns
-        its `[salt, value]`, which the log then keeps nowhere. The log
-        itself is not touched."""
+        its `[salt, value]`, which this writer then keeps nowhere:
+        neither in the entries, nor in the contents, nor in what it
+        remembers of the salts it has used. The log itself is not
+        touched.
+
+        The mark is one that is open or stands. Through this writer a
+        mark that stands always has its field gone already, since
+        `stays_redacted` is refused while the field is there; that case
+        is for a writer opened on a published log, which is not built."""
         if (type(mark) is not str or mark not in self._scan.marks
                 or mark in self._scan.answered):
-            raise ValueError("no mark of that hash stands")
+            raise ValueError("no mark of that hash is open or stands")
         entry, field = self._scan.marks[mark]
         fields = self.contents.get(entry, {})
         if field not in fields:
@@ -248,7 +309,7 @@ class Log:
             salt = self._salt()
             if not _is_salt(salt):
                 raise Refused(SALT)
-            if salt in self._salts or salt in salts:
+            if _used(salt) in self._salts or salt in salts:
                 raise Refused(SALT_TWICE)
             # Checked before it is copied: a value nested too deep to
             # copy is refused, not a crash.
@@ -261,7 +322,7 @@ class Log:
         entry = {**body, "hash": _digest(body)}
         self._scan.take(entry)
         self.entries.append(entry)
-        self._salts.update(salts)
+        self._salts.update(_used(salt) for salt in salts)
         if kept:
             self.contents[entry["hash"]] = kept
         return entry["hash"]

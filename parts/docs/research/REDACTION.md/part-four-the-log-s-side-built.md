@@ -141,6 +141,20 @@ would show it wrong):
 - **A decision names the mark it answers,** with its office, its
   ground and the hash of its decision record. That is so for both
   decisions, to keep the field public and that it stays redacted.
+- **What the form's own kinds say in the open is fixed.** An entry of
+  one of the seven holds, in the open, exactly the keys its kind says
+  and nothing else. So a mark can hold no decision, and nothing beside
+  its ground about what was redacted; and a removal, a restoring, a
+  taking back and a putting back, of part four, are held to the same.
+  What else such an entry carries is kept apart, as the table allows.
+  "Never what" can't be checked in full: a ground's reference is free
+  text. This closes the easy way to break it. (From the independent
+  review of #112.)
+- **No table can keep apart what one of those kinds says in the
+  open.** A table that kept apart, say, a mark's `entry` would make
+  every mark in that log impossible to write, so whoever set a room's
+  table could switch redacting off with it. Such a table is refused as
+  a table. (From the same review.)
 - **A field has at most one mark that is open or stands.** A second
   mark on a field already marked is refused. Part two had allowed any
   number, and then one decision to keep the field public could not
@@ -166,7 +180,15 @@ would show it wrong):
   refuses the three kinds. *Mark* appends the mark. *Take out* removes
   the field's `[salt, value]` from the contents and hands it back; the
   log is not touched, and an entry with nothing left keeps no empty
-  map. *Keep public* is given the salt and the value back. It refuses
+  map. The writer then holds neither the value nor the salt anywhere:
+  it remembers each salt it has used by its hash alone, which is
+  enough to refuse a source of salts that repeats, and gives nothing a
+  fingerprint could be guessed with. (The independent review of #112
+  found the salt still in the writer's memory, in both languages; the
+  tests now look at everything the writer holds.) Taking out is
+  allowed for a mark that is open or stands; through this writer a
+  mark that stands has its field gone already, so that case waits for
+  a writer that can be opened on a published log, which is not built. *Keep public* is given the salt and the value back. It refuses
   them unless they are the ones the log commits to, then appends the
   decision and puts the field back, in one step, or does neither.
   *Stays redacted* is refused while the field is still in the
@@ -177,7 +199,7 @@ would show it wrong):
   check says what it finds: missing, or unfinished.
 - **Twenty reasons for refusing now,** one of them new, and the two for
   a mark and for keeping public reworded, since they now refuse more.
-  The vectors hold 161 logs or contents that are refused and seven
+  The vectors hold 179 logs or contents that are refused and seven
   that hold. The case of the five states is written through the
   writer's steps and holds every state of a field and of a redaction.
   Rust writes it again with its own writer and gets Python's log,
@@ -187,8 +209,12 @@ would show it wrong):
 
 What this changes in the form. A log with a bare mark, as part two
 allowed, is now refused: a mark has to say its office and its ground.
-No world writes this form yet, and nothing kept anywhere is in it but
-the vectors, so the form's name is unchanged.
+So is an entry of one of the form's own kinds that says more in the
+open than its kind names, and a table that keeps one of those keys
+apart. No world writes this form yet, and nothing kept anywhere is in
+it but the vectors, so the form's name is unchanged. The name is
+frozen from the day a world first writes a log in it: after that, a
+change to what holds needs a new name.
 
 Not done, the other side of part three:
 - The sealed record and its label: a signed record that names the
@@ -208,6 +234,9 @@ Not done, the other side of part three:
   side holds an act to its shape and to what it names. That the
   office holds a grant, and that the decision whose hash is given
   exists and names the mark, need the signed records.
+- A writer opened on a log and contents that were written before.
+  Both writers start a new log only. A room that is closed and opened
+  again needs it (step 3c).
 
 ## The parts
 

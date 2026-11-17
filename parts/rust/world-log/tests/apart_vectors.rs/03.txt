@@ -7,6 +7,166 @@ After this part: nothing; this is the last part.
 Made by docs/parts.py from the file. To change it, change the file.
 ------------------------------------------------------------------------
 #[test]
+fn keeping_public_refuses_what_the_log_does_not_commit_to() {
+    let (mut log, mut salt, said) = said_room();
+    let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    let pair = log.take_out(&made).unwrap();
+    let entries = log.entries().to_vec();
+    let contents = log.contents().clone();
+    let its_salt = pair[0].as_str().unwrap();
+    let value = pair[1].as_str().unwrap();
+    let other_salt = contents[&said]["time"][0].clone();
+    let place = apart::Place {
+        entry: Some(said.clone()),
+        field: Some("text".to_owned()),
+    };
+    let ground = appeal();
+    let decision = trial_decision(1);
+    for (bad, expected) in [
+        (
+            json!([its_salt, format!("{value}!")]),
+            Refused::Fingerprint(place.clone()),
+        ),
+        (
+            json!([other_salt, value]),
+            Refused::Fingerprint(place.clone()),
+        ),
+        (
+            json!([its_salt.to_uppercase(), value]),
+            Refused::Salt(place.clone()),
+        ),
+        (json!([7, value]), Refused::Salt(place.clone())),
+        (json!([its_salt, 1.5]), Refused::Value(place.clone())),
+        // What is not a salt and a value at all.
+        (json!([its_salt]), Refused::Contents(place.clone())),
+        (
+            json!([its_salt, value, value]),
+            Refused::Contents(place.clone()),
+        ),
+        (json!({"salt": its_salt}), Refused::Contents(place.clone())),
+        (Value::Null, Refused::Contents(place.clone())),
+    ] {
+        assert_eq!(
+            log.keep_public(
+                6,
+                &made,
+                &bad,
+                decided(&ground, &decision),
+                &Map::new(),
+                &mut salt
+            ),
+            Err(expected),
+            "{bad}"
+        );
+        assert_eq!(log.entries(), entries.as_slice(), "{bad}");
+        assert_eq!(log.contents(), &contents, "{bad}");
+    }
+}
+
+#[test]
+fn it_stays_redacted_only_once_it_is_out_of_the_contents() {
+    let (mut log, mut salt, said) = said_room();
+    let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    let before = log.entries().len();
+    assert_eq!(
+        stays(&mut log, 6, &made, "decided", 1, &mut salt),
+        Err(Refused::StillThere)
+    );
+    assert_eq!(log.entries().len(), before);
+    assert_eq!(
+        redactions_of(&log, &said, "text")[0].state,
+        RedactionState::Open
+    );
+    log.take_out(&made).unwrap();
+    stays(&mut log, 6, &made, "decided", 1, &mut salt).unwrap();
+    assert_eq!(
+        redactions_of(&log, &said, "text")[0].state,
+        RedactionState::Stands
+    );
+}
+
+#[test]
+fn a_mark_and_its_answer_are_not_written_by_append() {
+    let (mut log, mut salt, said) = said_room();
+    let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    let entries = log.entries().to_vec();
+    let answer = json!({"mark": made, "office": KEEPER, "ground": appeal(),
+                        "decision": trial_decision(1)});
+    for (kind, data) in [
+        (
+            MARK,
+            json!({"entry": said, "field": "time", "office": OFFICE, "ground": private()}),
+        ),
+        (KEPT, answer.clone()),
+        (STAYS, answer),
+    ] {
+        assert_eq!(
+            log.append(6, kind, None, &map(&data), &Map::new(), &mut salt),
+            Err(Refused::NotByAppend),
+            "{kind}"
+        );
+        assert_eq!(log.entries(), entries.as_slice(), "{kind}");
+    }
+}
+
+#[test]
+fn a_decision_alone_never_makes_a_finished_redaction_missing() {
+    // The fault carried from part two: one entry of kind
+    // field_kept_public turned a redacted field into a missing one. The
+    // writer now puts the field back with it, or writes nothing.
+    let (mut log, mut salt, said) = said_room();
+    let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    let pair = log.take_out(&made).unwrap();
+    let ground = appeal();
+    let decision = trial_decision(1);
+    log.keep_public(
+        6,
+        &made,
+        &pair,
+        decided(&ground, &decision),
+        &Map::new(),
+        &mut salt,
+    )
+    .unwrap();
+    let (entries, contents) = log.into_parts();
+    let states = check(&Value::Array(entries), &Value::Object(contents)).unwrap();
+    assert!(
+        states
+            .values()
+            .flat_map(|fields| fields.values())
+            .all(|state| *state != State::Missing)
+    );
+}
+
+#[test]
+fn a_published_log_can_still_be_at_fault() {
+    // The check can't make a publisher honest: it says what it finds.
+    let (mut log, mut salt, said) = said_room();
+    let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    keep(&mut log, 6, &made, "decided", 1, &mut salt).unwrap();
+    let mut contents = log.contents().clone();
+    contents[&said].as_object_mut().unwrap().remove("text");
+    let entries = Value::Array(log.entries().to_vec());
+    assert_eq!(
+        check(&entries, &Value::Object(contents)).unwrap()[&said]["text"],
+        State::Missing
+    );
+    // And a field left in the contents after the decision that it stays
+    // redacted is unfinished, and never shown.
+    let other = mark(&mut log, 7, &said, "time", "asked", &mut salt).unwrap();
+    let left = Value::Object(log.contents().clone());
+    log.take_out(&other).unwrap();
+    stays(&mut log, 8, &other, "decided", 2, &mut salt).unwrap();
+    let entries = Value::Array(log.entries().to_vec());
+    assert_eq!(
+        check(&entries, &left).unwrap()[&said]["time"],
+        State::Unfinished
+    );
+    let joined = join(&entries, &left).unwrap();
+    assert!(joined[3]["data"].get("time").is_none());
+}
+
+#[test]
 fn redactions_need_no_contents_and_join_gives_them() {
     let (mut log, mut salt, said) = said_room();
     let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();

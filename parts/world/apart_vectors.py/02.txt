@@ -58,6 +58,16 @@ def refused() -> List[dict]:
     log = []
     _raw(log, 0, "world_created", None, {"form": apart.FORM}, {})
     add(apart.TABLE, "no table at all", log, {})
+    # What one of the form's own kinds says in the open can't be kept
+    # apart: no such entry could then be written.
+    for kind, name in [
+            (apart.MARK, "entry"), (apart.MARK, "field"),
+            (apart.MARK, "office"), (apart.MARK, "ground"),
+            (apart.KEPT, "mark"), (apart.STAYS, "decision"),
+            (apart.REMOVED, "entry"), (apart.RESTORED, "incident"),
+            (apart.TAKEN_BACK, "entry"), (apart.PUT_BACK, "taken_back")]:
+        add(apart.TABLE, f"a table that keeps apart the {name} of an "
+            f"entry of kind {kind}", _start({kind: [name]}), {})
 
     # -- an entry's shape --
     key, name_ = _print(0, "key", "k"), _print(1, "name", "n")
@@ -390,6 +400,31 @@ def refused() -> List[dict]:
     refuse(apart.BAD_PUTTING_BACK, "a putting back that names nothing",
            apart.PUT_BACK, {}, ("t", _take_back, said))
 
+    # -- what the form's own kinds say in the open, and nothing else --
+    refuse(apart.BAD_MARK, "a mark that holds a decision", apart.MARK,
+           dict(marking, decision=trial_decision(3)))
+    refuse(apart.BAD_MARK, "a mark that says in the open what was there",
+           apart.MARK, dict(marking, what="it said hello"))
+    for kind, reason, what in [
+            (apart.KEPT, apart.BAD_KEPT, "a decision to keep a field public"),
+            (apart.STAYS, apart.BAD_STAYS,
+             "a decision that a field stays redacted")]:
+        refuse(reason, what + " that says more in the open", kind,
+               dict(answer, note="see the mark"),
+               ("m", _mark, said, "text", "asked"))
+    refuse(apart.BAD_REMOVAL, "a removal that says more in the open",
+           apart.REMOVED, dict(removal, note="spam"))
+    refuse(apart.BAD_RESTORING, "a restoring that says more in the open",
+           apart.RESTORED,
+           {"incident": "r", "office": KEEPER, "ground": APPEAL,
+            "decision": trial_decision(2), "note": "on appeal"},
+           ("r", _remove, said, 1))
+    refuse(apart.BAD_TAKING_BACK, "a taking back that names an office",
+           apart.TAKEN_BACK, {"entry": said, "office": MODERATOR})
+    refuse(apart.BAD_PUTTING_BACK, "a putting back that says more in the "
+           "open", apart.PUT_BACK, {"taken_back": "t", "note": "again"},
+           ("t", _take_back, said))
+
     # -- the contents' shape --
     log, contents = _short()
     arrival = log[1]["hash"]
@@ -500,62 +535,6 @@ def _nested(depth: int) -> Any:
     for _ in range(depth):
         value = [value]
     return value
-
-
-# Values a fingerprint allows, at their edges.
-VALUES_ALLOWED: List[Any] = [
-    "", "plain text", "café 中文 \U0001F642   \U0010FFFF",
-    'quote " backslash \\ tab \t newline \n', "\x00\x1f\x7f",
-    0, 1, -1, apart.MAX_WHOLE, -apart.MAX_WHOLE, True, False,
-    [], {}, ["a", 1, True, [], {}],
-    {"b": 1, "a": 2, "B": 3, "_": 4, "é": 5, "aa": 6, "a b": 7},
-    {"words": ["a", "b"], "loud": True, "count": -3},
-    _nested(apart.MAX_NESTING),
-]
-
-# Values it refuses, as far as a JSON file can hold them.
-VALUES_REFUSED: List[Tuple[str, Any]] = [
-    ("a number with a fraction", 1.5),
-    ("a whole number written with a fraction", 1.0),
-    ("nothing", None),
-    ("two to the 53", apart.MAX_WHOLE + 1),
-    ("minus two to the 53", -apart.MAX_WHOLE - 1),
-    ("two to the 64", 2 ** 64),
-    ("a list holding nothing", ["a", None]),
-    ("a map holding a number with a fraction", {"a": 0.5}),
-    ("a list nested one too deep", _nested(apart.MAX_NESTING + 1)),
-]
-
-
-def fingerprints() -> List[dict]:
-    """Each allowed value under a trial salt: the exact text that is
-    hashed, and the fingerprint."""
-    return [{"salt": trial_salt(n), "name": "thing", "value": value,
-             "text": apart.fingerprint_text(trial_salt(n), "thing", value),
-             "fingerprint": apart.fingerprint(trial_salt(n), "thing", value)}
-            for n, value in enumerate(VALUES_ALLOWED)]
-
-
-def _id(start: str, n: int) -> str:
-    """A made-up incident id: `start`, then filled out to 64 hex digits."""
-    fill = hashlib.sha256(f"open-worlds trial id {n}".encode()).hexdigest()
-    return (start + fill)[:64]
-
-
-def short_ids() -> List[dict]:
-    """Made-up incident ids that begin alike, and each as it is shown.
-    Real ids that begin alike for twelve digits can't be made here: it
-    would take about 2^48 hashes."""
-    groups = [
-        [_id("", 1), _id("", 2), _id("", 3)],
-        [_id("abcdef012345", 1), _id("abcdef012345", 2)],
-        [_id("abcdef0123456789ab", 1), _id("abcdef0123456789ab", 2),
-         _id("abcdef012345", 3), _id("0123", 4)],
-        [_id("f" * 63, 1), ("f" * 63 + "0") if not _id("f" * 63, 1).endswith(
-            "0") else ("f" * 63 + "1")],
-        [],
-    ]
-    return [{"ids": ids, "short": apart._short_ids(ids)} for ids in groups]
 
 
 

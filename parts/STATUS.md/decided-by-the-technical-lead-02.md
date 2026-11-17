@@ -2,63 +2,10 @@
 > for readers who are shown only the start of a long page.
 > This part holds: "Decided by the technical lead", piece 2 (its pieces are numbered from its end).
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-01.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead-03.md
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead-01.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
-## Decided by the technical lead
-
-Decisions about the code, made by the technical lead under the founder's
-deference (above, 2026-11-13), each with its reason and what would show
-it was wrong. Questions of what the project is for stay with the founder.
-
-- 2026-11-17, redacting, on the log's side
-  (docs/research/REDACTION.md, "Part three, the log's side, built";
-  course step 3b, part three), settled in building it.
-  (a) A third kind for a redacted field, `field_stays_redacted`: the
-  entry that says a redaction stands. The form's own kinds are seven.
-  (b) A mark says in the open its office and one ground, held to what
-  a removal's ground is held to, and no decision. Each of the two
-  decisions says its office, its ground and the decision's hash.
-  (c) A field has at most one mark that is open or stands. (d) A mark
-  is answered once, while it is open, when the decision and any appeal
-  are over. Kept public, the field may be marked again. A mark that
-  stays redacted stands for good, and nothing in the log makes that
-  field public again. (e) A redaction's id is its mark's hash, its
-  state is open, stands or kept public, and short ids are worked out
-  over incidents and redactions together. (f) The writer has a step
-  for each act and its plain appending refuses the three kinds;
-  keeping public puts the field back in the same step as the decision,
-  only with the salt and value the log commits to; "stays redacted"
-  is refused while the field is still in the contents. (g) This side
-  checks the shape of an act and what it names, not who may act.
-  (h) The form's name is unchanged, though a bare mark, which part two
-  allowed, is now refused. (i) The command line counts redactions.
-  *Why:* (a) decision 5 asks that an entry say when a redaction
-  stands and the office's copy is deleted; without it a reader can't
-  tell a redaction still being decided from one that is settled.
-  (b) "By which office, and why in general terms, never what"
-  (decision 4); and a mark is made before anything is decided, so it
-  has no decision to name. (c) With several marks on one field, a
-  decision to keep it public could not say which request it answered,
-  and one such decision left the others standing. (d) FUNDAMENTALS.md:
-  "It stays redacted until any appeal is decided: once made public
-  again, it can't be recalled"; and the office's copy is deleted when
-  the redaction stands, so nothing could put the field back. (e) A
-  room shows both kinds of id, and a reader should never take one for
-  the other. (f) The fault carried from part two: one entry of kind
-  `field_kept_public` turned a finished redaction into a missing
-  field. (g) Who may act needs the signed records and the keys, as in
-  part four. (h) No world writes this form yet; the vectors are the
-  only logs in it. (i) So that a reader of a log sees how many
-  redactions are still being decided.
-  *What would show it wrong:* a case where one field must carry two
-  requests that are decided apart, for (c); a rule of appeals that
-  lets a redaction that stands be reopened, for (d), which would need
-  the office's copy kept longer than decision 5 allows; a log in this
-  form written by anyone before this change, for (h); a mark that has
-  to be written by someone who is not an office, such as a person
-  redacting their own words with no office involved, for (b).
 - 2026-11-17, two collaborators on the sketch crate at once, each on
   its own files. The rule since 2026-11-16 was one writer at a time,
   so that there is one line of code. The founder had Gemini free

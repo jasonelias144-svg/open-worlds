@@ -6,6 +6,50 @@ Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-world
 After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/world-log/src/apart.rs/03.txt
 Made by docs/parts.py from the file. To change it, change the file.
 ------------------------------------------------------------------------
+/// Reads the table, if it is well formed: a map from a kind to a list of
+/// names, each list in ascending order with no name twice.
+fn read_table(table: Option<&Value>) -> Option<BTreeMap<String, Vec<String>>> {
+    let mut read = BTreeMap::new();
+    for (kind, names) in table?.as_object()? {
+        let mut list: Vec<String> = Vec::new();
+        for name in names.as_array()? {
+            let name = name.as_str().filter(|n| is_name(n))?;
+            if list.last().is_some_and(|last| last.as_str() >= name) {
+                return None;
+            }
+            list.push(name.to_owned());
+        }
+        // What one of the form's own kinds says in the open can't be
+        // kept apart: no such entry could then be written.
+        if says(kind).is_some_and(|keys| list.iter().any(|n| keys.contains(&n.as_str()))) {
+            return None;
+        }
+        read.insert(kind.clone(), list);
+    }
+    Some(read)
+}
+
+/// What a writer remembers of a salt it has used: its hash. Enough to
+/// refuse a source that repeats, and nothing a fingerprint could be
+/// guessed with.
+fn used(salt: &str) -> String {
+    sha256_hex(salt.as_bytes())
+}
+
+/// The keys one of the form's own kinds says in the open, if `kind` is
+/// one of them.
+fn says(kind: &str) -> Option<&'static [&'static str]> {
+    SAYS.iter().find(|(k, _)| *k == kind).map(|(_, keys)| *keys)
+}
+
+/// True if an entry of one of the form's own kinds holds, in the open,
+/// exactly the keys its kind says.
+fn says_only(kind: &str, data: &Map<String, Value>) -> bool {
+    says(kind).is_some_and(|keys| {
+        data.len() == keys.len() && keys.iter().all(|key| data.contains_key(*key))
+    })
+}
+
 /// Reads a log's entries in order, keeping what later entries and the
 /// contents are checked against. `take` changes nothing unless the entry
 /// holds, so a writer can offer it an entry and go on if it is refused.
@@ -18,7 +62,7 @@ struct Scan {
     apart: BTreeMap<String, BTreeMap<String, String>>,
     /// For each mark, the entry and field it is on.
     marks: BTreeMap<String, (String, String)>,
-    /// The marks that no longer stand.
+    /// The marks answered by a decision to keep the field public.
     answered: BTreeSet<String>,
     /// The marks that stand for good.
     stays: BTreeSet<String>,
@@ -145,7 +189,8 @@ impl Scan {
                         && !self
                             .marked
                             .contains_key(&(target.to_owned(), field.to_owned()))
-                        && office_and_ground_ok(data) =>
+                        && office_and_ground_ok(data)
+                        && says_only(kind, data) =>
                 {
                     mark = Some((target.to_owned(), field.to_owned()));
                 }
@@ -155,7 +200,9 @@ impl Scan {
             // Redacted first, decided after: one answer to a mark, and
             // only while it is open.
             match data.get("mark").and_then(Value::as_str) {
-                Some(named_mark) if self.is_open(named_mark) && office_ok(data) => {
+                Some(named_mark)
+                    if self.is_open(named_mark) && office_ok(data) && says_only(kind, data) =>
+                {
                     answers = Some(named_mark.to_owned());
                 }
                 _ if kind == KEPT => return Err(Refused::BadKept { index }),
@@ -170,7 +217,8 @@ impl Scan {
                 Some(target)
                     if !self.removed.contains_key(target)
                         && !self.taken.contains_key(target)
-                        && office_ok(data) =>
+                        && office_ok(data)
+                        && says_only(kind, data) =>
                 {
                     on = Some(target.to_owned());
                 }
@@ -185,7 +233,8 @@ impl Scan {
                     // removal stops standing, and the entry stays taken
                     // back.
                     if self.removed.get(target).map(String::as_str) == Some(incident)
-                        && office_ok(data) =>
+                        && office_ok(data)
+                        && says_only(kind, data) =>
                 {
                     on = Some(target.clone());
                 }
@@ -193,7 +242,7 @@ impl Scan {
             }
         } else if kind == TAKEN_BACK {
             match self.can_be_acted_on(data.get("entry")) {
-                Some(target) if !self.taken.contains_key(target) => {
+                Some(target) if !self.taken.contains_key(target) && says_only(kind, data) => {
                     on = Some(target.to_owned());
                 }
                 _ => return Err(Refused::BadTakingBack { index }),
@@ -203,7 +252,8 @@ impl Scan {
             let target = taking.and_then(|t| self.takings.get(t));
             match (taking, target) {
                 (Some(taking), Some(target))
-                    if self.taken.get(target).map(String::as_str) == Some(taking) =>
+                    if self.taken.get(target).map(String::as_str) == Some(taking)
+                        && says_only(kind, data) =>
                 {
                     on = Some(target.clone());
                 }
@@ -533,8 +583,9 @@ pub fn check(log: &Value, contents: &Value) -> Result<States, Refused> {
 /// `apart`, its `data` holding the open fields and every field kept apart
 /// that is present or kept public, `fields` giving the state of each
 /// field kept apart, `redactions` giving each field's redactions, and
-/// the entry's own `state` and `incidents`, all in Python's words. A field under a standing mark is left out even if it
-/// is still in the contents. An entry that is removed or taken back is
+/// the entry's own `state` and `incidents`, all in Python's words. A
+/// field under a mark that is open or stands is left out even if it is
+/// still in the contents. An entry that is removed or taken back is
 /// given whole: hiding it is for whatever shows the room.
 pub fn join(log: &Value, contents: &Value) -> Result<Vec<Value>, Refused> {
     let scan = scan(log)?;
@@ -587,34 +638,6 @@ pub fn join(log: &Value, contents: &Value) -> Result<Vec<Value>, Refused> {
         joined.push(Value::Object(one));
     }
     Ok(joined)
-}
-
-/// The open data of an entry that answers a mark.
-fn answer(mark: &str, by: Decided<'_>) -> Map<String, Value> {
-    let mut data = Map::new();
-    data.insert("mark".to_owned(), json!(mark));
-    data.insert("office".to_owned(), json!(by.office));
-    data.insert("ground".to_owned(), by.ground.clone());
-    data.insert("decision".to_owned(), json!(by.decision));
-    data
-}
-
-/// Writes a log in this form: the entries, which are the chain, and the
-/// contents kept beside it. Every entry is offered to the same check a
-/// reader runs before it is appended, so this never writes a log that
-/// [`check`] would refuse.
-///
-/// The caller supplies the salts, one call for each field kept apart, in
-/// the ascending order of the fields' names: 128 bits from the operating
-/// system, as 32 lowercase hex digits, and never made from a world's
-/// seed. The shared test vectors pass fixed salts, which are public to
-/// everyone.
-#[derive(Debug, Clone)]
-pub struct Log {
-    entries: Vec<Value>,
-    contents: Map<String, Value>,
-    scan: Scan,
-    salts: BTreeSet<String>,
 }
 
 

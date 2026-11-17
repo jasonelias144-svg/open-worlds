@@ -651,19 +651,92 @@ class TestRedacting(unittest.TestCase):
                     self.log.stays_redacted(6, made, *said)
                 self.assertEqual(c.exception.reason, apart.BAD_STAYS)
 
+    def whole(self):
+        """Everything the writer holds, as one text: its entries, its
+        contents, what it remembers of the salts it has used, and all
+        that its scan of the log keeps."""
+        return repr([vars(self.log), vars(self.log._scan)])
+
     def test_neither_the_value_nor_its_salt_is_left_once_taken_out(self):
         salt, value = self.log.contents[self.said]["text"]
         made = mark(self.log, self.said, "text")
         before = copy.deepcopy(self.log.entries)
+        # Both are there to be found, before.
+        self.assertIn(salt, self.whole())
+        self.assertIn(value, self.whole())
         self.assertEqual(self.log.take_out(made), [salt, value])
         kept = json.dumps([self.log.entries, self.log.contents])
         self.assertNotIn(salt, kept)
         self.assertNotIn(value, kept)
+        # Nor anywhere else in the writer: a salt it kept would let
+        # whoever reads its memory test guesses against the fingerprint,
+        # which is public.
+        self.assertNotIn(salt, self.whole())
+        self.assertNotIn(value, self.whole())
         self.assertEqual(self.log.entries, before)   # the log is not touched
         self.assertEqual(self.state(), "redacted")
         # The other fields of the entry are still there.
         self.assertEqual(sorted(self.log.contents[self.said]),
                          ["key", "time"])
+
+    def test_a_salt_is_never_used_again_though_its_field_is_gone(self):
+        # The writer remembers a salt by its hash alone, and that is
+        # enough to refuse a source that repeats.
+        again = "5a" * 16
+        log = Log({"said": ["text"]}, salt=lambda: again)
+        said = log.append(1, "said", None, {}, {"text": "once"})
+        made = log.mark(2, said, "text", OFFICE, PRIVATE)
+        self.assertEqual(log.take_out(made), [again, "once"])
+        self.assertNotIn(again, repr([vars(log), vars(log._scan)]))
+        with self.assertRaises(Refused) as c:
+            log.append(3, "said", None, {}, {"text": "twice"})
+        self.assertEqual(c.exception.reason, apart.SALT_TWICE)
+        self.assertEqual(len(log.entries), 3)
+
+    def test_the_forms_own_kinds_say_in_the_open_exactly_what_is_named(
+            self):
+        self.assertEqual(set(apart.SAYS), set(apart.OWN))
+        # A mark can hold no decision, and nothing about what was
+        # there; a decision, nothing beside what it must say. Each is
+        # refused for its own kind's reason, and nothing is written.
+        made = mark(self.log, self.said, "text")
+        entries = copy.deepcopy(self.log.entries)
+        raw = copy.deepcopy(self.log.entries)
+        for kind, data, why in [
+                (apart.MARK, {"entry": self.said, "field": "time",
+                              "office": OFFICE, "ground": PRIVATE,
+                              "decision": trial_decision(1)},
+                 apart.BAD_MARK),
+                (apart.MARK, {"entry": self.said, "field": "time",
+                              "office": OFFICE, "ground": PRIVATE,
+                              "what": "the time of day"}, apart.BAD_MARK),
+                (apart.KEPT, {"mark": made, "office": KEEPER,
+                              "ground": APPEAL,
+                              "decision": trial_decision(1), "note": "x"},
+                 apart.BAD_KEPT),
+                (apart.STAYS, {"mark": made, "office": KEEPER,
+                               "ground": APPEAL,
+                               "decision": trial_decision(1), "note": "x"},
+                 apart.BAD_STAYS)]:
+            with self.subTest(kind=kind, data=sorted(data)):
+                body = {"tick": 9, "kind": kind, "agent": None,
+                        "data": data, "apart": {}, "prev": raw[-1]["hash"]}
+                log = raw + [{**body, "hash": apart._digest(body)}]
+                self.assertEqual(refusal(log, {}), (why, len(raw)))
+        self.assertEqual(self.log.entries, entries)
+
+    def test_no_table_keeps_apart_what_an_own_kind_says_in_the_open(self):
+        for kind, keys in apart.SAYS.items():
+            for key in keys:
+                with self.subTest(kind=kind, key=key):
+                    with self.assertRaises(Refused) as c:
+                        Log({kind: [key]})
+                    self.assertEqual(c.exception.reason, apart.TABLE)
+        # What else such an entry carries may be kept apart.
+        log = Log({apart.MARK: ["reason"], "said": ["text"]})
+        said = log.append(1, "said", None, {}, {"text": "t"})
+        log.mark(2, said, "text", OFFICE, PRIVATE, apart={"reason": "r"})
+        self.assertEqual(len(log.entries), 3)
 
     def test_an_entry_with_nothing_left_keeps_no_empty_map(self):
         entered = self.log.entries[1]["hash"]
@@ -702,6 +775,13 @@ class TestRedacting(unittest.TestCase):
         keep(self.log, other)
         with self.assertRaises(ValueError):
             self.log.take_out(other)                 # answered: it is public
+        # A mark that stands has its field gone already, through this
+        # writer: nothing is left to take out.
+        stays(self.log, made)
+        with self.assertRaises(ValueError) as c:
+            self.log.take_out(made)
+        self.assertEqual(str(c.exception),
+                         "the field is not in the contents")
 
     def test_keeping_public_puts_the_field_back_in_the_same_step(self):
         made = mark(self.log, self.said, "text")
@@ -1132,6 +1212,9 @@ class TestTheVectors(unittest.TestCase):
         self.assertEqual(v["mark"], apart.MARK)
         self.assertEqual(v["kept"], apart.KEPT)
         self.assertEqual(v["stays"], apart.STAYS)
+        self.assertEqual(v["says"],
+                         {kind: list(keys)
+                          for kind, keys in apart.SAYS.items()})
         self.assertEqual(v["redaction_states"],
                          list(apart.REDACTION_STATES))
         self.assertEqual(len(apart.REASONS), 20)
@@ -1194,7 +1277,7 @@ class TestTheVectors(unittest.TestCase):
 
     def test_each_case_that_is_refused(self):
         cases = vectors()["refused"]
-        self.assertEqual(len(cases), 161)
+        self.assertEqual(len(cases), 179)
         for case in cases:
             with self.subTest(case["name"]):
                 self.assertEqual(refusal(case["log"], case["contents"]),

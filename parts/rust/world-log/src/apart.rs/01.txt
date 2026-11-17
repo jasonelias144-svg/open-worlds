@@ -64,6 +64,13 @@ Made by docs/parts.py from the file. To change it, change the file.
 //!   (`data.taken_back`). None takes anything out of the log or the
 //!   contents. What wins among them is in [`EntryState`] and
 //!   `docs/research/REDACTION.md`, decision 9.
+//! - **What the form's own kinds say in the open is fixed** ([`SAYS`]):
+//!   each holds exactly the keys named above for it, and nothing else.
+//!   So a mark can hold no decision, and nothing beside its ground about
+//!   what was redacted. What else such an entry carries is kept apart,
+//!   as the table allows. And no table can keep one of those keys apart:
+//!   a table that did would make every mark, or every decision,
+//!   impossible to write.
 //!
 //! [`check`] holds the contents to the log and gives every field's
 //! [`State`]; [`incidents`] gives every entry's [`EntryState`];
@@ -76,8 +83,8 @@ Made by docs/parts.py from the file. To change it, change the file.
 //!
 //! # Limits
 //!
-//! - A field under a standing mark is never shown by [`join`], even while
-//!   it is still in the contents.
+//! - A field under a mark that is open or stands is never shown by
+//!   [`join`], even while it is still in the contents.
 //! - An entry that is removed or taken back is still given whole by
 //!   [`join`], with its state: nothing has left the record.
 //! - This module does not check who may redact, decide, remove, restore
@@ -128,6 +135,17 @@ pub const TAKEN_BACK: &str = "entry_taken_back";
 pub const PUT_BACK: &str = "entry_put_back";
 /// The form's own kinds: none of them can itself be removed or taken back.
 pub const OWN: [&str; 7] = [MARK, KEPT, STAYS, REMOVED, RESTORED, TAKEN_BACK, PUT_BACK];
+/// What each of the form's own kinds says in the open: exactly these
+/// keys. No table can keep one of them apart.
+pub const SAYS: [(&str, &[&str]); 7] = [
+    (MARK, &["entry", "field", "office", "ground"]),
+    (KEPT, &["mark", "office", "ground", "decision"]),
+    (STAYS, &["mark", "office", "ground", "decision"]),
+    (REMOVED, &["entry", "office", "ground", "decision"]),
+    (RESTORED, &["incident", "office", "ground", "decision"]),
+    (TAKEN_BACK, &["entry"]),
+    (PUT_BACK, &["taken_back"]),
+];
 /// What a ground can be, as in a decision record's grounds.
 pub const GROUNDS: [&str; 4] = ["charter", "law", "rule", "record"];
 /// The shortest an incident's id is ever shown, in hex digits.
@@ -149,15 +167,15 @@ pub const KEYS: [&str; 7] = ["tick", "kind", "agent", "data", "apart", "prev", "
 pub enum State {
     /// In the contents, and never marked.
     Present,
-    /// A mark stands, and the field is gone.
+    /// A mark on it is open or stands, and the field is gone.
     Redacted,
-    /// A mark stands, and the field is still there.
+    /// A mark on it is open or stands, and the field is still there.
     Unfinished,
     /// Every mark on it was answered by a decision to keep it public, and
     /// it is there.
     KeptPublic,
-    /// No mark stands, and it is gone: a fault in whoever published the
-    /// log.
+    /// No mark on it is open or stands, and it is gone: a fault in
+    /// whoever published the log.
     Missing,
 }
 
@@ -448,8 +466,8 @@ pub enum Refused {
     /// [`Log::stays_redacted`], not by [`Log::append`]. (Python raises a
     /// `ValueError`.)
     NotByAppend,
-    /// Only when writing: no mark of that hash stands, so nothing is
-    /// taken out. (Python raises a `ValueError`.)
+    /// Only when writing: no mark of that hash is open or stands, so
+    /// nothing is taken out. (Python raises a `ValueError`.)
     NoSuchMark,
     /// Only when writing: the field to take out is not in the contents.
     /// (Python raises a `ValueError`.)
@@ -510,7 +528,7 @@ impl Refused {
                 "a mark and the decision that answers it are written by mark, \
                  keep_public and stays_redacted"
             }
-            Refused::NoSuchMark => "no mark of that hash stands",
+            Refused::NoSuchMark => "no mark of that hash is open or stands",
             Refused::NotThere => "the field is not in the contents",
             Refused::StillThere => "the field is still in the contents: take it out first",
         }
@@ -623,24 +641,6 @@ pub fn fingerprint_text(salt: &str, name: &str, value: &Value) -> Result<String,
 /// [`fingerprint_text`].
 pub fn fingerprint(salt: &str, name: &str, value: &Value) -> Result<String, Refused> {
     Ok(sha256_hex(fingerprint_text(salt, name, value)?.as_bytes()))
-}
-
-/// Reads the table, if it is well formed: a map from a kind to a list of
-/// names, each list in ascending order with no name twice.
-fn read_table(table: Option<&Value>) -> Option<BTreeMap<String, Vec<String>>> {
-    let mut read = BTreeMap::new();
-    for (kind, names) in table?.as_object()? {
-        let mut list: Vec<String> = Vec::new();
-        for name in names.as_array()? {
-            let name = name.as_str().filter(|n| is_name(n))?;
-            if list.last().is_some_and(|last| last.as_str() >= name) {
-                return None;
-            }
-            list.push(name.to_owned());
-        }
-        read.insert(kind.clone(), list);
-    }
-    Some(read)
 }
 
 

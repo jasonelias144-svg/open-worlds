@@ -18,8 +18,9 @@ use serde_json::{Map, Value, json};
 use std::collections::BTreeSet;
 use world_log::apart::{
     self, Decided, EntryState, FORM, GROUNDS, KEPT, Log, MARK, MAX_NESTING, MAX_REF, MAX_WHOLE,
-    Office, PUT_BACK, REMOVED, RESTORED, RedactionState, Refused, SHORT, STAYS, State, TAKEN_BACK,
-    check, fingerprint, fingerprint_text, incidents, join, redactions, short_ids, value_allowed,
+    Office, PUT_BACK, REMOVED, RESTORED, RedactionState, Refused, SAYS, SHORT, STAYS, State,
+    TAKEN_BACK, check, fingerprint, fingerprint_text, incidents, join, redactions, short_ids,
+    value_allowed,
 };
 use world_log::{LogError, sha256_hex, verify_log};
 
@@ -282,6 +283,11 @@ fn the_names_and_limits_are_pythons() {
     assert_eq!(v["mark"], MARK);
     assert_eq!(v["kept"], KEPT);
     assert_eq!(v["stays"], STAYS);
+    let says: Map<String, Value> = SAYS
+        .iter()
+        .map(|(kind, keys)| ((*kind).to_owned(), json!(keys)))
+        .collect();
+    assert_eq!(v["says"], Value::Object(says));
     let redaction_states: Vec<&str> = [
         RedactionState::Open,
         RedactionState::Stands,
@@ -831,7 +837,7 @@ fn what_wins_among_removing_restoring_taking_back_and_putting_back() {
 fn each_case_that_is_refused_is_refused_for_pythons_reason() {
     let v = vectors();
     let refused = cases(&v, "refused");
-    assert_eq!(refused.len(), 161, "the vectors are all there");
+    assert_eq!(refused.len(), 179, "the vectors are all there");
     let mut seen = BTreeSet::new();
     for case in refused {
         let name = &case["name"];
@@ -1382,15 +1388,82 @@ fn neither_the_value_nor_its_salt_is_left_once_taken_out() {
     let before = log.entries().to_vec();
     assert!(kept_text(&log).contains(&its_salt));
     assert!(kept_text(&log).contains(&value));
+    // Everything the writer holds, as one text: both are there to be
+    // found, before.
+    let whole = |log: &Log| format!("{log:?}");
+    assert!(whole(&log).contains(&its_salt));
+    assert!(whole(&log).contains(&value));
     assert_eq!(log.take_out(&made).unwrap(), pair);
     let kept = kept_text(&log);
     assert!(!kept.contains(&its_salt));
     assert!(!kept.contains(&value));
+    // Nor anywhere else in the writer, or in a copy of it: a salt it kept
+    // would let whoever reads its memory test guesses against the
+    // fingerprint, which is public.
+    assert!(!whole(&log).contains(&its_salt));
+    assert!(!whole(&log).contains(&value));
+    assert!(!whole(&log.clone()).contains(&its_salt));
     assert_eq!(log.entries(), before.as_slice(), "the log is not touched");
     assert_eq!(field_state(&log, &said, "text"), State::Redacted);
     // The other fields of the entry are still there.
     let left: Vec<&String> = log.contents()[&said].as_object().unwrap().keys().collect();
     assert_eq!(left, ["key", "time"]);
+}
+
+#[test]
+fn a_salt_is_never_used_again_though_its_field_is_gone() {
+    // The writer remembers a salt by its hash alone, and that is enough
+    // to refuse a source that repeats.
+    let again = "5a".repeat(16);
+    let mut same = || again.clone();
+    let table = json!({"said": ["text"]});
+    let mut log = Log::new(&table, &Map::new(), "world_created", &mut same).unwrap();
+    let kept = map(&json!({"text": "once"}));
+    let said = log
+        .append(1, "said", None, &Map::new(), &kept, &mut same)
+        .unwrap();
+    let by = Office {
+        office: OFFICE,
+        ground: &private(),
+        agent: None,
+    };
+    let made = log
+        .mark(2, &said, "text", by, &Map::new(), &mut same)
+        .unwrap();
+    assert_eq!(log.take_out(&made).unwrap(), json!([again, "once"]));
+    assert!(!format!("{log:?}").contains(&again));
+    let twice = map(&json!({"text": "twice"}));
+    assert_eq!(
+        log.append(3, "said", None, &Map::new(), &twice, &mut same)
+            .unwrap_err()
+            .reason(),
+        "a salt appears twice"
+    );
+    assert_eq!(log.entries().len(), 3);
+}
+
+#[test]
+fn no_table_keeps_apart_what_an_own_kind_says_in_the_open() {
+    let mut salt = trial_salts();
+    for (kind, keys) in SAYS {
+        for key in keys {
+            let table = json!({kind: [key]});
+            assert_eq!(
+                Log::new(&table, &Map::new(), "world_created", &mut salt).unwrap_err(),
+                Refused::Table,
+                "{kind} {key}"
+            );
+        }
+    }
+    // What else such an entry carries may be kept apart.
+    let table = json!({MARK: ["reason"], "said": ["text"]});
+    let mut log = Log::new(&table, &Map::new(), "world_created", &mut salt).unwrap();
+    let kept = map(&json!({"text": "t"}));
+    let said = log
+        .append(1, "said", None, &Map::new(), &kept, &mut salt)
+        .unwrap();
+    mark(&mut log, 2, &said, "text", "r", &mut salt).unwrap();
+    assert_eq!(log.entries().len(), 3);
 }
 
 #[test]
@@ -1418,6 +1491,10 @@ fn taking_out_needs_a_mark_that_stands_and_a_field_that_is_there() {
     // Answered: it is public.
     assert_eq!(log.take_out(&other), Err(Refused::NoSuchMark));
     assert!(log.contents()[&said].get("time").is_some());
+    // A mark that stands has its field gone already, through this
+    // writer: nothing is left to take out.
+    stays(&mut log, 7, &made, "decided", 2, &mut salt).unwrap();
+    assert_eq!(log.take_out(&made), Err(Refused::NotThere));
 }
 
 #[test]

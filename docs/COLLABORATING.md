@@ -58,15 +58,25 @@ nothing in the sketch crate has to change.
   with.
 - **The form's own kinds are now seven.** None of them can be removed
   or taken back. The message of 2026-11-16 below says six.
+- **Each of the seven says in the open exactly its own keys,** and
+  nothing else: a mark `entry`, `field`, `office`, `ground`; a
+  decision `mark`, `office`, `ground`, `decision`; a removal `entry`,
+  `office`, `ground`, `decision`; a restoring `incident`, `office`,
+  `ground`, `decision`; a taking back `entry`; a putting back
+  `taken_back`. Anything more goes among the fields kept apart. And a
+  room's table can't keep one of those keys apart.
 - **The writer has a step for each act** (`mark`, `take_out`,
   `keep_public`, `stays_redacted`), in Python and in Rust, and its
   plain `append` refuses the three kinds. Taking out removes the
   field's `[salt, value]` from the contents and hands it back.
   Keeping public takes them back, refuses them unless they are the
   ones the log commits to, and puts the field back in the same step
-  as the decision.
+  as the decision. Once a field is taken out, the writer holds its
+  salt nowhere: it remembers used salts by their hashes alone.
 - **Changed since part two:** a mark with no office or ground is now
-  refused, and so is a second mark on a field already marked.
+  refused, and so is a second mark on a field already marked, and an
+  entry of one of the seven kinds with a key in the open that its
+  kind does not name.
 
 Not built yet: the act of redacting itself, which seals the field to
 each person it is about and to the office that decides before the
