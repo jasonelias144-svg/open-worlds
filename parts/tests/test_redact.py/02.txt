@@ -181,6 +181,87 @@ class TestDeciding(unittest.TestCase):
                                     if k != missing}, log)
 
 
+class TestOnALogOpenedAgain(unittest.TestCase):
+    """The office that decides need not be the writer that redacted. It
+    opens the log and the contents as they were published
+    (`apart.Log.open`) and goes on from the log's head."""
+
+    def opened(self, log, contents):
+        # The trial salts go on where the log's writer stopped: it drew
+        # one for each field it kept apart.
+        used = sum(len(entry["apart"]) for entry in log)
+        return apart.Log.open(log, contents,
+                              salt=apart_vectors._salts(used))
+
+    def test_the_office_decides_on_a_log_it_opens(self):
+        case = VECTORS["redacted"]
+        room = self.opened(case["log"], case["contents"])
+        decide(room, case["mark"], VECTORS["copies"][-1]["envelope"],
+               apart_fields=VECTORS["kept"]["apart"])
+        self.assertEqual(room.entries, VECTORS["kept"]["log"])
+        self.assertEqual(room.contents, VECTORS["kept"]["contents"])
+        # What was given to open is not touched.
+        self.assertEqual(case, VECTORS["redacted"])
+        self.assertNotIn(FIELD, case["contents"][VECTORS["act"]["entry"]])
+
+    def test_that_it_stays_redacted_is_decided_on_a_log_it_opens(self):
+        case, stays = VECTORS["redacted"], VECTORS["stays"]
+        room = self.opened(case["log"], case["contents"])
+        redact.stays_redacted(room, stays["tick"], case["mark"],
+                              stays["office"], stays["ground"],
+                              stays["decision"],
+                              apart_fields=stays["apart"])
+        self.assertEqual(room.entries, stays["log"])
+        self.assertEqual(room.contents, stays["contents"])
+
+    def test_a_field_is_redacted_on_a_log_opened_again(self):
+        before = apart_vectors._room()
+        room = self.opened(before.entries, before.contents)
+        entry = VECTORS["act"]["entry"]
+        act = VECTORS["act"]
+        made = redact.redact(
+            room, act["tick"], entry, FIELD, office(), act["ground"],
+            CREATED, about=[_to(name) for name in ABOUT],
+            decider=_to(DECIDES), apart_fields=act["apart"])
+        self.assertEqual(made.mark, VECTORS["redacted"]["mark"])
+        self.assertEqual(room.entries, VECTORS["redacted"]["log"])
+        self.assertEqual(room.contents, VECTORS["redacted"]["contents"])
+        # The writer that was opened holds neither the value nor its
+        # salt after the act, as the one that wrote the log does not.
+        salt = before.contents[entry][FIELD][0]
+        held = repr([vars(room), vars(room._scan), made])
+        self.assertNotIn(salt, held)
+        self.assertNotIn(VALUE, held)
+
+    def test_a_redaction_that_stands_with_its_field_left_in_is_finished(self):
+        # A log whose redaction stands, published with the field still
+        # in its contents: no writer here leaves that, but a published
+        # log can show it, and the check calls the field unfinished.
+        stays = VECTORS["stays"]
+        entry = VECTORS["act"]["entry"]
+        contents = copy.deepcopy(stays["contents"])
+        contents[entry][FIELD] = copy.deepcopy(
+            apart_vectors._room().contents[entry][FIELD])
+        self.assertEqual(
+            apart.check(stays["log"], contents)[entry][FIELD],
+            "unfinished")
+        room = self.opened(stays["log"], contents)
+        mark = VECTORS["redacted"]["mark"]
+        made = redact.finish(room, mark, office(), CREATED,
+                             decider=_to(DECIDES))
+        self.assertEqual(room.entries, stays["log"])   # the log: untouched
+        self.assertEqual(room.contents, stays["contents"])
+        self.assertEqual(state(room, entry), "redacted")
+        # The copy made is the field, though no decision can use it:
+        # the redaction stands.
+        inside = redact.open_copy(made.office_copy, secret(DECIDES),
+                                  did(DECIDES), room.entries)
+        self.assertEqual(redact.what_was_there(inside)[1], VALUE)
+        with self.assertRaises(Refused) as c:
+            decide(room, mark, made.office_copy)
+        self.assertEqual(c.exception.reason, apart.BAD_KEPT)
+
+
 if __name__ == "__main__":
     unittest.main()
 

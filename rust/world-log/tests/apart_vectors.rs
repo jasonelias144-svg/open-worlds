@@ -41,7 +41,12 @@ fn trial_salt(n: usize) -> String {
 
 /// Trial salts in order, from the first.
 fn trial_salts() -> impl FnMut() -> String {
-    let mut n = 0;
+    trial_salts_from(0)
+}
+
+/// Trial salts in order, from the one numbered `start`.
+fn trial_salts_from(start: usize) -> impl FnMut() -> String {
+    let mut n = start;
     move || {
         n += 1;
         trial_salt(n - 1)
@@ -472,12 +477,28 @@ fn each_case_that_holds_gives_pythons_states_and_entries() {
 
 #[test]
 fn the_five_states_written_here_are_the_ones_python_wrote() {
-    // The same steps as `holds` in world/apart_vectors.py, through this
-    // crate's writer: the same log, entry for entry, and the same
+    // The same steps as `five_states` in world/apart_vectors.py, through
+    // this crate's writer: the same log, entry for entry, and the same
     // contents.
     let v = vectors();
     let mut salt = trial_salts();
-    let mut room = room(&v, &mut salt);
+    let room = room(&v, &mut salt);
+    let (entries, contents) = five_states(room, &mut salt);
+    let case = &v["holds"][3];
+    assert_eq!(case["name"], "the five states");
+    assert_eq!(Value::Array(entries), case["log"]);
+    assert_eq!(Value::Object(contents), case["contents"]);
+}
+
+/// Writes, on the trial room, the acts that give a field each of its five
+/// states and a redaction each of its three, and gives the log with the
+/// contents as whoever published it left them: two fields lost, and one
+/// left in after the decision that it stays redacted. The room may be one
+/// that never closed, or one opened again.
+fn five_states(
+    mut room: Log,
+    mut salt: &mut dyn FnMut() -> String,
+) -> (Vec<Value>, Map<String, Value>) {
     let h: Vec<String> = room
         .entries()
         .iter()
@@ -628,10 +649,7 @@ fn the_five_states_written_here_are_the_ones_python_wrote() {
     for (entry, field) in [(&h[1], "name"), (&h[2], "name")] {
         contents[entry].as_object_mut().unwrap().remove(field);
     }
-    let case = &v["holds"][3];
-    assert_eq!(case["name"], "the five states");
-    assert_eq!(Value::Array(entries), case["log"]);
-    assert_eq!(Value::Object(contents), case["contents"]);
+    (entries, contents)
 }
 
 #[test]
@@ -1737,4 +1755,189 @@ fn a_redactions_id_is_shown_with_the_incidents_ids() {
         format!("{}{}", &made[..20], "1".repeat(44)),
     ];
     assert!(short_ids(&alike).values().all(|short| short.len() == 21));
+}
+
+// A writer opened on a log and contents that were written before
+// (`Log::open`). The same tests as `TestOpened` in tests/test_apart.py.
+
+/// How many salts the trial room has drawn: one for each field kept
+/// apart.
+fn drawn(v: &Value) -> usize {
+    cases(v, "written")
+        .iter()
+        .map(|step| step["apart"].as_object().unwrap().len())
+        .sum()
+}
+
+fn opened(log: &Log) -> Log {
+    Log::open(
+        &Value::Array(log.entries().to_vec()),
+        &Value::Object(log.contents().clone()),
+    )
+    .unwrap()
+}
+
+#[test]
+fn it_opens_on_every_log_that_holds() {
+    let v = vectors();
+    for case in cases(&v, "holds") {
+        let name = &case["name"];
+        let log = Log::open(&case["log"], &case["contents"]).unwrap();
+        assert_eq!(Value::Array(log.entries().to_vec()), case["log"], "{name}");
+        assert_eq!(
+            json!(log.head()),
+            case["log"].as_array().unwrap().last().unwrap()["hash"],
+            "{name}"
+        );
+        // As the writer keeps them: no empty map for an entry.
+        let kept: Map<String, Value> = map(&case["contents"])
+            .into_iter()
+            .filter(|(_, fields)| !fields.as_object().unwrap().is_empty())
+            .collect();
+        assert_eq!(log.contents(), &kept, "{name}");
+        let (entries, contents) = log.into_parts();
+        let states = check(&Value::Array(entries), &Value::Object(contents)).unwrap();
+        assert_eq!(states_json(&states), case["states"], "{name}");
+    }
+}
+
+#[test]
+fn it_refuses_what_the_check_refuses_for_the_same_reason() {
+    let v = vectors();
+    for case in cases(&v, "refused") {
+        let name = &case["name"];
+        let error = Log::open(&case["log"], &case["contents"])
+            .err()
+            .unwrap_or_else(|| panic!("{name}: opened"));
+        assert_eq!(error.reason(), case["reason"], "{name}");
+        assert_eq!(place(&error), case["where"], "{name}");
+    }
+    let good = &v["holds"][0]["log"];
+    for odd in [json!(null), json!({}), json!("log"), json!(7)] {
+        assert!(Log::open(&odd, &json!({})).is_err(), "{odd}");
+        if odd != json!({}) {
+            assert!(Log::open(good, &odd).is_err(), "{odd}");
+        }
+    }
+}
+
+#[test]
+fn a_room_opened_again_goes_on_as_one_that_never_closed() {
+    let v = vectors();
+    assert_eq!(drawn(&v), 15);
+    let written = room(&v, &mut trial_salts());
+    let again = opened(&written);
+    let (entries, contents) = five_states(again, &mut trial_salts_from(drawn(&v)));
+    let case = &v["holds"][3];
+    assert_eq!(case["name"], "the five states");
+    assert_eq!(Value::Array(entries), case["log"]);
+    assert_eq!(Value::Object(contents), case["contents"]);
+}
+
+#[test]
+fn it_can_be_closed_and_opened_at_every_step() {
+    // The same log, however often the writer is closed and opened
+    // between two acts.
+    let v = vectors();
+    let never_closed = room(&v, &mut trial_salts());
+    let mut salt = trial_salts();
+    let mut log = Log::new(&v["table"], &map(&v["first"]), "world_created", &mut salt).unwrap();
+    for step in cases(&v, "written") {
+        log = opened(&log);
+        log.append(
+            step["tick"].as_u64().unwrap(),
+            step["kind"].as_str().unwrap(),
+            step["agent"].as_str(),
+            &map(&step["data"]),
+            &map(&step["apart"]),
+            &mut salt,
+        )
+        .unwrap();
+    }
+    assert_eq!(log.entries(), never_closed.entries());
+    assert_eq!(log.contents(), never_closed.contents());
+}
+
+#[test]
+fn a_salt_that_is_in_the_contents_is_not_used_again() {
+    let v = vectors();
+    let written = room(&v, &mut trial_salts());
+    let mut log = opened(&written);
+    // A source that starts again from the first trial salt.
+    let mut again = trial_salts();
+    let kept = map(&json!({"text": "again"}));
+    assert_eq!(
+        log.append(9, "said", None, &Map::new(), &kept, &mut again)
+            .unwrap_err()
+            .reason(),
+        "a salt appears twice"
+    );
+    assert_eq!(log.entries(), written.entries());
+    // And it takes the next one that is new.
+    let mut new = trial_salts_from(drawn(&v));
+    log.append(9, "said", None, &Map::new(), &kept, &mut new)
+        .unwrap();
+    assert_eq!(log.entries().len(), written.entries().len() + 1);
+}
+
+#[test]
+fn a_field_left_in_after_the_decision_can_be_taken_out() {
+    // Only a writer opened on a published log meets this: a mark that
+    // stands, and its field still in the contents.
+    let v = vectors();
+    let case = &v["holds"][3];
+    let mut log = Log::open(&case["log"], &case["contents"]).unwrap();
+    let said = case["log"][3]["hash"].as_str().unwrap();
+    assert_eq!(case["states"][said]["key"], "unfinished");
+    let found = redactions_of(&log, said, "key");
+    assert_eq!(found.len(), 1);
+    assert_eq!(found[0].state, RedactionState::Stands);
+    let pair = log.contents()[said]["key"].clone();
+    assert_eq!(log.take_out(&found[0].id).unwrap(), pair);
+    assert_eq!(field_state(&log, said, "key"), State::Redacted);
+    assert!(!format!("{log:?}").contains(pair[0].as_str().unwrap()));
+    assert_eq!(
+        Value::Array(log.entries().to_vec()),
+        case["log"],
+        "the log is not touched"
+    );
+    // An open mark whose field is still there is finished the same way,
+    // or answered.
+    let other = case["log"][4]["hash"].as_str().unwrap();
+    assert_eq!(case["states"][other]["text"], "unfinished");
+    let open_one = redactions_of(&log, other, "text");
+    assert_eq!(open_one[0].state, RedactionState::Open);
+    let mut salt = trial_salts_from(1000);
+    assert_eq!(
+        stays(&mut log, 20, &open_one[0].id, "decided", 7, &mut salt),
+        Err(Refused::StillThere)
+    );
+    log.take_out(&open_one[0].id).unwrap();
+    stays(&mut log, 20, &open_one[0].id, "decided", 7, &mut salt).unwrap();
+    assert_eq!(
+        redactions_of(&log, other, "text")[0].state,
+        RedactionState::Stands
+    );
+}
+
+#[test]
+fn the_table_is_read_from_the_log() {
+    let v = vectors();
+    let written = room(&v, &mut trial_salts());
+    let mut log = opened(&written);
+    let mut salt = trial_salts_from(drawn(&v));
+    let wrong = map(&json!({"name": "not a field of said"}));
+    assert_eq!(
+        log.append(9, "said", None, &Map::new(), &wrong, &mut salt)
+            .unwrap_err()
+            .reason(),
+        "a field is kept apart that the table does not name"
+    );
+    let open = map(&json!({"text": "in the open"}));
+    assert_eq!(
+        log.append(9, "said", None, &open, &Map::new(), &mut salt)
+            .unwrap_err()
+            .reason(),
+        "a field the table keeps apart is in the open"
+    );
 }

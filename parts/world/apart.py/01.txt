@@ -112,7 +112,8 @@ entry as a reader uses it. `Log` writes the form: a mark and the
 decision that answers it only through `mark`, `take_out`,
 `keep_public` and `stays_redacted`, which change the contents in the
 same step, so that a field is never said to be public while it is
-gone.
+gone. `Log.open` opens a writer on a log and contents that were
+written before.
 Every reason for refusing is in fixed words, and names the same place,
 in Rust (`rust/world-log/src/apart.rs`), checked against
 `vectors/log-apart.json`.

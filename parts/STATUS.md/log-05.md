@@ -8,6 +8,25 @@
 
 ## Log
 
+- 2026-11-17 Claude: a writer can be opened on a log and contents
+  written before (`Log.open` in `world/apart.py` and
+  `rust/world-log`), which course step 3b had left undone. It checks
+  the two together first, keeps copies, and remembers the salts still
+  in the contents by their hashes alone. The act of redacting was
+  tried on logs opened again, in both languages, on the logs of
+  `vectors/redaction.json`: the deciding office keeps a field public
+  from the box in the file, or decides that it stays redacted, and
+  gets the same log and contents as the writer that never closed; a
+  field is redacted on a log opened again with the same result, and
+  the opened writer then holds neither the value nor its salt; a
+  redaction that stands with its field left in is finished. Checked:
+  Python 824 tests, OK (91 of the log's form, 33 of the act); Rust
+  235 (43 of the log's form against the vectors, 24 in `redact`),
+  fmt and clippy clean; the vectors' generators give the same files;
+  mutation checks of the opening, 7 changes to the Python and 5 to
+  the Rust, each caught. Not done: who may open a log, and one writer
+  at a time, which are the room's (step 3c); reading a log from where
+  it is kept. Left of step 3b: the records' side of part four.
 - 2026-11-17 Claude: the founder's thoughts of the day on the Commons
   are recorded (Decided, three entries), with what the technical lead
   decided from them (Decided by the technical lead) and where they

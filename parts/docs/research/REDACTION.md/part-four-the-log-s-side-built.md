@@ -187,8 +187,10 @@ would show it wrong):
   found the salt still in the writer's memory, in both languages; the
   tests now look at everything the writer holds.) Taking out is
   allowed for a mark that is open or stands; through this writer a
-  mark that stands has its field gone already, so that case waits for
-  a writer that can be opened on a published log, which is not built. *Keep public* is given the salt and the value back. It refuses
+  mark that stands has its field gone already, so that case comes
+  only to a writer opened on a published log (below, "A writer opened
+  on a log written before, built"). *Keep public* is given the salt
+  and the value back. It refuses
   them unless they are the ones the log commits to, then appends the
   decision and puts the field back, in one step, or does neither.
   *Stays redacted* is refused while the field is still in the
@@ -236,8 +238,8 @@ the act of redacting, built", below.
   office holds a grant, and that the decision whose hash is given
   exists and names the mark, need the signed records.
 - A writer opened on a log and contents that were written before.
-  Both writers start a new log only. A room that is closed and opened
-  again needs it (step 3c).
+  Both writers started a new log only. Built since (below, "A writer
+  opened on a log written before, built").
 
 ## Part three, the act of redacting, built
 
@@ -375,6 +377,56 @@ Not done:
 - **A real redaction.** It waits for the room (step 3c) and for a
   person's container (step 6a).
 
+## A writer opened on a log written before, built
+
+In `world/apart.py` and `rust/world-log` (`Log.open`), with the act of
+redacting tried on such a log in `tests/test_redact.py` and
+`rust/redact`. Until now both writers could only begin a new log. A
+room that closes and opens again goes on from the log it has, and so
+does an office that decides on a log another writer wrote.
+
+What building it settled, each the technical lead's (STATUS.md has
+what would show it wrong):
+
+- **It is given a log and its contents, and checks the two together
+  first,** as the check of a log against its contents does. A log or
+  contents that do not hold are refused, for the same reason and at
+  the same place. A field that is missing or unfinished is not
+  refused: those are states, and the writer goes on from them.
+- **It keeps copies of both.** What it was given is not touched by
+  what it writes after.
+- **An entry with no field left is left out of the contents,** as the
+  writer leaves it.
+- **It remembers the salt of every field still in the contents, by its
+  hash alone,** as the writer does. What it can't know is the salt of
+  a field that was taken out before it was opened: that salt is gone,
+  which is what taking out is for. So a source of salts that repeats
+  one of those is not refused by an opened writer, as it would be by
+  the writer that used it. Outside tests a salt is 128 bits from the
+  machine's random source, and a repeat is not expected.
+- **What it makes possible,** each tried in both languages on the logs
+  of `vectors/redaction.json`. The deciding office opens the redacted
+  log and keeps the field public from the box in the file, or decides
+  that it stays redacted, and gets the log and the contents that the
+  writer which never closed got. A field is redacted on a log opened
+  again, with the same log, contents and mark; and the opened writer
+  then holds neither the value nor its salt. And a redaction that
+  stands with its field left in the contents, which no writer here
+  leaves but a published log can show, is finished: the field is
+  sealed and taken out, and the log is not touched.
+
+Not done:
+- **Whose log it is.** Opening checks that a log holds. It does not
+  check that whoever opens it may write to it: a log in this form has
+  no signature of its own yet. Signed heads are the room's (step 3c).
+- **Two writers at once.** Nothing stops two writers opened on the
+  same log from each going on. Each would write a log that holds, and
+  the two would differ. One writer at a time is the room's to keep
+  (step 3c).
+- **Where a log is kept.** The writer is given a log and contents
+  already read. Reading them from where they are kept, and writing
+  them back safely, is the room's (step 3c).
+
 ## The parts
 
 1. This plan.
@@ -389,7 +441,9 @@ Not done:
    redaction's state, and the writer's steps. So is the act of
    redacting (above): the sealed copies, their label, and the deciding
    office's two steps, with trial keys. The founder's answer on the
-   office's copy is given (decision 5).
+   office's copy is given (decision 5). And a writer can be opened on
+   a log written before (above), so the office that decides need not
+   be the writer that redacted.
 4. Removing, taking back and restoring. The log's side is built
    (above): the four kinds of entry, each entry's state, the incident
    id, and the table of what wins. The records' side is next: the list

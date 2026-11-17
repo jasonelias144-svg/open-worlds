@@ -69,7 +69,9 @@
 //! [`redactions`] gives every field's redactions, each open, standing
 //! or kept public; [`join`] gives each entry as a reader uses it;
 //! [`Log`] writes the form, a redaction through [`Log::mark`],
-//! [`Log::take_out`], [`Log::keep_public`] and [`Log::stays_redacted`].
+//! [`Log::take_out`], [`Log::keep_public`] and [`Log::stays_redacted`];
+//! [`Log::open`] opens a writer on a log and contents that were written
+//! before.
 //! Every reason for refusing ([`Refused::reason`]) is in the same fixed
 //! words as in Python, checked against `vectors/log-apart.json`.
 //!
@@ -1330,6 +1332,46 @@ impl Log {
         Ok(log)
     }
 
+    /// Opens a writer on a log and its contents as they were written
+    /// before, to go on from the log's head. The two are checked together
+    /// first, as [`check`] checks them: refuses, for the same reason and
+    /// at the same place, if they do not hold.
+    ///
+    /// The writer keeps copies of both. An entry whose map of fields is
+    /// empty is left out of the contents, as this writer leaves it. A
+    /// field that is missing or unfinished is not refused: those are
+    /// states, and the writer goes on from them. An unfinished redaction
+    /// is finished with [`Log::take_out`], also one that was decided
+    /// while its field was left in.
+    ///
+    /// What it can't know is the salt of a field that was taken out
+    /// before. So a source of salts that repeats one of those is not
+    /// refused here, as it is by the writer that used that salt.
+    pub fn open(log: &Value, contents: &Value) -> Result<Log, Refused> {
+        let scan = scan(log)?;
+        held(&scan, contents)?;
+        let mut kept = Map::new();
+        let mut salts = BTreeSet::new();
+        for (entry, fields) in contents.as_object().into_iter().flatten() {
+            let Some(fields) = fields.as_object().filter(|fields| !fields.is_empty()) else {
+                continue;
+            };
+            for salt in fields
+                .values()
+                .filter_map(|pair| pair.get(0).and_then(Value::as_str))
+            {
+                salts.insert(used(salt));
+            }
+            kept.insert(entry.clone(), Value::Object(fields.clone()));
+        }
+        Ok(Log {
+            entries: log.as_array().cloned().unwrap_or_default(),
+            contents: kept,
+            scan,
+            salts,
+        })
+    }
+
     /// The entries: the chain.
     pub fn entries(&self) -> &[Value] {
         &self.entries
@@ -1399,11 +1441,11 @@ impl Log {
     /// the entries, nor in the contents, nor in what it remembers of the
     /// salts it has used. The log itself is not touched.
     ///
-    /// The mark is one that is open or stands. Through this writer a
-    /// mark that stands always has its field gone already, since
-    /// [`Log::stays_redacted`] is refused while the field is there; that
-    /// case is for a writer opened on a published log, which is not
-    /// built.
+    /// The mark is one that is open or stands. A writer that wrote the
+    /// whole log never has a field left under a mark that stands, since
+    /// [`Log::stays_redacted`] is refused while the field is there. A
+    /// writer opened on a published log ([`Log::open`]) can: whoever
+    /// published it may have left the field in.
     pub fn take_out(&mut self, mark: &str) -> Result<Value, Refused> {
         let (entry, field) = self
             .scan

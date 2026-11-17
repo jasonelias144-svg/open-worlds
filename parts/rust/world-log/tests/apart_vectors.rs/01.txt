@@ -49,7 +49,12 @@ fn trial_salt(n: usize) -> String {
 
 /// Trial salts in order, from the first.
 fn trial_salts() -> impl FnMut() -> String {
-    let mut n = 0;
+    trial_salts_from(0)
+}
+
+/// Trial salts in order, from the one numbered `start`.
+fn trial_salts_from(start: usize) -> impl FnMut() -> String {
+    let mut n = start;
     move || {
         n += 1;
         trial_salt(n - 1)
@@ -480,12 +485,28 @@ fn each_case_that_holds_gives_pythons_states_and_entries() {
 
 #[test]
 fn the_five_states_written_here_are_the_ones_python_wrote() {
-    // The same steps as `holds` in world/apart_vectors.py, through this
-    // crate's writer: the same log, entry for entry, and the same
+    // The same steps as `five_states` in world/apart_vectors.py, through
+    // this crate's writer: the same log, entry for entry, and the same
     // contents.
     let v = vectors();
     let mut salt = trial_salts();
-    let mut room = room(&v, &mut salt);
+    let room = room(&v, &mut salt);
+    let (entries, contents) = five_states(room, &mut salt);
+    let case = &v["holds"][3];
+    assert_eq!(case["name"], "the five states");
+    assert_eq!(Value::Array(entries), case["log"]);
+    assert_eq!(Value::Object(contents), case["contents"]);
+}
+
+/// Writes, on the trial room, the acts that give a field each of its five
+/// states and a redaction each of its three, and gives the log with the
+/// contents as whoever published it left them: two fields lost, and one
+/// left in after the decision that it stays redacted. The room may be one
+/// that never closed, or one opened again.
+fn five_states(
+    mut room: Log,
+    mut salt: &mut dyn FnMut() -> String,
+) -> (Vec<Value>, Map<String, Value>) {
     let h: Vec<String> = room
         .entries()
         .iter()
@@ -636,10 +657,7 @@ fn the_five_states_written_here_are_the_ones_python_wrote() {
     for (entry, field) in [(&h[1], "name"), (&h[2], "name")] {
         contents[entry].as_object_mut().unwrap().remove(field);
     }
-    let case = &v["holds"][3];
-    assert_eq!(case["name"], "the five states");
-    assert_eq!(Value::Array(entries), case["log"]);
-    assert_eq!(Value::Object(contents), case["contents"]);
+    (entries, contents)
 }
 
 #[test]

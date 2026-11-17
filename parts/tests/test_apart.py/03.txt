@@ -6,6 +6,158 @@ Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-world
 After this part: nothing; this is the last part.
 Made by docs/parts.py from the file. To change it, change the file.
 ------------------------------------------------------------------------
+class TestOpened(unittest.TestCase):
+    """A writer opened on a log and contents that were written before
+    (`Log.open`)."""
+
+    # How many salts the trial room has drawn: one for each field kept
+    # apart.
+    DRAWN = sum(len(step[4]) for step in WRITTEN)
+
+    @classmethod
+    def setUpClass(cls):
+        # As a reader gets them from the file: through JSON.
+        cls.vectors = json.loads(json.dumps(log_apart()))
+
+    def test_it_opens_on_every_log_that_holds(self):
+        for case in self.vectors["holds"]:
+            with self.subTest(case["name"]):
+                log = Log.open(case["log"], case["contents"])
+                self.assertEqual(log.entries, case["log"])
+                self.assertEqual(log.head(), case["log"][-1]["hash"])
+                # As the writer keeps them: no empty map for an entry.
+                self.assertEqual(
+                    log.contents,
+                    {entry: fields
+                     for entry, fields in case["contents"].items()
+                     if fields})
+                self.assertEqual(apart.check(log.entries, log.contents),
+                                 case["states"])
+                self.assertEqual(apart.redactions(log.entries),
+                                 case["redactions"])
+
+    def test_it_refuses_what_the_check_refuses_for_the_same_reason(self):
+        for case in self.vectors["refused"]:
+            with self.subTest(case["name"]):
+                with self.assertRaises(Refused) as c:
+                    Log.open(case["log"], case["contents"])
+                self.assertEqual((c.exception.reason, place(c.exception)),
+                                 (case["reason"], case["where"]))
+        for odd in (None, {}, "log", 7):
+            with self.subTest(odd=odd), self.assertRaises(Refused):
+                Log.open(odd, {})
+            with self.subTest(contents=odd), self.assertRaises(Refused):
+                Log.open(self.vectors["holds"][0]["log"],
+                         None if odd == {} else odd)
+
+    def test_a_room_opened_again_goes_on_as_one_that_never_closed(self):
+        never_closed = _room()
+        written = _room()
+        self.assertEqual(self.DRAWN, 15)
+        opened = Log.open(copy.deepcopy(written.entries),
+                          copy.deepcopy(written.contents),
+                          salt=_salts(self.DRAWN))
+        contents = five_states(opened)
+        self.assertEqual(contents, five_states(never_closed))
+        self.assertEqual(opened.entries, never_closed.entries)
+        self.assertEqual(opened.contents, never_closed.contents)
+        case = self.vectors["holds"][3]
+        self.assertEqual(case["name"], "the five states")
+        self.assertEqual(opened.entries, case["log"])
+        self.assertEqual(contents, case["contents"])
+
+    def test_it_can_be_closed_and_opened_at_every_step(self):
+        # The same log, however often the writer is closed and opened
+        # between two acts.
+        never_closed = _room()
+        log = Log(TABLE, FIRST, salt=_salts())
+        drawn = 0
+        for step in WRITTEN:
+            log = Log.open(log.entries, log.contents, salt=_salts(drawn))
+            log.append(*step)
+            drawn += len(step[4])
+        self.assertEqual(log.entries, never_closed.entries)
+        self.assertEqual(log.contents, never_closed.contents)
+
+    def test_what_was_given_is_not_shared_with_the_writer(self):
+        written = _room()
+        entries = copy.deepcopy(written.entries)
+        contents = copy.deepcopy(written.contents)
+        log = Log.open(entries, contents, salt=_salts(self.DRAWN))
+        said = entries[3]["hash"]
+        mark(log, said, "text")
+        log.take_out(log.head())
+        # The writer's acts leave what was given as it was.
+        self.assertEqual(entries, written.entries)
+        self.assertEqual(contents, written.contents)
+        # And changing what was given changes nothing in the writer.
+        entries.clear()
+        contents[said].clear()
+        self.assertEqual(len(log.entries), len(written.entries) + 1)
+        self.assertEqual(sorted(log.contents[said]), ["key", "time"])
+        self.assertEqual(
+            apart.check(log.entries, log.contents)[said]["text"],
+            "redacted")
+
+    def test_a_salt_that_is_in_the_contents_is_not_used_again(self):
+        written = _room()
+        # A source that starts again from the first trial salt.
+        log = Log.open(written.entries, written.contents, salt=_salts())
+        with self.assertRaises(Refused) as c:
+            log.append(9, "said", None, {}, {"text": "again"})
+        self.assertEqual(c.exception.reason, apart.SALT_TWICE)
+        self.assertEqual(log.entries, written.entries)
+        # It remembers them by their hashes alone.
+        for fields in written.contents.values():
+            for salt, _ in fields.values():
+                self.assertNotIn(salt, repr(log._salts))
+        self.assertEqual(len(log._salts), self.DRAWN)
+
+    def test_a_field_left_in_after_the_decision_can_be_taken_out(self):
+        # Only a writer opened on a published log meets this: a mark
+        # that stands, and its field still in the contents.
+        case = self.vectors["holds"][3]
+        log = Log.open(case["log"], case["contents"],
+                       salt=apart.new_salt)
+        said = case["log"][3]["hash"]
+        self.assertEqual(case["states"][said]["key"], "unfinished")
+        (redaction,) = apart.redactions(log.entries)[said]["key"]
+        self.assertEqual(redaction["state"], "stands")
+        salt, value = log.contents[said]["key"]
+        self.assertEqual(log.take_out(redaction["id"]), [salt, value])
+        self.assertEqual(
+            apart.check(log.entries, log.contents)[said]["key"],
+            "redacted")
+        self.assertNotIn(salt, repr([vars(log), vars(log._scan)]))
+        self.assertEqual(log.entries, case["log"])    # the log: untouched
+        # An open mark whose field is still there is finished the same
+        # way, or answered.
+        other = case["log"][4]["hash"]
+        self.assertEqual(case["states"][other]["text"], "unfinished")
+        (open_one,) = apart.redactions(log.entries)[other]["text"]
+        self.assertEqual(open_one["state"], "open")
+        with self.assertRaises(ValueError):
+            log.stays_redacted(20, open_one["id"], KEEPER, APPEAL,
+                               trial_decision(7))
+        log.take_out(open_one["id"])
+        log.stays_redacted(20, open_one["id"], KEEPER, APPEAL,
+                           trial_decision(7))
+        self.assertEqual(
+            apart.redactions(log.entries)[other]["text"][0]["state"],
+            "stands")
+
+    def test_the_table_is_read_from_the_log(self):
+        written = _room()
+        log = Log.open(written.entries, written.contents,
+                       salt=_salts(self.DRAWN))
+        with self.assertRaises(Refused) as c:
+            log.append(9, "said", None, {}, {"name": "not a field of said"})
+        self.assertEqual(c.exception.reason, apart.UNTABLED)
+        with self.assertRaises(Refused) as c:
+            log.append(9, "said", None, {"text": "in the open"}, {})
+        self.assertEqual(c.exception.reason, apart.OPEN)
+
+
 class TestWhatWins(unittest.TestCase):
     """The table in docs/research/REDACTION.md, decision 9, row by row.
     (Its first row, a redacted field, is TestJoining's.)"""

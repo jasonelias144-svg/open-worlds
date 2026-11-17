@@ -54,8 +54,9 @@ def trial_salt(n: int) -> str:
     return hashlib.sha256(text.encode()).hexdigest()[:32]
 
 
-def _salts() -> Callable[[], str]:
-    count = [0]
+def _salts(start: int = 0) -> Callable[[], str]:
+    """Trial salts in order, from the one numbered `start`."""
+    count = [start]
 
     def next_salt() -> str:
         count[0] += 1
@@ -226,6 +227,49 @@ def holds() -> List[dict]:
                        room.entries, contents))
 
     room = _room()
+    contents = five_states(room)
+    cases.append(_case("the five states", room.entries, contents))
+
+    # The open part at its edges: the largest tick and whole numbers,
+    # the deepest nesting, an agent that is text, and text that needs
+    # escaping.
+    edge = apart.Log(TABLE, FIRST, salt=_salts())
+    edge.append(apart.MAX_WHOLE, "measured", OFFICE,
+                {"most": apart.MAX_WHOLE, "least": -apart.MAX_WHOLE,
+                 "deep": _nested(apart.MAX_NESTING - 1),
+                 "text": "caf\u00e9 \U0001F642 \" \\ \n",
+                 "flags": [True, False], "empty": {}}, {})
+    cases.append(_case("the open part at its edges", edge.entries,
+                       edge.contents))
+
+    room, names = acted_on()
+    contents = copy.deepcopy(room.contents)
+    del contents[names["thing"]]["thing"]
+    del contents[names["second removal"]]["record"]
+    cases.append(_case("removed, restored, taken back and put back",
+                       room.entries, contents))
+
+    # A ground's reference at its longest, in characters that each take
+    # two UTF-16 units and four bytes: the limit counts code points.
+    room = _room()
+    room.append(5, apart.REMOVED, None,
+                {"entry": room.entries[3]["hash"], "office": MODERATOR,
+                 "ground": {"kind": "law",
+                            "ref": "\U0001D11E" * apart.MAX_REF},
+                 "decision": trial_decision(6)},
+                {"record": "trial decision record 6, not a signed one"})
+    cases.append(_case("a ground's reference at its longest",
+                       room.entries, room.contents))
+    return cases
+
+
+def five_states(room: apart.Log) -> Dict[str, Dict[str, list]]:
+    """Writes, on the trial room, the acts that give a field each of
+    its five states and a redaction each of its three, and gives the
+    contents as whoever published the log left them: two fields lost,
+    and one left in after the decision that it stays redacted. The
+    room may be one that never closed, or one opened again
+    (`apart.Log.open`): the log is the same."""
     h = [e["hash"] for e in room.entries]
     gone = []
     # Redacted: a mark is open, and the field is gone.
@@ -263,39 +307,7 @@ def holds() -> List[dict]:
     contents[h[3]]["key"] = left
     for entry, field in gone:
         del contents[entry][field]
-    cases.append(_case("the five states", room.entries, contents))
-
-    # The open part at its edges: the largest tick and whole numbers,
-    # the deepest nesting, an agent that is text, and text that needs
-    # escaping.
-    edge = apart.Log(TABLE, FIRST, salt=_salts())
-    edge.append(apart.MAX_WHOLE, "measured", OFFICE,
-                {"most": apart.MAX_WHOLE, "least": -apart.MAX_WHOLE,
-                 "deep": _nested(apart.MAX_NESTING - 1),
-                 "text": "caf\u00e9 \U0001F642 \" \\ \n",
-                 "flags": [True, False], "empty": {}}, {})
-    cases.append(_case("the open part at its edges", edge.entries,
-                       edge.contents))
-
-    room, names = acted_on()
-    contents = copy.deepcopy(room.contents)
-    del contents[names["thing"]]["thing"]
-    del contents[names["second removal"]]["record"]
-    cases.append(_case("removed, restored, taken back and put back",
-                       room.entries, contents))
-
-    # A ground's reference at its longest, in characters that each take
-    # two UTF-16 units and four bytes: the limit counts code points.
-    room = _room()
-    room.append(5, apart.REMOVED, None,
-                {"entry": room.entries[3]["hash"], "office": MODERATOR,
-                 "ground": {"kind": "law",
-                            "ref": "\U0001D11E" * apart.MAX_REF},
-                 "decision": trial_decision(6)},
-                {"record": "trial decision record 6, not a signed one"})
-    cases.append(_case("a ground's reference at its longest",
-                       room.entries, room.contents))
-    return cases
+    return contents
 
 
 def _raw(log: List[dict], tick: Any, kind: Any, agent: Any, data: Any,
