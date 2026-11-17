@@ -103,7 +103,6 @@ pub fn verify_log(log: &RoomLog) -> Result<()> {
                 if m.text.len() as u64 > template.max_msg_len {
                     return Err(Error::Policy(format!("record {i}: message_too_long")));
                 }
-                // Rate limit replay
                 let window = template.rate_limit_window as usize;
                 let cap = template.rate_limit_count as usize;
                 let recent = log.records[..i]
@@ -115,7 +114,6 @@ pub fn verify_log(log: &RoomLog) -> Result<()> {
                 if recent >= cap {
                     return Err(Error::Policy(format!("record {i}: rate_limit exceeded")));
                 }
-                // Inter-AI pace replay
                 if mem.is_ai && template.inter_ai_pace > 0 {
                     let mut last_ai_idx: Option<usize> = None;
                     for (prev_idx, prev_rec) in log.records[..i].iter().enumerate().rev() {
@@ -304,7 +302,6 @@ pub fn verify_log(log: &RoomLog) -> Result<()> {
         prev = Some(rec.hash()?);
     }
 
-    // Heads
     let mut last_length: u64 = 0;
     for (i, head) in log.heads.iter().enumerate() {
         log.verify_head(head).map_err(|e| Error::Verification(format!("head {i}: {e}")))?;
@@ -358,6 +355,114 @@ pub fn verify_log(log: &RoomLog) -> Result<()> {
                 }
             }
         }
+    }
+
+    Ok(())
+}
+
+/// Hold a branch and its parent together. Checks:
+///   - the branch's log verifies on its own;
+///   - the parent's log verifies on its own;
+///   - the branch names this parent (world_id match);
+///   - the checkpoint seq is within the parent's log;
+///   - the record at that seq in the parent hashes to the hash the
+///     branch names;
+///   - in head mode, the checkpoint is covered by the parent's
+///     last published head (so the parent has committed to it);
+///   - the branch's creator was a member of the parent at that
+///     point (replayed from the parent's joins and leaves).
+///
+/// It does not check that the branch's law differs from the
+/// parent's, or anything else about the branch's content: those are
+/// the branch's own business, checked by `verify_log(branch)`.
+pub fn verify_branch(parent: &RoomLog, branch: &RoomLog) -> Result<()> {
+    verify_log(branch)?;
+    verify_log(parent)?;
+
+    let forked = match branch.records.first() {
+        Some(Record::RoomCreated(rc)) => rc.forked_from.as_ref(),
+        _ => return Err(Error::Chain("branch: no room_created record".into())),
+    };
+    let Some(forked) = forked else {
+        return Err(Error::Policy(
+            "verify_branch: branch log names no parent".into(),
+        ));
+    };
+
+    if forked.parent_id != parent.world_id {
+        return Err(Error::Policy(format!(
+            "verify_branch: branch names parent {} but parent is {}",
+            forked.parent_id.as_str(),
+            parent.world_id.as_str()
+        )));
+    }
+
+    let seq = forked.checkpoint_seq as usize;
+    if seq >= parent.records.len() {
+        return Err(Error::Policy(format!(
+            "verify_branch: checkpoint seq {} past end of parent (len {})",
+            seq,
+            parent.records.len()
+        )));
+    }
+
+    let actual_hash = parent.records[seq].hash()?;
+    if actual_hash != forked.checkpoint_hash {
+        return Err(Error::Policy(format!(
+            "verify_branch: checkpoint hash mismatch at seq {seq}"
+        )));
+    }
+
+    // In head mode, the checkpoint must be covered by the last
+    // published head; otherwise the parent has not committed to it.
+    if parent.template.head_interval > 1 {
+        let covered = parent.heads.last().map(|h| h.length as usize).unwrap_or(0);
+        // head.length is the count of records covered; the
+        // record at that seq is the last covered one (index
+        // head.length - 1). Any seq < head.length is covered.
+        if seq >= covered {
+            return Err(Error::Policy(format!(
+                "verify_branch: checkpoint seq {seq} not covered by parent's last head (covers 0..{covered})"
+            )));
+        }
+    }
+
+    // Replay the parent's memberships up to and including the
+    // checkpoint, and check the branch's creator was a member.
+    let creator = match branch.records.first() {
+        Some(Record::RoomCreated(rc)) => rc.creator_id.clone(),
+        _ => unreachable!(),
+    };
+    let mut is_member_at_checkpoint = false;
+    {
+        let mut members: HashMap<DidKey, ()> = HashMap::new();
+        for (i, rec) in parent.records[..=seq].iter().enumerate() {
+            match rec {
+                Record::RoomCreated(rc) => {
+                    members.insert(rc.creator_id.clone(), ());
+                }
+                Record::Join(j) => {
+                    if members.contains_key(&j.subject_id) {
+                        return Err(Error::Chain(format!(
+                            "verify_branch: parent record {i}: already_member"
+                        )));
+                    }
+                    members.insert(j.subject_id.clone(), ());
+                }
+                Record::Leave(l) => {
+                    members.remove(&l.subject_id);
+                }
+                _ => {}
+            }
+        }
+        is_member_at_checkpoint = members.contains_key(&creator);
+    }
+    if !is_member_at_checkpoint {
+        return Err(Error::Policy(format!(
+            "verify_branch: branch's creator {} was not a member of the parent at checkpoint {}",
+            creator.as_str(),
+            seq
+        )));
     }
 
     Ok(())

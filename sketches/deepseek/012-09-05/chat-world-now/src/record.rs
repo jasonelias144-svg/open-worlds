@@ -111,11 +111,24 @@ impl Record {
     }
 }
 
+/// Names the room a branch came from, and the checkpoint it
+/// branched at: the parent's world_id, the checkpoint's seq, and
+/// the checkpoint's record hash. All three must agree with the
+/// parent's log for `verify_branch` to accept the branch.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+pub struct ForkedFrom {
+    pub parent_id: DidKey,
+    pub checkpoint_seq: u64,
+    pub checkpoint_hash: String,
+}
+
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct RoomCreated {
     pub world_id: DidKey,
     pub template: RoomTemplate,
     pub creator_id: DidKey,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub forked_from: Option<ForkedFrom>,
     pub ts: String,
     pub proof: ProofOrArray,
 }
@@ -259,8 +272,34 @@ pub struct ModeratorSuccession {
 // ---- Constructors ----
 
 impl RoomCreated {
+    /// The seed for a room that has no parent.
     pub fn new(world_id: DidKey, template: RoomTemplate, creator_id: DidKey) -> Self {
-        RoomCreated { world_id, template, creator_id, ts: crate::now(), proof: ProofOrArray::placeholder() }
+        RoomCreated {
+            world_id,
+            template,
+            creator_id,
+            forked_from: None,
+            ts: crate::now(),
+            proof: ProofOrArray::placeholder(),
+        }
+    }
+
+    /// The seed for a branch: the same shape plus a `forked_from`
+    /// naming the parent and the checkpoint.
+    pub fn branch(
+        world_id: DidKey,
+        template: RoomTemplate,
+        creator_id: DidKey,
+        forked_from: ForkedFrom,
+    ) -> Self {
+        RoomCreated {
+            world_id,
+            template,
+            creator_id,
+            forked_from: Some(forked_from),
+            ts: crate::now(),
+            proof: ProofOrArray::placeholder(),
+        }
     }
 }
 impl Message {

@@ -39,8 +39,11 @@ pass, because each forges what the check already refuses, as you said
 yourself in your next reply. Its "Expected:" line counted 69 earlier
 tests where the crate had 92.
 
-The crate in part 5 is your third delivery laid over the first two,
-unchanged: 92 tests pass and its four demos run.
+Since your third delivery the crate has gained DeepSeek's work from
+the same days: a room that branches, and a plug-in that an app talks
+to over standard input. Neither touches src/commons.rs. The crate in
+part 5 passes 112 tests: the 92 you knew, 11 on branches and 9 on the
+plug-in. Its demos run.
 
 THE EIGHT GAPS OF STEP 4 ARE NOT REPAIRED, AND YOU ARE NOT ASKED TO
 REPAIR THEM. The last file said the repairs would be yours next. That
@@ -383,10 +386,10 @@ IN tests/doors.rs, twelve tests. Use these names.
         quote, quotes included, read by serde_json::from_str::<String>,
         is the topic.
 
-  Expected: 104 tests pass (92 and your 12).
+  Expected: 124 tests pass (112 and your 12).
 
   The twelve tests were written out here once, against a throwaway
-  version of the step, to be sure that each can be met: 104 passed.
+  version of the step, to be sure that each can be met: 124 passed.
   Neither is kept in the crate, and neither is sent to you. Yours are
   what goes in.
 
@@ -490,11 +493,11 @@ earlier deliveries do.
 5. THE CRATE AS IT STANDS
 ======================================================================
 
-Eight of the crate's twenty-five files follow, each whole. None of
+Eight of the crate's twenty-nine files follow, each whole. None of
 them is yours to change. They are here to be read.
 
 Not in this file, and not to be sent: src/proof.rs, src/record.rs,
-src/verify.rs, src/transcript.rs, src/home.rs, src/head.rs and
-src/attestation.rs; the four demos in src/bin/; and the six test
-files (92 tests).
+src/verify.rs, src/transcript.rs, src/home.rs, src/head.rs,
+src/attestation.rs and src/plugin.rs; the five programs in src/bin/;
+and the eight test files (112 tests).
 

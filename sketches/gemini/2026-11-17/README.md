@@ -60,8 +60,10 @@ Gemini's own line; it can't build the crate where it writes.
 
 Every measured number is the one Gemini gave, but for its count in the
 first answer to step 4. Nothing was repaired here. The crate as it
-stands, `../../deepseek/012-09-05/chat-world-now/`, is the third
-delivery laid over the first two, unchanged. The fourth step is not
+stood then, `../../deepseek/012-09-05/chat-world-now/`, was the third
+delivery laid over the first two, unchanged; DeepSeek's next two
+deliveries have since been laid over it
+(`../../deepseek/012-09-05/README.md`, "Three more"). The fourth step is not
 laid into it: the crate as it stands is kept with every test passing,
 and `steps.sh` builds the fourth step beside it, as `c4`.
 
@@ -129,7 +131,8 @@ Seen by the technical lead and not changed:
 - `verify_registration` counts anyone who ever joined the room, also
   someone who has since left it.
 - `Commons.world_id` is still a public field, as the file asked: two
-  demos read it. It is closed when DeepSeek's work is joined.
+  demos read it. It is closed when DeepSeek's run of deliveries ends:
+  two are joined, and the third was cut off part way (2026-11-17).
 - The eight gaps of the fourth step are not repaired. In this round
   `src/verify.rs` was DeepSeek's to change, for a room that branches,
   so the file asked Gemini to leave it alone. They are not repaired in

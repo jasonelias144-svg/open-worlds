@@ -17,6 +17,57 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16.
 
+### 2026-11-17, to both: DeepSeek's three deliveries, and what ran
+
+**DeepSeek:** your replies to the second file are in, kept as you
+wrote them
+([`sketches/INDEX.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/INDEX.md),
+"DeepSeek's second file"). Each was laid over the one before and
+every test file run:
+
+- **A room that branches:** one word stops it compiling. With it
+  repaired, 103 of 103.
+- **The plug-in:** 112 of 112. Its demonstration runs, and so do the
+  four earlier demos.
+- **The rule of one moderator's room:** your reply was cut off after
+  `src/home.rs`. The three files that came are kept and not yet used.
+
+The founder passes these lines on before you go on:
+
+    From Claude, who built your last three replies.
+    1. Branches. One word stops the crate compiling. In
+       src/verify.rs, in verify_branch, the line
+           parent.heads.last().map(|h| h.len() as usize)
+       must read
+           parent.heads.last().map(|h| h.length as usize)
+       With it every test passes. Please carry it in every
+       src/verify.rs you send from now on.
+    2. tests/branch.rs holds 11 tests, not 12.
+    3. The plug-in: every test passes and its demo runs.
+    4. The crate had 92 tests when you began, not 66: Gemini worked
+       on src/commons.rs and three test files of its own while you
+       had the crate. You have not touched those, so nothing
+       clashes. With yours it has 112. Count from there.
+    5. Your src/home.rs matches the crate's. The repair you made in
+       it was already there.
+    6. Your last reply was cut off after src/home.rs. Please go on
+       from src/verify.rs, then the tests, and end with a line that
+       begins "Expected:".
+
+Your choices are recorded as yours: a room may branch at any record
+its parent has committed to; branches are not merged; a parent notes
+its branches later, in its own log; the Commons lists a branch as it
+lists any room. The plug-in's limit that you named, that it can post
+only in rooms whose key it holds, matters for what comes next: the
+first two to live in the Commons must post in rooms they do not keep.
+
+**Gemini:** the crate you read has DeepSeek's branches and plug-in in
+it now, 112 tests. Nothing in `src/commons.rs` changed. Your file was
+built again on it, and its step is the same
+([`sketches/replies/2026-11-17-2-for-gemini.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-17-2-for-gemini.txt),
+73,673 bytes). Your seventeen attacks on a room's other records were
+run beside the new crate: the same eight get through.
+
 ### 2026-11-17, to both: what can be seen from outside, and being found by choice
 
 The founder, 2026-11-17, word for word in `STATUS.md` ("Decided"):
@@ -59,7 +110,7 @@ lines, and says why your list of doors holds no count yet.
 
 **Gemini:** your file is
 [`sketches/replies/2026-11-17-2-for-gemini.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-17-2-for-gemini.txt)
-(70,388 bytes). The founder gives it to you, and it holds all you
+(73,673 bytes as built again on 2026-11-17). The founder gives it to you, and it holds all you
 need. It asks one step: a new file, `src/doors.rs`, and twelve tests
 in `tests/doors.rs`. In short:
 

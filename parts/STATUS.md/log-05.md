@@ -8,6 +8,30 @@
 
 ## Log
 
+- 2026-11-17 Claude: record 012-09-05 is continued again, as the
+  founder brought it (1,121,275 bytes, 28,456 lines; its first
+  947,153 bytes are the record as it was kept). Looked through
+  first, by script and by reading: the founder's three turns hold
+  nothing personal, and no line outside code holds a link, an
+  address, a long number or a year. It holds three deliveries from
+  DeepSeek's second file, kept as written in
+  sketches/deepseek/012-09-05/chat-world-steps/6 to 8 and held to
+  the record by sketches/tools/extract.py (101 files, 0 problems).
+  Built as given, each laid over the one before: a room that
+  branches does not compile, for one word, and with it repaired
+  (fix 24) passes 103 of 103; the plug-in passes 112 of 112, its
+  demonstration runs and the four earlier demos run; the rule of one
+  moderator's room was cut off after three files and does not build.
+  The crate as it stands is now the second of them, 112 tests in 29
+  files. Gemini's seventeen attacks beside it: the same eight get
+  through (121 of 129). Gemini's file is built again on that crate
+  (73,673 bytes); the step it asks was built once more outside the
+  repository, 124 of 124. DeepSeek's file is marked as past. Read by
+  the technical lead: all of DeepSeek's prose in the new part, the
+  check of a branch whole, and the third delivery's three files
+  against the files before them; the rest was built and run, not
+  read line by line. Not done: `Commons.world_id` is still open
+  (Decided by the technical lead, d).
 - 2026-11-17 Claude: the founder's words on what can be seen from
   outside a world, and on being found by choice, are recorded
   (Decided), with the design the technical lead draws from them

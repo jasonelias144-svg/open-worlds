@@ -169,15 +169,41 @@ with two more repairs made here (fixes 22 and 23); it then passed all
 66 of its tests. Gemini's three deliveries on the Commons are laid
 over that
 ([../../gemini/2026-11-17/README.md](../../gemini/2026-11-17/README.md)),
-with nothing changed. As it stands it passes all 92 of its tests, 41
-of them DeepSeek's and 51 Gemini's, and its four demos run. Gemini's
-fourth step of that round, 17 attacks of which eight get through, is
-built beside it and not laid into it (`review/steps.sh`, `c4`). It is
-put together here, by
+with nothing changed: it then passed all 92 of its tests. DeepSeek's
+next two deliveries are laid over that, with one word repaired
+("Three more", below). As it stands it passes all 112 of its tests,
+61 of them DeepSeek's and 51 Gemini's; its four demos run, and so
+does the plug-in's own demonstration. Gemini's fourth step, 17
+attacks of which eight get through, is built beside it and not laid
+into it (`review/steps.sh`, `c4`). It is put together here, by
 `review/steps.py --now`; `review/steps.py --check` holds the folder to
 that, byte for byte, and `sketch_status_test.py` runs the check. So
 its files are listed below as ours, though each is exactly as DeepSeek
-or Gemini last wrote it, but for the lines the five repairs name.
+or Gemini last wrote it, but for the lines the six repairs name.
+
+## Three more, after the second file (2026-11-17)
+
+The founder gave DeepSeek a second file
+([../../replies/012-09-05-2-for-deepseek.txt](../../replies/012-09-05-2-for-deepseek.txt)),
+which asked one step: a room that branches. DeepSeek did it, and at
+the founder's word went on to two more of its own list. The files are
+kept as the record gives them, from its line 23994, in
+`chat-world-steps/6` to `8`:
+
+- **6, a room that branches** (four files). Built as given it does
+  not compile, for one word: the check of a branch asks a signed head
+  for `len()`, where the head's field is `length`. With that word
+  repaired (fix 24 in [../../INDEX.md](../../INDEX.md)), 103 of 103
+  tests pass.
+- **7, a plug-in** over standard input (five files). 112 of 112.
+- **8, the rule of one moderator's room** (three files). The reply
+  was cut off there. What came does not build without the files that
+  did not come, so it is kept and not laid into the crate. The
+  founder goes back to DeepSeek for the rest.
+
+[../../INDEX.md](../../INDEX.md) ("DeepSeek's second file") says what
+each is, what DeepSeek expected, and what it chose where the file
+left it open.
 
 ## Ours, not DeepSeek's
 

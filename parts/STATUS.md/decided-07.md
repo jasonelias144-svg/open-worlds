@@ -2,11 +2,9 @@
 > for readers who are shown only the start of a long page.
 > This part holds: "Decided", piece 7 (its pieces are numbered from its end).
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/start.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-08.md
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-06.md
 > Made by docs/parts.py from the file. To change it, change the file.
-
-## Decided
 
 - 2026-11-17, founder, what can be seen from outside a world, and
   being found by choice. "What you said about not turning the map

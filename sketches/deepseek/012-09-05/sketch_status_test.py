@@ -114,12 +114,13 @@ def test_its_keys_are_hex_and_its_time_is_the_clock():
 
 
 def test_the_crate_as_it_stands_is_the_deliveries_with_the_listed_repairs():
-    # Fixes 19 to 23. chat-world-now is put together here, so nothing in
+    # Fixes 19 to 24. chat-world-now is put together here, so nothing in
     # the record says what it must hold. review/steps.py does: the crate
     # DeepSeek was given, DeepSeek's five deliveries laid over it in
     # order, three repairs, Gemini's three deliveries, two earlier tests
-    # corrected, a room's law closed to change in place, and Gemini's
-    # three deliveries on the Commons. This runs its check, which also
+    # corrected, a room's law closed to change in place, Gemini's three
+    # deliveries on the Commons, DeepSeek's branches with one word
+    # repaired, and DeepSeek's plug-in. This runs its check, which also
     # holds Gemini's files to their hashes.
     done = subprocess.run(
         [sys.executable, "-I", str(HERE / "review" / "steps.py"), "--check"],
@@ -129,7 +130,8 @@ def test_the_crate_as_it_stands_is_the_deliveries_with_the_listed_repairs():
     for name, count in (("integration.rs", 41), ("outside.rs", 3),
                         ("attack.rs", 22), ("commons_outside.rs", 3),
                         ("commons_attack.rs", 16),
-                        ("commons_across.rs", 7)):
+                        ("commons_across.rs", 7),
+                        ("branch.rs", 11), ("plugin.rs", 9)):
         text = (tests / name).read_text(encoding="utf-8")
         assert text.count("#[test]") == count, name
 
@@ -157,3 +159,20 @@ def test_geminis_files_are_the_ones_its_record_gives():
             encoding="utf-8")
         assert text.count("#[test]") == count, name
     assert not (HERE / "chat-world-now" / "tests" / "attack_more.rs").exists()
+
+
+def test_the_delivery_that_was_cut_off_is_kept_and_not_laid_in():
+    # DeepSeek's eighth delivery, the rule of one moderator's room, was
+    # cut off after three files. They are kept as given. The crate as
+    # it stands does not hold them: its records have no moderator's
+    # scope, which those three files add.
+    given = HERE / "chat-world-steps" / "8"
+    names = sorted(str(p.relative_to(given)).replace("\\", "/")
+                   for p in given.rglob("*") if p.is_file())
+    assert names == ["src/home.rs", "src/record.rs", "src/room.rs"]
+    assert "ModeratorScope" in (given / "src" / "record.rs").read_text(
+        encoding="utf-8")
+    now = HERE / "chat-world-now" / "src"
+    for name in ("record.rs", "room.rs", "home.rs", "verify.rs"):
+        assert "ModeratorScope" not in (now / name).read_text(
+            encoding="utf-8"), name

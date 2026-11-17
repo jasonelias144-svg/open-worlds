@@ -1,9 +1,9 @@
 #!/bin/sh
-# Ours, not DeepSeek's (see ../README.md). Builds each of the five
-# deliveries that record 012-09-05 ends with, exactly as DeepSeek gave
+# Ours, not DeepSeek's (see ../README.md). Builds each of DeepSeek's
+# first five deliveries in record 012-09-05, exactly as DeepSeek gave
 # it, then each of Gemini's three that followed, its three on the
-# Commons and its fourth step, in a scratch folder, and runs its
-# tests. Nothing here is changed.
+# Commons, DeepSeek's next three and Gemini's fourth step, in a
+# scratch folder, and runs its tests. Nothing here is changed.
 # Run it from anywhere:
 #   sh sketches/deepseek/012-09-05/review/steps.sh
 #
@@ -35,11 +35,19 @@
 #   c1            69 pass
 #   c2            82 pass, 3 fail: the three attacks Gemini said would
 #                 get through
-#   now           92 pass, and the four demos run. This is c3, which
-#                 is the crate as it stands.
+#   c3            92 pass
+# Then DeepSeek's deliveries from its second file (2026-11-17):
+#   d6            does not compile: a room that branches, as given
+#   d6-repaired   103 pass (one word repaired, fix 24)
+#   now           112 pass, the four demos run, and the plug-in's own
+#                 demonstration runs. This is d6-repaired with
+#                 DeepSeek's delivery 7, the plug-in, laid over it,
+#                 which is the crate as it stands.
+#   d8            does not compile: the rule of one moderator's room,
+#                 cut off after three files
 # Then Gemini's fourth step (2026-11-17), beside the crate as it
 # stands:
-#   c4            101 pass, 8 fail: the eight attacks on a room's
+#   c4            121 pass, 8 fail: the eight attacks on a room's
 #                 other kinds of record that Gemini said would get
 #                 through
 set -eu
@@ -49,7 +57,7 @@ trap 'rm -rf "$scratch"' EXIT
 python3 "$here/review/steps.py" --aside "$scratch"
 python3 "$here/review/steps.py" --check
 python3 "$here/review/steps.py" --now "$scratch/more"
-for name in 5-repaired g1 g2 g3 g3-repaired c1 c2 c4; do mv "$scratch/more/$name" "$scratch/$name"; done
+for name in 5-repaired g1 g2 g3 g3-repaired c1 c2 c3 d6 d6-repaired d8 c4; do mv "$scratch/more/$name" "$scratch/$name"; done
 mkdir "$scratch/now"
 cp -R "$here/chat-world-now" "$scratch/now/chat-world"
 status=0
@@ -93,6 +101,13 @@ check_all() {
                 status=1
             fi
         done
+        if ( cd "$scratch/now/chat-world" && cargo run --quiet --bin chat-world-plugin -- --demo ) \
+            > "$scratch/plugin-demo.out" 2>&1; then
+            echo "   chat-world-plugin --demo runs"
+        else
+            echo "   chat-world-plugin --demo DOES NOT RUN"
+            status=1
+        fi
     fi
     rm -rf "$scratch/$1/chat-world/target"
 }
@@ -109,6 +124,10 @@ check_all g3 64 2
 check_all g3-repaired 66 0
 check_all c1 69 0
 check_all c2 82 3
-check_all now 92 0
-check_all c4 101 8
+check_all c3 92 0
+check d6 'could not compile `chat-world`'
+check_all d6-repaired 103 0
+check_all now 112 0
+check d8 'could not compile `chat-world`'
+check_all c4 121 8
 exit $status
