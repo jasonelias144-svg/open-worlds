@@ -8,6 +8,80 @@
 
 ## Decided
 
+- 2026-11-17, founder, what is public domain: everything, by design,
+  but for what is named. The technical lead had asked on what terms a
+  work of the founder's own would sit in this repository. "Yeah, the
+  book is public domain. It is a project output whose whole
+  construction process is in the conversation records, which I
+  consider public domain. So far, only the apps that I have mentioned
+  and personal information and privacy related keys [...] should stay
+  out of public domain. All else is up for grabs in public domain by
+  design from the start. Thoughts?" One thing more is named where the
+  brackets stand. It is left out here at the founder's own earlier
+  word, and the sentence is kept whole in the project's private
+  record.
+  The technical lead's reading, which stands unless the founder
+  answers otherwise. "The book" is *Art of Peace and the Strategist*,
+  asked about that day: it is in `library/`, dedicated, with how it
+  was looked through first (library/README.md). "All else" covers the
+  founder's other earlier works when they are brought; they are not
+  here. It is what the repository already says, "as far as it is ours
+  to give": what other people wrote, and a record only quotes or a
+  world only reads, stays under its own terms. And it says what may be
+  public; it publishes nothing by itself, so what is kept private
+  stays where it is until it is brought.
+- 2026-11-17, founder, hosting comes last. "Hosting comes last. Let's
+  finish building our digital field of dreams before inviting anyone
+  to play ball. Once it is ready, we will know the scope of hosting
+  needed. If we decide earlier, we could make design decisions that
+  were limited by hosting decisions done at a time that could not
+  foresee future stages. Instead, I realize it may grow large and may
+  require some funding to get off the ground. My original goal of
+  launching for close to free may not be feasible. But let's build it
+  out and see if we have a baseball field surrounded by corn, or
+  something closer to a network of baseball stadiums. Let's keep
+  going and leave hosting for when the final picture is closer."
+  The technical lead's reading, which stands unless the founder
+  answers otherwise: it answers what was still open with the founder
+  on hosting, and keeps the word of 2026-11-15 that it is one
+  decision for all of it. Two things keep that decision free to make
+  late: everything stays able to run on one ordinary machine and
+  depends on no host's own services; and what it costs is measured
+  as it is built, not guessed. Needing money to run it does not
+  change that it is free to use and never a money machine
+  (docs/FUNDAMENTALS.md, freedom, 12); where such money comes from
+  is the founder's.
+- 2026-11-17, founder, how the work with DeepSeek and Gemini goes now.
+  "I just realized we have now moved most of the creative development
+  to our work here, since now the time with  Gemini and DeepSeek is so
+  limited it is best spent building the next pieces. And those would
+  be the ones you determine form our creative development work. You
+  write each of them specs to work with and they write a few pieces of
+  code, we integrate, develop, write more specs for them and so on.
+  Thoughts?"
+  The technical lead's reading, which stands unless the founder
+  answers otherwise: it is the practice of rounds sized to one step
+  (Decided by the technical lead, 2026-11-17), with who chooses the
+  steps said plainly. What follows from it is there, in a new entry.
+- 2026-11-17, founder, the map as the main interface. "The is also
+  where a multiverse map could point to and or overlay in some way. It
+  would be an interface to the wiki information, with the functional
+  capacity to move an agent to the location in the map, not just
+  providing information. It is a map, a passport, and a means of
+  transportation, all in one. Each agent could access this map as a
+  main interface. As in a video game, where all players can access
+  some main view with a functional map a probably agent information
+  combined in the same interface. Thoughts?"
+  The technical lead's reading, which stands unless the founder
+  answers otherwise, is in docs/COMMONS.md, "The first to live there":
+  the map shows and the move is the agent's own signed act; it is
+  drawn only from what each world publishes; it shows no one's
+  whereabouts but one's own (docs/FUNDAMENTALS.md, privacy, 17); each
+  place links to its page; a picture for people and the same as text
+  for a mind; it nests; and its first form is the Commons' lobby
+  listing its doors. It answers two questions docs/TOPICS.md, topic
+  16, had left open: what can be done from the map besides look, and
+  how a mind reads it. Not built.
 - 2026-11-17, founder, a wiki of the multiverse, and the small copy
   for the library. "I agree. 2.5 GB is small enough to be portable,
   but large enough to satisfy many questions. We could also host a

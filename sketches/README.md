@@ -148,9 +148,13 @@ those components' tests don't load as written.
   be added by anyone else (AGENTS.md).
 - Record 012-00-00 speaks of three earlier works of the founder's own,
   names them and describes them. The founder, 2026-11-17, of the third
-  title, when asked whether it should stay out: "You can keep" it "in"
-  (STATUS.md, "Decided"). Those works are not in this repository, and
-  nothing here dedicates them.
+  title, when asked whether it should stay out: "You can keep" it "in";
+  and then of the work itself: "the book is public domain" (STATUS.md,
+  "Decided"). That work is now in [../library](../library/README.md),
+  dedicated like the rest. The other two are not in this repository.
+  The founder's word of the same day covers them when they are
+  brought: "All else is up for grabs in public domain by design from
+  the start."
 
 ## When a record grows
 

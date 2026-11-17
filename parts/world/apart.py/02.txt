@@ -256,15 +256,21 @@ class Log:
         What it can't know is the salt of a field that was taken out
         before. So a source of salts that repeats one of those is not
         refused here, as it is by the writer that used that salt."""
-        scan = _scan(entries)
-        _held(scan, contents)
+        # What was given is checked as it is, so that what does not
+        # hold is refused as the check refuses it.
+        _held(_scan(entries), contents)
         log = cls.__new__(cls)
         log.entries = copy.deepcopy(entries)
         log.contents = {entry: copy.deepcopy(fields)
                         for entry, fields in contents.items() if fields}
-        log._scan = scan
+        # Then the writer reads its own copy of the log and goes by
+        # that. So nothing it keeps is what it was given, and what it
+        # keeps is what it has checked, whatever a copy made of an
+        # entry. (The contents need no second look: only a plain map of
+        # plain lists is taken as contents, and those copy exactly.)
+        log._scan = _scan(log.entries)
         log._salt = salt
-        log._salts = {_used(pair[0]) for fields in contents.values()
+        log._salts = {_used(pair[0]) for fields in log.contents.values()
                       for pair in fields.values()}
         return log
 
@@ -342,9 +348,25 @@ class Log:
             raise Refused(VALUE, where)
         if fingerprint(salt, field, value) != self._scan.apart[entry][field]:
             raise Refused(FINGERPRINT, where)
-        kept = self._append(tick, KEPT, agent,
-                            {"mark": mark, "office": office,
-                             "ground": ground, "decision": decision}, apart)
+        # From here the writer knows this salt, and it is about to be
+        # in the contents again. A writer that never closed remembers
+        # it from when it drew it. One that was opened after the field
+        # was taken out learns it now: before the entry draws salts of
+        # its own, so that a source which repeats it is refused. If the
+        # entry is refused the field stays out, and what was learned
+        # here is forgotten again.
+        known = _used(salt)
+        learned = known not in self._salts
+        self._salts.add(known)
+        try:
+            kept = self._append(tick, KEPT, agent,
+                                {"mark": mark, "office": office,
+                                 "ground": ground, "decision": decision},
+                                apart)
+        except BaseException:
+            if learned:
+                self._salts.discard(known)
+            raise
         self.contents.setdefault(entry, {})[field] = [
             salt, copy.deepcopy(value)]
         return kept

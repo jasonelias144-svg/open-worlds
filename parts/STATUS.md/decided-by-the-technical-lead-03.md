@@ -34,6 +34,42 @@
   not random; a log that must refuse to be opened in a state the
   check allows, for (b); two writers opened on one log, for (e),
   which the room has to prevent (step 3c).
+- 2026-11-17, what follows from the founder's words of that evening
+  (Decided). (a) A file for a collaborator carries one step, the
+  files the step needs, tests that say what done means, and what not
+  to touch. (b) With few replies, a collaborator is asked first for
+  what a second mind gives: a design, or an attack on one. (c) The
+  next file for Gemini is a step on the way to the Commons' first
+  inhabitants: the lobby's list of doors, which is what a map of the
+  Commons is drawn from, to be built, attacked and repaired as its
+  two earlier rounds were. It is not the eight repairs to the check
+  of a room's log (sketches/gemini/2026-11-17/README.md), which the
+  technical lead had first said it would be: those eight go into the
+  room's own check, when the room is built on the project's own log
+  (course step 3c). (d) Once the room is built, collaborators are
+  given the project's own crates to work in, not the sketch crate.
+  (e) The work in `library/` is kept as a file of record, whole and
+  uncut, as the conversation records are. (f) What a clause of the
+  founder's leaves out of the public record is kept whole in the
+  private one, and the public entry says that something is left out.
+  *Why:* (a) a collaborator can't open a link or build what it
+  writes, and a reply may be cut short. (b) Twice Gemini's attacks
+  found what was wrong where the code's author had not, and its own
+  first try at a design did not compile. (c) The founder: "it is
+  best spent building the next pieces", and those "you determine";
+  repairing a sketch that is fitted again at step 3c is not a next
+  piece, and its eight gaps are worth as much as a list of what the
+  room's own check must refuse. (d) Less is then written twice. (e)
+  It is a work to be read, not a page to work from. (f) The founder's
+  words are kept word for word, and the founder has said what stays
+  out.
+  *What would show it wrong:* for (c), DeepSeek's work on branches
+  coming back before step 3c with the check still open, and built on;
+  then the eight are repaired in the sketch after all. For (d), the
+  project's crates being too much to hand over in one file; then a
+  small crate is cut for the purpose. For (b), a round where a
+  collaborator's design is better than what was built here; then
+  more is asked of it, not less.
 - 2026-11-17, what follows from the founder's thoughts of that day on
   the Commons (Decided; docs/COMMONS.md, "The first to live there").
   (a) An appeal against what a moderator did, while the moderator is a

@@ -491,7 +491,7 @@ fn the_five_states_written_here_are_the_ones_python_wrote() {
     let v = vectors();
     let mut salt = trial_salts();
     let room = room(&v, &mut salt);
-    let (entries, contents) = five_states(room, &mut salt);
+    let (entries, contents) = five_states(room, &mut salt, false);
     let case = &v["holds"][3];
     assert_eq!(case["name"], "the five states");
     assert_eq!(Value::Array(entries), case["log"]);
@@ -506,6 +506,7 @@ fn the_five_states_written_here_are_the_ones_python_wrote() {
 fn five_states(
     mut room: Log,
     mut salt: &mut dyn FnMut() -> String,
+    reopen: bool,
 ) -> (Vec<Value>, Map<String, Value>) {
     let h: Vec<String> = room
         .entries()
@@ -513,6 +514,9 @@ fn five_states(
         .map(|e| e["hash"].as_str().unwrap().to_owned())
         .collect();
     // Redacted: a mark is open, and the field is gone.
+    if reopen {
+        room = opened(&room);
+    }
     let first_mark = mark(
         &mut room,
         5,
@@ -522,8 +526,14 @@ fn five_states(
         &mut salt,
     )
     .unwrap();
+    if reopen {
+        room = opened(&room);
+    }
     room.take_out(&first_mark).unwrap();
     // Unfinished: a mark is open, and the field is still there.
+    if reopen {
+        room = opened(&room);
+    }
     mark(
         &mut room,
         5,
@@ -534,6 +544,9 @@ fn five_states(
     )
     .unwrap();
     // Kept public: the mark was answered, and the field is there.
+    if reopen {
+        room = opened(&room);
+    }
     let a_mark = mark(
         &mut room,
         6,
@@ -543,6 +556,9 @@ fn five_states(
         &mut salt,
     )
     .unwrap();
+    if reopen {
+        room = opened(&room);
+    }
     keep(
         &mut room,
         7,
@@ -553,6 +569,9 @@ fn five_states(
     )
     .unwrap();
     // Missing: the mark was answered, and the field is gone all the same.
+    if reopen {
+        room = opened(&room);
+    }
     let a_mark = mark(
         &mut room,
         8,
@@ -562,6 +581,9 @@ fn five_states(
         &mut salt,
     )
     .unwrap();
+    if reopen {
+        room = opened(&room);
+    }
     keep(
         &mut room,
         9,
@@ -572,6 +594,9 @@ fn five_states(
     )
     .unwrap();
     // Redacted: marked, kept public, and marked again.
+    if reopen {
+        room = opened(&room);
+    }
     let a_mark = mark(
         &mut room,
         10,
@@ -581,6 +606,9 @@ fn five_states(
         &mut salt,
     )
     .unwrap();
+    if reopen {
+        room = opened(&room);
+    }
     keep(
         &mut room,
         11,
@@ -590,6 +618,9 @@ fn five_states(
         &mut salt,
     )
     .unwrap();
+    if reopen {
+        room = opened(&room);
+    }
     let again = mark(
         &mut room,
         12,
@@ -599,8 +630,14 @@ fn five_states(
         &mut salt,
     )
     .unwrap();
+    if reopen {
+        room = opened(&room);
+    }
     room.take_out(&again).unwrap();
     // Redacted: a mark's own reason, which said what it should not.
+    if reopen {
+        room = opened(&room);
+    }
     let on_reason = mark(
         &mut room,
         13,
@@ -610,8 +647,14 @@ fn five_states(
         &mut salt,
     )
     .unwrap();
+    if reopen {
+        room = opened(&room);
+    }
     room.take_out(&on_reason).unwrap();
     // Redacted, and decided: the mark stands for good.
+    if reopen {
+        room = opened(&room);
+    }
     let a_mark = mark(
         &mut room,
         14,
@@ -621,7 +664,13 @@ fn five_states(
         &mut salt,
     )
     .unwrap();
+    if reopen {
+        room = opened(&room);
+    }
     room.take_out(&a_mark).unwrap();
+    if reopen {
+        room = opened(&room);
+    }
     stays(
         &mut room,
         15,
@@ -633,6 +682,9 @@ fn five_states(
     .unwrap();
     // Unfinished, though decided: whoever published the log left the
     // field in the contents after the decision that it stays redacted.
+    if reopen {
+        room = opened(&room);
+    }
     let a_mark = mark(
         &mut room,
         16,
@@ -643,6 +695,9 @@ fn five_states(
     )
     .unwrap();
     let left = room.take_out(&a_mark).unwrap();
+    if reopen {
+        room = opened(&room);
+    }
     stays(
         &mut room,
         17,

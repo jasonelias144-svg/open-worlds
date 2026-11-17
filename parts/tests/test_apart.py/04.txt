@@ -1,0 +1,164 @@
+Part of `tests/test_apart.py` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 4.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests/test_apart.py/03.txt
+After this part: nothing; this is the last part.
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+class TestJoining(unittest.TestCase):
+
+    def test_a_whole_log_reads_as_it_was_written(self):
+        log = room()
+        joined = apart.join(log.entries, log.contents)
+        self.assertEqual(len(joined), len(WRITTEN) + 1)
+        for one, (tick, kind, agent, data, kept) in zip(joined[1:], WRITTEN):
+            self.assertEqual(one["tick"], tick)
+            self.assertEqual(one["kind"], kind)
+            self.assertEqual(one["agent"], agent)
+            self.assertEqual(one["data"], {**data, **kept})
+            self.assertEqual(one["fields"], {n: "present" for n in kept})
+            self.assertEqual(one["state"], "as written")
+            self.assertEqual(one["incidents"], [])
+            self.assertNotIn("apart", one)
+        self.assertEqual(joined[0]["data"]["form"], apart.FORM)
+        self.assertEqual([j["hash"] for j in joined],
+                         [e["hash"] for e in log.entries])
+
+    def test_a_field_under_a_standing_mark_is_never_shown(self):
+        log = room()
+        target = log.entries[3]["hash"]
+        mark(log, target, "text")
+        self.assertIn("text", log.contents[target])   # still in the contents
+        one = apart.join(log.entries, log.contents)[3]
+        self.assertNotIn("text", one["data"])
+        self.assertEqual(one["fields"]["text"], "unfinished")
+        self.assertNotIn("hello, room", json.dumps(
+            apart.join(log.entries, log.contents)))
+
+    def test_joining_changes_neither_the_log_nor_the_contents(self):
+        log = room()
+        entries = copy.deepcopy(log.entries)
+        contents = copy.deepcopy(log.contents)
+        joined = apart.join(log.entries, log.contents)
+        joined[6]["data"]["thing"]["words"].append("c")
+        joined[0]["data"]["kept_apart"]["said"].append("more")
+        self.assertEqual(log.entries, entries)
+        self.assertEqual(log.contents, contents)
+
+    def test_joining_refuses_what_checking_refuses(self):
+        log = room()
+        with self.assertRaises(Refused):
+            apart.join(log.entries, {"f" * 64: {}})
+        with self.assertRaises(Refused):
+            apart.join(world_log(), {})
+
+
+class TestTheVectors(unittest.TestCase):
+
+    def test_the_file_is_what_is_written_now(self):
+        # tests/test_vectors.py compares the file byte for byte; this
+        # says the same of its parts, for a clearer failure.
+        on_disk, now = vectors(), json.loads(json.dumps(log_apart()))
+        self.assertEqual(sorted(on_disk), sorted(now))
+        for key in now:
+            with self.subTest(key):
+                self.assertEqual(on_disk[key], now[key])
+
+    def test_the_names_and_limits_are_the_modules(self):
+        v = vectors()
+        self.assertEqual(v["form"], apart.FORM)
+        self.assertEqual(v["mark"], apart.MARK)
+        self.assertEqual(v["kept"], apart.KEPT)
+        self.assertEqual(v["stays"], apart.STAYS)
+        self.assertEqual(v["says"],
+                         {kind: list(keys)
+                          for kind, keys in apart.SAYS.items()})
+        self.assertEqual(v["redaction_states"],
+                         list(apart.REDACTION_STATES))
+        self.assertEqual(len(apart.REASONS), 20)
+        self.assertEqual(v["removed"], apart.REMOVED)
+        self.assertEqual(v["restored"], apart.RESTORED)
+        self.assertEqual(v["taken_back"], apart.TAKEN_BACK)
+        self.assertEqual(v["put_back"], apart.PUT_BACK)
+        self.assertEqual(v["grounds"], list(apart.GROUNDS))
+        self.assertEqual(v["entry_states"], list(apart.ENTRY_STATES))
+        self.assertEqual(v["short"], 12)
+        self.assertEqual(v["max_whole"], 2 ** 53 - 1)
+        self.assertEqual(v["max_nesting"], apart.MAX_NESTING)
+        self.assertEqual(v["states"], list(apart.STATES))
+        self.assertEqual(v["reasons"], list(apart.REASONS))
+        self.assertEqual(len(set(apart.REASONS)), len(apart.REASONS))
+
+    def test_each_fingerprint(self):
+        for case in vectors()["fingerprints"]:
+            with self.subTest(case["text"]):
+                self.assertEqual(
+                    apart.fingerprint_text(case["salt"], case["name"],
+                                           case["value"]), case["text"])
+                self.assertEqual(
+                    apart.fingerprint(case["salt"], case["name"],
+                                      case["value"]), case["fingerprint"])
+
+    def test_the_trial_room_written_again_is_the_first_case(self):
+        v = vectors()
+        count = iter(range(1000))
+        log = Log(v["table"], v["first"],
+                  salt=lambda: trial_salt(next(count)))
+        for step in v["written"]:
+            log.append(step["tick"], step["kind"], step["agent"],
+                       step["data"], step["apart"])
+        self.assertEqual(log.entries, v["holds"][0]["log"])
+        self.assertEqual(log.contents, v["holds"][0]["contents"])
+
+    def test_each_case_that_holds(self):
+        cases = vectors()["holds"]
+        self.assertEqual(len(cases), 7)
+        seen = set()
+        seen_redactions = set()
+        for case in cases:
+            with self.subTest(case["name"]):
+                self.assertTrue(World.verify_log(case["log"]))
+                states = apart.check(case["log"], case["contents"])
+                self.assertEqual(states, case["states"])
+                self.assertEqual(apart.incidents(case["log"]),
+                                 case["incidents"])
+                found = apart.redactions(case["log"])
+                self.assertEqual(found, case["redactions"])
+                self.assertEqual(apart.join(case["log"], case["contents"]),
+                                 case["joined"])
+                seen.update(s for e in states.values() for s in e.values())
+                seen_redactions.update(
+                    r["state"] for e in found.values()
+                    for f in e.values() for r in f)
+        self.assertEqual(seen, set(apart.STATES))
+        self.assertEqual(seen_redactions, set(apart.REDACTION_STATES))
+
+    def test_each_case_that_is_refused(self):
+        cases = vectors()["refused"]
+        self.assertEqual(len(cases), 179)
+        for case in cases:
+            with self.subTest(case["name"]):
+                self.assertEqual(refusal(case["log"], case["contents"]),
+                                 (case["reason"], case["where"]))
+        self.assertEqual({c["reason"] for c in cases}, set(apart.REASONS))
+        self.assertEqual(
+            len([c for c in cases if c["name"].startswith("two faults")]), 8)
+
+    def test_only_the_chain_cases_break_the_chain(self):
+        # Every other refused log is a chain that holds: it is refused
+        # for what it says, never for a hash. (The cases with two faults
+        # are left out: some of them break the chain as their second.)
+        for case in vectors()["refused"]:
+            if case["name"].startswith("two faults"):
+                continue
+            with self.subTest(case["name"]):
+                self.assertEqual(World.verify_log(case["log"]),
+                                 case["reason"] != apart.CHAIN)
+
+
+if __name__ == "__main__":
+    unittest.main()
+
+------------------------------------------------------------------------
+End of `tests/test_apart.py`.

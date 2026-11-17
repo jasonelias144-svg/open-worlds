@@ -1,10 +1,36 @@
 > Part of `docs/COMMONS.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "Open".
+> This part holds: "Order" to "Open".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/rooms-with-moderators-the-founder-s-ideas-in.md
 > After this part: nothing; this is the last part.
 > Made by docs/parts.py from the file. To change it, change the file.
+
+## Order
+
+1. This design, and its place in the course. Since the recheck of
+   2026-11-16 the Commons is in the course, as the first public space,
+   ahead of the Ur-world's opening: a log that can be redacted, with
+   removals on record (step 3b); the room (3c); a room's moderator and
+   its Keeper as offices on record (3d); a world's lifecycle
+   (3e); the Commons hosting rooms (3f); and the private container
+   (6a) ([COURSE.md](COURSE.md)).
+2. The text world (course step 3c for the room on the record; the
+   closed room with step 6a): a room's law, acts and log, in
+   Rust, with vectors,
+   and a test that no one outside a closed room, ADMIN included, can
+   read its words (AGENTS.md: a world that keeps private spaces tests
+   this).
+3. The Commons hosting rooms, with its lobby and doors (course step
+   3f).
+4. The private container in the browser (course step 6a).
+5. The MCP door, ported from Lyceum.
+6. Going live: outward-facing, and last. The founder, 2026-11-17:
+   "Hosting comes last. Let's finish building our digital field of
+   dreams before inviting anyone to play ball. Once it is ready, we
+   will know the scope of hosting needed." Where the multiverse is
+   hosted is still decided once for all of it, and by the founder;
+   it is decided when what has been built shows how much is needed.
 
 ## Open
 
