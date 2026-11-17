@@ -7,8 +7,9 @@ After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds
 Made by docs/parts.py from the file. To change it, change the file.
 ------------------------------------------------------------------------
 """A log whose fields are kept apart (world/apart.py; course step 3b,
-part two): the fingerprint, the two checks, the five states of a field,
-the function that joins entries and contents, and the shared vectors in
+parts two to four): the fingerprint, the two checks, the five states of
+a field, a redaction from its mark to the decision that answers it, the
+function that joins entries and contents, and the shared vectors in
 vectors/log-apart.json, which rust/world-log reads too."""
 import copy
 import json
@@ -16,10 +17,10 @@ import unittest
 
 from world import World, apart
 from world.apart import Log, Refused
-from world.apart_vectors import (FIRST, GROUND, KEEPER, MODERATOR, TABLE,
-                                 VALUES_ALLOWED, WRITTEN, acted_on,
-                                 log_apart, place, trial_decision,
-                                 trial_salt)
+from world.apart_vectors import (APPEAL, FIRST, GROUND, KEEPER, MODERATOR,
+                                 OFFICE, PRIVATE, TABLE, VALUES_ALLOWED,
+                                 WRITTEN, acted_on, log_apart, place,
+                                 trial_decision, trial_salt)
 from world.vectors import FOLDER, world_log
 
 
@@ -32,6 +33,25 @@ def room(salt=apart.new_salt):
     for step in WRITTEN:
         log.append(*step)
     return log
+
+
+def mark(log, entry, field, tick=5, **more):
+    """A mark as an office writes one. The field stays in the contents
+    until it is taken out."""
+    return log.mark(tick, entry, field, OFFICE, PRIVATE, **more)
+
+
+def keep(log, a_mark, n=1, tick=6, **more):
+    """The decision to keep public a field still in the contents."""
+    entry, field = log._scan.marks[a_mark]
+    salt, value = log.contents[entry][field]
+    return log.keep_public(tick, a_mark, salt, value, KEEPER, APPEAL,
+                           trial_decision(n), **more)
+
+
+def stays(log, a_mark, n=1, tick=6, **more):
+    return log.stays_redacted(tick, a_mark, KEEPER, APPEAL,
+                              trial_decision(n), **more)
 
 
 def reason(log, contents):
@@ -211,14 +231,6 @@ class TestWriting(unittest.TestCase):
             ((9, "said", None, {}, {"Text": "x"}), apart.ENTRY),
             ((9, "said", None, None, {}), apart.ENTRY),
             ((9, 5, None, {}, {}), apart.ENTRY),
-            ((9, apart.MARK, None,
-              {"entry": log.head(), "field": "nothing"}, {}),
-             apart.BAD_MARK),
-            ((9, apart.MARK, None,
-              {"entry": log.head(), "field": "nothing"},
-              {"reason": "kept apart, and still refused"}), apart.BAD_MARK),
-            ((9, apart.KEPT, None, {"mark": log.head()}, {}),
-             apart.BAD_KEPT),
         ]
         for step, why in refusals:
             with self.subTest(why), self.assertRaises(Refused) as c:
@@ -226,13 +238,31 @@ class TestWriting(unittest.TestCase):
             self.assertEqual(c.exception.reason, why)
             self.assertEqual(log.entries, entries)
             self.assertEqual(log.contents, contents)
+        # The same for a mark and for what answers one.
+        said = entries[3]["hash"]
+        salt, value = contents[said]["text"]
+        attempts = [
+            (lambda: mark(log, log.head(), "nothing"), apart.BAD_MARK),
+            (lambda: mark(log, log.head(), "nothing",
+                          apart={"reason": "kept apart, and still refused"}),
+             apart.BAD_MARK),
+            (lambda: log.mark(9, said, "text", "", PRIVATE), apart.BAD_MARK),
+            (lambda: log.keep_public(9, log.head(), salt, value, KEEPER,
+                                     APPEAL, trial_decision(1)),
+             apart.BAD_KEPT),
+            (lambda: stays(log, log.head()), apart.BAD_STAYS),
+        ]
+        for attempt, why in attempts:
+            with self.subTest(why), self.assertRaises(Refused) as c:
+                attempt()
+            self.assertEqual(c.exception.reason, why)
+            self.assertEqual(log.entries, entries)
+            self.assertEqual(log.contents, contents)
         # The log still takes an entry, and still holds.
-        mark = log.append(9, apart.MARK, "trial office",
-                          {"entry": entries[3]["hash"], "field": "text"},
-                          {"reason": "asked"})
+        made = mark(log, said, "text", tick=9, apart={"reason": "asked"})
         states = apart.check(log.entries, log.contents)
-        self.assertEqual(states[entries[3]["hash"]]["text"], "unfinished")
-        self.assertEqual(states[mark], {"reason": "present"})
+        self.assertEqual(states[said]["text"], "unfinished")
+        self.assertEqual(states[made], {"reason": "present"})
 
     def test_a_value_too_deep_to_copy_is_refused_not_a_crash(self):
         log = Log({"showed": ["thing"]})
@@ -296,9 +326,7 @@ class TestWriting(unittest.TestCase):
     def test_a_log_reads_back_from_json_as_it_was_written(self):
         # What is checked in memory is what is checked from a file.
         log = room()
-        log.append(5, apart.MARK, "office",
-                   {"entry": log.entries[3]["hash"], "field": "text"},
-                   {"reason": "asked"})
+        mark(log, log.entries[3]["hash"], "text", apart={"reason": "asked"})
         entries = json.loads(json.dumps(log.entries))
         contents = json.loads(json.dumps(log.contents))
         self.assertEqual(entries, log.entries)
@@ -499,52 +527,23 @@ class TestChecking(unittest.TestCase):
         def state():
             return apart.check(log.entries, log.contents)[target]["text"]
         self.assertEqual(state(), "present")
-        one = log.append(5, apart.MARK, "o", {"entry": target,
-                                              "field": "text"})
-        two = log.append(5, apart.MARK, "o", {"entry": target,
-                                              "field": "text"})
+        one = mark(log, target, "text")
         self.assertEqual(state(), "unfinished")
-        log.append(6, apart.KEPT, "o", {"mark": one})
-        self.assertEqual(state(), "unfinished")   # the second still stands
-        log.append(6, apart.KEPT, "o", {"mark": two})
+        keep(log, one)
         self.assertEqual(state(), "kept public")
-        log.append(7, apart.KEPT, "o", {"mark": two})   # answered twice
-        self.assertEqual(state(), "kept public")
+        # Whoever publishes the log may still lose the field: the record
+        # says it is public, and it is not there.
         del log.contents[target]["text"]
         self.assertEqual(state(), "missing")
-        log.append(8, apart.MARK, "o", {"entry": target, "field": "text"})
+        mark(log, target, "text", tick=8)
         self.assertEqual(state(), "redacted")
 
     def test_a_mark_cannot_name_itself_or_what_comes_after(self):
         log = room()
         later = Log(TABLE, FIRST)
         with self.assertRaises(Refused) as c:
-            log.append(5, apart.MARK, "o",
-                       {"entry": later.head(), "field": "name"})
+            mark(log, later.head(), "name")
         self.assertEqual(c.exception.reason, apart.BAD_MARK)
-
-
-def remove(log, entry, n=1, tick=9):
-    return log.append(tick, apart.REMOVED, None,
-                      {"entry": entry, "office": MODERATOR, "ground": GROUND,
-                       "decision": trial_decision(n)}, {"record": f"r{n}"})
-
-
-def restore(log, incident, n=2, tick=9):
-    return log.append(tick, apart.RESTORED, None,
-                      {"incident": incident, "office": KEEPER,
-                       "ground": GROUND, "decision": trial_decision(n)},
-                      {"record": f"r{n}"})
-
-
-def take_back(log, entry, tick=9):
-    return log.append(tick, apart.TAKEN_BACK, None, {"entry": entry},
-                      {"record": "taken back"})
-
-
-def put_back(log, taking, tick=9):
-    return log.append(tick, apart.PUT_BACK, None, {"taken_back": taking},
-                      {"record": "put back"})
 
 
 

@@ -3,10 +3,122 @@ for readers who are shown only the start of a long page.
 This part holds: piece 2.
 Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/world-log/src/apart.rs/01.txt
-After this part: nothing; this is the last part.
+After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/world-log/src/apart.rs/03.txt
 Made by docs/parts.py from the file. To change it, change the file.
 ------------------------------------------------------------------------
+/// Reads the table, if it is well formed: a map from a kind to a list of
+/// names, each list in ascending order with no name twice.
+fn read_table(table: Option<&Value>) -> Option<BTreeMap<String, Vec<String>>> {
+    let mut read = BTreeMap::new();
+    for (kind, names) in table?.as_object()? {
+        let mut list: Vec<String> = Vec::new();
+        for name in names.as_array()? {
+            let name = name.as_str().filter(|n| is_name(n))?;
+            if list.last().is_some_and(|last| last.as_str() >= name) {
+                return None;
+            }
+            list.push(name.to_owned());
+        }
+        // What one of the form's own kinds says in the open can't be
+        // kept apart: no such entry could then be written.
+        if says(kind).is_some_and(|keys| list.iter().any(|n| keys.contains(&n.as_str()))) {
+            return None;
+        }
+        read.insert(kind.clone(), list);
+    }
+    Some(read)
+}
+
+/// What a writer remembers of a salt it has used: its hash. Enough to
+/// refuse a source that repeats, and nothing a fingerprint could be
+/// guessed with.
+fn used(salt: &str) -> String {
+    sha256_hex(salt.as_bytes())
+}
+
+/// The keys one of the form's own kinds says in the open, if `kind` is
+/// one of them.
+fn says(kind: &str) -> Option<&'static [&'static str]> {
+    SAYS.iter().find(|(k, _)| *k == kind).map(|(_, keys)| *keys)
+}
+
+/// True if an entry of one of the form's own kinds holds, in the open,
+/// exactly the keys its kind says.
+fn says_only(kind: &str, data: &Map<String, Value>) -> bool {
+    says(kind).is_some_and(|keys| {
+        data.len() == keys.len() && keys.iter().all(|key| data.contains_key(*key))
+    })
+}
+
+/// Reads a log's entries in order, keeping what later entries and the
+/// contents are checked against. `take` changes nothing unless the entry
+/// holds, so a writer can offer it an entry and go on if it is refused.
+#[derive(Debug, Clone, Default)]
+struct Scan {
+    table: BTreeMap<String, Vec<String>>,
+    /// The hash of every entry, in the log's order.
+    order: Vec<String>,
+    /// For each entry, each field kept apart and its fingerprint.
+    apart: BTreeMap<String, BTreeMap<String, String>>,
+    /// For each mark, the entry and field it is on.
+    marks: BTreeMap<String, (String, String)>,
+    /// The marks answered by a decision to keep the field public.
+    answered: BTreeSet<String>,
+    /// The marks that stand for good.
+    stays: BTreeSet<String>,
+    /// For each field, its mark that is open or stands, if any.
+    marked: BTreeMap<(String, String), String>,
+    /// Every mark, in the log's order.
+    redactions: Vec<String>,
+    /// Every fingerprint so far.
+    seen: BTreeSet<String>,
+    /// Each entry's kind.
+    kinds: BTreeMap<String, String>,
+    /// Every removal and taking back, in the log's order: the incident's
+    /// entry, the entry it is on, and which of the two it is.
+    incidents: Vec<(String, String, EntryState)>,
+    /// For each removal, the entry it is on.
+    removals: BTreeMap<String, String>,
+    /// For each taking back, the entry it is on.
+    takings: BTreeMap<String, String>,
+    /// For each entry, the removal of it that stands.
+    removed: BTreeMap<String, String>,
+    /// For each entry, the taking back of it that stands.
+    taken: BTreeMap<String, String>,
+}
+
+/// True if an office's act says, in the open, which office acted and
+/// the ground it rests on. The ground is one a decision record can hold:
+/// an earlier record is named by its hash.
+fn office_and_ground_ok(data: &Map<String, Value>) -> bool {
+    fn text(value: Option<&Value>) -> Option<&str> {
+        value.and_then(Value::as_str).filter(|t| !t.is_empty())
+    }
+    let ground = data.get("ground").and_then(Value::as_object);
+    text(data.get("office")).is_some() && ground.is_some_and(|g| {
+        let kind = text(g.get("kind")).filter(|kind| GROUNDS.contains(kind));
+        let reference = text(g.get("ref")).filter(|r| r.chars().count() <= MAX_REF);
+        g.len() == 2
+            && matches!((kind, reference), (Some(kind), Some(r)) if kind != "record" || is_hash(r))
+    })
+}
+
+/// True if an office's act says its office and its ground, and the hash
+/// of its decision record.
+fn office_ok(data: &Map<String, Value>) -> bool {
+    office_and_ground_ok(data)
+        && data
+            .get("decision")
+            .and_then(Value::as_str)
+            .is_some_and(is_hash)
+}
+
 impl Scan {
+    /// True if `mark` is a mark that nothing has answered yet.
+    fn is_open(&self, mark: &str) -> bool {
+        self.marks.contains_key(mark) && !self.answered.contains(mark) && !self.stays.contains(mark)
+    }
+
     /// The hash of an earlier entry that is not one of the form's own, if
     /// `target` names one.
     fn can_be_acted_on<'a>(&self, target: Option<&'a Value>) -> Option<&'a str> {
@@ -73,18 +185,28 @@ impl Scan {
                     if self
                         .apart
                         .get(target)
-                        .is_some_and(|held| held.contains_key(field)) =>
+                        .is_some_and(|held| held.contains_key(field))
+                        && !self
+                            .marked
+                            .contains_key(&(target.to_owned(), field.to_owned()))
+                        && office_and_ground_ok(data)
+                        && says_only(kind, data) =>
                 {
                     mark = Some((target.to_owned(), field.to_owned()));
                 }
                 _ => return Err(Refused::BadMark { index }),
             }
-        } else if kind == KEPT {
+        } else if kind == KEPT || kind == STAYS {
+            // Redacted first, decided after: one answer to a mark, and
+            // only while it is open.
             match data.get("mark").and_then(Value::as_str) {
-                Some(named_mark) if self.marks.contains_key(named_mark) => {
+                Some(named_mark)
+                    if self.is_open(named_mark) && office_ok(data) && says_only(kind, data) =>
+                {
                     answers = Some(named_mark.to_owned());
                 }
-                _ => return Err(Refused::BadKept { index }),
+                _ if kind == KEPT => return Err(Refused::BadKept { index }),
+                _ => return Err(Refused::BadStays { index }),
             }
         }
         // What wins, among removing, restoring, taking back and putting
@@ -95,7 +217,8 @@ impl Scan {
                 Some(target)
                     if !self.removed.contains_key(target)
                         && !self.taken.contains_key(target)
-                        && office_ok(data) =>
+                        && office_ok(data)
+                        && says_only(kind, data) =>
                 {
                     on = Some(target.to_owned());
                 }
@@ -110,7 +233,8 @@ impl Scan {
                     // removal stops standing, and the entry stays taken
                     // back.
                     if self.removed.get(target).map(String::as_str) == Some(incident)
-                        && office_ok(data) =>
+                        && office_ok(data)
+                        && says_only(kind, data) =>
                 {
                     on = Some(target.clone());
                 }
@@ -118,7 +242,7 @@ impl Scan {
             }
         } else if kind == TAKEN_BACK {
             match self.can_be_acted_on(data.get("entry")) {
-                Some(target) if !self.taken.contains_key(target) => {
+                Some(target) if !self.taken.contains_key(target) && says_only(kind, data) => {
                     on = Some(target.to_owned());
                 }
                 _ => return Err(Refused::BadTakingBack { index }),
@@ -128,7 +252,8 @@ impl Scan {
             let target = taking.and_then(|t| self.takings.get(t));
             match (taking, target) {
                 (Some(taking), Some(target))
-                    if self.taken.get(target).map(String::as_str) == Some(taking) =>
+                    if self.taken.get(target).map(String::as_str) == Some(taking)
+                        && says_only(kind, data) =>
                 {
                     on = Some(target.clone());
                 }
@@ -142,10 +267,19 @@ impl Scan {
             self.table = table;
         }
         if let Some(mark) = mark {
+            self.marked.insert(mark.clone(), hash.clone());
             self.marks.insert(hash.clone(), mark);
+            self.redactions.push(hash.clone());
         }
         if let Some(answers) = answers {
-            self.answered.insert(answers);
+            if kind == KEPT {
+                if let Some(field) = self.marks.get(&answers) {
+                    self.marked.remove(field);
+                }
+                self.answered.insert(answers);
+            } else {
+                self.stays.insert(answers);
+            }
         }
         if let Some(on) = on {
             if kind == REMOVED {
@@ -335,10 +469,50 @@ pub fn short_ids(ids: &[String]) -> BTreeMap<String, String> {
     short
 }
 
+/// Every id a room may show, as it is shown: incidents and redactions
+/// together, so that no two begin alike.
+fn shown_ids(scan: &Scan) -> BTreeMap<String, String> {
+    let ids: Vec<String> = scan
+        .incidents
+        .iter()
+        .map(|(id, _, _)| id.clone())
+        .chain(scan.redactions.iter().cloned())
+        .collect();
+    short_ids(&ids)
+}
+
+/// Every field's redactions, in the log's order.
+fn redactions_of(scan: &Scan) -> Redactions {
+    let short = shown_ids(scan);
+    let mut found = Redactions::new();
+    for mark in &scan.redactions {
+        let Some((entry, name)) = scan.marks.get(mark) else {
+            continue;
+        };
+        let state = if scan.answered.contains(mark) {
+            RedactionState::KeptPublic
+        } else if scan.stays.contains(mark) {
+            RedactionState::Stands
+        } else {
+            RedactionState::Open
+        };
+        found
+            .entry(entry.clone())
+            .or_default()
+            .entry(name.clone())
+            .or_default()
+            .push(Redaction {
+                id: mark.clone(),
+                short: short.get(mark).cloned().unwrap_or_default(),
+                state,
+            });
+    }
+    found
+}
+
 /// The state of every entry that has an incident, with them.
 fn entry_states(scan: &Scan) -> BTreeMap<String, Standing> {
-    let ids: Vec<String> = scan.incidents.iter().map(|(id, _, _)| id.clone()).collect();
-    let short = short_ids(&ids);
+    let short = shown_ids(scan);
     let mut states: BTreeMap<String, Standing> = BTreeMap::new();
     for (id, on, kind) in &scan.incidents {
         let stands = scan.removed.get(on) == Some(id) || scan.taken.get(on) == Some(id);
@@ -382,6 +556,16 @@ pub fn incidents(log: &Value) -> Result<BTreeMap<String, Standing>, Refused> {
     Ok(entry_states(&scan(log)?))
 }
 
+/// Checks a log in this form and gives every redaction in it: for each
+/// entry and each field, that field's redactions in the log's order,
+/// each open (marked, and not decided yet), standing (decided: it stays
+/// redacted) or answered by a decision to keep the field public. It
+/// needs no contents. Whether a redacted field is in fact gone is a
+/// field's state, which [`check`] gives.
+pub fn redactions(log: &Value) -> Result<Redactions, Refused> {
+    Ok(redactions_of(&scan(log)?))
+}
+
 /// Checks a log in this form and its contents together, and gives the
 /// state of every field kept apart. Refuses if the chain doesn't hold,
 /// the log isn't in this form, or the contents hold anything the log
@@ -398,15 +582,17 @@ pub fn check(log: &Value, contents: &Value) -> Result<States, Refused> {
 /// Each entry as a reader uses it, after [`check`]: the entry without its
 /// `apart`, its `data` holding the open fields and every field kept apart
 /// that is present or kept public, `fields` giving the state of each
-/// field kept apart, and the entry's own `state` and `incidents`, all in
-/// Python's words. A field under a standing mark is left out even if it
-/// is still in the contents. An entry that is removed or taken back is
+/// field kept apart, `redactions` giving each field's redactions, and
+/// the entry's own `state` and `incidents`, all in Python's words. A
+/// field under a mark that is open or stands is left out even if it is
+/// still in the contents. An entry that is removed or taken back is
 /// given whole: hiding it is for whatever shows the room.
 pub fn join(log: &Value, contents: &Value) -> Result<Vec<Value>, Refused> {
     let scan = scan(log)?;
     let held = held(&scan, contents)?;
     let states = states(&scan, &held);
     let acted_on = entry_states(&scan);
+    let redacted = redactions_of(&scan);
     let entries = log.as_array().ok_or(Refused::Chain(LogError::NotAList))?;
     let none = BTreeMap::new();
     let mut joined = Vec::with_capacity(entries.len());
@@ -427,6 +613,15 @@ pub fn join(log: &Value, contents: &Value) -> Result<Vec<Value>, Refused> {
             }
         }
         one.insert("fields".to_owned(), Value::Object(shown));
+        let mut of_fields = Map::new();
+        for (name, list) in redacted.get(hash).into_iter().flatten() {
+            let list: Vec<Value> = list
+                .iter()
+                .map(|r| json!({"id": r.id, "short": r.short, "state": r.state.as_str()}))
+                .collect();
+            of_fields.insert(name.clone(), Value::Array(list));
+        }
+        one.insert("redactions".to_owned(), Value::Object(of_fields));
         let standing = acted_on.get(hash);
         let state = standing.map_or(EntryState::AsWritten, |s| s.state);
         let its: Vec<Value> = standing.map_or(Vec::new(), |s| {
@@ -445,129 +640,6 @@ pub fn join(log: &Value, contents: &Value) -> Result<Vec<Value>, Refused> {
     Ok(joined)
 }
 
-/// Writes a log in this form: the entries, which are the chain, and the
-/// contents kept beside it. Every entry is offered to the same check a
-/// reader runs before it is appended, so this never writes a log that
-/// [`check`] would refuse.
-///
-/// The caller supplies the salts, one call for each field kept apart, in
-/// the ascending order of the fields' names: 128 bits from the operating
-/// system, as 32 lowercase hex digits, and never made from a world's
-/// seed. The shared test vectors pass fixed salts, which are public to
-/// everyone.
-#[derive(Debug, Clone)]
-pub struct Log {
-    entries: Vec<Value>,
-    contents: Map<String, Value>,
-    scan: Scan,
-    salts: BTreeSet<String>,
-}
-
-impl Log {
-    /// Starts a log: its first entry, of kind `kind`, holds `data` with
-    /// the form's name and `table` added. `table` gives, for each kind of
-    /// entry, the names of the fields kept apart, in ascending order.
-    pub fn new(
-        table: &Value,
-        data: &Map<String, Value>,
-        kind: &str,
-        salt: &mut dyn FnMut() -> String,
-    ) -> Result<Log, Refused> {
-        if data.contains_key("form") || data.contains_key("kept_apart") {
-            return Err(Refused::FirstGiven);
-        }
-        // Before the entry is looked at as a whole, as the check does: so
-        // a table that isn't one is refused as that, whatever it holds.
-        if read_table(Some(table)).is_none() {
-            return Err(Refused::Table);
-        }
-        let mut first = data.clone();
-        first.insert("form".to_owned(), Value::String(FORM.to_owned()));
-        first.insert("kept_apart".to_owned(), table.clone());
-        let mut log = Log {
-            entries: Vec::new(),
-            contents: Map::new(),
-            scan: Scan::default(),
-            salts: BTreeSet::new(),
-        };
-        log.append(0, kind, None, &first, &Map::new(), salt)?;
-        Ok(log)
-    }
-
-    /// The entries: the chain.
-    pub fn entries(&self) -> &[Value] {
-        &self.entries
-    }
-
-    /// The contents: for each entry that keeps fields apart, each field's
-    /// `[salt, value]`.
-    pub fn contents(&self) -> &Map<String, Value> {
-        &self.contents
-    }
-
-    /// The hash of the last entry.
-    pub fn head(&self) -> &str {
-        self.scan.order.last().map_or(GENESIS, String::as_str)
-    }
-
-    /// The entries and the contents, to keep or to publish.
-    pub fn into_parts(self) -> (Vec<Value>, Map<String, Value>) {
-        (self.entries, self.contents)
-    }
-
-    /// Appends one entry and returns its hash. `data` holds the open
-    /// fields, `apart` the fields kept apart, by name. Refuses, and
-    /// appends nothing, if the entry would not hold.
-    pub fn append(
-        &mut self,
-        tick: u64,
-        kind: &str,
-        agent: Option<&str>,
-        data: &Map<String, Value>,
-        apart: &Map<String, Value>,
-        salt: &mut dyn FnMut() -> String,
-    ) -> Result<String, Refused> {
-        let index = self.entries.len();
-        let mut body = Map::new();
-        body.insert("tick".to_owned(), json!(tick));
-        body.insert("kind".to_owned(), json!(kind));
-        body.insert("agent".to_owned(), json!(agent));
-        body.insert("data".to_owned(), Value::Object(data.clone()));
-        // Before any salt is drawn or anything is hashed.
-        if !open_ok(&body) {
-            return Err(Refused::Entry { index: Some(index) });
-        }
-        let sorted: BTreeMap<&String, &Value> = apart.iter().collect();
-        let mut prints = Map::new();
-        let mut kept = Map::new();
-        let mut salts = BTreeSet::new();
-        for (name, value) in sorted {
-            let salt = salt();
-            if !is_salt(&salt) {
-                return Err(Refused::Salt(Place::default()));
-            }
-            if self.salts.contains(&salt) || salts.contains(&salt) {
-                return Err(Refused::SaltTwice(Place::default()));
-            }
-            let print = fingerprint(&salt, name, value)?;
-            prints.insert(name.clone(), Value::String(print));
-            kept.insert(name.clone(), json!([salt, value]));
-            salts.insert(salt);
-        }
-        body.insert("apart".to_owned(), Value::Object(prints));
-        body.insert("prev".to_owned(), json!(self.head()));
-        let hash = body_hash(&body).map_err(|_| Refused::Entry { index: Some(index) })?;
-        body.insert("hash".to_owned(), Value::String(hash.clone()));
-        let entry = Value::Object(body);
-        self.scan.take(&entry)?;
-        self.entries.push(entry);
-        self.salts.extend(salts);
-        if !kept.is_empty() {
-            self.contents.insert(hash.clone(), Value::Object(kept));
-        }
-        Ok(hash)
-    }
-}
 
 ------------------------------------------------------------------------
-End of `rust/world-log/src/apart.rs`.
+The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/world-log/src/apart.rs/03.txt

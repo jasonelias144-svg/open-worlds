@@ -33,18 +33,25 @@ Made by docs/parts.py from the file. To change it, change the file.
 //!   So every log in this form can be written, and checked, in both
 //!   languages.
 //! - **A fingerprint** ([`fingerprint`]) is the SHA-256, in lowercase hex,
-//!   of the list `[salt, name, value]` as [`python_json`](crate::python_json)
+//!   of the list `[salt, name, value]` as [`python_json`]
 //!   writes it. The salt is 32 lowercase hex digits, fresh for each field
 //!   of each entry: 128 bits from the operating system, which the caller
 //!   supplies, since this crate has no source of randomness. No
 //!   fingerprint may appear twice in a log.
 //! - **The contents** are a map from an entry's hash to a map from a
 //!   field's name to `[salt, value]`.
-//! - **Two kinds of entry are the form's own:** a mark ([`MARK`]), which
-//!   names an earlier entry (`data.entry`) and a field it keeps apart
-//!   (`data.field`); and a decision to keep a field public ([`KEPT`]),
-//!   which names an earlier mark (`data.mark`), which then no longer
-//!   stands.
+//! - **Three kinds of entry are the form's own, for a redacted field:**
+//!   a mark ([`MARK`]), which names an earlier entry (`data.entry`) and
+//!   a field it keeps apart (`data.field`), with the office that marked
+//!   it (`data.office`) and the ground it rests on (`data.ground`, a
+//!   `kind` and a `ref`); a decision to keep the field public
+//!   ([`KEPT`]); and a decision that it stays redacted ([`STAYS`]). A
+//!   decision names an open mark (`data.mark`), its office, its ground
+//!   and the hash of its decision record (`data.decision`). Redacted
+//!   first, decided after: a field has at most one mark that is open or
+//!   stands; a mark is answered once; kept public, the field may be
+//!   marked again; a mark that stays redacted stands for good, and
+//!   nothing in the log makes that field public again.
 //!
 //! - **Four more kinds are the form's own,** for what a room shows: a
 //!   removal ([`REMOVED`]), an office's, which names in the open an
@@ -57,21 +64,33 @@ Made by docs/parts.py from the file. To change it, change the file.
 //!   (`data.taken_back`). None takes anything out of the log or the
 //!   contents. What wins among them is in [`EntryState`] and
 //!   `docs/research/REDACTION.md`, decision 9.
+//! - **What the form's own kinds say in the open is fixed** ([`SAYS`]):
+//!   each holds exactly the keys named above for it, and nothing else.
+//!   So a mark can hold no decision, and nothing beside its ground about
+//!   what was redacted. What else such an entry carries is kept apart,
+//!   as the table allows. And no table can keep one of those keys apart:
+//!   a table that did would make every mark, or every decision,
+//!   impossible to write.
 //!
 //! [`check`] holds the contents to the log and gives every field's
-//! [`State`]; [`incidents`] gives every entry's [`EntryState`]; [`join`]
-//! gives each entry as a reader uses it; [`Log`] writes the form. Every reason for refusing ([`Refused::reason`]) is in
-//! the same fixed words as in Python, checked against
-//! `vectors/log-apart.json`.
+//! [`State`]; [`incidents`] gives every entry's [`EntryState`];
+//! [`redactions`] gives every field's redactions, each open, standing
+//! or kept public; [`join`] gives each entry as a reader uses it;
+//! [`Log`] writes the form, a redaction through [`Log::mark`],
+//! [`Log::take_out`], [`Log::keep_public`] and [`Log::stays_redacted`].
+//! Every reason for refusing ([`Refused::reason`]) is in the same fixed
+//! words as in Python, checked against `vectors/log-apart.json`.
 //!
 //! # Limits
 //!
-//! - A field under a standing mark is never shown by [`join`], even while
-//!   it is still in the contents.
+//! - A field under a mark that is open or stands is never shown by
+//!   [`join`], even while it is still in the contents.
 //! - An entry that is removed or taken back is still given whole by
 //!   [`join`], with its state: nothing has left the record.
-//! - This module does not check who may remove, restore or take back:
-//!   that needs the signed records and the keys, which are kept apart.
+//! - This module does not check who may redact, decide, remove, restore
+//!   or take back: that needs the signed records and the keys, which are
+//!   kept apart. Nor does it seal what is redacted: that is the act of
+//!   redacting, beside this module.
 //! - Nothing can be the value of an open field: a field with no value is
 //!   left out.
 //! - The check holds a world to its table by name: it can't know that an
@@ -104,6 +123,8 @@ pub const FORM: &str = "open-worlds/log-apart/v1";
 pub const MARK: &str = "field_redacted";
 /// The kind of a decision to keep a field public.
 pub const KEPT: &str = "field_kept_public";
+/// The kind of a decision that a field stays redacted.
+pub const STAYS: &str = "field_stays_redacted";
 /// The kind of a removal: an office hides an entry, and says why.
 pub const REMOVED: &str = "entry_removed";
 /// The kind of a restoring: an office undoes a removal that stands.
@@ -113,7 +134,18 @@ pub const TAKEN_BACK: &str = "entry_taken_back";
 /// The kind of a putting back: an author undoes their own taking back.
 pub const PUT_BACK: &str = "entry_put_back";
 /// The form's own kinds: none of them can itself be removed or taken back.
-pub const OWN: [&str; 6] = [MARK, KEPT, REMOVED, RESTORED, TAKEN_BACK, PUT_BACK];
+pub const OWN: [&str; 7] = [MARK, KEPT, STAYS, REMOVED, RESTORED, TAKEN_BACK, PUT_BACK];
+/// What each of the form's own kinds says in the open: exactly these
+/// keys. No table can keep one of them apart.
+pub const SAYS: [(&str, &[&str]); 7] = [
+    (MARK, &["entry", "field", "office", "ground"]),
+    (KEPT, &["mark", "office", "ground", "decision"]),
+    (STAYS, &["mark", "office", "ground", "decision"]),
+    (REMOVED, &["entry", "office", "ground", "decision"]),
+    (RESTORED, &["incident", "office", "ground", "decision"]),
+    (TAKEN_BACK, &["entry"]),
+    (PUT_BACK, &["taken_back"]),
+];
 /// What a ground can be, as in a decision record's grounds.
 pub const GROUNDS: [&str; 4] = ["charter", "law", "rule", "record"];
 /// The shortest an incident's id is ever shown, in hex digits.
@@ -135,15 +167,15 @@ pub const KEYS: [&str; 7] = ["tick", "kind", "agent", "data", "apart", "prev", "
 pub enum State {
     /// In the contents, and never marked.
     Present,
-    /// A mark stands, and the field is gone.
+    /// A mark on it is open or stands, and the field is gone.
     Redacted,
-    /// A mark stands, and the field is still there.
+    /// A mark on it is open or stands, and the field is still there.
     Unfinished,
     /// Every mark on it was answered by a decision to keep it public, and
     /// it is there.
     KeptPublic,
-    /// No mark stands, and it is gone: a fault in whoever published the
-    /// log.
+    /// No mark on it is open or stands, and it is gone: a fault in
+    /// whoever published the log.
     Missing,
 }
 
@@ -215,6 +247,77 @@ pub struct Incident {
     pub kind: EntryState,
     /// Whether it still stands: not restored, or not put back.
     pub stands: bool,
+}
+
+/// What became of a redaction: of a mark, and the entry that answered it.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub enum RedactionState {
+    /// Marked, and not decided yet.
+    Open,
+    /// Decided: the field stays redacted, and nothing answers the mark
+    /// again.
+    Stands,
+    /// Decided: the field is kept public, and may be marked again.
+    KeptPublic,
+}
+
+impl RedactionState {
+    /// The state in Python's words.
+    pub fn as_str(self) -> &'static str {
+        match self {
+            RedactionState::Open => "open",
+            RedactionState::Stands => "stands",
+            RedactionState::KeptPublic => "kept public",
+        }
+    }
+}
+
+impl fmt::Display for RedactionState {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+
+/// One redaction of a field.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Redaction {
+    /// The hash of its mark: the redaction's id.
+    pub id: String,
+    /// The id as it is shown: the fewest hex digits, [`SHORT`] or more,
+    /// that no other redaction or incident in the log begins with.
+    pub short: String,
+    /// Open, standing, or answered by a decision to keep the field public.
+    pub state: RedactionState,
+}
+
+/// Every field's redactions, in the log's order: from an entry's hash to
+/// a map from a field's name to its redactions.
+pub type Redactions = BTreeMap<String, BTreeMap<String, Vec<Redaction>>>;
+
+/// What an office's act says in the open: which office acted, and the
+/// ground it rests on (a `kind` and a `ref`).
+#[derive(Debug, Clone, Copy)]
+pub struct Office<'a> {
+    /// The office that acted.
+    pub office: &'a str,
+    /// The ground: why in general terms, never what.
+    pub ground: &'a Value,
+    /// The entry's agent, if it names one: who acted for the office.
+    pub agent: Option<&'a str>,
+}
+
+/// What a decision says in the open: its office, its ground, and the
+/// hash of its decision record.
+#[derive(Debug, Clone, Copy)]
+pub struct Decided<'a> {
+    /// The office that decided.
+    pub office: &'a str,
+    /// The ground the decision rests on.
+    pub ground: &'a Value,
+    /// The hash of the decision record: 64 lowercase hex digits.
+    pub decision: &'a str,
+    /// The entry's agent, if it names one: who decided for the office.
+    pub agent: Option<&'a str>,
 }
 
 /// An entry's state, and its incidents in the log's order.
@@ -299,13 +402,22 @@ pub enum Refused {
         /// The place of the entry that repeats it.
         index: usize,
     },
-    /// A mark does not name an earlier entry and a field it keeps apart.
+    /// A mark does not name an earlier entry and a field it keeps apart
+    /// that is free to be marked (no mark on it is open or stands), with
+    /// its office and ground.
     BadMark {
         /// The mark's place in the log.
         index: usize,
     },
-    /// A decision to keep a field public does not name an earlier mark.
+    /// A decision to keep a field public does not name an open mark,
+    /// with its office, ground and decision.
     BadKept {
+        /// The decision's place in the log.
+        index: usize,
+    },
+    /// A decision that a field stays redacted does not name an open
+    /// mark, with its office, ground and decision.
+    BadStays {
         /// The decision's place in the log.
         index: usize,
     },
@@ -349,6 +461,20 @@ pub enum Refused {
     /// written by [`Log::new`], not given to it. (Python raises a
     /// `ValueError`.)
     FirstGiven,
+    /// Only when writing: a mark and the decision that answers it are
+    /// written by [`Log::mark`], [`Log::keep_public`] and
+    /// [`Log::stays_redacted`], not by [`Log::append`]. (Python raises a
+    /// `ValueError`.)
+    NotByAppend,
+    /// Only when writing: no mark of that hash is open or stands, so
+    /// nothing is taken out. (Python raises a `ValueError`.)
+    NoSuchMark,
+    /// Only when writing: the field to take out is not in the contents.
+    /// (Python raises a `ValueError`.)
+    NotThere,
+    /// Only when writing: the field is still in the contents, so it can't
+    /// be said to stay redacted. (Python raises a `ValueError`.)
+    StillThere,
 }
 
 impl Refused {
@@ -364,10 +490,16 @@ impl Refused {
             Refused::Open { .. } => "a field the table keeps apart is in the open",
             Refused::Twice { .. } => "a fingerprint appears twice",
             Refused::BadMark { .. } => {
-                "a mark does not name an earlier entry and a field it keeps apart"
+                "a mark does not name an earlier entry and a field it keeps apart \
+                 that is free to be marked, with its office and ground"
             }
             Refused::BadKept { .. } => {
-                "a decision to keep a field public does not name an earlier mark"
+                "a decision to keep a field public does not name an open mark, \
+                 with its office, ground and decision"
+            }
+            Refused::BadStays { .. } => {
+                "a decision that a field stays redacted does not name an open mark, \
+                 with its office, ground and decision"
             }
             Refused::BadRemoval { .. } => {
                 "a removal does not name an earlier entry that can be removed, \
@@ -392,6 +524,13 @@ impl Refused {
             Refused::Value(_) => "a value is not one a fingerprint allows",
             Refused::Fingerprint(_) => "the contents do not match the fingerprint",
             Refused::FirstGiven => "the first entry's form and table are written here, not given",
+            Refused::NotByAppend => {
+                "a mark and the decision that answers it are written by mark, \
+                 keep_public and stays_redacted"
+            }
+            Refused::NoSuchMark => "no mark of that hash is open or stands",
+            Refused::NotThere => "the field is not in the contents",
+            Refused::StillThere => "the field is still in the contents: take it out first",
         }
     }
 }
@@ -407,6 +546,7 @@ impl fmt::Display for Refused {
             | Refused::Twice { index }
             | Refused::BadMark { index }
             | Refused::BadKept { index }
+            | Refused::BadStays { index }
             | Refused::BadRemoval { index }
             | Refused::BadRestoring { index }
             | Refused::BadTakingBack { index }
@@ -420,7 +560,11 @@ impl fmt::Display for Refused {
             Refused::NoForm
             | Refused::Table
             | Refused::Entry { index: None }
-            | Refused::FirstGiven => Ok(()),
+            | Refused::FirstGiven
+            | Refused::NotByAppend
+            | Refused::NoSuchMark
+            | Refused::NotThere
+            | Refused::StillThere => Ok(()),
         }
     }
 }
@@ -497,76 +641,6 @@ pub fn fingerprint_text(salt: &str, name: &str, value: &Value) -> Result<String,
 /// [`fingerprint_text`].
 pub fn fingerprint(salt: &str, name: &str, value: &Value) -> Result<String, Refused> {
     Ok(sha256_hex(fingerprint_text(salt, name, value)?.as_bytes()))
-}
-
-/// Reads the table, if it is well formed: a map from a kind to a list of
-/// names, each list in ascending order with no name twice.
-fn read_table(table: Option<&Value>) -> Option<BTreeMap<String, Vec<String>>> {
-    let mut read = BTreeMap::new();
-    for (kind, names) in table?.as_object()? {
-        let mut list: Vec<String> = Vec::new();
-        for name in names.as_array()? {
-            let name = name.as_str().filter(|n| is_name(n))?;
-            if list.last().is_some_and(|last| last.as_str() >= name) {
-                return None;
-            }
-            list.push(name.to_owned());
-        }
-        read.insert(kind.clone(), list);
-    }
-    Some(read)
-}
-
-/// Reads a log's entries in order, keeping what later entries and the
-/// contents are checked against. `take` changes nothing unless the entry
-/// holds, so a writer can offer it an entry and go on if it is refused.
-#[derive(Debug, Clone, Default)]
-struct Scan {
-    table: BTreeMap<String, Vec<String>>,
-    /// The hash of every entry, in the log's order.
-    order: Vec<String>,
-    /// For each entry, each field kept apart and its fingerprint.
-    apart: BTreeMap<String, BTreeMap<String, String>>,
-    /// For each mark, the entry and field it is on.
-    marks: BTreeMap<String, (String, String)>,
-    /// The marks that no longer stand.
-    answered: BTreeSet<String>,
-    /// Every fingerprint so far.
-    seen: BTreeSet<String>,
-    /// Each entry's kind.
-    kinds: BTreeMap<String, String>,
-    /// Every removal and taking back, in the log's order: the incident's
-    /// entry, the entry it is on, and which of the two it is.
-    incidents: Vec<(String, String, EntryState)>,
-    /// For each removal, the entry it is on.
-    removals: BTreeMap<String, String>,
-    /// For each taking back, the entry it is on.
-    takings: BTreeMap<String, String>,
-    /// For each entry, the removal of it that stands.
-    removed: BTreeMap<String, String>,
-    /// For each entry, the taking back of it that stands.
-    taken: BTreeMap<String, String>,
-}
-
-/// True if an office's act says, in the open, which office acted, the
-/// ground it rests on, and the hash of its decision record. The ground
-/// is one a decision record can hold: an earlier record is named by its
-/// hash.
-fn office_ok(data: &Map<String, Value>) -> bool {
-    fn text(value: Option<&Value>) -> Option<&str> {
-        value.and_then(Value::as_str).filter(|t| !t.is_empty())
-    }
-    let ground = data.get("ground").and_then(Value::as_object);
-    text(data.get("office")).is_some() && ground.is_some_and(|g| {
-        let kind = text(g.get("kind")).filter(|kind| GROUNDS.contains(kind));
-        let reference = text(g.get("ref")).filter(|r| r.chars().count() <= MAX_REF);
-        g.len() == 2
-            && matches!((kind, reference), (Some(kind), Some(r)) if kind != "record" || is_hash(r))
-    })
-        && data
-            .get("decision")
-            .and_then(Value::as_str)
-            .is_some_and(is_hash)
 }
 
 

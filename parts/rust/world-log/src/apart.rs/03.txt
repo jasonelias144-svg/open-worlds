@@ -1,0 +1,297 @@
+Part of `rust/world-log/src/apart.rs` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 3.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/world-log/src/apart.rs/02.txt
+After this part: nothing; this is the last part.
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+/// The open data of an entry that answers a mark.
+fn answer(mark: &str, by: Decided<'_>) -> Map<String, Value> {
+    let mut data = Map::new();
+    data.insert("mark".to_owned(), json!(mark));
+    data.insert("office".to_owned(), json!(by.office));
+    data.insert("ground".to_owned(), by.ground.clone());
+    data.insert("decision".to_owned(), json!(by.decision));
+    data
+}
+
+/// Writes a log in this form: the entries, which are the chain, and the
+/// contents kept beside it. Every entry is offered to the same check a
+/// reader runs before it is appended, so this never writes a log that
+/// [`check`] would refuse.
+///
+/// The caller supplies the salts, one call for each field kept apart, in
+/// the ascending order of the fields' names: 128 bits from the operating
+/// system, as 32 lowercase hex digits, and never made from a world's
+/// seed. The shared test vectors pass fixed salts, which are public to
+/// everyone.
+#[derive(Debug, Clone)]
+pub struct Log {
+    entries: Vec<Value>,
+    contents: Map<String, Value>,
+    scan: Scan,
+    /// Every salt used, as its hash ([`used`]). A salt itself is kept in
+    /// the contents only, and leaves with its field.
+    salts: BTreeSet<String>,
+}
+
+impl Log {
+    /// Starts a log: its first entry, of kind `kind`, holds `data` with
+    /// the form's name and `table` added. `table` gives, for each kind of
+    /// entry, the names of the fields kept apart, in ascending order.
+    pub fn new(
+        table: &Value,
+        data: &Map<String, Value>,
+        kind: &str,
+        salt: &mut dyn FnMut() -> String,
+    ) -> Result<Log, Refused> {
+        if data.contains_key("form") || data.contains_key("kept_apart") {
+            return Err(Refused::FirstGiven);
+        }
+        // Before the entry is looked at as a whole, as the check does: so
+        // a table that isn't one is refused as that, whatever it holds.
+        if read_table(Some(table)).is_none() {
+            return Err(Refused::Table);
+        }
+        let mut first = data.clone();
+        first.insert("form".to_owned(), Value::String(FORM.to_owned()));
+        first.insert("kept_apart".to_owned(), table.clone());
+        let mut log = Log {
+            entries: Vec::new(),
+            contents: Map::new(),
+            scan: Scan::default(),
+            salts: BTreeSet::new(),
+        };
+        log.write(0, kind, None, &first, &Map::new(), salt)?;
+        Ok(log)
+    }
+
+    /// The entries: the chain.
+    pub fn entries(&self) -> &[Value] {
+        &self.entries
+    }
+
+    /// The contents: for each entry that keeps fields apart, each field's
+    /// `[salt, value]`.
+    pub fn contents(&self) -> &Map<String, Value> {
+        &self.contents
+    }
+
+    /// The hash of the last entry.
+    pub fn head(&self) -> &str {
+        self.scan.order.last().map_or(GENESIS, String::as_str)
+    }
+
+    /// The entries and the contents, to keep or to publish.
+    pub fn into_parts(self) -> (Vec<Value>, Map<String, Value>) {
+        (self.entries, self.contents)
+    }
+
+    /// Appends one entry and returns its hash. `data` holds the open
+    /// fields, `apart` the fields kept apart, by name. Refuses, and
+    /// appends nothing, if the entry would not hold.
+    ///
+    /// A mark and the decision that answers it are not written here:
+    /// [`Log::mark`], [`Log::keep_public`] and [`Log::stays_redacted`]
+    /// write them, with the contents changed in the same step.
+    pub fn append(
+        &mut self,
+        tick: u64,
+        kind: &str,
+        agent: Option<&str>,
+        data: &Map<String, Value>,
+        apart: &Map<String, Value>,
+        salt: &mut dyn FnMut() -> String,
+    ) -> Result<String, Refused> {
+        if kind == MARK || kind == KEPT || kind == STAYS {
+            return Err(Refused::NotByAppend);
+        }
+        self.write(tick, kind, agent, data, apart, salt)
+    }
+
+    /// Appends a mark on `field` of `entry` and returns its hash: the
+    /// redaction's id. The field is still in the contents, so its state
+    /// is unfinished until [`Log::take_out`]; it is never shown
+    /// meanwhile. Whatever is sealed of it is sealed before this.
+    pub fn mark(
+        &mut self,
+        tick: u64,
+        entry: &str,
+        field: &str,
+        by: Office<'_>,
+        apart: &Map<String, Value>,
+        salt: &mut dyn FnMut() -> String,
+    ) -> Result<String, Refused> {
+        let mut data = Map::new();
+        data.insert("entry".to_owned(), json!(entry));
+        data.insert("field".to_owned(), json!(field));
+        data.insert("office".to_owned(), json!(by.office));
+        data.insert("ground".to_owned(), by.ground.clone());
+        self.write(tick, MARK, by.agent, &data, apart, salt)
+    }
+
+    /// Takes the field under `mark` out of the contents and returns its
+    /// `[salt, value]`, which this writer then keeps nowhere: neither in
+    /// the entries, nor in the contents, nor in what it remembers of the
+    /// salts it has used. The log itself is not touched.
+    ///
+    /// The mark is one that is open or stands. Through this writer a
+    /// mark that stands always has its field gone already, since
+    /// [`Log::stays_redacted`] is refused while the field is there; that
+    /// case is for a writer opened on a published log, which is not
+    /// built.
+    pub fn take_out(&mut self, mark: &str) -> Result<Value, Refused> {
+        let (entry, field) = self
+            .scan
+            .marks
+            .get(mark)
+            .filter(|_| !self.scan.answered.contains(mark))
+            .ok_or(Refused::NoSuchMark)?;
+        let fields = self
+            .contents
+            .get_mut(entry)
+            .and_then(Value::as_object_mut)
+            .ok_or(Refused::NotThere)?;
+        let pair = fields.remove(field).ok_or(Refused::NotThere)?;
+        if fields.is_empty() {
+            self.contents.remove(entry);
+        }
+        Ok(pair)
+    }
+
+    /// The decision to keep a field public: puts `pair`, the field's
+    /// `[salt, value]` as [`Log::take_out`] gave it, back into the
+    /// contents and appends the entry that answers `mark`, in one step,
+    /// and returns that entry's hash. Refuses, and changes nothing, if
+    /// the mark is not open, if the salt and value are not the ones the
+    /// log commits to, or if the entry would not hold.
+    pub fn keep_public(
+        &mut self,
+        tick: u64,
+        mark: &str,
+        pair: &Value,
+        by: Decided<'_>,
+        apart: &Map<String, Value>,
+        salt: &mut dyn FnMut() -> String,
+    ) -> Result<String, Refused> {
+        let (entry, field) = self
+            .scan
+            .marks
+            .get(mark)
+            .filter(|_| self.scan.is_open(mark))
+            .cloned()
+            .ok_or(Refused::BadKept {
+                index: self.entries.len(),
+            })?;
+        let place = Place::field(&entry, &field);
+        let (its_salt, value) = match pair.as_array().map(Vec::as_slice) {
+            Some([its_salt, value]) => (its_salt.as_str(), value),
+            _ => return Err(Refused::Contents(place)),
+        };
+        let its_salt = its_salt
+            .filter(|s| is_salt(s))
+            .ok_or_else(|| Refused::Salt(place.clone()))?;
+        if !value_allowed(value) {
+            return Err(Refused::Value(place));
+        }
+        let print = fingerprint(its_salt, &field, value)?;
+        if self
+            .scan
+            .apart
+            .get(&entry)
+            .and_then(|held| held.get(&field))
+            != Some(&print)
+        {
+            return Err(Refused::Fingerprint(place));
+        }
+        let kept = self.write(tick, KEPT, by.agent, &answer(mark, by), apart, salt)?;
+        if let Value::Object(fields) = self
+            .contents
+            .entry(entry)
+            .or_insert_with(|| Value::Object(Map::new()))
+        {
+            fields.insert(field, pair.clone());
+        }
+        Ok(kept)
+    }
+
+    /// The decision that a field stays redacted: appends the entry that
+    /// answers `mark` for good, and returns its hash. The field must be
+    /// out of the contents already. Whoever held a copy for the decision
+    /// deletes it when this is written.
+    pub fn stays_redacted(
+        &mut self,
+        tick: u64,
+        mark: &str,
+        by: Decided<'_>,
+        apart: &Map<String, Value>,
+        salt: &mut dyn FnMut() -> String,
+    ) -> Result<String, Refused> {
+        if self.scan.is_open(mark) {
+            let there = self.scan.marks.get(mark).is_some_and(|(entry, field)| {
+                self.contents
+                    .get(entry)
+                    .and_then(Value::as_object)
+                    .is_some_and(|fields| fields.contains_key(field))
+            });
+            if there {
+                return Err(Refused::StillThere);
+            }
+        }
+        self.write(tick, STAYS, by.agent, &answer(mark, by), apart, salt)
+    }
+
+    fn write(
+        &mut self,
+        tick: u64,
+        kind: &str,
+        agent: Option<&str>,
+        data: &Map<String, Value>,
+        apart: &Map<String, Value>,
+        salt: &mut dyn FnMut() -> String,
+    ) -> Result<String, Refused> {
+        let index = self.entries.len();
+        let mut body = Map::new();
+        body.insert("tick".to_owned(), json!(tick));
+        body.insert("kind".to_owned(), json!(kind));
+        body.insert("agent".to_owned(), json!(agent));
+        body.insert("data".to_owned(), Value::Object(data.clone()));
+        // Before any salt is drawn or anything is hashed.
+        if !open_ok(&body) {
+            return Err(Refused::Entry { index: Some(index) });
+        }
+        let sorted: BTreeMap<&String, &Value> = apart.iter().collect();
+        let mut prints = Map::new();
+        let mut kept = Map::new();
+        let mut salts = BTreeSet::new();
+        for (name, value) in sorted {
+            let salt = salt();
+            if !is_salt(&salt) {
+                return Err(Refused::Salt(Place::default()));
+            }
+            if self.salts.contains(&used(&salt)) || salts.contains(&salt) {
+                return Err(Refused::SaltTwice(Place::default()));
+            }
+            let print = fingerprint(&salt, name, value)?;
+            prints.insert(name.clone(), Value::String(print));
+            kept.insert(name.clone(), json!([salt, value]));
+            salts.insert(salt);
+        }
+        body.insert("apart".to_owned(), Value::Object(prints));
+        body.insert("prev".to_owned(), json!(self.head()));
+        let hash = body_hash(&body).map_err(|_| Refused::Entry { index: Some(index) })?;
+        body.insert("hash".to_owned(), Value::String(hash.clone()));
+        let entry = Value::Object(body);
+        self.scan.take(&entry)?;
+        self.entries.push(entry);
+        self.salts.extend(salts.iter().map(|salt| used(salt)));
+        if !kept.is_empty() {
+            self.contents.insert(hash.clone(), Value::Object(kept));
+        }
+        Ok(hash)
+    }
+}
+
+------------------------------------------------------------------------
+End of `rust/world-log/src/apart.rs`.

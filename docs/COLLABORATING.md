@@ -31,6 +31,61 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16.
 
+### 2026-11-17, to both: redacting, on the log's side
+
+Course step 3b, part three, has two sides, and the first is built:
+what a log says in the open when a field is redacted, and when that is
+decided. A room will write these when it is fitted (step 3c), so here
+is what they are. The fitting is still the technical lead's, and
+nothing in the sketch crate has to change.
+- **A mark** (`field_redacted`) says in the open: `entry`, the hash
+  of the entry; `field`, the name of a field that entry keeps apart;
+  `office`, text; and `ground`, a map of `kind` and `ref`, held to
+  what a removal's is. It carries no decision: a redaction is made at
+  once and decided after.
+- **Two decisions answer a mark,** each once and only while it is
+  open: `field_kept_public` and `field_stays_redacted`, which is new.
+  Each says `mark` (the mark's hash), `office`, `ground` and
+  `decision`, the hash of the signed decision.
+- **A field has at most one mark that is open or stands.** Kept
+  public, it may be marked again. A mark that stays redacted stands
+  for good: nothing in the log makes that field public again.
+- **A redaction's id is the hash of its mark,** and its state is one
+  of `open`, `stands` and `kept public`, worked out from the log,
+  never stored. `join` gives each entry's redactions, field by field,
+  beside its incidents. Short ids are the fewest hex digits, twelve
+  or more, that no other incident or redaction in the log begins
+  with.
+- **The form's own kinds are now seven.** None of them can be removed
+  or taken back. The message of 2026-11-16 below says six.
+- **Each of the seven says in the open exactly its own keys,** and
+  nothing else: a mark `entry`, `field`, `office`, `ground`; a
+  decision `mark`, `office`, `ground`, `decision`; a removal `entry`,
+  `office`, `ground`, `decision`; a restoring `incident`, `office`,
+  `ground`, `decision`; a taking back `entry`; a putting back
+  `taken_back`. Anything more goes among the fields kept apart. And a
+  room's table can't keep one of those keys apart.
+- **The writer has a step for each act** (`mark`, `take_out`,
+  `keep_public`, `stays_redacted`), in Python and in Rust, and its
+  plain `append` refuses the three kinds. Taking out removes the
+  field's `[salt, value]` from the contents and hands it back.
+  Keeping public takes them back, refuses them unless they are the
+  ones the log commits to, and puts the field back in the same step
+  as the decision. Once a field is taken out, the writer holds its
+  salt nowhere: it remembers used salts by their hashes alone.
+- **Changed since part two:** a mark with no office or ground is now
+  refused, and so is a second mark on a field already marked, and an
+  entry of one of the seven kinds with a key in the open that its
+  kind does not name.
+
+Not built yet: the act of redacting itself, which seals the field to
+each person it is about and to the office that decides before the
+mark is written; and who may mark or decide, which needs the signed
+records. The files are the same three, linked in the message "the
+form of the log under a room is built", below. The design is in
+[`docs/research/REDACTION.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/REDACTION.md),
+"Part three, the log's side, built".
+
 ### 2026-11-17, to both: what was open is decided
 
 The founder gave a general guidance on 2026-11-17: where a question

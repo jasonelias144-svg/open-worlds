@@ -1,0 +1,104 @@
+Part of `world/apart_vectors.py` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 3.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world/apart_vectors.py/02.txt
+After this part: nothing; this is the last part.
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+# Values a fingerprint allows, at their edges.
+VALUES_ALLOWED: List[Any] = [
+    "", "plain text", "café 中文 \U0001F642   \U0010FFFF",
+    'quote " backslash \\ tab \t newline \n', "\x00\x1f\x7f",
+    0, 1, -1, apart.MAX_WHOLE, -apart.MAX_WHOLE, True, False,
+    [], {}, ["a", 1, True, [], {}],
+    {"b": 1, "a": 2, "B": 3, "_": 4, "é": 5, "aa": 6, "a b": 7},
+    {"words": ["a", "b"], "loud": True, "count": -3},
+    _nested(apart.MAX_NESTING),
+]
+
+# Values it refuses, as far as a JSON file can hold them.
+VALUES_REFUSED: List[Tuple[str, Any]] = [
+    ("a number with a fraction", 1.5),
+    ("a whole number written with a fraction", 1.0),
+    ("nothing", None),
+    ("two to the 53", apart.MAX_WHOLE + 1),
+    ("minus two to the 53", -apart.MAX_WHOLE - 1),
+    ("two to the 64", 2 ** 64),
+    ("a list holding nothing", ["a", None]),
+    ("a map holding a number with a fraction", {"a": 0.5}),
+    ("a list nested one too deep", _nested(apart.MAX_NESTING + 1)),
+]
+
+
+def fingerprints() -> List[dict]:
+    """Each allowed value under a trial salt: the exact text that is
+    hashed, and the fingerprint."""
+    return [{"salt": trial_salt(n), "name": "thing", "value": value,
+             "text": apart.fingerprint_text(trial_salt(n), "thing", value),
+             "fingerprint": apart.fingerprint(trial_salt(n), "thing", value)}
+            for n, value in enumerate(VALUES_ALLOWED)]
+
+
+def _id(start: str, n: int) -> str:
+    """A made-up incident id: `start`, then filled out to 64 hex digits."""
+    fill = hashlib.sha256(f"open-worlds trial id {n}".encode()).hexdigest()
+    return (start + fill)[:64]
+
+
+def short_ids() -> List[dict]:
+    """Made-up incident ids that begin alike, and each as it is shown.
+    Real ids that begin alike for twelve digits can't be made here: it
+    would take about 2^48 hashes."""
+    groups = [
+        [_id("", 1), _id("", 2), _id("", 3)],
+        [_id("abcdef012345", 1), _id("abcdef012345", 2)],
+        [_id("abcdef0123456789ab", 1), _id("abcdef0123456789ab", 2),
+         _id("abcdef012345", 3), _id("0123", 4)],
+        [_id("f" * 63, 1), ("f" * 63 + "0") if not _id("f" * 63, 1).endswith(
+            "0") else ("f" * 63 + "1")],
+        [],
+    ]
+    return [{"ids": ids, "short": apart._short_ids(ids)} for ids in groups]
+
+
+def log_apart() -> dict:
+    """Everything in `vectors/log-apart.json`."""
+    return {
+        "note": ("Trial vectors for open-worlds/log-apart/v1. The salts "
+                 "are fixed and public: salt n is the first 32 hex digits "
+                 "of the SHA-256 of 'open-worlds trial salt n'. Never for "
+                 "anything real."),
+        "form": apart.FORM,
+        "mark": apart.MARK,
+        "kept": apart.KEPT,
+        "stays": apart.STAYS,
+        "redaction_states": list(apart.REDACTION_STATES),
+        "says": {kind: list(keys) for kind, keys in apart.SAYS.items()},
+        "removed": apart.REMOVED,
+        "restored": apart.RESTORED,
+        "taken_back": apart.TAKEN_BACK,
+        "put_back": apart.PUT_BACK,
+        "grounds": list(apart.GROUNDS),
+        "entry_states": list(apart.ENTRY_STATES),
+        "short": apart.SHORT,
+        "short_ids": short_ids(),
+        "max_whole": apart.MAX_WHOLE,
+        "max_nesting": apart.MAX_NESTING,
+        "max_ref": apart.MAX_REF,
+        "states": list(apart.STATES),
+        "reasons": list(apart.REASONS),
+        "table": TABLE,
+        "first": FIRST,
+        "written": [{"tick": tick, "kind": kind, "agent": agent,
+                     "data": data, "apart": kept}
+                    for tick, kind, agent, data, kept in WRITTEN],
+        "fingerprints": fingerprints(),
+        "values_refused": [{"name": name, "value": value}
+                           for name, value in VALUES_REFUSED],
+        "holds": holds(),
+        "refused": refused(),
+    }
+
+------------------------------------------------------------------------
+End of `world/apart_vectors.py`.

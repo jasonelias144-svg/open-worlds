@@ -134,6 +134,10 @@ fn a_whole_log_and_its_contents_hold() {
         ),
         "{out}"
     );
+    assert!(
+        out.contains("the redactions: 0 open, 0 stand, 0 kept public"),
+        "{out}"
+    );
 }
 
 #[test]
@@ -182,8 +186,14 @@ fn missing_fields_are_counted_and_fail() {
     assert_eq!(code, Some(1), "{out}");
     assert!(
         out.contains(
-            "the fields kept apart: 18 present, 3 redacted, 1 unfinished, 1 kept public, 2 missing"
+            "the fields kept apart: 20 present, 4 redacted, 2 unfinished, 1 kept public, 2 missing"
         ),
+        "{out}"
+    );
+    // Marks: four not decided yet, two that stand for good, and three
+    // answered by a decision to keep the field public.
+    assert!(
+        out.contains("the redactions: 4 open, 2 stand, 3 kept public"),
         "{out}"
     );
     assert!(

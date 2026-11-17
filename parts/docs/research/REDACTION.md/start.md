@@ -321,6 +321,10 @@ This plan was written before them (STATUS.md, "Decided").
 - **"Deleted" rests on the office's word.** Until keys can be destroyed
   (step 8a), that an office's copy is gone is a record and a promise,
   not something a reader can check.
+- **What stands is for good.** The decision that a field stays
+  redacted is the last word the log takes on that redaction. If it was
+  wrong, the person it is about still holds their sealed copy, and can
+  show it against the log; the log will not show the field again.
 - **A short incident id can be made to collide on purpose,** at a cost
   of about 2^48 hashes for twelve digits. So the room shows as many
   digits as make it the only one, and the whole hash is one step away.
@@ -433,7 +437,7 @@ Carried to part three, from the same review: a single entry of kind
 and the command line then fails until the field is put back. Nothing in
 this part says who may append one. Part three has to: the world writes
 it only for the office that decides, with the field put back first or
-in the same step.
+in the same step. Done: "Part three, the log's side, built", below.
 
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/research/REDACTION.md/part-four-the-log-s-side-built.md

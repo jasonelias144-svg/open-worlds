@@ -7,7 +7,7 @@ After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds
 Made by docs/parts.py from the file. To change it, change the file.
 ------------------------------------------------------------------------
 """Shared test vectors for a log whose fields are kept apart
-(`world/apart.py`; course step 3b, part two): `vectors/log-apart.json`,
+(`world/apart.py`; course step 3b, parts two to four): `vectors/log-apart.json`,
 written with the kernel's other vectors by `python3 -m world.vectors`
 and read by `rust/world-log`.
 
@@ -33,6 +33,7 @@ TABLE = {
     "entry_taken_back": ["record"],
     "field_kept_public": ["reason"],
     "field_redacted": ["reason"],
+    "field_stays_redacted": ["reason"],
     "said": ["key", "text", "time"],
     "showed": ["key", "thing"],
 }
@@ -44,6 +45,9 @@ OFFICE = "trial office"
 MODERATOR = "trial moderator"
 KEEPER = "trial keeper"
 GROUND = {"kind": "law", "ref": "trial room law, part 3"}
+# Why a field is redacted, in general terms, never what it said.
+PRIVATE = {"kind": "rule", "ref": "trial room law, private information"}
+APPEAL = {"kind": "rule", "ref": "trial appeal rule"}
 
 
 def trial_decision(n: int) -> str:
@@ -99,19 +103,38 @@ def _room() -> apart.Log:
 
 def _mark(log: apart.Log, tick: int, entry: str, field: str,
           reason: str) -> str:
-    return log.append(tick, apart.MARK, OFFICE,
-                      {"entry": entry, "field": field}, {"reason": reason})
+    """A mark: the field is still in the contents until it is taken
+    out."""
+    return log.mark(tick, entry, field, OFFICE, PRIVATE,
+                    apart={"reason": reason})
 
 
-def _keep(log: apart.Log, tick: int, mark: str, reason: str) -> str:
-    return log.append(tick, apart.KEPT, OFFICE, {"mark": mark},
-                      {"reason": reason})
+def _keep(log: apart.Log, tick: int, mark: str, reason: str,
+          n: int = 1) -> str:
+    """The decision to keep a field public, for a field that is still
+    in the contents."""
+    entry, field = log._scan.marks[mark]
+    salt, value = log.contents[entry][field]
+    return log.keep_public(tick, mark, salt, value, KEEPER, APPEAL,
+                           trial_decision(n), apart={"reason": reason})
+
+
+def _stays(log: apart.Log, tick: int, mark: str, reason: str,
+           n: int = 1) -> str:
+    """The decision that a field stays redacted, taking the field out
+    first if it is still there."""
+    entry, field = log._scan.marks[mark]
+    if field in log.contents.get(entry, {}):
+        log.take_out(mark)
+    return log.stays_redacted(tick, mark, KEEPER, APPEAL,
+                              trial_decision(n), apart={"reason": reason})
 
 
 def _case(name: str, log: List[dict], contents: Any) -> dict:
     return {"name": name, "log": log, "contents": contents,
             "states": apart.check(log, contents),
             "incidents": apart.incidents(log),
+            "redactions": apart.redactions(log),
             "joined": apart.join(log, contents)}
 
 
@@ -213,29 +236,39 @@ def holds() -> List[dict]:
     room = _room()
     h = [e["hash"] for e in room.entries]
     gone = []
-    # Redacted: a mark stands, and the field is gone.
+    # Redacted: a mark is open, and the field is gone.
     first_mark = _mark(room, 5, h[5], "text", "private information")
-    gone.append((h[5], "text"))
-    # Unfinished: a mark stands, and the field is still there.
+    room.take_out(first_mark)
+    # Unfinished: a mark is open, and the field is still there.
     _mark(room, 5, h[4], "text", "asked by its author")
     # Kept public: the mark was answered, and the field is there.
     mark = _mark(room, 6, h[3], "time", "asked by its author")
-    _keep(room, 7, mark, "a time of day says nothing private here")
+    _keep(room, 7, mark, "a time of day says nothing private here", 1)
     # Missing: gone, with no mark at all.
     gone.append((h[1], "name"))
-    # Missing: the mark was answered, and the field is gone all the same.
+    # Missing: the mark was answered, and the field is gone all the
+    # same. The writer never leaves this; whoever published the log
+    # lost the field afterwards.
     mark = _mark(room, 8, h[2], "name", "asked by its author")
-    _keep(room, 9, mark, "the name is on the door")
+    _keep(room, 9, mark, "the name is on the door", 2)
     gone.append((h[2], "name"))
     # Redacted: marked, kept public, and marked again.
     mark = _mark(room, 10, h[6], "thing", "asked by its author")
-    _keep(room, 11, mark, "nothing private in it")
-    _mark(room, 12, h[6], "thing", "it names a third person")
-    gone.append((h[6], "thing"))
+    _keep(room, 11, mark, "nothing private in it", 3)
+    room.take_out(_mark(room, 12, h[6], "thing", "it names a third person"))
     # Redacted: a mark's own reason, which said what it should not.
-    _mark(room, 13, first_mark, "reason", "the reason repeated it")
-    gone.append((first_mark, "reason"))
+    room.take_out(_mark(room, 13, first_mark, "reason",
+                        "the reason repeated it"))
+    # Redacted, and decided: the mark stands for good.
+    mark = _mark(room, 14, h[5], "time", "asked by its author")
+    _stays(room, 15, mark, "with the text, the time says where", 4)
+    # Unfinished, though decided: whoever published the log left the
+    # field in the contents after the decision that it stays redacted.
+    mark = _mark(room, 16, h[3], "key", "asked by its author")
+    left = copy.deepcopy(room.contents[h[3]]["key"])
+    _stays(room, 17, mark, "a key that was never meant to be shown", 5)
     contents = copy.deepcopy(room.contents)
+    contents[h[3]]["key"] = left
     for entry, field in gone:
         del contents[entry][field]
     cases.append(_case("the five states", room.entries, contents))

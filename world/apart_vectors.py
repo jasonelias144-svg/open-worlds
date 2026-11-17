@@ -1,5 +1,5 @@
 """Shared test vectors for a log whose fields are kept apart
-(`world/apart.py`; course step 3b, part two): `vectors/log-apart.json`,
+(`world/apart.py`; course step 3b, parts two to four): `vectors/log-apart.json`,
 written with the kernel's other vectors by `python3 -m world.vectors`
 and read by `rust/world-log`.
 
@@ -25,6 +25,7 @@ TABLE = {
     "entry_taken_back": ["record"],
     "field_kept_public": ["reason"],
     "field_redacted": ["reason"],
+    "field_stays_redacted": ["reason"],
     "said": ["key", "text", "time"],
     "showed": ["key", "thing"],
 }
@@ -36,6 +37,9 @@ OFFICE = "trial office"
 MODERATOR = "trial moderator"
 KEEPER = "trial keeper"
 GROUND = {"kind": "law", "ref": "trial room law, part 3"}
+# Why a field is redacted, in general terms, never what it said.
+PRIVATE = {"kind": "rule", "ref": "trial room law, private information"}
+APPEAL = {"kind": "rule", "ref": "trial appeal rule"}
 
 
 def trial_decision(n: int) -> str:
@@ -91,19 +95,38 @@ def _room() -> apart.Log:
 
 def _mark(log: apart.Log, tick: int, entry: str, field: str,
           reason: str) -> str:
-    return log.append(tick, apart.MARK, OFFICE,
-                      {"entry": entry, "field": field}, {"reason": reason})
+    """A mark: the field is still in the contents until it is taken
+    out."""
+    return log.mark(tick, entry, field, OFFICE, PRIVATE,
+                    apart={"reason": reason})
 
 
-def _keep(log: apart.Log, tick: int, mark: str, reason: str) -> str:
-    return log.append(tick, apart.KEPT, OFFICE, {"mark": mark},
-                      {"reason": reason})
+def _keep(log: apart.Log, tick: int, mark: str, reason: str,
+          n: int = 1) -> str:
+    """The decision to keep a field public, for a field that is still
+    in the contents."""
+    entry, field = log._scan.marks[mark]
+    salt, value = log.contents[entry][field]
+    return log.keep_public(tick, mark, salt, value, KEEPER, APPEAL,
+                           trial_decision(n), apart={"reason": reason})
+
+
+def _stays(log: apart.Log, tick: int, mark: str, reason: str,
+           n: int = 1) -> str:
+    """The decision that a field stays redacted, taking the field out
+    first if it is still there."""
+    entry, field = log._scan.marks[mark]
+    if field in log.contents.get(entry, {}):
+        log.take_out(mark)
+    return log.stays_redacted(tick, mark, KEEPER, APPEAL,
+                              trial_decision(n), apart={"reason": reason})
 
 
 def _case(name: str, log: List[dict], contents: Any) -> dict:
     return {"name": name, "log": log, "contents": contents,
             "states": apart.check(log, contents),
             "incidents": apart.incidents(log),
+            "redactions": apart.redactions(log),
             "joined": apart.join(log, contents)}
 
 
@@ -205,29 +228,39 @@ def holds() -> List[dict]:
     room = _room()
     h = [e["hash"] for e in room.entries]
     gone = []
-    # Redacted: a mark stands, and the field is gone.
+    # Redacted: a mark is open, and the field is gone.
     first_mark = _mark(room, 5, h[5], "text", "private information")
-    gone.append((h[5], "text"))
-    # Unfinished: a mark stands, and the field is still there.
+    room.take_out(first_mark)
+    # Unfinished: a mark is open, and the field is still there.
     _mark(room, 5, h[4], "text", "asked by its author")
     # Kept public: the mark was answered, and the field is there.
     mark = _mark(room, 6, h[3], "time", "asked by its author")
-    _keep(room, 7, mark, "a time of day says nothing private here")
+    _keep(room, 7, mark, "a time of day says nothing private here", 1)
     # Missing: gone, with no mark at all.
     gone.append((h[1], "name"))
-    # Missing: the mark was answered, and the field is gone all the same.
+    # Missing: the mark was answered, and the field is gone all the
+    # same. The writer never leaves this; whoever published the log
+    # lost the field afterwards.
     mark = _mark(room, 8, h[2], "name", "asked by its author")
-    _keep(room, 9, mark, "the name is on the door")
+    _keep(room, 9, mark, "the name is on the door", 2)
     gone.append((h[2], "name"))
     # Redacted: marked, kept public, and marked again.
     mark = _mark(room, 10, h[6], "thing", "asked by its author")
-    _keep(room, 11, mark, "nothing private in it")
-    _mark(room, 12, h[6], "thing", "it names a third person")
-    gone.append((h[6], "thing"))
+    _keep(room, 11, mark, "nothing private in it", 3)
+    room.take_out(_mark(room, 12, h[6], "thing", "it names a third person"))
     # Redacted: a mark's own reason, which said what it should not.
-    _mark(room, 13, first_mark, "reason", "the reason repeated it")
-    gone.append((first_mark, "reason"))
+    room.take_out(_mark(room, 13, first_mark, "reason",
+                        "the reason repeated it"))
+    # Redacted, and decided: the mark stands for good.
+    mark = _mark(room, 14, h[5], "time", "asked by its author")
+    _stays(room, 15, mark, "with the text, the time says where", 4)
+    # Unfinished, though decided: whoever published the log left the
+    # field in the contents after the decision that it stays redacted.
+    mark = _mark(room, 16, h[3], "key", "asked by its author")
+    left = copy.deepcopy(room.contents[h[3]]["key"])
+    _stays(room, 17, mark, "a key that was never meant to be shown", 5)
     contents = copy.deepcopy(room.contents)
+    contents[h[3]]["key"] = left
     for entry, field in gone:
         del contents[entry][field]
     cases.append(_case("the five states", room.entries, contents))
@@ -361,6 +394,16 @@ def refused() -> List[dict]:
     log = []
     _raw(log, 0, "world_created", None, {"form": apart.FORM}, {})
     add(apart.TABLE, "no table at all", log, {})
+    # What one of the form's own kinds says in the open can't be kept
+    # apart: no such entry could then be written.
+    for kind, name in [
+            (apart.MARK, "entry"), (apart.MARK, "field"),
+            (apart.MARK, "office"), (apart.MARK, "ground"),
+            (apart.KEPT, "mark"), (apart.STAYS, "decision"),
+            (apart.REMOVED, "entry"), (apart.RESTORED, "incident"),
+            (apart.TAKEN_BACK, "entry"), (apart.PUT_BACK, "taken_back")]:
+        add(apart.TABLE, f"a table that keeps apart the {name} of an "
+            f"entry of kind {kind}", _start({kind: [name]}), {})
 
     # -- an entry's shape --
     key, name_ = _print(0, "key", "k"), _print(1, "name", "n")
@@ -474,6 +517,7 @@ def refused() -> List[dict]:
         log, {})
 
     # -- marks --
+    said_by = {"office": OFFICE, "ground": PRIVATE}
     for name, data in [
             ("a mark that names no entry of the log",
              {"entry": "f" * 64, "field": "name"}),
@@ -488,29 +532,56 @@ def refused() -> List[dict]:
         log, contents = _short()
         if "entry" in data and data["entry"] is None:
             data = {**data, "entry": log[1]["hash"]}
-        _raw(log, 1, apart.MARK, OFFICE, data, {})
+        _raw(log, 1, apart.MARK, None, {**data, **said_by}, {})
         add(apart.BAD_MARK, name, log, contents)
     log, contents = _short()
-    _raw(log, 1, apart.MARK, OFFICE,
-         {"entry": log[0]["hash"], "field": "form"}, {})
+    _raw(log, 1, apart.MARK, None,
+         {"entry": log[0]["hash"], "field": "form", **said_by}, {})
     add(apart.BAD_MARK, "a mark on a field that is in the open",
         log, contents)
+    for name, change in [
+            ("a mark without an office", {"office": None}),
+            ("a mark whose office is empty", {"office": ""}),
+            ("a mark whose office is a list", {"office": [OFFICE]}),
+            ("a mark without a ground", {"ground": None}),
+            ("a mark whose ground is text", {"ground": "it was private"}),
+            ("a mark whose ground is of no known kind",
+             {"ground": {"kind": "whim", "ref": "trial"}}),
+            ("a mark whose ground names nothing",
+             {"ground": {"kind": "rule", "ref": ""}}),
+            ("a mark whose ground holds more than a kind and a ref",
+             {"ground": {**PRIVATE, "more": "x"}}),
+            ("a mark whose ground is a record not named by its hash",
+             {"ground": {"kind": "record", "ref": "an earlier decision"}}),
+            ("a mark whose ground's reference is one character too long",
+             {"ground": {"kind": "rule",
+                         "ref": "\U0001D11E" * (apart.MAX_REF + 1)}})]:
+        log, contents = _short()
+        data = {"entry": log[1]["hash"], "field": "name", **said_by, **change}
+        _raw(log, 1, apart.MARK, None,
+             {k: v for k, v in data.items() if v is not None}, {})
+        add(apart.BAD_MARK, name, log, contents)
 
-    # -- decisions to keep a field public --
-    log, contents = _short()
-    _raw(log, 1, apart.KEPT, OFFICE, {"mark": log[1]["hash"]}, {})
-    add(apart.BAD_KEPT, "a decision that names an entry that is not a mark",
-        log, contents)
-    log, contents = _short()
-    _raw(log, 1, apart.KEPT, OFFICE, {}, {})
-    add(apart.BAD_KEPT, "a decision that names nothing", log, contents)
-    log, contents = _short()
-    _raw(log, 1, apart.KEPT, OFFICE, {"mark": "f" * 64}, {})
-    add(apart.BAD_KEPT, "a decision that names no entry of the log",
-        log, contents)
-    log, contents = _short()
-    _raw(log, 1, apart.KEPT, OFFICE, {"mark": [log[1]["hash"]]}, {})
-    add(apart.BAD_KEPT, "a decision whose mark is a list", log, contents)
+    # -- what answers a mark: kept public, or stays redacted --
+    decided = {"office": KEEPER, "ground": APPEAL,
+               "decision": trial_decision(1)}
+    for kind, reason, what in [
+            (apart.KEPT, apart.BAD_KEPT, "a decision to keep a field public"),
+            (apart.STAYS, apart.BAD_STAYS,
+             "a decision that a field stays redacted")]:
+        log, contents = _short()
+        _raw(log, 1, kind, None, {"mark": log[1]["hash"], **decided}, {})
+        add(reason, what + " that names an entry that is not a mark",
+            log, contents)
+        log, contents = _short()
+        _raw(log, 1, kind, None, dict(decided), {})
+        add(reason, what + " that names nothing", log, contents)
+        log, contents = _short()
+        _raw(log, 1, kind, None, {"mark": "f" * 64, **decided}, {})
+        add(reason, what + " that names no entry of the log", log, contents)
+        log, contents = _short()
+        _raw(log, 1, kind, None, {"mark": [log[1]["hash"]], **decided}, {})
+        add(reason, what + " whose mark is a list", log, contents)
 
     # -- removing, restoring, taking back and putting back --
     def acted(*steps: Any) -> Tuple[List[dict], Any, Dict[str, str]]:
@@ -534,6 +605,48 @@ def refused() -> List[dict]:
                 for k, v in data.items()}
         _raw(log, 9, kind, None, data, {})
         add(reason, name, log, contents)
+
+    # -- redacted first, decided after: one mark, one answer --
+    marking = {"entry": said, "field": "text", "office": OFFICE,
+               "ground": PRIVATE}
+    refuse(apart.BAD_MARK, "a second mark on a field whose mark is open",
+           apart.MARK, marking, ("m", _mark, said, "text", "asked"))
+    refuse(apart.BAD_MARK, "a mark on a field whose redaction stands",
+           apart.MARK, marking, ("m", _mark, said, "text", "asked"),
+           ("s", _stays, "m", "it stays"))
+    answer = {"mark": "m", "office": KEEPER, "ground": APPEAL,
+              "decision": trial_decision(2)}
+    for kind, reason, what in [
+            (apart.KEPT, apart.BAD_KEPT, "a decision to keep a field public"),
+            (apart.STAYS, apart.BAD_STAYS,
+             "a decision that a field stays redacted")]:
+        refuse(reason, what + " on a mark already answered by one to keep "
+               "it public", kind, answer,
+               ("m", _mark, said, "text", "asked"),
+               ("k", _keep, "m", "nothing private"))
+        refuse(reason, what + " on a mark that stands", kind, answer,
+               ("m", _mark, said, "text", "asked"),
+               ("s", _stays, "m", "it stays"))
+        refuse(reason, what + " on an earlier mark of a field that was "
+               "marked again", kind, answer,
+               ("m", _mark, said, "text", "asked"),
+               ("k", _keep, "m", "nothing private"),
+               ("again", _mark, said, "text", "asked again"))
+        for name, change in [
+                ("without an office", {"office": None}),
+                ("whose office is empty", {"office": ""}),
+                ("without a ground", {"ground": None}),
+                ("whose ground is a record not named by its hash",
+                 {"ground": {"kind": "record", "ref": "an earlier one"}}),
+                ("without a decision", {"decision": None}),
+                ("whose decision is 63 digits",
+                 {"decision": trial_decision(2)[:63]}),
+                ("whose decision is in capitals",
+                 {"decision": trial_decision(2).upper()})]:
+            data = {k: v for k, v in {**answer, **change}.items()
+                    if v is not None}
+            refuse(reason, what + " " + name, kind, data,
+                   ("m", _mark, said, "text", "asked"))
 
     refuse(apart.BAD_REMOVAL, "a removal that names no entry of the log",
            apart.REMOVED, {**removal, "entry": "f" * 64})
@@ -604,6 +717,10 @@ def refused() -> List[dict]:
     refuse(apart.BAD_TAKING_BACK, "a taking back of a mark",
            apart.TAKEN_BACK, {"entry": "m"},
            ("m", _mark, said, "text", "asked"))
+    refuse(apart.BAD_REMOVAL, "a removal of a decision that a field stays "
+           "redacted", apart.REMOVED, {**removal, "entry": "s"},
+           ("m", _mark, said, "text", "asked"),
+           ("s", _stays, "m", "it stays"))
 
     refuse(apart.BAD_PUTTING_BACK, "a putting back of an entry that was not "
            "taken back", apart.PUT_BACK, {"taken_back": said})
@@ -618,6 +735,31 @@ def refused() -> List[dict]:
            ("p", _put_back, "t"), ("again", _take_back, said))
     refuse(apart.BAD_PUTTING_BACK, "a putting back that names nothing",
            apart.PUT_BACK, {}, ("t", _take_back, said))
+
+    # -- what the form's own kinds say in the open, and nothing else --
+    refuse(apart.BAD_MARK, "a mark that holds a decision", apart.MARK,
+           dict(marking, decision=trial_decision(3)))
+    refuse(apart.BAD_MARK, "a mark that says in the open what was there",
+           apart.MARK, dict(marking, what="it said hello"))
+    for kind, reason, what in [
+            (apart.KEPT, apart.BAD_KEPT, "a decision to keep a field public"),
+            (apart.STAYS, apart.BAD_STAYS,
+             "a decision that a field stays redacted")]:
+        refuse(reason, what + " that says more in the open", kind,
+               dict(answer, note="see the mark"),
+               ("m", _mark, said, "text", "asked"))
+    refuse(apart.BAD_REMOVAL, "a removal that says more in the open",
+           apart.REMOVED, dict(removal, note="spam"))
+    refuse(apart.BAD_RESTORING, "a restoring that says more in the open",
+           apart.RESTORED,
+           {"incident": "r", "office": KEEPER, "ground": APPEAL,
+            "decision": trial_decision(2), "note": "on appeal"},
+           ("r", _remove, said, 1))
+    refuse(apart.BAD_TAKING_BACK, "a taking back that names an office",
+           apart.TAKEN_BACK, {"entry": said, "office": MODERATOR})
+    refuse(apart.BAD_PUTTING_BACK, "a putting back that says more in the "
+           "open", apart.PUT_BACK, {"taken_back": "t", "note": "again"},
+           ("t", _take_back, said))
 
     # -- the contents' shape --
     log, contents = _short()
@@ -797,6 +939,9 @@ def log_apart() -> dict:
         "form": apart.FORM,
         "mark": apart.MARK,
         "kept": apart.KEPT,
+        "stays": apart.STAYS,
+        "redaction_states": list(apart.REDACTION_STATES),
+        "says": {kind: list(keys) for kind, keys in apart.SAYS.items()},
         "removed": apart.REMOVED,
         "restored": apart.RESTORED,
         "taken_back": apart.TAKEN_BACK,

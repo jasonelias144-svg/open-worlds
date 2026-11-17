@@ -2,15 +2,9 @@
 > for readers who are shown only the start of a long page.
 > This part holds: "Decided by the technical lead", piece 2 (its pieces are numbered from its end).
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-01.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead-03.md
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead-01.md
 > Made by docs/parts.py from the file. To change it, change the file.
-
-## Decided by the technical lead
-
-Decisions about the code, made by the technical lead under the founder's
-deference (above, 2026-11-13), each with its reason and what would show
-it was wrong. Questions of what the project is for stay with the founder.
 
 - 2026-11-17, two collaborators on the sketch crate at once, each on
   its own files. The rule since 2026-11-16 was one writer at a time,

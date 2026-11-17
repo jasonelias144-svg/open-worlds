@@ -14,8 +14,13 @@ the plan, after looking first, is in
 plan; fingerprints and contents; redacting; removing, taking back and
 restoring). The second is built: a form of the log whose fields are
 kept apart (`world/apart.py`, `rust/world-log`), with the check of a
-log against its contents and the function that joins them; nothing is
-redacted yet. The log's side of the fourth is built too: an entry
+log against its contents and the function that joins them. The log's
+side of the third is built: a redaction's mark, which says its office
+and its ground; the one decision that answers it, to keep the field
+public or that it stays redacted for good; and the writer's steps
+that take a field out and put it back in step with the log. Its other
+side, sealing the copies, is next, and nothing real is redacted yet.
+The log's side of the fourth is built too: an entry
 removed, restored, taken back or put back, each entry's state, and the
 incident id; who may act is not checked yet, which is its records'
 side. Before any room is built on it. Two things. The founder
