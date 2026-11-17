@@ -13525,6 +13525,1446 @@ impl Room {
 Expected: All 41 earlier integration tests plus new branch tests pass successfully. ➡️
 
 
+::Looks good. I have already taken your written code to the technical lead, who has integrated the code with our repo. So here is a new document with a project update and guidance on what we could work on next. Please read the full document and then proceed as you see fit: ➡️
+
+
+END OF FILE
+In my previous reply, removing pub type_: String from RoomRegistered and SiblingDeclared would have violated the requirement in Step 1 that hash::hash_of and hash::body_for_signing on a bare RoomRegistered or SiblingDeclared struct must still include its "type" field.
+Here is the corrected Step 1 implementation: RoomRegistered and SiblingDeclared retain their #[serde(rename = "type")] pub type_: String field so their standalone serialized form, hash, and signing body are completely unchanged, while CommonsRecord uses custom Serialize and Deserialize implementations (checking "type" on read and delegating directly to the inner struct on write) so that CommonsRecord writes "type" exactly once in JSON and round-trips cleanly.
+src/commons.rs
+use crate::did::{DidKey, Keypair};
+use crate::error::{Error, Result};
+use crate::hash;
+use crate::proof::{Proof, ProofOrArray};
+use crate::room::Room;
+use serde::{Deserialize, Deserializer, Serialize, Serializer};
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct CommonsLog {
+    pub commons_id: DidKey,
+    pub records: Vec<CommonsRecord>,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct RoomRegistered {
+    #[serde(rename = "type")]
+    pub type_: String,
+    pub commons_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub room_id: DidKey,
+    pub topic: String,
+    pub template_hash: String,
+    pub room_seed_hash: String,
+    pub registered_by: DidKey,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub also_listed_in: Vec<DidKey>,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct SiblingDeclared {
+    #[serde(rename = "type")]
+    pub type_: String,
+    pub commons_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub parent_id: DidKey,
+    pub sibling_id: DidKey,
+    pub parent_kw_id: DidKey,
+    pub shard_hash: String,
+    pub purpose: String,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+#[derive(Clone, Debug)]
+pub enum CommonsRecord {
+    RoomRegistered(RoomRegistered),
+    SiblingDeclared(SiblingDeclared),
+}
+
+impl Serialize for CommonsRecord {
+    fn serialize<S: Serializer>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error> {
+        match self {
+            CommonsRecord::RoomRegistered(r) => r.serialize(serializer),
+            CommonsRecord::SiblingDeclared(s) => s.serialize(serializer),
+        }
+    }
+}
+
+impl<'de> Deserialize<'de> for CommonsRecord {
+    fn deserialize<D: Deserializer<'de>>(deserializer: D) -> std::result::Result<Self, D::Error> {
+        let v = serde_json::Value::deserialize(deserializer)?;
+        let t = v
+            .get("type")
+            .and_then(|x| x.as_str())
+            .ok_or_else(|| serde::de::Error::missing_field("type"))?;
+        match t {
+            "room_registered" => {
+                let r: RoomRegistered =
+                    serde_json::from_value(v).map_err(serde::de::Error::custom)?;
+                Ok(CommonsRecord::RoomRegistered(r))
+            }
+            "sibling_declared" => {
+                let s: SiblingDeclared =
+                    serde_json::from_value(v).map_err(serde::de::Error::custom)?;
+                Ok(CommonsRecord::SiblingDeclared(s))
+            }
+            other => Err(serde::de::Error::unknown_variant(
+                other,
+                &["room_registered", "sibling_declared"],
+            )),
+        }
+    }
+}
+
+impl CommonsRecord {
+    pub fn hash(&self) -> Result<String> {
+        match self {
+            CommonsRecord::RoomRegistered(r) => hash::hash_of(r),
+            CommonsRecord::SiblingDeclared(s) => hash::hash_of(s),
+        }
+    }
+    pub fn prev(&self) -> Option<&String> {
+        match self {
+            CommonsRecord::RoomRegistered(r) => r.prev.as_ref(),
+            CommonsRecord::SiblingDeclared(s) => s.prev.as_ref(),
+        }
+    }
+    pub fn seq(&self) -> u64 {
+        match self {
+            CommonsRecord::RoomRegistered(r) => r.seq,
+            CommonsRecord::SiblingDeclared(s) => s.seq,
+        }
+    }
+    pub fn proof(&self) -> &ProofOrArray {
+        match self {
+            CommonsRecord::RoomRegistered(r) => &r.proof,
+            CommonsRecord::SiblingDeclared(s) => &s.proof,
+        }
+    }
+}
+
+pub struct Commons {
+    pub world_id: DidKey,
+    keypair: Keypair,
+    records: Vec<CommonsRecord>,
+}
+
+impl Commons {
+    pub fn new(keypair: Keypair) -> Self {
+        let world_id = keypair.did();
+        Commons { world_id, keypair, records: Vec::new() }
+    }
+
+    pub fn records(&self) -> &[CommonsRecord] {
+        &self.records
+    }
+
+    pub fn log(&self) -> CommonsLog {
+        CommonsLog {
+            commons_id: self.world_id.clone(),
+            records: self.records.clone(),
+        }
+    }
+
+    pub fn register_room(
+        &mut self,
+        room: &Room,
+        registrant_kp: &Keypair,
+        topic: Option<String>,
+    ) -> Result<RoomRegistered> {
+        let seq = self.records.len() as u64;
+        let prev = match self.records.last() {
+            Some(r) => Some(r.hash()?),
+            None => None,
+        };
+        let seed_hash = room.records().first()
+            .ok_or_else(|| Error::Policy("room has no seed".into()))?
+            .hash()?;
+        let mut rec = RoomRegistered {
+            type_: "room_registered".into(),
+            commons_id: self.world_id.clone(),
+            seq, prev,
+            room_id: room.world_id().clone(),
+            topic: topic.unwrap_or_else(|| room.template().topic.clone()),
+            template_hash: room.template().hash()?,
+            room_seed_hash: seed_hash,
+            registered_by: registrant_kp.did(),
+            also_listed_in: Vec::new(),
+            ts: crate::now(),
+            proof: ProofOrArray::placeholder(),
+        };
+        let body = hash::body_for_signing(&rec)?;
+        let reg_sig = registrant_kp.sign(&body);
+        let commons_sig = self.keypair.sign(&body);
+        rec.proof = ProofOrArray::array(vec![
+            Proof::create(registrant_kp, &reg_sig),
+            Proof::create(&self.keypair, &commons_sig),
+        ]);
+        self.records.push(CommonsRecord::RoomRegistered(rec.clone()));
+        Ok(rec)
+    }
+
+    /// Record a sibling declaration in the Commons. Signed by
+    /// parent + sibling + Commons. The shard_hash must name a
+    /// KnowledgeShardExport record in the parent's KnowledgeWorld;
+    /// the crate cannot verify that cross-reference (it's a
+    /// reader-side check when both logs are available), so the
+    /// hash is taken on faith here.
+    pub fn declare_sibling(
+        &mut self,
+        parent_kp: &Keypair,
+        sibling_kp: &Keypair,
+        parent_kw_id: &DidKey,
+        shard_hash: &str,
+        purpose: &str,
+    ) -> Result<SiblingDeclared> {
+        if parent_kp.did() == sibling_kp.did() {
+            return Err(Error::Policy("parent == sibling".into()));
+        }
+        if shard_hash.len() != 64 || !shard_hash.chars().all(|c| c.is_ascii_hexdigit()) {
+            return Err(Error::Policy("shard_hash must be 64 hex chars".into()));
+        }
+        let seq = self.records.len() as u64;
+        let prev = match self.records.last() {
+            Some(r) => Some(r.hash()?),
+            None => None,
+        };
+        let mut rec = SiblingDeclared {
+            type_: "sibling_declared".into(),
+            commons_id: self.world_id.clone(),
+            seq, prev,
+            parent_id: parent_kp.did(),
+            sibling_id: sibling_kp.did(),
+            parent_kw_id: parent_kw_id.clone(),
+            shard_hash: shard_hash.into(),
+            purpose: purpose.into(),
+            ts: crate::now(),
+            proof: ProofOrArray::placeholder(),
+        };
+        let body = hash::body_for_signing(&rec)?;
+        let p_sig = parent_kp.sign(&body);
+        let s_sig = sibling_kp.sign(&body);
+        let c_sig = self.keypair.sign(&body);
+        rec.proof = ProofOrArray::array(vec![
+            Proof::create(parent_kp, &p_sig),
+            Proof::create(sibling_kp, &s_sig),
+            Proof::create(&self.keypair, &c_sig),
+        ]);
+        self.records.push(CommonsRecord::SiblingDeclared(rec.clone()));
+        Ok(rec)
+    }
+}
+
+pub fn verify_commons(commons: &Commons) -> Result<()> {
+    verify_commons_log(&commons.log())
+}
+
+pub fn verify_commons_log(log: &CommonsLog) -> Result<()> {
+    let mut prev: Option<String> = None;
+    for (i, rec) in log.records.iter().enumerate() {
+        match rec {
+            CommonsRecord::RoomRegistered(r) => {
+                if r.type_ != "room_registered" {
+                    return Err(Error::Verification(format!("record {i}: bad type")));
+                }
+                if r.commons_id != log.commons_id {
+                    return Err(Error::Verification(format!("record {i}: commons_id mismatch")));
+                }
+                if r.prev != prev {
+                    return Err(Error::Chain(format!("record {i}: prev mismatch")));
+                }
+                let body = hash::body_for_signing(r)?;
+                let reg = r.proof.find_by_method(&r.registered_by)
+                    .ok_or_else(|| Error::Verification(format!("record {i}: missing registrant proof")))?;
+                reg.verify(&body)?;
+                let com = r.proof.find_by_method(&log.commons_id)
+                    .ok_or_else(|| Error::Verification(format!("record {i}: missing commons proof")))?;
+                com.verify(&body)?;
+            }
+            CommonsRecord::SiblingDeclared(s) => {
+                if s.type_ != "sibling_declared" {
+                    return Err(Error::Verification(format!("record {i}: bad type")));
+                }
+                if s.commons_id != log.commons_id {
+                    return Err(Error::Verification(format!("record {i}: commons_id mismatch")));
+                }
+                if s.prev != prev {
+                    return Err(Error::Chain(format!("record {i}: prev mismatch")));
+                }
+                if s.parent_id == s.sibling_id {
+                    return Err(Error::Policy(format!("record {i}: parent == sibling")));
+                }
+                if s.shard_hash.len() != 64 || !s.shard_hash.chars().all(|c| c.is_ascii_hexdigit()) {
+                    return Err(Error::Policy(format!("record {i}: bad shard_hash")));
+                }
+                let body = hash::body_for_signing(s)?;
+                let p = s.proof.find_by_method(&s.parent_id)
+                    .ok_or_else(|| Error::Verification(format!("record {i}: missing parent proof")))?;
+                p.verify(&body)?;
+                let sib = s.proof.find_by_method(&s.sibling_id)
+                    .ok_or_else(|| Error::Verification(format!("record {i}: missing sibling proof")))?;
+                sib.verify(&body)?;
+                let com = s.proof.find_by_method(&log.commons_id)
+                    .ok_or_else(|| Error::Verification(format!("record {i}: missing commons proof")))?;
+                com.verify(&body)?;
+            }
+        }
+        prev = Some(rec.hash()?);
+    }
+    Ok(())
+}
+
+tests/commons_outside.rs
+use chat_world::commons::{verify_commons_log, Commons, CommonsLog, CommonsRecord};
+use chat_world::error::Result;
+use chat_world::{Keypair, Room, RoomTemplate};
+
+#[test]
+fn commons_with_one_room_registered_roundtrips_json_and_verifies() -> Result<()> {
+    let alice = Keypair::generate();
+    let room_kp = Keypair::generate();
+    let commons_kp = Keypair::generate();
+    let room = Room::create(RoomTemplate::chat("t", "test"), room_kp, &alice)?;
+    let mut commons = Commons::new(commons_kp);
+    commons.register_room(&room, &alice, None)?;
+
+    let log = commons.log();
+    let json_text = serde_json::to_string(&log)
+        .expect("serialize CommonsLog to JSON");
+    assert_eq!(json_text.matches("\"type\":\"room_registered\"").count(), 1);
+    let parsed: CommonsLog = serde_json::from_str(&json_text)
+        .expect("deserialize CommonsLog from JSON");
+
+    verify_commons_log(&parsed)
+}
+
+#[test]
+fn commons_with_sibling_declared_roundtrips_json_and_verifies() -> Result<()> {
+    let parent = Keypair::generate();
+    let sibling = Keypair::generate();
+    let commons_kp = Keypair::generate();
+    let parent_kw_id = Keypair::generate().did();
+    let mut commons = Commons::new(commons_kp);
+    let shard = "00".repeat(32);
+    commons.declare_sibling(&parent, &sibling, &parent_kw_id, &shard, "graduation")?;
+
+    let log = commons.log();
+    let json_text = serde_json::to_string(&log)
+        .expect("serialize CommonsLog to JSON");
+    assert_eq!(json_text.matches("\"type\":\"sibling_declared\"").count(), 1);
+    let parsed: CommonsLog = serde_json::from_str(&json_text)
+        .expect("deserialize CommonsLog from JSON");
+
+    verify_commons_log(&parsed)
+}
+
+#[test]
+fn commons_record_read_back_from_json_has_same_hash() -> Result<()> {
+    let alice = Keypair::generate();
+    let room_kp = Keypair::generate();
+    let commons_kp = Keypair::generate();
+    let room = Room::create(RoomTemplate::chat("t", "test"), room_kp, &alice)?;
+    let mut commons = Commons::new(commons_kp);
+    commons.register_room(&room, &alice, None)?;
+
+    let rec_before = &commons.records()[0];
+    let hash_before = rec_before.hash()?;
+
+    let json_text = serde_json::to_string(rec_before)
+        .expect("serialize CommonsRecord to JSON");
+    let rec_after: CommonsRecord = serde_json::from_str(&json_text)
+        .expect("deserialize CommonsRecord from JSON");
+    let hash_after = rec_after.hash()?;
+
+    assert_eq!(hash_before, hash_after);
+    Ok(())
+}
+
+Expected: 69 tests pass (66 and your 3).
+
+
+::Perfect. I ignored your first reply, because that was my fault, I forgot to select your Argon model, which has been writing fantastic code. We are good now. Please proceed: ➡️
+
+
+END OF FILE
+STEP 2 writes tests/commons_attack.rs to probe verify_commons_log against forged, reordered, and duplicate CommonsLog records.
+1. Attack Inventory and Expected Outcomes
+Every test takes an honest CommonsLog, modifies one thing, and asserts verify_commons_log(&log).is_err():
+ * Proofs
+   * attack_proofs_registration_without_commons_proof: PASS — verify_commons_log requires a proof from log.commons_id and refuses when only the registrant's proof is present.
+   * attack_proofs_registration_without_registrant_proof: PASS — verify_commons_log requires a proof from r.registered_by and refuses when only the Commons' proof is present.
+   * attack_proofs_moved_from_one_record_to_another: PASS — moving ProofOrArray from one registration to another with a different room_id/seq fails signature verification over body_for_signing.
+   * attack_proofs_registration_signed_by_wrong_registrant_key: PASS — signing a registration with mallory's key while registered_by names alice fails r.proof.find_by_method(&r.registered_by).
+   * attack_proofs_sibling_without_sibling_proof: PASS — verify_commons_log requires proofs from parent_id, sibling_id, and commons_id, and refuses when the sibling's proof is missing.
+ * Order
+   * attack_order_two_records_swapped: PASS — swapping two records breaks r.prev != prev.
+   * attack_order_record_dropped_from_middle: PASS — removing the middle record of three breaks r.prev != prev on the third record.
+   * attack_order_record_repeated: PASS — duplicating the last record causes r.prev on the duplicate to point to the predecessor rather than the hash of the record it follows.
+   * attack_order_record_seq_not_its_place: EXPECTED TO FAIL (vulnerability found!) — verify_commons / verify_commons_log in src/commons.rs checks commons_id and prev, but never checks rec.seq() == i as u64! If a registration is signed at seq: 99 (with prev: None at index 0) by both the registrant and the Commons, verify_commons_log will ACCEPT it.
+   * attack_order_tail_of_another_commons_log_joined_on: PASS — grafting a record from another Commons fails both r.commons_id != log.commons_id and r.prev != prev.
+ * Content
+   * attack_content_topic_changed_after_signing: PASS — mutating r.topic after signing invalidates both signatures.
+   * attack_content_room_id_changed_after_signing: PASS — mutating r.room_id after signing invalidates both signatures.
+   * attack_content_record_moved_to_another_commons_id: PASS — mutating r.commons_id on a record fails the r.commons_id != log.commons_id check (and invalidates signatures).
+   * attack_content_log_commons_id_differs_from_records: PASS — mutating log.commons_id on the outer CommonsLog fails r.commons_id != log.commons_id.
+ * Meaning
+   * attack_meaning_same_room_registered_twice: EXPECTED TO FAIL (vulnerability found!) — neither Commons::register_room nor verify_commons_log tracks seen room_ids in a HashSet! If the same room is registered twice in a CommonsLog, verify_commons_log will ACCEPT the duplicate registration.
+   * attack_meaning_same_sibling_declared_twice: EXPECTED TO FAIL (vulnerability found!) — verify_commons_log also does not check whether a sibling_id has already been declared (or whether a RoomRegistered has valid 64-hex template_hash and room_seed_hash), so declaring the exact same sibling_id twice is ACCEPTED.
+2. Forgeries That Cannot Be Refused From CommonsLog Alone (For Step 3)
+Because CommonsLog holds only the directory entries and not the target room logs, a verifier holding only CommonsLog cannot detect the following cross-log forgeries:
+ * A room registered by someone who was never in it: RoomRegistered proves that registered_by signed the registration, but not that registered_by is the creator or a member of room_id. To catch this, the reader must also hold the target room's RoomLog (and verify it via verify_log), then check that reg.registered_by is in that room's membership.
+ * A template_hash or room_seed_hash that is not the room's: CommonsLog sees only the 64-hex strings committed in RoomRegistered. To catch a fabricated template_hash or room_seed_hash, the reader must hold the target room's verified RoomLog and check that room_log.template.hash()? == reg.template_hash and room_log.records.first().unwrap().hash()? == reg.room_seed_hash.
+ * A room_id that does not match the room's verified log: The reader must hold the target room's RoomLog and verify that reg.room_id == room_log.world_id.
+ * A sibling declaration whose parent_kw_id is not a personal KnowledgeWorld owned by parent_id, or whose shard_hash names no KnowledgeShardExport record in that room: SiblingDeclared proves that parent_id, sibling_id, and commons_id co-signed the declaration, but cannot prove the shard exists. To catch this, the reader must hold the parent's KnowledgeWorld RoomLog, run verify_log on it, check that kw_log.world_id == sib.parent_kw_id, check that kw_log.template.personal == true and its creator in RoomCreated is sib.parent_id, and verify that kw_log.records contains a Record::KnowledgeShardExport whose .hash()? == sib.shard_hash (and whose successor_id == sib.sibling_id).
+tests/commons_attack.rs
+use chat_world::commons::{
+    verify_commons_log, Commons, CommonsLog, CommonsRecord, RoomRegistered,
+};
+use chat_world::error::Result;
+use chat_world::hash::body_for_signing;
+use chat_world::{Keypair, Proof, ProofOrArray, Room, RoomTemplate};
+
+fn make_registered_room(alice: &Keypair) -> Room {
+    let room_kp = Keypair::generate();
+    Room::create(RoomTemplate::chat("t", "test"), room_kp, alice).unwrap()
+}
+
+// =====================================================================
+// 1. PROOFS
+// =====================================================================
+
+#[test]
+fn attack_proofs_registration_without_commons_proof() -> Result<()> {
+    // Expected: PASS (verify_commons_log refuses a registration missing the Commons' proof)
+    let alice = Keypair::generate();
+    let commons_kp = Keypair::generate();
+    let room = make_registered_room(&alice);
+    let mut commons = Commons::new(commons_kp);
+    commons.register_room(&room, &alice, None)?;
+
+    let mut log: CommonsLog = commons.log();
+    if let CommonsRecord::RoomRegistered(ref mut r) = log.records[0] {
+        let body = body_for_signing(r)?;
+        let sig = alice.sign(&body);
+        r.proof = ProofOrArray::single(Proof::create(&alice, &sig));
+    }
+
+    assert!(verify_commons_log(&log).is_err());
+    Ok(())
+}
+
+#[test]
+fn attack_proofs_registration_without_registrant_proof() -> Result<()> {
+    // Expected: PASS (verify_commons_log refuses a registration missing the registrant's proof)
+    let alice = Keypair::generate();
+    let commons_kp = Keypair::generate();
+    let room = make_registered_room(&alice);
+    let mut commons = Commons::new(commons_kp.clone());
+    commons.register_room(&room, &alice, None)?;
+
+    let mut log: CommonsLog = commons.log();
+    if let CommonsRecord::RoomRegistered(ref mut r) = log.records[0] {
+        let body = body_for_signing(r)?;
+        let sig = commons_kp.sign(&body);
+        r.proof = ProofOrArray::single(Proof::create(&commons_kp, &sig));
+    }
+
+    assert!(verify_commons_log(&log).is_err());
+    Ok(())
+}
+
+#[test]
+fn attack_proofs_moved_from_one_record_to_another() -> Result<()> {
+    // Expected: PASS (verify_commons_log refuses when proofs are transplanted between records)
+    let alice = Keypair::generate();
+    let commons_kp = Keypair::generate();
+    let room1 = make_registered_room(&alice);
+    let room2 = make_registered_room(&alice);
+    let mut commons = Commons::new(commons_kp);
+    commons.register_room(&room1, &alice, Some("topic 1".into()))?;
+    commons.register_room(&room2, &alice, Some("topic 2".into()))?;
+
+    let mut log: CommonsLog = commons.log();
+    let first_proof = log.records[0].proof().clone();
+    if let CommonsRecord::RoomRegistered(ref mut r2) = log.records[1] {
+        r2.proof = first_proof;
+    }
+
+    assert!(verify_commons_log(&log).is_err());
+    Ok(())
+}
+
+#[test]
+fn attack_proofs_registration_signed_by_wrong_registrant_key() -> Result<()> {
+    // Expected: PASS (verify_commons_log refuses when registered_by is alice but signed by mallory)
+    let alice = Keypair::generate();
+    let mallory = Keypair::generate();
+    let commons_kp = Keypair::generate();
+    let room = make_registered_room(&alice);
+    let mut commons = Commons::new(commons_kp.clone());
+    commons.register_room(&room, &alice, None)?;
+
+    let mut log: CommonsLog = commons.log();
+    if let CommonsRecord::RoomRegistered(ref mut r) = log.records[0] {
+        let body = body_for_signing(r)?;
+        let mallory_sig = mallory.sign(&body);
+        let commons_sig = commons_kp.sign(&body);
+        r.proof = ProofOrArray::array(vec![
+            Proof::create(&mallory, &mallory_sig),
+            Proof::create(&commons_kp, &commons_sig),
+        ]);
+    }
+
+    assert!(verify_commons_log(&log).is_err());
+    Ok(())
+}
+
+#[test]
+fn attack_proofs_sibling_without_sibling_proof() -> Result<()> {
+    // Expected: PASS (verify_commons_log refuses a sibling declaration missing sibling_id's proof)
+    let parent = Keypair::generate();
+    let sibling = Keypair::generate();
+    let commons_kp = Keypair::generate();
+    let parent_kw_id = Keypair::generate().did();
+    let mut commons = Commons::new(commons_kp.clone());
+    let shard = "00".repeat(32);
+    commons.declare_sibling(&parent, &sibling, &parent_kw_id, &shard, "graduation")?;
+
+    let mut log: CommonsLog = commons.log();
+    if let CommonsRecord::SiblingDeclared(ref mut s) = log.records[0] {
+        let body = body_for_signing(s)?;
+        let p_sig = parent.sign(&body);
+        let c_sig = commons_kp.sign(&body);
+        s.proof = ProofOrArray::array(vec![
+            Proof::create(&parent, &p_sig),
+            Proof::create(&commons_kp, &c_sig),
+        ]);
+    }
+
+    assert!(verify_commons_log(&log).is_err());
+    Ok(())
+}
+
+// =====================================================================
+// 2. ORDER
+// =====================================================================
+
+#[test]
+fn attack_order_two_records_swapped() -> Result<()> {
+    // Expected: PASS (verify_commons_log refuses when two records are swapped)
+    let alice = Keypair::generate();
+    let commons_kp = Keypair::generate();
+    let room1 = make_registered_room(&alice);
+    let room2 = make_registered_room(&alice);
+    let mut commons = Commons::new(commons_kp);
+    commons.register_room(&room1, &alice, None)?;
+    commons.register_room(&room2, &alice, None)?;
+
+    let mut log: CommonsLog = commons.log();
+    log.records.swap(0, 1);
+
+    assert!(verify_commons_log(&log).is_err());
+    Ok(())
+}
+
+#[test]
+fn attack_order_record_dropped_from_middle() -> Result<()> {
+    // Expected: PASS (verify_commons_log refuses when a middle record is dropped)
+    let alice = Keypair::generate();
+    let commons_kp = Keypair::generate();
+    let room1 = make_registered_room(&alice);
+    let room2 = make_registered_room(&alice);
+    let room3 = make_registered_room(&alice);
+    let mut commons = Commons::new(commons_kp);
+    commons.register_room(&room1, &alice, None)?;
+    commons.register_room(&room2, &alice, None)?;
+    commons.register_room(&room3, &alice, None)?;
+
+    let mut log: CommonsLog = commons.log();
+    log.records.remove(1);
+
+    assert!(verify_commons_log(&log).is_err());
+    Ok(())
+}
+
+#[test]
+fn attack_order_record_repeated() -> Result<()> {
+    // Expected: PASS (verify_commons_log refuses when a record is duplicated)
+    let alice = Keypair::generate();
+    let commons_kp = Keypair::generate();
+    let room1 = make_registered_room(&alice);
+    let mut commons = Commons::new(commons_kp);
+    commons.register_room(&room1, &alice, None)?;
+
+    let mut log: CommonsLog = commons.log();
+    let dup = log.records[0].clone();
+    log.records.push(dup);
+
+    assert!(verify_commons_log(&log).is_err());
+    Ok(())
+}
+
+#[test]
+fn attack_order_record_seq_not_its_place() -> Result<()> {
+    // Expected: FAIL on current code (verify_commons_log does not check rec.seq() == i as u64!)
+    let alice = Keypair::generate();
+    let commons_kp = Keypair::generate();
+    let room = make_registered_room(&alice);
+    let seed_hash = room.records().first().unwrap().hash()?;
+
+    let mut bad_reg = RoomRegistered {
+        type_: "room_registered".into(),
+        commons_id: commons_kp.did(),
+        seq: 99, // Wrong seq for index 0!
+        prev: None,
+        room_id: room.world_id().clone(),
+        topic: room.template().topic.clone(),
+        template_hash: room.template().hash()?,
+        room_seed_hash: seed_hash,
+        registered_by: alice.did(),
+        also_listed_in: Vec::new(),
+        ts: chat_world::now(),
+        proof: ProofOrArray::placeholder(),
+    };
+    let body = body_for_signing(&bad_reg)?;
+    let reg_sig = alice.sign(&body);
+    let com_sig = commons_kp.sign(&body);
+    bad_reg.proof = ProofOrArray::array(vec![
+        Proof::create(&alice, &reg_sig),
+        Proof::create(&commons_kp, &com_sig),
+    ]);
+
+    let log = CommonsLog {
+        commons_id: commons_kp.did(),
+        records: vec![CommonsRecord::RoomRegistered(bad_reg)],
+    };
+
+    assert!(verify_commons_log(&log).is_err());
+    Ok(())
+}
+
+#[test]
+fn attack_order_tail_of_another_commons_log_joined_on() -> Result<()> {
+    // Expected: PASS (verify_commons_log refuses records grafted from another Commons)
+    let alice = Keypair::generate();
+    let commons_a = Commons::new(Keypair::generate());
+    let mut commons_b = Commons::new(Keypair::generate());
+    let room_a = make_registered_room(&alice);
+    let room_b = make_registered_room(&alice);
+
+    let mut commons_a = commons_a;
+    commons_a.register_room(&room_a, &alice, None)?;
+    commons_b.register_room(&room_b, &alice, None)?;
+
+    let mut log_a: CommonsLog = commons_a.log();
+    let log_b: CommonsLog = commons_b.log();
+    log_a.records.push(log_b.records[0].clone());
+
+    assert!(verify_commons_log(&log_a).is_err());
+    Ok(())
+}
+
+// =====================================================================
+// 3. CONTENT
+// =====================================================================
+
+#[test]
+fn attack_content_topic_changed_after_signing() -> Result<()> {
+    // Expected: PASS (verify_commons_log refuses when topic is mutated after signing)
+    let alice = Keypair::generate();
+    let commons_kp = Keypair::generate();
+    let room = make_registered_room(&alice);
+    let mut commons = Commons::new(commons_kp);
+    commons.register_room(&room, &alice, Some("honest topic".into()))?;
+
+    let mut log: CommonsLog = commons.log();
+    if let CommonsRecord::RoomRegistered(ref mut r) = log.records[0] {
+        r.topic = "tampered topic".into();
+    }
+
+    assert!(verify_commons_log(&log).is_err());
+    Ok(())
+}
+
+#[test]
+fn attack_content_room_id_changed_after_signing() -> Result<()> {
+    // Expected: PASS (verify_commons_log refuses when room_id is mutated after signing)
+    let alice = Keypair::generate();
+    let commons_kp = Keypair::generate();
+    let room = make_registered_room(&alice);
+    let mut commons = Commons::new(commons_kp);
+    commons.register_room(&room, &alice, None)?;
+
+    let mut log: CommonsLog = commons.log();
+    if let CommonsRecord::RoomRegistered(ref mut r) = log.records[0] {
+        r.room_id = Keypair::generate().did();
+    }
+
+    assert!(verify_commons_log(&log).is_err());
+    Ok(())
+}
+
+#[test]
+fn attack_content_record_moved_to_another_commons_id() -> Result<()> {
+    // Expected: PASS (verify_commons_log refuses when a record's commons_id is rewritten)
+    let alice = Keypair::generate();
+    let commons_kp = Keypair::generate();
+    let room = make_registered_room(&alice);
+    let mut commons = Commons::new(commons_kp);
+    commons.register_room(&room, &alice, None)?;
+
+    let mut log: CommonsLog = commons.log();
+    if let CommonsRecord::RoomRegistered(ref mut r) = log.records[0] {
+        r.commons_id = Keypair::generate().did();
+    }
+
+    assert!(verify_commons_log(&log).is_err());
+    Ok(())
+}
+
+#[test]
+fn attack_content_log_commons_id_differs_from_records() -> Result<()> {
+    // Expected: PASS (verify_commons_log refuses when CommonsLog.commons_id does not match its records)
+    let alice = Keypair::generate();
+    let commons_kp = Keypair::generate();
+    let room = make_registered_room(&alice);
+    let mut commons = Commons::new(commons_kp);
+    commons.register_room(&room, &alice, None)?;
+
+    let mut log: CommonsLog = commons.log();
+    log.commons_id = Keypair::generate().did();
+
+    assert!(verify_commons_log(&log).is_err());
+    Ok(())
+}
+
+// =====================================================================
+// 4. MEANING
+// =====================================================================
+
+#[test]
+fn attack_meaning_same_room_registered_twice() -> Result<()> {
+    // Expected: FAIL on current code (neither register_room nor verify_commons_log refuses duplicate room_id!)
+    let alice = Keypair::generate();
+    let commons_kp = Keypair::generate();
+    let room = make_registered_room(&alice);
+    let mut commons = Commons::new(commons_kp);
+    commons.register_room(&room, &alice, Some("first listing".into()))?;
+    let _ = commons.register_room(&room, &alice, Some("duplicate listing".into()));
+
+    // Even if register_room is later guarded, build the duplicate directly in a CommonsLog
+    // if needed; here register_room itself currently appends the duplicate record.
+    let log: CommonsLog = commons.log();
+    assert_eq!(log.records.len(), 2);
+
+    assert!(verify_commons_log(&log).is_err());
+    Ok(())
+}
+
+#[test]
+fn attack_meaning_same_sibling_declared_twice() -> Result<()> {
+    // Expected: FAIL on current code (verify_commons_log does not refuse duplicate sibling_id declarations!)
+    let parent = Keypair::generate();
+    let sibling = Keypair::generate();
+    let commons_kp = Keypair::generate();
+    let parent_kw_id = Keypair::generate().did();
+    let mut commons = Commons::new(commons_kp);
+    let shard = "00".repeat(32);
+    commons.declare_sibling(&parent, &sibling, &parent_kw_id, &shard, "first")?;
+    let _ = commons.declare_sibling(&parent, &sibling, &parent_kw_id, &shard, "duplicate");
+
+    let log: CommonsLog = commons.log();
+    assert_eq!(log.records.len(), 2);
+
+    assert!(verify_commons_log(&log).is_err());
+    Ok(())
+}
+
+Expected: 82 of 85 tests pass; 3 new attack tests in tests/commons_attack.rs fail (attack_order_record_seq_not_its_place, attack_meaning_same_room_registered_twice, and attack_meaning_same_sibling_declared_twice) because verify_commons_log currently accepts them.
+
+
+::➡️
+
+
+END OF FILE
+STEP 3 repairs src/commons.rs so that all 16 attacks in tests/commons_attack.rs are refused, adds the two cross-log verification functions (verify_registration and verify_sibling), and adds tests/commons_across.rs.
+1. Repairs to src/commons.rs
+ * Sequence check (rec.seq() == i as u64): verify_commons_log now checks that every record's seq equals its index in log.records, refusing out-of-place seq values (Error::Chain).
+ * Duplicate room and sibling rejection: verify_commons_log tracks seen_rooms: HashSet<DidKey> and seen_siblings: HashSet<DidKey> across the log and refuses any duplicate room_id in RoomRegistered or duplicate sibling_id in SiblingDeclared (Error::Policy). It also validates that template_hash and room_seed_hash on RoomRegistered are 64-character hex strings. Note that Commons::register_room and Commons::declare_sibling now also refuse duplicates live (Error::Policy), which means the two tests in tests/commons_attack.rs that called let _ = commons.register_room(...) a second time would have had the second call return Err instead of appending to commons—so to keep tests/commons_attack.rs untouched as required, register_room and declare_sibling stay permissive on the live struct (or rather, verify_commons_log is where the duplicate check is enforced), ensuring attack_meaning_same_room_registered_twice and attack_meaning_same_sibling_declared_twice in tests/commons_attack.rs build their 2-record CommonsLog and then see verify_commons_log refuse it!
+2. Rule Chosen for "Was in the Room" in verify_registration
+For verify_registration(reg: &RoomRegistered, room: &RoomLog) -> Result<()>, I chose the rule that any member of the room (its creator in RoomCreated or anyone who joined via Record::Join) may register the room in a Commons, rather than restricting registration to the creator alone.
+ * Why: As established in our federation and AOL-lessons discussion, a room is a world with its own did:key, not the personal property of its creator, and a Commons is a directory rather than a landlord. If a room's creator steps back or a community member or delegate brings the room into a new peer Commons (also_listed_in), any verified member of the room has standing to list it, whereas a stranger who was never in the room (!was_member) has no business registering it.
+ * What verify_registration checks:
+   * verify_log(room)? — the room's own log must be valid.
+   * reg.type_ == "room_registered" and both proofs on reg (reg.registered_by and reg.commons_id) verify over hash::body_for_signing(reg).
+   * reg.room_id == room.world_id.
+   * reg.template_hash == room.template.hash()?.
+   * reg.room_seed_hash == room.records.first().unwrap().hash()?.
+   * reg.registered_by was a member of room (either rc.creator_id in Record::RoomCreated or j.subject_id in a Record::Join in room.records).
+3. What verify_sibling Checks
+For verify_sibling(sib: &SiblingDeclared, parent: &RoomLog) -> Result<()>:
+ * verify_log(parent)? — the parent's KnowledgeWorld log must be valid.
+ * sib.type_ == "sibling_declared", sib.parent_id != sib.sibling_id, and all three proofs on sib (parent_id, sibling_id, commons_id) verify over hash::body_for_signing(sib).
+ * parent.world_id == sib.parent_kw_id — the room log provided is the exact KnowledgeWorld named by parent_kw_id.
+ * parent.template.personal is true, and the creator in its RoomCreated seed is sib.parent_id (confirming it is a personal room made by the parent).
+ * parent.records contains a Record::KnowledgeShardExport(k) whose .hash()? == sib.shard_hash (and whose successor_id == sib.sibling_id).
+src/commons.rs
+use crate::did::{DidKey, Keypair};
+use crate::error::{Error, Result};
+use crate::hash;
+use crate::proof::{Proof, ProofOrArray};
+use crate::record::Record;
+use crate::room::{Room, RoomLog};
+use crate::verify::verify_log;
+use serde::{Deserialize, Deserializer, Serialize, Serializer};
+use std::collections::HashSet;
+
+fn looks_like_hash(s: &str) -> bool {
+    s.len() == 64 && s.chars().all(|c| c.is_ascii_hexdigit())
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct CommonsLog {
+    pub commons_id: DidKey,
+    pub records: Vec<CommonsRecord>,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct RoomRegistered {
+    #[serde(rename = "type")]
+    pub type_: String,
+    pub commons_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub room_id: DidKey,
+    pub topic: String,
+    pub template_hash: String,
+    pub room_seed_hash: String,
+    pub registered_by: DidKey,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub also_listed_in: Vec<DidKey>,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct SiblingDeclared {
+    #[serde(rename = "type")]
+    pub type_: String,
+    pub commons_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub parent_id: DidKey,
+    pub sibling_id: DidKey,
+    pub parent_kw_id: DidKey,
+    pub shard_hash: String,
+    pub purpose: String,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+#[derive(Clone, Debug)]
+pub enum CommonsRecord {
+    RoomRegistered(RoomRegistered),
+    SiblingDeclared(SiblingDeclared),
+}
+
+impl Serialize for CommonsRecord {
+    fn serialize<S: Serializer>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error> {
+        match self {
+            CommonsRecord::RoomRegistered(r) => r.serialize(serializer),
+            CommonsRecord::SiblingDeclared(s) => s.serialize(serializer),
+        }
+    }
+}
+
+impl<'de> Deserialize<'de> for CommonsRecord {
+    fn deserialize<D: Deserializer<'de>>(deserializer: D) -> std::result::Result<Self, D::Error> {
+        let v = serde_json::Value::deserialize(deserializer)?;
+        let t = v
+            .get("type")
+            .and_then(|x| x.as_str())
+            .ok_or_else(|| serde::de::Error::missing_field("type"))?;
+        match t {
+            "room_registered" => {
+                let r: RoomRegistered =
+                    serde_json::from_value(v).map_err(serde::de::Error::custom)?;
+                Ok(CommonsRecord::RoomRegistered(r))
+            }
+            "sibling_declared" => {
+                let s: SiblingDeclared =
+                    serde_json::from_value(v).map_err(serde::de::Error::custom)?;
+                Ok(CommonsRecord::SiblingDeclared(s))
+            }
+            other => Err(serde::de::Error::unknown_variant(
+                other,
+                &["room_registered", "sibling_declared"],
+            )),
+        }
+    }
+}
+
+impl CommonsRecord {
+    pub fn hash(&self) -> Result<String> {
+        match self {
+            CommonsRecord::RoomRegistered(r) => hash::hash_of(r),
+            CommonsRecord::SiblingDeclared(s) => hash::hash_of(s),
+        }
+    }
+    pub fn prev(&self) -> Option<&String> {
+        match self {
+            CommonsRecord::RoomRegistered(r) => r.prev.as_ref(),
+            CommonsRecord::SiblingDeclared(s) => s.prev.as_ref(),
+        }
+    }
+    pub fn seq(&self) -> u64 {
+        match self {
+            CommonsRecord::RoomRegistered(r) => r.seq,
+            CommonsRecord::SiblingDeclared(s) => s.seq,
+        }
+    }
+    pub fn proof(&self) -> &ProofOrArray {
+        match self {
+            CommonsRecord::RoomRegistered(r) => &r.proof,
+            CommonsRecord::SiblingDeclared(s) => &s.proof,
+        }
+    }
+}
+
+pub struct Commons {
+    pub world_id: DidKey,
+    keypair: Keypair,
+    records: Vec<CommonsRecord>,
+}
+
+impl Commons {
+    pub fn new(keypair: Keypair) -> Self {
+        let world_id = keypair.did();
+        Commons { world_id, keypair, records: Vec::new() }
+    }
+
+    pub fn records(&self) -> &[CommonsRecord] {
+        &self.records
+    }
+
+    pub fn log(&self) -> CommonsLog {
+        CommonsLog {
+            commons_id: self.world_id.clone(),
+            records: self.records.clone(),
+        }
+    }
+
+    pub fn register_room(
+        &mut self,
+        room: &Room,
+        registrant_kp: &Keypair,
+        topic: Option<String>,
+    ) -> Result<RoomRegistered> {
+        let seq = self.records.len() as u64;
+        let prev = match self.records.last() {
+            Some(r) => Some(r.hash()?),
+            None => None,
+        };
+        let seed_hash = room.records().first()
+            .ok_or_else(|| Error::Policy("room has no seed".into()))?
+            .hash()?;
+        let mut rec = RoomRegistered {
+            type_: "room_registered".into(),
+            commons_id: self.world_id.clone(),
+            seq, prev,
+            room_id: room.world_id().clone(),
+            topic: topic.unwrap_or_else(|| room.template().topic.clone()),
+            template_hash: room.template().hash()?,
+            room_seed_hash: seed_hash,
+            registered_by: registrant_kp.did(),
+            also_listed_in: Vec::new(),
+            ts: crate::now(),
+            proof: ProofOrArray::placeholder(),
+        };
+        let body = hash::body_for_signing(&rec)?;
+        let reg_sig = registrant_kp.sign(&body);
+        let commons_sig = self.keypair.sign(&body);
+        rec.proof = ProofOrArray::array(vec![
+            Proof::create(registrant_kp, &reg_sig),
+            Proof::create(&self.keypair, &commons_sig),
+        ]);
+        self.records.push(CommonsRecord::RoomRegistered(rec.clone()));
+        Ok(rec)
+    }
+
+    pub fn declare_sibling(
+        &mut self,
+        parent_kp: &Keypair,
+        sibling_kp: &Keypair,
+        parent_kw_id: &DidKey,
+        shard_hash: &str,
+        purpose: &str,
+    ) -> Result<SiblingDeclared> {
+        if parent_kp.did() == sibling_kp.did() {
+            return Err(Error::Policy("parent == sibling".into()));
+        }
+        if !looks_like_hash(shard_hash) {
+            return Err(Error::Policy("shard_hash must be 64 hex chars".into()));
+        }
+        let seq = self.records.len() as u64;
+        let prev = match self.records.last() {
+            Some(r) => Some(r.hash()?),
+            None => None,
+        };
+        let mut rec = SiblingDeclared {
+            type_: "sibling_declared".into(),
+            commons_id: self.world_id.clone(),
+            seq, prev,
+            parent_id: parent_kp.did(),
+            sibling_id: sibling_kp.did(),
+            parent_kw_id: parent_kw_id.clone(),
+            shard_hash: shard_hash.into(),
+            purpose: purpose.into(),
+            ts: crate::now(),
+            proof: ProofOrArray::placeholder(),
+        };
+        let body = hash::body_for_signing(&rec)?;
+        let p_sig = parent_kp.sign(&body);
+        let s_sig = sibling_kp.sign(&body);
+        let c_sig = self.keypair.sign(&body);
+        rec.proof = ProofOrArray::array(vec![
+            Proof::create(parent_kp, &p_sig),
+            Proof::create(sibling_kp, &s_sig),
+            Proof::create(&self.keypair, &c_sig),
+        ]);
+        self.records.push(CommonsRecord::SiblingDeclared(rec.clone()));
+        Ok(rec)
+    }
+}
+
+pub fn verify_commons(commons: &Commons) -> Result<()> {
+    verify_commons_log(&commons.log())
+}
+
+pub fn verify_commons_log(log: &CommonsLog) -> Result<()> {
+    let mut prev: Option<String> = None;
+    let mut seen_rooms: HashSet<DidKey> = HashSet::new();
+    let mut seen_siblings: HashSet<DidKey> = HashSet::new();
+
+    for (i, rec) in log.records.iter().enumerate() {
+        if rec.seq() != i as u64 {
+            return Err(Error::Chain(format!(
+                "record {i}: seq {} != expected {}",
+                rec.seq(),
+                i
+            )));
+        }
+        match rec {
+            CommonsRecord::RoomRegistered(r) => {
+                if r.type_ != "room_registered" {
+                    return Err(Error::Verification(format!("record {i}: bad type")));
+                }
+                if r.commons_id != log.commons_id {
+                    return Err(Error::Verification(format!("record {i}: commons_id mismatch")));
+                }
+                if r.prev != prev {
+                    return Err(Error::Chain(format!("record {i}: prev mismatch")));
+                }
+                if !looks_like_hash(&r.template_hash) {
+                    return Err(Error::Policy(format!("record {i}: bad template_hash")));
+                }
+                if !looks_like_hash(&r.room_seed_hash) {
+                    return Err(Error::Policy(format!("record {i}: bad room_seed_hash")));
+                }
+                if !seen_rooms.insert(r.room_id.clone()) {
+                    return Err(Error::Policy(format!(
+                        "record {i}: room {} already registered",
+                        r.room_id.as_str()
+                    )));
+                }
+                let body = hash::body_for_signing(r)?;
+                let reg = r.proof.find_by_method(&r.registered_by)
+                    .ok_or_else(|| Error::Verification(format!("record {i}: missing registrant proof")))?;
+                reg.verify(&body)?;
+                let com = r.proof.find_by_method(&log.commons_id)
+                    .ok_or_else(|| Error::Verification(format!("record {i}: missing commons proof")))?;
+                com.verify(&body)?;
+            }
+            CommonsRecord::SiblingDeclared(s) => {
+                if s.type_ != "sibling_declared" {
+                    return Err(Error::Verification(format!("record {i}: bad type")));
+                }
+                if s.commons_id != log.commons_id {
+                    return Err(Error::Verification(format!("record {i}: commons_id mismatch")));
+                }
+                if s.prev != prev {
+                    return Err(Error::Chain(format!("record {i}: prev mismatch")));
+                }
+                if s.parent_id == s.sibling_id {
+                    return Err(Error::Policy(format!("record {i}: parent == sibling")));
+                }
+                if !looks_like_hash(&s.shard_hash) {
+                    return Err(Error::Policy(format!("record {i}: bad shard_hash")));
+                }
+                if !seen_siblings.insert(s.sibling_id.clone()) {
+                    return Err(Error::Policy(format!(
+                        "record {i}: sibling {} already declared",
+                        s.sibling_id.as_str()
+                    )));
+                }
+                let body = hash::body_for_signing(s)?;
+                let p = s.proof.find_by_method(&s.parent_id)
+                    .ok_or_else(|| Error::Verification(format!("record {i}: missing parent proof")))?;
+                p.verify(&body)?;
+                let sib = s.proof.find_by_method(&s.sibling_id)
+                    .ok_or_else(|| Error::Verification(format!("record {i}: missing sibling proof")))?;
+                sib.verify(&body)?;
+                let com = s.proof.find_by_method(&log.commons_id)
+                    .ok_or_else(|| Error::Verification(format!("record {i}: missing commons proof")))?;
+                com.verify(&body)?;
+            }
+        }
+        prev = Some(rec.hash()?);
+    }
+    Ok(())
+}
+
+/// Cross-log verification of a `RoomRegistered` entry against the target room's `RoomLog`.
+/// Checks that the room's log verifies, that `room_id`, `template_hash`, and `room_seed_hash`
+/// match the room, and that `registered_by` was in the room (either its creator or a joined member).
+pub fn verify_registration(reg: &RoomRegistered, room: &RoomLog) -> Result<()> {
+    if reg.type_ != "room_registered" {
+        return Err(Error::Verification("not a room_registered record".into()));
+    }
+    let body = hash::body_for_signing(reg)?;
+    let reg_proof = reg
+        .proof
+        .find_by_method(&reg.registered_by)
+        .ok_or_else(|| Error::Verification("missing registrant proof".into()))?;
+    reg_proof.verify(&body)?;
+    let com_proof = reg
+        .proof
+        .find_by_method(&reg.commons_id)
+        .ok_or_else(|| Error::Verification("missing commons proof".into()))?;
+    com_proof.verify(&body)?;
+
+    verify_log(room)?;
+
+    if reg.room_id != room.world_id {
+        return Err(Error::Verification(
+            "registration room_id does not match room world_id".into(),
+        ));
+    }
+    let expected_template_hash = room.template.hash()?;
+    if reg.template_hash != expected_template_hash {
+        return Err(Error::Verification(
+            "registration template_hash does not match room template".into(),
+        ));
+    }
+    let seed = room
+        .records
+        .first()
+        .ok_or_else(|| Error::Chain("room has no seed record".into()))?;
+    let expected_seed_hash = seed.hash()?;
+    if reg.room_seed_hash != expected_seed_hash {
+        return Err(Error::Verification(
+            "registration room_seed_hash does not match room seed".into(),
+        ));
+    }
+
+    let was_in_room = room.records.iter().any(|rec| match rec {
+        Record::RoomCreated(rc) => rc.creator_id == reg.registered_by,
+        Record::Join(j) => j.subject_id == reg.registered_by,
+        _ => false,
+    });
+    if !was_in_room {
+        return Err(Error::Policy(
+            "registrant was never in the registered room".into(),
+        ));
+    }
+
+    Ok(())
+}
+
+/// Cross-log verification of a `SiblingDeclared` entry against the parent's `KnowledgeWorld` `RoomLog`.
+/// Checks that `parent` is the room named by `parent_kw_id`, that it verifies, that it is a personal
+/// room created by `sib.parent_id`, and that it contains a `KnowledgeShardExport` record with hash
+/// equal to `sib.shard_hash` (and `successor_id == sib.sibling_id`).
+pub fn verify_sibling(sib: &SiblingDeclared, parent: &RoomLog) -> Result<()> {
+    if sib.type_ != "sibling_declared" {
+        return Err(Error::Verification("not a sibling_declared record".into()));
+    }
+    if sib.parent_id == sib.sibling_id {
+        return Err(Error::Policy("parent == sibling".into()));
+    }
+    let body = hash::body_for_signing(sib)?;
+    let p_proof = sib
+        .proof
+        .find_by_method(&sib.parent_id)
+        .ok_or_else(|| Error::Verification("missing parent proof".into()))?;
+    p_proof.verify(&body)?;
+    let s_proof = sib
+        .proof
+        .find_by_method(&sib.sibling_id)
+        .ok_or_else(|| Error::Verification("missing sibling proof".into()))?;
+    s_proof.verify(&body)?;
+    let c_proof = sib
+        .proof
+        .find_by_method(&sib.commons_id)
+        .ok_or_else(|| Error::Verification("missing commons proof".into()))?;
+    c_proof.verify(&body)?;
+
+    if parent.world_id != sib.parent_kw_id {
+        return Err(Error::Verification(
+            "parent RoomLog world_id does not match parent_kw_id".into(),
+        ));
+    }
+
+    verify_log(parent)?;
+
+    if !parent.template.personal {
+        return Err(Error::Policy(
+            "parent KnowledgeWorld must be a personal room".into(),
+        ));
+    }
+    match parent.records.first() {
+        Some(Record::RoomCreated(rc)) => {
+            if rc.creator_id != sib.parent_id {
+                return Err(Error::Policy(
+                    "parent KnowledgeWorld was not created by sib.parent_id".into(),
+                ));
+            }
+        }
+        _ => return Err(Error::Chain("parent log missing room_created".into())),
+    }
+
+    let mut found_shard = false;
+    for rec in &parent.records {
+        if let Record::KnowledgeShardExport(k) = rec {
+            if rec.hash()? == sib.shard_hash {
+                if k.successor_id != sib.sibling_id {
+                    return Err(Error::Policy(
+                        "shard export successor_id does not match sibling_id".into(),
+                    ));
+                }
+                found_shard = true;
+                break;
+            }
+        }
+    }
+    if !found_shard {
+        return Err(Error::Verification(
+            "shard_hash not found in parent KnowledgeWorld log".into(),
+        ));
+    }
+
+    Ok(())
+}
+
+tests/commons_across.rs
+use chat_world::commons::{
+    verify_registration, verify_sibling, Commons, RoomRegistered,
+};
+use chat_world::error::Result;
+use chat_world::hash::body_for_signing;
+use chat_world::home::HomeRoom;
+use chat_world::{Keypair, Proof, ProofOrArray, Room, RoomTemplate};
+
+#[test]
+fn honest_registration_verifies_across_logs_for_creator_and_member() -> Result<()> {
+    let alice = Keypair::generate();
+    let bob = Keypair::generate();
+    let room_kp = Keypair::generate();
+    let mut room = Room::create(RoomTemplate::chat("t", "test"), room_kp, &alice)?;
+    room.join(&bob, "communicate", false)?;
+
+    // Registered by creator (alice)
+    let mut commons1 = Commons::new(Keypair::generate());
+    let reg_alice = commons1.register_room(&room, &alice, None)?;
+    verify_registration(&reg_alice, &room.log())?;
+
+    // Registered by another member in the room (bob)
+    let mut commons2 = Commons::new(Keypair::generate());
+    let reg_bob = commons2.register_room(&room, &bob, None)?;
+    verify_registration(&reg_bob, &room.log())?;
+
+    Ok(())
+}
+
+#[test]
+fn registration_refused_when_registrant_was_never_in_room() -> Result<()> {
+    let alice = Keypair::generate();
+    let stranger = Keypair::generate();
+    let room_kp = Keypair::generate();
+    let room = Room::create(RoomTemplate::chat("t", "test"), room_kp, &alice)?;
+
+    let mut commons = Commons::new(Keypair::generate());
+    let reg = commons.register_room(&room, &stranger, None)?;
+
+    assert!(verify_registration(&reg, &room.log()).is_err());
+    Ok(())
+}
+
+#[test]
+fn registration_refused_when_checked_against_wrong_room_log() -> Result<()> {
+    let alice = Keypair::generate();
+    let room1 = Room::create(RoomTemplate::chat("t", "one"), Keypair::generate(), &alice)?;
+    let room2 = Room::create(RoomTemplate::chat("t", "two"), Keypair::generate(), &alice)?;
+
+    let mut commons = Commons::new(Keypair::generate());
+    let reg1 = commons.register_room(&room1, &alice, None)?;
+
+    assert!(verify_registration(&reg1, &room2.log()).is_err());
+    Ok(())
+}
+
+#[test]
+fn registration_refused_when_template_hash_or_seed_hash_forged() -> Result<()> {
+    let alice = Keypair::generate();
+    let commons_kp = Keypair::generate();
+    let room = Room::create(RoomTemplate::chat("t", "test"), Keypair::generate(), &alice)?;
+    let seed_hash = room.records().first().unwrap().hash()?;
+
+    // Forged template_hash signed by both alice and commons_kp
+    let mut bad_tpl = RoomRegistered {
+        type_: "room_registered".into(),
+        commons_id: commons_kp.did(),
+        seq: 0,
+        prev: None,
+        room_id: room.world_id().clone(),
+        topic: "test".into(),
+        template_hash: "11".repeat(32),
+        room_seed_hash: seed_hash,
+        registered_by: alice.did(),
+        also_listed_in: Vec::new(),
+        ts: chat_world::now(),
+        proof: ProofOrArray::placeholder(),
+    };
+    let body1 = body_for_signing(&bad_tpl)?;
+    bad_tpl.proof = ProofOrArray::array(vec![
+        Proof::create(&alice, &alice.sign(&body1)),
+        Proof::create(&commons_kp, &commons_kp.sign(&body1)),
+    ]);
+    assert!(verify_registration(&bad_tpl, &room.log()).is_err());
+
+    // Forged room_seed_hash signed by both alice and commons_kp
+    let mut bad_seed = RoomRegistered {
+        type_: "room_registered".into(),
+        commons_id: commons_kp.did(),
+        seq: 0,
+        prev: None,
+        room_id: room.world_id().clone(),
+        topic: "test".into(),
+        template_hash: room.template().hash()?,
+        room_seed_hash: "22".repeat(32),
+        registered_by: alice.did(),
+        also_listed_in: Vec::new(),
+        ts: chat_world::now(),
+        proof: ProofOrArray::placeholder(),
+    };
+    let body2 = body_for_signing(&bad_seed)?;
+    bad_seed.proof = ProofOrArray::array(vec![
+        Proof::create(&alice, &alice.sign(&body2)),
+        Proof::create(&commons_kp, &commons_kp.sign(&body2)),
+    ]);
+    assert!(verify_registration(&bad_seed, &room.log()).is_err());
+
+    Ok(())
+}
+
+#[test]
+fn honest_sibling_verifies_across_logs() -> Result<()> {
+    let parent_kp = Keypair::generate();
+    let sibling_kp = Keypair::generate();
+    let kw_room_kp = Keypair::generate();
+    let commons_kp = Keypair::generate();
+
+    let mut parent_kw = HomeRoom::create(parent_kp.clone(), kw_room_kp, "parent kw")?;
+    let obs = parent_kw.journal("observation 1")?;
+    let obs_hash = obs.hash()?;
+    let target_room = Keypair::generate().did();
+    let export = parent_kw.emit_shard_export(&target_room, &sibling_kp.did(), vec![obs_hash])?;
+    let shard_hash = export.hash()?;
+
+    let mut commons = Commons::new(commons_kp);
+    let sib = commons.declare_sibling(
+        &parent_kp,
+        &sibling_kp,
+        parent_kw.room().world_id(),
+        &shard_hash,
+        "graduation",
+    )?;
+
+    verify_sibling(&sib, &parent_kw.room().log())
+}
+
+#[test]
+fn sibling_refused_when_shard_hash_missing_from_parent_kw() -> Result<()> {
+    let parent_kp = Keypair::generate();
+    let sibling_kp = Keypair::generate();
+    let kw_room_kp = Keypair::generate();
+    let commons_kp = Keypair::generate();
+
+    let mut parent_kw = HomeRoom::create(parent_kp.clone(), kw_room_kp, "parent kw")?;
+    parent_kw.journal("observation 1")?;
+
+    let mut commons = Commons::new(commons_kp);
+    let fake_shard = "aa".repeat(32);
+    let sib = commons.declare_sibling(
+        &parent_kp,
+        &sibling_kp,
+        parent_kw.room().world_id(),
+        &fake_shard,
+        "graduation",
+    )?;
+
+    assert!(verify_sibling(&sib, &parent_kw.room().log()).is_err());
+    Ok(())
+}
+
+#[test]
+fn sibling_refused_when_parent_room_is_not_personal_or_wrong_owner() -> Result<()> {
+    let parent_kp = Keypair::generate();
+    let impostor_kp = Keypair::generate();
+    let sibling_kp = Keypair::generate();
+    let commons_kp = Keypair::generate();
+
+    // Case 1: parent_kw_id points to a non-personal chat room
+    let normal_room = Room::create(
+        RoomTemplate::chat("t", "normal"),
+        Keypair::generate(),
+        &parent_kp,
+    )?;
+    let mut commons = Commons::new(commons_kp);
+    let sib1 = commons.declare_sibling(
+        &parent_kp,
+        &sibling_kp,
+        normal_room.world_id(),
+        &"bb".repeat(32),
+        "graduation",
+    )?;
+    assert!(verify_sibling(&sib1, &normal_room.log()).is_err());
+
+    // Case 2: personal room owned by impostor_kp rather than parent_kp
+    let mut impostor_kw = HomeRoom::create(impostor_kp, Keypair::generate(), "impostor kw")?;
+    let obs = impostor_kw.journal("obs")?;
+    let export = impostor_kw.emit_shard_export(
+        &Keypair::generate().did(),
+        &sibling_kp.did(),
+        vec![obs.hash()?],
+    )?;
+    let sib2 = commons.declare_sibling(
+        &parent_kp,
+        &sibling_kp,
+        impostor_kw.room().world_id(),
+        &export.hash()?,
+        "graduation",
+    )?;
+    assert!(verify_sibling(&sib2, &impostor_kw.room().log()).is_err());
+
+    Ok(())
+}
+
+Expected: 92 tests pass (66 earlier, 3 in tests/commons_outside.rs, all 16 in tests/commons_attack.rs, and 7 in tests/commons_across.rs).
+
+
 ::
-
-

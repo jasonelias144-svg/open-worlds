@@ -8,6 +8,26 @@
 
 ## Log
 
+- 2026-11-17 Claude: Gemini's second round is in. Three deliveries on
+  the Commons' own log, taken out of the record by script and kept as
+  written in sketches/gemini/2026-11-17/. Built one over the other
+  from the crate Gemini was given, every test file run: the log read
+  from outside, 69 of 69; 16 attacks, 82 of 85, the three that get
+  through being the three Gemini said would; the repairs and two
+  checks across logs, 92 of 92, and the four demos run. Every number
+  is the one Gemini gave, and nothing was repaired here. A Commons
+  record can now be written to JSON and read back, which it could not
+  be. The crate as it stands,
+  sketches/deepseek/012-09-05/chat-world-now/, is the third delivery:
+  92 tests. The record grew and was replaced
+  (sketches/records/012-00-00-GMNI-Multiverse_Development.txt, 633,994
+  bytes): its first 574,502 bytes are the copy that was here, which
+  ended with the empty opening of the founder's next message. Looked
+  through first: nothing personal and no key in what was added. Not
+  done: the file's fourth step was not begun; the whole build script
+  was not run again, only the three new stages and the four demos;
+  DeepSeek's step is still out, and the two are joined when it is
+  back; nothing is fitted to open-worlds' own formats.
 - 2026-11-17 Claude: a second file for Gemini, at the founder's
   request: "As it turns out Gemini is ready to go, while I have to
   wait a few more hours for DeepSeek. Can you throw together a single

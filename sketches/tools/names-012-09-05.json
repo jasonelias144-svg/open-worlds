@@ -127,6 +127,9 @@
   "chat-world-now/src/transcript.rs",
   "chat-world-now/src/verify.rs",
   "chat-world-now/tests/attack.rs",
+  "chat-world-now/tests/commons_across.rs",
+  "chat-world-now/tests/commons_attack.rs",
+  "chat-world-now/tests/commons_outside.rs",
   "chat-world-now/tests/integration.rs",
   "chat-world-now/tests/outside.rs"
  ],

@@ -1,17 +1,19 @@
 """Ours, not DeepSeek's (see ../README.md). Puts together the crate as
 it stands after each delivery: the five of DeepSeek's that record
-012-09-05 ends with, then the three of Gemini's that followed. Each is
-laid over the one before, starting from the crate DeepSeek was given,
-../chat-world.
+012-09-05 ends with, then the three of Gemini's that followed, then
+Gemini's three on the Commons. Each is laid over the one before,
+starting from the crate DeepSeek was given, ../chat-world.
 
 DeepSeek's files are kept in ../chat-world-steps/1 to 5, as the record
 gives them (../../tools/extract.py checks that). Gemini's are kept in
-../../../gemini/2026-11-16/steps/1 to 3, as written, each with its
-hash in that folder's MANIFEST.json.
+../../../gemini/2026-11-16/steps/1 to 3 and
+../../../gemini/2026-11-17/steps/1 to 3, as written, each with its
+hash in its folder's MANIFEST.json.
 
     python3 steps.py OUT            OUT/1 ... OUT/5
     python3 steps.py --aside OUT    and OUT/5-aside
-    python3 steps.py --now OUT      and OUT/5-repaired, g1, g2, g3, now
+    python3 steps.py --now OUT      and OUT/5-repaired, g1, g2, g3,
+                                    g3-repaired, c1, c2, c3, now
     python3 steps.py --check        is ../chat-world-now what --now makes?
 
 Nothing is run: this only copies files. Each OUT/N/chat-world is the
@@ -23,15 +25,20 @@ delivery before left it.
                  ../../../INDEX.md, fixes 19 to 21). This is the crate
                  Gemini was given.
     g1, g2, g3   Gemini's three deliveries, laid over it in order.
-    now          g3 with two of the crate's earlier tests corrected
+    g3-repaired  g3 with two of the crate's earlier tests corrected
                  and a room's law closed to change in place
                  (REPAIRS_AFTER; fixes 22 and 23). This is the crate
-                 as it stands, kept in ../chat-world-now.
+                 Gemini was given the second time.
+    c1, c2, c3   Gemini's three deliveries on the Commons
+                 (2026-11-17), laid over it in order.
+    now          c3, with nothing changed. This is the crate as it
+                 stands, kept in ../chat-world-now.
 
 `--check` puts the crate together again and compares it with that
-folder, byte for byte, and holds Gemini's files to their hashes. So
-every file in ../chat-world-now is known to be the latest that
-DeepSeek or Gemini gave, changed only as the two lists of repairs say.
+folder, byte for byte, and holds Gemini's files, in both of its
+folders, to their hashes. So every file in ../chat-world-now is known
+to be the latest that DeepSeek or Gemini gave, changed only as the two
+lists of repairs say.
 sketch_status_test.py runs the check.
 
 `--aside` also writes OUT/5-aside: delivery 5 with its two faults set
@@ -54,6 +61,9 @@ import tempfile
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GEMINI = os.path.join(os.path.dirname(os.path.dirname(HERE)),
                       "gemini", "2026-11-16")
+# Gemini's second round: the Commons' own log.
+GEMINI_COMMONS = os.path.join(os.path.dirname(os.path.dirname(HERE)),
+                              "gemini", "2026-11-17")
 # The condition in delivery 5's src/verify.rs that does not compile.
 FAULT = ('if !looks_like_hash(&k.entry_hashes.iter().any(|_| "x".to_string())'
          '.then(|| "".to_string()).unwrap_or_default()) {')
@@ -169,20 +179,25 @@ def same(a, b):
         for d in found.common_dirs)
 
 
-def gemini_as_written():
+def gemini_as_written(kept=None):
     """Stops unless each of Gemini's files has the hash its folder's
-    MANIFEST.json gives, and the folder holds no other file."""
-    with open(os.path.join(GEMINI, "MANIFEST.json"), encoding="utf-8") as f:
+    MANIFEST.json gives, and the folder holds no other file. Both of
+    Gemini's folders, unless one is given."""
+    if kept is None:
+        gemini_as_written(GEMINI)
+        gemini_as_written(GEMINI_COMMONS)
+        return
+    with open(os.path.join(kept, "MANIFEST.json"), encoding="utf-8") as f:
         files = json.load(f)["files"]
     found = set()
-    for folder, _, names in os.walk(os.path.join(GEMINI, "steps")):
+    for folder, _, names in os.walk(os.path.join(kept, "steps")):
         for name in names:
             path = os.path.join(folder, name)
-            found.add(os.path.relpath(path, GEMINI).replace(os.sep, "/"))
+            found.add(os.path.relpath(path, kept).replace(os.sep, "/"))
     if found != set(files):
         sys.exit("Gemini's files are not the ones MANIFEST.json lists")
     for name, entry in files.items():
-        with open(os.path.join(GEMINI, name), "rb") as f:
+        with open(os.path.join(kept, name), "rb") as f:
             if hashlib.sha256(f.read()).hexdigest() != entry["sha256"]:
                 sys.exit(f"{name} is not as Gemini wrote it")
 
@@ -196,7 +211,7 @@ def check():
         if not same(made, os.path.join(HERE, "chat-world-now")):
             sys.exit("chat-world-now is not the deliveries with the listed "
                      "repairs: run steps.py --now and compare")
-    print("chat-world-now is DeepSeek's five deliveries and Gemini's three, "
+    print("chat-world-now is DeepSeek's five deliveries and Gemini's six, "
           "with the listed repairs")
 
 
@@ -238,9 +253,19 @@ def main(argv, quiet=False):
             count = lay(os.path.join(GEMINI, "steps", step), tree)
             say(f"Gemini's delivery {step}: {count} files laid over: g{step}")
             before = tree
-        repaired(before, os.path.join(out, "now", "chat-world"),
-                 REPAIRS_AFTER)
-        say("two earlier tests corrected, a room's law closed: now")
+        tree = os.path.join(out, "g3-repaired", "chat-world")
+        repaired(before, tree, REPAIRS_AFTER)
+        say("two earlier tests corrected, a room's law closed: g3-repaired")
+        before = tree
+        for step in "123":
+            tree = os.path.join(out, "c" + step, "chat-world")
+            shutil.copytree(before, tree)
+            count = lay(os.path.join(GEMINI_COMMONS, "steps", step), tree)
+            say(f"Gemini's delivery {step} on the Commons: "
+                f"{count} files laid over: c{step}")
+            before = tree
+        shutil.copytree(before, os.path.join(out, "now", "chat-world"))
+        say("nothing changed after it: now")
 
 
 if __name__ == "__main__":

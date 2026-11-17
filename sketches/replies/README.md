@@ -67,6 +67,18 @@ given whole, as one upload. The script refuses to write a longer one.
 A file that was given is not changed. What was later found wrong in it
 is said here, and in the next reply.
 
+- `012-09-05-2`, parts 2 and 6: it says the crate has 66 tests, and
+  that `src/commons.rs` is as DeepSeek wrote it. After Gemini's round
+  on the Commons, the same day, the crate has 92 tests, and
+  `src/commons.rs` and three new test files are Gemini's
+  (`../gemini/2026-11-17/README.md`). The ten files the reply holds
+  are unchanged, byte for byte, so the reply is still current, and
+  DeepSeek's step is not affected: laid over the crate as it stands,
+  its count will be 92 and its new tests, not 66 and them.
+- `2026-11-17-gemini`: Gemini did the first three of its four steps,
+  and `src/commons.rs` in it is no longer the crate's. The fourth
+  step, attacks on a room's other records, can still be done from it:
+  that step reads `src/verify.rs`, which has not changed.
 - `012-09-05-2`, part 2: "Only one of you writes it at a time." That
   was the rule when the file was written. Hours later the founder had
   Gemini free and DeepSeek not yet, and Gemini was given a file to

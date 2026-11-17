@@ -97,10 +97,12 @@ free, and never a money machine
   sent five deliveries of the crate, each file whole. Then Gemini,
   given a file of its own, made the crate's log checkable from
   outside, attacked the check with 22 tests, and repaired what got
-  through (sketches/gemini/2026-11-16/). With five small repairs the
-  crate as it stands (`chat-world-now/`) passes all 66 of its tests.
-  The two take turns: DeepSeek has it next, for branches. Fitting it
-  to open-worlds' own code is step 3c.
+  through (sketches/gemini/2026-11-16/). Then, in a second round, it
+  did the same for the Commons' own log
+  (sketches/gemini/2026-11-17/). With five small repairs the crate as
+  it stands (`chat-world-now/`) passes all 92 of its tests. DeepSeek
+  has it next, for branches. Fitting it to open-worlds' own code is
+  step 3c.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds

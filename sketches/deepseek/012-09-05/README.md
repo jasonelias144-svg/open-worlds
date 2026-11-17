@@ -165,9 +165,13 @@ deliveries, with the three faults repaired in a few lines (fixes 19 to
 its tests, and its four demos ran. That crate went to Gemini, whose
 three deliveries are laid over it
 ([../../gemini/2026-11-16/README.md](../../gemini/2026-11-16/README.md)),
-with two more repairs made here (fixes 22 and 23). As it stands it
-passes all 66 of its tests, 41 of them DeepSeek's and 25 Gemini's, and
-its four demos run. It is put together here, by
+with two more repairs made here (fixes 22 and 23); it then passed all
+66 of its tests. Gemini's three deliveries on the Commons are laid
+over that
+([../../gemini/2026-11-17/README.md](../../gemini/2026-11-17/README.md)),
+with nothing changed. As it stands it passes all 92 of its tests, 41
+of them DeepSeek's and 51 Gemini's, and its four demos run. It is put
+together here, by
 `review/steps.py --now`; `review/steps.py --check` holds the folder to
 that, byte for byte, and `sketch_status_test.py` runs the check. So
 its files are listed below as ours, though each is exactly as DeepSeek

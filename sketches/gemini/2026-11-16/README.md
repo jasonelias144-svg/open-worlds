@@ -15,9 +15,13 @@ asked for. The fourth was not asked for and is not used.
 The conversation is
 [../../records/012-00-00-GMNI-Multiverse_Development.txt](../../records/012-00-00-GMNI-Multiverse_Development.txt),
 kept word for word with the project's other records since 2026-11-17,
-at the founder's word (STATUS.md, "Decided"): 574,505 bytes, SHA-256
-`39aea56cb85ed9f3b2c928b01bd7802b552e24f84c5e05a5bac7187bfd410d31`.
-What Gemini wrote after it was given the file begins at line 9748.
+at the founder's word (STATUS.md, "Decided"). It has grown since:
+it was 574,505 bytes when these files were taken, SHA-256
+`39aea56cb85ed9f3b2c928b01bd7802b552e24f84c5e05a5bac7187bfd410d31`,
+and what follows that in it is Gemini's second round
+([../2026-11-17/README.md](../2026-11-17/README.md)). The manifest here
+names the record as it stands. What Gemini wrote after it was given
+the first file begins at line 9748.
 
 [MANIFEST.json](MANIFEST.json) gives, for each file in `steps/`, the
 lines of the conversation it was taken from and its SHA-256.

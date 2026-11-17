@@ -194,12 +194,13 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/schem
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/schemas/records-v1.schema.json/02.txt
 ```
 
-## `sketches/INDEX.md`, in 3 parts
+## `sketches/INDEX.md`, in 4 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/start.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-06-02-piece-by-piece.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-09-05-piece-by-piece.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/changes-to-deepseek-s-code.md
 ```
 
 ## `tests/test_apart.py`, in 2 parts

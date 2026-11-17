@@ -177,7 +177,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-draft/src/verify.rs
 ```
 
-**`sketches/deepseek/012-09-05/chat-world-now`** (22 files, 162 KB):
+**`sketches/deepseek/012-09-05/chat-world-now`** (25 files, 192 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/Cargo.toml
@@ -200,6 +200,9 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/transcript.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/verify.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/tests/attack.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/tests/commons_across.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/tests/commons_attack.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/tests/commons_outside.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/tests/integration.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/tests/outside.rs
 ```
@@ -243,7 +246,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-steps/5/tests/integration.rs
 ```
 
-**`sketches/deepseek/012-09-05/review`** (3 files, 18 KB):
+**`sketches/deepseek/012-09-05/review`** (3 files, 19 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/review/run.sh

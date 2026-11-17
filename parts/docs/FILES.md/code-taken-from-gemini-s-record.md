@@ -8,7 +8,7 @@
 
 ## Code taken from Gemini's record
 
-In `sketches/gemini`, 13 files, 152 KB in all, the largest 26 KB: Gemini's code as it wrote it, a folder per stretch of work; each folder's `MANIFEST.json` and `take.py` hold its files to the record they were taken from.
+In `sketches/gemini`, 21 files, 210 KB in all, the largest 26 KB: Gemini's code as it wrote it, a folder per stretch of work; each folder's `MANIFEST.json` and `take.py` hold its files to the record they were taken from.
 
 **`sketches/gemini/2026-11-16`** (13 files, 152 KB):
 
@@ -28,11 +28,24 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/ge
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/take.py
 ```
 
+**`sketches/gemini/2026-11-17`** (8 files, 57 KB):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-17/MANIFEST.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-17/README.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-17/steps/1/src/commons.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-17/steps/1/tests/commons_outside.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-17/steps/2/tests/commons_attack.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-17/steps/3/src/commons.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-17/steps/3/tests/commons_across.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-17/take.py
+```
+
 ## What DeepSeek was given
 
-In `sketches/replies`, 13 files, 466 KB in all, the largest 117 KB: the one file the founder gave DeepSeek, or Gemini, at each return, with the reply and the list of files it was built from (`docs/reply.py` builds it).
+In `sketches/replies`, 13 files, 467 KB in all, the largest 117 KB: the one file the founder gave DeepSeek, or Gemini, at each return, with the reply and the list of files it was built from (`docs/reply.py` builds it).
 
-**`sketches/replies`** (13 files, 466 KB):
+**`sketches/replies`** (13 files, 467 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-09-05-2-for-deepseek.txt

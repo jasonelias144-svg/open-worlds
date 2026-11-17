@@ -89,10 +89,12 @@ free, and never a money machine
   sent five deliveries of the crate, each file whole. Then Gemini,
   given a file of its own, made the crate's log checkable from
   outside, attacked the check with 22 tests, and repaired what got
-  through (sketches/gemini/2026-11-16/). With five small repairs the
-  crate as it stands (`chat-world-now/`) passes all 66 of its tests.
-  The two take turns: DeepSeek has it next, for branches. Fitting it
-  to open-worlds' own code is step 3c.
+  through (sketches/gemini/2026-11-16/). Then, in a second round, it
+  did the same for the Commons' own log
+  (sketches/gemini/2026-11-17/). With five small repairs the crate as
+  it stands (`chat-world-now/`) passes all 92 of its tests. DeepSeek
+  has it next, for branches. Fitting it to open-worlds' own code is
+  step 3c.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
@@ -411,6 +413,24 @@ kind.
 
 ## Decided
 
+- 2026-11-17, founder, a few pieces at a time. Bringing Gemini's
+  second round back: "This was quick, but, to be honest, integrating a
+  few new pieces of code at a time is the norm. Coming back with a
+  whole bunch of new code isn't usually how things are done. This
+  incremental, but seems right at this stage anyways, since much of
+  the large scale ideas have been sketched out, at least. At this
+  point, building the parts makes sense, we have enough ideas to keep
+  up busy for a year." Read by the technical lead as a direction for
+  how the work goes from here, which stands unless the founder answers
+  otherwise: (1) a collaborator's round is a few pieces, brought back
+  and joined before the next begins, not a large batch; (2) the weight
+  moves from sketching new ideas to building the parts already
+  sketched, and the ideas on record (docs/TOPICS.md, docs/VISION.md)
+  are what is built from; (3) a new idea is still recorded when it
+  comes, and built in its turn. The technical lead agrees, from what
+  was measured: the rounds that came back as a few whole files were
+  each built as given in the session they came back in, and the large
+  records needed the repairs sketches/INDEX.md lists before they ran.
 - 2026-11-17, founder, the conversation records are kept together, and
   whole. Asked whether the conversation with Gemini should be kept in
   the private repository: "You can include the Gemini conversation
@@ -3574,6 +3594,26 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-17 Claude: Gemini's second round is in. Three deliveries on
+  the Commons' own log, taken out of the record by script and kept as
+  written in sketches/gemini/2026-11-17/. Built one over the other
+  from the crate Gemini was given, every test file run: the log read
+  from outside, 69 of 69; 16 attacks, 82 of 85, the three that get
+  through being the three Gemini said would; the repairs and two
+  checks across logs, 92 of 92, and the four demos run. Every number
+  is the one Gemini gave, and nothing was repaired here. A Commons
+  record can now be written to JSON and read back, which it could not
+  be. The crate as it stands,
+  sketches/deepseek/012-09-05/chat-world-now/, is the third delivery:
+  92 tests. The record grew and was replaced
+  (sketches/records/012-00-00-GMNI-Multiverse_Development.txt, 633,994
+  bytes): its first 574,502 bytes are the copy that was here, which
+  ended with the empty opening of the founder's next message. Looked
+  through first: nothing personal and no key in what was added. Not
+  done: the file's fourth step was not begun; the whole build script
+  was not run again, only the three new stages and the four demos;
+  DeepSeek's step is still out, and the two are joined when it is
+  back; nothing is fitted to open-worlds' own formats.
 - 2026-11-17 Claude: a second file for Gemini, at the founder's
   request: "As it turns out Gemini is ready to go, while I have to
   wait a few more hours for DeepSeek. Can you throw together a single
