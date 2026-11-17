@@ -375,8 +375,13 @@ one of them updates this page.
     (2026-11-17): "let's use a local copy of some data source to
     start", "without requiring active internet access, which could
     come later". A lookup in the Library is answered from a copy inside
-    the multiverse, and nothing an individual asks leaves it. The
-    lookup itself is an act on the record, like any act (item 2). When
+    the multiverse, and nothing an individual asks leaves it. What
+    someone looks up is their own, like what they think (item 2): no
+    record is kept of who asked what. (Until 2026-11-17 this item had
+    a lookup be an act on the record, like any act. The technical
+    lead revised it when the founder asked for a look into a room
+    before entering: item 19, and STATUS.md, "Decided by the
+    technical lead".) When
     reading the internet is added, what is asked goes outside, and an
     individual is told so before they first use it. And a page of the
     multiverse's own wiki about a person is information about that
@@ -407,6 +412,16 @@ one of them updates this page.
     or map can make it for anyone (STATUS.md, "Decided by the
     technical lead", 2026-11-17; [COMMONS.md](COMMONS.md)). Not
     built.
+19. **Reading is one's own.** The founder (2026-11-17): "you should be
+    able to glance into the conversation in a read-only way before
+    enter a room." The technical lead's reading: a room on the record
+    can be looked into before it is entered, read-only, and a closed
+    room can't. No record is kept of who looked into which room, as
+    none is kept of what anyone looked up (item 16). A list of what
+    someone read is a list of what they think about, which is their
+    own (item 2). Entering is the act; looking is not. Its limit:
+    those in an open room can't see who reads it. They are told on
+    entering that the room is on the record (item 13). Not built.
 
 ## Transparency, beside privacy
 

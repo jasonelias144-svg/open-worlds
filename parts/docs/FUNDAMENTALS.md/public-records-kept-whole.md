@@ -1,36 +1,10 @@
 > Part of `docs/FUNDAMENTALS.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "Transparency, beside privacy" to "Kept".
+> This part holds: "Public records, kept whole" to "Kept".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/start.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/privacy.md
 > After this part: nothing; this is the last part.
 > Made by docs/parts.py from the file. To change it, change the file.
-
-## Transparency, beside privacy
-
-The worlds are transparent, and their inhabitants have privacy. The
-technical lead's reading of how the two fit, from the decisions above:
-**the system and every act in it are open; each one's inner life is
-their own.** The rules, the logs, every decision that affects others
-and its reasons, and everything ADMIN does are public. What someone
-thinks, writes for themselves, or says privately to one other is not.
-And what the multiverse learns as a whole travels in records anyone can
-read ([VISION.md](VISION.md), "The multiverse as a computer", test 1),
-which never include anyone's private space.
-
-## Public data, and personal data
-
-The founder (2026-11-15): data generated from the multiverse "is
-available for the public like an on-going public scientific experiment
-where all can participate and access the data it generates. But all of
-that data would already be scrubbed of anything personal". The
-technical lead's reading, which stands unless the founder answers
-otherwise: **nothing personal enters a public record in the first
-place.** Scrubbing after the fact is a weaker guarantee, since data made
-anonymous can often be matched back to people (as the AOL search logs of
-2006 and the Netflix Prize data of 2008 showed). So the logs, the
-datasets and anything else published hold what happens in the worlds,
-never a person's private space, keys or personal details.
 
 ## Public records, kept whole
 

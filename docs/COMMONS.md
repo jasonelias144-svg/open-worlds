@@ -705,6 +705,24 @@ combined in the same interface."
   who may is the strong form; a list of who may not holds only
   against a presence already known. No room, moderator or map makes
   it for anyone ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, 18).
+- **A look inside before entering.** The founder (2026-11-17): "you
+  should be able to glance into the conversation in a read-only way
+  before enter a room." A room on the record gives its visible log to
+  whoever looks: what those in it see, with what was removed left
+  out. A closed room gives none. Looking is not entering, and no
+  record is kept of who looked
+  ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, 19).
+- **More than one number, and a flag.** The founder: "Other metrics
+  could apply as well", and "a room with many participants and no
+  discussion would be a system flag. Incident report and all that."
+  Beside how many are in a room, a door shows how many messages its
+  log holds and how many different members have spoken, from the
+  same log. A room with many in it and nothing said is flagged by a
+  rule anyone can run again; the flag is shown as a fact and opens an
+  incident for the room's moderator. It removes nothing by itself: a
+  full room where nothing is said can be a reading room. What no
+  number tells, talk faked between one holder's keys, the look inside
+  does.
 - **Each place links to its page** on the Library's second shelf: its
   law, what it keeps, how to leave it, what can be done there. What a
   room tells on entering can then be read before choosing to go.

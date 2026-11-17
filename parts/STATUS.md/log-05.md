@@ -8,6 +8,18 @@
 
 ## Log
 
+- 2026-11-17 Claude: the founder's words on looking into a room
+  before entering, on other numbers and on a flag are recorded
+  (Decided), with how the technical lead shapes them (Decided by the
+  technical lead): docs/COMMONS.md (the map), docs/FUNDAMENTALS.md
+  (privacy, 16 revised and a new 19), docs/TOPICS.md (topic 16),
+  docs/COLLABORATING.md. One thing is corrected. The technical lead
+  had told the founder that a look into a room would leave no trace,
+  "the same as looking something up in the Library". The Library's
+  rule, as the technical lead had written it, said the opposite: a
+  lookup is an act on the record. The two could not both stand. The
+  technical lead decided that reading is one's own, revised that
+  sentence, and told the founder. Nothing is built.
 - 2026-11-17 Claude: Gemini's record is continued, as the founder
   brought it (733,438 bytes, 17,192 lines; its first 705,897 bytes
   are the record as it was kept). Looked through first: the

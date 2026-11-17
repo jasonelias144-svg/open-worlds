@@ -93,11 +93,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/experiment-001-s-run-logs-01.md
 ```
 
-## `docs/FUNDAMENTALS.md`, in 2 parts
+## `docs/FUNDAMENTALS.md`, in 3 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/start.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/transparency-beside-privacy.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/privacy.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/public-records-kept-whole.md
 ```
 
 ## `docs/MULTIVERSE.md`, in 2 parts

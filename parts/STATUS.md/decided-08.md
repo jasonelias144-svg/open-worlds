@@ -8,6 +8,23 @@
 
 ## Decided
 
+- 2026-11-17, founder, a look into a room before entering, other
+  numbers, and a flag. The technical lead had said that a count is a
+  count of keys, which cost nothing to make, so a room could be
+  filled to put it first among the most populated. "Interesting idea
+  about padding list to be on most populated list. That would be
+  odd, because there is no prize for being on top. Other metrics
+  could apply as well, but you should be able to glance into the
+  conversation in a read-only way before enter a room. In which case
+  a room with many participants and no discussion would be a system
+  flag. Incident report and all that. Thoughts?"
+  The technical lead's reading, which stands unless the founder
+  answers otherwise. Decided: a room can be looked into, read-only,
+  before it is entered; and a room with many in it and nothing said
+  is flagged, with an incident opened. Given as thoughts: that other
+  numbers could be shown, and that padding a room would be odd. How
+  each is shaped is the technical lead's (Decided by the technical
+  lead; docs/COMMONS.md).
 - 2026-11-17, founder, a count of who is in a room is shown by
   default. "Yeah, count is a normal way to rank rooms according to
   popularity. The most populated rooms would be on some list when
