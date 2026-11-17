@@ -12,22 +12,23 @@ asked for. The fourth was not asked for and is not used.
 
 ## Where it comes from
 
-The conversation is not in this repository. It goes on from an earlier
-one that holds personal things, so it is kept private (STATUS.md,
-"Decided", 2026-11-16, on naming Gemini). It is named here by its size
-and hash: 574,505 bytes, SHA-256
+The conversation is
+[../../records/012-00-00-GMNI-Multiverse_Development.txt](../../records/012-00-00-GMNI-Multiverse_Development.txt),
+kept word for word with the project's other records since 2026-11-17,
+at the founder's word (STATUS.md, "Decided"): 574,505 bytes, SHA-256
 `39aea56cb85ed9f3b2c928b01bd7802b552e24f84c5e05a5bac7187bfd410d31`.
 What Gemini wrote after it was given the file begins at line 9748.
 
 [MANIFEST.json](MANIFEST.json) gives, for each file in `steps/`, the
 lines of the conversation it was taken from and its SHA-256.
-[take.py](take.py) is the script that took them out. Anyone who holds
-the conversation can run it and see that the files here are those.
+[take.py](take.py) is the script that took them out. Run with no
+argument, it takes them out of the record again and compares them with
+the files here; the test of `../../deepseek/012-09-05/` runs it, in
+CI. So Gemini's files are held to their record as DeepSeek's are.
 
-One limit follows, said plainly: DeepSeek's code in `../../deepseek/`
-can be checked against a record that is in this repository, and
-Gemini's can't. What holds these files is the manifest's hashes, which
-`../../deepseek/012-09-05/review/steps.py --check` compares in CI.
+When these files were first kept, earlier on 2026-11-17, the
+conversation was not in the repository, and only the manifest's hashes
+held them.
 
 The export of the conversation has no code fences. A file runs from
 the line after the one that names it to the line before the next name,

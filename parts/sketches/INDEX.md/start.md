@@ -16,8 +16,9 @@ repeating it.
 
 ## The records
 
-Both are verbatim copies. A line starting with `::` is the founder's
-message; the rest is DeepSeek's reply.
+All are verbatim copies. A line starting with `::` is the founder's
+message; the rest is the reply: DeepSeek's, or, in the record marked
+GMNI, Gemini's.
 
 | Record | What it covers | Lines | SHA-256 |
 |---|---|---|---|
@@ -27,6 +28,7 @@ message; the rest is DeepSeek's reply.
 | [012-06-02, Patterns and Multiverses, a new cycle](records/012-06-02-DPSK-Patterns_Multiverses.txt) | After reading `docs/COLLABORATING.md`, proposals for steps ahead: fractal worlds, a hierarchy of worlds, branching, a gallery of worlds and its governance; then the smallest learner that chooses, and individuals as signed, replayable bundles across worlds. Continued (from line 43168, shared on 2026-11-15): a multiversal map and an individual's worldline, a look at games, a microverse, the Ur-world as a garden of hosted fractal worlds, and the move to Rust: an Ur-garden, its keeper, a server, and verifiers in Rust, Python and Node.js. It ends with DeepSeek asking which piece is next | 62,610 | `979f7eef52c10396a682e2fcc0a4e76e1b5d0080b23a71ef22734f265ef0343c` |
 | [012-07-03, Patterns and Multiverses, the endless plant](records/012-07-03-DPSK-Patterns_Multiverses.txt) | Begun from `docs/COLLABORATING.md`: links tried as the founder pasted them, then the endless plant, the first stage of living worlds (a design and a sketch crate in Rust, with a choice neuron), DeepSeek's questions for the technical lead, and its answers to them once the founder left them to its judgement | 1,380 | `efe36ff3749bc1c776d27d2d2a407812cd784015904df89d1a3b3c9672ee5414` |
 | [012-09-05, Patterns and Multiverses, water and the Commons](records/012-09-05-DPSK-Patterns_Multiverses.txt) | Begun from `docs/COLLABORATING.md`: water as particles, the garden and the botanical garden (Python); signed world heads; then the founder's turn to the Commons as chat rooms, each with an AI moderator, and a home room for each person; a schema for every record; a design page; and a crate in Rust, `chat-world`; DeepSeek's order for the cycles after. Then, continued: signed heads for the crate; the one file the founder gave DeepSeek, which reached it whole; and five deliveries of `chat-world` from it, a step at a time. It ends with DeepSeek's list of what remains | 23,993 | `fce0bf8a1151da130e7e6de509b728825be838b0fc8dc4d744a3d38477b94130` |
+| [012-00-00, Multiverse Development, with Gemini](records/012-00-00-GMNI-Multiverse_Development.txt) | The founder's conversation with Gemini, kept with the rest since 2026-11-17 at the founder's word (STATUS.md, "Decided"). Begun from a link to `docs/COLLABORATING.md`, which Gemini could not open. The founder gives it the project's earlier records one after another, then the founder's own work on opposites, and Gemini reads each. From line 1209 Gemini writes steps for the `chat-world` crate from a file that was out of date (built once and not kept: STATUS.md, "Decided", 2026-11-16, on naming Gemini). From line 9748, given the one file written for it, it writes the four deliveries kept in [gemini/2026-11-16](gemini/2026-11-16/README.md) | 13,530 | `39aea56cb85ed9f3b2c928b01bd7802b552e24f84c5e05a5bac7187bfd410d31` |
 
 ## Links from the records
 

@@ -2,11 +2,9 @@
 > for readers who are shown only the start of a long page.
 > This part holds: "Decided", piece 6 (its pieces are numbered from its end).
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/start.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-07.md
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-05.md
 > Made by docs/parts.py from the file. To change it, change the file.
-
-## Decided
 
 - 2026-11-16, founder, two roles. "One note. We should separate my
   role as Project Founder, which will always be a matter of history.

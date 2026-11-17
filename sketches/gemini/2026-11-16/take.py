@@ -1,12 +1,14 @@
 """Ours, not Gemini's. Takes Gemini's files out of the conversation they
 were written in, and compares them with the ones kept here.
 
-    python3 -I take.py RECORD          compare with ./steps
+    python3 -I take.py                 compare with ./steps
+    python3 -I take.py RECORD          the same, from another copy
     python3 -I take.py RECORD OUT      also write them under OUT
 
-RECORD is the conversation as the founder exported it. It is not in
-this repository (README.md says why); MANIFEST.json gives its size and
-hash, and this script stops if RECORD is another file.
+RECORD is the conversation as the founder exported it. With no
+argument it is the copy in ../../records, which MANIFEST.json names;
+MANIFEST.json gives its size and hash, and this script stops if RECORD
+is another file.
 
 The export holds no code fences. A file runs from the line after the
 one that names it (`src/room.rs`, or `File: chat-world/src/room.rs`) to
@@ -28,7 +30,10 @@ NAMED = re.compile(
 def main(argv):
     with open(os.path.join(HERE, "MANIFEST.json"), encoding="utf-8") as f:
         manifest = json.load(f)
-    with open(argv[0], "rb") as f:
+    record = argv[0] if argv else os.path.join(
+        os.path.dirname(os.path.dirname(HERE)), "records",
+        manifest["record"]["name"])
+    with open(record, "rb") as f:
         raw = f.read()
     if hashlib.sha256(raw).hexdigest() != manifest["record"]["sha256"]:
         sys.exit("this is not the record MANIFEST.json names")
@@ -68,6 +73,6 @@ def main(argv):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) not in (2, 3):
+    if len(sys.argv) not in (1, 2, 3):
         sys.exit(__doc__)
     sys.exit(main(sys.argv[1:]))

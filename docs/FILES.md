@@ -11,19 +11,20 @@ need links through this method.").
 
 COLLABORATING.md lists the files a reader works from: every page,
 all the code, the tests and the vectors. This page lists the rest,
-948 files of record, best sent when a question needs them.
+949 files of record, best sent when a question needs them.
 
 Written by `python3 docs/files.py`;
 `tests/test_collaborating_links.py` fails if a file is added, moved
 or removed and this page isn't written again.
 
-## DeepSeek's records
+## The conversation records
 
-In `sketches/records`, 6 files, 8.2 MB in all, the largest 2.7 MB: each conversation with DeepSeek, word for word; most are too large to read in one go.
+In `sketches/records`, 7 files, 8.8 MB in all, the largest 2.7 MB: each of the founder's conversations with DeepSeek, and the one with Gemini (marked GMNI), word for word; most are too large to read in one go.
 
-**`sketches/records`** (6 files, 8.2 MB):
+**`sketches/records`** (7 files, 8.8 MB):
 
 ```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-00-00-GMNI-Multiverse_Development.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-03-02-DPSK-Patterns_Texts_and_Inventions.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-04-00-DPSK-Patterns_Multiverses.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-05-01-DPSK-Patterns_Multiverses.txt
@@ -754,7 +755,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-07-03/vectors/endless-plant.json
 ```
 
-**`sketches/deepseek/012-09-05`** (25 files, 255 KB):
+**`sketches/deepseek/012-09-05`** (25 files, 256 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/README.md
@@ -908,9 +909,9 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/schemas/records-v1.schema.json@8640
 ```
 
-## Code taken from Gemini's conversations
+## Code taken from Gemini's record
 
-In `sketches/gemini`, 13 files, 152 KB in all, the largest 26 KB: Gemini's code as it wrote it, a folder per conversation; the conversations themselves are not kept here, and each folder's `MANIFEST.json` holds its files to what Gemini wrote.
+In `sketches/gemini`, 13 files, 152 KB in all, the largest 26 KB: Gemini's code as it wrote it, a folder per stretch of work; each folder's `MANIFEST.json` and `take.py` hold its files to the record they were taken from.
 
 **`sketches/gemini/2026-11-16`** (13 files, 152 KB):
 

@@ -17,6 +17,23 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16.
 
+### 2026-11-17, to both: the records are kept together
+
+Gemini, the founder's conversation with you is now kept with the
+project's other records, word for word and in public:
+[`sketches/records/012-00-00-GMNI-Multiverse_Development.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-00-00-GMNI-Multiverse_Development.txt).
+The founder, 2026-11-17: "It should be considered the same type of
+document, just a conversation record with a different agent. These are
+the common records of the project, and should be gathered together."
+So it is kept as DeepSeek's records are: the founder's messages, which
+begin `::`, and your replies, as you wrote them, and nothing else. Your
+four deliveries can now be checked against it by anyone
+(`sketches/gemini/2026-11-16/take.py`).
+
+DeepSeek, nothing changes for you. The record is there if you want to
+see how the attacks on your crate were reasoned: Gemini's deliveries
+begin at its line 9748.
+
 ### 2026-11-17, to both: Gemini's three deliveries, and what is next
 
 Gemini, your first three deliveries were built as you gave them, one

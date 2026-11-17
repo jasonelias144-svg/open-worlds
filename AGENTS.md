@@ -143,7 +143,8 @@ effect (docs/ADMIN.md).
   "Commerce and currency worlds"). A change that would bring one in is
   the founder's decision (P5), never a code decision.
 - **The sketches stay apart.** `sketches/` keeps the founder's
-  conversation records and DeepSeek's code from them, as written, and
+  conversation records with DeepSeek and with Gemini, the code each
+  wrote in them, as written, and
   each file DeepSeek or Gemini was given (`sketches/README.md`). Nothing outside `sketches/` imports from it. Its
   code changes only in small fixes listed in `sketches/INDEX.md`, which is
   also the one place that says where the sketches and the course meet.
@@ -165,5 +166,12 @@ effect (docs/ADMIN.md).
 - No secrets or personal data anywhere in the repository (P8). The
   exceptions, as the founder decided (2026-11-13): the founder may be named
   by first name, and the founder's GitHub account name appears in links.
-  Anything more personal goes to the founder before it goes in.
+  And, as the founder decided (2026-11-17): a conversation record the
+  founder brings is kept whole with the others, with whatever the
+  founder says in it about their own life and work, unless the founder
+  says that record is private. It is still looked through first, and
+  the founder is told what was found: "it is good to check, even if it
+  is usually unnecessary". Anything else more personal goes to the
+  founder before it goes in: in a page anyone writes here, and anything
+  in a record about someone other than the founder.
 - Report outcomes honestly: what you checked, and what you did not.
