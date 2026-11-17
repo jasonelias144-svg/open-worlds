@@ -155,11 +155,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/research/PERSONS.md/part-three-built.md
 ```
 
-## `docs/research/REDACTION.md`, in 2 parts
+## `docs/research/REDACTION.md`, in 3 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/research/REDACTION.md/start.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/research/REDACTION.md/part-four-the-log-s-side-built.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/research/REDACTION.md/a-writer-opened-on-a-log-written-before-built.md
 ```
 
 ## `formats/record_vectors.py`, in 2 parts
@@ -222,12 +223,13 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketc
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/changes-to-deepseek-s-code.md
 ```
 
-## `tests/test_apart.py`, in 3 parts
+## `tests/test_apart.py`, in 4 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests/test_apart.py/01.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests/test_apart.py/02.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests/test_apart.py/03.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests/test_apart.py/04.txt
 ```
 
 ## `tests/test_mv_passport.py`, in 2 parts

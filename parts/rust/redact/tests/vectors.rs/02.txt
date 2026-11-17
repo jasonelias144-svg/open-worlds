@@ -349,5 +349,134 @@ fn the_copies_are_handed_over_before_anything_is_written() {
     assert_eq!(state(&log, t.entry(), "text"), State::Redacted);
 }
 
+// The office that decides need not be the writer that redacted. It opens
+// the log and the contents as they were published (`Log::open`) and goes
+// on from the log's head.
+
+#[test]
+fn the_office_decides_on_a_log_it_opens() {
+    let t = Trial::new();
+    let case = &t.v["redacted"];
+    let mut log = Log::open(&case["log"], &case["contents"]).unwrap();
+    let mut salt = trial_salts_after(&case["log"]);
+    let mark = case["mark"].as_str().unwrap();
+    let envelope = &t.v["copies"][2]["envelope"];
+    t.decide("kept", mark, |answer| {
+        keep_public(&mut log, answer, envelope, t.decides.opener(), &mut salt)
+    })
+    .unwrap();
+    assert_eq!(entries(&log), t.v["kept"]["log"]);
+    assert_eq!(contents(&log), t.v["kept"]["contents"]);
+}
+
+#[test]
+fn that_it_stays_redacted_is_decided_on_a_log_it_opens() {
+    let t = Trial::new();
+    let case = &t.v["redacted"];
+    let mut log = Log::open(&case["log"], &case["contents"]).unwrap();
+    let mut salt = trial_salts_after(&case["log"]);
+    t.decide("stays", case["mark"].as_str().unwrap(), |answer| {
+        stays_redacted(&mut log, answer, &mut salt)
+    })
+    .unwrap();
+    assert_eq!(entries(&log), t.v["stays"]["log"]);
+    assert_eq!(contents(&log), t.v["stays"]["contents"]);
+}
+
+#[test]
+fn a_field_is_redacted_on_a_log_opened_again() {
+    let t = Trial::new();
+    let mut first = trial_salts();
+    let before = room(&mut first);
+    let its_salt = before.contents()[t.entry()]["text"][0]
+        .as_str()
+        .unwrap()
+        .to_owned();
+    let written = entries(&before);
+    let mut log = Log::open(&written, &contents(&before)).unwrap();
+    let mut salt = trial_salts_after(&written);
+    let act = &t.v["act"];
+    let about = [t.alice.recipient(), t.bob.recipient()];
+    let made = redact(
+        &mut log,
+        &Act {
+            tick: act["tick"].as_u64().unwrap(),
+            entry: t.entry(),
+            field: "text",
+            ground: &act["ground"],
+            created: t.v["created"].as_str().unwrap(),
+            about: &about,
+            decider: t.decides.recipient(),
+            agent: None,
+            apart: &map(&act["apart"]),
+        },
+        &t.office(),
+        None,
+        &mut salt,
+    )
+    .unwrap();
+    assert_eq!(made.mark, t.v["redacted"]["mark"].as_str().unwrap());
+    assert_eq!(entries(&log), t.v["redacted"]["log"]);
+    assert_eq!(contents(&log), t.v["redacted"]["contents"]);
+    // The writer that was opened holds neither the value nor its salt
+    // after the act, as the one that wrote the log does not.
+    let held = format!("{log:?}{made:?}");
+    assert!(format!("{before:?}").contains(&its_salt));
+    assert!(!held.contains(&its_salt));
+    assert!(!held.contains(VALUE));
+}
+
+#[test]
+fn a_redaction_that_stands_with_its_field_left_in_is_finished() {
+    // A log whose redaction stands, published with the field still in
+    // its contents: no writer here leaves that, but a published log can
+    // show it, and the check calls the field unfinished.
+    let t = Trial::new();
+    let stays = &t.v["stays"];
+    let mut first = trial_salts();
+    let before = room(&mut first);
+    let mut left_in = stays["contents"].clone();
+    left_in[t.entry()]["text"] = before.contents()[t.entry()]["text"].clone();
+    assert_eq!(
+        apart::check(&stays["log"], &left_in).unwrap()[t.entry()]["text"],
+        State::Unfinished
+    );
+    let mut log = Log::open(&stays["log"], &left_in).unwrap();
+    let mut salt = trial_salts_after(&stays["log"]);
+    let mark = t.v["redacted"]["mark"].as_str().unwrap();
+    let made = finish(
+        &mut log,
+        mark,
+        &t.office(),
+        t.v["created"].as_str().unwrap(),
+        &[],
+        t.decides.recipient(),
+        None,
+    )
+    .unwrap();
+    assert_eq!(entries(&log), stays["log"], "the log is not touched");
+    assert_eq!(contents(&log), stays["contents"]);
+    assert_eq!(state(&log, t.entry(), "text"), State::Redacted);
+    // The copy made is the field, though no decision can use it: the
+    // redaction stands.
+    let inside = open_copy(&made.office_copy, t.decides.opener(), &entries(&log)).unwrap();
+    assert_eq!(what_was_there(&inside).unwrap().1, VALUE);
+    let error = t
+        .decide("kept", mark, |answer| {
+            keep_public(
+                &mut log,
+                answer,
+                &made.office_copy,
+                t.decides.opener(),
+                &mut salt,
+            )
+        })
+        .unwrap_err();
+    assert!(matches!(
+        error,
+        Refused::Log(apart::Refused::BadKept { .. })
+    ));
+}
+
 ------------------------------------------------------------------------
 End of `rust/redact/tests/vectors.rs`.

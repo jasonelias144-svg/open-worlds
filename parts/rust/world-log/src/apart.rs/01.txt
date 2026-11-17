@@ -77,7 +77,9 @@ Made by docs/parts.py from the file. To change it, change the file.
 //! [`redactions`] gives every field's redactions, each open, standing
 //! or kept public; [`join`] gives each entry as a reader uses it;
 //! [`Log`] writes the form, a redaction through [`Log::mark`],
-//! [`Log::take_out`], [`Log::keep_public`] and [`Log::stays_redacted`].
+//! [`Log::take_out`], [`Log::keep_public`] and [`Log::stays_redacted`];
+//! [`Log::open`] opens a writer on a log and contents that were written
+//! before.
 //! Every reason for refusing ([`Refused::reason`]) is in the same fixed
 //! words as in Python, checked against `vectors/log-apart.json`.
 //!

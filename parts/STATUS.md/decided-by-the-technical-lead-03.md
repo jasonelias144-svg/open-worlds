@@ -8,6 +8,38 @@
 
 ## Decided by the technical lead
 
+- 2026-11-17, a writer opened on a log written before
+  (docs/research/REDACTION.md, "A writer opened on a log written
+  before, built"; course step 3b), settled in building it. (a) It is
+  given a log and its contents and checks them together first, as the
+  check does, and refuses what does not hold for the same reason at
+  the same place. (b) A field that is missing or unfinished is not
+  refused: the writer goes on from it. (c) It keeps copies of what it
+  was given. (d) It remembers the salts of the fields still in the
+  contents by their hashes alone, and does not know the salts of
+  fields taken out before it was opened. (e) Opening does not check
+  who opens.
+  *Why:* (a) one rule for what holds, whoever asks. (b) A published
+  log can show either state, and the remedies are the writer's own
+  steps: a field put back, a redaction finished. (c) A writer that
+  shared what it was given could change a log its caller still holds
+  as published; and a caller could change the writer, as the
+  self-review found for the table of what is kept apart, in Python.
+  (d) A writer must not hold what a fingerprint could be guessed
+  with, and a salt that was taken out is gone on purpose. A salt it
+  is handed back with a field that is kept public is another matter:
+  it knows that one, and remembers it from then on, which the
+  independent review found it did not. And a field is not kept
+  public if another field in the contents already holds its salt,
+  which the review's re-check found: a log written elsewhere can hide
+  such a repeat behind a taking out.
+  (e) A log in this form has no signature of its own; who may write
+  to a room's log is the room's to check, with its signed heads.
+  *What would show it wrong:* a salt that repeats across a closing
+  and an opening, for (d), which would need a source of salts that is
+  not random; a log that must refuse to be opened in a state the
+  check allows, for (b); two writers opened on one log, for (e),
+  which the room has to prevent (step 3c).
 - 2026-11-17, what follows from the founder's words of that evening
   (Decided). (a) A file for a collaborator carries one step, the
   files the step needs, tests that say what done means, and what not

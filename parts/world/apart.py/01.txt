@@ -112,7 +112,8 @@ entry as a reader uses it. `Log` writes the form: a mark and the
 decision that answers it only through `mark`, `take_out`,
 `keep_public` and `stays_redacted`, which change the contents in the
 same step, so that a field is never said to be public while it is
-gone.
+gone. `Log.open` opens a writer on a log and contents that were
+written before.
 Every reason for refusing is in fixed words, and names the same place,
 in Rust (`rust/world-log/src/apart.rs`), checked against
 `vectors/log-apart.json`.
@@ -477,9 +478,13 @@ class _Scan:
             if (on is None or self.taken.get(on) != taking
                     or not _says_only(kind, data)):
                 raise Refused(BAD_PUTTING_BACK, index)
-        # The entry holds: only now is anything kept.
+        # The entry holds: only now is anything kept. The table is kept
+        # as a copy: whoever holds the entry it came from, a writer's
+        # caller among them, can then change that entry and not the
+        # rules the entries after it are held to.
         here = entry["hash"]
-        self.table = table
+        if index == 0:
+            self.table = {name: list(names) for name, names in table.items()}
         self.apart[here] = dict(apart)
         self.kinds[here] = kind
         self.seen.update(prints)
@@ -531,47 +536,6 @@ def _scan(log: Any) -> _Scan:
             raise Refused(CHAIN, index)
         prev = entry["hash"]
     return scan
-
-
-def _held(scan: _Scan, contents: Any) -> Dict[str, Dict[str, Any]]:
-    """The contents, held to the log: for each entry, each field's value
-    that is there and matches its fingerprint."""
-    if type(contents) is not dict:
-        raise Refused(CONTENTS)
-    held: Dict[str, Dict[str, Any]] = {}
-    salts: Set[str] = set()
-    # Only Python can hold a key that isn't text; JSON can't.
-    if not all(type(entry) is str for entry in contents):
-        raise Refused(CONTENTS)
-    for entry in sorted(contents):
-        if entry not in scan.apart:
-            raise Refused(UNKNOWN, entry)
-        fields = contents[entry]
-        if type(fields) is not dict or not all(
-                type(name) is str for name in fields):
-            raise Refused(CONTENTS, entry)
-        held[entry] = {}
-        for name in sorted(fields):
-            where = (entry, name)
-            if name not in scan.apart[entry]:
-                raise Refused(UNKNOWN, where)
-            pair = fields[name]
-            if type(pair) is not list or len(pair) != 2:
-                raise Refused(CONTENTS, where)
-            salt, value = pair
-            if not _is_salt(salt):
-                raise Refused(SALT, where)
-            if not value_allowed(value):
-                raise Refused(VALUE, where)
-            if fingerprint(salt, name, value) != scan.apart[entry][name]:
-                raise Refused(FINGERPRINT, where)
-            # Only once both match: so this always means a salt that was
-            # truly used for two fields, never a field copied elsewhere.
-            if salt in salts:
-                raise Refused(SALT_TWICE, where)
-            salts.add(salt)
-            held[entry][name] = value
-    return held
 
 
 
