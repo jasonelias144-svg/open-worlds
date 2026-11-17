@@ -3,7 +3,7 @@
 > This part holds: from the start to "Noticed".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: nothing; this is the first part.
-> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-07.md
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-08.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
 # Status: open-worlds
@@ -106,15 +106,19 @@ free, and never a money machine
   outside, attacked the check with 22 tests, and repaired what got
   through (sketches/gemini/2026-11-16/). Then, in a second round, it
   did the same for the Commons' own log
-  (sketches/gemini/2026-11-17/). With five small repairs the crate as
-  it stands (`chat-world-now/`) passes all 92 of its tests. Gemini's
-  fourth step of that round, 17 more attacks, shows eight gaps in the
-  check of a room's log; they are built beside the crate, not laid
-  into it, and are kept as the list of what the room's own check must
-  refuse. Gemini's next file is built: the lobby's list of doors,
-  which a map of the Commons is first drawn from
-  (sketches/replies/2026-11-17-2-for-gemini.txt). DeepSeek has the
-  crate for branches. Fitting it to open-worlds' own code is step 3c.
+  (sketches/gemini/2026-11-17/). Then DeepSeek, from its second
+  file, built a room that branches and a plug-in over standard input,
+  and began the rule of one moderator's room, where its reply was cut
+  off (sketches/INDEX.md, "DeepSeek's second file"). With six small
+  repairs the crate as it stands (`chat-world-now/`) passes all 112
+  of its tests. Gemini's fourth step, 17 attacks, shows eight gaps in
+  the check of a room's log; they are built beside the crate, not
+  laid into it, and are kept as the list of what the room's own check
+  must refuse. Gemini's next file is built on that crate: the lobby's
+  list of doors, which a map of the Commons is first drawn from
+  (sketches/replies/2026-11-17-2-for-gemini.txt). DeepSeek goes on
+  with its third step. Fitting the crate to open-worlds' own code is
+  step 3c.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
@@ -327,4 +331,4 @@ of it is asked again until it is needed.
     total, never per author, so that marking in good faith costs nothing.
 
 
-> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-07.md
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-08.md

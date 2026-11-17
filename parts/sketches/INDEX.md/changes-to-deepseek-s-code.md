@@ -212,6 +212,14 @@ longer compile, and are removed. Two lines in
 fix and after it. How a room's law does change, by a branch, is put to
 DeepSeek.
 
+**Fix 24 (2026-11-17, when DeepSeek's branches were joined): one word
+in the check of a branch.** `verify_branch` reads how far the parent's
+last signed head reaches, and asked the head for `len()`, which a head
+does not have, so the crate did not compile. The head's field is
+`length`, as DeepSeek's own comment on the next lines says. One word
+in `chat-world-now/src/verify.rs`; in `REPAIRS_BRANCH` in
+`review/steps.py`. With it all 103 tests pass.
+
 Not fixed, and why:
 
 - **The two coupled chaos games don't steer apart.** The coupling

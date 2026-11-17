@@ -96,7 +96,19 @@
   "22684": "chat-world-steps/5/src/home.rs",
   "22876": "chat-world-steps/5/src/commons.rs",
   "23109": "chat-world-steps/5/tests/integration.rs",
-  "23782": "chat-world-steps/5/src/bin/succession-demo.rs"
+  "23782": "chat-world-steps/5/src/bin/succession-demo.rs",
+  "24034": "chat-world-steps/6/src/record.rs",
+  "24400": "chat-world-steps/6/src/room.rs",
+  "25000": "chat-world-steps/6/src/verify.rs",
+  "25499": "chat-world-steps/6/tests/branch.rs",
+  "25921": "chat-world-steps/7/src/room.rs",
+  "26529": "chat-world-steps/7/src/plugin.rs",
+  "26747": "chat-world-steps/7/src/lib.rs",
+  "26842": "chat-world-steps/7/src/bin/chat-world-plugin.rs",
+  "27049": "chat-world-steps/7/tests/plugin.rs",
+  "27252": "chat-world-steps/8/src/record.rs",
+  "27640": "chat-world-steps/8/src/room.rs",
+  "28236": "chat-world-steps/8/src/home.rs"
  },
  "ours": [
   "README.md",
@@ -131,7 +143,11 @@
   "chat-world-now/tests/commons_attack.rs",
   "chat-world-now/tests/commons_outside.rs",
   "chat-world-now/tests/integration.rs",
-  "chat-world-now/tests/outside.rs"
+  "chat-world-now/tests/outside.rs",
+  "chat-world-now/src/bin/chat-world-plugin.rs",
+  "chat-world-now/src/plugin.rs",
+  "chat-world-now/tests/branch.rs",
+  "chat-world-now/tests/plugin.rs"
  ],
  "changed": {
   "fractal_garden.py": "Fix 15: DeepSeek's own change, which the record gives as a note with the botanical garden (line 3425) and which was never made here: tick() takes external_rain, a GardenTick carries ext_rain, in its body too, and the replay applies it before the tick's own rain.",

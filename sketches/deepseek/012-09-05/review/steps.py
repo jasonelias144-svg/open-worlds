@@ -1,10 +1,11 @@
 """Ours, not DeepSeek's (see ../README.md). Puts together the crate as
-it stands after each delivery: the five of DeepSeek's that record
-012-09-05 ends with, then the three of Gemini's that followed, then
-Gemini's three on the Commons. Each is laid over the one before,
-starting from the crate DeepSeek was given, ../chat-world.
+it stands after each delivery: the five of DeepSeek's that followed
+its first file, then the three of Gemini's that followed, then
+Gemini's three on the Commons, then DeepSeek's from its second file.
+Each is laid over the one before, starting from the crate DeepSeek
+was given, ../chat-world.
 
-DeepSeek's files are kept in ../chat-world-steps/1 to 5, as the record
+DeepSeek's files are kept in ../chat-world-steps/1 to 8, as the record
 gives them (../../tools/extract.py checks that). Gemini's are kept in
 ../../../gemini/2026-11-16/steps/1 to 3 and
 ../../../gemini/2026-11-17/steps/1 to 3, as written, each with its
@@ -13,7 +14,8 @@ hash in its folder's MANIFEST.json.
     python3 steps.py OUT            OUT/1 ... OUT/5
     python3 steps.py --aside OUT    and OUT/5-aside
     python3 steps.py --now OUT      and OUT/5-repaired, g1, g2, g3,
-                                    g3-repaired, c1, c2, c3, now, c4
+                                    g3-repaired, c1, c2, c3, d6,
+                                    d6-repaired, d7, now, c4, d8
     python3 steps.py --check        is ../chat-world-now what --now makes?
 
 Nothing is run: this only copies files. Each OUT/N/chat-world is the
@@ -31,8 +33,20 @@ delivery before left it.
                  Gemini was given the second time.
     c1, c2, c3   Gemini's three deliveries on the Commons
                  (2026-11-17), laid over it in order.
-    now          c3, with nothing changed. This is the crate as it
+    d6           c3 with DeepSeek's delivery 6 laid over it: a room
+                 that branches (../chat-world-steps/6). It does not
+                 compile, for one word.
+    d6-repaired  d6 with that word repaired (REPAIRS_BRANCH;
+                 ../../../INDEX.md, fix 24).
+    d7           DeepSeek's delivery 7 laid over it: the plug-in
+                 (../chat-world-steps/7).
+    now          d7, with nothing changed. This is the crate as it
                  stands, kept in ../chat-world-now.
+    d8           now, with DeepSeek's delivery 8 laid over it as far as
+                 it came: the rule of one moderator's room
+                 (../chat-world-steps/8). The reply was cut off after
+                 three files, so it does not build, and it is not laid
+                 into the crate as it stands.
     c4           now, with the fourth step of Gemini's round on the
                  Commons laid over it: 17 attacks on a room's seven
                  other kinds of record
@@ -148,6 +162,17 @@ REPAIRS_AFTER = [
 ]
 
 
+# Fix 24, made when DeepSeek's branches were joined. The check of a
+# branch reads how far the parent's last head reaches, and asked the
+# head for len(), which a head does not have. Its field is `length`,
+# as the comment beside the line says.
+REPAIRS_BRANCH = [
+    ("src/verify.rs",
+     "parent.heads.last().map(|h| h.len() as usize)",
+     "parent.heads.last().map(|h| h.length as usize)"),
+]
+
+
 def lay(given, tree):
     """Copies every file under `given` over `tree`; says how many."""
     count = 0
@@ -219,7 +244,7 @@ def check():
         if not same(made, os.path.join(HERE, "chat-world-now")):
             sys.exit("chat-world-now is not the deliveries with the listed "
                      "repairs: run steps.py --now and compare")
-    print("chat-world-now is DeepSeek's five deliveries and Gemini's six, "
+    print("chat-world-now is DeepSeek's seven deliveries and Gemini's six, "
           "with the listed repairs")
 
 
@@ -272,6 +297,22 @@ def main(argv, quiet=False):
             say(f"Gemini's delivery {step} on the Commons: "
                 f"{count} files laid over: c{step}")
             before = tree
+        tree = os.path.join(out, "d6", "chat-world")
+        shutil.copytree(before, tree)
+        count = lay(os.path.join(HERE, "chat-world-steps", "6"), tree)
+        say(f"DeepSeek's delivery 6, a room that branches: "
+            f"{count} files laid over: d6")
+        before = tree
+        tree = os.path.join(out, "d6-repaired", "chat-world")
+        repaired(before, tree, REPAIRS_BRANCH)
+        say("one word repaired: d6-repaired")
+        before = tree
+        tree = os.path.join(out, "d7", "chat-world")
+        shutil.copytree(before, tree)
+        count = lay(os.path.join(HERE, "chat-world-steps", "7"), tree)
+        say(f"DeepSeek's delivery 7, the plug-in: "
+            f"{count} files laid over: d7")
+        before = tree
         shutil.copytree(before, os.path.join(out, "now", "chat-world"))
         say("nothing changed after it: now")
         tree = os.path.join(out, "c4", "chat-world")
@@ -279,6 +320,11 @@ def main(argv, quiet=False):
         count = lay(os.path.join(GEMINI_COMMONS, "steps", "4"), tree)
         say(f"Gemini's fourth step, beside the crate as it stands: "
             f"{count} file laid over: c4")
+        tree = os.path.join(out, "d8", "chat-world")
+        shutil.copytree(before, tree)
+        count = lay(os.path.join(HERE, "chat-world-steps", "8"), tree)
+        say(f"DeepSeek's delivery 8, cut off, beside the crate as it "
+            f"stands: {count} files laid over: d8")
 
 
 if __name__ == "__main__":

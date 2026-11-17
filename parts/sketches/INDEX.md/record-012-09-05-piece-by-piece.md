@@ -149,7 +149,7 @@ in order, every test file run, on 2026-11-17:
 | Commons 4 | 17 attacks on a room's seven other kinds of record, in a second answer; the first answer's 10 attacked only what the check already refuses, as Gemini then said itself | 101 of 109 | 101 of 109: eight attacks get through, the eight Gemini said would |
 
 Every number is the one Gemini gave, and nothing was repaired here.
-The third is the crate as it stands,
+The third was the crate as it stood then,
 `deepseek/012-09-05/chat-world-now/`: 92 tests, 41 of them DeepSeek's
 and 51 Gemini's. The fourth is built beside it and not laid into it:
 its eight gaps in the check of a room's log are not repaired in this
@@ -160,7 +160,77 @@ Gemini's next file
 ([replies/2026-11-17-2-for-gemini.txt](replies/2026-11-17-2-for-gemini.txt))
 asks one step: the lobby's list of doors, which is what a map of the
 Commons is first drawn from, in a new file `src/doors.rs` with twelve
-tests. Nothing has come back yet, and the crate is unchanged.
+tests. Nothing has come back yet. The file was built again on the
+crate with DeepSeek's next deliveries in it, below.
+
+### DeepSeek's second file: branches, a plug-in, and a rule cut off (2026-11-17)
+
+The founder gave DeepSeek its second file
+([replies/012-09-05-2-for-deepseek.txt](replies/012-09-05-2-for-deepseek.txt)),
+and the record was shared again, longer. Its first 947,153 bytes are
+the same, byte for byte, and 4,463 lines more follow, from line 23994.
+DeepSeek quotes back the file's last line. It answers the file's
+question on signed heads first: it agrees with Gemini's rule that a
+published log ends with a head covering all of it. Then it gives
+three deliveries. The file asked for the first. The second and third
+are DeepSeek's own next items, at the founder's word to keep going
+(lines 25900 and 27240). The files are kept as the record gives them,
+in `deepseek/012-09-05/chat-world-steps/6` to `8`.
+
+Laid over the crate in order, every test file run, on 2026-11-17
+(`deepseek/012-09-05/review/steps.sh`):
+
+| Delivery | What it is | Files | DeepSeek expected | Tests, built as given |
+|---|---|---|---|---|
+| 6 | A room that branches. A branch is a new room whose first record names its parent and the record it branches at (`forked_from`); `Room::branch_at`; and `verify_branch`, which holds a branch to its parent's log: the parent holds that record with that hash, and the branch's maker was a member of the parent there. Eleven tests | 4 | "78 tests pass", counting 66 before it and 12 of its own | Does not compile, for one word. With that repaired (fix 24), 103 of 103: the crate's 92 and its eleven. Its test file holds eleven tests, not twelve |
+| 7 | A plug-in: nine requests an app can make of the crate, as JSON, one to a line, over standard input (`src/plugin.rs`, `src/bin/chat-world-plugin.rs`), with nine tests; and a room's visible log made available on any log | 5 | "87 tests pass" | 112 of 112. The four earlier demos run, and the plug-in's own demonstration runs |
+| 8 | The rule of one moderator's room: a moderator declares, in its own room, which rooms it moderates (`ModeratorScope`). The reply was cut off after three files | 3 | not reached | Does not build: the check has no arm yet for the new record. Kept as given, and not laid into the crate |
+
+DeepSeek counted from 66 tests because its file said so. By then the
+crate had 92, with Gemini's work on the Commons, which the file could
+not say. Its own counts are otherwise right but for the twelfth test.
+
+The crate as it stands is now delivery 7:
+`deepseek/012-09-05/chat-world-now/`, 112 tests, 61 of them
+DeepSeek's and 51 Gemini's, in 29 files. Gemini's seventeen attacks
+on a room's other records, run beside it again, give the same eight
+that get through (121 of 129).
+
+What DeepSeek chose where the file left it open, in its own words
+before the code (from line 24001):
+
+- **Where a room may branch.** The file asked for a branch at a
+  room's last record. `branch_at` takes any record of the parent. In
+  a room that signs heads and not each record, the record must be one
+  the parent's last head covers: "the tail after the last head is
+  uncommitted".
+- **Merging two branches:** "I would not merge." Two branches that
+  need to meet do so by their members posting in both, or by a third
+  room.
+- **The parent noting its branches:** later, as a record in the
+  parent's own log.
+- **The Commons listing a branch:** "A branch is a room like any
+  other."
+
+Two limits of the plug-in that DeepSeek names itself (line 27231). It
+can post only in rooms whose own key it holds, which are the rooms
+its user made: posting in someone else's room needs what it calls a
+"remote room" type, which "the crate does not have yet". And it makes
+new keys each time it
+starts, so its user is someone new each time: "wrong for production,
+correct for a demo".
+
+One thing DeepSeek says in the third delivery that is not so (line
+27247): that the `src/home.rs` it was given fails two tests for want
+of an earlier repair. That file was not in the file it was given,
+which names it as carrying the repair. The `src/home.rs` DeepSeek
+then sends is the crate's own, with the repair, but for line breaks
+and the one new function. Nothing is lost by it.
+
+Read by the technical lead: all of DeepSeek's prose in the new part;
+`verify_branch` whole; and each of the eighth delivery's three files
+against the file before it. The rest of the code was built and run,
+not read line by line.
 
 ## Record 012-03-02, component by component
 

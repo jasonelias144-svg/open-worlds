@@ -11,10 +11,12 @@ pub mod home;
 pub mod commons;
 pub mod head;
 pub mod attestation;
+pub mod plugin;
 
 pub use did::{DidKey, Keypair};
 pub use error::{Error, Result};
 pub use head::WorldHead;
+pub use plugin::{Plugin, Request, Response, ErrorBody};
 pub use proof::{Proof, ProofOrArray, ProofPurpose};
 pub use room::{Member, Room, RoomLog};
 pub use template::{ModeratorSpec, RoomTemplate};

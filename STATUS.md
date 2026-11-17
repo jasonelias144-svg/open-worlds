@@ -98,15 +98,19 @@ free, and never a money machine
   outside, attacked the check with 22 tests, and repaired what got
   through (sketches/gemini/2026-11-16/). Then, in a second round, it
   did the same for the Commons' own log
-  (sketches/gemini/2026-11-17/). With five small repairs the crate as
-  it stands (`chat-world-now/`) passes all 92 of its tests. Gemini's
-  fourth step of that round, 17 more attacks, shows eight gaps in the
-  check of a room's log; they are built beside the crate, not laid
-  into it, and are kept as the list of what the room's own check must
-  refuse. Gemini's next file is built: the lobby's list of doors,
-  which a map of the Commons is first drawn from
-  (sketches/replies/2026-11-17-2-for-gemini.txt). DeepSeek has the
-  crate for branches. Fitting it to open-worlds' own code is step 3c.
+  (sketches/gemini/2026-11-17/). Then DeepSeek, from its second
+  file, built a room that branches and a plug-in over standard input,
+  and began the rule of one moderator's room, where its reply was cut
+  off (sketches/INDEX.md, "DeepSeek's second file"). With six small
+  repairs the crate as it stands (`chat-world-now/`) passes all 112
+  of its tests. Gemini's fourth step, 17 attacks, shows eight gaps in
+  the check of a room's log; they are built beside the crate, not
+  laid into it, and are kept as the list of what the room's own check
+  must refuse. Gemini's next file is built on that crate: the lobby's
+  list of doors, which a map of the Commons is first drawn from
+  (sketches/replies/2026-11-17-2-for-gemini.txt). DeepSeek goes on
+  with its third step. Fitting the crate to open-worlds' own code is
+  step 3c.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
@@ -320,6 +324,22 @@ of it is asked again until it is needed.
 
 ## Decided
 
+- 2026-11-17, founder, a coder agent on a DeepSeek model, for later.
+  Bringing DeepSeek's record of the day: "Maybe we could use the
+  available DeepSeek model to build a coder agent that could help
+  when our DeepSeek out here is not available. But that is for
+  later." And of the record: "the message got cut off before
+  completing, but a few files came out in the last response. When I
+  return tomorrow morning, it will continue going from there, as if
+  no time elapsed."
+  The technical lead's reading, which stands unless the founder
+  answers otherwise. It is kept as an idea and not begun. Three
+  things bear on it when it is taken up. Such an agent would start
+  without the conversation, which the one file per step already
+  allows for. A DeepSeek model is the base chosen for the Keeper of
+  the Ur-world's mirror (2026-11-15), so a way to run one is needed
+  at course step 8 in any case. And running one costs money by use,
+  which is the founder's to decide.
 - 2026-11-17, founder, what can be seen from outside a world, and
   being found by choice. "What you said about not turning the map
   into a tracker is very important and deserves some discussion.
@@ -3090,6 +3110,38 @@ of it is asked again until it is needed.
 
 ## Decided by the technical lead
 
+- 2026-11-17, DeepSeek's three deliveries from its second file, as
+  they are joined (sketches/INDEX.md, "DeepSeek's second file"). (a)
+  The crate as it stands goes on to the second of them: branches,
+  with one word repaired (fix 24), and the plug-in. The third, cut
+  off after three files, is kept as given and not laid in. (b)
+  Gemini's file, not yet given, is built again on that crate, so
+  that Gemini reads the files as they now are. (c) DeepSeek is not
+  given a new file for the morning. It goes on with the reply that
+  was cut off, and the founder passes on a few lines first: the one
+  word, so that it is not carried into the files still to come, and
+  the counts as measured. (d) Closing `Commons.world_id`, promised
+  for when DeepSeek's work is joined, waits until this run of
+  deliveries ends. (e) The plug-in and the rule of one moderator's
+  room are DeepSeek's own next items, taken at the founder's word to
+  keep going. They are kept as sketches. What DeepSeek's next file
+  asks is decided when the run ends.
+  *Why:* (a) A crate that does not build can't be given to anyone,
+  and what builds should not wait on what was cut off. (b) Two of
+  the eight files Gemini's file holds changed. (c) A whole new file
+  would spend DeepSeek's short time on reading; the fault is one
+  word, and DeepSeek sends each file whole from its own copy, so
+  without the word it would send the fault again. (d) Two of the
+  crate's demos read that field, and a demo sent whole from
+  DeepSeek's copy would undo the change. (e) The founder, to
+  DeepSeek: "let’s keep going. Please proceed as you see fit".
+  *What would show it wrong:* for (c), the rest of the third
+  delivery arriving with the fault still in it; then the repair is
+  made here again and the next file says so at its head. For (e),
+  the plug-in's own limit deciding the next step: it can post only
+  in rooms whose key it holds, and the first two in the Commons must
+  post in rooms they do not keep. If nothing else serves that, it is
+  DeepSeek's next file.
 - 2026-11-17, what can be seen from outside a world, and being found
   (the founder's words of that day, Decided). (a) There are two who
   choose. A room chooses what the place shows: that it is there, its
@@ -4195,6 +4247,30 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-17 Claude: record 012-09-05 is continued again, as the
+  founder brought it (1,121,275 bytes, 28,456 lines; its first
+  947,153 bytes are the record as it was kept). Looked through
+  first, by script and by reading: the founder's three turns hold
+  nothing personal, and no line outside code holds a link, an
+  address, a long number or a year. It holds three deliveries from
+  DeepSeek's second file, kept as written in
+  sketches/deepseek/012-09-05/chat-world-steps/6 to 8 and held to
+  the record by sketches/tools/extract.py (101 files, 0 problems).
+  Built as given, each laid over the one before: a room that
+  branches does not compile, for one word, and with it repaired
+  (fix 24) passes 103 of 103; the plug-in passes 112 of 112, its
+  demonstration runs and the four earlier demos run; the rule of one
+  moderator's room was cut off after three files and does not build.
+  The crate as it stands is now the second of them, 112 tests in 29
+  files. Gemini's seventeen attacks beside it: the same eight get
+  through (121 of 129). Gemini's file is built again on that crate
+  (73,673 bytes); the step it asks was built once more outside the
+  repository, 124 of 124. DeepSeek's file is marked as past. Read by
+  the technical lead: all of DeepSeek's prose in the new part, the
+  check of a branch whole, and the third delivery's three files
+  against the files before them; the rest was built and run, not
+  read line by line. Not done: `Commons.world_id` is still open
+  (Decided by the technical lead, d).
 - 2026-11-17 Claude: the founder's words on what can be seen from
   outside a world, and on being found by choice, are recorded
   (Decided), with the design the technical lead draws from them

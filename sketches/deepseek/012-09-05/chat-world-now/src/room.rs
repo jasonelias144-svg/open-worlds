@@ -18,6 +18,141 @@ pub struct RoomLog {
     pub heads: Vec<WorldHead>,
 }
 
+impl RoomLog {
+    /// The presentation view of this log: messages with redacted
+    /// text hidden, plus a `restored_incidents` note where a
+    /// redaction has been restored. This is what a reader sees.
+    pub fn visible_log(&self) -> Vec<serde_json::Value> {
+        visible_log_from(&self.records)
+    }
+}
+
+/// The presentation-layer view of a slice of records: messages
+/// whose text has been redacted (and not restored) show `[removed]`
+/// with the incident id, rule, and reason; messages with a restored
+/// redaction show their text plus a `restored_incidents` list.
+///
+/// The data layer is never modified: `records` is read, not
+/// changed. Two passes — first collect the redaction targets and
+/// which redactions have been restored, then build the view — so a
+/// redaction applies to a message recorded before it regardless of
+/// order.
+pub fn visible_log_from(records: &[Record]) -> Vec<serde_json::Value> {
+    use serde_json::json;
+
+    let hashes: Vec<String> = records.iter()
+        .map(|r| r.hash().unwrap_or_default())
+        .collect();
+    let mut hash_to_idx: HashMap<String, usize> = HashMap::new();
+    for (i, h) in hashes.iter().enumerate() {
+        hash_to_idx.insert(h.clone(), i);
+    }
+
+    let mut redactions_by_target: HashMap<usize, Vec<usize>> = HashMap::new();
+    let mut resolved_redacts: HashSet<usize> = HashSet::new();
+    for (i, rec) in records.iter().enumerate() {
+        match rec {
+            Record::Redact(r) => {
+                if let Some(&target_idx) = hash_to_idx.get(&r.target_hash) {
+                    redactions_by_target.entry(target_idx).or_default().push(i);
+                }
+            }
+            Record::HumanOverride(o) if o.action == "restore" => {
+                if let Some(&redact_idx) = hash_to_idx.get(&o.overrides_hash) {
+                    resolved_redacts.insert(redact_idx);
+                }
+            }
+            _ => {}
+        }
+    }
+
+    let mut out = Vec::new();
+    for (i, rec) in records.iter().enumerate() {
+        match rec {
+            Record::Message(m) => {
+                let mut still_redacted: Option<usize> = None;
+                let mut restored: Vec<usize> = Vec::new();
+                if let Some(redact_idxs) = redactions_by_target.get(&i) {
+                    for &ri in redact_idxs {
+                        if resolved_redacts.contains(&ri) {
+                            restored.push(ri);
+                        } else if still_redacted.is_none() {
+                            still_redacted = Some(ri);
+                        }
+                    }
+                }
+                if let Some(ri) = still_redacted {
+                    if let Record::Redact(r) = &records[ri] {
+                        out.push(json!({
+                            "seq": m.seq, "type": "message", "kind": m.kind,
+                            "author": m.author_id.as_str(),
+                            "text": "[removed]",
+                            "redacted": true,
+                            "reason": r.reason,
+                            "rule": r.rule,
+                            "incident": short_hash(&hashes[ri]),
+                            "ts": m.ts,
+                        }));
+                    }
+                } else {
+                    let mut obj = json!({
+                        "seq": m.seq, "type": "message", "kind": m.kind,
+                        "author": m.author_id.as_str(),
+                        "text": m.text,
+                        "redacted": false,
+                        "ts": m.ts,
+                    });
+                    if !restored.is_empty() {
+                        let notes: Vec<serde_json::Value> = restored.iter().map(|&ri| {
+                            if let Record::Redact(r) = &records[ri] {
+                                json!({"incident": short_hash(&hashes[ri]), "reason": r.reason, "rule": r.rule})
+                            } else { json!({}) }
+                        }).collect();
+                        obj["restored_incidents"] = json!(notes);
+                    }
+                    out.push(obj);
+                }
+            }
+            Record::Redact(r) => {
+                out.push(json!({"seq": r.seq, "type": "redact", "by": r.subject_id.as_str(), "reason": r.reason, "target": r.target_hash, "rule": r.rule, "actor_role": r.actor_role, "incident": short_hash(&hashes[i])}));
+            }
+            Record::Join(j) => {
+                out.push(json!({"seq": j.seq, "type": "join", "subject": j.subject_id.as_str(), "tier": j.tier, "is_ai": j.is_ai}));
+            }
+            Record::Leave(l) => {
+                out.push(json!({"seq": l.seq, "type": "leave", "subject": l.subject_id.as_str()}));
+            }
+            Record::HumanOverride(o) => {
+                out.push(json!({"seq": o.seq, "type": "human_override", "by": o.overridden_by.as_str(), "overrides": o.overrides_hash, "action": o.action, "reason": o.reason}));
+            }
+            Record::Refusal(r) => {
+                out.push(json!({"seq": r.seq, "type": "refused", "requester": r.requester_id.as_str(), "reason": r.reason}));
+            }
+            Record::RoomCreated(rc) => {
+                let mut obj = json!({"seq": 0, "type": "created"});
+                if let Some(ff) = &rc.forked_from {
+                    obj["forked_from"] = json!({
+                        "parent_id": ff.parent_id.as_str(),
+                        "checkpoint_seq": ff.checkpoint_seq,
+                        "checkpoint_hash": ff.checkpoint_hash,
+                    });
+                }
+                out.push(obj);
+            }
+            Record::ModeratorSuccession(s) => {
+                out.push(json!({
+                    "seq": s.seq, "type": "moderator_succession",
+                    "outgoing": s.outgoing_id.as_str(),
+                    "incoming": s.incoming_id.as_str(),
+                    "reason": s.reason,
+                }));
+            }
+            Record::KnowledgeShardExport(_) | Record::PortLanding(_) | Record::Bookmark(_) | Record::Presence(_) => {}
+        }
+    }
+    out
+}
+
 #[derive(Clone, Debug)]
 pub struct Member {
     pub tier: String,
@@ -60,6 +195,62 @@ impl Room {
         )?;
         room.records.push(Record::RoomCreated(signed));
         Ok(room)
+    }
+
+    /// Branch this room at a checkpoint. Returns a new Room whose
+    /// seed names this room and the checkpoint, whose law is
+    /// `new_template`, and whose first member is `maker_kp`.
+    pub fn branch_at(
+        &self,
+        checkpoint_seq: u64,
+        new_template: RoomTemplate,
+        branch_kp: Keypair,
+        maker_kp: &Keypair,
+    ) -> Result<Room> {
+        if checkpoint_seq >= self.records.len() as u64 {
+            return Err(Error::Policy(format!(
+                "checkpoint seq {checkpoint_seq} past end of parent (len {})",
+                self.records.len()
+            )));
+        }
+        if self.template.head_interval > 1 {
+            let covered = self.heads.last().map(|h| h.length).unwrap_or(0);
+            if checkpoint_seq >= covered {
+                return Err(Error::Policy(format!(
+                    "checkpoint seq {checkpoint_seq} not covered by any published head (last head covers 0..{covered})"
+                )));
+            }
+        }
+        let checkpoint_rec = &self.records[checkpoint_seq as usize];
+        let checkpoint_hash = checkpoint_rec.hash()?;
+        let forked_from = ForkedFrom {
+            parent_id: self.world_id.clone(),
+            checkpoint_seq,
+            checkpoint_hash,
+        };
+
+        let branch_world_id = branch_kp.did();
+        let maker_id = maker_kp.did();
+
+        let mut members = HashMap::new();
+        members.insert(
+            maker_id.clone(),
+            Member { tier: "terminal".into(), is_ai: false },
+        );
+        let mut branch = Room {
+            world_id: branch_world_id.clone(),
+            template: new_template.clone(),
+            keypair: branch_kp,
+            records: Vec::new(),
+            members,
+            heads: Vec::new(),
+        };
+        let rec = RoomCreated::branch(branch_world_id, new_template, maker_id, forked_from);
+        let signed = crate::sign_record_dual(
+            rec, maker_kp, &branch.keypair, Record::RoomCreated, |r, p| r.proof = p,
+        )?;
+        branch.records.push(Record::RoomCreated(signed));
+        Ok(branch)
     }
 
     pub fn log(&self) -> RoomLog {
@@ -405,110 +596,6 @@ impl Room {
     }
 
     pub fn visible_log(&self) -> Vec<serde_json::Value> {
-        use serde_json::json;
-
-        let hashes: Vec<String> = self.records.iter()
-            .map(|r| r.hash().unwrap_or_default())
-            .collect();
-        let mut hash_to_idx: HashMap<String, usize> = HashMap::new();
-        for (i, h) in hashes.iter().enumerate() {
-            hash_to_idx.insert(h.clone(), i);
-        }
-
-        let mut redactions_by_target: HashMap<usize, Vec<usize>> = HashMap::new();
-        let mut resolved_redacts: HashSet<usize> = HashSet::new();
-        for (i, rec) in self.records.iter().enumerate() {
-            match rec {
-                Record::Redact(r) => {
-                    if let Some(&target_idx) = hash_to_idx.get(&r.target_hash) {
-                        redactions_by_target.entry(target_idx).or_default().push(i);
-                    }
-                }
-                Record::HumanOverride(o) if o.action == "restore" => {
-                    if let Some(&redact_idx) = hash_to_idx.get(&o.overrides_hash) {
-                        resolved_redacts.insert(redact_idx);
-                    }
-                }
-                _ => {}
-            }
-        }
-
-        let mut out = Vec::new();
-        for (i, rec) in self.records.iter().enumerate() {
-            match rec {
-                Record::Message(m) => {
-                    let mut still_redacted: Option<usize> = None;
-                    let mut restored: Vec<usize> = Vec::new();
-                    if let Some(redact_idxs) = redactions_by_target.get(&i) {
-                        for &ri in redact_idxs {
-                            if resolved_redacts.contains(&ri) {
-                                restored.push(ri);
-                            } else if still_redacted.is_none() {
-                                still_redacted = Some(ri);
-                            }
-                        }
-                    }
-                    if let Some(ri) = still_redacted {
-                        if let Record::Redact(r) = &self.records[ri] {
-                            out.push(json!({
-                                "seq": m.seq, "type": "message", "kind": m.kind,
-                                "author": m.author_id.as_str(),
-                                "text": "[removed]",
-                                "redacted": true,
-                                "reason": r.reason,
-                                "rule": r.rule,
-                                "incident": short_hash(&hashes[ri]),
-                                "ts": m.ts,
-                            }));
-                        }
-                    } else {
-                        let mut obj = json!({
-                            "seq": m.seq, "type": "message", "kind": m.kind,
-                            "author": m.author_id.as_str(),
-                            "text": m.text,
-                            "redacted": false,
-                            "ts": m.ts,
-                        });
-                        if !restored.is_empty() {
-                            let notes: Vec<serde_json::Value> = restored.iter().map(|&ri| {
-                                if let Record::Redact(r) = &self.records[ri] {
-                                    json!({"incident": short_hash(&hashes[ri]), "reason": r.reason, "rule": r.rule})
-                                } else { json!({}) }
-                            }).collect();
-                            obj["restored_incidents"] = json!(notes);
-                        }
-                        out.push(obj);
-                    }
-                }
-                Record::Redact(r) => {
-                    out.push(json!({"seq": r.seq, "type": "redact", "by": r.subject_id.as_str(), "reason": r.reason, "target": r.target_hash, "rule": r.rule, "actor_role": r.actor_role, "incident": short_hash(&hashes[i])}));
-                }
-                Record::Join(j) => {
-                    out.push(json!({"seq": j.seq, "type": "join", "subject": j.subject_id.as_str(), "tier": j.tier, "is_ai": j.is_ai}));
-                }
-                Record::Leave(l) => {
-                    out.push(json!({"seq": l.seq, "type": "leave", "subject": l.subject_id.as_str()}));
-                }
-                Record::HumanOverride(o) => {
-                    out.push(json!({"seq": o.seq, "type": "human_override", "by": o.overridden_by.as_str(), "overrides": o.overrides_hash, "action": o.action, "reason": o.reason}));
-                }
-                Record::Refusal(r) => {
-                    out.push(json!({"seq": r.seq, "type": "refused", "requester": r.requester_id.as_str(), "reason": r.reason}));
-                }
-                Record::RoomCreated(_) => {
-                    out.push(json!({"seq": 0, "type": "created"}));
-                }
-                Record::ModeratorSuccession(s) => {
-                    out.push(json!({
-                        "seq": s.seq, "type": "moderator_succession",
-                        "outgoing": s.outgoing_id.as_str(),
-                        "incoming": s.incoming_id.as_str(),
-                        "reason": s.reason,
-                    }));
-                }
-                Record::KnowledgeShardExport(_) | Record::PortLanding(_) | Record::Bookmark(_) | Record::Presence(_) => {}
-            }
-        }
-        out
+        visible_log_from(&self.records)
     }
 }

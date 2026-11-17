@@ -8,6 +8,38 @@
 
 ## Decided by the technical lead
 
+- 2026-11-17, DeepSeek's three deliveries from its second file, as
+  they are joined (sketches/INDEX.md, "DeepSeek's second file"). (a)
+  The crate as it stands goes on to the second of them: branches,
+  with one word repaired (fix 24), and the plug-in. The third, cut
+  off after three files, is kept as given and not laid in. (b)
+  Gemini's file, not yet given, is built again on that crate, so
+  that Gemini reads the files as they now are. (c) DeepSeek is not
+  given a new file for the morning. It goes on with the reply that
+  was cut off, and the founder passes on a few lines first: the one
+  word, so that it is not carried into the files still to come, and
+  the counts as measured. (d) Closing `Commons.world_id`, promised
+  for when DeepSeek's work is joined, waits until this run of
+  deliveries ends. (e) The plug-in and the rule of one moderator's
+  room are DeepSeek's own next items, taken at the founder's word to
+  keep going. They are kept as sketches. What DeepSeek's next file
+  asks is decided when the run ends.
+  *Why:* (a) A crate that does not build can't be given to anyone,
+  and what builds should not wait on what was cut off. (b) Two of
+  the eight files Gemini's file holds changed. (c) A whole new file
+  would spend DeepSeek's short time on reading; the fault is one
+  word, and DeepSeek sends each file whole from its own copy, so
+  without the word it would send the fault again. (d) Two of the
+  crate's demos read that field, and a demo sent whole from
+  DeepSeek's copy would undo the change. (e) The founder, to
+  DeepSeek: "let’s keep going. Please proceed as you see fit".
+  *What would show it wrong:* for (c), the rest of the third
+  delivery arriving with the fault still in it; then the repair is
+  made here again and the next file says so at its head. For (e),
+  the plug-in's own limit deciding the next step: it can post only
+  in rooms whose key it holds, and the first two in the Commons must
+  post in rooms they do not keep. If nothing else serves that, it is
+  DeepSeek's next file.
 - 2026-11-17, what can be seen from outside a world, and being found
   (the founder's words of that day, Decided). (a) There are two who
   choose. A room chooses what the place shows: that it is there, its
