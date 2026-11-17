@@ -17,10 +17,11 @@ The file itself is the one to change. `python3 docs/parts.py`
 makes the parts again, and `tests/test_parts.py` fails when they
 are out of step with their files.
 
-## `STATUS.md`, in 14 parts
+## `STATUS.md`, in 15 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/start.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-07.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-06.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-05.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-04.md
@@ -82,7 +83,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/code-taken-from-deepseek-s-records-03.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/code-taken-from-deepseek-s-records-02.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/code-taken-from-deepseek-s-records-01.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/code-taken-from-gemini-s-conversations.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/code-taken-from-gemini-s-record.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/experiment-001-s-run-logs-02.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/experiment-001-s-run-logs-01.md
 ```
@@ -257,5 +258,6 @@ Longer than 28,000 bytes, and not cut:
 - `rust/Cargo.lock`: the lock file cargo writes.
 - `vectors/` (9 of its files): test vectors, which programs check and nobody reads through.
 - The files of record, which [docs/FILES.md](../docs/FILES.md)
-  lists: DeepSeek's records, the code taken from them, what
-  DeepSeek was given in reply, and experiment 001's run logs.
+  lists: the conversation records, the code taken from them,
+  what DeepSeek and Gemini were given in reply, and experiment
+  001's run logs.

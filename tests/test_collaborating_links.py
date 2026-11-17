@@ -14,9 +14,9 @@ from a small page; the lists stay, as the way that always works. So the
 lists must be whole and current: this test fails
 when a file is added, moved or removed and they aren't changed with it.
 COLLABORATING.md lists the files a reader works from; FILES.md, written
-by docs/files.py, the files of record (DeepSeek's records, the code
-taken from them, what DeepSeek was given in reply, and Experiment 001's
-run logs); and parts/INDEX.md,
+by docs/files.py, the files of record (the conversation records, the
+code taken from them, what DeepSeek and Gemini were given in reply, and
+Experiment 001's run logs); and parts/INDEX.md,
 written by docs/parts.py, the parts the long files are kept cut into.
 """
 import importlib.util

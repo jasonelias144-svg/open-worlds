@@ -1,14 +1,14 @@
 > Part of `docs/FILES.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "Code taken from Gemini's conversations" to "What DeepSeek was given".
+> This part holds: "Code taken from Gemini's record" to "What DeepSeek was given".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/code-taken-from-deepseek-s-records-01.md
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/experiment-001-s-run-logs-02.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
-## Code taken from Gemini's conversations
+## Code taken from Gemini's record
 
-In `sketches/gemini`, 13 files, 152 KB in all, the largest 26 KB: Gemini's code as it wrote it, a folder per conversation; the conversations themselves are not kept here, and each folder's `MANIFEST.json` holds its files to what Gemini wrote.
+In `sketches/gemini`, 13 files, 152 KB in all, the largest 26 KB: Gemini's code as it wrote it, a folder per stretch of work; each folder's `MANIFEST.json` and `take.py` hold its files to the record they were taken from.
 
 **`sketches/gemini/2026-11-16`** (13 files, 152 KB):
 

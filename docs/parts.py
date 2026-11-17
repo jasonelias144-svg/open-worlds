@@ -380,8 +380,9 @@ def index(cut_files, left):
             else ""
         out.append("- `%s`%s: %s." % (what, count, why))
     out += ["- The files of record, which [docs/FILES.md](../docs/FILES.md)",
-            "  lists: DeepSeek's records, the code taken from them, what",
-            "  DeepSeek was given in reply, and experiment 001's run logs."]
+            "  lists: the conversation records, the code taken from them,",
+            "  what DeepSeek and Gemini were given in reply, and experiment",
+            "  001's run logs."]
     return "\n".join(out) + "\n"
 
 

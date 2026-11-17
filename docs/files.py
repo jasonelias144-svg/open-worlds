@@ -8,8 +8,9 @@ from (the founder,
 2026-11-15: "Remember links in the collaborating page are not
 accessible. So all files need links through this method.").
 COLLABORATING.md lists the files a reader works from; this page lists
-the rest: DeepSeek's records, the code taken from them, Gemini's code,
-what each of the two was given in reply, and Experiment 001's run logs.
+the rest: the conversation records, the code DeepSeek and Gemini wrote
+in them, what each of the two was given in reply, and Experiment 001's
+run logs.
 
     python3 docs/files.py          # rewrite docs/FILES.md
     python3 docs/files.py --check  # exit 1 if docs/FILES.md is stale
@@ -28,17 +29,18 @@ GROUP_MAX = 40  # links in one group, a paste at a time
 # The kinds of file this page holds, in its order: (folder, heading,
 # what they are). Every other file is in COLLABORATING.md's list.
 KINDS = [
-    ("sketches/records/", "DeepSeek's records",
-     "each conversation with DeepSeek, word for word; most are too large "
-     "to read in one go"),
+    ("sketches/records/", "The conversation records",
+     "each of the founder's conversations with DeepSeek, and the one "
+     "with Gemini (marked GMNI), word for word; most are too large to "
+     "read in one go"),
     ("sketches/deepseek/", "Code taken from DeepSeek's records",
      "DeepSeek's code as each record gave it, a folder per record; "
      "`name@offset` is an earlier version of `name`, found at that "
      "offset in the record"),
-    ("sketches/gemini/", "Code taken from Gemini's conversations",
-     "Gemini's code as it wrote it, a folder per conversation; the "
-     "conversations themselves are not kept here, and each folder's "
-     "`MANIFEST.json` holds its files to what Gemini wrote"),
+    ("sketches/gemini/", "Code taken from Gemini's record",
+     "Gemini's code as it wrote it, a folder per stretch of work; each "
+     "folder's `MANIFEST.json` and `take.py` hold its files to the "
+     "record they were taken from"),
     ("sketches/replies/", "What DeepSeek was given",
      "the one file the founder gave DeepSeek, or Gemini, at each "
      "return, with the reply and the list of files it was built from "

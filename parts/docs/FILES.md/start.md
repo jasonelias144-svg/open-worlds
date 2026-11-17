@@ -1,6 +1,6 @@
 > Part of `docs/FILES.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: from the start to "DeepSeek's records".
+> This part holds: from the start to "The conversation records".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: nothing; this is the first part.
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/code-taken-from-deepseek-s-records-04.md
@@ -19,19 +19,20 @@ need links through this method.").
 
 COLLABORATING.md lists the files a reader works from: every page,
 all the code, the tests and the vectors. This page lists the rest,
-948 files of record, best sent when a question needs them.
+949 files of record, best sent when a question needs them.
 
 Written by `python3 docs/files.py`;
 `tests/test_collaborating_links.py` fails if a file is added, moved
 or removed and this page isn't written again.
 
-## DeepSeek's records
+## The conversation records
 
-In `sketches/records`, 6 files, 8.2 MB in all, the largest 2.7 MB: each conversation with DeepSeek, word for word; most are too large to read in one go.
+In `sketches/records`, 7 files, 8.8 MB in all, the largest 2.7 MB: each of the founder's conversations with DeepSeek, and the one with Gemini (marked GMNI), word for word; most are too large to read in one go.
 
-**`sketches/records`** (6 files, 8.2 MB):
+**`sketches/records`** (7 files, 8.8 MB):
 
 ```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-00-00-GMNI-Multiverse_Development.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-03-02-DPSK-Patterns_Texts_and_Inventions.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-04-00-DPSK-Patterns_Multiverses.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-05-01-DPSK-Patterns_Multiverses.txt

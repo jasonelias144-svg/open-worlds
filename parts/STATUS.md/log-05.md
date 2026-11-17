@@ -8,6 +8,28 @@
 
 ## Log
 
+- 2026-11-17 Claude: Gemini's conversation is with the records, at the
+  founder's word (Decided, today). The record is
+  sketches/records/012-00-00-GMNI-Multiverse_Development.txt, byte for
+  byte as the founder gave it: 574,505 bytes, 13,530 lines. Looked
+  through before it went in, by script, and the founder's 27 messages
+  read: no key, password or address, no one else's personal details,
+  and none of Gemini's reasoning text. It holds the founder's own work
+  by its title and what the founder says of it and of themself, which
+  the founder was told of and confirmed. Gemini's files in
+  sketches/gemini/2026-11-16/ are now held to the record as DeepSeek's
+  are: take.py, run with no argument, takes them out again and
+  compares, and the folder test of sketches/deepseek/012-09-05 runs it
+  in CI. Pages that said the conversation was not kept are corrected
+  (sketches/README.md, the folder's README, docs/FILES.md), the rule
+  on personal data in AGENTS.md has the founder's addition, and
+  sketches/README.md says on what footing Gemini's outputs are given
+  (the Google Terms of Service, read today). The whole record is also
+  in the private repository, from earlier today. Not done: Gemini's
+  replies were not read through, only searched; the steps Gemini wrote
+  before it was given its file (from line 1209) are in the record and
+  are not taken out or built again; the founder's other records, which
+  the founder spoke of gathering later, are not here yet.
 - 2026-11-17 Claude: Gemini's work is in. The founder, the same day:
   "Here is the latest fork Gemini. I run through the credits quickly,
   but we still got some work done." Four deliveries, taken out of the

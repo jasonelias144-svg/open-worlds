@@ -114,12 +114,12 @@ def test_its_keys_are_hex_and_its_time_is_the_clock():
 
 
 def test_the_crate_as_it_stands_is_the_deliveries_with_the_listed_repairs():
-    # Fixes 19 to 22. chat-world-now is put together here, so nothing in
+    # Fixes 19 to 23. chat-world-now is put together here, so nothing in
     # the record says what it must hold. review/steps.py does: the crate
     # DeepSeek was given, DeepSeek's five deliveries laid over it in
-    # order, three repairs, Gemini's three deliveries, and two earlier
-    # tests corrected. This runs its check, which also holds Gemini's
-    # files to their hashes.
+    # order, three repairs, Gemini's three deliveries, two earlier tests
+    # corrected, and a room's law closed to change in place. This runs
+    # its check, which also holds Gemini's files to their hashes.
     done = subprocess.run(
         [sys.executable, "-I", str(HERE / "review" / "steps.py"), "--check"],
         capture_output=True, text=True)
@@ -129,3 +129,15 @@ def test_the_crate_as_it_stands_is_the_deliveries_with_the_listed_repairs():
                         ("attack.rs", 22)):
         text = (tests / name).read_text(encoding="utf-8")
         assert text.count("#[test]") == count, name
+
+
+def test_geminis_files_are_the_ones_its_record_gives():
+    # Gemini's deliveries are laid over the crate by review/steps.py.
+    # They are kept in ../../gemini/2026-11-16, taken out of Gemini's
+    # conversation record by that folder's take.py. Run with no
+    # argument, it takes them out of the record again and compares.
+    take = HERE.parent.parent / "gemini" / "2026-11-16" / "take.py"
+    done = subprocess.run([sys.executable, "-I", str(take)],
+                          capture_output=True, text=True)
+    assert done.returncode == 0, done.stdout + done.stderr
+    assert "10 files from the record; 0 problem(s)" in done.stdout
