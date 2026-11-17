@@ -108,9 +108,11 @@ free, and never a money machine
   laid into it, and are kept as the list of what the room's own check
   must refuse. Gemini then built the lobby's list of doors, which a
   map of the Commons is first drawn from
-  (sketches/gemini/2026-11-17-2/), and its next file asks it to
-  attack that list
-  (sketches/replies/2026-11-17-3-for-gemini.txt). DeepSeek goes on
+  (sketches/gemini/2026-11-17-2/), and attacked it with 25 tests
+  (sketches/gemini/2026-11-17-3/): the crate refuses twenty, and
+  five get through, as Gemini said they would. Its next file asks
+  it to repair them
+  (sketches/replies/2026-11-17-4-for-gemini.txt). DeepSeek goes on
   with its third step. Fitting the crate to open-worlds' own code is
   step 3c.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
@@ -3146,6 +3148,58 @@ of it is asked again until it is needed.
 
 ## Decided by the technical lead
 
+- 2026-11-17, the five attacks on the list of doors that get
+  through, and what Gemini's next file asks
+  (sketches/gemini/2026-11-17-3/README.md). (a) A door read from
+  JSON refuses a member the form does not have. (b) A leaving by a
+  key that is not in the room belongs to the check of a room's own
+  log: it is a ninth gap there, beside the eight of Gemini's fourth
+  step, for course step 3c. Until then the drawing of the list
+  refuses such a log. (c) A room registered under a topic that is
+  not its own is not refused. The door shows both topics, the
+  listed one and the room's own, when the reader holds the room's
+  log. (d) A count can be held to a head the room signed: two new
+  functions take the heads a reader holds, and refuse a room's log
+  that is shorter than one of them. Without a head an older count
+  still draws, and a test says so. (e) A count is a count of keys.
+  That is not closed in the crate, and the test that showed it
+  stays, as a stated limit. Gemini's own answer, a law that asks
+  for proof of personhood on joining, is not put into the sketch;
+  whether a room may ask it by its own law is a later question.
+  (f) Gemini's answer on the text, a kind of list that only a check
+  can make, is taken for the project's own door and not put into
+  the sketch. (g) Gemini repairs its own two files and sends both
+  whole. Its attack file is not in the file it is given: it is
+  told to work from its own last reply for that one.
+  *Why:* (a) A rule about what a door can hold must hold of every
+  form a door takes. (b) The list should not have to know a room's
+  rules; but a sketch that draws a count from a log it can see is
+  wrong is worse than one that refuses it. (c) If the drawing
+  refused, anyone who was once in a room could break the whole list
+  with one registration. Showing both lets the reader judge, and
+  takes nothing from a Commons that lists a room under a name of
+  its own choosing. (d) Gemini named it, and the crate already has
+  signed heads, which are DeepSeek's. A reader who holds no head
+  has no way to know, and the list should not pretend otherwise.
+  (e) The founder, on this attack: "there is no prize for being on
+  top", with other numbers and a look inside (Decided, 2026-11-17).
+  Proof of personhood asks who someone is, and what was asked of
+  both collaborators was a way to tell holders apart that does not
+  (docs/COLLABORATING.md, 2026-11-17). (f) It changes what `as_text`
+  takes, and Gemini's earlier test file calls it as it is. The idea
+  loses nothing by waiting. (g) The reply script takes files from
+  one folder, and the attack file is kept beside the crate while
+  five of its tests fail. Gemini wrote it in its last reply and
+  nothing in it was changed here, so there is one version of it.
+  *What would show it wrong:* for (c), a registrant's topic that
+  misleads even with the room's own beside it, or readers who
+  mostly do not hold the room's log and so see only the listed
+  one; then listing a room under another topic needs the room's
+  own signature. For (d), readers who in practice hold no head;
+  then the lobby must hand out heads with the logs, which is for
+  the project's own door. For (g), Gemini's file coming back with
+  more changed in it than was asked: it is compared, line by line,
+  with the one it sent.
 - 2026-11-17, looking into a room before entering, other numbers,
   and the flag (the founder's words of that day, Decided). (a) A
   look inside is the room's visible log, read-only: what those in it
@@ -4385,6 +4439,31 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-17 Claude: Gemini's record is continued, as the founder
+  brought it (769,085 bytes, 17,954 lines; its first 733,438 bytes
+  are the record as it was kept). Looked through first: the
+  founder's turns in the new part hold nothing personal. It holds
+  Gemini's answer to its fourth file: 25 attacks on the list of
+  doors, one test file, kept as written in
+  sketches/gemini/2026-11-17-3 and held to the record by that
+  folder's take.py. Built beside the crate as it stands: 147 of 152
+  pass, and the five that fail are the five Gemini named
+  (review/steps.sh, `doors-attacks`; all 21 stages of that script
+  were built again, each on its own, and are as recorded). The
+  crate as it stands is not changed: 127 tests in 31 files. Read by
+  the technical lead: Gemini's prose in the new part, and the five
+  tests that fail; the other twenty were run, not read line by
+  line. What is done with the five is under "Decided by the
+  technical lead". Before Gemini's next file was written, the five
+  repairs it asks for were made in a throwaway copy outside the
+  repository, with three of the attacks rewritten as the file asks
+  and four trial tests added: 156 of 156. The copy is not kept, and
+  nothing of it is in the repository. The file is built and was
+  sent to the founder
+  (sketches/replies/2026-11-17-4-for-gemini.txt, 95,491 bytes):
+  five repairs, in Gemini's own two files. It leaves Gemini's own
+  attack file out and tells Gemini to work from its last reply for
+  that one, which no file before it did.
 - 2026-11-17 Claude: the founder's words on looking into a room
   before entering, on other numbers and on a flag are recorded
   (Decided), with how the technical lead shapes them (Decided by the

@@ -2,11 +2,9 @@
 > for readers who are shown only the start of a long page.
 > This part holds: "Log", piece 5 (its pieces are numbered from its end).
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead-01.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-06.md
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-04.md
 > Made by docs/parts.py from the file. To change it, change the file.
-
-## Log
 
 - 2026-11-17 Claude: the founder's words on looking into a room
   before entering, on other numbers and on a flag are recorded

@@ -735,7 +735,9 @@ combined in the same interface."
   (course step 3f). A sketch of that list is built, by Gemini, in the
   sketch crate (2026-11-17):
   [`sketches/gemini/2026-11-17-2/README.md`](../sketches/gemini/2026-11-17-2/README.md).
-  It is being attacked before anything is taken from it.
+  It has been attacked: of 25 attacks, five get through
+  ([`sketches/gemini/2026-11-17-3/README.md`](../sketches/gemini/2026-11-17-3/README.md)).
+  They are being repaired before anything is taken from it.
 
 **One scale up and one scale down** (the practice of 2026-11-17:
 STATUS.md, "Decided by the technical lead"). Down: a room's own page,

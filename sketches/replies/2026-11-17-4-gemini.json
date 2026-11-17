@@ -1,0 +1,58 @@
+{
+ "text": "2026-11-17-4-gemini.txt",
+ "out": "2026-11-17-4-for-gemini.txt",
+ "root": "sketches/deepseek/012-09-05/chat-world-now",
+ "name": "chat-world",
+ "limit": 100000,
+ "current": true,
+ "files": [
+  [
+   "Cargo.toml",
+   "to read"
+  ],
+  [
+   "src/lib.rs",
+   "to read: the modules, and what a test can name without a path"
+  ],
+  [
+   "src/error.rs",
+   "to read: the errors a check returns"
+  ],
+  [
+   "src/hash.rs",
+   "to read: hash_of and body_for_signing"
+  ],
+  [
+   "src/did.rs",
+   "to read: DidKey and Keypair"
+  ],
+  [
+   "src/proof.rs",
+   "to read"
+  ],
+  [
+   "src/template.rs",
+   "to read: a room's law, with its topic and count_hidden"
+  ],
+  [
+   "src/record.rs",
+   "to read: every kind of record a room holds"
+  ],
+  [
+   "src/room.rs",
+   "to read: Room and RoomLog"
+  ],
+  [
+   "src/head.rs",
+   "to read, and new to you: WorldHead, verify_head and emit_head"
+  ],
+  [
+   "src/commons.rs",
+   "to read: the Commons' log and its checks"
+  ],
+  [
+   "src/doors.rs",
+   "YOURS, as you sent it: the file you repair in this step"
+  ]
+ ]
+}

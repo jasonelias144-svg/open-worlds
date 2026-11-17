@@ -265,6 +265,39 @@ Gemini's next file
 ([replies/2026-11-17-3-for-gemini.txt](replies/2026-11-17-3-for-gemini.txt))
 asks one step: twenty-two attacks on the list, tests only.
 
+### Gemini's attacks on the list of doors (2026-11-17)
+
+Gemini answered its fourth file the same day
+([gemini/2026-11-17-3](gemini/2026-11-17-3/README.md)): one file,
+`tests/doors_attack.rs`, 25 tests, the twenty-two the file asked for
+and three of its own. Built beside the crate as it stands, every test
+file run:
+
+| Delivery | What it is | Gemini expected | Tests, built as given |
+|---|---|---|---|
+| Attacks on the list of doors | A list forged against `check`, the logs forged against `draw`, a list read from JSON, the text, and what a count means | 147 of 152, five named to fail | 147 of 152, the same five |
+
+The five that get through:
+
+| Attack | What the crate accepts | What is done |
+|---|---|---|
+| 17 | A room's log cut short just before a leaving: the older, larger count is drawn | A log is held to a head the room signed, when the reader holds one |
+| 19 | A door read from JSON with a member the form does not have, such as a list of ids | The forms refuse what they do not have |
+| 22 | Thirty keys of one holder put a room above one of five people | Not closed in the crate: a count is a count of keys. Kept as a test that states the limit. The answer is other numbers and a look into the room (STATUS.md, "Decided", 2026-11-17) |
+| 24 | A leaving by a key that was never in the room, signed by that key alone | It belongs to the check of a room's own log: a ninth gap, beside the eight of Gemini's fourth step. Until then the drawing of the list refuses such a log |
+| 25 | A room registered under a topic that is not its own: only the registrant's is shown | The room's own topic is shown beside the listed one, when the reader holds the room's log |
+
+Because five of its tests fail, the file is not laid into the crate
+as it stands, which stays at 127 tests. `review/steps.sh` builds it
+beside the crate (`doors-attacks`).
+
+"What is done" is what Gemini's next file asks of it
+([replies/2026-11-17-4-for-gemini.txt](replies/2026-11-17-4-for-gemini.txt)):
+five repairs, in its own two files. Before that file was written the
+repairs were made in a throwaway copy outside the repository, with
+attacks 17, 22 and 25 rewritten as the file asks and four trial tests
+added: 156 of 156. The copy is not kept.
+
 ## Record 012-03-02, component by component
 
 Three series of components, written out in `deepseek/012-03-02/`: a

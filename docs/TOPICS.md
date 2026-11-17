@@ -673,7 +673,10 @@ from
 A door holds a place and no one in it. A list handed on is checked by
 drawing it again. And the same list is written as text for a mind,
 with every word that came from a log in quotes, so that a room's topic
-can't write a line of its own.
+can't write a line of its own. Gemini then attacked it with 25 tests
+([`sketches/gemini/2026-11-17-3/README.md`](../sketches/gemini/2026-11-17-3/README.md)):
+the sketch refuses twenty, five get through, and its next file asks
+it to repair them.
 
 **Open, from the founder** (2026-11-17): what can be seen from
 outside. How many are in a public room is shown, unless its law

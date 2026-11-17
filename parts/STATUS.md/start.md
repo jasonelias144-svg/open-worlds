@@ -116,9 +116,11 @@ free, and never a money machine
   laid into it, and are kept as the list of what the room's own check
   must refuse. Gemini then built the lobby's list of doors, which a
   map of the Commons is first drawn from
-  (sketches/gemini/2026-11-17-2/), and its next file asks it to
-  attack that list
-  (sketches/replies/2026-11-17-3-for-gemini.txt). DeepSeek goes on
+  (sketches/gemini/2026-11-17-2/), and attacked it with 25 tests
+  (sketches/gemini/2026-11-17-3/): the crate refuses twenty, and
+  five get through, as Gemini said they would. Its next file asks
+  it to repair them
+  (sketches/replies/2026-11-17-4-for-gemini.txt). DeepSeek goes on
   with its third step. Fitting the crate to open-worlds' own code is
   step 3c.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
