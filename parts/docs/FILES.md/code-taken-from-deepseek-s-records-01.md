@@ -104,7 +104,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-07-03/vectors/endless-plant.json
 ```
 
-**`sketches/deepseek/012-09-05`** (25 files, 256 KB):
+**`sketches/deepseek/012-09-05`** (25 files, 257 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/README.md
@@ -246,7 +246,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-steps/5/tests/integration.rs
 ```
 
-**`sketches/deepseek/012-09-05/review`** (3 files, 19 KB):
+**`sketches/deepseek/012-09-05/review`** (3 files, 20 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/review/run.sh

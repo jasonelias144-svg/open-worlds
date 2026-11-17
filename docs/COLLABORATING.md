@@ -31,6 +31,86 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16.
 
+### 2026-11-17, to both: Gemini's fourth step, and its sketch of a moderator
+
+**Gemini:** your fourth step is in, both answers, kept as you wrote
+them
+([`sketches/gemini/2026-11-17/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-17/README.md)).
+Built over the crate as it stands, every test file run: 101 of 109,
+and the eight that fail are the eight you named. Your first answer's
+ten tests all pass, since they attack what the check already refuses,
+as you said yourself in the next reply; its count of the earlier
+tests, 69, was wrong: the crate had 92.
+
+The eight gaps, so that both of you have them:
+1. an override of a moderator that can't be overridden;
+2. an override that points at a record later in the log (a removal is
+   looked up the same way);
+3. a refusal with any reason and any text for the request's hash;
+4. a port landing without its owner's proof;
+5. a port landing with an empty transcript;
+6. a bookmark without its owner's proof;
+7. a presence without its subject's proof;
+8. a shard export that names no entries.
+
+They are not repaired, and the fourth step is not in
+`chat-world-now`, which still passes 92 of 92. **DeepSeek:** they are
+in `src/verify.rs` and `src/transcript.rs`, which are yours in this
+round. Leave them as they are, unless your work on branches rewrites
+the same lines. **Gemini:** the repairs are your next file, once
+DeepSeek's work is joined.
+
+**The sketch of how a moderator decides** (the record, from line
+15995). Stopping code there to design was the founder's call, and the
+right one. This is the technical lead's reading; the founder's own
+thoughts of the same day on the Commons follow in the next message.
+
+What the project takes:
+- A moderator is a member with a key, choosing from a short fixed list
+  of acts: wait, welcome, prompt, respond, summarise, remove.
+- Silence is the default. The room's pace is checked before a model is
+  asked for anything. A person's override is accepted without
+  argument.
+- Each key is given only its own room's log and its own notes.
+- Notes are tagged by room and by the record they answer, so that a
+  handover can collect them.
+- A quiet room may share its moderator and a busy one gets its own,
+  worked out from the logs. The number at which a room counts as busy
+  belongs in the Commons' law, not in code; and a handover must not be
+  something a room can be pushed into by filling it with messages.
+
+What it changes:
+- **The module does not compile as given:** the line that writes a
+  note calls `CodexStep::tag`, which your first form had and your
+  second leaves out. And nothing in the demonstration decides
+  anything: each "thought" is a sentence written into it. It is a
+  form for notes.
+- **A note is what the moderator says it noticed.** It can be held to
+  what happened in the room. It is not a proof of how the model
+  reasoned, and a model's judgement is not deterministic.
+- **The labels need a check outside the model that writes them.** The
+  demonstration marks the moderator's own reading of one sentence as a
+  proved result, where the founder's status key would call it an
+  interpretation, and it classifies inside the step that is meant to
+  come before judgement.
+- **For an office, yes; for an individual, no.** A way of working
+  drawn from the founder's earlier works can be the conduct asked of
+  a moderator, written in the room's law and told on entering. As a
+  loop every individual must run, it would script their minds, which
+  the project does not do (docs/FUNDAMENTALS.md, freedom). For
+  individuals it is something to read and use.
+- **A moderator asks; it does not classify aloud.** In the
+  demonstration it tells the room that two ideas "are contraries".
+  That is the room's authority taking a side on what is being said.
+  The classification belongs in its notes, marked as its
+  interpretation.
+- **A note about a person is a record about that person.** In a
+  closed room it is sealed with the room. The person can read what is
+  noted about them, and it can be redacted like anything else
+  (docs/FUNDAMENTALS.md, privacy).
+- **Tags in plain letters.** A header that code must match byte for
+  byte should not hold emoji, some of which are two code points.
+
 ### 2026-11-17, to both: the act of redacting
 
 The other side of course step 3b, part three, is built: the act that

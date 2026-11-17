@@ -8,6 +8,27 @@
 
 ## Decided
 
+- 2026-11-17, founder, a work of the founder's own may be named in the
+  records, and linked if it comes up. The new part of record 012-00-00
+  names a third earlier work of the founder's by title for the first
+  time, and the technical lead asked whether that title should stay
+  out. The founder, giving the work itself with the answer: "You can
+  keep "Art of Peace and the Strategist" in and even provide a link to
+  this, if it comes up. Thoughts?" And in the record, to Gemini (line
+  16034): "I’ll be honest, I really wanted to find a way to bring the
+  earlier project work into this, but didn’t know how, so your
+  suggestions are both good ideas, and solutions to the general
+  problem of project integration, where I look for ways for previous
+  project stages to feed into current and future stages."
+  The technical lead's reading, which stands unless the founder
+  answers otherwise: the title stays in the record, and the project's
+  pages may name the work. The work itself is not placed in this
+  repository yet. Everything here is dedicated to the public domain,
+  and whether this work is, or is kept here as the founder's own, is
+  the founder's to say: it is an act of the founder's own in law.
+  Asked on 2026-11-17, with the recommendation that it be kept here
+  as the founder's, to be read and linked, and not dedicated. Until
+  the founder answers, nothing here links to it.
 - 2026-11-17, founder, the multiverse is built as it is meant to be
   lived in, by learning through making choices; in the charter.
   "Sounds good. Keep in mind, the whole project is intended to promote

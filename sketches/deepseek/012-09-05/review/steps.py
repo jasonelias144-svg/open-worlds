@@ -13,7 +13,7 @@ hash in its folder's MANIFEST.json.
     python3 steps.py OUT            OUT/1 ... OUT/5
     python3 steps.py --aside OUT    and OUT/5-aside
     python3 steps.py --now OUT      and OUT/5-repaired, g1, g2, g3,
-                                    g3-repaired, c1, c2, c3, now
+                                    g3-repaired, c1, c2, c3, now, c4
     python3 steps.py --check        is ../chat-world-now what --now makes?
 
 Nothing is run: this only copies files. Each OUT/N/chat-world is the
@@ -33,6 +33,14 @@ delivery before left it.
                  (2026-11-17), laid over it in order.
     now          c3, with nothing changed. This is the crate as it
                  stands, kept in ../chat-world-now.
+    c4           now, with the fourth step of Gemini's round on the
+                 Commons laid over it: 17 attacks on a room's seven
+                 other kinds of record
+                 (../../../gemini/2026-11-17/steps/4). Eight of them
+                 get through, so it is built beside the crate as it
+                 stands and is not laid into it. Gemini's first answer
+                 to that step (steps/4-first) is kept and not used:
+                 the second replaces it.
 
 `--check` puts the crate together again and compares it with that
 folder, byte for byte, and holds Gemini's files, in both of its
@@ -266,6 +274,11 @@ def main(argv, quiet=False):
             before = tree
         shutil.copytree(before, os.path.join(out, "now", "chat-world"))
         say("nothing changed after it: now")
+        tree = os.path.join(out, "c4", "chat-world")
+        shutil.copytree(before, tree)
+        count = lay(os.path.join(GEMINI_COMMONS, "steps", "4"), tree)
+        say(f"Gemini's fourth step, beside the crate as it stands: "
+            f"{count} file laid over: c4")
 
 
 if __name__ == "__main__":

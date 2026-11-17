@@ -170,8 +170,10 @@ with two more repairs made here (fixes 22 and 23); it then passed all
 over that
 ([../../gemini/2026-11-17/README.md](../../gemini/2026-11-17/README.md)),
 with nothing changed. As it stands it passes all 92 of its tests, 41
-of them DeepSeek's and 51 Gemini's, and its four demos run. It is put
-together here, by
+of them DeepSeek's and 51 Gemini's, and its four demos run. Gemini's
+fourth step of that round, 17 attacks of which eight get through, is
+built beside it and not laid into it (`review/steps.sh`, `c4`). It is
+put together here, by
 `review/steps.py --now`; `review/steps.py --check` holds the folder to
 that, byte for byte, and `sketch_status_test.py` runs the check. So
 its files are listed below as ours, though each is exactly as DeepSeek

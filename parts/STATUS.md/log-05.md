@@ -8,6 +8,43 @@
 
 ## Log
 
+- 2026-11-17 Claude: Gemini's record continued, and the fourth step of
+  its round on the Commons kept and built. The founder went back to
+  Gemini while this session was out of time. The record grew and was
+  replaced (sketches/records/012-00-00-GMNI-Multiverse_Development.txt,
+  705,897 bytes, 16,395 lines): its first 633,993 bytes are the copy
+  that was here, less that copy's last byte, a line end after the
+  founder's turn with nothing in it yet, which now reads `::➡️`.
+  Looked through first: no key and nothing about anyone else in what
+  was added; it names a third earlier work of the founder's, which the
+  founder said may stay (Decided). Gemini answered the fourth step
+  twice, and both answers are kept as written
+  (sketches/gemini/2026-11-17/steps/4-first and steps/4): the first,
+  10 attacks on a room's seven other kinds of record, attacks only
+  what the check already refuses, as Gemini's next reply says itself;
+  the second, 17 attacks. Built over the crate as it stands, every
+  test file run: 101 of 109, the eight that get through being the
+  eight Gemini said would. They are eight gaps in the check of a
+  room's log (sketches/gemini/2026-11-17/README.md lists them), not
+  repaired: `src/verify.rs` is DeepSeek's in this round. So the fourth
+  step is built beside the crate as it stands (`review/steps.sh`,
+  `c4`) and is not laid into it: sketches/deepseek/012-09-05/
+  chat-world-now/ is unchanged, 92 of 92. Then, at the founder's word
+  (record line 15992: "building more code is what I would like, but
+  is probably not best"), Gemini stopped writing code and sketched how
+  an AI that moderates a room might decide what to do, with a module
+  and a demonstration. Those are not kept as files: built once as
+  given, the module does not compile, and nothing in the demonstration
+  decides anything. What the project takes from the design is in
+  docs/COLLABORATING.md, as the technical lead's reading. Checked: both
+  folders' files taken out of the record again by script and compared;
+  the crate as it stands put together again and compared byte for
+  byte; `c4` and the crate as it stands built and run (101 and 8; 92).
+  Not done: the whole of `review/steps.sh` was not run again, only
+  those two stages; the first answer's 10 tests were run once by hand
+  and are in no script; the eight gaps are not read against the check
+  line by line; the founder's thoughts of today on the Commons, a
+  library and a wiki are recorded in the next change.
 - 2026-11-17 Claude: the act of redacting (course step 3b, part
   three, second of two sides). A new kind of record in records-v1,
   `open-worlds/redacted-field/v1`, and a new sealing label,
