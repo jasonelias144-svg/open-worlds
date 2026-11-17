@@ -4511,7 +4511,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   in its sentence and marked the ones that stand for an agent; the
   script changed those and the verb beside each; then every changed
   line was read again, with the rest of each sentence whose subject
-  changed, and nineteen places were mended by hand (a second verb, a
+  changed, and thirty-one places were mended by hand (a second verb, a
   heading, a quotation of a changed line). Not changed, and why, is
   under "Decided by the technical lead". Not checked: sentences where
   the agent is named more than two sentences before the pronoun were
