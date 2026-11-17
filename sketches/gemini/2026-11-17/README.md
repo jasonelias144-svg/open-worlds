@@ -132,8 +132,12 @@ Seen by the technical lead and not changed:
   demos read it. It is closed when DeepSeek's work is joined.
 - The eight gaps of the fourth step are not repaired. In this round
   `src/verify.rs` was DeepSeek's to change, for a room that branches,
-  so the file asked Gemini to leave it alone. The repairs are for the
-  next file, once DeepSeek's work is joined.
+  so the file asked Gemini to leave it alone. They are not repaired in
+  this crate after all: they are kept as the list of what the room's
+  own check must refuse, when the room is built on the project's own
+  log (STATUS.md, "Decided by the technical lead", 2026-11-17).
+  Gemini's next file asks another step, the lobby's list of doors:
+  [../../replies/2026-11-17-2-for-gemini.txt](../../replies/2026-11-17-2-for-gemini.txt).
 
 ## After the code: a sketch of how a moderator decides (not a delivery)
 

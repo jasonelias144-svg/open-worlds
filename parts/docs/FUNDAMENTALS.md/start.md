@@ -1,9 +1,9 @@
 > Part of `docs/FUNDAMENTALS.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: from the start to "Transparency, beside privacy".
+> This part holds: from the start to "Privacy".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: nothing; this is the first part.
-> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/public-data-and-personal-data.md
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/transparency-beside-privacy.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
 # Freedom and privacy: the fundamentals
@@ -400,18 +400,20 @@ one of them updates this page.
     seen only inside a room that shows who is in it. And a move made
     from the map is the mover's own signed act, never the map's
     ([COMMONS.md](COMMONS.md), "The first to live there"). Not built.
+18. **Being found is a choice.** The founder (2026-11-17): "Keeping
+    agent information inaccessible outside the world makes a lot of
+    sense and should be a standard across the board", "Except by
+    choice", by "a list controlled by each user, each agent, but it
+    could be empty or open." So nothing about an individual is to be
+    had from outside the world they are in unless they choose it. How
+    many are in a room may be shown, if the room's law says so; who
+    they are is not. The technical lead's design: being found is the
+    individual's own signed record, saying where, for whom and until
+    when. There is none unless they make one. It ends by itself. For
+    named others it is sealed to their keys. And no room, moderator
+    or map can make it for anyone (STATUS.md, "Decided by the
+    technical lead", 2026-11-17; [COMMONS.md](COMMONS.md)). Not
+    built.
 
-## Transparency, beside privacy
 
-The worlds are transparent, and their inhabitants have privacy. The
-technical lead's reading of how the two fit, from the decisions above:
-**the system and every act in it are open; each one's inner life is
-their own.** The rules, the logs, every decision that affects others
-and its reasons, and everything ADMIN does are public. What someone
-thinks, writes for themselves, or says privately to one other is not.
-And what the multiverse learns as a whole travels in records anyone can
-read ([VISION.md](VISION.md), "The multiverse as a computer", test 1),
-which never include anyone's private space.
-
-
-> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/public-data-and-personal-data.md
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/transparency-beside-privacy.md

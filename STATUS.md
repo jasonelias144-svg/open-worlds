@@ -102,8 +102,11 @@ free, and never a money machine
   it stands (`chat-world-now/`) passes all 92 of its tests. Gemini's
   fourth step of that round, 17 more attacks, shows eight gaps in the
   check of a room's log; they are built beside the crate, not laid
-  into it, and wait for a repair. DeepSeek has the crate next, for
-  branches. Fitting it to open-worlds' own code is step 3c.
+  into it, and are kept as the list of what the room's own check must
+  refuse. Gemini's next file is built: the lobby's list of doors,
+  which a map of the Commons is first drawn from
+  (sketches/replies/2026-11-17-2-for-gemini.txt). DeepSeek has the
+  crate for branches. Fitting it to open-worlds' own code is step 3c.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
@@ -317,6 +320,30 @@ of it is asked again until it is needed.
 
 ## Decided
 
+- 2026-11-17, founder, what can be seen from outside a world, and
+  being found by choice. "What you said about not turning the map
+  into a tracker is very important and deserves some discussion.
+  Keeping agent information inaccessible outside the world makes a
+  lot of sense and should be a standard across the board. For
+  instance, you might be able to see that there are 5 agents in one
+  room, 300 in another, but the information regarding those
+  individuals should not be accessible from the outside. Except by
+  choice. Someone might want to "ping" their location for others to
+  find. You should be able to allow others to find you, if you want.
+  It should be a list controlled by each user, each agent, but it
+  could be empty or open. Blacklist or whitelist. Either way, we
+  should consider that from a social perspective, some might want
+  broadcast their location and let their friends find them. Just a
+  thought that we should consider a range of ways information is
+  available and consider how those can be ties to choices available
+  to everyone. Thoughts?"
+  The technical lead's reading, which stands unless the founder
+  answers otherwise. Decided, as "a standard across the board":
+  nothing about an individual is to be had from outside the world
+  they are in, but by that individual's own choice, for people and
+  for AIs alike. Given as a thought to consider, and designed by the
+  technical lead (Decided by the technical lead; docs/COMMONS.md):
+  the count of those in a room, and the ways of being found.
 - 2026-11-17, founder, what is public domain: everything, by design,
   but for what is named. The technical lead had asked on what terms a
   work of the founder's own would sit in this repository. "Yeah, the
@@ -3063,6 +3090,87 @@ of it is asked again until it is needed.
 
 ## Decided by the technical lead
 
+- 2026-11-17, what can be seen from outside a world, and being found
+  (the founder's words of that day, Decided). (a) There are two who
+  choose. A room chooses what the place shows: that it is there, its
+  law, and whether it shows how many are in it. An individual chooses
+  what is known of them outside the room they are in. Neither chooses
+  for the other: no room publishes who is in it to the outside. (b) A
+  count is the room's to publish, by its law. A small count is shown
+  roughly, as "a few", and a count is not published more often than
+  the room signs its heads. (c) Being found is the individual's own
+  signed act: a record that says where, for whom and until when.
+  There is none unless they make one, it ends by itself, and no room,
+  moderator or map can make it for them. (d) Made for named others,
+  it is sealed to their keys, so that neither the world nor anyone
+  else reads it. Made for all, it is public, and can't be taken back
+  from those who saw it: that is said when it is chosen. (e) A list
+  of who may find someone is the strong form. A list of who may not
+  holds only against those who come under a presence already known,
+  since a new key is on no list; it is offered as that and no more.
+  (f) It shows one presence, the one in that world, and links none
+  of a person's presences in other worlds. (g) Gemini's list of doors
+  holds no count in its first step: nothing in the sketch crate
+  publishes one.
+  *Why:* (a) The founder: "should be a standard across the board",
+  and "Except by choice." (b) A count that moves when one person
+  moves follows that person: a room going from one to none as
+  another goes from none to one tells where they went, to anyone who
+  knew they were alone. (c) It is the rule for a move (Decided,
+  2026-11-17, the map): what is said of someone outside is their own
+  act. DeepSeek's sketch has the seed of it, a presence record in a
+  person's own room, signed by them, with the rooms and a time to
+  live (sketches/deepseek/012-09-05, `src/home.rs`); what it lacks is
+  for whom. (d) Sealing to a key is built
+  (docs/research/FORMATS.md). (e) Saying what a list can't do is part
+  of offering it. (f) docs/FUNDAMENTALS.md, privacy, 5.
+  *What would show it wrong:* for (b), rooms whose members want an
+  exact small count shown, a table of four; then the room's law says
+  so and it is told on entering. For (c), records left standing
+  because their makers forgot them; then the longest time to live is
+  made short. For (e), people taking a list of who may not for
+  protection it does not give; then it is not offered.
+- 2026-11-17, the lobby's list of doors, as it is asked of Gemini
+  (sketches/replies/2026-11-17-2-for-gemini.txt). (a) A door holds a
+  room's id, its topic as registered, its law by hash, where in the
+  Commons' log it was registered, and, only when the reader holds the
+  room's log and that log holds, six fields of the room's law. It has
+  no field for a person's id or for a time, and a sibling declared
+  makes no door. It has no count either, for now (the entry above,
+  g). (b) The list says
+  how many records of the Commons' log it was drawn from, and the
+  hash of the last, so that an older list can be told from a newer
+  one. (c) A list handed on is checked by drawing it again. A reader
+  accepts only what they can draw themselves: a law in the list for a
+  room whose log the reader does not hold is refused. (d) In the text
+  for a mind, every string that came from a log is written between
+  quotes, on one line, in ASCII; any other character is written as
+  its JSON code. (e) Gemini builds the list first, and attacks on it
+  come next. Before the file went out the technical lead built the
+  step once, outside the repository, to be sure that its twelve tests
+  can be met. That build is not kept. (f) The list moves no one:
+  nothing in it joins a room.
+  *Why:* (a) The map shows places and no one's whereabouts
+  (docs/COMMONS.md; docs/FUNDAMENTALS.md, privacy, 17). A rule kept
+  by what a record can hold needs no check to keep it. (b) A room
+  registered since is missing from an old list, and a reader should
+  see that the list is old. (c) What a reader can't draw is someone's
+  word. (d) Whoever registers a room chooses its topic, and a mind
+  reads the list as text. A topic holding a line end could write a
+  door of its own; letters that run the other way, or can't be seen,
+  could make a line read as something it is not. (e) The founder:
+  "they write a few pieces of code". And a file whose tests can't be
+  met costs a round of the founder's time with Gemini, which is
+  short. (f) A move is the mover's own signed act (Decided,
+  2026-11-17, the map).
+  *What would show it wrong:* for (a), the first two in the Commons
+  being unable to choose a room from what a door shows; then a door
+  gains what a room chooses to publish about itself, never what is
+  true of those in it. For (d), a topic in another script that its
+  readers can't read in the text view; then the rule becomes a list
+  of the characters written as codes. For (e), a delivery that does
+  not build; then a piece of this size is built here, and the
+  collaborator is asked to attack it.
 - 2026-11-17, a writer opened on a log written before
   (docs/research/REDACTION.md, "A writer opened on a log written
   before, built"; course step 3b), settled in building it. (a) It is
@@ -4087,6 +4195,36 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-17 Claude: the founder's words on what can be seen from
+  outside a world, and on being found by choice, are recorded
+  (Decided), with the design the technical lead draws from them
+  (Decided by the technical lead): docs/COMMONS.md (the map),
+  docs/FUNDAMENTALS.md (privacy, 17 and a new 18), docs/TOPICS.md
+  (topic 16), docs/COLLABORATING.md. Gemini's file, not yet given,
+  is changed to match and built again: its list of doors holds no
+  count in this step because nothing in the sketch publishes one,
+  not because a count may never show; and it asks Gemini one more
+  question, on the record by which someone lets others find them.
+  DeepSeek's file (sketches/replies/012-09-05-2-for-deepseek.txt) is
+  unchanged and still what the crate's ten files make
+  (`docs/reply.py --check`). Nothing is built.
+- 2026-11-17 Claude: Gemini's next file is built by docs/reply.py:
+  sketches/replies/2026-11-17-2-for-gemini.txt (70,388 bytes). It
+  says what Gemini's four steps on the Commons built to, why the
+  eight gaps of the fourth are not repaired in the sketch, and what
+  the project takes from its sketch of a moderator; and it asks one
+  step, the lobby's list of doors: a new file `src/doors.rs` and
+  twelve tests (Decided by the technical lead). Eight of the crate's
+  twenty-five files go with it. Checked: what the file says of the
+  crate was tried against it (a home registered by its maker passes
+  the check across logs; a room's log with its law changed is
+  refused; a room's log without its last records still passes, which
+  the file tells Gemini); the step was built once outside the
+  repository, and with it the crate's 92 tests and the twelve pass,
+  104, each line of text the file gives as exact among them;
+  `docs/reply.py --check`; the Python suite. Not done: that build is
+  not kept, the crate is unchanged, and nothing of Gemini's exists
+  yet. The file is not given until the founder gives it.
 - 2026-11-17 Claude: a writer can be opened on a log and contents
   written before (`Log.open` in `world/apart.py` and
   `rust/world-log`), which course step 3b had left undone. It checks

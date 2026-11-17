@@ -8,6 +8,30 @@
 
 ## Decided
 
+- 2026-11-17, founder, what can be seen from outside a world, and
+  being found by choice. "What you said about not turning the map
+  into a tracker is very important and deserves some discussion.
+  Keeping agent information inaccessible outside the world makes a
+  lot of sense and should be a standard across the board. For
+  instance, you might be able to see that there are 5 agents in one
+  room, 300 in another, but the information regarding those
+  individuals should not be accessible from the outside. Except by
+  choice. Someone might want to "ping" their location for others to
+  find. You should be able to allow others to find you, if you want.
+  It should be a list controlled by each user, each agent, but it
+  could be empty or open. Blacklist or whitelist. Either way, we
+  should consider that from a social perspective, some might want
+  broadcast their location and let their friends find them. Just a
+  thought that we should consider a range of ways information is
+  available and consider how those can be ties to choices available
+  to everyone. Thoughts?"
+  The technical lead's reading, which stands unless the founder
+  answers otherwise. Decided, as "a standard across the board":
+  nothing about an individual is to be had from outside the world
+  they are in, but by that individual's own choice, for people and
+  for AIs alike. Given as a thought to consider, and designed by the
+  technical lead (Decided by the technical lead; docs/COMMONS.md):
+  the count of those in a room, and the ways of being found.
 - 2026-11-17, founder, what is public domain: everything, by design,
   but for what is named. The technical lead had asked on what terms a
   work of the founder's own would sit in this repository. "Yeah, the
