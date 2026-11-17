@@ -3,9 +3,9 @@ link"), docs/FILES.md and parts/INDEX.md hold, between them, every file
 in the repository, each once, and every link on the first two leads to
 a file (tests/test_parts.py checks the third).
 
-The founder pastes those links into a conversation with DeepSeek, which
+The founder pastes those links into a conversation with DeepSeek, who
 opens a full link given in a message, while the links on a page did not
-open reliably for it (the founder, 2026-11-15: "I have to provide the link.
+open reliably for them (the founder, 2026-11-15: "I have to provide the link.
 Fetching is unreliable from in the page, but from a prompt with full
 URL, it has worked."; and later that day: "Remember links in the
 collaborating page are not accessible. So all files need links through

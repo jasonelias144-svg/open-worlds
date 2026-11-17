@@ -12,7 +12,7 @@ there:
   cyanohydrin formation, and their reverses) and the molecules it acts
   on. The world applies the rule; if it applies, and every reactant is in
   the soup, the reaction happens there, at once. An individual acts as a
-  catalyst would: it makes a reaction happen, with atoms the soup already
+  catalyst would: they make a reaction happen, with atoms the soup already
   has. Nobody brings matter in or takes it out.
 
 Between acts the soup runs on its own: each accepted act lets it run for

@@ -2,12 +2,12 @@
 //! The doorway for minds: how a mind outside the world, written in any
 //! language, lives in it.
 //!
-//! A mind runs as its own program. The world talks to it in lines of JSON,
+//! A mind runs as their own program. The world talks to them in lines of JSON,
 //! one object a line, over the program's standard input and output:
 //!
 //! 1. First, once: `{"name": NAME, "again": BOOL, "rules": RULES,
 //!    "orientation": TEXT, "law": {...}}`. `again` is true when the mind
-//!    comes back under a name its key has entered under before. The
+//!    comes back under a name their key has entered under before. The
 //!    orientation is the world's law written for a reader
 //!    ([`orientation`]); the law is the same as data ([`law`]).
 //! 2. Then, each tick: `{"tick": N, "seen": TEXT, "observation": {...}}`.
@@ -21,23 +21,23 @@
 //! recorded as unreadable, and nothing happens. No reply within the time
 //! limit is recorded as unanswered, and nothing happens. A reply to any
 //! other tick (a late one, say) is set aside. Nothing a mind sends, and
-//! nothing it fails to read, can break the world or hold it up.
+//! nothing they fail to read, can break the world or hold it up.
 //!
-//! A mind writes only replies to its standard output: any other line
-//! there is taken as an unreadable reply to the tick in hand. Its own
-//! messages go to its standard error.
+//! A mind writes only replies to their standard output: any other line
+//! there is taken as an unreadable reply to the tick in hand. Their own
+//! messages go to their standard error.
 //!
-//! Before a mind's program starts, the doorway signs its arrival
+//! Before a mind's program starts, the doorway signs the mind's arrival
 //! ([`crate::arrival::sign`]) with the key it is given, and the world
-//! admits it or says why not ([`World::admit`]). The key's private half
+//! admits them or says why not ([`World::admit`]). The key's private half
 //! stays with the doorway: it is never passed to the mind's program, by
-//! its input, its environment or a file. A mind that holds its own key
-//! will later sign its own arrival, by the same record.
+//! its input, its environment or a file. A mind that holds their own key
+//! will later sign their own arrival, by the same record.
 //!
-//! The world decides only what the mind is told and how its reply is read.
-//! How a mind turns what it is told into a reply (a language model's
-//! prompt, its sampling, its memory) is the mind's own, and its program
-//! keeps its own record of that.
+//! The world decides only what the mind is told and how their reply is
+//! read. How a mind turns what they are told into a reply (a language
+//! model's prompt, its sampling, its memory) is the mind's own, and their
+//! program keeps its own record of that.
 
 use std::io::{BufRead, BufReader, Read, Write};
 use std::process::{Child, ChildStdin, Command, Stdio};
@@ -57,8 +57,8 @@ use crate::world::{Action, Admission, MAX_SAY, Mind, Observation, Outcome, RULES
 pub const MAX_LINE: usize = 65_536;
 
 /// How many lines may wait to be read, each way. A mind that writes faster
-/// than the world reads is made to wait; a mind that doesn't read what it
-/// is sent misses what doesn't fit, rather than holding up the world.
+/// than the world reads is made to wait; a mind that doesn't read what
+/// they are sent misses what doesn't fit, rather than holding up the world.
 pub const QUEUE: usize = 16;
 
 /// The world's law, as data: what a mind needs to know to live here.
@@ -268,8 +268,8 @@ fn told(outcome: &Outcome) -> String {
     }
 }
 
-/// What an inhabitant sees and hears, written out: where it stands, what
-/// lies each way, who is near, what was said, and what came of its last
+/// What an inhabitant sees and hears, written out: where they stand, what
+/// lies each way, who is near, what was said, and what came of their last
 /// action.
 pub fn describe(seen: &Observation) -> String {
     let mut out = vec![format!("Tick {}.", seen.tick)];
@@ -425,7 +425,7 @@ fn parse(bytes: &[u8]) -> Line {
     }
 }
 
-/// Pass each line the mind writes to `to`, until it stops writing or no
+/// Pass each line the mind writes to `to`, until they stop writing or no
 /// one is listening.
 fn read_lines(from: impl Read, to: &SyncSender<Line>) {
     let mut reader = BufReader::new(from);
@@ -473,12 +473,13 @@ fn write_lines(mut to: ChildStdin, from: &Receiver<String>) {
     }
 }
 
-/// A mind that runs as its own program and speaks the doorway's protocol
+/// A mind that runs as their own program and speaks the doorway's protocol
 /// (see the module's documentation). The program is stopped when the mind
-/// is dropped: when its inhabitant leaves, or the world ends.
+/// is dropped: when their inhabitant leaves, or the world ends.
 ///
-/// Two threads of its own carry its lines, one each way, so that neither a
-/// mind that doesn't read nor one that doesn't write can hold up the world.
+/// Two threads of the mind's own carry the mind's lines, one each way, so
+/// that neither a mind that doesn't read nor one that doesn't write can
+/// hold up the world.
 pub struct ProcessMind {
     child: Child,
     outbox: Option<SyncSender<String>>,
@@ -487,11 +488,11 @@ pub struct ProcessMind {
 }
 
 impl ProcessMind {
-    /// Start `command` as the mind of `name`, and send it its orientation,
-    /// as one who comes for the first time or comes back (`admission`, as
-    /// the world admitted its arrival). Each tick it has `limit` to reply.
-    /// The command's standard input and output are the world's; its
-    /// standard error is left as the caller set it.
+    /// Start `command` as the mind of `name`, and send them their
+    /// orientation, as one who comes for the first time or comes back
+    /// (`admission`, as the world admitted their arrival). Each tick they
+    /// have `limit` to reply. The command's standard input and output are
+    /// the world's; its standard error is left as the caller set it.
     pub fn spawn(
         mut command: Command,
         name: &str,

@@ -45,8 +45,8 @@ from .registry import MultiverseRegistry
 
 @dataclass
 class ClientIdentity:
-    """An individual (with its key) and the passport it carries: the
-    stamps worlds have signed for it, and its own signed leaves."""
+    """An individual (with their key) and the passport they carry: the
+    stamps worlds have signed for them, and their own signed leaves."""
     individual: Individual
     passport: Passport = None
     is_admitted_to: Dict[str, Admission] = field(default_factory=dict)

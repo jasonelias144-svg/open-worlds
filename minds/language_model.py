@@ -2,19 +2,19 @@
 """A mind whose replies come from a language model, through the Ur-world's
 doorway (rust/ur-world/src/door.rs).
 
-Each tick it builds a prompt with the model's own chat template:
+Each tick this program builds a prompt with the model's own chat template:
 
 - system: the orientation, as the world sent it;
-- user: what it sees this tick, as the world sent it, then a blank line
-  and "Your action (one line):".
+- user: what the mind sees this tick, as the world sent it, then a blank
+  line and "Your action (one line):".
 
-It has no memory beyond that: each tick's prompt holds only the
+The program has no memory beyond that: each tick's prompt holds only the
 orientation and that tick's view. It passes the model's raw text back to
 the world, which reads it by the same rules as every mind's.
 
 It keeps its own record, one JSON object a line, in the transcript file:
 first the model, its settings and the orientation; then, each tick, what
-it was shown, what it replied, and how long that took.
+the mind was shown, what they replied, and how long that took.
 
     python3 -I minds/language_model.py MODEL_DIR --transcript FILE \\
         [--greedy | --seed N --temperature T --top-p P] \\

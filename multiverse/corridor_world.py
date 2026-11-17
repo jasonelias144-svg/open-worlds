@@ -2,7 +2,7 @@
 
 Course step 5. The corridor of Cycle 0 (docs/cycles/cycle-000.md) runs on
 the world kernel (`world/core.py`): a grid where each tick every agent
-sees what is around it and acts, and every event goes into a hash-chained
+sees what is around them and acts, and every event goes into a hash-chained
 log. This module puts that kernel behind the protocol, so an individual
 from anywhere can enter, walk, speak and leave, with a passport like in
 any other world.
@@ -21,8 +21,8 @@ any other world.
 - **Leaving** removes the individual from the grid, as the kernel's own
   exit does. It can't be refused.
 - **Doors.** The law publishes doors: a cell, and the world beyond it, by
-  id and key. Going through is the individual's own doing: its signed
-  leave here, then its petition there, carrying its passport. The worlds
+  id and key. Going through is the individual's own doing: their signed
+  leave here, then their petition there, carrying their passport. The worlds
   on either side know each other's keys (`Entity.know`), so each checks
   the stamps in the other's name against the right key.
 """

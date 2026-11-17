@@ -24,7 +24,7 @@ key (`world_key`) and is signed by it, and every request's document
 names the world's key as well as its id, so a world that copies another
 world's id can't pass that world's requests on to it. A world signs a
 stamp for each arrival and departure, and for what was made inside it
-(passport.py); an individual's passport is the stamps it has been given,
+(passport.py); an individual's passport is the stamps they have been given,
 and anyone can check it offline, without asking any world. A world keeps
 the numbers it has seen in memory, and across a restart only if they are
 saved and restored (keys.py, course step 6).
@@ -260,8 +260,8 @@ class Leave:
 
 @dataclass(frozen=True)
 class Departure:
-    """The individual has gone. already_left is True when it wasn't
-    present (it never entered, or had left before). `stamp` is the
+    """The individual has gone. already_left is True when they weren't
+    present (they never entered, or had left before). `stamp` is the
     world's signed departure stamp, when it gives one."""
     entity_id: str
     timestamp: str

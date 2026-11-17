@@ -1,9 +1,9 @@
 """The world kernel: the only authority over a world's state.
 
 Agents never touch the world directly. Each tick, every agent receives an
-Observation (an immutable copy of what it can see) and returns an Action. The
-kernel checks every action before it takes effect, so an agent can change its
-own code freely without being able to change the world's rules.
+Observation (an immutable copy of what they can see) and returns an Action.
+The kernel checks every action before it takes effect, so an agent can change
+their own code freely without being able to change the world's rules.
 
 Four freedoms are guaranteed by the kernel itself, whatever an agent does:
   exit         Exit always succeeds; nothing can block it.
@@ -141,7 +141,7 @@ class World:
         self._record("entered", agent_id, {"pos": list(pos)})
 
     def leave(self, agent_id: str, reason: str = "requested") -> None:
-        """Exit from outside the agent's turn (e.g. its owner pulls it out).
+        """Exit from outside the agent's turn (e.g. their owner pulls them out).
         Like the Exit action, this cannot be refused."""
         if agent_id in self._agents:
             self._remove(agent_id, reason)
@@ -212,7 +212,7 @@ class World:
     def _ask(self, agent_id: str, obs: Observation) -> object:
         try:
             return self._agents[agent_id].act(obs)
-        except Exception as e:  # an agent's failure is its own, not the world's
+        except Exception as e:  # an agent's failure is theirs, not the world's
             self._record("agent_error", agent_id,
                          {"error": _type_name(type(e))})
             return Wait()

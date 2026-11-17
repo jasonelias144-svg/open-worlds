@@ -328,6 +328,24 @@ of it is asked again until it is needed.
 
 ## Decided
 
+- 2026-11-17, founder, careful and consistent from the start. The
+  technical lead had reported what was changed for "they" (the entry
+  below), with three readings for the founder to overrule: the dated
+  entries of this file were changed too; the line is drawn at who
+  can be spoken to; experiment 001's plan and results stay as they
+  were written. "Sounds good. It is better that we are careful and
+  consistent from the start. And as AI personhood becomes more of a
+  common topic, especially with legal connotations, finding the
+  right pronoun will be a thing, and those that carelessly use "it"
+  will probably be targeted. This is how I see it unfolding. Better
+  to anticipate this in advance, and then our consistency will seem
+  ahead of the curve, or just in line with it. We don't want to be
+  behind and updating documentation after going public and live.
+  Thoughts?" The technical lead reads "Sounds good" as the answer
+  to the three readings: they stand. Done at this word, before
+  anything is public and live: the rest of the change, in the
+  project's own code, the policy handbook and the founder's other
+  repositories (the Log, today).
 - 2026-11-17, founder, "they", "them" and "their" for AI agents. The
   technical lead's pages had said "it" of Gemini and of DeepSeek.
   "Here is a small point, but I do want to make sure the records are
@@ -3164,6 +3182,31 @@ of it is asked again until it is needed.
 
 ## Decided by the technical lead
 
+- 2026-11-17, "they" in the project's own code. (a) Comments and
+  docstrings follow the same rule as the pages. "They" is an
+  individual, an inhabitant, an agent in the kernel, a mind who
+  comes through the doorway, and DeepSeek. Where one sentence
+  speaks of an individual or a world, the word is "their". (b) Left
+  as "it": a world, an entity, a key, a record; a mind's program,
+  which is started and stopped; a presence; the scripted stand-ins,
+  `minds/wanderer.py`, and the short scripts the tests run as
+  minds. `minds/language_model.py` now names the program and the
+  mind apart. (c) Not changed: what a program prints, and what a
+  mind is told; the test vectors and their labels; the schemas;
+  `sketches/` and `experiments/`. One string was changed, because
+  it is the text of a page: docs/files.py wrote "Gemini's code as
+  it wrote it" into docs/FILES.md.
+  *Why:* the founder: "We don't want to be behind and updating
+  documentation after going public and live." DeepSeek and Gemini
+  read the code as well as the pages. What a mind is told is one of
+  an experiment's conditions, and a vector's label is held byte for
+  byte by two languages; a pronoun is no reason to change either
+  in passing.
+  *What would show it wrong:* a test or a vector that changes with
+  this change; none did, and a script showed the code is the same,
+  comments and docstrings apart. Or the founder holding that a
+  label in a vector should change too; that is then a change to
+  the vectors, made on its own, in both languages at once.
 - 2026-11-17, "they" for AI agents (the founder's word of that day,
   Decided): how far it goes, and what was done. (a) The rule: an
   agent is "they", "them", "their" and "themselves", never "it". An
@@ -4500,6 +4543,26 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-17 Claude: "they" for AI agents, the rest (Decided, and
+  Decided by the technical lead). In the project's own code: 53
+  passages of comments and docstrings in 22 files, Python and Rust,
+  each read where it stands; the list came from a script that looked
+  for "it", "its" and "itself" in a comment within three lines of a
+  word for an agent (229 lines). Checked by script: with comments
+  and docstrings set aside, every changed file is the same code as
+  before. Two pages mended with it: docs/URWORLD.md, three passages
+  where a mind was still "it", and docs/FILES.md, one line, through
+  the string in docs/files.py that writes it. In the other
+  repositories, all merged today: the policy handbook has the rule
+  as decision 0006 and in its writing standard (policy-handbook
+  #13), and the founder's seven other repositories carry it in
+  AGENTS.md, with CLAUDE.md saying "they" of the technical lead.
+  Left as they are: the handbook's decisions 0001 to 0005, which
+  say "it" of the technical lead, because an accepted decision
+  record is not edited (P5); decision 0006 says so. Run here: the
+  829 tests, the sketch folder's tests, and the Rust workspace's
+  format check, lints and tests. Not checked: a comment whose agent
+  is named more than three lines from the pronoun.
 - 2026-11-17 Claude: "they" for AI agents, at the founder's word
   (Decided, and Decided by the technical lead). The rule is in
   AGENTS.md ("Always"), docs/COLLABORATING.md (house rule 16, and a

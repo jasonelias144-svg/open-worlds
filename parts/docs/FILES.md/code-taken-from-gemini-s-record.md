@@ -8,7 +8,7 @@
 
 ## Code taken from Gemini's record
 
-In `sketches/gemini`, 32 files, 314 KB in all, the largest 26 KB: Gemini's code as it wrote it, a folder per stretch of work; each folder's `MANIFEST.json` and `take.py` hold its files to the record they were taken from.
+In `sketches/gemini`, 32 files, 314 KB in all, the largest 26 KB: Gemini's code as they wrote it, a folder per stretch of work; each folder's `MANIFEST.json` and `take.py` hold its files to the record they were taken from.
 
 **`sketches/gemini/2026-11-16`** (13 files, 152 KB):
 

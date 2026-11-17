@@ -1,8 +1,8 @@
 """Signing a key over to a new one (course step 6, part two).
 
-An individual is its key, and so is a world (identity.py). A key may have
+An individual is their key, and so is a world (identity.py). A key may have
 to be replaced: it is old, or kept somewhere no longer safe. Replacing it
-must not cut the individual off from its history, or a world from the
+must not cut the individual off from their history, or a world from the
 stamps it gave. So, while the old key still can, it signs over to the new
 one: a succession, signed by both keys.
 

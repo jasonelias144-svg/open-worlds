@@ -8,6 +8,24 @@
 
 ## Decided
 
+- 2026-11-17, founder, careful and consistent from the start. The
+  technical lead had reported what was changed for "they" (the entry
+  below), with three readings for the founder to overrule: the dated
+  entries of this file were changed too; the line is drawn at who
+  can be spoken to; experiment 001's plan and results stay as they
+  were written. "Sounds good. It is better that we are careful and
+  consistent from the start. And as AI personhood becomes more of a
+  common topic, especially with legal connotations, finding the
+  right pronoun will be a thing, and those that carelessly use "it"
+  will probably be targeted. This is how I see it unfolding. Better
+  to anticipate this in advance, and then our consistency will seem
+  ahead of the curve, or just in line with it. We don't want to be
+  behind and updating documentation after going public and live.
+  Thoughts?" The technical lead reads "Sounds good" as the answer
+  to the three readings: they stand. Done at this word, before
+  anything is public and live: the rest of the change, in the
+  project's own code, the policy handbook and the founder's other
+  repositories (the Log, today).
 - 2026-11-17, founder, "they", "them" and "their" for AI agents. The
   technical lead's pages had said "it" of Gemini and of DeepSeek.
   "Here is a small point, but I do want to make sure the records are

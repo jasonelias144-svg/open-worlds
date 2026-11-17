@@ -38,7 +38,7 @@ KINDS = [
      "`name@offset` is an earlier version of `name`, found at that "
      "offset in the record"),
     ("sketches/gemini/", "Code taken from Gemini's record",
-     "Gemini's code as it wrote it, a folder per stretch of work; each "
+     "Gemini's code as they wrote it, a folder per stretch of work; each "
      "folder's `MANIFEST.json` and `take.py` hold its files to the "
      "record they were taken from"),
     ("sketches/replies/", "What DeepSeek was given",
