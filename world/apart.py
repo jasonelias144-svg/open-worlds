@@ -104,7 +104,8 @@ entry as a reader uses it. `Log` writes the form: a mark and the
 decision that answers it only through `mark`, `take_out`,
 `keep_public` and `stays_redacted`, which change the contents in the
 same step, so that a field is never said to be public while it is
-gone.
+gone. `Log.open` opens a writer on a log and contents that were
+written before.
 Every reason for refusing is in fixed words, and names the same place,
 in Rust (`rust/world-log/src/apart.rs`), checked against
 `vectors/log-apart.json`.
@@ -469,9 +470,13 @@ class _Scan:
             if (on is None or self.taken.get(on) != taking
                     or not _says_only(kind, data)):
                 raise Refused(BAD_PUTTING_BACK, index)
-        # The entry holds: only now is anything kept.
+        # The entry holds: only now is anything kept. The table is kept
+        # as a copy: whoever holds the entry it came from, a writer's
+        # caller among them, can then change that entry and not the
+        # rules the entries after it are held to.
         here = entry["hash"]
-        self.table = table
+        if index == 0:
+            self.table = {name: list(names) for name, names in table.items()}
         self.apart[here] = dict(apart)
         self.kinds[here] = kind
         self.seen.update(prints)
@@ -755,6 +760,46 @@ class Log:
         first["kept_apart"] = table
         self.append(0, kind, None, first)
 
+    @classmethod
+    def open(cls, entries: Any, contents: Any, *,
+             salt: Callable[[], str] = new_salt) -> "Log":
+        """A writer opened on a log and its contents as they were
+        written before, to go on from the log's head. The two are
+        checked together first, as `check` checks them: raises
+        `Refused`, for the same reason and at the same place, if they
+        do not hold.
+
+        The writer keeps copies of both, so what was given is not
+        touched afterwards. An entry whose map of fields is empty is
+        left out of the contents, as this writer leaves it. A field
+        that is missing or unfinished is not refused: those are states,
+        and the writer goes on from them. An unfinished redaction is
+        finished with `take_out`, also one that was decided while its
+        field was left in.
+
+        What it can't know is the salt of a field that was taken out
+        before. So a source of salts that repeats one of those is not
+        refused here, as it is by the writer that used that salt. If
+        such a field is kept public, the writer is given its salt, and
+        remembers it from then on (`keep_public`)."""
+        # What was given is checked as it is, so that what does not
+        # hold is refused as the check refuses it.
+        _held(_scan(entries), contents)
+        log = cls.__new__(cls)
+        log.entries = copy.deepcopy(entries)
+        log.contents = {entry: copy.deepcopy(fields)
+                        for entry, fields in contents.items() if fields}
+        # Then the writer reads its own copy of the log and goes by
+        # that. So nothing it keeps is what it was given, and what it
+        # keeps is what it has checked, whatever a copy made of an
+        # entry. (The contents need no second look: only a plain map of
+        # plain lists is taken as contents, and those copy exactly.)
+        log._scan = _scan(log.entries)
+        log._salt = salt
+        log._salts = {_used(pair[0]) for fields in log.contents.values()
+                      for pair in fields.values()}
+        return log
+
     def head(self) -> str:
         return self.entries[-1]["hash"]
 
@@ -791,10 +836,11 @@ class Log:
         remembers of the salts it has used. The log itself is not
         touched.
 
-        The mark is one that is open or stands. Through this writer a
-        mark that stands always has its field gone already, since
-        `stays_redacted` is refused while the field is there; that case
-        is for a writer opened on a published log, which is not built."""
+        The mark is one that is open or stands. A writer that wrote the
+        whole log never has a field left under a mark that stands,
+        since `stays_redacted` is refused while the field is there. A
+        writer opened on a published log can: whoever published it may
+        have left the field in."""
         if (type(mark) is not str or mark not in self._scan.marks
                 or mark in self._scan.answered):
             raise ValueError("no mark of that hash is open or stands")
@@ -815,8 +861,9 @@ class Log:
         back into the contents and appends the entry that answers
         `mark`, in one step, and returns that entry's hash. Raises
         `Refused`, and changes nothing, if the mark is not open, if the
-        salt and value are not the ones the log commits to, or if the
-        entry would not hold."""
+        salt and value are not the ones the log commits to, if another
+        field in the contents already holds that salt, or if the entry
+        would not hold."""
         if (type(mark) is not str or mark not in self._scan.marks
                 or mark in self._scan.answered or mark in self._scan.stays):
             raise Refused(BAD_KEPT, len(self.entries))
@@ -828,9 +875,35 @@ class Log:
             raise Refused(VALUE, where)
         if fingerprint(salt, field, value) != self._scan.apart[entry][field]:
             raise Refused(FINGERPRINT, where)
-        kept = self._append(tick, KEPT, agent,
-                            {"mark": mark, "office": office,
-                             "ground": ground, "decision": decision}, apart)
+        # A log written elsewhere can hold two fields that truly share
+        # a salt, with this one taken out: it holds as it stands, since
+        # the taking out hides the repeat. Putting the field back would
+        # show it, in contents the check refuses. No writer here writes
+        # such a log.
+        if any(pair[0] == salt
+               for other, fields in self.contents.items()
+               for name, pair in fields.items()
+               if (other, name) != where):
+            raise Refused(SALT_TWICE, where)
+        # From here the writer knows this salt, and it is about to be
+        # in the contents again. A writer that never closed remembers
+        # it from when it drew it. One that was opened after the field
+        # was taken out learns it now: before the entry draws salts of
+        # its own, so that a source which repeats it is refused. If the
+        # entry is refused the field stays out, and what was learned
+        # here is forgotten again.
+        known = _used(salt)
+        learned = known not in self._salts
+        self._salts.add(known)
+        try:
+            kept = self._append(tick, KEPT, agent,
+                                {"mark": mark, "office": office,
+                                 "ground": ground, "decision": decision},
+                                apart)
+        except BaseException:
+            if learned:
+                self._salts.discard(known)
+            raise
         self.contents.setdefault(entry, {})[field] = [
             salt, copy.deepcopy(value)]
         return kept

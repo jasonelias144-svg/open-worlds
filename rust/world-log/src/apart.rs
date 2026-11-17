@@ -69,7 +69,9 @@
 //! [`redactions`] gives every field's redactions, each open, standing
 //! or kept public; [`join`] gives each entry as a reader uses it;
 //! [`Log`] writes the form, a redaction through [`Log::mark`],
-//! [`Log::take_out`], [`Log::keep_public`] and [`Log::stays_redacted`].
+//! [`Log::take_out`], [`Log::keep_public`] and [`Log::stays_redacted`];
+//! [`Log::open`] opens a writer on a log and contents that were written
+//! before.
 //! Every reason for refusing ([`Refused::reason`]) is in the same fixed
 //! words as in Python, checked against `vectors/log-apart.json`.
 //!
@@ -1330,6 +1332,48 @@ impl Log {
         Ok(log)
     }
 
+    /// Opens a writer on a log and its contents as they were written
+    /// before, to go on from the log's head. The two are checked together
+    /// first, as [`check`] checks them: refuses, for the same reason and
+    /// at the same place, if they do not hold.
+    ///
+    /// The writer keeps copies of both. An entry whose map of fields is
+    /// empty is left out of the contents, as this writer leaves it. A
+    /// field that is missing or unfinished is not refused: those are
+    /// states, and the writer goes on from them. An unfinished redaction
+    /// is finished with [`Log::take_out`], also one that was decided
+    /// while its field was left in.
+    ///
+    /// What it can't know is the salt of a field that was taken out
+    /// before. So a source of salts that repeats one of those is not
+    /// refused here, as it is by the writer that used that salt. If such
+    /// a field is kept public, the writer is given its salt, and
+    /// remembers it from then on ([`Log::keep_public`]).
+    pub fn open(log: &Value, contents: &Value) -> Result<Log, Refused> {
+        let scan = scan(log)?;
+        held(&scan, contents)?;
+        let mut kept = Map::new();
+        let mut salts = BTreeSet::new();
+        for (entry, fields) in contents.as_object().into_iter().flatten() {
+            let Some(fields) = fields.as_object().filter(|fields| !fields.is_empty()) else {
+                continue;
+            };
+            for salt in fields
+                .values()
+                .filter_map(|pair| pair.get(0).and_then(Value::as_str))
+            {
+                salts.insert(used(salt));
+            }
+            kept.insert(entry.clone(), Value::Object(fields.clone()));
+        }
+        Ok(Log {
+            entries: log.as_array().cloned().unwrap_or_default(),
+            contents: kept,
+            scan,
+            salts,
+        })
+    }
+
     /// The entries: the chain.
     pub fn entries(&self) -> &[Value] {
         &self.entries
@@ -1399,11 +1443,11 @@ impl Log {
     /// the entries, nor in the contents, nor in what it remembers of the
     /// salts it has used. The log itself is not touched.
     ///
-    /// The mark is one that is open or stands. Through this writer a
-    /// mark that stands always has its field gone already, since
-    /// [`Log::stays_redacted`] is refused while the field is there; that
-    /// case is for a writer opened on a published log, which is not
-    /// built.
+    /// The mark is one that is open or stands. A writer that wrote the
+    /// whole log never has a field left under a mark that stands, since
+    /// [`Log::stays_redacted`] is refused while the field is there. A
+    /// writer opened on a published log ([`Log::open`]) can: whoever
+    /// published it may have left the field in.
     pub fn take_out(&mut self, mark: &str) -> Result<Value, Refused> {
         let (entry, field) = self
             .scan
@@ -1468,7 +1512,40 @@ impl Log {
         {
             return Err(Refused::Fingerprint(place));
         }
-        let kept = self.write(tick, KEPT, by.agent, &answer(mark, by), apart, salt)?;
+        // A log written elsewhere can hold two fields that truly share a
+        // salt, with this one taken out: it holds as it stands, since the
+        // taking out hides the repeat. Putting the field back would show
+        // it, in contents the check refuses. No writer here writes such
+        // a log.
+        let held_elsewhere = self.contents.iter().any(|(other, fields)| {
+            fields.as_object().is_some_and(|fields| {
+                fields.iter().any(|(name, held)| {
+                    (other != &entry || name != &field)
+                        && held.get(0).and_then(Value::as_str) == Some(its_salt)
+                })
+            })
+        });
+        if held_elsewhere {
+            return Err(Refused::SaltTwice(place));
+        }
+        // From here the writer knows this salt, and it is about to be in
+        // the contents again. A writer that never closed remembers it
+        // from when it drew it. One that was opened after the field was
+        // taken out learns it now: before the entry draws salts of its
+        // own, so that a source which repeats it is refused. If the
+        // entry is refused the field stays out, and what was learned
+        // here is forgotten again.
+        let known = used(its_salt);
+        let learned = self.salts.insert(known.clone());
+        let kept = match self.write(tick, KEPT, by.agent, &answer(mark, by), apart, salt) {
+            Ok(kept) => kept,
+            Err(refused) => {
+                if learned {
+                    self.salts.remove(&known);
+                }
+                return Err(refused);
+            }
+        };
         if let Value::Object(fields) = self
             .contents
             .entry(entry)

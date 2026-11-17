@@ -63,6 +63,21 @@ fn trial_salts() -> impl FnMut() -> String {
     }
 }
 
+/// Trial salts that go on where a log's writer stopped: it drew one for
+/// each field it kept apart.
+fn trial_salts_after(log: &Value) -> impl FnMut() -> String {
+    let mut n: usize = log
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|e| e["apart"].as_object().unwrap().len())
+        .sum();
+    move || {
+        n += 1;
+        sha256_hex(format!("open-worlds trial salt {}", n - 1).as_bytes())[..32].to_owned()
+    }
+}
+
 /// The trial room of `vectors/log-apart.json`, written again here.
 fn room(salt: &mut dyn FnMut() -> String) -> Log {
     let v: Value = serde_json::from_str(ROOM).unwrap();

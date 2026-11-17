@@ -1,9 +1,9 @@
 > Part of `docs/research/REDACTION.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "Part four, the log's side, built" to "The parts".
+> This part holds: "Part four, the log's side, built" to "Part three, the act of redacting, built".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/research/REDACTION.md/start.md
-> After this part: nothing; this is the last part.
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/research/REDACTION.md/a-writer-opened-on-a-log-written-before-built.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
 ## Part four, the log's side, built
@@ -187,8 +187,10 @@ would show it wrong):
   found the salt still in the writer's memory, in both languages; the
   tests now look at everything the writer holds.) Taking out is
   allowed for a mark that is open or stands; through this writer a
-  mark that stands has its field gone already, so that case waits for
-  a writer that can be opened on a published log, which is not built. *Keep public* is given the salt and the value back. It refuses
+  mark that stands has its field gone already, so that case comes
+  only to a writer opened on a published log (below, "A writer opened
+  on a log written before, built"). *Keep public* is given the salt
+  and the value back. It refuses
   them unless they are the ones the log commits to, then appends the
   decision and puts the field back, in one step, or does neither.
   *Stays redacted* is refused while the field is still in the
@@ -236,8 +238,8 @@ the act of redacting, built", below.
   office holds a grant, and that the decision whose hash is given
   exists and names the mark, need the signed records.
 - A writer opened on a log and contents that were written before.
-  Both writers start a new log only. A room that is closed and opened
-  again needs it (step 3c).
+  Both writers started a new log only. Built since (below, "A writer
+  opened on a log written before, built").
 
 ## Part three, the act of redacting, built
 
@@ -375,25 +377,5 @@ Not done:
 - **A real redaction.** It waits for the room (step 3c) and for a
   person's container (step 6a).
 
-## The parts
 
-1. This plan.
-2. Fingerprints and contents: the form and how a log names it, the two
-   checks with the five states of a field, and the function that joins
-   entries and contents, in Python and Rust, with vectors. It needs
-   nothing from the founder. Built (above).
-3. Redacting: the mark, the sealed copies and their label, and
-   "redacted first, decided after", with a test that neither the value
-   nor its salt is left anywhere in what the log keeps. The log's side
-   is built (above): what a mark and each decision say in the open, a
-   redaction's state, and the writer's steps. So is the act of
-   redacting (above): the sealed copies, their label, and the deciding
-   office's two steps, with trial keys. The founder's answer on the
-   office's copy is given (decision 5).
-4. Removing, taking back and restoring. The log's side is built
-   (above): the four kinds of entry, each entry's state, the incident
-   id, and the table of what wins. The records' side is next: the list
-   of kinds of act, the checks across records for a decision, and the
-   author's record kinds.
-
-> End of `docs/research/REDACTION.md`.
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/research/REDACTION.md/a-writer-opened-on-a-log-written-before-built.md

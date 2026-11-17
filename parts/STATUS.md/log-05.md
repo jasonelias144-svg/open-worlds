@@ -38,6 +38,42 @@
   `docs/reply.py --check`; the Python suite. Not done: that build is
   not kept, the crate is unchanged, and nothing of Gemini's exists
   yet. The file is not given until the founder gives it.
+- 2026-11-17 Claude: a writer can be opened on a log and contents
+  written before (`Log.open` in `world/apart.py` and
+  `rust/world-log`), which course step 3b had left undone. It checks
+  the two together first, keeps copies, and remembers the salts still
+  in the contents by their hashes alone. The act of redacting was
+  tried on logs opened again, in both languages, on the logs of
+  `vectors/redaction.json`: the deciding office keeps a field public
+  from the box in the file, or decides that it stays redacted, and
+  gets the same log and contents as the writer that never closed; a
+  field is redacted on a log opened again with the same result, and
+  the opened writer then holds neither the value nor its salt; a
+  redaction that stands with its field left in is finished. Found in
+  the self-review and repaired: in Python the table an opened writer
+  went by was the object in the log it was given, so changing that
+  log afterwards changed what the writer took; a writer now keeps its
+  table as a copy, whether opened or never closed. Found by the
+  independent review and repaired, in both languages: an opened
+  writer did not remember the salt it is handed back when a field is
+  kept public, so it took a repeat of that salt and wrote contents
+  its own check refuses; it now remembers the salt before the entry
+  draws its own, and forgets it again if the entry is refused. Also
+  from the review: in Python the writer reads its own copy of the log
+  and goes by that; a test that compared a thing with itself now
+  compares it with a copy; and the writer is closed and opened before
+  every act of the five states, in both languages. Found by the
+  review's re-check, which closed all five, and repaired: a log
+  written elsewhere in which two fields share a salt, one of them
+  taken out, holds as it stands; keeping that one public wrote
+  contents the check refuses, and is now refused. Checked:
+  Python 829 tests, OK (96 of the log's form, 33 of the act); Rust
+  238 (46 of the log's form against the vectors, 24 in `redact`),
+  fmt and clippy clean; the vectors' generators give the same files;
+  mutation checks of the opening, 16 changes to the Python and 11 to
+  the Rust, each caught. Not done: who may open a log, and one writer
+  at a time, which are the room's (step 3c); reading a log from where
+  it is kept. Left of step 3b: the records' side of part four.
 - 2026-11-17 Claude: the founder's words of the evening are recorded
   (Decided, four entries): what is public domain, hosting last, how
   the work with the collaborators goes, and the map as the main

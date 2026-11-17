@@ -19,7 +19,8 @@ from world import World, apart
 from world.apart import Log, Refused
 from world.apart_vectors import (APPEAL, FIRST, GROUND, KEEPER, MODERATOR,
                                  OFFICE, PRIVATE, TABLE, VALUES_ALLOWED,
-                                 WRITTEN, acted_on, log_apart, place,
+                                 WRITTEN, _room, _salts, acted_on,
+                                 five_states, log_apart, place,
                                  trial_decision, trial_salt)
 from world.vectors import FOLDER, world_log
 

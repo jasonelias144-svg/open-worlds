@@ -3171,6 +3171,38 @@ of it is asked again until it is needed.
   of the characters written as codes. For (e), a delivery that does
   not build; then a piece of this size is built here, and the
   collaborator is asked to attack it.
+- 2026-11-17, a writer opened on a log written before
+  (docs/research/REDACTION.md, "A writer opened on a log written
+  before, built"; course step 3b), settled in building it. (a) It is
+  given a log and its contents and checks them together first, as the
+  check does, and refuses what does not hold for the same reason at
+  the same place. (b) A field that is missing or unfinished is not
+  refused: the writer goes on from it. (c) It keeps copies of what it
+  was given. (d) It remembers the salts of the fields still in the
+  contents by their hashes alone, and does not know the salts of
+  fields taken out before it was opened. (e) Opening does not check
+  who opens.
+  *Why:* (a) one rule for what holds, whoever asks. (b) A published
+  log can show either state, and the remedies are the writer's own
+  steps: a field put back, a redaction finished. (c) A writer that
+  shared what it was given could change a log its caller still holds
+  as published; and a caller could change the writer, as the
+  self-review found for the table of what is kept apart, in Python.
+  (d) A writer must not hold what a fingerprint could be guessed
+  with, and a salt that was taken out is gone on purpose. A salt it
+  is handed back with a field that is kept public is another matter:
+  it knows that one, and remembers it from then on, which the
+  independent review found it did not. And a field is not kept
+  public if another field in the contents already holds its salt,
+  which the review's re-check found: a log written elsewhere can hide
+  such a repeat behind a taking out.
+  (e) A log in this form has no signature of its own; who may write
+  to a room's log is the room's to check, with its signed heads.
+  *What would show it wrong:* a salt that repeats across a closing
+  and an opening, for (d), which would need a source of salts that is
+  not random; a log that must refuse to be opened in a state the
+  check allows, for (b); two writers opened on one log, for (e),
+  which the room has to prevent (step 3c).
 - 2026-11-17, what follows from the founder's words of that evening
   (Decided). (a) A file for a collaborator carries one step, the
   files the step needs, tests that say what done means, and what not
@@ -4193,6 +4225,42 @@ it was wrong. Questions of what the project is for stay with the founder.
   `docs/reply.py --check`; the Python suite. Not done: that build is
   not kept, the crate is unchanged, and nothing of Gemini's exists
   yet. The file is not given until the founder gives it.
+- 2026-11-17 Claude: a writer can be opened on a log and contents
+  written before (`Log.open` in `world/apart.py` and
+  `rust/world-log`), which course step 3b had left undone. It checks
+  the two together first, keeps copies, and remembers the salts still
+  in the contents by their hashes alone. The act of redacting was
+  tried on logs opened again, in both languages, on the logs of
+  `vectors/redaction.json`: the deciding office keeps a field public
+  from the box in the file, or decides that it stays redacted, and
+  gets the same log and contents as the writer that never closed; a
+  field is redacted on a log opened again with the same result, and
+  the opened writer then holds neither the value nor its salt; a
+  redaction that stands with its field left in is finished. Found in
+  the self-review and repaired: in Python the table an opened writer
+  went by was the object in the log it was given, so changing that
+  log afterwards changed what the writer took; a writer now keeps its
+  table as a copy, whether opened or never closed. Found by the
+  independent review and repaired, in both languages: an opened
+  writer did not remember the salt it is handed back when a field is
+  kept public, so it took a repeat of that salt and wrote contents
+  its own check refuses; it now remembers the salt before the entry
+  draws its own, and forgets it again if the entry is refused. Also
+  from the review: in Python the writer reads its own copy of the log
+  and goes by that; a test that compared a thing with itself now
+  compares it with a copy; and the writer is closed and opened before
+  every act of the five states, in both languages. Found by the
+  review's re-check, which closed all five, and repaired: a log
+  written elsewhere in which two fields share a salt, one of them
+  taken out, holds as it stands; keeping that one public wrote
+  contents the check refuses, and is now refused. Checked:
+  Python 829 tests, OK (96 of the log's form, 33 of the act); Rust
+  238 (46 of the log's form against the vectors, 24 in `redact`),
+  fmt and clippy clean; the vectors' generators give the same files;
+  mutation checks of the opening, 16 changes to the Python and 11 to
+  the Rust, each caught. Not done: who may open a log, and one writer
+  at a time, which are the room's (step 3c); reading a log from where
+  it is kept. Left of step 3b: the records' side of part four.
 - 2026-11-17 Claude: the founder's words of the evening are recorded
   (Decided, four entries): what is public domain, hosting last, how
   the work with the collaborators goes, and the map as the main
