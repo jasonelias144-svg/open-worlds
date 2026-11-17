@@ -56,10 +56,12 @@ free, and never a money machine
   built: a mark says its office and its ground; one decision answers
   it, to keep the field public or that it stays redacted for good;
   and the writer takes a field out of the contents, and puts it back,
-  in step with the log. Nothing real is redacted yet: sealing the
-  copies, to each person the field is about and to the office that
-  decides (Decided, 2026-11-17), is that part's other side, and is
-  next. The log's side of its fourth part is built: what a log
+  in step with the log. Its other side is built too, the act of
+  redacting: the field is sealed to each person it is about and to
+  the office that decides (Decided, 2026-11-17), then marked and taken
+  out, and the office decides from its own copy (`world/redact.py`,
+  `rust/redact`). The keys are trial keys, and nothing real is
+  redacted yet. The log's side of its fourth part is built: what a log
   says in the open when an entry is removed, restored, taken back or
   put back, and each entry's state worked out from that. The signed
   records behind each act, and the check of who may act, are its
@@ -2837,6 +2839,44 @@ Decisions about the code, made by the technical lead under the founder's
 deference (above, 2026-11-13), each with its reason and what would show
 it was wrong. Questions of what the project is for stay with the founder.
 
+- 2026-11-17, the act of redacting (docs/research/REDACTION.md,
+  "Part three, the act of redacting, built"; course step 3b, part
+  three), settled in building it. (a) What is sealed is a new kind of
+  record, `open-worlds/redacted-field/v1`: the office that redacted
+  the field, with its grant, which signs; the one the copy is for; the
+  log, the entry and the field; the salt and the value. One record for
+  each one who gets a copy. (b) It is sealed under a label of its own,
+  `open-worlds/redacted/v1`. (c) What binds a copy to its place is the
+  log: the fingerprint worked out again and found in the entry the
+  copy names. The signature says which office made the copy. (d) Every
+  copy is made before the mark is written, and the field is taken out
+  last; a redaction that stopped after its mark can be finished.
+  (e) The caller says who gets a copy and gives each sealing key. (f)
+  The deciding office keeps a field public only from the copy made for
+  it, of that field. (g) A log is named by the hash of its first
+  entry. (h) The act is a module of its own in Python and a crate of
+  its own in Rust, beside the log's form and the record formats, which
+  know nothing of each other.
+  *Why:* (a) decision 4 asks for a signed record that names the log,
+  the entry, the field, the salt and the value; naming its reader lets
+  the one who opens a copy refuse one sealed again to someone else, as
+  with a world-key. (b) A box made for one purpose must not open as
+  another. (c) Whoever holds the salt and the value can show against
+  the log that they are what it held; a signature could only say who
+  claims so. (d) Decision 4's order; and a mark with no copy behind it
+  would leave a field that no one could ever put back. (e) Which
+  sealing key is a person's is the identity record's to say, from
+  course step 9, as for every sealed record. (f) Decision 5: the
+  office's copy is what lets it put a field back, and no other copy
+  is for it. (g) A log in this form has no other name yet. (h) So
+  that `world/apart.py` and `rust/world-log` stay free of keys, and
+  `formats` of logs.
+  *What would show it wrong:* a copy that must be made after the
+  field is gone, such as for a person who gets a key later, for (d)
+  and decision 4; two logs that must be told apart and begin with the
+  same first entry, for (g), which a room's own key in its first
+  entry would settle (step 3c); an office whose key changes while it
+  holds a copy, for (f).
 - 2026-11-17, redacting, on the log's side
   (docs/research/REDACTION.md, "Part three, the log's side, built";
   course step 3b, part three), settled in building it.
@@ -3652,6 +3692,27 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-17 Claude: the act of redacting (course step 3b, part
+  three, second of two sides). A new kind of record in records-v1,
+  `open-worlds/redacted-field/v1`, and a new sealing label,
+  `open-worlds/redacted/v1`, in Python and Rust
+  (`schemas/records-v1.schema.json`, `formats/`, `rust/formats`). The
+  act itself in `world/redact.py` and a new crate, `rust/redact`:
+  `redact` seals a copy of the field to each person it is about and
+  to the office that decides, marks it and takes it out; `finish`
+  does the same for a redaction that stopped after its mark;
+  `held_to` holds a copy to its log; `keep_public` and
+  `stays_redacted` are the deciding office's. New vectors,
+  `vectors/redaction.json`, on the trial room: Rust does the same act
+  and gets Python's log, contents and signed records, and decides
+  from the box Python sealed. Checked: Python's tests of the act (24)
+  and of the sealed records; Rust's (14 in `redact`, and the formats'
+  own); mutation checks, 16 changes to the Python and 12 to the Rust,
+  each of which makes a test fail but one in Rust that changes
+  nothing that can be seen (an entry that is not a mark is refused
+  again by the writer). Not done: who may redact or decide; deleting
+  the office's copy, which is its word; a real redaction, which waits
+  for the room and for a person's container.
 - 2026-11-17 Claude: redacting, on the log's side (course step 3b,
   part three, first of two sides). In `world/apart.py`,
   `rust/world-log/src/apart.rs` and `vectors/log-apart.json`: a mark

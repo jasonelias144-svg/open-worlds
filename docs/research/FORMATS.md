@@ -229,8 +229,9 @@ only for a private line, if the founder chooses one
   ("The encapsulated key concatenated with ciphertext (enc || ct)").
   There is no associated data, which `cryptography`'s public functions
   don't take; whatever must be bound to a box goes inside it, signed.
-- **Labels** are a fixed list, now `open-worlds/world-key/v1` and
-  `open-worlds/journal/v1`; a new purpose or version is added by a
+- **Labels** are a fixed list, now `open-worlds/world-key/v1`,
+  `open-worlds/journal/v1` and `open-worlds/redacted/v1` (a redacted
+  field, course step 3b); a new purpose or version is added by a
   reviewed change. The one opening a box
   names the label it expects, and nothing is read from the box to choose
   it. A label not on the list is refused before anything is tried; a box
@@ -259,8 +260,9 @@ only for a private line, if the founder chooses one
 
 ## Sealed records
 
-Step 2, part four (`formats/sealed.py`, `rust/formats`). Two kinds of
-record are sealed, each in `schemas/records-v1.schema.json`:
+Step 2, part four (`formats/sealed.py`, `rust/formats`). Three kinds of
+record are sealed, each in `schemas/records-v1.schema.json`; the third
+came with course step 3b:
 
 - **A world-key** (`open-worlds/world-key/v1`): `issuer`, the world that
   placed the path, which signs; `holder`, the one who earned it; `path`,
@@ -276,6 +278,16 @@ record are sealed, each in `schemas/records-v1.schema.json`:
   its world and tick, so a memory without a record behind it shows
   ([MINDS.md](../MINDS.md), "Memory"). Sealed to its author under
   `open-worlds/journal/v1`.
+- **A redacted field** (`open-worlds/redacted-field/v1`): `office`, the
+  office that redacted it (its key and the grant it acts under), which
+  signs; `to`, the one this copy is for; `log`, `entry` and `field`,
+  where it was; and `salt` and `value`, what was there. A value is
+  what a log keeps apart: text, a whole number within 2^53 - 1, true
+  or false, or a list or a map of these. Sealed to the one it names
+  under `open-worlds/redacted/v1`. That it is the field the log held
+  is checked against the log
+  ([REDACTION.md](REDACTION.md), "Part three, the act of redacting,
+  built").
 
 Each travels in an envelope (`open-worlds/sealed/v1`): the label, the one
 it is addressed to (`to`), and the box in lowercase hex. The envelope

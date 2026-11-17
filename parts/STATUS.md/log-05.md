@@ -8,6 +8,27 @@
 
 ## Log
 
+- 2026-11-17 Claude: the act of redacting (course step 3b, part
+  three, second of two sides). A new kind of record in records-v1,
+  `open-worlds/redacted-field/v1`, and a new sealing label,
+  `open-worlds/redacted/v1`, in Python and Rust
+  (`schemas/records-v1.schema.json`, `formats/`, `rust/formats`). The
+  act itself in `world/redact.py` and a new crate, `rust/redact`:
+  `redact` seals a copy of the field to each person it is about and
+  to the office that decides, marks it and takes it out; `finish`
+  does the same for a redaction that stopped after its mark;
+  `held_to` holds a copy to its log; `keep_public` and
+  `stays_redacted` are the deciding office's. New vectors,
+  `vectors/redaction.json`, on the trial room: Rust does the same act
+  and gets Python's log, contents and signed records, and decides
+  from the box Python sealed. Checked: Python's tests of the act (24)
+  and of the sealed records; Rust's (14 in `redact`, and the formats'
+  own); mutation checks, 16 changes to the Python and 12 to the Rust,
+  each of which makes a test fail but one in Rust that changes
+  nothing that can be seen (an entry that is not a mark is refused
+  again by the writer). Not done: who may redact or decide; deleting
+  the office's copy, which is its word; a real redaction, which waits
+  for the room and for a person's container.
 - 2026-11-17 Claude: redacting, on the log's side (course step 3b,
   part three, first of two sides). In `world/apart.py`,
   `rust/world-log/src/apart.rs` and `vectors/log-apart.json`: a mark

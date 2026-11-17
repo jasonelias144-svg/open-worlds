@@ -48,10 +48,11 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/ADMIN.md/when-each-part-is-built.md
 ```
 
-## `docs/COLLABORATING.md`, in 8 parts
+## `docs/COLLABORATING.md`, in 9 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/start.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-03.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-02.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-01.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/since-you-were-last-here.md
@@ -269,7 +270,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world
 Longer than 28,000 bytes, and not cut:
 
 - `rust/Cargo.lock`: the lock file cargo writes.
-- `vectors/` (9 of its files): test vectors, which programs check and nobody reads through.
+- `vectors/` (10 of its files): test vectors, which programs check and nobody reads through.
 - The files of record, which [docs/FILES.md](../docs/FILES.md)
   lists: the conversation records, the code taken from them,
   what DeepSeek and Gemini were given in reply, and experiment

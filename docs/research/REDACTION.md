@@ -641,7 +641,8 @@ it but the vectors, so the form's name is unchanged. The name is
 frozen from the day a world first writes a log in it: after that, a
 change to what holds needs a new name.
 
-Not done, the other side of part three:
+Not done on this side. The first four are built since: "Part three,
+the act of redacting, built", below.
 - The sealed record and its label: a signed record that names the
   log, the entry's hash, the field, the salt and the value, inside a
   `sealed/v1` (decision 4).
@@ -663,6 +664,89 @@ Not done, the other side of part three:
   Both writers start a new log only. A room that is closed and opened
   again needs it (step 3c).
 
+## Part three, the act of redacting, built
+
+In `world/redact.py` and a new Rust crate, `rust/redact`, with
+`vectors/redaction.json`; and, for the record that is sealed,
+`schemas/records-v1.schema.json`, `formats/` and `rust/formats`. This
+is the other side of part three: the sealed copies, and the deciding
+office's two steps. Nothing real is redacted by it yet: no world
+writes this form, and the keys are trial keys.
+
+What building it settled, each the technical lead's (STATUS.md has what
+would show it wrong):
+
+- **The record is `open-worlds/redacted-field/v1`,** a new kind in
+  records-v1. It says the office that redacted the field (its key and
+  the grant it acts under), which signs; the one this copy is for
+  (`to`); the log, the entry and the field; and the field's salt and
+  value. One record is made for each one who gets a copy, so each
+  names its own reader.
+- **It is sealed under a label of its own,** `open-worlds/redacted/v1`,
+  in the same envelope as every sealed record. Sealing itself does not
+  change. Whoever opens a copy must be the one it names: a copy sealed
+  again to someone else is refused by the one who opens it, as a
+  world-key is.
+- **What binds a copy to its place is the log, not the signature.**
+  Whoever opens a copy works out the fingerprint again, from the salt,
+  the field's name and the value, and finds it in the entry the copy
+  names (decision 4). A copy that does not match is refused whoever
+  signed it. The signature says which office made the copy.
+- **The order is seal, mark, take out.** Every copy is made before
+  anything is written. If one can't be made (a key no one should seal
+  to, say), nothing is marked. If the mark is refused, nothing is
+  taken out, and the copies made are not given back. After the three,
+  neither the value nor its salt is anywhere in what the writer holds
+  or in what the act gave back: the tests look at all of it.
+- **A redaction that stopped after its mark can be finished.** The log
+  then shows a field that is marked and still there (decision 4). The
+  office seals the copies from the field as it still stands and takes
+  it out; the log is not touched.
+- **No copy is made for someone with no key,** and the caller says who
+  has one: each person the field is about, with their sealing key, and
+  the office that decides, with its own. Where a room finds a person's
+  sealing key is the same as for every sealed record: the identity
+  record, from course step 9; until then the caller gives it.
+- **The deciding office decides from its own copy.** To keep the field
+  public it opens the copy made for it, which is held to the log and
+  to the mark, and the field goes back with the decision in one step.
+  A person's copy in the office's hands does not open for it, and its
+  copy of another field is refused. That the field stays redacted is
+  an entry, and the office then deletes its copy.
+- **A log is named by the hash of its first entry.** Two logs begun
+  with the same first entry share that name: the trial room does, with
+  any other room of the same rules. What no two logs share is an
+  entry's hash, once a field with a fresh salt is behind it, and a
+  copy names its entry. A room's first entry should hold something of
+  its own, such as its key, so that the name is its own too (step
+  3c).
+- **The act sits beside the log's form, not in it.** `world/apart.py`
+  and `rust/world-log` know nothing of keys or sealing, and `formats`
+  knows nothing of logs. The act needs both, so it is a module of its
+  own in Python and a crate of its own in Rust.
+- **Nine reasons of its own, in fixed words,** the same in both
+  languages. A log's own refusals and a sealed record's pass through
+  as they are. The vectors hold one act on the trial room, the three
+  copies it made with the record inside each, the log after each
+  decision, and eight records that hold as records and are refused
+  when held to the log. Rust does the same act and gets Python's log,
+  its contents, and the same signed records; and decides from the box
+  Python sealed.
+
+Not done:
+- **Who may redact and who may decide.** The record names a grant and
+  nothing checks it. That, and that the decision whose hash is given
+  exists and names the mark, are the checks across records (part four,
+  the records' side).
+- **Deleting the office's copy.** The code can't: it is the office's
+  word until keys can be destroyed (step 8a).
+- **An office whose key changes** while it holds a copy: the copy is
+  sealed to the old key.
+- **A person who has no key when the field is redacted, and gets one
+  later.** Nothing was kept for them, as decided.
+- **A real redaction.** It waits for the room (step 3c) and for a
+  person's container (step 6a).
+
 ## The parts
 
 1. This plan.
@@ -674,8 +758,9 @@ Not done, the other side of part three:
    "redacted first, decided after", with a test that neither the value
    nor its salt is left anywhere in what the log keeps. The log's side
    is built (above): what a mark and each decision say in the open, a
-   redaction's state, and the writer's steps. The act of redacting,
-   with the sealed copies, is next. The founder's answer on the
+   redaction's state, and the writer's steps. So is the act of
+   redacting (above): the sealed copies, their label, and the deciding
+   office's two steps, with trial keys. The founder's answer on the
    office's copy is given (decision 5).
 4. Removing, taking back and restoring. The log's side is built
    (above): the four kinds of entry, each entry's state, the incident
