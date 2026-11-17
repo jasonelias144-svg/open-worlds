@@ -44,9 +44,10 @@ fn non_member_is_refused() -> Result<()> {
 
 #[test]
 fn rate_limit_enforced() -> Result<()> {
-    let mut room = make_room();
-    room.template.rate_limit_count = 2;
-    room.template.rate_limit_window = 5;
+    let mut template = RoomTemplate::chat("t", "test");
+    template.rate_limit_count = 2;
+    template.rate_limit_window = 5;
+    let mut room = Room::create(template, Keypair::generate(), &Keypair::generate()).unwrap();
     let bob = Keypair::generate();
     room.join(&bob, "communicate", false)?;
     room.post(&bob, "one", "normal")?;
@@ -61,8 +62,9 @@ fn rate_limit_enforced() -> Result<()> {
 
 #[test]
 fn inter_ai_pace_fires() -> Result<()> {
-    let mut room = make_room();
-    room.template.inter_ai_pace = 1;
+    let mut template = RoomTemplate::chat("t", "test");
+    template.inter_ai_pace = 1;
+    let mut room = Room::create(template, Keypair::generate(), &Keypair::generate()).unwrap();
     let ai_a = Keypair::generate();
     let ai_b = Keypair::generate();
     room.join(&ai_a, "communicate", true)?;
@@ -92,7 +94,6 @@ fn author_can_redact_own() -> Result<()> {
 #[test]
 fn moderator_can_redact_other() -> Result<()> {
     let mut room = make_room();
-    room.template.moderation = "moderator".into();
     let bob = Keypair::generate();
     let moderator = Keypair::generate();
     room.join(&bob, "communicate", false)?;
@@ -106,7 +107,6 @@ fn moderator_can_redact_other() -> Result<()> {
 #[test]
 fn non_moderator_cannot_redact_other() -> Result<()> {
     let mut room = make_room();
-    room.template.moderation = "moderator".into();
     let bob = Keypair::generate();
     let alice = Keypair::generate();
     room.join(&bob, "communicate", false)?;
@@ -204,7 +204,6 @@ fn restore_rejects_non_redact_target() -> Result<()> {
 #[test]
 fn human_can_override_ai() -> Result<()> {
     let mut room = make_room();
-    room.template.moderation = "moderator".into();
     let ai = Keypair::generate();
     let human = Keypair::generate();
     room.join(&ai, "control", true)?;

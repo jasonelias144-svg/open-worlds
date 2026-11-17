@@ -8,7 +8,9 @@ kept apart. Where they meet is stated in one place, [INDEX.md](INDEX.md).
 
 From 2026-11-16 Gemini, another AI, is a collaborator too
 (STATUS.md, "Decided"). The file it was given is in `replies/`, and the
-code it writes will be kept here as DeepSeek's is.
+code it wrote from it is in `gemini/`, as written. Its conversations
+are not kept here: `gemini/2026-11-16/README.md` says how its files are
+held to what it wrote.
 
 **What the sketches are.** A rough draft, like a creative team conveying a
 vision in code instead of a page of boxes and arrows. Each step in the
@@ -35,6 +37,7 @@ of earlier ideas.
 | `deepseek/012-06-02/` | The code files from record 012-06-02: fractal worlds, a gallery of worlds and its governance, the smallest learner that chooses, and individuals as signed, replayable bundles; then, continued, a multiversal map, a microverse, the Ur-world as a garden of fractal worlds, and DeepSeek's first Rust (kept, not built). A few import the earlier folders' code |
 | `deepseek/012-07-03/` | The code from record 012-07-03: the endless plant, a sketch crate in Rust with a choice neuron, kept as written (it doesn't build), with the technical lead's review and the tests that check it |
 | `deepseek/012-09-05/` | The code from record 012-09-05: water as particles, the garden and a botanical garden of gardens (Python, on 012-06-02's plant world); chat rooms for the Commons, with AI moderators, and the home room (Python); a schema; and a sketch crate in Rust, `chat-world`, in its first version and the one DeepSeek settled on. Kept with the technical lead's first pass and a first round of repairs (fixes 15 to 18): what ran as written, and what runs now |
+| `gemini/2026-11-16/` | Gemini's four deliveries for `chat-world`, as written: a room's log that can be checked from outside, 22 attacks on the check, the repairs, and a start on branches that is not used. With what ran, the hash of the conversation they come from, and the script that takes them out of it |
 | `replies/` | What DeepSeek was given in return: for each reply, the technical lead's text, the list of files that go with it, and the one file the founder gave DeepSeek, built from the two by `docs/reply.py` ([replies/README.md](replies/README.md)) |
 | `tools/extract.py` | Writes the code out of a record (Python, Rust, JavaScript, JSON and the rest), and checks it against the record |
 | `tools/names-012-03-02.json`, `tools/names-012-04-00.json`, `tools/names-012-05-01.json`, `tools/names-012-06-02.json`, `tools/names-012-07-03.json`, `tools/names-012-09-05.json` | For each record: which code blocks to take, the names of blocks that don't state one, and the files changed since |
@@ -101,10 +104,10 @@ and runs its own tests and its two demos, which must all pass, and
 then shows one finding that stands; it needs Rust and the network, and
 CI doesn't run it.
 `review/steps.sh` there builds each of the five deliveries the record
-ends with, as DeepSeek gave them, and the crate as it stands
-(`chat-world-now/`), and runs their tests
-([INDEX.md](INDEX.md), "The record continued (2026-11-16)"); CI
-doesn't run it either.
+ends with, as DeepSeek gave them, then each of Gemini's three, and the
+crate as it stands (`chat-world-now/`), and runs their tests
+([INDEX.md](INDEX.md), "The record continued (2026-11-16)" and the
+section after it); CI doesn't run it either.
 
 The tests start small web servers on this machine (127.0.0.1) and run
 some Python subprocesses. They reach nothing outside the machine.

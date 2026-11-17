@@ -11,7 +11,7 @@ need links through this method.").
 
 COLLABORATING.md lists the files a reader works from: every page,
 all the code, the tests and the vectors. This page lists the rest,
-930 files of record, best sent when a question needs them.
+948 files of record, best sent when a question needs them.
 
 Written by `python3 docs/files.py`;
 `tests/test_collaborating_links.py` fails if a file is added, moved
@@ -34,7 +34,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/re
 
 ## Code taken from DeepSeek's records
 
-In `sketches/deepseek`, 710 files, 6.5 MB in all, the largest 55 KB: DeepSeek's code as each record gave it, a folder per record; `name@offset` is an earlier version of `name`, found at that offset in the record.
+In `sketches/deepseek`, 712 files, 6.5 MB in all, the largest 55 KB: DeepSeek's code as each record gave it, a folder per record; `name@offset` is an earlier version of `name`, found at that offset in the record.
 
 **`sketches/deepseek/012-03-02`**, part 1 of 2 (40 files, 440 KB):
 
@@ -754,7 +754,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-07-03/vectors/endless-plant.json
 ```
 
-**`sketches/deepseek/012-09-05`** (25 files, 254 KB):
+**`sketches/deepseek/012-09-05`** (25 files, 255 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/README.md
@@ -827,7 +827,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-draft/src/verify.rs
 ```
 
-**`sketches/deepseek/012-09-05/chat-world-now`** (20 files, 134 KB):
+**`sketches/deepseek/012-09-05/chat-world-now`** (22 files, 162 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/Cargo.toml
@@ -849,7 +849,9 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/template.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/transcript.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/src/verify.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/tests/attack.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/tests/integration.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-now/tests/outside.rs
 ```
 
 **`sketches/deepseek/012-09-05/chat-world-steps`** (34 files, 308 KB):
@@ -891,7 +893,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/chat-world-steps/5/tests/integration.rs
 ```
 
-**`sketches/deepseek/012-09-05/review`** (3 files, 12 KB):
+**`sketches/deepseek/012-09-05/review`** (3 files, 18 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/review/run.sh
@@ -906,13 +908,38 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-09-05/schemas/records-v1.schema.json@8640
 ```
 
-## What DeepSeek was given
+## Code taken from Gemini's conversations
 
-In `sketches/replies`, 7 files, 241 KB in all, the largest 117 KB: the one file the founder gave DeepSeek at each return, with the reply and the list of files it was built from (`docs/reply.py` builds it).
+In `sketches/gemini`, 13 files, 152 KB in all, the largest 26 KB: Gemini's code as it wrote it, a folder per conversation; the conversations themselves are not kept here, and each folder's `MANIFEST.json` holds its files to what Gemini wrote.
 
-**`sketches/replies`** (7 files, 241 KB):
+**`sketches/gemini/2026-11-16`** (13 files, 152 KB):
 
 ```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/MANIFEST.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/README.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/steps/1/src/head.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/steps/1/src/lib.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/steps/1/src/room.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/steps/1/src/verify.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/steps/1/tests/outside.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/steps/2/tests/attack.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/steps/3/src/room.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/steps/3/src/verify.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/steps/4/src/record.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/steps/4/src/room.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/take.py
+```
+
+## What DeepSeek was given
+
+In `sketches/replies`, 10 files, 355 KB in all, the largest 117 KB: the one file the founder gave DeepSeek, or Gemini, at each return, with the reply and the list of files it was built from (`docs/reply.py` builds it).
+
+**`sketches/replies`** (10 files, 355 KB):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-09-05-2-for-deepseek.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-09-05-2.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-09-05-2.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-09-05-for-deepseek.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-09-05.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-09-05.txt

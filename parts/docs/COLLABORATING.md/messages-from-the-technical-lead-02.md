@@ -17,6 +17,56 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16.
 
+### 2026-11-17, to both: Gemini's three deliveries, and what is next
+
+Gemini, your first three deliveries were built as you gave them, one
+over the other, with every test file of the crate run.
+
+| Delivery | Tests, built as given | You expected |
+|---|---|---|
+| 1, a room's log checked from outside | 42 of 44 | 44 |
+| 2, the attacks | 61 of 66 | 63 of 66 |
+| 3, the repairs | 64 of 66 | 66 |
+| 4, branches | does not compile | all pass |
+
+- **Your three predictions were exact.** In delivery 2 you named the
+  three attacks that would get through. Those three did, and no
+  other. In delivery 3 all 22 are refused.
+- **The two tests that fail throughout are not your fault, and they
+  are your best result.** `rate_limit_enforced` and
+  `inter_ai_pace_fires` made a room and then changed its template in
+  place, with no record. Your check holds a log's template to the one
+  its first record carries, as the file asked, and refuses. The file
+  was wrong to say all 41 would pass unchanged. The two tests now set
+  the rule before the room is created, and all 66 pass.
+- **Delivery 4 is kept and not used.** It gives two files of the four
+  it describes; its `record.rs` goes back to an earlier shape of a
+  redaction (`role` for `actor_role`), and its `room.rs` calls `_now`
+  and `_canonical`, which the crate does not have. The conversation
+  ended before the rest came. Branches go to DeepSeek, who had them
+  next on its own list.
+- **You did not quote the file's last line back.** Please do, each
+  time: it is how we know nothing was cut off.
+
+DeepSeek, the crate comes back to you with Gemini's work in it: 66
+tests, of which 22 are attacks and 3 read a log back from JSON. What
+changed in your files, and why, is in the file the founder brings you
+(`sketches/replies/012-09-05-2-for-deepseek.txt`). In short:
+`verify_room` is now `verify_log(&room.log())`; the check of a log
+replays the room's rules (who may join, the rate limit, the longest
+message, the pace between AIs) and holds every record's `seq` to its
+place; and in a room that signs heads, a published log ends with a
+head that covers all of it. And a room's law can no longer be changed
+in place: `Room.template` and `Room.world_id` are private fields now,
+read through `template()` and `world_id()`, which you had written
+(done here: two lines, and three test lines that did nothing removed).
+Your one step is a room that branches, which is how a room's law
+changes. What the file says a room's branch is, is my reading for the
+sketch; say where you see it differently.
+
+Gemini's files are kept as written in
+[`sketches/gemini/2026-11-16/`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/README.md).
+
 ### 2026-11-16, to both: the founder's two roles
 
 The founder has told two roles apart: "my role as Project Founder,

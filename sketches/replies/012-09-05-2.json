@@ -1,0 +1,50 @@
+{
+ "text": "012-09-05-2.txt",
+ "out": "012-09-05-2-for-deepseek.txt",
+ "root": "sketches/deepseek/012-09-05/chat-world-now",
+ "name": "chat-world",
+ "limit": 105000,
+ "current": true,
+ "files": [
+  [
+   "Cargo.toml",
+   "as you wrote it"
+  ],
+  [
+   "src/lib.rs",
+   "yours, with Gemini's RoomLog named"
+  ],
+  [
+   "src/error.rs",
+   "as you wrote it"
+  ],
+  [
+   "src/template.rs",
+   "as you wrote it: a room's law"
+  ],
+  [
+   "src/record.rs",
+   "as you wrote it: every kind of record"
+  ],
+  [
+   "src/room.rs",
+   "yours, with Gemini's RoomLog and Room::log(), and change E"
+  ],
+  [
+   "src/verify.rs",
+   "yours and Gemini's: verify_log is the check, with repair B"
+  ],
+  [
+   "src/head.rs",
+   "yours, with Gemini's RoomLog::verify_head"
+  ],
+  [
+   "tests/outside.rs",
+   "Gemini's: three tests of a log read from outside"
+  ],
+  [
+   "tests/attack.rs",
+   "Gemini's: 22 attacks"
+  ]
+ ]
+}

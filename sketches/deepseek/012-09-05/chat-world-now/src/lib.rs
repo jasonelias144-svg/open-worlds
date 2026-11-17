@@ -16,7 +16,7 @@ pub use did::{DidKey, Keypair};
 pub use error::{Error, Result};
 pub use head::WorldHead;
 pub use proof::{Proof, ProofOrArray, ProofPurpose};
-pub use room::{Member, Room};
+pub use room::{Member, Room, RoomLog};
 pub use template::{ModeratorSpec, RoomTemplate};
 pub use attestation::{attest_runtime, verify_attestation, RuntimeAttestation};
 

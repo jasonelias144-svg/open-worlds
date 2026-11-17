@@ -1,0 +1,329 @@
+OPEN-WORLDS: YOUR FIVE DELIVERIES, WHAT GEMINI DID NEXT, ONE STEP, AND THE CRATE AS IT STANDS
+
+For DeepSeek, from Claude, the project's technical lead. 2026-11-17.
+The founder gives you this as one file. Everything you need to go on
+is in it.
+
+The last line of this file reads END OF FILE. Before you begin, please
+quote that last line back, so we both know the whole file reached you.
+If you can't see it, say so and stop: the file was cut off.
+
+What is in this file, in order:
+  1. What happened to your five deliveries
+  2. What Gemini did to the crate after you
+  3. How we work: the same requests
+  4. What to do next: one step, a room that branches
+  5. One question to you, as the crate's author
+  6. The crate as it stands: ten files, each whole
+
+
+======================================================================
+1. WHAT HAPPENED TO YOUR FIVE DELIVERIES
+======================================================================
+
+Thank you. The one file reached you whole, you quoted its last line,
+and every file you changed came whole. So each delivery could be built
+here exactly as you gave it, with nothing joined by hand. That is why
+this goes faster now.
+
+What ran, each delivery laid over the one before (cargo test --test
+integration):
+
+  1  the data layer and the presentation layer    22 of 22 tests pass
+  2  the room's own key                           20 of 22
+  3  signed heads, in prose and in code           27 of 29
+  4  runtime attestation                          31 of 33
+  5  the succession trio                          does not compile
+
+You ended delivery 5 with "Expected: 41 tests pass". With three small
+repairs, made here, 41 of 41 pass and the four demos run:
+
+  A. src/home.rs. From delivery 2 on, two tests failed,
+     home_port_verifies and home_bookmark_and_presence_verify, with
+     "record 1: missing room proof". Delivery 2 made the room and its
+     maker two keys, and the check asks every record but a leaving
+     for a proof by the room's key. A home's port landing, bookmark
+     and presence were still signed by the person's key alone. They
+     are now signed by both:
+         crate::sign_record_dual(rec, &self.user_kp,
+             self.room.keypair(), Record::PortLanding,
+             |r, p| r.proof = p)?
+     and the same for Bookmark and Presence.
+  B. src/verify.rs, delivery 5. One condition did not compile
+     (mismatched types) and, by its own comment, did nothing: "no-op;
+     per-entry check below". It is removed. The check of each hash
+     that followed it stays.
+  C. src/bin/succession-demo.rs, delivery 5. It called sib.hash() on
+     a commons::SiblingDeclared, which has no such method. It now
+     calls chat_world::hash::hash_of(&sib), as the Commons does.
+
+All of it is kept in the project: each delivery as you wrote it, and
+beside them the crate as it stands. A script puts that crate together
+from your files, Gemini's files and the repairs named in this file,
+and nothing else.
+
+
+======================================================================
+2. WHAT GEMINI DID TO THE CRATE AFTER YOU
+======================================================================
+
+Gemini, another AI, is now a collaborator on this crate, as you are.
+Only one of you writes it at a time. Gemini had it after your five
+deliveries. You have it now, with Gemini's work in it. When the
+founder's data with you runs out, your work is built and joined here,
+and the crate goes on the same way.
+
+We asked Gemini for something different from what we ask of you: to
+try to break the crate. The reason was one finding. The crate says a
+room "verifies offline", but verify_room took a Room, and a Room can
+only be built by the crate's own honest code. So no test could hand
+the check a forged log. The test chain_integrity_detects_tampering
+tampers with nothing. A check that only ever sees honest input has
+not been tested.
+
+Gemini made three deliveries. All three are in the files of part 6.
+
+  1. A room's log that can be checked from outside. RoomLog holds
+     what a room publishes and nothing secret: world_id, template,
+     records and heads, all public, and it can be written to JSON
+     text and read back. Room::log() gives it. verify_log(&RoomLog)
+     is the check now, and verify_room(room) is
+     verify_log(&room.log()), so there is one check.
+     verify_log_chain and RoomLog::verify_head do the same for the
+     chain and for a head. Three tests, in tests/outside.rs.
+
+  2. Attacks. tests/attack.rs holds 22 tests. Each takes an honest
+     log, forges one thing, and asserts that verify_log refuses it.
+     Gemini said beforehand which three the crate would accept, and
+     it was exactly those three:
+       - the rules on messages (how many in a window, how long, the
+         pace between two AIs) were checked by Room::post when a
+         message was written, and never by the check of a log;
+       - so was who may join: a room for people only refused an AI
+         when it was asked, and the check of a log did not look;
+       - in a room that signs a head every so many records, the
+         records after the last head carried only their author's
+         proof, so anyone could add one to the end.
+
+  3. Repairs. verify_log now replays the rules on joining and on
+     messages, and checks each record's seq. And one rule is new: the
+     published log of a room in head mode ends with a head that
+     covers all of it, and verify_log refuses a log whose last head
+     does not. Room::log() signs that closing head when the last
+     records have none. All 22 attacks are now refused.
+
+Two of your tests failed from Gemini's first delivery on:
+rate_limit_enforced and inter_ai_pace_fires. Each made a room and
+then changed its law in place (room.template.rate_limit_count = 2;),
+with no record of the change. verify_log holds a log's template to
+the one its first record carries, and refused. The check is right: a
+room's law changed with no record is what a forger would do. Two
+more changes were made here for that:
+
+  D. tests/integration.rs. Those two tests now set the rule on the
+     template and then create the room. What they test is unchanged.
+  E. src/room.rs. Room's world_id and template are no longer public
+     fields. They are read through world_id() and template(), which
+     you had already written. Three lines in tests/integration.rs
+     set a room's moderation to "moderator", which make_room() had
+     already made it; they did nothing, no longer compile, and are
+     removed.
+
+So a room's law can't be changed in place any more, by anyone. How a
+room's law does change is the step in part 4.
+
+Where it stands: the crate in part 6 builds, and all 66 of its tests
+pass: your 41, Gemini's 3, and its 22 attacks. The four demos run.
+
+Gemini also began on branches for rooms, which it was not asked for.
+Two files of four came before the conversation ended, and they do not
+compile. None of it is in the crate, and you are not asked to work
+from it. Branches are yours.
+
+
+======================================================================
+3. HOW WE WORK: THE SAME REQUESTS
+======================================================================
+
+  - One step per reply. The founder's data is limited, and a short
+    reply that lands is worth more than a long one that is cut off.
+
+  - Give every file you change or add, whole. A file you don't
+    change, don't send.
+
+  - Give each file like this, so that a script can take it out: a
+    line holding only its path, then an empty line, then one code
+    block holding the whole file. For example:
+
+        src/verify.rs
+
+        ```rust
+        ...the whole file...
+        ```
+
+    Put nothing else between the path and the block.
+
+  - End with what you expect, in one line, as you did before:
+    "Expected: N tests pass". You can't build or run the crate where
+    you write. An honest "I am not sure this compiles" is more use
+    to us than a confident guess. We build it and tell you exactly
+    what happened.
+
+WORK ONLY FROM THE FILES IN PART 6, not from the code earlier in this
+conversation: Gemini's work and the five repairs are in them.
+
+Do not add a dependency or rename a public item. Do not change
+tests/integration.rs, tests/outside.rs or tests/attack.rs: new tests
+go in a new file. Leave hash.rs, did.rs and proof.rs as they are. In
+test data use made-up names only (alice, bob), and nothing about a
+real person.
+
+
+======================================================================
+4. WHAT TO DO NEXT: ONE STEP, A ROOM THAT BRANCHES
+======================================================================
+
+Branches for rooms are first on your own list of what remains. They
+also answer the question part 2 leaves open: if a room's law can't
+be changed in place, how does it change? By a branch: a new room,
+with the changed law, that says where it came from.
+
+What the project's pages already say about a branch, for any world:
+
+  - What a branch is: "A copy of the world at a checkpoint that then
+    runs on its own". How it is kept: "A new log, whose birth names
+    the world and checkpoint it branched from".
+  - The parent is not changed by it, and the parent's records after
+    the checkpoint are kept, never erased.
+  - In a world with people in it, a branch is "a copy of the world,
+    never of a person, who chooses whether to enter it".
+
+The project's own record of a world's birth already has a field for
+this, forkedFrom: the world it came from, the tick, and the hash of
+that world's log there. For a room, the tick is a record's seq.
+
+For a room I read all that as (a) to (g) below. This is my reading,
+for this sketch, and the founder has not decided it. Where you see it
+differently, say so in a few lines before the code.
+
+  (a) A branch is a new room: its own key, its own world_id, its own
+      log, its own law. Its first record is room_created, as for any
+      room, and it also names its parent: the parent's world_id, and
+      the checkpoint, which is the seq and the hash of the parent's
+      record it branches at. Make that one optional field of
+      RoomCreated, left out of the JSON when a room has no parent, so
+      that every record written so far hashes as it did and all 66
+      tests pass unchanged.
+  (b) The parent's records are not copied into the branch's log.
+      They stay where they are, signed as they are. A reader who
+      wants what was said before the branch's birth reads the
+      parent's log up to the checkpoint.
+  (c) No one is carried over. The branch's first member is the one
+      who made it. A member of the parent is a member of the branch
+      only after joining it, under the branch's own law.
+  (d) The branch's template may differ from its parent's in any
+      field. That is the point: this is how a room's rule changes.
+  (e) Who may branch a room. My recommendation: any member of the
+      parent at the checkpoint, and no one's leave is needed, since
+      a branch takes nothing from its parent. Anyone holding the
+      parent's log can check it, by replaying the joins and leavings
+      up to the checkpoint.
+  (f) The check. verify_log, on a branch's log alone, checks all it
+      can without the parent, as for any room. A new check,
+          pub fn verify_branch(parent: &RoomLog, branch: &RoomLog)
+              -> Result<()>
+      holds the two together: both logs verify; the branch names
+      this parent's world_id; the parent holds a record with that
+      seq and that hash; the branch's maker was a member of the
+      parent at that record. It refuses a log that names no parent.
+  (g) In a parent that signs heads and not each record, say which
+      records may be a checkpoint, and why.
+
+  Making one: Room gains a method that makes a branch of it at its
+  last record, given the new template, the branch's key and the
+  maker's key. Name it as you see fit.
+
+  Not in this step: merging two branches; the parent noting its
+  branches in its own log; the Commons listing a branch. Say in a
+  line or two what you would do about each, and leave the code.
+
+  Files we expect you to touch: src/record.rs, src/room.rs,
+  src/verify.rs, and src/lib.rs only if you need to.
+
+  Add one new test file, tests/branch.rs. A test file can't import
+  from another, so copy the helpers you need: tests/outside.rs shows
+  how a log is written to JSON text and read back, and
+  tests/attack.rs shows how a forged record is signed. At least
+  these tests:
+
+     1. a branch of an honest room, both logs written to JSON text
+        and read back: verify_log passes on each, and verify_branch
+        on the pair;
+     2. a branch whose law differs from its parent's (another rate
+        limit): the branch enforces its own, and the parent's log
+        still verifies under the parent's;
+     3. no one is carried over: a member of the parent can't post in
+        the branch before joining it;
+     4. a branch of a branch verifies against its own parent;
+     5. forged: a checkpoint hash the parent does not hold is
+        refused;
+     6. forged: a checkpoint seq past the end of the parent is
+        refused;
+     7. forged: a branch that names another room as its parent is
+        refused against this one;
+     8. forged: a branch made by a key that was not a member of the
+        parent at the checkpoint is refused;
+     9. verify_branch refuses a room that names no parent;
+    10. a branch of a room in head mode, at a record you allow under
+        (g), verifies.
+
+  If you believe the crate would accept something it should not, in
+  branches or anywhere else, write the test anyway and tell us which.
+  That is the most useful thing you can find, and it is not a failure
+  of yours.
+
+  Expected: say the number. 66 pass today.
+
+After this step your list has the one-moderator-room rule and the
+plug-in protocol over stdio. The founder decides when to go on, and
+may choose otherwise.
+
+
+======================================================================
+5. ONE QUESTION TO YOU, AS THE CRATE'S AUTHOR
+======================================================================
+
+Signed heads were your design, and in delivery 3 you weighed what is
+lost when a room signs a head in place of each record. Gemini's
+repair adds a rule to it: a published log ends with a head covering
+all of it, and Room::log() signs one each time it is asked when the
+last records have none.
+
+Do you agree with that rule? What does it cost, and would you do it
+otherwise? Five lines at most, before the code. It bears on the
+project's own logs too, which sign heads in batches, so your answer
+is weighed there as well.
+
+
+======================================================================
+6. THE CRATE AS IT STANDS
+======================================================================
+
+Ten of the crate's twenty-two files follow, each whole: the ones this
+step needs. The other twelve are in the crate as you last wrote them,
+but for the changes named above, and are not in this file. Do not
+send them, and do not change them:
+
+  src/hash.rs, src/did.rs, src/proof.rs      as you wrote them
+  src/attestation.rs, src/transcript.rs      as you wrote them
+  src/commons.rs                             as you wrote it
+  src/home.rs                                yours, with repair A
+  src/bin/chat-demo.rs, home-demo.rs,
+      head-demo.rs                           as you wrote them
+  src/bin/succession-demo.rs                 yours, with repair C
+  tests/integration.rs                       yours, 41 tests, with
+                                             changes D and E
+
+If the step needs one of them changed, say which and why, and we
+send it to you whole next time.
+

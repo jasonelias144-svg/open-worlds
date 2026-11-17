@@ -1,7 +1,8 @@
 #!/bin/sh
 # Ours, not DeepSeek's (see ../README.md). Builds each of the five
 # deliveries that record 012-09-05 ends with, exactly as DeepSeek gave
-# it, in a scratch folder, and runs its tests. Nothing here is changed.
+# it, then each of Gemini's three that followed, in a scratch folder,
+# and runs its tests. Nothing here is changed.
 # Run it from anywhere:
 #   sh sketches/deepseek/012-09-05/review/steps.sh
 #
@@ -17,15 +18,25 @@
 #   delivery 4    31 pass, 2 fail
 #   delivery 5    does not compile
 #   5-aside       39 pass, 2 fail (two faults set aside, not repaired)
-#   now           41 pass, and the four demos run (three faults repaired)
+#   5-repaired    41 pass (three faults repaired): what Gemini was given
 # The two that fail are the same from delivery 2 on:
 # home_port_verifies and home_bookmark_and_presence_verify.
+# Then Gemini's, every test file of the crate, counted together:
+#   g1            42 pass, 2 fail
+#   g2            61 pass, 5 fail
+#   g3            64 pass, 2 fail
+#   now           66 pass, and the four demos run (fixes 22 and 23)
+# The two that fail in g1 to g3 are rate_limit_enforced and
+# inter_ai_pace_fires; the other three in g2 are the attacks Gemini
+# said would get through.
 set -eu
 here=$(cd "$(dirname "$0")/.." && pwd)
 scratch=$(mktemp -d)
 trap 'rm -rf "$scratch"' EXIT
 python3 "$here/review/steps.py" --aside "$scratch"
 python3 "$here/review/steps.py" --check
+python3 "$here/review/steps.py" --now "$scratch/more"
+for name in 5-repaired g1 g2 g3; do mv "$scratch/more/$name" "$scratch/$name"; done
 mkdir "$scratch/now"
 cp -R "$here/chat-world-now" "$scratch/now/chat-world"
 status=0
@@ -41,6 +52,24 @@ check() {
         echo "   NOT as recorded: wanted \"$2\""
         status=1
     fi
+    # Each delivery is built on its own, and its build is not kept:
+    # side by side they take a few gigabytes.
+    rm -rf "$scratch/$1/chat-world/target"
+}
+check_all() {
+    # check_all DELIVERY PASSED FAILED: every test file, counted together
+    echo "== delivery $1"
+    ( cd "$scratch/$1/chat-world" && cargo test --no-fail-fast ) \
+        > "$scratch/$1.out" 2>&1 || true
+    grep -E 'FAILED$|could not compile' "$scratch/$1.out" || true
+    got=$(awk '/^test result/ {p += $4; f += $6} END {print p+0 " passed, " f+0 " failed"}' "$scratch/$1.out")
+    echo "   $got"
+    if [ "$got" = "$2 passed, $3 failed" ]; then
+        echo "   as recorded"
+    else
+        echo "   NOT as recorded: wanted \"$2 passed, $3 failed\""
+        status=1
+    fi
     if [ "$1" = now ]; then
         for demo in chat-demo home-demo head-demo succession-demo; do
             if ( cd "$scratch/now/chat-world" && cargo run --quiet --bin "$demo" ) \
@@ -52,8 +81,6 @@ check() {
             fi
         done
     fi
-    # Each delivery is built on its own, and its build is not kept:
-    # seven of them side by side take a few gigabytes.
     rm -rf "$scratch/$1/chat-world/target"
 }
 check 1 '^test result: ok. 22 passed; 0 failed'
@@ -62,5 +89,9 @@ check 3 '^test result: FAILED. 27 passed; 2 failed'
 check 4 '^test result: FAILED. 31 passed; 2 failed'
 check 5 'could not compile `chat-world`'
 check 5-aside '^test result: FAILED. 39 passed; 2 failed'
-check now '^test result: ok. 41 passed; 0 failed'
+check 5-repaired '^test result: ok. 41 passed; 0 failed'
+check_all g1 42 2
+check_all g2 61 5
+check_all g3 64 2
+check_all now 66 0
 exit $status

@@ -493,15 +493,39 @@ two of fault 1.
 
 The crate kept in `deepseek/012-09-05/chat-world/` is still the one
 DeepSeek was given, and the deliveries are beside it, as written.
-`chat-world-now/` is the crate as it stands: the five deliveries laid
-over that crate in order, with the three repairs. `review/steps.py`
+`chat-world-now/` is the crate as it stands. When this was written
+that was the five deliveries laid over that crate in order, with the
+three repairs; since 2026-11-17 Gemini's three deliveries and two
+more repairs are laid over those (the next section). `review/steps.py`
 puts it together, and its `--check` holds the folder to exactly that,
 byte for byte (the folder's own test runs it, in CI). So every file in
-it is DeepSeek's latest, changed only as fixes 19 to 21 say. Not
+it is DeepSeek's latest or Gemini's, changed only as fixes 19 to 23
+say. Not
 checked: the demos of deliveries 2 to 5 as written were not run, only
 the four demos of the crate as it stands; the prose of delivery 3 was
 read only in part; nothing of this has been compared with open-worlds'
 own formats.
+
+### After DeepSeek's five: Gemini's three (2026-11-17)
+
+The crate then went to Gemini, with a file written for it
+([replies/2026-11-16-for-gemini.txt](replies/2026-11-16-for-gemini.txt))
+that asked it to try to break the crate. Its deliveries are kept as
+written in [gemini/2026-11-16](gemini/2026-11-16/README.md), which
+says where they come from and what each is. Laid over the crate in
+order, every test file run, on 2026-11-17:
+
+| Delivery | What it is | Tests, built as given |
+|---|---|---|
+| Gemini 1 | A room's log that can be checked from outside (`RoomLog`, `verify_log`) | 42 of 44 |
+| Gemini 2 | 22 attacks on the check | 61 of 66: three attacks get through, the three Gemini said would |
+| Gemini 3 | Repairs | 64 of 66: all 22 attacks refused |
+| all eight, with fixes 19 to 23 | The crate as it stands, `deepseek/012-09-05/chat-world-now/` | 66 of 66, and the four demos run |
+| Gemini 4 | Branches for rooms, not asked for; two files of the four it describes | does not compile; not used |
+
+The two tests that fail in Gemini's three are two of DeepSeek's
+earlier 41, and the fault is theirs: fix 22, under "Changes to
+DeepSeek's code".
 
 ## Record 012-03-02, component by component
 
@@ -732,6 +756,29 @@ With the three, the crate after all five deliveries builds, passes all
 41 of its tests, the number DeepSeek gave as expected, and its four
 demos run to the end. The repairs are five lines changed and three
 removed; `review/steps.py` holds them (`REPAIRS`).
+
+**Fix 22 (2026-11-17, after Gemini's deliveries): two tests set a
+room's rule before the room is created.** `rate_limit_enforced` and
+`inter_ai_pace_fires` made a room and then changed its template in
+place, with no record of the change. Gemini's `verify_log` holds a
+log's template to the one its first record carries, and refuses such a
+log, rightly. The two tests now set the rule on the template and then
+create the room; what they test is unchanged. In
+`chat-world-now/tests/integration.rs`, and in `REPAIRS_AFTER` in
+`review/steps.py`.
+
+**Fix 23 (2026-11-17): a room's id and its law are no longer public
+fields.** `Room.world_id` and `Room.template` were public, so any code
+holding a room could change its law in place, which is what the two
+tests of fix 22 did. They are private now, and read through
+`world_id()` and `template()`, which DeepSeek had written. Three more
+tests set a room's moderation to "moderator" after creating it, which
+`make_room()` had already made it; the three lines did nothing, no
+longer compile, and are removed. Two lines in
+`chat-world-now/src/room.rs` and three in `tests/integration.rs`; in
+`REPAIRS_AFTER`. All 66 tests pass and the four demos run, before this
+fix and after it. How a room's law does change, by a branch, is put to
+DeepSeek.
 
 Not fixed, and why:
 

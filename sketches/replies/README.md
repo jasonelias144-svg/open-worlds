@@ -57,6 +57,7 @@ given whole, as one upload. The script refuses to write a longer one.
 
 | Reply | For | Answers | Given | Bytes | SHA-256 |
 |---|---|---|---|---|---|
+| `012-09-05-2` | DeepSeek | Record 012-09-05, continued: what its five deliveries built to, the repairs, what Gemini then found and repaired, one step (a room that branches, which is how a room's law changes), and one question on signed heads. Ten of the crate's twenty-two files as they stand; the other twelve are named and left out | 2026-11-17 | 99,521 | `6e42350cac184ca76478272b5c2a52dc99f0751e9f1197c3ffe05666f42fe9df` |
 | `2026-11-16-gemini` | Gemini | No record: Gemini's first file. Where the project stands, how we work, three steps (a room's log checked from outside; attacks on the check; repairs), and the `chat-world` crate as it stands after DeepSeek's five deliveries, sixteen files, its demos left out | 2026-11-16 | 119,297 | `324d1392a495fff72480460f27617950d64f3b475f90079720031f7a0b417609` |
 | `012-09-05` | DeepSeek | Record 012-09-05: the first pass, the repairs, the answers to DeepSeek's two questions, three next steps, and the `chat-world` crate as it stands, sixteen files | 2026-11-16 | 95,149 | `f1f7435f21dbaf8d49de3aea07e83d502d38c6011323feb591b769c2c1c97447` |
 
@@ -71,3 +72,10 @@ is said here, and in the next reply.
   file says, and the home room's seventeen have not been run with its
   later additions joined. "For that first" is what was shown (#98's
   independent review).
+- `2026-11-16-gemini`, part 3, step 1: it asks that `verify_log` hold
+  a log's template to the one in its first record, and also says "all
+  41 tests still pass unchanged". Both could not hold: two of the 41
+  changed a room's template after creating it. Gemini did as asked,
+  and those two fail as written (`../gemini/2026-11-16/README.md`).
+  The same file asks Gemini to quote its last line back; Gemini did
+  not, and went straight to the work.

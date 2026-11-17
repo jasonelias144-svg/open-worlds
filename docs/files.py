@@ -8,8 +8,8 @@ from (the founder,
 2026-11-15: "Remember links in the collaborating page are not
 accessible. So all files need links through this method.").
 COLLABORATING.md lists the files a reader works from; this page lists
-the rest: DeepSeek's records, the code taken from them, what DeepSeek
-was given in reply, and Experiment 001's run logs.
+the rest: DeepSeek's records, the code taken from them, Gemini's code,
+what each of the two was given in reply, and Experiment 001's run logs.
 
     python3 docs/files.py          # rewrite docs/FILES.md
     python3 docs/files.py --check  # exit 1 if docs/FILES.md is stale
@@ -35,9 +35,13 @@ KINDS = [
      "DeepSeek's code as each record gave it, a folder per record; "
      "`name@offset` is an earlier version of `name`, found at that "
      "offset in the record"),
+    ("sketches/gemini/", "Code taken from Gemini's conversations",
+     "Gemini's code as it wrote it, a folder per conversation; the "
+     "conversations themselves are not kept here, and each folder's "
+     "`MANIFEST.json` holds its files to what Gemini wrote"),
     ("sketches/replies/", "What DeepSeek was given",
-     "the one file the founder gave DeepSeek at each return, with the "
-     "reply and the list of files it was built from "
+     "the one file the founder gave DeepSeek, or Gemini, at each "
+     "return, with the reply and the list of files it was built from "
      "(`docs/reply.py` builds it)"),
     ("experiments/001-first-words/runs/", "Experiment 001's run logs",
      "what each small model said in the first-words experiment, run by "

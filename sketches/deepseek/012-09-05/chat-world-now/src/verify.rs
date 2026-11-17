@@ -3,6 +3,7 @@ use crate::error::{Error, Result};
 use crate::hash;
 use crate::record::*;
 use crate::room::{Member, Room};
+pub use crate::room::RoomLog;
 use std::collections::{HashMap, HashSet};
 
 fn looks_like_hash(s: &str) -> bool {
@@ -10,10 +11,28 @@ fn looks_like_hash(s: &str) -> bool {
 }
 
 pub fn verify_room(room: &Room) -> Result<()> {
-    let world_id = room.world_id();
-    let (creator_id, per_record_mode) = match room.records().first() {
+    verify_log(&room.log())
+}
+
+pub fn verify_log(log: &RoomLog) -> Result<()> {
+    let (world_id, creator_id, template, per_record_mode) = match log.records.first() {
         Some(Record::RoomCreated(rc)) => {
-            (rc.creator_id.clone(), rc.template.head_interval <= 1)
+            if rc.world_id != log.world_id {
+                return Err(Error::Verification(
+                    "room_created world_id does not match log world_id".into(),
+                ));
+            }
+            if rc.template.hash()? != log.template.hash()? {
+                return Err(Error::Verification(
+                    "room_created template does not match log template".into(),
+                ));
+            }
+            (
+                &rc.world_id,
+                rc.creator_id.clone(),
+                &rc.template,
+                rc.template.head_interval <= 1,
+            )
         }
         _ => return Err(Error::Chain("log must start with room_created".into())),
     };
@@ -22,7 +41,14 @@ pub fn verify_room(room: &Room) -> Result<()> {
     let mut members: HashMap<DidKey, Member> = HashMap::new();
     let mut redacted: HashSet<String> = HashSet::new();
 
-    for (i, rec) in room.records().iter().enumerate() {
+    for (i, rec) in log.records.iter().enumerate() {
+        if rec.seq() != i as u64 {
+            return Err(Error::Chain(format!(
+                "record {i}: seq {} != expected {}",
+                rec.seq(),
+                i
+            )));
+        }
         match rec {
             Record::RoomCreated(_) => {
                 if i != 0 {
@@ -34,6 +60,12 @@ pub fn verify_room(room: &Room) -> Result<()> {
                     return Err(Error::Chain(format!("record {i}: prev mismatch")));
                 }
             }
+        }
+
+        if rec.world_id() != world_id {
+            return Err(Error::Verification(format!(
+                "record {i}: world_id mismatch"
+            )));
         }
 
         let body = hash::body_for_signing(rec)?;
@@ -68,11 +100,69 @@ pub fn verify_room(room: &Room) -> Result<()> {
                 if tier_rank(&mem.tier).unwrap_or(0) < tier_rank("communicate").unwrap() {
                     return Err(Error::Policy(format!("record {i}: author tier insufficient")));
                 }
+                if m.text.len() as u64 > template.max_msg_len {
+                    return Err(Error::Policy(format!("record {i}: message_too_long")));
+                }
+                // Rate limit replay
+                let window = template.rate_limit_window as usize;
+                let cap = template.rate_limit_count as usize;
+                let recent = log.records[..i]
+                    .iter()
+                    .rev()
+                    .take(window)
+                    .filter(|r| matches!(r, Record::Message(prev_m) if prev_m.author_id == m.author_id))
+                    .count();
+                if recent >= cap {
+                    return Err(Error::Policy(format!("record {i}: rate_limit exceeded")));
+                }
+                // Inter-AI pace replay
+                if mem.is_ai && template.inter_ai_pace > 0 {
+                    let mut last_ai_idx: Option<usize> = None;
+                    for (prev_idx, prev_rec) in log.records[..i].iter().enumerate().rev() {
+                        if let Record::Message(prev_m) = prev_rec {
+                            let prev_ai = members
+                                .get(&prev_m.author_id)
+                                .map(|x| x.is_ai)
+                                .unwrap_or(false);
+                            if prev_ai {
+                                last_ai_idx = Some(prev_idx);
+                                break;
+                            }
+                        }
+                    }
+                    if let Some(idx) = last_ai_idx {
+                        let since = (i - idx - 1) as u64;
+                        if since < template.inter_ai_pace {
+                            return Err(Error::Policy(format!("record {i}: inter_ai_pace violated")));
+                        }
+                    }
+                }
                 let author_proof = proofs.find_by_method(&m.author_id)
                     .ok_or_else(|| Error::Verification(format!("record {i}: missing author proof")))?;
                 author_proof.verify(&body)?;
             }
             Record::Join(j) => {
+                if members.contains_key(&j.subject_id) {
+                    return Err(Error::Policy(format!("record {i}: already_member")));
+                }
+                if tier_rank(&j.tier).is_none() {
+                    return Err(Error::Policy(format!("record {i}: unknown_tier")));
+                }
+                if template.personal {
+                    return Err(Error::Policy(format!("record {i}: personal_room")));
+                }
+                if template.membership == "human_only" && j.is_ai {
+                    return Err(Error::Policy(format!("record {i}: human_only_room")));
+                }
+                if template.membership == "ai_only" && !j.is_ai {
+                    return Err(Error::Policy(format!("record {i}: ai_only_room")));
+                }
+                if template.join_policy == "invite" {
+                    return Err(Error::Policy(format!("record {i}: invite_required")));
+                }
+                if template.join_policy == "approval" {
+                    return Err(Error::Policy(format!("record {i}: approval_required")));
+                }
                 let subject_proof = proofs.find_by_method(&j.subject_id)
                     .ok_or_else(|| Error::Verification(format!("record {i}: missing subject proof")))?;
                 subject_proof.verify(&body)?;
@@ -91,17 +181,17 @@ pub fn verify_room(room: &Room) -> Result<()> {
                 let Some(mem) = members.get(&r.subject_id) else {
                     return Err(Error::Policy(format!("record {i}: redactor not a member")));
                 };
-                let target = room.records().iter()
+                let target = log.records.iter()
                     .find(|x| x.hash().ok().as_deref() == Some(&r.target_hash));
                 let target_msg = match target {
                     Some(Record::Message(m)) => m,
                     _ => return Err(Error::Policy(format!("record {i}: redact target not a message"))),
                 };
-                if room.template().moderation == "none" {
+                if template.moderation == "none" {
                     return Err(Error::Policy(format!("record {i}: moderation disabled")));
                 }
                 let is_author = target_msg.author_id == r.subject_id;
-                let is_mod = room.template().moderation == "moderator"
+                let is_mod = template.moderation == "moderator"
                     && tier_rank(&mem.tier).unwrap_or(0) >= tier_rank("control").unwrap();
                 let role_ok = match r.actor_role.as_str() {
                     "author" => is_author,
@@ -111,7 +201,7 @@ pub fn verify_room(room: &Room) -> Result<()> {
                 if !role_ok {
                     return Err(Error::Policy(format!("record {i}: actor_role {:?} not permitted", r.actor_role)));
                 }
-                if !room.template().redaction_rules.iter().any(|x| x == &r.rule) {
+                if !template.redaction_rules.iter().any(|x| x == &r.rule) {
                     return Err(Error::Policy(format!("record {i}: rule {:?} not allowed", r.rule)));
                 }
                 redacted.insert(r.target_hash.clone());
@@ -129,7 +219,7 @@ pub fn verify_room(room: &Room) -> Result<()> {
                 if tier_rank(&mem.tier).unwrap_or(0) < tier_rank("control").unwrap() {
                     return Err(Error::Policy(format!("record {i}: overrider tier insufficient")));
                 }
-                let target = room.records().iter()
+                let target = log.records.iter()
                     .find(|x| x.hash().ok().as_deref() == Some(&o.overrides_hash));
                 let Some(target) = target else {
                     return Err(Error::Policy(format!("record {i}: override target not found")));
@@ -156,7 +246,7 @@ pub fn verify_room(room: &Room) -> Result<()> {
             }
             Record::Refusal(_) => {}
             Record::PortLanding(p) => {
-                if !room.template().personal {
+                if !template.personal {
                     return Err(Error::Policy(format!("record {i}: port_landing only in personal rooms")));
                 }
                 crate::transcript::verify_transcript(&p.transcript)
@@ -169,12 +259,12 @@ pub fn verify_room(room: &Room) -> Result<()> {
                 }
             }
             Record::Bookmark(_) => {
-                if !room.template().personal {
+                if !template.personal {
                     return Err(Error::Policy(format!("record {i}: bookmark only in personal rooms")));
                 }
             }
             Record::Presence(p) => {
-                if !room.template().personal {
+                if !template.personal {
                     return Err(Error::Policy(format!("record {i}: presence only in personal rooms")));
                 }
                 if p.subject_id != creator_id {
@@ -182,23 +272,20 @@ pub fn verify_room(room: &Room) -> Result<()> {
                 }
             }
             Record::KnowledgeShardExport(k) => {
-                if !room.template().personal {
+                if !template.personal {
                     return Err(Error::Policy(format!("record {i}: knowledge_shard_export only in personal rooms")));
                 }
                 if k.entry_hashes.iter().any(|h| !looks_like_hash(h)) {
                     return Err(Error::Policy(format!("record {i}: shard entry hash not a 64-hex string")));
                 }
-                // Room proof already verified above.
             }
             Record::ModeratorSuccession(s) => {
-                // Room proof verified above. Outgoing + incoming also sign.
                 let outgoing_proof = proofs.find_by_method(&s.outgoing_id)
                     .ok_or_else(|| Error::Verification(format!("record {i}: missing outgoing proof")))?;
                 outgoing_proof.verify(&body)?;
                 let incoming_proof = proofs.find_by_method(&s.incoming_id)
                     .ok_or_else(|| Error::Verification(format!("record {i}: missing incoming proof")))?;
                 incoming_proof.verify(&body)?;
-                // Outgoing must be a control+ member at this point.
                 let Some(mem) = members.get(&s.outgoing_id) else {
                     return Err(Error::Policy(format!("record {i}: outgoing not a member")));
                 };
@@ -219,30 +306,52 @@ pub fn verify_room(room: &Room) -> Result<()> {
 
     // Heads
     let mut last_length: u64 = 0;
-    for (i, head) in room.heads().iter().enumerate() {
-        room.verify_head(head).map_err(|e| Error::Verification(format!("head {i}: {e}")))?;
+    for (i, head) in log.heads.iter().enumerate() {
+        log.verify_head(head).map_err(|e| Error::Verification(format!("head {i}: {e}")))?;
         if head.length <= last_length {
             return Err(Error::Verification(format!("head {i}: length not increasing")));
         }
         last_length = head.length;
     }
-    if per_record_mode && !room.heads().is_empty() {
+    if per_record_mode && !log.heads.is_empty() {
         return Err(Error::Verification("per-record mode should not emit heads".into()));
     }
     if !per_record_mode {
-        let n = room.template().head_interval;
-        let appends = room.records().len().saturating_sub(1) as u64;
-        let expected = if n > 1 { appends / n } else { 0 };
-        if expected > 0 && room.heads().len() as u64 != expected {
-            return Err(Error::Verification(format!(
-                "head count: expected {} for {} appends at interval {}, got {}",
-                expected, appends, n, room.heads().len()
-            )));
+        let n = template.head_interval;
+        let appends = log.records.len().saturating_sub(1) as u64;
+        if appends > 0 {
+            let periodic = appends / n;
+            let rem = appends % n;
+            let expected = if rem == 0 { periodic } else { periodic + 1 };
+            if log.heads.len() as u64 != expected {
+                return Err(Error::Verification(format!(
+                    "head count: expected {} for {} appends at interval {}, got {}",
+                    expected, appends, n, log.heads.len()
+                )));
+            }
+            for (k, head) in log.heads.iter().enumerate() {
+                let k_u64 = k as u64;
+                let expected_len = if k_u64 < periodic {
+                    1 + (k_u64 + 1) * n
+                } else {
+                    log.records.len() as u64
+                };
+                if head.length != expected_len {
+                    return Err(Error::Verification(format!(
+                        "head {k}: expected length {expected_len}, got {}",
+                        head.length
+                    )));
+                }
+            }
+        } else if !log.heads.is_empty() {
+            return Err(Error::Verification(
+                "head mode: no heads expected when no records appended after seed".into(),
+            ));
         }
     }
 
-    if room.template().personal {
-        for rec in room.records() {
+    if template.personal {
+        for rec in &log.records {
             if let Record::Join(j) = rec {
                 if j.subject_id != creator_id {
                     return Err(Error::Policy("personal room: non-creator joined".into()));
@@ -255,8 +364,12 @@ pub fn verify_room(room: &Room) -> Result<()> {
 }
 
 pub fn verify_chain(room: &Room) -> Result<()> {
+    verify_log_chain(&room.log())
+}
+
+pub fn verify_log_chain(log: &RoomLog) -> Result<()> {
     let mut prev: Option<String> = None;
-    for (i, rec) in room.records().iter().enumerate() {
+    for (i, rec) in log.records.iter().enumerate() {
         match rec {
             Record::RoomCreated(_) if i != 0 => {
                 return Err(Error::Chain("room_created not at start".into()));

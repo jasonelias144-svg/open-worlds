@@ -1,0 +1,51 @@
+> Part of `docs/FILES.md` in open-worlds, which is kept cut into parts
+> for readers who are shown only the start of a long page.
+> This part holds: "Code taken from Gemini's conversations" to "What DeepSeek was given".
+> Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/code-taken-from-deepseek-s-records-01.md
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/experiment-001-s-run-logs-02.md
+> Made by docs/parts.py from the file. To change it, change the file.
+
+## Code taken from Gemini's conversations
+
+In `sketches/gemini`, 13 files, 152 KB in all, the largest 26 KB: Gemini's code as it wrote it, a folder per conversation; the conversations themselves are not kept here, and each folder's `MANIFEST.json` holds its files to what Gemini wrote.
+
+**`sketches/gemini/2026-11-16`** (13 files, 152 KB):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/MANIFEST.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/README.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/steps/1/src/head.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/steps/1/src/lib.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/steps/1/src/room.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/steps/1/src/verify.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/steps/1/tests/outside.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/steps/2/tests/attack.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/steps/3/src/room.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/steps/3/src/verify.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/steps/4/src/record.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/steps/4/src/room.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/take.py
+```
+
+## What DeepSeek was given
+
+In `sketches/replies`, 10 files, 355 KB in all, the largest 117 KB: the one file the founder gave DeepSeek, or Gemini, at each return, with the reply and the list of files it was built from (`docs/reply.py` builds it).
+
+**`sketches/replies`** (10 files, 355 KB):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-09-05-2-for-deepseek.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-09-05-2.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-09-05-2.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-09-05-for-deepseek.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-09-05.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-09-05.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-16-for-gemini.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-16-gemini.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-16-gemini.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/README.md
+```
+
+
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/experiment-001-s-run-logs-02.md
