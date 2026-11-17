@@ -11,7 +11,7 @@ need links through this method.").
 
 COLLABORATING.md lists the files a reader works from: every page,
 all the code, the tests and the vectors. This page lists the rest,
-965 files of record, best sent when a question needs them.
+967 files of record, best sent when a question needs them.
 
 Written by `python3 docs/files.py`;
 `tests/test_collaborating_links.py` fails if a file is added, moved
@@ -969,6 +969,17 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/re
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-17-gemini.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-17-gemini.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/README.md
+```
+
+## The library
+
+In `library`, 2 files, 437 KB in all, the largest 433 KB: works given to the project whole, to be read: the first is the founder's *Art of Peace and the Strategist*; too large to read in one go.
+
+**`library`** (2 files, 437 KB):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/009-13-CGPT-Peace_and_the_Strategist.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/README.md
 ```
 
 ## Experiment 001's run logs

@@ -45,6 +45,10 @@ KINDS = [
      "the one file the founder gave DeepSeek, or Gemini, at each "
      "return, with the reply and the list of files it was built from "
      "(`docs/reply.py` builds it)"),
+    ("library/", "The library",
+     "works given to the project whole, to be read: the first is the "
+     "founder's *Art of Peace and the Strategist*; too large to read "
+     "in one go"),
     ("experiments/001-first-words/runs/", "Experiment 001's run logs",
      "what each small model said in the first-words experiment, run by "
      "run (the plan and results are in COLLABORATING.md's list)"),
