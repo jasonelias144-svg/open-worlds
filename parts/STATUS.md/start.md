@@ -171,6 +171,15 @@ needs the founder's own words or act, money, personal information, or
 anything outward-facing or hard to undo. What is left here is of that
 kind.
 
+- For the founder, on Gemini's conversation (2026-11-17). The code
+  taken from it is in sketches/gemini/2026-11-16/, held by hashes that
+  only someone with the conversation can check. The conversation
+  itself is in no repository: it exists in the founder's own copy, and
+  in a session's upload, which does not last. It is the founder's to
+  say where a conversation goes (Decided, 2026-11-16, on naming
+  Gemini). Recommended: keep it whole in the private repository, so
+  that what is public can always be checked against it. It stays out
+  of this repository either way.
 - For the founder, on the two roles (2026-11-16; Decided, that day):
   1. What stays the founder's when someone else is director. AGENTS.md
      says today that the charter is the founder's words, and that a
