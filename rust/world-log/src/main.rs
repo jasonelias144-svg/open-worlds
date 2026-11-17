@@ -6,7 +6,9 @@
 //! With `CONTENTS`, for a log whose fields are kept apart
 //! (`open-worlds/log-apart/v1`, [`world_log::apart`]): also holds the
 //! contents kept beside the log to the fingerprints in it, and counts
-//! the fields in each state.
+//! the fields in each state, the redactions (open, standing, or
+//! answered by a decision to keep the field public) and the entries a
+//! room no longer shows as written.
 //!
 //! Exits 0 if everything given holds, and 1 if it doesn't: the chain is
 //! broken, the log is not in the form, the contents hold something the
@@ -23,7 +25,7 @@
 
 use serde_json::Value;
 use std::process::ExitCode;
-use world_log::apart::{self, EntryState, State};
+use world_log::apart::{self, EntryState, RedactionState, State};
 
 fn read(path: &str) -> Result<Value, ExitCode> {
     let text = std::fs::read_to_string(path).map_err(|e| {
@@ -99,8 +101,23 @@ fn check_contents(log: &Value, contents: &Value) -> ExitCode {
         count(State::KeptPublic),
         missing
     );
-    // What a room shows of each entry, from the open fields alone. The
-    // log has held by now, so this can't be refused.
+    // Every redaction, from the open fields alone: a mark, and what was
+    // decided of it. The log has held by now, so this can't be refused.
+    let redactions = apart::redactions(log).unwrap_or_default();
+    let decided = |state: RedactionState| {
+        redactions
+            .values()
+            .flat_map(|fields| fields.values().flatten())
+            .filter(|r| r.state == state)
+            .count()
+    };
+    println!(
+        "the redactions: {} open, {} stand, {} kept public",
+        decided(RedactionState::Open),
+        decided(RedactionState::Stands),
+        decided(RedactionState::KeptPublic)
+    );
+    // What a room shows of each entry, from the open fields alone.
     let standing = apart::incidents(log).unwrap_or_default();
     let shown = |state: EntryState| standing.values().filter(|s| s.state == state).count();
     println!(

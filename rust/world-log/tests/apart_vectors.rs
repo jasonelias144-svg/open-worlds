@@ -17,9 +17,9 @@
 use serde_json::{Map, Value, json};
 use std::collections::BTreeSet;
 use world_log::apart::{
-    self, EntryState, FORM, GROUNDS, KEPT, Log, MARK, MAX_NESTING, MAX_REF, MAX_WHOLE, PUT_BACK,
-    REMOVED, RESTORED, Refused, SHORT, State, TAKEN_BACK, check, fingerprint, fingerprint_text,
-    incidents, join, short_ids, value_allowed,
+    self, Decided, EntryState, FORM, GROUNDS, KEPT, Log, MARK, MAX_NESTING, MAX_REF, MAX_WHOLE,
+    Office, PUT_BACK, REMOVED, RESTORED, RedactionState, Refused, SHORT, STAYS, State, TAKEN_BACK,
+    check, fingerprint, fingerprint_text, incidents, join, redactions, short_ids, value_allowed,
 };
 use world_log::{LogError, sha256_hex, verify_log};
 
@@ -78,8 +78,140 @@ fn incidents_json(standing: &std::collections::BTreeMap<String, apart::Standing>
     Value::Object(out)
 }
 
+fn redactions_json(found: &apart::Redactions) -> Value {
+    let mut out = Map::new();
+    for (entry, fields) in found {
+        let mut of_fields = Map::new();
+        for (name, list) in fields {
+            let list: Vec<Value> = list
+                .iter()
+                .map(|r| json!({"id": r.id, "short": r.short, "state": r.state.as_str()}))
+                .collect();
+            of_fields.insert(name.clone(), Value::Array(list));
+        }
+        out.insert(entry.clone(), Value::Object(of_fields));
+    }
+    Value::Object(out)
+}
+
 fn map(value: &Value) -> Map<String, Value> {
     value.as_object().unwrap().clone()
+}
+
+/// The trial room's offices and grounds, as `world/apart_vectors.py`
+/// names them.
+const OFFICE: &str = "trial office";
+const KEEPER: &str = "trial keeper";
+
+fn private() -> Value {
+    json!({"kind": "rule", "ref": "trial room law, private information"})
+}
+
+fn appeal() -> Value {
+    json!({"kind": "rule", "ref": "trial appeal rule"})
+}
+
+/// A stand-in for a decision record's hash, as `world/apart_vectors.py`
+/// makes it: 64 hex digits, public, and the hash of no record.
+fn trial_decision(n: usize) -> String {
+    sha256_hex(format!("open-worlds trial decision {n}").as_bytes())
+}
+
+fn why(text: &str) -> Map<String, Value> {
+    map(&json!({"reason": text}))
+}
+
+/// A mark as the trial office writes one. The field stays in the
+/// contents until it is taken out.
+fn mark(
+    log: &mut Log,
+    tick: u64,
+    entry: &str,
+    field: &str,
+    reason: &str,
+    salt: &mut dyn FnMut() -> String,
+) -> Result<String, Refused> {
+    let by = Office {
+        office: OFFICE,
+        ground: &private(),
+        agent: None,
+    };
+    log.mark(tick, entry, field, by, &why(reason), salt)
+}
+
+/// The entry and the field a mark names, read from the log.
+fn marked(log: &Log, a_mark: &str) -> (String, String) {
+    let entry = log
+        .entries()
+        .iter()
+        .find(|e| e["hash"] == a_mark)
+        .expect("the mark is in the log");
+    let text = |key: &str| entry["data"][key].as_str().unwrap().to_owned();
+    (text("entry"), text("field"))
+}
+
+/// The decision to keep public a field that is still in the contents.
+fn keep(
+    log: &mut Log,
+    tick: u64,
+    a_mark: &str,
+    reason: &str,
+    n: usize,
+    salt: &mut dyn FnMut() -> String,
+) -> Result<String, Refused> {
+    let (entry, field) = marked(log, a_mark);
+    let pair = log.contents()[&entry][&field].clone();
+    let by = Decided {
+        office: KEEPER,
+        ground: &appeal(),
+        decision: &trial_decision(n),
+        agent: None,
+    };
+    log.keep_public(tick, a_mark, &pair, by, &why(reason), salt)
+}
+
+/// The decision that a field stays redacted.
+fn stays(
+    log: &mut Log,
+    tick: u64,
+    a_mark: &str,
+    reason: &str,
+    n: usize,
+    salt: &mut dyn FnMut() -> String,
+) -> Result<String, Refused> {
+    let by = Decided {
+        office: KEEPER,
+        ground: &appeal(),
+        decision: &trial_decision(n),
+        agent: None,
+    };
+    log.stays_redacted(tick, a_mark, by, &why(reason), salt)
+}
+
+/// A log and its contents as one text: everything the writer keeps.
+fn kept_text(log: &Log) -> String {
+    format!(
+        "{}{}",
+        Value::Array(log.entries().to_vec()),
+        Value::Object(log.contents().clone())
+    )
+}
+
+fn field_state(log: &Log, entry: &str, field: &str) -> State {
+    check(
+        &Value::Array(log.entries().to_vec()),
+        &Value::Object(log.contents().clone()),
+    )
+    .unwrap()[entry][field]
+}
+
+fn redactions_of(log: &Log, entry: &str, field: &str) -> Vec<apart::Redaction> {
+    redactions(&Value::Array(log.entries().to_vec()))
+        .unwrap()
+        .get(entry)
+        .and_then(|fields| fields.get(field))
+        .cloned()
+        .unwrap_or_default()
 }
 
 /// Where a refusal points, as the vectors write it: nothing; an entry's
@@ -91,6 +223,10 @@ fn place(error: &Refused) -> Value {
         | Refused::NoForm
         | Refused::Table
         | Refused::FirstGiven
+        | Refused::NotByAppend
+        | Refused::NoSuchMark
+        | Refused::NotThere
+        | Refused::StillThere
         | Refused::Entry { index: None } => Value::Null,
         Refused::Chain(
             LogError::Malformed { index }
@@ -104,6 +240,7 @@ fn place(error: &Refused) -> Value {
         | Refused::Twice { index }
         | Refused::BadMark { index }
         | Refused::BadKept { index }
+        | Refused::BadStays { index }
         | Refused::BadRemoval { index }
         | Refused::BadRestoring { index }
         | Refused::BadTakingBack { index }
@@ -144,6 +281,16 @@ fn the_names_and_limits_are_pythons() {
     assert_eq!(v["form"], FORM);
     assert_eq!(v["mark"], MARK);
     assert_eq!(v["kept"], KEPT);
+    assert_eq!(v["stays"], STAYS);
+    let redaction_states: Vec<&str> = [
+        RedactionState::Open,
+        RedactionState::Stands,
+        RedactionState::KeptPublic,
+    ]
+    .iter()
+    .map(|s| s.as_str())
+    .collect();
+    assert_eq!(v["redaction_states"], json!(redaction_states));
     assert_eq!(v["max_whole"], MAX_WHOLE);
     assert_eq!(v["max_nesting"], MAX_NESTING);
     assert_eq!(v["max_ref"], MAX_REF);
@@ -286,6 +433,7 @@ fn each_case_that_holds_gives_pythons_states_and_entries() {
     assert_eq!(holds.len(), 7, "the vectors are all there");
     let mut seen = BTreeSet::new();
     let mut entry_states = BTreeSet::new();
+    let mut redaction_states = std::collections::HashSet::new();
     for case in holds {
         let name = &case["name"];
         assert!(verify_log(&case["log"]).is_ok(), "{name}");
@@ -294,6 +442,13 @@ fn each_case_that_holds_gives_pythons_states_and_entries() {
         let standing = incidents(&case["log"]).unwrap();
         assert_eq!(incidents_json(&standing), case["incidents"], "{name}");
         entry_states.extend(standing.values().map(|s| s.state.as_str()));
+        let found = redactions(&case["log"]).unwrap();
+        assert_eq!(redactions_json(&found), case["redactions"], "{name}");
+        redaction_states.extend(
+            found
+                .values()
+                .flat_map(|fields| fields.values().flatten().map(|r| r.state)),
+        );
         let joined = join(&case["log"], &case["contents"]).unwrap();
         assert_eq!(Value::Array(joined), case["joined"], "{name}");
         seen.extend(states.values().flat_map(|fields| fields.values().copied()));
@@ -302,6 +457,175 @@ fn each_case_that_holds_gives_pythons_states_and_entries() {
     // Removed, taken back, restored, and as written with an incident
     // that no longer stands.
     assert_eq!(entry_states.len(), 4, "the entries' states are there");
+    assert_eq!(
+        redaction_states.len(),
+        3,
+        "the redactions' states are there"
+    );
+}
+
+#[test]
+fn the_five_states_written_here_are_the_ones_python_wrote() {
+    // The same steps as `holds` in world/apart_vectors.py, through this
+    // crate's writer: the same log, entry for entry, and the same
+    // contents.
+    let v = vectors();
+    let mut salt = trial_salts();
+    let mut room = room(&v, &mut salt);
+    let h: Vec<String> = room
+        .entries()
+        .iter()
+        .map(|e| e["hash"].as_str().unwrap().to_owned())
+        .collect();
+    // Redacted: a mark is open, and the field is gone.
+    let first_mark = mark(
+        &mut room,
+        5,
+        &h[5],
+        "text",
+        "private information",
+        &mut salt,
+    )
+    .unwrap();
+    room.take_out(&first_mark).unwrap();
+    // Unfinished: a mark is open, and the field is still there.
+    mark(
+        &mut room,
+        5,
+        &h[4],
+        "text",
+        "asked by its author",
+        &mut salt,
+    )
+    .unwrap();
+    // Kept public: the mark was answered, and the field is there.
+    let a_mark = mark(
+        &mut room,
+        6,
+        &h[3],
+        "time",
+        "asked by its author",
+        &mut salt,
+    )
+    .unwrap();
+    keep(
+        &mut room,
+        7,
+        &a_mark,
+        "a time of day says nothing private here",
+        1,
+        &mut salt,
+    )
+    .unwrap();
+    // Missing: the mark was answered, and the field is gone all the same.
+    let a_mark = mark(
+        &mut room,
+        8,
+        &h[2],
+        "name",
+        "asked by its author",
+        &mut salt,
+    )
+    .unwrap();
+    keep(
+        &mut room,
+        9,
+        &a_mark,
+        "the name is on the door",
+        2,
+        &mut salt,
+    )
+    .unwrap();
+    // Redacted: marked, kept public, and marked again.
+    let a_mark = mark(
+        &mut room,
+        10,
+        &h[6],
+        "thing",
+        "asked by its author",
+        &mut salt,
+    )
+    .unwrap();
+    keep(
+        &mut room,
+        11,
+        &a_mark,
+        "nothing private in it",
+        3,
+        &mut salt,
+    )
+    .unwrap();
+    let again = mark(
+        &mut room,
+        12,
+        &h[6],
+        "thing",
+        "it names a third person",
+        &mut salt,
+    )
+    .unwrap();
+    room.take_out(&again).unwrap();
+    // Redacted: a mark's own reason, which said what it should not.
+    let on_reason = mark(
+        &mut room,
+        13,
+        &first_mark,
+        "reason",
+        "the reason repeated it",
+        &mut salt,
+    )
+    .unwrap();
+    room.take_out(&on_reason).unwrap();
+    // Redacted, and decided: the mark stands for good.
+    let a_mark = mark(
+        &mut room,
+        14,
+        &h[5],
+        "time",
+        "asked by its author",
+        &mut salt,
+    )
+    .unwrap();
+    room.take_out(&a_mark).unwrap();
+    stays(
+        &mut room,
+        15,
+        &a_mark,
+        "with the text, the time says where",
+        4,
+        &mut salt,
+    )
+    .unwrap();
+    // Unfinished, though decided: whoever published the log left the
+    // field in the contents after the decision that it stays redacted.
+    let a_mark = mark(
+        &mut room,
+        16,
+        &h[3],
+        "key",
+        "asked by its author",
+        &mut salt,
+    )
+    .unwrap();
+    let left = room.take_out(&a_mark).unwrap();
+    stays(
+        &mut room,
+        17,
+        &a_mark,
+        "a key that was never meant to be shown",
+        5,
+        &mut salt,
+    )
+    .unwrap();
+    let (entries, mut contents) = room.into_parts();
+    contents[&h[3]]["key"] = left;
+    for (entry, field) in [(&h[1], "name"), (&h[2], "name")] {
+        contents[entry].as_object_mut().unwrap().remove(field);
+    }
+    let case = &v["holds"][3];
+    assert_eq!(case["name"], "the five states");
+    assert_eq!(Value::Array(entries), case["log"]);
+    assert_eq!(Value::Object(contents), case["contents"]);
 }
 
 #[test]
@@ -507,7 +831,7 @@ fn what_wins_among_removing_restoring_taking_back_and_putting_back() {
 fn each_case_that_is_refused_is_refused_for_pythons_reason() {
     let v = vectors();
     let refused = cases(&v, "refused");
-    assert_eq!(refused.len(), 124, "the vectors are all there");
+    assert_eq!(refused.len(), 161, "the vectors are all there");
     let mut seen = BTreeSet::new();
     for case in refused {
         let name = &case["name"];
@@ -581,7 +905,7 @@ fn a_refused_entry_is_not_appended_and_the_log_goes_on() {
     let mut log = room(&v, &mut salt);
     let before = (log.entries().to_vec(), log.contents().clone());
     let head = log.head().to_owned();
-    let refusals: [(&str, Value, Value, &str); 7] = [
+    let refusals: [(&str, Value, Value, &str); 4] = [
         (
             "said",
             json!({}),
@@ -606,24 +930,6 @@ fn a_refused_entry_is_not_appended_and_the_log_goes_on() {
             json!({"Text": "x"}),
             "an entry is not in this form",
         ),
-        (
-            MARK,
-            json!({"entry": head, "field": "nothing"}),
-            json!({}),
-            "a mark does not name an earlier entry and a field it keeps apart",
-        ),
-        (
-            MARK,
-            json!({"entry": head, "field": "nothing"}),
-            json!({"reason": "kept apart, and still refused"}),
-            "a mark does not name an earlier entry and a field it keeps apart",
-        ),
-        (
-            KEPT,
-            json!({"mark": head}),
-            json!({}),
-            "a decision to keep a field public does not name an earlier mark",
-        ),
     ];
     for (kind, data, kept, reason) in refusals {
         let error = log
@@ -634,18 +940,49 @@ fn a_refused_entry_is_not_appended_and_the_log_goes_on() {
         assert_eq!(log.contents(), &before.1, "{reason}");
         assert_eq!(log.head(), head, "{reason}");
     }
+    // A mark on a field the entry does not keep apart, with a reason
+    // kept apart or without one; and answers to what is not a mark.
+    let by = Office {
+        office: OFFICE,
+        ground: &private(),
+        agent: None,
+    };
+    let decided = Decided {
+        office: KEEPER,
+        ground: &appeal(),
+        decision: &trial_decision(1),
+        agent: None,
+    };
+    let pair = before.1[before.0[3]["hash"].as_str().unwrap()]["text"].clone();
+    let acts = [
+        log.mark(9, &head, "nothing", by, &Map::new(), &mut salt),
+        log.mark(9, &head, "nothing", by, &why("still refused"), &mut salt),
+        log.keep_public(9, &head, &pair, decided, &Map::new(), &mut salt),
+        log.stays_redacted(9, &head, decided, &Map::new(), &mut salt),
+    ];
+    let index = before.0.len();
+    assert_eq!(
+        acts,
+        [
+            Err(Refused::BadMark { index }),
+            Err(Refused::BadMark { index }),
+            Err(Refused::BadKept { index }),
+            Err(Refused::BadStays { index }),
+        ]
+    );
+    assert_eq!(log.entries(), before.0.as_slice());
+    assert_eq!(log.contents(), &before.1);
+    assert_eq!(log.head(), head);
     // The log still takes an entry, and still holds.
     let target = before.0[3]["hash"].as_str().unwrap();
+    let by = Office {
+        agent: Some("trial office"),
+        ..by
+    };
     let mark = log
-        .append(
-            9,
-            MARK,
-            Some("trial office"),
-            &map(&json!({"entry": target, "field": "text"})),
-            &map(&json!({"reason": "asked"})),
-            &mut salt,
-        )
+        .mark(9, target, "text", by, &why("asked"), &mut salt)
         .unwrap();
+    assert_eq!(log.entries().last().unwrap()["agent"], "trial office");
     assert_eq!(log.head(), mark);
     let (entries, contents) = log.into_parts();
     let states = check(
@@ -806,4 +1143,521 @@ fn the_open_part_is_held_to_the_rule_for_values() {
         .unwrap();
     let (entries, contents) = written.into_parts();
     assert!(check(&Value::Array(entries), &Value::Object(contents)).is_ok());
+}
+
+// Redacted first, decided after (docs/research/REDACTION.md, decisions 4
+// and 5): a mark, and the one entry that answers it. The same tests as
+// `TestRedacting` in tests/test_apart.py.
+
+/// The trial room, its salts, and the hash of what ada said.
+fn said_room() -> (Log, impl FnMut() -> String, String) {
+    let v = vectors();
+    let mut salt = trial_salts();
+    let log = room(&v, &mut salt);
+    let said = log.entries()[3]["hash"].as_str().unwrap().to_owned();
+    (log, salt, said)
+}
+
+fn decided<'a>(ground: &'a Value, decision: &'a str) -> Decided<'a> {
+    Decided {
+        office: KEEPER,
+        ground,
+        decision,
+        agent: None,
+    }
+}
+
+#[test]
+fn a_mark_says_its_office_and_its_ground_and_no_decision() {
+    let (mut log, mut salt, said) = said_room();
+    let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    assert_eq!(
+        log.entries().last().unwrap()["data"],
+        json!({"entry": said, "field": "text", "office": OFFICE, "ground": private()})
+    );
+    let found = redactions_of(&log, &said, "text");
+    assert_eq!(found.len(), 1);
+    assert_eq!(found[0].id, made);
+    assert_eq!(found[0].short, made[..SHORT]);
+    assert_eq!(found[0].state, RedactionState::Open);
+}
+
+#[test]
+fn a_mark_without_its_office_or_ground_is_refused() {
+    let (mut log, mut salt, said) = said_room();
+    let index = log.entries().len();
+    let good = private();
+    for (office, ground) in [
+        ("", good.clone()),
+        (OFFICE, json!("private")),
+        (OFFICE, json!({})),
+        (OFFICE, json!({"kind": "whim", "ref": "x"})),
+        (OFFICE, json!({"kind": "record", "ref": "x"})),
+        (OFFICE, json!({"kind": "rule", "ref": ""})),
+        (OFFICE, json!({"kind": "rule", "ref": "x", "more": "y"})),
+    ] {
+        let by = Office {
+            office,
+            ground: &ground,
+            agent: None,
+        };
+        assert_eq!(
+            log.mark(5, &said, "text", by, &Map::new(), &mut salt),
+            Err(Refused::BadMark { index }),
+            "{office:?} {ground}"
+        );
+    }
+    // Nothing is not a value an open field can have, here as anywhere.
+    let by = Office {
+        office: OFFICE,
+        ground: &Value::Null,
+        agent: None,
+    };
+    assert_eq!(
+        log.mark(5, &said, "text", by, &Map::new(), &mut salt),
+        Err(Refused::Entry { index: Some(index) })
+    );
+    assert_eq!(log.entries().len(), index);
+}
+
+#[test]
+fn a_field_has_one_mark_that_is_open_or_stands() {
+    let (mut log, mut salt, said) = said_room();
+    let first = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    let index = log.entries().len();
+    assert_eq!(
+        mark(&mut log, 5, &said, "text", "asked", &mut salt),
+        Err(Refused::BadMark { index })
+    );
+    // Another field of the same entry is free.
+    mark(&mut log, 5, &said, "time", "asked", &mut salt).unwrap();
+    log.take_out(&first).unwrap();
+    stays(&mut log, 6, &first, "decided", 1, &mut salt).unwrap();
+    let index = log.entries().len();
+    assert_eq!(
+        mark(&mut log, 7, &said, "text", "asked", &mut salt),
+        Err(Refused::BadMark { index })
+    );
+}
+
+#[test]
+fn kept_public_answers_a_mark_and_the_field_can_be_marked_again() {
+    let (mut log, mut salt, said) = said_room();
+    let first = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    keep(&mut log, 6, &first, "decided", 1, &mut salt).unwrap();
+    assert_eq!(field_state(&log, &said, "text"), State::KeptPublic);
+    let again = mark(&mut log, 7, &said, "text", "asked", &mut salt).unwrap();
+    log.take_out(&again).unwrap();
+    assert_eq!(field_state(&log, &said, "text"), State::Redacted);
+    let found = redactions_of(&log, &said, "text");
+    let states: Vec<RedactionState> = found.iter().map(|r| r.state).collect();
+    assert_eq!(states, [RedactionState::KeptPublic, RedactionState::Open]);
+    let ids: Vec<&str> = found.iter().map(|r| r.id.as_str()).collect();
+    assert_eq!(ids, [first, again]);
+}
+
+#[test]
+fn a_mark_is_answered_once() {
+    type Answer =
+        fn(&mut Log, u64, &str, &str, usize, &mut dyn FnMut() -> String) -> Result<String, Refused>;
+    let cases: [(Answer, Answer, bool, bool); 3] = [
+        (keep, keep, false, true),
+        (keep, stays, false, false),
+        (stays, stays, true, false),
+    ];
+    for (first, second, out_first, kept_second) in cases {
+        let (mut log, mut salt, said) = said_room();
+        let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+        if out_first {
+            log.take_out(&made).unwrap();
+        }
+        first(&mut log, 6, &made, "decided", 1, &mut salt).unwrap();
+        let index = log.entries().len();
+        let expected = if kept_second {
+            Refused::BadKept { index }
+        } else {
+            Refused::BadStays { index }
+        };
+        // After a keeping, the field is still in the contents.
+        assert_eq!(
+            second(&mut log, 6, &made, "decided again", 2, &mut salt),
+            Err(expected)
+        );
+        assert_eq!(log.entries().len(), index);
+    }
+}
+
+#[test]
+fn what_stands_is_never_made_public_again() {
+    let (mut log, mut salt, said) = said_room();
+    let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    let pair = log.take_out(&made).unwrap();
+    stays(&mut log, 6, &made, "decided", 1, &mut salt).unwrap();
+    let index = log.entries().len();
+    let ground = appeal();
+    let decision = trial_decision(2);
+    assert_eq!(
+        log.keep_public(
+            9,
+            &made,
+            &pair,
+            decided(&ground, &decision),
+            &Map::new(),
+            &mut salt
+        ),
+        Err(Refused::BadKept { index })
+    );
+    // Refused for the mark, before the salt and value are looked at.
+    assert_eq!(
+        log.keep_public(
+            9,
+            &made,
+            &json!([pair[0], "something else"]),
+            decided(&ground, &decision),
+            &Map::new(),
+            &mut salt
+        ),
+        Err(Refused::BadKept { index })
+    );
+    assert_eq!(field_state(&log, &said, "text"), State::Redacted);
+    assert_eq!(
+        redactions_of(&log, &said, "text")[0].state,
+        RedactionState::Stands
+    );
+}
+
+#[test]
+fn an_answer_says_its_office_ground_and_decision() {
+    let (mut log, mut salt, said) = said_room();
+    let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    let pair = log.take_out(&made).unwrap();
+    let index = log.entries().len();
+    let before = log.contents().clone();
+    let good_ground = appeal();
+    let good_decision = trial_decision(1);
+    let short = "f".repeat(63);
+    let upper = "F".repeat(64);
+    let bad: [(&str, Value, &str); 7] = [
+        ("", good_ground.clone(), &good_decision),
+        (KEEPER, json!({}), &good_decision),
+        (KEEPER, json!("appeal"), &good_decision),
+        (
+            KEEPER,
+            json!({"kind": "record", "ref": "not a hash"}),
+            &good_decision,
+        ),
+        (KEEPER, good_ground.clone(), ""),
+        (KEEPER, good_ground.clone(), &short),
+        (KEEPER, good_ground.clone(), &upper),
+    ];
+    for (office, ground, decision) in bad {
+        let by = Decided {
+            office,
+            ground: &ground,
+            decision,
+            agent: None,
+        };
+        assert_eq!(
+            log.keep_public(6, &made, &pair, by, &Map::new(), &mut salt),
+            Err(Refused::BadKept { index }),
+            "{office:?} {ground} {decision:?}"
+        );
+        assert_eq!(
+            log.stays_redacted(6, &made, by, &Map::new(), &mut salt),
+            Err(Refused::BadStays { index }),
+            "{office:?} {ground} {decision:?}"
+        );
+    }
+    assert_eq!(log.entries().len(), index);
+    assert_eq!(log.contents(), &before, "nothing was put back");
+}
+
+#[test]
+fn neither_the_value_nor_its_salt_is_left_once_taken_out() {
+    let (mut log, mut salt, said) = said_room();
+    let pair = log.contents()[&said]["text"].clone();
+    let its_salt = pair[0].as_str().unwrap().to_owned();
+    let value = pair[1].as_str().unwrap().to_owned();
+    let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    let before = log.entries().to_vec();
+    assert!(kept_text(&log).contains(&its_salt));
+    assert!(kept_text(&log).contains(&value));
+    assert_eq!(log.take_out(&made).unwrap(), pair);
+    let kept = kept_text(&log);
+    assert!(!kept.contains(&its_salt));
+    assert!(!kept.contains(&value));
+    assert_eq!(log.entries(), before.as_slice(), "the log is not touched");
+    assert_eq!(field_state(&log, &said, "text"), State::Redacted);
+    // The other fields of the entry are still there.
+    let left: Vec<&String> = log.contents()[&said].as_object().unwrap().keys().collect();
+    assert_eq!(left, ["key", "time"]);
+}
+
+#[test]
+fn an_entry_with_nothing_left_keeps_no_empty_map() {
+    let (mut log, mut salt, _) = said_room();
+    let entered = log.entries()[1]["hash"].as_str().unwrap().to_owned();
+    for field in ["key", "name"] {
+        let made = mark(&mut log, 5, &entered, field, "asked", &mut salt).unwrap();
+        log.take_out(&made).unwrap();
+    }
+    assert!(!log.contents().contains_key(&entered));
+    assert_eq!(field_state(&log, &entered, "key"), State::Redacted);
+    assert_eq!(field_state(&log, &entered, "name"), State::Redacted);
+}
+
+#[test]
+fn taking_out_needs_a_mark_that_stands_and_a_field_that_is_there() {
+    let (mut log, mut salt, said) = said_room();
+    assert_eq!(log.take_out(&said), Err(Refused::NoSuchMark)); // not a mark
+    let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    log.take_out(&made).unwrap();
+    assert_eq!(log.take_out(&made), Err(Refused::NotThere)); // already out
+    let other = mark(&mut log, 5, &said, "time", "asked", &mut salt).unwrap();
+    keep(&mut log, 6, &other, "decided", 1, &mut salt).unwrap();
+    // Answered: it is public.
+    assert_eq!(log.take_out(&other), Err(Refused::NoSuchMark));
+    assert!(log.contents()[&said].get("time").is_some());
+}
+
+#[test]
+fn keeping_public_puts_the_field_back_in_the_same_step() {
+    let (mut log, mut salt, said) = said_room();
+    let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    let pair = log.take_out(&made).unwrap();
+    assert_eq!(field_state(&log, &said, "text"), State::Redacted);
+    let ground = appeal();
+    let decision = trial_decision(1);
+    log.keep_public(
+        6,
+        &made,
+        &pair,
+        decided(&ground, &decision),
+        &why("public"),
+        &mut salt,
+    )
+    .unwrap();
+    assert_eq!(field_state(&log, &said, "text"), State::KeptPublic);
+    assert_eq!(log.contents()[&said]["text"], pair);
+    assert_eq!(
+        log.entries().last().unwrap()["data"],
+        json!({"mark": made, "office": KEEPER, "ground": ground, "decision": decision})
+    );
+    let (entries, contents) = log.into_parts();
+    let joined = join(&Value::Array(entries), &Value::Object(contents)).unwrap();
+    assert_eq!(joined[3]["data"]["text"], pair[1]);
+}
+
+#[test]
+fn keeping_public_refuses_what_the_log_does_not_commit_to() {
+    let (mut log, mut salt, said) = said_room();
+    let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    let pair = log.take_out(&made).unwrap();
+    let entries = log.entries().to_vec();
+    let contents = log.contents().clone();
+    let its_salt = pair[0].as_str().unwrap();
+    let value = pair[1].as_str().unwrap();
+    let other_salt = contents[&said]["time"][0].clone();
+    let place = apart::Place {
+        entry: Some(said.clone()),
+        field: Some("text".to_owned()),
+    };
+    let ground = appeal();
+    let decision = trial_decision(1);
+    for (bad, expected) in [
+        (
+            json!([its_salt, format!("{value}!")]),
+            Refused::Fingerprint(place.clone()),
+        ),
+        (
+            json!([other_salt, value]),
+            Refused::Fingerprint(place.clone()),
+        ),
+        (
+            json!([its_salt.to_uppercase(), value]),
+            Refused::Salt(place.clone()),
+        ),
+        (json!([7, value]), Refused::Salt(place.clone())),
+        (json!([its_salt, 1.5]), Refused::Value(place.clone())),
+        // What is not a salt and a value at all.
+        (json!([its_salt]), Refused::Contents(place.clone())),
+        (
+            json!([its_salt, value, value]),
+            Refused::Contents(place.clone()),
+        ),
+        (json!({"salt": its_salt}), Refused::Contents(place.clone())),
+        (Value::Null, Refused::Contents(place.clone())),
+    ] {
+        assert_eq!(
+            log.keep_public(
+                6,
+                &made,
+                &bad,
+                decided(&ground, &decision),
+                &Map::new(),
+                &mut salt
+            ),
+            Err(expected),
+            "{bad}"
+        );
+        assert_eq!(log.entries(), entries.as_slice(), "{bad}");
+        assert_eq!(log.contents(), &contents, "{bad}");
+    }
+}
+
+#[test]
+fn it_stays_redacted_only_once_it_is_out_of_the_contents() {
+    let (mut log, mut salt, said) = said_room();
+    let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    let before = log.entries().len();
+    assert_eq!(
+        stays(&mut log, 6, &made, "decided", 1, &mut salt),
+        Err(Refused::StillThere)
+    );
+    assert_eq!(log.entries().len(), before);
+    assert_eq!(
+        redactions_of(&log, &said, "text")[0].state,
+        RedactionState::Open
+    );
+    log.take_out(&made).unwrap();
+    stays(&mut log, 6, &made, "decided", 1, &mut salt).unwrap();
+    assert_eq!(
+        redactions_of(&log, &said, "text")[0].state,
+        RedactionState::Stands
+    );
+}
+
+#[test]
+fn a_mark_and_its_answer_are_not_written_by_append() {
+    let (mut log, mut salt, said) = said_room();
+    let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    let entries = log.entries().to_vec();
+    let answer = json!({"mark": made, "office": KEEPER, "ground": appeal(),
+                        "decision": trial_decision(1)});
+    for (kind, data) in [
+        (
+            MARK,
+            json!({"entry": said, "field": "time", "office": OFFICE, "ground": private()}),
+        ),
+        (KEPT, answer.clone()),
+        (STAYS, answer),
+    ] {
+        assert_eq!(
+            log.append(6, kind, None, &map(&data), &Map::new(), &mut salt),
+            Err(Refused::NotByAppend),
+            "{kind}"
+        );
+        assert_eq!(log.entries(), entries.as_slice(), "{kind}");
+    }
+}
+
+#[test]
+fn a_decision_alone_never_makes_a_finished_redaction_missing() {
+    // The fault carried from part two: one entry of kind
+    // field_kept_public turned a redacted field into a missing one. The
+    // writer now puts the field back with it, or writes nothing.
+    let (mut log, mut salt, said) = said_room();
+    let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    let pair = log.take_out(&made).unwrap();
+    let ground = appeal();
+    let decision = trial_decision(1);
+    log.keep_public(
+        6,
+        &made,
+        &pair,
+        decided(&ground, &decision),
+        &Map::new(),
+        &mut salt,
+    )
+    .unwrap();
+    let (entries, contents) = log.into_parts();
+    let states = check(&Value::Array(entries), &Value::Object(contents)).unwrap();
+    assert!(
+        states
+            .values()
+            .flat_map(|fields| fields.values())
+            .all(|state| *state != State::Missing)
+    );
+}
+
+#[test]
+fn a_published_log_can_still_be_at_fault() {
+    // The check can't make a publisher honest: it says what it finds.
+    let (mut log, mut salt, said) = said_room();
+    let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    keep(&mut log, 6, &made, "decided", 1, &mut salt).unwrap();
+    let mut contents = log.contents().clone();
+    contents[&said].as_object_mut().unwrap().remove("text");
+    let entries = Value::Array(log.entries().to_vec());
+    assert_eq!(
+        check(&entries, &Value::Object(contents)).unwrap()[&said]["text"],
+        State::Missing
+    );
+    // And a field left in the contents after the decision that it stays
+    // redacted is unfinished, and never shown.
+    let other = mark(&mut log, 7, &said, "time", "asked", &mut salt).unwrap();
+    let left = Value::Object(log.contents().clone());
+    log.take_out(&other).unwrap();
+    stays(&mut log, 8, &other, "decided", 2, &mut salt).unwrap();
+    let entries = Value::Array(log.entries().to_vec());
+    assert_eq!(
+        check(&entries, &left).unwrap()[&said]["time"],
+        State::Unfinished
+    );
+    let joined = join(&entries, &left).unwrap();
+    assert!(joined[3]["data"].get("time").is_none());
+}
+
+#[test]
+fn redactions_need_no_contents_and_join_gives_them() {
+    let (mut log, mut salt, said) = said_room();
+    let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    log.take_out(&made).unwrap();
+    stays(&mut log, 6, &made, "decided", 1, &mut salt).unwrap();
+    let (entries, contents) = log.into_parts();
+    let entries = Value::Array(entries);
+    let found = redactions_json(&redactions(&entries).unwrap());
+    assert_eq!(
+        found,
+        json!({&said: {"text": [
+            {"id": made, "short": made[..SHORT], "state": "stands"}]}})
+    );
+    let joined = join(&entries, &Value::Object(contents)).unwrap();
+    assert_eq!(joined[3]["redactions"], found[&said]);
+    assert_eq!(joined[1]["redactions"], json!({}));
+}
+
+#[test]
+fn a_redactions_id_is_shown_with_the_incidents_ids() {
+    // Short ids are worked out over incidents and redactions together,
+    // so no two that a room shows begin alike.
+    let (mut log, mut salt, said) = said_room();
+    let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    let other = log.entries()[4]["hash"].as_str().unwrap().to_owned();
+    let removal = log
+        .append(
+            9,
+            REMOVED,
+            None,
+            &map(&json!({"entry": other, "office": "trial moderator",
+                         "ground": {"kind": "law", "ref": "trial room law, part 3"},
+                         "decision": trial_decision(1)})),
+            &Map::new(),
+            &mut salt,
+        )
+        .unwrap();
+    let entries = Value::Array(log.entries().to_vec());
+    let together = short_ids(&[removal.clone(), made.clone()]);
+    assert_eq!(redactions_of(&log, &said, "text")[0].short, together[&made]);
+    assert_eq!(
+        incidents(&entries).unwrap()[&other].incidents[0].short,
+        together[&removal]
+    );
+    // Two ids that begin alike are each shown one digit past where they
+    // part.
+    let alike = [
+        format!("{}{}", &made[..20], "0".repeat(44)),
+        format!("{}{}", &made[..20], "1".repeat(44)),
+    ];
+    assert!(short_ids(&alike).values().all(|short| short.len() == 21));
 }

@@ -626,6 +626,12 @@ class TestRedacting(unittest.TestCase):
             self.log.keep_public(9, made, salt, value, KEEPER, APPEAL,
                                  trial_decision(2))
         self.assertEqual(c.exception.reason, apart.BAD_KEPT)
+        # Refused for the mark, before the salt and value are looked at.
+        with self.assertRaises(Refused) as c:
+            self.log.keep_public(9, made, salt, value + "!", KEEPER, APPEAL,
+                                 trial_decision(2))
+        self.assertEqual(c.exception.reason, apart.BAD_KEPT)
+        self.assertEqual(c.exception.where, len(self.log.entries))
         self.assertEqual(self.state(), "redacted")
         self.assertEqual(self.of()[0]["state"], "stands")
 
