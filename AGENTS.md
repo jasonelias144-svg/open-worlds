@@ -62,6 +62,13 @@ something personal about someone other than the founder, or deleting a record.
 Those are put once, plainly, and not asked again until they are needed. The
 charter's floor binds every answer.
 
+Why (the founder, 2026-11-17, now in `CHARTER.md`, section 1): "the whole
+project is intended to promote learning through making choices. And I see no
+reason for that not to apply to our development of the multiverse." And: "We
+will make mistakes and then correct them." So a decision is recorded with its
+reason and with what would show it wrong, so that it can be found and
+corrected.
+
 The founder's most recent word wins (2026-11-14): "I change my mind
 frequently, so if you read a comment of mine with DeepSeek, and it occurred
 after I said something else, treat the new idea as an update and always go

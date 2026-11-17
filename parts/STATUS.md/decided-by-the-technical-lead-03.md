@@ -12,6 +12,32 @@ Decisions about the code, made by the technical lead under the founder's
 deference (above, 2026-11-13), each with its reason and what would show
 it was wrong. Questions of what the project is for stay with the founder.
 
+- 2026-11-17, two practices, from the founder's words of today
+  (Decided). (a) **The question of scale.** When something is planned
+  at one scale, its page says what answers to it one scale up and one
+  scale down, even where the answer is "nothing yet"
+  (docs/VISION.md, "Similar patterns at different scales"). (b)
+  **Rounds sized to one step.** A file written for DeepSeek or for
+  Gemini asks for one step that is whole when it is delivered, with
+  the most useful step first; a reply that is cut short is joined as
+  far as its files are whole, and the rest is asked again. Nothing in
+  the course waits for a delivery. With few replies, a collaborator is
+  asked first for what a second mind gives, a design sketched or a
+  fault found, before volume of code. The file DeepSeek has now
+  (`sketches/replies/012-09-05-2-for-deepseek.txt`) stays as it was
+  given.
+  *Why:* (a) the founder: "We have no precedent to work from. Only
+  similar patterns at different scales." A pattern that is asked for
+  is found sooner than one that is waited for, and saying where a
+  likeness fails is half its use. (b) The founder: "slower, but more
+  deliberate"; and, earlier today, that integrating a few pieces at a
+  time is the norm. A step that is whole can be joined however little
+  else arrives.
+  *What would show it wrong:* for (a), pages that fill the line in
+  with likenesses that are never used or tested; then it is dropped.
+  For (b), a step that can't be cut small enough to be whole in the
+  replies there are; then the step is built here, and the collaborator
+  is asked to attack it.
 - 2026-11-17, redacting, on the log's side
   (docs/research/REDACTION.md, "Part three, the log's side, built";
   course step 3b, part three), settled in building it.
