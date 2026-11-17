@@ -470,9 +470,13 @@ class _Scan:
             if (on is None or self.taken.get(on) != taking
                     or not _says_only(kind, data)):
                 raise Refused(BAD_PUTTING_BACK, index)
-        # The entry holds: only now is anything kept.
+        # The entry holds: only now is anything kept. The table is kept
+        # as a copy: whoever holds the entry it came from, a writer's
+        # caller among them, can then change that entry and not the
+        # rules the entries after it are held to.
         here = entry["hash"]
-        self.table = table
+        if index == 0:
+            self.table = {name: list(names) for name, names in table.items()}
         self.apart[here] = dict(apart)
         self.kinds[here] = kind
         self.seen.update(prints)

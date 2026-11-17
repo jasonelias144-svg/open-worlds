@@ -6,6 +6,47 @@ Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-world
 After this part: nothing; this is the last part.
 Made by docs/parts.py from the file. To change it, change the file.
 ------------------------------------------------------------------------
+def _held(scan: _Scan, contents: Any) -> Dict[str, Dict[str, Any]]:
+    """The contents, held to the log: for each entry, each field's value
+    that is there and matches its fingerprint."""
+    if type(contents) is not dict:
+        raise Refused(CONTENTS)
+    held: Dict[str, Dict[str, Any]] = {}
+    salts: Set[str] = set()
+    # Only Python can hold a key that isn't text; JSON can't.
+    if not all(type(entry) is str for entry in contents):
+        raise Refused(CONTENTS)
+    for entry in sorted(contents):
+        if entry not in scan.apart:
+            raise Refused(UNKNOWN, entry)
+        fields = contents[entry]
+        if type(fields) is not dict or not all(
+                type(name) is str for name in fields):
+            raise Refused(CONTENTS, entry)
+        held[entry] = {}
+        for name in sorted(fields):
+            where = (entry, name)
+            if name not in scan.apart[entry]:
+                raise Refused(UNKNOWN, where)
+            pair = fields[name]
+            if type(pair) is not list or len(pair) != 2:
+                raise Refused(CONTENTS, where)
+            salt, value = pair
+            if not _is_salt(salt):
+                raise Refused(SALT, where)
+            if not value_allowed(value):
+                raise Refused(VALUE, where)
+            if fingerprint(salt, name, value) != scan.apart[entry][name]:
+                raise Refused(FINGERPRINT, where)
+            # Only once both match: so this always means a salt that was
+            # truly used for two fields, never a field copied elsewhere.
+            if salt in salts:
+                raise Refused(SALT_TWICE, where)
+            salts.add(salt)
+            held[entry][name] = value
+    return held
+
+
 def _states(scan: _Scan,
             held: Dict[str, Dict[str, Any]]) -> Dict[str, Dict[str, str]]:
     marked = set(scan.marks.values())

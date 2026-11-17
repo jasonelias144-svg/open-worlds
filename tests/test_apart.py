@@ -1021,6 +1021,28 @@ class TestOpened(unittest.TestCase):
             apart.check(log.entries, log.contents)[said]["text"],
             "redacted")
 
+    def test_the_rules_it_goes_by_are_its_own_copy(self):
+        # The table a writer holds entries to is read from the log's
+        # first entry, and kept as a copy. So changing the log that was
+        # given, after opening, does not change what the writer takes.
+        written = _room()
+        entries = copy.deepcopy(written.entries)
+        log = Log.open(entries, copy.deepcopy(written.contents),
+                       salt=_salts(self.DRAWN))
+        entries[0]["data"]["kept_apart"]["said"].append("zzz")
+        with self.assertRaises(Refused) as c:
+            log.append(9, "said", None, {}, {"zzz": "smuggled"})
+        self.assertEqual(c.exception.reason, apart.UNTABLED)
+        apart.check(log.entries, log.contents)
+        # Nor does changing a writer's own first entry, opened or
+        # never closed: that breaks the log it holds, and not its
+        # rules.
+        for one in (log, _room()):
+            one.entries[0]["data"]["kept_apart"]["said"].append("zzz")
+            with self.assertRaises(Refused) as c:
+                one.append(9, "said", None, {}, {"zzz": "smuggled"})
+            self.assertEqual(c.exception.reason, apart.UNTABLED)
+
     def test_a_salt_that_is_in_the_contents_is_not_used_again(self):
         written = _room()
         # A source that starts again from the first trial salt.

@@ -819,7 +819,14 @@ what would show it wrong):
   the same place. A field that is missing or unfinished is not
   refused: those are states, and the writer goes on from them.
 - **It keeps copies of both.** What it was given is not touched by
-  what it writes after.
+  what it writes after, and changing what was given afterwards changes
+  nothing in the writer. That holds for the rules too: the table of
+  what each kind keeps apart is read from the log's first entry and
+  kept as a copy. (The self-review found it shared, in Python: the
+  table the writer went by was the very object in the log it had been
+  given. Changed afterwards, the writer took an entry that its own
+  log's table refuses. Rust can't share it: its writer owns what it
+  holds.)
 - **An entry with no field left is left out of the contents,** as the
   writer leaves it.
 - **It remembers the salt of every field still in the contents, by its

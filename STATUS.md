@@ -3000,8 +3000,10 @@ of it is asked again until it is needed.
   log can show either state, and the remedies are the writer's own
   steps: a field put back, a redaction finished. (c) A writer that
   shared what it was given could change a log its caller still holds
-  as published. (d) A writer must not hold what a fingerprint could
-  be guessed with, and a salt that was taken out is gone on purpose.
+  as published; and a caller could change the writer, as the
+  self-review found for the table of what is kept apart, in Python.
+  (d) A writer must not hold what a fingerprint could be guessed
+  with, and a salt that was taken out is gone on purpose.
   (e) A log in this form has no signature of its own; who may write
   to a room's log is the room's to check, with its signed heads.
   *What would show it wrong:* a salt that repeats across a closing
@@ -3976,11 +3978,15 @@ it was wrong. Questions of what the project is for stay with the founder.
   gets the same log and contents as the writer that never closed; a
   field is redacted on a log opened again with the same result, and
   the opened writer then holds neither the value nor its salt; a
-  redaction that stands with its field left in is finished. Checked:
-  Python 824 tests, OK (91 of the log's form, 33 of the act); Rust
+  redaction that stands with its field left in is finished. Found in
+  the self-review and repaired: in Python the table an opened writer
+  went by was the object in the log it was given, so changing that
+  log afterwards changed what the writer took; a writer now keeps its
+  table as a copy, whether opened or never closed. Checked:
+  Python 825 tests, OK (92 of the log's form, 33 of the act); Rust
   235 (43 of the log's form against the vectors, 24 in `redact`),
   fmt and clippy clean; the vectors' generators give the same files;
-  mutation checks of the opening, 7 changes to the Python and 5 to
+  mutation checks of the opening, 9 changes to the Python and 5 to
   the Rust, each caught. Not done: who may open a log, and one writer
   at a time, which are the room's (step 3c); reading a log from where
   it is kept. Left of step 3b: the records' side of part four.

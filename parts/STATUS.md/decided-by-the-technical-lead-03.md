@@ -23,8 +23,10 @@
   log can show either state, and the remedies are the writer's own
   steps: a field put back, a redaction finished. (c) A writer that
   shared what it was given could change a log its caller still holds
-  as published. (d) A writer must not hold what a fingerprint could
-  be guessed with, and a salt that was taken out is gone on purpose.
+  as published; and a caller could change the writer, as the
+  self-review found for the table of what is kept apart, in Python.
+  (d) A writer must not hold what a fingerprint could be guessed
+  with, and a salt that was taken out is gone on purpose.
   (e) A log in this form has no signature of its own; who may write
   to a room's log is the room's to check, with its signed heads.
   *What would show it wrong:* a salt that repeats across a closing
