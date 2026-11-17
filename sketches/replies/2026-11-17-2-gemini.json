@@ -28,7 +28,7 @@
   ],
   [
    "src/template.rs",
-   "to read: a room's law"
+   "to read: a room's law, with count_hidden"
   ],
   [
    "src/room.rs",

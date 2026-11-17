@@ -45,9 +45,9 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/ge
 
 ## What DeepSeek was given
 
-In `sketches/replies`, 16 files, 561 KB in all, the largest 117 KB: the one file the founder gave DeepSeek, or Gemini, at each return, with the reply and the list of files it was built from (`docs/reply.py` builds it).
+In `sketches/replies`, 16 files, 570 KB in all, the largest 117 KB: the one file the founder gave DeepSeek, or Gemini, at each return, with the reply and the list of files it was built from (`docs/reply.py` builds it).
 
-**`sketches/replies`** (16 files, 561 KB):
+**`sketches/replies`** (16 files, 570 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-09-05-2-for-deepseek.txt

@@ -674,8 +674,8 @@ with every word that came from a log in quotes, so that a room's topic
 can't write a line of its own.
 
 **Open, from the founder** (2026-11-17): what can be seen from
-outside. How many are in a room may show; who they are may not, but
-by their own choice, through "a list controlled by each user, each
+outside. How many are in a public room is shown, unless its law
+turns that off; who they are is not, but by their own choice, through "a list controlled by each user, each
 agent", which may be empty or open. The design so far is in
 [COMMONS.md](COMMONS.md) ("The first to live there") and
 [FUNDAMENTALS.md](FUNDAMENTALS.md) (privacy, 18): a signed record of

@@ -2,11 +2,9 @@
 > for readers who are shown only the start of a long page.
 > This part holds: "Decided by the technical lead", piece 3 (its pieces are numbered from its end).
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-01.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead-04.md
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead-02.md
 > Made by docs/parts.py from the file. To change it, change the file.
-
-## Decided by the technical lead
 
 - 2026-11-17, DeepSeek's three deliveries from its second file, as
   they are joined (sketches/INDEX.md, "DeepSeek's second file"). (a)

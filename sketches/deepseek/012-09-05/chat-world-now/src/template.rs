@@ -39,6 +39,11 @@ pub struct RoomTemplate {
     pub welcome: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub moderator: Option<ModeratorSpec>,
+    /// How many are in the room is shown outside it, unless this
+    /// is set. Left out of what is written when it is not set, so
+    /// a law written before this field hashes as it did.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub count_hidden: bool,
 }
 
 impl RoomTemplate {
@@ -66,6 +71,7 @@ impl RoomTemplate {
             head_interval: 1,
             welcome: None,
             moderator: None,
+            count_hidden: false,
         }
     }
 
@@ -89,6 +95,7 @@ impl RoomTemplate {
             head_interval: 1,
             welcome: None,
             moderator: None,
+            count_hidden: true,
         }
     }
 

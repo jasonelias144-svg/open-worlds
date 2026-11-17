@@ -171,7 +171,8 @@ over that
 ([../../gemini/2026-11-17/README.md](../../gemini/2026-11-17/README.md)),
 with nothing changed: it then passed all 92 of its tests. DeepSeek's
 next two deliveries are laid over that, with one word repaired
-("Three more", below). As it stands it passes all 112 of its tests,
+("Three more", below), and one field is added to a room's law at the
+founder's word (change 25 in [../../INDEX.md](../../INDEX.md)). As it stands it passes all 112 of its tests,
 61 of them DeepSeek's and 51 Gemini's; its four demos run, and so
 does the plug-in's own demonstration. Gemini's fourth step, 17
 attacks of which eight get through, is built beside it and not laid
@@ -179,7 +180,8 @@ into it (`review/steps.sh`, `c4`). It is put together here, by
 `review/steps.py --now`; `review/steps.py --check` holds the folder to
 that, byte for byte, and `sketch_status_test.py` runs the check. So
 its files are listed below as ours, though each is exactly as DeepSeek
-or Gemini last wrote it, but for the lines the six repairs name.
+or Gemini last wrote it, but for the lines the six repairs and the one
+change name.
 
 ## Three more, after the second file (2026-11-17)
 
