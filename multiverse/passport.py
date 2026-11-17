@@ -141,7 +141,7 @@ def make_stamp(signer: Signer, kind: str, world_id: str, holder: str,
 
 @dataclass(frozen=True)
 class LeaveNote:
-    """The individual's own signed leave, kept in its passport: its
+    """The individual's own signed leave, kept in their passport: their
     record of having left a world, whatever the world stamped. `wcp` is
     the protocol version it was signed under."""
     world_id: str
@@ -256,7 +256,7 @@ class Passport:
 
     def with_identity(self, identity: Identity) -> "Passport":
         """Rename the holder. The token must stay the same: a new token
-        is a different individual, with a passport of its own, unless the
+        is a different individual, with a passport of their own, unless the
         old key signs over to it (`signed_over`)."""
         if not same_identity(self.identity, identity):
             raise ValueError("with_identity requires the same token; "

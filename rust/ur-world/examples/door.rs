@@ -19,12 +19,12 @@
 //! Each `--mind NAME=PROGRAM ARGS...` runs until the next `--mind`. The
 //! program is run directly, not through a shell. The first mind enters
 //! west of the tree, where WALKER does in the Hello World, the second east
-//! of it. A mind's standard error is passed through, so its own messages
+//! of it. A mind's standard error is passed through, so their own messages
 //! show.
 //!
 //! A run is a trial world of its own (docs/research/KEYS.md, decision
 //! 14): the doorway makes a fresh key for the world and one for each mind,
-//! signs each mind's arrival with its key, and throws the keys away at the
+//! signs each mind's arrival with their key, and throws the keys away at the
 //! end. No key is passed to a mind's program, and no holder's key is read.
 
 use std::process::{Command, ExitCode};

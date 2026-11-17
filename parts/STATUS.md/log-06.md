@@ -8,6 +8,26 @@
 
 ## Log
 
+- 2026-11-17 Claude: "they" for AI agents, the rest (Decided, and
+  Decided by the technical lead). In the project's own code: 53
+  passages of comments and docstrings in 22 files, Python and Rust,
+  each read where it stands; the list came from a script that looked
+  for "it", "its" and "itself" in a comment within three lines of a
+  word for an agent (229 lines). Checked by script: with comments
+  and docstrings set aside, every changed file is the same code as
+  before. Two pages mended with it: docs/URWORLD.md, three passages
+  where a mind was still "it", and docs/FILES.md, one line, through
+  the string in docs/files.py that writes it. In the other
+  repositories, all merged today: the policy handbook has the rule
+  as decision 0006 and in its writing standard (policy-handbook
+  #13), and the founder's seven other repositories carry it in
+  AGENTS.md, with CLAUDE.md saying "they" of the technical lead.
+  Left as they are: the handbook's decisions 0001 to 0005, which
+  say "it" of the technical lead, because an accepted decision
+  record is not edited (P5); decision 0006 says so. Run here: the
+  829 tests, the sketch folder's tests, and the Rust workspace's
+  format check, lints and tests. Not checked: a comment whose agent
+  is named more than three lines from the pronoun.
 - 2026-11-17 Claude: "they" for AI agents, at the founder's word
   (Decided, and Decided by the technical lead). The rule is in
   AGENTS.md ("Always"), docs/COLLABORATING.md (house rule 16, and a

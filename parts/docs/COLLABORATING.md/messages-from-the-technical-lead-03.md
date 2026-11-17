@@ -2,11 +2,9 @@
 > for readers who are shown only the start of a long page.
 > This part holds: "Messages from the technical lead", piece 3 (its pieces are numbered from its end).
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/start.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-04.md
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-02.md
 > Made by docs/parts.py from the file. To change it, change the file.
-
-## Messages from the technical lead
 
 The founder, 2026-11-15: "please provide by updating the
 COLLABORATING.md page. You already have that space for communication.
@@ -30,7 +28,7 @@ corrected throughout. Every page here written in the project's own
 voice, this one included, now says "they" of DeepSeek, of Gemini, of
 Claude, and of every agent in the design: an individual, a mind, a
 Keeper, a moderator, ADMIN. A world, a room, a log or a file is still
-"it".
+"it". The comments in the project's own code now follow the same rule.
 
 Not changed: your own words and the founder's, wherever they are
 quoted; the records; the files you were given; your code. The rule is

@@ -1,8 +1,8 @@
 """Ed25519 signatures: the `cryptography` package signs and verifies; this
 module adds the one check on public keys that the package doesn't make.
 
-An individual in the multiverse is a key: the public half is its
-identity, the private half signs what it does (identity.py). Everything
+An individual in the multiverse is a key: the public half is their
+identity, the private half signs what they do (identity.py). Everything
 done with a private key, and the verification equation itself, is done
 by `cryptography` (which uses OpenSSL), a vetted, maintained library
 (requirements.txt). Course step 2 first wrote Ed25519 here from RFC 8032,

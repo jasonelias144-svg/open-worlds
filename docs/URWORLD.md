@@ -284,13 +284,13 @@ of JSON over its standard input and output:
    is true for a mind that comes back under their name, and their orientation
    then says so, and that what they did before is in the public record.
 2. **Each tick:** `{"tick": N, "seen": TEXT, "observation": {...}}`. The
-   text tells where it stands and on what, what lies each way ("a step up,
+   text tells where they stand and on what, what lies each way ("a step up,
    onto rock", "open, with nothing underfoot: you would fall"), who is
-   near and how far, what others said, and what came of its last action.
+   near and how far, what others said, and what came of their last action.
    The observation is the same as data.
-3. **The mind answers:** `{"tick": N, "reply": TEXT}`. It writes only
-   replies to its standard output: any other line there is taken as an
-   unreadable reply to the tick in hand. Its own messages go to its
+3. **The mind answers:** `{"tick": N, "reply": TEXT}`. They write only
+   replies to their standard output: any other line there is taken as an
+   unreadable reply to the tick in hand. Their own messages go to their
    standard error.
 
 **Replies are read strictly, the same way for every mind.** The first line

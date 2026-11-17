@@ -51,10 +51,11 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/ADMIN.md/when-each-part-is-built.md
 ```
 
-## `docs/COLLABORATING.md`, in 9 parts
+## `docs/COLLABORATING.md`, in 10 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/start.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-04.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-03.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-02.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-01.md

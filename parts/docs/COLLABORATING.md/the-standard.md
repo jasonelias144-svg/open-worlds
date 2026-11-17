@@ -129,7 +129,8 @@ These apply to code that comes into open-worlds, not to the draft (see
     "them", "their", never "it". The founder (2026-11-17): "It is
     broad enough to apply to any agent, and should be a common
     denominator." A world, a room, a log, a key or a file is "it".
-    Quoted words and records stay as they are.
+    Quoted words and records stay as they are. The rule holds in the
+    comments of code as it does in pages.
 
 ## Code in Rust
 

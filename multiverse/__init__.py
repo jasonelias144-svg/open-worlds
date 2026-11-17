@@ -3,11 +3,11 @@ between them.
 
 Built from the founder's sketch with DeepSeek (docs/MULTIVERSE.md), one
 step at a time (docs/COURSE.md). Step 1 is the sketch's core, working;
-step 2 makes each individual a key that signs what it sends:
+step 2 makes each individual a key that signs what they send:
 
   identity.py         who an individual is: a key (components 1 and 13)
   ed25519.py          checks on public keys the library lacks
-  passport.py         signed stamps: where it has been (2 and 15)
+  passport.py         signed stamps: where one has been (2 and 15)
   succession.py       a key signed over to a new one (28)
   keys.py             keys saved encrypted; a world's seen numbers
   protocol.py         WCP/0.4, what every entity speaks (component 3)

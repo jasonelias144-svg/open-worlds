@@ -324,7 +324,7 @@ class Entity:
     def know_succession(self, succession: Succession) -> None:
         """Learn that a key was signed over (succession.py): a world's,
         so that it is known by its new key and its stamps under either
-        still count; or an individual's, so that requests its old key
+        still count; or an individual's, so that requests their old key
         signs are refused here, except a leave. Of this world's own keys,
         only its past is taken (a succession that leads to its key now,
         as a restarted world may need): only `sign_over` signs its key

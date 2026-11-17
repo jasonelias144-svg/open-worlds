@@ -5,7 +5,7 @@ every door.
 Three worlds, each a key, each knowing the others' keys: the corridor
 through its doors, and the chemistry and poetry worlds because they share
 a door with it (`Entity.know`). An individual walks the corridor to its
-chemistry door, goes through (its signed leave here, its petition there),
+chemistry door, goes through (their signed leave here, their petition there),
 makes a dipeptide out of two glycines, goes on to the poetry world, adds
 a line, and comes back to the corridor, arriving at the poetry door, and
 walks back to the entrance. Every world it enters checks its passport,

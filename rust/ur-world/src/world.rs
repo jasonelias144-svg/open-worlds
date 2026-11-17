@@ -91,7 +91,7 @@ pub enum Action {
     Unanswered,
 }
 
-/// What came of an inhabitant's last action, as it is told at the next
+/// What came of an inhabitant's last action, as they are told at the next
 /// tick.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Outcome {
@@ -137,7 +137,7 @@ pub struct Observation {
     pub tick: u64,
     /// The inhabitant's own name.
     pub me: String,
-    /// Where it stands.
+    /// Where they stand.
     pub position: Cell,
     /// Who said what on the last tick.
     pub heard: Vec<(String, String)>,
@@ -161,7 +161,7 @@ impl Observation {
     }
 }
 
-/// An inhabitant's mind: whatever chooses its actions. In the garden's
+/// An inhabitant's mind: whatever chooses their actions. In the garden's
 /// first version, a short script; later, a model that learns.
 pub trait Mind {
     /// Choose this tick's action.

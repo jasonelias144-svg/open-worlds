@@ -1,9 +1,9 @@
 """Keeping keys safely (course step 6, first part).
 
-An individual is its key, and so is a world (identity.py, protocol.py).
+An individual is their key, and so is a world (identity.py, protocol.py).
 A key that lives only in memory is lost when the process ends, and with
-it the individual's history: its passport can't be extended, and nobody
-can prove to be it again. A world that restarts with a new key is a new
+it the individual's history: their passport can't be extended, and nobody
+can prove to be them again. A world that restarts with a new key is a new
 world, and its old stamps no longer link to it. So:
 
 - **A key is saved to a file, encrypted with a passphrase** (`save_key`,
@@ -231,7 +231,7 @@ def load_signer(path: str, passphrase: Passphrase) -> Signer:
 
 def load_individual(path: str, passphrase: Passphrase,
                     name: str) -> Individual:
-    """An individual, from its key file. The name is only a label, and
+    """An individual, from their key file. The name is only a label, and
     isn't kept in the file."""
     return Individual(name, _load_secret(path, passphrase))
 

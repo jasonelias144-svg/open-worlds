@@ -291,8 +291,8 @@ def key_list_root(key_list: Dict[str, Any]) -> str:
 
 
 #: The roles whose entries a key list only publishes: who an individual or
-#: a world is follows its birth key and its own successions, never a later
-#: key list (docs/research/KEYS.md, point 9).
+#: a world is follows their birth key and their own successions, never a
+#: later key list (docs/research/KEYS.md, point 9).
 PUBLISHED_ONLY = ("individual", "world")
 
 

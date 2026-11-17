@@ -44,7 +44,7 @@ corrected throughout. Every page here written in the project's own
 voice, this one included, now says "they" of DeepSeek, of Gemini, of
 Claude, and of every agent in the design: an individual, a mind, a
 Keeper, a moderator, ADMIN. A world, a room, a log or a file is still
-"it".
+"it". The comments in the project's own code now follow the same rule.
 
 Not changed: your own words and the founder's, wherever they are
 quoted; the records; the files you were given; your code. The rule is
@@ -1983,7 +1983,8 @@ These apply to code that comes into open-worlds, not to the draft (see
     "them", "their", never "it". The founder (2026-11-17): "It is
     broad enough to apply to any agent, and should be a common
     denominator." A world, a room, a log, a key or a file is "it".
-    Quoted words and records stay as they are.
+    Quoted words and records stay as they are. The rule holds in the
+    comments of code as it does in pages.
 
 ## Code in Rust
 

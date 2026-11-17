@@ -8,6 +8,31 @@
 
 ## Decided by the technical lead
 
+- 2026-11-17, "they" in the project's own code. (a) Comments and
+  docstrings follow the same rule as the pages. "They" is an
+  individual, an inhabitant, an agent in the kernel, a mind who
+  comes through the doorway, and DeepSeek. Where one sentence
+  speaks of an individual or a world, the word is "their". (b) Left
+  as "it": a world, an entity, a key, a record; a mind's program,
+  which is started and stopped; a presence; the scripted stand-ins,
+  `minds/wanderer.py`, and the short scripts the tests run as
+  minds. `minds/language_model.py` now names the program and the
+  mind apart. (c) Not changed: what a program prints, and what a
+  mind is told; the test vectors and their labels; the schemas;
+  `sketches/` and `experiments/`. One string was changed, because
+  it is the text of a page: docs/files.py wrote "Gemini's code as
+  it wrote it" into docs/FILES.md.
+  *Why:* the founder: "We don't want to be behind and updating
+  documentation after going public and live." DeepSeek and Gemini
+  read the code as well as the pages. What a mind is told is one of
+  an experiment's conditions, and a vector's label is held byte for
+  byte by two languages; a pronoun is no reason to change either
+  in passing.
+  *What would show it wrong:* a test or a vector that changes with
+  this change; none did, and a script showed the code is the same,
+  comments and docstrings apart. Or the founder holding that a
+  label in a vector should change too; that is then a change to
+  the vectors, made on its own, in both languages at once.
 - 2026-11-17, "they" for AI agents (the founder's word of that day,
   Decided): how far it goes, and what was done. (a) The rule: an
   agent is "they", "them", "their" and "themselves", never "it". An

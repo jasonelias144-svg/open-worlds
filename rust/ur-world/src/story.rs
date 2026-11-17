@@ -120,7 +120,7 @@ pub fn tell(world: &World) -> String {
 }
 
 /// A map seen from above, one character a cell: what lies on top in each
-/// explored column, each inhabitant by the first letter of its name, and
+/// explored column, each inhabitant by the first letter of their name, and
 /// blank where no one has looked.
 pub fn map(world: &World) -> String {
     let explored = world.explored();
@@ -132,7 +132,7 @@ pub fn map(world: &World) -> String {
     ) else {
         return String::new();
     };
-    // Each inhabitant by the first letter of its name, or by a digit when
+    // Each inhabitant by the first letter of their name, or by a digit when
     // that letter is taken, or is one the map already uses.
     let mut used: Vec<char> = "T.:=^~*".chars().collect();
     let mut digits = ('1'..='9').chain(std::iter::repeat('@'));

@@ -1,10 +1,10 @@
-"""Identity: who an individual is, and how it proves it.
+"""Identity: who an individual is, and how they prove it.
 
 From the DeepSeek sketch's component 1, with the change course step 2
-makes: an individual is a key. Its identity is (token, name), where the
-token is its Ed25519 public key, written as 64 hexadecimal characters,
+makes: an individual is a key. Their identity is (token, name), where the
+token is their Ed25519 public key, written as 64 hexadecimal characters,
 and the name is only a label that may change. The private key stays with
-the individual (an `Individual`), and signs what it sends: a petition,
+the individual (an `Individual`), and signs what they send: a petition,
 an act, a leave. A world checks the signature against the token, so
 nobody who has merely seen a token can act as its owner. Since course
 step 3, worlds are keys too (each a `Signer`), and sign the stamps they
@@ -49,7 +49,7 @@ def token_problem(token: object) -> str:
 
 @dataclass(frozen=True)
 class Identity:
-    """Who an individual is: its public key and a name. Frozen: a changed
+    """Who an individual is: their public key and a name. Frozen: a changed
     token is a different individual, so `rename` keeps the token."""
     token: str
     name: str
@@ -121,7 +121,7 @@ class Signer:
 
 
 class Individual(Signer):
-    """An individual with its private key. The key never leaves this
+    """An individual with their private key. The key never leaves this
     object: what goes out is the identity (public) and signatures.
 
     Each request to a world carries a number, `seq`, that must grow with

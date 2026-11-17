@@ -6,7 +6,7 @@
 //! A link is two records, which [`formats::persons::link_problems`]
 //! checks: the person's `open-worlds/holds/v1`, signed by their identity
 //! key, and the presence's `open-worlds/held-by/v1`, signed by the
-//! presence. An inhabitant shows one on its turn, as an action
+//! presence. An inhabitant shows one on their turn, as an action
 //! ([`crate::Action::ShowLink`]), and the world takes it only if:
 //! - both records hold, as one link;
 //! - it names this world;
