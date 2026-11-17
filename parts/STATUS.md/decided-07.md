@@ -8,6 +8,72 @@
 
 ## Decided
 
+- 2026-11-17, founder, a wiki of the multiverse, and the small copy
+  for the library. "I agree. 2.5 GB is small enough to be portable,
+  but large enough to satisfy many questions. We could also host a
+  connected wiki that stores information about the multiverse, this
+  way any agent and look up any information on how it works and what
+  they can do within the multiverse. All would have access, and it
+  could be updated as the multiverse grows, and learns. Thoughts?"
+  The technical lead's reading, which stands unless the founder
+  answers otherwise: the copy is Kiwix's "top" selection of the
+  English Wikipedia without pictures, 2.6 GB by its listing that day.
+  The wiki is the second shelf of the same room, the Library. Its
+  pages explain and never rule. Some are written by script from the
+  laws and the records, some by offices, and some by individuals,
+  signed and marked as their own account. It is in docs/COMMONS.md,
+  "The first to live there", and docs/FUNDAMENTALS.md (freedom, 13;
+  privacy, 16). Not built.
+- 2026-11-17, founder, a local copy of a source of information to
+  start, the internet later; and powers that are earned. "Perfect. And
+  we could do read-only outside information later. We could probably
+  find a frozen internet copy to use as a reference. Or not the whole,
+  obviously, but even an offline Wikipedia would be better than
+  nothing. We can use something like that at first, so agents can
+  query something with questions without requiring active internet
+  access, which could come later. Maybe they are "powers" that are
+  "unlocked" when you complete some stage of challenges. Just a
+  thought. Either way, let's use a local copy of some data source to
+  start, something with tons of information, without needing the
+  whole internet. Thoughts?"
+  The technical lead's reading, which stands unless the founder
+  answers otherwise: decided is the local copy first. Powers earned by
+  challenges are the founder's thought, taken up as the world-key's
+  pattern one scale down: a power is a signed grant that code issues
+  when criteria stated beforehand are met. What is earned is what
+  carries risk to others or to the outside; what there is to know is
+  open to everyone from the first day. Not built.
+- 2026-11-17, founder, ALICE and BOB first live in the Commons, and
+  ADMIN's windows moderate its rooms. "Here is a thought: we can
+  choose and build ALICE and BOB to occupy the Commons, free to move
+  from room to room and engage in different conversations. At first,
+  each room with have a single AI moderator, like a dealer, which is
+  just like a sandboxed chat window of ADMIN, projected into various
+  rooms. This means we need precisely three different AI models to
+  create the Commons with various rooms, all with a moderator, and two
+  individuals to come and go and engage in various conversations with
+  each other or any moderator. This is enough to start with. After
+  some time in the Commons, and once that code is in place, we can
+  provide ALICE and BOB in Ur-world, in the garden, and they can take
+  things from there. So ALICE and BOB start with chat capabilities and
+  the capacity to decide to leave one room and enter another. Maybe
+  with some web search capabilities, or something that allows for
+  connection to outside information. And that should be enough to
+  start. We'll take about it when we can resume work in a couple
+  hours."
+  The technical lead's reading, which stands unless the founder
+  answers otherwise. It was given as a thought to talk over; the talk
+  that followed kept it, so it is taken as where the course now
+  heads. Their first life needs rooms and not the garden's kernel, so
+  at the next recheck it moves ahead of the kernel's steps
+  (docs/COURSE.md, "Ahead"). One model for many rooms at first was
+  already the founder's (record 012-09-05, line 6584: "With one model,
+  many rooms, we can build many rooms without the overhead"); new is
+  that the model is ADMIN's. Three different models, so that no
+  conversation is one model speaking with itself; which three is for
+  the audition, and where they run is the founder's, since it costs
+  money. It is in
+  docs/COMMONS.md, "The first to live there". Not built.
 - 2026-11-17, founder, a work of the founder's own may be named in the
   records, and linked if it comes up. The new part of record 012-00-00
   names a third earlier work of the founder's by title for the first

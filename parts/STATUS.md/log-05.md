@@ -8,6 +8,26 @@
 
 ## Log
 
+- 2026-11-17 Claude: the founder's thoughts of the day on the Commons
+  are recorded (Decided, three entries), with what the technical lead
+  decided from them (Decided by the technical lead) and where they
+  change the pages: ALICE and BOB first live in the Commons, with
+  windows of ADMIN as its rooms' first moderators; a room called the
+  Library, with a copy of an encyclopedia kept inside the multiverse
+  and, on a second shelf, the multiverse's own pages; powers that are
+  earned by challenges, for what carries risk. In docs/COMMONS.md (a
+  new section, "The first to live there, the Library, and the
+  multiverse's own pages"), docs/COURSE.md (a note at the head of
+  "Ahead": the order changes at the next recheck), docs/MINDS.md,
+  docs/ADMIN.md, docs/FUNDAMENTALS.md (freedom, 13; privacy, 16),
+  docs/TOPICS.md (topics 23 and 24) and docs/COLLABORATING.md. Also
+  that day, the founder: "I'll provide DeepSeek with the file you gave
+  me already", so DeepSeek has `012-09-05-2-for-deepseek.txt` as it
+  was written. Looked up, once: the sizes of Kiwix's copies of the
+  English Wikipedia, from its public listing. Not looked up: how many
+  articles the small copy holds; the copy's own licence terms beyond
+  Wikipedia's; how the copy is read. Nothing is built by this, and no
+  step of the course is renumbered until the recheck after 3b.
 - 2026-11-17 Claude: Gemini's record continued, and the fourth step of
   its round on the Commons kept and built. The founder went back to
   Gemini while this session was out of time. The record grew and was

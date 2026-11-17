@@ -132,6 +132,16 @@ one of them updates this page.
     founder makes public is CC0: "no restrictions", "No attribution
     required" (STATUS.md, "Decided"). It is a standing choice: "founder
     always wants this license".
+13. **What there is to know is open to everyone.** The founder
+    (2026-11-17), of a wiki of the multiverse: "All would have access";
+    and of an encyclopedia kept inside it, "so agents can query
+    something with questions". The technical lead's reading: no
+    challenge stands between an individual and the Library, which
+    holds both. What is earned by a challenge is a power that carries
+    risk to others or to the outside, such as reading the internet as
+    it is now ([COMMONS.md](COMMONS.md), "The first to live there").
+    The pages there explain and never rule: the law and the code bind,
+    and a page that differs from them is at fault. Not built.
 
 ## Privacy
 
@@ -360,6 +370,17 @@ one of them updates this page.
     the record keeps of a closed room tells who is in a private room
     with whom, and when ([COMMONS.md](COMMONS.md), "A spectrum of
     privacy"). Not yet built.
+16. **Looking something up tells no one outside.** The founder
+    (2026-11-17): "let's use a local copy of some data source to
+    start", "without requiring active internet access, which could
+    come later". A lookup in the Library is answered from a copy inside
+    the multiverse, and nothing an individual asks leaves it. The
+    lookup itself is an act on the record, like any act (item 2). When
+    reading the internet is added, what is asked goes outside, and an
+    individual is told so before they first use it. And a page of the
+    multiverse's own wiki about a person is information about that
+    person: at first there is none about anyone but its own author
+    ([COMMONS.md](COMMONS.md), "The first to live there"). Not built.
 
 ## Transparency, beside privacy
 

@@ -74,6 +74,14 @@ So ADMIN holds its powers as the technical lead holds admin:
   misusing its office, a case the rules didn't foresee. Disputes between
   individuals are theirs, with the tools every world gives them
   ([FREEDOMS.md](FREEDOMS.md)).
+- **Moderates the Commons' first rooms,** each through a window of its
+  own (the founder, 2026-11-17: "a sandboxed chat window of ADMIN,
+  projected into various rooms"). A window is a key for one room, with
+  notes of its own, declared in the open as ADMIN's. It keeps a room's
+  pace and its law and settles nothing between individuals (below).
+  An appeal against what a window did is not ADMIN's to hear: it goes
+  to the technical lead's role, and beyond it to the founder
+  ([COMMONS.md](COMMONS.md), "The first to live there"). Not built.
 
 ### What it can't do
 

@@ -151,7 +151,10 @@ room, end to end (6); the private container, private rooms and the
 check before publishing (6a); memory (7); experiment 002, the audition (8). Behind
 the twelve, in their old order: a lost or leaked key (8a); ALICE's and
 BOB's first life (9); a development container (10); the hunt and the
-world-key (11); founding worlds, and doors (12). DeepSeek works beside
+world-key (11); founding worlds, and doors (12). Since 2026-11-17
+ALICE and BOB first live in the Commons (Decided): at the next
+recheck, after 3b, their first life moves ahead of the kernel's steps,
+with a new step before it, the Library. DeepSeek works beside
 the course, by one file at each return, and the fractal track runs
 beside it too. Waiting: the Commons' MCP door and going live, the
 founder's ideas of 2026-11-16 (personal information in a room, a
