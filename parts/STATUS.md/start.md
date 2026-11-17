@@ -196,7 +196,11 @@ of it is asked again until it is needed.
   2026-11-13 and 2026-11-16)
 - For the founder: which model first moderates a room in the Commons,
   and what it costs to run. It is money, and is decided with where the
-  multiverse is hosted (docs/COMMONS.md, "Open"). Whether such a model
+  multiverse is hosted (docs/COMMONS.md, "Open"), which the founder
+  has put last (2026-11-17, Decided): "leave hosting for when the
+  final picture is closer". Until then the technical lead measures
+  what running the models costs, at the audition (course step 8), so
+  that the size is known when it is decided. Whether such a model
   is an individual, with what that would owe it, is decided with it;
   no model is given the office before then.
 - For the founder: where models run beyond the Mac, and the budget (asked

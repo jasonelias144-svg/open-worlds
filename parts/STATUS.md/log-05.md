@@ -8,6 +8,24 @@
 
 ## Log
 
+- 2026-11-17 Claude: the founder's words of the evening are recorded
+  (Decided, four entries): what is public domain, hosting last, how
+  the work with the collaborators goes, and the map as the main
+  interface; with what the technical lead decided from them (Decided
+  by the technical lead). The founder's *Art of Peace and the
+  Strategist* is in the repository, in a new folder, `library/`, as
+  the founder gave it (443,723 bytes, 8,677 lines), public domain at
+  the founder's word. Looked through first, whole, by script: no
+  names, long numbers, years, links or quotations of other people.
+  Read by the technical lead: its map of contents and about a tenth
+  of its text. The pages: docs/COMMONS.md (the map; a shelf of works;
+  going live is last), docs/TOPICS.md (topic 16), docs/FUNDAMENTALS.md
+  (freedom, 12; privacy, 17), sketches/README.md and README.md, and a
+  message to both collaborators with the work's link. Read for the
+  rights line: OpenAI's terms of use on who owns what its services
+  write. Not done: the file for Gemini, which is next; the map, the
+  Library and the wiki, none of which is built; the rest of the work,
+  unread.
 - 2026-11-17 Claude: the founder's thoughts of the day on the Commons
   are recorded (Decided, three entries), with what the technical lead
   decided from them (Decided by the technical lead) and where they

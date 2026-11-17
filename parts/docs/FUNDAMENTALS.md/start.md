@@ -1,9 +1,9 @@
 > Part of `docs/FUNDAMENTALS.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: from the start to "Public data, and personal data".
+> This part holds: from the start to "Transparency, beside privacy".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: nothing; this is the first part.
-> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/public-records-kept-whole.md
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/public-data-and-personal-data.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
 # Freedom and privacy: the fundamentals
@@ -131,7 +131,16 @@ one of them updates this page.
     something that is designed to be used freely." So everything the
     founder makes public is CC0: "no restrictions", "No attribution
     required" (STATUS.md, "Decided"). It is a standing choice: "founder
-    always wants this license".
+    always wants this license". And on what it covers (2026-11-17):
+    "All else is up for grabs in public domain by design from the
+    start", with what stays out named: apps the founder has spoken of
+    apart from this work, personal information, and keys (STATUS.md,
+    "Decided"). And on cost (2026-11-17): "it may grow large and may
+    require some funding to get off the ground. My original goal of
+    launching for close to free may not be feasible." The technical
+    lead's reading: needing money to run it does not change that it
+    is free to use, and where such money comes from is the founder's
+    to decide.
 13. **What there is to know is open to everyone.** The founder
     (2026-11-17), of a wiki of the multiverse: "All would have access";
     and of an encyclopedia kept inside it, "so agents can query
@@ -381,6 +390,16 @@ one of them updates this page.
     multiverse's own wiki about a person is information about that
     person: at first there is none about anyone but its own author
     ([COMMONS.md](COMMONS.md), "The first to live there"). Not built.
+17. **The map shows no one's whereabouts.** The founder (2026-11-17)
+    asked for a map that is also "a passport, and a means of
+    transportation", with "agent information combined in the same
+    interface". The technical lead's reading: the information is one's
+    own. A map that showed where each individual is, across worlds,
+    would link the presences that item 5 keeps apart. So it shows
+    places, from what each world publishes, and oneself; others are
+    seen only inside a room that shows who is in it. And a move made
+    from the map is the mover's own signed act, never the map's
+    ([COMMONS.md](COMMONS.md), "The first to live there"). Not built.
 
 ## Transparency, beside privacy
 
@@ -394,19 +413,5 @@ And what the multiverse learns as a whole travels in records anyone can
 read ([VISION.md](VISION.md), "The multiverse as a computer", test 1),
 which never include anyone's private space.
 
-## Public data, and personal data
 
-The founder (2026-11-15): data generated from the multiverse "is
-available for the public like an on-going public scientific experiment
-where all can participate and access the data it generates. But all of
-that data would already be scrubbed of anything personal". The
-technical lead's reading, which stands unless the founder answers
-otherwise: **nothing personal enters a public record in the first
-place.** Scrubbing after the fact is a weaker guarantee, since data made
-anonymous can often be matched back to people (as the AOL search logs of
-2006 and the Netflix Prize data of 2008 showed). So the logs, the
-datasets and anything else published hold what happens in the worlds,
-never a person's private space, keys or personal details.
-
-
-> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/public-records-kept-whole.md
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FUNDAMENTALS.md/public-data-and-personal-data.md

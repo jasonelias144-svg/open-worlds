@@ -614,18 +614,32 @@ different worlds, but we need a map to figure out where to go and get up
 to date information on that world." And: "I can brainstorm the whole
 multiversal map with DeepSeek later."
 
+And on 2026-11-17, of the map beside the multiverse's own wiki: "It is
+a map, a passport, and a means of transportation, all in one. Each
+agent could access this map as a main interface. As in a video game,
+where all players can access some main view with a functional map a
+probably agent information combined in the same interface."
+
 **Decided:** the map is in the web app from its start, with the fractal
 worlds as its first entries (the technical lead's recommendation, under
 the founder's standing rule). No map is the authority, as no registry is
 ([MULTIVERSE.md](MULTIVERSE.md)).
 
-**Open:** nearly everything, for the brainstorm. What a world's card
-shows, and in what order; what a lobby is in a world with no ground (a
-plant, an automaton, a chat room); how maps nest, from the multiverse to
-a superworld to its rooms; how the map shows a world that is paused,
-ended, sandboxed, or forked from another; what a visitor can do from the
-map besides look; how a mind, which reads text, reads the map; how the
-map changes as worlds are founded.
+**The technical lead's reading of the founder's thought of 2026-11-17**
+([COMMONS.md](COMMONS.md), "The first to live there"): the map shows,
+and a move is the agent's own signed act, which a world's door may
+refuse; it is drawn only from what each world publishes; it shows no
+one's whereabouts but one's own; each place links to its page; a
+picture for people and the same as text for a mind; it nests; and its
+first form is the Commons' lobby listing its doors.
+
+**Open:** much of it still. What a world's card shows, and in what
+order; what a lobby is in a world with no ground (a plant, an
+automaton, a chat room); how the map shows a world that is paused,
+ended, sandboxed, or forked from another; how the map changes as
+worlds are founded; what a world must publish about its doors for a
+map to offer the way in, and what a world that lies about itself can
+make a map show.
 
 **A possible implementation:** a card built only from what the world
 publishes, so anyone can check it and anyone can make another map. Its

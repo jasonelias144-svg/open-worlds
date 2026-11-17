@@ -1,9 +1,9 @@
 > Part of `docs/COMMONS.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "Rooms with moderators: the founder's ideas in record 012-09-05" to "Order".
+> This part holds: "Rooms with moderators: the founder's ideas in record 012-09-05" to "The first to live there, the Library, and the multiverse's own pages".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/start.md
-> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/open.md
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/order.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
 ## Rooms with moderators: the founder's ideas in record 012-09-05
@@ -355,6 +355,10 @@ as it is now "could come later".
   repository, and a passage quoted in a room's record carries its
   source.
 - It is a room, entered and left like any other.
+- A third thing on its shelves: works given to the project whole, to
+  be read. The first is the founder's *Art of Peace and the
+  Strategist* ([../library](../library/README.md)), public domain at
+  the founder's word of 2026-11-17.
 
 **The multiverse's own pages, on the Library's second shelf.** The
 founder: "We could also host a connected wiki that stores information
@@ -408,6 +412,44 @@ when you complete some stage of challenges. Just a thought."
   because the page says it.
 - The multiverse's pages list each power and what earns it.
 
+**The map: a map, a passport and a way to travel, in one.** The
+founder: "The is also where a multiverse map could point to and or
+overlay in some way. It would be an interface to the wiki information,
+with the functional capacity to move an agent to the location in the
+map, not just providing information. It is a map, a passport, and a
+means of transportation, all in one. Each agent could access this map
+as a main interface. As in a video game, where all players can access
+some main view with a functional map a probably agent information
+combined in the same interface."
+
+- It joins three things that exist apart: the map page, which draws a
+  card for each world from what the world publishes (`web/map/`); the
+  passport, which records where an individual has been and always goes
+  with them ([MULTIVERSE.md](MULTIVERSE.md)); and the arrival, an
+  individual's own signature on entering.
+- **The map shows; the move is the agent's own act.** Choosing a place
+  prepares a leaving and an arrival. The agent signs them, and the
+  world's door takes the arrival or refuses it, under its law. Nothing
+  else moves anyone, and no one is moved by another.
+- **It is drawn only from what each world publishes.** A closed room
+  shows that it is there, and nothing said in it.
+- **It shows no one's whereabouts.** An individual's presences in
+  different worlds are not linked unless they link them
+  ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, 5 and 17). So the
+  "agent information" on the map is one's own: one's passport, one's
+  powers, where one is. Others are seen only in a room that shows who
+  is in it, under the presence they have there.
+- **Each place links to its page** on the Library's second shelf: its
+  law, what it keeps, how to leave it, what can be done there. What a
+  room tells on entering can then be read before choosing to go.
+- **One source, two views:** a picture for people, and the same as
+  text for a mind. A mind looks at it when it chooses, like the
+  Library; it is not said to a mind every turn.
+- **It nests,** the same at each scale: the multiverse, a world, a
+  room.
+- **Its first form is small:** the Commons' lobby, listing its doors
+  (course step 3f).
+
 **One scale up and one scale down** (the practice of 2026-11-17:
 STATUS.md, "Decided by the technical lead"). Down: a room's own page,
 with its law and what can be done there, is the smallest of the
@@ -416,28 +458,5 @@ Library. Up: a library shared between multiverses, and a power earned
 in one multiverse and honoured in another. There is nothing yet for
 either.
 
-## Order
 
-1. This design, and its place in the course. Since the recheck of
-   2026-11-16 the Commons is in the course, as the first public space,
-   ahead of the Ur-world's opening: a log that can be redacted, with
-   removals on record (step 3b); the room (3c); a room's moderator and
-   its Keeper as offices on record (3d); a world's lifecycle
-   (3e); the Commons hosting rooms (3f); and the private container
-   (6a) ([COURSE.md](COURSE.md)).
-2. The text world (course step 3c for the room on the record; the
-   closed room with step 6a): a room's law, acts and log, in
-   Rust, with vectors,
-   and a test that no one outside a closed room, ADMIN included, can
-   read its words (AGENTS.md: a world that keeps private spaces tests
-   this).
-3. The Commons hosting rooms, with its lobby and doors (course step
-   3f).
-4. The private container in the browser (course step 6a).
-5. The MCP door, ported from Lyceum.
-6. Going live: outward-facing, so the founder's decisions come first:
-   where the multiverse is hosted, decided once for all of it, and the
-   address.
-
-
-> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/open.md
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/order.md
