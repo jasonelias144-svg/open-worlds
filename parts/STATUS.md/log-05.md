@@ -29,6 +29,16 @@
   again by the writer). Not done: who may redact or decide; deleting
   the office's copy, which is its word; a real redaction, which waits
   for the room and for a person's container.
+- 2026-11-17 Claude: the founder's words on how the multiverse is
+  built are in the charter (CHARTER.md, section 1): by learning
+  through making choices, as its worlds are lived in. Recorded with
+  them (Decided): the founder's idea of similar patterns at different
+  scales and the comparison operator, with the technical lead's
+  reading in docs/VISION.md; and that the work with DeepSeek is slower
+  from now on. Two practices follow (Decided by the technical lead):
+  the question of scale in each plan, and rounds with a collaborator
+  sized to one step. AGENTS.md says why decisions are recorded with
+  what would show them wrong. Nothing is built by this.
 - 2026-11-17 Claude: redacting, on the log's side (course step 3b,
   part three, first of two sides). In `world/apart.py`,
   `rust/world-log/src/apart.rs` and `vectors/log-apart.json`: a mark

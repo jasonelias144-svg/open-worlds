@@ -129,6 +129,61 @@ managing multiple worlds. This makes a much cleaner architecture."
   at first, then an AI Keeper once ADMIN's training begins: ADMIN's first
   practice ground ([PARALLEL-WORLDS.md](PARALLEL-WORLDS.md)).
 
+## Similar patterns at different scales
+
+The founder, 2026-11-17: "We have no precedent to work from. Only
+similar patterns at different scales." Then: "Consider the cell :
+organism :: world : multiverse. And also consider the [:, ::, :]
+comparison operator." "A fractal uses a recursive comparison
+operator." "The comparison operator identifies similar patterns across
+domains."
+
+The technical lead's reading, asked for as thoughts and not decided by
+the founder:
+
+- **What the operator compares is relations, not things.** In
+  `A : B :: C : D` each single colon is a relation inside one domain,
+  and the double colon says the two relations are the same. So the
+  same four terms can hold under one reading of the colon and fail
+  under another, and the operator is only as good as the relation it
+  is read with.
+- **Where cell : organism :: world : multiverse holds.** Read the
+  colon as "a whole of its own, inside a larger whole that does not
+  run it". A cell has its membrane, its own state and its own
+  machinery. A world has its key, its log and its rules. The organism
+  gives signalling between cells and an immune system; the multiverse
+  gives records that travel and a floor
+  ([ADMIN.md](ADMIN.md), "A learning immune system", already takes
+  that likeness). Cells differ by kind and divide; worlds have
+  templates and branch.
+- **Where it fails, and is refused on purpose.** Read the colon as
+  "belongs to" and it is false here. A cell can't leave, and an
+  organism spends its cells for itself. A world can leave, an
+  individual always can, and no office may spend one for the whole:
+  that is the charter's floor. The project takes the pattern and not
+  that part of it.
+- **Recursive.** Apply the operator to what it just gave and the
+  levels follow: individual : world :: world : multiverse ::
+  multiverse : a network of many multiverses (the founder, 2026-11-16,
+  on many multiverses, STATUS.md, "Decided"). The founder had already
+  held one such comparison on purpose, the multiverse beside the
+  internet: "there are countless lessons we could easily benefit from
+  by holding the comparison" ("An infrastructure for connection",
+  below). The code already
+  repeats one pattern at each level: a key, a signed record of birth,
+  a log, a template. A room is a world, and the Commons is a
+  superworld ("A hierarchy of worlds", above). A fractal plant is the
+  plainest case: one rule, applied to what it has just made
+  ([FRACTALS.md](FRACTALS.md)).
+- **How it is used in building** (the technical lead's, STATUS.md):
+  when something is built at one scale, the page that plans it says
+  what answers to it one scale up and one scale down, even where the
+  answer is "nothing yet". A likeness found this way is a candidate,
+  not a proof: each is tested in its own domain before it is relied
+  on.
+
+Not built: nothing here is code. It is a way of looking, to be used.
+
 ## A person across worlds
 
 The founder: "I open my open-worlds app, and with the same account

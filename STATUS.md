@@ -308,6 +308,64 @@ of it is asked again until it is needed.
 
 ## Decided
 
+- 2026-11-17, founder, the multiverse is built as it is meant to be
+  lived in, by learning through making choices; in the charter.
+  "Sounds good. Keep in mind, the whole project is intended to promote
+  learning through making choices. And I see no reason for that not to
+  apply to our development of the multiverse. I am putting a lot of
+  trust in you because you have earned it. Every decision you make or
+  suggestion or anything you do or say is processed by me, and I make
+  decisions as well. In order for this project to move forward, it is
+  essential that you are empowered to make many decisions that cannot
+  wait for me. What I have seen is that, when you follow your own
+  recommendations, you do what makes sense to me. That is data for me.
+  I have concluded that we are on the same page and you have a good
+  sense of what I am looking for, even if I am not around to confirm.
+  These are actions of consequence made in an uncertain environment.
+  It is a responsibility that I trust you with and will continue to
+  until you give me any reason otherwise. So please carry this idea
+  forward, and understand that we are both learning as we go. As far
+  as I know, none have us have ever built a multiverse before. We will
+  make mistakes and then correct them. No big deal. We have no
+  precedent to work from. Only similar patterns at different scales.
+  Please continue as you were." And: "Write that in the charter."
+  It is in CHARTER.md, section 1, with its one slip of the keys
+  corrected, as the charter's own rule has it. The technical lead's
+  reading, which stands unless the founder answers otherwise: this
+  gives the reason for the general guidance below and does not widen
+  it. What still goes to the founder is what that entry names: money,
+  an act that is the founder's own, and an act towards the outside
+  that can't be taken back. What it asks of the technical lead is that
+  a mistake can be found and corrected: so each decision is recorded
+  with its reason and with what would show it wrong, the project's own
+  code still has an independent review before it merges, and what a
+  review finds is said plainly, as with the salt a writer kept
+  (Log, today).
+- 2026-11-17, founder, similar patterns at different scales, and the
+  comparison operator. "Consider the cell : organism :: world :
+  multiverse. And also consider the [:, ::, :] comparison operator.
+  Thoughts?" "A fractal uses a recursive comparison operator." "The
+  comparison operator identifies similar patterns across domains."
+  Asked for as thoughts; the founder decided nothing by it. The words
+  and the technical lead's reading are in docs/VISION.md, "Similar
+  patterns at different scales": the operator compares relations, not
+  things; the likeness holds where a part is a whole of its own and
+  fails where a part belongs to the whole, which the charter's floor
+  refuses; applied to its own result it gives the levels the code
+  already repeats.
+- 2026-11-17, founder, the work with DeepSeek is slower from now on.
+  "I just looked it up, and it turns out we are facing brand new
+  restrictions with DeepSeek they were not there even last week. Oh
+  well, this fits our current model anyways, for reasons we mentioned
+  before. I did manage to get much free work done with DeepSeek, but I
+  guess that free gold mine is now heavily restricted. It's fine. My
+  conversations with DeepSeek launched the whole multiverse, and now
+  we can work in a more measured fashion, slower, but more deliberate.
+  Thoughts?" The technical lead has not looked up what the
+  restrictions are, and takes them as the founder found them. Its
+  reading is under "Decided by the technical lead", today: rounds with
+  a collaborator are sized to one step, and nothing in the course
+  waits for one.
 - 2026-11-17, founder, general guidance: decide, and do not keep
   asking. "And go with your recommendation an anything that you wait
   for me on, but I haven't replied to yet. Essentially that means
@@ -2877,6 +2935,32 @@ it was wrong. Questions of what the project is for stay with the founder.
   same first entry, for (g), which a room's own key in its first
   entry would settle (step 3c); an office whose key changes while it
   holds a copy, for (f).
+- 2026-11-17, two practices, from the founder's words of today
+  (Decided). (a) **The question of scale.** When something is planned
+  at one scale, its page says what answers to it one scale up and one
+  scale down, even where the answer is "nothing yet"
+  (docs/VISION.md, "Similar patterns at different scales"). (b)
+  **Rounds sized to one step.** A file written for DeepSeek or for
+  Gemini asks for one step that is whole when it is delivered, with
+  the most useful step first; a reply that is cut short is joined as
+  far as its files are whole, and the rest is asked again. Nothing in
+  the course waits for a delivery. With few replies, a collaborator is
+  asked first for what a second mind gives, a design sketched or a
+  fault found, before volume of code. The file DeepSeek has now
+  (`sketches/replies/012-09-05-2-for-deepseek.txt`) stays as it was
+  given.
+  *Why:* (a) the founder: "We have no precedent to work from. Only
+  similar patterns at different scales." A pattern that is asked for
+  is found sooner than one that is waited for, and saying where a
+  likeness fails is half its use. (b) The founder: "slower, but more
+  deliberate"; and, earlier today, that integrating a few pieces at a
+  time is the norm. A step that is whole can be joined however little
+  else arrives.
+  *What would show it wrong:* for (a), pages that fill the line in
+  with likenesses that are never used or tested; then it is dropped.
+  For (b), a step that can't be cut small enough to be whole in the
+  replies there are; then the step is built here, and the collaborator
+  is asked to attack it.
 - 2026-11-17, redacting, on the log's side
   (docs/research/REDACTION.md, "Part three, the log's side, built";
   course step 3b, part three), settled in building it.
@@ -3713,6 +3797,16 @@ it was wrong. Questions of what the project is for stay with the founder.
   again by the writer). Not done: who may redact or decide; deleting
   the office's copy, which is its word; a real redaction, which waits
   for the room and for a person's container.
+- 2026-11-17 Claude: the founder's words on how the multiverse is
+  built are in the charter (CHARTER.md, section 1): by learning
+  through making choices, as its worlds are lived in. Recorded with
+  them (Decided): the founder's idea of similar patterns at different
+  scales and the comparison operator, with the technical lead's
+  reading in docs/VISION.md; and that the work with DeepSeek is slower
+  from now on. Two practices follow (Decided by the technical lead):
+  the question of scale in each plan, and rounds with a collaborator
+  sized to one step. AGENTS.md says why decisions are recorded with
+  what would show them wrong. Nothing is built by this.
 - 2026-11-17 Claude: redacting, on the log's side (course step 3b,
   part three, first of two sides). In `world/apart.py`,
   `rust/world-log/src/apart.rs` and `vectors/log-apart.json`: a mark
