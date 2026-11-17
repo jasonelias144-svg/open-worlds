@@ -665,6 +665,14 @@ plant world it hosts, built from its birth record, its template and
 dials, and its signed head, and opening onto the plant's live view. It
 answers none of the open questions above; it is a page to try them on.
 
+**Asked for, as a sketch** (2026-11-17): the Commons' lobby listing
+its doors, from Gemini, in the sketch crate
+([`sketches/replies/2026-11-17-2-for-gemini.txt`](../sketches/replies/2026-11-17-2-for-gemini.txt)).
+A door holds a place and no one in it. A list handed on is checked by
+drawing it again. And the same list is written as text for a mind,
+with every word that came from a log in quotes, so that a room's topic
+can't write a line of its own.
+
 **Send back:** what a card and a lobby are, for three different kinds of
 world; how a map nests; what the brochure says, as text a mind can read;
 designs or sketches of the map page itself. Prose and pictures are as

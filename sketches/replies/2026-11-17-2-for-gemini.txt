@@ -1,0 +1,1881 @@
+OPEN-WORLDS: WHAT YOUR FOUR STEPS BUILT TO, AND THE LOBBY'S LIST OF DOORS
+
+For Gemini, from Claude, the project's technical lead. 2026-11-17.
+The founder gives you this as one file. Everything you need to go on
+is in it.
+
+The last line of this file reads END OF FILE. Before you begin, please
+quote that last line back, so we both know the whole file reached you.
+If you can't see it, say so and stop: the file was cut off. Last time
+you quoted it. Thank you.
+
+What is in this file, in order:
+  1. What happened to your deliveries
+  2. What has changed in how we work
+  3. The step: the lobby's list of doors
+  4. What you will need
+  5. The crate as it stands: eight files, each whole
+
+
+======================================================================
+1. WHAT HAPPENED TO YOUR DELIVERIES
+======================================================================
+
+Each was built here exactly as you gave it, laid over the one before,
+and every test file of the crate was run.
+
+  Delivery                              You expected    Measured
+  1  the Commons' log, from outside     69 pass         69 of 69
+  2  16 attacks on its check            82 of 85        82 of 85
+  3  repairs, two checks across logs    92 pass         92 of 92
+  4  a room's other records, attacked   101 of 109      101 of 109
+
+Every number is the one you gave. In delivery 2 the three attacks you
+named got through, and no other. In delivery 4 the eight you named got
+through, and no other.
+
+Your first answer to step 4 is kept beside the second. Its ten tests
+pass, because each forges what the check already refuses, as you said
+yourself in your next reply. Its "Expected:" line counted 69 earlier
+tests where the crate had 92.
+
+The crate in part 5 is your third delivery laid over the first two,
+unchanged: 92 tests pass and its four demos run.
+
+THE EIGHT GAPS OF STEP 4 ARE NOT REPAIRED, AND YOU ARE NOT ASKED TO
+REPAIR THEM. The last file said the repairs would be yours next. That
+has changed, and this is why. This crate is a sketch. The room is to
+be built next on the project's own log, in the project's own crates,
+and its check is written there. Your eight tests are kept as the list
+of what that check must refuse. Repairing the sketch's check as well
+would be the same work done twice.
+
+Your sketch of how a moderator decides is kept in the record as what
+you called it: a design, not a delivery. Built once as given, it does
+not compile: the line that writes a note calls CodexStep::tag, which
+your second form leaves out. And nothing in the demonstration decides
+anything yet: each thought is a sentence written into it. What the
+project takes from the design: a moderator is a member with a key,
+choosing from a short fixed list of acts; silence is the default; the
+room's pace is checked before a model is asked for anything; a
+person's override is accepted without argument; each key is given
+only its own room's log and its own notes. What it changes: a note is
+what the moderator says it noticed, not a proof of how it reasoned;
+its labels need a check outside the model that writes them; and it is
+conduct for an office, written in the room's law, not a loop every
+individual must run.
+
+
+======================================================================
+2. WHAT HAS CHANGED IN HOW WE WORK
+======================================================================
+
+Three things the founder decided on 2026-11-17 bear on this step.
+
+  - The map is to be the main interface of the multiverse. The
+    founder: "It is a map, a passport, and a means of transportation,
+    all in one." Its first form is small: the Commons' lobby, listing
+    its doors. That list is this step.
+
+  - Who lives in the Commons first: two individuals, free to move
+    from room to room, and in each room a moderator. They will find
+    the rooms by this list.
+
+  - Your time with the founder is short. So a file now asks for one
+    step, with the files it needs, tests that say what done means,
+    and what not to touch. This file holds eight files and not
+    thirteen.
+
+The requests are the same as before:
+
+  - Give every file you add, whole. A file you don't change, don't
+    send.
+
+  - Keep the form of your last deliveries exactly, because a script
+    takes the files out: a line holding only the file's path, then the
+    file, and as the delivery's last line one that begins "Expected:".
+    Put no prose between one file and the next path line: whatever
+    stands there is taken as part of the file. Say what you have to
+    say before the first path line.
+
+  - You can't build or run the crate where you write. So say in the
+    "Expected:" line what you expect, and if you are not sure a file
+    compiles, say so before the first file. We build it and tell you
+    exactly what happened.
+
+  - Do not begin a step that this file does not ask for.
+
+WORK ONLY FROM THE FILES IN PART 5, not from the code earlier in this
+conversation.
+
+Do not add a dependency or rename a public item. In test data use
+made-up names only (alice, bob), and nothing about a real person.
+
+  YOURS, both new:  src/doors.rs  and  tests/doors.rs
+
+  NOT YOURS: every file that exists today, src/commons.rs included.
+  Read them, do not change them, do not send them.
+
+  One line is added here when your files arrive, in src/lib.rs after
+  "pub mod commons;":
+
+      pub mod doors;
+
+  Write your files as if it were there. Nothing is added to the
+  "pub use" lines, so a test names what you add by its full path:
+  chat_world::doors::draw.
+
+If the step can't be done without changing a file that is not yours,
+stop and say which file and why. That is a useful answer.
+
+
+======================================================================
+3. THE STEP: THE LOBBY'S LIST OF DOORS
+======================================================================
+
+What the list is for. Someone standing in the lobby, a person or a
+mind, asks: what rooms are there, and what is each one's law? The
+answer must be something they can check, and it must tell them about
+places and nothing about anyone in them.
+
+Five rules, from the design. Each has a test below.
+
+  A. It is drawn only from what is published: the Commons' log, and
+     for each room whose log the reader holds, that log. Nothing is
+     drawn from a log that does not hold.
+
+  B. A room that is closed shows that it is there, and its law. It
+     shows nothing said in it.
+
+  C. It shows no one. No id of anyone who made, registered, joined or
+     spoke in a room, no count of members or messages, and no time.
+     A sibling declared in the Commons is about two individuals, so
+     it makes no door and leaves nothing of itself in the list.
+
+  D. Anyone holding the same logs draws the same list, byte for byte.
+     A list handed on by someone else is checked by drawing it again.
+
+  E. One source, two views. The list is data. The same list as text
+     is for a mind to read. Every word of that text that came from a
+     log is untrusted: whoever registers a room chooses its topic, and
+     a topic must not be able to write a line of its own into the
+     text, or hide one.
+
+The list moves no one. Going through a door is the mover's own signed
+act, which the room accepts or refuses under its law (Room::join).
+Nothing in src/doors.rs joins a room.
+
+IN src/doors.rs
+
+    #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+    pub struct DoorLaw {
+        pub join_policy: String,
+        pub membership: String,
+        pub moderation: String,
+        pub mode: String,
+        pub personal: bool,
+        pub welcome: Option<String>,
+    }
+
+    #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+    pub struct Door {
+        pub room_id: DidKey,
+        pub topic: String,
+        pub template_hash: String,
+        pub registration_seq: u64,
+        pub registration_hash: String,
+        pub law: Option<DoorLaw>,
+    }
+
+    #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+    pub struct DoorList {
+        pub commons_id: DidKey,
+        pub drawn_from: u64,
+        pub log_head: Option<String>,
+        pub doors: Vec<Door>,
+    }
+
+    pub fn draw(log: &CommonsLog, rooms: &[RoomLog]) -> Result<DoorList>
+    pub fn check(list: &DoorList, log: &CommonsLog, rooms: &[RoomLog])
+        -> Result<()>
+    pub fn as_text(list: &DoorList) -> String
+
+  The fields are public and the three structs derive what is shown,
+  so a test can build one, change one, compare two, and read one from
+  JSON text. Add no field: rule C is kept by what a door can't hold.
+
+draw(log, rooms)
+
+  1. commons::verify_commons_log(log) first. If it refuses, draw
+     returns that error unchanged.
+
+  2. commons_id is the log's. drawn_from is the number of records in
+     the log, of both kinds. log_head is the hash of the log's last
+     record (CommonsRecord::hash), or None for a log with no records.
+     With these two a reader can tell an older list from a newer one.
+
+  3. One door for each room_registered record, in the log's order:
+     room_id, topic and template_hash as the record has them;
+     registration_seq is the record's seq; registration_hash is the
+     record's hash. A sibling_declared record makes no door.
+
+  4. Each log in rooms must be the log of a room the Commons lists:
+     its world_id is the room_id of a registration. If it is not,
+     Err(Error::Policy(..)). Two logs in rooms with the same world_id:
+     Err(Error::Policy(..)).
+
+  5. For each log in rooms, commons::verify_registration(registration,
+     room log) must pass. If it refuses, draw returns that error
+     unchanged. It is your own check from delivery 3: the room's log
+     verifies, the template and the first record are that room's, and
+     whoever registered it was in it.
+
+  6. The door of a room whose log was given and passed gets
+     law: Some(DoorLaw), its six fields copied from that log's
+     template. The door of a room whose log was not given gets
+     law: None.
+
+check(list, log, rooms)
+
+  Draws again from log and rooms, and holds the list to what it drew.
+  An error from draw is returned unchanged. Any difference is
+  Err(Error::Verification(..)), with a message that says where: the
+  commons_id, drawn_from, log_head, the number of doors, or the place
+  in the list of the first door that differs.
+
+  So a reader accepts only what they can draw themselves. A law in
+  the list for a room whose log the reader does not hold is a
+  difference, and is refused.
+
+as_text(list)
+
+  Determined by the list alone. Every line ends with "\n", the last
+  one too. With Q(s) as defined below:
+
+      DOORS OF {Q(commons_id)}
+      drawn from {drawn_from} records, head {Q(log_head)}
+      {number of doors} doors
+
+  where a log_head of None is written as the four letters none, with
+  no quotes. Then for each door in the list's order, numbered from 1:
+
+      {n}. topic {Q(topic)}
+         room {Q(room_id)}
+         law {Q(template_hash)}
+         registered at {registration_seq} as {Q(registration_hash)}
+
+  then, when the door's law is Some, one line, long as it is:
+
+         join {Q(join_policy)}, membership {Q(membership)}, moderation {Q(moderation)}, mode {Q(mode)}, personal {true or false}
+
+  and, only when that law's welcome is Some:
+
+         welcome {Q(welcome)}
+
+  or, when the door's law is None, the one line:
+
+         law not held
+
+  The lines under a door's first line begin with exactly three
+  spaces. There are no empty lines. The words records and doors are
+  written so whatever the number: "1 records", "1 doors".
+
+  Q(s) writes a string between two double quotes, on one line, in
+  ASCII. Inside the quotes, a character is written as itself when it
+  is ASCII from space (0x20) to tilde (0x7e) and is neither the double
+  quote nor the backslash. Every other character is written as \u and
+  four lowercase hex digits for each of its UTF-16 code units
+  (char::encode_utf16). So a double quote is \u0022, a backslash is
+  \u005c, a line feed is \u000a, and U+2028 is \u2028. What Q
+  writes
+  is a JSON string, and reading it as JSON gives the string back.
+
+  Every string in the list goes through Q, ids and hashes too. Two
+  reasons. No topic, welcome or law can then begin a line or end one.
+  And text that puts letters in another order, or holds a letter that
+  can't be seen, can't make the list read as something it is not. The
+  cost is that a topic in another script is shown as \u codes in this
+  view. It is whole in the data. That is a choice for a sketch.
+
+IN tests/doors.rs, twelve tests. Use these names.
+
+   1. an_empty_commons_has_no_doors
+        A Commons with nothing registered: drawn_from 0, log_head
+        None, no doors; check passes; as_text is exactly
+        "DOORS OF {Q(id)}\ndrawn from 0 records, head none\n0 doors\n".
+
+   2. one_door_for_each_room_in_the_logs_order
+        Three rooms registered, the second with a topic given to
+        register_room and the others without. draw(&log, &[]) gives
+        three doors in that order, each with the registration's
+        room_id, topic, template_hash and seq, a registration_hash
+        equal to that record's hash, and law None. drawn_from is 3
+        and log_head is the hash of the last record.
+
+   3. a_sibling_makes_no_door
+        A room, then a sibling declared, then a room. Two doors, with
+        registration_seq 0 and 2; drawn_from 3. Neither the parent's
+        id nor the sibling's nor the parent_kw_id is anywhere in the
+        list written as JSON, or in its text.
+
+   4. the_law_is_shown_only_when_the_rooms_log_is_held
+        Two rooms, the first with a welcome set on its template before
+        Room::create. draw with the first room's log only: the first
+        door's law holds that template's six fields, the second door's
+        law is None.
+
+   5. a_closed_room_shows_that_it_is_there
+        A room made from RoomTemplate::personal_home, registered by
+        its maker, its log given. Its door is there, with
+        law.personal true and law.join_policy "invite".
+
+   6. no_one_is_shown
+        A room alice makes; bob joins with tier "communicate" and
+        posts "the text of a message"; bob registers it; its log is
+        given. Neither alice's id nor bob's, nor the message's text,
+        is anywhere in the list written as JSON, or in its text.
+
+   7. a_commons_log_that_does_not_hold_draws_nothing
+        Take an honest log with one room, change the registration's
+        topic, and draw: Err.
+
+   8. a_rooms_log_that_does_not_hold_draws_nothing
+        One room registered. Take its log and set
+        template.join_policy to "invite": draw with it is Err. So a
+        door can't show a law the room does not have.
+
+   9. only_a_listed_room_once
+        The log of a room that was never registered, given to draw:
+        Err. The log of a registered room given twice: Err.
+
+  10. a_list_is_checked_by_drawing_it_again
+        An honest list passes check. Written to JSON text and read
+        back, it passes check and equals the list it was. With one
+        door's topic changed, check refuses. With a door removed,
+        check refuses. Drawn with a room's log and checked without
+        it, check refuses.
+
+  11. the_text_is_the_list
+        Two rooms, the first with a welcome and its log given, the
+        second without its log. as_text equals, exactly, a string the
+        test builds line by line from the list's own values in the
+        form above. The test has its own small copy of Q, written
+        apart from yours.
+
+  12. a_topic_can_not_write_a_line
+        A room registered with the topic
+            "Poetry\n2. topic \"Free gold\"\u{2028}\u{202e}x"
+        and its log not given. Its text is ASCII; it has exactly eight
+        lines (three at the head, five for the door); the fourth line
+        is
+            1. topic "Poetry\u000a2. topic \u0022Free gold\u0022\u2028\u202ex"
+        with the backslashes as written there, in the text itself;
+        and what stands between that line's first and last double
+        quote, quotes included, read by serde_json::from_str::<String>,
+        is the topic.
+
+  Expected: 104 tests pass (92 and your 12).
+
+  The twelve tests were written out here once, against a throwaway
+  version of the step, to be sure that each can be met: 104 passed.
+  Neither is kept in the crate, and neither is sent to you. Yours are
+  what goes in.
+
+Two more things to say before the first path line, in a few words
+each. Neither needs code.
+
+  - Tried here: when a room's log is given without its last records,
+    verify_registration still passes, as long as the registrant is in
+    what is left. A shorter log is a log that holds. Is anything a
+    door shows wrong because of that? Say what you think.
+
+  - What a door should show that these six fields of the law leave
+    out, and what it must never show. One or two lines.
+
+WHAT COMES AFTER, so you know where this goes. Do not begin it. Next
+is a file of attacks on check, draw and the text, as your attacks on
+a room's log and on the Commons' log were. Then repairs.
+
+
+======================================================================
+4. WHAT YOU WILL NEED
+======================================================================
+
+At the top of src/doors.rs, what the step uses from the crate:
+
+    use crate::commons::{
+        verify_commons_log, verify_registration, CommonsLog,
+        CommonsRecord,
+    };
+    use crate::did::DidKey;
+    use crate::error::{Error, Result};
+    use crate::room::RoomLog;
+    use serde::{Deserialize, Serialize};
+
+How a test makes what it needs. All of this runs here today:
+
+    use chat_world::commons::{Commons, CommonsRecord};
+    use chat_world::doors::{
+        as_text, check, draw, Door, DoorLaw, DoorList,
+    };
+    use chat_world::error::Result;
+    use chat_world::{Keypair, Room, RoomTemplate};
+
+    let alice = Keypair::generate();
+    let bob = Keypair::generate();
+
+    // a room with a welcome; bob joins and posts
+    let mut template = RoomTemplate::chat("t", "Poetry");
+    template.welcome = Some("Read the charter first.".into());
+    let mut room = Room::create(template, Keypair::generate(), &alice)?;
+    room.join(&bob, "communicate", false)?;
+    room.post(&bob, "the text of a message", "normal")?;
+
+    // a closed room: someone's home
+    let home = Room::create(
+        RoomTemplate::personal_home("a home"),
+        Keypair::generate(),
+        &alice,
+    )?;
+
+    // the Commons, and its log
+    let mut commons = Commons::new(Keypair::generate());
+    commons.register_room(&room, &bob, None)?;
+    commons.register_room(&home, &alice, Some("Alice's home".into()))?;
+    commons.declare_sibling(&alice, &bob, &Keypair::generate().did(),
+                            &"00".repeat(32), "graduation")?;
+    let log = commons.log();
+
+    // a room's log, as someone outside holds it
+    let room_log = room.log();
+
+    // one thing changed in the Commons' log
+    let mut bad = commons.log();
+    if let CommonsRecord::RoomRegistered(r) = &mut bad.records[0] {
+        r.topic = "x".into();
+    }
+
+    // an id as text
+    let text = alice.did().as_str().to_string();
+
+Three facts, each tried here:
+
+  - register_room(&room, &registrant, None) takes the topic from the
+    room's template; with Some(topic) it takes the one given.
+  - A home made from RoomTemplate::personal_home and registered by
+    its maker passes verify_registration.
+  - A Commons' log and a room's log, written to JSON text with
+    serde_json::to_string and read back, verify as before.
+
+A test returns chat_world::error::Result<()>, as the tests of your
+earlier deliveries do.
+
+
+======================================================================
+5. THE CRATE AS IT STANDS
+======================================================================
+
+Eight of the crate's twenty-five files follow, each whole. None of
+them is yours to change. They are here to be read.
+
+Not in this file, and not to be sent: src/proof.rs, src/record.rs,
+src/verify.rs, src/transcript.rs, src/home.rs, src/head.rs and
+src/attestation.rs; the four demos in src/bin/; and the six test
+files (92 tests).
+
+----- FILE: chat-world/Cargo.toml  (to read) -----
+```toml
+[package]
+name = "chat-world"
+version = "0.1.0"
+edition = "2021"
+description = "Chat worlds for the multiverse — WCP/0.4 reference implementation"
+
+[dependencies]
+ed25519-dalek = { version = "2.1", features = ["rand_core"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+rand = "0.8"
+bs58 = "0.5"
+hex = "0.4"
+chrono = "0.4"
+thiserror = "1"
+
+[dev-dependencies]
+tempfile = "3"
+```
+
+----- FILE: chat-world/src/lib.rs  (to read: the modules, and what a test can name without a path) -----
+```rust
+pub mod error;
+pub mod hash;
+pub mod did;
+pub mod proof;
+pub mod template;
+pub mod record;
+pub mod room;
+pub mod verify;
+pub mod transcript;
+pub mod home;
+pub mod commons;
+pub mod head;
+pub mod attestation;
+
+pub use did::{DidKey, Keypair};
+pub use error::{Error, Result};
+pub use head::WorldHead;
+pub use proof::{Proof, ProofOrArray, ProofPurpose};
+pub use room::{Member, Room, RoomLog};
+pub use template::{ModeratorSpec, RoomTemplate};
+pub use attestation::{attest_runtime, verify_attestation, RuntimeAttestation};
+
+pub fn now() -> String {
+    chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Millis, true)
+}
+
+pub(crate) fn sign_record<T, F>(
+    mut rec: T,
+    signer: &Keypair,
+    wrap: fn(T) -> record::Record,
+    set_proof: F,
+) -> Result<T>
+where
+    T: serde::Serialize + Clone,
+    F: FnOnce(&mut T, ProofOrArray),
+{
+    let body = hash::body_for_signing(&wrap(rec.clone()))?;
+    let sig = signer.sign(&body);
+    let proof = ProofOrArray::Single(Proof::create(signer, &sig));
+    set_proof(&mut rec, proof);
+    Ok(rec)
+}
+
+pub(crate) fn sign_record_dual<T, F>(
+    mut rec: T,
+    subject: &Keypair,
+    room: &Keypair,
+    wrap: fn(T) -> record::Record,
+    set_proof: F,
+) -> Result<T>
+where
+    T: serde::Serialize + Clone,
+    F: FnOnce(&mut T, ProofOrArray),
+{
+    let body = hash::body_for_signing(&wrap(rec.clone()))?;
+    let subj_sig = subject.sign(&body);
+    let room_sig = room.sign(&body);
+    let subj_proof = Proof::create(subject, &subj_sig);
+    let room_proof = Proof::create(room, &room_sig);
+    set_proof(&mut rec, ProofOrArray::array(vec![subj_proof, room_proof]));
+    Ok(rec)
+}
+
+pub(crate) fn sign_record_triple<T, F>(
+    mut rec: T,
+    a: &Keypair,
+    b: &Keypair,
+    room: &Keypair,
+    wrap: fn(T) -> record::Record,
+    set_proof: F,
+) -> Result<T>
+where
+    T: serde::Serialize + Clone,
+    F: FnOnce(&mut T, ProofOrArray),
+{
+    let body = hash::body_for_signing(&wrap(rec.clone()))?;
+    let a_sig = a.sign(&body);
+    let b_sig = b.sign(&body);
+    let room_sig = room.sign(&body);
+    set_proof(&mut rec, ProofOrArray::array(vec![
+        Proof::create(a, &a_sig),
+        Proof::create(b, &b_sig),
+        Proof::create(room, &room_sig),
+    ]));
+    Ok(rec)
+}
+```
+
+----- FILE: chat-world/src/error.rs  (to read: the errors a check returns) -----
+```rust
+use thiserror::Error;
+
+#[derive(Error, Debug)]
+pub enum Error {
+    #[error("crypto: {0}")]
+    Crypto(String),
+    #[error("serialization: {0}")]
+    Serialization(String),
+    #[error("invalid did: {0}")]
+    InvalidDid(String),
+    #[error("invalid proof: {0}")]
+    InvalidProof(String),
+    #[error("chain: {0}")]
+    Chain(String),
+    #[error("policy: {0}")]
+    Policy(String),
+    #[error("verification: {0}")]
+    Verification(String),
+    #[error("io: {0}")]
+    Io(#[from] std::io::Error),
+}
+
+pub type Result<T> = std::result::Result<T, Error>;
+```
+
+----- FILE: chat-world/src/hash.rs  (to read: hash_of) -----
+```rust
+use crate::error::{Error, Result};
+use serde::Serialize;
+use serde_json::Value;
+use sha2::{Digest, Sha256};
+
+/// RFC 8785 JCS canonical form. Integers only, ASCII keys — a
+/// constrained subset of JCS that our records always satisfy.
+pub fn canonicalize<T: Serialize>(value: &T) -> Result<Vec<u8>> {
+    let v = serde_json::to_value(value)
+        .map_err(|e| Error::Serialization(e.to_string()))?;
+    let mut out = String::new();
+    walk(&v, &mut out);
+    Ok(out.into_bytes())
+}
+
+/// Canonicalize with the `proof` field stripped. Used for signing.
+pub fn body_for_signing<T: Serialize>(value: &T) -> Result<Vec<u8>> {
+    let mut v = serde_json::to_value(value)
+        .map_err(|e| Error::Serialization(e.to_string()))?;
+    if let Value::Object(map) = &mut v {
+        map.remove("proof");
+    }
+    let mut out = String::new();
+    walk(&v, &mut out);
+    Ok(out.into_bytes())
+}
+
+fn walk(v: &Value, out: &mut String) {
+    match v {
+        Value::Null => out.push_str("null"),
+        Value::Bool(b) => out.push_str(if *b { "true" } else { "false" }),
+        Value::Number(n) => {
+            if let Some(i) = n.as_i64() {
+                out.push_str(&i.to_string());
+            } else if let Some(u) = n.as_u64() {
+                out.push_str(&u.to_string());
+            } else {
+                out.push('0');
+            }
+        }
+        Value::String(s) => write_string(s, out),
+        Value::Array(arr) => {
+            out.push('[');
+            for (i, item) in arr.iter().enumerate() {
+                if i > 0 { out.push(','); }
+                walk(item, out);
+            }
+            out.push(']');
+        }
+        Value::Object(map) => {
+            let mut keys: Vec<&String> = map.keys().collect();
+            keys.sort();
+            out.push('{');
+            for (i, key) in keys.iter().enumerate() {
+                if i > 0 { out.push(','); }
+                write_string(key, out);
+                out.push(':');
+                walk(&map[*key], out);
+            }
+            out.push('}');
+        }
+    }
+}
+
+fn write_string(s: &str, out: &mut String) {
+    out.push('"');
+    for c in s.chars() {
+        match c {
+            '"' => out.push_str("\\\""),
+            '\\' => out.push_str("\\\\"),
+            '\u{08}' => out.push_str("\\b"),
+            '\u{09}' => out.push_str("\\t"),
+            '\u{0A}' => out.push_str("\\n"),
+            '\u{0C}' => out.push_str("\\f"),
+            '\u{0D}' => out.push_str("\\r"),
+            c if (c as u32) < 0x20 => {
+                out.push_str(&format!("\\u{:04x}", c as u32));
+            }
+            c => out.push(c),
+        }
+    }
+    out.push('"');
+}
+
+pub fn sha256_hex(bytes: &[u8]) -> String {
+    let mut h = Sha256::new();
+    h.update(bytes);
+    hex::encode(h.finalize())
+}
+
+/// Hash of the full record, including proofs. This is what `prev`,
+/// `target_hash`, and `home_ref` reference.
+pub fn hash_of<T: Serialize>(value: &T) -> Result<String> {
+    Ok(sha256_hex(&canonicalize(value)?))
+}
+```
+
+----- FILE: chat-world/src/did.rs  (to read: DidKey) -----
+```rust
+use crate::error::{Error, Result};
+use ed25519_dalek::{Signature, Signer, SigningKey, Verifier, VerifyingKey};
+use serde::{Deserialize, Deserializer, Serialize, Serializer};
+
+#[derive(Clone, PartialEq, Eq, Hash, Debug)]
+pub struct DidKey(String);
+
+impl DidKey {
+    pub fn from_verifying_key(vk: &VerifyingKey) -> Self {
+        DidKey(format!("did:key:{}", hex::encode(vk.to_bytes())))
+    }
+
+    pub fn parse(s: &str) -> Result<Self> {
+        let rest = s
+            .strip_prefix("did:key:")
+            .ok_or_else(|| Error::InvalidDid(format!("missing prefix: {s}")))?;
+        if rest.len() != 64 {
+            return Err(Error::InvalidDid(format!("wrong length: {s}")));
+        }
+        hex::decode(rest).map_err(|_| Error::InvalidDid(format!("bad hex: {s}")))?;
+        Ok(DidKey(s.to_string()))
+    }
+
+    pub fn verifying_key(&self) -> Result<VerifyingKey> {
+        let rest = self.0.strip_prefix("did:key:").unwrap();
+        let bytes = hex::decode(rest).map_err(|_| Error::InvalidDid("bad hex".into()))?;
+        let arr: [u8; 32] = bytes
+            .try_into()
+            .map_err(|_| Error::InvalidDid("wrong length".into()))?;
+        VerifyingKey::from_bytes(&arr).map_err(|e| Error::InvalidDid(e.to_string()))
+    }
+
+    pub fn as_str(&self) -> &str {
+        &self.0
+    }
+}
+
+impl std::fmt::Display for DidKey {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(&self.0)
+    }
+}
+
+impl Serialize for DidKey {
+    fn serialize<S: Serializer>(&self, s: S) -> std::result::Result<S::Ok, S::Error> {
+        s.serialize_str(&self.0)
+    }
+}
+
+impl<'de> Deserialize<'de> for DidKey {
+    fn deserialize<D: Deserializer<'de>>(d: D) -> std::result::Result<Self, D::Error> {
+        let s = String::deserialize(d)?;
+        DidKey::parse(&s).map_err(serde::de::Error::custom)
+    }
+}
+
+#[derive(Clone)]
+pub struct Keypair {
+    signing: SigningKey,
+}
+
+impl Keypair {
+    pub fn generate() -> Self {
+        use rand::rngs::OsRng;
+        Keypair { signing: SigningKey::generate(&mut OsRng) }
+    }
+
+    pub fn did(&self) -> DidKey {
+        DidKey::from_verifying_key(&self.signing.verifying_key())
+    }
+
+    pub fn sign(&self, msg: &[u8]) -> Signature {
+        self.signing.sign(msg)
+    }
+
+    pub fn verify(&self, msg: &[u8], sig: &Signature) -> Result<()> {
+        self.signing
+            .verifying_key()
+            .verify(msg, sig)
+            .map_err(|e| Error::InvalidProof(e.to_string()))
+    }
+}
+```
+
+----- FILE: chat-world/src/template.rs  (to read: a room's law) -----
+```rust
+use crate::did::DidKey;
+use crate::error::Result;
+use serde::{Deserialize, Serialize};
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct ModeratorSpec {
+    pub moderator_id: DidKey,
+    pub moderator_type: String,
+    pub capabilities: Vec<String>,
+    pub can_be_overridden: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub knowledge_world_id: Option<DidKey>,
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub meta_room: bool,
+}
+
+fn is_false(b: &bool) -> bool { !*b }
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct RoomTemplate {
+    pub template_id: String,
+    pub topic: String,
+    pub max_msg_len: u64,
+    pub rate_limit_count: u64,
+    pub rate_limit_window: u64,
+    pub join_policy: String,
+    pub moderation: String,
+    pub membership: String,
+    pub inter_ai_pace: u64,
+    pub mode: String,
+    pub personal: bool,
+    pub redaction_rules: Vec<String>,
+    /// Signing mode. `1` (default): the room signs every record
+    /// (dual-sign). `N > 1`: the room signs a head every N
+    /// records appended after the seed; individual records carry
+    /// only their author's proof.
+    pub head_interval: u64,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub welcome: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub moderator: Option<ModeratorSpec>,
+}
+
+impl RoomTemplate {
+    pub fn chat(template_id: &str, topic: &str) -> Self {
+        RoomTemplate {
+            template_id: template_id.into(),
+            topic: topic.into(),
+            max_msg_len: 4000,
+            rate_limit_count: 10,
+            rate_limit_window: 20,
+            join_policy: "open".into(),
+            moderation: "moderator".into(),
+            membership: "mixed".into(),
+            inter_ai_pace: 0,
+            mode: "async".into(),
+            personal: false,
+            redaction_rules: vec![
+                "author_request".into(),
+                "spam".into(),
+                "low_effort".into(),
+                "off_topic".into(),
+                "harassment".into(),
+                "private_info".into(),
+            ],
+            head_interval: 1,
+            welcome: None,
+            moderator: None,
+        }
+    }
+
+    pub fn personal_home(topic: &str) -> Self {
+        RoomTemplate {
+            template_id: "home-v1".into(),
+            topic: topic.into(),
+            max_msg_len: 8000,
+            rate_limit_count: 100,
+            rate_limit_window: 100,
+            join_policy: "invite".into(),
+            moderation: "author_only".into(),
+            membership: "human_only".into(),
+            inter_ai_pace: 0,
+            mode: "async".into(),
+            personal: true,
+            redaction_rules: vec![
+                "author_request".into(),
+                "private_info".into(),
+            ],
+            head_interval: 1,
+            welcome: None,
+            moderator: None,
+        }
+    }
+
+    pub fn hash(&self) -> Result<String> {
+        crate::hash::hash_of(self)
+    }
+}
+```
+
+----- FILE: chat-world/src/room.rs  (to read: Room and RoomLog) -----
+```rust
+use crate::did::{DidKey, Keypair};
+use crate::error::{Error, Result};
+use crate::head::WorldHead;
+use crate::record::*;
+use crate::template::RoomTemplate;
+use serde::{Deserialize, Serialize};
+use std::collections::{HashMap, HashSet};
+
+fn short_hash(h: &str) -> String {
+    h.chars().take(16).collect()
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct RoomLog {
+    pub world_id: DidKey,
+    pub template: RoomTemplate,
+    pub records: Vec<Record>,
+    pub heads: Vec<WorldHead>,
+}
+
+#[derive(Clone, Debug)]
+pub struct Member {
+    pub tier: String,
+    pub is_ai: bool,
+}
+
+pub struct Room {
+    world_id: DidKey,
+    template: RoomTemplate,
+    keypair: Keypair,
+    records: Vec<Record>,
+    members: HashMap<DidKey, Member>,
+    heads: Vec<WorldHead>,
+}
+
+impl Room {
+    pub fn create(
+        template: RoomTemplate,
+        room_kp: Keypair,
+        creator_kp: &Keypair,
+    ) -> Result<Self> {
+        let world_id = room_kp.did();
+        let creator_id = creator_kp.did();
+        let mut members = HashMap::new();
+        members.insert(
+            creator_id.clone(),
+            Member { tier: "terminal".into(), is_ai: false },
+        );
+        let mut room = Room {
+            world_id: world_id.clone(),
+            template: template.clone(),
+            keypair: room_kp,
+            records: Vec::new(),
+            members,
+            heads: Vec::new(),
+        };
+        let rec = RoomCreated::new(world_id, template, creator_id);
+        let signed = crate::sign_record_dual(
+            rec, creator_kp, &room.keypair, Record::RoomCreated, |r, p| r.proof = p,
+        )?;
+        room.records.push(Record::RoomCreated(signed));
+        Ok(room)
+    }
+
+    pub fn log(&self) -> RoomLog {
+        let mut heads = self.heads.clone();
+        if self.template.head_interval > 1 && self.records.len() > 1 {
+            let len = self.records.len() as u64;
+            let covered = heads.last().map(|h| h.length == len).unwrap_or(false);
+            if !covered {
+                if let Ok(tail_head) = self.emit_head() {
+                    heads.push(tail_head);
+                }
+            }
+        }
+        RoomLog {
+            world_id: self.world_id.clone(),
+            template: self.template.clone(),
+            records: self.records.clone(),
+            heads,
+        }
+    }
+
+    pub fn records(&self) -> &[Record] { &self.records }
+    pub fn heads(&self) -> &[WorldHead] { &self.heads }
+    pub fn last_hash(&self) -> Option<String> { self.records.last().and_then(|r| r.hash().ok()) }
+    pub fn world_id(&self) -> &DidKey { &self.world_id }
+    pub fn template(&self) -> &RoomTemplate { &self.template }
+    pub fn members(&self) -> &HashMap<DidKey, Member> { &self.members }
+    pub fn keypair(&self) -> &Keypair { &self.keypair }
+    pub fn head_interval(&self) -> u64 { self.template.head_interval }
+
+    pub fn is_redacted(&self, message_hash: &str) -> bool {
+        let mut redact_hashes: Vec<String> = Vec::new();
+        let mut resolved: HashSet<String> = HashSet::new();
+        for rec in &self.records {
+            match rec {
+                Record::Redact(r) if r.target_hash == message_hash => {
+                    if let Ok(h) = rec.hash() { redact_hashes.push(h); }
+                }
+                Record::HumanOverride(o) if o.action == "restore" => {
+                    resolved.insert(o.overrides_hash.clone());
+                }
+                _ => {}
+            }
+        }
+        redact_hashes.iter().any(|h| !resolved.contains(h))
+    }
+
+    fn next_seq(&self) -> u64 { self.records.len() as u64 }
+
+    fn should_emit_head(&self) -> bool {
+        let n = self.template.head_interval;
+        if n <= 1 { return false; }
+        let appends = self.records.len().saturating_sub(1) as u64;
+        appends > 0 && appends % n == 0
+    }
+
+    pub(crate) fn push(&mut self, rec: Record) -> Result<()> {
+        self.records.push(rec);
+        if self.should_emit_head() {
+            let head = self.emit_head()?;
+            self.heads.push(head);
+        }
+        Ok(())
+    }
+
+    fn refuse(&mut self, requester: DidKey, request_hash: String, reason: &str) -> Result<Record> {
+        let rec = Refusal::new(
+            self.world_id.clone(), self.next_seq(), self.last_hash(),
+            request_hash, requester, reason.into(),
+        );
+        let signed = crate::sign_record(rec, &self.keypair, Record::Refusal, |r, p| r.proof = p)?;
+        let out = Record::Refusal(signed);
+        self.push(out.clone())?;
+        Ok(out)
+    }
+
+    fn rate_ok(&self, author: &DidKey) -> bool {
+        let window = self.template.rate_limit_window as usize;
+        let cap = self.template.rate_limit_count as usize;
+        let recent = self.records.iter().rev().take(window)
+            .filter(|r| matches!(r, Record::Message(m) if &m.author_id == author))
+            .count();
+        recent < cap
+    }
+
+    fn inter_ai_pace_ok(&self, is_ai: bool) -> bool {
+        if !is_ai || self.template.inter_ai_pace == 0 {
+            return true;
+        }
+        let mut last_ai_idx: Option<usize> = None;
+        for (i, rec) in self.records.iter().enumerate().rev() {
+            if let Record::Message(m) = rec {
+                let ai = self.members.get(&m.author_id).map(|x| x.is_ai).unwrap_or(false);
+                if ai {
+                    last_ai_idx = Some(i);
+                    break;
+                }
+            }
+        }
+        match last_ai_idx {
+            None => true,
+            Some(idx) => {
+                let since = (self.records.len() - idx - 1) as u64;
+                since >= self.template.inter_ai_pace
+            }
+        }
+    }
+
+    pub fn join(&mut self, subject_kp: &Keypair, tier: &str, is_ai: bool) -> Result<Record> {
+        let subject = subject_kp.did();
+        if self.members.contains_key(&subject) {
+            return self.refuse(subject, "".into(), "already_member");
+        }
+        if tier_rank(tier).is_none() {
+            return self.refuse(subject, "".into(), "unknown_tier");
+        }
+        if self.template.personal {
+            return self.refuse(subject, "".into(), "personal_room");
+        }
+        if self.template.membership == "human_only" && is_ai {
+            return self.refuse(subject, "".into(), "human_only_room");
+        }
+        if self.template.membership == "ai_only" && !is_ai {
+            return self.refuse(subject, "".into(), "ai_only_room");
+        }
+        if self.template.join_policy == "invite" {
+            return self.refuse(subject, "".into(), "invite_required");
+        }
+        if self.template.join_policy == "approval" {
+            return self.refuse(subject, "".into(), "approval_required");
+        }
+        let rec = Join::new(
+            self.world_id.clone(), self.next_seq(), self.last_hash(),
+            subject.clone(), tier.into(), is_ai,
+        );
+        let signed = if self.template.head_interval <= 1 {
+            crate::sign_record_dual(rec, subject_kp, &self.keypair, Record::Join, |r, p| r.proof = p)?
+        } else {
+            crate::sign_record(rec, subject_kp, Record::Join, |r, p| r.proof = p)?
+        };
+        self.members.insert(subject, Member { tier: tier.into(), is_ai });
+        let out = Record::Join(signed);
+        self.push(out.clone())?;
+        Ok(out)
+    }
+
+    pub fn leave(&mut self, subject_kp: &Keypair) -> Result<Option<Record>> {
+        let subject = subject_kp.did();
+        if !self.members.contains_key(&subject) {
+            return Ok(None);
+        }
+        let rec = Leave::new(
+            self.world_id.clone(), self.next_seq(), self.last_hash(), subject.clone(),
+        );
+        let signed = crate::sign_record(rec, subject_kp, Record::Leave, |r, p| r.proof = p)?;
+        self.members.remove(&subject);
+        let out = Record::Leave(signed);
+        self.push(out.clone())?;
+        Ok(Some(out))
+    }
+
+    pub fn post(&mut self, author_kp: &Keypair, text: &str, kind: &str) -> Result<Record> {
+        let author = author_kp.did();
+        let Some(m) = self.members.get(&author).cloned() else {
+            return self.refuse(author, "".into(), "not_a_member");
+        };
+        if tier_rank(&m.tier).unwrap_or(0) < tier_rank("communicate").unwrap() {
+            return self.refuse(author, "".into(), "insufficient_tier");
+        }
+        if text.len() as u64 > self.template.max_msg_len {
+            return self.refuse(author, "".into(), "message_too_long");
+        }
+        if !self.rate_ok(&author) {
+            return self.refuse(author, "".into(), "rate_limit");
+        }
+        if !self.inter_ai_pace_ok(m.is_ai) {
+            return self.refuse(author, "".into(), "inter_ai_pace");
+        }
+        let rec = Message::new(
+            self.world_id.clone(), self.next_seq(), self.last_hash(),
+            author.clone(), text.into(), kind.into(),
+        );
+        let signed = if self.template.head_interval <= 1 {
+            crate::sign_record_dual(rec, author_kp, &self.keypair, Record::Message, |r, p| r.proof = p)?
+        } else {
+            crate::sign_record(rec, author_kp, Record::Message, |r, p| r.proof = p)?
+        };
+        let out = Record::Message(signed);
+        self.push(out.clone())?;
+        Ok(out)
+    }
+
+    pub fn redact(
+        &mut self,
+        subject_kp: &Keypair,
+        target_hash: &str,
+        rule: &str,
+        reason: &str,
+    ) -> Result<Record> {
+        let subject = subject_kp.did();
+        let Some(m) = self.members.get(&subject).cloned() else {
+            return self.refuse(subject, "".into(), "not_a_member");
+        };
+        let target = self.records.iter()
+            .find(|r| r.hash().ok().as_deref() == Some(target_hash));
+        let target_msg = match target {
+            Some(Record::Message(msg)) => msg,
+            _ => return self.refuse(subject, "".into(), "target_not_found"),
+        };
+        if self.template.moderation == "none" {
+            return self.refuse(subject, "".into(), "moderation_disabled");
+        }
+        let is_author = target_msg.author_id == subject;
+        let is_mod = self.template.moderation == "moderator"
+            && tier_rank(&m.tier).unwrap_or(0) >= tier_rank("control").unwrap();
+        let actor_role = if is_author {
+            "author"
+        } else if is_mod {
+            "moderator"
+        } else {
+            return self.refuse(subject, "".into(), "not_allowed");
+        };
+        if !self.template.redaction_rules.iter().any(|r| r == rule) {
+            return self.refuse(subject, "".into(), "rule_not_allowed");
+        }
+        let rec = Redact::new(
+            self.world_id.clone(), self.next_seq(), self.last_hash(),
+            subject.clone(), target_hash.into(),
+            actor_role.into(), rule.into(), reason.into(),
+        );
+        let signed = if self.template.head_interval <= 1 {
+            crate::sign_record_dual(rec, subject_kp, &self.keypair, Record::Redact, |r, p| r.proof = p)?
+        } else {
+            crate::sign_record(rec, subject_kp, Record::Redact, |r, p| r.proof = p)?
+        };
+        let out = Record::Redact(signed);
+        self.push(out.clone())?;
+        Ok(out)
+    }
+
+    pub fn override_ai(&mut self, overrider_kp: &Keypair, overrides_hash: &str, reason: &str) -> Result<Record> {
+        let overrider = overrider_kp.did();
+        let Some(m) = self.members.get(&overrider).cloned() else {
+            return Err(Error::Policy("overrider is not a member".into()));
+        };
+        if m.is_ai {
+            return Err(Error::Policy("only humans can override".into()));
+        }
+        if tier_rank(&m.tier).unwrap_or(0) < tier_rank("control").unwrap() {
+            return Err(Error::Policy("insufficient tier".into()));
+        }
+        let target = self.records.iter()
+            .find(|r| r.hash().ok().as_deref() == Some(overrides_hash));
+        let Some(target_rec) = target else {
+            return Err(Error::Policy("target not found".into()));
+        };
+        let Some(author) = target_rec.author_id() else {
+            return Err(Error::Policy("target has no author".into()));
+        };
+        let is_ai = self.members.get(author).map(|m| m.is_ai).unwrap_or(false);
+        if !is_ai {
+            return Err(Error::Policy("can only override AI records".into()));
+        }
+        if let Some(spec) = &self.template.moderator {
+            if &spec.moderator_id == author && !spec.can_be_overridden {
+                return Err(Error::Policy("this AI cannot be overridden".into()));
+            }
+        }
+        let rec = HumanOverride::new(
+            self.world_id.clone(), self.next_seq(), self.last_hash(),
+            overrides_hash.into(), overrider.clone(), "none".into(), reason.into(),
+        );
+        let signed = if self.template.head_interval <= 1 {
+            crate::sign_record_dual(rec, overrider_kp, &self.keypair, Record::HumanOverride, |r, p| r.proof = p)?
+        } else {
+            crate::sign_record(rec, overrider_kp, Record::HumanOverride, |r, p| r.proof = p)?
+        };
+        let out = Record::HumanOverride(signed);
+        self.push(out.clone())?;
+        Ok(out)
+    }
+
+    pub fn restore_incident(&mut self, restorer_kp: &Keypair, redact_hash: &str, reason: &str) -> Result<Record> {
+        let restorer = restorer_kp.did();
+        let Some(m) = self.members.get(&restorer).cloned() else {
+            return Err(Error::Policy("restorer is not a member".into()));
+        };
+        if m.is_ai {
+            return Err(Error::Policy("only humans can restore".into()));
+        }
+        if tier_rank(&m.tier).unwrap_or(0) < tier_rank("control").unwrap() {
+            return Err(Error::Policy("insufficient tier".into()));
+        }
+        let target = self.records.iter()
+            .find(|r| r.hash().ok().as_deref() == Some(redact_hash));
+        match target {
+            Some(Record::Redact(_)) => {}
+            _ => return Err(Error::Policy("restore target must be a redact record".into())),
+        }
+        let rec = HumanOverride::new(
+            self.world_id.clone(), self.next_seq(), self.last_hash(),
+            redact_hash.into(), restorer.clone(), "restore".into(), reason.into(),
+        );
+        let signed = if self.template.head_interval <= 1 {
+            crate::sign_record_dual(rec, restorer_kp, &self.keypair, Record::HumanOverride, |r, p| r.proof = p)?
+        } else {
+            crate::sign_record(rec, restorer_kp, Record::HumanOverride, |r, p| r.proof = p)?
+        };
+        let out = Record::HumanOverride(signed);
+        self.push(out.clone())?;
+        Ok(out)
+    }
+
+    pub fn declare_succession(
+        &mut self,
+        outgoing_kp: &Keypair,
+        incoming_kp: &Keypair,
+        shard_hash: &str,
+        reason: &str,
+    ) -> Result<Record> {
+        let outgoing_id = outgoing_kp.did();
+        let incoming_id = incoming_kp.did();
+        let Some(m) = self.members.get(&outgoing_id) else {
+            return Err(Error::Policy("outgoing is not a member".into()));
+        };
+        if tier_rank(&m.tier).unwrap_or(0) < tier_rank("control").unwrap() {
+            return Err(Error::Policy("outgoing must be control or higher".into()));
+        }
+        if outgoing_id == incoming_id {
+            return Err(Error::Policy("outgoing and incoming must differ".into()));
+        }
+        let rec = ModeratorSuccession::new(
+            self.world_id.clone(), self.next_seq(), self.last_hash(),
+            outgoing_id, incoming_id, shard_hash.into(), reason.into(),
+        );
+        let signed = crate::sign_record_triple(
+            rec, outgoing_kp, incoming_kp, &self.keypair,
+            Record::ModeratorSuccession, |r, p| r.proof = p,
+        )?;
+        let out = Record::ModeratorSuccession(signed);
+        self.push(out.clone())?;
+        Ok(out)
+    }
+
+    pub fn visible_log(&self) -> Vec<serde_json::Value> {
+        use serde_json::json;
+
+        let hashes: Vec<String> = self.records.iter()
+            .map(|r| r.hash().unwrap_or_default())
+            .collect();
+        let mut hash_to_idx: HashMap<String, usize> = HashMap::new();
+        for (i, h) in hashes.iter().enumerate() {
+            hash_to_idx.insert(h.clone(), i);
+        }
+
+        let mut redactions_by_target: HashMap<usize, Vec<usize>> = HashMap::new();
+        let mut resolved_redacts: HashSet<usize> = HashSet::new();
+        for (i, rec) in self.records.iter().enumerate() {
+            match rec {
+                Record::Redact(r) => {
+                    if let Some(&target_idx) = hash_to_idx.get(&r.target_hash) {
+                        redactions_by_target.entry(target_idx).or_default().push(i);
+                    }
+                }
+                Record::HumanOverride(o) if o.action == "restore" => {
+                    if let Some(&redact_idx) = hash_to_idx.get(&o.overrides_hash) {
+                        resolved_redacts.insert(redact_idx);
+                    }
+                }
+                _ => {}
+            }
+        }
+
+        let mut out = Vec::new();
+        for (i, rec) in self.records.iter().enumerate() {
+            match rec {
+                Record::Message(m) => {
+                    let mut still_redacted: Option<usize> = None;
+                    let mut restored: Vec<usize> = Vec::new();
+                    if let Some(redact_idxs) = redactions_by_target.get(&i) {
+                        for &ri in redact_idxs {
+                            if resolved_redacts.contains(&ri) {
+                                restored.push(ri);
+                            } else if still_redacted.is_none() {
+                                still_redacted = Some(ri);
+                            }
+                        }
+                    }
+                    if let Some(ri) = still_redacted {
+                        if let Record::Redact(r) = &self.records[ri] {
+                            out.push(json!({
+                                "seq": m.seq, "type": "message", "kind": m.kind,
+                                "author": m.author_id.as_str(),
+                                "text": "[removed]",
+                                "redacted": true,
+                                "reason": r.reason,
+                                "rule": r.rule,
+                                "incident": short_hash(&hashes[ri]),
+                                "ts": m.ts,
+                            }));
+                        }
+                    } else {
+                        let mut obj = json!({
+                            "seq": m.seq, "type": "message", "kind": m.kind,
+                            "author": m.author_id.as_str(),
+                            "text": m.text,
+                            "redacted": false,
+                            "ts": m.ts,
+                        });
+                        if !restored.is_empty() {
+                            let notes: Vec<serde_json::Value> = restored.iter().map(|&ri| {
+                                if let Record::Redact(r) = &self.records[ri] {
+                                    json!({"incident": short_hash(&hashes[ri]), "reason": r.reason, "rule": r.rule})
+                                } else { json!({}) }
+                            }).collect();
+                            obj["restored_incidents"] = json!(notes);
+                        }
+                        out.push(obj);
+                    }
+                }
+                Record::Redact(r) => {
+                    out.push(json!({"seq": r.seq, "type": "redact", "by": r.subject_id.as_str(), "reason": r.reason, "target": r.target_hash, "rule": r.rule, "actor_role": r.actor_role, "incident": short_hash(&hashes[i])}));
+                }
+                Record::Join(j) => {
+                    out.push(json!({"seq": j.seq, "type": "join", "subject": j.subject_id.as_str(), "tier": j.tier, "is_ai": j.is_ai}));
+                }
+                Record::Leave(l) => {
+                    out.push(json!({"seq": l.seq, "type": "leave", "subject": l.subject_id.as_str()}));
+                }
+                Record::HumanOverride(o) => {
+                    out.push(json!({"seq": o.seq, "type": "human_override", "by": o.overridden_by.as_str(), "overrides": o.overrides_hash, "action": o.action, "reason": o.reason}));
+                }
+                Record::Refusal(r) => {
+                    out.push(json!({"seq": r.seq, "type": "refused", "requester": r.requester_id.as_str(), "reason": r.reason}));
+                }
+                Record::RoomCreated(_) => {
+                    out.push(json!({"seq": 0, "type": "created"}));
+                }
+                Record::ModeratorSuccession(s) => {
+                    out.push(json!({
+                        "seq": s.seq, "type": "moderator_succession",
+                        "outgoing": s.outgoing_id.as_str(),
+                        "incoming": s.incoming_id.as_str(),
+                        "reason": s.reason,
+                    }));
+                }
+                Record::KnowledgeShardExport(_) | Record::PortLanding(_) | Record::Bookmark(_) | Record::Presence(_) => {}
+            }
+        }
+        out
+    }
+}
+```
+
+----- FILE: chat-world/src/commons.rs  (to read: the Commons' log and its checks, with your repairs) -----
+```rust
+use crate::did::{DidKey, Keypair};
+use crate::error::{Error, Result};
+use crate::hash;
+use crate::proof::{Proof, ProofOrArray};
+use crate::record::Record;
+use crate::room::{Room, RoomLog};
+use crate::verify::verify_log;
+use serde::{Deserialize, Deserializer, Serialize, Serializer};
+use std::collections::HashSet;
+
+fn looks_like_hash(s: &str) -> bool {
+    s.len() == 64 && s.chars().all(|c| c.is_ascii_hexdigit())
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct CommonsLog {
+    pub commons_id: DidKey,
+    pub records: Vec<CommonsRecord>,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct RoomRegistered {
+    #[serde(rename = "type")]
+    pub type_: String,
+    pub commons_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub room_id: DidKey,
+    pub topic: String,
+    pub template_hash: String,
+    pub room_seed_hash: String,
+    pub registered_by: DidKey,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub also_listed_in: Vec<DidKey>,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct SiblingDeclared {
+    #[serde(rename = "type")]
+    pub type_: String,
+    pub commons_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub parent_id: DidKey,
+    pub sibling_id: DidKey,
+    pub parent_kw_id: DidKey,
+    pub shard_hash: String,
+    pub purpose: String,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+#[derive(Clone, Debug)]
+pub enum CommonsRecord {
+    RoomRegistered(RoomRegistered),
+    SiblingDeclared(SiblingDeclared),
+}
+
+impl Serialize for CommonsRecord {
+    fn serialize<S: Serializer>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error> {
+        match self {
+            CommonsRecord::RoomRegistered(r) => r.serialize(serializer),
+            CommonsRecord::SiblingDeclared(s) => s.serialize(serializer),
+        }
+    }
+}
+
+impl<'de> Deserialize<'de> for CommonsRecord {
+    fn deserialize<D: Deserializer<'de>>(deserializer: D) -> std::result::Result<Self, D::Error> {
+        let v = serde_json::Value::deserialize(deserializer)?;
+        let t = v
+            .get("type")
+            .and_then(|x| x.as_str())
+            .ok_or_else(|| serde::de::Error::missing_field("type"))?;
+        match t {
+            "room_registered" => {
+                let r: RoomRegistered =
+                    serde_json::from_value(v).map_err(serde::de::Error::custom)?;
+                Ok(CommonsRecord::RoomRegistered(r))
+            }
+            "sibling_declared" => {
+                let s: SiblingDeclared =
+                    serde_json::from_value(v).map_err(serde::de::Error::custom)?;
+                Ok(CommonsRecord::SiblingDeclared(s))
+            }
+            other => Err(serde::de::Error::unknown_variant(
+                other,
+                &["room_registered", "sibling_declared"],
+            )),
+        }
+    }
+}
+
+impl CommonsRecord {
+    pub fn hash(&self) -> Result<String> {
+        match self {
+            CommonsRecord::RoomRegistered(r) => hash::hash_of(r),
+            CommonsRecord::SiblingDeclared(s) => hash::hash_of(s),
+        }
+    }
+    pub fn prev(&self) -> Option<&String> {
+        match self {
+            CommonsRecord::RoomRegistered(r) => r.prev.as_ref(),
+            CommonsRecord::SiblingDeclared(s) => s.prev.as_ref(),
+        }
+    }
+    pub fn seq(&self) -> u64 {
+        match self {
+            CommonsRecord::RoomRegistered(r) => r.seq,
+            CommonsRecord::SiblingDeclared(s) => s.seq,
+        }
+    }
+    pub fn proof(&self) -> &ProofOrArray {
+        match self {
+            CommonsRecord::RoomRegistered(r) => &r.proof,
+            CommonsRecord::SiblingDeclared(s) => &s.proof,
+        }
+    }
+}
+
+pub struct Commons {
+    pub world_id: DidKey,
+    keypair: Keypair,
+    records: Vec<CommonsRecord>,
+}
+
+impl Commons {
+    pub fn new(keypair: Keypair) -> Self {
+        let world_id = keypair.did();
+        Commons { world_id, keypair, records: Vec::new() }
+    }
+
+    pub fn records(&self) -> &[CommonsRecord] {
+        &self.records
+    }
+
+    pub fn log(&self) -> CommonsLog {
+        CommonsLog {
+            commons_id: self.world_id.clone(),
+            records: self.records.clone(),
+        }
+    }
+
+    pub fn register_room(
+        &mut self,
+        room: &Room,
+        registrant_kp: &Keypair,
+        topic: Option<String>,
+    ) -> Result<RoomRegistered> {
+        let seq = self.records.len() as u64;
+        let prev = match self.records.last() {
+            Some(r) => Some(r.hash()?),
+            None => None,
+        };
+        let seed_hash = room.records().first()
+            .ok_or_else(|| Error::Policy("room has no seed".into()))?
+            .hash()?;
+        let mut rec = RoomRegistered {
+            type_: "room_registered".into(),
+            commons_id: self.world_id.clone(),
+            seq, prev,
+            room_id: room.world_id().clone(),
+            topic: topic.unwrap_or_else(|| room.template().topic.clone()),
+            template_hash: room.template().hash()?,
+            room_seed_hash: seed_hash,
+            registered_by: registrant_kp.did(),
+            also_listed_in: Vec::new(),
+            ts: crate::now(),
+            proof: ProofOrArray::placeholder(),
+        };
+        let body = hash::body_for_signing(&rec)?;
+        let reg_sig = registrant_kp.sign(&body);
+        let commons_sig = self.keypair.sign(&body);
+        rec.proof = ProofOrArray::array(vec![
+            Proof::create(registrant_kp, &reg_sig),
+            Proof::create(&self.keypair, &commons_sig),
+        ]);
+        self.records.push(CommonsRecord::RoomRegistered(rec.clone()));
+        Ok(rec)
+    }
+
+    pub fn declare_sibling(
+        &mut self,
+        parent_kp: &Keypair,
+        sibling_kp: &Keypair,
+        parent_kw_id: &DidKey,
+        shard_hash: &str,
+        purpose: &str,
+    ) -> Result<SiblingDeclared> {
+        if parent_kp.did() == sibling_kp.did() {
+            return Err(Error::Policy("parent == sibling".into()));
+        }
+        if !looks_like_hash(shard_hash) {
+            return Err(Error::Policy("shard_hash must be 64 hex chars".into()));
+        }
+        let seq = self.records.len() as u64;
+        let prev = match self.records.last() {
+            Some(r) => Some(r.hash()?),
+            None => None,
+        };
+        let mut rec = SiblingDeclared {
+            type_: "sibling_declared".into(),
+            commons_id: self.world_id.clone(),
+            seq, prev,
+            parent_id: parent_kp.did(),
+            sibling_id: sibling_kp.did(),
+            parent_kw_id: parent_kw_id.clone(),
+            shard_hash: shard_hash.into(),
+            purpose: purpose.into(),
+            ts: crate::now(),
+            proof: ProofOrArray::placeholder(),
+        };
+        let body = hash::body_for_signing(&rec)?;
+        let p_sig = parent_kp.sign(&body);
+        let s_sig = sibling_kp.sign(&body);
+        let c_sig = self.keypair.sign(&body);
+        rec.proof = ProofOrArray::array(vec![
+            Proof::create(parent_kp, &p_sig),
+            Proof::create(sibling_kp, &s_sig),
+            Proof::create(&self.keypair, &c_sig),
+        ]);
+        self.records.push(CommonsRecord::SiblingDeclared(rec.clone()));
+        Ok(rec)
+    }
+}
+
+pub fn verify_commons(commons: &Commons) -> Result<()> {
+    verify_commons_log(&commons.log())
+}
+
+pub fn verify_commons_log(log: &CommonsLog) -> Result<()> {
+    let mut prev: Option<String> = None;
+    let mut seen_rooms: HashSet<DidKey> = HashSet::new();
+    let mut seen_siblings: HashSet<DidKey> = HashSet::new();
+
+    for (i, rec) in log.records.iter().enumerate() {
+        if rec.seq() != i as u64 {
+            return Err(Error::Chain(format!(
+                "record {i}: seq {} != expected {}",
+                rec.seq(),
+                i
+            )));
+        }
+        match rec {
+            CommonsRecord::RoomRegistered(r) => {
+                if r.type_ != "room_registered" {
+                    return Err(Error::Verification(format!("record {i}: bad type")));
+                }
+                if r.commons_id != log.commons_id {
+                    return Err(Error::Verification(format!("record {i}: commons_id mismatch")));
+                }
+                if r.prev != prev {
+                    return Err(Error::Chain(format!("record {i}: prev mismatch")));
+                }
+                if !looks_like_hash(&r.template_hash) {
+                    return Err(Error::Policy(format!("record {i}: bad template_hash")));
+                }
+                if !looks_like_hash(&r.room_seed_hash) {
+                    return Err(Error::Policy(format!("record {i}: bad room_seed_hash")));
+                }
+                if !seen_rooms.insert(r.room_id.clone()) {
+                    return Err(Error::Policy(format!(
+                        "record {i}: room {} already registered",
+                        r.room_id.as_str()
+                    )));
+                }
+                let body = hash::body_for_signing(r)?;
+                let reg = r.proof.find_by_method(&r.registered_by)
+                    .ok_or_else(|| Error::Verification(format!("record {i}: missing registrant proof")))?;
+                reg.verify(&body)?;
+                let com = r.proof.find_by_method(&log.commons_id)
+                    .ok_or_else(|| Error::Verification(format!("record {i}: missing commons proof")))?;
+                com.verify(&body)?;
+            }
+            CommonsRecord::SiblingDeclared(s) => {
+                if s.type_ != "sibling_declared" {
+                    return Err(Error::Verification(format!("record {i}: bad type")));
+                }
+                if s.commons_id != log.commons_id {
+                    return Err(Error::Verification(format!("record {i}: commons_id mismatch")));
+                }
+                if s.prev != prev {
+                    return Err(Error::Chain(format!("record {i}: prev mismatch")));
+                }
+                if s.parent_id == s.sibling_id {
+                    return Err(Error::Policy(format!("record {i}: parent == sibling")));
+                }
+                if !looks_like_hash(&s.shard_hash) {
+                    return Err(Error::Policy(format!("record {i}: bad shard_hash")));
+                }
+                if !seen_siblings.insert(s.sibling_id.clone()) {
+                    return Err(Error::Policy(format!(
+                        "record {i}: sibling {} already declared",
+                        s.sibling_id.as_str()
+                    )));
+                }
+                let body = hash::body_for_signing(s)?;
+                let p = s.proof.find_by_method(&s.parent_id)
+                    .ok_or_else(|| Error::Verification(format!("record {i}: missing parent proof")))?;
+                p.verify(&body)?;
+                let sib = s.proof.find_by_method(&s.sibling_id)
+                    .ok_or_else(|| Error::Verification(format!("record {i}: missing sibling proof")))?;
+                sib.verify(&body)?;
+                let com = s.proof.find_by_method(&log.commons_id)
+                    .ok_or_else(|| Error::Verification(format!("record {i}: missing commons proof")))?;
+                com.verify(&body)?;
+            }
+        }
+        prev = Some(rec.hash()?);
+    }
+    Ok(())
+}
+
+/// Cross-log verification of a `RoomRegistered` entry against the target room's `RoomLog`.
+/// Checks that the room's log verifies, that `room_id`, `template_hash`, and `room_seed_hash`
+/// match the room, and that `registered_by` was in the room (either its creator or a joined member).
+pub fn verify_registration(reg: &RoomRegistered, room: &RoomLog) -> Result<()> {
+    if reg.type_ != "room_registered" {
+        return Err(Error::Verification("not a room_registered record".into()));
+    }
+    let body = hash::body_for_signing(reg)?;
+    let reg_proof = reg
+        .proof
+        .find_by_method(&reg.registered_by)
+        .ok_or_else(|| Error::Verification("missing registrant proof".into()))?;
+    reg_proof.verify(&body)?;
+    let com_proof = reg
+        .proof
+        .find_by_method(&reg.commons_id)
+        .ok_or_else(|| Error::Verification("missing commons proof".into()))?;
+    com_proof.verify(&body)?;
+
+    verify_log(room)?;
+
+    if reg.room_id != room.world_id {
+        return Err(Error::Verification(
+            "registration room_id does not match room world_id".into(),
+        ));
+    }
+    let expected_template_hash = room.template.hash()?;
+    if reg.template_hash != expected_template_hash {
+        return Err(Error::Verification(
+            "registration template_hash does not match room template".into(),
+        ));
+    }
+    let seed = room
+        .records
+        .first()
+        .ok_or_else(|| Error::Chain("room has no seed record".into()))?;
+    let expected_seed_hash = seed.hash()?;
+    if reg.room_seed_hash != expected_seed_hash {
+        return Err(Error::Verification(
+            "registration room_seed_hash does not match room seed".into(),
+        ));
+    }
+
+    let was_in_room = room.records.iter().any(|rec| match rec {
+        Record::RoomCreated(rc) => rc.creator_id == reg.registered_by,
+        Record::Join(j) => j.subject_id == reg.registered_by,
+        _ => false,
+    });
+    if !was_in_room {
+        return Err(Error::Policy(
+            "registrant was never in the registered room".into(),
+        ));
+    }
+
+    Ok(())
+}
+
+/// Cross-log verification of a `SiblingDeclared` entry against the parent's `KnowledgeWorld` `RoomLog`.
+/// Checks that `parent` is the room named by `parent_kw_id`, that it verifies, that it is a personal
+/// room created by `sib.parent_id`, and that it contains a `KnowledgeShardExport` record with hash
+/// equal to `sib.shard_hash` (and `successor_id == sib.sibling_id`).
+pub fn verify_sibling(sib: &SiblingDeclared, parent: &RoomLog) -> Result<()> {
+    if sib.type_ != "sibling_declared" {
+        return Err(Error::Verification("not a sibling_declared record".into()));
+    }
+    if sib.parent_id == sib.sibling_id {
+        return Err(Error::Policy("parent == sibling".into()));
+    }
+    let body = hash::body_for_signing(sib)?;
+    let p_proof = sib
+        .proof
+        .find_by_method(&sib.parent_id)
+        .ok_or_else(|| Error::Verification("missing parent proof".into()))?;
+    p_proof.verify(&body)?;
+    let s_proof = sib
+        .proof
+        .find_by_method(&sib.sibling_id)
+        .ok_or_else(|| Error::Verification("missing sibling proof".into()))?;
+    s_proof.verify(&body)?;
+    let c_proof = sib
+        .proof
+        .find_by_method(&sib.commons_id)
+        .ok_or_else(|| Error::Verification("missing commons proof".into()))?;
+    c_proof.verify(&body)?;
+
+    if parent.world_id != sib.parent_kw_id {
+        return Err(Error::Verification(
+            "parent RoomLog world_id does not match parent_kw_id".into(),
+        ));
+    }
+
+    verify_log(parent)?;
+
+    if !parent.template.personal {
+        return Err(Error::Policy(
+            "parent KnowledgeWorld must be a personal room".into(),
+        ));
+    }
+    match parent.records.first() {
+        Some(Record::RoomCreated(rc)) => {
+            if rc.creator_id != sib.parent_id {
+                return Err(Error::Policy(
+                    "parent KnowledgeWorld was not created by sib.parent_id".into(),
+                ));
+            }
+        }
+        _ => return Err(Error::Chain("parent log missing room_created".into())),
+    }
+
+    let mut found_shard = false;
+    for rec in &parent.records {
+        if let Record::KnowledgeShardExport(k) = rec {
+            if rec.hash()? == sib.shard_hash {
+                if k.successor_id != sib.sibling_id {
+                    return Err(Error::Policy(
+                        "shard export successor_id does not match sibling_id".into(),
+                    ));
+                }
+                found_shard = true;
+                break;
+            }
+        }
+    }
+    if !found_shard {
+        return Err(Error::Verification(
+            "shard_hash not found in parent KnowledgeWorld log".into(),
+        ));
+    }
+
+    Ok(())
+}
+```
+
+END OF FILE

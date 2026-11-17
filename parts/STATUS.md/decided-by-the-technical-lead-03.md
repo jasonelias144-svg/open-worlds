@@ -8,6 +8,46 @@
 
 ## Decided by the technical lead
 
+- 2026-11-17, the lobby's list of doors, as it is asked of Gemini
+  (sketches/replies/2026-11-17-2-for-gemini.txt). (a) A door holds a
+  room's id, its topic as registered, its law by hash, where in the
+  Commons' log it was registered, and, only when the reader holds the
+  room's log and that log holds, six fields of the room's law. It has
+  no field for a person's id, for a count of members or messages, or
+  for a time, and a sibling declared makes no door. (b) The list says
+  how many records of the Commons' log it was drawn from, and the
+  hash of the last, so that an older list can be told from a newer
+  one. (c) A list handed on is checked by drawing it again. A reader
+  accepts only what they can draw themselves: a law in the list for a
+  room whose log the reader does not hold is refused. (d) In the text
+  for a mind, every string that came from a log is written between
+  quotes, on one line, in ASCII; any other character is written as
+  its JSON code. (e) Gemini builds the list first, and attacks on it
+  come next. Before the file went out the technical lead built the
+  step once, outside the repository, to be sure that its twelve tests
+  can be met. That build is not kept. (f) The list moves no one:
+  nothing in it joins a room.
+  *Why:* (a) The map shows places and no one's whereabouts
+  (docs/COMMONS.md; docs/FUNDAMENTALS.md, privacy, 17). A rule kept
+  by what a record can hold needs no check to keep it. (b) A room
+  registered since is missing from an old list, and a reader should
+  see that the list is old. (c) What a reader can't draw is someone's
+  word. (d) Whoever registers a room chooses its topic, and a mind
+  reads the list as text. A topic holding a line end could write a
+  door of its own; letters that run the other way, or can't be seen,
+  could make a line read as something it is not. (e) The founder:
+  "they write a few pieces of code". And a file whose tests can't be
+  met costs a round of the founder's time with Gemini, which is
+  short. (f) A move is the mover's own signed act (Decided,
+  2026-11-17, the map).
+  *What would show it wrong:* for (a), the first two in the Commons
+  being unable to choose a room from what a door shows; then a door
+  gains what a room chooses to publish about itself, never what is
+  true of those in it. For (d), a topic in another script that its
+  readers can't read in the text view; then the rule becomes a list
+  of the characters written as codes. For (e), a delivery that does
+  not build; then a piece of this size is built here, and the
+  collaborator is asked to attack it.
 - 2026-11-17, what follows from the founder's words of that evening
   (Decided). (a) A file for a collaborator carries one step, the
   files the step needs, tests that say what done means, and what not

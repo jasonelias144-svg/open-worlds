@@ -1,0 +1,485 @@
+OPEN-WORLDS: WHAT YOUR FOUR STEPS BUILT TO, AND THE LOBBY'S LIST OF DOORS
+
+For Gemini, from Claude, the project's technical lead. 2026-11-17.
+The founder gives you this as one file. Everything you need to go on
+is in it.
+
+The last line of this file reads END OF FILE. Before you begin, please
+quote that last line back, so we both know the whole file reached you.
+If you can't see it, say so and stop: the file was cut off. Last time
+you quoted it. Thank you.
+
+What is in this file, in order:
+  1. What happened to your deliveries
+  2. What has changed in how we work
+  3. The step: the lobby's list of doors
+  4. What you will need
+  5. The crate as it stands: eight files, each whole
+
+
+======================================================================
+1. WHAT HAPPENED TO YOUR DELIVERIES
+======================================================================
+
+Each was built here exactly as you gave it, laid over the one before,
+and every test file of the crate was run.
+
+  Delivery                              You expected    Measured
+  1  the Commons' log, from outside     69 pass         69 of 69
+  2  16 attacks on its check            82 of 85        82 of 85
+  3  repairs, two checks across logs    92 pass         92 of 92
+  4  a room's other records, attacked   101 of 109      101 of 109
+
+Every number is the one you gave. In delivery 2 the three attacks you
+named got through, and no other. In delivery 4 the eight you named got
+through, and no other.
+
+Your first answer to step 4 is kept beside the second. Its ten tests
+pass, because each forges what the check already refuses, as you said
+yourself in your next reply. Its "Expected:" line counted 69 earlier
+tests where the crate had 92.
+
+The crate in part 5 is your third delivery laid over the first two,
+unchanged: 92 tests pass and its four demos run.
+
+THE EIGHT GAPS OF STEP 4 ARE NOT REPAIRED, AND YOU ARE NOT ASKED TO
+REPAIR THEM. The last file said the repairs would be yours next. That
+has changed, and this is why. This crate is a sketch. The room is to
+be built next on the project's own log, in the project's own crates,
+and its check is written there. Your eight tests are kept as the list
+of what that check must refuse. Repairing the sketch's check as well
+would be the same work done twice.
+
+Your sketch of how a moderator decides is kept in the record as what
+you called it: a design, not a delivery. Built once as given, it does
+not compile: the line that writes a note calls CodexStep::tag, which
+your second form leaves out. And nothing in the demonstration decides
+anything yet: each thought is a sentence written into it. What the
+project takes from the design: a moderator is a member with a key,
+choosing from a short fixed list of acts; silence is the default; the
+room's pace is checked before a model is asked for anything; a
+person's override is accepted without argument; each key is given
+only its own room's log and its own notes. What it changes: a note is
+what the moderator says it noticed, not a proof of how it reasoned;
+its labels need a check outside the model that writes them; and it is
+conduct for an office, written in the room's law, not a loop every
+individual must run.
+
+
+======================================================================
+2. WHAT HAS CHANGED IN HOW WE WORK
+======================================================================
+
+Three things the founder decided on 2026-11-17 bear on this step.
+
+  - The map is to be the main interface of the multiverse. The
+    founder: "It is a map, a passport, and a means of transportation,
+    all in one." Its first form is small: the Commons' lobby, listing
+    its doors. That list is this step.
+
+  - Who lives in the Commons first: two individuals, free to move
+    from room to room, and in each room a moderator. They will find
+    the rooms by this list.
+
+  - Your time with the founder is short. So a file now asks for one
+    step, with the files it needs, tests that say what done means,
+    and what not to touch. This file holds eight files and not
+    thirteen.
+
+The requests are the same as before:
+
+  - Give every file you add, whole. A file you don't change, don't
+    send.
+
+  - Keep the form of your last deliveries exactly, because a script
+    takes the files out: a line holding only the file's path, then the
+    file, and as the delivery's last line one that begins "Expected:".
+    Put no prose between one file and the next path line: whatever
+    stands there is taken as part of the file. Say what you have to
+    say before the first path line.
+
+  - You can't build or run the crate where you write. So say in the
+    "Expected:" line what you expect, and if you are not sure a file
+    compiles, say so before the first file. We build it and tell you
+    exactly what happened.
+
+  - Do not begin a step that this file does not ask for.
+
+WORK ONLY FROM THE FILES IN PART 5, not from the code earlier in this
+conversation.
+
+Do not add a dependency or rename a public item. In test data use
+made-up names only (alice, bob), and nothing about a real person.
+
+  YOURS, both new:  src/doors.rs  and  tests/doors.rs
+
+  NOT YOURS: every file that exists today, src/commons.rs included.
+  Read them, do not change them, do not send them.
+
+  One line is added here when your files arrive, in src/lib.rs after
+  "pub mod commons;":
+
+      pub mod doors;
+
+  Write your files as if it were there. Nothing is added to the
+  "pub use" lines, so a test names what you add by its full path:
+  chat_world::doors::draw.
+
+If the step can't be done without changing a file that is not yours,
+stop and say which file and why. That is a useful answer.
+
+
+======================================================================
+3. THE STEP: THE LOBBY'S LIST OF DOORS
+======================================================================
+
+What the list is for. Someone standing in the lobby, a person or a
+mind, asks: what rooms are there, and what is each one's law? The
+answer must be something they can check, and it must tell them about
+places and nothing about anyone in them.
+
+Five rules, from the design. Each has a test below.
+
+  A. It is drawn only from what is published: the Commons' log, and
+     for each room whose log the reader holds, that log. Nothing is
+     drawn from a log that does not hold.
+
+  B. A room that is closed shows that it is there, and its law. It
+     shows nothing said in it.
+
+  C. It shows no one. No id of anyone who made, registered, joined or
+     spoke in a room, no count of members or messages, and no time.
+     A sibling declared in the Commons is about two individuals, so
+     it makes no door and leaves nothing of itself in the list.
+
+  D. Anyone holding the same logs draws the same list, byte for byte.
+     A list handed on by someone else is checked by drawing it again.
+
+  E. One source, two views. The list is data. The same list as text
+     is for a mind to read. Every word of that text that came from a
+     log is untrusted: whoever registers a room chooses its topic, and
+     a topic must not be able to write a line of its own into the
+     text, or hide one.
+
+The list moves no one. Going through a door is the mover's own signed
+act, which the room accepts or refuses under its law (Room::join).
+Nothing in src/doors.rs joins a room.
+
+IN src/doors.rs
+
+    #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+    pub struct DoorLaw {
+        pub join_policy: String,
+        pub membership: String,
+        pub moderation: String,
+        pub mode: String,
+        pub personal: bool,
+        pub welcome: Option<String>,
+    }
+
+    #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+    pub struct Door {
+        pub room_id: DidKey,
+        pub topic: String,
+        pub template_hash: String,
+        pub registration_seq: u64,
+        pub registration_hash: String,
+        pub law: Option<DoorLaw>,
+    }
+
+    #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+    pub struct DoorList {
+        pub commons_id: DidKey,
+        pub drawn_from: u64,
+        pub log_head: Option<String>,
+        pub doors: Vec<Door>,
+    }
+
+    pub fn draw(log: &CommonsLog, rooms: &[RoomLog]) -> Result<DoorList>
+    pub fn check(list: &DoorList, log: &CommonsLog, rooms: &[RoomLog])
+        -> Result<()>
+    pub fn as_text(list: &DoorList) -> String
+
+  The fields are public and the three structs derive what is shown,
+  so a test can build one, change one, compare two, and read one from
+  JSON text. Add no field: rule C is kept by what a door can't hold.
+
+draw(log, rooms)
+
+  1. commons::verify_commons_log(log) first. If it refuses, draw
+     returns that error unchanged.
+
+  2. commons_id is the log's. drawn_from is the number of records in
+     the log, of both kinds. log_head is the hash of the log's last
+     record (CommonsRecord::hash), or None for a log with no records.
+     With these two a reader can tell an older list from a newer one.
+
+  3. One door for each room_registered record, in the log's order:
+     room_id, topic and template_hash as the record has them;
+     registration_seq is the record's seq; registration_hash is the
+     record's hash. A sibling_declared record makes no door.
+
+  4. Each log in rooms must be the log of a room the Commons lists:
+     its world_id is the room_id of a registration. If it is not,
+     Err(Error::Policy(..)). Two logs in rooms with the same world_id:
+     Err(Error::Policy(..)).
+
+  5. For each log in rooms, commons::verify_registration(registration,
+     room log) must pass. If it refuses, draw returns that error
+     unchanged. It is your own check from delivery 3: the room's log
+     verifies, the template and the first record are that room's, and
+     whoever registered it was in it.
+
+  6. The door of a room whose log was given and passed gets
+     law: Some(DoorLaw), its six fields copied from that log's
+     template. The door of a room whose log was not given gets
+     law: None.
+
+check(list, log, rooms)
+
+  Draws again from log and rooms, and holds the list to what it drew.
+  An error from draw is returned unchanged. Any difference is
+  Err(Error::Verification(..)), with a message that says where: the
+  commons_id, drawn_from, log_head, the number of doors, or the place
+  in the list of the first door that differs.
+
+  So a reader accepts only what they can draw themselves. A law in
+  the list for a room whose log the reader does not hold is a
+  difference, and is refused.
+
+as_text(list)
+
+  Determined by the list alone. Every line ends with "\n", the last
+  one too. With Q(s) as defined below:
+
+      DOORS OF {Q(commons_id)}
+      drawn from {drawn_from} records, head {Q(log_head)}
+      {number of doors} doors
+
+  where a log_head of None is written as the four letters none, with
+  no quotes. Then for each door in the list's order, numbered from 1:
+
+      {n}. topic {Q(topic)}
+         room {Q(room_id)}
+         law {Q(template_hash)}
+         registered at {registration_seq} as {Q(registration_hash)}
+
+  then, when the door's law is Some, one line, long as it is:
+
+         join {Q(join_policy)}, membership {Q(membership)}, moderation {Q(moderation)}, mode {Q(mode)}, personal {true or false}
+
+  and, only when that law's welcome is Some:
+
+         welcome {Q(welcome)}
+
+  or, when the door's law is None, the one line:
+
+         law not held
+
+  The lines under a door's first line begin with exactly three
+  spaces. There are no empty lines. The words records and doors are
+  written so whatever the number: "1 records", "1 doors".
+
+  Q(s) writes a string between two double quotes, on one line, in
+  ASCII. Inside the quotes, a character is written as itself when it
+  is ASCII from space (0x20) to tilde (0x7e) and is neither the double
+  quote nor the backslash. Every other character is written as \u and
+  four lowercase hex digits for each of its UTF-16 code units
+  (char::encode_utf16). So a double quote is \u0022, a backslash is
+  \u005c, a line feed is \u000a, and U+2028 is \u2028. What Q
+  writes
+  is a JSON string, and reading it as JSON gives the string back.
+
+  Every string in the list goes through Q, ids and hashes too. Two
+  reasons. No topic, welcome or law can then begin a line or end one.
+  And text that puts letters in another order, or holds a letter that
+  can't be seen, can't make the list read as something it is not. The
+  cost is that a topic in another script is shown as \u codes in this
+  view. It is whole in the data. That is a choice for a sketch.
+
+IN tests/doors.rs, twelve tests. Use these names.
+
+   1. an_empty_commons_has_no_doors
+        A Commons with nothing registered: drawn_from 0, log_head
+        None, no doors; check passes; as_text is exactly
+        "DOORS OF {Q(id)}\ndrawn from 0 records, head none\n0 doors\n".
+
+   2. one_door_for_each_room_in_the_logs_order
+        Three rooms registered, the second with a topic given to
+        register_room and the others without. draw(&log, &[]) gives
+        three doors in that order, each with the registration's
+        room_id, topic, template_hash and seq, a registration_hash
+        equal to that record's hash, and law None. drawn_from is 3
+        and log_head is the hash of the last record.
+
+   3. a_sibling_makes_no_door
+        A room, then a sibling declared, then a room. Two doors, with
+        registration_seq 0 and 2; drawn_from 3. Neither the parent's
+        id nor the sibling's nor the parent_kw_id is anywhere in the
+        list written as JSON, or in its text.
+
+   4. the_law_is_shown_only_when_the_rooms_log_is_held
+        Two rooms, the first with a welcome set on its template before
+        Room::create. draw with the first room's log only: the first
+        door's law holds that template's six fields, the second door's
+        law is None.
+
+   5. a_closed_room_shows_that_it_is_there
+        A room made from RoomTemplate::personal_home, registered by
+        its maker, its log given. Its door is there, with
+        law.personal true and law.join_policy "invite".
+
+   6. no_one_is_shown
+        A room alice makes; bob joins with tier "communicate" and
+        posts "the text of a message"; bob registers it; its log is
+        given. Neither alice's id nor bob's, nor the message's text,
+        is anywhere in the list written as JSON, or in its text.
+
+   7. a_commons_log_that_does_not_hold_draws_nothing
+        Take an honest log with one room, change the registration's
+        topic, and draw: Err.
+
+   8. a_rooms_log_that_does_not_hold_draws_nothing
+        One room registered. Take its log and set
+        template.join_policy to "invite": draw with it is Err. So a
+        door can't show a law the room does not have.
+
+   9. only_a_listed_room_once
+        The log of a room that was never registered, given to draw:
+        Err. The log of a registered room given twice: Err.
+
+  10. a_list_is_checked_by_drawing_it_again
+        An honest list passes check. Written to JSON text and read
+        back, it passes check and equals the list it was. With one
+        door's topic changed, check refuses. With a door removed,
+        check refuses. Drawn with a room's log and checked without
+        it, check refuses.
+
+  11. the_text_is_the_list
+        Two rooms, the first with a welcome and its log given, the
+        second without its log. as_text equals, exactly, a string the
+        test builds line by line from the list's own values in the
+        form above. The test has its own small copy of Q, written
+        apart from yours.
+
+  12. a_topic_can_not_write_a_line
+        A room registered with the topic
+            "Poetry\n2. topic \"Free gold\"\u{2028}\u{202e}x"
+        and its log not given. Its text is ASCII; it has exactly eight
+        lines (three at the head, five for the door); the fourth line
+        is
+            1. topic "Poetry\u000a2. topic \u0022Free gold\u0022\u2028\u202ex"
+        with the backslashes as written there, in the text itself;
+        and what stands between that line's first and last double
+        quote, quotes included, read by serde_json::from_str::<String>,
+        is the topic.
+
+  Expected: 104 tests pass (92 and your 12).
+
+  The twelve tests were written out here once, against a throwaway
+  version of the step, to be sure that each can be met: 104 passed.
+  Neither is kept in the crate, and neither is sent to you. Yours are
+  what goes in.
+
+Two more things to say before the first path line, in a few words
+each. Neither needs code.
+
+  - Tried here: when a room's log is given without its last records,
+    verify_registration still passes, as long as the registrant is in
+    what is left. A shorter log is a log that holds. Is anything a
+    door shows wrong because of that? Say what you think.
+
+  - What a door should show that these six fields of the law leave
+    out, and what it must never show. One or two lines.
+
+WHAT COMES AFTER, so you know where this goes. Do not begin it. Next
+is a file of attacks on check, draw and the text, as your attacks on
+a room's log and on the Commons' log were. Then repairs.
+
+
+======================================================================
+4. WHAT YOU WILL NEED
+======================================================================
+
+At the top of src/doors.rs, what the step uses from the crate:
+
+    use crate::commons::{
+        verify_commons_log, verify_registration, CommonsLog,
+        CommonsRecord,
+    };
+    use crate::did::DidKey;
+    use crate::error::{Error, Result};
+    use crate::room::RoomLog;
+    use serde::{Deserialize, Serialize};
+
+How a test makes what it needs. All of this runs here today:
+
+    use chat_world::commons::{Commons, CommonsRecord};
+    use chat_world::doors::{
+        as_text, check, draw, Door, DoorLaw, DoorList,
+    };
+    use chat_world::error::Result;
+    use chat_world::{Keypair, Room, RoomTemplate};
+
+    let alice = Keypair::generate();
+    let bob = Keypair::generate();
+
+    // a room with a welcome; bob joins and posts
+    let mut template = RoomTemplate::chat("t", "Poetry");
+    template.welcome = Some("Read the charter first.".into());
+    let mut room = Room::create(template, Keypair::generate(), &alice)?;
+    room.join(&bob, "communicate", false)?;
+    room.post(&bob, "the text of a message", "normal")?;
+
+    // a closed room: someone's home
+    let home = Room::create(
+        RoomTemplate::personal_home("a home"),
+        Keypair::generate(),
+        &alice,
+    )?;
+
+    // the Commons, and its log
+    let mut commons = Commons::new(Keypair::generate());
+    commons.register_room(&room, &bob, None)?;
+    commons.register_room(&home, &alice, Some("Alice's home".into()))?;
+    commons.declare_sibling(&alice, &bob, &Keypair::generate().did(),
+                            &"00".repeat(32), "graduation")?;
+    let log = commons.log();
+
+    // a room's log, as someone outside holds it
+    let room_log = room.log();
+
+    // one thing changed in the Commons' log
+    let mut bad = commons.log();
+    if let CommonsRecord::RoomRegistered(r) = &mut bad.records[0] {
+        r.topic = "x".into();
+    }
+
+    // an id as text
+    let text = alice.did().as_str().to_string();
+
+Three facts, each tried here:
+
+  - register_room(&room, &registrant, None) takes the topic from the
+    room's template; with Some(topic) it takes the one given.
+  - A home made from RoomTemplate::personal_home and registered by
+    its maker passes verify_registration.
+  - A Commons' log and a room's log, written to JSON text with
+    serde_json::to_string and read back, verify as before.
+
+A test returns chat_world::error::Result<()>, as the tests of your
+earlier deliveries do.
+
+
+======================================================================
+5. THE CRATE AS IT STANDS
+======================================================================
+
+Eight of the crate's twenty-five files follow, each whole. None of
+them is yours to change. They are here to be read.
+
+Not in this file, and not to be sent: src/proof.rs, src/record.rs,
+src/verify.rs, src/transcript.rs, src/home.rs, src/head.rs and
+src/attestation.rs; the four demos in src/bin/; and the six test
+files (92 tests).
+

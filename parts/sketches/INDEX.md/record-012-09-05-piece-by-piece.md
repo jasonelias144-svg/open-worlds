@@ -152,8 +152,15 @@ Every number is the one Gemini gave, and nothing was repaired here.
 The third is the crate as it stands,
 `deepseek/012-09-05/chat-world-now/`: 92 tests, 41 of them DeepSeek's
 and 51 Gemini's. The fourth is built beside it and not laid into it:
-its eight gaps in the check of a room's log wait for a repair, which
-waits for DeepSeek's work on the same file.
+its eight gaps in the check of a room's log are not repaired in this
+crate. They are kept as the list of what the room's own check must
+refuse (STATUS.md, "Decided by the technical lead", 2026-11-17).
+
+Gemini's next file
+([replies/2026-11-17-2-for-gemini.txt](replies/2026-11-17-2-for-gemini.txt))
+asks one step: the lobby's list of doors, which is what a map of the
+Commons is first drawn from, in a new file `src/doors.rs` with twelve
+tests. Nothing has come back yet, and the crate is unchanged.
 
 ## Record 012-03-02, component by component
 

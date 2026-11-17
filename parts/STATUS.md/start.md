@@ -110,8 +110,11 @@ free, and never a money machine
   it stands (`chat-world-now/`) passes all 92 of its tests. Gemini's
   fourth step of that round, 17 more attacks, shows eight gaps in the
   check of a room's log; they are built beside the crate, not laid
-  into it, and wait for a repair. DeepSeek has the crate next, for
-  branches. Fitting it to open-worlds' own code is step 3c.
+  into it, and are kept as the list of what the room's own check must
+  refuse. Gemini's next file is built: the lobby's list of doors,
+  which a map of the Commons is first drawn from
+  (sketches/replies/2026-11-17-2-for-gemini.txt). DeepSeek has the
+  crate for branches. Fitting it to open-worlds' own code is step 3c.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds

@@ -8,6 +8,23 @@
 
 ## Log
 
+- 2026-11-17 Claude: Gemini's next file is built by docs/reply.py:
+  sketches/replies/2026-11-17-2-for-gemini.txt (69,609 bytes). It
+  says what Gemini's four steps on the Commons built to, why the
+  eight gaps of the fourth are not repaired in the sketch, and what
+  the project takes from its sketch of a moderator; and it asks one
+  step, the lobby's list of doors: a new file `src/doors.rs` and
+  twelve tests (Decided by the technical lead). Eight of the crate's
+  twenty-five files go with it. Checked: what the file says of the
+  crate was tried against it (a home registered by its maker passes
+  the check across logs; a room's log with its law changed is
+  refused; a room's log without its last records still passes, which
+  the file tells Gemini); the step was built once outside the
+  repository, and with it the crate's 92 tests and the twelve pass,
+  104, each line of text the file gives as exact among them;
+  `docs/reply.py --check`; the Python suite. Not done: that build is
+  not kept, the crate is unchanged, and nothing of Gemini's exists
+  yet. The file is not given until the founder gives it.
 - 2026-11-17 Claude: the founder's words of the evening are recorded
   (Decided, four entries): what is public domain, hosting last, how
   the work with the collaborators goes, and the map as the main

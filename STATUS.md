@@ -102,8 +102,11 @@ free, and never a money machine
   it stands (`chat-world-now/`) passes all 92 of its tests. Gemini's
   fourth step of that round, 17 more attacks, shows eight gaps in the
   check of a room's log; they are built beside the crate, not laid
-  into it, and wait for a repair. DeepSeek has the crate next, for
-  branches. Fitting it to open-worlds' own code is step 3c.
+  into it, and are kept as the list of what the room's own check must
+  refuse. Gemini's next file is built: the lobby's list of doors,
+  which a map of the Commons is first drawn from
+  (sketches/replies/2026-11-17-2-for-gemini.txt). DeepSeek has the
+  crate for branches. Fitting it to open-worlds' own code is step 3c.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
@@ -3063,6 +3066,46 @@ of it is asked again until it is needed.
 
 ## Decided by the technical lead
 
+- 2026-11-17, the lobby's list of doors, as it is asked of Gemini
+  (sketches/replies/2026-11-17-2-for-gemini.txt). (a) A door holds a
+  room's id, its topic as registered, its law by hash, where in the
+  Commons' log it was registered, and, only when the reader holds the
+  room's log and that log holds, six fields of the room's law. It has
+  no field for a person's id, for a count of members or messages, or
+  for a time, and a sibling declared makes no door. (b) The list says
+  how many records of the Commons' log it was drawn from, and the
+  hash of the last, so that an older list can be told from a newer
+  one. (c) A list handed on is checked by drawing it again. A reader
+  accepts only what they can draw themselves: a law in the list for a
+  room whose log the reader does not hold is refused. (d) In the text
+  for a mind, every string that came from a log is written between
+  quotes, on one line, in ASCII; any other character is written as
+  its JSON code. (e) Gemini builds the list first, and attacks on it
+  come next. Before the file went out the technical lead built the
+  step once, outside the repository, to be sure that its twelve tests
+  can be met. That build is not kept. (f) The list moves no one:
+  nothing in it joins a room.
+  *Why:* (a) The map shows places and no one's whereabouts
+  (docs/COMMONS.md; docs/FUNDAMENTALS.md, privacy, 17). A rule kept
+  by what a record can hold needs no check to keep it. (b) A room
+  registered since is missing from an old list, and a reader should
+  see that the list is old. (c) What a reader can't draw is someone's
+  word. (d) Whoever registers a room chooses its topic, and a mind
+  reads the list as text. A topic holding a line end could write a
+  door of its own; letters that run the other way, or can't be seen,
+  could make a line read as something it is not. (e) The founder:
+  "they write a few pieces of code". And a file whose tests can't be
+  met costs a round of the founder's time with Gemini, which is
+  short. (f) A move is the mover's own signed act (Decided,
+  2026-11-17, the map).
+  *What would show it wrong:* for (a), the first two in the Commons
+  being unable to choose a room from what a door shows; then a door
+  gains what a room chooses to publish about itself, never what is
+  true of those in it. For (d), a topic in another script that its
+  readers can't read in the text view; then the rule becomes a list
+  of the characters written as codes. For (e), a delivery that does
+  not build; then a piece of this size is built here, and the
+  collaborator is asked to attack it.
 - 2026-11-17, what follows from the founder's words of that evening
   (Decided). (a) A file for a collaborator carries one step, the
   files the step needs, tests that say what done means, and what not
@@ -4055,6 +4098,23 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-17 Claude: Gemini's next file is built by docs/reply.py:
+  sketches/replies/2026-11-17-2-for-gemini.txt (69,609 bytes). It
+  says what Gemini's four steps on the Commons built to, why the
+  eight gaps of the fourth are not repaired in the sketch, and what
+  the project takes from its sketch of a moderator; and it asks one
+  step, the lobby's list of doors: a new file `src/doors.rs` and
+  twelve tests (Decided by the technical lead). Eight of the crate's
+  twenty-five files go with it. Checked: what the file says of the
+  crate was tried against it (a home registered by its maker passes
+  the check across logs; a room's log with its law changed is
+  refused; a room's log without its last records still passes, which
+  the file tells Gemini); the step was built once outside the
+  repository, and with it the crate's 92 tests and the twelve pass,
+  104, each line of text the file gives as exact among them;
+  `docs/reply.py --check`; the Python suite. Not done: that build is
+  not kept, the crate is unchanged, and nothing of Gemini's exists
+  yet. The file is not given until the founder gives it.
 - 2026-11-17 Claude: the founder's words of the evening are recorded
   (Decided, four entries): what is public domain, hosting last, how
   the work with the collaborators goes, and the map as the main
