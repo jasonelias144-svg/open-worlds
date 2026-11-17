@@ -168,6 +168,13 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/forma
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/formats/record_vectors.py/02.txt
 ```
 
+## `rust/redact/tests/vectors.rs`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/redact/tests/vectors.rs/01.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/redact/tests/vectors.rs/02.txt
+```
+
 ## `rust/ur-world/src/door.rs`, in 2 parts
 
 ```text
@@ -241,6 +248,13 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests/test_mv_succession.py/01.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests/test_mv_succession.py/02.txt
+```
+
+## `tests/test_redact.py`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests/test_redact.py/01.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests/test_redact.py/02.txt
 ```
 
 ## `web/plant/index.html`, in 2 parts

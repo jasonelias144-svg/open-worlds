@@ -682,36 +682,8 @@
       ],
       "additionalProperties": false
     },
-    "fieldValue": {
-      "description": "A value a log keeps apart (open-worlds/log-apart/v1, world/apart.py): text, a whole number within 2^53 - 1 either way, true or false, or a list or a map of these. Never nothing, and never a number with a fraction. How deep it may nest is the log's rule, checked where the record is held to its log.",
-      "anyOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "integer",
-          "minimum": -9007199254740991,
-          "maximum": 9007199254740991
-        },
-        {
-          "type": "boolean"
-        },
-        {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/fieldValue"
-          }
-        },
-        {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/$defs/fieldValue"
-          }
-        }
-      ]
-    },
     "redactedField": {
-      "description": "A field that was redacted from a log, as it was. Signed by the office that redacted it and sealed to one who may hold it: a person it is about, or the office that decides whether it stays redacted (docs/research/REDACTION.md, decisions 4 and 5). Whoever opens it works out the field's fingerprint again and finds it in the log, and that binds the record to its place.",
+      "description": "A field that was redacted from a log, as it was. Signed by the office that redacted it and sealed to one who may hold it: a person it is about, or the office that decides whether it stays redacted (docs/research/REDACTION.md, decisions 4 and 5). Whoever opens it hashes what it holds and finds that fingerprint in the log, and that binds the record to its place. Its envelope says in the clear that it holds a redacted field and whom it is for, so it is not placed in the open: it goes to the one it names.",
       "type": "object",
       "properties": {
         "format": {
@@ -738,6 +710,10 @@
           "description": "The one this copy is sealed to, and the only one it is for.",
           "$ref": "#/$defs/didKey"
         },
+        "decider": {
+          "description": "The office that decides whether the field stays redacted, by its key. Every copy names it, so each reader knows who else holds one. The copy that names the same key as its reader is the deciding office's own.",
+          "$ref": "#/$defs/didKey"
+        },
         "log": {
           "description": "The log the field was in, by the hash of its first entry.",
           "$ref": "#/$defs/hash"
@@ -751,14 +727,15 @@
           "type": "string",
           "pattern": "^[a-z][a-z0-9_]{0,63}$"
         },
-        "salt": {
-          "description": "The field's salt: 32 lowercase hex digits.",
+        "hashed": {
+          "description": "What was there: the exact text the field's fingerprint in the log is the SHA-256 of. It is the list of the field's salt, its name and its value, written as the log writes it (world/apart.py). It is carried as it was hashed, so that whatever a log can keep apart can be carried, and nothing is lost between two ways of writing JSON. Whether it is that text is checked against the log, not here.",
           "type": "string",
-          "pattern": "^[0-9a-f]{32}$"
+          "minLength": 1
         },
-        "value": {
-          "description": "What the field held.",
-          "$ref": "#/$defs/fieldValue"
+        "pad": {
+          "description": "Filler: zeros, as many as bring the record to its padded size, so that the length of a sealed copy says little about the length of what was there (world/redact.py).",
+          "type": "string",
+          "pattern": "^0*$"
         },
         "proof": {
           "$ref": "#/$defs/proof"
@@ -768,11 +745,12 @@
         "format",
         "office",
         "to",
+        "decider",
         "log",
         "entry",
         "field",
-        "salt",
-        "value",
+        "hashed",
+        "pad",
         "proof"
       ],
       "additionalProperties": false

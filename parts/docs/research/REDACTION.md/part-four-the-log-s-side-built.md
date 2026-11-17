@@ -254,27 +254,60 @@ would show it wrong):
 - **The record is `open-worlds/redacted-field/v1`,** a new kind in
   records-v1. It says the office that redacted the field (its key and
   the grant it acts under), which signs; the one this copy is for
-  (`to`); the log, the entry and the field; and the field's salt and
-  value. One record is made for each one who gets a copy, so each
-  names its own reader.
+  (`to`); the office that decides (`decider`), the same in every copy;
+  the log, the entry and the field; what was hashed for the field
+  (`hashed`); and a filler of zeros (`pad`). One record is made for
+  each one who gets a copy, so each names its own reader.
+- **A copy carries exactly what was hashed, as text:** the list of the
+  salt, the field's name and the value, written as the log writes it
+  (decision 2), and not the value written a second way inside the
+  record. The first build carried the salt and the value as fields of
+  the record, and the independent review found what that cost: a log
+  can keep apart a map whose key is not in ASCII, a signed record
+  can't hold such a key, so that field could not be redacted at all,
+  and the refusal quoted the key. Now whatever a log can keep apart
+  can be redacted, and the tests redact every value the log's vectors
+  allow. Nothing of the field is in any refusal's words. And what is
+  put back must be what a log would write: a text that hashes to the
+  entry's fingerprint and is not a field as a log writes one (written
+  with spaces, a key twice, a number with a fraction, half a surrogate
+  pair, twenty-one such in the vectors) is refused.
 - **It is sealed under a label of its own,** `open-worlds/redacted/v1`,
   in the same envelope as every sealed record. Sealing itself does not
   change. Whoever opens a copy must be the one it names: a copy sealed
   again to someone else is refused by the one who opens it, as a
   world-key is.
 - **What binds a copy to its place is the log, not the signature.**
-  Whoever opens a copy works out the fingerprint again, from the salt,
-  the field's name and the value, and finds it in the entry the copy
-  names (decision 4). A copy that does not match is refused whoever
-  signed it. The signature says which office made the copy. A copy
-  does not name its mark, which is written after it: its mark is the
-  one in the log on the same entry and field.
-- **The order is seal, mark, take out.** Every copy is made before
-  anything is written. If one can't be made (a key no one should seal
-  to, say), nothing is marked. If the mark is refused, nothing is
-  taken out, and the copies made are not given back. After the three,
-  neither the value nor its salt is anywhere in what the writer holds
-  or in what the act gave back: the tests look at all of it.
+  Whoever opens a copy hashes what it carries and finds that
+  fingerprint in the entry the copy names (decision 4). A copy that
+  does not match is refused whoever signed it. A copy does not name
+  its mark, which is written after it: its mark is the one in the log
+  on the same entry and field.
+- **Who signed a copy, which office it names and who its deciding
+  office is are the record's own word,** until the checks across
+  records exist (part four). Whoever holds a field's salt and value
+  can write a record that this code takes. That is no way to learn a
+  field, since they hold it already; and it is why a log's writer must
+  not decide on a copy alone.
+- **The order is seal, hand over, mark, take out.** Every copy is made
+  before anything is written. If one can't be made (a key no one
+  should seal to, say), nothing is marked. The copies are then handed
+  to whatever keeps them, while the field is still in the contents and
+  nothing is marked: once the field is out, the copies are all that is
+  left of it, so if they can't be kept, nothing is marked. If the mark
+  is refused, nothing is taken out, and the copies made are not given
+  back. After it all, neither the value nor its salt is anywhere in
+  what the writer holds or in what the act gave back: the tests look
+  at all of it.
+- **A copy is padded.** Before it is signed, a record is 1024 bytes in
+  its RFC 8785 form, or the next power of two above that, so a sealed
+  box is one of a few sizes and two boxes of one size differ by a byte
+  at most. A short field can't be told from another short field by
+  its box. What the padding does not hide: a long field still shows
+  roughly how long it is; and an envelope says in the clear that it
+  holds a redacted field and whom it is for. So an envelope is not
+  placed in the open: it goes to its reader's container, or to the
+  office's own store.
 - **A redaction that stopped after its mark can be finished.** The log
   then shows a field that is marked and still there (decision 4). The
   office seals the copies from the field as it still stands and takes
@@ -284,12 +317,16 @@ would show it wrong):
   the office that decides, with its own. Where a room finds a person's
   sealing key is the same as for every sealed record: the identity
   record, from course step 9; until then the caller gives it.
-- **The deciding office decides from its own copy.** To keep the field
-  public it opens the copy made for it, which is held to the log and
-  to the mark, and the field goes back with the decision in one step.
-  A person's copy in the office's hands does not open for it, and its
-  copy of another field is refused. That the field stays redacted is
-  an entry, and the office then deletes its copy.
+- **Only the deciding office's own copy decides.** To keep the field
+  public the office opens the copy made for it, which is held to the
+  log and to the mark, and the field goes back with the decision in
+  one step. Every copy names the deciding office, and the one that
+  names its own reader as that office is the office's. A person's copy
+  in the office's hands does not open for it; a person's own copy,
+  opened by that person, names another as the deciding office and is
+  refused; and the office's copy of another field is refused. That the
+  field stays redacted is an entry, and the office then deletes its
+  copy.
 - **A log is named by the hash of its first entry.** Two logs begun
   with the same first entry share that name: the trial room does, with
   any other room of the same rules. What no two logs share is an
@@ -301,14 +338,15 @@ would show it wrong):
   and `rust/world-log` know nothing of keys or sealing, and `formats`
   knows nothing of logs. The act needs both, so it is a module of its
   own in Python and a crate of its own in Rust.
-- **Nine reasons of its own, in fixed words,** the same in both
+- **Ten reasons of its own, in fixed words,** the same in both
   languages. A log's own refusals and a sealed record's pass through
   as they are. The vectors hold one act on the trial room, the three
   copies it made with the record inside each, the log after each
-  decision, and eight records that hold as records and are refused
-  when held to the log. Rust does the same act and gets Python's log,
-  its contents, and the same signed records; and decides from the box
-  Python sealed.
+  decision, nine records that hold as records and are refused when
+  held to the log, and a second log, written by hand, whose entries
+  commit to the twenty-one texts that are not a field. Rust does the
+  same act and gets Python's log, its contents, and the same signed
+  records; and decides from the box Python sealed.
 
 Not done:
 - **Who may redact and who may decide.** The record names a grant and
@@ -317,6 +355,9 @@ Not done:
   the records' side).
 - **Deleting the office's copy.** The code can't: it is the office's
   word until keys can be destroyed (step 8a).
+- **Keeping the copies.** The act hands them over and keeps none. What
+  receives them is a person's container (step 6a) and the office's own
+  store, neither of which is built.
 - **An office whose key changes** while it holds a copy: the copy is
   sealed to the old key.
 - **A person who has no key when the field is redacted, and gets one

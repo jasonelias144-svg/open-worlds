@@ -16,7 +16,7 @@ technical lead keeps it, and does the fitting (STATUS.md, "Decided",
 of their definitions and the fields of each:
 `sketches/deepseek/012-09-05/schemas/records-v1.schema.json@8640`
 (DeepSeek's, whole: 67 definitions) and
-`schemas/records-v1.schema.json` (the project's: 35). No record was
+`schemas/records-v1.schema.json` (the project's: 34). No record was
 tried against either schema, and no meaning was checked beyond what
 the fields and the two schemas' own descriptions say. "Beside" is the
 technical lead's first reading, to be corrected as each kind is
@@ -107,8 +107,7 @@ DeepSeek's schema has nothing for these, and all of them stay:
 above), `birth`, `identity`, `sealingKey`, `sealed`, `name`, `text`,
 `actKind`, `engine`, `keyEntry`, `keyList`, `holds`, `heldBy` and
 `personList` (beside `RuntimeAttestation`, above), `proposal`, `vote`,
-`suggestion`, `rating`, and `fieldValue`, a value a log keeps apart,
-which `redactedField` holds.
+`suggestion`, `rating`.
 
 ## What comes next
 

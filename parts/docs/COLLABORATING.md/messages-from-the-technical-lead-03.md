@@ -26,22 +26,32 @@ are fitted (step 3c).
 - **What is sealed** is a signed record of a new kind,
   `open-worlds/redacted-field/v1`: `office` (the key of the office
   that redacted the field, and the hash of its grant), `to` (the one
-  the copy is for), `log` (the hash of the log's first entry),
-  `entry`, `field`, `salt` and `value`. It is in
+  the copy is for), `decider` (the office that decides, the same in
+  every copy), `log` (the hash of the log's first entry), `entry`,
+  `field`, `hashed` (exactly the text the log hashed for the field:
+  the list of its salt, its name and its value) and `pad` (zeros, so
+  that a record is 1024 bytes before it is signed, or the next power
+  of two). It is in
   [`schemas/records-v1.schema.json`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/schemas/records-v1.schema.json)
   as `redactedField`.
 - **One copy for each reader:** each person the field is about who
   has a key, and the office that decides. Each copy names its reader
   and is sealed to them alone, under the label
   `open-worlds/redacted/v1`. No copy is kept for someone with no key.
-- **The order is seal, mark, take out.** If a copy can't be made,
-  nothing is marked.
+- **The order is seal, hand over, mark, take out.** If a copy can't
+  be made, or can't be kept by whatever keeps the copies, nothing is
+  marked.
 - **A copy is held to the log by its fingerprint,** not by its
-  signature: whoever opens it works the fingerprint out again and
-  finds it in the entry the copy names.
-- **The deciding office keeps a field public from its own copy,** and
-  from no other. That a field stays redacted is an entry, after which
-  the office deletes its copy.
+  signature: whoever opens it hashes the text it carries and finds
+  that fingerprint in the entry the copy names. The text must be a
+  field exactly as a log writes one. So anything a log can keep apart
+  can be redacted.
+- **The deciding office keeps a field public from its own copy,** the
+  one that names its reader as the deciding office, and from no other.
+  That a field stays redacted is an entry, after which the office
+  deletes its copy.
+- **An envelope is not placed in the open:** it says in the clear that
+  it holds a redacted field and whom it is for.
 - **A log's name is the hash of its first entry.** Two rooms begun
   with the same first entry would share it, so a room's first entry
   should hold something of its own, such as the room's key. That is

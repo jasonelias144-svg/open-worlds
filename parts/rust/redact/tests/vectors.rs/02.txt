@@ -1,0 +1,353 @@
+Part of `rust/redact/tests/vectors.rs` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 2.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/redact/tests/vectors.rs/01.txt
+After this part: nothing; this is the last part.
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+#[test]
+fn a_copy_is_held_to_the_log_it_is_opened_against() {
+    let t = Trial::new();
+    let (log, made, _) = t.redacted();
+    // Another room, begun the same way, has other salts: the same first
+    // entry, and so the same name, but no entry in common after it that
+    // keeps a field apart.
+    let mut n = 1000;
+    let mut other_salts = move || {
+        n += 1;
+        sha256_hex(format!("another room's salt {n}").as_bytes())[..32].to_owned()
+    };
+    let other = room(&mut other_salts);
+    assert_eq!(other.entries()[0]["hash"], log.entries()[0]["hash"]);
+    assert_eq!(
+        open_copy(&made.office_copy, t.decides.opener(), &entries(&other)),
+        Err(Refused::NoEntry)
+    );
+    // A log that does not hold is refused as a log.
+    let mut broken = entries(&log);
+    broken[2]["tick"] = json!(99);
+    assert!(matches!(
+        open_copy(&made.office_copy, t.decides.opener(), &broken),
+        Err(Refused::Log(_))
+    ));
+    let inside = &t.v["copies"][0]["inside"];
+    for odd in [json!(null), json!({}), json!("log"), json!([])] {
+        assert!(
+            matches!(held_to(inside, &odd), Err(Refused::Log(_))),
+            "{odd}"
+        );
+    }
+}
+
+#[test]
+fn what_is_held_to_a_log_need_not_be_a_record_at_all() {
+    let t = Trial::new();
+    let log = &t.v["redacted"]["log"];
+    for odd in [
+        json!(null),
+        json!([]),
+        json!("copy"),
+        json!({}),
+        json!({"format": "open-worlds/x/v1"}),
+    ] {
+        assert_eq!(held_to(&odd, log), Err(Refused::NotACopy), "{odd}");
+    }
+    let mut good = t.v["copies"][0]["inside"].clone();
+    good.as_object_mut().unwrap().remove("proof");
+    assert_eq!(held_to(&good, log), Ok(()));
+    let changed = |key: &str, value: Value| {
+        let mut record = good.clone();
+        record[key] = value;
+        record
+    };
+    for (record, expected) in [
+        (changed("log", json!(7)), Refused::OtherLog),
+        (changed("entry", json!(["x"])), Refused::NoEntry),
+        (changed("field", json!(7)), Refused::NoField),
+        (changed("field", json!(["text"])), Refused::NoField),
+        (changed("hashed", json!(7)), Refused::NotHeld),
+        (
+            changed("hashed", json!(["salt", "text", "value"])),
+            Refused::NotHeld,
+        ),
+        (changed("hashed", json!("")), Refused::NotHeld),
+        (
+            changed(
+                "hashed",
+                json!(format!("{} ", good["hashed"].as_str().unwrap())),
+            ),
+            Refused::NotHeld,
+        ),
+    ] {
+        assert_eq!(held_to(&record, log), Err(expected), "{record}");
+    }
+    for (missing, expected) in [
+        ("log", Refused::OtherLog),
+        ("entry", Refused::NoEntry),
+        ("field", Refused::NoField),
+        ("hashed", Refused::NotHeld),
+    ] {
+        let mut record = good.clone();
+        record.as_object_mut().unwrap().remove(missing);
+        assert_eq!(held_to(&record, log), Err(expected), "{missing}");
+    }
+}
+
+#[test]
+fn a_copy_says_what_was_there_and_where() {
+    let t = Trial::new();
+    let mut salt = trial_salts();
+    let before = room(&mut salt);
+    let pair = before.contents()[t.entry()]["text"].clone();
+    let (log, made, _) = t.redacted();
+    let mut inside = open_copy(&made.copies[0], t.alice.opener(), &entries(&log)).unwrap();
+    assert_eq!(
+        what_was_there(&inside),
+        Some((pair[0].as_str().unwrap().to_owned(), pair[1].clone()))
+    );
+    // Signed by the office that redacted it.
+    assert!(records::check(&inside).is_ok());
+    let pad = inside["pad"].clone();
+    inside.as_object_mut().unwrap().remove("proof");
+    assert_eq!(
+        inside,
+        json!({
+            "format": FORMAT,
+            "office": {"key": t.redacts.id, "grant": t.v["act"]["grant"]},
+            "to": t.alice.id,
+            "decider": t.decides.id,
+            "log": log.entries()[0]["hash"],
+            "entry": t.entry(),
+            "field": "text",
+            "hashed": apart::fingerprint_text(pair[0].as_str().unwrap(), "text", &pair[1])
+                .unwrap(),
+            "pad": pad,
+        })
+    );
+}
+
+/// A room of one entry that keeps `value` apart as its text, and that
+/// entry's hash.
+fn one_said(value: &Value, salt: &mut dyn FnMut() -> String) -> (Log, String) {
+    let table = json!({"said": ["text"]});
+    let mut log = Log::new(&table, &Map::new(), "world_created", salt).unwrap();
+    let mut kept = Map::new();
+    kept.insert("text".to_owned(), value.clone());
+    let said = log
+        .append(1, "said", None, &Map::new(), &kept, salt)
+        .unwrap();
+    (log, said)
+}
+
+#[test]
+fn whatever_a_log_can_keep_apart_can_be_redacted() {
+    // Among them a map with a key that is not ASCII, which no signed
+    // record could hold as a key of its own: a copy carries what was
+    // hashed, as text.
+    let t = Trial::new();
+    let room: Value = serde_json::from_str(ROOM).unwrap();
+    let values: Vec<&Value> = room["fingerprints"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|f| &f["value"])
+        .collect();
+    assert_eq!(values.len(), 18, "the vectors are all there");
+    assert!(values.iter().any(|v| {
+        v.as_object()
+            .is_some_and(|m| m.keys().any(|k| !k.is_ascii()))
+    }));
+    let none = Map::new();
+    for value in values {
+        let mut salt = trial_salts();
+        let (mut log, said) = one_said(value, &mut salt);
+        let its_salt = log.contents()[&said]["text"][0]
+            .as_str()
+            .unwrap()
+            .to_owned();
+        let made = redact(
+            &mut log,
+            &Act {
+                tick: 2,
+                entry: &said,
+                field: "text",
+                ground: &t.v["act"]["ground"],
+                created: t.v["created"].as_str().unwrap(),
+                about: &[t.alice.recipient()],
+                decider: t.decides.recipient(),
+                agent: None,
+                apart: &none,
+            },
+            &t.office(),
+            None,
+            &mut salt,
+        )
+        .unwrap();
+        assert_eq!(state(&log, &said, "text"), State::Redacted, "{value}");
+        let inside = open_copy(&made.copies[0], t.alice.opener(), &entries(&log)).unwrap();
+        assert_eq!(
+            what_was_there(&inside),
+            Some((its_salt.clone(), value.clone())),
+            "{value}"
+        );
+        // This room's table keeps nothing of a decision apart.
+        let answer = Answer {
+            tick: 3,
+            mark: &made.mark,
+            by: Decided {
+                office: t.v["kept"]["office"].as_str().unwrap(),
+                ground: &t.v["kept"]["ground"],
+                decision: t.v["kept"]["decision"].as_str().unwrap(),
+                agent: None,
+            },
+            apart: &none,
+        };
+        keep_public(
+            &mut log,
+            &answer,
+            &made.office_copy,
+            t.decides.opener(),
+            &mut salt,
+        )
+        .unwrap();
+        assert_eq!(log.contents()[&said]["text"], json!([its_salt, value]));
+        let joined = apart::join(&entries(&log), &contents(&log)).unwrap();
+        assert_eq!(&joined[1]["data"]["text"], value);
+    }
+}
+
+#[test]
+fn a_copys_length_says_little_of_what_was_there() {
+    // Before it is signed, a record is 1024 bytes or the next power of
+    // two. A signature's text is 87 or 88 characters, whatever was
+    // signed, so two boxes of one size differ by a byte at most.
+    let t = Trial::new();
+    let none = Map::new();
+    let mut sizes: std::collections::BTreeMap<usize, Vec<usize>> = Default::default();
+    for length in [0, 1, 11, 200, 400, 600, 1500, 5000] {
+        let mut salt = trial_salts();
+        let (mut log, said) = one_said(&json!("x".repeat(length)), &mut salt);
+        let made = redact(
+            &mut log,
+            &Act {
+                tick: 2,
+                entry: &said,
+                field: "text",
+                ground: &t.v["act"]["ground"],
+                created: t.v["created"].as_str().unwrap(),
+                about: &[t.alice.recipient()],
+                decider: t.decides.recipient(),
+                agent: None,
+                apart: &none,
+            },
+            &t.office(),
+            None,
+            &mut salt,
+        )
+        .unwrap();
+        let mut inside = open_copy(&made.office_copy, t.decides.opener(), &entries(&log)).unwrap();
+        inside.as_object_mut().unwrap().remove("proof");
+        let size = canonical(&inside).unwrap().len();
+        assert!(size.is_power_of_two(), "{length}: {size}");
+        assert!(size >= PADDED, "{length}: {size}");
+        assert!(inside["pad"].as_str().unwrap().bytes().all(|b| b == b'0'));
+        for envelope in [&made.copies[0], &made.office_copy] {
+            sizes
+                .entry(size)
+                .or_default()
+                .push(envelope["box"].as_str().unwrap().len() / 2);
+        }
+    }
+    // Five short values share the smallest size.
+    let all: Vec<&usize> = sizes.keys().collect();
+    assert_eq!(all, [&1024, &2048, &4096, &8192]);
+    assert_eq!(sizes[&1024].len(), 10);
+    for (size, boxes) in &sizes {
+        let (least, most) = (boxes.iter().min().unwrap(), boxes.iter().max().unwrap());
+        assert!(most - least <= 1, "{size}: {boxes:?}");
+    }
+}
+
+#[test]
+fn the_copies_are_handed_over_before_anything_is_written() {
+    let t = Trial::new();
+    let mut salt = trial_salts();
+    let mut log = room(&mut salt);
+    let before = (log.entries().to_vec(), log.contents().clone());
+    let none = Map::new();
+    let act = Act {
+        tick: 5,
+        entry: t.entry(),
+        field: "text",
+        ground: &t.v["act"]["ground"],
+        created: t.v["created"].as_str().unwrap(),
+        about: &[t.alice.recipient()],
+        decider: t.decides.recipient(),
+        agent: None,
+        apart: &none,
+    };
+    // If they can't be kept, nothing is marked and nothing taken out.
+    let mut full = |_: &[Value], _: &Value| Err("no room for them".to_owned());
+    assert_eq!(
+        redact(&mut log, &act, &t.office(), Some(&mut full), &mut salt),
+        Err(Refused::Store("no room for them".to_owned()))
+    );
+    assert_eq!(log.entries(), before.0.as_slice());
+    assert_eq!(log.contents(), &before.1);
+    // They are handed over once, as the act gives them back.
+    let mut seen: Vec<(Vec<Value>, Value)> = Vec::new();
+    let mut keep = |copies: &[Value], office_copy: &Value| {
+        seen.push((copies.to_vec(), office_copy.clone()));
+        Ok(())
+    };
+    let made = redact(&mut log, &act, &t.office(), Some(&mut keep), &mut salt).unwrap();
+    assert_eq!(seen, [(made.copies.clone(), made.office_copy.clone())]);
+    assert_eq!(state(&log, t.entry(), "text"), State::Redacted);
+
+    // The same for a redaction finished after its mark.
+    let mut salt = trial_salts();
+    let mut log = room(&mut salt);
+    let by = apart::Office {
+        office: "trial office",
+        ground: &t.v["act"]["ground"],
+        agent: None,
+    };
+    let mark = log
+        .mark(5, t.entry(), "text", by, &Map::new(), &mut salt)
+        .unwrap();
+    let created = t.v["created"].as_str().unwrap();
+    assert_eq!(
+        finish(
+            &mut log,
+            &mark,
+            &t.office(),
+            created,
+            &[],
+            t.decides.recipient(),
+            Some(&mut full)
+        ),
+        Err(Refused::Store("no room for them".to_owned()))
+    );
+    assert_eq!(state(&log, t.entry(), "text"), State::Unfinished);
+    let mut seen: Vec<(Vec<Value>, Value)> = Vec::new();
+    let mut keep = |copies: &[Value], office_copy: &Value| {
+        seen.push((copies.to_vec(), office_copy.clone()));
+        Ok(())
+    };
+    let made = finish(
+        &mut log,
+        &mark,
+        &t.office(),
+        created,
+        &[],
+        t.decides.recipient(),
+        Some(&mut keep),
+    )
+    .unwrap();
+    assert_eq!(seen, [(Vec::new(), made.office_copy.clone())]);
+    assert_eq!(state(&log, t.entry(), "text"), State::Redacted);
+}
+
+------------------------------------------------------------------------
+End of `rust/redact/tests/vectors.rs`.

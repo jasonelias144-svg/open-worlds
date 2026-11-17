@@ -280,11 +280,17 @@ came with course step 3b:
   `open-worlds/journal/v1`.
 - **A redacted field** (`open-worlds/redacted-field/v1`): `office`, the
   office that redacted it (its key and the grant it acts under), which
-  signs; `to`, the one this copy is for; `log`, `entry` and `field`,
-  where it was; and `salt` and `value`, what was there. A value is
-  what a log keeps apart: text, a whole number within 2^53 - 1, true
-  or false, or a list or a map of these. Sealed to the one it names
-  under `open-worlds/redacted/v1`. That it is the field the log held
+  signs; `to`, the one this copy is for; `decider`, the office that
+  decides, the same in every copy; `log`, `entry` and `field`, where
+  it was; `hashed`, exactly the text the log hashed for the field,
+  which is the list of its salt, its name and its value; and `pad`,
+  zeros that bring the record, before it is signed, to 1024 bytes or
+  the next power of two. The value is carried as text because a log
+  can keep apart what a signed record can't hold as a value of its
+  own, such as a map with a key that is not in ASCII. Sealed to the
+  one it names under `open-worlds/redacted/v1`; the envelope says in
+  the clear that it holds a redacted field and whom it is for, so it
+  is not placed in the open. That it is the field the log held
   is checked against the log
   ([REDACTION.md](REDACTION.md), "Part three, the act of redacting,
   built").

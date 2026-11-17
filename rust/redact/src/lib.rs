@@ -5,13 +5,14 @@
 //!
 //! Redacting is three things, in this order:
 //!
-//! 1. **The field is sealed.** Its `[salt, value]` goes into a signed
-//!    record (`open-worlds/redacted-field/v1`, [`formats::records`]) that
-//!    names the log, the entry and the field. One copy is made for each
-//!    person the field is about and one for the office that decides,
-//!    each naming the one it is for and sealed to them alone
-//!    (`open-worlds/redacted/v1`, [`formats::sealed`]). Someone with no
-//!    key gets no copy: none is kept for them.
+//! 1. **The field is sealed.** What was hashed for it, the list of its
+//!    salt, its name and its value as the log writes it, goes into a
+//!    signed record (`open-worlds/redacted-field/v1`,
+//!    [`formats::records`]) that names the log, the entry and the field.
+//!    One copy is made for each person the field is about and one for
+//!    the office that decides, each naming the one it is for and sealed
+//!    to them alone (`open-worlds/redacted/v1`, [`formats::sealed`]).
+//!    Someone with no key gets no copy: none is kept for them.
 //! 2. **The mark is appended** ([`world_log::apart`]): which entry and
 //!    which field, by which office, and why in general terms, never what.
 //! 3. **The field is taken out of the contents.** The log then holds
@@ -23,43 +24,71 @@
 //! field that is marked and still there, and [`finish`] seals it and
 //! takes it out.
 //!
+//! **The copies are handed over before the mark is written.** Once the
+//! field is out, the copies are all that is left of it. So whoever keeps
+//! them is given them first ([`Store`]), while the field is still in the
+//! contents and nothing is marked; if they can't be kept, nothing is
+//! marked.
+//!
+//! **A copy carries exactly what was hashed,** as text, and not the value
+//! written a second way. So anything a log can keep apart can be
+//! redacted, whatever a signed record could hold as a value of its own;
+//! and nothing is lost between two ways of writing JSON.
+//!
 //! Deciding comes after. The office that decides opens its copy, holds it
 //! to the log and, to keep the field public, puts it back with the
-//! decision in one step ([`keep_public`]). Or it decides that the field
-//! stays redacted ([`stays_redacted`]), and deletes its copy.
+//! decision in one step ([`keep_public`]). Only the deciding office's own
+//! copy does: every copy names the deciding office, and the one that
+//! names its own reader as that office is the office's. Or it decides
+//! that the field stays redacted ([`stays_redacted`]), and deletes its
+//! copy.
 //!
 //! **What binds a copy to its place** is the log, not the signature.
-//! Whoever opens a copy works out the field's fingerprint again from the
-//! salt, the name and the value, and finds it in the entry the copy
-//! names, in the log the copy names ([`held_to`]). A copy that does not
-//! match is refused, whoever signed it. A copy does not name its mark,
-//! which is written after it: its mark is the one in the log on the same
-//! entry and field.
+//! Whoever opens a copy hashes what it carries and finds that fingerprint
+//! in the entry the copy names, in the log the copy names ([`held_to`]).
+//! A copy that does not match is refused, whoever signed it. A copy does
+//! not name its mark, which is written after it: its mark is the one in
+//! the log on the same entry and field.
+//!
+//! **A copy is padded** (`pad`), so that a sealed box is one of a few
+//! sizes and its length says little about the length of what was there.
 //!
 //! # Limits
 //!
 //! - This crate does not check who may redact or decide: that the office
-//!   holds the grant it names is for the checks across records.
+//!   holds the grant it names is for the checks across records. Until
+//!   then, who signed a copy, which office it names and who its deciding
+//!   office is are the record's own word: whoever holds a field's salt
+//!   and value can write a record that this crate takes. That is no way
+//!   to learn a field, and it is why the log's writer must not decide on
+//!   a copy alone.
 //! - It does not find a person's sealing key: the caller gives each key,
 //!   as everywhere a record is sealed.
 //! - It can't delete anything: that the office's copy is gone once a
 //!   redaction stands is the office's word, until keys can be destroyed
 //!   (course step 8a).
+//! - An envelope says in the clear that it holds a redacted field and
+//!   whom it is for, so it is not placed in the open.
 //! - A log is named by the hash of its first entry, which holds its form
 //!   and its table. Two logs begun with the same first entry share that
 //!   name. What no two logs share is an entry's hash, once a field with
 //!   a fresh salt is behind it, and a copy names its entry.
 
+use formats::canonical::canonical;
 use formats::multikey::did_key;
 use formats::{proof, sealed};
 use serde_json::{Map, Value, json};
 use std::fmt;
 use world_log::apart::{self, Decided, Log, RedactionState};
+use world_log::sha256_hex;
 
 /// The format of a redacted field's record.
 pub const FORMAT: &str = "open-worlds/redacted-field/v1";
 /// The label a redacted field's record is sealed under.
 pub const LABEL: &str = "open-worlds/redacted/v1";
+/// The smallest a padded record is, in bytes of its RFC 8785 form before
+/// it is signed. Above that, a record is padded to the next power of two.
+pub const PADDED: usize = 1024;
 
 /// Why a redaction can't be made, or a copy doesn't hold to its log.
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -78,6 +107,8 @@ pub enum Refused {
     NoField,
     /// The copy is not what the log held.
     NotHeld,
+    /// The copy is not the deciding office's own.
+    NotDeciders,
     /// The copy is of another field than the mark's.
     OtherField,
     /// Not a mark that is open or stands.
@@ -87,10 +118,13 @@ pub enum Refused {
     /// A copy that can't be made or opened: the words are those of
     /// [`formats`]. (Python raises `formats.sealed.SealedError`.)
     Sealed(String),
+    /// The copies could not be kept: the words are those of whatever
+    /// keeps them. (Python raises whatever its `store` raises.)
+    Store(String),
 }
 
 /// Every reason of this crate's own, in Python's order.
-pub const REASONS: [Refused; 9] = [
+pub const REASONS: [Refused; 10] = [
     Refused::NotThere,
     Refused::Twice,
     Refused::NotACopy,
@@ -98,14 +132,16 @@ pub const REASONS: [Refused; 9] = [
     Refused::NoEntry,
     Refused::NoField,
     Refused::NotHeld,
+    Refused::NotDeciders,
     Refused::OtherField,
     Refused::NoMark,
 ];
 
 impl Refused {
     /// The reason, in the same fixed words as Python's. For a log's own
-    /// refusal it is the log's reason; for a sealed copy's, the words
-    /// are not fixed, and this gives a general one.
+    /// refusal it is the log's reason; for a sealed copy's and for
+    /// copies that could not be kept, the words are not fixed, and this
+    /// gives a general one.
     pub fn reason(&self) -> &'static str {
         match self {
             Refused::NotThere => "the field is not in the contents",
@@ -115,10 +151,12 @@ impl Refused {
             Refused::NoEntry => "the copy names an entry the log does not have",
             Refused::NoField => "the copy names a field the entry does not keep apart",
             Refused::NotHeld => "the copy is not what the log held",
+            Refused::NotDeciders => "the copy is not the deciding office's own",
             Refused::OtherField => "the copy is of another field than the mark's",
             Refused::NoMark => "not a mark that is open or stands",
             Refused::Log(e) => e.reason(),
             Refused::Sealed(_) => "a copy can't be made or opened",
+            Refused::Store(_) => "the copies could not be kept",
         }
     }
 }
@@ -127,7 +165,7 @@ impl fmt::Display for Refused {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             Refused::Log(e) => write!(f, "{e}"),
-            Refused::Sealed(why) => write!(f, "{}: {why}", self.reason()),
+            Refused::Sealed(why) | Refused::Store(why) => write!(f, "{}: {why}", self.reason()),
             _ => f.write_str(self.reason()),
         }
     }
@@ -216,6 +254,12 @@ pub struct Answer<'a> {
     pub apart: &'a Map<String, Value>,
 }
 
+/// What keeps the copies: called with the copies for the persons, in the
+/// order asked, and the deciding office's copy, once they are sealed and
+/// before the mark is written. If it fails, nothing is marked
+/// ([`Refused::Store`]).
+pub type Store<'a> = &'a mut dyn FnMut(&[Value], &Value) -> Result<(), String>;
+
 /// What [`redact`] gives back.
 #[derive(Debug, Clone, PartialEq)]
 pub struct Redaction {
@@ -233,8 +277,16 @@ pub fn log_id(log: &[Value]) -> Option<&str> {
     log.first()?.get("hash")?.as_str()
 }
 
+/// The filler that brings `record`, which has none yet, to its padded
+/// size: [`PADDED`] bytes of its RFC 8785 form, or the next power of two
+/// above that.
+fn padding(record: &Value) -> Result<String, String> {
+    let size = canonical(record)?.len();
+    Ok("0".repeat(size.next_power_of_two().max(PADDED) - size))
+}
+
 /// A sealed copy of a field that is in the contents, for each one named
-/// in `about` and then for `decider`. Changes nothing.
+/// in `to`, whose last is the office that decides. Changes nothing.
 fn copies(
     log: &Log,
     entry: &str,
@@ -249,6 +301,13 @@ fn copies(
         .and_then(Value::as_object)
         .and_then(|fields| fields.get(field))
         .ok_or(Refused::NotThere)?;
+    let hashed = pair
+        .get(0)
+        .and_then(Value::as_str)
+        .zip(pair.get(1))
+        .and_then(|(salt, value)| apart::fingerprint_text(salt, field, value).ok())
+        .ok_or(Refused::NotThere)?;
+    let decider = to.last().ok_or(Refused::NotThere)?.key;
     for (n, one) in to.iter().enumerate() {
         if to.iter().skip(n + 1).any(|other| other.key == one.key) {
             return Err(Refused::Twice);
@@ -257,48 +316,68 @@ fn copies(
     let id = log_id(log.entries()).ok_or(Refused::NotThere)?;
     let mut made = Vec::with_capacity(to.len());
     for one in to {
-        let record = json!({
+        let mut record = json!({
             "format": FORMAT,
             "office": {"key": by.key(), "grant": by.grant},
             "to": one.key,
+            "decider": decider,
             "log": id,
             "entry": entry,
             "field": field,
-            "salt": pair.get(0),
-            "value": pair.get(1),
+            "hashed": hashed,
+            "pad": "",
         });
-        // Sealing checks the record first: only one that holds is sealed.
-        let signed = proof::sign(&record, by.secret, created, "assertionMethod")
-            .map_err(|e| Refused::Sealed(format!("only a record that holds is sealed: {e}")))?;
+        // What can fail here is what the caller gave: a key, a grant, a
+        // time. `hashed` is text and `pad` is zeros, whatever the field
+        // held, so no error's text holds any of the field. Sealing checks
+        // the record first: only one that holds is sealed.
+        let unheld =
+            |e: String| Refused::Sealed(format!("only a record that holds is sealed: {e}"));
+        let pad = padding(&record).map_err(unheld)?;
+        if let Some(empty) = record.get_mut("pad") {
+            *empty = Value::String(pad);
+        }
+        let signed = proof::sign(&record, by.secret, created, "assertionMethod").map_err(unheld)?;
         made.push(sealed::seal_record(&signed, one.sealing).map_err(Refused::Sealed)?);
     }
     Ok(made)
 }
 
-fn redaction(mark: String, mut made: Vec<Value>) -> Redaction {
+/// The copies for the persons and the deciding office's copy, handed to
+/// whatever keeps them.
+fn sealed_and_kept(
+    mut made: Vec<Value>,
+    store: Option<Store<'_>>,
+) -> Result<(Vec<Value>, Value), Refused> {
     let office_copy = made.pop().unwrap_or(Value::Null);
-    Redaction {
-        mark,
-        copies: made,
-        office_copy,
+    if let Some(store) = store {
+        store(&made, &office_copy).map_err(Refused::Store)?;
     }
+    Ok((made, office_copy))
 }
 
 /// Redacts a field of an entry: seals it, marks it, takes it out.
 ///
+/// `store`, if given, is called with the persons' copies and the
+/// deciding office's copy once they are sealed and before the mark is
+/// written: whatever keeps them, keeps them there.
+///
 /// Refuses, and changes nothing, if the field is not in the contents or
 /// one is named twice ([`Refused::NotThere`], [`Refused::Twice`]); if a
-/// copy can't be made ([`Refused::Sealed`]); or if the mark does not hold
-/// ([`Refused::Log`]).
+/// copy can't be made ([`Refused::Sealed`]); if the copies can't be kept
+/// ([`Refused::Store`]); or if the mark does not hold ([`Refused::Log`]).
+/// No refusal's text holds any of the field.
 pub fn redact(
     log: &mut Log,
     act: &Act<'_>,
     by: &Office<'_>,
+    store: Option<Store<'_>>,
     salt: &mut dyn FnMut() -> String,
 ) -> Result<Redaction, Refused> {
     let mut to = act.about.to_vec();
     to.push(act.decider);
     let made = copies(log, act.entry, act.field, by, act.created, &to)?;
+    let (copies, office_copy) = sealed_and_kept(made, store)?;
     let office = apart::Office {
         office: by.name,
         ground: act.ground,
@@ -306,7 +385,11 @@ pub fn redact(
     };
     let mark = log.mark(act.tick, act.entry, act.field, office, act.apart, salt)?;
     log.take_out(&mark)?;
-    Ok(redaction(mark, made))
+    Ok(Redaction {
+        mark,
+        copies,
+        office_copy,
+    })
 }
 
 /// The entry and the field a mark names, if `mark` is one.
@@ -320,8 +403,9 @@ fn marked(log: &[Value], mark: &str) -> Option<(String, String)> {
 }
 
 /// Finishes a redaction that stopped after its mark: seals the field,
-/// which is still in the contents, and takes it out. The log is not
-/// touched. Refuses if `mark` is not a mark that is open or stands
+/// which is still in the contents, hands the copies to `store` as
+/// [`redact`] does, and takes the field out. The log is not touched.
+/// Refuses if `mark` is not a mark that is open or stands
 /// ([`Refused::NoMark`]), or its field is no longer in the contents
 /// ([`Refused::NotThere`]).
 pub fn finish(
@@ -331,6 +415,7 @@ pub fn finish(
     created: &str,
     about: &[Recipient<'_>],
     decider: Recipient<'_>,
+    store: Option<Store<'_>>,
 ) -> Result<Redaction, Refused> {
     let (entry, field) = marked(log.entries(), mark).ok_or(Refused::NoMark)?;
     let found = apart::redactions(&Value::Array(log.entries().to_vec()))?;
@@ -345,16 +430,40 @@ pub fn finish(
     let mut to = about.to_vec();
     to.push(decider);
     let made = copies(log, &entry, &field, by, created, &to)?;
+    let (copies, office_copy) = sealed_and_kept(made, store)?;
     log.take_out(mark)?;
-    Ok(redaction(mark.to_owned(), made))
+    Ok(Redaction {
+        mark: mark.to_owned(),
+        copies,
+        office_copy,
+    })
+}
+
+/// The salt and the value a redacted field's record carries, or nothing
+/// if what it carries is not a field as a log hashes one: the list of a
+/// salt, the record's own field name and a value, written exactly as the
+/// log writes it.
+pub fn what_was_there(record: &Value) -> Option<(String, Value)> {
+    let hashed = record.get("hashed")?.as_str()?;
+    let field = record.get("field")?.as_str()?;
+    let parts: Value = serde_json::from_str(hashed).ok()?;
+    let [salt, _, value] = parts.as_array()?.as_slice() else {
+        return None;
+    };
+    // Written again with the record's own field name: a text that names
+    // another field is not the same text.
+    let salt = salt.as_str()?;
+    let written = apart::fingerprint_text(salt, field, value).ok()?;
+    (written == hashed).then(|| (salt.to_owned(), value.clone()))
 }
 
 /// Holds a redacted field's record to a log: the log is in its form and
 /// holds, the record names it, the entry is in it, the entry keeps that
-/// field apart, and the salt, the name and the value give the
-/// fingerprint the entry holds. It does not check the record's
-/// signature: [`formats::records::check`] does, and opening a sealed copy
-/// does.
+/// field apart, the text the record carries hashes to the fingerprint
+/// the entry holds, and that text is the field as a log writes one. It
+/// does not check the record's signature, whom it is for or which office
+/// it names: [`formats::records::check`] checks the first, and opening a
+/// sealed copy checks the first two.
 pub fn held_to(record: &Value, log: &Value) -> Result<(), Refused> {
     apart::redactions(log)?;
     let entries = log.as_array().map_or(&[][..], Vec::as_slice);
@@ -377,18 +486,16 @@ pub fn held_to(record: &Value, log: &Value) -> Result<(), Refused> {
         .and_then(|kept| kept.get(field))
         .and_then(Value::as_str)
         .ok_or(Refused::NoField)?;
-    let print = named("salt")
-        .zip(record.get("value"))
-        .and_then(|(salt, value)| apart::fingerprint(salt, field, value).ok())
-        .ok_or(Refused::NotHeld)?;
-    if print != kept {
+    let hashed = named("hashed").ok_or(Refused::NotHeld)?;
+    if sha256_hex(hashed.as_bytes()) != kept || what_was_there(record).is_none() {
         return Err(Refused::NotHeld);
     }
     Ok(())
 }
 
 /// The record in a sealed copy, opened by the one it is for with their
-/// sealing key, and held to `log`.
+/// sealing key, and held to `log`. [`what_was_there`] then gives the
+/// salt and the value.
 pub fn open_copy(envelope: &Value, opener: Opener<'_>, log: &Value) -> Result<Value, Refused> {
     let record = sealed::open_record(envelope, opener.sealing_secret, opener.key, LABEL)
         .map_err(Refused::Sealed)?;
@@ -403,8 +510,15 @@ pub fn open_copy(envelope: &Value, opener: Opener<'_>, log: &Value) -> Result<Va
 ///
 /// Refuses, and changes nothing, if `answer.mark` is not an open mark or
 /// the decision does not hold ([`Refused::Log`]); if the copy does not
-/// open ([`Refused::Sealed`]); or if it is not the field the mark is on,
-/// or not what the log held.
+/// open ([`Refused::Sealed`]); or if it is not what the log held, not
+/// the deciding office's own copy ([`Refused::NotDeciders`]), or not of
+/// the field the mark is on.
+///
+/// That the copy is the deciding office's own is the copy's word, as the
+/// crate's limits say: a person's copy names another deciding office and
+/// is refused, and a record written by whoever holds the salt and the
+/// value is not. Who may decide is for the checks across records, with
+/// the decision this entry names.
 pub fn keep_public(
     log: &mut Log,
     answer: &Answer<'_>,
@@ -419,10 +533,14 @@ pub fn keep_public(
     };
     let record = open_copy(envelope, opener, &Value::Array(log.entries().to_vec()))?;
     let named = |key: &str| record.get(key).and_then(Value::as_str);
+    if named("decider").is_none() || named("decider") != named("to") {
+        return Err(Refused::NotDeciders);
+    }
     if (named("entry"), named("field")) != (Some(where_.0.as_str()), Some(where_.1.as_str())) {
         return Err(Refused::OtherField);
     }
-    let pair = json!([record.get("salt"), record.get("value")]);
+    let (was_salt, value) = what_was_there(&record).ok_or(Refused::NotHeld)?;
+    let pair = json!([was_salt, value]);
     Ok(log.keep_public(
         answer.tick,
         answer.mark,
@@ -442,4 +560,31 @@ pub fn stays_redacted(
     salt: &mut dyn FnMut() -> String,
 ) -> Result<String, Refused> {
     Ok(log.stays_redacted(answer.tick, answer.mark, answer.by, answer.apart, salt)?)
+}
+
+#[cfg(test)]
+mod tests {
+    // Tests may unwrap: a failure here is a failed test.
+    #![allow(clippy::unwrap_used)]
+
+    use super::{PADDED, canonical, padding};
+    use serde_json::json;
+
+    #[test]
+    fn a_record_is_padded_to_one_of_a_few_sizes() {
+        let size = |record: &serde_json::Value| {
+            canonical(record).unwrap().len() + padding(record).unwrap().len()
+        };
+        // However small, the smallest size.
+        assert_eq!(size(&json!({"pad": ""})), PADDED);
+        for exact in [PADDED, 2 * PADDED] {
+            // Exactly a size already: nothing is added.
+            let empty = canonical(&json!({"pad": "", "x": ""})).unwrap().len();
+            let record = json!({"pad": "", "x": "x".repeat(exact - empty)});
+            assert_eq!(padding(&record).unwrap(), "");
+            // One byte more goes to the next size.
+            let record = json!({"pad": "", "x": "x".repeat(exact - empty + 1)});
+            assert_eq!(size(&record), 2 * exact);
+        }
+    }
 }

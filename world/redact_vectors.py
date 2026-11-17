@@ -15,7 +15,11 @@ It holds, for the trial room of vectors/log-apart.json:
   public from its copy, and after it decides that the field stays
   redacted;
 - records that must be refused when held to the log, each signed, so
-  that only its place in the log is at fault.
+  that only its place in the log is at fault;
+- a second log, written by hand, whose entries commit to texts that are
+  not a field as a log writes one, with the record that carries each:
+  the text hashes to the entry's fingerprint, and the record is refused
+  all the same.
 
 Sealing is random, so this code keeps each box already in the file if it
 still opens, with the key stated, to exactly the record stated;
@@ -27,6 +31,7 @@ still exactly what this code writes.
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -85,11 +90,17 @@ def _signed(record: Dict[str, Any], by: str = REDACTS) -> Dict[str, Any]:
     return records.sign(record, parties._secret(by), CREATED)
 
 
+def _text(salt: str, name: str, value: Any) -> str:
+    """What a log hashes for a field: `apart.fingerprint_text`."""
+    return apart.fingerprint_text(salt, name, value)
+
+
 def _refused(room: apart.Log, inside: Dict[str, Any]) -> List[dict]:
     """Records that hold as records and are refused when held to the
     log."""
     plain = {k: v for k, v in inside.items() if k != "proof"}
     hashes = [e["hash"] for e in room.entries]
+    salt, value = redact.what_was_there(inside)
     out = []
 
     def add(name: str, record: Any, reason: str) -> None:
@@ -111,19 +122,90 @@ def _refused(room: apart.Log, inside: Dict[str, Any]) -> List[dict]:
     add("a copy that names a field of another entry",
         _signed(dict(plain, entry=hashes[4])), redact.NOT_HELD)
     add("a copy with another value",
-        _signed(dict(plain, value=plain["value"] + "!")), redact.NOT_HELD)
-    add("a copy with another field's salt",
-        _signed(dict(plain,
-                     salt=room.contents[plain["entry"]]["time"][0])),
+        _signed(dict(plain, hashed=_text(salt, FIELD, value + "!"))),
         redact.NOT_HELD)
-    deep: Any = "v"
-    for _ in range(apart.MAX_NESTING + 1):
-        deep = [deep]
-    add("a copy whose value nests deeper than a log allows",
-        _signed(dict(plain, value=deep)), redact.NOT_HELD)
+    add("a copy with another field's salt",
+        _signed(dict(plain, hashed=_text(
+            room.contents[plain["entry"]]["time"][0], FIELD, value))),
+        redact.NOT_HELD)
+    add("a copy that carries another field of the same entry",
+        _signed(dict(plain, hashed=_text(
+            *room.contents[plain["entry"]]["time"][:1], "time",
+            room.contents[plain["entry"]]["time"][1]))),
+        redact.NOT_HELD)
+    add("a copy that carries the fingerprint in place of what was hashed",
+        _signed(dict(plain, hashed=hashlib.sha256(
+            plain["hashed"].encode()).hexdigest())), redact.NOT_HELD)
     add("a record of another kind",
         parties._records()["ALICE's journal entry"], redact.NOT_A_COPY)
     return out
+
+
+# Texts that are not a field as a log writes one. `S` stands for the
+# trial salt each is given.
+ODD = [
+    ("written with spaces", '["S", "text", "v"]'),
+    ("another field's name", '["S","other","v"]'),
+    ("a map", '{"salt":"S","name":"text","value":"v"}'),
+    ("two things", '["S","text"]'),
+    ("four things", '["S","text","v","w"]'),
+    ("a number with a fraction", '["S","text",1.5]'),
+    ("a whole number written with a fraction", '["S","text",1.0]'),
+    ("a number beyond 2^53 - 1", '["S","text",9007199254740992]'),
+    ("minus zero", '["S","text",-0]'),
+    ("a number too large to read", '["S","text",1e400]'),
+    ("not a number", '["S","text",NaN]'),
+    ("nothing as the value", '["S","text",null]'),
+    ("a key twice", '["S","text",{"a":1,"a":2}]'),
+    ("keys out of order", '["S","text",{"b":1,"a":2}]'),
+    ("half a surrogate pair", '["S","text","\\ud800"]'),
+    ("text not written in ASCII", '["S","text","caf\u00e9"]'),
+    ("a salt in capitals", '["' + "A" * 32 + '","text","v"]'),
+    ("a salt that is a number", '[7,"text","v"]'),
+    ("not JSON", "hello, room"),
+    ("nested deeper than a log allows",
+     '["S","text",' + "[" * 33 + '"v"' + "]" * 33 + "]"),
+    ("nested deeper than a reader may go",
+     '["S","text",' + "[" * 2000 + "]" * 2000 + "]"),
+]
+
+
+def odd() -> Dict[str, Any]:
+    """A log written by hand whose entries commit to the texts of
+    `ODD`, and the record that carries each. Every text hashes to its
+    entry's fingerprint, so only what the text is can refuse it. The
+    first entry after the log's own commits to a true field, and its
+    record holds."""
+    log = apart_vectors._start()
+    template = {"format": redact.FORMAT,
+                "office": {"key": parties._did(REDACTS), "grant": GRANT},
+                "to": parties._did(DECIDES),
+                "decider": parties._did(DECIDES), "log": log[0]["hash"],
+                "field": FIELD, "pad": ""}
+
+    def record(n: int, text: str) -> Dict[str, Any]:
+        text = text.replace('"S"', json.dumps(apart_vectors.trial_salt(
+            500 + n)))
+        entry = apart_vectors._raw(
+            log, n + 1, "said", None, {},
+            {FIELD: hashlib.sha256(text.encode()).hexdigest()})
+        made = dict(template, entry=entry, hashed=text)
+        made["pad"] = redact._padding(made)
+        return _signed(made)
+
+    holds = record(0, '["S","text","hello, room"]')
+    refused = [{"name": name, "record": record(n + 1, text)}
+               for n, (name, text) in enumerate(ODD)]
+    redact.held_to(holds, log)
+    for case in refused:
+        try:
+            redact.held_to(case["record"], log)
+        except redact.RedactError as e:
+            assert e.reason == redact.NOT_HELD, (case["name"], e.reason)
+        else:
+            raise AssertionError(f"{case['name']}: held")
+    return {"log": log, "holds": holds, "refused": refused,
+            "reason": redact.NOT_HELD}
 
 
 def vectors(old: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
@@ -180,6 +262,7 @@ def vectors(old: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
             "never for anything real."),
         "format": redact.FORMAT,
         "label": redact.LABEL,
+        "padded": redact.PADDED,
         "reasons": list(redact.REASONS),
         "parties": {
             name: {"id": parties._did(name),
@@ -200,6 +283,7 @@ def vectors(old: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         "kept": kept,
         "stays": stayed,
         "refused": _refused(room, copies[0]["inside"]),
+        "odd": odd(),
     }
 
 

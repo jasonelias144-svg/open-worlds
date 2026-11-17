@@ -21,14 +21,23 @@
   `stays_redacted` are the deciding office's. New vectors,
   `vectors/redaction.json`, on the trial room: Rust does the same act
   and gets Python's log, contents and signed records, and decides
-  from the box Python sealed. Checked: Python's tests of the act (24)
-  and of the sealed records; Rust's (14 in `redact`, and the formats'
-  own); mutation checks, 16 changes to the Python and 12 to the Rust,
-  each of which makes a test fail but one in Rust that changes
-  nothing that can be seen (an entry that is not a mark is refused
-  again by the writer). Not done: who may redact or decide; deleting
-  the office's copy, which is its word; a real redaction, which waits
-  for the room and for a person's container.
+  from the box Python sealed. The independent review found one thing
+  that had to change, a field that could be kept apart and not
+  redacted (a map with a key that is not in ASCII), and four worth
+  taking; after it a copy carries exactly the text that was hashed,
+  names the deciding office, and is padded; only the deciding
+  office's own copy decides; and the copies are handed over before
+  the mark is written. Checked: Python's tests of the act (29) and of
+  the sealed records; Rust's (20 in `redact`, and the formats' own);
+  every value the log's vectors allow redacted and put back, in both;
+  mutation checks, 35 changes to the Python and 23 to the Rust, each
+  of which makes a test fail but one in each that changes nothing
+  that can be seen (in Python, whether a refusal keeps the error
+  under it, whose words it already gives; in Rust, an entry that is
+  not a mark is refused again by the writer). Not done: who may
+  redact or decide; keeping the copies, and deleting the office's,
+  which is its word; a real redaction, which waits for the room and
+  for a person's container.
 - 2026-11-17 Claude: the founder's words on how the multiverse is
   built are in the charter (CHARTER.md, section 1): by learning
   through making choices, as its worlds are lived in. Recorded with

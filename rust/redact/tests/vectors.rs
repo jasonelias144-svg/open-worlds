@@ -5,7 +5,8 @@
 //! trial room of `vectors/log-apart.json`: the same log and contents
 //! after the act, the same records inside the copies, the same log after
 //! each decision, and the same reason for every record that must be
-//! refused.
+//! refused, among them the records of a log written by hand whose entries
+//! commit to texts that are not a field as a log writes one.
 
 // Tests may unwrap, expect, panic and index: a failure here is a failed
 // test, not a world that crashed.
@@ -16,13 +17,14 @@
     clippy::indexing_slicing
 )]
 
+use formats::canonical::canonical;
 use formats::multikey::{
     sealing_from_multikey, sealing_secret_from_multikey, secret_from_multikey,
 };
 use formats::{records, sealed};
 use redact::{
-    Act, Answer, FORMAT, LABEL, Office, Opener, REASONS, Recipient, Redaction, Refused, finish,
-    held_to, keep_public, open_copy, redact, stays_redacted,
+    Act, Answer, FORMAT, LABEL, Office, Opener, PADDED, REASONS, Recipient, Redaction, Refused,
+    finish, held_to, keep_public, open_copy, redact, stays_redacted, what_was_there,
 };
 use serde_json::{Map, Value, json};
 use world_log::apart::{self, Decided, Log, RedactionState, State};
@@ -159,6 +161,7 @@ impl Trial {
                 apart: &map(&act["apart"]),
             },
             &self.office(),
+            None,
             &mut salt,
         )
         .unwrap();
@@ -199,6 +202,7 @@ fn the_names_and_reasons_are_pythons() {
     let v = vectors();
     assert_eq!(v["format"], FORMAT);
     assert_eq!(v["label"], LABEL);
+    assert_eq!(v["padded"], json!(PADDED));
     let reasons: Vec<&str> = REASONS.iter().map(Refused::reason).collect();
     assert_eq!(v["reasons"], json!(reasons));
 }
@@ -227,7 +231,7 @@ fn each_refused_record_holds_as_a_record_and_not_to_the_log() {
     let v = vectors();
     let log = &v["redacted"]["log"];
     let refused = v["refused"].as_array().unwrap();
-    assert_eq!(refused.len(), 8, "the vectors are all there");
+    assert_eq!(refused.len(), 9, "the vectors are all there");
     for case in refused {
         let name = &case["name"];
         assert!(records::check(&case["record"]).is_ok(), "{name}");
@@ -240,6 +244,40 @@ fn each_refused_record_holds_as_a_record_and_not_to_the_log() {
             case["reason"].as_str().unwrap(),
             "{name}"
         );
+    }
+}
+
+#[test]
+fn a_text_that_is_not_a_field_is_refused_though_it_hashes() {
+    // A log written by hand commits to texts that are not a field as a
+    // log writes one. Each record carries exactly the text its entry's
+    // fingerprint is the hash of, and is refused all the same: what is
+    // put back must be what a log would write.
+    let v = vectors();
+    let case = &v["odd"];
+    let log = &case["log"];
+    assert_eq!(case["reason"], Refused::NotHeld.reason());
+    assert_eq!(held_to(&case["holds"], log), Ok(()));
+    assert_eq!(what_was_there(&case["holds"]).unwrap().1, VALUE);
+    let refused = case["refused"].as_array().unwrap();
+    assert_eq!(refused.len(), 21, "the vectors are all there");
+    for one in refused {
+        let name = &one["name"];
+        let record = &one["record"];
+        assert!(records::check(record).is_ok(), "{name}");
+        let entry = log
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|e| e["hash"] == record["entry"])
+            .unwrap();
+        assert_eq!(
+            json!(sha256_hex(record["hashed"].as_str().unwrap().as_bytes())),
+            entry["apart"]["text"],
+            "{name}"
+        );
+        assert_eq!(what_was_there(record), None, "{name}");
+        assert_eq!(held_to(record, log), Err(Refused::NotHeld), "{name}");
     }
 }
 
@@ -441,17 +479,17 @@ fn a_redaction_that_cannot_be_made_changes_nothing() {
         ),
     ];
     for (name, act, by, expected) in cases {
-        let error = redact(&mut log, &act, &by, &mut salt).expect_err(name);
+        let error = redact(&mut log, &act, &by, None, &mut salt).expect_err(name);
         assert!(expected(&error), "{name}: {error}");
         assert_eq!(log.entries(), before.0.as_slice(), "{name}");
         assert_eq!(log.contents(), &before.1, "{name}");
     }
     // And the room still takes the act.
-    let made = redact(&mut log, &good, &office, &mut salt).unwrap();
+    let made = redact(&mut log, &good, &office, None, &mut salt).unwrap();
     assert_eq!(made.copies.len(), 1);
     // A field is redacted once: it is gone, and its mark is open.
     assert_eq!(
-        redact(&mut log, &good, &office, &mut salt),
+        redact(&mut log, &good, &office, None, &mut salt),
         Err(Refused::NotThere)
     );
 }
@@ -476,6 +514,7 @@ fn no_copy_is_kept_for_someone_with_no_key() {
             apart: &none,
         },
         &t.office(),
+        None,
         &mut salt,
     )
     .unwrap();
@@ -505,7 +544,8 @@ fn a_redaction_that_stopped_after_its_mark_is_finished() {
                 &t.office(),
                 created,
                 &[],
-                t.decides.recipient()
+                t.decides.recipient(),
+                None
             ),
             Err(Refused::NoMark)
         );
@@ -528,7 +568,8 @@ fn a_redaction_that_stopped_after_its_mark_is_finished() {
             &t.office(),
             created,
             &to_small,
-            t.decides.recipient()
+            t.decides.recipient(),
+            None
         ),
         Err(Refused::Sealed(_))
     ));
@@ -540,13 +581,14 @@ fn a_redaction_that_stopped_after_its_mark_is_finished() {
         created,
         &[t.alice.recipient()],
         t.decides.recipient(),
+        None,
     )
     .unwrap();
     assert_eq!(made.mark, mark);
     assert_eq!(log.entries(), before.as_slice(), "the log is not touched");
     assert_eq!(state(&log, t.entry(), "text"), State::Redacted);
     let inside = open_copy(&made.copies[0], t.alice.opener(), &entries(&log)).unwrap();
-    assert_eq!(inside["value"], VALUE);
+    assert_eq!(what_was_there(&inside).unwrap().1, VALUE);
     // Already out.
     assert_eq!(
         finish(
@@ -555,7 +597,8 @@ fn a_redaction_that_stopped_after_its_mark_is_finished() {
             &t.office(),
             created,
             &[],
-            t.decides.recipient()
+            t.decides.recipient(),
+            None
         ),
         Err(Refused::NotThere)
     );
@@ -579,7 +622,8 @@ fn a_redaction_that_stopped_after_its_mark_is_finished() {
             &t.office(),
             created,
             &[],
-            t.decides.recipient()
+            t.decides.recipient(),
+            None
         ),
         Err(Refused::NoMark)
     );
@@ -649,11 +693,12 @@ fn it_stays_redacted_and_is_never_made_public_again() {
 }
 
 #[test]
-fn only_the_offices_own_copy_of_that_field_decides() {
+fn only_the_deciding_offices_own_copy_of_that_field_decides() {
     let t = Trial::new();
     let (mut log, made, mut salt) = t.redacted();
     let before = log.entries().len();
-    // A person's copy, in the office's hands.
+    let untouched = (log.entries().to_vec(), log.contents().clone());
+    // A person's copy, in the office's hands: it does not open.
     let error = t
         .decide("kept", &made.mark, |answer| {
             keep_public(
@@ -666,6 +711,31 @@ fn only_the_offices_own_copy_of_that_field_decides() {
         })
         .unwrap_err();
     assert!(matches!(error, Refused::Sealed(_)), "{error}");
+    // A person's own copy, opened by that person: it opens, it is what
+    // the log held, and it names another as the deciding office.
+    let error = t
+        .decide("kept", &made.mark, |answer| {
+            keep_public(
+                &mut log,
+                answer,
+                &made.copies[0],
+                t.alice.opener(),
+                &mut salt,
+            )
+        })
+        .unwrap_err();
+    assert_eq!(error, Refused::NotDeciders);
+    assert_eq!(log.entries(), untouched.0.as_slice());
+    assert_eq!(log.contents(), &untouched.1);
+    // Every copy names the same deciding office.
+    for (envelope, who) in [
+        (&made.copies[0], &t.alice),
+        (&made.copies[1], &t.bob),
+        (&made.office_copy, &t.decides),
+    ] {
+        let inside = open_copy(envelope, who.opener(), &entries(&log)).unwrap();
+        assert_eq!(inside["decider"], json!(t.decides.id));
+    }
     // What is not a mark is refused as the log refuses it.
     for odd in [t.entry(), &"0".repeat(64)] {
         let error = t
@@ -700,6 +770,7 @@ fn only_the_offices_own_copy_of_that_field_decides() {
             apart: &none,
         },
         &t.office(),
+        None,
         &mut salt,
     )
     .unwrap();
@@ -805,10 +876,19 @@ fn what_is_held_to_a_log_need_not_be_a_record_at_all() {
         (changed("entry", json!(["x"])), Refused::NoEntry),
         (changed("field", json!(7)), Refused::NoField),
         (changed("field", json!(["text"])), Refused::NoField),
-        (changed("salt", json!(7)), Refused::NotHeld),
-        (changed("salt", json!("E".repeat(32))), Refused::NotHeld),
-        (changed("value", json!(null)), Refused::NotHeld),
-        (changed("value", json!(1.5)), Refused::NotHeld),
+        (changed("hashed", json!(7)), Refused::NotHeld),
+        (
+            changed("hashed", json!(["salt", "text", "value"])),
+            Refused::NotHeld,
+        ),
+        (changed("hashed", json!("")), Refused::NotHeld),
+        (
+            changed(
+                "hashed",
+                json!(format!("{} ", good["hashed"].as_str().unwrap())),
+            ),
+            Refused::NotHeld,
+        ),
     ] {
         assert_eq!(held_to(&record, log), Err(expected), "{record}");
     }
@@ -816,11 +896,265 @@ fn what_is_held_to_a_log_need_not_be_a_record_at_all() {
         ("log", Refused::OtherLog),
         ("entry", Refused::NoEntry),
         ("field", Refused::NoField),
-        ("salt", Refused::NotHeld),
-        ("value", Refused::NotHeld),
+        ("hashed", Refused::NotHeld),
     ] {
         let mut record = good.clone();
         record.as_object_mut().unwrap().remove(missing);
         assert_eq!(held_to(&record, log), Err(expected), "{missing}");
     }
+}
+
+#[test]
+fn a_copy_says_what_was_there_and_where() {
+    let t = Trial::new();
+    let mut salt = trial_salts();
+    let before = room(&mut salt);
+    let pair = before.contents()[t.entry()]["text"].clone();
+    let (log, made, _) = t.redacted();
+    let mut inside = open_copy(&made.copies[0], t.alice.opener(), &entries(&log)).unwrap();
+    assert_eq!(
+        what_was_there(&inside),
+        Some((pair[0].as_str().unwrap().to_owned(), pair[1].clone()))
+    );
+    // Signed by the office that redacted it.
+    assert!(records::check(&inside).is_ok());
+    let pad = inside["pad"].clone();
+    inside.as_object_mut().unwrap().remove("proof");
+    assert_eq!(
+        inside,
+        json!({
+            "format": FORMAT,
+            "office": {"key": t.redacts.id, "grant": t.v["act"]["grant"]},
+            "to": t.alice.id,
+            "decider": t.decides.id,
+            "log": log.entries()[0]["hash"],
+            "entry": t.entry(),
+            "field": "text",
+            "hashed": apart::fingerprint_text(pair[0].as_str().unwrap(), "text", &pair[1])
+                .unwrap(),
+            "pad": pad,
+        })
+    );
+}
+
+/// A room of one entry that keeps `value` apart as its text, and that
+/// entry's hash.
+fn one_said(value: &Value, salt: &mut dyn FnMut() -> String) -> (Log, String) {
+    let table = json!({"said": ["text"]});
+    let mut log = Log::new(&table, &Map::new(), "world_created", salt).unwrap();
+    let mut kept = Map::new();
+    kept.insert("text".to_owned(), value.clone());
+    let said = log
+        .append(1, "said", None, &Map::new(), &kept, salt)
+        .unwrap();
+    (log, said)
+}
+
+#[test]
+fn whatever_a_log_can_keep_apart_can_be_redacted() {
+    // Among them a map with a key that is not ASCII, which no signed
+    // record could hold as a key of its own: a copy carries what was
+    // hashed, as text.
+    let t = Trial::new();
+    let room: Value = serde_json::from_str(ROOM).unwrap();
+    let values: Vec<&Value> = room["fingerprints"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|f| &f["value"])
+        .collect();
+    assert_eq!(values.len(), 18, "the vectors are all there");
+    assert!(values.iter().any(|v| {
+        v.as_object()
+            .is_some_and(|m| m.keys().any(|k| !k.is_ascii()))
+    }));
+    let none = Map::new();
+    for value in values {
+        let mut salt = trial_salts();
+        let (mut log, said) = one_said(value, &mut salt);
+        let its_salt = log.contents()[&said]["text"][0]
+            .as_str()
+            .unwrap()
+            .to_owned();
+        let made = redact(
+            &mut log,
+            &Act {
+                tick: 2,
+                entry: &said,
+                field: "text",
+                ground: &t.v["act"]["ground"],
+                created: t.v["created"].as_str().unwrap(),
+                about: &[t.alice.recipient()],
+                decider: t.decides.recipient(),
+                agent: None,
+                apart: &none,
+            },
+            &t.office(),
+            None,
+            &mut salt,
+        )
+        .unwrap();
+        assert_eq!(state(&log, &said, "text"), State::Redacted, "{value}");
+        let inside = open_copy(&made.copies[0], t.alice.opener(), &entries(&log)).unwrap();
+        assert_eq!(
+            what_was_there(&inside),
+            Some((its_salt.clone(), value.clone())),
+            "{value}"
+        );
+        // This room's table keeps nothing of a decision apart.
+        let answer = Answer {
+            tick: 3,
+            mark: &made.mark,
+            by: Decided {
+                office: t.v["kept"]["office"].as_str().unwrap(),
+                ground: &t.v["kept"]["ground"],
+                decision: t.v["kept"]["decision"].as_str().unwrap(),
+                agent: None,
+            },
+            apart: &none,
+        };
+        keep_public(
+            &mut log,
+            &answer,
+            &made.office_copy,
+            t.decides.opener(),
+            &mut salt,
+        )
+        .unwrap();
+        assert_eq!(log.contents()[&said]["text"], json!([its_salt, value]));
+        let joined = apart::join(&entries(&log), &contents(&log)).unwrap();
+        assert_eq!(&joined[1]["data"]["text"], value);
+    }
+}
+
+#[test]
+fn a_copys_length_says_little_of_what_was_there() {
+    // Before it is signed, a record is 1024 bytes or the next power of
+    // two. A signature's text is 87 or 88 characters, whatever was
+    // signed, so two boxes of one size differ by a byte at most.
+    let t = Trial::new();
+    let none = Map::new();
+    let mut sizes: std::collections::BTreeMap<usize, Vec<usize>> = Default::default();
+    for length in [0, 1, 11, 200, 400, 600, 1500, 5000] {
+        let mut salt = trial_salts();
+        let (mut log, said) = one_said(&json!("x".repeat(length)), &mut salt);
+        let made = redact(
+            &mut log,
+            &Act {
+                tick: 2,
+                entry: &said,
+                field: "text",
+                ground: &t.v["act"]["ground"],
+                created: t.v["created"].as_str().unwrap(),
+                about: &[t.alice.recipient()],
+                decider: t.decides.recipient(),
+                agent: None,
+                apart: &none,
+            },
+            &t.office(),
+            None,
+            &mut salt,
+        )
+        .unwrap();
+        let mut inside = open_copy(&made.office_copy, t.decides.opener(), &entries(&log)).unwrap();
+        inside.as_object_mut().unwrap().remove("proof");
+        let size = canonical(&inside).unwrap().len();
+        assert!(size.is_power_of_two(), "{length}: {size}");
+        assert!(size >= PADDED, "{length}: {size}");
+        assert!(inside["pad"].as_str().unwrap().bytes().all(|b| b == b'0'));
+        for envelope in [&made.copies[0], &made.office_copy] {
+            sizes
+                .entry(size)
+                .or_default()
+                .push(envelope["box"].as_str().unwrap().len() / 2);
+        }
+    }
+    // Five short values share the smallest size.
+    let all: Vec<&usize> = sizes.keys().collect();
+    assert_eq!(all, [&1024, &2048, &4096, &8192]);
+    assert_eq!(sizes[&1024].len(), 10);
+    for (size, boxes) in &sizes {
+        let (least, most) = (boxes.iter().min().unwrap(), boxes.iter().max().unwrap());
+        assert!(most - least <= 1, "{size}: {boxes:?}");
+    }
+}
+
+#[test]
+fn the_copies_are_handed_over_before_anything_is_written() {
+    let t = Trial::new();
+    let mut salt = trial_salts();
+    let mut log = room(&mut salt);
+    let before = (log.entries().to_vec(), log.contents().clone());
+    let none = Map::new();
+    let act = Act {
+        tick: 5,
+        entry: t.entry(),
+        field: "text",
+        ground: &t.v["act"]["ground"],
+        created: t.v["created"].as_str().unwrap(),
+        about: &[t.alice.recipient()],
+        decider: t.decides.recipient(),
+        agent: None,
+        apart: &none,
+    };
+    // If they can't be kept, nothing is marked and nothing taken out.
+    let mut full = |_: &[Value], _: &Value| Err("no room for them".to_owned());
+    assert_eq!(
+        redact(&mut log, &act, &t.office(), Some(&mut full), &mut salt),
+        Err(Refused::Store("no room for them".to_owned()))
+    );
+    assert_eq!(log.entries(), before.0.as_slice());
+    assert_eq!(log.contents(), &before.1);
+    // They are handed over once, as the act gives them back.
+    let mut seen: Vec<(Vec<Value>, Value)> = Vec::new();
+    let mut keep = |copies: &[Value], office_copy: &Value| {
+        seen.push((copies.to_vec(), office_copy.clone()));
+        Ok(())
+    };
+    let made = redact(&mut log, &act, &t.office(), Some(&mut keep), &mut salt).unwrap();
+    assert_eq!(seen, [(made.copies.clone(), made.office_copy.clone())]);
+    assert_eq!(state(&log, t.entry(), "text"), State::Redacted);
+
+    // The same for a redaction finished after its mark.
+    let mut salt = trial_salts();
+    let mut log = room(&mut salt);
+    let by = apart::Office {
+        office: "trial office",
+        ground: &t.v["act"]["ground"],
+        agent: None,
+    };
+    let mark = log
+        .mark(5, t.entry(), "text", by, &Map::new(), &mut salt)
+        .unwrap();
+    let created = t.v["created"].as_str().unwrap();
+    assert_eq!(
+        finish(
+            &mut log,
+            &mark,
+            &t.office(),
+            created,
+            &[],
+            t.decides.recipient(),
+            Some(&mut full)
+        ),
+        Err(Refused::Store("no room for them".to_owned()))
+    );
+    assert_eq!(state(&log, t.entry(), "text"), State::Unfinished);
+    let mut seen: Vec<(Vec<Value>, Value)> = Vec::new();
+    let mut keep = |copies: &[Value], office_copy: &Value| {
+        seen.push((copies.to_vec(), office_copy.clone()));
+        Ok(())
+    };
+    let made = finish(
+        &mut log,
+        &mark,
+        &t.office(),
+        created,
+        &[],
+        t.decides.recipient(),
+        Some(&mut keep),
+    )
+    .unwrap();
+    assert_eq!(seen, [(Vec::new(), made.office_copy.clone())]);
+    assert_eq!(state(&log, t.entry(), "text"), State::Redacted);
 }

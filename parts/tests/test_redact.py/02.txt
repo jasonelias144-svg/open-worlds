@@ -1,0 +1,188 @@
+Part of `tests/test_redact.py` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 2.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests/test_redact.py/01.txt
+After this part: nothing; this is the last part.
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+class TestDeciding(unittest.TestCase):
+
+    def setUp(self):
+        self.room, self.made, self.entry = redacted()
+
+    def test_the_office_keeps_it_public_from_its_copy(self):
+        decision = decide(self.room, self.made.mark, self.made.office_copy,
+                          apart_fields=VECTORS["kept"]["apart"])
+        self.assertEqual(self.room.entries[-1]["hash"], decision)
+        self.assertEqual(state(self.room, self.entry), "kept public")
+        self.assertEqual(self.room.entries, VECTORS["kept"]["log"])
+        self.assertEqual(self.room.contents, VECTORS["kept"]["contents"])
+        joined = apart.join(self.room.entries, self.room.contents)[3]
+        self.assertEqual(joined["data"][FIELD], VALUE)
+        # It is the room as it was, with two entries more.
+        before = apart_vectors._room()
+        self.assertEqual(self.room.contents[self.entry],
+                         before.contents[self.entry])
+
+    def test_the_box_kept_in_the_file_decides_too(self):
+        decide(self.room, self.made.mark,
+               VECTORS["copies"][-1]["envelope"],
+               apart_fields=VECTORS["kept"]["apart"])
+        self.assertEqual(self.room.entries, VECTORS["kept"]["log"])
+
+    def test_it_stays_redacted(self):
+        case = VECTORS["stays"]
+        redact.stays_redacted(self.room, case["tick"], self.made.mark,
+                              case["office"], case["ground"],
+                              case["decision"],
+                              apart_fields=case["apart"])
+        self.assertEqual(self.room.entries, case["log"])
+        self.assertEqual(self.room.contents, case["contents"])
+        self.assertEqual(state(self.room, self.entry), "redacted")
+        # And is never made public again, even with the copy in hand.
+        entries = copy.deepcopy(self.room.entries)
+        contents = copy.deepcopy(self.room.contents)
+        with self.assertRaises(Refused) as c:
+            decide(self.room, self.made.mark, self.made.office_copy)
+        self.assertEqual(c.exception.reason, apart.BAD_KEPT)
+        self.assertEqual(self.room.entries, entries)
+        self.assertEqual(self.room.contents, contents)
+
+    def test_only_the_deciding_offices_own_copy_decides(self):
+        entries = copy.deepcopy(self.room.entries)
+        contents = copy.deepcopy(self.room.contents)
+        # A person's copy, in the office's hands: it does not open.
+        with self.assertRaises(sealed.SealedError):
+            decide(self.room, self.made.mark, self.made.copies[0])
+        # A person's own copy, opened by that person: it opens, it is
+        # what the log held, and it names another as the deciding
+        # office.
+        with self.assertRaises(RedactError) as c:
+            redact.keep_public(
+                self.room, 6, self.made.mark, self.made.copies[0],
+                secret("ALICE"), did("ALICE"), apart_vectors.KEEPER,
+                apart_vectors.APPEAL, apart_vectors.trial_decision(1))
+        self.assertEqual(c.exception.reason, redact.NOT_DECIDERS)
+        self.assertEqual(self.room.entries, entries)
+        self.assertEqual(self.room.contents, contents)
+        # Every copy names the same deciding office.
+        for envelope, name in [(self.made.copies[0], "ALICE"),
+                               (self.made.copies[1], "BOB"),
+                               (self.made.office_copy, DECIDES)]:
+            inside = redact.open_copy(envelope, secret(name), did(name),
+                                      self.room.entries)
+            self.assertEqual(inside["decider"], did(DECIDES))
+        # The office's copy of another field, redacted by another mark.
+        other = redact.redact(self.room, 6, self.entry, "time", office(),
+                              apart_vectors.PRIVATE, CREATED,
+                              decider=_to(DECIDES))
+        with self.assertRaises(RedactError) as c:
+            decide(self.room, self.made.mark, other.office_copy)
+        self.assertEqual(c.exception.reason, redact.OTHER_FIELD)
+        self.assertEqual(state(self.room, self.entry), "redacted")
+        self.assertEqual(self.room.entries[:len(entries)], entries)
+        self.assertNotIn(FIELD, self.room.contents[self.entry])
+        self.assertEqual(
+            {k: v for k, v in self.room.contents.items()
+             if k != self.entry and k != other.mark},
+            {k: v for k, v in contents.items() if k != self.entry})
+
+    def test_what_is_not_a_mark_is_refused_as_the_log_refuses_it(self):
+        for odd in (self.entry, "0" * 64, None, ["x"]):
+            with self.subTest(odd=odd):
+                with self.assertRaises(Refused) as c:
+                    decide(self.room, odd, self.made.office_copy)
+                self.assertEqual(c.exception.reason, apart.BAD_KEPT)
+                self.assertEqual(c.exception.where,
+                                 len(self.room.entries))
+        # Nor is another of the form's own entries that names an entry:
+        # a removal, or a taking back.
+        other = self.room.entries[4]["hash"]
+        removal = self.room.append(
+            7, apart.REMOVED, None,
+            {"entry": other, "office": apart_vectors.MODERATOR,
+             "ground": apart_vectors.GROUND,
+             "decision": apart_vectors.trial_decision(3)})
+        taking = self.room.append(7, apart.TAKEN_BACK, None,
+                                  {"entry": other})
+        for odd in (removal, taking):
+            with self.subTest(odd=odd):
+                with self.assertRaises(Refused) as c:
+                    decide(self.room, odd, self.made.office_copy)
+                self.assertEqual(c.exception.reason, apart.BAD_KEPT)
+                with self.assertRaises(RedactError) as c:
+                    redact.finish(self.room, odd, office(), CREATED,
+                                  decider=_to(DECIDES))
+                self.assertEqual(c.exception.reason, redact.NO_MARK)
+
+    def test_a_decision_the_log_refuses_puts_nothing_back(self):
+        contents = copy.deepcopy(self.room.contents)
+        with self.assertRaises(Refused) as c:
+            redact.keep_public(
+                self.room, 6, self.made.mark, self.made.office_copy,
+                secret(DECIDES), did(DECIDES), apart_vectors.KEEPER,
+                apart_vectors.APPEAL, "not a hash")
+        self.assertEqual(c.exception.reason, apart.BAD_KEPT)
+        self.assertEqual(self.room.contents, contents)
+
+    def test_a_copy_is_held_to_the_log_it_is_opened_against(self):
+        # Another room, begun the same way, has other salts: the same
+        # first entry, and so the same name, but no entry in common
+        # after it that keeps a field apart.
+        other = apart.Log(apart_vectors.TABLE, apart_vectors.FIRST)
+        for step in apart_vectors.WRITTEN:
+            other.append(*step)
+        self.assertEqual(other.entries[0]["hash"],
+                         self.room.entries[0]["hash"])
+        with self.assertRaises(RedactError) as c:
+            redact.open_copy(self.made.office_copy, secret(DECIDES),
+                             did(DECIDES), other.entries)
+        self.assertEqual(c.exception.reason, redact.NO_ENTRY)
+        # A log that does not hold is refused as a log.
+        broken = copy.deepcopy(self.room.entries)
+        broken[2]["tick"] += 1
+        with self.assertRaises(Refused):
+            redact.open_copy(self.made.office_copy, secret(DECIDES),
+                             did(DECIDES), broken)
+        for odd in (None, {}, "log", []):
+            with self.subTest(odd=odd), self.assertRaises(Refused):
+                redact.held_to(VECTORS["copies"][0]["inside"], odd)
+
+    def test_what_is_held_to_a_log_need_not_be_a_record_at_all(self):
+        log = self.room.entries
+        for odd in (None, [], "copy", {}, {"format": "open-worlds/x/v1"}):
+            with self.subTest(odd=odd):
+                with self.assertRaises(RedactError) as c:
+                    redact.held_to(odd, log)
+                self.assertEqual(c.exception.reason, redact.NOT_A_COPY)
+        # A record of the kind with parts missing or of the wrong type
+        # is refused for the first thing that fails, never a crash.
+        good = {k: v for k, v in VECTORS["copies"][0]["inside"].items()
+                if k != "proof"}
+        for change, reason in [
+                (dict(log=7), redact.OTHER_LOG),
+                (dict(entry=["x"]), redact.NO_ENTRY),
+                (dict(field=7), redact.NO_FIELD),
+                (dict(field=["text"]), redact.NO_FIELD),
+                (dict(hashed=7), redact.NOT_HELD),
+                (dict(hashed=["salt", "text", "value"]), redact.NOT_HELD),
+                (dict(hashed=""), redact.NOT_HELD),
+                (dict(hashed=good["hashed"] + " "), redact.NOT_HELD),
+                (dict(hashed="\ud800"), redact.NOT_HELD)]:
+            with self.subTest(change=change):
+                with self.assertRaises(RedactError) as c:
+                    redact.held_to(dict(good, **change), log)
+                self.assertEqual(c.exception.reason, reason)
+        for missing in ("log", "entry", "field", "hashed"):
+            with self.subTest(missing=missing):
+                with self.assertRaises(RedactError):
+                    redact.held_to({k: v for k, v in good.items()
+                                    if k != missing}, log)
+
+
+if __name__ == "__main__":
+    unittest.main()
+
+------------------------------------------------------------------------
+End of `tests/test_redact.py`.

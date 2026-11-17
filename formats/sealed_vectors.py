@@ -84,17 +84,23 @@ def _stand_in(what: str) -> str:
 
 
 def _redacted(to: str, value: Any) -> Dict[str, Any]:
+    salt = hashlib.sha256(b"open-worlds sealed vectors: a salt"
+                          ).hexdigest()[:32]
     return {
         "format": "open-worlds/redacted-field/v1",
         "office": {"key": _did(KEEPER),
                    "grant": _stand_in("a grant to redact")},
         "to": _did(to),
+        "decider": _did(KEEPER),
         "log": _stand_in("a log's first entry"),
         "entry": _stand_in("an entry"),
         "field": "text",
-        "salt": hashlib.sha256(b"open-worlds sealed vectors: a salt"
-                               ).hexdigest()[:32],
-        "value": value,
+        # The list of the salt, the name and the value as a log writes
+        # it (world/apart.py, fingerprint_text): what a log hashes.
+        "hashed": json.dumps([salt, "text", value], sort_keys=True,
+                             separators=(",", ":")),
+        # How much is world/redact.py's to say; here, any zeros.
+        "pad": "0" * 8,
     }
 
 
@@ -120,12 +126,13 @@ def _records() -> Dict[str, Dict[str, Any]]:
         }, "BOB"),
         "a redacted field, ALICE's copy": _signed(
             _redacted("ALICE", "My number is 555 0100."), KEEPER),
-        # Every kind of value a log keeps apart, at its edges.
+        # Every kind of value a log keeps apart, at its edges, with a
+        # key that is not ASCII, which no record could hold as a key.
         "a redacted field, the office's copy": _signed(
             _redacted(KEEPER, {
                 "lines": ["caf\u00e9 \U0001F642", "", True, False],
                 "most": 9007199254740991, "least": -9007199254740991,
-                "empty": {}, "none": []}), KEEPER),
+                "empty": {}, "none": [], "cl\u00e9": "a key"}), KEEPER),
     }
 
 
@@ -166,20 +173,22 @@ def _refused_records(good: Dict[str, Dict[str, Any]]
     add("a redacted field signed by the one it is sealed to",
         _signed(dict(field), "ALICE"),
         "a redacted field is signed by the office that redacted it")
-    add("a redacted field that held nothing",
-        _signed(dict(field, value=None), KEEPER),
-        "nothing is not a value a log keeps apart")
-    add("a redacted field holding nothing inside a list",
-        _signed(dict(field, value=["a", None]), KEEPER),
-        "nothing is not a value, at any depth")
-    # A number with a fraction, or one beyond 2^53 - 1, can't be signed
-    # at all: no record holds one (formats/canonical.py).
-    add("a redacted field with its salt in capitals",
-        _signed(dict(field, salt=field["salt"].upper()), KEEPER),
-        "a salt is 32 lowercase hex digits")
-    add("a redacted field with a salt too short",
-        _signed(dict(field, salt=field["salt"][:31]), KEEPER),
-        "a salt is 32 lowercase hex digits")
+    add("a redacted field that holds no text",
+        _signed(dict(field, hashed=""), KEEPER),
+        "what was hashed is not empty")
+    add("a redacted field that holds a value in place of the text hashed",
+        _signed(dict(field, hashed=["a salt", "text", "a value"]), KEEPER),
+        "what was hashed is carried as text")
+    add("a redacted field padded with something else than zeros",
+        _signed(dict(field, pad="0010"), KEEPER),
+        "the filler is zeros")
+    add("a redacted field with no filler at all",
+        _signed({k: v for k, v in field.items() if k != "pad"}, KEEPER),
+        "pad is required, though it may be empty")
+    add("a redacted field that names no deciding office",
+        _signed({k: v for k, v in field.items() if k != "decider"},
+                KEEPER),
+        "decider is required")
     add("a redacted field whose name no table could hold",
         _signed(dict(field, field="Text"), KEEPER),
         "a field's name is lowercase")

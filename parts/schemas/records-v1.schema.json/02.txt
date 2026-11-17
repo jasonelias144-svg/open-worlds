@@ -6,6 +6,12 @@ Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-world
 After this part: nothing; this is the last part.
 Made by docs/parts.py from the file. To change it, change the file.
 ------------------------------------------------------------------------
+        "world",
+        "individual",
+        "name",
+        "tick",
+        "time",
+        "mind",
         "words",
         "proof"
       ],

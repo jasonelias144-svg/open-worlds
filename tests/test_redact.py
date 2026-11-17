@@ -2,11 +2,13 @@
 deciding office's two decisions (docs/research/REDACTION.md, decisions 4
 and 5)."""
 import copy
+import hashlib
 import json
 import unittest
 
 from formats import records, sealed
 from formats import sealed_vectors as parties
+from formats.canonical import canonical
 from formats.multikey import sealing_secret_from_multikey
 from world import apart, apart_vectors, redact, redact_vectors
 from world.apart import Refused
@@ -54,7 +56,8 @@ class TestTheVectors(unittest.TestCase):
         self.assertEqual(VECTORS["format"], redact.FORMAT)
         self.assertEqual(VECTORS["label"], redact.LABEL)
         self.assertEqual(VECTORS["reasons"], list(redact.REASONS))
-        self.assertEqual(len(set(redact.REASONS)), 9)
+        self.assertEqual(len(set(redact.REASONS)), 10)
+        self.assertEqual(VECTORS["padded"], redact.PADDED)
 
     def test_each_copy_opens_for_the_one_it_names_and_holds(self):
         log = VECTORS["redacted"]["log"]
@@ -86,6 +89,31 @@ class TestTheVectors(unittest.TestCase):
         self.assertEqual(seen, {redact.OTHER_LOG, redact.NO_ENTRY,
                                 redact.NO_FIELD, redact.NOT_HELD,
                                 redact.NOT_A_COPY})
+        self.assertEqual(len(VECTORS["refused"]), 9)
+
+    def test_a_text_that_is_not_a_field_is_refused_though_it_hashes(self):
+        # A log written by hand commits to texts that are not a field
+        # as a log writes one. Each record carries exactly the text its
+        # entry's fingerprint is the hash of, and is refused all the
+        # same: what is put back must be what a log would write.
+        case = VECTORS["odd"]
+        log = case["log"]
+        self.assertEqual(case["reason"], redact.NOT_HELD)
+        redact.held_to(case["holds"], log)
+        self.assertEqual(redact.what_was_there(case["holds"])[1], VALUE)
+        self.assertEqual(len(case["refused"]), 21)
+        for one in case["refused"]:
+            with self.subTest(one["name"]):
+                record = one["record"]
+                records.check(record)
+                entry = [e for e in log if e["hash"] == record["entry"]][0]
+                self.assertEqual(
+                    hashlib.sha256(record["hashed"].encode()).hexdigest(),
+                    entry["apart"][FIELD])
+                self.assertIsNone(redact.what_was_there(record))
+                with self.assertRaises(RedactError) as c:
+                    redact.held_to(record, log)
+                self.assertEqual(c.exception.reason, redact.NOT_HELD)
 
     def test_the_logs_in_the_file_hold_with_the_states_they_should(self):
         entry = VECTORS["act"]["entry"]
@@ -156,13 +184,133 @@ class TestRedacting(unittest.TestCase):
             {"format": redact.FORMAT,
              "office": {"key": did(REDACTS),
                         "grant": redact_vectors.GRANT},
-             "to": did("ALICE"),
+             "to": did("ALICE"), "decider": did(DECIDES),
              "log": self.room.entries[0]["hash"],
              "entry": self.entry, "field": FIELD,
-             "salt": salt, "value": value})
+             "hashed": apart.fingerprint_text(salt, FIELD, value),
+             "pad": inside["pad"]})
+        self.assertEqual(redact.what_was_there(inside), [salt, value])
         # Signed by the office that redacted it.
         records.check(inside)
         self.assertEqual(records.signer_field(inside), did(REDACTS))
+
+    def test_whatever_a_log_can_keep_apart_can_be_redacted(self):
+        # Among them a map with a key that is not ASCII, which no signed
+        # record could hold as a key of its own: a copy carries what was
+        # hashed, as text.
+        values = apart_vectors.VALUES_ALLOWED
+        self.assertTrue(any(type(v) is dict and any(not k.isascii()
+                                                    for k in v)
+                            for v in values))
+        for value in values:
+            with self.subTest(value=repr(value)[:40]):
+                self.assertTrue(apart.value_allowed(value))
+                log = apart.Log({"said": ["text"]})
+                said = log.append(1, "said", None, {}, {"text": value})
+                salt = log.contents[said]["text"][0]
+                made = redact.redact(
+                    log, 2, said, "text", office(), apart_vectors.PRIVATE,
+                    CREATED, about=[_to("ALICE")], decider=_to(DECIDES))
+                self.assertEqual(
+                    apart.check(log.entries, log.contents)[said]["text"],
+                    "redacted")
+                inside = redact.open_copy(made.copies[0], secret("ALICE"),
+                                          did("ALICE"), log.entries)
+                self.assertEqual(redact.what_was_there(inside),
+                                 [salt, value])
+                decide(log, made.mark, made.office_copy)
+                self.assertEqual(log.contents[said]["text"], [salt, value])
+                self.assertEqual(
+                    apart.join(log.entries, log.contents)[1]["data"]["text"],
+                    value)
+
+    def test_a_copys_length_says_little_of_what_was_there(self):
+        # Before it is signed, a record is 1024 bytes or the next power
+        # of two. A signature's text is 87 or 88 characters, whatever
+        # was signed, so two boxes of one size differ by a byte at most.
+        sizes = {}
+        for length in (0, 1, 11, 200, 400, 600, 1500, 5000):
+            log = apart.Log({"said": ["text"]})
+            said = log.append(1, "said", None, {}, {"text": "x" * length})
+            made = redact.redact(
+                log, 2, said, "text", office(), apart_vectors.PRIVATE,
+                CREATED, about=[_to("ALICE")], decider=_to(DECIDES))
+            inside = redact.open_copy(made.office_copy, secret(DECIDES),
+                                      did(DECIDES), log.entries)
+            plain = {k: v for k, v in inside.items() if k != "proof"}
+            size = len(canonical(plain))
+            self.assertEqual(size & (size - 1), 0, "a power of two")
+            self.assertGreaterEqual(size, redact.PADDED)
+            self.assertEqual(set(inside["pad"]) - {"0"}, set())
+            for envelope in made.copies + [made.office_copy]:
+                sizes.setdefault(size, set()).add(
+                    len(envelope["box"]) // 2)
+        # Five short values share the smallest size.
+        self.assertEqual(sorted(sizes), [1024, 2048, 4096, 8192])
+        self.assertEqual(len(sizes[1024]) <= 2, True)
+        for size, boxes in sizes.items():
+            self.assertLessEqual(max(boxes) - min(boxes), 1, size)
+
+    def test_a_record_is_padded_to_one_of_a_few_sizes(self):
+        def size(record):
+            return len(canonical(dict(record, pad=redact._padding(record))))
+        # However small, the smallest size.
+        self.assertEqual(size({"pad": ""}), redact.PADDED)
+        for exact in (redact.PADDED, 2 * redact.PADDED):
+            # Exactly a size already: nothing is added.
+            record = {"pad": "", "x": ""}
+            record["x"] = "x" * (exact - len(canonical(record)))
+            self.assertEqual(redact._padding(record), "")
+            # One byte more goes to the next size.
+            record["x"] += "x"
+            self.assertEqual(size(record), 2 * exact)
+
+    def test_the_copies_are_handed_over_before_anything_is_written(self):
+        room = apart_vectors._room()
+        entries = copy.deepcopy(room.entries)
+        contents = copy.deepcopy(room.contents)
+        seen = []
+
+        def store(copies, office_copy):
+            # The field is still there, and nothing is marked.
+            self.assertEqual(room.entries, entries)
+            self.assertEqual(room.contents, contents)
+            seen.append((copies, office_copy))
+
+        made = redact.redact(room, 5, self.entry, FIELD, office(),
+                             apart_vectors.PRIVATE, CREATED,
+                             about=[_to("ALICE")], decider=_to(DECIDES),
+                             store=store)
+        self.assertEqual(seen, [(made.copies, made.office_copy)])
+        self.assertEqual(state(room, self.entry), "redacted")
+
+        # If they can't be kept, nothing is marked and nothing taken out.
+        class Full(Exception):
+            pass
+
+        def full(copies, office_copy):
+            raise Full("no room for them")
+
+        room = apart_vectors._room()
+        with self.assertRaises(Full):
+            redact.redact(room, 5, self.entry, FIELD, office(),
+                          apart_vectors.PRIVATE, CREATED,
+                          decider=_to(DECIDES), store=full)
+        self.assertEqual(room.entries, entries)
+        self.assertEqual(room.contents, contents)
+        # The same for a redaction finished after its mark.
+        mark = room.mark(5, self.entry, FIELD, apart_vectors.OFFICE,
+                         apart_vectors.PRIVATE)
+        with self.assertRaises(Full):
+            redact.finish(room, mark, office(), CREATED,
+                          decider=_to(DECIDES), store=full)
+        self.assertEqual(state(room, self.entry), "unfinished")
+        seen.clear()
+        made = redact.finish(room, mark, office(), CREATED,
+                             decider=_to(DECIDES), store=lambda c, o:
+                             seen.append((c, o, state(room, self.entry))))
+        self.assertEqual(seen, [([], made.office_copy, "unfinished")])
+        self.assertEqual(state(room, self.entry), "redacted")
 
     def test_each_copy_is_for_one_alone(self):
         alice, bob = self.made.copies
@@ -209,6 +357,8 @@ class TestRedacting(unittest.TestCase):
              sealed.SealedError),
             ("a grant that is not a hash",
              dict(by=office()._replace(grant="mine")), sealed.SealedError),
+            ("a grant that no record could hold",
+             dict(by=office()._replace(grant=1.5)), sealed.SealedError),
             ("a ground the log does not take",
              dict(ground={"kind": "whim", "ref": "x"}), Refused),
             ("an office with no name",
@@ -224,10 +374,15 @@ class TestRedacting(unittest.TestCase):
                             created=CREATED, about=[_to("ALICE")],
                             decider=_to(DECIDES))
                 args.update(change)
-                with self.assertRaises(error):
+                with self.assertRaises(error) as c:
                     redact.redact(room, **args)
                 self.assertEqual(room.entries, entries)
                 self.assertEqual(room.contents, contents)
+                # No error's text holds any of the field.
+                for fields in contents.values():
+                    for salt, value in fields.values():
+                        self.assertNotIn(salt, str(c.exception))
+                        self.assertNotIn(str(value), str(c.exception))
 
     def test_the_reasons_are_the_ones_named(self):
         room = apart_vectors._room()
@@ -289,7 +444,7 @@ class TestFinishing(unittest.TestCase):
                                      made.office_copy))
         inside = redact.open_copy(made.copies[0], secret("ALICE"),
                                   did("ALICE"), self.room.entries)
-        self.assertEqual(inside["value"], VALUE)
+        self.assertEqual(redact.what_was_there(inside)[1], VALUE)
         # The office's copy then decides, as after any redaction.
         decide(self.room, self.mark, made.office_copy)
         self.assertEqual(state(self.room, self.entry), "kept public")
@@ -361,12 +516,30 @@ class TestDeciding(unittest.TestCase):
         self.assertEqual(self.room.entries, entries)
         self.assertEqual(self.room.contents, contents)
 
-    def test_only_the_offices_own_copy_decides(self):
+    def test_only_the_deciding_offices_own_copy_decides(self):
         entries = copy.deepcopy(self.room.entries)
         contents = copy.deepcopy(self.room.contents)
-        # A person's copy, in the office's hands.
+        # A person's copy, in the office's hands: it does not open.
         with self.assertRaises(sealed.SealedError):
             decide(self.room, self.made.mark, self.made.copies[0])
+        # A person's own copy, opened by that person: it opens, it is
+        # what the log held, and it names another as the deciding
+        # office.
+        with self.assertRaises(RedactError) as c:
+            redact.keep_public(
+                self.room, 6, self.made.mark, self.made.copies[0],
+                secret("ALICE"), did("ALICE"), apart_vectors.KEEPER,
+                apart_vectors.APPEAL, apart_vectors.trial_decision(1))
+        self.assertEqual(c.exception.reason, redact.NOT_DECIDERS)
+        self.assertEqual(self.room.entries, entries)
+        self.assertEqual(self.room.contents, contents)
+        # Every copy names the same deciding office.
+        for envelope, name in [(self.made.copies[0], "ALICE"),
+                               (self.made.copies[1], "BOB"),
+                               (self.made.office_copy, DECIDES)]:
+            inside = redact.open_copy(envelope, secret(name), did(name),
+                                      self.room.entries)
+            self.assertEqual(inside["decider"], did(DECIDES))
         # The office's copy of another field, redacted by another mark.
         other = redact.redact(self.room, 6, self.entry, "time", office(),
                               apart_vectors.PRIVATE, CREATED,
@@ -459,15 +632,16 @@ class TestDeciding(unittest.TestCase):
                 (dict(entry=["x"]), redact.NO_ENTRY),
                 (dict(field=7), redact.NO_FIELD),
                 (dict(field=["text"]), redact.NO_FIELD),
-                (dict(salt=7), redact.NOT_HELD),
-                (dict(salt="E" * 32), redact.NOT_HELD),
-                (dict(value=None), redact.NOT_HELD),
-                (dict(value=1.5), redact.NOT_HELD)]:
+                (dict(hashed=7), redact.NOT_HELD),
+                (dict(hashed=["salt", "text", "value"]), redact.NOT_HELD),
+                (dict(hashed=""), redact.NOT_HELD),
+                (dict(hashed=good["hashed"] + " "), redact.NOT_HELD),
+                (dict(hashed="\ud800"), redact.NOT_HELD)]:
             with self.subTest(change=change):
                 with self.assertRaises(RedactError) as c:
                     redact.held_to(dict(good, **change), log)
                 self.assertEqual(c.exception.reason, reason)
-        for missing in ("log", "entry", "field", "salt", "value"):
+        for missing in ("log", "entry", "field", "hashed"):
             with self.subTest(missing=missing):
                 with self.assertRaises(RedactError):
                     redact.held_to({k: v for k, v in good.items()
