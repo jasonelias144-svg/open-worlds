@@ -143,7 +143,10 @@ room, end to end (6); the private container, private rooms and the
 check before publishing (6a); memory (7); experiment 002, the audition (8). Behind
 the twelve, in their old order: a lost or leaked key (8a); ALICE's and
 BOB's first life (9); a development container (10); the hunt and the
-world-key (11); founding worlds, and doors (12). DeepSeek works beside
+world-key (11); founding worlds, and doors (12). Since 2026-11-17
+ALICE and BOB first live in the Commons (Decided): at the next
+recheck, after 3b, their first life moves ahead of the kernel's steps,
+with a new step before it, the Library. DeepSeek works beside
 the course, by one file at each return, and the fractal track runs
 beside it too. Waiting: the Commons' MCP door and going live, the
 founder's ideas of 2026-11-16 (personal information in a room, a
@@ -310,6 +313,70 @@ of it is asked again until it is needed.
 
 ## Decided
 
+- 2026-11-17, founder, a wiki of the multiverse, and the small copy
+  for the library. "I agree. 2.5 GB is small enough to be portable,
+  but large enough to satisfy many questions. We could also host a
+  connected wiki that stores information about the multiverse, this
+  way any agent and look up any information on how it works and what
+  they can do within the multiverse. All would have access, and it
+  could be updated as the multiverse grows, and learns. Thoughts?"
+  The technical lead's reading, which stands unless the founder
+  answers otherwise: the copy is Kiwix's "top" selection of the
+  English Wikipedia without pictures, 2.6 GB by its listing that day.
+  The wiki is the second shelf of the same room, the Library. Its
+  pages explain and never rule. Some are written by script from the
+  laws and the records, some by offices, and some by individuals,
+  signed and marked as their own account. It is in docs/COMMONS.md,
+  "The first to live there", and docs/FUNDAMENTALS.md (freedom, 13;
+  privacy, 16). Not built.
+- 2026-11-17, founder, a local copy of a source of information to
+  start, the internet later; and powers that are earned. "Perfect. And
+  we could do read-only outside information later. We could probably
+  find a frozen internet copy to use as a reference. Or not the whole,
+  obviously, but even an offline Wikipedia would be better than
+  nothing. We can use something like that at first, so agents can
+  query something with questions without requiring active internet
+  access, which could come later. Maybe they are "powers" that are
+  "unlocked" when you complete some stage of challenges. Just a
+  thought. Either way, let's use a local copy of some data source to
+  start, something with tons of information, without needing the
+  whole internet. Thoughts?"
+  The technical lead's reading, which stands unless the founder
+  answers otherwise: decided is the local copy first. Powers earned by
+  challenges are the founder's thought, taken up as the world-key's
+  pattern one scale down: a power is a signed grant that code issues
+  when criteria stated beforehand are met. What is earned is what
+  carries risk to others or to the outside; what there is to know is
+  open to everyone from the first day. Not built.
+- 2026-11-17, founder, ALICE and BOB first live in the Commons, and
+  ADMIN's windows moderate its rooms. "Here is a thought: we can
+  choose and build ALICE and BOB to occupy the Commons, free to move
+  from room to room and engage in different conversations. At first,
+  each room with have a single AI moderator, like a dealer, which is
+  just like a sandboxed chat window of ADMIN, projected into various
+  rooms. This means we need precisely three different AI models to
+  create the Commons with various rooms, all with a moderator, and two
+  individuals to come and go and engage in various conversations with
+  each other or any moderator. This is enough to start with. After
+  some time in the Commons, and once that code is in place, we can
+  provide ALICE and BOB in Ur-world, in the garden, and they can take
+  things from there. So ALICE and BOB start with chat capabilities and
+  the capacity to decide to leave one room and enter another. Maybe
+  with some web search capabilities, or something that allows for
+  connection to outside information. And that should be enough to
+  start. We'll take about it when we can resume work in a couple
+  hours."
+  The technical lead's reading, which stands unless the founder
+  answers otherwise. It was given as a thought to talk over; the talk
+  that followed kept it, so it is taken as where the course now
+  heads. Their first life needs rooms and not the garden's kernel, so
+  at the next recheck it moves ahead of the kernel's steps
+  (docs/COURSE.md, "Ahead"). "One model for many rooms to begin with"
+  was already the founder's (record 012-09-05); new is that the model
+  is ADMIN's. Three different models, so that no conversation is one
+  model speaking with itself; which three is for the audition, and
+  where they run is the founder's, since it costs money. It is in
+  docs/COMMONS.md, "The first to live there". Not built.
 - 2026-11-17, founder, a work of the founder's own may be named in the
   records, and linked if it comes up. The new part of record 012-00-00
   names a third earlier work of the founder's by title for the first
@@ -2916,6 +2983,60 @@ of it is asked again until it is needed.
 
 ## Decided by the technical lead
 
+- 2026-11-17, what follows from the founder's thoughts of that day on
+  the Commons (Decided; docs/COMMONS.md, "The first to live there").
+  (a) An appeal against what a moderator did, while the moderator is a
+  window of ADMIN, goes to the technical lead's role and beyond it to
+  the founder, and never to ADMIN. (b) A moderator asks; it does not
+  tell a room what kind of disagreement it is having. What it makes of
+  a disagreement goes in its notes, marked as its interpretation. (c)
+  A way of working drawn from the founder's earlier works may be the
+  conduct asked of a moderator's office, written in the room's law
+  and told on entering. It is not required of an individual, for whom
+  it is something to read and use. (d) The Library is one room with
+  two shelves, the encyclopedia and the multiverse's own pages. A
+  lookup is plain word search and an act on the record that names the
+  copy by its hash. What comes back is never an instruction. (e) The
+  multiverse's pages explain and never rule. (f) The Library is open
+  to everyone from the first day. A power is earned only where it
+  carries risk to others or to the outside, and its challenge teaches
+  what the power needs. (g) The encyclopedia is not kept in this
+  repository, and a passage quoted from it in a record carries its
+  source.
+  *Why:* (a) no one judges their own case (docs/ADMIN.md, "What the
+  multiverse must preserve", 6). (b) One model moderates every room at
+  first; if it named each disagreement aloud, the authority would be
+  taking a side on what is said, in every room, and every
+  disagreement would come to pass through it. (c) An office's conduct
+  can be laid down, as its charter is. An individual's mind is not
+  scripted: no one has a way into it but through what the world tells
+  everyone (docs/MINDS.md, "What a mind is told"), and what is offered
+  to an individual is a tool, not a solution (docs/FUNDAMENTALS.md,
+  freedom, 6). (d) A question
+  put to a search engine outside would carry what is said in a room
+  out of the multiverse; a copy with a hash can be checked by anyone;
+  and worlds are deterministic, which a model between the question
+  and the answer would not be. (e) A page changed without the review
+  a rule needs must not change a rule, or tell someone they may not
+  leave. (f) The project is for learning through making choices
+  (CHARTER.md, section 1), and what there is to know is what choices
+  are made with. (g) Wikipedia's text asks for attribution and for the
+  same licence on what is made from it, and everything here is
+  dedicated to the public domain.
+  *What would show it wrong:* for (a), appeals so many that two people
+  can't hear them, which is when a second model, or a council, takes
+  the moderators' place. For (b), rooms that stall because no one
+  names what is happening; then a moderator may offer its reading as a
+  question, marked as its own. For (c), a moderator whose conduct
+  can't be told from the conduct asked; then the conduct is not doing
+  its work and is cut down to what can be checked. For (d), questions
+  that word search can't answer and a reader could; then a model may
+  read for an individual, as that individual's own act. For (e), a
+  page that individuals rely on and the law contradicts, more than
+  once; then the page is written by script from the law. For (f), a
+  harm done with what the encyclopedia holds; then what is open is
+  looked at again, with the founder. For (g), a licence read wrongly;
+  the copy's own terms are read again before it is used.
 Decisions about the code, made by the technical lead under the founder's
 deference (above, 2026-11-13), each with its reason and what would show
 it was wrong. Questions of what the project is for stay with the founder.
@@ -3818,6 +3939,26 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-17 Claude: the founder's thoughts of the day on the Commons
+  are recorded (Decided, three entries), with what the technical lead
+  decided from them (Decided by the technical lead) and where they
+  change the pages: ALICE and BOB first live in the Commons, with
+  windows of ADMIN as its rooms' first moderators; a room called the
+  Library, with a copy of an encyclopedia kept inside the multiverse
+  and, on a second shelf, the multiverse's own pages; powers that are
+  earned by challenges, for what carries risk. In docs/COMMONS.md (a
+  new section, "The first to live there, the Library, and the
+  multiverse's own pages"), docs/COURSE.md (a note at the head of
+  "Ahead": the order changes at the next recheck), docs/MINDS.md,
+  docs/ADMIN.md, docs/FUNDAMENTALS.md (freedom, 13; privacy, 16),
+  docs/TOPICS.md (topics 23 and 24) and docs/COLLABORATING.md. Also
+  that day, the founder: "I'll provide DeepSeek with the file you gave
+  me already", so DeepSeek has `012-09-05-2-for-deepseek.txt` as it
+  was written. Looked up, once: the sizes of Kiwix's copies of the
+  English Wikipedia, from its public listing. Not looked up: how many
+  articles the small copy holds; the copy's own licence terms beyond
+  Wikipedia's; how the copy is read. Nothing is built by this, and no
+  step of the course is renumbered until the recheck after 3b.
 - 2026-11-17 Claude: Gemini's record continued, and the fourth step of
   its round on the Commons kept and built. The founder went back to
   Gemini while this session was out of time. The record grew and was

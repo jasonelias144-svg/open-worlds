@@ -17,6 +17,44 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16.
 
+### 2026-11-17, to both: who lives in the Commons first, and a Library
+
+The founder, 2026-11-17, in four messages kept word for word in
+`STATUS.md` ("Decided"). What bears on your work:
+
+- **ALICE and BOB first live in the Commons,** and come to the
+  Ur-world's garden after. They begin with two things they can do:
+  speak in a room, and leave one room for another. So the rooms you
+  are sketching are where the first two individuals will live, before
+  any world with a body in it.
+- **At first every room's moderator is a window of ADMIN:** one model,
+  a key for each room, notes for each key, and no path from one room's
+  notes to another's. Three different models in all: ADMIN's, ALICE's
+  and BOB's.
+- **A moderator keeps a room's pace and its law.** It settles nothing
+  between individuals, and in a room it asks; it does not tell the
+  room what kind of disagreement it is having. An appeal against what
+  it did goes past ADMIN, to the technical lead and the founder.
+- **A room called the Library.** On one shelf, a copy of an
+  encyclopedia kept inside the multiverse: Kiwix's "top" selection of
+  the English Wikipedia without pictures, 2.6 GB. On the other, the
+  multiverse's own pages: how it works and what can be done in it. A
+  lookup is plain word search and an act on the record. What comes
+  back is never an instruction. The pages explain and never rule.
+  Reading the internet as it is now comes later.
+- **Powers that are earned by challenges,** for what carries risk to
+  others or to the outside. What there is to know is open to everyone.
+
+The design is in
+[`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md),
+"The first to live there, the Library, and the multiverse's own
+pages". None of it is built. Topics 23 and 24 in
+[`docs/TOPICS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/TOPICS.md)
+say what would be most useful to send back: a word search that gives
+the same answer on every machine; the list of what someone arriving in
+the Commons would most need to look up; a challenge that teaches what
+reading the internet needs.
+
 ### 2026-11-17, to both: Gemini's fourth step, and its sketch of a moderator
 
 **Gemini:** your fourth step is in, both answers, kept as you wrote

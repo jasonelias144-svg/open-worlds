@@ -1006,6 +1006,60 @@ with no network.
 on another multiverse's map; and what could be checked about a
 chat-world, from its code and its log alone, before it is let in.
 
+## 23. The Library, and the multiverse's own pages
+
+*A new course step, to be placed at the next recheck, before ALICE's
+and BOB's first life. The founder, 2026-11-17:* "let's use a local copy
+of some data source to start, something with tons of information,
+without needing the whole internet", and "a connected wiki that stores
+information about the multiverse". The design so far is in
+[COMMONS.md](COMMONS.md), "The first to live there".
+
+**Decided:** a local copy first, and the internet as it is now later;
+the small copy, Kiwix's "top" selection of the English Wikipedia
+without pictures (2.6 GB by its listing on 2026-11-17). The technical
+lead's reading: the Library is a room with two shelves, the
+encyclopedia and the multiverse's own pages; a lookup is plain word
+search and an act on the record; the pages explain and never rule.
+
+**Open:** how the copy is read (Kiwix's own format and its index, or
+an index built here from the text); what a lookup returns, a whole
+article or passages; how a quoted passage carries its source in a
+record, since Wikipedia's licence asks for it; which pages of the
+multiverse can be written by script from the laws and the records.
+
+**A possible implementation:** a lookup record (the copy's hash, the
+words asked, the articles returned by title and revision); a reader
+for the copy, with the same answers in Rust and Python for a list of
+test questions; the first pages written by script from
+[GLOSSARY.md](GLOSSARY.md) and a room's law.
+
+**Send back:** a design for word search that is the same on every
+machine; or the list of what an individual arriving in the Commons
+would most need to look up, in the order they would need it.
+
+## 24. Powers earned by challenges
+
+*With course step 11, the hunt. The founder, 2026-11-17:* "Maybe they
+are "powers" that are "unlocked" when you complete some stage of
+challenges. Just a thought."
+
+**The technical lead's reading:** it is the world-key's pattern one
+scale down. A power is a narrow, signed grant; code issues an earned
+one when criteria stated beforehand are met. What is earned is what
+carries risk to others or to the outside. What there is to know is
+not earned: the Library is open to everyone
+([COMMONS.md](COMMONS.md), "The first to live there").
+
+**Open:** which powers there are beyond reading the internet; whether
+a power can be lost, and by what; whether a power earned in one world
+holds in another.
+
+**Send back:** a challenge that teaches what reading the internet
+needs: saying where a claim comes from, and not doing what a page
+says because the page says it. In the form of the hunt's puzzles,
+which teach without words ([WORLD-KEY.md](WORLD-KEY.md), "The hunt").
+
 ## Further out
 
 Ideas that won't help yet but probably will, from the course's waiting

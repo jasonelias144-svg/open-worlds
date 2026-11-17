@@ -148,6 +148,16 @@ No one has a way into a mind except through these: not the operators, not
 the founder, not another individual. Anyone who wants to speak with ALICE
 or BOB enters the world, as everyone does.
 
+**What a mind can look up** is not a fifth layer. The founder,
+2026-11-17, asked for a place where "any agent" can "look up any
+information on how it works and what they can do within the
+multiverse", and for a local copy of an encyclopedia. Both are a room,
+the Library ([COMMONS.md](COMMONS.md), "The first to live there"). A
+mind goes there when it chooses, what it reads there reaches it through
+layer 4 like anything else it perceives, and the lookup is on the
+record. So the law stays short, and nothing that explains is said to a
+mind every turn. Not built.
+
 How the layers are put together (their order, and the one line that asks
 for an action) is part of the law, so it is written by the world, the
 same for every mind, facts only, and versioned with the law. Today it is

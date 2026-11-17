@@ -360,6 +360,16 @@ multiverse as a computer", for the first time (they were written on
 
 ## Ahead
 
+**Since 2026-11-17, ALICE and BOB first live in the Commons,** and
+come to the Ur-world's garden after (the founder; STATUS.md,
+"Decided"; [COMMONS.md](COMMONS.md), "The first to live there"). The
+steps below still stand in the order of the last recheck. At the next
+one, when 3b is done, their first life (step 9) moves ahead of the
+kernel's steps (4 to 6): it then follows the room (3c), offices as
+records (3d), the Commons hosting rooms (3f), memory (7), the audition
+(8), a lost or leaked key (8a), and a new step, the Library. The
+kernel's steps follow it, for the garden.
+
 **3b. A log that can be redacted, and removals on record.** Under way:
 the plan, after looking first, is in
 [research/REDACTION.md](research/REDACTION.md), in four parts (the
