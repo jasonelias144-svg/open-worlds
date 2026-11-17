@@ -20,7 +20,7 @@ GMNI, Gemini's.
 | [012-06-02, Patterns and Multiverses, a new cycle](records/012-06-02-DPSK-Patterns_Multiverses.txt) | After reading `docs/COLLABORATING.md`, proposals for steps ahead: fractal worlds, a hierarchy of worlds, branching, a gallery of worlds and its governance; then the smallest learner that chooses, and individuals as signed, replayable bundles across worlds. Continued (from line 43168, shared on 2026-11-15): a multiversal map and an individual's worldline, a look at games, a microverse, the Ur-world as a garden of hosted fractal worlds, and the move to Rust: an Ur-garden, its keeper, a server, and verifiers in Rust, Python and Node.js. It ends with DeepSeek asking which piece is next | 62,610 | `979f7eef52c10396a682e2fcc0a4e76e1b5d0080b23a71ef22734f265ef0343c` |
 | [012-07-03, Patterns and Multiverses, the endless plant](records/012-07-03-DPSK-Patterns_Multiverses.txt) | Begun from `docs/COLLABORATING.md`: links tried as the founder pasted them, then the endless plant, the first stage of living worlds (a design and a sketch crate in Rust, with a choice neuron), DeepSeek's questions for the technical lead, and its answers to them once the founder left them to its judgement | 1,380 | `efe36ff3749bc1c776d27d2d2a407812cd784015904df89d1a3b3c9672ee5414` |
 | [012-09-05, Patterns and Multiverses, water and the Commons](records/012-09-05-DPSK-Patterns_Multiverses.txt) | Begun from `docs/COLLABORATING.md`: water as particles, the garden and the botanical garden (Python); signed world heads; then the founder's turn to the Commons as chat rooms, each with an AI moderator, and a home room for each person; a schema for every record; a design page; and a crate in Rust, `chat-world`; DeepSeek's order for the cycles after. Then, continued: signed heads for the crate; the one file the founder gave DeepSeek, which reached it whole; and five deliveries of `chat-world` from it, a step at a time. It ends with DeepSeek's list of what remains | 23,993 | `fce0bf8a1151da130e7e6de509b728825be838b0fc8dc4d744a3d38477b94130` |
-| [012-00-00, Multiverse Development, with Gemini](records/012-00-00-GMNI-Multiverse_Development.txt) | The founder's conversation with Gemini, kept with the rest since 2026-11-17 at the founder's word (STATUS.md, "Decided"). Begun from a link to `docs/COLLABORATING.md`, which Gemini could not open. The founder gives it the project's earlier records one after another, then the founder's own work on opposites, and Gemini reads each. From line 1209 Gemini writes steps for the `chat-world` crate from a file that was out of date (built once and not kept: STATUS.md, "Decided", 2026-11-16, on naming Gemini). From line 9748, given the one file written for it, it writes the four deliveries kept in [gemini/2026-11-16](gemini/2026-11-16/README.md). From line 13528, given a second file, it writes three deliveries on the Commons' own log, kept in [gemini/2026-11-17](gemini/2026-11-17/README.md) | 14,970 | `5c58e01e58e9369828b2a09aada067d00804b49e9cbcff841a745018198d1d9c` |
+| [012-00-00, Multiverse Development, with Gemini](records/012-00-00-GMNI-Multiverse_Development.txt) | The founder's conversation with Gemini, kept with the rest since 2026-11-17 at the founder's word (STATUS.md, "Decided"). Begun from a link to `docs/COLLABORATING.md`, which Gemini could not open. The founder gives it the project's earlier records one after another, then the founder's own work on opposites, and Gemini reads each. From line 1209 Gemini writes steps for the `chat-world` crate from a file that was out of date (built once and not kept: STATUS.md, "Decided", 2026-11-16, on naming Gemini). From line 9748, given the one file written for it, it writes the four deliveries kept in [gemini/2026-11-16](gemini/2026-11-16/README.md). From line 13528, given a second file, it writes three deliveries on the Commons' own log, and from line 14973 that file's fourth step, answered twice, all kept in [gemini/2026-11-17](gemini/2026-11-17/README.md). From line 15971 it stops writing code, at the founder's word, and sketches how an AI that moderates a room might decide what to do, drawing on three earlier works of the founder's | 16,395 | `56ab2b6f63e207e40ef829b1585eaee3ea420360c8c87914cda4c4dc36994096` |
 
 ## Links from the records
 
@@ -536,21 +536,24 @@ crate at once, each with files of its own (STATUS.md, "Decided by the
 technical lead", 2026-11-17). Gemini's file
 ([replies/2026-11-17-for-gemini.txt](replies/2026-11-17-for-gemini.txt))
 asked four steps on the Commons, the crate's list of rooms, in
-`src/commons.rs` and new test files. Three came back, kept as written
-in [gemini/2026-11-17](gemini/2026-11-17/README.md). Laid over the
-crate in order, every test file run, on 2026-11-17:
+`src/commons.rs` and new test files. Three came back, and the fourth
+later the same day, all kept as written in
+[gemini/2026-11-17](gemini/2026-11-17/README.md). Laid over the crate
+in order, every test file run, on 2026-11-17:
 
 | Delivery | What it is | Gemini expected | Tests, built as given |
 |---|---|---|---|
 | Commons 1 | The Commons' log read from outside (`CommonsLog`, `verify_commons_log`); a Commons record can be written to JSON and read back | 69 | 69 of 69 |
 | Commons 2 | 16 attacks on the check | 82 of 85 | 82 of 85: three attacks get through, the three Gemini said would |
 | Commons 3 | Repairs, and two checks that hold a record of the Commons to a room's own log | 92 | 92 of 92, and the four demos run |
+| Commons 4 | 17 attacks on a room's seven other kinds of record, in a second answer; the first answer's 10 attacked only what the check already refuses, as Gemini then said itself | 101 of 109 | 101 of 109: eight attacks get through, the eight Gemini said would |
 
 Every number is the one Gemini gave, and nothing was repaired here.
 The third is the crate as it stands,
 `deepseek/012-09-05/chat-world-now/`: 92 tests, 41 of them DeepSeek's
-and 51 Gemini's. The file's fourth step, attacks on a room's seven
-other kinds of record, was not begun.
+and 51 Gemini's. The fourth is built beside it and not laid into it:
+its eight gaps in the check of a room's log wait for a repair, which
+waits for DeepSeek's work on the same file.
 
 ## Record 012-03-02, component by component
 

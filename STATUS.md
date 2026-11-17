@@ -99,9 +99,11 @@ free, and never a money machine
   through (sketches/gemini/2026-11-16/). Then, in a second round, it
   did the same for the Commons' own log
   (sketches/gemini/2026-11-17/). With five small repairs the crate as
-  it stands (`chat-world-now/`) passes all 92 of its tests. DeepSeek
-  has it next, for branches. Fitting it to open-worlds' own code is
-  step 3c.
+  it stands (`chat-world-now/`) passes all 92 of its tests. Gemini's
+  fourth step of that round, 17 more attacks, shows eight gaps in the
+  check of a room's log; they are built beside the crate, not laid
+  into it, and wait for a repair. DeepSeek has the crate next, for
+  branches. Fitting it to open-worlds' own code is step 3c.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
   second round to come.
 - Claude: the Ur-world so far: the garden (#28), the doorway for minds
@@ -308,6 +310,27 @@ of it is asked again until it is needed.
 
 ## Decided
 
+- 2026-11-17, founder, a work of the founder's own may be named in the
+  records, and linked if it comes up. The new part of record 012-00-00
+  names a third earlier work of the founder's by title for the first
+  time, and the technical lead asked whether that title should stay
+  out. The founder, giving the work itself with the answer: "You can
+  keep "Art of Peace and the Strategist" in and even provide a link to
+  this, if it comes up. Thoughts?" And in the record, to Gemini (line
+  16034): "I’ll be honest, I really wanted to find a way to bring the
+  earlier project work into this, but didn’t know how, so your
+  suggestions are both good ideas, and solutions to the general
+  problem of project integration, where I look for ways for previous
+  project stages to feed into current and future stages."
+  The technical lead's reading, which stands unless the founder
+  answers otherwise: the title stays in the record, and the project's
+  pages may name the work. The work itself is not placed in this
+  repository yet. Everything here is dedicated to the public domain,
+  and whether this work is, or is kept here as the founder's own, is
+  the founder's to say: it is an act of the founder's own in law.
+  Asked on 2026-11-17, with the recommendation that it be kept here
+  as the founder's, to be read and linked, and not dedicated. Until
+  the founder answers, nothing here links to it.
 - 2026-11-17, founder, the multiverse is built as it is meant to be
   lived in, by learning through making choices; in the charter.
   "Sounds good. Keep in mind, the whole project is intended to promote
@@ -3795,6 +3818,43 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-17 Claude: Gemini's record continued, and the fourth step of
+  its round on the Commons kept and built. The founder went back to
+  Gemini while this session was out of time. The record grew and was
+  replaced (sketches/records/012-00-00-GMNI-Multiverse_Development.txt,
+  705,897 bytes, 16,395 lines): its first 633,993 bytes are the copy
+  that was here, less that copy's last byte, a line end after the
+  founder's turn with nothing in it yet, which now reads `::➡️`.
+  Looked through first: no key and nothing about anyone else in what
+  was added; it names a third earlier work of the founder's, which the
+  founder said may stay (Decided). Gemini answered the fourth step
+  twice, and both answers are kept as written
+  (sketches/gemini/2026-11-17/steps/4-first and steps/4): the first,
+  10 attacks on a room's seven other kinds of record, attacks only
+  what the check already refuses, as Gemini's next reply says itself;
+  the second, 17 attacks. Built over the crate as it stands, every
+  test file run: 101 of 109, the eight that get through being the
+  eight Gemini said would. They are eight gaps in the check of a
+  room's log (sketches/gemini/2026-11-17/README.md lists them), not
+  repaired: `src/verify.rs` is DeepSeek's in this round. So the fourth
+  step is built beside the crate as it stands (`review/steps.sh`,
+  `c4`) and is not laid into it: sketches/deepseek/012-09-05/
+  chat-world-now/ is unchanged, 92 of 92. Then, at the founder's word
+  (record line 15992: "building more code is what I would like, but
+  is probably not best"), Gemini stopped writing code and sketched how
+  an AI that moderates a room might decide what to do, with a module
+  and a demonstration. Those are not kept as files: built once as
+  given, the module does not compile, and nothing in the demonstration
+  decides anything. What the project takes from the design is in
+  docs/COLLABORATING.md, as the technical lead's reading. Checked: both
+  folders' files taken out of the record again by script and compared;
+  the crate as it stands put together again and compared byte for
+  byte; `c4` and the crate as it stands built and run (101 and 8; 92).
+  Not done: the whole of `review/steps.sh` was not run again, only
+  those two stages; the first answer's 10 tests were run once by hand
+  and are in no script; the eight gaps are not read against the check
+  line by line; the founder's thoughts of today on the Commons, a
+  library and a wiki are recorded in the next change.
 - 2026-11-17 Claude: the act of redacting (course step 3b, part
   three, second of two sides). A new kind of record in records-v1,
   `open-worlds/redacted-field/v1`, and a new sealing label,

@@ -146,9 +146,11 @@ those components' tests don't load as written.
   it is private (the founder, 2026-11-17: STATUS.md, "Decided"). Record
   012-00-00, with Gemini, holds the most of it. Nothing personal is to
   be added by anyone else (AGENTS.md).
-- Record 012-00-00 speaks of the founder's own work on opposites and
-  describes it. That work is not in this repository, and nothing here
-  dedicates it.
+- Record 012-00-00 speaks of three earlier works of the founder's own,
+  names them and describes them. The founder, 2026-11-17, of the third
+  title, when asked whether it should stay out: "You can keep" it "in"
+  (STATUS.md, "Decided"). Those works are not in this repository, and
+  nothing here dedicates them.
 
 ## When a record grows
 

@@ -140,10 +140,20 @@ def test_geminis_files_are_the_ones_its_record_gives():
     # out of Gemini's conversation record by each folder's take.py. Run
     # with no argument, it takes them out of the record again and
     # compares.
-    for folder, count in (("2026-11-16", 10), ("2026-11-17", 5)):
+    for folder, count in (("2026-11-16", 10), ("2026-11-17", 7)):
         take = HERE.parent.parent / "gemini" / folder / "take.py"
         done = subprocess.run([sys.executable, "-I", str(take)],
                               capture_output=True, text=True)
         assert done.returncode == 0, done.stdout + done.stderr
         assert (f"{count} files from the record; 0 problem(s)"
                 in done.stdout), folder
+    # The fourth step of the second round was answered twice: ten
+    # attacks that the check already refuses, then seventeen, eight of
+    # which get through (review/steps.sh, c4). Neither is in the crate
+    # as it stands.
+    steps = HERE.parent.parent / "gemini" / "2026-11-17" / "steps"
+    for name, count in (("4-first", 10), ("4", 17)):
+        text = (steps / name / "tests" / "attack_more.rs").read_text(
+            encoding="utf-8")
+        assert text.count("#[test]") == count, name
+    assert not (HERE / "chat-world-now" / "tests" / "attack_more.rs").exists()

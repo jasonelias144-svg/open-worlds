@@ -136,21 +136,24 @@ crate at once, each with files of its own (STATUS.md, "Decided by the
 technical lead", 2026-11-17). Gemini's file
 ([replies/2026-11-17-for-gemini.txt](replies/2026-11-17-for-gemini.txt))
 asked four steps on the Commons, the crate's list of rooms, in
-`src/commons.rs` and new test files. Three came back, kept as written
-in [gemini/2026-11-17](gemini/2026-11-17/README.md). Laid over the
-crate in order, every test file run, on 2026-11-17:
+`src/commons.rs` and new test files. Three came back, and the fourth
+later the same day, all kept as written in
+[gemini/2026-11-17](gemini/2026-11-17/README.md). Laid over the crate
+in order, every test file run, on 2026-11-17:
 
 | Delivery | What it is | Gemini expected | Tests, built as given |
 |---|---|---|---|
 | Commons 1 | The Commons' log read from outside (`CommonsLog`, `verify_commons_log`); a Commons record can be written to JSON and read back | 69 | 69 of 69 |
 | Commons 2 | 16 attacks on the check | 82 of 85 | 82 of 85: three attacks get through, the three Gemini said would |
 | Commons 3 | Repairs, and two checks that hold a record of the Commons to a room's own log | 92 | 92 of 92, and the four demos run |
+| Commons 4 | 17 attacks on a room's seven other kinds of record, in a second answer; the first answer's 10 attacked only what the check already refuses, as Gemini then said itself | 101 of 109 | 101 of 109: eight attacks get through, the eight Gemini said would |
 
 Every number is the one Gemini gave, and nothing was repaired here.
 The third is the crate as it stands,
 `deepseek/012-09-05/chat-world-now/`: 92 tests, 41 of them DeepSeek's
-and 51 Gemini's. The file's fourth step, attacks on a room's seven
-other kinds of record, was not begun.
+and 51 Gemini's. The fourth is built beside it and not laid into it:
+its eight gaps in the check of a room's log wait for a repair, which
+waits for DeepSeek's work on the same file.
 
 ## Record 012-03-02, component by component
 

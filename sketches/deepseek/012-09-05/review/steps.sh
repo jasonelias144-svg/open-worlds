@@ -1,9 +1,9 @@
 #!/bin/sh
 # Ours, not DeepSeek's (see ../README.md). Builds each of the five
 # deliveries that record 012-09-05 ends with, exactly as DeepSeek gave
-# it, then each of Gemini's three that followed and its three on the
-# Commons, in a scratch folder, and runs its tests. Nothing here is
-# changed.
+# it, then each of Gemini's three that followed, its three on the
+# Commons and its fourth step, in a scratch folder, and runs its
+# tests. Nothing here is changed.
 # Run it from anywhere:
 #   sh sketches/deepseek/012-09-05/review/steps.sh
 #
@@ -37,6 +37,11 @@
 #                 get through
 #   now           92 pass, and the four demos run. This is c3, which
 #                 is the crate as it stands.
+# Then Gemini's fourth step (2026-11-17), beside the crate as it
+# stands:
+#   c4            101 pass, 8 fail: the eight attacks on a room's
+#                 other kinds of record that Gemini said would get
+#                 through
 set -eu
 here=$(cd "$(dirname "$0")/.." && pwd)
 scratch=$(mktemp -d)
@@ -44,7 +49,7 @@ trap 'rm -rf "$scratch"' EXIT
 python3 "$here/review/steps.py" --aside "$scratch"
 python3 "$here/review/steps.py" --check
 python3 "$here/review/steps.py" --now "$scratch/more"
-for name in 5-repaired g1 g2 g3 g3-repaired c1 c2; do mv "$scratch/more/$name" "$scratch/$name"; done
+for name in 5-repaired g1 g2 g3 g3-repaired c1 c2 c4; do mv "$scratch/more/$name" "$scratch/$name"; done
 mkdir "$scratch/now"
 cp -R "$here/chat-world-now" "$scratch/now/chat-world"
 status=0
@@ -105,4 +110,5 @@ check_all g3-repaired 66 0
 check_all c1 69 0
 check_all c2 82 3
 check_all now 92 0
+check_all c4 101 8
 exit $status
