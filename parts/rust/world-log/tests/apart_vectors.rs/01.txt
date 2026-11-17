@@ -1,0 +1,882 @@
+Part of `rust/world-log/tests/apart_vectors.rs` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 1.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: nothing; this is the first part.
+After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/world-log/tests/apart_vectors.rs/02.txt
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+// rust/world-log/tests/apart_vectors.rs
+//! A log whose fields are kept apart (`world_log::apart`), checked
+//! against `vectors/log-apart.json`, which Python writes
+//! (`python3 -m world.vectors`, from `world/apart.py`): the same
+//! fingerprints, the same states, the same joined entries, and the same
+//! reason for every log and contents that must be refused.
+
+// Tests may unwrap, expect, panic and index: a failure here is a failed
+// test, not a world that crashed.
+#![allow(
+    clippy::unwrap_used,
+    clippy::expect_used,
+    clippy::panic,
+    clippy::indexing_slicing
+)]
+
+use serde_json::{Map, Value, json};
+use std::collections::BTreeSet;
+use world_log::apart::{
+    self, Decided, EntryState, FORM, GROUNDS, KEPT, Log, MARK, MAX_NESTING, MAX_REF, MAX_WHOLE,
+    Office, PUT_BACK, REMOVED, RESTORED, RedactionState, Refused, SHORT, STAYS, State, TAKEN_BACK,
+    check, fingerprint, fingerprint_text, incidents, join, redactions, short_ids, value_allowed,
+};
+use world_log::{LogError, sha256_hex, verify_log};
+
+const VECTORS: &str = include_str!("../../../vectors/log-apart.json");
+
+fn vectors() -> Value {
+    serde_json::from_str(VECTORS).unwrap()
+}
+
+fn cases(v: &Value, key: &str) -> Vec<Value> {
+    v[key].as_array().unwrap().clone()
+}
+
+/// The n-th trial salt, as `world/apart_vectors.py` makes it.
+fn trial_salt(n: usize) -> String {
+    sha256_hex(format!("open-worlds trial salt {n}").as_bytes())[..32].to_owned()
+}
+
+/// Trial salts in order, from the first.
+fn trial_salts() -> impl FnMut() -> String {
+    let mut n = 0;
+    move || {
+        n += 1;
+        trial_salt(n - 1)
+    }
+}
+
+fn states_json(states: &apart::States) -> Value {
+    let mut out = Map::new();
+    for (entry, fields) in states {
+        let fields: Map<String, Value> = fields
+            .iter()
+            .map(|(name, state)| (name.clone(), json!(state.as_str())))
+            .collect();
+        out.insert(entry.clone(), Value::Object(fields));
+    }
+    Value::Object(out)
+}
+
+fn incidents_json(standing: &std::collections::BTreeMap<String, apart::Standing>) -> Value {
+    let mut out = Map::new();
+    for (entry, its) in standing {
+        let list: Vec<Value> = its
+            .incidents
+            .iter()
+            .map(|i| {
+                json!({"id": i.id, "short": i.short, "kind": i.kind.as_str(),
+                       "stands": i.stands})
+            })
+            .collect();
+        out.insert(
+            entry.clone(),
+            json!({"state": its.state.as_str(), "incidents": list}),
+        );
+    }
+    Value::Object(out)
+}
+
+fn redactions_json(found: &apart::Redactions) -> Value {
+    let mut out = Map::new();
+    for (entry, fields) in found {
+        let mut of_fields = Map::new();
+        for (name, list) in fields {
+            let list: Vec<Value> = list
+                .iter()
+                .map(|r| json!({"id": r.id, "short": r.short, "state": r.state.as_str()}))
+                .collect();
+            of_fields.insert(name.clone(), Value::Array(list));
+        }
+        out.insert(entry.clone(), Value::Object(of_fields));
+    }
+    Value::Object(out)
+}
+
+fn map(value: &Value) -> Map<String, Value> {
+    value.as_object().unwrap().clone()
+}
+
+/// The trial room's offices and grounds, as `world/apart_vectors.py`
+/// names them.
+const OFFICE: &str = "trial office";
+const KEEPER: &str = "trial keeper";
+
+fn private() -> Value {
+    json!({"kind": "rule", "ref": "trial room law, private information"})
+}
+
+fn appeal() -> Value {
+    json!({"kind": "rule", "ref": "trial appeal rule"})
+}
+
+/// A stand-in for a decision record's hash, as `world/apart_vectors.py`
+/// makes it: 64 hex digits, public, and the hash of no record.
+fn trial_decision(n: usize) -> String {
+    sha256_hex(format!("open-worlds trial decision {n}").as_bytes())
+}
+
+fn why(text: &str) -> Map<String, Value> {
+    map(&json!({"reason": text}))
+}
+
+/// A mark as the trial office writes one. The field stays in the
+/// contents until it is taken out.
+fn mark(
+    log: &mut Log,
+    tick: u64,
+    entry: &str,
+    field: &str,
+    reason: &str,
+    salt: &mut dyn FnMut() -> String,
+) -> Result<String, Refused> {
+    let by = Office {
+        office: OFFICE,
+        ground: &private(),
+        agent: None,
+    };
+    log.mark(tick, entry, field, by, &why(reason), salt)
+}
+
+/// The entry and the field a mark names, read from the log.
+fn marked(log: &Log, a_mark: &str) -> (String, String) {
+    let entry = log
+        .entries()
+        .iter()
+        .find(|e| e["hash"] == a_mark)
+        .expect("the mark is in the log");
+    let text = |key: &str| entry["data"][key].as_str().unwrap().to_owned();
+    (text("entry"), text("field"))
+}
+
+/// The decision to keep public a field that is still in the contents.
+fn keep(
+    log: &mut Log,
+    tick: u64,
+    a_mark: &str,
+    reason: &str,
+    n: usize,
+    salt: &mut dyn FnMut() -> String,
+) -> Result<String, Refused> {
+    let (entry, field) = marked(log, a_mark);
+    let pair = log.contents()[&entry][&field].clone();
+    let by = Decided {
+        office: KEEPER,
+        ground: &appeal(),
+        decision: &trial_decision(n),
+        agent: None,
+    };
+    log.keep_public(tick, a_mark, &pair, by, &why(reason), salt)
+}
+
+/// The decision that a field stays redacted.
+fn stays(
+    log: &mut Log,
+    tick: u64,
+    a_mark: &str,
+    reason: &str,
+    n: usize,
+    salt: &mut dyn FnMut() -> String,
+) -> Result<String, Refused> {
+    let by = Decided {
+        office: KEEPER,
+        ground: &appeal(),
+        decision: &trial_decision(n),
+        agent: None,
+    };
+    log.stays_redacted(tick, a_mark, by, &why(reason), salt)
+}
+
+/// A log and its contents as one text: everything the writer keeps.
+fn kept_text(log: &Log) -> String {
+    format!(
+        "{}{}",
+        Value::Array(log.entries().to_vec()),
+        Value::Object(log.contents().clone())
+    )
+}
+
+fn field_state(log: &Log, entry: &str, field: &str) -> State {
+    check(
+        &Value::Array(log.entries().to_vec()),
+        &Value::Object(log.contents().clone()),
+    )
+    .unwrap()[entry][field]
+}
+
+fn redactions_of(log: &Log, entry: &str, field: &str) -> Vec<apart::Redaction> {
+    redactions(&Value::Array(log.entries().to_vec()))
+        .unwrap()
+        .get(entry)
+        .and_then(|fields| fields.get(field))
+        .cloned()
+        .unwrap_or_default()
+}
+
+/// Where a refusal points, as the vectors write it: nothing; an entry's
+/// place in the log; or, in the contents, an entry's hash alone or with
+/// a field's name.
+fn place(error: &Refused) -> Value {
+    match error {
+        Refused::Chain(LogError::NotAList)
+        | Refused::NoForm
+        | Refused::Table
+        | Refused::FirstGiven
+        | Refused::NotByAppend
+        | Refused::NoSuchMark
+        | Refused::NotThere
+        | Refused::StillThere
+        | Refused::Entry { index: None } => Value::Null,
+        Refused::Chain(
+            LogError::Malformed { index }
+            | LogError::BrokenChain { index }
+            | LogError::WrongHash { index }
+            | LogError::Unwritable { index, .. },
+        )
+        | Refused::Entry { index: Some(index) }
+        | Refused::Untabled { index }
+        | Refused::Open { index }
+        | Refused::Twice { index }
+        | Refused::BadMark { index }
+        | Refused::BadKept { index }
+        | Refused::BadStays { index }
+        | Refused::BadRemoval { index }
+        | Refused::BadRestoring { index }
+        | Refused::BadTakingBack { index }
+        | Refused::BadPuttingBack { index } => json!(index),
+        Refused::Contents(p)
+        | Refused::Unknown(p)
+        | Refused::Salt(p)
+        | Refused::SaltTwice(p)
+        | Refused::Value(p)
+        | Refused::Fingerprint(p) => match (&p.entry, &p.field) {
+            (Some(entry), Some(field)) => json!([entry, field]),
+            (Some(entry), None) => json!([entry]),
+            _ => Value::Null,
+        },
+    }
+}
+
+/// The trial room of the vectors, written again here.
+fn room(v: &Value, salt: &mut dyn FnMut() -> String) -> Log {
+    let mut log = Log::new(&v["table"], &map(&v["first"]), "world_created", salt).unwrap();
+    for step in cases(v, "written") {
+        log.append(
+            step["tick"].as_u64().unwrap(),
+            step["kind"].as_str().unwrap(),
+            step["agent"].as_str(),
+            &map(&step["data"]),
+            &map(&step["apart"]),
+            salt,
+        )
+        .unwrap();
+    }
+    log
+}
+
+#[test]
+fn the_names_and_limits_are_pythons() {
+    let v = vectors();
+    assert_eq!(v["form"], FORM);
+    assert_eq!(v["mark"], MARK);
+    assert_eq!(v["kept"], KEPT);
+    assert_eq!(v["stays"], STAYS);
+    let redaction_states: Vec<&str> = [
+        RedactionState::Open,
+        RedactionState::Stands,
+        RedactionState::KeptPublic,
+    ]
+    .iter()
+    .map(|s| s.as_str())
+    .collect();
+    assert_eq!(v["redaction_states"], json!(redaction_states));
+    assert_eq!(v["max_whole"], MAX_WHOLE);
+    assert_eq!(v["max_nesting"], MAX_NESTING);
+    assert_eq!(v["max_ref"], MAX_REF);
+    assert_eq!(v["removed"], REMOVED);
+    assert_eq!(v["restored"], RESTORED);
+    assert_eq!(v["taken_back"], TAKEN_BACK);
+    assert_eq!(v["put_back"], PUT_BACK);
+    assert_eq!(v["grounds"], json!(GROUNDS));
+    assert_eq!(v["short"], SHORT);
+    let entry_states: Vec<&str> = [
+        EntryState::AsWritten,
+        EntryState::Removed,
+        EntryState::TakenBack,
+        EntryState::Restored,
+    ]
+    .iter()
+    .map(|s| s.as_str())
+    .collect();
+    assert_eq!(v["entry_states"], json!(entry_states));
+    let states: Vec<&str> = [
+        State::Present,
+        State::Redacted,
+        State::Unfinished,
+        State::KeptPublic,
+        State::Missing,
+    ]
+    .iter()
+    .map(|s| s.as_str())
+    .collect();
+    assert_eq!(v["states"], json!(states));
+}
+
+#[test]
+fn every_fingerprint_and_its_text_match_python() {
+    let v = vectors();
+    let prints = cases(&v, "fingerprints");
+    assert!(prints.len() >= 18, "the vectors are all there");
+    for (n, case) in prints.iter().enumerate() {
+        let salt = case["salt"].as_str().unwrap();
+        let name = case["name"].as_str().unwrap();
+        assert_eq!(salt, trial_salt(n), "trial salt {n}");
+        assert!(value_allowed(&case["value"]), "{}", case["text"]);
+        assert_eq!(
+            fingerprint_text(salt, name, &case["value"]).unwrap(),
+            case["text"].as_str().unwrap()
+        );
+        assert_eq!(
+            fingerprint(salt, name, &case["value"]).unwrap(),
+            case["fingerprint"].as_str().unwrap()
+        );
+    }
+}
+
+#[test]
+fn the_values_python_refuses_are_refused() {
+    let v = vectors();
+    let refused = cases(&v, "values_refused");
+    assert!(refused.len() >= 9, "the vectors are all there");
+    for case in refused {
+        assert!(!value_allowed(&case["value"]), "{}", case["name"]);
+        assert_eq!(
+            fingerprint(&trial_salt(0), "thing", &case["value"]),
+            Err(Refused::Value(apart::Place::default())),
+            "{}",
+            case["name"]
+        );
+    }
+}
+
+#[test]
+fn nesting_stops_at_the_limit() {
+    for wrap in [
+        (|v: Value| json!([v])) as fn(Value) -> Value,
+        |v: Value| json!({"k": v}),
+    ] {
+        let mut value = json!(0);
+        for _ in 0..MAX_NESTING {
+            value = wrap(value);
+        }
+        assert!(value_allowed(&value));
+        assert!(!value_allowed(&wrap(value)));
+    }
+    assert!(value_allowed(&json!(MAX_WHOLE)));
+    assert!(value_allowed(&json!(-MAX_WHOLE)));
+    assert!(!value_allowed(&json!(MAX_WHOLE + 1)));
+    assert!(!value_allowed(&json!(-MAX_WHOLE - 1)));
+    assert!(!value_allowed(&json!(u64::MAX)));
+    assert!(!value_allowed(&json!(0.0)));
+    // The limit in the module's documentation, shown: Python reads -0 as
+    // the whole number 0.
+    let minus_zero: Value = serde_json::from_str("-0").unwrap();
+    assert!(!value_allowed(&minus_zero));
+}
+
+#[test]
+fn a_bad_salt_or_name_is_refused() {
+    let good = trial_salt(0);
+    for salt in ["", &good[..31], &format!("{good}0"), &good.to_uppercase()] {
+        assert_eq!(
+            fingerprint(salt, "text", &json!("v")).unwrap_err().reason(),
+            "a salt is not 32 lowercase hex digits",
+            "{salt:?}"
+        );
+    }
+    let long = "k".repeat(65);
+    for name in [
+        "",
+        "Text",
+        "1st",
+        "a-b",
+        "a b",
+        "text\n",
+        "caf\u{e9}",
+        &long,
+    ] {
+        assert_eq!(
+            fingerprint(&good, name, &json!("v")).unwrap_err().reason(),
+            "an entry is not in this form",
+            "{name:?}"
+        );
+    }
+    assert!(fingerprint(&good, &"k".repeat(64), &json!("v")).is_ok());
+    assert!(fingerprint(&good, "a_1", &json!("v")).is_ok());
+}
+
+#[test]
+fn the_trial_room_written_here_is_the_one_python_wrote() {
+    let v = vectors();
+    let (entries, contents) = room(&v, &mut trial_salts()).into_parts();
+    let first = &v["holds"][0];
+    assert_eq!(first["name"], "every field is there");
+    assert_eq!(Value::Array(entries), first["log"]);
+    assert_eq!(Value::Object(contents), first["contents"]);
+}
+
+#[test]
+fn each_case_that_holds_gives_pythons_states_and_entries() {
+    let v = vectors();
+    let holds = cases(&v, "holds");
+    assert_eq!(holds.len(), 7, "the vectors are all there");
+    let mut seen = BTreeSet::new();
+    let mut entry_states = BTreeSet::new();
+    let mut redaction_states = std::collections::HashSet::new();
+    for case in holds {
+        let name = &case["name"];
+        assert!(verify_log(&case["log"]).is_ok(), "{name}");
+        let states = check(&case["log"], &case["contents"]).unwrap();
+        assert_eq!(states_json(&states), case["states"], "{name}");
+        let standing = incidents(&case["log"]).unwrap();
+        assert_eq!(incidents_json(&standing), case["incidents"], "{name}");
+        entry_states.extend(standing.values().map(|s| s.state.as_str()));
+        let found = redactions(&case["log"]).unwrap();
+        assert_eq!(redactions_json(&found), case["redactions"], "{name}");
+        redaction_states.extend(
+            found
+                .values()
+                .flat_map(|fields| fields.values().flatten().map(|r| r.state)),
+        );
+        let joined = join(&case["log"], &case["contents"]).unwrap();
+        assert_eq!(Value::Array(joined), case["joined"], "{name}");
+        seen.extend(states.values().flat_map(|fields| fields.values().copied()));
+    }
+    assert_eq!(seen.len(), 5, "every state is in the vectors");
+    // Removed, taken back, restored, and as written with an incident
+    // that no longer stands.
+    assert_eq!(entry_states.len(), 4, "the entries' states are there");
+    assert_eq!(
+        redaction_states.len(),
+        3,
+        "the redactions' states are there"
+    );
+}
+
+#[test]
+fn the_five_states_written_here_are_the_ones_python_wrote() {
+    // The same steps as `holds` in world/apart_vectors.py, through this
+    // crate's writer: the same log, entry for entry, and the same
+    // contents.
+    let v = vectors();
+    let mut salt = trial_salts();
+    let mut room = room(&v, &mut salt);
+    let h: Vec<String> = room
+        .entries()
+        .iter()
+        .map(|e| e["hash"].as_str().unwrap().to_owned())
+        .collect();
+    // Redacted: a mark is open, and the field is gone.
+    let first_mark = mark(
+        &mut room,
+        5,
+        &h[5],
+        "text",
+        "private information",
+        &mut salt,
+    )
+    .unwrap();
+    room.take_out(&first_mark).unwrap();
+    // Unfinished: a mark is open, and the field is still there.
+    mark(
+        &mut room,
+        5,
+        &h[4],
+        "text",
+        "asked by its author",
+        &mut salt,
+    )
+    .unwrap();
+    // Kept public: the mark was answered, and the field is there.
+    let a_mark = mark(
+        &mut room,
+        6,
+        &h[3],
+        "time",
+        "asked by its author",
+        &mut salt,
+    )
+    .unwrap();
+    keep(
+        &mut room,
+        7,
+        &a_mark,
+        "a time of day says nothing private here",
+        1,
+        &mut salt,
+    )
+    .unwrap();
+    // Missing: the mark was answered, and the field is gone all the same.
+    let a_mark = mark(
+        &mut room,
+        8,
+        &h[2],
+        "name",
+        "asked by its author",
+        &mut salt,
+    )
+    .unwrap();
+    keep(
+        &mut room,
+        9,
+        &a_mark,
+        "the name is on the door",
+        2,
+        &mut salt,
+    )
+    .unwrap();
+    // Redacted: marked, kept public, and marked again.
+    let a_mark = mark(
+        &mut room,
+        10,
+        &h[6],
+        "thing",
+        "asked by its author",
+        &mut salt,
+    )
+    .unwrap();
+    keep(
+        &mut room,
+        11,
+        &a_mark,
+        "nothing private in it",
+        3,
+        &mut salt,
+    )
+    .unwrap();
+    let again = mark(
+        &mut room,
+        12,
+        &h[6],
+        "thing",
+        "it names a third person",
+        &mut salt,
+    )
+    .unwrap();
+    room.take_out(&again).unwrap();
+    // Redacted: a mark's own reason, which said what it should not.
+    let on_reason = mark(
+        &mut room,
+        13,
+        &first_mark,
+        "reason",
+        "the reason repeated it",
+        &mut salt,
+    )
+    .unwrap();
+    room.take_out(&on_reason).unwrap();
+    // Redacted, and decided: the mark stands for good.
+    let a_mark = mark(
+        &mut room,
+        14,
+        &h[5],
+        "time",
+        "asked by its author",
+        &mut salt,
+    )
+    .unwrap();
+    room.take_out(&a_mark).unwrap();
+    stays(
+        &mut room,
+        15,
+        &a_mark,
+        "with the text, the time says where",
+        4,
+        &mut salt,
+    )
+    .unwrap();
+    // Unfinished, though decided: whoever published the log left the
+    // field in the contents after the decision that it stays redacted.
+    let a_mark = mark(
+        &mut room,
+        16,
+        &h[3],
+        "key",
+        "asked by its author",
+        &mut salt,
+    )
+    .unwrap();
+    let left = room.take_out(&a_mark).unwrap();
+    stays(
+        &mut room,
+        17,
+        &a_mark,
+        "a key that was never meant to be shown",
+        5,
+        &mut salt,
+    )
+    .unwrap();
+    let (entries, mut contents) = room.into_parts();
+    contents[&h[3]]["key"] = left;
+    for (entry, field) in [(&h[1], "name"), (&h[2], "name")] {
+        contents[entry].as_object_mut().unwrap().remove(field);
+    }
+    let case = &v["holds"][3];
+    assert_eq!(case["name"], "the five states");
+    assert_eq!(Value::Array(entries), case["log"]);
+    assert_eq!(Value::Object(contents), case["contents"]);
+}
+
+#[test]
+fn an_incidents_id_is_shown_as_short_as_is_still_its_own() {
+    let v = vectors();
+    let groups = cases(&v, "short_ids");
+    assert_eq!(groups.len(), 5, "the vectors are all there");
+    for group in groups {
+        let ids: Vec<String> = group["ids"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|id| id.as_str().unwrap().to_owned())
+            .collect();
+        let short: Map<String, Value> = short_ids(&ids)
+            .into_iter()
+            .map(|(id, short)| (id, json!(short)))
+            .collect();
+        assert_eq!(Value::Object(short), group["short"]);
+    }
+}
+
+#[test]
+fn what_wins_among_removing_restoring_taking_back_and_putting_back() {
+    // The table in docs/research/REDACTION.md, decision 9, through the
+    // writer: each refused act leaves the log as it was.
+    let v = vectors();
+    let mut salt = trial_salts();
+    let mut log = room(&v, &mut salt);
+    let said = log.entries()[3]["hash"].as_str().unwrap().to_owned();
+    let ground = json!({"kind": "law", "ref": "trial room law, part 3"});
+    let decision = "ab".repeat(32);
+    let office = |name: &str, key: &str, target: &str| {
+        map(&json!({key: target, "office": name, "ground": ground, "decision": decision}))
+    };
+    let none = Map::new();
+    let state = |log: &Log| {
+        incidents(&Value::Array(log.entries().to_vec()))
+            .unwrap()
+            .get(&said)
+            .map_or(EntryState::AsWritten, |s| s.state)
+    };
+    assert_eq!(state(&log), EntryState::AsWritten);
+    // A restoring of what is not removed.
+    let error = log
+        .append(
+            5,
+            RESTORED,
+            None,
+            &office("keeper", "incident", &said),
+            &none,
+            &mut salt,
+        )
+        .unwrap_err();
+    assert_eq!(error, Refused::BadRestoring { index: 7 });
+    // Removed; a second removal is refused.
+    let removal = log
+        .append(
+            5,
+            REMOVED,
+            None,
+            &office("moderator", "entry", &said),
+            &none,
+            &mut salt,
+        )
+        .unwrap();
+    assert_eq!(state(&log), EntryState::Removed);
+    let error = log
+        .append(
+            5,
+            REMOVED,
+            None,
+            &office("moderator", "entry", &said),
+            &none,
+            &mut salt,
+        )
+        .unwrap_err();
+    assert_eq!(error, Refused::BadRemoval { index: 8 });
+    // The author takes it back: it stays hidden whatever the office does.
+    let taking = log
+        .append(
+            6,
+            TAKEN_BACK,
+            None,
+            &map(&json!({"entry": said})),
+            &none,
+            &mut salt,
+        )
+        .unwrap();
+    assert_eq!(state(&log), EntryState::TakenBack);
+    // The office can still restore its removal, say after an appeal: the
+    // removal stops standing, and the entry stays taken back.
+    log.append(
+        6,
+        RESTORED,
+        None,
+        &office("keeper", "incident", &removal),
+        &none,
+        &mut salt,
+    )
+    .unwrap();
+    assert_eq!(state(&log), EntryState::TakenBack);
+    let error = log
+        .append(
+            6,
+            RESTORED,
+            None,
+            &office("keeper", "incident", &removal),
+            &none,
+            &mut salt,
+        )
+        .unwrap_err();
+    assert_eq!(error, Refused::BadRestoring { index: 10 });
+    let error = log
+        .append(
+            6,
+            TAKEN_BACK,
+            None,
+            &map(&json!({"entry": said})),
+            &none,
+            &mut salt,
+        )
+        .unwrap_err();
+    assert_eq!(error, Refused::BadTakingBack { index: 10 });
+    // Put back, it shows as restored: an office once removed it.
+    log.append(
+        7,
+        PUT_BACK,
+        None,
+        &map(&json!({"taken_back": taking})),
+        &none,
+        &mut salt,
+    )
+    .unwrap();
+    assert_eq!(state(&log), EntryState::Restored);
+    let error = log
+        .append(
+            7,
+            PUT_BACK,
+            None,
+            &map(&json!({"taken_back": taking})),
+            &none,
+            &mut salt,
+        )
+        .unwrap_err();
+    assert_eq!(error, Refused::BadPuttingBack { index: 11 });
+    // A removal after a restoring is a new incident, with a new id.
+    let again = log
+        .append(
+            9,
+            REMOVED,
+            None,
+            &office("moderator", "entry", &said),
+            &none,
+            &mut salt,
+        )
+        .unwrap();
+    assert_ne!(again, removal);
+    // The form's own entries can't be removed or taken back.
+    for own in [&removal, &taking] {
+        assert_eq!(
+            log.append(
+                9,
+                REMOVED,
+                None,
+                &office("moderator", "entry", own),
+                &none,
+                &mut salt
+            )
+            .unwrap_err(),
+            Refused::BadRemoval { index: 12 }
+        );
+        assert_eq!(
+            log.append(
+                9,
+                TAKEN_BACK,
+                None,
+                &map(&json!({"entry": own})),
+                &none,
+                &mut salt
+            )
+            .unwrap_err(),
+            Refused::BadTakingBack { index: 12 }
+        );
+    }
+    assert_eq!(log.entries().len(), 12);
+    // Nothing left the record: the entry is given whole, with its state.
+    let (entries, contents) = log.into_parts();
+    let joined = join(&Value::Array(entries), &Value::Object(contents)).unwrap();
+    assert_eq!(joined[3]["data"]["text"], "hello, room");
+    assert_eq!(joined[3]["state"], "removed");
+    let its = joined[3]["incidents"].as_array().unwrap();
+    assert_eq!(its.len(), 3);
+    assert_eq!(its[0]["id"], json!(removal));
+    assert_eq!(its[0]["stands"], false);
+    assert_eq!(its[1]["kind"], "taken back");
+    assert_eq!(its[2]["stands"], true);
+    assert_eq!(joined[4]["state"], "as written");
+    assert_eq!(joined[4]["incidents"], json!([]));
+}
+
+#[test]
+fn each_case_that_is_refused_is_refused_for_pythons_reason() {
+    let v = vectors();
+    let refused = cases(&v, "refused");
+    assert_eq!(refused.len(), 161, "the vectors are all there");
+    let mut seen = BTreeSet::new();
+    for case in refused {
+        let name = &case["name"];
+        let reason = case["reason"].as_str().unwrap();
+        let error = check(&case["log"], &case["contents"]).expect_err(&name.to_string());
+        assert_eq!(error.reason(), reason, "{name}");
+        assert_eq!(
+            join(&case["log"], &case["contents"]).unwrap_err(),
+            error,
+            "{name}"
+        );
+        assert_eq!(place(&error), case["where"], "{name}");
+        // Only the chain's own cases break the chain: every other log is
+        // refused for what it says, never for a hash. (The cases with two
+        // faults are left out: some break the chain as their second.) A
+        // log holding a number this crate can't write is one the kernel's
+        // own check can't judge here; the form's check names its entry.
+        if !name.as_str().unwrap().starts_with("two faults") {
+            match verify_log(&case["log"]) {
+                Err(LogError::Unwritable { index, .. }) => {
+                    assert_eq!(error, Refused::Entry { index: Some(index) }, "{name}");
+                }
+                held => assert_eq!(held.is_ok(), !matches!(error, Refused::Chain(_)), "{name}"),
+            }
+        }
+        assert!(error.to_string().starts_with(reason), "{name}");
+        seen.insert(reason.to_owned());
+    }
+    let reasons: BTreeSet<String> = v["reasons"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|r| r.as_str().unwrap().to_owned())
+        .collect();
+    assert_eq!(seen, reasons, "every reason is in the vectors");
+}
+
+
+------------------------------------------------------------------------
+The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/world-log/tests/apart_vectors.rs/02.txt

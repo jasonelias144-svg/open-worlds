@@ -1,0 +1,47 @@
+Part of `world/apart_vectors.py` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 3.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world/apart_vectors.py/02.txt
+After this part: nothing; this is the last part.
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+def log_apart() -> dict:
+    """Everything in `vectors/log-apart.json`."""
+    return {
+        "note": ("Trial vectors for open-worlds/log-apart/v1. The salts "
+                 "are fixed and public: salt n is the first 32 hex digits "
+                 "of the SHA-256 of 'open-worlds trial salt n'. Never for "
+                 "anything real."),
+        "form": apart.FORM,
+        "mark": apart.MARK,
+        "kept": apart.KEPT,
+        "stays": apart.STAYS,
+        "redaction_states": list(apart.REDACTION_STATES),
+        "removed": apart.REMOVED,
+        "restored": apart.RESTORED,
+        "taken_back": apart.TAKEN_BACK,
+        "put_back": apart.PUT_BACK,
+        "grounds": list(apart.GROUNDS),
+        "entry_states": list(apart.ENTRY_STATES),
+        "short": apart.SHORT,
+        "short_ids": short_ids(),
+        "max_whole": apart.MAX_WHOLE,
+        "max_nesting": apart.MAX_NESTING,
+        "max_ref": apart.MAX_REF,
+        "states": list(apart.STATES),
+        "reasons": list(apart.REASONS),
+        "table": TABLE,
+        "first": FIRST,
+        "written": [{"tick": tick, "kind": kind, "agent": agent,
+                     "data": data, "apart": kept}
+                    for tick, kind, agent, data, kept in WRITTEN],
+        "fingerprints": fingerprints(),
+        "values_refused": [{"name": name, "value": value}
+                           for name, value in VALUES_REFUSED],
+        "holds": holds(),
+        "refused": refused(),
+    }
+
+------------------------------------------------------------------------
+End of `world/apart_vectors.py`.

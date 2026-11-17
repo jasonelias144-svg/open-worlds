@@ -60,9 +60,14 @@ free, and never a money machine
   log whose fields are kept apart by salted fingerprints, with the
   contents beside it, the check that holds the two together, and the
   function that joins them (`world/apart.py`, `rust/world-log`, with
-  shared vectors). Nothing is redacted yet: that is its third part,
-  which no longer waits, since the office's copy is decided (Decided,
-  2026-11-17), and is next. The log's side of its fourth part is built: what a log
+  shared vectors). The log's side of its third part, redacting, is
+  built: a mark says its office and its ground; one decision answers
+  it, to keep the field public or that it stays redacted for good;
+  and the writer takes a field out of the contents, and puts it back,
+  in step with the log. Nothing real is redacted yet: sealing the
+  copies, to each person the field is about and to the office that
+  decides (Decided, 2026-11-17), is that part's other side, and is
+  next. The log's side of its fourth part is built: what a log
   says in the open when an entry is removed, restored, taken back or
   put back, and each entry's state worked out from that. The signed
   records behind each act, and the check of who may act, are its

@@ -8,6 +8,26 @@
 
 ## Log
 
+- 2026-11-17 Claude: redacting, on the log's side (course step 3b,
+  part three, first of two sides). In `world/apart.py`,
+  `rust/world-log/src/apart.rs` and `vectors/log-apart.json`: a mark
+  now says its office and its ground; a new kind,
+  `field_stays_redacted`, says a redaction stands for good; a field
+  has one mark that is open or stands, and a mark is answered once; a
+  new function gives every redaction with its state (open, stands,
+  kept public), and the joining function gives them with each entry;
+  the writer has `mark`, `take_out`, `keep_public` and
+  `stays_redacted`, and its plain appending refuses the three kinds.
+  Twenty reasons for refusing, 161 logs or contents refused and seven
+  that hold in the vectors. Rust writes the five-states case again
+  with its own writer and gets Python's log. The command line counts
+  redactions. Checked: Python's tests of the form (80), Rust's (34,
+  and 12 for the command line), and mutation checks, 19 changes to the
+  Python and 21 to the Rust, each of which makes a test fail. Not
+  done: the act of redacting with the sealed copies, which is next;
+  who may mark or decide; and no test can show that short ids are
+  worked out over incidents and redactions together by two ids that
+  really collide, since that needs about 2^24 hashes on each side.
 - 2026-11-17 Claude: the founder's general guidance recorded, and what
   was open decided under it (Decided, today): the two roles, the floor
   between multiverses, the office's sealed copy, the levels of privacy

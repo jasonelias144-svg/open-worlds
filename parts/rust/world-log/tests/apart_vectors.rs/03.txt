@@ -1,0 +1,64 @@
+Part of `rust/world-log/tests/apart_vectors.rs` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 3.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/world-log/tests/apart_vectors.rs/02.txt
+After this part: nothing; this is the last part.
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+#[test]
+fn redactions_need_no_contents_and_join_gives_them() {
+    let (mut log, mut salt, said) = said_room();
+    let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    log.take_out(&made).unwrap();
+    stays(&mut log, 6, &made, "decided", 1, &mut salt).unwrap();
+    let (entries, contents) = log.into_parts();
+    let entries = Value::Array(entries);
+    let found = redactions_json(&redactions(&entries).unwrap());
+    assert_eq!(
+        found,
+        json!({&said: {"text": [
+            {"id": made, "short": made[..SHORT], "state": "stands"}]}})
+    );
+    let joined = join(&entries, &Value::Object(contents)).unwrap();
+    assert_eq!(joined[3]["redactions"], found[&said]);
+    assert_eq!(joined[1]["redactions"], json!({}));
+}
+
+#[test]
+fn a_redactions_id_is_shown_with_the_incidents_ids() {
+    // Short ids are worked out over incidents and redactions together,
+    // so no two that a room shows begin alike.
+    let (mut log, mut salt, said) = said_room();
+    let made = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+    let other = log.entries()[4]["hash"].as_str().unwrap().to_owned();
+    let removal = log
+        .append(
+            9,
+            REMOVED,
+            None,
+            &map(&json!({"entry": other, "office": "trial moderator",
+                         "ground": {"kind": "law", "ref": "trial room law, part 3"},
+                         "decision": trial_decision(1)})),
+            &Map::new(),
+            &mut salt,
+        )
+        .unwrap();
+    let entries = Value::Array(log.entries().to_vec());
+    let together = short_ids(&[removal.clone(), made.clone()]);
+    assert_eq!(redactions_of(&log, &said, "text")[0].short, together[&made]);
+    assert_eq!(
+        incidents(&entries).unwrap()[&other].incidents[0].short,
+        together[&removal]
+    );
+    // Two ids that begin alike are each shown one digit past where they
+    // part.
+    let alike = [
+        format!("{}{}", &made[..20], "0".repeat(44)),
+        format!("{}{}", &made[..20], "1".repeat(44)),
+    ];
+    assert!(short_ids(&alike).values().all(|short| short.len() == 21));
+}
+
+------------------------------------------------------------------------
+End of `rust/world-log/tests/apart_vectors.rs`.

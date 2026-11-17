@@ -6,19 +6,94 @@ Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-world
 After this part: nothing; this is the last part.
 Made by docs/parts.py from the file. To change it, change the file.
 ------------------------------------------------------------------------
+def _redactions(scan: _Scan) -> Dict[str, Dict[str, List[dict]]]:
+    """Every field's redactions, in the log's order."""
+    short = _shown(scan)
+    found: Dict[str, Dict[str, List[dict]]] = {}
+    for mark in scan.redactions:
+        entry, name = scan.marks[mark]
+        state = (KEPT_PUBLIC if mark in scan.answered
+                 else STANDS if mark in scan.stays else IS_OPEN)
+        found.setdefault(entry, {}).setdefault(name, []).append(
+            {"id": mark, "short": short[mark], "state": state})
+    return found
+
+
+def _entry_states(scan: _Scan) -> Dict[str, dict]:
+    """The state of every entry that has an incident, with them."""
+    short = _shown(scan)
+    states: Dict[str, dict] = {}
+    for incident, on, which in scan.incidents:
+        stands = (scan.removed.get(on) == incident
+                  or scan.taken.get(on) == incident)
+        states.setdefault(on, {"state": AS_WRITTEN, "incidents": []})
+        states[on]["incidents"].append(
+            {"id": incident, "short": short[incident], "kind": which,
+             "stands": stands})
+    for on, state in states.items():
+        if on in scan.taken:
+            state["state"] = IS_TAKEN_BACK
+        elif on in scan.removed:
+            state["state"] = IS_REMOVED
+        elif any(i["kind"] == IS_REMOVED for i in state["incidents"]):
+            state["state"] = IS_RESTORED
+    return states
+
+
+def incidents(log: Any) -> Dict[str, dict]:
+    """Checks a log in this form and gives the state of every entry
+    that was ever removed or taken back: a map from the entry's hash to
+    its `state` (one of `ENTRY_STATES`) and its `incidents`, in the
+    log's order, each with its `id` (the hash of the entry that carries
+    it), its `short` id as shown, its `kind` (`removed` or `taken
+    back`), and whether it `stands`. Every other entry is `as written`.
+    It needs no contents: what is shown is worked out from the open
+    fields alone."""
+    return _entry_states(_scan(log))
+
+
+def redactions(log: Any) -> Dict[str, Dict[str, List[dict]]]:
+    """Checks a log in this form and gives every redaction in it: a map
+    from an entry's hash to a map from a field's name to that field's
+    redactions, in the log's order, each with its `id` (its mark's
+    hash), its `short` id as shown, and its `state`: `open` (marked,
+    and not decided yet), `stands` (decided: it stays redacted) or
+    `kept public` (decided: the mark was answered). It needs no
+    contents. Whether a redacted field is in fact gone is a field's
+    state, which `check` gives."""
+    return _redactions(_scan(log))
+
+
+def check(log: Any, contents: Any) -> Dict[str, Dict[str, str]]:
+    """Checks a log in this form and its contents together, and gives
+    the state of every field kept apart: a map from an entry's hash to a
+    map from a field's name to one of `STATES`. Entries that keep
+    nothing apart are left out. Raises `Refused` with the reason if the
+    chain doesn't hold, the log isn't in this form, or the contents
+    hold anything the log doesn't commit to.
+
+    A missing field is not refused: it is a state, so that a reader can
+    say which fields a copy of a log has lost."""
+    scan = _scan(log)
+    return _states(scan, _held(scan, contents))
+
+
 def join(log: Any, contents: Any) -> List[dict]:
     """Each entry as a reader uses it, after `check`: the entry without
     its `apart`, its `data` holding the open fields and every field kept
     apart that is `present` or `kept public`, `fields` giving the state
-    of each field kept apart, and the entry's own `state` and
-    `incidents` (as `incidents` gives them; `as written` and none, for
-    most). A field under a standing mark is left out even if it is
+    of each field kept apart, `redactions` giving each field's
+    redactions (as `redactions` gives them; none, for most), and the
+    entry's own `state` and `incidents` (as `incidents` gives them; `as
+    written` and none, for most). A field under a standing mark is left
+    out even if it is
     still in the contents. An entry that is removed or taken back is
     given whole: hiding it is for whatever shows the room."""
     scan = _scan(log)
     held = _held(scan, contents)
     states = _states(scan, held)
     acted_on = _entry_states(scan)
+    redacted = _redactions(scan)
     joined = []
     for entry in log:
         fields = states.get(entry["hash"], {})
@@ -27,6 +102,7 @@ def join(log: Any, contents: Any) -> List[dict]:
             if state in (PRESENT, KEPT_PUBLIC):
                 one["data"][name] = copy.deepcopy(held[entry["hash"]][name])
         one["fields"] = dict(fields)
+        one["redactions"] = copy.deepcopy(redacted.get(entry["hash"], {}))
         its = acted_on.get(entry["hash"], {})
         one["state"] = its.get("state", AS_WRITTEN)
         one["incidents"] = copy.deepcopy(its.get("incidents", []))
@@ -72,7 +148,93 @@ class Log:
                apart: Optional[Dict[str, Any]] = None) -> str:
         """Appends one entry and returns its hash. `data` holds the open
         fields, `apart` the fields kept apart, by name. Raises `Refused`,
-        and appends nothing, if the entry would not hold."""
+        and appends nothing, if the entry would not hold.
+
+        A mark and the decision that answers it are not written here:
+        `mark`, `keep_public` and `stays_redacted` write them, with the
+        contents changed in the same step."""
+        if kind in (MARK, KEPT, STAYS):
+            raise ValueError("a mark and the decision that answers it are "
+                             "written by mark, keep_public and "
+                             "stays_redacted")
+        return self._append(tick, kind, agent, data, apart)
+
+    def mark(self, tick: int, entry: str, field: str, office: str,
+             ground: dict, *, agent: Optional[str] = None,
+             apart: Optional[Dict[str, Any]] = None) -> str:
+        """Appends a mark on `field` of `entry` and returns its hash:
+        the redaction's id. The field is still in the contents, so its
+        state is `unfinished` until `take_out`; it is never shown
+        meanwhile. Whatever is sealed of it is sealed before this."""
+        return self._append(tick, MARK, agent,
+                            {"entry": entry, "field": field,
+                             "office": office, "ground": ground}, apart)
+
+    def take_out(self, mark: str) -> list:
+        """Takes the field under `mark` out of the contents and returns
+        its `[salt, value]`, which the log then keeps nowhere. The log
+        itself is not touched."""
+        if (type(mark) is not str or mark not in self._scan.marks
+                or mark in self._scan.answered):
+            raise ValueError("no mark of that hash stands")
+        entry, field = self._scan.marks[mark]
+        fields = self.contents.get(entry, {})
+        if field not in fields:
+            raise ValueError("the field is not in the contents")
+        pair = fields.pop(field)
+        if not fields:
+            del self.contents[entry]
+        return pair
+
+    def keep_public(self, tick: int, mark: str, salt: str, value: Any,
+                    office: str, ground: dict, decision: str, *,
+                    agent: Optional[str] = None,
+                    apart: Optional[Dict[str, Any]] = None) -> str:
+        """The decision to keep a field public: puts `[salt, value]`
+        back into the contents and appends the entry that answers
+        `mark`, in one step, and returns that entry's hash. Raises
+        `Refused`, and changes nothing, if the mark is not open, if the
+        salt and value are not the ones the log commits to, or if the
+        entry would not hold."""
+        if (type(mark) is not str or mark not in self._scan.marks
+                or mark in self._scan.answered or mark in self._scan.stays):
+            raise Refused(BAD_KEPT, len(self.entries))
+        entry, field = self._scan.marks[mark]
+        where = (entry, field)
+        if not _is_salt(salt):
+            raise Refused(SALT, where)
+        if not value_allowed(value):
+            raise Refused(VALUE, where)
+        if fingerprint(salt, field, value) != self._scan.apart[entry][field]:
+            raise Refused(FINGERPRINT, where)
+        kept = self._append(tick, KEPT, agent,
+                            {"mark": mark, "office": office,
+                             "ground": ground, "decision": decision}, apart)
+        self.contents.setdefault(entry, {})[field] = [
+            salt, copy.deepcopy(value)]
+        return kept
+
+    def stays_redacted(self, tick: int, mark: str, office: str,
+                       ground: dict, decision: str, *,
+                       agent: Optional[str] = None,
+                       apart: Optional[Dict[str, Any]] = None) -> str:
+        """The decision that a field stays redacted: appends the entry
+        that answers `mark` for good, and returns its hash. The field
+        must be out of the contents already. Whoever held a copy for
+        the decision deletes it when this is written."""
+        scan = self._scan
+        if (type(mark) is str and mark in scan.marks
+                and mark not in scan.answered and mark not in scan.stays):
+            entry, field = scan.marks[mark]
+            if field in self.contents.get(entry, {}):
+                raise ValueError("the field is still in the contents: "
+                                 "take it out first")
+        return self._append(tick, STAYS, agent,
+                            {"mark": mark, "office": office,
+                             "ground": ground, "decision": decision}, apart)
+
+    def _append(self, tick: int, kind: str, agent: Optional[str], data: dict,
+                apart: Optional[Dict[str, Any]] = None) -> str:
         prints: Dict[str, str] = {}
         kept: Dict[str, list] = {}
         salts: Set[str] = set()

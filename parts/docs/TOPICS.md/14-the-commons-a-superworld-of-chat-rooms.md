@@ -54,7 +54,9 @@ guest's key the person's private container.)
   decided, by the founder on 2026-11-16: it stays in the records, and
   the room shows a note with the reason and an incident id (the form
   of a removal in a log is built, course step 3b; who may remove is
-  not checked yet);
+  not checked yet). A redaction is another thing: the field leaves the
+  record, and its form in a log is built too (a mark, and the one
+  decision that answers it; sealing the copies is next);
 - the levels of privacy a room may have, and what the record keeps at
   each: three, decided on 2026-11-17 (COMMONS.md, "A spectrum of
   privacy");

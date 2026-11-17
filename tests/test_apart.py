@@ -678,6 +678,22 @@ class TestRedacting(unittest.TestCase):
             self):
         with self.assertRaises(ValueError):
             self.log.take_out(self.said)             # not a mark
+        # What is not even text is refused the same way, never a crash.
+        for odd in (None, 7, ["a"], {"a": 1}):
+            with self.subTest(odd=odd):
+                with self.assertRaises(ValueError):
+                    self.log.take_out(odd)
+                with self.assertRaises(Refused) as c:
+                    self.log.keep_public(6, odd, "0" * 32, "v", KEEPER,
+                                         APPEAL, trial_decision(1))
+                self.assertEqual(c.exception.reason, apart.BAD_KEPT)
+                with self.assertRaises(Refused) as c:
+                    self.log.stays_redacted(6, odd, KEEPER, APPEAL,
+                                            trial_decision(1))
+                # Nothing is not a value an open field can have.
+                self.assertEqual(
+                    c.exception.reason,
+                    apart.ENTRY if odd is None else apart.BAD_STAYS)
         made = mark(self.log, self.said, "text")
         self.log.take_out(made)
         with self.assertRaises(ValueError):

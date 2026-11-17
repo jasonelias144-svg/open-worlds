@@ -114,11 +114,11 @@ the record, and hiding it is for whatever shows a room. This module
 does not check who may redact, decide, remove, restore or take back:
 that needs the signed records and the keys, which are kept apart. Nor
 does it seal what is redacted: that is the act of redacting, beside
-this module. Nothing can be the
-value of an open field: a field with no value is left out. The check holds a world to its table
-by name: it can't know that an open field of another name holds what
-should have been kept apart. A fingerprint commits a log to a value,
-and says nothing of who wrote it: that is a signature's work. JSON's
+this module. Nothing can be the value of an open field: a field with
+no value is left out. The check holds a world to its table by name:
+it can't know that an open field of another name holds what should
+have been kept apart. A fingerprint commits a log to a value, and
+says nothing of who wrote it: that is a signature's work. JSON's
 `-0` is read by Python as 0 and refused by Rust; nothing here writes
 it. A file that isn't JSON as the standard has it (`NaN`, a number too
 large to read, half of a surrogate pair) is refused here and can't be
@@ -339,10 +339,10 @@ class _Scan:
         self.apart: Dict[str, Dict[str, str]] = {}   # entry -> name -> print
         self.marks: Dict[str, Tuple[str, str]] = {}  # mark -> (entry, name)
         self.answered: Set[str] = set()              # marks no longer standing
-        self.stays: Set[str] = set()                 # marks that stand for good
+        self.stays: Set[str] = set()                # marks that stand for good
         # (entry, name) -> its mark that is open or stands, if any.
         self.marked: Dict[Tuple[str, str], str] = {}
-        self.redactions: List[str] = []              # marks, in the log's order
+        self.redactions: List[str] = []             # marks, in the log's order
         self.seen: Set[str] = set()                  # every fingerprint
         self.kinds: Dict[str, str] = {}              # entry -> its kind
         # Every removal and taking back, in the log's order:
@@ -655,7 +655,8 @@ def join(log: Any, contents: Any) -> List[dict]:
     of each field kept apart, `redactions` giving each field's
     redactions (as `redactions` gives them; none, for most), and the
     entry's own `state` and `incidents` (as `incidents` gives them; `as
-    written` and none, for most). A field under a standing mark is left out even if it is
+    written` and none, for most). A field under a standing mark is left
+    out even if it is
     still in the contents. An entry that is removed or taken back is
     given whole: hiding it is for whatever shows the room."""
     scan = _scan(log)
@@ -743,7 +744,8 @@ class Log:
         """Takes the field under `mark` out of the contents and returns
         its `[salt, value]`, which the log then keeps nowhere. The log
         itself is not touched."""
-        if mark not in self._scan.marks or mark in self._scan.answered:
+        if (type(mark) is not str or mark not in self._scan.marks
+                or mark in self._scan.answered):
             raise ValueError("no mark of that hash stands")
         entry, field = self._scan.marks[mark]
         fields = self.contents.get(entry, {})
@@ -764,8 +766,8 @@ class Log:
         `Refused`, and changes nothing, if the mark is not open, if the
         salt and value are not the ones the log commits to, or if the
         entry would not hold."""
-        if (mark not in self._scan.marks or mark in self._scan.answered
-                or mark in self._scan.stays):
+        if (type(mark) is not str or mark not in self._scan.marks
+                or mark in self._scan.answered or mark in self._scan.stays):
             raise Refused(BAD_KEPT, len(self.entries))
         entry, field = self._scan.marks[mark]
         where = (entry, field)
@@ -791,8 +793,8 @@ class Log:
         must be out of the contents already. Whoever held a copy for
         the decision deletes it when this is written."""
         scan = self._scan
-        if (mark in scan.marks and mark not in scan.answered
-                and mark not in scan.stays):
+        if (type(mark) is str and mark in scan.marks
+                and mark not in scan.answered and mark not in scan.stays):
             entry, field = scan.marks[mark]
             if field in self.contents.get(entry, {}):
                 raise ValueError("the field is still in the contents: "

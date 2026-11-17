@@ -180,11 +180,20 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/ur-world/src/world.rs/02.txt
 ```
 
-## `rust/world-log/src/apart.rs`, in 2 parts
+## `rust/world-log/src/apart.rs`, in 3 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/world-log/src/apart.rs/01.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/world-log/src/apart.rs/02.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/world-log/src/apart.rs/03.txt
+```
+
+## `rust/world-log/tests/apart_vectors.rs`, in 3 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/world-log/tests/apart_vectors.rs/01.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/world-log/tests/apart_vectors.rs/02.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/world-log/tests/apart_vectors.rs/03.txt
 ```
 
 ## `schemas/records-v1.schema.json`, in 2 parts
@@ -203,11 +212,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketc
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/changes-to-deepseek-s-code.md
 ```
 
-## `tests/test_apart.py`, in 2 parts
+## `tests/test_apart.py`, in 3 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests/test_apart.py/01.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests/test_apart.py/02.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests/test_apart.py/03.txt
 ```
 
 ## `tests/test_mv_passport.py`, in 2 parts
@@ -245,11 +255,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world/apart.py/02.txt
 ```
 
-## `world/apart_vectors.py`, in 2 parts
+## `world/apart_vectors.py`, in 3 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world/apart_vectors.py/01.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world/apart_vectors.py/02.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world/apart_vectors.py/03.txt
 ```
 
 ## Left whole

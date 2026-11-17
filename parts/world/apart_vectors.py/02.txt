@@ -3,7 +3,7 @@ for readers who are shown only the start of a long page.
 This part holds: piece 2.
 Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world/apart_vectors.py/01.txt
-After this part: nothing; this is the last part.
+After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world/apart_vectors.py/03.txt
 Made by docs/parts.py from the file. To change it, change the file.
 ------------------------------------------------------------------------
 def refused() -> List[dict]:
@@ -171,6 +171,7 @@ def refused() -> List[dict]:
         log, {})
 
     # -- marks --
+    said_by = {"office": OFFICE, "ground": PRIVATE}
     for name, data in [
             ("a mark that names no entry of the log",
              {"entry": "f" * 64, "field": "name"}),
@@ -185,29 +186,56 @@ def refused() -> List[dict]:
         log, contents = _short()
         if "entry" in data and data["entry"] is None:
             data = {**data, "entry": log[1]["hash"]}
-        _raw(log, 1, apart.MARK, OFFICE, data, {})
+        _raw(log, 1, apart.MARK, None, {**data, **said_by}, {})
         add(apart.BAD_MARK, name, log, contents)
     log, contents = _short()
-    _raw(log, 1, apart.MARK, OFFICE,
-         {"entry": log[0]["hash"], "field": "form"}, {})
+    _raw(log, 1, apart.MARK, None,
+         {"entry": log[0]["hash"], "field": "form", **said_by}, {})
     add(apart.BAD_MARK, "a mark on a field that is in the open",
         log, contents)
+    for name, change in [
+            ("a mark without an office", {"office": None}),
+            ("a mark whose office is empty", {"office": ""}),
+            ("a mark whose office is a list", {"office": [OFFICE]}),
+            ("a mark without a ground", {"ground": None}),
+            ("a mark whose ground is text", {"ground": "it was private"}),
+            ("a mark whose ground is of no known kind",
+             {"ground": {"kind": "whim", "ref": "trial"}}),
+            ("a mark whose ground names nothing",
+             {"ground": {"kind": "rule", "ref": ""}}),
+            ("a mark whose ground holds more than a kind and a ref",
+             {"ground": {**PRIVATE, "more": "x"}}),
+            ("a mark whose ground is a record not named by its hash",
+             {"ground": {"kind": "record", "ref": "an earlier decision"}}),
+            ("a mark whose ground's reference is one character too long",
+             {"ground": {"kind": "rule",
+                         "ref": "\U0001D11E" * (apart.MAX_REF + 1)}})]:
+        log, contents = _short()
+        data = {"entry": log[1]["hash"], "field": "name", **said_by, **change}
+        _raw(log, 1, apart.MARK, None,
+             {k: v for k, v in data.items() if v is not None}, {})
+        add(apart.BAD_MARK, name, log, contents)
 
-    # -- decisions to keep a field public --
-    log, contents = _short()
-    _raw(log, 1, apart.KEPT, OFFICE, {"mark": log[1]["hash"]}, {})
-    add(apart.BAD_KEPT, "a decision that names an entry that is not a mark",
-        log, contents)
-    log, contents = _short()
-    _raw(log, 1, apart.KEPT, OFFICE, {}, {})
-    add(apart.BAD_KEPT, "a decision that names nothing", log, contents)
-    log, contents = _short()
-    _raw(log, 1, apart.KEPT, OFFICE, {"mark": "f" * 64}, {})
-    add(apart.BAD_KEPT, "a decision that names no entry of the log",
-        log, contents)
-    log, contents = _short()
-    _raw(log, 1, apart.KEPT, OFFICE, {"mark": [log[1]["hash"]]}, {})
-    add(apart.BAD_KEPT, "a decision whose mark is a list", log, contents)
+    # -- what answers a mark: kept public, or stays redacted --
+    decided = {"office": KEEPER, "ground": APPEAL,
+               "decision": trial_decision(1)}
+    for kind, reason, what in [
+            (apart.KEPT, apart.BAD_KEPT, "a decision to keep a field public"),
+            (apart.STAYS, apart.BAD_STAYS,
+             "a decision that a field stays redacted")]:
+        log, contents = _short()
+        _raw(log, 1, kind, None, {"mark": log[1]["hash"], **decided}, {})
+        add(reason, what + " that names an entry that is not a mark",
+            log, contents)
+        log, contents = _short()
+        _raw(log, 1, kind, None, dict(decided), {})
+        add(reason, what + " that names nothing", log, contents)
+        log, contents = _short()
+        _raw(log, 1, kind, None, {"mark": "f" * 64, **decided}, {})
+        add(reason, what + " that names no entry of the log", log, contents)
+        log, contents = _short()
+        _raw(log, 1, kind, None, {"mark": [log[1]["hash"]], **decided}, {})
+        add(reason, what + " whose mark is a list", log, contents)
 
     # -- removing, restoring, taking back and putting back --
     def acted(*steps: Any) -> Tuple[List[dict], Any, Dict[str, str]]:
@@ -231,6 +259,48 @@ def refused() -> List[dict]:
                 for k, v in data.items()}
         _raw(log, 9, kind, None, data, {})
         add(reason, name, log, contents)
+
+    # -- redacted first, decided after: one mark, one answer --
+    marking = {"entry": said, "field": "text", "office": OFFICE,
+               "ground": PRIVATE}
+    refuse(apart.BAD_MARK, "a second mark on a field whose mark is open",
+           apart.MARK, marking, ("m", _mark, said, "text", "asked"))
+    refuse(apart.BAD_MARK, "a mark on a field whose redaction stands",
+           apart.MARK, marking, ("m", _mark, said, "text", "asked"),
+           ("s", _stays, "m", "it stays"))
+    answer = {"mark": "m", "office": KEEPER, "ground": APPEAL,
+              "decision": trial_decision(2)}
+    for kind, reason, what in [
+            (apart.KEPT, apart.BAD_KEPT, "a decision to keep a field public"),
+            (apart.STAYS, apart.BAD_STAYS,
+             "a decision that a field stays redacted")]:
+        refuse(reason, what + " on a mark already answered by one to keep "
+               "it public", kind, answer,
+               ("m", _mark, said, "text", "asked"),
+               ("k", _keep, "m", "nothing private"))
+        refuse(reason, what + " on a mark that stands", kind, answer,
+               ("m", _mark, said, "text", "asked"),
+               ("s", _stays, "m", "it stays"))
+        refuse(reason, what + " on an earlier mark of a field that was "
+               "marked again", kind, answer,
+               ("m", _mark, said, "text", "asked"),
+               ("k", _keep, "m", "nothing private"),
+               ("again", _mark, said, "text", "asked again"))
+        for name, change in [
+                ("without an office", {"office": None}),
+                ("whose office is empty", {"office": ""}),
+                ("without a ground", {"ground": None}),
+                ("whose ground is a record not named by its hash",
+                 {"ground": {"kind": "record", "ref": "an earlier one"}}),
+                ("without a decision", {"decision": None}),
+                ("whose decision is 63 digits",
+                 {"decision": trial_decision(2)[:63]}),
+                ("whose decision is in capitals",
+                 {"decision": trial_decision(2).upper()})]:
+            data = {k: v for k, v in {**answer, **change}.items()
+                    if v is not None}
+            refuse(reason, what + " " + name, kind, data,
+                   ("m", _mark, said, "text", "asked"))
 
     refuse(apart.BAD_REMOVAL, "a removal that names no entry of the log",
            apart.REMOVED, {**removal, "entry": "f" * 64})
@@ -301,6 +371,10 @@ def refused() -> List[dict]:
     refuse(apart.BAD_TAKING_BACK, "a taking back of a mark",
            apart.TAKEN_BACK, {"entry": "m"},
            ("m", _mark, said, "text", "asked"))
+    refuse(apart.BAD_REMOVAL, "a removal of a decision that a field stays "
+           "redacted", apart.REMOVED, {**removal, "entry": "s"},
+           ("m", _mark, said, "text", "asked"),
+           ("s", _stays, "m", "it stays"))
 
     refuse(apart.BAD_PUTTING_BACK, "a putting back of an entry that was not "
            "taken back", apart.PUT_BACK, {"taken_back": said})
@@ -484,40 +558,6 @@ def short_ids() -> List[dict]:
     return [{"ids": ids, "short": apart._short_ids(ids)} for ids in groups]
 
 
-def log_apart() -> dict:
-    """Everything in `vectors/log-apart.json`."""
-    return {
-        "note": ("Trial vectors for open-worlds/log-apart/v1. The salts "
-                 "are fixed and public: salt n is the first 32 hex digits "
-                 "of the SHA-256 of 'open-worlds trial salt n'. Never for "
-                 "anything real."),
-        "form": apart.FORM,
-        "mark": apart.MARK,
-        "kept": apart.KEPT,
-        "removed": apart.REMOVED,
-        "restored": apart.RESTORED,
-        "taken_back": apart.TAKEN_BACK,
-        "put_back": apart.PUT_BACK,
-        "grounds": list(apart.GROUNDS),
-        "entry_states": list(apart.ENTRY_STATES),
-        "short": apart.SHORT,
-        "short_ids": short_ids(),
-        "max_whole": apart.MAX_WHOLE,
-        "max_nesting": apart.MAX_NESTING,
-        "max_ref": apart.MAX_REF,
-        "states": list(apart.STATES),
-        "reasons": list(apart.REASONS),
-        "table": TABLE,
-        "first": FIRST,
-        "written": [{"tick": tick, "kind": kind, "agent": agent,
-                     "data": data, "apart": kept}
-                    for tick, kind, agent, data, kept in WRITTEN],
-        "fingerprints": fingerprints(),
-        "values_refused": [{"name": name, "value": value}
-                           for name, value in VALUES_REFUSED],
-        "holds": holds(),
-        "refused": refused(),
-    }
 
 ------------------------------------------------------------------------
-End of `world/apart_vectors.py`.
+The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world/apart_vectors.py/03.txt

@@ -52,9 +52,14 @@ free, and never a money machine
   log whose fields are kept apart by salted fingerprints, with the
   contents beside it, the check that holds the two together, and the
   function that joins them (`world/apart.py`, `rust/world-log`, with
-  shared vectors). Nothing is redacted yet: that is its third part,
-  which no longer waits, since the office's copy is decided (Decided,
-  2026-11-17), and is next. The log's side of its fourth part is built: what a log
+  shared vectors). The log's side of its third part, redacting, is
+  built: a mark says its office and its ground; one decision answers
+  it, to keep the field public or that it stays redacted for good;
+  and the writer takes a field out of the contents, and puts it back,
+  in step with the log. Nothing real is redacted yet: sealing the
+  copies, to each person the field is about and to the office that
+  decides (Decided, 2026-11-17), is that part's other side, and is
+  next. The log's side of its fourth part is built: what a log
   says in the open when an entry is removed, restored, taken back or
   put back, and each entry's state worked out from that. The signed
   records behind each act, and the check of who may act, are its
@@ -2832,6 +2837,53 @@ Decisions about the code, made by the technical lead under the founder's
 deference (above, 2026-11-13), each with its reason and what would show
 it was wrong. Questions of what the project is for stay with the founder.
 
+- 2026-11-17, redacting, on the log's side
+  (docs/research/REDACTION.md, "Part three, the log's side, built";
+  course step 3b, part three), settled in building it.
+  (a) A third kind for a redacted field, `field_stays_redacted`: the
+  entry that says a redaction stands. The form's own kinds are seven.
+  (b) A mark says in the open its office and one ground, held to what
+  a removal's ground is held to, and no decision. Each of the two
+  decisions says its office, its ground and the decision's hash.
+  (c) A field has at most one mark that is open or stands. (d) A mark
+  is answered once, while it is open, when the decision and any appeal
+  are over. Kept public, the field may be marked again. A mark that
+  stays redacted stands for good, and nothing in the log makes that
+  field public again. (e) A redaction's id is its mark's hash, its
+  state is open, stands or kept public, and short ids are worked out
+  over incidents and redactions together. (f) The writer has a step
+  for each act and its plain appending refuses the three kinds;
+  keeping public puts the field back in the same step as the decision,
+  only with the salt and value the log commits to; "stays redacted"
+  is refused while the field is still in the contents. (g) This side
+  checks the shape of an act and what it names, not who may act.
+  (h) The form's name is unchanged, though a bare mark, which part two
+  allowed, is now refused. (i) The command line counts redactions.
+  *Why:* (a) decision 5 asks that an entry say when a redaction
+  stands and the office's copy is deleted; without it a reader can't
+  tell a redaction still being decided from one that is settled.
+  (b) "By which office, and why in general terms, never what"
+  (decision 4); and a mark is made before anything is decided, so it
+  has no decision to name. (c) With several marks on one field, a
+  decision to keep it public could not say which request it answered,
+  and one such decision left the others standing. (d) FUNDAMENTALS.md:
+  "It stays redacted until any appeal is decided: once made public
+  again, it can't be recalled"; and the office's copy is deleted when
+  the redaction stands, so nothing could put the field back. (e) A
+  room shows both kinds of id, and a reader should never take one for
+  the other. (f) The fault carried from part two: one entry of kind
+  `field_kept_public` turned a finished redaction into a missing
+  field. (g) Who may act needs the signed records and the keys, as in
+  part four. (h) No world writes this form yet; the vectors are the
+  only logs in it. (i) So that a reader of a log sees how many
+  redactions are still being decided.
+  *What would show it wrong:* a case where one field must carry two
+  requests that are decided apart, for (c); a rule of appeals that
+  lets a redaction that stands be reopened, for (d), which would need
+  the office's copy kept longer than decision 5 allows; a log in this
+  form written by anyone before this change, for (h); a mark that has
+  to be written by someone who is not an office, such as a person
+  redacting their own words with no office involved, for (b).
 - 2026-11-17, two collaborators on the sketch crate at once, each on
   its own files. The rule since 2026-11-16 was one writer at a time,
   so that there is one line of code. The founder had Gemini free
@@ -3584,6 +3636,26 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-17 Claude: redacting, on the log's side (course step 3b,
+  part three, first of two sides). In `world/apart.py`,
+  `rust/world-log/src/apart.rs` and `vectors/log-apart.json`: a mark
+  now says its office and its ground; a new kind,
+  `field_stays_redacted`, says a redaction stands for good; a field
+  has one mark that is open or stands, and a mark is answered once; a
+  new function gives every redaction with its state (open, stands,
+  kept public), and the joining function gives them with each entry;
+  the writer has `mark`, `take_out`, `keep_public` and
+  `stays_redacted`, and its plain appending refuses the three kinds.
+  Twenty reasons for refusing, 161 logs or contents refused and seven
+  that hold in the vectors. Rust writes the five-states case again
+  with its own writer and gets Python's log. The command line counts
+  redactions. Checked: Python's tests of the form (80), Rust's (34,
+  and 12 for the command line), and mutation checks, 19 changes to the
+  Python and 21 to the Rust, each of which makes a test fail. Not
+  done: the act of redacting with the sealed copies, which is next;
+  who may mark or decide; and no test can show that short ids are
+  worked out over incidents and redactions together by two ids that
+  really collide, since that needs about 2^24 hashes on each side.
 - 2026-11-17 Claude: the founder's general guidance recorded, and what
   was open decided under it (Decided, today): the two roles, the floor
   between multiverses, the office's sealed copy, the levels of privacy
