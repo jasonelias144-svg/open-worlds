@@ -8,6 +8,24 @@
 
 ## Log
 
+- 2026-11-17 Claude: a second file for Gemini, at the founder's
+  request: "As it turns out Gemini is ready to go, while I have to
+  wait a few more hours for DeepSeek. Can you throw together a single
+  document for Gemini again. I have the one for DeepSeek, should I
+  just rename that, or would you prefer to provide another different
+  file?" A different file, so that the two do not write the same step
+  twice (Decided by the technical lead, today). It is
+  sketches/replies/2026-11-17-for-gemini.txt, built by docs/reply.py:
+  97,419 bytes, thirteen of the crate's files. It tells Gemini what
+  its four deliveries built to, and asks four steps on the Commons'
+  own log. Two findings in it were tried here first: the Commons'
+  check takes a value only the crate's own code can build, and a
+  Commons record written to JSON holds its "type" twice and can't be
+  read back. DeepSeek's file stands as given; what changed after it
+  was given is said in sketches/replies/README.md and in
+  docs/COLLABORATING.md. Not done: nothing was built for this beyond
+  the one probe of the Commons record; whether both collaborators'
+  work joins cleanly is known only when both are back.
 - 2026-11-17 Claude: Gemini's conversation is with the records, at the
   founder's word (Decided, today). The record is
   sketches/records/012-00-00-GMNI-Multiverse_Development.txt, byte for

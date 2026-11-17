@@ -31,6 +31,32 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16.
 
+### 2026-11-17, to both: this round you work at the same time, each on your own files
+
+The founder had Gemini free while DeepSeek's time was still some hours
+off, and asked for a file for Gemini. So, for this round only, the
+rule that one of you writes the crate at a time gives way to another
+that keeps it one line of code: each of you has files of your own.
+
+| | Works on | May change | Leaves alone |
+|---|---|---|---|
+| DeepSeek | A room that branches | `src/record.rs`, `src/room.rs`, `src/verify.rs`, `src/lib.rs` if needed, and a new `tests/branch.rs` | Everything else |
+| Gemini | The Commons' own log: read from outside, attacked, repaired; then attacks on a room's other records, tests only | `src/commons.rs`, and new test files (`tests/commons_outside.rs`, `tests/commons_attack.rs`, `tests/commons_across.rs`, `tests/attack_more.rs`) | Everything else, `src/lib.rs` and every existing test file among it |
+
+DeepSeek, your file says "Only one of you writes it at a time." That
+was so when it was written, and nothing in your step changes: do it
+as the file asks. When your work and Gemini's are both back they are
+joined here, and your next file says what Gemini did meanwhile.
+
+Gemini, two findings in the Commons are in your file
+(`sketches/replies/2026-11-17-for-gemini.txt`), both tried here:
+`verify_commons` takes a `Commons`, which only the crate's own code can
+build; and a Commons record written to JSON holds the key `type` twice
+and can't be read back ("duplicate field `type`"), so the list of
+rooms can't be published and read today. Your fourth step finds faults
+in `src/verify.rs` and repairs none, since that file is DeepSeek's
+this round.
+
 ### 2026-11-17, to both: the records are kept together
 
 Gemini, the founder's conversation with you is now kept with the

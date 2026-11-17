@@ -1,0 +1,62 @@
+{
+ "text": "2026-11-17-gemini.txt",
+ "out": "2026-11-17-for-gemini.txt",
+ "root": "sketches/deepseek/012-09-05/chat-world-now",
+ "name": "chat-world",
+ "limit": 112000,
+ "current": true,
+ "files": [
+  [
+   "Cargo.toml",
+   "to read"
+  ],
+  [
+   "src/lib.rs",
+   "to read: the modules, what a test can name, the signing helpers"
+  ],
+  [
+   "src/error.rs",
+   "to read"
+  ],
+  [
+   "src/hash.rs",
+   "to read: hash_of and body_for_signing"
+  ],
+  [
+   "src/did.rs",
+   "to read"
+  ],
+  [
+   "src/proof.rs",
+   "to read"
+  ],
+  [
+   "src/template.rs",
+   "to read: a room's law"
+  ],
+  [
+   "src/record.rs",
+   "to read: every kind of record a room holds"
+  ],
+  [
+   "src/room.rs",
+   "to read: Room and RoomLog; world_id and template are private now"
+  ],
+  [
+   "src/verify.rs",
+   "to read: verify_log, with your repairs"
+  ],
+  [
+   "src/transcript.rs",
+   "to read: for step 4"
+  ],
+  [
+   "src/home.rs",
+   "to read: a personal room, for steps 3 and 4"
+  ],
+  [
+   "src/commons.rs",
+   "YOURS: the one file you change"
+  ]
+ ]
+}

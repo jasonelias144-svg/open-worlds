@@ -12,6 +12,18 @@ Decisions about the code, made by the technical lead under the founder's
 deference (above, 2026-11-13), each with its reason and what would show
 it was wrong. Questions of what the project is for stay with the founder.
 
+- 2026-11-17, two collaborators on the sketch crate at once, each on
+  its own files. The rule since 2026-11-16 was one writer at a time,
+  so that there is one line of code. The founder had Gemini free
+  hours before DeepSeek, and asked whether to give Gemini DeepSeek's
+  file renamed. Not that: the same step done twice gives two versions
+  of the same files, which is what the rule is there to prevent. For
+  this round each has its own files: DeepSeek the room (record.rs,
+  room.rs, verify.rs, a new tests/branch.rs), Gemini the Commons
+  (commons.rs and new test files), and Gemini finds faults in
+  verify.rs without repairing them. The two are joined here when both
+  are back. What would show it wrong: a delivery from one that does
+  not build over the other's, for a reason other than its own faults.
 - 2026-11-16, removing, restoring, taking back and putting back, on
   the log's side (docs/research/REDACTION.md, "Part four, the log's
   side, built"; course step 3b, part four), settled in building it.

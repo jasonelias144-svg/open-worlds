@@ -57,6 +57,7 @@ given whole, as one upload. The script refuses to write a longer one.
 
 | Reply | For | Answers | Given | Bytes | SHA-256 |
 |---|---|---|---|---|---|
+| `2026-11-17-gemini` | Gemini | Its four deliveries: what each built to, the two repairs, and why the fourth is not used. Then four steps on the Commons' own log, in files DeepSeek's step does not touch: the log read from outside (a Commons record can't be read back from JSON today), attacks on its check, repairs with two checks across logs, and attacks on the room's seven other kinds of record, tests only. Thirteen of the crate's twenty-two files as they stand; the other nine are named and left out | 2026-11-17 | 97,419 | `a37631b6d06596435c41848cd7cc178bcbe05c4e90f296d76fbc12212d98e108` |
 | `012-09-05-2` | DeepSeek | Record 012-09-05, continued: what its five deliveries built to, the repairs, what Gemini then found and repaired, one step (a room that branches, which is how a room's law changes), and one question on signed heads. Ten of the crate's twenty-two files as they stand; the other twelve are named and left out | 2026-11-17 | 99,521 | `6e42350cac184ca76478272b5c2a52dc99f0751e9f1197c3ffe05666f42fe9df` |
 | `2026-11-16-gemini` | Gemini | No record: Gemini's first file. Where the project stands, how we work, three steps (a room's log checked from outside; attacks on the check; repairs), and the `chat-world` crate as it stands after DeepSeek's five deliveries, sixteen files, its demos left out | 2026-11-16 | 119,297 | `324d1392a495fff72480460f27617950d64f3b475f90079720031f7a0b417609` |
 | `012-09-05` | DeepSeek | Record 012-09-05: the first pass, the repairs, the answers to DeepSeek's two questions, three next steps, and the `chat-world` crate as it stands, sixteen files | 2026-11-16 | 95,149 | `f1f7435f21dbaf8d49de3aea07e83d502d38c6011323feb591b769c2c1c97447` |
@@ -66,6 +67,13 @@ given whole, as one upload. The script refuses to write a longer one.
 A file that was given is not changed. What was later found wrong in it
 is said here, and in the next reply.
 
+- `012-09-05-2`, part 2: "Only one of you writes it at a time." That
+  was the rule when the file was written. Hours later the founder had
+  Gemini free and DeepSeek not yet, and Gemini was given a file to
+  work at the same time (`2026-11-17-gemini`), on files that
+  DeepSeek's step does not touch: `src/commons.rs` and new test files.
+  DeepSeek's step and its files are not affected. Its next file says
+  what Gemini did meanwhile.
 - `012-09-05`, part 1: "33 of your tests failed for that alone". All
   33 stopped first at those two causes, as written. But three of the
   sixteen still fail with the change applied, as part 2 of the same
