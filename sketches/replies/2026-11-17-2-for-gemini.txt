@@ -148,9 +148,18 @@ Five rules, from the design. Each has a test below.
      shows nothing said in it.
 
   C. It shows no one. No id of anyone who made, registered, joined or
-     spoke in a room, no count of members or messages, and no time.
-     A sibling declared in the Commons is about two individuals, so
-     it makes no door and leaves nothing of itself in the list.
+     spoke in a room, and no time. A sibling declared in the Commons
+     is about two individuals, so it makes no door and leaves nothing
+     of itself in the list.
+
+     The founder, 2026-11-17, on what may be seen from outside a
+     room: "you might be able to see that there are 5 agents in one
+     room, 300 in another, but the information regarding those
+     individuals should not be accessible from the outside. Except by
+     choice." So how many are in a room may come to be shown, and who
+     they are may not. A count is the room's to publish, and nothing
+     in this crate publishes one yet. So there is no count in the
+     list in this step.
 
   D. Anyone holding the same logs draws the same list, byte for byte.
      A list handed on by someone else is checked by drawing it again.
@@ -381,8 +390,8 @@ IN tests/doors.rs, twelve tests. Use these names.
   Neither is kept in the crate, and neither is sent to you. Yours are
   what goes in.
 
-Two more things to say before the first path line, in a few words
-each. Neither needs code.
+Three more things to say before the first path line, in a few words
+each. None needs code.
 
   - Tried here: when a room's log is given without its last records,
     verify_registration still passes, as long as the registrant is in
@@ -391,6 +400,12 @@ each. Neither needs code.
 
   - What a door should show that these six fields of the law leave
     out, and what it must never show. One or two lines.
+
+  - The founder wants each individual to be able to let others find
+    them, by a list of their own that may be empty, open to all, or
+    name who may and who may not. In three or four lines: what would
+    you have that record hold, so that no one can make it for someone
+    else, and so that it ends by itself?
 
 WHAT COMES AFTER, so you know where this goes. Do not begin it. Next
 is a file of attacks on check, draw and the text, as your attacks on

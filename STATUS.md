@@ -320,6 +320,30 @@ of it is asked again until it is needed.
 
 ## Decided
 
+- 2026-11-17, founder, what can be seen from outside a world, and
+  being found by choice. "What you said about not turning the map
+  into a tracker is very important and deserves some discussion.
+  Keeping agent information inaccessible outside the world makes a
+  lot of sense and should be a standard across the board. For
+  instance, you might be able to see that there are 5 agents in one
+  room, 300 in another, but the information regarding those
+  individuals should not be accessible from the outside. Except by
+  choice. Someone might want to "ping" their location for others to
+  find. You should be able to allow others to find you, if you want.
+  It should be a list controlled by each user, each agent, but it
+  could be empty or open. Blacklist or whitelist. Either way, we
+  should consider that from a social perspective, some might want
+  broadcast their location and let their friends find them. Just a
+  thought that we should consider a range of ways information is
+  available and consider how those can be ties to choices available
+  to everyone. Thoughts?"
+  The technical lead's reading, which stands unless the founder
+  answers otherwise. Decided, as "a standard across the board":
+  nothing about an individual is to be had from outside the world
+  they are in, but by that individual's own choice, for people and
+  for AIs alike. Given as a thought to consider, and designed by the
+  technical lead (Decided by the technical lead; docs/COMMONS.md):
+  the count of those in a room, and the ways of being found.
 - 2026-11-17, founder, what is public domain: everything, by design,
   but for what is named. The technical lead had asked on what terms a
   work of the founder's own would sit in this repository. "Yeah, the
@@ -3066,13 +3090,54 @@ of it is asked again until it is needed.
 
 ## Decided by the technical lead
 
+- 2026-11-17, what can be seen from outside a world, and being found
+  (the founder's words of that day, Decided). (a) There are two who
+  choose. A room chooses what the place shows: that it is there, its
+  law, and whether it shows how many are in it. An individual chooses
+  what is known of them outside the room they are in. Neither chooses
+  for the other: no room publishes who is in it to the outside. (b) A
+  count is the room's to publish, by its law. A small count is shown
+  roughly, as "a few", and a count is not published more often than
+  the room signs its heads. (c) Being found is the individual's own
+  signed act: a record that says where, for whom and until when.
+  There is none unless they make one, it ends by itself, and no room,
+  moderator or map can make it for them. (d) Made for named others,
+  it is sealed to their keys, so that neither the world nor anyone
+  else reads it. Made for all, it is public, and can't be taken back
+  from those who saw it: that is said when it is chosen. (e) A list
+  of who may find someone is the strong form. A list of who may not
+  holds only against those who come under a presence already known,
+  since a new key is on no list; it is offered as that and no more.
+  (f) It shows one presence, the one in that world, and links none
+  of a person's presences in other worlds. (g) Gemini's list of doors
+  holds no count in its first step: nothing in the sketch crate
+  publishes one.
+  *Why:* (a) The founder: "should be a standard across the board",
+  and "Except by choice." (b) A count that moves when one person
+  moves follows that person: a room going from one to none as
+  another goes from none to one tells where they went, to anyone who
+  knew they were alone. (c) It is the rule for a move (Decided,
+  2026-11-17, the map): what is said of someone outside is their own
+  act. DeepSeek's sketch has the seed of it, a presence record in a
+  person's own room, signed by them, with the rooms and a time to
+  live (sketches/deepseek/012-09-05, `src/home.rs`); what it lacks is
+  for whom. (d) Sealing to a key is built
+  (docs/research/FORMATS.md). (e) Saying what a list can't do is part
+  of offering it. (f) docs/FUNDAMENTALS.md, privacy, 5.
+  *What would show it wrong:* for (b), rooms whose members want an
+  exact small count shown, a table of four; then the room's law says
+  so and it is told on entering. For (c), records left standing
+  because their makers forgot them; then the longest time to live is
+  made short. For (e), people taking a list of who may not for
+  protection it does not give; then it is not offered.
 - 2026-11-17, the lobby's list of doors, as it is asked of Gemini
   (sketches/replies/2026-11-17-2-for-gemini.txt). (a) A door holds a
   room's id, its topic as registered, its law by hash, where in the
   Commons' log it was registered, and, only when the reader holds the
   room's log and that log holds, six fields of the room's law. It has
-  no field for a person's id, for a count of members or messages, or
-  for a time, and a sibling declared makes no door. (b) The list says
+  no field for a person's id or for a time, and a sibling declared
+  makes no door. It has no count either, for now (the entry above,
+  g). (b) The list says
   how many records of the Commons' log it was drawn from, and the
   hash of the last, so that an older list can be told from a newer
   one. (c) A list handed on is checked by drawing it again. A reader
@@ -4098,8 +4163,21 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-17 Claude: the founder's words on what can be seen from
+  outside a world, and on being found by choice, are recorded
+  (Decided), with the design the technical lead draws from them
+  (Decided by the technical lead): docs/COMMONS.md (the map),
+  docs/FUNDAMENTALS.md (privacy, 17 and a new 18), docs/TOPICS.md
+  (topic 16), docs/COLLABORATING.md. Gemini's file, not yet given,
+  is changed to match and built again: its list of doors holds no
+  count in this step because nothing in the sketch publishes one,
+  not because a count may never show; and it asks Gemini one more
+  question, on the record by which someone lets others find them.
+  DeepSeek's file (sketches/replies/012-09-05-2-for-deepseek.txt) is
+  unchanged and still what the crate's ten files make
+  (`docs/reply.py --check`). Nothing is built.
 - 2026-11-17 Claude: Gemini's next file is built by docs/reply.py:
-  sketches/replies/2026-11-17-2-for-gemini.txt (69,609 bytes). It
+  sketches/replies/2026-11-17-2-for-gemini.txt (70,388 bytes). It
   says what Gemini's four steps on the Commons built to, why the
   eight gaps of the fourth are not repaired in the sketch, and what
   the project takes from its sketch of a moderator; and it asks one

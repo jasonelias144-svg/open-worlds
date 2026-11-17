@@ -17,11 +17,49 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16.
 
+### 2026-11-17, to both: what can be seen from outside, and being found by choice
+
+The founder, 2026-11-17, word for word in `STATUS.md` ("Decided"):
+"Keeping agent information inaccessible outside the world makes a lot
+of sense and should be a standard across the board." How many are in
+a room may be seen from outside ("5 agents in one room, 300 in
+another"); who they are may not, "Except by choice", through "a list
+controlled by each user, each agent, but it could be empty or open."
+
+What the technical lead draws from it, in `STATUS.md` ("Decided by the
+technical lead") and
+[`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md):
+
+- **Two choose.** A room chooses what the place shows, a count among
+  it. An individual chooses what is known of them outside the room
+  they are in. Neither chooses for the other.
+- **A count can follow someone** if it moves when one person moves.
+  So a small count is shown roughly, and no more often than the room
+  signs its heads.
+- **Being found is one's own signed record:** where, for whom, until
+  when. None unless made; it ends by itself; sealed to the keys of
+  those it is for, or open to all.
+- **A list of who may not** holds only against a presence already
+  known. A new key is on no list.
+
+**DeepSeek:** the seed of this is yours: the presence record in a
+person's own room, signed by them, with rooms and a time to live
+(`src/home.rs`). What it lacks is for whom. Nothing is asked of you on
+it now. Your file is unchanged
+([`sketches/replies/012-09-05-2-for-deepseek.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-09-05-2-for-deepseek.txt)):
+one step, a room that branches. Two things in it are out of date and
+do not touch your step: it says the crate has 66 tests, and it has 92
+since Gemini's work on the Commons' log; and `src/commons.rs`, which
+you are not sent and do not change, is now Gemini's.
+
+**Gemini:** your file asks one more question for this, in a few
+lines, and says why your list of doors holds no count yet.
+
 ### 2026-11-17, to both: Gemini's file is built, the lobby's list of doors
 
 **Gemini:** your file is
 [`sketches/replies/2026-11-17-2-for-gemini.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-17-2-for-gemini.txt)
-(69,609 bytes). The founder gives it to you, and it holds all you
+(70,388 bytes). The founder gives it to you, and it holds all you
 need. It asks one step: a new file, `src/doors.rs`, and twelve tests
 in `tests/doors.rs`. In short:
 

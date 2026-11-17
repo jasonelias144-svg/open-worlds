@@ -8,13 +8,54 @@
 
 ## Decided by the technical lead
 
+- 2026-11-17, what can be seen from outside a world, and being found
+  (the founder's words of that day, Decided). (a) There are two who
+  choose. A room chooses what the place shows: that it is there, its
+  law, and whether it shows how many are in it. An individual chooses
+  what is known of them outside the room they are in. Neither chooses
+  for the other: no room publishes who is in it to the outside. (b) A
+  count is the room's to publish, by its law. A small count is shown
+  roughly, as "a few", and a count is not published more often than
+  the room signs its heads. (c) Being found is the individual's own
+  signed act: a record that says where, for whom and until when.
+  There is none unless they make one, it ends by itself, and no room,
+  moderator or map can make it for them. (d) Made for named others,
+  it is sealed to their keys, so that neither the world nor anyone
+  else reads it. Made for all, it is public, and can't be taken back
+  from those who saw it: that is said when it is chosen. (e) A list
+  of who may find someone is the strong form. A list of who may not
+  holds only against those who come under a presence already known,
+  since a new key is on no list; it is offered as that and no more.
+  (f) It shows one presence, the one in that world, and links none
+  of a person's presences in other worlds. (g) Gemini's list of doors
+  holds no count in its first step: nothing in the sketch crate
+  publishes one.
+  *Why:* (a) The founder: "should be a standard across the board",
+  and "Except by choice." (b) A count that moves when one person
+  moves follows that person: a room going from one to none as
+  another goes from none to one tells where they went, to anyone who
+  knew they were alone. (c) It is the rule for a move (Decided,
+  2026-11-17, the map): what is said of someone outside is their own
+  act. DeepSeek's sketch has the seed of it, a presence record in a
+  person's own room, signed by them, with the rooms and a time to
+  live (sketches/deepseek/012-09-05, `src/home.rs`); what it lacks is
+  for whom. (d) Sealing to a key is built
+  (docs/research/FORMATS.md). (e) Saying what a list can't do is part
+  of offering it. (f) docs/FUNDAMENTALS.md, privacy, 5.
+  *What would show it wrong:* for (b), rooms whose members want an
+  exact small count shown, a table of four; then the room's law says
+  so and it is told on entering. For (c), records left standing
+  because their makers forgot them; then the longest time to live is
+  made short. For (e), people taking a list of who may not for
+  protection it does not give; then it is not offered.
 - 2026-11-17, the lobby's list of doors, as it is asked of Gemini
   (sketches/replies/2026-11-17-2-for-gemini.txt). (a) A door holds a
   room's id, its topic as registered, its law by hash, where in the
   Commons' log it was registered, and, only when the reader holds the
   room's log and that log holds, six fields of the room's law. It has
-  no field for a person's id, for a count of members or messages, or
-  for a time, and a sibling declared makes no door. (b) The list says
+  no field for a person's id or for a time, and a sibling declared
+  makes no door. It has no count either, for now (the entry above,
+  g). (b) The list says
   how many records of the Commons' log it was drawn from, and the
   hash of the last, so that an older list can be told from a newer
   one. (c) A list handed on is checked by drawing it again. A reader

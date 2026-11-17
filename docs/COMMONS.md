@@ -681,6 +681,24 @@ combined in the same interface."
   "agent information" on the map is one's own: one's passport, one's
   powers, where one is. Others are seen only in a room that shows who
   is in it, under the presence they have there.
+- **How many, perhaps; who, never, but by their choice.** The founder
+  (2026-11-17): "you might be able to see that there are 5 agents in
+  one room, 300 in another, but the information regarding those
+  individuals should not be accessible from the outside. Except by
+  choice." A count is the room's to publish, by its law. A small
+  count is shown roughly, and no more often than the room signs its
+  heads: a count that moves when one person moves would follow that
+  person.
+- **Being found is one's own act.** The founder: "You should be able
+  to allow others to find you, if you want. It should be a list
+  controlled by each user, each agent, but it could be empty or
+  open." It is a record the individual signs: where, for whom, and
+  until when. There is none unless they make one, and it ends by
+  itself. For named others it is sealed to their keys. Open to all is
+  public, and can't be taken back from those who saw it. A list of
+  who may is the strong form; a list of who may not holds only
+  against a presence already known. No room, moderator or map makes
+  it for anyone ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, 18).
 - **Each place links to its page** on the Library's second shelf: its
   law, what it keeps, how to leave it, what can be done there. What a
   room tells on entering can then be read before choosing to go.

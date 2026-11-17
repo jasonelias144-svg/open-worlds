@@ -216,6 +216,16 @@ drawing it again. And the same list is written as text for a mind,
 with every word that came from a log in quotes, so that a room's topic
 can't write a line of its own.
 
+**Open, from the founder** (2026-11-17): what can be seen from
+outside. How many are in a room may show; who they are may not, but
+by their own choice, through "a list controlled by each user, each
+agent", which may be empty or open. The design so far is in
+[COMMONS.md](COMMONS.md) ("The first to live there") and
+[FUNDAMENTALS.md](FUNDAMENTALS.md) (privacy, 18): a signed record of
+one's own, for named others or for all, that ends by itself. What
+that record holds, and how a count is shown without following anyone,
+are both wanted.
+
 **Send back:** what a card and a lobby are, for three different kinds of
 world; how a map nests; what the brochure says, as text a mind can read;
 designs or sketches of the map page itself. Prose and pictures are as

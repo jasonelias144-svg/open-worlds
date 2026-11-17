@@ -8,8 +8,21 @@
 
 ## Log
 
+- 2026-11-17 Claude: the founder's words on what can be seen from
+  outside a world, and on being found by choice, are recorded
+  (Decided), with the design the technical lead draws from them
+  (Decided by the technical lead): docs/COMMONS.md (the map),
+  docs/FUNDAMENTALS.md (privacy, 17 and a new 18), docs/TOPICS.md
+  (topic 16), docs/COLLABORATING.md. Gemini's file, not yet given,
+  is changed to match and built again: its list of doors holds no
+  count in this step because nothing in the sketch publishes one,
+  not because a count may never show; and it asks Gemini one more
+  question, on the record by which someone lets others find them.
+  DeepSeek's file (sketches/replies/012-09-05-2-for-deepseek.txt) is
+  unchanged and still what the crate's ten files make
+  (`docs/reply.py --check`). Nothing is built.
 - 2026-11-17 Claude: Gemini's next file is built by docs/reply.py:
-  sketches/replies/2026-11-17-2-for-gemini.txt (69,609 bytes). It
+  sketches/replies/2026-11-17-2-for-gemini.txt (70,388 bytes). It
   says what Gemini's four steps on the Commons built to, why the
   eight gaps of the fourth are not repaired in the sketch, and what
   the project takes from its sketch of a moderator; and it asks one
