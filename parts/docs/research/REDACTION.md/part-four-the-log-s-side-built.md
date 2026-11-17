@@ -296,18 +296,25 @@ would show it wrong):
   nothing is marked: once the field is out, the copies are all that is
   left of it, so if they can't be kept, nothing is marked. If the mark
   is refused, nothing is taken out, and the copies made are not given
-  back. After it all, neither the value nor its salt is anywhere in
-  what the writer holds or in what the act gave back: the tests look
-  at all of it.
+  back. They were handed over all the same, so whatever keeps copies
+  must expect some with no mark behind them: sealed copies of a field
+  that is still public. After it all, neither the value nor its salt
+  is anywhere in what the writer holds or in what the act gave back:
+  the tests look at all of it.
 - **A copy is padded.** Before it is signed, a record is 1024 bytes in
   its RFC 8785 form, or the next power of two above that, so a sealed
   box is one of a few sizes and two boxes of one size differ by a byte
-  at most. A short field can't be told from another short field by
-  its box. What the padding does not hide: a long field still shows
-  roughly how long it is; and an envelope says in the clear that it
-  holds a redacted field and whom it is for. So an envelope is not
-  placed in the open: it goes to its reader's container, or to the
-  office's own store.
+  at most. A short field written in ASCII can't be told from another
+  by its box. What the padding does not hide: length is counted as
+  the log writes the field, and a log writes every character outside
+  ASCII as an escape, seven bytes in the record or fourteen. The
+  independent re-check measured it: the smallest box holds 462 letters
+  of ASCII, 66 of Cyrillic or of Chinese, and 33 emoji. So a box's
+  size can hint at the script as well as the length, and a long field
+  still shows roughly how long it is. And an envelope says in the
+  clear that it holds a redacted field and whom it is for. So an
+  envelope is not placed in the open: it goes to its reader's
+  container, or to the office's own store.
 - **A redaction that stopped after its mark can be finished.** The log
   then shows a field that is marked and still there (decision 4). The
   office seals the copies from the field as it still stands and takes
@@ -340,7 +347,10 @@ would show it wrong):
   own in Python and a crate of its own in Rust.
 - **Ten reasons of its own, in fixed words,** the same in both
   languages. A log's own refusals and a sealed record's pass through
-  as they are. The vectors hold one act on the trial room, the three
+  as they are. So does a failure to keep the copies: Python lets
+  through whatever the store raises, and Rust carries the store's
+  words in one more refusal, which is not among the ten. The vectors
+  hold one act on the trial room, the three
   copies it made with the record inside each, the log after each
   decision, nine records that hold as records and are refused when
   held to the log, and a second log, written by hand, whose entries

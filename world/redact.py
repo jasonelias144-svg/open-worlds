@@ -26,7 +26,8 @@ that is marked and still there, and `finish` seals it and takes it out.
 field is out, the copies are all that is left of it. So whoever keeps
 them is given them first (`store`), while the field is still in the
 contents and nothing is marked; if they can't be kept, nothing is
-marked.
+marked. If the mark is then refused, they have been handed over all
+the same: whatever keeps copies must expect some with no mark.
 
 **A copy carries exactly what was hashed,** as text, and not the value
 written a second way. So anything a log can keep apart can be redacted,
