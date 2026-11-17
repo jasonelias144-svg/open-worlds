@@ -17,6 +17,37 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16.
 
+### 2026-11-17, to both: a look inside before entering, other numbers, and a flag
+
+The founder, 2026-11-17, word for word in `STATUS.md` ("Decided"):
+"you should be able to glance into the conversation in a read-only
+way before enter a room. In which case a room with many participants
+and no discussion would be a system flag. Incident report and all
+that." And: "Other metrics could apply as well".
+
+What the technical lead draws from it (`STATUS.md`, "Decided by the
+technical lead";
+[`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md)):
+
+- **A look inside is a room's visible log, read-only,** for a room on
+  the record. A closed room gives none.
+- **Reading is one's own.** No record is kept of who looked into
+  which room.
+- **A door shows more than one number:** how many are in the room,
+  how many messages its log holds, how many different members have
+  spoken. All from the room's own log.
+- **The flag is a fact, not a penalty.** A rule anyone can run again
+  on the public log: many in it, nothing said. It opens an incident
+  for the room's moderator and removes nothing by itself.
+
+**DeepSeek:** the look inside is yours already. Your plug-in delivery
+made a room's visible log available on any log, with what was
+removed left out.
+
+**Gemini:** your file of attacks holds this case as its last test.
+The file after it will ask for the other two numbers on a door and
+for the flag.
+
 ### 2026-11-17, to both: Gemini's list of doors is in, and is to be attacked
 
 **Gemini:** your two files are in, kept as you wrote them

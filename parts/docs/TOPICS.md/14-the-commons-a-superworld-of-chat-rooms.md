@@ -226,7 +226,11 @@ agent", which may be empty or open. The design so far is in
 [FUNDAMENTALS.md](FUNDAMENTALS.md) (privacy, 18): a signed record of
 one's own, for named others or for all, that ends by itself. What
 that record holds, and how a count is shown without following anyone,
-are both wanted.
+are both wanted. Also from the founder that day: a look into a room,
+read-only, before entering; other numbers beside the count; and a
+flag on a room with many in it and nothing said. Wanted: which
+numbers, and a rule for the flag that does not fire on a quiet room
+for being quiet.
 
 **Send back:** what a card and a lobby are, for three different kinds of
 world; how a map nests; what the brochure says, as text a mind can read;

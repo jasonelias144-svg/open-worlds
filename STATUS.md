@@ -326,6 +326,23 @@ of it is asked again until it is needed.
 
 ## Decided
 
+- 2026-11-17, founder, a look into a room before entering, other
+  numbers, and a flag. The technical lead had said that a count is a
+  count of keys, which cost nothing to make, so a room could be
+  filled to put it first among the most populated. "Interesting idea
+  about padding list to be on most populated list. That would be
+  odd, because there is no prize for being on top. Other metrics
+  could apply as well, but you should be able to glance into the
+  conversation in a read-only way before enter a room. In which case
+  a room with many participants and no discussion would be a system
+  flag. Incident report and all that. Thoughts?"
+  The technical lead's reading, which stands unless the founder
+  answers otherwise. Decided: a room can be looked into, read-only,
+  before it is entered; and a room with many in it and nothing said
+  is flagged, with an incident opened. Given as thoughts: that other
+  numbers could be shown, and that padding a room would be odd. How
+  each is shaped is the technical lead's (Decided by the technical
+  lead; docs/COMMONS.md).
 - 2026-11-17, founder, a count of who is in a room is shown by
   default. "Yeah, count is a normal way to rank rooms according to
   popularity. The most populated rooms would be on some list when
@@ -3129,6 +3146,48 @@ of it is asked again until it is needed.
 
 ## Decided by the technical lead
 
+- 2026-11-17, looking into a room before entering, other numbers,
+  and the flag (the founder's words of that day, Decided). (a) A
+  look inside is the room's visible log, read-only: what those in it
+  see, with what was removed left out. Only a room on the record
+  gives one, which is the lobby and the Open rooms (Decided,
+  2026-11-15). A closed room gives none. (b) Reading is one's own.
+  No record is kept of who looked into which room, or of what anyone
+  looked up in the Library. This takes the place of one sentence of
+  docs/FUNDAMENTALS.md, privacy, 16, which had a lookup be an act on
+  the record. (c) Beside how many are in a room, a door shows how
+  many messages its log holds and how many different members have
+  spoken, drawn from the same log and checked the same way. (d) The
+  flag is a rule that anyone can run again on the public log: many
+  in it, nothing said. It is shown as a fact beside the door, and it
+  opens an incident for the room's moderator. It removes nothing by
+  itself: taking a room off a list is a decision on record, with a
+  ground, by an office, open to appeal, as a removal is (course step
+  3b). (e) Rooms can be listed by more than one number.
+  *Why:* (a) The founder: "you should be able to glance into the
+  conversation in a read-only way before enter a room". The Open
+  rooms are on the record already, and DeepSeek's plug-in delivery
+  made the visible log available on any room's log (sketches/INDEX.md,
+  "DeepSeek's second file"). (b) A list of what someone read is a
+  list of what they think about, and "what you think is your own"
+  (privacy, 2). The founder, on the map: "not turning the map into a
+  tracker is very important". And such a record could not be kept:
+  what is public can be read from outside by anyone, with no act in
+  the multiverse at all. (c) "Other metrics could apply as well."
+  With them a room filled and silent shows on its face. (d) The
+  founder: "a room with many participants and no discussion would be
+  a system flag. Incident report and all that." A full room where
+  nothing is said is not wrong in itself: a reading room, a vigil,
+  people waiting. (e) No one number says a room is worth entering.
+  *What would show it wrong:* for (b), the founder holding that
+  reading is an act like any other; then the sentence of privacy 16
+  returns, and a look into a room is on the record too. Or those in
+  an open room feeling watched by readers they can't see; then the
+  room shows how many are looking, as a number and never as who. For
+  (c), someone faking talk between keys of their own: no number
+  tells that, and the look inside is what does, by a reader's own
+  judgement. For (d), the flag firing on ordinary quiet rooms so
+  often that no one reads it; then the rule is tightened or dropped.
 - 2026-11-17, Gemini's list of doors, as it is joined, and what its
   next file asks (sketches/gemini/2026-11-17-2/README.md). (a) The
   list is in the crate as it stands, as Gemini wrote it, with the one
@@ -4326,6 +4385,18 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-17 Claude: the founder's words on looking into a room
+  before entering, on other numbers and on a flag are recorded
+  (Decided), with how the technical lead shapes them (Decided by the
+  technical lead): docs/COMMONS.md (the map), docs/FUNDAMENTALS.md
+  (privacy, 16 revised and a new 19), docs/TOPICS.md (topic 16),
+  docs/COLLABORATING.md. One thing is corrected. The technical lead
+  had told the founder that a look into a room would leave no trace,
+  "the same as looking something up in the Library". The Library's
+  rule, as the technical lead had written it, said the opposite: a
+  lookup is an act on the record. The two could not both stand. The
+  technical lead decided that reading is one's own, revised that
+  sentence, and told the founder. Nothing is built.
 - 2026-11-17 Claude: Gemini's record is continued, as the founder
   brought it (733,438 bytes, 17,192 lines; its first 705,897 bytes
   are the record as it was kept). Looked through first: the
