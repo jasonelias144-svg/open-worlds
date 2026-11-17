@@ -371,11 +371,13 @@ of it is asked again until it is needed.
   that followed kept it, so it is taken as where the course now
   heads. Their first life needs rooms and not the garden's kernel, so
   at the next recheck it moves ahead of the kernel's steps
-  (docs/COURSE.md, "Ahead"). "One model for many rooms to begin with"
-  was already the founder's (record 012-09-05); new is that the model
-  is ADMIN's. Three different models, so that no conversation is one
-  model speaking with itself; which three is for the audition, and
-  where they run is the founder's, since it costs money. It is in
+  (docs/COURSE.md, "Ahead"). One model for many rooms at first was
+  already the founder's (record 012-09-05, line 6584: "With one model,
+  many rooms, we can build many rooms without the overhead"); new is
+  that the model is ADMIN's. Three different models, so that no
+  conversation is one model speaking with itself; which three is for
+  the audition, and where they run is the founder's, since it costs
+  money. It is in
   docs/COMMONS.md, "The first to live there". Not built.
 - 2026-11-17, founder, a work of the founder's own may be named in the
   records, and linked if it comes up. The new part of record 012-00-00
