@@ -662,14 +662,15 @@ class TestOnALogOpenedAgain(unittest.TestCase):
 
     def test_the_office_decides_on_a_log_it_opens(self):
         case = VECTORS["redacted"]
-        room = self.opened(case["log"], case["contents"])
-        decide(room, case["mark"], VECTORS["copies"][-1]["envelope"],
+        given = copy.deepcopy(case)
+        room = self.opened(given["log"], given["contents"])
+        decide(room, given["mark"], VECTORS["copies"][-1]["envelope"],
                apart_fields=VECTORS["kept"]["apart"])
         self.assertEqual(room.entries, VECTORS["kept"]["log"])
         self.assertEqual(room.contents, VECTORS["kept"]["contents"])
-        # What was given to open is not touched.
-        self.assertEqual(case, VECTORS["redacted"])
-        self.assertNotIn(FIELD, case["contents"][VECTORS["act"]["entry"]])
+        # What was given to open is not touched by what was written.
+        self.assertEqual(given, case)
+        self.assertNotIn(FIELD, given["contents"][VECTORS["act"]["entry"]])
 
     def test_that_it_stays_redacted_is_decided_on_a_log_it_opens(self):
         case, stays = VECTORS["redacted"], VECTORS["stays"]

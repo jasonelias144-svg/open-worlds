@@ -483,7 +483,7 @@ fn the_five_states_written_here_are_the_ones_python_wrote() {
     let v = vectors();
     let mut salt = trial_salts();
     let room = room(&v, &mut salt);
-    let (entries, contents) = five_states(room, &mut salt);
+    let (entries, contents) = five_states(room, &mut salt, false);
     let case = &v["holds"][3];
     assert_eq!(case["name"], "the five states");
     assert_eq!(Value::Array(entries), case["log"]);
@@ -498,6 +498,7 @@ fn the_five_states_written_here_are_the_ones_python_wrote() {
 fn five_states(
     mut room: Log,
     mut salt: &mut dyn FnMut() -> String,
+    reopen: bool,
 ) -> (Vec<Value>, Map<String, Value>) {
     let h: Vec<String> = room
         .entries()
@@ -505,6 +506,9 @@ fn five_states(
         .map(|e| e["hash"].as_str().unwrap().to_owned())
         .collect();
     // Redacted: a mark is open, and the field is gone.
+    if reopen {
+        room = opened(&room);
+    }
     let first_mark = mark(
         &mut room,
         5,
@@ -514,8 +518,14 @@ fn five_states(
         &mut salt,
     )
     .unwrap();
+    if reopen {
+        room = opened(&room);
+    }
     room.take_out(&first_mark).unwrap();
     // Unfinished: a mark is open, and the field is still there.
+    if reopen {
+        room = opened(&room);
+    }
     mark(
         &mut room,
         5,
@@ -526,6 +536,9 @@ fn five_states(
     )
     .unwrap();
     // Kept public: the mark was answered, and the field is there.
+    if reopen {
+        room = opened(&room);
+    }
     let a_mark = mark(
         &mut room,
         6,
@@ -535,6 +548,9 @@ fn five_states(
         &mut salt,
     )
     .unwrap();
+    if reopen {
+        room = opened(&room);
+    }
     keep(
         &mut room,
         7,
@@ -545,6 +561,9 @@ fn five_states(
     )
     .unwrap();
     // Missing: the mark was answered, and the field is gone all the same.
+    if reopen {
+        room = opened(&room);
+    }
     let a_mark = mark(
         &mut room,
         8,
@@ -554,6 +573,9 @@ fn five_states(
         &mut salt,
     )
     .unwrap();
+    if reopen {
+        room = opened(&room);
+    }
     keep(
         &mut room,
         9,
@@ -564,6 +586,9 @@ fn five_states(
     )
     .unwrap();
     // Redacted: marked, kept public, and marked again.
+    if reopen {
+        room = opened(&room);
+    }
     let a_mark = mark(
         &mut room,
         10,
@@ -573,6 +598,9 @@ fn five_states(
         &mut salt,
     )
     .unwrap();
+    if reopen {
+        room = opened(&room);
+    }
     keep(
         &mut room,
         11,
@@ -582,6 +610,9 @@ fn five_states(
         &mut salt,
     )
     .unwrap();
+    if reopen {
+        room = opened(&room);
+    }
     let again = mark(
         &mut room,
         12,
@@ -591,8 +622,14 @@ fn five_states(
         &mut salt,
     )
     .unwrap();
+    if reopen {
+        room = opened(&room);
+    }
     room.take_out(&again).unwrap();
     // Redacted: a mark's own reason, which said what it should not.
+    if reopen {
+        room = opened(&room);
+    }
     let on_reason = mark(
         &mut room,
         13,
@@ -602,8 +639,14 @@ fn five_states(
         &mut salt,
     )
     .unwrap();
+    if reopen {
+        room = opened(&room);
+    }
     room.take_out(&on_reason).unwrap();
     // Redacted, and decided: the mark stands for good.
+    if reopen {
+        room = opened(&room);
+    }
     let a_mark = mark(
         &mut room,
         14,
@@ -613,7 +656,13 @@ fn five_states(
         &mut salt,
     )
     .unwrap();
+    if reopen {
+        room = opened(&room);
+    }
     room.take_out(&a_mark).unwrap();
+    if reopen {
+        room = opened(&room);
+    }
     stays(
         &mut room,
         15,
@@ -625,6 +674,9 @@ fn five_states(
     .unwrap();
     // Unfinished, though decided: whoever published the log left the
     // field in the contents after the decision that it stays redacted.
+    if reopen {
+        room = opened(&room);
+    }
     let a_mark = mark(
         &mut room,
         16,
@@ -635,6 +687,9 @@ fn five_states(
     )
     .unwrap();
     let left = room.take_out(&a_mark).unwrap();
+    if reopen {
+        room = opened(&room);
+    }
     stays(
         &mut room,
         17,
@@ -1827,7 +1882,21 @@ fn a_room_opened_again_goes_on_as_one_that_never_closed() {
     assert_eq!(drawn(&v), 15);
     let written = room(&v, &mut trial_salts());
     let again = opened(&written);
-    let (entries, contents) = five_states(again, &mut trial_salts_from(drawn(&v)));
+    let (entries, contents) = five_states(again, &mut trial_salts_from(drawn(&v)), false);
+    let case = &v["holds"][3];
+    assert_eq!(case["name"], "the five states");
+    assert_eq!(Value::Array(entries), case["log"]);
+    assert_eq!(Value::Object(contents), case["contents"]);
+}
+
+#[test]
+fn it_can_be_closed_and_opened_before_every_act() {
+    // Not only between appends: before every mark, taking out and
+    // decision of the five states.
+    let v = vectors();
+    let mut salt = trial_salts();
+    let written = room(&v, &mut salt);
+    let (entries, contents) = five_states(written, &mut salt, true);
     let case = &v["holds"][3];
     assert_eq!(case["name"], "the five states");
     assert_eq!(Value::Array(entries), case["log"]);
@@ -1856,6 +1925,76 @@ fn it_can_be_closed_and_opened_at_every_step() {
     }
     assert_eq!(log.entries(), never_closed.entries());
     assert_eq!(log.contents(), never_closed.contents());
+}
+
+#[test]
+fn a_salt_given_back_is_remembered_from_then_on() {
+    // Found by the independent review. A field is taken out, the writer
+    // is closed and opened, and the field is put back with its salt
+    // given. An opened writer did not know that salt. It is told it, and
+    // from then on refuses a source that repeats it, as the writer that
+    // never closed does.
+    let v = vectors();
+    let (ground, decision) = (appeal(), trial_decision(1));
+    let by = Decided {
+        office: KEEPER,
+        ground: &ground,
+        decision: &decision,
+        agent: None,
+    };
+    for reopen in [false, true] {
+        let mut salt = trial_salts();
+        let mut log = room(&v, &mut salt);
+        let said = log.entries()[3]["hash"].as_str().unwrap().to_owned();
+        let pair = log.contents()[&said]["text"].clone();
+        let its_salt = pair[0].as_str().unwrap().to_owned();
+        let remembered = world_log::sha256_hex(its_salt.as_bytes());
+        let a_mark = mark(&mut log, 5, &said, "text", "asked", &mut salt).unwrap();
+        log.take_out(&a_mark).unwrap();
+        if reopen {
+            log = opened(&log);
+            assert!(!format!("{log:?}").contains(&remembered));
+        }
+        let before = (log.entries().to_vec(), log.contents().clone());
+        let mut again = || its_salt.clone();
+        // The entry that keeps it public draws that very salt for a
+        // field of its own: refused, and nothing changed.
+        let refused = log.keep_public(6, &a_mark, &pair, by, &why("kept"), &mut again);
+        assert!(
+            matches!(refused, Err(Refused::SaltTwice(_))),
+            "{reopen}: {refused:?}"
+        );
+        assert_eq!(log.entries(), before.0.as_slice());
+        assert_eq!(log.contents(), &before.1);
+        // The field is still out. A writer that learned the salt only
+        // for this forgets it again; one that drew it keeps remembering
+        // it.
+        assert_eq!(format!("{log:?}").contains(&remembered), !reopen);
+        // With a fresh salt the field is kept public.
+        log.keep_public(6, &a_mark, &pair, by, &why("kept"), &mut salt)
+            .unwrap();
+        assert_eq!(log.contents()[&said]["text"], pair);
+        assert!(format!("{log:?}").contains(&remembered));
+        // And a later entry that draws the field's salt again is
+        // refused, so what the writer holds still checks.
+        let refused = log.append(
+            9,
+            "said",
+            None,
+            &Map::new(),
+            &map(&json!({"text": "again"})),
+            &mut again,
+        );
+        assert!(
+            matches!(refused, Err(Refused::SaltTwice(_))),
+            "{reopen}: {refused:?}"
+        );
+        apart::check(
+            &Value::Array(log.entries().to_vec()),
+            &Value::Object(log.contents().clone()),
+        )
+        .unwrap();
+    }
 }
 
 #[test]

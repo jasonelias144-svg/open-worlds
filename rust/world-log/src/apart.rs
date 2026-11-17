@@ -1510,7 +1510,24 @@ impl Log {
         {
             return Err(Refused::Fingerprint(place));
         }
-        let kept = self.write(tick, KEPT, by.agent, &answer(mark, by), apart, salt)?;
+        // From here the writer knows this salt, and it is about to be in
+        // the contents again. A writer that never closed remembers it
+        // from when it drew it. One that was opened after the field was
+        // taken out learns it now: before the entry draws salts of its
+        // own, so that a source which repeats it is refused. If the
+        // entry is refused the field stays out, and what was learned
+        // here is forgotten again.
+        let known = used(its_salt);
+        let learned = self.salts.insert(known.clone());
+        let kept = match self.write(tick, KEPT, by.agent, &answer(mark, by), apart, salt) {
+            Ok(kept) => kept,
+            Err(refused) => {
+                if learned {
+                    self.salts.remove(&known);
+                }
+                return Err(refused);
+            }
+        };
         if let Value::Object(fields) = self
             .contents
             .entry(entry)

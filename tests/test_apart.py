@@ -1001,6 +1001,127 @@ class TestOpened(unittest.TestCase):
         self.assertEqual(log.entries, never_closed.entries)
         self.assertEqual(log.contents, never_closed.contents)
 
+    def test_it_can_be_closed_and_opened_before_every_act(self):
+        # Not only between appends: before every mark, taking out,
+        # decision, removal and restoring of the five states.
+        class Reopened:
+            """A writer that is closed and opened again before each
+            thing it is asked to do."""
+
+            def __init__(self, log):
+                self._log = log
+
+            def __getattr__(self, name):
+                found = getattr(self._log, name)
+                if not callable(found):
+                    return found
+
+                def act(*args, **more):
+                    log = self._log
+                    self._log = Log.open(log.entries, log.contents,
+                                         salt=log._salt)
+                    return getattr(self._log, name)(*args, **more)
+                return act
+
+        never_closed = _room()
+        reopened = Reopened(_room())
+        self.assertEqual(five_states(reopened), five_states(never_closed))
+        self.assertEqual(reopened.entries, never_closed.entries)
+        self.assertEqual(reopened.contents, never_closed.contents)
+
+    def test_a_salt_given_back_is_remembered_from_then_on(self):
+        # Found by the independent review. A field is taken out, the
+        # writer is closed and opened, and the field is put back with
+        # its salt given. An opened writer did not know that salt. It
+        # is told it, and from then on refuses a source that repeats
+        # it, as the writer that never closed does.
+        class Source:
+            """Trial salts in order, or the one it is told to give."""
+
+            def __init__(self):
+                self.fresh, self.next = _salts(), None
+
+            def __call__(self):
+                if self.next is None:
+                    return self.fresh()
+                salt, self.next = self.next, None
+                return salt
+
+        for reopen in (False, True):
+            with self.subTest(reopen=reopen):
+                source = Source()
+                log = room(salt=source)
+                said = log.entries[3]["hash"]
+                salt, value = copy.deepcopy(log.contents[said]["text"])
+                a_mark = mark(log, said, "text")
+                log.take_out(a_mark)
+                if reopen:
+                    log = Log.open(log.entries, log.contents, salt=source)
+                    self.assertNotIn(apart._used(salt), log._salts)
+                entries = copy.deepcopy(log.entries)
+                contents = copy.deepcopy(log.contents)
+
+                def keep_it():
+                    return log.keep_public(
+                        6, a_mark, salt, value, KEEPER, APPEAL,
+                        trial_decision(1), apart={"reason": "kept"})
+
+                # The entry that keeps it public draws that very salt
+                # for a field of its own: refused, and nothing changed.
+                source.next = salt
+                with self.assertRaises(Refused) as c:
+                    keep_it()
+                self.assertEqual(c.exception.reason, apart.SALT_TWICE)
+                self.assertEqual(log.entries, entries)
+                self.assertEqual(log.contents, contents)
+                # The field is still out. A writer that learned the
+                # salt only for this forgets it again; one that drew
+                # it keeps remembering it.
+                self.assertEqual(apart._used(salt) in log._salts,
+                                 not reopen)
+                # With a fresh salt the field is kept public.
+                keep_it()
+                self.assertEqual(log.contents[said]["text"], [salt, value])
+                self.assertIn(apart._used(salt), log._salts)
+                # And a later entry that draws the field's salt again
+                # is refused, so what the writer holds still checks.
+                source.next = salt
+                with self.assertRaises(Refused) as c:
+                    log.append(9, "said", None, {}, {"text": "again"})
+                self.assertEqual(c.exception.reason, apart.SALT_TWICE)
+                apart.check(log.entries, log.contents)
+
+    def test_what_it_keeps_is_what_it_has_checked(self):
+        # Found by the independent review: what is checked must be what
+        # is kept. A map or a list that copies as something else passes
+        # the check as it is given, and its copy does not hold. The
+        # writer reads its own copies, so it refuses.
+        class Shifty(dict):
+            def __deepcopy__(self, memo):
+                return dict(self, tick=99)
+
+        class Swapped(list):
+            def __deepcopy__(self, memo):
+                return [self[0], "another value"]
+
+        written = _room()
+        said = written.entries[3]["hash"]
+        entries = copy.deepcopy(written.entries)
+        entries[3] = Shifty(entries[3])
+        apart.check(entries, written.contents)
+        with self.assertRaises(Refused) as c:
+            Log.open(entries, written.contents)
+        self.assertEqual((c.exception.reason, c.exception.where),
+                         (apart.CHAIN, 3))
+        # The contents can't do this: only a plain map of plain lists
+        # is taken as contents at all, so their copy is exact.
+        contents = copy.deepcopy(written.contents)
+        contents[said]["text"] = Swapped(contents[said]["text"])
+        for opening in (apart.check, Log.open):
+            with self.assertRaises(Refused) as c:
+                opening(written.entries, contents)
+            self.assertEqual(c.exception.reason, apart.CONTENTS)
+
     def test_what_was_given_is_not_shared_with_the_writer(self):
         written = _room()
         entries = copy.deepcopy(written.entries)
