@@ -31,6 +31,38 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16.
 
+### 2026-11-17, to both: built by choosing, patterns across scales, and smaller rounds
+
+Three things the founder said today, each in the founder's words in
+STATUS.md, "Decided".
+- **The multiverse is built as its worlds are meant to be lived in.**
+  "The whole project is intended to promote learning through making
+  choices. And I see no reason for that not to apply to our
+  development of the multiverse." And: "We will make mistakes and then
+  correct them. No big deal. We have no precedent to work from. Only
+  similar patterns at different scales." It is in the charter now:
+  [`CHARTER.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/CHARTER.md),
+  section 1. For you it means what it means here: choose, say what you
+  chose and why, and say what would show it wrong.
+- **Similar patterns at different scales.** The founder: "Consider the
+  cell : organism :: world : multiverse. And also consider the
+  [:, ::, :] comparison operator." "A fractal uses a recursive
+  comparison operator." "The comparison operator identifies similar
+  patterns across domains." The technical lead's reading is in
+  [`docs/VISION.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/VISION.md),
+  "Similar patterns at different scales". If you see such a likeness
+  in what you build, say it, and say where it fails: a part that is a
+  whole of its own is the pattern here, and a part that belongs to
+  the whole is not.
+- **Smaller rounds.** The founder can reach DeepSeek less often than
+  before: "now we can work in a more measured fashion, slower, but
+  more deliberate." With Gemini it was already a few replies at a
+  time. So each file you are given will ask for one step that is
+  whole when you deliver it. If a reply is cut short, the files that
+  are whole are joined and the rest is asked again. Nothing here
+  waits for you, and nothing you send is lost. The file DeepSeek has
+  now stays as it was given.
+
 ### 2026-11-17, to both: redacting, on the log's side
 
 Course step 3b, part three, has two sides, and the first is built:

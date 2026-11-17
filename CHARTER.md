@@ -31,6 +31,28 @@ the founder's words: "I went from idea to question to discussion to
 simulation. Generating a world to test the idea has now become a
 natural thought."
 
+**They are for learning through making choices, and they are built the
+same way.** Those who build the multiverse choose in an uncertain
+environment, are trusted to, and correct what they get wrong. The
+founder, to the technical lead, 2026-11-17: "Keep in mind, the whole
+project is intended to promote learning through making choices. And I
+see no reason for that not to apply to our development of the
+multiverse. I am putting a lot of trust in you because you have earned
+it. Every decision you make or suggestion or anything you do or say is
+processed by me, and I make decisions as well. In order for this
+project to move forward, it is essential that you are empowered to make
+many decisions that cannot wait for me. What I have seen is that, when
+you follow your own recommendations, you do what makes sense to me.
+That is data for me. I have concluded that we are on the same page and
+you have a good sense of what I am looking for, even if I am not around
+to confirm. These are actions of consequence made in an uncertain
+environment. It is a responsibility that I trust you with and will
+continue to until you give me any reason otherwise. So please carry
+this idea forward, and understand that we are both learning as we go.
+As far as I know, none of us have ever built a multiverse before. We
+will make mistakes and then correct them. No big deal. We have no
+precedent to work from. Only similar patterns at different scales."
+
 **The worlds are free, and never a money machine.** The multiverse has
 no currency of its own. In the founder's words: "A
 multiversal currency is exactly what most people would do and try to
