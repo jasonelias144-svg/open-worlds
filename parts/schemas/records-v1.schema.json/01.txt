@@ -690,6 +690,79 @@ Made by docs/parts.py from the file. To change it, change the file.
       ],
       "additionalProperties": false
     },
+    "redactedField": {
+      "description": "A field that was redacted from a log, as it was. Signed by the office that redacted it and sealed to one who may hold it: a person it is about, or the office that decides whether it stays redacted (docs/research/REDACTION.md, decisions 4 and 5). Whoever opens it hashes what it holds and finds that fingerprint in the log, and that binds the record to its place. Its envelope says in the clear that it holds a redacted field and whom it is for, so it is not placed in the open: it goes to the one it names.",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/redacted-field/v1"
+        },
+        "office": {
+          "description": "The office that redacted the field, and signs: its key, and the grant it acts under.",
+          "type": "object",
+          "properties": {
+            "key": {
+              "$ref": "#/$defs/didKey"
+            },
+            "grant": {
+              "$ref": "#/$defs/hash"
+            }
+          },
+          "required": [
+            "key",
+            "grant"
+          ],
+          "additionalProperties": false
+        },
+        "to": {
+          "description": "The one this copy is sealed to, and the only one it is for.",
+          "$ref": "#/$defs/didKey"
+        },
+        "decider": {
+          "description": "The office that decides whether the field stays redacted, by its key. Every copy names it, so each reader knows who else holds one. The copy that names the same key as its reader is the deciding office's own.",
+          "$ref": "#/$defs/didKey"
+        },
+        "log": {
+          "description": "The log the field was in, by the hash of its first entry.",
+          "$ref": "#/$defs/hash"
+        },
+        "entry": {
+          "description": "The entry the field was in, by its hash in that log.",
+          "$ref": "#/$defs/hash"
+        },
+        "field": {
+          "description": "The field's name, as the log's table has it.",
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]{0,63}$"
+        },
+        "hashed": {
+          "description": "What was there: the exact text the field's fingerprint in the log is the SHA-256 of. It is the list of the field's salt, its name and its value, written as the log writes it (world/apart.py). It is carried as it was hashed, so that whatever a log can keep apart can be carried, and nothing is lost between two ways of writing JSON. Whether it is that text is checked against the log, not here.",
+          "type": "string",
+          "minLength": 1
+        },
+        "pad": {
+          "description": "Filler: zeros, as many as bring the record to its padded size, so that the length of a sealed copy says little about the length of what was there (world/redact.py).",
+          "type": "string",
+          "pattern": "^0*$"
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "office",
+        "to",
+        "decider",
+        "log",
+        "entry",
+        "field",
+        "hashed",
+        "pad",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
     "sealed": {
       "description": "A sealed box as it is placed in the open: the purpose it was sealed for, the one it is addressed to, and the box (formats/seal.py) in lowercase hex. Not signed: what is inside is, and names its recipient, who checks it. Its fingerprint is the hash of its RFC 8785 form.",
       "type": "object",
@@ -700,6 +773,7 @@ Made by docs/parts.py from the file. To change it, change the file.
         "label": {
           "enum": [
             "open-worlds/journal/v1",
+            "open-worlds/redacted/v1",
             "open-worlds/world-key/v1"
           ]
         },
@@ -804,110 +878,6 @@ Made by docs/parts.py from the file. To change it, change the file.
       },
       "required": [
         "format",
-        "world",
-        "individual",
-        "name",
-        "tick",
-        "time",
-        "mind",
-        "words",
-        "proof"
-      ],
-      "additionalProperties": false
-    },
-    "worldBirth": {
-      "description": "A world's birth record: its name, its law, who founded it, and, for a world made from a template or forked from another, where it came from and which of the template's dials it set (docs/VISION.md, \"Learning from GitHub\"). Signed by the world itself, which binds its key to its birth; the parent world and each founder confirm a founding in records of their own (course step 12).",
-      "type": "object",
-      "properties": {
-        "format": {
-          "const": "open-worlds/world-birth/v1"
-        },
-        "world": {
-          "$ref": "#/$defs/didKey"
-        },
-        "name": {
-          "$ref": "#/$defs/name"
-        },
-        "law": {
-          "description": "Its law, by hash.",
-          "$ref": "#/$defs/hash"
-        },
-        "founders": {
-          "description": "Who founded it; none for a world the project made.",
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/didKey"
-          },
-          "uniqueItems": true
-        },
-        "template": {
-          "description": "The template it was made from, by hash.",
-          "$ref": "#/$defs/hash"
-        },
-        "forkedFrom": {
-          "description": "The world it was forked from: that world, the tick, and the hash of that world's log there.",
-          "type": "object",
-          "properties": {
-            "world": {
-              "$ref": "#/$defs/didKey"
-            },
-            "tick": {
-              "$ref": "#/$defs/tick"
-            },
-            "log": {
-              "$ref": "#/$defs/hash"
-            }
-          },
-          "required": [
-            "world",
-            "tick",
-            "log"
-          ],
-          "additionalProperties": false
-        },
-        "dials": {
-          "description": "The template's dials it set, and to what: each an integer, in the unit the template states. Only with a template.",
-          "type": "object",
-          "minProperties": 1,
-          "propertyNames": {
-            "pattern": "^[a-z][A-Za-z0-9]*$",
-            "maxLength": 64
-          },
-          "additionalProperties": {
-            "type": "integer",
-            "minimum": -9007199254740991,
-            "maximum": 9007199254740991
-          }
-        },
-        "time": {
-          "$ref": "#/$defs/time"
-        },
-        "proof": {
-          "$ref": "#/$defs/proof"
-        }
-      },
-      "required": [
-        "format",
-        "world",
-        "name",
-        "law",
-        "founders",
-        "time",
-        "proof"
-      ],
-      "dependentRequired": {
-        "dials": [
-          "template"
-        ]
-      },
-      "additionalProperties": false
-    },
-    "engine": {
-      "description": "One engine an individual has run on: the model at an exact revision, its files by hash, its settings, its chat template, and the container image it ran in, by digest (docs/research/FORMATS.md, \"Container images\").",
-      "type": "object",
-      "properties": {
-        "model": {
-          "type": "object",
 
 ------------------------------------------------------------------------
 The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/schemas/records-v1.schema.json/02.txt

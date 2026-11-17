@@ -2,7 +2,9 @@
 //! names, as `formats/sealed.py` seals and opens them.
 //!
 //! A world-key is sealed to its holder under `open-worlds/world-key/v1`;
-//! a journal entry to its author under `open-worlds/journal/v1`. Each
+//! a journal entry to its author under `open-worlds/journal/v1`; a
+//! redacted field to the one it names, a person it is about or the
+//! office that decides, under `open-worlds/redacted/v1`. Each
 //! travels in an envelope (`open-worlds/sealed/v1`): the label, the one it
 //! is addressed to, and the box in lowercase hex.
 //!
@@ -23,7 +25,7 @@ pub const ENVELOPE: &str = "open-worlds/sealed/v1";
 
 /// Each sealed kind, the label it is sealed under, and the field naming
 /// the one it is sealed to.
-pub const SEALED: [(&str, &str, &str); 2] = [
+pub const SEALED: [(&str, &str, &str); 3] = [
     (
         "open-worlds/world-key/v1",
         "open-worlds/world-key/v1",
@@ -33,6 +35,11 @@ pub const SEALED: [(&str, &str, &str); 2] = [
         "open-worlds/journal-entry/v1",
         "open-worlds/journal/v1",
         "author",
+    ),
+    (
+        "open-worlds/redacted-field/v1",
+        "open-worlds/redacted/v1",
+        "to",
     ),
 ];
 

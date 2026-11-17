@@ -513,7 +513,9 @@ guest's key the person's private container.)
   of a removal in a log is built, course step 3b; who may remove is
   not checked yet). A redaction is another thing: the field leaves the
   record, and its form in a log is built too (a mark, and the one
-  decision that answers it; sealing the copies is next);
+  decision that answers it), with the act of redacting, which seals a
+  copy to each person the field is about and to the office that
+  decides;
 - the levels of privacy a room may have, and what the record keeps at
   each: three, decided on 2026-11-17 (COMMONS.md, "A spectrum of
   privacy");

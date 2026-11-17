@@ -19,7 +19,11 @@ side of the third is built: a redaction's mark, which says its office
 and its ground; the one decision that answers it, to keep the field
 public or that it stays redacted for good; and the writer's steps
 that take a field out and put it back in step with the log. Its other
-side, sealing the copies, is next, and nothing real is redacted yet.
+side is built too, the act of redacting: the field sealed to each
+person it is about and to the office that decides, then marked and
+taken out, and the office's two decisions from its own copy
+(`world/redact.py`, `rust/redact`). The keys are trial keys, and
+nothing real is redacted yet.
 The log's side of the fourth is built too: an entry
 removed, restored, taken back or put back, each entry's state, and the
 incident id; who may act is not checked yet, which is its records'

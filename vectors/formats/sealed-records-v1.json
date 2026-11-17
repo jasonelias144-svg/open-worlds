@@ -1,5 +1,5 @@
 {
- "about": "Sealed records (formats/sealed.py, rust/formats): world-keys and journal entries, signed, sealed to the one they name, in envelopes. Written by python3 -m formats.sealed_vectors; test keys only, never for anything real.",
+ "about": "Sealed records (formats/sealed.py, rust/formats): world-keys, journal entries and redacted fields, signed, sealed to the one they name, in envelopes. Written by python3 -m formats.sealed_vectors; test keys only, never for anything real.",
  "parties": {
   "ALICE": {
    "id": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
@@ -18,6 +18,12 @@
    "secretKeyMultibase": "z3u2WpSybxroXWDSMxCSQtYfWKkoafimYij29QFcEksCMEWB",
    "sealingSecretMultibase": "z3weorFocRzwuC5V8gAqWjsc2SDYfZtxEsUyAn7bXLtBuZKi",
    "sealingKeyMultibase": "z6LSfS2SS9xarFWtTW1Y96fgsGnAVTuynFG5CpiX58S7TkZj"
+  },
+  "the Ur-world's Keeper": {
+   "id": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+   "secretKeyMultibase": "z3u2SnHoc2mBUev7HbN3ruSEnzEWXYur6pbBby2VEkNGN3iM",
+   "sealingSecretMultibase": "z3weexhWvGTAUUFZc3gmSYkAg3tTuB4tqsG4ktqwpWWuPGc4",
+   "sealingKeyMultibase": "z6LSovDbD3ut3z1nCeAcUQz1XmmJ2T1KuaAx6mCis1z1DdNN"
   }
  },
  "records": [
@@ -87,6 +93,58 @@
     }
    },
    "hash": "e4183b85f71741ecbb5eddbd78efe5664ed467ec6bfbfac27e77d235dbc5c444"
+  },
+  {
+   "name": "a redacted field, ALICE's copy",
+   "record": {
+    "format": "open-worlds/redacted-field/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+    },
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "log": "37ac0463682232f4d58983bfd57119c68a855660491fac663b1935f50d4d0d45",
+    "entry": "e8522d667635cd8f611a9da33895765ee81e48b2a69bc430e1544b50ccb6e3aa",
+    "field": "text",
+    "hashed": "[\"23e6197ad97efa8fc0ee0958ba0a5ac1\",\"text\",\"My number is 555 0100.\"]",
+    "pad": "00000000",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T04:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3CQJKVwTow1vXi3kXCwbcDqgSZMQdBjvn83vSVDFHo6eTKLqBM4coWKeYTT3KEj4BBc1nRnz4dkbAHGTniEuT4sQ"
+    }
+   },
+   "hash": "b37d8e269fba53234a4a2898cfc61157192723b565c71701c26b1b7c698a3f5c"
+  },
+  {
+   "name": "a redacted field, the office's copy",
+   "record": {
+    "format": "open-worlds/redacted-field/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+    },
+    "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "log": "37ac0463682232f4d58983bfd57119c68a855660491fac663b1935f50d4d0d45",
+    "entry": "e8522d667635cd8f611a9da33895765ee81e48b2a69bc430e1544b50ccb6e3aa",
+    "field": "text",
+    "hashed": "[\"23e6197ad97efa8fc0ee0958ba0a5ac1\",\"text\",{\"cl\\u00e9\":\"a key\",\"empty\":{},\"least\":-9007199254740991,\"lines\":[\"caf\\u00e9 \\ud83d\\ude42\",\"\",true,false],\"most\":9007199254740991,\"none\":[]}]",
+    "pad": "00000000",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T04:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3FU3uCWKpdAi2cM8FnfRAgjPjFFfnf821cLvYHoxrmbEsGrjetfpvhMr9ZGvtpPfy6cBvQRUBLkeNB8mP9LAsDPX"
+    }
+   },
+   "hash": "8a7d5637a22084bc0054231feb610bd4ae51df0bfa1e0a89f99ab7bc2d12a9c0"
   }
  ],
  "refusedRecords": [
@@ -252,6 +310,265 @@
     }
    },
    "why": "world is required"
+  },
+  {
+   "name": "a redacted field signed by the one it is sealed to",
+   "record": {
+    "format": "open-worlds/redacted-field/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+    },
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "log": "37ac0463682232f4d58983bfd57119c68a855660491fac663b1935f50d4d0d45",
+    "entry": "e8522d667635cd8f611a9da33895765ee81e48b2a69bc430e1544b50ccb6e3aa",
+    "field": "text",
+    "hashed": "[\"23e6197ad97efa8fc0ee0958ba0a5ac1\",\"text\",\"My number is 555 0100.\"]",
+    "pad": "00000000",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T04:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4DjVFzbq9QEHuGNSnrALzkWDJRgeaCNryDVm4fDixiZw1oq53avFuYxVJ4zgSps8CfTvSYFfVzJiHGu2cDjscFHS"
+    }
+   },
+   "why": "a redacted field is signed by the office that redacted it"
+  },
+  {
+   "name": "a redacted field that holds no text",
+   "record": {
+    "format": "open-worlds/redacted-field/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+    },
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "log": "37ac0463682232f4d58983bfd57119c68a855660491fac663b1935f50d4d0d45",
+    "entry": "e8522d667635cd8f611a9da33895765ee81e48b2a69bc430e1544b50ccb6e3aa",
+    "field": "text",
+    "hashed": "",
+    "pad": "00000000",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T04:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zvWAfe1YGtxrjxXKY3XppBZHXNFqveYuNZ5krBSjBieZUBoEtMGaNwuFDjzNfU5mjC3UmC3U7qtm4LLTkLrKExdM"
+    }
+   },
+   "why": "what was hashed is not empty"
+  },
+  {
+   "name": "a redacted field that holds a value in place of the text hashed",
+   "record": {
+    "format": "open-worlds/redacted-field/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+    },
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "log": "37ac0463682232f4d58983bfd57119c68a855660491fac663b1935f50d4d0d45",
+    "entry": "e8522d667635cd8f611a9da33895765ee81e48b2a69bc430e1544b50ccb6e3aa",
+    "field": "text",
+    "hashed": [
+     "a salt",
+     "text",
+     "a value"
+    ],
+    "pad": "00000000",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T04:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5WTtoLydSkD1r6iuuUU8NRtD6hhjxe6j75R8JUw4zdpvfDiXxVmHderth6gAiSVEE4oxWpqdiggigBHPTJGQra3q"
+    }
+   },
+   "why": "what was hashed is carried as text"
+  },
+  {
+   "name": "a redacted field padded with something else than zeros",
+   "record": {
+    "format": "open-worlds/redacted-field/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+    },
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "log": "37ac0463682232f4d58983bfd57119c68a855660491fac663b1935f50d4d0d45",
+    "entry": "e8522d667635cd8f611a9da33895765ee81e48b2a69bc430e1544b50ccb6e3aa",
+    "field": "text",
+    "hashed": "[\"23e6197ad97efa8fc0ee0958ba0a5ac1\",\"text\",\"My number is 555 0100.\"]",
+    "pad": "0010",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T04:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "znSc4giTQV7MS8iqSroKggScA1PEjgCrCupXAhqT4mMhGKK5q1HcmvgfxciEcoZVKU2cHBRY4ErvRyhaw66qJhQh"
+    }
+   },
+   "why": "the filler is zeros"
+  },
+  {
+   "name": "a redacted field with no filler at all",
+   "record": {
+    "format": "open-worlds/redacted-field/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+    },
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "log": "37ac0463682232f4d58983bfd57119c68a855660491fac663b1935f50d4d0d45",
+    "entry": "e8522d667635cd8f611a9da33895765ee81e48b2a69bc430e1544b50ccb6e3aa",
+    "field": "text",
+    "hashed": "[\"23e6197ad97efa8fc0ee0958ba0a5ac1\",\"text\",\"My number is 555 0100.\"]",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T04:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z21BmTY5U4h454ziy3Aqto6HRwt2GDGaB91BJTT16zSirkNAwTFQoNS5H8Cmmb7SML8XverwHQZi9fJJBA4frg75Z"
+    }
+   },
+   "why": "pad is required, though it may be empty"
+  },
+  {
+   "name": "a redacted field that names no deciding office",
+   "record": {
+    "format": "open-worlds/redacted-field/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+    },
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "log": "37ac0463682232f4d58983bfd57119c68a855660491fac663b1935f50d4d0d45",
+    "entry": "e8522d667635cd8f611a9da33895765ee81e48b2a69bc430e1544b50ccb6e3aa",
+    "field": "text",
+    "hashed": "[\"23e6197ad97efa8fc0ee0958ba0a5ac1\",\"text\",\"My number is 555 0100.\"]",
+    "pad": "00000000",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T04:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2AMyqiDXZA3ASpumfcBUKJm7ChQog7LANVbk9kwcjtybAjKRfS1ppRFE3jXiWDc6NYF5qCyE5bytWtimP9XkQ4D"
+    }
+   },
+   "why": "decider is required"
+  },
+  {
+   "name": "a redacted field whose name no table could hold",
+   "record": {
+    "format": "open-worlds/redacted-field/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+    },
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "log": "37ac0463682232f4d58983bfd57119c68a855660491fac663b1935f50d4d0d45",
+    "entry": "e8522d667635cd8f611a9da33895765ee81e48b2a69bc430e1544b50ccb6e3aa",
+    "field": "Text",
+    "hashed": "[\"23e6197ad97efa8fc0ee0958ba0a5ac1\",\"text\",\"My number is 555 0100.\"]",
+    "pad": "00000000",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T04:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3Tv7zpjX8WoMHEFbckCxTNEsAcJJhDmZVdynEAen2kBvA9LiBBDwz85nAMdxwzC1qYwboZaPNRKRq8NtzD9BP5ub"
+    }
+   },
+   "why": "a field's name is lowercase"
+  },
+  {
+   "name": "a redacted field sealed to no one",
+   "record": {
+    "format": "open-worlds/redacted-field/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+    },
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "log": "37ac0463682232f4d58983bfd57119c68a855660491fac663b1935f50d4d0d45",
+    "entry": "e8522d667635cd8f611a9da33895765ee81e48b2a69bc430e1544b50ccb6e3aa",
+    "field": "text",
+    "hashed": "[\"23e6197ad97efa8fc0ee0958ba0a5ac1\",\"text\",\"My number is 555 0100.\"]",
+    "pad": "00000000",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T04:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3ZiWo71S4h2QmAvqfyJMAe2RBopC4uSJ8mbU2Afm7EirTojMC2BMtp3r9VfP8TiWhoBavYbJzpLfoS3WXcYhBZQf"
+    }
+   },
+   "why": "to is required"
+  },
+  {
+   "name": "a redacted field naming no log",
+   "record": {
+    "format": "open-worlds/redacted-field/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+    },
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "entry": "e8522d667635cd8f611a9da33895765ee81e48b2a69bc430e1544b50ccb6e3aa",
+    "field": "text",
+    "hashed": "[\"23e6197ad97efa8fc0ee0958ba0a5ac1\",\"text\",\"My number is 555 0100.\"]",
+    "pad": "00000000",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T04:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2QBXpoLCS4Pfs66PbZyd7hHeM2tcbz9ZPxAe4GW1nYnLcZNcz4FjLntq7JKBgD5ZDPmvtFPi8EHQgwDi8Dny152a"
+    }
+   },
+   "why": "log is required"
+  },
+  {
+   "name": "a redacted field whose office names no grant",
+   "record": {
+    "format": "open-worlds/redacted-field/v1",
+    "office": {
+     "key": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F"
+    },
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "log": "37ac0463682232f4d58983bfd57119c68a855660491fac663b1935f50d4d0d45",
+    "entry": "e8522d667635cd8f611a9da33895765ee81e48b2a69bc430e1544b50ccb6e3aa",
+    "field": "text",
+    "hashed": "[\"23e6197ad97efa8fc0ee0958ba0a5ac1\",\"text\",\"My number is 555 0100.\"]",
+    "pad": "00000000",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T04:00:00Z",
+     "verificationMethod": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F#z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3LQGTktE4Qg232ewu1qpwgjJTb8RrnYi3M2cWbu5pmFo2DPG13VSPP3FVxjRgJrE6ZE52RZhkWn8TMAfBGuSt2cg"
+    }
+   },
+   "why": "an office acts under a grant"
   }
  ],
  "opens": [
@@ -293,6 +610,32 @@
    },
    "record": "e4183b85f71741ecbb5eddbd78efe5664ed467ec6bfbfac27e77d235dbc5c444",
    "fingerprint": "5eae4ed923141565f1c620ac0611197b771ec5e1ea36a217df6f43c6d45f65d8"
+  },
+  {
+   "name": "a redacted field, ALICE's copy, sealed to ALICE",
+   "opener": "ALICE",
+   "label": "open-worlds/redacted/v1",
+   "envelope": {
+    "format": "open-worlds/sealed/v1",
+    "label": "open-worlds/redacted/v1",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "box": "d269e1cc85e8cf69cf20187bb8af0be359447d69c08d475de28ad4bb0227085ac11ab3feb5065e8cfeefd8918d1224aba3f08ce8280ce1aea224a768d59195e04e1d825c2f9946a0f5ea7fa652521b48735ebaaaae4d85577cc3903937be608f1a2f5585fd7bfb4e0cf38340663bc43c37e5b73c7357389d21ef983c3289f36047c6694626d56b7b0632f9401a053f79829861b8d0f6f48a58632e815d838be8e88d1845772825738569d60c285a2b719f1cfdca2c99300b30f7c56410eaaf19a2c47af475834492cac5d6f6d1163b749ff69a63b5b0be0ac07fae4a9d55e5c48377eaf15644054e9dec6eab4affca2c98e8a4682f6892a2ac67f035e98a468c852526bd122e8f99a780280cb0660501d61f62f37093d1035e0ccea2676a5de1f5302d2b8f4eaac5c6a62a9e2d818203de16c6e63fcf2f2a40b7fece76b0db6cf0edfe2abff9f7003a20e18c23b49ea7d34259f8d48bf128bf0345b56051c0ee6bc7ed9758856af682db9c968ad5714393144429983b632096859b136fe95304adef35b4685687ecc604f0e143d1d39fa4c30c149d9aa346c46da56ee2f39035ba3d75e42459c1e26dd19541f3885814d890fcb916d7e86d7c3ddb41c873d3c6379437ecabe438bfb20f871c65661ece09643f4e28b37410fda9307b375d293ee215f999fc73b19c9ea6b41fdc2060e528652f71340b87be1edc4cac11c7a01d38324c4c35c0fc7e8813d4c04f4bd629cfa3dddcda5d9a042c5a5ec05c81c0c9abae273536d9b36e586f25f932280121e24bc63cd23a7f0679da5a6017ff1532e725afc7b9fb69b5d0fec8c2a5708c673cd82731338ff6fe92b8570791996c34b5e6e618091ed44d74f4a833b915ab61a4d3facb4276448429d194fd48e716391bdd504493d0cc63028e9cbe9fe9c72bfb6629365f20c32c66a1081514942e2a63cebb53f4072d3340046d19a04e117042751d1ee770161a5e3cd338830591e960fa99194e47a334d8f510393f3e5bba305984699e3894de89c97f5247b5f7a17918be08f832703fe33eaf59579bc2fe745d27c20b8b955dfbcff16cd5c2d5dacbfc7bb5b1c645cb6752a848536c680f2368fa2aaa44f1cfa08ca41381a907d27c098e8091b35d5410428f77d5ec0dbf10512f6a22feb5da9f316e8f5e61a3d1c01d44bc8e33542415b2229864f6c0fcf9ac87207b3956363fbd0fbf35146d74ccf635b450e2a591bc0fc75bdfb68969df0beea8b1e85302705aeec2d759b0741564adb2f3d6db5fb17d90ce440f885e16310eefd5c421787b311f038530d5f6f28c86567392c8bac1895d9898dfffaed768ead8b6731483619acdf8f2202d914540e64e764f11bbcb03b55f078d1f1af9a6db7b1ba6f349e42a4d63012a11dfdbd4191b82b24f9c8c6619cfb9b9341389"
+   },
+   "record": "b37d8e269fba53234a4a2898cfc61157192723b565c71701c26b1b7c698a3f5c",
+   "fingerprint": "4af8379b67b83559c025abc77b3b7f9973a36948e5ad7e1b6ef0f73c79d7a312"
+  },
+  {
+   "name": "a redacted field, the office's copy, sealed to the office",
+   "opener": "the Ur-world's Keeper",
+   "label": "open-worlds/redacted/v1",
+   "envelope": {
+    "format": "open-worlds/sealed/v1",
+    "label": "open-worlds/redacted/v1",
+    "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "box": "7e141fa5fa96fb0dba348fce05aa86f57b9a3be0dee6497c18aaaddfc818fe48b6ff4115acb9b0ce352fd6d8fe1713786f9e1f1f9ed7c5426e1f468473dd747877a054d7aa9a0b7563aef4b50bc6e102c46485d932d490e56a0b9b8fc69303428097c1ecb12133e7010a714cd5e5f7de40d93609a712f605eab4526b5e485a2195ca70af20da578437577182a5c2e58ebc6775dce29c0775b2d9796739c45e2ea636e6ef03f52b307ab250df5769d26a13a6cd81fdb9ca7f3abf43e895deacb875143408794b9692613d32c570bbdc338c6d1fdce963a04f15d58e9b14ebf371c085dd7694abca21785137e06ce3fd710efb02cf55f14fa296d6604c8806d20b6a17b7ff5028f43bbef34631859e4f109c59658ed11e19492008c650b4ef7737ee4b7309318bc2caeb15961a6d0f63782b6978a0c59fafc58d68ed56ae5550f4928b4d5fec38e0979d6c933414e1e8d202acf2ce030fc4da14eac1c57e3af540a59ccad764d1137e4d16eaf74b5bfa0e1230911bd3b51bd0f23953a48c48158b25aca5ad3392a217e4880a53e00650090228da8185d28a31c8aa6f24e1a239f4c4fd16f1c6b855b93bb514e28e82cca13401ea7bb0a1d93fd35161fd31ff3cf39ea089c6b0db4993de7d562ab2a71accd71803208206dc168875c89afea1fda86f6c2d19bc8e807f317bbb4a539086f8b900f634e8815a3d0a5a74497819a22013366b501d9a6a608c8e04a8e8f022e21d96fd6abfd4118707a4f8f9e6cd56ecd2096c50cc023816f656b0063b8f27d8ac575abf497ec0b2b1ccb8b3f3910f5860514e80f4032d4271bccd86b42e6fe21e263abab83ec69756e6f805fe885e600d3ddb8215c464933d213b40c8a991a25ad0f2f9247821cba5d4285f16ac626394acdd41e2a841fd3797714c9918af4e4109b601a7ab8331ef3057523dd630eeacb09e2a0414277b53baa502a92c066541a4e1b3606aa6a153103114643add9767f0c60e92956cb19caf924eaaa8bf5393fdd545be637afce6fe6323a3a26e5c4f4ce8322334392a05406c7a6c704e7016a34fe865b5731e7456cccfee949d89578e98095248bd4cb832fa4d3838628b263033a541c2d0fe61c6226e951cb49de5ef5a71bddc60cd516a95c9bcd2e0581868d289840e04d18b018ff307501abe6bc516d92d3f6484ee280b217959e8d240f04463538555d32e04e85f99e8c4990a3213d6a15fabd62a3d76209231803543a8a8be4e933ccf636ecb94ae21cda020a9269c354d602e29c5913f8f0ae80164a6dc490a6674a9d86401a99e89699b2d22a95b8091fd08e89f1710147fbdae6060f6b59f7157e6db325521f6680a6895dfee90f5411a9660ae36c89ff2e9193853b41d10f09a94bab3c5cc36551ef9465815807317c7d307dc74f54118025860d696c6ca4275b573af6d7aaae4d0d308050a493e60b67e488aca7cfb3fc0dd55bab1bb17dfdedfbfa10d90a881d2192e8bd1ee6c49d6754a30f94fa89278bd54904f442cbf0db843d376ac9c785ecdc0b07053338914da2e93008aafe2e271f1111009a5058d2eb3111f39a4495a1f04bc808e0b13ac47a56f13eef9ff340adeaf15b48e547655f9"
+   },
+   "record": "8a7d5637a22084bc0054231feb610bd4ae51df0bfa1e0a89f99ab7bc2d12a9c0",
+   "fingerprint": "f3fa26293e294eb3806a34c1a05039a3c4900ba13b7052ec5ac3898c03447ffe"
   }
  ],
  "refused": [
@@ -490,6 +833,81 @@
    "sealedFor": "ALICE",
    "sealedUnder": "open-worlds/world-key/v1",
    "inside": "7b22666f726d6174223a226f70656e2d776f726c64732f776f726c642d6b65792f7631222c22686f6c646572223a226469643a6b65793a7a364d6b71774745344155564361386156646167503439796e6e61687a397650424167456f6741477455797a44653563222c22697373756572223a226469643a6b65793a7a364d6b6e446e453257526b79534a57644565424647546439536879556d436233653365766b33393576647862664458222c2270617468223a2236623362646130643435653631376336313035613737386134376338623839626435656534393434666632326261363436306131663930396166343030663036222c227469636b223a313230307d"
+  },
+  {
+   "name": "ALICE's copy of a redacted field, sealed again to BOB",
+   "envelope": {
+    "format": "open-worlds/sealed/v1",
+    "label": "open-worlds/redacted/v1",
+    "to": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+    "box": "432bb2ad450fc725214a7d8d37007957dfdebb66058640208005209fd6ba4a5ab0bf505445b8f0340ceb8ad79067f553cba50aa7d09aaace8b3ac0883e88ebc7cf5323c2864d5117ec41a9633b7549b7f75d407cc0c8c96b04aeea363038d4cd66326b1d039ce9a2728e89584810e7483f46bcef758168ebb4152b0eada500c879d5fcca3deb9093d7a2085263d5681cd95467fcdc86c531f462417c543b14a409947c9396cdaff04009710fc8ee99584db7e1ef85cdf1df55a53b556de9da471a3316b002bdd4d0b5feb76b7c7e4484d338148c790f4689f7fe23d09761ff468f322fad00fb04f1e0f91c48d19aab5077ab15697c27fab25f4fefabf0746ea3a5df4669a375778feb6b79b217cc2a4257f9c1fcdd340fbf780c22431fe906b8adbbd08253132ceb655c66f2ca462910691ab690e2ce9bf7978f19d5ad5aea4908a5d01066eddde9217a8bb302c5f7e67d4a3016d91c356f36e48c39dd467720ede27d3a6cc28de99245fcc744cd3c16e60d2a5da4d313946c582ec74939b1d5d1f16b61f9d47b74d568dd2de9101a77eb7c824240b00d99620da2c0d92282747d50ca9bc7bcae8406e1318ee51b3478c9f989685226d2b6a2e2e6c0da417669bf05895d369c06094bc0d6ab7c3cc63e675aea8183b1fa6b5a338dbf29188bdfa7e73a1115ce59e6c92e696e633ede1edf4460e965e053ab34c17b2e99de4017f8b7dbccca2db00f3f5aa4314a20ef78a0b0f2e07ed1d299392f586f068174b0ebfe34486fefd75e679c7fc36497a80b084fea6450bce0336b922f66a15cc81e240b952df860e1e6cb527bd2b90c1ecaf43751c1718f8ea7a174431ab5a6aae7c9adc780af267317a3e6c9dbbe449bdbdc109c3daa50a4b04f260bc73b3cffbda524a10380509bc09d79e756ecfc26c375c88010e415853d7e50a962b111fce2e402d32993ecaf9a6cfb3089a394a137520f77ed3c00dfa683238db086c2f659a3eecdd7e5503d82f534f37380085a02b0898f1dc0d2a17ba4fad24493dd97c35a4a2f2af7af8e553e8643e799234d875c76de95112c24fdbd888af87054e1cc01c727f0e047c75ed107ce9db9f72d8a1e5f5d0671bb45bec9aecf2ee6442ae10df66ba413948e715bfd4863d06c581278e0506a1c5ec840fd2c510461e1b608c5d1dbe72119cf08cb5808b0f72b1a25a3e4cdfeeac4e763bfeddf8ce0959df7017832d34bd32c9d006ebf0e860d442a0b91921342e4cc847fcd86735a3887f3eec347f373183909c7e0efaeb00b21119a76a1ecc47be1038087d570fbde25a2598b06514a5ccdf77cf2b04bf8c9a421ffcc544ed329eb5a733750e9b1424a24fc5aa78047547fc8c3964f43a6699d49c8978348baaa42e5e19d69ba2e84bb5c8019641534c1fac2c6095c3412db4763c1"
+   },
+   "opener": "BOB",
+   "label": "open-worlds/redacted/v1",
+   "why": "the box opens, but the copy names ALICE",
+   "sealedFor": "BOB",
+   "sealedUnder": "open-worlds/redacted/v1",
+   "inside": "7b2264656369646572223a226469643a6b65793a7a364d6b736e54674e4e526a6d6554776b754735596a514265626e454b436b71316e6b676b7732784870563553423246222c22656e747279223a2265383532326436363736333563643866363131613964613333383935373635656538316534386232613639626334333065313534346235306363623665336161222c226669656c64223a2274657874222c22666f726d6174223a226f70656e2d776f726c64732f72656461637465642d6669656c642f7631222c22686173686564223a225b5c2232336536313937616439376566613866633065653039353862613061356163315c222c5c22746578745c222c5c224d79206e756d6265722069732035353520303130302e5c225d222c226c6f67223a2233376163303436333638323233326634643538393833626664353731313963363861383535363630343931666163363633623139333566353064346430643435222c226f6666696365223a7b226772616e74223a2265353932303966616262386564376561323738323039636333336533336264326163626133386165666130643634346562393438306465306633666433653435222c226b6579223a226469643a6b65793a7a364d6b736e54674e4e526a6d6554776b754735596a514265626e454b436b71316e6b676b7732784870563553423246227d2c22706164223a223030303030303030222c2270726f6f66223a7b2263726561746564223a22323032362d31312d31345430343a30303a30305a222c2263727970746f7375697465223a2265646473612d6a63732d32303232222c2270726f6f66507572706f7365223a22617373657274696f6e4d6574686f64222c2270726f6f6656616c7565223a227a3343514a4b5677546f7731765869336b5843776263447167535a4d5164426a766e38337653564446486f3665544b4c71424d34636f574b65595454334b456a34424263316e526e7a34646b62414847546e69457554347351222c2274797065223a2244617461496e7465677269747950726f6f66222c22766572696669636174696f6e4d6574686f64223a226469643a6b65793a7a364d6b736e54674e4e526a6d6554776b754735596a514265626e454b436b71316e6b676b7732784870563553423246237a364d6b736e54674e4e526a6d6554776b754735596a514265626e454b436b71316e6b676b7732784870563553423246227d2c22746f223a226469643a6b65793a7a364d6b71774745344155564361386156646167503439796e6e61687a397650424167456f6741477455797a44653563227d"
+  },
+  {
+   "name": "ALICE's copy of a redacted field, sealed to the office",
+   "envelope": {
+    "format": "open-worlds/sealed/v1",
+    "label": "open-worlds/redacted/v1",
+    "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "box": "4db2a38fad01dcfb9f8bb2685bf4c5fc6cb374227a9ccbe2987a51d08271ea3d547a9320a966001c4f395d4e4aa228c020783dba90e7db1f8b53ea87790c8a94040c6ea1a749968cb773bca47fb0ab93b2e19728653f1e4b5c06c4034e108353c4b85cb80245f542b26aa78fabc9120083a97f4fbed035169f8c635a06c58ed325190c04f1a195a4b4a0f094175b000b33cfa565df153914dd5ba5946dc43bd9f7d807a44c05995d1a39115e668c4d490689c69c044c3053ac7a71225371b3a1e3633dfd7e3cf8391e0fa6de346f295ae939512a8ccedda19036b78ab979c5cbc0f60bd7fa1aeb2e435653771d924288e457a1399bb2e131e06a117f7d08367693d5a4f488787907b01531b295f856e35394ffe1aff89d3e6613cddcf1f01e1270cb71a280ee45c01de5f6879f1c7723ac6cff4affeec467de2d84060924b005afff4000e3e797ccc82744f5a9468a409146e94fe14904f9a95b74aff12b4fd4159e26922704d3a94eaa15199199adcbc508d8a0989d174733cc03e87859224d2694e84b094f8539de6378f838a506daa562c022e25a2610d9afe9c523b7609f7f153a43cb06a3b7821033cd7601dc869a1a348157145abb4a33a9f14fa5f53eee99dbe69d56cf2729c81e872692ebb9ad37c75c351b8579cf8be584b1aa625f231ed707568c5b50ca027d5f416791315680c8bcde80beea90228a3d679e27a91d1f1feeeeaf6bbdf3e7f47aa9fa0c336f53b9d01415ed763310a5a010ed6d9cc740017eb593afde1fc7cc895c6026188988002e5ba2ac81b5320d8613dcbce28d9896bc10b906e5afe8d7f446ae6b52d40b338b5ef7fd394d03b973c6c10c9f922cb671300cddd77fbcbd0d129de28d58a6d516a09e5d59ff3cfbac362a9e9ea5a66a41866b8a3fc1cb3a568b9ef8ae9125a7de5adde72fd6103b11311ac33e8e6d13caa436404083df3bc8d0d13dacb0989d5af31c4c953b56798c7b74e87e3decad2078a842f14bc0571f1315ba3b37da6e3948651029da209019ffe7c2be1a996f4260ba728bccac3564a7b7337f3ee07836ba661177519f67081f9d376bf818f71c2b1019f3952c83a2502d244affed88fd44d93dfe48c7a81d2530317c32c6bcd20761b325e1f2955ea666d026934a75ca1ad8a2472c4b080420e2ea0282e517501109bbaf94fddedc424a4d1af6eafc78af894d2f71eaf1a1577ddfd437a780c548d7e3475c2fb99a0a6f1b083a0aa8dc2ff370b343058b9048f726cfeee5037db148af2f64172a23c1d5fd1dd1d9cadf3ded4782a74ca5dab035df2519b34271a63d3b2c1261e29aec524519c7e39ec54696c37c6e288d157eb2f0d02831eab1aa4667e026969dae59cf4105bbc397d2bda1d50c9b5fe1d71adcfbb414c60c1ad9a1c316153702924a35bf0519"
+   },
+   "opener": "the Ur-world's Keeper",
+   "label": "open-worlds/redacted/v1",
+   "why": "the box opens, but the copy names ALICE, not the office",
+   "sealedFor": "the Ur-world's Keeper",
+   "sealedUnder": "open-worlds/redacted/v1",
+   "inside": "7b2264656369646572223a226469643a6b65793a7a364d6b736e54674e4e526a6d6554776b754735596a514265626e454b436b71316e6b676b7732784870563553423246222c22656e747279223a2265383532326436363736333563643866363131613964613333383935373635656538316534386232613639626334333065313534346235306363623665336161222c226669656c64223a2274657874222c22666f726d6174223a226f70656e2d776f726c64732f72656461637465642d6669656c642f7631222c22686173686564223a225b5c2232336536313937616439376566613866633065653039353862613061356163315c222c5c22746578745c222c5c224d79206e756d6265722069732035353520303130302e5c225d222c226c6f67223a2233376163303436333638323233326634643538393833626664353731313963363861383535363630343931666163363633623139333566353064346430643435222c226f6666696365223a7b226772616e74223a2265353932303966616262386564376561323738323039636333336533336264326163626133386165666130643634346562393438306465306633666433653435222c226b6579223a226469643a6b65793a7a364d6b736e54674e4e526a6d6554776b754735596a514265626e454b436b71316e6b676b7732784870563553423246227d2c22706164223a223030303030303030222c2270726f6f66223a7b2263726561746564223a22323032362d31312d31345430343a30303a30305a222c2263727970746f7375697465223a2265646473612d6a63732d32303232222c2270726f6f66507572706f7365223a22617373657274696f6e4d6574686f64222c2270726f6f6656616c7565223a227a3343514a4b5677546f7731765869336b5843776263447167535a4d5164426a766e38337653564446486f3665544b4c71424d34636f574b65595454334b456a34424263316e526e7a34646b62414847546e69457554347351222c2274797065223a2244617461496e7465677269747950726f6f66222c22766572696669636174696f6e4d6574686f64223a226469643a6b65793a7a364d6b736e54674e4e526a6d6554776b754735596a514265626e454b436b71316e6b676b7732784870563553423246237a364d6b736e54674e4e526a6d6554776b754735596a514265626e454b436b71316e6b676b7732784870563553423246227d2c22746f223a226469643a6b65793a7a364d6b71774745344155564361386156646167503439796e6e61687a397650424167456f6741477455797a44653563227d"
+  },
+  {
+   "name": "a redacted field under the journal's label",
+   "envelope": {
+    "format": "open-worlds/sealed/v1",
+    "label": "open-worlds/journal/v1",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "box": "7d3229722f7755d4d03a84db2c3a498c4a3938c00ee4d0ab01aca22563ffad18dbdf23a4adcef7c05cfb48f992f818c6e87a4c7e1f3007e6719a71dd7034d7d2717c6e140a58810e21c1406b2135c58b4fb6e08fb24b501fcb1786c355c48e55de6a164c39018567a30d1eb061663014cb4926784daf4faf3db9fa6aa296f9020689de99f49eca5491cbfbcc1d885011a876b09f15ab296a5763b1e5dce81ecc3505ea03f87e92516e719d9aa918765fc89ecb4adc383dcdc301d96784844f944116a174256ea7489b7206c72f1b2b8ddc1bc7d4fd6d9bcda18d37ab7d7dd499631463b4465d402a5deed7f8b2e55e13191618037d97e9926b7a77981fad86ea92756fae188c525e0d70bda4f43a728ebfa614264f281df12dd0ec7285c33139cc3a0740b5b63c85b09198b3a27168e37eab62eda8349578cdcd2445484aa29ff236a4133ffe67220306fb3917d2e3d35f4800fabebf8c0f314498693d10309c447e6f210ddf447398182a6d3af55babd76436d23bde94fe3fb82524f737fd48b88bdebd912f2711c8635cb51fcdc1a054711ea5a723207afcd7c4f75097546bd32480a7444d2f975adb9647ed744f14e02ec1c0d74880e68b8133020bfad53de25cf15073df1e1b24e8cecc955e8cc9e537768f0c5a5a49eb9fa6c624f7850673e93e3ff8d4c8e5b14d46019ead8efba3f5d864e2c8b2aca3ff31320738c7359dc4d2ba38fa6b4b3c39879f9eb9c78ceda4d618028715b5de21cf31f53912438a4f11dd740d378c7a76c5bb14bae81dab27b1d35dd47919c4ced05914e1f4f41cdfdd502b4b21abaaa79bd638393720fe4a9dc215d4de2667426c5228c44796021cfdc49b3b47c9931ec2db26182b06a89414f6e2db2614a04bec43fbce84730784c9d9cd464386d55857191228631402d8964218d464d4787506c44612afa77ee9a63170d00b743e0fbd44a7c547e09a4633da695f292a48c463bc980519f53eaf0983468ed953f73347f64e7ed0ee4ab786f955e84454ca341a046d2d5d150ee88b2622d8df2590d08c01353a0d0a653f26c323c9511267671deb1c8e14ca3ef8f3278f3a3f10c08ce3bda752179d30f1d576c2ea8c0d3a286d58f75e131f36ffffeb0b71bf1a6bf4eec14db7307d06f41347d7dde1df2fb6d59cc0e97b9546696b6742798cc1d68ce5218a526f50b46dd95266c61dc950011c9fa4c0630c678833603cfaa9e268538db65ef736a518a6c524b4436268fadd0f3adb6cc08eb762cfedb3bbeff610e7526ed153951182a144965ecd86bf04cab18bacd9999877a72389a221b3b906b3be3ca86febc1f18c98f1ead2bfef6d29d349d9044224a501679757ffbc2a359cfe8bf1fe24746862739e9458f407335baa7edaac7898b5242367f81e098fb495173a6dc25d7c6a"
+   },
+   "opener": "ALICE",
+   "label": "open-worlds/journal/v1",
+   "why": "the box opens, but a redacted field isn't sealed as a journal",
+   "sealedFor": "ALICE",
+   "sealedUnder": "open-worlds/journal/v1",
+   "inside": "7b2264656369646572223a226469643a6b65793a7a364d6b736e54674e4e526a6d6554776b754735596a514265626e454b436b71316e6b676b7732784870563553423246222c22656e747279223a2265383532326436363736333563643866363131613964613333383935373635656538316534386232613639626334333065313534346235306363623665336161222c226669656c64223a2274657874222c22666f726d6174223a226f70656e2d776f726c64732f72656461637465642d6669656c642f7631222c22686173686564223a225b5c2232336536313937616439376566613866633065653039353862613061356163315c222c5c22746578745c222c5c224d79206e756d6265722069732035353520303130302e5c225d222c226c6f67223a2233376163303436333638323233326634643538393833626664353731313963363861383535363630343931666163363633623139333566353064346430643435222c226f6666696365223a7b226772616e74223a2265353932303966616262386564376561323738323039636333336533336264326163626133386165666130643634346562393438306465306633666433653435222c226b6579223a226469643a6b65793a7a364d6b736e54674e4e526a6d6554776b754735596a514265626e454b436b71316e6b676b7732784870563553423246227d2c22706164223a223030303030303030222c2270726f6f66223a7b2263726561746564223a22323032362d31312d31345430343a30303a30305a222c2263727970746f7375697465223a2265646473612d6a63732d32303232222c2270726f6f66507572706f7365223a22617373657274696f6e4d6574686f64222c2270726f6f6656616c7565223a227a3343514a4b5677546f7731765869336b5843776263447167535a4d5164426a766e38337653564446486f3665544b4c71424d34636f574b65595454334b456a34424263316e526e7a34646b62414847546e69457554347351222c2274797065223a2244617461496e7465677269747950726f6f66222c22766572696669636174696f6e4d6574686f64223a226469643a6b65793a7a364d6b736e54674e4e526a6d6554776b754735596a514265626e454b436b71316e6b676b7732784870563553423246237a364d6b736e54674e4e526a6d6554776b754735596a514265626e454b436b71316e6b676b7732784870563553423246227d2c22746f223a226469643a6b65793a7a364d6b71774745344155564361386156646167503439796e6e61687a397650424167456f6741477455797a44653563227d"
+  },
+  {
+   "name": "a journal entry under the label for redacted fields",
+   "envelope": {
+    "format": "open-worlds/sealed/v1",
+    "label": "open-worlds/redacted/v1",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "box": "dc54b021ff780739126e747c5fcf295a37e1b3851591c18f601b8433cc7d9415e18a2059294a6cf197a9c6f3237690adfa2719b4d6fa3d651d5bc084dd20e12f313a4879d3486e514527c5af6656ddb62500a1cdeb59be450f38bfa9850d15c4ae5ddd559a1987a3fcd9669c9e3b54433b7a26ceaeac6bdb3c8b711ddae99d6260dcad9c9b4be57743f431d9423379a0f6d7fc0ba65d8e9ea1348195fe2c40160af09753a5a32d9b9e726e8675fad917fc499ad8a48482df0281a8b82ad409b60dff13ac7158050952c8455ba54117f4ed94748b4945e05b02828befceb17fe9dde75841cd462e824fda67bc43981a4dc797679e5b46a803f32586fab9e58421ba4315f53a77616753e0f5958d623fbc0ab98761c7521be7d068942efec75f1e42bd9a0413a49cdfe5f0255adad0b0bd3b63883deb373acfa1f60be47dca10d3300567129ac0f07c7631f1ac9adbbe7c0b7f78280fe0be6cd75200ff062f76ef033c77dbd9e4017b96e610dc96d7f6c682b361ca3d050457c72b7dd8731cf9850aa32e71684c27f13bf1a2613ed1e90ef306982f22a25d3d8397a283753cfd7f3272436c1f12b229fd9d8dc83bfd5d9d0c6d5d988faaf221aaceba62aa7395b2e9275db0cc955fc9dda0415e4747dbc08f78f34246b76bd9e30ccad23aeb9a2cbee47dfc28dbc3e4e2a72753a0ed87bca60c5adf83099bc7176f74acef7b9931f7aa0672c3e75d0d468a7b731627427a7565a1b4177309ddd330c181fe656ee6085bb0e3bd51d92ea9171f557d6897ab6e9092e6ff9bdb634fa75a2b7bbcf1c86558ca2399eac36f5a9249c2ed64e5a7d5cf2151e6dd1e64638ced0cde889b285ede508aad983f26caba3a5faa6d2c65f3f795ccf25a9ae638e591d0982af3b9739b48ea6ba19ee9af7c98b827ab013c9163b03320c28ec12044f99e797475218e4a4295a2fb60268ecaef8e0bda35c8a45ab9a5ad598af81bfd61484e562ca10bfd70430ad8e60e8f28e054d036a8256bbd93897ee3b399e6be8ac2beeb3426755aa867708b42b56704b8c6f9b4663b20a23d3675bf80fd5ed3babf4af8419fe1d8d3285be4a6c69879ece45083c48daec233905e4de7f70db2c67f6bf3bae08c457e2a42db8525cbfadccb5d0e0bb3c4419ad9bb643d80ca32af02a89bf20c57070d7481d00b2e5253b64a"
+   },
+   "opener": "ALICE",
+   "label": "open-worlds/redacted/v1",
+   "why": "the box opens, but a journal entry isn't a redacted field",
+   "sealedFor": "ALICE",
+   "sealedUnder": "open-worlds/redacted/v1",
+   "inside": "7b22617574686f72223a226469643a6b65793a7a364d6b71774745344155564361386156646167503439796e6e61687a397650424167456f6741477455797a44653563222c22666f726d6174223a226f70656e2d776f726c64732f6a6f75726e616c2d656e7472792f7631222c2270726f6f66223a7b2263726561746564223a22323032362d31312d31345430343a30303a30305a222c2263727970746f7375697465223a2265646473612d6a63732d32303232222c2270726f6f66507572706f7365223a22617373657274696f6e4d6574686f64222c2270726f6f6656616c7565223a227a764e436d4651776f4a6947514e4c696a704a794650647a354d35686a39677578676278643153706646696e75534e437157444c567175724338436e64794855596a53463468344b5a5446555135365951424c3732627968222c2274797065223a2244617461496e7465677269747950726f6f66222c22766572696669636174696f6e4d6574686f64223a226469643a6b65793a7a364d6b71774745344155564361386156646167503439796e6e61687a397650424167456f6741477455797a44653563237a364d6b71774745344155564361386156646167503439796e6e61687a397650424167456f6741477455797a44653563227d2c2272656d656d62657273223a5b7b227469636b223a313139302c22776f726c64223a226469643a6b65793a7a364d6b6e446e453257526b79534a57644565424647546439536879556d436233653365766b33393576647862664458227d2c7b227469636b223a313230302c22776f726c64223a226469643a6b65793a7a364d6b6e446e453257526b79534a57644565424647546439536879556d436233653365766b33393576647862664458227d5d2c2274657874223a22546865206c6173742073796d626f6c2077617320627920746865206f6c642077656c6c2e20424f42207361772069742066697273742e222c227469636b223a313230312c22776f726c64223a226469643a6b65793a7a364d6b6e446e453257526b79534a57644565424647546439536879556d436233653365766b33393576647862664458227d"
+  },
+  {
+   "name": "inside, a redacted field signed by the one it is sealed to",
+   "envelope": {
+    "format": "open-worlds/sealed/v1",
+    "label": "open-worlds/redacted/v1",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "box": "f2bde6878c3a5a923ae1fc0d2a904c1c77ab720d754c97d08aa7b0149ca72b372d3c67a753e5e77a78ec890cd093d9efd2c3b0a40a44bddde4aa7596ee4efee25d9ce171020443baf5131b549a2759605aed192362b92cd9d1cc103c2eda199ea97cc91f27d5fb2ef9ceeed6743593e65cfbf98c46b80a2df0f66618be0f47189f8028ec2f1cb4859e3a29c3fc32ea8a91e3691046dec04e2f898a337b81c17a5b69441964019198d1f2711ae5e6da818b9e05bf2a7bb3edad1d99051b5018870c7bdeae1744bdf950654393d8ba9fe8bbe66f2a42378247e43ca626e564fa5e3cb29cdc13d9f7308b708efb4af99d03c62757b9bd96f86feb9b7321bc8bf4e002a9003ce9c04d4d38246368be7662649576cc1581014daa5afed04a48831059d4ed581ee2cba5a762c48225638027ea1d8c1e33fd3b81d5cada280a5bb08eef522b52a1e86e8a0fc441daadc7f32847a55a52e245be4cb385d3823061958a6438a661d4bce35df26aad902e4fe9bb1e30d45b387ff25ac13596f71645681e2ec28f7d0bdc398a977769c92c16a9de6e1a3929ed3bee3b344b757bcd73e423d5e008a5c843521bf9ba9056a57d32e9cab110323509fc0c5ecd28ee5af6b22309298a3d46319a99f6bf6d614422c37c93cb300b91faa5124fd472d8a5d49d20fcf0ef98565d3210289fc04d8e3d90753a8b8f7e20d9ee0e33809cd66562f56a8969ca13488ceb258cfc51b10ee074996d277c1b893b701bd7261a5ce2583486f2d87b44a9ff3ed48c0981ec504a12ef1000ccc4568ea177e80b36650488484d60ed0dcf5ccb93ef6d74373aa41f21919599c7fe9f7e5c5536d9c059e887ce52eacbf846fa1a6f89732adc73b8e2708c065f1eafb1e3552fa9f3419c8b1eacbaad5fbbe505b21edbfa1159b51b7da4fc6bfd05d3691d5f8569b05438025a5998ea0788b07564354a48a627438389597669753b7f233060dc7f776838c9cefe1f7aa2a56ff13d4cefb8229c7b43af1f65a8544475b4fb5135b2b24e9cf10cd8c05979e5240b2cdafe95b30b568550a7b33469faccadd664bd38e16126103b342544a81dd877c7619d609bf98b59bcba6b2f6f91a6270e912b3c151a899ec7b9a57163ca45db33d055afbe8f0ea2985f7fb09fc468db25e7bc638e3dcea16b625e4a9fee6f8273cec76498ba118cf5d59e39bdf7948cd73a484510702f1e98384be7fc3e8f1061375abdca74b1f6d0b12f6612dc1ee6c9569921773a200aa337a9a6d19363b691ab1033294d2cb32f22a4b8734bfe483ad55ca4bc782afe9f19a2d8b7595d46713a006bd69db2d85d90579f8918f3b0cc10b178fb9938c1b21836c45f62528083f5ae93c4371b1ccb8b694e5521ca52a82049786ca76d494acf408d5abafa4d835486de8f828312acdbc32ed7"
+   },
+   "opener": "ALICE",
+   "label": "open-worlds/redacted/v1",
+   "why": "a redacted field is signed by the office that redacted it",
+   "sealedFor": "ALICE",
+   "sealedUnder": "open-worlds/redacted/v1",
+   "inside": "7b2264656369646572223a226469643a6b65793a7a364d6b736e54674e4e526a6d6554776b754735596a514265626e454b436b71316e6b676b7732784870563553423246222c22656e747279223a2265383532326436363736333563643866363131613964613333383935373635656538316534386232613639626334333065313534346235306363623665336161222c226669656c64223a2274657874222c22666f726d6174223a226f70656e2d776f726c64732f72656461637465642d6669656c642f7631222c22686173686564223a225b5c2232336536313937616439376566613866633065653039353862613061356163315c222c5c22746578745c222c5c224d79206e756d6265722069732035353520303130302e5c225d222c226c6f67223a2233376163303436333638323233326634643538393833626664353731313963363861383535363630343931666163363633623139333566353064346430643435222c226f6666696365223a7b226772616e74223a2265353932303966616262386564376561323738323039636333336533336264326163626133386165666130643634346562393438306465306633666433653435222c226b6579223a226469643a6b65793a7a364d6b736e54674e4e526a6d6554776b754735596a514265626e454b436b71316e6b676b7732784870563553423246227d2c22706164223a223030303030303030222c2270726f6f66223a7b2263726561746564223a22323032362d31312d31345430343a30303a30305a222c2263727970746f7375697465223a2265646473612d6a63732d32303232222c2270726f6f66507572706f7365223a22617373657274696f6e4d6574686f64222c2270726f6f6656616c7565223a227a34446a56467a62713951454875474e536e72414c7a6b57444a52676561434e727944566d3466446978695a77316f713533617646755978564a347a67537073384366547653594666567a4a694847753263446a7363464853222c2274797065223a2244617461496e7465677269747950726f6f66222c22766572696669636174696f6e4d6574686f64223a226469643a6b65793a7a364d6b71774745344155564361386156646167503439796e6e61687a397650424167456f6741477455797a44653563237a364d6b71774745344155564361386156646167503439796e6e61687a397650424167456f6741477455797a44653563227d2c22746f223a226469643a6b65793a7a364d6b71774745344155564361386156646167503439796e6e61687a397650424167456f6741477455797a44653563227d"
   }
  ],
  "refusedEnvelopes": [

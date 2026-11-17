@@ -48,10 +48,11 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/ADMIN.md/when-each-part-is-built.md
 ```
 
-## `docs/COLLABORATING.md`, in 8 parts
+## `docs/COLLABORATING.md`, in 9 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/start.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-03.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-02.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-01.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/since-you-were-last-here.md
@@ -167,6 +168,13 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/forma
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/formats/record_vectors.py/02.txt
 ```
 
+## `rust/redact/tests/vectors.rs`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/redact/tests/vectors.rs/01.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/redact/tests/vectors.rs/02.txt
+```
+
 ## `rust/ur-world/src/door.rs`, in 2 parts
 
 ```text
@@ -242,6 +250,13 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests/test_mv_succession.py/02.txt
 ```
 
+## `tests/test_redact.py`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests/test_redact.py/01.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/tests/test_redact.py/02.txt
+```
+
 ## `web/plant/index.html`, in 2 parts
 
 ```text
@@ -269,7 +284,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world
 Longer than 28,000 bytes, and not cut:
 
 - `rust/Cargo.lock`: the lock file cargo writes.
-- `vectors/` (9 of its files): test vectors, which programs check and nobody reads through.
+- `vectors/` (10 of its files): test vectors, which programs check and nobody reads through.
 - The files of record, which [docs/FILES.md](../docs/FILES.md)
   lists: the conversation records, the code taken from them,
   what DeepSeek and Gemini were given in reply, and experiment

@@ -23,7 +23,7 @@ pub const SCHEMA: &str = include_str!("../../../schemas/records-v1.schema.json")
 
 /// Each format, its schema's name in `$defs`, and the path of the field
 /// that names its signer.
-pub const KINDS: [(&str, &str, &[&str]); 19] = [
+pub const KINDS: [(&str, &str, &[&str]); 20] = [
     ("open-worlds/grant/v1", "grant", &["issuer"]),
     ("open-worlds/decision/v1", "decision", &["office", "key"]),
     ("open-worlds/suggestion/v1", "suggestion", &["author"]),
@@ -32,6 +32,11 @@ pub const KINDS: [(&str, &str, &[&str]); 19] = [
     ("open-worlds/arrival/v1", "arrival", &["individual"]),
     ("open-worlds/world-key/v1", "worldKey", &["issuer"]),
     ("open-worlds/journal-entry/v1", "journalEntry", &["author"]),
+    (
+        "open-worlds/redacted-field/v1",
+        "redactedField",
+        &["office", "key"],
+    ),
     ("open-worlds/identity/v1", "identity", &["id"]),
     ("open-worlds/birth/v1", "birth", &["world"]),
     ("open-worlds/world-birth/v1", "worldBirth", &["world"]),

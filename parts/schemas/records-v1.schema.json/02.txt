@@ -6,6 +6,110 @@ Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-world
 After this part: nothing; this is the last part.
 Made by docs/parts.py from the file. To change it, change the file.
 ------------------------------------------------------------------------
+        "world",
+        "individual",
+        "name",
+        "tick",
+        "time",
+        "mind",
+        "words",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
+    "worldBirth": {
+      "description": "A world's birth record: its name, its law, who founded it, and, for a world made from a template or forked from another, where it came from and which of the template's dials it set (docs/VISION.md, \"Learning from GitHub\"). Signed by the world itself, which binds its key to its birth; the parent world and each founder confirm a founding in records of their own (course step 12).",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/world-birth/v1"
+        },
+        "world": {
+          "$ref": "#/$defs/didKey"
+        },
+        "name": {
+          "$ref": "#/$defs/name"
+        },
+        "law": {
+          "description": "Its law, by hash.",
+          "$ref": "#/$defs/hash"
+        },
+        "founders": {
+          "description": "Who founded it; none for a world the project made.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/didKey"
+          },
+          "uniqueItems": true
+        },
+        "template": {
+          "description": "The template it was made from, by hash.",
+          "$ref": "#/$defs/hash"
+        },
+        "forkedFrom": {
+          "description": "The world it was forked from: that world, the tick, and the hash of that world's log there.",
+          "type": "object",
+          "properties": {
+            "world": {
+              "$ref": "#/$defs/didKey"
+            },
+            "tick": {
+              "$ref": "#/$defs/tick"
+            },
+            "log": {
+              "$ref": "#/$defs/hash"
+            }
+          },
+          "required": [
+            "world",
+            "tick",
+            "log"
+          ],
+          "additionalProperties": false
+        },
+        "dials": {
+          "description": "The template's dials it set, and to what: each an integer, in the unit the template states. Only with a template.",
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "pattern": "^[a-z][A-Za-z0-9]*$",
+            "maxLength": 64
+          },
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991
+          }
+        },
+        "time": {
+          "$ref": "#/$defs/time"
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "world",
+        "name",
+        "law",
+        "founders",
+        "time",
+        "proof"
+      ],
+      "dependentRequired": {
+        "dials": [
+          "template"
+        ]
+      },
+      "additionalProperties": false
+    },
+    "engine": {
+      "description": "One engine an individual has run on: the model at an exact revision, its files by hash, its settings, its chat template, and the container image it ran in, by digest (docs/research/FORMATS.md, \"Container images\").",
+      "type": "object",
+      "properties": {
+        "model": {
+          "type": "object",
           "properties": {
             "repo": {
               "description": "The model's repository, as owner/name.",

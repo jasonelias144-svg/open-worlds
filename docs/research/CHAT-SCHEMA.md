@@ -16,7 +16,7 @@ technical lead keeps it, and does the fitting (STATUS.md, "Decided",
 of their definitions and the fields of each:
 `sketches/deepseek/012-09-05/schemas/records-v1.schema.json@8640`
 (DeepSeek's, whole: 67 definitions) and
-`schemas/records-v1.schema.json` (the project's: 33). No record was
+`schemas/records-v1.schema.json` (the project's: 34). No record was
 tried against either schema, and no meaning was checked beyond what
 the fields and the two schemas' own descriptions say. "Beside" is the
 technical lead's first reading, to be corrected as each kind is
@@ -58,6 +58,7 @@ form is chosen kind by kind, and may be DeepSeek's.
 |---|---|---|
 | `WorldKey`, `worldKey` | a key's tier and what it may change, with an end date. It names no world: which one is read from who issued it. By its issuer, holder, tier and end date it is nearer the project's `grant`, a power written down; its `param_scopes`, a range for each parameter, are nearer a template's dials and their ranges (`parameter`), since a grant's `allows` lists kinds of act | the right to found a world, earned by walking a path to its end |
 | `Presence`, `presenceEntry` | a notice that a key is in certain rooms now, for a stated time | one of a person's keys, in the person's own list |
+| `Redact`, `redactedField` | not the same name, and near enough to mislead. DeepSeek's `Redact` hides a comment, which stays in the records: the project calls that a removal, or a taking back (the row for `Redact`, below) | a field that was taken out of a log, as it was, sealed to a person it is about or to the office that decides: what the project calls redacting (docs/research/REDACTION.md, "Part three, the act of redacting, built") |
 
 ## DeepSeek's kinds with a near relative in the project
 

@@ -35,5 +35,18 @@ Cargo.lock are left whole.
 
 **Start here**, the orientation, the charter, the course, and the pages the work now draws on (10):
 
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COLLABORATING.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/AGENTS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/README.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/CHARTER.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/STATUS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COURSE.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/TOPICS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/VISION.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FRACTALS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/URWORLD.md
+```
+
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/every-file-by-its-full-link-01.md

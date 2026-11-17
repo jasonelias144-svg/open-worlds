@@ -56,7 +56,9 @@ unless the founder answers otherwise:
 - **Visible, and the log still checks.** To be built, before anyone
   lives in a world ([COURSE.md](COURSE.md), step 3b; the form of the
   log is built, `world/apart.py`, with a redaction's mark and the
-  decision that answers it; sealing the copies is not): each field of an
+  decision that answers it, and so is the act of redacting,
+  `world/redact.py`, with trial keys; nothing real is redacted yet):
+  each field of an
   entry that is kept apart (what a person writes or gives; which
   fields, kind by kind, is in
   [research/REDACTION.md](research/REDACTION.md)) enters the chain of

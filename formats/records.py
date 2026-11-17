@@ -73,6 +73,7 @@ KINDS: Dict[str, Tuple[str, Tuple[str, ...]]] = {
     "open-worlds/arrival/v1": ("arrival", ("individual",)),
     "open-worlds/world-key/v1": ("worldKey", ("issuer",)),
     "open-worlds/journal-entry/v1": ("journalEntry", ("author",)),
+    "open-worlds/redacted-field/v1": ("redactedField", ("office", "key")),
     "open-worlds/identity/v1": ("identity", ("id",)),
     "open-worlds/birth/v1": ("birth", ("world",)),
     "open-worlds/world-birth/v1": ("worldBirth", ("world",)),

@@ -35,7 +35,8 @@ TAG_LENGTH = 16    # ChaCha20Poly1305's tag (RFC 9180, 7.3, Nt)
 
 # Every label in use. A new purpose, or a new version of one, is added
 # here by a reviewed change, never made up where a box is sealed.
-LABELS = frozenset({"open-worlds/journal/v1", "open-worlds/world-key/v1"})
+LABELS = frozenset({"open-worlds/journal/v1", "open-worlds/redacted/v1",
+                    "open-worlds/world-key/v1"})
 
 _P = 2**255 - 19
 # Any X25519 secret will do: every secret is a multiple of 8 once clamped,

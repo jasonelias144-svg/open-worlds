@@ -7,7 +7,8 @@ It holds:
 
 - parties (test keys, public to everyone, never for anything real), each
   with a signing key (as in records-v1.json) and a sealing key;
-- world-keys and journal entries that hold, and some that must be refused;
+- world-keys, journal entries and redacted fields that hold, and some
+  that must be refused;
 - envelopes that open, each with the hash of the record inside;
 - envelopes that must be refused when opened, each saying what it was
   sealed to, under which label, and what is inside, so anyone can check
@@ -37,9 +38,11 @@ from .multikey import (did_key, sealing_multikey, sealing_secret_multikey,
 FILE = (Path(__file__).resolve().parent.parent
         / "vectors" / "formats" / "sealed-records-v1.json")
 CREATED = "2026-11-14T04:00:00Z"
-PARTIES = ["ALICE", "BOB", "the Ur-world"]
+PARTIES = ["ALICE", "BOB", "the Ur-world", "the Ur-world's Keeper"]
 WORLD_KEY = "open-worlds/world-key/v1"
 JOURNAL = "open-worlds/journal/v1"
+REDACTED = "open-worlds/redacted/v1"
+KEEPER = "the Ur-world's Keeper"
 
 
 def _secret(name: str) -> bytes:
@@ -72,6 +75,35 @@ def _signed(record: Dict[str, Any], by: str) -> Dict[str, Any]:
 PATH = hashlib.sha256(b"a path in the Ur-world, as placed").hexdigest()
 
 
+def _stand_in(what: str) -> str:
+    """A hash that stands in for one: public, and the hash of no record
+    and of no entry. Whether a redacted field is the one its log held
+    is checked against the log (world/redact.py), not here."""
+    return hashlib.sha256(
+        f"open-worlds sealed vectors: {what}".encode()).hexdigest()
+
+
+def _redacted(to: str, value: Any) -> Dict[str, Any]:
+    salt = hashlib.sha256(b"open-worlds sealed vectors: a salt"
+                          ).hexdigest()[:32]
+    return {
+        "format": "open-worlds/redacted-field/v1",
+        "office": {"key": _did(KEEPER),
+                   "grant": _stand_in("a grant to redact")},
+        "to": _did(to),
+        "decider": _did(KEEPER),
+        "log": _stand_in("a log's first entry"),
+        "entry": _stand_in("an entry"),
+        "field": "text",
+        # The list of the salt, the name and the value as a log writes
+        # it (world/apart.py, fingerprint_text): what a log hashes.
+        "hashed": json.dumps([salt, "text", value], sort_keys=True,
+                             separators=(",", ":")),
+        # How much is world/redact.py's to say; here, any zeros.
+        "pad": "0" * 8,
+    }
+
+
 def _records() -> Dict[str, Dict[str, Any]]:
     ur = _did("the Ur-world")
     return {
@@ -92,6 +124,15 @@ def _records() -> Dict[str, Dict[str, Any]]:
             "author": _did("BOB"), "world": ur, "tick": 1202,
             "text": "Quiet today.",
         }, "BOB"),
+        "a redacted field, ALICE's copy": _signed(
+            _redacted("ALICE", "My number is 555 0100."), KEEPER),
+        # Every kind of value a log keeps apart, at its edges, with a
+        # key that is not ASCII, which no record could hold as a key.
+        "a redacted field, the office's copy": _signed(
+            _redacted(KEEPER, {
+                "lines": ["caf\u00e9 \U0001F642", "", True, False],
+                "most": 9007199254740991, "least": -9007199254740991,
+                "empty": {}, "none": [], "cl\u00e9": "a key"}), KEEPER),
     }
 
 
@@ -127,6 +168,40 @@ def _refused_records(good: Dict[str, Dict[str, Any]]
     add("a journal entry naming no world",
         _signed({k: v for k, v in entry.items() if k != "world"}, "ALICE"),
         "world is required")
+    field = {k: v for k, v in good["a redacted field, ALICE's copy"].items()
+             if k != "proof"}
+    add("a redacted field signed by the one it is sealed to",
+        _signed(dict(field), "ALICE"),
+        "a redacted field is signed by the office that redacted it")
+    add("a redacted field that holds no text",
+        _signed(dict(field, hashed=""), KEEPER),
+        "what was hashed is not empty")
+    add("a redacted field that holds a value in place of the text hashed",
+        _signed(dict(field, hashed=["a salt", "text", "a value"]), KEEPER),
+        "what was hashed is carried as text")
+    add("a redacted field padded with something else than zeros",
+        _signed(dict(field, pad="0010"), KEEPER),
+        "the filler is zeros")
+    add("a redacted field with no filler at all",
+        _signed({k: v for k, v in field.items() if k != "pad"}, KEEPER),
+        "pad is required, though it may be empty")
+    add("a redacted field that names no deciding office",
+        _signed({k: v for k, v in field.items() if k != "decider"},
+                KEEPER),
+        "decider is required")
+    add("a redacted field whose name no table could hold",
+        _signed(dict(field, field="Text"), KEEPER),
+        "a field's name is lowercase")
+    add("a redacted field sealed to no one",
+        _signed({k: v for k, v in field.items() if k != "to"}, KEEPER),
+        "to is required")
+    add("a redacted field naming no log",
+        _signed({k: v for k, v in field.items() if k != "log"}, KEEPER),
+        "log is required")
+    add("a redacted field whose office names no grant",
+        _signed(dict(field, office={"key": field["office"]["key"]}),
+                KEEPER),
+        "an office acts under a grant")
     return out
 
 
@@ -158,7 +233,11 @@ def vectors(old: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     for name, owner, label in [
             ("ALICE's world-key, sealed to ALICE", "ALICE", WORLD_KEY),
             ("ALICE's journal entry, sealed to ALICE", "ALICE", JOURNAL),
-            ("BOB's journal entry, sealed to BOB", "BOB", JOURNAL)]:
+            ("BOB's journal entry, sealed to BOB", "BOB", JOURNAL),
+            ("a redacted field, ALICE's copy, sealed to ALICE", "ALICE",
+             REDACTED),
+            ("a redacted field, the office's copy, sealed to the office",
+             KEEPER, REDACTED)]:
         record = good[name.split(", sealed")[0]]
         envelope = {"format": sealed.ENVELOPE, "label": label,
                     "to": _did(owner),
@@ -258,6 +337,36 @@ def vectors(old: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
           opener="ALICE", opener_label=WORLD_KEY,
           why="only a signed record is sealed")
 
+    alices_copy = good["a redacted field, ALICE's copy"]
+    refuse("ALICE's copy of a redacted field, sealed again to BOB",
+          inside=canonical(alices_copy), sealed_for="BOB",
+          sealed_under=REDACTED, to="BOB", label=REDACTED, opener="BOB",
+          opener_label=REDACTED,
+          why="the box opens, but the copy names ALICE")
+    refuse("ALICE's copy of a redacted field, sealed to the office",
+          inside=canonical(alices_copy), sealed_for=KEEPER,
+          sealed_under=REDACTED, to=KEEPER, label=REDACTED, opener=KEEPER,
+          opener_label=REDACTED,
+          why="the box opens, but the copy names ALICE, not the office")
+    refuse("a redacted field under the journal's label",
+          inside=canonical(alices_copy), sealed_for="ALICE",
+          sealed_under=JOURNAL, to="ALICE", label=JOURNAL, opener="ALICE",
+          opener_label=JOURNAL,
+          why="the box opens, but a redacted field isn't sealed as a "
+              "journal")
+    refuse("a journal entry under the label for redacted fields",
+          inside=canonical(good["ALICE's journal entry"]),
+          sealed_for="ALICE", sealed_under=REDACTED, to="ALICE",
+          label=REDACTED, opener="ALICE", opener_label=REDACTED,
+          why="the box opens, but a journal entry isn't a redacted field")
+    refuse("inside, a redacted field signed by the one it is sealed to",
+          inside=canonical(_signed(
+              {k: v for k, v in alices_copy.items() if k != "proof"},
+              "ALICE")),
+          sealed_for="ALICE", sealed_under=REDACTED, to="ALICE",
+          label=REDACTED, opener="ALICE", opener_label=REDACTED,
+          why="a redacted field is signed by the office that redacted it")
+
     base = opens[0]["envelope"]
     shapes = [
         ("a box of odd length", dict(base, box=base["box"][:-1]),
@@ -277,9 +386,9 @@ def vectors(old: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     ]
     return {
         "about": (
-            "Sealed records (formats/sealed.py, rust/formats): world-keys "
-            "and journal entries, signed, sealed to the one they name, in "
-            "envelopes. Written by python3 -m formats.sealed_vectors; test "
+            "Sealed records (formats/sealed.py, rust/formats): world-keys, "
+            "journal entries and redacted fields, signed, sealed to the "
+            "one they name, in envelopes. Written by python3 -m formats.sealed_vectors; test "
             "keys only, never for anything real."),
         "parties": {
             name: {"id": _did(name),

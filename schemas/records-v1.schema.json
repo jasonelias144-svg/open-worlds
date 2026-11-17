@@ -682,6 +682,79 @@
       ],
       "additionalProperties": false
     },
+    "redactedField": {
+      "description": "A field that was redacted from a log, as it was. Signed by the office that redacted it and sealed to one who may hold it: a person it is about, or the office that decides whether it stays redacted (docs/research/REDACTION.md, decisions 4 and 5). Whoever opens it hashes what it holds and finds that fingerprint in the log, and that binds the record to its place. Its envelope says in the clear that it holds a redacted field and whom it is for, so it is not placed in the open: it goes to the one it names.",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/redacted-field/v1"
+        },
+        "office": {
+          "description": "The office that redacted the field, and signs: its key, and the grant it acts under.",
+          "type": "object",
+          "properties": {
+            "key": {
+              "$ref": "#/$defs/didKey"
+            },
+            "grant": {
+              "$ref": "#/$defs/hash"
+            }
+          },
+          "required": [
+            "key",
+            "grant"
+          ],
+          "additionalProperties": false
+        },
+        "to": {
+          "description": "The one this copy is sealed to, and the only one it is for.",
+          "$ref": "#/$defs/didKey"
+        },
+        "decider": {
+          "description": "The office that decides whether the field stays redacted, by its key. Every copy names it, so each reader knows who else holds one. The copy that names the same key as its reader is the deciding office's own.",
+          "$ref": "#/$defs/didKey"
+        },
+        "log": {
+          "description": "The log the field was in, by the hash of its first entry.",
+          "$ref": "#/$defs/hash"
+        },
+        "entry": {
+          "description": "The entry the field was in, by its hash in that log.",
+          "$ref": "#/$defs/hash"
+        },
+        "field": {
+          "description": "The field's name, as the log's table has it.",
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]{0,63}$"
+        },
+        "hashed": {
+          "description": "What was there: the exact text the field's fingerprint in the log is the SHA-256 of. It is the list of the field's salt, its name and its value, written as the log writes it (world/apart.py). It is carried as it was hashed, so that whatever a log can keep apart can be carried, and nothing is lost between two ways of writing JSON. Whether it is that text is checked against the log, not here.",
+          "type": "string",
+          "minLength": 1
+        },
+        "pad": {
+          "description": "Filler: zeros, as many as bring the record to its padded size, so that the length of a sealed copy says little about the length of what was there (world/redact.py).",
+          "type": "string",
+          "pattern": "^0*$"
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "office",
+        "to",
+        "decider",
+        "log",
+        "entry",
+        "field",
+        "hashed",
+        "pad",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
     "sealed": {
       "description": "A sealed box as it is placed in the open: the purpose it was sealed for, the one it is addressed to, and the box (formats/seal.py) in lowercase hex. Not signed: what is inside is, and names its recipient, who checks it. Its fingerprint is the hash of its RFC 8785 form.",
       "type": "object",
@@ -692,6 +765,7 @@
         "label": {
           "enum": [
             "open-worlds/journal/v1",
+            "open-worlds/redacted/v1",
             "open-worlds/world-key/v1"
           ]
         },

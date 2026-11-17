@@ -1,0 +1,16 @@
+[package]
+name = "redact"
+version = "0.1.0"
+description = "The act of redacting a field of a log: sealed, marked and taken out, as the Python code does it"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+serde_json.workspace = true
+formats = { path = "../formats" }
+world-log = { path = "../world-log" }
+
+[lints]
+workspace = true

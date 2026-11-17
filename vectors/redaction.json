@@ -1,0 +1,2017 @@
+{
+ "about": "The act of redacting (world/redact.py, rust/redact), on the trial room of vectors/log-apart.json: one field sealed, marked and taken out, the copies made, and what the deciding office then writes. Written by python3 -m world.redact_vectors; test keys and trial salts only, never for anything real.",
+ "format": "open-worlds/redacted-field/v1",
+ "label": "open-worlds/redacted/v1",
+ "padded": 1024,
+ "reasons": [
+  "the field is not in the contents",
+  "a copy is asked for the same one twice",
+  "not a redacted field's record",
+  "the copy names another log",
+  "the copy names an entry the log does not have",
+  "the copy names a field the entry does not keep apart",
+  "the copy is not what the log held",
+  "the copy is not the deciding office's own",
+  "the copy is of another field than the mark's",
+  "not a mark that is open or stands"
+ ],
+ "parties": {
+  "ALICE": {
+   "id": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+   "secretKeyMultibase": "z3u2eEYsk1mcNNbrbBgRoeia8tBBByz1jup4N3jVga7JyMCB",
+   "sealingSecretMultibase": "z3weYXgM3c6CvrTheopzJCQj1BPKpntYUWpqvjQ11t8Df5MJ",
+   "sealingKeyMultibase": "z6LSdcjieoJjtdv6YoRNEBZ33CtwPspNqTkzVedMHQq4QK2r"
+  },
+  "BOB": {
+   "id": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+   "secretKeyMultibase": "z3u2hahB5Ctsf9NvKdsYaikLAjey6VjHBeqGfchykSXsSv7U",
+   "sealingSecretMultibase": "z3weoLujb2WpczKYMWUVkdXwhWuHAsjPuXMkbsdwHr3K6VzE",
+   "sealingKeyMultibase": "z6LScNUMeJxQsZZVNj3CQ4m9prM1V2nTkRvLJXFctCavArCP"
+  },
+  "an apprentice Keeper": {
+   "id": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+   "secretKeyMultibase": "z3u2RH17c96LTQaRXsLYs12y7igLnELVtCBi7t95aYwrdB7M",
+   "sealingSecretMultibase": "z3weghGXV2k33o84KqSJVNhenByQrdKV9aecAV9NttgRfbGR",
+   "sealingKeyMultibase": "z6LSdTpTVhzy4JWrzGcCKkjTMk2xzbbK6YGjHwpAeFwQbBLs"
+  },
+  "the Ur-world's Keeper": {
+   "id": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+   "secretKeyMultibase": "z3u2SnHoc2mBUev7HbN3ruSEnzEWXYur6pbBby2VEkNGN3iM",
+   "sealingSecretMultibase": "z3weexhWvGTAUUFZc3gmSYkAg3tTuB4tqsG4ktqwpWWuPGc4",
+   "sealingKeyMultibase": "z6LSovDbD3ut3z1nCeAcUQz1XmmJ2T1KuaAx6mCis1z1DdNN"
+  }
+ },
+ "created": "2026-11-17T12:00:00Z",
+ "act": {
+  "tick": 5,
+  "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+  "field": "text",
+  "office": "trial office",
+  "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+  "ground": {
+   "kind": "rule",
+   "ref": "trial room law, private information"
+  },
+  "apart": {
+   "reason": "private information"
+  },
+  "by": "an apprentice Keeper",
+  "about": [
+   "ALICE",
+   "BOB"
+  ],
+  "decider": "the Ur-world's Keeper"
+ },
+ "redacted": {
+  "mark": "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8",
+  "log": [
+   {
+    "tick": 0,
+    "kind": "world_created",
+    "agent": null,
+    "data": {
+     "rules_version": "vectors-apart-1",
+     "form": "open-worlds/log-apart/v1",
+     "kept_apart": {
+      "entered": [
+       "key",
+       "name"
+      ],
+      "entry_put_back": [
+       "record"
+      ],
+      "entry_removed": [
+       "record"
+      ],
+      "entry_restored": [
+       "record"
+      ],
+      "entry_taken_back": [
+       "record"
+      ],
+      "field_kept_public": [
+       "reason"
+      ],
+      "field_redacted": [
+       "reason"
+      ],
+      "field_stays_redacted": [
+       "reason"
+      ],
+      "said": [
+       "key",
+       "text",
+       "time"
+      ],
+      "showed": [
+       "key",
+       "thing"
+      ]
+     }
+    },
+    "apart": {},
+    "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562"
+   },
+   {
+    "tick": 0,
+    "kind": "entered",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "4aaee554e1db4e990128f3391aab0a015152d112587da255e1d492f72b5363bb",
+     "name": "4b18f34129246be7c13e709f54271a210a5b1ab4b080ee0de8382122453d3fb0"
+    },
+    "prev": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "hash": "ffee30c9a1f210889bac86b19ba725bb31d7c62dba48109422a00a563fe8304b"
+   },
+   {
+    "tick": 0,
+    "kind": "entered",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "876c50af710a5b8b75a12eddbbbcd0b7e3a08c2ef5a1a45e7dff5807042d3801",
+     "name": "9487cb885092808b2a1263c7246af5fc5934c9b6625910d972532f45bb72770a"
+    },
+    "prev": "ffee30c9a1f210889bac86b19ba725bb31d7c62dba48109422a00a563fe8304b",
+    "hash": "1f0d6586f4cb24ef89e69c19d37ed18c30cbe976f9f259a4e584757f754c9107"
+   },
+   {
+    "tick": 1,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "8f1221e295ade68c1c5affdc2bd794c53a96850cb71214b92a39475ca1f4732c",
+     "text": "97727365c75b6496fde53feff4aba788d2861b13355fac1bfa5719dae8ff2e94",
+     "time": "fb1125e6461850bc2a729ea91dcde652349fb60460610b5a7569b585276552c3"
+    },
+    "prev": "1f0d6586f4cb24ef89e69c19d37ed18c30cbe976f9f259a4e584757f754c9107",
+    "hash": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62"
+   },
+   {
+    "tick": 2,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "85866e500456c509eb3495aa384d54e512f9f3fcdc20370c674416e4857b9596",
+     "text": "f71ccfa8d681c7ccebfa9094978def32f707a4f003570f6fb8cf92720f1c25d6",
+     "time": "92eaf72229b81ff58e14d7d8b889b2a86760d260299e3fe9284e4d8ac8ca6c55"
+    },
+    "prev": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "hash": "3f8e6d7e59a2431de08f078c2e22b46501b675731fb4e70dc2c5121b3e000c41"
+   },
+   {
+    "tick": 3,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "24b3575136594e0dcfd1cd45fd196c8b813e90a412cad8fda5804f6cad9d3dc3",
+     "text": "dceed6577394d84c10cf295d35e85e2e1143ebdcaf6e18679ecf42d94c75826d",
+     "time": "65ece4c5cfd535ad061dcc667d3d932783cbf03c550af4c8f06494b98ed499d1"
+    },
+    "prev": "3f8e6d7e59a2431de08f078c2e22b46501b675731fb4e70dc2c5121b3e000c41",
+    "hash": "d8ce39e651de4fab5ce23f94b24b3cea2e178f23fa91a55dadbb72bc74af40df"
+   },
+   {
+    "tick": 4,
+    "kind": "showed",
+    "agent": null,
+    "data": {
+     "where": "the table"
+    },
+    "apart": {
+     "key": "359a5a824ead9a3ed0ed6c64d5c726f0d6706018aa1a68edb2866fe46b7c5590",
+     "thing": "8592613435e9d23212ecdcd4238e9f25d167b72f832751703a3c4a42b424d7bf"
+    },
+    "prev": "d8ce39e651de4fab5ce23f94b24b3cea2e178f23fa91a55dadbb72bc74af40df",
+    "hash": "84aeecabcd628dbfb3535e535babfed6f5c211ca1c40cad32bec289776be7e81"
+   },
+   {
+    "tick": 5,
+    "kind": "field_redacted",
+    "agent": null,
+    "data": {
+     "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+     "field": "text",
+     "office": "trial office",
+     "ground": {
+      "kind": "rule",
+      "ref": "trial room law, private information"
+     }
+    },
+    "apart": {
+     "reason": "cbef700ac6d8815c490af736cbb6cd6903a039f5fbab735d0bbb4c7a6deaa5bd"
+    },
+    "prev": "84aeecabcd628dbfb3535e535babfed6f5c211ca1c40cad32bec289776be7e81",
+    "hash": "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8"
+   }
+  ],
+  "contents": {
+   "ffee30c9a1f210889bac86b19ba725bb31d7c62dba48109422a00a563fe8304b": {
+    "key": [
+     "4c81de58866b150007314c561dd5a71a",
+     "trial key of ada"
+    ],
+    "name": [
+     "42f392f40e2fa5f71c7b5ca498fcebb6",
+     "ada"
+    ]
+   },
+   "1f0d6586f4cb24ef89e69c19d37ed18c30cbe976f9f259a4e584757f754c9107": {
+    "key": [
+     "9f2290454fe2cc462a47997b2e738d87",
+     "trial key of bo"
+    ],
+    "name": [
+     "b389910382fff94cb0fb20a2af11aebe",
+     "bo"
+    ]
+   },
+   "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62": {
+    "key": [
+     "e4726a8655824dea87d0d4b8020367be",
+     "trial key of ada"
+    ],
+    "time": [
+     "4db750998119dffbd303862f817812d9",
+     1794787200
+    ]
+   },
+   "3f8e6d7e59a2431de08f078c2e22b46501b675731fb4e70dc2c5121b3e000c41": {
+    "key": [
+     "fba752dd43e02cfc7537569b6821a37a",
+     "trial key of bo"
+    ],
+    "text": [
+     "6ec72e028d1d6c70fc8bb3344783486b",
+     "café 中文 🙂   \" \\ \n"
+    ],
+    "time": [
+     "29ace1401be08bc9736b0c413eb7d78c",
+     1794787260
+    ]
+   },
+   "d8ce39e651de4fab5ce23f94b24b3cea2e178f23fa91a55dadbb72bc74af40df": {
+    "key": [
+     "df6f0c866073d65019e9cc35b5b5580d",
+     "trial key of ada"
+    ],
+    "text": [
+     "41a0eb6e4a594903f982bd8655bb8448",
+     "my door is 1 Trial Street"
+    ],
+    "time": [
+     "44359067d210f078270e1c7b9c605276",
+     1794787320
+    ]
+   },
+   "84aeecabcd628dbfb3535e535babfed6f5c211ca1c40cad32bec289776be7e81": {
+    "key": [
+     "c79be804e9e9318a694841a99cbdac1e",
+     "trial key of bo"
+    ],
+    "thing": [
+     "50e7ce537b7e3cf83b9658b098f6202b",
+     {
+      "words": [
+       "a",
+       "b"
+      ],
+      "loud": true,
+      "count": -3
+     }
+    ]
+   },
+   "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8": {
+    "reason": [
+     "d68f3e951f2f033642bf6b945003f0b0",
+     "private information"
+    ]
+   }
+  }
+ },
+ "copies": [
+  {
+   "to": "ALICE",
+   "envelope": {
+    "format": "open-worlds/sealed/v1",
+    "label": "open-worlds/redacted/v1",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "box": "fc37ce94417143ae5b48c420545b36a7e165ebb4ecfa03beffb09e8c3656ce5d7972748c9814643e3046accf4b0ad75106f17ff852d954e24adeb306769146705574663d1732bb2c8de23026771296ac76efd0acf9ee460b72e50df41dd4a158243c1b88ce59ea6dcfb4023389c577e5286b2341cba542d463ea8dcaeb363d35e488643d64bcad284d87e5ea4395f4991dfa63f81dbd784976d7333186591679100c38ec75592ee083fdbf28e67caf86de4e77d7936c56203dbb195302865913eff2fae5f2bcf54a08a3c406be15f89f34967e78a40f5753c8b48d893193b4bdff7076883eb1eb3b72d083d42d4f53e6fc6b0b38f29f0ba21e0835dec03b307c4d0b6ce1fc60686c2354ae5aa0c4ba3a9999c2ae3963f8494ccf8aee39dc0e8de9e069b55d33418c633e198cf7f99588b8928c18483becc1571f809843acaf947f647dd3cce0926c39c3c2513f84cf40b2d31199bb496151fc1dc50cc454ecf8849c4ae7bd35354fbe935b084fe10020bc3bae6aa544fdda6dcca6d3943fb13193b960e29f23c6c5990ef0a743a128daf68d1e6c8093989474fd1490803e8417bcf71c548758cc658c41ecd6b2a18d0ceff8ffc08304ae3f925b08d532e42b9f6a0a23811a421a1c29f0da122cccc916aaaabcd445f2013d9db3adb3a78a0b0d7d6c6293b1d3fd05dacd444c8a3ac381b019b4cc7c9c30e82d080aeb26b4aeed4b4df16904ee8c97486b644bb576ba875d96db0e6dfc125246f4b2d9fe641b17fc20d00a718a03ec8742d9fe0644b900d12a03f0e6ac779973169902467610bbbfc18beb8becb8694d528ca7e7a9ac851219cf1c132d7a846f2702f19ff53cb0dfecddfc00135366e708c98aac193d9f177830234f84d8709ef4eae2956391fce12e34cc973cd13214487e78d0432b709e5475993d74bac04709a6d2687a2d5e2cd82f11d98e627d90b8b1a826b0c57280ba2c924ec37a4f0b9d40b802d6c18e0c0688dbb52a179a59dae3981bf7db3c7da16e19d805dc392a6353b7bee7f89d38b37745d3c0ad5a726d1f8d31631e5479a0823ea415345849c98c6f26f5a6531be24b9017e1a71287320d1a699975918fd6ed1750f87c03ed29899543f63935a467709d198e6b749d5ad97ce0713aab7a8fb301ffb34856edcf90740b9072e29b4c9b940f3c7652f2cad44a38123e4b1e2f5fbc1a5492891780ea22da1482ee90a8ac15c75e971a7b111b02819f0a96e7a7b289a2b2917fc6c41e9f77c5867b4e9894997d23d6697e9b09432faecade84506860e25e0a46171d8226c9c4eb555e985c14e1d1b5f9eafd6d2f5313798cfe436afde6473785cd294da605d06358a2637237eab4f6cafa9189a15e5a3f096ca4bf7fd541c07ff3e8c601a71b4542e742eb2877792a06cf5a81c8de846c6dfcd0ae3f4887c95a6629ed8ee233fa38335cb7c9d7ce5dc2f9ca9bb191ff4ea5a3d56d78b43811dcc1d75de83b6498cc970cdc6b3ad0805ac474a56e7464b70915459aa5e874e9749a541ba563355d50b85c7f671101ef612d9dcc183f02b84bbfaa60c14f912f815d98b5e663d9b34bb9a7ec1e55fb89b4da2c2c8920e95161437900dd15496c25a3d4f652a040861e007b8517cdc84f2afec5cb45ae493efa13ce2af1d3e45fca84b62160e4621b51ceb96c3fd00b25b1797b7fe7edfbd454f4e717a3bb8acdf6128608835582553cc48a78f8dc20375904afb085632b09888982b4b6fa94ee2746af77e909a7e5d5cf38bf141f68bfe81dd39b1dddf172dceea6276f14f630097f0fcbf6471e730f1a528e174616a8c262574a125e700e0fd8db5e1534f6486fa35d8af037da803bc56c3c6458eea404e4fa658206164d99b9391d9f9c3456b2ddcd55ce19896d4a3d1087be5fff7dd299aec51602dd8a24c0d4c5774e05236c267f3f7a61b90df2e63d0d86eb7c5ebb4bd11e0e90ac6463879c8b56f28c9d694bc86378584250d2cb5d02d5973145acc604b2b2cc46c7f2f5ef74c688caacb25f1a1790e71ddb6f88"
+   },
+   "inside": {
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "field": "text",
+    "format": "open-worlds/redacted-field/v1",
+    "hashed": "[\"e928a52464d9b02a00517c283dbeb3c7\",\"text\",\"hello, room\"]",
+    "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "office": {
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+     "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "pad": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "proof": {
+     "created": "2026-11-17T12:00:00Z",
+     "cryptosuite": "eddsa-jcs-2022",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z62HnNWp3D2Mxy7QFhABu7CbQwinSrNxvoyTWzx9crrLnSsazX5b3W291WEjezgeKjyeCKiT9fdEcgk9i3W38R6Cm",
+     "type": "DataIntegrityProof",
+     "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c"
+   },
+   "record": "8175d50f2a74186fb92afb3fac46932ff29b4b25859dbce5f91054624e8324f8",
+   "fingerprint": "138b08d4aa3d3a377160f5115c1ee62c511a8baa6dbbb6b88edcc217e7278225"
+  },
+  {
+   "to": "BOB",
+   "envelope": {
+    "format": "open-worlds/sealed/v1",
+    "label": "open-worlds/redacted/v1",
+    "to": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+    "box": "f655151e374d8fc9660befb8c17345f69be99cfe0798344290aafed2479c9a66f8063b2ebd85f708e2b703e5a740a2f50a96d6d6362d62854452510603fcf7c1656ed398104540d7786061d981aedaf5aae7479f3e356bde524e5b26e4c74dd6f9b0b010c58d0efde8d5b2406715d8dd08e1618860f4e654002b40ae8a1710fed1c8058eeda9004b7dbf9a111b6171b1a0b711f9e3557e8ff397fe65d132285fadbcdd077ec20b9effc9708648e7b1658f8bf03c4961c93217123ec82e8fa357cd18fafb9213cf31dd0b557b5b6d69aa980af96dc487c4ecc44530c45b1a5bbedca8a83d8630336bfba79c7c483443a6b76abe002f7839c6aa57e6f16e83c47e9212a511d315e972e064118d91919c895b0afa3d5403e61cb2572bdc5071a682b585d41f586fc82bcfee17b59645cdcdd5aea7e65dff68fda8172cea90dbe351a1a2fa19295d88f04a07ce978a3246659a36bbe0145454960746193d4a87527bb457088d1b0b490e8063f11b3e6e305bf6570a580a60c017560c4bce002520a93bcb1c90c1aad22af08c6949a48c7b29bc6e9858d71fc0dbeae225562193b755d69b8d255cdbe568d90d4f33261097c29a9c09ac29b3fab12a2f398478fee143d32a05b5ffcecb1f9eb7d8b668fb7f32e19300948fe61dd7c919f34b3635a0d4e9918c84229b2761db8ec8fad143ddfde036f2a8736af9ae3d788697e51ad567d9d2aa35d841ee4ec0665f9747718035616d227b660deca576cb17bfd97cbdd9c2b3e0f1240561d70c9c48fe792cd63188f6ba7b24c0aef71e05bdb1344c5c014993172db788b59413776c740693c4f64585aac6c75eabda9183a26d3f683b19969372fe3047cde751ed7f549148acb1474f1cde7b92730ac1962d89771f06209c378a62655a96d3d5faf7e2ae224d0cce84dcf719d1ce4107f4b74270f57784a91dfe00578fd94a645d65d7887440d55ac9c37e7fc013589acd3b3555e6a2dd11bb65057880f6090673578945656a652b01a1203881f1691d8faaef78b9f3cb40af4c76a5df6efb48ab2d0ab34807d149990a685070106edcf88d1f0eee7c95e7dd5de3f880f906b32a76dbe9fe45ef7f1f1ffbe8e31eed34c2ac6acc3e9996944a466464dc768196850bfc1785bafcac96581ab55bdd1787f0485788eb2c52ef0a0cc04d2f3469ca2a9c72537ee708d92b10feebfc693806a14259c0410485d9f8f7d78c56ff117daf9c3680551c9667ab9f62c92b0614269c15ba62032991b3da66cefb517875209b9cbffd9a66bc4126409c5198be396d2433fcbfac91066658de236e28eba0d40f9e2522fa394e44083711fc10b3c97fe27da02094c7012de850945ffa7d6afec58941bf1c6230598d3b50228dc2161e23f07ceda6aa76c21d76b14aafb1a077f0ae4b6dc299df390eede767873e9d74155c7c541d1dd9075e044bb785274725c85e53de245ffea7d562358a33cf47724b875204525f350d108f4fc8cc332a192fbb42d2a55e2534b57436e81fc6c3095c1a165e5fcaa503f2990eb597f80e253ec38e09fef0dc2ce6c5eca0b0e249626b40d5a7ef7802bb37d253f378d6c1fc6c436bebc32211a5b149bfe58333034367e3ed2dca9ab809beb5cd2d55942f22322a066a8c6db352e6e46e41231e416b29443ded309925f31d6805ec1ccba105875b0dd0dc8b1b71476d78f1fed0e2712e41ae85f523d891d32aeb625f3eded9d9f165aac8edb0afb4fbe53163a7ada823d0ff5c02e637c262aec25eb80d79ff0f1c755f939bd09b55bb97d168213da4897c55fe3b301476f723f3704d554db6bf1ef716fbd33209ae5f5453c1a54c37a2a4d1c35a92b5ce0cbaee50aaed210380c65d053c4da4c82c29271bdaf655bf8c8de7387a7a8be60b856d2d34f3149d6f77fb69f5d20fcb78eac97f42e0786d0681d15554e40602e1740d5b4b201a6be7f11eb6b353c5015909991a5dabb9b8f62fd583a707836b8867bac96623e2cde045571426a996061040c2a0d2390dab70bedb5f6b18f2e4"
+   },
+   "inside": {
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "field": "text",
+    "format": "open-worlds/redacted-field/v1",
+    "hashed": "[\"e928a52464d9b02a00517c283dbeb3c7\",\"text\",\"hello, room\"]",
+    "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "office": {
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+     "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "pad": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "proof": {
+     "created": "2026-11-17T12:00:00Z",
+     "cryptosuite": "eddsa-jcs-2022",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z2xYiAjVGt7FZtdwU9zsyJUXKT6s14Nci424T7cPqSNgJFyKMKnNtCABxFK33BTxEPdRP4jJHgqj4HEqoGAjLuqzD",
+     "type": "DataIntegrityProof",
+     "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "to": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+   },
+   "record": "c1fc945265e03f7bcd8e3e8aaf9db708305a835a4214faa38d6afc6c0d283122",
+   "fingerprint": "8cdf324ae2f2007176717f93bbd1c61702b5f0990fd975fd09bd19c022d398b7"
+  },
+  {
+   "to": "the Ur-world's Keeper",
+   "envelope": {
+    "format": "open-worlds/sealed/v1",
+    "label": "open-worlds/redacted/v1",
+    "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "box": "c540ac49b13d0827ffb15f7f1ed57e9124f8b5c5b1c943ddc9bcb5bec8ca0223efaf819590fd8c71ed87b4c5e66b5686b61e0f7bf602d43b08effd3ba977a6be623fa5079896d72e4fc25715174d504f24bf13df4689c168ecea64eddf8edbb235dffe20c82395b6ddb8da18ce11b0c26f2c43a54eab931e247525b474afc74529d10570dc90c09986b4de5f1696a4ccc1659a9cc7ce8cb7875c32183a39e34cd11349d06f7bdaa1184a091b36ac8e9e06b3bab72c861ee713572983f3c23c5047766f82aed3e9accb721225660c5be9b29e88b3cfca776bec9105db9dde8ea43cd73ccd0b31df3998ed419a8018049d957b751914d0eb7babcb2f1ddcabac9fca01ee595b9eae78977f6eceeb1bb44bef83cd4a5f977787b5f3c67c79ffd12839ee57817d9c578f4bd815090f7791e70d63fedd2f051b5e04d0d7deebc6cd45cedfdbd09d6e32bfa6841ccceb369d999af4756e3e7b6b5dee4810fc0f0a5da5bdd8396f00071e834bf1c06e03ecdd9e85f08fad3ac0e4987b3bdf21e4b64f88707bc526c976d434e78e61b8ebc4198f29c8d73983765fbb7888fce45f86a5fd7e2db258d7f972e6df29d39575adba83e20f07adf85e1f8dd6afda985c350ffebcf5cc6d6e671a6f2cf01e2aabbc23bb5ac915ff7b2d8511476f9f1a09bdf39a9f6c295429ea184aa37d0f3313d1ecb097aa7baad719453d457bcb3384174d45f19ecd2273955277b43a71c1e6e40e680f4504a5e4df28ff699af524fac04789148d1dcdcf87946c1ac2f8ccb00a7d5c5ccb4f82eba0a70a10ea4c709b88c3df04eed2bc82da744ff7cbc5af9586fc944393f08d5475e42c1eea482316b49f0021c584cca4579bf849160b31cb625907fa48a8befa5dbf462fc30b6dbc7646d2a5475f6a9900985c0a2bd2713d649c50e4d2eadad8dc28abf34ad99aa61d98c79d24a785abb2fb5bb6fd3807e387c4a0521168d566b7958199ebe06dc81d5fdcb5b9d9b40985ce545485d112bbb02cc2465e6c67d51855c1c874778a12eb13d4d258fd0c0d5bb925006fa3caf2477070a99d250e664a83d90ca50f3cb43a091922382749539c2f341d6863fa79eda30f4e1ab09c107e893af814d91de24b09a8ee5f6653ecfda6923d3538f38139726cd8f8c282bd7ab0f2c7f9299970a9a69f362600b6b4438c46f7f22dbfe5469b6dff3520068aabb03047aaa936bcf56bff872f143a2cb5f94e8b8d811e239af825a12cf06e1ee109622e2097e2063454c4a551c2bd212c61f22b3bbb8c4ec195e25168b5d34a3803e5059bfca64e0200a70370222955bacb3aafd0361fd535691950c90ddf0762669f6889c282b72f5f4e22f7b45cc0f7d02344a6ea8fc7b68d65a71cca237981c9ae5c8d2803d0f50f806f9f0f93365cecdff3c576accea8335cdd49e2fd40576c61101e327b80019d52f011562d33036f9acfa938293033ec1c47cb9b48e0f848fec6a7931246b8a13f7192c338658e92a41722c5de41e371831efcbe7d03cc3c31dc5b3423147a9b43403f37436371c90d61e32108f7ddbe7a471355ac3b2bcff4e47f660c302f363530701955acabbd913e30b008d31c277d1bac41f1b8504693ec338619fe5e55760d3082c2d29d3cc31b4960aa40906bcc4f31f2d7d15d3b4b0520e36f982c79aec6a11bc7313639ab80d2a25ff7f256402554f70cea2e44566cf219de1b655f439c387df24aa255a06972e71d6074bf4faee14752c1b5aefd88c81fecbf79788d3060a74e6698f4a551062bff5c066b3e9510af7b4730100f27d58e8ffd3b8d5e2c162114d87499b72e4f16b6f412f3270e1313c91bce2c3a10e5ee3fb90f6de5ffc010551777b2f2118e06ab7afacc132fb4501934611e477765ef10d4c4c14457d0de0436dc02e2770d25f83706be34dd0660be9e65236d0673807cfcf3a8b45e273d6a3d5f8757515292bb95ddb764a1bc0c91da0c812ce72b061e69b12362c94bad6eab4c48fa875dd3a105f8d9c6e2674018b4827529bc8375297833155d"
+   },
+   "inside": {
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "field": "text",
+    "format": "open-worlds/redacted-field/v1",
+    "hashed": "[\"e928a52464d9b02a00517c283dbeb3c7\",\"text\",\"hello, room\"]",
+    "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "office": {
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+     "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "pad": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "proof": {
+     "created": "2026-11-17T12:00:00Z",
+     "cryptosuite": "eddsa-jcs-2022",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zi36gCj3EZxPKs2zPDVyo4waq7XkLQiDPX1ue5fHWseLfU42i4ZqKMsqV79Y1A6nzKDwtbGDTTH6XV51cdsi2JPs",
+     "type": "DataIntegrityProof",
+     "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F"
+   },
+   "record": "b54bae5340245592fa68b0411618ab551d819b936417d27b14139046020675f5",
+   "fingerprint": "325754d76853d0e49c35a5dae42b779279f2a9cac4f6313d8e1faa1da92140bd"
+  }
+ ],
+ "kept": {
+  "tick": 6,
+  "office": "trial keeper",
+  "ground": {
+   "kind": "rule",
+   "ref": "trial appeal rule"
+  },
+  "decision": "21c64861e6aca615534e5c5fcb97c4a141224f23e0bba91cd16b249396fd49e8",
+  "apart": {
+   "reason": "nothing private in it"
+  },
+  "log": [
+   {
+    "tick": 0,
+    "kind": "world_created",
+    "agent": null,
+    "data": {
+     "rules_version": "vectors-apart-1",
+     "form": "open-worlds/log-apart/v1",
+     "kept_apart": {
+      "entered": [
+       "key",
+       "name"
+      ],
+      "entry_put_back": [
+       "record"
+      ],
+      "entry_removed": [
+       "record"
+      ],
+      "entry_restored": [
+       "record"
+      ],
+      "entry_taken_back": [
+       "record"
+      ],
+      "field_kept_public": [
+       "reason"
+      ],
+      "field_redacted": [
+       "reason"
+      ],
+      "field_stays_redacted": [
+       "reason"
+      ],
+      "said": [
+       "key",
+       "text",
+       "time"
+      ],
+      "showed": [
+       "key",
+       "thing"
+      ]
+     }
+    },
+    "apart": {},
+    "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562"
+   },
+   {
+    "tick": 0,
+    "kind": "entered",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "4aaee554e1db4e990128f3391aab0a015152d112587da255e1d492f72b5363bb",
+     "name": "4b18f34129246be7c13e709f54271a210a5b1ab4b080ee0de8382122453d3fb0"
+    },
+    "prev": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "hash": "ffee30c9a1f210889bac86b19ba725bb31d7c62dba48109422a00a563fe8304b"
+   },
+   {
+    "tick": 0,
+    "kind": "entered",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "876c50af710a5b8b75a12eddbbbcd0b7e3a08c2ef5a1a45e7dff5807042d3801",
+     "name": "9487cb885092808b2a1263c7246af5fc5934c9b6625910d972532f45bb72770a"
+    },
+    "prev": "ffee30c9a1f210889bac86b19ba725bb31d7c62dba48109422a00a563fe8304b",
+    "hash": "1f0d6586f4cb24ef89e69c19d37ed18c30cbe976f9f259a4e584757f754c9107"
+   },
+   {
+    "tick": 1,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "8f1221e295ade68c1c5affdc2bd794c53a96850cb71214b92a39475ca1f4732c",
+     "text": "97727365c75b6496fde53feff4aba788d2861b13355fac1bfa5719dae8ff2e94",
+     "time": "fb1125e6461850bc2a729ea91dcde652349fb60460610b5a7569b585276552c3"
+    },
+    "prev": "1f0d6586f4cb24ef89e69c19d37ed18c30cbe976f9f259a4e584757f754c9107",
+    "hash": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62"
+   },
+   {
+    "tick": 2,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "85866e500456c509eb3495aa384d54e512f9f3fcdc20370c674416e4857b9596",
+     "text": "f71ccfa8d681c7ccebfa9094978def32f707a4f003570f6fb8cf92720f1c25d6",
+     "time": "92eaf72229b81ff58e14d7d8b889b2a86760d260299e3fe9284e4d8ac8ca6c55"
+    },
+    "prev": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "hash": "3f8e6d7e59a2431de08f078c2e22b46501b675731fb4e70dc2c5121b3e000c41"
+   },
+   {
+    "tick": 3,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "24b3575136594e0dcfd1cd45fd196c8b813e90a412cad8fda5804f6cad9d3dc3",
+     "text": "dceed6577394d84c10cf295d35e85e2e1143ebdcaf6e18679ecf42d94c75826d",
+     "time": "65ece4c5cfd535ad061dcc667d3d932783cbf03c550af4c8f06494b98ed499d1"
+    },
+    "prev": "3f8e6d7e59a2431de08f078c2e22b46501b675731fb4e70dc2c5121b3e000c41",
+    "hash": "d8ce39e651de4fab5ce23f94b24b3cea2e178f23fa91a55dadbb72bc74af40df"
+   },
+   {
+    "tick": 4,
+    "kind": "showed",
+    "agent": null,
+    "data": {
+     "where": "the table"
+    },
+    "apart": {
+     "key": "359a5a824ead9a3ed0ed6c64d5c726f0d6706018aa1a68edb2866fe46b7c5590",
+     "thing": "8592613435e9d23212ecdcd4238e9f25d167b72f832751703a3c4a42b424d7bf"
+    },
+    "prev": "d8ce39e651de4fab5ce23f94b24b3cea2e178f23fa91a55dadbb72bc74af40df",
+    "hash": "84aeecabcd628dbfb3535e535babfed6f5c211ca1c40cad32bec289776be7e81"
+   },
+   {
+    "tick": 5,
+    "kind": "field_redacted",
+    "agent": null,
+    "data": {
+     "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+     "field": "text",
+     "office": "trial office",
+     "ground": {
+      "kind": "rule",
+      "ref": "trial room law, private information"
+     }
+    },
+    "apart": {
+     "reason": "cbef700ac6d8815c490af736cbb6cd6903a039f5fbab735d0bbb4c7a6deaa5bd"
+    },
+    "prev": "84aeecabcd628dbfb3535e535babfed6f5c211ca1c40cad32bec289776be7e81",
+    "hash": "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8"
+   },
+   {
+    "tick": 6,
+    "kind": "field_kept_public",
+    "agent": null,
+    "data": {
+     "mark": "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8",
+     "office": "trial keeper",
+     "ground": {
+      "kind": "rule",
+      "ref": "trial appeal rule"
+     },
+     "decision": "21c64861e6aca615534e5c5fcb97c4a141224f23e0bba91cd16b249396fd49e8"
+    },
+    "apart": {
+     "reason": "44c3e4304bb345c8f72e85ff7f25c243971d5dd81233b124746b0b44eb8900df"
+    },
+    "prev": "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8",
+    "hash": "38db992451cec5f982381e2e09a7f21c8b3d2f2797ce1cabf0e2186e856be6bf"
+   }
+  ],
+  "contents": {
+   "ffee30c9a1f210889bac86b19ba725bb31d7c62dba48109422a00a563fe8304b": {
+    "key": [
+     "4c81de58866b150007314c561dd5a71a",
+     "trial key of ada"
+    ],
+    "name": [
+     "42f392f40e2fa5f71c7b5ca498fcebb6",
+     "ada"
+    ]
+   },
+   "1f0d6586f4cb24ef89e69c19d37ed18c30cbe976f9f259a4e584757f754c9107": {
+    "key": [
+     "9f2290454fe2cc462a47997b2e738d87",
+     "trial key of bo"
+    ],
+    "name": [
+     "b389910382fff94cb0fb20a2af11aebe",
+     "bo"
+    ]
+   },
+   "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62": {
+    "key": [
+     "e4726a8655824dea87d0d4b8020367be",
+     "trial key of ada"
+    ],
+    "time": [
+     "4db750998119dffbd303862f817812d9",
+     1794787200
+    ],
+    "text": [
+     "e928a52464d9b02a00517c283dbeb3c7",
+     "hello, room"
+    ]
+   },
+   "3f8e6d7e59a2431de08f078c2e22b46501b675731fb4e70dc2c5121b3e000c41": {
+    "key": [
+     "fba752dd43e02cfc7537569b6821a37a",
+     "trial key of bo"
+    ],
+    "text": [
+     "6ec72e028d1d6c70fc8bb3344783486b",
+     "café 中文 🙂   \" \\ \n"
+    ],
+    "time": [
+     "29ace1401be08bc9736b0c413eb7d78c",
+     1794787260
+    ]
+   },
+   "d8ce39e651de4fab5ce23f94b24b3cea2e178f23fa91a55dadbb72bc74af40df": {
+    "key": [
+     "df6f0c866073d65019e9cc35b5b5580d",
+     "trial key of ada"
+    ],
+    "text": [
+     "41a0eb6e4a594903f982bd8655bb8448",
+     "my door is 1 Trial Street"
+    ],
+    "time": [
+     "44359067d210f078270e1c7b9c605276",
+     1794787320
+    ]
+   },
+   "84aeecabcd628dbfb3535e535babfed6f5c211ca1c40cad32bec289776be7e81": {
+    "key": [
+     "c79be804e9e9318a694841a99cbdac1e",
+     "trial key of bo"
+    ],
+    "thing": [
+     "50e7ce537b7e3cf83b9658b098f6202b",
+     {
+      "words": [
+       "a",
+       "b"
+      ],
+      "loud": true,
+      "count": -3
+     }
+    ]
+   },
+   "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8": {
+    "reason": [
+     "d68f3e951f2f033642bf6b945003f0b0",
+     "private information"
+    ]
+   },
+   "38db992451cec5f982381e2e09a7f21c8b3d2f2797ce1cabf0e2186e856be6bf": {
+    "reason": [
+     "85a9e5bbb13f4aad59370630f309fe72",
+     "nothing private in it"
+    ]
+   }
+  }
+ },
+ "stays": {
+  "tick": 6,
+  "office": "trial keeper",
+  "ground": {
+   "kind": "rule",
+   "ref": "trial appeal rule"
+  },
+  "decision": "263ea42fc0687677437eefff8f59a7d368f605ca34ddfb93214d6c0e66329af5",
+  "apart": {
+   "reason": "it is a private number"
+  },
+  "log": [
+   {
+    "tick": 0,
+    "kind": "world_created",
+    "agent": null,
+    "data": {
+     "rules_version": "vectors-apart-1",
+     "form": "open-worlds/log-apart/v1",
+     "kept_apart": {
+      "entered": [
+       "key",
+       "name"
+      ],
+      "entry_put_back": [
+       "record"
+      ],
+      "entry_removed": [
+       "record"
+      ],
+      "entry_restored": [
+       "record"
+      ],
+      "entry_taken_back": [
+       "record"
+      ],
+      "field_kept_public": [
+       "reason"
+      ],
+      "field_redacted": [
+       "reason"
+      ],
+      "field_stays_redacted": [
+       "reason"
+      ],
+      "said": [
+       "key",
+       "text",
+       "time"
+      ],
+      "showed": [
+       "key",
+       "thing"
+      ]
+     }
+    },
+    "apart": {},
+    "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+    "hash": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562"
+   },
+   {
+    "tick": 0,
+    "kind": "entered",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "4aaee554e1db4e990128f3391aab0a015152d112587da255e1d492f72b5363bb",
+     "name": "4b18f34129246be7c13e709f54271a210a5b1ab4b080ee0de8382122453d3fb0"
+    },
+    "prev": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "hash": "ffee30c9a1f210889bac86b19ba725bb31d7c62dba48109422a00a563fe8304b"
+   },
+   {
+    "tick": 0,
+    "kind": "entered",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "876c50af710a5b8b75a12eddbbbcd0b7e3a08c2ef5a1a45e7dff5807042d3801",
+     "name": "9487cb885092808b2a1263c7246af5fc5934c9b6625910d972532f45bb72770a"
+    },
+    "prev": "ffee30c9a1f210889bac86b19ba725bb31d7c62dba48109422a00a563fe8304b",
+    "hash": "1f0d6586f4cb24ef89e69c19d37ed18c30cbe976f9f259a4e584757f754c9107"
+   },
+   {
+    "tick": 1,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "8f1221e295ade68c1c5affdc2bd794c53a96850cb71214b92a39475ca1f4732c",
+     "text": "97727365c75b6496fde53feff4aba788d2861b13355fac1bfa5719dae8ff2e94",
+     "time": "fb1125e6461850bc2a729ea91dcde652349fb60460610b5a7569b585276552c3"
+    },
+    "prev": "1f0d6586f4cb24ef89e69c19d37ed18c30cbe976f9f259a4e584757f754c9107",
+    "hash": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62"
+   },
+   {
+    "tick": 2,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "85866e500456c509eb3495aa384d54e512f9f3fcdc20370c674416e4857b9596",
+     "text": "f71ccfa8d681c7ccebfa9094978def32f707a4f003570f6fb8cf92720f1c25d6",
+     "time": "92eaf72229b81ff58e14d7d8b889b2a86760d260299e3fe9284e4d8ac8ca6c55"
+    },
+    "prev": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "hash": "3f8e6d7e59a2431de08f078c2e22b46501b675731fb4e70dc2c5121b3e000c41"
+   },
+   {
+    "tick": 3,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "apart": {
+     "key": "24b3575136594e0dcfd1cd45fd196c8b813e90a412cad8fda5804f6cad9d3dc3",
+     "text": "dceed6577394d84c10cf295d35e85e2e1143ebdcaf6e18679ecf42d94c75826d",
+     "time": "65ece4c5cfd535ad061dcc667d3d932783cbf03c550af4c8f06494b98ed499d1"
+    },
+    "prev": "3f8e6d7e59a2431de08f078c2e22b46501b675731fb4e70dc2c5121b3e000c41",
+    "hash": "d8ce39e651de4fab5ce23f94b24b3cea2e178f23fa91a55dadbb72bc74af40df"
+   },
+   {
+    "tick": 4,
+    "kind": "showed",
+    "agent": null,
+    "data": {
+     "where": "the table"
+    },
+    "apart": {
+     "key": "359a5a824ead9a3ed0ed6c64d5c726f0d6706018aa1a68edb2866fe46b7c5590",
+     "thing": "8592613435e9d23212ecdcd4238e9f25d167b72f832751703a3c4a42b424d7bf"
+    },
+    "prev": "d8ce39e651de4fab5ce23f94b24b3cea2e178f23fa91a55dadbb72bc74af40df",
+    "hash": "84aeecabcd628dbfb3535e535babfed6f5c211ca1c40cad32bec289776be7e81"
+   },
+   {
+    "tick": 5,
+    "kind": "field_redacted",
+    "agent": null,
+    "data": {
+     "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+     "field": "text",
+     "office": "trial office",
+     "ground": {
+      "kind": "rule",
+      "ref": "trial room law, private information"
+     }
+    },
+    "apart": {
+     "reason": "cbef700ac6d8815c490af736cbb6cd6903a039f5fbab735d0bbb4c7a6deaa5bd"
+    },
+    "prev": "84aeecabcd628dbfb3535e535babfed6f5c211ca1c40cad32bec289776be7e81",
+    "hash": "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8"
+   },
+   {
+    "tick": 6,
+    "kind": "field_stays_redacted",
+    "agent": null,
+    "data": {
+     "mark": "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8",
+     "office": "trial keeper",
+     "ground": {
+      "kind": "rule",
+      "ref": "trial appeal rule"
+     },
+     "decision": "263ea42fc0687677437eefff8f59a7d368f605ca34ddfb93214d6c0e66329af5"
+    },
+    "apart": {
+     "reason": "5795dc536d9dfd39f18eadf361eb9bc99c66811b84fdfdb3315811a0ada5b9b1"
+    },
+    "prev": "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8",
+    "hash": "053f794694cd06e95af11e87099d65f0d8256d4d2bec5defc02f9c821c87163b"
+   }
+  ],
+  "contents": {
+   "ffee30c9a1f210889bac86b19ba725bb31d7c62dba48109422a00a563fe8304b": {
+    "key": [
+     "4c81de58866b150007314c561dd5a71a",
+     "trial key of ada"
+    ],
+    "name": [
+     "42f392f40e2fa5f71c7b5ca498fcebb6",
+     "ada"
+    ]
+   },
+   "1f0d6586f4cb24ef89e69c19d37ed18c30cbe976f9f259a4e584757f754c9107": {
+    "key": [
+     "9f2290454fe2cc462a47997b2e738d87",
+     "trial key of bo"
+    ],
+    "name": [
+     "b389910382fff94cb0fb20a2af11aebe",
+     "bo"
+    ]
+   },
+   "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62": {
+    "key": [
+     "e4726a8655824dea87d0d4b8020367be",
+     "trial key of ada"
+    ],
+    "time": [
+     "4db750998119dffbd303862f817812d9",
+     1794787200
+    ]
+   },
+   "3f8e6d7e59a2431de08f078c2e22b46501b675731fb4e70dc2c5121b3e000c41": {
+    "key": [
+     "fba752dd43e02cfc7537569b6821a37a",
+     "trial key of bo"
+    ],
+    "text": [
+     "6ec72e028d1d6c70fc8bb3344783486b",
+     "café 中文 🙂   \" \\ \n"
+    ],
+    "time": [
+     "29ace1401be08bc9736b0c413eb7d78c",
+     1794787260
+    ]
+   },
+   "d8ce39e651de4fab5ce23f94b24b3cea2e178f23fa91a55dadbb72bc74af40df": {
+    "key": [
+     "df6f0c866073d65019e9cc35b5b5580d",
+     "trial key of ada"
+    ],
+    "text": [
+     "41a0eb6e4a594903f982bd8655bb8448",
+     "my door is 1 Trial Street"
+    ],
+    "time": [
+     "44359067d210f078270e1c7b9c605276",
+     1794787320
+    ]
+   },
+   "84aeecabcd628dbfb3535e535babfed6f5c211ca1c40cad32bec289776be7e81": {
+    "key": [
+     "c79be804e9e9318a694841a99cbdac1e",
+     "trial key of bo"
+    ],
+    "thing": [
+     "50e7ce537b7e3cf83b9658b098f6202b",
+     {
+      "words": [
+       "a",
+       "b"
+      ],
+      "loud": true,
+      "count": -3
+     }
+    ]
+   },
+   "665794197f270560d84f0de51cc41f5ab33b74b088aad571e82aa43db6694ef8": {
+    "reason": [
+     "d68f3e951f2f033642bf6b945003f0b0",
+     "private information"
+    ]
+   },
+   "053f794694cd06e95af11e87099d65f0d8256d4d2bec5defc02f9c821c87163b": {
+    "reason": [
+     "85a9e5bbb13f4aad59370630f309fe72",
+     "it is a private number"
+    ]
+   }
+  }
+ },
+ "refused": [
+  {
+   "name": "a copy that names another log",
+   "record": {
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "field": "text",
+    "format": "open-worlds/redacted-field/v1",
+    "hashed": "[\"e928a52464d9b02a00517c283dbeb3c7\",\"text\",\"hello, room\"]",
+    "log": "ffee30c9a1f210889bac86b19ba725bb31d7c62dba48109422a00a563fe8304b",
+    "office": {
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+     "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "pad": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-17T12:00:00Z",
+     "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zY6maujkYxaFtcuFW2TwrrijFytXk8CdmBnUE9AquZg3w3dQ7xBYqXfu7eQ69vsT9hwd5gfuWcdN8zb1MNc3XaeL"
+    }
+   },
+   "reason": "the copy names another log"
+  },
+  {
+   "name": "a copy that names an entry the log does not have",
+   "record": {
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "entry": "e8522d667635cd8f611a9da33895765ee81e48b2a69bc430e1544b50ccb6e3aa",
+    "field": "text",
+    "format": "open-worlds/redacted-field/v1",
+    "hashed": "[\"e928a52464d9b02a00517c283dbeb3c7\",\"text\",\"hello, room\"]",
+    "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "office": {
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+     "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "pad": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-17T12:00:00Z",
+     "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z56y44W77m5a6gqeMgSxoRC4tebiyGxtLw9JYeEW9jkDFXEvdadvGR9uLqoeEhhohbbcnN9i9LkYzcwNXGKjdDNaz"
+    }
+   },
+   "reason": "the copy names an entry the log does not have"
+  },
+  {
+   "name": "a copy that names a field the entry does not keep apart",
+   "record": {
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "field": "name",
+    "format": "open-worlds/redacted-field/v1",
+    "hashed": "[\"e928a52464d9b02a00517c283dbeb3c7\",\"text\",\"hello, room\"]",
+    "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "office": {
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+     "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "pad": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-17T12:00:00Z",
+     "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3c616vd4HJGxAxbgxK8cVNxtC2AAb5GfGhs8Czbd6WKwLdt21MTzxJChyeJ61e4NkmmpdaBsPXFs2DvHB3RoLtGZ"
+    }
+   },
+   "reason": "the copy names a field the entry does not keep apart"
+  },
+  {
+   "name": "a copy that names a field of another entry",
+   "record": {
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "entry": "3f8e6d7e59a2431de08f078c2e22b46501b675731fb4e70dc2c5121b3e000c41",
+    "field": "text",
+    "format": "open-worlds/redacted-field/v1",
+    "hashed": "[\"e928a52464d9b02a00517c283dbeb3c7\",\"text\",\"hello, room\"]",
+    "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "office": {
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+     "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "pad": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-17T12:00:00Z",
+     "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z64V3VMNh4b7JhFKTHnmZrANQ2gHJAUfNqfKrTw3WXi1LcDsytZaCLhsk4WYsZTuvCFhFNTPTyBorXPN2NzbzYcWb"
+    }
+   },
+   "reason": "the copy is not what the log held"
+  },
+  {
+   "name": "a copy with another value",
+   "record": {
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "field": "text",
+    "format": "open-worlds/redacted-field/v1",
+    "hashed": "[\"e928a52464d9b02a00517c283dbeb3c7\",\"text\",\"hello, room!\"]",
+    "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "office": {
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+     "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "pad": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-17T12:00:00Z",
+     "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zhEJ4gysz7WGdQfC58wd2dkA62wpQU4tXVvPyqezQMwCGVD4aMW2QLNSpuSbRtz9KuMEgvFhCzLjYvveZtcGypme"
+    }
+   },
+   "reason": "the copy is not what the log held"
+  },
+  {
+   "name": "a copy with another field's salt",
+   "record": {
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "field": "text",
+    "format": "open-worlds/redacted-field/v1",
+    "hashed": "[\"4db750998119dffbd303862f817812d9\",\"text\",\"hello, room\"]",
+    "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "office": {
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+     "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "pad": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-17T12:00:00Z",
+     "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4BNEZ6kXAuLhkKAWitMm1TEds8btaPBKEkBtJJtErEosRXY68qHzDSughXPAktyGn5MYBTSkvJ4VZDe2D2KLEUsp"
+    }
+   },
+   "reason": "the copy is not what the log held"
+  },
+  {
+   "name": "a copy that carries another field of the same entry",
+   "record": {
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "field": "text",
+    "format": "open-worlds/redacted-field/v1",
+    "hashed": "[\"4db750998119dffbd303862f817812d9\",\"time\",1794787200]",
+    "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "office": {
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+     "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "pad": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-17T12:00:00Z",
+     "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zFXxLoRXNiu8mFtHuXRpVca1J4v1DxiSR95Yd2ruAk2zPpHHpXNQRkSknyQBFfV4WuTw9GXwNgvCjKMbJdHmvr3p"
+    }
+   },
+   "reason": "the copy is not what the log held"
+  },
+  {
+   "name": "a copy that carries the fingerprint in place of what was hashed",
+   "record": {
+    "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+    "entry": "fbaccb676837db9cc0842229aba0dfad135b226ab62cafd272fafb5f79911b62",
+    "field": "text",
+    "format": "open-worlds/redacted-field/v1",
+    "hashed": "97727365c75b6496fde53feff4aba788d2861b13355fac1bfa5719dae8ff2e94",
+    "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "office": {
+     "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45",
+     "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun"
+    },
+    "pad": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-17T12:00:00Z",
+     "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5RnegchT3uo3zdC3vRZTZt9tBhgTbSxgGUJNNdJ25xKsPAEvBiDXfXmazQnYSqZZ2o8k1XiviyMC38dj2unSdFUX"
+    }
+   },
+   "reason": "the copy is not what the log held"
+  },
+  {
+   "name": "a record of another kind",
+   "record": {
+    "format": "open-worlds/journal-entry/v1",
+    "author": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+    "tick": 1201,
+    "text": "The last symbol was by the old well. BOB saw it first.",
+    "remembers": [
+     {
+      "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "tick": 1190
+     },
+     {
+      "world": "did:key:z6MknDnE2WRkySJWdEeBFGTd9ShyUmCb3e3evk395vdxbfDX",
+      "tick": 1200
+     }
+    ],
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T04:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zvNCmFQwoJiGQNLijpJyFPdz5M5hj9guxgbxd1SpfFinuSNCqWDLVqurC8CndyHUYjSF4h4KZTFUQ56YQBL72byh"
+    }
+   },
+   "reason": "not a redacted field's record"
+  }
+ ],
+ "odd": {
+  "log": [
+   {
+    "tick": 0,
+    "kind": "world_created",
+    "agent": null,
+    "data": {
+     "form": "open-worlds/log-apart/v1",
+     "kept_apart": {
+      "entered": [
+       "key",
+       "name"
+      ],
+      "entry_put_back": [
+       "record"
+      ],
+      "entry_removed": [
+       "record"
+      ],
+      "entry_restored": [
+       "record"
+      ],
+      "entry_taken_back": [
+       "record"
+      ],
+      "field_kept_public": [
+       "reason"
+      ],
+      "field_redacted": [
+       "reason"
+      ],
+      "field_stays_redacted": [
+       "reason"
+      ],
+      "said": [
+       "key",
+       "text",
+       "time"
+      ],
+      "showed": [
+       "key",
+       "thing"
+      ]
+     },
+     "rules_version": "vectors-apart-1"
+    },
+    "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+    "apart": {},
+    "hash": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562"
+   },
+   {
+    "tick": 1,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+    "apart": {
+     "text": "22859ac1d6b2b9ea742bac33d964caebf135d3298be0ddd32f6cbb9b8c686dc0"
+    },
+    "hash": "8d855a394359914927d28a68df3d62ce5829a8dc6b9da91b71d8f61c17d602af"
+   },
+   {
+    "tick": 2,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "8d855a394359914927d28a68df3d62ce5829a8dc6b9da91b71d8f61c17d602af",
+    "apart": {
+     "text": "161d5674369f76e9b0e578c75b7332b5189c64ea8c1e8edea44a023255a54950"
+    },
+    "hash": "6e04e4b5c3c5c7d5ee498e20899c868a70581e5a39365fea6c7e52f43f81ae28"
+   },
+   {
+    "tick": 3,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "6e04e4b5c3c5c7d5ee498e20899c868a70581e5a39365fea6c7e52f43f81ae28",
+    "apart": {
+     "text": "8219a11b609e5db352f12c8651b5c8c2d5d25e10f7b11a2cfcbfbb96fd36e99c"
+    },
+    "hash": "22edb8a874c725922d2dd1e1e90f750802b60173bf53befd1f815aa7a1047f43"
+   },
+   {
+    "tick": 4,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "22edb8a874c725922d2dd1e1e90f750802b60173bf53befd1f815aa7a1047f43",
+    "apart": {
+     "text": "7aac8d1ca7ce2bfb2bd9f7fa50d641e0001b2d8fdac93bcae48847ec6fecb547"
+    },
+    "hash": "eafaecbbde6b715ff90f68a760efbbd7f0ebbf9daa4bb856d3e5ecf28ddf117d"
+   },
+   {
+    "tick": 5,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "eafaecbbde6b715ff90f68a760efbbd7f0ebbf9daa4bb856d3e5ecf28ddf117d",
+    "apart": {
+     "text": "c8b8d98396d6096ebcc65d10730d3442a9c836624420909efb31b93fe979a2cc"
+    },
+    "hash": "df7245712751dd7eeda2e7b8962392e32be46ece6f29d8bb6fcc448688964997"
+   },
+   {
+    "tick": 6,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "df7245712751dd7eeda2e7b8962392e32be46ece6f29d8bb6fcc448688964997",
+    "apart": {
+     "text": "5b0c04ad52e916499b29eae72e8b7883b8172f782f24ba7677fc1b5793128609"
+    },
+    "hash": "ed227bb5e85744c9854c0cb35cccf2f01b2f477dcab65566c36c7efcfa6b1df0"
+   },
+   {
+    "tick": 7,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "ed227bb5e85744c9854c0cb35cccf2f01b2f477dcab65566c36c7efcfa6b1df0",
+    "apart": {
+     "text": "3ca758e2bbcfe59670ae9bfd5a6b04e00af449d285ce575116192e4f7bba46e7"
+    },
+    "hash": "4812dcd262f5e292e431776f3af008dcfc85b6bedb2488898760d5bffd292d7c"
+   },
+   {
+    "tick": 8,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "4812dcd262f5e292e431776f3af008dcfc85b6bedb2488898760d5bffd292d7c",
+    "apart": {
+     "text": "01df832bd7395253d688ad161c823dc0f44c0741ba849ace1c1b521e0bf0c4f3"
+    },
+    "hash": "11b5ab5ec4dda806753e50165ba47b4eb4c52a85cd04a6f53700b1727745365d"
+   },
+   {
+    "tick": 9,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "11b5ab5ec4dda806753e50165ba47b4eb4c52a85cd04a6f53700b1727745365d",
+    "apart": {
+     "text": "fa85b59ebe1d174815461fda2f594d1066ea86fba3900ab3dd5a205a32123224"
+    },
+    "hash": "a03f8a4c3e7d11763c1119cf2c4b7efda715f1341f3b739d884a86b37e35de97"
+   },
+   {
+    "tick": 10,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "a03f8a4c3e7d11763c1119cf2c4b7efda715f1341f3b739d884a86b37e35de97",
+    "apart": {
+     "text": "2589cf3b43a53f2f0a746ef8e5c190d5ec6c14c417dc3e79a21b35d4e517cd6c"
+    },
+    "hash": "33d5c7950936c397b9f7e1c9bf883a5071fa96622bb146511992ff797dac01f6"
+   },
+   {
+    "tick": 11,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "33d5c7950936c397b9f7e1c9bf883a5071fa96622bb146511992ff797dac01f6",
+    "apart": {
+     "text": "984968b8a76240b2ba6da28c22c55b529ef222f0b1a5fdf692d18a62b5318f95"
+    },
+    "hash": "ba7b26a3fafceeb80eb7edfccc036a4e96c267e325ecd2d6d5fd46da7c2eb67e"
+   },
+   {
+    "tick": 12,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "ba7b26a3fafceeb80eb7edfccc036a4e96c267e325ecd2d6d5fd46da7c2eb67e",
+    "apart": {
+     "text": "c9a8d3852f6efa7ae514fe082ced7496720ce64f4359b74e543a54ab86bda717"
+    },
+    "hash": "4cb5af28d330aa5f9d2e627aa478345623ab9e6e0c6e9b30b9851efbc3ffff8d"
+   },
+   {
+    "tick": 13,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "4cb5af28d330aa5f9d2e627aa478345623ab9e6e0c6e9b30b9851efbc3ffff8d",
+    "apart": {
+     "text": "eaa93d78857b28eba3670ddef632f9cc46deec254e0db88b678fe60e5aeca70d"
+    },
+    "hash": "3f497d6cb85c18ddd62c2ff151fb775dfecaeb3d6fda6d02b21e3b45842252e7"
+   },
+   {
+    "tick": 14,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "3f497d6cb85c18ddd62c2ff151fb775dfecaeb3d6fda6d02b21e3b45842252e7",
+    "apart": {
+     "text": "f5606e7506179977b9faad3006afc36cd0527ee3791e960b9832d0cc9e0c6c1c"
+    },
+    "hash": "a2d880f62268f586e253f58722a0ca56b0ae71467e1c735883d54aa6933569cf"
+   },
+   {
+    "tick": 15,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "a2d880f62268f586e253f58722a0ca56b0ae71467e1c735883d54aa6933569cf",
+    "apart": {
+     "text": "51ac1c259534018078e6dfa37002c661b07bda197fb728dea938d4f0d093df5a"
+    },
+    "hash": "b9e5cc29cd3ed632eb08455e37d08f58d0d804e7dc9b7afc55d19c4213ff3107"
+   },
+   {
+    "tick": 16,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "b9e5cc29cd3ed632eb08455e37d08f58d0d804e7dc9b7afc55d19c4213ff3107",
+    "apart": {
+     "text": "3e26625e65d6ae32c41b450098e67abd45f419657775f7b1b5ab06a20fd4fc36"
+    },
+    "hash": "25c59529c2680632346dd5a512ee655862213c72d149bc9bfe99063a6741f4cc"
+   },
+   {
+    "tick": 17,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "25c59529c2680632346dd5a512ee655862213c72d149bc9bfe99063a6741f4cc",
+    "apart": {
+     "text": "52d2fa5fc8a655b7f7724bcc48405ace10a2113ca8825ca599192a2f58f6c881"
+    },
+    "hash": "1435cf76e9628bc29bf958228b5f925d04a35dc4b2fed0e56511941ef63c1287"
+   },
+   {
+    "tick": 18,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "1435cf76e9628bc29bf958228b5f925d04a35dc4b2fed0e56511941ef63c1287",
+    "apart": {
+     "text": "6e10b8fd3d04351ff3c2cd0650bd24309eee210a8635cd617e7cc410ef3e7a03"
+    },
+    "hash": "0e3d82114a5d97a1ed410cd5d6e59737a95b4c350f0a3c2b240e5eec443a6994"
+   },
+   {
+    "tick": 19,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "0e3d82114a5d97a1ed410cd5d6e59737a95b4c350f0a3c2b240e5eec443a6994",
+    "apart": {
+     "text": "a8db1a13e09bf809851c51b420770329ab3758aa471e840071bae1a261396ce5"
+    },
+    "hash": "6eb93a1041e40d2d983907c6948d12a1d2072c1c77dd221674c50dbc2e435d95"
+   },
+   {
+    "tick": 20,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "6eb93a1041e40d2d983907c6948d12a1d2072c1c77dd221674c50dbc2e435d95",
+    "apart": {
+     "text": "ab9ae774424cff2e6adb63fa8372c749ff4ebae9c3a08bfb704c96aac44b1faa"
+    },
+    "hash": "eb12698f3bbc2debd4a9ae38fe5f705d5f0a0c6e97d0b1b2a8ebcfc66d0036fb"
+   },
+   {
+    "tick": 21,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "eb12698f3bbc2debd4a9ae38fe5f705d5f0a0c6e97d0b1b2a8ebcfc66d0036fb",
+    "apart": {
+     "text": "687be72e89c5f0c048e8c2ddedd8e710888f3f999407edabdb15b9e2dee7278d"
+    },
+    "hash": "1551258ada2f92c47b56ae2a2e6321455bf57de01325bd70196ffc8ab82055ef"
+   },
+   {
+    "tick": 22,
+    "kind": "said",
+    "agent": null,
+    "data": {},
+    "prev": "1551258ada2f92c47b56ae2a2e6321455bf57de01325bd70196ffc8ab82055ef",
+    "apart": {
+     "text": "08d2fe88c4504f5f4d713b6ec20d3c644f67a64acdd1a2c00400079fc8097c26"
+    },
+    "hash": "9c7b8ac8dace2eb292b9a4ba4649370a92c915abcd7463ea851fee4ae200fc34"
+   }
+  ],
+  "holds": {
+   "format": "open-worlds/redacted-field/v1",
+   "office": {
+    "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+    "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+   },
+   "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+   "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+   "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+   "field": "text",
+   "pad": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+   "entry": "8d855a394359914927d28a68df3d62ce5829a8dc6b9da91b71d8f61c17d602af",
+   "hashed": "[\"56e79a83dd8574ffe09716e1e246cdb7\",\"text\",\"hello, room\"]",
+   "proof": {
+    "type": "DataIntegrityProof",
+    "cryptosuite": "eddsa-jcs-2022",
+    "created": "2026-11-17T12:00:00Z",
+    "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+    "proofPurpose": "assertionMethod",
+    "proofValue": "z29BCmYtN6i3vpqZ6RUw6ciFSyisQdvEwQkZA4cBrDxb6w2p95LsBse6joTRp41VX1RHUnooNCnWCcF5pDmW8WwLA"
+   }
+  },
+  "refused": [
+   {
+    "name": "written with spaces",
+    "record": {
+     "format": "open-worlds/redacted-field/v1",
+     "office": {
+      "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+     },
+     "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+     "field": "text",
+     "pad": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+     "entry": "6e04e4b5c3c5c7d5ee498e20899c868a70581e5a39365fea6c7e52f43f81ae28",
+     "hashed": "[\"df01dccf01a8e4f2df707847f5d659c7\", \"text\", \"v\"]",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-17T12:00:00Z",
+      "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z4VMYQGCuT8g69Y3RrMUuPhsLDEfGSEUN9e3E3vMos2oL32og7mPH6eEibYRypi2JaVjE4E2YeDxoGgbMEeXech8"
+     }
+    }
+   },
+   {
+    "name": "another field's name",
+    "record": {
+     "format": "open-worlds/redacted-field/v1",
+     "office": {
+      "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+     },
+     "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+     "field": "text",
+     "pad": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+     "entry": "22edb8a874c725922d2dd1e1e90f750802b60173bf53befd1f815aa7a1047f43",
+     "hashed": "[\"d8c6a5f32b4c9a9a7baa039c2f7a1137\",\"other\",\"v\"]",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-17T12:00:00Z",
+      "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "zgVGbGCsveKngtWEG1vYyRYPmZaKqDrHKopLmirMhVjBztxL9hDSY7U7jHGvox6jh6DxQ4JVm4mdk99Ec8iVtrxJ"
+     }
+    }
+   },
+   {
+    "name": "a map",
+    "record": {
+     "format": "open-worlds/redacted-field/v1",
+     "office": {
+      "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+     },
+     "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+     "field": "text",
+     "pad": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+     "entry": "eafaecbbde6b715ff90f68a760efbbd7f0ebbf9daa4bb856d3e5ecf28ddf117d",
+     "hashed": "{\"salt\":\"23a51efaa397dd9e260d53233e677d74\",\"name\":\"text\",\"value\":\"v\"}",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-17T12:00:00Z",
+      "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z3HFNh561KwtoX5TJAaQKM826Kcmc8QqCQPE3DZ4rSJ5tW4RKfyB4PDER4gWvB92Tnsbw2YSY3ctYg7nTUFbVgMEk"
+     }
+    }
+   },
+   {
+    "name": "two things",
+    "record": {
+     "format": "open-worlds/redacted-field/v1",
+     "office": {
+      "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+     },
+     "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+     "field": "text",
+     "pad": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+     "entry": "df7245712751dd7eeda2e7b8962392e32be46ece6f29d8bb6fcc448688964997",
+     "hashed": "[\"f80a6bf5e8d5102c270f25c2777ef58f\",\"text\"]",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-17T12:00:00Z",
+      "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z4LxnFW36ttkdrVf5ByX6xNhqM3DoPJppPnTXCRENibni7GwhwZbGnmG2i9Xk9y711jdHvZXmphiAAMU68rVza9Nt"
+     }
+    }
+   },
+   {
+    "name": "four things",
+    "record": {
+     "format": "open-worlds/redacted-field/v1",
+     "office": {
+      "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+     },
+     "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+     "field": "text",
+     "pad": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+     "entry": "ed227bb5e85744c9854c0cb35cccf2f01b2f477dcab65566c36c7efcfa6b1df0",
+     "hashed": "[\"738ce391930fdeb1ba245d0c5c07e408\",\"text\",\"v\",\"w\"]",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-17T12:00:00Z",
+      "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z3t4BExWZ1QgY2x2vwWaEqev641JixeDs2qciJMvN7PKBF3xiBbhQzm3weHu8DahTPHdubq29erW6kqbzjXfLCLF1"
+     }
+    }
+   },
+   {
+    "name": "a number with a fraction",
+    "record": {
+     "format": "open-worlds/redacted-field/v1",
+     "office": {
+      "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+     },
+     "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+     "field": "text",
+     "pad": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+     "entry": "4812dcd262f5e292e431776f3af008dcfc85b6bedb2488898760d5bffd292d7c",
+     "hashed": "[\"41fa68923f46a945c778b89a5b14f7e7\",\"text\",1.5]",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-17T12:00:00Z",
+      "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "ztHaf1oBNynDjM4rUYcQj8B5aw8MWonoyVBC6QDSqDUStzdAZpgDp3Uc3tF1zTE5x2eSH3tuDmSo5BchMuuJSRvn"
+     }
+    }
+   },
+   {
+    "name": "a whole number written with a fraction",
+    "record": {
+     "format": "open-worlds/redacted-field/v1",
+     "office": {
+      "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+     },
+     "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+     "field": "text",
+     "pad": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+     "entry": "11b5ab5ec4dda806753e50165ba47b4eb4c52a85cd04a6f53700b1727745365d",
+     "hashed": "[\"b29ca8acb5da7249da5fa2b9aba536fc\",\"text\",1.0]",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-17T12:00:00Z",
+      "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z5sMVdtsnJ5jcKxbCsxtC3AHHCfbxLTMfA9DDe9haStHsLfnnK3Pm2YpfJbdGgdJ1Vgazk63MWWSZYF2GaSGoy5tj"
+     }
+    }
+   },
+   {
+    "name": "a number beyond 2^53 - 1",
+    "record": {
+     "format": "open-worlds/redacted-field/v1",
+     "office": {
+      "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+     },
+     "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+     "field": "text",
+     "pad": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+     "entry": "a03f8a4c3e7d11763c1119cf2c4b7efda715f1341f3b739d884a86b37e35de97",
+     "hashed": "[\"18ed467bf646849423f04cc922343fc5\",\"text\",9007199254740992]",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-17T12:00:00Z",
+      "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z3ukc5wfR9eqMsowPVJwAxRaNp33B4qQJNc9rdZg6Bk83uPdRiWbjysNyte9X45rRU7shRW5rfAcETx6zWeqoqzyu"
+     }
+    }
+   },
+   {
+    "name": "minus zero",
+    "record": {
+     "format": "open-worlds/redacted-field/v1",
+     "office": {
+      "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+     },
+     "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+     "field": "text",
+     "pad": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+     "entry": "33d5c7950936c397b9f7e1c9bf883a5071fa96622bb146511992ff797dac01f6",
+     "hashed": "[\"4517c9775b7640c4c7ecff41db4d6f09\",\"text\",-0]",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-17T12:00:00Z",
+      "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z61JXkXHga4Hd9Ph6rEUYtnCDKaTvePXh5cc8bThiRJCU7uS6KtYePJzu9upvWxUWYqU8NvYRL2KJyR67VFPMDd82"
+     }
+    }
+   },
+   {
+    "name": "a number too large to read",
+    "record": {
+     "format": "open-worlds/redacted-field/v1",
+     "office": {
+      "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+     },
+     "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+     "field": "text",
+     "pad": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+     "entry": "ba7b26a3fafceeb80eb7edfccc036a4e96c267e325ecd2d6d5fd46da7c2eb67e",
+     "hashed": "[\"377eb5379f32ede5d548235a4aca3f52\",\"text\",1e400]",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-17T12:00:00Z",
+      "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z5ivGjFkFUpD4uHYKwqmqLVmsVQi3hk7vcuYwiQt71xBp2DKda96FrbPVMCbmoyohAriZmE8M1FXJXseAo1s7aHTa"
+     }
+    }
+   },
+   {
+    "name": "not a number",
+    "record": {
+     "format": "open-worlds/redacted-field/v1",
+     "office": {
+      "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+     },
+     "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+     "field": "text",
+     "pad": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+     "entry": "4cb5af28d330aa5f9d2e627aa478345623ab9e6e0c6e9b30b9851efbc3ffff8d",
+     "hashed": "[\"6aa4d7dec79a91159dc01f3d573699ea\",\"text\",NaN]",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-17T12:00:00Z",
+      "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z5JHg3JEtY6e2z4RTj14pb3FC644q8zxWX2EHbbu3zheMNLwaQYC8AyG4WQ6aUeeCGDDgENesXR67ZqEEVyZdqydy"
+     }
+    }
+   },
+   {
+    "name": "nothing as the value",
+    "record": {
+     "format": "open-worlds/redacted-field/v1",
+     "office": {
+      "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+     },
+     "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+     "field": "text",
+     "pad": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+     "entry": "3f497d6cb85c18ddd62c2ff151fb775dfecaeb3d6fda6d02b21e3b45842252e7",
+     "hashed": "[\"bf2269343d94a874981d12ab96de3314\",\"text\",null]",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-17T12:00:00Z",
+      "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z5g2A9R4w6ZUd1tHT6WULAHGJapM9ZsCtQpcE6BeZDFxKYdiq7PymEorMQ3xHU9vp5686dvs2S1qi11QycKieBRUF"
+     }
+    }
+   },
+   {
+    "name": "a key twice",
+    "record": {
+     "format": "open-worlds/redacted-field/v1",
+     "office": {
+      "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+     },
+     "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+     "field": "text",
+     "pad": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+     "entry": "a2d880f62268f586e253f58722a0ca56b0ae71467e1c735883d54aa6933569cf",
+     "hashed": "[\"af3fe575b7e0a64d85973ed77a074a81\",\"text\",{\"a\":1,\"a\":2}]",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-17T12:00:00Z",
+      "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z2kMpZJiA5yesarP4NARmcv1nms19VCzuzrixtwubwK3EZ6VHwXfxAKaoUCTQCa6gvCA1idxmTCgyceiRav8ooPHX"
+     }
+    }
+   },
+   {
+    "name": "keys out of order",
+    "record": {
+     "format": "open-worlds/redacted-field/v1",
+     "office": {
+      "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+     },
+     "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+     "field": "text",
+     "pad": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+     "entry": "b9e5cc29cd3ed632eb08455e37d08f58d0d804e7dc9b7afc55d19c4213ff3107",
+     "hashed": "[\"e335a36ee7d51ce1dd0172ea2f8c6941\",\"text\",{\"b\":1,\"a\":2}]",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-17T12:00:00Z",
+      "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z3jcKHPqURKpDb1FRofrUDw37w3i1GK9Yvp77Z2dBmM5oofeAYqZ1U24VtsJKNFUupXkr5oXcSoHGrZEcmssh6SxB"
+     }
+    }
+   },
+   {
+    "name": "half a surrogate pair",
+    "record": {
+     "format": "open-worlds/redacted-field/v1",
+     "office": {
+      "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+     },
+     "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+     "field": "text",
+     "pad": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+     "entry": "25c59529c2680632346dd5a512ee655862213c72d149bc9bfe99063a6741f4cc",
+     "hashed": "[\"6d4397aea8d8a18fd09e49c5acb207d0\",\"text\",\"\\ud800\"]",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-17T12:00:00Z",
+      "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z4DMCngq65xRqBewRZrXkN7vB2hk95fcoykA7xoWMwmBoZ6H5wZP9Pop66g2WCFNg9QJCGcyPQdnhHivYRJadnWfh"
+     }
+    }
+   },
+   {
+    "name": "text not written in ASCII",
+    "record": {
+     "format": "open-worlds/redacted-field/v1",
+     "office": {
+      "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+     },
+     "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+     "field": "text",
+     "pad": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+     "entry": "1435cf76e9628bc29bf958228b5f925d04a35dc4b2fed0e56511941ef63c1287",
+     "hashed": "[\"fc05f76c156cb515259d2478ff4eb66f\",\"text\",\"café\"]",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-17T12:00:00Z",
+      "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z3uZET5t8HoJgopoDJSUBMPDitaBGLU2bZVgKQRdrUndJ4GAPtbrsWv21fkKYbb3rDPvgHS9ChKCCDhKDF9rnreyH"
+     }
+    }
+   },
+   {
+    "name": "a salt in capitals",
+    "record": {
+     "format": "open-worlds/redacted-field/v1",
+     "office": {
+      "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+     },
+     "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+     "field": "text",
+     "pad": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+     "entry": "0e3d82114a5d97a1ed410cd5d6e59737a95b4c350f0a3c2b240e5eec443a6994",
+     "hashed": "[\"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\",\"text\",\"v\"]",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-17T12:00:00Z",
+      "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z4Gw4MMVvy1DEyYaqRrSZwAY7rEHmFpCLFVnQBWryZCBwwXFsAhaVd6EK8q5c4U4zvDVqUYMQ2EDXCNdYprPf76xG"
+     }
+    }
+   },
+   {
+    "name": "a salt that is a number",
+    "record": {
+     "format": "open-worlds/redacted-field/v1",
+     "office": {
+      "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+     },
+     "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+     "field": "text",
+     "pad": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+     "entry": "6eb93a1041e40d2d983907c6948d12a1d2072c1c77dd221674c50dbc2e435d95",
+     "hashed": "[7,\"text\",\"v\"]",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-17T12:00:00Z",
+      "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z5Nx3iAvWU6AzSGSNpKU7zgRJyJC8fFzk1aaeEkvHvoq6EVDAAMLYkScXekxnqNnhNFTv32uKVPWgxtaVifNgWLwC"
+     }
+    }
+   },
+   {
+    "name": "not JSON",
+    "record": {
+     "format": "open-worlds/redacted-field/v1",
+     "office": {
+      "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+     },
+     "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+     "field": "text",
+     "pad": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+     "entry": "eb12698f3bbc2debd4a9ae38fe5f705d5f0a0c6e97d0b1b2a8ebcfc66d0036fb",
+     "hashed": "hello, room",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-17T12:00:00Z",
+      "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z4TKtcbSJm1oHLEomQLFFSmQ2xcx6QyQniQUUeCYqzfmA3iaCBomAfecRp6WEgDrNuFhjdPBFn1iYpHNPh6UzQ7T9"
+     }
+    }
+   },
+   {
+    "name": "nested deeper than a log allows",
+    "record": {
+     "format": "open-worlds/redacted-field/v1",
+     "office": {
+      "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+     },
+     "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+     "field": "text",
+     "pad": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+     "entry": "1551258ada2f92c47b56ae2a2e6321455bf57de01325bd70196ffc8ab82055ef",
+     "hashed": "[\"e4967843362b28ba04ffa146263551d9\",\"text\",[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[\"v\"]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-17T12:00:00Z",
+      "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z4FkVs1u3ydmFXu6GLiH8Ae4awaKKndhf4P7wHv41xtBtPvnsrbdPcMWj7CKZWYknseaGKQ87Z7KktLS9tPxG8jMj"
+     }
+    }
+   },
+   {
+    "name": "nested deeper than a reader may go",
+    "record": {
+     "format": "open-worlds/redacted-field/v1",
+     "office": {
+      "key": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "grant": "e59209fabb8ed7ea278209cc33e33bd2acba38aefa0d644eb9480de0f3fd3e45"
+     },
+     "to": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "decider": "did:key:z6MksnTgNNRjmeTwkuG5YjQBebnEKCkq1nkgkw2xHpV5SB2F",
+     "log": "094d8c5f069d7522b09f2d91e2194bd7d4485a38f3eecd3d2edee116e30dd562",
+     "field": "text",
+     "pad": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+     "entry": "9c7b8ac8dace2eb292b9a4ba4649370a92c915abcd7463ea851fee4ae200fc34",
+     "hashed": "[\"fbded988dba173fb67ecbfa277f77dcf\",\"text\",[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]",
+     "proof": {
+      "type": "DataIntegrityProof",
+      "cryptosuite": "eddsa-jcs-2022",
+      "created": "2026-11-17T12:00:00Z",
+      "verificationMethod": "did:key:z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun#z6MkphfkzYutRJZbEcrRmoWd1TCGosV3wcRPuZGyfxdhpeun",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "z613bMoHXQRa9LNfwQVBTqCxmLJfX5A5LyjSTQKfTeHADwqLB2o9eWHj4dArsxSZQSV5tJNqtJaBfzwKRxkPz7nYk"
+     }
+    }
+   }
+  ],
+  "reason": "the copy is not what the log held"
+ }
+}
