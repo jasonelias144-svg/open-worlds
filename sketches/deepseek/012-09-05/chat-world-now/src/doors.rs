@@ -4,43 +4,54 @@ use crate::commons::{
 };
 use crate::did::DidKey;
 use crate::error::{Error, Result};
+use crate::head::WorldHead;
 use crate::record::Record;
 use crate::room::RoomLog;
 use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, HashSet};
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct DoorLaw {
     pub join_policy: String,
     pub membership: String,
     pub moderation: String,
     pub mode: String,
     pub personal: bool,
+    #[serde(default)]
     pub welcome: Option<String>,
     pub count_hidden: bool,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct DoorCount {
     pub members: u64,
     pub at_record: u64,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct Door {
     pub room_id: DidKey,
     pub topic: String,
+    #[serde(default)]
+    pub own_topic: Option<String>,
     pub template_hash: String,
     pub registration_seq: u64,
     pub registration_hash: String,
+    #[serde(default)]
     pub law: Option<DoorLaw>,
+    #[serde(default)]
     pub count: Option<DoorCount>,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct DoorList {
     pub commons_id: DidKey,
     pub drawn_from: u64,
+    #[serde(default)]
     pub log_head: Option<String>,
     pub doors: Vec<Door>,
 }
@@ -82,7 +93,30 @@ pub fn draw(log: &CommonsLog, rooms: &[RoomLog]) -> Result<DoorList> {
     for rec in &log.records {
         if let CommonsRecord::RoomRegistered(r) = rec {
             let registration_hash = rec.hash()?;
-            let (law, count) = if let Some(&room_log) = rooms_by_id.get(&r.room_id) {
+            let (own_topic, law, count) = if let Some(&room_log) = rooms_by_id.get(&r.room_id) {
+                let mut present: HashSet<DidKey> = HashSet::new();
+                for (idx, room_rec) in room_log.records.iter().enumerate() {
+                    match room_rec {
+                        Record::RoomCreated(rc) => {
+                            present.insert(rc.creator_id.clone());
+                        }
+                        Record::Join(j) => {
+                            present.insert(j.subject_id.clone());
+                        }
+                        Record::Leave(l) => {
+                            if !present.remove(&l.subject_id) {
+                                return Err(Error::Policy(format!(
+                                    "room {} record {}: leave by non-member {}",
+                                    room_log.world_id.as_str(),
+                                    idx,
+                                    l.subject_id.as_str()
+                                )));
+                            }
+                        }
+                        _ => {}
+                    }
+                }
+
                 let t = &room_log.template;
                 let door_law = DoorLaw {
                     join_policy: t.join_policy.clone(),
@@ -96,34 +130,20 @@ pub fn draw(log: &CommonsLog, rooms: &[RoomLog]) -> Result<DoorList> {
                 let door_count = if t.count_hidden {
                     None
                 } else {
-                    let mut present: HashSet<DidKey> = HashSet::new();
-                    for room_rec in &room_log.records {
-                        match room_rec {
-                            Record::RoomCreated(rc) => {
-                                present.insert(rc.creator_id.clone());
-                            }
-                            Record::Join(j) => {
-                                present.insert(j.subject_id.clone());
-                            }
-                            Record::Leave(l) => {
-                                present.remove(&l.subject_id);
-                            }
-                            _ => {}
-                        }
-                    }
                     Some(DoorCount {
                         members: present.len() as u64,
                         at_record: room_log.records.len() as u64,
                     })
                 };
-                (Some(door_law), door_count)
+                (Some(t.topic.clone()), Some(door_law), door_count)
             } else {
-                (None, None)
+                (None, None, None)
             };
 
             doors.push(Door {
                 room_id: r.room_id.clone(),
                 topic: r.topic.clone(),
+                own_topic,
                 template_hash: r.template_hash.clone(),
                 registration_seq: r.seq,
                 registration_hash,
@@ -170,6 +190,41 @@ pub fn check(list: &DoorList, log: &CommonsLog, rooms: &[RoomLog]) -> Result<()>
         }
     }
     Ok(())
+}
+
+fn verify_heads_against_rooms(rooms: &[RoomLog], heads: &[WorldHead]) -> Result<()> {
+    for head in heads {
+        let room_log = rooms
+            .iter()
+            .find(|r| r.world_id == head.world)
+            .ok_or_else(|| {
+                Error::Policy(format!(
+                    "head names room {} whose log was not given",
+                    head.world.as_str()
+                ))
+            })?;
+        room_log.verify_head(head)?;
+    }
+    Ok(())
+}
+
+pub fn draw_at(
+    log: &CommonsLog,
+    rooms: &[RoomLog],
+    heads: &[WorldHead],
+) -> Result<DoorList> {
+    verify_heads_against_rooms(rooms, heads)?;
+    draw(log, rooms)
+}
+
+pub fn check_at(
+    list: &DoorList,
+    log: &CommonsLog,
+    rooms: &[RoomLog],
+    heads: &[WorldHead],
+) -> Result<()> {
+    verify_heads_against_rooms(rooms, heads)?;
+    check(list, log, rooms)
 }
 
 pub fn ranked(list: &DoorList) -> Vec<&Door> {
@@ -224,6 +279,11 @@ pub fn as_text(list: &DoorList) -> String {
     for (idx, door) in list.doors.iter().enumerate() {
         let n = idx + 1;
         out.push_str(&format!("{}. topic {}\n", n, quote_ascii(&door.topic)));
+        if let Some(own) = &door.own_topic {
+            if own != &door.topic {
+                out.push_str(&format!("   its own topic {}\n", quote_ascii(own)));
+            }
+        }
         out.push_str(&format!("   room {}\n", quote_ascii(door.room_id.as_str())));
         out.push_str(&format!("   law {}\n", quote_ascii(&door.template_hash)));
         out.push_str(&format!(

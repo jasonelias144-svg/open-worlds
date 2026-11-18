@@ -8,7 +8,7 @@
 
 ## Code taken from DeepSeek's records
 
-In `sketches/deepseek`, 733 files, 6.8 MB in all, the largest 55 KB: DeepSeek's code as each record gave it, a folder per record; `name@offset` is an earlier version of `name`, found at that offset in the record.
+In `sketches/deepseek`, 734 files, 6.8 MB in all, the largest 55 KB: DeepSeek's code as each record gave it, a folder per record; `name@offset` is an earlier version of `name`, found at that offset in the record.
 
 **`sketches/deepseek/012-03-02`**, part 1 of 2 (40 files, 440 KB):
 

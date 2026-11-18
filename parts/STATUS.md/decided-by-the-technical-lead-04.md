@@ -8,6 +8,54 @@
 
 ## Decided by the technical lead
 
+- 2026-11-18, Gemini's five repairs, as they are joined, and what
+  their next file asks (sketches/gemini/2026-11-17-4/README.md).
+  (a) The two files are in the crate as it stands, as Gemini wrote
+  them: 152 tests in 32 files. The crate as it stood before them
+  keeps a stage of its own in the build script (`doors`), and the
+  three stages built beside it stay as they were measured. (b) The
+  next file asks one step in four parts. Beside the count a door
+  shows two numbers: `said`, the messages a reader of the room
+  sees, and `speakers`, how many wrote them. A removed message is
+  not counted, and a restored one is. (c) The two numbers are shown
+  exactly where the count is. A room whose law hides its count
+  hides them too: the number who spoke can't be more than the
+  number inside. (d) The flag is a rule on the numbers: ten or more
+  in the room, and nothing said. It is worked out each time and
+  kept nowhere, so it can't be forged apart from the numbers. Ten
+  is a constant in the sketch; in the project's own door it belongs
+  in the Commons' law. (e) A look is given by a room that anyone
+  may enter: its law lets anyone join, and it is not a home. That
+  stands in for "on the record", which a room's law in the crate
+  does not yet say. (f) A look shows messages and nothing else:
+  each one a reader sees, with who wrote it; a removed one with the
+  rule it was removed under, and no author. No joining, leaving or
+  refusal. (g) A look is held to the Commons, and to a head the
+  reader holds, as a door is. (h) One question is put to Gemini
+  before their code: whether a room that hides its count but lets
+  anyone in should give a look that shows who spoke.
+  *Why:* (a) Every test passes; each repair, broken on purpose, is
+  caught by a test (fifteen ways, all caught); and the attack file
+  changed only as asked. (b) The founder: "Other metrics could
+  apply as well". What was removed is not what a reader finds on
+  entering, and junk that was removed should not make a room look
+  busy. (c) The founder: "leaving the number not knowable". (d) The
+  founder: "a room with many participants and no discussion would
+  be a system flag." (e), (f) The founder: "you should be able to
+  glance into the conversation in a read-only way before enter a
+  room"; and of those in a room: "the information regarding those
+  individuals should not be accessible from the outside. Except by
+  choice." Writing in a room that anyone may enter is that
+  person's own act there. Being removed, coming and going are not
+  shown. (g) A look at a log cut short shows an older room.
+  *What would show it wrong:* for (b), a room where much was
+  removed looking empty when it is not; then what was removed is a
+  third number. For (d), ten being wrong for the rooms there are;
+  it is one line to change. For (e), a room meant to be closed
+  whose law lets anyone join: then the law is what is wrong, not
+  the look. For (f), the founder holding that a look should not
+  name who wrote; then it shows the words, and a number in place of
+  each author. For (h), Gemini's answer, or the founder's.
 - 2026-11-17, "they" in the record vectors. Three texts in the
   record vectors said "it" of an agent: "to ADMIN, and beyond it to
   the founder", the appeal in the example decision; and the names

@@ -1,23 +1,24 @@
 """Ours, not DeepSeek's (see ../README.md). Puts together the crate as
 it stands after each delivery: the five of DeepSeek's that followed
-its first file, then the three of Gemini's that followed, then
-Gemini's three on the Commons, then DeepSeek's from its second file.
+their first file, then the three of Gemini's that followed, then
+Gemini's three on the Commons, then DeepSeek's from their second file,
+then Gemini's list of doors and its repairs.
 Each is laid over the one before, starting from the crate DeepSeek
 was given, ../chat-world.
 
 DeepSeek's files are kept in ../chat-world-steps/1 to 8, as the record
 gives them (../../tools/extract.py checks that). Gemini's are kept in
 ../../../gemini/2026-11-16/steps/1 to 3 and
-../../../gemini/2026-11-17/steps/1 to 3, ../../../gemini/2026-11-17-2
-and ../../../gemini/2026-11-17-3, as written, each with its hash in
-its folder's MANIFEST.json.
+../../../gemini/2026-11-17/steps/1 to 3, ../../../gemini/2026-11-17-2,
+../../../gemini/2026-11-17-3 and ../../../gemini/2026-11-17-4, as
+written, each with its hash in its folder's MANIFEST.json.
 
     python3 steps.py OUT            OUT/1 ... OUT/5
     python3 steps.py --aside OUT    and OUT/5-aside
     python3 steps.py --now OUT      and OUT/5-repaired, g1, g2, g3,
                                     g3-repaired, c1, c2, c3, d6,
-                                    d6-repaired, d7, d7-count, now,
-                                    c4, d8, doors-attacks
+                                    d6-repaired, d7, d7-count, doors,
+                                    c4, d8, doors-attacks, now
     python3 steps.py --check        is ../chat-world-now what --now makes?
 
 Nothing is run: this only copies files. Each OUT/N/chat-world is the
@@ -45,16 +46,17 @@ delivery before left it.
     d7-count     d7, with one field added to a room's law (COUNT;
                  ../../../INDEX.md, change 25): whether how many are in
                  the room is hidden outside it.
-    now          d7-count, with Gemini's list of doors laid over it
+    doors        d7-count, with Gemini's list of doors laid over it
                  (../../../gemini/2026-11-17-2/steps/1) and the one
                  line that names its module (DOORS; change 26). This
-                 is the crate as it stands, kept in ../chat-world-now.
-    d8           now, with DeepSeek's delivery 8 laid over it as far as
+                 was the crate as it stood until 2026-11-18, and the
+                 three stages that follow were built beside it.
+    d8           doors, with DeepSeek's delivery 8 laid over it as far as
                  it came: the rule of one moderator's room
                  (../chat-world-steps/8). The reply was cut off after
                  three files, so it does not build, and it is not laid
                  into the crate as it stands.
-    c4           now, with the fourth step of Gemini's round on the
+    c4           doors, with the fourth step of Gemini's round on the
                  Commons laid over it: 17 attacks on a room's seven
                  other kinds of record
                  (../../../gemini/2026-11-17/steps/4). Eight of them
@@ -62,13 +64,19 @@ delivery before left it.
                  stands and is not laid into it. Gemini's first answer
                  to that step (steps/4-first) is kept and not used:
                  the second replaces it.
-    doors-attacks  now, with Gemini's 25 attacks on the list of doors
-                 laid over it (../../../gemini/2026-11-17-3/steps/1).
-                 Five of them get through, so it is built beside
-                 the crate as it stands and is not laid into it.
+    doors-attacks  doors, with Gemini's 25 attacks on the list of
+                 doors laid over it
+                 (../../../gemini/2026-11-17-3/steps/1). Five of them
+                 got through, so it was built beside the crate and
+                 not laid into it.
+    now          doors, with Gemini's repairs of those five laid over
+                 it (../../../gemini/2026-11-17-4/steps/1): the list
+                 of doors again, and the attacks with three of them
+                 written again. This is the crate as it stands, kept
+                 in ../chat-world-now.
 
 `--check` puts the crate together again and compares it with that
-folder, byte for byte, and holds Gemini's files, in each of its
+folder, byte for byte, and holds Gemini's files, in each of their
 folders, to their hashes. So every file in ../chat-world-now is known
 to be the latest that DeepSeek or Gemini gave, changed only as the two
 lists of repairs say.
@@ -100,9 +108,12 @@ GEMINI_COMMONS = os.path.join(os.path.dirname(os.path.dirname(HERE)),
 # Gemini's third round: the lobby's list of doors.
 GEMINI_DOORS = os.path.join(os.path.dirname(os.path.dirname(HERE)),
                             "gemini", "2026-11-17-2")
-# Gemini's fourth round: its attacks on that list.
+# Gemini's fourth round: their attacks on that list.
 GEMINI_ATTACKS = os.path.join(os.path.dirname(os.path.dirname(HERE)),
                               "gemini", "2026-11-17-3")
+# Gemini's fifth round: the five attacks that got through, repaired.
+GEMINI_REPAIRS = os.path.join(os.path.dirname(os.path.dirname(HERE)),
+                              "gemini", "2026-11-17-4")
 # The condition in delivery 5's src/verify.rs that does not compile.
 FAULT = ('if !looks_like_hash(&k.entry_hashes.iter().any(|_| "x".to_string())'
          '.then(|| "".to_string()).unwrap_or_default()) {')
@@ -274,6 +285,7 @@ def gemini_as_written(kept=None):
         gemini_as_written(GEMINI_COMMONS)
         gemini_as_written(GEMINI_DOORS)
         gemini_as_written(GEMINI_ATTACKS)
+        gemini_as_written(GEMINI_REPAIRS)
         return
     with open(os.path.join(kept, "MANIFEST.json"), encoding="utf-8") as f:
         files = json.load(f)["files"]
@@ -299,7 +311,7 @@ def check():
         if not same(made, os.path.join(HERE, "chat-world-now")):
             sys.exit("chat-world-now is not the deliveries with the listed "
                      "repairs: run steps.py --now and compare")
-    print("chat-world-now is DeepSeek's seven deliveries and Gemini's seven, "
+    print("chat-world-now is DeepSeek's seven deliveries and Gemini's eight, "
           "with the listed repairs and changes")
 
 
@@ -372,27 +384,32 @@ def main(argv, quiet=False):
         repaired(before, tree, COUNT)
         say("a room's law can hide its count: d7-count")
         before = tree
-        tree = os.path.join(out, "now", "chat-world")
+        tree = os.path.join(out, "doors", "chat-world")
         repaired(before, tree, DOORS)
         count = lay(os.path.join(GEMINI_DOORS, "steps", "1"), tree)
         say(f"Gemini's list of doors: {count} files laid over, and its "
-            f"module named: now")
+            f"module named: doors")
         before = tree
         tree = os.path.join(out, "c4", "chat-world")
         shutil.copytree(before, tree)
         count = lay(os.path.join(GEMINI_COMMONS, "steps", "4"), tree)
-        say(f"Gemini's fourth step, beside the crate as it stands: "
+        say(f"Gemini's fourth step, beside the crate as it stood: "
             f"{count} file laid over: c4")
         tree = os.path.join(out, "d8", "chat-world")
         shutil.copytree(before, tree)
         count = lay(os.path.join(HERE, "chat-world-steps", "8"), tree)
         say(f"DeepSeek's delivery 8, cut off, beside the crate as it "
-            f"stands: {count} files laid over: d8")
+            f"stood: {count} files laid over: d8")
         tree = os.path.join(out, "doors-attacks", "chat-world")
         shutil.copytree(before, tree)
         count = lay(os.path.join(GEMINI_ATTACKS, "steps", "1"), tree)
         say(f"Gemini's attacks on the list of doors, beside the crate as "
-            f"it stands: {count} file laid over: doors-attacks")
+            f"it stood: {count} file laid over: doors-attacks")
+        tree = os.path.join(out, "now", "chat-world")
+        shutil.copytree(before, tree)
+        count = lay(os.path.join(GEMINI_REPAIRS, "steps", "1"), tree)
+        say(f"Gemini's repairs of the five attacks that got through: "
+            f"{count} files laid over: now")
 
 
 if __name__ == "__main__":

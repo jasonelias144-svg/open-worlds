@@ -20,7 +20,7 @@ GMNI, Gemini's.
 | [012-06-02, Patterns and Multiverses, a new cycle](records/012-06-02-DPSK-Patterns_Multiverses.txt) | After reading `docs/COLLABORATING.md`, proposals for steps ahead: fractal worlds, a hierarchy of worlds, branching, a gallery of worlds and its governance; then the smallest learner that chooses, and individuals as signed, replayable bundles across worlds. Continued (from line 43168, shared on 2026-11-15): a multiversal map and an individual's worldline, a look at games, a microverse, the Ur-world as a garden of hosted fractal worlds, and the move to Rust: an Ur-garden, its keeper, a server, and verifiers in Rust, Python and Node.js. It ends with DeepSeek asking which piece is next | 62,610 | `979f7eef52c10396a682e2fcc0a4e76e1b5d0080b23a71ef22734f265ef0343c` |
 | [012-07-03, Patterns and Multiverses, the endless plant](records/012-07-03-DPSK-Patterns_Multiverses.txt) | Begun from `docs/COLLABORATING.md`: links tried as the founder pasted them, then the endless plant, the first stage of living worlds (a design and a sketch crate in Rust, with a choice neuron), DeepSeek's questions for the technical lead, and their answers to them once the founder left them to their judgement | 1,380 | `efe36ff3749bc1c776d27d2d2a407812cd784015904df89d1a3b3c9672ee5414` |
 | [012-09-05, Patterns and Multiverses, water and the Commons](records/012-09-05-DPSK-Patterns_Multiverses.txt) | Begun from `docs/COLLABORATING.md`: water as particles, the garden and the botanical garden (Python); signed world heads; then the founder's turn to the Commons as chat rooms, each with an AI moderator, and a home room for each person; a schema for every record; a design page; and a crate in Rust, `chat-world`; DeepSeek's order for the cycles after. Then, continued: signed heads for the crate; the one file the founder gave DeepSeek, which reached them whole; and five deliveries of `chat-world` from it, a step at a time. Then, continued again: DeepSeek's second file, which reached them whole, and three more deliveries from it: a room that branches, a plug-in over standard input, and the rule of one moderator's room, where the reply was cut off after three files | 28,456 | `bb8c5fce23a4286906836536fa2023ac215d6f10d3349ea64879838158aa8a8d` |
-| [012-00-00, Multiverse Development, with Gemini](records/012-00-00-GMNI-Multiverse_Development.txt) | The founder's conversation with Gemini, kept with the rest since 2026-11-17 at the founder's word (STATUS.md, "Decided"). Begun from a link to `docs/COLLABORATING.md`, which Gemini could not open. The founder gives them the project's earlier records one after another, then the founder's own work on opposites, and Gemini reads each. From line 1209 Gemini writes steps for the `chat-world` crate from a file that was out of date (built once and not kept: STATUS.md, "Decided", 2026-11-16, on naming Gemini). From line 9748, given the one file written for them, they write the four deliveries kept in [gemini/2026-11-16](gemini/2026-11-16/README.md). From line 13528, given a second file, they write three deliveries on the Commons' own log, and from line 14973 that file's fourth step, answered twice, all kept in [gemini/2026-11-17](gemini/2026-11-17/README.md). From line 15971 they stop writing code, at the founder's word, and sketch how an AI that moderates a room might decide what to do, drawing on three earlier works of the founder's. From line 16396, given a third file, they write the lobby's list of doors, kept in [gemini/2026-11-17-2](gemini/2026-11-17-2/README.md). From line 17193, given a fourth file, they write 25 attacks on that list, kept in [gemini/2026-11-17-3](gemini/2026-11-17-3/README.md) | 17,954 | `b11b354d08e582309bb6371e9d6d1f86a52776dd75c43d111835ba3d57531d9a` |
+| [012-00-00, Multiverse Development, with Gemini](records/012-00-00-GMNI-Multiverse_Development.txt) | The founder's conversation with Gemini, kept with the rest since 2026-11-17 at the founder's word (STATUS.md, "Decided"). Begun from a link to `docs/COLLABORATING.md`, which Gemini could not open. The founder gives them the project's earlier records one after another, then the founder's own work on opposites, and Gemini reads each. From line 1209 Gemini writes steps for the `chat-world` crate from a file that was out of date (built once and not kept: STATUS.md, "Decided", 2026-11-16, on naming Gemini). From line 9748, given the one file written for them, they write the four deliveries kept in [gemini/2026-11-16](gemini/2026-11-16/README.md). From line 13528, given a second file, they write three deliveries on the Commons' own log, and from line 14973 that file's fourth step, answered twice, all kept in [gemini/2026-11-17](gemini/2026-11-17/README.md). From line 15971 they stop writing code, at the founder's word, and sketch how an AI that moderates a room might decide what to do, drawing on three earlier works of the founder's. From line 16396, given a third file, they write the lobby's list of doors, kept in [gemini/2026-11-17-2](gemini/2026-11-17-2/README.md). From line 17193, given a fourth file, they write 25 attacks on that list, kept in [gemini/2026-11-17-3](gemini/2026-11-17-3/README.md). From line 17955, given a fifth file, they repair the five attacks that got through, kept in [gemini/2026-11-17-4](gemini/2026-11-17-4/README.md) | 19,219 | `56ef3e06b0db0458d8bb3a788be05cd8141255df8840ad1973cd91763e492a7b` |
 
 ## Links from the records
 
@@ -646,11 +646,10 @@ line that names the module (change 26), every test file run:
 |---|---|---|---|
 | The list of doors | `draw`, `check`, `ranked` and `as_text`, with fifteen tests. A door shows a room, its law, and how many are in it unless the room's law hides that | 127 | 127 of 127 |
 
-Nothing was repaired. It is the crate as it stands now:
-`deepseek/012-09-05/chat-world-now/`, 127 tests, 61 of them
-DeepSeek's and 66 Gemini's, in 31 files. Gemini's seventeen attacks
-on a room's other records, run beside it, give the same eight that
-get through (136 of 144).
+Nothing was repaired. It was the crate as it stood until 2026-11-18:
+127 tests, 61 of them DeepSeek's and 66 Gemini's, in 31 files.
+Gemini's seventeen attacks on a room's other records, run beside it,
+give the same eight that get through (136 of 144).
 
 The technical lead had written the same step out, outside the
 repository. Each build passes the other's fifteen tests.
@@ -687,9 +686,9 @@ The five that get through:
 | 24 | A leaving by a key that was never in the room, signed by that key alone | It belongs to the check of a room's own log: a ninth gap, beside the eight of Gemini's fourth step. Until then the drawing of the list refuses such a log |
 | 25 | A room registered under a topic that is not its own: only the registrant's is shown | The room's own topic is shown beside the listed one, when the reader holds the room's log |
 
-Because five of its tests fail, the file is not laid into the crate
-as it stands, which stays at 127 tests. `review/steps.sh` builds it
-beside the crate (`doors-attacks`).
+Because five of its tests failed, the file was not laid into the
+crate, which stayed at 127 tests. `review/steps.sh` builds it beside
+the crate as it then stood (`doors-attacks`).
 
 "What is done" is what Gemini's next file asks of them
 ([replies/2026-11-17-4-for-gemini.txt](replies/2026-11-17-4-for-gemini.txt)):
@@ -697,6 +696,45 @@ five repairs, in their own two files. Before that file was written the
 repairs were made in a throwaway copy outside the repository, with
 attacks 17, 22 and 25 rewritten as the file asks and four trial tests
 added: 156 of 156. The copy is not kept.
+
+### Gemini's five repairs (2026-11-18)
+
+Gemini answered their fifth file
+([gemini/2026-11-17-4](gemini/2026-11-17-4/README.md)): two files,
+`src/doors.rs` again and `tests/doors_attack.rs` with five of its 25
+tests written again. Laid over the crate, every test file run:
+
+| Delivery | What it is | Gemini expected | Tests, built as given |
+|---|---|---|---|
+| The five repairs | The forms refuse a member they do not have; a leaving only by a key that is inside; the room's own topic beside the listed one; `draw_at` and `check_at`, which hold a room's log to a head the reader holds; the count of keys kept as a stated limit | 152 of 152 | 152 of 152 |
+
+Nothing was repaired here. It is the crate as it stands now:
+`deepseek/012-09-05/chat-world-now/`, 152 tests, 61 of them
+DeepSeek's and 91 Gemini's, in 32 files.
+
+Compared with the attack file they sent before, test by test: in the
+twenty attacks that were to stay, no code changed but the one field
+the file asked for; 25 comment lines were taken out. Each repair was
+then broken on purpose in a throwaway copy, fifteen ways, one at a
+time, and Gemini's tests caught all fifteen. Seven trial tests of the
+technical lead's own passed. The copy is not kept.
+
+Two limits stay, each held by a test: with no head, a log cut short
+still draws the older count; and a count is a count of keys. The
+leaving by a key that is not inside is refused where the list is
+drawn; `src/verify.rs` still accepts it, and that stays the ninth
+gap for the project's own check of a room.
+
+Gemini's next file
+([replies/2026-11-18-for-gemini.txt](replies/2026-11-18-for-gemini.txt))
+asks one step, the founder's answer to the count of keys: beside the
+count, how much is said and by how many; a rule that marks a room
+with many in it and nothing said; the doors listed by another
+number; and a look into a room before entering. Before the file was
+written the step was made in a throwaway copy, with seven trial
+tests of what the file states: with it made, every test of the crate
+passes but one, which holds the whole text of a list and must gain
+the new line. The copy is not kept.
 
 ## Record 012-03-02, component by component
 

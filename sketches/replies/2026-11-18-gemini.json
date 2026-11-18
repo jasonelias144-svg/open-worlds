@@ -1,0 +1,46 @@
+{
+ "text": "2026-11-18-gemini.txt",
+ "out": "2026-11-18-for-gemini.txt",
+ "root": "sketches/deepseek/012-09-05/chat-world-now",
+ "name": "chat-world",
+ "limit": 100000,
+ "current": true,
+ "files": [
+  [
+   "Cargo.toml",
+   "to read"
+  ],
+  [
+   "src/lib.rs",
+   "to read: the modules, and what a test can name without a path"
+  ],
+  [
+   "src/error.rs",
+   "to read: the errors a check returns"
+  ],
+  [
+   "src/template.rs",
+   "to read: a room's law, with join_policy, personal and count_hidden"
+  ],
+  [
+   "src/record.rs",
+   "to read: every kind of record a room holds"
+  ],
+  [
+   "src/room.rs",
+   "to read: Room, RoomLog and visible_log"
+  ],
+  [
+   "src/head.rs",
+   "to read: WorldHead, verify_head and emit_head"
+  ],
+  [
+   "src/doors.rs",
+   "YOURS, as you sent it"
+  ],
+  [
+   "tests/doors.rs",
+   "YOURS, as you sent it"
+  ]
+ ]
+}

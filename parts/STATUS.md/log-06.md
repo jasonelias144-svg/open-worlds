@@ -8,6 +8,43 @@
 
 ## Log
 
+- 2026-11-18 Claude: Gemini's record is continued, as the founder
+  brought it (814,977 bytes, 19,219 lines; its first 769,085 bytes
+  are the record as it was kept). Looked through first: the
+  founder's one turn in the new part holds nothing personal; there
+  is no link, long number or key in it; and the code reaches for no
+  file, process or network. It holds Gemini's answer to their fifth
+  file: the five repairs of the list of doors, two files, kept as
+  written in sketches/gemini/2026-11-17-4 and held to the record by
+  that folder's take.py. Laid over the crate: 152 of 152, as Gemini
+  expected. All 22 stages of review/steps.sh were built again, each
+  on its own, and are as recorded; the crate as it stands is now
+  152 tests in 32 files, and its four demos and the plug-in's own
+  run. Compared: Gemini's attack file with the one they sent
+  before, test by test; in the twenty attacks that were to stay, no
+  code changed but the one field asked for, and 25 comment lines
+  were taken out. Tried, in a throwaway copy outside the
+  repository: each repair broken on purpose, fifteen ways, one at a
+  time, and Gemini's tests caught all fifteen; and seven trial
+  tests of the technical lead's own, all passing. Read by the
+  technical lead: Gemini's prose, their `src/doors.rs` whole, and
+  the five tests they wrote again; the twenty that did not change
+  were compared and run, not read again. Then Gemini's next file
+  was built and sent to the founder
+  (sketches/replies/2026-11-18-for-gemini.txt, 91,773 bytes): one
+  step in four parts (Decided by the technical lead). Before it was
+  written the step was made in a second throwaway copy, with seven
+  trial tests of what the file states: with it made, every test of
+  the crate passes but one, which holds the whole text of a list
+  and must gain the new line. Neither copy is kept, and nothing of
+  them is in the repository. The two reply files before this one
+  are no longer current. Also: the build scripts and the status
+  test under sketches/deepseek/012-09-05, which are the project's
+  own, said "its" of DeepSeek and of Gemini in nine places, and say
+  "their" now; the sweep of 2026-11-17 had left `sketches/` out
+  whole. Not checked: Gemini's twenty unchanged attacks, line by
+  line; the other scripts and comments of the project's own under
+  `sketches/` for the same pronoun.
 - 2026-11-17 Claude: the record vectors say "they" too (Decided by
   the technical lead, the newest entry). Three texts changed in
   `formats/record_vectors.py`, and `vectors/formats/records-v1.json`

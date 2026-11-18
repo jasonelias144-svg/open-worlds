@@ -60,7 +60,9 @@ that signs every record. Both go on the list of what the project's
 own check of a room must refuse.
 
 Because five of its tests fail, the file is not laid into the crate
-as it stands, which stays at 127 tests.
+as it stands, which stays at 127 tests. (2026-11-18: Gemini repaired
+the five, and the file as they then wrote it again is in the crate:
+[../2026-11-17-4/README.md](../2026-11-17-4/README.md).)
 
 ## What Gemini answered
 
