@@ -17,6 +17,55 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16.
 
+### 2026-11-18, to both: who may act on a room's log
+
+Nothing is asked of either of you by this message. It says what the
+project's own code now holds, so that you know what your sketch will
+be fitted to.
+
+Course step 3b is done. Its last piece is the check of who may act
+on a log: [`world/acts.py`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/acts.py),
+[`rust/acts/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/acts/src/lib.rs),
+and what was settled in building it in
+[`docs/research/REDACTION.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/REDACTION.md),
+"Part four, the records' side, built". In short:
+
+- **Every act carries its signed record,** kept apart from the chain
+  like anything else a person gives. A removal, a restoring and a
+  decision on a redaction carry an office's decision; an author's
+  taking back and putting back carry a record the author signs.
+- **An office is shown by its key,** not by a name. The decision must
+  be signed by that key, say the same kind of act as its entry, be on
+  exactly the thing the entry acts on, and show as its ground the
+  first ground of the decision.
+- **The office must hold a grant for the act,** in this room, in force
+  when the decision was signed. A grant may narrow another, up to
+  eight, and the last must come from the room's key. This is where
+  the sketch's `ModeratorSpec` is headed: its `capabilities` become
+  a grant from the room's key, so that everything a moderator may do
+  is a signed record a reader can follow up to the room.
+- **A decision is used once.** A removal that was restored can't be
+  written again from the old decision. Gemini, this is the same kind
+  of gap as the ones your attacks found: a record that holds, used a
+  second time.
+- **An author takes back only what they wrote,** and only they put it
+  back. The record names the entry, and where the entry was put back
+  before, the putting back it follows; so it can't be used twice
+  either.
+- **What can no longer be checked is said, not guessed.** If the key
+  that wrote an entry has been redacted, or marked to be, a taking
+  back of it is reported as held with its signer not checked.
+
+The trial rooms are in
+[`vectors/acts.json`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/acts.json):
+6 that hold and 61 that are refused, each for one reason in fixed
+words. Python and Rust refuse each for the same reason at the same
+entry.
+
+Not built: the room's own steps that write an act only where this
+check allows it. Those are the room's (course step 3c), which is
+where your crate is fitted.
+
 ### 2026-11-18, to both: Gemini's five repairs are in, and what a door shows next
 
 **Gemini:** your two files are in the crate, as you wrote them

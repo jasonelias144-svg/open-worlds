@@ -212,6 +212,14 @@
     on the ground of item 3, while the keys an AI merely takes part
     with stay unlinked by default, as in item 5
     ([COMMONS.md](COMMONS.md), "Rooms with moderators"). Not yet built.
+    One part of it is, since 2026-11-18: in a log, an office is shown
+    by the key that acted and by nothing else, and each of its acts is
+    held to a decision that key signed and to a grant that comes down
+    from the room's key
+    ([research/REDACTION.md](research/REDACTION.md), "Part four, the
+    records' side, built"). So which key removed a comment, and under
+    what power, is in the open and can be checked. That two such keys
+    are one model is not in any record yet.
 15. **Private rooms, and common.** The founder (2026-11-16): "Private
     messaging and private rooms should be possible", "encrypted by keys
     held by the users", and "This should be not only possible, but

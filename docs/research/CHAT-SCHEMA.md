@@ -16,7 +16,7 @@ technical lead keeps it, and does the fitting (STATUS.md, "Decided",
 of their definitions and the fields of each:
 `sketches/deepseek/012-09-05/schemas/records-v1.schema.json@8640`
 (DeepSeek's, whole: 67 definitions) and
-`schemas/records-v1.schema.json` (the project's: 34). No record was
+`schemas/records-v1.schema.json` (the project's: 36). No record was
 tried against either schema, and no meaning was checked beyond what
 the fields and the two schemas' own descriptions say. "Beside" is the
 technical lead's first reading, to be corrected as each kind is
@@ -67,7 +67,7 @@ form is chosen kind by kind, and may be DeepSeek's.
 | `JoinRequest`, `Join` | `arrival` | An arrival is the individual's own signature on entering, under a name. In DeepSeek's schema `JoinRequest` is what the one who enters sends, and `Join` is the room's entry that answers it, with `seq` and `prev` (that the one who enters signs the request is read from its name and from the crate; the schema doesn't say whose proof is on it): so `JoinRequest` is the nearer relative of `arrival`, and `Join` of the world's own log entry, as `Leave` and `Refusal` are below. Both add a tier and whether the key says it is an AI, and neither carries a name, which an arrival requires |
 | `RoomCreated`, `KnowledgeCreated`, `PlantSeed`, `GardenSeed`, `BotanicalSeed` | `worldBirth` | Each is a world's first record. The project has one kind for every world. DeepSeek's carry their template whole; the project's names it by its hash. The three branch seeds, listed under the fractal track below, are relatives of `worldBirth`'s `forkedFrom` |
 | `RoomTemplate`, `KnowledgeTemplate`, `WorldTemplate`, `GardenTemplate`, `BotanicalTemplate`, with `ModeratorSpec`, `Tier`, `Mode`, `Membership` | `template`, `parameter` | The project has one template for every world: its parameters, which are dials, and their ranges. A room's law would be a template's parameters |
-| `Redact`, `HumanOverride` | `decision` | The founder decided on 2026-11-16 that a removed comment stays in the records and that the action is itself a record that justifies it (docs/COMMONS.md, "Removing a comment"). The project's `decision` is already an office's decision that affects others, with its reasons, its grounds and its appeal. A moderator's removal may be one, and a restoring a decision that supersedes it. The fitting has to split both kinds. `Redact` also covers an author taking back their own comment, which is no office's decision: it has no office, grant, grounds or appeal, so it needs a record of its own. And `HumanOverride` is not only a restoring: its `action` is `none` or `redact` |
+| `Redact`, `HumanOverride` | `decision` | The founder decided on 2026-11-16 that a removed comment stays in the records and that the action is itself a record that justifies it (docs/COMMONS.md, "Removing a comment"). The project's `decision` is already an office's decision that affects others, with its reasons, its grounds and its appeal. A moderator's removal may be one, and a restoring a decision that supersedes it. The fitting has to split both kinds. `Redact` also covers an author taking back their own comment, which is no office's decision: it has no office, grant, grounds or appeal, so it needs a record of its own. That record is built since: `takingBack`, with `puttingBack` for the author who undoes it (docs/research/REDACTION.md, "Part four, the records' side, built"). And `HumanOverride` is not only a restoring: its `action` is `none` or `redact` |
 | a message of kind `journal`, in a home | `journalEntry` | The project's is sealed to its author; only its fingerprint is public |
 | `RuntimeAttestation` | `holds`, `heldBy`, `personList`; and, further off, `mind` | DeepSeek's names no model: it has a `runtime_id`, a list of keys, and a proof from each key, so it says which keys run together, not what runs them. By shape it is nearest the project's links, where several keys are declared one holder's and confirmed from both sides. The project's `mind` says something else: the engines an individual has run on, signed by the project |
 | `ModeratorSuccession` | `grant`, and an office handed on (docs/OFFICES.md) | A moderator's office passing from one holder to the next |
@@ -107,7 +107,9 @@ DeepSeek's schema has nothing for these, and all of them stay:
 above), `birth`, `identity`, `sealingKey`, `sealed`, `name`, `text`,
 `actKind`, `engine`, `keyEntry`, `keyList`, `holds`, `heldBy` and
 `personList` (beside `RuntimeAttestation`, above), `proposal`, `vote`,
-`suggestion`, `rating`.
+`suggestion`, `rating`; and `takingBack` and `puttingBack`, an
+author's own two records on an entry they wrote (the row for `Redact`,
+above).
 
 ## What comes next
 
@@ -116,8 +118,8 @@ above), `birth`, `identity`, `sealingKey`, `sealed`, `name`, `text`,
    message, a removal and a restoring, a leave, and signed heads. A
    moderator's removal and its restoring are decisions, with an
    incident id; an author taking back their own comment is a record
-   of its own, which the fitting settles (the row for `Redact`,
-   above).
+   of its own (the row for `Redact`, above), in records-v1 since
+   2026-11-18 with the record for putting it back.
 2. Each kind added to `schemas/records-v1.schema.json` as it is built,
    with test vectors that Python and Rust both check, as every kind
    there has.

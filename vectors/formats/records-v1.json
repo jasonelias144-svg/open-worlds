@@ -382,6 +382,61 @@
    "hash": "6771a3eaf638b78fe68ab615d2b0c878f7b94cc0ed1deb1af45dfced06933f99"
   },
   {
+   "name": "an author's taking back of an entry they wrote",
+   "signer": "a trial mind",
+   "record": {
+    "format": "open-worlds/taking-back/v1",
+    "author": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "entry": "b1b3a93d41f84d8a822a72c438a77cf8d6ef496682434a5e7f56035db26dd23b",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA#z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5djutgnUYqakSMiQHdTu7jTDBJJZzm6Ps1hu8hhFc2To7J9F6wr5UG4ie6NVAGL8Y9EZSPT2ZY4m2cXQzWJeRgAF"
+    }
+   },
+   "hash": "e33b4a77cacd374228895ac625e8e01d6732ed01e20168da3bc6c334f4143270"
+  },
+  {
+   "name": "the author's putting back of it",
+   "signer": "a trial mind",
+   "record": {
+    "format": "open-worlds/putting-back/v1",
+    "author": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "takenBack": "e2bd8858cac9fecc02fa573031dd28de8056fd860faaffdfa0c253bceb139c2f",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA#z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "zAdokm65mpuPJVnVfCFSmnGYe62ujRZ3HYhjcaoa8e6da6cA23ftea2QjCvecvC6bxiu1FaM7hDtdnd5vgTShx9r"
+    }
+   },
+   "hash": "b83deb7cf204bc77685cbd3419624a8b1cebf48a7f797f390c83926c9a1bf894"
+  },
+  {
+   "name": "a second taking back, after the putting back",
+   "signer": "a trial mind",
+   "record": {
+    "format": "open-worlds/taking-back/v1",
+    "author": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "entry": "b1b3a93d41f84d8a822a72c438a77cf8d6ef496682434a5e7f56035db26dd23b",
+    "after": "3b4cc1b1cecd3ffc01bf0b757a6fa1da45ff4f4c802653db8e359fe3dfd1f252",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA#z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3mn8zJ784kpriuyYGRzgUwVprUpN7oscaNAsWvmmcxNbUdVM4MtSJsM54azUyj8m4vTzVToz5G6CnHtR4PvVgMhm"
+    }
+   },
+   "hash": "627bc99e0c301ce8fa7d3f7ee257727b5eb8c6780d38a23b3d3210f0c14902f2"
+  },
+  {
    "name": "a person's half of a link to a presence",
    "signer": "ALICE",
    "record": {
@@ -4287,6 +4342,135 @@
      "verificationMethod": "did:key:z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD#z6MkkXt1VsE9ehARbBUCfd8HAjfHmdzemfoi9tzNj6g4cmAD",
      "proofPurpose": "assertionMethod",
      "proofValue": "z5Jz4kYNyB3q8EMK7pVGeJXUbG2m461SkSdBBZhuDEsQZGwZHizk4F4ZcwiUVwC4RRipT3hkZQTWbn5MoozppPhQp"
+    }
+   }
+  },
+  {
+   "name": "a taking back signed by another than its author",
+   "record": {
+    "format": "open-worlds/taking-back/v1",
+    "author": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "entry": "b1b3a93d41f84d8a822a72c438a77cf8d6ef496682434a5e7f56035db26dd23b",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c#z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3otufEiTDutqqExo9AoUL52WQsXXnAcySpQUZtxe1CHpgZ2chJm1MgbGULKRZZct7fh7x6p7RcMiXhFKq7LKy3C7"
+    }
+   }
+  },
+  {
+   "name": "a taking back that names no entry",
+   "record": {
+    "format": "open-worlds/taking-back/v1",
+    "author": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA#z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4vAWXKYkbSRcJvg9uTNExApre1giEgLBeM33DoeXG7iR4E1uyfmZmY3XwXeHFZynm4xNTVxBu2ywez7S6dbmNRbo"
+    }
+   }
+  },
+  {
+   "name": "a taking back that names an entry by a short id",
+   "record": {
+    "format": "open-worlds/taking-back/v1",
+    "author": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "entry": "b1b3a93d41f8",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA#z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3hdpf5rPeriVFdxrkhrVSxGWPxjEH44ioBjNjTnaGoRtVGiiChvkHuiqSDhoqoRSsiBcwu6MNw3rQJv3R17ATctq"
+    }
+   }
+  },
+  {
+   "name": "a taking back with a reason, which no field holds",
+   "record": {
+    "format": "open-worlds/taking-back/v1",
+    "author": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "entry": "b1b3a93d41f84d8a822a72c438a77cf8d6ef496682434a5e7f56035db26dd23b",
+    "reason": "I was wrong",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA#z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3k6A8BbwPenF2phFx987Q7HmCV5sgjMKsSMeGfhTc3m83ofeWtEVbndmqdwPQ4wd8vHiofNF2VpjfoP7nyrztYzZ"
+    }
+   }
+  },
+  {
+   "name": "a taking back whose after is not a hash",
+   "record": {
+    "format": "open-worlds/taking-back/v1",
+    "author": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "entry": "b1b3a93d41f84d8a822a72c438a77cf8d6ef496682434a5e7f56035db26dd23b",
+    "after": "the last one",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA#z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z4VfMhCehFab4tu4qQ3yBuYSpfigxMAG6joaAHpPiVPx5kwwh2JgNXdDkhthdJzYhqGu1QkQ2SVBJb3YTfCJWBx7k"
+    }
+   }
+  },
+  {
+   "name": "a putting back signed by another than its author",
+   "record": {
+    "format": "open-worlds/putting-back/v1",
+    "author": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "takenBack": "e2bd8858cac9fecc02fa573031dd28de8056fd860faaffdfa0c253bceb139c2f",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG#z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5wpwpu92hi4vNRWjZ7djxGgegXA326kQijKBbsXhpw3w72eFxr5wHsAGe2gxSNF3MQCtsnfxmVJ1psZMgZn3yuYm"
+    }
+   }
+  },
+  {
+   "name": "a putting back that names an entry and no taking back",
+   "record": {
+    "format": "open-worlds/putting-back/v1",
+    "author": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "entry": "b1b3a93d41f84d8a822a72c438a77cf8d6ef496682434a5e7f56035db26dd23b",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA#z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z444dYTXuUwVnj1HaCuMxfGn6paHUJUuzEa3oHmcWzd2sbd7h9ww8RDVWGjcrw25vd2aTH65boyUeUHnpJeGvu1Ld"
+    }
+   }
+  },
+  {
+   "name": "a putting back whose signature was made for a taking back",
+   "record": {
+    "format": "open-worlds/putting-back/v1",
+    "author": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+    "takenBack": "e2bd8858cac9fecc02fa573031dd28de8056fd860faaffdfa0c253bceb139c2f",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-14T01:00:00Z",
+     "verificationMethod": "did:key:z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA#z6MktBJ8e8fCTdMhmQmTDdCC6E128dacFif6jCsei2mSevVA",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z5djutgnUYqakSMiQHdTu7jTDBJJZzm6Ps1hu8hhFc2To7J9F6wr5UG4ie6NVAGL8Y9EZSPT2ZY4m2cXQzWJeRgAF"
     }
    }
   }

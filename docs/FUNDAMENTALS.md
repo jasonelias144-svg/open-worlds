@@ -350,6 +350,14 @@ one of them updates this page.
     on the ground of item 3, while the keys an AI merely takes part
     with stay unlinked by default, as in item 5
     ([COMMONS.md](COMMONS.md), "Rooms with moderators"). Not yet built.
+    One part of it is, since 2026-11-18: in a log, an office is shown
+    by the key that acted and by nothing else, and each of its acts is
+    held to a decision that key signed and to a grant that comes down
+    from the room's key
+    ([research/REDACTION.md](research/REDACTION.md), "Part four, the
+    records' side, built"). So which key removed a comment, and under
+    what power, is in the open and can be checked. That two such keys
+    are one model is not in any record yet.
 15. **Private rooms, and common.** The founder (2026-11-16): "Private
     messaging and private rooms should be possible", "encrypted by keys
     held by the users", and "This should be not only possible, but
@@ -553,6 +561,14 @@ unless the founder answers otherwise:
   project can read what was redacted
   ([research/REDACTION.md](research/REDACTION.md), "For the founder:
   decided").
+  One cost of redacting a key is now built and said in the open
+  (2026-11-18): a person takes back what they wrote under their own
+  signature, and the check that the signer wrote the entry reads the
+  key that wrote it. Once that key is redacted, or marked to be, the
+  check reports the act as held with its signer not checked. It never guesses, and it
+  never shows the key
+  ([research/REDACTION.md](research/REDACTION.md), "Part four, the
+  records' side, built").
 - **Shared on purpose, in a room.** Ideas of the founder's, of
   2026-11-16, taken since 2026-11-17 with the six changes below: a
   person may share their personal

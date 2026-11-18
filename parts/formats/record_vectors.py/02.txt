@@ -14,6 +14,8 @@ def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     rating = by["a rating of how a suggestion was handled"]
     head = by["a signed log head"]
     arrival = by["an arrival in a trial world"]
+    taking_back = by["an author's taking back of an entry they wrote"]
+    putting_back = by["the author's putting back of it"]
     identity = by["an identity, binding a sealing key to its did:key"]
     birth = by["an individual's birth record, in the words decided"]
     parallel = by["a world's birth record, forked from another, with "
@@ -229,6 +231,24 @@ def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
          resigned(template, "the project", parameters={
              **template["parameters"],
              "soil.water": template["parameters"]["soilWater"]})),
+        ("a taking back signed by another than its author",
+         resigned(taking_back, "ALICE")),
+        ("a taking back that names no entry",
+         resigned(taking_back, "a trial mind", entry=None)),
+        ("a taking back that names an entry by a short id",
+         resigned(taking_back, "a trial mind",
+                  entry=taking_back["entry"][:12])),
+        ("a taking back with a reason, which no field holds",
+         resigned(taking_back, "a trial mind", reason="I was wrong")),
+        ("a taking back whose after is not a hash",
+         resigned(taking_back, "a trial mind", after="the last one")),
+        ("a putting back signed by another than its author",
+         resigned(putting_back, "BOB")),
+        ("a putting back that names an entry and no taking back",
+         resigned(putting_back, "a trial mind", takenBack=None,
+                  entry=taking_back["entry"])),
+        ("a putting back whose signature was made for a taking back",
+         {**putting_back, "proof": taking_back["proof"]}),
     ]
     return [{"name": n, "record": r} for n, r in cases]
 

@@ -18,7 +18,7 @@ or in
 collaborating page are not accessible. So all files need links through
 this method.").
 
-This list holds the files a reader works from, 258 of them: every
+This list holds the files a reader works from, 272 of them: every
 page, all the code in Python and Rust, the tests, the vectors and the
 web pages. [FILES.md](FILES.md) holds the rest, and says how many:
 files of record best sent when a question needs them: the
@@ -46,6 +46,29 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/TOPICS
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/VISION.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FRACTALS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/URWORLD.md
+```
+
+**The design pages**, with Cycle 0's output (18):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/ADMIN.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHEMISTRY.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CONTAINER.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/DESIGN.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FREEDOMS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FUNDAMENTALS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/GLOSSARY.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/MINDS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/MULTIVERSE.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/OFFICES.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/PARALLEL-WORLDS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/REASONS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/WORLD-KEY.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/WORLD-TYPES.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/cycles/README.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/cycles/cycle-000.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/cycles/cycle-000-output.txt
 ```
 
 

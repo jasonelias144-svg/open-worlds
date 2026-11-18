@@ -1,0 +1,175 @@
+Part of `rust/acts/src/lib.rs` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 2.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/acts/src/lib.rs/01.txt
+After this part: nothing; this is the last part.
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+/// Checks a log in the form of `world_log::apart` and its contents,
+/// then holds every act in it to its signed record, and every office to
+/// its grant. Gives a map from the hash of each entry that carries a
+/// record to its [`State`]. Refuses with the log's own reason if the log
+/// or its contents do not hold, and for the first act, in the log's
+/// order, that is not allowed.
+pub fn check(
+    log: &Value,
+    contents: &Value,
+    grants: &Value,
+    rules: &Value,
+) -> Result<BTreeMap<String, State>, Refused> {
+    let states = apart::check(log, contents)?;
+    let bad_rules = fault(Reason::Rules, None);
+    let rules = read_rules(rules).ok_or(bad_rules.clone())?;
+    let list = log.as_array().ok_or(bad_rules.clone())?;
+    let no_table = Map::new();
+    let table = list
+        .first()
+        .and_then(|first| part(first, &["data", "kept_apart"]))
+        .and_then(Value::as_object)
+        .unwrap_or(&no_table);
+    let fits = rules.authors.iter().all(|(kind, field)| {
+        table
+            .get(*kind)
+            .and_then(Value::as_array)
+            .is_some_and(|names| names.iter().any(|n| n.as_str() == Some(*field)))
+    });
+    if !fits {
+        return Err(bad_rules);
+    }
+    let grants = by_hash(grants)?;
+    let mut entries = BTreeMap::new();
+    for entry in list {
+        if let Some(hash) = text(entry, &["hash"]) {
+            entries.insert(hash, entry);
+        }
+    }
+    let room = Room {
+        entries,
+        states,
+        contents,
+        rules,
+        grants,
+    };
+
+    let mut found = BTreeMap::new();
+    let mut named: BTreeSet<&str> = BTreeSet::new();
+    let mut put_back: BTreeMap<&str, &str> = BTreeMap::new();
+    for (index, entry) in list.iter().enumerate() {
+        let at = Some(index);
+        let no = |reason| fault(reason, at);
+        let (Some(kind), Some(here)) = (text(entry, &["kind"]), text(entry, &["hash"])) else {
+            continue;
+        };
+        if !apart::OWN.contains(&kind) {
+            continue;
+        }
+        let says = |key: &str| text(entry, &["data", key]);
+        if RULED.contains(&kind) {
+            let on_kind = says("entry").and_then(|e| room.kind(e));
+            let allowed = room.rules.on.get(kind);
+            let ruled_out = on_kind.is_none_or(|k| {
+                !apart::OWN.contains(&k) && !allowed.is_some_and(|list| list.contains(&k))
+            });
+            if ruled_out {
+                return Err(no(Reason::NotOn));
+            }
+        }
+        if kind == MARK {
+            continue;
+        }
+        // The entry the act is, in the end, about: the one a person
+        // wrote. A decision on a redaction is about a field, not an
+        // entry's author.
+        let comment = match kind {
+            REMOVED | TAKEN_BACK => says("entry"),
+            RESTORED => says("incident").and_then(|i| room.says(i, "entry")),
+            PUT_BACK => says("taken_back").and_then(|t| room.says(t, "entry")),
+            _ => None,
+        };
+        let after = if kind == TAKEN_BACK {
+            comment.and_then(|c| put_back.get(c).copied())
+        } else {
+            None
+        };
+        if let (PUT_BACK, Some(comment)) = (kind, comment) {
+            put_back.insert(comment, here);
+        }
+        if act_of(kind).is_some() {
+            let decision = says("decision").ok_or(no(Reason::Twice))?;
+            if !named.insert(decision) {
+                return Err(no(Reason::Twice));
+            }
+        }
+        let carries = part(entry, &["apart"])
+            .and_then(Value::as_object)
+            .is_some_and(|kept| kept.contains_key(RECORD));
+        if !carries {
+            return Err(no(Reason::NoRecord));
+        }
+        let record = match room.held(here, RECORD) {
+            Some(record) if room.readable(here, RECORD) => record,
+            _ => {
+                let missing = room
+                    .states
+                    .get(here)
+                    .and_then(|fields| fields.get(RECORD))
+                    .is_some_and(|state| *state == apart::State::Missing);
+                found.insert(
+                    here.to_owned(),
+                    if missing {
+                        State::Missing
+                    } else {
+                        State::Redacted
+                    },
+                );
+                continue;
+            }
+        };
+        let format = if act_of(kind).is_some() {
+            DECISION
+        } else {
+            own_format(kind).ok_or(no(Reason::NotARecord))?
+        };
+        if !holds(record, format) {
+            return Err(no(Reason::NotARecord));
+        }
+        if act_of(kind).is_some() {
+            office_holds(&room, entry, record, comment, at)?;
+            found.insert(here.to_owned(), State::Held);
+            continue;
+        }
+        if kind == TAKEN_BACK {
+            if text(record, &["entry"]) != comment {
+                return Err(no(Reason::OtherEntry));
+            }
+            if text(record, &["after"]) != after {
+                return Err(no(Reason::OtherPlace));
+            }
+        } else if text(record, &["takenBack"]) != says("taken_back") {
+            return Err(no(Reason::OtherEntry));
+        }
+        let wrote = comment.map_or(Wrote::Never, |c| room.author(c));
+        let state = match wrote {
+            Wrote::Never => return Err(no(Reason::NotAuthor)),
+            Wrote::There(key) if Some(key) != record.get("author") => {
+                return Err(no(Reason::NotAuthor));
+            }
+            Wrote::There(_) => State::Held,
+            Wrote::Gone => State::Unchecked,
+        };
+        found.insert(here.to_owned(), state);
+    }
+    Ok(found)
+}
+
+/// The kinds of act the rules fix for a log in this form, in ascending
+/// order: what a grant for a room can allow.
+pub fn kinds_of_act() -> Vec<&'static str> {
+    let mut all: Vec<&'static str> = ACTS.iter().map(|(_, act)| *act).collect();
+    all.sort_unstable();
+    all
+}
+
+------------------------------------------------------------------------
+End of `rust/acts/src/lib.rs`.

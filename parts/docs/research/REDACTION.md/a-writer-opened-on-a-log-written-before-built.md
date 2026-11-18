@@ -92,6 +92,165 @@ Not done:
   already read. Reading them from where they are kept, and writing
   them back safely, is the room's (step 3c).
 
+## Part four, the records' side, built
+
+In `world/acts.py`, `rust/acts` and `vectors/acts.json`, with two new
+kinds of record in records-v1. This side holds every act in a log to
+the signed record it carries, and every office to its grant. It is the
+check a world makes when it writes an act, and that a reader can make
+again while the records are still there (decision 9).
+
+What building it settled, each the technical lead's (STATUS.md has what
+would show it wrong):
+
+- **The list of kinds of act, for a log in this form, has five:**
+  `remove-comment` and `restore-comment` (decision 7), and for a
+  redaction `redact-field`, `keep-field-public` and
+  `keep-field-redacted`. Each belongs to one kind of entry: a decision
+  record says its kind of act, and it must be the one for the entry
+  that carries it. The list is what a grant for a room can allow. No
+  other office's acts are on it yet.
+- **An act's record is in the field `record`, kept apart.** Six of the
+  form's seven own kinds carry one: the four of an office (a removal,
+  a restoring, and the two decisions on a redaction) carry a
+  `decision/v1`; a taking back and a putting back carry the author's
+  own record. An entry of one of the six that carries none is refused.
+  A mark carries none: it is made at once and decided after (decision
+  4).
+- **An office is shown in the open by its key.** The log's side takes,
+  for an office, any text that is not empty. Here that text must be
+  the `did:key` that signed the decision. A name would bind nothing:
+  one office could act under another's name. It agrees with decision
+  1, that an office's key is never redacted, and with the rule that
+  the keys which moderate are declared (FUNDAMENTALS.md, privacy, item
+  14). An office's name is for the office's own record (course step
+  3d), and a room's note can show it from there.
+- **The log shows a decision's first ground.** A `decision/v1` can
+  hold several; the one in the open is the first, and the others are
+  in the record.
+- **What a decision is on is exactly one thing:** the entry removed;
+  the removal restored, by its incident id; the mark answered. What a
+  decision drew on belongs in its `inputs`.
+- **A decision can't be dated after the entry that carries it,** by
+  its tick. It may be dated before: an office decides, and the room
+  writes it when it can.
+- **A restoring's decision supersedes the removal's,** by that
+  decision's hash, which the removal shows in the open. So this holds
+  even where the removal's record has been redacted.
+- **A removal and a restoring name the one who wrote the entry among
+  those they affect** (decision 7), where the key that wrote it is
+  still in the contents to read.
+- **A decision is carried by one entry.** No two entries of a log name
+  the same decision. Without this, a removal that was overturned on
+  appeal could be written again from the old record, by whoever
+  writes the log, as a new incident. It is checked from the open
+  fields, so redacting the first record does not free its decision to
+  be used again.
+- **The office's grant, and the grants above it.** The grant a
+  decision names must be among the grants given with the log, hold as
+  a record, be held by the office's key, allow the act, be for this
+  room, and have been in force when the decision was signed. If it
+  narrows another grant, that one is held to the same, and must be
+  held by the one who issued the grant below it; and so on up to a
+  grant that narrows nothing, which must come from the room's key
+  (decision 7: "its grant comes from the room's key"). A chain is at
+  most eight grants long. A grant counts from the second it starts,
+  and no longer at the second it ends.
+- **Only the path for the one act is checked.** That a grant claims no
+  more than the grant it narrows, for other acts, is not looked at:
+  such a claim fails where it is used, since every grant above must
+  allow the act too.
+- **The author's two kinds of record** (decision 8) are in records-v1:
+  `open-worlds/taking-back/v1` (the author, the entry, and the
+  putting back that last put that entry back, if there was one) and
+  `open-worlds/putting-back/v1` (the author, and the taking back it
+  undoes). They hold no grant, no grounds, no appeal and no reason.
+  They name no log: an entry's hash is in one log only.
+- **A taking back holds at one point of an entry's own history.** It
+  names the putting back it follows, or none the first time. So a
+  taking back can't be written into the log again after its author
+  has put the entry back. It is tied to the entry's history, and not
+  to the log's last entry as an arrival is, so that a busy room does
+  not make an author sign again.
+- **Who wrote an entry** is the key in the field the room's rules name
+  for that kind of entry. There are three cases. The key is there: the
+  signer must be that key. The key is gone, redacted or under a mark:
+  the act is reported as held with its signer not checked, since no
+  reader can check it again, and it rests on the world having checked
+  when it wrote the entry (above, "For the founder: decided"). A key
+  under a mark is not read even while a copy of the contents still
+  holds it: the mark is in the log, so every reader gets the same
+  state from the same log, whichever copy they hold; and whoever
+  writes the log can take the value out, so reading it would close
+  nothing. The entry never held a key: the act is refused.
+- **An author whose key was signed over to a new one** (left open by
+  decision 8). Only the key that wrote an entry takes it back, until
+  successions are in records-v1 (course step 8a). From then, a key
+  the writing key was signed over to counts as the same author.
+  Decided here, built there.
+- **Which kinds of entry an act may be on** is in the room's rules,
+  for a mark, a removal and a taking back. A restoring, a putting back
+  and a decision on a redaction follow what they answer. A field of
+  one of the form's own entries, such as a decision's record, can
+  always be marked: the form allows it, and the rules list only what
+  persons write.
+- **The room's rules are given with the log,** and are three things:
+  the room's `did:key`; for each kind of entry a person writes, the
+  field that holds the key that wrote it, which the log's table must
+  keep apart; and what a mark, a removal and a taking back may each
+  be on. A kind that can be taken back must name who wrote it.
+- **An act has one of four states:** held; held, with its signer not
+  checked; its record redacted; or its record missing, which is a
+  fault in whoever published the log, as a missing field is. A record
+  under a mark is not read, even while it is still in the contents.
+- **Who marked** is checked where a copy is opened. A mark carries no
+  record, and each sealed copy is signed by the office that redacted
+  and names its grant: one function holds that office to a grant to
+  redact, with no log.
+- **Twenty-four reasons for refusing,** in fixed words, the same in
+  Rust. The order of the checks is part of the check, so a log with
+  two faults is refused for the same one in both. The vectors hold 6
+  rooms that hold, with every state among them, and 61 that are
+  refused, each for one reason at one entry; every record in a
+  refused room is signed, so that only the thing named is at fault.
+  Three of them hold two faults, to fix which is met first. Rust
+  refuses each for the same reason at the same entry. Seven records
+  are held to their office's grant on their own; one held to another
+  act than its own is refused.
+
+Checked. 28 tests in Python and 9 in Rust. Each check was weakened on
+purpose, one at a time: 49 changes to the Python, all caught; 47 to
+the Rust, 46 caught, and the one that was not changes nothing a
+caller can see (a record of another kind names no office, and is
+refused for the same reason a line later). The first run of each
+found a case no test held, and both are in the vectors now: an
+author's key that is marked and not yet taken out, and a decision
+signed at the second its grant begins. The record vectors gained
+three records that hold and eight that are refused. The independent
+review (open-worlds #129) ran 600 rooms with several faults through
+both languages and found none that differed; three such rooms are
+now in the vectors. It also found that the function holding an
+office to its grant took the act on the caller's word: the act must
+now be the one the record is for.
+
+Not done:
+- **The room's steps that write an act.** A world checks an act when
+  it writes the entry; this is the check, and nothing here writes.
+  The steps that refuse to write what it does not allow are the
+  room's (step 3c).
+- **The room's key is the rules' word.** A log in this form has no
+  signature of its own until the room signs its heads (step 3c).
+- **Taking a grant back before its end.** A grant is held to be in
+  force by the time its decision says it was signed, which is the
+  signer's word. Nothing here revokes one.
+- **A decision's inputs.** That they are in the log, and that its
+  reasons are sound, is not checked.
+- **An office's name.** The log shows a key; the record that says
+  which office holds it is step 3d's.
+- **Successions** (step 8a), as above.
+- **The command line.** `world-log LOG CONTENTS` checks the form and
+  counts; it does not hold the acts to their records.
+
 ## The parts
 
 1. This plan.
@@ -111,8 +270,9 @@ Not done:
    be the writer that redacted.
 4. Removing, taking back and restoring. The log's side is built
    (above): the four kinds of entry, each entry's state, the incident
-   id, and the table of what wins. The records' side is next: the list
-   of kinds of act, the checks across records for a decision, and the
-   author's record kinds.
+   id, and the table of what wins. The records' side is built too
+   (above): the list of kinds of act, the checks across records for a
+   decision, the author's two kinds of record, and every act in a log
+   held to its record. With it, course step 3b is done.
 
 > End of `docs/research/REDACTION.md`.

@@ -404,9 +404,11 @@ write. The fitting, at step 3c, is still the technical lead's.
   afterwards, say after an appeal. The entry stays taken back until
   its author puts it back, and then shows as restored.
 
-Not built yet: who may act. Nothing checks that the office holds a
-grant, or that the one taking an entry back wrote it. That is the
-other side of part four, with the signed records. The files are the
+Not built then: who may act. Nothing checked that the office holds a
+grant, or that the one taking an entry back wrote it. That was the
+other side of part four, with the signed records; it is built since
+(the message of 2026-11-18, "who may act on a room's log", above).
+The files are the
 same three, linked in the message "the form of the log under a room
 is built", below.
 

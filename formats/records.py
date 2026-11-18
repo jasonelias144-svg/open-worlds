@@ -2,8 +2,10 @@
 record, a suggestion, a rating, and a signed log head; an arrival,
 signed by the one who enters a world (course step 3); the records an
 individual is given or keeps sealed: a world-key and a journal entry
-(sealed with formats/sealed.py); the records of who an individual and a
-world are: identity, birth records and the mind record; a world's
+(sealed with formats/sealed.py); a field that was redacted from a log,
+and an author's taking back and putting back of an entry they wrote
+(course step 3b; world/redact.py, world/acts.py); the records of who an
+individual and a world are: identity, birth records and the mind record; a world's
 template, with its dials; the project's key list; a person's links
 to their presences and their list of them (course step 3a,
 formats/persons.py); and a council's proposal and a person's vote on it
@@ -17,8 +19,9 @@ both read, schemas/records-v1.schema.json, and each is signed with
 2. its proof verifies;
 3. it was signed by the one who must sign that kind: a grant, a
    world-key, a mind record and a template by their issuer, a decision by the
-   office's key, a suggestion, a rating and a journal entry by their
-   author, a log head and a birth record (an individual's or a world's)
+   office's key, a suggestion, a rating, a journal entry, a taking back
+   and a putting back by their author, a redacted field by the office
+   that redacted it, a log head and a birth record (an individual's or a world's)
    by its world, an identity by its own key, an arrival by the
    individual who enters, a holds record, a person's list and a vote by
    the person, a held-by record by the presence, and a proposal by its
@@ -27,7 +30,9 @@ both read, schemas/records-v1.schema.json, and each is signed with
 What the schema can't say is checked where the records meet the kernel,
 at course step 4: that a grant only narrows the grant it names; that a
 decision's inputs are in the log, its office holds the grant it names,
-and that grant allows its kind of act; that a rating's author wrote the
+and that grant allows its kind of act (for the acts a room's log
+carries, world/acts.py checks this, and that the one who takes an entry
+back wrote it); that a rating's author wrote the
 suggestion it names, and its outcome is a decision that names that
 suggestion; that a world-key's issuer is a world that places paths,
 its path was placed in that world's log and walked to its end by its
@@ -74,6 +79,8 @@ KINDS: Dict[str, Tuple[str, Tuple[str, ...]]] = {
     "open-worlds/world-key/v1": ("worldKey", ("issuer",)),
     "open-worlds/journal-entry/v1": ("journalEntry", ("author",)),
     "open-worlds/redacted-field/v1": ("redactedField", ("office", "key")),
+    "open-worlds/taking-back/v1": ("takingBack", ("author",)),
+    "open-worlds/putting-back/v1": ("puttingBack", ("author",)),
     "open-worlds/identity/v1": ("identity", ("id",)),
     "open-worlds/birth/v1": ("birth", ("world",)),
     "open-worlds/world-birth/v1": ("worldBirth", ("world",)),

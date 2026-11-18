@@ -375,6 +375,25 @@ def _valid() -> List[Dict[str, Any]]:
         "tick": 0,
         "previous": _h("the entry just before the arrival's own"),
     }, "a trial mind")
+    # An author's own acts on an entry they wrote (course step 3b;
+    # docs/research/REDACTION.md, decision 8). The log they belong to
+    # is in vectors/acts.json; here they are held as records only.
+    taking_back = _signed({
+        "format": "open-worlds/taking-back/v1",
+        "author": _did("a trial mind"),
+        "entry": _h("an entry a trial mind wrote, for the vectors"),
+    }, "a trial mind")
+    putting_back = _signed({
+        "format": "open-worlds/putting-back/v1",
+        "author": _did("a trial mind"),
+        "takenBack": _h("the entry that carries the taking back"),
+    }, "a trial mind")
+    taking_back_again = _signed({
+        "format": "open-worlds/taking-back/v1",
+        "author": _did("a trial mind"),
+        "entry": _h("an entry a trial mind wrote, for the vectors"),
+        "after": _h("the entry that carries the putting back"),
+    }, "a trial mind")
     # A link and a person's list (docs/research/PERSONS.md). Here the
     # presence is a test party; persons-v1.json has presences made from a
     # seed.
@@ -425,6 +444,10 @@ def _valid() -> List[Dict[str, Any]]:
         ("a rating of how a suggestion was handled", rating),
         ("a signed log head", head),
         ("an arrival in a trial world", arrival),
+        ("an author's taking back of an entry they wrote", taking_back),
+        ("the author's putting back of it", putting_back),
+        ("a second taking back, after the putting back",
+         taking_back_again),
         ("a person's half of a link to a presence", holds),
         ("a presence's half of the same link", held_by),
         ("a person's list, its first version", person_list),
@@ -572,6 +595,8 @@ def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     rating = by["a rating of how a suggestion was handled"]
     head = by["a signed log head"]
     arrival = by["an arrival in a trial world"]
+    taking_back = by["an author's taking back of an entry they wrote"]
+    putting_back = by["the author's putting back of it"]
     identity = by["an identity, binding a sealing key to its did:key"]
     birth = by["an individual's birth record, in the words decided"]
     parallel = by["a world's birth record, forked from another, with "
@@ -787,6 +812,24 @@ def _refused(valid: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
          resigned(template, "the project", parameters={
              **template["parameters"],
              "soil.water": template["parameters"]["soilWater"]})),
+        ("a taking back signed by another than its author",
+         resigned(taking_back, "ALICE")),
+        ("a taking back that names no entry",
+         resigned(taking_back, "a trial mind", entry=None)),
+        ("a taking back that names an entry by a short id",
+         resigned(taking_back, "a trial mind",
+                  entry=taking_back["entry"][:12])),
+        ("a taking back with a reason, which no field holds",
+         resigned(taking_back, "a trial mind", reason="I was wrong")),
+        ("a taking back whose after is not a hash",
+         resigned(taking_back, "a trial mind", after="the last one")),
+        ("a putting back signed by another than its author",
+         resigned(putting_back, "BOB")),
+        ("a putting back that names an entry and no taking back",
+         resigned(putting_back, "a trial mind", takenBack=None,
+                  entry=taking_back["entry"])),
+        ("a putting back whose signature was made for a taking back",
+         {**putting_back, "proof": taking_back["proof"]}),
     ]
     return [{"name": n, "record": r} for n, r in cases]
 

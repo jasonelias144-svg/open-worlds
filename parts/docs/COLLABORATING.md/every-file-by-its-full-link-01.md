@@ -6,29 +6,6 @@
 > After this part: nothing; this is the last part.
 > Made by docs/parts.py from the file. To change it, change the file.
 
-**The design pages**, with Cycle 0's output (18):
-
-```text
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/ADMIN.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHEMISTRY.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CONTAINER.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/DESIGN.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FREEDOMS.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FUNDAMENTALS.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/GLOSSARY.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/MINDS.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/MULTIVERSE.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/OFFICES.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/PARALLEL-WORLDS.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/REASONS.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/WORLD-KEY.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/WORLD-TYPES.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/cycles/README.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/cycles/cycle-000.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/cycles/cycle-000-output.txt
-```
-
 **Research**, the look-first pages behind each step, the script one of them ran, and DeepSeek's schema beside the project's (11):
 
 ```text
@@ -45,7 +22,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/resear
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/jcs_compare.py
 ```
 
-**Keys, schemas and test vectors**, the project's public keys, the records' schemas, and the vectors code in any language checks itself against (21):
+**Keys, schemas and test vectors**, the project's public keys, the records' schemas, and the vectors code in any language checks itself against (22):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/keys/README.md
@@ -53,6 +30,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/keys/key-li
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/schemas/chemistry-made-v1.schema.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/schemas/records-v1.schema.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/README.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/acts.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/digests.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/formats/council-v1.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/formats/eddsa-jcs-2022.json
@@ -129,10 +107,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/formats/sea
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/formats/vectors.py
 ```
 
-**Python: `world`, `chem` and `minds`**, the world kernel, the chemistry, and two minds that live in the Ur-world through its doorway (17):
+**Python: `world`, `chem` and `minds`**, the world kernel, the chemistry, and two minds that live in the Ur-world through its doorway (19):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/__init__.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/acts.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/acts_vectors.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/apart.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/apart_vectors.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/core.py
@@ -175,11 +155,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/web/map/ind
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/web/plant/index.html
 ```
 
-**Tests in Python**, with the two checks for the web pages (41):
+**Tests in Python**, with the two checks for the web pages (42):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/__init__.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/fixtures/rfc8032_ed25519.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_acts.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_apart.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_chem_molecules.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_chem_rdkit.py
@@ -269,6 +250,14 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/redact/Cargo.toml
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/redact/src/lib.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/redact/tests/vectors.rs
+```
+
+**Rust: `acts`**, who may act on such a log, held to the signed records, with its tests (3):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/acts/Cargo.toml
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/acts/src/lib.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/acts/tests/vectors.rs
 ```
 
 **Rust: `ur-world`**, the Ur-world, with its examples and tests (29):

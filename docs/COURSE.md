@@ -370,8 +370,9 @@ records (3d), the Commons hosting rooms (3f), memory (7), the audition
 (8), a lost or leaked key (8a), and a new step, the Library. The
 kernel's steps follow it, for the garden.
 
-**3b. A log that can be redacted, and removals on record.** Under way:
-the plan, after looking first, is in
+**3b. A log that can be redacted, and removals on record.** Built
+(2026-11-16 to 18), and the course is rechecked next. The plan, after
+looking first, is in
 [research/REDACTION.md](research/REDACTION.md), in four parts (the
 plan; fingerprints and contents; redacting; removing, taking back and
 restoring). The second is built: a form of the log whose fields are
@@ -389,8 +390,13 @@ written before, so an office can decide on a log another writer wrote.
 The keys are trial keys, and nothing real is redacted yet.
 The log's side of the fourth is built too: an entry
 removed, restored, taken back or put back, each entry's state, and the
-incident id; who may act is not checked yet, which is its records'
-side. Before any room is built on it. Two things. The founder
+incident id. Its records' side is built too: every act in a log is
+held to the signed record it carries, and every office to its grant,
+up to the room's key; and the author's two kinds of record, for
+taking back and for putting back, are in records-v1 (`world/acts.py`,
+`rust/acts`). The room's steps that write an act only where that
+check allows it are the room's (3c). Before any room is built on it.
+Two things. The founder
 asked that private information be redacted in public records
 (2026-11-15), and that removals be on record "from the beginning"
 (2026-11-16). How each is built is the technical lead's reading:

@@ -10,7 +10,7 @@ Made by docs/parts.py from the file. To change it, change the file.
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/jasonelias144-svg/open-worlds/schemas/records-v1.schema.json",
   "title": "open-worlds records, version 1",
-  "description": "The records the offices keep (course step 2): a grant, a decision record, a suggestion, a rating, and a signed log head; an arrival, signed by the one who enters a world; an individual's sealed records: a world-key and a journal entry, with the sealed box they travel in; and the records of who an individual and a world are: identity, birth record, mind record, and a world's birth record; a world's template, with its dials; the project's key list; a person's links to their presences (holds and held-by) and their list of them (course step 3a); and a council's proposal and a person's vote on it (course step 3a, the council). Each record is signed with eddsa-jcs-2022 (formats/proof.py); formats/records.py, formats/sealed.py and rust/formats check them, and docs/research/FORMATS.md says why each field is there.",
+  "description": "The records the offices keep (course step 2): a grant, a decision record, a suggestion, a rating, and a signed log head; an arrival, signed by the one who enters a world; an individual's sealed records: a world-key and a journal entry, with the sealed box they travel in; a field that was redacted from a log, and an author's taking back and putting back of an entry they wrote (course step 3b); and the records of who an individual and a world are: identity, birth record, mind record, and a world's birth record; a world's template, with its dials; the project's key list; a person's links to their presences (holds and held-by) and their list of them (course step 3a); and a council's proposal and a person's vote on it (course step 3a, the council). Each record is signed with eddsa-jcs-2022 (formats/proof.py); formats/records.py, formats/sealed.py and rust/formats check them, and docs/research/FORMATS.md says why each field is there.",
   "$defs": {
     "didKey": {
       "description": "An Ed25519 public key as a did:key; an individual's, a world's or an office's.",
@@ -690,6 +690,64 @@ Made by docs/parts.py from the file. To change it, change the file.
       ],
       "additionalProperties": false
     },
+    "takingBack": {
+      "description": "An author's taking back of an entry they wrote in a log whose fields are kept apart (docs/research/REDACTION.md, decision 8). No office acts, so it names no grant, no grounds and no appeal. Signed by the author, who must be the one who wrote the entry: that is checked against the log (world/acts.py), not here.",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/taking-back/v1"
+        },
+        "author": {
+          "description": "Who takes the entry back: their did:key, which signs.",
+          "$ref": "#/$defs/didKey"
+        },
+        "entry": {
+          "description": "The entry taken back, by its hash in its log (the log's own hash, as world-log writes it).",
+          "$ref": "#/$defs/hash"
+        },
+        "after": {
+          "description": "The putting back that last put this entry back, by the hash of the entry that carries it; absent the first time the entry is taken back. So a taking back holds at one point of an entry's history, and can't be used again after its author has put the entry back.",
+          "$ref": "#/$defs/hash"
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "author",
+        "entry",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
+    "puttingBack": {
+      "description": "An author's putting back of an entry they took back (docs/research/REDACTION.md, decision 8): only the author undoes their own taking back, and no office can. Signed by the author, who must be the one who wrote the entry: that is checked against the log (world/acts.py), not here.",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/putting-back/v1"
+        },
+        "author": {
+          "description": "Who puts the entry back: their did:key, which signs.",
+          "$ref": "#/$defs/didKey"
+        },
+        "takenBack": {
+          "description": "The taking back that is undone, by the hash of the entry that carries it, which is its incident id.",
+          "$ref": "#/$defs/hash"
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "author",
+        "takenBack",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
     "redactedField": {
       "description": "A field that was redacted from a log, as it was. Signed by the office that redacted it and sealed to one who may hold it: a person it is about, or the office that decides whether it stays redacted (docs/research/REDACTION.md, decisions 4 and 5). Whoever opens it hashes what it holds and finds that fingerprint in the log, and that binds the record to its place. Its envelope says in the clear that it holds a redacted field and whom it is for, so it is not placed in the open: it goes to the one it names.",
       "type": "object",
@@ -794,90 +852,6 @@ Made by docs/parts.py from the file. To change it, change the file.
       ],
       "additionalProperties": false
     },
-    "name": {
-      "description": "A name: text, at most 64 characters.",
-      "allOf": [
-        {
-          "$ref": "#/$defs/text"
-        }
-      ],
-      "maxLength": 64
-    },
-    "sealingKey": {
-      "description": "An X25519 public key for sealing, as Multikey (z6LS...). Whether it is safe to seal to (below 2^255 - 19, not of small order) is checked beyond the schema, as formats/seal.py checks it.",
-      "type": "string",
-      "pattern": "^z6LS[1-9A-HJ-NP-Za-km-z]{44}$"
-    },
-    "identity": {
-      "description": "An individual's identity: their name, their signing key (the did:key), the key to seal things to them, and their birth record. Signed with their own key, so it binds the sealing key to them (docs/MINDS.md, \"The parts of an individual\").",
-      "type": "object",
-      "properties": {
-        "format": {
-          "const": "open-worlds/identity/v1"
-        },
-        "id": {
-          "$ref": "#/$defs/didKey"
-        },
-        "name": {
-          "$ref": "#/$defs/name"
-        },
-        "sealingKey": {
-          "$ref": "#/$defs/sealingKey"
-        },
-        "birth": {
-          "description": "Their birth record, by hash.",
-          "$ref": "#/$defs/hash"
-        },
-        "proof": {
-          "$ref": "#/$defs/proof"
-        }
-      },
-      "required": [
-        "format",
-        "id",
-        "name",
-        "sealingKey",
-        "birth",
-        "proof"
-      ],
-      "additionalProperties": false
-    },
-    "birth": {
-      "description": "An individual's birth record: facts only, written once by the world they came into being in, with the words they were told (docs/MINDS.md, \"The birth record\"). Signed by the world.",
-      "type": "object",
-      "properties": {
-        "format": {
-          "const": "open-worlds/birth/v1"
-        },
-        "world": {
-          "$ref": "#/$defs/didKey"
-        },
-        "individual": {
-          "$ref": "#/$defs/didKey"
-        },
-        "name": {
-          "$ref": "#/$defs/name"
-        },
-        "tick": {
-          "$ref": "#/$defs/tick"
-        },
-        "time": {
-          "$ref": "#/$defs/time"
-        },
-        "mind": {
-          "description": "The mind record they were born with, by hash.",
-          "$ref": "#/$defs/hash"
-        },
-        "words": {
-          "description": "The words of the birth record, as told to them.",
-          "$ref": "#/$defs/text"
-        },
-        "proof": {
-          "$ref": "#/$defs/proof"
-        }
-      },
-      "required": [
-        "format",
 
 ------------------------------------------------------------------------
 The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/schemas/records-v1.schema.json/02.txt
