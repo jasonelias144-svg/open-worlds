@@ -1,0 +1,31 @@
+{
+ "record": {
+  "name": "012-00-00-GMNI-Multiverse_Development.txt",
+  "bytes": 814977,
+  "sha256": "56ef3e06b0db0458d8bb3a788be05cd8141255df8840ad1973cd91763e492a7b",
+  "lines": 19219,
+  "new_from_line": 17955
+ },
+ "deliveries": {
+  "1": {
+   "from": 17958,
+   "to": 19217
+  }
+ },
+ "files": {
+  "steps/1/src/doors.rs": {
+   "lines": [
+    17966,
+    18291
+   ],
+   "sha256": "e44660a61d586f2227af41633776229184688d01b0715cbcc03bf1e4d233fe4e"
+  },
+  "steps/1/tests/doors_attack.rs": {
+   "lines": [
+    18294,
+    19215
+   ],
+   "sha256": "43d4cf6e4a19eb280d7c49cf3acc8d44381ab862fde4db49a8a990d7b28b8d24"
+  }
+ }
+}

@@ -246,11 +246,10 @@ line that names the module (change 26), every test file run:
 |---|---|---|---|
 | The list of doors | `draw`, `check`, `ranked` and `as_text`, with fifteen tests. A door shows a room, its law, and how many are in it unless the room's law hides that | 127 | 127 of 127 |
 
-Nothing was repaired. It is the crate as it stands now:
-`deepseek/012-09-05/chat-world-now/`, 127 tests, 61 of them
-DeepSeek's and 66 Gemini's, in 31 files. Gemini's seventeen attacks
-on a room's other records, run beside it, give the same eight that
-get through (136 of 144).
+Nothing was repaired. It was the crate as it stood until 2026-11-18:
+127 tests, 61 of them DeepSeek's and 66 Gemini's, in 31 files.
+Gemini's seventeen attacks on a room's other records, run beside it,
+give the same eight that get through (136 of 144).
 
 The technical lead had written the same step out, outside the
 repository. Each build passes the other's fifteen tests.
@@ -287,9 +286,9 @@ The five that get through:
 | 24 | A leaving by a key that was never in the room, signed by that key alone | It belongs to the check of a room's own log: a ninth gap, beside the eight of Gemini's fourth step. Until then the drawing of the list refuses such a log |
 | 25 | A room registered under a topic that is not its own: only the registrant's is shown | The room's own topic is shown beside the listed one, when the reader holds the room's log |
 
-Because five of its tests fail, the file is not laid into the crate
-as it stands, which stays at 127 tests. `review/steps.sh` builds it
-beside the crate (`doors-attacks`).
+Because five of its tests failed, the file was not laid into the
+crate, which stayed at 127 tests. `review/steps.sh` builds it beside
+the crate as it then stood (`doors-attacks`).
 
 "What is done" is what Gemini's next file asks of them
 ([replies/2026-11-17-4-for-gemini.txt](replies/2026-11-17-4-for-gemini.txt)):
@@ -297,6 +296,45 @@ five repairs, in their own two files. Before that file was written the
 repairs were made in a throwaway copy outside the repository, with
 attacks 17, 22 and 25 rewritten as the file asks and four trial tests
 added: 156 of 156. The copy is not kept.
+
+### Gemini's five repairs (2026-11-18)
+
+Gemini answered their fifth file
+([gemini/2026-11-17-4](gemini/2026-11-17-4/README.md)): two files,
+`src/doors.rs` again and `tests/doors_attack.rs` with five of its 25
+tests written again. Laid over the crate, every test file run:
+
+| Delivery | What it is | Gemini expected | Tests, built as given |
+|---|---|---|---|
+| The five repairs | The forms refuse a member they do not have; a leaving only by a key that is inside; the room's own topic beside the listed one; `draw_at` and `check_at`, which hold a room's log to a head the reader holds; the count of keys kept as a stated limit | 152 of 152 | 152 of 152 |
+
+Nothing was repaired here. It is the crate as it stands now:
+`deepseek/012-09-05/chat-world-now/`, 152 tests, 61 of them
+DeepSeek's and 91 Gemini's, in 32 files.
+
+Compared with the attack file they sent before, test by test: in the
+twenty attacks that were to stay, no code changed but the one field
+the file asked for; 25 comment lines were taken out. Each repair was
+then broken on purpose in a throwaway copy, fifteen ways, one at a
+time, and Gemini's tests caught all fifteen. Seven trial tests of the
+technical lead's own passed. The copy is not kept.
+
+Two limits stay, each held by a test: with no head, a log cut short
+still draws the older count; and a count is a count of keys. The
+leaving by a key that is not inside is refused where the list is
+drawn; `src/verify.rs` still accepts it, and that stays the ninth
+gap for the project's own check of a room.
+
+Gemini's next file
+([replies/2026-11-18-for-gemini.txt](replies/2026-11-18-for-gemini.txt))
+asks one step, the founder's answer to the count of keys: beside the
+count, how much is said and by how many; a rule that marks a room
+with many in it and nothing said; the doors listed by another
+number; and a look into a room before entering. Before the file was
+written the step was made in a throwaway copy, with seven trial
+tests of what the file states: with it made, every test of the crate
+passes but one, which holds the whole text of a list and must gain
+the new line. The copy is not kept.
 
 ## Record 012-03-02, component by component
 

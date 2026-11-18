@@ -422,6 +422,10 @@ one of them updates this page.
     own (item 2). Entering is the act; looking is not. Its limit:
     those in an open room can't see who reads it. They are told on
     entering that the room is on the record (item 13). Not built.
+    A sketch of it is asked of Gemini (2026-11-18): the look shows
+    each message a reader sees with who wrote it, a removed message
+    with the rule it was removed under and no author, and nothing of
+    who came or went.
 
 ## Transparency, beside privacy
 

@@ -1,10 +1,10 @@
 #!/bin/sh
 # Ours, not DeepSeek's (see ../README.md). Builds each of DeepSeek's
 # first five deliveries in record 012-09-05, exactly as DeepSeek gave
-# it, then each of Gemini's three that followed, its three on the
-# Commons, DeepSeek's next three, Gemini's fourth step and its
-# attacks on the list of doors, in a scratch folder, and runs its
-# tests. Nothing here is changed.
+# it, then each of Gemini's three that followed, their three on the
+# Commons, DeepSeek's next three, Gemini's fourth step, their
+# attacks on the list of doors and their repairs of it, in a scratch
+# folder, and runs its tests. Nothing here is changed.
 # Run it from anywhere:
 #   sh sketches/deepseek/012-09-05/review/steps.sh
 #
@@ -37,28 +37,32 @@
 #   c2            82 pass, 3 fail: the three attacks Gemini said would
 #                 get through
 #   c3            92 pass
-# Then DeepSeek's deliveries from its second file (2026-11-17):
+# Then DeepSeek's deliveries from their second file (2026-11-17):
 #   d6            does not compile: a room that branches, as given
 #   d6-repaired   103 pass (one word repaired, fix 24)
 #   d7-count      112 pass. This is d6-repaired with DeepSeek's
 #                 delivery 7, the plug-in, laid over it, and one field
 #                 added to a room's law (change 25).
 # Then Gemini's list of doors (2026-11-17):
-#   now           127 pass, the four demos run, and the plug-in's own
-#                 demonstration runs. This is d7-count with Gemini's
-#                 two files laid over it and its module named (change
-#                 26), which is the crate as it stands.
+#   doors         127 pass. This is d7-count with Gemini's two files
+#                 laid over it and the list's module named (change
+#                 26), which was the crate as it stood until
+#                 2026-11-18.
 #   d8            does not compile: the rule of one moderator's room,
 #                 cut off after three files
 # Then Gemini's fourth step (2026-11-17), beside the crate as it
-# stands:
+# stood:
 #   c4            136 pass, 8 fail: the eight attacks on a room's
 #                 other kinds of record that Gemini said would get
 #                 through
 # Then Gemini's attacks on the list of doors (2026-11-17), beside
-# the crate as it stands:
-#   doors-attacks 147 pass, 5 fail: the five of its 25 attacks that
+# the crate as it stood:
+#   doors-attacks 147 pass, 5 fail: the five of their 25 attacks that
 #                 Gemini said would get through
+# Then Gemini's repairs of those five (2026-11-18):
+#   now           152 pass, the four demos run, and the plug-in's own
+#                 demonstration runs. This is doors with Gemini's two
+#                 files laid over it, which is the crate as it stands.
 set -eu
 here=$(cd "$(dirname "$0")/.." && pwd)
 scratch=$(mktemp -d)
@@ -66,7 +70,7 @@ trap 'rm -rf "$scratch"' EXIT
 python3 "$here/review/steps.py" --aside "$scratch"
 python3 "$here/review/steps.py" --check
 python3 "$here/review/steps.py" --now "$scratch/more"
-for name in 5-repaired g1 g2 g3 g3-repaired c1 c2 c3 d6 d6-repaired d7-count d8 c4 doors-attacks; do mv "$scratch/more/$name" "$scratch/$name"; done
+for name in 5-repaired g1 g2 g3 g3-repaired c1 c2 c3 d6 d6-repaired d7-count doors d8 c4 doors-attacks; do mv "$scratch/more/$name" "$scratch/$name"; done
 mkdir "$scratch/now"
 cp -R "$here/chat-world-now" "$scratch/now/chat-world"
 status=0
@@ -137,8 +141,9 @@ check_all c3 92 0
 check d6 'could not compile `chat-world`'
 check_all d6-repaired 103 0
 check_all d7-count 112 0
-check_all now 127 0
+check_all doors 127 0
 check d8 'could not compile `chat-world`'
 check_all c4 136 8
 check_all doors-attacks 147 5
+check_all now 152 0
 exit $status

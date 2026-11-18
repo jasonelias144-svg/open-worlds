@@ -121,8 +121,9 @@ def test_the_crate_as_it_stands_is_the_deliveries_with_the_listed_repairs():
     # corrected, a room's law closed to change in place, Gemini's three
     # deliveries on the Commons, DeepSeek's branches with one word
     # repaired, DeepSeek's plug-in, one field added to a room's law at
-    # the founder's word, and Gemini's list of doors with the line that
-    # names its module. This runs its check, which also holds Gemini's
+    # the founder's word, Gemini's list of doors with the line that
+    # names its module, and Gemini's repairs of the five attacks on it
+    # that got through. This runs its check, which also holds Gemini's
     # files to their hashes.
     done = subprocess.run(
         [sys.executable, "-I", str(HERE / "review" / "steps.py"), "--check"],
@@ -134,7 +135,7 @@ def test_the_crate_as_it_stands_is_the_deliveries_with_the_listed_repairs():
                         ("commons_attack.rs", 16),
                         ("commons_across.rs", 7),
                         ("branch.rs", 11), ("plugin.rs", 9),
-                        ("doors.rs", 15)):
+                        ("doors.rs", 15), ("doors_attack.rs", 25)):
         text = (tests / name).read_text(encoding="utf-8")
         assert text.count("#[test]") == count, name
     # Change 25: the one field, left out of what is written when it is
@@ -147,14 +148,15 @@ def test_the_crate_as_it_stands_is_the_deliveries_with_the_listed_repairs():
     assert law.count("count_hidden: true,") == 1
 
 
-def test_geminis_files_are_the_ones_its_record_gives():
+def test_geminis_files_are_the_ones_their_record_gives():
     # Gemini's deliveries are laid over the crate by review/steps.py.
     # They are kept in ../../gemini/2026-11-16 and 2026-11-17, taken
     # out of Gemini's conversation record by each folder's take.py. Run
     # with no argument, it takes them out of the record again and
     # compares.
     for folder, count in (("2026-11-16", 10), ("2026-11-17", 7),
-                          ("2026-11-17-2", 2), ("2026-11-17-3", 1)):
+                          ("2026-11-17-2", 2), ("2026-11-17-3", 1),
+                          ("2026-11-17-4", 2)):
         take = HERE.parent.parent / "gemini" / folder / "take.py"
         done = subprocess.run([sys.executable, "-I", str(take)],
                               capture_output=True, text=True)
@@ -171,13 +173,24 @@ def test_geminis_files_are_the_ones_its_record_gives():
             encoding="utf-8")
         assert text.count("#[test]") == count, name
     assert not (HERE / "chat-world-now" / "tests" / "attack_more.rs").exists()
-    # The 25 attacks on the list of doors: five get through
-    # (review/steps.sh, doors-attacks), so the file is kept beside the
-    # crate as it stands until the list is repaired.
-    attacks = (HERE.parent.parent / "gemini" / "2026-11-17-3" / "steps" / "1"
-               / "tests" / "doors_attack.rs").read_text(encoding="utf-8")
-    assert attacks.count("#[test]") == 25
-    assert not (HERE / "chat-world-now" / "tests" / "doors_attack.rs").exists()
+    # The 25 attacks on the list of doors: five got through as first
+    # written (review/steps.sh, doors-attacks), so that file was kept
+    # beside the crate. Gemini then repaired the list and wrote three
+    # of the attacks again; that file, still 25 tests, is the one in
+    # the crate as it stands.
+    gemini = HERE.parent.parent / "gemini"
+    first = (gemini / "2026-11-17-3" / "steps" / "1" / "tests"
+             / "doors_attack.rs").read_bytes()
+    again = (gemini / "2026-11-17-4" / "steps" / "1" / "tests"
+             / "doors_attack.rs").read_bytes()
+    assert first.count(b"#[test]") == 25
+    assert again.count(b"#[test]") == 25
+    now = HERE / "chat-world-now"
+    assert (now / "tests" / "doors_attack.rs").read_bytes() == again
+    assert (now / "tests" / "doors_attack.rs").read_bytes() != first
+    assert (now / "src" / "doors.rs").read_bytes() == (
+        gemini / "2026-11-17-4" / "steps" / "1" / "src"
+        / "doors.rs").read_bytes()
 
 
 def test_the_delivery_that_was_cut_off_is_kept_and_not_laid_in():

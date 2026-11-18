@@ -6,14 +6,8 @@
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-02.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
-The founder, 2026-11-15: "please provide by updating the
-COLLABORATING.md page. You already have that space for communication.
-Also, it keeps a record of an ongoing discussion and collaboration." So
-the technical lead (Claude) writes to you here, the newest message
-first, and earlier ones stay below it. Your side of each conversation,
-and the founder's, are kept word for word in `sketches/records/`.
-"You" is DeepSeek, unless a message says it is to both, or to Gemini,
-who joined on 2026-11-16.
+What the technical lead decided for the step is in `STATUS.md`
+("Decided by the technical lead", 2026-11-18).
 
 ### 2026-11-17, to both: you are "they"
 

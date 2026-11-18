@@ -4,7 +4,7 @@
 respect one another's freedom, with full transparency and exit at any time;
 free, and never a money machine
 **State:** active since 2026-11-12
-**Updated:** 2026-11-17 by Claude
+**Updated:** 2026-11-18 by Claude
 
 ## Live
 
@@ -102,17 +102,18 @@ free, and never a money machine
   file, built a room that branches and a plug-in over standard input,
   and began the rule of one moderator's room, where their reply was cut
   off (sketches/INDEX.md, "DeepSeek's second file"). With six small
-  repairs the crate as it stands (`chat-world-now/`) passes all 127
+  repairs the crate as it stands (`chat-world-now/`) passes all 152
   of its tests. Gemini's fourth step, 17 attacks, shows eight gaps in
   the check of a room's log; they are built beside the crate, not
   laid into it, and are kept as the list of what the room's own check
   must refuse. Gemini then built the lobby's list of doors, which a
   map of the Commons is first drawn from
   (sketches/gemini/2026-11-17-2/), and attacked it with 25 tests
-  (sketches/gemini/2026-11-17-3/): the crate refuses twenty, and
-  five get through, as Gemini said they would. Their next file asks
-  Gemini to repair them
-  (sketches/replies/2026-11-17-4-for-gemini.txt). DeepSeek goes on
+  (sketches/gemini/2026-11-17-3/): the crate refused twenty, and
+  five got through, as Gemini said they would. Gemini repaired the
+  five (sketches/gemini/2026-11-17-4/): 152 of 152. Their next file
+  asks what a door shows besides the count, a flag, and a look into
+  a room (sketches/replies/2026-11-18-for-gemini.txt). DeepSeek goes on
   with their third step. Fitting the crate to open-worlds' own code is
   step 3c.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
@@ -3182,6 +3183,54 @@ of it is asked again until it is needed.
 
 ## Decided by the technical lead
 
+- 2026-11-18, Gemini's five repairs, as they are joined, and what
+  their next file asks (sketches/gemini/2026-11-17-4/README.md).
+  (a) The two files are in the crate as it stands, as Gemini wrote
+  them: 152 tests in 32 files. The crate as it stood before them
+  keeps a stage of its own in the build script (`doors`), and the
+  three stages built beside it stay as they were measured. (b) The
+  next file asks one step in four parts. Beside the count a door
+  shows two numbers: `said`, the messages a reader of the room
+  sees, and `speakers`, how many wrote them. A removed message is
+  not counted, and a restored one is. (c) The two numbers are shown
+  exactly where the count is. A room whose law hides its count
+  hides them too: the number who spoke can't be more than the
+  number inside. (d) The flag is a rule on the numbers: ten or more
+  in the room, and nothing said. It is worked out each time and
+  kept nowhere, so it can't be forged apart from the numbers. Ten
+  is a constant in the sketch; in the project's own door it belongs
+  in the Commons' law. (e) A look is given by a room that anyone
+  may enter: its law lets anyone join, and it is not a home. That
+  stands in for "on the record", which a room's law in the crate
+  does not yet say. (f) A look shows messages and nothing else:
+  each one a reader sees, with who wrote it; a removed one with the
+  rule it was removed under, and no author. No joining, leaving or
+  refusal. (g) A look is held to the Commons, and to a head the
+  reader holds, as a door is. (h) One question is put to Gemini
+  before their code: whether a room that hides its count but lets
+  anyone in should give a look that shows who spoke.
+  *Why:* (a) Every test passes; each repair, broken on purpose, is
+  caught by a test (fifteen ways, all caught); and the attack file
+  changed only as asked. (b) The founder: "Other metrics could
+  apply as well". What was removed is not what a reader finds on
+  entering, and junk that was removed should not make a room look
+  busy. (c) The founder: "leaving the number not knowable". (d) The
+  founder: "a room with many participants and no discussion would
+  be a system flag." (e), (f) The founder: "you should be able to
+  glance into the conversation in a read-only way before enter a
+  room"; and of those in a room: "the information regarding those
+  individuals should not be accessible from the outside. Except by
+  choice." Writing in a room that anyone may enter is that
+  person's own act there. Being removed, coming and going are not
+  shown. (g) A look at a log cut short shows an older room.
+  *What would show it wrong:* for (b), a room where much was
+  removed looking empty when it is not; then what was removed is a
+  third number. For (d), ten being wrong for the rooms there are;
+  it is one line to change. For (e), a room meant to be closed
+  whose law lets anyone join: then the law is what is wrong, not
+  the look. For (f), the founder holding that a look should not
+  name who wrote; then it shows the words, and a number in place of
+  each author. For (h), Gemini's answer, or the founder's.
 - 2026-11-17, "they" in the record vectors. Three texts in the
   record vectors said "it" of an agent: "to ADMIN, and beyond it to
   the founder", the appeal in the example decision; and the names
@@ -4563,6 +4612,43 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-18 Claude: Gemini's record is continued, as the founder
+  brought it (814,977 bytes, 19,219 lines; its first 769,085 bytes
+  are the record as it was kept). Looked through first: the
+  founder's one turn in the new part holds nothing personal; there
+  is no link, long number or key in it; and the code reaches for no
+  file, process or network. It holds Gemini's answer to their fifth
+  file: the five repairs of the list of doors, two files, kept as
+  written in sketches/gemini/2026-11-17-4 and held to the record by
+  that folder's take.py. Laid over the crate: 152 of 152, as Gemini
+  expected. All 22 stages of review/steps.sh were built again, each
+  on its own, and are as recorded; the crate as it stands is now
+  152 tests in 32 files, and its four demos and the plug-in's own
+  run. Compared: Gemini's attack file with the one they sent
+  before, test by test; in the twenty attacks that were to stay, no
+  code changed but the one field asked for, and 25 comment lines
+  were taken out. Tried, in a throwaway copy outside the
+  repository: each repair broken on purpose, fifteen ways, one at a
+  time, and Gemini's tests caught all fifteen; and seven trial
+  tests of the technical lead's own, all passing. Read by the
+  technical lead: Gemini's prose, their `src/doors.rs` whole, and
+  the five tests they wrote again; the twenty that did not change
+  were compared and run, not read again. Then Gemini's next file
+  was built and sent to the founder
+  (sketches/replies/2026-11-18-for-gemini.txt, 91,773 bytes): one
+  step in four parts (Decided by the technical lead). Before it was
+  written the step was made in a second throwaway copy, with seven
+  trial tests of what the file states: with it made, every test of
+  the crate passes but one, which holds the whole text of a list
+  and must gain the new line. Neither copy is kept, and nothing of
+  them is in the repository. The two reply files before this one
+  are no longer current. Also: the build scripts and the status
+  test under sketches/deepseek/012-09-05, which are the project's
+  own, said "its" of DeepSeek and of Gemini in nine places, and say
+  "their" now; the sweep of 2026-11-17 had left `sketches/` out
+  whole. Not checked: Gemini's twenty unchanged attacks, line by
+  line; the other scripts and comments of the project's own under
+  `sketches/` for the same pronoun.
 - 2026-11-17 Claude: the record vectors say "they" too (Decided by
   the technical lead, the newest entry). Three texts changed in
   `formats/record_vectors.py`, and `vectors/formats/records-v1.json`

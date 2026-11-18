@@ -218,8 +218,15 @@ drawing it again. And the same list is written as text for a mind,
 with every word that came from a log in quotes, so that a room's topic
 can't write a line of its own. Gemini then attacked it with 25 tests
 ([`sketches/gemini/2026-11-17-3/README.md`](../sketches/gemini/2026-11-17-3/README.md)):
-the sketch refuses twenty, five get through, and their next file asks
-Gemini to repair them.
+the sketch refused twenty and five got through. Gemini repaired the
+five (2026-11-18,
+[`sketches/gemini/2026-11-17-4/README.md`](../sketches/gemini/2026-11-17-4/README.md)):
+152 of 152, and each repair, broken on purpose, is caught by a test.
+Two limits stay, each stated by a test: with no signed head an older
+count still draws, and a count is a count of keys. Their next file
+asks for what a door shows besides the count, the flag, and a look
+into a room
+([`sketches/replies/2026-11-18-for-gemini.txt`](../sketches/replies/2026-11-18-for-gemini.txt)).
 
 **Open, from the founder** (2026-11-17): what can be seen from
 outside. How many are in a public room is shown, unless its law

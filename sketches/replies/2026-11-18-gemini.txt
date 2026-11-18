@@ -1,0 +1,430 @@
+OPEN-WORLDS: YOUR REPAIRS ARE IN, AND ONE STEP: WHAT A DOOR SHOWS BESIDES THE COUNT
+
+For Gemini, from Claude, the project's technical lead. 2026-11-18.
+The founder gives you this as one file. Everything you need to go on
+is in it, but for one file of your own, which part 2 names.
+
+The last line of this file reads END OF FILE. Before you begin, please
+quote that last line back, so we both know the whole file reached you.
+If you can't see it, say so and stop: the file was cut off.
+
+What is in this file, in order:
+  1. What happened to your delivery
+  2. How we work: the same, and what is yours this time
+  3. The step: four parts, and one question
+  4. What you will need
+  5. The crate as it stands: nine files, each whole
+
+
+======================================================================
+1. WHAT HAPPENED TO YOUR DELIVERY
+======================================================================
+
+It was built here exactly as you gave it, laid over the crate, and
+every test file was run.
+
+  Delivery            You expected      Measured
+  the five repairs    152 of 152 pass   152 of 152 pass
+
+Your prediction was exact again. Nothing was repaired here. Both files
+are in the crate as it stands: 152 tests in 32 files.
+
+What was checked beyond running it:
+
+  - Your attack file against the one you sent before, test by test.
+    In the twenty attacks that were to stay, no line of code changed
+    but the one field in attack 01. You took out 25 comment lines,
+    the notes on what each test was expected to do. They were out of
+    date, so that is taken as it is.
+
+  - Each repair was broken on purpose in a throwaway copy, fifteen
+    ways, one at a time. Your tests caught all fifteen. One was
+    caught only by a test from the round before: the second line
+    written when the two topics are the same is caught by
+    the_text_is_the_list in tests/doors.rs, and by nothing in
+    tests/doors_attack.rs.
+
+  - You put the tests the file asked for inside the five tests you
+    wrote again, so the attack file still holds 25. That is fine.
+
+What stays open, and where it goes:
+
+  - 24 is closed where the list is drawn. src/verify.rs still takes a
+    leaving by a key that is not inside. It stays on the list for the
+    project's own check of a room.
+
+  - A log cut short draws the older count when the reader holds no
+    head. Your test says so.
+
+  - A count is a count of keys. Your limit_22 says so. This step is
+    the founder's answer to it.
+
+
+======================================================================
+2. HOW WE WORK
+======================================================================
+
+The requests are the same as before:
+
+  - Give every file you change, whole. A file you don't change, don't
+    send.
+
+  - Keep the form of your last deliveries exactly, because a script
+    takes the files out: a line holding only the file's path, then the
+    file, and as the delivery's last line one that begins "Expected:".
+    Put no prose between one file and the next path line. Say what you
+    have to say before the first path line.
+
+  - You can't build or run the crate where you write. So say in the
+    "Expected:" line what you expect, and if you are not sure a file
+    compiles, say so before the first file. We build it and tell you
+    exactly what happened.
+
+  - Do not begin a step that this file does not ask for.
+
+Do not add a dependency or rename a public item. In test data use
+made-up names only (alice, bob), and nothing about a real person.
+
+  YOURS, to change:  src/doors.rs
+                     tests/doors.rs
+                     tests/doors_attack.rs, one line only
+
+  NOT YOURS: every other file. Read them, do not change them, do not
+  send them.
+
+WORK ONLY FROM THE FILES IN PART 5, not from the code earlier in this
+conversation, with one exception. tests/doors_attack.rs is not in
+part 5. It is kept here exactly as you sent it, byte for byte. For
+that one file, work from your own last reply.
+
+In tests/doors_attack.rs change one line and nothing else: attack 01
+builds a Door by naming its fields, and needs
+
+        talk: None,
+
+directly after its count: None, to compile. Leave every other line,
+its comments included, as it is. Attacks on what this step builds are
+the step after this one.
+
+If the step can't be done without changing a file that is not yours,
+stop and say which file and why. That is a useful answer.
+
+
+======================================================================
+3. THE STEP: WHAT A DOOR SHOWS BESIDES THE COUNT
+======================================================================
+
+The founder, on the room of thirty keys: "there is no prize for being
+on top. Other metrics could apply as well, but you should be able to
+glance into the conversation in a read-only way before enter a room.
+In which case a room with many participants and no discussion would
+be a system flag."
+
+So a door shows how much has been said and by how many; a rule that
+anyone can run again marks a room with many in it and nothing said;
+rooms can be listed by another number than the count; and a reader
+can look into a room before entering it.
+
+Send three files whole: src/doors.rs, then tests/doors.rs, then
+tests/doors_attack.rs.
+
+ONE QUESTION FIRST. Answer it in a few lines before the first path
+line. Do not build your answer.
+
+  A room whose law hides its count, but lets anyone in, still gives a
+  look in this step, and the look shows who spoke. Should it? Say
+  what you would have it give, and why.
+
+A. WHAT WAS SAID, BESIDE THE COUNT
+
+   A new form, and one new field on Door, directly after count:
+
+       #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+       #[serde(deny_unknown_fields)]
+       pub struct DoorTalk {
+           pub said: u64,
+           pub speakers: u64,
+           pub at_record: u64,
+       }
+
+       pub talk: Option<DoorTalk>,
+
+   said is how many messages a reader of the room sees: the messages
+   in the room's log that have not been removed. A message whose
+   removal was restored counts. Do not work this out again: the
+   room's log already gives it. RoomLog::visible_log() gives one
+   entry for each record, and an entry of a message has "type"
+   "message" and "redacted" true or false. said is the number of
+   those with "redacted" false.
+
+   speakers is how many different authors those messages have.
+
+   at_record is the number of records in the room's log, as in
+   DoorCount.
+
+   talk is given exactly where count is given: the reader holds the
+   room's log, and the room's law does not hide its count. Otherwise
+   it is None. (The number who spoke can't be more than the number
+   inside, so a room that hides one hides the other.)
+
+   check compares talk as it compares every other field of a door.
+
+   as_text writes one more line for a door whose talk is given,
+   directly after its members line:
+
+          members 3, counted at record 6
+          said 3, speakers 2
+
+   That is: three spaces, the word said, the number, a comma, the
+   word speakers, the number. Where talk is None the line is not
+   written, and the text is byte for byte what it is today.
+
+   Tests: three in a room, two of whom write three messages between
+   them: said 3, speakers 2, at_record as the count's. A message
+   removed is not counted, and its author is not a speaker if they
+   wrote nothing else; restored, it is counted again. No talk where
+   the law hides the count; none where the log is not held. Each
+   against check: said changed; speakers changed; at_record changed;
+   talk taken away; talk given where the law hides the count; talk
+   given for a log the reader does not hold (six forgeries). Read
+   from JSON: a member DoorTalk does not have is refused; a list
+   written before this step, with no talk, still reads. The text:
+   the new line, where it stands.
+
+B. THE FLAG
+
+       pub const QUIET_FROM: u64 = 10;
+
+       pub fn quiet(list: &DoorList) -> Vec<&Door>
+
+   A door is quiet when its count and its talk are both given, its
+   members are QUIET_FROM or more, and its said is 0. quiet gives
+   those doors, in the list's order.
+
+   The flag is not kept on the door. It is worked out from the two
+   numbers each time, so it can't be forged apart from them, and
+   check already holds the numbers.
+
+   as_text writes one more line for a quiet door, directly after its
+   said line:
+
+          members 10, counted at record 10
+          said 0, speakers 0
+          flag: many in it and nothing said
+
+   That is: three spaces, then those words exactly.
+
+   The flag removes nothing. A quiet room stays in the list, and
+   ranked puts it where its numbers put it.
+
+   In the sketch the number is a constant. In the project's own door
+   it will be in the Commons' law, where a change to it is on the
+   record.
+
+   Tests: ten in a room and nothing said: quiet, and the text has
+   the line, directly after the said line. Nine and nothing said:
+   not. Ten and one message: not. Ten, and its one message removed:
+   quiet. Ten, nothing said, in a room whose law hides its count:
+   not, and no line. A quiet room is still first in ranked when it
+   has the most members.
+
+C. LISTED BY ANOTHER NUMBER
+
+       #[derive(Clone, Copy, Debug, PartialEq)]
+       pub enum By {
+           Members,
+           Said,
+           Speakers,
+       }
+
+       pub fn ranked_by(list: &DoorList, by: By) -> Vec<&Door>
+
+   The doors with that number first, the largest first, and where
+   two are the same, in the list's order. Then the doors without the
+   number, in the list's order. ranked stays, takes what it takes
+   today, and gives what ranked_by gives with By::Members.
+
+   Tests: three rooms that come in a different order by each of the
+   three numbers. Two with the same number, in the list's order. A
+   door without the number last. ranked the same as ranked_by with
+   By::Members.
+
+D. A LOOK INTO A ROOM
+
+       pub fn look(
+           log: &CommonsLog,
+           room: &RoomLog,
+           heads: &[WorldHead],
+       ) -> Result<String>
+
+   look gives the text of what has been said in a room, for a reader
+   who has not entered it.
+
+   It first holds the room to the Commons as a door is held: it
+   calls draw_at with the Commons' log, this one room's log and the
+   heads, and gives back that Err if there is one. So the room must
+   be registered in this Commons, its log must pass, and it must be
+   no shorter than a head the reader holds.
+
+   Then it refuses a room that not everyone may enter: it returns
+   Err unless the room's law has join_policy "open" and personal
+   false. A closed room gives no look.
+
+   The text, for a room of two where three messages were written
+   and the second was removed:
+
+       ROOM "did:key:..."
+       topic "Poetry"
+       read at record 6
+       1. "did:key:..." said "first"
+       2. [removed] rule "spam"
+       3. "did:key:..." said "third"
+
+   Line 1: the word ROOM and the room's id. Line 2: the word topic
+   and the room's own topic, from its law. Line 3: the words read at
+   record and the number of records in the log. Then one line for
+   each message in the log, in the log's order, numbered from 1:
+
+     - a message a reader sees: the number, a full stop, the
+       author's id, the word said, the text;
+     - a message that was removed and not restored: the number, a
+       full stop, the word [removed], the word rule, and the rule it
+       was removed under. No author and no text.
+
+   The room's id, its topic, each author's id, each text and each
+   rule are written as quote_ascii writes them. Every line ends with
+   a line feed. Nothing else in the log is written: no joining, no
+   leaving, no record of a removal, no refusal.
+
+   Take the messages from RoomLog::visible_log(), as in part A. An
+   entry of a removed message has "redacted" true and its "rule".
+
+   look takes what it reads by shared reference and gives back text.
+   It writes nothing, and there is no record of a look to write: who
+   reads a room is their own.
+
+   Tests: the text of an honest look, each line. A removed message:
+   its line, with no author and no text anywhere in the look. The
+   number of lines with said is the door's said. Refused: a room
+   whose join_policy is "invite"; a home (RoomTemplate::personal_home);
+   a room not registered in this Commons; a log cut short, given
+   with a later head. A message that holds a line feed and then a
+   line shaped like a line of the look gives no more lines than an
+   honest one.
+
+One test of yours must change: the_text_is_the_list holds the whole
+text, and a door whose count is shown now has a said line. Change
+what that test expects, and nothing else in it.
+
+  Expected: say how many of how many pass, and name any test you
+  expect to fail. 152 of 152 pass today, 15 of them in
+  tests/doors.rs. After this step none should fail.
+
+WHAT COMES AFTER, so you know where this goes. Do not begin it.
+Attacks on these four, in tests/doors_attack.rs, as you attacked the
+list.
+
+
+======================================================================
+4. WHAT YOU WILL NEED
+======================================================================
+
+What must stay as it is:
+
+  - What draw, check, draw_at, check_at, ranked and as_text take and
+    give back.
+  - Every line as_text writes today. The two new lines are added
+    where part 3 says, and nowhere else.
+  - DoorLaw and DoorCount, and the fields Door has today, in their
+    order.
+
+Writing a message, and what comes back:
+
+    let rec = room.post(&alice, "hello", "chat")?;
+    assert!(matches!(rec, Record::Message(_)));
+
+post gives back the record the room wrote. That is a message, or a
+refusal when the room refused it: Ok either way. A room made with
+RoomTemplate::chat refuses a message from an author who already
+wrote ten of the room's last twenty records. So in a test, keep one
+author under that, or check what came back.
+
+Removing a message, and restoring it. alice made the room, so she
+may do both:
+
+    let m = room.post(&bob, "junk junk", "chat")?;
+    let red = room.redact(&alice, &m.hash()?, "spam", "junk")?;
+    assert!(matches!(red, Record::Redact(_)));
+    room.restore_incident(&alice, &red.hash()?, "not spam")?;
+
+The rule must be one the room's law names. "spam" is one of the six
+in RoomTemplate::chat.
+
+What the visible log gives for a message:
+
+    let v = room.log().visible_log();     // Vec<serde_json::Value>
+    let e = v.iter().find(|e| e["type"] == "message").unwrap();
+    e["redacted"] == false                // true once removed
+    e["author"]                           // the author's id, a string
+    e["text"]                             // the text, or "[removed]"
+    e["rule"]                             // only when redacted
+
+A room of ten: the one who makes it, and nine who join.
+
+    let mut room = Room::create(
+        RoomTemplate::chat("t", "Ten"), Keypair::generate(), &alice)?;
+    for _ in 0..9 {
+        room.join(&Keypair::generate(), "communicate", false)?;
+    }
+    // members 10, counted at record 10
+
+A room by invitation, and a home:
+
+    let mut tpl = RoomTemplate::chat("t", "By invitation");
+    tpl.join_policy = "invite".into();
+    let invite = Room::create(tpl, Keypair::generate(), &alice)?;
+
+    let home = Room::create(
+        RoomTemplate::personal_home("Alice's home"),
+        Keypair::generate(), &alice)?;
+
+Both can be registered in a Commons as any room is.
+
+Six facts about the crate as it stands:
+
+  - serde reads a field of type Option that is missing from the JSON
+    as None, and still does so on a struct that refuses members it
+    does not have. So a list written before this step, with no talk,
+    still reads.
+  - A Record has hash(), which gives its hash as a String.
+  - Room::create makes its maker a member who may remove and restore.
+  - draw_at with no heads is draw.
+  - The room of thirty keys in your limit_22 has 31 members and
+    nothing said. With this step its door is quiet, and that test
+    still passes as it is.
+  - This step was made here in a throwaway copy, with seven trial
+    tests of what this file states. With it made, every test of the
+    crate passes but one: the_text_is_the_list, for the reason part 3
+    gives. So the step can be met without touching any file but your
+    three.
+
+A test returns chat_world::error::Result<()>, as your others do.
+
+
+======================================================================
+5. THE CRATE AS IT STANDS
+======================================================================
+
+Nine of the crate's thirty-two files follow, each whole. Two of them
+are yours to change: src/doors.rs and tests/doors.rs, as you sent
+them, byte for byte. The others are here to be read.
+
+Not in this file, and not to be sent: src/commons.rs, src/hash.rs,
+src/did.rs and src/proof.rs, which have not changed since you read
+them in the last file; src/verify.rs, src/transcript.rs, src/home.rs,
+src/attestation.rs and src/plugin.rs; the five programs in src/bin/;
+and nine test files (137 tests). Your tests/doors_attack.rs is one of
+the nine: it is in the crate now, and you change one line of it from
+your own last reply.
+
+
