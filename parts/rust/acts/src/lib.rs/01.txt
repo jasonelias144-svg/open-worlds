@@ -48,8 +48,11 @@ Made by docs/parts.py from the file. To change it, change the file.
 //!   that entry back, if there was one; a putting back names the taking
 //!   back it undoes. The signer must be the one who wrote the entry: the
 //!   key in the field the rules name for that kind of entry. If that key
-//!   is no longer in the contents, the act is reported as held with its
-//!   signer not checked; if the entry never held one, it is refused.
+//!   is gone, redacted or under a mark, the act is reported as held with
+//!   its signer not checked; if the entry never held one, it is refused.
+//!   A key under a mark is not read even while a copy of the contents
+//!   still holds it: the mark is in the log, and every reader is to get
+//!   the same state from the same log, whichever copy they hold.
 //! - **A decision is carried by one entry.** No two entries of a log
 //!   name the same decision.
 //! - **Which kinds of entry an act may be on** is for the room's rules.
@@ -169,7 +172,7 @@ pub enum Reason {
     NotARecord,
     /// A decision is not the one its entry names.
     OtherHash,
-    /// A decision is of another kind of act than its entry.
+    /// A record is for another kind of act than the one it is held to.
     OtherAct,
     /// A record is on another thing than its entry acts on.
     OtherEntry,
@@ -248,7 +251,7 @@ impl Reason {
             Reason::NoRecord => "an act carries no record",
             Reason::NotARecord => "an act's record does not hold, or is of another kind",
             Reason::OtherHash => "a decision is not the one its entry names",
-            Reason::OtherAct => "a decision is of another kind of act than its entry",
+            Reason::OtherAct => "a record is for another kind of act than the one it is held to",
             Reason::OtherEntry => "a record is on another thing than its entry acts on",
             Reason::OtherOffice => "a decision's office is not the one its entry shows",
             Reason::OtherGround => "a decision's first ground is not the one its entry shows",
@@ -482,6 +485,10 @@ fn may(
         if text(grant, &["within"]) != Some(room) {
             return Err(fault(Reason::Elsewhere, at));
         }
+        // Times are compared as text. records-v1 fixes a time to UTC, to
+        // the second (`$defs/time`), so the order of the text is the
+        // order of time; a schema that allowed fractions or offsets
+        // would break this.
         let begun = text(grant, &["validFrom"]).is_some_and(|from| from <= signed);
         let ended = text(grant, &["validUntil"]).is_some_and(|until| signed >= until);
         if !begun || ended {
@@ -502,14 +509,24 @@ fn may(
 
 /// Holds the office that signed `record` to its grant, for `act`: a
 /// decision, or a redacted field's record, whose act is the one
-/// [`ACTS`] gives for a mark. The record must hold as a record. No log
-/// is read, so a refusal names no place.
+/// [`ACTS`] gives for a mark. The record must hold as a record, and
+/// `act` must be the act it is for: a decision's own kind of act, or
+/// the act for a mark. No log is read, so a refusal names no place.
 pub fn office_may(record: &Value, act: &str, grants: &Value, rules: &Value) -> Result<(), Refused> {
     let rules = read_rules(rules).ok_or(fault(Reason::Rules, None))?;
     let grants = by_hash(grants)?;
     let held = [DECISION, COPY].into_iter().any(|kind| holds(record, kind));
     if !held {
         return Err(fault(Reason::NotARecord, None));
+    }
+    // The act must be the one the record is for.
+    let claimed = if text(record, &["format"]) == Some(DECISION) {
+        text(record, &["act", "kind"])
+    } else {
+        act_of(MARK)
+    };
+    if claimed != Some(act) {
+        return Err(fault(Reason::OtherAct, None));
     }
     may(record, act, &grants, rules.room, None)
 }
@@ -534,6 +551,8 @@ struct Room<'a> {
 }
 
 impl<'a> Room<'a> {
+    /// A field under a mark is not read, even while a copy of the
+    /// contents still holds it: the state comes from the log alone.
     fn readable(&self, entry: &str, field: &str) -> bool {
         self.states
             .get(entry)

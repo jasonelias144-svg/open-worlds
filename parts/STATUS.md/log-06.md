@@ -18,9 +18,9 @@
   every office to its grant, up to the room's key; two kinds of
   record in records-v1, an author's taking back and putting back (22
   kinds of record now, and 36 definitions in the schema); and
-  `vectors/acts.json`, with 6 rooms that hold, 58 that are refused,
-  each for one of 24 reasons at one entry, and 6 records held to
-  their office's grant on their own. The record vectors hold 29
+  `vectors/acts.json`, with 6 rooms that hold, 61 that are refused,
+  each for one of 24 reasons at one entry (three with two faults),
+  and 7 records held to their office's grant on their own. The record vectors hold 29
   records that hold and 94 that are refused (26 and 86 before).
   Checked: 857 tests in Python (829 before; 3 skipped, as before),
   under Python 3.12; 247 in Rust (238 before), with fmt and clippy
@@ -31,7 +31,12 @@
   nothing a caller can see. The first run of each found a case no
   test held, and both are in the vectors now: an author's key that
   is marked and still in the contents, and a decision signed at the
-  second its grant begins. Found on the way: COLLABORATING.md said
+  second its grant begins. The independent review found nothing
+  blocking; from its four other points, three rooms with two faults
+  went into the vectors, an office is now held only to the act its
+  record is for, the comparison of times as text says why it holds,
+  and (k) now says, as the code does, that a key under a mark is not
+  read. Found on the way: COLLABORATING.md said
   its list held 258 files when it held 265; with this change's seven
   it holds 272, and says so. Not done: the room's steps that write
   an act only where this check allows it (step 3c); taking a grant

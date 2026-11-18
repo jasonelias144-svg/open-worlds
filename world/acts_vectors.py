@@ -715,6 +715,25 @@ def refused() -> List[dict]:
     _take_back(room, 6, bare, _taking(ALICE, bare))
     add("a taking back of an entry that names no one who wrote it",
         room, acts.NOT_AUTHOR)
+
+    # Two faults in one room: the reason is the one met first in the
+    # check's order, and Rust must meet the same one.
+    room, h = _base()
+    _remove(room, 5, h[1], _decision(MODERATOR, g["moderator"],
+                                     "remove-comment", h[4], 5, [BOB]))
+    add("two faults in one act: a removal of an arrival, whose decision "
+        "is on another entry", room, acts.NOT_ON)
+    room, h, record = removal(tick=7, created="2026-11-17T12:00:00Z")
+    _remove(room, 5, h[4], record)
+    add("two faults in one act: a removal decided after its entry, by an "
+        "office whose grant was not yet in force", room, acts.LATER)
+    room, h = _base()
+    _take_back(room, 5, h[3], _taking(BOB, h[3]))
+    _remove(room, 6, h[4], _decision(APPRENTICE, g["moderator"],
+                                     "remove-comment", h[4], 6, [BOB]))
+    add("two faulty acts: a taking back signed by another, then a "
+        "removal by an office that does not hold the grant it names",
+        room, acts.NOT_AUTHOR)
     return cases
 
 
@@ -748,8 +767,10 @@ def offices() -> List[dict]:
          acts.NOT_ALLOWED),
         ("a decision to remove, by an office that may", decision,
          "remove-comment", None),
-        ("a decision to remove, held to a grant to restore", decision,
-         "restore-comment", acts.NOT_ALLOWED),
+        ("a decision to remove, held to restoring", decision,
+         "restore-comment", acts.OTHER_ACT),
+        ("a redacted field's copy, held to removing", copy_,
+         "remove-comment", acts.OTHER_ACT),
         ("a grant, which names no office", g["moderator"],
          "remove-comment", acts.NOT_A_RECORD),
         ("a redacted field's copy changed after it was signed",

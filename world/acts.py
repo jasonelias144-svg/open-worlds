@@ -38,9 +38,13 @@ act in a log to its record:
   the putting back that last put that entry back, if there was one; a
   putting back names the taking back it undoes. The signer must be the
   one who wrote the entry: the key in the field the rules name for that
-  kind of entry. If that key is no longer in the contents, the act is
-  reported as held with its signer not checked, since no reader can
-  check it again; if the entry never held one, the act is refused.
+  kind of entry. If that key is gone, redacted or under a mark, the
+  act is reported as held with its signer not checked, since no
+  reader can check it again; if the entry never held one, the act is
+  refused. A key under a mark is not read even while a copy of the
+  contents still holds it: the mark is in the log, and every reader
+  is to get the same state from the same log, whichever copy of the
+  contents they hold.
 - **A decision is carried by one entry.** No two entries of a log name
   the same decision. So a removal that was restored can't be written a
   second time from the old record: a new removal needs a new decision.
@@ -149,7 +153,7 @@ TWICE = "a decision is named by two entries"
 NO_RECORD = "an act carries no record"
 NOT_A_RECORD = "an act's record does not hold, or is of another kind"
 OTHER_HASH = "a decision is not the one its entry names"
-OTHER_ACT = "a decision is of another kind of act than its entry"
+OTHER_ACT = "a record is for another kind of act than the one it is held to"
 OTHER_ENTRY = "a record is on another thing than its entry acts on"
 OTHER_OFFICE = "a decision's office is not the one its entry shows"
 OTHER_GROUND = "a decision's first ground is not the one its entry shows"
@@ -177,6 +181,8 @@ REASONS = (RULES, NOT_ON, TWICE, NO_RECORD, NOT_A_RECORD, OTHER_HASH,
            TOO_DEEP, OTHER_PLACE, NOT_AUTHOR)
 
 _DID = re.compile(r"did:key:z6Mk[1-9A-HJ-NP-Za-km-z]{44}")
+# A field under a mark is not read, even while a copy of the contents
+# still holds it: the state comes from the log alone.
 _READABLE = (apart.PRESENT, apart.KEPT_PUBLIC)
 
 
@@ -268,6 +274,10 @@ def _may(office: Dict[str, str], act: str, at: str, grants: Dict[str, Any],
             raise ActError(NOT_ALLOWED, where)
         if grant["within"] != room:
             raise ActError(ELSEWHERE, where)
+        # Times are compared as text. records-v1 fixes a time to UTC,
+        # to the second (`$defs/time`), so the order of the text is the
+        # order of time; a schema that allowed fractions or offsets
+        # would break this.
         if not (grant["validFrom"] <= at
                 and ("validUntil" not in grant
                      or at < grant["validUntil"])):
@@ -283,8 +293,10 @@ def _may(office: Dict[str, str], act: str, at: str, grants: Dict[str, Any],
 def office_may(record: Any, act: str, grants: Any, rules: Any) -> None:
     """Holds the office that signed `record` to its grant, for `act`:
     a decision, or a redacted field's record, whose act is
-    `ACTS[MARK]`. The record must hold as a record. Raises `ActError`
-    with the reason; `where` is nothing, since no log is read."""
+    `ACTS[MARK]`. The record must hold as a record, and `act` must be
+    the act it is for: a decision's own kind of act, or `ACTS[MARK]`.
+    Raises `ActError` with the reason; `where` is nothing, since no log
+    is read."""
     if not rules_ok(rules):
         raise ActError(RULES)
     by_hash = _by_hash(grants)
@@ -292,6 +304,10 @@ def office_may(record: Any, act: str, grants: Any, rules: Any) -> None:
             or record.get("format") not in (DECISION, COPY)
             or not _holds(record, record["format"])):
         raise ActError(NOT_A_RECORD)
+    claimed = (record["act"]["kind"] if record["format"] == DECISION
+               else ACTS[MARK])
+    if act != claimed:
+        raise ActError(OTHER_ACT)
     _may(record["office"], act, record["proof"]["created"], by_hash,
          rules["room"], None)
 

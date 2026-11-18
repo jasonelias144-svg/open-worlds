@@ -564,8 +564,8 @@ unless the founder answers otherwise:
   One cost of redacting a key is now built and said in the open
   (2026-11-18): a person takes back what they wrote under their own
   signature, and the check that the signer wrote the entry reads the
-  key that wrote it. Once that key is redacted, the check reports the
-  act as held with its signer not checked. It never guesses, and it
+  key that wrote it. Once that key is redacted, or marked to be, the
+  check reports the act as held with its signer not checked. It never guesses, and it
   never shows the key
   ([research/REDACTION.md](research/REDACTION.md), "Part four, the
   records' side, built").

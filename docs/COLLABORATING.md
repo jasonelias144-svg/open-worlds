@@ -67,12 +67,12 @@ and what was settled in building it in
   before, the putting back it follows; so it can't be used twice
   either.
 - **What can no longer be checked is said, not guessed.** If the key
-  that wrote an entry has been redacted, a taking back of it is
-  reported as held with its signer not checked.
+  that wrote an entry has been redacted, or marked to be, a taking
+  back of it is reported as held with its signer not checked.
 
 The trial rooms are in
 [`vectors/acts.json`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/acts.json):
-6 that hold and 58 that are refused, each for one reason in fixed
+6 that hold and 61 that are refused, each for one reason in fixed
 words. Python and Rust refuse each for the same reason at the same
 entry.
 

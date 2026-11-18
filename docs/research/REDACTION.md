@@ -984,8 +984,12 @@ would show it wrong):
   signer must be that key. The key is gone, redacted or under a mark:
   the act is reported as held with its signer not checked, since no
   reader can check it again, and it rests on the world having checked
-  when it wrote the entry (above, "For the founder: decided"). The
-  entry never held a key: the act is refused.
+  when it wrote the entry (above, "For the founder: decided"). A key
+  under a mark is not read even while a copy of the contents still
+  holds it: the mark is in the log, so every reader gets the same
+  state from the same log, whichever copy they hold; and whoever
+  writes the log can take the value out, so reading it would close
+  nothing. The entry never held a key: the act is refused.
 - **An author whose key was signed over to a new one** (left open by
   decision 8). Only the key that wrote an entry takes it back, until
   successions are in records-v1 (course step 8a). From then, a key
@@ -1013,11 +1017,13 @@ would show it wrong):
 - **Twenty-four reasons for refusing,** in fixed words, the same in
   Rust. The order of the checks is part of the check, so a log with
   two faults is refused for the same one in both. The vectors hold 6
-  rooms that hold, with every state among them, and 58 that are
+  rooms that hold, with every state among them, and 61 that are
   refused, each for one reason at one entry; every record in a
   refused room is signed, so that only the thing named is at fault.
-  Rust refuses each for the same reason at the same entry. Six
-  records are held to their office's grant on their own.
+  Three of them hold two faults, to fix which is met first. Rust
+  refuses each for the same reason at the same entry. Seven records
+  are held to their office's grant on their own; one held to another
+  act than its own is refused.
 
 Checked. 28 tests in Python and 9 in Rust. Each check was weakened on
 purpose, one at a time: 49 changes to the Python, all caught; 47 to
@@ -1027,7 +1033,12 @@ refused for the same reason a line later). The first run of each
 found a case no test held, and both are in the vectors now: an
 author's key that is marked and not yet taken out, and a decision
 signed at the second its grant begins. The record vectors gained
-three records that hold and eight that are refused.
+three records that hold and eight that are refused. The independent
+review (open-worlds #129) ran 600 rooms with several faults through
+both languages and found none that differed; three such rooms are
+now in the vectors. It also found that the function holding an
+office to its grant took the act on the caller's word: the act must
+now be the one the record is for.
 
 Not done:
 - **The room's steps that write an act.** A world checks an act when

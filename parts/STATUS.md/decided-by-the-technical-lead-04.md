@@ -30,8 +30,10 @@
   `putting-back/v1`, name no log; a taking back names the putting
   back it follows, if any, and not the log's last entry. (k) Who
   wrote an entry is the key in the field the room's rules name. If
-  that key is gone, the act is reported as held with its signer not
-  checked; if the entry never held one, the act is refused. (l) Until
+  that key is gone, redacted or under a mark, the act is reported as
+  held with its signer not checked, even while a copy of the
+  contents still holds the marked key; if the entry never held one,
+  the act is refused. (l) Until
   successions are in records-v1 (step 8a), only the key that wrote
   an entry takes it back. (m) Which kinds of entry a mark, a removal
   and a taking back may be on is in the room's rules, which are
@@ -63,8 +65,14 @@
   with private details of the action not included", and the cost
   the plan named when the key that acted was kept apart: once it is
   redacted, no reader can check again that an act was that key's.
-  The check says so instead of guessing. (l) A succession record
-  has to be one both languages read; it is step 8a's. (n) What can
+  The check says so instead of guessing. A key under a mark is not
+  read, so that every reader gets the same state from the same log:
+  the mark is in the log, while whether a value marked for taking
+  out is still in a reader's copy is not; and whoever writes the log
+  can take the value out, so reading it would close nothing (the
+  independent review of open-worlds #129 asked which). (l) A
+  succession record has to be one both languages read; it is step
+  8a's. (n) What can
   no longer be read is not the fault of whoever acted.
   *What would show it wrong:* for (b), a room whose note must show
   an office's name with no office record to read it from; then step

@@ -3208,8 +3208,10 @@ of it is asked again until it is needed.
   `putting-back/v1`, name no log; a taking back names the putting
   back it follows, if any, and not the log's last entry. (k) Who
   wrote an entry is the key in the field the room's rules name. If
-  that key is gone, the act is reported as held with its signer not
-  checked; if the entry never held one, the act is refused. (l) Until
+  that key is gone, redacted or under a mark, the act is reported as
+  held with its signer not checked, even while a copy of the
+  contents still holds the marked key; if the entry never held one,
+  the act is refused. (l) Until
   successions are in records-v1 (step 8a), only the key that wrote
   an entry takes it back. (m) Which kinds of entry a mark, a removal
   and a taking back may be on is in the room's rules, which are
@@ -3241,8 +3243,14 @@ of it is asked again until it is needed.
   with private details of the action not included", and the cost
   the plan named when the key that acted was kept apart: once it is
   redacted, no reader can check again that an act was that key's.
-  The check says so instead of guessing. (l) A succession record
-  has to be one both languages read; it is step 8a's. (n) What can
+  The check says so instead of guessing. A key under a mark is not
+  read, so that every reader gets the same state from the same log:
+  the mark is in the log, while whether a value marked for taking
+  out is still in a reader's copy is not; and whoever writes the log
+  can take the value out, so reading it would close nothing (the
+  independent review of open-worlds #129 asked which). (l) A
+  succession record has to be one both languages read; it is step
+  8a's. (n) What can
   no longer be read is not the fault of whoever acted.
   *What would show it wrong:* for (b), a room whose note must show
   an office's name with no office record to read it from; then step
@@ -4702,9 +4710,9 @@ it was wrong. Questions of what the project is for stay with the founder.
   every office to its grant, up to the room's key; two kinds of
   record in records-v1, an author's taking back and putting back (22
   kinds of record now, and 36 definitions in the schema); and
-  `vectors/acts.json`, with 6 rooms that hold, 58 that are refused,
-  each for one of 24 reasons at one entry, and 6 records held to
-  their office's grant on their own. The record vectors hold 29
+  `vectors/acts.json`, with 6 rooms that hold, 61 that are refused,
+  each for one of 24 reasons at one entry (three with two faults),
+  and 7 records held to their office's grant on their own. The record vectors hold 29
   records that hold and 94 that are refused (26 and 86 before).
   Checked: 857 tests in Python (829 before; 3 skipped, as before),
   under Python 3.12; 247 in Rust (238 before), with fmt and clippy
@@ -4715,7 +4723,12 @@ it was wrong. Questions of what the project is for stay with the founder.
   nothing a caller can see. The first run of each found a case no
   test held, and both are in the vectors now: an author's key that
   is marked and still in the contents, and a decision signed at the
-  second its grant begins. Found on the way: COLLABORATING.md said
+  second its grant begins. The independent review found nothing
+  blocking; from its four other points, three rooms with two faults
+  went into the vectors, an office is now held only to the act its
+  record is for, the comparison of times as text says why it holds,
+  and (k) now says, as the code does, that a key under a mark is not
+  read. Found on the way: COLLABORATING.md said
   its list held 258 files when it held 265; with this change's seven
   it holds 272, and says so. Not done: the room's steps that write
   an act only where this check allows it (step 3c); taking a grant

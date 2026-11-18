@@ -31,7 +31,7 @@
   "an act carries no record",
   "an act's record does not hold, or is of another kind",
   "a decision is not the one its entry names",
-  "a decision is of another kind of act than its entry",
+  "a record is for another kind of act than the one it is held to",
   "a record is on another thing than its entry acts on",
   "a decision's office is not the one its entry shows",
   "a decision's first ground is not the one its entry shows",
@@ -7829,7 +7829,7 @@
      ]
     }
    },
-   "reason": "a decision is of another kind of act than its entry",
+   "reason": "a record is for another kind of act than the one it is held to",
    "where": 7
   },
   {
@@ -8120,7 +8120,7 @@
      ]
     }
    },
-   "reason": "a decision is of another kind of act than its entry",
+   "reason": "a record is for another kind of act than the one it is held to",
    "where": 8
   },
   {
@@ -18977,6 +18977,832 @@
    },
    "reason": "a record is not signed by the one who wrote the entry",
    "where": 8
+  },
+  {
+   "name": "two faults in one act: a removal of an arrival, whose decision is on another entry",
+   "log": [
+    {
+     "tick": 0,
+     "kind": "world_created",
+     "agent": null,
+     "data": {
+      "rules_version": "vectors-acts-1",
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "entry_put_back": [
+        "record"
+       ],
+       "entry_removed": [
+        "record"
+       ],
+       "entry_restored": [
+        "record"
+       ],
+       "entry_taken_back": [
+        "record"
+       ],
+       "field_kept_public": [
+        "reason",
+        "record"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "field_stays_redacted": [
+        "reason",
+        "record"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ]
+      }
+     },
+     "apart": {},
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "hash": "375ceeb11d274b8de622333093185db9dcf952e4c9e56999c422ced176bb7e34"
+    },
+    {
+     "tick": 0,
+     "kind": "entered",
+     "agent": null,
+     "data": {},
+     "apart": {
+      "key": "e94440ec26682527fe3e17e7ee06616f404d26641911d15dcce73e9667593ffb",
+      "name": "4b18f34129246be7c13e709f54271a210a5b1ab4b080ee0de8382122453d3fb0"
+     },
+     "prev": "375ceeb11d274b8de622333093185db9dcf952e4c9e56999c422ced176bb7e34",
+     "hash": "9a557aa9d03cdc0893209e191e758fabedef7aed3fbed813cd7791bf15cd15c6"
+    },
+    {
+     "tick": 0,
+     "kind": "entered",
+     "agent": null,
+     "data": {},
+     "apart": {
+      "key": "a4760e7b2d3669df1647838a708529b1ea43b9b4cab30bae10cb1358d8b43792",
+      "name": "9487cb885092808b2a1263c7246af5fc5934c9b6625910d972532f45bb72770a"
+     },
+     "prev": "9a557aa9d03cdc0893209e191e758fabedef7aed3fbed813cd7791bf15cd15c6",
+     "hash": "6bffdad03b9b646f499605250c0a2546130ce68e77e8ededc12d9760d0233f5b"
+    },
+    {
+     "tick": 1,
+     "kind": "said",
+     "agent": null,
+     "data": {},
+     "apart": {
+      "key": "dc4a4d4b7b57c2a987bdbe857a18a37c7a67e786ad7156b7cb6edd555c5f3b05",
+      "text": "97727365c75b6496fde53feff4aba788d2861b13355fac1bfa5719dae8ff2e94",
+      "time": "fb1125e6461850bc2a729ea91dcde652349fb60460610b5a7569b585276552c3"
+     },
+     "prev": "6bffdad03b9b646f499605250c0a2546130ce68e77e8ededc12d9760d0233f5b",
+     "hash": "e930a5391aa27d941b8553b90e5e5855c9302605416999c3c56cd4afadda20f2"
+    },
+    {
+     "tick": 2,
+     "kind": "said",
+     "agent": null,
+     "data": {},
+     "apart": {
+      "key": "8f230e9ce4bd527a08cde7280957ebd4960b38ed95392ea2092205a79f92dfdf",
+      "text": "cce7076cce620b095130ad6a9e83252eced1eb0c7f6656209f1e3b6833477145",
+      "time": "92eaf72229b81ff58e14d7d8b889b2a86760d260299e3fe9284e4d8ac8ca6c55"
+     },
+     "prev": "e930a5391aa27d941b8553b90e5e5855c9302605416999c3c56cd4afadda20f2",
+     "hash": "b7b6a25e9afd9c8397d9404e3bf5229aa0f0acee29db82f22dc5125a333be355"
+    },
+    {
+     "tick": 3,
+     "kind": "said",
+     "agent": null,
+     "data": {},
+     "apart": {
+      "key": "16a9f0b8c56707416f6c3d564f01529d47c54bb71e20af414710f30b90678859",
+      "text": "dceed6577394d84c10cf295d35e85e2e1143ebdcaf6e18679ecf42d94c75826d",
+      "time": "65ece4c5cfd535ad061dcc667d3d932783cbf03c550af4c8f06494b98ed499d1"
+     },
+     "prev": "b7b6a25e9afd9c8397d9404e3bf5229aa0f0acee29db82f22dc5125a333be355",
+     "hash": "cd8de377aa3fd5814c092ff15b9d326c45e63c589fc4c7a9bb85f04e3ad1b6a7"
+    },
+    {
+     "tick": 4,
+     "kind": "said",
+     "agent": null,
+     "data": {},
+     "apart": {
+      "key": "ff78d4ed78b063acd667c94422b4e2680617ed2161987ebbc470fd33a81cda43",
+      "text": "2af090e7956f3ed6fd40b94ab0a1947b73da5aad726ae01a9d28cff30164ac26",
+      "time": "1e7d529201e962507c6e58d9434d05fb8898409ac797797a6c51a80c147076c0"
+     },
+     "prev": "cd8de377aa3fd5814c092ff15b9d326c45e63c589fc4c7a9bb85f04e3ad1b6a7",
+     "hash": "011aab2a571f4497ae2116aae3f9917ea620f8ab801d81f0493b87a171cb0d01"
+    },
+    {
+     "tick": 5,
+     "kind": "entry_removed",
+     "agent": null,
+     "data": {
+      "entry": "9a557aa9d03cdc0893209e191e758fabedef7aed3fbed813cd7791bf15cd15c6",
+      "office": "did:key:z6Mkg1uJUgxSL5FBGTv5eXyRr4NyESscgD5ZbJyuEL1DqR4W",
+      "ground": {
+       "kind": "law",
+       "ref": "trial room law, part 3"
+      },
+      "decision": "da800d71f8580caafc4123148e1d7ef6de350502b19a8c11d3ef5b6d68d3aad9"
+     },
+     "apart": {
+      "record": "592999a91c29e274d1e702f100570079941d631150edb3ee67989e056c28622f"
+     },
+     "prev": "011aab2a571f4497ae2116aae3f9917ea620f8ab801d81f0493b87a171cb0d01",
+     "hash": "73660686b5a6a081dd2d14d453cb713cd09f4ff103e3eb6e1e68c181efb42b49"
+    }
+   ],
+   "contents": {
+    "9a557aa9d03cdc0893209e191e758fabedef7aed3fbed813cd7791bf15cd15c6": {
+     "key": [
+      "4c81de58866b150007314c561dd5a71a",
+      "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c"
+     ],
+     "name": [
+      "42f392f40e2fa5f71c7b5ca498fcebb6",
+      "ada"
+     ]
+    },
+    "6bffdad03b9b646f499605250c0a2546130ce68e77e8ededc12d9760d0233f5b": {
+     "key": [
+      "9f2290454fe2cc462a47997b2e738d87",
+      "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+     ],
+     "name": [
+      "b389910382fff94cb0fb20a2af11aebe",
+      "bo"
+     ]
+    },
+    "e930a5391aa27d941b8553b90e5e5855c9302605416999c3c56cd4afadda20f2": {
+     "key": [
+      "e4726a8655824dea87d0d4b8020367be",
+      "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c"
+     ],
+     "text": [
+      "e928a52464d9b02a00517c283dbeb3c7",
+      "hello, room"
+     ],
+     "time": [
+      "4db750998119dffbd303862f817812d9",
+      1794787200
+     ]
+    },
+    "b7b6a25e9afd9c8397d9404e3bf5229aa0f0acee29db82f22dc5125a333be355": {
+     "key": [
+      "fba752dd43e02cfc7537569b6821a37a",
+      "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+     ],
+     "text": [
+      "6ec72e028d1d6c70fc8bb3344783486b",
+      "a word the room's law forbids"
+     ],
+     "time": [
+      "29ace1401be08bc9736b0c413eb7d78c",
+      1794787260
+     ]
+    },
+    "cd8de377aa3fd5814c092ff15b9d326c45e63c589fc4c7a9bb85f04e3ad1b6a7": {
+     "key": [
+      "df6f0c866073d65019e9cc35b5b5580d",
+      "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c"
+     ],
+     "text": [
+      "41a0eb6e4a594903f982bd8655bb8448",
+      "my door is 1 Trial Street"
+     ],
+     "time": [
+      "44359067d210f078270e1c7b9c605276",
+      1794787320
+     ]
+    },
+    "011aab2a571f4497ae2116aae3f9917ea620f8ab801d81f0493b87a171cb0d01": {
+     "key": [
+      "c79be804e9e9318a694841a99cbdac1e",
+      "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+     ],
+     "text": [
+      "50e7ce537b7e3cf83b9658b098f6202b",
+      "bo's telephone is 555 0100"
+     ],
+     "time": [
+      "d68f3e951f2f033642bf6b945003f0b0",
+      1794787380
+     ]
+    },
+    "73660686b5a6a081dd2d14d453cb713cd09f4ff103e3eb6e1e68c181efb42b49": {
+     "record": [
+      "85a9e5bbb13f4aad59370630f309fe72",
+      {
+       "format": "open-worlds/decision/v1",
+       "office": {
+        "key": "did:key:z6Mkg1uJUgxSL5FBGTv5eXyRr4NyESscgD5ZbJyuEL1DqR4W",
+        "grant": "30edc10f917eb26ad706ec03bd0656411145863ff844f47c6d7e20dead47c431"
+       },
+       "act": {
+        "kind": "remove-comment",
+        "records": [
+         "b7b6a25e9afd9c8397d9404e3bf5229aa0f0acee29db82f22dc5125a333be355"
+        ]
+       },
+       "affects": [
+        "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+       ],
+       "reasons": "The comment breaks part 3 of the room's law.",
+       "grounds": [
+        {
+         "kind": "law",
+         "ref": "trial room law, part 3"
+        }
+       ],
+       "inputs": [],
+       "appeal": "to the room's Keeper, and beyond them to ADMIN",
+       "tick": 5,
+       "proof": {
+        "type": "DataIntegrityProof",
+        "cryptosuite": "eddsa-jcs-2022",
+        "created": "2026-11-18T12:00:00Z",
+        "verificationMethod": "did:key:z6Mkg1uJUgxSL5FBGTv5eXyRr4NyESscgD5ZbJyuEL1DqR4W#z6Mkg1uJUgxSL5FBGTv5eXyRr4NyESscgD5ZbJyuEL1DqR4W",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "z25BsrorZ97rkmxrBBP9pkzGCbHvpuFHoTnMFHyAcenucqNYtmFPz7iBo7sgTxYoi4ChgSXeo4o3t1op4ZBGNn98Q"
+       }
+      }
+     ]
+    }
+   },
+   "reason": "an act is on a kind of entry the rules do not allow it on",
+   "where": 7
+  },
+  {
+   "name": "two faults in one act: a removal decided after its entry, by an office whose grant was not yet in force",
+   "log": [
+    {
+     "tick": 0,
+     "kind": "world_created",
+     "agent": null,
+     "data": {
+      "rules_version": "vectors-acts-1",
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "entry_put_back": [
+        "record"
+       ],
+       "entry_removed": [
+        "record"
+       ],
+       "entry_restored": [
+        "record"
+       ],
+       "entry_taken_back": [
+        "record"
+       ],
+       "field_kept_public": [
+        "reason",
+        "record"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "field_stays_redacted": [
+        "reason",
+        "record"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ]
+      }
+     },
+     "apart": {},
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "hash": "375ceeb11d274b8de622333093185db9dcf952e4c9e56999c422ced176bb7e34"
+    },
+    {
+     "tick": 0,
+     "kind": "entered",
+     "agent": null,
+     "data": {},
+     "apart": {
+      "key": "e94440ec26682527fe3e17e7ee06616f404d26641911d15dcce73e9667593ffb",
+      "name": "4b18f34129246be7c13e709f54271a210a5b1ab4b080ee0de8382122453d3fb0"
+     },
+     "prev": "375ceeb11d274b8de622333093185db9dcf952e4c9e56999c422ced176bb7e34",
+     "hash": "9a557aa9d03cdc0893209e191e758fabedef7aed3fbed813cd7791bf15cd15c6"
+    },
+    {
+     "tick": 0,
+     "kind": "entered",
+     "agent": null,
+     "data": {},
+     "apart": {
+      "key": "a4760e7b2d3669df1647838a708529b1ea43b9b4cab30bae10cb1358d8b43792",
+      "name": "9487cb885092808b2a1263c7246af5fc5934c9b6625910d972532f45bb72770a"
+     },
+     "prev": "9a557aa9d03cdc0893209e191e758fabedef7aed3fbed813cd7791bf15cd15c6",
+     "hash": "6bffdad03b9b646f499605250c0a2546130ce68e77e8ededc12d9760d0233f5b"
+    },
+    {
+     "tick": 1,
+     "kind": "said",
+     "agent": null,
+     "data": {},
+     "apart": {
+      "key": "dc4a4d4b7b57c2a987bdbe857a18a37c7a67e786ad7156b7cb6edd555c5f3b05",
+      "text": "97727365c75b6496fde53feff4aba788d2861b13355fac1bfa5719dae8ff2e94",
+      "time": "fb1125e6461850bc2a729ea91dcde652349fb60460610b5a7569b585276552c3"
+     },
+     "prev": "6bffdad03b9b646f499605250c0a2546130ce68e77e8ededc12d9760d0233f5b",
+     "hash": "e930a5391aa27d941b8553b90e5e5855c9302605416999c3c56cd4afadda20f2"
+    },
+    {
+     "tick": 2,
+     "kind": "said",
+     "agent": null,
+     "data": {},
+     "apart": {
+      "key": "8f230e9ce4bd527a08cde7280957ebd4960b38ed95392ea2092205a79f92dfdf",
+      "text": "cce7076cce620b095130ad6a9e83252eced1eb0c7f6656209f1e3b6833477145",
+      "time": "92eaf72229b81ff58e14d7d8b889b2a86760d260299e3fe9284e4d8ac8ca6c55"
+     },
+     "prev": "e930a5391aa27d941b8553b90e5e5855c9302605416999c3c56cd4afadda20f2",
+     "hash": "b7b6a25e9afd9c8397d9404e3bf5229aa0f0acee29db82f22dc5125a333be355"
+    },
+    {
+     "tick": 3,
+     "kind": "said",
+     "agent": null,
+     "data": {},
+     "apart": {
+      "key": "16a9f0b8c56707416f6c3d564f01529d47c54bb71e20af414710f30b90678859",
+      "text": "dceed6577394d84c10cf295d35e85e2e1143ebdcaf6e18679ecf42d94c75826d",
+      "time": "65ece4c5cfd535ad061dcc667d3d932783cbf03c550af4c8f06494b98ed499d1"
+     },
+     "prev": "b7b6a25e9afd9c8397d9404e3bf5229aa0f0acee29db82f22dc5125a333be355",
+     "hash": "cd8de377aa3fd5814c092ff15b9d326c45e63c589fc4c7a9bb85f04e3ad1b6a7"
+    },
+    {
+     "tick": 4,
+     "kind": "said",
+     "agent": null,
+     "data": {},
+     "apart": {
+      "key": "ff78d4ed78b063acd667c94422b4e2680617ed2161987ebbc470fd33a81cda43",
+      "text": "2af090e7956f3ed6fd40b94ab0a1947b73da5aad726ae01a9d28cff30164ac26",
+      "time": "1e7d529201e962507c6e58d9434d05fb8898409ac797797a6c51a80c147076c0"
+     },
+     "prev": "cd8de377aa3fd5814c092ff15b9d326c45e63c589fc4c7a9bb85f04e3ad1b6a7",
+     "hash": "011aab2a571f4497ae2116aae3f9917ea620f8ab801d81f0493b87a171cb0d01"
+    },
+    {
+     "tick": 5,
+     "kind": "entry_removed",
+     "agent": null,
+     "data": {
+      "entry": "b7b6a25e9afd9c8397d9404e3bf5229aa0f0acee29db82f22dc5125a333be355",
+      "office": "did:key:z6Mkg1uJUgxSL5FBGTv5eXyRr4NyESscgD5ZbJyuEL1DqR4W",
+      "ground": {
+       "kind": "law",
+       "ref": "trial room law, part 3"
+      },
+      "decision": "4501cb729e6fec47d355def64141d9e6788803c9fd9ddec39ea3afe396a4796e"
+     },
+     "apart": {
+      "record": "7c2120cd12985d10c3d08c0b4660113e275b451ece4a1bbe43355830f2b73c1b"
+     },
+     "prev": "011aab2a571f4497ae2116aae3f9917ea620f8ab801d81f0493b87a171cb0d01",
+     "hash": "d1e3483af2a1ed91b8c8598fae39a6802ba131f69d09234359b223ccc76803c2"
+    }
+   ],
+   "contents": {
+    "9a557aa9d03cdc0893209e191e758fabedef7aed3fbed813cd7791bf15cd15c6": {
+     "key": [
+      "4c81de58866b150007314c561dd5a71a",
+      "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c"
+     ],
+     "name": [
+      "42f392f40e2fa5f71c7b5ca498fcebb6",
+      "ada"
+     ]
+    },
+    "6bffdad03b9b646f499605250c0a2546130ce68e77e8ededc12d9760d0233f5b": {
+     "key": [
+      "9f2290454fe2cc462a47997b2e738d87",
+      "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+     ],
+     "name": [
+      "b389910382fff94cb0fb20a2af11aebe",
+      "bo"
+     ]
+    },
+    "e930a5391aa27d941b8553b90e5e5855c9302605416999c3c56cd4afadda20f2": {
+     "key": [
+      "e4726a8655824dea87d0d4b8020367be",
+      "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c"
+     ],
+     "text": [
+      "e928a52464d9b02a00517c283dbeb3c7",
+      "hello, room"
+     ],
+     "time": [
+      "4db750998119dffbd303862f817812d9",
+      1794787200
+     ]
+    },
+    "b7b6a25e9afd9c8397d9404e3bf5229aa0f0acee29db82f22dc5125a333be355": {
+     "key": [
+      "fba752dd43e02cfc7537569b6821a37a",
+      "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+     ],
+     "text": [
+      "6ec72e028d1d6c70fc8bb3344783486b",
+      "a word the room's law forbids"
+     ],
+     "time": [
+      "29ace1401be08bc9736b0c413eb7d78c",
+      1794787260
+     ]
+    },
+    "cd8de377aa3fd5814c092ff15b9d326c45e63c589fc4c7a9bb85f04e3ad1b6a7": {
+     "key": [
+      "df6f0c866073d65019e9cc35b5b5580d",
+      "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c"
+     ],
+     "text": [
+      "41a0eb6e4a594903f982bd8655bb8448",
+      "my door is 1 Trial Street"
+     ],
+     "time": [
+      "44359067d210f078270e1c7b9c605276",
+      1794787320
+     ]
+    },
+    "011aab2a571f4497ae2116aae3f9917ea620f8ab801d81f0493b87a171cb0d01": {
+     "key": [
+      "c79be804e9e9318a694841a99cbdac1e",
+      "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+     ],
+     "text": [
+      "50e7ce537b7e3cf83b9658b098f6202b",
+      "bo's telephone is 555 0100"
+     ],
+     "time": [
+      "d68f3e951f2f033642bf6b945003f0b0",
+      1794787380
+     ]
+    },
+    "d1e3483af2a1ed91b8c8598fae39a6802ba131f69d09234359b223ccc76803c2": {
+     "record": [
+      "85a9e5bbb13f4aad59370630f309fe72",
+      {
+       "format": "open-worlds/decision/v1",
+       "office": {
+        "key": "did:key:z6Mkg1uJUgxSL5FBGTv5eXyRr4NyESscgD5ZbJyuEL1DqR4W",
+        "grant": "30edc10f917eb26ad706ec03bd0656411145863ff844f47c6d7e20dead47c431"
+       },
+       "act": {
+        "kind": "remove-comment",
+        "records": [
+         "b7b6a25e9afd9c8397d9404e3bf5229aa0f0acee29db82f22dc5125a333be355"
+        ]
+       },
+       "affects": [
+        "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+       ],
+       "reasons": "The comment breaks part 3 of the room's law.",
+       "grounds": [
+        {
+         "kind": "law",
+         "ref": "trial room law, part 3"
+        }
+       ],
+       "inputs": [],
+       "appeal": "to the room's Keeper, and beyond them to ADMIN",
+       "tick": 7,
+       "proof": {
+        "type": "DataIntegrityProof",
+        "cryptosuite": "eddsa-jcs-2022",
+        "created": "2026-11-17T12:00:00Z",
+        "verificationMethod": "did:key:z6Mkg1uJUgxSL5FBGTv5eXyRr4NyESscgD5ZbJyuEL1DqR4W#z6Mkg1uJUgxSL5FBGTv5eXyRr4NyESscgD5ZbJyuEL1DqR4W",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "z4YSk1AU98DN57A7TcSbjvv9Jrv2zDQ2r74LXZ5Ua5o7byQ9hSNxcQt5fMhsMZSunUtKHhUb6YLtT12Fr8g18HtWS"
+       }
+      }
+     ]
+    }
+   },
+   "reason": "a decision is dated after the entry that carries it",
+   "where": 7
+  },
+  {
+   "name": "two faulty acts: a taking back signed by another, then a removal by an office that does not hold the grant it names",
+   "log": [
+    {
+     "tick": 0,
+     "kind": "world_created",
+     "agent": null,
+     "data": {
+      "rules_version": "vectors-acts-1",
+      "form": "open-worlds/log-apart/v1",
+      "kept_apart": {
+       "entered": [
+        "key",
+        "name"
+       ],
+       "entry_put_back": [
+        "record"
+       ],
+       "entry_removed": [
+        "record"
+       ],
+       "entry_restored": [
+        "record"
+       ],
+       "entry_taken_back": [
+        "record"
+       ],
+       "field_kept_public": [
+        "reason",
+        "record"
+       ],
+       "field_redacted": [
+        "reason"
+       ],
+       "field_stays_redacted": [
+        "reason",
+        "record"
+       ],
+       "said": [
+        "key",
+        "text",
+        "time"
+       ]
+      }
+     },
+     "apart": {},
+     "prev": "0000000000000000000000000000000000000000000000000000000000000000",
+     "hash": "375ceeb11d274b8de622333093185db9dcf952e4c9e56999c422ced176bb7e34"
+    },
+    {
+     "tick": 0,
+     "kind": "entered",
+     "agent": null,
+     "data": {},
+     "apart": {
+      "key": "e94440ec26682527fe3e17e7ee06616f404d26641911d15dcce73e9667593ffb",
+      "name": "4b18f34129246be7c13e709f54271a210a5b1ab4b080ee0de8382122453d3fb0"
+     },
+     "prev": "375ceeb11d274b8de622333093185db9dcf952e4c9e56999c422ced176bb7e34",
+     "hash": "9a557aa9d03cdc0893209e191e758fabedef7aed3fbed813cd7791bf15cd15c6"
+    },
+    {
+     "tick": 0,
+     "kind": "entered",
+     "agent": null,
+     "data": {},
+     "apart": {
+      "key": "a4760e7b2d3669df1647838a708529b1ea43b9b4cab30bae10cb1358d8b43792",
+      "name": "9487cb885092808b2a1263c7246af5fc5934c9b6625910d972532f45bb72770a"
+     },
+     "prev": "9a557aa9d03cdc0893209e191e758fabedef7aed3fbed813cd7791bf15cd15c6",
+     "hash": "6bffdad03b9b646f499605250c0a2546130ce68e77e8ededc12d9760d0233f5b"
+    },
+    {
+     "tick": 1,
+     "kind": "said",
+     "agent": null,
+     "data": {},
+     "apart": {
+      "key": "dc4a4d4b7b57c2a987bdbe857a18a37c7a67e786ad7156b7cb6edd555c5f3b05",
+      "text": "97727365c75b6496fde53feff4aba788d2861b13355fac1bfa5719dae8ff2e94",
+      "time": "fb1125e6461850bc2a729ea91dcde652349fb60460610b5a7569b585276552c3"
+     },
+     "prev": "6bffdad03b9b646f499605250c0a2546130ce68e77e8ededc12d9760d0233f5b",
+     "hash": "e930a5391aa27d941b8553b90e5e5855c9302605416999c3c56cd4afadda20f2"
+    },
+    {
+     "tick": 2,
+     "kind": "said",
+     "agent": null,
+     "data": {},
+     "apart": {
+      "key": "8f230e9ce4bd527a08cde7280957ebd4960b38ed95392ea2092205a79f92dfdf",
+      "text": "cce7076cce620b095130ad6a9e83252eced1eb0c7f6656209f1e3b6833477145",
+      "time": "92eaf72229b81ff58e14d7d8b889b2a86760d260299e3fe9284e4d8ac8ca6c55"
+     },
+     "prev": "e930a5391aa27d941b8553b90e5e5855c9302605416999c3c56cd4afadda20f2",
+     "hash": "b7b6a25e9afd9c8397d9404e3bf5229aa0f0acee29db82f22dc5125a333be355"
+    },
+    {
+     "tick": 3,
+     "kind": "said",
+     "agent": null,
+     "data": {},
+     "apart": {
+      "key": "16a9f0b8c56707416f6c3d564f01529d47c54bb71e20af414710f30b90678859",
+      "text": "dceed6577394d84c10cf295d35e85e2e1143ebdcaf6e18679ecf42d94c75826d",
+      "time": "65ece4c5cfd535ad061dcc667d3d932783cbf03c550af4c8f06494b98ed499d1"
+     },
+     "prev": "b7b6a25e9afd9c8397d9404e3bf5229aa0f0acee29db82f22dc5125a333be355",
+     "hash": "cd8de377aa3fd5814c092ff15b9d326c45e63c589fc4c7a9bb85f04e3ad1b6a7"
+    },
+    {
+     "tick": 4,
+     "kind": "said",
+     "agent": null,
+     "data": {},
+     "apart": {
+      "key": "ff78d4ed78b063acd667c94422b4e2680617ed2161987ebbc470fd33a81cda43",
+      "text": "2af090e7956f3ed6fd40b94ab0a1947b73da5aad726ae01a9d28cff30164ac26",
+      "time": "1e7d529201e962507c6e58d9434d05fb8898409ac797797a6c51a80c147076c0"
+     },
+     "prev": "cd8de377aa3fd5814c092ff15b9d326c45e63c589fc4c7a9bb85f04e3ad1b6a7",
+     "hash": "011aab2a571f4497ae2116aae3f9917ea620f8ab801d81f0493b87a171cb0d01"
+    },
+    {
+     "tick": 5,
+     "kind": "entry_taken_back",
+     "agent": null,
+     "data": {
+      "entry": "e930a5391aa27d941b8553b90e5e5855c9302605416999c3c56cd4afadda20f2"
+     },
+     "apart": {
+      "record": "dd2554946d3a44b73a0ce08e87cd58e29f236f63bf0e51c447f07d1646552101"
+     },
+     "prev": "011aab2a571f4497ae2116aae3f9917ea620f8ab801d81f0493b87a171cb0d01",
+     "hash": "742ab7c3e6289ad2298676f23d19fc7ef77a0a42d1a5b3ddf4cd1654f20d11f8"
+    },
+    {
+     "tick": 6,
+     "kind": "entry_removed",
+     "agent": null,
+     "data": {
+      "entry": "b7b6a25e9afd9c8397d9404e3bf5229aa0f0acee29db82f22dc5125a333be355",
+      "office": "did:key:z6MkqAvTCx4husizoXR37w3ZHqdLDVvSEcH18fSmZnu9v1c5",
+      "ground": {
+       "kind": "law",
+       "ref": "trial room law, part 3"
+      },
+      "decision": "c6d9f4be49575548fba21a3ccc3fc2f113a509196dc1ad27bb5b3913a8343c42"
+     },
+     "apart": {
+      "record": "39daf6c956848d15e087b5c39023fdab7d96a68c1f645b1a55fb2f724142ae21"
+     },
+     "prev": "742ab7c3e6289ad2298676f23d19fc7ef77a0a42d1a5b3ddf4cd1654f20d11f8",
+     "hash": "a1c5d594d71c1ae32de4de88433d178e19d9422f18df8b67ceb63e4da4961cc3"
+    }
+   ],
+   "contents": {
+    "9a557aa9d03cdc0893209e191e758fabedef7aed3fbed813cd7791bf15cd15c6": {
+     "key": [
+      "4c81de58866b150007314c561dd5a71a",
+      "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c"
+     ],
+     "name": [
+      "42f392f40e2fa5f71c7b5ca498fcebb6",
+      "ada"
+     ]
+    },
+    "6bffdad03b9b646f499605250c0a2546130ce68e77e8ededc12d9760d0233f5b": {
+     "key": [
+      "9f2290454fe2cc462a47997b2e738d87",
+      "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+     ],
+     "name": [
+      "b389910382fff94cb0fb20a2af11aebe",
+      "bo"
+     ]
+    },
+    "e930a5391aa27d941b8553b90e5e5855c9302605416999c3c56cd4afadda20f2": {
+     "key": [
+      "e4726a8655824dea87d0d4b8020367be",
+      "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c"
+     ],
+     "text": [
+      "e928a52464d9b02a00517c283dbeb3c7",
+      "hello, room"
+     ],
+     "time": [
+      "4db750998119dffbd303862f817812d9",
+      1794787200
+     ]
+    },
+    "b7b6a25e9afd9c8397d9404e3bf5229aa0f0acee29db82f22dc5125a333be355": {
+     "key": [
+      "fba752dd43e02cfc7537569b6821a37a",
+      "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+     ],
+     "text": [
+      "6ec72e028d1d6c70fc8bb3344783486b",
+      "a word the room's law forbids"
+     ],
+     "time": [
+      "29ace1401be08bc9736b0c413eb7d78c",
+      1794787260
+     ]
+    },
+    "cd8de377aa3fd5814c092ff15b9d326c45e63c589fc4c7a9bb85f04e3ad1b6a7": {
+     "key": [
+      "df6f0c866073d65019e9cc35b5b5580d",
+      "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c"
+     ],
+     "text": [
+      "41a0eb6e4a594903f982bd8655bb8448",
+      "my door is 1 Trial Street"
+     ],
+     "time": [
+      "44359067d210f078270e1c7b9c605276",
+      1794787320
+     ]
+    },
+    "011aab2a571f4497ae2116aae3f9917ea620f8ab801d81f0493b87a171cb0d01": {
+     "key": [
+      "c79be804e9e9318a694841a99cbdac1e",
+      "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+     ],
+     "text": [
+      "50e7ce537b7e3cf83b9658b098f6202b",
+      "bo's telephone is 555 0100"
+     ],
+     "time": [
+      "d68f3e951f2f033642bf6b945003f0b0",
+      1794787380
+     ]
+    },
+    "742ab7c3e6289ad2298676f23d19fc7ef77a0a42d1a5b3ddf4cd1654f20d11f8": {
+     "record": [
+      "85a9e5bbb13f4aad59370630f309fe72",
+      {
+       "format": "open-worlds/taking-back/v1",
+       "author": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+       "entry": "e930a5391aa27d941b8553b90e5e5855c9302605416999c3c56cd4afadda20f2",
+       "proof": {
+        "type": "DataIntegrityProof",
+        "cryptosuite": "eddsa-jcs-2022",
+        "created": "2026-11-18T12:00:00Z",
+        "verificationMethod": "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG#z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "z5YggnwYWFT4gbMrqgQSYWP3R3RgE4i4NFeMaDfkn7KKsxFJ9Tz3LJ1UdStuEdqVJKDF6guG4qtwmR3RvzNDWWjGc"
+       }
+      }
+     ]
+    },
+    "a1c5d594d71c1ae32de4de88433d178e19d9422f18df8b67ceb63e4da4961cc3": {
+     "record": [
+      "6bff67e4ed2acb7978331d16eec6d38d",
+      {
+       "format": "open-worlds/decision/v1",
+       "office": {
+        "key": "did:key:z6MkqAvTCx4husizoXR37w3ZHqdLDVvSEcH18fSmZnu9v1c5",
+        "grant": "30edc10f917eb26ad706ec03bd0656411145863ff844f47c6d7e20dead47c431"
+       },
+       "act": {
+        "kind": "remove-comment",
+        "records": [
+         "b7b6a25e9afd9c8397d9404e3bf5229aa0f0acee29db82f22dc5125a333be355"
+        ]
+       },
+       "affects": [
+        "did:key:z6MkoPiQZxsacfjzBAfTubQkSX6JzZxAatV13m42LGv9mRrG"
+       ],
+       "reasons": "The comment breaks part 3 of the room's law.",
+       "grounds": [
+        {
+         "kind": "law",
+         "ref": "trial room law, part 3"
+        }
+       ],
+       "inputs": [],
+       "appeal": "to the room's Keeper, and beyond them to ADMIN",
+       "tick": 6,
+       "proof": {
+        "type": "DataIntegrityProof",
+        "cryptosuite": "eddsa-jcs-2022",
+        "created": "2026-11-18T12:00:00Z",
+        "verificationMethod": "did:key:z6MkqAvTCx4husizoXR37w3ZHqdLDVvSEcH18fSmZnu9v1c5#z6MkqAvTCx4husizoXR37w3ZHqdLDVvSEcH18fSmZnu9v1c5",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "z348MWaY6XKJjSo2fAovVMbf8ExLkJ5nou9YS9Fxtd8AdZp5KtRKtFTU7zJj8Y6jKEYH4ZjTALE1AjDeaQBkZXksQ"
+       }
+      }
+     ]
+    }
+   },
+   "reason": "a record is not signed by the one who wrote the entry",
+   "where": 7
   }
  ],
  "offices": [
@@ -19074,7 +19900,7 @@
    "reason": null
   },
   {
-   "name": "a decision to remove, held to a grant to restore",
+   "name": "a decision to remove, held to restoring",
    "record": {
     "format": "open-worlds/decision/v1",
     "office": {
@@ -19110,7 +19936,34 @@
     }
    },
    "act": "restore-comment",
-   "reason": "a grant does not allow the act"
+   "reason": "a record is for another kind of act than the one it is held to"
+  },
+  {
+   "name": "a redacted field's copy, held to removing",
+   "record": {
+    "format": "open-worlds/redacted-field/v1",
+    "office": {
+     "key": "did:key:z6Mkg1uJUgxSL5FBGTv5eXyRr4NyESscgD5ZbJyuEL1DqR4W",
+     "grant": "30edc10f917eb26ad706ec03bd0656411145863ff844f47c6d7e20dead47c431"
+    },
+    "to": "did:key:z6MkqwGE4AUVCa8aVdagP49ynnahz9vPBAgEogAGtUyzDe5c",
+    "decider": "did:key:z6MkgMifKzuEpzpPAThwDnntT2geteypbtRTyk1DDbYgVWkC",
+    "log": "375ceeb11d274b8de622333093185db9dcf952e4c9e56999c422ced176bb7e34",
+    "entry": "cd8de377aa3fd5814c092ff15b9d326c45e63c589fc4c7a9bb85f04e3ad1b6a7",
+    "field": "text",
+    "hashed": "[\"41a0eb6e4a594903f982bd8655bb8448\",\"text\",\"my door is 1 Trial Street\"]",
+    "pad": "",
+    "proof": {
+     "type": "DataIntegrityProof",
+     "cryptosuite": "eddsa-jcs-2022",
+     "created": "2026-11-18T12:00:00Z",
+     "verificationMethod": "did:key:z6Mkg1uJUgxSL5FBGTv5eXyRr4NyESscgD5ZbJyuEL1DqR4W#z6Mkg1uJUgxSL5FBGTv5eXyRr4NyESscgD5ZbJyuEL1DqR4W",
+     "proofPurpose": "assertionMethod",
+     "proofValue": "z3LbJZZJmEeCMzgGRPr5TGjMihCoqLtJnozfLPtUoLBdFrMKYJaDvte1GGhcHDiDoQ5JHKqYYjUbVPSfWMWc6KTqz"
+    }
+   },
+   "act": "remove-comment",
+   "reason": "a record is for another kind of act than the one it is held to"
   },
   {
    "name": "a grant, which names no office",
