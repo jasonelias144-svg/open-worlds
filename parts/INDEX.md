@@ -175,6 +175,13 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/forma
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/formats/record_vectors.py/02.txt
 ```
 
+## `rust/acts/src/lib.rs`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/acts/src/lib.rs/01.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/rust/acts/src/lib.rs/02.txt
+```
+
 ## `rust/redact/tests/vectors.rs`, in 2 parts
 
 ```text
@@ -272,6 +279,13 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/web/p
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/web/plant/index.html/02.txt
 ```
 
+## `world/acts_vectors.py`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world/acts_vectors.py/01.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world/acts_vectors.py/02.txt
+```
+
 ## `world/apart.py`, in 2 parts
 
 ```text
@@ -292,7 +306,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world
 Longer than 28,000 bytes, and not cut:
 
 - `rust/Cargo.lock`: the lock file cargo writes.
-- `vectors/` (10 of its files): test vectors, which programs check and nobody reads through.
+- `vectors/` (11 of its files): test vectors, which programs check and nobody reads through.
 - The files of record, which [docs/FILES.md](../docs/FILES.md)
   lists: the conversation records, the code taken from them,
   what DeepSeek and Gemini were given in reply, and experiment

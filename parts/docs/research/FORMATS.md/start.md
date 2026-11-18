@@ -302,6 +302,24 @@ came with course step 3b:
   is checked against the log
   ([REDACTION.md](REDACTION.md), "Part three, the act of redacting,
   built").
+- **A taking back** (`open-worlds/taking-back/v1`): `author`, who
+  takes back an entry they wrote, and signs; `entry`, the entry, by
+  its hash in its log; and `after`, the putting back that last put
+  that entry back, by the hash of the entry that carries it, absent
+  the first time. No office acts, so it holds no grant, no grounds
+  and no appeal, and it gives no reason: an author owes none. It
+  names no log, since an entry's hash is in one log only. `after`
+  makes it hold at one point of the entry's own history, so it can't
+  be written into the log a second time once its author has put the
+  entry back; it does not name the log's last entry, as an arrival
+  does, so a busy room does not make an author sign again.
+- **A putting back** (`open-worlds/putting-back/v1`): `author`, who
+  signs, and `takenBack`, the taking back it undoes, by the hash of
+  the entry that carries it, which is its incident id. Only the
+  author undoes their own taking back. For both, that the signer
+  wrote the entry is checked against the log
+  ([REDACTION.md](REDACTION.md), "Part four, the records' side,
+  built").
 
 Each travels in an envelope (`open-worlds/sealed/v1`): the label, the one
 it is addressed to (`to`), and the box in lowercase hex. The envelope

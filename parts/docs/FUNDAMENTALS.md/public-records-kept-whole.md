@@ -106,6 +106,14 @@ unless the founder answers otherwise:
   project can read what was redacted
   ([research/REDACTION.md](research/REDACTION.md), "For the founder:
   decided").
+  One cost of redacting a key is now built and said in the open
+  (2026-11-18): a person takes back what they wrote under their own
+  signature, and the check that the signer wrote the entry reads the
+  key that wrote it. Once that key is redacted, the check reports the
+  act as held with its signer not checked. It never guesses, and it
+  never shows the key
+  ([research/REDACTION.md](research/REDACTION.md), "Part four, the
+  records' side, built").
 - **Shared on purpose, in a room.** Ideas of the founder's, of
   2026-11-16, taken since 2026-11-17 with the six changes below: a
   person may share their personal

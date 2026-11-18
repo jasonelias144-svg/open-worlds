@@ -3,8 +3,10 @@
 //! world-key and journal entry; identity, birth records and the mind
 //! record; a world's template; the project's key list; an arrival,
 //! signed by the one who enters a world (course step 3); a person's links
-//! and list; and a council's proposal and a person's vote (course step
-//! 3a), as
+//! and list; a council's proposal and a person's vote (course step
+//! 3a); and a field that was redacted from a log, with an author's
+//! taking back and putting back of an entry they wrote (course step 3b),
+//! as
 //! `formats/records.py` checks them, from the same schema file. A record
 //! holds when it fits its kind's schema, its proof verifies, and it was
 //! signed by the one who must sign that kind. `dial_problems` checks a
@@ -23,7 +25,7 @@ pub const SCHEMA: &str = include_str!("../../../schemas/records-v1.schema.json")
 
 /// Each format, its schema's name in `$defs`, and the path of the field
 /// that names its signer.
-pub const KINDS: [(&str, &str, &[&str]); 20] = [
+pub const KINDS: [(&str, &str, &[&str]); 22] = [
     ("open-worlds/grant/v1", "grant", &["issuer"]),
     ("open-worlds/decision/v1", "decision", &["office", "key"]),
     ("open-worlds/suggestion/v1", "suggestion", &["author"]),
@@ -37,6 +39,8 @@ pub const KINDS: [(&str, &str, &[&str]); 20] = [
         "redactedField",
         &["office", "key"],
     ),
+    ("open-worlds/taking-back/v1", "takingBack", &["author"]),
+    ("open-worlds/putting-back/v1", "puttingBack", &["author"]),
     ("open-worlds/identity/v1", "identity", &["id"]),
     ("open-worlds/birth/v1", "birth", &["world"]),
     ("open-worlds/world-birth/v1", "worldBirth", &["world"]),

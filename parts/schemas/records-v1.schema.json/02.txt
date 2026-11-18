@@ -6,6 +6,90 @@ Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-world
 After this part: nothing; this is the last part.
 Made by docs/parts.py from the file. To change it, change the file.
 ------------------------------------------------------------------------
+    "name": {
+      "description": "A name: text, at most 64 characters.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/text"
+        }
+      ],
+      "maxLength": 64
+    },
+    "sealingKey": {
+      "description": "An X25519 public key for sealing, as Multikey (z6LS...). Whether it is safe to seal to (below 2^255 - 19, not of small order) is checked beyond the schema, as formats/seal.py checks it.",
+      "type": "string",
+      "pattern": "^z6LS[1-9A-HJ-NP-Za-km-z]{44}$"
+    },
+    "identity": {
+      "description": "An individual's identity: their name, their signing key (the did:key), the key to seal things to them, and their birth record. Signed with their own key, so it binds the sealing key to them (docs/MINDS.md, \"The parts of an individual\").",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/identity/v1"
+        },
+        "id": {
+          "$ref": "#/$defs/didKey"
+        },
+        "name": {
+          "$ref": "#/$defs/name"
+        },
+        "sealingKey": {
+          "$ref": "#/$defs/sealingKey"
+        },
+        "birth": {
+          "description": "Their birth record, by hash.",
+          "$ref": "#/$defs/hash"
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
+        "id",
+        "name",
+        "sealingKey",
+        "birth",
+        "proof"
+      ],
+      "additionalProperties": false
+    },
+    "birth": {
+      "description": "An individual's birth record: facts only, written once by the world they came into being in, with the words they were told (docs/MINDS.md, \"The birth record\"). Signed by the world.",
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "open-worlds/birth/v1"
+        },
+        "world": {
+          "$ref": "#/$defs/didKey"
+        },
+        "individual": {
+          "$ref": "#/$defs/didKey"
+        },
+        "name": {
+          "$ref": "#/$defs/name"
+        },
+        "tick": {
+          "$ref": "#/$defs/tick"
+        },
+        "time": {
+          "$ref": "#/$defs/time"
+        },
+        "mind": {
+          "description": "The mind record they were born with, by hash.",
+          "$ref": "#/$defs/hash"
+        },
+        "words": {
+          "description": "The words of the birth record, as told to them.",
+          "$ref": "#/$defs/text"
+        },
+        "proof": {
+          "$ref": "#/$defs/proof"
+        }
+      },
+      "required": [
+        "format",
         "world",
         "individual",
         "name",

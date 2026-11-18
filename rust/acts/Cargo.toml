@@ -1,0 +1,16 @@
+[package]
+name = "acts"
+version = "0.1.0"
+description = "Who may act on a log whose fields are kept apart, held to the signed records, as the Python code checks it"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[dependencies]
+serde_json.workspace = true
+formats = { path = "../formats" }
+world-log = { path = "../world-log" }
+
+[lints]
+workspace = true

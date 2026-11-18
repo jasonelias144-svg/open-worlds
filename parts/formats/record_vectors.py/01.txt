@@ -383,6 +383,25 @@ def _valid() -> List[Dict[str, Any]]:
         "tick": 0,
         "previous": _h("the entry just before the arrival's own"),
     }, "a trial mind")
+    # An author's own acts on an entry they wrote (course step 3b;
+    # docs/research/REDACTION.md, decision 8). The log they belong to
+    # is in vectors/acts.json; here they are held as records only.
+    taking_back = _signed({
+        "format": "open-worlds/taking-back/v1",
+        "author": _did("a trial mind"),
+        "entry": _h("an entry a trial mind wrote, for the vectors"),
+    }, "a trial mind")
+    putting_back = _signed({
+        "format": "open-worlds/putting-back/v1",
+        "author": _did("a trial mind"),
+        "takenBack": _h("the entry that carries the taking back"),
+    }, "a trial mind")
+    taking_back_again = _signed({
+        "format": "open-worlds/taking-back/v1",
+        "author": _did("a trial mind"),
+        "entry": _h("an entry a trial mind wrote, for the vectors"),
+        "after": _h("the entry that carries the putting back"),
+    }, "a trial mind")
     # A link and a person's list (docs/research/PERSONS.md). Here the
     # presence is a test party; persons-v1.json has presences made from a
     # seed.
@@ -433,6 +452,10 @@ def _valid() -> List[Dict[str, Any]]:
         ("a rating of how a suggestion was handled", rating),
         ("a signed log head", head),
         ("an arrival in a trial world", arrival),
+        ("an author's taking back of an entry they wrote", taking_back),
+        ("the author's putting back of it", putting_back),
+        ("a second taking back, after the putting back",
+         taking_back_again),
         ("a person's half of a link to a presence", holds),
         ("a presence's half of the same link", held_by),
         ("a person's list, its first version", person_list),

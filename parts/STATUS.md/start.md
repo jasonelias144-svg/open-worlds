@@ -54,8 +54,8 @@ free, and never a money machine
   counting persons' signed votes (`open-worlds/proposal/v1` and
   `vote/v1`). The course was rechecked on 2026-11-16, with a new list
   of twelve (docs/COURSE.md, "Rechecked on 2026-11-16"). Step 3b is
-  under way, a log whose fields can be redacted, with removals and
-  restorings on record: its plan, after looking first, is in
+  built (2026-11-18), a log whose fields can be redacted, with
+  removals and restorings on record: its plan, after looking first, is in
   docs/research/REDACTION.md. Its second part is built: a form of the
   log whose fields are kept apart by salted fingerprints, with the
   contents beside it, the check that holds the two together, and the
@@ -71,9 +71,12 @@ free, and never a money machine
   `rust/redact`). The keys are trial keys, and nothing real is
   redacted yet. The log's side of its fourth part is built: what a log
   says in the open when an entry is removed, restored, taken back or
-  put back, and each entry's state worked out from that. The signed
-  records behind each act, and the check of who may act, are its
-  records' side, which is next. Then step 3c, the room, where
+  put back, and each entry's state worked out from that. Its records'
+  side is built too: every act in a log is held to the signed record
+  it carries, and every office to its grant, up to the room's key;
+  and an author's taking back and putting back are records of their
+  own in records-v1 (`world/acts.py`, `rust/acts`). Next the course is
+  rechecked, as after every step. Then step 3c, the room, where
   DeepSeek's `chat-world` is fitted onto the project's formats.
 - Claude: the fractal track, alongside the course (docs/FRACTALS.md),
   set by the founder on 2026-11-14: a fractal plant world in Rust, the

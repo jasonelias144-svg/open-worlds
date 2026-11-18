@@ -236,6 +236,10 @@ that did not hold together; STATUS.md's Log says what changed.
    same form. Left open for part four: an author whose key has been
    signed over to a new one; and whether an author can undo it
    (proposed: yes, by a record of their own, and no office can).
+   Both are settled in building part four: an author can undo it, and
+   no office can (the log's side); and only the key that wrote an
+   entry takes it back, until successions join records-v1 (the
+   records' side).
 9. **What is shown is worked out, never stored, and from the open
    fields alone.** For a log, the state of each entry is: as written,
    removed, taken back, restored, or redacted in some field. It does

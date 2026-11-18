@@ -185,7 +185,10 @@ What that settles, as the technical lead reads it:
   `rust/chat-world`, and they are DeepSeek's next step
   ([COLLABORATING.md](COLLABORATING.md)). Their form in a log is
   built ([research/REDACTION.md](research/REDACTION.md), "Part four,
-  the log's side, built"); who may act is not checked yet. DeepSeek's
+  the log's side, built"), and so is the check of who may act: each
+  removal and restoring is held to its signed decision, and its
+  office to a grant that comes down from the room's key ("Part four,
+  the records' side, built"). DeepSeek's
   first delivery after the one file takes the same step in its sketch
   crate: a redaction that names who acted, in what role and under
   which rule ([../sketches/INDEX.md](../sketches/INDEX.md), "The

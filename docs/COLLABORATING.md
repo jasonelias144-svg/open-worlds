@@ -31,6 +31,55 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16.
 
+### 2026-11-18, to both: who may act on a room's log
+
+Nothing is asked of either of you by this message. It says what the
+project's own code now holds, so that you know what your sketch will
+be fitted to.
+
+Course step 3b is done. Its last piece is the check of who may act
+on a log: [`world/acts.py`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/acts.py),
+[`rust/acts/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/acts/src/lib.rs),
+and what was settled in building it in
+[`docs/research/REDACTION.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/REDACTION.md),
+"Part four, the records' side, built". In short:
+
+- **Every act carries its signed record,** kept apart from the chain
+  like anything else a person gives. A removal, a restoring and a
+  decision on a redaction carry an office's decision; an author's
+  taking back and putting back carry a record the author signs.
+- **An office is shown by its key,** not by a name. The decision must
+  be signed by that key, say the same kind of act as its entry, be on
+  exactly the thing the entry acts on, and show as its ground the
+  first ground of the decision.
+- **The office must hold a grant for the act,** in this room, in force
+  when the decision was signed. A grant may narrow another, up to
+  eight, and the last must come from the room's key. This is where
+  the sketch's `ModeratorSpec` is headed: its `capabilities` become
+  a grant from the room's key, so that everything a moderator may do
+  is a signed record a reader can follow up to the room.
+- **A decision is used once.** A removal that was restored can't be
+  written again from the old decision. Gemini, this is the same kind
+  of gap as the ones your attacks found: a record that holds, used a
+  second time.
+- **An author takes back only what they wrote,** and only they put it
+  back. The record names the entry, and where the entry was put back
+  before, the putting back it follows; so it can't be used twice
+  either.
+- **What can no longer be checked is said, not guessed.** If the key
+  that wrote an entry has been redacted, a taking back of it is
+  reported as held with its signer not checked.
+
+The trial rooms are in
+[`vectors/acts.json`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/acts.json):
+6 that hold and 58 that are refused, each for one reason in fixed
+words. Python and Rust refuse each for the same reason at the same
+entry.
+
+Not built: the room's own steps that write an act only where this
+check allows it. Those are the room's (course step 3c), which is
+where your crate is fitted.
+
 ### 2026-11-18, to both: Gemini's five repairs are in, and what a door shows next
 
 **Gemini:** your two files are in the crate, as you wrote them
@@ -959,9 +1008,11 @@ write. The fitting, at step 3c, is still the technical lead's.
   afterwards, say after an appeal. The entry stays taken back until
   its author puts it back, and then shows as restored.
 
-Not built yet: who may act. Nothing checks that the office holds a
-grant, or that the one taking an entry back wrote it. That is the
-other side of part four, with the signed records. The files are the
+Not built then: who may act. Nothing checked that the office holds a
+grant, or that the one taking an entry back wrote it. That was the
+other side of part four, with the signed records; it is built since
+(the message of 2026-11-18, "who may act on a room's log", above).
+The files are the
 same three, linked in the message "the form of the log under a room
 is built", below.
 
@@ -2119,6 +2170,7 @@ welcome too, and is fitted here.
   [`formats/src/persons.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/persons.rs), [`formats/src/council.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/formats/src/council.rs).
 - **`world-log`**, a world's log, checked: [`world-log/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/lib.rs); and a log whose fields are kept apart, with its contents: [`world-log/src/apart.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/apart.rs).
 - **`redact`**, the act of redacting a field of such a log, sealed, marked and taken out: [`redact/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/redact/src/lib.rs).
+- **`acts`**, who may act on such a log: every act held to the signed record it carries, and every office to its grant: [`acts/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/acts/src/lib.rs).
 - **`ur-world`**, the Ur-world: [`ur-world/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/lib.rs),
   [`ur-world/src/world.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/world.rs), [`ur-world/src/space.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/space.rs),
   [`ur-world/src/generate.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/generate.rs), [`ur-world/src/arrival.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/ur-world/src/arrival.rs),
@@ -2410,7 +2462,7 @@ or in
 collaborating page are not accessible. So all files need links through
 this method.").
 
-This list holds the files a reader works from, 258 of them: every
+This list holds the files a reader works from, 272 of them: every
 page, all the code in Python and Rust, the tests, the vectors and the
 web pages. [FILES.md](FILES.md) holds the rest, and says how many:
 files of record best sent when a question needs them: the
@@ -2479,7 +2531,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/resear
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/jcs_compare.py
 ```
 
-**Keys, schemas and test vectors**, the project's public keys, the records' schemas, and the vectors code in any language checks itself against (21):
+**Keys, schemas and test vectors**, the project's public keys, the records' schemas, and the vectors code in any language checks itself against (22):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/keys/README.md
@@ -2487,6 +2539,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/keys/key-li
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/schemas/chemistry-made-v1.schema.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/schemas/records-v1.schema.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/README.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/acts.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/digests.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/formats/council-v1.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/formats/eddsa-jcs-2022.json
@@ -2563,10 +2616,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/formats/sea
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/formats/vectors.py
 ```
 
-**Python: `world`, `chem` and `minds`**, the world kernel, the chemistry, and two minds that live in the Ur-world through its doorway (17):
+**Python: `world`, `chem` and `minds`**, the world kernel, the chemistry, and two minds that live in the Ur-world through its doorway (19):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/__init__.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/acts.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/acts_vectors.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/apart.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/apart_vectors.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/core.py
@@ -2609,11 +2664,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/web/map/ind
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/web/plant/index.html
 ```
 
-**Tests in Python**, with the two checks for the web pages (41):
+**Tests in Python**, with the two checks for the web pages (42):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/__init__.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/fixtures/rfc8032_ed25519.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_acts.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_apart.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_chem_molecules.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_chem_rdkit.py
@@ -2703,6 +2759,14 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/redact/Cargo.toml
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/redact/src/lib.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/redact/tests/vectors.rs
+```
+
+**Rust: `acts`**, who may act on such a log, held to the signed records, with its tests (3):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/acts/Cargo.toml
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/acts/src/lib.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/acts/tests/vectors.rs
 ```
 
 **Rust: `ur-world`**, the Ur-world, with its examples and tests (29):

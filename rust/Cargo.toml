@@ -3,7 +3,7 @@
 # reference through the shared test vectors in ../vectors.
 
 [workspace]
-members = ["world-log", "ur-world", "formats", "plant-world", "plant-wasi", "redact"]
+members = ["world-log", "ur-world", "formats", "plant-world", "plant-wasi", "redact", "acts"]
 resolver = "3"
 
 [workspace.package]

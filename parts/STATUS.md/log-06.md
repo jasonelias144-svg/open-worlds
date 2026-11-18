@@ -8,6 +8,37 @@
 
 ## Log
 
+- 2026-11-18 Claude: the last piece of course step 3b is built, the
+  records' side of part four: who may act on a log
+  (docs/research/REDACTION.md, "Part four, the records' side, built").
+  Looked at first: the six things the plan left for this side, the
+  log's side, the act of redacting, and the grant and the decision
+  as records-v1 holds them. Built: `world/acts.py` and `rust/acts`,
+  which hold every act in a log to the signed record it carries, and
+  every office to its grant, up to the room's key; two kinds of
+  record in records-v1, an author's taking back and putting back (22
+  kinds of record now, and 36 definitions in the schema); and
+  `vectors/acts.json`, with 6 rooms that hold, 58 that are refused,
+  each for one of 24 reasons at one entry, and 6 records held to
+  their office's grant on their own. The record vectors hold 29
+  records that hold and 94 that are refused (26 and 86 before).
+  Checked: 857 tests in Python (829 before; 3 skipped, as before),
+  under Python 3.12; 247 in Rust (238 before), with fmt and clippy
+  clean; Rust refuses every room for Python's reason at the same
+  entry; the sketches' check, six lines, each with no problem. Each
+  check was weakened on purpose, one at a time: 49 changes to the
+  Python, all caught; 47 to the Rust, 46 caught, and one that changes
+  nothing a caller can see. The first run of each found a case no
+  test held, and both are in the vectors now: an author's key that
+  is marked and still in the contents, and a decision signed at the
+  second its grant begins. Found on the way: COLLABORATING.md said
+  its list held 258 files when it held 265; with this change's seven
+  it holds 272, and says so. Not done: the room's steps that write
+  an act only where this check allows it (step 3c); taking a grant
+  back before its end; an office's name, shown from its own record
+  (step 3d); successions (step 8a). Not run: the web pages' tests,
+  since nothing they read changed, and Python 3.10 and 3.11. Next:
+  the course is rechecked, as after every step.
 - 2026-11-18 Claude: Gemini's record is continued, as the founder
   brought it (814,977 bytes, 19,219 lines; its first 769,085 bytes
   are the record as it was kept). Looked through first: the

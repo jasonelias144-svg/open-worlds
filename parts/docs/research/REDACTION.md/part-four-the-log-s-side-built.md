@@ -13,7 +13,8 @@ In the same three places: `world/apart.py`,
 has two sides. This one is what a log says in the open when an entry is
 removed, restored, taken back or put back, and what a reader works out
 from that. The other is the signed records behind each act, and who may
-act; it comes next, and is listed below.
+act; it is built since ("Part four, the records' side, built", below),
+and what it was to do is listed below.
 
 What building it settled, each the technical lead's (STATUS.md has what
 would show it wrong):
@@ -98,7 +99,9 @@ Three things carried from the last check of part two are done here:
 - Both writers refuse a table that is not well formed, for that
   reason, before anything is written.
 
-Not done, the records' side of part four:
+Not done on this side, the records' side of part four. All six are
+settled since, and five of them built ("Part four, the records' side,
+built", below):
 - The list of kinds of act "the rules fix" (decision 7), with
   `remove-comment` and `restore-comment` on it.
 - The checks across records for a decision: its office holds the
@@ -364,7 +367,11 @@ Not done:
 - **Who may redact and who may decide.** The record names a grant and
   nothing checks it. That, and that the decision whose hash is given
   exists and names the mark, are the checks across records (part four,
-  the records' side).
+  the records' side). Built since ("Part four, the records' side,
+  built", below): a decision on a redaction is held to its record and
+  its office to its grant, and the office that signed a copy can be
+  held to a grant to redact. The act of redacting does not make that
+  check itself: it is given no grants.
 - **Deleting the office's copy.** The code can't: it is the office's
   word until keys can be destroyed (step 8a).
 - **Keeping the copies.** The act hands them over and keeps none. What

@@ -46,8 +46,8 @@ free, and never a money machine
   counting persons' signed votes (`open-worlds/proposal/v1` and
   `vote/v1`). The course was rechecked on 2026-11-16, with a new list
   of twelve (docs/COURSE.md, "Rechecked on 2026-11-16"). Step 3b is
-  under way, a log whose fields can be redacted, with removals and
-  restorings on record: its plan, after looking first, is in
+  built (2026-11-18), a log whose fields can be redacted, with
+  removals and restorings on record: its plan, after looking first, is in
   docs/research/REDACTION.md. Its second part is built: a form of the
   log whose fields are kept apart by salted fingerprints, with the
   contents beside it, the check that holds the two together, and the
@@ -63,9 +63,12 @@ free, and never a money machine
   `rust/redact`). The keys are trial keys, and nothing real is
   redacted yet. The log's side of its fourth part is built: what a log
   says in the open when an entry is removed, restored, taken back or
-  put back, and each entry's state worked out from that. The signed
-  records behind each act, and the check of who may act, are its
-  records' side, which is next. Then step 3c, the room, where
+  put back, and each entry's state worked out from that. Its records'
+  side is built too: every act in a log is held to the signed record
+  it carries, and every office to its grant, up to the room's key;
+  and an author's taking back and putting back are records of their
+  own in records-v1 (`world/acts.py`, `rust/acts`). Next the course is
+  rechecked, as after every step. Then step 3c, the room, where
   DeepSeek's `chat-world` is fitted onto the project's formats.
 - Claude: the fractal track, alongside the course (docs/FRACTALS.md),
   set by the founder on 2026-11-14: a fractal plant world in Rust, the
@@ -3183,6 +3186,83 @@ of it is asked again until it is needed.
 
 ## Decided by the technical lead
 
+- 2026-11-18, the records' side of part four
+  (docs/research/REDACTION.md, "Part four, the records' side, built";
+  course step 3b, part four), settled in building it. (a) The kinds
+  of act a room's log carries are five: `remove-comment`,
+  `restore-comment`, `redact-field`, `keep-field-public` and
+  `keep-field-redacted`, each tied to one kind of entry. (b) An
+  office is shown in the open by its `did:key`, and by no name. (c)
+  The ground a log shows is its decision's first. (d) A decision is
+  on exactly one thing: the entry removed, the removal restored, the
+  mark answered. (e) A decision is dated, by its tick, no later than
+  the entry that carries it. (f) A restoring's decision supersedes
+  the removal's decision, by its hash. (g) A decision is carried by
+  one entry: no two entries of a log name the same one. (h) An
+  office's grant is followed up to a grant from the room's key, at
+  most eight grants, each held by the issuer of the one below, each
+  allowing the act, in this room, in force when the decision was
+  signed. Only that path is checked, for that act. (i) A grant
+  counts from the second it starts and not at the second it ends.
+  (j) An author's two records, `taking-back/v1` and
+  `putting-back/v1`, name no log; a taking back names the putting
+  back it follows, if any, and not the log's last entry. (k) Who
+  wrote an entry is the key in the field the room's rules name. If
+  that key is gone, the act is reported as held with its signer not
+  checked; if the entry never held one, the act is refused. (l) Until
+  successions are in records-v1 (step 8a), only the key that wrote
+  an entry takes it back. (m) Which kinds of entry a mark, a removal
+  and a taking back may be on is in the room's rules, which are
+  given with the log; a field of one of the form's own entries can
+  always be marked. (n) An entry of a kind that carries a record,
+  written without one, is refused; a record that was redacted, or
+  lost, is a state and not a refusal. (o) This piece checks and
+  writes nothing: the steps that refuse to write an act are the
+  room's (step 3c).
+  *Why:* (a) Decision 7 asked for the list, with the first two on
+  it; the three for a redaction are what part three left for here.
+  (b) A name binds nothing: one office could act under another's.
+  Decision 1 keeps an office's key in the open for this, and
+  FUNDAMENTALS.md has the keys which moderate declared. (c), (d) So
+  that a reader knows which ground and which thing, with no choice
+  left to whoever writes the log. (e) An office decides first and
+  the room writes after; the other order is a record made to fit.
+  (g) Whoever writes the log could otherwise repeat a removal that
+  was overturned on appeal, from a record that still holds. It is
+  checked from the open fields, so redacting the first record does
+  not free it. (h) Decision 7: "its grant comes from the room's
+  key". A moderator's helper needs a grant that narrows the
+  moderator's, so one grant is not enough, and a chain with no end
+  could not be checked. (j) Tying a taking back to the log's last
+  entry, as an arrival is, would make an author in a busy room sign
+  again and again. Tying it to the entry's own history stops the one
+  thing that matters: the same record used twice. (k) The founder's
+  words on a redacted link, "we keep public record of the action
+  with private details of the action not included", and the cost
+  the plan named when the key that acted was kept apart: once it is
+  redacted, no reader can check again that an act was that key's.
+  The check says so instead of guessing. (l) A succession record
+  has to be one both languages read; it is step 8a's. (n) What can
+  no longer be read is not the fault of whoever acted.
+  *What would show it wrong:* for (b), a room whose note must show
+  an office's name with no office record to read it from; then step
+  3d comes before the room, or the name is kept apart beside the
+  key. For (d), a decision that removes several comments at once
+  for one reason; then a removal names a list, and the form's own
+  rule of one entry for each removal changes with it. For (e), a
+  room whose tick is not a count but a clock, so that an office
+  can't know it; step 3c settles the tick. For (g), a use for one
+  decision in two logs' entries that this forbids; none is known.
+  For (h), a real room needing more than eight grants in a line, or
+  a grant from another key than the room's at the top, such as
+  ADMIN's for a moderator across rooms; then the rules name more
+  than one key that may be at the top. For (i), an office whose
+  clock is behind the room's by more than a second. For (j), two
+  logs that share an entry's hash, which the form's salts are there
+  to prevent. For (k), the founder holding that an act whose signer
+  can't be checked should not be shown as held at all. For (o),
+  step 3c finding that the check can't be made at the moment of
+  writing as it is given here.
 - 2026-11-18, Gemini's five repairs, as they are joined, and what
   their next file asks (sketches/gemini/2026-11-17-4/README.md).
   (a) The two files are in the crate as it stands, as Gemini wrote
@@ -4612,6 +4692,37 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-18 Claude: the last piece of course step 3b is built, the
+  records' side of part four: who may act on a log
+  (docs/research/REDACTION.md, "Part four, the records' side, built").
+  Looked at first: the six things the plan left for this side, the
+  log's side, the act of redacting, and the grant and the decision
+  as records-v1 holds them. Built: `world/acts.py` and `rust/acts`,
+  which hold every act in a log to the signed record it carries, and
+  every office to its grant, up to the room's key; two kinds of
+  record in records-v1, an author's taking back and putting back (22
+  kinds of record now, and 36 definitions in the schema); and
+  `vectors/acts.json`, with 6 rooms that hold, 58 that are refused,
+  each for one of 24 reasons at one entry, and 6 records held to
+  their office's grant on their own. The record vectors hold 29
+  records that hold and 94 that are refused (26 and 86 before).
+  Checked: 857 tests in Python (829 before; 3 skipped, as before),
+  under Python 3.12; 247 in Rust (238 before), with fmt and clippy
+  clean; Rust refuses every room for Python's reason at the same
+  entry; the sketches' check, six lines, each with no problem. Each
+  check was weakened on purpose, one at a time: 49 changes to the
+  Python, all caught; 47 to the Rust, 46 caught, and one that changes
+  nothing a caller can see. The first run of each found a case no
+  test held, and both are in the vectors now: an author's key that
+  is marked and still in the contents, and a decision signed at the
+  second its grant begins. Found on the way: COLLABORATING.md said
+  its list held 258 files when it held 265; with this change's seven
+  it holds 272, and says so. Not done: the room's steps that write
+  an act only where this check allows it (step 3c); taking a grant
+  back before its end; an office's name, shown from its own record
+  (step 3d); successions (step 8a). Not run: the web pages' tests,
+  since nothing they read changed, and Python 3.10 and 3.11. Next:
+  the course is rechecked, as after every step.
 - 2026-11-18 Claude: Gemini's record is continued, as the founder
   brought it (814,977 bytes, 19,219 lines; its first 769,085 bytes
   are the record as it was kept). Looked through first: the

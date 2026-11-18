@@ -510,8 +510,9 @@ guest's key the person's private container.)
   each with a recommendation). What happens to a removed comment is
   decided, by the founder on 2026-11-16: it stays in the records, and
   the room shows a note with the reason and an incident id (the form
-  of a removal in a log is built, course step 3b; who may remove is
-  not checked yet). A redaction is another thing: the field leaves the
+  of a removal in a log is built, course step 3b, and so is the
+  check of who may remove: an office whose grant comes down from the
+  room's key). A redaction is another thing: the field leaves the
   record, and its form in a log is built too (a mark, and the one
   decision that answers it), with the act of redacting, which seals a
   copy to each person the field is about and to the office that
