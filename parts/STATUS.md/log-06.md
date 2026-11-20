@@ -13,8 +13,8 @@
   explores, the four areas, where to start, how to send something,
   the technical lead's first message with five requests, what
   changed, and their records. Looked at first: the founder's two
-  conversation records with ChatGPT, 011-16 and 012-00-00, read
-  whole, and ChatGPT's review of the repository in the second, held
+  conversation records with ChatGPT, 011-16-CGPT and 012-00-00-CGPT,
+  read whole, and ChatGPT's review of the repository in the second, held
   to the repository. `main` is still `c69e74d`, with 1,398 files;
   the Rust workspace passes 247 tests and the Python suite 857, with
   RDKit required, as ChatGPT said. Their three findings were real,
@@ -23,7 +23,14 @@
   the decision of 2026-11-17 took back; URWORLD.md and
   COLLABORATING.md had ALICE and BOB begin in the garden.
   COLLABORATING.md tells DeepSeek and Gemini, in a message to both;
-  AGENTS.md keeps the page current with every pull request.
+  AGENTS.md keeps the page current with every pull request. Then the
+  founder's word on who supplies which files (Decided), in the page's
+  fourth request. An independent review asked for seven fixes, all
+  made: the same two conflicts in six more places (TOPICS.md,
+  README.md, MINDS.md, WORLD-TYPES.md, FRACTALS.md, and a comment in
+  `rust/ur-world`); what may enter Core; the earlier works named only
+  once brought (house rule 8); one title for the book; the records
+  named in full; and the page's check of whether it is current.
 
 - 2026-11-18 Claude: the last piece of course step 3b is built, the
   records' side of part four: who may act on a log

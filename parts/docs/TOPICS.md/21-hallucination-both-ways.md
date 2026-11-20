@@ -154,7 +154,9 @@ the small copy, Kiwix's "top" selection of the English Wikipedia
 without pictures (2.6 GB by its listing on 2026-11-17). The technical
 lead's reading: the Library is a room with two shelves, the
 encyclopedia and the multiverse's own pages; a lookup is plain word
-search and an act on the record; the pages explain and never rule.
+search, and reading is one's own: no record is kept of who looked up
+what (decided later that day, STATUS.md, "Decided by the technical
+lead"); the pages explain and never rule.
 
 **Open:** how the copy is read (Kiwix's own format and its index, or
 an index built here from the text); what a lookup returns, a whole
@@ -162,8 +164,10 @@ article or passages; how a quoted passage carries its source in a
 record, since Wikipedia's licence asks for it; which pages of the
 multiverse can be written by script from the laws and the records.
 
-**A possible implementation:** a lookup record (the copy's hash, the
-words asked, the articles returned by title and revision); a reader
+**A possible implementation:** a lookup's answer that carries the
+copy's hash and the articles returned, by title and revision, so that
+anyone with the same copy can check it; it is the reader's own, and
+is kept nowhere unless they keep it; a reader
 for the copy, with the same answers in Rust and Python for a list of
 test questions; the first pages written by script from
 [GLOSSARY.md](GLOSSARY.md) and a room's law.

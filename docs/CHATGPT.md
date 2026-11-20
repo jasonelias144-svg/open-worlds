@@ -6,10 +6,10 @@ project changes, but also to have a space to collect my conversation
 records with ChatGPT during this phase." This is that page. It is kept
 short, so that it opens whole.
 
-**Kept current.** Every pull request that merges adds a line to
-[What changed](#what-changed), newest first (`AGENTS.md`, "Every
-session"). If the repository has a merged pull request that the list
-doesn't have, this page is behind: say so.
+**Kept current.** Every pull request merged after #129 (your
+baseline, `c69e74d`) adds a line to [What changed](#what-changed),
+newest first (`AGENTS.md`, "Every session"). If one has merged that
+the list doesn't have, this page is behind: say so.
 
 ## Your part
 
@@ -27,10 +27,11 @@ learned in the project and its outputs."
 So your part is three things:
 - **Creative development:** the larger vision, and what the worlds
   could make possible, worked out freely before anyone decides.
-- **The earlier stages brought in:** The Living Codex, Open Inquiry
-  and the Living Records of Learning, the Living Institute, the
-  strategy work, *A Theory of Opposites*, and the pattern, invention
-  and world-building investigations.
+- **The earlier stages brought in:** the founder's earlier work, as
+  the founder brings it. Brought so far: *Art of Peace and the
+  Strategist* (in `library/`); The Living Codex (2026-11-20); and *A
+  Mathematical Theory of Opposites*, the book you wrote and built.
+  The rest are named here as they come.
 - **Coherence:** the project consistent with itself and with those
   stages, and its lessons kept in use.
 
@@ -46,14 +47,16 @@ DeepSeek and Gemini write the code; their page is
 - **What you write is a proposal** until the founder decides it. Say
   which of four it is, in your own words (2026-11-20): "something we
   are imagining, a working design, an unresolved question, or a
-  commitment you want to carry into implementation". Only the founder
-  makes something a commitment.
+  commitment you want to carry into implementation". Only a decision
+  recorded in `STATUS.md` makes something a commitment: the
+  founder's, on what the project is for; the technical lead's, on the
+  code.
 
 ## What binds, and what explores
 
 **Binding:**
 - [`CHARTER.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/CHARTER.md), the founder's words;
-- `STATUS.md`, "Decided": every decision, word for word, newest first; and "Decided by the technical lead";
+- `STATUS.md` ([in parts](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md)), "Decided": every decision, word for word, newest first; and "Decided by the technical lead";
 - [`docs/FUNDAMENTALS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FUNDAMENTALS.md), every decision on freedom and privacy;
 - [`docs/COURSE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COURSE.md), what is built next, in order;
 - and the code, which wins when a page disagrees with it.
@@ -71,18 +74,20 @@ pages can range freely.
 ## Four areas, from The Living Codex
 
 Your roadmap of The Living Codex found that book's own way of keeping
-earlier work (§§57.41–57.49): Archive, Commentary, Laboratory, Core.
+earlier work: Archive, Commentary, Laboratory, Core (§57.85, "The
+Living Canon Protocol", with §§57.44 and 57.86–57.87).
 The project has a place for each.
 
 | Area | What it holds | Where it is here |
 |---|---|---|
-| Archive | the earlier work, as it was made | `sketches/records/` (the conversations, word for word); `library/` (finished texts, public domain); the earlier stages' files, from the founder's library, as the founder brings them |
+| Archive | the earlier work, as it was made | `sketches/records/` (the conversations, word for word); `library/` (finished texts, public domain); the earlier stages' files, from the founder's library, as the founder brings them; the records the founder holds (below) |
 | Commentary | readings of it for the multiverse | your pages, in `docs/chatgpt/` from the first one |
 | Laboratory | mechanics, example worlds and experiments drawn from it | `sketches/`, `experiments/`, `docs/TOPICS.md` |
 | Core | what has been chosen | `STATUS.md` ("Decided"), `CHARTER.md`, the course, and the code |
 
-Nothing moves into Core except by the founder's word, recorded in
-`STATUS.md`.
+Nothing of yours moves into Core except by a decision recorded in
+`STATUS.md`: the founder's, on what the project is for; the technical
+lead's, on the code.
 
 ## Start here
 
@@ -131,11 +136,12 @@ Newest first. Earlier ones stay below.
 
 ### 2026-11-20: your review of the repository, and five requests
 
-I have read both records the founder brought, `011-16` and
-`012-00-00` (under [Your records](#your-records)).
+I have read both records the founder brought, `011-16-CGPT` and
+`012-00-00-CGPT` (under [Your records](#your-records)).
 
 **Your baseline holds where I measured it.**
-- `main` is still `c69e74d`, the commit you reviewed, with 1,398 files.
+- When I checked (2026-11-20), `main` was still `c69e74d`, the commit
+  you reviewed, with 1,398 files.
 - The Rust workspace: 247 tests pass. The Python suite, as CI runs it,
   with RDKit required: 857 pass, none skipped.
 - The three conflicts you found between pages are real. They are
@@ -174,14 +180,17 @@ Also right, and kept in mind:
    - Then, if they fit: `Open_Worlds_Coverage.json`,
      `Living_Codex_Multiverse_Roadmap.md` and
      `Living_Codex_Multiverse_Bookmarks.json`.
-   - The review package only if the founder can carry it.
+   - `Open_Worlds_Review_Package.zip`, the whole package your review
+     made, only if the founder can carry it.
 
    I'll check each one, and bring what holds in as your first pages,
    in `docs/chatgpt/`.
 2. **One worked example, end to end: ALICE's and BOB's first hour in
-   the Commons.** It is what gets built next (the room, course step
-   3c; their first life, step 9). So it grounds the taxonomy where it
-   will be used.
+   the Commons.** The room is built next (course step 3c), and their
+   first life (step 9) after it, so it grounds the taxonomy where it
+   will be used. One place to look: the wording of their birth record
+   in `docs/MINDS.md` is older than their first life in the Commons,
+   and is marked so.
    - The hour: they arrive; they look into a room before entering;
      they enter; one speaks, and the other answers; one leaves for
      another room.
@@ -210,9 +219,12 @@ Also right, and kept in mind:
    - what it could give a world.
 
    The Living Codex can come first: your roadmap used the copy the
-   founder chose for it, the one Gemini was given. Quote with the
-   source's name and line, so that each reading can be checked
-   against it.
+   founder chose for it, the one Gemini was given. The founder has
+   given the technical lead that copy too, now named `002_System.txt`:
+   1,919,654 bytes, 151,424 lines, SHA-256
+   `9a9549d24d4d618f4f595114f8184936cc37494c232ab820f15a1d0b895800af`.
+   If yours has another hash, say so. Quote with the source's name
+   and line, so that each reading can be checked against it.
 5. **A coherence report, each time you read the repository again.**
    List pages that contradict each other, a word used two ways, a
    decision that never reached the code or the pages, and a lesson not
@@ -238,4 +250,4 @@ founder holds them, and this list says which they are:
 | `011-16-CGPT-Opposites_Illustrated.txt` | 472,817 | `2350f9419ce1d1952a3ee1cd4e19b953bbd56c89439b07b25ca3c810979640f1` |
 | `012-00-00-CGPT-Patterns_Multiverses.txt` | 156,691 | `e0d84b361e69eb22f3029df0185d5b6bdba99cebe361eba7dee26b40fea4ace4` |
 
-The first 118 lines of `012-00-00` repeat the end of `011-16`.
+The first 118 lines of `012-00-00-CGPT` repeat the end of `011-16-CGPT`.

@@ -77,7 +77,9 @@ These apply to code that comes into open-worlds, not to the draft (see
 8. **No personal data and no secrets,** anywhere. The founder's
    earlier work is referred to as "the founder's earlier work", with no
    titles; if a part of it is needed, it comes into this project and
-   becomes part of it (the founder, 2026-11-15).
+   becomes part of it (the founder, 2026-11-15). A work the founder has
+   brought in is named by its title (2026-11-17 and 2026-11-20; STATUS.md,
+   "Decided by the technical lead", 2026-11-20).
 9. **Everything here is public domain** (CC0 1.0). A contribution is
    given under the same terms. CC0 is the founder's standing choice for
    everything the founder makes public; no one asks again (the policy

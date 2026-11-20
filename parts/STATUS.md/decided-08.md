@@ -56,8 +56,9 @@
   earlier stages, and the project's coherence; ChatGPT has a page of
   their own (how it is shaped: Decided by the technical lead, today).
   The "Perfect" that opens it answers the entry below.
-- 2026-11-20, founder, collaboration in one space. After the book's
-  editing rounds, done between ChatGPT, who wrote and built it, the
+- 2026-11-20, founder, collaboration in one space. After the editing
+  rounds of the founder's book *A Mathematical Theory of Opposites*,
+  done between ChatGPT, who wrote and built it, the
   technical lead, who checked each return, and the founder, who
   carried every file between them: "Perfect. And this process worked
   well and it is just the type of process I meant to facilitate when

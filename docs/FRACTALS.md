@@ -222,7 +222,7 @@ technical lead's. Each part is one reviewed pull request.
    way, with checkpoints so it can run for hours. DeepSeek sketched it,
    with stage 2's neuron, in record 012-07-03; the sketch is kept with
    the technical lead's review in `sketches/deepseek/012-07-03/`, and the
-   project fits it as `rust/endless-plant`.
+   project is to fit it as `rust/endless-plant` (not built yet).
 5. **More families, and choice.** Automata and chaos games, as DeepSeek
    sketched them; then primitive learning models that choose (DeepSeek's
    lookup table and four-unit network; the learning and choosing monad,

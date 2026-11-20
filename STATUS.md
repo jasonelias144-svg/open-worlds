@@ -390,8 +390,9 @@ of it is asked again until it is needed.
   earlier stages, and the project's coherence; ChatGPT has a page of
   their own (how it is shaped: Decided by the technical lead, today).
   The "Perfect" that opens it answers the entry below.
-- 2026-11-20, founder, collaboration in one space. After the book's
-  editing rounds, done between ChatGPT, who wrote and built it, the
+- 2026-11-20, founder, collaboration in one space. After the editing
+  rounds of the founder's book *A Mathematical Theory of Opposites*,
+  done between ChatGPT, who wrote and built it, the
   technical lead, who checked each return, and the founder, who
   carried every file between them: "Perfect. And this process worked
   well and it is just the type of process I meant to facilitate when
@@ -3285,8 +3286,9 @@ of it is asked again until it is needed.
   commitment you want to carry into implementation". (d) The Living
   Codex's four areas (Archive, Commentary, Laboratory, Core), which
   ChatGPT's roadmap of that book found, are mapped onto the places
-  the project already has; nothing moves into Core but by the
-  founder's word. (e) ChatGPT's two conversation records of this
+  the project already has; nothing of ChatGPT's moves into Core but
+  by a decision recorded here: the founder's, on what the project is
+  for; the technical lead's, on the code. (e) ChatGPT's two conversation records of this
   phase hold personal material, so they are not kept in
   `sketches/records/`. The founder holds them; the page lists each by
   name, size and SHA-256. This was put to the founder on 2026-11-20
@@ -3294,12 +3296,22 @@ of it is asked again until it is needed.
   otherwise (AGENTS.md, "Who decides"). (f) What ChatGPT sends comes
   through the founder, as files, until they can write to GitHub; the
   technical lead checks each and brings in what holds, with
-  `Made-by: ChatGPT (AI)`.
+  `Made-by: ChatGPT (AI)`. (g) A work of the founder's earlier work is
+  named by its title once the founder brings it into the project, and
+  until then is "the founder's earlier work" (house rule 8). The
+  founder, 2026-11-15: "If the need arises, then it becomes part of
+  the current project"; on 2026-11-17 a work brought in was named; and
+  on 2026-11-20 bringing them in became ChatGPT's part, with the
+  founder supplying each one. Named so far: *Art of Peace and the
+  Strategist*, The Living Codex (given to the technical lead on
+  2026-11-20), and the book *A Mathematical Theory of Opposites*.
   *What would show it wrong:* for (a), ChatGPT missing something that
   only COLLABORATING.md says, or the page growing past 28,000 bytes;
   then the older messages move to a file of their own. For (e), the
   founder wanting the records public; then copies with the personal
-  material left out go to `sketches/records/`, as Gemini's did.
+  material left out go to `sketches/records/`, as Gemini's did. For
+  (g), the founder wanting a title kept out; then it is taken out
+  where it stands.
 
 - 2026-11-18, the records' side of part four
   (docs/research/REDACTION.md, "Part four, the records' side, built";
@@ -4820,8 +4832,8 @@ it was wrong. Questions of what the project is for stay with the founder.
   explores, the four areas, where to start, how to send something,
   the technical lead's first message with five requests, what
   changed, and their records. Looked at first: the founder's two
-  conversation records with ChatGPT, 011-16 and 012-00-00, read
-  whole, and ChatGPT's review of the repository in the second, held
+  conversation records with ChatGPT, 011-16-CGPT and 012-00-00-CGPT,
+  read whole, and ChatGPT's review of the repository in the second, held
   to the repository. `main` is still `c69e74d`, with 1,398 files;
   the Rust workspace passes 247 tests and the Python suite 857, with
   RDKit required, as ChatGPT said. Their three findings were real,
@@ -4830,7 +4842,14 @@ it was wrong. Questions of what the project is for stay with the founder.
   the decision of 2026-11-17 took back; URWORLD.md and
   COLLABORATING.md had ALICE and BOB begin in the garden.
   COLLABORATING.md tells DeepSeek and Gemini, in a message to both;
-  AGENTS.md keeps the page current with every pull request.
+  AGENTS.md keeps the page current with every pull request. Then the
+  founder's word on who supplies which files (Decided), in the page's
+  fourth request. An independent review asked for seven fixes, all
+  made: the same two conflicts in six more places (TOPICS.md,
+  README.md, MINDS.md, WORLD-TYPES.md, FRACTALS.md, and a comment in
+  `rust/ur-world`); what may enter Core; the earlier works named only
+  once brought (house rule 8); one title for the book; the records
+  named in full; and the page's check of whether it is current.
 
 - 2026-11-18 Claude: the last piece of course step 3b is built, the
   records' side of part four: who may act on a log

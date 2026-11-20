@@ -1433,7 +1433,7 @@ computer; the learning multiversity) are in "What's here", items 3 and
   (house rule 9). SAIR-Lean-Kernel-Challenge is the one repository built
   on outside work.
 - **The founder's earlier work** is referred to as just that, with no
-  titles (house rule 8).
+  titles, until the founder brings a work in (house rule 8).
 - **Lean:** checking the reasoning behind decisions in offices, and
   reasoning worlds where a claim counts once Lean's kernel accepts its
   proof ([TOPICS.md](TOPICS.md), topic 20).
@@ -2046,7 +2046,9 @@ These apply to code that comes into open-worlds, not to the draft (see
 8. **No personal data and no secrets,** anywhere. The founder's
    earlier work is referred to as "the founder's earlier work", with no
    titles; if a part of it is needed, it comes into this project and
-   becomes part of it (the founder, 2026-11-15).
+   becomes part of it (the founder, 2026-11-15). A work the founder has
+   brought in is named by its title (2026-11-17 and 2026-11-20; STATUS.md,
+   "Decided by the technical lead", 2026-11-20).
 9. **Everything here is public domain** (CC0 1.0). A contribution is
    given under the same terms. CC0 is the founder's standing choice for
    everything the founder makes public; no one asks again (the policy
