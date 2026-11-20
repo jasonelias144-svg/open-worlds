@@ -348,6 +348,12 @@ of it is asked again until it is needed.
 
 ## Decided
 
+- 2026-11-20, founder, stage 012's name. "And for the record, the
+  current stage file with be 012_Code.txt, which is our current project
+  stage." Recorded in [docs/HISTORY.md](docs/HISTORY.md): stage 012 is
+  Code, this repository's stage, and its file, when it is made, is
+  `012_Code.txt`.
+
 - 2026-11-20, founder, the stages' own files. The founder brought the
   separate files that stages 003, 004, 005, 009 and 010 were made
   from: "Here is a zip file of zip files. It includes one zip file for
@@ -4937,6 +4943,9 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-20 Claude: stage 012's name, Code, and its file's,
+  `012_Code.txt`, at the founder's word, on the history page (#134).
 
 - 2026-11-20 Claude: stages 003, 004, 005 and 009 replaced by complete
   versions, at the founder's word (#133). The earlier ones left out

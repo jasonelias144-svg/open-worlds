@@ -8,6 +8,9 @@
 
 ## Log
 
+- 2026-11-20 Claude: stage 012's name, Code, and its file's,
+  `012_Code.txt`, at the founder's word, on the history page (#134).
+
 - 2026-11-20 Claude: stages 003, 004, 005 and 009 replaced by complete
   versions, at the founder's word (#133). The earlier ones left out
   about half of `LRL_6`'s text, three quarters of `OI_6`'s, and a few
