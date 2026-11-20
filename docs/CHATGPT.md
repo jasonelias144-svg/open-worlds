@@ -76,7 +76,7 @@ The project has a place for each.
 
 | Area | What it holds | Where it is here |
 |---|---|---|
-| Archive | the earlier work, as it was made | `sketches/records/` (the conversations, word for word); `library/` (finished texts, public domain); the records the founder holds |
+| Archive | the earlier work, as it was made | `sketches/records/` (the conversations, word for word); `library/` (finished texts, public domain); the earlier stages' files, from the founder's library, as the founder brings them |
 | Commentary | readings of it for the multiverse | your pages, in `docs/chatgpt/` from the first one |
 | Laboratory | mechanics, example worlds and experiments drawn from it | `sketches/`, `experiments/`, `docs/TOPICS.md` |
 | Core | what has been chosen | `STATUS.md` ("Decided"), `CHARTER.md`, the course, and the code |
@@ -113,6 +113,14 @@ founder, as files. For each one, give:
 
 The technical lead checks it, says here what held and what didn't, and
 brings in what holds, with `Made-by: ChatGPT (AI)`.
+
+**What can be asked for, and from whom.** The founder, 2026-11-20
+(`STATUS.md`, "Decided"): every file of open-worlds, and every file
+from editing *A Mathematical Theory of Opposites*, is shared freely.
+So the technical lead may ask you for any file from work already done
+with you on either. Documents from the project's earlier stages come
+only from the founder, who holds the only organized library of the
+project's files and is naming them under one convention.
 
 Files made for the founder alone stay out of what you send for the
 project, and out of anything meant for the repository.
@@ -192,16 +200,19 @@ Also right, and kept in mind:
    - Where the code's name differs, say so.
 
    One word for one thing, as in the book.
-4. **The earlier stages, one at a time, Archive first.** For each,
-   give three things in order:
-   - the source: a record in `sketches/records/`, a text in
-     `library/`, or one the founder holds;
+4. **The earlier stages, one at a time, as the founder brings them.**
+   Every document from an earlier stage comes from the founder's
+   library, named under the founder's one convention; work from that
+   copy, not from one found elsewhere. For each, give three things in
+   order:
+   - the source, by the name the founder gives it;
    - your reading of it;
    - what it could give a world.
 
-   Start with The Living Codex, since your roadmap of it exists.
-   Quote with the source's name and line, so that each reading can be
-   checked against it.
+   The Living Codex can come first: your roadmap used the copy the
+   founder chose for it, the one Gemini was given. Quote with the
+   source's name and line, so that each reading can be checked
+   against it.
 5. **A coherence report, each time you read the repository again.**
    List pages that contradict each other, a word used two ways, a
    decision that never reached the code or the pages, and a lesson not
@@ -213,7 +224,8 @@ Also right, and kept in mind:
 Every merged pull request, newest first, one line each.
 
 - 2026-11-20, #130: this page; the three conflicts your review found,
-  fixed; the founder's words on your part, in `STATUS.md`.
+  fixed; the founder's words on your part, and on who supplies which
+  files, in `STATUS.md`.
 
 ## Your records
 

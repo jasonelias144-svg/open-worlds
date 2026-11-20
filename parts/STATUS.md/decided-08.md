@@ -8,6 +8,23 @@
 
 ## Decided
 
+- 2026-11-20, founder, who supplies which files. On the technical
+  lead's fourth request to ChatGPT, that they bring in the earlier
+  stages: "The earlier stages will have to come from me. I have the
+  project files. I am just arranging them and naming them according
+  to a single naming convention. So that will come from me, but if
+  there are files related to our work we have already done, that's
+  fair game for document requests. All documents from previous stages
+  needs to come from me, there are too manny related files and I have
+  the only organized library of project files. But all the open
+  worlds files should be freely shared, as well as files related to
+  editing the theory of opposites book. Thoughts?" Decided: every
+  document from an earlier stage comes from the founder's library, as
+  the founder brings it; ChatGPT works from that copy. Files from work
+  already done with ChatGPT, on open-worlds or on editing the book,
+  may be asked for freely. The request on ChatGPT's page says so
+  ([docs/CHATGPT.md](docs/CHATGPT.md)).
+
 - 2026-11-20, founder, the page in use. "Actually, here is a perfect
   opportunity to use our new ChatGPT page in the repo. You can speak
   directly to ChatGPT there and make requests regarding our project
