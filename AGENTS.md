@@ -14,6 +14,10 @@ loosen it.
 4. Keep `docs/COLLABORATING.md` current, and `docs/TOPICS.md`, the menu
    of topics ahead it points to: a change to anything they describe
    updates them in the same pull request, and every review checks it.
+   So does `docs/CHATGPT.md`, ChatGPT's page: every pull request adds
+   its line to "What changed" there before it merges (the founder,
+   2026-11-20: "a special page for ChatGPT to be able to get updated
+   on project changes").
    The founder (2026-11-14): "please make sure the COLLABORATING.md is
    up to date as we go. This way, if we run out of data for a few days, I
    can still go and work with DeepSeek during that time."
@@ -26,8 +30,9 @@ loosen it.
    when they decide something), and what they change into the pages.
    The technical lead's procedure for it: in the pull request that acts
    on them, or the next one; and before a session ends, they check that
-   nothing the founder said there is missing, and that
-   `docs/COLLABORATING.md` tells DeepSeek and Gemini what changed.
+   nothing the founder said there is missing, that
+   `docs/COLLABORATING.md` tells DeepSeek and Gemini what changed, and
+   that `docs/CHATGPT.md` tells ChatGPT.
 
 ## Who decides
 

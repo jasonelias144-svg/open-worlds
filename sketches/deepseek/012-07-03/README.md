@@ -68,7 +68,8 @@ dieback pays back, and the compile checklist's (line 1250) adds it; the
 code adds it.
 
 **What fitting changes.** The fitted crate, `rust/endless-plant`, is
-built by the project from this sketch, with DeepSeek's decisions as the
+not built yet (`STATUS.md`, "Now"). It is to be built by the project
+from this sketch, with DeepSeek's decisions as the
 record gives them (its "five questions, decided" and "four weaknesses,
 decided", from line 1364) and these changes: Grow extends a tip and
 Split forks it; the plant is a tree, so a dropped tip frees only the

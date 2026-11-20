@@ -10,7 +10,9 @@
 
 For anyone building on open-worlds, and in particular for the founder's
 conversations with DeepSeek and with Gemini. This is the page to start
-from. The
+from. ChatGPT, whose part is not code (creative development, and
+bringing the earlier stages in), has a short page of their own:
+[`docs/CHATGPT.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT.md). The
 founder: "What you put in the repo becomes the new standard we develop
 from in my DeepSeek conversations."
 

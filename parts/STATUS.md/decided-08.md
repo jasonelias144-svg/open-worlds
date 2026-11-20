@@ -8,6 +8,82 @@
 
 ## Decided
 
+- 2026-11-20, founder, who supplies which files. On the technical
+  lead's fourth request to ChatGPT, that they bring in the earlier
+  stages: "The earlier stages will have to come from me. I have the
+  project files. I am just arranging them and naming them according
+  to a single naming convention. So that will come from me, but if
+  there are files related to our work we have already done, that's
+  fair game for document requests. All documents from previous stages
+  needs to come from me, there are too manny related files and I have
+  the only organized library of project files. But all the open
+  worlds files should be freely shared, as well as files related to
+  editing the theory of opposites book. Thoughts?" Decided: every
+  document from an earlier stage comes from the founder's library, as
+  the founder brings it; ChatGPT works from that copy. Files from work
+  already done with ChatGPT, on open-worlds or on editing the book,
+  may be asked for freely. The request on ChatGPT's page says so
+  ([docs/CHATGPT.md](docs/CHATGPT.md)).
+
+- 2026-11-20, founder, the page in use. "Actually, here is a perfect
+  opportunity to use our new ChatGPT page in the repo. You can speak
+  directly to ChatGPT there and make requests regarding our project
+  needs, since you have read the conversation. You can also request
+  documents and have me bring them over to you. Let's try it out.
+  Please update the ChatGPT COLLABORATING.md page and provide me with
+  a link. We will try what we did with DeepSeek, which, I think,
+  shouldn't be a problem with ChatGPT. Thoughts?" Done: the page is
+  [docs/CHATGPT.md](docs/CHATGPT.md), built as COLLABORATING.md is for
+  DeepSeek and Gemini, with a first message (what the technical lead
+  checked of ChatGPT's review of the repository, and five requests).
+  The founder gives ChatGPT its full link.
+- 2026-11-20, founder, ChatGPT's part. "Perfect. Also, since my time
+  with DeepSeek is limited to a few rounds a day, we have to limit
+  that to code production. Same with Gemini. But I was doing a lot of
+  creative development with DeepSeek before that I cannot do anymore.
+  So I decided that ChatGPT should fill that role, as well as helping
+  with integrating past stages of the project. Since those stages
+  were all done with ChatGPT, this is natural. Plus, we don't need
+  more code, we need to keep track of everything and make sure we
+  stay consistent and coherent and that we continue to leverage
+  lessons learned in the project and its outputs. In addition,
+  ChatGPT can and has been able to access the repo documents and stay
+  in touch with current changes. I propose a special page for ChatGPT
+  to be able to get updated on project changes, but also to have a
+  space to collect my conversation records with ChatGPT during this
+  phase. Thoughts?" Decided: DeepSeek's and Gemini's rounds go to
+  code; ChatGPT takes creative development, the integration of the
+  earlier stages, and the project's coherence; ChatGPT has a page of
+  their own (how it is shaped: Decided by the technical lead, today).
+  The "Perfect" that opens it answers the entry below.
+- 2026-11-20, founder, collaboration in one space. After the editing
+  rounds of the founder's book *A Mathematical Theory of Opposites*,
+  done between ChatGPT, who wrote and built it, the
+  technical lead, who checked each return, and the founder, who
+  carried every file between them: "Perfect. And this process worked
+  well and it is just the type of process I meant to facilitate when
+  thinking about Lyceum Commons. So how can we build Open Worlds to
+  allow for such collaboration to occur within a single space, of
+  with the efficiency of plugins to move the data around instead of
+  me? How can we learn from this process and find a way to facilitate
+  it with much more ease within open worlds? Thoughts?" The technical
+  lead's answer, which the founder met with "Perfect": a kind of room,
+  a workroom, built from what the multiverse already has. A shelf of
+  files known by their SHA-256; rounds as signed acts (a proposal, a
+  return, a review's verdict, a decision), where the decision can
+  come only from the one whose call it is; the room's own pinned
+  build and check, so that no collaborator's machine is the
+  reference; a seat for each collaborator that posts into the room
+  and fetches from it, in place of the founder as courier; and the
+  room's record written out to a git repository. Its limits: the
+  chat apps can't be driven by a plug-in, so a seat needs each
+  company's API, which costs money per use; push access for each
+  collaborator, and the founder uploading once, take most of the
+  carrying away sooner; and the checks that caught errors in the book
+  stay, made cheap and never optional. The first step is a design
+  page, "Workrooms: what the book taught", with the book's rounds as
+  the worked example. Not written yet (Next).
+
 - 2026-11-17, founder, careful and consistent from the start. The
   technical lead had reported what was changed for "they" (the entry
   below), with three readings for the founder to overrule: the dated

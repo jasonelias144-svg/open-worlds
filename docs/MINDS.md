@@ -192,6 +192,12 @@ own choice. The founder can still change it:
 > You may leave at any time.
 > Your first day begins with a tour of the garden.
 
+This wording is older than the founder's decision of 2026-11-17 that
+ALICE and BOB first live in the Commons, and come to the Ur-world's
+garden after ([COMMONS.md](COMMONS.md), "The first to live there").
+Where they come into being, and what their first day begins with, are
+settled again with the founder at their first life (course step 9).
+
 It tells them exactly how private their journal is, because that is true:
 sealed, though its existence and size can be seen, in their own
 container, with the honest limit that their mind runs on the project's

@@ -3,8 +3,10 @@
 //!
 //! A 3D world of cells, with ground and sky, that begins in a garden with
 //! two individuals, ALICE and BOB, and is made from its seed as it is explored.
-//! ALICE and BOB are born at the course's step 9; until then the garden's
-//! Hello World runs with two scripted stand-ins, WALKER and GARDENER.
+//! ALICE and BOB are born at the course's step 9, and first live in the
+//! Commons, coming to the garden after (the founder, 2026-11-17); until
+//! then the garden's Hello World runs with two scripted stand-ins,
+//! WALKER and GARDENER.
 //! The design, and the founder's decisions behind it, are in
 //! `docs/URWORLD.md`.
 //!

@@ -386,7 +386,8 @@ built or designed.
    - **Game worlds,** the founder's turn in record 012-05-01: a chess
      park, worlds inside worlds ([COLLABORATING.md](COLLABORATING.md),
      "Where the conversation stands").
-   - **Home:** the Ur-world, where ALICE and BOB will be born.
+   - **Home:** the Ur-world, ALICE's and BOB's home after their first
+     life in the Commons.
    - **Test bench:** the Mir-Ur-world, the Ur-world's mirror.
    - **Training:** ADMIN's own world.
    - **Parallel worlds:** runs of one template, side by side.

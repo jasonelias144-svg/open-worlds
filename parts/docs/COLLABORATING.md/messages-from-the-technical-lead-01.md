@@ -337,7 +337,7 @@ computer; the learning multiversity) are in "What's here", items 3 and
   (house rule 9). SAIR-Lean-Kernel-Challenge is the one repository built
   on outside work.
 - **The founder's earlier work** is referred to as just that, with no
-  titles (house rule 8).
+  titles, until the founder brings a work in (house rule 8).
 - **Lean:** checking the reasoning behind decisions in offices, and
   reasoning worlds where a claim counts once Lean's kernel accepts its
   proof ([TOPICS.md](TOPICS.md), topic 20).

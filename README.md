@@ -67,7 +67,8 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
 - [docs/COLLABORATING.md](docs/COLLABORATING.md): how to build on this,
   and the house rules.
 - [docs/URWORLD.md](docs/URWORLD.md): the Ur-world, the first world of the
-  multiverse and its hub. It begins in a garden, with ALICE and BOB.
+  multiverse and its hub. It begins in a garden; ALICE and BOB come to it
+  after their first life in the Commons.
 - [docs/MINDS.md](docs/MINDS.md): what an individual is made of, what their
   mind is told, and how information moves.
 - [docs/WORLD-KEY.md](docs/WORLD-KEY.md): what there is to do in the

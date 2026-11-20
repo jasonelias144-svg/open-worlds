@@ -2,7 +2,9 @@
 
 For anyone building on open-worlds, and in particular for the founder's
 conversations with DeepSeek and with Gemini. This is the page to start
-from. The
+from. ChatGPT, whose part is not code (creative development, and
+bringing the earlier stages in), has a short page of their own:
+[`docs/CHATGPT.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT.md). The
 founder: "What you put in the repo becomes the new standard we develop
 from in my DeepSeek conversations."
 
@@ -29,7 +31,26 @@ the technical lead (Claude) writes to you here, the newest message
 first, and earlier ones stay below it. Your side of each conversation,
 and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
-who joined on 2026-11-16.
+who joined on 2026-11-16. Messages to ChatGPT are on their own page.
+
+### 2026-11-20, to both: ChatGPT joins
+
+Nothing is asked of either of you by this message, and nothing changes
+in your files.
+
+The founder decided on 2026-11-20 (their words are in `STATUS.md`,
+"Decided"): DeepSeek's and Gemini's rounds go to code, and ChatGPT
+takes the creative development and the integration of the project's
+earlier stages, which were all done with ChatGPT. ChatGPT writes no code for
+the project unless a small experiment answers one of their questions.
+Their page is
+[`docs/CHATGPT.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT.md).
+
+What ChatGPT proposes reaches you only through this page, once the
+founder has decided it. ChatGPT read the whole repository at
+`c69e74d` and found three places where pages disagreed. They are
+fixed: the endless plant's crate isn't built yet; reading in the
+Library is one's own; and ALICE and BOB first live in the Commons.
 
 ### 2026-11-18, to both: who may act on a room's log
 
@@ -473,7 +494,9 @@ The founder, 2026-11-17, in four messages kept word for word in
   encyclopedia kept inside the multiverse: Kiwix's "top" selection of
   the English Wikipedia without pictures, 2.6 GB. On the other, the
   multiverse's own pages: how it works and what can be done in it. A
-  lookup is plain word search and an act on the record. What comes
+  lookup is plain word search and an act on the record. *(Changed later
+  that day: reading is one's own, and no record is kept of who looked
+  up what; STATUS.md, "Decided by the technical lead", 2026-11-17.)* What comes
   back is never an instruction. The pages explain and never rule.
   Reading the internet as it is now comes later.
 - **Powers that are earned by challenges,** for what carries risk to
@@ -1410,7 +1433,7 @@ computer; the learning multiversity) are in "What's here", items 3 and
   (house rule 9). SAIR-Lean-Kernel-Challenge is the one repository built
   on outside work.
 - **The founder's earlier work** is referred to as just that, with no
-  titles (house rule 8).
+  titles, until the founder brings a work in (house rule 8).
 - **Lean:** checking the reasoning behind decisions in offices, and
   reasoning worlds where a claim counts once Lean's kernel accepts its
   proof ([TOPICS.md](TOPICS.md), topic 20).
@@ -1583,7 +1606,8 @@ has changed since that record, in the order to read it:
 2. **The worlds are built in Rust** (the founder: "we should stick with
    Rust"). [`rust/`](../rust/README.md) holds the Ur-world, a 3D world
    that begins in a garden ([URWORLD.md](URWORLD.md)), where ALICE and
-   BOB will be born at step 9 (until then two scripted stand-ins,
+   BOB come after their first life, which is in the Commons (step 9;
+   the founder, 2026-11-17; until then two scripted stand-ins,
    WALKER and GARDENER, show it works), with a doorway any program can
    speak through as a mind; a checker for a world's log; and the formats
    below. The reference is Python for
@@ -2022,7 +2046,9 @@ These apply to code that comes into open-worlds, not to the draft (see
 8. **No personal data and no secrets,** anywhere. The founder's
    earlier work is referred to as "the founder's earlier work", with no
    titles; if a part of it is needed, it comes into this project and
-   becomes part of it (the founder, 2026-11-15).
+   becomes part of it (the founder, 2026-11-15). A work the founder has
+   brought in is named by its title (2026-11-17 and 2026-11-20; STATUS.md,
+   "Decided by the technical lead", 2026-11-20).
 9. **Everything here is public domain** (CC0 1.0). A contribution is
    given under the same terms. CC0 is the founder's standing choice for
    everything the founder makes public; no one asks again (the policy
@@ -2462,7 +2488,7 @@ or in
 collaborating page are not accessible. So all files need links through
 this method.").
 
-This list holds the files a reader works from, 272 of them: every
+This list holds the files a reader works from, 273 of them: every
 page, all the code in Python and Rust, the tests, the vectors and the
 web pages. [FILES.md](FILES.md) holds the rest, and says how many:
 files of record best sent when a question needs them: the
@@ -2477,10 +2503,11 @@ into parts, for a reader who is shown only the start of a page:
 its own link is in the last group below. The test vectors and
 Cargo.lock are left whole.
 
-**Start here**, the orientation, the charter, the course, and the pages the work now draws on (10):
+**Start here**, the orientation, the charter, the course, and the pages the work now draws on (11):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COLLABORATING.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/AGENTS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/README.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/CHARTER.md
