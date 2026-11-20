@@ -202,7 +202,10 @@ which teach without words ([WORLD-KEY.md](WORLD-KEY.md), "The hunt").
 
 Ideas that won't help yet but probably will, from the course's waiting
 list ([COURSE.md](COURSE.md)) and the founder's notes. Thinking about any
-of them now is welcome, as prose; their code waits for their step. For
+of them now is welcome, as prose; their code waits for their step.
+ChatGPT works them out as concepts first; a chosen one becomes a spec,
+and comes to DeepSeek and Gemini through COLLABORATING.md
+([CHATGPT.md](CHATGPT.md), "From an idea to code"). For
 ADMIN and the Keepers, ideas only: their design is the project's, at
 step 11 (COLLABORATING.md, "Held back").
 
