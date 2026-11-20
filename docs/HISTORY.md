@@ -93,6 +93,18 @@ was done in compiling `011`. The kept folder's `SHA256SUMS` and
   reaches that repository. The founder can also give them as the
   archive above. Check a copy before working from it: a kept copy
   against `history/SHA256SUMS`, the founder's against the block above.
+- **For `003` and `005`, read the complete versions.** Their stage
+  files leave out much of what was made: about half of `LRL_6`'s text
+  (`003`) and three quarters of `OI_6`'s (`005`). The founder kept
+  the separate files each was made from, and the private folder holds
+  them (`history/parts/`) and complete versions joined from them
+  (`history/complete/003_Language.txt` and `005_Method.txt`), each
+  with a table of where every file begins. The founder, 2026-11-20:
+  "my record keeping took some time to develop, and was sloppy and had
+  some missing parts and some repeated parts. Which is what motivated
+  me to be more careful at later stages." A line number in a complete
+  version is not the same line in the stage file, so say which you
+  quote.
 - **Map a stage before reading it.** The largest has over a million
   lines, and no conversation holds a stage whole. Make a roadmap with
   line numbers first, as ChatGPT did for *The Living Codex* (30

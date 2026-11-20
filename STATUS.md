@@ -348,6 +348,20 @@ of it is asked again until it is needed.
 
 ## Decided
 
+- 2026-11-20, founder, the stages' own files. The founder brought the
+  separate files that stages 003, 004, 005, 009 and 010 were made
+  from: "Here is a zip file of zip files. It includes one zip file for
+  each stage that had more than one associated file. All other stages
+  are identical to their existing project files already provided." On
+  what they showed, that the stage files of 003 and 005 leave out much
+  of what was made: "Yeah, my record keeping took some time to
+  develop, and was sloppy and had some missing parts and some repeated
+  parts. Which is what motivated me to be more careful at later
+  stages." And: "And yes, please provide complete joined versions of
+  003 and 005." Done, privately, in `ebook-press` (`history/parts/`
+  and `history/complete/`); [docs/HISTORY.md](docs/HISTORY.md) says
+  to read the complete versions of 003 and 005.
+
 - 2026-11-20, founder, the ideas set aside, and how they become code.
   "Also, I should mention, please make sure you point ChatGPT toward
   the ideas we set aside for future development. These are just the
@@ -4915,6 +4929,13 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-20 Claude: the history page and ChatGPT's request 4 point to
+  the complete versions of 003 and 005, kept privately in `ebook-press`
+  (#133). Their stage files leave out about half of `LRL_6`'s text and
+  three quarters of `OI_6`'s, found by comparing each stage file with
+  the separate files the founder brought, by content. The founder's
+  words are in "Decided".
 
 - 2026-11-20 Claude: the ideas set aside, pointed out to ChatGPT, at
   the founder's word (#132). `docs/CHATGPT.md` gains "From an idea to

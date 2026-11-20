@@ -8,6 +8,13 @@
 
 ## Log
 
+- 2026-11-20 Claude: the history page and ChatGPT's request 4 point to
+  the complete versions of 003 and 005, kept privately in `ebook-press`
+  (#133). Their stage files leave out about half of `LRL_6`'s text and
+  three quarters of `OI_6`'s, found by comparing each stage file with
+  the separate files the founder brought, by content. The founder's
+  words are in "Decided".
+
 - 2026-11-20 Claude: the ideas set aside, pointed out to ChatGPT, at
   the founder's word (#132). `docs/CHATGPT.md` gains "From an idea to
   code": the four hands, the lists of ideas set aside (TOPICS.md,
