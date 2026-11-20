@@ -364,9 +364,10 @@ of it is asked again until it is needed.
   compiled versions … Yeah, no, not two versions. Just one." And, of
   004 and 009: "So, the original files would have contained those
   files, had I not made a mistake. Neither was an intentional
-  omission." Done: 003, 004, 005 and 009 are now the complete
+  omission." And: "And you might as well provide 011_Opposites.txt
+  here too." Done: 003, 004, 005 and 009 are now the complete
   versions, in the founder's library and, kept, in `ebook-press`
-  `history/`; [docs/HISTORY.md](docs/HISTORY.md)
+  `history/`, and the founder has their own copy of 011; [docs/HISTORY.md](docs/HISTORY.md)
   gives their new hashes and the earlier ones'.
 
 - 2026-11-20, founder, the ideas set aside, and how they become code.

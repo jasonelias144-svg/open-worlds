@@ -37,11 +37,10 @@ beginning."
 | `008_Relation.txt` | *The Art of War* in a published translation, read with ChatGPT and Grok; then shared-benefit optimization, a question set out for mathematics. | 1,343,318 | 29,059 | 194,251 |
 | `009_Strategy.txt` | Notes on strategy, and records of the work, most of them marked CGPT (made with ChatGPT). It holds *Art of Peace and the Strategist* byte for byte as it is in [`library/`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/README.md). | 20,556,839 | 419,585 | 3,103,731 |
 | `010_Wisdom.txt` | *The Living Way*, a field manual in 100 chapters, with later drafts of it. | 14,352,248 | 279,772 | 2,478,806 |
-| `011_Opposites.txt` | *A Mathematical Theory of Opposites*: the conversations with ChatGPT and DeepSeek that made it (`011-00` to `011-16`), its earlier versions, the editing record, and the final text. | 20,834,016 | 324,298 | 3,043,350 |
+| `011_Opposites.txt` | *A Mathematical Theory of Opposites*: the conversations with ChatGPT and DeepSeek that made it (`011-00` to `011-16`), its earlier versions, the editing record, and the final text. | 20,837,466 | 324,298 | 3,043,248 |
 
-In all, 104,525,053 bytes and about 15.1 million words. The counts
-are for the files as the founder holds them, and for `011` as compiled
-and kept. The descriptions are the technical lead's, from each file's
+In all, 104,528,503 bytes and about 15.1 million words. The counts
+are for the files as the founder holds them. The descriptions are the technical lead's, from each file's
 headings and opening; no one has read every line.
 
 ## Checking a copy
@@ -60,9 +59,10 @@ fe7a4f55d2a3bf5c85faa10aa2f84e6b3bd981c214db3368efb7b8e3b346a00e  006_Analysis.t
 e8ddd73602a4d4a48f75b574971e6e2f357e6d4f3eca223a0bf352e0f9194294  008_Relation.txt
 df439c0dd651b6d5865722bd98bfae05e72bd873a133b4275d72384a08b7e48a  009_Strategy.txt
 21c24118588e51fc46a73fdf2b92c1cbbd16501969360681b3e23b8313d1343b  010_Wisdom.txt
+e52330614840c37a24ac7f69050f326a6a44d77bdb3b6facb6ee39745d31e0ac  011_Opposites.txt
 ```
 
-They came in one archive, `Project_Stages_1-10.zip`: 22,031,670 bytes,
+Stages 000 to 010 came in one archive, `Project_Stages_1-10.zip`: 22,031,670 bytes,
 SHA-256 `314fc8684c1c7d725695cb3fec2fb40d0287972f0c8ead0b1a938a6aa08f6b80`.
 Saved as a text file next to the stages, the block above checks them
 all at once (`sha256sum -c`).
@@ -88,12 +88,13 @@ folder gives where every file begins. And the founder: "I never
 intended to have a bad version and a full version. Just one." A line
 number quoted from an earlier version is not the same line now.
 
-Stage 011 has no copy of the founder's to check against: it was
-compiled from the founder's 17 records, which came in the archive
-`011_Opposites.zip` (4,881,773 bytes, SHA-256
+Stage 011 was compiled by the technical lead from the founder's 17
+records, which came in the archive `011_Opposites.zip` (4,881,773
+bytes, SHA-256
 `73a81827887cf16f22b7b759da67730ac413669a8c4f00f17337c7d162ba188c`),
-and the book's final text, from the book's repository.
-Its kept file's SHA-256 is
+and the book's final text, from the book's repository; the founder's
+copy, in the block above, was given to the founder on 2026-11-20. Its
+kept copy's SHA-256 is
 `7d93e48c99a415960ee4da0b836fd6c72aa9ebdbbd415b97cfa53bd0fbce7a4e`,
 and a table beside it gives each part's source, where it begins, and
 what was replaced in it.
