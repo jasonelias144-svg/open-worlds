@@ -18,9 +18,13 @@
   develop, and was sloppy and had some missing parts and some repeated
   parts. Which is what motivated me to be more careful at later
   stages." And: "And yes, please provide complete joined versions of
-  003 and 005." Done, privately, in `ebook-press` (`history/parts/`
-  and `history/complete/`); [docs/HISTORY.md](docs/HISTORY.md) says
-  to read the complete versions of 003 and 005.
+  003 and 005." And then: "Yeah, and I'll want full copies, because I
+  never intended to have a bad version and a full version. Just one.
+  So I will simply replace my previous versions with your newly
+  compiled versions … Yeah, no, not two versions. Just one." Done:
+  003 and 005 are now the complete versions, in the founder's library
+  and, kept, in `ebook-press` `history/`; [docs/HISTORY.md](docs/HISTORY.md)
+  gives their new hashes and the earlier ones'.
 
 - 2026-11-20, founder, the ideas set aside, and how they become code.
   "Also, I should mention, please make sure you point ChatGPT toward

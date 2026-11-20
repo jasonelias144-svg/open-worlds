@@ -358,9 +358,13 @@ of it is asked again until it is needed.
   develop, and was sloppy and had some missing parts and some repeated
   parts. Which is what motivated me to be more careful at later
   stages." And: "And yes, please provide complete joined versions of
-  003 and 005." Done, privately, in `ebook-press` (`history/parts/`
-  and `history/complete/`); [docs/HISTORY.md](docs/HISTORY.md) says
-  to read the complete versions of 003 and 005.
+  003 and 005." And then: "Yeah, and I'll want full copies, because I
+  never intended to have a bad version and a full version. Just one.
+  So I will simply replace my previous versions with your newly
+  compiled versions … Yeah, no, not two versions. Just one." Done:
+  003 and 005 are now the complete versions, in the founder's library
+  and, kept, in `ebook-press` `history/`; [docs/HISTORY.md](docs/HISTORY.md)
+  gives their new hashes and the earlier ones'.
 
 - 2026-11-20, founder, the ideas set aside, and how they become code.
   "Also, I should mention, please make sure you point ChatGPT toward
@@ -4930,12 +4934,14 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
-- 2026-11-20 Claude: the history page and ChatGPT's request 4 point to
-  the complete versions of 003 and 005, kept privately in `ebook-press`
-  (#133). Their stage files leave out about half of `LRL_6`'s text and
-  three quarters of `OI_6`'s, found by comparing each stage file with
-  the separate files the founder brought, by content. The founder's
-  words are in "Decided".
+- 2026-11-20 Claude: stages 003 and 005 replaced by complete versions,
+  at the founder's word (#133). The earlier ones left out about half of
+  `LRL_6`'s text and three quarters of `OI_6`'s, found by comparing each
+  stage file with the separate files the founder brought, by content.
+  The complete versions join each stage's own files, whole and in
+  order; the founder was given copies built from their own files, and
+  the history page gives their hashes, sizes and counts, and the
+  earlier versions' hashes. The founder's words are in "Decided".
 
 - 2026-11-20 Claude: the ideas set aside, pointed out to ChatGPT, at
   the founder's word (#132). `docs/CHATGPT.md` gains "From an idea to
