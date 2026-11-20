@@ -3,14 +3,9 @@ link"), docs/FILES.md and parts/INDEX.md hold, between them, every file
 in the repository, each once, and every link on the first two leads to
 a file (tests/test_parts.py checks the third).
 
-The founder pastes those links into a conversation with DeepSeek, who
-opens a full link given in a message, while the links on a page did not
-open reliably for them (the founder, 2026-11-15: "I have to provide the link.
-Fetching is unreliable from in the page, but from a prompt with full
-URL, it has worked."; and later that day: "Remember links in the
-collaborating page are not accessible. So all files need links through
-this method."). A test later that day showed DeepSeek following a link
-from a small page; the lists stay, as the way that always works. So the
+The founder pastes those links into a conversation (the founder,
+2026-11-15: "Remember links in the collaborating page are not
+accessible. So all files need links through this method."). So the
 lists must be whole and current: this test fails
 when a file is added, moved or removed and they aren't changed with it.
 COLLABORATING.md lists the files a reader works from; FILES.md, written
@@ -89,8 +84,7 @@ class TheList(unittest.TestCase):
         self.assertEqual(len(have), len(set(have)))
 
     def test_it_holds_the_key_list(self):
-        # The file DeepSeek couldn't open in record 012-07-03, as no
-        # list had given it its link.
+        # A file no list once gave the link of.
         self.assertIn("keys/key-list.json", listed())
 
     def test_every_full_link_on_the_page_leads_to_a_file(self):

@@ -13,7 +13,7 @@ asked for. The fourth was not asked for and is not used.
 ## Where it comes from
 
 The conversation is
-[../../records/012-00-00-GMNI-Multiverse_Development.txt](../../records/012-00-00-GMNI-Multiverse_Development.txt),
+[../../records/012-08-04-GMNI-Patterns_Multiverses.txt](../../records/012-08-04-GMNI-Patterns_Multiverses.txt),
 kept word for word with the project's other records since 2026-11-17,
 at the founder's word (STATUS.md, "Decided"). It has grown since:
 it was 574,505 bytes when these files were taken, SHA-256
@@ -27,7 +27,7 @@ the first file begins at line 9748.
 lines of the conversation it was taken from and its SHA-256.
 [take.py](take.py) is the script that took them out. Run with no
 argument, it takes them out of the record again and compares them with
-the files here; the test of `../../deepseek/012-09-05/` runs it, in
+the files here; the test of `../../deepseek/012-07-03/` runs it, in
 CI. So Gemini's files are held to their record as DeepSeek's are.
 
 When these files were first kept, earlier on 2026-11-17, the
@@ -42,7 +42,7 @@ or before the delivery's last line, which begins "Expected:".
 
 Each is laid over the one before, starting from the crate Gemini was
 given, and every test file of the crate is run
-(`sh ../../deepseek/012-09-05/review/steps.sh`, which CI doesn't run:
+(`sh ../../deepseek/012-07-03/review/steps.sh`, which CI doesn't run:
 it needs Rust and the network). Measured on 2026-11-17. "Expected" is
 Gemini's own line; they can't build the crate where they write.
 
@@ -55,7 +55,7 @@ Gemini's own line; they can't build the crate where they write.
 
 With the two earlier tests corrected (fix 22, below), all 66 pass, and
 the crate's four demos run. The crate as it stands,
-`../../deepseek/012-09-05/chat-world-now/`, is that with one more
+`../../deepseek/012-07-03/chat-world-now/`, is that with one more
 repair (fix 23, below); it too passes all 66, and its demos run.
 
 ## What Gemini found
@@ -98,7 +98,7 @@ Both could not hold ([../../replies/README.md](../../replies/README.md),
 
 Fix 22 changes the two tests to set the rule before the room is
 created. What they test is unchanged. It is in `REPAIRS_AFTER` in
-`../../deepseek/012-09-05/review/steps.py`.
+`../../deepseek/012-07-03/review/steps.py`.
 
 ## Fix 23: a room's law can't be changed in place
 
@@ -120,7 +120,7 @@ Seen by the technical lead and not changed:
 - `Room::log()` signs a new closing head each time it is called, and
   if signing fails it gives the log without one, which the check then
   refuses. DeepSeek, who designed the signed heads, is asked what they
-  make of the rule ([../../replies/012-09-05-2.txt](../../replies/012-09-05-2.txt),
+  make of the rule ([../../replies/012-07-03-2.txt](../../replies/012-07-03-2.txt),
   part 5).
 - `tests/attack.rs` imports `RoomLog` and does not use it: one
   warning when the crate is built.

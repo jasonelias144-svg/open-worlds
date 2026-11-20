@@ -6,6 +6,33 @@
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-03.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
+- 2026-11-15, founder, on the SAIR work and on Lean:
+  "Also note SAIR work is intentionally separate from the other repos.
+  It is the only one that includes work and publications from outside.
+  It should be considered distinct because based on something external.
+  But, I do think there is much there we can utilize for checking the
+  reasoning behind decisions made by agents in offices. But also, we
+  could have math worlds or other reasoning worlds where debate or
+  discovery is tapered by a Lean engine. There is much to integrate
+  there, but would be the only place to look for a different license.
+  Thoughts?"
+  So:
+  - **SAIR-Lean-Kernel-Challenge stays separate,** as the one repository
+    built on outside work, and the one place a licence other than CC0 is
+    looked at: there, the challenge's own files keep their Apache-2.0
+    licence (that repository's README lists them; the policy handbook's
+    decision 0003).
+  - **Lean, two ways** (docs/TOPICS.md, topic 20): checking the reasoning
+    behind decisions made in offices, which docs/REASONS.md already
+    designs; and reasoning worlds, such as mathematical worlds, where a
+    claim counts once Lean's kernel accepts its proof. The technical
+    lead reads "tapered" as tempered: the kernel keeps debate and
+    discovery honest.
+  - **What comes in from SAIR,** the technical lead's reading, which
+    stands unless the founder answers otherwise: our own work, under CC0:
+    the proofs, and the tools that set up Lean and count kernel
+    instructions. Lean and its library are depended on, under their own
+    licences, not copied in; the challenge's files stay there.
 - 2026-11-15, founder, renaming the "break glass":
   "We can change the name. I didn't choose it, but did love it. But upon
   further discussion, "keys to the kingdom" is more appropriate. I
@@ -380,20 +407,5 @@
   attached to those, not to every agent): "It works for me. I have been
   struggling to find the right word." So docs/GLOSSARY.md says what each
   word means here.
-- 2026-11-15, founder, on naming who holds the "break glass" next:
-  "It will be a person I name publicly, but there is only me for now.
-  There is nobody to hand it to that would be able to know what to do.
-  We will worry about that later, but as soon as one more person joins
-  me, we'll have someone, and then they will be named publicly and all
-  will be a matter of record and all that. But let's build the village
-  before picking the next chief. First things first."
-  So the next holder is a person, named publicly when the founder
-  chooses them, and the choice is on record; the charter's section 3
-  says so. Until someone else joins, the founder alone holds it, and
-  nothing more is built or decided for it now. The technical lead's
-  reading beside it, which only adds protection and stands unless the
-  founder answers otherwise: the person named agrees to be named, as
-  their name goes into a public record (FUNDAMENTALS.md, privacy,
-  item 6).
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-03.md

@@ -248,7 +248,7 @@
   rooms; then it changes in a new version of the schema, beside the old,
   never in place.
 
-- 2026-11-16, DeepSeek's two questions in record 012-09-05 (its line
+- 2026-11-16, DeepSeek's two questions in record 012-07-03 (its line
   13769), and what follows for fitting `chat-world`:
   (1) A room has its own key, and its creator joins with theirs.
   Reason: every world here is a key of its own, and a room is a world
@@ -314,31 +314,28 @@
   with sizes, and written by `python3 docs/files.py`.
   `tests/test_collaborating_links.py` lists the repository with git and
   fails unless the two pages hold every file, each once, and FILES.md
-  is as the script writes it. *Why:* a full link in the founder's
-  message opens in DeepSeek's conversation, while the links on
-  COLLABORATING.md, the founder found, did not, so a file with no list
-  line might not be read at all (a test later the same day showed
-  DeepSeek following a link from a small page, not yet from a long
-  one); the files of record are kept apart because they are about
-  16 MB, more than a conversation can take in, and best sent when a
-  question needs them. *Revisit if:* DeepSeek follows the links on
-  COLLABORATING.md itself reliably, or the records are needed often
-  enough to belong in the main list.
-- 2026-11-15, the endless plant (record 012-07-03): DeepSeek's decisions
-  are accepted as the record gives them (signed heads in batches; a
+  is as the script writes it. *Why:* the founder's word that all files
+  need links through these lists (2026-11-15), so a file with no list
+  line might not be read at all; the files of record are kept apart
+  because they are about 16 MB, more than a conversation can take in,
+  and best sent when a question needs them. *Revisit if:* the founder
+  finds the page's own links are enough, or the records are needed
+  often enough to belong in the main list.
+- 2026-11-15, the endless plant: DeepSeek's decisions
+  are accepted as DeepSeek gave them (signed heads in batches; a
   crate and template of its own, `hasMonad` a dial; the neuron's weights
   derived from the logged actions, not signed; the depth cap a safety
   dial; crowding in the tip's column band; a fixed-point baseline; Drop
   as shedding; water an input), and the project fits it as
-  `rust/endless-plant`, changed where the review found faults
-  (sketches/deepseek/012-07-03/README.md): Grow extends a tip and Split
+  `rust/endless-plant`, changed where the technical lead's review found
+  faults: Grow extends a tip and Split
   forks it; the plant is a tree, so a dropped tip frees only the segment
   nothing else grows from, pays back exactly that, and falls back to
   its start; no segment grows into a held cell; stored energy has a cap,
   a dial; the noise reads the whole seed; the log is a world's log with
   signed heads and a birth record, and the vectors are the project's
-  run, checked from Python. *Why:* each change mends a fault the review's
-  tests show (a choice that changes nothing, upkeep paid back twice,
+  run, checked from Python. *Why:* each change mends a fault the technical
+  lead's review found (a choice that changes nothing, upkeep paid back twice,
   segments left standing, overlap without bound, a seed read one byte
   deep), and the log keeps the standard every world here keeps.
   DeepSeek's choices are design questions with many workable answers,
@@ -351,10 +348,10 @@
   schemas, and each Rust crate's manifest, library code and examples,
   in groups to paste; `tests/test_collaborating_links.py` fails when a
   file is added, moved or removed and the list isn't changed with it, or
-  when any full link on the page leads nowhere. *Why:* DeepSeek opens
-  full links given in the founder's message, and not reliably those
-  found in a page; a list kept by hand drifts, and the key list was
-  missing from the last one. *Revisit if:* DeepSeek can follow links
-  from a page, or the founder's README idea (above) replaces most links.
+  when any full link on the page leads nowhere. *Why:* the founder's
+  word that every file needs its full link; a list kept by hand
+  drifts, and the key list was missing from the last one. *Revisit
+  if:* the founder finds a page's own links are enough, or the
+  founder's README idea (above) replaces most links.
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead-01.md

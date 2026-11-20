@@ -68,7 +68,7 @@
   2026-11-17, the map): what is said of someone outside is their own
   act. DeepSeek's sketch has the seed of it, a presence record in a
   person's own room, signed by them, with the rooms and a time to
-  live (sketches/deepseek/012-09-05, `src/home.rs`); what it lacks is
+  live (sketches/deepseek/012-07-03, `src/home.rs`); what it lacks is
   for whom. (d) Sealing to a key is built
   (docs/research/FORMATS.md). (e) Saying what a list can't do is part
   of offering it. (f) docs/FUNDAMENTALS.md, privacy, 5.
@@ -169,8 +169,8 @@
   uncut, as the conversation records are. (f) What a clause of the
   founder's leaves out of the public record is kept whole in the
   private one, and the public entry says that something is left out.
-  *Why:* (a) a collaborator can't open a link or build what they
-  write, and a reply may be cut short. (b) Twice Gemini's attacks
+  *Why:* (a) a collaborator works from what they are given and can't
+  build what they write, and a reply may be cut short. (b) Twice Gemini's attacks
   found what was wrong where the code's author had not, and their own
   first try at a design did not compile. (c) The founder: "it is
   best spent building the next pieces", and those "you determine";
@@ -314,7 +314,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   the course waits for a delivery. With few replies, a collaborator is
   asked first for what a second mind gives, a design sketched or a
   fault found, before volume of code. The file DeepSeek has now
-  (`sketches/replies/012-09-05-2-for-deepseek.txt`) stays as it was
+  (`sketches/replies/012-07-03-2-for-deepseek.txt`) stays as it was
   given.
   *Why:* (a) the founder: "We have no precedent to work from. Only
   similar patterns at different scales." A pattern that is asked for

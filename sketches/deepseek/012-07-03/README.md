@@ -7,84 +7,218 @@ the end was written by DeepSeek in conversation record 012-07-03
 DeepSeek's suggestion. It is a sketch, not open-worlds' code, and
 open-worlds never imports it ([../../README.md](../../README.md)).
 
-- **What it is.** The endless plant, the first stage of living worlds
-  ([docs/FRACTALS.md](../../../docs/FRACTALS.md), "Where it leads: living
-  worlds"): a plant world with no fixed depth, where energy decides what
-  grows. Each tick the plant gathers light at its tips, less where
-  segments above shade the column; pays upkeep for every segment; and,
-  when its energy falls below zero, drops its least-lit tips. A choice
-  neuron, if the template's `hasMonad` is on, chooses to grow, split,
-  rest or drop (accepted as the plant shedding a tip), and learns from
-  the change in energy. The design is in
-  the record as prose (line 253, a page DeepSeek proposed as
-  `docs/research/ENDLESS-PLANT.md`; it isn't in `docs/`), followed by
-  the crate and its vectors.
-- **As DeepSeek said, not compiled or fitted.** The log's hash is FNV-1a
-  and an entry's body is a formatted string, both stand-ins for the
-  project's own. DeepSeek named the folder `sketches/deepseek/endless-plant/`;
-  it is kept here, under its record, as every record's code is. Its
-  `Cargo.toml` names the `formats` crate by a path that doesn't lead
-  there from here, and nothing in it uses `formats`.
+## What it is
 
-## The technical lead's review, 2026-11-15
+Nine pieces, in the record's order:
 
-Six findings. `sketch_status_test.py`, which CI runs, checks findings
-1, 2, 3 and 6 as the files read, without building anything.
-`review/run.sh`, which CI doesn't run, checks findings 2, 4, 5 and 6 by
-running the code: it builds a scratch copy with the two missing
-functions added, and runs `review/review.rs` against it (it needs Rust
-1.85 or later, for edition 2024).
+- **Water as particles** (`water_particles.py`): whole-number water
+  levels on a grid, and a fixed order each tick (rain, fall, soak, flow,
+  evaporate), with one record a tick that carries the change and a hash
+  of the levels.
+- **The garden** (`fractal_garden.py`): a composite world that owns the
+  shared water, the slots and the plants in them. Each plant is the
+  plant world of record 012-06-02 (`fractal_world_v3.py`).
+- **The botanical garden** (`botanical_garden.py`): a superworld of
+  gardens, which sends each garden its rain and checks what each says
+  it received.
+- **Signed world heads:** a design, as prose in the record (line 3782).
+- **Chat worlds for the Commons** (`chat_room.py`): a room as a log of
+  signed records, checked against the room's law. Then, as additions
+  (`chat_room.py@LINE`): an AI moderator, rooms of humans and AIs
+  together, a moderator's succession, and personal rooms.
+- **The home room** (`personal_world.py`): a person's own room, for a
+  journal, drafts, bookmarks, and conversations brought in from
+  elsewhere.
+- **A schema for every record** (`schemas/`), given twice, the second
+  time whole. It carries the name of open-worlds' own
+  `schemas/records-v1.schema.json`, and none of that schema's
+  definitions: the two share no definition's name.
+- **A design page,** `docs/CHAT.md`, as prose in the record (line 9964).
+- **A crate in Rust, `chat-world`:** rooms, joining and leaving,
+  posting, redaction, a human's override of an AI, and checking a
+  room's log offline. The record gives it twice in one reply.
+  `chat-world-draft/` is the first, which DeepSeek then revised in the
+  open; `chat-world/` is the one they settled on, with the files of their
+  next reply (a home, the Commons, transcripts) beside it.
 
-1. **It doesn't build as written.** `world.rs` imports
-   `growth_priority` and `dieback_priority` from `rule.rs`, which
-   defines neither. `review/missing.rs` writes them from the record's
-   own words ("Dieback", line 322; "Growth priority", line 333).
-2. **Then one of its three vectors fails.** "no-light-no-growth" expects
-   energy −1 and the log `[world_created, died_back, died]`. The code
-   rests: energy 0, the log `[world_created, rested]`. With nothing
-   gathered and no segment yet to keep, nothing is owed. The other two
-   vectors hold.
-3. **Grow and Split are the same action.** They share one branch of
-   `World::step`: grow one segment from the best tip and fork it into
-   two. So the neuron's choice between them changes nothing.
-4. **Dieback pays a shared segment back twice, and leaves segments
-   standing.** A growth leaves two tips at one point, sharing the
-   segment that leads there. Dropping a tip removes every segment that
-   ends where it is, and pays back one segment's upkeep, so when both
-   are dropped the one segment is paid back twice. In the review's run,
-   with the light gone, the plant grows on its stored energy until it
-   runs out (tick 19); then one tick drops 9 tips and removes 5
-   segments, and pays back 9. The plant then dies with 8 segments still
-   standing, and no tips.
-5. **Segments overlap, and stored energy has no bound.** Nothing stops a
-   segment growing where one already is. After 2,000 ticks in a 20 by
-   20 pot the plant has 2,000 segments, only 477 of them distinct, 2,001
-   tips, and 2,189,945 units of energy. (The cap, 1000, bounds depth.)
-6. **The neuron's noise reads only the seed's first byte,** so two seeds
-   that share it give the same run.
+A block that adds to an earlier file is kept as `file@LINE`, LINE being
+the record line where its code starts. Nothing reads those files: they
+are DeepSeek's instructions for changing the file they are named after.
 
-And one small one: the design's energy check (line 425) subtracts what
-dieback pays back, and the compile checklist's (line 1250) adds it; the
-code adds it.
+## How it fares
 
-**What fitting changes.** The fitted crate, `rust/endless-plant`, is
-not built yet (`STATUS.md`, "Now"). It is to be built by the project
-from this sketch, with DeepSeek's decisions as the
-record gives them (its "five questions, decided" and "four weaknesses,
-decided", from line 1364) and these changes: Grow extends a tip and
-Split forks it; the plant is a tree, so a dropped tip frees only the
-segment nothing else grows from, pays back exactly that segment's
-upkeep, and falls back to its start, so the plant dies back toward its
-last fork and can regrow from there; no segment grows into a cell
-another holds; stored energy
-has a cap, a dial; the noise comes from the whole seed; the vectors are
-computed by the project's run and checked from Python; and the log is a
-world's log as `plant-world`'s is, with signed heads and a birth record.
-The decisions are in `STATUS.md`, and the message to DeepSeek in
-[docs/COLLABORATING.md](../../../docs/COLLABORATING.md), "Messages from
-the technical lead".
+The technical lead's first pass, 2026-11-16, and a first round of
+repairs the same day. A repair makes the code do what the record says
+it does, most often by applying DeepSeek's own later addition. It
+doesn't change the design. Each changed file is listed with its reason
+in `../../tools/names-012-07-03.json` ("changed") and in
+[../../INDEX.md](../../INDEX.md) ("Changes to DeepSeek's code", fixes
+15 to 18), and git shows the exact change.
+
+**Python: 73 of 98 tests pass** (60 as written). `known-failures.txt`
+lists the 25 that fail, and CI holds the list true. The tests need
+`fractal_world_v3.py` of record 012-06-02, which `conftest.py` puts on
+the import path.
+
+| Tests | As written | Now | What fails now |
+|---|---|---|---|
+| `test_water_particles.py` | 17 of 18 | 17 of 18 | In one test, water doesn't pool at the bottom |
+| `test_fractal_garden.py` | 20 of 21 | 20 of 21 | The demo: a refusal record has no `prev` |
+| `test_botanical_garden.py` | 2 of 18 | 15 of 18 | The demo, for the same cause; a branch's seed signature; and one test of the rain a garden receives. As written, 16 failed for one cause: `FractalGarden.tick()` didn't take `external_rain` (fix 15) |
+| `test_chat_room.py` | 21 of 24 | 21 of 24 | Redaction as shown to a reader, a room's log after activity, and the demo |
+| `test_personal_world.py` | 0 of 17 | 0 of 17 | One cause: it needs the later `RoomTemplate` (`membership` and the rest), which the record gives as seven blocks of additions to `chat_room.py` (`chat_room.py@5569` to `@7192`, 728 lines), not as a whole file. Not merged: the crate in Rust carries the same design on |
+
+**Rust: `chat-world` builds, all 18 of its tests pass, and both of its
+demos say their logs verify.** As written it didn't build. `review/run.sh`,
+which CI doesn't run, builds a scratch copy and shows all of it; it
+needs the network, for the packages the sketch names.
+`sketch_status_test.py`, which CI runs, checks as the files read that
+the repairs are in place and that the findings below still hold,
+without building anything.
+
+The three repairs to the crate:
+
+- **Fix 16: the visible log hashes the record a message is in.** As
+  written, `room.rs` called `m.hash()` on a `Message`, which has no
+  such method, and the crate didn't build. The record that holds the
+  message has one.
+- **Fix 17: the files of DeepSeek's later reply, joined.** `home.rs`,
+  `commons.rs`, `transcript.rs` and `bin/home-demo.rs` were here, but
+  `lib.rs` didn't name them. Joined as that reply says:
+  `lib.rs@14578`, `record.rs@13867` and `@13954`, `verify.rs@14327`,
+  its note that `push` becomes `pub(crate)` (record line 14003), and
+  its tests (`tests/integration.rs@14594` and `@14695`), without the
+  one DeepSeek withdrew in the record ("Let me skip it", line 14692).
+  One arm is ours: the visible log leaves the three new kinds of
+  record out, as the reply gives no line for them.
+- **Fix 18: a record is signed as it is written out.** As written, the
+  room signed the bare struct and then wrapped it as a `Record`, which
+  writes a `type` beside its fields, and the check read the record
+  with its `type`. So the bytes checked were never the bytes signed:
+  8 of the 12 tests failed with "signature error: Verification
+  equation was not satisfied", and the demo printed "Verification
+  FAILED" before its closing lines, which are fixed text, said "The
+  whole room verifies offline." Now the bytes signed are the wrapped
+  record's. This repair is the technical lead's choice, not the
+  record's: DeepSeek's code signs the bare struct throughout, the test
+  they withdrew included, so leaving the `type` out of the check would
+  have agreed with the code as well. Signing the `type` is the
+  stronger of the two, since a record can't then be passed off as
+  another kind.
+
+Findings that stand, for the fitting:
+
+1. **After a redaction, the visible log still shows the message's
+   text.** `visible_log` goes through the records once, in order, and
+   notes a redaction when it reaches it, which is after the message.
+   `review/run.sh` shows it with a test of ours. What the code means
+   in the plain case is clear enough: it has a `hidden` flag and a
+   "[redacted]" text, and the Python sketch's
+   `test_redact_visible_hides_text` expects the text hidden. It is
+   left as it is because the demo has a person overriding a redaction,
+   and what a reader is shown then is not settled; and it touches
+   privacy, so it is for the design, not for a patch here.
+2. **It stands apart from open-worlds' own code.** It uses neither
+   `rust/formats` nor `rust/world-log`, and rebuilds canonical form,
+   hashing, keys and proofs with packages of its own choosing. Its
+   `did:key` is 64 hex characters, where open-worlds' is the Multikey
+   form (`z6Mk...`). And it reads the clock inside the crate, where
+   open-worlds gives a record its time from outside.
+3. **Every record but a leave carries the room's signature,** beside
+   its author's where it has one. open-worlds' worlds sign their logs'
+   heads, in batches, not each entry (STATUS.md, "Decided by the
+   technical lead", 2026-11-16).
+
+Not checked: `chat-world-draft/`, the first version, was not built. The
+schema was compared with open-worlds' own by the names of its
+definitions only (67 in the whole version, 33 in open-worlds', none
+shared; some are the same thing spelled differently, as `DidKey` and
+`didKey`), and was not tried against the sketches' records. The two
+prose pieces were read, not tested. The three botanical tests that
+still fail were not looked into beyond their error lines.
+
+## The five deliveries after the one file (2026-11-16)
+
+The record goes on after the crate kept here. The founder gave
+DeepSeek one file with the crate as it stands here
+([../../replies/012-07-03-for-deepseek.txt](../../replies/012-07-03-for-deepseek.txt)),
+and DeepSeek answered with five deliveries of `chat-world`, a step at
+a time, every changed file whole. Each delivery's files are kept as
+the record gives them, in `chat-world-steps/1` to `5`
+(`chat-world-steps/0` is the cycle on signed heads from just before,
+which delivery 3 gives again). `chat-world/` is unchanged: it is
+still the crate DeepSeek was given. `review/steps.py` puts together
+the crate as it stands after each delivery, each laid over the one
+before, starting from `chat-world/`, and `review/steps.sh` builds and
+tests each one (it needs Rust and the network, and CI doesn't run
+it).
+
+Built as given: delivery 1 passes 22 of 22 tests; delivery 2, 20 of
+22; delivery 3, 27 of 29; delivery 4, 31 of 33; delivery 5 does not
+compile, and with its two faults set aside passes 39 of 41.
+[../../INDEX.md](../../INDEX.md) ("The record continued (2026-11-16)")
+says what each delivery is and names the three faults.
+
+`chat-world-now/` is the crate as it stands. First that was all five
+deliveries, with the three faults repaired in a few lines (fixes 19 to
+21 in [../../INDEX.md](../../INDEX.md)): it built, passed all 41 of
+its tests, and its four demos ran. That crate went to Gemini, whose
+three deliveries are laid over it
+([../../gemini/2026-11-16/README.md](../../gemini/2026-11-16/README.md)),
+with two more repairs made here (fixes 22 and 23); it then passed all
+66 of its tests. Gemini's three deliveries on the Commons are laid
+over that
+([../../gemini/2026-11-17/README.md](../../gemini/2026-11-17/README.md)),
+with nothing changed: it then passed all 92 of its tests. DeepSeek's
+next two deliveries are laid over that, with one word repaired
+("Three more", below), and one field is added to a room's law at the
+founder's word (change 25 in [../../INDEX.md](../../INDEX.md)).
+Gemini's list of doors is laid over that
+([../../gemini/2026-11-17-2/README.md](../../gemini/2026-11-17-2/README.md)),
+with the line that names its module (change 26). Gemini's repairs of
+that list are laid over that, with their 25 attacks on it
+([../../gemini/2026-11-17-4/README.md](../../gemini/2026-11-17-4/README.md)).
+As it stands it passes all 152 of its tests, 61 of them DeepSeek's
+and 91 Gemini's; its four demos run, and so does the plug-in's own
+demonstration. Gemini's fourth step, 17 attacks of which eight get
+through, is built beside the list as first written and not laid into
+the crate (`review/steps.sh`, `c4`). So are their 25 attacks as first
+written, of which five got through (`doors-attacks`;
+[../../gemini/2026-11-17-3/README.md](../../gemini/2026-11-17-3/README.md)).
+It is put together here, by
+`review/steps.py --now`; `review/steps.py --check` holds the folder to
+that, byte for byte, and `sketch_status_test.py` runs the check. So
+its files are listed below as ours, though each is exactly as DeepSeek
+or Gemini last wrote it, but for the lines the six repairs and the two
+changes name.
+
+## Three more, after the second file (2026-11-17)
+
+The founder gave DeepSeek a second file
+([../../replies/012-07-03-2-for-deepseek.txt](../../replies/012-07-03-2-for-deepseek.txt)),
+which asked one step: a room that branches. DeepSeek did it, and at
+the founder's word went on to two more of their own list. The files are
+kept as the record gives them, from its line 23994, in
+`chat-world-steps/6` to `8`:
+
+- **6, a room that branches** (four files). Built as given it does
+  not compile, for one word: the check of a branch asks a signed head
+  for `len()`, where the head's field is `length`. With that word
+  repaired (fix 24 in [../../INDEX.md](../../INDEX.md)), 103 of 103
+  tests pass.
+- **7, a plug-in** over standard input (five files). 112 of 112.
+- **8, the rule of one moderator's room** (three files). The reply
+  was cut off there. What came does not build without the files that
+  did not come, so it is kept and not laid into the crate. The
+  founder goes back to DeepSeek for the rest.
+
+[../../INDEX.md](../../INDEX.md) ("DeepSeek's second file") says what
+each is, what DeepSeek expected, and what they chose where the file
+left it open.
 
 ## Ours, not DeepSeek's
 
-`README.md`, `pytest.ini`, `sketch_status_test.py`, and everything in
-`review/`.
+`README.md`, `conftest.py`, `pytest.ini`, `known-failures.txt`,
+`sketch_status_test.py`, `review/run.sh`, `review/steps.py`,
+`review/steps.sh`, and every file under `chat-world-now/` (put
+together here from DeepSeek's files and Gemini's, as said above).

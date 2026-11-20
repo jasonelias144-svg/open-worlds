@@ -42,7 +42,7 @@ conversation records in [../sketches/records](../sketches/records).
 
 ## How it is used
 
-Nothing reads it yet. Record 012-00-00, the founder's conversation
+Nothing reads it yet. Record 012-08-04, the founder's conversation
 with Gemini, proposes it as a way of working for an AI that moderates
 a room. What the project takes from that, and what it does not, is
 the technical lead's reading in [../STATUS.md](../STATUS.md), "Decided

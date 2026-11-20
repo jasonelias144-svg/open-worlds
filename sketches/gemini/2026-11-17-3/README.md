@@ -11,7 +11,7 @@ in a new file, `tests/doors_attack.rs`.
 ## Where it comes from
 
 The conversation is
-[../../records/012-00-00-GMNI-Multiverse_Development.txt](../../records/012-00-00-GMNI-Multiverse_Development.txt),
+[../../records/012-08-04-GMNI-Patterns_Multiverses.txt](../../records/012-08-04-GMNI-Patterns_Multiverses.txt),
 which has grown again. This delivery begins at its line 17196, where
 Gemini quotes back the last line of the file they were given, as the
 file asked. The copy kept before is a prefix of the new one, byte for
@@ -20,7 +20,7 @@ byte.
 [MANIFEST.json](MANIFEST.json) gives, for the file in `steps/`, the
 lines of the conversation it was taken from and its SHA-256.
 [take.py](take.py) takes it out of the record again and compares it
-with the file here; the test of `../../deepseek/012-09-05/` runs it,
+with the file here; the test of `../../deepseek/012-07-03/` runs it,
 in CI.
 
 ## What it is, and what ran
@@ -32,7 +32,7 @@ and asserts that the crate refuses it. So a test that fails is an
 attack that got through.
 
 Built beside the crate as it stands, every test file run, on
-2026-11-17 (`sh ../../deepseek/012-09-05/review/steps.sh`, stage
+2026-11-17 (`sh ../../deepseek/012-07-03/review/steps.sh`, stage
 `doors-attacks`, which CI doesn't run):
 
 | Delivery | Gemini expected | Measured |

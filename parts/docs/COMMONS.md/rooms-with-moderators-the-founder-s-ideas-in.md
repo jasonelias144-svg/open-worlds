@@ -1,16 +1,16 @@
 > Part of `docs/COMMONS.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "Rooms with moderators: the founder's ideas in record 012-09-05" to "Personal information in a room: ideas".
+> This part holds: "Rooms with moderators: the founder's ideas in record 012-07-03" to "Personal information in a room: ideas".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/start.md
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/the-first-to-live-there-the-library-and-the.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
-## Rooms with moderators: the founder's ideas in record 012-09-05
+## Rooms with moderators: the founder's ideas in record 012-07-03
 
 The founder took the Commons up with DeepSeek, and all of it is in
 `sketches/records/` word for word (the line numbers are that
-record's, 012-09-05, brought in on 2026-11-16). The founder's words:
+record's, 012-07-03, brought in on 2026-11-16). The founder's words:
 
 - **The hub and its rooms (line 3843):** "So the basic idea would be a
   primary communication hub, that has a collection of rooms with
@@ -91,7 +91,7 @@ hope is that you will find a way to integrate everything". So there
 are three: Lyceum as it was built (three kinds of room, turns, the MCP
 door, its tests); this page's design (a room as a world with its own
 key and law, closed rooms sealed); and what the founder and DeepSeek
-worked out in record 012-09-05 (moderators, a key for each room, the
+worked out in record 012-07-03 (moderators, a key for each room, the
 home room, a directory, and a crate that runs). Where they agree, the
 design is confirmed twice over. Where they differ, the difference is
 named and decided here, as under "Open" below. Bringing them together
@@ -212,7 +212,7 @@ none to remove their own); never silently; and its author can always
 see the note and ask for the removal to be looked at again.
 
 **Sketched** by DeepSeek in the same record, and kept in
-`sketches/deepseek/012-09-05/` with what runs: a room as a log of
+`sketches/deepseek/012-07-03/` with what runs: a room as a log of
 signed records, a moderator, a person's override of an AI's
 redaction, a home room for each person, a directory of rooms, and a
 crate in Rust, `chat-world`. It is material for this design, to be

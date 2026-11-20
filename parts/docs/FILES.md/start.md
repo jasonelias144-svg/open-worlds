@@ -8,10 +8,8 @@
 
 # The rest of the files, by their full links
 
-Each line opens a file as it is on `main`. A full link given in a
-message opens in a conversation with DeepSeek; the links on
-COLLABORATING.md, the founder found, did not. So every file has
-its full link here or in
+Each line opens a file as it is on `main`. Every file has its full
+link here or in
 [COLLABORATING.md](COLLABORATING.md) ("Every file, by its full
 link"), in groups to paste (the founder, 2026-11-15: "Remember
 links in the collaborating page are not accessible. So all files
@@ -19,7 +17,7 @@ need links through this method.").
 
 COLLABORATING.md lists the files a reader works from: every page,
 all the code, the tests and the vectors. This page lists the rest,
-1012 files of record, best sent when a question needs them.
+998 files of record, best sent when a question needs them.
 
 Written by `python3 docs/files.py`;
 `tests/test_collaborating_links.py` fails if a file is added, moved
@@ -27,18 +25,17 @@ or removed and this page isn't written again.
 
 ## The conversation records
 
-In `sketches/records`, 7 files, 9.2 MB in all, the largest 2.7 MB: each of the founder's conversations with DeepSeek, and the one with Gemini (marked GMNI), word for word; most are too large to read in one go.
+In `sketches/records`, 6 files, 9.2 MB in all, the largest 2.7 MB: each of the founder's conversations with DeepSeek, and the one with Gemini (marked GMNI), word for word; most are too large to read in one go.
 
-**`sketches/records`** (7 files, 9.2 MB):
+**`sketches/records`** (6 files, 9.2 MB):
 
 ```text
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-00-00-GMNI-Multiverse_Development.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-03-02-DPSK-Patterns_Texts_and_Inventions.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-04-00-DPSK-Patterns_Multiverses.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-05-01-DPSK-Patterns_Multiverses.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-06-02-DPSK-Patterns_Multiverses.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-07-03-DPSK-Patterns_Multiverses.txt
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-09-05-DPSK-Patterns_Multiverses.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-08-04-GMNI-Patterns_Multiverses.txt
 ```
 
 

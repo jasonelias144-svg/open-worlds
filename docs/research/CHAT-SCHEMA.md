@@ -1,7 +1,7 @@
 # DeepSeek's schema beside the project's: a table of names
 
 The first step toward one schema that fits both. The founder,
-2026-11-16, of the schema DeepSeek wrote in record 012-09-05: "That
+2026-11-16, of the schema DeepSeek wrote in record 012-07-03: "That
 was not a project-wide decision to use that schema, it is a way to
 continue building and gaining momentum." And: "I figured you could use
 what DeepSeek builds on that schema and adapt the existing one and the
@@ -14,7 +14,7 @@ technical lead keeps it, and does the fitting (STATUS.md, "Decided",
 
 **What was compared, and what was not.** The two files, by the names
 of their definitions and the fields of each:
-`sketches/deepseek/012-09-05/schemas/records-v1.schema.json@8640`
+`sketches/deepseek/012-07-03/schemas/records-v1.schema.json@8640`
 (DeepSeek's, whole: 67 definitions) and
 `schemas/records-v1.schema.json` (the project's: 36). No record was
 tried against either schema, and no meaning was checked beyond what

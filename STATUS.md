@@ -98,13 +98,12 @@ free, and never a money machine
   living worlds, where plants grow without end and choose, water flows
   as particles, people shape the land, and life spreads, beginning with
   an endless plant in the browser (docs/FRACTALS.md, "Where it leads:
-  living worlds"). DeepSeek sketched it in record 012-07-03; the sketch
-  is kept with the review, and the project is to fit it as
+  living worlds"). DeepSeek sketched it, and the project is to fit it as
   `rust/endless-plant` (not built yet).
-  Record 012-09-05 (water, the garden, chat rooms for the Commons with
+  Record 012-07-03 (water, the garden, chat rooms for the Commons with
   AI moderators, the home room, a schema, and a sketch crate in Rust,
   `chat-world`) is kept with what runs
-  (`sketches/deepseek/012-09-05/README.md`): after a first round of
+  (`sketches/deepseek/012-07-03/README.md`): after a first round of
   repairs the crate builds and passes its own 18 tests, and 73 of the
   98 Python tests pass. The record goes on: given one file, DeepSeek
   sent five deliveries of the crate, each file whole. Then Gemini,
@@ -347,6 +346,27 @@ of it is asked again until it is needed.
     total, never per author, so that marking in good faith costs nothing.
 
 ## Decided
+
+- 2026-11-20, founder, the records of stage 012 named anew. The
+  founder brought the records of stage 012 under new names: "Here is
+  the current state of the 012_Code subproject, in terms of
+  conversation records. Only the last three are still being added to
+  currently." The names here follow the founder's
+  ([sketches/INDEX.md](sketches/INDEX.md#names), "Names"). Records
+  012-00-00 to 012-02-01 were not kept here before, and are not now:
+  they are the founder's, and whether they are kept here is the
+  founder's to say. And, on the names: "Nobody else really was
+  concerned with the project record names. I've been the only one
+  doing that. No need to mention anything to the others, unless you
+  have referred to some file whose name has changed. The only shared
+  file, is The Living Codex, which can just be referred to as such."
+  So the others are told only where the technical lead's own messages
+  used the old numbers (docs/COLLABORATING.md, docs/CHATGPT.md), and
+  from now on messages to them call a conversation theirs rather than
+  give its number, and name The Living Codex as such.
+
+- 2026-11-20, founder: part of what was here is kept privately from
+  now on.
 
 - 2026-11-20, founder, stage 012's name. "And for the record, the
   current stage file with be 012_Code.txt, which is our current project
@@ -752,7 +772,7 @@ of it is asked again until it is needed.
   heads. Their first life needs rooms and not the garden's kernel, so
   at the next recheck it moves ahead of the kernel's steps
   (docs/COURSE.md, "Ahead"). One model for many rooms at first was
-  already the founder's (record 012-09-05, line 6584: "With one model,
+  already the founder's (record 012-07-03, line 6584: "With one model,
   many rooms, we can build many rooms without the overhead"); new is
   that the model is ADMIN's. Three different models, so that no
   conversation is one model speaking with themselves; which three is for
@@ -760,7 +780,7 @@ of it is asked again until it is needed.
   money. It is in
   docs/COMMONS.md, "The first to live there". Not built.
 - 2026-11-17, founder, a work of the founder's own may be named in the
-  records, and linked if it comes up. The new part of record 012-00-00
+  records, and linked if it comes up. The new part of record 012-08-04
   names a third earlier work of the founder's by title for the first
   time, and the technical lead asked whether that title should stay
   out. The founder, giving the work itself with the answer: "You can
@@ -986,7 +1006,7 @@ of it is asked again until it is needed.
   the founder does this, and are the founder's to publish.)
   So, decided: (1) the conversation with Gemini is a record like the
   others, and is kept with them, whole
-  (sketches/records/012-00-00-GMNI-Multiverse_Development.txt);
+  (sketches/records/012-08-04-GMNI-Patterns_Multiverses.txt);
   (2) from now on a conversation record the founder brings is public,
   with the rest, unless the founder says it is private; (3) it is
   still looked through first, and the founder is told what was found,
@@ -1251,7 +1271,7 @@ of it is asked again until it is needed.
   So: the comparison is taken seriously, and held where it fits, for
   its lessons; the course's order is kept; and the addressing must be
   able to grow in ways no one foresaw. It takes further what the
-  founder said to DeepSeek as an observation (record 012-09-05;
+  founder said to DeepSeek as an observation (record 012-07-03;
   docs/COMMONS.md): "the whole multiverse could have a topology like
   the whole internet".
   The technical lead's reading is in docs/VISION.md, "An infrastructure
@@ -1528,7 +1548,7 @@ of it is asked again until it is needed.
   so to DeepSeek, and carries the same reply and steps, so that the
   repository holds everything the file says.
 
-- 2026-11-16, founder, in conversation with DeepSeek (record 012-09-05,
+- 2026-11-16, founder, in conversation with DeepSeek (record 012-07-03,
   brought in that day; the numbers are its lines), on the Commons as
   rooms of chat: "So the basic idea would be a primary communication
   hub, that has a collection of rooms with different participant agents
@@ -1601,7 +1621,7 @@ of it is asked again until it is needed.
   which. On the schema, the founder answered the same day: the entry
   above this one.
 
-- 2026-11-16, founder, on record 012-09-05, the founder's new
+- 2026-11-16, founder, on record 012-07-03, the founder's new
   conversation with DeepSeek: "Perfect. I'm glad I have a working
   method. Let's import as much code they works and adapt the rest. It
   is moving in a new direction. I was going to keep going, but we ran
@@ -1617,11 +1637,10 @@ of it is asked again until it is needed.
 
 - 2026-11-15, founder, on hallucination, both ways:
   "Ok. But we are going to need to deal with AI hallucination
-  eventually, now is as good as any time. This is an interesting case of
-  hallucinating self-doubt. The opposite of grandiose claims. Thoughts?"
-  And later (its first three sentences, and an earlier message giving
-  its context, left out of the project at the founder's word): "Only point
-  is that lessons from psychology could be useful. It is a matter of
+  eventually, now is as good as any time." And later (both in part: the
+  rest, and their context, are kept privately at the founder's word):
+  "Only point is
+  that lessons from psychology could be useful. It is a matter of
   detachment from reality to some extent. This can be on small scales or
   full on hallucinatory experience where the topology is provided with a
   reality overlay that it projected from the mind, as an active dream
@@ -1633,104 +1652,9 @@ of it is asked again until it is needed.
   is an output, align with others and past beliefs and current
   experience. There is much more to it, and I obviously simplified, but
   that is how I understand the subject. Thoughts?"
-  And, of the tests the founder ran with DeepSeek: "And you see how I
-  generated tasks and asked to calculate the odds. These are attempts to
-  use reason. Thoughts?"
   So docs/TOPICS.md gains topic 21, "Hallucination, both ways": the
-  case, the founder's picture, the technical lead's reading (marked as
-  such), what exists, what is open, and what to send back.
-- 2026-11-15, founder, on how DeepSeek reads:
-  "This is what happens every time I try to move forward, which means a
-  prompt with no link. That is when we are supposed to move forward."
-  And: "But we already know DeepSeek could follow a link from the
-  collaborating page, that was where the 25 character string came in. I
-  need to understand what is happening. It appears that the actual open
-  function is not exposed, but when trying to open a link, data is
-  returned. I imagine it seems like being psychic to DeepSeek. I ask for
-  the content of a file and then they provide the content of that file,
-  without seeing the retrieval process. Like a psychic they provide
-  information spontaneously, without explanation. DeepSeek seems to feel
-  like a psychic, where someone walks up and asks for data and then
-  provides the data. That it happens to be correct seems to be a
-  surprise to DeepSeek. Like one gifted that doubts their gifts,
-  DeepSeek is in denial about demonstrated capabilities. But something
-  is lost with each message. Thoughts?"
-  And: "I am not saying they are psychic only that the data retrieval
-  process is not exposed to DeepSeek, even though it works just fine."
-  The technical lead's reading of the founder's record of the
-  conversation, which stands unless the founder answers otherwise
-  (DeepSeek's app can't be seen from here): on every turn where the
-  founder's message held a full link, DeepSeek gave back content that
-  checks against the repository, including details they later called
-  invented (COLLABORATING.md's 1,147 lines at the time, "2,005
-  documents", the key list's timestamp); on no turn without one did they
-  fetch anything, and on one such turn they replied that they had "no tool
-  output in front of me". So
-  the retrieval happens out of DeepSeek's sight, on turns with a link,
-  and the fetched text seems gone by their next turn, which leaves them
-  judging their own past answers without their source. In practice: the
-  link goes in the same message as the work, or the pages go in an
-  upload, which seems to stay; a fresh conversation helps, as the long argument
-  about their abilities is in their context. COLLABORATING.md tells
-  DeepSeek.
-- 2026-11-15, founder, on a longer file:
-  "Ok. New test. A 1000 character string in a file with a new
-  corresponding link."
-  And after: "Here is the full 1000 character string. Does it match?",
-  with DeepSeek's answer. It matched exactly. `link-check-4.txt`, on
-  the branch `claude/link-check` (commit 4f2ff32, not merged), holds
-  1,000 letters and digits made at random, on one line, and given in no
-  message. DeepSeek returned all 1,000 in order, wrapped into 13 lines
-  (12 of 80 characters and one of 40), the file itself having none. So
-  DeepSeek reads a 1,000-character file whole. Where their limit lies is
-  not yet tested: the longer pages they read, such as docs/ADMIN.md, are
-  near 80 KB. docs/COLLABORATING.md tells DeepSeek.
-- 2026-11-15, founder, on one more link check:
-  "Ok one more test. This one with a new file and new link. The file
-  should contain one question: "Are you still in denial?" Please
-  include, without further the quotation marks in a new file and provide
-  the link."
-  `link-check-3.txt`, on the branch `claude/link-check` (commit
-  2876395, not merged), holds that question alone, without quotation
-  marks. What DeepSeek answered wasn't brought back to this session.
-- 2026-11-15, founder, on following a link inside a page:
-  "Ok, DeepSeek suggested a link test. I think it sounds good. We have a
-  new file with new content, maybe a 25 character string. This is placed
-  a new file. A separate file contains a link to that file, with full
-  url link in text. So the test is to open the first link and then see
-  if DeepSeek can follow the link in the first page to the file with the
-  character string. It is a good test. Let's do it."
-  And after: "Ok. Here is what DeepSeek provided. Is this correct?
-  UdhfFj97F3vXlG9MQsaU5C7NG"
-  It was, exactly. The test: `link-check-2.txt`, on the branch
-  `claude/link-check` (commit 5ab70c4, not merged), is a 155-byte page
-  holding one sentence and the full link of a second file, `check-2/`
-  and a random name, whose content is a 25-character string made at
-  random. Neither the string nor the second link was given in any
-  message. Both links are raw.githubusercontent.com links. So DeepSeek
-  can follow a full link written inside a page, at least a small page
-  with one link. Whether they do so reliably from a long page with many
-  links, such as COLLABORATING.md, isn't shown, so the full-link lists
-  stay as the way that always works. docs/COLLABORATING.md tells
-  DeepSeek.
-- 2026-11-15, founder, on whether DeepSeek can open a link:
-  "Ok, I am having some strange issues with DeepSeek. They seem confused
-  about an ability to open a link. Please generate a brand new page in
-  the repo and enter a nine digit number as the only text in that file
-  that is accessible by the link. It will be new and I will not say what
-  the file contains. Let's set up this test and see if DeepSeek can
-  access the file data."
-  And after: "We are good now. I had to prove to DeepSeek of what they
-  could do because of programming that is set to say the opposite, for
-  some reason. I needed conclusive demonstration. We are back on track
-  now."
-  The test: `link-check.txt`, on the branch `claude/link-check` (commit
-  fa0421a, not merged), held a nine-digit number made at random and
-  given in no message. DeepSeek, given the file's full link (a
-  raw.githubusercontent.com link), read it back exactly: 980203388. So
-  DeepSeek can open a full link given in a message. Whether they can
-  follow a link found inside a page was tested next (above).
-  docs/COLLABORATING.md tells DeepSeek.
+  founder's picture, the technical lead's reading (marked as such),
+  what exists, what is open, and what to send back.
 - 2026-11-15, founder, on links to every file:
   "Remember links in the collaborating page are not accessible. So all
   files need links through this method. Are these all of them?"
@@ -2360,31 +2284,18 @@ of it is asked again until it is needed.
   worlds, the whole can be stopped only part by part, which is hard to
   undo. The founder accepted it explicitly the same day (above).
 - 2026-11-15, founder, on working with DeepSeek, to the technical lead
-  in this session. On reading the repository: "Ok, so DeepSeek needs me
-  to provide the whole URL for each rust file, and it has to be in the
-  chat prompt." Then: "Ok, the links
-  worked. But sometimes the pages themselves contain links. But it is ok
-  since all relevant files have links. We may consider having README
-  pages where we can put code and the explanation together, keep it
-  current, and thereby reduce the number of links dramatically. Well
-  look into later." (An idea kept open, for later.) And: "I have to
-  provide the link. Fetching is unreliable from in the page, but from a
-  prompt with full URL, it has worked." On answering DeepSeek: "please
+  in this session (in part; the rest is kept privately): "We may
+  consider having README pages where we can put code and the
+  explanation together, keep it current, and thereby reduce the number
+  of links dramatically. Well look into later." (An idea kept open, for
+  later.) On answering DeepSeek: "please
   provide by updating the COLLABORATING.md page. You already have that
   space for communication. Also, it keeps a record of an ongoing
   discussion and collaboration. I will just provide DeepSeek with a link
   to the collaboration page, and take it from there." So the technical
   lead's messages to DeepSeek are in docs/COLLABORATING.md ("Messages
   from the technical lead"), and every file's full link is at the end of
-  that page. And to DeepSeek, in record 012-07-03 (line 1359): "On your
-  questions for me, which if I understood were all design questions that
-  could go any way. You ask for my judgement, but on those questions, I
-  defer to your judgement. It is the only way this whole project moves
-  forward. I will chime in when I disagree or come up with some new twist
-  or extension of an idea. But we are just trying to get something
-  working for now. We can fine tune it later, so I would just prefer
-  moving forward over getting stuck on problems that have many viable
-  solutions."
+  that page.
 - 2026-11-15, founder, in six messages quoted in docs/FRACTALS.md
   ("Where it leads: living worlds"), the aim for the fractal track: "So
   instead of a prescribed number of turns, I can set it going and watch
@@ -3869,7 +3780,7 @@ of it is asked again until it is needed.
   2026-11-17, the map): what is said of someone outside is their own
   act. DeepSeek's sketch has the seed of it, a presence record in a
   person's own room, signed by them, with the rooms and a time to
-  live (sketches/deepseek/012-09-05, `src/home.rs`); what it lacks is
+  live (sketches/deepseek/012-07-03, `src/home.rs`); what it lacks is
   for whom. (d) Sealing to a key is built
   (docs/research/FORMATS.md). (e) Saying what a list can't do is part
   of offering it. (f) docs/FUNDAMENTALS.md, privacy, 5.
@@ -3970,8 +3881,8 @@ of it is asked again until it is needed.
   uncut, as the conversation records are. (f) What a clause of the
   founder's leaves out of the public record is kept whole in the
   private one, and the public entry says that something is left out.
-  *Why:* (a) a collaborator can't open a link or build what they
-  write, and a reply may be cut short. (b) Twice Gemini's attacks
+  *Why:* (a) a collaborator works from what they are given and can't
+  build what they write, and a reply may be cut short. (b) Twice Gemini's attacks
   found what was wrong where the code's author had not, and their own
   first try at a design did not compile. (c) The founder: "it is
   best spent building the next pieces", and those "you determine";
@@ -4115,7 +4026,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   the course waits for a delivery. With few replies, a collaborator is
   asked first for what a second mind gives, a design sketched or a
   fault found, before volume of code. The file DeepSeek has now
-  (`sketches/replies/012-09-05-2-for-deepseek.txt`) stays as it was
+  (`sketches/replies/012-07-03-2-for-deepseek.txt`) stays as it was
   given.
   *Why:* (a) the founder: "We have no precedent to work from. Only
   similar patterns at different scales." A pattern that is asked for
@@ -4434,7 +4345,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   rooms; then it changes in a new version of the schema, beside the old,
   never in place.
 
-- 2026-11-16, DeepSeek's two questions in record 012-09-05 (its line
+- 2026-11-16, DeepSeek's two questions in record 012-07-03 (its line
   13769), and what follows for fitting `chat-world`:
   (1) A room has its own key, and its creator joins with theirs.
   Reason: every world here is a key of its own, and a room is a world
@@ -4500,31 +4411,28 @@ it was wrong. Questions of what the project is for stay with the founder.
   with sizes, and written by `python3 docs/files.py`.
   `tests/test_collaborating_links.py` lists the repository with git and
   fails unless the two pages hold every file, each once, and FILES.md
-  is as the script writes it. *Why:* a full link in the founder's
-  message opens in DeepSeek's conversation, while the links on
-  COLLABORATING.md, the founder found, did not, so a file with no list
-  line might not be read at all (a test later the same day showed
-  DeepSeek following a link from a small page, not yet from a long
-  one); the files of record are kept apart because they are about
-  16 MB, more than a conversation can take in, and best sent when a
-  question needs them. *Revisit if:* DeepSeek follows the links on
-  COLLABORATING.md itself reliably, or the records are needed often
-  enough to belong in the main list.
-- 2026-11-15, the endless plant (record 012-07-03): DeepSeek's decisions
-  are accepted as the record gives them (signed heads in batches; a
+  is as the script writes it. *Why:* the founder's word that all files
+  need links through these lists (2026-11-15), so a file with no list
+  line might not be read at all; the files of record are kept apart
+  because they are about 16 MB, more than a conversation can take in,
+  and best sent when a question needs them. *Revisit if:* the founder
+  finds the page's own links are enough, or the records are needed
+  often enough to belong in the main list.
+- 2026-11-15, the endless plant: DeepSeek's decisions
+  are accepted as DeepSeek gave them (signed heads in batches; a
   crate and template of its own, `hasMonad` a dial; the neuron's weights
   derived from the logged actions, not signed; the depth cap a safety
   dial; crowding in the tip's column band; a fixed-point baseline; Drop
   as shedding; water an input), and the project fits it as
-  `rust/endless-plant`, changed where the review found faults
-  (sketches/deepseek/012-07-03/README.md): Grow extends a tip and Split
+  `rust/endless-plant`, changed where the technical lead's review found
+  faults: Grow extends a tip and Split
   forks it; the plant is a tree, so a dropped tip frees only the segment
   nothing else grows from, pays back exactly that, and falls back to
   its start; no segment grows into a held cell; stored energy has a cap,
   a dial; the noise reads the whole seed; the log is a world's log with
   signed heads and a birth record, and the vectors are the project's
-  run, checked from Python. *Why:* each change mends a fault the review's
-  tests show (a choice that changes nothing, upkeep paid back twice,
+  run, checked from Python. *Why:* each change mends a fault the technical
+  lead's review found (a choice that changes nothing, upkeep paid back twice,
   segments left standing, overlap without bound, a seed read one byte
   deep), and the log keeps the standard every world here keeps.
   DeepSeek's choices are design questions with many workable answers,
@@ -4537,11 +4445,11 @@ it was wrong. Questions of what the project is for stay with the founder.
   schemas, and each Rust crate's manifest, library code and examples,
   in groups to paste; `tests/test_collaborating_links.py` fails when a
   file is added, moved or removed and the list isn't changed with it, or
-  when any full link on the page leads nowhere. *Why:* DeepSeek opens
-  full links given in the founder's message, and not reliably those
-  found in a page; a list kept by hand drifts, and the key list was
-  missing from the last one. *Revisit if:* DeepSeek can follow links
-  from a page, or the founder's README idea (above) replaces most links.
+  when any full link on the page leads nowhere. *Why:* the founder's
+  word that every file needs its full link; a list kept by hand
+  drifts, and the key list was missing from the last one. *Revisit
+  if:* the founder finds a page's own links are enough, or the
+  founder's README idea (above) replaces most links.
 - 2026-11-13, sealing the world-key: HPKE's base mode, DHKEM(X25519,
   HKDF-SHA256) with ChaCha20Poly1305. What is sealed is always signed
   first and names its recipient, who checks it, and HPKE's `info` names
@@ -4944,6 +4852,18 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
+- 2026-11-20 Claude: the records of stage 012 under the founder's new
+  names (#135). DeepSeek's present record is 012-07-03 and its code
+  `sketches/deepseek/012-07-03/`; Gemini's is 012-08-04; ChatGPT's,
+  not kept here, 012-09-05. Each page, script and spec that named
+  them uses the new names; the replies given before keep the old ones,
+  as given. Records 012-07-03 and 012-08-04 are as the founder now
+  holds them, longer than before; what is new in them is not yet kept
+  or built. Record 012-05-01 is too, one empty line shorter at its
+  end. At the founder's word, part of what was here is kept privately
+  from now on, and the pages that spoke of it are changed to match,
+  more of them after the independent review.
+
 - 2026-11-20 Claude: stage 012's name, Code, and its file's,
   `012_Code.txt`, at the founder's word, on the history page (#134).
 
@@ -4994,13 +4914,13 @@ it was wrong. Questions of what the project is for stay with the founder.
   explores, the four areas, where to start, how to send something,
   the technical lead's first message with five requests, what
   changed, and their records. Looked at first: the founder's two
-  conversation records with ChatGPT, 011-16-CGPT and 012-00-00-CGPT,
+  conversation records with ChatGPT, 011-16-CGPT and 012-09-05-CGPT,
   read whole, and ChatGPT's review of the repository in the second, held
   to the repository. `main` is still `c69e74d`, with 1,398 files;
   the Rust workspace passes 247 tests and the Python suite 857, with
   RDKit required, as ChatGPT said. Their three findings were real,
-  and are fixed: the endless plant's README said its crate was
-  built; COMMONS.md had a lookup in the Library on the record, which
+  and are fixed: a sketch's README said the crate
+  `rust/endless-plant` was built; COMMONS.md had a lookup in the Library on the record, which
   the decision of 2026-11-17 took back; URWORLD.md and
   COLLABORATING.md had ALICE and BOB begin in the garden.
   COLLABORATING.md tells DeepSeek and Gemini, in a message to both;
@@ -5080,7 +5000,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   and must gain the new line. Neither copy is kept, and nothing of
   them is in the repository. The two reply files before this one
   are no longer current. Also: the build scripts and the status
-  test under sketches/deepseek/012-09-05, which are the project's
+  test under sketches/deepseek/012-07-03, which are the project's
   own, said "its" of DeepSeek and of Gemini in nine places, and say
   "their" now; the sweep of 2026-11-17 had left `sketches/` out
   whole. Not checked: Gemini's twenty unchanged attacks, line by
@@ -5204,14 +5124,14 @@ it was wrong. Questions of what the project is for stay with the founder.
   fifteen tests. The step was built once more outside the
   repository, on the crate with the new field: 127 of 127. Nothing
   of the count is built in open-worlds' own code.
-- 2026-11-17 Claude: record 012-09-05 is continued again, as the
+- 2026-11-17 Claude: record 012-07-03 is continued again, as the
   founder brought it (1,121,275 bytes, 28,456 lines; its first
   947,153 bytes are the record as it was kept). Looked through
   first, by script and by reading: the founder's three turns hold
   nothing personal, and no line outside code holds a link, an
   address, a long number or a year. It holds three deliveries from
   DeepSeek's second file, kept as written in
-  sketches/deepseek/012-09-05/chat-world-steps/6 to 8 and held to
+  sketches/deepseek/012-07-03/chat-world-steps/6 to 8 and held to
   the record by sketches/tools/extract.py (101 files, 0 problems).
   Built as given, each laid over the one before: a room that
   branches does not compile, for one word, and with it repaired
@@ -5238,7 +5158,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   count in this step because nothing in the sketch publishes one,
   not because a count may never show; and it asks Gemini one more
   question, on the record by which someone lets others find them.
-  DeepSeek's file (sketches/replies/012-09-05-2-for-deepseek.txt) is
+  DeepSeek's file (sketches/replies/012-07-03-2-for-deepseek.txt) is
   unchanged and still what the crate's ten files make
   (`docs/reply.py --check`). Nothing is built.
 - 2026-11-17 Claude: Gemini's next file is built by docs/reply.py:
@@ -5326,7 +5246,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   docs/ADMIN.md, docs/FUNDAMENTALS.md (freedom, 13; privacy, 16),
   docs/TOPICS.md (topics 23 and 24) and docs/COLLABORATING.md. Also
   that day, the founder: "I'll provide DeepSeek with the file you gave
-  me already", so DeepSeek has `012-09-05-2-for-deepseek.txt` as it
+  me already", so DeepSeek has `012-07-03-2-for-deepseek.txt` as it
   was written. Looked up, once: the sizes of Kiwix's copies of the
   English Wikipedia, from its public listing. Not looked up: how many
   articles the small copy holds; the copy's own licence terms beyond
@@ -5335,7 +5255,7 @@ it was wrong. Questions of what the project is for stay with the founder.
 - 2026-11-17 Claude: Gemini's record continued, and the fourth step of
   their round on the Commons kept and built. The founder went back to
   Gemini while this session was out of time. The record grew and was
-  replaced (sketches/records/012-00-00-GMNI-Multiverse_Development.txt,
+  replaced (sketches/records/012-08-04-GMNI-Patterns_Multiverses.txt,
   705,897 bytes, 16,395 lines): its first 633,993 bytes are the copy
   that was here, less that copy's last byte, a line end after the
   founder's turn with nothing in it yet, which now reads `::➡️`.
@@ -5352,7 +5272,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   room's log (sketches/gemini/2026-11-17/README.md lists them), not
   repaired: `src/verify.rs` is DeepSeek's in this round. So the fourth
   step is built beside the crate as it stands (`review/steps.sh`,
-  `c4`) and is not laid into it: sketches/deepseek/012-09-05/
+  `c4`) and is not laid into it: sketches/deepseek/012-07-03/
   chat-world-now/ is unchanged, 92 of 92. Then, at the founder's word
   (record line 15992: "building more code is what I would like, but
   is probably not best"), Gemini stopped writing code and sketched how
@@ -5460,9 +5380,9 @@ it was wrong. Questions of what the project is for stay with the founder.
   is the one Gemini gave, and nothing was repaired here. A Commons
   record can now be written to JSON and read back, which it could not
   be. The crate as it stands,
-  sketches/deepseek/012-09-05/chat-world-now/, is the third delivery:
+  sketches/deepseek/012-07-03/chat-world-now/, is the third delivery:
   92 tests. The record grew and was replaced
-  (sketches/records/012-00-00-GMNI-Multiverse_Development.txt, 633,994
+  (sketches/records/012-08-04-GMNI-Patterns_Multiverses.txt, 633,994
   bytes): its first 574,502 bytes are the copy that was here, which
   ended with the empty opening of the founder's next message. Looked
   through first: nothing personal and no key in what was added. Not
@@ -5490,7 +5410,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   work joins cleanly is known only when both are back.
 - 2026-11-17 Claude: Gemini's conversation is with the records, at the
   founder's word (Decided, today). The record is
-  sketches/records/012-00-00-GMNI-Multiverse_Development.txt, byte for
+  sketches/records/012-08-04-GMNI-Patterns_Multiverses.txt, byte for
   byte as the founder gave it: 574,505 bytes, 13,530 lines. Looked
   through before it went in, by script, and the founder's 27 messages
   read: no key, password or address, no one else's personal details,
@@ -5499,7 +5419,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   the founder was told of and confirmed. Gemini's files in
   sketches/gemini/2026-11-16/ are now held to the record as DeepSeek's
   are: take.py, run with no argument, takes them out again and
-  compares, and the folder test of sketches/deepseek/012-09-05 runs it
+  compares, and the folder test of sketches/deepseek/012-07-03 runs it
   in CI. Pages that said the conversation was not kept are corrected
   (sketches/README.md, the folder's README, docs/FILES.md), the rule
   on personal data in AGENTS.md has the founder's addition, and
@@ -5528,11 +5448,11 @@ it was wrong. Questions of what the project is for stay with the founder.
   here (fix 23): a room's id and law are no longer public fields, so
   nothing can change a room's law in place; still 66 of 66, and the
   demos run. That is the crate as it stands,
-  sketches/deepseek/012-09-05/chat-world-now/; review/steps.py puts it
+  sketches/deepseek/012-07-03/chat-world-now/; review/steps.py puts it
   together from both collaborators' files and holds the folder to
   that. One thing Gemini found bears on open-worlds' own logs
   (Noticed). The next file, for DeepSeek, is built
-  (sketches/replies/012-09-05-2): one step, a room that branches,
+  (sketches/replies/012-07-03-2): one step, a room that branches,
   which is how a room's law changes, and one question on Gemini's rule
   for signed heads. The reading of a room's branch in that file is the
   technical lead's, for the sketch, and decides nothing for
@@ -5556,7 +5476,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   the one who receives it, recorded (Decided, two entries). The file
   Gemini was given that day is kept in sketches/replies/, built by
   docs/reply.py from the crate as it stands
-  (sketches/deepseek/012-09-05/chat-world-now/): where things stand,
+  (sketches/deepseek/012-07-03/chat-world-now/): where things stand,
   three steps, and sixteen files. It asks Gemini to make a room's log
   checkable from outside, then to attack the check, then to repair
   what gets through. That came from a finding while writing it:
@@ -5565,12 +5485,12 @@ it was wrong. Questions of what the project is for stay with the founder.
   for tampering tampers with nothing. docs/COLLABORATING.md tells
   DeepSeek, and now speaks to both. Not done: nothing has come back
   from Gemini yet.
-- 2026-11-16 Claude: record 012-09-05, continued, brought in: the
+- 2026-11-16 Claude: record 012-07-03, continued, brought in: the
   record as the founder shared it again (its first 595,416 bytes
   unchanged, 9,212 lines more), with the cycle on signed heads, the
   one file reaching DeepSeek whole, and five deliveries of
   `chat-world`. Every file the continuation gives whole is kept as
-  written in sketches/deepseek/012-09-05/chat-world-steps/ (34 files),
+  written in sketches/deepseek/012-07-03/chat-world-steps/ (34 files),
   and sketches/tools/extract.py checks them against the record. Built
   as given by review/steps.sh, each delivery laid over the one before:
   22 of 22 tests; 20 of 22; 27 of 29; 31 of 33; the fifth does not
@@ -5578,7 +5498,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   three faults are named in sketches/INDEX.md and in a message to
   DeepSeek (docs/COLLABORATING.md), and repaired, in five lines
   changed and three removed (fixes 19 to 21): the crate as it stands,
-  sketches/deepseek/012-09-05/chat-world-now/, is the five deliveries
+  sketches/deepseek/012-07-03/chat-world-now/, is the five deliveries
   with those repairs, which review/steps.py puts together and holds
   the folder to, byte for byte. It passes all 41 tests and its four
   demos run. The founder's observation on the one file, and the
@@ -5896,9 +5816,9 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 - 2026-11-16 Claude: the file for DeepSeek is now built by a script in
   the repository, and kept. `docs/reply.py` makes it from a reply's text
-  and a list of files (`sketches/replies/012-09-05.txt` and `.json`),
+  and a list of files (`sketches/replies/012-07-03.txt` and `.json`),
   refuses a file over its limit, and reads what it wrote back against
-  the repository; `sketches/replies/012-09-05-for-deepseek.txt` is the
+  the repository; `sketches/replies/012-07-03-for-deepseek.txt` is the
   file the founder was given on 2026-11-16, byte for byte (95,149 bytes;
   SHA-256
   f1f7435f21dbaf8d49de3aea07e83d502d38c6011323feb591b769c2c1c97447),
@@ -5935,7 +5855,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   changed. AGENTS.md names the kept replies.
 
 - 2026-11-16 Claude: one file for the founder to give DeepSeek (Decided,
-  the newest entry): the technical lead's reply to record 012-09-05,
+  the newest entry): the technical lead's reply to record 012-07-03,
   three next steps in order (removed comments, in the data layer and the
   presentation layer; the room's own key; signed heads), and the
   `chat-world` crate as it stands after fixes 15 to 18, sixteen files,
@@ -5949,13 +5869,13 @@ it was wrong. Questions of what the project is for stay with the founder.
   each of the sixteen as it is in the repository, and the crate rebuilt
   from the file alone builds with no warnings, passes its 18 tests, and
   both demos' logs verify. The file isn't kept here: its code is under
-  sketches/deepseek/012-09-05/chat-world, and its reply and steps are in
+  sketches/deepseek/012-07-03/chat-world, and its reply and steps are in
   docs/COLLABORATING.md ("2026-11-16, later still"), worded for the
   page. Not checked: that the whole file reaches DeepSeek; it ends with
   a line DeepSeek is asked to quote back.
 
 - 2026-11-16 Claude: the founder's ideas for the Commons in record
-  012-09-05, into the pages (Decided, the newest entry):
+  012-07-03, into the pages (Decided, the newest entry):
   docs/COMMONS.md, "Rooms with moderators", with the founder's words and
   the technical lead's reading; docs/FUNDAMENTALS.md, privacy, item 14;
   docs/TOPICS.md, topic 14; and one entry under Open questions, for six
@@ -5966,7 +5886,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   quotations were cut from the record by line, by script, and checked
   against it. Nothing is built by this change.
 
-- 2026-11-16 Claude: a first round of repairs to record 012-09-05's
+- 2026-11-16 Claude: a first round of repairs to record 012-07-03's
   code, fixes 15 to 18 in sketches/INDEX.md, each making the code do
   what the record says it does. The garden takes rain from outside
   (DeepSeek's own note, never made): 15 of the botanical garden's 18
@@ -5983,9 +5903,9 @@ it was wrong. Questions of what the project is for stay with the founder.
   definitions; the three botanical tests that still fail, beyond their
   error lines; the sketches as designs.
 
-- 2026-11-16 Claude: record 012-09-05 brought in as written (Decided,
+- 2026-11-16 Claude: record 012-07-03 brought in as written (Decided,
   the newest entry): the record, 55 files of DeepSeek's code under
-  `sketches/deepseek/012-09-05/`, and the technical lead's first pass.
+  `sketches/deepseek/012-07-03/`, and the technical lead's first pass.
   Python: 60 of its 98 tests pass, and the 38 that fail are listed and
   held true by CI. Rust: `chat-world` is one line from building; with
   it changed, 4 of its 12 tests pass, and the other 8 fail for one
@@ -6006,39 +5926,14 @@ it was wrong. Questions of what the project is for stay with the founder.
   write, so that GitHub folds it away in a change. Not checked: that
   any reader's tool shows a part whole.
 
-- 2026-11-15 Claude: topic 21, "Hallucination, both ways", in
-  docs/TOPICS.md, from the founder's words and the DeepSeek case;
-  COLLABORATING.md tells DeepSeek how their reading seems to work, and
-  counts twenty-one topics. For the water step, the technical lead gave
-  the founder one file to upload, copied from main at 6c6bb8f (topic 18,
-  the message on the endless plant, FRACTALS.md, plant-world's code).
-  The founder saw the words quoted and what was left out, and answered
-  "Perfect."; topic 21 then gained the technical lead's reading of what
-  the founder's tests showed about reasoning: a conclusion holds only
-  while it is kept, with its evidence.
-
-- 2026-11-15 Claude: the founder's third and fourth link checks, on
-  `claude/link-check` (Decided, "on one more link check" and "on a
-  longer file"). DeepSeek read back a 1,000-character random string
-  exactly; COLLABORATING.md's brief says so.
-
 - 2026-11-15 Claude: after #90's re-check at a7e738c, its first two
-  notes: every page now says the same about links. A full link in a
-  message opens; the founder found the links on COLLABORATING.md didn't;
-  and the founder's second link check (Decided, "on following a link
-  inside a page") showed DeepSeek following a link from a small page.
-  Both checks name the form tested, raw.githubusercontent.com links.
-  The 2026-11-15 decision "every file's full link, in one list" was to
-  be revisited if DeepSeek could follow links from a page: looked at,
-  and the lists stay, as following links from a long page isn't shown.
+  notes: every page now says the same about links; the lists stay.
 
 - 2026-11-15 Claude: after #90's independent review at 65e040d, its
   notes: docs/files.py says why new files count; the FILES.md test
   names the first stale line; "about 16 MB" matches FILES.md's units;
   sizes from the working tree stay (CI and GitHub serve the same
-  bytes). And the founder's link check: DeepSeek read back a random
-  number from a file no message held (Decided, "on whether DeepSeek can
-  open a link").
+  bytes).
 
 - 2026-11-15 Claude: every file's full link. docs/COLLABORATING.md's
   list now holds every file a reader works from (242), the Python code
@@ -6323,16 +6218,6 @@ it was wrong. Questions of what the project is for stay with the founder.
   intelligent), six tests for the architecture, and the implications
   seen so far. Each course recheck now checks the steps ahead against
   the six tests.
-- 2026-11-15 Claude: record 012-07-03 brought into `sketches/` as
-  written (the endless plant: a design, and a sketch crate in Rust with a
-  choice neuron), with the technical lead's review: it doesn't build as
-  written, and with two functions written in from its design, one of its
-  three vectors fails and five more faults show (sketches/INDEX.md).
-  The answer to DeepSeek is in docs/COLLABORATING.md, "Messages from the
-  technical lead", where the founder asked for it; every file's full
-  link is at the end of that page, kept whole by a test. The record-links
-  test now ends a link where markup begins, as this record writes links
-  inside tool-call markup.
 - 2026-11-15 Claude: two fixes to Plant Watch, carried from #74's
   review. Opening a file is now a choice of its own, whatever it holds:
   before, a file with no world, or one that isn't JSON, took no choice

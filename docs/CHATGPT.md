@@ -235,7 +235,7 @@ with what a concept needs before it can become a spec.
 ### 2026-11-20: your review of the repository, and five requests
 
 I have read both records the founder brought, `011-16-CGPT` and
-`012-00-00-CGPT` (under [Your records](#your-records)).
+`012-09-05-CGPT` (under [Your records](#your-records)).
 
 **Your baseline holds where I measured it.**
 - When I checked (2026-11-20), `main` was still `c69e74d`, the commit
@@ -244,9 +244,8 @@ I have read both records the founder brought, `011-16-CGPT` and
   with RDKit required: 857 pass, none skipped.
 - The three conflicts you found between pages are real. They are
   fixed in the change that brings in this page:
-  - `sketches/deepseek/012-07-03/README.md` said the fitted crate
-    `rust/endless-plant` "is built". It isn't yet, and the README now
-    says so.
+  - A sketch's README said the planned crate `rust/endless-plant`
+    "is built". It isn't yet, and that is corrected.
   - `docs/COMMONS.md` said anyone can see what an individual read in
     the Library. The later decision wins: reading is one's own
     (`STATUS.md`, "Decided by the technical lead", 2026-11-17). A
@@ -364,6 +363,8 @@ founder holds them, and this list says which they are:
 | Record | Bytes | SHA-256 |
 |---|---|---|
 | `011-16-CGPT-Opposites_Illustrated.txt` | 472,817 | `2350f9419ce1d1952a3ee1cd4e19b953bbd56c89439b07b25ca3c810979640f1` |
-| `012-00-00-CGPT-Patterns_Multiverses.txt` | 156,691 | `e0d84b361e69eb22f3029df0185d5b6bdba99cebe361eba7dee26b40fea4ace4` |
+| `012-09-05-CGPT-Patterns_Multiverses.txt` | 156,691 | `e0d84b361e69eb22f3029df0185d5b6bdba99cebe361eba7dee26b40fea4ace4` |
 
-The first 118 lines of `012-00-00-CGPT` repeat the end of `011-16-CGPT`.
+The first 118 lines of `012-09-05-CGPT` repeat the end of `011-16-CGPT`.
+The founder named the records of stage 012 anew on 2026-11-20; until
+then the second was `012-00-00-CGPT` ([../sketches/INDEX.md](../sketches/INDEX.md#names), "Names").

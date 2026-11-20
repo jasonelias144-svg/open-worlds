@@ -34,13 +34,12 @@ of earlier ideas.
 | `deepseek/012-05-01/` | The code files from record 012-05-01, which continues 012-04-00 and imports its code from the folder beside it |
 | `deepseek/012-03-02/` | The code files from record 012-03-02: the poetry engine (and a model of Aristotle's practical reasoning), which the two later records import |
 | `deepseek/012-06-02/` | The code files from record 012-06-02: fractal worlds, a gallery of worlds and its governance, the smallest learner that chooses, and individuals as signed, replayable bundles; then, continued, a multiversal map, a microverse, the Ur-world as a garden of fractal worlds, and DeepSeek's first Rust (kept, not built). A few import the earlier folders' code |
-| `deepseek/012-07-03/` | The code from record 012-07-03: the endless plant, a sketch crate in Rust with a choice neuron, kept as written (it doesn't build), with the technical lead's review and the tests that check it |
-| `deepseek/012-09-05/` | The code from record 012-09-05: water as particles, the garden and a botanical garden of gardens (Python, on 012-06-02's plant world); chat rooms for the Commons, with AI moderators, and the home room (Python); a schema; and a sketch crate in Rust, `chat-world`, in its first version and the one DeepSeek settled on. Kept with the technical lead's first pass and a first round of repairs (fixes 15 to 18): what ran as written, and what runs now |
+| `deepseek/012-07-03/` | The code from record 012-07-03: water as particles, the garden and a botanical garden of gardens (Python, on 012-06-02's plant world); chat rooms for the Commons, with AI moderators, and the home room (Python); a schema; and a sketch crate in Rust, `chat-world`, in its first version and the one DeepSeek settled on. Kept with the technical lead's first pass and a first round of repairs (fixes 15 to 18): what ran as written, and what runs now |
 | `gemini/2026-11-16/` | Gemini's four deliveries for `chat-world`, as written: a room's log that can be checked from outside, 22 attacks on the check, the repairs, and a start on branches that is not used. With what ran, and the script that takes them out of the record they come from |
 | `gemini/2026-11-17/` | Gemini's three deliveries on the Commons' own log, as written: the log read from outside, 16 attacks on its check, and the repairs with two checks across logs. With what ran, and the script that takes them out of the record |
 | `replies/` | What DeepSeek was given in return: for each reply, the technical lead's text, the list of files that go with it, and the one file the founder gave DeepSeek, built from the two by `docs/reply.py` ([replies/README.md](replies/README.md)) |
 | `tools/extract.py` | Writes the code out of a record (Python, Rust, JavaScript, JSON and the rest), and checks it against the record |
-| `tools/names-012-03-02.json`, `tools/names-012-04-00.json`, `tools/names-012-05-01.json`, `tools/names-012-06-02.json`, `tools/names-012-07-03.json`, `tools/names-012-09-05.json` | For each record: which code blocks to take, the names of blocks that don't state one, and the files changed since |
+| `tools/names-012-03-02.json`, `tools/names-012-04-00.json`, `tools/names-012-05-01.json`, `tools/names-012-06-02.json`, `tools/names-012-07-03.json` | For each record: which code blocks to take, the names of blocks that don't state one, and the files changed since |
 | `tools/known_failures.py` | Rewrites a folder's `known-failures.txt` from a fresh run |
 | `requirements.txt` | What the sketches' tests need (pytest, cryptography); open-worlds itself never installs it |
 | `INDEX.md` | Each component: where it is in the record, its files, how its tests fare, and where it meets the course |
@@ -94,17 +93,11 @@ cd ../012-04-00 && PYTHONHASHSEED=0 python3 -m pytest -q
 cd ../012-05-01 && PYTHONHASHSEED=0 python3 -m pytest -q
 cd ../012-06-02 && PYTHONHASHSEED=0 python3 -m pytest -q
 cd ../012-07-03 && PYTHONHASHSEED=0 python3 -m pytest -q
-cd ../012-09-05 && PYTHONHASHSEED=0 python3 -m pytest -q
 ```
 
-Record 012-07-03's code is Rust, and doesn't build as written: its
-folder's test reads the files as text. `deepseek/012-07-03/review/run.sh`
-builds a scratch copy with two functions added and runs the review's
-tests against it; it needs Rust, and CI doesn't run it.
-
-Record 012-09-05 has both: its Python tests run as the others do, and
+Record 012-07-03's code is in both languages: its Python tests run as the others do, and
 its crate in Rust is read as text by the folder's test.
-`deepseek/012-09-05/review/run.sh` builds a scratch copy of the crate
+`deepseek/012-07-03/review/run.sh` builds a scratch copy of the crate
 and runs its own tests and its two demos, which must all pass, and
 then shows one finding that stands; it needs Rust and the network, and
 CI doesn't run it.
@@ -144,9 +137,9 @@ those components' tests don't load as written.
   What the founder says in a record about their own life and work is
   there on purpose, and a record is kept whole unless the founder says
   it is private (the founder, 2026-11-17: STATUS.md, "Decided"). Record
-  012-00-00, with Gemini, holds the most of it. Nothing personal is to
+  012-08-04, with Gemini, holds the most of it. Nothing personal is to
   be added by anyone else (AGENTS.md).
-- Record 012-00-00 speaks of three earlier works of the founder's own,
+- Record 012-08-04 speaks of three earlier works of the founder's own,
   names them and describes them. The founder, 2026-11-17, of the third
   title, when asked whether it should stay out: "You can keep" it "in";
   and then of the work itself: "the book is public domain" (STATUS.md,

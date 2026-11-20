@@ -82,7 +82,7 @@ Commons' lobby (the founder, 2026-11-16: "let's start the Commons with
 a single Ur-room, which will always be distinguished as being the first
 room"; [COMMONS.md](COMMONS.md), "The Ur-room"). It is on the record.
 It is built from `chat-world`, DeepSeek's sketch crate from record
-012-09-05, fitted onto the project's own formats as a crate of the
+012-07-03, fitted onto the project's own formats as a crate of the
 workspace: the canonical form, proofs and Multikey `did:key` of
 `rust/formats`, time given from outside, a key for each room with its
 creator joining under their own, signed heads in place of the room's

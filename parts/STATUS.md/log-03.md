@@ -6,8 +6,28 @@
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-02.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
+- 2026-11-16 Claude: one file for the founder to give DeepSeek (Decided,
+  the newest entry): the technical lead's reply to record 012-07-03,
+  three next steps in order (removed comments, in the data layer and the
+  presentation layer; the room's own key; signed heads), and the
+  `chat-world` crate as it stands after fixes 15 to 18, sixteen files,
+  each whole. 95,149 bytes, 2,590 lines, built by script from main at
+  8921e86; SHA-256
+  f1f7435f21dbaf8d49de3aea07e83d502d38c6011323feb591b769c2c1c97447. (Two
+  earlier versions, of 92,658 and 94,578 bytes, were replaced the same
+  day, before the founder used either: the first step now follows the
+  founder's decision on removed comments, and the note on the schema
+  follows the founder's answer.) The script read the file back and found
+  each of the sixteen as it is in the repository, and the crate rebuilt
+  from the file alone builds with no warnings, passes its 18 tests, and
+  both demos' logs verify. The file isn't kept here: its code is under
+  sketches/deepseek/012-07-03/chat-world, and its reply and steps are in
+  docs/COLLABORATING.md ("2026-11-16, later still"), worded for the
+  page. Not checked: that the whole file reaches DeepSeek; it ends with
+  a line DeepSeek is asked to quote back.
+
 - 2026-11-16 Claude: the founder's ideas for the Commons in record
-  012-09-05, into the pages (Decided, the newest entry):
+  012-07-03, into the pages (Decided, the newest entry):
   docs/COMMONS.md, "Rooms with moderators", with the founder's words and
   the technical lead's reading; docs/FUNDAMENTALS.md, privacy, item 14;
   docs/TOPICS.md, topic 14; and one entry under Open questions, for six
@@ -18,7 +38,7 @@
   quotations were cut from the record by line, by script, and checked
   against it. Nothing is built by this change.
 
-- 2026-11-16 Claude: a first round of repairs to record 012-09-05's
+- 2026-11-16 Claude: a first round of repairs to record 012-07-03's
   code, fixes 15 to 18 in sketches/INDEX.md, each making the code do
   what the record says it does. The garden takes rain from outside
   (DeepSeek's own note, never made): 15 of the botanical garden's 18
@@ -35,9 +55,9 @@
   definitions; the three botanical tests that still fail, beyond their
   error lines; the sketches as designs.
 
-- 2026-11-16 Claude: record 012-09-05 brought in as written (Decided,
+- 2026-11-16 Claude: record 012-07-03 brought in as written (Decided,
   the newest entry): the record, 55 files of DeepSeek's code under
-  `sketches/deepseek/012-09-05/`, and the technical lead's first pass.
+  `sketches/deepseek/012-07-03/`, and the technical lead's first pass.
   Python: 60 of its 98 tests pass, and the 38 that fail are listed and
   held true by CI. Rust: `chat-world` is one line from building; with
   it changed, 4 of its 12 tests pass, and the other 8 fail for one
@@ -58,39 +78,14 @@
   write, so that GitHub folds it away in a change. Not checked: that
   any reader's tool shows a part whole.
 
-- 2026-11-15 Claude: topic 21, "Hallucination, both ways", in
-  docs/TOPICS.md, from the founder's words and the DeepSeek case;
-  COLLABORATING.md tells DeepSeek how their reading seems to work, and
-  counts twenty-one topics. For the water step, the technical lead gave
-  the founder one file to upload, copied from main at 6c6bb8f (topic 18,
-  the message on the endless plant, FRACTALS.md, plant-world's code).
-  The founder saw the words quoted and what was left out, and answered
-  "Perfect."; topic 21 then gained the technical lead's reading of what
-  the founder's tests showed about reasoning: a conclusion holds only
-  while it is kept, with its evidence.
-
-- 2026-11-15 Claude: the founder's third and fourth link checks, on
-  `claude/link-check` (Decided, "on one more link check" and "on a
-  longer file"). DeepSeek read back a 1,000-character random string
-  exactly; COLLABORATING.md's brief says so.
-
 - 2026-11-15 Claude: after #90's re-check at a7e738c, its first two
-  notes: every page now says the same about links. A full link in a
-  message opens; the founder found the links on COLLABORATING.md didn't;
-  and the founder's second link check (Decided, "on following a link
-  inside a page") showed DeepSeek following a link from a small page.
-  Both checks name the form tested, raw.githubusercontent.com links.
-  The 2026-11-15 decision "every file's full link, in one list" was to
-  be revisited if DeepSeek could follow links from a page: looked at,
-  and the lists stay, as following links from a long page isn't shown.
+  notes: every page now says the same about links; the lists stay.
 
 - 2026-11-15 Claude: after #90's independent review at 65e040d, its
   notes: docs/files.py says why new files count; the FILES.md test
   names the first stale line; "about 16 MB" matches FILES.md's units;
   sizes from the working tree stay (CI and GitHub serve the same
-  bytes). And the founder's link check: DeepSeek read back a random
-  number from a file no message held (Decided, "on whether DeepSeek can
-  open a link").
+  bytes).
 
 - 2026-11-15 Claude: every file's full link. docs/COLLABORATING.md's
   list now holds every file a reader works from (242), the Python code
@@ -375,16 +370,6 @@
   intelligent), six tests for the architecture, and the implications
   seen so far. Each course recheck now checks the steps ahead against
   the six tests.
-- 2026-11-15 Claude: record 012-07-03 brought into `sketches/` as
-  written (the endless plant: a design, and a sketch crate in Rust with a
-  choice neuron), with the technical lead's review: it doesn't build as
-  written, and with two functions written in from its design, one of its
-  three vectors fails and five more faults show (sketches/INDEX.md).
-  The answer to DeepSeek is in docs/COLLABORATING.md, "Messages from the
-  technical lead", where the founder asked for it; every file's full
-  link is at the end of that page, kept whole by a test. The record-links
-  test now ends a link where markup begins, as this record writes links
-  inside tool-call markup.
 - 2026-11-15 Claude: two fixes to Plant Watch, carried from #74's
   review. Opening a file is now a choice of its own, whatever it holds:
   before, a file with no world, or one that isn't JSON, took no choice

@@ -6,12 +6,22 @@
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-03.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
+- 2026-11-16 Claude: the founder's two roles recorded (Decided): the
+  Project Founder, a matter of history, and the Project Director, an
+  office the founder holds now. AGENTS.md, "Who decides", says how to
+  read "the founder" in a rule; the handbook's GOVERNANCE.md and its
+  decision 0004 say the same for every repository. Nothing merged is
+  rewritten. Two questions are put to the founder (Open questions):
+  what stays the founder's when someone else is director, and how the
+  office passes. Not done: the pages still say "the founder" where they
+  mean the director; they are brought to the new words as they are
+  next changed.
 - 2026-11-16 Claude: Gemini named a collaborator, at the founder's
   word, and the founder's plan for a file at each return, written for
   the one who receives it, recorded (Decided, two entries). The file
   Gemini was given that day is kept in sketches/replies/, built by
   docs/reply.py from the crate as it stands
-  (sketches/deepseek/012-09-05/chat-world-now/): where things stand,
+  (sketches/deepseek/012-07-03/chat-world-now/): where things stand,
   three steps, and sixteen files. It asks Gemini to make a room's log
   checkable from outside, then to attack the check, then to repair
   what gets through. That came from a finding while writing it:
@@ -20,12 +30,12 @@
   for tampering tampers with nothing. docs/COLLABORATING.md tells
   DeepSeek, and now speaks to both. Not done: nothing has come back
   from Gemini yet.
-- 2026-11-16 Claude: record 012-09-05, continued, brought in: the
+- 2026-11-16 Claude: record 012-07-03, continued, brought in: the
   record as the founder shared it again (its first 595,416 bytes
   unchanged, 9,212 lines more), with the cycle on signed heads, the
   one file reaching DeepSeek whole, and five deliveries of
   `chat-world`. Every file the continuation gives whole is kept as
-  written in sketches/deepseek/012-09-05/chat-world-steps/ (34 files),
+  written in sketches/deepseek/012-07-03/chat-world-steps/ (34 files),
   and sketches/tools/extract.py checks them against the record. Built
   as given by review/steps.sh, each delivery laid over the one before:
   22 of 22 tests; 20 of 22; 27 of 29; 31 of 33; the fifth does not
@@ -33,7 +43,7 @@
   three faults are named in sketches/INDEX.md and in a message to
   DeepSeek (docs/COLLABORATING.md), and repaired, in five lines
   changed and three removed (fixes 19 to 21): the crate as it stands,
-  sketches/deepseek/012-09-05/chat-world-now/, is the five deliveries
+  sketches/deepseek/012-07-03/chat-world-now/, is the five deliveries
   with those repairs, which review/steps.py puts together and holds
   the folder to, byte for byte. It passes all 41 tests and its four
   demos run. The founder's observation on the one file, and the
@@ -351,9 +361,9 @@
 
 - 2026-11-16 Claude: the file for DeepSeek is now built by a script in
   the repository, and kept. `docs/reply.py` makes it from a reply's text
-  and a list of files (`sketches/replies/012-09-05.txt` and `.json`),
+  and a list of files (`sketches/replies/012-07-03.txt` and `.json`),
   refuses a file over its limit, and reads what it wrote back against
-  the repository; `sketches/replies/012-09-05-for-deepseek.txt` is the
+  the repository; `sketches/replies/012-07-03-for-deepseek.txt` is the
   file the founder was given on 2026-11-16, byte for byte (95,149 bytes;
   SHA-256
   f1f7435f21dbaf8d49de3aea07e83d502d38c6011323feb591b769c2c1c97447),
@@ -388,26 +398,6 @@
   sentence in the file already given overstates, and is named in
   `sketches/replies/README.md`, since a file that was given isn't
   changed. AGENTS.md names the kept replies.
-
-- 2026-11-16 Claude: one file for the founder to give DeepSeek (Decided,
-  the newest entry): the technical lead's reply to record 012-09-05,
-  three next steps in order (removed comments, in the data layer and the
-  presentation layer; the room's own key; signed heads), and the
-  `chat-world` crate as it stands after fixes 15 to 18, sixteen files,
-  each whole. 95,149 bytes, 2,590 lines, built by script from main at
-  8921e86; SHA-256
-  f1f7435f21dbaf8d49de3aea07e83d502d38c6011323feb591b769c2c1c97447. (Two
-  earlier versions, of 92,658 and 94,578 bytes, were replaced the same
-  day, before the founder used either: the first step now follows the
-  founder's decision on removed comments, and the note on the schema
-  follows the founder's answer.) The script read the file back and found
-  each of the sixteen as it is in the repository, and the crate rebuilt
-  from the file alone builds with no warnings, passes its 18 tests, and
-  both demos' logs verify. The file isn't kept here: its code is under
-  sketches/deepseek/012-09-05/chat-world, and its reply and steps are in
-  docs/COLLABORATING.md ("2026-11-16, later still"), worded for the
-  page. Not checked: that the whole file reaches DeepSeek; it ends with
-  a line DeepSeek is asked to quote back.
 
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-03.md

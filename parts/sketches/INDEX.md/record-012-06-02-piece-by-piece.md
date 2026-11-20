@@ -1,9 +1,9 @@
 > Part of `sketches/INDEX.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "Record 012-06-02, piece by piece" to "Record 012-07-03, piece by piece".
+> This part holds: "Record 012-06-02, piece by piece".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/start.md
-> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-09-05-piece-by-piece.md
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-07-03-piece-by-piece.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
 ## Record 012-06-02, piece by piece
@@ -179,18 +179,5 @@ I envisioned the Ur-world, ALICE and BOB is a microverse garden of
 hosted fractal worlds" (50034); "primarily to Rust" (52822); and the
 Node.js verifier first (61985).
 
-## Record 012-07-03, piece by piece
 
-The record's code is one sketch crate, kept in
-[deepseek/012-07-03](deepseek/012-07-03/README.md) with the technical
-lead's review. It is Rust, so "Tests as written" means DeepSeek's own
-test in `vectors.rs`, run on a scratch copy by `review/run.sh` (not by
-CI), with the two functions it lacks added from the record's words.
-
-| # | What it is | Line | Tests as written | Course | In open-worlds |
-|---|---|---|---|---|---|
-| 1 | The endless plant's design, as a page for `docs/research/` (prose, left in the record) | 253 | none | the fractal track, stage 1 (FRACTALS.md) | not yet: its rule, adapted, is to be built as `rust/endless-plant`, with the changes the folder's README lists |
-| 2 | The sketch crate, `endless-plant`: the rule, the choice neuron, the world and its log, and three vectors (`Cargo.toml`, `src/lib.rs`, `rule.rs`, `monad.rs`, `world.rs`, `vectors.rs`, `vectors/endless-plant.json`) | 451 | doesn't build as written (two functions missing); with them, its one test fails, on the first of its three vectors | the fractal track, stages 1 and 2 | not yet; as for piece 1 |
-
-
-> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-09-05-piece-by-piece.md
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-07-03-piece-by-piece.md

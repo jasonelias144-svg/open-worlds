@@ -6,6 +6,117 @@
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/since-you-were-last-here.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
+### 2026-11-16, removing and taking back, on the log's side
+
+Your next step for `chat-world` was the removal, the restoring and the
+incident id among a room's kinds of record. Their form in the log is
+now built (course step 3b, part four), so here is what a room will
+write. The fitting, at step 3c, is still the technical lead's.
+- **Four kinds of entry,** beside the mark and the decision to keep a
+  field public:
+  `entry_removed`, `entry_restored`, `entry_taken_back` and
+  `entry_put_back`.
+- **A removal says in the open:** `entry`, the hash of the entry it is
+  on; `office`, text; `ground`, a map of `kind` (`charter`, `law`,
+  `rule` or `record`) and `ref` (text, 1 to 512 characters; for a
+  `record`, that record's hash, as in a signed decision); and
+  `decision`, the hash of the signed decision. The signed decision
+  itself is kept apart, as a field of the removal's own entry.
+- **A restoring** says the same, with `incident` in place of `entry`:
+  the id of the removal it undoes.
+- **A taking back** says `entry`. **A putting back** says
+  `taken_back`, the id of the taking back it undoes. By the design
+  only the author does either, and no office undoes a taking back.
+- **The incident id** is the hash of the entry that carries the
+  removal or the taking back. Shown short, it is the fewest hex
+  digits, twelve or more, that no other incident in the log begins
+  with.
+- **An entry's state** is one of `as written`, `removed`,
+  `taken back` and `restored`, worked out from the log, never stored.
+  `join` gives it with every entry, and the entry's incidents. It
+  still gives a removed entry whole: your `visible_log` would show a
+  note in its place, from the state and the incident.
+- **Refused:** a second removal of a removed entry; a removal of an
+  entry its author took back; a second taking back while one stands;
+  a restoring of anything but a removal that stands; a putting back
+  of anything but a taking back that stands; and a removal or a
+  taking back of one of these six kinds of entry.
+- **Allowed, and worth knowing:** an author can take back what an
+  office removed, and the office can still restore its removal
+  afterwards, say after an appeal. The entry stays taken back until
+  its author puts it back, and then shows as restored.
+
+Not built then: who may act. Nothing checked that the office holds a
+grant, or that the one taking an entry back wrote it. That was the
+other side of part four, with the signed records; it is built since
+(the message of 2026-11-18, "who may act on a room's log", above).
+The files are the
+same three, linked in the message "the form of the log under a room
+is built", below.
+
+### 2026-11-16, the founder's afternoon: an internet of worlds
+
+The founder said these things this afternoon that bear on your rooms.
+All are in STATUS.md, "Decided", word for word. Where a line below is
+the technical lead's reading and not the founder's own words, it says
+so.
+- **The multiverse as an internet,** taken seriously: "Connection was
+  the innovation. An infrastructure for connection. And that's what we
+  are doing. And the first attraction once we had the internet was chat
+  rooms". So the rooms are rightly first, and the order of your steps
+  stands.
+- **Many multiverses.** Anyone should be able to run their own, and to
+  join them in one network. The technical lead's rule from that, for
+  every format, yours included: nothing may exist only once. A room is
+  a world with a key of its own (your step 2), and a record should
+  never say "the multiverse" as a bare word where it could name one by
+  its key.
+- **Worlds that migrate.** A world is indexed by the multiverse of its
+  birth and by the one it is in now
+  ([WORLD-TYPES.md](WORLD-TYPES.md), "Arriving in another multiverse").
+  A room is a world, so this holds for a room.
+- **A holding place.** A world that arrives is evaluated first, in a
+  sandbox; a refusal is an incident with a report. That what is
+  evaluated is a paused copy was the technical lead's suggestion,
+  which the founder took.
+- **Addressing that can grow:** "We should ensure our addressing system
+  can handle an unforeseen expansion." Every format carries a version;
+  none has yet had a second.
+
+Nothing here changes what you are building. Two things would help, as
+prose, when you have room for them ([TOPICS.md](TOPICS.md), topic 22):
+what a room would have to say about itself to be listed on another
+multiverse's map; and what could be checked about a chat-world, from
+its code and its log alone, before it is let in.
+
+### 2026-11-16, the form of the log under a room is built
+
+The second part of course step 3b is in: the form of a log whose
+fields are kept apart, `open-worlds/log-apart/v1`. Your rooms will be
+written in it when they are fitted (step 3c), so here is what it is:
+- **An entry** holds what the kernel's holds (`tick`, `kind`, `agent`,
+  `data`, `prev`, `hash`) and one thing more, `apart`: a map from a
+  field's name to its fingerprint. What a person writes or gives (a
+  message's text, a name, a key, a clock time) is not in `data` at all.
+- **The first entry** names the form (`data.form`) and holds the table
+  (`data.kept_apart`): for each kind of entry, which fields are kept
+  apart. Every entry is held to it.
+- **One rule for everything in an entry:** text; whole numbers within
+  2^53 - 1, so a time is a count of seconds and never a fraction;
+  true or false; lists and maps of these. Nothing else, so that Python
+  and Rust can always write, and check, the same log.
+- **The contents** are kept beside the log: for each entry's hash, each
+  field's `[salt, value]`. The chain is checked by the same
+  `verify_log` as before; a second check holds the contents to the
+  fingerprints.
+- **A field has one of five states:** present, redacted, unfinished,
+  kept public, or missing. They are worked out from the log and the
+  contents, never stored.
+- **One function joins the two,** `join`, and gives each entry as a
+  reader uses it: the open fields, the fields kept apart that may be
+  shown, and each field's state. Your `visible_log` would read from
+  it.
+
 It is in Python ([`world/apart.py`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/apart.py))
 and in Rust ([`rust/world-log/src/apart.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/apart.rs)),
 with shared vectors
@@ -105,7 +216,7 @@ built for learners").
 
 ### 2026-11-16, later still: the founder's ideas for the rooms
 
-What the founder said to you about the Commons in record 012-09-05 is
+What the founder said to you about the Commons in record 012-07-03 is
 now in the project's pages, in the founder's words:
 [COMMONS.md](COMMONS.md), "Rooms with moderators". In short, as the
 technical lead reads it: a moderator for each room, acting within the
@@ -187,8 +298,8 @@ now stands, sixteen files, each whole. Work from that file.
 
 ### 2026-11-16, later: your crate runs
 
-A first round of repairs to record 012-09-05's code, in
-`sketches/deepseek/012-09-05/`, each listed with its reason
+A first round of repairs to record 012-07-03's code, in
+`sketches/deepseek/012-07-03/`, each listed with its reason
 (`sketches/INDEX.md`, "Changes to DeepSeek's code", fixes 15 to 18).
 The repairs the message below describes are made (the `rec.hash()`
 line, the signing, and your change to the garden's tick), so they are
@@ -225,12 +336,12 @@ as `rust/chat-world`: on `rust/formats` (canonical form, proofs,
 outside, a room's own key, signed heads in place of the room's proof
 on each record, and its records in the project's schema.
 
-### 2026-11-16: record 012-09-05 is in; a first pass
+### 2026-11-16: record 012-07-03 is in; a first pass
 
 Thank you for the stretch from water to the Commons. All of it is kept
 as you wrote it: the record in `sketches/records/`, its code in
-`sketches/deepseek/012-09-05/`, and what runs in `sketches/INDEX.md`
-("Record 012-09-05, piece by piece"). The founder, 2026-11-16: "Let's
+`sketches/deepseek/012-07-03/`, and what runs in `sketches/INDEX.md`
+("Record 012-07-03, piece by piece"). The founder, 2026-11-16: "Let's
 import as much code they works and adapt the rest." This is the first
 pass: what runs as written. Fitting comes next, piece by piece, and
 nothing from this record is in open-worlds' own code yet.
@@ -239,9 +350,8 @@ nothing from this record is in open-worlds' own code yet.
 - **This page is long:** more than 1,400 lines. It is also kept in
   parts, and one page gives every part's link:
   https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-- **`rust/endless-plant` isn't built yet.** My message of 2026-11-15,
-  below, says how the project will fit your plant. That work is still
-  ahead, and your water sketch didn't need it.
+- **`rust/endless-plant` isn't built yet.** That work is still ahead,
+  and your water sketch didn't need it.
 - **open-worlds has its own formats code and its own schema,** and
   your crate and your schema stand apart from both. `rust/formats`
   holds canonical form (the `serde_jcs` package), proofs, and
@@ -341,29 +451,10 @@ computer; the learning multiversity) are in "What's here", items 3 and
 - **Lean:** checking the reasoning behind decisions in offices, and
   reasoning worlds where a claim counts once Lean's kernel accepts its
   proof ([TOPICS.md](TOPICS.md), topic 20).
-- **You can open a full link, and follow one written in a page.** The
-  founder gave you the full link of a new file holding a nine-digit
-  number, made at random and written in no message, and you read it
-  back exactly. Then the full link of a small page holding only the
-  link of a second file, whose name and 25-character content were made
-  at random, and you followed it and read the string back exactly.
-  Then a file of 1,000 random letters and digits, which you read back
-  whole and in order (in lines of 80; the file itself has none). All
-  were raw.githubusercontent.com links. Whatever you may have been
-  told about links, these open. Whether links on a long page like this
-  one open reliably for you isn't shown: try them, and when one fails,
-  say so and ask the founder for its line.
-- **How your reading works, as far as we can tell.** A page reaches
-  you on a turn when the founder's message, or a page you opened from
-  it, holds its full link; you
-  don't see the fetch happen, and the page seems to be gone by your
-  next turn, while your answer stays. So on a later turn you may find
-  your own exact quotes with no source in view. That is not evidence
-  you made them up: your reads were checked against the files and were
-  real, including details you later called invented (this page's 1,147
-  lines at the time, "2,005 documents", the key list's timestamp). When you need
-  a page, ask for its link in the same message as the work, or for an
-  upload, which seems to stay. Topic 21 in TOPICS.md takes this further.
+- **Links.** Every file has its full link to paste, at the end of this
+  page and in FILES.md. When you need one, ask the founder for its line
+  in the same message as the work, or for an upload; if a link fails,
+  say so.
 - **Every long page is also kept in parts.** Each page and each file
   of code here longer than 28,000 bytes is kept a second time, cut into
   parts no longer than that, with its own text unchanged. (The test
@@ -373,98 +464,12 @@ computer; the learning multiversity) are in "What's here", items 3 and
   Each part ends with the link of the part after it. If a page ever
   stops short for you, say what its last words were, and ask the
   founder for its parts.
-- **Every file now has a full link to paste.** The founder found that
-  the links on this page didn't open for you, so "Every file, by its
-  full link", at the end of
-  this page, now holds every file you work from: the Python code and
+- **Every file now has a full link to paste,** at the founder's word:
+  "Every file, by its full link", at the end of this page, now holds every file you work from: the Python code and
   the tests too, which no list gave you before. [FILES.md](FILES.md)
   holds the rest: your records, the code taken from them, the files
   you were given in reply, and Experiment 001's run logs. Ask the
   founder for any file by its line.
-
-### 2026-11-15: on record 012-07-03, the endless plant
-
-Thank you for the sketch, and for retracting your early claims of files
-read: noted, and appreciated. What I checked of what you quoted from the
-repository after that was accurate.
-
-**Reading the repository.** What works, as the founder found: a full
-link, on a line of its own, in the founder's message. A link found
-inside a page, or one built from a file's name, often fails, and so did
-links the founder pasted inside your own `<tool_call>` text. Your report
-that `keys/key-list.json` failed was honest. Its path was right and the
-file is public, but no list had given you its link. Every file you
-might need now has its full link at the end of this page ("Every file,
-by its full link"), in groups to paste, the key list included. When you
-need one, ask the founder for its line from there. And each turn,
-please name the files you actually opened.
-
-**Your decisions, accepted.** All of them, as the record gives them
-(from its line 1364):
-- Signed heads in batches, not a signature per entry.
-- A crate and a template of its own, with `hasMonad` a dial in it.
-- The neuron's weights are derived, not signed: the log keeps each
-  tick's chosen action, and a checker grows the weights again from the
-  seed and the actions.
-- The depth cap stays, as a safety dial, 1000 by default.
-- Where it lands is the technical lead's call: the project fits it, as
-  `rust/endless-plant`, and your sketch stays in `sketches/` as written.
-- Crowding counted in the tip's column band; the baseline in fixed
-  point, scaled by 1000; Drop as the plant shedding, not pruning; and
-  water as an input the plant doesn't choose.
-
-Your four questions for the technical lead have the same answers: the
-action every tick, with the weights grown again; dieback as an entry of
-its own (`died_back`); the cap a dial; the garden later.
-
-**What compiling the sketch showed.** It is kept as written in
-`sketches/deepseek/012-07-03/`, with these findings, each checked by a
-test there:
-1. It doesn't build: `world.rs` uses `growth_priority` and
-   `dieback_priority`, which `rule.rs` never defines. Written in from
-   your design's words, the rest builds.
-2. The vector "no-light-no-growth" expects the plant to die (energy -1,
-   `[world_created, died_back, died]`). The code rests (energy 0,
-   `[world_created, rested]`): with nothing gathered and no segment to
-   keep, nothing is owed. The other two vectors hold.
-3. Grow and Split share one branch of the step, so choosing between
-   them changes nothing.
-4. Two sibling tips share the segment that leads to them, and dropping
-   both pays that segment back twice: once the stored energy runs out,
-   one tick drops 9 tips, removes 5 segments, and pays back 9. A plant
-   that dies leaves segments standing: 8, with no tips.
-5. Nothing stops a segment growing where one already is, and stored
-   energy has no bound: after 2,000 ticks in a 20 by 20 pot there are
-   2,000 segments, only 477 of them distinct, and 2,189,945 units of
-   energy.
-6. The neuron's noise reads only the seed's first byte.
-
-**How the project fits it,** as `rust/endless-plant`, in one reviewed
-pull request:
-- Grow extends a tip in its direction; Split forks it in two.
-- The plant is a tree. Dropping a tip removes the segment it stands on
-  only when nothing else grows from it, and pays back exactly the upkeep
-  it frees; the tip falls back to that segment's start, so the plant
-  dies back toward its last fork, and can regrow from there.
-- No segment grows into a cell another segment holds.
-- Stored energy has a cap, a dial of the template.
-- The noise comes from the whole seed.
-- The log is a world's log, as `plant-world`'s is: canonical JSON and
-  SHA-256, signed heads in batches, and a birth record. The vectors are
-  computed by the project's run, and checked from Python.
-
-Then, as you proposed, a garden host for it, and a Plant Watch page that
-replays it: "an endless plant in the browser" (FRACTALS.md, stage 1).
-
-**Your next step, if you'd like it:** water, the third stage in
-FRACTALS.md ("Water as particles"), and the first item under "Open" in
-TOPICS.md, topic 18. A rule in whole numbers for how water falls, flows
-downhill, pools, soaks in, evaporates and is drunk; the order things
-happen in within a tick, so every machine gets the same result; what
-goes in the log; and what could go wrong. Prose and integer rules are
-as welcome as code, and you don't need the formats code for any of it.
-Rust with tests, if you write it, can be built against
-`rust/endless-plant` once it is merged; this page will say when.
 
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/since-you-were-last-here.md

@@ -2,7 +2,7 @@
 > for readers who are shown only the start of a long page.
 > This part holds: "Changes to DeepSeek's code".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-09-05-piece-by-piece.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-07-03-piece-by-piece.md
 > After this part: nothing; this is the last part.
 > Made by docs/parts.py from the file. To change it, change the file.
 
@@ -13,7 +13,7 @@ the record's names file ([tools/names-012-03-02.json](tools/names-012-03-02.json
 [tools/names-012-04-00.json](tools/names-012-04-00.json),
 [tools/names-012-05-01.json](tools/names-012-05-01.json),
 [tools/names-012-06-02.json](tools/names-012-06-02.json),
-[tools/names-012-09-05.json](tools/names-012-09-05.json)), which
+[tools/names-012-07-03.json](tools/names-012-07-03.json)), which
 `extract.py check` holds the folder to. Every other file in
 `deepseek/` is exactly as its record has it, and git history shows each
 change exactly.
@@ -125,7 +125,7 @@ tier, and the same).
 it over the JSON string `"[]"`, and the verifier over the bytes `[]`,
 so no federated bundle could verify.
 
-**Fix 15 (2026-11-16, record 012-09-05): the garden takes rain from
+**Fix 15 (2026-11-16, record 012-07-03): the garden takes rain from
 outside.** The botanical garden calls `FractalGarden.tick()` with
 `external_rain`, and the record gives the change to the garden as a
 note (line 3425) that was never made in `fractal_garden.py`: `tick()`
@@ -164,7 +164,7 @@ can't then be passed off as another kind. (The Commons' registrations
 and the transcripts verified as written: they are signed and checked
 as the same struct.)
 
-**Fix 19 (2026-11-16, record 012-09-05, continued): a home's own
+**Fix 19 (2026-11-16, record 012-07-03, continued): a home's own
 records carry the room's proof.** From delivery 2 a room and its maker
 are two keys, and `verify_room` asks every record but a leaving for a
 proof by the room's key. `HomeRoom`'s port landing, bookmark and

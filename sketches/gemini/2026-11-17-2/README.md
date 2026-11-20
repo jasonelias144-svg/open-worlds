@@ -10,7 +10,7 @@ what a map of the Commons is first drawn from, in a new source file,
 ## Where it comes from
 
 The conversation is
-[../../records/012-00-00-GMNI-Multiverse_Development.txt](../../records/012-00-00-GMNI-Multiverse_Development.txt),
+[../../records/012-08-04-GMNI-Patterns_Multiverses.txt](../../records/012-08-04-GMNI-Patterns_Multiverses.txt),
 which has grown again. This delivery begins at its line 16399, where
 Gemini quotes back the last line of the file they were given, as the
 file asked. The copy kept before is a prefix of the new one, byte for
@@ -19,7 +19,7 @@ byte.
 [MANIFEST.json](MANIFEST.json) gives, for each file in `steps/`, the
 lines of the conversation it was taken from and its SHA-256.
 [take.py](take.py) takes them out of the record again and compares
-them with the files here; the test of `../../deepseek/012-09-05/`
+them with the files here; the test of `../../deepseek/012-07-03/`
 runs it, in CI.
 
 ## What it is, and what ran
@@ -36,7 +36,7 @@ Two files, kept as written in `steps/1`:
 Laid over the crate as it stood, with the one line that names the
 module added to `src/lib.rs` here, as the file said it would be
 (change 26 in [../../INDEX.md](../../INDEX.md)), and every test file
-run, on 2026-11-17 (`sh ../../deepseek/012-09-05/review/steps.sh`,
+run, on 2026-11-17 (`sh ../../deepseek/012-07-03/review/steps.sh`,
 which CI doesn't run):
 
 | Delivery | Gemini expected | Measured |
@@ -44,7 +44,7 @@ which CI doesn't run):
 | The lobby's list of doors | "127 tests pass (112 and your 15)" | 127 of 127 |
 
 Nothing was repaired. It is in the crate as it stands,
-`../../deepseek/012-09-05/chat-world-now/`.
+`../../deepseek/012-07-03/chat-world-now/`.
 
 **Checked a second way.** The technical lead had written the step out
 too, outside the repository, to be sure the file's tests could be

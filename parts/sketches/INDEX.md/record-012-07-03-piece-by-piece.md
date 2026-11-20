@@ -1,15 +1,15 @@
 > Part of `sketches/INDEX.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "Record 012-09-05, piece by piece" to "Record 012-03-02, component by component".
+> This part holds: "Record 012-07-03, piece by piece" to "Record 012-03-02, component by component".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-06-02-piece-by-piece.md
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/changes-to-deepseek-s-code.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
-## Record 012-09-05, piece by piece
+## Record 012-07-03, piece by piece
 
 The record's code is kept in
-[deepseek/012-09-05](deepseek/012-09-05/README.md), with the technical
+[deepseek/012-07-03](deepseek/012-07-03/README.md), with the technical
 lead's first pass and a first round of repairs (fixes 15 to 18, under
 "Changes to DeepSeek's code", below). "Tests" for the Python is
 DeepSeek's own tests under pytest, which CI runs; for the Rust it is
@@ -45,7 +45,7 @@ not built on its own: the crate DeepSeek was then given does not hold
 it, and delivery 3, below, gives those files whole again.
 
 **The one file reached DeepSeek whole** (line 15501). The file is
-[replies/012-09-05-for-deepseek.txt](replies/012-09-05-for-deepseek.txt):
+[replies/012-07-03-for-deepseek.txt](replies/012-07-03-for-deepseek.txt):
 the technical lead's reply, the next steps, and the crate as it stands
 here. DeepSeek quotes back its last line, `END OF FILE`, says "The
 whole file reached me.", and takes the reply's two requests: "One step
@@ -54,8 +54,8 @@ per reply; every file I change, whole."
 **Five deliveries of `chat-world`,** each a step of that reply. Every
 file DeepSeek changed came whole, so each delivery can be built as
 given, with no joining by hand. The files are kept as the record gives
-them in `deepseek/012-09-05/chat-world-steps/1` to `5`;
-[deepseek/012-09-05/review/steps.py](deepseek/012-09-05/review/steps.py)
+them in `deepseek/012-07-03/chat-world-steps/1` to `5`;
+[deepseek/012-07-03/review/steps.py](deepseek/012-07-03/review/steps.py)
 lays each delivery over the one before, starting from the crate
 DeepSeek was given, and `review/steps.sh` builds and tests each (not
 run by CI). "Tests" is
@@ -69,7 +69,7 @@ The titles are DeepSeek's.
 | 3 | "signed heads, first in prose, then code": what is lost if a room signs its log's head in place of each record, then heads in code | 18832 | 8 | 27 of 29 |
 | 4 | "runtime attestation": keys that share a runtime say so together, in a published record | 20714 | 3 | 31 of 33 |
 | 5 | "the succession trio": a shard of knowledge exported, a moderator's succession, and a sibling declared in the Commons | 21474 | 8 | does not compile; with its two faults set aside, 39 of 41 |
-| all five, with three repairs | The crate as it stands, `deepseek/012-09-05/chat-world-now/` (fixes 19 to 21, under "Changes to DeepSeek's code") | | | 41 of 41, and the four demos run |
+| all five, with three repairs | The crate as it stands, `deepseek/012-07-03/chat-world-now/` (fixes 19 to 21, under "Changes to DeepSeek's code") | | | 41 of 41, and the four demos run |
 
 Three faults, as the deliveries were written:
 1. From delivery 2 on, the same two tests fail, `home_port_verifies`
@@ -93,7 +93,7 @@ two faults of delivery 5 set aside (the condition replaced by `false`,
 the demo left out), 39 of the 41 pass, and the two that fail are the
 two of fault 1.
 
-The crate kept in `deepseek/012-09-05/chat-world/` is still the one
+The crate kept in `deepseek/012-07-03/chat-world/` is still the one
 DeepSeek was given, and the deliveries are beside it, as written.
 `chat-world-now/` is the crate as it stands. When this was written
 that was the five deliveries laid over that crate in order, with the
@@ -150,7 +150,7 @@ in order, every test file run, on 2026-11-17:
 
 Every number is the one Gemini gave, and nothing was repaired here.
 The third was the crate as it stood then,
-`deepseek/012-09-05/chat-world-now/`: 92 tests, 41 of them DeepSeek's
+`deepseek/012-07-03/chat-world-now/`: 92 tests, 41 of them DeepSeek's
 and 51 Gemini's. The fourth is built beside it and not laid into it:
 its eight gaps in the check of a room's log are not repaired in this
 crate. They are kept as the list of what the room's own check must
@@ -168,7 +168,7 @@ Gemini's answer to it is after that ("Gemini's list of doors").
 ### DeepSeek's second file: branches, a plug-in, and a rule cut off (2026-11-17)
 
 The founder gave DeepSeek their second file
-([replies/012-09-05-2-for-deepseek.txt](replies/012-09-05-2-for-deepseek.txt)),
+([replies/012-07-03-2-for-deepseek.txt](replies/012-07-03-2-for-deepseek.txt)),
 and the record was shared again, longer. Its first 947,153 bytes are
 the same, byte for byte, and 4,463 lines more follow, from line 23994.
 DeepSeek quotes back the file's last line. They answer the file's
@@ -177,10 +177,10 @@ published log ends with a head covering all of it. Then they give
 three deliveries. The file asked for the first. The second and third
 are DeepSeek's own next items, at the founder's word to keep going
 (lines 25900 and 27240). The files are kept as the record gives them,
-in `deepseek/012-09-05/chat-world-steps/6` to `8`.
+in `deepseek/012-07-03/chat-world-steps/6` to `8`.
 
 Laid over the crate in order, every test file run, on 2026-11-17
-(`deepseek/012-09-05/review/steps.sh`):
+(`deepseek/012-07-03/review/steps.sh`):
 
 | Delivery | What it is | Files | DeepSeek expected | Tests, built as given |
 |---|---|---|---|---|
@@ -194,7 +194,7 @@ not say. Their own counts are otherwise right but for the twelfth test.
 
 The crate as it stands is now delivery 7, with one field added to a
 room's law since (change 25):
-`deepseek/012-09-05/chat-world-now/`, 112 tests, 61 of them
+`deepseek/012-07-03/chat-world-now/`, 112 tests, 61 of them
 DeepSeek's and 51 Gemini's, in 29 files. Gemini's seventeen attacks
 on a room's other records, run beside it again, give the same eight
 that get through (121 of 129).
@@ -309,7 +309,7 @@ tests written again. Laid over the crate, every test file run:
 | The five repairs | The forms refuse a member they do not have; a leaving only by a key that is inside; the room's own topic beside the listed one; `draw_at` and `check_at`, which hold a room's log to a head the reader holds; the count of keys kept as a stated limit | 152 of 152 | 152 of 152 |
 
 Nothing was repaired here. It is the crate as it stands now:
-`deepseek/012-09-05/chat-world-now/`, 152 tests, 61 of them
+`deepseek/012-07-03/chat-world-now/`, 152 tests, 61 of them
 DeepSeek's and 91 Gemini's, in 32 files.
 
 Compared with the attack file they sent before, test by test: in the
