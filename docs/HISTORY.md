@@ -12,8 +12,11 @@ brings them in (`STATUS.md`, "Decided", 2026-11-20). Stages 000 to 010
 came on 2026-11-20, one file each. Stage 011 is *A Mathematical Theory
 of Opposites*, finished that day: the technical lead compiled its file
 from the founder's 17 records and the book's final text, at the
-founder's word. Stage 012 is the multiverse: this repository, whose
-conversation records are in `sketches/records/`, numbered 012.
+founder's word. Stage 012, Code, is the current stage: the
+multiverse, this repository, whose conversation records are in
+`sketches/records/`, numbered 012. Its stage file will be
+`012_Code.txt`, at the founder's word (2026-11-20; `STATUS.md`,
+"Decided").
 
 The project began on 2026-08-10. *The Living Codex* (002) was
 finished on 2026-08-20, ten days in; everything after it, stages 003
