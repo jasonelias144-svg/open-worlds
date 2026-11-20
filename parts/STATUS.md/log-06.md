@@ -26,7 +26,7 @@
   AGENTS.md keeps the page current with every pull request. Then the
   founder's word on who supplies which files (Decided), in the page's
   fourth request. An independent review asked for seven fixes, all
-  made: the same two conflicts in six more places (TOPICS.md,
+  made: the same conflicts in six more places (TOPICS.md,
   README.md, MINDS.md, WORLD-TYPES.md, FRACTALS.md, and a comment in
   `rust/ur-world`); what may enter Core; the earlier works named only
   once brought (house rule 8); one title for the book; the records

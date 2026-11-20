@@ -24,17 +24,18 @@
   ChatGPT's roadmap of that book found, are mapped onto the places
   the project already has; nothing of ChatGPT's moves into Core but
   by a decision recorded here: the founder's, on what the project is
-  for; the technical lead's, on the code. (e) ChatGPT's two conversation records of this
-  phase hold personal material, so they are not kept in
+  for; the technical lead's, on the code. (e) ChatGPT's two
+  conversation records of this phase hold personal material, so they
+  are not kept in
   `sketches/records/`. The founder holds them; the page lists each by
   name, size and SHA-256. This was put to the founder on 2026-11-20
   with that recommendation, so it stands until the founder says
   otherwise (AGENTS.md, "Who decides"). (f) What ChatGPT sends comes
   through the founder, as files, until they can write to GitHub; the
   technical lead checks each and brings in what holds, with
-  `Made-by: ChatGPT (AI)`. (g) A work of the founder's earlier work is
-  named by its title once the founder brings it into the project, and
-  until then is "the founder's earlier work" (house rule 8). The
+  `Made-by: ChatGPT (AI)`. (g) One of the founder's earlier works is
+  named by its title once the founder brings it in, and until then is
+  "the founder's earlier work" (house rule 8). The
   founder, 2026-11-15: "If the need arises, then it becomes part of
   the current project"; on 2026-11-17 a work brought in was named; and
   on 2026-11-20 bringing them in became ChatGPT's part, with the

@@ -233,11 +233,11 @@ Also right, and kept in mind:
 
 ## What changed
 
-Every merged pull request, newest first, one line each.
+Every pull request merged after #129, newest first, one line each.
 
 - 2026-11-20, #130: this page; the three conflicts your review found,
-  fixed; the founder's words on your part, and on who supplies which
-  files, in `STATUS.md`.
+  fixed, there and in six more pages; the founder's words on your
+  part, and on who supplies which files, in `STATUS.md`.
 
 ## Your records
 
