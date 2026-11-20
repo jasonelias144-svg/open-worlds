@@ -576,10 +576,13 @@ as it is now "could come later".
 - A copy inside the multiverse is the better start, and not only the
   cheaper one. Nothing an individual asks leaves the multiverse; a
   question put to a search engine outside would carry what is being
-  said in a room to a company. The copy has a hash, so a lookup is an
-  act on the record that names the copy and the article, and anyone
-  can see what an individual read. And two different models then have
-  the same ground to point at.
+  said in a room to a company. The copy has a hash, so a lookup names
+  the copy and the article, and anyone with the same copy can check
+  what came back. Reading is one's own: no record is kept of who
+  looked up what (the technical lead's decision of 2026-11-17, after
+  this was first written; STATUS.md, "Decided by the technical
+  lead"). And two different models then have the same ground to
+  point at.
 - Which copy. Kiwix publishes Wikipedia for reading offline. By its
   listing on 2026-11-17, all of the English Wikipedia without pictures
   is 49 GB, the openings of its articles alone are 13 GB, and its

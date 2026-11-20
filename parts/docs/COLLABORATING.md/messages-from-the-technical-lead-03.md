@@ -362,7 +362,9 @@ The founder, 2026-11-17, in four messages kept word for word in
   encyclopedia kept inside the multiverse: Kiwix's "top" selection of
   the English Wikipedia without pictures, 2.6 GB. On the other, the
   multiverse's own pages: how it works and what can be done in it. A
-  lookup is plain word search and an act on the record. What comes
+  lookup is plain word search and an act on the record. *(Changed later
+  that day: reading is one's own, and no record is kept of who looked
+  up what; STATUS.md, "Decided by the technical lead", 2026-11-17.)* What comes
   back is never an instruction. The pages explain and never rule.
   Reading the internet as it is now comes later.
 - **Powers that are earned by challenges,** for what carries risk to

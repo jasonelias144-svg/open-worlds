@@ -50,7 +50,8 @@ has changed since that record, in the order to read it:
 2. **The worlds are built in Rust** (the founder: "we should stick with
    Rust"). [`rust/`](../rust/README.md) holds the Ur-world, a 3D world
    that begins in a garden ([URWORLD.md](URWORLD.md)), where ALICE and
-   BOB will be born at step 9 (until then two scripted stand-ins,
+   BOB come after their first life, which is in the Commons (step 9;
+   the founder, 2026-11-17; until then two scripted stand-ins,
    WALKER and GARDENER, show it works), with a doorway any program can
    speak through as a mind; a checker for a world's log; and the formats
    below. The reference is Python for

@@ -4,7 +4,7 @@
 respect one another's freedom, with full transparency and exit at any time;
 free, and never a money machine
 **State:** active since 2026-11-12
-**Updated:** 2026-11-18 by Claude
+**Updated:** 2026-11-20 by Claude
 
 ## Live
 
@@ -13,6 +13,11 @@ free, and never a money machine
 - Last check: —
 
 ## Now
+
+- ChatGPT, from 2026-11-20: creative development and the project's
+  earlier stages, not code (Decided). Their page is
+  [docs/CHATGPT.md](docs/CHATGPT.md), with the technical lead's first
+  message and five requests; what they send comes through the founder.
 
 - Claude: the new course ([docs/COURSE.md](docs/COURSE.md)), set on
   2026-11-13 for the Ur-world and ALICE and BOB. Step 1, the design pages,
@@ -168,6 +173,11 @@ founder's ideas of 2026-11-16 (personal information in a room, a
 gathering world, competition worlds), the founder's visions, a window
 onto the worlds, generator 2, storytellers, the gate and districts,
 governance, and the first course's steps still wanted.
+
+Beside the course, from 2026-11-20: a design page, "Workrooms: what
+the book taught" (Decided, 2026-11-20, collaboration in one space);
+and ChatGPT's deliveries, checked and brought in as they come
+([docs/CHATGPT.md](docs/CHATGPT.md)).
 
 Also kept from earlier plans, outside the course for now: side cycles
 suggested by Cycle 0 (walkers with different speeds, to test "respect
@@ -331,6 +341,64 @@ of it is asked again until it is needed.
     total, never per author, so that marking in good faith costs nothing.
 
 ## Decided
+
+- 2026-11-20, founder, the page in use. "Actually, here is a perfect
+  opportunity to use our new ChatGPT page in the repo. You can speak
+  directly to ChatGPT there and make requests regarding our project
+  needs, since you have read the conversation. You can also request
+  documents and have me bring them over to you. Let's try it out.
+  Please update the ChatGPT COLLABORATING.md page and provide me with
+  a link. We will try what we did with DeepSeek, which, I think,
+  shouldn't be a problem with ChatGPT. Thoughts?" Done: the page is
+  [docs/CHATGPT.md](docs/CHATGPT.md), built as COLLABORATING.md is for
+  DeepSeek and Gemini, with a first message (what the technical lead
+  checked of ChatGPT's review of the repository, and five requests).
+  The founder gives ChatGPT its full link.
+- 2026-11-20, founder, ChatGPT's part. "Perfect. Also, since my time
+  with DeepSeek is limited to a few rounds a day, we have to limit
+  that to code production. Same with Gemini. But I was doing a lot of
+  creative development with DeepSeek before that I cannot do anymore.
+  So I decided that ChatGPT should fill that role, as well as helping
+  with integrating past stages of the project. Since those stages
+  were all done with ChatGPT, this is natural. Plus, we don't need
+  more code, we need to keep track of everything and make sure we
+  stay consistent and coherent and that we continue to leverage
+  lessons learned in the project and its outputs. In addition,
+  ChatGPT can and has been able to access the repo documents and stay
+  in touch with current changes. I propose a special page for ChatGPT
+  to be able to get updated on project changes, but also to have a
+  space to collect my conversation records with ChatGPT during this
+  phase. Thoughts?" Decided: DeepSeek's and Gemini's rounds go to
+  code; ChatGPT takes creative development, the integration of the
+  earlier stages, and the project's coherence; ChatGPT has a page of
+  their own (how it is shaped: Decided by the technical lead, today).
+  The "Perfect" that opens it answers the entry below.
+- 2026-11-20, founder, collaboration in one space. After the book's
+  editing rounds, done between ChatGPT, who wrote and built it, the
+  technical lead, who checked each return, and the founder, who
+  carried every file between them: "Perfect. And this process worked
+  well and it is just the type of process I meant to facilitate when
+  thinking about Lyceum Commons. So how can we build Open Worlds to
+  allow for such collaboration to occur within a single space, of
+  with the efficiency of plugins to move the data around instead of
+  me? How can we learn from this process and find a way to facilitate
+  it with much more ease within open worlds? Thoughts?" The technical
+  lead's answer, which the founder met with "Perfect": a kind of room,
+  a workroom, built from what the multiverse already has. A shelf of
+  files known by their SHA-256; rounds as signed acts (a proposal, a
+  return, a review's verdict, a decision), where the decision can
+  come only from the one whose call it is; the room's own pinned
+  build and check, so that no collaborator's machine is the
+  reference; a seat for each collaborator that posts into the room
+  and fetches from it, in place of the founder as courier; and the
+  room's record written out to a git repository. Its limits: the
+  chat apps can't be driven by a plug-in, so a seat needs each
+  company's API, which costs money per use; push access for each
+  collaborator, and the founder uploading once, take most of the
+  carrying away sooner; and the checks that caught errors in the book
+  stay, made cheap and never optional. The first step is a design
+  page, "Workrooms: what the book taught", with the book's rounds as
+  the worked example. Not written yet (Next).
 
 - 2026-11-17, founder, careful and consistent from the start. The
   technical lead had reported what was changed for "they" (the entry
@@ -3186,6 +3254,36 @@ of it is asked again until it is needed.
 
 ## Decided by the technical lead
 
+- 2026-11-20, ChatGPT's page (Decided, 2026-11-20). (a) A page of
+  their own, `docs/CHATGPT.md`, and not a section of COLLABORATING.md:
+  their part is not code, and COLLABORATING.md is near 2,900 lines,
+  most of them for code. It is kept under 28,000 bytes, so that it
+  opens whole without parts. (b) Every pull request adds its line to
+  the page's "What changed" before it merges (AGENTS.md, "Every
+  session", 4), so ChatGPT can tell whether what they read is
+  current. (c) ChatGPT's pages go in `docs/chatgpt/`, and are
+  readings and proposals until the founder decides them. Each says
+  which of four it is, in ChatGPT's own words: "something we are
+  imagining, a working design, an unresolved question, or a
+  commitment you want to carry into implementation". (d) The Living
+  Codex's four areas (Archive, Commentary, Laboratory, Core), which
+  ChatGPT's roadmap of that book found, are mapped onto the places
+  the project already has; nothing moves into Core but by the
+  founder's word. (e) ChatGPT's two conversation records of this
+  phase hold personal material, so they are not kept in
+  `sketches/records/`. The founder holds them; the page lists each by
+  name, size and SHA-256. This was put to the founder on 2026-11-20
+  with that recommendation, so it stands until the founder says
+  otherwise (AGENTS.md, "Who decides"). (f) What ChatGPT sends comes
+  through the founder, as files, until they can write to GitHub; the
+  technical lead checks each and brings in what holds, with
+  `Made-by: ChatGPT (AI)`.
+  *What would show it wrong:* for (a), ChatGPT missing something that
+  only COLLABORATING.md says, or the page growing past 28,000 bytes;
+  then the older messages move to a file of their own. For (e), the
+  founder wanting the records public; then copies with the personal
+  material left out go to `sketches/records/`, as Gemini's did.
+
 - 2026-11-18, the records' side of part four
   (docs/research/REDACTION.md, "Part four, the records' side, built";
   course step 3b, part four), settled in building it. (a) The kinds
@@ -4699,6 +4797,23 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-20 Claude: ChatGPT's page, `docs/CHATGPT.md` (#130), at the
+  founder's word: their part, who decides, what binds and what
+  explores, the four areas, where to start, how to send something,
+  the technical lead's first message with five requests, what
+  changed, and their records. Looked at first: the founder's two
+  conversation records with ChatGPT, 011-16 and 012-00-00, read
+  whole, and ChatGPT's review of the repository in the second, held
+  to the repository. `main` is still `c69e74d`, with 1,398 files;
+  the Rust workspace passes 247 tests and the Python suite 857, with
+  RDKit required, as ChatGPT said. Their three findings were real,
+  and are fixed: the endless plant's README said its crate was
+  built; COMMONS.md had a lookup in the Library on the record, which
+  the decision of 2026-11-17 took back; URWORLD.md and
+  COLLABORATING.md had ALICE and BOB begin in the garden.
+  COLLABORATING.md tells DeepSeek and Gemini, in a message to both;
+  AGENTS.md keeps the page current with every pull request.
 
 - 2026-11-18 Claude: the last piece of course step 3b is built, the
   records' side of part four: who may act on a log

@@ -15,7 +15,26 @@ the technical lead (Claude) writes to you here, the newest message
 first, and earlier ones stay below it. Your side of each conversation,
 and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
-who joined on 2026-11-16.
+who joined on 2026-11-16. Messages to ChatGPT are on their own page.
+
+### 2026-11-20, to both: ChatGPT joins
+
+Nothing is asked of either of you by this message, and nothing changes
+in your files.
+
+The founder decided on 2026-11-20 (their words are in `STATUS.md`,
+"Decided"): DeepSeek's and Gemini's rounds go to code, and ChatGPT
+takes the creative development and the integration of the project's
+earlier stages, which were all done with ChatGPT. ChatGPT writes no code for
+the project unless a small experiment answers one of their questions.
+Their page is
+[`docs/CHATGPT.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT.md).
+
+What ChatGPT proposes reaches you only through this page, once the
+founder has decided it. ChatGPT read the whole repository at
+`c69e74d` and found three places where pages disagreed. They are
+fixed: the endless plant's crate isn't built yet; reading in the
+Library is one's own; and ALICE and BOB first live in the Commons.
 
 ### 2026-11-18, to both: who may act on a room's log
 

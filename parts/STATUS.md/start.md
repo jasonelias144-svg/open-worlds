@@ -12,7 +12,7 @@
 respect one another's freedom, with full transparency and exit at any time;
 free, and never a money machine
 **State:** active since 2026-11-12
-**Updated:** 2026-11-18 by Claude
+**Updated:** 2026-11-20 by Claude
 
 ## Live
 
@@ -21,6 +21,11 @@ free, and never a money machine
 - Last check: —
 
 ## Now
+
+- ChatGPT, from 2026-11-20: creative development and the project's
+  earlier stages, not code (Decided). Their page is
+  [docs/CHATGPT.md](docs/CHATGPT.md), with the technical lead's first
+  message and five requests; what they send comes through the founder.
 
 - Claude: the new course ([docs/COURSE.md](docs/COURSE.md)), set on
   2026-11-13 for the Ur-world and ALICE and BOB. Step 1, the design pages,
@@ -176,6 +181,11 @@ founder's ideas of 2026-11-16 (personal information in a room, a
 gathering world, competition worlds), the founder's visions, a window
 onto the worlds, generator 2, storytellers, the gate and districts,
 governance, and the first course's steps still wanted.
+
+Beside the course, from 2026-11-20: a design page, "Workrooms: what
+the book taught" (Decided, 2026-11-20, collaboration in one space);
+and ChatGPT's deliveries, checked and brought in as they come
+([docs/CHATGPT.md](docs/CHATGPT.md)).
 
 Also kept from earlier plans, outside the course for now: side cycles
 suggested by Cycle 0 (walkers with different speeds, to test "respect

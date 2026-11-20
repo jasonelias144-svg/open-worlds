@@ -8,6 +8,23 @@
 
 ## Log
 
+- 2026-11-20 Claude: ChatGPT's page, `docs/CHATGPT.md` (#130), at the
+  founder's word: their part, who decides, what binds and what
+  explores, the four areas, where to start, how to send something,
+  the technical lead's first message with five requests, what
+  changed, and their records. Looked at first: the founder's two
+  conversation records with ChatGPT, 011-16 and 012-00-00, read
+  whole, and ChatGPT's review of the repository in the second, held
+  to the repository. `main` is still `c69e74d`, with 1,398 files;
+  the Rust workspace passes 247 tests and the Python suite 857, with
+  RDKit required, as ChatGPT said. Their three findings were real,
+  and are fixed: the endless plant's README said its crate was
+  built; COMMONS.md had a lookup in the Library on the record, which
+  the decision of 2026-11-17 took back; URWORLD.md and
+  COLLABORATING.md had ALICE and BOB begin in the garden.
+  COLLABORATING.md tells DeepSeek and Gemini, in a message to both;
+  AGENTS.md keeps the page current with every pull request.
+
 - 2026-11-18 Claude: the last piece of course step 3b is built, the
   records' side of part four: who may act on a log
   (docs/research/REDACTION.md, "Part four, the records' side, built").

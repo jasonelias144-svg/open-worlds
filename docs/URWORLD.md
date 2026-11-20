@@ -5,7 +5,9 @@
 
 The Ur-world is the first world of the multiverse. It is a world in its own
 right, and also the hub that connects to every other world. It begins small,
-in a garden with two individuals, ALICE and BOB. It grows as it is explored,
+in a garden with two individuals, ALICE and BOB. (Since 2026-11-17, ALICE
+and BOB first live in the Commons, and come to the garden after:
+[COMMONS.md](COMMONS.md), "The first to live there".) It grows as it is explored,
 and later as the people who live in it build it from the inside. The name
 works twice over: "Ur" is the first, the original, and it sounds like "your
 world".
@@ -58,7 +60,8 @@ two added on 2026-11-15:
   distinguish from other Alices and Bobs". "They will be the first two
   occupants of a whole multiverse," with persistent identities, "and should
   be considered two individuals that will inhabit this world and learn
-  within it as well."
+  within it as well." Since 2026-11-17 they first live in the Commons,
+  and come here after ([COMMONS.md](COMMONS.md)).
 - **Their minds: two different, complementary models.** "Difference is the
   key to generating diversity, but they should also have compatibility and
   have complementary skills and strengths and knowledge." The choice draws
