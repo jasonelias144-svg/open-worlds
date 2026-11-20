@@ -8,10 +8,8 @@
 
 # The rest of the files, by their full links
 
-Each line opens a file as it is on `main`. A full link given in a
-message opens in a conversation with DeepSeek; the links on
-COLLABORATING.md, the founder found, did not. So every file has
-its full link here or in
+Each line opens a file as it is on `main`. Every file has its full
+link here or in
 [COLLABORATING.md](COLLABORATING.md) ("Every file, by its full
 link"), in groups to paste (the founder, 2026-11-15: "Remember
 links in the collaborating page are not accessible. So all files

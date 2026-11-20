@@ -9,12 +9,8 @@
 ## Every file, by its full link
 
 Each line opens a file as it is on `main`, for pasting into a
-conversation, a group at a time. A full link given in a message opens
-in a conversation with DeepSeek. The links on this page, the founder
-found, did not, though in a test DeepSeek followed a link from a small
-page. So every file in the repository has its full link to paste, here
-or in
-[FILES.md](FILES.md) (the founder, 2026-11-15: "Remember links in the
+conversation, a group at a time. Every file in the repository has its
+full link to paste, here or in [FILES.md](FILES.md) (the founder, 2026-11-15: "Remember links in the
 collaborating page are not accessible. So all files need links through
 this method.").
 

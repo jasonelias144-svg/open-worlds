@@ -183,12 +183,9 @@ page.
   host-free. Topic 20: reasoning checked by Lean.
 
 - 2026-11-15, between cycles: every file in the repository has its full
-  link to paste, as the links on this page didn't open for you (the
-  founder): "Every file, by its full link", at the end of this page,
-  holds every file you work from, and FILES.md the files of record,
-  each checked by a test. And two tests showed that a full link in the
-  founder's message opens, and that you followed a link written in a
-  small page.
+  link to paste, at the founder's word: "Every file, by its full link",
+  at the end of this page, holds every file you work from, and FILES.md
+  the files of record, each checked by a test.
 
 - 2026-11-16, cycle 7: record 012-07-03 (water as particles, the
   garden, a botanical garden; then chat rooms for the Commons, AI

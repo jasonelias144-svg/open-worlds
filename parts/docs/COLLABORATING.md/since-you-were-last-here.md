@@ -280,7 +280,7 @@ ideas.
 
 ## Where the conversation stands
 
-Six records are kept: 012-03-02 (the poetry engine), 012-04-00
+Five records are kept: 012-03-02 (the poetry engine), 012-04-00
 (components 1 to 63), 012-05-01 (components 64 to 87: a live
 federation and its tools, then the founder's turn to game worlds: a
 chess park, worlds inside worlds, worlds that grow and govern

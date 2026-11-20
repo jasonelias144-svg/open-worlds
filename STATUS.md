@@ -355,7 +355,18 @@ of it is asked again until it is needed.
   ([sketches/INDEX.md](sketches/INDEX.md#names), "Names"). Records
   012-00-00 to 012-02-01 were not kept here before, and are not now:
   they are the founder's, and whether they are kept here is the
-  founder's to say.
+  founder's to say. And, on the names: "Nobody else really was
+  concerned with the project record names. I've been the only one
+  doing that. No need to mention anything to the others, unless you
+  have referred to some file whose name has changed. The only shared
+  file, is The Living Codex, which can just be referred to as such."
+  So the others are told only where the technical lead's own messages
+  used the old numbers (docs/COLLABORATING.md, docs/CHATGPT.md), and
+  messages to them call a conversation theirs rather than give its
+  number, and name The Living Codex as such.
+
+- 2026-11-20, founder: part of what was here is kept privately from
+  now on.
 
 - 2026-11-20, founder, stage 012's name. "And for the record, the
   current stage file with be 012_Code.txt, which is our current project
@@ -1626,7 +1637,9 @@ of it is asked again until it is needed.
 
 - 2026-11-15, founder, on hallucination, both ways:
   "Ok. But we are going to need to deal with AI hallucination
-  eventually, now is as good as any time." And later: "Only point is
+  eventually, now is as good as any time." And later (both in part: the
+  rest, and their context, are kept privately at the founder's word):
+  "Only point is
   that lessons from psychology could be useful. It is a matter of
   detachment from reality to some extent. This can be on small scales or
   full on hallucinatory experience where the topology is provided with a
@@ -2271,31 +2284,18 @@ of it is asked again until it is needed.
   worlds, the whole can be stopped only part by part, which is hard to
   undo. The founder accepted it explicitly the same day (above).
 - 2026-11-15, founder, on working with DeepSeek, to the technical lead
-  in this session. On reading the repository: "Ok, so DeepSeek needs me
-  to provide the whole URL for each rust file, and it has to be in the
-  chat prompt." Then: "Ok, the links
-  worked. But sometimes the pages themselves contain links. But it is ok
-  since all relevant files have links. We may consider having README
-  pages where we can put code and the explanation together, keep it
-  current, and thereby reduce the number of links dramatically. Well
-  look into later." (An idea kept open, for later.) And: "I have to
-  provide the link. Fetching is unreliable from in the page, but from a
-  prompt with full URL, it has worked." On answering DeepSeek: "please
+  in this session (in part; the rest is kept privately): "We may
+  consider having README pages where we can put code and the
+  explanation together, keep it current, and thereby reduce the number
+  of links dramatically. Well look into later." (An idea kept open, for
+  later.) On answering DeepSeek: "please
   provide by updating the COLLABORATING.md page. You already have that
   space for communication. Also, it keeps a record of an ongoing
   discussion and collaboration. I will just provide DeepSeek with a link
   to the collaboration page, and take it from there." So the technical
   lead's messages to DeepSeek are in docs/COLLABORATING.md ("Messages
   from the technical lead"), and every file's full link is at the end of
-  that page. And to DeepSeek, the same day: "On your
-  questions for me, which if I understood were all design questions that
-  could go any way. You ask for my judgement, but on those questions, I
-  defer to your judgement. It is the only way this whole project moves
-  forward. I will chime in when I disagree or come up with some new twist
-  or extension of an idea. But we are just trying to get something
-  working for now. We can fine tune it later, so I would just prefer
-  moving forward over getting stuck on problems that have many viable
-  solutions."
+  that page.
 - 2026-11-15, founder, in six messages quoted in docs/FRACTALS.md
   ("Where it leads: living worlds"), the aim for the fractal track: "So
   instead of a prescribed number of turns, I can set it going and watch
@@ -4411,16 +4411,13 @@ it was wrong. Questions of what the project is for stay with the founder.
   with sizes, and written by `python3 docs/files.py`.
   `tests/test_collaborating_links.py` lists the repository with git and
   fails unless the two pages hold every file, each once, and FILES.md
-  is as the script writes it. *Why:* a full link in the founder's
-  message opens in DeepSeek's conversation, while the links on
-  COLLABORATING.md, the founder found, did not, so a file with no list
-  line might not be read at all (a test later the same day showed
-  DeepSeek following a link from a small page, not yet from a long
-  one); the files of record are kept apart because they are about
-  16 MB, more than a conversation can take in, and best sent when a
-  question needs them. *Revisit if:* DeepSeek follows the links on
-  COLLABORATING.md itself reliably, or the records are needed often
-  enough to belong in the main list.
+  is as the script writes it. *Why:* the founder's word that all files
+  need links through these lists (2026-11-15), so a file with no list
+  line might not be read at all; the files of record are kept apart
+  because they are about 16 MB, more than a conversation can take in,
+  and best sent when a question needs them. *Revisit if:* the founder
+  finds the page's own links are enough, or the records are needed
+  often enough to belong in the main list.
 - 2026-11-15, the endless plant: DeepSeek's decisions
   are accepted as DeepSeek gave them (signed heads in batches; a
   crate and template of its own, `hasMonad` a dial; the neuron's weights
@@ -4434,8 +4431,8 @@ it was wrong. Questions of what the project is for stay with the founder.
   its start; no segment grows into a held cell; stored energy has a cap,
   a dial; the noise reads the whole seed; the log is a world's log with
   signed heads and a birth record, and the vectors are the project's
-  run, checked from Python. *Why:* each change mends a fault the review's
-  tests show (a choice that changes nothing, upkeep paid back twice,
+  run, checked from Python. *Why:* each change mends a fault the technical
+  lead's review found (a choice that changes nothing, upkeep paid back twice,
   segments left standing, overlap without bound, a seed read one byte
   deep), and the log keeps the standard every world here keeps.
   DeepSeek's choices are design questions with many workable answers,
@@ -4448,11 +4445,11 @@ it was wrong. Questions of what the project is for stay with the founder.
   schemas, and each Rust crate's manifest, library code and examples,
   in groups to paste; `tests/test_collaborating_links.py` fails when a
   file is added, moved or removed and the list isn't changed with it, or
-  when any full link on the page leads nowhere. *Why:* DeepSeek opens
-  full links given in the founder's message, and not reliably those
-  found in a page; a list kept by hand drifts, and the key list was
-  missing from the last one. *Revisit if:* DeepSeek can follow links
-  from a page, or the founder's README idea (above) replaces most links.
+  when any full link on the page leads nowhere. *Why:* the founder's
+  word that every file needs its full link; a list kept by hand
+  drifts, and the key list was missing from the last one. *Revisit
+  if:* the founder finds a page's own links are enough, or the
+  founder's README idea (above) replaces most links.
 - 2026-11-13, sealing the world-key: HPKE's base mode, DHKEM(X25519,
   HKDF-SHA256) with ChaCha20Poly1305. What is sealed is always signed
   first and names its recipient, who checks it, and HPKE's `info` names
@@ -4864,7 +4861,8 @@ it was wrong. Questions of what the project is for stay with the founder.
   holds them, longer than before; what is new in them is not yet kept
   or built. Record 012-05-01 is too, one empty line shorter at its
   end. At the founder's word, part of what was here is kept privately
-  from now on, and the pages that spoke of it are changed to match.
+  from now on, and the pages that spoke of it are changed to match,
+  more of them after the independent review.
 
 - 2026-11-20 Claude: stage 012's name, Code, and its file's,
   `012_Code.txt`, at the founder's word, on the history page (#134).
@@ -5929,12 +5927,7 @@ it was wrong. Questions of what the project is for stay with the founder.
   any reader's tool shows a part whole.
 
 - 2026-11-15 Claude: after #90's re-check at a7e738c, its first two
-  notes: every page now says the same about links. A full link in a
-  message opens; the founder found the links on COLLABORATING.md didn't;
-  and a link written in a small page opens too. Both name the form
-  tested, raw.githubusercontent.com links. The 2026-11-15 decision "every file's full link, in one list" was to
-  be revisited if DeepSeek could follow links from a page: looked at,
-  and the lists stay, as following links from a long page isn't shown.
+  notes: every page now says the same about links; the lists stay.
 
 - 2026-11-15 Claude: after #90's independent review at 65e040d, its
   notes: docs/files.py says why new files count; the FILES.md test

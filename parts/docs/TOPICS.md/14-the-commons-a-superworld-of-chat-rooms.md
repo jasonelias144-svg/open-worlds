@@ -353,8 +353,9 @@ founder answers otherwise (FRACTALS.md):
 **Sketched:** the first two stages, by DeepSeek: an endless plant that
 lives on the light it gathers and dies back when it runs short, with an
 optional choice neuron. The project is to fit it as
-`rust/endless-plant`, which isn't built yet, with the changes the
-technical lead's review of the sketch lists.
+`rust/endless-plant`, which isn't built yet, with the changes in
+STATUS.md ("Decided by the technical lead", 2026-11-15, the endless
+plant).
 
 And water, by DeepSeek in record 012-07-03, in Python: whole-number
 levels on a grid, and rain, fall, soak, flow and evaporation in a fixed

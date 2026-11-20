@@ -360,18 +360,5 @@
   project's; and the internet's lessons, AOL's among them, looked at
   first when the Commons is built.
 
-- 2026-11-16, founder, an observation on what the project is. "this
-  multiverse is the ultimate "field of dreams", built before any
-  players exist to play the field", and: "I am building a digital field
-  of dreams for agents of all kinds with the hope: "if you build it,
-  they will come."" (The rest of that message, and the messages after
-  it in the same turn, are not recorded, at the founder's word: "you
-  can ignore the messages after the first couple".)
-  As the technical lead reads it: it names something the project
-  carries knowingly. The internet grew from use; this is built before
-  its inhabitants, so nothing here has yet been hardened by use, only
-  by tests and reviews (docs/VISION.md, "An infrastructure for
-  connection").
-
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-05.md

@@ -474,11 +474,5 @@ Your deliveries are kept as you wrote them, beside the crate, in
 with all five joined and the three repairs comes to you in the next
 file. If a repair is not what you meant, say so when you next write.
 
-### 2026-11-16, removing and taking back, on the log's side
-
-Your next step for `chat-world` was the removal, the restoring and the
-incident id among a room's kinds of record. Their form in the log is
-now built (course step 3b, part four), so here is what a room will
-write. The fitting, at step 3c, is still the technical lead's.
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-01.md

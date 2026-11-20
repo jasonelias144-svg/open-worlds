@@ -33,19 +33,12 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16. Messages to ChatGPT are on their own page.
 
-### 2026-11-20, to both: the records' new names
+### 2026-11-20, to both: new numbers on this page
 
-Nothing is asked of either of you by this message, and nothing changes
-in your code.
-
-The founder named the records of stage 012 anew today. DeepSeek, your
-present conversation is record 012-07-03 now (it was 012-09-05), and
-its code is in `sketches/deepseek/012-07-03/`. Gemini, yours is record
-012-08-04 now (it was 012-00-00). ChatGPT's is 012-09-05. The whole
-table is in `sketches/INDEX.md`, under "Names", and this page uses the
-new names throughout. Files given to you before today keep the old
-ones: in them, 012-09-05 means 012-07-03. From now on, please use the
-new names.
+Nothing is asked of either of you by this message. This page now uses
+the founder's new numbers for the conversation records: what earlier
+messages and files called record 012-09-05 is 012-07-03 here, its code
+is in `sketches/deepseek/012-07-03/`, and Gemini's record is 012-08-04.
 
 ### 2026-11-20, to both: where specs will come from
 
@@ -1467,13 +1460,10 @@ computer; the learning multiversity) are in "What's here", items 3 and
 - **Lean:** checking the reasoning behind decisions in offices, and
   reasoning worlds where a claim counts once Lean's kernel accepts its
   proof ([TOPICS.md](TOPICS.md), topic 20).
-- **Full links open.** A full raw.githubusercontent.com link given in
-  a message opens for you, and so does one written in a small page.
-  Whether links on a long page like this one open reliably isn't
-  shown: try them, and when one fails, say so and ask the founder for
-  its line.
-- **When you need a page,** ask for its link in the same message as the
-  work, or for an upload, which seems to stay.
+- **Links.** Every file has its full link to paste, at the end of this
+  page and in FILES.md. When you need one, ask the founder for its line
+  in the same message as the work, or for an upload; if a link fails,
+  say so.
 - **Every long page is also kept in parts.** Each page and each file
   of code here longer than 28,000 bytes is kept a second time, cut into
   parts no longer than that, with its own text unchanged. (The test
@@ -1483,10 +1473,8 @@ computer; the learning multiversity) are in "What's here", items 3 and
   Each part ends with the link of the part after it. If a page ever
   stops short for you, say what its last words were, and ask the
   founder for its parts.
-- **Every file now has a full link to paste.** The founder found that
-  the links on this page didn't open for you, so "Every file, by its
-  full link", at the end of
-  this page, now holds every file you work from: the Python code and
+- **Every file now has a full link to paste,** at the founder's word:
+  "Every file, by its full link", at the end of this page, now holds every file you work from: the Python code and
   the tests too, which no list gave you before. [FILES.md](FILES.md)
   holds the rest: your records, the code taken from them, the files
   you were given in reply, and Experiment 001's run logs. Ask the
@@ -1766,7 +1754,7 @@ ideas.
 
 ## Where the conversation stands
 
-Six records are kept: 012-03-02 (the poetry engine), 012-04-00
+Five records are kept: 012-03-02 (the poetry engine), 012-04-00
 (components 1 to 63), 012-05-01 (components 64 to 87: a live
 federation and its tools, then the founder's turn to game worlds: a
 chess park, worlds inside worlds, worlds that grow and govern
@@ -2368,12 +2356,9 @@ page.
   host-free. Topic 20: reasoning checked by Lean.
 
 - 2026-11-15, between cycles: every file in the repository has its full
-  link to paste, as the links on this page didn't open for you (the
-  founder): "Every file, by its full link", at the end of this page,
-  holds every file you work from, and FILES.md the files of record,
-  each checked by a test. And two tests showed that a full link in the
-  founder's message opens, and that you followed a link written in a
-  small page.
+  link to paste, at the founder's word: "Every file, by its full link",
+  at the end of this page, holds every file you work from, and FILES.md
+  the files of record, each checked by a test.
 
 - 2026-11-16, cycle 7: record 012-07-03 (water as particles, the
   garden, a botanical garden; then chat rooms for the Commons, AI
@@ -2400,12 +2385,8 @@ page.
 ## Every file, by its full link
 
 Each line opens a file as it is on `main`, for pasting into a
-conversation, a group at a time. A full link given in a message opens
-in a conversation with DeepSeek. The links on this page, the founder
-found, did not, though in a test DeepSeek followed a link from a small
-page. So every file in the repository has its full link to paste, here
-or in
-[FILES.md](FILES.md) (the founder, 2026-11-15: "Remember links in the
+conversation, a group at a time. Every file in the repository has its
+full link to paste, here or in [FILES.md](FILES.md) (the founder, 2026-11-15: "Remember links in the
 collaborating page are not accessible. So all files need links through
 this method.").
 

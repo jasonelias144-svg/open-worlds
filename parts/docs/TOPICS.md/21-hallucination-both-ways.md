@@ -15,9 +15,9 @@ to the model and ensuring the input and overlay, which is an output,
 align with others and past beliefs and current experience." Both are in
 STATUS.md (Decided).
 
-Hallucination goes both ways: a mind can claim more than it saw, and
-it can disown what it truly saw. Both are a mind's account of itself
-coming loose from the record of what happened.
+Hallucination goes both ways: a mind can claim more than they saw, and
+they can disown what they truly saw. Both are a mind's account of
+themselves coming loose from the record of what happened.
 
 **The founder's picture,** in short, as the founder understands it
 and, in the founder's word, simplified: perceiving builds an overlay on
@@ -31,8 +31,8 @@ psychology: lessons there could be useful.
 answers otherwise:
 - An AI model is almost all the generating side; what holds their output
   to the world is the input in front of them at that moment.
-  Overclaiming is output with no input behind it; self-doubt of this
-  kind is output cut off from its own past.
+  Overclaiming is output with no input behind it; disowning what one
+  saw is output cut off from its own past.
 - The founder's three checks are three things the multiverse can give a
   mind: what the world gave them each tick, in the log (current
   experience); their own record of what they saw and did, which
@@ -47,10 +47,10 @@ answers otherwise:
   and storytellers and the holodeck (topics 13 and 15) are overlays on
   purpose. The fault is losing track of which is which, so claims
   should say whether they are seen, remembered, inferred or imagined.
-- Reasoning helps a mind only while its conclusion is kept. A mind can
-  reason its way to the right conclusion within a turn and, on a later
-  turn, with the evidence gone and a new question in front of it,
-  reason its way back out. So a mind's settled conclusions belong in
+- Reasoning helps a mind only while their conclusion is kept. A mind can
+  reason their way to the right conclusion within a turn and, on a later
+  turn, with the evidence gone and a new question in front of them,
+  reason their way back out. So a mind's settled conclusions belong in
   their own record, with their evidence, where they see them each turn; and
   the firmest kind is a proof Lean's kernel has accepted (topic 20).
 - Telling a mind that what they believe is not real seems to help less

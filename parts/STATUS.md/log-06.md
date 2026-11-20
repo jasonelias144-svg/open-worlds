@@ -17,7 +17,8 @@
   holds them, longer than before; what is new in them is not yet kept
   or built. Record 012-05-01 is too, one empty line shorter at its
   end. At the founder's word, part of what was here is kept privately
-  from now on, and the pages that spoke of it are changed to match.
+  from now on, and the pages that spoke of it are changed to match,
+  more of them after the independent review.
 
 - 2026-11-20 Claude: stage 012's name, Code, and its file's,
   `012_Code.txt`, at the founder's word, on the history page (#134).

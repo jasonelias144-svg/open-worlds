@@ -6,6 +6,21 @@
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-02.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
+- 2026-11-15, founder, on naming who holds the "break glass" next:
+  "It will be a person I name publicly, but there is only me for now.
+  There is nobody to hand it to that would be able to know what to do.
+  We will worry about that later, but as soon as one more person joins
+  me, we'll have someone, and then they will be named publicly and all
+  will be a matter of record and all that. But let's build the village
+  before picking the next chief. First things first."
+  So the next holder is a person, named publicly when the founder
+  chooses them, and the choice is on record; the charter's section 3
+  says so. Until someone else joins, the founder alone holds it, and
+  nothing more is built or decided for it now. The technical lead's
+  reading beside it, which only adds protection and stands unless the
+  founder answers otherwise: the person named agrees to be named, as
+  their name goes into a public record (FUNDAMENTALS.md, privacy,
+  item 6).
 - 2026-11-15, founder, on who holds the "break glass" after the founder:
   "And who holds it is whoever I leave it to. Now, there is nobody. But
   I am building something that will bring in others. At that point, we
@@ -188,31 +203,18 @@
   worlds, the whole can be stopped only part by part, which is hard to
   undo. The founder accepted it explicitly the same day (above).
 - 2026-11-15, founder, on working with DeepSeek, to the technical lead
-  in this session. On reading the repository: "Ok, so DeepSeek needs me
-  to provide the whole URL for each rust file, and it has to be in the
-  chat prompt." Then: "Ok, the links
-  worked. But sometimes the pages themselves contain links. But it is ok
-  since all relevant files have links. We may consider having README
-  pages where we can put code and the explanation together, keep it
-  current, and thereby reduce the number of links dramatically. Well
-  look into later." (An idea kept open, for later.) And: "I have to
-  provide the link. Fetching is unreliable from in the page, but from a
-  prompt with full URL, it has worked." On answering DeepSeek: "please
+  in this session (in part; the rest is kept privately): "We may
+  consider having README pages where we can put code and the
+  explanation together, keep it current, and thereby reduce the number
+  of links dramatically. Well look into later." (An idea kept open, for
+  later.) On answering DeepSeek: "please
   provide by updating the COLLABORATING.md page. You already have that
   space for communication. Also, it keeps a record of an ongoing
   discussion and collaboration. I will just provide DeepSeek with a link
   to the collaboration page, and take it from there." So the technical
   lead's messages to DeepSeek are in docs/COLLABORATING.md ("Messages
   from the technical lead"), and every file's full link is at the end of
-  that page. And to DeepSeek, the same day: "On your
-  questions for me, which if I understood were all design questions that
-  could go any way. You ask for my judgement, but on those questions, I
-  defer to your judgement. It is the only way this whole project moves
-  forward. I will chime in when I disagree or come up with some new twist
-  or extension of an idea. But we are just trying to get something
-  working for now. We can fine tune it later, so I would just prefer
-  moving forward over getting stuck on problems that have many viable
-  solutions."
+  that page.
 - 2026-11-15, founder, in six messages quoted in docs/FRACTALS.md
   ("Where it leads: living worlds"), the aim for the fractal track: "So
   instead of a prescribed number of turns, I can set it going and watch

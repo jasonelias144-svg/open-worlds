@@ -6,6 +6,12 @@
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/since-you-were-last-here.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
+### 2026-11-16, removing and taking back, on the log's side
+
+Your next step for `chat-world` was the removal, the restoring and the
+incident id among a room's kinds of record. Their form in the log is
+now built (course step 3b, part four), so here is what a room will
+write. The fitting, at step 3c, is still the technical lead's.
 - **Four kinds of entry,** beside the mark and the decision to keep a
   field public:
   `entry_removed`, `entry_restored`, `entry_taken_back` and
@@ -445,13 +451,10 @@ computer; the learning multiversity) are in "What's here", items 3 and
 - **Lean:** checking the reasoning behind decisions in offices, and
   reasoning worlds where a claim counts once Lean's kernel accepts its
   proof ([TOPICS.md](TOPICS.md), topic 20).
-- **Full links open.** A full raw.githubusercontent.com link given in
-  a message opens for you, and so does one written in a small page.
-  Whether links on a long page like this one open reliably isn't
-  shown: try them, and when one fails, say so and ask the founder for
-  its line.
-- **When you need a page,** ask for its link in the same message as the
-  work, or for an upload, which seems to stay.
+- **Links.** Every file has its full link to paste, at the end of this
+  page and in FILES.md. When you need one, ask the founder for its line
+  in the same message as the work, or for an upload; if a link fails,
+  say so.
 - **Every long page is also kept in parts.** Each page and each file
   of code here longer than 28,000 bytes is kept a second time, cut into
   parts no longer than that, with its own text unchanged. (The test
@@ -461,10 +464,8 @@ computer; the learning multiversity) are in "What's here", items 3 and
   Each part ends with the link of the part after it. If a page ever
   stops short for you, say what its last words were, and ask the
   founder for its parts.
-- **Every file now has a full link to paste.** The founder found that
-  the links on this page didn't open for you, so "Every file, by its
-  full link", at the end of
-  this page, now holds every file you work from: the Python code and
+- **Every file now has a full link to paste,** at the founder's word:
+  "Every file, by its full link", at the end of this page, now holds every file you work from: the Python code and
   the tests too, which no list gave you before. [FILES.md](FILES.md)
   holds the rest: your records, the code taken from them, the files
   you were given in reply, and Experiment 001's run logs. Ask the

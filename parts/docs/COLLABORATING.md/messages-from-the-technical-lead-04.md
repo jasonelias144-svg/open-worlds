@@ -17,19 +17,12 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16. Messages to ChatGPT are on their own page.
 
-### 2026-11-20, to both: the records' new names
+### 2026-11-20, to both: new numbers on this page
 
-Nothing is asked of either of you by this message, and nothing changes
-in your code.
-
-The founder named the records of stage 012 anew today. DeepSeek, your
-present conversation is record 012-07-03 now (it was 012-09-05), and
-its code is in `sketches/deepseek/012-07-03/`. Gemini, yours is record
-012-08-04 now (it was 012-00-00). ChatGPT's is 012-09-05. The whole
-table is in `sketches/INDEX.md`, under "Names", and this page uses the
-new names throughout. Files given to you before today keep the old
-ones: in them, 012-09-05 means 012-07-03. From now on, please use the
-new names.
+Nothing is asked of either of you by this message. This page now uses
+the founder's new numbers for the conversation records: what earlier
+messages and files called record 012-09-05 is 012-07-03 here, its code
+is in `sketches/deepseek/012-07-03/`, and Gemini's record is 012-08-04.
 
 ### 2026-11-20, to both: where specs will come from
 

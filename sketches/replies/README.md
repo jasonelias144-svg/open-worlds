@@ -74,8 +74,8 @@ is said here, and in the next reply.
 - `012-07-03` and `012-07-03-2`: given as `012-09-05` and
   `012-09-05-2`, before the founder named the records anew on
   2026-11-20 (`../INDEX.md`, "Names"). The files were renamed with the
-  record; what is in them is not changed, so their first line still
-  says "RECORD 012-09-05", which is 012-07-03 now.
+  record; what is in them is not changed, so the first line of
+  `012-07-03` still says "RECORD 012-09-05", which is 012-07-03 now.
 - `2026-11-17-4-gemini` and `2026-11-17-3-gemini`: no longer
   current, from 2026-11-18. Gemini did the step of the first, the
   five repairs, 152 of 152 (`../gemini/2026-11-17-4/README.md`).

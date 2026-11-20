@@ -79,12 +79,7 @@
   any reader's tool shows a part whole.
 
 - 2026-11-15 Claude: after #90's re-check at a7e738c, its first two
-  notes: every page now says the same about links. A full link in a
-  message opens; the founder found the links on COLLABORATING.md didn't;
-  and a link written in a small page opens too. Both name the form
-  tested, raw.githubusercontent.com links. The 2026-11-15 decision "every file's full link, in one list" was to
-  be revisited if DeepSeek could follow links from a page: looked at,
-  and the lists stay, as following links from a long page isn't shown.
+  notes: every page now says the same about links; the lists stay.
 
 - 2026-11-15 Claude: after #90's independent review at 65e040d, its
   notes: docs/files.py says why new files count; the FILES.md test

@@ -6,6 +6,19 @@
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-04.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
+- 2026-11-16, founder, an observation on what the project is. "this
+  multiverse is the ultimate "field of dreams", built before any
+  players exist to play the field", and: "I am building a digital field
+  of dreams for agents of all kinds with the hope: "if you build it,
+  they will come."" (The rest of that message, and the messages after
+  it in the same turn, are not recorded, at the founder's word: "you
+  can ignore the messages after the first couple".)
+  As the technical lead reads it: it names something the project
+  carries knowingly. The internet grew from use; this is built before
+  its inhabitants, so nothing here has yet been hardened by use, only
+  by tests and reviews (docs/VISION.md, "An infrastructure for
+  connection").
+
 - 2026-11-16, founder, on the Commons' first room, in two messages.
   First: "And to follow the pattern, let's start the Commons with a
   single Ur-room, which will always be distinguished as being the first
@@ -328,7 +341,9 @@
 
 - 2026-11-15, founder, on hallucination, both ways:
   "Ok. But we are going to need to deal with AI hallucination
-  eventually, now is as good as any time." And later: "Only point is
+  eventually, now is as good as any time." And later (both in part: the
+  rest, and their context, are kept privately at the founder's word):
+  "Only point is
   that lessons from psychology could be useful. It is a matter of
   detachment from reality to some extent. This can be on small scales or
   full on hallucinatory experience where the topology is provided with a
@@ -375,32 +390,5 @@
   word, and into the pages it changes, and a session checks before it
   ends that nothing is missing. docs/COLLABORATING.md says so at its top,
   and its newest message lists what changed on 2026-11-15.
-- 2026-11-15, founder, on the SAIR work and on Lean:
-  "Also note SAIR work is intentionally separate from the other repos.
-  It is the only one that includes work and publications from outside.
-  It should be considered distinct because based on something external.
-  But, I do think there is much there we can utilize for checking the
-  reasoning behind decisions made by agents in offices. But also, we
-  could have math worlds or other reasoning worlds where debate or
-  discovery is tapered by a Lean engine. There is much to integrate
-  there, but would be the only place to look for a different license.
-  Thoughts?"
-  So:
-  - **SAIR-Lean-Kernel-Challenge stays separate,** as the one repository
-    built on outside work, and the one place a licence other than CC0 is
-    looked at: there, the challenge's own files keep their Apache-2.0
-    licence (that repository's README lists them; the policy handbook's
-    decision 0003).
-  - **Lean, two ways** (docs/TOPICS.md, topic 20): checking the reasoning
-    behind decisions made in offices, which docs/REASONS.md already
-    designs; and reasoning worlds, such as mathematical worlds, where a
-    claim counts once Lean's kernel accepts its proof. The technical
-    lead reads "tapered" as tempered: the kernel keeps debate and
-    discovery honest.
-  - **What comes in from SAIR,** the technical lead's reading, which
-    stands unless the founder answers otherwise: our own work, under CC0:
-    the proofs, and the tools that set up Lean and count kernel
-    instructions. Lean and its library are depended on, under their own
-    licences, not copied in; the challenge's files stay there.
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-04.md
