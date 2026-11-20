@@ -2488,7 +2488,7 @@ or in
 collaborating page are not accessible. So all files need links through
 this method.").
 
-This list holds the files a reader works from, 273 of them: every
+This list holds the files a reader works from, 274 of them: every
 page, all the code in Python and Rust, the tests, the vectors and the
 web pages. [FILES.md](FILES.md) holds the rest, and says how many:
 files of record best sent when a question needs them: the
@@ -2519,7 +2519,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FRACTA
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/URWORLD.md
 ```
 
-**The design pages**, with Cycle 0's output (18):
+**The design pages**, with Cycle 0's output (19):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/ADMIN.md
@@ -2530,6 +2530,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/DESIGN
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FREEDOMS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FUNDAMENTALS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/GLOSSARY.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/MINDS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/MULTIVERSE.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/OFFICES.md

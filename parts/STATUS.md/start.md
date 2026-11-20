@@ -26,6 +26,8 @@ free, and never a money machine
   earlier stages, not code (Decided). Their page is
   [docs/CHATGPT.md](docs/CHATGPT.md), with the technical lead's first
   message and five requests; what they send comes through the founder.
+  The project's earlier stages, 000 to 010, are listed in
+  [docs/HISTORY.md](docs/HISTORY.md).
 
 - Claude: the new course ([docs/COURSE.md](docs/COURSE.md)), set on
   2026-11-13 for the Ur-world and ALICE and BOB. Step 1, the design pages,

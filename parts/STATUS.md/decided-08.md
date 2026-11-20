@@ -8,6 +8,17 @@
 
 ## Decided
 
+- 2026-11-20, founder, the earlier stages, and a page for them. The
+  founder brought stages 000 to 010 in one archive: "Here is a zip
+  with the previous project stages, each in one file. Only the
+  Opposites stage (011) is not there, having only completed today.
+  Thoughts?" And then: "Please add these to a project history page.
+  That way I can point ChatGPT to that page for a project history
+  archive." Done: [docs/HISTORY.md](docs/HISTORY.md), with what each
+  stage holds, its size and SHA-256, and how to work from it. The
+  files themselves are not in the repository (Decided by the
+  technical lead, today); the founder gives them.
+
 - 2026-11-20, founder, who supplies which files. On the technical
   lead's fourth request to ChatGPT, that they bring in the earlier
   stages: "The earlier stages will have to come from me. I have the
