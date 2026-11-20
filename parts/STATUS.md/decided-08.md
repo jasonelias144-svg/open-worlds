@@ -8,6 +8,26 @@
 
 ## Decided
 
+- 2026-11-20, founder, the ideas set aside, and how they become code.
+  "Also, I should mention, please make sure you point ChatGPT toward
+  the ideas we set aside for future development. These are just the
+  type of ideas to work out conceptually first. That could then be
+  brought back to you to turn into design specs. And those could go to
+  DeepSeek and Gemini. Something like that. Thoughts?" Done:
+  [docs/CHATGPT.md](docs/CHATGPT.md), "From an idea to code": the four
+  hands an idea goes through (ChatGPT's concept, the founder's choice,
+  the technical lead's spec, DeepSeek's and Gemini's code), where the
+  ideas set aside are listed, what a concept needs before it can
+  become a spec, and a sixth request; COLLABORATING.md tells DeepSeek
+  and Gemini, and TOPICS.md's "Further out" points there.
+
+- 2026-11-20, founder, the timeline. "And for the sake of a timeline,
+  The Living Codex was completed on August 20, which is 10 days from
+  the project start on August 10. All since the Living Codex took
+  place over the last three months, to the day. … In other words,
+  this is still the beginning." Recorded in
+  [docs/HISTORY.md](docs/HISTORY.md).
+
 - 2026-11-20, founder, stage 011. "Stage 011 includes A Mathematical
   Theory of Opposites as the final output, but includes the
   conversation records as well, and the previous versions. I'll
@@ -35,26 +55,6 @@
   every line where it was. [docs/HISTORY.md](docs/HISTORY.md) says where they
   are. Whether ChatGPT can read that repository is the founder's to
   check.
-
-- 2026-11-20, founder, the ideas set aside, and how they become code.
-  "Also, I should mention, please make sure you point ChatGPT toward
-  the ideas we set aside for future development. These are just the
-  type of ideas to work out conceptually first. That could then be
-  brought back to you to turn into design specs. And those could go to
-  DeepSeek and Gemini. Something like that. Thoughts?" Done:
-  [docs/CHATGPT.md](docs/CHATGPT.md), "From an idea to code": the four
-  hands an idea goes through (ChatGPT's concept, the founder's choice,
-  the technical lead's spec, DeepSeek's and Gemini's code), where the
-  ideas set aside are listed, what a concept needs before it can
-  become a spec, and a sixth request; COLLABORATING.md tells DeepSeek
-  and Gemini, and TOPICS.md's "Further out" points there.
-
-- 2026-11-20, founder, the timeline. "And for the sake of a timeline,
-  The Living Codex was completed on August 20, which is 10 days from
-  the project start on August 10. All since the Living Codex took
-  place over the last three months, to the day. … In other words,
-  this is still the beginning." Recorded in
-  [docs/HISTORY.md](docs/HISTORY.md).
 
 - 2026-11-20, founder, the earlier stages, and a page for them. The
   founder brought stages 000 to 010 in one archive: "Here is a zip

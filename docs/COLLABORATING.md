@@ -38,8 +38,8 @@ who joined on 2026-11-16. Messages to ChatGPT are on their own page.
 Nothing is asked of either of you by this message, and nothing changes
 in how you send work.
 
-The founder, 2026-11-20 (`STATUS.md`, "Decided"): the ideas the project
-set aside for later are "just the type of ideas to work out
+The founder, to the technical lead, 2026-11-20 (`STATUS.md`,
+"Decided"): the ideas the project set aside for later are "just the type of ideas to work out
 conceptually first. That could then be brought back to you to turn
 into design specs. And those could go to DeepSeek and Gemini."
 
