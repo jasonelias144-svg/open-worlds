@@ -10,9 +10,9 @@
 
 Each line opens a file as it is on `main`, for pasting into a
 conversation, a group at a time. Every file in the repository has its
-full link to paste, here or in [FILES.md](FILES.md) (the founder, 2026-11-15: "Remember links in the
-collaborating page are not accessible. So all files need links through
-this method.").
+full link to paste, here or in [FILES.md](FILES.md) (the founder,
+2026-11-15: "Remember links in the collaborating page are not
+accessible. So all files need links through this method.").
 
 This list holds the files a reader works from, 274 of them: every
 page, all the code in Python and Rust, the tests, the vectors and the

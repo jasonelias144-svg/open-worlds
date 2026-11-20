@@ -362,8 +362,8 @@ of it is asked again until it is needed.
   file, is The Living Codex, which can just be referred to as such."
   So the others are told only where the technical lead's own messages
   used the old numbers (docs/COLLABORATING.md, docs/CHATGPT.md), and
-  messages to them call a conversation theirs rather than give its
-  number, and name The Living Codex as such.
+  from now on messages to them call a conversation theirs rather than
+  give its number, and name The Living Codex as such.
 
 - 2026-11-20, founder: part of what was here is kept privately from
   now on.
@@ -3881,8 +3881,8 @@ of it is asked again until it is needed.
   uncut, as the conversation records are. (f) What a clause of the
   founder's leaves out of the public record is kept whole in the
   private one, and the public entry says that something is left out.
-  *Why:* (a) a collaborator can't open a link or build what they
-  write, and a reply may be cut short. (b) Twice Gemini's attacks
+  *Why:* (a) a collaborator works from what they are given and can't
+  build what they write, and a reply may be cut short. (b) Twice Gemini's attacks
   found what was wrong where the code's author had not, and their own
   first try at a design did not compile. (c) The founder: "it is
   best spent building the next pieces", and those "you determine";

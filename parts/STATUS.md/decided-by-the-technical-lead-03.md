@@ -169,8 +169,8 @@
   uncut, as the conversation records are. (f) What a clause of the
   founder's leaves out of the public record is kept whole in the
   private one, and the public entry says that something is left out.
-  *Why:* (a) a collaborator can't open a link or build what they
-  write, and a reply may be cut short. (b) Twice Gemini's attacks
+  *Why:* (a) a collaborator works from what they are given and can't
+  build what they write, and a reply may be cut short. (b) Twice Gemini's attacks
   found what was wrong where the code's author had not, and their own
   first try at a design did not compile. (c) The founder: "it is
   best spent building the next pieces", and those "you determine";
