@@ -361,9 +361,12 @@ of it is asked again until it is needed.
   003 and 005." And then: "Yeah, and I'll want full copies, because I
   never intended to have a bad version and a full version. Just one.
   So I will simply replace my previous versions with your newly
-  compiled versions … Yeah, no, not two versions. Just one." Done:
-  003 and 005 are now the complete versions, in the founder's library
-  and, kept, in `ebook-press` `history/`; [docs/HISTORY.md](docs/HISTORY.md)
+  compiled versions … Yeah, no, not two versions. Just one." And, of
+  004 and 009: "So, the original files would have contained those
+  files, had I not made a mistake. Neither was an intentional
+  omission." Done: 003, 004, 005 and 009 are now the complete
+  versions, in the founder's library and, kept, in `ebook-press`
+  `history/`; [docs/HISTORY.md](docs/HISTORY.md)
   gives their new hashes and the earlier ones'.
 
 - 2026-11-20, founder, the ideas set aside, and how they become code.
@@ -4934,9 +4937,10 @@ it was wrong. Questions of what the project is for stay with the founder.
 
 ## Log
 
-- 2026-11-20 Claude: stages 003 and 005 replaced by complete versions,
-  at the founder's word (#133). The earlier ones left out about half of
-  `LRL_6`'s text and three quarters of `OI_6`'s, found by comparing each
+- 2026-11-20 Claude: stages 003, 004, 005 and 009 replaced by complete
+  versions, at the founder's word (#133). The earlier ones left out
+  about half of `LRL_6`'s text, three quarters of `OI_6`'s, and a few
+  lines in 004 and 009, found by comparing each
   stage file with the separate files the founder brought, by content.
   The complete versions join each stage's own files, whole and in
   order; the founder was given copies built from their own files, and

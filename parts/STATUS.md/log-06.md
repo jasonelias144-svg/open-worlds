@@ -8,9 +8,10 @@
 
 ## Log
 
-- 2026-11-20 Claude: stages 003 and 005 replaced by complete versions,
-  at the founder's word (#133). The earlier ones left out about half of
-  `LRL_6`'s text and three quarters of `OI_6`'s, found by comparing each
+- 2026-11-20 Claude: stages 003, 004, 005 and 009 replaced by complete
+  versions, at the founder's word (#133). The earlier ones left out
+  about half of `LRL_6`'s text, three quarters of `OI_6`'s, and a few
+  lines in 004 and 009, found by comparing each
   stage file with the separate files the founder brought, by content.
   The complete versions join each stage's own files, whole and in
   order; the founder was given copies built from their own files, and

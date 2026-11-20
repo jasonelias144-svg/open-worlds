@@ -30,16 +30,16 @@ beginning."
 | `001_Kernel.txt` | A *Tao Te Ching*, *The Art of War*, *The Art of Peace*, the *Dhammapada* and the Sermon on the Mount, in published translations; then *The Sevenfold Art of War and Peace*, a textbook of conflict and peace drawn from many traditions. | 6,959,973 | 119,954 | 1,105,043 |
 | `002_System.txt` | *The Living Codex: A Practical Handbook for SEEING, ACCEPTING, and LOVING All as It Is*, in 79 parts. Most of its emoji are given as words in square brackets; about 220 are left as they were. | 1,919,654 | 151,424 | 273,310 |
 | `003_Language.txt` | The Living Kernel: a language for the project's ideas, worked out in movements, encounters and tests. | 15,770,822 | 1,083,834 | 1,895,988 |
-| `004_Pattern.txt` | It opens on the idea of a two-intelligence research studio; then work on patterns: candidate invariants, the audits that test them, and their limits. Grok and ChatGPT are the AIs it names most. | 13,887,808 | 973,285 | 1,743,672 |
+| `004_Pattern.txt` | It opens on the idea of a two-intelligence research studio; then work on patterns: candidate invariants, the audits that test them, and their limits. Grok and ChatGPT are the AIs it names most. | 13,887,925 | 973,386 | 1,743,673 |
 | `005_Method.txt` | Conversations with Claude and ChatGPT in a philosophical mode: choice, freedom, possibility and action. | 6,578,794 | 178,533 | 870,833 |
 | `006_Analysis.txt` | *The Living Codex* read as a digital artifact. | 1,403,060 | 18,797 | 218,797 |
 | `007_Inquiry.txt` | The philosophical conversations again. Its first 335,068 characters are the same as `005`'s; after that it goes its own way. | 790,285 | 4,204 | 123,507 |
 | `008_Relation.txt` | *The Art of War* in a published translation, read with ChatGPT and Grok; then shared-benefit optimization, a question set out for mathematics. | 1,343,318 | 29,059 | 194,251 |
-| `009_Strategy.txt` | Notes on strategy, and records of the work, most of them marked CGPT (made with ChatGPT). It holds *Art of Peace and the Strategist* byte for byte as it is in [`library/`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/README.md). | 20,381,038 | 415,628 | 3,076,911 |
+| `009_Strategy.txt` | Notes on strategy, and records of the work, most of them marked CGPT (made with ChatGPT). It holds *Art of Peace and the Strategist* byte for byte as it is in [`library/`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/README.md). | 20,556,839 | 419,585 | 3,103,731 |
 | `010_Wisdom.txt` | *The Living Way*, a field manual in 100 chapters, with later drafts of it. | 14,352,248 | 279,772 | 2,478,806 |
 | `011_Opposites.txt` | *A Mathematical Theory of Opposites*: the conversations with ChatGPT and DeepSeek that made it (`011-00` to `011-16`), its earlier versions, the editing record, and the final text. | 20,834,016 | 324,298 | 3,043,350 |
 
-In all, 104,349,135 bytes and about 15.0 million words. The counts
+In all, 104,525,053 bytes and about 15.1 million words. The counts
 are for the files as the founder holds them, and for `011` as compiled
 and kept. The descriptions are the technical lead's, from each file's
 headings and opening; no one has read every line.
@@ -53,12 +53,12 @@ Each file's SHA-256, as the founder holds it:
 211acc7926802fb8bf1e24a203935d686a2ef983ab32be578ad16b827d2049e7  001_Kernel.txt
 9a9549d24d4d618f4f595114f8184936cc37494c232ab820f15a1d0b895800af  002_System.txt
 f9f26802ee721fcecd91adbe03ce64afdd455636484f43a25bec58b9999ebfed  003_Language.txt
-4248184dd54a7c4ffe45e8d6c0c6cc8e66cb9356cd75938517d8476265209044  004_Pattern.txt
+e40d6abef07cdc7656e50346a898307c58db03c504af0be32ae3030ffd39729f  004_Pattern.txt
 729ac492b34b09126313e1b6ce1e12c07936071c4fd10a7e25e26bf8ae4a7e0d  005_Method.txt
 fe7a4f55d2a3bf5c85faa10aa2f84e6b3bd981c214db3368efb7b8e3b346a00e  006_Analysis.txt
 32d490fc1339671fec2203fa561e4330dc0055598d8636731e4bd842b3058218  007_Inquiry.txt
 e8ddd73602a4d4a48f75b574971e6e2f357e6d4f3eca223a0bf352e0f9194294  008_Relation.txt
-26479c7806965902ba23e2b3c222daba85563ad7342e432088ad1855787917bc  009_Strategy.txt
+df439c0dd651b6d5865722bd98bfae05e72bd873a133b4275d72384a08b7e48a  009_Strategy.txt
 21c24118588e51fc46a73fdf2b92c1cbbd16501969360681b3e23b8313d1343b  010_Wisdom.txt
 ```
 
@@ -67,15 +67,21 @@ SHA-256 `314fc8684c1c7d725695cb3fec2fb40d0287972f0c8ead0b1a938a6aa08f6b80`.
 Saved as a text file next to the stages, the block above checks them
 all at once (`sha256sum -c`).
 
-`003` and `005` in that archive are earlier versions, since replaced
-(SHA-256 `d0cfa7846918c2e6c2bfacba772c1489e1d255312d95f7b86b771adfcf596ceb`
-and `49378ec32e3493bd9a1c8e6186dd04885f6e09bc662ea50801bed6763f80667b`).
-They left out much of what was made: about half of `LRL_6`'s text
-(`003`) and three quarters of `OI_6`'s (`005`), found when the founder
-brought the separate files each stage was made from. The founder: "my
+`003`, `004`, `005` and `009` in that archive are earlier versions,
+since replaced: SHA-256
+`d0cfa7846918c2e6c2bfacba772c1489e1d255312d95f7b86b771adfcf596ceb`,
+`4248184dd54a7c4ffe45e8d6c0c6cc8e66cb9356cd75938517d8476265209044`,
+`49378ec32e3493bd9a1c8e6186dd04885f6e09bc662ea50801bed6763f80667b` and
+`26479c7806965902ba23e2b3c222daba85563ad7342e432088ad1855787917bc`.
+They left out parts of what was made, found when the founder brought
+the separate files each stage was made from: about half of `LRL_6`'s
+text (`003`), three quarters of `OI_6`'s (`005`), seven lines of *On
+Peace* and one other (`009`), and one line (`004`). The founder: "my
 record keeping took some time to develop, and was sloppy and had some
 missing parts and some repeated parts. Which is what motivated me to be
-more careful at later stages." The versions above are complete: each
+more careful at later stages." And: "So, the original files would
+have contained those files, had I not made a mistake. Neither was an
+intentional omission." The versions above are complete: each
 stage's own files, whole and in order, joined as the founder's stage
 files are, with nothing taken out; a table beside each in the private
 folder gives where every file begins. And the founder: "I never

@@ -21,9 +21,12 @@
   003 and 005." And then: "Yeah, and I'll want full copies, because I
   never intended to have a bad version and a full version. Just one.
   So I will simply replace my previous versions with your newly
-  compiled versions … Yeah, no, not two versions. Just one." Done:
-  003 and 005 are now the complete versions, in the founder's library
-  and, kept, in `ebook-press` `history/`; [docs/HISTORY.md](docs/HISTORY.md)
+  compiled versions … Yeah, no, not two versions. Just one." And, of
+  004 and 009: "So, the original files would have contained those
+  files, had I not made a mistake. Neither was an intentional
+  omission." Done: 003, 004, 005 and 009 are now the complete
+  versions, in the founder's library and, kept, in `ebook-press`
+  `history/`; [docs/HISTORY.md](docs/HISTORY.md)
   gives their new hashes and the earlier ones'.
 
 - 2026-11-20, founder, the ideas set aside, and how they become code.
