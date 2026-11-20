@@ -31,7 +31,8 @@ So your part is three things:
   the founder brings it. Brought so far: stages 000 to 010, one file
   each ([`docs/HISTORY.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md)), among them The Living Codex (002) and *Art of Peace and
   the Strategist* (in 009, and in `library/`); and stage 011, *A
-  Mathematical Theory of Opposites*, the book you wrote and built.
+  Mathematical Theory of Opposites*, the book you wrote and built,
+  compiled with its records.
 - **Coherence:** the project consistent with itself and with those
   stages, and its lessons kept in use.
 
@@ -236,9 +237,9 @@ Also right, and kept in mind:
 
 Every pull request merged after #129, newest first, one line each.
 
-- 2026-11-20, #131: the project's history, [`docs/HISTORY.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md): stages 000 to 010,
-  what each holds, where they are kept (privately, in `ebook-press`),
-  and how to check a copy.
+- 2026-11-20, #131: the project's history, [`docs/HISTORY.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md): stages 000 to 010
+  and 011, what each holds, where they are kept (privately, in
+  `ebook-press`), and how to check a copy.
 - 2026-11-20, #130: this page; the three conflicts your review found,
   fixed, there and in six more pages; the founder's words on your
   part, and on who supplies which files, in `STATUS.md`.

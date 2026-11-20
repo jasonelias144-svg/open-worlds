@@ -10,9 +10,10 @@ The project has gone through stages, each with a number and a word.
 The founder holds the only organized library of their files, and
 brings them in (`STATUS.md`, "Decided", 2026-11-20). Stages 000 to 010
 came on 2026-11-20, one file each. Stage 011 is *A Mathematical Theory
-of Opposites*, finished that day; its files are to come. Stage 012 is
-the multiverse: this repository, whose conversation records are in
-`sketches/records/`, numbered 012.
+of Opposites*, finished that day: the technical lead compiled its file
+from the founder's 17 records and the book's final text, at the
+founder's word. Stage 012 is the multiverse: this repository, whose
+conversation records are in `sketches/records/`, numbered 012.
 
 ## The stages
 
@@ -29,8 +30,9 @@ the multiverse: this repository, whose conversation records are in
 | `008_Relation.txt` | *The Art of War* in a published translation, read with ChatGPT and Grok; then shared-benefit optimization, a question set out for mathematics. | 1,343,318 | 29,059 | 194,251 |
 | `009_Strategy.txt` | Notes on strategy, and records of the work, most of them marked CGPT (made with ChatGPT). It holds *Art of Peace and the Strategist* byte for byte as it is in [`library/`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/README.md). | 20,381,038 | 415,628 | 3,076,911 |
 | `010_Wisdom.txt` | *The Living Way*, a field manual in 100 chapters, with later drafts of it. | 14,352,248 | 279,772 | 2,478,806 |
+| `011_Opposites.txt` | *A Mathematical Theory of Opposites*: the conversations with ChatGPT and DeepSeek that made it (`011-00` to `011-16`), its earlier versions, the editing record, and the final text. | 20,834,076 | 324,298 | 3,043,353 |
 
-In all, 80,583,514 bytes and about 11.6 million words. The
+In all, 101,417,590 bytes and about 14.7 million words. The
 descriptions are the technical lead's, from each file's headings and
 opening; no one has read every line.
 
@@ -54,13 +56,22 @@ e8ddd73602a4d4a48f75b574971e6e2f357e6d4f3eca223a0bf352e0f9194294  008_Relation.t
 
 They came in one archive, `Project_Stages_1-10.zip`: 22,031,670 bytes,
 SHA-256 `314fc8684c1c7d725695cb3fec2fb40d0287972f0c8ead0b1a938a6aa08f6b80`.
+
+Stage 011 has no copy of the founder's to check against: it was
+compiled from the founder's archive `011_Opposites.zip` (4,881,773
+bytes, SHA-256
+`73a81827887cf16f22b7b759da67730ac413669a8c4f00f17337c7d162ba188c`).
+Its kept file's SHA-256 is
+`1a4825d2d3b9c3ff21267e185b5a2e5e1bdf9be4fbd3270291a4be567c5ab524`,
+and a table beside it gives each part's source, where it begins, and
+what was replaced in it.
 Saved as a text file next to the stages, the block above checks them
 all at once (`sha256sum -c`).
 
 The kept copies (below) differ in four files, `003`, `004`, `005` and
 `007`: there a personal name and links tied to the founder's accounts
 are replaced by markers, and every line is where it was, so a line
-number is the same in both. The kept folder's `SHA256SUMS` and
+number is the same in both. The same was done in compiling `011`. The kept folder's `SHA256SUMS` and
 `REDACTED.tsv` give those four's kept hashes.
 
 ## Working from them
@@ -92,8 +103,8 @@ give, and these files hold more than that:
   Art of War* in `001`, *The Art of War* again in `008`, and passages
   of the Bible in a modern translation in `001`, `009` and `010`.
 - **A personal name** that public pages leave out (`AGENTS.md`,
-  "Always"), in `003`, `004`, `005` and `007`.
-- **Links tied to the founder's accounts,** in `005` and `007`.
+  "Always"), in `003`, `004`, `005`, `007` and `011`.
+- **Links tied to the founder's accounts,** in `005`, `007` and `011`.
 
 A stage can come into the repository once it has been looked through
 for these, with what was left out marked, as was done for Gemini's

@@ -22,7 +22,9 @@
   from `docs/CHATGPT.md` (request 4 now asks for a roadmap of each
   stage first) and from COLLABORATING.md's list of files. Then, at
   the founder's word, the stages went into the private `ebook-press`
-  repository (`history/`, its #8), and the page says where.
+  repository (`history/`, its #8), and the page says where. Then
+  stage 011, compiled there from the founder's 17 records and the
+  book's final text, and listed on the page.
 
 - 2026-11-20 Claude: ChatGPT's page, `docs/CHATGPT.md` (#130), at the
   founder's word: their part, who decides, what binds and what

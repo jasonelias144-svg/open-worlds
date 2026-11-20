@@ -8,6 +8,18 @@
 
 ## Decided
 
+- 2026-11-20, founder, stage 011. "Stage 011 includes A Mathematical
+  Theory of Opposites as the final output, but includes the
+  conversation records as well, and the previous versions. I'll
+  compile them later today or tomorrow. Or...Here are all of them,
+  without the final copy of the main text. Please feel free to
+  compile them into a 011_Opposites.txt file, and then add to rest."
+  Done: `011_Opposites.txt` in `ebook-press/history/`, the 17 records
+  in their numbered order and then the book's final text, joined as
+  the founder's own stage files are, with what no repository keeps
+  replaced and every line where it was; listed in
+  [docs/HISTORY.md](docs/HISTORY.md).
+
 - 2026-11-20, founder, the stages kept privately. On the technical
   lead's finding that the stages hold outside texts in published
   translations: "Good point on some of the texts. Let's keep in

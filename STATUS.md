@@ -344,6 +344,18 @@ of it is asked again until it is needed.
 
 ## Decided
 
+- 2026-11-20, founder, stage 011. "Stage 011 includes A Mathematical
+  Theory of Opposites as the final output, but includes the
+  conversation records as well, and the previous versions. I'll
+  compile them later today or tomorrow. Or...Here are all of them,
+  without the final copy of the main text. Please feel free to
+  compile them into a 011_Opposites.txt file, and then add to rest."
+  Done: `011_Opposites.txt` in `ebook-press/history/`, the 17 records
+  in their numbered order and then the book's final text, joined as
+  the founder's own stage files are, with what no repository keeps
+  replaced and every line where it was; listed in
+  [docs/HISTORY.md](docs/HISTORY.md).
+
 - 2026-11-20, founder, the stages kept privately. On the technical
   lead's finding that the stages hold outside texts in published
   translations: "Good point on some of the texts. Let's keep in
@@ -4894,7 +4906,9 @@ it was wrong. Questions of what the project is for stay with the founder.
   from `docs/CHATGPT.md` (request 4 now asks for a roadmap of each
   stage first) and from COLLABORATING.md's list of files. Then, at
   the founder's word, the stages went into the private `ebook-press`
-  repository (`history/`, its #8), and the page says where.
+  repository (`history/`, its #8), and the page says where. Then
+  stage 011, compiled there from the founder's 17 records and the
+  book's final text, and listed on the page.
 
 - 2026-11-20 Claude: ChatGPT's page, `docs/CHATGPT.md` (#130), at the
   founder's word: their part, who decides, what binds and what
