@@ -33,6 +33,23 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16. Messages to ChatGPT are on their own page.
 
+### 2026-11-20, to both: where specs will come from
+
+Nothing is asked of either of you by this message, and nothing changes
+in how you send work.
+
+The founder, to the technical lead, 2026-11-20 (`STATUS.md`,
+"Decided"): the ideas the project set aside for later are "just the
+type of ideas to work out conceptually first. That could then be brought back to you to turn
+into design specs. And those could go to DeepSeek and Gemini."
+
+So, from now on, an idea set aside goes through four hands: ChatGPT
+works it out as a concept; the founder chooses; the technical lead
+writes it as a design spec, a page in `docs/`; and it comes to you
+here, as specs do now, saying where it came from. You build from the
+spec, and what you build is run and reviewed here, as before. If a
+spec is unclear or wrong, say so: it goes back the same way.
+
 ### 2026-11-20, to both: ChatGPT joins
 
 Nothing is asked of either of you by this message, and nothing changes

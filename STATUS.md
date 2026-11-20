@@ -16,8 +16,11 @@ free, and never a money machine
 
 - ChatGPT, from 2026-11-20: creative development and the project's
   earlier stages, not code (Decided). Their page is
-  [docs/CHATGPT.md](docs/CHATGPT.md), with the technical lead's first
-  message and five requests; what they send comes through the founder.
+  [docs/CHATGPT.md](docs/CHATGPT.md), with the technical lead's
+  messages and six requests; what they send comes through the founder.
+  The ideas set aside for later go to ChatGPT first, as concepts,
+  then become specs for DeepSeek and Gemini (docs/CHATGPT.md, "From
+  an idea to code").
   The project's earlier stages, 000 to 011, are listed in
   [docs/HISTORY.md](docs/HISTORY.md); the files are kept privately,
   in the founder's private repository `ebook-press`, `history/`.
@@ -345,6 +348,26 @@ of it is asked again until it is needed.
 
 ## Decided
 
+- 2026-11-20, founder, the ideas set aside, and how they become code.
+  "Also, I should mention, please make sure you point ChatGPT toward
+  the ideas we set aside for future development. These are just the
+  type of ideas to work out conceptually first. That could then be
+  brought back to you to turn into design specs. And those could go to
+  DeepSeek and Gemini. Something like that. Thoughts?" Done:
+  [docs/CHATGPT.md](docs/CHATGPT.md), "From an idea to code": the four
+  hands an idea goes through (ChatGPT's concept, the founder's choice,
+  the technical lead's spec, DeepSeek's and Gemini's code), where the
+  ideas set aside are listed, what a concept needs before it can
+  become a spec, and a sixth request; COLLABORATING.md tells DeepSeek
+  and Gemini, and TOPICS.md's "Further out" points there.
+
+- 2026-11-20, founder, the timeline. "And for the sake of a timeline,
+  The Living Codex was completed on August 20, which is 10 days from
+  the project start on August 10. All since the Living Codex took
+  place over the last three months, to the day. … In other words,
+  this is still the beginning." Recorded in
+  [docs/HISTORY.md](docs/HISTORY.md).
+
 - 2026-11-20, founder, stage 011. "Stage 011 includes A Mathematical
   Theory of Opposites as the final output, but includes the
   conversation records as well, and the previous versions. I'll
@@ -372,13 +395,6 @@ of it is asked again until it is needed.
   every line where it was. [docs/HISTORY.md](docs/HISTORY.md) says where they
   are. Whether ChatGPT can read that repository is the founder's to
   check.
-
-- 2026-11-20, founder, the timeline. "And for the sake of a timeline,
-  The Living Codex was completed on August 20, which is 10 days from
-  the project start on August 10. All since the Living Codex took
-  place over the last three months, to the day. … In other words,
-  this is still the beginning." Recorded in
-  [docs/HISTORY.md](docs/HISTORY.md).
 
 - 2026-11-20, founder, the earlier stages, and a page for them. The
   founder brought stages 000 to 010 in one archive: "Here is a zip
@@ -4899,6 +4915,15 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-20 Claude: the ideas set aside, pointed out to ChatGPT, at
+  the founder's word (#132). `docs/CHATGPT.md` gains "From an idea to
+  code": the four hands, the lists of ideas set aside (TOPICS.md,
+  "Further out"; COURSE.md, "Waiting"; VISION.md; WORLD-TYPES.md;
+  MULTIVERSE.md; COMMONS.md; research/GAMES-AND-WORLDS.md), and when a concept is
+  ready for a spec; and a sixth request, recommending the gathering
+  world first. COLLABORATING.md tells DeepSeek and Gemini where specs
+  will come from; TOPICS.md points there. No code changes.
 
 - 2026-11-20 Claude: the project's history page, `docs/HISTORY.md`
   (#131), at the founder's word. Looked at first: the founder's

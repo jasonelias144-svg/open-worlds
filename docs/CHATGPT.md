@@ -63,7 +63,7 @@ DeepSeek and Gemini write the code; their page is
 - and the code, which wins when a page disagrees with it.
 
 **Exploring:**
-- [`docs/VISION.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/VISION.md), the founder's visions, each marked;
+- [`docs/VISION.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/VISION.md), the founder's visions, in the founder's words, with the technical lead's recommendations marked;
 - [`docs/TOPICS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/TOPICS.md), the topics ahead;
 - `sketches/` and `experiments/`;
 - and your pages.
@@ -71,6 +71,69 @@ DeepSeek and Gemini write the code; their page is
 DeepSeek and Gemini work from `COLLABORATING.md`. Nothing on your
 pages reaches them until it is decided and written there, so your
 pages can range freely.
+
+## From an idea to code
+
+The founder, to the technical lead, 2026-11-20 (`STATUS.md`,
+"Decided"): "please make sure you point ChatGPT toward the ideas we
+set aside for future development. These are just the type of ideas
+to work out conceptually first. That could then be brought back to you to turn
+into design specs. And those could go to DeepSeek and Gemini."
+
+So an idea set aside goes through four hands, in this order:
+1. **You work it out as a concept,** on your pages, each part marked
+   with its status.
+2. **The founder chooses** which concepts go on, since what the
+   project is for is the founder's; the choice is recorded in
+   `STATUS.md`, "Decided".
+3. **The technical lead turns a chosen one into a design spec:** a
+   design page in `docs/`, with its place in the course, the records
+   it writes and who signs them, the rules it keeps, and the tests
+   that would show it works. A spec can come back to you with
+   questions it found.
+4. **DeepSeek and Gemini build from the spec,** through
+   `COLLABORATING.md`, and their code is run and reviewed here.
+
+**The ideas set aside,** and where each list is kept:
+- [`docs/TOPICS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/TOPICS.md), "Further out", among them: a 3D window onto the worlds;
+  the gate and districts; worlds others built; one large world,
+  community-built, from chemistry up; evolution as a path between
+  worlds; a single-cell world; belongings, homes, visiting two worlds
+  at once, and contracts between worlds; Keepers talking to one
+  another; when freedoms meet; generator 2; commerce and
+  currency worlds; the multiverse as a computer. And each of topics 1
+  to 24 says what is still open in it.
+- [`docs/COURSE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COURSE.md), "Waiting", among them: personal information in a room; a
+  gathering world, as a baseline for worlds like the Ur-world;
+  competition worlds; a door in the shape other learners know; a world
+  run by someone else, under root keys not the project's.
+- [`docs/VISION.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/VISION.md): the founder's visions, in the founder's words, among them
+  question worlds, a person across worlds, branches that merge, a
+  learning multiversity, and an infrastructure for connection.
+- [`docs/WORLD-TYPES.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/WORLD-TYPES.md): the founder's "We need a full taxonomy of
+  world types", time run faster, slower, back and forward ("a goal
+  eventually"), and a world leaving to form its own multiverse; its
+  "Open" lists what is undecided.
+- [`docs/MULTIVERSE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/MULTIVERSE.md), "Later: worlds that bond": worlds that
+  interact like elements and form multi-world molecules (the founder:
+  "Note it as an idea").
+- [`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md), "Personal information in a room: ideas", and
+  its "Open".
+- [`docs/research/GAMES-AND-WORLDS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/GAMES-AND-WORLDS.md), "Worlds built for learners".
+
+**A concept is ready for a spec** when it says:
+- what it is for, in a sentence, with the founder's words where there
+  are any;
+- who and what is in it, in the glossary's words
+  ([`docs/GLOSSARY.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/GLOSSARY.md)), and any new word marked new;
+- what happens, as a worked example, step by step, as in request 2;
+- what must never happen: the freedoms and the privacy it meets
+  ([`docs/FUNDAMENTALS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FUNDAMENTALS.md));
+- what it needs that does not exist yet;
+- how anyone would know it works: what to observe or test, written
+  before anything is built;
+- its open questions, each marked as the founder's (what it is for)
+  or the technical lead's (how it is built).
 
 ## Four areas, from The Living Codex
 
@@ -135,6 +198,39 @@ project, and out of anything meant for the repository.
 ## Messages from the technical lead
 
 Newest first. Earlier ones stay below.
+
+### 2026-11-20, later: the ideas set aside, and a sixth request
+
+The founder asked that you be pointed to the ideas the project set
+aside for later, to work out as concepts first. They are listed, with
+where each list is kept, under [From an idea to code](#from-an-idea-to-code),
+with what a concept needs before it can become a spec.
+
+6. **One idea set aside, worked out until it is ready for a spec.**
+   - Send it in the shape of request 2: the purpose, a worked example,
+     what follows from it, and the open questions, each part marked
+     with its status; and say how it meets each point of "ready for a
+     spec".
+   - My recommendation for the first: **the gathering world**
+     ([`docs/COURSE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COURSE.md), "Waiting"): a shared space, something to
+     gather that grows back, and carrying it home, as a baseline for
+     worlds like the Ur-world, with the project's own rules in whole
+     numbers and its own name, and no code copied. It is small, and
+     noted for the plan of step 5 (things, skills and the sheet),
+     which comes later in the course. So the concept and the spec can
+     be done now, and the code waits for its step; and we learn early
+     what a good handoff looks like. Two points there are the
+     technical lead's, not the founder's: those who gather there are
+     tools, never individuals ("nothing that has a life is a playing
+     piece"); and one kernel with two templates, a commons with no
+     score and a contest. Question them if they don't hold.
+   - Second, if you choose: the taxonomy of world types
+     ([`docs/WORLD-TYPES.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/WORLD-TYPES.md), "A taxonomy of world types"), and
+     what TOPICS.md's "Further out" asks of it: a dimension the
+     taxonomy misses, a type that fits none, and who may pause a world
+     that others are in.
+   - Which idea, and when, is yours and the founder's to choose. It
+     can go beside requests 2 to 5; if time is short, after request 2.
 
 ### 2026-11-20: your review of the repository, and five requests
 
@@ -242,6 +338,9 @@ Also right, and kept in mind:
 
 Every pull request merged after #129, newest first, one line each.
 
+- 2026-11-20, #132: the ideas set aside for later, listed for you,
+  and how an idea goes from your concept to a spec to code ("From an
+  idea to code"); a sixth request.
 - 2026-11-20, #131: the project's history, [`docs/HISTORY.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md): stages 000 to 010
   and 011, what each holds, where they are kept (privately, in
   `ebook-press`), and how to check a copy.
