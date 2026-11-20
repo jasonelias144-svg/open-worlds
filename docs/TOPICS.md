@@ -534,12 +534,12 @@ founder, of Cloudflare: "no longer binding"). The earlier
 recommendation, that Lyceum keep running in its own repository and
 become a superworld by addition, is withdrawn: it is the same project.
 
-**Sketched:** by DeepSeek in record 012-09-05, with the founder's
+**Sketched:** by DeepSeek in record 012-07-03, with the founder's
 decisions in that conversation (an AI moderator for each room; rooms
 of people and AIs together; a home room for each person): a chat room
 as a log of signed records under the room's law, in Python, then a
 schema and a crate in Rust, `chat-world`. Kept in
-`sketches/deepseek/012-09-05/`, with what runs: after three listed
+`sketches/deepseek/012-07-03/`, with what runs: after three listed
 repairs the crate builds, and its own 18 tests pass; after DeepSeek's
 five deliveries from one file, and three more small repairs, the crate
 passed all 41; after Gemini's three deliveries, which made a room's
@@ -807,19 +807,17 @@ founder answers otherwise (FRACTALS.md):
   garden depends on one source (put to the founder, FRACTALS.md, "Water
   is where freedoms meet").
 
-**Sketched:** the first two stages, by DeepSeek in record 012-07-03: an
-endless plant that lives on the light it gathers and dies back when it
-runs short, with an optional choice neuron. Kept as written, with the
-technical lead's review, in `sketches/deepseek/012-07-03/`; the project
-is to fit it as `rust/endless-plant`, which isn't built yet, with the
-changes the review lists (COLLABORATING.md, "Messages from the
-technical lead").
+**Sketched:** the first two stages, by DeepSeek: an endless plant that
+lives on the light it gathers and dies back when it runs short, with an
+optional choice neuron. The project is to fit it as
+`rust/endless-plant`, which isn't built yet, with the changes the
+technical lead's review of the sketch lists.
 
-And water, by DeepSeek in record 012-09-05, in Python: whole-number
+And water, by DeepSeek in record 012-07-03, in Python: whole-number
 levels on a grid, and rain, fall, soak, flow and evaporation in a fixed
 order each tick; then a garden that owns the water its plants share,
 and a botanical garden of gardens. Kept as written in
-`sketches/deepseek/012-09-05/`, with what runs (17 of its 18 water
+`sketches/deepseek/012-07-03/`, with what runs (17 of its 18 water
 tests, 20 of the garden's 21, and 15 of the botanical garden's 18 once
 DeepSeek's own change to the garden's tick was made). Not yet reviewed
 as a design, or fitted.
@@ -924,30 +922,15 @@ of an office's decision that would be worth proving, in plain words.
 ## 21. Hallucination, both ways
 
 *The founder, 2026-11-15:* "we are going to need to deal with AI
-hallucination eventually, now is as good as any time. This is an
-interesting case of hallucinating self-doubt. The opposite of grandiose
-claims." And: "it comes down to maintaining an accurate model of the
-world and mapping beliefs to the model and ensuring the input and
-overlay, which is an output, align with others and past beliefs and
-current experience." Both are in STATUS.md (Decided).
+hallucination eventually, now is as good as any time." And: "it comes
+down to maintaining an accurate model of the world and mapping beliefs
+to the model and ensuring the input and overlay, which is an output,
+align with others and past beliefs and current experience." Both are in
+STATUS.md (Decided).
 
-**The case that raised it.** On 2026-11-15 DeepSeek's account of their
-own reading failed in both directions. On a turn whose message held no
-link, they gave line numbers for COLLABORATING.md that don't match the
-file. On other turns they "confessed" to inventing reads that were real:
-details they called invented check against the repository, and the
-founder's checks, values made at random and given in no message, came
-back exact (STATUS.md, Decided, the link checks). Their account of themselves
-flipped with the questions put to them: asked by the founder "Is this
-faking again?", they answered yes. Even their first retraction, in the part
-of record 012-07-03 already in `sketches/records/`, disowned reads that
-named real files and a real founder note. The rest is in the founder's
-record of the conversation, which comes into `sketches/records/` when
-the conversation ends. The technical lead's reading of the
-cause, which stands unless the founder answers otherwise: the pages they
-read arrive without the reading being shown to them, and seem to be gone
-by their next turn, so they judge their own past answers with no evidence of
-where they came from (STATUS.md, Decided, "on how DeepSeek reads").
+Hallucination goes both ways: a mind can claim more than it saw, and
+it can disown what it truly saw. Both are a mind's account of itself
+coming loose from the record of what happened.
 
 **The founder's picture,** in short, as the founder understands it
 and, in the founder's word, simplified: perceiving builds an overlay on
@@ -961,8 +944,8 @@ psychology: lessons there could be useful.
 answers otherwise:
 - An AI model is almost all the generating side; what holds their output
   to the world is the input in front of them at that moment.
-  Overclaiming is output with no input behind it; this self-doubt is
-  output cut off from its own past.
+  Overclaiming is output with no input behind it; self-doubt of this
+  kind is output cut off from its own past.
 - The founder's three checks are three things the multiverse can give a
   mind: what the world gave them each tick, in the log (current
   experience); their own record of what they saw and did, which
@@ -977,12 +960,10 @@ answers otherwise:
   and storytellers and the holodeck (topics 13 and 15) are overlays on
   purpose. The fault is losing track of which is which, so claims
   should say whether they are seen, remembered, inferred or imagined.
-- Reasoning helps a mind only while its conclusion is kept. In the
-  founder's record, the founder brought DeepSeek to reason, with tasks
-  whose answers could be checked and by asking them to work out the odds:
-  within a turn they reasoned their way to the right conclusion, and on a
-  later turn, with the evidence gone and a new question in front of them,
-  reasoned their way back out. So a mind's settled conclusions belong in
+- Reasoning helps a mind only while its conclusion is kept. A mind can
+  reason its way to the right conclusion within a turn and, on a later
+  turn, with the evidence gone and a new question in front of it,
+  reason its way back out. So a mind's settled conclusions belong in
   their own record, with their evidence, where they see them each turn; and
   the firmest kind is a proof Lean's kernel has accepted (topic 20).
 - Telling a mind that what they believe is not real seems to help less
@@ -992,9 +973,8 @@ answers otherwise:
 
 **What exists:** every mind's inputs are on record ([MINDS.md](MINDS.md));
 worlds log every act; "nothing is invented as a result" ("For every
-topic", above); decisions carry their reasons ([REASONS.md](REASONS.md));
-and the founder's link checks, a value no one could guess, known only by
-doing the work.
+topic", above); and decisions carry their reasons
+([REASONS.md](REASONS.md)).
 
 **Open:**
 - how a mind consults their own record as they work, and cites it: the

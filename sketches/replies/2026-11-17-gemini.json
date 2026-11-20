@@ -1,7 +1,7 @@
 {
  "text": "2026-11-17-gemini.txt",
  "out": "2026-11-17-for-gemini.txt",
- "root": "sketches/deepseek/012-09-05/chat-world-now",
+ "root": "sketches/deepseek/012-07-03/chat-world-now",
  "name": "chat-world",
  "limit": 112000,
  "current": false,

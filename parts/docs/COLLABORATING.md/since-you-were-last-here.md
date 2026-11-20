@@ -8,11 +8,10 @@
 
 ## Since you were last here
 
-The last DeepSeek conversation, record 012-09-05, began from this page
+The last DeepSeek conversation, record 012-07-03, began from this page
 and went from water to the Commons; the technical lead's first answer
-is above ("Messages from the technical lead"). The one before, record
-012-07-03 (2026-11-15), began here and ended with the endless plant,
-and record 012-06-02 (2026-11-14) began here too. What they built is
+is above ("Messages from the technical lead"). Record 012-06-02
+(2026-11-14) began here too. What they built is
 kept in `sketches/` ("Where the conversation stands", below). Record
 012-05-01 ended on 2026-11-13, when everything here was Python. What
 has changed since that record, in the order to read it:
@@ -242,7 +241,7 @@ which course step it relates to, and whether any of it is in open-worlds.
 Its "Course" column uses the first course's step numbers for records
 012-04-00 and 012-05-01 ("Done: the first course" in
 [COURSE.md](COURSE.md) is the key), and the course now running for
-records 012-06-02 and 012-07-03.
+record 012-06-02 and after.
 
 **Taking a piece in is a decision of its own** (the founder, 2026-11-15:
 "Also, keep in mind, we expect DeepSeek code to have some things to fix,
@@ -289,10 +288,7 @@ themselves, and a world that keeps running); 012-06-02, a new cycle
 begun from this page (fractal worlds, a gallery of worlds and its
 governance, then the smallest learner that chooses, and individuals as
 signed, replayable bundles), which ended with DeepSeek asking which
-piece is next; 012-07-03, begun here too: the endless plant, the
-first stage of living worlds, as a design and a sketch crate in Rust,
-which the project is to fit as `rust/endless-plant` (not built yet);
-and 012-09-05, begun here: water as particles, the garden and a
+piece is next; and 012-07-03, begun here: water as particles, the garden and a
 botanical garden of gardens, then the founder's turn to the Commons
 as chat rooms, each with an AI moderator, a home room for each person,
 a schema, and a sketch crate in Rust, `chat-world`. It is kept with a

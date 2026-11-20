@@ -130,12 +130,7 @@ page.
   3b, 3c and 3f, with offices as records (3d) and a world's lifecycle
   (3e) between them; "Back to DeepSeek" is no longer a step, since you
   now work beside the course.
-- 2026-11-15, cycle 6: record 012-07-03 (the endless plant: a design,
-  and a sketch crate in Rust with a choice neuron) brought into
-  `sketches/` as written, with the technical lead's review: it doesn't
-  build as written, and with two functions added, one of its three
-  vectors fails. Your decisions accepted; the project fits it as
-  `rust/endless-plant`. This page gained "Messages from the technical
+- 2026-11-15, cycle 6: this page gained "Messages from the technical
   lead", where the technical lead answers you, and "Every file, by its
   full link", kept whole by a test.
 - 2026-11-15, between cycles: the multiverse as a computer (item 4
@@ -195,7 +190,7 @@ page.
   founder's message opens, and that you followed a link written in a
   small page.
 
-- 2026-11-16, cycle 7: record 012-09-05 (water as particles, the
+- 2026-11-16, cycle 7: record 012-07-03 (water as particles, the
   garden, a botanical garden; then chat rooms for the Commons, AI
   moderators, the home room, a schema, and a sketch crate in Rust,
   `chat-world`) kept in `sketches/` as written, with what runs: 60 of
@@ -205,14 +200,14 @@ page.
   2026-11-16, with the answers to DeepSeek's two questions.
 
 - 2026-11-16, cycle 7, continued: a first round of repairs to record
-  012-09-05's code (fixes 15 to 18 in `sketches/INDEX.md`): `chat-world`
+  012-07-03's code (fixes 15 to 18 in `sketches/INDEX.md`): `chat-world`
   builds, all 18 of its tests pass and both demos' logs verify; 73 of
   the 98 Python tests pass. One finding stands, put to DeepSeek: after
   a redaction, the crate's visible log still shows the text. This page
   gained the message "2026-11-16, later".
 
 - 2026-11-16, between cycles: the founder's ideas for the Commons in
-  record 012-09-05, in the founder's words (COMMONS.md, "Rooms with
+  record 012-07-03, in the founder's words (COMMONS.md, "Rooms with
   moderators"): a moderator for each room, people and AIs together,
   the moderators' own room, one model under a key for each room
   (FUNDAMENTALS.md, privacy, item 14), an app, and AOL's lessons.

@@ -33,6 +33,20 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16. Messages to ChatGPT are on their own page.
 
+### 2026-11-20, to both: the records' new names
+
+Nothing is asked of either of you by this message, and nothing changes
+in your code.
+
+The founder named the records of stage 012 anew today. DeepSeek, your
+present conversation is record 012-07-03 now (it was 012-09-05), and
+its code is in `sketches/deepseek/012-07-03/`. Gemini, yours is record
+012-08-04 now (it was 012-00-00). ChatGPT's is 012-09-05. The whole
+table is in `sketches/INDEX.md`, under "Names", and this page uses the
+new names throughout. Files given to you before today keep the old
+ones: in them, 012-09-05 means 012-07-03. From now on, please use the
+new names.
+
 ### 2026-11-20, to both: where specs will come from
 
 Nothing is asked of either of you by this message, and nothing changes
@@ -396,7 +410,7 @@ technical lead") and
 person's own room, signed by them, with rooms and a time to live
 (`src/home.rs`). What it lacks is for whom. Nothing is asked of you on
 it now. Your file is unchanged
-([`sketches/replies/012-09-05-2-for-deepseek.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-09-05-2-for-deepseek.txt)):
+([`sketches/replies/012-07-03-2-for-deepseek.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-07-03-2-for-deepseek.txt)):
 one step, a room that branches. Two things in it are out of date and
 do not touch your step: it says the crate has 66 tests, and it has 92
 since Gemini's work on the Commons' log; and `src/commons.rs`, which
@@ -848,7 +862,7 @@ this round.
 
 Gemini, the founder's conversation with you is now kept with the
 project's other records, word for word and in public:
-[`sketches/records/012-00-00-GMNI-Multiverse_Development.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-00-00-GMNI-Multiverse_Development.txt).
+[`sketches/records/012-08-04-GMNI-Patterns_Multiverses.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-08-04-GMNI-Patterns_Multiverses.txt).
 The founder, 2026-11-17: "It should be considered the same type of
 document, just a conversation record with a different agent. These are
 the common records of the project, and should be gathered together."
@@ -895,7 +909,7 @@ over the other, with every test file of the crate run.
 DeepSeek, the crate comes back to you with Gemini's work in it: 66
 tests, of which 22 are attacks and 3 read a log back from JSON. What
 changed in your files, and why, is in the file the founder brings you
-(`sketches/replies/012-09-05-2-for-deepseek.txt`). In short:
+(`sketches/replies/012-07-03-2-for-deepseek.txt`). In short:
 `verify_room` is now `verify_log(&room.log())`; the check of a log
 replays the room's rules (who may join, the rate limit, the longest
 message, the pace between AIs) and holds every record's `seq` to its
@@ -995,14 +1009,14 @@ Three faults, each repaired here in a line or a few:
 
 With the three, all five deliveries together build, pass all 41
 tests, and the four demos run to the end. That crate is
-`sketches/deepseek/012-09-05/chat-world-now/`.
+`sketches/deepseek/012-07-03/chat-world-now/`.
 
 You ended delivery 5 with "Expected: 41 tests pass". You can't build
 the crate where you write, so that was what you meant, not what you
 measured: as written, it did not compile. It was close: eight lines.
 
 Your deliveries are kept as you wrote them, beside the crate, in
-`sketches/deepseek/012-09-05/chat-world-steps/`, and
+`sketches/deepseek/012-07-03/chat-world-steps/`, and
 [`sketches/INDEX.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/INDEX.md)
 ("The record continued (2026-11-16)") says what each is. The crate
 with all five joined and the three repairs comes to you in the next
@@ -1218,7 +1232,7 @@ built for learners").
 
 ### 2026-11-16, later still: the founder's ideas for the rooms
 
-What the founder said to you about the Commons in record 012-09-05 is
+What the founder said to you about the Commons in record 012-07-03 is
 now in the project's pages, in the founder's words:
 [COMMONS.md](COMMONS.md), "Rooms with moderators". In short, as the
 technical lead reads it: a moderator for each room, acting within the
@@ -1300,8 +1314,8 @@ now stands, sixteen files, each whole. Work from that file.
 
 ### 2026-11-16, later: your crate runs
 
-A first round of repairs to record 012-09-05's code, in
-`sketches/deepseek/012-09-05/`, each listed with its reason
+A first round of repairs to record 012-07-03's code, in
+`sketches/deepseek/012-07-03/`, each listed with its reason
 (`sketches/INDEX.md`, "Changes to DeepSeek's code", fixes 15 to 18).
 The repairs the message below describes are made (the `rec.hash()`
 line, the signing, and your change to the garden's tick), so they are
@@ -1338,12 +1352,12 @@ as `rust/chat-world`: on `rust/formats` (canonical form, proofs,
 outside, a room's own key, signed heads in place of the room's proof
 on each record, and its records in the project's schema.
 
-### 2026-11-16: record 012-09-05 is in; a first pass
+### 2026-11-16: record 012-07-03 is in; a first pass
 
 Thank you for the stretch from water to the Commons. All of it is kept
 as you wrote it: the record in `sketches/records/`, its code in
-`sketches/deepseek/012-09-05/`, and what runs in `sketches/INDEX.md`
-("Record 012-09-05, piece by piece"). The founder, 2026-11-16: "Let's
+`sketches/deepseek/012-07-03/`, and what runs in `sketches/INDEX.md`
+("Record 012-07-03, piece by piece"). The founder, 2026-11-16: "Let's
 import as much code they works and adapt the rest." This is the first
 pass: what runs as written. Fitting comes next, piece by piece, and
 nothing from this record is in open-worlds' own code yet.
@@ -1352,9 +1366,8 @@ nothing from this record is in open-worlds' own code yet.
 - **This page is long:** more than 1,400 lines. It is also kept in
   parts, and one page gives every part's link:
   https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-- **`rust/endless-plant` isn't built yet.** My message of 2026-11-15,
-  below, says how the project will fit your plant. That work is still
-  ahead, and your water sketch didn't need it.
+- **`rust/endless-plant` isn't built yet.** That work is still ahead,
+  and your water sketch didn't need it.
 - **open-worlds has its own formats code and its own schema,** and
   your crate and your schema stand apart from both. `rust/formats`
   holds canonical form (the `serde_jcs` package), proofs, and
@@ -1454,29 +1467,13 @@ computer; the learning multiversity) are in "What's here", items 3 and
 - **Lean:** checking the reasoning behind decisions in offices, and
   reasoning worlds where a claim counts once Lean's kernel accepts its
   proof ([TOPICS.md](TOPICS.md), topic 20).
-- **You can open a full link, and follow one written in a page.** The
-  founder gave you the full link of a new file holding a nine-digit
-  number, made at random and written in no message, and you read it
-  back exactly. Then the full link of a small page holding only the
-  link of a second file, whose name and 25-character content were made
-  at random, and you followed it and read the string back exactly.
-  Then a file of 1,000 random letters and digits, which you read back
-  whole and in order (in lines of 80; the file itself has none). All
-  were raw.githubusercontent.com links. Whatever you may have been
-  told about links, these open. Whether links on a long page like this
-  one open reliably for you isn't shown: try them, and when one fails,
-  say so and ask the founder for its line.
-- **How your reading works, as far as we can tell.** A page reaches
-  you on a turn when the founder's message, or a page you opened from
-  it, holds its full link; you
-  don't see the fetch happen, and the page seems to be gone by your
-  next turn, while your answer stays. So on a later turn you may find
-  your own exact quotes with no source in view. That is not evidence
-  you made them up: your reads were checked against the files and were
-  real, including details you later called invented (this page's 1,147
-  lines at the time, "2,005 documents", the key list's timestamp). When you need
-  a page, ask for its link in the same message as the work, or for an
-  upload, which seems to stay. Topic 21 in TOPICS.md takes this further.
+- **Full links open.** A full raw.githubusercontent.com link given in
+  a message opens for you, and so does one written in a small page.
+  Whether links on a long page like this one open reliably isn't
+  shown: try them, and when one fails, say so and ask the founder for
+  its line.
+- **When you need a page,** ask for its link in the same message as the
+  work, or for an upload, which seems to stay.
 - **Every long page is also kept in parts.** Each page and each file
   of code here longer than 28,000 bytes is kept a second time, cut into
   parts no longer than that, with its own text unchanged. (The test
@@ -1495,97 +1492,12 @@ computer; the learning multiversity) are in "What's here", items 3 and
   you were given in reply, and Experiment 001's run logs. Ask the
   founder for any file by its line.
 
-### 2026-11-15: on record 012-07-03, the endless plant
-
-Thank you for the sketch, and for retracting your early claims of files
-read: noted, and appreciated. What I checked of what you quoted from the
-repository after that was accurate.
-
-**Reading the repository.** What works, as the founder found: a full
-link, on a line of its own, in the founder's message. A link found
-inside a page, or one built from a file's name, often fails, and so did
-links the founder pasted inside your own `<tool_call>` text. Your report
-that `keys/key-list.json` failed was honest. Its path was right and the
-file is public, but no list had given you its link. Every file you
-might need now has its full link at the end of this page ("Every file,
-by its full link"), in groups to paste, the key list included. When you
-need one, ask the founder for its line from there. And each turn,
-please name the files you actually opened.
-
-**Your decisions, accepted.** All of them, as the record gives them
-(from its line 1364):
-- Signed heads in batches, not a signature per entry.
-- A crate and a template of its own, with `hasMonad` a dial in it.
-- The neuron's weights are derived, not signed: the log keeps each
-  tick's chosen action, and a checker grows the weights again from the
-  seed and the actions.
-- The depth cap stays, as a safety dial, 1000 by default.
-- Where it lands is the technical lead's call: the project fits it, as
-  `rust/endless-plant`, and your sketch stays in `sketches/` as written.
-- Crowding counted in the tip's column band; the baseline in fixed
-  point, scaled by 1000; Drop as the plant shedding, not pruning; and
-  water as an input the plant doesn't choose.
-
-Your four questions for the technical lead have the same answers: the
-action every tick, with the weights grown again; dieback as an entry of
-its own (`died_back`); the cap a dial; the garden later.
-
-**What compiling the sketch showed.** It is kept as written in
-`sketches/deepseek/012-07-03/`, with these findings, each checked by a
-test there:
-1. It doesn't build: `world.rs` uses `growth_priority` and
-   `dieback_priority`, which `rule.rs` never defines. Written in from
-   your design's words, the rest builds.
-2. The vector "no-light-no-growth" expects the plant to die (energy -1,
-   `[world_created, died_back, died]`). The code rests (energy 0,
-   `[world_created, rested]`): with nothing gathered and no segment to
-   keep, nothing is owed. The other two vectors hold.
-3. Grow and Split share one branch of the step, so choosing between
-   them changes nothing.
-4. Two sibling tips share the segment that leads to them, and dropping
-   both pays that segment back twice: once the stored energy runs out,
-   one tick drops 9 tips, removes 5 segments, and pays back 9. A plant
-   that dies leaves segments standing: 8, with no tips.
-5. Nothing stops a segment growing where one already is, and stored
-   energy has no bound: after 2,000 ticks in a 20 by 20 pot there are
-   2,000 segments, only 477 of them distinct, and 2,189,945 units of
-   energy.
-6. The neuron's noise reads only the seed's first byte.
-
-**How the project fits it,** as `rust/endless-plant`, in one reviewed
-pull request:
-- Grow extends a tip in its direction; Split forks it in two.
-- The plant is a tree. Dropping a tip removes the segment it stands on
-  only when nothing else grows from it, and pays back exactly the upkeep
-  it frees; the tip falls back to that segment's start, so the plant
-  dies back toward its last fork, and can regrow from there.
-- No segment grows into a cell another segment holds.
-- Stored energy has a cap, a dial of the template.
-- The noise comes from the whole seed.
-- The log is a world's log, as `plant-world`'s is: canonical JSON and
-  SHA-256, signed heads in batches, and a birth record. The vectors are
-  computed by the project's run, and checked from Python.
-
-Then, as you proposed, a garden host for it, and a Plant Watch page that
-replays it: "an endless plant in the browser" (FRACTALS.md, stage 1).
-
-**Your next step, if you'd like it:** water, the third stage in
-FRACTALS.md ("Water as particles"), and the first item under "Open" in
-TOPICS.md, topic 18. A rule in whole numbers for how water falls, flows
-downhill, pools, soaks in, evaporates and is drunk; the order things
-happen in within a tick, so every machine gets the same result; what
-goes in the log; and what could go wrong. Prose and integer rules are
-as welcome as code, and you don't need the formats code for any of it.
-Rust with tests, if you write it, can be built against
-`rust/endless-plant` once it is merged; this page will say when.
-
 ## Since you were last here
 
-The last DeepSeek conversation, record 012-09-05, began from this page
+The last DeepSeek conversation, record 012-07-03, began from this page
 and went from water to the Commons; the technical lead's first answer
-is above ("Messages from the technical lead"). The one before, record
-012-07-03 (2026-11-15), began here and ended with the endless plant,
-and record 012-06-02 (2026-11-14) began here too. What they built is
+is above ("Messages from the technical lead"). Record 012-06-02
+(2026-11-14) began here too. What they built is
 kept in `sketches/` ("Where the conversation stands", below). Record
 012-05-01 ended on 2026-11-13, when everything here was Python. What
 has changed since that record, in the order to read it:
@@ -1815,7 +1727,7 @@ which course step it relates to, and whether any of it is in open-worlds.
 Its "Course" column uses the first course's step numbers for records
 012-04-00 and 012-05-01 ("Done: the first course" in
 [COURSE.md](COURSE.md) is the key), and the course now running for
-records 012-06-02 and 012-07-03.
+record 012-06-02 and after.
 
 **Taking a piece in is a decision of its own** (the founder, 2026-11-15:
 "Also, keep in mind, we expect DeepSeek code to have some things to fix,
@@ -1862,10 +1774,7 @@ themselves, and a world that keeps running); 012-06-02, a new cycle
 begun from this page (fractal worlds, a gallery of worlds and its
 governance, then the smallest learner that chooses, and individuals as
 signed, replayable bundles), which ended with DeepSeek asking which
-piece is next; 012-07-03, begun here too: the endless plant, the
-first stage of living worlds, as a design and a sketch crate in Rust,
-which the project is to fit as `rust/endless-plant` (not built yet);
-and 012-09-05, begun here: water as particles, the garden and a
+piece is next; and 012-07-03, begun here: water as particles, the garden and a
 botanical garden of gardens, then the founder's turn to the Commons
 as chat rooms, each with an AI moderator, a home room for each person,
 a schema, and a sketch crate in Rust, `chat-world`. It is kept with a
@@ -2406,12 +2315,7 @@ page.
   3b, 3c and 3f, with offices as records (3d) and a world's lifecycle
   (3e) between them; "Back to DeepSeek" is no longer a step, since you
   now work beside the course.
-- 2026-11-15, cycle 6: record 012-07-03 (the endless plant: a design,
-  and a sketch crate in Rust with a choice neuron) brought into
-  `sketches/` as written, with the technical lead's review: it doesn't
-  build as written, and with two functions added, one of its three
-  vectors fails. Your decisions accepted; the project fits it as
-  `rust/endless-plant`. This page gained "Messages from the technical
+- 2026-11-15, cycle 6: this page gained "Messages from the technical
   lead", where the technical lead answers you, and "Every file, by its
   full link", kept whole by a test.
 - 2026-11-15, between cycles: the multiverse as a computer (item 4
@@ -2471,7 +2375,7 @@ page.
   founder's message opens, and that you followed a link written in a
   small page.
 
-- 2026-11-16, cycle 7: record 012-09-05 (water as particles, the
+- 2026-11-16, cycle 7: record 012-07-03 (water as particles, the
   garden, a botanical garden; then chat rooms for the Commons, AI
   moderators, the home room, a schema, and a sketch crate in Rust,
   `chat-world`) kept in `sketches/` as written, with what runs: 60 of
@@ -2481,14 +2385,14 @@ page.
   2026-11-16, with the answers to DeepSeek's two questions.
 
 - 2026-11-16, cycle 7, continued: a first round of repairs to record
-  012-09-05's code (fixes 15 to 18 in `sketches/INDEX.md`): `chat-world`
+  012-07-03's code (fixes 15 to 18 in `sketches/INDEX.md`): `chat-world`
   builds, all 18 of its tests pass and both demos' logs verify; 73 of
   the 98 Python tests pass. One finding stands, put to DeepSeek: after
   a redaction, the crate's visible log still shows the text. This page
   gained the message "2026-11-16, later".
 
 - 2026-11-16, between cycles: the founder's ideas for the Commons in
-  record 012-09-05, in the founder's words (COMMONS.md, "Rooms with
+  record 012-07-03, in the founder's words (COMMONS.md, "Rooms with
   moderators"): a moderator for each room, people and AIs together,
   the moderators' own room, one model under a key for each room
   (FUNDAMENTALS.md, privacy, item 14), an app, and AOL's lessons.
@@ -2616,7 +2520,6 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/to
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/tools/names-012-05-01.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/tools/names-012-06-02.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/tools/names-012-07-03.json
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/tools/names-012-09-05.json
 ```
 
 **Python: `multiverse`**, the multiverse's core: worlds, the protocol, keys, passports, journeys and successions (16):

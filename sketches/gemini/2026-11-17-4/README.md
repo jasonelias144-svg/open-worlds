@@ -11,7 +11,7 @@ own two files, `src/doors.rs` and `tests/doors_attack.rs`.
 ## Where it comes from
 
 The conversation is
-[../../records/012-00-00-GMNI-Multiverse_Development.txt](../../records/012-00-00-GMNI-Multiverse_Development.txt),
+[../../records/012-08-04-GMNI-Patterns_Multiverses.txt](../../records/012-08-04-GMNI-Patterns_Multiverses.txt),
 which has grown again. This delivery begins at its line 17958, where
 Gemini quotes back the last line of the file they were given, as the
 file asked. The copy kept before is a prefix of the new one, byte for
@@ -20,7 +20,7 @@ byte.
 [MANIFEST.json](MANIFEST.json) gives, for each file in `steps/`, the
 lines of the conversation it was taken from and its SHA-256.
 [take.py](take.py) takes them out of the record again and compares
-them with the files here; the test of `../../deepseek/012-09-05/`
+them with the files here; the test of `../../deepseek/012-07-03/`
 runs it, in CI.
 
 ## What it is, and what ran
@@ -29,7 +29,7 @@ Two files, kept as written in `steps/1`: `src/doors.rs`, the list of
 doors again, and `tests/doors_attack.rs`, still 25 tests.
 
 Laid over the crate, every test file run, on 2026-11-18
-(`sh ../../deepseek/012-09-05/review/steps.sh`, stage `now`, which CI
+(`sh ../../deepseek/012-07-03/review/steps.sh`, stage `now`, which CI
 doesn't run):
 
 | Delivery | Gemini expected | Measured |
@@ -37,7 +37,7 @@ doesn't run):
 | The five repairs | "152 of 152 tests pass [...] with 0 failing" | 152 of 152 |
 
 Nothing was repaired here. Both files are in the crate as it stands,
-`../../deepseek/012-09-05/chat-world-now/`: 152 tests in 32 files.
+`../../deepseek/012-07-03/chat-world-now/`: 152 tests in 32 files.
 
 ## The five repairs
 

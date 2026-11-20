@@ -204,7 +204,7 @@
   to the collaboration page, and take it from there." So the technical
   lead's messages to DeepSeek are in docs/COLLABORATING.md ("Messages
   from the technical lead"), and every file's full link is at the end of
-  that page. And to DeepSeek, in record 012-07-03 (line 1359): "On your
+  that page. And to DeepSeek, the same day: "On your
   questions for me, which if I understood were all design questions that
   could go any way. You ask for my judgement, but on those questions, I
   defer to your judgement. It is the only way this whole project moves

@@ -220,9 +220,8 @@ technical lead's. Each part is one reviewed pull request.
 
    Next: the endless plant of living worlds' first stage, run the same
    way, with checkpoints so it can run for hours. DeepSeek sketched it,
-   with stage 2's neuron, in record 012-07-03; the sketch is kept with
-   the technical lead's review in `sketches/deepseek/012-07-03/`, and the
-   project is to fit it as `rust/endless-plant` (not built yet).
+   with stage 2's neuron, and the project is to fit it as
+   `rust/endless-plant` (not built yet).
 5. **More families, and choice.** Automata and chaos games, as DeepSeek
    sketched them; then primitive learning models that choose (DeepSeek's
    lookup table and four-unit network; the learning and choosing monad,
@@ -288,7 +287,7 @@ stands unless the founder answers otherwise.
    it signs nothing as the world.
 2. **A choice neuron** (part 5). One per plant, at first. At each tip
    it reads a few numbers and chooses: grow, split, rest, or shed
-   (DeepSeek's sketch, record 012-07-03, as accepted: Grow extends a
+   (DeepSeek's sketch, as accepted: Grow extends a
    tip, Split forks it, and shedding drops a tip). In the sketch, it
    reads light, shade, height, crowding, energy and age, and its reward
    is the tick's change in energy; water comes later, as an input the

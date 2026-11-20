@@ -1,7 +1,7 @@
 {
- "text": "012-09-05.txt",
- "out": "012-09-05-for-deepseek.txt",
- "root": "sketches/deepseek/012-09-05/chat-world",
+ "text": "012-07-03.txt",
+ "out": "012-07-03-for-deepseek.txt",
+ "root": "sketches/deepseek/012-07-03/chat-world",
  "name": "chat-world",
  "limit": 120000,
  "current": true,

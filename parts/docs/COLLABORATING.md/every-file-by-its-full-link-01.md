@@ -62,7 +62,6 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/to
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/tools/names-012-05-01.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/tools/names-012-06-02.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/tools/names-012-07-03.json
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/tools/names-012-09-05.json
 ```
 
 **Python: `multiverse`**, the multiverse's core: worlds, the protocol, keys, passports, journeys and successions (16):

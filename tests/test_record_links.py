@@ -60,7 +60,7 @@ class TestRecordLinks(unittest.TestCase):
         self.assertEqual(links_in(text), ["docs/A.md", "docs/B.md"])
 
     def test_a_link_ends_where_markup_begins(self):
-        # Record 012-07-03 writes links inside tool-call markup.
+        # A record may write links inside tool-call markup.
         text = ("<tool_call>fetch_url: https://raw.githubusercontent.com/" +
                 REPO + "/main/docs/C.md</tool_call>")
         self.assertEqual(links_in(text), ["docs/C.md"])

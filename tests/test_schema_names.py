@@ -1,6 +1,6 @@
 """docs/research/CHAT-SCHEMA.md names every definition in both schemas.
 
-The page sets DeepSeek's schema (record 012-09-05) beside the project's
+The page sets DeepSeek's schema (record 012-07-03) beside the project's
 own, name by name, as the first step toward one schema that fits both.
 A definition added to either file, or left off the page, fails here.
 
@@ -15,7 +15,7 @@ import unittest
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGE = os.path.join(ROOT, "docs", "research", "CHAT-SCHEMA.md")
 OURS = os.path.join(ROOT, "schemas", "records-v1.schema.json")
-THEIRS = os.path.join(ROOT, "sketches", "deepseek", "012-09-05", "schemas",
+THEIRS = os.path.join(ROOT, "sketches", "deepseek", "012-07-03", "schemas",
                       "records-v1.schema.json@8640")
 
 

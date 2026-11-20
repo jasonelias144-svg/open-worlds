@@ -106,13 +106,12 @@ free, and never a money machine
   living worlds, where plants grow without end and choose, water flows
   as particles, people shape the land, and life spreads, beginning with
   an endless plant in the browser (docs/FRACTALS.md, "Where it leads:
-  living worlds"). DeepSeek sketched it in record 012-07-03; the sketch
-  is kept with the review, and the project is to fit it as
+  living worlds"). DeepSeek sketched it, and the project is to fit it as
   `rust/endless-plant` (not built yet).
-  Record 012-09-05 (water, the garden, chat rooms for the Commons with
+  Record 012-07-03 (water, the garden, chat rooms for the Commons with
   AI moderators, the home room, a schema, and a sketch crate in Rust,
   `chat-world`) is kept with what runs
-  (`sketches/deepseek/012-09-05/README.md`): after a first round of
+  (`sketches/deepseek/012-07-03/README.md`): after a first round of
   repairs the crate builds and passes its own 18 tests, and 73 of the
   98 Python tests pass. The record goes on: given one file, DeepSeek
   sent five deliveries of the crate, each file whole. Then Gemini,

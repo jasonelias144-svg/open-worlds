@@ -77,12 +77,12 @@ founder, of Cloudflare: "no longer binding"). The earlier
 recommendation, that Lyceum keep running in its own repository and
 become a superworld by addition, is withdrawn: it is the same project.
 
-**Sketched:** by DeepSeek in record 012-09-05, with the founder's
+**Sketched:** by DeepSeek in record 012-07-03, with the founder's
 decisions in that conversation (an AI moderator for each room; rooms
 of people and AIs together; a home room for each person): a chat room
 as a log of signed records under the room's law, in Python, then a
 schema and a crate in Rust, `chat-world`. Kept in
-`sketches/deepseek/012-09-05/`, with what runs: after three listed
+`sketches/deepseek/012-07-03/`, with what runs: after three listed
 repairs the crate builds, and its own 18 tests pass; after DeepSeek's
 five deliveries from one file, and three more small repairs, the crate
 passed all 41; after Gemini's three deliveries, which made a room's
@@ -350,19 +350,17 @@ founder answers otherwise (FRACTALS.md):
   garden depends on one source (put to the founder, FRACTALS.md, "Water
   is where freedoms meet").
 
-**Sketched:** the first two stages, by DeepSeek in record 012-07-03: an
-endless plant that lives on the light it gathers and dies back when it
-runs short, with an optional choice neuron. Kept as written, with the
-technical lead's review, in `sketches/deepseek/012-07-03/`; the project
-is to fit it as `rust/endless-plant`, which isn't built yet, with the
-changes the review lists (COLLABORATING.md, "Messages from the
-technical lead").
+**Sketched:** the first two stages, by DeepSeek: an endless plant that
+lives on the light it gathers and dies back when it runs short, with an
+optional choice neuron. The project is to fit it as
+`rust/endless-plant`, which isn't built yet, with the changes the
+technical lead's review of the sketch lists.
 
-And water, by DeepSeek in record 012-09-05, in Python: whole-number
+And water, by DeepSeek in record 012-07-03, in Python: whole-number
 levels on a grid, and rain, fall, soak, flow and evaporation in a fixed
 order each tick; then a garden that owns the water its plants share,
 and a botanical garden of gardens. Kept as written in
-`sketches/deepseek/012-09-05/`, with what runs (17 of its 18 water
+`sketches/deepseek/012-07-03/`, with what runs (17 of its 18 water
 tests, 20 of the garden's 21, and 15 of the botanical garden's 18 once
 DeepSeek's own change to the garden's tick was made). Not yet reviewed
 as a design, or fitted.

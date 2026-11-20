@@ -194,7 +194,7 @@
     closed room includes a test that no one outside it can read its
     words ([COMMONS.md](COMMONS.md)). Not yet built.
 14. **A moderator's rooms are apart.** The founder (to DeepSeek, record
-    012-09-05, line 6732, brought in 2026-11-16): "one model could still
+    012-07-03, line 6732, brought in 2026-11-16): "one model could still
     mean many keys. Perhaps the same model is sandboxed from itself. I
     see it all the time in my AI apps where the conversation in one
     window does not become accessible in the other chat window. They are

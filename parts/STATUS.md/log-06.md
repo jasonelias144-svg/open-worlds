@@ -8,6 +8,17 @@
 
 ## Log
 
+- 2026-11-20 Claude: the records of stage 012 under the founder's new
+  names (#135). DeepSeek's present record is 012-07-03 and its code
+  `sketches/deepseek/012-07-03/`; Gemini's is 012-08-04; ChatGPT's,
+  not kept here, 012-09-05. Each page, script and spec that named
+  them uses the new names; the replies given before keep the old ones,
+  as given. Records 012-07-03 and 012-08-04 are as the founder now
+  holds them, longer than before; what is new in them is not yet kept
+  or built. Record 012-05-01 is too, one empty line shorter at its
+  end. At the founder's word, part of what was here is kept privately
+  from now on, and the pages that spoke of it are changed to match.
+
 - 2026-11-20 Claude: stage 012's name, Code, and its file's,
   `012_Code.txt`, at the founder's word, on the history page (#134).
 
@@ -58,13 +69,13 @@
   explores, the four areas, where to start, how to send something,
   the technical lead's first message with five requests, what
   changed, and their records. Looked at first: the founder's two
-  conversation records with ChatGPT, 011-16-CGPT and 012-00-00-CGPT,
+  conversation records with ChatGPT, 011-16-CGPT and 012-09-05-CGPT,
   read whole, and ChatGPT's review of the repository in the second, held
   to the repository. `main` is still `c69e74d`, with 1,398 files;
   the Rust workspace passes 247 tests and the Python suite 857, with
   RDKit required, as ChatGPT said. Their three findings were real,
-  and are fixed: the endless plant's README said its crate was
-  built; COMMONS.md had a lookup in the Library on the record, which
+  and are fixed: a sketch's README said the crate
+  `rust/endless-plant` was built; COMMONS.md had a lookup in the Library on the record, which
   the decision of 2026-11-17 took back; URWORLD.md and
   COLLABORATING.md had ALICE and BOB begin in the garden.
   COLLABORATING.md tells DeepSeek and Gemini, in a message to both;
@@ -144,7 +155,7 @@
   and must gain the new line. Neither copy is kept, and nothing of
   them is in the repository. The two reply files before this one
   are no longer current. Also: the build scripts and the status
-  test under sketches/deepseek/012-09-05, which are the project's
+  test under sketches/deepseek/012-07-03, which are the project's
   own, said "its" of DeepSeek and of Gemini in nine places, and say
   "their" now; the sweep of 2026-11-17 had left `sketches/` out
   whole. Not checked: Gemini's twenty unchanged attacks, line by

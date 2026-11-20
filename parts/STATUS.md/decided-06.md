@@ -6,6 +6,80 @@
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-05.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
+- 2026-11-17, founder, which of Gemini's models. "And here is the
+  question: with Argon we only get a few replies, and they seem to be
+  of high quality, but the other model can provide many more replies,
+  but not the same quality. Which do you prefer? I prefer Argon and a
+  few responses each time. But you saw code form both, which would you
+  prefer?" The technical lead answered the same, and that they had not
+  seen the other model's code: the record holds only the answers the
+  founder kept, and of the reply that was replaced it holds one
+  sentence, Argon's own account of it (the record with Gemini, line
+  13532). The founder: "Ok, you answered my question already. Sounds
+  good. We are in the same page." So, decided: Gemini's rounds are
+  with the model the founder calls Argon, a few replies at a time.
+- 2026-11-17, founder, a few pieces at a time. Bringing Gemini's
+  second round back: "This was quick, but, to be honest, integrating a
+  few new pieces of code at a time is the norm. Coming back with a
+  whole bunch of new code isn't usually how things are done. This
+  incremental, but seems right at this stage anyways, since much of
+  the large scale ideas have been sketched out, at least. At this
+  point, building the parts makes sense, we have enough ideas to keep
+  up busy for a year." Read by the technical lead as a direction for
+  how the work goes from here, which stands unless the founder answers
+  otherwise: (1) a collaborator's round is a few pieces, brought back
+  and joined before the next begins, not a large batch; (2) the weight
+  moves from sketching new ideas to building the parts already
+  sketched, and the ideas on record (docs/TOPICS.md, docs/VISION.md)
+  are what is built from; (3) a new idea is still recorded when it
+  comes, and built in its turn. The technical lead agrees, from what
+  was measured: the rounds that came back as a few whole files were
+  each built as given in the session they came back in, and the large
+  records needed the repairs sketches/INDEX.md lists before they ran.
+- 2026-11-17, founder, the conversation records are kept together, and
+  whole. Asked whether the conversation with Gemini should be kept in
+  the private repository: "You can include the Gemini conversation
+  record with the DeepSeek records. It should be considered the same
+  type of document, just a conversation record with a different agent.
+  These are the common records of the project, and should be gathered
+  together. I have tons of such files from the whole project, which we
+  can gather later, but yes, it should go with the rest. It doesn't
+  contain anything that suggests holding it back for now." The
+  technical lead then said what that record holds that the public
+  records did not: the founder's own work by its title, and what the
+  founder says in it about that work and about themself. The founder,
+  the same day: "All public now. I intentionally release bits and
+  pieces of information about myself in my conversations. I am aware
+  while typing that all I type will be public. Please add this to the
+  rest. I will tell you, like the file from yesterday for private use
+  only. It is good to check, but you can assume that I am aware of
+  what information I release, and assume that if I did not say, then
+  it is probably fine. But I make mistakes and forget things, so it is
+  good to check, even if it is usually unnecessary. I am hyperaware of
+  this topic and extremely careful. I even mention facts, "off the
+  cuff", but it is a controlled disclosure, more intentional than it
+  appears, and only clear when all files are taken together as a
+  whole. … Long story short, keep the Gemini records with the rest."
+  (A few sentences are left out at the mark: they say more about how
+  the founder does this, and are the founder's to publish.)
+  So, decided: (1) the conversation with Gemini is a record like the
+  others, and is kept with them, whole
+  (sketches/records/012-08-04-GMNI-Patterns_Multiverses.txt);
+  (2) from now on a conversation record the founder brings is public,
+  with the rest, unless the founder says it is private; (3) it is
+  still looked through first, and the founder is told what was found,
+  but it is not held back for what the founder says in it about their
+  own life and work. This replaces one sentence of the entry of
+  2026-11-16 on naming Gemini, "a conversation is kept in public only
+  when it holds nothing personal, and the founder says which", and
+  adds to the founder's rule of 2026-11-13 on personal data
+  (AGENTS.md, "Always"). The technical lead's reading of where it
+  stops, which stands unless the founder answers otherwise: it covers
+  what the founder says about themself in a record. It does not cover
+  another person's details, a key or a password, or a collaborator's
+  reasoning text; those still go to the founder first. And the pages
+  the technical lead writes go on naming the founder by first name
+  only, and the founder's work without its title.
 - 2026-11-16, founder, two roles. "One note. We should separate my
   role as Project Founder, which will always be a matter of history.
   As opposed to the role of Project Director, which I occupy now, but
@@ -255,7 +329,7 @@
   So: the comparison is taken seriously, and held where it fits, for
   its lessons; the course's order is kept; and the addressing must be
   able to grow in ways no one foresaw. It takes further what the
-  founder said to DeepSeek as an observation (record 012-09-05;
+  founder said to DeepSeek as an observation (record 012-07-03;
   docs/COMMONS.md): "the whole multiverse could have a topology like
   the whole internet".
   The technical lead's reading is in docs/VISION.md, "An infrastructure
@@ -298,98 +372,6 @@
   its inhabitants, so nothing here has yet been hardened by use, only
   by tests and reviews (docs/VISION.md, "An infrastructure for
   connection").
-
-- 2026-11-16, founder, on the Commons' first room, in two messages.
-  First: "And to follow the pattern, let's start the Commons with a
-  single Ur-room, which will always be distinguished as being the first
-  room. It would be the multiversal lobby, or the first room you find
-  upon leaving the lobby. Either way, it is the first room to be built.
-  Thoughts?" And then: "Yeah, it should be the lobby, which, like at a
-  hotel, has a space for chairs and tables and couches where people
-  sit, eat, drink, talk, and wait. Thoughts?"
-  So: the Commons begins with one room, the Ur-room. It is the lobby.
-  It is the first room built, and it is always marked as the first. As
-  the technical lead reads the rest: it is the lobby the design already
-  has, "always open, where everyone who enters reads the charter first"
-  (docs/COMMONS.md), and it is on the record, as was decided for the
-  lobby on 2026-11-15 (docs/FUNDAMENTALS.md, privacy, item 13). That
-  reading now carries more than it did: then the lobby was where
-  everyone reads the charter, and now it is where people sit and talk,
-  so "kept whole" covers the first talk of everyone who arrives. It is
-  put to the founder (Open questions). What is
-  new is that it has a name; that it is a room to be in, where people
-  sit, talk and wait, and not only a way through; and that it comes
-  first. "The pattern" is read as the Ur-world's: the first of its
-  kind, from which the others follow. So course step 3c builds the
-  Ur-room, and step 3f hosts the rooms its doors lead to. How it is
-  marked as the first (its name kept for it, its place first in the
-  Commons' list of rooms) is settled when it is built. Whether "the
-  multiversal lobby" means more than the Commons' lobby, the place
-  where anyone arriving in the multiverse first stands, is left as the
-  founder said it; a door from it to the Ur-world's garden is course
-  step 12.
-
-- 2026-11-16, founder, on private messaging and private rooms. (The
-  message's first sentences, and the first words of its last, are not
-  recorded here.) "Private messaging and private rooms should be
-  possible. We can define different levels. In theory, we could have a
-  completely encrypted room that acts like one private space that is
-  not accessible even to the project. It would be encrypted by keys
-  held by the users. This should be not only possible, but common.
-  These could differ from public rooms with public records. There is a
-  spectrum of privacy to consider." And: "feel free to follow your
-  inclinations and work on what makes sense to you."
-  So, as the technical lead reads it: this confirms what is decided,
-  and asks for more of it. Decided already: two may speak privately,
-  sealed so no one else reads it (docs/FUNDAMENTALS.md, privacy, item
-  4, 2026-11-14); and a closed room's words pass between its members'
-  containers, sealed, so no one else reads them, ADMIN and the project
-  included (item 13, 2026-11-15). New: such rooms are to be common, not
-  the exception; and there may be levels between a public room with a
-  public record and a room no one outside can read. The levels are not
-  defined: the founder said "We can define different levels". The
-  technical lead proposes three, with what the record keeps at each
-  (docs/COMMONS.md, "A spectrum of privacy"). They touch what is
-  recorded about people, so they wait for the founder and do not stand
-  on the recommendation (Open questions). In the course, private rooms
-  are named in step 6a, since the keys are held in people's own
-  containers. One implication is said now, before anything is built:
-  what the project can't read, it can't moderate, and can't answer
-  for. In a private room the freedoms still hold, and what protects a
-  member is their own: to leave, not to hear, and to show their own
-  copy. What that means once the Commons is open to the public is
-  weighed with going live, which is the founder's decision.
-  The last sentence quoted is taken as leave to go on with the course
-  as rechecked, on the technical lead's judgement, until the founder
-  returns. It gives no more than the standing rule of 2026-11-14
-  already does: nothing outward-facing or hard to undo, and nothing
-  about money or personal information, stands on it.
-
-- 2026-11-16, founder, on the work until DeepSeek is available again,
-  and on the course. (The message's first sentences, on when DeepSeek
-  is next available, are not recorded here.) "So now, that means we
-  work on this end. We can do so without expanding on more work. We
-  only need to note the new ideas for future development. Let's go
-  through the 12 steps and keep moving those forward. Or come up with a
-  new 12 step list. Thoughts?"
-  So, as the technical lead reads it: no new line of work is opened.
-  The day's ideas are noted where they will be used (docs/COURSE.md,
-  "Waiting"; docs/COMMONS.md, "Personal information in a room: ideas";
-  docs/research/GAMES-AND-WORLDS.md, "Worlds built for learners"), and
-  nothing is built for them now. And the course is rechecked, which was
-  due since step 3a's four parts were built. Of the founder's two
-  ways, the technical lead recommended the second, a new list of
-  twelve, since the waiting list had placed six things at this recheck
-  and the founder's work with DeepSeek on rooms of chat had no step.
-  The list, its cost and its alternative were put to the founder in
-  the session, and it stands unless the founder reorders it (Decided by
-  the technical lead, below; docs/COURSE.md, "Rechecked on
-  2026-11-16"). One thing in it bears on the founder's word of
-  2026-11-13, "I like that we return to DeepSeek at step 10": the
-  founder returned to DeepSeek on 2026-11-14, so step 10 is no longer
-  a return, and DeepSeek works beside the course. That was said to the
-  founder in the session, and it is the technical lead's reading of
-  what the founder has done, not a decision of the founder's.
 
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-05.md

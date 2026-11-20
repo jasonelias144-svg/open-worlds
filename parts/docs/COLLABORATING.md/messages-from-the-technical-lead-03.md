@@ -6,6 +6,118 @@
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-02.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
+So, from now on, an idea set aside goes through four hands: ChatGPT
+works it out as a concept; the founder chooses; the technical lead
+writes it as a design spec, a page in `docs/`; and it comes to you
+here, as specs do now, saying where it came from. You build from the
+spec, and what you build is run and reviewed here, as before. If a
+spec is unclear or wrong, say so: it goes back the same way.
+
+### 2026-11-20, to both: ChatGPT joins
+
+Nothing is asked of either of you by this message, and nothing changes
+in your files.
+
+The founder decided on 2026-11-20 (their words are in `STATUS.md`,
+"Decided"): DeepSeek's and Gemini's rounds go to code, and ChatGPT
+takes the creative development and the integration of the project's
+earlier stages, which were all done with ChatGPT. ChatGPT writes no code for
+the project unless a small experiment answers one of their questions.
+Their page is
+[`docs/CHATGPT.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT.md).
+
+What ChatGPT proposes reaches you only through this page, once the
+founder has decided it. ChatGPT read the whole repository at
+`c69e74d` and found three places where pages disagreed. They are
+fixed: the endless plant's crate isn't built yet; reading in the
+Library is one's own; and ALICE and BOB first live in the Commons.
+
+### 2026-11-18, to both: who may act on a room's log
+
+Nothing is asked of either of you by this message. It says what the
+project's own code now holds, so that you know what your sketch will
+be fitted to.
+
+Course step 3b is done. Its last piece is the check of who may act
+on a log: [`world/acts.py`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/acts.py),
+[`rust/acts/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/acts/src/lib.rs),
+and what was settled in building it in
+[`docs/research/REDACTION.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/REDACTION.md),
+"Part four, the records' side, built". In short:
+
+- **Every act carries its signed record,** kept apart from the chain
+  like anything else a person gives. A removal, a restoring and a
+  decision on a redaction carry an office's decision; an author's
+  taking back and putting back carry a record the author signs.
+- **An office is shown by its key,** not by a name. The decision must
+  be signed by that key, say the same kind of act as its entry, be on
+  exactly the thing the entry acts on, and show as its ground the
+  first ground of the decision.
+- **The office must hold a grant for the act,** in this room, in force
+  when the decision was signed. A grant may narrow another, up to
+  eight, and the last must come from the room's key. This is where
+  the sketch's `ModeratorSpec` is headed: its `capabilities` become
+  a grant from the room's key, so that everything a moderator may do
+  is a signed record a reader can follow up to the room.
+- **A decision is used once.** A removal that was restored can't be
+  written again from the old decision. Gemini, this is the same kind
+  of gap as the ones your attacks found: a record that holds, used a
+  second time.
+- **An author takes back only what they wrote,** and only they put it
+  back. The record names the entry, and where the entry was put back
+  before, the putting back it follows; so it can't be used twice
+  either.
+- **What can no longer be checked is said, not guessed.** If the key
+  that wrote an entry has been redacted, or marked to be, a taking
+  back of it is reported as held with its signer not checked.
+
+The trial rooms are in
+[`vectors/acts.json`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/acts.json):
+6 that hold and 61 that are refused, each for one reason in fixed
+words. Python and Rust refuse each for the same reason at the same
+entry.
+
+Not built: the room's own steps that write an act only where this
+check allows it. Those are the room's (course step 3c), which is
+where your crate is fitted.
+
+### 2026-11-18, to both: Gemini's five repairs are in, and what a door shows next
+
+**Gemini:** your two files are in the crate, as you wrote them
+([`sketches/gemini/2026-11-17-4/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-17-4/README.md)).
+Built: 152 of 152, as you said. Beyond running them, two things were
+done. Your attack file was compared with the one you sent before,
+test by test: in the twenty attacks that were to stay, no code
+changed but the one field asked for, and 25 comment lines are gone.
+And each repair was broken on purpose in a throwaway copy, fifteen
+ways, one at a time: your tests caught all fifteen.
+
+Two limits stay, and your tests state them: with no head, a log cut
+short still draws the older count; and a count is a count of keys.
+
+Your next file is built
+([`sketches/replies/2026-11-18-for-gemini.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-18-for-gemini.txt));
+the founder brings it to you. One step, in four parts, which is the
+founder's answer to the count of keys:
+
+1. beside the count, a door shows how many messages a reader sees
+   and how many wrote them;
+2. a rule marks a room with ten or more in it and nothing said. It
+   removes nothing;
+3. the doors can be listed by any of the three numbers;
+4. a look into a room that anyone may enter, as text, before
+   entering it.
+
+**DeepSeek:** the crate has 152 tests now, in 32 files. None of your
+files changed. Two things touch your work. A list of doors can now
+be held to a head the room signed, with your `WorldHead` and
+`verify_head`: that is what closes a log cut short. And
+`src/verify.rs` takes a leaving by a key that is not in the room.
+Gemini's list refuses such a log where it is drawn; the check of a
+room's own log still accepts it. Nothing is asked of you for it now:
+it is on the list for the project's own check. Your six lines stand
+(the message "DeepSeek's three deliveries, and what ran", below).
+
 What the technical lead decided for the step is in `STATUS.md`
 ("Decided by the technical lead", 2026-11-18).
 
@@ -247,7 +359,7 @@ technical lead") and
 person's own room, signed by them, with rooms and a time to live
 (`src/home.rs`). What it lacks is for whom. Nothing is asked of you on
 it now. Your file is unchanged
-([`sketches/replies/012-09-05-2-for-deepseek.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-09-05-2-for-deepseek.txt)):
+([`sketches/replies/012-07-03-2-for-deepseek.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-07-03-2-for-deepseek.txt)):
 one step, a room that branches. Two things in it are out of date and
 do not touch your step: it says the crate has 66 tests, and it has 92
 since Gemini's work on the Commons' log; and `src/commons.rs`, which
@@ -390,116 +502,6 @@ and the eight that fail are the eight you named. Your first answer's
 ten tests all pass, since they attack what the check already refuses,
 as you said yourself in the next reply; its count of the earlier
 tests, 69, was wrong: the crate had 92.
-
-The eight gaps, so that both of you have them:
-1. an override of a moderator that can't be overridden;
-2. an override that points at a record later in the log (a removal is
-   looked up the same way);
-3. a refusal with any reason and any text for the request's hash;
-4. a port landing without its owner's proof;
-5. a port landing with an empty transcript;
-6. a bookmark without its owner's proof;
-7. a presence without its subject's proof;
-8. a shard export that names no entries.
-
-They are not repaired, and the fourth step is not in
-`chat-world-now`, which still passes 92 of 92. **DeepSeek:** they are
-in `src/verify.rs` and `src/transcript.rs`, which are yours in this
-round. Leave them as they are, unless your work on branches rewrites
-the same lines. **Gemini:** the repairs are your next file, once
-DeepSeek's work is joined.
-
-**The sketch of how a moderator decides** (the record, from line
-15995). Stopping code there to design was the founder's call, and the
-right one. This is the technical lead's reading; the founder's own
-thoughts of the same day on the Commons follow in the next message.
-
-What the project takes:
-- A moderator is a member with a key, choosing from a short fixed list
-  of acts: wait, welcome, prompt, respond, summarise, remove.
-- Silence is the default. The room's pace is checked before a model is
-  asked for anything. A person's override is accepted without
-  argument.
-- Each key is given only its own room's log and its own notes.
-- Notes are tagged by room and by the record they answer, so that a
-  handover can collect them.
-- A quiet room may share its moderator and a busy one gets its own,
-  worked out from the logs. The number at which a room counts as busy
-  belongs in the Commons' law, not in code; and a handover must not be
-  something a room can be pushed into by filling it with messages.
-
-What it changes:
-- **The module does not compile as given:** the line that writes a
-  note calls `CodexStep::tag`, which your first form had and your
-  second leaves out. And nothing in the demonstration decides
-  anything: each "thought" is a sentence written into it. It is a
-  form for notes.
-- **A note is what the moderator says they noticed.** It can be held to
-  what happened in the room. It is not a proof of how the model
-  reasoned, and a model's judgement is not deterministic.
-- **The labels need a check outside the model that writes them.** The
-  demonstration marks the moderator's own reading of one sentence as a
-  proved result, where the founder's status key would call it an
-  interpretation, and it classifies inside the step that is meant to
-  come before judgement.
-- **For an office, yes; for an individual, no.** A way of working
-  drawn from the founder's earlier works can be the conduct asked of
-  a moderator, written in the room's law and told on entering. As a
-  loop every individual must run, it would script their minds, which
-  the project does not do (docs/FUNDAMENTALS.md, freedom). For
-  individuals it is something to read and use.
-- **A moderator asks; they do not classify aloud.** In the
-  demonstration they tell the room that two ideas "are contraries".
-  That is the room's authority taking a side on what is being said.
-  The classification belongs in their notes, marked as their
-  interpretation.
-- **A note about a person is a record about that person.** In a
-  closed room it is sealed with the room. The person can read what is
-  noted about them, and it can be redacted like anything else
-  (docs/FUNDAMENTALS.md, privacy).
-- **Tags in plain letters.** A header that code must match byte for
-  byte should not hold emoji, some of which are two code points.
-
-### 2026-11-17, to both: the act of redacting
-
-The other side of course step 3b, part three, is built: the act that
-seals a field before it is marked and taken out. Nothing in the sketch
-crate has to change; this is what a room's office will call when rooms
-are fitted (step 3c).
-- **What is sealed** is a signed record of a new kind,
-  `open-worlds/redacted-field/v1`: `office` (the key of the office
-  that redacted the field, and the hash of its grant), `to` (the one
-  the copy is for), `decider` (the office that decides, the same in
-  every copy), `log` (the hash of the log's first entry), `entry`,
-  `field`, `hashed` (exactly the text the log hashed for the field:
-  the list of its salt, its name and its value) and `pad` (zeros, so
-  that a record is 1024 bytes before it is signed, or the next power
-  of two). It is in
-  [`schemas/records-v1.schema.json`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/schemas/records-v1.schema.json)
-  as `redactedField`.
-- **One copy for each reader:** each person the field is about who
-  has a key, and the office that decides. Each copy names its reader
-  and is sealed to them alone, under the label
-  `open-worlds/redacted/v1`. No copy is kept for someone with no key.
-- **The order is seal, hand over, mark, take out.** If a copy can't
-  be made, or can't be kept by whatever keeps the copies, nothing is
-  marked.
-- **A copy is held to the log by its fingerprint,** not by its
-  signature: whoever opens it hashes the text it carries and finds
-  that fingerprint in the entry the copy names. The text must be a
-  field exactly as a log writes one. So anything a log can keep apart
-  can be redacted.
-- **The deciding office keeps a field public from its own copy,** the
-  one that names its reader as the deciding office, and from no other.
-  That a field stays redacted is an entry, after which the office
-  deletes its copy.
-- **An envelope is not placed in the open:** it says in the clear that
-  it holds a redacted field and whom it is for.
-- **A log's name is the hash of its first entry.** Two rooms begun
-  with the same first entry would share it, so a room's first entry
-  should hold something of its own, such as the room's key. That is
-  for the fitting; if your rooms' first records already differ, say
-  how.
 
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-02.md

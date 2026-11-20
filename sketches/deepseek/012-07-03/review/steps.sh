@@ -1,12 +1,12 @@
 #!/bin/sh
 # Ours, not DeepSeek's (see ../README.md). Builds each of DeepSeek's
-# first five deliveries in record 012-09-05, exactly as DeepSeek gave
+# first five deliveries in record 012-07-03, exactly as DeepSeek gave
 # it, then each of Gemini's three that followed, their three on the
 # Commons, DeepSeek's next three, Gemini's fourth step, their
 # attacks on the list of doors and their repairs of it, in a scratch
 # folder, and runs its tests. Nothing here is changed.
 # Run it from anywhere:
-#   sh sketches/deepseek/012-09-05/review/steps.sh
+#   sh sketches/deepseek/012-07-03/review/steps.sh
 #
 # It runs DeepSeek's code as written, so run it where that is safe. It
 # needs Rust and the network, as run.sh does, and CI doesn't run it.

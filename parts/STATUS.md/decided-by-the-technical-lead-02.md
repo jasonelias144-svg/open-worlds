@@ -248,7 +248,7 @@
   rooms; then it changes in a new version of the schema, beside the old,
   never in place.
 
-- 2026-11-16, DeepSeek's two questions in record 012-09-05 (its line
+- 2026-11-16, DeepSeek's two questions in record 012-07-03 (its line
   13769), and what follows for fitting `chat-world`:
   (1) A room has its own key, and its creator joins with theirs.
   Reason: every world here is a key of its own, and a room is a world
@@ -324,14 +324,14 @@
   question needs them. *Revisit if:* DeepSeek follows the links on
   COLLABORATING.md itself reliably, or the records are needed often
   enough to belong in the main list.
-- 2026-11-15, the endless plant (record 012-07-03): DeepSeek's decisions
-  are accepted as the record gives them (signed heads in batches; a
+- 2026-11-15, the endless plant: DeepSeek's decisions
+  are accepted as DeepSeek gave them (signed heads in batches; a
   crate and template of its own, `hasMonad` a dial; the neuron's weights
   derived from the logged actions, not signed; the depth cap a safety
   dial; crowding in the tip's column band; a fixed-point baseline; Drop
   as shedding; water an input), and the project fits it as
-  `rust/endless-plant`, changed where the review found faults
-  (sketches/deepseek/012-07-03/README.md): Grow extends a tip and Split
+  `rust/endless-plant`, changed where the technical lead's review found
+  faults: Grow extends a tip and Split
   forks it; the plant is a tree, so a dropped tip frees only the segment
   nothing else grows from, pays back exactly that, and falls back to
   its start; no segment grows into a held cell; stored energy has a cap,

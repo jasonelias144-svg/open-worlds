@@ -223,7 +223,7 @@ this recheck, or before anyone lives in a world: a log that can be
 redacted, offices as records, a world's lifecycle, a world leaving, the
 Commons and the private container. And while step 3a was built, the
 founder and DeepSeek worked out rooms of chat with moderators, from
-scratch (record 012-09-05), which the founder asked to have brought
+scratch (record 012-07-03), which the founder asked to have brought
 together with Lyceum and the Commons' design ([COMMONS.md](COMMONS.md),
 "Three sources, one Commons"). The founder, on 2026-11-16: "Let's go
 through the 12 steps and keep moving those forward. Or come up with a
@@ -434,7 +434,7 @@ Commons' lobby (the founder, 2026-11-16: "let's start the Commons with
 a single Ur-room, which will always be distinguished as being the first
 room"; [COMMONS.md](COMMONS.md), "The Ur-room"). It is on the record.
 It is built from `chat-world`, DeepSeek's sketch crate from record
-012-09-05, fitted onto the project's own formats as a crate of the
+012-07-03, fitted onto the project's own formats as a crate of the
 workspace: the canonical form, proofs and Multikey `did:key` of
 `rust/formats`, time given from outside, a key for each room with its
 creator joining under their own, signed heads in place of the room's

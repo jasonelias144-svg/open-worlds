@@ -6,6 +6,51 @@
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/code-taken-from-deepseek-s-records-02.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
+**`sketches/deepseek/012-04-00`**, part 3 of 6 (40 files, 633 KB):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c22_test.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c23.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c23_test.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c24.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c24_test.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c25.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c25_test.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c26.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c26_test.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c27.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c27_test.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c28.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c28_test.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c29.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c29_test.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c2_test.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c3.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c3.py@33340
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c31.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c31_test.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c32.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c32_test.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c33.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c33_test.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c34.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c34_test.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c36.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c36_test.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c37.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c37_test.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c38.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c38_test.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c39.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c39_test.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c3_conformance.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c3_test.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c4.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c4.py@2286
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c40.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-04-00/multiverse_c40_demo.py
+```
+
 **`sketches/deepseek/012-04-00`**, part 4 of 6 (40 files, 680 KB):
 
 ```text
@@ -214,60 +259,6 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-05-01/multiverse_c86_test.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-05-01/multiverse_c87.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-05-01/multiverse_c87_test.py
-```
-
-**`sketches/deepseek/012-05-01`**, part 3 of 3 (4 files, 2 KB):
-
-```text
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-05-01/pytest.ini
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-05-01/sketch_status_test.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-05-01/trust-anchors.json
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-05-01/wcp_http_shim.py@15239
-```
-
-**`sketches/deepseek/012-06-02`**, part 1 of 4 (40 files, 724 KB):
-
-```text
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/README.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/chaos_game_world.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/chess_individual.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/chess_individual.py@40076
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/chess_individual.py@40158
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/chess_individual.py@40178
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/choice_fractal.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/compact_ancestry.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/compact_inheritance.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/compact_memory.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/conftest.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/coupled_ca_world.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/coupled_chaos_world.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/coupled_learners.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/delegated_resumption.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/elementary_ca_world.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/federated_bundle.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/federated_bundle.py@27067
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/federated_bundle.py@34853
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/federated_spawn.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/federated_spawn.py@27094
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/forking.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/fractal_garden.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/fractal_grid_world.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/fractal_world.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/fractal_world_v2.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/fractal_world_v2.py@1390
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/fractal_world_v3.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/fractal_world_v3.py@2816
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/gallery_attention.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/gallery_burst.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/gallery_governance.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/gallery_meta_coupling.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/gallery_revocation.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/gallery_revocation.py@16659
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/gallery_world.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/garden_adapter.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/garden_adapter.py@51871
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/individual_bundle.py
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/individual_bundle.py@23274
 ```
 
 

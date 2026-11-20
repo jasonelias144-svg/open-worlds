@@ -89,8 +89,7 @@ class TheList(unittest.TestCase):
         self.assertEqual(len(have), len(set(have)))
 
     def test_it_holds_the_key_list(self):
-        # The file DeepSeek couldn't open in record 012-07-03, as no
-        # list had given it its link.
+        # A file no list once gave the link of.
         self.assertIn("keys/key-list.json", listed())
 
     def test_every_full_link_on_the_page_leads_to_a_file(self):

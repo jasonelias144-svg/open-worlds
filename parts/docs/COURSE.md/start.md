@@ -231,7 +231,7 @@ this recheck, or before anyone lives in a world: a log that can be
 redacted, offices as records, a world's lifecycle, a world leaving, the
 Commons and the private container. And while step 3a was built, the
 founder and DeepSeek worked out rooms of chat with moderators, from
-scratch (record 012-09-05), which the founder asked to have brought
+scratch (record 012-07-03), which the founder asked to have brought
 together with Lyceum and the Commons' design ([COMMONS.md](COMMONS.md),
 "Three sources, one Commons"). The founder, on 2026-11-16: "Let's go
 through the 12 steps and keep moving those forward. Or come up with a

@@ -50,14 +50,14 @@
   fifteen tests. The step was built once more outside the
   repository, on the crate with the new field: 127 of 127. Nothing
   of the count is built in open-worlds' own code.
-- 2026-11-17 Claude: record 012-09-05 is continued again, as the
+- 2026-11-17 Claude: record 012-07-03 is continued again, as the
   founder brought it (1,121,275 bytes, 28,456 lines; its first
   947,153 bytes are the record as it was kept). Looked through
   first, by script and by reading: the founder's three turns hold
   nothing personal, and no line outside code holds a link, an
   address, a long number or a year. It holds three deliveries from
   DeepSeek's second file, kept as written in
-  sketches/deepseek/012-09-05/chat-world-steps/6 to 8 and held to
+  sketches/deepseek/012-07-03/chat-world-steps/6 to 8 and held to
   the record by sketches/tools/extract.py (101 files, 0 problems).
   Built as given, each laid over the one before: a room that
   branches does not compile, for one word, and with it repaired
@@ -84,7 +84,7 @@
   count in this step because nothing in the sketch publishes one,
   not because a count may never show; and it asks Gemini one more
   question, on the record by which someone lets others find them.
-  DeepSeek's file (sketches/replies/012-09-05-2-for-deepseek.txt) is
+  DeepSeek's file (sketches/replies/012-07-03-2-for-deepseek.txt) is
   unchanged and still what the crate's ten files make
   (`docs/reply.py --check`). Nothing is built.
 - 2026-11-17 Claude: Gemini's next file is built by docs/reply.py:
@@ -172,7 +172,7 @@
   docs/ADMIN.md, docs/FUNDAMENTALS.md (freedom, 13; privacy, 16),
   docs/TOPICS.md (topics 23 and 24) and docs/COLLABORATING.md. Also
   that day, the founder: "I'll provide DeepSeek with the file you gave
-  me already", so DeepSeek has `012-09-05-2-for-deepseek.txt` as it
+  me already", so DeepSeek has `012-07-03-2-for-deepseek.txt` as it
   was written. Looked up, once: the sizes of Kiwix's copies of the
   English Wikipedia, from its public listing. Not looked up: how many
   articles the small copy holds; the copy's own licence terms beyond
@@ -181,7 +181,7 @@
 - 2026-11-17 Claude: Gemini's record continued, and the fourth step of
   their round on the Commons kept and built. The founder went back to
   Gemini while this session was out of time. The record grew and was
-  replaced (sketches/records/012-00-00-GMNI-Multiverse_Development.txt,
+  replaced (sketches/records/012-08-04-GMNI-Patterns_Multiverses.txt,
   705,897 bytes, 16,395 lines): its first 633,993 bytes are the copy
   that was here, less that copy's last byte, a line end after the
   founder's turn with nothing in it yet, which now reads `::➡️`.
@@ -198,7 +198,7 @@
   room's log (sketches/gemini/2026-11-17/README.md lists them), not
   repaired: `src/verify.rs` is DeepSeek's in this round. So the fourth
   step is built beside the crate as it stands (`review/steps.sh`,
-  `c4`) and is not laid into it: sketches/deepseek/012-09-05/
+  `c4`) and is not laid into it: sketches/deepseek/012-07-03/
   chat-world-now/ is unchanged, 92 of 92. Then, at the founder's word
   (record line 15992: "building more code is what I would like, but
   is probably not best"), Gemini stopped writing code and sketched how
@@ -306,9 +306,9 @@
   is the one Gemini gave, and nothing was repaired here. A Commons
   record can now be written to JSON and read back, which it could not
   be. The crate as it stands,
-  sketches/deepseek/012-09-05/chat-world-now/, is the third delivery:
+  sketches/deepseek/012-07-03/chat-world-now/, is the third delivery:
   92 tests. The record grew and was replaced
-  (sketches/records/012-00-00-GMNI-Multiverse_Development.txt, 633,994
+  (sketches/records/012-08-04-GMNI-Patterns_Multiverses.txt, 633,994
   bytes): its first 574,502 bytes are the copy that was here, which
   ended with the empty opening of the founder's next message. Looked
   through first: nothing personal and no key in what was added. Not
@@ -336,7 +336,7 @@
   work joins cleanly is known only when both are back.
 - 2026-11-17 Claude: Gemini's conversation is with the records, at the
   founder's word (Decided, today). The record is
-  sketches/records/012-00-00-GMNI-Multiverse_Development.txt, byte for
+  sketches/records/012-08-04-GMNI-Patterns_Multiverses.txt, byte for
   byte as the founder gave it: 574,505 bytes, 13,530 lines. Looked
   through before it went in, by script, and the founder's 27 messages
   read: no key, password or address, no one else's personal details,
@@ -345,7 +345,7 @@
   the founder was told of and confirmed. Gemini's files in
   sketches/gemini/2026-11-16/ are now held to the record as DeepSeek's
   are: take.py, run with no argument, takes them out again and
-  compares, and the folder test of sketches/deepseek/012-09-05 runs it
+  compares, and the folder test of sketches/deepseek/012-07-03 runs it
   in CI. Pages that said the conversation was not kept are corrected
   (sketches/README.md, the folder's README, docs/FILES.md), the rule
   on personal data in AGENTS.md has the founder's addition, and
@@ -374,11 +374,11 @@
   here (fix 23): a room's id and law are no longer public fields, so
   nothing can change a room's law in place; still 66 of 66, and the
   demos run. That is the crate as it stands,
-  sketches/deepseek/012-09-05/chat-world-now/; review/steps.py puts it
+  sketches/deepseek/012-07-03/chat-world-now/; review/steps.py puts it
   together from both collaborators' files and holds the folder to
   that. One thing Gemini found bears on open-worlds' own logs
   (Noticed). The next file, for DeepSeek, is built
-  (sketches/replies/012-09-05-2): one step, a room that branches,
+  (sketches/replies/012-07-03-2): one step, a room that branches,
   which is how a room's law changes, and one question on Gemini's rule
   for signed heads. The reading of a room's branch in that file is the
   technical lead's, for the sketch, and decides nothing for
@@ -387,15 +387,5 @@
   fix 23, and after it only the crate as it stands was built again;
   the file given to Gemini was at fault in one place, said in
   sketches/replies/README.md.
-- 2026-11-16 Claude: the founder's two roles recorded (Decided): the
-  Project Founder, a matter of history, and the Project Director, an
-  office the founder holds now. AGENTS.md, "Who decides", says how to
-  read "the founder" in a rule; the handbook's GOVERNANCE.md and its
-  decision 0004 say the same for every repository. Nothing merged is
-  rewritten. Two questions are put to the founder (Open questions):
-  what stays the founder's when someone else is director, and how the
-  office passes. Not done: the pages still say "the founder" where they
-  mean the director; they are brought to the new words as they are
-  next changed.
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-04.md

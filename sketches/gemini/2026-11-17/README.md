@@ -18,7 +18,7 @@ sketched a design ("After the code", below).
 ## Where it comes from
 
 The conversation is
-[../../records/012-00-00-GMNI-Multiverse_Development.txt](../../records/012-00-00-GMNI-Multiverse_Development.txt),
+[../../records/012-08-04-GMNI-Patterns_Multiverses.txt](../../records/012-08-04-GMNI-Patterns_Multiverses.txt),
 which has grown since the first round, and again since the first three
 steps. These deliveries begin at its line 13531, where Gemini quotes
 back the last line of the file they were given, as the file asked. The
@@ -32,7 +32,7 @@ new copy reads `::➡️`. Nothing before it changed.
 [MANIFEST.json](MANIFEST.json) gives, for each file in `steps/`, the
 lines of the conversation it was taken from and its SHA-256.
 [take.py](take.py) takes them out of the record again and compares them
-with the files here; the test of `../../deepseek/012-09-05/` runs it,
+with the files here; the test of `../../deepseek/012-07-03/` runs it,
 in CI.
 
 One thing the record shows about the first delivery. Gemini answered
@@ -46,7 +46,7 @@ taken over, against what the file asked.
 
 Each is laid over the one before, starting from the crate Gemini was
 given, and every test file of the crate is run
-(`sh ../../deepseek/012-09-05/review/steps.sh`, which CI doesn't run:
+(`sh ../../deepseek/012-07-03/review/steps.sh`, which CI doesn't run:
 it needs Rust and the network). Measured on 2026-11-17. "Expected" is
 Gemini's own line; they can't build the crate where they write.
 
@@ -60,10 +60,10 @@ Gemini's own line; they can't build the crate where they write.
 
 Every measured number is the one Gemini gave, but for their count in the
 first answer to step 4. Nothing was repaired here. The crate as it
-stood then, `../../deepseek/012-09-05/chat-world-now/`, was the third
+stood then, `../../deepseek/012-07-03/chat-world-now/`, was the third
 delivery laid over the first two, unchanged; DeepSeek's next two
 deliveries have since been laid over it
-(`../../deepseek/012-09-05/README.md`, "Three more"). The fourth step is not
+(`../../deepseek/012-07-03/README.md`, "Three more"). The fourth step is not
 laid into it: the crate as it stands is kept with every test passing,
 and `steps.sh` builds the fourth step beside it, as `c4`.
 

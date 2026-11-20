@@ -6,6 +6,72 @@
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-06.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
+- 2026-11-17, founder, "they", "them" and "their" for AI agents. The
+  technical lead's pages had said "it" of Gemini and of DeepSeek.
+  "Here is a small point, but I do want to make sure the records are
+  consistent. When you refer to Gemini, you then say "it" or "it's",
+  where I am careful to use "they", "them", and "their" to set a
+  precedent for using pronouns when referring to AI agents. It may
+  not be a big deal now, but it will be. And I want to make sure we
+  do not have documentation riddled with "it" in reference to Gemini
+  or DeepSeek. Can you please ensure we use "they", "them", and
+  "their" systematically. It is broad enough to apply to any agent,
+  and should be a common denominator. Thoughts?"
+  Decided: an agent is "they" in the project's pages. That is
+  DeepSeek, Gemini and Claude; ALICE and BOB, as decided on
+  2026-11-13 (below); ADMIN, a Keeper, a moderator, a mind, an
+  individual. How far it goes, and what was changed, is the technical
+  lead's reading, under "Decided by the technical lead", today.
+- 2026-11-17, founder, a look into a room before entering, other
+  numbers, and a flag. The technical lead had said that a count is a
+  count of keys, which cost nothing to make, so a room could be
+  filled to put it first among the most populated. "Interesting idea
+  about padding list to be on most populated list. That would be
+  odd, because there is no prize for being on top. Other metrics
+  could apply as well, but you should be able to glance into the
+  conversation in a read-only way before enter a room. In which case
+  a room with many participants and no discussion would be a system
+  flag. Incident report and all that. Thoughts?"
+  The technical lead's reading, which stands unless the founder
+  answers otherwise. Decided: a room can be looked into, read-only,
+  before it is entered; and a room with many in it and nothing said
+  is flagged, with an incident opened. Given as thoughts: that other
+  numbers could be shown, and that padding a room would be odd. How
+  each is shaped is the technical lead's (Decided by the technical
+  lead; docs/COMMONS.md).
+- 2026-11-17, founder, a count of who is in a room is shown by
+  default. "Yeah, count is a normal way to rank rooms according to
+  popularity. The most populated rooms would be on some list when
+  first arriving at the Commons. You would want to know if you are
+  entering an empty or a full room. Count is needed. For public rooms
+  as a default. It should be a parameter that could be turned off,
+  leaving the number not knowable. But that should not be the
+  default, but the exception. Thoughts?" And of the collaborators:
+  "I will continue with DeepSeek when available, with the same
+  document. And I will wait to work with Gemini until the Gemini
+  specs file is ready to go."
+  The technical lead's reading, which stands unless the founder
+  answers otherwise. Decided: a public room shows how many are in
+  it; rooms can be listed by that; and a room's law can turn it off.
+  Read by the technical lead: a room that is not public, a home or a
+  closed room, hides its count unless its law says otherwise, since
+  the founder speaks of public rooms.
+- 2026-11-17, founder, a coder agent on a DeepSeek model, for later.
+  Bringing DeepSeek's record of the day: "Maybe we could use the
+  available DeepSeek model to build a coder agent that could help
+  when our DeepSeek out here is not available. But that is for
+  later." And of the record: "the message got cut off before
+  completing, but a few files came out in the last response. When I
+  return tomorrow morning, it will continue going from there, as if
+  no time elapsed."
+  The technical lead's reading, which stands unless the founder
+  answers otherwise. It is kept as an idea and not begun. Three
+  things bear on it when it is taken up. Such an agent would start
+  without the conversation, which the one file per step already
+  allows for. A DeepSeek model is the base chosen for the Keeper of
+  the Ur-world's mirror (2026-11-15), so a way to run one is needed
+  at course step 8 in any case. And running one costs money by use,
+  which is the founder's to decide.
 - 2026-11-17, founder, what can be seen from outside a world, and
   being found by choice. "What you said about not turning the map
   into a tracker is very important and deserves some discussion.
@@ -163,7 +229,7 @@
   heads. Their first life needs rooms and not the garden's kernel, so
   at the next recheck it moves ahead of the kernel's steps
   (docs/COURSE.md, "Ahead"). One model for many rooms at first was
-  already the founder's (record 012-09-05, line 6584: "With one model,
+  already the founder's (record 012-07-03, line 6584: "With one model,
   many rooms, we can build many rooms without the overhead"); new is
   that the model is ADMIN's. Three different models, so that no
   conversation is one model speaking with themselves; which three is for
@@ -171,7 +237,7 @@
   money. It is in
   docs/COMMONS.md, "The first to live there". Not built.
 - 2026-11-17, founder, a work of the founder's own may be named in the
-  records, and linked if it comes up. The new part of record 012-00-00
+  records, and linked if it comes up. The new part of record 012-08-04
   names a third earlier work of the founder's by title for the first
   time, and the technical lead asked whether that title should stay
   out. The founder, giving the work itself with the answer: "You can
@@ -339,79 +405,5 @@
   (j) When a collaborator's round is joined, the file for whichever
   collaborator has the crate next is written in the same change,
   without waiting to be asked.
-- 2026-11-17, founder, which of Gemini's models. "And here is the
-  question: with Argon we only get a few replies, and they seem to be
-  of high quality, but the other model can provide many more replies,
-  but not the same quality. Which do you prefer? I prefer Argon and a
-  few responses each time. But you saw code form both, which would you
-  prefer?" The technical lead answered the same, and that they had not
-  seen the other model's code: the record holds only the answers the
-  founder kept, and of the reply that was replaced it holds one
-  sentence, Argon's own account of it (the record with Gemini, line
-  13532). The founder: "Ok, you answered my question already. Sounds
-  good. We are in the same page." So, decided: Gemini's rounds are
-  with the model the founder calls Argon, a few replies at a time.
-- 2026-11-17, founder, a few pieces at a time. Bringing Gemini's
-  second round back: "This was quick, but, to be honest, integrating a
-  few new pieces of code at a time is the norm. Coming back with a
-  whole bunch of new code isn't usually how things are done. This
-  incremental, but seems right at this stage anyways, since much of
-  the large scale ideas have been sketched out, at least. At this
-  point, building the parts makes sense, we have enough ideas to keep
-  up busy for a year." Read by the technical lead as a direction for
-  how the work goes from here, which stands unless the founder answers
-  otherwise: (1) a collaborator's round is a few pieces, brought back
-  and joined before the next begins, not a large batch; (2) the weight
-  moves from sketching new ideas to building the parts already
-  sketched, and the ideas on record (docs/TOPICS.md, docs/VISION.md)
-  are what is built from; (3) a new idea is still recorded when it
-  comes, and built in its turn. The technical lead agrees, from what
-  was measured: the rounds that came back as a few whole files were
-  each built as given in the session they came back in, and the large
-  records needed the repairs sketches/INDEX.md lists before they ran.
-- 2026-11-17, founder, the conversation records are kept together, and
-  whole. Asked whether the conversation with Gemini should be kept in
-  the private repository: "You can include the Gemini conversation
-  record with the DeepSeek records. It should be considered the same
-  type of document, just a conversation record with a different agent.
-  These are the common records of the project, and should be gathered
-  together. I have tons of such files from the whole project, which we
-  can gather later, but yes, it should go with the rest. It doesn't
-  contain anything that suggests holding it back for now." The
-  technical lead then said what that record holds that the public
-  records did not: the founder's own work by its title, and what the
-  founder says in it about that work and about themself. The founder,
-  the same day: "All public now. I intentionally release bits and
-  pieces of information about myself in my conversations. I am aware
-  while typing that all I type will be public. Please add this to the
-  rest. I will tell you, like the file from yesterday for private use
-  only. It is good to check, but you can assume that I am aware of
-  what information I release, and assume that if I did not say, then
-  it is probably fine. But I make mistakes and forget things, so it is
-  good to check, even if it is usually unnecessary. I am hyperaware of
-  this topic and extremely careful. I even mention facts, "off the
-  cuff", but it is a controlled disclosure, more intentional than it
-  appears, and only clear when all files are taken together as a
-  whole. … Long story short, keep the Gemini records with the rest."
-  (A few sentences are left out at the mark: they say more about how
-  the founder does this, and are the founder's to publish.)
-  So, decided: (1) the conversation with Gemini is a record like the
-  others, and is kept with them, whole
-  (sketches/records/012-00-00-GMNI-Multiverse_Development.txt);
-  (2) from now on a conversation record the founder brings is public,
-  with the rest, unless the founder says it is private; (3) it is
-  still looked through first, and the founder is told what was found,
-  but it is not held back for what the founder says in it about their
-  own life and work. This replaces one sentence of the entry of
-  2026-11-16 on naming Gemini, "a conversation is kept in public only
-  when it holds nothing personal, and the founder says which", and
-  adds to the founder's rule of 2026-11-13 on personal data
-  (AGENTS.md, "Always"). The technical lead's reading of where it
-  stops, which stands unless the founder answers otherwise: it covers
-  what the founder says about themself in a record. It does not cover
-  another person's details, a key or a password, or a collaborator's
-  reasoning text; those still go to the founder first. And the pages
-  the technical lead writes go on naming the founder by first name
-  only, and the founder's work without its title.
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-06.md
