@@ -20,7 +20,9 @@
   address or key was found; what was found, and why
   the files stay out, is in "Decided by the technical lead". Linked
   from `docs/CHATGPT.md` (request 4 now asks for a roadmap of each
-  stage first) and from COLLABORATING.md's list of files.
+  stage first) and from COLLABORATING.md's list of files. Then, at
+  the founder's word, the stages went into the private `ebook-press`
+  repository (`history/`, its #8), and the page says where.
 
 - 2026-11-20 Claude: ChatGPT's page, `docs/CHATGPT.md` (#130), at the
   founder's word: their part, who decides, what binds and what

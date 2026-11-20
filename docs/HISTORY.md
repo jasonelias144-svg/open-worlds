@@ -3,8 +3,8 @@
 The founder, 2026-11-20: "Please add these to a project history page.
 That way I can point ChatGPT to that page for a project history
 archive." This is that page: what each earlier stage of the project
-holds, and how to tell that a copy is the right one. It is kept short,
-so that it opens whole.
+holds, where the files are kept, and how to tell that a copy is the
+right one. It is kept short, so that it opens whole.
 
 The project has gone through stages, each with a number and a word.
 The founder holds the only organized library of their files, and
@@ -57,11 +57,20 @@ SHA-256 `314fc8684c1c7d725695cb3fec2fb40d0287972f0c8ead0b1a938a6aa08f6b80`.
 Saved as a text file next to the stages, the block above checks them
 all at once (`sha256sum -c`).
 
+The kept copies (below) differ in four files, `003`, `004`, `005` and
+`007`: there a personal name and links tied to the founder's accounts
+are replaced by markers, and every line is where it was, so a line
+number is the same in both. The kept folder's `SHA256SUMS` and
+`REDACTED.tsv` give those four's kept hashes.
+
 ## Working from them
 
-- **They come from the founder.** The files are not in this repository
-  (below), so the founder gives them, as the archive above. Check a
-  copy against its SHA-256 before working from it.
+- **They are kept privately,** in the founder's private repository
+  `ebook-press`, folder `history/`, at the founder's word (2026-11-20).
+  Whoever the founder gives access can read them there; for ChatGPT,
+  that is through their GitHub connection, if it reaches that
+  repository. The founder can also give them as the archive above.
+  Check a copy against its SHA-256 before working from it.
 - **Map a stage before reading it.** The largest has over a million
   lines, and no conversation holds a stage whole. Make a roadmap with
   line numbers first, as ChatGPT did for *The Living Codex* (30
@@ -74,8 +83,10 @@ all at once (`sha256sum -c`).
 
 ## Why the files themselves are not here
 
-Everything in this repository is public domain (CC0 1.0), as far as
-it is ours to give. These files hold more than that:
+The founder, 2026-11-20: "Let's keep in private repos until we can
+make sure we do not violate any copyright restrictions." Everything in
+this repository is public domain (CC0 1.0), as far as it is ours to
+give, and these files hold more than that:
 - **Texts from outside the project, at length, in published
   translations** that keep their own terms: a *Tao Te Ching* and *The
   Art of War* in `001`, *The Art of War* again in `008`, and passages

@@ -344,6 +344,22 @@ of it is asked again until it is needed.
 
 ## Decided
 
+- 2026-11-20, founder, the stages kept privately. On the technical
+  lead's finding that the stages hold outside texts in published
+  translations: "Good point on some of the texts. Let's keep in
+  private repos until we can make sure we do not violate any
+  copyright restrictions. This is just one reason I have kept these
+  to myself, but sharing them with you and keeping them in a private
+  repo is a good middle ground, so let's move them to the
+  ebook-press. I did connect ChatGPT through a GitHub connector, I
+  will check to see if they have read-access to the private repos."
+  Done: the stages are in the private `ebook-press` repository,
+  folder `history/` (its pull request #8), with a personal name and
+  account links replaced by markers in four of them, every line
+  where it was. [docs/HISTORY.md](docs/HISTORY.md) says where they
+  are. Whether ChatGPT can read that repository is the founder's to
+  check.
+
 - 2026-11-20, founder, the earlier stages, and a page for them. The
   founder brought stages 000 to 010 in one archive: "Here is a zip
   with the previous project stages, each in one file. Only the
@@ -3305,7 +3321,8 @@ of it is asked again until it is needed.
   as they are; then each is looked through first and the three kinds
   are taken out. Or ChatGPT being unable to take the archive as a
   file; then a private repository that ChatGPT's GitHub connection
-  can read.
+  can read. The founder chose that the same day: `ebook-press`, the
+  entry above in "Decided".
 
 - 2026-11-20, ChatGPT's page (Decided, 2026-11-20). (a) A page of
   their own, `docs/CHATGPT.md`, and not a section of COLLABORATING.md:
@@ -4875,7 +4892,9 @@ it was wrong. Questions of what the project is for stay with the founder.
   address or key was found; what was found, and why
   the files stay out, is in "Decided by the technical lead". Linked
   from `docs/CHATGPT.md` (request 4 now asks for a roadmap of each
-  stage first) and from COLLABORATING.md's list of files.
+  stage first) and from COLLABORATING.md's list of files. Then, at
+  the founder's word, the stages went into the private `ebook-press`
+  repository (`history/`, its #8), and the page says where.
 
 - 2026-11-20 Claude: ChatGPT's page, `docs/CHATGPT.md` (#130), at the
   founder's word: their part, who decides, what binds and what

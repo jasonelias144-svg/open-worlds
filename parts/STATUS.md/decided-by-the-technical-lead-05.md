@@ -28,7 +28,8 @@
   as they are; then each is looked through first and the three kinds
   are taken out. Or ChatGPT being unable to take the archive as a
   file; then a private repository that ChatGPT's GitHub connection
-  can read.
+  can read. The founder chose that the same day: `ebook-press`, the
+  entry above in "Decided".
 
 - 2026-11-20, ChatGPT's page (Decided, 2026-11-20). (a) A page of
   their own, `docs/CHATGPT.md`, and not a section of COLLABORATING.md:

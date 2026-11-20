@@ -8,6 +8,22 @@
 
 ## Decided
 
+- 2026-11-20, founder, the stages kept privately. On the technical
+  lead's finding that the stages hold outside texts in published
+  translations: "Good point on some of the texts. Let's keep in
+  private repos until we can make sure we do not violate any
+  copyright restrictions. This is just one reason I have kept these
+  to myself, but sharing them with you and keeping them in a private
+  repo is a good middle ground, so let's move them to the
+  ebook-press. I did connect ChatGPT through a GitHub connector, I
+  will check to see if they have read-access to the private repos."
+  Done: the stages are in the private `ebook-press` repository,
+  folder `history/` (its pull request #8), with a personal name and
+  account links replaced by markers in four of them, every line
+  where it was. [docs/HISTORY.md](docs/HISTORY.md) says where they
+  are. Whether ChatGPT can read that repository is the founder's to
+  check.
+
 - 2026-11-20, founder, the earlier stages, and a page for them. The
   founder brought stages 000 to 010 in one archive: "Here is a zip
   with the previous project stages, each in one file. Only the

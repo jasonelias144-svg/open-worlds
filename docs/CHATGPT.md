@@ -237,7 +237,8 @@ Also right, and kept in mind:
 Every pull request merged after #129, newest first, one line each.
 
 - 2026-11-20, #131: the project's history, [`docs/HISTORY.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md): stages 000 to 010,
-  what each holds, and how to check a copy.
+  what each holds, where they are kept (privately, in `ebook-press`),
+  and how to check a copy.
 - 2026-11-20, #130: this page; the three conflicts your review found,
   fixed, there and in six more pages; the founder's words on your
   part, and on who supplies which files, in `STATUS.md`.
