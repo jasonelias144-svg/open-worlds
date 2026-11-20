@@ -15,12 +15,19 @@ from the founder's 17 records and the book's final text, at the
 founder's word. Stage 012 is the multiverse: this repository, whose
 conversation records are in `sketches/records/`, numbered 012.
 
+The project began on 2026-08-10. *The Living Codex* (002) was
+finished on 2026-08-20, ten days in; everything after it, stages 003
+to 011 and the start of 012, came in the three months to 2026-11-20.
+The founder, that day: "All since the Living Codex took place over the
+last three months, to the day. … In other words, this is still the
+beginning."
+
 ## The stages
 
 | Stage | What it holds | Bytes | Lines | Words |
 |---|---|---|---|---|
 | `000_Memory.txt` | A summary of where the project's ideas stood: its central sequence, "Encounter → Difference → Distinction → … → Repair → Return", analogy as a way of translating between domains, and "Analogy ≠ identity". | 128,119 | 5,008 | 16,788 |
-| `001_Kernel.txt` | A *Tao Te Ching* and *The Art of War*, in published translations; then *The Sevenfold Art of War and Peace*, a textbook of conflict and peace drawn from many traditions. | 6,959,973 | 119,954 | 1,105,043 |
+| `001_Kernel.txt` | A *Tao Te Ching*, *The Art of War*, *The Art of Peace*, the *Dhammapada* and the Sermon on the Mount, in published translations; then *The Sevenfold Art of War and Peace*, a textbook of conflict and peace drawn from many traditions. | 6,959,973 | 119,954 | 1,105,043 |
 | `002_System.txt` | *The Living Codex: A Practical Handbook for SEEING, ACCEPTING, and LOVING All as It Is*, in 79 parts. Most of its emoji are given as words in square brackets; about 220 are left as they were. | 1,919,654 | 151,424 | 273,310 |
 | `003_Language.txt` | The Living Kernel: a language for the project's ideas, worked out in movements, encounters and tests. | 15,298,248 | 1,054,877 | 1,840,282 |
 | `004_Pattern.txt` | It opens on the idea of a two-intelligence research studio; then work on patterns: candidate invariants, the audits that test them, and their limits. Grok and ChatGPT are the AIs it names most. | 13,887,808 | 973,285 | 1,743,672 |
@@ -61,9 +68,10 @@ Saved as a text file next to the stages, the block above checks them
 all at once (`sha256sum -c`).
 
 Stage 011 has no copy of the founder's to check against: it was
-compiled from the founder's archive `011_Opposites.zip` (4,881,773
-bytes, SHA-256
-`73a81827887cf16f22b7b759da67730ac413669a8c4f00f17337c7d162ba188c`).
+compiled from the founder's 17 records, which came in the archive
+`011_Opposites.zip` (4,881,773 bytes, SHA-256
+`73a81827887cf16f22b7b759da67730ac413669a8c4f00f17337c7d162ba188c`),
+and the book's final text, from the book's repository.
 Its kept file's SHA-256 is
 `7d93e48c99a415960ee4da0b836fd6c72aa9ebdbbd415b97cfa53bd0fbce7a4e`,
 and a table beside it gives each part's source, where it begins, and
@@ -106,7 +114,8 @@ give, and these files hold more than that:
   in `001`, `004` and `008`; Morihei Ueshiba's *The Art of Peace* in
   `001`; and passages of the Bible in a modern translation in `001`,
   `009` and `010`. The *Tao Te Ching* in `001` reads as a translation
-  its translator put in the public domain; that is to be confirmed.
+  its translator put in the public domain, which is to be confirmed;
+  its *Dhammapada* is Max Müller's of 1881, out of copyright.
 - **A personal name** that public pages leave out (`AGENTS.md`,
   "Always"), in `003`, `004`, `005`, `007` and `011`.
 - **Links tied to the founder's accounts,** in `005`, `007` and `011`.

@@ -30,11 +30,18 @@
   ebook-press. I did connect ChatGPT through a GitHub connector, I
   will check to see if they have read-access to the private repos."
   Done: the stages are in the private `ebook-press` repository,
-  folder `history/` (its pull request #8), with a personal name and
-  account links replaced by markers in four of them, every line
-  where it was. [docs/HISTORY.md](docs/HISTORY.md) says where they
+  folder `history/` (its pull request #8), with a personal name
+  replaced by a marker in four of them, and account links in two,
+  every line where it was. [docs/HISTORY.md](docs/HISTORY.md) says where they
   are. Whether ChatGPT can read that repository is the founder's to
   check.
+
+- 2026-11-20, founder, the timeline. "And for the sake of a timeline,
+  The Living Codex was completed on August 20, which is 10 days from
+  the project start on August 10. All since the Living Codex took
+  place over the last three months, to the day. … In other words,
+  this is still the beginning." Recorded in
+  [docs/HISTORY.md](docs/HISTORY.md).
 
 - 2026-11-20, founder, the earlier stages, and a page for them. The
   founder brought stages 000 to 010 in one archive: "Here is a zip
