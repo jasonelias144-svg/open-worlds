@@ -316,7 +316,9 @@ Also right, and kept in mind:
    `history/`, if your GitHub connection reaches it; check them
    against its `SHA256SUMS`. Four of them (`003`, `004`, `005`, `007`)
    have a personal name or a link replaced by a marker, so their
-   hashes differ from the founder's; every line is where it was. Map each stage first: a
+   hashes differ from the founder's; every line is where it was. `003`,
+   `004`, `005` and `009` were replaced on 2026-11-20 by complete
+   versions (the history page says why). Map each stage first: a
    roadmap with line numbers, as you made for The Living Codex. Then,
    for each part you read, give three things in order:
    - the source, by the name the founder gives it;
@@ -338,6 +340,11 @@ Also right, and kept in mind:
 
 Every pull request merged after #129, newest first, one line each.
 
+- 2026-11-20, #133: stages `003`, `004`, `005` and `009` replaced by
+  complete versions, since the earlier ones left out parts (much of
+  `LRL_6` and `OI_6`, and a few lines in `004` and `009`);
+  their new hashes on
+  [`docs/HISTORY.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md).
 - 2026-11-20, #132: the ideas set aside for later, listed for you,
   and how an idea goes from your concept to a spec to code ("From an
   idea to code"); a sixth request.

@@ -8,6 +8,28 @@
 
 ## Decided
 
+- 2026-11-20, founder, the stages' own files. The founder brought the
+  separate files that stages 003, 004, 005, 009 and 010 were made
+  from: "Here is a zip file of zip files. It includes one zip file for
+  each stage that had more than one associated file. All other stages
+  are identical to their existing project files already provided." On
+  what they showed, that the stage files of 003 and 005 leave out much
+  of what was made: "Yeah, my record keeping took some time to
+  develop, and was sloppy and had some missing parts and some repeated
+  parts. Which is what motivated me to be more careful at later
+  stages." And: "And yes, please provide complete joined versions of
+  003 and 005." And then: "Yeah, and I'll want full copies, because I
+  never intended to have a bad version and a full version. Just one.
+  So I will simply replace my previous versions with your newly
+  compiled versions … Yeah, no, not two versions. Just one." And, of
+  004 and 009: "So, the original files would have contained those
+  files, had I not made a mistake. Neither was an intentional
+  omission." And: "And you might as well provide 011_Opposites.txt
+  here too." Done: 003, 004, 005 and 009 are now the complete
+  versions, in the founder's library and, kept, in `ebook-press`
+  `history/`, and the founder has their own copy of 011; [docs/HISTORY.md](docs/HISTORY.md)
+  gives their new hashes and the earlier ones'.
+
 - 2026-11-20, founder, the ideas set aside, and how they become code.
   "Also, I should mention, please make sure you point ChatGPT toward
   the ideas we set aside for future development. These are just the
