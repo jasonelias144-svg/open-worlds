@@ -8,6 +8,29 @@
 
 ## Decided by the technical lead
 
+- 2026-11-20, the history page (Decided, 2026-11-20, the earlier
+  stages). (a) The page lists the stages; the files themselves stay
+  out of the repository. Everything here is CC0 as far as it is ours
+  to give, and the files hold more than that: texts from outside the
+  project, at length, in published translations that keep their own
+  terms; a personal name that public pages leave out; and links tied
+  to the founder's accounts. Size is a second reason: the largest
+  file is 20 MB, and the readers the project works with are often
+  shown only the first 32 KB of a page. (b) A stage comes in once it
+  has been looked through for those three, with what was left out
+  marked, as Gemini's record was; the screen found none in `002`,
+  The Living Codex, and whether it goes into `library/` is the
+  founder's to say. (c) The descriptions are the technical lead's,
+  from each file's headings and opening, and say so. (d) The page
+  gives each file's SHA-256, so that a copy can be checked before
+  anyone works from it.
+  *What would show it wrong:* the founder wanting the stages public
+  as they are; then each is looked through first and the three kinds
+  are taken out. Or ChatGPT being unable to take the archive as a
+  file; then a private repository that ChatGPT's GitHub connection
+  can read. The founder chose that the same day: `ebook-press`, the
+  entry above in "Decided".
+
 - 2026-11-20, ChatGPT's page (Decided, 2026-11-20). (a) A page of
   their own, `docs/CHATGPT.md`, and not a section of COLLABORATING.md:
   their part is not code, and COLLABORATING.md is near 2,900 lines,

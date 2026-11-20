@@ -8,6 +8,52 @@
 
 ## Decided
 
+- 2026-11-20, founder, stage 011. "Stage 011 includes A Mathematical
+  Theory of Opposites as the final output, but includes the
+  conversation records as well, and the previous versions. I'll
+  compile them later today or tomorrow. Or...Here are all of them,
+  without the final copy of the main text. Please feel free to
+  compile them into a 011_Opposites.txt file, and then add to rest."
+  Done: `011_Opposites.txt` in `ebook-press/history/`, the 17 records
+  in their numbered order and then the book's final text, joined as
+  the founder's own stage files are, with what no repository keeps
+  replaced and every line where it was; listed in
+  [docs/HISTORY.md](docs/HISTORY.md).
+
+- 2026-11-20, founder, the stages kept privately. On the technical
+  lead's finding that the stages hold outside texts in published
+  translations: "Good point on some of the texts. Let's keep in
+  private repos until we can make sure we do not violate any
+  copyright restrictions. This is just one reason I have kept these
+  to myself, but sharing them with you and keeping them in a private
+  repo is a good middle ground, so let's move them to the
+  ebook-press. I did connect ChatGPT through a GitHub connector, I
+  will check to see if they have read-access to the private repos."
+  Done: the stages are in the private `ebook-press` repository,
+  folder `history/` (its pull request #8), with a personal name
+  replaced by a marker in four of them, and account links in two,
+  every line where it was. [docs/HISTORY.md](docs/HISTORY.md) says where they
+  are. Whether ChatGPT can read that repository is the founder's to
+  check.
+
+- 2026-11-20, founder, the timeline. "And for the sake of a timeline,
+  The Living Codex was completed on August 20, which is 10 days from
+  the project start on August 10. All since the Living Codex took
+  place over the last three months, to the day. … In other words,
+  this is still the beginning." Recorded in
+  [docs/HISTORY.md](docs/HISTORY.md).
+
+- 2026-11-20, founder, the earlier stages, and a page for them. The
+  founder brought stages 000 to 010 in one archive: "Here is a zip
+  with the previous project stages, each in one file. Only the
+  Opposites stage (011) is not there, having only completed today.
+  Thoughts?" And then: "Please add these to a project history page.
+  That way I can point ChatGPT to that page for a project history
+  archive." Done: [docs/HISTORY.md](docs/HISTORY.md), with what each
+  stage holds, its size and SHA-256, and how to work from it. The
+  files themselves are not in the repository (Decided by the
+  technical lead, today); the founder gives them.
+
 - 2026-11-20, founder, who supplies which files. On the technical
   lead's fourth request to ChatGPT, that they bring in the earlier
   stages: "The earlier stages will have to come from me. I have the

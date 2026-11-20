@@ -28,10 +28,11 @@ So your part is three things:
 - **Creative development:** the larger vision, and what the worlds
   could make possible, worked out freely before anyone decides.
 - **The earlier stages brought in:** the founder's earlier work, as
-  the founder brings it. Brought so far: *Art of Peace and the
-  Strategist* (in `library/`); The Living Codex (2026-11-20); and *A
-  Mathematical Theory of Opposites*, the book you wrote and built.
-  The rest are named here as they come.
+  the founder brings it. Brought so far: stages 000 to 010, one file
+  each ([`docs/HISTORY.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md)), among them The Living Codex (002) and *Art of Peace and
+  the Strategist* (in 009, and in `library/`); and stage 011, *A
+  Mathematical Theory of Opposites*, the book you wrote and built,
+  compiled with its records.
 - **Coherence:** the project consistent with itself and with those
   stages, and its lessons kept in use.
 
@@ -80,7 +81,7 @@ The project has a place for each.
 
 | Area | What it holds | Where it is here |
 |---|---|---|
-| Archive | the earlier work, as it was made | `sketches/records/` (the conversations, word for word); `library/` (finished texts, public domain); the earlier stages' files, from the founder's library, as the founder brings them; the records the founder holds (below) |
+| Archive | the earlier work, as it was made | `sketches/records/` (the conversations, word for word); `library/` (finished texts, public domain); the earlier stages' files, from the founder's library, as the founder brings them, listed by name and hash in [`docs/HISTORY.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md) and kept privately in `jasonelias144-svg/ebook-press`, `history/`; the records the founder holds (below) |
 | Commentary | readings of it for the multiverse | your pages, in `docs/chatgpt/` from the first one |
 | Laboratory | mechanics, example worlds and experiments drawn from it | `sketches/`, `experiments/`, `docs/TOPICS.md` |
 | Core | what has been chosen | `STATUS.md` ("Decided"), `CHARTER.md`, the course, and the code |
@@ -103,7 +104,8 @@ this order:
 6. `STATUS.md`, "Now" and "Decided". It is long: [`parts/INDEX.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md) gives it in parts.
 7. [`docs/COLLABORATING.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COLLABORATING.md), "Messages from the technical lead": what DeepSeek and Gemini are told
 8. [`docs/TOPICS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/TOPICS.md)
-9. [`docs/WORLD-TYPES.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/WORLD-TYPES.md), [`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md), [`docs/URWORLD.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/URWORLD.md)
+9. [`docs/HISTORY.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md): the earlier stages, and how to check a copy
+10. [`docs/WORLD-TYPES.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/WORLD-TYPES.md), [`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md), [`docs/URWORLD.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/URWORLD.md)
 
 ## Sending something
 
@@ -210,21 +212,26 @@ Also right, and kept in mind:
 
    One word for one thing, as in the book.
 4. **The earlier stages, one at a time, as the founder brings them.**
+   They are listed, with how to check a copy, in [`docs/HISTORY.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md).
    Every document from an earlier stage comes from the founder's
    library, named under the founder's one convention; work from that
-   copy, not from one found elsewhere. For each, give three things in
-   order:
+   copy, not from one found elsewhere. The kept copies are in the
+   private repository `jasonelias144-svg/ebook-press`, folder
+   `history/`, if your GitHub connection reaches it; check them
+   against its `SHA256SUMS`. Four of them (`003`, `004`, `005`, `007`)
+   have a personal name or a link replaced by a marker, so their
+   hashes differ from the founder's; every line is where it was. Map each stage first: a
+   roadmap with line numbers, as you made for The Living Codex. Then,
+   for each part you read, give three things in order:
    - the source, by the name the founder gives it;
    - your reading of it;
    - what it could give a world.
 
-   The Living Codex can come first: your roadmap used the copy the
-   founder chose for it, the one Gemini was given. The founder has
-   given the technical lead that copy too, now named `002_System.txt`:
-   1,919,654 bytes, 151,424 lines, SHA-256
-   `9a9549d24d4d618f4f595114f8184936cc37494c232ab820f15a1d0b895800af`.
-   If yours has another hash, say so. Quote with the source's name
-   and line, so that each reading can be checked against it.
+   Start with `000`, a short summary of the whole, and `002`, The
+   Living Codex: the copy your roadmap used, the one Gemini was
+   given, now named `002_System.txt`. If your copy's SHA-256 differs
+   from the history page's, say so. Quote with the source's name and
+   line, so that each reading can be checked against it.
 5. **A coherence report, each time you read the repository again.**
    List pages that contradict each other, a word used two ways, a
    decision that never reached the code or the pages, and a lesson not
@@ -235,6 +242,9 @@ Also right, and kept in mind:
 
 Every pull request merged after #129, newest first, one line each.
 
+- 2026-11-20, #131: the project's history, [`docs/HISTORY.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md): stages 000 to 010
+  and 011, what each holds, where they are kept (privately, in
+  `ebook-press`), and how to check a copy.
 - 2026-11-20, #130: this page; the three conflicts your review found,
   fixed, there and in six more pages; the founder's words on your
   part, and on who supplies which files, in `STATUS.md`.

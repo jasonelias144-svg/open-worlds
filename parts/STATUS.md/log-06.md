@@ -8,6 +8,29 @@
 
 ## Log
 
+- 2026-11-20 Claude: the project's history page, `docs/HISTORY.md`
+  (#131), at the founder's word. Looked at first: the founder's
+  archive of stages 000 to 010 (11 files, 80,583,514 bytes), each
+  measured and hashed, and screened by script for email addresses,
+  keys, links, names, phone numbers and addresses, mentions of
+  family, and outside texts. `002` is byte for byte the copy of The
+  Living Codex the founder gave earlier that day; `009` holds *Art of
+  Peace and the Strategist* byte for byte as `library/` keeps it;
+  `007` begins with the same 335,068 characters as `005`. No email
+  address or key was found; what was found, and why
+  the files stay out, is in "Decided by the technical lead". Linked
+  from `docs/CHATGPT.md` (request 4 now asks for a roadmap of each
+  stage first) and from COLLABORATING.md's list of files. Then, at
+  the founder's word, the stages went into the private `ebook-press`
+  repository (`history/`, its #8), and the page says where. Then
+  stage 011, compiled there from the founder's 17 records and the
+  book's final text, and listed on the page. An independent review
+  asked for fixes, all made: `011`'s numbers and hash after its
+  rebuild, the outside texts in full (*The Art of War* in `004` too,
+  *The Art of Peace* in `001`), where the kept copies are and how to
+  check them, here and in `docs/CHATGPT.md`, and the page moved to
+  COLLABORATING.md's "Start here" group.
+
 - 2026-11-20 Claude: ChatGPT's page, `docs/CHATGPT.md` (#130), at the
   founder's word: their part, who decides, what binds and what
   explores, the four areas, where to start, how to send something,

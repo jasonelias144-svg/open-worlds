@@ -18,6 +18,9 @@ free, and never a money machine
   earlier stages, not code (Decided). Their page is
   [docs/CHATGPT.md](docs/CHATGPT.md), with the technical lead's first
   message and five requests; what they send comes through the founder.
+  The project's earlier stages, 000 to 011, are listed in
+  [docs/HISTORY.md](docs/HISTORY.md); the files are kept privately,
+  in the founder's private repository `ebook-press`, `history/`.
 
 - Claude: the new course ([docs/COURSE.md](docs/COURSE.md)), set on
   2026-11-13 for the Ur-world and ALICE and BOB. Step 1, the design pages,
@@ -341,6 +344,52 @@ of it is asked again until it is needed.
     total, never per author, so that marking in good faith costs nothing.
 
 ## Decided
+
+- 2026-11-20, founder, stage 011. "Stage 011 includes A Mathematical
+  Theory of Opposites as the final output, but includes the
+  conversation records as well, and the previous versions. I'll
+  compile them later today or tomorrow. Or...Here are all of them,
+  without the final copy of the main text. Please feel free to
+  compile them into a 011_Opposites.txt file, and then add to rest."
+  Done: `011_Opposites.txt` in `ebook-press/history/`, the 17 records
+  in their numbered order and then the book's final text, joined as
+  the founder's own stage files are, with what no repository keeps
+  replaced and every line where it was; listed in
+  [docs/HISTORY.md](docs/HISTORY.md).
+
+- 2026-11-20, founder, the stages kept privately. On the technical
+  lead's finding that the stages hold outside texts in published
+  translations: "Good point on some of the texts. Let's keep in
+  private repos until we can make sure we do not violate any
+  copyright restrictions. This is just one reason I have kept these
+  to myself, but sharing them with you and keeping them in a private
+  repo is a good middle ground, so let's move them to the
+  ebook-press. I did connect ChatGPT through a GitHub connector, I
+  will check to see if they have read-access to the private repos."
+  Done: the stages are in the private `ebook-press` repository,
+  folder `history/` (its pull request #8), with a personal name
+  replaced by a marker in four of them, and account links in two,
+  every line where it was. [docs/HISTORY.md](docs/HISTORY.md) says where they
+  are. Whether ChatGPT can read that repository is the founder's to
+  check.
+
+- 2026-11-20, founder, the timeline. "And for the sake of a timeline,
+  The Living Codex was completed on August 20, which is 10 days from
+  the project start on August 10. All since the Living Codex took
+  place over the last three months, to the day. … In other words,
+  this is still the beginning." Recorded in
+  [docs/HISTORY.md](docs/HISTORY.md).
+
+- 2026-11-20, founder, the earlier stages, and a page for them. The
+  founder brought stages 000 to 010 in one archive: "Here is a zip
+  with the previous project stages, each in one file. Only the
+  Opposites stage (011) is not there, having only completed today.
+  Thoughts?" And then: "Please add these to a project history page.
+  That way I can point ChatGPT to that page for a project history
+  archive." Done: [docs/HISTORY.md](docs/HISTORY.md), with what each
+  stage holds, its size and SHA-256, and how to work from it. The
+  files themselves are not in the repository (Decided by the
+  technical lead, today); the founder gives them.
 
 - 2026-11-20, founder, who supplies which files. On the technical
   lead's fourth request to ChatGPT, that they bring in the earlier
@@ -3272,6 +3321,29 @@ of it is asked again until it is needed.
 
 ## Decided by the technical lead
 
+- 2026-11-20, the history page (Decided, 2026-11-20, the earlier
+  stages). (a) The page lists the stages; the files themselves stay
+  out of the repository. Everything here is CC0 as far as it is ours
+  to give, and the files hold more than that: texts from outside the
+  project, at length, in published translations that keep their own
+  terms; a personal name that public pages leave out; and links tied
+  to the founder's accounts. Size is a second reason: the largest
+  file is 20 MB, and the readers the project works with are often
+  shown only the first 32 KB of a page. (b) A stage comes in once it
+  has been looked through for those three, with what was left out
+  marked, as Gemini's record was; the screen found none in `002`,
+  The Living Codex, and whether it goes into `library/` is the
+  founder's to say. (c) The descriptions are the technical lead's,
+  from each file's headings and opening, and say so. (d) The page
+  gives each file's SHA-256, so that a copy can be checked before
+  anyone works from it.
+  *What would show it wrong:* the founder wanting the stages public
+  as they are; then each is looked through first and the three kinds
+  are taken out. Or ChatGPT being unable to take the archive as a
+  file; then a private repository that ChatGPT's GitHub connection
+  can read. The founder chose that the same day: `ebook-press`, the
+  entry above in "Decided".
+
 - 2026-11-20, ChatGPT's page (Decided, 2026-11-20). (a) A page of
   their own, `docs/CHATGPT.md`, and not a section of COLLABORATING.md:
   their part is not code, and COLLABORATING.md is near 2,900 lines,
@@ -4827,6 +4899,29 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-20 Claude: the project's history page, `docs/HISTORY.md`
+  (#131), at the founder's word. Looked at first: the founder's
+  archive of stages 000 to 010 (11 files, 80,583,514 bytes), each
+  measured and hashed, and screened by script for email addresses,
+  keys, links, names, phone numbers and addresses, mentions of
+  family, and outside texts. `002` is byte for byte the copy of The
+  Living Codex the founder gave earlier that day; `009` holds *Art of
+  Peace and the Strategist* byte for byte as `library/` keeps it;
+  `007` begins with the same 335,068 characters as `005`. No email
+  address or key was found; what was found, and why
+  the files stay out, is in "Decided by the technical lead". Linked
+  from `docs/CHATGPT.md` (request 4 now asks for a roadmap of each
+  stage first) and from COLLABORATING.md's list of files. Then, at
+  the founder's word, the stages went into the private `ebook-press`
+  repository (`history/`, its #8), and the page says where. Then
+  stage 011, compiled there from the founder's 17 records and the
+  book's final text, and listed on the page. An independent review
+  asked for fixes, all made: `011`'s numbers and hash after its
+  rebuild, the outside texts in full (*The Art of War* in `004` too,
+  *The Art of Peace* in `001`), where the kept copies are and how to
+  check them, here and in `docs/CHATGPT.md`, and the page moved to
+  COLLABORATING.md's "Start here" group.
 
 - 2026-11-20 Claude: ChatGPT's page, `docs/CHATGPT.md` (#130), at the
   founder's word: their part, who decides, what binds and what

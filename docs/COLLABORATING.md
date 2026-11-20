@@ -2488,7 +2488,7 @@ or in
 collaborating page are not accessible. So all files need links through
 this method.").
 
-This list holds the files a reader works from, 273 of them: every
+This list holds the files a reader works from, 274 of them: every
 page, all the code in Python and Rust, the tests, the vectors and the
 web pages. [FILES.md](FILES.md) holds the rest, and says how many:
 files of record best sent when a question needs them: the
@@ -2503,11 +2503,12 @@ into parts, for a reader who is shown only the start of a page:
 its own link is in the last group below. The test vectors and
 Cargo.lock are left whole.
 
-**Start here**, the orientation, the charter, the course, and the pages the work now draws on (11):
+**Start here**, the orientation, the charter, the course, and the pages the work now draws on (12):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COLLABORATING.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/AGENTS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/README.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/CHARTER.md
