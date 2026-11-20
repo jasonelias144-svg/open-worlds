@@ -75,9 +75,9 @@ pages can range freely.
 ## From an idea to code
 
 The founder, to the technical lead, 2026-11-20 (`STATUS.md`,
-"Decided"): "please make sure you point ChatGPT toward the ideas we set aside for future
-development. These are just the type of ideas to work out
-conceptually first. That could then be brought back to you to turn
+"Decided"): "please make sure you point ChatGPT toward the ideas we
+set aside for future development. These are just the type of ideas
+to work out conceptually first. That could then be brought back to you to turn
 into design specs. And those could go to DeepSeek and Gemini."
 
 So an idea set aside goes through four hands, in this order:

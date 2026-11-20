@@ -12,7 +12,7 @@
   the founder's word (#132). `docs/CHATGPT.md` gains "From an idea to
   code": the four hands, the lists of ideas set aside (TOPICS.md,
   "Further out"; COURSE.md, "Waiting"; VISION.md; WORLD-TYPES.md;
-  COMMONS.md; research/GAMES-AND-WORLDS.md), and when a concept is
+  MULTIVERSE.md; COMMONS.md; research/GAMES-AND-WORLDS.md), and when a concept is
   ready for a spec; and a sixth request, recommending the gathering
   world first. COLLABORATING.md tells DeepSeek and Gemini where specs
   will come from; TOPICS.md points there. No code changes.
