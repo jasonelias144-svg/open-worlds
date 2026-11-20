@@ -18,8 +18,9 @@ free, and never a money machine
   earlier stages, not code (Decided). Their page is
   [docs/CHATGPT.md](docs/CHATGPT.md), with the technical lead's first
   message and five requests; what they send comes through the founder.
-  The project's earlier stages, 000 to 010, are listed in
-  [docs/HISTORY.md](docs/HISTORY.md).
+  The project's earlier stages, 000 to 011, are listed in
+  [docs/HISTORY.md](docs/HISTORY.md); the files are kept privately,
+  in the founder's private repository `ebook-press`, `history/`.
 
 - Claude: the new course ([docs/COURSE.md](docs/COURSE.md)), set on
   2026-11-13 for the Ur-world and ALICE and BOB. Step 1, the design pages,
@@ -4908,7 +4909,12 @@ it was wrong. Questions of what the project is for stay with the founder.
   the founder's word, the stages went into the private `ebook-press`
   repository (`history/`, its #8), and the page says where. Then
   stage 011, compiled there from the founder's 17 records and the
-  book's final text, and listed on the page.
+  book's final text, and listed on the page. An independent review
+  asked for fixes, all made: `011`'s numbers and hash after its
+  rebuild, the outside texts in full (*The Art of War* in `004` too,
+  *The Art of Peace* in `001`), where the kept copies are and how to
+  check them, here and in `docs/CHATGPT.md`, and the page moved to
+  COLLABORATING.md's "Start here" group.
 
 - 2026-11-20 Claude: ChatGPT's page, `docs/CHATGPT.md` (#130), at the
   founder's word: their part, who decides, what binds and what

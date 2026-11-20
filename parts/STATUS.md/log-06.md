@@ -24,7 +24,12 @@
   the founder's word, the stages went into the private `ebook-press`
   repository (`history/`, its #8), and the page says where. Then
   stage 011, compiled there from the founder's 17 records and the
-  book's final text, and listed on the page.
+  book's final text, and listed on the page. An independent review
+  asked for fixes, all made: `011`'s numbers and hash after its
+  rebuild, the outside texts in full (*The Art of War* in `004` too,
+  *The Art of Peace* in `001`), where the kept copies are and how to
+  check them, here and in `docs/CHATGPT.md`, and the page moved to
+  COLLABORATING.md's "Start here" group.
 
 - 2026-11-20 Claude: ChatGPT's page, `docs/CHATGPT.md` (#130), at the
   founder's word: their part, who decides, what binds and what

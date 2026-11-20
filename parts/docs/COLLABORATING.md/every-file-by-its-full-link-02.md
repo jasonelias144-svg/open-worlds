@@ -33,11 +33,12 @@ into parts, for a reader who is shown only the start of a page:
 its own link is in the last group below. The test vectors and
 Cargo.lock are left whole.
 
-**Start here**, the orientation, the charter, the course, and the pages the work now draws on (11):
+**Start here**, the orientation, the charter, the course, and the pages the work now draws on (12):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COLLABORATING.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/AGENTS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/README.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/CHARTER.md
@@ -49,7 +50,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FRACTA
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/URWORLD.md
 ```
 
-**The design pages**, with Cycle 0's output (19):
+**The design pages**, with Cycle 0's output (18):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/ADMIN.md
@@ -60,7 +61,6 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/DESIGN
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FREEDOMS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FUNDAMENTALS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/GLOSSARY.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/MINDS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/MULTIVERSE.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/OFFICES.md

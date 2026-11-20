@@ -21,20 +21,21 @@ conversation records are in `sketches/records/`, numbered 012.
 |---|---|---|---|---|
 | `000_Memory.txt` | A summary of where the project's ideas stood: its central sequence, "Encounter → Difference → Distinction → … → Repair → Return", analogy as a way of translating between domains, and "Analogy ≠ identity". | 128,119 | 5,008 | 16,788 |
 | `001_Kernel.txt` | A *Tao Te Ching* and *The Art of War*, in published translations; then *The Sevenfold Art of War and Peace*, a textbook of conflict and peace drawn from many traditions. | 6,959,973 | 119,954 | 1,105,043 |
-| `002_System.txt` | *The Living Codex: A Practical Handbook for SEEING, ACCEPTING, and LOVING All as It Is*, in 79 parts. Most of its emoji are given as words in square brackets; 221 are left as they were. | 1,919,654 | 151,424 | 273,310 |
-| `003_Language.txt` | The Living Kernel and the Semantic Genome: a language for the project's ideas, worked out in movements, encounters and tests. | 15,298,248 | 1,054,877 | 1,840,282 |
-| `004_Pattern.txt` | Work on patterns: candidate invariants, the audits that test them, and their limits. Grok and ChatGPT are the AIs it names most. | 13,887,808 | 973,285 | 1,743,672 |
+| `002_System.txt` | *The Living Codex: A Practical Handbook for SEEING, ACCEPTING, and LOVING All as It Is*, in 79 parts. Most of its emoji are given as words in square brackets; about 220 are left as they were. | 1,919,654 | 151,424 | 273,310 |
+| `003_Language.txt` | The Living Kernel: a language for the project's ideas, worked out in movements, encounters and tests. | 15,298,248 | 1,054,877 | 1,840,282 |
+| `004_Pattern.txt` | It opens on the idea of a two-intelligence research studio; then work on patterns: candidate invariants, the audits that test them, and their limits. Grok and ChatGPT are the AIs it names most. | 13,887,808 | 973,285 | 1,743,672 |
 | `005_Method.txt` | Conversations with Claude and ChatGPT in a philosophical mode: choice, freedom, possibility and action. | 4,119,763 | 82,593 | 549,819 |
 | `006_Analysis.txt` | *The Living Codex* read as a digital artifact. | 1,403,060 | 18,797 | 218,797 |
 | `007_Inquiry.txt` | The philosophical conversations again. Its first 335,068 characters are the same as `005`'s; after that it goes its own way. | 790,285 | 4,204 | 123,507 |
 | `008_Relation.txt` | *The Art of War* in a published translation, read with ChatGPT and Grok; then shared-benefit optimization, a question set out for mathematics. | 1,343,318 | 29,059 | 194,251 |
 | `009_Strategy.txt` | Notes on strategy, and records of the work, most of them marked CGPT (made with ChatGPT). It holds *Art of Peace and the Strategist* byte for byte as it is in [`library/`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/README.md). | 20,381,038 | 415,628 | 3,076,911 |
 | `010_Wisdom.txt` | *The Living Way*, a field manual in 100 chapters, with later drafts of it. | 14,352,248 | 279,772 | 2,478,806 |
-| `011_Opposites.txt` | *A Mathematical Theory of Opposites*: the conversations with ChatGPT and DeepSeek that made it (`011-00` to `011-16`), its earlier versions, the editing record, and the final text. | 20,834,076 | 324,298 | 3,043,353 |
+| `011_Opposites.txt` | *A Mathematical Theory of Opposites*: the conversations with ChatGPT and DeepSeek that made it (`011-00` to `011-16`), its earlier versions, the editing record, and the final text. | 20,834,016 | 324,298 | 3,043,350 |
 
-In all, 101,417,590 bytes and about 14.7 million words. The
-descriptions are the technical lead's, from each file's headings and
-opening; no one has read every line.
+In all, 101,417,530 bytes and about 14.7 million words. The counts
+are for the files as the founder gave them, and for `011` as compiled
+and kept. The descriptions are the technical lead's, from each file's
+headings and opening; no one has read every line.
 
 ## Checking a copy
 
@@ -56,32 +57,34 @@ e8ddd73602a4d4a48f75b574971e6e2f357e6d4f3eca223a0bf352e0f9194294  008_Relation.t
 
 They came in one archive, `Project_Stages_1-10.zip`: 22,031,670 bytes,
 SHA-256 `314fc8684c1c7d725695cb3fec2fb40d0287972f0c8ead0b1a938a6aa08f6b80`.
+Saved as a text file next to the stages, the block above checks them
+all at once (`sha256sum -c`).
 
 Stage 011 has no copy of the founder's to check against: it was
 compiled from the founder's archive `011_Opposites.zip` (4,881,773
 bytes, SHA-256
 `73a81827887cf16f22b7b759da67730ac413669a8c4f00f17337c7d162ba188c`).
 Its kept file's SHA-256 is
-`1a4825d2d3b9c3ff21267e185b5a2e5e1bdf9be4fbd3270291a4be567c5ab524`,
+`7d93e48c99a415960ee4da0b836fd6c72aa9ebdbbd415b97cfa53bd0fbce7a4e`,
 and a table beside it gives each part's source, where it begins, and
 what was replaced in it.
-Saved as a text file next to the stages, the block above checks them
-all at once (`sha256sum -c`).
 
-The kept copies (below) differ in four files, `003`, `004`, `005` and
-`007`: there a personal name and links tied to the founder's accounts
-are replaced by markers, and every line is where it was, so a line
-number is the same in both. The same was done in compiling `011`. The kept folder's `SHA256SUMS` and
-`REDACTED.tsv` give those four's kept hashes.
+The kept copies (below) differ from these in four files, `003`,
+`004`, `005` and `007`: there a personal name is replaced by a marker,
+and in `005` and `007` links tied to the founder's accounts too. Every
+line is where it was, so a line number is the same in both. The same
+was done in compiling `011`. The kept folder's `SHA256SUMS` and
+`REDACTED.tsv` give the kept hashes of those four.
 
 ## Working from them
 
 - **They are kept privately,** in the founder's private repository
-  `ebook-press`, folder `history/`, at the founder's word (2026-11-20).
-  Whoever the founder gives access can read them there; for ChatGPT,
-  that is through their GitHub connection, if it reaches that
-  repository. The founder can also give them as the archive above.
-  Check a copy against its SHA-256 before working from it.
+  `jasonelias144-svg/ebook-press`, folder `history/`, at the founder's
+  word (2026-11-20). Whoever the founder gives access can read them
+  there; for ChatGPT, that is through their GitHub connection, if it
+  reaches that repository. The founder can also give them as the
+  archive above. Check a copy before working from it: a kept copy
+  against `history/SHA256SUMS`, the founder's against the block above.
 - **Map a stage before reading it.** The largest has over a million
   lines, and no conversation holds a stage whole. Make a roadmap with
   line numbers first, as ChatGPT did for *The Living Codex* (30
@@ -99,9 +102,11 @@ make sure we do not violate any copyright restrictions." Everything in
 this repository is public domain (CC0 1.0), as far as it is ours to
 give, and these files hold more than that:
 - **Texts from outside the project, at length, in published
-  translations** that keep their own terms: a *Tao Te Ching* and *The
-  Art of War* in `001`, *The Art of War* again in `008`, and passages
-  of the Bible in a modern translation in `001`, `009` and `010`.
+  translations** whose terms are still to be checked: *The Art of War*
+  in `001`, `004` and `008`; Morihei Ueshiba's *The Art of Peace* in
+  `001`; and passages of the Bible in a modern translation in `001`,
+  `009` and `010`. The *Tao Te Ching* in `001` reads as a translation
+  its translator put in the public domain; that is to be confirmed.
 - **A personal name** that public pages leave out (`AGENTS.md`,
   "Always"), in `003`, `004`, `005`, `007` and `011`.
 - **Links tied to the founder's accounts,** in `005`, `007` and `011`.
