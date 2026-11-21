@@ -160,3 +160,5 @@ notice ([vectors/README.md](vectors/README.md)).
 
 [AGENTS.md](AGENTS.md), [STATUS.md](STATUS.md), and the
 [policy handbook](https://github.com/jasonelias144-svg/policy-handbook).
+A guide to the whole project, for newcomers, is being written in
+[guide/](guide/README.md), from its [outline](guide/OUTLINE.md).

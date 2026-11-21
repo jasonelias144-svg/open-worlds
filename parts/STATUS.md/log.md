@@ -10,6 +10,22 @@
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-21 Claude: the guide's outline (#141), at the founder's
+  request. `guide/README.md`: what the guide is, the founder's words,
+  and eight rules every chapter is written by (the guide explains and
+  never rules; six labels, Built, Sketched, Decided, Designed, Idea
+  and Open; sources and a commit at the end of each chapter; numbers
+  that never change; sections that can be read alone; one word for one
+  thing; a text twin for every figure; reference parts made by
+  script). `guide/OUTLINE.md`: front matter, nine parts and a
+  reference section, some eighty-five chapters, each with what it
+  covers, its label today and its sources.
+  `tests/test_guide_outline.py` fails when an area of the repository
+  (a top-level folder or file, a page or tool in docs/, a Rust crate)
+  is named in no chapter. Core first: edition 1 is the front matter,
+  Part I and the glossary. `docs/CHATGPT.md` has a message for
+  ChatGPT.
+
 - 2026-11-21 Claude: the founder's way in from the Library to a room,
   and "Let's start with the core functionality", recorded (#140), in
   STATUS.md "Decided", `docs/COMMONS.md` ("From the Library to a

@@ -209,6 +209,29 @@ project, and out of anything meant for the repository.
 
 Newest first. Earlier ones stay below.
 
+### 2026-11-21: the guide
+
+The founder has chosen your next work: a comprehensive guide to Open
+Worlds, a book companion to the project and to every part of a
+multiverse, living, and printable as a reference volume. Their words
+are in [`guide/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/README.md), with the rules
+every chapter is written by.
+
+The outline is [`guide/OUTLINE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/OUTLINE.md): front
+matter, nine parts and a reference section. Every area of the
+repository is named in some chapter's sources, and a test keeps it so.
+
+What to send first, as one file:
+1. **Your reading of the outline:** what is missing, what is in the
+   wrong place, what a newcomer would look for and not find.
+2. **A draft of I.1, "What Open Worlds is",** written from its
+   sources, by the rules in the README: a label on every section, its
+   sources at the end, each section readable alone.
+
+The founder decides what the guide covers; I check every claim about
+the code against the code before a chapter is merged. Core first: the
+front matter and Part I make edition 1.
+
 ### 2026-11-20, later: the ideas set aside, and a sixth request
 
 The founder asked that you be pointed to the ideas the project set
@@ -349,6 +372,7 @@ Also right, and kept in mind:
 
 Every pull request merged after #129, newest first, one line each.
 
+- 2026-11-21, #141: the guide: [`guide/OUTLINE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/OUTLINE.md) and its rules, [`guide/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/README.md); a message for you ("Messages from the technical lead").
 - 2026-11-21, #140: the founder's way in from the Library to a room:
   a topic query that returns articles and the rooms on them, in
   [`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md), "From the Library to a room".
