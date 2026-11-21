@@ -13,8 +13,8 @@
 - 2026-11-21 Claude: the archive, at the founder's word (#137).
   `docs/archive.py` moves a living page's older dated entries, whole,
   into `archive/<page>/<day>.md`, with a catalogue, and checks it;
-  `tests/test_archive.py` (39 tests after the two reviews; faults
-  planted in the script's guards, each caught). First run: 355 entries of STATUS.md
+  `tests/test_archive.py` (43 tests after the review and its two
+  re-checks; faults planted in the script's guards, each caught). First run: 355 entries of STATUS.md
   (2026-11-12 to 2026-11-17) and 14 messages of COLLABORATING.md
   (2026-11-15 and 2026-11-16) moved; STATUS.md from 455 KB to about
   57 KB. Checked apart from the script: every entry before the run is,
@@ -37,10 +37,15 @@
   written on after its run). The review's re-check found one more:
   a code block never closed in an old message would have made a later
   run move the rest of COLLABORATING.md with it. The script now stops
-  on a block never closed or one that joins two entries, and on a date
-  later than tomorrow; reports a catalogue it can't read; and CI
-  fetches the commits the catalogue names, so each archived entry is
-  compared there with its page as it was.
+  on a code block never closed, on one an entry opens and does not
+  close, and on a date later than tomorrow; reports a catalogue it
+  can't read; and CI fetches the commits the catalogue names, so each
+  archived entry is compared there with its page as it was. The second
+  re-check found a block left open and closed by a later one, which
+  still joined what lay between; the script and its check now stop on
+  any line inside a code block in a dated section that would start an
+  entry or a section, and the check counts only pointers outside code
+  blocks.
 
 - 2026-11-21 Claude: records 012-00-00 (patterns and the brain) and
   012-02-01 (circuits, learning, chemistry and music) kept with the

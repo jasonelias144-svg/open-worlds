@@ -73,7 +73,7 @@ Who writes here, and why.
 Body of four.
 
 ```text
-### 2026-01-01 not a message, in a code block
+    ### 2026-01-01 not a message: indented, in a code block
 ```
 
 ### 2026-01-03, to both: three
@@ -216,8 +216,8 @@ class Small(Pages):
         self.run_it()
         collab = self.read("docs/COLLABORATING.md")
         self.assertIn("### 2026-01-04, to both: four", collab)
-        self.assertIn("### 2026-01-01 not a message, in a code block",
-                      collab)
+        self.assertIn("    ### 2026-01-01 not a message: indented, in a "
+                      "code block", collab)
         self.assertNotIn("Body of two.", collab)
         self.assertIn("## The standard\n\nNot dated, and stays.\n", collab)
         self.assertIn("Who writes here, and why.", collab)
@@ -450,15 +450,28 @@ class Harder(Pages):
         with self.assertRaisesRegex(ARCHIVE.Problem, "why"):
             ARCHIVE.rehash(path, " ")
 
-    def test_a_heading_in_a_tilde_block_does_not_split_a_message(self):
+    def test_a_tilde_block_is_a_code_block_too(self):
         self.write("docs/COLLABORATING.md", COLLAB.replace(
             "Body of two.\n",
-            "Body of two.\n\n~~~\n## not a section\n~~~\n\nStill two.\n"))
+            "Body of two.\n\n~~~\n    ## indented\n~~~\n\nStill two.\n"))
         self.commit()
         self.run_it()
         two = self.read("archive/COLLABORATING/2026-01-02.md")
-        self.assertIn("## not a section\n~~~\n\nStill two.", two)
+        self.assertIn("    ## indented\n~~~\n\nStill two.", two)
         self.assertEqual(ARCHIVE.check(), [])
+
+    def test_a_heading_at_the_margin_in_a_code_block_stops_the_run(self):
+        for line in ("## not a section", "### 2026-01-01 not a message"):
+            with self.subTest(line=line):
+                self.write("docs/COLLABORATING.md", COLLAB.replace(
+                    "Body of two.\n",
+                    "Body of two.\n\n~~~\n" + line + "\n~~~\n"))
+                self.commit()
+                with self.assertRaisesRegex(ARCHIVE.Problem,
+                                            "entry or a section"):
+                    self.run_it()
+                self.assertTrue(any("entry or a section" in p
+                                    for p in ARCHIVE.check()))
 
     def test_an_empty_section_is_named_as_empty(self):
         self.write("STATUS.md", STATUS.replace(
@@ -496,7 +509,7 @@ class Second(Pages):
             "- 2026-01-04, founder, four.\n  ```\n\n"
             "- 2026-01-03, founder, a block's other end.\n  ```\n"))
         self.commit()
-        with self.assertRaisesRegex(ARCHIVE.Problem, "joins them"):
+        with self.assertRaisesRegex(ARCHIVE.Problem, "entry or a section"):
             self.run_it()
         self.assertTrue(any("would start an entry" in p
                             for p in ARCHIVE.check()))
@@ -508,6 +521,35 @@ class Second(Pages):
         ARCHIVE.rehash(path, "a test", today="2026-01-07")
         self.assertTrue(any(p.startswith(path) and "never closed" in p
                             for p in ARCHIVE.check()))
+
+    def test_a_block_left_open_and_closed_by_a_later_one_stops_the_run(self):
+        # The second review's case: a block left open in an old message
+        # is closed by a later section's bare fence, so the page as a
+        # whole looks closed, and the message would take every section
+        # up to there with it.
+        page = COLLAB.replace(
+            "Body of two.\n", "Body of two.\n\n```text\nnever closed\n")
+        page = page.replace(
+            "Not dated, and stays.\n",
+            "Not dated, and stays.\n\n```\nbare\n```\n\n"
+            "## Last\n\n```text\na list\n```\n")
+        self.write("docs/COLLABORATING.md", page)
+        self.commit()
+        with self.assertRaisesRegex(ARCHIVE.Problem, "entry or a section"):
+            self.run_it()
+        self.assertFalse(os.path.exists(os.path.join(self.root, "archive")))
+        self.assertTrue(any("entry or a section" in p
+                            for p in ARCHIVE.check()))
+
+    def test_the_check_does_not_count_a_pointer_in_a_code_block(self):
+        pointer = ARCHIVE.pointer_text("COLLABORATING")
+        self.write("docs/COLLABORATING.md", COLLAB.replace(
+            "Who writes here, and why.\n",
+            "Who writes here, and why.\n\n```text\n" + pointer
+            + "\n```\n"))
+        self.commit()
+        self.run_it()
+        self.assertEqual(ARCHIVE.check(), [])
 
     def test_a_date_later_than_tomorrow_stops_the_run(self):
         self.write("STATUS.md", STATUS.replace(

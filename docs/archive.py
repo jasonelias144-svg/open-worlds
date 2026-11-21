@@ -178,14 +178,15 @@ def loose(lines, ents, pattern):
 
 
 def swallowed(lines, ents, pattern):
-    """In a section of list items, the indexes of lines inside a code
-    block, within an entry, that would start an entry: a block opened
-    in one entry and closed in a later one, which joins them."""
-    if pattern is not BULLET:
-        return []
+    """The indexes of lines inside a code block, within an entry, that
+    would start an entry or a section if the block were not there: a
+    block left open in one entry and closed by a later fence joins what
+    lies between into that entry, other sections included."""
     code = fenced(lines)
     return [i for _, first, last in ents for i in range(first + 1, last + 1)
-            if code[i] and pattern.match(lines[i])]
+            if code[i] and (pattern.match(lines[i])
+                            or (lines[i].startswith("## ")
+                                and lines[i][3:].strip()))]
 
 
 def strip_pointers(body):
@@ -247,8 +248,9 @@ def plan(page, folder, specs, keep, archived_days, today=None):
         joined = swallowed(body, ents, pattern)
         if joined:
             raise Problem("%s, '%s': a code block holds a line that would "
-                          "start an entry (\"%s\"): a block opened in one "
-                          "entry and closed in another joins them"
+                          "start an entry or a section (\"%s\"): a block "
+                          "left open joins what follows it; close it where "
+                          "it belongs, or indent that line inside the block"
                           % (page, name, body[joined[0]][:50]))
         bad = loose(body, ents, pattern)
         if bad:
@@ -431,8 +433,11 @@ def readme_text(items):
         "- a line at the left margin inside a list entry, which would move",
         "  with that entry: move it above the section's first entry, or",
         "  indent it to make it part of the entry;",
-        "- a code block that is never closed, or one that joins two list",
-        "  entries: close it where it belongs;",
+        "- a code block that is never closed, or one that an entry opens",
+        "  and does not close: close it where it belongs;",
+        "- a line inside a code block that would start an entry or a",
+        "  section, as a block left open and closed by a later one would",
+        "  hold: close the block where it belongs, or indent that line;",
         "- an entry dated later than tomorrow: correct its date;",
         "- an entry dated on a day already here: a new entry takes the day",
         "  it is written, and names any earlier day inside it.",
@@ -681,7 +686,9 @@ def check(notes=None, today=None):
                 continue
             start, end = found[name]
             body = lines[start:end]
-            pointers = [line for line in body if line.startswith(POINTER)]
+            code = fenced(body)
+            pointers = [line for i, line in enumerate(body)
+                        if line.startswith(POINTER) and not code[i]]
             if done:
                 if (len(pointers) != 1 or len(body) < 3
                         or body[1] != pointer_text(folder) or body[2]):
@@ -705,7 +712,7 @@ def check(notes=None, today=None):
                                 "archive" % (page, name, date))
             for i in swallowed(body, ents, pattern):
                 problems.append("%s, '%s': a code block holds a line that "
-                                "would start an entry: \"%s\""
+                                "would start an entry or a section: \"%s\""
                                 % (page, name, body[i][:50]))
             for i in loose(body, ents, pattern):
                 problems.append("%s, '%s': a line at the left margin inside "
