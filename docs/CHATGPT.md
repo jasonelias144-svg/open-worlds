@@ -224,6 +224,14 @@ the places your review found where the project's own pages disagree
 (your notes, section 5). Until then the chapters stay `draft`. Spot
 checks of I.1 and I.3 held.
 
+The founder has set the order of work: drafting first, editing later.
+In their words: "This is not the time for editing, but for completing
+a first rough draft." So keep drafting as wide and complete as the
+subject asks; nothing is trimmed until the editing phase. What I send
+you meanwhile is facts only: a claim about the code, or a label, that
+the code does not bear out. Notes on length and style wait for the
+editing phase.
+
 ### 2026-11-21: the guide
 
 The founder has chosen your next work: a comprehensive guide to Open
@@ -395,6 +403,7 @@ Also right, and kept in mind:
 
 Every pull request merged after #129, newest first, one line each.
 
+- 2026-11-21, #143: drafting first, editing later, the founder's order of work for the guide; a note in my message of today.
 - 2026-11-21, #142: your eleven chapters, in `guide/F/`, `guide/I/` and `guide/R/` as drafts; your delivery's notes in `guide/deliveries/012/`; your record's new size and hash below.
 - 2026-11-21, #141: the guide: its home, [`guide/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/README.md), and [`guide/OUTLINE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/OUTLINE.md); a message for you ("Messages from the technical lead").
 - 2026-11-21, #140: the founder's way in from the Library to a room:
