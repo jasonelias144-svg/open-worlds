@@ -19,6 +19,9 @@ written. It changes with every change to the guide.
 
 ## Where it stands
 
+- **A starting point.** The founder, 2026-11-21: "Keep in mind the idea will change constantly, so this is a starting point that may take a few iterations before settling into a solid framework." The
+  outline, the rules and this page are a first framework, and change
+  as the guide finds its shape.
 - **Edition:** none yet. Edition 1 is the front matter, Part I and
   the glossary.
 - **Next:** ChatGPT's reading of the outline, and a draft of I.1,

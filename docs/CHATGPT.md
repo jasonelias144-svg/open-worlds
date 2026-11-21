@@ -218,6 +218,13 @@ multiverse, living, and printable as a reference volume. Its home is
 the contents with how far each chapter has come, and the rules every
 chapter is written by.
 
+This page stays your way in, every time. The founder: "I'll have
+ChatGPT check their CHATGPT.md page as the starting point always, but
+from there we can use your starting point to develop from." The
+outline is a first framework; the founder expects it to change over a
+few iterations before it settles, and your reading of it is the first
+of them.
+
 The outline is [`guide/OUTLINE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/OUTLINE.md): front
 matter, nine parts and a reference section. Every area of the
 repository is named in some chapter's sources, and a test keeps it so.

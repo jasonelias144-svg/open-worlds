@@ -10,6 +10,15 @@
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-21, founder, the guide as a starting point: "Keep in mind
+  the idea will change constantly, so this is a starting point that
+  may take a few iterations before settling into a solid framework."
+  And: "I'll have ChatGPT check their CHATGPT.md page as the starting
+  point always, but from there we can use your starting point to
+  develop from." So the outline and the home page are a first
+  framework, to change over the iterations to come; `docs/CHATGPT.md`
+  stays ChatGPT's way in, and points to the guide's home.
+
 - 2026-11-21, founder, the guide's home: "Perfect. And create a page
   in the repo that we can update as we continue to expand. It will be
   the home of this comprehensive reference manual." The home is
