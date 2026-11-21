@@ -21,10 +21,16 @@ session", step 6):
    Never amend, rebase or squash the commit a run names.
 
 If a run stops, it says why, and nothing has been written: fix
-the page and run it again. A line at the left margin inside a
-list entry would move with that entry, so it is refused; and an
-entry dated on a day already here is refused, since a new entry
-takes the day it is written and names any earlier day inside it.
+the page and run it again. It stops on:
+
+- a line at the left margin inside a list entry, which would move
+  with that entry: move it above the section's first entry, or
+  indent it to make it part of the entry;
+- a code block that is never closed, or one that joins two list
+  entries: close it where it belongs;
+- an entry dated later than tomorrow: correct its date;
+- an entry dated on a day already here: a new entry takes the day
+  it is written, and names any earlier day inside it.
 
 The rules:
 
