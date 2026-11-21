@@ -23,8 +23,11 @@ The rules (archive/README.md gives them to readers too):
   to its last line before the next entry or the end of its section.
   It moves whole and unchanged; only the blank lines between entries
   are not carried. In a section of list items, a line at the left
-  margin inside an entry stops the run: it would move with the entry
-  above it, so put a blank line before it, or indent it.
+  margin inside an entry stops the run, since it would move with the
+  entry above it: move it above the section's first entry, or indent
+  it to make it part of the entry. A code block that is not closed
+  inside its entry stops the run too, since it would hide the headings
+  after it.
 - A page keeps the entries of its KEEP most recent days, counted over
   all its dated sections. The rest move, a day at a time.
 - A day's file holds that day's entries from each section, in the
@@ -98,6 +101,34 @@ def fenced(lines):
     return out
 
 
+def open_fence(lines):
+    """The index of the line that opens a code block never closed in
+    these lines, or None."""
+    fence, opened = None, None
+    for i, line in enumerate(lines):
+        match = _FENCE.match(line)
+        if fence is None:
+            if match and not (match.group(1)[0] == "`"
+                              and "`" in match.group(2)):
+                fence, opened = match.group(1), i
+        elif (match and match.group(1)[0] == fence[0]
+              and len(match.group(1)) >= len(fence)
+              and not match.group(2).strip()):
+            fence, opened = None, None
+    return opened
+
+
+def _today():
+    return datetime.datetime.now(datetime.timezone.utc).date()
+
+
+def too_late(date, today=None):
+    """Whether a date is later than tomorrow: a mistyped date that would
+    hold a page's window open."""
+    today = today or _today()
+    return date > (today + datetime.timedelta(days=1)).isoformat()
+
+
 def sections(lines):
     """{name: (start, end)}: each '## ' section's body, as line indexes
     (the heading line itself excluded), headings in code blocks skipped."""
@@ -146,15 +177,26 @@ def loose(lines, ents, pattern):
             and not code[i]]
 
 
+def swallowed(lines, ents, pattern):
+    """In a section of list items, the indexes of lines inside a code
+    block, within an entry, that would start an entry: a block opened
+    in one entry and closed in a later one, which joins them."""
+    if pattern is not BULLET:
+        return []
+    code = fenced(lines)
+    return [i for _, first, last in ents for i in range(first + 1, last + 1)
+            if code[i] and pattern.match(lines[i])]
+
+
 def strip_pointers(body):
     """The section's lines without any pointer line (and the blank line
     after one) before its first entry."""
-    out, i, seen_entry = [], 0, False
+    out, i, seen_entry, code = [], 0, False, fenced(body)
     while i < len(body):
         line = body[i]
-        if (BULLET.match(line) or HEADING.match(line)):
+        if (BULLET.match(line) or HEADING.match(line)) and not code[i]:
             seen_entry = True
-        if not seen_entry and line.startswith(POINTER):
+        if not seen_entry and not code[i] and line.startswith(POINTER):
             i += 1
             if i < len(body) and not body[i].strip():
                 i += 1
@@ -182,29 +224,49 @@ def section_body(page, lines, found, name):
     return strip_pointers(lines[start:end])
 
 
-def plan(page, folder, specs, keep, archived_days):
+def plan(page, folder, specs, keep, archived_days, today=None):
     """What a run would move from one page: {day: [(section, [entry
     lines...]), ...]}, the page's text after the move, and the days kept.
     Stops on a page whose dated entries break the rules."""
     text = read(page)
     lines = text.split("\n")
+    opened = open_fence(lines)
+    if opened is not None:
+        raise Problem("%s: the code block opened at line %d is never "
+                      "closed, which hides every heading after it"
+                      % (page, opened + 1))
     found = sections(lines)
     bodies = {}
     for name, pattern in specs:
         body = section_body(page, lines, found, name)
         ents = entries(body, pattern)
+        for date, first, last in ents:
+            if open_fence(body[first:last + 1]) is not None:
+                raise Problem("%s, '%s': the entry dated %s opens a code "
+                              "block it does not close" % (page, name, date))
+        joined = swallowed(body, ents, pattern)
+        if joined:
+            raise Problem("%s, '%s': a code block holds a line that would "
+                          "start an entry (\"%s\"): a block opened in one "
+                          "entry and closed in another joins them"
+                          % (page, name, body[joined[0]][:50]))
         bad = loose(body, ents, pattern)
         if bad:
             raise Problem(
                 "%s, '%s': a line at the left margin inside the entry "
-                "dated %s (\"%s\") would move with it; put a blank line "
-                "before it, or indent it"
+                "dated %s (\"%s\") would move with it; move it above the "
+                "section's first entry, or indent it to make it part of "
+                "the entry"
                 % (page, name, [d for d, f, l in ents
                                 if f < bad[0] <= l][0],
                    body[bad[0]][:50]))
         bodies[name] = (body, ents)
     days = sorted({d for _, ents in bodies.values() for d, _, _ in ents},
                   reverse=True)
+    later = [d for d in days if too_late(d, today)]
+    if later:
+        raise Problem("%s: an entry dated %s, later than tomorrow; correct "
+                      "its date" % (page, later[0]))
     kept = set(days[:keep])
     late = sorted({d for _, ents in bodies.values() for d, _, _ in ents
                    if d in archived_days})
@@ -230,7 +292,8 @@ def plan(page, folder, specs, keep, archived_days):
         left = [line for i, line in enumerate(body) if i not in drop]
         while len(left) > 1 and not left[-1].strip():
             left.pop()
-        left.append("")
+        if left[-1].strip():
+            left.append("")
         new_bodies[name] = left
     # The page after the move: each dated section rebuilt, the rest as is.
     archived = set(archived_days) | set(moving)
@@ -284,12 +347,31 @@ def file_facts(path):
         return facts(f.read())
 
 
+ITEM_KEYS = ("path", "kind", "title", "source", "date", "sections",
+             "moved", "commit", "bytes", "lines", "sha256")
+
+
 def load_catalog():
+    """The catalogue, or one with no items if there is none. Stops on a
+    catalogue that can't be read, or an item that lacks a field."""
     path = os.path.join(ROOT, OUT, "catalog.json")
     if not os.path.exists(path):
         return {"items": []}
-    with open(path, encoding="utf-8") as f:
-        return json.load(f)
+    try:
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+    except ValueError as e:
+        raise Problem("%s/catalog.json can't be read: %s" % (OUT, e))
+    items = data.get("items") if isinstance(data, dict) else None
+    if not isinstance(items, list):
+        raise Problem("%s/catalog.json has no list of items" % OUT)
+    for item in items:
+        missing = [k for k in ITEM_KEYS
+                   if not isinstance(item, dict) or k not in item]
+        if missing:
+            raise Problem("%s/catalog.json: an item lacks %s"
+                          % (OUT, ", ".join(missing)))
+    return data
 
 
 def catalog_text(items):
@@ -344,10 +426,16 @@ def readme_text(items):
         "   Never amend, rebase or squash the commit a run names.",
         "",
         "If a run stops, it says why, and nothing has been written: fix",
-        "the page and run it again. A line at the left margin inside a",
-        "list entry would move with that entry, so it is refused; and an",
-        "entry dated on a day already here is refused, since a new entry",
-        "takes the day it is written and names any earlier day inside it.",
+        "the page and run it again. It stops on:",
+        "",
+        "- a line at the left margin inside a list entry, which would move",
+        "  with that entry: move it above the section's first entry, or",
+        "  indent it to make it part of the entry;",
+        "- a code block that is never closed, or one that joins two list",
+        "  entries: close it where it belongs;",
+        "- an entry dated later than tomorrow: correct its date;",
+        "- an entry dated on a day already here: a new entry takes the day",
+        "  it is written, and names any earlier day inside it.",
         "",
         "The rules:",
         "",
@@ -417,9 +505,11 @@ def run(write, keep=KEEP, today=None):
     catalog = load_catalog()
     items = list(catalog["items"])
     report, pending = [], []
+    day = datetime.date.fromisoformat(today) if today else None
     for page, folder, specs in PAGES:
         done = {i["date"] for i in items if i["source"] == page}
-        moving, new_text, kept = plan(page, folder, specs, keep, done)
+        moving, new_text, kept = plan(page, folder, specs, keep, done,
+                                      day)
         report.append((page, kept, moving))
         pending.append((page, folder, specs, moving, new_text))
     if not write:
@@ -430,8 +520,7 @@ def run(write, keep=KEEP, today=None):
             raise Problem("%s is not committed as it is: commit it first, "
                           "so the catalogue can name where the entries were"
                           % page)
-    today = today or datetime.datetime.now(datetime.timezone.utc).date(
-        ).isoformat()
+    today = today or _today().isoformat()
     writes = {}
     for page, folder, specs, moving, new_text in pending:
         old = read(page)
@@ -500,14 +589,16 @@ def _as_was(commit, source, cache):
     return cache[key]
 
 
-def check(notes=None):
+def check(notes=None, today=None):
     """The problems found, as a list of strings: empty if all is well.
     Notes on what could not be checked go to notes, if given."""
     problems = []
     notes = [] if notes is None else notes
     base = os.path.join(ROOT, OUT)
-    catalog_path = os.path.join(base, "catalog.json")
-    items = load_catalog()["items"]
+    try:
+        items = load_catalog()["items"]
+    except Problem as e:
+        return [str(e)]
     here = set()
     if os.path.isdir(base):
         for name in sorted(os.listdir(base)):
@@ -543,6 +634,8 @@ def check(notes=None):
             continue
         _, secs = specs[item["source"]]
         lines = read(path).split("\n")
+        if open_fence(lines) is not None:
+            problems.append("%s: a code block is never closed" % path)
         found = sections(lines)
         counts, texts = [], []
         for name, pattern in secs:
@@ -577,6 +670,10 @@ def check(notes=None):
     for page, folder, secs in PAGES:
         done = {i["date"] for i in items if i["source"] == page}
         lines = read(page).split("\n")
+        opened = open_fence(lines)
+        if opened is not None:
+            problems.append("%s: the code block opened at line %d is never "
+                            "closed" % (page, opened + 1))
         found = sections(lines)
         for name, pattern in secs:
             if name not in found:
@@ -595,9 +692,21 @@ def check(notes=None):
                 problems.append("%s, '%s': it points to an archive that "
                                 "holds nothing from it" % (page, name))
             ents = entries(body, pattern)
+            for date, first, last in ents:
+                if open_fence(body[first:last + 1]) is not None:
+                    problems.append("%s, '%s': the entry dated %s opens a "
+                                    "code block it does not close"
+                                    % (page, name, date))
+                if too_late(date, today):
+                    problems.append("%s, '%s': an entry dated %s, later "
+                                    "than tomorrow" % (page, name, date))
             for date in sorted({d for d, _, _ in ents} & done):
                 problems.append("%s, '%s': entries dated %s, a day in the "
                                 "archive" % (page, name, date))
+            for i in swallowed(body, ents, pattern):
+                problems.append("%s, '%s': a code block holds a line that "
+                                "would start an entry: \"%s\""
+                                % (page, name, body[i][:50]))
             for i in loose(body, ents, pattern):
                 problems.append("%s, '%s': a line at the left margin inside "
                                 "an entry: \"%s\"" % (page, name,

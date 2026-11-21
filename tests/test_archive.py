@@ -7,6 +7,7 @@ of its own, in a git repository of its own, and holds the repository's
 own archive to its catalogue and its pages.
 """
 import contextlib
+import datetime
 import importlib.util
 import io
 import json
@@ -475,11 +476,114 @@ class Harder(Pages):
         self.assertEqual(ARCHIVE.check(), [])
 
 
+class Second(Pages):
+    """What the second review of the script found it did not hold."""
+
+    def test_a_code_block_never_closed_stops_the_run(self):
+        self.write("docs/COLLABORATING.md", COLLAB.replace(
+            "Body of two.\n", "Body of two.\n\n```text\nnever closed\n"))
+        self.commit()
+        with self.assertRaisesRegex(ARCHIVE.Problem, "never closed"):
+            self.run_it()
+        self.assertFalse(os.path.exists(os.path.join(self.root, "archive")))
+        self.assertTrue(any("never closed" in p for p in ARCHIVE.check()))
+
+    def test_a_block_that_joins_two_entries_stops_the_run(self):
+        # A block opened in one entry and closed in a later one would
+        # make the two one entry, filed under the first one's day.
+        self.write("STATUS.md", STATUS.replace(
+            "- 2026-01-04, founder, four.\n",
+            "- 2026-01-04, founder, four.\n  ```\n\n"
+            "- 2026-01-03, founder, a block's other end.\n  ```\n"))
+        self.commit()
+        with self.assertRaisesRegex(ARCHIVE.Problem, "joins them"):
+            self.run_it()
+        self.assertTrue(any("would start an entry" in p
+                            for p in ARCHIVE.check()))
+
+    def test_a_day_file_with_a_block_never_closed_is_a_problem(self):
+        self.run_it()
+        path = "archive/STATUS/2026-01-02.md"
+        self.write(path, self.read(path) + "\n```\n")
+        ARCHIVE.rehash(path, "a test", today="2026-01-07")
+        self.assertTrue(any(p.startswith(path) and "never closed" in p
+                            for p in ARCHIVE.check()))
+
+    def test_a_date_later_than_tomorrow_stops_the_run(self):
+        self.write("STATUS.md", STATUS.replace(
+            "- 2026-01-05 Claude: five.", "- 2062-01-05 Claude: five."))
+        self.commit()
+        with self.assertRaisesRegex(ARCHIVE.Problem, "later than tomorrow"):
+            self.run_it()
+        self.assertTrue(any("later than tomorrow" in p
+                            for p in ARCHIVE.check(today=datetime.date(
+                                2026, 1, 6))))
+
+    def test_a_catalogue_that_cannot_be_read_is_a_problem(self):
+        self.run_it()
+        self.write("archive/catalog.json", "{ not json")
+        self.assertTrue(any("can't be read" in p for p in ARCHIVE.check()))
+        self.write("archive/catalog.json", json.dumps(
+            {"items": [{"path": "archive/STATUS/2026-01-01.md"}]}))
+        self.assertTrue(any("lacks" in p for p in ARCHIVE.check()))
+
+    def test_a_stray_file_and_a_missing_file_are_problems(self):
+        self.run_it()
+        self.write("archive/notes.txt", "stray\n")
+        os.remove(os.path.join(self.root, "archive", "STATUS",
+                               "2026-01-01.md"))
+        problems = ARCHIVE.check()
+        self.assertTrue(any("not an archive file" in p for p in problems))
+        self.assertTrue(any("in the catalogue but missing" in p
+                            for p in problems))
+
+    def test_an_entry_of_another_day_in_a_day_file_is_a_problem(self):
+        self.run_it()
+        path = "archive/STATUS/2026-01-02.md"
+        self.write(path, self.read(path).replace(
+            "- 2026-01-02, founder, two.", "- 2026-01-09, founder, two."))
+        ARCHIVE.rehash(path, "a test", today="2026-01-07")
+        self.assertTrue(any("an entry dated 2026-01-09" in p
+                            for p in ARCHIVE.check()))
+
+    def test_a_second_pointer_is_a_problem(self):
+        self.run_it()
+        pointer = ARCHIVE.pointer_text("STATUS")
+        self.write("STATUS.md", self.read("STATUS.md").replace(
+            "- 2026-01-05 Claude: five.\n",
+            "- 2026-01-05 Claude: five.\n\n" + pointer + "\n"))
+        self.assertTrue(any("the one line that points" in p
+                            for p in ARCHIVE.check()))
+
+    def test_a_section_emptied_by_a_run_ends_with_one_blank_line(self):
+        self.run_it(keep=1)
+        page = self.read("STATUS.md")
+        self.assertIn(ARCHIVE.pointer_text("STATUS") + "\n\n## Log", page)
+        self.assertNotIn("\n\n\n", page)
+
+    def test_a_pointer_like_line_in_a_code_block_is_kept(self):
+        pointer = ARCHIVE.pointer_text("COLLABORATING")
+        self.write("docs/COLLABORATING.md", COLLAB.replace(
+            "Who writes here, and why.\n",
+            "Who writes here, and why.\n\n```text\n" + pointer
+            + "\n```\n"))
+        self.commit()
+        self.run_it()
+        self.assertIn("```text\n" + pointer + "\n```",
+                      self.read("docs/COLLABORATING.md"))
+
+
 class TheRepository(unittest.TestCase):
     """The repository's own archive."""
 
     def test_the_archive_is_in_step(self):
-        self.assertEqual(ARCHIVE.check(), [])
+        notes = []
+        self.assertEqual(ARCHIVE.check(notes), [])
+        # CI fetches the commits the catalogue names, so every archived
+        # entry is compared with its page there; locally, a clone made
+        # with its history has them too.
+        if os.environ.get("OPEN_WORLDS_REQUIRE_ARCHIVE_COMMITS"):
+            self.assertEqual(notes, [])
 
     def test_the_script_says_what_it_would_move(self):
         with contextlib.redirect_stdout(io.StringIO()) as out:

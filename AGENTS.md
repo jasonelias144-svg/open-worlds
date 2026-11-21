@@ -48,10 +48,9 @@ loosen it.
       or squash the commit the run named.
 
    If a run stops, it says why and has written nothing: fix the page
-   and run it again. It stops on a line at the left margin inside a
-   list entry (it would move with that entry: put a blank line before
-   it), and on an entry dated on a day already archived: a new entry
-   takes the day it is written, and names any earlier day inside it.
+   and run it again (`archive/README.md` lists each reason, and what
+   to do). A new entry takes the day it is written, and names any
+   earlier day inside it.
    A file in the archive is not edited again, except to redact what
    is private: edit it, then run
    `python3 docs/archive.py --rehash <file> "<why>"`.

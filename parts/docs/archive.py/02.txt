@@ -1,0 +1,179 @@
+Part of `docs/archive.py` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 2.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/archive.py/01.txt
+After this part: nothing; this is the last part.
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+def check(notes=None, today=None):
+    """The problems found, as a list of strings: empty if all is well.
+    Notes on what could not be checked go to notes, if given."""
+    problems = []
+    notes = [] if notes is None else notes
+    base = os.path.join(ROOT, OUT)
+    try:
+        items = load_catalog()["items"]
+    except Problem as e:
+        return [str(e)]
+    here = set()
+    if os.path.isdir(base):
+        for name in sorted(os.listdir(base)):
+            full = os.path.join(base, name)
+            if os.path.isdir(full):
+                for day in os.listdir(full):
+                    here.add("%s/%s/%s" % (OUT, name, day))
+            elif name not in ("catalog.json", "README.md"):
+                problems.append("%s/%s is not an archive file" % (OUT, name))
+        for name in ("catalog.json", "README.md"):
+            if not os.path.exists(os.path.join(base, name)):
+                problems.append("%s/%s is missing" % (OUT, name))
+    elif items:
+        problems.append("%s/ is missing" % OUT)
+    listed = {i["path"] for i in items}
+    for path in sorted(here - listed):
+        problems.append("%s is not in the catalogue" % path)
+    for path in sorted(listed - here):
+        problems.append("%s is in the catalogue but missing" % path)
+    specs = {page: (folder, s) for page, folder, s in PAGES}
+    cache = {}
+    for item in items:
+        path = item["path"]
+        if path not in here:
+            continue
+        for key, value in file_facts(path).items():
+            if item.get(key) != value:
+                problems.append("%s: its %s is not the catalogue's"
+                                % (path, key))
+        if item.get("source") not in specs:
+            problems.append("%s: no such page as %s" % (path,
+                                                         item.get("source")))
+            continue
+        _, secs = specs[item["source"]]
+        lines = read(path).split("\n")
+        if open_fence(lines) is not None:
+            problems.append("%s: a code block is never closed" % path)
+        found = sections(lines)
+        counts, texts = [], []
+        for name, pattern in secs:
+            if name not in found:
+                continue
+            start, end = found[name]
+            body = lines[start:end]
+            ents = entries(body, pattern)
+            for date, first, last in ents:
+                if date != item["date"]:
+                    problems.append("%s: an entry dated %s" % (path, date))
+                texts.append("\n".join(body[first:last + 1]))
+            if ents:
+                counts.append({"name": name, "entries": len(ents)})
+        if counts != item["sections"]:
+            problems.append("%s: its entries are not the catalogue's" % path)
+        if item.get("redacted"):
+            notes.append("%s: redacted since, so not compared with %s"
+                         % (path, item["commit"][:12]))
+            continue
+        was = _as_was(item["commit"], item["source"], cache)
+        if was is None:
+            notes.append("%s: commit %s not at hand, so not compared"
+                         % (path, item["commit"][:12]))
+            continue
+        for text in texts:
+            if text not in was:
+                problems.append("%s: an entry is not, word for word, in %s "
+                                "at %s" % (path, item["source"],
+                                           item["commit"][:12]))
+                break
+    for page, folder, secs in PAGES:
+        done = {i["date"] for i in items if i["source"] == page}
+        lines = read(page).split("\n")
+        opened = open_fence(lines)
+        if opened is not None:
+            problems.append("%s: the code block opened at line %d is never "
+                            "closed" % (page, opened + 1))
+        found = sections(lines)
+        for name, pattern in secs:
+            if name not in found:
+                problems.append("%s: no section '## %s'" % (page, name))
+                continue
+            start, end = found[name]
+            body = lines[start:end]
+            pointers = [line for line in body if line.startswith(POINTER)]
+            if done:
+                if (len(pointers) != 1 or len(body) < 3
+                        or body[1] != pointer_text(folder) or body[2]):
+                    problems.append("%s, '%s': it doesn't open with the one "
+                                    "line that points to the archive"
+                                    % (page, name))
+            elif pointers:
+                problems.append("%s, '%s': it points to an archive that "
+                                "holds nothing from it" % (page, name))
+            ents = entries(body, pattern)
+            for date, first, last in ents:
+                if open_fence(body[first:last + 1]) is not None:
+                    problems.append("%s, '%s': the entry dated %s opens a "
+                                    "code block it does not close"
+                                    % (page, name, date))
+                if too_late(date, today):
+                    problems.append("%s, '%s': an entry dated %s, later "
+                                    "than tomorrow" % (page, name, date))
+            for date in sorted({d for d, _, _ in ents} & done):
+                problems.append("%s, '%s': entries dated %s, a day in the "
+                                "archive" % (page, name, date))
+            for i in swallowed(body, ents, pattern):
+                problems.append("%s, '%s': a code block holds a line that "
+                                "would start an entry: \"%s\""
+                                % (page, name, body[i][:50]))
+            for i in loose(body, ents, pattern):
+                problems.append("%s, '%s': a line at the left margin inside "
+                                "an entry: \"%s\"" % (page, name,
+                                                      body[i][:50]))
+    if os.path.isdir(base):
+        for name, text in (("catalog.json", catalog_text(items)),
+                           ("README.md", readme_text(items))):
+            full = os.path.join(base, name)
+            if os.path.exists(full):
+                with open(full, encoding="utf-8") as f:
+                    if f.read() != text:
+                        problems.append("%s/%s is not what the catalogue "
+                                        "makes" % (OUT, name))
+    return problems
+
+
+def main(argv):
+    if not (argv in ([], ["--write"], ["--check"])
+            or (len(argv) == 3 and argv[0] == "--rehash")):
+        print(__doc__)
+        return 2
+    try:
+        if argv == ["--check"]:
+            notes = []
+            problems = check(notes)
+            for n in notes:
+                print("NOTE: " + n)
+            for p in problems:
+                print("PROBLEM: " + p)
+            print("archive: %d problem(s)" % len(problems))
+            return 1 if problems else 0
+        if argv[:1] == ["--rehash"]:
+            rehash(argv[1], argv[2])
+            print("%s: redaction recorded" % argv[1])
+            return 0
+        report = run(write=argv == ["--write"])
+    except Problem as e:
+        print("STOPPED: %s" % e)
+        return 1
+    for page, kept, moving in report:
+        n = sum(len(p) for p in moving.values())
+        print("%s: keeps %s; %s %d entr%s from %s" % (
+            page, ", ".join(kept), "moved" if argv else "would move", n,
+            "y" if n == 1 else "ies",
+            ", ".join(sorted(moving)) or "no day"))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
+
+------------------------------------------------------------------------
+End of `docs/archive.py`.

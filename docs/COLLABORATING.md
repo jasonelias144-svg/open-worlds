@@ -471,12 +471,14 @@ botanical garden of gardens, then the founder's turn to the Commons
 as chat rooms, each with an AI moderator, a home room for each person,
 a schema, and a sketch crate in Rust, `chat-world`. It is kept with a
 first round of repairs, each listed, and what runs: the crate builds
-and passes its own 18 tests ("Messages from the technical lead",
-above). It is fitted next. The record then goes on: the one file
+and passes its own 18 tests (the messages of 2026-11-16, in the
+archive: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/COLLABORATING/2026-11-16.md).
+It is fitted next. The record then goes on: the one file
 reached DeepSeek whole, and five deliveries of the crate followed,
 kept as written beside it, with what each builds to. Then Gemini,
 from a file of their own, made the log checkable from outside, attacked
-the check, and repaired it (the newest message above).
+the check, and repaired it (the messages of 2026-11-17, in the
+archive: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/COLLABORATING/2026-11-17.md).
 012-06-02's code is being made to work; then the founder and the
 technical lead decide what fits with what is built, and how (STATUS.md,
 "Decided", 2026-11-14). Each new conversation starts a new record, which
