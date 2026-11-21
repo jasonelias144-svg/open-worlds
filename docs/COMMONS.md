@@ -771,9 +771,9 @@ It takes further the founder's earlier words, above: rooms "like live
 chats now, or like group texts", "depending on size and activity".
 Those gave a room one of two paces; this would let one room hold
 several forms. It is on the record as an idea set aside: nothing is
-decided or built. It is the kind of idea ChatGPT works out as a concept first
-([CHATGPT.md](CHATGPT.md), "From an idea to code"), and the founder
-is raising it with ChatGPT too.
+decided or built. It is the kind of idea ChatGPT works out as a
+concept first ([CHATGPT.md](CHATGPT.md), "From an idea to code"), and
+the founder is raising it with ChatGPT too.
 
 **The forms to look at,** each with what it does well. This is a
 starting list, from what is generally known; the concept work looks
