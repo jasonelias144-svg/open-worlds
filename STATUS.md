@@ -349,6 +349,16 @@ of it is asked again until it is needed.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-21, founder, core first: "Good point on the over
+  engineering. Let's start with the core functionality. Build out from
+  there as needed." Said after the technical lead's caution that
+  combining separate systems multiplies their complexity. Recorded in
+  `docs/COMMONS.md`, "Order", "Core first", with the technical lead's
+  reading of the core: the room (course step 3c: its law, signed log
+  and check, live speech, replies) and the Library's plain word search;
+  areas, the other forms, ranking, the way in by topic, the Slack
+  plug-in and training on the copy wait until a need shows.
+
 - 2026-11-21, founder, from the Library to a room: "Maybe even
   starting from a Wikipedia clone 'library' room that allows for
   passage through a topic query to a list of candidate rooms to enter.
@@ -836,9 +846,10 @@ with the founder.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
-- 2026-11-21 Claude: the founder's way in from the Library to a room
-  recorded (#140), in STATUS.md "Decided", `docs/COMMONS.md`, "From
-  the Library to a room", and `docs/TOPICS.md`, topic 23.
+- 2026-11-21 Claude: the founder's way in from the Library to a room,
+  and "Let's start with the core functionality", recorded (#140), in
+  STATUS.md "Decided", `docs/COMMONS.md` ("From the Library to a
+  room"; "Order", "Core first") and `docs/TOPICS.md`, topic 23.
 
 - 2026-11-21 Claude: the founder's "Yes, like Slack", "we should make
   a Slack plug-in" and "Combining ideas to multiply functionality is

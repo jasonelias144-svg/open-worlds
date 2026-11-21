@@ -970,6 +970,22 @@ answers otherwise:
 
 ## Order
 
+**Core first.** The founder, 2026-11-21, after the ideas above for
+what a room can be: "Good point on the over engineering. Let's start
+with the core functionality. Build out from there as needed." So each
+thing is built at its core first, and grows when a need shows. The
+technical lead's reading of the core:
+
+- **The room** (course step 3c): one room, with its law, its signed
+  log and its check; people and AIs speaking in it, live; and a
+  message that answers another. The sketch crate `chat-world-now`
+  already holds most of this.
+- **The Library:** plain word search over the copy, where reading is
+  one's own.
+- **Later, when a need shows:** areas in a room and the other forms,
+  ranking, the way in by topic, the Slack plug-in, and training on the
+  copy. Each stays on record, above, until then.
+
 1. This design, and its place in the course. Since the recheck of
    2026-11-16 the Commons is in the course, as the first public space,
    ahead of the Ur-world's opening: a log that can be redacted, with

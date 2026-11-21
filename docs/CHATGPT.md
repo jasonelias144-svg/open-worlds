@@ -352,6 +352,9 @@ Every pull request merged after #129, newest first, one line each.
 - 2026-11-21, #140: the founder's way in from the Library to a room:
   a topic query that returns articles and the rooms on them, in
   [`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md), "From the Library to a room".
+  And the founder's "Let's start with the core functionality. Build
+  out from there as needed." ("Order", "Core first"): the room and the
+  Library's word search first; the rest when a need shows.
 - 2026-11-21, #139: the founder's "Yes, like Slack", in the same
   section: a room's areas like Slack's channels, with threads in them;
   the founder's "we should make a Slack plug-in", with how it would
