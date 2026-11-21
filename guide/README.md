@@ -28,11 +28,18 @@ written. It changes with every change to the guide.
   repository at commit `7ade210`
   ([delivery 012](deliveries/012/README.md)). They are here word for
   word, marked `Progress: draft`.
-- **Next:** the technical lead checks each chapter's claims about the
-  code against the code, and marks it `checked at <commit>`; the
-  places where the project's own pages disagree, which ChatGPT's
-  review found, are put right in those pages; the founder reads; then
-  edition 1 is made.
+- **Drafting first.** The founder, 2026-11-21: "This is not the time
+  for editing, but for completing a first rough draft." The drafting
+  phase is "large, wide, expansive, comprehensive, more is better";
+  the editing phase then "cuts out everything not needed". Nothing is
+  trimmed until then.
+- **Next:** the drafting goes on. The technical lead checks each
+  chapter's claims about the code against the code, for facts only (a
+  claim or a label the code does not bear out), and marks it `checked
+  at <commit>`; the places where the project's own pages disagree,
+  which ChatGPT's review found, are put right in those pages. The
+  editing phase, and the first edition after it, come when the
+  founder says the draft is complete.
 
 ## Contents
 

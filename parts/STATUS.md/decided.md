@@ -10,6 +10,22 @@
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-21, founder, drafting first, editing later, on the technical
+  lead's notes that the guide's front matter is long: "On the front
+  heaviness, not a problem. This is not the time for editing, but for
+  completing a first rough draft. Combing the initial drafting with
+  the editing phase is a common mistake of writers. It was a mistake I
+  used to make as well. Even if extremely front heavy, trimming down
+  comes later. When Michelangelo chose the marble for David, he chose
+  a piece much larger than the final sculpture. I see writing the
+  same. The initial drafting phase involves large, wide, expansive,
+  comprehensive, more is better. And then the editing phase cuts out
+  everything not needed, leaving a perfectly sculpted piece of marble
+  behind." So the guide is in its drafting phase: chapters are written
+  in full, and nothing is trimmed until the editing phase. The
+  technical lead's check during drafting is of facts about the code
+  only: a claim or a label the code does not bear out.
+
 - 2026-11-21, founder, the guide as a living roadmap, said to ChatGPT
   after the first chapter: "This is a great start and it should be the
   main reference manual. But also, we should be able to fill [i]n the

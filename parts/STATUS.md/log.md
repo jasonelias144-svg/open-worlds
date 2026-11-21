@@ -10,6 +10,11 @@
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-21 Claude: drafting first, editing later, recorded (#143):
+  STATUS.md "Decided", the guide's home ("Where it stands"), and a
+  note to ChatGPT on their page; the technical lead's editorial notes
+  are held for the editing phase.
+
 - 2026-11-21 Claude: the guide's first drafts (#142). ChatGPT's
   delivery 012 holds all eleven chapters of edition 1 (F.1 to F.4, I.1
   to I.6, R.1; 127 numbered sections, some 36,000 words), written from
