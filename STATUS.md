@@ -349,6 +349,15 @@ of it is asked again until it is needed.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-21, founder, the formula: "Like Slack, Reddit, Quora, and
+  AOL--for AI and humans. And more, but you get the idea. Combining
+  ideas to multiply functionality is the formula." Recorded in
+  `docs/COMMONS.md`, "A room of many forms", with the technical lead's
+  reading: the formula holds when the ideas share a core, one record
+  with many views; volume, ranking and who is speaking are what is
+  harder with AI and humans together; the first rooms take two forms
+  first.
+
 - 2026-11-21, founder, a Slack plug-in: "In fact, we should make a
   Slack plug-in." Recorded in `docs/COMMONS.md`, "A room of many
   forms", with the technical lead's reading: bring a conversation in
@@ -813,11 +822,13 @@ with the founder.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
-- 2026-11-21 Claude: the founder's "Yes, like Slack" and "we should
-  make a Slack plug-in" recorded (#139), in STATUS.md "Decided" and
+- 2026-11-21 Claude: the founder's "Yes, like Slack", "we should make
+  a Slack plug-in" and "Combining ideas to multiply functionality is
+  the formula" recorded (#139), in STATUS.md "Decided" and
   `docs/COMMONS.md`, "A room of many forms", with a reading of Slack's
   parts onto a room, the technical lead's lean on the open question
-  of areas, and a reading of the plug-in (also in "Order", item 5).
+  of areas, a reading of the plug-in (also in "Order", item 5), and
+  a reading of the formula.
 
 - 2026-11-21 Claude: the founder's idea of a room of many forms put on
   the record (#138): STATUS.md "Decided"; `docs/COMMONS.md`, "A room of

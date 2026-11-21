@@ -10,6 +10,15 @@
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-21, founder, the formula: "Like Slack, Reddit, Quora, and
+  AOL--for AI and humans. And more, but you get the idea. Combining
+  ideas to multiply functionality is the formula." Recorded in
+  `docs/COMMONS.md`, "A room of many forms", with the technical lead's
+  reading: the formula holds when the ideas share a core, one record
+  with many views; volume, ranking and who is speaking are what is
+  harder with AI and humans together; the first rooms take two forms
+  first.
+
 - 2026-11-21, founder, a Slack plug-in: "In fact, we should make a
   Slack plug-in." Recorded in `docs/COMMONS.md`, "A room of many
   forms", with the technical lead's reading: bring a conversation in

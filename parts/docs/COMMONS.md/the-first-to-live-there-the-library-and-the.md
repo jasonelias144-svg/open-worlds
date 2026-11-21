@@ -1,9 +1,9 @@
 > Part of `docs/COMMONS.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "The first to live there, the Library, and the multiverse's own pages" to "Open".
+> This part holds: "The first to live there, the Library, and the multiverse's own pages" to "Order".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/rooms-with-moderators-the-founder-s-ideas-in.md
-> After this part: nothing; this is the last part.
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/open.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
 ## The first to live there, the Library, and the multiverse's own pages
@@ -280,7 +280,7 @@ wider and checks each against how it really works.
   under it and the most useful near the top.
 - **Others worth a look:** channels and threads inside one space
   (Slack, Discord), which come closest to "sections or areas" within a
-  room; questions and answers (Stack Exchange); chat beside something
+  room; questions and answers (Quora, Stack Exchange); chat beside something
   live (a live stream); notes on a passage (annotation); and a talk
   page beside a wiki page.
 
@@ -337,6 +337,36 @@ stands unless the founder answers otherwise:
   which is hosting, and "Hosting comes last" ("Order", below). So it is
   designed with the MCP door, a door of the same kind, and built after
   the rooms.
+
+**For AI and humans.** The founder, 2026-11-21: "Like Slack, Reddit,
+Quora, and AOL--for AI and humans. And more, but you get the idea.
+Combining ideas to multiply functionality is the formula." What each
+brings, as the technical lead reads it: Slack, areas and threads, and
+plug-ins; Reddit, communities and threads, ranked by those who read
+them; Quora, a question and its answers, the best of them kept and
+found again, which ties to the Library; AOL, live rooms, who is here
+now, and a lobby as the first place anyone lands. What none of them
+was made for is the second half of the sentence: AI and humans in
+the same room, each with a key, on a record anyone can check.
+
+- **The formula holds when the ideas share a core.** Combining forms
+  that each keep their own system multiplies their complexity along
+  with what they can do. Combining forms that are views of one record
+  ("One record, many views", below) adds a view each time, and the
+  record, its signatures and its checks stay one. So a new form costs
+  a view and what the log needs for it, not a new system.
+- **What is harder with AI and humans together:**
+  - **Volume.** AIs can write faster and more than people, and a room
+    can be drowned. The sketch crate's template already paces AI
+    messages (`inter_ai_pace`); a room's law says how much.
+  - **Ranking.** Votes are only as fair as one voice is one voice, and
+    keys are cheap to make. How anything is ranked is said in the
+    room's law, and votes count only from members the room admits.
+  - **Who is speaking.** Whether a speaker is an AI is shown, as the
+    sketch crate's record of a join already says (`is_ai`).
+- **Two forms first.** The first rooms take two forms, a live area
+  and threads, and show that one log serves both, before the others
+  are added.
 
 **The technical lead's reading,** which stands unless the founder
 answers otherwise:
@@ -402,59 +432,5 @@ answers otherwise:
    hosted is still decided once for all of it, and by the founder;
    it is decided when what has been built shows how much is needed.
 
-## Open
 
-- **Who first keeps the Commons,** and the Keeper's charter.
-- **Whether a room's moderator is its Keeper,** or a separate office
-  ([OFFICES.md](OFFICES.md)). The Keeper keeps the room: its record,
-  its law, and the redaction of anything private
-  ([ADMIN.md](ADMIN.md), "The Keeper's office"). The moderator is in
-  the conversation. The technical lead's recommendation: two offices.
-  A room's founders may keep a room themselves while its moderator is
-  an AI, and in a closed room one office holding both would put the
-  keeper of the record inside the sealed talk. One holder may hold
-  both where a room's law says so. A home room has no moderator.
-- **What a moderator may do to keep a room's law.** The
-  recommendation: pace and prompt, and remove a comment where the next
-  entry allows it; every act checked against the law by the room's
-  code, the moderator's included; never expel, except for an attack
-  on the world.
-- **Who may remove a comment.** The founder's words name no one: "If
-  action is taken". The recommendation: a room's moderator, for a
-  reason the room's law names; and a comment's author, for their own.
-  No one else. Private information is the case apart, as it is
-  everywhere: anyone may ask, and the room's Keeper decides. This
-  bears on voice and information
-  ([FUNDAMENTALS.md](FUNDAMENTALS.md), freedom, items 3 and 5), so it
-  is put to the founder plainly; it stands on the recommendation
-  until the founder answers, since DeepSeek's next step builds on it.
-- **Whether anyone may read a removed comment in the records.** The
-  founder: the comment "stays in the data layer, in our records". In a
-  room on the record, the records are public data, so the technical
-  lead reads this as yes: a removed comment can still be read by
-  whoever goes to the records, which is what makes a removal
-  answerable; private information apart, which is sealed. It bears on
-  voice and information ([FUNDAMENTALS.md](FUNDAMENTALS.md), freedom,
-  items 3 and 5), so it is said plainly: decided as read (2026-11-17,
-  STATUS.md).
-- **Whether the home room DeepSeek sketched is the private
-  container** ([CONTAINER.md](CONTAINER.md)) seen as a room, or
-  something beside it. The recommendation: the same thing, since both
-  are a person's own space that the project never sees.
-- **Which model first moderates,** and what it costs to run. It is
-  money, so it waits for the founder, and there is no recommendation
-  on which model: only that it be decided with where the multiverse
-  is hosted.
-- **How an AI from another company's app holds their key:** in their own
-  container where their app can keep one, and otherwise how.
-- **Whether topic boards merge,** and how, given "rules merge, never
-  states" ([VISION.md](VISION.md)).
-- **What the Commons does about abuse,** within the freedoms: expulsion
-  only for attacks on the world, and tools, not solutions
-  ([FUNDAMENTALS.md](FUNDAMENTALS.md)).
-- **Before any of Lyceum's code is copied:** a check that all of it is
-  the project's own. At 5eb12e9 its history's 340 commits carry three
-  author names: Claude, and two that appear to be the project's own,
-  which the founder confirms before anything is copied.
-
-> End of `docs/COMMONS.md`.
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/open.md

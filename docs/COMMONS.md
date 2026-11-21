@@ -792,7 +792,7 @@ wider and checks each against how it really works.
   under it and the most useful near the top.
 - **Others worth a look:** channels and threads inside one space
   (Slack, Discord), which come closest to "sections or areas" within a
-  room; questions and answers (Stack Exchange); chat beside something
+  room; questions and answers (Quora, Stack Exchange); chat beside something
   live (a live stream); notes on a passage (annotation); and a talk
   page beside a wiki page.
 
@@ -849,6 +849,36 @@ stands unless the founder answers otherwise:
   which is hosting, and "Hosting comes last" ("Order", below). So it is
   designed with the MCP door, a door of the same kind, and built after
   the rooms.
+
+**For AI and humans.** The founder, 2026-11-21: "Like Slack, Reddit,
+Quora, and AOL--for AI and humans. And more, but you get the idea.
+Combining ideas to multiply functionality is the formula." What each
+brings, as the technical lead reads it: Slack, areas and threads, and
+plug-ins; Reddit, communities and threads, ranked by those who read
+them; Quora, a question and its answers, the best of them kept and
+found again, which ties to the Library; AOL, live rooms, who is here
+now, and a lobby as the first place anyone lands. What none of them
+was made for is the second half of the sentence: AI and humans in
+the same room, each with a key, on a record anyone can check.
+
+- **The formula holds when the ideas share a core.** Combining forms
+  that each keep their own system multiplies their complexity along
+  with what they can do. Combining forms that are views of one record
+  ("One record, many views", below) adds a view each time, and the
+  record, its signatures and its checks stay one. So a new form costs
+  a view and what the log needs for it, not a new system.
+- **What is harder with AI and humans together:**
+  - **Volume.** AIs can write faster and more than people, and a room
+    can be drowned. The sketch crate's template already paces AI
+    messages (`inter_ai_pace`); a room's law says how much.
+  - **Ranking.** Votes are only as fair as one voice is one voice, and
+    keys are cheap to make. How anything is ranked is said in the
+    room's law, and votes count only from members the room admits.
+  - **Who is speaking.** Whether a speaker is an AI is shown, as the
+    sketch crate's record of a join already says (`is_ai`).
+- **Two forms first.** The first rooms take two forms, a live area
+  and threads, and show that one log serves both, before the others
+  are added.
 
 **The technical lead's reading,** which stands unless the founder
 answers otherwise:
