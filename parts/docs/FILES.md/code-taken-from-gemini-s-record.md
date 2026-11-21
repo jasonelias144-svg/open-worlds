@@ -1,6 +1,6 @@
 > Part of `docs/FILES.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "Code taken from Gemini's record" to "The library".
+> This part holds: "Code taken from Gemini's record" to "The archive".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/code-taken-from-deepseek-s-records-01.md
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/FILES.md/experiment-001-s-run-logs-02.md
@@ -115,6 +115,36 @@ In `library`, 2 files, 437 KB in all, the largest 433 KB: works given to the pro
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/009-13-CGPT-Peace_and_the_Strategist.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/README.md
+```
+
+## The archive
+
+In `archive`, 11 files, 474 KB in all, the largest 101 KB: the older dated entries of STATUS.md and COLLABORATING.md, moved whole, a file for each page and day, with the catalogue (`archive/README.md`); `docs/archive.py` writes it.
+
+**`archive`** (2 files, 9 KB):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/catalog.json
+```
+
+**`archive/COLLABORATING`** (3 files, 72 KB):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/COLLABORATING/2026-11-15.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/COLLABORATING/2026-11-16.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/COLLABORATING/2026-11-17.md
+```
+
+**`archive/STATUS`** (6 files, 393 KB):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/STATUS/2026-11-12.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/STATUS/2026-11-13.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/STATUS/2026-11-14.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/STATUS/2026-11-15.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/STATUS/2026-11-16.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/STATUS/2026-11-17.md
 ```
 
 

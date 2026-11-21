@@ -33,6 +33,27 @@ loosen it.
    nothing the founder said there is missing, that
    `docs/COLLABORATING.md` tells DeepSeek and Gemini what changed, and
    that `docs/CHATGPT.md` tells ChatGPT.
+6. **Archive at the end, before pushing.** `STATUS.md` and
+   `docs/COLLABORATING.md` each keep the dated entries of their three
+   most recent days; the older ones go to `archive/`, whole, a file for
+   each page and day, listed in the catalogue (`archive/README.md`,
+   `archive/catalog.json`) with each file's size, hash and the commit
+   its entries came from (the founder, 2026-11-21: STATUS.md,
+   "Decided"). The steps:
+   1. Commit the pages, then run `python3 docs/archive.py`. It says
+      what would move, and changes nothing.
+   2. If it lists anything, run it with `--write`.
+   3. Run `python3 docs/archive.py --check`, then `docs/files.py`,
+      `docs/parts.py` and the tests, and commit. Never amend, rebase
+      or squash the commit the run named.
+
+   If a run stops, it says why and has written nothing: fix the page
+   and run it again (`archive/README.md` lists each reason, and what
+   to do). A new entry takes the day it is written, and names any
+   earlier day inside it.
+   A file in the archive is not edited again, except to redact what
+   is private: edit it, then run
+   `python3 docs/archive.py --rehash <file> "<why>"`.
 
 ## Who decides
 
@@ -111,8 +132,9 @@ effect (docs/ADMIN.md).
   (`tests/test_chem_rdkit.py`), and runs the sketches' own tests in a job
   of their own (`sketches/README.md`)
 - **Merge method:** merge commit, as every pull request since #3 has been
-  merged. It keeps the commits that review records name (P4), which a
-  squash would drop from `main`'s history.
+  merged. It keeps the commits that review records name (P4), and
+  those the archive's catalogue names, which a squash would drop from
+  `main`'s history.
 - **Release:** none yet. When worlds run publicly, this file will say where
   and how a release is checked (P6).
 - **Data:** each world's event log is its public record. Cycle results live

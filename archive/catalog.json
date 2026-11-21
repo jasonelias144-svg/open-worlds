@@ -1,0 +1,225 @@
+{
+ "about": "The archive of this repository: entries moved whole from its living pages, a file for each page and day. Written by docs/archive.py; archive/README.md says the same for people.",
+ "fields": {
+  "path": "the file, from the repository's root",
+  "kind": "what the file is; here always 'archive'",
+  "title": "the page and the day",
+  "source": "the page the entries were moved from",
+  "date": "the day the entries are dated",
+  "sections": "each section of the page, and how many entries",
+  "moved": "the day they were moved",
+  "commit": "the commit the page was at when they were moved",
+  "bytes": "the file's size",
+  "lines": "its lines",
+  "sha256": "its SHA-256",
+  "redacted": "if present: each redaction made since, with its day and why"
+ },
+ "items": [
+  {
+   "path": "archive/COLLABORATING/2026-11-15.md",
+   "kind": "archive",
+   "title": "docs/COLLABORATING.md, 2026-11-15",
+   "source": "docs/COLLABORATING.md",
+   "date": "2026-11-15",
+   "sections": [
+    {
+     "name": "Messages from the technical lead",
+     "entries": 1
+    }
+   ],
+   "moved": "2026-11-21",
+   "commit": "9ff167c749c4137ce7f40435fb0fb56839a78baf",
+   "bytes": 3918,
+   "lines": 68,
+   "sha256": "b4bd8f560de5215d5461862801c2c434f8e4b9e27b0c3e8b2a68d57d9380e93c"
+  },
+  {
+   "path": "archive/COLLABORATING/2026-11-16.md",
+   "kind": "archive",
+   "title": "docs/COLLABORATING.md, 2026-11-16",
+   "source": "docs/COLLABORATING.md",
+   "date": "2026-11-16",
+   "sections": [
+    {
+     "name": "Messages from the technical lead",
+     "entries": 13
+    }
+   ],
+   "moved": "2026-11-21",
+   "commit": "9ff167c749c4137ce7f40435fb0fb56839a78baf",
+   "bytes": 28327,
+   "lines": 510,
+   "sha256": "0866cdadee22044a846ee308f19d3a4618e58836f77fab4fac72e8c13acb256b"
+  },
+  {
+   "path": "archive/COLLABORATING/2026-11-17.md",
+   "kind": "archive",
+   "title": "docs/COLLABORATING.md, 2026-11-17",
+   "source": "docs/COLLABORATING.md",
+   "date": "2026-11-17",
+   "sections": [
+    {
+     "name": "Messages from the technical lead",
+     "entries": 20
+    }
+   ],
+   "moved": "2026-11-21",
+   "commit": "e483903d809781e0755adc4afefe928114a8bdb2",
+   "bytes": 41582,
+   "lines": 762,
+   "sha256": "aa5e6181268b1b39b61ba8a3c76b49530adee7b05a015dafeaab155a79d35a89"
+  },
+  {
+   "path": "archive/STATUS/2026-11-12.md",
+   "kind": "archive",
+   "title": "STATUS.md, 2026-11-12",
+   "source": "STATUS.md",
+   "date": "2026-11-12",
+   "sections": [
+    {
+     "name": "Decided",
+     "entries": 13
+    },
+    {
+     "name": "Log",
+     "entries": 17
+    }
+   ],
+   "moved": "2026-11-21",
+   "commit": "9ff167c749c4137ce7f40435fb0fb56839a78baf",
+   "bytes": 9367,
+   "lines": 174,
+   "sha256": "e250e93483c1ca255336c2a8294b08f3648eef6821dd36c973d622b212663de5"
+  },
+  {
+   "path": "archive/STATUS/2026-11-13.md",
+   "kind": "archive",
+   "title": "STATUS.md, 2026-11-13",
+   "source": "STATUS.md",
+   "date": "2026-11-13",
+   "sections": [
+    {
+     "name": "Decided",
+     "entries": 16
+    },
+    {
+     "name": "Decided by the technical lead",
+     "entries": 7
+    },
+    {
+     "name": "Log",
+     "entries": 22
+    }
+   ],
+   "moved": "2026-11-21",
+   "commit": "9ff167c749c4137ce7f40435fb0fb56839a78baf",
+   "bytes": 38505,
+   "lines": 629,
+   "sha256": "2276338d6c3b8ee7a943309e685a0c3f9c0e19c0179f87d39ac558f601b8c3d5"
+  },
+  {
+   "path": "archive/STATUS/2026-11-14.md",
+   "kind": "archive",
+   "title": "STATUS.md, 2026-11-14",
+   "source": "STATUS.md",
+   "date": "2026-11-14",
+   "sections": [
+    {
+     "name": "Decided",
+     "entries": 26
+    },
+    {
+     "name": "Decided by the technical lead",
+     "entries": 13
+    },
+    {
+     "name": "Log",
+     "entries": 27
+    }
+   ],
+   "moved": "2026-11-21",
+   "commit": "9ff167c749c4137ce7f40435fb0fb56839a78baf",
+   "bytes": 65482,
+   "lines": 1055,
+   "sha256": "7bdc27abdf0f7609ef544f441de8521373bd951970bd96a29e0865d4c7e7f76f"
+  },
+  {
+   "path": "archive/STATUS/2026-11-15.md",
+   "kind": "archive",
+   "title": "STATUS.md, 2026-11-15",
+   "source": "STATUS.md",
+   "date": "2026-11-15",
+   "sections": [
+    {
+     "name": "Decided",
+     "entries": 47
+    },
+    {
+     "name": "Decided by the technical lead",
+     "entries": 10
+    },
+    {
+     "name": "Log",
+     "entries": 52
+    }
+   ],
+   "moved": "2026-11-21",
+   "commit": "9ff167c749c4137ce7f40435fb0fb56839a78baf",
+   "bytes": 97915,
+   "lines": 1614,
+   "sha256": "f3df4feb4a75ddfbc8005dfd09ef9d03556eceb4eb2c36b6816a68da100f6fc9"
+  },
+  {
+   "path": "archive/STATUS/2026-11-16.md",
+   "kind": "archive",
+   "title": "STATUS.md, 2026-11-16",
+   "source": "STATUS.md",
+   "date": "2026-11-16",
+   "sections": [
+    {
+     "name": "Decided",
+     "entries": 21
+    },
+    {
+     "name": "Decided by the technical lead",
+     "entries": 8
+    },
+    {
+     "name": "Log",
+     "entries": 16
+    }
+   ],
+   "moved": "2026-11-21",
+   "commit": "9ff167c749c4137ce7f40435fb0fb56839a78baf",
+   "bytes": 88510,
+   "lines": 1391,
+   "sha256": "563aaac0fa749ab16855e82bd860fccf3f44cf4c268492938b71f955f0258208"
+  },
+  {
+   "path": "archive/STATUS/2026-11-17.md",
+   "kind": "archive",
+   "title": "STATUS.md, 2026-11-17",
+   "source": "STATUS.md",
+   "date": "2026-11-17",
+   "sections": [
+    {
+     "name": "Decided",
+     "entries": 21
+    },
+    {
+     "name": "Decided by the technical lead",
+     "entries": 17
+    },
+    {
+     "name": "Log",
+     "entries": 22
+    }
+   ],
+   "moved": "2026-11-21",
+   "commit": "9ff167c749c4137ce7f40435fb0fb56839a78baf",
+   "bytes": 103090,
+   "lines": 1658,
+   "sha256": "bda9cea6945dfbb2f93d5733b1a51f2076c81bba3ed7b10744583abc07dfe7bd"
+  }
+ ]
+}

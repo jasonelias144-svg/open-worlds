@@ -17,29 +17,81 @@ The file itself is the one to change. `python3 docs/parts.py`
 makes the parts again, and `tests/test_parts.py` fails when they
 are out of step with their files.
 
-## `STATUS.md`, in 20 parts
+## `STATUS.md`, in 4 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/start.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-08.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-07.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-06.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-05.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-04.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-03.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-02.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-01.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead-05.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead-04.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead-03.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead-02.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead-01.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-06.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-05.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-04.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-03.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-02.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log-01.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log.md
+```
+
+## `archive/COLLABORATING/2026-11-16.md`, in 3 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/COLLABORATING/2026-11-16.md/start.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/COLLABORATING/2026-11-16.md/messages-from-the-technical-lead-02.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/COLLABORATING/2026-11-16.md/messages-from-the-technical-lead-01.md
+```
+
+## `archive/COLLABORATING/2026-11-17.md`, in 3 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/COLLABORATING/2026-11-17.md/start.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/COLLABORATING/2026-11-17.md/messages-from-the-technical-lead-02.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/COLLABORATING/2026-11-17.md/messages-from-the-technical-lead-01.md
+```
+
+## `archive/STATUS/2026-11-13.md`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-13.md/start.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-13.md/log.md
+```
+
+## `archive/STATUS/2026-11-14.md`, in 5 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-14.md/start.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-14.md/decided-02.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-14.md/decided-01.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-14.md/decided-by-the-technical-lead.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-14.md/log.md
+```
+
+## `archive/STATUS/2026-11-15.md`, in 7 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-15.md/start.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-15.md/decided-03.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-15.md/decided-02.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-15.md/decided-01.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-15.md/decided-by-the-technical-lead.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-15.md/log-02.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-15.md/log-01.md
+```
+
+## `archive/STATUS/2026-11-16.md`, in 6 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-16.md/start.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-16.md/decided-02.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-16.md/decided-01.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-16.md/decided-by-the-technical-lead.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-16.md/log-02.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-16.md/log-01.md
+```
+
+## `archive/STATUS/2026-11-17.md`, in 7 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-17.md/start.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-17.md/decided-02.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-17.md/decided-01.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-17.md/decided-by-the-technical-lead-02.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-17.md/decided-by-the-technical-lead-01.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-17.md/log-02.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/STATUS/2026-11-17.md/log-01.md
 ```
 
 ## `docs/ADMIN.md`, in 5 parts
@@ -52,17 +104,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/ADMIN.md/when-each-part-is-built.md
 ```
 
-## `docs/COLLABORATING.md`, in 10 parts
+## `docs/COLLABORATING.md`, in 5 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/start.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-04.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-03.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-02.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-01.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/since-you-were-last-here.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/the-standard.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/cycles.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/two-sides-the-sketch-and-the-standard.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/code-in-rust.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/every-file-by-its-full-link-02.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/every-file-by-its-full-link-01.md
 ```
@@ -138,6 +185,13 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/WORLD-TYPES.md/start.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/WORLD-TYPES.md/which-world-has-which-operations.md
+```
+
+## `docs/archive.py`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/archive.py/01.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/archive.py/02.txt
 ```
 
 ## `docs/research/FORMATS.md`, in 2 parts
@@ -311,4 +365,5 @@ Longer than 28,000 bytes, and not cut:
 - The files of record, which [docs/FILES.md](../docs/FILES.md)
   lists: the conversation records, the code taken from them,
   what DeepSeek and Gemini were given in reply, and experiment
-  001's run logs.
+  001's run logs. The archive's files are of record too, but
+  they are cut, above.

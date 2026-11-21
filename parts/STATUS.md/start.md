@@ -3,7 +3,7 @@
 > This part holds: from the start to "Noticed".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: nothing; this is the first part.
-> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-08.md
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
 # Status: open-worlds
@@ -12,7 +12,7 @@
 respect one another's freedom, with full transparency and exit at any time;
 free, and never a money machine
 **State:** active since 2026-11-12
-**Updated:** 2026-11-20 by Claude
+**Updated:** 2026-11-21 by Claude
 
 ## Live
 
@@ -354,4 +354,4 @@ of it is asked again until it is needed.
     total, never per author, so that marking in good faith costs nothing.
 
 
-> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-08.md
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided.md

@@ -2,7 +2,7 @@
 > for readers who are shown only the start of a long page.
 > This part holds: "Every file, by its full link", piece 2 (its pieces are numbered from its end).
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/cycles.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/code-in-rust.md
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/every-file-by-its-full-link-01.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
@@ -14,17 +14,18 @@ full link to paste, here or in [FILES.md](FILES.md) (the founder,
 2026-11-15: "Remember links in the collaborating page are not
 accessible. So all files need links through this method.").
 
-This list holds the files a reader works from, 274 of them: every
+This list holds the files a reader works from, 276 of them: every
 page, all the code in Python and Rust, the tests, the vectors and the
 web pages. [FILES.md](FILES.md) holds the rest, and says how many:
 files of record best sent when a question needs them: the
 conversation records, word for word, the code taken from them, what
-each of the two was given in reply, and Experiment 001's run logs.
+each of the two was given in reply, the archive of older dated
+entries, and Experiment 001's run logs.
 `tests/test_collaborating_links.py` fails if a file is added, moved or
 removed and this list or FILES.md isn't changed with it.
 
-A page or a file of code longer than 28,000 bytes is also kept cut
-into parts, for a reader who is shown only the start of a page:
+A page, a file of code or a file of the archive longer than 28,000
+bytes is also kept cut into parts, for a reader who is shown only the start of a page:
 [parts/INDEX.md](../parts/INDEX.md) gives every part's full link, and
 its own link is in the last group below. The test vectors and
 Cargo.lock are left whole.

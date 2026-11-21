@@ -47,6 +47,10 @@ KINDS = [
      "works given to the project whole, to be read: the first is the "
      "founder's *Art of Peace and the Strategist*; too large to read "
      "in one go"),
+    ("archive/", "The archive",
+     "the older dated entries of STATUS.md and COLLABORATING.md, moved "
+     "whole, a file for each page and day, with the catalogue "
+     "(`archive/README.md`); `docs/archive.py` writes it"),
     ("experiments/001-first-words/runs/", "Experiment 001's run logs",
      "what each small model said in the first-words experiment, run by "
      "run (the plan and results are in COLLABORATING.md's list)"),

@@ -17,7 +17,15 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - run: python3 --version
       - run: python3 -m pip install -r requirements.txt
+      # The commits the archive's catalogue names, so that the check can
+      # find each archived entry, word for word, in its page as it was.
+      - run: >-
+          git fetch --no-tags --depth=1 origin $(python3 -c "import json;
+          print(' '.join(sorted({i['commit'] for i in
+          json.load(open('archive/catalog.json'))['items']})))")
       - run: python3 -m unittest discover -s tests -t . -v
+        env:
+          OPEN_WORLDS_REQUIRE_ARCHIVE_COMMITS: "1"
       - run: python3 -m experiments.corridor --quick
       - run: python3 -m multiverse.collaboration
   rdkit-crosscheck:
