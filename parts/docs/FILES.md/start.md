@@ -17,7 +17,7 @@ need links through this method.").
 
 COLLABORATING.md lists the files a reader works from: every page,
 all the code, the tests and the vectors. This page lists the rest,
-998 files of record, best sent when a question needs them.
+1000 files of record, best sent when a question needs them.
 
 Written by `python3 docs/files.py`;
 `tests/test_collaborating_links.py` fails if a file is added, moved
@@ -25,11 +25,13 @@ or removed and this page isn't written again.
 
 ## The conversation records
 
-In `sketches/records`, 6 files, 9.2 MB in all, the largest 2.7 MB: each of the founder's conversations with DeepSeek, and the one with Gemini (marked GMNI), word for word; most are too large to read in one go.
+In `sketches/records`, 8 files, 12.2 MB in all, the largest 2.7 MB: each of the founder's conversations with DeepSeek, and the one with Gemini (marked GMNI), word for word; most are too large to read in one go.
 
-**`sketches/records`** (6 files, 9.2 MB):
+**`sketches/records`** (8 files, 12.2 MB):
 
 ```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-00-00-DPSK-Patterns_and_the_Brain.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-02-01-DPSK-Patterns_Texts_and_Inventions.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-03-02-DPSK-Patterns_Texts_and_Inventions.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-04-00-DPSK-Patterns_Multiverses.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-05-01-DPSK-Patterns_Multiverses.txt

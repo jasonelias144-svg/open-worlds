@@ -8,6 +8,11 @@
 
 ## Log
 
+- 2026-11-21 Claude: records 012-00-00 (patterns and the brain) and
+  012-02-01 (circuits, learning, chemistry and music) kept with the
+  others, whole, at the founder's word (#136); sketches/INDEX.md gives
+  each a row, and COLLABORATING.md counts seven records.
+
 - 2026-11-20 Claude: the records of stage 012 under the founder's new
   names (#135). DeepSeek's present record is 012-07-03 and its code
   `sketches/deepseek/012-07-03/`; Gemini's is 012-08-04; ChatGPT's,

@@ -347,6 +347,12 @@ of it is asked again until it is needed.
 
 ## Decided
 
+- 2026-11-21, founder, two early records public: "You can make
+  012-00-00 and 012-02-01 public. Those should be fine." Both are
+  kept whole in `sketches/records/`, looked through first: no surname,
+  account link, email address or key found in either. Record 012-01-00 is
+  not kept here.
+
 - 2026-11-20, founder, the records of stage 012 named anew. The
   founder brought the records of stage 012 under new names: "Here is
   the current state of the 012_Code subproject, in terms of
@@ -4851,6 +4857,11 @@ it was wrong. Questions of what the project is for stay with the founder.
   ballots is decided before any governance is built on these records.
 
 ## Log
+
+- 2026-11-21 Claude: records 012-00-00 (patterns and the brain) and
+  012-02-01 (circuits, learning, chemistry and music) kept with the
+  others, whole, at the founder's word (#136); sketches/INDEX.md gives
+  each a row, and COLLABORATING.md counts seven records.
 
 - 2026-11-20 Claude: the records of stage 012 under the founder's new
   names (#135). DeepSeek's present record is 012-07-03 and its code
