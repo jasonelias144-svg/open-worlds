@@ -76,6 +76,7 @@ pub fn verify_log(log: &RoomLog) -> Result<()> {
             Record::Refusal(_) => true,
             Record::KnowledgeShardExport(_) => true,
             Record::ModeratorSuccession(_) => true,
+            Record::ModeratorScope(_) => true,
             Record::Leave(_) => false,
             _ => per_record_mode,
         };
@@ -297,6 +298,11 @@ pub fn verify_log(log: &RoomLog) -> Result<()> {
                     return Err(Error::Policy(format!("record {i}: knowledge_shard_hash not a 64-hex string")));
                 }
             }
+            Record::ModeratorScope(_) => {
+                if !template.personal {
+                    return Err(Error::Policy(format!("record {i}: moderator_scope only in personal rooms")));
+                }
+            }
         }
 
         prev = Some(rec.hash()?);
@@ -360,21 +366,6 @@ pub fn verify_log(log: &RoomLog) -> Result<()> {
     Ok(())
 }
 
-/// Hold a branch and its parent together. Checks:
-///   - the branch's log verifies on its own;
-///   - the parent's log verifies on its own;
-///   - the branch names this parent (world_id match);
-///   - the checkpoint seq is within the parent's log;
-///   - the record at that seq in the parent hashes to the hash the
-///     branch names;
-///   - in head mode, the checkpoint is covered by the parent's
-///     last published head (so the parent has committed to it);
-///   - the branch's creator was a member of the parent at that
-///     point (replayed from the parent's joins and leaves).
-///
-/// It does not check that the branch's law differs from the
-/// parent's, or anything else about the branch's content: those are
-/// the branch's own business, checked by `verify_log(branch)`.
 pub fn verify_branch(parent: &RoomLog, branch: &RoomLog) -> Result<()> {
     verify_log(branch)?;
     verify_log(parent)?;
@@ -413,13 +404,8 @@ pub fn verify_branch(parent: &RoomLog, branch: &RoomLog) -> Result<()> {
         )));
     }
 
-    // In head mode, the checkpoint must be covered by the last
-    // published head; otherwise the parent has not committed to it.
     if parent.template.head_interval > 1 {
         let covered = parent.heads.last().map(|h| h.length as usize).unwrap_or(0);
-        // head.length is the count of records covered; the
-        // record at that seq is the last covered one (index
-        // head.length - 1). Any seq < head.length is covered.
         if seq >= covered {
             return Err(Error::Policy(format!(
                 "verify_branch: checkpoint seq {seq} not covered by parent's last head (covers 0..{covered})"
@@ -427,8 +413,6 @@ pub fn verify_branch(parent: &RoomLog, branch: &RoomLog) -> Result<()> {
         }
     }
 
-    // Replay the parent's memberships up to and including the
-    // checkpoint, and check the branch's creator was a member.
     let creator = match branch.records.first() {
         Some(Record::RoomCreated(rc)) => rc.creator_id.clone(),
         _ => unreachable!(),
@@ -463,6 +447,97 @@ pub fn verify_branch(parent: &RoomLog, branch: &RoomLog) -> Result<()> {
             creator.as_str(),
             seq
         )));
+    }
+
+    Ok(())
+}
+
+/// Hold an AI's KnowledgeWorld and a room together, and check the
+/// one-moderator-room rule. The AI is the KW's creator. If the AI
+/// is not a member of `room` at `control` tier, the check is
+/// vacuous (nothing to enforce). Otherwise:
+///
+///   - the KW must carry a `moderator_scope` record (the latest
+///     one is the AI's claim);
+///   - if the room is not `ai_only`, its id must appear in the
+///     scope's `human_facing_rooms`, and that list must have at
+///     most one entry (the rule);
+///   - if the room is `ai_only`, its id must appear in the
+///     scope's `meta_rooms` (many meta-rooms are permitted; the
+///     rule is about human-facing rooms).
+pub fn verify_moderator_scope(kw: &RoomLog, room: &RoomLog) -> Result<()> {
+    verify_log(kw)?;
+    verify_log(room)?;
+
+    let ai_id = match kw.records.first() {
+        Some(Record::RoomCreated(rc)) => rc.creator_id.clone(),
+        _ => return Err(Error::Chain("KW: no room_created record".into())),
+    };
+
+    let mut is_moderator_here = false;
+    {
+        let mut tier: Option<String> = None;
+        for rec in &room.records {
+            match rec {
+                Record::RoomCreated(rc) => {
+                    if rc.creator_id == ai_id {
+                        tier = Some("terminal".into());
+                    }
+                }
+                Record::Join(j) if j.subject_id == ai_id && j.is_ai => {
+                    tier = Some(j.tier.clone());
+                }
+                Record::Leave(l) if l.subject_id == ai_id => {
+                    tier = None;
+                }
+                _ => {}
+            }
+        }
+        if let Some(t) = tier {
+            if tier_rank(&t).unwrap_or(0) >= tier_rank("control").unwrap() {
+                is_moderator_here = true;
+            }
+        }
+    }
+    if !is_moderator_here {
+        return Ok(());
+    }
+
+    let latest_scope: Option<&ModeratorScope> = kw.records.iter()
+        .rev()
+        .find_map(|r| if let Record::ModeratorScope(s) = r { Some(s) } else { None });
+    let Some(scope) = latest_scope else {
+        return Err(Error::Policy(format!(
+            "AI {} is moderator of room {} but its KW has no moderator_scope",
+            ai_id.as_str(),
+            room.world_id.as_str()
+        )));
+    };
+
+    if scope.human_facing_rooms.len() > 1 {
+        return Err(Error::Policy(format!(
+            "AI {} declares moderator of {} human-facing rooms (max 1)",
+            ai_id.as_str(),
+            scope.human_facing_rooms.len()
+        )));
+    }
+
+    if room.template.membership == "ai_only" {
+        if !scope.meta_rooms.iter().any(|r| r == &room.world_id) {
+            return Err(Error::Policy(format!(
+                "AI {} moderates ai_only room {} but does not declare it in meta_rooms",
+                ai_id.as_str(),
+                room.world_id.as_str()
+            )));
+        }
+    } else {
+        if !scope.human_facing_rooms.iter().any(|r| r == &room.world_id) {
+            return Err(Error::Policy(format!(
+                "AI {} moderates room {} but does not declare it in human_facing_rooms",
+                ai_id.as_str(),
+                room.world_id.as_str()
+            )));
+        }
     }
 
     Ok(())

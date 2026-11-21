@@ -25,6 +25,7 @@ pub enum Record {
     Presence(Presence),
     KnowledgeShardExport(KnowledgeShardExport),
     ModeratorSuccession(ModeratorSuccession),
+    ModeratorScope(ModeratorScope),
 }
 
 impl Record {
@@ -43,6 +44,7 @@ impl Record {
             Record::Presence(p) => p.seq,
             Record::KnowledgeShardExport(k) => k.seq,
             Record::ModeratorSuccession(m) => m.seq,
+            Record::ModeratorScope(s) => s.seq,
         }
     }
     pub fn prev(&self) -> Option<&String> {
@@ -59,6 +61,7 @@ impl Record {
             Record::Presence(p) => p.prev.as_ref(),
             Record::KnowledgeShardExport(k) => k.prev.as_ref(),
             Record::ModeratorSuccession(m) => m.prev.as_ref(),
+            Record::ModeratorScope(s) => s.prev.as_ref(),
         }
     }
     pub fn proof(&self) -> &ProofOrArray {
@@ -75,6 +78,7 @@ impl Record {
             Record::Presence(p) => &p.proof,
             Record::KnowledgeShardExport(k) => &k.proof,
             Record::ModeratorSuccession(m) => &m.proof,
+            Record::ModeratorScope(s) => &s.proof,
         }
     }
     pub fn world_id(&self) -> &DidKey {
@@ -91,6 +95,7 @@ impl Record {
             Record::Presence(p) => &p.world_id,
             Record::KnowledgeShardExport(k) => &k.world_id,
             Record::ModeratorSuccession(m) => &m.world_id,
+            Record::ModeratorScope(s) => &s.world_id,
         }
     }
     pub fn author_id(&self) -> Option<&DidKey> {
@@ -107,14 +112,11 @@ impl Record {
             Record::Presence(_) => None,
             Record::KnowledgeShardExport(_) => None,
             Record::ModeratorSuccession(_) => None,
+            Record::ModeratorScope(_) => None,
         }
     }
 }
 
-/// Names the room a branch came from, and the checkpoint it
-/// branched at: the parent's world_id, the checkpoint's seq, and
-/// the checkpoint's record hash. All three must agree with the
-/// parent's log for `verify_branch` to accept the branch.
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub struct ForkedFrom {
     pub parent_id: DidKey,
@@ -269,23 +271,31 @@ pub struct ModeratorSuccession {
     pub proof: ProofOrArray,
 }
 
+/// A declaration of an AI's moderator scope, written in its own
+/// KnowledgeWorld. The latest such record is the AI's claim; the
+/// pair check `verify_moderator_scope` reads it.
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct ModeratorScope {
+    pub world_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub human_facing_rooms: Vec<DidKey>,
+    pub meta_rooms: Vec<DidKey>,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
 // ---- Constructors ----
 
 impl RoomCreated {
-    /// The seed for a room that has no parent.
     pub fn new(world_id: DidKey, template: RoomTemplate, creator_id: DidKey) -> Self {
         RoomCreated {
-            world_id,
-            template,
-            creator_id,
+            world_id, template, creator_id,
             forked_from: None,
             ts: crate::now(),
             proof: ProofOrArray::placeholder(),
         }
     }
-
-    /// The seed for a branch: the same shape plus a `forked_from`
-    /// naming the parent and the checkpoint.
     pub fn branch(
         world_id: DidKey,
         template: RoomTemplate,
@@ -293,9 +303,7 @@ impl RoomCreated {
         forked_from: ForkedFrom,
     ) -> Self {
         RoomCreated {
-            world_id,
-            template,
-            creator_id,
+            world_id, template, creator_id,
             forked_from: Some(forked_from),
             ts: crate::now(),
             proof: ProofOrArray::placeholder(),
@@ -355,5 +363,21 @@ impl KnowledgeShardExport {
 impl ModeratorSuccession {
     pub fn new(world_id: DidKey, seq: u64, prev: Option<String>, outgoing_id: DidKey, incoming_id: DidKey, knowledge_shard_hash: String, reason: String) -> Self {
         ModeratorSuccession { world_id, seq, prev, outgoing_id, incoming_id, knowledge_shard_hash, reason, ts: crate::now(), proof: ProofOrArray::placeholder() }
+    }
+}
+impl ModeratorScope {
+    pub fn new(
+        world_id: DidKey,
+        seq: u64,
+        prev: Option<String>,
+        human_facing_rooms: Vec<DidKey>,
+        meta_rooms: Vec<DidKey>,
+    ) -> Self {
+        ModeratorScope {
+            world_id, seq, prev,
+            human_facing_rooms, meta_rooms,
+            ts: crate::now(),
+            proof: ProofOrArray::placeholder(),
+        }
     }
 }

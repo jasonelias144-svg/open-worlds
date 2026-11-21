@@ -18,7 +18,8 @@ written, each with its hash in its folder's MANIFEST.json.
     python3 steps.py --now OUT      and OUT/5-repaired, g1, g2, g3,
                                     g3-repaired, c1, c2, c3, d6,
                                     d6-repaired, d7, d7-count, doors,
-                                    c4, d8, doors-attacks, now
+                                    c4, doors-attacks, repairs, d8,
+                                    now, joined, joined-fix
     python3 steps.py --check        is ../chat-world-now what --now makes?
 
 Nothing is run: this only copies files. Each OUT/N/chat-world is the
@@ -51,11 +52,6 @@ delivery before left it.
                  line that names its module (DOORS; change 26). This
                  was the crate as it stood until 2026-11-18, and the
                  three stages that follow were built beside it.
-    d8           doors, with DeepSeek's delivery 8 laid over it as far as
-                 it came: the rule of one moderator's room
-                 (../chat-world-steps/8). The reply was cut off after
-                 three files, so it does not build, and it is not laid
-                 into the crate as it stands.
     c4           doors, with the fourth step of Gemini's round on the
                  Commons laid over it: 17 attacks on a room's seven
                  other kinds of record
@@ -69,11 +65,33 @@ delivery before left it.
                  (../../../gemini/2026-11-17-3/steps/1). Five of them
                  got through, so it was built beside the crate and
                  not laid into it.
-    now          doors, with Gemini's repairs of those five laid over
+    repairs      doors, with Gemini's repairs of those five laid over
                  it (../../../gemini/2026-11-17-4/steps/1): the list
                  of doors again, and the attacks with three of them
-                 written again. This is the crate as it stands, kept
-                 in ../chat-world-now.
+                 written again. This was the crate as it stood until
+                 2026-11-21.
+    d8           repairs, with DeepSeek's delivery 8 laid over it: the
+                 rule of one moderator's room (../chat-world-steps/8).
+                 The founder's first copy of the record ended after its
+                 third file; the copy of 2026-11-21 holds all six. It
+                 does not build, for one type: a head's length is not
+                 turned into a usize.
+    now          d8, with DeepSeek's delivery 9 laid over it: their
+                 src/verify.rs again, with that type turned
+                 (../chat-world-steps/9). This is the crate as it
+                 stands, kept in ../chat-world-now.
+    joined       now, with DeepSeek's delivery 10 laid over it: a room
+                 one has joined but does not keep, and the keeper's
+                 side that accepts what its members send
+                 (../chat-world-steps/10), and the line that names the
+                 list of doors' module, which their src/lib.rs leaves
+                 out (DOORS again). Two of its tests fail, so it is
+                 built beside the crate as it stands and is not laid
+                 into it.
+    joined-fix   joined, with DeepSeek's delivery 11 laid over it: the
+                 keeper's side checks a redaction and an override as
+                 the log's check does (../chat-world-steps/11). Three
+                 of its tests fail; beside the crate, like joined.
 
 `--check` puts the crate together again and compares it with that
 folder, byte for byte, and holds Gemini's files, in each of their
@@ -311,7 +329,7 @@ def check():
         if not same(made, os.path.join(HERE, "chat-world-now")):
             sys.exit("chat-world-now is not the deliveries with the listed "
                      "repairs: run steps.py --now and compare")
-    print("chat-world-now is DeepSeek's seven deliveries and Gemini's eight, "
+    print("chat-world-now is DeepSeek's nine deliveries and Gemini's eight, "
           "with the listed repairs and changes")
 
 
@@ -395,21 +413,45 @@ def main(argv, quiet=False):
         count = lay(os.path.join(GEMINI_COMMONS, "steps", "4"), tree)
         say(f"Gemini's fourth step, beside the crate as it stood: "
             f"{count} file laid over: c4")
-        tree = os.path.join(out, "d8", "chat-world")
-        shutil.copytree(before, tree)
-        count = lay(os.path.join(HERE, "chat-world-steps", "8"), tree)
-        say(f"DeepSeek's delivery 8, cut off, beside the crate as it "
-            f"stood: {count} files laid over: d8")
         tree = os.path.join(out, "doors-attacks", "chat-world")
         shutil.copytree(before, tree)
         count = lay(os.path.join(GEMINI_ATTACKS, "steps", "1"), tree)
         say(f"Gemini's attacks on the list of doors, beside the crate as "
             f"it stood: {count} file laid over: doors-attacks")
-        tree = os.path.join(out, "now", "chat-world")
+        tree = os.path.join(out, "repairs", "chat-world")
         shutil.copytree(before, tree)
         count = lay(os.path.join(GEMINI_REPAIRS, "steps", "1"), tree)
         say(f"Gemini's repairs of the five attacks that got through: "
-            f"{count} files laid over: now")
+            f"{count} files laid over: repairs")
+        before = tree
+        tree = os.path.join(out, "d8", "chat-world")
+        shutil.copytree(before, tree)
+        count = lay(os.path.join(HERE, "chat-world-steps", "8"), tree)
+        say(f"DeepSeek's delivery 8, the rule of one moderator's room: "
+            f"{count} files laid over: d8")
+        before = tree
+        tree = os.path.join(out, "now", "chat-world")
+        shutil.copytree(before, tree)
+        count = lay(os.path.join(HERE, "chat-world-steps", "9"), tree)
+        say(f"DeepSeek's delivery 9, the check again with one type "
+            f"turned: {count} file laid over: now")
+        before = tree
+        tree = os.path.join(out, "joined", "chat-world")
+        shutil.copytree(before, tree)
+        count = lay(os.path.join(HERE, "chat-world-steps", "10"), tree)
+        repaired(tree, tree + "-doors", DOORS)
+        shutil.rmtree(tree)
+        os.rename(tree + "-doors", tree)
+        say(f"DeepSeek's delivery 10, a room one has joined, beside the "
+            f"crate as it stands: {count} files laid over, and the list "
+            f"of doors named again: joined")
+        before = tree
+        tree = os.path.join(out, "joined-fix", "chat-world")
+        shutil.copytree(before, tree)
+        count = lay(os.path.join(HERE, "chat-world-steps", "11"), tree)
+        say(f"DeepSeek's delivery 11, the keeper's side checked as the "
+            f"log is, beside the crate as it stands: {count} files laid "
+            f"over: joined-fix")
 
 
 if __name__ == "__main__":

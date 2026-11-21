@@ -19,24 +19,11 @@ pub struct RoomLog {
 }
 
 impl RoomLog {
-    /// The presentation view of this log: messages with redacted
-    /// text hidden, plus a `restored_incidents` note where a
-    /// redaction has been restored. This is what a reader sees.
     pub fn visible_log(&self) -> Vec<serde_json::Value> {
         visible_log_from(&self.records)
     }
 }
 
-/// The presentation-layer view of a slice of records: messages
-/// whose text has been redacted (and not restored) show `[removed]`
-/// with the incident id, rule, and reason; messages with a restored
-/// redaction show their text plus a `restored_incidents` list.
-///
-/// The data layer is never modified: `records` is read, not
-/// changed. Two passes — first collect the redaction targets and
-/// which redactions have been restored, then build the view — so a
-/// redaction applies to a message recorded before it regardless of
-/// order.
 pub fn visible_log_from(records: &[Record]) -> Vec<serde_json::Value> {
     use serde_json::json;
 
@@ -147,6 +134,14 @@ pub fn visible_log_from(records: &[Record]) -> Vec<serde_json::Value> {
                     "reason": s.reason,
                 }));
             }
+            Record::ModeratorScope(s) => {
+                out.push(json!({
+                    "seq": s.seq, "type": "moderator_scope",
+                    "human_facing_rooms": s.human_facing_rooms.iter().map(|r| r.as_str()).collect::<Vec<_>>(),
+                    "meta_rooms": s.meta_rooms.iter().map(|r| r.as_str()).collect::<Vec<_>>(),
+                    "ts": s.ts,
+                }));
+            }
             Record::KnowledgeShardExport(_) | Record::PortLanding(_) | Record::Bookmark(_) | Record::Presence(_) => {}
         }
     }
@@ -197,9 +192,6 @@ impl Room {
         Ok(room)
     }
 
-    /// Branch this room at a checkpoint. Returns a new Room whose
-    /// seed names this room and the checkpoint, whose law is
-    /// `new_template`, and whose first member is `maker_kp`.
     pub fn branch_at(
         &self,
         checkpoint_seq: u64,
@@ -228,10 +220,8 @@ impl Room {
             checkpoint_seq,
             checkpoint_hash,
         };
-
         let branch_world_id = branch_kp.did();
         let maker_id = maker_kp.did();
-
         let mut members = HashMap::new();
         members.insert(
             maker_id.clone(),

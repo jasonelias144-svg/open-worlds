@@ -53,7 +53,10 @@ impl HomeRoom {
             intent.into(),
             target_room.cloned(),
         );
-        let signed = crate::sign_record_dual(rec, &self.user_kp, self.room.keypair(), Record::PortLanding, |r, p| r.proof = p)?;
+        let signed = crate::sign_record_dual(
+            rec, &self.user_kp, self.room.keypair(),
+            Record::PortLanding, |r, p| r.proof = p,
+        )?;
         let record = Record::PortLanding(signed);
         self.room.push(record.clone())?;
         Ok(record)
@@ -67,7 +70,10 @@ impl HomeRoom {
             room.world_id().clone(),
             note.into(),
         );
-        let signed = crate::sign_record_dual(rec, &self.user_kp, self.room.keypair(), Record::Bookmark, |r, p| r.proof = p)?;
+        let signed = crate::sign_record_dual(
+            rec, &self.user_kp, self.room.keypair(),
+            Record::Bookmark, |r, p| r.proof = p,
+        )?;
         let record = Record::Bookmark(signed);
         self.room.push(record.clone())?;
         Ok(record)
@@ -82,17 +88,18 @@ impl HomeRoom {
             rooms.to_vec(),
             ttl,
         );
-        let signed = crate::sign_record_dual(rec, &self.user_kp, self.room.keypair(), Record::Presence, |r, p| r.proof = p)?;
+        let signed = crate::sign_record_dual(
+            rec, &self.user_kp, self.room.keypair(),
+            Record::Presence, |r, p| r.proof = p,
+        )?;
         let record = Record::Presence(signed);
         self.room.push(record.clone())?;
         Ok(record)
     }
 
-    /// Emit a knowledge shard export: from this KnowledgeWorld, a
-    /// designated subset of entries, for a specific target room and
-    /// a specific successor key. Signed by the KnowledgeWorld's own
-    /// key (the room's keypair, not the user's). The record is
-    /// appended to the KnowledgeWorld's log.
+    /// Emit a knowledge shard export. Signed by the KnowledgeWorld's
+    /// own key (the room's keypair, not the user's), matching the
+    /// pattern of the room-signed records (refusal, shard export).
     pub fn emit_shard_export(
         &mut self,
         target_room_id: &DidKey,
@@ -117,6 +124,31 @@ impl HomeRoom {
         );
         let signed = crate::sign_record(rec, self.room.keypair(), Record::KnowledgeShardExport, |r, p| r.proof = p)?;
         let record = Record::KnowledgeShardExport(signed);
+        self.room.push(record.clone())?;
+        Ok(record)
+    }
+
+    /// Declare this AI's moderator scope. The latest
+    /// `moderator_scope` record in this KW is what the pair check
+    /// `verify_moderator_scope` reads. Signed by the KW's own key
+    /// (the room's keypair), like a shard export.
+    pub fn declare_moderator_scope(
+        &mut self,
+        human_facing_rooms: Vec<DidKey>,
+        meta_rooms: Vec<DidKey>,
+    ) -> Result<Record> {
+        let rec = ModeratorScope::new(
+            self.room.world_id().clone(),
+            self.room.records().len() as u64,
+            self.room.last_hash(),
+            human_facing_rooms,
+            meta_rooms,
+        );
+        let signed = crate::sign_record(
+            rec, self.room.keypair(), Record::ModeratorScope,
+            |r, p| r.proof = p,
+        )?;
+        let record = Record::ModeratorScope(signed);
         self.room.push(record.clone())?;
         Ok(record)
     }
