@@ -10,12 +10,15 @@
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
-- 2026-11-21 Claude: the guide's outline (#141), at the founder's
-  request. `guide/README.md`: what the guide is, the founder's words,
-  and eight rules every chapter is written by (the guide explains and
-  never rules; six labels, Built, Sketched, Decided, Designed, Idea
-  and Open; sources and a commit at the end of each chapter; numbers
-  that never change; sections that can be read alone; one word for one
+- 2026-11-21 Claude: the guide's home and outline (#141), at the
+  founder's request. `guide/README.md` is the home: where it stands,
+  the contents (85 chapters, each with its progress, written by
+  `guide/contents.py` and checked by `tests/test_guide_contents.py`),
+  what it is for in the founder's words, who writes it, and eight
+  rules every chapter is written by (the guide explains and never
+  rules; six labels, Built, Sketched, Decided, Designed, Idea and
+  Open; sources and a commit at the end of each chapter; numbers that
+  never change; sections that can be read alone; one word for one
   thing; a text twin for every figure; reference parts made by
   script). `guide/OUTLINE.md`: front matter, nine parts and a
   reference section, some eighty-five chapters, each with what it

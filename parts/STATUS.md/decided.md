@@ -10,6 +10,14 @@
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-21, founder, the guide's home: "Perfect. And create a page
+  in the repo that we can update as we continue to expand. It will be
+  the home of this comprehensive reference manual." The home is
+  `guide/README.md`: the contents, with how far each chapter has come,
+  what is next, who writes it, the rules, how it is built, and its
+  editions; `guide/contents.py` writes the contents from the outline
+  and the chapters' files.
+
 - 2026-11-21, founder, the guide: "Ok, so I have figured out what I
   want to work on with ChatGPT: A comprehensive guide to Open Worlds.
   But this would be intended as a book companion to the Open Worlds as

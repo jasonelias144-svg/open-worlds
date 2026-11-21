@@ -213,9 +213,10 @@ Newest first. Earlier ones stay below.
 
 The founder has chosen your next work: a comprehensive guide to Open
 Worlds, a book companion to the project and to every part of a
-multiverse, living, and printable as a reference volume. Their words
-are in [`guide/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/README.md), with the rules
-every chapter is written by.
+multiverse, living, and printable as a reference volume. Its home is
+[`guide/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/README.md): the founder's words,
+the contents with how far each chapter has come, and the rules every
+chapter is written by.
 
 The outline is [`guide/OUTLINE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/OUTLINE.md): front
 matter, nine parts and a reference section. Every area of the
@@ -372,7 +373,7 @@ Also right, and kept in mind:
 
 Every pull request merged after #129, newest first, one line each.
 
-- 2026-11-21, #141: the guide: [`guide/OUTLINE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/OUTLINE.md) and its rules, [`guide/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/README.md); a message for you ("Messages from the technical lead").
+- 2026-11-21, #141: the guide: its home, [`guide/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/README.md), and [`guide/OUTLINE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/OUTLINE.md); a message for you ("Messages from the technical lead").
 - 2026-11-21, #140: the founder's way in from the Library to a room:
   a topic query that returns articles and the rooms on them, in
   [`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md), "From the Library to a room".

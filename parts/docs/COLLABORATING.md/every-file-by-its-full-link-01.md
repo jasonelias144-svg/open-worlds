@@ -154,7 +154,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/web/map/ind
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/web/plant/index.html
 ```
 
-**Tests in Python**, with the two checks for the web pages (44):
+**Tests in Python**, with the two checks for the web pages (45):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/__init__.py
@@ -173,6 +173,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_formats_records.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_formats_seal.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_formats_sealed.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_guide_contents.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_guide_outline.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_make_keys.py
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_mv_chemistry_world.py
