@@ -10,6 +10,15 @@
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-21, founder, the guide as a living roadmap, said to ChatGPT
+  after the first chapter: "This is a great start and it should be the
+  main reference manual. But also, we should be able to fill [i]n the
+  blanks with what we plan to develop, and that way it also becomes a
+  living roadmap and a way to help preserve consistency." The founder
+  brought ChatGPT's drafts of all eleven chapters of the first edition
+  (delivery 012) to the technical lead; they are in `guide/` as drafts
+  (#142).
+
 - 2026-11-21, founder, the guide as a starting point: "Keep in mind
   the idea will change constantly, so this is a starting point that
   may take a few iterations before settling into a solid framework."

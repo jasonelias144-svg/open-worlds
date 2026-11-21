@@ -14,7 +14,7 @@ full link to paste, here or in [FILES.md](FILES.md) (the founder,
 2026-11-15: "Remember links in the collaborating page are not
 accessible. So all files need links through this method.").
 
-This list holds the files a reader works from, 281 of them: every
+This list holds the files a reader works from, 292 of them: every
 page, all the code in Python and Rust, the tests, the vectors and the
 web pages. [FILES.md](FILES.md) holds the rest, and says how many:
 files of record best sent when a question needs them: the
@@ -30,7 +30,7 @@ bytes is also kept cut into parts, for a reader who is shown only the start of a
 its own link is in the last group below. The test vectors and
 Cargo.lock are left whole.
 
-**Start here**, the orientation, the charter, the course, the guide's home and outline with the script that writes its contents, and the pages the work now draws on (15):
+**Start here**, the orientation, the charter, the course, and the pages the work now draws on (12):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COLLABORATING.md
@@ -45,9 +45,25 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/TOPICS
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/VISION.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FRACTALS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/URWORLD.md
+```
+
+**The guide**, its home, its outline, the script that writes its contents, and its chapters (14):
+
+```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/README.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/OUTLINE.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/contents.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/F/01-how-to-read-this-guide.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/F/02-four-ways-through.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/F/03-checking-this-guide.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/F/04-licence.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/I/01-what-open-worlds-is.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/I/02-a-first-walk-through-a-multiverse.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/I/03-who-you-are-here.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/I/04-what-you-are-guaranteed.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/I/05-for-an-ai-arriving.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/I/06-where-to-go-next.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/R/01-glossary.md
 ```
 
 **The design pages**, with Cycle 0's output (18):

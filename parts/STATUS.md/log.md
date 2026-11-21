@@ -10,6 +10,21 @@
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-21 Claude: the guide's first drafts (#142). ChatGPT's
+  delivery 012 holds all eleven chapters of edition 1 (F.1 to F.4, I.1
+  to I.6, R.1; 127 numbered sections, some 36,000 words), written from
+  commit `7ade210`, with review notes. The chapters are in `guide/F/`,
+  `guide/I/` and `guide/R/`, word for word from its manuscript, split
+  by script at the chapter headings (rejoined, they give the
+  manuscript's text again; 143 links between and within chapters all
+  resolve); each says `Progress: draft`, and the home page lists them.
+  The handoff, the roadmap proposal and the review notes are kept in
+  `guide/deliveries/012/`, with the size and hash of all 25 files of
+  the zip. Spot checks of I.1's and I.3's claims against the code
+  held; the full technical check is next, chapter by chapter.
+  ChatGPT's conversation record is listed anew in `docs/CHATGPT.md`
+  (921,638 bytes).
+
 - 2026-11-21 Claude: the guide's home and outline (#141), at the
   founder's request. `guide/README.md` is the home: where it stands,
   the contents (85 chapters, each with its progress, written by
