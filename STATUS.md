@@ -349,6 +349,20 @@ of it is asked again until it is needed.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-21, founder, from the Library to a room: "Maybe even
+  starting from a Wikipedia clone 'library' room that allows for
+  passage through a topic query to a list of candidate rooms to enter.
+  From there you can figure out where to go. It also relates to our
+  frozen Wikipedia copy as a model training basis."
+  Recorded in `docs/COMMONS.md`, "From the Library to a room", and
+  `docs/TOPICS.md`, topic 23, with the technical lead's reading: a query
+  returns articles and, beside each, the rooms on it as doors; a room
+  says its topics in its law; each article can have a room of its own;
+  candidates ranked by a rule anyone can read, never by who asks;
+  reading stays one's own; the copy as a basis for training is new and
+  open, with its size, the open models' own data and the licence said
+  plainly.
+
 - 2026-11-21, founder, the formula: "Like Slack, Reddit, Quora, and
   AOL--for AI and humans. And more, but you get the idea. Combining
   ideas to multiply functionality is the formula." Recorded in
@@ -821,6 +835,10 @@ with the founder.
 ## Log
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
+
+- 2026-11-21 Claude: the founder's way in from the Library to a room
+  recorded (#140), in STATUS.md "Decided", `docs/COMMONS.md`, "From
+  the Library to a room", and `docs/TOPICS.md`, topic 23.
 
 - 2026-11-21 Claude: the founder's "Yes, like Slack", "we should make
   a Slack plug-in" and "Combining ideas to multiply functionality is

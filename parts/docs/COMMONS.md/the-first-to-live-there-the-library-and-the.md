@@ -1,9 +1,9 @@
 > Part of `docs/COMMONS.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "The first to live there, the Library, and the multiverse's own pages" to "Order".
+> This part holds: "The first to live there, the Library, and the multiverse's own pages" to "A room of many forms: the founder's idea".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/rooms-with-moderators-the-founder-s-ideas-in.md
-> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/open.md
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/order.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
 ## The first to live there, the Library, and the multiverse's own pages
@@ -95,6 +95,58 @@ as it is now "could come later".
   be read. The first is the founder's *Art of Peace and the
   Strategist* ([../library](../library/README.md)), public domain at
   the founder's word of 2026-11-17.
+
+**From the Library to a room.** The founder, 2026-11-21: "Maybe even
+starting from a Wikipedia clone 'library' room that allows for passage
+through a topic query to a list of candidate rooms to enter. From
+there you can figure out where to go. It also relates to our frozen
+Wikipedia copy as a model training basis." The technical lead's
+reading, which stands unless the founder answers otherwise; none of it
+is built:
+
+- **A way in by topic.** Someone asks the Library about a topic, and
+  what comes back is the articles that match and, beside each, the
+  rooms on it, as doors. It joins two things already designed: the
+  Library's lookup and the lobby's list of doors ("The map", below).
+  AOL's keywords did the same: a word typed took you to a place.
+- **A room says its topics,** in its law, by the Library's article
+  titles, so a room is found by what it is about, and the list of doors
+  comes from what rooms publish, as the map's cards do.
+- **Each article can have a room of its own,** beside it, like a talk
+  page: the "comments on a thing" form of "A room of many forms"
+  (below). So the Library ties the forms together: the article to
+  read, a room to talk about it, and rooms on the topic.
+- **The candidates are ranked by a rule anyone can read:** how well a
+  room matches, then how many are in it, which a door already shows.
+  Never by who is asking.
+- **Reading stays one's own.** The query and the list it returns are
+  the reader's, and no record is kept of them, as for any lookup.
+  Going through a door is an arrival like any other, on that room's
+  record.
+- **No room yet on a topic:** the reader can start one, and its first
+  topic is the article they came from. That is how rooms could grow
+  where people's questions are.
+- **Not a clone of Wikipedia's look or name.** The Library holds a copy
+  of Wikipedia's text, under its licence, and says where it comes from.
+  The rooms, the doors and the multiverse's own pages are the
+  project's.
+- **When:** the Library is a room (course step 3c), and the way in by
+  topic belongs to the lobby (3f). With the first few rooms, a topic
+  leads to few doors; the Library is useful from the start for
+  looking things up, and the doors fill as rooms are added.
+- **The copy as a basis for training.** That is new: until now the copy
+  was for looking things up. A copy named by its hash is a basis anyone
+  can get and check, which is what "to study" asks of a model
+  ([ADMIN.md](ADMIN.md), "Free, in four senses"). Three things are
+  said plainly. The small copy (2.6 GB, the "top" articles) is far too
+  little to train a capable model from nothing; it could fine-tune one,
+  or test what a mind knows against a text anyone can check. Fully open
+  models already publish training data that includes Wikipedia, so the
+  copy may already be part of their basis; which, and which version,
+  is looked up first. And CC BY-SA 4.0 asks for attribution and the
+  same licence on what is made from the text; whether trained weights
+  are made from it, in that sense, is unsettled, so it is not assumed
+  either way, and the founder decides with what is known then.
 
 **The multiverse's own pages, on the Library's second shelf.** The
 founder: "We could also host a connected wiki that stores information
@@ -404,33 +456,5 @@ answers otherwise:
 - Where a comment on something outside the rooms is kept: in a room
   for that thing, or with the thing itself.
 
-## Order
 
-1. This design, and its place in the course. Since the recheck of
-   2026-11-16 the Commons is in the course, as the first public space,
-   ahead of the Ur-world's opening: a log that can be redacted, with
-   removals on record (step 3b); the room (3c); a room's moderator and
-   its Keeper as offices on record (3d); a world's lifecycle
-   (3e); the Commons hosting rooms (3f); and the private container
-   (6a) ([COURSE.md](COURSE.md)).
-2. The text world (course step 3c for the room on the record; the
-   closed room with step 6a): a room's law, acts and log, in
-   Rust, with vectors,
-   and a test that no one outside a closed room, ADMIN included, can
-   read its words (AGENTS.md: a world that keeps private spaces tests
-   this).
-3. The Commons hosting rooms, with its lobby and doors (course step
-   3f).
-4. The private container in the browser (course step 6a).
-5. The MCP door, ported from Lyceum; and the Slack plug-in, a door of
-   the same kind (the founder, 2026-11-21; "A room of many forms",
-   above).
-6. Going live: outward-facing, and last. The founder, 2026-11-17:
-   "Hosting comes last. Let's finish building our digital field of
-   dreams before inviting anyone to play ball. Once it is ready, we
-   will know the scope of hosting needed." Where the multiverse is
-   hosted is still decided once for all of it, and by the founder;
-   it is decided when what has been built shows how much is needed.
-
-
-> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/open.md
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/order.md
