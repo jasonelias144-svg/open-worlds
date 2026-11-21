@@ -117,8 +117,10 @@ So an idea set aside goes through four hands, in this order:
 - [`docs/MULTIVERSE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/MULTIVERSE.md), "Later: worlds that bond": worlds that
   interact like elements and form multi-world molecules (the founder:
   "Note it as an idea").
-- [`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md), "Personal information in a room: ideas", and
-  its "Open".
+- [`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md), "Personal information in a room: ideas";
+  "A room of many forms" (the founder's idea of 2026-11-21: a room that
+  combines a message board, a live chat room, a group text and single
+  comments on a thing, perhaps in areas within it); and its "Open".
 - [`docs/research/GAMES-AND-WORLDS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/GAMES-AND-WORLDS.md), "Worlds built for learners".
 
 **A concept is ready for a spec** when it says:
@@ -343,6 +345,9 @@ Also right, and kept in mind:
 
 Every pull request merged after #129, newest first, one line each.
 
+- 2026-11-21, #138: the founder's idea of a room of many forms, in
+  [`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md), "A room of many forms", and among the
+  ideas set aside.
 - 2026-11-21, #137: the archive. `STATUS.md` and
   `docs/COLLABORATING.md` now keep their three most recent days of
   dated entries; the older ones are in `archive/`, a file for each page

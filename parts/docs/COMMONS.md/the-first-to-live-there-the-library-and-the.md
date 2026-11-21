@@ -245,6 +245,76 @@ Library. Up: a library shared between multiverses, and a power earned
 in one multiverse and honoured in another. There is nothing yet for
 either.
 
+## A room of many forms: the founder's idea
+
+The founder, 2026-11-21, word for word in STATUS.md ("Decided"):
+"One idea I had that I forgot to mention: we look at our chat rooms as
+a possible combination of message board or discussion board, live chat
+room, group text chat, and general place for single comments, like on
+a YouTube video. We should look at all forms of digital chat forms and
+take what works, maybe combining all by having sections or areas with
+a room. I'm not sure, but I wanted to get it on record."
+
+It takes further the founder's earlier words, above: rooms "like live
+chats now, or like group texts", "depending on size and activity".
+Those gave a room one of two paces; this would let one room hold
+several forms. It is on the record as an idea set aside: nothing is
+decided or built. It is the kind of idea ChatGPT works out as a concept first
+([CHATGPT.md](CHATGPT.md), "From an idea to code"), and the founder
+is raising it with ChatGPT too.
+
+**The forms to look at,** each with what it does well. This is a
+starting list, from what is generally known; the concept work looks
+wider and checks each against how it really works.
+
+- **A message board or discussion board** (forums, Reddit): topics
+  that last, threads of replies, read and answered over days, and
+  found again later.
+- **A live chat room** (IRC, and the AOL chat rooms the founder has
+  likened the Commons to, above): who is here now, and talk as it
+  happens.
+- **A group text:** a small group who know one another; live or not,
+  as people have time; everyone sees everything.
+- **Single comments on a thing** (a YouTube video, a blog post): a
+  comment tied to something, often said once and left, with replies
+  under it and the most useful near the top.
+- **Others worth a look:** channels and threads inside one space
+  (Slack, Discord), which come closest to "sections or areas" within a
+  room; questions and answers (Stack Exchange); chat beside something
+  live (a live stream); notes on a passage (annotation); and a talk
+  page beside a wiki page.
+
+**The technical lead's reading,** which stands unless the founder
+answers otherwise:
+
+- **One record, many views.** Every form above records the same thing:
+  someone said something, in a room, at a time, perhaps in answer to
+  something or about something. The forms differ in how that is shown
+  and how fast it moves. That is the founder's split between a data
+  layer and a presentation layer ("Removing a comment", above). So a
+  room keeps one log, signed and checked as it is now, and each form is
+  a way of showing it, with its own pace. "Rooms of two paces", above,
+  is the first case of it.
+- **What the log would need:** a message can answer another (the sketch
+  crate already has a field for it, `in_reply_to`); it can be about
+  something outside the room, such as a work in the Library or a
+  world's card on the map; and it can belong to an area of the room.
+- **A room's areas are said in its law,** as its pace is now: which
+  areas it has, and each one's form and pace.
+- **The room's moderator and Keeper keep the whole room,** its areas
+  included, and removing a comment works the same way in every area.
+
+**Open,** for the concept work:
+
+- Whether an area is part of a room, or a room of its own inside it.
+  The Commons is already rooms inside a superworld, so a room of rooms
+  would be the same pattern one level down. What a room is for is the
+  founder's; how it is built is the technical lead's.
+- Which forms the first rooms offer: the Ur-room, and the two or three
+  rooms ALICE and BOB first move between.
+- Where a comment on something outside the rooms is kept: in a room
+  for that thing, or with the thing itself.
+
 ## Order
 
 1. This design, and its place in the course. Since the recheck of

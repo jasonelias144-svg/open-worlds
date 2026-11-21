@@ -10,6 +10,11 @@
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-21 Claude: the founder's idea of a room of many forms put on
+  the record (#138): STATUS.md "Decided"; `docs/COMMONS.md`, "A room of
+  many forms", with the forms to look at, the technical lead's reading
+  and what is open; and `docs/CHATGPT.md`, among the ideas set aside.
+
 - 2026-11-21 Claude: the archive, at the founder's word (#137).
   `docs/archive.py` moves a living page's older dated entries, whole,
   into `archive/<page>/<day>.md`, with a catalogue, and checks it;
