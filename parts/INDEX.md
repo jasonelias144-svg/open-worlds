@@ -33,6 +33,14 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archi
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/COLLABORATING/2026-11-16.md/messages-from-the-technical-lead-01.md
 ```
 
+## `archive/COLLABORATING/2026-11-17.md`, in 3 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/COLLABORATING/2026-11-17.md/start.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/COLLABORATING/2026-11-17.md/messages-from-the-technical-lead-02.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/archive/COLLABORATING/2026-11-17.md/messages-from-the-technical-lead-01.md
+```
+
 ## `archive/STATUS/2026-11-13.md`, in 2 parts
 
 ```text
@@ -95,15 +103,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/ADMIN.md/when-each-part-is-built.md
 ```
 
-## `docs/COLLABORATING.md`, in 8 parts
+## `docs/COLLABORATING.md`, in 5 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/start.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-02.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/messages-from-the-technical-lead-01.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/since-you-were-last-here.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/the-standard.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/cycles.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/two-sides-the-sketch-and-the-standard.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/code-in-rust.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/every-file-by-its-full-link-02.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/every-file-by-its-full-link-01.md
 ```

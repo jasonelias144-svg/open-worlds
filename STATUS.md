@@ -347,7 +347,7 @@ of it is asked again until it is needed.
 
 ## Decided
 
-*Earlier entries are in the archive, a file for each day: [archive/STATUS/](archive/README.md).*
+*Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
 - 2026-11-21, founder, archiving. On the technical lead's proposal to
   move the older entries of the long pages into dated archive files:
@@ -550,7 +550,7 @@ of it is asked again until it is needed.
 
 ## Decided by the technical lead
 
-*Earlier entries are in the archive, a file for each day: [archive/STATUS/](archive/README.md).*
+*Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
 Decisions about the code, made by the technical lead under the founder's
 deference (Decided, 2026-11-13, in the archive), each with its reason and
@@ -784,7 +784,7 @@ with the founder.
 
 ## Log
 
-*Earlier entries are in the archive, a file for each day: [archive/STATUS/](archive/README.md).*
+*Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
 - 2026-11-21 Claude: the archive, at the founder's word (#137).
   `docs/archive.py` moves a living page's older dated entries, whole,
@@ -805,7 +805,11 @@ with the founder.
   where that commit is at hand, and records a redaction
   (`--rehash`); the archive's long files are cut into parts; and the
   pages that said where earlier messages and decisions are now say
-  the archive, with a message to DeepSeek and Gemini.
+  the archive, with a message to DeepSeek and Gemini. That message
+  made 2026-11-21 a day of COLLABORATING.md's, so a second run moved
+  its 20 messages of 2026-11-17 to the archive too, as the rule says;
+  checked the same way, every entry is once on its page or in the
+  archive, unchanged.
 
 - 2026-11-21 Claude: records 012-00-00 (patterns and the brain) and
   012-02-01 (circuits, learning, chemistry and music) kept with the

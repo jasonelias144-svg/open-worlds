@@ -11,7 +11,8 @@
   "commit": "the commit the page was at when they were moved",
   "bytes": "the file's size",
   "lines": "its lines",
-  "sha256": "its SHA-256"
+  "sha256": "its SHA-256",
+  "redacted": "if present: each redaction made since, with its day and why"
  },
  "items": [
   {
@@ -49,6 +50,24 @@
    "bytes": 28327,
    "lines": 510,
    "sha256": "0866cdadee22044a846ee308f19d3a4618e58836f77fab4fac72e8c13acb256b"
+  },
+  {
+   "path": "archive/COLLABORATING/2026-11-17.md",
+   "kind": "archive",
+   "title": "docs/COLLABORATING.md, 2026-11-17",
+   "source": "docs/COLLABORATING.md",
+   "date": "2026-11-17",
+   "sections": [
+    {
+     "name": "Messages from the technical lead",
+     "entries": 20
+    }
+   ],
+   "moved": "2026-11-21",
+   "commit": "e483903d809781e0755adc4afefe928114a8bdb2",
+   "bytes": 41582,
+   "lines": 762,
+   "sha256": "aa5e6181268b1b39b61ba8a3c76b49530adee7b05a015dafeaab155a79d35a89"
   },
   {
    "path": "archive/STATUS/2026-11-12.md",

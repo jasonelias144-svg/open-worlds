@@ -119,20 +119,21 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/REA
 
 ## The archive
 
-In `archive`, 10 files, 432 KB in all, the largest 101 KB: the older dated entries of STATUS.md and COLLABORATING.md, moved whole, a file for each page and day, with the catalogue (`archive/README.md`); `docs/archive.py` writes it.
+In `archive`, 11 files, 474 KB in all, the largest 101 KB: the older dated entries of STATUS.md and COLLABORATING.md, moved whole, a file for each page and day, with the catalogue (`archive/README.md`); `docs/archive.py` writes it.
 
-**`archive`** (2 files, 7 KB):
+**`archive`** (2 files, 9 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/catalog.json
 ```
 
-**`archive/COLLABORATING`** (2 files, 31 KB):
+**`archive/COLLABORATING`** (3 files, 72 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/COLLABORATING/2026-11-15.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/COLLABORATING/2026-11-16.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/COLLABORATING/2026-11-17.md
 ```
 
 **`archive/STATUS`** (6 files, 393 KB):

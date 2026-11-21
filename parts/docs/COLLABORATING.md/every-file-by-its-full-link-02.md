@@ -2,7 +2,7 @@
 > for readers who are shown only the start of a long page.
 > This part holds: "Every file, by its full link", piece 2 (its pieces are numbered from its end).
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/cycles.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/code-in-rust.md
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/every-file-by-its-full-link-01.md
 > Made by docs/parts.py from the file. To change it, change the file.
 

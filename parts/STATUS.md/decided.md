@@ -8,7 +8,7 @@
 
 ## Decided
 
-*Earlier entries are in the archive, a file for each day: [archive/STATUS/](archive/README.md).*
+*Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
 - 2026-11-21, founder, archiving. On the technical lead's proposal to
   move the older entries of the long pages into dated archive files:
