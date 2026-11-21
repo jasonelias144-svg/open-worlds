@@ -8,6 +8,12 @@
 
 ## Decided
 
+- 2026-11-21, founder, two early records public: "You can make
+  012-00-00 and 012-02-01 public. Those should be fine." Both are
+  kept whole in `sketches/records/`, looked through first: no surname,
+  account link, email address or key found in either. Record 012-01-00 is
+  not kept here.
+
 - 2026-11-20, founder, the records of stage 012 named anew. The
   founder brought the records of stage 012 under new names: "Here is
   the current state of the 012_Code subproject, in terms of

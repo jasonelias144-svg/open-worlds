@@ -136,8 +136,9 @@ those components' tests don't load as written.
 - The records name the founder by first name only, as the founder decided.
   What the founder says in a record about their own life and work is
   there on purpose, and a record is kept whole unless the founder says
-  it is private (the founder, 2026-11-17: STATUS.md, "Decided"). Record
-  012-08-04, with Gemini, holds the most of it. Nothing personal is to
+  it is private (the founder, 2026-11-17: STATUS.md, "Decided"). Records
+  012-00-00 and 012-08-04 hold the most of it; 012-00-00 and 012-02-01
+  are here at the founder's word of 2026-11-21. Nothing personal is to
   be added by anyone else (AGENTS.md).
 - Record 012-08-04 speaks of three earlier works of the founder's own,
   names them and describes them. The founder, 2026-11-17, of the third

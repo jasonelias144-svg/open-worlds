@@ -1754,7 +1754,9 @@ ideas.
 
 ## Where the conversation stands
 
-Five records are kept: 012-03-02 (the poetry engine), 012-04-00
+Seven records are kept: 012-00-00 (patterns and the brain), 012-02-01
+(circuits, learning, chemistry and music), 012-03-02 (the poetry
+engine), 012-04-00
 (components 1 to 63), 012-05-01 (components 64 to 87: a live
 federation and its tools, then the founder's turn to game worlds: a
 chess park, worlds inside worlds, worlds that grow and govern
