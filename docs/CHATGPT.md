@@ -57,7 +57,7 @@ DeepSeek and Gemini write the code; their page is
 
 **Binding:**
 - [`CHARTER.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/CHARTER.md), the founder's words;
-- `STATUS.md` ([in parts](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md)), "Decided": every decision, word for word, newest first; and "Decided by the technical lead";
+- `STATUS.md` ([in parts](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md)), "Decided": every decision, word for word, newest first; and "Decided by the technical lead"; the decisions of all but the last three days are in the archive, `archive/STATUS/`, a file for each day ([list](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md));
 - [`docs/FUNDAMENTALS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FUNDAMENTALS.md), every decision on freedom and privacy;
 - [`docs/COURSE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COURSE.md), what is built next, in order;
 - and the code, which wins when a page disagrees with it.
@@ -147,7 +147,11 @@ The project has a place for each.
 | Archive | the earlier work, as it was made | `sketches/records/` (the conversations, word for word); `library/` (finished texts, public domain); the earlier stages' files, from the founder's library, as the founder brings them, listed by name and hash in [`docs/HISTORY.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md) and kept privately in `jasonelias144-svg/ebook-press`, `history/`; the records the founder holds (below) |
 | Commentary | readings of it for the multiverse | your pages, in `docs/chatgpt/` from the first one |
 | Laboratory | mechanics, example worlds and experiments drawn from it | `sketches/`, `experiments/`, `docs/TOPICS.md` |
-| Core | what has been chosen | `STATUS.md` ("Decided"), `CHARTER.md`, the course, and the code |
+| Core | what has been chosen | `STATUS.md` ("Decided", and its earlier days in `archive/STATUS/`), `CHARTER.md`, the course, and the code |
+
+The repository's folder `archive/` is not this table's Archive: it
+holds the older entries of `STATUS.md` and `docs/COLLABORATING.md`,
+moved there to keep those pages short, and its decisions are Core.
 
 Nothing of yours moves into Core except by a decision recorded in
 `STATUS.md`: the founder's, on what the project is for; the technical

@@ -4,7 +4,7 @@
 respect one another's freedom, with full transparency and exit at any time;
 free, and never a money machine
 **State:** active since 2026-11-12
-**Updated:** 2026-11-20 by Claude
+**Updated:** 2026-11-21 by Claude
 
 ## Live
 
@@ -552,6 +552,11 @@ of it is asked again until it is needed.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](archive/README.md).*
 
+Decisions about the code, made by the technical lead under the founder's
+deference (Decided, 2026-11-13, in the archive), each with its reason and
+what would show it was wrong. Questions of what the project is for stay
+with the founder.
+
 - 2026-11-21, the archive (Decided, 2026-11-21, archiving). (a) The
   pages archived are those that grow by dated entries and are read
   every session: STATUS.md's "Decided", "Decided by the technical
@@ -565,8 +570,12 @@ of it is asked again until it is needed.
   unchanged, and are not edited again except to redact, as with the
   records. (e) The catalogue names, for each file, its kind, title,
   source, date, size, lines, SHA-256 and the commit its entries came
-  from: fields any kind of file can share, so records, replies and the
-  stages can join the same catalogue later. *Why:* STATUS.md had
+  from. Of those, path, kind, title, date, size, lines and hash are
+  fields any kind of file can share; the rest are the archive's own.
+  For records, replies and the stages to join, the catalogue would move
+  out of `archive/` and the script would learn to keep other kinds; the
+  hash lists the project keeps now (HISTORY.md, CHATGPT.md's "Your
+  records", sketches/INDEX.md) would be its first members. *Why:* STATUS.md had
   reached 455 KB and COLLABORATING.md 169 KB; a reader, person or
   model, takes in less when the page holds what is live, and nothing
   is lost when every moved entry can be found, whole, by its date and
@@ -786,7 +795,17 @@ of it is asked again until it is needed.
   (2026-11-15 and 2026-11-16) moved; STATUS.md from 455 KB to about
   57 KB. Checked apart from the script: every entry before the run is,
   unchanged, on its page or in the archive, and the pages' other
-  sections are as they were.
+  sections are as they were. After the independent review: the
+  opening paragraph of "Decided by the technical lead", which stood
+  with no blank line after an entry of 2026-11-17 and so moved with it
+  (it is in that day's file, as the page had it), is back at the
+  section's head; the script now stops on such a line, checks
+  everything before it writes, checks a missing catalogue and every
+  pointer, finds each archived entry in the page at the commit named
+  where that commit is at hand, and records a redaction
+  (`--rehash`); the archive's long files are cut into parts; and the
+  pages that said where earlier messages and decisions are now say
+  the archive, with a message to DeepSeek and Gemini.
 
 - 2026-11-21 Claude: records 012-00-00 (patterns and the brain) and
   012-02-01 (circuits, learning, chemistry and music) kept with the

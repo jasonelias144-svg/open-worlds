@@ -89,13 +89,48 @@ Not dated, and stays.
 """
 
 
+def dated_entries(text):
+    """Every dated entry in the dated sections of a page or a day file,
+    as text, found without docs/archive.py: an entry starts at a line
+    '- YYYY-MM-DD' or '### YYYY-MM-DD' outside a code block, and runs to
+    the next one or the next '## ' heading; blank lines at its end and
+    pointer lines are dropped."""
+    out, cur, section, fence = [], None, None, False
+    dated = ("Decided", "Decided by the technical lead", "Log",
+             "Messages from the technical lead")
+    for line in text.split("\n"):
+        if line.startswith(("```", "~~~")):
+            fence = not fence
+        if not fence and line.startswith("## "):
+            if cur:
+                out.append(cur)
+            cur, section = None, line[3:].strip()
+            continue
+        starts = (not fence and section in dated and len(line) > 12
+                  and (line.startswith("- 20") or line.startswith("### 20")))
+        if starts:
+            if cur:
+                out.append(cur)
+            cur = [line]
+        elif cur is not None and not line.startswith("*Earlier entries"):
+            cur.append(line)
+    if cur:
+        out.append(cur)
+    texts = []
+    for lines in out:
+        while lines and not lines[-1].strip():
+            lines.pop()
+        texts.append("\n".join(lines))
+    return texts
+
+
 def git(root, *args):
     subprocess.run(["git", *args], cwd=root, check=True,
                    capture_output=True)
 
 
-class Small(unittest.TestCase):
-    """The script, on pages of this test's own."""
+class Pages(unittest.TestCase):
+    """Pages of this test's own, in a git repository of its own."""
 
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
@@ -128,6 +163,11 @@ class Small(unittest.TestCase):
     def run_it(self, keep=2):
         with contextlib.redirect_stdout(io.StringIO()):
             return ARCHIVE.run(write=True, keep=keep, today="2026-01-06")
+
+
+
+class Small(Pages):
+    """The script's main path."""
 
     def test_a_plan_moves_nothing(self):
         report = ARCHIVE.run(write=False, keep=2)
@@ -167,11 +207,9 @@ class Small(unittest.TestCase):
         page = self.read("STATUS.md").split("\n")
         for name in ("Decided", "Decided by the technical lead", "Log"):
             i = page.index("## " + name)
-            self.assertEqual(page[i + 2],
-                             ARCHIVE.pointer_text("STATUS.md", "STATUS"))
-        self.assertIn("(../archive/README.md)",
-                      ARCHIVE.pointer_text("docs/COLLABORATING.md",
-                                           "COLLABORATING"))
+            self.assertEqual(page[i + 2], ARCHIVE.pointer_text("STATUS"))
+        self.assertIn("(https://raw.githubusercontent.com/",
+                      ARCHIVE.pointer_text("COLLABORATING"))
 
     def test_a_heading_in_a_code_block_is_not_a_message(self):
         self.run_it()
@@ -211,9 +249,9 @@ class Small(unittest.TestCase):
         self.run_it()
         self.commit()
         page = self.read("STATUS.md").replace(
-            "## Log\n\n" + ARCHIVE.pointer_text("STATUS.md", "STATUS")
+            "## Log\n\n" + ARCHIVE.pointer_text("STATUS")
             + "\n\n",
-            "## Log\n\n" + ARCHIVE.pointer_text("STATUS.md", "STATUS")
+            "## Log\n\n" + ARCHIVE.pointer_text("STATUS")
             + "\n\n- 2026-01-07 Claude: seven.\n\n")
         self.write("STATUS.md", page)
         self.commit()
@@ -259,7 +297,7 @@ class Small(unittest.TestCase):
         with open(cat, encoding="utf-8") as f:
             data = json.load(f)
         item = [i for i in data["items"] if i["path"] == path][0]
-        item.update(ARCHIVE._facts(path))
+        item.update(ARCHIVE.file_facts(path))
         items = data["items"]
         self.write("archive/catalog.json", ARCHIVE.catalog_text(items))
         self.write("archive/README.md", ARCHIVE.readme_text(items))
@@ -275,7 +313,7 @@ class Small(unittest.TestCase):
     def test_the_check_finds_a_missing_pointer(self):
         self.run_it()
         self.write("STATUS.md", self.read("STATUS.md").replace(
-            ARCHIVE.pointer_text("STATUS.md", "STATUS") + "\n\n", "", 1))
+            ARCHIVE.pointer_text("STATUS") + "\n\n", "", 1))
         self.assertTrue(any("points to the archive" in p
                             for p in ARCHIVE.check()))
 
@@ -284,6 +322,157 @@ class Small(unittest.TestCase):
         self.write("archive/README.md", self.read("archive/README.md")
                    + "more\n")
         self.assertTrue(any("README.md" in p for p in ARCHIVE.check()))
+
+
+class Harder(Pages):
+    """What the first review of the script found it did not hold."""
+
+    def everything(self):
+        texts = dated_entries(self.read("STATUS.md")) + dated_entries(
+            self.read("docs/COLLABORATING.md"))
+        base = os.path.join(self.root, "archive")
+        for folder in ("STATUS", "COLLABORATING"):
+            path = os.path.join(base, folder)
+            for name in sorted(os.listdir(path)) if os.path.isdir(path) \
+                    else []:
+                texts += dated_entries(self.read(
+                    os.path.join("archive", folder, name)))
+        return sorted(texts)
+
+    def test_every_entry_is_kept_once_and_unchanged(self):
+        before = self.everything()
+        self.run_it()
+        self.assertEqual(self.everything(), before)
+        self.commit()
+        self.run_it(keep=1)
+        self.assertEqual(self.everything(), before)
+        self.assertEqual(ARCHIVE.check(), [])
+
+    def test_the_rest_of_a_page_is_unchanged(self):
+        self.run_it()
+        page = self.read("docs/COLLABORATING.md")
+        self.assertTrue(page.startswith(COLLAB[:COLLAB.index("### ")]
+                                        .replace("\n\nWho", "\n\n"
+                                                 + ARCHIVE.pointer_text(
+                                                     "COLLABORATING")
+                                                 + "\n\nWho")))
+        self.assertTrue(page.endswith(COLLAB[COLLAB.index("## The standard"):]))
+
+    def test_a_line_at_the_margin_inside_an_entry_stops_the_run(self):
+        self.write("STATUS.md", STATUS.replace(
+            "- 2026-01-04, founder, four.\n",
+            "- 2026-01-04, founder, four.\nA paragraph at the margin.\n"))
+        self.commit()
+        with self.assertRaisesRegex(ARCHIVE.Problem, "left margin"):
+            self.run_it()
+        self.assertFalse(os.path.exists(os.path.join(self.root, "archive")))
+        self.assertTrue(any("left margin" in p for p in ARCHIVE.check()))
+
+    def test_a_run_that_stops_writes_nothing(self):
+        os.makedirs(os.path.join(self.root, "archive", "COLLABORATING"))
+        self.write("archive/COLLABORATING/2026-01-02.md", "# in the way\n")
+        self.commit()
+        with self.assertRaisesRegex(ARCHIVE.Problem, "exists already"):
+            self.run_it()
+        self.assertEqual(self.read("STATUS.md"), STATUS)
+        self.assertFalse(os.path.exists(
+            os.path.join(self.root, "archive", "STATUS")))
+        self.assertFalse(os.path.exists(
+            os.path.join(self.root, "archive", "catalog.json")))
+
+    def test_two_runs_that_both_move_leave_one_pointer(self):
+        self.run_it(keep=3)
+        self.commit()
+        self.run_it(keep=1)
+        for path in ("STATUS.md", "docs/COLLABORATING.md"):
+            text = self.read(path)
+            pointers = text.count("*Earlier entries are in the archive")
+            sections = 3 if path == "STATUS.md" else 1
+            self.assertEqual(pointers, sections, path)
+        self.assertEqual(ARCHIVE.check(), [])
+
+    def test_a_pointer_out_of_place_is_put_right(self):
+        self.run_it()
+        self.commit()
+        pointer = ARCHIVE.pointer_text("STATUS")
+        page = self.read("STATUS.md").replace(
+            "## Log\n\n" + pointer + "\n\n", "## Log\n\n" + pointer + "\n")
+        self.write("STATUS.md", page)
+        self.assertTrue(any("points to the archive" in p
+                            for p in ARCHIVE.check()))
+        self.commit()
+        self.run_it()
+        self.assertEqual(self.read("STATUS.md").count(pointer), 3)
+        self.assertEqual(ARCHIVE.check(), [])
+
+    def test_a_missing_catalogue_is_a_problem(self):
+        self.run_it()
+        os.remove(os.path.join(self.root, "archive", "catalog.json"))
+        os.remove(os.path.join(self.root, "archive", "README.md"))
+        problems = ARCHIVE.check()
+        self.assertTrue(any("catalog.json is missing" in p for p in problems))
+        self.assertTrue(any("not in the catalogue" in p for p in problems))
+        self.assertTrue(any("holds nothing" in p for p in problems))
+
+    def test_a_page_not_tracked_stops_the_run(self):
+        git(self.root, "rm", "-q", "--cached", "STATUS.md")
+        git(self.root, "-c", "user.name=t", "-c", "user.email=t@t",
+            "commit", "-q", "-m", "untrack")
+        with self.assertRaisesRegex(ARCHIVE.Problem, "not committed"):
+            self.run_it()
+
+    def test_an_entry_changed_with_its_hash_is_found_at_the_commit(self):
+        self.run_it()
+        path = "archive/STATUS/2026-01-02.md"
+        self.write(path, self.read(path).replace("founder, two.",
+                                                 "founder, TWO."))
+        cat = os.path.join(self.root, "archive", "catalog.json")
+        with open(cat, encoding="utf-8") as f:
+            items = json.load(f)["items"]
+        [i for i in items if i["path"] == path][0].update(
+            ARCHIVE.file_facts(path))
+        self.write("archive/catalog.json", ARCHIVE.catalog_text(items))
+        self.write("archive/README.md", ARCHIVE.readme_text(items))
+        self.assertTrue(any("word for word" in p for p in ARCHIVE.check()))
+
+    def test_a_redaction_is_recorded(self):
+        self.run_it()
+        path = "archive/STATUS/2026-01-02.md"
+        self.write(path, self.read(path).replace(
+            "a nested line", "[redacted]"))
+        self.assertTrue(ARCHIVE.check())
+        ARCHIVE.rehash(path, "a private detail", today="2026-01-07")
+        notes = []
+        self.assertEqual(ARCHIVE.check(notes), [])
+        self.assertTrue(any("redacted since" in n for n in notes))
+        self.assertIn("(redacted since)", self.read("archive/README.md"))
+        with self.assertRaisesRegex(ARCHIVE.Problem, "why"):
+            ARCHIVE.rehash(path, " ")
+
+    def test_a_heading_in_a_tilde_block_does_not_split_a_message(self):
+        self.write("docs/COLLABORATING.md", COLLAB.replace(
+            "Body of two.\n",
+            "Body of two.\n\n~~~\n## not a section\n~~~\n\nStill two.\n"))
+        self.commit()
+        self.run_it()
+        two = self.read("archive/COLLABORATING/2026-01-02.md")
+        self.assertIn("## not a section\n~~~\n\nStill two.", two)
+        self.assertEqual(ARCHIVE.check(), [])
+
+    def test_an_empty_section_is_named_as_empty(self):
+        self.write("STATUS.md", STATUS.replace(
+            "## Log\n\n- 2026-01-05 Claude: five.\n\n"
+            "- 2026-01-03 Claude: three.\n\n- 2026-01-01 Claude: one.\n",
+            "## Log\n"))
+        self.commit()
+        with self.assertRaisesRegex(ARCHIVE.Problem, "is empty"):
+            self.run_it()
+
+    def test_nothing_to_move_in_a_new_repository_writes_nothing(self):
+        report = self.run_it(keep=9)
+        self.assertTrue(all(not moving for _, _, moving in report))
+        self.assertFalse(os.path.exists(os.path.join(self.root, "archive")))
+        self.assertEqual(ARCHIVE.check(), [])
 
 
 class TheRepository(unittest.TestCase):

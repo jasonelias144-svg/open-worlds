@@ -303,8 +303,11 @@ def unwrap(target, text):
 
 def working(paths):
     """The files a reader works from: every file but the files of
-    record (docs/FILES.md holds those) and the parts themselves."""
-    record = set(FILES.here(paths))
+    record (docs/FILES.md holds those) and the parts themselves. The
+    archive's files are of record, but they are cut too: they hold
+    decisions still in force, and as they never change, neither do
+    their parts."""
+    record = {p for p in FILES.here(paths) if not p.startswith("archive/")}
     return [p for p in paths
             if p not in record and not p.startswith(OUT + "/")]
 
@@ -382,7 +385,8 @@ def index(cut_files, left):
     out += ["- The files of record, which [docs/FILES.md](../docs/FILES.md)",
             "  lists: the conversation records, the code taken from them,",
             "  what DeepSeek and Gemini were given in reply, and experiment",
-            "  001's run logs."]
+            "  001's run logs. The archive's files are of record too, but",
+            "  they are cut, above."]
     return "\n".join(out) + "\n"
 
 

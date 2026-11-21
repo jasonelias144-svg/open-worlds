@@ -10,7 +10,9 @@
 
 The last DeepSeek conversation, record 012-07-03, began from this page
 and went from water to the Commons; the technical lead's first answer
-is above ("Messages from the technical lead"). Record 012-06-02
+is in the archive, with that day's other messages:
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/COLLABORATING/2026-11-16.md
+Record 012-06-02
 (2026-11-14) began here too. What they built is
 kept in `sketches/` ("Where the conversation stands", below). Record
 012-05-01 ended on 2026-11-13, when everything here was Python. What

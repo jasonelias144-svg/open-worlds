@@ -8,31 +8,40 @@ ones move to archive/<page>/<day>.md, a file for each page and day,
 listed in the catalogue (archive/catalog.json, and archive/README.md
 for people).
 
-    python3 docs/archive.py           say what a run would move, and nothing else
-    python3 docs/archive.py --write   move it, and write the catalogue
-    python3 docs/archive.py --check   exit 0 if the archive is whole and in step
+    python3 docs/archive.py                     say what a run would move;
+                                                change nothing
+    python3 docs/archive.py --write             move it, and write the
+                                                catalogue
+    python3 docs/archive.py --check             exit 0 if the archive is
+                                                whole and in step
+    python3 docs/archive.py --rehash PATH NOTE  after redacting PATH by
+                                                hand: record it, with NOTE
 
 The rules (archive/README.md gives them to readers too):
 
 - An entry is the lines from the one that starts it, with its date,
   to its last line before the next entry or the end of its section.
   It moves whole and unchanged; only the blank lines between entries
-  are not carried.
+  are not carried. In a section of list items, a line at the left
+  margin inside an entry stops the run: it would move with the entry
+  above it, so put a blank line before it, or indent it.
 - A page keeps the entries of its KEEP most recent days, counted over
   all its dated sections. The rest move, a day at a time.
 - A day's file holds that day's entries from each section, in the
   order the page had them, under the section's own heading.
 - A day is moved once. If a page later holds an entry dated on a day
   already in the archive, the run stops and says so: a new entry takes
-  the day it is written.
+  the day it is written, and names any earlier day inside it.
 - A file in the archive is not edited again, except to redact what is
-  private (AGENTS.md); the catalogue gives each file's size and hash,
-  and the commit its entries were taken from.
-- Each dated section, once anything has moved from it, opens with a
-  line saying where its earlier entries are.
-
-Run --write at the end of a session, then docs/files.py and
-docs/parts.py, as for any change (AGENTS.md).
+  private (AGENTS.md); then --rehash records it. The catalogue gives
+  each file's size and hash, and the commit its entries were taken
+  from, and --check finds each entry, word for word, in the page as it
+  was at that commit, where that commit is at hand.
+- Once anything has moved from a page, each of its dated sections
+  opens with one line saying where the earlier entries are.
+- The pages must be committed before --write, so the commit the
+  catalogue names holds them. Every check is made before anything is
+  written. Never amend, rebase or squash the commit a run names.
 """
 import datetime
 import hashlib
@@ -45,6 +54,7 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = "archive"
 KEEP = 3
+RAW = "https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/"
 
 BULLET = re.compile(r"- (\d{4}-\d{2}-\d{2})\b")
 HEADING = re.compile(r"### (\d{4}-\d{2}-\d{2})\b")
@@ -61,23 +71,39 @@ PAGES = [
 
 POINTER = "*Earlier entries are in the archive, a file for each day: "
 
+_FENCE = re.compile(r"^\s*(`{3,}|~{3,})(.*)$")
+
 
 class Problem(Exception):
     """The page or the archive is not as the rules need."""
 
 
-def _fence(line):
-    return line.lstrip().startswith("```")
+def fenced(lines):
+    """For each line, whether it is in a fenced code block, its fences
+    included: the same rule as docs/parts.py."""
+    out, fence = [], None
+    for line in lines:
+        match = _FENCE.match(line)
+        if fence is None:
+            if match and not (match.group(1)[0] == "`"
+                              and "`" in match.group(2)):
+                fence = match.group(1)
+            out.append(fence is not None)
+        else:
+            out.append(True)
+            if (match and match.group(1)[0] == fence[0]
+                    and len(match.group(1)) >= len(fence)
+                    and not match.group(2).strip()):
+                fence = None
+    return out
 
 
 def sections(lines):
     """{name: (start, end)}: each '## ' section's body, as line indexes
     (the heading line itself excluded), headings in code blocks skipped."""
-    found, name, start, fenced = {}, None, 0, False
-    for i, line in enumerate(lines):
-        if _fence(line):
-            fenced = not fenced
-        if not fenced and line.startswith("## ") and line[3:].strip():
+    found, name, start = {}, None, 0
+    for i, (line, code) in enumerate(zip(lines, fenced(lines))):
+        if not code and line.startswith("## ") and line[3:].strip():
             if name is not None:
                 found[name] = (start, i)
             name, start = line[3:].strip(), i + 1
@@ -86,32 +112,56 @@ def sections(lines):
     return found
 
 
-def pointer_text(page, folder):
-    """The line that opens a section with entries in the archive."""
-    up = "../" * page.count("/")
-    return (POINTER + "[" + OUT + "/" + folder + "/](" + up + OUT
+def pointer_text(folder):
+    """The line that opens a dated section once entries have moved. Its
+    link is a full one, as every link a collaborator may paste is."""
+    return (POINTER + "[" + OUT + "/" + folder + "/](" + RAW + OUT
             + "/README.md).*")
 
 
-def entries(lines, start, end, pattern):
-    """The section's entries as (date, first, last) line indexes, last
-    included and blank lines after it left out, in page order; and the
-    index of the first entry (or end)."""
-    starts, fenced = [], False
-    for i in range(start, end):
-        if _fence(lines[i]):
-            fenced = not fenced
-        m = pattern.match(lines[i])
-        if m and not fenced:
-            starts.append((i, m.group(1)))
+def entries(lines, pattern):
+    """The entries in these lines as (date, first, last) indexes, last
+    included and the blank lines after it left out, in order."""
+    code = fenced(lines)
+    starts = [(i, m.group(1)) for i, line in enumerate(lines)
+              if not code[i] for m in [pattern.match(line)] if m]
     out = []
     for n, (i, date) in enumerate(starts):
-        stop = starts[n + 1][0] if n + 1 < len(starts) else end
+        stop = starts[n + 1][0] if n + 1 < len(starts) else len(lines)
         last = stop - 1
         while last > i and not lines[last].strip():
             last -= 1
         out.append((date, i, last))
-    return out, (starts[0][0] if starts else end)
+    return out
+
+
+def loose(lines, ents, pattern):
+    """In a section of list items, the indexes of lines at the left
+    margin inside an entry, past its first line, outside code blocks."""
+    if pattern is not BULLET:
+        return []
+    code = fenced(lines)
+    return [i for _, first, last in ents for i in range(first + 1, last + 1)
+            if lines[i].strip() and not lines[i][0].isspace()
+            and not code[i]]
+
+
+def strip_pointers(body):
+    """The section's lines without any pointer line (and the blank line
+    after one) before its first entry."""
+    out, i, seen_entry = [], 0, False
+    while i < len(body):
+        line = body[i]
+        if (BULLET.match(line) or HEADING.match(line)):
+            seen_entry = True
+        if not seen_entry and line.startswith(POINTER):
+            i += 1
+            if i < len(body) and not body[i].strip():
+                i += 1
+            continue
+        out.append(line)
+        i += 1
+    return out
 
 
 def read(path):
@@ -119,18 +169,17 @@ def read(path):
         return f.read()
 
 
-def _split(text):
-    lines = text.split("\n")
-    return lines
-
-
-def _strip_pointer(lines, start, end):
-    """The section's lines without the pointer line and the blank line
-    after it, if the section opens with them."""
-    body = lines[start:end]
-    if len(body) >= 3 and body[1].startswith(POINTER) and not body[2]:
-        body = body[:1] + body[3:]
-    return body
+def section_body(page, lines, found, name):
+    """A dated section's lines without its pointer, after checks."""
+    if name not in found:
+        raise Problem("%s: no section '## %s'" % (page, name))
+    start, end = found[name]
+    if start >= end or not "".join(lines[start:end]).strip():
+        raise Problem("%s: '## %s' is empty" % (page, name))
+    if lines[start].strip():
+        raise Problem("%s: '## %s' is not followed by a blank line"
+                      % (page, name))
+    return strip_pointers(lines[start:end])
 
 
 def plan(page, folder, specs, keep, archived_days):
@@ -138,18 +187,21 @@ def plan(page, folder, specs, keep, archived_days):
     lines...]), ...]}, the page's text after the move, and the days kept.
     Stops on a page whose dated entries break the rules."""
     text = read(page)
-    lines = _split(text)
+    lines = text.split("\n")
     found = sections(lines)
     bodies = {}
     for name, pattern in specs:
-        if name not in found:
-            raise Problem("%s: no section '## %s'" % (page, name))
-        start, end = found[name]
-        if start >= end or lines[start].strip():
-            raise Problem("%s: '## %s' is not followed by a blank line"
-                          % (page, name))
-        body = _strip_pointer(lines, start, end)
-        ents, _ = entries(body, 0, len(body), pattern)
+        body = section_body(page, lines, found, name)
+        ents = entries(body, pattern)
+        bad = loose(body, ents, pattern)
+        if bad:
+            raise Problem(
+                "%s, '%s': a line at the left margin inside the entry "
+                "dated %s (\"%s\") would move with it; put a blank line "
+                "before it, or indent it"
+                % (page, name, [d for d, f, l in ents
+                                if f < bad[0] <= l][0],
+                   body[bad[0]][:50]))
         bodies[name] = (body, ents)
     days = sorted({d for _, ents in bodies.values() for d, _, _ in ents},
                   reverse=True)
@@ -189,7 +241,7 @@ def plan(page, folder, specs, keep, archived_days):
         out.extend(lines[i:start])
         body = new_bodies[name]
         if archived:
-            body = body[:1] + [pointer_text(page, folder), ""] + body[1:]
+            body = body[:1] + [pointer_text(folder), ""] + body[1:]
         out.extend(body)
         i = end
     out.extend(lines[i:])
@@ -199,7 +251,7 @@ def plan(page, folder, specs, keep, archived_days):
 def day_file(page, folder, day, parts, moved_on, commit):
     """The text of one day's file."""
     up = "../" * (folder.count("/") + 2)
-    head = [
+    out = [
         "# %s, %s" % (page, day),
         "",
         "Entries dated %s, moved whole and unchanged from" % day,
@@ -208,11 +260,10 @@ def day_file(page, folder, day, parts, moved_on, commit):
         "They are not edited again, except to redact what is private.",
         "The catalogue: [README.md](../README.md).",
     ]
-    out = head
     by_section = {}
     for name, lines in parts:
         by_section.setdefault(name, []).append(lines)
-    for name in [n for n, _ in parts if n in by_section]:
+    for name in [n for n, _ in parts]:
         if name not in by_section:
             continue
         out += ["", "## " + name]
@@ -221,13 +272,16 @@ def day_file(page, folder, day, parts, moved_on, commit):
     return "\n".join(out) + "\n"
 
 
-def _facts(path):
-    with open(os.path.join(ROOT, path), "rb") as f:
-        data = f.read()
+def facts(data):
     return {"bytes": len(data),
             "lines": data.count(b"\n") + (0 if data.endswith(b"\n")
                                           or not data else 1),
             "sha256": hashlib.sha256(data).hexdigest()}
+
+
+def file_facts(path):
+    with open(os.path.join(ROOT, path), "rb") as f:
+        return facts(f.read())
 
 
 def load_catalog():
@@ -256,6 +310,8 @@ def catalog_text(items):
             "bytes": "the file's size",
             "lines": "its lines",
             "sha256": "its SHA-256",
+            "redacted": ("if present: each redaction made since, with its "
+                         "day and why"),
         },
         "items": sorted(items, key=lambda x: x["path"]),
     }
@@ -270,29 +326,45 @@ def readme_text(items):
         "for each page and day. STATUS.md's \"Decided\", \"Decided by the",
         "technical lead\" and \"Log\", and the messages in",
         "docs/COLLABORATING.md, grow one dated entry at a time and are read",
-        "every session; each keeps the entries of its %d most recent days," % KEEP,
+        "every session; each keeps the entries of its %d most recent days,"
+        % KEEP,
         "and the older ones are here. A reference such as (STATUS.md,",
         "\"Decided\", 2026-11-15) is found on the page if the day is",
         "recent, and otherwise in that page's file for that day.",
         "",
-        "How it is done, every time the same way:",
+        "How it is done, every time the same way (AGENTS.md, \"Every",
+        "session\", step 6):",
         "",
-        "- `python3 docs/archive.py` says what a run would move;",
-        "  `--write` moves it and writes this page and `catalog.json`;",
-        "  `--check` says whether the archive is whole and in step, and",
-        "  `tests/test_archive.py` runs it. Run it at the end of a session,",
-        "  then `docs/files.py` and `docs/parts.py`.",
+        "1. Commit the pages, then run `python3 docs/archive.py`: it says",
+        "   what would move, and changes nothing.",
+        "2. If it lists anything, run it with `--write`. Every check is",
+        "   made before anything is written.",
+        "3. Run `python3 docs/archive.py --check`, `docs/files.py` and",
+        "   `docs/parts.py`, and the tests, then commit, before pushing.",
+        "   Never amend, rebase or squash the commit a run names.",
+        "",
+        "If a run stops, it says why, and nothing has been written: fix",
+        "the page and run it again. A line at the left margin inside a",
+        "list entry would move with that entry, so it is refused; and an",
+        "entry dated on a day already here is refused, since a new entry",
+        "takes the day it is written and names any earlier day inside it.",
+        "",
+        "The rules:",
+        "",
         "- An entry is the lines from the one that starts it, with its",
         "  date, to its last line before the next entry. It moves whole",
         "  and unchanged; only the blank lines between entries are not",
         "  carried.",
-        "- A day is moved once, with all its entries. A page that later",
-        "  holds an entry dated on an archived day stops the run: a new",
-        "  entry takes the day it is written.",
+        "- A day is moved once, with all its entries.",
         "- A file here is not edited again, except to redact what is",
-        "  private (AGENTS.md). `catalog.json` gives each file's size,",
-        "  lines and SHA-256, and the commit its entries were taken from,",
-        "  so each entry can be found in the page as it was.",
+        "  private (AGENTS.md): edit the file, then run",
+        "  `python3 docs/archive.py --rehash <file> \"<why>\"`, which",
+        "  records the redaction in the catalogue.",
+        "- `catalog.json` gives each file's size, lines and SHA-256, and",
+        "  the commit its entries were taken from; `--check` finds each",
+        "  entry, word for word, in the page as it was at that commit,",
+        "  where that commit is at hand, and `tests/test_archive.py` runs",
+        "  it.",
         "",
         "Each row: the day, then for each page its file and the entries",
         "moved, by section.",
@@ -313,27 +385,38 @@ def readme_text(items):
             item = item[0]
             what = ", ".join("%s %d" % (s["name"], s["entries"])
                              for s in item["sections"])
+            if item.get("redacted"):
+                what += " (redacted since)"
             cells.append("[%s/%s.md](%s/%s.md): %s"
                          % (folder, day, folder, day, what))
         out.append("| %s | %s |" % (day, " | ".join(cells)))
     return "\n".join(out) + "\n"
 
 
+def _git(*args):
+    return subprocess.run(["git", *args], cwd=ROOT, capture_output=True)
+
+
 def _head():
-    try:
-        return subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT,
-                              capture_output=True, check=True,
-                              text=True).stdout.strip()
-    except (OSError, subprocess.CalledProcessError):
+    run = _git("rev-parse", "HEAD")
+    if run.returncode:
         raise Problem("not a git checkout: the commit can't be named")
+    return run.stdout.decode().strip()
+
+
+def _committed(page):
+    """Whether the page is tracked, and as it is in the last commit."""
+    tracked = _git("ls-files", "--error-unmatch", "--", page).returncode == 0
+    clean = not _git("status", "--porcelain", "--", page).stdout.strip()
+    return tracked and clean
 
 
 def run(write, keep=KEEP, today=None):
-    """Plan (and with write, do) a run. Returns what moved, per page."""
+    """Plan (and with write, do) a run. Returns what moved, per page.
+    Everything is checked before anything is written."""
     catalog = load_catalog()
     items = list(catalog["items"])
-    report = []
-    pending = []
+    report, pending = [], []
     for page, folder, specs in PAGES:
         done = {i["date"] for i in items if i["source"] == page}
         moving, new_text, kept = plan(page, folder, specs, keep, done)
@@ -343,29 +426,24 @@ def run(write, keep=KEEP, today=None):
         return report
     commit = _head()
     for page, _, _ in PAGES:
-        same = subprocess.run(["git", "diff", "--quiet", "HEAD", "--", page],
-                              cwd=ROOT).returncode == 0
-        if not same:
-            raise Problem("%s differs from the last commit: commit it first, "
+        if not _committed(page):
+            raise Problem("%s is not committed as it is: commit it first, "
                           "so the catalogue can name where the entries were"
                           % page)
     today = today or datetime.datetime.now(datetime.timezone.utc).date(
         ).isoformat()
+    writes = {}
     for page, folder, specs, moving, new_text in pending:
         old = read(page)
         for day, parts in sorted(moving.items()):
             path = "%s/%s/%s.md" % (OUT, folder, day)
-            full = os.path.join(ROOT, path)
-            if os.path.exists(full):
+            if os.path.exists(os.path.join(ROOT, path)):
                 raise Problem("%s exists already" % path)
-            os.makedirs(os.path.dirname(full), exist_ok=True)
-            # Every entry moved is in the page as it was, line for line.
             for _, lines in parts:
                 if "\n".join(lines) not in old:
                     raise Problem("%s: an entry of %s is not found whole"
                                   % (page, day))
-            with open(full, "w", encoding="utf-8") as f:
-                f.write(day_file(page, folder, day, parts, today, commit))
+            text = day_file(page, folder, day, parts, today, commit)
             counts = []
             for name, _ in specs:
                 n = sum(1 for s, _ in parts if s == name)
@@ -375,98 +453,186 @@ def run(write, keep=KEEP, today=None):
                     "title": "%s, %s" % (page, day), "source": page,
                     "date": day, "sections": counts, "moved": today,
                     "commit": commit}
-            item.update(_facts(path))
+            item.update(facts(text.encode("utf-8")))
             items.append(item)
-        if moving:
-            with open(os.path.join(ROOT, page), "w", encoding="utf-8") as f:
-                f.write(new_text)
-    with open(os.path.join(ROOT, OUT, "catalog.json"), "w",
-              encoding="utf-8") as f:
-        f.write(catalog_text(items))
-    with open(os.path.join(ROOT, OUT, "README.md"), "w",
-              encoding="utf-8") as f:
-        f.write(readme_text(items))
+            writes[path] = text
+        if new_text != old:
+            writes[page] = new_text
+    if items or os.path.isdir(os.path.join(ROOT, OUT)):
+        writes[OUT + "/catalog.json"] = catalog_text(items)
+        writes[OUT + "/README.md"] = readme_text(items)
+    for path, text in writes.items():
+        full = os.path.join(ROOT, path)
+        os.makedirs(os.path.dirname(full), exist_ok=True)
+        with open(full, "w", encoding="utf-8") as f:
+            f.write(text)
     return report
 
 
-def check():
-    """The problems found, as a list of strings: empty if all is well."""
-    problems = []
+def rehash(path, note, today=None):
+    """Record a redaction made by hand in an archive file."""
     catalog = load_catalog()
     items = catalog["items"]
-    if not items:
-        return problems
-    listed = {i["path"] for i in items}
+    found = [i for i in items if i["path"] == path]
+    if not found:
+        raise Problem("%s is not in the catalogue" % path)
+    if not note.strip():
+        raise Problem("say why it was redacted")
+    item = found[0]
+    item.update(file_facts(path))
+    today = today or datetime.datetime.now(datetime.timezone.utc).date(
+        ).isoformat()
+    item.setdefault("redacted", []).append({"on": today, "note": note})
+    for name, text in (("catalog.json", catalog_text(items)),
+                       ("README.md", readme_text(items))):
+        with open(os.path.join(ROOT, OUT, name), "w", encoding="utf-8") as f:
+            f.write(text)
+
+
+def _as_was(commit, source, cache):
+    """The page as it was at the commit, or None if that commit is not at
+    hand (a shallow clone, as CI makes)."""
+    key = (commit, source)
+    if key not in cache:
+        run = _git("show", "%s:%s" % (commit, source))
+        cache[key] = run.stdout.decode("utf-8") if run.returncode == 0 \
+            else None
+    return cache[key]
+
+
+def check(notes=None):
+    """The problems found, as a list of strings: empty if all is well.
+    Notes on what could not be checked go to notes, if given."""
+    problems = []
+    notes = [] if notes is None else notes
+    base = os.path.join(ROOT, OUT)
+    catalog_path = os.path.join(base, "catalog.json")
+    items = load_catalog()["items"]
     here = set()
-    for folder in sorted(os.listdir(os.path.join(ROOT, OUT))):
-        full = os.path.join(ROOT, OUT, folder)
-        if os.path.isdir(full):
-            for name in os.listdir(full):
-                here.add("%s/%s/%s" % (OUT, folder, name))
+    if os.path.isdir(base):
+        for name in sorted(os.listdir(base)):
+            full = os.path.join(base, name)
+            if os.path.isdir(full):
+                for day in os.listdir(full):
+                    here.add("%s/%s/%s" % (OUT, name, day))
+            elif name not in ("catalog.json", "README.md"):
+                problems.append("%s/%s is not an archive file" % (OUT, name))
+        for name in ("catalog.json", "README.md"):
+            if not os.path.exists(os.path.join(base, name)):
+                problems.append("%s/%s is missing" % (OUT, name))
+    elif items:
+        problems.append("%s/ is missing" % OUT)
+    listed = {i["path"] for i in items}
     for path in sorted(here - listed):
         problems.append("%s is not in the catalogue" % path)
     for path in sorted(listed - here):
         problems.append("%s is in the catalogue but missing" % path)
     specs = {page: (folder, s) for page, folder, s in PAGES}
+    cache = {}
     for item in items:
         path = item["path"]
         if path not in here:
             continue
-        for key, value in _facts(path).items():
+        for key, value in file_facts(path).items():
             if item.get(key) != value:
                 problems.append("%s: its %s is not the catalogue's"
                                 % (path, key))
-        folder, secs = specs[item["source"]]
-        lines = _split(read(path))
+        if item.get("source") not in specs:
+            problems.append("%s: no such page as %s" % (path,
+                                                         item.get("source")))
+            continue
+        _, secs = specs[item["source"]]
+        lines = read(path).split("\n")
         found = sections(lines)
-        counts = []
+        counts, texts = [], []
         for name, pattern in secs:
             if name not in found:
                 continue
             start, end = found[name]
-            ents, _ = entries(lines, start, end, pattern)
-            for date, _, _ in ents:
+            body = lines[start:end]
+            ents = entries(body, pattern)
+            for date, first, last in ents:
                 if date != item["date"]:
                     problems.append("%s: an entry dated %s" % (path, date))
+                texts.append("\n".join(body[first:last + 1]))
             if ents:
                 counts.append({"name": name, "entries": len(ents)})
         if counts != item["sections"]:
             problems.append("%s: its entries are not the catalogue's" % path)
+        if item.get("redacted"):
+            notes.append("%s: redacted since, so not compared with %s"
+                         % (path, item["commit"][:12]))
+            continue
+        was = _as_was(item["commit"], item["source"], cache)
+        if was is None:
+            notes.append("%s: commit %s not at hand, so not compared"
+                         % (path, item["commit"][:12]))
+            continue
+        for text in texts:
+            if text not in was:
+                problems.append("%s: an entry is not, word for word, in %s "
+                                "at %s" % (path, item["source"],
+                                           item["commit"][:12]))
+                break
     for page, folder, secs in PAGES:
         done = {i["date"] for i in items if i["source"] == page}
-        lines = _split(read(page))
+        lines = read(page).split("\n")
         found = sections(lines)
         for name, pattern in secs:
+            if name not in found:
+                problems.append("%s: no section '## %s'" % (page, name))
+                continue
             start, end = found[name]
-            if done and not (end - start >= 2
-                             and lines[start + 1]
-                             == pointer_text(page, folder)):
-                problems.append("%s, '%s': it doesn't open with the line "
-                                "that points to the archive" % (page, name))
-            ents, _ = entries(lines, start, end, pattern)
+            body = lines[start:end]
+            pointers = [line for line in body if line.startswith(POINTER)]
+            if done:
+                if (len(pointers) != 1 or len(body) < 3
+                        or body[1] != pointer_text(folder) or body[2]):
+                    problems.append("%s, '%s': it doesn't open with the one "
+                                    "line that points to the archive"
+                                    % (page, name))
+            elif pointers:
+                problems.append("%s, '%s': it points to an archive that "
+                                "holds nothing from it" % (page, name))
+            ents = entries(body, pattern)
             for date in sorted({d for d, _, _ in ents} & done):
                 problems.append("%s, '%s': entries dated %s, a day in the "
                                 "archive" % (page, name, date))
-    for name, text in (("catalog.json", catalog_text(items)),
-                       ("README.md", readme_text(items))):
-        with open(os.path.join(ROOT, OUT, name), encoding="utf-8") as f:
-            if f.read() != text:
-                problems.append("%s/%s is not what the catalogue makes"
-                                % (OUT, name))
+            for i in loose(body, ents, pattern):
+                problems.append("%s, '%s': a line at the left margin inside "
+                                "an entry: \"%s\"" % (page, name,
+                                                      body[i][:50]))
+    if os.path.isdir(base):
+        for name, text in (("catalog.json", catalog_text(items)),
+                           ("README.md", readme_text(items))):
+            full = os.path.join(base, name)
+            if os.path.exists(full):
+                with open(full, encoding="utf-8") as f:
+                    if f.read() != text:
+                        problems.append("%s/%s is not what the catalogue "
+                                        "makes" % (OUT, name))
     return problems
 
 
 def main(argv):
-    if argv not in ([], ["--write"], ["--check"]):
+    if not (argv in ([], ["--write"], ["--check"])
+            or (len(argv) == 3 and argv[0] == "--rehash")):
         print(__doc__)
         return 2
     try:
         if argv == ["--check"]:
-            problems = check()
+            notes = []
+            problems = check(notes)
+            for n in notes:
+                print("NOTE: " + n)
             for p in problems:
                 print("PROBLEM: " + p)
             print("archive: %d problem(s)" % len(problems))
             return 1 if problems else 0
+        if argv[:1] == ["--rehash"]:
+            rehash(argv[1], argv[2])
+            print("%s: redaction recorded" % argv[1])
+            return 0
         report = run(write=argv == ["--write"])
     except Problem as e:
         print("STOPPED: %s" % e)

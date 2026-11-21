@@ -33,17 +33,28 @@ loosen it.
    nothing the founder said there is missing, that
    `docs/COLLABORATING.md` tells DeepSeek and Gemini what changed, and
    that `docs/CHATGPT.md` tells ChatGPT.
-6. **Archive at the end.** `python3 docs/archive.py` says what would
-   move: `STATUS.md` and `docs/COLLABORATING.md` each keep their dated
-   entries of their three most recent days, and the older ones go to
-   `archive/`, whole, a file for each page and day. When it lists
-   anything, commit the pages first, run it with `--write`, then
-   `docs/files.py` and `docs/parts.py`, and commit again. The
-   catalogue (`archive/README.md`, `archive/catalog.json`) names each
-   file's size, hash and the commit its entries came from; a file
-   there is not edited again, except to redact what is private, and
-   `tests/test_archive.py` holds it all in step (the founder,
-   2026-11-21: STATUS.md, "Decided").
+6. **Archive at the end, before pushing.** `STATUS.md` and
+   `docs/COLLABORATING.md` each keep the dated entries of their three
+   most recent days; the older ones go to `archive/`, whole, a file for
+   each page and day, listed in the catalogue (`archive/README.md`,
+   `archive/catalog.json`) with each file's size, hash and the commit
+   its entries came from (the founder, 2026-11-21: STATUS.md,
+   "Decided"). The steps:
+   1. Commit the pages, then run `python3 docs/archive.py`. It says
+      what would move, and changes nothing.
+   2. If it lists anything, run it with `--write`.
+   3. Run `python3 docs/archive.py --check`, then `docs/files.py`,
+      `docs/parts.py` and the tests, and commit. Never amend, rebase
+      or squash the commit the run named.
+
+   If a run stops, it says why and has written nothing: fix the page
+   and run it again. It stops on a line at the left margin inside a
+   list entry (it would move with that entry: put a blank line before
+   it), and on an entry dated on a day already archived: a new entry
+   takes the day it is written, and names any earlier day inside it.
+   A file in the archive is not edited again, except to redact what
+   is private: edit it, then run
+   `python3 docs/archive.py --rehash <file> "<why>"`.
 
 ## Who decides
 
