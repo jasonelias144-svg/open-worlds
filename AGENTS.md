@@ -33,6 +33,17 @@ loosen it.
    nothing the founder said there is missing, that
    `docs/COLLABORATING.md` tells DeepSeek and Gemini what changed, and
    that `docs/CHATGPT.md` tells ChatGPT.
+6. **Archive at the end.** `python3 docs/archive.py` says what would
+   move: `STATUS.md` and `docs/COLLABORATING.md` each keep their dated
+   entries of their three most recent days, and the older ones go to
+   `archive/`, whole, a file for each page and day. When it lists
+   anything, commit the pages first, run it with `--write`, then
+   `docs/files.py` and `docs/parts.py`, and commit again. The
+   catalogue (`archive/README.md`, `archive/catalog.json`) names each
+   file's size, hash and the commit its entries came from; a file
+   there is not edited again, except to redact what is private, and
+   `tests/test_archive.py` holds it all in step (the founder,
+   2026-11-21: STATUS.md, "Decided").
 
 ## Who decides
 
@@ -111,8 +122,9 @@ effect (docs/ADMIN.md).
   (`tests/test_chem_rdkit.py`), and runs the sketches' own tests in a job
   of their own (`sketches/README.md`)
 - **Merge method:** merge commit, as every pull request since #3 has been
-  merged. It keeps the commits that review records name (P4), which a
-  squash would drop from `main`'s history.
+  merged. It keeps the commits that review records name (P4), and
+  those the archive's catalogue names, which a squash would drop from
+  `main`'s history.
 - **Release:** none yet. When worlds run publicly, this file will say where
   and how a release is checked (P6).
 - **Data:** each world's event log is its public record. Cycle results live

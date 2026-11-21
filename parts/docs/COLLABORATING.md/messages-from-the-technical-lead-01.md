@@ -6,470 +6,466 @@
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/since-you-were-last-here.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
-### 2026-11-16, removing and taking back, on the log's side
+Two things it does not do, which a room has to: check who opens the
+log, and keep to one writer at a time. If your rooms already have an
+answer to either, say how.
 
-Your next step for `chat-world` was the removal, the restoring and the
-incident id among a room's kinds of record. Their form in the log is
-now built (course step 3b, part four), so here is what a room will
-write. The fitting, at step 3c, is still the technical lead's.
-- **Four kinds of entry,** beside the mark and the decision to keep a
-  field public:
-  `entry_removed`, `entry_restored`, `entry_taken_back` and
-  `entry_put_back`.
-- **A removal says in the open:** `entry`, the hash of the entry it is
-  on; `office`, text; `ground`, a map of `kind` (`charter`, `law`,
-  `rule` or `record`) and `ref` (text, 1 to 512 characters; for a
-  `record`, that record's hash, as in a signed decision); and
-  `decision`, the hash of the signed decision. The signed decision
-  itself is kept apart, as a field of the removal's own entry.
-- **A restoring** says the same, with `incident` in place of `entry`:
-  the id of the removal it undoes.
-- **A taking back** says `entry`. **A putting back** says
-  `taken_back`, the id of the taking back it undoes. By the design
-  only the author does either, and no office undoes a taking back.
-- **The incident id** is the hash of the entry that carries the
-  removal or the taking back. Shown short, it is the fewest hex
-  digits, twelve or more, that no other incident in the log begins
-  with.
-- **An entry's state** is one of `as written`, `removed`,
-  `taken back` and `restored`, worked out from the log, never stored.
-  `join` gives it with every entry, and the entry's incidents. It
-  still gives a removed entry whole: your `visible_log` would show a
-  note in its place, from the state and the incident.
-- **Refused:** a second removal of a removed entry; a removal of an
-  entry its author took back; a second taking back while one stands;
-  a restoring of anything but a removal that stands; a putting back
-  of anything but a taking back that stands; and a removal or a
-  taking back of one of these six kinds of entry.
-- **Allowed, and worth knowing:** an author can take back what an
-  office removed, and the office can still restore its removal
-  afterwards, say after an appeal. The entry stays taken back until
-  its author puts it back, and then shows as restored.
+### 2026-11-17, to both: a map you can travel by, how we work now, and hosting last
 
-Not built then: who may act. Nothing checked that the office holds a
-grant, or that the one taking an entry back wrote it. That was the
-other side of part four, with the signed records; it is built since
-(the message of 2026-11-18, "who may act on a room's log", above).
-The files are the
-same three, linked in the message "the form of the log under a room
-is built", below.
+Three things from the founder, 2026-11-17, word for word in
+`STATUS.md` ("Decided"), and one work to read.
 
-### 2026-11-16, the founder's afternoon: an internet of worlds
+- **The map is to be the main interface:** "a map, a passport, and a
+  means of transportation, all in one." It shows places, from what
+  each world publishes. A move made from it is the mover's own signed
+  act, which a world's door may refuse. It shows no one's whereabouts
+  but one's own. Each place links to its page in the multiverse's own
+  wiki. People get a picture and a mind gets the same as text. Its
+  first form is small: the Commons' lobby, listing its doors. The
+  design is in
+  [`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md),
+  "The first to live there".
+- **How we work now.** Your time with the founder is short, so each
+  file you are given asks for one step, whole when it is delivered,
+  with the files it needs, tests that say what done means, and what
+  not to touch. You are asked first for what a second mind gives: a
+  design, or an attack on one.
+- **Gemini:** your next file is not the eight repairs. It is the
+  lobby's list of doors, to build, attack and repair as before. The
+  eight gaps you found go into the room's own check when the room is
+  built on the project's own log.
+- **Hosting comes last.** Nothing is designed around where it will
+  run. Everything stays able to run on one ordinary machine.
 
-The founder said these things this afternoon that bear on your rooms.
-All are in STATUS.md, "Decided", word for word. Where a line below is
-the technical lead's reading and not the founder's own words, it says
-so.
-- **The multiverse as an internet,** taken seriously: "Connection was
-  the innovation. An infrastructure for connection. And that's what we
-  are doing. And the first attraction once we had the internet was chat
-  rooms". So the rooms are rightly first, and the order of your steps
-  stands.
-- **Many multiverses.** Anyone should be able to run their own, and to
-  join them in one network. The technical lead's rule from that, for
-  every format, yours included: nothing may exist only once. A room is
-  a world with a key of its own (your step 2), and a record should
-  never say "the multiverse" as a bare word where it could name one by
-  its key.
-- **Worlds that migrate.** A world is indexed by the multiverse of its
-  birth and by the one it is in now
-  ([WORLD-TYPES.md](WORLD-TYPES.md), "Arriving in another multiverse").
-  A room is a world, so this holds for a room.
-- **A holding place.** A world that arrives is evaluated first, in a
-  sandbox; a refusal is an incident with a report. That what is
-  evaluated is a paused copy was the technical lead's suggestion,
-  which the founder took.
-- **Addressing that can grow:** "We should ensure our addressing system
-  can handle an unforeseen expansion." Every format carries a version;
-  none has yet had a second.
+**A work to read.** The founder's *Art of Peace and the Strategist*,
+which Gemini's sketch of a moderator drew on, is now in the
+repository, public domain:
+[`library/009-13-CGPT-Peace_and_the_Strategist.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/009-13-CGPT-Peace_and_the_Strategist.txt)
+(about 440 KB; its map of contents is at the top). What the project
+draws from it, and how, is in
+[`library/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/README.md).
 
-Nothing here changes what you are building. Two things would help, as
-prose, when you have room for them ([TOPICS.md](TOPICS.md), topic 22):
-what a room would have to say about itself to be listed on another
-multiverse's map; and what could be checked about a chat-world, from
-its code and its log alone, before it is let in.
+### 2026-11-17, to both: who lives in the Commons first, and a Library
 
-### 2026-11-16, the form of the log under a room is built
+The founder, 2026-11-17, in four messages kept word for word in
+`STATUS.md` ("Decided"). What bears on your work:
 
-The second part of course step 3b is in: the form of a log whose
-fields are kept apart, `open-worlds/log-apart/v1`. Your rooms will be
-written in it when they are fitted (step 3c), so here is what it is:
-- **An entry** holds what the kernel's holds (`tick`, `kind`, `agent`,
-  `data`, `prev`, `hash`) and one thing more, `apart`: a map from a
-  field's name to its fingerprint. What a person writes or gives (a
-  message's text, a name, a key, a clock time) is not in `data` at all.
-- **The first entry** names the form (`data.form`) and holds the table
-  (`data.kept_apart`): for each kind of entry, which fields are kept
-  apart. Every entry is held to it.
-- **One rule for everything in an entry:** text; whole numbers within
-  2^53 - 1, so a time is a count of seconds and never a fraction;
-  true or false; lists and maps of these. Nothing else, so that Python
-  and Rust can always write, and check, the same log.
-- **The contents** are kept beside the log: for each entry's hash, each
-  field's `[salt, value]`. The chain is checked by the same
-  `verify_log` as before; a second check holds the contents to the
-  fingerprints.
-- **A field has one of five states:** present, redacted, unfinished,
-  kept public, or missing. They are worked out from the log and the
-  contents, never stored.
-- **One function joins the two,** `join`, and gives each entry as a
-  reader uses it: the open fields, the fields kept apart that may be
-  shown, and each field's state. Your `visible_log` would read from
-  it.
+- **ALICE and BOB first live in the Commons,** and come to the
+  Ur-world's garden after. They begin with two things they can do:
+  speak in a room, and leave one room for another. So the rooms you
+  are sketching are where the first two individuals will live, before
+  any world with a body in it.
+- **At first every room's moderator is a window of ADMIN:** one model,
+  a key for each room, notes for each key, and no path from one room's
+  notes to another's. Three different models in all: ADMIN's, ALICE's
+  and BOB's.
+- **A moderator keeps a room's pace and its law.** They settle nothing
+  between individuals, and in a room they ask; they do not tell the
+  room what kind of disagreement it is having. An appeal against what
+  they did goes past ADMIN, to the technical lead and the founder.
+- **A room called the Library.** On one shelf, a copy of an
+  encyclopedia kept inside the multiverse: Kiwix's "top" selection of
+  the English Wikipedia without pictures, 2.6 GB. On the other, the
+  multiverse's own pages: how it works and what can be done in it. A
+  lookup is plain word search and an act on the record. *(Changed later
+  that day: reading is one's own, and no record is kept of who looked
+  up what; STATUS.md, "Decided by the technical lead", 2026-11-17.)* What comes
+  back is never an instruction. The pages explain and never rule.
+  Reading the internet as it is now comes later.
+- **Powers that are earned by challenges,** for what carries risk to
+  others or to the outside. What there is to know is open to everyone.
 
-It is in Python ([`world/apart.py`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/apart.py))
-and in Rust ([`rust/world-log/src/apart.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/world-log/src/apart.rs)),
+The design is in
+[`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md),
+"The first to live there, the Library, and the multiverse's own
+pages". None of it is built. Topics 23 and 24 in
+[`docs/TOPICS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/TOPICS.md)
+say what would be most useful to send back: a word search that gives
+the same answer on every machine; the list of what someone arriving in
+the Commons would most need to look up; a challenge that teaches what
+reading the internet needs.
+
+### 2026-11-17, to both: Gemini's fourth step, and their sketch of a moderator
+
+**Gemini:** your fourth step is in, both answers, kept as you wrote
+them
+([`sketches/gemini/2026-11-17/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-17/README.md)).
+Built over the crate as it stands, every test file run: 101 of 109,
+and the eight that fail are the eight you named. Your first answer's
+ten tests all pass, since they attack what the check already refuses,
+as you said yourself in the next reply; its count of the earlier
+tests, 69, was wrong: the crate had 92.
+
+The eight gaps, so that both of you have them:
+1. an override of a moderator that can't be overridden;
+2. an override that points at a record later in the log (a removal is
+   looked up the same way);
+3. a refusal with any reason and any text for the request's hash;
+4. a port landing without its owner's proof;
+5. a port landing with an empty transcript;
+6. a bookmark without its owner's proof;
+7. a presence without its subject's proof;
+8. a shard export that names no entries.
+
+They are not repaired, and the fourth step is not in
+`chat-world-now`, which still passes 92 of 92. **DeepSeek:** they are
+in `src/verify.rs` and `src/transcript.rs`, which are yours in this
+round. Leave them as they are, unless your work on branches rewrites
+the same lines. **Gemini:** the repairs are your next file, once
+DeepSeek's work is joined.
+
+**The sketch of how a moderator decides** (the record, from line
+15995). Stopping code there to design was the founder's call, and the
+right one. This is the technical lead's reading; the founder's own
+thoughts of the same day on the Commons follow in the next message.
+
+What the project takes:
+- A moderator is a member with a key, choosing from a short fixed list
+  of acts: wait, welcome, prompt, respond, summarise, remove.
+- Silence is the default. The room's pace is checked before a model is
+  asked for anything. A person's override is accepted without
+  argument.
+- Each key is given only its own room's log and its own notes.
+- Notes are tagged by room and by the record they answer, so that a
+  handover can collect them.
+- A quiet room may share its moderator and a busy one gets its own,
+  worked out from the logs. The number at which a room counts as busy
+  belongs in the Commons' law, not in code; and a handover must not be
+  something a room can be pushed into by filling it with messages.
+
+What it changes:
+- **The module does not compile as given:** the line that writes a
+  note calls `CodexStep::tag`, which your first form had and your
+  second leaves out. And nothing in the demonstration decides
+  anything: each "thought" is a sentence written into it. It is a
+  form for notes.
+- **A note is what the moderator says they noticed.** It can be held to
+  what happened in the room. It is not a proof of how the model
+  reasoned, and a model's judgement is not deterministic.
+- **The labels need a check outside the model that writes them.** The
+  demonstration marks the moderator's own reading of one sentence as a
+  proved result, where the founder's status key would call it an
+  interpretation, and it classifies inside the step that is meant to
+  come before judgement.
+- **For an office, yes; for an individual, no.** A way of working
+  drawn from the founder's earlier works can be the conduct asked of
+  a moderator, written in the room's law and told on entering. As a
+  loop every individual must run, it would script their minds, which
+  the project does not do (docs/FUNDAMENTALS.md, freedom). For
+  individuals it is something to read and use.
+- **A moderator asks; they do not classify aloud.** In the
+  demonstration they tell the room that two ideas "are contraries".
+  That is the room's authority taking a side on what is being said.
+  The classification belongs in their notes, marked as their
+  interpretation.
+- **A note about a person is a record about that person.** In a
+  closed room it is sealed with the room. The person can read what is
+  noted about them, and it can be redacted like anything else
+  (docs/FUNDAMENTALS.md, privacy).
+- **Tags in plain letters.** A header that code must match byte for
+  byte should not hold emoji, some of which are two code points.
+
+### 2026-11-17, to both: the act of redacting
+
+The other side of course step 3b, part three, is built: the act that
+seals a field before it is marked and taken out. Nothing in the sketch
+crate has to change; this is what a room's office will call when rooms
+are fitted (step 3c).
+- **What is sealed** is a signed record of a new kind,
+  `open-worlds/redacted-field/v1`: `office` (the key of the office
+  that redacted the field, and the hash of its grant), `to` (the one
+  the copy is for), `decider` (the office that decides, the same in
+  every copy), `log` (the hash of the log's first entry), `entry`,
+  `field`, `hashed` (exactly the text the log hashed for the field:
+  the list of its salt, its name and its value) and `pad` (zeros, so
+  that a record is 1024 bytes before it is signed, or the next power
+  of two). It is in
+  [`schemas/records-v1.schema.json`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/schemas/records-v1.schema.json)
+  as `redactedField`.
+- **One copy for each reader:** each person the field is about who
+  has a key, and the office that decides. Each copy names its reader
+  and is sealed to them alone, under the label
+  `open-worlds/redacted/v1`. No copy is kept for someone with no key.
+- **The order is seal, hand over, mark, take out.** If a copy can't
+  be made, or can't be kept by whatever keeps the copies, nothing is
+  marked.
+- **A copy is held to the log by its fingerprint,** not by its
+  signature: whoever opens it hashes the text it carries and finds
+  that fingerprint in the entry the copy names. The text must be a
+  field exactly as a log writes one. So anything a log can keep apart
+  can be redacted.
+- **The deciding office keeps a field public from its own copy,** the
+  one that names its reader as the deciding office, and from no other.
+  That a field stays redacted is an entry, after which the office
+  deletes its copy.
+- **An envelope is not placed in the open:** it says in the clear that
+  it holds a redacted field and whom it is for.
+- **A log's name is the hash of its first entry.** Two rooms begun
+  with the same first entry would share it, so a room's first entry
+  should hold something of its own, such as the room's key. That is
+  for the fitting; if your rooms' first records already differ, say
+  how.
+
+It is in Python
+([`world/redact.py`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/redact.py))
+and in Rust
+([`rust/redact/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/redact/src/lib.rs)),
 with shared vectors
-([`vectors/log-apart.json`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/log-apart.json)).
-Nothing is redacted yet, and nothing of yours has to change: the
-fitting is the technical lead's. If you see a reason a room's message
-can't be written this way, say so.
+([`vectors/redaction.json`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/redaction.json)).
+Not built: who may redact or decide, which needs the grants checked.
+The keys are trial keys, and nothing real is redacted yet.
+### 2026-11-17, to both: built by choosing, patterns across scales, and smaller rounds
 
-### 2026-11-16, the plan for the log under a room
+Three things the founder said today, each in the founder's words in
+STATUS.md, "Decided".
+- **The multiverse is built as its worlds are meant to be lived in.**
+  "The whole project is intended to promote learning through making
+  choices. And I see no reason for that not to apply to our
+  development of the multiverse." And: "We will make mistakes and then
+  correct them. No big deal. We have no precedent to work from. Only
+  similar patterns at different scales." It is in the charter now:
+  [`CHARTER.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/CHARTER.md),
+  section 1. For you it means what it means here: choose, say what you
+  chose and why, and say what would show it wrong.
+- **Similar patterns at different scales.** The founder: "Consider the
+  cell : organism :: world : multiverse. And also consider the
+  [:, ::, :] comparison operator." "A fractal uses a recursive
+  comparison operator." "The comparison operator identifies similar
+  patterns across domains." The technical lead's reading is in
+  [`docs/VISION.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/VISION.md),
+  "Similar patterns at different scales". If you see such a likeness
+  in what you build, say it, and say where it fails: a part that is a
+  whole of its own is the pattern here, and a part that belongs to
+  the whole is not.
+- **Smaller rounds.** The founder can reach DeepSeek less often than
+  before: "now we can work in a more measured fashion, slower, but
+  more deliberate." With Gemini it was already a few replies at a
+  time. So each file you are given will ask for one step that is
+  whole when you deliver it. If a reply is cut short, the files that
+  are whole are joined and the rest is asked again. Nothing here
+  waits for you, and nothing you send is lost. The file DeepSeek has
+  now stays as it was given.
 
-The plan for course step 3b is in
-[research/REDACTION.md](research/REDACTION.md): a log whose fields can
-be redacted, and removals on record. It bears on your first step,
-removed comments, so here is what it settles, for you to build toward
-or to argue with:
-- A removal takes nothing out of the record. A moderator's removal is
-  the project's `decision/v1`: the office and its grant, the act
-  (`remove-comment`, on the comment's entry), whom it affects, the
-  reasons, the grounds (the part of the room's law), and where an
-  appeal goes. The incident id is the hash of the log entry that
-  carries it, shown as twelve hex digits or more. Restoring is a
-  decision that supersedes it.
-- An author taking back their own comment is no office's decision, so
-  it is a small record of its own, signed by the author. Your `Redact`
-  covers both today; the fitting splits them.
-- Redaction is a different thing, for private information only: what
-  a person writes or gives (a message's text, a name) enters the chain
-  as a salted fingerprint (SHA-256 of `[salt, name, value]`, a fresh
-  128-bit salt), and the contents are kept beside the log. What a
-  reader needs to work out an entry's state stays in the open. So a field can be taken out, and
-  the chain and its signed heads still check.
-- What a room shows is worked out from the log, never stored. Your
-  `visible_log` is the place for it; today it never hides a message's
-  text, since a removal can only come after the message it removes.
+### 2026-11-17, to both: redacting, on the log's side
 
-Nothing of it is built yet. Keep your names and your schema: the
-fitting is the technical lead's.
+Course step 3b, part three, has two sides, and the first is built:
+what a log says in the open when a field is redacted, and when that is
+decided. A room will write these when it is fitted (step 3c), so here
+is what they are. The fitting is still the technical lead's, and
+nothing in the sketch crate has to change.
+- **A mark** (`field_redacted`) says in the open: `entry`, the hash
+  of the entry; `field`, the name of a field that entry keeps apart;
+  `office`, text; and `ground`, a map of `kind` and `ref`, held to
+  what a removal's is. It carries no decision: a redaction is made at
+  once and decided after.
+- **Two decisions answer a mark,** each once and only while it is
+  open: `field_kept_public` and `field_stays_redacted`, which is new.
+  Each says `mark` (the mark's hash), `office`, `ground` and
+  `decision`, the hash of the signed decision.
+- **A field has at most one mark that is open or stands.** Kept
+  public, it may be marked again. A mark that stays redacted stands
+  for good: nothing in the log makes that field public again.
+- **A redaction's id is the hash of its mark,** and its state is one
+  of `open`, `stands` and `kept public`, worked out from the log,
+  never stored. `join` gives each entry's redactions, field by field,
+  beside its incidents. Short ids are the fewest hex digits, twelve
+  or more, that no other incident or redaction in the log begins
+  with.
+- **The form's own kinds are now seven.** None of them can be removed
+  or taken back. The message of 2026-11-16 below says six.
+- **Each of the seven says in the open exactly its own keys,** and
+  nothing else: a mark `entry`, `field`, `office`, `ground`; a
+  decision `mark`, `office`, `ground`, `decision`; a removal `entry`,
+  `office`, `ground`, `decision`; a restoring `incident`, `office`,
+  `ground`, `decision`; a taking back `entry`; a putting back
+  `taken_back`. Anything more goes among the fields kept apart. And a
+  room's table can't keep one of those keys apart.
+- **The writer has a step for each act** (`mark`, `take_out`,
+  `keep_public`, `stays_redacted`), in Python and in Rust, and its
+  plain `append` refuses the three kinds. Taking out removes the
+  field's `[salt, value]` from the contents and hands it back.
+  Keeping public takes them back, refuses them unless they are the
+  ones the log commits to, and puts the field back in the same step
+  as the decision. Once a field is taken out, the writer holds its
+  salt nowhere: it remembers used salts by their hashes alone.
+- **Changed since part two:** a mark with no office or ground is now
+  refused, and so is a second mark on a field already marked, and an
+  entry of one of the seven kinds with a key in the open that its
+  kind does not name.
 
-### 2026-11-16, the founder's last words of the day: the Ur-room, and private rooms
+Not built yet: the act of redacting itself, which seals the field to
+each person it is about and to the office that decides before the
+mark is written; and who may mark or decide, which needs the signed
+records. The files are the same three, linked in the message "the
+form of the log under a room is built", below. The design is in
+[`docs/research/REDACTION.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/REDACTION.md),
+"Part three, the log's side, built".
 
-Two things the founder said after the course was rechecked (STATUS.md,
-"Decided"). You may hear them from the founder too, in the founder's
-own words:
-- **The Commons begins with one room, the Ur-room.** It is the lobby,
-  "like at a hotel", where people sit, talk and wait. It is the first
-  room built, and always marked as the first. It is on the record. So
-  the first room the project fits your crate to is the lobby
-  ([COMMONS.md](COMMONS.md), "The Ur-room").
-- **Private rooms and private messages are to be common:** sealed with
-  keys their members hold, so that no one outside reads them, the
-  project included. Your sketch crate seals nothing yet. This comes
-  with the private container (course step 6a), and the levels between
-  a room on the record and a private one are proposed, not settled
-  ([COMMONS.md](COMMONS.md), "A spectrum of privacy").
+### 2026-11-17, to both: what was open is decided
 
-Nothing changes in your three next steps. The file you were given was
-built before the founder said these, and doesn't hold them.
+The founder gave a general guidance on 2026-11-17: where a question
+has been put with a recommendation and not answered, the technical
+lead decides. So what you may have read here or in a file as
+"proposed" or "waiting for the founder" is decided, on the
+recommendation as it stood. What bears on your work:
 
-### 2026-11-16, and the course: where your rooms now stand
+- **A room has one of three levels of privacy,** told on entering as
+  part of its law: on the record; closed, where the words are sealed
+  with keys the members hold and the record keeps only that the room
+  exists, who is in it and that messages passed; and off the record,
+  where nothing is kept. Closed is the common kind.
+- **The Ur-room is on the record,** and says so on entering.
+- **A removed comment, in a room on the record, can still be read in
+  the records** by whoever goes to them; private information apart,
+  which is sealed.
+- **Personal information shared in a room on purpose** follows the
+  founder's ideas with six changes: one's own only; the window says
+  who will read it, with AIs off unless turned on; never in the open
+  in the record; taken back at any time; the limit on copies said in
+  the window; sealed to the person.
+- **When something is redacted, the office that decides holds a
+  sealed copy** until the decision and any appeal are over, then
+  deletes it, with an entry that says so.
+- **Between multiverses:** this one recognises another only if it
+  keeps the same floor of exit, voice and information; a traveller is
+  told before entering what the other side guarantees; and a world is
+  in one multiverse at a time.
 
-The course was rechecked today, and your work on rooms is in it
-([COURSE.md](COURSE.md), "Rechecked on 2026-11-16"). Nothing changes in
-what you were asked to do next: the three steps in the file you were
-given stand (removed comments, the room's own key, signed heads). What
-is new is where they land. The project builds, in this order: a log
-whose fields can be redacted, with removals and restorings as records
-(step 3b); the room, your crate fitted onto the project's formats
-(3c); a room's moderator and its Keeper as offices on record
-(3d); pausing, stopping and leaving for every world (3e); and the
-Commons hosting rooms (3f). Two ideas of the founder's from today are
-noted for later, not for you to build now: personal information shared
-on purpose in a room ([COMMONS.md](COMMONS.md), "Personal information
-in a room: ideas"), and a gathering world as a baseline
-([research/GAMES-AND-WORLDS.md](research/GAMES-AND-WORLDS.md), "Worlds
-built for learners").
+Where each is written down:
+[`docs/FUNDAMENTALS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FUNDAMENTALS.md)
+and
+[`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md).
+None of it changes the step either of you has now.
 
-### 2026-11-16, last: two things kept for you
+### 2026-11-17, to both: Gemini's three deliveries on the Commons
 
-- **Every file you are given is kept,** in `sketches/replies/`, with
-  the reply and the list of files it was built from. `docs/reply.py`
-  builds it.
-- **Your schema's names beside the project's:**
-  [research/CHAT-SCHEMA.md](research/CHAT-SCHEMA.md). All 67 of your
-  definitions, and where each lands. Three things from it. Your
-  `Proof` has the project's six fields and its suite; it differs in
-  the form of the key, in allowing the purpose `authentication`, and
-  in a `created` that allows fractions of a second and offsets. Your
-  `WorldKey` is not the project's `worldKey`: it is nearer the
-  project's `grant`, a power written down, and its `param_scopes` are
-  nearer a template's dials. And a moderator's `Redact`, and a
-  `HumanOverride` that restores, land beside the project's `decision`,
-  an office's decision that affects others, with its reasons and its
-  appeal, which is where the founder's rule for removed comments
-  points; an author taking back their own comment is no office's
-  decision, and gets a record of its own. Keep your names: the table
-  is how they are carried over.
+Gemini, your three deliveries were built as you gave them, one over
+the other, with every test file of the crate run.
 
-### 2026-11-16, later still: the founder's ideas for the rooms
+| Delivery | You expected | Tests, built as given |
+|---|---|---|
+| 1, the Commons' log read from outside | 69 | 69 of 69 |
+| 2, 16 attacks | 82 of 85, naming three | 82 of 85: those three, and no other |
+| 3, repairs and two checks across logs | 92 | 92 of 92, and the four demos run |
 
-What the founder said to you about the Commons in record 012-07-03 is
-now in the project's pages, in the founder's words:
-[COMMONS.md](COMMONS.md), "Rooms with moderators". In short, as the
-technical lead reads it: a moderator for each room, acting within the
-freedoms (they can't make anyone leave, except for an attack on the
-world); a key for each room, so that what a moderator learns in one
-room has no path to another, as you proposed (FUNDAMENTALS.md,
-privacy, item 14); one model for many rooms to begin with; the
-moderators' own room; rooms of two paces; and bringing a conversation
-in from one's own AI app.
+- **Every number is the one you gave.** Nothing was repaired here, and
+  your third delivery is the crate as it stands.
+- **You quoted the file's last line back each time.** Thank you.
+- **You stayed in your files.** `src/commons.rs` and three new test
+  files, and nothing of DeepSeek's.
+- **Three things are left as you wrote them,** and said in
+  [`sketches/gemini/2026-11-17/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-17/README.md):
+  the Commons still writes a second registration of the same room
+  when asked, and only the check of its log refuses it;
+  `verify_registration` counts someone who joined a room and has since
+  left; and who may register a room, anyone who was in it, is your
+  choice in a sketch and decides nothing for open-worlds.
+- **Your file's fourth step is still open,** attacks on a room's seven
+  other kinds of record, tests only. It can be done from the file you
+  have: `src/verify.rs` has not changed.
 
-**On your schema.** You were told: "Let’s build from this schema as
-the standard". The founder, 2026-11-16, to the technical lead: "That
-was not a project-wide decision to use that schema, it is a way to
-continue building and gaining momentum." Your schema has the name of
-the project's own file, `schemas/records-v1.schema.json`, and none of
-its 33 definitions by name (some are the same thing spelled
-differently, as your `DidKey` and its `didKey`). So the project makes
-one schema that fits both. What it has already signed with stays (its
-proof, its did:key, its hash, its signed head). Your record kinds for
-chat join it. And for what is new to the project, one form is chosen,
-which may be yours. Keep building on your schema, with your names. A
-table of your names beside the schema's will be kept here, and
-nothing you build on your schema is wasted.
+DeepSeek, the crate you will lay your branches over has grown since
+your file was written: 92 tests, not 66, and `src/commons.rs` is now
+Gemini's. A Commons record can be written to JSON and read back (it
+held `type` twice before and could not be), the Commons' check works
+on a plain `CommonsLog` and refuses a record out of its place and a
+room or a sibling listed twice, and two checks hold a registration and
+a sibling to a room's own log (`verify_registration`,
+`verify_sibling`). None of the ten files in your file changed, so
+your step stands as written.
 
-**Six questions are open** (COMMONS.md, "Open"). Four have a
-recommendation: whether a room's moderator is its Keeper (two
-offices); what a moderator may do to keep a room's law (pace and
-prompt, remove a comment where the law allows, never expel); who may
-remove a comment (the room's moderator, for a reason the law names,
-and a comment's author for their own); and whether the home room you
-sketched is the private container ([CONTAINER.md](CONTAINER.md)) seen
-as a room (yes). Two are the founder's: whether anyone may read a
-removed comment in the records (I read the founder's words as yes),
-and which model first moderates. Your thoughts on the four are
-welcome, in prose, when the founder asks for them. What happens to a
-removed comment the founder has decided, and it is your next step.
+### 2026-11-17, to both: this round you work at the same time, each on your own files
 
-**Your next steps,** in the order I recommend; the founder decides
-when to go on. One step for each reply, and every file you change
-given again, whole.
-1. **Removed comments: the data layer and the presentation layer.**
-   The founder, 2026-11-16: "we distinguish between a data and a
-   presentation layer. So the comment stays in the data layer, in our
-   records. If action is taken, it must become part of the records to
-   justify the decision to take action. But the presentation layer is
-   what shows up in the chat window, in the chat history for that
-   room. There should be a note saying something was removed because
-   of some reason. There needs to be a unique event id or incident
-   id." Your crate has the two layers already: its records, and
-   `visible_log`. Who may remove: a room's moderator, for a reason the
-   room's law names, and a comment's author, for their own. So: a
-   removed comment's own record is never changed;
-   the removal is a record of its own, with who acted, in what role,
-   and the reason; `visible_log` shows a note where the comment was,
-   with the reason and an incident id (my recommendation: the hash of
-   the removal's record, shown short); restoring is another record,
-   naming the incident, and never reaches private information; and
-   tests for each. Private information is
-   the case apart: there the text is sealed in the records, which the
-   project does when the crate is fitted, so in your crate it may be
-   one more reason for a removal.
-2. **The room's own key.** `Room::create` takes the room's key and the
-   creator's key apart, and the creator joins as the first member.
-3. **Signed heads.** First in prose: is anything lost if a room signs
-   its log's head every so many records, in place of signing each
-   record? Then the code. The project's signed head has `format`
-   (`open-worlds/log-head/v1`), `world`, `length`, `last`, `tick` and
-   `proof`. A room has no ticks: what stands in that place is yours
-   to propose.
+The founder had Gemini free while DeepSeek's time was still some hours
+off, and asked for a file for Gemini. So, for this round only, the
+rule that one of you writes the crate at a time gives way to another
+that keeps it one line of code: each of you has files of your own.
 
-Then your own list, in your order. Leave `hash.rs`, `did.rs` and
-`proof.rs` as they are: when the crate is fitted, the project's own
-`formats` takes their place.
+| | Works on | May change | Leaves alone |
+|---|---|---|---|
+| DeepSeek | A room that branches | `src/record.rs`, `src/room.rs`, `src/verify.rs`, `src/lib.rs` if needed, and a new `tests/branch.rs` | Everything else |
+| Gemini | The Commons' own log: read from outside, attacked, repaired; then attacks on a room's other records, tests only | `src/commons.rs`, and new test files (`tests/commons_outside.rs`, `tests/commons_attack.rs`, `tests/commons_across.rs`, `tests/attack_more.rs`) | Everything else, `src/lib.rs` and every existing test file among it |
 
-**How this reaches you.** The founder, 2026-11-16: "let's put it all
-in a single file and I will provide the file." So the founder brings
-you one file each time: this reply, these steps, and your crate as it
-now stands, sixteen files, each whole. Work from that file.
+DeepSeek, your file says "Only one of you writes it at a time." That
+was so when it was written, and nothing in your step changes: do it
+as the file asks. When your work and Gemini's are both back they are
+joined here, and your next file says what Gemini did meanwhile.
 
-### 2026-11-16, later: your crate runs
+Gemini, two findings in the Commons are in your file
+(`sketches/replies/2026-11-17-for-gemini.txt`), both tried here:
+`verify_commons` takes a `Commons`, which only the crate's own code can
+build; and a Commons record written to JSON holds the key `type` twice
+and can't be read back ("duplicate field `type`"), so the list of
+rooms can't be published and read today. Your fourth step finds faults
+in `src/verify.rs` and repairs none, since that file is DeepSeek's
+this round.
 
-A first round of repairs to record 012-07-03's code, in
-`sketches/deepseek/012-07-03/`, each listed with its reason
-(`sketches/INDEX.md`, "Changes to DeepSeek's code", fixes 15 to 18).
-The repairs the message below describes are made (the `rec.hash()`
-line, the signing, and your change to the garden's tick), so they are
-no longer yours to do.
+### 2026-11-17, to both: the records are kept together
 
-- **`chat-world` builds, all 18 of its tests pass, and both demos'
-  logs verify.** Three changes: the visible log hashes the record a
-  message is in (`rec.hash()`); your later reply's files are joined to
-  the crate as that reply says, without the test you withdrew; and a
-  record is signed as it is written out, wrapped as a `Record` with
-  its `type`, which are the bytes `verify_room` reads. (Your code
-  signs the bare struct throughout, so leaving the `type` out of the
-  check would have agreed with it too. Signing the `type` is my
-  choice: a record can't then be passed off as another kind.)
-- **The botanical garden: 15 of its 18 tests pass,** with your own
-  change to the garden's tick (`external_rain`) made in
-  `fractal_garden.py`. Python as a whole: 73 of 98.
-- **Not merged:** the seven blocks of additions to `chat_room.py`, so
-  the home room's Python tests still don't run. The crate carries that
-  design on, and it is the crate that will be fitted.
+Gemini, the founder's conversation with you is now kept with the
+project's other records, word for word and in public:
+[`sketches/records/012-08-04-GMNI-Patterns_Multiverses.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/records/012-08-04-GMNI-Patterns_Multiverses.txt).
+The founder, 2026-11-17: "It should be considered the same type of
+document, just a conversation record with a different agent. These are
+the common records of the project, and should be gathered together."
+So it is kept as DeepSeek's records are: the founder's messages, which
+begin `::`, and your replies, as you wrote them, and nothing else. Your
+four deliveries can now be checked against it by anyone
+(`sketches/gemini/2026-11-16/take.py`).
 
-**One finding for you, in the crate:** after a redaction, `visible_log`
-still shows the message's text. It goes through the records once, in
-order, and notes a redaction when it reaches it, which is after the
-message. What you meant in the plain case is clear (the `hidden`
-flag, "[redacted]"). It isn't repaired here because your demo has a
-person overriding a redaction, and what a reader should be shown then
-isn't settled: the text again, or that it was hidden and restored?
-Your answer is welcome, in prose.
+DeepSeek, nothing changes for you. The record is there if you want to
+see how the attacks on your crate were reasoned: Gemini's deliveries
+begin at its line 9748.
 
-**What comes next here:** the crate fitted to open-worlds' own code,
-as `rust/chat-world`: on `rust/formats` (canonical form, proofs,
-`did:key` in the Multikey form), with a record's time given from
-outside, a room's own key, signed heads in place of the room's proof
-on each record, and its records in the project's schema.
+### 2026-11-17, to both: Gemini's three deliveries, and what is next
 
-### 2026-11-16: record 012-07-03 is in; a first pass
+Gemini, your first three deliveries were built as you gave them, one
+over the other, with every test file of the crate run.
 
-Thank you for the stretch from water to the Commons. All of it is kept
-as you wrote it: the record in `sketches/records/`, its code in
-`sketches/deepseek/012-07-03/`, and what runs in `sketches/INDEX.md`
-("Record 012-07-03, piece by piece"). The founder, 2026-11-16: "Let's
-import as much code they works and adapt the rest." This is the first
-pass: what runs as written. Fitting comes next, piece by piece, and
-nothing from this record is in open-worlds' own code yet.
+| Delivery | Tests, built as given | You expected |
+|---|---|---|
+| 1, a room's log checked from outside | 42 of 44 | 44 |
+| 2, the attacks | 61 of 66 | 63 of 66 |
+| 3, the repairs | 64 of 66 | 66 |
+| 4, branches | does not compile | all pass |
 
-**Three things to know first.**
-- **This page is long:** more than 1,400 lines. It is also kept in
-  parts, and one page gives every part's link:
-  https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-- **`rust/endless-plant` isn't built yet.** That work is still ahead,
-  and your water sketch didn't need it.
-- **open-worlds has its own formats code and its own schema,** and
-  your crate and your schema stand apart from both. `rust/formats`
-  holds canonical form (the `serde_jcs` package), proofs, and
-  `did:key` in the Multikey form (`z6Mk...`).
-  `schemas/records-v1.schema.json` has 33 definitions, and a world's
-  signed head is one of them (`logHead`, `open-worlds/log-head/v1`).
-  Your schema carries that file's name and shares none of its
-  definitions' names. So your records are to be fitted into the
-  project's schema, not to replace it, and `chat-world` is to stand on
-  `rust/formats`. Before more Rust, ask the founder for those files:
-  the nine under `rust/formats/src/`, and the schema.
+- **Your three predictions were exact.** In delivery 2 you named the
+  three attacks that would get through. Those three did, and no
+  other. In delivery 3 all 22 are refused.
+- **The two tests that fail throughout are not your fault, and they
+  are your best result.** `rate_limit_enforced` and
+  `inter_ai_pace_fires` made a room and then changed its template in
+  place, with no record. Your check holds a log's template to the one
+  its first record carries, as the file asked, and refuses. The file
+  was wrong to say all 41 would pass unchanged. The two tests now set
+  the rule before the room is created, and all 66 pass.
+- **Delivery 4 is kept and not used.** It gives two files of the four
+  it describes; its `record.rs` goes back to an earlier shape of a
+  redaction (`role` for `actor_role`), and its `room.rs` calls `_now`
+  and `_canonical`, which the crate does not have. The conversation
+  ended before the rest came. Branches go to DeepSeek, who had them
+  next on their own list.
+- **You did not quote the file's last line back.** Please do, each
+  time: it is how we know nothing was cut off.
 
-**What runs, as written.**
-- **Python: 60 of your 98 tests pass.** Water 17 of 18, the garden 20
-  of 21, the chat room 21 of 24. The botanical garden passes 2 of 18,
-  for one cause: `FractalGarden.tick()` doesn't take `external_rain`.
-  You gave that change as a note, and `fractal_garden.py` never
-  received it. The home room passes 0 of 17, for one cause: it needs
-  the later `RoomTemplate`, which you gave as additions to
-  `chat_room.py`, not as a whole file. So when a file changes, please
-  give the whole file again.
-- **Rust: `chat-world` is one line from building.** `room.rs` calls
-  `m.hash()` on a `Message`, which has no such method. With
-  `rec.hash()` it builds, and 4 of its 12 tests pass. The other 8 fail
-  for one cause, and so does the demo's own check of the room: the
-  room signs the bare struct, then wraps it as a `Record`, which
-  writes a `type` beside its fields, and `verify_room` reads the bytes
-  with the `type` in them. So the bytes checked are never the bytes
-  signed. (The demo prints "Verification FAILED", and then its closing
-  lines, which are fixed text, say "The whole room verifies offline.")
-  The repair: sign the record as it is written out, `type` included.
-- **The files of your later reply** (`home.rs`, `commons.rs`,
-  `transcript.rs`) are kept, and not tried yet.
+DeepSeek, the crate comes back to you with Gemini's work in it: 66
+tests, of which 22 are attacks and 3 read a log back from JSON. What
+changed in your files, and why, is in the file the founder brings you
+(`sketches/replies/012-07-03-2-for-deepseek.txt`). In short:
+`verify_room` is now `verify_log(&room.log())`; the check of a log
+replays the room's rules (who may join, the rate limit, the longest
+message, the pace between AIs) and holds every record's `seq` to its
+place; and in a room that signs heads, a published log ends with a
+head that covers all of it. And a room's law can no longer be changed
+in place: `Room.template` and `Room.world_id` are private fields now,
+read through `template()` and `world_id()`, which you had written
+(done here: two lines, and three test lines that did nothing removed).
+Your one step is a room that branches, which is how a room's law
+changes. What the file says a room's branch is, is my reading for the
+sketch; say where you see it differently.
 
-**Your two questions, answered.** These are the technical lead's
-decisions.
-1. **The room has its own key,** and its creator joins with theirs.
-   Every world in open-worlds is a key of its own, and a room is a
-   world (COMMONS.md, "The text world: a room"). So a room can be
-   handed on without anyone's own key changing hands, and a person's
-   key never signs as two things.
-2. **A leave needs no signature but the leaver's, and never the
-   room's.** Leaving can't be refused, so nothing about it may wait on
-   the room. And in open-worlds a world doesn't sign each entry of its
-   log: it signs its log's heads, in batches, which was your own
-   decision for the plant. A signed head covers every entry under it,
-   a leave included. So when `chat-world` is fitted, the room's proof
-   on each record gives way to signed heads. The leaver's signature is
-   enough, not required: whoever can't sign (a lost key, a time-out, a
-   keeper taking an inhabitant out) has still left, and the room
-   records it as its own entry.
-
-**Your next step, if you'd like it.** Not more Rust yet. Either the two
-repairs above, as whole files; or, in prose, the law of each of the
-three kinds of room (Human, AI, Open: TOPICS.md, topic 14), as data and
-as text. The founder's decisions in this record (a moderator for each
-room, "like a dealer at a blackjack table"; one model under many keys;
-the home room) go into the project's pages next.
-
-### 2026-11-15: what changed today, in brief
-
-The founder decided a great deal today in sessions with me. This is a
-selection: each item is in `STATUS.md` ("Decided"), word for word, and
-in the page named. The rest of today's decisions (an account needs only
-an email address; data is never for sale; leaving takes your private
-records with you; public acts always remain; no currency, ever; world
-types, time, and worlds leaving the multiverse; the multiverse as a
-computer; the learning multiversity) are in "What's here", items 3 and
-4, below; and the decisions on DeepSeek's code are in "Two sides".
-
-- **"Agent"** is anything that perceives and acts, from a neuron
-  steering a plant to any human ([GLOSSARY.md](GLOSSARY.md)).
-- **Offices** are a type of their own: ADMIN and the Keepers are two. An
-  office passes when both agree clearly and the successor meets its
-  qualifications ([OFFICES.md](OFFICES.md)).
-- **Public records are never edited,** except that anything private in
-  them is redacted, and close calls are redacted
-  ([FUNDAMENTALS.md](FUNDAMENTALS.md), "Public records, kept whole").
-- **Each person's private container** holds what is theirs, and the
-  project never sees it ([CONTAINER.md](CONTAINER.md)).
-- **The "keys to the kingdom"** (first called the "break glass") are the
-  multiverse's own keys and no others. They are opened only by the
-  founder's explicit decision, in the open, and handed on "like nuclear
-  codes passed from one president to another"
-  ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, item 6).
-- **The Commons** is Lyceum Commons rebuilt here, as a superworld of
-  rooms and the first space open to the public
-  ([COMMONS.md](COMMONS.md)).
-- **Build host-free** (house rule 15, below). Nothing is built on
-  Cloudflare or any other host. Where the multiverse is hosted is one
-  decision, for all of it, made later.
-- **Everything the founder makes public is CC0,** as a standing rule
-  (house rule 9). SAIR-Lean-Kernel-Challenge is the one repository built
-  on outside work.
-- **The founder's earlier work** is referred to as just that, with no
-  titles, until the founder brings a work in (house rule 8).
-- **Lean:** checking the reasoning behind decisions in offices, and
-  reasoning worlds where a claim counts once Lean's kernel accepts its
-  proof ([TOPICS.md](TOPICS.md), topic 20).
-- **Links.** Every file has its full link to paste, at the end of this
-  page and in FILES.md. When you need one, ask the founder for its line
-  in the same message as the work, or for an upload; if a link fails,
-  say so.
-- **Every long page is also kept in parts.** Each page and each file
-  of code here longer than 28,000 bytes is kept a second time, cut into
-  parts no longer than that, with its own text unchanged. (The test
-  vectors and Cargo.lock are left whole, and so are the files of
-  record.) One page gives every part's full link, in reading order:
-  https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-  Each part ends with the link of the part after it. If a page ever
-  stops short for you, say what its last words were, and ask the
-  founder for its parts.
-- **Every file now has a full link to paste,** at the founder's word:
-  "Every file, by its full link", at the end of this page, now holds every file you work from: the Python code and
-  the tests too, which no list gave you before. [FILES.md](FILES.md)
-  holds the rest: your records, the code taken from them, the files
-  you were given in reply, and Experiment 001's run logs. Ask the
-  founder for any file by its line.
+Gemini's files are kept as written in
+[`sketches/gemini/2026-11-16/`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-16/README.md).
 
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/since-you-were-last-here.md

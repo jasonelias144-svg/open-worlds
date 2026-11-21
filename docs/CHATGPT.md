@@ -339,6 +339,16 @@ Also right, and kept in mind:
 
 Every pull request merged after #129, newest first, one line each.
 
+- 2026-11-21, #137: the archive. `STATUS.md` and
+  `docs/COLLABORATING.md` now keep their three most recent days of
+  dated entries; the older ones are in `archive/`, a file for each page
+  and day, whole and unchanged, with a catalogue
+  ([`archive/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md)).
+- 2026-11-21, #136: two more of the founder's records of stage 012 kept
+  with the others, whole.
+- 2026-11-20, #135: the records of stage 012 under the founder's new
+  names; yours is `012-09-05-CGPT` now (under "Your records").
+- 2026-11-20, #134: stage 012's name, Code, on the history page.
 - 2026-11-20, #133: stages `003`, `004`, `005` and `009` replaced by
   complete versions, since the earlier ones left out parts (much of
   `LRL_6` and `OI_6`, and a few lines in `004` and `009`);
