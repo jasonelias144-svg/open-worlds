@@ -349,6 +349,39 @@ of it is asked again until it is needed.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-21, founder, the guide as a starting point: "Keep in mind
+  the idea will change constantly, so this is a starting point that
+  may take a few iterations before settling into a solid framework."
+  And: "I'll have ChatGPT check their CHATGPT.md page as the starting
+  point always, but from there we can use your starting point to
+  develop from." So the outline and the home page are a first
+  framework, to change over the iterations to come; `docs/CHATGPT.md`
+  stays ChatGPT's way in, and points to the guide's home.
+
+- 2026-11-21, founder, the guide's home: "Perfect. And create a page
+  in the repo that we can update as we continue to expand. It will be
+  the home of this comprehensive reference manual." The home is
+  `guide/README.md`: the contents, with how far each chapter has come,
+  what is next, who writes it, the rules, how it is built, and its
+  editions; `guide/contents.py` writes the contents from the outline
+  and the chapters' files.
+
+- 2026-11-21, founder, the guide: "Ok, so I have figured out what I
+  want to work on with ChatGPT: A comprehensive guide to Open Worlds.
+  But this would be intended as a book companion to the Open Worlds as
+  a project and all the elements of a multiverse. It needs to be
+  living documentation that can help a new user interface with a
+  multiverse and understand the Open Worlds project. In order to
+  ensure it touches all areas of code, I would like you to provide an
+  outline of such a comprehensive guide, which may end up being larger
+  than the theory of opposites. It needs to be comprehensive and
+  expandable. This is where we put everything, and in a form that
+  could be downloaded as a book, or printed as a reference volume."
+  The technical lead's outline is `guide/OUTLINE.md`, with the rules
+  every chapter is written by in `guide/README.md`; ChatGPT drafts,
+  the technical lead checks every claim about the code, the founder
+  decides what it covers.
+
 - 2026-11-21, founder, core first: "Good point on the over
   engineering. Let's start with the core functionality. Build out from
   there as needed." Said after the technical lead's caution that
@@ -845,6 +878,25 @@ with the founder.
 ## Log
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
+
+- 2026-11-21 Claude: the guide's home and outline (#141), at the
+  founder's request. `guide/README.md` is the home: where it stands,
+  the contents (85 chapters, each with its progress, written by
+  `guide/contents.py` and checked by `tests/test_guide_contents.py`),
+  what it is for in the founder's words, who writes it, and eight
+  rules every chapter is written by (the guide explains and never
+  rules; six labels, Built, Sketched, Decided, Designed, Idea and
+  Open; sources and a commit at the end of each chapter; numbers that
+  never change; sections that can be read alone; one word for one
+  thing; a text twin for every figure; reference parts made by
+  script). `guide/OUTLINE.md`: front matter, nine parts and a
+  reference section, some eighty-five chapters, each with what it
+  covers, its label today and its sources.
+  `tests/test_guide_outline.py` fails when an area of the repository
+  (a top-level folder or file, a page or tool in docs/, a Rust crate)
+  is named in no chapter. Core first: edition 1 is the front matter,
+  Part I and the glossary. `docs/CHATGPT.md` has a message for
+  ChatGPT.
 
 - 2026-11-21 Claude: the founder's way in from the Library to a room,
   and "Let's start with the core functionality", recorded (#140), in
