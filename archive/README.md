@@ -26,8 +26,11 @@ the page and run it again. It stops on:
 - a line at the left margin inside a list entry, which would move
   with that entry: move it above the section's first entry, or
   indent it to make it part of the entry;
-- a code block that is never closed, or one that joins two list
-  entries: close it where it belongs;
+- a code block that is never closed, or one that an entry opens
+  and does not close: close it where it belongs;
+- a line inside a code block that would start an entry or a
+  section, as a block left open and closed by a later one would
+  hold: close the block where it belongs, or indent that line;
 - an entry dated later than tomorrow: correct its date;
 - an entry dated on a day already here: a new entry takes the day
   it is written, and names any earlier day inside it.
