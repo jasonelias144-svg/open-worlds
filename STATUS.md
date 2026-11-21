@@ -349,6 +349,13 @@ of it is asked again until it is needed.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-21, founder, a room like Slack. To the technical lead's note
+  that channels and threads inside one space (Slack, Discord) come
+  closest to "sections or areas" within a room: "Yes, like Slack."
+  Recorded in `docs/COMMONS.md`, "A room of many forms", with how
+  Slack's parts (channels, threads, direct messages, live talk) read
+  onto a room. Still an idea set aside, not decided or built.
+
 - 2026-11-21, founder, a room of many forms: "One idea I had that I
   forgot to mention: we look at our chat rooms as a possible combination
   of message board or discussion board, live chat room, group text chat,
@@ -797,6 +804,11 @@ with the founder.
 ## Log
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
+
+- 2026-11-21 Claude: the founder's "Yes, like Slack" recorded (#139),
+  in STATUS.md "Decided" and `docs/COMMONS.md`, "A room of many
+  forms", with a reading of Slack's parts onto a room and the
+  technical lead's lean on the open question of areas.
 
 - 2026-11-21 Claude: the founder's idea of a room of many forms put on
   the record (#138): STATUS.md "Decided"; `docs/COMMONS.md`, "A room of

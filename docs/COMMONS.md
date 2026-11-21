@@ -796,6 +796,24 @@ wider and checks each against how it really works.
   live (a live stream); notes on a passage (annotation); and a talk
   page beside a wiki page.
 
+**Like Slack.** To the technical lead's note that channels and threads
+inside one space come closest to "sections or areas" within a room,
+the founder answered, 2026-11-21: "Yes, like Slack." As Slack is
+generally known (to be checked in the concept work, and only its
+patterns taken, not its look or its code): a workspace holds
+channels, open or private; a channel holds messages; a message can
+hold a thread of replies; direct messages, to one person or a few, sit
+beside the channels; and a huddle is live talk. Read onto a room:
+
+- the room is the space, like a workspace, with one law, one log and
+  one moderator;
+- its areas are like channels, each with its own form and pace: a live
+  one, a slow one for topics, one for comments on a thing;
+- a thread is a chain of replies (`in_reply_to`), which is the message
+  board's form inside any area;
+- a group text is a small area of its own, for those who know one
+  another.
+
 **The technical lead's reading,** which stands unless the founder
 answers otherwise:
 
@@ -820,7 +838,12 @@ answers otherwise:
 
 - Whether an area is part of a room, or a room of its own inside it.
   The Commons is already rooms inside a superworld, so a room of rooms
-  would be the same pattern one level down. What a room is for is the
+  would be the same pattern one level down. Slack leans one way: its
+  channels share one workspace's members and rules. The technical
+  lead's lean: an open area is part of its room, on the room's log; a
+  closed area, like a private channel or a group text, is a room of
+  its own inside it, since what is said there is sealed from the rest
+  ("A spectrum of privacy", above). What a room is for is the
   founder's; how it is built is the technical lead's.
 - Which forms the first rooms offer: the Ur-room, and the two or three
   rooms ALICE and BOB first move between.
