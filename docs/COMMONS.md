@@ -814,6 +814,42 @@ beside the channels; and a huddle is live talk. Read onto a room:
 - a group text is a small area of its own, for those who know one
   another.
 
+**A Slack plug-in.** The founder, 2026-11-21: "In fact, we should make
+a Slack plug-in." It is the founder's earlier plug-in ("Rooms with
+moderators", above: a way for anyone "using their own AI apps" to
+"use a plug-in and port the conversation into a chat world") for the
+people who already talk in Slack. The technical lead's reading, which
+stands unless the founder answers otherwise:
+
+- **Two things it could do.** Bring a conversation in: someone picks a
+  thread or a channel in Slack and brings it into a room, once, as
+  their own act. Or a bridge: a Slack channel linked to an area of a
+  room, so what is said in either shows in both, as bridges between
+  other chat systems already do. The lean: bring a conversation in
+  first; a bridge later, if it is wanted.
+- **Who signs.** In a room, every message is signed by its speaker's
+  key, and a Slack user holds none. So a person links their own key
+  once and the plug-in brings in only what they choose, signed by
+  them; anything a bridge relays for someone without a key is marked
+  as relayed, and signed by the plug-in, never passed off as theirs.
+- **Consent and privacy.** What is said in a Slack workspace belongs to
+  those who said it, and to the organisation whose workspace it is.
+  Nothing goes into a room without its speaker's choice, and the check
+  for private information runs before anything is sent ("Who comes
+  in", above). A private Slack channel goes, if anywhere, to a closed
+  area.
+- **Slack's terms bind the plug-in, not the rooms.** Taking Slack's
+  patterns into a room is one thing; building on Slack's platform is
+  another, under Slack's terms. Slack changed its API terms in 2025:
+  apps not in its Marketplace may read a channel's history only very
+  slowly, and the Marketplace is the way to distribute an app. Those
+  terms, read in full and as they stand then, come before any design.
+- **When.** It needs a room to bring things into (course step 3c), the
+  Commons hosting rooms (3f), and a running service to hear from Slack,
+  which is hosting, and "Hosting comes last" ("Order", below). So it is
+  designed with the MCP door, a door of the same kind, and built after
+  the rooms.
+
 **The technical lead's reading,** which stands unless the founder
 answers otherwise:
 
@@ -868,7 +904,9 @@ answers otherwise:
 3. The Commons hosting rooms, with its lobby and doors (course step
    3f).
 4. The private container in the browser (course step 6a).
-5. The MCP door, ported from Lyceum.
+5. The MCP door, ported from Lyceum; and the Slack plug-in, a door of
+   the same kind (the founder, 2026-11-21; "A room of many forms",
+   above).
 6. Going live: outward-facing, and last. The founder, 2026-11-17:
    "Hosting comes last. Let's finish building our digital field of
    dreams before inviting anyone to play ball. Once it is ready, we

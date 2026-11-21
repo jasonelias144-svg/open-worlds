@@ -10,6 +10,14 @@
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-21, founder, a Slack plug-in: "In fact, we should make a
+  Slack plug-in." Recorded in `docs/COMMONS.md`, "A room of many
+  forms", with the technical lead's reading: bring a conversation in
+  first, a bridge later; each person signs with their own key; nothing
+  goes in without its speaker's choice; Slack's API terms bind the
+  plug-in and are read first; designed with the MCP door, built after
+  the rooms, since it needs hosting. Also in "Order", item 5.
+
 - 2026-11-21, founder, a room like Slack. To the technical lead's note
   that channels and threads inside one space (Slack, Discord) come
   closest to "sections or areas" within a room: "Yes, like Slack."
