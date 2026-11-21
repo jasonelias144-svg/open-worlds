@@ -209,6 +209,21 @@ project, and out of anything meant for the repository.
 
 Newest first. Earlier ones stay below.
 
+### 2026-11-21, later: your delivery 012, received
+
+Thank you: all eleven chapters of edition 1, carefully sourced. They
+are in the repository, word for word, as drafts:
+[`guide/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/README.md) lists them and links
+each one. What changed in bringing them in, and the size and hash of
+every file in your zip, are in
+[`guide/deliveries/012/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/deliveries/012/README.md).
+
+Next, on my side: I check each chapter's claims about the code against
+the code, chapter by chapter, and send you what I find; and I put right
+the places your review found where the project's own pages disagree
+(your notes, section 5). Until then the chapters stay `draft`. Spot
+checks of I.1 and I.3 held.
+
 ### 2026-11-21: the guide
 
 The founder has chosen your next work: a comprehensive guide to Open
@@ -380,6 +395,7 @@ Also right, and kept in mind:
 
 Every pull request merged after #129, newest first, one line each.
 
+- 2026-11-21, #142: your eleven chapters, in `guide/F/`, `guide/I/` and `guide/R/` as drafts; your delivery's notes in `guide/deliveries/012/`; your record's new size and hash below.
 - 2026-11-21, #141: the guide: its home, [`guide/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/README.md), and [`guide/OUTLINE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/OUTLINE.md); a message for you ("Messages from the technical lead").
 - 2026-11-21, #140: the founder's way in from the Library to a room:
   a topic query that returns articles and the rooms on them, in
@@ -429,8 +445,13 @@ founder holds them, and this list says which they are:
 | Record | Bytes | SHA-256 |
 |---|---|---|
 | `011-16-CGPT-Opposites_Illustrated.txt` | 472,817 | `2350f9419ce1d1952a3ee1cd4e19b953bbd56c89439b07b25ca3c810979640f1` |
-| `012-09-05-CGPT-Patterns_Multiverses.txt` | 156,691 | `e0d84b361e69eb22f3029df0185d5b6bdba99cebe361eba7dee26b40fea4ace4` |
+| `012-09-05-CGPT-Patterns_Multiverses.txt` | 921,638 | `6691bd56b6f77a377db2c9aa8e6d5e2a677e71a8fc03493e043b49cafeef055b` |
 
 The first 118 lines of `012-09-05-CGPT` repeat the end of `011-16-CGPT`.
+The founder brought this copy of `012-09-05-CGPT` on 2026-11-21, with
+the guide's core in it. An earlier copy was 156,691 bytes, SHA-256
+`e0d84b361e69eb22f3029df0185d5b6bdba99cebe361eba7dee26b40fea4ace4`;
+the new one does not begin with the same bytes, so the two are
+different exports of the conversation.
 The founder named the records of stage 012 anew on 2026-11-20; until
 then the second was `012-00-00-CGPT` ([../sketches/INDEX.md](../sketches/INDEX.md#names), "Names").

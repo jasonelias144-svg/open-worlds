@@ -47,6 +47,10 @@ KINDS = [
      "works given to the project whole, to be read: the first is the "
      "founder's *Art of Peace and the Strategist*; too large to read "
      "in one go"),
+    ("guide/deliveries/", "What ChatGPT delivered for the guide",
+     "each delivery's handoff and review notes, with the size and hash "
+     "of every file it came with; the chapters themselves are in "
+     "COLLABORATING.md's list"),
     ("archive/", "The archive",
      "the older dated entries of STATUS.md and COLLABORATING.md, moved "
      "whole, a file for each page and day, with the catalogue "

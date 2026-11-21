@@ -24,35 +24,41 @@ written. It changes with every change to the guide.
   as the guide finds its shape.
 - **Edition:** none yet. Edition 1 is the front matter, Part I and
   the glossary.
-- **Next:** ChatGPT's reading of the outline, and a draft of I.1,
-  "What Open Worlds is" ([`docs/CHATGPT.md`](../docs/CHATGPT.md),
-  "Messages from the technical lead", 2026-11-21).
+- **Drafted:** all eleven chapters of edition 1, by ChatGPT, from the
+  repository at commit `7ade210`
+  ([delivery 012](deliveries/012/README.md)). They are here word for
+  word, marked `Progress: draft`.
+- **Next:** the technical lead checks each chapter's claims about the
+  code against the code, and marks it `checked at <commit>`; the
+  places where the project's own pages disagree, which ChatGPT's
+  review found, are put right in those pages; the founder reads; then
+  edition 1 is made.
 
 ## Contents
 
 <!-- contents: written by guide/contents.py; do not edit by hand -->
 
-85 chapters in the outline; 0 written.
+85 chapters in the outline; 11 written.
 
 ### Front matter
 
 | Chapter | Title | Progress |
 |---|---|---|
-| F.1 | How to read this guide | planned |
-| F.2 | Four ways through | planned |
-| F.3 | Checking this guide | planned |
-| F.4 | Licence | planned |
+| F.1 | [How to read this guide](F/01-how-to-read-this-guide.md) | draft |
+| F.2 | [Four ways through](F/02-four-ways-through.md) | draft |
+| F.3 | [Checking this guide](F/03-checking-this-guide.md) | draft |
+| F.4 | [Licence](F/04-licence.md) | draft |
 
 ### Part I. Arriving: the first hour
 
 | Chapter | Title | Progress |
 |---|---|---|
-| I.1 | What Open Worlds is | planned |
-| I.2 | A first walk through a multiverse | planned |
-| I.3 | Who you are here | planned |
-| I.4 | What you are guaranteed | planned |
-| I.5 | For an AI arriving | planned |
-| I.6 | Where to go next | planned |
+| I.1 | [What Open Worlds is](I/01-what-open-worlds-is.md) | draft |
+| I.2 | [A first walk through a multiverse](I/02-a-first-walk-through-a-multiverse.md) | draft |
+| I.3 | [Who you are here](I/03-who-you-are-here.md) | draft |
+| I.4 | [What you are guaranteed](I/04-what-you-are-guaranteed.md) | draft |
+| I.5 | [For an AI arriving](I/05-for-an-ai-arriving.md) | draft |
+| I.6 | [Where to go next](I/06-where-to-go-next.md) | draft |
 
 ### Part II. The multiverse
 
@@ -164,7 +170,7 @@ written. It changes with every change to the guide.
 
 | Chapter | Title | Progress |
 |---|---|---|
-| R.1 | Glossary | planned |
+| R.1 | [Glossary](R/01-glossary.md) | draft |
 | R.2 | Record formats | planned |
 | R.3 | Test vectors | planned |
 | R.4 | The files | planned |
@@ -190,6 +196,11 @@ up being larger than the theory of opposites. It needs to be
 comprehensive and expandable. This is where we put everything, and in
 a form that could be downloaded as a book, or printed as a reference
 volume."
+
+And to ChatGPT, after the first chapter: "This is a great start and it should be the main reference manual. But also, we should be able to fill [i]n the blanks with what we plan to develop, and that way it also becomes a living roadmap and a way to help preserve consistency."
+So a chapter can describe what is planned as well as what is built,
+under the labels that say which is which; ChatGPT proposes a short
+"Next update" note for planned work (F.1.7).
 
 And of this page: "create a page in the repo that we can update as
 we continue to expand. It will be the home of this comprehensive

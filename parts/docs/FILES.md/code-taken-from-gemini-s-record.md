@@ -117,6 +117,19 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/009
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/README.md
 ```
 
+## What ChatGPT delivered for the guide
+
+In `guide/deliveries`, 4 files, 60 KB in all, the largest 34 KB: each delivery's handoff and review notes, with the size and hash of every file it came with; the chapters themselves are in COLLABORATING.md's list.
+
+**`guide/deliveries/012`** (4 files, 60 KB):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/deliveries/012/00_Read_First.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/deliveries/012/03_Living_Roadmap.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/deliveries/012/23_Core_Review_Notes.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/deliveries/012/README.md
+```
+
 ## The archive
 
 In `archive`, 11 files, 474 KB in all, the largest 101 KB: the older dated entries of STATUS.md and COLLABORATING.md, moved whole, a file for each page and day, with the catalogue (`archive/README.md`); `docs/archive.py` writes it.

@@ -231,6 +231,35 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/forma
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/formats/record_vectors.py/02.txt
 ```
 
+## `guide/I/04-what-you-are-guaranteed.md`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/guide/I/04-what-you-are-guaranteed.md/start.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/guide/I/04-what-you-are-guaranteed.md/i-4-9-what-a-complete-participant-account-must.md
+```
+
+## `guide/I/05-for-an-ai-arriving.md`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/guide/I/05-for-an-ai-arriving.md/start.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/guide/I/05-for-an-ai-arriving.md/i-5-8-from-a-trial-to-a-continuing-life.md
+```
+
+## `guide/I/06-where-to-go-next.md`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/guide/I/06-where-to-go-next.md/start.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/guide/I/06-where-to-go-next.md/i-6-10-how-do-i-resume-reading-or-project-work.md
+```
+
+## `guide/R/01-glossary.md`, in 3 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/guide/R/01-glossary.md/start.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/guide/R/01-glossary.md/r-1-23-public-key-private-signing-key-and-world.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/guide/R/01-glossary.md/sources-and-review-scope-for-r-1.md
+```
+
 ## `rust/acts/src/lib.rs`, in 2 parts
 
 ```text

@@ -9,7 +9,7 @@ need links through this method.").
 
 COLLABORATING.md lists the files a reader works from: every page,
 all the code, the tests and the vectors. This page lists the rest,
-1011 files of record, best sent when a question needs them.
+1015 files of record, best sent when a question needs them.
 
 Written by `python3 docs/files.py`;
 `tests/test_collaborating_links.py` fails if a file is added, moved
@@ -1011,6 +1011,19 @@ In `library`, 2 files, 437 KB in all, the largest 433 KB: works given to the pro
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/009-13-CGPT-Peace_and_the_Strategist.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/README.md
+```
+
+## What ChatGPT delivered for the guide
+
+In `guide/deliveries`, 4 files, 60 KB in all, the largest 34 KB: each delivery's handoff and review notes, with the size and hash of every file it came with; the chapters themselves are in COLLABORATING.md's list.
+
+**`guide/deliveries/012`** (4 files, 60 KB):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/deliveries/012/00_Read_First.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/deliveries/012/03_Living_Roadmap.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/deliveries/012/23_Core_Review_Notes.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/deliveries/012/README.md
 ```
 
 ## The archive
