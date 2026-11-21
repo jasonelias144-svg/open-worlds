@@ -349,6 +349,18 @@ of it is asked again until it is needed.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-21, founder, a room of many forms: "One idea I had that I
+  forgot to mention: we look at our chat rooms as a possible combination
+  of message board or discussion board, live chat room, group text chat,
+  and general place for single comments, like on a YouTube video. We
+  should look at all forms of digital chat forms and take what works,
+  maybe combining all by having sections or areas with a room. I'm not
+  sure, but I wanted to get it on record." On the record as an idea set
+  aside, not decided or built. The forms to look at, and the technical
+  lead's reading (one log, many ways of showing it), are in
+  `docs/COMMONS.md`, "A room of many forms"; ChatGPT's list of ideas set
+  aside has it.
+
 - 2026-11-21, founder, archiving. On the technical lead's proposal to
   move the older entries of the long pages into dated archive files:
   "Yes, let's begin archiving processes and then document those
@@ -785,6 +797,11 @@ with the founder.
 ## Log
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
+
+- 2026-11-21 Claude: the founder's idea of a room of many forms put on
+  the record (#138): STATUS.md "Decided"; `docs/COMMONS.md`, "A room of
+  many forms", with the forms to look at, the technical lead's reading
+  and what is open; and `docs/CHATGPT.md`, among the ideas set aside.
 
 - 2026-11-21 Claude: the archive, at the founder's word (#137).
   `docs/archive.py` moves a living page's older dated entries, whole,
