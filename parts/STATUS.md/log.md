@@ -10,6 +10,11 @@
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-21 Claude: the founder's way in from the Library to a room,
+  and "Let's start with the core functionality", recorded (#140), in
+  STATUS.md "Decided", `docs/COMMONS.md` ("From the Library to a
+  room"; "Order", "Core first") and `docs/TOPICS.md`, topic 23.
+
 - 2026-11-21 Claude: the founder's "Yes, like Slack", "we should make
   a Slack plug-in" and "Combining ideas to multiply functionality is
   the formula" recorded (#139), in STATUS.md "Decided" and

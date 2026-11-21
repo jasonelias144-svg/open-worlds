@@ -123,7 +123,8 @@ So an idea set aside goes through four hands, in this order:
   comments on a thing, perhaps in areas within it, "like Slack", the
   founder added, and a Slack plug-in; "Like Slack, Reddit, Quora,
   and AOL--for AI and humans", and "Combining ideas to multiply
-  functionality is the formula"); and its "Open".
+  functionality is the formula"); "From the Library to a room" (a topic
+  query that leads to rooms); and its "Open".
 - [`docs/research/GAMES-AND-WORLDS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/GAMES-AND-WORLDS.md), "Worlds built for learners".
 
 **A concept is ready for a spec** when it says:
@@ -348,6 +349,12 @@ Also right, and kept in mind:
 
 Every pull request merged after #129, newest first, one line each.
 
+- 2026-11-21, #140: the founder's way in from the Library to a room:
+  a topic query that returns articles and the rooms on them, in
+  [`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md), "From the Library to a room".
+  And the founder's "Let's start with the core functionality. Build
+  out from there as needed." ("Order", "Core first"): the room and the
+  Library's word search first; the rest when a need shows.
 - 2026-11-21, #139: the founder's "Yes, like Slack", in the same
   section: a room's areas like Slack's channels, with threads in them;
   the founder's "we should make a Slack plug-in", with how it would

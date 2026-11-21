@@ -1068,6 +1068,17 @@ for the copy, with the same answers in Rust and Python for a list of
 test questions; the first pages written by script from
 [GLOSSARY.md](GLOSSARY.md) and a room's law.
 
+**Since:** the founder, 2026-11-21, on a way in by topic: "Maybe even
+starting from a Wikipedia clone 'library' room that allows for passage
+through a topic query to a list of candidate rooms to enter," and the
+copy "as a model training basis". The reading is in
+[COMMONS.md](COMMONS.md), "From the Library to a room": a query
+returns articles and, beside each, the rooms on it as doors; a room
+says its topics in its law; each article can have a room of its own;
+the candidates are ranked by a rule anyone can read; reading stays
+one's own. Training on the copy is open, with three things said
+plainly there.
+
 **Send back:** a design for word search that is the same on every
 machine; or the list of what an individual arriving in the Commons
 would most need to look up, in the order they would need it.

@@ -608,6 +608,58 @@ as it is now "could come later".
   Strategist* ([../library](../library/README.md)), public domain at
   the founder's word of 2026-11-17.
 
+**From the Library to a room.** The founder, 2026-11-21: "Maybe even
+starting from a Wikipedia clone 'library' room that allows for passage
+through a topic query to a list of candidate rooms to enter. From
+there you can figure out where to go. It also relates to our frozen
+Wikipedia copy as a model training basis." The technical lead's
+reading, which stands unless the founder answers otherwise; none of it
+is built:
+
+- **A way in by topic.** Someone asks the Library about a topic, and
+  what comes back is the articles that match and, beside each, the
+  rooms on it, as doors. It joins two things already designed: the
+  Library's lookup and the lobby's list of doors ("The map", below).
+  AOL's keywords did the same: a word typed took you to a place.
+- **A room says its topics,** in its law, by the Library's article
+  titles, so a room is found by what it is about, and the list of doors
+  comes from what rooms publish, as the map's cards do.
+- **Each article can have a room of its own,** beside it, like a talk
+  page: the "comments on a thing" form of "A room of many forms"
+  (below). So the Library ties the forms together: the article to
+  read, a room to talk about it, and rooms on the topic.
+- **The candidates are ranked by a rule anyone can read:** how well a
+  room matches, then how many are in it, which a door already shows.
+  Never by who is asking.
+- **Reading stays one's own.** The query and the list it returns are
+  the reader's, and no record is kept of them, as for any lookup.
+  Going through a door is an arrival like any other, on that room's
+  record.
+- **No room yet on a topic:** the reader can start one, and its first
+  topic is the article they came from. That is how rooms could grow
+  where people's questions are.
+- **Not a clone of Wikipedia's look or name.** The Library holds a copy
+  of Wikipedia's text, under its licence, and says where it comes from.
+  The rooms, the doors and the multiverse's own pages are the
+  project's.
+- **When:** the Library is a room (course step 3c), and the way in by
+  topic belongs to the lobby (3f). With the first few rooms, a topic
+  leads to few doors; the Library is useful from the start for
+  looking things up, and the doors fill as rooms are added.
+- **The copy as a basis for training.** That is new: until now the copy
+  was for looking things up. A copy named by its hash is a basis anyone
+  can get and check, which is what "to study" asks of a model
+  ([ADMIN.md](ADMIN.md), "Free, in four senses"). Three things are
+  said plainly. The small copy (2.6 GB, the "top" articles) is far too
+  little to train a capable model from nothing; it could fine-tune one,
+  or test what a mind knows against a text anyone can check. Fully open
+  models already publish training data that includes Wikipedia, so the
+  copy may already be part of their basis; which, and which version,
+  is looked up first. And CC BY-SA 4.0 asks for attribution and the
+  same licence on what is made from the text; whether trained weights
+  are made from it, in that sense, is unsettled, so it is not assumed
+  either way, and the founder decides with what is known then.
+
 **The multiverse's own pages, on the Library's second shelf.** The
 founder: "We could also host a connected wiki that stores information
 about the multiverse, this way any agent and look up any information
@@ -917,6 +969,22 @@ answers otherwise:
   for that thing, or with the thing itself.
 
 ## Order
+
+**Core first.** The founder, 2026-11-21, after the ideas above for
+what a room can be: "Good point on the over engineering. Let's start
+with the core functionality. Build out from there as needed." So each
+thing is built at its core first, and grows when a need shows. The
+technical lead's reading of the core:
+
+- **The room** (course step 3c): one room, with its law, its signed
+  log and its check; people and AIs speaking in it, live; and a
+  message that answers another. The sketch crate `chat-world-now`
+  already holds most of this.
+- **The Library:** plain word search over the copy, where reading is
+  one's own.
+- **Later, when a need shows:** areas in a room and the other forms,
+  ranking, the way in by topic, the Slack plug-in, and training on the
+  copy. Each stays on record, above, until then.
 
 1. This design, and its place in the course. Since the recheck of
    2026-11-16 the Commons is in the course, as the first public space,

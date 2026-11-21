@@ -1,10 +1,54 @@
 > Part of `docs/COMMONS.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "Open".
+> This part holds: "Order" to "Open".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/the-first-to-live-there-the-library-and-the.md
 > After this part: nothing; this is the last part.
 > Made by docs/parts.py from the file. To change it, change the file.
+
+## Order
+
+**Core first.** The founder, 2026-11-21, after the ideas above for
+what a room can be: "Good point on the over engineering. Let's start
+with the core functionality. Build out from there as needed." So each
+thing is built at its core first, and grows when a need shows. The
+technical lead's reading of the core:
+
+- **The room** (course step 3c): one room, with its law, its signed
+  log and its check; people and AIs speaking in it, live; and a
+  message that answers another. The sketch crate `chat-world-now`
+  already holds most of this.
+- **The Library:** plain word search over the copy, where reading is
+  one's own.
+- **Later, when a need shows:** areas in a room and the other forms,
+  ranking, the way in by topic, the Slack plug-in, and training on the
+  copy. Each stays on record, above, until then.
+
+1. This design, and its place in the course. Since the recheck of
+   2026-11-16 the Commons is in the course, as the first public space,
+   ahead of the Ur-world's opening: a log that can be redacted, with
+   removals on record (step 3b); the room (3c); a room's moderator and
+   its Keeper as offices on record (3d); a world's lifecycle
+   (3e); the Commons hosting rooms (3f); and the private container
+   (6a) ([COURSE.md](COURSE.md)).
+2. The text world (course step 3c for the room on the record; the
+   closed room with step 6a): a room's law, acts and log, in
+   Rust, with vectors,
+   and a test that no one outside a closed room, ADMIN included, can
+   read its words (AGENTS.md: a world that keeps private spaces tests
+   this).
+3. The Commons hosting rooms, with its lobby and doors (course step
+   3f).
+4. The private container in the browser (course step 6a).
+5. The MCP door, ported from Lyceum; and the Slack plug-in, a door of
+   the same kind (the founder, 2026-11-21; "A room of many forms",
+   above).
+6. Going live: outward-facing, and last. The founder, 2026-11-17:
+   "Hosting comes last. Let's finish building our digital field of
+   dreams before inviting anyone to play ball. Once it is ready, we
+   will know the scope of hosting needed." Where the multiverse is
+   hosted is still decided once for all of it, and by the founder;
+   it is decided when what has been built shows how much is needed.
 
 ## Open
 
