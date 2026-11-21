@@ -120,7 +120,10 @@ So an idea set aside goes through four hands, in this order:
 - [`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md), "Personal information in a room: ideas";
   "A room of many forms" (the founder's idea of 2026-11-21: a room that
   combines a message board, a live chat room, a group text and single
-  comments on a thing, perhaps in areas within it); and its "Open".
+  comments on a thing, perhaps in areas within it, "like Slack", the
+  founder added, and a Slack plug-in; "Like Slack, Reddit, Quora,
+  and AOL--for AI and humans", and "Combining ideas to multiply
+  functionality is the formula"); and its "Open".
 - [`docs/research/GAMES-AND-WORLDS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/GAMES-AND-WORLDS.md), "Worlds built for learners".
 
 **A concept is ready for a spec** when it says:
@@ -345,6 +348,11 @@ Also right, and kept in mind:
 
 Every pull request merged after #129, newest first, one line each.
 
+- 2026-11-21, #139: the founder's "Yes, like Slack", in the same
+  section: a room's areas like Slack's channels, with threads in them;
+  the founder's "we should make a Slack plug-in", with how it would
+  work; and "Combining ideas to multiply functionality is the
+  formula".
 - 2026-11-21, #138: the founder's idea of a room of many forms, in
   [`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md), "A room of many forms", and among the
   ideas set aside.

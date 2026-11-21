@@ -349,6 +349,30 @@ of it is asked again until it is needed.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-21, founder, the formula: "Like Slack, Reddit, Quora, and
+  AOL--for AI and humans. And more, but you get the idea. Combining
+  ideas to multiply functionality is the formula." Recorded in
+  `docs/COMMONS.md`, "A room of many forms", with the technical lead's
+  reading: the formula holds when the ideas share a core, one record
+  with many views; volume, ranking and who is speaking are what is
+  harder with AI and humans together; the first rooms take two forms
+  first.
+
+- 2026-11-21, founder, a Slack plug-in: "In fact, we should make a
+  Slack plug-in." Recorded in `docs/COMMONS.md`, "A room of many
+  forms", with the technical lead's reading: bring a conversation in
+  first, a bridge later; each person signs with their own key; nothing
+  goes in without its speaker's choice; Slack's API terms bind the
+  plug-in and are read first; designed with the MCP door, built after
+  the rooms, since it needs hosting. Also in "Order", item 5.
+
+- 2026-11-21, founder, a room like Slack. To the technical lead's note
+  that channels and threads inside one space (Slack, Discord) come
+  closest to "sections or areas" within a room: "Yes, like Slack."
+  Recorded in `docs/COMMONS.md`, "A room of many forms", with how
+  Slack's parts (channels, threads, direct messages, live talk) read
+  onto a room. Still an idea set aside, not decided or built.
+
 - 2026-11-21, founder, a room of many forms: "One idea I had that I
   forgot to mention: we look at our chat rooms as a possible combination
   of message board or discussion board, live chat room, group text chat,
@@ -797,6 +821,14 @@ with the founder.
 ## Log
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
+
+- 2026-11-21 Claude: the founder's "Yes, like Slack", "we should make
+  a Slack plug-in" and "Combining ideas to multiply functionality is
+  the formula" recorded (#139), in STATUS.md "Decided" and
+  `docs/COMMONS.md`, "A room of many forms", with a reading of Slack's
+  parts onto a room, the technical lead's lean on the open question
+  of areas, a reading of the plug-in (also in "Order", item 5), and
+  a reading of the formula.
 
 - 2026-11-21 Claude: the founder's idea of a room of many forms put on
   the record (#138): STATUS.md "Decided"; `docs/COMMONS.md`, "A room of
