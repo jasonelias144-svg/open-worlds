@@ -10,6 +10,38 @@
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-22, founder, a book of the founder's own words, gathered
+  from the records: "Also, now that you have the full collection of conversation
+  records, please make a note that it is very important to set aside
+  some time to process all the records and extract all my prompts
+  from the records and assign them ids and use them to index all the
+  conversation records. My idea long ago was this: if I have to sit
+  down and write a book, I may never get started, but in the course
+  of a conversation, stimulated by the immediacy of a topic, I find
+  myself expressing much of what I believe, but in little pieces at a
+  time, such as this. My thought was to let them accumulate for a
+  while and then gather them all together. Eventually I will have
+  enough of my own words to make a whole book with just my quotes or
+  prompts. Please add this to the list of future plans."
+  Added to the list of future plans (docs/COURSE.md, "Waiting", "The
+  founder's words, gathered"), with the technical lead's reading of
+  how it is done. Very important, in the founder's words; a time of
+  its own, set aside.
+
+- 2026-11-22, founder, ChatGPT and pages: "Also, keep in mind that ChatGPT can navigate multiple pages
+  without any trouble. We should not be limited by a single page."
+  And then: "Yeah, ChatGPT can follow links, so you could fill [t]heir
+  page with instead links." And: "Fill their page with instructions
+  and links." So ChatGPT's page, docs/CHATGPT.md, is instructions and
+  links: what to do each time they begin, and where everything is.
+  The messages, what changed, and the ideas set aside are pages of
+  their own (docs/CHATGPT-MESSAGES.md, docs/CHATGPT-CHANGES.md,
+  docs/CHATGPT-IDEAS.md), linked from it. The aim of keeping one page
+  under 28,000 bytes is dropped, and moving its older messages to the
+  archive is no longer needed for that. DeepSeek and Gemini are not affected: they
+  still get one whole file each, since links can't be relied on to
+  reach them (the founder, 2026-11-22).
+
 - 2026-11-22, founder, the guide's readers: "Ok, so I was thinking about the multiverse manual and I realized
   that we should be aware of a variety of possible readers, with two
   main types: human and AI. But we should accommodate a variety of

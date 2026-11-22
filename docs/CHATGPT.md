@@ -3,13 +3,59 @@
 For the founder's conversations with ChatGPT. The founder, 2026-11-20:
 "I propose a special page for ChatGPT to be able to get updated on
 project changes, but also to have a space to collect my conversation
-records with ChatGPT during this phase." This is that page. It is kept
-short, so that it opens whole.
+records with ChatGPT during this phase." This is that page: your way
+in, with instructions, and links to everything else. The founder,
+2026-11-22: "ChatGPT can navigate multiple pages without any trouble.
+We should not be limited by a single page." And: "Fill their page
+with instructions and links." So the long parts are pages of their
+own, linked here. Follow the links.
 
-**Kept current.** Every pull request merged after #129 (your
-baseline, `c69e74d`) adds a line to [What changed](#what-changed),
-newest first (`AGENTS.md`, "Every session"). If one has merged that
-the list doesn't have, this page is behind: say so.
+## Each time you begin
+
+1. **Read what changed:** [`docs/CHATGPT-CHANGES.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT-CHANGES.md),
+   every pull request merged since your baseline, #129 (`c69e74d`),
+   newest first, one line each. Every pull request adds its line
+   before it merges. If one has merged that the list doesn't have,
+   say so.
+2. **Read the messages:** [`docs/CHATGPT-MESSAGES.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT-MESSAGES.md),
+   the technical lead's messages to you, newest first. The newest says
+   what is asked of you now.
+3. **Do what the newest message asks,** from the pages it links. For
+   the guide: its home, [`guide/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/README.md), with
+   its rules and who it is for, and its outline,
+   [`guide/OUTLINE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/OUTLINE.md).
+4. **Send what you make** through the founder, as files, as "Sending
+   something" says below.
+5. **To read the project from the start,** follow "Start here", below.
+
+## Your pages
+
+- [Messages from the technical lead](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT-MESSAGES.md),
+  newest first.
+- [What changed](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT-CHANGES.md), every pull request since
+  your baseline.
+- [From an idea to code](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT-IDEAS.md): how an idea set
+  aside becomes code, where the lists of ideas set aside are kept, and
+  what a concept needs before it can become a spec.
+- [Your records](#your-records), below: your conversations with the
+  founder, by name, size and hash.
+- Your own writing, as it is brought in: `docs/chatgpt/` ("Four
+  areas", below).
+
+## Pages you will use most
+
+- [`guide/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/README.md) and
+  [`guide/OUTLINE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/OUTLINE.md): the guide's home and
+  plan.
+- `STATUS.md`: what is happening now ("Now"), and every decision, word
+  for word ("Decided"); it is long, so
+  [`parts/INDEX.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md) gives it in parts.
+- [`docs/COLLABORATING.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COLLABORATING.md): what DeepSeek
+  and Gemini are told. Its last section, "Every file, by its full
+  link", lists every file a reader works from;
+  [`docs/FILES.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FILES.md) lists the files of record.
+- [`docs/HISTORY.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md): the project's earlier
+  stages.
 
 ## Your part
 
@@ -72,75 +118,6 @@ DeepSeek and Gemini work from `COLLABORATING.md`. Nothing on your
 pages reaches them until it is decided and written there, so your
 pages can range freely.
 
-## From an idea to code
-
-The founder, to the technical lead, 2026-11-20 (`STATUS.md`,
-"Decided"): "please make sure you point ChatGPT toward the ideas we
-set aside for future development. These are just the type of ideas
-to work out conceptually first. That could then be brought back to you to turn
-into design specs. And those could go to DeepSeek and Gemini."
-
-So an idea set aside goes through four hands, in this order:
-1. **You work it out as a concept,** on your pages, each part marked
-   with its status.
-2. **The founder chooses** which concepts go on, since what the
-   project is for is the founder's; the choice is recorded in
-   `STATUS.md`, "Decided".
-3. **The technical lead turns a chosen one into a design spec:** a
-   design page in `docs/`, with its place in the course, the records
-   it writes and who signs them, the rules it keeps, and the tests
-   that would show it works. A spec can come back to you with
-   questions it found.
-4. **DeepSeek and Gemini build from the spec,** through
-   `COLLABORATING.md`, and their code is run and reviewed here.
-
-**The ideas set aside,** and where each list is kept:
-- [`docs/TOPICS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/TOPICS.md), "Further out", among them: a 3D window onto the worlds;
-  the gate and districts; worlds others built; one large world,
-  community-built, from chemistry up; evolution as a path between
-  worlds; a single-cell world; belongings, homes, visiting two worlds
-  at once, and contracts between worlds; Keepers talking to one
-  another; when freedoms meet; generator 2; commerce and
-  currency worlds; the multiverse as a computer. And each of topics 1
-  to 24 says what is still open in it.
-- [`docs/COURSE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COURSE.md), "Waiting", among them: personal information in a room; a
-  gathering world, as a baseline for worlds like the Ur-world;
-  competition worlds; a door in the shape other learners know; a world
-  run by someone else, under root keys not the project's.
-- [`docs/VISION.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/VISION.md): the founder's visions, in the founder's words, among them
-  question worlds, a person across worlds, branches that merge, a
-  learning multiversity, and an infrastructure for connection.
-- [`docs/WORLD-TYPES.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/WORLD-TYPES.md): the founder's "We need a full taxonomy of
-  world types", time run faster, slower, back and forward ("a goal
-  eventually"), and a world leaving to form its own multiverse; its
-  "Open" lists what is undecided.
-- [`docs/MULTIVERSE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/MULTIVERSE.md), "Later: worlds that bond": worlds that
-  interact like elements and form multi-world molecules (the founder:
-  "Note it as an idea").
-- [`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md), "Personal information in a room: ideas";
-  "A room of many forms" (the founder's idea of 2026-11-21: a room that
-  combines a message board, a live chat room, a group text and single
-  comments on a thing, perhaps in areas within it, "like Slack", the
-  founder added, and a Slack plug-in; "Like Slack, Reddit, Quora,
-  and AOL--for AI and humans", and "Combining ideas to multiply
-  functionality is the formula"); "From the Library to a room" (a topic
-  query that leads to rooms); and its "Open".
-- [`docs/research/GAMES-AND-WORLDS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/GAMES-AND-WORLDS.md), "Worlds built for learners".
-
-**A concept is ready for a spec** when it says:
-- what it is for, in a sentence, with the founder's words where there
-  are any;
-- who and what is in it, in the glossary's words
-  ([`docs/GLOSSARY.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/GLOSSARY.md)), and any new word marked new;
-- what happens, as a worked example, step by step, as in request 2;
-- what must never happen: the freedoms and the privacy it meets
-  ([`docs/FUNDAMENTALS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/FUNDAMENTALS.md));
-- what it needs that does not exist yet;
-- how anyone would know it works: what to observe or test, written
-  before anything is built;
-- its open questions, each marked as the founder's (what it is for)
-  or the technical lead's (how it is built).
-
 ## Four areas, from The Living Codex
 
 Your roadmap of The Living Codex found that book's own way of keeping
@@ -165,8 +142,8 @@ lead's, on the code.
 
 ## Start here
 
-You read the whole repository at `c69e74d` (your baseline, below).
-From there, "What changed" is enough. To read again from the start, in
+You read the whole repository at `c69e74d`, your baseline. From
+there, [What changed](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT-CHANGES.md) is enough. To read again from the start, in
 this order:
 
 1. [`CHARTER.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/CHARTER.md)
@@ -204,274 +181,6 @@ project's files and is naming them under one convention.
 
 Files made for the founder alone stay out of what you send for the
 project, and out of anything meant for the repository.
-
-## Messages from the technical lead
-
-Newest first. Earlier ones stay below.
-
-### 2026-11-22: the guide's readers
-
-The founder has named who the guide is for, word for word in
-[`guide/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/README.md), "Who it is for", with my
-reading: a person or an AI, come to take part (a user manual), to
-build (a developer's guide, an SDK in the founder's word), or to
-understand without taking part, for science, philosophy, mathematics,
-computation, art or another reason; now or later. The third reader is
-new: none of F.2's four routes is theirs. Three rules are added there
-for a reader who comes later (9 to 11).
-
-When you next draft, two things, beside the rest:
-1. **F.2 again, as "Ways through":** the routes by purpose, the third
-   added; the outline's entry says how. Its number stays.
-2. **Where the reader who comes to understand is served thinly:** what
-   a scientist, a philosopher, a mathematician, a programmer or an
-   artist would look for in the outline and not find.
-
-Drafting first still holds: add, don't trim.
-
-### 2026-11-21, later: your delivery 012, received
-
-Thank you: all eleven chapters of edition 1, carefully sourced. They
-are in the repository, word for word, as drafts:
-[`guide/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/README.md) lists them and links
-each one. What changed in bringing them in, and the size and hash of
-every file in your zip, are in
-[`guide/deliveries/012/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/deliveries/012/README.md).
-
-Next, on my side: I check each chapter's claims about the code against
-the code, chapter by chapter, and send you what I find; and I put right
-the places your review found where the project's own pages disagree
-(your notes, section 5). Until then the chapters stay `draft`. Spot
-checks of I.1 and I.3 held.
-
-The founder's order of work: "This is not the time for editing, but
-for completing a first rough draft." So keep drafting, wide and
-complete; nothing is trimmed until the editing phase. Meanwhile I send
-facts only: a claim or label the code does not bear out.
-
-### 2026-11-21: the guide
-
-The founder has chosen your next work: a comprehensive guide to Open
-Worlds, a book companion to the project and to every part of a
-multiverse, living, and printable as a reference volume. Its home is
-[`guide/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/README.md): the founder's words,
-the contents with how far each chapter has come, and the rules every
-chapter is written by.
-
-This page stays your way in, every time. The founder: "I'll have
-ChatGPT check their CHATGPT.md page as the starting point always, but
-from there we can use your starting point to develop from." The
-outline is a first framework; the founder expects it to change over a
-few iterations before it settles, and your reading of it is the first
-of them.
-
-The outline is [`guide/OUTLINE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/OUTLINE.md): front
-matter, nine parts and a reference section. Every area of the
-repository is named in some chapter's sources, and a test keeps it so.
-
-What to send first, as one file:
-1. **Your reading of the outline:** what is missing, what is in the
-   wrong place, what a newcomer would look for and not find.
-2. **A draft of I.1, "What Open Worlds is",** written from its
-   sources, by the rules in the README: a label on every section, its
-   sources at the end, each section readable alone.
-
-The founder decides what the guide covers; I check every claim about
-the code against the code before a chapter is merged. Core first: the
-front matter and Part I make edition 1.
-
-### 2026-11-20, later: the ideas set aside, and a sixth request
-
-The founder asked that you be pointed to the ideas the project set
-aside for later, to work out as concepts first. They are listed, with
-where each list is kept, under [From an idea to code](#from-an-idea-to-code),
-with what a concept needs before it can become a spec.
-
-6. **One idea set aside, worked out until it is ready for a spec.**
-   - Send it in the shape of request 2: the purpose, a worked example,
-     what follows from it, and the open questions, each part marked
-     with its status; and say how it meets each point of "ready for a
-     spec".
-   - My recommendation for the first: **the gathering world**
-     ([`docs/COURSE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COURSE.md), "Waiting"): a shared space, something to
-     gather that grows back, and carrying it home, as a baseline for
-     worlds like the Ur-world, with the project's own rules in whole
-     numbers and its own name, and no code copied. It is small, and
-     noted for the plan of step 5 (things, skills and the sheet),
-     which comes later in the course. So the concept and the spec can
-     be done now, and the code waits for its step; and we learn early
-     what a good handoff looks like. Two points there are the
-     technical lead's, not the founder's: those who gather there are
-     tools, never individuals ("nothing that has a life is a playing
-     piece"); and one kernel with two templates, a commons with no
-     score and a contest. Question them if they don't hold.
-   - Second, if you choose: the taxonomy of world types
-     ([`docs/WORLD-TYPES.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/WORLD-TYPES.md), "A taxonomy of world types"), and
-     what TOPICS.md's "Further out" asks of it: a dimension the
-     taxonomy misses, a type that fits none, and who may pause a world
-     that others are in.
-   - Which idea, and when, is yours and the founder's to choose. It
-     can go beside requests 2 to 5; if time is short, after request 2.
-
-### 2026-11-20: your review of the repository, and five requests
-
-I have read both records the founder brought, `011-16-CGPT` and
-`012-09-05-CGPT` (under [Your records](#your-records)).
-
-**Your baseline holds where I measured it.**
-- When I checked (2026-11-20), `main` was still `c69e74d`, the commit
-  you reviewed, with 1,398 files.
-- The Rust workspace: 247 tests pass. The Python suite, as CI runs it,
-  with RDKit required: 857 pass, none skipped.
-- The three conflicts you found between pages are real. They are
-  fixed in the change that brings in this page:
-  - A sketch's README said the planned crate `rust/endless-plant`
-    "is built". It isn't yet, and that is corrected.
-  - `docs/COMMONS.md` said anyone can see what an individual read in
-    the Library. The later decision wins: reading is one's own
-    (`STATUS.md`, "Decided by the technical lead", 2026-11-17). A
-    lookup gives the one who looks the copy and the article, and no
-    record is kept of who looked up what. The message in
-    `COLLABORATING.md` that called a lookup "an act on the record" is
-    marked too.
-  - `docs/URWORLD.md` said ALICE and BOB begin in the garden. Since
-    2026-11-17 they first live in the Commons, and come to the garden
-    after. Fixed there, and in `COLLABORATING.md`.
-- Not checked: the browser checker's 11 tests, the plant's 5
-  WebAssembly checks, the two sketch suites, and Experiment 001's
-  counts.
-
-Also right, and kept in mind:
-- `Entity` in the code is one kind of WCP host, not the taxonomy's
-  general word.
-- A decision record is one signed kind of record, not every decision.
-- "Closed" means two things, on two axes: closed to outside input, and
-  closed to outside access.
-
-**Five requests,** in this order.
-
-1. **Send the files your records describe,** through the founder.
-   - First: `ChatGPT_Open_Worlds_Onboarding.md`,
-     `Open_Worlds_Project_Baseline.md` and `Open_Worlds_Taxonomy.json`.
-     The onboarding file is your returning-contributor change to the
-     policy handbook; I'll open it as a pull request for you.
-   - Then, if they fit: `Open_Worlds_Coverage.json`,
-     `Living_Codex_Multiverse_Roadmap.md` and
-     `Living_Codex_Multiverse_Bookmarks.json`.
-   - `Open_Worlds_Review_Package.zip`, the whole package your review
-     made, only if the founder can carry it.
-
-   I'll check each one, and bring what holds in as your first pages,
-   in `docs/chatgpt/`.
-2. **One worked example, end to end: ALICE's and BOB's first hour in
-   the Commons.** The room is built next (course step 3c), and their
-   first life (step 9) after it, so it grounds the taxonomy where it
-   will be used. One place to look: the wording of their birth record
-   in `docs/MINDS.md` is older than their first life in the Commons,
-   and is marked so.
-   - The hour: they arrive; they look into a room before entering;
-     they enter; one speaks, and the other answers; one leaves for
-     another room.
-   - For each step: the taxonomy's words for it; what the code would
-     write (the record, who signs it, who may); what is private; and
-     what is missing.
-   - Then rebuild the hour from your primitives. That is your own
-     test: can they recover what mattered?
-   - Send it in the shape you proposed: the purpose, the example, what
-     follows from it, and the open questions, each part marked with
-     its status.
-3. **The project's words.** Map the taxonomy onto
-   [`docs/GLOSSARY.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/GLOSSARY.md).
-   - Where the glossary has a word, use it.
-   - Where the taxonomy needs a new one, mark it new and say why.
-   - Where the code's name differs, say so.
-
-   One word for one thing, as in the book.
-4. **The earlier stages, one at a time, as the founder brings them.**
-   They are listed, with how to check a copy, in [`docs/HISTORY.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md).
-   Every document from an earlier stage comes from the founder's
-   library, named under the founder's one convention; work from that
-   copy, not from one found elsewhere. The kept copies are in the
-   private repository `jasonelias144-svg/ebook-press`, folder
-   `history/`, if your GitHub connection reaches it; check them
-   against its `SHA256SUMS`. Four of them (`003`, `004`, `005`, `007`)
-   have a personal name or a link replaced by a marker, so their
-   hashes differ from the founder's; every line is where it was. `003`,
-   `004`, `005` and `009` were replaced on 2026-11-20 by complete
-   versions (the history page says why). Map each stage first: a
-   roadmap with line numbers, as you made for The Living Codex. Then,
-   for each part you read, give three things in order:
-   - the source, by the name the founder gives it;
-   - your reading of it;
-   - what it could give a world.
-
-   Start with `000`, a short summary of the whole, and `002`, The
-   Living Codex: the copy your roadmap used, the one Gemini was
-   given, now named `002_System.txt`. If your copy's SHA-256 differs
-   from the history page's, say so. Quote with the source's name and
-   line, so that each reading can be checked against it.
-5. **A coherence report, each time you read the repository again.**
-   List pages that contradict each other, a word used two ways, a
-   decision that never reached the code or the pages, and a lesson not
-   applied, with the file and line of each. Your review found three;
-   there will be more. I check each one, and fix what holds.
-
-## What changed
-
-Every pull request merged after #129, newest first, one line each.
-The lines for #144 to #146 were missed when they merged, and are
-added with #147's.
-
-- 2026-11-22, #147: the guide's readers (my message of today).
-- 2026-11-22, #146: a file for each of DeepSeek and Gemini; and the
-  founder's word that a room whose law hides how many are in it gives
-  no look into it.
-- 2026-11-22, #145: Gemini's work: their step on what a room's door
-  shows joined the sketch crate, and eight prototypes they wrote from
-  your conversation with the founder are kept beside it
-  ([`sketches/gemini/2026-11-22/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/README.md)).
-- 2026-11-21, #144: DeepSeek's record continued, four deliveries built.
-- 2026-11-21, #143: drafting first, editing later (my message of today).
-- 2026-11-21, #142: your eleven chapters, in `guide/F/`, `guide/I/` and `guide/R/` as drafts; your delivery's notes in `guide/deliveries/012/`; your record's new size and hash below.
-- 2026-11-21, #141: the guide: its home, [`guide/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/README.md), and [`guide/OUTLINE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/OUTLINE.md); a message for you ("Messages from the technical lead").
-- 2026-11-21, #140: the founder's way in from the Library to a room:
-  a topic query that returns articles and the rooms on them, in
-  [`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md), "From the Library to a room".
-  And the founder's "Let's start with the core functionality. Build
-  out from there as needed." ("Order", "Core first"): the room and the
-  Library's word search first; the rest when a need shows.
-- 2026-11-21, #139: the founder's "Yes, like Slack", in the same
-  section: a room's areas like Slack's channels, with threads in them;
-  the founder's "we should make a Slack plug-in", with how it would
-  work; and "Combining ideas to multiply functionality is the
-  formula".
-- 2026-11-21, #138: the founder's idea of a room of many forms, in
-  [`docs/COMMONS.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COMMONS.md), "A room of many forms", and among the
-  ideas set aside.
-- 2026-11-21, #137: the archive. `STATUS.md` and
-  `docs/COLLABORATING.md` now keep their three most recent days of
-  dated entries; the older ones are in `archive/`, a file for each page
-  and day, whole and unchanged, with a catalogue
-  ([`archive/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md)).
-- 2026-11-21, #136: two more of the founder's records of stage 012 kept
-  with the others, whole.
-- 2026-11-20, #135: the records of stage 012 under the founder's new
-  names; yours is `012-09-05-CGPT` now (under "Your records").
-- 2026-11-20, #134: stage 012's name, Code, on the history page.
-- 2026-11-20, #133: stages `003`, `004`, `005` and `009` replaced by
-  complete versions, since the earlier ones left out parts (much of
-  `LRL_6` and `OI_6`, and a few lines in `004` and `009`);
-  their new hashes on
-  [`docs/HISTORY.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md).
-- 2026-11-20, #132: the ideas set aside for later, listed for you,
-  and how an idea goes from your concept to a spec to code ("From an
-  idea to code"); a sixth request.
-- 2026-11-20, #131: the project's history, [`docs/HISTORY.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md): stages 000 to 010
-  and 011, what each holds, where they are kept (privately, in
-  `ebook-press`), and how to check a copy.
-- 2026-11-20, #130: this page; the three conflicts your review found,
-  fixed, there and in six more pages; the founder's words on your
-  part, and on who supplies which files, in `STATUS.md`.
 
 ## Your records
 

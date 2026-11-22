@@ -264,9 +264,10 @@ For anyone new, person or AI. Short, and complete on its own.
 - **VIII.2 The collaborators.** DeepSeek, Gemini, ChatGPT and Claude:
   who does what, and how files pass between them. *Sources:*
   `docs/COLLABORATING.md`, `docs/COLLABORATING/`, `docs/CHATGPT.md`,
+  `docs/CHATGPT-MESSAGES.md`, `docs/CHATGPT-CHANGES.md`,
   `docs/reply.py`, `sketches/replies/`.
 - **VIII.3 From an idea to code.** Concept, choice, spec, build.
-  *Sources:* `docs/CHATGPT.md` ("From an idea to code"),
+  *Sources:* `docs/CHATGPT-IDEAS.md` ("From an idea to code"),
   `docs/TOPICS.md`.
 - **VIII.4 The course.** How the building is ordered, and rechecked.
   *Sources:* `docs/COURSE.md`.
@@ -295,7 +296,7 @@ For anyone new, person or AI. Short, and complete on its own.
   `docs/MULTIVERSE.md` ("Lyceum Commons").
 - **IX.5 The founder's visions.** *Idea.* *Sources:* `docs/VISION.md`.
 - **IX.6 Topics ahead, and ideas set aside.** *Sources:*
-  `docs/TOPICS.md`, `docs/CHATGPT.md` ("The ideas set aside").
+  `docs/TOPICS.md`, `docs/CHATGPT-IDEAS.md` ("The ideas set aside").
 
 ## Reference
 

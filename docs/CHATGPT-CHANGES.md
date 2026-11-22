@@ -1,17 +1,18 @@
-> Part of `docs/CHATGPT.md` in open-worlds, which is kept cut into parts
-> for readers who are shown only the start of a long page.
-> This part holds: "What changed" to "Your records".
-> Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/CHATGPT.md/start.md
-> After this part: nothing; this is the last part.
-> Made by docs/parts.py from the file. To change it, change the file.
+# ChatGPT: what changed
 
-## What changed
+*Moved here whole from [`docs/CHATGPT.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT.md) on 2026-11-22, at the founder's word: "Fill their page with instructions and links." Where a line says "this page", it means `docs/CHATGPT.md`.*
+
+Every pull request adds its line here before it merges (`AGENTS.md`, "Every session"). If one has merged that this list doesn't have, it is behind: say so.
 
 Every pull request merged after #129, newest first, one line each.
 The lines for #144 to #146 were missed when they merged, and are
 added with #147's.
 
+- 2026-11-22, #148: your page in pages, at the founder's word:
+  [`docs/CHATGPT.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT.md) is instructions and
+  links, and the messages, this list and the ideas set aside are pages
+  of their own; and a plan for later, the founder's own words gathered
+  from every record and indexed, for a book.
 - 2026-11-22, #147: the guide's readers (my message of today).
 - 2026-11-22, #146: a file for each of DeepSeek and Gemini; and the
   founder's word that a room whose law hides how many are in it gives
@@ -63,24 +64,3 @@ added with #147's.
   fixed, there and in six more pages; the founder's words on your
   part, and on who supplies which files, in `STATUS.md`.
 
-## Your records
-
-The founder's conversations with you in this phase. They hold
-personal material, so they are not in the public repository. The
-founder holds them, and this list says which they are:
-
-| Record | Bytes | SHA-256 |
-|---|---|---|
-| `011-16-CGPT-Opposites_Illustrated.txt` | 472,817 | `2350f9419ce1d1952a3ee1cd4e19b953bbd56c89439b07b25ca3c810979640f1` |
-| `012-09-05-CGPT-Patterns_Multiverses.txt` | 921,638 | `6691bd56b6f77a377db2c9aa8e6d5e2a677e71a8fc03493e043b49cafeef055b` |
-
-The first 118 lines of `012-09-05-CGPT` repeat the end of `011-16-CGPT`.
-The founder brought this copy of `012-09-05-CGPT` on 2026-11-21, with
-the guide's core in it. An earlier copy was 156,691 bytes, SHA-256
-`e0d84b361e69eb22f3029df0185d5b6bdba99cebe361eba7dee26b40fea4ace4`;
-the new one does not begin with the same bytes, so the two are
-different exports of the conversation.
-The founder named the records of stage 012 anew on 2026-11-20; until
-then the second was `012-00-00-CGPT` ([../sketches/INDEX.md](../sketches/INDEX.md#names), "Names").
-
-> End of `docs/CHATGPT.md`.

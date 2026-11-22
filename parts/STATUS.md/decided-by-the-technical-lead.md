@@ -110,6 +110,22 @@ with the founder.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-22 Claude: the founder's words recorded ("Decided").
+  ChatGPT reads several pages and follows links, so their page is now
+  instructions and links, at the founder's word: docs/CHATGPT.md
+  (12,798 bytes) says what to do each time they begin and links
+  everything; the messages, what changed and the ideas set aside moved
+  whole to three pages of their own, with two links within the old
+  page made full links. AGENTS.md, the outline's sources, STATUS
+  ("Now") and the list of full links point to them. The note in the
+  entry below about the page's size no longer applies. And a plan for later,
+  very important in the founder's words: every record's turns of the
+  founder's, word for word, with ids, indexing all the records, for a
+  book of the founder's own words (docs/COURSE.md, "Waiting"). Counted
+  only, for its size: some 4,500 turns marked "::" in the records seen
+  today, before repeats are removed; nothing was taken from the
+  private records.
+
 - 2026-11-22 Claude: the guide's readers, at the founder's word
   ("Decided"), recorded to guide its writing: `guide/README.md` gains
   "Who it is for" (a person or an AI; to take part, to build, or to
