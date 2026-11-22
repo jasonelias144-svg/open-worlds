@@ -371,12 +371,13 @@ anyone in, should show who spoke, Gemini answered no: counting the
 authors would give the count away, so the look should hide or number
 them, or be refused. Numbered authors can still be counted, so what
 holds is a look with no authors, or no look. The file asked for that
-answer in words, so it is not built; which of the two is the
-founder's to say.
+answer in words, so it was not built. The founder chose the same day,
+on the technical lead's recommendation: no look (change 27).
 
-It is the crate as it stands now: `deepseek/012-07-03/chat-world-now/`
-(stage `said` of `deepseek/012-07-03/review/steps.py`), 166 tests, 71
-of them DeepSeek's and 95 Gemini's, in 34 files.
+With change 27 it is the crate as it stands now:
+`deepseek/012-07-03/chat-world-now/` (stage `look` of
+`deepseek/012-07-03/review/steps.py`), 166 tests, 71 of them
+DeepSeek's and 95 Gemini's, in 34 files.
 
 ### Gemini's eight prototypes, from ChatGPT's conversation (2026-11-22)
 

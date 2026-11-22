@@ -721,7 +721,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/vectors/proof_cases.json
 ```
 
-**`sketches/deepseek/012-07-03`** (25 files, 266 KB):
+**`sketches/deepseek/012-07-03`** (25 files, 267 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-07-03/README.md
@@ -901,7 +901,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-07-03/chat-world-steps/9/src/verify.rs
 ```
 
-**`sketches/deepseek/012-07-03/review`** (3 files, 33 KB):
+**`sketches/deepseek/012-07-03/review`** (3 files, 35 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-07-03/review/run.sh

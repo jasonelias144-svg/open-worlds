@@ -78,7 +78,9 @@ line of tests/doors_attack.rs. A door now also shows how many
 messages a reader sees and how many different people wrote them; a
 room with ten or more in it and nothing said is flagged; the doors can
 be listed by any of those numbers; and look gives the text of what
-was said in a room that anyone may enter, before entering it.
+was said in a room that anyone may enter, before entering it. A room
+whose law hides how many are in it gives no look, at the founder's
+word: who wrote what would show how many.
 
 None of your files changed. The crate as it stands has 166 tests in
 34 files: 162, and Gemini's four.

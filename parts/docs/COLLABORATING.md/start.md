@@ -82,6 +82,9 @@ counted, and the count is given away. One of your remedies does not
 hold for the same reason: authors numbered within the room can still
 be counted. So the choice is a look with no authors, or no look, and
 it is the founder's; until then the look stays as the file asked.
+Later the same day the founder chose: no look. A room whose law hides
+how many are in it gives no look, by one check added to your `look`
+(change 27); your next file shows it.
 
 **Eight prototypes,** from the founder's conversation with ChatGPT:
 `contact`, `patterns`, `circuit`, `library`, `project`, `transform`,

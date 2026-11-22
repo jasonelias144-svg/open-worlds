@@ -55,10 +55,23 @@ Your answer to the question. Your reason is right: if a look shows
 who spoke, the authors can be counted, and a room that hides its
 count gives it away. One of your two remedies does not hold, for the
 same reason: authors numbered within the room ("speaker #1") can
-still be counted. So the choice is a look that names no author, or no
-look at all. That choice is the founder's, and it is not made yet.
-Until it is, look stays as the file asked. Part 3 asks you to write
-the attack that shows it.
+still be counted. So the choice was a look that names no author, or
+no look at all, and the founder chose: no look. A room whose law hides
+how many are in it gives no look into it, since it has chosen not to
+be seen from outside, and its messages may show who is there even
+without their authors. A room that shows its count keeps the
+founder's glance before entering. One check is added to your look for
+it, here, after the one that refuses a closed room or a home:
+
+    if room.template.count_hidden {
+        return Err(Error::Policy(
+            "look refused: the room's law hides how many are in it".into(),
+        ));
+    }
+
+That is change 27 in the crate, the only lines of src/doors.rs that
+are not yours. All 166 tests pass with it. Part 3 asks you for the test
+that holds it.
 
 YOUR EIGHT PROTOTYPES
 
@@ -209,16 +222,16 @@ A LOOK, FORGED.
       were
   20. a look given a room's log registered in another Commons
 
-WHAT A LOOK GIVES AWAY. This one is asked of you as it stands:
+WHAT A LOOK MUST NOT GIVE AWAY. Change 27 (part 1):
 
-  21. hidden_count_look_names_no_author: an open room whose law hides
-      its count, two members, each of whom has written a message. The
-      door shows no count and no talk. Assert that look names neither
-      author. Today it names both (part 4 says so), so this test
-      fails, and that is expected. It stays failing until the founder
-      decides between a look that names no author and no look; then
-      the crate is changed, and it passes. Do not change src/doors.rs
-      for it.
+  21. hidden_count_gives_no_look: an open room whose law hides its
+      count, two members, each of whom has written a message. The
+      door shows no count and no talk, and look is refused. Then
+      attack it: the same room's log with count_hidden turned to
+      false in the log's law, its records and signatures left as they
+      were, given to look, is refused too (it is no longer the room
+      the Commons registered). And an open room that shows its count
+      still gives its look.
 
 Say for each test whether you expect it to pass or to fail. If you
 believe the crate would ACCEPT one, write the test anyway and tell us
@@ -235,8 +248,7 @@ parts: what was said, the flag, the order, the look.
   expect to fail. 166 pass today.
 
 WHAT COMES AFTER, so you know where this goes. Do not begin it. We
-send you the list of attacks the crate accepted, and the founder's
-choice for a look into a room that hides its count. You repair
+send you the list of attacks the crate accepted. You repair
 src/doors.rs for those that can be closed in the crate.
 
 
@@ -358,9 +370,9 @@ Seven facts about the crate as it stands:
   - Room::create makes its maker a member who may remove and
     restore. Who else may is in src/room.rs.
   - draw_at with no heads is draw.
-  - Tried here, in a throwaway copy, on the crate as it stands: a
-    look into an open room whose law hides its count names every
-    author who wrote in it. That is attack 21.
+  - Tried here, in a throwaway copy, on the crate as it stands: look
+    refuses an open room whose law hides its count, and gives its
+    look into an open room that shows it. That is attack 21.
   - Tried the same way: a room's log cut short just before a removal
     draws the older said, when no head is held. That is the first
     half of attack 8.
@@ -375,8 +387,9 @@ A test returns chat_world::error::Result<()>, as your others do.
 Nine of the crate's thirty-four files follow, each whole. Three of
 them changed since the last file you were given: src/record.rs,
 src/room.rs and src/verify.rs, with DeepSeek's rule of one moderator's
-room. src/doors.rs is yours, as you sent it in your sixth step, and is
-what you attack. The others are here to be read.
+room. src/doors.rs is yours, as you sent it in your sixth step, with
+change 27, the one check in look that part 1 gives; it is what you
+attack. The others are here to be read.
 
 Not in this file, and not to be sent: src/hash.rs, src/did.rs,
 src/proof.rs and src/commons.rs, which have not changed since you
@@ -2301,7 +2314,7 @@ impl Room {
 }
 ```
 
------ FILE: chat-world/src/doors.rs  (YOURS, as you sent it in your sixth step: what you attack. Not changed in this step) -----
+----- FILE: chat-world/src/doors.rs  (YOURS, as you sent it in your sixth step, with change 27 in look (part 1): what you attack. Not yours to change in this step) -----
 ```rust
 use crate::commons::{
     verify_commons_log, verify_registration, CommonsLog,
@@ -2710,6 +2723,12 @@ pub fn look(
     if room.template.join_policy != "open" || room.template.personal {
         return Err(Error::Policy(
             "look refused: room is not open and non-personal".into(),
+        ));
+    }
+
+    if room.template.count_hidden {
+        return Err(Error::Policy(
+            "look refused: the room's law hides how many are in it".into(),
         ));
     }
 

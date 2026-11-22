@@ -829,12 +829,13 @@ anyone in, should show who spoke, Gemini answered no: counting the
 authors would give the count away, so the look should hide or number
 them, or be refused. Numbered authors can still be counted, so what
 holds is a look with no authors, or no look. The file asked for that
-answer in words, so it is not built; which of the two is the
-founder's to say.
+answer in words, so it was not built. The founder chose the same day,
+on the technical lead's recommendation: no look (change 27).
 
-It is the crate as it stands now: `deepseek/012-07-03/chat-world-now/`
-(stage `said` of `deepseek/012-07-03/review/steps.py`), 166 tests, 71
-of them DeepSeek's and 95 Gemini's, in 34 files.
+With change 27 it is the crate as it stands now:
+`deepseek/012-07-03/chat-world-now/` (stage `look` of
+`deepseek/012-07-03/review/steps.py`), 166 tests, 71 of them
+DeepSeek's and 95 Gemini's, in 34 files.
 
 ### Gemini's eight prototypes, from ChatGPT's conversation (2026-11-22)
 
@@ -1162,6 +1163,22 @@ line that names its module.** `src/lib.rs` was not Gemini's to change
 in that round, so their file said the line `pub mod doors;` would be
 added here. One line in `chat-world-now/src/lib.rs`; in `DOORS` in
 `review/steps.py`. With Gemini's two files, all 127 tests pass.
+
+**Change 27 (2026-11-22, at the founder's word): a room whose law
+hides how many are in it gives no look.** A look shows who wrote each
+message, so the authors could be counted, and the count the law hides
+would be given away. Gemini saw it, asked in their sixth file; of the
+two ways that hold (a look that names no author, or no look), the
+technical lead recommended no look, since a room that hides its count
+has chosen not to be seen from outside and its messages may show who
+is there without their authors, and the founder chose it (STATUS.md,
+"Decided", 2026-11-22). One check in `look`, after the one that
+refuses a closed room or a home: six lines in
+`chat-world-now/src/doors.rs`, Gemini's file; in `LOOK` in
+`review/steps.py`. All 166 tests pass with it, and a trial test, not
+kept, showed the look refused for such a room and given for an open
+room that shows its count. The test that holds it is to come from
+Gemini, the last of the attacks their next file asks for.
 
 Not fixed, and why:
 

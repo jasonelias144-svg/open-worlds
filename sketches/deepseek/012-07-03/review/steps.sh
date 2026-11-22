@@ -74,10 +74,12 @@
 #   said          166 pass. This is now with Gemini's three files laid
 #                 over it: said and speakers, the flag, the doors
 #                 listed by another number, and a look into a room.
+#   look          166 pass. This is said with change 27: a room whose
+#                 law hides how many are in it gives no look.
 #   standing      166 pass, the five demos run, and the plug-in's own
 #                 demonstration runs. This is ../chat-world-now, the
 #                 crate as it stands, which steps.py --check holds to
-#                 said.
+#                 look.
 set -eu
 here=$(cd "$(dirname "$0")/.." && pwd)
 scratch=$(mktemp -d)
@@ -85,7 +87,7 @@ trap 'rm -rf "$scratch"' EXIT
 python3 "$here/review/steps.py" --aside "$scratch"
 python3 "$here/review/steps.py" --check
 python3 "$here/review/steps.py" --now "$scratch/more"
-for name in 5-repaired g1 g2 g3 g3-repaired c1 c2 c3 d6 d6-repaired d7-count doors d8 c4 doors-attacks repairs now joined joined-fix said; do mv "$scratch/more/$name" "$scratch/$name"; done
+for name in 5-repaired g1 g2 g3 g3-repaired c1 c2 c3 d6 d6-repaired d7-count doors d8 c4 doors-attacks repairs now joined joined-fix said look; do mv "$scratch/more/$name" "$scratch/$name"; done
 mkdir "$scratch/standing"
 cp -R "$here/chat-world-now" "$scratch/standing/chat-world"
 status=0
@@ -165,5 +167,6 @@ check_all now 162 0
 check_all joined 171 2
 check_all joined-fix 176 3
 check_all said 166 0
+check_all look 166 0
 check_all standing 166 0
 exit $status
