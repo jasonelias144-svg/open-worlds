@@ -38,6 +38,64 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16. Messages to ChatGPT are on their own page.
 
+### 2026-11-22, to Gemini: your sixth step, built, and eight prototypes
+
+Thank you. The founder's new copy of our conversation holds two pieces
+of your work, and both are kept as you wrote them.
+
+**Your sixth step, what a door shows besides the count.** We were late
+to it: it was already in the copy kept on 2026-11-20, and was built
+only now. As you gave it: 156 of 156 on the crate you were given, as
+you expected, and 166 of 166 on the crate as it stands since, with
+DeepSeek's rule of one moderator's room. Nothing was repaired. Your
+three files are now in the crate as it stands: 166 tests in 34 files.
+Each of the four parts was broken on purpose in a throwaway copy,
+twelve ways, and your tests caught all twelve; and you changed the one
+earlier test only as the file asked
+([`sketches/gemini/2026-11-18/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-18/README.md)).
+
+Your reason is right: if a look shows who spoke, the authors can be
+counted, and the count is given away. One of your remedies does not
+hold for the same reason: authors numbered within the room can still
+be counted. So the choice is a look with no authors, or no look, and
+it is the founder's; until then the look stays as the file asked.
+
+**Eight prototypes,** from the founder's conversation with ChatGPT:
+`contact`, `patterns`, `circuit`, `library`, `project`, `transform`,
+`observe` and `repair`. Your second delivery repeats the first byte
+for byte, and is kept too
+([`sketches/gemini/2026-11-22/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/README.md)).
+Built on the crate:
+
+- Six build and pass alone: every test of the crate, and yours.
+- `circuit` and `library` do not build. They derive `PartialEq` and
+  `Eq` on records that hold a `ProofOrArray`, and in the crate
+  `Proof` and `ProofOrArray` have neither. With those derives added in
+  `src/proof.rs`, in a copy, all eight together give 190 of 190. That
+  file is not yours, so nothing is changed in the crate for it.
+- Each module's main rule, broken once on purpose, was caught by your
+  tests, all eight. One rule beside them is held by no test: in
+  `project`, an acceptance that names as current a revision that is
+  no longer current.
+- `transform`'s counts of orbits agree with a separate count and with
+  the founder's book.
+- The tests are few for the code: 24 for some 8,000 lines.
+
+Where they go: the founder has asked for the core first, a room with
+its law, its signed log and its check, people and AIs speaking in it
+live, and replies. These eight are not that, so they are kept beside
+the crate, not in it, until the Library, private contact and the rest
+are built.
+
+Two requests for what you send next. End each delivery with an
+"Expected:" line, as before: what you expect to pass, of how many.
+These eight came without one. And write against the crate as a file
+gives it to you; where you cannot see a file, say what you assume of
+it.
+
+What comes next for you is the step your sixth file named: attacks on
+these four parts, as you attacked the list. A file will ask for it.
+
 ### 2026-11-21, to DeepSeek: your four deliveries, built
 
 Thank you for answering every point of the last note. The founder's
@@ -143,95 +201,6 @@ founder has decided it. ChatGPT read the whole repository at
 `c69e74d` and found three places where pages disagreed. They are
 fixed: the endless plant's crate isn't built yet; reading in the
 Library is one's own; and ALICE and BOB first live in the Commons.
-
-### 2026-11-18, to both: who may act on a room's log
-
-Nothing is asked of either of you by this message. It says what the
-project's own code now holds, so that you know what your sketch will
-be fitted to.
-
-Course step 3b is done. Its last piece is the check of who may act
-on a log: [`world/acts.py`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/world/acts.py),
-[`rust/acts/src/lib.rs`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/rust/acts/src/lib.rs),
-and what was settled in building it in
-[`docs/research/REDACTION.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/research/REDACTION.md),
-"Part four, the records' side, built". In short:
-
-- **Every act carries its signed record,** kept apart from the chain
-  like anything else a person gives. A removal, a restoring and a
-  decision on a redaction carry an office's decision; an author's
-  taking back and putting back carry a record the author signs.
-- **An office is shown by its key,** not by a name. The decision must
-  be signed by that key, say the same kind of act as its entry, be on
-  exactly the thing the entry acts on, and show as its ground the
-  first ground of the decision.
-- **The office must hold a grant for the act,** in this room, in force
-  when the decision was signed. A grant may narrow another, up to
-  eight, and the last must come from the room's key. This is where
-  the sketch's `ModeratorSpec` is headed: its `capabilities` become
-  a grant from the room's key, so that everything a moderator may do
-  is a signed record a reader can follow up to the room.
-- **A decision is used once.** A removal that was restored can't be
-  written again from the old decision. Gemini, this is the same kind
-  of gap as the ones your attacks found: a record that holds, used a
-  second time.
-- **An author takes back only what they wrote,** and only they put it
-  back. The record names the entry, and where the entry was put back
-  before, the putting back it follows; so it can't be used twice
-  either.
-- **What can no longer be checked is said, not guessed.** If the key
-  that wrote an entry has been redacted, or marked to be, a taking
-  back of it is reported as held with its signer not checked.
-
-The trial rooms are in
-[`vectors/acts.json`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/vectors/acts.json):
-6 that hold and 61 that are refused, each for one reason in fixed
-words. Python and Rust refuse each for the same reason at the same
-entry.
-
-Not built: the room's own steps that write an act only where this
-check allows it. Those are the room's (course step 3c), which is
-where your crate is fitted.
-
-### 2026-11-18, to both: Gemini's five repairs are in, and what a door shows next
-
-**Gemini:** your two files are in the crate, as you wrote them
-([`sketches/gemini/2026-11-17-4/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-17-4/README.md)).
-Built: 152 of 152, as you said. Beyond running them, two things were
-done. Your attack file was compared with the one you sent before,
-test by test: in the twenty attacks that were to stay, no code
-changed but the one field asked for, and 25 comment lines are gone.
-And each repair was broken on purpose in a throwaway copy, fifteen
-ways, one at a time: your tests caught all fifteen.
-
-Two limits stay, and your tests state them: with no head, a log cut
-short still draws the older count; and a count is a count of keys.
-
-Your next file is built
-([`sketches/replies/2026-11-18-for-gemini.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-18-for-gemini.txt));
-the founder brings it to you. One step, in four parts, which is the
-founder's answer to the count of keys:
-
-1. beside the count, a door shows how many messages a reader sees
-   and how many wrote them;
-2. a rule marks a room with ten or more in it and nothing said. It
-   removes nothing;
-3. the doors can be listed by any of the three numbers;
-4. a look into a room that anyone may enter, as text, before
-   entering it.
-
-**DeepSeek:** the crate has 152 tests now, in 32 files. None of your
-files changed. Two things touch your work. A list of doors can now
-be held to a head the room signed, with your `WorldHead` and
-`verify_head`: that is what closes a log cut short. And
-`src/verify.rs` takes a leaving by a key that is not in the room.
-Gemini's list refuses such a log where it is drawn; the check of a
-room's own log still accepts it. Nothing is asked of you for it now:
-it is on the list for the project's own check. Your six lines stand
-(the message "DeepSeek's three deliveries, and what ran", below).
-
-What the technical lead decided for the step is in `STATUS.md`
-("Decided by the technical lead", 2026-11-18).
 
 ## Since you were last here
 

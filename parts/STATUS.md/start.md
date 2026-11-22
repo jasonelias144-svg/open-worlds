@@ -132,9 +132,14 @@ free, and never a money machine
   (sketches/gemini/2026-11-17-2/), and attacked it with 25 tests
   (sketches/gemini/2026-11-17-3/): the crate refused twenty, and
   five got through, as Gemini said they would. Gemini repaired the
-  five (sketches/gemini/2026-11-17-4/): 152 of 152. Their next file
-  asks what a door shows besides the count, a flag, and a look into
-  a room (sketches/replies/2026-11-18-for-gemini.txt). DeepSeek goes on
+  five (sketches/gemini/2026-11-17-4/): 152 of 152. Their sixth
+  file asked what a door shows besides the count, a flag, and a look
+  into a room (sketches/replies/2026-11-18-for-gemini.txt); they did
+  it (sketches/gemini/2026-11-18/), and it is in the crate as it
+  stands, with DeepSeek's rule of one moderator's room: 166 tests in
+  34 files. Gemini then wrote eight prototypes of their own choosing,
+  from the founder's conversation with ChatGPT, kept beside the crate
+  (sketches/gemini/2026-11-22/). DeepSeek goes on
   with their third step. Fitting the crate to open-worlds' own code is
   step 3c.
   DeepSeek's code from record 012-06-02 works in part (#63), with a

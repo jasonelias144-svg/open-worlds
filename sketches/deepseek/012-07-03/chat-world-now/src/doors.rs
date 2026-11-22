@@ -10,6 +10,15 @@ use crate::room::RoomLog;
 use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, HashSet};
 
+pub const QUIET_FROM: u64 = 10;
+
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub enum By {
+    Members,
+    Said,
+    Speakers,
+}
+
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct DoorLaw {
@@ -32,6 +41,14 @@ pub struct DoorCount {
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
+pub struct DoorTalk {
+    pub said: u64,
+    pub speakers: u64,
+    pub at_record: u64,
+}
+
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct Door {
     pub room_id: DidKey,
     pub topic: String,
@@ -44,6 +61,8 @@ pub struct Door {
     pub law: Option<DoorLaw>,
     #[serde(default)]
     pub count: Option<DoorCount>,
+    #[serde(default)]
+    pub talk: Option<DoorTalk>,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
@@ -54,6 +73,17 @@ pub struct DoorList {
     #[serde(default)]
     pub log_head: Option<String>,
     pub doors: Vec<Door>,
+}
+
+fn is_quiet_door(door: &Door) -> bool {
+    match (&door.count, &door.talk) {
+        (Some(c), Some(t)) => c.members >= QUIET_FROM && t.said == 0,
+        _ => false,
+    }
+}
+
+pub fn quiet(list: &DoorList) -> Vec<&Door> {
+    list.doors.iter().filter(|d| is_quiet_door(d)).collect()
 }
 
 pub fn draw(log: &CommonsLog, rooms: &[RoomLog]) -> Result<DoorList> {
@@ -93,7 +123,7 @@ pub fn draw(log: &CommonsLog, rooms: &[RoomLog]) -> Result<DoorList> {
     for rec in &log.records {
         if let CommonsRecord::RoomRegistered(r) = rec {
             let registration_hash = rec.hash()?;
-            let (own_topic, law, count) = if let Some(&room_log) = rooms_by_id.get(&r.room_id) {
+            let (own_topic, law, count, talk) = if let Some(&room_log) = rooms_by_id.get(&r.room_id) {
                 let mut present: HashSet<DidKey> = HashSet::new();
                 for (idx, room_rec) in room_log.records.iter().enumerate() {
                     match room_rec {
@@ -127,17 +157,38 @@ pub fn draw(log: &CommonsLog, rooms: &[RoomLog]) -> Result<DoorList> {
                     welcome: t.welcome.clone(),
                     count_hidden: t.count_hidden,
                 };
-                let door_count = if t.count_hidden {
-                    None
+                let (door_count, door_talk) = if t.count_hidden {
+                    (None, None)
                 } else {
-                    Some(DoorCount {
-                        members: present.len() as u64,
-                        at_record: room_log.records.len() as u64,
-                    })
+                    let at_record = room_log.records.len() as u64;
+                    let visible = room_log.visible_log();
+                    let mut said: u64 = 0;
+                    let mut authors: HashSet<String> = HashSet::new();
+                    for entry in &visible {
+                        if entry["type"].as_str() == Some("message")
+                            && entry["redacted"].as_bool() == Some(false)
+                        {
+                            said += 1;
+                            if let Some(a) = entry["author"].as_str() {
+                                authors.insert(a.to_string());
+                            }
+                        }
+                    }
+                    (
+                        Some(DoorCount {
+                            members: present.len() as u64,
+                            at_record,
+                        }),
+                        Some(DoorTalk {
+                            said,
+                            speakers: authors.len() as u64,
+                            at_record,
+                        }),
+                    )
                 };
-                (Some(t.topic.clone()), Some(door_law), door_count)
+                (Some(t.topic.clone()), Some(door_law), door_count, door_talk)
             } else {
-                (None, None, None)
+                (None, None, None, None)
             };
 
             doors.push(Door {
@@ -149,6 +200,7 @@ pub fn draw(log: &CommonsLog, rooms: &[RoomLog]) -> Result<DoorList> {
                 registration_hash,
                 law,
                 count,
+                talk,
             });
         }
     }
@@ -227,22 +279,31 @@ pub fn check_at(
     check(list, log, rooms)
 }
 
-pub fn ranked(list: &DoorList) -> Vec<&Door> {
-    let mut with_count: Vec<(usize, &Door, u64)> = Vec::new();
-    let mut without_count: Vec<&Door> = Vec::new();
+pub fn ranked_by(list: &DoorList, by: By) -> Vec<&Door> {
+    let mut with_num: Vec<(usize, &Door, u64)> = Vec::new();
+    let mut without_num: Vec<&Door> = Vec::new();
 
     for (idx, door) in list.doors.iter().enumerate() {
-        match &door.count {
-            Some(c) => with_count.push((idx, door, c.members)),
-            None => without_count.push(door),
+        let val = match by {
+            By::Members => door.count.as_ref().map(|c| c.members),
+            By::Said => door.talk.as_ref().map(|t| t.said),
+            By::Speakers => door.talk.as_ref().map(|t| t.speakers),
+        };
+        match val {
+            Some(v) => with_num.push((idx, door, v)),
+            None => without_num.push(door),
         }
     }
 
-    with_count.sort_by(|a, b| b.2.cmp(&a.2).then_with(|| a.0.cmp(&b.0)));
+    with_num.sort_by(|a, b| b.2.cmp(&a.2).then_with(|| a.0.cmp(&b.0)));
 
-    let mut out: Vec<&Door> = with_count.into_iter().map(|(_, d, _)| d).collect();
-    out.extend(without_count);
+    let mut out: Vec<&Door> = with_num.into_iter().map(|(_, d, _)| d).collect();
+    out.extend(without_num);
     out
+}
+
+pub fn ranked(list: &DoorList) -> Vec<&Door> {
+    ranked_by(list, By::Members)
 }
 
 fn quote_ascii(s: &str) -> String {
@@ -315,6 +376,15 @@ pub fn as_text(list: &DoorList) -> String {
                         out.push_str("   members not shown\n");
                     }
                 }
+                if let Some(t) = &door.talk {
+                    out.push_str(&format!(
+                        "   said {}, speakers {}\n",
+                        t.said, t.speakers
+                    ));
+                }
+                if is_quiet_door(door) {
+                    out.push_str("   flag: many in it and nothing said\n");
+                }
             }
             None => {
                 out.push_str("   law not held\n");
@@ -323,4 +393,50 @@ pub fn as_text(list: &DoorList) -> String {
     }
 
     out
+}
+
+pub fn look(
+    log: &CommonsLog,
+    room: &RoomLog,
+    heads: &[WorldHead],
+) -> Result<String> {
+    draw_at(log, std::slice::from_ref(room), heads)?;
+
+    if room.template.join_policy != "open" || room.template.personal {
+        return Err(Error::Policy(
+            "look refused: room is not open and non-personal".into(),
+        ));
+    }
+
+    let mut out = String::new();
+    out.push_str(&format!("ROOM {}\n", quote_ascii(room.world_id.as_str())));
+    out.push_str(&format!("topic {}\n", quote_ascii(&room.template.topic)));
+    out.push_str(&format!("read at record {}\n", room.records.len()));
+
+    let visible = room.visible_log();
+    let mut msg_idx: usize = 0;
+    for entry in &visible {
+        if entry["type"].as_str() == Some("message") {
+            msg_idx += 1;
+            if entry["redacted"].as_bool() == Some(true) {
+                let rule = entry["rule"].as_str().unwrap_or("");
+                out.push_str(&format!(
+                    "{}. [removed] rule {}\n",
+                    msg_idx,
+                    quote_ascii(rule)
+                ));
+            } else {
+                let author = entry["author"].as_str().unwrap_or("");
+                let text = entry["text"].as_str().unwrap_or("");
+                out.push_str(&format!(
+                    "{}. {} said {}\n",
+                    msg_idx,
+                    quote_ascii(author),
+                    quote_ascii(text)
+                ));
+            }
+        }
+    }
+
+    Ok(out)
 }

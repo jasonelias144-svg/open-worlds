@@ -27,9 +27,7 @@ every test file was run.
   the five repairs    152 of 152 pass   152 of 152 pass
 
 Your prediction was exact again. Nothing was repaired here. Both files
-are in the crate as it stands. Since then DeepSeek's rule of one
-moderator's room has joined it too, with ten tests of its own: 162
-tests in 34 files.
+are in the crate as it stands: 152 tests in 32 files.
 
 What was checked beyond running it:
 
@@ -319,7 +317,7 @@ text, and a door whose count is shown now has a said line. Change
 what that test expects, and nothing else in it.
 
   Expected: say how many of how many pass, and name any test you
-  expect to fail. 162 of 162 pass today, 15 of them in
+  expect to fail. 152 of 152 pass today, 15 of them in
   tests/doors.rs. After this step none should fail.
 
 WHAT COMES AFTER, so you know where this goes. Do not begin it.
@@ -417,15 +415,15 @@ A test returns chat_world::error::Result<()>, as your others do.
 5. THE CRATE AS IT STANDS
 ======================================================================
 
-Nine of the crate's thirty-four files follow, each whole. Two of them
+Nine of the crate's thirty-two files follow, each whole. Two of them
 are yours to change: src/doors.rs and tests/doors.rs, as you sent
 them, byte for byte. The others are here to be read.
 
 Not in this file, and not to be sent: src/commons.rs, src/hash.rs,
 src/did.rs and src/proof.rs, which have not changed since you read
 them in the last file; src/verify.rs, src/transcript.rs, src/home.rs,
-src/attestation.rs and src/plugin.rs; the six programs in src/bin/;
-and ten test files (147 tests). Your tests/doors_attack.rs is one of
+src/attestation.rs and src/plugin.rs; the five programs in src/bin/;
+and nine test files (137 tests). Your tests/doors_attack.rs is one of
 the nine: it is in the crate now, and you change one line of it from
 your own last reply.
 
@@ -711,7 +709,6 @@ pub enum Record {
     Presence(Presence),
     KnowledgeShardExport(KnowledgeShardExport),
     ModeratorSuccession(ModeratorSuccession),
-    ModeratorScope(ModeratorScope),
 }
 
 impl Record {
@@ -730,7 +727,6 @@ impl Record {
             Record::Presence(p) => p.seq,
             Record::KnowledgeShardExport(k) => k.seq,
             Record::ModeratorSuccession(m) => m.seq,
-            Record::ModeratorScope(s) => s.seq,
         }
     }
     pub fn prev(&self) -> Option<&String> {
@@ -747,7 +743,6 @@ impl Record {
             Record::Presence(p) => p.prev.as_ref(),
             Record::KnowledgeShardExport(k) => k.prev.as_ref(),
             Record::ModeratorSuccession(m) => m.prev.as_ref(),
-            Record::ModeratorScope(s) => s.prev.as_ref(),
         }
     }
     pub fn proof(&self) -> &ProofOrArray {
@@ -764,7 +759,6 @@ impl Record {
             Record::Presence(p) => &p.proof,
             Record::KnowledgeShardExport(k) => &k.proof,
             Record::ModeratorSuccession(m) => &m.proof,
-            Record::ModeratorScope(s) => &s.proof,
         }
     }
     pub fn world_id(&self) -> &DidKey {
@@ -781,7 +775,6 @@ impl Record {
             Record::Presence(p) => &p.world_id,
             Record::KnowledgeShardExport(k) => &k.world_id,
             Record::ModeratorSuccession(m) => &m.world_id,
-            Record::ModeratorScope(s) => &s.world_id,
         }
     }
     pub fn author_id(&self) -> Option<&DidKey> {
@@ -798,11 +791,14 @@ impl Record {
             Record::Presence(_) => None,
             Record::KnowledgeShardExport(_) => None,
             Record::ModeratorSuccession(_) => None,
-            Record::ModeratorScope(_) => None,
         }
     }
 }
 
+/// Names the room a branch came from, and the checkpoint it
+/// branched at: the parent's world_id, the checkpoint's seq, and
+/// the checkpoint's record hash. All three must agree with the
+/// parent's log for `verify_branch` to accept the branch.
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub struct ForkedFrom {
     pub parent_id: DidKey,
@@ -957,31 +953,23 @@ pub struct ModeratorSuccession {
     pub proof: ProofOrArray,
 }
 
-/// A declaration of an AI's moderator scope, written in its own
-/// KnowledgeWorld. The latest such record is the AI's claim; the
-/// pair check `verify_moderator_scope` reads it.
-#[derive(Clone, Debug, Serialize, Deserialize)]
-pub struct ModeratorScope {
-    pub world_id: DidKey,
-    pub seq: u64,
-    pub prev: Option<String>,
-    pub human_facing_rooms: Vec<DidKey>,
-    pub meta_rooms: Vec<DidKey>,
-    pub ts: String,
-    pub proof: ProofOrArray,
-}
-
 // ---- Constructors ----
 
 impl RoomCreated {
+    /// The seed for a room that has no parent.
     pub fn new(world_id: DidKey, template: RoomTemplate, creator_id: DidKey) -> Self {
         RoomCreated {
-            world_id, template, creator_id,
+            world_id,
+            template,
+            creator_id,
             forked_from: None,
             ts: crate::now(),
             proof: ProofOrArray::placeholder(),
         }
     }
+
+    /// The seed for a branch: the same shape plus a `forked_from`
+    /// naming the parent and the checkpoint.
     pub fn branch(
         world_id: DidKey,
         template: RoomTemplate,
@@ -989,7 +977,9 @@ impl RoomCreated {
         forked_from: ForkedFrom,
     ) -> Self {
         RoomCreated {
-            world_id, template, creator_id,
+            world_id,
+            template,
+            creator_id,
             forked_from: Some(forked_from),
             ts: crate::now(),
             proof: ProofOrArray::placeholder(),
@@ -1051,22 +1041,6 @@ impl ModeratorSuccession {
         ModeratorSuccession { world_id, seq, prev, outgoing_id, incoming_id, knowledge_shard_hash, reason, ts: crate::now(), proof: ProofOrArray::placeholder() }
     }
 }
-impl ModeratorScope {
-    pub fn new(
-        world_id: DidKey,
-        seq: u64,
-        prev: Option<String>,
-        human_facing_rooms: Vec<DidKey>,
-        meta_rooms: Vec<DidKey>,
-    ) -> Self {
-        ModeratorScope {
-            world_id, seq, prev,
-            human_facing_rooms, meta_rooms,
-            ts: crate::now(),
-            proof: ProofOrArray::placeholder(),
-        }
-    }
-}
 ```
 
 ----- FILE: chat-world/src/room.rs  (to read: Room, RoomLog and visible_log) -----
@@ -1092,11 +1066,24 @@ pub struct RoomLog {
 }
 
 impl RoomLog {
+    /// The presentation view of this log: messages with redacted
+    /// text hidden, plus a `restored_incidents` note where a
+    /// redaction has been restored. This is what a reader sees.
     pub fn visible_log(&self) -> Vec<serde_json::Value> {
         visible_log_from(&self.records)
     }
 }
 
+/// The presentation-layer view of a slice of records: messages
+/// whose text has been redacted (and not restored) show `[removed]`
+/// with the incident id, rule, and reason; messages with a restored
+/// redaction show their text plus a `restored_incidents` list.
+///
+/// The data layer is never modified: `records` is read, not
+/// changed. Two passes — first collect the redaction targets and
+/// which redactions have been restored, then build the view — so a
+/// redaction applies to a message recorded before it regardless of
+/// order.
 pub fn visible_log_from(records: &[Record]) -> Vec<serde_json::Value> {
     use serde_json::json;
 
@@ -1207,14 +1194,6 @@ pub fn visible_log_from(records: &[Record]) -> Vec<serde_json::Value> {
                     "reason": s.reason,
                 }));
             }
-            Record::ModeratorScope(s) => {
-                out.push(json!({
-                    "seq": s.seq, "type": "moderator_scope",
-                    "human_facing_rooms": s.human_facing_rooms.iter().map(|r| r.as_str()).collect::<Vec<_>>(),
-                    "meta_rooms": s.meta_rooms.iter().map(|r| r.as_str()).collect::<Vec<_>>(),
-                    "ts": s.ts,
-                }));
-            }
             Record::KnowledgeShardExport(_) | Record::PortLanding(_) | Record::Bookmark(_) | Record::Presence(_) => {}
         }
     }
@@ -1265,6 +1244,9 @@ impl Room {
         Ok(room)
     }
 
+    /// Branch this room at a checkpoint. Returns a new Room whose
+    /// seed names this room and the checkpoint, whose law is
+    /// `new_template`, and whose first member is `maker_kp`.
     pub fn branch_at(
         &self,
         checkpoint_seq: u64,
@@ -1293,8 +1275,10 @@ impl Room {
             checkpoint_seq,
             checkpoint_hash,
         };
+
         let branch_world_id = branch_kp.did();
         let maker_id = maker_kp.did();
+
         let mut members = HashMap::new();
         members.insert(
             maker_id.clone(),

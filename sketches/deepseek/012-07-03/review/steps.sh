@@ -3,8 +3,9 @@
 # first five deliveries in record 012-07-03, exactly as DeepSeek gave
 # it, then each of Gemini's three that followed, their three on the
 # Commons, DeepSeek's next three, Gemini's fourth step, their
-# attacks on the list of doors and their repairs of it, in a scratch
-# folder, and runs its tests. Nothing here is changed.
+# attacks on the list of doors and their repairs of it, DeepSeek's
+# deliveries 8 to 11, and Gemini's answer to their sixth file, in a
+# scratch folder, and runs its tests. Nothing here is changed.
 # Run it from anywhere:
 #   sh sketches/deepseek/012-07-03/review/steps.sh
 #
@@ -49,7 +50,7 @@
 #                 26), which was the crate as it stood until
 #                 2026-11-18.
 #   d8            does not compile: the rule of one moderator's room,
-#                 cut off after three files
+#                 for one type (2026-11-21)
 # Then Gemini's fourth step (2026-11-17), beside the crate as it
 # stood:
 #   c4            136 pass, 8 fail: the eight attacks on a room's
@@ -60,9 +61,23 @@
 #   doors-attacks 147 pass, 5 fail: the five of their 25 attacks that
 #                 Gemini said would get through
 # Then Gemini's repairs of those five (2026-11-18):
-#   now           152 pass, the four demos run, and the plug-in's own
-#                 demonstration runs. This is doors with Gemini's two
-#                 files laid over it, which is the crate as it stands.
+#   repairs       152 pass. This is doors with Gemini's two files laid
+#                 over it, which was the crate as it stood until
+#                 2026-11-21.
+# Then DeepSeek's deliveries 8 to 11 (2026-11-21):
+#   now           162 pass: d8 with DeepSeek's src/verify.rs again,
+#                 which was the crate as it stood until 2026-11-22
+#   joined        171 pass, 2 fail: a room one has joined, beside it
+#   joined-fix    176 pass, 3 fail: the keeper's side checked as the
+#                 log is, beside it
+# Then Gemini's answer to their sixth file (2026-11-22):
+#   said          166 pass. This is now with Gemini's three files laid
+#                 over it: said and speakers, the flag, the doors
+#                 listed by another number, and a look into a room.
+#   standing      166 pass, the five demos run, and the plug-in's own
+#                 demonstration runs. This is ../chat-world-now, the
+#                 crate as it stands, which steps.py --check holds to
+#                 said.
 set -eu
 here=$(cd "$(dirname "$0")/.." && pwd)
 scratch=$(mktemp -d)
@@ -70,9 +85,9 @@ trap 'rm -rf "$scratch"' EXIT
 python3 "$here/review/steps.py" --aside "$scratch"
 python3 "$here/review/steps.py" --check
 python3 "$here/review/steps.py" --now "$scratch/more"
-for name in 5-repaired g1 g2 g3 g3-repaired c1 c2 c3 d6 d6-repaired d7-count doors d8 c4 doors-attacks; do mv "$scratch/more/$name" "$scratch/$name"; done
-mkdir "$scratch/now"
-cp -R "$here/chat-world-now" "$scratch/now/chat-world"
+for name in 5-repaired g1 g2 g3 g3-repaired c1 c2 c3 d6 d6-repaired d7-count doors d8 c4 doors-attacks repairs now joined joined-fix said; do mv "$scratch/more/$name" "$scratch/$name"; done
+mkdir "$scratch/standing"
+cp -R "$here/chat-world-now" "$scratch/standing/chat-world"
 status=0
 check() {
     # check DELIVERY WHAT-THE-TESTS-MUST-SAY
@@ -104,9 +119,9 @@ check_all() {
         echo "   NOT as recorded: wanted \"$2 passed, $3 failed\""
         status=1
     fi
-    if [ "$1" = now ]; then
-        for demo in chat-demo home-demo head-demo succession-demo; do
-            if ( cd "$scratch/now/chat-world" && cargo run --quiet --bin "$demo" ) \
+    if [ "$1" = standing ]; then
+        for demo in chat-demo home-demo head-demo succession-demo moderator-scope-demo; do
+            if ( cd "$scratch/standing/chat-world" && cargo run --quiet --bin "$demo" ) \
                 > "$scratch/$demo.out" 2>&1; then
                 echo "   $demo runs"
             else
@@ -114,7 +129,7 @@ check_all() {
                 status=1
             fi
         done
-        if ( cd "$scratch/now/chat-world" && cargo run --quiet --bin chat-world-plugin -- --demo ) \
+        if ( cd "$scratch/standing/chat-world" && cargo run --quiet --bin chat-world-plugin -- --demo ) \
             > "$scratch/plugin-demo.out" 2>&1; then
             echo "   chat-world-plugin --demo runs"
         else
@@ -145,5 +160,10 @@ check_all doors 127 0
 check d8 'could not compile `chat-world`'
 check_all c4 136 8
 check_all doors-attacks 147 5
-check_all now 152 0
+check_all repairs 152 0
+check_all now 162 0
+check_all joined 171 2
+check_all joined-fix 176 3
+check_all said 166 0
+check_all standing 166 0
 exit $status

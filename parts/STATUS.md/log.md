@@ -2,13 +2,45 @@
 > for readers who are shown only the start of a long page.
 > This part holds: "Log".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided.md
 > After this part: nothing; this is the last part.
 > Made by docs/parts.py from the file. To change it, change the file.
 
 ## Log
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
+
+- 2026-11-22 Claude: Gemini's record 012-08-04 continued (34,033
+  lines; the copy kept before is a prefix of it, byte for byte), and
+  two pieces of Gemini's work built. Looked through first: nothing
+  personal in the founder's turns, no link, long number or key, and
+  no text of the founder's conversation with ChatGPT, which the
+  founder gave Gemini and which stays private; Gemini's record names
+  that file and describes some of its ideas. It opens with Gemini's
+  reading of the founder's book, which is public. (1) Gemini's answer
+  to their sixth file (sketches/gemini/2026-11-18/): it was already in
+  the copy kept on 2026-11-20, at line 19220, and was not built then;
+  on 2026-11-21 the file was taken as not yet given and built again,
+  which was wrong. The file as given is restored
+  (sketches/replies/README.md). Built: 156 of 156 on the crate Gemini
+  was given, as they expected, and 166 of 166 on the crate as it
+  stood; it is now the crate as it stands, 166 tests in 34 files
+  (steps.py stage `said`). Each of its four parts broken on purpose,
+  twelve ways: all caught. Gemini's reason in answer to its question
+  (a look into a room that hides its count gives the count away
+  through its authors) is right; of their remedies, a look with no
+  authors or no look holds, and numbering the authors does not.
+  Which is the founder's. (2) Eight prototype modules Gemini chose from the
+  ChatGPT conversation (sketches/gemini/2026-11-22/), nine deliveries,
+  the second a repeat of the first: six build and pass alone on the
+  crate; `circuit` and `library` need equality on the crate's proof
+  types, and with it all eight together give 190 of 190. Each
+  module's main rule broken once: all eight caught. Kept beside the
+  crate, not in it, as ahead of the core. `transform`'s orbit counts
+  agree with a separate count and with the book. Also: review/steps.sh
+  brought up to date (it still named the crate of 152 tests) and run
+  whole: all 28 stages as recorded, every demonstration runs. A
+  message to Gemini on their page.
 
 - 2026-11-21 Claude: DeepSeek's record 012-07-03 continued, and four
   deliveries built (#144). The founder's new copy (33,100 lines) holds
@@ -206,79 +238,5 @@
   `rust/ur-world`); what may enter Core; the earlier works named only
   once brought (house rule 8); one title for the book; the records
   named in full; and the page's check of whether it is current.
-
-- 2026-11-18 Claude: the last piece of course step 3b is built, the
-  records' side of part four: who may act on a log
-  (docs/research/REDACTION.md, "Part four, the records' side, built").
-  Looked at first: the six things the plan left for this side, the
-  log's side, the act of redacting, and the grant and the decision
-  as records-v1 holds them. Built: `world/acts.py` and `rust/acts`,
-  which hold every act in a log to the signed record it carries, and
-  every office to its grant, up to the room's key; two kinds of
-  record in records-v1, an author's taking back and putting back (22
-  kinds of record now, and 36 definitions in the schema); and
-  `vectors/acts.json`, with 6 rooms that hold, 61 that are refused,
-  each for one of 24 reasons at one entry (three with two faults),
-  and 7 records held to their office's grant on their own. The record vectors hold 29
-  records that hold and 94 that are refused (26 and 86 before).
-  Checked: 857 tests in Python (829 before; 3 skipped, as before),
-  under Python 3.12; 247 in Rust (238 before), with fmt and clippy
-  clean; Rust refuses every room for Python's reason at the same
-  entry; the sketches' check, six lines, each with no problem. Each
-  check was weakened on purpose, one at a time: 49 changes to the
-  Python, all caught; 47 to the Rust, 46 caught, and one that changes
-  nothing a caller can see. The first run of each found a case no
-  test held, and both are in the vectors now: an author's key that
-  is marked and still in the contents, and a decision signed at the
-  second its grant begins. The independent review found nothing
-  blocking; from its four other points, three rooms with two faults
-  went into the vectors, an office is now held only to the act its
-  record is for, the comparison of times as text says why it holds,
-  and (k) now says, as the code does, that a key under a mark is not
-  read. Found on the way: COLLABORATING.md said
-  its list held 258 files when it held 265; with this change's seven
-  it holds 272, and says so. Not done: the room's steps that write
-  an act only where this check allows it (step 3c); taking a grant
-  back before its end; an office's name, shown from its own record
-  (step 3d); successions (step 8a). Not run: the web pages' tests,
-  since nothing they read changed, and Python 3.10 and 3.11. Next:
-  the course is rechecked, as after every step.
-- 2026-11-18 Claude: Gemini's record is continued, as the founder
-  brought it (814,977 bytes, 19,219 lines; its first 769,085 bytes
-  are the record as it was kept). Looked through first: the
-  founder's one turn in the new part holds nothing personal; there
-  is no link, long number or key in it; and the code reaches for no
-  file, process or network. It holds Gemini's answer to their fifth
-  file: the five repairs of the list of doors, two files, kept as
-  written in sketches/gemini/2026-11-17-4 and held to the record by
-  that folder's take.py. Laid over the crate: 152 of 152, as Gemini
-  expected. All 22 stages of review/steps.sh were built again, each
-  on its own, and are as recorded; the crate as it stands is now
-  152 tests in 32 files, and its four demos and the plug-in's own
-  run. Compared: Gemini's attack file with the one they sent
-  before, test by test; in the twenty attacks that were to stay, no
-  code changed but the one field asked for, and 25 comment lines
-  were taken out. Tried, in a throwaway copy outside the
-  repository: each repair broken on purpose, fifteen ways, one at a
-  time, and Gemini's tests caught all fifteen; and seven trial
-  tests of the technical lead's own, all passing. Read by the
-  technical lead: Gemini's prose, their `src/doors.rs` whole, and
-  the five tests they wrote again; the twenty that did not change
-  were compared and run, not read again. Then Gemini's next file
-  was built and sent to the founder
-  (sketches/replies/2026-11-18-for-gemini.txt, 91,773 bytes): one
-  step in four parts (Decided by the technical lead). Before it was
-  written the step was made in a second throwaway copy, with seven
-  trial tests of what the file states: with it made, every test of
-  the crate passes but one, which holds the whole text of a list
-  and must gain the new line. Neither copy is kept, and nothing of
-  them is in the repository. The two reply files before this one
-  are no longer current. Also: the build scripts and the status
-  test under sketches/deepseek/012-07-03, which are the project's
-  own, said "its" of DeepSeek and of Gemini in nine places, and say
-  "their" now; the sweep of 2026-11-17 had left `sketches/` out
-  whole. Not checked: Gemini's twenty unchanged attacks, line by
-  line; the other scripts and comments of the project's own under
-  `sketches/` for the same pronoun.
 
 > End of `STATUS.md`.

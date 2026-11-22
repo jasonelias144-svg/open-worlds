@@ -49,6 +49,7 @@ fn attack_01_door_added_for_unlisted_room() -> Result<()> {
         registration_hash: "00".repeat(32),
         law: None,
         count: None,
+        talk: None,
     });
 
     assert!(check(&forged, &log, &rooms).is_err(), "extra door added");

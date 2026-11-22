@@ -4,7 +4,7 @@
  "root": "sketches/deepseek/012-07-03/chat-world-now",
  "name": "chat-world",
  "limit": 100000,
- "current": true,
+ "current": false,
  "files": [
   [
    "Cargo.toml",
