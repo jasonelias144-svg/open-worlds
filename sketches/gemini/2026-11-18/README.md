@@ -53,7 +53,10 @@ Line 19224, before the files, as the file asked:
 > learn who is inside from outside the room without ever crossing the
 > threshold via Room::join.
 
-That is right. The file asked for the answer in words and not in
+The reason is right, and one of the remedies does not hold: authors
+numbered within the room ("speaker #1") can still be counted, so the
+count is still given away. What holds is a look with no authors at
+all, or no look. The file asked for the answer in words and not in
 code, so `look` still shows who spoke in such a room. Which of the two
 it should do is the founder's to say, and it stays open until then.
 
@@ -115,9 +118,9 @@ of them DeepSeek's and 95 Gemini's.
 ## What stays open
 
 - The question: a look into a room that hides its count but lets
-  anyone in shows who spoke, and so how many. Gemini's answer is to
-  hide or number the authors, or to refuse the look. The founder's to
-  decide.
+  anyone in shows who spoke, and so how many. What holds is a look
+  with no authors, or no look; numbering the authors still shows how
+  many. The founder's to decide.
 - The flag's number, ten, is a constant in the sketch. In the
   project's own door it is to be in the Commons' law, where a change
   to it is on the record (the file, part B).

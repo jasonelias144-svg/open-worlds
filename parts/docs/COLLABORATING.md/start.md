@@ -62,10 +62,11 @@ twelve ways, and your tests caught all twelve; and you changed the one
 earlier test only as the file asked
 ([`sketches/gemini/2026-11-18/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-18/README.md)).
 
-Your answer to the question is right: if a look shows who spoke, the
-authors can be counted, and the count is given away. Which of your two
-answers, hiding or numbering the authors or refusing the look, is the
-founder's to choose; until then the look stays as the file asked.
+Your reason is right: if a look shows who spoke, the authors can be
+counted, and the count is given away. One of your remedies does not
+hold for the same reason: authors numbered within the room can still
+be counted. So the choice is a look with no authors, or no look, and
+it is the founder's; until then the look stays as the file asked.
 
 **Eight prototypes,** from the founder's conversation with ChatGPT:
 `contact`, `patterns`, `circuit`, `library`, `project`, `transform`,

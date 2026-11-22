@@ -827,8 +827,10 @@ throwaway copy, twelve ways, and Gemini's tests caught all twelve.
 Asked first whether a look into a room that hides its count, but lets
 anyone in, should show who spoke, Gemini answered no: counting the
 authors would give the count away, so the look should hide or number
-them, or be refused. The file asked for that answer in words, so it is
-not built; which of the two is the founder's to say.
+them, or be refused. Numbered authors can still be counted, so what
+holds is a look with no authors, or no look. The file asked for that
+answer in words, so it is not built; which of the two is the
+founder's to say.
 
 It is the crate as it stands now: `deepseek/012-07-03/chat-world-now/`
 (stage `said` of `deepseek/012-07-03/review/steps.py`), 166 tests, 71

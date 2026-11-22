@@ -26,10 +26,11 @@
   was given, as they expected, and 166 of 166 on the crate as it
   stood; it is now the crate as it stands, 166 tests in 34 files
   (steps.py stage `said`). Each of its four parts broken on purpose,
-  twelve ways: all caught. Gemini's answer to its question (a look
-  into a room that hides its count gives the count away through its
-  authors) is right, and which of their two remedies is the
-  founder's. (2) Eight prototype modules Gemini chose from the
+  twelve ways: all caught. Gemini's reason in answer to its question
+  (a look into a room that hides its count gives the count away
+  through its authors) is right; of their remedies, a look with no
+  authors or no look holds, and numbering the authors does not.
+  Which is the founder's. (2) Eight prototype modules Gemini chose from the
   ChatGPT conversation (sketches/gemini/2026-11-22/), nine deliveries,
   the second a repeat of the first: six build and pass alone on the
   crate; `circuit` and `library` need equality on the crate's proof
