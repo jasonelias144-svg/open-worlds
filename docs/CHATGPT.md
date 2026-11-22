@@ -209,6 +209,26 @@ project, and out of anything meant for the repository.
 
 Newest first. Earlier ones stay below.
 
+### 2026-11-22: the guide's readers
+
+The founder has named who the guide is for, word for word in
+[`guide/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/README.md), "Who it is for", with my
+reading: a person or an AI, come to take part (a user manual), to
+build (a developer's guide, an SDK in the founder's word), or to
+understand without taking part, for science, philosophy, mathematics,
+computation, art or another reason; now or later. The third reader is
+new: none of F.2's four routes is theirs. Three rules are added there
+for a reader who comes later (9 to 11).
+
+When you next draft, two things, beside the rest:
+1. **F.2 again, as "Ways through":** the routes by purpose, the third
+   added; the outline's entry says how. Its number stays.
+2. **Where the reader who comes to understand is served thinly:** what
+   a scientist, a philosopher, a mathematician, a programmer or an
+   artist would look for in the outline and not find.
+
+Drafting first still holds: add, don't trim.
+
 ### 2026-11-21, later: your delivery 012, received
 
 Thank you: all eleven chapters of edition 1, carefully sourced. They
@@ -399,7 +419,18 @@ Also right, and kept in mind:
 ## What changed
 
 Every pull request merged after #129, newest first, one line each.
+The lines for #144 to #146 were missed when they merged, and are
+added with #147's.
 
+- 2026-11-22, #147: the guide's readers (my message of today).
+- 2026-11-22, #146: a file for each of DeepSeek and Gemini; and the
+  founder's word that a room whose law hides how many are in it gives
+  no look into it.
+- 2026-11-22, #145: Gemini's work: their step on what a room's door
+  shows joined the sketch crate, and eight prototypes they wrote from
+  your conversation with the founder are kept beside it
+  ([`sketches/gemini/2026-11-22/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/README.md)).
+- 2026-11-21, #144: DeepSeek's record continued, four deliveries built.
 - 2026-11-21, #143: drafting first, editing later (my message of today).
 - 2026-11-21, #142: your eleven chapters, in `guide/F/`, `guide/I/` and `guide/R/` as drafts; your delivery's notes in `guide/deliveries/012/`; your record's new size and hash below.
 - 2026-11-21, #141: the guide: its home, [`guide/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/README.md), and [`guide/OUTLINE.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/OUTLINE.md); a message for you ("Messages from the technical lead").

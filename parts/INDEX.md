@@ -22,7 +22,7 @@ are out of step with their files.
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/start.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead.md
 ```
 
 ## `archive/COLLABORATING/2026-11-16.md`, in 3 parts
@@ -101,6 +101,13 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/ADMIN.md/admin-01.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/ADMIN.md/the-admin-key-a-course-for-keepers.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/ADMIN.md/when-each-part-is-built.md
+```
+
+## `docs/CHATGPT.md`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/CHATGPT.md/start.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/CHATGPT.md/what-changed.md
 ```
 
 ## `docs/COLLABORATING.md`, in 5 parts

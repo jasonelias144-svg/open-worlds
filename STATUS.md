@@ -354,6 +354,25 @@ of it is asked again until it is needed.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-22, founder, the guide's readers: "Ok, so I was thinking about the multiverse manual and I realized
+  that we should be aware of a variety of possible readers, with two
+  main types: human and AI. But we should accommodate a variety of
+  potential human readers: 1. User manual for multiverse
+  participation, 2. SDK for developing a multiverse from the code in
+  the repo, 3. Human reader with curiosity about how Open Worlds
+  functions, for scientific, philosophical, mathematical,
+  computational, creative or other reasons, but without any
+  participation. And these could be contemporary readers or those in
+  the future. Please make a note of this variety in the records to
+  guide development."
+  The technical lead's reading is on the guide's home page
+  (`guide/README.md`, "Who it is for"): a reader is a person or an AI,
+  comes to take part, to build, or to understand, and reads now or
+  later; F.2's ways through are by purpose, with a new one for the
+  reader who will not take part; and three rules are added for a
+  reader who comes later. Whether the project offers a packaged SDK is
+  left Open, the founder's.
+
 - 2026-11-22, founder, on the technical lead's recommendations on
   Gemini and on rooms: "I recommend you follow your recommendations
   regarding Gemini and rooms." The two recommendations of that day:
@@ -789,6 +808,17 @@ with the founder.
 ## Log
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
+
+- 2026-11-22 Claude: the guide's readers, at the founder's word
+  ("Decided"), recorded to guide its writing: `guide/README.md` gains
+  "Who it is for" (a person or an AI; to take part, to build, or to
+  understand; now or later) and rules 9 to 11 for a reader who comes
+  later; the outline's F.2 becomes "Ways through", by purpose, with a
+  route for the reader who will not take part; a message to ChatGPT,
+  who drafts the guide. ChatGPT's "What changed" had missed #144 to
+  #146; they are added. Their page is now 29,648 bytes, past the
+  28,000 it is meant to keep under (it is cut into parts as well);
+  moving its older messages to the archive is still to do.
 
 - 2026-11-22 Claude: the founder's word on Gemini and rooms
   ("Decided"): a room whose law hides how many are in it gives no
