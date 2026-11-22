@@ -356,6 +356,20 @@ of it is asked again until it is needed.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-22, founder, Gemini's turn to a new neuron, and TriNet: "Ok,
+  so my conversation with Gemini took an interesting turn. I'm very
+  curious to hear your thoughts after you get a chance to review the
+  conversation record and get the code up and running. Then we can see
+  if it does what it intended with no or little change. Thoughts?" And,
+  while it was being built: "I just created a new repo: TriNet, which is
+  public without any license chosen." So the model has its own
+  repository, [TriNet](https://github.com/jasonelias144-svg/TriNet), under
+  CC0 like the rest (handbook decision 0003; TriNet #1, and handbook #16
+  for its entry in the registry). The conversation is kept here, longer
+  (sketches/INDEX.md). Gemini's four Rust deliveries are kept beside the
+  sketch crate (sketches/gemini/2026-11-22-2/), and their Python is in
+  TriNet.
+
 - 2026-11-22, founder, when the founder's words began to be kept:
   "Many of the "::" instances will just be some form of "Perfect.
   Please proceed: ➡️". And they only started to be recorded from 005
@@ -864,6 +878,17 @@ with the founder.
 ## Log
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
+
+- 2026-11-22 Claude: Gemini's record continued, to 43,646 lines (the
+  kept copy a prefix, byte for byte), and the founder's words recorded
+  ("Decided"). Four Rust deliveries are kept beside the crate in
+  sketches/gemini/2026-11-22-2/, each built on the crate as it stands:
+  `retelling` 168 of 168; the two `neuro` and `neuro_mind`, with the
+  comparison change of `circuit` and `library`, 168 of 169, 171 of 172
+  and 173 of 175 (sketches/INDEX.md). The other eight folders' manifests
+  name the record's new size and hash; their lines are unchanged. The
+  Python and the Hugging Face package went to the new TriNet repository,
+  set up in TriNet #1.
 
 - 2026-11-22 Claude: the founder's turns counted, and the founder's
   word on when they began to be kept ("Decided"). Counted by a script

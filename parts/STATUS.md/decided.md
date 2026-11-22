@@ -10,6 +10,20 @@
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-22, founder, Gemini's turn to a new neuron, and TriNet: "Ok,
+  so my conversation with Gemini took an interesting turn. I'm very
+  curious to hear your thoughts after you get a chance to review the
+  conversation record and get the code up and running. Then we can see
+  if it does what it intended with no or little change. Thoughts?" And,
+  while it was being built: "I just created a new repo: TriNet, which is
+  public without any license chosen." So the model has its own
+  repository, [TriNet](https://github.com/jasonelias144-svg/TriNet), under
+  CC0 like the rest (handbook decision 0003; TriNet #1, and handbook #16
+  for its entry in the registry). The conversation is kept here, longer
+  (sketches/INDEX.md). Gemini's four Rust deliveries are kept beside the
+  sketch crate (sketches/gemini/2026-11-22-2/), and their Python is in
+  TriNet.
+
 - 2026-11-22, founder, when the founder's words began to be kept:
   "Many of the "::" instances will just be some form of "Perfect.
   Please proceed: ➡️". And they only started to be recorded from 005

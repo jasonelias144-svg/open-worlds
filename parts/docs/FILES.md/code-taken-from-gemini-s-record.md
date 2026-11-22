@@ -8,7 +8,7 @@
 
 ## Code taken from Gemini's record
 
-In `sketches/gemini`, 64 files, 903 KB in all, the largest 45 KB: Gemini's code as they wrote it, a folder per stretch of work; each folder's `MANIFEST.json` and `take.py` hold its files to the record they were taken from.
+In `sketches/gemini`, 75 files, 1.1 MB in all, the largest 45 KB: Gemini's code as they wrote it, a folder per stretch of work; each folder's `MANIFEST.json` and `take.py` hold its files to the record they were taken from.
 
 **`sketches/gemini/2026-11-16`** (13 files, 152 KB):
 
@@ -107,6 +107,22 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/ge
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/steps/9/src/repair.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/steps/9/tests/repair.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/take.py
+```
+
+**`sketches/gemini/2026-11-22-2`** (11 files, 203 KB):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22-2/MANIFEST.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22-2/README.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22-2/steps/10/src/retelling.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22-2/steps/10/tests/retelling.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22-2/steps/11/src/neuro.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22-2/steps/11/tests/neuro.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22-2/steps/17/src/neuro.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22-2/steps/17/tests/neuro.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22-2/steps/18/src/neuro_mind.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22-2/steps/18/tests/neuro_mind.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22-2/take.py
 ```
 
 ## What DeepSeek was given

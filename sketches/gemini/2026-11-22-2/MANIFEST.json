@@ -1,0 +1,85 @@
+{
+ "record": {
+  "name": "012-08-04-GMNI-Patterns_Multiverses.txt",
+  "bytes": 1829108,
+  "sha256": "52ae3fc6629d6e77f3e605b06e5e24cdbbe8ff611aedc14929b196573fa1eddf",
+  "lines": 43646,
+  "new_from_line": 34033
+ },
+ "deliveries": {
+  "10": {
+   "from": 34030,
+   "to": 35590
+  },
+  "11": {
+   "from": 35670,
+   "to": 36643
+  },
+  "17": {
+   "from": 37650,
+   "to": 39305
+  },
+  "18": {
+   "from": 39311,
+   "to": 40662
+  }
+ },
+ "files": {
+  "steps/10/src/retelling.rs": {
+   "lines": [
+    34041,
+    35237
+   ],
+   "sha256": "f7026d6a009c43b47b159e8cca80e7a0323926dcea41d2cd08f42bc43492fba4"
+  },
+  "steps/10/tests/retelling.rs": {
+   "lines": [
+    35240,
+    35590
+   ],
+   "sha256": "5e6636669ed9773643414917b56f94dea9d851195011c48ff5b3c8fd1626d440"
+  },
+  "steps/11/src/neuro.rs": {
+   "lines": [
+    35686,
+    36406
+   ],
+   "sha256": "f8653613049a4b647cfdce56352931c97d32a75812b6bc5a349d0616acf33c35"
+  },
+  "steps/11/tests/neuro.rs": {
+   "lines": [
+    36409,
+    36643
+   ],
+   "sha256": "f8c25210c5b241a85677b4b9e4388227ed9678737c27678b5fedea80c3f6aa3e"
+  },
+  "steps/17/src/neuro.rs": {
+   "lines": [
+    37660,
+    38736
+   ],
+   "sha256": "def81a42712d17eee375d96e922ad0426cfa97e38c3edc8bdbca5a32a2e87036"
+  },
+  "steps/17/tests/neuro.rs": {
+   "lines": [
+    38739,
+    39305
+   ],
+   "sha256": "fc7fab121353c5f773eca9f5bcaf382b9e0b729c155035e5e931682680c444a8"
+  },
+  "steps/18/src/neuro_mind.rs": {
+   "lines": [
+    39322,
+    40190
+   ],
+   "sha256": "a6bde7feb2e9164bc3d7a365cf8fd4a41f58bec42c69e58ece1cae7a02982816"
+  },
+  "steps/18/tests/neuro_mind.rs": {
+   "lines": [
+    40193,
+    40662
+   ],
+   "sha256": "f60bd999eccfaaa1bade48b1a199a41ee6fa890e326e4ce69edd405836d1f0d5"
+  }
+ }
+}

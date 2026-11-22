@@ -110,6 +110,17 @@ with the founder.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-22 Claude: Gemini's record continued, to 43,646 lines (the
+  kept copy a prefix, byte for byte), and the founder's words recorded
+  ("Decided"). Four Rust deliveries are kept beside the crate in
+  sketches/gemini/2026-11-22-2/, each built on the crate as it stands:
+  `retelling` 168 of 168; the two `neuro` and `neuro_mind`, with the
+  comparison change of `circuit` and `library`, 168 of 169, 171 of 172
+  and 173 of 175 (sketches/INDEX.md). The other eight folders' manifests
+  name the record's new size and hash; their lines are unchanged. The
+  Python and the Hugging Face package went to the new TriNet repository,
+  set up in TriNet #1.
+
 - 2026-11-22 Claude: the founder's turns counted, and the founder's
   word on when they began to be kept ("Decided"). Counted by a script
   that reads every copy of every record and writes nothing out of
