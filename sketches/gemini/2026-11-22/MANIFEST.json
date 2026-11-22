@@ -1,0 +1,175 @@
+{
+ "record": {
+  "name": "012-08-04-GMNI-Patterns_Multiverses.txt",
+  "bytes": 1394473,
+  "sha256": "223b3a767795c6dcc8a6d15b862020d0decc1cfcb4f150a6ecce1d435c893517",
+  "lines": 34033,
+  "new_from_line": 21513
+ },
+ "deliveries": {
+  "1": {
+   "from": 21586,
+   "to": 22868
+  },
+  "2": {
+   "from": 22873,
+   "to": 24155
+  },
+  "3": {
+   "from": 24160,
+   "to": 25210
+  },
+  "4": {
+   "from": 25215,
+   "to": 26628
+  },
+  "5": {
+   "from": 26633,
+   "to": 27956
+  },
+  "6": {
+   "from": 27961,
+   "to": 29687
+  },
+  "7": {
+   "from": 29692,
+   "to": 31030
+  },
+  "8": {
+   "from": 31035,
+   "to": 32444
+  },
+  "9": {
+   "from": 32449,
+   "to": 34025
+  }
+ },
+ "files": {
+  "steps/1/src/contact.rs": {
+   "lines": [
+    21598,
+    22605
+   ],
+   "sha256": "442b65ce6b214763aa6493b2ca2c1599602a6e8392f03ae57e5683519964946e"
+  },
+  "steps/1/tests/contact.rs": {
+   "lines": [
+    22608,
+    22868
+   ],
+   "sha256": "53a88194a95802a0b6f5670b28ff94dbed70ba10747010f6357d8848202b1287"
+  },
+  "steps/2/src/contact.rs": {
+   "lines": [
+    22885,
+    23892
+   ],
+   "sha256": "442b65ce6b214763aa6493b2ca2c1599602a6e8392f03ae57e5683519964946e"
+  },
+  "steps/2/tests/contact.rs": {
+   "lines": [
+    23895,
+    24155
+   ],
+   "sha256": "53a88194a95802a0b6f5670b28ff94dbed70ba10747010f6357d8848202b1287"
+  },
+  "steps/3/src/patterns.rs": {
+   "lines": [
+    24170,
+    24795
+   ],
+   "sha256": "27118b7a74fde54558b546c68ba43bfe53cc8e8ba5d169aba9389d3899004f08"
+  },
+  "steps/3/tests/patterns.rs": {
+   "lines": [
+    24798,
+    25210
+   ],
+   "sha256": "6fa42d5b3ea4f2b22a52a689c8235ad6c9e75b7930e1459f7b68d5dc783c1a11"
+  },
+  "steps/4/src/circuit.rs": {
+   "lines": [
+    25225,
+    26337
+   ],
+   "sha256": "fbd541c411e5e1ed846a088c964f2e2289ea70d158b3221f39bb97e427d63b1c"
+  },
+  "steps/4/tests/circuit.rs": {
+   "lines": [
+    26340,
+    26628
+   ],
+   "sha256": "35f7e600b72ab29e33fa2cd1a29baa1a57a69d80b04d8de8a8a9cd1f026c209c"
+  },
+  "steps/5/src/library.rs": {
+   "lines": [
+    26644,
+    27499
+   ],
+   "sha256": "328673b8daf44837e12546c172a4eb5dd1c492faf8891df75b48d41aaa97c159"
+  },
+  "steps/5/tests/library.rs": {
+   "lines": [
+    27502,
+    27956
+   ],
+   "sha256": "23ba69bd1f8282208c976825b9dacea5f071799a1f4dcf0c9f0db59f65992bdb"
+  },
+  "steps/6/src/project.rs": {
+   "lines": [
+    27973,
+    29242
+   ],
+   "sha256": "8b5b876ef06066f4176d50ada7c41eb5561f62ecb09c4336047b220a07e580df"
+  },
+  "steps/6/tests/project.rs": {
+   "lines": [
+    29245,
+    29687
+   ],
+   "sha256": "b866843bd11dcac897f4b59fe4afa96101bf259cbedbb2e6384ad83c6b27ecf9"
+  },
+  "steps/7/src/transform.rs": {
+   "lines": [
+    29703,
+    30806
+   ],
+   "sha256": "f4ab9669bcb130d42fe154ba5481deabcc75bed19d0bb718b7ed8de8f2a0e993"
+  },
+  "steps/7/tests/transform.rs": {
+   "lines": [
+    30809,
+    31030
+   ],
+   "sha256": "12d4b099f26bd4ecbde15f46da4ef60a5d051e108cbbde3578eeef8bac61794d"
+  },
+  "steps/8/src/observe.rs": {
+   "lines": [
+    31046,
+    32138
+   ],
+   "sha256": "416863ca28b9f7cba96351054c13c5b5ab353c6f60d333e19d003b4293feede8"
+  },
+  "steps/8/tests/observe.rs": {
+   "lines": [
+    32141,
+    32444
+   ],
+   "sha256": "a2393264fcb782013a5cb0cc3767fed7dbf2eccd8ff92deea0c2e03ca4929079"
+  },
+  "steps/9/src/repair.rs": {
+   "lines": [
+    32460,
+    33653
+   ],
+   "sha256": "8df28f1e329077b3cdf6da04fca06100c00bb48571f24a203392044bdceca853"
+  },
+  "steps/9/tests/repair.rs": {
+   "lines": [
+    33656,
+    34025
+   ],
+   "sha256": "538a9ad2f1a2ea394944933cca4a14cb0bac1fc3929106f57702cb0285255a95"
+  }
+ }
+}

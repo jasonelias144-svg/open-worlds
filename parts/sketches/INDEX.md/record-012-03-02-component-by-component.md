@@ -2,7 +2,7 @@
 > for readers who are shown only the start of a long page.
 > This part holds: "Record 012-03-02, component by component" to "Changes to DeepSeek's code".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-07-03-piece-by-piece.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-07-03-piece-by-piece-01.md
 > After this part: nothing; this is the last part.
 > Made by docs/parts.py from the file. To change it, change the file.
 

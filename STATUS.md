@@ -124,9 +124,14 @@ free, and never a money machine
   (sketches/gemini/2026-11-17-2/), and attacked it with 25 tests
   (sketches/gemini/2026-11-17-3/): the crate refused twenty, and
   five got through, as Gemini said they would. Gemini repaired the
-  five (sketches/gemini/2026-11-17-4/): 152 of 152. Their next file
-  asks what a door shows besides the count, a flag, and a look into
-  a room (sketches/replies/2026-11-18-for-gemini.txt). DeepSeek goes on
+  five (sketches/gemini/2026-11-17-4/): 152 of 152. Their sixth
+  file asked what a door shows besides the count, a flag, and a look
+  into a room (sketches/replies/2026-11-18-for-gemini.txt); they did
+  it (sketches/gemini/2026-11-18/), and it is in the crate as it
+  stands, with DeepSeek's rule of one moderator's room: 166 tests in
+  34 files. Gemini then wrote eight prototypes of their own choosing,
+  from the founder's conversation with ChatGPT, kept beside the crate
+  (sketches/gemini/2026-11-22/). DeepSeek goes on
   with their third step. Fitting the crate to open-worlds' own code is
   step 3c.
   DeepSeek's code from record 012-06-02 works in part (#63), with a
@@ -903,6 +908,37 @@ with the founder.
 ## Log
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
+
+- 2026-11-22 Claude: Gemini's record 012-08-04 continued (34,033
+  lines; the copy kept before is a prefix of it, byte for byte), and
+  two pieces of Gemini's work built. Looked through first: nothing
+  personal in the founder's turns, no link, long number or key, and
+  no text of the founder's conversation with ChatGPT, which the
+  founder gave Gemini and which stays private; Gemini's record names
+  that file and describes some of its ideas. It opens with Gemini's
+  reading of the founder's book, which is public. (1) Gemini's answer
+  to their sixth file (sketches/gemini/2026-11-18/): it was already in
+  the copy kept on 2026-11-20, at line 19220, and was not built then;
+  on 2026-11-21 the file was taken as not yet given and built again,
+  which was wrong. The file as given is restored
+  (sketches/replies/README.md). Built: 156 of 156 on the crate Gemini
+  was given, as they expected, and 166 of 166 on the crate as it
+  stood; it is now the crate as it stands, 166 tests in 34 files
+  (steps.py stage `said`). Each of its four parts broken on purpose,
+  twelve ways: all caught. Gemini's answer to its question (a look
+  into a room that hides its count gives the count away through its
+  authors) is right, and which of their two remedies is the
+  founder's. (2) Eight prototype modules Gemini chose from the
+  ChatGPT conversation (sketches/gemini/2026-11-22/), nine deliveries,
+  the second a repeat of the first: six build and pass alone on the
+  crate; `circuit` and `library` need equality on the crate's proof
+  types, and with it all eight together give 190 of 190. Each
+  module's main rule broken once: all eight caught. Kept beside the
+  crate, not in it, as ahead of the core. `transform`'s orbit counts
+  agree with a separate count and with the book. Also: review/steps.sh
+  brought up to date (it still named the crate of 152 tests) and run
+  whole: all 28 stages as recorded, every demonstration runs. A
+  message to Gemini on their page.
 
 - 2026-11-21 Claude: DeepSeek's record 012-07-03 continued, and four
   deliveries built (#144). The founder's new copy (33,100 lines) holds

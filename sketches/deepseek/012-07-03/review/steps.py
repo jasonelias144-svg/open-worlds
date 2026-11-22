@@ -2,7 +2,9 @@
 it stands after each delivery: the five of DeepSeek's that followed
 their first file, then the three of Gemini's that followed, then
 Gemini's three on the Commons, then DeepSeek's from their second file,
-then Gemini's list of doors and its repairs.
+then Gemini's list of doors and its repairs, then DeepSeek's rule of one
+moderator's room, then what Gemini's list of doors shows besides the
+count.
 Each is laid over the one before, starting from the crate DeepSeek
 was given, ../chat-world.
 
@@ -10,8 +12,11 @@ DeepSeek's files are kept in ../chat-world-steps/1 to 8, as the record
 gives them (../../tools/extract.py checks that). Gemini's are kept in
 ../../../gemini/2026-11-16/steps/1 to 3 and
 ../../../gemini/2026-11-17/steps/1 to 3, ../../../gemini/2026-11-17-2,
-../../../gemini/2026-11-17-3 and ../../../gemini/2026-11-17-4, as
-written, each with its hash in its folder's MANIFEST.json.
+../../../gemini/2026-11-17-3, ../../../gemini/2026-11-17-4 and
+../../../gemini/2026-11-18, as written, each with its hash in its
+folder's MANIFEST.json. Gemini's eight prototypes, in
+../../../gemini/2026-11-22, are held to their hashes too, and laid
+nowhere.
 
     python3 steps.py OUT            OUT/1 ... OUT/5
     python3 steps.py --aside OUT    and OUT/5-aside
@@ -19,7 +24,7 @@ written, each with its hash in its folder's MANIFEST.json.
                                     g3-repaired, c1, c2, c3, d6,
                                     d6-repaired, d7, d7-count, doors,
                                     c4, doors-attacks, repairs, d8,
-                                    now, joined, joined-fix
+                                    now, joined, joined-fix, said
     python3 steps.py --check        is ../chat-world-now what --now makes?
 
 Nothing is run: this only copies files. Each OUT/N/chat-world is the
@@ -78,8 +83,8 @@ delivery before left it.
                  turned into a usize.
     now          d8, with DeepSeek's delivery 9 laid over it: their
                  src/verify.rs again, with that type turned
-                 (../chat-world-steps/9). This is the crate as it
-                 stands, kept in ../chat-world-now.
+                 (../chat-world-steps/9). This was the crate as it
+                 stood until 2026-11-22.
     joined       now, with DeepSeek's delivery 10 laid over it: a room
                  one has joined but does not keep, and the keeper's
                  side that accepts what its members send
@@ -92,6 +97,13 @@ delivery before left it.
                  keeper's side checks a redaction and an override as
                  the log's check does (../chat-world-steps/11). Three
                  of its tests fail; beside the crate, like joined.
+    said         now, with Gemini's answer to their sixth file laid
+                 over it: what a door shows besides the count (said
+                 and speakers), the flag on a room with many in it
+                 and nothing said, the doors listed by another number,
+                 and a look into a room
+                 (../../../gemini/2026-11-18/steps/1). This is the
+                 crate as it stands, kept in ../chat-world-now.
 
 `--check` puts the crate together again and compares it with that
 folder, byte for byte, and holds Gemini's files, in each of their
@@ -132,6 +144,12 @@ GEMINI_ATTACKS = os.path.join(os.path.dirname(os.path.dirname(HERE)),
 # Gemini's fifth round: the five attacks that got through, repaired.
 GEMINI_REPAIRS = os.path.join(os.path.dirname(os.path.dirname(HERE)),
                               "gemini", "2026-11-17-4")
+# Gemini's sixth round: what a door shows besides the count.
+GEMINI_SAID = os.path.join(os.path.dirname(os.path.dirname(HERE)),
+                           "gemini", "2026-11-18")
+# Gemini's eight prototypes, of their own choosing: kept, laid nowhere.
+GEMINI_PROTOTYPES = os.path.join(os.path.dirname(os.path.dirname(HERE)),
+                                 "gemini", "2026-11-22")
 # The condition in delivery 5's src/verify.rs that does not compile.
 FAULT = ('if !looks_like_hash(&k.entry_hashes.iter().any(|_| "x".to_string())'
          '.then(|| "".to_string()).unwrap_or_default()) {')
@@ -304,6 +322,8 @@ def gemini_as_written(kept=None):
         gemini_as_written(GEMINI_DOORS)
         gemini_as_written(GEMINI_ATTACKS)
         gemini_as_written(GEMINI_REPAIRS)
+        gemini_as_written(GEMINI_SAID)
+        gemini_as_written(GEMINI_PROTOTYPES)
         return
     with open(os.path.join(kept, "MANIFEST.json"), encoding="utf-8") as f:
         files = json.load(f)["files"]
@@ -325,11 +345,11 @@ def check():
     gemini_as_written()
     with tempfile.TemporaryDirectory() as out:
         main(["--now", out], quiet=True)
-        made = os.path.join(out, "now", "chat-world")
+        made = os.path.join(out, "said", "chat-world")
         if not same(made, os.path.join(HERE, "chat-world-now")):
             sys.exit("chat-world-now is not the deliveries with the listed "
                      "repairs: run steps.py --now and compare")
-    print("chat-world-now is DeepSeek's nine deliveries and Gemini's eight, "
+    print("chat-world-now is DeepSeek's nine deliveries and Gemini's nine, "
           "with the listed repairs and changes")
 
 
@@ -452,6 +472,11 @@ def main(argv, quiet=False):
         say(f"DeepSeek's delivery 11, the keeper's side checked as the "
             f"log is, beside the crate as it stands: {count} files laid "
             f"over: joined-fix")
+        tree = os.path.join(out, "said", "chat-world")
+        shutil.copytree(os.path.join(out, "now", "chat-world"), tree)
+        count = lay(os.path.join(GEMINI_SAID, "steps", "1"), tree)
+        say(f"Gemini's answer to their sixth file, what a door shows "
+            f"besides the count, laid over now: {count} files: said")
 
 
 if __name__ == "__main__":

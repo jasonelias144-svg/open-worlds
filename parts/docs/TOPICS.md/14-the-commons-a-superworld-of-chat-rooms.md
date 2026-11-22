@@ -225,9 +225,11 @@ five (2026-11-18,
 152 of 152, and each repair, broken on purpose, is caught by a test.
 Two limits stay, each stated by a test: with no signed head an older
 count still draws, and a count is a count of keys. Their next file
-asks for what a door shows besides the count, the flag, and a look
+asked for what a door shows besides the count, the flag, and a look
 into a room
-([`sketches/replies/2026-11-18-for-gemini.txt`](../sketches/replies/2026-11-18-for-gemini.txt)).
+([`sketches/replies/2026-11-18-for-gemini.txt`](../sketches/replies/2026-11-18-for-gemini.txt)),
+and they did it: 156 of 156, and in the crate as it stands
+([`sketches/gemini/2026-11-18/README.md`](../sketches/gemini/2026-11-18/README.md)).
 
 **Open, from the founder** (2026-11-17): what can be seen from
 outside. How many are in a public room is shown, unless its law

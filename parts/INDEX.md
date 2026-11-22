@@ -312,12 +312,13 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/schem
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/schemas/records-v1.schema.json/02.txt
 ```
 
-## `sketches/INDEX.md`, in 4 parts
+## `sketches/INDEX.md`, in 5 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/start.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-06-02-piece-by-piece.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-07-03-piece-by-piece.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-07-03-piece-by-piece-02.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-07-03-piece-by-piece-01.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-03-02-component-by-component.md
 ```
 

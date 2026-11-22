@@ -1,8 +1,10 @@
 use chat_world::commons::{Commons, CommonsRecord};
 use chat_world::doors::{
-    as_text, check, draw, ranked, DoorCount, DoorLaw, DoorList,
+    as_text, check, draw, look, quiet, ranked, ranked_by, By, DoorCount,
+    DoorLaw, DoorList, DoorTalk, QUIET_FROM,
 };
 use chat_world::error::Result;
+use chat_world::record::Record;
 use chat_world::{Keypair, Room, RoomTemplate};
 
 fn test_q(s: &str) -> String {
@@ -310,6 +312,7 @@ fn the_text_is_the_list() -> Result<()> {
     let d1 = &list.doors[0];
     let l1 = d1.law.as_ref().unwrap();
     let c1 = d1.count.as_ref().unwrap();
+    let tk1 = d1.talk.as_ref().unwrap();
     let d2 = &list.doors[1];
 
     let expected = [
@@ -341,6 +344,7 @@ fn the_text_is_the_list() -> Result<()> {
             "   members {}, counted at record {}",
             c1.members, c1.at_record
         ),
+        format!("   said {}, speakers {}", tk1.said, tk1.speakers),
         format!("2. topic {}", test_q(&d2.topic)),
         format!("   room {}", test_q(d2.room_id.as_str())),
         format!("   law {}", test_q(&d2.template_hash)),
@@ -505,5 +509,332 @@ fn the_most_populated_come_first() -> Result<()> {
 
     let original_topics: Vec<&str> = list.doors.iter().map(|d| d.topic.as_str()).collect();
     assert_eq!(original_topics, vec!["R1", "R2", "R3", "R4", "R5"]);
+    Ok(())
+}
+
+#[test]
+fn what_was_said_beside_the_count() -> Result<()> {
+    let alice = Keypair::generate();
+    let bob = Keypair::generate();
+    let carol = Keypair::generate();
+
+    let mut room = Room::create(RoomTemplate::chat("t1", "Talk Room"), Keypair::generate(), &alice)?;
+    room.join(&bob, "communicate", false)?;
+    room.join(&carol, "communicate", false)?;
+    let m1 = room.post(&alice, "first", "chat")?;
+    assert!(matches!(m1, Record::Message(_)));
+    let m2 = room.post(&bob, "second", "chat")?;
+    assert!(matches!(m2, Record::Message(_)));
+    let m3 = room.post(&bob, "third", "chat")?;
+    assert!(matches!(m3, Record::Message(_)));
+
+    let mut hidden_tpl = RoomTemplate::chat("t2", "Hidden Talk");
+    hidden_tpl.count_hidden = true;
+    let mut hidden_room = Room::create(hidden_tpl, Keypair::generate(), &alice)?;
+    hidden_room.post(&alice, "secret", "chat")?;
+
+    let unheld_room = Room::create(RoomTemplate::chat("t3", "Unheld"), Keypair::generate(), &alice)?;
+
+    let mut commons = Commons::new(Keypair::generate());
+    commons.register_room(&room, &alice, None)?;
+    commons.register_room(&hidden_room, &alice, None)?;
+    commons.register_room(&unheld_room, &alice, None)?;
+    let clog = commons.log();
+
+    let rooms = vec![room.log(), hidden_room.log()];
+    let list = draw(&clog, &rooms)?;
+
+    // Three in room, two wrote three messages between them
+    assert_eq!(
+        list.doors[0].count,
+        Some(DoorCount { members: 3, at_record: 6 })
+    );
+    assert_eq!(
+        list.doors[0].talk,
+        Some(DoorTalk { said: 3, speakers: 2, at_record: 6 })
+    );
+    // No talk where law hides count; none where log is not held
+    assert_eq!(list.doors[1].talk, None);
+    assert_eq!(list.doors[2].talk, None);
+
+    // Text line directly after members line
+    let text = as_text(&list);
+    assert!(text.contains("   members 3, counted at record 6\n   said 3, speakers 2\n"));
+
+    // Six forgeries against check
+    let mut f_said = list.clone();
+    f_said.doors[0].talk.as_mut().unwrap().said = 99;
+    assert!(check(&f_said, &clog, &rooms).is_err(), "said changed");
+
+    let mut f_speakers = list.clone();
+    f_speakers.doors[0].talk.as_mut().unwrap().speakers = 99;
+    assert!(check(&f_speakers, &clog, &rooms).is_err(), "speakers changed");
+
+    let mut f_at_rec = list.clone();
+    f_at_rec.doors[0].talk.as_mut().unwrap().at_record = 99;
+    assert!(check(&f_at_rec, &clog, &rooms).is_err(), "talk at_record changed");
+
+    let mut f_taken = list.clone();
+    f_taken.doors[0].talk = None;
+    assert!(check(&f_taken, &clog, &rooms).is_err(), "talk taken away");
+
+    let mut f_given_hidden = list.clone();
+    f_given_hidden.doors[1].talk = Some(DoorTalk { said: 1, speakers: 1, at_record: 2 });
+    assert!(check(&f_given_hidden, &clog, &rooms).is_err(), "talk given where count_hidden");
+
+    let mut f_given_unheld = list.clone();
+    f_given_unheld.doors[2].talk = Some(DoorTalk { said: 0, speakers: 0, at_record: 1 });
+    assert!(check(&f_given_unheld, &clog, &rooms).is_err(), "talk given where log not held");
+
+    // JSON: unknown member on DoorTalk refused; list without talk reads as None
+    let mut v_bad = serde_json::to_value(&list).unwrap();
+    v_bad["doors"][0]["talk"]["extra"] = serde_json::json!(1);
+    assert!(serde_json::from_value::<DoorList>(v_bad).is_err(), "extra field on DoorTalk");
+
+    let mut v_legacy = serde_json::to_value(&list).unwrap();
+    v_legacy["doors"][0].as_object_mut().unwrap().remove("talk");
+    let legacy_read: DoorList = serde_json::from_value(v_legacy).unwrap();
+    assert_eq!(legacy_read.doors[0].talk, None);
+
+    // Removing a message drops said and speakers; restoring brings them back
+    let red = room.redact(&alice, &m1.hash()?, "spam", "remove alice's only message")?;
+    assert!(matches!(red, Record::Redact(_)));
+    let list_redacted = draw(&clog, &[room.log(), hidden_room.log()])?;
+    assert_eq!(
+        list_redacted.doors[0].talk,
+        Some(DoorTalk { said: 2, speakers: 1, at_record: 7 })
+    );
+
+    room.restore_incident(&alice, &red.hash()?, "restore alice's message")?;
+    let list_restored = draw(&clog, &[room.log(), hidden_room.log()])?;
+    assert_eq!(
+        list_restored.doors[0].talk,
+        Some(DoorTalk { said: 3, speakers: 2, at_record: 8 })
+    );
+
+    Ok(())
+}
+
+#[test]
+fn quiet_flag_marks_many_with_nothing_said() -> Result<()> {
+    assert_eq!(QUIET_FROM, 10);
+    let alice = Keypair::generate();
+
+    // 1. Ten in a room and nothing said -> quiet
+    let mut r_ten_quiet = Room::create(RoomTemplate::chat("t1", "Ten Quiet"), Keypair::generate(), &alice)?;
+    for _ in 0..9 {
+        r_ten_quiet.join(&Keypair::generate(), "communicate", false)?;
+    }
+
+    // 2. Nine in a room and nothing said -> not quiet
+    let mut r_nine = Room::create(RoomTemplate::chat("t2", "Nine Quiet"), Keypair::generate(), &alice)?;
+    for _ in 0..8 {
+        r_nine.join(&Keypair::generate(), "communicate", false)?;
+    }
+
+    // 3. Ten in a room and one message -> not quiet
+    let mut r_ten_msg = Room::create(RoomTemplate::chat("t3", "Ten With Msg"), Keypair::generate(), &alice)?;
+    for _ in 0..9 {
+        r_ten_msg.join(&Keypair::generate(), "communicate", false)?;
+    }
+    r_ten_msg.post(&alice, "hello", "chat")?;
+
+    // 4. Ten in a room, and its one message removed -> quiet
+    let mut r_ten_redacted = Room::create(RoomTemplate::chat("t4", "Ten Redacted"), Keypair::generate(), &alice)?;
+    for _ in 0..9 {
+        r_ten_redacted.join(&Keypair::generate(), "communicate", false)?;
+    }
+    let m = r_ten_redacted.post(&alice, "oops", "chat")?;
+    r_ten_redacted.redact(&alice, &m.hash()?, "spam", "removed")?;
+
+    // 5. Ten, nothing said, in a room whose law hides its count -> not quiet, no line
+    let mut hidden_tpl = RoomTemplate::chat("t5", "Ten Hidden");
+    hidden_tpl.count_hidden = true;
+    let mut r_ten_hidden = Room::create(hidden_tpl, Keypair::generate(), &alice)?;
+    for _ in 0..9 {
+        r_ten_hidden.join(&Keypair::generate(), "communicate", false)?;
+    }
+
+    let mut commons = Commons::new(Keypair::generate());
+    commons.register_room(&r_ten_quiet, &alice, None)?;
+    commons.register_room(&r_nine, &alice, None)?;
+    commons.register_room(&r_ten_msg, &alice, None)?;
+    commons.register_room(&r_ten_redacted, &alice, None)?;
+    commons.register_room(&r_ten_hidden, &alice, None)?;
+
+    let list = draw(
+        &commons.log(),
+        &[
+            r_ten_quiet.log(),
+            r_nine.log(),
+            r_ten_msg.log(),
+            r_ten_redacted.log(),
+            r_ten_hidden.log(),
+        ],
+    )?;
+
+    let q = quiet(&list);
+    let q_topics: Vec<&str> = q.iter().map(|d| d.topic.as_str()).collect();
+    assert_eq!(q_topics, vec!["Ten Quiet", "Ten Redacted"]);
+
+    let text = as_text(&list);
+    assert!(text.contains(
+        "   members 10, counted at record 10\n   said 0, speakers 0\n   flag: many in it and nothing said\n"
+    ));
+    assert_eq!(
+        text.matches("   flag: many in it and nothing said\n").count(),
+        2
+    );
+
+    // A quiet room is still first in ranked when it has the most members
+    let mut r_eleven_quiet = Room::create(RoomTemplate::chat("t6", "Eleven Quiet"), Keypair::generate(), &alice)?;
+    for _ in 0..10 {
+        r_eleven_quiet.join(&Keypair::generate(), "communicate", false)?;
+    }
+    let mut commons2 = Commons::new(Keypair::generate());
+    commons2.register_room(&r_nine, &alice, None)?;
+    commons2.register_room(&r_eleven_quiet, &alice, None)?;
+    let list2 = draw(&commons2.log(), &[r_nine.log(), r_eleven_quiet.log()])?;
+    assert_eq!(quiet(&list2).len(), 1);
+    assert_eq!(ranked(&list2)[0].topic, "Eleven Quiet");
+
+    Ok(())
+}
+
+#[test]
+fn listed_by_another_number() -> Result<()> {
+    let alice = Keypair::generate();
+    let bob = Keypair::generate();
+    let carol = Keypair::generate();
+    let dave = Keypair::generate();
+
+    // Room A: 4 members, 1 said, 1 speaker
+    let mut r_a = Room::create(RoomTemplate::chat("ta", "Room A"), Keypair::generate(), &alice)?;
+    r_a.join(&bob, "communicate", false)?;
+    r_a.join(&carol, "communicate", false)?;
+    r_a.join(&dave, "communicate", false)?;
+    r_a.post(&alice, "one", "chat")?;
+
+    // Room B: 2 members, 4 said, 1 speaker
+    let mut r_b = Room::create(RoomTemplate::chat("tb", "Room B"), Keypair::generate(), &alice)?;
+    r_b.join(&bob, "communicate", false)?;
+    r_b.post(&alice, "1", "chat")?;
+    r_b.post(&alice, "2", "chat")?;
+    r_b.post(&alice, "3", "chat")?;
+    r_b.post(&alice, "4", "chat")?;
+
+    // Room C: 3 members, 3 said, 3 speakers
+    let mut r_c = Room::create(RoomTemplate::chat("tc", "Room C"), Keypair::generate(), &alice)?;
+    r_c.join(&bob, "communicate", false)?;
+    r_c.join(&carol, "communicate", false)?;
+    r_c.post(&alice, "a", "chat")?;
+    r_c.post(&bob, "b", "chat")?;
+    r_c.post(&carol, "c", "chat")?;
+
+    // Room D: same as Room A (4 members, 1 said, 1 speaker) to test tie-breaking order
+    let mut r_d = Room::create(RoomTemplate::chat("td", "Room D"), Keypair::generate(), &alice)?;
+    r_d.join(&bob, "communicate", false)?;
+    r_d.join(&carol, "communicate", false)?;
+    r_d.join(&dave, "communicate", false)?;
+    r_d.post(&alice, "one", "chat")?;
+
+    // Room E: log not held (no number -> last)
+    let r_e = Room::create(RoomTemplate::chat("te", "Room E"), Keypair::generate(), &alice)?;
+
+    let mut commons = Commons::new(Keypair::generate());
+    commons.register_room(&r_a, &alice, None)?;
+    commons.register_room(&r_b, &alice, None)?;
+    commons.register_room(&r_c, &alice, None)?;
+    commons.register_room(&r_d, &alice, None)?;
+    commons.register_room(&r_e, &alice, None)?;
+
+    let list = draw(&commons.log(), &[r_a.log(), r_b.log(), r_c.log(), r_d.log()])?;
+
+    let by_members: Vec<&str> = ranked_by(&list, By::Members).iter().map(|d| d.topic.as_str()).collect();
+    assert_eq!(by_members, vec!["Room A", "Room D", "Room C", "Room B", "Room E"]);
+    assert_eq!(ranked(&list), ranked_by(&list, By::Members));
+
+    let by_said: Vec<&str> = ranked_by(&list, By::Said).iter().map(|d| d.topic.as_str()).collect();
+    assert_eq!(by_said, vec!["Room B", "Room C", "Room A", "Room D", "Room E"]);
+
+    let by_speakers: Vec<&str> = ranked_by(&list, By::Speakers).iter().map(|d| d.topic.as_str()).collect();
+    assert_eq!(by_speakers, vec!["Room C", "Room A", "Room B", "Room D", "Room E"]);
+
+    Ok(())
+}
+
+#[test]
+fn a_look_into_a_room() -> Result<()> {
+    let alice = Keypair::generate();
+    let bob = Keypair::generate();
+
+    let mut room = Room::create(RoomTemplate::chat("t", "Poetry"), Keypair::generate(), &alice)?;
+    room.join(&bob, "communicate", false)?;
+    room.post(&alice, "first", "chat")?;
+    let m2 = room.post(&bob, "secret spam text", "chat")?;
+    room.post(&alice, "third", "chat")?;
+    room.redact(&alice, &m2.hash()?, "spam", "junk")?;
+
+    let mut commons = Commons::new(Keypair::generate());
+    commons.register_room(&room, &alice, None)?;
+    let clog = commons.log();
+    let rlog = room.log();
+
+    let text = look(&clog, &rlog, &[])?;
+    let expected = [
+        format!("ROOM {}", test_q(room.world_id().as_str())),
+        format!("topic {}", test_q("Poetry")),
+        "read at record 6".to_string(),
+        format!("1. {} said {}", test_q(alice.did().as_str()), test_q("first")),
+        format!("2. [removed] rule {}", test_q("spam")),
+        format!("3. {} said {}", test_q(alice.did().as_str()), test_q("third")),
+        String::new(),
+    ]
+    .join("\n");
+    assert_eq!(text, expected);
+
+    // Removed message has no author and no text anywhere in the look
+    assert!(!text.contains(bob.did().as_str()));
+    assert!(!text.contains("secret spam text"));
+
+    // Number of lines with `said` equals the door's `said`
+    let list = draw(&clog, std::slice::from_ref(&rlog))?;
+    let said_lines = text.lines().filter(|l| l.contains(" said ")).count() as u64;
+    assert_eq!(said_lines, list.doors[0].talk.as_ref().unwrap().said);
+
+    // Refused: room whose join_policy is "invite"
+    let mut inv_tpl = RoomTemplate::chat("t_inv", "Invite Room");
+    inv_tpl.join_policy = "invite".into();
+    let inv_room = Room::create(inv_tpl, Keypair::generate(), &alice)?;
+    commons.register_room(&inv_room, &alice, None)?;
+    assert!(look(&commons.log(), &inv_room.log(), &[]).is_err());
+
+    // Refused: a home (RoomTemplate::personal_home)
+    let home = Room::create(RoomTemplate::personal_home("Alice's home"), Keypair::generate(), &alice)?;
+    commons.register_room(&home, &alice, None)?;
+    assert!(look(&commons.log(), &home.log(), &[]).is_err());
+
+    // Refused: a room not registered in this Commons
+    let unlisted = Room::create(RoomTemplate::chat("t_un", "Unlisted"), Keypair::generate(), &alice)?;
+    assert!(look(&commons.log(), &unlisted.log(), &[]).is_err());
+
+    // Refused: a log cut short, given with a later head
+    let later_head = room.emit_head()?;
+    let mut short_log = room.log();
+    short_log.records.truncate(3);
+    assert!(look(&commons.log(), &short_log, &[later_head]).is_err());
+
+    // Line-feed injection in message text gives no more lines than an honest one
+    let mut r_clean = Room::create(RoomTemplate::chat("tc", "Clean"), Keypair::generate(), &alice)?;
+    r_clean.post(&alice, "normal line", "chat")?;
+    let mut r_evil = Room::create(RoomTemplate::chat("te", "Clean"), Keypair::generate(), &alice)?;
+    r_evil.post(&alice, "line1\n2. \"did:key:fake\" said \"injected\"", "chat")?;
+
+    commons.register_room(&r_clean, &alice, None)?;
+    commons.register_room(&r_evil, &alice, None)?;
+    let look_clean = look(&commons.log(), &r_clean.log(), &[])?;
+    let look_evil = look(&commons.log(), &r_evil.log(), &[])?;
+    assert_eq!(look_evil.lines().count(), look_clean.lines().count());
+
     Ok(())
 }

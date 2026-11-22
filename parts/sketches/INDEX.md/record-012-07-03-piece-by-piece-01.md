@@ -1,66 +1,10 @@
 > Part of `sketches/INDEX.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "Record 012-07-03, piece by piece".
+> This part holds: "Record 012-07-03, piece by piece", piece 1 (its pieces are numbered from its end).
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-06-02-piece-by-piece.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-07-03-piece-by-piece-02.md
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-03-02-component-by-component.md
 > Made by docs/parts.py from the file. To change it, change the file.
-
-## Record 012-07-03, piece by piece
-
-The record's code is kept in
-[deepseek/012-07-03](deepseek/012-07-03/README.md), with the technical
-lead's first pass and a first round of repairs (fixes 15 to 18, under
-"Changes to DeepSeek's code", below). "Tests" for the Python is
-DeepSeek's own tests under pytest, which CI runs; for the Rust it is
-the crate's own tests, run on a scratch copy by `review/run.sh` (not
-by CI). Where a fix changed a count, the count as written is given
-too. Nothing from this record is in open-worlds yet. Fitting it is the
-next work, piece by piece.
-
-| # | What it is | Line | Tests | Course | In open-worlds |
-|---|---|---|---|---|---|
-| 1 | Water as particles: whole-number levels, and rain, fall, soak, flow and evaporation in a fixed order (`water_particles.py`) | 50 | 17 of 18 | the fractal track, stage 3 (FRACTALS.md; TOPICS.md, topic 18) | not yet: it waits on `rust/endless-plant`, which isn't built |
-| 2 | The garden as a composite world: shared water, slots, and plants of record 012-06-02 in them (`fractal_garden.py`) | 795 | 20 of 21 | the fractal track, the garden | the Ur-world's garden hosts plant worlds already (`rust/ur-world`); what this adds isn't compared yet |
-| 3 | The botanical garden as a superworld of gardens (`botanical_garden.py`), with a change to the garden's tick given as a note (line 3425) | 2391 | 15 of 18 (as written 2 of 18: the rest needed that change, fix 15) | the fractal track, after the garden | not yet |
-| 4 | Signed world heads: a small signed record a world publishes each tick, so a parent can check it without its whole log (prose, left in the record) | 3782 | none | formats (course step 2) | not yet |
-| 5 | Chat worlds for the Commons: a room as a log of signed records under the room's law (`chat_room.py`); then an AI moderator, rooms of humans and AIs, succession, and personal rooms (`chat_room.py@5569` to `@7192`; five smaller notes are left in the record, at lines 5494, 5520, 5531, 6501 and 6557) | 3887 | 21 of 24 | the Commons ([docs/COMMONS.md](../docs/COMMONS.md)), on the course's waiting list | not yet |
-| 6 | The home room: a person's own room, with a journal, drafts, bookmarks and conversations brought in (`personal_world.py`) | 7258 | 0 of 17: they need the additions of piece 5 | the Commons; the private container ([docs/CONTAINER.md](../docs/CONTAINER.md)) | not yet |
-| 7 | A schema for every record, given twice (`schemas/records-v1.schema.json`, then whole as `@8640`), under the name of open-worlds' own schema, with none of its definitions | 8095 | none | formats (course step 2) | not yet: its records are to be fitted into the schema open-worlds has, not to replace it |
-| 8 | A design page, `docs/CHAT.md` (prose, left in the record) | 9964 | none | the Commons | not yet |
-| 9 | A crate in Rust, `chat-world`: the first version (`chat-world-draft/`), the one DeepSeek settled on (`chat-world/`), and the files of their next reply (a home, the Commons, transcripts) | 10259, 12246, 13800 | 18 of 18, and both demos' logs verify (as written it doesn't build, for one line, fix 16; with it changed, 4 of 12, the rest failing for one cause: a record was signed without its `type` and checked with it, fix 18; the later reply's files are joined by fix 17) | the Commons | not yet: it uses none of open-worlds' own crates |
-
-### The record continued (2026-11-16)
-
-The founder went back to DeepSeek with one file, and the record was
-shared again, longer. Its first 595,416 bytes are the same, byte for
-byte: the record as it was kept ended at the founder's next prompt,
-the opening of line 14,782, and 9,212 lines more follow. Three things
-are in them.
-
-**Signed heads for `chat-world`** (line 14785), the cycle DeepSeek had
-proposed. It came as changes to parts of files, with `src/head.rs`,
-`src/lib.rs` and a demo whole (kept in `chat-world-steps/0/`). It was
-not built on its own: the crate DeepSeek was then given does not hold
-it, and delivery 3, below, gives those files whole again.
-
-**The one file reached DeepSeek whole** (line 15501). The file is
-[replies/012-07-03-for-deepseek.txt](replies/012-07-03-for-deepseek.txt):
-the technical lead's reply, the next steps, and the crate as it stands
-here. DeepSeek quotes back its last line, `END OF FILE`, says "The
-whole file reached me.", and takes the reply's two requests: "One step
-per reply; every file I change, whole."
-
-**Five deliveries of `chat-world`,** each a step of that reply. Every
-file DeepSeek changed came whole, so each delivery can be built as
-given, with no joining by hand. The files are kept as the record gives
-them in `deepseek/012-07-03/chat-world-steps/1` to `5`;
-[deepseek/012-07-03/review/steps.py](deepseek/012-07-03/review/steps.py)
-lays each delivery over the one before, starting from the crate
-DeepSeek was given, and `review/steps.sh` builds and tests each (not
-run by CI). "Tests" is
-the crate's own tests, `cargo test --test integration`, on 2026-11-16.
-The titles are DeepSeek's.
 
 | Delivery | What it is | Line | Files given whole | Tests, built as given |
 |---|---|---|---|---|
@@ -402,6 +346,80 @@ The crate as it stands is delivery 9:
 `deepseek/012-07-03/chat-world-now/`, 162 tests, 71 of them
 DeepSeek's and 91 Gemini's, in 34 files. Deliveries 10 and 11 are
 built beside it and not laid into it until their tests pass.
+
+### Gemini's answer to their sixth file (2026-11-22)
+
+Gemini's sixth file
+([replies/2026-11-18-for-gemini.txt](replies/2026-11-18-for-gemini.txt))
+was given before the record was kept again on 2026-11-20, and their
+answer was already in that copy, at line 19220. It was not kept or
+built then, and on 2026-11-21 the file was taken as not yet given and
+built again; that was wrong, and the file as given is restored
+([replies/README.md](replies/README.md)). The answer is kept now, in
+[gemini/2026-11-18](gemini/2026-11-18/README.md): three files, the
+list of doors with the four parts the file asked for, four new tests,
+and the one line asked of the attack file.
+
+| Delivery | What it is | Gemini expected | Tests, built as given |
+|---|---|---|---|
+| What a door shows besides the count | Beside the count, how many messages a reader sees and how many wrote them; a flag on a room with ten or more in it and nothing said; the doors listed by any of the three numbers; and a look into a room that anyone may enter, held to the Commons and to a head the reader holds | 156 of 156, on the crate they were given | 156 of 156 on that crate; 166 of 166 on the crate as it stands since, with DeepSeek's rule of one moderator's room |
+
+Nothing was repaired here. Each part was broken on purpose in a
+throwaway copy, twelve ways, and Gemini's tests caught all twelve.
+Asked first whether a look into a room that hides its count, but lets
+anyone in, should show who spoke, Gemini answered no: counting the
+authors would give the count away, so the look should hide or number
+them, or be refused. The file asked for that answer in words, so it is
+not built; which of the two is the founder's to say.
+
+It is the crate as it stands now: `deepseek/012-07-03/chat-world-now/`
+(stage `said` of `deepseek/012-07-03/review/steps.py`), 166 tests, 71
+of them DeepSeek's and 95 Gemini's, in 34 files.
+
+### Gemini's eight prototypes, from ChatGPT's conversation (2026-11-22)
+
+The founder shared Gemini's conversation again, longer: 34,033 lines,
+from 21,513; the copy kept before is a prefix of the new one, byte for
+byte. Gemini first reads the founder's book (line 21513). Then the
+founder gives them the founder's conversation with ChatGPT and asks
+them to choose any topic in it and turn it into code (line 21586). No
+file of ours asked for this. Gemini wrote eight modules, each one
+file of code and one of tests, meant to drop into `chat-world` with
+one line in `src/lib.rs` and no other change. The second of their
+nine deliveries repeats the first, byte for byte. All are kept as the
+record gives them, in [gemini/2026-11-22](gemini/2026-11-22/README.md),
+with what each is.
+
+Built on the crate as it stood that day before Gemini's answer to
+their sixth file joined it (stage `now`, 162 tests), each alone and
+then all together, every test file run:
+
+| Module | What it is | Tests | Built as given |
+|---|---|---|---|
+| `contact` | Contact between two only by consent, revocable; a room for two that keeps nothing | 4 | 166 of 166 |
+| `patterns` | Problems and their solutions as signed pattern cards, with evidence kept apart, and plans checked step by step | 4 | 166 of 166 |
+| `circuit` | Small worlds wired together by signed, delayed signals, and a run checked again from its records | 3 | Does not build |
+| `library` | Works, editions, shelves, and notes bound to one edition; reading that records nothing | 3 | Does not build |
+| `project` | A project that outlasts a conversation: what was captured, revisions, reviews that say what they missed, handoffs | 2 | 164 of 164 |
+| `transform` | A world of the founder's book: the 64 six-bit words and the moves a world's law admits | 3 | 165 of 165 |
+| `observe` | A world that hides a model behind a commitment, readings on a budget, and a check of every reading at the reveal | 3 | 165 of 165 |
+| `repair` | Two stations that each see half a broken mechanism, trials that change nothing, repairs within limits | 2 | 164 of 164 |
+| All eight together | | 24 | Does not build |
+
+`circuit` and `library` compare records that hold a signature, and in
+the crate a signature cannot be compared. With `PartialEq` and `Eq`
+added to `Proof` and `ProofOrArray`, and `Eq` to `ProofPurpose`, in a
+copy, each builds and passes, and all eight together give 186 of 186:
+the crate's 162 and Gemini's 24; on the crate as it stands since (166
+tests), 190 of 190. No module adds a warning. Each
+module's main rule was then broken once on purpose, and its tests
+caught all eight; one second rule, in `project`, is held by no test.
+`transform`'s counts of orbits (14, 14 and 8) agree with a separate
+count and with the book.
+
+These are prototypes of ideas ahead of the core, and none is laid
+into the crate: they are kept beside it, for when the Library,
+private contact and the rest are built.
 
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-03-02-component-by-component.md

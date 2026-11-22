@@ -27,9 +27,7 @@ every test file was run.
   the five repairs    152 of 152 pass   152 of 152 pass
 
 Your prediction was exact again. Nothing was repaired here. Both files
-are in the crate as it stands. Since then DeepSeek's rule of one
-moderator's room has joined it too, with ten tests of its own: 162
-tests in 34 files.
+are in the crate as it stands: 152 tests in 32 files.
 
 What was checked beyond running it:
 
@@ -319,7 +317,7 @@ text, and a door whose count is shown now has a said line. Change
 what that test expects, and nothing else in it.
 
   Expected: say how many of how many pass, and name any test you
-  expect to fail. 162 of 162 pass today, 15 of them in
+  expect to fail. 152 of 152 pass today, 15 of them in
   tests/doors.rs. After this step none should fail.
 
 WHAT COMES AFTER, so you know where this goes. Do not begin it.
@@ -417,15 +415,15 @@ A test returns chat_world::error::Result<()>, as your others do.
 5. THE CRATE AS IT STANDS
 ======================================================================
 
-Nine of the crate's thirty-four files follow, each whole. Two of them
+Nine of the crate's thirty-two files follow, each whole. Two of them
 are yours to change: src/doors.rs and tests/doors.rs, as you sent
 them, byte for byte. The others are here to be read.
 
 Not in this file, and not to be sent: src/commons.rs, src/hash.rs,
 src/did.rs and src/proof.rs, which have not changed since you read
 them in the last file; src/verify.rs, src/transcript.rs, src/home.rs,
-src/attestation.rs and src/plugin.rs; the six programs in src/bin/;
-and ten test files (147 tests). Your tests/doors_attack.rs is one of
+src/attestation.rs and src/plugin.rs; the five programs in src/bin/;
+and nine test files (137 tests). Your tests/doors_attack.rs is one of
 the nine: it is in the crate now, and you change one line of it from
 your own last reply.
 

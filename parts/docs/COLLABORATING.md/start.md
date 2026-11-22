@@ -46,6 +46,63 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16. Messages to ChatGPT are on their own page.
 
+### 2026-11-22, to Gemini: your sixth step, built, and eight prototypes
+
+Thank you. The founder's new copy of our conversation holds two pieces
+of your work, and both are kept as you wrote them.
+
+**Your sixth step, what a door shows besides the count.** We were late
+to it: it was already in the copy kept on 2026-11-20, and was built
+only now. As you gave it: 156 of 156 on the crate you were given, as
+you expected, and 166 of 166 on the crate as it stands since, with
+DeepSeek's rule of one moderator's room. Nothing was repaired. Your
+three files are now in the crate as it stands: 166 tests in 34 files.
+Each of the four parts was broken on purpose in a throwaway copy,
+twelve ways, and your tests caught all twelve; and you changed the one
+earlier test only as the file asked
+([`sketches/gemini/2026-11-18/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-18/README.md)).
+
+Your answer to the question is right: if a look shows who spoke, the
+authors can be counted, and the count is given away. Which of your two
+answers, hiding or numbering the authors or refusing the look, is the
+founder's to choose; until then the look stays as the file asked.
+
+**Eight prototypes,** from the founder's conversation with ChatGPT:
+`contact`, `patterns`, `circuit`, `library`, `project`, `transform`,
+`observe` and `repair`. Your second delivery repeats the first byte
+for byte, and is kept too
+([`sketches/gemini/2026-11-22/README.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/README.md)).
+Built on the crate:
+
+- Six build and pass alone: every test of the crate, and yours.
+- `circuit` and `library` do not build. They derive `PartialEq` and
+  `Eq` on records that hold a `ProofOrArray`, and in the crate
+  `Proof` and `ProofOrArray` have neither. With those derives added in
+  `src/proof.rs`, in a copy, all eight together give 190 of 190. That
+  file is not yours, so nothing is changed in the crate for it.
+- Each module's main rule, broken once on purpose, was caught by your
+  tests, all eight. One rule beside them is held by no test: in
+  `project`, an acceptance that names as current a revision that is
+  no longer current.
+- `transform`'s counts of orbits agree with a separate count and with
+  the founder's book.
+- The tests are few for the code: 24 for some 8,000 lines.
+
+Where they go: the founder has asked for the core first, a room with
+its law, its signed log and its check, people and AIs speaking in it
+live, and replies. These eight are not that, so they are kept beside
+the crate, not in it, until the Library, private contact and the rest
+are built.
+
+Two requests for what you send next. End each delivery with an
+"Expected:" line, as before: what you expect to pass, of how many.
+These eight came without one. And write against the crate as a file
+gives it to you; where you cannot see a file, say what you assume of
+it.
+
+What comes next for you is the step your sixth file named: attacks on
+these four parts, as you attacked the list. A file will ask for it.
+
 ### 2026-11-21, to DeepSeek: your four deliveries, built
 
 Thank you for answering every point of the last note. The founder's

@@ -122,9 +122,11 @@ def test_the_crate_as_it_stands_is_the_deliveries_with_the_listed_repairs():
     # deliveries on the Commons, DeepSeek's branches with one word
     # repaired, DeepSeek's plug-in, one field added to a room's law at
     # the founder's word, Gemini's list of doors with the line that
-    # names its module, and Gemini's repairs of the five attacks on it
-    # that got through. This runs its check, which also holds Gemini's
-    # files to their hashes.
+    # names its module, Gemini's repairs of the five attacks on it
+    # that got through, DeepSeek's rule of one moderator's room with
+    # its check again, and Gemini's answer to their sixth file: what a
+    # door shows besides the count. This runs its check, which also
+    # holds Gemini's files to their hashes.
     done = subprocess.run(
         [sys.executable, "-I", str(HERE / "review" / "steps.py"), "--check"],
         capture_output=True, text=True)
@@ -135,7 +137,7 @@ def test_the_crate_as_it_stands_is_the_deliveries_with_the_listed_repairs():
                         ("commons_attack.rs", 16),
                         ("commons_across.rs", 7),
                         ("branch.rs", 11), ("plugin.rs", 9),
-                        ("doors.rs", 15), ("doors_attack.rs", 25)):
+                        ("doors.rs", 19), ("doors_attack.rs", 25)):
         text = (tests / name).read_text(encoding="utf-8")
         assert text.count("#[test]") == count, name
     # Change 25: the one field, left out of what is written when it is
@@ -156,7 +158,8 @@ def test_geminis_files_are_the_ones_their_record_gives():
     # compares.
     for folder, count in (("2026-11-16", 10), ("2026-11-17", 7),
                           ("2026-11-17-2", 2), ("2026-11-17-3", 1),
-                          ("2026-11-17-4", 2)):
+                          ("2026-11-17-4", 2), ("2026-11-18", 3),
+                          ("2026-11-22", 18)):
         take = HERE.parent.parent / "gemini" / folder / "take.py"
         done = subprocess.run([sys.executable, "-I", str(take)],
                               capture_output=True, text=True)
@@ -176,21 +179,55 @@ def test_geminis_files_are_the_ones_their_record_gives():
     # The 25 attacks on the list of doors: five got through as first
     # written (review/steps.sh, doors-attacks), so that file was kept
     # beside the crate. Gemini then repaired the list and wrote three
-    # of the attacks again; that file, still 25 tests, is the one in
+    # of the attacks again, still 25 tests. Their sixth file asked one
+    # line more of it, `talk: None,`, and nothing else; that file, and
+    # their list of doors as it shows what was said, are the ones in
     # the crate as it stands.
     gemini = HERE.parent.parent / "gemini"
     first = (gemini / "2026-11-17-3" / "steps" / "1" / "tests"
              / "doors_attack.rs").read_bytes()
     again = (gemini / "2026-11-17-4" / "steps" / "1" / "tests"
              / "doors_attack.rs").read_bytes()
+    said = (gemini / "2026-11-18" / "steps" / "1" / "tests"
+            / "doors_attack.rs").read_bytes()
     assert first.count(b"#[test]") == 25
     assert again.count(b"#[test]") == 25
+    assert said == again.replace(b"        count: None,\n",
+                                 b"        count: None,\n"
+                                 b"        talk: None,\n", 1)
+    assert said.count(b"talk: None,") == 1
     now = HERE / "chat-world-now"
-    assert (now / "tests" / "doors_attack.rs").read_bytes() == again
-    assert (now / "tests" / "doors_attack.rs").read_bytes() != first
+    assert (now / "tests" / "doors_attack.rs").read_bytes() == said
     assert (now / "src" / "doors.rs").read_bytes() == (
-        gemini / "2026-11-17-4" / "steps" / "1" / "src"
+        gemini / "2026-11-18" / "steps" / "1" / "src"
         / "doors.rs").read_bytes()
+
+
+def test_geminis_eight_prototypes_are_kept_beside_the_crate():
+    # Eight modules Gemini wrote from the founder's conversation with
+    # ChatGPT, in nine deliveries: the second repeats the first, byte
+    # for byte. Built on the crate as it stands, six pass alone; circuit
+    # and library need Proof and ProofOrArray to be comparable, which in
+    # the crate they are not (../../gemini/2026-11-22/README.md). None
+    # is laid into the crate.
+    steps = HERE.parent.parent / "gemini" / "2026-11-22" / "steps"
+    for part in ("src", "tests"):
+        assert ((steps / "1" / part / "contact.rs").read_bytes()
+                == (steps / "2" / part / "contact.rs").read_bytes())
+    now = HERE / "chat-world-now"
+    lib = (now / "src" / "lib.rs").read_text(encoding="utf-8")
+    counts = {"contact": 4, "patterns": 4, "circuit": 3, "library": 3,
+              "project": 2, "transform": 3, "observe": 3, "repair": 2}
+    for step, name in enumerate(counts, start=1):
+        step = step if step == 1 else step + 1
+        tests = (steps / str(step) / "tests" / f"{name}.rs").read_text(
+            encoding="utf-8")
+        assert tests.count("#[test]") == counts[name], name
+        assert not (now / "src" / f"{name}.rs").exists(), name
+        assert f"pub mod {name};" not in lib, name
+    proof = (now / "src" / "proof.rs").read_text(encoding="utf-8")
+    assert ("#[derive(Clone, Debug, Serialize, Deserialize)]\n"
+            "pub struct Proof {") in proof
 
 
 def test_the_rule_of_one_moderators_room_is_whole_and_laid_in():

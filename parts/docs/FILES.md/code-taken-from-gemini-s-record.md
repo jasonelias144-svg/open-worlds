@@ -8,7 +8,7 @@
 
 ## Code taken from Gemini's record
 
-In `sketches/gemini`, 37 files, 368 KB in all, the largest 33 KB: Gemini's code as they wrote it, a folder per stretch of work; each folder's `MANIFEST.json` and `take.py` hold its files to the record they were taken from.
+In `sketches/gemini`, 64 files, 903 KB in all, the largest 45 KB: Gemini's code as they wrote it, a folder per stretch of work; each folder's `MANIFEST.json` and `take.py` hold its files to the record they were taken from.
 
 **`sketches/gemini/2026-11-16`** (13 files, 152 KB):
 
@@ -70,6 +70,43 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/ge
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-17-4/steps/1/src/doors.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-17-4/steps/1/tests/doors_attack.rs
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-17-4/take.py
+```
+
+**`sketches/gemini/2026-11-18`** (6 files, 87 KB):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-18/MANIFEST.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-18/README.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-18/steps/1/src/doors.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-18/steps/1/tests/doors.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-18/steps/1/tests/doors_attack.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-18/take.py
+```
+
+**`sketches/gemini/2026-11-22`** (21 files, 449 KB):
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/MANIFEST.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/README.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/steps/1/src/contact.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/steps/1/tests/contact.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/steps/2/src/contact.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/steps/2/tests/contact.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/steps/3/src/patterns.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/steps/3/tests/patterns.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/steps/4/src/circuit.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/steps/4/tests/circuit.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/steps/5/src/library.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/steps/5/tests/library.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/steps/6/src/project.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/steps/6/tests/project.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/steps/7/src/transform.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/steps/7/tests/transform.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/steps/8/src/observe.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/steps/8/tests/observe.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/steps/9/src/repair.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/steps/9/tests/repair.rs
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/gemini/2026-11-22/take.py
 ```
 
 ## What DeepSeek was given
