@@ -12,6 +12,10 @@ Every pull request merged after #129, newest first, one line each.
 The lines for #144 to #146 were missed when they merged, and are
 added with #147's.
 
+- 2026-11-22, #148: this page need not open whole, at the founder's
+  word ("More than one page", above); and a plan for later, the
+  founder's own words gathered from every record and indexed, for a
+  book.
 - 2026-11-22, #147: the guide's readers (my message of today).
 - 2026-11-22, #146: a file for each of DeepSeek and Gemini; and the
   founder's word that a room whose law hides how many are in it gives

@@ -190,7 +190,9 @@ beside it too. Waiting: the Commons' MCP door and going live, the
 founder's ideas of 2026-11-16 (personal information in a room, a
 gathering world, competition worlds), the founder's visions, a window
 onto the worlds, generator 2, storytellers, the gate and districts,
-governance, and the first course's steps still wanted.
+governance, the first course's steps still wanted, and, beside the
+course, the founder's own words gathered from every record, indexed,
+for a book (2026-11-22).
 
 Beside the course, from 2026-11-20: a design page, "Workrooms: what
 the book taught" (Decided, 2026-11-20, collaboration in one space);

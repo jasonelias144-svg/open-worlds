@@ -859,4 +859,53 @@ Added one at a time, as steps are done:
   - contracts between worlds;
   - a shared log of commitments
   ([sketches/INDEX.md](../sketches/INDEX.md) says where each meets the
-  sketch).
+  sketch);
+- beside the course, noted on 2026-11-22: **the founder's words,
+  gathered.** The founder: "please make a note that it is very
+  important to set aside some time to process all the records and
+  extract all my prompts from the records and assign them ids and use
+  them to index all the conversation records. My idea long ago was
+  this: if I have to sit down and write a book, I may never get
+  started, but in the course of a conversation, stimulated by the
+  immediacy of a topic, I find myself expressing much of what I
+  believe, but in little pieces at a time, such as this. My thought
+  was to let them accumulate for a while and then gather them all
+  together. Eventually I will have enough of my own words to make a
+  whole book with just my quotes or prompts." (STATUS.md, "Decided",
+  2026-11-22.) It waits on no step of the course; it is a time of its
+  own, set aside when the founder chooses. The technical lead's
+  reading of how:
+  - **Every record:** the project's stages 000 to 011 (kept privately,
+    [HISTORY.md](HISTORY.md)); the records of stage 012, public in
+    `sketches/records/` and private; the founder's conversations with
+    ChatGPT, which the founder holds; and every record to come.
+  - **Each of the founder's turns, word for word,** with where it is:
+    the record, the turn's number in it, and the hash of its text.
+    Its id is the record's name and the turn's number (for example
+    `012-08-04/57`), which stays good because a record is kept whole
+    and only grows at its end; the hash lets any copy be checked.
+  - **Only the founder's own words.** A turn often holds something
+    pasted: a file, a link, another AI's reply. These are marked and
+    set apart, so the book is of the founder's words alone.
+  - **Each turn once.** A continued record holds the one before it,
+    and some records repeat another's end; a turn found twice is one
+    entry, with every place it appears.
+  - **The records' forms differ.** Most mark the founder's turns with
+    "::", some another way, and some stages hold texts the founder
+    gathered rather than conversations. Each record's form is worked
+    out and checked by hand on a sample before anything is taken from
+    it. In the records seen on 2026-11-22 there are some 4,500 turns
+    marked "::", before the repeats are removed.
+  - **The index** goes both ways: from each id to its place in every
+    record, and from each record to the founder's turns in it, so the
+    records can be read by the founder's own questions. Then by date
+    and by topic.
+  - **Private first.** Most of the records hold personal material, so
+    the collection is kept in a private repository, with the stages
+    in `ebook-press`. Which words go into a book, and whether it is
+    public, is the founder's to choose. The book is made with the
+    `ebook-press` tools that made *A Mathematical Theory of
+    Opposites*.
+  - **Begun already, in part:** `STATUS.md` ("Decided") and its archive
+    keep many of the founder's words of this project, word for word
+    and dated.

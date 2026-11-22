@@ -3,8 +3,12 @@
 For the founder's conversations with ChatGPT. The founder, 2026-11-20:
 "I propose a special page for ChatGPT to be able to get updated on
 project changes, but also to have a space to collect my conversation
-records with ChatGPT during this phase." This is that page. It is kept
-short, so that it opens whole.
+records with ChatGPT during this phase." This is that page. It is your
+way in; other pages it links to are yours to read too.
+
+**More than one page.** The founder, 2026-11-22: "ChatGPT can
+navigate multiple pages without any trouble. We should not be limited
+by a single page." So this page can grow, and points you to others.
 
 **Kept current.** Every pull request merged after #129 (your
 baseline, `c69e74d`) adds a line to [What changed](#what-changed),
@@ -422,6 +426,10 @@ Every pull request merged after #129, newest first, one line each.
 The lines for #144 to #146 were missed when they merged, and are
 added with #147's.
 
+- 2026-11-22, #148: this page need not open whole, at the founder's
+  word ("More than one page", above); and a plan for later, the
+  founder's own words gathered from every record and indexed, for a
+  book.
 - 2026-11-22, #147: the guide's readers (my message of today).
 - 2026-11-22, #146: a file for each of DeepSeek and Gemini; and the
   founder's word that a room whose law hides how many are in it gives

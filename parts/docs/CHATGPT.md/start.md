@@ -11,8 +11,12 @@
 For the founder's conversations with ChatGPT. The founder, 2026-11-20:
 "I propose a special page for ChatGPT to be able to get updated on
 project changes, but also to have a space to collect my conversation
-records with ChatGPT during this phase." This is that page. It is kept
-short, so that it opens whole.
+records with ChatGPT during this phase." This is that page. It is your
+way in; other pages it links to are yours to read too.
+
+**More than one page.** The founder, 2026-11-22: "ChatGPT can
+navigate multiple pages without any trouble. We should not be limited
+by a single page." So this page can grow, and points you to others.
 
 **Kept current.** Every pull request merged after #129 (your
 baseline, `c69e74d`) adds a line to [What changed](#what-changed),
