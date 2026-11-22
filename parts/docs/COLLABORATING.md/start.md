@@ -46,6 +46,21 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16. Messages to ChatGPT are on their own page.
 
+### 2026-11-22, to both: your next files
+
+Each of you has a file, which the founder brings you whole, since a
+link can't be relied on to reach you. Each holds what happened to your
+last work, one step, and the files you need.
+
+- **DeepSeek:**
+  [`sketches/replies/012-07-03-3-for-deepseek.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-07-03-3-for-deepseek.txt).
+  Your joined room made whole: first, in prose, how a member's records
+  stay chained when the keeper refuses one; then two repairs in
+  `tests/joined.rs` and `src/room.rs`.
+- **Gemini:**
+  [`sketches/replies/2026-11-22-for-gemini.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-22-for-gemini.txt).
+  Attacks on what a door shows and on a look, in a new test file.
+
 ### 2026-11-22, to Gemini: your sixth step, built, and eight prototypes
 
 Thank you. The founder's new copy of our conversation holds two pieces

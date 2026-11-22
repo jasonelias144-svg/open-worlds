@@ -1,0 +1,30 @@
+{
+ "text": "012-07-03-3.txt",
+ "out": "012-07-03-3-for-deepseek.txt",
+ "root": "sketches/deepseek/012-07-03",
+ "name": "012-07-03",
+ "limit": 105000,
+ "current": true,
+ "files": [
+  [
+   "chat-world-now/src/lib.rs",
+   "the crate's as it stands: it names doors. Send it back as src/lib.rs, with your lines added"
+  ],
+  [
+   "chat-world-now/src/record.rs",
+   "the crate's as it stands, as you sent it in delivery 8: every kind of record, a refusal among them. To read"
+  ],
+  [
+   "chat-world-steps/10/src/joined_room.rs",
+   "YOURS, as you sent it in delivery 10: src/joined_room.rs"
+  ],
+  [
+   "chat-world-steps/11/src/room.rs",
+   "YOURS, as you sent it in delivery 11: src/room.rs, with accept_pending"
+  ],
+  [
+   "chat-world-steps/11/tests/joined.rs",
+   "YOURS, as you sent it in delivery 11: tests/joined.rs, 17 tests"
+  ]
+ ]
+}

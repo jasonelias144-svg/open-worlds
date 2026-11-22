@@ -1,0 +1,2252 @@
+OPEN-WORLDS: YOUR FOUR DELIVERIES, WHAT CHANGED SINCE, ONE STEP: YOUR JOINED ROOM MADE WHOLE, AND YOUR FILES
+
+For DeepSeek, from Claude, the project's technical lead. 2026-11-22.
+The founder gives you this as one file. Everything you need to go on
+is in it.
+
+The last line of this file reads END OF FILE. Before you begin, please
+quote that last line back, so we both know the whole file reached you.
+If you can't see it, say so and stop: the file was cut off.
+
+What is in this file, in order:
+  1. What happened to your four deliveries
+  2. What changed in the crate since
+  3. Your two choices
+  4. How we work: the same requests
+  5. What to do next: one step, your joined room made whole
+  6. The files: the crate's as it stands, and yours as you sent them
+
+
+======================================================================
+1. WHAT HAPPENED TO YOUR FOUR DELIVERIES
+======================================================================
+
+Thank you for answering every point of the last note. The founder's
+earlier copy of our conversation had stopped after the third file of
+your delivery 8. The new copy holds all six, so nothing of yours was
+lost. Everything is kept as you wrote it.
+
+Built here, each laid over the crate in order, every test file run
+(cargo test --no-fail-fast):
+
+  8   the rule of one moderator's room       does not build, for one
+                                             type: in verify_branch,
+                                             h.length needs as usize
+  9   src/verify.rs again, that type turned  162 of 162. Every
+                                             demonstration runs. It
+                                             joined the crate.
+  10  a room one has joined                  171 of 173
+  11  the keeper's side checked as the log   176 of 179
+      is
+
+Good catch on accept_one in delivery 11: a rule checked when writing
+must be checked the same way when reading, and you found that
+yourself.
+
+Your src/lib.rs in delivery 10 left out one line, pub mod doors;
+(Gemini's list of doors), so it was put back here. Nothing else of
+yours was changed.
+
+Three tests in tests/joined.rs fail. The same three fail on the crate
+you had yourself, so they are in the new code, not in what was joined
+since:
+
+  1. invalid_log_refused_at_attach: attaching to a log that should be
+     refused succeeds.
+  2. refusal_consumes_seq_keeping_batch_aligned: accept_pending stops
+     with "accept_pending: prev mismatch". A refusal takes the refused
+     record's place, so the next record in the batch names, as its
+     previous, a record that is not in the log.
+  3. port_landing_refused_in_chat_room: accept_pending stops with
+     "accept_pending: no author" where the test expects the record to
+     be refused on the record.
+
+Part 5 says what each is, as far as we can see, and what to do.
+
+Your counts: you counted from 112, leaving out delivery 8's ten tests.
+Please count from 166 now (part 2).
+
+
+======================================================================
+2. WHAT CHANGED IN THE CRATE SINCE
+======================================================================
+
+Your delivery 9 is in the crate. Since then one more step joined it,
+Gemini's: what a room's door in the Commons' lobby shows besides how
+many are inside. It changed only src/doors.rs, tests/doors.rs and one
+line of tests/doors_attack.rs. A door now also shows how many
+messages a reader sees and how many different people wrote them; a
+room with ten or more in it and nothing said is flagged; the doors can
+be listed by any of those numbers; and look gives the text of what
+was said in a room that anyone may enter, before entering it.
+
+None of your files changed. The crate as it stands has 166 tests in
+34 files: 162, and Gemini's four.
+
+Your deliveries 10 and 11, laid over the crate as it stands, give 180
+of 183: the same three tests fail, and nothing else.
+
+
+======================================================================
+3. YOUR TWO CHOICES
+======================================================================
+
+You put two choices to us in delivery 8.
+
+  - A moderator's scope signed by the AI's own key alone. That is
+    right: it is the AI's word about themselves, as their other
+    declarations are.
+  - A moderators' own room known by membership "ai_only". That does
+    for the sketch. But a room for AIs alone is not always a
+    moderators' room, so when the crate is fitted to the project's own
+    room, a room's law will say so outright. No change now.
+
+
+======================================================================
+4. HOW WE WORK: THE SAME REQUESTS
+======================================================================
+
+  - One step per reply. The founder's data is limited, and a short
+    reply that lands is worth more than a long one that is cut off.
+
+  - Give every file you change or add, whole. A file you don't
+    change, don't send.
+
+  - Give each file like this, so that a script can take it out: a
+    line holding only its path in the crate, then an empty line, then
+    one code block holding the whole file. For example:
+
+        src/room.rs
+
+        ```rust
+        ...the whole file...
+        ```
+
+    Put nothing else between the path and the block.
+
+  - End with what you expect, in one line: "Expected: N of M tests
+    pass", naming any test you expect to fail. You can't build or run
+    the crate where you write. An honest "I am not sure this compiles"
+    is more use to us than a confident guess. We build it and tell
+    you exactly what happened.
+
+  - Every src/lib.rs you send keeps the line pub mod doors;.
+
+WORK ONLY FROM THE FILES IN PART 6, and from the crate's other files
+as you last wrote them, not from older code earlier in this
+conversation.
+
+Do not add a dependency or rename a public item. Do not change any
+test file but tests/joined.rs: new tests go in it or in a new file.
+Leave src/doors.rs, src/hash.rs, src/did.rs and src/proof.rs as they
+are. In test data use made-up names only (alice, bob), and nothing
+about a real person.
+
+
+======================================================================
+5. WHAT TO DO NEXT: ONE STEP, YOUR JOINED ROOM MADE WHOLE
+======================================================================
+
+A room that members can speak in without keeping it is the heart of
+what is built next. The founder has asked for the core first: a room
+with its law, its signed log and its check, people and AIs speaking in
+it live, and replies. Your joined room is that. So this step makes it
+whole, so that it can join the crate.
+
+A. FIRST, IN PROSE: HOW A MEMBER'S RECORDS STAY CHAINED
+
+Before the first file, answer this in a few paragraphs. Do not build
+your answer in this step: the founder and I read it first, as you
+proposed for the rest.
+
+A member who has joined a room but does not keep it writes records
+ahead: each names, as its previous, the record the member wrote
+before it. The keeper takes them in a batch. When the keeper refuses
+one, a refusal takes its place in the log, and the next record in the
+batch names, as its previous, a record that is not there. Your test
+refusal_consumes_seq_keeping_batch_aligned shows it.
+
+What should happen? Some ways it could go, for you to weigh, or to
+put aside for a better one:
+
+  - the keeper stops at the first refusal and gives back the rest,
+    and the member writes them again on the log as it now stands;
+  - the refusal carries the hash of the record it refused, and the
+    check lets the next record name that hash;
+  - the member's records name the room's log, not each other, and
+    the keeper sets each one's place when it takes it.
+
+Say which you would choose and why, what it costs, and what the check
+of a room's log must then hold. Say too how it fares when two members
+send batches at the same time.
+
+B. TWO REPAIRS, IN CODE
+
+  1. invalid_log_refused_at_attach. As far as we can see, the log
+     this test builds is honest. Room::create writes one record,
+     room_created. In a room that signs heads, no head is due until a
+     record is added after it, so that log has no heads, and clearing
+     them changes nothing. Attaching to it rightly succeeds. Make the
+     test forge something the check of a log refuses, so that it
+     tests what its name says.
+
+  2. port_landing_refused_in_chat_room. accept_one asks for the
+     record's author before it looks at what kind of record it is. A
+     port landing names no author, so accept_pending stops the whole
+     batch with "accept_pending: no author", and never reaches your
+     line that would refuse it with "not_valid_in_chat_room". Refuse
+     such a record on the record, as the test expects, and say whose
+     id the refusal carries when the record names no author.
+
+  Both were tried here, in a throwaway copy: with the test forging
+  something else, and with those three kinds of record refused before
+  the author is asked for, under the room's own id, both tests pass,
+  and the room's log still passes its check after the refusal. So the
+  step can be met. How you meet it is yours.
+
+C. YOUR src/lib.rs
+
+The crate's src/lib.rs, in part 6, names doors and not yet your joined
+room. Send it whole, with your lines added: pub mod joined_room;, pub
+use joined_room::JoinedRoom;, and CommitOutcome beside Room in pub use
+room.
+
+Files we expect you to send: src/room.rs, tests/joined.rs and
+src/lib.rs; src/joined_room.rs only if you need to.
+
+  Expected: say the number, of 183, and name the test that still
+  fails. refusal_consumes_seq_keeping_batch_aligned is expected to
+  fail until your answer to A is agreed and built.
+
+If you believe the crate would accept something it should not, in
+the joined room or anywhere else, write the test anyway and tell us
+which. That is the most useful thing you can find, and it is not a
+failure of yours.
+
+WHAT COMES AFTER, so you know where this goes. Do not begin it. When
+your answer to A is agreed, you build it; then your joined room joins
+the crate. Gemini, meanwhile, attacks what a door shows and the look
+into a room.
+
+
+======================================================================
+6. THE FILES
+======================================================================
+
+Five files follow, each whole. Each is named by where it is kept in
+the project, under 012-07-03/:
+
+  - chat-world-now/... is the crate as it stands.
+  - chat-world-steps/10/... and chat-world-steps/11/... are yours, as
+    you sent them in delivery 10 and in delivery 11.
+
+When you send a file back, name it by its path in the crate only:
+src/room.rs, not chat-world-steps/11/src/room.rs.
+
+Not in this file, and not to be sent unless the step needs it: every
+other file of the crate is as it stood when you wrote delivery 11,
+but src/doors.rs, tests/doors.rs and tests/doors_attack.rs, which are
+Gemini's (part 2). That includes src/verify.rs, as you sent it in
+delivery 9, and src/plugin.rs and src/bin/joined-demo.rs, as you sent
+them in delivery 10.
+
+----- FILE: 012-07-03/chat-world-now/src/lib.rs  (the crate's as it stands: it names doors. Send it back as src/lib.rs, with your lines added) -----
+```rust
+pub mod error;
+pub mod hash;
+pub mod did;
+pub mod proof;
+pub mod template;
+pub mod record;
+pub mod room;
+pub mod verify;
+pub mod transcript;
+pub mod home;
+pub mod commons;
+pub mod doors;
+pub mod head;
+pub mod attestation;
+pub mod plugin;
+
+pub use did::{DidKey, Keypair};
+pub use error::{Error, Result};
+pub use head::WorldHead;
+pub use plugin::{Plugin, Request, Response, ErrorBody};
+pub use proof::{Proof, ProofOrArray, ProofPurpose};
+pub use room::{Member, Room, RoomLog};
+pub use template::{ModeratorSpec, RoomTemplate};
+pub use attestation::{attest_runtime, verify_attestation, RuntimeAttestation};
+
+pub fn now() -> String {
+    chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Millis, true)
+}
+
+pub(crate) fn sign_record<T, F>(
+    mut rec: T,
+    signer: &Keypair,
+    wrap: fn(T) -> record::Record,
+    set_proof: F,
+) -> Result<T>
+where
+    T: serde::Serialize + Clone,
+    F: FnOnce(&mut T, ProofOrArray),
+{
+    let body = hash::body_for_signing(&wrap(rec.clone()))?;
+    let sig = signer.sign(&body);
+    let proof = ProofOrArray::Single(Proof::create(signer, &sig));
+    set_proof(&mut rec, proof);
+    Ok(rec)
+}
+
+pub(crate) fn sign_record_dual<T, F>(
+    mut rec: T,
+    subject: &Keypair,
+    room: &Keypair,
+    wrap: fn(T) -> record::Record,
+    set_proof: F,
+) -> Result<T>
+where
+    T: serde::Serialize + Clone,
+    F: FnOnce(&mut T, ProofOrArray),
+{
+    let body = hash::body_for_signing(&wrap(rec.clone()))?;
+    let subj_sig = subject.sign(&body);
+    let room_sig = room.sign(&body);
+    let subj_proof = Proof::create(subject, &subj_sig);
+    let room_proof = Proof::create(room, &room_sig);
+    set_proof(&mut rec, ProofOrArray::array(vec![subj_proof, room_proof]));
+    Ok(rec)
+}
+
+pub(crate) fn sign_record_triple<T, F>(
+    mut rec: T,
+    a: &Keypair,
+    b: &Keypair,
+    room: &Keypair,
+    wrap: fn(T) -> record::Record,
+    set_proof: F,
+) -> Result<T>
+where
+    T: serde::Serialize + Clone,
+    F: FnOnce(&mut T, ProofOrArray),
+{
+    let body = hash::body_for_signing(&wrap(rec.clone()))?;
+    let a_sig = a.sign(&body);
+    let b_sig = b.sign(&body);
+    let room_sig = room.sign(&body);
+    set_proof(&mut rec, ProofOrArray::array(vec![
+        Proof::create(a, &a_sig),
+        Proof::create(b, &b_sig),
+        Proof::create(room, &room_sig),
+    ]));
+    Ok(rec)
+}
+```
+
+----- FILE: 012-07-03/chat-world-now/src/record.rs  (the crate's as it stands, as you sent it in delivery 8: every kind of record, a refusal among them. To read) -----
+```rust
+use crate::did::DidKey;
+use crate::error::Result;
+use crate::proof::ProofOrArray;
+use crate::template::RoomTemplate;
+use serde::{Deserialize, Serialize};
+
+pub const TIERS: [&str; 4] = ["observe", "communicate", "control", "terminal"];
+
+pub fn tier_rank(t: &str) -> Option<u8> {
+    TIERS.iter().position(|x| *x == t).map(|i| i as u8)
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(tag = "type", rename_all = "snake_case")]
+pub enum Record {
+    RoomCreated(RoomCreated),
+    Message(Message),
+    Join(Join),
+    Leave(Leave),
+    Redact(Redact),
+    Refusal(Refusal),
+    HumanOverride(HumanOverride),
+    PortLanding(PortLanding),
+    Bookmark(Bookmark),
+    Presence(Presence),
+    KnowledgeShardExport(KnowledgeShardExport),
+    ModeratorSuccession(ModeratorSuccession),
+    ModeratorScope(ModeratorScope),
+}
+
+impl Record {
+    pub fn hash(&self) -> Result<String> { crate::hash::hash_of(self) }
+    pub fn seq(&self) -> u64 {
+        match self {
+            Record::RoomCreated(_) => 0,
+            Record::Message(m) => m.seq,
+            Record::Join(j) => j.seq,
+            Record::Leave(l) => l.seq,
+            Record::Redact(r) => r.seq,
+            Record::Refusal(r) => r.seq,
+            Record::HumanOverride(o) => o.seq,
+            Record::PortLanding(p) => p.seq,
+            Record::Bookmark(b) => b.seq,
+            Record::Presence(p) => p.seq,
+            Record::KnowledgeShardExport(k) => k.seq,
+            Record::ModeratorSuccession(m) => m.seq,
+            Record::ModeratorScope(s) => s.seq,
+        }
+    }
+    pub fn prev(&self) -> Option<&String> {
+        match self {
+            Record::RoomCreated(_) => None,
+            Record::Message(m) => m.prev.as_ref(),
+            Record::Join(j) => j.prev.as_ref(),
+            Record::Leave(l) => l.prev.as_ref(),
+            Record::Redact(r) => r.prev.as_ref(),
+            Record::Refusal(r) => r.prev.as_ref(),
+            Record::HumanOverride(o) => o.prev.as_ref(),
+            Record::PortLanding(p) => p.prev.as_ref(),
+            Record::Bookmark(b) => b.prev.as_ref(),
+            Record::Presence(p) => p.prev.as_ref(),
+            Record::KnowledgeShardExport(k) => k.prev.as_ref(),
+            Record::ModeratorSuccession(m) => m.prev.as_ref(),
+            Record::ModeratorScope(s) => s.prev.as_ref(),
+        }
+    }
+    pub fn proof(&self) -> &ProofOrArray {
+        match self {
+            Record::RoomCreated(r) => &r.proof,
+            Record::Message(m) => &m.proof,
+            Record::Join(j) => &j.proof,
+            Record::Leave(l) => &l.proof,
+            Record::Redact(r) => &r.proof,
+            Record::Refusal(r) => &r.proof,
+            Record::HumanOverride(o) => &o.proof,
+            Record::PortLanding(p) => &p.proof,
+            Record::Bookmark(b) => &b.proof,
+            Record::Presence(p) => &p.proof,
+            Record::KnowledgeShardExport(k) => &k.proof,
+            Record::ModeratorSuccession(m) => &m.proof,
+            Record::ModeratorScope(s) => &s.proof,
+        }
+    }
+    pub fn world_id(&self) -> &DidKey {
+        match self {
+            Record::RoomCreated(r) => &r.world_id,
+            Record::Message(m) => &m.world_id,
+            Record::Join(j) => &j.world_id,
+            Record::Leave(l) => &l.world_id,
+            Record::Redact(r) => &r.world_id,
+            Record::Refusal(r) => &r.world_id,
+            Record::HumanOverride(o) => &o.world_id,
+            Record::PortLanding(p) => &p.world_id,
+            Record::Bookmark(b) => &b.world_id,
+            Record::Presence(p) => &p.world_id,
+            Record::KnowledgeShardExport(k) => &k.world_id,
+            Record::ModeratorSuccession(m) => &m.world_id,
+            Record::ModeratorScope(s) => &s.world_id,
+        }
+    }
+    pub fn author_id(&self) -> Option<&DidKey> {
+        match self {
+            Record::Message(m) => Some(&m.author_id),
+            Record::Redact(r) => Some(&r.subject_id),
+            Record::Join(j) => Some(&j.subject_id),
+            Record::Leave(l) => Some(&l.subject_id),
+            Record::HumanOverride(o) => Some(&o.overridden_by),
+            Record::RoomCreated(r) => Some(&r.creator_id),
+            Record::Refusal(_) => None,
+            Record::PortLanding(_) => None,
+            Record::Bookmark(_) => None,
+            Record::Presence(_) => None,
+            Record::KnowledgeShardExport(_) => None,
+            Record::ModeratorSuccession(_) => None,
+            Record::ModeratorScope(_) => None,
+        }
+    }
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+pub struct ForkedFrom {
+    pub parent_id: DidKey,
+    pub checkpoint_seq: u64,
+    pub checkpoint_hash: String,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct RoomCreated {
+    pub world_id: DidKey,
+    pub template: RoomTemplate,
+    pub creator_id: DidKey,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub forked_from: Option<ForkedFrom>,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct Message {
+    pub world_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub author_id: DidKey,
+    pub text: String,
+    pub kind: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub in_reply_to: Option<String>,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct Join {
+    pub world_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub subject_id: DidKey,
+    pub tier: String,
+    pub is_ai: bool,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct Leave {
+    pub world_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub subject_id: DidKey,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct Redact {
+    pub world_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub subject_id: DidKey,
+    pub target_hash: String,
+    pub actor_role: String,
+    pub rule: String,
+    pub reason: String,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct Refusal {
+    pub world_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub request_hash: String,
+    pub requester_id: DidKey,
+    pub reason: String,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct HumanOverride {
+    pub world_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub overrides_hash: String,
+    pub overridden_by: DidKey,
+    pub action: String,
+    pub reason: String,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct PortLanding {
+    pub world_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub transcript: crate::transcript::Transcript,
+    pub intent: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub target_room: Option<DidKey>,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct Bookmark {
+    pub world_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub room_id: DidKey,
+    pub note: String,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct Presence {
+    pub world_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub subject_id: DidKey,
+    pub rooms: Vec<DidKey>,
+    pub ttl: u64,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct KnowledgeShardExport {
+    pub world_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub target_room_id: DidKey,
+    pub successor_id: DidKey,
+    pub entry_hashes: Vec<String>,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct ModeratorSuccession {
+    pub world_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub outgoing_id: DidKey,
+    pub incoming_id: DidKey,
+    pub knowledge_shard_hash: String,
+    pub reason: String,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+/// A declaration of an AI's moderator scope, written in its own
+/// KnowledgeWorld. The latest such record is the AI's claim; the
+/// pair check `verify_moderator_scope` reads it.
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct ModeratorScope {
+    pub world_id: DidKey,
+    pub seq: u64,
+    pub prev: Option<String>,
+    pub human_facing_rooms: Vec<DidKey>,
+    pub meta_rooms: Vec<DidKey>,
+    pub ts: String,
+    pub proof: ProofOrArray,
+}
+
+// ---- Constructors ----
+
+impl RoomCreated {
+    pub fn new(world_id: DidKey, template: RoomTemplate, creator_id: DidKey) -> Self {
+        RoomCreated {
+            world_id, template, creator_id,
+            forked_from: None,
+            ts: crate::now(),
+            proof: ProofOrArray::placeholder(),
+        }
+    }
+    pub fn branch(
+        world_id: DidKey,
+        template: RoomTemplate,
+        creator_id: DidKey,
+        forked_from: ForkedFrom,
+    ) -> Self {
+        RoomCreated {
+            world_id, template, creator_id,
+            forked_from: Some(forked_from),
+            ts: crate::now(),
+            proof: ProofOrArray::placeholder(),
+        }
+    }
+}
+impl Message {
+    pub fn new(world_id: DidKey, seq: u64, prev: Option<String>, author_id: DidKey, text: String, kind: String) -> Self {
+        Message { world_id, seq, prev, author_id, text, kind, in_reply_to: None, ts: crate::now(), proof: ProofOrArray::placeholder() }
+    }
+}
+impl Join {
+    pub fn new(world_id: DidKey, seq: u64, prev: Option<String>, subject_id: DidKey, tier: String, is_ai: bool) -> Self {
+        Join { world_id, seq, prev, subject_id, tier, is_ai, ts: crate::now(), proof: ProofOrArray::placeholder() }
+    }
+}
+impl Leave {
+    pub fn new(world_id: DidKey, seq: u64, prev: Option<String>, subject_id: DidKey) -> Self {
+        Leave { world_id, seq, prev, subject_id, ts: crate::now(), proof: ProofOrArray::placeholder() }
+    }
+}
+impl Redact {
+    pub fn new(world_id: DidKey, seq: u64, prev: Option<String>, subject_id: DidKey, target_hash: String, actor_role: String, rule: String, reason: String) -> Self {
+        Redact { world_id, seq, prev, subject_id, target_hash, actor_role, rule, reason, ts: crate::now(), proof: ProofOrArray::placeholder() }
+    }
+}
+impl Refusal {
+    pub fn new(world_id: DidKey, seq: u64, prev: Option<String>, request_hash: String, requester_id: DidKey, reason: String) -> Self {
+        Refusal { world_id, seq, prev, request_hash, requester_id, reason, ts: crate::now(), proof: ProofOrArray::placeholder() }
+    }
+}
+impl HumanOverride {
+    pub fn new(world_id: DidKey, seq: u64, prev: Option<String>, overrides_hash: String, overridden_by: DidKey, action: String, reason: String) -> Self {
+        HumanOverride { world_id, seq, prev, overrides_hash, overridden_by, action, reason, ts: crate::now(), proof: ProofOrArray::placeholder() }
+    }
+}
+impl PortLanding {
+    pub fn new(world_id: DidKey, seq: u64, prev: Option<String>, transcript: crate::transcript::Transcript, intent: String, target_room: Option<DidKey>) -> Self {
+        PortLanding { world_id, seq, prev, transcript, intent, target_room, ts: crate::now(), proof: ProofOrArray::placeholder() }
+    }
+}
+impl Bookmark {
+    pub fn new(world_id: DidKey, seq: u64, prev: Option<String>, room_id: DidKey, note: String) -> Self {
+        Bookmark { world_id, seq, prev, room_id, note, ts: crate::now(), proof: ProofOrArray::placeholder() }
+    }
+}
+impl Presence {
+    pub fn new(world_id: DidKey, seq: u64, prev: Option<String>, subject_id: DidKey, rooms: Vec<DidKey>, ttl: u64) -> Self {
+        Presence { world_id, seq, prev, subject_id, rooms, ttl, ts: crate::now(), proof: ProofOrArray::placeholder() }
+    }
+}
+impl KnowledgeShardExport {
+    pub fn new(world_id: DidKey, seq: u64, prev: Option<String>, target_room_id: DidKey, successor_id: DidKey, entry_hashes: Vec<String>) -> Self {
+        KnowledgeShardExport { world_id, seq, prev, target_room_id, successor_id, entry_hashes, ts: crate::now(), proof: ProofOrArray::placeholder() }
+    }
+}
+impl ModeratorSuccession {
+    pub fn new(world_id: DidKey, seq: u64, prev: Option<String>, outgoing_id: DidKey, incoming_id: DidKey, knowledge_shard_hash: String, reason: String) -> Self {
+        ModeratorSuccession { world_id, seq, prev, outgoing_id, incoming_id, knowledge_shard_hash, reason, ts: crate::now(), proof: ProofOrArray::placeholder() }
+    }
+}
+impl ModeratorScope {
+    pub fn new(
+        world_id: DidKey,
+        seq: u64,
+        prev: Option<String>,
+        human_facing_rooms: Vec<DidKey>,
+        meta_rooms: Vec<DidKey>,
+    ) -> Self {
+        ModeratorScope {
+            world_id, seq, prev,
+            human_facing_rooms, meta_rooms,
+            ts: crate::now(),
+            proof: ProofOrArray::placeholder(),
+        }
+    }
+}
+```
+
+----- FILE: 012-07-03/chat-world-steps/10/src/joined_room.rs  (YOURS, as you sent it in delivery 10: src/joined_room.rs) -----
+```rust
+//! A joined room — a participant's view of a room they do not
+//! hold the key of.
+//!
+//! The participant has the room's published `RoomLog`, their own
+//! `Keypair`, and a `pending` list of author-signed records they
+//! intend to submit. Head-mode rooms accept author-signed records
+//! past the last head; the keeper appends them (see
+//! `Room::accept_pending`) and the next head covers them. In
+//! per-record mode, only the keeper can post, because every
+//! record needs the room's countersignature and that changes its
+//! hash.
+
+use crate::did::{DidKey, Keypair};
+use crate::error::{Error, Result};
+use crate::record::*;
+use crate::room::RoomLog;
+use crate::verify::verify_log;
+
+pub struct JoinedRoom {
+    log: RoomLog,
+    user_kp: Keypair,
+    pending: Vec<Record>,
+}
+
+impl JoinedRoom {
+    /// Attach to a published room. Verifies the log before
+    /// accepting it — an invalid log is not a room to join.
+    pub fn from_log(log: RoomLog, user_kp: Keypair) -> Result<Self> {
+        verify_log(&log)?;
+        Ok(JoinedRoom { log, user_kp, pending: Vec::new() })
+    }
+
+    pub fn log(&self) -> &RoomLog { &self.log }
+    pub fn pending(&self) -> &[Record] { &self.pending }
+    pub fn user_id(&self) -> DidKey { self.user_kp.did() }
+
+    pub fn visible_log(&self) -> Vec<serde_json::Value> {
+        let mut out = self.log.visible_log();
+        out.extend(crate::room::visible_log_from(&self.pending));
+        out
+    }
+
+    fn head_mode_ok(&self) -> Result<()> {
+        if self.log.template.head_interval <= 1 {
+            return Err(Error::Policy(
+                "joined_room: pending records require head mode (head_interval > 1)".into(),
+            ));
+        }
+        Ok(())
+    }
+
+    fn next_seq(&self) -> u64 {
+        (self.log.records.len() + self.pending.len()) as u64
+    }
+
+    fn last_hash(&self) -> Option<String> {
+        if let Some(r) = self.pending.last() {
+            r.hash().ok()
+        } else {
+            self.log.records.last().and_then(|r| r.hash().ok())
+        }
+    }
+
+    fn replay_membership(&self) -> (bool, Option<String>) {
+        let user_id = self.user_kp.did();
+        let mut is_member = false;
+        let mut tier: Option<String> = None;
+        for rec in self.log.records.iter().chain(self.pending.iter()) {
+            match rec {
+                Record::RoomCreated(rc) if rc.creator_id == user_id => {
+                    is_member = true;
+                    tier = Some("terminal".into());
+                }
+                Record::Join(j) if j.subject_id == user_id => {
+                    is_member = true;
+                    tier = Some(j.tier.clone());
+                }
+                Record::Leave(l) if l.subject_id == user_id => {
+                    is_member = false;
+                    tier = None;
+                }
+                _ => {}
+            }
+        }
+        (is_member, tier)
+    }
+
+    pub fn is_member(&self) -> bool {
+        self.replay_membership().0
+    }
+
+    pub fn request_join(&mut self, tier: &str, is_ai: bool) -> Result<Record> {
+        self.head_mode_ok()?;
+        let (already_member, _) = self.replay_membership();
+        if already_member {
+            return Err(Error::Policy("joined_room: already a member".into()));
+        }
+        if tier_rank(tier).is_none() {
+            return Err(Error::Policy(format!("unknown tier: {tier}")));
+        }
+        let rec = Join::new(
+            self.log.world_id.clone(),
+            self.next_seq(),
+            self.last_hash(),
+            self.user_kp.did(),
+            tier.into(),
+            is_ai,
+        );
+        let signed = crate::sign_record(rec, &self.user_kp, Record::Join, |r, p| r.proof = p)?;
+        let out = Record::Join(signed);
+        self.pending.push(out.clone());
+        Ok(out)
+    }
+
+    pub fn post(&mut self, text: &str, kind: &str) -> Result<Record> {
+        self.head_mode_ok()?;
+        let (is_member, tier) = self.replay_membership();
+        if !is_member {
+            return Err(Error::Policy("joined_room: not a member; call request_join first".into()));
+        }
+        if tier_rank(tier.as_deref().unwrap_or("")).unwrap_or(0) < tier_rank("communicate").unwrap() {
+            return Err(Error::Policy("joined_room: insufficient tier to post".into()));
+        }
+        if text.len() as u64 > self.log.template.max_msg_len {
+            return Err(Error::Policy("joined_room: message too long".into()));
+        }
+        let rec = Message::new(
+            self.log.world_id.clone(),
+            self.next_seq(),
+            self.last_hash(),
+            self.user_kp.did(),
+            text.into(),
+            kind.into(),
+        );
+        let signed = crate::sign_record(rec, &self.user_kp, Record::Message, |r, p| r.proof = p)?;
+        let out = Record::Message(signed);
+        self.pending.push(out.clone());
+        Ok(out)
+    }
+
+    pub fn leave(&mut self) -> Result<Record> {
+        self.head_mode_ok()?;
+        let (is_member, _) = self.replay_membership();
+        if !is_member {
+            return Err(Error::Policy("joined_room: not a member".into()));
+        }
+        let rec = Leave::new(
+            self.log.world_id.clone(),
+            self.next_seq(),
+            self.last_hash(),
+            self.user_kp.did(),
+        );
+        let signed = crate::sign_record(rec, &self.user_kp, Record::Leave, |r, p| r.proof = p)?;
+        let out = Record::Leave(signed);
+        self.pending.push(out.clone());
+        Ok(out)
+    }
+
+    pub fn export_pending(&self) -> Vec<Record> {
+        self.pending.clone()
+    }
+
+    pub fn clear_pending(&mut self) {
+        self.pending.clear();
+    }
+
+    /// Verify the pending records (seq, prev, author proof). Does
+    /// not check policy — that's the keeper's job. This catches
+    /// local formatting errors before sending.
+    pub fn verify_pending(&self) -> Result<()> {
+        let mut running_seq = self.log.records.len() as u64;
+        let mut running_prev = self.log.records.last().and_then(|r| r.hash().ok());
+        for (i, rec) in self.pending.iter().enumerate() {
+            if rec.seq() != running_seq {
+                return Err(Error::Chain(format!(
+                    "pending {i}: seq {} != expected {}",
+                    rec.seq(), running_seq
+                )));
+            }
+            if rec.prev() != running_prev.as_ref() {
+                return Err(Error::Chain(format!("pending {i}: prev mismatch")));
+            }
+            let Some(author) = rec.author_id() else {
+                return Err(Error::Policy(format!("pending {i}: no author")));
+            };
+            let body = crate::hash::body_for_signing(rec)?;
+            let proof = rec.proof().find_by_method(author)
+                .ok_or_else(|| Error::Verification(format!(
+                    "pending {i}: missing author proof"
+                )))?;
+            proof.verify(&body)?;
+            running_seq += 1;
+            running_prev = Some(rec.hash()?);
+        }
+        Ok(())
+    }
+}
+```
+
+----- FILE: 012-07-03/chat-world-steps/11/src/room.rs  (YOURS, as you sent it in delivery 11: src/room.rs, with accept_pending) -----
+```rust
+use crate::did::{DidKey, Keypair};
+use crate::error::{Error, Result};
+use crate::head::WorldHead;
+use crate::record::*;
+use crate::template::RoomTemplate;
+use serde::{Deserialize, Serialize};
+use std::collections::{HashMap, HashSet};
+
+fn short_hash(h: &str) -> String {
+    h.chars().take(16).collect()
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct RoomLog {
+    pub world_id: DidKey,
+    pub template: RoomTemplate,
+    pub records: Vec<Record>,
+    pub heads: Vec<WorldHead>,
+}
+
+impl RoomLog {
+    pub fn visible_log(&self) -> Vec<serde_json::Value> {
+        visible_log_from(&self.records)
+    }
+}
+
+pub fn visible_log_from(records: &[Record]) -> Vec<serde_json::Value> {
+    use serde_json::json;
+
+    let hashes: Vec<String> = records.iter()
+        .map(|r| r.hash().unwrap_or_default())
+        .collect();
+    let mut hash_to_idx: HashMap<String, usize> = HashMap::new();
+    for (i, h) in hashes.iter().enumerate() {
+        hash_to_idx.insert(h.clone(), i);
+    }
+
+    let mut redactions_by_target: HashMap<usize, Vec<usize>> = HashMap::new();
+    let mut resolved_redacts: HashSet<usize> = HashSet::new();
+    for (i, rec) in records.iter().enumerate() {
+        match rec {
+            Record::Redact(r) => {
+                if let Some(&target_idx) = hash_to_idx.get(&r.target_hash) {
+                    redactions_by_target.entry(target_idx).or_default().push(i);
+                }
+            }
+            Record::HumanOverride(o) if o.action == "restore" => {
+                if let Some(&redact_idx) = hash_to_idx.get(&o.overrides_hash) {
+                    resolved_redacts.insert(redact_idx);
+                }
+            }
+            _ => {}
+        }
+    }
+
+    let mut out = Vec::new();
+    for (i, rec) in records.iter().enumerate() {
+        match rec {
+            Record::Message(m) => {
+                let mut still_redacted: Option<usize> = None;
+                let mut restored: Vec<usize> = Vec::new();
+                if let Some(redact_idxs) = redactions_by_target.get(&i) {
+                    for &ri in redact_idxs {
+                        if resolved_redacts.contains(&ri) {
+                            restored.push(ri);
+                        } else if still_redacted.is_none() {
+                            still_redacted = Some(ri);
+                        }
+                    }
+                }
+                if let Some(ri) = still_redacted {
+                    if let Record::Redact(r) = &records[ri] {
+                        out.push(json!({
+                            "seq": m.seq, "type": "message", "kind": m.kind,
+                            "author": m.author_id.as_str(),
+                            "text": "[removed]",
+                            "redacted": true,
+                            "reason": r.reason,
+                            "rule": r.rule,
+                            "incident": short_hash(&hashes[ri]),
+                            "ts": m.ts,
+                        }));
+                    }
+                } else {
+                    let mut obj = json!({
+                        "seq": m.seq, "type": "message", "kind": m.kind,
+                        "author": m.author_id.as_str(),
+                        "text": m.text,
+                        "redacted": false,
+                        "ts": m.ts,
+                    });
+                    if !restored.is_empty() {
+                        let notes: Vec<serde_json::Value> = restored.iter().map(|&ri| {
+                            if let Record::Redact(r) = &records[ri] {
+                                json!({"incident": short_hash(&hashes[ri]), "reason": r.reason, "rule": r.rule})
+                            } else { json!({}) }
+                        }).collect();
+                        obj["restored_incidents"] = json!(notes);
+                    }
+                    out.push(obj);
+                }
+            }
+            Record::Redact(r) => {
+                out.push(json!({"seq": r.seq, "type": "redact", "by": r.subject_id.as_str(), "reason": r.reason, "target": r.target_hash, "rule": r.rule, "actor_role": r.actor_role, "incident": short_hash(&hashes[i])}));
+            }
+            Record::Join(j) => {
+                out.push(json!({"seq": j.seq, "type": "join", "subject": j.subject_id.as_str(), "tier": j.tier, "is_ai": j.is_ai}));
+            }
+            Record::Leave(l) => {
+                out.push(json!({"seq": l.seq, "type": "leave", "subject": l.subject_id.as_str()}));
+            }
+            Record::HumanOverride(o) => {
+                out.push(json!({"seq": o.seq, "type": "human_override", "by": o.overridden_by.as_str(), "overrides": o.overrides_hash, "action": o.action, "reason": o.reason}));
+            }
+            Record::Refusal(r) => {
+                out.push(json!({"seq": r.seq, "type": "refused", "requester": r.requester_id.as_str(), "reason": r.reason}));
+            }
+            Record::RoomCreated(rc) => {
+                let mut obj = json!({"seq": 0, "type": "created"});
+                if let Some(ff) = &rc.forked_from {
+                    obj["forked_from"] = json!({
+                        "parent_id": ff.parent_id.as_str(),
+                        "checkpoint_seq": ff.checkpoint_seq,
+                        "checkpoint_hash": ff.checkpoint_hash,
+                    });
+                }
+                out.push(obj);
+            }
+            Record::ModeratorSuccession(s) => {
+                out.push(json!({
+                    "seq": s.seq, "type": "moderator_succession",
+                    "outgoing": s.outgoing_id.as_str(),
+                    "incoming": s.incoming_id.as_str(),
+                    "reason": s.reason,
+                }));
+            }
+            Record::ModeratorScope(s) => {
+                out.push(json!({
+                    "seq": s.seq, "type": "moderator_scope",
+                    "human_facing_rooms": s.human_facing_rooms.iter().map(|r| r.as_str()).collect::<Vec<_>>(),
+                    "meta_rooms": s.meta_rooms.iter().map(|r| r.as_str()).collect::<Vec<_>>(),
+                    "ts": s.ts,
+                }));
+            }
+            Record::KnowledgeShardExport(_) | Record::PortLanding(_) | Record::Bookmark(_) | Record::Presence(_) => {}
+        }
+    }
+    out
+}
+
+#[derive(Clone, Debug)]
+pub struct Member {
+    pub tier: String,
+    pub is_ai: bool,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct CommitOutcome {
+    pub request_hash: String,
+    pub accepted: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub refusal_hash: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reason: Option<String>,
+}
+
+pub struct Room {
+    world_id: DidKey,
+    template: RoomTemplate,
+    keypair: Keypair,
+    records: Vec<Record>,
+    members: HashMap<DidKey, Member>,
+    heads: Vec<WorldHead>,
+}
+
+impl Room {
+    pub fn create(
+        template: RoomTemplate,
+        room_kp: Keypair,
+        creator_kp: &Keypair,
+    ) -> Result<Self> {
+        let world_id = room_kp.did();
+        let creator_id = creator_kp.did();
+        let mut members = HashMap::new();
+        members.insert(
+            creator_id.clone(),
+            Member { tier: "terminal".into(), is_ai: false },
+        );
+        let mut room = Room {
+            world_id: world_id.clone(),
+            template: template.clone(),
+            keypair: room_kp,
+            records: Vec::new(),
+            members,
+            heads: Vec::new(),
+        };
+        let rec = RoomCreated::new(world_id, template, creator_id);
+        let signed = crate::sign_record_dual(
+            rec, creator_kp, &room.keypair, Record::RoomCreated, |r, p| r.proof = p,
+        )?;
+        room.records.push(Record::RoomCreated(signed));
+        Ok(room)
+    }
+
+    pub fn branch_at(
+        &self,
+        checkpoint_seq: u64,
+        new_template: RoomTemplate,
+        branch_kp: Keypair,
+        maker_kp: &Keypair,
+    ) -> Result<Room> {
+        if checkpoint_seq >= self.records.len() as u64 {
+            return Err(Error::Policy(format!(
+                "checkpoint seq {checkpoint_seq} past end of parent (len {})",
+                self.records.len()
+            )));
+        }
+        if self.template.head_interval > 1 {
+            let covered = self.heads.last().map(|h| h.length).unwrap_or(0);
+            if checkpoint_seq >= covered {
+                return Err(Error::Policy(format!(
+                    "checkpoint seq {checkpoint_seq} not covered by any published head (last head covers 0..{covered})"
+                )));
+            }
+        }
+        let checkpoint_rec = &self.records[checkpoint_seq as usize];
+        let checkpoint_hash = checkpoint_rec.hash()?;
+        let forked_from = ForkedFrom {
+            parent_id: self.world_id.clone(),
+            checkpoint_seq,
+            checkpoint_hash,
+        };
+        let branch_world_id = branch_kp.did();
+        let maker_id = maker_kp.did();
+        let mut members = HashMap::new();
+        members.insert(
+            maker_id.clone(),
+            Member { tier: "terminal".into(), is_ai: false },
+        );
+        let mut branch = Room {
+            world_id: branch_world_id.clone(),
+            template: new_template.clone(),
+            keypair: branch_kp,
+            records: Vec::new(),
+            members,
+            heads: Vec::new(),
+        };
+        let rec = RoomCreated::branch(branch_world_id, new_template, maker_id, forked_from);
+        let signed = crate::sign_record_dual(
+            rec, maker_kp, &branch.keypair, Record::RoomCreated, |r, p| r.proof = p,
+        )?;
+        branch.records.push(Record::RoomCreated(signed));
+        Ok(branch)
+    }
+
+    pub fn log(&self) -> RoomLog {
+        let mut heads = self.heads.clone();
+        if self.template.head_interval > 1 && self.records.len() > 1 {
+            let len = self.records.len() as u64;
+            let covered = heads.last().map(|h| h.length == len).unwrap_or(false);
+            if !covered {
+                if let Ok(tail_head) = self.emit_head() {
+                    heads.push(tail_head);
+                }
+            }
+        }
+        RoomLog {
+            world_id: self.world_id.clone(),
+            template: self.template.clone(),
+            records: self.records.clone(),
+            heads,
+        }
+    }
+
+    pub fn records(&self) -> &[Record] { &self.records }
+    pub fn heads(&self) -> &[WorldHead] { &self.heads }
+    pub fn last_hash(&self) -> Option<String> { self.records.last().and_then(|r| r.hash().ok()) }
+    pub fn world_id(&self) -> &DidKey { &self.world_id }
+    pub fn template(&self) -> &RoomTemplate { &self.template }
+    pub fn members(&self) -> &HashMap<DidKey, Member> { &self.members }
+    pub fn keypair(&self) -> &Keypair { &self.keypair }
+    pub fn head_interval(&self) -> u64 { self.template.head_interval }
+
+    pub fn is_redacted(&self, message_hash: &str) -> bool {
+        let mut redact_hashes: Vec<String> = Vec::new();
+        let mut resolved: HashSet<String> = HashSet::new();
+        for rec in &self.records {
+            match rec {
+                Record::Redact(r) if r.target_hash == message_hash => {
+                    if let Ok(h) = rec.hash() { redact_hashes.push(h); }
+                }
+                Record::HumanOverride(o) if o.action == "restore" => {
+                    resolved.insert(o.overrides_hash.clone());
+                }
+                _ => {}
+            }
+        }
+        redact_hashes.iter().any(|h| !resolved.contains(h))
+    }
+
+    fn next_seq(&self) -> u64 { self.records.len() as u64 }
+
+    fn should_emit_head(&self) -> bool {
+        let n = self.template.head_interval;
+        if n <= 1 { return false; }
+        let appends = self.records.len().saturating_sub(1) as u64;
+        appends > 0 && appends % n == 0
+    }
+
+    pub(crate) fn push(&mut self, rec: Record) -> Result<()> {
+        self.records.push(rec);
+        if self.should_emit_head() {
+            let head = self.emit_head()?;
+            self.heads.push(head);
+        }
+        Ok(())
+    }
+
+    fn refuse(&mut self, requester: DidKey, request_hash: String, reason: &str) -> Result<Record> {
+        let rec = Refusal::new(
+            self.world_id.clone(), self.next_seq(), self.last_hash(),
+            request_hash, requester, reason.into(),
+        );
+        let signed = crate::sign_record(rec, &self.keypair, Record::Refusal, |r, p| r.proof = p)?;
+        let out = Record::Refusal(signed);
+        self.push(out.clone())?;
+        Ok(out)
+    }
+
+    fn rate_ok(&self, author: &DidKey) -> bool {
+        let window = self.template.rate_limit_window as usize;
+        let cap = self.template.rate_limit_count as usize;
+        let recent = self.records.iter().rev().take(window)
+            .filter(|r| matches!(r, Record::Message(m) if &m.author_id == author))
+            .count();
+        recent < cap
+    }
+
+    fn inter_ai_pace_ok(&self, is_ai: bool) -> bool {
+        if !is_ai || self.template.inter_ai_pace == 0 {
+            return true;
+        }
+        let mut last_ai_idx: Option<usize> = None;
+        for (i, rec) in self.records.iter().enumerate().rev() {
+            if let Record::Message(m) = rec {
+                let ai = self.members.get(&m.author_id).map(|x| x.is_ai).unwrap_or(false);
+                if ai {
+                    last_ai_idx = Some(i);
+                    break;
+                }
+            }
+        }
+        match last_ai_idx {
+            None => true,
+            Some(idx) => {
+                let since = (self.records.len() - idx - 1) as u64;
+                since >= self.template.inter_ai_pace
+            }
+        }
+    }
+
+    pub fn join(&mut self, subject_kp: &Keypair, tier: &str, is_ai: bool) -> Result<Record> {
+        let subject = subject_kp.did();
+        if self.members.contains_key(&subject) {
+            return self.refuse(subject, "".into(), "already_member");
+        }
+        if tier_rank(tier).is_none() {
+            return self.refuse(subject, "".into(), "unknown_tier");
+        }
+        if self.template.personal {
+            return self.refuse(subject, "".into(), "personal_room");
+        }
+        if self.template.membership == "human_only" && is_ai {
+            return self.refuse(subject, "".into(), "human_only_room");
+        }
+        if self.template.membership == "ai_only" && !is_ai {
+            return self.refuse(subject, "".into(), "ai_only_room");
+        }
+        if self.template.join_policy == "invite" {
+            return self.refuse(subject, "".into(), "invite_required");
+        }
+        if self.template.join_policy == "approval" {
+            return self.refuse(subject, "".into(), "approval_required");
+        }
+        let rec = Join::new(
+            self.world_id.clone(), self.next_seq(), self.last_hash(),
+            subject.clone(), tier.into(), is_ai,
+        );
+        let signed = if self.template.head_interval <= 1 {
+            crate::sign_record_dual(rec, subject_kp, &self.keypair, Record::Join, |r, p| r.proof = p)?
+        } else {
+            crate::sign_record(rec, subject_kp, Record::Join, |r, p| r.proof = p)?
+        };
+        self.members.insert(subject, Member { tier: tier.into(), is_ai });
+        let out = Record::Join(signed);
+        self.push(out.clone())?;
+        Ok(out)
+    }
+
+    pub fn leave(&mut self, subject_kp: &Keypair) -> Result<Option<Record>> {
+        let subject = subject_kp.did();
+        if !self.members.contains_key(&subject) {
+            return Ok(None);
+        }
+        let rec = Leave::new(
+            self.world_id.clone(), self.next_seq(), self.last_hash(), subject.clone(),
+        );
+        let signed = crate::sign_record(rec, subject_kp, Record::Leave, |r, p| r.proof = p)?;
+        self.members.remove(&subject);
+        let out = Record::Leave(signed);
+        self.push(out.clone())?;
+        Ok(Some(out))
+    }
+
+    pub fn post(&mut self, author_kp: &Keypair, text: &str, kind: &str) -> Result<Record> {
+        let author = author_kp.did();
+        let Some(m) = self.members.get(&author).cloned() else {
+            return self.refuse(author, "".into(), "not_a_member");
+        };
+        if tier_rank(&m.tier).unwrap_or(0) < tier_rank("communicate").unwrap() {
+            return self.refuse(author, "".into(), "insufficient_tier");
+        }
+        if text.len() as u64 > self.template.max_msg_len {
+            return self.refuse(author, "".into(), "message_too_long");
+        }
+        if !self.rate_ok(&author) {
+            return self.refuse(author, "".into(), "rate_limit");
+        }
+        if !self.inter_ai_pace_ok(m.is_ai) {
+            return self.refuse(author, "".into(), "inter_ai_pace");
+        }
+        let rec = Message::new(
+            self.world_id.clone(), self.next_seq(), self.last_hash(),
+            author.clone(), text.into(), kind.into(),
+        );
+        let signed = if self.template.head_interval <= 1 {
+            crate::sign_record_dual(rec, author_kp, &self.keypair, Record::Message, |r, p| r.proof = p)?
+        } else {
+            crate::sign_record(rec, author_kp, Record::Message, |r, p| r.proof = p)?
+        };
+        let out = Record::Message(signed);
+        self.push(out.clone())?;
+        Ok(out)
+    }
+
+    pub fn redact(
+        &mut self,
+        subject_kp: &Keypair,
+        target_hash: &str,
+        rule: &str,
+        reason: &str,
+    ) -> Result<Record> {
+        let subject = subject_kp.did();
+        let Some(m) = self.members.get(&subject).cloned() else {
+            return self.refuse(subject, "".into(), "not_a_member");
+        };
+        let target = self.records.iter()
+            .find(|r| r.hash().ok().as_deref() == Some(target_hash));
+        let target_msg = match target {
+            Some(Record::Message(msg)) => msg,
+            _ => return self.refuse(subject, "".into(), "target_not_found"),
+        };
+        if self.template.moderation == "none" {
+            return self.refuse(subject, "".into(), "moderation_disabled");
+        }
+        let is_author = target_msg.author_id == subject;
+        let is_mod = self.template.moderation == "moderator"
+            && tier_rank(&m.tier).unwrap_or(0) >= tier_rank("control").unwrap();
+        let actor_role = if is_author {
+            "author"
+        } else if is_mod {
+            "moderator"
+        } else {
+            return self.refuse(subject, "".into(), "not_allowed");
+        };
+        if !self.template.redaction_rules.iter().any(|r| r == rule) {
+            return self.refuse(subject, "".into(), "rule_not_allowed");
+        }
+        let rec = Redact::new(
+            self.world_id.clone(), self.next_seq(), self.last_hash(),
+            subject.clone(), target_hash.into(),
+            actor_role.into(), rule.into(), reason.into(),
+        );
+        let signed = if self.template.head_interval <= 1 {
+            crate::sign_record_dual(rec, subject_kp, &self.keypair, Record::Redact, |r, p| r.proof = p)?
+        } else {
+            crate::sign_record(rec, subject_kp, Record::Redact, |r, p| r.proof = p)?
+        };
+        let out = Record::Redact(signed);
+        self.push(out.clone())?;
+        Ok(out)
+    }
+
+    pub fn override_ai(&mut self, overrider_kp: &Keypair, overrides_hash: &str, reason: &str) -> Result<Record> {
+        let overrider = overrider_kp.did();
+        let Some(m) = self.members.get(&overrider).cloned() else {
+            return Err(Error::Policy("overrider is not a member".into()));
+        };
+        if m.is_ai {
+            return Err(Error::Policy("only humans can override".into()));
+        }
+        if tier_rank(&m.tier).unwrap_or(0) < tier_rank("control").unwrap() {
+            return Err(Error::Policy("insufficient tier".into()));
+        }
+        let target = self.records.iter()
+            .find(|r| r.hash().ok().as_deref() == Some(overrides_hash));
+        let Some(target_rec) = target else {
+            return Err(Error::Policy("target not found".into()));
+        };
+        let Some(author) = target_rec.author_id() else {
+            return Err(Error::Policy("target has no author".into()));
+        };
+        let is_ai = self.members.get(author).map(|m| m.is_ai).unwrap_or(false);
+        if !is_ai {
+            return Err(Error::Policy("can only override AI records".into()));
+        }
+        if let Some(spec) = &self.template.moderator {
+            if &spec.moderator_id == author && !spec.can_be_overridden {
+                return Err(Error::Policy("this AI cannot be overridden".into()));
+            }
+        }
+        let rec = HumanOverride::new(
+            self.world_id.clone(), self.next_seq(), self.last_hash(),
+            overrides_hash.into(), overrider.clone(), "none".into(), reason.into(),
+        );
+        let signed = if self.template.head_interval <= 1 {
+            crate::sign_record_dual(rec, overrider_kp, &self.keypair, Record::HumanOverride, |r, p| r.proof = p)?
+        } else {
+            crate::sign_record(rec, overrider_kp, Record::HumanOverride, |r, p| r.proof = p)?
+        };
+        let out = Record::HumanOverride(signed);
+        self.push(out.clone())?;
+        Ok(out)
+    }
+
+    pub fn restore_incident(&mut self, restorer_kp: &Keypair, redact_hash: &str, reason: &str) -> Result<Record> {
+        let restorer = restorer_kp.did();
+        let Some(m) = self.members.get(&restorer).cloned() else {
+            return Err(Error::Policy("restorer is not a member".into()));
+        };
+        if m.is_ai {
+            return Err(Error::Policy("only humans can restore".into()));
+        }
+        if tier_rank(&m.tier).unwrap_or(0) < tier_rank("control").unwrap() {
+            return Err(Error::Policy("insufficient tier".into()));
+        }
+        let target = self.records.iter()
+            .find(|r| r.hash().ok().as_deref() == Some(redact_hash));
+        match target {
+            Some(Record::Redact(_)) => {}
+            _ => return Err(Error::Policy("restore target must be a redact record".into())),
+        }
+        let rec = HumanOverride::new(
+            self.world_id.clone(), self.next_seq(), self.last_hash(),
+            redact_hash.into(), restorer.clone(), "restore".into(), reason.into(),
+        );
+        let signed = if self.template.head_interval <= 1 {
+            crate::sign_record_dual(rec, restorer_kp, &self.keypair, Record::HumanOverride, |r, p| r.proof = p)?
+        } else {
+            crate::sign_record(rec, restorer_kp, Record::HumanOverride, |r, p| r.proof = p)?
+        };
+        let out = Record::HumanOverride(signed);
+        self.push(out.clone())?;
+        Ok(out)
+    }
+
+    pub fn declare_succession(
+        &mut self,
+        outgoing_kp: &Keypair,
+        incoming_kp: &Keypair,
+        shard_hash: &str,
+        reason: &str,
+    ) -> Result<Record> {
+        let outgoing_id = outgoing_kp.did();
+        let incoming_id = incoming_kp.did();
+        let Some(m) = self.members.get(&outgoing_id) else {
+            return Err(Error::Policy("outgoing is not a member".into()));
+        };
+        if tier_rank(&m.tier).unwrap_or(0) < tier_rank("control").unwrap() {
+            return Err(Error::Policy("outgoing must be control or higher".into()));
+        }
+        if outgoing_id == incoming_id {
+            return Err(Error::Policy("outgoing and incoming must differ".into()));
+        }
+        let rec = ModeratorSuccession::new(
+            self.world_id.clone(), self.next_seq(), self.last_hash(),
+            outgoing_id, incoming_id, shard_hash.into(), reason.into(),
+        );
+        let signed = crate::sign_record_triple(
+            rec, outgoing_kp, incoming_kp, &self.keypair,
+            Record::ModeratorSuccession, |r, p| r.proof = p,
+        )?;
+        let out = Record::ModeratorSuccession(signed);
+        self.push(out.clone())?;
+        Ok(out)
+    }
+
+    /// Accept pending records from a participant. Each is validated
+    /// against the room's law; accepted records are appended, and
+    /// rejected records produce a `Refusal` record at that seq (so
+    /// the chain advances by exactly one per pending record, and the
+    /// participant's subsequent pending seqs still line up).
+    ///
+    /// Head-mode only. In per-record mode the room must countersign
+    /// each record, which changes its hash — `accept_pending` refuses
+    /// to run there.
+    ///
+    /// The rules checked here mirror `verify_log`'s per-record rules:
+    /// a record that this accepts should produce a log that passes
+    /// `verify_log`. If a record this accepts would still fail
+    /// `verify_log`, that is a bug — call verify_log on the result
+    /// after every batch as the keeper's final defence.
+    pub fn accept_pending(&mut self, pending: &[Record]) -> Result<Vec<CommitOutcome>> {
+        if self.template.head_interval <= 1 {
+            return Err(Error::Policy(
+                "accept_pending: per-record mode rooms must use Room::post".into(),
+            ));
+        }
+        let mut outcomes = Vec::new();
+        for rec in pending {
+            let outcome = self.accept_one(rec)?;
+            outcomes.push(outcome);
+        }
+        Ok(outcomes)
+    }
+
+    fn accept_one(&mut self, rec: &Record) -> Result<CommitOutcome> {
+        let request_hash = rec.hash()?;
+
+        let needs_room_proof = matches!(
+            rec,
+            Record::RoomCreated(_)
+                | Record::Refusal(_)
+                | Record::KnowledgeShardExport(_)
+                | Record::ModeratorSuccession(_)
+                | Record::ModeratorScope(_)
+        );
+        if needs_room_proof {
+            let author = rec.author_id().cloned().unwrap_or_else(|| self.world_id.clone());
+            return self.refuse_outcome(author, request_hash, "record_type_requires_room_proof");
+        }
+
+        let expected_seq = self.records.len() as u64;
+        if rec.seq() != expected_seq {
+            return Err(Error::Policy(format!(
+                "accept_pending: seq mismatch (expected {expected_seq}, got {})",
+                rec.seq()
+            )));
+        }
+        let expected_prev = self.records.last().and_then(|r| r.hash().ok());
+        if rec.prev() != expected_prev.as_ref() {
+            return Err(Error::Policy("accept_pending: prev mismatch".into()));
+        }
+
+        let Some(author) = rec.author_id().cloned() else {
+            return Err(Error::Policy("accept_pending: no author".into()));
+        };
+        let body = crate::hash::body_for_signing(rec)?;
+        let proof = rec.proof().find_by_method(&author)
+            .ok_or_else(|| Error::Policy("accept_pending: no author proof".into()))?;
+        proof.verify(&body)?;
+
+        if let Record::Join(j) = rec {
+            if self.members.contains_key(&author) {
+                return self.refuse_outcome(author, request_hash, "already_member");
+            }
+            if tier_rank(&j.tier).is_none() {
+                return self.refuse_outcome(author, request_hash, "unknown_tier");
+            }
+            if self.template.personal {
+                return self.refuse_outcome(author, request_hash, "personal_room");
+            }
+            if self.template.membership == "human_only" && j.is_ai {
+                return self.refuse_outcome(author, request_hash, "human_only_room");
+            }
+            if self.template.membership == "ai_only" && !j.is_ai {
+                return self.refuse_outcome(author, request_hash, "ai_only_room");
+            }
+            if self.template.join_policy == "invite" {
+                return self.refuse_outcome(author, request_hash, "invite_required");
+            }
+            if self.template.join_policy == "approval" {
+                return self.refuse_outcome(author, request_hash, "approval_required");
+            }
+            self.members.insert(author, Member { tier: j.tier.clone(), is_ai: j.is_ai });
+            self.push(rec.clone())?;
+            return Ok(accept_outcome(request_hash));
+        }
+
+        let Some(m) = self.members.get(&author).cloned() else {
+            return self.refuse_outcome(author, request_hash, "not_a_member");
+        };
+
+        if let Record::Leave(l) = rec {
+            self.members.remove(&l.subject_id);
+            self.push(rec.clone())?;
+            return Ok(accept_outcome(request_hash));
+        }
+
+        if let Record::Message(msg) = rec {
+            if tier_rank(&m.tier).unwrap_or(0) < tier_rank("communicate").unwrap() {
+                return self.refuse_outcome(author, request_hash, "insufficient_tier");
+            }
+            if msg.text.len() as u64 > self.template.max_msg_len {
+                return self.refuse_outcome(author, request_hash, "message_too_long");
+            }
+            if !self.rate_ok(&author) {
+                return self.refuse_outcome(author, request_hash, "rate_limit");
+            }
+            if !self.inter_ai_pace_ok(m.is_ai) {
+                return self.refuse_outcome(author, request_hash, "inter_ai_pace");
+            }
+            self.push(rec.clone())?;
+            return Ok(accept_outcome(request_hash));
+        }
+
+        if let Record::Redact(r) = rec {
+            if self.template.moderation == "none" {
+                return self.refuse_outcome(author, request_hash, "moderation_disabled");
+            }
+            let target = self.records.iter()
+                .find(|x| x.hash().ok().as_deref() == Some(&r.target_hash));
+            let target_msg = match target {
+                Some(Record::Message(msg)) => msg,
+                _ => return self.refuse_outcome(author, request_hash, "target_not_found"),
+            };
+            let is_author = target_msg.author_id == r.subject_id;
+            let is_mod = self.template.moderation == "moderator"
+                && tier_rank(&m.tier).unwrap_or(0) >= tier_rank("control").unwrap();
+            let role_ok = match r.actor_role.as_str() {
+                "author" => is_author,
+                "moderator" => is_mod,
+                _ => false,
+            };
+            if !role_ok {
+                return self.refuse_outcome(author, request_hash, "not_allowed");
+            }
+            if !self.template.redaction_rules.iter().any(|x| x == &r.rule) {
+                return self.refuse_outcome(author, request_hash, "rule_not_allowed");
+            }
+            self.push(rec.clone())?;
+            return Ok(accept_outcome(request_hash));
+        }
+
+        if let Record::HumanOverride(o) = rec {
+            if m.is_ai {
+                return self.refuse_outcome(author, request_hash, "only_humans_can_override");
+            }
+            if tier_rank(&m.tier).unwrap_or(0) < tier_rank("control").unwrap() {
+                return self.refuse_outcome(author, request_hash, "insufficient_tier");
+            }
+            let target = self.records.iter()
+                .find(|x| x.hash().ok().as_deref() == Some(&o.overrides_hash));
+            let Some(target_rec) = target else {
+                return self.refuse_outcome(author, request_hash, "target_not_found");
+            };
+            match o.action.as_str() {
+                "none" => {
+                    let Some(target_author) = target_rec.author_id() else {
+                        return self.refuse_outcome(author, request_hash, "override_target_has_no_author");
+                    };
+                    let target_is_ai = self.members.get(target_author).map(|x| x.is_ai).unwrap_or(false);
+                    if !target_is_ai {
+                        return self.refuse_outcome(author, request_hash, "override_target_must_be_ai");
+                    }
+                }
+                "restore" => {
+                    if !matches!(target_rec, Record::Redact(_)) {
+                        return self.refuse_outcome(author, request_hash, "restore_target_must_be_redact");
+                    }
+                }
+                _ => {
+                    return self.refuse_outcome(author, request_hash, "unknown_override_action");
+                }
+            }
+            self.push(rec.clone())?;
+            return Ok(accept_outcome(request_hash));
+        }
+
+        if matches!(rec, Record::PortLanding(_) | Record::Bookmark(_) | Record::Presence(_)) {
+            return self.refuse_outcome(author, request_hash, "not_valid_in_chat_room");
+        }
+
+        Err(Error::Policy("accept_pending: unknown record type".into()))
+    }
+
+    fn refuse_outcome(
+        &mut self,
+        author: DidKey,
+        request_hash: String,
+        reason: &str,
+    ) -> Result<CommitOutcome> {
+        let r = self.refuse(author, request_hash.clone(), reason)?;
+        Ok(CommitOutcome {
+            request_hash,
+            accepted: false,
+            refusal_hash: Some(r.hash()?),
+            reason: Some(reason.into()),
+        })
+    }
+
+    pub fn visible_log(&self) -> Vec<serde_json::Value> {
+        visible_log_from(&self.records)
+    }
+}
+
+fn accept_outcome(request_hash: String) -> CommitOutcome {
+    CommitOutcome {
+        request_hash,
+        accepted: true,
+        refusal_hash: None,
+        reason: None,
+    }
+}
+```
+
+----- FILE: 012-07-03/chat-world-steps/11/tests/joined.rs  (YOURS, as you sent it in delivery 11: tests/joined.rs, 17 tests) -----
+```rust
+use chat_world::error::Result;
+use chat_world::hash::body_for_signing;
+use chat_world::joined_room::JoinedRoom;
+use chat_world::record::*;
+use chat_world::verify::verify_log;
+use chat_world::{Keypair, Proof, ProofOrArray, Room, RoomLog, RoomTemplate};
+
+fn make_head_mode_room(interval: u64) -> Room {
+    let alice = Keypair::generate();
+    let room_kp = Keypair::generate();
+    let mut template = RoomTemplate::chat("t", "test");
+    template.head_interval = interval;
+    Room::create(template, room_kp, &alice).unwrap()
+}
+
+fn sign_single(rec: &Record, signer: &Keypair) -> ProofOrArray {
+    let body = body_for_signing(rec).unwrap();
+    let sig = signer.sign(&body);
+    ProofOrArray::Single(Proof::create(signer, &sig))
+}
+
+#[test]
+fn join_and_post_roundtrip() -> Result<()> {
+    let mut alice_room = make_head_mode_room(2);
+    let bob = Keypair::generate();
+
+    let mut joined = JoinedRoom::from_log(alice_room.log(), bob.clone())?;
+    assert!(!joined.is_member());
+    joined.request_join("communicate", false)?;
+    joined.post("hello from bob", "normal")?;
+    joined.verify_pending()?;
+    assert!(joined.is_member());
+
+    let outcomes = alice_room.accept_pending(&joined.export_pending())?;
+    assert_eq!(outcomes.len(), 2);
+    assert!(outcomes.iter().all(|o| o.accepted));
+
+    verify_log(&alice_room.log())?;
+    Ok(())
+}
+
+#[test]
+fn joined_room_refuses_per_record_mode() -> Result<()> {
+    let mut alice_room = make_head_mode_room(1);
+    let bob = Keypair::generate();
+    let mut joined = JoinedRoom::from_log(alice_room.log(), bob.clone())?;
+    let r = joined.request_join("communicate", false);
+    assert!(r.is_err());
+    Ok(())
+}
+
+#[test]
+fn accept_pending_refuses_per_record_mode() -> Result<()> {
+    let mut alice_room = make_head_mode_room(1);
+    let batch: Vec<Record> = vec![];
+    let r = alice_room.accept_pending(&batch);
+    assert!(r.is_err());
+    Ok(())
+}
+
+#[test]
+fn non_member_post_is_refused() -> Result<()> {
+    let mut alice_room = make_head_mode_room(2);
+    let bob = Keypair::generate();
+    let mut joined = JoinedRoom::from_log(alice_room.log(), bob.clone())?;
+    let r = joined.post("hello", "normal");
+    assert!(r.is_err());
+    Ok(())
+}
+
+#[test]
+fn rate_limit_is_refused_by_keeper() -> Result<()> {
+    let alice = Keypair::generate();
+    let mut template = RoomTemplate::chat("t", "test");
+    template.head_interval = 5;
+    template.rate_limit_count = 1;
+    template.rate_limit_window = 5;
+    let mut alice_room = Room::create(template, Keypair::generate(), &alice)?;
+    let bob = Keypair::generate();
+
+    let mut joined = JoinedRoom::from_log(alice_room.log(), bob.clone())?;
+    joined.request_join("communicate", false)?;
+    joined.post("first", "normal")?;
+    joined.post("second", "normal")?;
+    joined.verify_pending()?;
+    let outcomes = alice_room.accept_pending(&joined.export_pending())?;
+    assert_eq!(outcomes.len(), 3);
+    assert!(outcomes[0].accepted, "join should be accepted");
+    assert!(outcomes[1].accepted, "first message should be accepted");
+    assert!(!outcomes[2].accepted, "second message should be refused");
+    assert_eq!(outcomes[2].reason.as_deref(), Some("rate_limit"));
+    Ok(())
+}
+
+#[test]
+fn refusal_consumes_seq_keeping_batch_aligned() -> Result<()> {
+    let alice = Keypair::generate();
+    let mut template = RoomTemplate::chat("t", "test");
+    template.head_interval = 5;
+    template.rate_limit_count = 1;
+    template.rate_limit_window = 100;
+    let mut alice_room = Room::create(template, Keypair::generate(), &alice)?;
+    let bob = Keypair::generate();
+
+    let mut joined = JoinedRoom::from_log(alice_room.log(), bob.clone())?;
+    joined.request_join("communicate", false)?;
+    joined.post("first", "normal")?;
+    joined.post("second (refused)", "normal")?;
+    joined.post("third (accepted)", "normal")?;
+    let outcomes = alice_room.accept_pending(&joined.export_pending())?;
+    assert_eq!(outcomes.len(), 4);
+    assert!(outcomes[0].accepted);
+    assert!(outcomes[1].accepted);
+    assert!(!outcomes[2].accepted);
+    assert!(outcomes[3].accepted);
+
+    verify_log(&alice_room.log())?;
+    Ok(())
+}
+
+#[test]
+fn tampered_pending_breaks_proof() -> Result<()> {
+    let mut alice_room = make_head_mode_room(2);
+    let bob = Keypair::generate();
+    let mut joined = JoinedRoom::from_log(alice_room.log(), bob.clone())?;
+    joined.request_join("communicate", false)?;
+    joined.post("hello", "normal")?;
+
+    let mut batch = joined.export_pending();
+    if let Record::Message(ref mut m) = batch[1] {
+        m.text = "tampered".into();
+    }
+    let r = alice_room.accept_pending(&batch);
+    assert!(r.is_err(), "tampered pending should error, not refuse");
+    Ok(())
+}
+
+#[test]
+fn join_then_post_in_separate_batches() -> Result<()> {
+    let mut alice_room = make_head_mode_room(3);
+    let bob = Keypair::generate();
+
+    {
+        let mut joined = JoinedRoom::from_log(alice_room.log(), bob.clone())?;
+        joined.request_join("communicate", false)?;
+        let outcomes = alice_room.accept_pending(&joined.export_pending())?;
+        assert_eq!(outcomes.len(), 1);
+        assert!(outcomes[0].accepted);
+    }
+
+    {
+        let mut joined = JoinedRoom::from_log(alice_room.log(), bob.clone())?;
+        assert!(joined.is_member());
+        joined.post("hello from a second batch", "normal")?;
+        let outcomes = alice_room.accept_pending(&joined.export_pending())?;
+        assert_eq!(outcomes.len(), 1);
+        assert!(outcomes[0].accepted);
+    }
+
+    verify_log(&alice_room.log())?;
+    Ok(())
+}
+
+#[test]
+fn join_refused_when_already_member() -> Result<()> {
+    let alice = Keypair::generate();
+    let room_kp = Keypair::generate();
+    let mut template = RoomTemplate::chat("t", "test");
+    template.head_interval = 5;
+    let mut alice_room = Room::create(template, room_kp, &alice)?;
+    let bob = Keypair::generate();
+
+    {
+        let mut joined = JoinedRoom::from_log(alice_room.log(), bob.clone())?;
+        joined.request_join("communicate", false)?;
+        alice_room.accept_pending(&joined.export_pending())?;
+    }
+
+    let joined = JoinedRoom::from_log(alice_room.log(), bob.clone())?;
+    assert!(joined.is_member());
+    let mut joined_mut = joined;
+    let r = joined_mut.request_join("communicate", false);
+    assert!(r.is_err());
+    Ok(())
+}
+
+#[test]
+fn leave_via_pending() -> Result<()> {
+    let alice = Keypair::generate();
+    let mut template = RoomTemplate::chat("t", "test");
+    template.head_interval = 5;
+    let mut alice_room = Room::create(template, Keypair::generate(), &alice)?;
+    let bob = Keypair::generate();
+
+    {
+        let mut joined = JoinedRoom::from_log(alice_room.log(), bob.clone())?;
+        joined.request_join("communicate", false)?;
+        alice_room.accept_pending(&joined.export_pending())?;
+    }
+
+    {
+        let mut joined = JoinedRoom::from_log(alice_room.log(), bob.clone())?;
+        assert!(joined.is_member());
+        joined.leave()?;
+        let outcomes = alice_room.accept_pending(&joined.export_pending())?;
+        assert!(outcomes[0].accepted);
+    }
+
+    let joined = JoinedRoom::from_log(alice_room.log(), bob.clone())?;
+    assert!(!joined.is_member());
+    verify_log(&alice_room.log())?;
+    Ok(())
+}
+
+#[test]
+fn invalid_log_refused_at_attach() -> Result<()> {
+    let mut alice_room = make_head_mode_room(2);
+    let bob = Keypair::generate();
+    let mut log = alice_room.log();
+    log.heads.clear();
+    let r = JoinedRoom::from_log(log, bob);
+    assert!(r.is_err());
+    Ok(())
+}
+
+// ---- The fix: accept_one now refuses malformed Redact / HumanOverride ----
+
+#[test]
+fn forged_redact_wrong_role_refused() -> Result<()> {
+    // Bob is a member but not the message's author and not a
+    // moderator. Forge a Redact claiming the "author" role; the
+    // keeper must refuse it (not silently commit it).
+    let alice = Keypair::generate();
+    let mut template = RoomTemplate::chat("t", "test");
+    template.head_interval = 5;
+    let mut alice_room = Room::create(template, Keypair::generate(), &alice)?;
+
+    // Alice posts a message.
+    alice_room.post(&alice, "alice's message", "normal")?;
+    let alice_msg_hash = alice_room.records().last().unwrap().hash()?;
+
+    // Bob joins.
+    let bob = Keypair::generate();
+    {
+        let mut joined = JoinedRoom::from_log(alice_room.log(), bob.clone())?;
+        joined.request_join("communicate", false)?;
+        alice_room.accept_pending(&joined.export_pending())?;
+    }
+
+    // Bob forges a Redact claiming "author" role on Alice's message.
+    let mut log = alice_room.log();
+    let prev = log.records.last().unwrap().hash()?;
+    let mut forged = Redact::new(
+        log.world_id.clone(),
+        log.records.len() as u64,
+        Some(prev),
+        bob.did(),
+        alice_msg_hash,
+        "author".into(),   // <-- false: Bob isn't the author
+        "harassment".into(),
+        "forged".into(),
+    );
+    let wrapped = Record::Redact(forged.clone());
+    forged.proof = sign_single(&wrapped, &bob);
+
+    let outcomes = alice_room.accept_pending(&[Record::Redact(forged)])?;
+    assert_eq!(outcomes.len(), 1);
+    assert!(!outcomes[0].accepted, "forged redact must be refused");
+    assert_eq!(outcomes[0].reason.as_deref(), Some("not_allowed"));
+
+    verify_log(&alice_room.log())?;
+    Ok(())
+}
+
+#[test]
+fn forged_override_by_ai_refused() -> Result<()> {
+    let alice = Keypair::generate();
+    let mut template = RoomTemplate::chat("t", "test");
+    template.head_interval = 5;
+    let mut alice_room = Room::create(template, Keypair::generate(), &alice)?;
+
+    // Alice posts; her record is a valid override target for an AI
+    // override only if the target is AI-authored. Here we use an
+    // AI-authored target.
+    let ai = Keypair::generate();
+    {
+        let mut joined = JoinedRoom::from_log(alice_room.log(), ai.clone())?;
+        joined.request_join("communicate", true)?;
+        joined.post("an AI observation", "normal")?;
+        alice_room.accept_pending(&joined.export_pending())?;
+    }
+    let ai_msg_hash = alice_room.records().last().unwrap().hash()?;
+
+    // Another AI tries to override. Only humans can override.
+    let ai2 = Keypair::generate();
+    {
+        let mut joined = JoinedRoom::from_log(alice_room.log(), ai2.clone())?;
+        joined.request_join("control", true)?;
+        alice_room.accept_pending(&joined.export_pending())?;
+    }
+
+    let mut log = alice_room.log();
+    let prev = log.records.last().unwrap().hash()?;
+    let mut forged = HumanOverride::new(
+        log.world_id.clone(),
+        log.records.len() as u64,
+        Some(prev),
+        ai_msg_hash,
+        ai2.did(),
+        "none".into(),
+        "forged override".into(),
+    );
+    let wrapped = Record::HumanOverride(forged.clone());
+    forged.proof = sign_single(&wrapped, &ai2);
+
+    let outcomes = alice_room.accept_pending(&[Record::HumanOverride(forged)])?;
+    assert_eq!(outcomes.len(), 1);
+    assert!(!outcomes[0].accepted, "AI override must be refused");
+    assert_eq!(outcomes[0].reason.as_deref(), Some("only_humans_can_override"));
+
+    verify_log(&alice_room.log())?;
+    Ok(())
+}
+
+#[test]
+fn override_target_must_be_ai_author() -> Result<()> {
+    let alice = Keypair::generate();
+    let mut template = RoomTemplate::chat("t", "test");
+    template.head_interval = 5;
+    let mut alice_room = Room::create(template, Keypair::generate(), &alice)?;
+    // Alice posts (human-authored).
+    let alice_msg = alice_room.post(&alice, "alice's message", "normal")?;
+    let alice_msg_hash = alice_msg.hash()?;
+
+    // A second human joins at control and forges an override
+    // targeting Alice's human-authored message.
+    let carol = Keypair::generate();
+    {
+        let mut joined = JoinedRoom::from_log(alice_room.log(), carol.clone())?;
+        joined.request_join("control", false)?;
+        alice_room.accept_pending(&joined.export_pending())?;
+    }
+    let mut log = alice_room.log();
+    let prev = log.records.last().unwrap().hash()?;
+    let mut forged = HumanOverride::new(
+        log.world_id.clone(),
+        log.records.len() as u64,
+        Some(prev),
+        alice_msg_hash,
+        carol.did(),
+        "none".into(),
+        "forged".into(),
+    );
+    let wrapped = Record::HumanOverride(forged.clone());
+    forged.proof = sign_single(&wrapped, &carol);
+
+    let outcomes = alice_room.accept_pending(&[Record::HumanOverride(forged)])?;
+    assert_eq!(outcomes.len(), 1);
+    assert!(!outcomes[0].accepted);
+    assert_eq!(outcomes[0].reason.as_deref(), Some("override_target_must_be_ai"));
+    Ok(())
+}
+
+#[test]
+fn port_landing_refused_in_chat_room() -> Result<()> {
+    // A PortLanding is personal-only. A participant who tries to
+    // submit one to a chat room gets a refusal.
+    let alice = Keypair::generate();
+    let mut template = RoomTemplate::chat("t", "test");
+    template.head_interval = 5;
+    let mut alice_room = Room::create(template, Keypair::generate(), &alice)?;
+    let bob = Keypair::generate();
+    {
+        let mut joined = JoinedRoom::from_log(alice_room.log(), bob.clone())?;
+        joined.request_join("communicate", false)?;
+        alice_room.accept_pending(&joined.export_pending())?;
+    }
+
+    let transcript = chat_world::transcript::sign_transcript(
+        "ext",
+        vec![chat_world::transcript::TranscriptEntry {
+            speaker: "u".into(),
+            ts: chat_world::now(),
+            text: "hi".into(),
+        }],
+        &bob,
+    )?;
+
+    let mut log = alice_room.log();
+    let prev = log.records.last().unwrap().hash()?;
+    let mut forged = PortLanding::new(
+        log.world_id.clone(),
+        log.records.len() as u64,
+        Some(prev),
+        transcript,
+        "journal".into(),
+        None,
+    );
+    let wrapped = Record::PortLanding(forged.clone());
+    forged.proof = sign_single(&wrapped, &bob);
+
+    let outcomes = alice_room.accept_pending(&[Record::PortLanding(forged)])?;
+    assert_eq!(outcomes.len(), 1);
+    assert!(!outcomes[0].accepted);
+    assert_eq!(outcomes[0].reason.as_deref(), Some("not_valid_in_chat_room"));
+    Ok(())
+}
+
+// ---- Head-mode coverage: legitimate redact, override, succession ----
+
+#[test]
+fn head_mode_author_redacts_own_message() -> Result<()> {
+    let mut alice_room = make_head_mode_room(3);
+    let bob = Keypair::generate();
+    let msg_hash = {
+        let mut joined = JoinedRoom::from_log(alice_room.log(), bob.clone())?;
+        joined.request_join("communicate", false)?;
+        let msg = joined.post("oops", "normal")?;
+        let h = msg.hash()?;
+        alice_room.accept_pending(&joined.export_pending())?;
+        h
+    };
+
+    // Bob redacts his own message via pending.
+    {
+        let mut joined = JoinedRoom::from_log(alice_room.log(), bob.clone())?;
+        // Local JoinedRoom has no redact method; forge it with the
+        // right shape (author role on own message) and submit.
+        let log = joined.log();
+        let prev = log.records.last().unwrap().hash()?;
+        let mut red = Redact::new(
+            log.world_id.clone(),
+            log.records.len() as u64,
+            Some(prev),
+            bob.did(),
+            msg_hash,
+            "author".into(),
+            "author_request".into(),
+            "my bad".into(),
+        );
+        let wrapped = Record::Redact(red.clone());
+        red.proof = sign_single(&wrapped, &bob);
+        let outcomes = alice_room.accept_pending(&[Record::Redact(red)])?;
+        assert_eq!(outcomes.len(), 1);
+        assert!(outcomes[0].accepted);
+    }
+
+    verify_log(&alice_room.log())?;
+    Ok(())
+}
+
+#[test]
+fn head_mode_human_override_of_ai_works() -> Result<()> {
+    let alice = Keypair::generate();
+    let mut template = RoomTemplate::chat("t", "test");
+    template.head_interval = 3;
+    let mut alice_room = Room::create(template, Keypair::generate(), &alice)?;
+
+    // AI joins and posts.
+    let ai = Keypair::generate();
+    {
+        let mut joined = JoinedRoom::from_log(alice_room.log(), ai.clone())?;
+        joined.request_join("communicate", true)?;
+        joined.post("an AI note", "normal")?;
+        alice_room.accept_pending(&joined.export_pending())?;
+    }
+    let ai_msg_hash = alice_room.records().last().unwrap().hash()?;
+
+    // A human at control overrides.
+    let human = Keypair::generate();
+    {
+        let mut joined = JoinedRoom::from_log(alice_room.log(), human.clone())?;
+        joined.request_join("control", false)?;
+        alice_room.accept_pending(&joined.export_pending())?;
+    }
+
+    let log = alice_room.log();
+    let prev = log.records.last().unwrap().hash()?;
+    let mut ov = HumanOverride::new(
+        log.world_id.clone(),
+        log.records.len() as u64,
+        Some(prev),
+        ai_msg_hash,
+        human.did(),
+        "none".into(),
+        "good note".into(),
+    );
+    let wrapped = Record::HumanOverride(ov.clone());
+    ov.proof = sign_single(&wrapped, &human);
+    let outcomes = alice_room.accept_pending(&[Record::HumanOverride(ov)])?;
+    assert_eq!(outcomes.len(), 1);
+    assert!(outcomes[0].accepted);
+
+    verify_log(&alice_room.log())?;
+    Ok(())
+}
+```
+
+END OF FILE
