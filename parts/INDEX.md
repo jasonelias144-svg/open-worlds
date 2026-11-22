@@ -103,13 +103,6 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/ADMIN.md/when-each-part-is-built.md
 ```
 
-## `docs/CHATGPT.md`, in 2 parts
-
-```text
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/CHATGPT.md/start.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/CHATGPT.md/what-changed.md
-```
-
 ## `docs/COLLABORATING.md`, in 5 parts
 
 ```text

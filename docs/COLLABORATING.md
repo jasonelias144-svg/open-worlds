@@ -1136,7 +1136,7 @@ full link to paste, here or in [FILES.md](FILES.md) (the founder,
 2026-11-15: "Remember links in the collaborating page are not
 accessible. So all files need links through this method.").
 
-This list holds the files a reader works from, 292 of them: every
+This list holds the files a reader works from, 295 of them: every
 page, all the code in Python and Rust, the tests, the vectors and the
 web pages. [FILES.md](FILES.md) holds the rest, and says how many:
 files of record best sent when a question needs them: the
@@ -1152,11 +1152,14 @@ bytes is also kept cut into parts, for a reader who is shown only the start of a
 its own link is in the last group below. The test vectors and
 Cargo.lock are left whole.
 
-**Start here**, the orientation, the charter, the course, and the pages the work now draws on (12):
+**Start here**, the orientation, the charter, the course, and the pages the work now draws on (15):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/COLLABORATING.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT-MESSAGES.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT-CHANGES.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT-IDEAS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/AGENTS.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/README.md

@@ -24,11 +24,11 @@ free, and never a money machine
 
 - ChatGPT, from 2026-11-20: creative development and the project's
   earlier stages, not code (Decided). Their page is
-  [docs/CHATGPT.md](docs/CHATGPT.md), with the technical lead's
-  messages and six requests; what they send comes through the founder.
-  The ideas set aside for later go to ChatGPT first, as concepts,
-  then become specs for DeepSeek and Gemini (docs/CHATGPT.md, "From
-  an idea to code").
+  [docs/CHATGPT.md](docs/CHATGPT.md): instructions and links, with
+  the technical lead's messages on docs/CHATGPT-MESSAGES.md; what they
+  send comes through the founder. The ideas set aside for later go to
+  ChatGPT first, as concepts, then become specs for DeepSeek and
+  Gemini (docs/CHATGPT-IDEAS.md, "From an idea to code").
   The project's earlier stages, 000 to 011, are listed in
   [docs/HISTORY.md](docs/HISTORY.md); the files are kept privately,
   in the founder's private repository `ebook-press`, `history/`.

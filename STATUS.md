@@ -16,11 +16,11 @@ free, and never a money machine
 
 - ChatGPT, from 2026-11-20: creative development and the project's
   earlier stages, not code (Decided). Their page is
-  [docs/CHATGPT.md](docs/CHATGPT.md), with the technical lead's
-  messages and six requests; what they send comes through the founder.
-  The ideas set aside for later go to ChatGPT first, as concepts,
-  then become specs for DeepSeek and Gemini (docs/CHATGPT.md, "From
-  an idea to code").
+  [docs/CHATGPT.md](docs/CHATGPT.md): instructions and links, with
+  the technical lead's messages on docs/CHATGPT-MESSAGES.md; what they
+  send comes through the founder. The ideas set aside for later go to
+  ChatGPT first, as concepts, then become specs for DeepSeek and
+  Gemini (docs/CHATGPT-IDEAS.md, "From an idea to code").
   The project's earlier stages, 000 to 011, are listed in
   [docs/HISTORY.md](docs/HISTORY.md); the files are kept privately,
   in the founder's private repository `ebook-press`, `history/`.
@@ -376,10 +376,15 @@ of it is asked again until it is needed.
 
 - 2026-11-22, founder, ChatGPT and pages: "Also, keep in mind that ChatGPT can navigate multiple pages
   without any trouble. We should not be limited by a single page."
-  So ChatGPT's page need not open whole: it can grow, and point to
-  other pages for ChatGPT to read. The aim of keeping it under 28,000
-  bytes is dropped, and moving its older messages to the archive is no
-  longer needed for that. DeepSeek and Gemini are not affected: they
+  And then: "Yeah, ChatGPT can follow links, so you could fill [t]heir
+  page with instead links." And: "Fill their page with instructions
+  and links." So ChatGPT's page, docs/CHATGPT.md, is instructions and
+  links: what to do each time they begin, and where everything is.
+  The messages, what changed, and the ideas set aside are pages of
+  their own (docs/CHATGPT-MESSAGES.md, docs/CHATGPT-CHANGES.md,
+  docs/CHATGPT-IDEAS.md), linked from it. The aim of keeping one page
+  under 28,000 bytes is dropped, and moving its older messages to the
+  archive is no longer needed for that. DeepSeek and Gemini are not affected: they
   still get one whole file each, since links can't be relied on to
   reach them (the founder, 2026-11-22).
 
@@ -838,10 +843,15 @@ with the founder.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
-- 2026-11-22 Claude: two words of the founder's recorded
-  ("Decided"). ChatGPT reads several pages without trouble, so their
-  page no longer aims to open whole; it says so, and the note in the
-  entry below about its size no longer applies. And a plan for later,
+- 2026-11-22 Claude: the founder's words recorded ("Decided").
+  ChatGPT reads several pages and follows links, so their page is now
+  instructions and links, at the founder's word: docs/CHATGPT.md
+  (12,798 bytes) says what to do each time they begin and links
+  everything; the messages, what changed and the ideas set aside moved
+  whole to three pages of their own, with two links within the old
+  page made full links. AGENTS.md, the outline's sources, STATUS
+  ("Now") and the list of full links point to them. The note in the
+  entry below about the page's size no longer applies. And a plan for later,
   very important in the founder's words: every record's turns of the
   founder's, word for word, with ids, indexing all the records, for a
   book of the founder's own words (docs/COURSE.md, "Waiting"). Counted

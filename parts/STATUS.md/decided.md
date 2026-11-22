@@ -30,10 +30,15 @@
 
 - 2026-11-22, founder, ChatGPT and pages: "Also, keep in mind that ChatGPT can navigate multiple pages
   without any trouble. We should not be limited by a single page."
-  So ChatGPT's page need not open whole: it can grow, and point to
-  other pages for ChatGPT to read. The aim of keeping it under 28,000
-  bytes is dropped, and moving its older messages to the archive is no
-  longer needed for that. DeepSeek and Gemini are not affected: they
+  And then: "Yeah, ChatGPT can follow links, so you could fill [t]heir
+  page with instead links." And: "Fill their page with instructions
+  and links." So ChatGPT's page, docs/CHATGPT.md, is instructions and
+  links: what to do each time they begin, and where everything is.
+  The messages, what changed, and the ideas set aside are pages of
+  their own (docs/CHATGPT-MESSAGES.md, docs/CHATGPT-CHANGES.md,
+  docs/CHATGPT-IDEAS.md), linked from it. The aim of keeping one page
+  under 28,000 bytes is dropped, and moving its older messages to the
+  archive is no longer needed for that. DeepSeek and Gemini are not affected: they
   still get one whole file each, since links can't be relied on to
   reach them (the founder, 2026-11-22).
 

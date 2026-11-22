@@ -14,8 +14,9 @@ loosen it.
 4. Keep `docs/COLLABORATING.md` current, and `docs/TOPICS.md`, the menu
    of topics ahead it points to: a change to anything they describe
    updates them in the same pull request, and every review checks it.
-   So does `docs/CHATGPT.md`, ChatGPT's page: every pull request adds
-   its line to "What changed" there before it merges (the founder,
+   So do ChatGPT's pages, `docs/CHATGPT.md` and the pages it links:
+   every pull request adds its line to `docs/CHATGPT-CHANGES.md`
+   before it merges (the founder,
    2026-11-20: "a special page for ChatGPT to be able to get updated
    on project changes").
    The founder (2026-11-14): "please make sure the COLLABORATING.md is
@@ -32,7 +33,8 @@ loosen it.
    on them, or the next one; and before a session ends, they check that
    nothing the founder said there is missing, that
    `docs/COLLABORATING.md` tells DeepSeek and Gemini what changed, and
-   that `docs/CHATGPT.md` tells ChatGPT.
+   that ChatGPT's pages (`docs/CHATGPT.md`, and the messages on
+   `docs/CHATGPT-MESSAGES.md`) tell ChatGPT.
 6. **Archive at the end, before pushing.** `STATUS.md` and
    `docs/COLLABORATING.md` each keep the dated entries of their three
    most recent days; the older ones go to `archive/`, whole, a file for
