@@ -57,8 +57,11 @@ The reason is right, and one of the remedies does not hold: authors
 numbered within the room ("speaker #1") can still be counted, so the
 count is still given away. What holds is a look with no authors at
 all, or no look. The file asked for the answer in words and not in
-code, so `look` still shows who spoke in such a room. Which of the two
-it should do is the founder's to say, and it stays open until then.
+code, so Gemini did not build it. The founder chose the same day, on
+the technical lead's recommendation: no look. A room whose law hides
+how many are in it gives no look; that one check is added to `look`
+here, as change 27 (`../../INDEX.md`, "Changes to DeepSeek's code";
+`LOOK` in `review/steps.py`).
 
 ## What it is, and what ran
 
@@ -75,7 +78,8 @@ Laid over the crate, every test file run, on 2026-11-22:
 | The crate as it stands since (`now`, 162 tests: DeepSeek's rule of one moderator's room) | | 166 of 166 |
 
 Nothing was repaired here. The three files are now in the crate as it
-stands, `../../deepseek/012-07-03/chat-world-now/` (stage `said` of
+stands, `../../deepseek/012-07-03/chat-world-now/`, with change 27 in
+`src/doors.rs` (stage `look` of
 `../../deepseek/012-07-03/review/steps.py`): 166 tests in 34 files, 71
 of them DeepSeek's and 95 Gemini's.
 
@@ -117,10 +121,9 @@ of them DeepSeek's and 95 Gemini's.
 
 ## What stays open
 
-- The question: a look into a room that hides its count but lets
-  anyone in shows who spoke, and so how many. What holds is a look
-  with no authors, or no look; numbering the authors still shows how
-  many. The founder's to decide.
+- The question, decided: a room whose law hides how many are in it
+  gives no look (change 27). Its test is the last of the attacks the
+  next file asks of Gemini.
 - The flag's number, ten, is a constant in the sketch. In the
   project's own door it is to be in the Commons' law, where a change
   to it is on the record (the file, part B).

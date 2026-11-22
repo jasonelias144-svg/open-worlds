@@ -9,7 +9,7 @@ need links through this method.").
 
 COLLABORATING.md lists the files a reader works from: every page,
 all the code, the tests and the vectors. This page lists the rest,
-1058 files of record, best sent when a question needs them.
+1064 files of record, best sent when a question needs them.
 
 Written by `python3 docs/files.py`;
 `tests/test_collaborating_links.py` fails if a file is added, moved
@@ -721,7 +721,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-06-02/vectors/proof_cases.json
 ```
 
-**`sketches/deepseek/012-07-03`** (25 files, 266 KB):
+**`sketches/deepseek/012-07-03`** (25 files, 267 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-07-03/README.md
@@ -901,7 +901,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/de
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-07-03/chat-world-steps/9/src/verify.rs
 ```
 
-**`sketches/deepseek/012-07-03/review`** (3 files, 33 KB):
+**`sketches/deepseek/012-07-03/review`** (3 files, 35 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/deepseek/012-07-03/review/run.sh
@@ -1021,14 +1021,17 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/ge
 
 ## What DeepSeek was given
 
-In `sketches/replies`, 25 files, 910 KB in all, the largest 117 KB: the one file the founder gave DeepSeek, or Gemini, at each return, with the reply and the list of files it was built from (`docs/reply.py` builds it).
+In `sketches/replies`, 31 files, 1.1 MB in all, the largest 117 KB: the one file the founder gave DeepSeek, or Gemini, at each return, with the reply and the list of files it was built from (`docs/reply.py` builds it).
 
-**`sketches/replies`** (25 files, 910 KB):
+**`sketches/replies`** (31 files, 1.1 MB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-07-03-2-for-deepseek.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-07-03-2.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-07-03-2.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-07-03-3-for-deepseek.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-07-03-3.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-07-03-3.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-07-03-for-deepseek.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-07-03.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-07-03.txt
@@ -1050,6 +1053,9 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/re
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-18-for-gemini.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-18-gemini.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-18-gemini.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-22-for-gemini.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-22-gemini.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-22-gemini.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/README.md
 ```
 

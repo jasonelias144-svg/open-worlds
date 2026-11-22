@@ -433,7 +433,10 @@ one of them updates this page.
     A sketch of it is asked of Gemini (2026-11-18): the look shows
     each message a reader sees with who wrote it, a removed message
     with the rule it was removed under and no author, and nothing of
-    who came or went.
+    who came or went. Gemini built it in the sketch crate. A room
+    whose law hides how many are in it gives no look: who wrote what
+    would show how many (the founder, 2026-11-22, on the technical
+    lead's recommendation; change 27 in the sketch crate).
 
 ## Transparency, beside privacy
 

@@ -10,6 +10,28 @@
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-22 Claude: the founder's word on Gemini and rooms
+  ("Decided"): a room whose law hides how many are in it gives no
+  look, made in the sketch crate as change 27 (one check in `look`;
+  166 of 166, and a trial test, not kept, showed it refuses such a
+  room and still looks into an open room that shows its count). Both
+  files below were built again with it before either was given.
+
+- 2026-11-22 Claude: a file for each collaborator, at the founder's
+  word ("Please ensure for DeepSeek and Gemini that you provide me
+  with a file to give them, since they cannot reliably access links
+  yet"). DeepSeek, sketches/replies/012-07-03-3-for-deepseek.txt
+  (84,264 bytes): their deliveries 8 to 11, Gemini's step since, their
+  two choices answered, and one step: how a member's records stay
+  chained when the keeper refuses one, in prose first, and two
+  repairs to their joined room, both tried first in a throwaway copy
+  (182 of 183 with them, the chaining test still failing). Gemini,
+  sketches/replies/2026-11-22-for-gemini.txt (103,515 bytes): their
+  sixth step and prototypes, and twenty-one attacks on what a door
+  shows and on a look, the last on a room that hides its count,
+  which gives no look (change 27); two facts it states tried first.
+  Both sent to the founder.
+
 - 2026-11-22 Claude: Gemini's record 012-08-04 continued (34,033
   lines; the copy kept before is a prefix of it, byte for byte), and
   two pieces of Gemini's work built. Looked through first: nothing

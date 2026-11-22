@@ -125,7 +125,8 @@ def test_the_crate_as_it_stands_is_the_deliveries_with_the_listed_repairs():
     # names its module, Gemini's repairs of the five attacks on it
     # that got through, DeepSeek's rule of one moderator's room with
     # its check again, and Gemini's answer to their sixth file: what a
-    # door shows besides the count. This runs its check, which also
+    # door shows besides the count, with one check added to a look at
+    # the founder's word (change 27). This runs its check, which also
     # holds Gemini's files to their hashes.
     done = subprocess.run(
         [sys.executable, "-I", str(HERE / "review" / "steps.py"), "--check"],
@@ -198,9 +199,21 @@ def test_geminis_files_are_the_ones_their_record_gives():
     assert said.count(b"talk: None,") == 1
     now = HERE / "chat-world-now"
     assert (now / "tests" / "doors_attack.rs").read_bytes() == said
-    assert (now / "src" / "doors.rs").read_bytes() == (
-        gemini / "2026-11-18" / "steps" / "1" / "src"
-        / "doors.rs").read_bytes()
+    # Their list of doors, with one check added at the founder's word
+    # (change 27): a room whose law hides how many are in it gives no
+    # look.
+    theirs = (gemini / "2026-11-18" / "steps" / "1" / "src"
+              / "doors.rs").read_text(encoding="utf-8")
+    ours = (now / "src" / "doors.rs").read_text(encoding="utf-8")
+    assert "if room.template.count_hidden {" not in theirs
+    assert ours.count("if room.template.count_hidden {") == 1
+    added = ("\n    if room.template.count_hidden {\n"
+             "        return Err(Error::Policy(\n"
+             "            \"look refused: the room's law hides how many are"
+             " in it\".into(),\n"
+             "        ));\n"
+             "    }\n")
+    assert ours.replace(added, "", 1) == theirs
 
 
 def test_geminis_eight_prototypes_are_kept_beside_the_crate():

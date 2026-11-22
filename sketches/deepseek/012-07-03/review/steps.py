@@ -24,7 +24,8 @@ nowhere.
                                     g3-repaired, c1, c2, c3, d6,
                                     d6-repaired, d7, d7-count, doors,
                                     c4, doors-attacks, repairs, d8,
-                                    now, joined, joined-fix, said
+                                    now, joined, joined-fix, said,
+                                    look
     python3 steps.py --check        is ../chat-world-now what --now makes?
 
 Nothing is run: this only copies files. Each OUT/N/chat-world is the
@@ -102,8 +103,12 @@ delivery before left it.
                  and speakers), the flag on a room with many in it
                  and nothing said, the doors listed by another number,
                  and a look into a room
-                 (../../../gemini/2026-11-18/steps/1). This is the
-                 crate as it stands, kept in ../chat-world-now.
+                 (../../../gemini/2026-11-18/steps/1).
+    look         said, with one check added to look at the founder's
+                 word (LOOK; ../../../INDEX.md, change 27): a room
+                 whose law hides how many are in it gives no look.
+                 This is the crate as it stands, kept in
+                 ../chat-world-now.
 
 `--check` puts the crate together again and compares it with that
 folder, byte for byte, and holds Gemini's files, in each of their
@@ -273,6 +278,32 @@ DOORS = [
 ]
 
 
+# Change 27, made at the founder's word of 2026-11-22: a room whose
+# law hides how many are in it gives no look. A look shows who wrote
+# each message, so the authors could be counted, and the count the law
+# hides would be given away. The founder chose this of the two that
+# hold (a look that names no author, or no look), on the technical
+# lead's recommendation: a room that hides its count has chosen not to
+# be seen from outside, and its messages may show who is there even
+# without their authors. One check in look, after the one that refuses
+# a closed room or a home.
+LOOK = [
+    ("src/doors.rs",
+     "            \"look refused: room is not open and non-personal\".into(),\n"
+     "        ));\n"
+     "    }\n",
+     "            \"look refused: room is not open and non-personal\".into(),\n"
+     "        ));\n"
+     "    }\n"
+     "\n"
+     "    if room.template.count_hidden {\n"
+     "        return Err(Error::Policy(\n"
+     "            \"look refused: the room's law hides how many are in it\".into(),\n"
+     "        ));\n"
+     "    }\n"),
+]
+
+
 def lay(given, tree):
     """Copies every file under `given` over `tree`; says how many."""
     count = 0
@@ -345,7 +376,7 @@ def check():
     gemini_as_written()
     with tempfile.TemporaryDirectory() as out:
         main(["--now", out], quiet=True)
-        made = os.path.join(out, "said", "chat-world")
+        made = os.path.join(out, "look", "chat-world")
         if not same(made, os.path.join(HERE, "chat-world-now")):
             sys.exit("chat-world-now is not the deliveries with the listed "
                      "repairs: run steps.py --now and compare")
@@ -477,6 +508,8 @@ def main(argv, quiet=False):
         count = lay(os.path.join(GEMINI_SAID, "steps", "1"), tree)
         say(f"Gemini's answer to their sixth file, what a door shows "
             f"besides the count, laid over now: {count} files: said")
+        repaired(tree, os.path.join(out, "look", "chat-world"), LOOK)
+        say("no look into a room whose law hides its count: look")
 
 
 if __name__ == "__main__":

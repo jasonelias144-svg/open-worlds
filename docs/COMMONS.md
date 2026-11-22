@@ -767,8 +767,10 @@ combined in the same interface."
   should be able to glance into the conversation in a read-only way
   before enter a room." A room on the record gives its visible log to
   whoever looks: what those in it see, with what was removed left
-  out. A closed room gives none. Looking is not entering, and no
-  record is kept of who looked
+  out. A closed room gives none, and nor does a room whose law hides
+  how many are in it: the authors of what is said would show how many
+  (the founder, 2026-11-22, on the technical lead's recommendation).
+  Looking is not entering, and no record is kept of who looked
   ([FUNDAMENTALS.md](FUNDAMENTALS.md), privacy, 19).
 - **More than one number, and a flag.** The founder: "Other metrics
   could apply as well", and "a room with many participants and no

@@ -111,14 +111,17 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/ge
 
 ## What DeepSeek was given
 
-In `sketches/replies`, 25 files, 910 KB in all, the largest 117 KB: the one file the founder gave DeepSeek, or Gemini, at each return, with the reply and the list of files it was built from (`docs/reply.py` builds it).
+In `sketches/replies`, 31 files, 1.1 MB in all, the largest 117 KB: the one file the founder gave DeepSeek, or Gemini, at each return, with the reply and the list of files it was built from (`docs/reply.py` builds it).
 
-**`sketches/replies`** (25 files, 910 KB):
+**`sketches/replies`** (31 files, 1.1 MB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-07-03-2-for-deepseek.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-07-03-2.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-07-03-2.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-07-03-3-for-deepseek.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-07-03-3.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-07-03-3.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-07-03-for-deepseek.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-07-03.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/012-07-03.txt
@@ -140,6 +143,9 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/re
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-18-for-gemini.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-18-gemini.json
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-18-gemini.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-22-for-gemini.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-22-gemini.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/2026-11-22-gemini.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/replies/README.md
 ```
 

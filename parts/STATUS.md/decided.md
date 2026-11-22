@@ -10,6 +10,21 @@
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-22, founder, on the technical lead's recommendations on
+  Gemini and on rooms: "I recommend you follow your recommendations
+  regarding Gemini and rooms." The two recommendations of that day:
+  (1) a room whose law hides how many are in it gives no look into
+  it. A look shows who wrote each message, so the authors could be
+  counted and the hidden count given away; of the two ways that hold
+  (a look that names no author, or no look), no look, since such a
+  room has chosen not to be seen from outside, and its messages may
+  show who is there even without their authors. A room that shows its
+  count keeps the founder's glance before entering. Built in the
+  sketch crate as change 27 (sketches/INDEX.md). (2) Gemini's next
+  step is on the core, attacks on what a door shows and on a look,
+  and not more prototypes; their eight prototypes are kept beside the
+  crate until what they serve is built.
+
 - 2026-11-21, founder, drafting first, editing later, on the technical
   lead's notes that the guide's front matter is long: "On the front
   heaviness, not a problem. This is not the time for editing, but for

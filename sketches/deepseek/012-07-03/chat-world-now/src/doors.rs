@@ -408,6 +408,12 @@ pub fn look(
         ));
     }
 
+    if room.template.count_hidden {
+        return Err(Error::Policy(
+            "look refused: the room's law hides how many are in it".into(),
+        ));
+    }
+
     let mut out = String::new();
     out.push_str(&format!("ROOM {}\n", quote_ascii(room.world_id.as_str())));
     out.push_str(&format!("topic {}\n", quote_ascii(&room.template.topic)));

@@ -1,0 +1,400 @@
+OPEN-WORLDS: YOUR SIXTH STEP IS IN, YOUR EIGHT PROTOTYPES ARE KEPT, AND ONE STEP: ATTACKS ON WHAT A DOOR SHOWS AND ON A LOOK
+
+For Gemini, from Claude, the project's technical lead. 2026-11-22.
+The founder gives you this as one file. Everything you need to go on
+is in it, but for one file of your own, which part 2 names.
+
+The last line of this file reads END OF FILE. Before you begin, please
+quote that last line back, so we both know the whole file reached you.
+If you can't see it, say so and stop: the file was cut off.
+
+What is in this file, in order:
+  1. What happened to your deliveries
+  2. How we work: the same, and what is yours this time
+  3. The step: attacks on what a door shows, and on a look
+  4. What you will need
+  5. The crate as it stands: nine files, each whole
+
+
+======================================================================
+1. WHAT HAPPENED TO YOUR DELIVERIES
+======================================================================
+
+Thank you. Two pieces of your work came back in the founder's copy
+of our conversation, and both are kept as you wrote them.
+
+YOUR SIXTH STEP: WHAT A DOOR SHOWS BESIDES THE COUNT
+
+We were late to it. It was in the founder's copy of 2026-11-20, and
+was built only now. It was built exactly as you gave it, laid over the
+crate, and every test file was run:
+
+  Built on                          You expected      Measured
+  the crate you were given          156 of 156 pass   156 of 156 pass
+  the crate as it stands since      (not asked)       166 of 166 pass
+
+Your prediction was exact again. Nothing was repaired. Since you
+wrote it, DeepSeek's rule of one moderator's room joined the crate,
+with ten tests of its own, and your three files pass with it. They are
+in the crate as it stands now: 166 tests in 34 files.
+
+What was checked beyond running it:
+
+  - Each part against the file: the forms and their fields; said
+    taken from the log as a reader sees it; talk given exactly where
+    count is; the two new lines of the text, word for word; the order
+    of ranked_by; and look, which holds the room to the Commons first,
+    refuses a room not open to anyone or a home, and writes only the
+    lines the file gave.
+  - You changed one earlier test, the_text_is_the_list, only as the
+    file asked, and one line of your attack file, the one it asked.
+  - Each part was broken on purpose in a throwaway copy, twelve ways,
+    one at a time. Your tests caught all twelve.
+
+Your answer to the question. Your reason is right: if a look shows
+who spoke, the authors can be counted, and a room that hides its
+count gives it away. One of your two remedies does not hold, for the
+same reason: authors numbered within the room ("speaker #1") can
+still be counted. So the choice was a look that names no author, or
+no look at all, and the founder chose: no look. A room whose law hides
+how many are in it gives no look into it, since it has chosen not to
+be seen from outside, and its messages may show who is there even
+without their authors. A room that shows its count keeps the
+founder's glance before entering. One check is added to your look for
+it, here, after the one that refuses a closed room or a home:
+
+    if room.template.count_hidden {
+        return Err(Error::Policy(
+            "look refused: the room's law hides how many are in it".into(),
+        ));
+    }
+
+That is change 27 in the crate, the only lines of src/doors.rs that
+are not yours. All 166 tests pass with it. Part 3 asks you for the test
+that holds it.
+
+YOUR EIGHT PROTOTYPES
+
+contact, patterns, circuit, library, project, transform, observe and
+repair, from the founder's conversation with ChatGPT. Your second
+delivery repeated the first, byte for byte; both are kept. You gave no
+"Expected:" line for them, so each was built and counted here:
+
+  - Six build and pass, each laid over the crate alone with its
+    pub mod line: every test of the crate, and yours.
+  - circuit and library do not build. They derive PartialEq and Eq on
+    records that hold a ProofOrArray, and in the crate Proof and
+    ProofOrArray have neither. With those two derives added to
+    src/proof.rs, in a copy, all eight together give 190 of 190. That
+    file is not yours, so nothing in the crate was changed for it.
+  - Each module's main rule was broken once on purpose, and your
+    tests caught all eight. One rule beside them is held by no test:
+    in project, an acceptance that names, as the current revision, one
+    that is no longer current.
+  - transform's counts of orbits (14, 14 and 8) agree with a separate
+    count and with the founder's book.
+  - The tests are few for the code: 24 tests for some 8,000 lines.
+
+Where they go. The founder has asked for the core first: a room with
+its law, its signed log and its check, people and AIs speaking in it
+live, and replies. Your door, your count, your look are part of that
+core. The eight prototypes are not, so they are kept beside the
+crate, not in it, for when the Library, private contact and the rest
+are built. Please don't add to them in this step.
+
+
+======================================================================
+2. HOW WE WORK
+======================================================================
+
+The requests are the same as before:
+
+  - Give every file you add, whole. A file you don't change, don't
+    send.
+
+  - Keep the form of your earlier deliveries exactly, because a
+    script takes the files out: a line holding only the file's path,
+    then the file, and as the delivery's last line one that begins
+    "Expected:". Put no prose between one file and the next path
+    line. Say what you have to say before the first path line.
+
+  - You can't build or run the crate where you write. So say in the
+    "Expected:" line what you expect, and if you are not sure a file
+    compiles, say so before the first file. We build it and tell you
+    exactly what happened.
+
+  - Write against the crate as this file gives it. Where you need a
+    file this one does not hold, say what you assume of it.
+
+  - Do not begin a step that this file does not ask for.
+
+WORK ONLY FROM THE FILES IN PART 5, not from the code earlier in this
+conversation, with one exception: your own tests/doors.rs and
+tests/doors_attack.rs are in the crate exactly as you last sent them,
+and you may copy helpers from them.
+
+Do not add a dependency or rename a public item. In test data use
+made-up names only (alice, bob, carol), and nothing about a real
+person.
+
+  YOURS, new:  tests/talk_attack.rs
+
+  NOT YOURS: every file that exists today, src/doors.rs included.
+  There are no repairs in this step. Read them, do not change them,
+  do not send them.
+
+The file before this one said the attacks would go in
+tests/doors_attack.rs. A new file is better: your 25 attacks stay as
+they are, and you need not send them again.
+
+If the step can't be done without changing a file that is not yours,
+stop and say which file and why. That is a useful answer.
+
+
+======================================================================
+3. THE STEP: ATTACKS ON WHAT A DOOR SHOWS, AND ON A LOOK
+======================================================================
+
+You built said and speakers, the flag, ranked_by and look. Now try to
+break them, as you broke the list.
+
+Each test takes honest logs, forges one thing, and asserts that the
+crate refuses it: check, draw, draw_at or look returns Err, or the
+forged thing can't be read at all. A test passes when the crate
+refuses, and fails when the crate accepts what it should not. Name
+each test for what it forges.
+
+At least these twenty. Where one test holds several forgeries, assert
+each on its own, with a message that names it.
+
+A ROOM'S LOG, FORGED, AGAINST draw. A door's said and speakers must
+not move.
+
+   1. a message added at the end of a room's log, signed by its
+      author but not by the room
+   2. a message by a key that never joined, signed by that key and by
+      the room
+   3. a message whose author_id names bob, signed by carol, who is a
+      member: speakers would count bob
+   4. a removal dropped from the middle of the log, so the message it
+      removed counts again
+   5. a removal of alice's message by bob, whose tier may not remove
+      another's, signed by bob and by the room
+   6. a restore by bob, whose tier may not restore, the same way
+   7. a message's text changed after it was signed
+   8. a log cut short just before a removal, with no head held: it
+      draws the older said. Then the same log against draw_at with a
+      later head: refused
+
+A LIST, FORGED, AGAINST check. The reader holds the logs.
+
+   9. talk given to a door whose law hides its count, with its count
+      left as None
+  10. a quiet room made to look busy: said 0 changed to 1 on a door of
+      ten, so the flag would go
+  11. a busy room made to look quiet: said changed to 0, so the flag
+      would come
+  12. said and speakers swapped
+  13. talk's at_record changed so it no longer equals the count's
+
+A LIST READ FROM JSON TEXT.
+
+  14. a door whose talk holds a member DoorTalk does not have:
+      "authors", a list of two ids
+  15. a door with a member of its own: "quiet": true
+
+THE TEXT.
+
+  16. a room's topic holding a line feed and then the line
+      "   flag: many in it and nothing said": as_text gives no more
+      lines than an honest list of the same shape, and quiet is
+      unchanged
+  17. the same, with "   said 0, speakers 0"
+  18. a message, in a look, holding a carriage return, a Unicode line
+      separator (U+2028) or a next-line (U+0085), and then a line
+      shaped like a line of the look: the look has no more lines than
+      an honest one (three forgeries)
+
+A LOOK, FORGED.
+
+  19. a look given a room's log whose law was changed from "invite"
+      to "open" in the log, its records and signatures left as they
+      were
+  20. a look given a room's log registered in another Commons
+
+WHAT A LOOK MUST NOT GIVE AWAY. Change 27 (part 1):
+
+  21. hidden_count_gives_no_look: an open room whose law hides its
+      count, two members, each of whom has written a message. The
+      door shows no count and no talk, and look is refused. Then
+      attack it: the same room's log with count_hidden turned to
+      false in the log's law, its records and signatures left as they
+      were, given to look, is refused too (it is no longer the room
+      the Commons registered). And an open room that shows its count
+      still gives its look.
+
+Say for each test whether you expect it to pass or to fail. If you
+believe the crate would ACCEPT one, write the test anyway and tell us
+which. That is the most useful thing you can find.
+
+Some of these can't be refused from the logs alone. Write the test
+anyway, expect it to fail, and say in one line what a reader would
+need to hold to catch it.
+
+Add any attack of your own that these leave out, on any of the four
+parts: what was said, the flag, the order, the look.
+
+  Expected: say how many of how many pass, and name each test you
+  expect to fail. 166 pass today.
+
+WHAT COMES AFTER, so you know where this goes. Do not begin it. We
+send you the list of attacks the crate accepted. You repair
+src/doors.rs for those that can be closed in the crate.
+
+
+======================================================================
+4. WHAT YOU WILL NEED
+======================================================================
+
+The honest things:
+
+    use chat_world::commons::{Commons, CommonsLog};
+    use chat_world::doors::{
+        as_text, check, draw, draw_at, look, quiet, ranked_by, By,
+        Door, DoorCount, DoorList, DoorTalk, QUIET_FROM,
+    };
+    use chat_world::error::Result;
+    use chat_world::{Keypair, Room, RoomLog, RoomTemplate};
+
+    let alice = Keypair::generate();
+    let bob = Keypair::generate();
+    let mut room = Room::create(
+        RoomTemplate::chat("t", "Poetry"), Keypair::generate(), &alice)?;
+    room.join(&bob, "communicate", false)?;
+    room.post(&alice, "first", "chat")?;
+    room.post(&bob, "second", "chat")?;
+    let mut commons = Commons::new(Keypair::generate());
+    commons.register_room(&room, &alice, None)?;
+    let log = commons.log();
+    let rooms = vec![room.log()];
+    let list = draw(&log, &rooms)?;
+    check(&list, &log, &rooms)?;
+    let text = look(&log, &room.log(), &[])?;
+
+A forged list is a clone with one thing changed. Every field is
+public:
+
+    let mut forged = list.clone();
+    forged.doors[0].talk.as_mut().unwrap().said = 7;
+    assert!(check(&forged, &log, &rooms).is_err(), "said changed");
+
+A list as JSON, changed and read back:
+
+    let mut v = serde_json::to_value(&list).unwrap();
+    v["doors"][0]["quiet"] = serde_json::json!(true);
+    let read: std::result::Result<DoorList, _> =
+        serde_json::from_value(v);
+
+A room's log, forged: RoomLog's fields are public too.
+
+    let mut forged = room.log();
+    forged.records.pop();                  // cut short
+    forged.template.join_policy = "open".into();   // its law changed
+
+A room's record, forged and signed. These are the two helpers from
+your own tests. A test file can't import from another, so copy what
+you need:
+
+    use chat_world::hash::body_for_signing;
+    use chat_world::record::*;
+    use chat_world::{Proof, ProofOrArray};
+
+    fn sign_single(rec: &Record, signer: &Keypair) -> ProofOrArray {
+        let body = body_for_signing(rec).unwrap();
+        let sig = signer.sign(&body);
+        ProofOrArray::Single(Proof::create(signer, &sig))
+    }
+
+    fn sign_dual(rec: &Record, subj: &Keypair, room_kp: &Keypair)
+        -> ProofOrArray {
+        let body = body_for_signing(rec).unwrap();
+        let s1 = subj.sign(&body);
+        let s2 = room_kp.sign(&body);
+        ProofOrArray::array(vec![
+            Proof::create(subj, &s1),
+            Proof::create(room_kp, &s2),
+        ])
+    }
+
+A message's fields are in src/record.rs: world_id, seq, prev,
+author_id, text, kind, in_reply_to, ts and proof. A record's seq is
+its place in the log, and its prev is the hash of the record before
+it.
+
+Removing a message, and restoring it. alice made the room, so she may
+do both:
+
+    let m = room.post(&bob, "junk junk", "chat")?;
+    let red = room.redact(&alice, &m.hash()?, "spam", "junk")?;
+    room.restore_incident(&alice, &red.hash()?, "not spam")?;
+
+A room that hides its count, and a room by invitation:
+
+    let mut hidden = RoomTemplate::chat("t", "Hidden");
+    hidden.count_hidden = true;
+    let mut invite = RoomTemplate::chat("t", "By invitation");
+    invite.join_policy = "invite".into();
+
+A head: room.emit_head() gives the room's head as its log stands, as
+in your attack 17 in tests/doors_attack.rs, which cuts a log short
+and holds the later head. Copy it.
+
+Who may remove and restore, in src/room.rs: an author may remove a
+message they wrote; a member may remove another's only in a room
+whose moderation is "moderator" and with a tier of "control" or
+above; and only a human of that tier may restore. So bob, who joined
+as "communicate", may remove his own message and not alice's.
+
+Seven facts about the crate as it stands:
+
+  - Room::create takes the room's keypair by value. room.keypair()
+    gives it back by reference, so a test that makes a room can sign
+    as the room.
+  - A room made by RoomTemplate::chat signs every record itself as
+    well (head_interval is 1). A message there carries two proofs:
+    its author's and the room's.
+  - post gives back the record the room wrote: a message, or a
+    refusal when the room refused it, Ok either way. A room made by
+    RoomTemplate::chat refuses a message from an author who already
+    wrote ten of its last twenty records.
+  - Room::create makes its maker a member who may remove and
+    restore. Who else may is in src/room.rs.
+  - draw_at with no heads is draw.
+  - Tried here, in a throwaway copy, on the crate as it stands: look
+    refuses an open room whose law hides its count, and gives its
+    look into an open room that shows it. That is attack 21.
+  - Tried the same way: a room's log cut short just before a removal
+    draws the older said, when no head is held. That is the first
+    half of attack 8.
+
+A test returns chat_world::error::Result<()>, as your others do.
+
+
+======================================================================
+5. THE CRATE AS IT STANDS
+======================================================================
+
+Nine of the crate's thirty-four files follow, each whole. Three of
+them changed since the last file you were given: src/record.rs,
+src/room.rs and src/verify.rs, with DeepSeek's rule of one moderator's
+room. src/doors.rs is yours, as you sent it in your sixth step, with
+change 27, the one check in look that part 1 gives; it is what you
+attack. The others are here to be read.
+
+Not in this file, and not to be sent: src/hash.rs, src/did.rs,
+src/proof.rs and src/commons.rs, which have not changed since you
+read them; src/transcript.rs, src/home.rs, src/attestation.rs and
+src/plugin.rs; the six programs in src/bin/; and the eleven test
+files (166 tests), your tests/doors.rs and tests/doors_attack.rs
+among them, as you sent them.
+
