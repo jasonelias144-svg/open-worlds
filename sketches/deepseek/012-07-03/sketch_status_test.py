@@ -206,7 +206,7 @@ def test_geminis_files_are_the_ones_their_record_gives():
 def test_geminis_eight_prototypes_are_kept_beside_the_crate():
     # Eight modules Gemini wrote from the founder's conversation with
     # ChatGPT, in nine deliveries: the second repeats the first, byte
-    # for byte. Built on the crate as it stands, six pass alone; circuit
+    # for byte. Built on the crate, six pass alone; circuit
     # and library need Proof and ProofOrArray to be comparable, which in
     # the crate they are not (../../gemini/2026-11-22/README.md). None
     # is laid into the crate.

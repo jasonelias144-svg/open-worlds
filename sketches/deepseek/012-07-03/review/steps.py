@@ -8,7 +8,7 @@ count.
 Each is laid over the one before, starting from the crate DeepSeek
 was given, ../chat-world.
 
-DeepSeek's files are kept in ../chat-world-steps/1 to 8, as the record
+DeepSeek's files are kept in ../chat-world-steps/1 to 11, as the record
 gives them (../../tools/extract.py checks that). Gemini's are kept in
 ../../../gemini/2026-11-16/steps/1 to 3 and
 ../../../gemini/2026-11-17/steps/1 to 3, ../../../gemini/2026-11-17-2,
