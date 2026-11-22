@@ -9,7 +9,7 @@ need links through this method.").
 
 COLLABORATING.md lists the files a reader works from: every page,
 all the code, the tests and the vectors. This page lists the rest,
-1056 files of record, best sent when a question needs them.
+1058 files of record, best sent when a question needs them.
 
 Written by `python3 docs/files.py`;
 `tests/test_collaborating_links.py` fails if a file is added, moved
@@ -1079,24 +1079,25 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/deliv
 
 ## The archive
 
-In `archive`, 11 files, 474 KB in all, the largest 101 KB: the older dated entries of STATUS.md and COLLABORATING.md, moved whole, a file for each page and day, with the catalogue (`archive/README.md`); `docs/archive.py` writes it.
+In `archive`, 13 files, 494 KB in all, the largest 101 KB: the older dated entries of STATUS.md and COLLABORATING.md, moved whole, a file for each page and day, with the catalogue (`archive/README.md`); `docs/archive.py` writes it.
 
-**`archive`** (2 files, 9 KB):
+**`archive`** (2 files, 10 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/catalog.json
 ```
 
-**`archive/COLLABORATING`** (3 files, 72 KB):
+**`archive/COLLABORATING`** (4 files, 77 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/COLLABORATING/2026-11-15.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/COLLABORATING/2026-11-16.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/COLLABORATING/2026-11-17.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/COLLABORATING/2026-11-18.md
 ```
 
-**`archive/STATUS`** (6 files, 393 KB):
+**`archive/STATUS`** (7 files, 407 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/STATUS/2026-11-12.md
@@ -1105,6 +1106,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/STA
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/STATUS/2026-11-15.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/STATUS/2026-11-16.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/STATUS/2026-11-17.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/STATUS/2026-11-18.md
 ```
 
 ## Experiment 001's run logs
