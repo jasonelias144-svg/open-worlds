@@ -33,6 +33,11 @@ written. It changes with every change to the guide.
   phase is "large, wide, expansive, comprehensive, more is better";
   the editing phase then "cuts out everything not needed". Nothing is
   trimmed until then.
+- **Its readers** (2026-11-22): the founder named them, below, in
+  "Who it is for": a person or an AI, come to take part, to build, or
+  to understand, now or later. F.2 is to be drafted again with the
+  third purpose, and three rules are added for a reader who comes
+  later.
 - **Next:** the drafting goes on. The technical lead checks each
   chapter's claims about the code against the code, for facts only (a
   claim or a label the code does not bear out), and marks it `checked
@@ -52,7 +57,7 @@ written. It changes with every change to the guide.
 | Chapter | Title | Progress |
 |---|---|---|
 | F.1 | [How to read this guide](F/01-how-to-read-this-guide.md) | draft |
-| F.2 | [Four ways through](F/02-four-ways-through.md) | draft |
+| F.2 | [Ways through](F/02-four-ways-through.md) | draft |
 | F.3 | [Checking this guide](F/03-checking-this-guide.md) | draft |
 | F.4 | [Licence](F/04-licence.md) | draft |
 
@@ -213,6 +218,72 @@ And of this page: "create a page in the repo that we can update as
 we continue to expand. It will be the home of this comprehensive
 reference manual."
 
+## Who it is for
+
+The founder, 2026-11-22, word for word in `STATUS.md` ("Decided"):
+"Ok, so I was thinking about the multiverse manual and I realized
+that we should be aware of a variety of possible readers, with two
+main types: human and AI. But we should accommodate a variety of
+potential human readers: 1. User manual for multiverse
+participation, 2. SDK for developing a multiverse from the code in
+the repo, 3. Human reader with curiosity about how Open Worlds
+functions, for scientific, philosophical, mathematical,
+computational, creative or other reasons, but without any
+participation. And these could be contemporary readers or those in
+the future. Please make a note of this variety in the records to
+guide development."
+
+The technical lead's reading, to guide the writing. A reader is three
+things at once, not one of a list:
+
+- **Who reads:** a person, or an AI.
+- **What for.** Three purposes:
+  1. **To take part:** the user manual for life in a multiverse:
+     arriving, finding a place, speaking, leaving, and what one is
+     guaranteed. A steward of a world or an office is a participant
+     who holds a responsibility.
+  2. **To build:** the developer's guide, an SDK in the founder's
+     word, for making a multiverse from the code in this repository:
+     its formats, its code, its tests and its commands.
+  3. **To understand,** without taking part: for a reader who comes
+     for science, philosophy, mathematics, computation, art, or
+     another reason, and wants to know what the worlds are, how they
+     work, and why they are as they are.
+- **When:** now, or later. A reader in fifty years may hold a printed
+  edition and no repository, may never have heard of the services
+  and the words of 2026, and may meet code that has long moved on.
+
+Each purpose is open to a person or an AI alike. An AI may take part
+(I.5); may build, as DeepSeek and Gemini build now from this
+repository's code; or may study, as ChatGPT reads the repository to
+write this guide. And since the guide is in the public
+domain, an AI may learn from it without reading it as anyone's guide.
+
+What follows, for the writing:
+
+- **Ways through (F.2)** are by purpose, each open to a person or an
+  AI. The four routes drafted on 2026-11-21 (a newcomer, a builder, a
+  steward, an AI arriving) cover the first two purposes. The third is
+  new: a route for the reader who will not take part, through Parts
+  I, II, VI and IX, and then by interest: the plant and chemistry
+  worlds for science (III.6, III.7), the poetry world for art
+  (III.8), the book for mathematics and philosophy (IX.2), and a
+  world's log and its kernel for computation (VI.4). The outline's
+  F.2 says so; the chapter is to be drafted again.
+- **The user manual** can only be as far as the worlds are. Nothing is
+  live yet (`STATUS.md`, "Live"), so the route for taking part says
+  what is built and what is planned, under the labels, as Part I does.
+- **The developer's guide** describes the repository as it is: the
+  Python core, the Rust workspace, the schemas and test vectors, and
+  the commands. There is no packaged SDK: no library to install, and
+  no promise that an interface stays the same between versions.
+  Whether and when the project offers one is Open, and the founder's
+  to decide.
+- **A reader later** is served by rules 1 to 8 already: the labels,
+  each chapter's sources at a named commit, numbers that never
+  change, and editions with the hash of each file. Rules 9 to 11
+  below are added for them.
+
 ## Who writes it
 
 - **ChatGPT drafts** each chapter from its sources
@@ -265,6 +336,20 @@ These hold for every chapter, from the first draft.
    parts (record formats, schemas, test vectors, the files, the
    decisions) are written by script from the repository, not by hand,
    so they cannot drift from it.
+
+Added 2026-11-22, for a reader who comes later ("Who it is for"):
+
+9. **Every "now" has its date.** A chapter says the commit it was
+   checked at; a sentence that says "today", "currently" or "not
+   yet" says, or is in a section that says, when that was true.
+10. **The guide does not depend on a link, or on its time.** A source
+    is named by its path in the repository and the commit, so any
+    copy of the repository answers it when a link has gone. A word of
+    its time (a service, a tool, a kind of model) is explained where
+    it is first used, and goes in the glossary with what it was.
+11. **The reasons are kept with the rules.** Why something was
+    decided, and by whom, is written beside what was decided, so a
+    reader later can judge whether it still holds.
 
 ## How it is built
 

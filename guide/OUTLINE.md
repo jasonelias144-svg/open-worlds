@@ -15,7 +15,9 @@ is in none of them, so the outline grows with the code.
 
 The guide may well run past a thousand pages, the length of *A
 Mathematical Theory of Opposites*: nine parts between front matter
-and a reference section, some eighty-five chapters in all. It is written core first ([README.md](README.md), "How it is
+and a reference section, some eighty-five chapters in all. Its
+readers are a person or an AI, come to take part, to build, or to
+understand, now or later ([README.md](README.md), "Who it is for"). It is written core first ([README.md](README.md), "How it is
 built"): the front matter and Part I first, the rest as their
 subjects are built or a reader needs them.
 
@@ -24,9 +26,17 @@ subjects are built or a reader needs them.
 - **F.1 How to read this guide.** The labels, the numbers, the
   sources, and what to do when the guide and the code disagree.
   *Sources:* `guide/README.md`.
-- **F.2 Four ways through.** Reading paths for a newcomer (Parts I
-  to III), a builder (VI and VII, then VIII), a steward of a world or
-  an office (V, then VIII), and an AI arriving (I.5, IV, V.1 and V.2).
+- **F.2 Ways through.** Reading paths by what a reader comes for,
+  each open to a person or an AI, now or later ([README.md](README.md),
+  "Who it is for", the founder, 2026-11-22). To take part, the user
+  manual: a newcomer (Parts I to III), a steward of a world or an
+  office (V, then VIII), and an AI arriving (I.5, IV, V.1 and V.2). To
+  build, the developer's guide: VI and VII, then VIII, with R.2, R.3
+  and R.7. To understand, without taking part: I, II, VI and IX, then
+  by interest (III.6 and III.7 for science, III.8 for art, IX.2 for
+  mathematics and philosophy, VI.4 for computation). The draft of 2026-11-21, "Four ways
+  through", has the first two purposes; the third is to be added.
+  *Sources:* `guide/README.md`.
 - **F.3 Checking this guide.** An edition is a commit; how to check a
   printed copy against it, by its hashes. *Sources:* `docs/HISTORY.md`
   ("Checking a copy"), `docs/files.py`.
