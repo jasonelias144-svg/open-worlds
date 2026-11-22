@@ -207,14 +207,34 @@ kept as the record gives them, from its line 23994, in
   repaired (fix 24 in [../../INDEX.md](../../INDEX.md)), 103 of 103
   tests pass.
 - **7, a plug-in** over standard input (five files). 112 of 112.
-- **8, the rule of one moderator's room** (three files). The reply
-  was cut off there. What came does not build without the files that
-  did not come, so it is kept and not laid into the crate. The
-  founder goes back to DeepSeek for the rest.
+- **8, the rule of one moderator's room** (three files). The founder's
+  copy of the record was cut off there; the copy of 2026-11-21 holds
+  the rest (below).
 
 [../../INDEX.md](../../INDEX.md) ("DeepSeek's second file") says what
 each is, what DeepSeek expected, and what they chose where the file
 left it open.
+
+## The rest, and three more (2026-11-21)
+
+The founder's copy of 2026-11-21 holds all of delivery 8, and DeepSeek's
+answer to the technical lead's note, with three more deliveries. Kept
+as the record gives them, in `chat-world-steps/8` to `11`:
+
+- **8, the rule of one moderator's room** (six files). It does not
+  build, for one type.
+- **9, `src/verify.rs` again,** with that type turned. With it, 162 of
+  162 tests pass: the crate's 152 and delivery 8's ten. It is laid into
+  the crate as it stands, `chat-world-now/`.
+- **10, a room one has joined but does not keep,** and the keeper's
+  side that takes what its members send (six files). 171 of 173.
+- **11, the keeper's side checked as the log is** (two files). 176 of
+  179. Deliveries 10 and 11 are kept beside the crate until their
+  tests pass.
+
+[../../INDEX.md](../../INDEX.md) ("The rest of delivery 8, and three
+more") says what each is, which tests fail and why, and the technical
+lead's answer to DeepSeek's two choices.
 
 ## Ours, not DeepSeek's
 

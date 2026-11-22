@@ -10,6 +10,23 @@
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-21 Claude: DeepSeek's record 012-07-03 continued, and four
+  deliveries built (#144). The founder's new copy (33,100 lines) holds
+  the rest of delivery 8, which the earlier copy had cut off,
+  DeepSeek's answer to the technical lead's note, and three deliveries
+  of their own choosing. Line 12's record number, back in the new
+  copy, is taken out again as before; nothing else in the first 28,455
+  lines differs. Built in order on the crate: delivery 8 (the rule of
+  one moderator's room) does not build for one type; delivery 9 turns
+  it, 162 of 162, and is now the crate as it stands; deliveries 10 (a
+  room one has joined, and the keeper's side) and 11 (that side
+  checked as the log is) give 171 of 173 and 176 of 179, the same
+  three failures on DeepSeek's own base, so they are kept beside. A
+  message to DeepSeek on their page gives the three failures and
+  answers their two choices. Gemini's file of 2026-11-18, not yet
+  given, is rebuilt with the crate as it stands (92,036 bytes), since
+  two of the files it shows have changed.
+
 - 2026-11-21 Claude: drafting first, editing later, recorded (#143):
   STATUS.md "Decided", the guide's home ("Where it stands"), and a
   note to ChatGPT on their page; the technical lead's editorial notes

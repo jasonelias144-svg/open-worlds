@@ -193,18 +193,45 @@ def test_geminis_files_are_the_ones_their_record_gives():
         / "doors.rs").read_bytes()
 
 
-def test_the_delivery_that_was_cut_off_is_kept_and_not_laid_in():
-    # DeepSeek's eighth delivery, the rule of one moderator's room, was
-    # cut off after three files. They are kept as given. The crate as
-    # it stands does not hold them: its records have no moderator's
-    # scope, which those three files add.
+def test_the_rule_of_one_moderators_room_is_whole_and_laid_in():
+    # DeepSeek's eighth delivery, the rule of one moderator's room. The
+    # founder's first copy of the record ended after its third file;
+    # the copy of 2026-11-21 holds all six. It does not build for one
+    # type, which DeepSeek's ninth delivery turns, and the two together
+    # are in the crate as it stands.
     given = HERE / "chat-world-steps" / "8"
     names = sorted(str(p.relative_to(given)).replace("\\", "/")
                    for p in given.rglob("*") if p.is_file())
-    assert names == ["src/home.rs", "src/record.rs", "src/room.rs"]
-    assert "ModeratorScope" in (given / "src" / "record.rs").read_text(
+    assert names == ["src/bin/moderator-scope-demo.rs", "src/home.rs",
+                     "src/record.rs", "src/room.rs", "src/verify.rs",
+                     "tests/moderator_scope.rs"]
+    eight = (given / "src" / "verify.rs").read_text(encoding="utf-8")
+    nine = (HERE / "chat-world-steps" / "9" / "src" /
+            "verify.rs").read_text(encoding="utf-8")
+    assert "map(|h| h.length).unwrap_or(0)" in eight
+    assert "map(|h| h.length as usize).unwrap_or(0)" in nine
+    now = HERE / "chat-world-now"
+    assert "ModeratorScope" in (now / "src" / "record.rs").read_text(
         encoding="utf-8")
-    now = HERE / "chat-world-now" / "src"
-    for name in ("record.rs", "room.rs", "home.rs", "verify.rs"):
-        assert "ModeratorScope" not in (now / name).read_text(
-            encoding="utf-8"), name
+    assert (now / "src" / "verify.rs").read_text(encoding="utf-8") == nine
+    assert (now / "tests" / "moderator_scope.rs").is_file()
+
+
+def test_a_room_one_has_joined_is_kept_beside_the_crate():
+    # DeepSeek's tenth and eleventh deliveries: a room one has joined,
+    # and the keeper's side that accepts what its members send. Three
+    # of their tests fail (INDEX.md), so they are kept as given and not
+    # laid into the crate as it stands.
+    for step, files in (("10", ["src/bin/joined-demo.rs",
+                                "src/joined_room.rs", "src/lib.rs",
+                                "src/plugin.rs", "src/room.rs",
+                                "tests/joined.rs"]),
+                        ("11", ["src/room.rs", "tests/joined.rs"])):
+        given = HERE / "chat-world-steps" / step
+        names = sorted(str(p.relative_to(given)).replace("\\", "/")
+                       for p in given.rglob("*") if p.is_file())
+        assert names == files, step
+    now = HERE / "chat-world-now"
+    assert not (now / "src" / "joined_room.rs").exists()
+    assert "accept_pending" not in (now / "src" / "room.rs").read_text(
+        encoding="utf-8")

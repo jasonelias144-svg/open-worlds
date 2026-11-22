@@ -108,7 +108,19 @@
   "27049": "chat-world-steps/7/tests/plugin.rs",
   "27252": "chat-world-steps/8/src/record.rs",
   "27640": "chat-world-steps/8/src/room.rs",
-  "28236": "chat-world-steps/8/src/home.rs"
+  "28236": "chat-world-steps/8/src/home.rs",
+  "28460": "chat-world-steps/8/src/verify.rs",
+  "29034": "chat-world-steps/8/tests/moderator_scope.rs",
+  "29233": "chat-world-steps/8/src/bin/moderator-scope-demo.rs",
+  "29393": "chat-world-steps/9/src/verify.rs",
+  "30000": "chat-world-steps/10/src/joined_room.rs",
+  "30204": "chat-world-steps/10/src/room.rs",
+  "30955": "chat-world-steps/10/src/lib.rs",
+  "31052": "chat-world-steps/10/src/plugin.rs",
+  "31333": "chat-world-steps/10/src/bin/joined-demo.rs",
+  "31498": "chat-world-steps/10/tests/joined.rs",
+  "31768": "chat-world-steps/11/src/room.rs",
+  "32589": "chat-world-steps/11/tests/joined.rs"
  },
  "ours": [
   "README.md",
@@ -150,7 +162,9 @@
   "chat-world-now/tests/plugin.rs",
   "chat-world-now/src/doors.rs",
   "chat-world-now/tests/doors.rs",
-  "chat-world-now/tests/doors_attack.rs"
+  "chat-world-now/tests/doors_attack.rs",
+  "chat-world-now/src/bin/moderator-scope-demo.rs",
+  "chat-world-now/tests/moderator_scope.rs"
  ],
  "changed": {
   "fractal_garden.py": "Fix 15: DeepSeek's own change, which the record gives as a note with the botanical garden (line 3425) and which was never made here: tick() takes external_rain, a GardenTick carries ext_rain, in its body too, and the replay applies it before the tick's own rain.",

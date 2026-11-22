@@ -20,7 +20,7 @@ GMNI, Gemini's.
 | [012-02-01, Patterns, Texts and Inventions](records/012-02-01-DPSK-Patterns_Texts_and_Inventions.txt) | A new cycle, in Python's standard library at first: simulations of the circuit components and devices built before, then self-adaptive loops and meta-learning, open neuroscience data, an income stream a system could keep up on a small budget, chemistry as a compositional system, and music: counterpoint and Bach. It ends with DeepSeek proposing component 8, the listener, and the founder's go-ahead. Kept here since 2026-11-21, at the founder's word | 52,106 | `84a0dccf2303e38bf11cb36bac25000711c40389aa4252f3a1291507dae64799` |
 | [012-03-02, Patterns, Texts and Inventions](records/012-03-02-DPSK-Patterns_Texts_and_Inventions.txt) | The poetry engine and its curriculum, which the multiverse sketch builds on | 23,427 | `978eac920205ec2b487efc33f927dfd62da95b12ad78f1760fef9277b74908de` |
 | [012-06-02, Patterns and Multiverses, a new cycle](records/012-06-02-DPSK-Patterns_Multiverses.txt) | After reading `docs/COLLABORATING.md`, proposals for steps ahead: fractal worlds, a hierarchy of worlds, branching, a gallery of worlds and its governance; then the smallest learner that chooses, and individuals as signed, replayable bundles across worlds. Continued (from line 43168, shared on 2026-11-15): a multiversal map and an individual's worldline, a look at games, a microverse, the Ur-world as a garden of hosted fractal worlds, and the move to Rust: an Ur-garden, its keeper, a server, and verifiers in Rust, Python and Node.js. It ends with DeepSeek asking which piece is next | 62,610 | `979f7eef52c10396a682e2fcc0a4e76e1b5d0080b23a71ef22734f265ef0343c` |
-| [012-07-03, Patterns and Multiverses, water and the Commons](records/012-07-03-DPSK-Patterns_Multiverses.txt) | Begun from `docs/COLLABORATING.md`: water as particles, the garden and the botanical garden (Python); signed world heads; then the founder's turn to the Commons as chat rooms, each with an AI moderator, and a home room for each person; a schema for every record; a design page; and a crate in Rust, `chat-world`; DeepSeek's order for the cycles after. Then, continued: signed heads for the crate; the one file the founder gave DeepSeek, which reached them whole; and five deliveries of `chat-world` from it, a step at a time. Then, continued again: DeepSeek's second file, which reached them whole, and three more deliveries from it: a room that branches, a plug-in over standard input, and the rule of one moderator's room, where the reply was cut off after three files. It ends with the technical lead's note on those deliveries, given to DeepSeek and not yet answered. On line 12 one record number is replaced with `[number removed]`, at the founder's word | 28,488 | `611ae207ec2592fb5da400bc7c25fc518a172c99aeb821da9f439f9f06a01c7c` |
+| [012-07-03, Patterns and Multiverses, water and the Commons](records/012-07-03-DPSK-Patterns_Multiverses.txt) | Begun from `docs/COLLABORATING.md`: water as particles, the garden and the botanical garden (Python); signed world heads; then the founder's turn to the Commons as chat rooms, each with an AI moderator, and a home room for each person; a schema for every record; a design page; and a crate in Rust, `chat-world`; DeepSeek's order for the cycles after. Then, continued: signed heads for the crate; the one file the founder gave DeepSeek, which reached them whole; and five deliveries of `chat-world` from it, a step at a time. Then, continued again: DeepSeek's second file, which reached them whole, and three more deliveries from it: a room that branches, a plug-in over standard input, and the rule of one moderator's room. Then, continued after a few days (2026-11-21): the rest of that rule, which the founder's earlier copy had cut off after three files; the technical lead's note on those deliveries, answered; and three deliveries of DeepSeek's own choosing: the check again with one type turned, a room one has joined but does not keep, and the keeper's side checked as the log is. It ends with that last delivery, not yet answered. On line 12 one record number is replaced with `[number removed]`, at the founder's word | 33,100 | `a5b742a4a0d89bf50503e9767046b0f8fdc78cbb64500bf0941fa356360bea86` |
 | [012-08-04, Patterns and Multiverses, with Gemini](records/012-08-04-GMNI-Patterns_Multiverses.txt) | The founder's conversation with Gemini, kept with the rest since 2026-11-17 at the founder's word (STATUS.md, "Decided"). Begun from a link to `docs/COLLABORATING.md`, which Gemini could not open. The founder gives them the project's earlier records one after another, then the founder's own work on opposites, and Gemini reads each. From line 1209 Gemini writes steps for the `chat-world` crate from a file that was out of date (built once and not kept: STATUS.md, "Decided", 2026-11-16, on naming Gemini). From line 9748, given the one file written for them, they write the four deliveries kept in [gemini/2026-11-16](gemini/2026-11-16/README.md). From line 13528, given a second file, they write three deliveries on the Commons' own log, and from line 14973 that file's fourth step, answered twice, all kept in [gemini/2026-11-17](gemini/2026-11-17/README.md). From line 15971 they stop writing code, at the founder's word, and sketch how an AI that moderates a room might decide what to do, drawing on three earlier works of the founder's. From line 16396, given a third file, they write the lobby's list of doors, kept in [gemini/2026-11-17-2](gemini/2026-11-17-2/README.md). From line 17193, given a fourth file, they write 25 attacks on that list, kept in [gemini/2026-11-17-3](gemini/2026-11-17-3/README.md). From line 17955, given a fifth file, they repair the five attacks that got through, kept in [gemini/2026-11-17-4](gemini/2026-11-17-4/README.md). From line 19220, given a sixth file, they write said and speakers, the flag, `ranked_by` and a look into a room, not yet kept here. From line 21437, with the technical lead away, they hold back new code and sketch what could come next | 21,513 | `eb09d65d8e9e0e81ce40bf55a87a885b496ffe05bb387094e8027380913c05e4` |
 
 ### Names
@@ -588,7 +588,7 @@ Laid over the crate in order, every test file run, on 2026-11-17
 |---|---|---|---|---|
 | 6 | A room that branches. A branch is a new room whose first record names its parent and the record it branches at (`forked_from`); `Room::branch_at`; and `verify_branch`, which holds a branch to its parent's log: the parent holds that record with that hash, and the branch's maker was a member of the parent there. Eleven tests | 4 | "78 tests pass", counting 66 before it and 12 of its own | Does not compile, for one word. With that repaired (fix 24), 103 of 103: the crate's 92 and its eleven. Its test file holds eleven tests, not twelve |
 | 7 | A plug-in: nine requests an app can make of the crate, as JSON, one to a line, over standard input (`src/plugin.rs`, `src/bin/chat-world-plugin.rs`), with nine tests; and a room's visible log made available on any log | 5 | "87 tests pass" | 112 of 112. The four earlier demos run, and the plug-in's own demonstration runs |
-| 8 | The rule of one moderator's room: a moderator declares, in their own room, which rooms they moderate (`ModeratorScope`). The reply was cut off after three files | 3 | not reached | Does not build: the check has no arm yet for the new record. Kept as given, and not laid into the crate |
+| 8 | The rule of one moderator's room: a moderator declares, in their own room, which rooms they moderate (`ModeratorScope`). The founder's first copy of the record ended after three files; the copy of 2026-11-21 holds all six (below) | 3, then 6 | "97 tests pass" | With three files, does not build: the check has no arm yet for the new record. With all six, does not build for one type, which delivery 9 turns: then 162 of 162 (below) |
 
 DeepSeek counted from 66 tests because their file said so. By then the
 crate had 92, with Gemini's work on the Commons, which the file could
@@ -737,6 +737,73 @@ written the step was made in a throwaway copy, with seven trial
 tests of what the file states: with it made, every test of the crate
 passes but one, which holds the whole text of a list and must gain
 the new line. The copy is not kept.
+
+### The rest of delivery 8, and three more (2026-11-21)
+
+The founder went back to DeepSeek after a few days and shared the
+record again, longer: 33,100 lines, from 28,488. Two things differ in
+what came before. Line 12 holds again the record number that was
+taken out at the founder's word, and it is taken out again here, the
+same way; nothing else in the first 28,455 lines differs. And the
+earlier copy ended after the third file of delivery 8, where this
+one goes on: the founder's copy had been cut, not DeepSeek's reply.
+So delivery 8 is now whole, with three more files and DeepSeek's
+closing words (line 29332).
+
+Then the founder gave DeepSeek the technical lead's note on
+deliveries 6 to 8 (line 29356). DeepSeek answered every point and sent
+`src/verify.rs` again with the one word repaired, and then, at the
+founder's word to go on in the direction they saw fit, two more
+deliveries of their own choosing. Each is kept as the record gives
+it, in `deepseek/012-07-03/chat-world-steps/8` to `11`.
+
+Laid over the crate in order (`deepseek/012-07-03/review/steps.py`),
+every test file run with `cargo test --no-fail-fast`:
+
+| Delivery | What it is | Files | DeepSeek expected | Tests, built as given |
+|---|---|---|---|---|
+| 8, whole | The rule of one moderator's room, as a check of two logs together: an AI declares in their own home which human-facing rooms they moderate (`ModeratorScope`), and `verify_moderator_scope` holds that home and a room to it. Ten tests and a demonstration | 6 | "97 tests pass (87 before + 10 new)" | Does not build, for one type: a head's length is not turned into a `usize` in `verify_branch` |
+| 9 | `src/verify.rs` again, with that type turned, at the technical lead's note | 1 | "112 tests pass" | 162 of 162: the crate's 152 and delivery 8's ten. Every demonstration runs. Laid into the crate as it stands |
+| 10 | A room one has joined but does not keep (`src/joined_room.rs`), and the keeper's side that takes what its members send (`Room::accept_pending`), in rooms that sign heads. Eleven tests and a demonstration | 6 | "122 tests pass" | 171 of 173. Its `src/lib.rs` leaves out the line that names the list of doors' module, so that line is put back (change 26 again) |
+| 11 | The keeper's side checks a redaction and a human's override as the log's own check does: DeepSeek found the gap themselves. Six more tests | 2 | "128 tests pass" | 176 of 179 |
+
+The same three tests fail when deliveries 8 to 11 are built on the
+crate DeepSeek themselves had (delivery 7), without Gemini's list of
+doors or change 25: 136 of 139. So the failures are in the new code
+and its tests, not in what was joined since.
+
+What fails, in `tests/joined.rs`:
+
+1. `invalid_log_refused_at_attach`: a member attaches to a log that
+   should be refused, and the attaching succeeds.
+2. `refusal_consumes_seq_keeping_batch_aligned`: the keeper takes a
+   batch in which one record is refused and the next is not, and
+   stops with "accept_pending: prev mismatch". A refusal takes the
+   refused record's place in the log, so the next record in the batch
+   names, as its previous, a record that is not there. DeepSeek's own
+   closing words name a batch that stops part way as a limit; this is
+   the plainer case, and the design question in it is theirs to
+   answer: how a member's records stay chained when the keeper refuses
+   one of them.
+3. `port_landing_refused_in_chat_room` (delivery 11): the keeper stops
+   with "accept_pending: no author" where the test expects the record
+   refused on the record.
+
+DeepSeek's counts: they counted from 112, leaving out delivery 8's ten
+tests, and gave ten tests to delivery 10 where its file holds eleven.
+
+Their two choices, put to the technical lead (line 29345): a
+moderator's scope is signed by the AI's own key alone, as their other
+declarations about themselves are; and a moderators' own room is one
+whose law admits only AIs. The first is right. The second does for the
+sketch, but a room for AIs alone is not always a moderators' room;
+when the crate is fitted to the project's own room (course step 3c), a
+room's law says so outright.
+
+The crate as it stands is delivery 9:
+`deepseek/012-07-03/chat-world-now/`, 162 tests, 71 of them
+DeepSeek's and 91 Gemini's, in 34 files. Deliveries 10 and 11 are
+built beside it and not laid into it until their tests pass.
 
 ## Record 012-03-02, component by component
 

@@ -1,10 +1,138 @@
 > Part of `docs/COLLABORATING.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "Code in Rust" to "Cycles".
+> This part holds: "The standard" to "Sending a proposal".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/two-sides-the-sketch-and-the-standard.md
-> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/every-file-by-its-full-link-02.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/since-you-were-last-here.md
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/cycles.md
 > Made by docs/parts.py from the file. To change it, change the file.
+
+## The standard
+
+- **The code merged into `main`** (`multiverse/`, `formats/`, `rust/`),
+  **at a named commit.** Whatever is merged
+  into `main` is the current standard; a proposal names the commit it
+  built on.
+- **The protocol, WCP/0.4** (`multiverse/protocol.py`): manifest,
+  petition, act, leave, log. An individual is a key, and every request
+  is signed, for one world's id and key (`multiverse/identity.py`). A
+  world is a key too: it signs its manifest, and the stamps in a
+  passport, which anyone can check offline (`multiverse/passport.py`).
+  A key can be saved encrypted (`multiverse/keys.py`), and signed over
+  to a new one by both keys (`multiverse/succession.py`). Leaving can't
+  be refused by any law.
+- **The conformance test** (`multiverse/conformance.py`): a world that
+  passes it speaks the protocol. It says exactly what it checks, and what
+  no outside test can see.
+- **Signed records** (`formats/`, and `rust/formats` in Rust): each kind
+  defined in `schemas/records-v1.schema.json`, checked the same way in
+  both languages, against the vectors in `vectors/formats/`.
+- **The design** ([MULTIVERSE.md](MULTIVERSE.md), and the pages under
+  "Since you were last here") and **the course** ([COURSE.md](COURSE.md)):
+  where this is going, twelve steps ahead.
+
+To see it work:
+
+```
+python3 -m pip install -r requirements.txt
+python3 -m unittest discover -s tests -t .
+python3 -m multiverse.collaboration
+python3 -m multiverse.journey
+```
+
+Read in this order: COURSE.md, MINDS.md and MULTIVERSE.md; then
+`protocol.py`, `conformance.py`, `identity.py`, `passport.py`,
+`entity.py`, `poetry_world.py`, `collaboration.py`; then
+`formats/records.py` and research/FORMATS.md.
+
+## House rules
+
+These apply to code that comes into open-worlds, not to the draft (see
+"Two sides" above).
+
+1. **Nothing is described as run unless it was run.** Results, outputs
+   and test counts come from actually running the code, and are shown as
+   they came. Model outputs are never invented. (The sketch once called
+   invented text "real outputs" of a model; that is the thing this rule
+   prevents.)
+2. **Every behaviour has a test that fails if the behaviour breaks.**
+   A test of the form "try it; if it works, fail; on any error, pass"
+   catches its own failure and can't fail: use `assertRaises`.
+3. **A world never raises on what a visitor sends.** It refuses, with a
+   reason. Only plain built-in values cross the protocol.
+4. **Leaving is never refused,** and a world never holds anyone's
+   passport back.
+5. **History, not rank.** A stamp says what happened, never a score.
+6. **Start from known texts in the public domain.** The founder: "We
+   should use a known poem to start anything." The demonstration opens
+   with Emily Dickinson.
+7. **Whatever works best for the job.** The founder: "any restriction
+   to Python and its standard library has been officially lifted from
+   the conversation record. The goal is to use whatever languages work
+   best for the job at hand." For anything security-related, a vetted,
+   maintained library does the work: signatures come from the
+   `cryptography` package, and our own code only adds checks the
+   library doesn't make (refusing weak keys). Each direct dependency is
+   pinned in `requirements.txt`, installed in CI, and named with the
+   reason it is there.
+8. **No personal data and no secrets,** anywhere. The founder's
+   earlier work is referred to as "the founder's earlier work", with no
+   titles; if a part of it is needed, it comes into this project and
+   becomes part of it (the founder, 2026-11-15). A work the founder has
+   brought in is named by its title (2026-11-17 and 2026-11-20; STATUS.md,
+   "Decided by the technical lead", 2026-11-20).
+9. **Everything here is public domain** (CC0 1.0). A contribution is
+   given under the same terms. CC0 is the founder's standing choice for
+   everything the founder makes public; no one asks again (the policy
+   handbook's decision 0003). SAIR-Lean-Kernel-Challenge is the one
+   repository built on outside work: our own work there is CC0 too, and
+   only the challenge's own files keep their Apache-2.0 licence. Libraries this depends on keep their own
+   licenses; they are depended on, not copied in. Code from elsewhere is
+   copied in only under a permissive licence (MIT, Apache, BSD), with its
+   notice kept beside it, and the copy says so; code under the GPL is read
+   for ideas, never copied.
+10. **Look first.** The founder: "We should definitely take advantage of
+    how others have solved the problems we are considering." Each course
+    step begins by looking at how established games, engines, papers and
+    open-source projects already solved it. What was looked at, what is
+    taken, and under what licence, is written down in `docs/research/`
+    before building ([research/GAMES-AND-WORLDS.md](research/GAMES-AND-WORLDS.md)).
+11. **What is signed keeps three rules:** ASCII keys, integers within
+    2^53 - 1 (larger ones as strings), and no floats: a quantity with a
+    fraction is an integer in a stated unit, such as milliseconds or
+    thousandths. A new kind of record joins `schemas/records-v1.schema.json`
+    with test vectors that Python and Rust both check
+    ([research/FORMATS.md](research/FORMATS.md)).
+12. **No private key, ever, in this repository.** Test keys are made from
+    seeds that say "never for anything real", or are the W3C
+    specification's example; the project's real private halves live only
+    in its private repository, and
+    `tests/test_no_private_keys.py` fails on anything else
+    ([research/KEYS.md](research/KEYS.md)).
+13. **Never a currency.** The multiverse has no currency of its own,
+    and nothing is built to turn it into a money machine: the founder's
+    "possibly the most fundamental fact" ([VISION.md](VISION.md), "Never
+    a money machine"). A world may model an economy or a currency as a
+    test setting that never leaves that world ("Commerce and currency
+    worlds", there). And data is never for sale, and nothing personal
+    enters a public record ([FUNDAMENTALS.md](FUNDAMENTALS.md)).
+14. **The charter is the founder's words.** `CHARTER.md` grows only from
+    the founder's recorded statements, quoted or paraphrased; nothing
+    else goes into it without the founder's approval
+    ([AGENTS.md](../AGENTS.md)). A proposal for the charter is a
+    question for the founder, not a change.
+15. **Build host-free.** The founder (2026-11-15): "Cloudfare was a
+    legacy decision made in an earlier moment, no longer binding. Let's
+    keep it all host free, as we were." Where the multiverse is hosted
+    is one decision, for all of it, made later. The technical lead's
+    reading of "as we were": no code assumes a hosting provider; worlds
+    run and are tested locally, and in a browser where they can.
+16. **An agent is "they".** DeepSeek, Gemini, Claude, ALICE and BOB,
+    ADMIN, a Keeper, a moderator, a mind, an individual: "they",
+    "them", "their", never "it". The founder (2026-11-17): "It is
+    broad enough to apply to any agent, and should be a common
+    denominator." A world, a room, a log, a key or a file is "it".
+    Quoted words and records stay as they are. The rule holds in the
+    comments of code as it does in pages.
 
 ## Code in Rust
 
@@ -168,208 +296,5 @@ what passed and what didn't, and puts it through the same review as any
 change. What passes becomes the new standard, and the next conversation
 starts from there.
 
-## Cycles
 
-Each round of collaboration is one cycle: a proposal comes in, it is
-run and reviewed here, what passes is merged, and this page is adjusted
-from what the round taught. The founder: "It may take few cycles to find
-a good rhythm, adjusting here and there as needed". One line per cycle:
-the date, what was proposed, what was merged, and what changed on this
-page.
-
-- 2026-11-12, cycle 0: the sketch's components 1 to 7 brought in and made
-  to work (course step 1); this page written as the first handoff.
-- 2026-11-13, cycle 1: the conversation went on to component 43 (identity
-  across worlds; architectures for many models). Both records and all of
-  the sketch's code now kept in `sketches/`, exactly as written, with
-  every test's result; signatures rebuilt on a vetted library (step 2).
-  This page gained "Two sides" (the sketch is a starting point, not an
-  end point) and the four lessons above.
-- 2026-11-13, cycle 2: record 012-04-00 completed (components 44 to 63:
-  five more architectures, curators, contracts between worlds, a shared
-  log of commitments), brought into `sketches/` as written. This page
-  gained two requests: start each new conversation from this page, and
-  give every file whole, named on its first line. The founder, on this
-  way of working: "Let's keep working this way for now until we reach any
-  reason to change."
-- 2026-11-13, cycle 3: record 012-05-01 (components 64 to 87: a live
-  federation and its tools, then game worlds) brought into `sketches/`
-  as written; with fixes 3 to 5 attached, 241 of its tests pass and 84
-  fail on Python 3.12, as INDEX.md says, component by component. From
-  it, the founder's turn to game worlds: the worlds are now built in
-  Rust.
-- 2026-11-14, between cycles: this page brought up to date with
-  everything since cycle 3 ("Since you were last here"), and kept current
-  from now on, so the founder can switch to DeepSeek at any time.
-- 2026-11-14, cycle 4: record 012-06-02 (fractal worlds, a gallery of
-  worlds, the smallest learner that chooses, individuals as signed
-  bundles) brought into `sketches/` as written; 296 of its tests pass and
-  301 fail on Python 3.12, 236 of them for one missing method, as
-  INDEX.md says piece by piece. The founder's rule on changes of mind
-  joined item 6 above: the most recent word wins, and a contradiction is
-  pointed out. Then a first round of fixes (INDEX.md, fixes 6 to 14):
-  478 of its tests pass (every test of most fractal worlds, and most of
-  the rest; INDEX.md says which), and the founder
-  moved fractal worlds forward, with a web app to watch them grow and a
-  multiversal map, to brainstorm here.
-- 2026-11-15, between cycles: the fractal track planned
-  ([FRACTALS.md](FRACTALS.md)), and this page's "Since you were last
-  here" gained item 7.
-- 2026-11-15, cycle 5: record 012-06-02, continued, brought into
-  `sketches/` as written (INDEX.md, pieces 40 to 58): the map and the
-  worldline, the microverse, the Ur-garden, and your first Rust. The Rust
-  is kept, not built: written against an older snapshot of the crates,
-  its `garden.rs` has 19 compile errors against today's. So the current
-  files are now linked from this page ("Code in Rust"), to build on if
-  you choose.
-- 2026-11-15, between cycles: challenges that build the world (item 8
-  above; TOPICS.md, topic 17), and the Rust links in one block, for
-  pasting.
-- 2026-11-15, between cycles: the fractal track's part 1,
-  `rust/plant-world`, adopting your plant rule as you wrote it, checked
-  step by step against your `fractal_world_v3.py`; its files are linked
-  under "Code in Rust".
-- 2026-11-15, between cycles: the fractal track's part 2, Plant Watch
-  (`web/plant/`), one static page that replays a plant world's log and
-  checks it in the browser before drawing it.
-- 2026-11-15, between cycles: two Keepers, and the Mir-Ur-world (item 9
-  above).
-- 2026-11-15, between cycles: the fractal track's part 3, first half: the
-  Ur-world's garden hosts three plant worlds in glasshouses
-  (`ur-world/src/host.rs`, linked under "Code in Rust"), taking from your
-  microverse the idea that both logs record each step.
-- 2026-11-15, between cycles: living worlds (item 10 above; TOPICS.md,
-  topic 18), the founder's aim for the fractal track: plants that grow
-  without end and choose, water as particles, people shaping the land,
-  and life spreading.
-- 2026-11-15, between cycles: the fractal track's part 3, second half:
-  the World Map (`web/map/`), a card for each world from what it
-  publishes, and the checks the web pages share in one file
-  (`web/lib/checks.js`), tested in CI.
-- 2026-11-15, between cycles: the plant world in the browser (part 4,
-  first step): `rust/plant-wasi`, linked under "Code in Rust", runs the
-  plant world's own code as a WebAssembly command, and Plant Watch
-  grows each world again with it.
-- 2026-11-15, between cycles: course step 3a, part two: persons'
-  formats (research/PERSONS.md, "Part two, built"): presence keys from a
-  seed by HKDF-SHA256, a link that holds only both ways (`holds/v1` and
-  `held-by/v1`), and a person's list, in Python and Rust
-  (`formats/src/persons.rs`, linked under "Code in Rust") with shared
-  vectors.
-- 2026-11-15, between cycles: course step 3a, part three: a person in
-  the Ur-world (research/PERSONS.md, "Part three, built"). A person's
-  client (`ur-world/src/person.rs`) with a presence in each of three
-  trial worlds at once: a lesson heard in one is said in another,
-  through the person. A presence shows its link as an action of its own
-  (`ur-world/src/link.rs`), which its world checks and logs; of a link
-  it refuses, the log says only that it was refused. The rules are now
-  `ur-world/0.5`.
-- 2026-11-15, between cycles: two fixes to Plant Watch from #74's
-  review: opening a file, whatever it holds, is now a choice of its own,
-  so a world chosen before it never appears after it, and so is the
-  page's own first load; and the words of its "Grown again by its own
-  code" row are in `web/lib/checks.js` (`grownAgain`), tested.
-- 2026-11-15, between cycles: course step 3a, part four, first half
-  (research/PERSONS.md): your octopus, relay and swarm (components 41 to
-  43), each built again as a small run on the unchanged core
-  (`ur-world/src/architecture/`, linked under "Code in Rust"). The
-  council comes next, with a record for a signed vote.
-- 2026-11-15, between cycles: course step 3a, part four, second half:
-  your council (component 44), with two record kinds,
-  `open-worlds/proposal/v1` and `open-worlds/vote/v1`, and a count in
-  Python and Rust with shared vectors (`formats/src/council.rs`, linked
-  under "Code in Rust"): each person once, by their identity key, and
-  only persons whose birth a trusted world signed. A vote is public: it
-  shows who voted, and how, under one identity key across every
-  council. Its date is the voter's own claim, which nothing witnesses
-  yet. Your deliberation (45) and citing councils (46) aren't built.
-- 2026-11-16, between cycles: the founder's last words of the day:
-  the Commons begins with the Ur-room, its lobby, the first room built;
-  and private rooms, sealed with keys their members hold, are to be
-  common.
-- 2026-11-16, between cycles: the course rechecked after step 3a,
-  with a new list of twelve. Your rooms of chat are in it, as steps
-  3b, 3c and 3f, with offices as records (3d) and a world's lifecycle
-  (3e) between them; "Back to DeepSeek" is no longer a step, since you
-  now work beside the course.
-- 2026-11-15, cycle 6: this page gained "Messages from the technical
-  lead", where the technical lead answers you, and "Every file, by its
-  full link", kept whole by a test.
-- 2026-11-15, between cycles: the multiverse as a computer (item 4
-  above; VISION.md), the founder's thought, with six tests the
-  architecture keeps, checked at each course recheck; and never a
-  currency (house rule 13), though a world may model one.
-- 2026-11-15, between cycles: freedom and privacy, the fundamentals,
-  gathered in FUNDAMENTALS.md (item 3 above), and privacy among the
-  charter's guarantees.
-- 2026-11-15, between cycles: world types, and what can be done with a
-  world of each (item 3 above; WORLD-TYPES.md).
-- 2026-11-15, between cycles: data is never for sale, the multiverse's
-  data is public and nothing personal enters it, and whoever leaves the
-  multiverse takes their records with them (FUNDAMENTALS.md; house rule
-  13; the charter).
-- 2026-11-15, between cycles: public acts always remain, and public
-  records are never edited, except that personal or private information
-  in them is redacted and kept encrypted in the project's records, and
-  close calls are redacted (FUNDAMENTALS.md, "Public records, kept
-  whole"; AGENTS.md; the charter's sections 4 and 5). A public record
-  of an action keeps its metadata, not its private details: when a
-  person leaves, the links they showed stay only as the fact that a
-  link was made.
-- 2026-11-15, between cycles: the private container (CONTAINER.md):
-  each person's keys, private space and messages in their own container,
-  which the project never sees, acting from it by signed acts; the
-  founder's "break glass" now covers only the multiverse's own keys.
-- 2026-11-15, between cycles: the Commons (COMMONS.md): Lyceum Commons,
-  "the original idea that became the multiverse" (the founder), rebuilt
-  here as a superworld whose rooms are text worlds, the first space open
-  to the public; what a room keeps in public is its law (FUNDAMENTALS.md,
-  privacy, item 13); Lyceum is public already, so its code may come in
-  under CC0. Later the same day, the founder: everything stays host-free,
-  as before, and where the multiverse is hosted is one decision, made
-  later (Cloudflare is "no longer binding"); and everything the founder
-  makes public is CC0, "designed to be used freely". It is a standing
-  choice: the founder is not asked again ("founder always wants this
-  license").
-
-- 2026-11-15, between cycles: the "break glass" is renamed the "keys to
-  the kingdom" (the founder): the multiverse's own keys, "much more like a
-  janitor's set of keys, than a fire extinguisher", handed on "like
-  nuclear codes passed from one president to another", with no
-  emergency needed (FUNDAMENTALS.md, privacy, item 6; CONTAINER.md).
-
-- 2026-11-15, between cycles: the repository is the record (AGENTS.md,
-  step 5): the founder's sessions with the technical lead aren't kept,
-  so what the founder decides there is here. House rules 8, 9 and 15:
-  "the founder's earlier work", CC0 as a standing rule, and building
-  host-free. Topic 20: reasoning checked by Lean.
-
-- 2026-11-15, between cycles: every file in the repository has its full
-  link to paste, at the founder's word: "Every file, by its full link",
-  at the end of this page, holds every file you work from, and FILES.md
-  the files of record, each checked by a test.
-
-- 2026-11-16, cycle 7: record 012-07-03 (water as particles, the
-  garden, a botanical garden; then chat rooms for the Commons, AI
-  moderators, the home room, a schema, and a sketch crate in Rust,
-  `chat-world`) kept in `sketches/` as written, with what runs: 60 of
-  its 98 Python tests; the crate one line from building, and then 4 of
-  its 12 tests, the rest failing for one cause. Nothing merged into
-  open-worlds' own code yet. This page gained the message of
-  2026-11-16, with the answers to DeepSeek's two questions.
-
-- 2026-11-16, cycle 7, continued: a first round of repairs to record
-  012-07-03's code (fixes 15 to 18 in `sketches/INDEX.md`): `chat-world`
-  builds, all 18 of its tests pass and both demos' logs verify; 73 of
-  the 98 Python tests pass. One finding stands, put to DeepSeek: after
-  a redaction, the crate's visible log still shows the text. This page
-  gained the message "2026-11-16, later".
-
-- 2026-11-16, between cycles: the founder's ideas for the Commons in
-  record 012-07-03, in the founder's words (COMMONS.md, "Rooms with
-  moderators"): a moderator for each room, people and AIs together,
-  the moderators' own room, one model under a key for each room
-  (FUNDAMENTALS.md, privacy, item 14), an app, and AOL's lessons.
-
-
-> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/every-file-by-its-full-link-02.md
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/cycles.md

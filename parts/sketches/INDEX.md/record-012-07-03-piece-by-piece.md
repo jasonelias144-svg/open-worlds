@@ -1,9 +1,9 @@
 > Part of `sketches/INDEX.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "Record 012-07-03, piece by piece" to "Record 012-03-02, component by component".
+> This part holds: "Record 012-07-03, piece by piece".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-06-02-piece-by-piece.md
-> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/changes-to-deepseek-s-code.md
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-03-02-component-by-component.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
 ## Record 012-07-03, piece by piece
@@ -186,7 +186,7 @@ Laid over the crate in order, every test file run, on 2026-11-17
 |---|---|---|---|---|
 | 6 | A room that branches. A branch is a new room whose first record names its parent and the record it branches at (`forked_from`); `Room::branch_at`; and `verify_branch`, which holds a branch to its parent's log: the parent holds that record with that hash, and the branch's maker was a member of the parent there. Eleven tests | 4 | "78 tests pass", counting 66 before it and 12 of its own | Does not compile, for one word. With that repaired (fix 24), 103 of 103: the crate's 92 and its eleven. Its test file holds eleven tests, not twelve |
 | 7 | A plug-in: nine requests an app can make of the crate, as JSON, one to a line, over standard input (`src/plugin.rs`, `src/bin/chat-world-plugin.rs`), with nine tests; and a room's visible log made available on any log | 5 | "87 tests pass" | 112 of 112. The four earlier demos run, and the plug-in's own demonstration runs |
-| 8 | The rule of one moderator's room: a moderator declares, in their own room, which rooms they moderate (`ModeratorScope`). The reply was cut off after three files | 3 | not reached | Does not build: the check has no arm yet for the new record. Kept as given, and not laid into the crate |
+| 8 | The rule of one moderator's room: a moderator declares, in their own room, which rooms they moderate (`ModeratorScope`). The founder's first copy of the record ended after three files; the copy of 2026-11-21 holds all six (below) | 3, then 6 | "97 tests pass" | With three files, does not build: the check has no arm yet for the new record. With all six, does not build for one type, which delivery 9 turns: then 162 of 162 (below) |
 
 DeepSeek counted from 66 tests because their file said so. By then the
 crate had 92, with Gemini's work on the Commons, which the file could
@@ -336,52 +336,72 @@ tests of what the file states: with it made, every test of the crate
 passes but one, which holds the whole text of a list and must gain
 the new line. The copy is not kept.
 
-## Record 012-03-02, component by component
+### The rest of delivery 8, and three more (2026-11-21)
 
-Three series of components, written out in `deepseek/012-03-02/`: a
-model of Aristotle's practical reasoning as a control system, one
-component of a music engine, and the poetry engine (components 1 to 22,
-with its curriculum in the prose). Step 1 brought parts of the poetry
-engine's components 21 and 22 (the turn, the critical stances, the
-apprentice poet) into open-worlds as `multiverse/apprentice.py`, changed
-([docs/MULTIVERSE.md](../docs/MULTIVERSE.md) says how). Records 012-04-00
-and 012-05-01 import components 21 and 22 from this folder. "Line" is
-where the component's code begins. Tests are run on Python 3.12 with fix
-5 (below).
+The founder went back to DeepSeek after a few days and shared the
+record again, longer: 33,100 lines, from 28,488. Two things differ in
+what came before. Line 12 holds again the record number that was
+taken out at the founder's word, and it is taken out again here, the
+same way; nothing else in the first 28,455 lines differs. And the
+earlier copy ended after the third file of delivery 8, where this
+one goes on: the founder's copy had been cut, not DeepSeek's reply.
+So delivery 8 is now whole, with three more files and DeepSeek's
+closing words (line 29332).
 
-| Component | What it is | Line | Tests as written |
-|---|---|---|---|
-| `aristotle_cybernetics_c2` to `c7` | The virtuous agent as a control system: the telos hierarchy, a telos that learns, mutual and asymmetric correction | 996 to 3181 | no tests |
-| `music_engine_c8` | The Listener | 3698 | doesn't load: needs `music_engine_c1`, which no record here has |
-| `poetry_engine_c1` | Phonemes, syllables, stress | 4523 | doesn't load: `poetry_engine_c1.py` has a syntax error (line 45) |
-| `poetry_engine_c2` | The cognitive frame | 5393 | doesn't load: imports `poetry_engine_c1`, which has a syntax error |
-| `poetry_engine_c3` | Meter and scansion, through both grammars | 6195 | 13 of 15 (one of the two imports `poetry_engine_c1`) |
-| `poetry_engine_c4` | The score-performance gap | 7287 | doesn't load: imports `poetry_engine_c1`, which has a syntax error |
-| `poetry_engine_c5` | The native voice | 8351 | 11 of 11 |
-| `poetry_engine_c6` | Architecture: cycle, refrain, the foregrounding monitor | 9282 | 12 of 14 |
-| `poetry_engine_c7` | The composition engine | 10185 | 18 of 18 |
-| `poetry_engine_c8` | Rest as meta-work | 11311 | 13 of 14 |
-| `poetry_engine_c9` | Cross-cycle coherence: the collection | 12212 | 13 of 15 |
-| `poetry_engine_c10` | Revision through feedback | 13174 | 12 of 13 |
-| `poetry_engine_c13` | The development spiral | 14161 | 14 of 15 |
-| `poetry_engine_c14` | The living collection | 15002 | 19 of 19 |
-| `poetry_engine_c17` | The complete agent | 15894 | 14 of 15 |
-| `poetry_engine_c18` | The reflective rewriting cycle, given in three parts | 17038 | no tests; its parts joined (fix 5) |
-| `poetry_engine_c19` | The long run | 17680 | 0 of 4 (its test is a block from the prose) |
-| `poetry_engine_c20` | The full agent | 18263 | 2 of 12 |
-| `poetry_engine_c21` | The collaboration protocol: turns, stances, the polyphony | 21859 | no tests; its two parts joined (fix 5) |
-| `poetry_engine_c22` | The runnable apprentice | 22431 | no tests; its two parts joined (fix 5) |
+Then the founder gave DeepSeek the technical lead's note on
+deliveries 6 to 8 (line 29356). DeepSeek answered every point and sent
+`src/verify.rs` again with the one word repaired, and then, at the
+founder's word to go on in the direction they saw fit, two more
+deliveries of their own choosing. Each is kept as the record gives
+it, in `deepseek/012-07-03/chat-world-steps/8` to `11`.
 
-In all: 141 of DeepSeek's tests pass and 24 fail. 4 test files don't
-load. Components 11, 12, 15 and 16 are named in the record only as
-proposals, with no code.
+Laid over the crate in order (`deepseek/012-07-03/review/steps.py`),
+every test file run with `cargo test --no-fail-fast`:
 
-45 of the record's 56 code blocks are written out. The other 11 are
-examples in the prose and stay in the record: a run of component 17
-(16820); a worked example for component 18 (17333, 17403, 17422, 17440);
-the curriculum's apprentice (19436); four turns of a worked example for
-component 21 (22163 to 22270); and a worked example for component 22
-(22974).
+| Delivery | What it is | Files | DeepSeek expected | Tests, built as given |
+|---|---|---|---|---|
+| 8, whole | The rule of one moderator's room, as a check of two logs together: an AI declares in their own home which human-facing rooms they moderate (`ModeratorScope`), and `verify_moderator_scope` holds that home and a room to it. Ten tests and a demonstration | 6 | "97 tests pass (87 before + 10 new)" | Does not build, for one type: a head's length is not turned into a `usize` in `verify_branch` |
+| 9 | `src/verify.rs` again, with that type turned, at the technical lead's note | 1 | "112 tests pass" | 162 of 162: the crate's 152 and delivery 8's ten. Every demonstration runs. Laid into the crate as it stands |
+| 10 | A room one has joined but does not keep (`src/joined_room.rs`), and the keeper's side that takes what its members send (`Room::accept_pending`), in rooms that sign heads. Eleven tests and a demonstration | 6 | "122 tests pass" | 171 of 173. Its `src/lib.rs` leaves out the line that names the list of doors' module, so that line is put back (change 26 again) |
+| 11 | The keeper's side checks a redaction and a human's override as the log's own check does: DeepSeek found the gap themselves. Six more tests | 2 | "128 tests pass" | 176 of 179 |
+
+The same three tests fail when deliveries 8 to 11 are built on the
+crate DeepSeek themselves had (delivery 7), without Gemini's list of
+doors or change 25: 136 of 139. So the failures are in the new code
+and its tests, not in what was joined since.
+
+What fails, in `tests/joined.rs`:
+
+1. `invalid_log_refused_at_attach`: a member attaches to a log that
+   should be refused, and the attaching succeeds.
+2. `refusal_consumes_seq_keeping_batch_aligned`: the keeper takes a
+   batch in which one record is refused and the next is not, and
+   stops with "accept_pending: prev mismatch". A refusal takes the
+   refused record's place in the log, so the next record in the batch
+   names, as its previous, a record that is not there. DeepSeek's own
+   closing words name a batch that stops part way as a limit; this is
+   the plainer case, and the design question in it is theirs to
+   answer: how a member's records stay chained when the keeper refuses
+   one of them.
+3. `port_landing_refused_in_chat_room` (delivery 11): the keeper stops
+   with "accept_pending: no author" where the test expects the record
+   refused on the record.
+
+DeepSeek's counts: they counted from 112, leaving out delivery 8's ten
+tests, and gave ten tests to delivery 10 where its file holds eleven.
+
+Their two choices, put to the technical lead (line 29345): a
+moderator's scope is signed by the AI's own key alone, as their other
+declarations about themselves are; and a moderators' own room is one
+whose law admits only AIs. The first is right. The second does for the
+sketch, but a room for AIs alone is not always a moderators' room;
+when the crate is fitted to the project's own room (course step 3c), a
+room's law says so outright.
+
+The crate as it stands is delivery 9:
+`deepseek/012-07-03/chat-world-now/`, 162 tests, 71 of them
+DeepSeek's and 91 Gemini's, in 34 files. Deliveries 10 and 11 are
+built beside it and not laid into it until their tests pass.
 
 
-> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/changes-to-deepseek-s-code.md
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-03-02-component-by-component.md
