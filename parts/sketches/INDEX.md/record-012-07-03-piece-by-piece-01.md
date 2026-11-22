@@ -6,25 +6,6 @@
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-03-02-component-by-component.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
-| Delivery | What it is | Line | Files given whole | Tests, built as given |
-|---|---|---|---|---|
-| 1 | "the data layer and the presentation layer": a redaction names who acted, in what role and under which rule, and a room's template holds its rules for redacting | 15540 | 6 | 22 of 22 |
-| 2 | "the room's own key": the room and the one who made it are two keys | 17168 | 6 | 20 of 22 |
-| 3 | "signed heads, first in prose, then code": what is lost if a room signs its log's head in place of each record, then heads in code | 18832 | 8 | 27 of 29 |
-| 4 | "runtime attestation": keys that share a runtime say so together, in a published record | 20714 | 3 | 31 of 33 |
-| 5 | "the succession trio": a shard of knowledge exported, a moderator's succession, and a sibling declared in the Commons | 21474 | 8 | does not compile; with its two faults set aside, 39 of 41 |
-| all five, with three repairs | The crate as it stands, `deepseek/012-07-03/chat-world-now/` (fixes 19 to 21, under "Changes to DeepSeek's code") | | | 41 of 41, and the four demos run |
-
-Three faults, as the deliveries were written:
-1. From delivery 2 on, the same two tests fail, `home_port_verifies`
-   and `home_bookmark_and_presence_verify`, each with "record 1:
-   missing room proof". They passed in delivery 1. The cause:
-   delivery 2 makes the room and its maker two keys, and the check
-   asks every record but a leaving for a proof by the room's key; a
-   home's port landing, bookmark and presence records were still
-   signed by the person's key alone (`src/home.rs`), which was the
-   room's key until then. Fix 19 signs them with both, and both tests
-   pass.
 2. Delivery 5, `src/verify.rs`: one condition does not compile
    (mismatched types).
 3. Delivery 5, `src/bin/succession-demo.rs`: it calls `.hash()` on
@@ -423,6 +404,38 @@ count and with the book.
 These are prototypes of ideas ahead of the core, and none is laid
 into the crate: they are kept beside it, for when the Library,
 private contact and the rest are built.
+
+### Gemini's ninth prototype, and a new neuron (2026-11-22)
+
+The founder shared Gemini's conversation again, longer: 43,646 lines,
+from 34,033; the copy kept before is a prefix of the new one, byte for
+byte. Gemini answers the founder's "Perfect. Keep going" with a ninth
+prototype, `retelling` (line 34030). Then the conversation turns. The
+founder proposes a different artificial neuron: three channels, coloured
+red, blue and yellow, and weight changes that "dissolve" back to their
+resting values unless attention refreshes them (lines 35595 and 35644).
+Gemini builds it out in fixed-point Rust for this crate, in Python, and
+then, at the founder's word, as a model to share on Hugging Face
+(line 37647). That model, TriNet, now has its own repository:
+[TriNet](https://github.com/jasonelias144-svg/TriNet), with its Python
+and where each file came from. The four Rust deliveries are kept as the
+record gives them, in [gemini/2026-11-22-2](gemini/2026-11-22-2/README.md).
+
+Built on the crate as it stands (166 tests), each alone, every test file
+run:
+
+| Module | What it is | Tests | Built |
+|---|---|---|---|
+| `retelling` | Retellings across media, each signed with what it kept and changed; branches and lineage | 2 | 168 of 168 |
+| `neuro` (step 11) | Four kinds of three-channel unit with dissolving fast weights, in fixed point | 3 | 168 of 169, with one change |
+| `neuro` (step 17) | All six kinds: adding a receptor unit and a delay line | 6 | 171 of 172, with one change |
+| `neuro_mind` | A cluster of the units as a mind for the plug-in, restartable from a snapshot | 3 | 173 of 175, with one change |
+
+The one change is the one `circuit` and `library` needed: `Proof` and
+`ProofOrArray` made comparable, in a copy. Two tests fail even then. A
+dissolving weight stops at 0.001 instead of 0, a rounding of whole
+numbers. And a mind restarted from a snapshot fails its own check at the
+first turn. None of the four is laid into the crate.
 
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-03-02-component-by-component.md

@@ -160,7 +160,7 @@ def test_geminis_files_are_the_ones_their_record_gives():
     for folder, count in (("2026-11-16", 10), ("2026-11-17", 7),
                           ("2026-11-17-2", 2), ("2026-11-17-3", 1),
                           ("2026-11-17-4", 2), ("2026-11-18", 3),
-                          ("2026-11-22", 18)):
+                          ("2026-11-22", 18), ("2026-11-22-2", 8)):
         take = HERE.parent.parent / "gemini" / folder / "take.py"
         done = subprocess.run([sys.executable, "-I", str(take)],
                               capture_output=True, text=True)
@@ -285,3 +285,25 @@ def test_a_room_one_has_joined_is_kept_beside_the_crate():
     assert not (now / "src" / "joined_room.rs").exists()
     assert "accept_pending" not in (now / "src" / "room.rs").read_text(
         encoding="utf-8")
+
+
+def test_geminis_neuron_modules_are_kept_beside_the_crate():
+    # A ninth prototype and three modules from the founder's idea of a
+    # three-channel neuron (../../gemini/2026-11-22-2/README.md). The
+    # neuron's model, TriNet, has a repository of its own; these are its
+    # fixed-point twin, written for this crate. None is laid into it.
+    steps = HERE.parent.parent / "gemini" / "2026-11-22-2" / "steps"
+    now = HERE / "chat-world-now"
+    lib = (now / "src" / "lib.rs").read_text(encoding="utf-8")
+    for step, name, count in (("10", "retelling", 2), ("11", "neuro", 3),
+                              ("17", "neuro", 6), ("18", "neuro_mind", 3)):
+        tests = (steps / step / "tests" / f"{name}.rs").read_text(
+            encoding="utf-8")
+        assert tests.count("#[test]") == count, (step, name)
+        assert not (now / "src" / f"{name}.rs").exists(), name
+        assert f"pub mod {name};" not in lib, name
+    # The second neuro replaces the first, and neuro_mind uses the second.
+    second = (steps / "17" / "src" / "neuro.rs").read_text(encoding="utf-8")
+    mind = (steps / "18" / "src" / "neuro_mind.rs").read_text(encoding="utf-8")
+    assert "DelayLine" in second and "ReceptorBroadcast" in second
+    assert "use crate::neuro::{" in mind

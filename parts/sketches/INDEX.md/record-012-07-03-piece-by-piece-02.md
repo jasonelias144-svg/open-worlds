@@ -62,5 +62,24 @@ run by CI). "Tests" is
 the crate's own tests, `cargo test --test integration`, on 2026-11-16.
 The titles are DeepSeek's.
 
+| Delivery | What it is | Line | Files given whole | Tests, built as given |
+|---|---|---|---|---|
+| 1 | "the data layer and the presentation layer": a redaction names who acted, in what role and under which rule, and a room's template holds its rules for redacting | 15540 | 6 | 22 of 22 |
+| 2 | "the room's own key": the room and the one who made it are two keys | 17168 | 6 | 20 of 22 |
+| 3 | "signed heads, first in prose, then code": what is lost if a room signs its log's head in place of each record, then heads in code | 18832 | 8 | 27 of 29 |
+| 4 | "runtime attestation": keys that share a runtime say so together, in a published record | 20714 | 3 | 31 of 33 |
+| 5 | "the succession trio": a shard of knowledge exported, a moderator's succession, and a sibling declared in the Commons | 21474 | 8 | does not compile; with its two faults set aside, 39 of 41 |
+| all five, with three repairs | The crate as it stands, `deepseek/012-07-03/chat-world-now/` (fixes 19 to 21, under "Changes to DeepSeek's code") | | | 41 of 41, and the four demos run |
+
+Three faults, as the deliveries were written:
+1. From delivery 2 on, the same two tests fail, `home_port_verifies`
+   and `home_bookmark_and_presence_verify`, each with "record 1:
+   missing room proof". They passed in delivery 1. The cause:
+   delivery 2 makes the room and its maker two keys, and the check
+   asks every record but a leaving for a proof by the room's key; a
+   home's port landing, bookmark and presence records were still
+   signed by the person's key alone (`src/home.rs`), which was the
+   room's key until then. Fix 19 signs them with both, and both tests
+   pass.
 
 > The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/sketches/INDEX.md/record-012-07-03-piece-by-piece-01.md
