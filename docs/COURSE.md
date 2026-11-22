@@ -894,8 +894,37 @@ Added one at a time, as steps are done:
     "::", some another way, and some stages hold texts the founder
     gathered rather than conversations. Each record's form is worked
     out and checked by hand on a sample before anything is taken from
-    it. In the records seen on 2026-11-22 there are some 4,500 turns
-    marked "::", before the repeats are removed.
+    it. Four found on 2026-11-22, when the turns were counted: a poem
+    marked "::" on every line is one turn; the private record of
+    DeepSeek's thinking marks a turn with "::" on a line of its own;
+    a reply sometimes follows the founder's turn after one empty line,
+    not two, and so is read as part of it; and stage 011's file in
+    the history is that stage's records, joined.
+  - **The first count, 2026-11-22.** Counting each record once: 4,258
+    turns marked, in 19 records of stages 005 to 012. 2,156 are a
+    continuation and nothing more, "Perfect. Please proceed: ➡️" or a
+    lone ➡️ (1,189 of stage 009's 1,793); 43 are a request with no
+    words of the founder's own ("Thoughts?"). That leaves 1,878
+    different prompts, some 149,000 words: 231 first seen in stage
+    005, 167 in 006, 63 in 007, 592 in 009, 357 in 011 and 468 in
+    012. Twenty-four, over 300 words each, hold 48,000 of those words,
+    mostly a document pasted or another model's reply carried over;
+    the other 1,854 hold some 101,500. The founder's 157 messages in
+    this conversation with Claude, as kept since 2026-11-17, add 9,300
+    words, none of them only a continuation: 2,035 prompts in all.
+    Sorted by their words alone; which words are the founder's own,
+    word by word, waits for the extraction.
+  - **When the turns begin.** The founder, 2026-11-22: "they only
+    started to be recorded from 005 forward. This is when the project
+    began to bring in other parties and investigate its own methods.
+    And these are not disconnected facts." The records bear it out:
+    no turn is marked before stage 005, Method (004's seven marks hold
+    no words). The technical lead's reading: a mark that says whose
+    words these are is what a record needs once there is more than
+    one party, and what a study of the project's own methods needs,
+    what was asked beside what was answered. The extraction keeps
+    each turn's stage, so the book can show where the founder's words
+    begin.
   - **The index** goes both ways: from each id to its place in every
     record, and from each record to the founder's turns in it, so the
     records can be read by the founder's own questions. Then by date

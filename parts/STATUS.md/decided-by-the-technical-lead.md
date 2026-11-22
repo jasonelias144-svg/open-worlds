@@ -110,6 +110,17 @@ with the founder.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-22 Claude: the founder's turns counted, and the founder's
+  word on when they began to be kept ("Decided"). Counted by a script
+  that reads every copy of every record and writes nothing out of
+  them: the history's stages, the public records, the private ones,
+  and the copies the founder uploaded. Each copy's turns were taken
+  out, the repeats across copies removed, and the rest sorted by their
+  words alone. What was found on the way about the records' form is
+  kept for the extraction (docs/COURSE.md, "The records' forms
+  differ"). This conversation is kept on disk only from 2026-11-17;
+  its earlier weeks are not, so its count is short.
+
 - 2026-11-22 Claude: the founder's words recorded ("Decided").
   ChatGPT reads several pages and follows links, so their page is now
   instructions and links, at the founder's word: docs/CHATGPT.md

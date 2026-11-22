@@ -356,6 +356,28 @@ of it is asked again until it is needed.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-22, founder, when the founder's words began to be kept:
+  "Many of the "::" instances will just be some form of "Perfect.
+  Please proceed: ➡️". And they only started to be recorded from 005
+  forward. This is when the project began to bring in other parties
+  and investigate its own methods. And these are not disconnected
+  facts. And after removing the noise, how many prompts are left?
+  What about if you add my comments from this conversation?"
+  Counted, and recorded with the plan (docs/COURSE.md, "Waiting",
+  "The founder's words, gathered"). The records bear it out: no turn
+  is marked before stage 005, Method (004's seven marks hold no
+  words), and 008 and 010 hold no marked turns. Counting each record
+  once, 4,258 turns are marked; 2,156 of them are a continuation and
+  nothing more ("Perfect. Please proceed: ➡️", a lone ➡️), and 43 a
+  request with no words of the founder's own ("Thoughts?"). That
+  leaves 1,878 different prompts, some 149,000 words. Twenty-four of
+  them, over 300 words each, hold 48,000 of those words, mostly a
+  document pasted or another model's reply carried over; the other
+  1,854 hold some 101,500. With the founder's 157 messages in this
+  conversation with Claude, as kept since 2026-11-17 (9,300 words,
+  none of them only a continuation): 2,035 prompts, some 158,600
+  words. Counts only; no text was taken from a record.
+
 - 2026-11-22, founder, a book of the founder's own words, gathered
   from the records: "Also, now that you have the full collection of conversation
   records, please make a note that it is very important to set aside
@@ -842,6 +864,17 @@ with the founder.
 ## Log
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
+
+- 2026-11-22 Claude: the founder's turns counted, and the founder's
+  word on when they began to be kept ("Decided"). Counted by a script
+  that reads every copy of every record and writes nothing out of
+  them: the history's stages, the public records, the private ones,
+  and the copies the founder uploaded. Each copy's turns were taken
+  out, the repeats across copies removed, and the rest sorted by their
+  words alone. What was found on the way about the records' form is
+  kept for the extraction (docs/COURSE.md, "The records' forms
+  differ"). This conversation is kept on disk only from 2026-11-17;
+  its earlier weeks are not, so its count is short.
 
 - 2026-11-22 Claude: the founder's words recorded ("Decided").
   ChatGPT reads several pages and follows links, so their page is now

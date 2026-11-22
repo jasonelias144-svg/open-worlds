@@ -8,6 +8,10 @@ Every pull request merged after #129, newest first, one line each.
 The lines for #144 to #146 were missed when they merged, and are
 added with #147's.
 
+- 2026-11-22, #149: the founder's turns in every record counted
+  (counts only), and the founder's word that they began to be kept at
+  stage 005, when the project brought in others and began to study
+  its own methods.
 - 2026-11-22, #148: your page in pages, at the founder's word:
   [`docs/CHATGPT.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT.md) is instructions and
   links, and the messages, this list and the ideas set aside are pages
