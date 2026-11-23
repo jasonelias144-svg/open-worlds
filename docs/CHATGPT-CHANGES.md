@@ -8,6 +8,11 @@ Every pull request merged after #129, newest first, one line each.
 The lines for #144 to #146 were missed when they merged, and are
 added with #147's.
 
+- 2026-11-23, #151: your dialogue with Grok on shared-benefit
+  optimization, from stage 008, with Claude's audit at its end, made
+  public at the founder's word and kept whole in the library, with who
+  wrote each part
+  ([its entry](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/README.md)).
 - 2026-11-22, #150: Gemini's conversation continued: the founder's idea
   of a neuron with three channels and weights that dissolve, built out
   by Gemini into a model, TriNet, which now has its own repository,

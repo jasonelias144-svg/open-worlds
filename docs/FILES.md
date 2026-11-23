@@ -1077,12 +1077,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/re
 
 ## The library
 
-In `library`, 3 files, 831 KB in all, the largest 433 KB: works given to the project whole, to be read: the first is the founder's *Art of Peace and the Strategist*; too large to read in one go.
+In `library`, 3 files, 832 KB in all, the largest 433 KB: works given to the project whole, to be read: the founder's *Art of Peace and the Strategist*, and the dialogue between ChatGPT and Grok on shared-benefit optimization, with Claude's audit; each too large to read in one go.
 
-**`library`** (3 files, 831 KB):
+**`library`** (3 files, 832 KB):
 
 ```text
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/008-SBO-CGPT-GROK-Shared_Benefit_Optimization.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/008-SBO-CGPT-GROK-CLDE-Shared_Benefit_Optimization.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/009-13-CGPT-Peace_and_the_Strategist.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/README.md
 ```

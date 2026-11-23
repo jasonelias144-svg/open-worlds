@@ -15,7 +15,10 @@
   kept whole in the library (397,885 bytes, 7,086 lines, byte for byte
   the end of stage 008 with one newline more), with who wrote each part
   by line, what it works out, its rights and what was looked through;
-  docs/HISTORY.md and docs/CHATGPT.md say where it is
+  docs/HISTORY.md and docs/CHATGPT.md say where it is. After
+  independent review, its name credits Claude too, and the entry's
+  wording on what was looked through, its rights and its line numbers
+  is corrected (#151).
 
 - 2026-11-22 Claude: Gemini's record continued, to 43,646 lines (the
   kept copy a prefix, byte for byte), and the founder's words recorded

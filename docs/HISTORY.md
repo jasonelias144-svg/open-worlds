@@ -42,14 +42,15 @@ beginning."
 | `010_Wisdom.txt` | *The Living Way*, a field manual in 100 chapters, with later drafts of it. | 14,352,248 | 279,772 | 2,478,806 |
 | `011_Opposites.txt` | *A Mathematical Theory of Opposites*: the conversations with ChatGPT and DeepSeek that made it (`011-00` to `011-16`), its earlier versions, the editing record, and the final text. | 20,837,466 | 324,298 | 3,043,248 |
 
-One part of a stage is public: the end of `008`, the dialogue between
-ChatGPT and Grok on shared-benefit optimization with Claude's audit,
-lines 21,975 to 29,059, kept whole in [`library/`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/README.md)
-at the founder's word (2026-11-23).
-
 In all, 104,528,503 bytes and about 15.1 million words. The counts
 are for the files as the founder holds them. The descriptions are the technical lead's, from each file's
 headings and opening; no one has read every line.
+
+Two parts of the stages are public, in [`library/`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/README.md):
+*Art of Peace and the Strategist*, which `009` holds; and the end of
+`008`, lines 21,975 to 29,059, the dialogue between ChatGPT and Grok on
+shared-benefit optimization with Claude's audit, at the founder's word
+(2026-11-23).
 
 ## Checking a copy
 
