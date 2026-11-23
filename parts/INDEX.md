@@ -22,7 +22,7 @@ are out of step with their files.
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/start.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided-by-the-technical-lead.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log.md
 ```
 
 ## `archive/COLLABORATING/2026-11-16.md`, in 3 parts

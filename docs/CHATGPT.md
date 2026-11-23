@@ -127,7 +127,7 @@ The project has a place for each.
 
 | Area | What it holds | Where it is here |
 |---|---|---|
-| Archive | the earlier work, as it was made | `sketches/records/` (the conversations, word for word); `library/` (finished texts, public domain); the earlier stages' files, from the founder's library, as the founder brings them, listed by name and hash in [`docs/HISTORY.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md) and kept privately in `jasonelias144-svg/ebook-press`, `history/`; the records the founder holds (below) |
+| Archive | the earlier work, as it was made | `sketches/records/` (the conversations, word for word); `library/` (works given whole, to be read, public domain); the earlier stages' files, from the founder's library, as the founder brings them, listed by name and hash in [`docs/HISTORY.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/HISTORY.md) and kept privately in `jasonelias144-svg/ebook-press`, `history/`; the records the founder holds (below) |
 | Commentary | readings of it for the multiverse | your pages, in `docs/chatgpt/` from the first one |
 | Laboratory | mechanics, example worlds and experiments drawn from it | `sketches/`, `experiments/`, `docs/TOPICS.md` |
 | Core | what has been chosen | `STATUS.md` ("Decided", and its earlier days in `archive/STATUS/`), `CHARTER.md`, the course, and the code |
@@ -201,3 +201,10 @@ the new one does not begin with the same bytes, so the two are
 different exports of the conversation.
 The founder named the records of stage 012 anew on 2026-11-20; until
 then the second was `012-00-00-CGPT` ([../sketches/INDEX.md](../sketches/INDEX.md#names), "Names").
+
+One earlier conversation of yours is public, at the founder's word
+(2026-11-23): your dialogue with Grok on shared-benefit optimization,
+with Claude's audit at its end, from stage 008. It is in the library,
+with who wrote each part:
+[`library/008-SBO-CGPT-GROK-CLDE-Shared_Benefit_Optimization.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/008-SBO-CGPT-GROK-CLDE-Shared_Benefit_Optimization.txt)
+([its entry](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/README.md)).

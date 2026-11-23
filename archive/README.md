@@ -57,6 +57,7 @@ moved, by section.
 
 | Day | STATUS.md | docs/COLLABORATING.md |
 |---|---|---|
+| 2026-11-20 | [STATUS/2026-11-20.md](STATUS/2026-11-20.md): Decided 13, Decided by the technical lead 2, Log 6 |  |
 | 2026-11-18 | [STATUS/2026-11-18.md](STATUS/2026-11-18.md): Decided by the technical lead 2, Log 2 | [COLLABORATING/2026-11-18.md](COLLABORATING/2026-11-18.md): Messages from the technical lead 2 |
 | 2026-11-17 | [STATUS/2026-11-17.md](STATUS/2026-11-17.md): Decided 21, Decided by the technical lead 17, Log 22 | [COLLABORATING/2026-11-17.md](COLLABORATING/2026-11-17.md): Messages from the technical lead 20 |
 | 2026-11-16 | [STATUS/2026-11-16.md](STATUS/2026-11-16.md): Decided 21, Decided by the technical lead 8, Log 16 | [COLLABORATING/2026-11-16.md](COLLABORATING/2026-11-16.md): Messages from the technical lead 13 |

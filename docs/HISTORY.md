@@ -46,6 +46,12 @@ In all, 104,528,503 bytes and about 15.1 million words. The counts
 are for the files as the founder holds them. The descriptions are the technical lead's, from each file's
 headings and opening; no one has read every line.
 
+Two parts of the stages are public, in [`library/`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/README.md):
+*Art of Peace and the Strategist*, which `009` holds; and the end of
+`008`, lines 21,975 to 29,059, the dialogue between ChatGPT and Grok on
+shared-benefit optimization with Claude's audit, at the founder's word
+(2026-11-23).
+
 ## Checking a copy
 
 Each file's SHA-256, as the founder holds it:

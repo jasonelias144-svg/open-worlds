@@ -114,8 +114,9 @@ ahead, rolling ([docs/COURSE.md](docs/COURSE.md)).
   open-worlds' code; [sketches/INDEX.md](sketches/INDEX.md) says where it
   meets the course.
 - [library/](library/README.md): works given to the project whole, to
-  be read. The first is the founder's *Art of Peace and the
-  Strategist*, public domain like everything here.
+  be read: the founder's *Art of Peace and the Strategist*, and the
+  dialogue between ChatGPT and Grok on shared-benefit optimization,
+  with Claude's audit; public domain like everything here.
 - [parts/](parts/INDEX.md): the long pages a second time, each cut into
   parts, for readers who are shown only the start of a page. Written by
   `python3 docs/parts.py`.

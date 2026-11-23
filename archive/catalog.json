@@ -260,6 +260,32 @@
    "bytes": 13575,
    "lines": 220,
    "sha256": "d68c7ed31e40074e64f918eb03a204a4cea8891128f2602896ea1bad73b185d0"
+  },
+  {
+   "path": "archive/STATUS/2026-11-20.md",
+   "kind": "archive",
+   "title": "STATUS.md, 2026-11-20",
+   "source": "STATUS.md",
+   "date": "2026-11-20",
+   "sections": [
+    {
+     "name": "Decided",
+     "entries": 13
+    },
+    {
+     "name": "Decided by the technical lead",
+     "entries": 2
+    },
+    {
+     "name": "Log",
+     "entries": 6
+    }
+   ],
+   "moved": "2026-11-23",
+   "commit": "9e1215bb0eeca5ff75477cbed53942172380139e",
+   "bytes": 20561,
+   "lines": 344,
+   "sha256": "4df3f9bd205d088efef13a3bfce7134e33c0bc5b5ad6bd66f73a15275a0c633b"
   }
  ]
 }

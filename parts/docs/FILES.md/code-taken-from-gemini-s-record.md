@@ -167,11 +167,12 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/sketches/re
 
 ## The library
 
-In `library`, 2 files, 437 KB in all, the largest 433 KB: works given to the project whole, to be read: the first is the founder's *Art of Peace and the Strategist*; too large to read in one go.
+In `library`, 3 files, 832 KB in all, the largest 433 KB: works given to the project whole, to be read: the founder's *Art of Peace and the Strategist*, and the dialogue between ChatGPT and Grok on shared-benefit optimization, with Claude's audit; each too large to read in one go.
 
-**`library`** (2 files, 437 KB):
+**`library`** (3 files, 832 KB):
 
 ```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/008-SBO-CGPT-GROK-CLDE-Shared_Benefit_Optimization.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/009-13-CGPT-Peace_and_the_Strategist.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/README.md
 ```
@@ -191,9 +192,9 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/guide/deliv
 
 ## The archive
 
-In `archive`, 13 files, 494 KB in all, the largest 101 KB: the older dated entries of STATUS.md and COLLABORATING.md, moved whole, a file for each page and day, with the catalogue (`archive/README.md`); `docs/archive.py` writes it.
+In `archive`, 14 files, 515 KB in all, the largest 101 KB: the older dated entries of STATUS.md and COLLABORATING.md, moved whole, a file for each page and day, with the catalogue (`archive/README.md`); `docs/archive.py` writes it.
 
-**`archive`** (2 files, 10 KB):
+**`archive`** (2 files, 11 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md
@@ -209,7 +210,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/COL
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/COLLABORATING/2026-11-18.md
 ```
 
-**`archive/STATUS`** (7 files, 407 KB):
+**`archive/STATUS`** (8 files, 427 KB):
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/STATUS/2026-11-12.md
@@ -219,6 +220,7 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/STA
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/STATUS/2026-11-16.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/STATUS/2026-11-17.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/STATUS/2026-11-18.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/STATUS/2026-11-20.md
 ```
 
 
