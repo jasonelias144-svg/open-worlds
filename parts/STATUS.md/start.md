@@ -12,7 +12,7 @@
 respect one another's freedom, with full transparency and exit at any time;
 free, and never a money machine
 **State:** active since 2026-11-12
-**Updated:** 2026-11-21 by Claude
+**Updated:** 2026-11-23 by Claude
 
 ## Live
 
