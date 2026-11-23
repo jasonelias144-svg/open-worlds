@@ -4,7 +4,7 @@
 respect one another's freedom, with full transparency and exit at any time;
 free, and never a money machine
 **State:** active since 2026-11-12
-**Updated:** 2026-11-21 by Claude
+**Updated:** 2026-11-23 by Claude
 
 ## Live
 
@@ -355,6 +355,16 @@ of it is asked again until it is needed.
 ## Decided
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
+
+- 2026-11-23, founder, on the dialogue between ChatGPT and Grok on
+  shared-benefit optimization, with Claude as its auditor: "The
+  ChatGPT and Grok dialogue should be public and attributed. As well
+  as Claude as the auditor in the end. This is the type of example
+  that I aimed to make public from design, meant as demonstrative." So
+  it is kept whole in the library, with who wrote each part, line by
+  line ([library/README.md](library/README.md), "Shared-benefit
+  optimization"). It is the last part of stage 008, whose text
+  otherwise stays private ([docs/HISTORY.md](docs/HISTORY.md)).
 
 - 2026-11-22, founder, Gemini's turn to a new neuron, and TriNet: "Ok,
   so my conversation with Gemini took an interesting turn. I'm very
@@ -878,6 +888,13 @@ with the founder.
 ## Log
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
+
+- 2026-11-23 Claude: at the founder's word, the dialogue between
+  ChatGPT and Grok on shared-benefit optimization, with Claude's audit,
+  kept whole in the library (397,885 bytes, 7,086 lines, byte for byte
+  the end of stage 008 with one newline more), with who wrote each part
+  by line, what it works out, its rights and what was looked through;
+  docs/HISTORY.md and docs/CHATGPT.md say where it is
 
 - 2026-11-22 Claude: Gemini's record continued, to 43,646 lines (the
   kept copy a prefix, byte for byte), and the founder's words recorded

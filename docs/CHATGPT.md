@@ -201,3 +201,10 @@ the new one does not begin with the same bytes, so the two are
 different exports of the conversation.
 The founder named the records of stage 012 anew on 2026-11-20; until
 then the second was `012-00-00-CGPT` ([../sketches/INDEX.md](../sketches/INDEX.md#names), "Names").
+
+One earlier conversation of yours is public, at the founder's word
+(2026-11-23): your dialogue with Grok on shared-benefit optimization,
+with Claude's audit at its end, from stage 008. It is in the library,
+with who wrote each part:
+[`library/008-SBO-CGPT-GROK-Shared_Benefit_Optimization.txt`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/008-SBO-CGPT-GROK-Shared_Benefit_Optimization.txt)
+([its entry](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/library/README.md)).
