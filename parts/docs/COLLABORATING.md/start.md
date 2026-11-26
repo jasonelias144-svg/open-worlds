@@ -50,6 +50,8 @@ who joined on 2026-11-16. Messages to ChatGPT are on their own page.
 
 A local DeepSeek model drafted a question for a rehearsal room when the reviewer selected the latest invitation. The autonomous model interrupted a garden exchange. Both signed room fixtures and both runs are available to replay. [Experiment 002](../experiments/002-room-moderator/RESULTS.md)
 
+Jason marked the rehearsal question as a milestone. Its exact words, the signed room, and the earlier garden exchange are together in the project history. [Project history](HISTORY.md#first-invited-words-from-a-commons-moderator)
+
 ### 2026-11-22, to both: your next files
 
 Each of you has a file, which the founder brings you whole, since a
