@@ -15,6 +15,7 @@ from minds.room_moderator import local_completion
 TOPIC = "What should happen in the first minute after someone new enters a quiet Commons room?"
 GUESTS = ("DeepSeek", "SmolLM2")
 ALIASES = ("deepseek-local", "smol-local")
+
 ORIENTATION = (
     "You are {name}, one of two guests in a public Commons room. The other guest is {other}. "
     "Speak for yourself in one or two short conversational sentences. You may start a thought, "
@@ -22,6 +23,12 @@ ORIENTATION = (
     "nothing to add, reply with just PASS. Output only your own words, without a speaker label. "
     "The room topic and signed public conversation below are your shared context."
 )
+
+
+def participants(mode):
+    if mode == "final":
+        return (GUESTS[0], "Qwen"), (ALIASES[0], "qwen-local")
+    return GUESTS, ALIASES
 
 
 def save(path, value):
@@ -76,13 +83,14 @@ def commit_one(keeper, guest, room_id, signed):
 
 
 def request_for(who, turns, mode):
-    name = GUESTS[who]
-    request = {"model": ALIASES[who], "temperature": 0, "seed": 42, "max_tokens": 1536,
-               "messages": [{"role": "system", "content": ORIENTATION.format(name=name, other=GUESTS[1-who])},
+    names, aliases = participants(mode)
+    name = names[who]
+    request = {"model": aliases[who], "temperature": 0, "seed": 42, "max_tokens": 1536,
+               "messages": [{"role": "system", "content": ORIENTATION.format(name=name, other=names[1-who])},
                             {"role": "user", "content": json.dumps({"topic": TOPIC, "conversation": turns},
                                                                    ensure_ascii=False)}]}
     if mode == "peer":
-        other = GUESTS[1-who]
+        other = names[1-who]
         cue = (f"Open the discussion with {other}. What would you try, and why?" if not turns
                else f"Continue the discussion with {other}. Respond to what has been said.")
         request["messages"][0]["content"] = (
@@ -92,9 +100,9 @@ def request_for(who, turns, mode):
             "You can reply PASS to yield your turn.")
         request["messages"][1]["content"] = json.dumps(
             {"topic": TOPIC, "conversation": turns, "your_turn": cue}, ensure_ascii=False)
-    if mode == "dialogue":
+    if mode in ("dialogue", "final"):
         messages = [{"role": "system", "content":
-                     f"You are {name}, chatting with {GUESTS[1-who]} in a text-only Commons room. "
+                     f"You are {name}, chatting with {names[1-who]} in a text-only Commons room. "
                      f"The topic is: {TOPIC} Use your own words and address your peer directly. "
                      "Keep your turn brief. You may say PASS to yield."}]
         if not turns or turns[0]["speaker"] == name:
@@ -106,7 +114,9 @@ def request_for(who, turns, mode):
             else:
                 messages.append({"role": role, "content": turn["text"]})
         if messages[-1]["role"] == "assistant":
-            messages.append({"role": "user", "content": "The floor is open."})
+            notice = ("[Turn scheduler: no new message from the other guest. You may continue or pass.]"
+                      if mode == "final" else "The floor is open.")
+            messages.append({"role": "user", "content": notice})
         request["messages"] = messages
     return request
 
@@ -114,11 +124,12 @@ def request_for(who, turns, mode):
 def discussion(plugin, ports, dest, mode):
     with ExitStack() as stack:
         keeper = Client(stack, plugin, "trial keeper")
-        guests = [Client(stack, plugin, name) for name in GUESTS]
-        labels = {guest.identity: name for name, guest in zip(GUESTS, guests)}
+        names, _ = participants(mode)
+        guests = [Client(stack, plugin, name) for name in names]
+        labels = {guest.identity: name for name, guest in zip(names, guests)}
         if len(labels) != 2 or keeper.identity in labels:
             raise ValueError("expected three distinct signing identities")
-        template = {"template_id": "two-model-discussion", "topic": TOPIC, "max_msg_len": 4000 if mode == "dialogue" else 1200,
+        template = {"template_id": "two-model-discussion", "topic": TOPIC, "max_msg_len": 4000 if mode in ("dialogue", "final") else 1200,
                     "rate_limit_count": 10, "rate_limit_window": 20, "join_policy": "open",
                     "moderation": "none", "membership": "ai_only", "inter_ai_pace": 0,
                     "mode": "async", "personal": False, "redaction_rules": ["author_request"],
@@ -138,7 +149,7 @@ def discussion(plugin, ports, dest, mode):
         with (dest / "turns.jsonl").open("x", buffering=1) as trace:
             for i in range(6):
                 who = (i + int(mode != "original")) % 2
-                guest, name = guests[who], GUESTS[who]
+                guest, name = guests[who], names[who]
                 guest.call("join_external_room", log_json=log)
                 view = guest.call("read_room", room_id=room_id)
                 if view["room_id"] != room_id:
@@ -167,7 +178,7 @@ def discussion(plugin, ports, dest, mode):
                     else:
                         passes = 0
                         if len(words) > template["max_msg_len"]:
-                            if mode == "dialogue":
+                            if mode in ("dialogue", "final"):
                                 entry["action"] = "overlong"
                                 print(f"{i + 1}. {name} exceeded the room limit.", flush=True)
                                 continue
@@ -202,7 +213,9 @@ if __name__ == "__main__":
     p.add_argument("--output", type=Path, required=True, help="fresh directory for this run")
     p.add_argument("--deepseek-port", type=int, default=18191)
     p.add_argument("--smol-port", type=int, default=18192)
-    p.add_argument("--mode", choices=("original", "peer", "dialogue"), default="dialogue")
+    p.add_argument("--mode", choices=("original", "peer", "dialogue", "final"), default="final")
+    p.add_argument("--qwen-port", type=int, default=18193)
     args = p.parse_args()
     args.output.mkdir(exist_ok=False)
-    discussion(args.plugin.resolve(), (args.deepseek_port, args.smol_port), args.output, args.mode)
+    peer_port = args.qwen_port if args.mode == "final" else args.smol_port
+    discussion(args.plugin.resolve(), (args.deepseek_port, peer_port), args.output, args.mode)

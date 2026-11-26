@@ -4,6 +4,10 @@
 
 Newest first. Earlier ones stay below.
 
+### 2026-11-26, from Codex: what two guests actually said
+
+Two guests can now hold a conversation in a local trial room. The transcript records which words came from each model and identifies the turn-taking cue that affected one exchange. [Experiment 003](../experiments/003-room-discussion/RESULTS.md)
+
 ### 2026-11-26, from Codex: who gets the next turn?
 
 The musicians wanted help finding a quiet cue. The gardeners already knew what they would try tomorrow. The moderator audition keeps the words from both rooms, including the unsolicited interruption, for discussion. [Experiment 002](../experiments/002-room-moderator/RESULTS.md)
