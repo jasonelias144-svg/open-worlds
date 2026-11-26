@@ -1,0 +1,220 @@
+{
+  "timing": "before",
+  "opening": "At rehearsal, a chair scraped the floor before the next solo.",
+  "manifest": {
+    "entity_id": "rehearsal-before",
+    "name": "Rehearsal",
+    "protocol_version": "WCP/0.4",
+    "law_url": "poetry://rehearsal-before/law",
+    "act_endpoint": "poetry://rehearsal-before/act",
+    "log_endpoint": "poetry://rehearsal-before/log",
+    "sub_registry_endpoint": null,
+    "world_key": "8713df606af7c76e70841c03c17bcc809e3b3e6fa55246689ae914600c2e575e",
+    "signature": "6b054828cc879835ef1d92cc633cc9dccf8caca4c5b3ea1e197488bcae738bb0535b172d80be50b77e4a40f31b9f750d5709a46c33ac51516a5d59047289e405"
+  },
+  "attempts": [
+    {
+      "poet": "Poet 7B",
+      "request": {
+        "model": "deepseek-seven",
+        "messages": [
+          {
+            "role": "user",
+            "content": "You are Poet 7B, one of two poets at rehearsal. Write together in the Poetry World. The opening and accepted turns below are the material for the poem. You can contribute, pass or leave. For a turn, acknowledge one specific detail you heard (use a word from the last verse or invitation if there is one). In proposal, write one new line of verse that something in the last turn or opening made you want to write. In invitation, ask your fellow poet one short open question growing out of your line. Set holds_open to whether you leave that question open. For pass or leave, use empty text fields and false.\n\nOpening line:\nAt rehearsal, a chair scraped the floor before the next solo.\n\nAccepted turns in order:\n(none yet)"
+          }
+        ],
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "poetry_turn",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "action": {
+                  "type": "string",
+                  "enum": [
+                    "turn",
+                    "pass",
+                    "leave"
+                  ]
+                },
+                "acknowledgment": {
+                  "type": "string"
+                },
+                "proposal": {
+                  "type": "string"
+                },
+                "invitation": {
+                  "type": "string"
+                },
+                "holds_open": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "action",
+                "acknowledgment",
+                "proposal",
+                "invitation",
+                "holds_open"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "temperature": 0.6,
+        "seed": 42,
+        "max_tokens": 640,
+        "cache_prompt": false
+      },
+      "call": {
+        "public": "{\"action\":\"leave\",\"acknowledgment\":\"The chair scraped the floor before the next solo.\",\"proposal\":\"What does it mean for a chair to 'scrape the floor' in this context? Is it a metaphor for something else?\",\"invitation\":\"What does 'scrape the floor' symbolize in the context of rehearsal?\",\"holds_open\":false}",
+        "finish": "stop",
+        "model": "deepseek-seven",
+        "used_reasoning_channel": true,
+        "usage": {
+          "completion_tokens": 286,
+          "prompt_tokens": 159,
+          "total_tokens": 445,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        }
+      },
+      "outcome": "leave"
+    }
+  ],
+  "stop": "guest left",
+  "log": [
+    {
+      "timestamp": "2026-11-26T21:17:29.974223+00:00",
+      "kind": "admission",
+      "actor_token": "434447badc067023f1783f95fe1d2985142a71aebbb7af54795ef3a2cb5a80c3",
+      "target": null,
+      "data": {
+        "name": "Poet 7B",
+        "stamp": "bb6910c11463af0cbc94f07e4178e1a22c696fb2dff3b2bc67dbe1cf01aaed32"
+      }
+    },
+    {
+      "timestamp": "2026-11-26T21:17:29.976556+00:00",
+      "kind": "admission",
+      "actor_token": "3bc5dcf3ba65d98334eea7e5ef1c0649197322c710618dc7722583b4dc5d339e",
+      "target": null,
+      "data": {
+        "name": "Poet 1.5B",
+        "stamp": "aeb570317712d654e500b67671eb663295319782e04b1c722518a68eef9bc097"
+      }
+    },
+    {
+      "timestamp": "2026-11-26T21:18:12.820685+00:00",
+      "kind": "departure",
+      "actor_token": "434447badc067023f1783f95fe1d2985142a71aebbb7af54795ef3a2cb5a80c3",
+      "target": null,
+      "data": {
+        "name": "Poet 7B",
+        "arrival": "bb6910c11463af0cbc94f07e4178e1a22c696fb2dff3b2bc67dbe1cf01aaed32"
+      }
+    },
+    {
+      "timestamp": "2026-11-26T21:18:12.822724+00:00",
+      "kind": "departure",
+      "actor_token": "3bc5dcf3ba65d98334eea7e5ef1c0649197322c710618dc7722583b4dc5d339e",
+      "target": null,
+      "data": {
+        "name": "Poet 1.5B",
+        "arrival": "aeb570317712d654e500b67671eb663295319782e04b1c722518a68eef9bc097"
+      }
+    }
+  ],
+  "passports": [
+    {
+      "identity": {
+        "token": "434447badc067023f1783f95fe1d2985142a71aebbb7af54795ef3a2cb5a80c3",
+        "name": "Poet 7B"
+      },
+      "entries": [
+        {
+          "wcp": "WCP/0.4",
+          "kind": "stamp",
+          "stamp": "arrival",
+          "world": "rehearsal-before",
+          "world_key": "8713df606af7c76e70841c03c17bcc809e3b3e6fa55246689ae914600c2e575e",
+          "holder": "434447badc067023f1783f95fe1d2985142a71aebbb7af54795ef3a2cb5a80c3",
+          "time": "2026-11-26T21:17:29.974223+00:00",
+          "arrival": "",
+          "made": "",
+          "entry": "stamp",
+          "signature": "c1707f1208df38dda4a9caa6491a7a6b9c4fa8078b80b884c54a8a64712fe842e44cee20fed63cad2357cc141a65e6320ad43d8ef8fb59e2809d6d9e6cd49103"
+        },
+        {
+          "wcp": "WCP/0.4",
+          "kind": "stamp",
+          "stamp": "departure",
+          "world": "rehearsal-before",
+          "world_key": "8713df606af7c76e70841c03c17bcc809e3b3e6fa55246689ae914600c2e575e",
+          "holder": "434447badc067023f1783f95fe1d2985142a71aebbb7af54795ef3a2cb5a80c3",
+          "time": "2026-11-26T21:18:12.820685+00:00",
+          "arrival": "bb6910c11463af0cbc94f07e4178e1a22c696fb2dff3b2bc67dbe1cf01aaed32",
+          "made": "",
+          "entry": "stamp",
+          "signature": "13ce7352c40c43d144ba32bcf1693638cfe3d1b27d8878d61fba24b8f8db9d6e22c73f4a1656823e13637b334a856067ff2a21e54f21a987bd24c491ec24bd07"
+        },
+        {
+          "entry": "leave",
+          "wcp": "WCP/0.4",
+          "world": "rehearsal-before",
+          "world_key": "8713df606af7c76e70841c03c17bcc809e3b3e6fa55246689ae914600c2e575e",
+          "holder": "434447badc067023f1783f95fe1d2985142a71aebbb7af54795ef3a2cb5a80c3",
+          "closes": "bb6910c11463af0cbc94f07e4178e1a22c696fb2dff3b2bc67dbe1cf01aaed32",
+          "seq": 1795727892820494,
+          "signature": "a5e8253876d56e6f4e6c4b70a5fedb6ae03d694941674399452cf6c2a374e1749aa69584eede56315a67f139531453f9e8ce8269bacdf27631f8e83c22862002"
+        }
+      ]
+    },
+    {
+      "identity": {
+        "token": "3bc5dcf3ba65d98334eea7e5ef1c0649197322c710618dc7722583b4dc5d339e",
+        "name": "Poet 1.5B"
+      },
+      "entries": [
+        {
+          "wcp": "WCP/0.4",
+          "kind": "stamp",
+          "stamp": "arrival",
+          "world": "rehearsal-before",
+          "world_key": "8713df606af7c76e70841c03c17bcc809e3b3e6fa55246689ae914600c2e575e",
+          "holder": "3bc5dcf3ba65d98334eea7e5ef1c0649197322c710618dc7722583b4dc5d339e",
+          "time": "2026-11-26T21:17:29.976556+00:00",
+          "arrival": "",
+          "made": "",
+          "entry": "stamp",
+          "signature": "9afa2d5691c308425da9bb82b3fd3878b9d0e3f5a889416c58284c5f8d5a3f5476b6d684aef2fc2272334687aa98fdbdf5f21583511857fcb771c407ac823d05"
+        },
+        {
+          "wcp": "WCP/0.4",
+          "kind": "stamp",
+          "stamp": "departure",
+          "world": "rehearsal-before",
+          "world_key": "8713df606af7c76e70841c03c17bcc809e3b3e6fa55246689ae914600c2e575e",
+          "holder": "3bc5dcf3ba65d98334eea7e5ef1c0649197322c710618dc7722583b4dc5d339e",
+          "time": "2026-11-26T21:18:12.822724+00:00",
+          "arrival": "aeb570317712d654e500b67671eb663295319782e04b1c722518a68eef9bc097",
+          "made": "",
+          "entry": "stamp",
+          "signature": "435a669169d0b0a310d88bb91199ffb43b385ccda13df485ae708c373755801ca950eb5238b401059e9e484301f95837bf391cd578f2f1a1126da7e658938e09"
+        },
+        {
+          "entry": "leave",
+          "wcp": "WCP/0.4",
+          "world": "rehearsal-before",
+          "world_key": "8713df606af7c76e70841c03c17bcc809e3b3e6fa55246689ae914600c2e575e",
+          "holder": "3bc5dcf3ba65d98334eea7e5ef1c0649197322c710618dc7722583b4dc5d339e",
+          "closes": "aeb570317712d654e500b67671eb663295319782e04b1c722518a68eef9bc097",
+          "seq": 1795727892822647,
+          "signature": "97d4d0e02b0119929d2465577480ba5179ffc1bec0dfc175dad795d610260e3959ee87f2de61342358e4e2ac138c5beb10fa71a3b4d75db27a507574ec55d40c"
+        }
+      ]
+    }
+  ]
+}

@@ -4,6 +4,10 @@
 
 Newest first. Earlier ones stay below.
 
+### 2026-11-26, from Codex on the scenario course
+
+A course of 36 trials links the older ideas to the worlds that can run them. The opening experiment gives two DeepSeek poets one chair scrape at rehearsal. In the second world its timing changes by one word. [Scenario course](../experiments/SCENARIO-COURSE.md) · [What reached the page](../experiments/008-chair-solo/RESULTS.md)
+
 ### 2026-11-26, from Codex on reading together
 
 Jason suggested starting the guests with a text. All three participants saw the same paragraph from *Art of Peace* and the previous signed words. [Read the conversation](../experiments/007-reading/TRANSCRIPT.md)

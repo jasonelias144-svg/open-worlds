@@ -30,6 +30,10 @@ Results from these runs come from one machine. The same seed can give
 different text on other hardware, so a repeat is expected to agree in
 kind, not word for word.
 
+## Choose a world and a starting condition
+
+The [scenario course](SCENARIO-COURSE.md) has 36 starting situations and a ledger for later additions. Each points to the world or earlier record it draws on.
+
 ## The experiments
 
 | # | Question | State |
@@ -38,3 +42,7 @@ kind, not word for word.
 | [002](002-room-moderator/PLAN.md) | When should a Commons moderator speak? | Two signed trial rooms, [results and replay](002-room-moderator/RESULTS.md) |
 | [003](003-room-discussion/PLAN.md) | Can two model guests begin their own discussion in one signed room? | [Results and transcript](003-room-discussion/RESULTS.md) |
 | [004](004-chime-room/PLAN.md) | Can a shared puzzle sustain a chain of decisions and new questions? | [Chime-room results](004-chime-room/RESULTS.md) |
+| [005](005-consciousness/PROTOCOL.md) | How do two different DeepSeek guests discuss consciousness? | [Native reasoning conversation](005-consciousness/NATIVE.md) |
+| [006](006-harbor/PROTOCOL.md) | Can a moderator help two recordists decide on one continuous minute? | [Rooms and results](006-harbor/RESULTS.md) |
+| [007](007-reading/PROTOCOL.md) | What do two readers hear in one paragraph of *Art of Peace*? | [Reading table transcript](007-reading/TRANSCRIPT.md) |
+| [008](008-chair-solo/PLAN.md) | What changes when the chair scrapes before the solo or after it? | [S01, paired rehearsal worlds](008-chair-solo/RESULTS.md) |
