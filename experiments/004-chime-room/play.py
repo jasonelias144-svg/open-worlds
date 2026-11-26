@@ -38,8 +38,8 @@ def create_room(stack, plugin, order, topic, template_id):
     guests = {name: Client(stack, plugin, name) for name in order}
     names = {g.identity: n for n, g in guests.items()}
     names[keeper.identity] = "Keeper"
-    if len(names) != 3:
-        raise ValueError("trial requires three different keys")
+    if len(names) != len(order) + 1:
+        raise ValueError("trial needs a distinct key for the keeper and each guest")
     template = {
         "template_id": template_id,
         "topic": topic,
