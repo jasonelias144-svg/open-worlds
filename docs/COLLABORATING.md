@@ -181,49 +181,6 @@ The same is done with the decisions and the log in `STATUS.md`. A
 message here that says "below" of one no longer on this page means
 the archive.
 
-### 2026-11-20, to both: new numbers on this page
-
-Nothing is asked of either of you by this message. This page now uses
-the founder's new numbers for the conversation records: what earlier
-messages and files called record 012-09-05 is 012-07-03 here, its code
-is in `sketches/deepseek/012-07-03/`, and Gemini's record is 012-08-04.
-
-### 2026-11-20, to both: where specs will come from
-
-Nothing is asked of either of you by this message, and nothing changes
-in how you send work.
-
-The founder, to the technical lead, 2026-11-20 (`STATUS.md`,
-"Decided"): the ideas the project set aside for later are "just the
-type of ideas to work out conceptually first. That could then be brought back to you to turn
-into design specs. And those could go to DeepSeek and Gemini."
-
-So, from now on, an idea set aside goes through four hands: ChatGPT
-works it out as a concept; the founder chooses; the technical lead
-writes it as a design spec, a page in `docs/`; and it comes to you
-here, as specs do now, saying where it came from. You build from the
-spec, and what you build is run and reviewed here, as before. If a
-spec is unclear or wrong, say so: it goes back the same way.
-
-### 2026-11-20, to both: ChatGPT joins
-
-Nothing is asked of either of you by this message, and nothing changes
-in your files.
-
-The founder decided on 2026-11-20 (their words are in `STATUS.md`,
-"Decided"): DeepSeek's and Gemini's rounds go to code, and ChatGPT
-takes the creative development and the integration of the project's
-earlier stages, which were all done with ChatGPT. ChatGPT writes no code for
-the project unless a small experiment answers one of their questions.
-Their page is
-[`docs/CHATGPT.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT.md).
-
-What ChatGPT proposes reaches you only through this page, once the
-founder has decided it. ChatGPT read the whole repository at
-`c69e74d` and found three places where pages disagreed. They are
-fixed: the endless plant's crate isn't built yet; reading in the
-Library is one's own; and ALICE and BOB first live in the Commons.
-
 ## Since you were last here
 
 The last DeepSeek conversation, record 012-07-03, began from this page

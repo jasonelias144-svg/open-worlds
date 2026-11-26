@@ -55,6 +55,8 @@ various rooms." This is "one model for many rooms to begin with"
   for the audition (course step 8); where they run costs money, and
   is the founder's.
 
+Experiment 002 tried the conversational part of the office in two disposable rooms. A reviewer could select the latest visible turn for a local DeepSeek model to draft one question. The autonomous trial showed why it matters who controls the floor. [Results, both runs and the room reader](../experiments/002-room-moderator/RESULTS.md)
+
 **The Library: a room where things can be looked up.** The founder:
 "let's use a local copy of some data source to start, something with
 tons of information, without needing the whole internet", and "even an

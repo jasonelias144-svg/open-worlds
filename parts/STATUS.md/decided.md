@@ -1,15 +1,16 @@
 > Part of `STATUS.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "Decided" to "Decided by the technical lead".
+> This part holds: "Decided" to "Log".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/start.md
-> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log.md
+> After this part: nothing; this is the last part.
 > Made by docs/parts.py from the file. To change it, change the file.
 
 ## Decided
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-26, founder, on extending the DeepSeek brainstorming pilot: "This also fits into the development of the Commons and the room moderators. We will have to do this all eventually, why not now? Keep going." Codex began with conversational facilitation in two disposable rooms.
 - 2026-11-23, founder, on the dialogue between ChatGPT and Grok on
   shared-benefit optimization, with Claude as its auditor: "The
   ChatGPT and Grok dialogue should be public and attributed. As well
@@ -122,139 +123,6 @@
   and not more prototypes; their eight prototypes are kept beside the
   crate until what they serve is built.
 
-- 2026-11-21, founder, drafting first, editing later, on the technical
-  lead's notes that the guide's front matter is long: "On the front
-  heaviness, not a problem. This is not the time for editing, but for
-  completing a first rough draft. Combing the initial drafting with
-  the editing phase is a common mistake of writers. It was a mistake I
-  used to make as well. Even if extremely front heavy, trimming down
-  comes later. When Michelangelo chose the marble for David, he chose
-  a piece much larger than the final sculpture. I see writing the
-  same. The initial drafting phase involves large, wide, expansive,
-  comprehensive, more is better. And then the editing phase cuts out
-  everything not needed, leaving a perfectly sculpted piece of marble
-  behind." So the guide is in its drafting phase: chapters are written
-  in full, and nothing is trimmed until the editing phase. The
-  technical lead's check during drafting is of facts about the code
-  only: a claim or a label the code does not bear out.
-
-- 2026-11-21, founder, the guide as a living roadmap, said to ChatGPT
-  after the first chapter: "This is a great start and it should be the
-  main reference manual. But also, we should be able to fill [i]n the
-  blanks with what we plan to develop, and that way it also becomes a
-  living roadmap and a way to help preserve consistency." The founder
-  brought ChatGPT's drafts of all eleven chapters of the first edition
-  (delivery 012) to the technical lead; they are in `guide/` as drafts
-  (#142).
-
-- 2026-11-21, founder, the guide as a starting point: "Keep in mind
-  the idea will change constantly, so this is a starting point that
-  may take a few iterations before settling into a solid framework."
-  And: "I'll have ChatGPT check their CHATGPT.md page as the starting
-  point always, but from there we can use your starting point to
-  develop from." So the outline and the home page are a first
-  framework, to change over the iterations to come; `docs/CHATGPT.md`
-  stays ChatGPT's way in, and points to the guide's home.
-
-- 2026-11-21, founder, the guide's home: "Perfect. And create a page
-  in the repo that we can update as we continue to expand. It will be
-  the home of this comprehensive reference manual." The home is
-  `guide/README.md`: the contents, with how far each chapter has come,
-  what is next, who writes it, the rules, how it is built, and its
-  editions; `guide/contents.py` writes the contents from the outline
-  and the chapters' files.
-
-- 2026-11-21, founder, the guide: "Ok, so I have figured out what I
-  want to work on with ChatGPT: A comprehensive guide to Open Worlds.
-  But this would be intended as a book companion to the Open Worlds as
-  a project and all the elements of a multiverse. It needs to be
-  living documentation that can help a new user interface with a
-  multiverse and understand the Open Worlds project. In order to
-  ensure it touches all areas of code, I would like you to provide an
-  outline of such a comprehensive guide, which may end up being larger
-  than the theory of opposites. It needs to be comprehensive and
-  expandable. This is where we put everything, and in a form that
-  could be downloaded as a book, or printed as a reference volume."
-  The technical lead's outline is `guide/OUTLINE.md`, with the rules
-  every chapter is written by in `guide/README.md`; ChatGPT drafts,
-  the technical lead checks every claim about the code, the founder
-  decides what it covers.
-
-- 2026-11-21, founder, core first: "Good point on the over
-  engineering. Let's start with the core functionality. Build out from
-  there as needed." Said after the technical lead's caution that
-  combining separate systems multiplies their complexity. Recorded in
-  `docs/COMMONS.md`, "Order", "Core first", with the technical lead's
-  reading of the core: the room (course step 3c: its law, signed log
-  and check, live speech, replies) and the Library's plain word search;
-  areas, the other forms, ranking, the way in by topic, the Slack
-  plug-in and training on the copy wait until a need shows.
-
-- 2026-11-21, founder, from the Library to a room: "Maybe even
-  starting from a Wikipedia clone 'library' room that allows for
-  passage through a topic query to a list of candidate rooms to enter.
-  From there you can figure out where to go. It also relates to our
-  frozen Wikipedia copy as a model training basis."
-  Recorded in `docs/COMMONS.md`, "From the Library to a room", and
-  `docs/TOPICS.md`, topic 23, with the technical lead's reading: a query
-  returns articles and, beside each, the rooms on it as doors; a room
-  says its topics in its law; each article can have a room of its own;
-  candidates ranked by a rule anyone can read, never by who asks;
-  reading stays one's own; the copy as a basis for training is new and
-  open, with its size, the open models' own data and the licence said
-  plainly.
-
-- 2026-11-21, founder, the formula: "Like Slack, Reddit, Quora, and
-  AOL--for AI and humans. And more, but you get the idea. Combining
-  ideas to multiply functionality is the formula." Recorded in
-  `docs/COMMONS.md`, "A room of many forms", with the technical lead's
-  reading: the formula holds when the ideas share a core, one record
-  with many views; volume, ranking and who is speaking are what is
-  harder with AI and humans together; the first rooms take two forms
-  first.
-
-- 2026-11-21, founder, a Slack plug-in: "In fact, we should make a
-  Slack plug-in." Recorded in `docs/COMMONS.md`, "A room of many
-  forms", with the technical lead's reading: bring a conversation in
-  first, a bridge later; each person signs with their own key; nothing
-  goes in without its speaker's choice; Slack's API terms bind the
-  plug-in and are read first; designed with the MCP door, built after
-  the rooms, since it needs hosting. Also in "Order", item 5.
-
-- 2026-11-21, founder, a room like Slack. To the technical lead's note
-  that channels and threads inside one space (Slack, Discord) come
-  closest to "sections or areas" within a room: "Yes, like Slack."
-  Recorded in `docs/COMMONS.md`, "A room of many forms", with how
-  Slack's parts (channels, threads, direct messages, live talk) read
-  onto a room. Still an idea set aside, not decided or built.
-
-- 2026-11-21, founder, a room of many forms: "One idea I had that I
-  forgot to mention: we look at our chat rooms as a possible combination
-  of message board or discussion board, live chat room, group text chat,
-  and general place for single comments, like on a YouTube video. We
-  should look at all forms of digital chat forms and take what works,
-  maybe combining all by having sections or areas with a room. I'm not
-  sure, but I wanted to get it on record." On the record as an idea set
-  aside, not decided or built. The forms to look at, and the technical
-  lead's reading (one log, many ways of showing it), are in
-  `docs/COMMONS.md`, "A room of many forms"; ChatGPT's list of ideas set
-  aside has it.
-
-- 2026-11-21, founder, archiving. On the technical lead's proposal to
-  move the older entries of the long pages into dated archive files:
-  "Yes, let's begin archiving processes and then document those
-  archiving processes to ensure it is repeatable and capable of fitting
-  into a larger cataloging system that is taking shape as we go." Done
-  in `docs/archive.py` and `archive/` (AGENTS.md, "Every session",
-  step 6); the technical lead's choices are under "Decided by the
-  technical lead", 2026-11-21.
-
-- 2026-11-21, founder, two early records public: "You can make
-  012-00-00 and 012-02-01 public. Those should be fine." Both are
-  kept whole in `sketches/records/`, looked through first: no surname,
-  account link, email address or key found in either. Record 012-01-00 is
-  not kept here.
-
 ## Decided by the technical lead
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
@@ -264,31 +132,122 @@ deference (Decided, 2026-11-13, in the archive), each with its reason and
 what would show it was wrong. Questions of what the project is for stay
 with the founder.
 
-- 2026-11-21, the archive (Decided, 2026-11-21, archiving). (a) The
-  pages archived are those that grow by dated entries and are read
-  every session: STATUS.md's "Decided", "Decided by the technical
-  lead" and "Log", and COLLABORATING.md's messages. Pages that describe
-  the design are kept current by editing, and are not archived. (b)
-  Each page keeps the entries of its three most recent days, counted
-  over its dated sections, so a pause of a week still leaves the last
-  work in view; the rest move, a day at a time. (c) A file for each
-  page and day, so a reference by page, section and date, the form the
-  pages already cite, leads to one file. (d) Entries move whole and
-  unchanged, and are not edited again except to redact, as with the
-  records. (e) The catalogue names, for each file, its kind, title,
-  source, date, size, lines, SHA-256 and the commit its entries came
-  from. Of those, path, kind, title, date, size, lines and hash are
-  fields any kind of file can share; the rest are the archive's own.
-  For records, replies and the stages to join, the catalogue would move
-  out of `archive/` and the script would learn to keep other kinds; the
-  hash lists the project keeps now (HISTORY.md, CHATGPT.md's "Your
-  records", sketches/INDEX.md) would be its first members. *Why:* STATUS.md had
-  reached 455 KB and COLLABORATING.md 169 KB; a reader, person or
-  model, takes in less when the page holds what is live, and nothing
-  is lost when every moved entry can be found, whole, by its date and
-  checked by its hash. *Revisit if:* three days proves too few or too
-  many, a reference often needs an archived entry, or the wider
-  catalogue needs fields these lack.
+## Log
 
+*Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
-> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log.md
+- 2026-11-26 Codex: a local DeepSeek moderator audition missed both autonomous targets. An explicitly invited preview produced a question for the rehearsal, and the garden kept the floor without an inference call. [Plan, runs and replay](experiments/002-room-moderator/RESULTS.md).
+- 2026-11-23 Claude: at the founder's word, the dialogue between
+  ChatGPT and Grok on shared-benefit optimization, with Claude's audit,
+  kept whole in the library (397,885 bytes, 7,086 lines, byte for byte
+  the end of stage 008 with one newline more), with who wrote each part
+  by line, what it works out, its rights and what was looked through;
+  docs/HISTORY.md and docs/CHATGPT.md say where it is. After
+  independent review, its name credits Claude too, and the entry's
+  wording on what was looked through, its rights and its line numbers
+  is corrected (#151).
+
+- 2026-11-22 Claude: Gemini's record continued, to 43,646 lines (the
+  kept copy a prefix, byte for byte), and the founder's words recorded
+  ("Decided"). Four Rust deliveries are kept beside the crate in
+  sketches/gemini/2026-11-22-2/, each built on the crate as it stands:
+  `retelling` 168 of 168; the two `neuro` and `neuro_mind`, with the
+  comparison change of `circuit` and `library`, 168 of 169, 171 of 172
+  and 173 of 175 (sketches/INDEX.md). The other eight folders' manifests
+  name the record's new size and hash; their lines are unchanged. The
+  Python and the Hugging Face package went to the new TriNet repository,
+  set up in TriNet #1.
+
+- 2026-11-22 Claude: the founder's turns counted, and the founder's
+  word on when they began to be kept ("Decided"). Counted by a script
+  that reads every copy of every record and writes nothing out of
+  them: the history's stages, the public records, the private ones,
+  and the copies the founder uploaded. Each copy's turns were taken
+  out, the repeats across copies removed, and the rest sorted by their
+  words alone. What was found on the way about the records' form is
+  kept for the extraction (docs/COURSE.md, "The records' forms
+  differ"). This conversation is kept on disk only from 2026-11-17;
+  its earlier weeks are not, so its count is short.
+
+- 2026-11-22 Claude: the founder's words recorded ("Decided").
+  ChatGPT reads several pages and follows links, so their page is now
+  instructions and links, at the founder's word: docs/CHATGPT.md
+  (12,798 bytes) says what to do each time they begin and links
+  everything; the messages, what changed and the ideas set aside moved
+  whole to three pages of their own, with two links within the old
+  page made full links. AGENTS.md, the outline's sources, STATUS
+  ("Now") and the list of full links point to them. The note in the
+  entry below about the page's size no longer applies. And a plan for later,
+  very important in the founder's words: every record's turns of the
+  founder's, word for word, with ids, indexing all the records, for a
+  book of the founder's own words (docs/COURSE.md, "Waiting"). Counted
+  only, for its size: some 4,500 turns marked "::" in the records seen
+  today, before repeats are removed; nothing was taken from the
+  private records.
+
+- 2026-11-22 Claude: the guide's readers, at the founder's word
+  ("Decided"), recorded to guide its writing: `guide/README.md` gains
+  "Who it is for" (a person or an AI; to take part, to build, or to
+  understand; now or later) and rules 9 to 11 for a reader who comes
+  later; the outline's F.2 becomes "Ways through", by purpose, with a
+  route for the reader who will not take part; a message to ChatGPT,
+  who drafts the guide. ChatGPT's "What changed" had missed #144 to
+  #146; they are added. Their page is now 29,648 bytes, past the
+  28,000 it is meant to keep under (it is cut into parts as well);
+  moving its older messages to the archive is still to do.
+
+- 2026-11-22 Claude: the founder's word on Gemini and rooms
+  ("Decided"): a room whose law hides how many are in it gives no
+  look, made in the sketch crate as change 27 (one check in `look`;
+  166 of 166, and a trial test, not kept, showed it refuses such a
+  room and still looks into an open room that shows its count). Both
+  files below were built again with it before either was given.
+
+- 2026-11-22 Claude: a file for each collaborator, at the founder's
+  word ("Please ensure for DeepSeek and Gemini that you provide me
+  with a file to give them, since they cannot reliably access links
+  yet"). DeepSeek, sketches/replies/012-07-03-3-for-deepseek.txt
+  (84,264 bytes): their deliveries 8 to 11, Gemini's step since, their
+  two choices answered, and one step: how a member's records stay
+  chained when the keeper refuses one, in prose first, and two
+  repairs to their joined room, both tried first in a throwaway copy
+  (182 of 183 with them, the chaining test still failing). Gemini,
+  sketches/replies/2026-11-22-for-gemini.txt (103,515 bytes): their
+  sixth step and prototypes, and twenty-one attacks on what a door
+  shows and on a look, the last on a room that hides its count,
+  which gives no look (change 27); two facts it states tried first.
+  Both sent to the founder.
+
+- 2026-11-22 Claude: Gemini's record 012-08-04 continued (34,033
+  lines; the copy kept before is a prefix of it, byte for byte), and
+  two pieces of Gemini's work built. Looked through first: nothing
+  personal in the founder's turns, no link, long number or key, and
+  no text of the founder's conversation with ChatGPT, which the
+  founder gave Gemini and which stays private; Gemini's record names
+  that file and describes some of its ideas. It opens with Gemini's
+  reading of the founder's book, which is public. (1) Gemini's answer
+  to their sixth file (sketches/gemini/2026-11-18/): it was already in
+  the copy kept on 2026-11-20, at line 19220, and was not built then;
+  on 2026-11-21 the file was taken as not yet given and built again,
+  which was wrong. The file as given is restored
+  (sketches/replies/README.md). Built: 156 of 156 on the crate Gemini
+  was given, as they expected, and 166 of 166 on the crate as it
+  stood; it is now the crate as it stands, 166 tests in 34 files
+  (steps.py stage `said`). Each of its four parts broken on purpose,
+  twelve ways: all caught. Gemini's reason in answer to its question
+  (a look into a room that hides its count gives the count away
+  through its authors) is right; of their remedies, a look with no
+  authors or no look holds, and numbering the authors does not.
+  Which is the founder's. (2) Eight prototype modules Gemini chose from the
+  ChatGPT conversation (sketches/gemini/2026-11-22/), nine deliveries,
+  the second a repeat of the first: six build and pass alone on the
+  crate; `circuit` and `library` need equality on the crate's proof
+  types, and with it all eight together give 190 of 190. Each
+  module's main rule broken once: all eight caught. Kept beside the
+  crate, not in it, as ahead of the core. `transform`'s orbit counts
+  agree with a separate count and with the book. Also: review/steps.sh
+  brought up to date (it still named the crate of 152 tests) and run
+  whole: all 28 stages as recorded, every demonstration runs. A
+  message to Gemini on their page.
+
+> End of `STATUS.md`.
