@@ -52,6 +52,8 @@ def match_trace(log, actors, trace, partial=False):
         if turn.get("error"):
             require(partial and i == len(trace) - 1 and "action" not in turn, "unexpected errored turn")
             break
+        if mode == "consciousness-native":
+            require(isinstance(turn.get("used_reasoning_channel"), bool), "missing response channel observation")
         if mode in DEEPSEEK_MODES:
             require(turn.get("reported_model") == turn["request"]["model"], "endpoint identity mismatch")
         if turn.get("action") == "incomplete":

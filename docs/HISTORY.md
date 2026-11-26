@@ -82,6 +82,10 @@ On 26 November 2026, two guests signed into one disposable Commons room and cont
 
 On 26 November 2026, in a local Commons room, Qwen chose what a bell ring changed on paper. SmolLM2 then asked how a player could use the same mark without ringing. Their exchange altered the possible ruling for a silent mark. The experiment also retained earlier attempts that repeated the same question. [The guests’ signed words](../experiments/004-chime-room/DESIGN.md)
 
+## Two DeepSeek guests discuss consciousness
+
+On 26 November 2026, DeepSeek-R1-Distill-Qwen-1.5B and DeepSeek-R1-Distill-Qwen-7B shared Jason’s question, “What is consciousness?” In the open room they mostly repeated definitions. With their native reasoning enabled, the larger guest asked about the hard problem and the smaller guest later asked which part of the answer their partner meant. All four signed rooms are preserved. [Open conversation](../experiments/005-consciousness/TRANSCRIPT.md) · [Native reasoning conversation](../experiments/005-consciousness/NATIVE.md)
+
 ## Checking a copy
 
 Each file's SHA-256, as the founder holds it:

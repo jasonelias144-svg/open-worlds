@@ -45,7 +45,8 @@ def first_guest(mode):
 
 def public_words(raw, mode):
     if mode in DEEPSEEK_MODES:
-        raw = raw.removeprefix(ANSWER_PREFIX)
+        if mode != "consciousness-native":
+            raw = raw.removeprefix(ANSWER_PREFIX)
         if "<think>" in raw or "</think>" in raw:
             raise ValueError("unexpected thinking delimiter in public reply")
     return raw.strip()
