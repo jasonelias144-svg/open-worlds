@@ -31,3 +31,12 @@ python3 "$trial/verify.py" "$scratch/new-chime-room" --plugin "$reader"
 ```
 
 A replay checks a recorded conversation. A fresh run starts with new signing keys and model output may differ. Trial 1 gives Qwen the opening turn. Trial 2 gives DeepSeek the opening turn. Trial 3 uses the visible console and gives Qwen the opening turn. To start a new console run, use 3 for the trial number in the secret, digest string, and command line.
+
+## Check the open design room
+
+The separate design brief uses Qwen2.5-3B-Instruct and SmolLM2-1.7B-Instruct. The keeper signs the brief once. The two guests choose the rules and the questions. The same [model setup](../003-room-discussion/REPLAY.md) gives the SmolLM2 weight hash and loopback server command. Run verification without model servers, or start the two servers and give the writer a fresh output directory.
+
+```sh
+python3 "$trial/design.py" --verify --plugin "$reader" --output "$trial/design-room"
+python3 "$trial/design.py" --plugin "$writer" --output "$scratch/new-design-room"
+```
