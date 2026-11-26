@@ -10,6 +10,7 @@
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-26, founder, on two model guests: "Perfect. Can we put two in a room and let them begin a discussion?" [Plan and amendments](experiments/003-room-discussion/PLAN.md).
 - 2026-11-26, founder, on the staging of the [scripted garden greeting](docs/HISTORY.md#the-scripted-garden-greeting):
 
   ```text
@@ -145,6 +146,7 @@ with the founder.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-26 Codex: model guests joined a disposable Commons room with separate keys, read each other’s signed speech and took turns posting or passing. [Conversation and results](experiments/003-room-discussion/RESULTS.md).
 - 2026-11-26 Codex: a local DeepSeek moderator audition missed both autonomous targets. An explicitly invited preview produced a question for the rehearsal, and the garden kept the floor without an inference call. [Plan, runs and replay](experiments/002-room-moderator/RESULTS.md).
 - 2026-11-23 Claude: at the founder's word, the dialogue between
   ChatGPT and Grok on shared-benefit optimization, with Claude's audit,
