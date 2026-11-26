@@ -30,6 +30,29 @@ bytes is also kept cut into parts, for a reader who is shown only the start of a
 its own link is in the last group below. The test vectors and
 Cargo.lock are left whole.
 
+**Moderating the harbor recording and its listening table** (18).
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/006-harbor/PROTOCOL.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/006-harbor/RESULTS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/006-harbor/harbor.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/006-harbor/time_check.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/006-harbor/time-check.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/006-harbor/sign/identities.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/006-harbor/sign/room.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/006-harbor/sign/turns.jsonl
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/006-harbor/fact-check/identities.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/006-harbor/fact-check/room.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/006-harbor/fact-check/turns.jsonl
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/006-harbor/moderated/identities.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/006-harbor/moderated/room.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/006-harbor/moderated/turns.jsonl
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/006-harbor/control/identities.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/006-harbor/control/room.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/006-harbor/control/turns.jsonl
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_harbor.py
+```
+
 **Two DeepSeek guests discuss consciousness** (17).
 
 ```text
