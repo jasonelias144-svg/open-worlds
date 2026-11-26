@@ -11,3 +11,7 @@ Use separate local servers with llama.cpp build b12780. Greedy sampling, seed 42
 ## Amendment before run 02
 
 Run 01 had one posted greeting, an explicit PASS from SmolLM2, and a DeepSeek turn that exhausted 1,536 tokens with empty visible output. Keep the partial room and trace. Open a new room with the same topic. Let SmolLM2 open, and tell both guests plainly that they are peers planning a welcome for someone who has yet to arrive. Give each a direct turn cue to start or answer the other guest, while keeping the actual words up to them. Record any token-limited turn without posting it and offer the next guest their turn. Still stop after two consecutive explicit passes or six opportunities. The prediction remains that a later guest takes up a specific idea from their peer.
+
+## Amendment before run 03
+
+In run 02 SmolLM2 echoed the turn cue. DeepSeek generated a 1,270-character answer after trimming surrounding whitespace, above the trial room’s 1,200-character limit. It never entered the room. For run 03 keep the topic, guests, order and turn budget. Give each guest their model’s native chat messages: their own signed words as assistant messages and their peer’s signed words as user messages. Use the room topic as the opening question. Give the room the normal sketch limit of 4,000 characters. An overlong or unfinished response uses one opportunity without creating a post. Preserve all visible output, including any echoes. These changes test whether the presentation of a conversation helps the guests respond to each other.

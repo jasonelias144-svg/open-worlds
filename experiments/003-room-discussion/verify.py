@@ -6,7 +6,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from run import ALIASES, Client, GUESTS, TOPIC, verified_snapshot
+from run import Client, GUESTS, TOPIC, request_for, verified_snapshot
 
 
 def require(condition, message):
@@ -14,11 +14,14 @@ def require(condition, message):
         raise ValueError(message)
 
 
-def verify(folder, plugin):
+def verify(folder, plugin, partial=False):
     log = json.loads((folder / "room.json").read_text())
     actors = json.loads((folder / "speakers.json").read_text())
     trace = [json.loads(line) for line in (folder / "turns.jsonl").read_text().splitlines()]
     labels = actors["guests"]
+    mode = actors.get("mode", "original")
+    require(mode in ("original", "peer"), "unknown discussion protocol")
+    peer = mode == "peer"
     require(log["world_id"] == actors["room"], "room identity mismatch")
     require(set(labels.values()) == set(GUESTS) and len(labels) == 2, "expected two distinct guests")
     with ExitStack() as stack:
@@ -37,13 +40,18 @@ def verify(folder, plugin):
     passes = 0
     require(1 <= len(trace) <= 6, "unexpected number of turn opportunities")
     for i, turn in enumerate(trace):
-        name = GUESTS[i % 2]
-        require(passes < 2 and "error" not in turn and turn["finish"] == "stop", "unexpected or incomplete turn")
-        require(turn["speaker"] == name and turn["turn"] == i + 1, "speaker or turn order mismatch")
-        request = turn["request"]
-        require(request["model"] == ALIASES[i % 2], "model alias mismatch")
-        prompt = json.loads(request["messages"][-1]["content"])
-        require(prompt == {"topic": TOPIC, "conversation": visible}, "prompt differs from the prior signed turns")
+        who = (i + int(peer)) % 2
+        name = GUESTS[who]
+        require(passes < 2 and turn["speaker"] == name and turn["turn"] == i + 1, "unexpected speaker or turn")
+        require(turn["request"] == request_for(who, visible, peer), "model input differs from signed history or protocol")
+        if turn.get("error"):
+            require(partial and i == len(trace) - 1 and "action" not in turn, "unexpected errored turn")
+            break
+        if turn.get("action") == "incomplete":
+            require(peer and turn["finish"] == "length", "unexpected incomplete turn")
+            passes = 0
+            continue
+        require(turn["finish"] == "stop", "unfinished output")
         words = turn["raw"].strip()
         if turn["action"] == "pass":
             require(words == "PASS", "pass differs from model output")
@@ -60,7 +68,7 @@ def verify(folder, plugin):
         require(hashlib.sha256(canonical).hexdigest() == turn["hash"], "trace hash differs from signed record")
         visible.append({"speaker": name, "text": words})
     require(len(records) == 3 + len(visible), "unexpected extra room records")
-    require(len(trace) == 6 or passes == 2, "trial stopped early")
+    require(len(trace) == 6 or passes == 2 or (partial and trace[-1].get("error")), "trial stopped early")
     return visible
 
 
@@ -68,5 +76,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("folder", type=Path)
     parser.add_argument("--plugin", required=True, type=Path)
+    parser.add_argument("--partial", action="store_true", help="allow a recorded failure on the final opportunity")
     args = parser.parse_args()
-    print(f"Verified the signed room and the model inputs and outputs for {len(verify(args.folder, args.plugin.resolve()))} posts.")
+    print(f"Verified the signed room and the model inputs and outputs for {len(verify(args.folder, args.plugin.resolve(), args.partial))} posts.")

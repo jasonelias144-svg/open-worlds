@@ -75,7 +75,27 @@ def commit_one(keeper, guest, room_id, signed):
     return log
 
 
-def discussion(plugin, ports, dest):
+def request_for(who, turns, peer_mode):
+    name = GUESTS[who]
+    request = {"model": ALIASES[who], "temperature": 0, "seed": 42, "max_tokens": 1536,
+               "messages": [{"role": "system", "content": ORIENTATION.format(name=name, other=GUESTS[1-who])},
+                            {"role": "user", "content": json.dumps({"topic": TOPIC, "conversation": turns},
+                                                                   ensure_ascii=False)}]}
+    if peer_mode:
+        other = GUESTS[1-who]
+        cue = (f"Open the discussion with {other}. What would you try, and why?" if not turns
+               else f"Continue the discussion with {other}. Respond to what has been said.")
+        request["messages"][0]["content"] = (
+            f"You are {name}, discussing a room design with your peer {other}. "
+            "The newcomer in the topic has yet to arrive. Talk directly to your peer about an idea "
+            "or a concern, in one or two short sentences. Write just your own words. "
+            "You can reply PASS to yield your turn.")
+        request["messages"][1]["content"] = json.dumps(
+            {"topic": TOPIC, "conversation": turns, "your_turn": cue}, ensure_ascii=False)
+    return request
+
+
+def discussion(plugin, ports, dest, peer_mode):
     with ExitStack() as stack:
         keeper = Client(stack, plugin, "trial keeper")
         guests = [Client(stack, plugin, name) for name in GUESTS]
@@ -90,7 +110,8 @@ def discussion(plugin, ports, dest):
         room_id = keeper.call("create_room", template=template)["room_id"]
         log = verified_snapshot(keeper, room_id)
         save(dest / "room.json", log)
-        save(dest / "speakers.json", {"room": room_id, "keeper": keeper.identity, "guests": labels})
+        save(dest / "speakers.json", {"room": room_id, "keeper": keeper.identity, "guests": labels,
+                                    "mode": "peer" if peer_mode else "original"})
         for guest in guests:
             guest.call("join_external_room", log_json=log)
             signed = guest.call("request_join_external", room_id=room_id, tier="communicate", is_ai=True)
@@ -100,7 +121,7 @@ def discussion(plugin, ports, dest):
         passes = 0
         with (dest / "turns.jsonl").open("x", buffering=1) as trace:
             for i in range(6):
-                who = i % 2
+                who = (i + int(peer_mode)) % 2
                 guest, name = guests[who], GUESTS[who]
                 guest.call("join_external_room", log_json=log)
                 view = guest.call("read_room", room_id=room_id)
@@ -108,10 +129,7 @@ def discussion(plugin, ports, dest):
                     raise ValueError("guest reader switched rooms")
                 turns = [{"speaker": labels[e["author"]], "text": e["text"]} for e in view["entries"]
                          if e["type"] == "message" and e.get("redacted") is False]
-                request = {"model": ALIASES[who], "temperature": 0, "seed": 42, "max_tokens": 1536,
-                           "messages": [{"role": "system", "content": ORIENTATION.format(name=name, other=GUESTS[1-who])},
-                                        {"role": "user", "content": json.dumps({"topic": TOPIC, "conversation": turns},
-                                                                               ensure_ascii=False)}]}
+                request = request_for(who, turns, peer_mode)
                 entry = {"turn": i + 1, "speaker": name, "request": request}
                 started = time.monotonic()
                 try:
@@ -119,6 +137,11 @@ def discussion(plugin, ports, dest):
                     choice = response["choices"][0]
                     raw = choice["message"]["content"]
                     entry.update(raw=raw, usage=response.get("usage"), finish=choice["finish_reason"])
+                    if peer_mode and entry["finish"] == "length":
+                        passes = 0
+                        entry["action"] = "incomplete"
+                        print(f"{i + 1}. {name} reached the token limit.", flush=True)
+                        continue
                     if entry["finish"] != "stop" or not isinstance(raw, str) or not raw.strip():
                         raise ValueError("incomplete model turn")
                     words = raw.strip()
@@ -159,6 +182,7 @@ if __name__ == "__main__":
     p.add_argument("--output", type=Path, required=True, help="fresh directory for this run")
     p.add_argument("--deepseek-port", type=int, default=18191)
     p.add_argument("--smol-port", type=int, default=18192)
+    p.add_argument("--peer", action="store_true", help="run the preregistered second protocol")
     args = p.parse_args()
     args.output.mkdir(exist_ok=False)
-    discussion(args.plugin.resolve(), (args.deepseek_port, args.smol_port), args.output)
+    discussion(args.plugin.resolve(), (args.deepseek_port, args.smol_port), args.output, args.peer)
