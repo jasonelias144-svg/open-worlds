@@ -465,6 +465,8 @@ paces them.
 
 ## 14. The Commons: a superworld of chat rooms
 
+A first moderator audition tested a question for a rehearsal room and silence in a garden room. An open design question is how a participant can invite a turn and take that invitation back. [Experiment 002](../experiments/002-room-moderator/RESULTS.md)
+
 *Course steps 3b, 3c, 3d and 3f, since the recheck of 2026-11-16, as
 the first public space (moved on 2026-11-15 from after step 4a to the
 recheck that closed step 3a).* The

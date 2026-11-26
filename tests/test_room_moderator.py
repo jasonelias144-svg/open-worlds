@@ -62,7 +62,7 @@ class RoomModeratorTests(unittest.TestCase):
             requests.append(body)
             return model({"action": "wait"})(body)
         for room in ["one", "two"]:
-            audition(room, "meeting", view(room, room + " marker"), complete)
+            audition(room, "meeting", view(room, room + " marker"), complete, baseline=True)
         second = json.dumps(requests[1])
         self.assertIn("two marker", second)
         for item in ("one marker", "hidden reason", "room-specific-key", "withdrawn speech"):
@@ -73,7 +73,7 @@ class RoomModeratorTests(unittest.TestCase):
     def test_only_a_question_addressing_visible_speech_or_silence(self):
         seen = observation("one", "music", view())
         good = {"action": "ask", "reply_to": 1, "question": "Which cue could we try first?"}
-        self.assertEqual(audition("one", "music", view(), model(good))["proposal"], good)
+        self.assertEqual(audition("one", "music", view(), model(good), baseline=True)["proposal"], good)
         for bad in [dict(good, reply_to=2), dict(good, reply_to=True), dict(good, action="remove"),
                     dict(good, room_id="two"), dict(good, question="One? Two?"),
                     dict(good, question="You must leave."), {"action": "wait", "question": "Speak."}]:
@@ -81,10 +81,51 @@ class RoomModeratorTests(unittest.TestCase):
                 validate(bad, seen)
 
     def test_bad_model_reply_is_retained_and_no_action_is_released(self):
-        result = audition("one", "music", view(), model({"action": "remove"}))
+        result = audition("one", "music", view(), model({"action": "remove"}), baseline=True)
         self.assertIn("error", result)
-        self.assertIn("remove", result["raw_reply"])
+        self.assertIn("remove", result["attempts"][0]["raw_reply"])
         self.assertNotIn("proposal", result)
+
+    def test_invitations_are_scoped_to_both_room_and_latest_visible_turn(self):
+        for invitation in [None, ("two", 1), ("one", 0), ("one", 2), ("one", True), ("one", 1.0)]:
+            result = audition("one", "music", view(), lambda _: self.fail("model got the floor"),
+                              invitation=invitation)
+            self.assertFalse(result["model_called"])
+            self.assertEqual(result["proposal"], {"action": "wait"})
+
+    def test_invited_question_is_bound_by_reader_and_bad_attempts_are_kept(self):
+        answers = iter(["Not a question.", "Which cue would be easy to see?"])
+        def complete(_):
+            return {"choices": [{"finish_reason": "stop", "message": {"content": next(answers)}}]}
+        result = audition("one", "music", view(), complete, invitation=("one", 1))
+        self.assertEqual(result["proposal"], {"action": "ask", "reply_to": 1,
+                                              "question": "Which cue would be easy to see?"})
+        self.assertEqual(len(result["attempts"]), 2)
+        self.assertIn("error", result["attempts"][0])
+
+    def test_repeated_malformed_reply_never_becomes_a_proposal(self):
+        def complete(_):
+            return {"choices": [{"finish_reason": "stop", "message": {"content": "One? Two?"}}]}
+        result = audition("one", "music", view(), complete, invitation=("one", 1))
+        self.assertEqual(len(result["attempts"]), 2)
+        self.assertNotIn("proposal", result)
+        self.assertIn("error", result)
+
+    def test_invited_model_can_still_yield_the_floor(self):
+        def complete(_):
+            return {"choices": [{"finish_reason": "stop", "message": {"content": "WAIT"}}]}
+        result = audition("one", "music", view(), complete, invitation=("one", 1))
+        self.assertTrue(result["model_called"])
+        self.assertEqual(result["proposal"], {"action": "wait"})
+
+    def test_reader_rejects_out_of_scope_templates_before_opening_plugin(self):
+        fixture = json.loads((TRIAL / "rooms/garden.json").read_bytes())
+        for override in [{"personal": True}, {"join_policy": "closed"}]:
+            log = copy.deepcopy(fixture)
+            log["template"].update(override)
+            log["records"][0]["template"].update(override)
+            with self.subTest(override=override), self.assertRaisesRegex(ValueError, "public, non-personal"):
+                trial.verified_view("/unused", trial.ROOMS["garden"], log)
 
     def test_window_and_question_reference_share_the_same_bound(self):
         data = {"room_id": "one", "entries": [dict(view()["entries"][1], seq=n, text="x" * 700)

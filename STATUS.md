@@ -4,7 +4,7 @@
 respect one another's freedom, with full transparency and exit at any time;
 free, and never a money machine
 **State:** active since 2026-11-12
-**Updated:** 2026-11-23 by Claude
+**Updated:** 2026-11-26 by Codex
 
 ## Live
 
@@ -356,6 +356,7 @@ of it is asked again until it is needed.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-26, founder, on extending the DeepSeek brainstorming pilot: "This also fits into the development of the Commons and the room moderators. We will have to do this all eventually, why not now? Keep going." Codex began with conversational facilitation in two disposable rooms.
 - 2026-11-23, founder, on the dialogue between ChatGPT and Grok on
   shared-benefit optimization, with Claude as its auditor: "The
   ChatGPT and Grok dialogue should be public and attributed. As well
@@ -640,6 +641,7 @@ with the founder.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-26 Codex: a local DeepSeek moderator audition missed both autonomous targets. An explicitly invited preview produced a question for the rehearsal, and the garden kept the floor without an inference call. [Plan, runs and replay](experiments/002-room-moderator/RESULTS.md).
 - 2026-11-23 Claude: at the founder's word, the dialogue between
   ChatGPT and Grok on shared-benefit optimization, with Claude's audit,
   kept whole in the library (397,885 bytes, 7,086 lines, byte for byte

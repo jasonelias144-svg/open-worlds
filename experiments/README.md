@@ -35,3 +35,4 @@ kind, not word for word.
 | # | Question | State |
 |---|---|---|
 | [001](001-first-words/PLAN.md) | What do the smallest open language models do when they are put in the garden, unscripted? | Done: [results](001-first-words/RESULTS.md) |
+| [002](002-room-moderator/PLAN.md) | When should a Commons moderator speak? | Two signed trial rooms, [results and replay](002-room-moderator/RESULTS.md) |
