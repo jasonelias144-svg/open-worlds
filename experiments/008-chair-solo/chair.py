@@ -32,7 +32,7 @@ def opening(timing):
     return f"At rehearsal, a chair scraped the floor {timing} the next solo."
 
 
-def request(name, timing, lines):
+def request(name, timing, lines, plain=False):
     history = "\n".join(json.dumps(line, ensure_ascii=False) for line in lines)
     instruction = (
         f"You are {name}, one of two poets at rehearsal. Write together in the Poetry World. "
@@ -45,14 +45,40 @@ def request(name, timing, lines):
         "text fields and false.\n\nOpening line:\n" + opening(timing)
         + "\n\nAccepted turns in order:\n" + (history or "(none yet)")
     )
-    return {"model": harbor.MODELS[ENDPOINTS[name]], "messages": [{"role": "user", "content": instruction}],
+    if plain:
+        instruction = (
+            f"You are {name}, writing a poem with another poet at rehearsal. "
+            "Read the opening and the accepted poem so far. If you would like to contribute, "
+            "answer with three lines. After Heard: name a detail you heard, using a word "
+            "from the previous poet's line or question if there is one. After Line: write "
+            "one new line of verse. After Question: ask the other poet a short, open question "
+            "arising from your new line. You may instead send the single word PASS or LEAVE."
+            "\n\nOpening line:\n" + opening(timing) + "\n\nAccepted turns in order:\n" + (history or "(none yet)")
+        )
+    body = {"model": harbor.MODELS[ENDPOINTS[name]], "messages": [{"role": "user", "content": instruction}],
             "response_format": {"type": "json_schema", "json_schema": {"name": "poetry_turn", "schema": SCHEMA}},
             "temperature": 0.6, "seed": 42, "max_tokens": 640, "cache_prompt": False}
 
 
-def decision(call):
+    if plain:
+        del body["response_format"]
+    return body
+
+
+def decision(call, plain=False):
     if call["finish"] != "stop" or not isinstance(call["public"], str):
         return "withheld", None
+    if plain:
+        public = call["public"].strip()
+        if public.upper() in ("PASS", "LEAVE"):
+            return public.lower(), None
+        rows = [line.strip() for line in public.splitlines() if line.strip()]
+        labels = ("Heard:", "Line:", "Question:")
+        if len(rows) != 3 or any(not row.startswith(label) for row, label in zip(rows, labels)):
+            return "withheld", None
+        ack, verse, invitation = (row[len(label):].strip() for row, label in zip(rows, labels))
+        return "turn", {"acknowledgment": ack, "proposal": verse, "invitation": invitation,
+                        "holds_open": invitation.endswith("?")}
     try:
         reply = json.loads(call["public"])
     except ValueError:
@@ -70,7 +96,7 @@ def require(condition, message):
         raise ValueError(message)
 
 
-def run(timing, path):
+def run(timing, path, plain=False):
     # Exclusive creation makes overwriting a previous run impossible.
     with path.open("x", encoding="utf-8") as output:
         world = PoetryWorld("rehearsal-" + timing, "Rehearsal", PoetryWorldLaw(max_turns=4))
@@ -85,7 +111,7 @@ def run(timing, path):
             for i in range(4):
                 name = POETS[i % 2]
                 guest = guests[name]
-                body = request(name, timing, lines)
+                body = request(name, timing, lines, plain)
                 attempt = {"poet": name, "request": body}
                 attempts.append(attempt)
                 try:
@@ -97,7 +123,7 @@ def run(timing, path):
                     break
                 del call["request"]
                 attempt["call"] = call
-                outcome, payload = decision(call)
+                outcome, payload = decision(call, plain)
                 if outcome == "turn":
                     act = guest.individual.act(manifest, "poem.turn", payload)
                     attempt["signed_act"] = asdict(act)
@@ -120,7 +146,7 @@ def run(timing, path):
         finally:
             for guest in guests.values():
                 leave_world(guest, world)
-            json.dump({"timing": timing, "opening": opening(timing), "manifest": asdict(manifest),
+            json.dump({"format": "plain" if plain else "structured", "timing": timing, "opening": opening(timing), "manifest": asdict(manifest),
                        "attempts": attempts, "stop": stop, "log": [asdict(e) for e in world.log_since()],
                        "passports": [passport.to_dict(g.passport) for g in guests.values()]},
                       output, ensure_ascii=False, indent=2)
@@ -130,6 +156,9 @@ def run(timing, path):
 def verify(path):
     record = json.loads(path.read_text())
     timing = record["timing"]
+    form = record.get("format", "structured")
+    require(form in ("structured", "plain"), "unknown invitation format")
+    plain = form == "plain"
     manifest = Manifest(**record["manifest"])
     require(timing in ("before", "after") and record["opening"] == opening(timing), "opening mismatch")
     require(manifest.entity_id == "rehearsal-" + timing and not manifest_problem(manifest), "manifest mismatch")
@@ -156,7 +185,7 @@ def verify(path):
     for i, attempt in enumerate(record["attempts"]):
         name = POETS[i % 2]
         require(stop is None and i < 4 and attempt["poet"] == name, "turn order mismatch")
-        body = request(name, timing, lines)
+        body = request(name, timing, lines, plain)
         require(body == attempt["request"], "prompt does not match preceding accepted turns")
         if "error" in attempt:
             require(attempt["outcome"] == "error", "error outcome mismatch")
@@ -164,7 +193,7 @@ def verify(path):
             continue
         call = attempt["call"]
         require(call["model"] == body["model"], "wrong endpoint in record")
-        outcome, payload = decision(call)
+        outcome, payload = decision(call, plain)
         if outcome == "turn":
             act = Act(**attempt["signed_act"])
             require(act.type == "poem.turn" and act.actor_token == keys[name] and act.payload == payload and
@@ -199,8 +228,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("mode", choices=("before", "after", "verify"))
     parser.add_argument("file", type=Path)
+    parser.add_argument("--plain", action="store_true", help="use the follow-up invitation for a new run")
     args = parser.parse_args()
     if args.mode == "verify":
         verify(args.file)
     else:
-        run(args.mode, args.file)
+        run(args.mode, args.file, args.plain)
