@@ -10,6 +10,13 @@
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-26, founder, on the staging of the [scripted garden greeting](docs/HISTORY.md#the-scripted-garden-greeting):
+
+  ```text
+  Alice: “Hello, world.”
+  <Enter Bob>
+  Bob: “Hello, Alice.”
+  ```
 - 2026-11-26, founder, on the original garden greeting: "Yes, between Alice and Bob, but that was scripted." The [project history](docs/HISTORY.md#first-invited-words-from-a-commons-moderator) identifies the separately named trial participants who later generated speech in the garden.
 - 2026-11-26, founder, on the rehearsal-room reply: "Brilliant! Record that as the first words from a model within Open Worlds." The [history entry](docs/HISTORY.md#first-invited-words-from-a-commons-moderator) quotes the first invited Commons moderator reply and links the earlier garden speech.
 - 2026-11-26, founder, on extending the DeepSeek brainstorming pilot: "This also fits into the development of the Commons and the room moderators. We will have to do this all eventually, why not now? Keep going." Codex began with conversational facilitation in two disposable rooms.
