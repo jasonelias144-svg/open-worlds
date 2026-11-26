@@ -12,11 +12,12 @@ from unittest.mock import patch
 
 TRIAL = Path(__file__).resolve().parents[1] / "experiments/004-chime-room"
 with patch.dict(sys.modules), patch.object(sys, "path", [str(TRIAL), *sys.path]):
-    for name in ("run", "verify", "play", "puzzle", "design"):
+    for name in ("run", "verify", "play", "puzzle", "design", "playtest"):
         sys.modules.pop(name, None)
     rules = importlib.import_module("puzzle")
     verifier = importlib.import_module("verify")
     design_trial = importlib.import_module("design")
+    playtest = importlib.import_module("playtest")
 
 
 def move(action, bells=""):
@@ -123,7 +124,23 @@ class ChimeTests(unittest.TestCase):
 
     def test_design_room_replays_from_signed_preceding_questions(self):
         plugin = os.getenv("COMMONS_TRIAL_PLUGIN")
-        design_trial.verify_design(TRIAL / "design-room", Path(plugin) if plugin else None)
+        for room in ("design-room", "direct-room"):
+            design_trial.verify_design(TRIAL / room, Path(plugin) if plugin else None)
+        for room in ("playtest-room", "memory-room"):
+            playtest.verify(TRIAL / room, Path(plugin) if plugin else None)
+
+    def test_repeat_check_uses_a_previously_answered_peer_question(self):
+        prior = [
+            ("Keeper", "A design brief."),
+            ("Qwen", "Draw a line."),
+            ("SmolLM2", "What if it bends?"),
+            ("Qwen", "Draw it again."),
+        ]
+        self.assertEqual(
+            playtest.settled(3, prior, "WHAT if it bends?!"), ("What if it bends?", "Draw it again.")
+        )
+        self.assertIsNone(playtest.settled(3, prior, "Where should it finish?"))
+        self.assertIsNone(playtest.settled(2, prior, "What if it bends?"))
 
     def test_published_trials_replay(self):
         plugin = os.getenv("COMMONS_TRIAL_PLUGIN")

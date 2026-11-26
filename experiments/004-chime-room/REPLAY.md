@@ -40,3 +40,19 @@ The separate design brief uses Qwen2.5-3B-Instruct and SmolLM2-1.7B-Instruct. Th
 python3 "$trial/design.py" --verify --plugin "$reader" --output "$trial/design-room"
 python3 "$trial/design.py" --plugin "$writer" --output "$scratch/new-design-room"
 ```
+
+The follow-on design rooms distinguish a guest asking their own next question from a guest asking about the partner’s last decision. To replay the early closure or the bounded designer–playtester exchange, use the same reader. To run them live, use the writer with a fresh directory, both servers and the corresponding command.
+
+```sh
+python3 "$trial/design.py" --verify --plugin "$reader" --output "$trial/direct-room"
+python3 "$trial/playtest.py" --verify --plugin "$reader" --output "$trial/playtest-room"
+python3 "$trial/design.py" --direct --plugin "$writer" --output "$scratch/new-direct-room"
+python3 "$trial/playtest.py" --plugin "$writer" --output "$scratch/new-playtest-room"
+```
+
+The paired playtest replay retains declined duplicate questions and both repair seeds in its inference trace. Normalize case, whitespace and punctuation to trigger a repair only on an already answered question from the playtester. The reviewer must still assess whether a rewording asks about a genuinely new issue.
+
+```sh
+python3 "$trial/playtest.py" --verify --plugin "$reader" --output "$trial/memory-room"
+python3 "$trial/playtest.py" --remember --plugin "$writer" --output "$scratch/repeat-aware-room"
+```

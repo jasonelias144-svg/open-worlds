@@ -49,6 +49,40 @@ def content(call):
     return words
 
 
+def settled(index, history, words):
+    if index % 2 == 0:
+        return None
+
+    def key(text):
+        return "".join(c for c in text.casefold() if c.isalnum())
+
+    for j in range(1, len(history) - 1):
+        speaker, question = history[j]
+        if speaker == NAMES[1] and key(words) == key(question):
+            return question, history[j + 1][1]
+    return None
+
+
+def follow_up(index, history, first, repair):
+    words = content(first)
+    for attempt in range(2):
+        match = settled(index, history, words)
+        if match is None:
+            return words
+        question, answer = match
+        body = prompt(index, history)
+        body["temperature"] = 0.7
+        body["seed"] = 43 + attempt
+        body["messages"][-1] = {
+            "role": "user",
+            "content": f"You already asked this question: {question}\nThe designer answered: {answer}\n"
+            "Treat that as settled. Try carrying the game one step further. What DIFFERENT decision "
+            "must the designer make for you to be able to play? Ask one specific question in your own words.",
+        }
+        words = content(repair(body))
+    return None if settled(index, history, words) else words
+
+
 def verify(folder, plugin=None):
     ids = json.loads((folder / "identities.json").read_text())
     log = json.loads((folder / "room.json").read_text())
@@ -79,8 +113,18 @@ def verify(folder, plugin=None):
         name = NAMES[i % 2]
         if stopped or t["speaker"] != name or t["turn"] != i + 1 or t["request"] != prompt(i, history):
             raise ValueError("question or speaker differs from signed conversation")
-        words = content(t)
-        if words.upper() == "PASS":
+        retries = iter(t.get("repair_calls", []))
+
+        def recorded(body):
+            call = next(retries, None)
+            if call is None or call["request"] != body:
+                raise ValueError("repair differs from the settled question and answer")
+            return call
+
+        words = follow_up(i, history, t, recorded) if ids.get("remember") else content(t)
+        if next(retries, None) is not None or (words is None) != bool(t.get("repeat_stop")):
+            raise ValueError("unexplained repair or repeat stop")
+        if words is None or words.upper() == "PASS":
             if "posted_seq" in t:
                 raise ValueError("a pass claims a post")
             stopped = True
@@ -99,11 +143,11 @@ def verify(folder, plugin=None):
     return history[1:]
 
 
-def play(plugin, folder, ports):
+def play(plugin, folder, ports, remember=False):
     with ExitStack() as stack:
         keeper, guests, names, room, _ = create_room(stack, plugin, NAMES, BRIEF, "paper-and-bell")
         log = announce(keeper, room, BRIEF)
-        save(folder / "identities.json", {"room": room, "keys": names})
+        save(folder / "identities.json", {"room": room, "keys": names, "remember": remember})
         save(folder / "room.json", log)
         with (folder / "turns.jsonl").open("x") as trace:
             for i in range(7):
@@ -115,7 +159,16 @@ def play(plugin, folder, ports):
                 t = {"turn": i + 1, "speaker": name, "request": body}
                 try:
                     t.update(capture(body, ports[i % 2]))
-                    words = content(t)
+
+                    def retry(body):
+                        call = capture(body, ports[i % 2])
+                        t.setdefault("repair_calls", []).append(call)
+                        return call
+
+                    words = follow_up(i, history, t, retry) if remember else content(t)
+                    if words is None:
+                        t["repeat_stop"] = True
+                        break
                     if words.upper() == "PASS":
                         break
                     op = guest.call("post_as_participant", room_id=room, text=words, kind="normal")
@@ -142,6 +195,11 @@ if __name__ == "__main__":
     p.add_argument("--plugin", type=Path, required=True)
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--verify", action="store_true")
+    p.add_argument(
+        "--remember",
+        action="store_true",
+        help="show the playtester an earlier answer after an exact repeat",
+    )
     p.add_argument("--qwen-port", type=int, default=18193)
     p.add_argument("--smol-port", type=int, default=18192)
     a = p.parse_args()
@@ -149,4 +207,4 @@ if __name__ == "__main__":
         print(f"Verified {len(verify(a.output, a.plugin.resolve()))} signed guest posts.")
     else:
         a.output.mkdir(exist_ok=False)
-        play(a.plugin.resolve(), a.output, (a.qwen_port, a.smol_port))
+        play(a.plugin.resolve(), a.output, (a.qwen_port, a.smol_port), a.remember)

@@ -37,3 +37,4 @@ kind, not word for word.
 | [001](001-first-words/PLAN.md) | What do the smallest open language models do when they are put in the garden, unscripted? | Done: [results](001-first-words/RESULTS.md) |
 | [002](002-room-moderator/PLAN.md) | When should a Commons moderator speak? | Two signed trial rooms, [results and replay](002-room-moderator/RESULTS.md) |
 | [003](003-room-discussion/PLAN.md) | Can two model guests begin their own discussion in one signed room? | [Results and transcript](003-room-discussion/RESULTS.md) |
+| [004](004-chime-room/PLAN.md) | Can a shared puzzle sustain a chain of decisions and new questions? | [Chime-room results](004-chime-room/RESULTS.md) |

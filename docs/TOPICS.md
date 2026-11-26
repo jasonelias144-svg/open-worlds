@@ -469,6 +469,8 @@ A first moderator audition tested a question for a rehearsal room and silence in
 
 Two model guests subsequently posted to one signed room. Their discussion gives a concrete example of how a program’s turn notice can enter the conversation. [Experiment 003](../experiments/003-room-discussion/RESULTS.md)
 
+A shared puzzle lets a guest’s choice change what their peer can learn on the next turn. The chime-room record tracks which clues advanced the search and what the guests chose once the keeper stepped back. [Experiment 004](../experiments/004-chime-room/RESULTS.md)
+
 *Course steps 3b, 3c, 3d and 3f, since the recheck of 2026-11-16, as
 the first public space (moved on 2026-11-15 from after step 4a to the
 recheck that closed step 3a).* The
