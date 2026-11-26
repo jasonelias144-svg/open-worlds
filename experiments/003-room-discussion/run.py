@@ -75,13 +75,13 @@ def commit_one(keeper, guest, room_id, signed):
     return log
 
 
-def request_for(who, turns, peer_mode):
+def request_for(who, turns, mode):
     name = GUESTS[who]
     request = {"model": ALIASES[who], "temperature": 0, "seed": 42, "max_tokens": 1536,
                "messages": [{"role": "system", "content": ORIENTATION.format(name=name, other=GUESTS[1-who])},
                             {"role": "user", "content": json.dumps({"topic": TOPIC, "conversation": turns},
                                                                    ensure_ascii=False)}]}
-    if peer_mode:
+    if mode == "peer":
         other = GUESTS[1-who]
         cue = (f"Open the discussion with {other}. What would you try, and why?" if not turns
                else f"Continue the discussion with {other}. Respond to what has been said.")
@@ -92,17 +92,33 @@ def request_for(who, turns, peer_mode):
             "You can reply PASS to yield your turn.")
         request["messages"][1]["content"] = json.dumps(
             {"topic": TOPIC, "conversation": turns, "your_turn": cue}, ensure_ascii=False)
+    if mode == "dialogue":
+        messages = [{"role": "system", "content":
+                     f"You are {name}, chatting with {GUESTS[1-who]} in a text-only Commons room. "
+                     f"The topic is: {TOPIC} Use your own words and address your peer directly. "
+                     "Keep your turn brief. You may say PASS to yield."}]
+        if not turns or turns[0]["speaker"] == name:
+            messages.append({"role": "user", "content": TOPIC})
+        for turn in turns:
+            role = "assistant" if turn["speaker"] == name else "user"
+            if messages[-1]["role"] == role:
+                messages[-1]["content"] += "\n\n" + turn["text"]
+            else:
+                messages.append({"role": role, "content": turn["text"]})
+        if messages[-1]["role"] == "assistant":
+            messages.append({"role": "user", "content": "The floor is open."})
+        request["messages"] = messages
     return request
 
 
-def discussion(plugin, ports, dest, peer_mode):
+def discussion(plugin, ports, dest, mode):
     with ExitStack() as stack:
         keeper = Client(stack, plugin, "trial keeper")
         guests = [Client(stack, plugin, name) for name in GUESTS]
         labels = {guest.identity: name for name, guest in zip(GUESTS, guests)}
         if len(labels) != 2 or keeper.identity in labels:
             raise ValueError("expected three distinct signing identities")
-        template = {"template_id": "two-model-discussion", "topic": TOPIC, "max_msg_len": 1200,
+        template = {"template_id": "two-model-discussion", "topic": TOPIC, "max_msg_len": 4000 if mode == "dialogue" else 1200,
                     "rate_limit_count": 10, "rate_limit_window": 20, "join_policy": "open",
                     "moderation": "none", "membership": "ai_only", "inter_ai_pace": 0,
                     "mode": "async", "personal": False, "redaction_rules": ["author_request"],
@@ -111,7 +127,7 @@ def discussion(plugin, ports, dest, peer_mode):
         log = verified_snapshot(keeper, room_id)
         save(dest / "room.json", log)
         save(dest / "speakers.json", {"room": room_id, "keeper": keeper.identity, "guests": labels,
-                                    "mode": "peer" if peer_mode else "original"})
+                                    "mode": mode})
         for guest in guests:
             guest.call("join_external_room", log_json=log)
             signed = guest.call("request_join_external", room_id=room_id, tier="communicate", is_ai=True)
@@ -121,7 +137,7 @@ def discussion(plugin, ports, dest, peer_mode):
         passes = 0
         with (dest / "turns.jsonl").open("x", buffering=1) as trace:
             for i in range(6):
-                who = (i + int(peer_mode)) % 2
+                who = (i + int(mode != "original")) % 2
                 guest, name = guests[who], GUESTS[who]
                 guest.call("join_external_room", log_json=log)
                 view = guest.call("read_room", room_id=room_id)
@@ -129,7 +145,7 @@ def discussion(plugin, ports, dest, peer_mode):
                     raise ValueError("guest reader switched rooms")
                 turns = [{"speaker": labels[e["author"]], "text": e["text"]} for e in view["entries"]
                          if e["type"] == "message" and e.get("redacted") is False]
-                request = request_for(who, turns, peer_mode)
+                request = request_for(who, turns, mode)
                 entry = {"turn": i + 1, "speaker": name, "request": request}
                 started = time.monotonic()
                 try:
@@ -137,7 +153,7 @@ def discussion(plugin, ports, dest, peer_mode):
                     choice = response["choices"][0]
                     raw = choice["message"]["content"]
                     entry.update(raw=raw, usage=response.get("usage"), finish=choice["finish_reason"])
-                    if peer_mode and entry["finish"] == "length":
+                    if mode != "original" and entry["finish"] == "length":
                         passes = 0
                         entry["action"] = "incomplete"
                         print(f"{i + 1}. {name} reached the token limit.", flush=True)
@@ -151,6 +167,10 @@ def discussion(plugin, ports, dest, peer_mode):
                     else:
                         passes = 0
                         if len(words) > template["max_msg_len"]:
+                            if mode == "dialogue":
+                                entry["action"] = "overlong"
+                                print(f"{i + 1}. {name} exceeded the room limit.", flush=True)
+                                continue
                             raise ValueError("utterance exceeds room limit")
                         signed = guest.call("post_as_participant", room_id=room_id, text=words,
                                             kind="response" if turns else "normal")
@@ -182,7 +202,7 @@ if __name__ == "__main__":
     p.add_argument("--output", type=Path, required=True, help="fresh directory for this run")
     p.add_argument("--deepseek-port", type=int, default=18191)
     p.add_argument("--smol-port", type=int, default=18192)
-    p.add_argument("--peer", action="store_true", help="run the preregistered second protocol")
+    p.add_argument("--mode", choices=("original", "peer", "dialogue"), default="dialogue")
     args = p.parse_args()
     args.output.mkdir(exist_ok=False)
-    discussion(args.plugin.resolve(), (args.deepseek_port, args.smol_port), args.output, args.peer)
+    discussion(args.plugin.resolve(), (args.deepseek_port, args.smol_port), args.output, args.mode)

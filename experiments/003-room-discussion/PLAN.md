@@ -15,3 +15,7 @@ Run 01 had one posted greeting, an explicit PASS from SmolLM2, and a DeepSeek tu
 ## Amendment before run 03
 
 In run 02 SmolLM2 echoed the turn cue. DeepSeek generated a 1,270-character answer after trimming surrounding whitespace, above the trial room’s 1,200-character limit. It never entered the room. For run 03 keep the topic, guests, order and turn budget. Give each guest their model’s native chat messages: their own signed words as assistant messages and their peer’s signed words as user messages. Use the room topic as the opening question. Give the room the normal sketch limit of 4,000 characters. An overlong or unfinished response uses one opportunity without creating a post. Preserve all visible output, including any echoes. These changes test whether the presentation of a conversation helps the guests respond to each other.
+
+## Amendment before run 04
+
+Run 03 produced a signed question and an answer from the other model. They discussed a physical open floor after the harness supplied “The floor is open.” That sentence was never spoken by a guest. Keep the exchange. For a final trial, supply no idiom or suggested reply after a silent turn. Explicitly mark the scheduler’s turn notice when one is required. Use the same room topic, signed delivery, six opportunities and pass option. Pair DeepSeek with a new local guest, Qwen2.5-3B-Instruct, who opens. See whether the two have a discussion about the topic they were given. Changing the cue and the guest in the same trial precludes attributing a difference to either one alone.
