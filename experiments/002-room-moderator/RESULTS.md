@@ -9,6 +9,8 @@ A small local DeepSeek model had two chances to decide whether to take the floor
 
 The rehearsal question picked up the wish to choose a solo quietly and left the decision to the musicians. It largely repeated the request. A more helpful question would have helped them test whether a cue can be seen without interrupting the music, the tradeoff they had already identified. Both runs used the same rooms, so they tell us little about how the model will handle an unfamiliar conversation. [Autonomous run](run-01.jsonl) · [Invited run](run-02.jsonl)
 
+A verification replay against the same local server reproduced both decisions with different wording. The rehearsal question was “What specific detail could help us try implementing a shared cue without raising a hand?” The request and observation were identical. The server reported 193 cached prompt tokens on the replay and three on the earlier call. Exact wording varied even with the fixed seed. [Replay](run-03.jsonl)
+
 ## What the room reader did
 
 The Rust reader verified signatures, returned the visible room and exported the signed log for comparison. Each attempt got only one room's topic and up to twelve visible turns, with room-local speaker numbers and at most 600 characters per turn. A deliberately withdrawn test phrase stayed out of both prompts. The raw fixtures are public, synthetic examples and include that phrase so the check can be repeated. Both exported logs matched the input and both fixture files remained byte-for-byte unchanged. All model output went to the reviewer. [Rehearsal fixture](rooms/rehearsal.json) · [Garden fixture](rooms/garden.json) · [Reader](run.py)
