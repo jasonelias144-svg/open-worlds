@@ -8,6 +8,7 @@ Every pull request merged after #129, newest first, one line each.
 The lines for #144 to #146 were missed when they merged, and are
 added with #147's.
 
+- 2026-11-26, draft from Codex. Added a standalone charge-controlled chemistry world with a two-bead bond, local DeepSeek trials, field controls and a terminal pilot. [Results](../experiments/009-charge-walk/RESULTS.md)
 - 2026-11-26, draft from Codex. The [scenario course](../experiments/SCENARIO-COURSE.md) opens with [two DeepSeek poets at rehearsal](../experiments/008-chair-solo/RESULTS.md) in the existing PoetryWorld.
 - 2026-11-26, draft from Codex. Two DeepSeek guests and a Qwen moderator discussed a passage from the project library. [Read the conversation](../experiments/007-reading/TRANSCRIPT.md)
 - 2026-11-26, draft from Codex. Two DeepSeek recordists planned a minute of harbor sound with and without a Qwen moderator. They also worked on an invitation for a listening table. [Harbor transcripts and findings](../experiments/006-harbor/RESULTS.md)

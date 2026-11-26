@@ -5,6 +5,8 @@ nature started: elements and molecules first, then reactions, then a world
 in which chemistry happens, and only much later anything like a cell. The
 founder chose this direction on 2026-11-12.
 
+The experimental [charge walk](../experiments/009-charge-walk/RESULTS.md) gives two invented elements controllable charges and positions. It has its own tabletop rules and replay. The nature track below models molecular graphs.
+
 ## Approach: real elements, simplified rules
 
 The elements are real: hydrogen, carbon, nitrogen and oxygen, with their real

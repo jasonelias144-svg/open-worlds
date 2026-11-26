@@ -131,7 +131,7 @@ def main():
             if record["name"] not in ("solo", "pair", "preview"):
                 raise ValueError("unknown controller")
             expected = play(record["name"], record["calls"])
-        if record != expected:
+        if json.dumps(record, sort_keys=True) != json.dumps(expected, sort_keys=True):
             raise ValueError("records differ")
         print("verified", args.path)
         return

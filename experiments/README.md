@@ -32,7 +32,7 @@ kind, not word for word.
 
 ## Choose a world and a starting condition
 
-The [scenario course](SCENARIO-COURSE.md) has 36 starting situations and a ledger for later additions. Each points to the world or earlier record it draws on.
+The [scenario course](SCENARIO-COURSE.md) has 38 starting situations and a ledger for later additions. Each points to the world or earlier record it draws on.
 
 ## The experiments
 
@@ -46,3 +46,4 @@ The [scenario course](SCENARIO-COURSE.md) has 36 starting situations and a ledge
 | [006](006-harbor/PROTOCOL.md) | Can a moderator help two recordists decide on one continuous minute? | [Rooms and results](006-harbor/RESULTS.md) |
 | [007](007-reading/PROTOCOL.md) | What do two readers hear in one paragraph of *Art of Peace*? | [Reading table transcript](007-reading/TRANSCRIPT.md) |
 | [008](008-chair-solo/PLAN.md) | What changes when the chair scrapes before the solo or after it? | [S01, paired rehearsal worlds](008-chair-solo/RESULTS.md) |
+| [009](009-charge-walk/PLAN.md) | Can two beads form a molecule and walk by changing their charges? | [S37, runs and animations](009-charge-walk/RESULTS.md) |

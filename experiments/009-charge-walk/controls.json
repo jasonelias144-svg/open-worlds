@@ -1,0 +1,1453 @@
+[
+  {
+    "name": "opposite",
+    "powered": true,
+    "missing_pads": [],
+    "start": [
+      2,
+      5
+    ],
+    "frames": [
+      {
+        "tick": 1,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          1,
+          -1
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": true,
+        "gold": false,
+        "home": false
+      }
+    ],
+    "stop": "tick limit"
+  },
+  {
+    "name": "alike",
+    "powered": true,
+    "missing_pads": [],
+    "start": [
+      2,
+      5
+    ],
+    "frames": [
+      {
+        "tick": 1,
+        "charges": [
+          1,
+          1
+        ],
+        "forces": [
+          -1,
+          1
+        ],
+        "positions": [
+          1,
+          6
+        ],
+        "bonded": false,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      }
+    ],
+    "stop": "tick limit"
+  },
+  {
+    "name": "neutral partner",
+    "powered": true,
+    "missing_pads": [],
+    "start": [
+      2,
+      5
+    ],
+    "frames": [
+      {
+        "tick": 1,
+        "charges": [
+          1,
+          0
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          2,
+          5
+        ],
+        "bonded": false,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      }
+    ],
+    "stop": "tick limit"
+  },
+  {
+    "name": "switching",
+    "powered": true,
+    "missing_pads": [],
+    "start": [
+      2,
+      5
+    ],
+    "frames": [
+      {
+        "tick": 1,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          1,
+          -1
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": true,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 2,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          2,
+          2
+        ],
+        "positions": [
+          4,
+          5
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 3,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          2,
+          2
+        ],
+        "positions": [
+          5,
+          6
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 4,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          2,
+          2
+        ],
+        "positions": [
+          6,
+          7
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 5,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          2,
+          2
+        ],
+        "positions": [
+          7,
+          8
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 6,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          2,
+          2
+        ],
+        "positions": [
+          8,
+          9
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 7,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          2,
+          2
+        ],
+        "positions": [
+          9,
+          10
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": true,
+        "home": false
+      },
+      {
+        "tick": 8,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          -2,
+          -2
+        ],
+        "positions": [
+          8,
+          9
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": true,
+        "home": false
+      },
+      {
+        "tick": 9,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          -2,
+          -2
+        ],
+        "positions": [
+          7,
+          8
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": true,
+        "home": false
+      },
+      {
+        "tick": 10,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          -2,
+          -2
+        ],
+        "positions": [
+          6,
+          7
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": true,
+        "home": false
+      },
+      {
+        "tick": 11,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          -2,
+          -2
+        ],
+        "positions": [
+          5,
+          6
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": true,
+        "home": false
+      },
+      {
+        "tick": 12,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          -2,
+          -2
+        ],
+        "positions": [
+          4,
+          5
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": true,
+        "home": false
+      },
+      {
+        "tick": 13,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          -2,
+          -2
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": true,
+        "home": true
+      }
+    ],
+    "stop": "home"
+  },
+  {
+    "name": "pads off",
+    "powered": false,
+    "missing_pads": [],
+    "start": [
+      2,
+      5
+    ],
+    "frames": [
+      {
+        "tick": 1,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          1,
+          -1
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": true,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 2,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 3,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 4,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 5,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 6,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 7,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 8,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 9,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 10,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 11,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 12,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 13,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      }
+    ],
+    "stop": "tick limit"
+  },
+  {
+    "name": "frozen",
+    "powered": true,
+    "missing_pads": [],
+    "start": [
+      2,
+      5
+    ],
+    "frames": [
+      {
+        "tick": 1,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          1,
+          -1
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": true,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 2,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          2,
+          2
+        ],
+        "positions": [
+          4,
+          5
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 3,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          -2,
+          -2
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 4,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          2,
+          2
+        ],
+        "positions": [
+          4,
+          5
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 5,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          -2,
+          -2
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 6,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          2,
+          2
+        ],
+        "positions": [
+          4,
+          5
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 7,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          -2,
+          -2
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 8,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          2,
+          2
+        ],
+        "positions": [
+          4,
+          5
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 9,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          -2,
+          -2
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 10,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          2,
+          2
+        ],
+        "positions": [
+          4,
+          5
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 11,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          -2,
+          -2
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 12,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          2,
+          2
+        ],
+        "positions": [
+          4,
+          5
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 13,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          -2,
+          -2
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      }
+    ],
+    "stop": "tick limit"
+  },
+  {
+    "name": "one pad missing",
+    "powered": true,
+    "missing_pads": [
+      7
+    ],
+    "start": [
+      2,
+      5
+    ],
+    "frames": [
+      {
+        "tick": 1,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          1,
+          -1
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": true,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 2,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          2,
+          2
+        ],
+        "positions": [
+          4,
+          5
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 3,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          2,
+          2
+        ],
+        "positions": [
+          5,
+          6
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 4,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          2,
+          2
+        ],
+        "positions": [
+          6,
+          7
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 5,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          2,
+          1
+        ],
+        "positions": [
+          7,
+          8
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 6,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          1,
+          1
+        ],
+        "positions": [
+          8,
+          9
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 7,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          1,
+          2
+        ],
+        "positions": [
+          9,
+          10
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": true,
+        "home": false
+      },
+      {
+        "tick": 8,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          -2,
+          -2
+        ],
+        "positions": [
+          8,
+          9
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": true,
+        "home": false
+      },
+      {
+        "tick": 9,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          -1,
+          -2
+        ],
+        "positions": [
+          7,
+          8
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": true,
+        "home": false
+      },
+      {
+        "tick": 10,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          -1,
+          -1
+        ],
+        "positions": [
+          6,
+          7
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": true,
+        "home": false
+      },
+      {
+        "tick": 11,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          -2,
+          -1
+        ],
+        "positions": [
+          5,
+          6
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": true,
+        "home": false
+      },
+      {
+        "tick": 12,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          -2,
+          -2
+        ],
+        "positions": [
+          4,
+          5
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": true,
+        "home": false
+      },
+      {
+        "tick": 13,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          -2,
+          -2
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": true,
+        "home": true
+      }
+    ],
+    "stop": "home"
+  },
+  {
+    "name": "three pads missing",
+    "powered": true,
+    "missing_pads": [
+      6,
+      7,
+      8
+    ],
+    "start": [
+      2,
+      5
+    ],
+    "frames": [
+      {
+        "tick": 1,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          1,
+          -1
+        ],
+        "positions": [
+          3,
+          4
+        ],
+        "bonded": true,
+        "new_bond": true,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 2,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          2,
+          2
+        ],
+        "positions": [
+          4,
+          5
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 3,
+        "charges": [
+          1,
+          -1
+        ],
+        "forces": [
+          2,
+          2
+        ],
+        "positions": [
+          5,
+          6
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 4,
+        "charges": [
+          -1,
+          1
+        ],
+        "forces": [
+          2,
+          1
+        ],
+        "positions": [
+          6,
+          7
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 5,
+        "charges": [
+          1,
+          0
+        ],
+        "forces": [
+          1,
+          0
+        ],
+        "positions": [
+          7,
+          8
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 6,
+        "charges": [
+          0,
+          0
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          7,
+          8
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 7,
+        "charges": [
+          0,
+          0
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          7,
+          8
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 8,
+        "charges": [
+          0,
+          0
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          7,
+          8
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 9,
+        "charges": [
+          0,
+          0
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          7,
+          8
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 10,
+        "charges": [
+          0,
+          0
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          7,
+          8
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 11,
+        "charges": [
+          0,
+          0
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          7,
+          8
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 12,
+        "charges": [
+          0,
+          0
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          7,
+          8
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 13,
+        "charges": [
+          0,
+          0
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          7,
+          8
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 14,
+        "charges": [
+          0,
+          0
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          7,
+          8
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 15,
+        "charges": [
+          0,
+          0
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          7,
+          8
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      },
+      {
+        "tick": 16,
+        "charges": [
+          0,
+          0
+        ],
+        "forces": [
+          0,
+          0
+        ],
+        "positions": [
+          7,
+          8
+        ],
+        "bonded": true,
+        "new_bond": false,
+        "gold": false,
+        "home": false
+      }
+    ],
+    "stop": "tick limit"
+  }
+]

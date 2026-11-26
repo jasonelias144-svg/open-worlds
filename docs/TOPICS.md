@@ -18,6 +18,8 @@ kept current with the course, as COLLABORATING.md is (AGENTS.md).
 
 The [scenario course](../experiments/SCENARIO-COURSE.md) pairs these ideas with starting conditions, comparisons and observable outcomes. Its ledger links to trials as they run.
 
+[S37](../experiments/009-charge-walk/RESULTS.md) tests whether choosing electric charges can move a bonded pair. S38 asks what would happen if the surrounding charges could move too.
+
 ## For every topic
 
 - **Say which topic, and which course step,** by the course's numbers.
