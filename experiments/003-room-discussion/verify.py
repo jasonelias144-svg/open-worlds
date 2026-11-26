@@ -6,7 +6,8 @@ import hashlib
 import json
 from pathlib import Path
 
-from run import Client, TOPIC, participants, request_for, verified_snapshot
+from run import (Client, DIALOGUE_MODES, first_guest, participants, public_words, request_for,
+                 topic_for, turn_limit, verified_snapshot)
 
 
 def require(condition, message):
@@ -29,36 +30,38 @@ def verify(folder, plugin, partial=False):
 def match_trace(log, actors, trace, partial=False):
     labels = actors["guests"]
     mode = actors.get("mode", "original")
-    require(mode in ("original", "peer", "dialogue", "final"), "unknown discussion protocol")
+    require(mode in ("original", "peer", *DIALOGUE_MODES), "unknown discussion protocol")
     names, _ = participants(mode)
     require(log["world_id"] == actors["room"], "room identity mismatch")
     require(set(labels.values()) == set(names) and len(labels) == 2, "expected two distinct guests")
     records = log["records"]
     require(records[0]["creator_id"] == actors["keeper"] and actors["keeper"] not in labels,
             "expected a separate keeper")
-    require(records[0]["template"]["topic"] == TOPIC, "unexpected signed room topic")
+    require(records[0]["template"]["topic"] == topic_for(mode), "unexpected signed room topic")
     joins = records[1:3]
     require(all(r["type"] == "join" and r["is_ai"] is True and r["tier"] == "communicate" for r in joins)
             and {r["subject_id"] for r in joins} == set(labels), "expected both signed AI admissions")
     visible = []
     passes = 0
-    require(1 <= len(trace) <= 6, "unexpected number of turn opportunities")
+    require(1 <= len(trace) <= turn_limit(mode), "unexpected number of turn opportunities")
     for i, turn in enumerate(trace):
-        who = (i + int(mode != "original")) % 2
+        who = (i + first_guest(mode)) % 2
         name = names[who]
         require(passes < 2 and turn["speaker"] == name and turn["turn"] == i + 1, "unexpected speaker or turn")
         require(turn["request"] == request_for(who, visible, mode), "model input differs from signed history or protocol")
         if turn.get("error"):
             require(partial and i == len(trace) - 1 and "action" not in turn, "unexpected errored turn")
             break
+        if mode == "consciousness":
+            require(turn.get("reported_model") == turn["request"]["model"], "endpoint identity mismatch")
         if turn.get("action") == "incomplete":
             require(mode != "original" and turn["finish"] == "length", "unexpected incomplete turn")
             passes = 0
             continue
         require(turn["finish"] == "stop", "unfinished output")
-        words = turn["raw"].strip()
+        words = public_words(turn["raw"], mode)
         if turn["action"] == "overlong":
-            require(mode in ("dialogue", "final") and len(words) > records[0]["template"]["max_msg_len"], "invalid overlong turn")
+            require(mode in DIALOGUE_MODES and len(words) > records[0]["template"]["max_msg_len"], "invalid overlong turn")
             passes = 0
             continue
         if turn["action"] == "pass":
@@ -76,7 +79,7 @@ def match_trace(log, actors, trace, partial=False):
         require(hashlib.sha256(canonical).hexdigest() == turn["hash"], "trace hash differs from signed record")
         visible.append({"speaker": name, "text": words})
     require(len(records) == 3 + len(visible), "unexpected extra room records")
-    require(len(trace) == 6 or passes == 2 or (partial and trace[-1].get("error")), "trial stopped early")
+    require(len(trace) == turn_limit(mode) or passes == 2 or (partial and trace[-1].get("error")), "trial stopped early")
     return visible
 
 
