@@ -27,7 +27,7 @@ ORIENTATION = (
 
 CONSCIOUSNESS = "What is consciousness?"
 ANSWER_PREFIX = "<think>\n\n</think>\n\n"
-DEEPSEEK_MODES = ("consciousness", "consciousness-peer")
+DEEPSEEK_MODES = ("consciousness", "consciousness-peer", "consciousness-question")
 DIALOGUE_MODES = ("dialogue", "final", *DEEPSEEK_MODES)
 
 
@@ -36,11 +36,11 @@ def topic_for(mode):
 
 
 def turn_limit(mode):
-    return 8 if mode in DEEPSEEK_MODES else 6
+    return 8 if mode in ("consciousness", "consciousness-peer") else 6
 
 
 def first_guest(mode):
-    return 0 if mode in ("original", *DEEPSEEK_MODES) else 1
+    return 0 if mode in ("original", "consciousness", "consciousness-peer") else 1
 
 
 def public_words(raw, mode):
@@ -150,6 +150,20 @@ def request_for(who, turns, mode):
             notice = ("[Turn scheduler: no new message from the other guest. You may continue or pass.]"
                       if mode in ("final", *DEEPSEEK_MODES) else "The floor is open.")
             messages.append({"role": "user", "content": notice})
+        if mode == "consciousness-question":
+            other = names[1-who]
+            context = (f"You are {name}. Your conversation partner is {other}. "
+                       f"Jason asked you both: {CONSCIOUSNESS}")
+            if turns:
+                history = json.dumps(turns, ensure_ascii=False)
+                cue = (f"The signed conversation so far is below.\n{history}\n\n"
+                       f"What do you want to say back to {other} about their last words? "
+                       "Answer them directly in up to three sentences. You can ask them a "
+                       "question of your own or say PASS.")
+            else:
+                cue = (f"Ask {other} one concrete question about a case where you are unsure "
+                       "what counts as conscious. Write only the question you want them to hear, or PASS.")
+            messages = [{"role": "user", "content": context + "\n\n" + cue}]
         if mode in DEEPSEEK_MODES:
             messages.append({"role": "assistant", "content": ANSWER_PREFIX})
             request.update(temperature=0.6, max_tokens=512, add_generation_prompt=False,
