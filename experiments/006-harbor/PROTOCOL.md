@@ -44,3 +44,14 @@ Qwen’s first question adopted the pier guest’s claim that a bell could be re
 python3 "$trial/harbor.py" fact-check "$scratch/harbor-fact-check" --plugin "$writer"
 python3 "$trial/harbor.py" verify "$trial/fact-check" --plugin "$reader"
 ```
+
+The local server sometimes returned an unmatched reasoning delimiter inside its nominal public text field. The original driver already withheld those guest outputs. Before publication, their unsent text was replaced with a byte count, a SHA-256 digest and an omission marker. Later capture applies that same protection immediately. The signed conversations are unchanged and no guest received an omitted draft.
+
+## A writing conversation at the listening table
+
+The first harbor room tied the question and the replies to an impossible clock reading. For a separate qualitative trial, keep the two DeepSeek guests and Qwen moderator. Give them a physical piece of writing to change. The two harbor recordists are making the invitation for a listening table. The pier guest wants to listen quietly without seeming rude. The market guest wants a way to leave a sound for the next listener, and knows about the cards and pencil. The guests have six opportunities to offer or revise the sign. The moderator may ask after guest turns two and four or a repeated nonfinal answer. They may pass if the guests agree. The first guest therefore gets a direct response to their initial proposal before moderator involvement. Evaluate whether the partner actually changes wording or gives a reason that changes what the sign asks visitors to do. A shared phrase carried through an edit is meaningful only if its change alters the invitation. Assess the twelve-word constraint separately. This different task provides an example of creative exchange, outside the matched timing comparison.
+
+```sh
+python3 "$trial/harbor.py" sign "$scratch/harbor-sign" --plugin "$writer"
+python3 "$trial/harbor.py" verify "$trial/sign" --plugin "$reader"
+```

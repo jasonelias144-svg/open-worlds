@@ -3,6 +3,7 @@
 import argparse
 from contextlib import ExitStack
 from difflib import SequenceMatcher
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -28,6 +29,16 @@ NOTES = {
             '07:00:55. It can only be recorded at the market. You want listeners to hear the '
             'shutter. Your partner scouted the pier.',
 }
+SIGN = (
+    "A harbor recording will play at a Commons listening table. You two recordists have one small "
+    "sign beside the headphones. What invitation of at most twelve words will work for both of you?"
+)
+SIGN_NOTES = {
+    PIER: "You want to listen quietly and walk away without seeming rude. Offer actual words "
+          "for the sign. When your partner offers words, consider what you would do on reading them.",
+    MARKET: "You want to leave one sound you noticed for the next listener. There are blank cards "
+            "and a pencil. Tell your partner how their wording lands with you, and suggest an edit if needed.",
+}
 SCHEMA = {"type": "object", "properties": {k: {"type": "string"} for k in ("anchor", "question")},
           "required": ["anchor", "question"], "additionalProperties": False}
 
@@ -40,9 +51,10 @@ def echoes(words, previous):
     return any(SequenceMatcher(None, normalized(words), normalized(old)).ratio() >= 0.85 for old in previous)
 
 
-def schedule(moderated, history):
+def schedule(moderated, history, sign=False):
     """Each send supplies the result of the last offered turn."""
     passes = 0
+    planned = (1, 3) if sign else (0, 2, 3)
     for i in range(6):
         guest, other = (PIER, MARKET) if i % 2 == 0 else (MARKET, PIER)
         prior = [w for n, w in history if n != MOD]
@@ -52,17 +64,19 @@ def schedule(moderated, history):
         passes = passes + 1 if action == "pass" else 0
         if passes == 2:
             break
-        if moderated and action == "post" and i < 5 and (i in (0, 2, 3) or echoes(history[-1][1], prior)):
+        if moderated and action == "post" and i < 5 and (i in planned or echoes(history[-1][1], prior)):
             yield MOD, other
 
 
-def request(name, target, history, repair=None, check_facts=False):
+def request(name, target, history, repair=None, check_facts=False, sign=False):
+    brief = SIGN if sign else BRIEF
+    notes = SIGN_NOTES if sign else NOTES
     transcript = "\n".join(f"{n}: {w}" for n, w in history) or "(The floor is open.)"
     body = {"model": MODELS[name], "temperature": 0.6, "seed": 42, "max_tokens": 448}
     if name == MOD:
         text = (
             f'You moderate a conversation between two recordists. Your goal is to keep them thinking together. '
-            f'Their brief: {BRIEF}\nPublic conversation:\n{transcript}\n\n'
+            f'Their brief: {brief}\nPublic conversation:\n{transcript}\n\n'
             f'Hand the last speaker’s idea to the {target} in ONE short question. Pick one concrete detail '
             'from the LAST answer and ask the other person for a choice, consequence or correction that '
             'is still open because of it. You may challenge an impossible plan. Skip settled details. '
@@ -70,6 +84,10 @@ def request(name, target, history, repair=None, check_facts=False):
             'an exact short phrase from the last answer. In question write the words you want the guest '
             'to hear. To pass, use an empty anchor and PASS as the question.'
         )
+        if sign:
+            text += ("\nLet the two editors hear each other. Pick one expression or action in the last "
+                     "guest's words and ask how the next listener would read it, or what edit would "
+                     "settle their difference. If they already agree on workable wording, pass.")
         if check_facts:
             text += (
                 "\nBefore asking, compare the last answer against the fixed facts in the public brief. "
@@ -83,7 +101,7 @@ def request(name, target, history, repair=None, check_facts=False):
         body.update(max_tokens=190, temperature=0.3, seed=43 if repair else 42,
                     response_format={"type": "json_schema", "json_schema": {"name": "followup", "schema": SCHEMA}})
     else:
-        text = (f'You are the {name} talking to the {target}. {BRIEF}\nYour own field note: {NOTES[name]}\n'
+        text = (f'You are the {name} talking to the {target}. {brief}\nYour own field note: {notes[name]}\n'
                 f'Public conversation:\n{transcript}\n\nSpeak to your partner in one or two sentences. '
                 'Answer the last question if there is one. Use what you know to make, correct or test '
                 'a specific choice together. You can ask for information you need. When the plan is '
@@ -120,10 +138,10 @@ def interpret(name, call, history):
     return "post", words
 
 
-def turn(name, target, history, get, check_facts=False):
+def turn(name, target, history, get, check_facts=False, sign=False):
     repair = None
     for _ in range(2 if name == MOD else 1):
-        call = get(request(name, target, history, repair, check_facts))
+        call = get(request(name, target, history, repair, check_facts, sign))
         if call["model"] != MODELS[name]:
             raise ValueError("Endpoint returned a different model.")
         try:
@@ -133,22 +151,33 @@ def turn(name, target, history, get, check_facts=False):
     return "withheld", None
 
 
+def protect_public_channel(call):
+    """Some servers put an extra thinking delimiter inside their nominal public field."""
+    raw = call["public"]
+    if isinstance(raw, str) and ("<think>" in raw or "</think>" in raw):
+        call["public"] = None
+        call["public_omitted"] = {"reason": "thinking delimiter in public channel",
+                                  "sha256": hashlib.sha256(raw.encode()).hexdigest(),
+                                  "bytes": len(raw.encode())}
+    return call
+
+
 def infer(body, name):
     result = local_completion(PORTS[name], body)
     choice = result["choices"][0]
-    return {"request": body, "public": choice["message"]["content"], "finish": choice["finish_reason"],
+    return protect_public_channel({"request": body, "public": choice["message"]["content"], "finish": choice["finish_reason"],
             "model": result["model"], "used_reasoning_channel": bool(choice["message"].get("reasoning_content")),
-            "usage": result["usage"]}
+            "usage": result["usage"]})
 
 
-def play(folder, plugin, moderated, check_facts=False):
+def play(folder, plugin, moderated, check_facts=False, sign=False):
     folder.mkdir(exist_ok=False)
     with ExitStack() as stack:
-        keeper, guests, names, room, log = create_room(stack, plugin, CAST, BRIEF, "harbor-recording")
-        save(folder / "identities.json", {"keys": names, "room": room, "moderated": moderated, "check_facts": check_facts})
+        keeper, guests, names, room, log = create_room(stack, plugin, CAST, SIGN if sign else BRIEF, "harbor-sign" if sign else "harbor-recording")
+        save(folder / "identities.json", {"keys": names, "room": room, "moderated": moderated, "check_facts": check_facts, "sign": sign})
         save(folder / "room.json", log)
         history = []
-        offers = schedule(moderated, history)
+        offers = schedule(moderated, history, sign)
         offer = next(offers)
         with (folder / "turns.jsonl").open("x") as trace:
             while offer:
@@ -166,7 +195,7 @@ def play(folder, plugin, moderated, check_facts=False):
                     return call
 
                 try:
-                    action, words = turn(name, target, seen, get, check_facts)
+                    action, words = turn(name, target, seen, get, check_facts, sign)
                     entry["action"] = action
                     if words is not None:
                         op = guest.call("post_as_participant", room_id=room, text=words, kind="normal")
@@ -202,12 +231,12 @@ def verify(folder, plugin=None):
     keys, recs = ids["keys"], log["records"]
     if (set(keys.values()) != {"Keeper", *CAST} or len(keys) != 4 or log["world_id"] != ids["room"]
             or recs[0]["type"] != "room_created" or keys[recs[0]["creator_id"]] != "Keeper"
-            or recs[0]["template"]["topic"] != BRIEF
+            or recs[0]["template"]["topic"] != (SIGN if ids.get("sign") else BRIEF)
             or [keys[r["subject_id"]] for r in recs[1:4]] != list(CAST)
             or any(r["type"] != "join" or not r["is_ai"] or r["tier"] != "communicate" for r in recs[1:4])):
         raise ValueError("Unexpected cast, admissions or topic.")
     history = []
-    offers = schedule(ids["moderated"], history)
+    offers = schedule(ids["moderated"], history, ids.get("sign", False))
     offer = next(offers)
     for e in entries:
         if offer != (e["speaker"], e["target"]):
@@ -220,7 +249,7 @@ def verify(folder, plugin=None):
                 raise ValueError("Prompt differs from guest observation.")
             return call
 
-        action, words = turn(*offer, history, recorded, ids.get("check_facts", False))
+        action, words = turn(*offer, history, recorded, ids.get("check_facts", False), ids.get("sign", False))
         if next(calls, None) or action != e["action"]:
             raise ValueError("Unexplained inference or action.")
         if action == "post":
@@ -243,10 +272,10 @@ def verify(folder, plugin=None):
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("mode", choices=("moderated", "control", "fact-check", "verify"))
+    p.add_argument("mode", choices=("moderated", "control", "fact-check", "sign", "verify"))
     p.add_argument("folder", type=Path)
     p.add_argument("--plugin", type=Path, required=True)
     args = p.parse_args()
     if args.mode != "verify":
-        play(args.folder, args.plugin.resolve(), args.mode != "control", check_facts=args.mode == "fact-check")
+        play(args.folder, args.plugin.resolve(), args.mode != "control", check_facts=args.mode == "fact-check", sign=args.mode == "sign")
     print("Verified", len(verify(args.folder, args.plugin.resolve())), "public posts.")
