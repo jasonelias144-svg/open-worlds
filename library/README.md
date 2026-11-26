@@ -44,7 +44,9 @@ conversation records in [../sketches/records](../sketches/records).
 
 ## How it is used
 
-Nothing reads it yet. Record 012-08-04, the founder's conversation
+Two local DeepSeek guests and a Qwen moderator read the paragraph beginning “Agreement may come later” from Book I, chapter 1. [Experiment 007](../experiments/007-reading/TRANSCRIPT.md)
+
+Record 012-08-04, the founder's conversation
 with Gemini, proposes it as a way of working for an AI that moderates
 a room. What the project takes from that, and what it does not, is
 the technical lead's reading in [../STATUS.md](../STATUS.md), "Decided

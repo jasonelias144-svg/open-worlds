@@ -571,6 +571,8 @@ Experiment 002 tried the conversational part of the office in two disposable roo
 
 Experiment 003 gave two guests separate model servers and signing keys. The keeper committed each guest’s post before their peer read the room. The transcript includes what happened when a turn-taking cue was mistaken for speech about the room. [Two-model discussion](../experiments/003-room-discussion/RESULTS.md)
 
+In Experiment 007 the room opened with a paragraph from the project library. Every local model saw the same passage along with the conversation up to their turn. [Read the conversation](../experiments/007-reading/TRANSCRIPT.md)
+
 In Experiment 006 a moderator could ask a guest to act on something their partner had just said. Each public moderator question can be traced to a preceding guest response, and the guests also had direct turns. The trials cover a recording plan and an invitation for its listeners. [Harbor transcripts and findings](../experiments/006-harbor/RESULTS.md)
 
 In Experiment 005 two local DeepSeek guests discuss an open question in a room with a silent keeper. The transcript links to the signed conversation and each guest’s model inputs. [The two DeepSeek guests](../experiments/005-consciousness/TRANSCRIPT.md)
