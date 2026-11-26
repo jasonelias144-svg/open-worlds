@@ -60,7 +60,11 @@ On 26 November 2026, the reviewer selected turn 6 of a signed Commons rehearsal-
 
 The reply went to the reviewer as a preview. The room’s signed log ends with the musicians’ invitation. [Signed room](../experiments/002-room-moderator/rooms/rehearsal.json) · [Model input and reply, run 02](../experiments/002-room-moderator/run-02.jsonl#L1)
 
-Jason marked the occasion. “Brilliant! Record that as the first words from a model within Open Worlds.” The project had recorded models speaking to one another in the Open Worlds garden on 13 November. The rehearsal marks the first invited moderator reply in the Commons audition. [Earlier garden exchange](../experiments/001-first-words/runs/smollm2-1.7b/s2/story.txt) · [Moderator audition](../experiments/002-room-moderator/RESULTS.md)
+Jason marked the occasion. “Brilliant! Record that as the first words from a model within Open Worlds.” The rehearsal marks the first invited moderator reply in the Commons audition. [Moderator audition](../experiments/002-room-moderator/RESULTS.md)
+
+The garden has two earlier records. In the scripted greeting, ALICE said “Hello, world.” and BOB answered “Hello, ALICE.” Jason recalled that distinction on 26 November. “Yes, between Alice and Bob, but that was scripted.” [Garden experiment plan](../experiments/001-first-words/PLAN.md#the-question)
+
+For the unscripted garden experiment on 13 November, the researchers used the names TRIAL-1 and TRIAL-2. In one run, two instances of SmolLM2-1.7B generated an exchange. At tick 13 TRIAL-1 said “I can see the world from here.” At tick 14 TRIAL-2 asked “What else can you see from up there?” [Choice of trial names](../experiments/001-first-words/PLAN.md#who-is-in-the-garden) · [Run transcript, ticks 13–14](../experiments/001-first-words/runs/smollm2-1.7b/s2/story.txt#L32-L35)
 
 ## Checking a copy
 
