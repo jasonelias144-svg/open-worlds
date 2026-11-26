@@ -14,3 +14,9 @@ Use two purpose-built, on-the-record trial rooms, each with a human and an AI pr
 The chat-world sketch's stdin protocol is the integration point. The driver runs it as a separate process. The existing DeepSeek brainstorming pilot supplies the same local llama.cpp model service. The code keeps this preview separate from chat transcripts so an old private exchange cannot enter a room.
 
 Design sources: [Commons room law and the role of ADMIN](../../docs/COMMONS.md), [the room sketch and its checks](../../sketches/INDEX.md), and [the model publisher](https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B).
+
+## Amendment 1, 26 November 2026, before the second run
+
+The autonomous first run missed both predictions. The rehearsal answer was a statement and failed validation. In the garden the model asked a question after the participants requested the floor. The initial run, its code and the two signed fixtures are recorded before this amendment's test.
+
+Try an explicitly invited preview. The experimenter selects the room and the sequence number of its latest visible speech. With no invitation, a different room or a stale number, return wait locally. This is a reviewer input for this trial. Any future in-room control will need the room's own authorization. When invited, the model receives the current visible exchange and writes one plain question or WAIT. The adapter binds the reply to the selected turn and applies the same single-question check. Keep the autonomous baseline reproducible. Run the same two fixtures once with rehearsal turn 6 selected, optionally followed by one correction if the proposed question is malformed. Record all attempts. I predict silence in the garden by construction. The open question is whether the model contributes something specific to the musicians.
