@@ -27,23 +27,24 @@ ORIENTATION = (
 
 CONSCIOUSNESS = "What is consciousness?"
 ANSWER_PREFIX = "<think>\n\n</think>\n\n"
-DIALOGUE_MODES = ("dialogue", "final", "consciousness")
+DEEPSEEK_MODES = ("consciousness", "consciousness-peer")
+DIALOGUE_MODES = ("dialogue", "final", *DEEPSEEK_MODES)
 
 
 def topic_for(mode):
-    return CONSCIOUSNESS if mode == "consciousness" else TOPIC
+    return CONSCIOUSNESS if mode in DEEPSEEK_MODES else TOPIC
 
 
 def turn_limit(mode):
-    return 8 if mode == "consciousness" else 6
+    return 8 if mode in DEEPSEEK_MODES else 6
 
 
 def first_guest(mode):
-    return 0 if mode in ("original", "consciousness") else 1
+    return 0 if mode in ("original", *DEEPSEEK_MODES) else 1
 
 
 def public_words(raw, mode):
-    if mode == "consciousness":
+    if mode in DEEPSEEK_MODES:
         raw = raw.removeprefix(ANSWER_PREFIX)
         if "<think>" in raw or "</think>" in raw:
             raise ValueError("unexpected thinking delimiter in public reply")
@@ -51,7 +52,7 @@ def public_words(raw, mode):
 
 
 def participants(mode):
-    if mode == "consciousness":
+    if mode in DEEPSEEK_MODES:
         return ("DeepSeek 1.5B", "DeepSeek 7B"), ("deepseek-local", "deepseek-seven")
     if mode == "final":
         return (GUESTS[0], "Qwen"), (ALIASES[0], "qwen-local")
@@ -132,7 +133,12 @@ def request_for(who, turns, mode):
                      f"You are {name}, chatting with {names[1-who]} in a text-only Commons room. "
                      f"The topic is: {topic_for(mode)} Use your own words and address your peer directly. "
                      "Keep your turn brief. You may say PASS to yield."}]
-        if mode == "consciousness" or not turns or turns[0]["speaker"] == name:
+        if mode == "consciousness-peer":
+            messages[0]["content"] += (
+                " In your opening reply, give a tentative answer and put one question of your own to your peer."
+                " Once your peer has spoken, respond to one specific thing they said."
+                " If that raises a further question for you, ask them.")
+        if mode in DEEPSEEK_MODES or not turns or turns[0]["speaker"] == name:
             messages.append({"role": "user", "content": topic_for(mode)})
         for turn in turns:
             role = "assistant" if turn["speaker"] == name else "user"
@@ -142,9 +148,9 @@ def request_for(who, turns, mode):
                 messages.append({"role": role, "content": turn["text"]})
         if messages[-1]["role"] == "assistant":
             notice = ("[Turn scheduler: no new message from the other guest. You may continue or pass.]"
-                      if mode in ("final", "consciousness") else "The floor is open.")
+                      if mode in ("final", *DEEPSEEK_MODES) else "The floor is open.")
             messages.append({"role": "user", "content": notice})
-        if mode == "consciousness":
+        if mode in DEEPSEEK_MODES:
             messages.append({"role": "assistant", "content": ANSWER_PREFIX})
             request.update(temperature=0.6, max_tokens=512, add_generation_prompt=False,
                            continue_final_message=True)
@@ -195,7 +201,7 @@ def discussion(plugin, ports, dest, mode):
                     choice = response["choices"][0]
                     raw = choice["message"]["content"]
                     entry.update(raw=raw, usage=response.get("usage"), finish=choice["finish_reason"])
-                    if mode == "consciousness":
+                    if mode in DEEPSEEK_MODES:
                         entry["reported_model"] = response["model"]
                         if entry["reported_model"] != request["model"]:
                             raise ValueError("unexpected model endpoint")
@@ -256,6 +262,6 @@ if __name__ == "__main__":
     args = p.parse_args()
     args.output.mkdir(exist_ok=False)
     peer_port = args.qwen_port if args.mode == "final" else args.smol_port
-    if args.mode == "consciousness":
+    if args.mode in DEEPSEEK_MODES:
         peer_port = args.deepseek_seven_port
     discussion(args.plugin.resolve(), (args.deepseek_port, peer_port), args.output, args.mode)

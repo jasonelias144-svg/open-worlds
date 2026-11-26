@@ -6,7 +6,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from run import (Client, DIALOGUE_MODES, first_guest, participants, public_words, request_for,
+from run import (Client, DEEPSEEK_MODES, DIALOGUE_MODES, first_guest, participants, public_words, request_for,
                  topic_for, turn_limit, verified_snapshot)
 
 
@@ -52,7 +52,7 @@ def match_trace(log, actors, trace, partial=False):
         if turn.get("error"):
             require(partial and i == len(trace) - 1 and "action" not in turn, "unexpected errored turn")
             break
-        if mode == "consciousness":
+        if mode in DEEPSEEK_MODES:
             require(turn.get("reported_model") == turn["request"]["model"], "endpoint identity mismatch")
         if turn.get("action") == "incomplete":
             require(mode != "original" and turn["finish"] == "length", "unexpected incomplete turn")
