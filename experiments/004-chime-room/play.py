@@ -7,7 +7,7 @@ from pathlib import Path
 import sys
 import time
 
-from puzzle import MODELS, TOPIC, Puzzle, commitment, decode, opening, render, request_for
+from puzzle import MODELS, TOPIC, Puzzle, commitment, console_request, opening, parse_response, render, request_for
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "003-room-discussion"))
 from run import Client, commit_one, local_completion, save, verified_snapshot
@@ -23,10 +23,10 @@ def public_history(view, room, names):
 def play(plugin, dest, secret, ports):
     number = secret["trial"]
     digest = commitment(number, secret["target"], secret["salt"])
-    if digest != secret["commitment"] or number not in (1, 2):
+    if digest != secret["commitment"] or number not in (1, 2, 3):
         raise ValueError("bad trial commitment or number")
     board = Puzzle(secret["target"])
-    order = list(MODELS) if number == 1 else list(reversed(MODELS))
+    order = list(MODELS) if number % 2 else list(reversed(MODELS))
     with ExitStack() as stack:
         keeper = Client(stack, plugin, "puzzle keeper")
         guests = {name: Client(stack, plugin, name) for name in order}
@@ -64,7 +64,8 @@ def play(plugin, dest, secret, ports):
                 guest = guests[name]
                 guest.call("join_external_room", log_json=log)
                 history = public_history(guest.call("read_room", room_id=room), room, names)
-                request = request_for(name, history, board.phase)
+                request = (console_request(name, history, board) if number == 3
+                           else request_for(name, history, board.phase))
                 turn = {"turn": index, "speaker": name, "phase": board.phase, "request": request}
                 move = None
                 started = time.monotonic()
@@ -75,7 +76,7 @@ def play(plugin, dest, secret, ports):
                     try:
                         if turn["finish"] != "stop" or not isinstance(turn["raw"], str):
                             raise ValueError("incomplete model response")
-                        move = decode(turn["raw"], board.phase)
+                        move = parse_response(turn["raw"], board.phase, number == 3)
                     except ValueError as exc:
                         turn["invalid"] = str(exc)
                     if move and move["move"] != "PASS":
@@ -106,7 +107,7 @@ if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--plugin", required=True, type=Path)
     p.add_argument("--secrets", required=True, type=Path, help="local JSON list of blinded trial assignments")
-    p.add_argument("--trial", required=True, choices=[1, 2], type=int)
+    p.add_argument("--trial", required=True, choices=[1, 2, 3], type=int)
     p.add_argument("--output", required=True, type=Path)
     p.add_argument("--qwen-port", default=18193, type=int)
     p.add_argument("--deepseek-port", default=18191, type=int)

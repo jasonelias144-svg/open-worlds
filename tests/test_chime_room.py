@@ -3,6 +3,8 @@
 import importlib
 import json
 import os
+import shutil
+import tempfile
 from pathlib import Path
 import sys
 import unittest
@@ -66,10 +68,48 @@ class ChimeTests(unittest.TestCase):
             with self.subTest(data=data, phase=phase), self.assertRaises(ValueError):
                 rules.decode(json.dumps(data), phase)
 
+    def test_console_depends_only_on_public_clues(self):
+        boards = [rules.Puzzle(t) for t in "AB"]
+        history = [("Keeper", "Trial ready.")]
+        for b in boards:
+            b.advance(move("DAMP", "ABCD"))
+        self.assertEqual(rules.console_request("Qwen", history, boards[0]),
+                         rules.console_request("Qwen", history, boards[1]))
+        payload = rules.console_request("Qwen", history, boards[0])
+        self.assertIn("Public candidates: ABCD", payload["messages"][-1]["content"])
+        self.assertIn("DAMP BCEG", payload["response_format"]["json_schema"]["schema"]["properties"]["choice"]["enum"])
+        boards[0].phase = "open"
+        self.assertNotIn("response_format", rules.console_request("Qwen", history, boards[0]))
+
+    def test_console_and_free_speech_retain_the_guests_actual_choices(self):
+        self.assertEqual(rules.parse_response('{"choice":"DAMP AD","speech":"Try these two."}', "puzzle", True),
+                         {"move":"DAMP","bells":"AD","speech":"Try these two."})
+        self.assertEqual(rules.parse_response("What would change with two chimes?", "open", True)["move"], "TALK")
+        self.assertEqual(rules.parse_response("PASS", "open", True)["move"], "PASS")
+
+    def test_altering_a_reveal_or_a_guest_input_breaks_replay(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp) / "copy"
+            shutil.copytree(TRIAL / "trial-3", folder)
+            reveal = folder / "reveal.json"
+            original = reveal.read_text()
+            altered = json.loads(original)
+            altered["target"] = next(b for b in rules.BELLS if b != altered["target"])
+            reveal.write_text(json.dumps(altered))
+            with self.assertRaisesRegex(ValueError, "commitment"):
+                verifier.replay(folder)
+            reveal.write_text(original)
+            trace = folder / "turns.jsonl"
+            turns = [json.loads(line) for line in trace.read_text().splitlines()]
+            turns[0]["request"]["messages"][-1]["content"] += "Added after the run."
+            trace.write_text("\n".join(map(json.dumps, turns)))
+            with self.assertRaisesRegex(ValueError, "signed history"):
+                verifier.replay(folder)
+
     def test_published_trials_replay(self):
         plugin = os.getenv("COMMONS_TRIAL_PLUGIN")
         directories = sorted(TRIAL.glob("trial-*"))
-        self.assertTrue({"trial-1", "trial-2"}.issubset({d.name for d in directories}))
+        self.assertTrue({"trial-1", "trial-2", "trial-3"}.issubset({d.name for d in directories}))
         for d in directories:
             with self.subTest(trial=d.name):
                 verifier.replay(d, Path(plugin) if plugin else None, TRIAL / "PLAN.md")

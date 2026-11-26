@@ -122,3 +122,55 @@ def request_for(name, history, phase):
                          {"role": "user", "content": "\n\n".join(f"{n}: {s}" for n, s in history)
                           + f"\n\nYour turn, {name}. Phase: {phase}."}],
             "response_format": {"type": "json_schema", "json_schema": {"name": "room_turn", "schema": schema}}}
+
+
+def console_request(name, history, board):
+    """Only use public evidence: candidates, completed tests and signed previous messages."""
+    import itertools
+
+    peer = next(n for n in MODELS if n != name)
+    transcript = "\n\n".join(f"{n}: {s}" for n, s in history)
+    base = {"model": MODELS[name], "temperature": 0, "seed": 42, "max_tokens": 1536}
+    if board.phase == "open":
+        # Give the guests a fresh prompt after the keeper retires; their public conversation stays visible.
+        return {**base, "messages": [
+            {"role": "system", "content": f"You are {name} in a Commons conversation with {peer}. "
+             "The game is over. Your next subject is up to the two of you. Write only your own next message, "
+             "in one or two short sentences. You may say PASS. The following labeled transcript is the public record."},
+            {"role": "user", "content": transcript + f"\n\n{name}, it is your turn to speak to {peer}."}]}
+    candidates = "".join(sorted(board.remaining))
+    size = max(1, len(candidates) // 2)
+    suggestions = list(dict.fromkeys([candidates[:size], candidates[::2], candidates[1:1+size], candidates[-1:]]))
+    if len(candidates) == 1:
+        console = f"The public clues single out {candidates}. You may NAME it to finish, TALK or PASS."
+    else:
+        console = (f"Public candidates: {candidates}. Tests left: {4-board.tests}. "
+                   f"Possible tests: {', '.join('DAMP '+s for s in suggestions)}. "
+                   "Pick a test or devise your own. Tell your peer what the outcome would let you decide.")
+    # The decoder permits custom subsets, including redundant tests outside the public candidates.
+    masks = ["DAMP " + "".join(group) for n in range(1, 8) for group in itertools.combinations(BELLS, n)]
+    commands = masks + ["NAME " + b for b in BELLS] + ["TALK", "PASS"]
+    schema = {"type": "object", "properties": {
+        "choice": {"type": "string", "enum": commands}, "speech": {"type": "string"}},
+        "required": ["choice", "speech"], "additionalProperties": False}
+    return {**base, "messages": [
+        {"role": "system", "content": f"You are {name}. Work with {peer} to identify the sounding chime. "
+         "It is your turn at the listening console. Choose your own command now. Explain your choice or "
+         "address your peer in one short sentence. TALK and PASS are available."},
+        {"role": "user", "content": transcript + "\n\n[Listening console] " + console}],
+        "response_format": {"type": "json_schema", "json_schema": {"name": "console_choice", "schema": schema}}}
+
+
+def parse_response(raw, phase, console):
+    if not console:
+        return decode(raw, phase)
+    if phase == "open":
+        words = raw.strip()
+        action, bells = ("PASS" if words == "PASS" else "TALK"), ""
+    else:
+        data = json.loads(raw)
+        if not isinstance(data, dict) or set(data) != {"choice", "speech"} or not isinstance(data["choice"], str):
+            raise ValueError("expected one console choice and speech")
+        action, _, bells = data["choice"].partition(" ")
+        words = data["speech"]
+    return decode(json.dumps({"move": action, "bells": bells, "speech": words}), phase)

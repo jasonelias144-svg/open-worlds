@@ -30,4 +30,4 @@ python3 "$trial/play.py" --plugin "$writer" --secrets "$scratch/secret.json" --t
 python3 "$trial/verify.py" "$scratch/new-chime-room" --plugin "$reader"
 ```
 
-A replay checks a recorded conversation. A fresh run starts with new signing keys and model output may differ. Trial 1 gives Qwen the opening turn. Trial 2 gives DeepSeek the opening turn.
+A replay checks a recorded conversation. A fresh run starts with new signing keys and model output may differ. Trial 1 gives Qwen the opening turn. Trial 2 gives DeepSeek the opening turn. Trial 3 uses the visible console and gives Qwen the opening turn. To start a new console run, use 3 for the trial number in the secret, digest string, and command line.

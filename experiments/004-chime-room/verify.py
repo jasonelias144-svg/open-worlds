@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 
 from play import Client, verified_snapshot
-from puzzle import MODELS, TOPIC, Puzzle, commitment, decode, opening, render, request_for
+from puzzle import MODELS, TOPIC, Puzzle, commitment, console_request, parse_response, opening, render, request_for
 
 
 def check(ok, detail):
@@ -25,7 +25,7 @@ def replay(directory, plugin=None, plan=None):
             reader.call("import_room_log", log_json=room)
             check(verified_snapshot(reader, actors["room"]) == room, "signed log mismatch")
     trial = actors["trial"]
-    check(actors["room"] == room["world_id"] and trial == seal["trial"] and trial in (1, 2), "wrong trial")
+    check(actors["room"] == room["world_id"] and trial == seal["trial"] and trial in (1, 2, 3), "wrong trial")
     digest = commitment(trial, seal["target"], seal["salt"])
     check(actors["commitment"] == seal["commitment"] == digest, "answer does not match commitment")
     if plan is not None:
@@ -35,7 +35,7 @@ def replay(directory, plugin=None, plan=None):
     records = room["records"]
     check(records[0]["type"] == "room_created" and records[0]["template"]["topic"] == TOPIC
           and names[records[0]["creator_id"]] == "Keeper", "unexpected room seed")
-    order = list(MODELS) if trial == 1 else list(reversed(MODELS))
+    order = list(MODELS) if trial % 2 else list(reversed(MODELS))
     check(all(r["type"] == "join" and r["tier"] == "communicate" and r["is_ai"] is True for r in records[1:3])
           and [names[r["subject_id"]] for r in records[1:3]] == order, "guest admissions differ")
     board = Puzzle(seal["target"])
@@ -50,15 +50,25 @@ def replay(directory, plugin=None, plan=None):
 
     consume("Keeper", opening(trial, digest))
     steps = []
+    interrupted = False
     for index, t in enumerate(trace):
         name = order[index % 2]
         check(not board.done and t["turn"] == index + 1 and t["speaker"] == name
-              and t["phase"] == board.phase and "error" not in t, "unexpected turn or wrong speaker")
-        check(t["request"] == request_for(name, public, board.phase), "prompt differs from signed history")
+              and t["phase"] == board.phase, "unexpected turn or wrong speaker")
+        expected = console_request(name, public, board) if trial == 3 else request_for(name, public, board.phase)
+        check(t["request"] == expected, "prompt differs from signed history")
+        if "error" in t:
+            check(index == len(trace)-1 and "posted_seq" not in t and t.get("error") == "timed out"
+                  and "raw" not in t, "unexplained failure")
+            interrupted = True
+            steps.append({"turn": index+1, "speaker": name, "phase": board.phase, "move": None,
+                          "before": "".join(sorted(board.remaining)), "after": "".join(sorted(board.remaining)),
+                          "notices": [], "error": t["error"]})
+            break
         try:
             if t["finish"] != "stop" or not isinstance(t["raw"], str):
                 raise ValueError("incomplete model response")
-            move = decode(t["raw"], board.phase)
+            move = parse_response(t["raw"], board.phase, trial == 3)
         except ValueError as exc:
             check(t.get("invalid") == str(exc), "invalid turn misreported")
             move = None
@@ -76,8 +86,8 @@ def replay(directory, plugin=None, plan=None):
             consume("Keeper", text)
         steps.append({"turn": index + 1, "speaker": name, "phase": phase, "move": move,
                       "before": before, "after": "".join(sorted(board.remaining)), "notices": notices})
-    check(board.done and len(records) == len(public) + 3, "unfinished trial or unexplained extra room events")
-    return {"result": board.end, "target": seal["target"], "tests": board.tests, "steps": steps}
+    check((board.done or interrupted) and len(records) == len(public) + 3, "unfinished trial or unexplained extra room events")
+    return {"result": "interrupted" if interrupted else board.end, "target": seal["target"], "tests": board.tests, "steps": steps}
 
 
 if __name__ == "__main__":
