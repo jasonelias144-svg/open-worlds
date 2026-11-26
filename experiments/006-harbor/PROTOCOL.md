@@ -55,3 +55,5 @@ The first harbor room tied the question and the replies to an impossible clock r
 python3 "$trial/harbor.py" sign "$scratch/harbor-sign" --plugin "$writer"
 python3 "$trial/harbor.py" verify "$trial/sign" --plugin "$reader"
 ```
+
+Before the listening-table run, the server had shown a specific transport wrinkle. A completed nominal public field can contain one stray closing reasoning tag followed by the actual final answer. For this writing run only, when there is exactly one closing tag, no opening tag, a normal stop, and a nonempty suffix, preserve and post only that suffix. Keep the digest of the original field and discard the prefatory material. All other malformed or exhausted calls still yield the floor. The first three rooms keep their original handling. This is another difference between the writing trial and the recording trials.

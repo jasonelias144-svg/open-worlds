@@ -151,23 +151,26 @@ def turn(name, target, history, get, check_facts=False, sign=False):
     return "withheld", None
 
 
-def protect_public_channel(call):
+def protect_public_channel(call, recover_final=False):
     """Some servers put an extra thinking delimiter inside their nominal public field."""
     raw = call["public"]
     if isinstance(raw, str) and ("<think>" in raw or "</think>" in raw):
-        call["public"] = None
+        suffix = None
+        if recover_final and call["finish"] == "stop" and raw.count("</think>") == 1 and "<think>" not in raw:
+            suffix = raw.partition("</think>")[2].strip() or None
+        call["public"] = suffix
         call["public_omitted"] = {"reason": "thinking delimiter in public channel",
                                   "sha256": hashlib.sha256(raw.encode()).hexdigest(),
                                   "bytes": len(raw.encode())}
     return call
 
 
-def infer(body, name):
+def infer(body, name, recover_final=False):
     result = local_completion(PORTS[name], body)
     choice = result["choices"][0]
     return protect_public_channel({"request": body, "public": choice["message"]["content"], "finish": choice["finish_reason"],
             "model": result["model"], "used_reasoning_channel": bool(choice["message"].get("reasoning_content")),
-            "usage": result["usage"]})
+            "usage": result["usage"]}, recover_final=recover_final)
 
 
 def play(folder, plugin, moderated, check_facts=False, sign=False):
@@ -190,7 +193,7 @@ def play(folder, plugin, moderated, check_facts=False, sign=False):
                 entry = {"speaker": name, "target": target, "calls": []}
 
                 def get(body):
-                    call = infer(body, name)
+                    call = infer(body, name, recover_final=sign and name != MOD)
                     entry["calls"].append(call)
                     return call
 
