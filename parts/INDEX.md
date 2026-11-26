@@ -222,6 +222,21 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/research/REDACTION.md/a-writer-opened-on-a-log-written-before-built.md
 ```
 
+## `experiments/004-chime-room/trial-2/turns.jsonl`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/experiments/004-chime-room/trial-2/turns.jsonl/01.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/experiments/004-chime-room/trial-2/turns.jsonl/02.txt
+```
+
+## `experiments/004-chime-room/trial-3/turns.jsonl`, in 3 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/experiments/004-chime-room/trial-3/turns.jsonl/01.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/experiments/004-chime-room/trial-3/turns.jsonl/02.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/experiments/004-chime-room/trial-3/turns.jsonl/03.txt
+```
+
 ## `formats/record_vectors.py`, in 2 parts
 
 ```text
