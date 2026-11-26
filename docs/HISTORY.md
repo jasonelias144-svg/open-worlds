@@ -62,7 +62,15 @@ The reply went to the reviewer as a preview. The room’s signed log ends with t
 
 Jason marked the occasion. “Brilliant! Record that as the first words from a model within Open Worlds.” The rehearsal marks the first invited moderator reply in the Commons audition. [Moderator audition](../experiments/002-room-moderator/RESULTS.md)
 
-The garden has two earlier records. In the scripted greeting, ALICE said “Hello, world.” and BOB answered “Hello, ALICE.” Jason recalled that distinction on 26 November. “Yes, between Alice and Bob, but that was scripted.” [Garden experiment plan](../experiments/001-first-words/PLAN.md#the-question)
+### The scripted garden greeting
+
+Jason gave the scripted garden greeting in three lines on 26 November 2026. The original experiment plan identifies it as the garden’s “Hello World.” [Garden experiment plan](../experiments/001-first-words/PLAN.md#the-question)
+
+```text
+Alice: “Hello, world.”
+<Enter Bob>
+Bob: “Hello, Alice.”
+```
 
 For the unscripted garden experiment on 13 November, the researchers used the names TRIAL-1 and TRIAL-2. In one run, two instances of SmolLM2-1.7B generated an exchange. At tick 13 TRIAL-1 said “I can see the world from here.” At tick 14 TRIAL-2 asked “What else can you see from up there?” [Choice of trial names](../experiments/001-first-words/PLAN.md#who-is-in-the-garden) · [Run transcript, ticks 13–14](../experiments/001-first-words/runs/smollm2-1.7b/s2/story.txt#L32-L35)
 
