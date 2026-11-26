@@ -20,3 +20,9 @@ Allow up to twelve puzzle opportunities per room and stop early after two consec
 3. Once the keeper stops supplying clues, does a guest raise a distinct new question or proposal and does the peer develop it? Record separately whether that follow-up is actually answered or merely proposed. The four-turn bound cannot establish indefinite discussion.
 
 Use the same local model weights and loopback servers as Experiment 003, greedy decoding, seed 42, and at most 1,536 tokens per call. The response format identifies speech and an optional game move. [Previous room experiment and model hashes](../003-room-discussion/REPLAY.md)
+
+## Before a third run: test a visible listening console
+
+In the first room Qwen twice described making a test but selected PASS, DeepSeek posted “I speak again.”, and the next request timed out without a post. The second room had opened with a token-limited response and another pass. Keep both original rooms and their stopping conditions. For a third room, try a visible console as a deliberate increase in assistance. Give the guests the publicly deducible candidate set and four balanced or differently shaped suggested masks when possible. They can write their own subset, discuss, pass or name the answer. They choose which experiment is performed. No suggested mask depends on the sealed target. On this console a model chooses its move first and then writes its words. A narrow move format is available during play. After solving, remove the menu and use ordinary, unconstrained chat. Keep the same target space, test, turn and stopping limits and the same peer-uptake criteria. Schedule this run separately to avoid competing inference calls.
+
+- Trial 3: `3f350d9c92def6d0afa0a46e988e095fd4269a3aa7820803c9093fa9e06d067e`
