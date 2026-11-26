@@ -57,3 +57,11 @@ python3 "$trial/harbor.py" verify "$trial/sign" --plugin "$reader"
 ```
 
 Before the listening-table run, the server had shown a specific transport wrinkle. A completed nominal public field can contain one stray closing reasoning tag followed by the actual final answer. For this writing run only, when there is exactly one closing tag, no opening tag, a normal stop, and a nonempty suffix, preserve and post only that suffix. Keep the digest of the original field and discard the prefatory material. All other malformed or exhausted calls still yield the floor. The first three rooms keep their original handling. This is another difference between the writing trial and the recording trials.
+
+## Does a larger generation allowance rescue a dropped handoff?
+
+The pier guest’s first response to a moderator question at the listening table hit the 448-token cap. After the room finishes, replay that exact guest input twice on the same local 1.5B server. Disable prompt caching for both replays and keep the same seed, 192-token reasoning budget and sampling parameters. Give the first call 448 total generated tokens and the second 896. Record normal completion, output eligibility and whether the content actually answers the question. Neither reply enters the historical room or reaches the peer. This tests a token allowance on one message. It does not test idle waiting or measure a population effect.
+
+```sh
+python3 "$trial/time_check.py" "$trial/sign" "$scratch/harbor-time-check.json"
+```
